@@ -25,35 +25,20 @@ public class InputView implements Viewable {
 
     public Money getMoneyInput() {
         String money = getInput(MONEY_INPUT_MESSAGE);
-        try {
-            money = InputValidator.validateMoney(money);
-            return InputConvertor.convertMoney(money);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getMoneyInput();
-        }
+        money = InputValidator.validateMoney(money);
+        return InputConvertor.convertMoney(money);
     }
 
     public Bonus getBonusInput() {
         String bonus = getInput(BONUS_INPUT_MESSAGE);
-        try {
-            InputValidator.validateLottoNumber(bonus);
-            return InputConvertor.convertBonus(bonus);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getBonusInput();
-        }
+        InputValidator.validateLottoNumber(bonus);
+        return InputConvertor.convertBonus(bonus);
     }
 
     public WinningLotto getWinningInput() {
         String winnings = getInput(WINNING_INPUT_MESSAGE);
-        try {
-            InputValidator.validateWinnings(winnings);
-            return InputConvertor.convertWinnings(winnings);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getWinningInput();
-        }
+        InputValidator.validateWinnings(winnings);
+        return InputConvertor.convertWinnings(winnings);
     }
 
 }

@@ -1,7 +1,7 @@
 package lotto.domain;
 
+import lotto.Validator.PayValidator;
 import lotto.constant.ConfigurationNumbers;
-import lotto.util.Validator;
 
 public class Pay {
     private int pay;
@@ -12,8 +12,9 @@ public class Pay {
     }
 
     private void validatePay(int pay) {
-        Validator.lessThanPrice(pay);
-        Validator.divisibleByPrice(pay);
+        PayValidator.isNegative(pay);
+        PayValidator.lessThanPrice(pay);
+        PayValidator.divisibleByPrice(pay);
     }
 
     public int getLottoAmounts() {

@@ -1,27 +1,21 @@
 package lotto.view;
 
-import static lotto.util.Validator.isNumber;
-
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 import lotto.constant.PrintMessage;
-import lotto.util.Parser;
 
 public class InputView {
-    public int requestPayment() {
+    public String requestPayment() {
         System.out.println(PrintMessage.PAYMENT_REQUEST.getMessage());
-        String input = Console.readLine().trim();
-        isNumber(input);
-        return Integer.parseInt(input);
+        return Console.readLine().trim();
     }
 
-    public List<Integer> requestWinningNumber() {
+    public String requestWinningNumber() {
         System.out.println(PrintMessage.WINNING_NUMBER_REQUEST.getMessage());
-        return Parser.toIntegerList(Console.readLine().replace(" ", ""));
+        return Console.readLine().replace(" ", "");
     }
 
-    public int requestBonusNumber() {
-        System.out.println(PrintMessage.BONNUS_NUMBER_REQUEST.getMessage());
-        return Integer.parseInt(Console.readLine());
+    public String requestBonusNumber() {
+        System.out.println(PrintMessage.BONUS_NUMBER_REQUEST.getMessage());
+        return Console.readLine().trim();
     }
 }

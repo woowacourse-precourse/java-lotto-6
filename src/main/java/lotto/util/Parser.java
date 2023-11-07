@@ -1,13 +1,25 @@
 package lotto.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import lotto.Validator.NumberValidator;
 
 public class Parser {
+    public static int toInteger(String input) {
+        NumberValidator.isBlank(input);
+        NumberValidator.isPositiveInteger(input);
+        return Integer.parseInt(input);
+    }
+
     public static List<Integer> toIntegerList(String input) {
-        return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        List<Integer> result = new ArrayList<>();
+        List<String> numbers = Arrays.asList(input.split(","));
+        for (String number : numbers) {
+            NumberValidator.isBlank(number);
+            NumberValidator.isPositiveInteger(number);
+            result.add(Integer.parseInt(number));
+        }
+        return result;
     }
 }

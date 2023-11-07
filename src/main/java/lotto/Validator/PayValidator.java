@@ -1,10 +1,14 @@
-package lotto.util;
+package lotto.Validator;
 
 import lotto.constant.ConfigurationNumbers;
 import lotto.constant.ExceptionMessage;
 
-public class Validator {
-    private static final String POSITIVE_INT = "\\d+";
+public class PayValidator {
+    public static void isNegative(int num) {
+        if (num < 0) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NEGATIVE.getMessage());
+        }
+    }
 
     public static void lessThanPrice(int num) {
         if (num < ConfigurationNumbers.PRICE.getNumber()) {
@@ -15,12 +19,6 @@ public class Validator {
     public static void divisibleByPrice(int num) {
         if (num % ConfigurationNumbers.PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(ExceptionMessage.CAN_NOT_DIVIDE.getMessage());
-        }
-    }
-
-    public static void isNumber(String input) {
-        if (!input.matches(POSITIVE_INT)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_NUMBER.getMessage());
         }
     }
 }

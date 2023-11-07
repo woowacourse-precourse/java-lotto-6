@@ -11,5 +11,4 @@ public class OutputView {
     public void printLottoNumbers(List<Integer> numbers) {
         System.out.println(numbers);
     }
-
 }

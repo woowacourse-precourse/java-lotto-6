@@ -13,7 +13,7 @@ class IssueLottoTest {
         issueLotto.issue(8);
 
         assertThat(issueLotto.getLottoPurchaseHistory().get(0)
-                .getNumbers().size()).isEqualTo(Constant.LOTTO_PICK_COUNT);
+                .getNumbers().size()).isEqualTo(Constant.NUMBER_PICK_COUNT);
         assertThat(issueLotto.getLottoPurchaseHistory().size()).isEqualTo(8);
     }
 }

@@ -29,7 +29,7 @@ public class Lotto {
 
     private static List<Integer> randomPickNumbers() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(
-                        LOTTO_MINIMUM_RANGE, LOTTO_MAXIMUM_RANGE, LOTTO_PICK_COUNT)
+                        LOTTO_MINIMUM_RANGE, LOTTO_MAXIMUM_RANGE, NUMBER_PICK_COUNT)
                 .stream().sorted().collect(Collectors.toList());
         return randomNumbers;
     }

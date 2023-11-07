@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import lotto.LottoMoney;
@@ -12,6 +13,8 @@ public class GameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     RandomUtility randomUtility = new RandomUtility();
+
+    List<List<Integer>> lottoNumbers = new ArrayList<>();
     boolean restart = true;
 
     public void startGame() {
@@ -37,6 +40,7 @@ public class GameController {
         for (int i = 0; i < lottoMoney.getLottoTicket(); i++) {
             List<Integer> numbers = randomUtility.generateRandomLottoNumbers();
             outputView.printLottoNumber(numbers);
+            lottoNumbers.add(numbers);
         }
     }
 

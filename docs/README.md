@@ -82,7 +82,7 @@
      - saveRandomLottoNumbers()
        - [x] 1부터 45사이의 6가지 랜덤 수 출력 함수 호출
        - [x] 발행된 로또 번호 출력 함수 호출
-       - [ ] 로또 개수만큼 로또 발행하여 변수(lottoNumbers)에 저장
+       - [x] 로또 개수만큼 로또 발행하여 변수(lottoNumbers)에 저장
      - saveLuckeyNumbers()
        - [ ] 로또 당첨 번호 입력받는 함수 호출
        - deleteWhiteSpace()

@@ -2,7 +2,7 @@ package lotto.domain.payment;
 
 import lotto.constant.PaymentConstant;
 import lotto.exception.PaymentException;
-import lotto.exception.PaymentExceptionMessage;
+import lotto.exception.message.PaymentExceptionMessage;
 
 public record Payment (int amount) implements PaymentConstant {
     public Payment(int amount){

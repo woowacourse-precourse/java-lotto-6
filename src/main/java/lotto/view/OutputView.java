@@ -2,8 +2,8 @@ package lotto.view;
 
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoPaper;
-import lotto.domain.lotto.LottoPrize;
-import lotto.domain.lotto.LottoRank;
+import lotto.domain.lotto.enums.LottoPrize;
+import lotto.domain.lotto.enums.LottoRank;
 import lotto.domain.prize.Statistic;
 import lotto.domain.result.LottoResult;
 

@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoDraw;
 import lotto.domain.lotto.LottoPaper;
-import lotto.domain.lotto.LottoRank;
+import lotto.domain.lotto.enums.LottoRank;
 import lotto.domain.result.LottoResult;
 import lotto.domain.result.MatchResult;
 import lotto.view.OutputView;

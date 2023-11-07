@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.payment.Payment;
 import lotto.exception.ParserException;
 import lotto.exception.PaymentException;
-import lotto.exception.PaymentExceptionMessage;
+import lotto.exception.message.PaymentExceptionMessage;
 import lotto.util.Parser;
 import lotto.view.InputView;
 import lotto.view.OutputView;

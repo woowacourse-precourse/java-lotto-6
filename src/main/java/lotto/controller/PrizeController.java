@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.lotto.LottoRank;
+import lotto.domain.lotto.enums.LottoRank;
 import lotto.domain.result.LottoResult;
 import lotto.domain.prize.Prize;
 

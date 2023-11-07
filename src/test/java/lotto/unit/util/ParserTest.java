@@ -1,7 +1,7 @@
 package lotto.unit.util;
 
 import lotto.exception.ParserException;
-import lotto.exception.ParserExceptionMessage;
+import lotto.exception.message.ParserExceptionMessage;
 import lotto.util.Parser;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

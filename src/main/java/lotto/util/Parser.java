@@ -2,7 +2,7 @@ package lotto.util;
 
 import lotto.constant.ParserConstant;
 import lotto.exception.ParserException;
-import lotto.exception.ParserExceptionMessage;
+import lotto.exception.message.ParserExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.Arrays;

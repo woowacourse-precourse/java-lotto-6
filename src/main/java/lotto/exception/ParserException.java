@@ -1,7 +1,9 @@
 package lotto.exception;
 
-public class ParserException extends IllegalArgumentException{
-    private static final String ERROR_MESSAGE_PREFIX = "[ERROR] ";
+import lotto.constant.ExceptionConstant;
+import lotto.exception.message.ParserExceptionMessage;
+
+public class ParserException extends IllegalArgumentException implements ExceptionConstant {
     public ParserException(ParserExceptionMessage errorMessage) {
         super(ERROR_MESSAGE_PREFIX + errorMessage.getMessage());
     }

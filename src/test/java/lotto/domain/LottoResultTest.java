@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.lotto.LottoRank;
+import lotto.domain.lotto.enums.LottoRank;
 import lotto.domain.result.LottoResult;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

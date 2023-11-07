@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import lotto.constant.LottoConstant;
 import lotto.exception.LottoException;
-import lotto.exception.LottoExceptionMessage;
+import lotto.exception.message.LottoExceptionMessage;
 
 public record LottoDraw(Lotto winningLotto , int bonusNumber) implements LottoConstant {
     public LottoDraw(Lotto winningLotto , int bonusNumber){

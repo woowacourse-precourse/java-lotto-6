@@ -2,7 +2,7 @@ package lotto.domain.lotto;
 
 import lotto.constant.LottoConstant;
 import lotto.exception.LottoException;
-import lotto.exception.LottoExceptionMessage;
+import lotto.exception.message.LottoExceptionMessage;
 
 import java.util.Collections;
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.lotto.enums;
 
 import lotto.constant.PrizeConstant;
 

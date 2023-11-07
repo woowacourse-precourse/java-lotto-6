@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.exception.message;
 
 public enum PaymentExceptionMessage {
     NOT_NUMBER ("금액에는 숫자를 입력해주세요!"),

@@ -26,7 +26,9 @@ public class View {
     }
 
     public void lottoView(List<Lotto> lottos){
-
+         for(Lotto lotto : lottos){
+             System.out.println(lotto.getNumbers().toString());
+         }
     }
 
 

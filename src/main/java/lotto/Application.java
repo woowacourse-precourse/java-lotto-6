@@ -11,6 +11,7 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("구입금액을 입력해주세요:");
         generateLottoTickets(Console.readLine());
+        showLottoTickets();
     }
 
     public static Integer convertMoneyFormat(String inputMoney) {
@@ -32,6 +33,14 @@ public class Application {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         numbers.sort(null);
         return new Lotto(numbers);
+    }
+    public static void showLottoTickets() {
+        Integer numberOfLottoTickets = lottoTickets.size();
+        System.out.println(String.format("%d개를 구매했습니다.",numberOfLottoTickets));
+        for(Lotto lottoTicket : lottoTickets) {
+            List<Integer> numbers = lottoTicket.getNumbers();
+            System.out.println(numbers);
+        }
     }
 
 }

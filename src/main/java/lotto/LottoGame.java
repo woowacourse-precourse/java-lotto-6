@@ -57,6 +57,16 @@ public class LottoGame {
         input = InputView.read();
         validateNumber(input);
         validateRangeOne(Integer.parseInt(input));
+        validateBonusDuplication(Integer.parseInt(input), winingNumbers);
+        int bonus = Integer.parseInt(input);
+
+        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(Message.WINNING_STATISTICS_RESULT);
+        OutputView.print(Message.LINE_BREAK);
+        for (int i = 0; i < 3; i++) {
+            OutputView.print(Message.DIVIDING_LINE);
+        }
+        OutputView.print(Message.LINE_BREAK);
 
 
     }

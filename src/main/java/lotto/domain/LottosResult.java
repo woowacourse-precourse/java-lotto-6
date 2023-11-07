@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +12,7 @@ public class LottosResult {
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
             totalPrize += calculateOncePrize(entry);
         }
+
         return totalPrize;
     }
 
@@ -20,6 +20,7 @@ public class LottosResult {
         Rank rank = entry.getKey();
         int count = entry.getValue();
         int prize = rank.getPrizeMoney();
+
         return count * prize;
     }
 
@@ -28,6 +29,7 @@ public class LottosResult {
                 .filter(rank -> !isZero(rank))
                 .map(rank -> results.getOrDefault(rank, 0))
                 .collect(Collectors.toList());
+
         return eachRankNumber;
     }
 

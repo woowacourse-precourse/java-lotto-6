@@ -30,9 +30,9 @@ public class Inputter {
     }
 
     public LottoNumberDTO lottoNumbers() {
-        return new LottoNumberDTO(Arrays.stream(Console.readLine().split(","))
+        return new LottoNumberDTO(isDup(Arrays.stream(Console.readLine().split(","))
                 .mapToInt(this::parseInt).map(this::validateLottoNumber)
-                .boxed().collect(Collectors.toList()));
+                .boxed().collect(Collectors.toList())));
     }
 
     public int bonus() {

@@ -12,6 +12,7 @@ import lotto.validator.Validator;
 
 public class Parser {
     private static final String DELIMITER = ",";
+    private static final String FORMAT_PATTERN = "###,###";
 
     // 구입 금액을 구입 수량으로 변환한다.
     public static int parsePurchaseAmount(String input) {
@@ -35,7 +36,7 @@ public class Parser {
     }
 
     public static String parsePrize(BigDecimal prize) {
-        return new DecimalFormat("###,###").format(prize);
+        return new DecimalFormat(FORMAT_PATTERN).format(prize);
     }
 
     private static int parse(String input) {

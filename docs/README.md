@@ -102,31 +102,3 @@
 ✅ 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
 
 ✅ 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
-
-## 공부하고 개선할 목록 (체크 완료시 ✅)
-
-❎ getter, setter를 지양
-
-❎ 원시값 저장&값 검증을 포장(일급 컬렉션)
-
-❎ 정적 팩토리 메서드
-
-❎ 테스트만을 위해 코드를 추가하지 않기
-
-- assertRandomNumberInRangeTest 활용하도록
-
-❎Observer 패턴, controller의 모니터링
-
-❎ static 의심하기
-
-❎ output메세지, error메세지 관리시 포맷팅 %d 을 통해 구체화하기 (Enum)
-
-❎ trim() 대신 name.isBlank()
-
-❎ 테스트 어노테이션 @RepeatedTest, @MethodSource 등 공부, 사용하기
-
-❎ getList 할때 unmodifiableList 사용
-
-❎ Hash, Stream을 사용한 중복 제거
-
-❎ Console.close()

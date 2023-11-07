@@ -1,9 +1,9 @@
 package lotto.util;
 
-import static lotto.domain.LottoRule.MAXIMUM;
-import static lotto.domain.LottoRule.MINIMUM;
-import static lotto.domain.LottoRule.PRICE;
-import static lotto.domain.LottoRule.SIZE;
+import static lotto.domain.lotto.LottoRule.MAXIMUM;
+import static lotto.domain.lotto.LottoRule.MINIMUM;
+import static lotto.domain.lotto.LottoRule.PRICE;
+import static lotto.domain.lotto.LottoRule.SIZE;
 import static lotto.util.ErrorMessage.INPUT_BONUS_DUPLICATE;
 import static lotto.util.ErrorMessage.INPUT_DUPLICATE_NUMBER;
 import static lotto.util.ErrorMessage.INPUT_INVALID_NUMBER;
@@ -11,20 +11,24 @@ import static lotto.util.ErrorMessage.INPUT_NOT_IN_RANGE;
 import static lotto.util.ErrorMessage.INPUT_NOT_NUMBER;
 import static lotto.util.ErrorMessage.INPUT_NOT_THOUSAND_UNIT;
 import static lotto.util.ErrorMessage.INPUT_OUT_OF_SIZE;
+import static lotto.util.Utils.stringToInt;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Validator {
 
+    final static String REGEX = "[0-9]+";
+    final static String DELIMITER = ",";
+    final static int LIMIT = -1;
+
     public void validateMoney(final String money) {
         validateNumber(money);
         validateNumberSize(money);
-        validateThousandUnit(Integer.parseInt(money));
+        validateThousandUnit(money);
     }
 
     private void validateNumber(final String number) {
-        final String REGEX = "[0-9]+";
         if (!number.matches(REGEX)) {
             throw new IllegalArgumentException(INPUT_NOT_NUMBER.getMessage());
         }
@@ -38,14 +42,17 @@ public class Validator {
         }
     }
 
-    private void validateThousandUnit(final int money) {
+    private void validateThousandUnit(final String number) {
+        int money = stringToInt(number);
+
         if (money <= 0 || money % PRICE.getValue() != 0) {
             throw new IllegalArgumentException(INPUT_NOT_THOUSAND_UNIT.getMessage());
         }
     }
 
     public void validateWinningNumber(final String lotto) {
-        String[] lottoNumbers = lotto.split(",", -1);
+        String[] lottoNumbers = lotto.split(DELIMITER, LIMIT);
+
         validateSize(lottoNumbers);
         validateDuplicate(lottoNumbers);
         Arrays.stream(lottoNumbers).forEach(number -> validateOneNumber(number));

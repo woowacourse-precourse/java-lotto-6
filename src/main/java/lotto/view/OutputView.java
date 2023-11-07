@@ -1,10 +1,10 @@
 package lotto.view;
 
-import static lotto.domain.LottoCriteria.FIFTH_PLACE;
-import static lotto.domain.LottoCriteria.FIRST_PLACE;
-import static lotto.domain.LottoCriteria.FOURTH_PLACE;
-import static lotto.domain.LottoCriteria.SECOND_PLACE;
-import static lotto.domain.LottoCriteria.THIRD_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FIFTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FIRST_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FOURTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.SECOND_PLACE;
+import static lotto.domain.lotto.LottoCriteria.THIRD_PLACE;
 import static lotto.view.OutputMessage.BONUS_RESULT;
 import static lotto.view.OutputMessage.PURCHASE_RESULT;
 import static lotto.view.OutputMessage.RESULT;
@@ -15,8 +15,8 @@ import static lotto.view.OutputMessage.WINNING_STATISTICS;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
-import lotto.domain.LottoCriteria;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoCriteria;
 
 public class OutputView {
 
@@ -39,27 +39,35 @@ public class OutputView {
 
     private String ListToStringWithBracket(List<Integer> lottoNumbers) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("[");
+
         String lotto = lottoNumbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", "));
-        stringBuilder.append(lotto);
-        stringBuilder.append("]");
+
+        stringBuilder.append("[").append(lotto).append("]");
+
         return stringBuilder.toString();
     }
 
-    public void printResult(Map<LottoCriteria, Long> result) {
-        System.out.printf(RESULT.getMessage(), FIFTH_PLACE.getCount(), String.format("%,d", FIFTH_PLACE.getAmount()),
-                result.get(FIFTH_PLACE));
-        System.out.printf(RESULT.getMessage(), FOURTH_PLACE.getCount(), String.format("%,d", FOURTH_PLACE.getAmount()),
-                result.get(FOURTH_PLACE));
-        System.out.printf(RESULT.getMessage(), THIRD_PLACE.getCount(), String.format("%,d", THIRD_PLACE.getAmount()),
-                result.get(THIRD_PLACE));
-        System.out.printf(BONUS_RESULT.getMessage(), SECOND_PLACE.getCount(),
-                String.format("%,d", SECOND_PLACE.getAmount()),
-                result.get(SECOND_PLACE));
-        System.out.printf(RESULT.getMessage(), FIRST_PLACE.getCount(), String.format("%,d", FIRST_PLACE.getAmount()),
+    public void printWinningDetails(Map<LottoCriteria, Long> result) {
+        printResult(FIFTH_PLACE.getMatchNumber(), getFormatAmount(FIRST_PLACE.getAmount()), result.get(FIRST_PLACE));
+        printResult(FOURTH_PLACE.getMatchNumber(), getFormatAmount(FIRST_PLACE.getAmount()), result.get(FIRST_PLACE));
+        printResult(THIRD_PLACE.getMatchNumber(), getFormatAmount(FIRST_PLACE.getAmount()), result.get(FIRST_PLACE));
+        printBonusResult(SECOND_PLACE.getMatchNumber(), getFormatAmount(FIRST_PLACE.getAmount()),
                 result.get(FIRST_PLACE));
+        printResult(FIRST_PLACE.getMatchNumber(), getFormatAmount(FIRST_PLACE.getAmount()), result.get(FIRST_PLACE));
+    }
+
+    private String getFormatAmount(Long amount) {
+        return String.format("%,d", amount);
+    }
+
+    private void printResult(int getMatchNumber, String amount, Long count) {
+        System.out.printf(RESULT.getMessage(), getMatchNumber, amount, count);
+    }
+
+    private void printBonusResult(int getMatchNumber, String amount, Long count) {
+        System.out.printf(BONUS_RESULT.getMessage(), getMatchNumber, amount, count);
     }
 
     public void printTotalReturn(float totalReturn) {

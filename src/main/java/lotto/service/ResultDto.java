@@ -1,8 +1,8 @@
 package lotto.service;
 
 import java.util.Map;
-import lotto.domain.LottoCriteria;
-import lotto.domain.LottoResult;
+import lotto.domain.lotto.LottoCriteria;
+import lotto.domain.lotto.LottoResult;
 
 public class ResultDto {
 
@@ -14,11 +14,11 @@ public class ResultDto {
         this.returnRate = lottoResult.getReturnRate();
     }
 
-    public Map<LottoCriteria, Long> getResult() {
+    public final Map<LottoCriteria, Long> getResult() {
         return this.result;
     }
 
-    public float getReturnRate() {
+    public final float getReturnRate() {
         return returnRate;
     }
 }

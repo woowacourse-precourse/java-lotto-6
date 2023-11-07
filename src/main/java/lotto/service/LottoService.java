@@ -1,12 +1,12 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.Bonus;
 import lotto.domain.Customer;
-import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
-import lotto.domain.LottoResult;
-import lotto.domain.WinningLotto;
+import lotto.domain.lotto.Bonus;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoMachine;
+import lotto.domain.lotto.LottoResult;
+import lotto.domain.lotto.WinningLotto;
 import lotto.util.RandomNumberGenerator;
 
 public class LottoService {
@@ -19,15 +19,16 @@ public class LottoService {
 
     }
 
-    public void issueLotto(Customer customer, int quantity) {
+    public void issueLotto(final Customer customer, final int quantity) {
         this.customer = customer;
+
         for (int count = 0; count < quantity; count++) {
             Lotto issuedLotto = lottoMachine.issueLotto(randomNumberGenerator);
             customer.buyLotto(issuedLotto);
         }
     }
 
-    public void saveWinningLotto(List<Integer> winningNumber, int bonusNumber) {
+    public void saveWinningLotto(final List<Integer> winningNumber, final int bonusNumber) {
         winningLotto = new WinningLotto(new Lotto(winningNumber), new Bonus(bonusNumber));
     }
 

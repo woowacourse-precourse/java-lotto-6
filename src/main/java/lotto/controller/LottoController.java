@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import static lotto.util.ListUtils.stringToInt;
-import static lotto.util.ListUtils.stringToIntegerSortedList;
+import static lotto.util.Utils.stringToInt;
+import static lotto.util.Utils.stringToIntegerSortedList;
 import static lotto.view.OutputMessage.REQUEST_BONUS_NUMBER;
 import static lotto.view.OutputMessage.REQUEST_PURCHASE_AMOUNT;
 import static lotto.view.OutputMessage.REQUEST_WINNING_NUMBER;
@@ -41,7 +41,7 @@ public class LottoController {
 
         outputView.printWinningStatistics();
         ResultDto resultDto = lottoService.getResult();
-        outputView.printResult(resultDto.getResult());
+        outputView.printWinningDetails(resultDto.getResult());
         outputView.printTotalReturn(resultDto.getReturnRate());
     }
 

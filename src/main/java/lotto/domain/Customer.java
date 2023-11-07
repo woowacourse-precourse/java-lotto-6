@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.lotto.Lotto;
 
 public class Customer {
     private final int money;

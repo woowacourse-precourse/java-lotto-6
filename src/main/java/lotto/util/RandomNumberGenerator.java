@@ -1,8 +1,8 @@
 package lotto.util;
 
-import static lotto.domain.LottoRule.MAXIMUM;
-import static lotto.domain.LottoRule.MINIMUM;
-import static lotto.domain.LottoRule.SIZE;
+import static lotto.domain.lotto.LottoRule.MAXIMUM;
+import static lotto.domain.lotto.LottoRule.MINIMUM;
+import static lotto.domain.lotto.LottoRule.SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;

@@ -44,6 +44,7 @@ public class Game {
             fifthPrize++;
         }
     }
+
     public List<Integer> numbers = new ArrayList<>();
     ;
     public boolean bonus;

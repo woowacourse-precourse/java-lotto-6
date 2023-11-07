@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.view.ExceptionMessage;
 import lotto.view.InputView;
 import lotto.domain.*;
@@ -42,9 +42,9 @@ public class LottoController {
                 outputView.printTicketCount(ticketCount);
                 break;
             } catch (NumberFormatException e) {
-                System.err.println(exceptionMessage.notNumberException());
+                System.out.println(exceptionMessage.notNumberException());
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -63,7 +63,7 @@ public class LottoController {
                 winnerLottoList = winnerLotto.getNumbers();
                 break;
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -76,9 +76,9 @@ public class LottoController {
                 winningNumber = new WinningNumber(winnerLottoList, bonusNumber);
                 break;
             } catch (NumberFormatException e) {
-                System.err.println(exceptionMessage.notNumberException());
+                System.out.println(exceptionMessage.notNumberException());
             } catch (IllegalArgumentException e) {
-                System.err.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }

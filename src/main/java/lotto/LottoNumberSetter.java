@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.lottoUI.LottoUI;
 
-public class SetLottoNumber {
+public class LottoNumberSetter {
 
     public static void parseWinningNumbers(int count) {
         List<Integer> winningNumbers = new ArrayList<>();

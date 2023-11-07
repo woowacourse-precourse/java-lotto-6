@@ -46,7 +46,7 @@ public class ResultMachine {
     }
 
 
-    private int getRank(Lotto myLotto, Lotto winningLotto) {
+    public int getRank(Lotto myLotto, Lotto winningLotto) {
         int hits = 0;
 
         for (int myLottoNumber : myLotto.getLottoNumber()) {

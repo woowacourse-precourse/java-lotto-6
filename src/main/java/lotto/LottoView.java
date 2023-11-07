@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,13 +34,14 @@ public class LottoView {
     }
 
     public void printResult(List<Integer> results, double earningRate) {
+        DecimalFormat df = new DecimalFormat("###,###");
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (" + Result.THREE.getEarnings() + ") - " + results.get(Result.THREE.ordinal()) + "개");
-        System.out.println("4개 일치 (" + Result.FOUR.getEarnings() + ") - " + results.get(Result.FOUR.ordinal()) + "개");
-        System.out.println("5개 일치 (" + Result.FIVE.getEarnings() + ") - " + results.get(Result.FIVE.ordinal()) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (" + Result.FIVE_BONUS.getEarnings() + ") - " + results.get(Result.FIVE_BONUS.ordinal()) + "개");
-        System.out.println("6개 일치 (" + Result.SIX.getEarnings() + ") - " + results.get(Result.SIX.ordinal()) + "개");
+        System.out.println("3개 일치 (" + df.format(Result.THREE.getEarnings()) + "원) - " + results.get(Result.THREE.ordinal()) + "개");
+        System.out.println("4개 일치 (" + df.format(Result.FOUR.getEarnings()) + "원) - " + results.get(Result.FOUR.ordinal()) + "개");
+        System.out.println("5개 일치 (" + df.format(Result.FIVE.getEarnings()) + "원) - " + results.get(Result.FIVE.ordinal()) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (" + df.format(Result.FIVE_BONUS.getEarnings()) + "원) - " + results.get(Result.FIVE_BONUS.ordinal()) + "개");
+        System.out.println("6개 일치 (" + df.format(Result.SIX.getEarnings()) + "원) - " + results.get(Result.SIX.ordinal()) + "개");
         System.out.println("총 수익률은 " + earningRate + "%입니다.");
     }
 }

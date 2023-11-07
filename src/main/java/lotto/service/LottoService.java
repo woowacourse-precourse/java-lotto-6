@@ -30,7 +30,7 @@ public class LottoService {
     private Winner winners;
     private Lotto winLotto;
     private int bonusNumber;
-    private int totalPrize;
+    private int totalPrize = 0;
 
     public void repeatPurchase(int lottoCount) {
         for (int count = 0; count < lottoCount; count++) {

@@ -28,6 +28,7 @@ public class LottoController {
 
         LottoResult lottoResult = new LottoResult();
         lottoResult.countPrizes(lottoWallet, winningLotto);
+        outputView.println();
         outputView.printPrizeCount(lottoResult.getResult());
 
         TotalAmount totalAmount = new TotalAmount(lottoResult.getTotalAmount());
@@ -61,10 +62,10 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        outputView.println();
         BonusNumberInputView bonusNumberInputView = new BonusNumberInputView();
-
+        outputView.println();
         Lotto lotto = getLotto();
+        outputView.println();
 
         while (true) {
             try {
@@ -78,7 +79,6 @@ public class LottoController {
     }
 
     private Lotto getLotto() {
-        outputView.println();
         LottoInputView LottoInputView = new LottoInputView();
 
         while (true) {

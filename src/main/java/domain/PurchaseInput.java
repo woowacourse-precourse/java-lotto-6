@@ -7,11 +7,22 @@ public class PurchaseInput {
     public int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
         while (true) {
+            Integer amount = getInteger();
+            if (amount != null)
+                return amount;
+        }
+    }
+
+    private Integer getInteger() {
+        try {
             int amount = readPurchaseAmount();
             if (amount >= 0) {
                 return amount;
             }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
+        return null;
     }
 
     private int readPurchaseAmount() {

@@ -22,7 +22,7 @@ public class LottoController {
 	public int getCount() {
 		return LottoView.getMoney();
 	}
-	
+
 	private void createRandomLotto(int count) { // 사용자가 입력한 갯수에 따라 로또를 생성한다.
 		for (int i = 0; i < count; i++) {
 			List<Integer> randomNumbers = pickUniqueNumbersInRange(1, 45, 6);
@@ -67,11 +67,11 @@ public class LottoController {
 		return result;
 	}
 
-	public Map<Ranking, Integer> matchRank() {
+	public Map<Ranking, Integer> matchRank(List<List<Integer>> Lottos, List<Integer> numbers) {
 		Map<Ranking, Integer> result = setResult();
-		for (List<Integer> innerList : createdLottos) {
+		for (List<Integer> innerList : Lottos) {
 			int count = 0;
-			for (int num : winNumbers) {
+			for (int num : numbers) {
 				if (innerList.contains(num)) {
 					count++;
 				}
@@ -83,7 +83,7 @@ public class LottoController {
 	}
 
 	private void printResult() {
-		Map<Ranking, Integer> result = matchRank();
+		Map<Ranking, Integer> result = matchRank(createdLottos, winNumbers);
 		System.out.printf("%n당첨 통계%n");
 		System.out.println("---");
 		for (int i = Ranking.values().length - 1; i >= 0; i--) {
@@ -95,7 +95,7 @@ public class LottoController {
 		double marginRate = 0;
 		double purchasedMoney = createdLottos.size() * 1000;
 		int winPrice = 0;
-		Map<Ranking, Integer> result = matchRank();
+		Map<Ranking, Integer> result = matchRank(createdLottos, winNumbers);
 		for (Ranking rank : result.keySet()) {
 			// 수익률(%) = 당첨금 / 구매비용 * 100
 			winPrice += rank.getPrice() * result.get(rank);

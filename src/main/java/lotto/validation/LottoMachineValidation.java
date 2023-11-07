@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import static lotto.constant.Message.LOTTO_PRICE;
+
 public class LottoMachineValidation {
 
     public void validate_inputMoney(String inputMoney){
@@ -21,6 +23,12 @@ public class LottoMachineValidation {
         }
 
         if(num < 0){
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validate_isExactlyDividedByPrice(int input){
+        if(input % LOTTO_PRICE != 0){
             throw new IllegalArgumentException();
         }
     }

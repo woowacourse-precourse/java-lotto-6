@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Money;
+import lotto.domain.Money;
 
 public class MoneyController {
     public Money create(int money) {

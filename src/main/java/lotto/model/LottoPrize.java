@@ -32,14 +32,7 @@ public enum LottoPrize {
     }
 
     private static boolean hasPrize(final LottoPrize prize, final LottoMatchResult result) {
-        if (prize.equals(PRIZE_3)) {
-            return isPrize3(result);
-        }
-        return prize.matchCount == result.matchCount();
-    }
-
-    private static boolean isPrize3(final LottoMatchResult result) {
-        return PRIZE_3.hasBonus == result.hasBonus() && PRIZE_3.matchCount == result.matchCount();
+        return (prize.matchCount == result.matchCount()) && (prize.hasBonus == result.hasBonus());
     }
 
     public static Stream<LottoPrize> stream() {

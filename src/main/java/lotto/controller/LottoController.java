@@ -28,7 +28,7 @@ public class LottoController {
         printLottos(lottos);
         WinningNumbers winningNumbers = askWinningNumbers();
         LottoStatistic statistic = createStatisticOf(amount, lottos, winningNumbers);
-        outputView.printStatistic(statistic);
+        printStatistic(statistic);
     }
 
     private PurchaseAmount askPurchaseAmount() {
@@ -51,5 +51,9 @@ public class LottoController {
 
     private LottoStatistic createStatisticOf(PurchaseAmount amount, Lottos lottos, WinningNumbers winningNumbers) {
         return lottoService.createStatisticOf(amount, lottos, winningNumbers);
+    }
+
+    private void printStatistic(LottoStatistic statistic) {
+        outputView.printStatistic(statistic);
     }
 }

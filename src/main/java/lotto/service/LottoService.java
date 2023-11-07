@@ -1,6 +1,8 @@
 package lotto.service;
 
 import static lotto.model.Lotto.LOTTO_PRICE;
+import static lotto.model.LottoPrize.PRIZE_2;
+import static lotto.model.LottoStatistic.RATE;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -8,10 +10,13 @@ import java.util.stream.Stream;
 import lotto.exception.InputCallback;
 import lotto.exception.InputExceptionTemplate;
 import lotto.model.Lotto;
+import lotto.model.LottoPrize;
+import lotto.model.LottoPrizeCount;
 import lotto.model.LottoStatistic;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
+import lotto.model.result.LottoMatchResult;
 
 public class LottoService {
 
@@ -44,10 +49,43 @@ public class LottoService {
         return inputByExceptionTemplate(() -> WinningNumbers.of(numbers, bonusNumber));
     }
 
-    public LottoStatistic createStatisticOf(PurchaseAmount amount, Lottos lottos, WinningNumbers winningNumbers) {
-        LottoStatistic statistic = new LottoStatistic(amount);
-        statistic.match(lottos, winningNumbers);
-        return statistic;
+    public LottoStatistic createStatisticOf(
+            PurchaseAmount purchaseAmount,
+            Lottos lottos,
+            WinningNumbers winningNumbers
+    ) {
+        LottoPrizeCount prizeCount = countPrizesOf(lottos, winningNumbers);
+        double earningRate = computeEarningRateOf(purchaseAmount, prizeCount);
+        return LottoStatistic.of(prizeCount, earningRate);
+    }
+
+    private LottoPrizeCount countPrizesOf(Lottos lottos, WinningNumbers winningNumbers) {
+        LottoPrizeCount prizeCount = LottoPrizeCount.create();
+        lottos.stream()
+                .map(lotto -> match(lotto, winningNumbers))
+                .forEach(prizeCount::add);
+        return prizeCount;
+    }
+
+    private double computeEarningRateOf(PurchaseAmount purchaseAmount, LottoPrizeCount prizeCount) {
+        return sumPrizeMoneyFrom(prizeCount) / purchaseAmount.toInt() * RATE;
+    }
+
+    private LottoPrize match(Lotto lotto, WinningNumbers winningNumbers) {
+        int matchCount = (int) lotto.stream().filter(winningNumbers::contains).count();
+        boolean hasBonus = isSameMatchCountOfPrize2(matchCount)
+                && lotto.stream().anyMatch(number -> number == winningNumbers.getBonusNumber());
+        return LottoPrize.from(new LottoMatchResult(matchCount, hasBonus));
+    }
+
+    private double sumPrizeMoneyFrom(LottoPrizeCount prizeCount) {
+        return LottoPrize.stream()
+                .mapToDouble(prize -> (double) prizeCount.getCountOf(prize) * prize.getAmount())
+                .sum();
+    }
+
+    private boolean isSameMatchCountOfPrize2(final int matchCount) {
+        return matchCount == PRIZE_2.getMatchCount();
     }
 
     private <T> T inputByExceptionTemplate(InputCallback<T> callback) {

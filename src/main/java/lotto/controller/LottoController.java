@@ -22,12 +22,12 @@ public class LottoController {
     }
 
     //winning 입력 받아서 모델에서 validation 처리 -> Lotto에서
-//    public void getWinningLotto(){
-//
-//        Lotto lotto = new Lotto(InputView.winningNumber());
-//    }
+    public void getWinningLotto(){
+        Lotto lotto = new Lotto(lottoStringtoIntegerList());
+        winningLotto = (Lotto) lotto.getNumbers();
+    }
 
-    private List<Integer> StringtoIntegerList(){
+    private List<Integer> lottoStringtoIntegerList(){
         String strLotto = InputView.winningNumber();
         List<String> strNumbers = Arrays.asList(strLotto.split(","));
         List<Integer> numbers = new ArrayList<>();

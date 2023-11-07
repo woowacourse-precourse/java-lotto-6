@@ -34,6 +34,7 @@ public class InputView {
             System.out.println();
             System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());
             final String requestWinnerNumbers = getInput();
+            InputValidator.validateCommaAtEdge(requestWinnerNumbers);
             final List<String> numberDummy = Parser.parseNumberDummy(requestWinnerNumbers);
             InputValidator.validateInputNumbersFormat(numberDummy);
             return Parser.parseNumbers(numberDummy);

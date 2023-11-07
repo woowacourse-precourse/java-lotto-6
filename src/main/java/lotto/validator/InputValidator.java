@@ -32,6 +32,7 @@ public class InputValidator {
 
     }
 
+
     public static void validateInputNumbersFormat(final List<String> numbers) {
         validateSpecialSign(numbers);
         validateNumbers(numbers);
@@ -55,6 +56,12 @@ public class InputValidator {
             throw new IllegalArgumentException(FOUND_SPECIAL_SIGN.getMessage());
         }
 
+    }
+
+    public static void validateCommaAtEdge(final String input) {
+        if (input.charAt(0) == ',' || input.charAt(input.length()-1) == ',') {
+            throw new IllegalArgumentException("[ERROR] 입력한 값의 가장 자리에 ','를 입력할 수 없습니다.");
+        }
     }
 
 }

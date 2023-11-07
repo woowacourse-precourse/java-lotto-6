@@ -58,6 +58,30 @@ class InputViewTest extends IOTest{
         );
     }
 
+    @DisplayName("입력한 당첨 번호에 숫자가 아닌 값이 있는 경우")
+    @ParameterizedTest()
+    @ValueSource(strings = {"1,2,3,4,5,z", "1,2,3,4,5,% ", "1,2,3,4,5,ㅎ ", "1,2,3,4,5,!",  "1,2,3,4,5,."})
+    void createWinnerNumbersWithNotNumberExceptionTest(String input) {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    systemIn(input);
+                    inputView.requestWinnerNumbers();
+                }
+        );
+    }
+
+    @DisplayName("당첨 번호 입력 형식을 준수하지 않은 경우")
+    @ParameterizedTest()
+    @ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1/2/3/4/5/6 ", "1-2-3-4-5-6", "1,2,3,4,5,6,", ",1,2,3,4,5,6"})
+    void createWinnerNumbersWithWrongNumbersSizeExceptionTest(String input) {
+        assertThrows(IllegalArgumentException.class,
+                () -> {
+                    systemIn(input);
+                    inputView.requestWinnerNumbers();
+                }
+        );
+    }
+
 
 
 

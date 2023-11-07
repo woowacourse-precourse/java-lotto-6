@@ -14,11 +14,13 @@ public class Game {
     private Buying buying;
     private List<Lotto> lottos;
     private Winning winning;
+    private Bonus bonus;
     private Result result;
 
     public Game() {
         this.lottos = new ArrayList<>();
         this.winning = new Winning();
+        this.bonus = new Bonus();
         this.result = new Result();
     }
 
@@ -70,7 +72,7 @@ public class Game {
             try {
                 System.out.println("당첨 번호를 입력해 주세요.");
                 String readLine = Console.readLine();
-                winning.saveNumbers(readLine);
+                winning.save(readLine);
                 isNotEnded = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -84,12 +86,17 @@ public class Game {
             try {
                 System.out.println("보너스 번호를 입력해 주세요.");
                 String readLine = Console.readLine();
-                winning.saveBonusNumber(readLine);
+                bonus.save(readLine);
+                isBonusSameWithWinning();
                 isNotEnded = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void isBonusSameWithWinning() {
+        bonus.isContained(winning.getNumbers());
     }
 
     private void informWinning() {
@@ -124,7 +131,7 @@ public class Game {
     }
 
     private int addBonusNumber(Lotto lotto, int equalNumber) {
-        if (lotto.contain(winning.getBonusNumber())) {
+        if (lotto.contain(bonus.getNumber())) {
             equalNumber++;
         }
         return equalNumber;

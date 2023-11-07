@@ -121,6 +121,12 @@
 
 ##
 
+#### 당첨 번호, 보너스 번호 관련 예외 메시지 관리 역할 (WinningInformationExceptionMessage)
+
+- [ ] 당첨 번호, 보너스 번호 관련 예외 메시지를 반환하는 기능
+
+##
+
 #### 구매 금액 예외를 검증하는 역할 (PurchaseAmountValidator)
 
 - [ ] 공백 입력을 검증하는 기능

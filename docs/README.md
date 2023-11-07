@@ -95,4 +95,6 @@
 ### 예외 처리 클래스(Exception)
 
 - 잘못된 로또 구입 금액 입력 예외(InvalidPurchaseCostException)
-- 질못된 당첨 번호 입력 예외(InvalidLottoException)
+  - 구매 금액이 1,000원 단위가 아닌 경우
+  - 입력이 숫자가 아닐 경우
+- 잘못된 당첨 번호 입력 예외(InvalidLottoException)

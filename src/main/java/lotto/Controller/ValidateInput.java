@@ -8,14 +8,14 @@ import java.util.stream.Collectors;
 
 public class ValidateInput {
     private static final String SEPERATE = ",";
-    private ValidateTools validateTools;
-    public ValidateInput(ValidateTools validateTools){
-        this.validateTools = validateTools;
+    private Exceptable exceptable;
+    public ValidateInput(Exceptable exceptable){
+        this.exceptable = exceptable;
     }
     public int validateCost(String input){
         int cost = changeInt(canNumber(input));
-        validateTools.validateDivided(cost);
-        validateTools.validateZeroLess(cost);
+        exceptable.validateDivided(cost);
+        exceptable.validateZeroLess(cost);
         return cost;
     }
 
@@ -26,16 +26,16 @@ public class ValidateInput {
 
     public int validateBonus(String input, List<Integer> winningNums){
         int bonus = changeInt(canNumber(input));
-        validateTools.validateDuplicateBonus(bonus, winningNums);
-        validateTools.validate1to45(bonus);
+        exceptable.validateDuplicateBonus(bonus, winningNums);
+        exceptable.validate1to45(bonus);
         return bonus;
     }
 
     public String canNumber(String input) {
-        validateTools.validateSpace(input);
-        validateTools.validateOverOne(input);
-        validateTools.validatePoint(input);
-        validateTools.validateNumber(input);
+        exceptable.validateSpace(input);
+        exceptable.validateOverOne(input);
+        exceptable.validatePoint(input);
+        exceptable.validateNumber(input);
         return input;
     }
 

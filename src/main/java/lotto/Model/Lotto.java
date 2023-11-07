@@ -2,11 +2,11 @@ package lotto.Model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Controller.ValidateTools;
+import lotto.Controller.Exceptable;
 
 public class Lotto {
     private final List<Integer> numbers;
-    private ValidateTools validateTools = new ValidateTools();
+    private Exceptable exceptable = new Exceptable();
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -14,10 +14,10 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateTools.validate6Nums(numbers);
-        validateTools.validateDuplicateLottos(numbers);
+        exceptable.validate6Nums(numbers);
+        exceptable.validateDuplicateLottos(numbers);
         for (int num: numbers){
-            validateTools.validate1to45(num);
+            exceptable.validate1to45(num);
         }
     }
 

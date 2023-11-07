@@ -17,8 +17,8 @@ public class ProcessLotto {
     }
 
 
-    public void drawLotto(ValidateTools validateTools){
-        ValidateInput validateInput = new ValidateInput(validateTools);
+    public void drawLotto(Exceptable exceptable){
+        ValidateInput validateInput = new ValidateInput(exceptable);
 
         int cost = askCost(validateInput, 0);
         int count = new Calculate().getLottoCount(cost);

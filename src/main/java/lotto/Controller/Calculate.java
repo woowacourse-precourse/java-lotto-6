@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 public class Calculate {
-    public static final double POINT = 10.0;
+    private static final double POINT = 10.0;
     private static final int DIVIDED = 1000;
 
     public int getMatchCount(List<Integer> generatedNums, List<Integer> inputNums){

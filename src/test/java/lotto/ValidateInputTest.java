@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
-import lotto.Controller.ValidateTools;
+import lotto.Controller.Exceptable;
 import lotto.Controller.ValidateInput;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,8 +13,8 @@ public class ValidateInputTest {
     private ValidateInput validateInput;
     @BeforeEach
     void setUp(){
-        ValidateTools validateTools = new ValidateTools();
-        validateInput = new ValidateInput(validateTools);
+        Exceptable exceptable = new Exceptable();
+        validateInput = new ValidateInput(exceptable);
     }
     @Test
     void 보너스_숫자의_갯수가_1개인지_확인(){

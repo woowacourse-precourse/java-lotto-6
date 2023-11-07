@@ -19,7 +19,7 @@ public class MachineController {
 
     public void execution() {
         initAmount();
-        initLottos();
+        lottos = new Lottos(human.getCount());
         OutputView.displayPurchaseList(lottos);
         initWinningLotto();
         OutputView.displayLottoCompareResult(compare());
@@ -35,15 +35,6 @@ public class MachineController {
         List<Integer> lottos = WinningLottoView.publishLotto();
         int bonus = WinningLottoView.publishBonus(lottos);
         winningLotto = new WinningLotto(lottos, bonus);
-    }
-
-    public void initLottos() {
-        int count = human.getCount();
-        List<Lotto> tempLottos = new ArrayList<>();
-        for(int i = 0; i < count; i++) {
-            tempLottos.add(new Lotto(Random.generate()));
-        }
-        lottos = new Lottos(tempLottos);
     }
 
     public float calcProfit() {

@@ -18,7 +18,7 @@ class ProfitRateTest {
 
     @DisplayName("통계에서 받아온 맵을 통해 수익율을 계산한다.")
     @Test
-    public void calculateRateOfProfit_test() {
+    void calculateRateOfProfit_test() {
         // given
         Map<LottoRank, Integer> result = new EnumMap<>(LottoRank.class);
         result.put(FIRST_RANK, 1);

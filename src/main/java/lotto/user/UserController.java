@@ -6,19 +6,22 @@ public class UserController {
 
     private final UserView userView;
     private final ConvertService convertService;
-
-    public UserController(ConvertService convertService, UserView userView){
+    private final UserService userService;
+    public UserController(ConvertService convertService, UserView userView, UserService userService){
         this.userView = userView;
         this.convertService = convertService;
+        this.userService = userService;
     }
 
-    public void inputMyAsset(){
-        createUserFromAsset();
-    }
-
-    private User createUserFromAsset(){
+    public void buyLotto(){
         String inputAssetRequest = userView.inputUserMoney();
-        return User.fromAsset(convertService.stringToIntegerConverter(inputAssetRequest));
+        int asset = convertService.stringToIntegerConverter(inputAssetRequest);
+        User user = createUserFromAsset(asset);
+        userService.buyAllPurchasableLotto(user);
+    }
+
+    private User createUserFromAsset(int asset){
+        return userService.createUser(asset);
     }
 
 

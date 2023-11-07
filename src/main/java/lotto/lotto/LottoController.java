@@ -10,10 +10,12 @@ public class LottoController {
 
     private final ConvertService convertService;
     private final LottoView lottoView;
+    private final LottoService lottoService;
 
-    public LottoController(ConvertService convertService, LottoView lottoView){
+    public LottoController(ConvertService convertService, LottoView lottoView, LottoService lottoService){
         this.lottoView = lottoView;
         this.convertService = convertService;
+        this.lottoService = lottoService;
     }
 
     public void pickLottoNumber(){

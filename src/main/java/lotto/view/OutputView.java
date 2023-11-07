@@ -15,6 +15,7 @@ public class OutputView {
     private static final String DOUBLE_DASH = "--";
     private static final String STATISTICS_WITH_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
     private static final String STATISTICS_MESSAGE = "%d개 일치 (%,d원) - %d개";
+    private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     private OutputView() {
     }
@@ -67,6 +68,10 @@ public class OutputView {
         printNewEmptyLine();
         System.out.println(STATISTICS_FOREWORD_MESSAGE);
         System.out.println(DOUBLE_DASH);
+    }
+
+    public static void printRateOfReturn(double rateOfReturn) {
+        printWithFormat(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 
     public static void printNewEmptyLine() {

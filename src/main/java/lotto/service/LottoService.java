@@ -1,14 +1,17 @@
 package lotto.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
+import lotto.dto.ReturnRateDto;
 import lotto.dto.WinningResultDto;
 import lotto.model.Lotto;
 import lotto.model.LottoPurchaseAmount;
 import lotto.model.LottoPurchaseQuantity;
 import lotto.model.Lottos;
+import lotto.model.ReturnRate;
 import lotto.model.WinningResult;
 
 public class LottoService implements Service {
@@ -83,5 +86,27 @@ public class LottoService implements Service {
 
     private Lotto getLotto(final LottoDto lottoDto) {
         return new Lotto(lottoDto.numbers());
+    }
+
+    @Override
+    public ReturnRateDto getReturnRate(BigDecimal amount, WinningResultDto winningResultDto) {
+        ReturnRate returnRate = getWinningResult(winningResultDto)
+                .getTotalWinningAmount()
+                .getReturnRateFrom(amount);
+        return getReturnRateDto(returnRate);
+    }
+
+    private WinningResult getWinningResult(WinningResultDto winningResultDto) {
+        return WinningResult.of(
+                winningResultDto.firstPlaceCount(),
+                winningResultDto.secondPlaceCount(),
+                winningResultDto.thirdPlaceCount(),
+                winningResultDto.fourthPlaceCount(),
+                winningResultDto.fifthPlaceCount()
+        );
+    }
+
+    private ReturnRateDto getReturnRateDto(ReturnRate returnRate) {
+        return new ReturnRateDto(returnRate.returnRate());
     }
 }

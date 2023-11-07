@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.constant.Message;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
+import lotto.dto.ReturnRateDto;
 import lotto.dto.WinningResultDto;
 import lotto.service.LottoService;
 import lotto.service.Service;
@@ -34,8 +35,11 @@ public class LottoController {
                 inputBonusNumber,
                 lottosDto
         );
+        view.println("");
         view.printMessage(Message.WINNING_STATS);
         view.printWinningCase(winningResultDto);
+        ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto.amount(), winningResultDto);
+        view.printReturnRateMessage(returnRateDto);
         view.close();
     }
 }

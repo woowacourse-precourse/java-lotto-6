@@ -12,7 +12,7 @@ public record TotalWinningAmount(
     public ReturnRate getReturnRateFrom(BigDecimal amount) {
         BigDecimal returnRate = totalWinningAmount
                 .multiply(HUNDRED.getValue())
-                .divide(amount, 2, RoundingMode.HALF_UP);
+                .divide(amount, 1, RoundingMode.HALF_UP);
         return new ReturnRate(returnRate);
     }
 }

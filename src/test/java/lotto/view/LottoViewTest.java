@@ -3,10 +3,13 @@ package lotto.view;
 import static lotto.constant.Message.PURCHASE_AMOUNT_PROMPT;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.math.BigDecimal;
 import java.util.List;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
+import lotto.dto.ReturnRateDto;
+import lotto.dto.WinningResultDto;
 import lotto.model.LottoPurchaseAmount;
 import lotto.template.UiTest;
 import org.junit.jupiter.api.BeforeEach;
@@ -71,5 +74,30 @@ class LottoViewTest extends UiTest {
         String inputBonusNumber = lottoView.askBonusNumber();
 
         assertThat(inputBonusNumber).isEqualTo("9");
+    }
+
+    @Test
+    void printWinningCase() {
+        WinningResultDto winningResultDto = new WinningResultDto(1, 2, 3, 4, 5);
+        lottoView.printWinningCase(winningResultDto);
+
+        assertThat(getSystemOutput())
+                .contains("""
+                        3개 일치 (5,000원) - 5개
+                        4개 일치 (50,000원) - 4개
+                        5개 일치 (1,500,000원) - 3개
+                        5개 일치, 보너스 볼 일치 (30,000,000원) - 2개
+                        6개 일치 (2,000,000,000원) - 1개
+                        """.trim());
+    }
+
+    @Test
+    void printReturnRateMessage() {
+        double returnRate = 48.5;
+        ReturnRateDto returnRateDto = new ReturnRateDto(BigDecimal.valueOf(returnRate));
+        lottoView.printReturnRateMessage(returnRateDto);
+
+        assertThat(getSystemOutput())
+                .contains("총 수익률은 48.5%입니다.");
     }
 }

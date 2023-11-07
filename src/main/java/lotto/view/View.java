@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.constant.Message;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
+import lotto.dto.ReturnRateDto;
 import lotto.dto.WinningResultDto;
 
 public interface View {
@@ -25,4 +26,6 @@ public interface View {
     String askBonusNumber();
 
     void printWinningCase(WinningResultDto winningResultDto);
+
+    void printReturnRateMessage(ReturnRateDto returnRateDto);
 }

@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.constant.Message.BONUS_NUMBER_PROMPT;
 import static lotto.constant.Message.PURCHASE_AMOUNT_MESSAGE;
 import static lotto.constant.Message.PURCHASE_AMOUNT_PROMPT;
+import static lotto.constant.Message.RETURN_RATE_MESSAGE;
 import static lotto.constant.Message.WINNING_CASE_MESSAGE;
 import static lotto.constant.Message.WINNING_NUMBER_PROMPT;
 
@@ -10,6 +11,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.Message;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
+import lotto.dto.ReturnRateDto;
 import lotto.dto.WinningResultDto;
 
 public class LottoView implements View {
@@ -33,7 +35,6 @@ public class LottoView implements View {
     @Override
     public void printMessage(Message message, Object... args) {
         System.out.printf(message.getMessage(), args);
-        System.out.println();
     }
 
     @Override
@@ -49,6 +50,7 @@ public class LottoView implements View {
 
     @Override
     public void printPurchaseQuantity(LottoPurchaseDto lottoPurchaseDto) {
+        println("");
         printMessage(PURCHASE_AMOUNT_MESSAGE, lottoPurchaseDto.quantity());
     }
 
@@ -62,12 +64,14 @@ public class LottoView implements View {
 
     @Override
     public String askWinningNumber() {
+        println("");
         printMessage(WINNING_NUMBER_PROMPT);
         return Console.readLine();
     }
 
     @Override
     public String askBonusNumber() {
+        println("");
         printMessage(BONUS_NUMBER_PROMPT);
         return Console.readLine();
     }
@@ -76,11 +80,16 @@ public class LottoView implements View {
     public void printWinningCase(WinningResultDto winningResultDto) {
         printMessage(
                 WINNING_CASE_MESSAGE,
-                winningResultDto.firstPlaceCount(),
-                winningResultDto.secondPlaceCount(),
-                winningResultDto.thirdPlaceCount(),
+                winningResultDto.fifthPlaceCount(),
                 winningResultDto.fourthPlaceCount(),
-                winningResultDto.fifthPlaceCount()
+                winningResultDto.thirdPlaceCount(),
+                winningResultDto.secondPlaceCount(),
+                winningResultDto.firstPlaceCount()
         );
+    }
+
+    @Override
+    public void printReturnRateMessage(ReturnRateDto returnRateDto) {
+        printMessage(RETURN_RATE_MESSAGE, returnRateDto.returnRate());
     }
 }

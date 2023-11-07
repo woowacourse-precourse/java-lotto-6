@@ -11,6 +11,7 @@ import static lotto.constant.StringPattern.NUMBER_PATTERN;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -34,7 +35,7 @@ public class Lottos {
                 .map(Integer::parseInt)
                 .toList();
 
-        WinningResult winningResult = WinningResult.create();
+        AtomicReference<WinningResult> winningResult = new AtomicReference<>(WinningResult.create());
 
         validateBonusNumber(inputBonusNumber);
 
@@ -42,12 +43,13 @@ public class Lottos {
 
         validateNumberInLottoNumberRange(bonusNumber);
 
-        lottos.forEach(lotto -> checkIfWin(
-                lotto.compareTo(winningNumbers),
-                winningResult,
-                lotto.matchesBonusNumber(bonusNumber)
-        ));
-        return winningResult;
+        lottos.forEach(lotto ->
+                winningResult.set(checkIfWin(
+                        lotto.compareTo(winningNumbers),
+                        winningResult.get(),
+                        lotto.matchesBonusNumber(bonusNumber))
+                ));
+        return winningResult.get();
     }
 
     private void validateBonusNumber(String inputBonusNumber) {
@@ -62,11 +64,11 @@ public class Lottos {
         }
     }
 
-    private static void checkIfWin(int winningCount, WinningResult winningResult, boolean matchesBonusNumber) {
+    private WinningResult checkIfWin(int winningCount, WinningResult winningResult, boolean matchesBonusNumber) {
         if (winningCount == FIRST_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedFirstPlaceCount();
         }
-        if (winningCount == SECOND_AND_THIRD_PLACE.getCount() && matchesBonusNumber) {
+        if (matchesBonusNumber && winningCount == SECOND_AND_THIRD_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedSecondPlaceCount();
         }
         if (winningCount == SECOND_AND_THIRD_PLACE.getCount()) {
@@ -78,6 +80,7 @@ public class Lottos {
         if (winningCount == FIFTH_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedFifthPlaceCount();
         }
+        return winningResult;
     }
 
     public List<Lotto> getLotto() {

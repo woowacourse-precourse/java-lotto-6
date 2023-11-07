@@ -14,6 +14,7 @@ class RandomLottoGeneratorTest {
 
     public RandomLottoGeneratorTest() {
         randomLottoGenerator = new RandomLottoGenerator();
+        randomLottoGenerator.setMaxMoney(1000000);
     }
 
     @DisplayName("RandomLottoGenerator 랜덤 로또 생성 테스트")

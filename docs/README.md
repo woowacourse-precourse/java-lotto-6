@@ -41,14 +41,14 @@
 
 ### 🚨 주의할 점
 
-- [ ] 랜덤 값 추출은 ```camp.nextstep.edu.missionutils.Randoms```의 ```pickNumberInRange()```를 활용한다.
-- [ ] 사용자가 입력하는 값은 ```camp.nextstep.edu.missionutils.Console```의 ```readLine()```을 활용한다.
-- [ ] 사용자가 잘못된 값을 입력할 경우 ```IllegalArgumentException```을 발생시킨 후 애플리케이션은 **종료**되어야 한다.
-- [ ] indent(들여쓰기)는 2까지만 허용한다.
-- [ ] 3항 연산자를 쓰지 않는다.
-- [ ] 기능 단위로 커밋하고, 커밋 시 **커밋 컨벤션 가이드를 지켜야 한다.**
-- [ ] 배열 대신 **Java Collection을 사용**하자.
-- [ ] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
-- [ ] else 예약어를 쓰지 않는다.
-- [ ] Java Enum을 적용한다.
-- [ ] 도메인 로직에 단위 테스트를 구현해야 한다.
+- [x] 랜덤 값 추출은 ```camp.nextstep.edu.missionutils.Randoms```의 ```pickNumberInRange()```를 활용한다.
+- [x] 사용자가 입력하는 값은 ```camp.nextstep.edu.missionutils.Console```의 ```readLine()```을 활용한다.
+- [x] 사용자가 잘못된 값을 입력할 경우 ```IllegalArgumentException```을 발생시킨 후 그 부분부터 재실행되어야 한다.
+- [x] indent(들여쓰기)는 2까지만 허용한다.
+- [x] 3항 연산자를 쓰지 않는다.
+- [x] 기능 단위로 커밋하고, 커밋 시 **커밋 컨벤션 가이드를 지켜야 한다.**
+- [x] 배열 대신 **Java Collection을 사용**하자.
+- [x] 함수(또는 메서드)의 길이가 15라인을 넘어가지 않도록 구현한다.
+- [x] else 예약어를 쓰지 않는다.
+- [x] Java Enum을 적용한다.
+- [x] 도메인 로직에 단위 테스트를 구현해야 한다.

@@ -1,22 +1,34 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 
 public class LottoMachine {
+    private static final int RANGE_MIN_VALUE = 1;
+    private static final int RANGE_MAX_VALUE = 45;
     private final int LOTTO_PRICE = 1000;
+    private final int LOTTO_LENGTH = 6;
 
     public List<Lotto> inputPurchasePrice(int price) {
-        List<Lotto> lottos = new ArrayList<>();
-
         checkRemain(price);
 
-        while (price > 0) {
-            lottos.add(pickLotto());
-            price -= LOTTO_PRICE;
-        }
+        List<Lotto> lottos = new ArrayList<>();
+        int numOfLottos = price / LOTTO_PRICE;
+        IntStream.range(0, numOfLottos)
+                .forEach(i -> lottos.add(pickLotto()));
 
+        printPurchaseResult(lottos);
         return lottos;
+    }
+
+    private void printPurchaseResult(List<Lotto> lottos) {
+        System.out.println(String.format("%d개를 구매했습니다.", lottos.size()));
+        lottos.stream()
+                .map(Lotto::getNumbers)
+                .forEach(System.out::println);
     }
 
     private void checkRemain(int price) {
@@ -26,6 +38,8 @@ public class LottoMachine {
     }
 
     private Lotto pickLotto() {
-        return null;
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANGE_MIN_VALUE, RANGE_MAX_VALUE, LOTTO_LENGTH);
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 }

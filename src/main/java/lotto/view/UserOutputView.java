@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.controller.LottoCompareController;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 
@@ -36,6 +37,14 @@ public class UserOutputView {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
+
+    public static void winningStatistics(){
+        System.out.println();
+        System.out.println("당첨 통계");
+        LottoCompareController.lottoTicketsCompareNum();
+        System.out.println("---");
+    }
+
 
 
 

@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.domain.WinningNumber;
 
-public class WinningController {
+public class WinningNumberController {
     public static  void putWinningNums(String winningNums){
         WinningNumber.putWinningNum(winningNums);
     }

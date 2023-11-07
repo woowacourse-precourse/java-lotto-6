@@ -29,6 +29,14 @@ public class WinningNumber {
         WinningNumber.bonusNum = Integer.parseInt(bonusNum);
     }
 
+    public static List<Integer> getWinningNums() {
+        return winningNums;
+    }
+
+    public static int getBonusNum() {
+        return bonusNum;
+    }
+
     private static void validateSize(List<Integer> winningNums){
         if(winningNums.size() != 6){
             throw new IllegalArgumentException(ExceptionMessage.inputWinningNumbersSizeError.getErrorMessage());

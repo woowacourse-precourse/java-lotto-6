@@ -21,10 +21,10 @@ public final class LottoResultController implements Controller {
     }
 
     @Override
-    public void process(Map<String, ? super DTO.Input> inputDto, Map<String, ? super DTO.Output> outputDto) {
-        init(inputDto, outputDto);
+    public void process(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs) {
+        init(inputs, outputs);
         LottoResultDTO lottoResultDto = service.createLottoResultDto();
-        viewLottoResult(outputDto, lottoResultDto);
+        viewLottoResult(outputs, lottoResultDto);
     }
 
     private void viewLottoResult(Map<String, ? super DTO.Output> outputs, LottoResultDTO dto) {
@@ -32,9 +32,9 @@ public final class LottoResultController implements Controller {
         outputView.view(outputs);
     }
 
-    private void init(Map<String, ? super DTO.Input> inputDto, Map<String, ? super DTO.Output> outputDto) {
-        BuyLottoDTO.Output buyLottoDto = (BuyLottoDTO.Output) outputDto.get(ParameterConfig.BUY_PRICE);
-        WinningLottoDTO winningLottoDto = (WinningLottoDTO) inputDto.get(ParameterConfig.WINNING_LOTTO);
+    private void init(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs) {
+        BuyLottoDTO.Output buyLottoDto = (BuyLottoDTO.Output) outputs.get(ParameterConfig.BUY_PRICE);
+        WinningLottoDTO winningLottoDto = (WinningLottoDTO) inputs.get(ParameterConfig.WINNING_LOTTO);
 
         WinningLotto winningLotto = new WinningLotto(winningLottoDto.getLotto(), winningLottoDto.getBonus());
         service = new LottoResultService(winningLotto, buyLottoDto.getPurchasedLotto());

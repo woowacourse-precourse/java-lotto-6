@@ -21,29 +21,29 @@ public class LottoBuyController implements Controller {
     }
 
     @Override
-    public void process(Map<String, ? super DTO.Input> inputDto,
-                        Map<String, ? super DTO.Output> outputDto) {
+    public void process(Map<String, ? super DTO.Input> inputs,
+                        Map<String, ? super DTO.Output> outputs) {
         try {
-            Long price = getBuyLottoPrice(inputDto, outputDto);
-            viewBuyLottoNumbers(outputDto, price);
+            Long price = getBuyLottoPrice(inputs, outputs);
+            viewBuyLottoNumbers(outputs, price);
         } catch (IllegalArgumentException e) {
             System.out.print(e.getMessage());
-            process(inputDto, outputDto);
+            process(inputs, outputs);
         }
     }
 
-    private void viewBuyLottoNumbers(Map<String, ? super DTO.Output> outputDto, Long price) {
+    private void viewBuyLottoNumbers(Map<String, ? super DTO.Output> outputs, Long price) {
         BuyLottoDTO.Output purchasedLottoDTO = service.getPurchasedLottoDTO(price);
-        outputDto.put(ParameterConfig.BUY_PRICE, purchasedLottoDTO);
-        outputView.view(outputDto);
+        outputs.put(ParameterConfig.BUY_PRICE, purchasedLottoDTO);
+        outputView.view(outputs);
     }
 
-    private Long getBuyLottoPrice(Map<String, ? super DTO.Input> inputDto,
-                                  Map<String, ? super DTO.Output> outputDto) {
+    private Long getBuyLottoPrice(Map<String, ? super DTO.Input> inputs,
+                                  Map<String, ? super DTO.Output> outputs) {
 
-        inputDto.put(ParameterConfig.BUY_PRICE, new BuyLottoDTO.Input());
-        outputView.view(outputDto);
-        inputView.read(inputDto);
-        return ((BuyLottoDTO.Input) inputDto.get(ParameterConfig.BUY_PRICE)).getBuyPrice();
+        inputs.put(ParameterConfig.BUY_PRICE, new BuyLottoDTO.Input());
+        outputView.view(outputs);
+        inputView.read(inputs);
+        return ((BuyLottoDTO.Input) inputs.get(ParameterConfig.BUY_PRICE)).getBuyPrice();
     }
 }

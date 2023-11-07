@@ -19,23 +19,19 @@ public final class WinningLottoController implements Controller {
     }
 
     @Override
-    public void process(Map<String, ? super DTO.Input> inputDto, Map<String, ? super DTO.Output> outputDto) {
-        inputDto.put(ParameterConfig.WINNING_LOTTO, new WinningLottoDTO());
-        inputLottoNumbers(inputDto, outputDto);
-        inputBonusNumber(inputDto, outputDto);
+    public void process(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs) {
+        inputs.put(ParameterConfig.WINNING_LOTTO, new WinningLottoDTO());
+        inputLottoNumbers(inputs, outputs);
+        inputBonusNumber(inputs, outputs);
     }
 
-    private void inputLottoNumbers(Map<String, ? super DTO.Input> inputDto, Map<String, ? super DTO.Output> outputDto) {
+    private void inputLottoNumbers(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs) {
         try {
-            outputDto.put(ParameterConfig.WINNING_LOTTO_NUMBERS, null);
-            outputView.view(outputDto);
-            inputView.read(inputDto);
-            
-            outputDto.remove(ParameterConfig.WINNING_LOTTO_NUMBERS);
+            viewText(inputs, outputs, ParameterConfig.WINNING_LOTTO_NUMBERS);
 
         } catch (IllegalArgumentException e) {
             System.out.print(e.getMessage());
-            inputLottoNumbers(inputDto, outputDto);
+            inputLottoNumbers(inputs, outputs);
         }
     }
 

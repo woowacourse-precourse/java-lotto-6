@@ -37,7 +37,7 @@ public final class LottoResult {
                 .stream()
                 .reduce(Integer::sum)
                 .orElse(0);
-
+        
         return (long) (lottoSize * LottoMachine.PRICE_PER_LOTTO);
     }
 

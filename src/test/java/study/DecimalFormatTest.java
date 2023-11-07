@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class DecimalFormatTest {
     private final DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
-    @DisplayName("DecimalFormat을 이용한 숫자 출력 테스트.")
+    @DisplayName("DecimalFormat을 이용해서 숫자에 3자리마다 점이 찍혀서 출력된다.")
     @Test
     void printNumberWithDecimalFormat() {
         int input = 2000000000;

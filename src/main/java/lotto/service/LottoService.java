@@ -10,42 +10,32 @@ import lotto.domain.dto.LottoPrizeDto;
 
 public class LottoService {
     private static final int THOUSAND = 1000;
-    private static final double TEN = 10.0;
+    private static final double TEN_POINT_ZERO = 10.0;
 
-    private final LottoList lottoList;
-    private final List<Integer> winningNumbers;
-    private final int bonusNumber;
-
-    public LottoService(LottoList lottoList, List<Integer> winningNumbers, int bonusNumber) {
-        this.lottoList = lottoList;
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
-    }
-
-    public LottoPrizeDto compareLottos() {
+    public LottoPrizeDto compareLottos(LottoList lottoList, List<Integer> winningNumbers, int bonusNumber) {
         LottoPrizeDto lottoPrizeDto = new LottoPrizeDto();
         for (Lotto lotto : lottoList.getLottos()) {
-            if (compareOneLotto(lotto) == PrizeCondition.FIRST) {
+            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.FIRST) {
                 lottoPrizeDto.countFirst();
             }
-            if (compareOneLotto(lotto) == PrizeCondition.SECOND) {
+            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.SECOND) {
                 lottoPrizeDto.countSecond();
             }
-            if (compareOneLotto(lotto) == PrizeCondition.THIRD) {
+            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.THIRD) {
                 lottoPrizeDto.countThird();
             }
-            if (compareOneLotto(lotto) == PrizeCondition.FOURTH) {
+            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.FOURTH) {
                 lottoPrizeDto.countFourth();
             }
-            if (compareOneLotto(lotto) == PrizeCondition.FIFTH) {
+            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.FIFTH) {
                 lottoPrizeDto.countFifth();
             }
         }
         return lottoPrizeDto;
     }
 
-    public double calculateRateOfReturn() {
-        LottoPrizeDto dto = compareLottos();
+    public double calculateRateOfReturn(LottoList lottoList, List<Integer> winningNumbers, int bonusNumber) {
+        LottoPrizeDto dto = compareLottos(lottoList, winningNumbers, bonusNumber);
         long totalPrizeMoney = dto.getFirst() * PrizeMoney.FIRST.getValue()
                 + dto.getSecond() * PrizeMoney.SECOND.getValue()
                 + dto.getThird() * PrizeMoney.THIRD.getValue()
@@ -54,10 +44,10 @@ public class LottoService {
 
         int purchase = lottoList.getLottos().size() * Money.EACH_LOTTO;
 
-        return Math.round(THOUSAND * totalPrizeMoney / (double) purchase) / TEN;
+        return Math.round(THOUSAND * totalPrizeMoney / (double) purchase) / TEN_POINT_ZERO;
     }
 
-    private PrizeCondition compareOneLotto(Lotto randomLotto) {
+    private PrizeCondition compareOneLotto(Lotto randomLotto, List<Integer> winningNumbers, int bonusNumber) {
         int matchCount = 0;
         boolean bonusMatch = false;
         for (Integer number : winningNumbers) {

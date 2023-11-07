@@ -13,9 +13,9 @@ import org.junit.jupiter.api.Test;
 
 class LottoServiceTest {
 
-    @DisplayName("로또 집계 테스트")
+    @DisplayName("로또 당첨 집계 기능이 정상적으로 작동한다.")
     @Test
-    void test1() {
+    void countLottoPrizes() {
         List<Lotto> lottos = new ArrayList<>();
         // 1등
         lottos.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
@@ -49,8 +49,8 @@ class LottoServiceTest {
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
 
-        LottoService lottoService = new LottoService(lottoList, winningNumbers, bonusNumber);
-        LottoPrizeDto dto = lottoService.compareLottos();
+        LottoService lottoService = new LottoService();
+        LottoPrizeDto dto = lottoService.compareLottos(lottoList, winningNumbers, bonusNumber);
 
         assertThat(dto.getFirst()).isEqualTo(2);
         assertThat(dto.getSecond()).isEqualTo(3);
@@ -59,7 +59,7 @@ class LottoServiceTest {
         assertThat(dto.getFifth()).isEqualTo(4);
     }
 
-    @DisplayName("로또 수익률 계산 테스트")
+    @DisplayName("로또 수익률 계산 기능이 정상적으로 작동한다.")
     @Test
     void calculateRateOfReturn() {
         List<Lotto> lottos = new ArrayList<>();
@@ -77,8 +77,8 @@ class LottoServiceTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
-        LottoService service = new LottoService(lottoList, winningNumbers, bonusNumber);
-        assertThat(service.calculateRateOfReturn()).isEqualTo(62.5d);
+        LottoService service = new LottoService();
+        assertThat(service.calculateRateOfReturn(lottoList, winningNumbers, bonusNumber)).isEqualTo(62.5d);
     }
 
 }

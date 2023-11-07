@@ -10,33 +10,35 @@ import lotto.view.LottoView;
 public class LottoController {
     private static final String BONUS_NUMBER_DUPLICATED_ERROR = "보너스 숫자는 당첨 번호와 중복될 수 없습니다";
 
-    private final LottoService lottoService;
+    private final LottoService lottoService = new LottoService();
     private final LottoView lottoView = new LottoView();
 
-    public LottoController() {
+    public void purchaseLottos() {
         Money money = lottoView.getLottoPurchase();
         LottoList lottoList = LottoList.generateRandomLottoSetSizeWith(money.getLottoCount());
         printPublishedLottos(money.getLottoCount(), lottoList.getLottos());
         List<Integer> winningNumbers = lottoView.getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumbers);
 
-        lottoService = new LottoService(lottoList, winningNumbers, bonusNumber);
+        printStatistics(lottoList, winningNumbers, bonusNumber);
+        calculateRateOfReturn(lottoList, winningNumbers, bonusNumber);
+        printRateOfReturn(lottoList, winningNumbers, bonusNumber);
     }
 
-    public void printStatistics() {
-        lottoView.printWinningStatistics(lottoService.compareLottos());
+    private void printStatistics(LottoList lottoList, List<Integer> winningNumbers, int bonusNumber) {
+        lottoView.printWinningStatistics(lottoService.compareLottos(lottoList, winningNumbers, bonusNumber));
     }
 
-    public void printPublishedLottos(int lottoCount, List<Lotto> lottos) {
+    private void printPublishedLottos(int lottoCount, List<Lotto> lottos) {
         lottoView.printPublishedLottos(lottoCount, lottos);
     }
 
-    public void printRateOfReturn() {
-        lottoView.printRateOfReturn(calculateRateOfReturn());
+    private void printRateOfReturn(LottoList lottoList, List<Integer> winningNumbers, int bonusNumber) {
+        lottoView.printRateOfReturn(calculateRateOfReturn(lottoList, winningNumbers, bonusNumber));
     }
 
-    private double calculateRateOfReturn() {
-        return lottoService.calculateRateOfReturn();
+    private double calculateRateOfReturn(LottoList lottoList, List<Integer> winningNumbers, int bonusNumber) {
+        return lottoService.calculateRateOfReturn(lottoList, winningNumbers, bonusNumber);
     }
 
     private boolean winningNumbersContainsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {

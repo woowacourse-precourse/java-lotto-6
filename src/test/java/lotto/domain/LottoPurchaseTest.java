@@ -15,8 +15,8 @@ class LottoPurchaseTest {
     @BeforeEach
     @Test
     void createLottoPurchase() {
-        lottoPurchase = new LottoPurchase(1000);
-        lottoPurchase = new LottoPurchase("1000");
+        lottoPurchase = LottoPurchase.valueOf(1000);
+        lottoPurchase = LottoPurchase.valueOf("1000");
     }
 
 
@@ -39,19 +39,19 @@ class LottoPurchaseTest {
     @DisplayName("숫자형이 아닌 문자가 들어오면 예외가 발생한다.")
     @Test
     void createLottoPurchaseAmountByString() {
-        assertThatThrownBy(() -> new LottoPurchase("5wqesad")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_NUMERIC_INPUT_MESSAGE.getMessage());
+        assertThatThrownBy(() -> LottoPurchase.valueOf("5wqesad")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_NUMERIC_INPUT_MESSAGE.getMessage());
     }
 
     @DisplayName("양수가 아닌 수가 들어오면 예외가 발생한다.")
     @Test
     void createLottoPurchaseAmountByNegativeNumber() {
-        assertThatThrownBy(() -> new LottoPurchase("0")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
-        assertThatThrownBy(() -> new LottoPurchase("-1000")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
+        assertThatThrownBy(() -> LottoPurchase.valueOf("0")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
+        assertThatThrownBy(() -> LottoPurchase.valueOf("-1000")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
     }
 
     @DisplayName("1,000원 단위가 아닌 수가 들어오면 예외가 발생한다.")
     @Test
     void createLottoPurchaseAmountByNonThousandAmount() {
-        assertThatThrownBy(() -> new LottoPurchase("1200")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_THOUSAND_INPUT_MESSAGE.getMessage());
+        assertThatThrownBy(() -> LottoPurchase.valueOf("1200")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_THOUSAND_INPUT_MESSAGE.getMessage());
     }
 }

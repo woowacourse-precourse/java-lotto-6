@@ -31,11 +31,10 @@ public class Statistics {
     }
 
     public void printStatistics(OutputView outputView, Calculate calculate, int cost){
-        outputView.print3Matchs(countMap.get(THREE.getNum()));
-        outputView.print4Matchs(countMap.get(FOUR.getNum()));
-        outputView.print5Matchs(countMap.get(FIVE.getNum()));
-        outputView.print5MatchsWithBonus(countMap.get(FIVE_AND_BONUS.getNum()));
-        outputView.print6Matchs(countMap.get(SIX.getNum()));
+        Arrays.stream(MatchNums.values()).forEach(o-> {
+            outputView.printStatistics(o.getPrintComment(), countMap.get(o.getNum()));
+        });
+
     }
 
     public void printProfit(OutputView outputView, Calculate calculate, int cost){

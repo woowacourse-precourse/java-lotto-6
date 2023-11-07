@@ -17,24 +17,8 @@ public class OutputView {
         System.out.println("---");
     }
 
-    public void print3Matchs(int cnt){
-        System.out.println("3개 일치 (5,000원) - "+cnt+"개");
-    }
-
-    public void print4Matchs(int cnt){
-        System.out.println("4개 일치 (50,000원) - "+cnt+"개");
-    }
-
-    public void print5Matchs(int cnt){
-        System.out.println("5개 일치 (1,500,000원) - "+cnt+"개");
-    }
-
-    public void print5MatchsWithBonus(int cnt){
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - "+cnt+"개");
-    }
-
-    public void print6Matchs(int cnt){
-        System.out.println("6개 일치 (2,000,000,000원) - "+cnt+"개");
+    public void printStatistics(String comment, int cnt){
+        System.out.printf(comment+'\n', cnt);
     }
 
     public void printProfit(String profit){

@@ -74,7 +74,8 @@ public class LottoController {
         BonusNumberValidator.validateBonusNumberDuplicate(winningLotto, bonusNumber);
 
         DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto, bonusNumber);
-        outputView.printDrawingResult(DrawingResultDto);
+        DrawingResultDto drawingResultDto = mapToDrawingResultDto(drawingResult);
+        outputView.printDrawingResult(drawingResultDto);
 
         return drawingResultDto;
     }
@@ -85,6 +86,10 @@ public class LottoController {
 
     private BonusNumber mapToBonusNumber(final BonusNumberDto bonusNumberDto) {
         return new BonusNumber(bonusNumberDto.number());
+    }
+
+    private DrawingResultDto mapToDrawingResultDto(final DrawingResults drawingResult) {
+        return new DrawingResultDto(drawingResult.getResults());
     }
 
     public void profitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {

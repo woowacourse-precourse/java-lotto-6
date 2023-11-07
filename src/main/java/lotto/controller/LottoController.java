@@ -20,12 +20,13 @@ public class LottoController {
     private NumberMatch numberMatch = new NumberMatch();
     private RankResult rankResult = new RankResult();
     private Statistics statistics;
+    private Result result = new Result();
 
 
 
     public void lotto() {
-        int money = inputBuyLotto.getMoney();
-        int ticket = inputBuyLotto.getTicket(money);
+        int money = getMoney();
+        int ticket = getTicket(money);
         List<Lotto> lottoNumbers = getLottoNumbers(randomLottoNumber, ticket);
         List<Integer> inputlottoNumbers = inputLottoNumber.getLottoNumbers();
         int bonus = inputBonus.getBonus();
@@ -33,6 +34,7 @@ public class LottoController {
         List<Boolean> containBonus = numberMatch.containBonusAll(lottoNumbers, bonus);
         rankResult.calculateResult(matching, containBonus);
         statistics = new Statistics(money, rankResult);
+        result.printResult(rankResult,statistics);
 
     }
 
@@ -48,8 +50,8 @@ public class LottoController {
         return money;
     }
 
-    private int getTicket(InputBuyLotto inputBuyLotto) {
-        int ticketCount = inputBuyLotto.getTicket(getMoney());
+    private int getTicket(int money) {
+        int ticketCount = inputBuyLotto.getTicket(money);
         System.out.println(ticketCount + COUNT_MESSAGE);
         return ticketCount;
     }

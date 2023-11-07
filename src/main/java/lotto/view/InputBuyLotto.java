@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.DivideThousandException;
+import lotto.exception.NumberException;
 import lotto.exception.ZeroException;
 
 import java.util.regex.Pattern;
@@ -22,7 +23,7 @@ public class InputBuyLotto {
     private void validate(String money) {
 
         if (!Pattern.compile("\\d+").matcher(money).matches()) {
-            throw new IllegalArgumentException();
+            throw new NumberException();
         }
     }
 

@@ -7,7 +7,7 @@ public class Statistics {
 
     private double rate;
     public Statistics(int money, RankResult rankResult) {
-        this.rate = (getTotalMoney(rankResult) / money)*100;
+        this.rate = (getTotalMoney(rankResult) / (double)money)*100;
     }
     private long getTotalMoney(RankResult rankResult) {
         int totalMoney = 0;

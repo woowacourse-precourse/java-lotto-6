@@ -28,7 +28,6 @@ public class Result {
     }
 
     private String getProfitResult(Statistics statistics) {
-
         return String.format(TOTAL_PROFIT_MESSAGE,
                 statistics.getRate());
     }

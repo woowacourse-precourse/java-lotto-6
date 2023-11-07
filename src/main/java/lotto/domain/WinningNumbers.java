@@ -13,4 +13,8 @@ public class WinningNumbers {
         WinningNumbersValidator.validateDuplicateNumber(winningNumbers);
         this.winningNumbers = winningNumbers;
     }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
 }

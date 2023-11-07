@@ -5,11 +5,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.domain.BonusNumber;
 import lotto.domain.Buyer;
+import lotto.domain.Judgement;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
+import lotto.domain.WinningRule;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,6 +23,14 @@ public class Controller {
     private Buyer buyer;
     private WinningNumbers winningNumbers;
     private BonusNumber bonusNumber;
+
+    public void run() {
+        getPurchasePrice();
+        getPurchaseLotteriesInformation(buyer.getLottoQuantity());
+        getWinningNumbers();
+        getBonusNumber();
+        getWinningStatistics();
+    }
 
     private void getPurchasePrice() {
         String inputPurchasePrice = askPurchasePrice();
@@ -114,5 +127,17 @@ public class Controller {
     private void checkInputValidation(String inputBonusNumber) {
         InputValidator.isNullOrIsEmpty(inputBonusNumber);
         InputValidator.isNotDigit(inputBonusNumber);
+    }
+
+    private void getWinningStatistics() {
+        OutputView.showWinningStatisticsMessage();
+        Judgement judgement = new Judgement();
+        HashMap<WinningRule, Integer> results = judgement.getResults(buyer, winningNumbers, bonusNumber);
+        List<WinningRule> ranks = Stream.of(WinningRule.values())
+                .filter(rank -> rank != WinningRule.NOTHING)
+                .collect(Collectors.toList());
+        for (WinningRule rank : ranks) {
+            OutputView.showWinningResult(results, rank);
+        }
     }
 }

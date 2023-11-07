@@ -25,4 +25,21 @@ public class LottoResult {
     public int getCountByRank(LottoRank rank) {
         return result.getOrDefault(rank, 0);
     }
+
+    public double calculateRate(Integer purchaseAmount) {
+        Integer totalWinning = calculateTotalWinning();
+        double profit = (double) (purchaseAmount - totalWinning) / purchaseAmount * 100;
+        return 100 - Math.round(profit * 100.0) / 100.0;
+    }
+
+    private Integer calculateTotalWinning() {
+        int totalWinning = 0;
+        for (Map.Entry<LottoRank, Integer> entry : result.entrySet()) {
+            int rankCount = entry.getValue();
+            String winningAmount = entry.getKey().getWinningAmount();
+            int amount = Integer.parseInt(winningAmount.replace(",", ""));
+            totalWinning += rankCount * amount;
+        }
+        return totalWinning;
+    }
 }

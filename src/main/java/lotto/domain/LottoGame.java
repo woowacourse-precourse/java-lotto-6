@@ -21,4 +21,8 @@ public class LottoGame {
     public List<Boolean> checkBonus() {
         return lottoStore.checkBonus(bonusNumber);
     }
+
+    public Integer getPurchaseAmount() {
+        return lottoStore.getPurchaseAmount();
+    }
 }

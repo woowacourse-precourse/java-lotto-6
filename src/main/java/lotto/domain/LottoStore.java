@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constant.LottoSetting;
 
 public class LottoStore {
     private final List<Lotto> lottos;
@@ -19,5 +20,9 @@ public class LottoStore {
         return lottos.stream()
                 .map(bonusNumber::checkBonus)
                 .toList();
+    }
+
+    public Integer getPurchaseAmount() {
+        return lottos.size() * LottoSetting.DIVISOR.getValue();
     }
 }

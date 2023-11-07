@@ -27,4 +27,9 @@ public class LottoGameService {
         lottoResult.calculateResults(countResults, bonusResults);
         return lottoResult;
     }
+
+    public double calculateRate(LottoGame lottoGame, LottoResult lottoResult) {
+        Integer purchaseAmount = lottoGame.getPurchaseAmount();
+        return lottoResult.calculateRate(purchaseAmount);
+    }
 }

@@ -26,6 +26,7 @@ public class Except {
             result = Integer.parseInt(money);
             result = incorrectFormatMoney(result);
         } catch (IllegalArgumentException iae) {
+            System.out.println();
             System.out.println(outOfRange.getMessage());
         }
         return result;
@@ -39,6 +40,7 @@ public class Except {
             }
             result = money;
         } catch (IllegalArgumentException iae) {
+            System.out.println();
             System.out.println(invalidFormat.getMessage());
         }
         return result;

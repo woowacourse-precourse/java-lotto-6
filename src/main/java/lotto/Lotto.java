@@ -2,9 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,9 +13,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != 6 || duplicate(numbers)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private boolean duplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        return set.size() < numbers.size();
     }
 
     public static Lotto pickRandom() {

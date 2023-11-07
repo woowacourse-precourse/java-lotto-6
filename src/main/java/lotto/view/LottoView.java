@@ -70,7 +70,7 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
         System.out.println(String.format(TOTAL_PROFIT_MESSAGE, profit));
     }
 
-    public static void displayErrorMessage(Exception ex) {
-        System.out.println(ErrorMessage.ERROR_MESSAGE_HEADER + ex.getMessage());
+    public static void displayErrorMessage(IllegalArgumentException e) {
+        System.out.println(ErrorMessage.ERROR_MESSAGE_HEADER + e.getMessage());
     }
 }

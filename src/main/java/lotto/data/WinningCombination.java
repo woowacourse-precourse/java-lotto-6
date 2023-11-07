@@ -20,7 +20,7 @@ public class WinningCombination extends Lotto {
         HashMap<LottoPrize, BigDecimal> result = initResult();
         for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCountWith(getNumbers());
-            LottoPrize lottoResult = LottoPrize.of(matchCount, getNumbers().contains(bonusNumber));
+            LottoPrize lottoResult = LottoPrize.of(matchCount, lotto.contains(bonusNumber));
             BigDecimal count = result.get(lottoResult).add(BigDecimal.ONE);
             result.put(lottoResult, count);
         }

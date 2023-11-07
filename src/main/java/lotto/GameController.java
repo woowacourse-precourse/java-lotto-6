@@ -11,6 +11,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import lotto.exception.LottoMoneyDivideException;
+import lotto.exception.LottoMoneyLessException;
+import lotto.exception.LottoNumNotNumException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -41,9 +44,20 @@ public class GameController {
     }
 
     public int amountToCnt(){
-        lottoAmount = new LottoAmount(InputView.getInputAmount());
-        return lottoAmount.amountChangeToLottoCnt();
+        while (true) {
+            try {
+                lottoAmount = new LottoAmount(InputView.getInputAmount());
+                return lottoAmount.amountChangeToLottoCnt();
+            } catch (LottoNumNotNumException e) {
+                System.out.println(e.getMessage());
+            } catch (LottoMoneyLessException e) {
+                System.out.println(e.getMessage());
+            } catch (LottoMoneyDivideException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
+
 
     private List<Lotto> makeLottoList(int ticketCnt) {
         lottoList = new ArrayList<>();
@@ -92,8 +106,9 @@ public class GameController {
     }
 
     private void printResult(Map<Rank, Integer> result, WinningLotto winningLotto, int amount){
-        OutputView.printSuccessResult();
         calcResult(winningLotto);
+
+        OutputView.printSuccessResult();
         printRank(result);
         printEarningRate(result, amount);
     }

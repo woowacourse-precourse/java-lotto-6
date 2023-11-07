@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.constans.WinningGrade;
@@ -62,10 +62,10 @@ public class LottoMachine {
     }
 
     private Map<WinningGrade, Integer> initializeResultMap() {
-        Map<WinningGrade, Integer> map = new HashMap<>();
-        map.put(WinningGrade.FIFTH_PRIZE,0);
-        map.put(WinningGrade.FOURTH_PRIZE,0);
-        map.put(WinningGrade.THIRD_PRIZE,0);
+        Map<WinningGrade, Integer> map = new EnumMap<>(WinningGrade.class);
+        map.put(WinningGrade.FIFTH_PRIZE, 0);
+        map.put(WinningGrade.FOURTH_PRIZE, 0);
+        map.put(WinningGrade.THIRD_PRIZE, 0);
         map.put(WinningGrade.SECOND_PRIZE, 0);
         map.put(WinningGrade.FIRST_PRIZE, 0);
         return map;
@@ -110,8 +110,7 @@ public class LottoMachine {
     }
 
     private double calculationYields(int wantBuyAmount, long totalIncome) {
-        double yields = (double) totalIncome / (double) wantBuyAmount;
-        return (double) Math.round(yields * 1000) / 10;
+        return (double) Math.round(((double) totalIncome / wantBuyAmount) * 10000) / 100;
     }
 
 }

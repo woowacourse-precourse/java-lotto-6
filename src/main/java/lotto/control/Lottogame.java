@@ -70,5 +70,10 @@ package lotto.control;public class Lottogame {
         }
     }
 
+    private void validateWinningNumbersCount(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개를 입력해야 합니다.");
+        }
+    }
   
 }

@@ -22,6 +22,12 @@ public class LottoGenerator {
         return buyingPrice / unitPrice;
     }
 
+    private void validate(long buyingPrice, long unitPrice) {
+        validatePositive(unitPrice);
+        validatePositive(buyingPrice);
+        validateUnit(buyingPrice, unitPrice);
+    }
+
     private List<Lotto> generateLottos(long buyingCount) {
         List<Lotto> lottos = new ArrayList<>();
         while (lottos.size() != buyingCount) {

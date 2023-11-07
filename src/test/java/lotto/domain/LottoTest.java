@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -60,6 +61,19 @@ class LottoTest {
         // when & then
         assertThatNoException()
                 .isThrownBy(() -> new Lotto(numbers));
+    }
+
+    @Test
+    @DisplayName("로또 번호는 오름차순으로 정렬된 상태로 저장한다")
+    void givenUnsortedNumbers_whenCreateLotto_thenShouldSortedNumbers() {
+        // given
+        List<Integer> unsortedNumbers = List.of(6, 1, 4, 2, 3, 5);
+
+        // when
+        Lotto lotto = new Lotto(unsortedNumbers);
+
+        // then
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")

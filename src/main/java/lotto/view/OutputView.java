@@ -26,4 +26,24 @@ public class OutputView {
         System.out.println(output);
     }
 
+    public void printLottos(List<Lotto> lottos) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Lotto lotto : lottos) {
+            stringBuilder.append("[");
+            stringBuilder.append(makeLottoString(lotto));
+            stringBuilder.append("]");
+            stringBuilder.append("\n");
+        }
+        System.out.println(stringBuilder.toString());
+    }
+
+    private String makeLottoString(Lotto lotto) {
+        List<String> numbers = lotto
+                .getNumbers()
+                .stream()
+                .map(Object::toString)
+                .toList();
+        return String.join(", ", numbers);
+    }
+
 }

@@ -26,6 +26,10 @@ public enum PrintingMessage {
         return String.format(message, number);
     }
 
+    public String getWithFormat(double number) {
+        return String.format(message, number);
+    }
+
     public String getWithFormat(int sameCount, long prizeProfit, int prizeCount) {
         DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT.get());
         String formattedPrizeProfit = decimalFormat.format(prizeProfit);
@@ -34,9 +38,5 @@ public enum PrintingMessage {
             bonusMessage = ", 보너스 볼 일치 ";
         }
         return String.format(message, sameCount, bonusMessage, formattedPrizeProfit, prizeCount);
-    }
-
-    public String getWithFormat(double number) {
-        return String.format(message, number);
     }
 }

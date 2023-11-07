@@ -11,8 +11,19 @@ public class InputView {
     private int bonusNumber;
 
     public InputView() {
-        this.lottoPurchase = Integer.parseInt(readLine());
+        this.lottoPurchase = inputLottoPurchase();
         this.lotto = inputLotto();
+        this.bonusNumber = Integer.parseInt(readLine());
+
+    }
+
+    private int inputLottoPurchase() {
+        int lottoPurchase;
+        System.out.println("구입금액을 입력해 주세요.");
+
+        lottoPurchase = Integer.parseInt(readLine());
+
+        return lottoPurchase;
 
     }
 

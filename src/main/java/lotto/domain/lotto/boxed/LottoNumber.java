@@ -11,11 +11,11 @@ public sealed class LottoNumber permits BonusNumber {
     /**
      * 최소 로또 번호는 1입니다.
      */
-    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MIN = 1;
     /**
      * 최대 로또 번호는 45입니다.
      */
-    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final int MAX = 45;
     /**
      * 실제 Primitive Value
      */
@@ -33,7 +33,7 @@ public sealed class LottoNumber permits BonusNumber {
      * 각 자리의 로또 번호를 생성할 때, 1~45 사이의 숫자인지 검증합니다. 범위를 벗어난다면 `InvalidLottoNumberException` 예외가 발생합니다.
      */
     private static void validateLottoNumber(final int lottoNumber) {
-        if (lottoNumber < MIN_LOTTO_NUMBER || lottoNumber > MAX_LOTTO_NUMBER) {
+        if (lottoNumber < MIN || lottoNumber > MAX) {
             throw new InvalidLottoNumberException();
         }
     }
@@ -45,6 +45,9 @@ public sealed class LottoNumber permits BonusNumber {
         return value;
     }
 
+    /**
+     * LottoNumber, BonusNumber 간의 동등성 비교가 가능하도록 코드를 수정하였습니다.
+     */
     @Override
     public boolean equals(final Object o) {
         if (this == o) {

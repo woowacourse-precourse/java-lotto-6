@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static lotto.domain.Lotto.randomLottery;
+import static lotto.utils.Constants.CHECK_NUMBER_SIZE;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -45,7 +46,7 @@ class LottoTest {
 
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Lotto.validate(nums))
-                .withMessageMatching("숫자는 6개보다 작거나 초과할 수 없습니다.");
+                .withMessageMatching(CHECK_NUMBER_SIZE);
     }
 
     @Test

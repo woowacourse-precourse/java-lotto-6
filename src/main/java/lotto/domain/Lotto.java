@@ -1,10 +1,9 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.*;
 
 import static lotto.domain.GenerateRandomNum.pickNumber;
+import static lotto.utils.Constants.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,14 +15,14 @@ public class Lotto {
     }
 
     public static void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("숫자는 6개보다 작거나 초과할 수 없습니다.");
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(CHECK_NUMBER_SIZE);
         }
     }
 
     public static List<Integer> randomLottery() {
         List<Integer> lotto = new ArrayList<>();
-        while (lotto.size() <= 6) {
+        while (lotto.size() <= LOTTO_SIZE) {
             int num = pickNumber();
             if (!isDuplicatedNum(lotto, num)) lotto.add(num);
         }

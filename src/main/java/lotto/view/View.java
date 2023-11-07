@@ -1,20 +1,14 @@
 package lotto.view;
 
-import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Tickets;
+import lotto.domain.TotalResult;
 import lotto.enums.Messages;
+import lotto.enums.Reward;
 
 public class View {
-    List<String> hitResultMessages = new ArrayList<>(){{
-        add("3개 일치 (5,000원) - ");
-        add("4개 일치 (50,000원) - ");
-        add("5개 일치 (1,500,000원) - ");
-        add("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-        add("6개 일치 (2,000,000,000원) - ");
-    }};
-
     public void moneyInputGuideMsg() {
         System.out.println(Messages.PRICE_INPUT_GUIDE.getMsg());
     }
@@ -43,13 +37,33 @@ public class View {
     }
 
     public void hitResultTitle() {
+        printEmptyLine();
         System.out.println(Messages.RESULT_TITLE.getMsg());
     }
 
-    public void printHitResult(List<Integer> result) {
-        for (int idx = 0; idx < result.size(); idx++) {
-            System.out.println(hitResultMessages.get(idx) + result.get(idx) + Messages.AMOUNT.getMsg());
+    public void printHitResult(TotalResult totalResult) {
+        EnumMap<Reward, Integer> result = totalResult.getTotalResult();
+
+        for (Reward reward : result.keySet()) {
+            int amount = result.get(reward);
+            printHitLine(reward, amount);
         }
+    }
+
+    private void printHitLine(Reward reward, int amount) {
+        int hitCnt = reward.getHitCnt();
+        long price = reward.getReward();
+
+        if (reward.getBonusCnt() == 1) {
+            System.out.println(
+                    hitCnt + Messages.BONUS_HIT.getMsg() + String.format("%,d", price) + Messages.PRICE_TAIL.getMsg()
+                            + amount
+                            + Messages.AMOUNT.getMsg());
+            return;
+        }
+        System.out.println(
+                hitCnt + Messages.HIT.getMsg() + String.format("%,d", price) + Messages.PRICE_TAIL.getMsg() + amount
+                        + Messages.AMOUNT.getMsg());
     }
 
     public void printRateOfReturn(double rate) {

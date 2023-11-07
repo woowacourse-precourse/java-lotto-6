@@ -48,11 +48,11 @@ public class WinningCombinationBuilder {
     }
 
     public WinningCombinationDto build() {
-        verifyAllFieldAreSet();
+        verifyAllFieldsAreSet();
         return new WinningCombinationDto(winningNumbers, bonusNumber);
     }
 
-    private void verifyAllFieldAreSet() {
+    private void verifyAllFieldsAreSet() {
         if (isWinningNumbersNotSet || isBonusNumberNotSet) {
             throw new IllegalArgumentException("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
         }

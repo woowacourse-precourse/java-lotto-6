@@ -9,16 +9,23 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Set<Integer> set = new HashSet<>(numbers);
-        if (set.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
-        }
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개를 초과하는 숫자를 입력할 수 없습니다.");
+        }
+
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
+        }
+
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
         }
     }
 

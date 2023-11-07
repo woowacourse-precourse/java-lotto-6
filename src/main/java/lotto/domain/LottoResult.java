@@ -8,18 +8,20 @@ import java.util.stream.Collectors;
 
 import static constant.MessageList.*;
 
-public class LottoWinningResult {
-    private Map<Rank, Integer> prizeCount;
+public class LottoResult {
     private List<Integer> numberFromPlayer;
-    private List<List<Integer>> quantityOfLotto;
     private int bonusNumber;
+    private List<List<Integer>> quantityOfLotto;
     private int correctCount;
+    private Map<Rank, Integer> prizeCount;
+    private int prizeMoney;
 
-    public LottoWinningResult(List<Integer> numberFromPlayer, int bonusNumber, List<List<Integer>> quantityOfLotto) {
+    public LottoResult(List<Integer> numberFromPlayer, int bonusNumber, List<List<Integer>> quantityOfLotto) {
         this.numberFromPlayer = numberFromPlayer;
-        this.quantityOfLotto = quantityOfLotto;
         this.bonusNumber = bonusNumber;
+        this.quantityOfLotto = quantityOfLotto;
         this.prizeCount = setPrizeCount();
+        prizeMoney = ZERO;
     }
 
     private Map<Rank, Integer> setPrizeCount() {
@@ -30,14 +32,10 @@ public class LottoWinningResult {
         return prizeCount;
     }
 
-    public Map<Rank, Integer> getPrizeCount() {
-        return prizeCount;
-    }
-
-    private void compareLotto(List<Integer> numberFromPlayer, List<Integer> lotto) {
+    private void compareLotto(List<Integer> lotto) {
         correctCount = ZERO;
         List<Integer> match = lotto.stream().filter(o -> numberFromPlayer.stream().anyMatch(Predicate.isEqual(o))).collect(Collectors.toList());
-        for (int number : match) {
+        for (int matchNumber : match) {
             correctCount++;
         }
 
@@ -67,19 +65,25 @@ public class LottoWinningResult {
         return false;
     }
 
-    public void compare(List<Integer> numberFromPlayer, List<List<Integer>> quantityOfLotto) {
+    public Map<Rank, Integer> compare() {
         for (List<Integer> lotto : quantityOfLotto) {
-            compareLotto(numberFromPlayer, lotto);
+            compareLotto(lotto);
         }
+        return prizeCount;
     }
 
-    public double calculateRateOfReturn(int purchaseAmount, int prizeMoney) {
+    private int calculatePrizeMoney() {
         prizeMoney += prizeCount.get(Rank.FIRST) * Rank.FIRST.prizeMoney;
         prizeMoney += prizeCount.get(Rank.SECOND) * Rank.SECOND.prizeMoney;
         prizeMoney += prizeCount.get(Rank.THIRD) * Rank.THIRD.prizeMoney;
         prizeMoney += prizeCount.get(Rank.FOURTH) * Rank.FOURTH.prizeMoney;
         prizeMoney += prizeCount.get(Rank.FIFTH) * Rank.FIFTH.prizeMoney;
 
+        return prizeMoney;
+    }
+
+    public double getRateOfReturn(int purchaseAmount) {
+        prizeMoney = calculatePrizeMoney();
         return (double) prizeMoney / (double) purchaseAmount * PERCENTAGE;
     }
 }

@@ -7,16 +7,19 @@ import java.util.List;
 
 import static constant.MessageList.*;
 
-public class Lotto {
+public class LottoByPlayer {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public LottoByPlayer(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicatedNumbers(numbers);
         for (int number : numbers) {
             validateRangeOfNumber(number);
         }
         this.numbers = numbers;
+    }
+    public List<Integer> getLottoNumberFromPlayer(){
+        return numbers;
     }
 
     private void validateSize(List<Integer> numbers) {

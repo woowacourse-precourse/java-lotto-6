@@ -8,7 +8,7 @@ import java.util.*;
 import static constant.MessageList.*;
 
 public class OutputView {
-    public static void printPurchaseQuantityMessage(int purchaseQuantity) {
+    public static void printMessageOfPurchaseQuantity(int purchaseQuantity) {
         System.out.println(purchaseQuantity + PURCHASE_QUANTITY_MESSAGE);
     }
 

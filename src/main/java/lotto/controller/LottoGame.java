@@ -7,53 +7,46 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
-import static constant.MessageList.ZERO;
 
 public class LottoGame {
 
-    private Lotto lotto;
+    private LottoByPlayer lottoByPlayer;
     private LottoAmount lottoAmount;
-    private final LottoNumbers lottoNumbers;
-    private LottoWinningResult lottoWinningResult;
+    private final LottoGenerator lottoGenerator;
+    private LottoResult lottoResult;
     private Validator validator;
 
 
-    private List<Integer> lottoNumber;
+    private List<Integer> numberFromGenerator;
     private List<List<Integer>> quantityOfLotto;
     private int purchaseQuantity;
     private int purchaseAmount;
     private List<Integer> numberFromPlayer;
     private int bonusNumber;
-    private Map<Rank, Integer> prizeCount;
-    private int prizeMoney;
 
     public LottoGame() {
-        lottoNumbers = new LottoNumbers();
+        lottoGenerator = new LottoGenerator();
         validator = new Validator();
         lottoAmount = new LottoAmount();
-        prizeMoney = ZERO;
         numberFromPlayer = new ArrayList<>();
-        lottoNumber = new ArrayList<>();
+        numberFromGenerator = new ArrayList<>();
         quantityOfLotto = new ArrayList<>();
 
     }
 
     public void start() {
         this.purchaseAmount = setPurchaseAmount();
-        this.purchaseQuantity = lottoAmount.getPurchaseQuantityOfLotto(purchaseAmount);
-        OutputView.printPurchaseQuantityMessage(purchaseQuantity);
-        makeListOfLotto();
-        this.numberFromPlayer = setWinningNumber();
-        lotto = new Lotto(numberFromPlayer); //사용자가 입력한 당첨번호 검증
+        printPurchaseQuantity();
+        printListOfLotto();
+        this.numberFromPlayer = setLottoNumber();
         this.bonusNumber = setBonusNumber();
-        lottoWinningResult = new LottoWinningResult(numberFromPlayer, bonusNumber, quantityOfLotto);
+
+        lottoResult = new LottoResult(numberFromPlayer, bonusNumber, quantityOfLotto);
         printWinningResult();
         printTotalRateOfReturn();
     }
 
-    public int setPurchaseAmount() {
+    private int setPurchaseAmount() {
         try {
             return lottoAmount.validatePurchaseAmount(InputView.getPurchaseAmountInputFromPlayer());
         } catch (IllegalArgumentException e) {
@@ -62,27 +55,40 @@ public class LottoGame {
         }
     }
 
-    public List<List<Integer>> makeListOfLotto() {
-        for (int i = 0; i < purchaseQuantity; i++) {
-            lottoNumber = lottoNumbers.generateLottoNumbers();
-            quantityOfLotto.add(lottoNumber);
-            OutputView.printLottoNumbers(lottoNumber);
-        }
-        return quantityOfLotto;
+    private void printPurchaseQuantity() {
+        this.purchaseQuantity = lottoAmount.getPurchaseQuantityOfLotto(purchaseAmount);
+        OutputView.printMessageOfPurchaseQuantity(purchaseQuantity);
     }
 
-    public List<Integer> setWinningNumber() {
+    private List<List<Integer>> makeListOfLotto() {
+        for (int i = 0; i < purchaseQuantity; i++) {
+            numberFromGenerator = lottoGenerator.generateLottoNumbers();
+            quantityOfLotto.add(numberFromGenerator);
+        }
+        return this.quantityOfLotto;
+    }
+
+    private void printListOfLotto() {
+        makeListOfLotto();
+        for (List<Integer> lotto : quantityOfLotto) {
+            OutputView.printLottoNumbers(lotto);
+        }
+    }
+
+    private List<Integer> setLottoNumber() {
         try {
-            return validator.validateInput(InputView.getWinningNumberInputFromPlayer());
+            List<Integer> number = validator.validateInput(InputView.getWinningNumberInputFromPlayer());
+            lottoByPlayer = new LottoByPlayer(number);
+            return lottoByPlayer.getLottoNumberFromPlayer();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return setWinningNumber();
+            return setLottoNumber();
         }
     }
 
-    public int setBonusNumber() {
+    private int setBonusNumber() {
         try {
-            return lotto.validateBonusNumber(InputView.getBonusNumberInputFromPlayer(), numberFromPlayer);
+            return lottoByPlayer.validateBonusNumber(InputView.getBonusNumberInputFromPlayer(), numberFromPlayer);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return setBonusNumber();
@@ -90,14 +96,11 @@ public class LottoGame {
     }
 
 
-    public void printWinningResult() {
-        lottoWinningResult.compare(numberFromPlayer, quantityOfLotto);
-        prizeCount = lottoWinningResult.getPrizeCount();
-        OutputView.printWinningStatistics(prizeCount);
+    private void printWinningResult() {
+        OutputView.printWinningStatistics(lottoResult.compare());
     }
 
-    public void printTotalRateOfReturn() {
-        double rateOfReturn = lottoWinningResult.calculateRateOfReturn(purchaseAmount, prizeMoney);
-        OutputView.printTotalRateOfReturn(rateOfReturn);
+    private void printTotalRateOfReturn() {
+        OutputView.printTotalRateOfReturn(lottoResult.getRateOfReturn(purchaseAmount));
     }
 }

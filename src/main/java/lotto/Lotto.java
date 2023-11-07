@@ -1,6 +1,9 @@
 package lotto;
 
 import java.util.List;
+import lotto.exception.lotto.LottoDistinctException;
+import lotto.exception.lotto.LottoLengthException;
+import lotto.exception.lotto.LottoRangeException;
 
 public class Lotto {
     public static final int MIN_BOUND = 1;
@@ -9,13 +12,27 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumbersLength(numbers);
+        validateNumbersRange(numbers);
+        validateNumbersDistinct(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (!isValid(numbers)) {
-            throw new IllegalArgumentException();
+    private void validateNumbersLength(List<Integer> numbers) {
+        if (!hasProperLength(numbers)) {
+            throw new LottoLengthException();
+        }
+    }
+
+    private void validateNumbersRange(List<Integer> numbers) {
+        if (!hasProperRange(numbers)) {
+            throw new LottoRangeException()
+        }
+    }
+
+    private void validateNumbersDistinct(List<Integer> numbers) {
+        if (!hasDistinctNumbers(numbers)) {
+            throw new LottoDistinctException();
         }
     }
 

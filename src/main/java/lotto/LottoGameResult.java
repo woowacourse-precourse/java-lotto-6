@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.constant.NumericConstant.PROFIT_RATE_SCALE;
+
 
 public class LottoGameResult {
     private Map<LottoRank, Integer> lottoResult = new HashMap<>();
@@ -30,9 +32,8 @@ public class LottoGameResult {
         BigDecimal original = new BigDecimal(originalMoney);
         BigDecimal rewardMoney = new BigDecimal(reward);
 
-        return rewardMoney.divide(original)
-                .multiply(new BigDecimal(100))
-                .setScale(2, RoundingMode.HALF_UP)
+        return rewardMoney.multiply(new BigDecimal(100))
+                .divide(original, PROFIT_RATE_SCALE, RoundingMode.HALF_UP)
                 .doubleValue();
     }
 

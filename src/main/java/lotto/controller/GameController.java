@@ -21,7 +21,8 @@ public class GameController {
         int bonusLottoNumber = requestBonusLottoNumber(winningLottoNumbers);
         LottoManager lottoManager = new LottoManager(winningLottoNumbers, bonusLottoNumber);
 
-        lottoManager.countMatchingCounts(lottoBuyer, lottoManager);
+        lottoManager.countMatchingWinningLottoNumbers(lottoBuyer);
+//        lottoManager.checkWinningSumInformation();
     }
 
     private LottoBuyer purchaseLottoTickets() {

@@ -21,19 +21,16 @@ public class Lotto {
         validateNumberRange(numbers);
     }
 
-    // TODO: 추가 기능 구현
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != Constants.LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException(
-                ExceptionMessage.INVALID_WINNING_NUMBER_SIZE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_SIZE.getMessage());
         }
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
         long distinctCount = numbers.stream().distinct().count();
         if (distinctCount != Constants.LOTTO_NUMBERS_SIZE) {
-            throw new IllegalArgumentException(
-                ExceptionMessage.INVALID_WINNING_NUMBER_DUPLICATION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_NUMBER_DUPLICATION.getMessage());
         }
     }
 

@@ -7,7 +7,6 @@ public enum ExceptionMessage {
     INVALID_BONUS_DUPLICATION("이미 당첨 번호에 존재하는 수입니다."),
     INVALID_BUDGET_AMOUNT("딱 1000원 단위로 구매가 가능합니다."),
     INVALID_BUDGET_NOT_POSITIVE("투입 금액은 0원 이하가 될 수 없습니다."),
-
     INVALID_BUDGET_NON_NUMERIC("투입 금액은 숫자여야 합니다.");
 
 

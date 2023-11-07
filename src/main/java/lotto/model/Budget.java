@@ -22,8 +22,7 @@ public record Budget(int inputMoney) {
 
     private void validateBudgetIsPositive(int budget) {
         if (budget <= Constants.ZERO) {
-            throw new IllegalArgumentException(
-                ExceptionMessage.INVALID_BUDGET_NOT_POSITIVE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BUDGET_NOT_POSITIVE.getMessage());
         }
     }
 

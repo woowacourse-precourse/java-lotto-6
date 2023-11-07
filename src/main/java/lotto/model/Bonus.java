@@ -16,8 +16,7 @@ public record Bonus(int bonusNumber) {
 
     private void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < Constants.MIN_RANGE || bonusNumber > Constants.MAX_RANGE) {
-            throw new IllegalArgumentException(
-                ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 

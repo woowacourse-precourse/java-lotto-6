@@ -14,8 +14,7 @@ public record WinningLotto(Lotto lotto, Bonus bonus) {
 
     private void validateBonusNotInLotto(Lotto lotto, Bonus bonus) {
         if (lotto.contains(bonus.bonusNumber())) {
-            throw new IllegalArgumentException(
-                ExceptionMessage.INVALID_BONUS_DUPLICATION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_DUPLICATION.getMessage());
         }
     }
 

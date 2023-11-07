@@ -10,9 +10,20 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto from(List<Integer> lottoNumbers) {
+    public static Lotto of(List<Integer> lottoNumbers) {
         return new Lotto(lottoNumbers);
     }
+
+    public int countMatchNumber(WinnigNumber winnigNumber) {
+        return (int) numbers.stream()
+                .filter(winnigNumber::contains)
+                .count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
 
     public void validate() {
         validateNumberOfNumber(numbers);

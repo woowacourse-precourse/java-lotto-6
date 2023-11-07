@@ -28,8 +28,6 @@ public class Lotto {
         if(validate_dupli(numbers)){
             throw new IllegalArgumentException();
         }
-        // 범위 밖의 값 존재
-
     }
 
     // 중복값 확인 함수
@@ -44,6 +42,11 @@ public class Lotto {
             before = numbers.get(i);
         }
         return res;
+    }
+
+    //로또 번호 출력
+    public void print_numbers(){
+        System.out.println(this.numbers);
     }
 
 }

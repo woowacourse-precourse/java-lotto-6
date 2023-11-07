@@ -18,8 +18,8 @@ public class Judgement {
 
     private static int checkWinningNumberCount(List<Integer> compare_lotto, List<Integer> winning_lotto) {
         int count = DEFAULT_COUNT;
-        for (int i = 0; i < compare_lotto.size(); i++) {
-            count += compareNumber(compare_lotto.get(i), winning_lotto);
+        for (int i = 0; i < winning_lotto.size(); i++) {
+            count += compareNumber(winning_lotto.get(i), compare_lotto);
             count = checkFirstRank(i, count);
         }
         return count;
@@ -32,9 +32,9 @@ public class Judgement {
         return count;
     }
 
-    private static int compareNumber(int number, List<Integer> winning_lotto) {
+    private static int compareNumber(int number, List<Integer> compare_lotto) {
         int count = DEFAULT_COUNT;
-        if (winning_lotto.contains(number)) {
+        if (compare_lotto.contains(number)) {
             count++;
         }
         return count;

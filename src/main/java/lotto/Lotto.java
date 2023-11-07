@@ -11,16 +11,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constants.LOTTO_MAX_SIZE) {
             throw new IllegalArgumentException();
         }
         if(numbers.size()!=numbers.stream().distinct().count()){
             throw new IllegalArgumentException();
         }
-        if(Collections.max(numbers)>45){
+        if(Collections.max(numbers)>Constants.LOTTO_MAX_NUMBER){
             throw new IllegalArgumentException();
         }
-        if(Collections.min(numbers)<1){
+        if(Collections.min(numbers)<Constants.LOTTO_MIN_NUMBER){
             throw new IllegalArgumentException();
         }
     }

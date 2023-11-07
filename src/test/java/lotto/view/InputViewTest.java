@@ -67,11 +67,11 @@ class InputViewTest {
 
     @Test
     void 당첨번호_입력_테스트() {
-        String inputPurchaseAmount = "1,2,3,4,5,6";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "1,2,3,4,5,6";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
-        String[] split = inputPurchaseAmount.split(",");
+        String[] split = inputWinningNumbers.split(",");
         List<Integer> inputDataNumbers = Arrays.stream(split).map(Integer::parseInt).toList();
         List<Integer> testWinningNumbers = InputView.readWinningNumbers();
 
@@ -85,8 +85,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_6자리입력_예외테스트1() {
-        String inputPurchaseAmount = "1,2,3,4,5";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "1,2,3,4,5";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -94,8 +94,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_6자리입력_예외테스트2() {
-        String inputPurchaseAmount = "1,2,3,4,5,7,300";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "1,2,3,4,5,7,300";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -103,8 +103,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_문자입력_예외테스트() {
-        String inputPurchaseAmount = "1,2,3,4,5,a";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "1,2,3,4,5,a";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -112,8 +112,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_공백입력_예외테스트() {
-        String inputPurchaseAmount = "1,,3,4,5,6";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "1,,3,4,5,6";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -121,8 +121,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_공백입력_예외테스트2() {
-        String inputPurchaseAmount = "1,3,4,5,6,";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "1,3,4,5,6,";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -130,8 +130,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_범위_예외테스트1() {
-        String inputPurchaseAmount = "1,46,3,4,5,6";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "1,46,3,4,5,6";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -139,8 +139,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_범위_예외테스트2() {
-        String inputPurchaseAmount = "-1,2,3,4,5,6";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "-1,2,3,4,5,6";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -148,8 +148,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_범위_예외테스트3() {
-        String inputPurchaseAmount = "0,2,3,4,5,6";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "0,2,3,4,5,6";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -157,8 +157,8 @@ class InputViewTest {
 
     @Test
     void 당첨번호_중복_예외테스트() {
-        String inputPurchaseAmount = "1,1,3,4,5,6";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputWinningNumbers = "1,1,3,4,5,6";
+        InputStream inputStream = new ByteArrayInputStream(inputWinningNumbers.getBytes());
         System.setIn(inputStream);
 
         assertThatThrownBy(InputView::readWinningNumbers).isInstanceOf(IllegalArgumentException.class);
@@ -166,19 +166,19 @@ class InputViewTest {
 
     @Test
     void 보너스번호_입력_테스트() {
-        String inputPurchaseAmount = "7";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "7";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputPurchaseAmount));
+        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputBonusNumber));
     }
 
     @Test
     void 보너스번호_문자입력_예외테스트() {
-        String inputPurchaseAmount = "a";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "a";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -188,30 +188,30 @@ class InputViewTest {
 
     @Test
     void 보너스번호_범위_테스트1() {
-        String inputPurchaseAmount = "1";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "1";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(2, 3, 4, 5, 6, 7);
 
-        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputPurchaseAmount));
+        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputBonusNumber));
     }
 
     @Test
     void 보너스번호_범위_테스트2() {
-        String inputPurchaseAmount = "45";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "45";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
-        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputPurchaseAmount));
+        assertThat(InputView.readBonusNumber(winningNumbers)).isEqualTo(Integer.parseInt(inputBonusNumber));
     }
 
     @Test
     void 보너스번호_범위_예외테스트1() {
-        String inputPurchaseAmount = "0";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "0";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -221,8 +221,8 @@ class InputViewTest {
 
     @Test
     void 보너스번호_범위_예외테스트2() {
-        String inputPurchaseAmount = "-1";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "-1";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -232,8 +232,8 @@ class InputViewTest {
 
     @Test
     void 보너스번호_범위_예외테스트3() {
-        String inputPurchaseAmount = "46";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "46";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -243,8 +243,8 @@ class InputViewTest {
 
     @Test
     void 보너스번호_중복_예외테스트1() {
-        String inputPurchaseAmount = "1";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "1";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -254,8 +254,8 @@ class InputViewTest {
 
     @Test
     void 보너스번호_중복_예외테스트2() {
-        String inputPurchaseAmount = "14";
-        InputStream inputStream = new ByteArrayInputStream(inputPurchaseAmount.getBytes());
+        String inputBonusNumber = "14";
+        InputStream inputStream = new ByteArrayInputStream(inputBonusNumber.getBytes());
         System.setIn(inputStream);
 
         List<Integer> winningNumbers = Arrays.asList(11,12,13,14,15,16);

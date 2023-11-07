@@ -5,6 +5,7 @@ import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_BONUS_NUMBER;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_WINNING_NUMBERS;
+import static lotto.message.ErrorMessage.WINNING_NUMBERS_DUPLICATE;
 import static lotto.message.ErrorMessage.WINNING_NUMBERS_LENGTH;
 import static lotto.message.ErrorMessage.WINNING_NUMBERS_RANGE;
 
@@ -33,10 +34,17 @@ public class Input {
 
             validationWinningNumbersLength(winningNumbers);
             validationWinningNumbersRange(winningNumbers);
+            validationWinningNumbersDuplicate(winningNumbers);
 
             return winningNumbers;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_WINNING_NUMBERS.errorMessage());
+        }
+    }
+
+    private void validationWinningNumbersDuplicate(List<Integer> winningNumbers) {
+        if(winningNumbers.size() != winningNumbers.stream().distinct().count()){
+            throw new IllegalArgumentException(WINNING_NUMBERS_DUPLICATE.errorMessage());
         }
     }
 

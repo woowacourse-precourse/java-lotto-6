@@ -37,8 +37,22 @@ public class Input_function {
         }
     }
     
-
     public List<Integer> get_lotto_number() {
+        boolean isValid = false;
+        List<Integer> number = new ArrayList<>();
+        while(!isValid) {
+            try {
+                number = input_lotto_number();
+                isValid = true;
+            }
+            catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해주세요.");
+            }
+        }
+        return number;
+    }
+
+    public List<Integer> input_lotto_number() {
         try {
             System.out.println("당첨번호를 입력해 주세요.");
             String input_str = Console.readLine();
@@ -51,6 +65,10 @@ public class Input_function {
                 validate_lotto_number(number, lotto_numbers);
                 lotto_numbers.add(number);
                 
+            }
+
+            if(lotto_numbers.size() != 6) {
+                throw new IllegalArgumentException("[ERROR] 입력한 숫자가 6개가 아닙니다.");
             }
             return lotto_numbers;
         }
@@ -69,7 +87,23 @@ public class Input_function {
         }
     }
 
-    public int get_bonus_number(List<Integer> numbers) {
+
+    public int getBonusNumber(List<Integer> numbers) {
+        boolean isValid = false;
+        int number = 0;
+        while(!isValid) {
+            try {
+                number = inputBonusNumber(numbers);
+                isValid = true;
+            }
+            catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해주세요.");
+            }
+        }
+        return number;
+    }
+
+    public int inputBonusNumber(List<Integer> numbers) {
         try {
             System.out.println("보너스 번호를 입력해 주세요.");
             String input_str = Console.readLine();  

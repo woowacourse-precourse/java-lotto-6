@@ -69,18 +69,18 @@ public class Calculation {
 
     }
     public int getFifthPrize(int grade) {
-        return 5000*grade;
+        return Prize.FIFTH.prize*grade;
     }
     public int getFourthPrize(int grade) {
-        return 50000*grade;
+        return Prize.FOURTH.prize*grade;
     }
     public int getThirdPrize(int grade) {
-        return 1500000*grade;
+        return Prize.THIRD.prize*grade;
     }
     public int getSecondPrize(int grade) {
-        return 30000000*grade;
+        return Prize.SECOND.prize*grade;
     }
     public int getFirstPrize(int grade) {
-        return 2000000000*grade;
+        return Prize.FIRST.prize*grade;
     }
 }

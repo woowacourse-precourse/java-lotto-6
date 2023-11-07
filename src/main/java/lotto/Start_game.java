@@ -18,7 +18,7 @@ public class Start_game {
         money = input_function.getMoney();
         game_count = calculation.get_game_count(money);
         Lotto lotto_number = new Lotto(input_function.get_lotto_number());
-        bonus_number = input_function.get_bonus_number(lotto_number.get_lotto_numbers());
+        bonus_number = input_function.getBonusNumber(lotto_number.get_lotto_numbers());
         calculation.generate_all_lotto_numbers(all_lotto_numbers, game_count);
         calculation.get_all_score(all_lotto_numbers, lotto_number.get_lotto_numbers(), bonus_number, scoreBoard);
         

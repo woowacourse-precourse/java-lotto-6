@@ -16,7 +16,7 @@ public class LottoPurchaseAmount {
         LottoPurchaseAmountException lottoPurchaseAmountException = new LottoPurchaseAmountException(input);
     }
 
-    public int getLottoCount(String input){
+    public int getLottoCount(){
         int count = Integer.parseInt(input);
         int lottoCount = count / lottoPrice;
         return lottoCount;

@@ -26,8 +26,8 @@ public class Controller {
     }
 
     public void execute() {
-        int input = readAmount();
-        List<Lotto> lottos = generateLotto(input);
+        Money money = readAmount();
+        List<Lotto> lottos = generateLotto(money);
 
         Lotto winningLotto = readWinningLotto();
         int bonus = readBonus();
@@ -37,29 +37,29 @@ public class Controller {
         EnumMap<Rank, Integer> result = lottoResultService.rank(lottos);
 
         printStats(result);
-        printRateOfReturn(input, result);
+        printRateOfReturn(money.perUnit(), result);
     }
 
-    private int readAmount() {
+    private Money readAmount() {
         outputView.printEnterAmountMessage();
-        int amount = 0;
-        while (amount == 0) {
-            amount = readAmountInput();
+        Money money = null;
+        while (money == null) {
+            money = readAmountInput();
         }
-        return amount;
+        return money;
     }
 
-    private int readAmountInput() {
+    private Money readAmountInput() {
         try {
-            return inputView.readAmount();
+            int amount = inputView.readAmount();
+            return new Money(amount);
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage("구입 금액을 1000원 단위의 숫자여야 합니다.");
+            outputView.printErrorMessage("구입 금액은 1000원 단위의 숫자여야 합니다.");
         }
-        return 0;
+        return null;
     }
 
-    private List<Lotto> generateLotto(int amount) {
-        Money money = new Money(amount);
+    private List<Lotto> generateLotto(Money money) {
         List<List<Integer>> lottoNumbers = lottoMachineService.generateLotto(money);
         outputView.printLottoPurchases(lottoNumbers);
         return lottoMachineService.getLottos();

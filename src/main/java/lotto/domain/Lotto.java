@@ -18,14 +18,15 @@ public class Lotto {
         this.numbers = numbers.stream().sorted().toList();
     }
 
-    private boolean isLengthSix(List<Integer> numbers) {
-        return numbers.size() != 6;
-    }
 
     private void validateLottoLength(List<Integer> numbers) {
         if (isLengthSix(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_LENGTH.toMessage());
         }
+    }
+
+    private boolean isLengthSix(List<Integer> numbers) {
+        return numbers.size() != 6;
     }
 
     private void validateDuplicateNumbers(List<Integer> numbers) {
@@ -47,8 +48,14 @@ public class Lotto {
         }
     }
 
-
     public List<Integer> getNumbers() {
+        validateNullLotto(numbers);
         return numbers;
+    }
+
+    private void validateNullLotto(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalStateException(ExceptionMessage.INVALID_NULL.toMessage());
+        }
     }
 }

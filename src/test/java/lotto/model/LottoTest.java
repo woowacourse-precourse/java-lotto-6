@@ -189,7 +189,7 @@ public class LottoTest {
     class LottosEqualityTests {
 
         @Test
-        @DisplayName("동일한 번호의 로또는 동등해야 한다")
+        @DisplayName("동일한 Lotto 인스턴스 비교 - equals & hashCode")
         void testLottoEquality() {
             // 준비
             Lotto lottoOne = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
@@ -201,7 +201,7 @@ public class LottoTest {
         }
 
         @Test
-        @DisplayName("다른 번호의 로또는 동등하지 않아야 한다")
+        @DisplayName("동일하지 않은 Lotto 인스턴스 비교 - equals & hashCode")
         void testLottoInequality() {
             // 준비
             Lotto lottoOne = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));

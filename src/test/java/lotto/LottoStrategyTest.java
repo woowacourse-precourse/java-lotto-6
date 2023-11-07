@@ -103,6 +103,5 @@ public class LottoStrategyTest {
                 Arguments.of(Arrays.asList(1, 8, 9, 10, 11, 12)),
                 Arguments.of(Arrays.asList(8, 9, 10, 11, 12, 13))
         );
-
     }
 }

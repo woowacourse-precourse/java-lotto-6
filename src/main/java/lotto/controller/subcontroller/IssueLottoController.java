@@ -1,7 +1,6 @@
 package lotto.controller.subcontroller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.repository.LottoRepository;
@@ -39,7 +38,6 @@ public class IssueLottoController implements Controllable {
     }
 
     private List<Integer> createLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

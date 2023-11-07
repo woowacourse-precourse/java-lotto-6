@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.controller.subcontroller.CompareResultController;
 import lotto.controller.subcontroller.IssueLottoController;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -22,6 +23,7 @@ public class MainController {
     private final InputView inputView;
     private final OutputView outputView;
     private IssueLottoController issueLottoController;
+    private CompareResultController compareResultController;
 
     public MainController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -31,48 +33,13 @@ public class MainController {
 
     private void initializeControllers() {
         issueLottoController = new IssueLottoController(inputView, outputView);
+        compareResultController = new CompareResultController(inputView, outputView);
     }
 
     public void start() {
         issueLottoController.process();
-        inputWinningNumbers();
-
-        compareLottoResult();
-        outputLottoResult();
-
-        {
-            ProfitService profitService = new ProfitService();
-
-            List<LottoRank> ranks = LottoResultRepository.findLottoRankResults();
-            List<WinningAmount> winningAmounts = profitService.copyWinningAmountFromLottoRanks(ranks);
-            long totalProfitAmount = profitService.calculateTotalProfitAmount(winningAmounts);
-            int purchaseAmount = LottoRepository.lotties().size() * 1000;
-            double totalProfitRate = profitService.calculateTotalProfitRate(totalProfitAmount, purchaseAmount);
-
-            Profit profit = new Profit(totalProfitAmount, totalProfitRate);
-            ProfitRepository.add(profit);
-            outputView.outputProfitRate(ProfitRepository.findProfitRate());
-        }
+        compareResultController.process();
     }
 
-    private void inputWinningNumbers() {
-        List<Integer> winnings = inputView.inputWinningNumber();
-        WinningLottoRepository.add(new Lotto(winnings));
 
-        int bonus = inputView.inputBonusNumber();
-        BonusNumberRepository.add(new BonusNumber(bonus));
-    }
-
-    private void compareLottoResult() {
-        LottoResultService lottoResultService = new LottoResultService();
-
-        List<Integer> winnings = WinningLottoRepository.findWinningNumbers();
-        LottoResult lottoResult = new LottoResult(lottoResultService.compare(winnings));
-        LottoResultRepository.add(lottoResult);
-    }
-
-    private void outputLottoResult() {
-        List<LottoRank> ranks = LottoResultRepository.findLottoRankResults();
-        outputView.outputLottoResults(ranks);
-    }
 }

@@ -8,7 +8,9 @@ public enum LottoMessage {
     LOTTO_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해주세요."),
     LOTTO_STATISTICS_MESSAGE("당첨 통계"),
     GRAPH_UNDER_BAR("---"),
-    LOTTO_WINNING_RESULT_MESSAGE("%d개 일치 (%,d원) - %d개");
+    LOTTO_WINNING_RESULT_MESSAGE("%d개 일치 (%,d원) - %d개\n"),
+    LOTTO_WINNING_RESULT_BONUS_MESSAGE("%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n"),
+    LOTTO_TOTAL_PROFIT_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
     LottoMessage(String message) {

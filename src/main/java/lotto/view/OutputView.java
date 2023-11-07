@@ -39,8 +39,16 @@ public class OutputView {
         System.out.println(GRAPH_UNDER_BAR.getMessage());
     }
 
-    public static void lottoWinningResultOutputMessage() {
-        System.out.println(LOTTO_WINNING_RESULT_MESSAGE.getMessage());
+    public static void lottoWinningResultOutputMessage(int number, int prize, int match) {
+        System.out.printf(LOTTO_WINNING_RESULT_MESSAGE.getMessage(), number, prize, match);
+    }
+
+    public static void lottoWinningResultBonusOutputMessage(int number, int prize, int match) {
+        System.out.printf(LOTTO_WINNING_RESULT_BONUS_MESSAGE.getMessage(), number, prize, match);
+    }
+
+    public static void lottoTotalProfitMessage(Double profit) {
+        System.out.printf(LOTTO_TOTAL_PROFIT_MESSAGE.getMessage(), profit);
     }
 
     public static void newLine() {

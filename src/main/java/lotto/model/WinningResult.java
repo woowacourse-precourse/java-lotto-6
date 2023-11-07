@@ -27,4 +27,8 @@ public enum WinningResult {
     public int getPrice() {
         return price;
     }
+
+    public int getValue() {
+        return value;
+    }
 }

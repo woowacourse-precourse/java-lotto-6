@@ -29,4 +29,8 @@ public class UserLotto {
     public int getWinningPrice() {
         return winningPrice;
     }
+
+    public int getPurchasePrice() {
+        return purchasePrice;
+    }
 }

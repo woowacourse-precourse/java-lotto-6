@@ -18,6 +18,9 @@ public class LottoController {
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
+        for (WinningResult winningResult : WinningResult.values()) {
+            countOfWinningResult.put(winningResult, 0);
+        }
     }
 
     public void start() {
@@ -34,6 +37,7 @@ public class LottoController {
         inputView.getBonusNumber(winningLotto);
         calculateWinningPrice(userLotto, winningLotto);
 
+        outputView.printLottoResult(userLotto, countOfWinningResult);
     }
 
     private void calculateWinningPrice(UserLotto userLotto, WinningLotto winningLotto) {

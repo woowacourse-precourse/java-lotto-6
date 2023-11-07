@@ -30,6 +30,7 @@ public class InputView {
     }
 
     public WinningLotto getWinningNumbers() {
+        System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         String[] numberStrings = input.split(",");
@@ -69,6 +70,7 @@ public class InputView {
     }
 
     public void getBonusNumber(WinningLotto winningLotto) {
+        System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = 0;
         try {

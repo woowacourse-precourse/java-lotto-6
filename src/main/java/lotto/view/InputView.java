@@ -17,7 +17,7 @@ public class InputView {
     }
 
     public String readSelectedBonus() {
-        System.out.println(RequestMessage.WINNING.getMessage());
+        System.out.println(RequestMessage.BONUS.getMessage());
         String bonus = Console.readLine();
         return bonus.trim();
     }

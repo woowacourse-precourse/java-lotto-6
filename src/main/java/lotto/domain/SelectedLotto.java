@@ -6,19 +6,16 @@ import java.util.List;
 import lotto.util.LottoValidator;
 
 public class SelectedLotto {
-    //private String InputNumbers = "";
-    // private String InputBonus = "";
     private List<String> numbers;
     private final List<Integer> selectedNumbers;
     private final Integer selectedBonus;
     private final LottoValidator validator = new LottoValidator();
 
+
     public SelectedLotto(String nums, String bonus) {
         makeSplittedNumbers(nums);
         validator.lottoNumbers(numbers);
         validator.bonusNumber(bonus, numbers);
-        //InputNumbers = nums;
-        //InputBonus = bonus;
         selectedNumbers = convertNums();
         selectedBonus = Integer.valueOf(bonus);
     }
@@ -41,11 +38,11 @@ public class SelectedLotto {
 
     }
 
-    public List<Integer> getSelectedNumbers() {
+    List<Integer> getSelectedNumbers() {
         return selectedNumbers;
     }
 
-    public Integer getBonus() {
+    Integer getBonus() {
         return selectedBonus;
     }
 

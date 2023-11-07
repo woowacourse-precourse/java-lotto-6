@@ -21,6 +21,7 @@ public class LottoController {
 
     private void init() {
         int input = InputMessage.printMoneyInputMessage();
+        OutputMessage.moneyToNumberPrint(input);
         List<Lotto> lottosList = lottoService.buyLotto(input);
         OutputMessage.printLottosListOutputMessage(lottosList);
     }
@@ -30,4 +31,5 @@ public class LottoController {
         int bonusNumber = InputMessage.printBonusNumberInputMessage();
         lottoService.setPlayer(winningNumbers, bonusNumber);
     }
+
 }

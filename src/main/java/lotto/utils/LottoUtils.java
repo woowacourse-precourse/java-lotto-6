@@ -18,7 +18,7 @@ public class LottoUtils {
     }
 
     public List<Lotto> setLottoResult(Integer amount) {
-        System.out.println("\n" + amount + Constants.PURCHASED_RESULT);
+        systemMessage.printPurchasedResult(amount);
         List<Lotto> lottos = new ArrayList<>();
         for (int index = 0; index < amount; index++) {
             List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -39,8 +39,16 @@ public class LottoUtils {
         return numbers;
     }
 
-    public Integer setBonusNumber() {
-        return parser(systemMessage.getBonusNumbers());
+    public void setBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber = parser(systemMessage.getBonusNumbers());
+        winningNumbers.add(bonusNumber);
+        isNumbersDuplicate(winningNumbers);
+    }
+
+    public void setLottoResult(List<Lotto> lottos, List<Integer> winningNumbers) {
+        systemMessage.setPrintResult();
+        System.out.println(lottos);
+        System.out.println(winningNumbers);
     }
 
     private Integer parser(String input) {

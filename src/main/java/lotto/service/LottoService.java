@@ -8,7 +8,8 @@ public class LottoService {
     LottoUtils lottoUtils = new LottoUtils();
     public void start() {
         List<Lotto> lottos = lottoUtils.setLottoResult(lottoUtils.setPurchaseAmout());
-        lottoUtils.setLottoNumbers();
-        lottoUtils.setBonusNumber();
+        List<Integer> winningNumbers = lottoUtils.setLottoNumbers();
+        lottoUtils.setBonusNumber(winningNumbers);
+        lottoUtils.setLottoResult(lottos, winningNumbers);
     }
 }

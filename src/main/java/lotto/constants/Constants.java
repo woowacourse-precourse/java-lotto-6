@@ -9,9 +9,9 @@ public class Constants {
 
     public static final String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public static final String RESULT = "당첨 통계";
+    public static final String RESULT = "\n당첨 통계\n---";
 
-    public static final String DASH = "---";
+    public static final String NUMBER_RANGE_ERROR = "로또 번호는 6개입니다.";
 
     public static final String DUPLICATE_ERROR = "중복된 값은 입력할 수 없습니다.";
 

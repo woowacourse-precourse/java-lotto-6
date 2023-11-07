@@ -19,4 +19,12 @@ public class SystemMessage {
         System.out.println("\n" + Constants.BONUS_NUMBER);
         return Console.readLine();
     }
+
+    public void printPurchasedResult(Integer amount) {
+        System.out.println("\n" + amount + Constants.PURCHASED_RESULT);
+    }
+
+    public void setPrintResult() {
+        System.out.println(Constants.RESULT);
+    }
 }

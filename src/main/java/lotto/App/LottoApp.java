@@ -21,7 +21,8 @@ public class LottoApp {
 
         lottoController.buyLottos();
 
-        lottoView.printPurchasedCnt(String.valueOf(lottoController.getPurchasedCnt()));
+        lottoView.printPurchasedCnt(String.valueOf(lottoController.getPurchasedLottoCnt()));
+        lottoView.printLottos(lottoController.getPurchasedLottos());
 
     }
 }

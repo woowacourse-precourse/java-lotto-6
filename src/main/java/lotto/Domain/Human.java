@@ -33,5 +33,8 @@ public class Human {
         return lottos.size();
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 
 }

@@ -1,6 +1,8 @@
 package lotto.Controller;
 
+import java.util.List;
 import lotto.Domain.Human;
+import lotto.Domain.Lotto;
 import lotto.RandomGenerator.LottoGenerator;
 
 public class LottoController {
@@ -24,7 +26,11 @@ public class LottoController {
         // Return -> is successful
     }
 
-    public int getPurchasedCnt() {
+    public int getPurchasedLottoCnt() {
         return human.getLottosLength();
+    }
+
+    public List<Lotto> getPurchasedLottos() {
+        return human.getLottos();
     }
 }

@@ -12,13 +12,19 @@ public class LottoTicket {
 
     public LottoTicket(int ticketCount){
         for (int i=0; i<ticketCount; i++){
-            List<Integer> numbers = Randoms
-                    .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_COUNT);
-            ticket.add(new Lotto(numbers));
+            Lotto lotto = generateLotto();
+            ticket.add(lotto);
         }
     }
 
     public List<Lotto> getTicket(){
         return ticket;
     }
+
+    private Lotto generateLotto(){
+        List<Integer> numbers = Randoms
+                .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_COUNT);
+        return new Lotto(numbers);
+    }
+
 }

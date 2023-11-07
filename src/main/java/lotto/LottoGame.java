@@ -4,14 +4,14 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.stream.Collectors;
 
 public class LottoGame {
+    ////// 당첨 번호 중복 입력시 예외 처리
     public void execute() {
         int purchaseMoney = purchase();
 
@@ -34,8 +34,10 @@ public class LottoGame {
                 purchaseMoney = Integer.parseInt(Console.readLine());
                 validatePurchaseMoney(purchaseMoney);
                 return purchaseMoney;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 입력은 숫자여야 합니다.");
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 구입금액은 1,000단위 숫자여야 합니다.");
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -46,11 +48,25 @@ public class LottoGame {
         return purchaseLottoCount;
     }
 
+    protected int getBonusNumber(Lotto winningLotto) {
+        while (true) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            try {
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                validateBonusNumber(bonusNumber, winningLotto);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 입력은 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private List<Lotto> getPurchaseLotto(int lottoCount) {
         List<Lotto> purchaseLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(lottoNumbers);
+            List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6).stream().sorted().toList();
             purchaseLottos.add(new Lotto(lottoNumbers));
         }
 
@@ -61,7 +77,7 @@ public class LottoGame {
         return purchaseLottos;
     }
 
-    private Lotto getWinningLotto() {
+    protected Lotto getWinningLotto() {
         while (true) {
             System.out.println("당첨 번호를 입력해 주세요.");
             try {
@@ -77,28 +93,13 @@ public class LottoGame {
         }
     }
 
-    private int getBonusNumber(Lotto winningLotto) {
-        while (true) {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            try {
-                int bonusNumber = Integer.parseInt(Console.readLine());
-                validateBonusNumber(bonusNumber, winningLotto);
-                return bonusNumber;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 입력은 숫자여야 합니다.");
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
     private void matchWinning(Lotto winningLotto, List<Lotto> purchaseLottos, int bonusNumber, int purchaseMoney) {
         HashMap<WinningLottoType, Integer> winningResultMap = matchWinningResult(winningLotto, purchaseLottos,
                 bonusNumber);
         printWinningResult(winningResultMap, purchaseMoney);
     }
 
-    private HashMap<WinningLottoType, Integer> makeWinningResultMap() {
+    protected HashMap<WinningLottoType, Integer> makeWinningResultMap() {
         HashMap<WinningLottoType, Integer> winningResultMap = new HashMap<>();
         for (WinningLottoType winningLottoType : WinningLottoType.values()) {
             winningResultMap.put(winningLottoType, 0);
@@ -106,8 +107,8 @@ public class LottoGame {
         return winningResultMap;
     }
 
-    private HashMap<WinningLottoType, Integer> matchWinningResult(Lotto winningLotto, List<Lotto> purchaseLottos,
-                                                                  int bonusNumber) {
+    protected HashMap<WinningLottoType, Integer> matchWinningResult(Lotto winningLotto, List<Lotto> purchaseLottos,
+                                                                    int bonusNumber) {
         HashMap<WinningLottoType, Integer> winningResultMap = makeWinningResultMap();
         for (Lotto purchaseLotto : purchaseLottos) {
             int matchCount = winningLotto.matchCount(purchaseLotto);
@@ -141,23 +142,23 @@ public class LottoGame {
                 + "%입니다.");
     }
 
-    private String getRewardRate(double purchaseMoney, double reward) {
+    protected String getRewardRate(double purchaseMoney, double reward) {
         return new DecimalFormat("0.0").format(reward * 100.0 / purchaseMoney);
     }
 
-    private void validateBonusNumber(int bonusNumber, Lotto winningLotto) {
+    protected void validatePurchaseMoney(int purchaseMoney) {
+        if (purchaseMoney % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1,000단위 숫자여야 합니다.");
+        }
+    }
+
+    protected void validateBonusNumber(int bonusNumber, Lotto winningLotto) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
 
         if (winningLotto.containBounsNumber(bonusNumber) == true) {
             throw new IllegalArgumentException("[ERROR] 당첨 숫자와 중복된 숫자입니다.");
-        }
-    }
-
-    private void validatePurchaseMoney(int purchaseMoney) {
-        if (purchaseMoney % 1000 != 0) {
-            throw new IllegalArgumentException();
         }
     }
 }

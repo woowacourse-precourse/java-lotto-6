@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import java.util.List;
+import lotto.constants.LottoRules;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.view.ExceptionMessages;
@@ -8,17 +9,17 @@ import lotto.view.ExceptionMessages;
 public class Validation {
 
     public static void validatePurchaseAmount(int purchaseAmount) {
-        validateNumberInRange(purchaseAmount, 1_000, 100_000);
-        validateNumberMultipleOf(purchaseAmount, 1_000);
+        validateNumberInRange(purchaseAmount, LottoRules.PURCHASE_AMOUNT_MIN.getValue(), LottoRules.PURCHASE_AMOUNT_MAX.getValue());
+        validateNumberMultipleOf(purchaseAmount, LottoRules.LOTTO_PRICE.getValue());
     }
     public static void validateLotto(List<Integer> winningNumbers) {
-        validateListNumberCount(winningNumbers, 6);
-        validateListNumberInRange(winningNumbers, 1, 45);
+        validateListNumberCount(winningNumbers, LottoRules.LOTTO_NUMBER_COUNT.getValue());
+        validateListNumberInRange(winningNumbers, LottoRules.MIN_LOTTO_NUMBER.getValue(), LottoRules.MAX_LOTTO_NUMBER.getValue());
         validateListNumberNotDuplicated(winningNumbers);
     }
 
     public static void validateBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
-        validateNumberInRange(bonusNumber.bonusNumber(), 1, 45);
+        validateNumberInRange(bonusNumber.bonusNumber(), LottoRules.MIN_LOTTO_NUMBER.getValue(), LottoRules.MAX_LOTTO_NUMBER.getValue());
         validateBonusNumberNotInWinningNumber(bonusNumber.bonusNumber(), lotto.getNumbers());
     }
     public static void validateStringToInteger(String string) {

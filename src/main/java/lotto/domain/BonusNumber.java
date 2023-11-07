@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.constants.LottoRules;
 import lotto.utils.Validation;
 
 public record BonusNumber(int bonusNumber) {
@@ -10,6 +11,6 @@ public record BonusNumber(int bonusNumber) {
     }
 
     private void validate(int bonusNumber) {
-        Validation.validateNumberInRange(bonusNumber, 1, 45);
+        Validation.validateNumberInRange(bonusNumber, LottoRules.MIN_LOTTO_NUMBER.getValue(), LottoRules.MAX_LOTTO_NUMBER.getValue());
     }
 }

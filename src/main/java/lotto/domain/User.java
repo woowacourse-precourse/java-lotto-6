@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import lotto.constants.LottoRules;
 import lotto.utils.Validation;
 
 public class User {
@@ -17,8 +18,8 @@ public class User {
     }
 
     private void validatePurchaseAmount(Amount purchaseAmount) {
-        Validation.validateNumberInRange(purchaseAmount.getAmount(), 1_000, 100_000);
-        Validation.validateNumberMultipleOf(purchaseAmount.getAmount(), 1_000);
+        Validation.validateNumberInRange(purchaseAmount.getAmount(), LottoRules.PURCHASE_AMOUNT_MIN.getValue(), LottoRules.PURCHASE_AMOUNT_MAX.getValue());
+        Validation.validateNumberMultipleOf(purchaseAmount.getAmount(), LottoRules.LOTTO_PRICE.getValue());
     }
 
     public void addLotto(Lotto lotto) {

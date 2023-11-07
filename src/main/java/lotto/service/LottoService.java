@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.constants.LottoRules;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoData;
@@ -23,7 +24,7 @@ public class LottoService {
 
     public void buyLottoAll(User user) {
         int purchaseAmount = user.getPurchaseAmount().getAmount();
-        int lottoCount = purchaseAmount / 1000;
+        int lottoCount = purchaseAmount / LottoRules.LOTTO_PRICE.getValue();
 
         IntStream.range(0, lottoCount)
                 .forEach(i -> buyLottoOne(user));
@@ -36,7 +37,7 @@ public class LottoService {
 
     private Lotto generateLottoNumber() {
         List<Integer> lottoNumbers = new ArrayList<>(
-                numberGenerator.generateNumbers(1, 45, 6));
+                numberGenerator.generateNumbers(LottoRules.MIN_LOTTO_NUMBER.getValue(), LottoRules.MAX_LOTTO_NUMBER.getValue(), LottoRules.LOTTO_NUMBER_COUNT.getValue()));
         return new Lotto(lottoNumbers);
     }
 }

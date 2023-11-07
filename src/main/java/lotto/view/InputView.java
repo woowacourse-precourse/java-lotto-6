@@ -17,15 +17,14 @@ public class InputView {
             this.message = message;
         }
     }
+
     public int inputBudget() {
         System.out.println(ConsoleMessage.INPUT_BUDGET.message);
-        try {
-            return InputValidator.validNumber(Console.readLine());
-        } catch (IllegalArgumentException exception) {
-            printExceptionMessage(exception);
-            return inputBudget();
-        }
+        String input = Console.readLine();
+        InputValidator.validNumber(input);
+        return Integer.parseInt(input);
     }
+
 
     public void printExceptionMessage(Exception exception) {
         System.out.println(exception.getMessage());
@@ -35,17 +34,15 @@ public class InputView {
         System.out.println(ConsoleMessage.INPUT_WINNER_NUMBER.message);
 
         return StringUtils.splitByComma(Console.readLine()).stream()
-                .map(InputValidator::validNumber)
+                .peek(InputValidator::validNumber)
+                .map(Integer::parseInt)
                 .toList();
     }
 
     public int inputBonusNumber() {
-        try {
-            System.out.println(ConsoleMessage.INPUT_BONUS_NUMBER.message);
-            return InputValidator.validNumber(Console.readLine());
-        } catch (IllegalArgumentException exception) {
-            printExceptionMessage(exception);
-            return inputBonusNumber();
-        }
+        System.out.println(ConsoleMessage.INPUT_BONUS_NUMBER.message);
+        String input = Console.readLine();
+        InputValidator.validNumber(input);
+        return Integer.parseInt(input);
     }
 }

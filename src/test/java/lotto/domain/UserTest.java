@@ -50,7 +50,7 @@ class UserTest {
         user.inputMoney();
 
         //then
-        assertThat(outputStream.toString()).contains("[ERROR] 숫자를 입력해야 합니다. 다시 입력하여 주세요");
+        assertThat(outputStream.toString()).contains(ErrorMessage.NO_PARSE_TO_NUMBER.getMessage());
         assertThat(user.getMoney()).isEqualTo(1000);
     }
 
@@ -70,7 +70,7 @@ class UserTest {
         user.inputMoney();
 
         //then
-        assertThat(outputStream.toString()).contains("[ERROR] 1000원 단위로 다시 입력하여 주세요 입력 값 = 2500");
+        assertThat(outputStream.toString()).contains(ErrorMessage.NOT_MULTIPLE_OF_THOUSAND.getMessage() + 2500);
         assertThat(user.getMoney()).isEqualTo(1000);
     }
 

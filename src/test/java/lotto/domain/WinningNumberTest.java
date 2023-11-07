@@ -72,7 +72,7 @@ class WinningNumberTest {
         winningNumber.inputWinnerNumbers();
 
         //then
-        assertThat(outputStream.toString()).contains("[ERROR] 당첨 번호가 6개가 아닙니다. 다시 입력하여 주세요");
+        assertThat(outputStream.toString()).contains(ErrorMessage.NO_COUNT_LOTTO_NUMBERS.getMessage());
         IntStream.range(0, winningNumber.getWinnerNumbers().size())
                 .forEach(i -> assertThat(winningNumber.getWinnerNumbers().get(i))
                         .isEqualTo(inputNumbers.get(i)));
@@ -93,7 +93,7 @@ class WinningNumberTest {
         winningNumber.inputWinnerNumbers();
 
         //then
-        assertThat(outputStream.toString()).contains("[ERROR] 숫자를 입력해야 합니다. 다시 입력하여 주세요");
+        assertThat(outputStream.toString()).contains(ErrorMessage.NO_PARSE_TO_NUMBER.getMessage());
         IntStream.range(0, winningNumber.getWinnerNumbers().size())
                 .forEach(i -> assertThat(winningNumber.getWinnerNumbers().get(i))
                         .isEqualTo(inputNumbers.get(i)));
@@ -114,7 +114,7 @@ class WinningNumberTest {
         winningNumber.inputWinnerNumbers();
 
         //then
-        assertThat(outputStream.toString()).contains("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다. 다시 입력하여 주세요");
+        assertThat(outputStream.toString()).contains(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
         IntStream.range(0, winningNumber.getWinnerNumbers().size())
                 .forEach(i -> assertThat(winningNumber.getWinnerNumbers().get(i))
                         .isEqualTo(inputNumbers.get(i)));
@@ -134,7 +134,7 @@ class WinningNumberTest {
         winningNumber.inputWinnerNumbers();
 
         //then
-        assertThat(outputStream.toString()).contains("[ERROR] 이미 로또 번호에 있는 번호 입니다. 다시 입력하여 주세요");
+        assertThat(outputStream.toString()).contains(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         IntStream.range(0, winningNumber.getWinnerNumbers().size())
                 .forEach(i -> assertThat(winningNumber.getWinnerNumbers().get(i))
                         .isEqualTo(inputNumbers.get(i)));
@@ -154,8 +154,8 @@ class WinningNumberTest {
         winningNumber.inputBonusNum();
 
         //then
-        assertThat(outputStream.toString()).contains("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다. 다시 입력하여 주세요");
-        assertThat(outputStream.toString()).contains("[ERROR] 숫자를 입력해야 합니다. 다시 입력하여 주세요");
+        assertThat(outputStream.toString()).contains(ErrorMessage.OUT_OF_RANGE_NUMBER.getMessage());
+        assertThat(outputStream.toString()).contains(ErrorMessage.NO_PARSE_TO_NUMBER.getMessage());
         assertThat(winningNumber.getBonusNumber()).isEqualTo(5);
     }
 
@@ -174,7 +174,7 @@ class WinningNumberTest {
         winningNumber.inputBonusNum();
 
         //then
-        assertThat(outputStream.toString()).contains("[ERROR] 이미 로또 번호에 있는 번호 입니다. 다시 입력하여 주세요");
+        assertThat(outputStream.toString()).contains(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
         assertThat(winningNumber.getBonusNumber()).isEqualTo(20);
     }
 

@@ -17,12 +17,23 @@ public class LottoJudger {
         initStatisticMap();
     }
 
-
     public void judge(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             Result result = judgeLotto(lotto);
             statisticMap.put(result, statisticMap.get(result) + 1);
         }
+    }
+
+    public void printStatisticOfResult() {
+        System.out.println();
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + statisticMap.get(Result.THREE) + "개");
+        System.out.println("4개 일치 (50,000원) - " + statisticMap.get(Result.FOUR) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + statisticMap.get(Result.FIVE) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + statisticMap.get(Result.FIVE_AND_BONUS) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + statisticMap.get(Result.ALL) + "개");
+        //System.out.println("총 수익률은 " +  + "%입니다.");
     }
 
     private Result judgeLotto(Lotto lotto) {

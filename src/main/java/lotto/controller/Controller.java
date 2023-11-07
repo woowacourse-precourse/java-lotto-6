@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import java.util.Map;
 import lotto.controller.dto.LottosResponse;
+import lotto.controller.dto.WinningStatisticsResponse;
 import lotto.model.LottoNumber;
 import lotto.model.LottoNumbersGenerator;
 import lotto.model.LottoPrizeCalculator;
@@ -90,8 +90,10 @@ public class Controller {
     }
 
     private void showWinningStatistics(final LottoPrizeCalculator lottoPrizeCalculator) {
-        Map<String, Long> winningStatistics = lottoPrizeCalculator.getWinningStatistics();
-        outputView.printWinningStatistics(winningStatistics);
+        WinningStatisticsResponse winningStatisticsResponse =
+                WinningStatisticsResponse.from(lottoPrizeCalculator.getWinningStatistics());
+
+        outputView.printWinningStatistics(winningStatisticsResponse.getWinningStatistics());
     }
 
     private void showTotalProfit(final LottoPrizeCalculator lottoPrizeCalculator, final Money money) {

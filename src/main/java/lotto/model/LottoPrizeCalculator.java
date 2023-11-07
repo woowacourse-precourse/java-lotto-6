@@ -7,8 +7,6 @@ import static lotto.model.LottoPrize.NO_PRIZE;
 import static lotto.model.LottoPrize.SECOND_PRIZE;
 import static lotto.model.LottoPrize.THIRD_PRIZE;
 
-import java.util.Arrays;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -36,16 +34,8 @@ public class LottoPrizeCalculator {
                 .sum();
     }
 
-    public Map<String, Long> getWinningStatistics() {
-        Map<LottoPrize, Long> lottoWinningStatus = groupByLottoPrize();
-
-        return Arrays.stream(LottoPrize.values())
-                .filter(lottoPrize -> lottoPrize != LottoPrize.NO_PRIZE)
-                .collect(Collectors.toMap(LottoPrize::getDescription,
-                        count -> lottoWinningStatus.getOrDefault(count, ZERO),
-                        (lottoPrize1, lottoPrize2) -> lottoPrize1,
-                        LinkedHashMap::new
-                ));
+    public Map<LottoPrize, Long> getWinningStatistics() {
+        return groupByLottoPrize();
     }
 
     private Map<LottoPrize, Long> groupByLottoPrize() {

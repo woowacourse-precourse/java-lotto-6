@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.ErrorMessage.*;
+import static lotto.message.ErrorMessage.*;
 
 public class Validator {
 

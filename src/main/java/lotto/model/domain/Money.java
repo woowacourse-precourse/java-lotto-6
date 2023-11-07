@@ -4,6 +4,7 @@ import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
 
 public class Money {
+
     private int money;
 
     public Money(int money) {

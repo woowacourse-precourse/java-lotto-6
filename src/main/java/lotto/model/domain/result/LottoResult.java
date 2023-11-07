@@ -9,8 +9,8 @@ public enum LottoResult {
     FIFTH(3, 5_000),
     LOSE(0, 0);
 
-    private final int prize;
     private final int collectCount;
+    private final int prize;
 
     LottoResult(int collectCount, int prize) {
         this.collectCount = collectCount;

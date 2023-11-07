@@ -19,9 +19,7 @@
 2. Lotto
 
 - numbers: 당첨 로또 번호 저장
-- luckyNumbers: 당첨 로또 번호 저장
-- lottoWinners: 등수별 총 당첨자 수 저장
-- revenuePercentage: 수익률 저장
+
 - validate()
   - 각 경우에 따라 데이터 유효성 검사 수행 및 예외처리
   - "[ERROR]"로 시작하는 예외 문구 출력
@@ -33,9 +31,11 @@
   - isDifferentLottoNumber()
     - [ ] 로또 번호가 중복되지 않는 숫자인지 확인
 
-3. BonusLotto
+3. LuckeyLotto
 
-- luckyNumbers: 보너스 당첨 로또 번호 저장
+- luckyBonusNumbers: 보너스 당첨 로또 번호 저장
+- luckyNumbers: 당첨 로또 번호(보너스 로또 번호 포함) 저장
+
 - validate()
   - [ ] 보너스 로또 번호가 숫자 타입인지 확인
   - [ ] 보너스 로또 번호 중복여부 판단

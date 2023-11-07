@@ -1,6 +1,5 @@
-package lotto;
+package lotto.ui;
 
-import lotto.ui.InputValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;

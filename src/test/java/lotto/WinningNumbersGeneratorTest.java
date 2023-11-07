@@ -21,10 +21,9 @@ class WinningNumbersGeneratorTest {
 
         //when
         String[] winningNumbersInput = {"1", "2", "3", "4", "5"};
-        winningNumbersGenerator.setWinningNumberInput(winningNumbersInput);
 
         //then
-        assertThatThrownBy(winningNumbersGenerator::validateEachWinningNumberInput)
+        assertThatThrownBy(() -> winningNumbersGenerator.validateEachWinningNumberInput(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_SIX_NUMBER.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -38,10 +37,9 @@ class WinningNumbersGeneratorTest {
 
         //when
         String[] winningNumbersInput = {"1", "2", "3", "4", "5", "6", "7"};
-        winningNumbersGenerator.setWinningNumberInput(winningNumbersInput);
 
         //then
-        assertThatThrownBy(winningNumbersGenerator::validateEachWinningNumberInput)
+        assertThatThrownBy(() -> winningNumbersGenerator.validateEachWinningNumberInput(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_SIX_NUMBER.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -55,10 +53,9 @@ class WinningNumbersGeneratorTest {
 
         //when
         String[] winningNumbersInput = {"1", "2", "3", "4", "5", "5"};
-        winningNumbersGenerator.setWinningNumberInput(winningNumbersInput);
 
         //then
-        assertThatThrownBy(winningNumbersGenerator::validateEachWinningNumberInput)
+        assertThatThrownBy(() -> winningNumbersGenerator.validateEachWinningNumberInput(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.DUPLICATED_NUMBER.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -72,10 +69,9 @@ class WinningNumbersGeneratorTest {
 
         //when
         String[] winningNumbersInput = {"1", "2", "3", "4", "5", "46"};
-        winningNumbersGenerator.setWinningNumberInput(winningNumbersInput);
 
         //then
-        assertThatThrownBy(winningNumbersGenerator::validateDividedInput)
+        assertThatThrownBy(() -> winningNumbersGenerator.validateDividedInput(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.RANGE.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -89,10 +85,9 @@ class WinningNumbersGeneratorTest {
 
         //when
         String[] winningNumbersInput = {"0", "1", "2", "3", "4", "5"};
-        winningNumbersGenerator.setWinningNumberInput(winningNumbersInput);
 
         //then
-        assertThatThrownBy(winningNumbersGenerator::validateDividedInput)
+        assertThatThrownBy(() -> winningNumbersGenerator.validateDividedInput(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.RANGE.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);

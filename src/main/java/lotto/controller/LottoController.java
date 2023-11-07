@@ -32,10 +32,6 @@ public class LottoController {
     }
 
     private void beforeStart() {
-        beforeStartRecursive();
-    }
-
-    private void beforeStartRecursive() {
         try {
             outputView.getInputAmount();
             int purchaseAmount = inputProcessor.getUserInputPurchaseAmount();
@@ -43,7 +39,7 @@ public class LottoController {
             lottoService.buyLottoAll(user);
             printBuyLotto();
         } catch (IllegalArgumentException e) {
-            beforeStartRecursive();
+            beforeStart();
         }
     }
 

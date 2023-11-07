@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.Lotto;
 import lotto.domain.*;
+import lotto.view.SystemOutput;
 import main.java.lotto.domain.WinningLottos;
 import lotto.view.SystemInput;
 
@@ -30,10 +31,13 @@ public class LottoController {
     public void start() {
         String purchaseAmount = SystemInput.readMoney();
         int money = Integer.parseInt(purchaseAmount);
+        SystemOutput.printPurchaseAmount(money);
+
         int gameAmount = money / 1000;
         LottoGenerator lottoGenerator = new LottoGenerator();
         List<Lotto> winlottos = lottoGenerator.lottoGenerateWinningLotto(gameAmount);
         WinningLottos winningLottos = new WinningLottos(winlottos);
+        SystemOutput.printWiningLotto(winningLottos);
 
         String userPickLotto = SystemInput.readPickLotto();
         List<Integer> userPickNumber = new ArrayList<>();

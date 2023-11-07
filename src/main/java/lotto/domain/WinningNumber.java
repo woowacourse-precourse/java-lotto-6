@@ -28,7 +28,7 @@ public class WinningNumber {
         }
     }
 
-    private void validateWinningLength(List<Integer> winningNumbersnumbers) {
+    private void validateWinningLength(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_LENGTH.getMessage());
         }

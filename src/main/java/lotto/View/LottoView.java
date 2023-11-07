@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class LottoView {
     private int price;
     private List<Integer> winningNumber = new ArrayList<>();
-
+    private int bonus;
     public void printInputPrice() {
         System.out.println("구입 금액을 입력해 주세요.");
     }
@@ -39,8 +39,17 @@ public class LottoView {
         ).collect(Collectors.toList());
     }
 
-    public List<Integer> getWinningNumber(){
+    public List<Integer> getWinningNumber() {
         return winningNumber;
+    }
+
+    public void printBonusNum(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        bonus = Integer.parseInt(Console.readLine());
+    }
+
+    public int getBonus(){
+        return bonus;
     }
 
     public void enter() {

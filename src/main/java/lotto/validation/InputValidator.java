@@ -2,6 +2,13 @@ package lotto.validation;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.InputFormatException;
+import lotto.exception.InvalidPurchaseAmountException;
+import lotto.exception.LottoNumberRangeException;
+import lotto.exception.NotIntegerException;
+import lotto.exception.PurchaseAmountRangeException;
+import lotto.exception.WinningNumberDuplicationException;
+import lotto.exception.WinningNumberSizeException;
 
 public class InputValidator {
     public static void validatePurchaseAmount(String input) {
@@ -32,46 +39,46 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new NotIntegerException();
         }
     }
 
     private static void validateLottoNumberRange(int number) {
         if(number < 1 || number > 45) {
-            throw new IllegalArgumentException();
+            throw new LottoNumberRangeException();
         }
     }
 
     private static void validateAmountLimit(int purchaseAmount) {
         if (purchaseAmount > 100000) {
-            throw new IllegalArgumentException();
+            throw new PurchaseAmountRangeException();
         }
 
         if (purchaseAmount < 1000) {
-            throw new IllegalArgumentException();
+            throw new PurchaseAmountRangeException();
         }
     }
 
     private static void validateDividedBy1000(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new InvalidPurchaseAmountException();
         }
     }
 
     private static void validateCommaFormat(String input) {
         if(input.contains(",,") || input.startsWith(",") || input.endsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new InputFormatException();
         }
     }
 
     private static void validateWinningNumbersSize(List<Integer> winningNumbers) {
         if(winningNumbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new WinningNumberSizeException();
         }
     }
     private static void validateDuplicateNumber(List<Integer> numbers) {
         if(numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException();
+            throw new WinningNumberDuplicationException();
         }
     }
 }

@@ -58,6 +58,14 @@
 ---
 `LottoCountException` : 로또 번호 갯수가 6개가 아닌 경우 발생하는 예외
 `LottoDuplicationException` : 로또 번호가 중복되는 경우 발생하는 예외
+`InputFormatException` : 입력 형식이 올바르지 않은 경우 발생하는 예외
+`InvalidPurchaseAmountException` : 구입 금액이 1000원 단위가 아닌 경우 발생하는 예외
+`LottoNumberRangeException` : 로또 번호가 1~45 사이가 아닌 경우 발생하는 예외
+`NotIntegerException` : 숫자가 아닌 경우 발생하는 예외
+`PurchaseAnountRangeException` : 구입 금액이 1000원 미만 또는 100,000원 초과인 경우 발생하는 예외
+`WinningNumberDuplicationException` : 당첨 번호가 중복되는 경우 발생하는 예외
+`WinningNumberSizeException` : 당첨 번호가 6개가 아닌 경우 발생하는 예외
+
 
 
 ## ✅ 테스트

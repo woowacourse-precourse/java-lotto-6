@@ -22,11 +22,13 @@ public class Lotto {
     }
 
     private static void validateNumbers(List<Integer> numbers) {
-        numbers = numbers.stream()
-                .filter(number -> number >= 1 && number <= 45)
-                .toList();
+        for (Integer number: numbers) {
+            validateRange(number);
+        }
+    }
 
-        if (numbers.size() != 6) {
+    private static void validateRange(int number) {
+        if (number < 1 || number > 45) {
             throw new IllegalArgumentException();
         }
     }

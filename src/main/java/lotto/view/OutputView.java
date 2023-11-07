@@ -42,7 +42,7 @@ public class OutputView {
 
     private void printPrizeMessage(){
         System.out.println(PRIZE_STATS_MESSAGE.getMessage());
-        System.out.println(DASH.getValue().repeat(NumberConstant.DASH_COUNT));
+        System.out.println(DASH.getValue().repeat(NumberConstant.DASH_COUNT.getValue()));
     }
 
     private void printFifthPlaceResult(int count){

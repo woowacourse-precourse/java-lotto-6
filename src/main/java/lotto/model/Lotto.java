@@ -21,7 +21,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != NumberConstant.LOTTO_RANGE) {
+        if (numbers.size() != NumberConstant.LOTTO_RANGE.getValue()) {
             throw new IllegalArgumentException();
         }
     }
@@ -35,7 +35,7 @@ public class Lotto {
 
     private void validNumberRange(List<Integer> numbers){
         for (int number : numbers){
-            if (number < NumberConstant.MIN_NUMBER || number > NumberConstant.MAX_NUMBER){
+            if (number < NumberConstant.MIN_NUMBER.getValue() || number > NumberConstant.MAX_NUMBER.getValue()){
                 throw new IllegalArgumentException();
             }
         }

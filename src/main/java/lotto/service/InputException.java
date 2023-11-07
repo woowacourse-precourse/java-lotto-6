@@ -46,13 +46,13 @@ public class InputException {
     }
 
     private static void validMoneyPositive(int money){
-        if (money <= NumberConstant.DEFAULT_VALUE){
+        if (money <= NumberConstant.DEFAULT_VALUE.getValue()){
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.POSITIVE_EXCEPTION.getMessage());
         }
     }
 
     private static void validMoneyDivide(int money){
-        if (money % NumberConstant.LOTTO_PRICE != NumberConstant.DEFAULT_VALUE){
+        if (money % NumberConstant.LOTTO_PRICE.getValue() != NumberConstant.DEFAULT_VALUE.getValue()){
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.DIVIDE_EXCEPTION.getMessage());
         }
     }
@@ -82,14 +82,14 @@ public class InputException {
     }
 
     private static void validLottoLength(List<Integer> numbers){
-        if (numbers.size() != NumberConstant.LOTTO_RANGE){
+        if (numbers.size() != NumberConstant.LOTTO_RANGE.getValue()){
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_LENGTH_EXCEPTION.getMessage());
         }
     }
 
     private static void validLottoNumberRange(List<Integer> numbers){
         for (int number : numbers){
-            if (number < NumberConstant.MIN_NUMBER || number > NumberConstant.MAX_NUMBER){
+            if (number < NumberConstant.MIN_NUMBER.getValue() || number > NumberConstant.MAX_NUMBER.getValue()){
                 throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_RANGE_EXCEPTION.getMessage());
             }
         }
@@ -111,7 +111,7 @@ public class InputException {
     }
 
     private static void validBonusRange(int number){
-        if (number < NumberConstant.MIN_NUMBER || number > NumberConstant.MAX_NUMBER){
+        if (number < NumberConstant.MIN_NUMBER.getValue() || number > NumberConstant.MAX_NUMBER.getValue()){
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_RANGE_EXCEPTION);
         }
     }

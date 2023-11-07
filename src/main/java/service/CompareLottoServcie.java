@@ -39,7 +39,7 @@ public class CompareLottoServcie {
         if (countEqual < FIFTH_EQUAL_NUMBER.get() - 1) {
             return rankCalculator(countEqual);
         }
-        return rankCalculator(countEqual) + 1;
+        return rankCalculator(countEqual) - 1;
     }
 
     private static int noHaveBonusNumberRank(int countEqual) {

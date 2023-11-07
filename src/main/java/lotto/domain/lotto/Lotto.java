@@ -1,11 +1,10 @@
 package lotto.domain.lotto;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
-    private static final int LOTTO_LENGTH = 6;
+    public static final int LOTTO_LENGTH = 6;
     private static final String LOTTO_LENGTH_ERROR_MESSAGE = "로또 번호는 6개여야 합니다.";
     private static final String LOTTO_DUPLICATE_ERROR_MESSAGE = "로또 번호는 중복되지 않는 숫자여야 합니다.";
     private final List<Number> numbers;

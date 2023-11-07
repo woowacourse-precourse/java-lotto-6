@@ -40,7 +40,7 @@ public class LottoViewTest {
         int pay = 1000;
 
         //when
-        double value = Calculator.calculateRateOfReturn(map, pay);
+        double value = Calculator.calculateRateOfReturn(map);
         String string = lottoView.printRate(value);
 
         //then

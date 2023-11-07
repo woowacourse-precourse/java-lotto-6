@@ -20,13 +20,12 @@ public class CalculatorTest {
         //given
         Map<Rank, Integer> map = new HashMap<>();
         map.put(givenRank, 1);
-        int pay = 1000;
 
         //when
-        double value = Calculator.calculateRateOfReturn(map, pay);
+        double value = Calculator.calculateRateOfReturn(map);
 
         //then
-        assertThat(value).isEqualTo(givenRank.reward * 100 / pay);
+        assertThat(value).isEqualTo(givenRank.reward * 100 / 1000);
     }
 
     @Test
@@ -35,13 +34,12 @@ public class CalculatorTest {
         Map<Rank, Integer> map = new HashMap<>();
         map.put(Rank.FIFTH, 2);
         map.put(Rank.SECOND, 1);
-        int pay = 3000;
 
         //when
-        double value = Calculator.calculateRateOfReturn(map, pay);
+        double value = Calculator.calculateRateOfReturn(map);
 
         //then
         long sum = (Rank.FIFTH.reward * 2) + (Rank.SECOND.reward);
-        assertThat(value).isEqualTo((double) sum * 100 / pay);
+        assertThat(value).isEqualTo((double) sum * 100 / 3000);
     }
 }

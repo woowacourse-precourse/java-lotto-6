@@ -32,12 +32,13 @@ public class LottoView {
                 .forEach(System.out::println);
     }
 
-    public void printResult(Map<Rank, Integer> checkResult, double rateOfReturn) {
-        printLottoResult(checkResult);
+    public void printResult(Map<Rank, Integer> allResult, double rateOfReturn) {
+        printLottoResult(allResult);
         System.out.println(printRate(rateOfReturn));
     }
 
     private void printLottoResult(Map<Rank, Integer> checkResult) {
+        checkResult.remove(Rank.FAIL);
         checkResult.forEach((rank, integer) -> {
             if (rank.equals(Rank.SECOND)) {
                 String format = String.format(SECOND_UNIQUE.template, rank.matchedCount, rank.reward, integer);

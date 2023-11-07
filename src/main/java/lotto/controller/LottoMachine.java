@@ -22,7 +22,7 @@ public class LottoMachine {
     public void run() {
         LottoBuyer buyer = buyLotto();
         Map<Rank, Integer> result = matchLotto(buyer);
-        calculateReward(buyer, result);
+        calculateReward(result);
     }
 
     private LottoBuyer buyLotto() {
@@ -41,10 +41,8 @@ public class LottoMachine {
         return buyer.checkAllLotto(target, bonus);
     }
 
-    private void calculateReward(LottoBuyer buyer, Map<Rank, Integer> result) {
-        int payment = buyer.payment();
-        double rateOfReturn = Calculator.calculateRateOfReturn(result, payment);
-
+    private void calculateReward(Map<Rank, Integer> result) {
+        double rateOfReturn = Calculator.calculateRateOfReturn(result);
         lottoView.printResult(result, rateOfReturn);
     }
 }

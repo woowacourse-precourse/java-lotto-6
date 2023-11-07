@@ -31,7 +31,7 @@ public class LottoBuyerTest {
     }
 
     @Test
-    @DisplayName("실패는 모두 매핑되지않고, 당첨은 각 등수마다 조건이 맞으면 1개씩 매핑된다.")
+    @DisplayName("당첨은 조건에따라 1개씩 매핑된다. 조건에 맞지 않으면 모두 FAIL로 매핑된다.")
     void 로또바이어_통합_테스트() {
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 
@@ -41,6 +41,6 @@ public class LottoBuyerTest {
         assertThat(map.get(Rank.FORTH)).isEqualTo(1);
         assertThat(map.get(Rank.FIFTH)).isEqualTo(1);
 
-        assertThat(map.size()).isEqualTo(5);
+        assertThat(map.get(Rank.FAIL)).isEqualTo(3);
     }
 }

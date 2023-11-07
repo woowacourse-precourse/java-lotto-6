@@ -112,27 +112,9 @@ public class LottoBuyerUnitTest {
         Map<Rank, Integer> map = lottoBuyer1.checkAllLotto(target, bonus);
 
         //then
-        long count = map.keySet().stream()
+        Rank rank = map.keySet().stream()
                 .filter(key -> map.get(key) == 1)
-                .count();
-        assertThat(count).isEqualTo(0);
-    }
-
-    @Test
-    void 로또바이어_지불액() {
-        //given
-        Lotto lotto1 = new Lotto(List.of(1, 2, 15, 11, 7, 10));
-        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        lottoBuyer1 = new LottoBuyer(List.of(lotto1));
-        LottoBuyer lottoBuyer2 = new LottoBuyer(List.of(lotto1, lotto2, lotto3));
-
-        //when
-        int payment1 = lottoBuyer1.payment();
-        int payment2 = lottoBuyer2.payment();
-
-        //then
-        Assertions.assertThat(payment1).isEqualTo(1000);
-        Assertions.assertThat(payment2).isEqualTo(3000);
+                .findAny().get();
+        assertThat(rank).isEqualTo(Rank.FAIL);
     }
 }

@@ -14,6 +14,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
+    Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -30,11 +31,6 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-
-    //컨벤션상 위에 있어야 하지만, 윗 부분을 변경하지 않기 위해 작성하였음.
-
-    Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
     @DisplayName("로또 번호의 개수가 6개 보다 작아도 예외가 발생한다.")
     @Test
     void createLottoByUnderSize() {

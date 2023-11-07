@@ -24,7 +24,7 @@ public class DomainLogicTest {
     void 도메인로직_교차검증(){
         LottoBuyer buyer = new LottoBuyer(lottos);
         Map<Rank, Integer> result = buyer.checkAllLotto(target, bonus);
-        double rate = Calculator.calculateRateOfReturn(result, buyer.payment());
+        double rate = Calculator.calculateRateOfReturn(result);
 
         Assertions.assertThat(rate).isCloseTo(testLogic(), Offset.offset(0.000001));  // 부동 소수점
     }

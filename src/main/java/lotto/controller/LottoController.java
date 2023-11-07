@@ -15,17 +15,17 @@ public class LottoController {
     public LottoController() {
     }
 
-    public void orderLotto() {
+    public void buyLotto() {
         try {
             int purchasePrice = LottoInputView.inputPurchasePrice();
             lottoOrder = LottoOrder.orderAutoLotto(purchasePrice);
         } catch (IllegalArgumentException e) {
             LottoOutputView.printErrorMessage(e.getMessage());
-            orderLotto();
+            buyLotto();
         }
     }
 
-    public void readOrderedLottoInfo() {
+    public void readboughtLotto() {
         int lottoCount = lottoOrder.getLottoCount();
         LottoOutputView.printLottoCount(lottoCount);
 
@@ -38,7 +38,7 @@ public class LottoController {
         winningLotto = createWinningLotto(lotto);
     }
 
-    public void processWinning() {
+    public void processWinningResult() {
         List<Long> countByAllRank = lottoOrder.calculateCountByAllRank(winningLotto);
         double gainRatio = lottoOrder.calculateGainRatio(winningLotto);
         LottoOutputView.printWinningStatistics(countByAllRank, gainRatio);

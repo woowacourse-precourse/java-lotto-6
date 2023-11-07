@@ -6,6 +6,7 @@ import java.util.*;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class Game {
+
     Money money;
     List<Lotto> listLotto;
 
@@ -68,7 +69,7 @@ public class Game {
         List<Lotto> list = new ArrayList<>();
         int cntLotto = money / 1000;
 
-        for(int i = 0; i < cntLotto; i++) {
+        for (int i = 0; i < cntLotto; i++) {
             List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
             Lotto lotto = new Lotto(numbers);
             list.add(lotto);
@@ -77,7 +78,8 @@ public class Game {
     }
 
     public void run(){
-        this.money = new Money();
+        String strMoney = UserInput.inputMoney();
+        this.money = new Money(strMoney);
         this.listLotto = getListLotto(money.val);
 
         printListLotto(this.listLotto);

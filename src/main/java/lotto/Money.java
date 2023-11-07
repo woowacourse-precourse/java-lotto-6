@@ -29,11 +29,9 @@ public class Money {
         }
     }
 
-    public Money(){
-        String strMoney = UserInput.inputMoney();
-
-        vaildString(strMoney);
-        int money = strToInt(strMoney);
+    public Money(String s){
+        vaildString(s);
+        int money = strToInt(s);
         vaildMoney(money);
         this.val = money;
     }

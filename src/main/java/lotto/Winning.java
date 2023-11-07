@@ -8,6 +8,7 @@ import static lotto.UserInput.*;
 import static lotto.common.Common.strToInt;
 
 public class Winning {
+
     List<Integer> listNumber;
     List<Integer> listPrize;
     HashMap<Integer, Integer> map;
@@ -56,8 +57,7 @@ public class Winning {
 
     private void validBonus(List<Integer>listNum, int bonus){
         validNum(bonus);
-
-        if(listNum.contains(bonus)) {
+        if (listNum.contains(bonus)) {
             throw new IllegalArgumentException(
                     Constant.error + Constant.existNumber
             );
@@ -72,7 +72,7 @@ public class Winning {
     }
 
     private void validNum(int num){
-        if(num < 1 || num > 45) {
+        if (num < 1 || num > 45) {
             throw new IllegalArgumentException(
                     Constant.error + Constant.rangeOver
             );
@@ -80,7 +80,7 @@ public class Winning {
     }
 
     private void validArray(String[] array){
-        if(array.length != 6) {
+        if (array.length != 6) {
             throw new IllegalArgumentException(
                     Constant.error + Constant.lengthOver
             );

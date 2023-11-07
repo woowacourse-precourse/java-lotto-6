@@ -29,9 +29,11 @@ public class LottoController {
 
                 long money = inputView.validateCustomerMoneyInput(moneyInput);
                 customer.insertMoney(lottoStore, money);
-                break ;
+                break;
+            } catch (NumberFormatException e) {
+                outputView.numberFormatExceptionMessage(e);
             } catch (IllegalArgumentException e) {
-                outputView.errorMessage(e.getMessage());
+                outputView.illegalArgumentExceptionMessage(e);
             }
         }
     }
@@ -53,8 +55,10 @@ public class LottoController {
                 String[] winningNumber = inputView.validateWinningNumberInput(winningNumberInput);
                 winningNumbersGenerator.generateWinningNumbers(winningNumber);
                 break ;
+            } catch (NumberFormatException e) {
+                outputView.numberFormatExceptionMessage(e);
             } catch (IllegalArgumentException e) {
-                outputView.errorMessage(e.getMessage());
+                outputView.illegalArgumentExceptionMessage(e);
             }
         }
     }
@@ -67,8 +71,10 @@ public class LottoController {
                 int bonusNumber = inputView.validateBonusNumberInput(bonusNumberInput);
                 winningNumbersGenerator.generateBonusNumber(bonusNumber);
                 break ;
+            } catch (NumberFormatException e) {
+                outputView.numberFormatExceptionMessage(e);
             } catch (IllegalArgumentException e) {
-                outputView.errorMessage(e.getMessage());
+                outputView.illegalArgumentExceptionMessage(e);
             }
         }
     }

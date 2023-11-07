@@ -13,16 +13,14 @@ public class Money {
 
     private void validateNumber(String money) {
         if (!money.chars().allMatch(Character::isDigit)) {
-            System.out.println("[ERROR] 숫자를 입력해주세요.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
     }
 
     private void validateUnit(String money) {
         int number = Integer.parseInt(money);
         if (number % LOTTO_PRICE != 0 || number < LOTTO_PRICE) {
-            System.out.println("[ERROR] 구매금액은 1000원 단위입니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구매금액은 1000원 단위입니다.");
         }
     }
 

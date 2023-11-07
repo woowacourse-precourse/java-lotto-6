@@ -16,16 +16,14 @@ public class Lotto {
     private void validateInRange(List<Integer> numbers) {
         for (int num : numbers) {
             if (num > MAX_LOTTO_NUMBER || num < MIN_LOTTO_NUMBER) {
-                System.out.println("[ERROR] 로또 번호의 범위는 1 ~ 45 입니다.");
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1 ~ 45 입니다.");
             }
         }
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            System.out.println("[ERROR] 로또 번호는 총 6자리 입니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 총 6자리 입니다.");
         }
     }
 

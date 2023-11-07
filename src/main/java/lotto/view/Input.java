@@ -7,4 +7,15 @@ public class Input {
         return Console.readLine();
     }
 
+    public static String getWinningNumber() {
+        String winningNumber = Console.readLine();
+        checkIsNumber(winningNumber);
+        return winningNumber;
+    }
+
+    private static void checkIsNumber(String winningNumber) {
+        if (winningNumber.matches(".*[ㄱ-ㅎㅏ-ㅣ가-힣]+.*") || winningNumber.matches("^[a-zA-Z]*$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+        }
+    }
 }

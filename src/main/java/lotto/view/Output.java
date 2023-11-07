@@ -20,4 +20,12 @@ public class Output {
     public static void printLottoList(Lotto lotto) {
         System.out.println(lotto.getNumbers());
     }
+
+    public static void getErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
+
+    public static void getMessageOfInputWinningNumber() {
+        System.out.println(MESSAGE_WINNING_NUMBER);
+    }
 }

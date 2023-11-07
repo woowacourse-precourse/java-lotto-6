@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoBuilder;
-import lotto.domain.Money;
-import lotto.domain.LottoTicket;
+import lotto.domain.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -13,6 +10,19 @@ public class LottoController {
         Money money = purchaseLotto();
         LottoTicket lottoTicket = createLottoTicket(money);
         printLottoList(lottoTicket);
+        WinningLotto winningLotto = createWinningLottoTicket();
+    }
+
+    private WinningLotto createWinningLottoTicket() {
+        while (true) {
+            try {
+                LottoBuilder lottoBuilder = new LottoBuilder();
+                Output.getMessageOfInputWinningNumber();
+                return new WinningLotto(lottoBuilder.createWinningLotto(Input.getWinningNumber()));
+            } catch (IllegalArgumentException e) {
+                Output.getErrorMessage(e);
+            }
+        }
     }
 
     private void printLottoList(LottoTicket lottoTicket) {
@@ -27,9 +37,16 @@ public class LottoController {
     }
 
     private Money purchaseLotto() {
-        Output.getMessageOfPurchaseLotto();
-        Money money = new Money(Input.getPurchaseMoney());
-        Output.getFormatOfPurchaseMessage(money.getLottoCount());
-        return money;
+        while (true) {
+            try {
+                Output.getMessageOfPurchaseLotto();
+                Money money = new Money(Input.getPurchaseMoney());
+                Output.getFormatOfPurchaseMessage(money.getLottoCount());
+
+                return money;
+            } catch (IllegalArgumentException e) {
+                Output.getErrorMessage(e);
+            }
+        }
     }
 }

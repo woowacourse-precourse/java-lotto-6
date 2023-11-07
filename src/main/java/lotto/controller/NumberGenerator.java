@@ -38,7 +38,8 @@ public class NumberGenerator {
 
     public List<Integer> createRandomNumber(){
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return sortAscendingNumbers(lotto);
+        ArrayList<Integer> lottonumber = new ArrayList<>(lotto);
+        return sortAscendingNumbers(lottonumber);
     }
 
     public String[] InputCorrectLotto(){
@@ -66,7 +67,7 @@ public class NumberGenerator {
         return correctNumbers;
     }
 
-    public List<Integer> sortAscendingNumbers(List<Integer> sortLottoNumbers){
+    public ArrayList<Integer> sortAscendingNumbers(ArrayList<Integer> sortLottoNumbers){
         Collections.sort(sortLottoNumbers);
         return sortLottoNumbers;
     }

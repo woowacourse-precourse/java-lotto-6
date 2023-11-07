@@ -23,12 +23,11 @@ public class LottoStart {
         int bonusNumber = numbergenerator.InputBonusNumber(lotto.getLotto());
         
         for(List<Integer> i : num2){
-            System.out.println(i + "" +System.identityHashCode(i));
             int correctCount = judgment.correctCount(i , lotto.getLotto());
             setWinningInfo(i, correctCount, bonusNumber);
         }
 
-        outputview.getEndLotto(winninginfo);
+        outputview.getEndLotto(winninginfo, num);
     }
 
     public void lottonumbers(List<List<Integer>> numbers){

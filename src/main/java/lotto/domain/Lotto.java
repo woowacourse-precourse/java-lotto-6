@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.exception.DuplicatedNumberException;
 import lotto.exception.InvalidNumbersLengthException;
 import lotto.message.ExceptionMessage;
+import lotto.message.NumberUsedLotto;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,7 +30,7 @@ public class Lotto {
     }
 
     private static void validateNumbersLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NumberUsedLotto.NUMBERS_SIZE.getNumber()) {
             String message = ExceptionMessage.IS_NOT_6_LENGTH_OF_LOTTO.toString();
             throw new InvalidNumbersLengthException(message);
         }

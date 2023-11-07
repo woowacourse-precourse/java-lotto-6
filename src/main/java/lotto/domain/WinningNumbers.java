@@ -5,6 +5,7 @@ import lotto.exception.DuplicatedNumberException;
 import lotto.exception.InvalidNumbersLengthException;
 import lotto.exception.OverRangeWinningNumbersException;
 import lotto.message.ExceptionMessage;
+import lotto.message.NumberUsedLotto;
 
 import java.util.List;
 
@@ -24,7 +25,9 @@ public class WinningNumbers {
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number > 45 || number < 0)) {
+        if (numbers.stream()
+                .anyMatch(number -> number > NumberUsedLotto.MAX_LANGE.getNumber()
+                        || number < NumberUsedLotto.MIN_RANGE.getNumber())) {
             String message = ExceptionMessage.IS_OVER_RANGE_WINNING.toString();
             throw new OverRangeWinningNumbersException(message);
         }
@@ -38,7 +41,7 @@ public class WinningNumbers {
     }
 
     private void validateLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NumberUsedLotto.NUMBERS_SIZE.getNumber()) {
             String message = ExceptionMessage.IS_NOT_6_LENGTH_OF_WINNING.toString();
             throw new InvalidNumbersLengthException(message);
         }

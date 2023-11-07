@@ -9,6 +9,7 @@ import lotto.validator.InputValidator;
 import java.util.Arrays;
 
 public class InputView {
+    private static final String SPLIT_REGEX = ",";
     private final InputValidator validator = new InputValidator();
 
     public Money inputMoneyToBuyLotto() {
@@ -21,7 +22,7 @@ public class InputView {
         String input = Console.readLine();
         validator.validateIsSplitByCommaAndDigit(input);
         return new WinningNumbers(
-                Arrays.stream(input.split(","))
+                Arrays.stream(input.split(SPLIT_REGEX))
                         .map(Integer::parseInt).toList()
         );
     }

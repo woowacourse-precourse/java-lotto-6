@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoCompare {
+    private static final int ONE_COUNT = 1;
+    private static final int DEFAULT_COUNT = 0;
     private final Map<WinningGrade, Integer> winningMap = new EnumMap<>(WinningGrade.class);
 
     public LottoCompare() {
@@ -14,7 +16,7 @@ public class LottoCompare {
 
     private void init() {
         Arrays.stream(WinningGrade.values())
-                .forEach(value -> winningMap.put(value, 0));
+                .forEach(value -> winningMap.put(value, DEFAULT_COUNT));
     }
 
     public void compareAllLottoToWinning(List<List<Integer>> lottos, WinningNumbers winningNumbers) {
@@ -37,8 +39,8 @@ public class LottoCompare {
     }
 
     private void addWinningGradeResult(WinningGrade grade) {
-        int plusCount = winningMap.get(grade) + 1;
-        winningMap.put(grade, plusCount);
+        int onePlusCount = winningMap.get(grade) + ONE_COUNT;
+        winningMap.put(grade, onePlusCount);
     }
 
     private boolean hasBonusNumber(List<Integer> lotto, WinningNumbers winningNumbers) {

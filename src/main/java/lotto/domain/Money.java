@@ -5,6 +5,7 @@ import lotto.message.ExceptionMessage;
 
 public class Money {
     private static final int LOTTO_PRICE = 1000;
+    private static final int THOUSAND_WON_UNIT = 0;
     private final int value;
 
     public Money(int value) {
@@ -13,10 +14,14 @@ public class Money {
     }
 
     private void validateIsDivisibleBy1000(int value) {
-        if (value % 1000 != 0) {
+        if (is1000WonUnit(value)) {
             String message = ExceptionMessage.IS_NOT_DIVISIBLE_BY_1000.toString();
             throw new Non1000WonUnitException(message);
         }
+    }
+
+    private boolean is1000WonUnit(int value) {
+        return value % LOTTO_PRICE != THOUSAND_WON_UNIT;
     }
 
     public int convertMoneyToCount() {

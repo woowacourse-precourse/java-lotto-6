@@ -1,6 +1,6 @@
 ## 🚀 기능 요구 사항
 
-- [ ] 로또 게임 기능을 시작한다
+- [x] 로또 게임 기능을 시작한다.
     - LottoGame.start()
     - LottoGame.isGaming : 게임 중임을 나타내는 boolean 변수
 - [x] 로또 구입 금액을 입력한다. 잘못 입력할시 다시 입력하도록 한다.
@@ -8,22 +8,20 @@
     - LottoGame.inputMoney() : 로또를 위해 돈 넣기
 - [x] 로또 구입 금액을 입력 받는다. 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리한다.
     - LottoGame.validateThousandWonUnits() : 입력값이 천원 단위인지 검증
-- [ ] 로또 번호와 보너스 번호를 입력받는다. 입력된 문자를 쉼표(,)로 나누어 리스트로 만든다.
-    - Lotto() : 생성자에 숫자를 입력 받도록 하여 티켓 발행시 무조건 번호를 입력 받도록 한다
-    - LottoGame.inputNumbers() : 사용자에게 숫자 6개를 입력 받는다
-    - LottoGame.splitByComma() : 입력 받은 숫자들을 쉼표로 구분
+- [x] 사용자에게서 로또 번호를 입력받는다. 입력된 문자를 쉼표(,)로 나누어 리스트로 만든다.
+    - LottoGame.inputNumbers() : 사용자에게 숫자 6개를 입력받는다.
+    - LottoGame.inputBonusNumber() : 사용자에게 보너스 번호를 입력받는다.
+    - LottoGame.splitByComma() : 입력 받은 숫자들을 쉼표로 구현
 - [ ] 입력된 번호들의 숫자가 6개를 넘어선 안된다. 잘못 입력될시 다시 입력한다.
     - Lotto.validate() : 기존에 구현된 메소드 사용하기
-    - Lotto.inputNumbers() : 다시 입력 받도록 구현
-        - Lotto 내에서 생성자에 재입력을 구현하는 것보다 LottoGame.generateLottoTickets()에 구현하는게 낫다고 판단.
+    - 다시 입력은 LottoGame.generateLottoTickets()에서 구현하기
 - [ ] 금액만큼 로또 티켓을 발행한다. 로또 1장의 가격은 1,000원이다.
     - LottoGame.lottoTickets<Lotto> : 구입된 로또 티켓 리스트(로또 객체)
     - LottoGame.generateLottoTickets() : 입력된 금액에 따라 로또 티켓 발행하기
 - [ ] 로또 번호의 숫자 범위는 1~45까지이다, 중복되지 않는 7개의 숫자(보너스 번호 포함)를 뽑는다.
-    - LottoGame.winningNumbers : 당첨 번호
-    - LottoGame.pickWinningNumbers() : 당첨 번호 뽑기
+    - LottoGame.winningNumbers : 당첨 번호 속성
+    - LottoGame.pickWinningNumbers() :  당첨번호 + 보너스 번호까지 뽑기
         - pickUniqueNumbersInRange(1, 45, 7)
-    - 1개의 로또 티켓을 발행 > Lotto 객체 구성필요
 - [ ] 당첨은 1등부터 5등까지 있다. 당첨 기준과 금액은 아래와 같다.
     ```
     1등: 6개 번호 일치 / 2,000,000,000원
@@ -32,7 +30,7 @@
     4등: 4개 번호 일치 / 50,000원
     5등: 3개 번호 일치 / 5,000원
     ```
-    - LottoGame.getLottoRank() : 숫자를 입력받아 등수를 판별
+    - LottoGame.getLottoRank() :  받아 등수를 판별
     - LottoGame.getMoneyForRank() : 등수를 입력받아 당첨금액을 반환
 - [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교하여 당첨 내역 및 수익률을 출력하고 로또 게임을 종료한다.
     - LottoGame.printResult()
@@ -49,10 +47,8 @@
 
 ---
 
-## ✏️ 과제 진행 요구 사항
+## 📝 과제 진행중 개인 기록
 
-- [x] 미션은 [java-lotto-6](https://github.com/woowacourse-precourse/java-lotto-6) 저장소를 Fork & Clone해 시작한다.
-- [x] **기능을 구현하기 전 `docs/README.md`에 구현할 기능 목록을 정리**해 추가한다.
-- [x] **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
-    - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
-- [x] 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+- 코드말고 기능 요구사항과 클래스, 메소드 정리 하는데 최대한 시간 많이 쓰기
+- 보너스 번호가 사용자가 정하는것이 아닌 게임에서 만드는 것으로 착각했음. 중간에 수정
+- 커밋 메시지는 줄바꿈까지 해서 구체적인 내용을 전부 써야 하는건가? 

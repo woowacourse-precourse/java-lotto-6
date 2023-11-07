@@ -66,4 +66,39 @@ public class WinNumberValidate {
         }
     }
 
+    public static int validateBonusNumber(String bonusNumber) {
+        validateBonusNumberIsEmpty(bonusNumber);
+        int bonusIntNumber = validateBonusNumberIsNumber(bonusNumber);
+        validateBonusNumberIsRange(bonusIntNumber);
+        return bonusIntNumber;
+    }
+
+    public static void validateBonusNumberIsEmpty(String bonusNumber) {
+        if (bonusNumber.isEmpty()) {
+            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_EMPTY_ERROR.getMessage());
+        }
+    }
+
+    public static int validateBonusNumberIsNumber(String bonusNumber) {
+        try {
+            return Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_CHAR_ERROR.getMessage());
+        }
+    }
+
+    public static void validateBonusNumberIsRange(int bonusIntNumber) {
+        if (bonusIntNumber < START_LOTTO_NUMBER.getValue() || bonusIntNumber > END_LOTTO_NUMBER.getValue()) {
+            throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_RANGE_ERROR.getMessage());
+        }
+    }
+
+    public static void validateBonusNumberIsNotDuplicate(int[] winIntNumbers, int bonusIntNumber) {
+        for (int winIntNumber : winIntNumbers) {
+            if (winIntNumber == bonusIntNumber) {
+                throw new IllegalArgumentException(ERROR_HEADER.getMessage() + LOTTO_DUPLICATE_ERROR.getMessage());
+            }
+        }
+    }
+
 }

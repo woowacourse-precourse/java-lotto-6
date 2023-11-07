@@ -13,4 +13,9 @@ public class ConsolePrint {
         System.out.println(Magic.INPUT_NUM);
         return Console.readLine();
     }
+
+    public static String readBonusNum() {
+        System.out.println(Magic.INPUT_BONUS_NUM);
+        return Console.readLine();
+    }
 }

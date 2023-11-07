@@ -7,8 +7,12 @@ import java.util.List;
 
 public class LottoGame {
 
+  final static int MIN = 1;
+  final static int MAX = 45;
+  final static int SIZE = 6;
+
   public List<Integer> createRandomLottoNumber() {
-    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, SIZE);
     return sortLottoNumbers(new ArrayList<>(numbers));
   }
 

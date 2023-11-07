@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -9,12 +10,18 @@ import java.util.List;
 public class LottoNumberGenerator {
 
     public static List<Integer> run() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        while (validateDuplicate(numbers)) {
-            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        while (validateDuplicate(randomNumbers)) {
+            randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         }
-        Collections.sort(numbers);
-        return numbers;
+        randomNumbers = sortRandomNumber(randomNumbers);
+        return randomNumbers;
+    }
+
+    private static List<Integer> sortRandomNumber(List<Integer> number) {
+        List<Integer> sortedNumbers = new ArrayList<>(number);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     private static Boolean validateDuplicate(List<Integer> numbers) {

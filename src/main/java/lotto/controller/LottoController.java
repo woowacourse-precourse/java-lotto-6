@@ -1,28 +1,24 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoController {
 
-    private static final int LOTTO_PRICE = 1000;
-
     private final Output output = new Output();
     private final Input input = new Input();
+    private final LottoMachine lottoMachine = new LottoMachine();
 
     public void run() {
         output.showMoneyInputMessage();
         Money money = repeatMakeMoney();
 
-        LottoTickets lottoTickets = makeLottoTickets(money.getAmount());
+        LottoTickets lottoTickets = lottoMachine.buy(money);
         output.showLottoTickets(lottoTickets);
 
         WinningCondition winningCondition = makeWinningCondition();
@@ -64,7 +60,7 @@ public class LottoController {
 
     private Lotto repeatMakeWinningLotto() {
         try {
-            return Lotto.makeWinningLotto(input.readWinningNumbers());
+            return lottoMachine.makeWinningLotto(input.readWinningNumbers());
         } catch (IllegalArgumentException e) {
             output.showError(e.getMessage());
             return repeatMakeWinningLotto();
@@ -80,26 +76,7 @@ public class LottoController {
         }
     }
 
-    private LottoTickets makeLottoTickets(int money) {
-        int count = money / LOTTO_PRICE;
-
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            lottos.add(makeLotto());
-        }
-
-        return new LottoTickets(lottos);
-    }
-
     private int toInt(String number) {
         return Integer.parseInt(number);
-    }
-
-    private Lotto makeLotto() {
-        return new Lotto(makeLottoNumbers());
-    }
-
-    private List<Integer> makeLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

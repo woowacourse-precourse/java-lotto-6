@@ -22,6 +22,10 @@ public class Money {
         return amount <= 0 || amount % UNIT != 0;
     }
 
+    public int calculateQuantity(int price) {
+        return amount / price;
+    }
+
     public int getAmount() {
         return amount;
     }

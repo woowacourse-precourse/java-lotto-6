@@ -29,5 +29,5 @@ public class PriceException {
             throw new IllegalArgumentException();
         }
     }
-    
+
 }

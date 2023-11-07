@@ -13,11 +13,10 @@ public class WinningRate {
         return price / lottoPrice;
     }
 
-    public static void calResultPlay(HashMap<Rank, Integer> result, Price price) {
-        printResultRank(result);
+    public static double calResultPlay(HashMap<Rank, Integer> result, Price price) {
         int sumPrize = calSumPrize(result);
-        double rateMean = calRate(sumPrize, price.getPrice());
-        printMean(rateMean);
+        double rate = calRate(sumPrize, price.getPrice());
+        return rate;
     }
 
     public static int calSumPrize(HashMap<Rank, Integer> result) {

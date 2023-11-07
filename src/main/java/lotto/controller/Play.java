@@ -44,15 +44,8 @@ public class Play {
     public static void winningResult() {
         messageAboutWinningStatistic();
         result = createResultRotate(lottery, winningNumbers, bonus);
-        WinningRate.calResultPlay(result, price);
+        printResultRank(result);
+        printMean(calResultPlay(result, price));
     }
-
-
-
-
-
-
-
-
 
 }

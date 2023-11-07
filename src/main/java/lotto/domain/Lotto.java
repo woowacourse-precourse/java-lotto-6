@@ -31,8 +31,8 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().filter(n -> (n >= LottoGeneratorService.MIN_LOTTO_NUMBER) &&
-                (n <= LottoGeneratorService.MAX_LOTTO_NUMBER)).count() != LottoGeneratorService.MAX_LOTTO_NUMBER_SIZE) {
+        if (numbers.stream().filter(n -> (n >= LottoGeneratorService.MIN_LOTTO_NUMBER) && (n
+                <= LottoGeneratorService.MAX_LOTTO_NUMBER)).count() != LottoGeneratorService.MAX_LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_RANGE);
         }
     }

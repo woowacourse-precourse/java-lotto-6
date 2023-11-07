@@ -1,5 +1,7 @@
 package lotto.validators;
 
+import lotto.utils.NumericUtil;
+
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -14,7 +16,7 @@ public class WinningNumbersValidator {
 
     public static void validateType(String[] inputValues) {
         for (int i = 0; i < inputValues.length; i++) {
-            if (!isNumeric(inputValues[i].charAt(0))) {
+            if (!NumericUtil.isNumeric(inputValues[i].charAt(0))) {
                 System.out.println("[ERROR] 당첨 번호는 숫자만!");
                 throw new IllegalArgumentException();
             }
@@ -36,12 +38,5 @@ public class WinningNumbersValidator {
             System.out.println("[ERROR] 당첨 번호는 중복될 수 없음!");
             throw new IllegalArgumentException();
         }
-    }
-
-    private static boolean isNumeric(char c) {
-        if (!Character.isDigit(c)) {
-            return false;
-        }
-        return true;
     }
 }

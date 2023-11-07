@@ -84,4 +84,8 @@ public class LottoController {
         long money = Utils.stringToLong(userInput);
         return Utils.rangeInputMoney(money);
     }
+
+    private List<Integer> getInputWinningNumber() {
+        String userInput = InputView.input();
+    }
 }

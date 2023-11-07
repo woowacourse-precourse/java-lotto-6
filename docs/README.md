@@ -24,11 +24,13 @@
   4. Input_Win_Lotto_List() -> 당첨 로또번호 입력 받아 List<Integer> 타입으로 리턴
   5. Input_Win_Lotto_Bonus_number() 
   6. Print_Jackpot_List() -> 당첨 내역 출력
+  7. Print_Earning_Rate() -> 수익률을 계산해서 수익률 출력.
 
 - Application.java 클래스
   1. main()
   2. Make_Buy_Lotto_List() -> 기능 2번 구현
   3. Make_Jackpot_List() -> 구매한 로또를 for문을 돌면서 로또 일치 하는 갯수를 저장하는 List를 생성해 리턴.
+  4. enum Jackpot_Money{} -> 당첨 금액 등수 별로 저장.
 
 - Lotto.java 클래스
   1. Get_numbers()

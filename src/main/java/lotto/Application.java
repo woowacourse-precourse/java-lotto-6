@@ -25,6 +25,10 @@ public class Application {
 
         //5. 당첨 내역을 출력
         Base_Func.Print_Jackpot_List(Jackpot_list);
+
+        //6. 수익률을 구하고 출력한다.
+        Base_Func.Print_Earning_Rate(Jackpot_list, purchase_num);
+
     }
 
     public static ArrayList<Lotto> Make_Buy_Lotto_List(int purchase_num) {
@@ -47,5 +51,17 @@ public class Application {
         return Jackpot_list;
     }
 
+    enum Jackpot_Money {
+        JP_3(5000), JP_4(50000), JP_5(1500000), JP_6(2000000000), JP_7(30000000);
+        private int money;
+
+        Jackpot_Money(int money) {
+            this.money = money;
+        }
+
+        public int get_money() {
+            return money/1000;
+        }
+    }
 
 }

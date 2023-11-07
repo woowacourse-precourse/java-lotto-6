@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.text.DecimalFormat;
 import java.util.*;
+import lotto.Application.Jackpot_Money;
 
 public class Base_Func {
 
@@ -73,5 +75,18 @@ public class Base_Func {
         System.out.println("5개 일치 (1,500,000원) - " + Jackpot_list[5] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + Jackpot_list[7]+"개");
         System.out.println("6개 일치 (2,000,000,000원) - " + Jackpot_list[6] + "개");
+    }
+
+    public static void Print_Earning_Rate(int[] Jackpot_list, int purchase_num) {
+        int money = 0;
+        money += Jackpot_Money.JP_3.get_money() *Jackpot_list[3];
+        money += Jackpot_Money.JP_4.get_money() *Jackpot_list[4];
+        money += Jackpot_Money.JP_5.get_money() *Jackpot_list[5];
+        money += Jackpot_Money.JP_6.get_money() *Jackpot_list[6];
+        money += Jackpot_Money.JP_7.get_money() *Jackpot_list[7];
+        double rate = (double) money /purchase_num*100;
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        System.out.println("총 수익률은 "+ df.format(rate) +"%입니다.");
     }
 }

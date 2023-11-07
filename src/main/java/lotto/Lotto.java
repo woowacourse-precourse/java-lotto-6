@@ -1,8 +1,6 @@
 package lotto;
 
-import java.awt.print.Pageable;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,6 +9,11 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 여섯자리의 수입니다.\n");
@@ -32,5 +35,8 @@ public class Lotto {
         return number > 0 && number < 46;
     }
 
-    // TODO: 추가 기능 구현
+
+    public static void checkLottoNumber(Lotto lotto, Integer bonusNumber) {
+
+    }
 }

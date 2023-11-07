@@ -19,7 +19,22 @@ public class LottoService {
     }
 
     // Utility Method
-    public static List<Integer> generateOrderedLottoNumbers() {
+    public static List<Lotto> generateLottos(final int ticketCount) {
+        List<List<Integer>> generatedLottoNumbers = generateRandomNumbers(ticketCount);
+
+        return generatedLottoNumbers
+                .stream()
+                .map(Lotto::new)
+                .toList();
+    }
+
+    private static List<List<Integer>> generateRandomNumbers(final int ticketCount) {
+        return Stream.generate(LottoService::generateOrderedLottoNumbers)
+                .limit(ticketCount)
+                .toList();
+    }
+
+    private static List<Integer> generateOrderedLottoNumbers() {
         List<Integer> randomNumbers = generateLottoNumber();
         List<Integer> copiedNumbers = new ArrayList<>(randomNumbers);
 
@@ -49,18 +64,4 @@ public class LottoService {
                         RoundingMode.HALF_UP);
     }
 
-    public static List<Lotto> generateLottos(final int ticketCount) {
-        List<List<Integer>> generatedLottoNumbers = generateRandomNumbers(ticketCount);
-
-        return generatedLottoNumbers
-                .stream()
-                .map(Lotto::new)
-                .toList();
-    }
-
-    private static List<List<Integer>> generateRandomNumbers(final int ticketCount) {
-        return Stream.generate(LottoService::generateOrderedLottoNumbers)
-                .limit(ticketCount)
-                .toList();
-    }
 }

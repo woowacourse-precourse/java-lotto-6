@@ -7,11 +7,31 @@ import java.util.List;
 import java.util.Set;
 
 public class LottoNumberGenerator {
+
+    public enum LottoConfiguration {
+        MIN(1),
+        MAX(45),
+        COUNT(6);
+
+        private final int value;
+
+        LottoConfiguration(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
+
     public List<Integer> generateLottoNumber() {
         Set<Integer> lottoNumbers = new HashSet<>();
 
-        while (lottoNumbers.size() < 6) {
-            int lottoNumber = Randoms.pickNumberInRange(1, 45);
+        while (lottoNumbers.size() < LottoConfiguration.COUNT.getValue()) {
+            int lottoNumber = Randoms.pickNumberInRange(
+                LottoConfiguration.MIN.getValue(),
+                LottoConfiguration.MAX.getValue()
+            );
             lottoNumbers.add(lottoNumber);
         }
 

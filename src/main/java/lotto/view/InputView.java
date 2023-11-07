@@ -28,6 +28,17 @@ public class InputView {
         return money;
     }
 
+    private static void validateInputZero(String input) {
+        if (input == "0") {
+            throw new IllegalArgumentException();
+        }
+    }
+    private static void validateInputBlank(String input) {
+        if (input.replaceAll(" ", "") == "") {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static List inputWinnerNumbers() {
         String input = "";
         try {

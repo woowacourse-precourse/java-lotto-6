@@ -41,11 +41,11 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
-    public int countCommonElements(Lotto otherLotto) {
+    public int matchingNumbersCount(Lotto otherLotto) {
         Set<Integer> copy = new HashSet<>(this.numbers);
 
         copy.retainAll(new HashSet<>(otherLotto.getNumbers()));
-        
+
         return copy.size();
     }
 

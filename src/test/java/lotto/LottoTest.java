@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.List;
@@ -38,7 +37,7 @@ class LottoTest {
         // given
 
         // when
-        int result = lotto1.countCommonElements(lotto2);
+        int result = lotto1.matchingNumbersCount(lotto2);
 
         // then
         assertThat(result).isEqualTo(expected);

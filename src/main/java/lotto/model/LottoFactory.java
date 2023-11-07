@@ -1,8 +1,6 @@
 package lotto.model;
 
 
-import static lotto.exception.ExceptionMessage.RANDOM_NUMBER_GENERATION_ERROR;
-
 import java.util.List;
 
 public class LottoFactory {
@@ -14,13 +12,7 @@ public class LottoFactory {
     }
 
     public Lotto createLotto() {
-        while (true) {
-            List<Integer> numbers = lottoNumberGenerator.generateLottoNumber();
-            try {
-                return new Lotto(numbers);
-            } catch (IllegalArgumentException e) {
-                throw new IllegalArgumentException (RANDOM_NUMBER_GENERATION_ERROR.getErrorMessage() + e.getMessage());
-            }
-        }
+        List<Integer> numbers = lottoNumberGenerator.generateLottoNumber();
+        return new Lotto(numbers);
     }
 }

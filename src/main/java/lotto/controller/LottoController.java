@@ -5,6 +5,7 @@ import lotto.model.Client;
 import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
 import lotto.model.LottoStore;
+import lotto.model.constans.WinningPrize;
 import lotto.view.View;
 
 public class LottoController {
@@ -73,7 +74,10 @@ public class LottoController {
 
     private void announceLottoResults(Client client, WinningNumbers winningNumbers) {
         List<Integer> lottoResults = winningNumbers.calculateLottosResult(client.getLottos());
-        view.printLottoResult(lottoResults);
+        view.printLottoResultMessage();
+        for (int i = 5; i >= 1; i--) {
+            view.printLottoResult(WinningPrize.getWinningPrizeByRank(i).toString(), lottoResults.get(i));
+        }
         double rateOfReturn = client.calculateRateOfReturn(lottoResults);
         view.printRateOfReturn(rateOfReturn);
     }

@@ -1,5 +1,7 @@
 package lotto.model.constans;
 
+import java.text.DecimalFormat;
+
 public enum WinningPrize {
     FIRST_PRIZE(1, 6, 2_000_000_000),
     SECOND_PRIZE(2, 5, 30_000_000),
@@ -35,11 +37,34 @@ public enum WinningPrize {
     }
 
     public static long getPrizeByRank(int rank) {
-        for (WinningPrize prize : values()) {
-            if (prize.rank == rank) {
-                return prize.prize;
+        for (WinningPrize winningPrize : values()) {
+            if (winningPrize.rank == rank) {
+                return winningPrize.prize;
             }
         }
         throw new IllegalArgumentException("존재하지 않는 등수입니다.");
+    }
+
+    public static WinningPrize getWinningPrizeByRank(int rank) {
+        for (WinningPrize winningPrize : values()) {
+            if (winningPrize.rank == rank) {
+                return winningPrize;
+            }
+        }
+        throw new IllegalArgumentException("존재하지 않는 등수입니다.");
+    }
+
+    @Override
+    public String toString() {
+        if (this == SECOND_PRIZE) {
+            return this.matchingNumbersCount + "개 일치, 보너스 볼 일치 " + "(" + formatPrize(this.prize) + ")";
+        }
+        return this.matchingNumbersCount + "개 일치 " + "(" + formatPrize(this.prize) + ")";
+    }
+
+    private String formatPrize(long prize) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###원");
+
+        return decimalFormat.format(prize);
     }
 }

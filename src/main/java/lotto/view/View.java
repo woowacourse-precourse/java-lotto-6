@@ -3,7 +3,6 @@ package lotto.view;
 import static lotto.view.constants.ViewMessage.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.List;
 
 public class View {
     public String inputValue() {
@@ -35,13 +34,12 @@ public class View {
         System.out.println(BONUS_NUMBER_INPUT.message());
     }
 
-    public void printLottoResult(List<Integer> lottoResult) {
+    public void printLottoResultMessage() {
         System.out.println(LOTTO_RESULT.message());
-        System.out.printf(FIFTH_PRIZE.message(), lottoResult.get(5));
-        System.out.printf(FORTH_PRIZE.message(), lottoResult.get(4));
-        System.out.printf(THIRD_PRIZE.message(), lottoResult.get(3));
-        System.out.printf(SECOND_PRIZE.message(), lottoResult.get(2));
-        System.out.printf(FIRST_PRIZE.message(), lottoResult.get(1));
+    }
+
+    public void printLottoResult(String prize, int prizeCount) {
+        System.out.printf("%s - %d개\n", prize, prizeCount);
     }
 
     public void printRateOfReturn(double rateOfReturn) {

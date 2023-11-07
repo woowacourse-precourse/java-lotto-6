@@ -2,10 +2,9 @@ package lotto.io;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.regex.PatternSyntaxException;
+import java.util.stream.Collectors;
 
 public class WinningNumberInputManager extends InputManager<List<Integer>> {
     private static WinningNumberInputManager INSTANCE;
@@ -35,14 +34,9 @@ public class WinningNumberInputManager extends InputManager<List<Integer>> {
     }
 
     @Override
-    public List<Integer> validation(String input) throws  NumberFormatException, NullPointerException, IndexOutOfBoundsException {
+    public List<Integer> validation(String input) throws NullPointerException, IndexOutOfBoundsException, IllegalArgumentException {
         List<Integer> numbers = Arrays.stream(input.split(",")).map(Integer::parseInt).toList();
-        numbers.forEach(WinningNumberInputManager::validateNumberRange);
+        numbers.forEach(InputManager::validateNumberRange);
         return numbers;
-    }
-
-
-    private static void validateNumberRange(Integer number) {
-        if (number > 45 || number < 1) throw new IndexOutOfBoundsException();
     }
 }

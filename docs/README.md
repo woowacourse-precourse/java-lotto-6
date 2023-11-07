@@ -45,8 +45,8 @@
     5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\
     6개 일치 (2,000,000,000원) - 0개"
   
-- [ ] 수익률 계산 - Calculator#calculateROI()
-  - [ ] 상금 계산 - WinningResult#getTotalLotteryPrize()
+- [x] 수익률 계산 - Calculator#calculateROI()
+  - [x] 상금 계산 - WinningResult#getTotalLotteryPrize()
   - 소수점 둘째 자리에서 반올림
   
 - [ ] 수익률 출력 - OutputView#printEarningRate()

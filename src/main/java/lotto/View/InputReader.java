@@ -16,7 +16,13 @@ public class InputReader {
 
     public Money inputMoney() {
         System.out.println(INPUT_PRICE_MESSAGE);
-        return new Money(Console.readLine());
+        while (true) {
+            try {
+                return new Money(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public Lotto inputLottoNumbers() {
@@ -44,8 +50,16 @@ public class InputReader {
         return numbers;
     }
 
-    public LottoNumber inputBonusNumber() {
+    public LottoNumber inputBonusNumber(Lotto lotto) {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        return new LottoNumber(Console.readLine());
+        while (true) {
+            try {
+                LottoNumber bonusNumber = new LottoNumber(Console.readLine());
+                lotto.validateDuplicateBonusNumber(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

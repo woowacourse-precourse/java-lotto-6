@@ -10,8 +10,10 @@ import static lotto.view.message.SystemMessage.OUTPUT_RESULT;
 
 import java.util.HashMap;
 import lotto.config.RankType;
+import lotto.domain.Lotto;
 import lotto.domain.Referee;
 import lotto.domain.Win;
+import lotto.validator.BonusValidator;
 import lotto.validator.PurchaseAmountValidator;
 import lotto.validator.WinningLottoValidator;
 import lotto.view.InputView;
@@ -26,7 +28,7 @@ public class GameController {
 
         Win win = new Win();
         win.setWinningLotto(readWinningLotto());
-        win.setBonus(readBonus());
+        win.setBonus(readBonus(win.getWinningLotto()));
 
         Referee referee = new Referee();
         referee.compare(lottoController.getLottos(), win.getWinningLotto(), win.getBonus());
@@ -67,9 +69,18 @@ public class GameController {
         }
     }
 
-    private static int readBonus() {
+    private static int readBonus(Lotto winningLotto) {
         OutputView.printMessage(INPUT_BONUS.getMessage());
-        return parseInt(InputView.read());
+
+        while (true) {
+            try {
+                String bonus = InputView.read();
+                BonusValidator.validate(bonus, winningLotto);
+                return parseInt(bonus);
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     private void printResult(Referee referee) {

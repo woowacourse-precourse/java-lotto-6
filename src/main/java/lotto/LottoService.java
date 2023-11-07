@@ -2,8 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.sql.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class LottoService {
 	Validator validator = new Validator();

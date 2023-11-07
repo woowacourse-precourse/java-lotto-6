@@ -25,8 +25,8 @@ class LottoCheckerTest {
                 new Lotto(List.of(1, 2, 3, 4, 5, 33)),
                 new Lotto(List.of(1, 2, 3, 4, 5, 7))
         );
-        lottoChecker.insertLottos(lottos);
-        lottoChecker.saveLottosResult();
+        lottoChecker.checkLottos(lottos);
+        lottoChecker.compareWithWinningNumbers();
 
         //when
         Map<Prize, Integer> result = lottoChecker.getResult();
@@ -107,8 +107,8 @@ class LottoCheckerTest {
         );
 
         //when
-        lottoChecker.insertLottos(lottos);
-        lottoChecker.saveLottosResult();
+        lottoChecker.checkLottos(lottos);
+        lottoChecker.compareWithWinningNumbers();
         lottoChecker.calculateTotalPrize();
         long totalPrize = lottoChecker.getTotalPrize();
 
@@ -135,8 +135,8 @@ class LottoCheckerTest {
         );
 
         //when
-        lottoChecker.insertLottos(lottos);
-        lottoChecker.saveLottosResult();
+        lottoChecker.checkLottos(lottos);
+        lottoChecker.compareWithWinningNumbers();
         lottoChecker.calculateTotalPrize();
         lottoChecker.calculateProfitRate();
         String profitRate = lottoChecker.getProfitRate();

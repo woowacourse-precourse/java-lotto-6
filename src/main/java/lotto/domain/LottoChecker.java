@@ -28,14 +28,14 @@ public class LottoChecker {
         result.put(Prize.NONE, NONE);
     }
 
-    public void insertLottos(final List<Lotto> lottos) {
+    public void checkLottos(final List<Lotto> lottos) {
         this.lottos = lottos;
-        saveLottosResult();
+        compareWithWinningNumbers();
         calculateTotalPrize();
         calculateProfitRate();
     }
 
-    public void saveLottosResult() {
+    public void compareWithWinningNumbers() {
         lottos.forEach(lotto -> {
             long matches = checkWinningNumber(lotto);
             boolean isContainBonus = false;

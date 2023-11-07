@@ -52,5 +52,9 @@ public class LottoController {
         return lottoStore.drawBonusNumber(read(InputView::inputBonusNumber), winningNumbers);
     }
 
-
+    private void showLottoResult(Customer customer, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        LottoResult result = customer.getLottoResult(winningNumbers, bonusNumber);
+        OutputView.printLottoResult(LottoResultDto.from(result));
+        OutputView.printTotalReturn(result.calculateTotalReturn(customer.getMoney()));
+    }
 }

@@ -10,9 +10,15 @@ public class Application {
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_START_NUMBER = 1;
     private static final int LOTTO_END_NUMBER = 45;
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        LottoInit lottoInit = ReceiveInitial();
+        List<Lotto> allOfLottoPapers = makeAllLottoPaper(lottoInit.numberOfLotto);
+        WinningNumberSet winningNumberSets = makeWinningNumber();
+        PrintResultSet resultSets = calculateResult(winningNumberSets, allOfLottoPapers);
+        printResult(resultSets, lottoInit);
     }
+
     public static LottoInit ReceiveInitial() {
         LottoInit lottoInit = null;
         try {
@@ -29,6 +35,7 @@ public class Application {
         System.out.println("\n" + lottoInit.numberOfLotto + "개를 구매했습니다.");
         return lottoInit;
     }
+
     private static List<Integer> makeRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_SIZE);
     }
@@ -65,32 +72,34 @@ public class Application {
 
     private static void validateInputDataType(String winningLotteryNumber) {
         if (!(winningLotteryNumber.matches("^[0-9, ]+$"))) {
-            throw new IllegalArgumentException("[Error] 숫자와 콤마(,) 이외의 값을 입력하셨습니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_DATA_TYPE_EXCEPTION.getMessage());
         }
     }
 
     private static void validateBonusNum(int bonusNum) {
         if (!(bonusNum >= LOTTO_START_NUMBER && bonusNum <= LOTTO_END_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_BONUSNUMBER_RANGE.getMessage());
         }
     }
+
     private static void validateWinningNumbersDataType(String[] winningNumbers) {
         for (int check = 0; check < winningNumbers.length; check++) {
             if (winningNumbers[check].equals("")) {
-                throw new IllegalArgumentException("[ERROR] 콤마(,)를 연속하여 입력할 수 없습니다.");
+                throw new IllegalArgumentException(ExceptionMessage.NO_COMMA_EXCEPTION.getMessage());
             }
             if (!(Integer.parseInt(winningNumbers[check]) >= LOTTO_START_NUMBER
                     && Integer.parseInt(winningNumbers[check]) <= LOTTO_END_NUMBER)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자를 콤마(,)로 구분하여 입력해야 합니다.");
+                throw new IllegalArgumentException(ExceptionMessage.NOT_RANGE_EXCEPTION.getMessage());
             }
         }
     }
 
     private static void validateWinningNumbersSize(String[] winningNumbers) {
         if (winningNumbers.length != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 여섯자리의 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_SIZE_EXCEPTION.getMessage());
         }
     }
+
 
     public static PrintResultSet calculateResult(WinningNumberSet winningNumberSets, List<Lotto> allOfLottoPapers) {
         PrintResultSet printResultSet = new PrintResultSet();
@@ -107,6 +116,7 @@ public class Application {
 
         return printResultSet;
     }
+
     public static void printResult(PrintResultSet printResultSet, LottoInit lottoInit) {
         double earningRate = (double) printResultSet.getProfitSum() * 100 / lottoInit.purchaseAmount;
         System.out.println("\n당첨 통계\n---");
@@ -119,5 +129,4 @@ public class Application {
         System.out.print(String.format("%.1f", earningRate));
         System.out.print("%입니다.");
     }
-
 }

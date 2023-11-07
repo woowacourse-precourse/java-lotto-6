@@ -12,7 +12,7 @@ final class LottoInit {
 
     private void validate(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 돈은 1000원 단위만 입력 가능합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_PURCHASE_INPUT.getMessage());
         }
     }
 }

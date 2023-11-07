@@ -14,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_LOTTO_NUMBER.getMessage());
         }
     }
     public void printLottoPaper(Lotto lotto) {

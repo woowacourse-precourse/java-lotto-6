@@ -86,14 +86,14 @@ public class LottoDraw {
         // 로또 발행
         numOfLotto = customer.getMoney() / LOTTO_PRICE.getNumber();
         OutputView.printBuyLotto(BUY_LOTTO, numOfLotto);
-        for(int i = 0; i < numOfLotto ; i++) {
+
+        while (customer.getLottosSize() < numOfLotto) {
             customer.buyLotto();
-            // TODO: 로또 잘못 발행되면 재발행하는 로직으로 수정
             if (validationLottoRange(customer.getLastLotto().getNumbers())) {
-                flag = true;
-                break;
+                customer.throwLastLotto();
             }
         }
+
         OutputView.printLottos(customer);
         return flag;
     }

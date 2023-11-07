@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.service;
 
 import java.util.List;
 
@@ -16,5 +16,6 @@ public class Lotto {
         }
     }
 
+    //로또 발행
     // TODO: 추가 기능 구현
 }

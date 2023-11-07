@@ -46,5 +46,11 @@ public class Lotto {
         }
     }
 
+    public void validateBonusNumber(int bonusNum){
+        if(numbers.contains(bonusNum)){
+            throw new IllegalArgumentException(Errors.BONUS_NUMBER_DUPLICATE_MESSAGE.getErrorMessage());
+        }
+    }
+
     // TODO: 추가 기능 구현
 }

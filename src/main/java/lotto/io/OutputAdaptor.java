@@ -1,6 +1,7 @@
 package lotto.io;
 
 import lotto.configure.DomainConfiguration;
+import lotto.configure.ErrorMessages;
 import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.util.Utils;
@@ -12,7 +13,7 @@ import static lotto.configure.OutputConfiguration.*;
 public class OutputAdaptor {
 
     public static void displayErrorMessage(String errorMessage) {
-        Printer.print(errorMessage + LINE_BRAKING);
+        Printer.print(ErrorMessages.ERROR_MESSAGE_COMMON_PREFIX.get() + " " + errorMessage + LINE_BRAKING);
     }
 
     public static void displayMessageToPromptToInputPurchasePrice() {

@@ -21,7 +21,7 @@ public class Validator {
         }
     }
 
-    public static void validateNumberOfLottoNumbers(List<Integer> lotto) {
+    public static void validateNumberOfLottoNumbers(List<Integer> lotto) throws IllegalArgumentException {
         if (lotto.size() != LottoManager.NUMBER_OF_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_LOTTO_NUMBER_COUNT);
         }

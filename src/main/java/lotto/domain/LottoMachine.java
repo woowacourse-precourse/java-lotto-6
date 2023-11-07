@@ -1,29 +1,25 @@
 package lotto.domain;
 
-import static lotto.domain.Lotto.LOTTO_PRICE;
-import static lotto.constants.Message.INPUT_MONEY;
+import static lotto.constants.Config.LOTTO_PRICE;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lotto.dto.UserInputMoney;
-import lotto.view.InputReader;
 
 public class LottoMachine {
 
     private UserInputMoney inputMoney;
-    private final InputReader inputReader;
+    private List<Lotto> lottos = new ArrayList<>();
+    public LottoMachine() {
 
-    public LottoMachine(InputReader inputReader) {
-        this.inputReader = inputReader;
     }
 
-    public List<Lotto> generateLottos() {
+    public void generateLottos() {
         checkMoney();
         long lottoCount = inputMoney.amount() / LOTTO_PRICE;
-        System.out.println(lottoCount + "개를 구매했습니다.");
-        List<Lotto> newLottos = Lotto.createLottos(lottoCount);
-        newLottos.forEach(System.out::println);
-        return newLottos;
+        this.lottos = Lotto.createLottos(lottoCount);
     }
 
     private void checkMoney() {
@@ -32,8 +28,7 @@ public class LottoMachine {
         }
     }
 
-    public void insertMoney() {
-        String readLine = inputReader.readInput(INPUT_MONEY);
+    public void insertMoney(String readLine) {
         Long inputAmount = validateAndConvertInt(readLine);
         this.inputMoney = new UserInputMoney(inputAmount);
     }
@@ -52,5 +47,9 @@ public class LottoMachine {
 
     public long getInputAmount() {
         return inputMoney.getAmount();
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 }

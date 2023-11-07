@@ -1,6 +1,7 @@
 package lotto.dto;
 
-import static lotto.domain.Lotto.LOTTO_PRICE;
+
+import static lotto.constants.Config.LOTTO_PRICE;
 
 public record UserInputMoney(Long amount) {
 

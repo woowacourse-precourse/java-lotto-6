@@ -8,8 +8,6 @@ import lotto.utils.NumberGenerator;
 
 public class Lotto {
     private final List<Integer> numbers;
-    // TODO 인스턴스 변수를 추가할 수 없다
-    public static final Integer LOTTO_PRICE = 1_000;
 
     public static List<Lotto> createLottos(long count) {
         List<Lotto> lottos = new ArrayList<>();

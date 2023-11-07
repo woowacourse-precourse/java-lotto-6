@@ -18,10 +18,10 @@ public class Lotto {
     }
 
     private boolean hasDuplicatedNumber(List<Integer> numbers) {
-        List<Integer> uniqueNumbers = numbers.stream()
+        long uniqueCounts = numbers.stream()
                 .distinct()
-                .toList();
+                .count();
 
-        return numbers.size() != uniqueNumbers.size();
+        return numbers.size() != uniqueCounts;
     }
 }

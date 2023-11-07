@@ -29,7 +29,7 @@ public class Input {
 
     public List<Integer> inputNumbers() {
         String numbers = readLine();
-        return Arrays.stream(numbers.split(SEPARATOR)).sorted().mapToInt(Integer::getInteger).boxed().toList();
+        return Arrays.stream(numbers.split(SEPARATOR)).sorted().mapToInt(Integer::parseInt).boxed().toList();
     }
 
     public int inputBonusNumber() {

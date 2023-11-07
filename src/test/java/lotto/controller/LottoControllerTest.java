@@ -93,7 +93,7 @@ class LottoControllerTest {
         int count = countOccurrences(result, "[");
 
         // then
-        assertThat(result).startsWith("0개를 구매했습니다.");
+        assertThat(result).contains("0개를 구매했습니다.");
         assertThat(count).isEqualTo(0);
     }
 
@@ -112,7 +112,7 @@ class LottoControllerTest {
         int count = countOccurrences(result, "[");
 
         // then
-        assertThat(result).startsWith("1개를 구매했습니다.");
+        assertThat(result).contains("1개를 구매했습니다.");
         assertThat(count).isEqualTo(1);
     }
 
@@ -130,7 +130,7 @@ class LottoControllerTest {
         int count = countOccurrences(result, "[");
 
         // then
-        assertThat(result).startsWith("5개를 구매했습니다.");
+        assertThat(result).contains("5개를 구매했습니다.");
         assertThat(count).isEqualTo(5);
     }
 

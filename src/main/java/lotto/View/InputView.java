@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.Global.Exception;
 
 public class InputView {
     private static final Pattern isNumber = Pattern.compile("\\d+");
+    private static final String splitSymbol = ",";
 
-    public List<Integer> NumberListInput(String splitSymbol) {
+    public List<Integer> NumberListInput(int length) {
         String input = Console.readLine();
-        if (!checkSplitBySymbol(input, splitSymbol)) {
-            //에러 출력
+        if (!checkSplitBySymbol(input, length)) {
+            throw new IllegalArgumentException(
+                    Exception.LOTTO_WINNING_NUMBER_INPUT.getErrorPhrase(splitSymbol));
         }
         return convertStringListToIntegerList(Arrays.stream(input.split(splitSymbol)).toList());
     }
@@ -20,7 +23,7 @@ public class InputView {
     public int SingleNumberInput() {
         String input = Console.readLine();
         if (!checkIfNumber(input)) {
-            //에러 출력
+            throw new IllegalArgumentException(Exception.NOT_NUMBER_VALUE.getErrorPhrase());
         }
         return Integer.parseInt(input);
     }
@@ -29,8 +32,8 @@ public class InputView {
         return isNumber.matcher(input).matches();
     }
 
-    private Boolean checkSplitBySymbol(String input, String symbol) {
-        return input.split(symbol).length > 1;
+    private Boolean checkSplitBySymbol(String input, int length) {
+        return input.split(splitSymbol).length == length;
         //해당 심볼 외의 심볼을 입력하는 경우 -> 걸러짐(split했을때 length=1)
         //하나만 입력하는 경우 -> 걸러짐(split했을때 length=1)
     }
@@ -39,7 +42,7 @@ public class InputView {
         List<Integer> result = new ArrayList<>();
         for (String number : input) {
             if (!checkIfNumber(number)) {
-                //에러메시지 출력
+                throw new IllegalArgumentException(Exception.NOT_NUMBER_VALUE.getErrorPhrase());
             }
             result.add(Integer.parseInt(number));
         }

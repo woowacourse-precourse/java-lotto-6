@@ -13,6 +13,9 @@ public class LottoRepository {
         return new LottoRepository(lottos);
     }
 
+    public List<Lotto> getLottos(){
+        return lottos;
+    }
     public int getSize() {
         return lottos.size();
     }

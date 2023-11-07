@@ -1,5 +1,6 @@
 package lotto.util;
 
+import static lotto.constant.ExceptionMessages.BONUS_NUMBER_FORMAT_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.PURCHASE_AMOUNT_FORMAT_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.WINNING_NUMBER_FORMAT_EXCEPTION_MESSAGE;
 
@@ -29,6 +30,16 @@ public class StringParser {
             return new WinningNumber(parsed);
         } catch (Exception e) {
             throw new IllegalArgumentException(WINNING_NUMBER_FORMAT_EXCEPTION_MESSAGE.toString());
+        }
+    }
+
+    public static Integer parseBonusNumber(String str) {
+        try {
+            int parsed = Integer.parseInt(str);
+            Validator.validatePositiveInteger(parsed);
+            return parsed;
+        } catch (Exception e) {
+            throw new IllegalArgumentException(BONUS_NUMBER_FORMAT_EXCEPTION_MESSAGE.toString());
         }
     }
 }

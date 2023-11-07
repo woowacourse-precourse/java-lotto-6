@@ -15,6 +15,7 @@ public class OutputView {
         for (Lotto lotto : lottos) {
             printLottoNumber(lotto);
         }
+        System.out.println();
     }
 
     private void printPurchasedLottosQuantity(List<Lotto> lottos) {

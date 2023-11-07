@@ -6,18 +6,24 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        List<Integer> mutableNumbers = numbers
+                .stream()
+                .collect(Collectors.toList());
+        Collections.sort(mutableNumbers);
+        this.numbers = mutableNumbers;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
+
     private void validate(List<Integer> numbers) {
         if (Objects.isNull(numbers)) {
             throw new IllegalArgumentException("[ERROR] 로또를 생성할 때 List는 NULL이 될 수 없습니다.");
@@ -50,7 +56,7 @@ public class Lotto {
     private void validateDuplicateNumber(List<Integer> numbers) {
         final int OFFSET = LottoSetting.NUMBER_RANGE_START.getValue();
         final int NUMBER_RANGE_COUNT = LottoSetting.NUMBER_RANGE_END.getValue()
-                                        - LottoSetting.NUMBER_RANGE_START.getValue() + 1;
+                - LottoSetting.NUMBER_RANGE_START.getValue() + 1;
         boolean[] checked = new boolean[NUMBER_RANGE_COUNT];
         Arrays.fill(checked, false);
 
@@ -84,7 +90,6 @@ public class Lotto {
                 .pickUniqueNumbersInRange(LottoSetting.NUMBER_RANGE_START.getValue()
                         , LottoSetting.NUMBER_RANGE_END.getValue()
                         , LottoSetting.NUMBER_COUNT.getValue());
-        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 }

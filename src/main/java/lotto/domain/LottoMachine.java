@@ -31,9 +31,7 @@ public class LottoMachine {
         return issueCount;
     }
 
-    public void generate() {
-        int purchaseAmount = readAmount();
-        int issueCount = amountToIssueCount(purchaseAmount);
+    public void generate(int issueCount) {
         for (int i = 0; i < issueCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                     START_NUMBER, END_NUMBER, COUNT_NUMBER

@@ -33,11 +33,15 @@ class CompareNumberTest {
     }
 
     @Test
-    @DisplayName("사용자 입력 보너스 번호와 실제 당첨 번호 비교 해서 수 출력")
+    @DisplayName("사용자 입력 보너스 번호와 실제 당첨 번호 리스트 비교 해서 수 출력")
     void compareBonusNumber(){
         //given
+        int bonusNumber = 1;
+        List<Integer> randomWin = makeTestRandomNumber.getRandomNumber();
         //when
+        boolean result = compareNumber.compareBonusNum(bonusNumber, randomWin);
         //then
+        assertEquals(result,true);
     }
 
 }

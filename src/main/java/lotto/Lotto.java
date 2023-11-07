@@ -14,11 +14,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_COUNT.getValue());
         }
 
         if (Set.copyOf(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_DUPLICATE.getValue());
         }
     }
 

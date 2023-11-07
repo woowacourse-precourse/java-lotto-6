@@ -19,7 +19,7 @@ public class LottoController {
         List<Lotto> lottoNumbers = lottoRamdomNumbers.generateRandomLottoNumbers(readAmount);
         outputView.printIssuedLottoNumbersInAscendingOrder(lottoNumbers);
         Lotto winningLottoNumber = inputView.enterWinningNumbers();
-        Integer readBonusNumber = inputView.enterBonusNumber();
+        Integer readBonusNumber = inputView.enterBonusNumber(winningLottoNumber);
     }
 
 }

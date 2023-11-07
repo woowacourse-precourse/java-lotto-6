@@ -45,5 +45,7 @@ public class LottoController {
         return lottoTicketManager.makeResult();
     }
 
-
+    public double provideRevenue() {
+        return lottoTicketManager.calculateRevenue();
+    }
 }

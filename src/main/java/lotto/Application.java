@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Collections;
+import java.util.List;
 
 public class Application {
     static int lottoMoney = 0;
@@ -29,6 +33,13 @@ public class Application {
         // 발행한 로또 수량 출력
         int lottoAmount = lottoMoney / 1000;
         System.out.println(lottoAmount + "개를 구매했습니다.");
+
+        // 발행한 로또 번호 오름차순으로 출력하기
+        for (int i = 0; i < lottoAmount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            System.out.println(numbers);
+        }
 
     }
 }

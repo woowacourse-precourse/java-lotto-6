@@ -4,7 +4,7 @@ import lotto.domain.LottoRankInfo;
 
 import java.util.Map;
 
-public class LottoResultDTO extends DTO.Output {
+public final class LottoResultDTO extends DTO.Output {
     private final String returnRatio;
     private final Map<LottoRankInfo, Integer> ranks;
 

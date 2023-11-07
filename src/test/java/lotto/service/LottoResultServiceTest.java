@@ -30,8 +30,7 @@ class LottoResultServiceTest {
                 .forEach(e -> ranks.merge(e, 1, Integer::sum));
         //then
         assertThat(service.createLottoResultDto()
-                .rank().toString())
-                .hasToString(ranks.toString());
+                .getRanks().toString()).hasToString(ranks.toString());
     }
 
     @ParameterizedTest
@@ -49,8 +48,7 @@ class LottoResultServiceTest {
 
         String returnRatio = new LottoResult(ranks).getReturnRatio();
         //then
-        assertThat(service.createLottoResultDto()
-                .returnRatio()).hasToString(returnRatio);
+        assertThat(service.createLottoResultDto().getReturnRatio()).hasToString(returnRatio);
     }
 
     static Stream<Arguments> setLottoParam() {

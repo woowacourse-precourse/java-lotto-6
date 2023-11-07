@@ -12,6 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class ValidatorTest {
+
     Validator validator = new Validator();
     @DisplayName("금액이 0원이면 예외가 발생한다.")
     @Test

@@ -1,5 +1,7 @@
 package lotto.handler;
 
+import java.util.function.Function;
+import java.util.function.Supplier;
 import lotto.domain.BonusNumber;
 import lotto.domain.PurchasePrice;
 import lotto.domain.WinningNumber;
@@ -12,32 +14,23 @@ public class InputHandler {
     }
 
     public static PurchasePrice receiveValidatedPurchasePrice() {
-        while (true) {
-            try {
-                String purchasePrice = InputView.inputPurchasePrice();
-                return PurchasePrice.from(purchasePrice);
-            } catch (IllegalArgumentException exception) {
-                OutputView.printErrorMessageFor(exception);
-            }
-        }
+        return receiveValidatedInput(InputView::inputPurchasePrice, PurchasePrice::from);
     }
 
     public static WinningNumber receiveValidatedWinningNumber() {
-        while (true) {
-            try {
-                String winningNumber = InputView.inputWinningNumber();
-                return WinningNumber.from(winningNumber);
-            } catch (IllegalArgumentException exception) {
-                OutputView.printErrorMessageFor(exception);
-            }
-        }
+        return receiveValidatedInput(InputView::inputWinningNumber, WinningNumber::from);
     }
 
     public static BonusNumber receiveValidatedBonusNumberAndNotExistFrom(WinningNumber winningNumber) {
+        return receiveValidatedInput(InputView::inputBonusNumber,
+                bonusNumber -> BonusNumber.ofNotDuplicatedWithWinningNumber(bonusNumber, winningNumber));
+    }
+
+    private static <T> T receiveValidatedInput(Supplier<String> inputView, Function<String, T> conversion) {
         while (true) {
             try {
-                String bonusNumber = InputView.inputBonusNumber();
-                return BonusNumber.ofNotDuplicatedWithWinningNumber(bonusNumber, winningNumber);
+                String input = inputView.get();
+                return conversion.apply(input);
             } catch (IllegalArgumentException exception) {
                 OutputView.printErrorMessageFor(exception);
             }

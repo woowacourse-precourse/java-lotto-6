@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.domain.dto.BonusNumberDto;
-import lotto.domain.dto.WinningLottoDto;
 import lotto.validator.LottoValidator;
 
 public class Lotto {
@@ -21,11 +20,11 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
-    public int matchWinningLottoCount(final WinningLottoDto winningLottoDto) {
+    public int matchWinningLottoCount(final WinningLotto winningLotto) {
         int matchCount = 0;
 
         for (Integer number : numbers) {
-            matchCount += (int) winningLottoDto.numbers().stream().filter(winningNumber -> winningNumber.equals(number))
+            matchCount += (int) winningLotto.getNumbers().stream().filter(winningNumber -> winningNumber.equals(number))
                     .count();
         }
 

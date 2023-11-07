@@ -3,8 +3,8 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.exception.NonNumberException;
 import lotto.exception.money.MinimumMoneyException;
-import lotto.exception.money.MoneyNumberFormatException;
 import lotto.exception.money.MoneyOutOfRangeException;
 import lotto.exception.money.MoneyUnitException;
 import org.junit.jupiter.api.DisplayName;
@@ -19,7 +19,7 @@ class MoneyTest {
     @ValueSource(strings = {"", "천원", "1000won"})
     void isNumeric(String moneys) {
         assertThatThrownBy(() -> Money.of(moneys))
-                .isInstanceOf(MoneyNumberFormatException.class)
+                .isInstanceOf(NonNumberException.class)
                 .hasMessage("숫자만 입력해 주세요.");
     }
 

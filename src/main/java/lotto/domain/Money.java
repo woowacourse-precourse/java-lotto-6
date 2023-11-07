@@ -2,8 +2,8 @@ package lotto.domain;
 
 import java.util.regex.Pattern;
 import lotto.domain.constant.LottoConstant;
+import lotto.exception.NonNumberException;
 import lotto.exception.money.MinimumMoneyException;
-import lotto.exception.money.MoneyNumberFormatException;
 import lotto.exception.money.MoneyOutOfRangeException;
 import lotto.exception.money.MoneyUnitException;
 
@@ -36,7 +36,7 @@ public class Money {
 
     private static void isNumeric(final String amount) {
         if (!NUMBER_PATTERN.matcher(trim(amount)).matches()) {
-            throw new MoneyNumberFormatException();
+            throw new NonNumberException();
         }
     }
 

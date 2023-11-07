@@ -5,9 +5,15 @@ import java.util.Set;
 import java.util.HashSet;
 
 public class LottoValidator {
-    public static void validate(List<Integer> numbers) {
+    public static void winningNumberValidate(List<Integer> winningNumbers, int bonusNumber) {
+        lottoValidate(winningNumbers);
+        validateNumberRange(bonusNumber);
+        validateUniqueBonusNumber(winningNumbers, bonusNumber);
+    }
+
+    public static void lottoValidate(List<Integer> numbers) {
         validateNumbersLength(numbers);
-        validateNumberRange(numbers);
+        validateNumbersRange(numbers);
         validateUniqueNumber(numbers);
     }
 
@@ -17,11 +23,15 @@ public class LottoValidator {
         }
     }
 
-    private static void validateNumberRange(List<Integer> numbers) {
+    private static void validateNumbersRange(List<Integer> numbers) {
         for(int number : numbers){
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+            validateNumberRange(number);
+        }
+    }
+
+    private static void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 
@@ -29,6 +39,12 @@ public class LottoValidator {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if(uniqueNumbers.size() != numbers.size()){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+    }
+
+    private static void validateUniqueBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if(winningNumbers.contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }

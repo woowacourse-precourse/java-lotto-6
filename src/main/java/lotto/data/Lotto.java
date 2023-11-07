@@ -17,11 +17,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        List<Integer> result = List.of();
-        for (Integer number : numbers) {
-            result.add(number);
-        }
-        return result;
+        return new ArrayList<>(numbers);
     }
 
     public int getMatchCountWith(List<Integer> targetNumbers) {

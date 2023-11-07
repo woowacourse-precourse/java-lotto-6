@@ -28,7 +28,7 @@ public class InputManager {
         while (true) {
             System.out.println("\n당첨 번호를 입력해 주세요.");
             try {
-                return validateNumbers(readLine());
+                return validatedNumbers(readLine());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -49,26 +49,14 @@ public class InputManager {
         }
     }
 
-    private List<Integer> validateNumbers(String input) {
+    private List<Integer> validatedNumbers(String input) {
         if (!input.matches("^[0-9,]+$")) {
             throw new IllegalArgumentException("[ERROR] 숫자와 구분자(,)만 입력 가능합니다.");
         }
 
-        List<Integer> numbers = Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .toList();
-
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력하세요.");
-        }
-        if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 값이 있습니다.");
-        }
-        if (numbers.stream().filter((num -> num >= 1 && num <= 45)).count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력하세요.");
-        }
-
-        return numbers;
     }
 
     private int validateAmount(String input) {

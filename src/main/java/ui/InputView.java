@@ -3,7 +3,7 @@ package ui;
 import camp.nextstep.edu.missionutils.Console;
 import dto.BonusNumberDTO;
 import dto.CommonNumberDTO;
-import dto.LottoMoneyDTO;
+import dto.MoneyDTO;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -14,12 +14,12 @@ class InputView {
     /**
      * @return 1000 단위로 끊어진 로또 구매 금액.
      */
-    public static LottoMoneyDTO getMoney() {
+    public static MoneyDTO getMoney() {
         while (true) {
             try {
                 String input = Console.readLine();
                 int money = Integer.parseInt(input);
-                return new LottoMoneyDTO(money);
+                return new MoneyDTO(money);
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {

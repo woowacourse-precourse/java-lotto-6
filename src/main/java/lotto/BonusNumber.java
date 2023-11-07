@@ -1,5 +1,7 @@
 package lotto;
 
+
+
 public class BonusNumber {
         private final int bonusNumber;
         public BonusNumber(int bonusNumber) {
@@ -13,6 +15,5 @@ public class BonusNumber {
                 if(bonusNumber>Constants.LOTTO_MAX_NUMBER){
                         throw new IllegalArgumentException();
                 }
-
         }
 }

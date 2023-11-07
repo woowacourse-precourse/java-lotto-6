@@ -34,7 +34,7 @@ public enum WinningType {
         }
         return Arrays.stream(values())
                 .filter(winningType -> winningType.matchedCount == count)
-                .findFirst()
+                .findAny()
                 .orElseThrow(IllegalArgumentException::new);
     }
 }

@@ -20,28 +20,34 @@ public class WinningLottoController {
     private final TicketsService ticketsService = new TicketsService();
 
     public Lotto getLottoInput() {
+        System.out.println(NoticeType.WINNING_LOTTO_INPUT.getMessage());
         String lottoInput = Console.readLine();
         return ticketsService.stringToLotto(lottoInput);
     }
 
     public int getAmountInput() {
+        System.out.println("\n" + NoticeType.AMOUNT_INPUT.getMessage());
         String amountInput = Console.readLine();
+        System.out.println();
         return Integer.parseInt(amountInput);
     }
 
     public int getBonusNumInput() {
+        System.out.println(NoticeType.BONUS_NUM_INPUT.getMessage());
         String bonusNumInput = Console.readLine();
+        System.out.println();
         return Integer.parseInt(bonusNumInput);
     }
 
     public void init() {
-        winningLotto = ticketsService.getWinningLotto(getLottoInput(), getBonusNumInput());
         amount = getAmountInput();
         issueWinningLotto();
+        winningLotto = ticketsService.getWinningLotto(getLottoInput(), getBonusNumInput());
     }
 
     public void issueWinningLotto() {
         tickets = ticketsService.issue(amount);
+        printTickets();
     }
 
     public void getResult() {
@@ -56,7 +62,7 @@ public class WinningLottoController {
         init();
         getResult();
         getProfitRate();
-
+        printResult();
     }
 
     public void getProfitRate() {
@@ -64,12 +70,19 @@ public class WinningLottoController {
     }
 
     private void printResult() {
+        System.out.println(NoticeType.WINNING_STATS.getMessage());
         ticketsService.printWinningStat(result);
         printProfitRate();
     }
 
     private void printProfitRate() {
-       System.out.println(NoticeType.PROFIT_FRONT + String.valueOf(profitRate) + NoticeType.PROFIT_END);
+       System.out.print(NoticeType.PROFIT_FRONT.getMessage() + profitRate + NoticeType.PROFIT_END.getMessage());
+    }
+
+    private void printTickets() {
+        System.out.println(tickets.size() + NoticeType.TICKET_COUNT.getMessage());
+        tickets.forEach(Lotto::printNumbers);
+        System.out.println();
     }
 
 }

@@ -26,8 +26,6 @@ public class TicketsService {
             tickets.add(new Lotto(nums));
         }
 
-        tickets.stream().forEach(Lotto::printNumbers);
-
         return tickets;
     }
 

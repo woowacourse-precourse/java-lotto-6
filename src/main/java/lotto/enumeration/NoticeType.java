@@ -7,7 +7,7 @@ public enum NoticeType {
     BONUS_NUM_INPUT("보너스 번호를 입력해 주세요."),
     WINNING_STATS("당첨 통계\n---"),
     PROFIT_FRONT("총 수익률은 "),
-    PROFIT_END("입니다.");
+    PROFIT_END("%입니다.");
 
     private String message;
     NoticeType(String message) {

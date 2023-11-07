@@ -40,7 +40,7 @@ public class OutputView {
     }
 
     public static void displayRateOfReturn(LottoResultsDTO lottoResultsDTO) {
-        long buyLottoAmount = lottoResultsDTO.lottoCount() * 1000L;
+        long buyLottoAmount = lottoResultsDTO.buyAmount();
         double rateOfReturn = (double) lottoResultsDTO.winningAmount() / buyLottoAmount;
         System.out.printf(TOTAL_RATE_OF_RETURN_MESSAGE, rateOfReturn * 100);
     }

@@ -17,8 +17,19 @@ class RankTest {
     @DisplayName("일치하는 번호의 수를 비교하여 당첨 등수를 알 수 있다.")
     @ParameterizedTest
     @MethodSource("rankData")
-    void calculate(int matchCount, boolean hasBonusNumber, Rank rank){
-        assertThat(Rank.calculate(matchCount, hasBonusNumber)).isEqualTo(rank);
+    void calculate(int matchCount, boolean hasBonusNumber, Rank rank) {
+        assertThat(Rank.findBy(matchCount, hasBonusNumber)).isEqualTo(rank);
+    }
+
+    @Test
+    @DisplayName("당첨에 해당되는 등수들을 반환한다.")
+    void winningValues() {
+        assertThat(Rank.winningValues()).isEqualTo(
+                List.of(Rank.FIFTH_PLACE,
+                        Rank.FOURTH_PLACE,
+                        Rank.THIRD_PLACE,
+                        Rank.SECOND_PLACE,
+                        Rank.FIRST_PLACE));
     }
 
     static Stream<Arguments> rankData() {

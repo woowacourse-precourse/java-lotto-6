@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum Rank {
@@ -13,9 +14,9 @@ public enum Rank {
     FIRST_PLACE(6, "6개 일치 (2,000,000,000원) - %d개", 2000000000);
 
 
-    private int matchCount;
-    private String message;
-    private int reward;
+    private final int matchCount;
+    private final String message;
+    private final int reward;
 
     Rank(int matchCount, String message, int reward) {
         this.matchCount = matchCount;
@@ -31,7 +32,7 @@ public enum Rank {
         return reward;
     }
 
-    public static Rank calculate(int matchCount, boolean hasBonusNumber) {
+    public static Rank findBy(int matchCount, boolean hasBonusNumber) {
         if (matchCount == THIRD_PLACE.matchCount && !hasBonusNumber) {
             return THIRD_PLACE;
         }
@@ -41,13 +42,13 @@ public enum Rank {
                 .findFirst().orElse(LAST_PLACE);
     }
 
-    public static List<Rank> getShownRank(){
-        List<Rank> ranks = new ArrayList<>();
+    public static List<Rank> winningValues(){
+        List<Rank> winningRanks = new ArrayList<>();
         for(Rank rank : values()){
             if (!rank.equals(Rank.LAST_PLACE)){
-                ranks.add(rank);
+                winningRanks.add(rank);
             }
         }
-        return ranks;
+        return Collections.unmodifiableList(winningRanks);
     }
 }

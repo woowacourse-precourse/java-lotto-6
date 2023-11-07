@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.constants.MsgConstants;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 import lotto.domain.WinningNumbers;
@@ -9,9 +8,7 @@ import lotto.service.WinningNumbersService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -40,24 +37,12 @@ public class LottoController {
     }
 
     private void printPurchasedLottoNumber(LottoTicket lottoTicket) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(String.format(MsgConstants.PURCHASED_SOME_PIECES.getData(),
-                lottoTicket.getPurchaseQuantity()));
+        OutputView.printPurchasedQuantity(lottoTicket.getPurchaseQuantity());
         List<Lotto> lottoList = lottoTicket.getLottoList();
-
         for (Lotto lotto : lottoList) {
             List<Integer> lottoNumber = lotto.getLotto();
-            stringBuilder.append("[").append(convertLottoNumToString(lottoNumber)).append("]").append("\n");
+            OutputView.printPurchasedLottoNumber(lottoNumber.toString());
         }
-        OutputView.printPurchasedLottoNumber(stringBuilder.toString());
-
-    }
-
-    private String convertLottoNumToString(List<Integer> lottoNumber) {
-        Collections.sort(lottoNumber);
-        return lottoNumber.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(", "));
     }
 
     private WinningNumbers getWinningInformation() {

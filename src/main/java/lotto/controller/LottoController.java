@@ -14,6 +14,7 @@ import lotto.model.PurchaseMoney;
 import lotto.model.WinningLotto;
 import lotto.model.WinningMoney;
 import lotto.util.NumbersGenerator;
+import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,16 +24,20 @@ public class LottoController {
 
     private final OutputView outputView;
 
-    private final NumbersGenerator generate;
+    private NumbersGenerator generate;
 
-    public LottoController(InputView inputView, OutputView outputView,
-                           NumbersGenerator numbersGenerator) {
+    private LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.generate = numbersGenerator;
+    }
+
+    public static LottoController init(InputView inputView, OutputView outputView) {
+        return new LottoController(inputView, outputView);
     }
 
     public void start() {
+        generate = new RandomNumbersGenerator();
+
         PurchaseMoney purchaseMoney = initPurchaseMoney();
         PersonLotto personLotto = initPersonLotto(generate, purchaseMoney);
 

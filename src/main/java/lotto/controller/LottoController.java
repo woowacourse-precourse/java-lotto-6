@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class LottoController {
 
-    private final Output output = new Output();
     private final Input input = new Input();
+    private final Output output = new Output();
     private final LottoMachine lottoMachine = new LottoMachine();
 
     public void run() {
@@ -35,17 +35,6 @@ public class LottoController {
             output.showError(e.getMessage());
             return repeatMakeMoney();
         }
-    }
-
-    private Map<Rank, Integer> makeWinningResult(Map<Lotto, Rank> rankByLotto) {
-        Map<Rank, Integer> winningResult = Arrays.stream(Rank.values())
-                .collect(Collectors.toMap(rank -> rank, rank -> 0));
-
-        for (Rank rank : rankByLotto.values()) {
-            winningResult.put(rank, winningResult.get(rank) + 1);
-        }
-
-        return winningResult;
     }
 
     private WinningCondition makeWinningCondition() {
@@ -74,6 +63,17 @@ public class LottoController {
             output.showError(e.getMessage());
             return repeatReadBonusNumber();
         }
+    }
+
+    private Map<Rank, Integer> makeWinningResult(Map<Lotto, Rank> rankByLotto) {
+        Map<Rank, Integer> winningResult = Arrays.stream(Rank.values())
+                .collect(Collectors.toMap(rank -> rank, rank -> 0));
+
+        for (Rank rank : rankByLotto.values()) {
+            winningResult.put(rank, winningResult.get(rank) + 1);
+        }
+
+        return winningResult;
     }
 
     private int toInt(String number) {

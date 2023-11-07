@@ -1,9 +1,19 @@
 package lotto.view;
 
+import java.util.List;
 import java.util.Map;
+import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
 public class OutputView {
+    public void printPurchaseLottoNumbers(List<Lotto> lottos) {
+        System.out.println();
+        System.out.printf("%d개를 구매하였습니다.%n", lottos.size());
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers().toString());
+        }
+    }
+
     public void printLottoStatistics(Map<Rank, Integer> rankIntegerMap) {;
         for (Rank rank : Rank.values()) {
             if (rank == Rank.SECOND) {
@@ -13,5 +23,4 @@ public class OutputView {
             System.out.printf("%d개 일치 (%,d원) - %d개%n", rank.getCount(), rank.getWinningAmount(), rankIntegerMap.getOrDefault(rank, 0));
         }
     }
-
 }

@@ -11,14 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.constant.Config.*;
-import static lotto.constant.WinningMessage.*;
+import static lotto.constant.RankMessage.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RankMachineTest {
-    @Test
-    @DisplayName("5개의 랭크에 대해 정상 출력 되는지")
-    void getWinningStatistics() {
-        RankMachine rankMachine = new RankMachine(List.of(
+    RankMachine createRankMachine() {
+        return new RankMachine(List.of(
                 new Rank(RANK_FIFTH, REWARD_FIFTH, (ticket, winningTicket, bonusNumber) ->
                         ticket.countMatched(winningTicket) == 3),
                 new Rank(RANK_FOURTH, REWARD_FOURTH, (ticket, winningTicket, bonusNumber) ->
@@ -30,16 +28,11 @@ public class RankMachineTest {
                 new Rank(RANK_FIRST, REWARD_FIRST, (ticket, winningTicket, bonusNumber) ->
                         ticket.countMatched(winningTicket) == 6)
         ));
-        Lotto winningTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        LottoNumber bonusNumber = new LottoNumber(7);
-        applySampleTickets(rankMachine, winningTicket, bonusNumber);
-
-        System.out.println(rankMachine.getWinningStatistics());
-        assertThat(rankMachine.getWinningStatistics())
-                .contains("6개 일치 (2,000,000,000원) - 1개");
     }
 
-    void applySampleTickets(RankMachine rankMachine, Lotto winningTicket, LottoNumber bonusNumber) {
+    void applySampleTickets(RankMachine rankMachine) {
+        Lotto winningTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        LottoNumber bonusNumber = new LottoNumber(7);
         new ArrayList<>(List.of(
                 // 6개 일치
                 List.of(1, 2, 3, 4, 5, 6),
@@ -86,5 +79,32 @@ public class RankMachineTest {
                 // 0개 일치 - 꽝
                 List.of(8, 9, 10, 11, 12, 13)
         )).forEach(numbers -> rankMachine.applyTicket(new Lotto(numbers), winningTicket, bonusNumber));
+    }
+
+    @Test
+    @DisplayName("5개의 랭크에 대해 정상 출력 되는지")
+    void getWinningStatistics() {
+        RankMachine rankMachine = createRankMachine();
+        applySampleTickets(rankMachine);
+
+        System.out.println(rankMachine.getRankStatistics());
+        assertThat(rankMachine.getRankStatistics())
+                .contains(
+                        "3개 일치 (5,000원) - 7개",
+                        "4개 일치 (50,000원) - 4개",
+                        "5개 일치 (1,500,000원) - 2개",
+                        "5개 일치, 보너스 볼 일치 (30,000,000원) - 3개",
+                        "6개 일치 (2,000,000,000원) - 1개"
+                );
+    }
+
+    @Test
+    @DisplayName("수익률이 정상 출력 되는지")
+    void getRateOfReturn() {
+        RankMachine rankMachine = createRankMachine();
+        applySampleTickets(rankMachine);
+
+        System.out.println(rankMachine.getRateOfReturn());
+        assertThat(rankMachine.getRateOfReturn()).contains("총 수익률은 7,218,051.7%입니다.");
     }
 }

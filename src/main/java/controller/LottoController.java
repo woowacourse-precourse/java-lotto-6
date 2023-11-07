@@ -9,6 +9,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import model.Lotto;
@@ -64,7 +65,6 @@ public class LottoController {
         LottoWinResultsHolder lottoWinResultsHolder = new LottoWinResultsHolder();
         for (Lotto lotto : LottoNumberSet){
             String LottoWinResult = lottoNumberComparater.comparaterLottoResult(lotto.getLottoNumbers());
-            System.out.println(LottoWinResult);
             lottoWinResultsHolder.lottoWinResultsAdd(LottoWinResult);
         }
         outputView.printNextLine();
@@ -72,6 +72,10 @@ public class LottoController {
         // lottoWinResultsHolder에서 전체 결과 맵 가져와서 LottoResultJudger 이용해 톡계출력
         Map<String, Integer> winResults = lottoWinResultsHolder.getWinResults();
         outputView.printWinStatistic(winResults);
+
+        LottoResultJudger lottoResultJudger = new LottoResultJudger(winResults);
+        double profit = lottoResultJudger.getProfit();
+        outputView.printTotalProfit(profit);
 
     }
 }

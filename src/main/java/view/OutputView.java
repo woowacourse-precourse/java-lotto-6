@@ -7,6 +7,7 @@
  */
 package view;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import model.enums.LottoWinResults;
@@ -30,11 +31,12 @@ public class OutputView {
         System.out.printf(lottoTicketCount + OutputMessage.LOTTO_BUY_COMPLETE.getMessage());
     }
     /**
-     * Description : 로또 번호 묶음 메세지 출력
+     * Description : 로또 번호 묶음 메세지 오름차순 출력
      *
      * @Method : printLottoNums()
      */
     public void printLottoNums(List<Integer> LottoNums){
+        Collections.sort(LottoNums);
         System.out.println(LottoNums);
     }
     /**
@@ -120,7 +122,7 @@ public class OutputView {
      *
      * @Method : printWinStatistic6()
      */
-    public void printTotalProfit(int Profit){
+    public void printTotalProfit(double Profit){
         System.out.print(OutputMessage.TOTAL_PROFIT_1.getMessage() + Profit + OutputMessage.TOTAL_PROFIT_2.getMessage());
     }
 

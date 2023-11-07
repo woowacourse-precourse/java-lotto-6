@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.domain.exception.LottoException.DUPLICATED_BONUS_NUMBER;
 import static lotto.domain.exception.LottoException.DUPLICATED_LOTTO_NUMBER;
 import static lotto.util.Constants.LOTTO_NUMBERS_SIZE;
 import static lotto.domain.exception.LottoException.INVALID_LOTTO_SIZE;
@@ -44,9 +45,11 @@ public class Lotto {
         return set.size() != numbers.size();
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
+    public boolean containsBonus(int bonusNumber) {
+        if (contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getMessage());
+        }
+        return numbers.contains(bonusNumber);
     }
 
     public boolean contains(int bonusNumber) {
@@ -55,5 +58,10 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return this.numbers;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

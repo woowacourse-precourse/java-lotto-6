@@ -7,7 +7,6 @@ public class Game {
     private List<Lotto> numberTickets;
     public void makeNumberTicket(Integer totalTicketNumber){
         while (totalTicketNumber > numberTickets.size()){
-            makeNumber();
             numberTickets.add(makeNumber());
         }
     }

@@ -11,7 +11,7 @@ public class InputBonus {
     private static final int MIN = 1;
     private static final int MAX = 45;
 
-    private int getBonus() {
+    public int getBonus() {
         System.out.println(INPUT_BONUS_MESSAGE);
         String bonus = Console.readLine();
         System.out.println();

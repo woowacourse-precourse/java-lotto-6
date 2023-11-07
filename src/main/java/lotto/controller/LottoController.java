@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.Lotto;
 import lotto.PublicLotto;
 import lotto.service.RandomLottoNumber;
+import lotto.view.InputBonus;
 import lotto.view.InputBuyLotto;
 import lotto.view.InputLottoNumber;
 
@@ -24,6 +25,9 @@ public class LottoController {
 
         InputLottoNumber inputLottoNumber = new InputLottoNumber();
         List<Integer> lottoNumbers = inputLottoNumber.getLottoNumbers();
+
+        InputBonus inputBonus = new InputBonus();
+        int bonus = inputBonus.getBonus();
 
 
     }

@@ -35,14 +35,16 @@ public class LottoNumscompare {
 
     public int compareLotto(List<Integer> userNums, List<Integer> winningNums){
         int sameNum = 0, userNumIndex = 0, winningNumIndex = 0;
-        while(userNumIndex<7&&winningNumIndex<7){
+        while(userNumIndex<6&&winningNumIndex<6){
             if(userNums.get(userNumIndex)==winningNums.get(winningNumIndex)){
                 sameNum++;
                 winningNumIndex++;
                 userNumIndex++;
+                continue;
             }
             if(userNums.get(userNumIndex)>winningNums.get(winningNumIndex)){
                 winningNumIndex++;
+                continue;
             }
             if(userNums.get(userNumIndex)<winningNums.get(winningNumIndex)){
                 userNumIndex++;
@@ -61,9 +63,10 @@ public class LottoNumscompare {
                 return;
             }
         }
-        userWinningRanks.put(8-sameNum, userWinningRanks.get(8-sameNum)+1);
+        if(sameNum < 6 && sameNum>2){
+            userWinningRanks.put(8-sameNum, userWinningRanks.get(8-sameNum)+1);
+        }
     }
-}
 
     public double calculateProfitSummary(int lottoPurchaseNum){
         double winningAmount = Rank.FIRST_PLACE.getWinningAmount()*userWinningRanks.get(1)

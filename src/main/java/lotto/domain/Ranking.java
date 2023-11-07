@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum Ranking {
     THREE_MATCHES(3, "3개 일치 (5,000원) - ", 5_000),

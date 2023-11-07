@@ -1,7 +1,7 @@
 package lotto.model;
 
-import java.util.List;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Lotto {
@@ -14,7 +14,7 @@ public class Lotto {
         validate(numbers);
         this.numbers = numbers;
     }
-    
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(LANGTH_ERROR);

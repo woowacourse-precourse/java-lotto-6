@@ -2,11 +2,11 @@ package lotto.view;
 
 import static java.lang.System.out;
 
-import java.util.List;
-import lotto.model.Lotto;
 import java.util.Collections;
 import lotto.model.Result;
 import lotto.model.Ticket;
+import lotto.model.Lotto;
+import java.util.List;
 
 public class Output {
     private static final String INPUT_PAYMENT = "구입금액을 입력해 주세요.";

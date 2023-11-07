@@ -8,7 +8,7 @@ public class Application {
         // TODO: 프로그램 구현
         PurchaseController purchaseController = new PurchaseController();
         purchaseController.handle();
-        
+
         NumberGenerateController numberGenerateController = new NumberGenerateController();
         numberGenerateController.handle();
 
@@ -23,6 +23,5 @@ public class Application {
 
         ProfitController profitController = new ProfitController();
         profitController.handle();
-
     }
 }

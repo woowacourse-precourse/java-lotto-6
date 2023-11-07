@@ -14,7 +14,7 @@ public enum StringUtil {
     PRINT_ERR_PAY_AMOUNT_IS_EMPTY("아무것도 입력받지 못했습니다. 숫자를 입력해주세요."),
     PRINT_ERR_PAY_AMOUNT_INVALID_UNIT_INTERVER(String.format("[ERROR] %d원 단위로 떨어지는 금액을 입력해주세요.", PAY_AMOUNT_UNIT.getValue())),
     PRINT_ERR_PAY_AMOUNT_NOT_DIGIT("[ERROR] 입력할 금액으로 숫자를 입력해주세요."),
-    PRINT_ERR_NUMBER_NOT_DIGIT("[ERROR] 숫자로만 구성된 번호를 입력해주세요."),
+    PRINT_ERR_NUMBER_NOT_DIGIT("[ERROR] 양의 숫자로만 구성된 번호를 입력해주세요."),
     PRINT_ERR_NUMBER_INVALID_RANGE(String.format("[ERROR] %d와 %d사이의 숫자를 입력해주세요.",
             LOTTO_NUMBER_START_INCLUSIVE.getValue(),
             LOTTO_NUMBER_END_INCLUSIVE.getValue()

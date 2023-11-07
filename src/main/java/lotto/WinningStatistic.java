@@ -39,4 +39,20 @@ public class WinningStatistic {
         return totalAmount;
     }
 
+    public String getStatisticMessage() {
+        return
+            STATISTIC_MESSAGE
+                .formatted(
+                    String.format(THOUSANDS_SEPARATOR, THREE_MATCHES.getWinningAmount()),
+                    winningStatistics.get(THREE_MATCHES),
+                    String.format(THOUSANDS_SEPARATOR, FOUR_MATCHES.getWinningAmount()),
+                    winningStatistics.get(FOUR_MATCHES),
+                    String.format(THOUSANDS_SEPARATOR, FIVE_MATCHES.getWinningAmount()),
+                    winningStatistics.get(FIVE_MATCHES),
+                    String.format(THOUSANDS_SEPARATOR, FIVE_BONUS_MATCHES.getWinningAmount()),
+                    winningStatistics.get(FIVE_BONUS_MATCHES),
+                    String.format(THOUSANDS_SEPARATOR, SIX_MATCHES.getWinningAmount()),
+                    winningStatistics.get(SIX_MATCHES)
+                );
+    }
 }

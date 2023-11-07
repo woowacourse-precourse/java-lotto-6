@@ -1,6 +1,9 @@
 package lotto.domain;
 
-import java.util.Collections;
+import static lotto.constant.ExceptionMessage.LOTTO_DUPLICATE_NUMBER_EXCEPTION;
+import static lotto.constant.ExceptionMessage.LOTTO_WRONG_RANGE_EXCEPTION;
+import static lotto.constant.ExceptionMessage.LOTTO_WRONG_SIZE_EXCEPTION;
+
 import java.util.List;
 
 public class Lotto {
@@ -13,15 +16,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (isWrongSize(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_WRONG_SIZE_EXCEPTION.getMessage());
         }
 
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_DUPLICATE_NUMBER_EXCEPTION.getMessage());
         }
 
         if (isWrongRange(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LOTTO_WRONG_RANGE_EXCEPTION.getMessage());
         }
     }
 
@@ -45,6 +48,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        return numbers;
     }
 }

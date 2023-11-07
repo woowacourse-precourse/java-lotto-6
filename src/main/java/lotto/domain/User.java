@@ -15,6 +15,7 @@ public class User {
         try {
             validateLong(purchaseAmount);
             validateDivide(purchaseAmount);
+            validateZero(purchaseAmount);
             this.purchaseAmount = Long.parseLong(purchaseAmount);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
@@ -59,6 +60,13 @@ public class User {
 
     public long getBonusNumber() {
         return bonusNumber;
+    }
+
+    private void validateZero(String purchaseAmount) {
+        long number = Long.parseLong(purchaseAmount);
+        if (number == 0) {
+            throw new IllegalArgumentException(ErrorMessages.INVALID_ZERO.getMessage());
+        }
     }
 
     private void validateRange(int checkNumber) {

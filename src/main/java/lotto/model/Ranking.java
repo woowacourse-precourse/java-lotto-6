@@ -6,11 +6,11 @@ import java.util.stream.Collectors;
 
 public enum Ranking {
     NO_RANK(0, false, 0),
-    FIFTH_RANKING(3, false, 2_000_000_000),
-    FOURTH_RANKING(4, false, 30_000_000),
+    FIFTH_RANKING(3, false, 5_000),
+    FOURTH_RANKING(4, false, 50_000),
     THIRD_RANKING(5, false, 1_500_000),
-    SECOND_RANKING(5, true, 50_000),
-    FIRST_RANKING(6, false, 5_000);
+    SECOND_RANKING(5, true, 30_000_000),
+    FIRST_RANKING(6, false, 2_000_000_000);
 
     private final int accordedCount;
     private final boolean hasBonusNumber;

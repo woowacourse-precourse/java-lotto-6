@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.validation.validation.isInvalidNumber;
-import static lotto.validation.validation.isNotDivisible;
-import static lotto.validation.validation.isZeroInput;
+import static lotto.validation.Validation.isInvalidNumber;
+import static lotto.validation.Validation.isNotDivisible;
+import static lotto.validation.Validation.isZeroInput;
 
 
 public class LottoAmount {

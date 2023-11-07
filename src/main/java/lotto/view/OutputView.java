@@ -8,14 +8,12 @@ public class OutputView {
     public static int MONEYUNIT = 1000;
     public static int PERCENT = 100;
     public static void PrintStart () {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println("당첨 통계\n---");
     }
-    public static void printEnd(Map<Ranking, Integer> result) {
+    public static void printEnd(Map<Ranking, Integer> maching) {
         for (int i = 0; i < Ranking.values().length; i++ ){
-            Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
+            Ranking.values()[i].printMessage(maching.get(Ranking.values()[i]));
         }
-
     }
     public static void printRate(Map<Ranking, Integer> result, int lottoAmount) {
         double Revenue = 0;

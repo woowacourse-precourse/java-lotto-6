@@ -33,11 +33,11 @@ public class Lotto {
         return numbers;
     }
 
-    public int countMatch(Lotto lotto) {
-        return (int) numbers.stream().filter(lotto::containNumber).count();
+    public int countContain(Lotto lotto) {
+        return (int) numbers.stream().filter(lotto::containCheck).count();
     }
 
-    public boolean containNumber(int number) {
+    public boolean containCheck(int number) {
         return numbers.contains(number);
     }
 
@@ -60,7 +60,7 @@ public class Lotto {
             }
         }
         if (input.stream().distinct().toList().size() != SIZE_NUM) {
-            System.out.println(SIZE_NUM + "개의 숫자가 중복되지 않게 입력해주세요.");
+            System.out.println(SIZE_NUM + "개의 숫자가 서로 중복되지 않게 입력해주세요.");
             throw new IllegalArgumentException();
         }
     }

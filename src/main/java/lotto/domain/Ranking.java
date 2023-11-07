@@ -9,27 +9,27 @@ public enum Ranking { //로또 등수 enum
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - ");
 
-    Ranking(Integer countOfMatch, Integer reward, String message) {
-        this.countOfMatch = countOfMatch;
+    Ranking(Integer matching, Integer reward, String message) {
+        this.matching = matching;
         this.reward = reward;
         this.message = message;
     }
 
-    private final Integer countOfMatch;
+    private final Integer matching;
     private final Integer reward;
     private final String message;
 
-    public static Ranking valueOf(Integer countOfMatch, boolean matchBonus) {
-        if (countOfMatch < 3) {
+    public static Ranking calculator(Integer matching, boolean matchBonus) {
+        if (matching < 3) {
             return MISS;
         }
 
-        if (SECOND.matchCount(countOfMatch) && matchBonus) {
+        if (SECOND.matchCount(matching) && matchBonus) {
             return SECOND;
         }
 
         for (Ranking rank : values()) {
-            if (rank.matchCount(countOfMatch) && rank != SECOND) {
+            if (rank.matchCount(matching) && rank != SECOND) {
                 return rank;
             }
         } throw new IllegalArgumentException("[ERROR] 오류가 발생했습니다.");
@@ -39,8 +39,8 @@ public enum Ranking { //로또 등수 enum
         return reward;
     }
 
-    private boolean matchCount(int countOfMatch) {
-        return this.countOfMatch == countOfMatch;
+    private boolean matchCount(int number) {
+        return this.matching == number;
     }
 
     public void printMessage(int count) {
@@ -48,8 +48,8 @@ public enum Ranking { //로또 등수 enum
             System.out.println(message + count + "개");
         }
     }
-    public int getCountOfMatch() {
-        return this.countOfMatch;
-    }
+//    public int getCountOfMatch() {
+//        return this.countOfMatch;
+//    }
 }
 

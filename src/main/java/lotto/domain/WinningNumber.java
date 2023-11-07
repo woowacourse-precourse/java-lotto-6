@@ -21,9 +21,10 @@ public class WinningNumber {
         try{
             validateSplitCheck(inputWinningNumber);
             this.inputWinningNumber = inputWinningNumber;
-            validateIsNumber(inputWinningNumber);
-            validateRange(inputWinningNumber);
-            validateCount(inputWinningNumber);
+            validateIsNumber(numbers);
+            validateRange(numbers);
+            validateCount(numbers);
+            validateSame(numbers);
             winningNumber = new ArrayList<>();
             setWinningNumberList(this.inputWinningNumber);
         }catch (IllegalArgumentException e) {
@@ -34,7 +35,7 @@ public class WinningNumber {
 
 
 
-    private void validateSplitCheck(String inputWinningNumber) {
+    public void validateSplitCheck(String inputWinningNumber) {
         // 당첨번호가 ","로 구분되어지는가
         if (!inputWinningNumber.matches("\\d+(,\\d+){5}")) {
             throw new IllegalArgumentException("[ERROR] 당첨번호 입력 형식이 올바르지 않습니다.");
@@ -43,7 +44,7 @@ public class WinningNumber {
         numbers = inputWinningNumber.split(",");
     }
 
-    private void validateIsNumber(String inputWinningNumber){
+    public void validateIsNumber(String[] numbers){
         // 당첨번호가 숫자로 되어있는가
         for (String number : numbers) {
             try {
@@ -54,7 +55,7 @@ public class WinningNumber {
         }
     }
 
-    private void validateRange(String inputWinningNumber){
+    public void validateRange(String[] numbers){
         // 당첨번호가 1~45사이의 숫자인가
         for (String number : numbers) {
             if(Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45){
@@ -63,7 +64,7 @@ public class WinningNumber {
         }
     }
 
-    private void validateCount(String inputWinningNumber){
+    public void validateCount(String[] numbers){
         // 당첨번호의 개수가 6개인가
         if(numbers.length != 6){
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 선택해야합니다.");
@@ -71,7 +72,7 @@ public class WinningNumber {
     }
 
     // 당첨번호에 중복이 있는가
-    private void validateSame(String inputWinningNumber){
+    public void validateSame(String[] numbers){
         Set<Integer> numberSet = new HashSet<>();
         // 당첨번호에 중복이 있는지 확인
         for (String number : numbers) {
@@ -83,7 +84,7 @@ public class WinningNumber {
     }
 
 
-    private void setWinningNumberList(String inputWinningNumber) {
+    public void setWinningNumberList(String inputWinningNumber) {
         numbers = inputWinningNumber.split(",");
         for (String number : numbers) {
             int num = Integer.parseInt(number);

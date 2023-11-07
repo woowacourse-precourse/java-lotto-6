@@ -27,7 +27,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     // 중복 로또번호 있는지 확인
-    private void validateSame(List<Integer> numbers){
+    public void validateSame(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int number : numbers) {
             if (uniqueNumbers.contains(number)) {
@@ -37,7 +37,7 @@ public class Lotto {
         }
     }
 
-    private void validateRange(List<Integer> numbers){
+    public void validateRange(List<Integer> numbers){
         for(int number : numbers){
            if(number < 1 || number > 45){
                throw new IllegalArgumentException("로또 번호의 범위는 1~45입니다.");

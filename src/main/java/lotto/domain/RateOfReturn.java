@@ -10,7 +10,7 @@ public class RateOfReturn {
     }
 
     public void setReward(long winning){
-        reward = winning;
+        reward += winning;
     }
 
     public double getRateOfReturn() {
@@ -22,6 +22,6 @@ public class RateOfReturn {
     }
 
     public double getReward() {
-        return rateOfReturn;
+        return reward;
     }
 }

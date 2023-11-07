@@ -72,7 +72,7 @@ public class GameService {
 
     public void revenue(){
         rateOfReturn.setRateOfReturn();
-        outputView.rateOfReturn(rateOfReturn.getReward());
+        outputView.rateOfReturn(rateOfReturn.getRateOfReturn());
     }
 
 }

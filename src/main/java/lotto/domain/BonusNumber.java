@@ -17,7 +17,7 @@ public class BonusNumber {
         }
     }
 
-    private static void validateNumber(String number){
+    public void validateNumber(String number){
         try {
             int num = Integer.parseInt(number);
         } catch (NumberFormatException e) {
@@ -25,7 +25,7 @@ public class BonusNumber {
         }
     }
 
-    private static void validateRange(String number) {
+    public void validateRange(String number) {
             if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }

@@ -27,4 +27,10 @@ public class OutputView {
     public static void printEmptyLine() {
         System.out.println();
     }
+
+    public static void printRateOfReturn(double rate) {
+        System.out.print(OutputMessage.TOTAL_RATE_OF_RETURN.getOutputMessage());
+        System.out.print(rate);
+        System.out.println(OutputMessage.END_OF_RATE_WORD.getOutputMessage());
+    }
 }

@@ -9,9 +9,11 @@ public class WinningStatistic {
 
     public WinningStatistic(EnumMap<LottoResultRule, Integer> input) {
         for (LottoResultRule value : LottoResultRule.values()) {
-            this.elements.put(value, input.get(value));
+            this.elements.put(value, input.getOrDefault(value, 0));
         }
     }
 
-
+    public EnumMap<LottoResultRule, Integer> toelements() {
+        return elements;
+    }
 }

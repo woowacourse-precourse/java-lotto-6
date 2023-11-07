@@ -3,6 +3,7 @@ package lotto.io;
 import lotto.constant.ProcessMessage;
 import lotto.domain.Lottos;
 import lotto.domain.Ticket;
+import lotto.domain.WinningStatistic;
 
 public class OutputView {
 
@@ -13,11 +14,11 @@ public class OutputView {
     }
 
     public void printPurchaseAmountRequset() {
-        System.out.println(ProcessMessage.PURCHASE_AMOUNT_REQUSET.toValue());
+        System.out.println(ProcessMessage.PURCHASE_AMOUNT_REQUSET.toMessage());
     }
 
     public void printNumberOfTicket(final Ticket ticket) {
-        System.out.println(ProcessMessage.NEW_LINE.toValue() + outputFommatter.toNumberOfTicket(ticket));
+        System.out.println(ProcessMessage.NEW_LINE.toMessage() + outputFommatter.toNumberOfTicket(ticket));
     }
 
     public void printNumberOfLottos(final Lottos lottos) {
@@ -25,11 +26,17 @@ public class OutputView {
     }
 
     public void printWinningLottoRequset() {
-        System.out.println(ProcessMessage.WINNING_LOTTO_REQUEST.toValue());
+        System.out.println(ProcessMessage.WINNING_LOTTO_REQUEST.toMessage());
     }
 
     public void printBonusNumberRequset() {
-        System.out.println(ProcessMessage.BONUS_NUMBER_REQUEST.toValue());
+        System.out.println(ProcessMessage.BONUS_NUMBER_REQUEST.toMessage());
+    }
+
+    public void printResultLotto(final WinningStatistic winningStatistic) {
+        System.out.println(ProcessMessage.WINNING_STATISTICS.toMessage());
+        System.out.println(ProcessMessage.STATISTICS_DELIMITER.toMessage());
+        System.out.println(outputFommatter.toLottoResult(winningStatistic));
     }
 
     public void printExceptionMessage(IllegalArgumentException e) {

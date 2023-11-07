@@ -5,11 +5,13 @@ public enum ProcessMessage {
     NUMBER_OF_LOTTO_TICKET("%s개를 구매했습니다."),
     WINNING_LOTTO_REQUEST("당첨 번호를 입력해주세요"),
     BONUS_NUMBER_REQUEST("보너스 번호를 입력해주세요"),
+    WINNING_STATISTICS("당첨 통계"),
+    STATISTICS_DELIMITER("---"),
     NEW_LINE("\n"),
     LEFT_SQUARE_BRACKET("["),
     RIGHT_SQUARE_BRACKET("]"),
     SPACE(" "),
-    COMMA("," + SPACE.toValue());
+    COMMA("," + SPACE.toMessage());
 
     private final String message;
 
@@ -17,7 +19,7 @@ public enum ProcessMessage {
         this.message = message;
     }
 
-    public String toValue() {
+    public String toMessage() {
         return this.message;
     }
 }

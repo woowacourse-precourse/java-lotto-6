@@ -31,22 +31,48 @@ public class LottoService {
         return new Lottos(elements);
     }
 
+    //    public WinningStatistic compareLotto(final Lottos lottos, final WinningLotto winningLotto) {
+//        List<Integer> winningLottoNumbers = winningLotto.toLotto().getNumbers();
+//        Integer bonusNumber = winningLotto.toBonusNumber().toValue();
+//        EnumMap<LottoResultRule, Integer> enumMap = new EnumMap<>(LottoResultRule.class);
+//        for (Lotto lotto : lottos.toElements()) {
+//            List<Integer> LottoNumbers = lotto.getNumbers();
+//            Long count = LottoNumbers.stream().filter(winningLottoNumbers::contains).distinct().count();
+//            if (count == 5) {
+//                if (LottoNumbers.contains(bonusNumber)) {
+//                    enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), true), 1);
+//                }
+//                enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false), 1);
+//            }
+//            enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false), 1);
+//        }
+//        return new WinningStatistic(enumMap);
+//    }
     public WinningStatistic compareLotto(final Lottos lottos, final WinningLotto winningLotto) {
         List<Integer> winningLottoNumbers = winningLotto.toLotto().getNumbers();
         Integer bonusNumber = winningLotto.toBonusNumber().toValue();
         EnumMap<LottoResultRule, Integer> enumMap = new EnumMap<>(LottoResultRule.class);
+
         for (Lotto lotto : lottos.toElements()) {
-            List<Integer> LottoNumbers = lotto.getNumbers();
-            Long count = LottoNumbers.stream().filter(winningLottoNumbers::contains).distinct().count();
-            if (count == 5) {
-                if (LottoNumbers.contains(bonusNumber)) {
-                    enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), true), 1);
-                }
-                enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false), 1);
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            long count = lottoNumbers.stream().filter(winningLottoNumbers::contains).distinct().count();
+            if (count == 5 && lottoNumbers.contains(bonusNumber)) {
+                incrementEnumMap(enumMap, LottoResultRule.matchCount(5, true));
             }
-            enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false), 1);
+            if (count != 5) {
+                incrementEnumMap(enumMap, LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false));
+            }
         }
         return new WinningStatistic(enumMap);
+    }
+
+    private void incrementEnumMap(EnumMap<LottoResultRule, Integer> enumMap, LottoResultRule key) {
+        Integer value = enumMap.get(key);
+        if (value == null) {
+            value = 0;
+        }
+        value = value + 1;
+        enumMap.put(key, value);
     }
 
 }

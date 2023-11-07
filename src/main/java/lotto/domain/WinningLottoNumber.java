@@ -13,8 +13,8 @@ import java.util.function.Predicate;
 import lotto.exception.Exception;
 
 public class WinningLottoNumber {
-    private static Lotto winLottoNumber;
-    private static int bonusNumber;
+    private final Lotto winLottoNumber;
+    private final int bonusNumber;
 
     public WinningLottoNumber(Lotto winLottoNumber, int bonusNumber) {
         this.winLottoNumber = winLottoNumber;
@@ -47,7 +47,7 @@ public class WinningLottoNumber {
         return bonusNumber >= LOTTO_MINIMUM_BOUND.getValue() && bonusNumber <= LOTTO_MAXIMUM_BOUND.getValue();
     }
 
-    public static LottoRank calculateLottoPrize(Lotto otherLotto) {
+    public LottoRank calculateLottoPrize(Lotto otherLotto) {
         int matchNumbers = matchWithLotto(otherLotto);
 
         if (matchNumbers < FIFTH_RANK.getMatchNumbers()) {
@@ -61,7 +61,7 @@ public class WinningLottoNumber {
         return LottoRank.getLottoRank(matchNumbers);
     }
 
-    private static int matchWithLotto(Lotto otherLotto) {
+    private int matchWithLotto(Lotto otherLotto) {
         int matchNumbers = winLottoNumber.getNumbers()
                 .stream()
                 .filter(number -> otherLotto.getNumbers()
@@ -73,7 +73,7 @@ public class WinningLottoNumber {
         return matchNumbers;
     }
 
-    private static boolean matchWithBonus(Lotto otherLotto) {
+    private boolean matchWithBonus(Lotto otherLotto) {
         return otherLotto.containsBonusNumber(bonusNumber);
     }
 }

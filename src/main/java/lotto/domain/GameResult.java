@@ -10,23 +10,26 @@ public class GameResult {
     private static final int DECIMAL_POINT = 2;
     private static final int PERCENTAGE_CONVERSION = 100;
     private static final int ARRAY_INDEX_SIZE = 7;
+
     private final int[] lottoRankResult;
     private final List<Lotto> playerLotto;
+    private final WinningLottoNumber winningLottoNumber;
     private final List<LottoRank> lottoResult;
 
-    private GameResult(List<Lotto> playerLotto) {
+    private GameResult(List<Lotto> playerLotto, WinningLottoNumber winningLottoNumber) {
         this.playerLotto = playerLotto;
+        this.winningLottoNumber = winningLottoNumber;
         lottoRankResult = new int[ARRAY_INDEX_SIZE];
         lottoResult = new ArrayList<>();
     }
 
-    public GameResult of(List<Lotto> playerLotto) {
-        return new GameResult(playerLotto);
+    public GameResult of(List<Lotto> playerLotto, WinningLottoNumber winningLottoNumber) {
+        return new GameResult(playerLotto, winningLottoNumber);
     }
 
     public List<LottoRank> calculateRank() {
         for (Lotto eachLotto : playerLotto) {
-            lottoResult.add(WinningLottoNumber.calculateLottoPrize(eachLotto));
+            lottoResult.add(winningLottoNumber.calculateLottoPrize(eachLotto));
         }
 
         return lottoResult;

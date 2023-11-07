@@ -1,11 +1,11 @@
 package lotto.utils;
 
-public enum CharUnit {
+public enum CharConstants {
     COMMAS(',');
 
-    private char value;
+    private final char value;
 
-    CharUnit(char value) {
+    CharConstants(char value) {
         this.value = value;
     }
 

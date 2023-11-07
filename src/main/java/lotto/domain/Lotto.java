@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.utils.ValueUnit.END_NUMBER;
-import static lotto.utils.ValueUnit.LOTTO_NUMBERS;
-import static lotto.utils.ValueUnit.START_NUMBER;
+import static lotto.utils.LottoConstants.END_NUMBER;
+import static lotto.utils.LottoConstants.LOTTO_NUMBERS;
+import static lotto.utils.LottoConstants.START_NUMBER;
 
 import java.util.HashSet;
 import java.util.List;

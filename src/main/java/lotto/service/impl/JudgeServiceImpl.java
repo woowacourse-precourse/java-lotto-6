@@ -1,30 +1,32 @@
 package lotto.service.impl;
 
+import static lotto.utils.LottoConstants.ALL_WINS;
+import static lotto.utils.LottoConstants.FIVE_WINS;
+import static lotto.utils.LottoConstants.NO_WIN;
+import static lotto.utils.LottoConstants.THREE_WINS;
+import static lotto.utils.CalculationConstants.MINUS_ONE;
+import static lotto.utils.CalculationConstants.MINUS_TWO;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Wallet;
 import lotto.domain.WinningLotto;
 import lotto.service.JudgeService;
-import lotto.utils.ValueUnit;
 import lotto.vo.Result;
 
 public class JudgeServiceImpl implements JudgeService {
 
     private boolean isThirdToFifthPlace(int winCount) {
-        ValueUnit fiveWins = ValueUnit.FIVE_WINS;
-        ValueUnit threeWins = ValueUnit.THREE_WINS;
-        return winCount <= fiveWins.getValue() && winCount >= threeWins.getValue();
+        return winCount <= FIVE_WINS.getValue() && winCount >= THREE_WINS.getValue();
     }
 
     private boolean isFirstPlace(int winCount) {
-        ValueUnit allWins = ValueUnit.ALL_WINS;
-        return winCount == allWins.getValue();
+        return winCount == ALL_WINS.getValue();
     }
 
     private boolean isSecondPlace(int winCount, boolean hasBonusNumber) {
-        ValueUnit fiveWins = ValueUnit.FIVE_WINS;
-        return winCount == fiveWins.getValue() && hasBonusNumber;
+        return winCount == FIVE_WINS.getValue() && hasBonusNumber;
     }
 
     @Override
@@ -56,15 +58,12 @@ public class JudgeServiceImpl implements JudgeService {
     }
 
     private int calcRank(int winCount, boolean hasBonusNumber) {
-        ValueUnit noWin = ValueUnit.NO_WIN;
         if (isFirstPlace(winCount) || isSecondPlace(winCount, hasBonusNumber)) {
-            ValueUnit minusOne = ValueUnit.MINUS_ONE;
-            return winCount - minusOne.getValue();
+            return winCount - MINUS_ONE.getValue();
         } else if (isThirdToFifthPlace(winCount)) {
-            ValueUnit minusTwo = ValueUnit.MINUS_TWO;
-            return winCount - minusTwo.getValue();
+            return winCount - MINUS_TWO.getValue();
         }
 
-        return noWin.getValue();
+        return NO_WIN.getValue();
     }
 }

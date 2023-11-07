@@ -1,6 +1,6 @@
 package lotto.vo;
 
-import lotto.utils.ValueUnit;
+import static lotto.utils.LottoConstants.LOTTO_TICKET_PURCHASE_AMOUNT;
 
 public final class Money {
 
@@ -12,13 +12,11 @@ public final class Money {
     }
 
     public boolean isLottoCountSameAsMoney(Integer count) {
-        ValueUnit lottoTicketPurchaseAmount = ValueUnit.LOTTO_TICKET_PURCHASE_AMOUNT;
-        return money.equals(count * lottoTicketPurchaseAmount.getValue());
+        return money.equals(count * LOTTO_TICKET_PURCHASE_AMOUNT.getValue());
     }
 
     public String lottoExchangeCount() {
-        ValueUnit lottoTicketPurchaseAmount = ValueUnit.LOTTO_TICKET_PURCHASE_AMOUNT;
-        return Integer.toString(money / lottoTicketPurchaseAmount.getValue());
+        return Integer.toString(money / LOTTO_TICKET_PURCHASE_AMOUNT.getValue());
     }
 
     public Integer getMoney() {

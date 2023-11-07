@@ -1,6 +1,6 @@
 package lotto.utils;
 
-public enum StringUnit {
+public enum LabelConstants {
     COMMAS(","),
     BLANK(""),
     UNIT("개")
@@ -8,7 +8,7 @@ public enum StringUnit {
 
     private final String value;
 
-    StringUnit(String value) {
+    LabelConstants(String value) {
         this.value = value;
     }
 

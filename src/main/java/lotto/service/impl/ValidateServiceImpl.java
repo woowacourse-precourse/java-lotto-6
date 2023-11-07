@@ -1,18 +1,22 @@
 package lotto.service.impl;
 
+import static lotto.utils.LottoConstants.LOTTO_NUMBERS;
+import static lotto.utils.LottoConstants.LOTTO_TICKET_PURCHASE_AMOUNT;
+import static lotto.utils.CalculationConstants.COMMAS_NUMBERS;
+import static lotto.utils.CalculationConstants.REMAINS;
+
 import java.util.Arrays;
 import java.util.List;
 import lotto.exception.IllegalCommasFormatException;
 import lotto.exception.IllegalInputException;
 import lotto.exception.IllegalTypeFormatException;
 import lotto.service.ValidateService;
-import lotto.utils.CharUnit;
-import lotto.utils.StringUnit;
-import lotto.utils.ValueUnit;
+import lotto.utils.CharConstants;
+import lotto.utils.LabelConstants;
 
 public class ValidateServiceImpl implements ValidateService {
     private void checkBlankInput(String input) {
-        StringUnit blank = StringUnit.BLANK;
+        LabelConstants blank = LabelConstants.BLANK;
         if (input.equals(blank.getValue())) {
             throw new IllegalInputException();
         }
@@ -20,15 +24,13 @@ public class ValidateServiceImpl implements ValidateService {
 
     private void checkCorrectCommas(String input, List<String> inputStream) {
         long commasCount = countCommas(input);
-        ValueUnit commasNumbers = ValueUnit.COMMAS_NUMBERS;
-        ValueUnit lottoNumbers = ValueUnit.LOTTO_NUMBERS;
-        if (commasCount != commasNumbers.getValue() || inputStream.size() != lottoNumbers.getValue()) {
+        if (commasCount != COMMAS_NUMBERS.getValue() || inputStream.size() != LOTTO_NUMBERS.getValue()) {
             throw new IllegalCommasFormatException();
         }
     }
 
     private long countCommas(String input) {
-        CharUnit commas = CharUnit.COMMAS;
+        CharConstants commas = CharConstants.COMMAS;
         return input.chars().filter(ch -> ch == commas.getValue()).count();
     }
 
@@ -43,9 +45,7 @@ public class ValidateServiceImpl implements ValidateService {
     @Override
     public void checkCorrectMoney(String input) {
         Integer money = checkIncludeChar(input);
-        ValueUnit lottoTicketPurchaseAmount = ValueUnit.LOTTO_TICKET_PURCHASE_AMOUNT;
-        ValueUnit remains = ValueUnit.REMAINS;
-        if (money % lottoTicketPurchaseAmount.getValue() != remains.getValue()) {
+        if (money % LOTTO_TICKET_PURCHASE_AMOUNT.getValue() != REMAINS.getValue()) {
             throw new IllegalTypeFormatException();
         }
     }
@@ -53,7 +53,7 @@ public class ValidateServiceImpl implements ValidateService {
     @Override
     public List<Integer> checkCorrectWinnerNumbers(String input) {
         checkBlankInput(input);
-        StringUnit commas = StringUnit.COMMAS;
+        LabelConstants commas = LabelConstants.COMMAS;
         List<String> inputStream = Arrays.asList(input.split(commas.getValue()));
         checkCorrectCommas(input, inputStream);
         try {

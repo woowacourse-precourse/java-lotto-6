@@ -1,11 +1,12 @@
 package lotto.vo;
 
-import static lotto.utils.ValueUnit.FIFTH_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.FIRST_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.FOURTH_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.LAST_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.SECOND_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.THIRD_PLACE_WINNING_AMOUNT;
+
+import static lotto.utils.LottoConstants.FIFTH_PLACE_WINNING_AMOUNT;
+import static lotto.utils.LottoConstants.FIRST_PLACE_WINNING_AMOUNT;
+import static lotto.utils.LottoConstants.FOURTH_PLACE_WINNING_AMOUNT;
+import static lotto.utils.LottoConstants.LAST_PLACE_WINNING_AMOUNT;
+import static lotto.utils.LottoConstants.SECOND_PLACE_WINNING_AMOUNT;
+import static lotto.utils.LottoConstants.THIRD_PLACE_WINNING_AMOUNT;
 
 import java.util.Arrays;
 import java.util.List;

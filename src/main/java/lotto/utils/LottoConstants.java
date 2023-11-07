@@ -1,20 +1,15 @@
 package lotto.utils;
 
-public enum ValueUnit {
+public enum LottoConstants {
 
     LOTTO_TICKET_PURCHASE_AMOUNT(1000),
-    NUMBER_OF_ROUNDING_DIGITS(1),
-    REMAINS(0),
     LOTTO_NUMBERS(6),
-    COMMAS_NUMBERS(5),
     START_NUMBER(1),
     END_NUMBER(45),
-    START_COUNT(0),
+    NUMBER_OF_ROUNDING_DIGITS(1),
     FIVE_WINS(5),
     THREE_WINS(3),
     ALL_WINS(6),
-    MINUS_ONE(1),
-    MINUS_TWO(2),
     NO_WIN(0),
     FIFTH_PLACE(1),
     FIRST_PLACE(6),
@@ -23,15 +18,11 @@ public enum ValueUnit {
     FOURTH_PLACE_WINNING_AMOUNT(50000),
     THIRD_PLACE_WINNING_AMOUNT(1500000),
     SECOND_PLACE_WINNING_AMOUNT(30000000),
-    FIRST_PLACE_WINNING_AMOUNT(2000000000),
-    ZERO(0),
-    PERCENT_CALCULATION(100),
-    ONE(1)
-    ;
+    FIRST_PLACE_WINNING_AMOUNT(2000000000);
 
-    private Integer value;
+    private final Integer value;
 
-    ValueUnit(Integer value) {
+    LottoConstants(Integer value) {
         this.value = value;
     }
 

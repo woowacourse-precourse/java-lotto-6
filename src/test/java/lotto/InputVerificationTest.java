@@ -3,42 +3,79 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class InputVerificationTest {
     private static InputVerification inputVerification = new InputVerification();
 
-    @DisplayName("1000으로 나누어 떨어지지 않으면 예외가 발생한다.")
     @Test
-    void isMultipleOfThousandTest() {
-        assertThatThrownBy( () -> inputVerification.isMultipleOfThousand(1234))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1000의 배수가 아닙니다.");
+    @DisplayName("당첨번호의 입력 개수가 옳지 않은 경우 false 반환")
+    public void winningNumbersInvalidInputSizeTest() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3);
 
-        inputVerification.isMultipleOfThousand(12000);
+        boolean isValid = inputVerification.verifyWinningNumbers(numbers);
+
+        assertFalse(isValid);
     }
 
-    @DisplayName("숫자가 1~45 사이에 없다면, 예외가 발생한다.")
     @Test
-    void isNumberInRangeTest() {
-        assertThatThrownBy(() -> inputVerification.isNumberInRange(46))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1~45 사이의 수가 아닙니다.");
+    @DisplayName("당첨번호의 숫자 범위가 옳지 않은 경우 false 반환")
+    public void winningNumbersInvalidRangeTest() {
+        List<Integer> numbers = Arrays.asList(0, 2, 3, 46, 47);
 
-        inputVerification.isNumberInRange(1);
-        inputVerification.isNumberInRange(44);
+        boolean isValid = inputVerification.verifyWinningNumbers(numbers);
+
+        assertFalse(isValid);
     }
 
-    @DisplayName("리스트의 숫자가 1~45 사이에 없다면, 예외가 발생한다.")
     @Test
-    void isNumbersInRangeTest() {
+    @DisplayName("당첨번호가 중복된 경우")
+    public void winningNumbersDuplicateNumbersTest() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 3, 4, 5);
 
-        assertThatThrownBy(() -> inputVerification.isNumbersInRange(List.of(1, 2, 46, 45, 33, 22)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1~45 사이의 수가 아닙니다.");
+        boolean isValid = inputVerification.verifyWinningNumbers(numbers);
 
-        inputVerification.isNumbersInRange(List.of(1, 2, 3, 4, 5, 6));
+        assertFalse(isValid);
+    }
+
+    @Test
+    @DisplayName("당첨번호가 유효한 경우 true")
+    public void testBonusNumberValidInput() {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        boolean isValid = inputVerification.verifyWinningNumbers(numbers);
+
+        assertTrue(isValid);
+    }
+
+    @DisplayName("보너스번호의 숫자번위가 옳지 않은 경우")
+    @Test
+    void bonusNumberInvalidInputRangeTest() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        boolean isValid = inputVerification.verifyBonusNumber(winningNumbers, 46);
+
+        assertFalse(isValid);
+    }
+
+    @DisplayName("보너스 번호 중복")
+    @Test
+    void bonusNumberDuplicateTest() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        boolean isValid = inputVerification.verifyBonusNumber(winningNumbers, 3);
+
+        assertFalse(isValid);
+    }
+
+    @DisplayName("보너스 번호 유효입력")
+    @Test
+    void bonusNumberValidTest() {
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        boolean isValid = inputVerification.verifyBonusNumber(winningNumbers, 7);
+
+        assertTrue(isValid);
     }
 }

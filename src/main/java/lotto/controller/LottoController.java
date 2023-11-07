@@ -1,31 +1,30 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lotto;
+import lotto.model.Lotto;
+import lotto.model.Rank;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static java.util.Collections.sort;
-import static lotto.Lotto.LottoRank.*;
-import static lotto.view.OutputView.printPrizeResult;
+import static lotto.model.Rank.*;
 
 public class LottoController {
 
-    private List<Lotto> lotto = new ArrayList<>();
-    private Lotto winLotto;
+    private static final int TICKET_PRICE = 1000;
+    private static final float PERCENTAGE = 100;
+
+    private List<Lotto> userTickets = new ArrayList<>();
+    private Lotto winningTicket;
     private int bonusNumber;
 
-    public int first;
-    public int second;
-    public int third;
-    public int fourth;
-    public int fifth;
+    private int first;
+    private int second;
+    private int third;
+    private int fourth;
+    private int fifth;
 
     public void startLotto() {
         OutputView.printGetPurchasePriceMessage();
@@ -37,7 +36,7 @@ public class LottoController {
         for(int i = 0; i < lottoNum ; i++) {
             List<Integer> lottoNumber = getLottoNumber();
             OutputView.printLottoNumber(lottoNumber);
-            lotto.add(new Lotto(lottoNumber));
+            userTickets.add(new Lotto(lottoNumber));
         }
 
         System.out.println();
@@ -48,23 +47,33 @@ public class LottoController {
         OutputView.printBonusNumberMessage();
         bonusNumber = getBonusNumber();
 
-        for (int i = 0; i < lottoNum; i++) {
-            List<Integer> lottoNumbers = lotto.get(i).getNumbers();
-            List<Integer> winNumbers = winLotto.getNumbers();
-            int sameNumberCount = compareLotto(lottoNumbers, winNumbers);
-            setRank(lotto.get(i), sameNumberCount);
+        for (int i = 0; i < userTickets.size(); i++) {
+
+            List<Integer> userNumbers = userTickets.get(i).getNumbers();
+            List<Integer> winningNumbers = winningTicket.getNumbers();
+
+            int matchCount = countMatchingNumbers(userNumbers, winningNumbers);
+            Rank rank = setRank(userTickets, matchCount);
+
+            getResult(rank);
         }
 
-        /**
-         * 로또 배열
-         * 그 중에 한 로또를 뽑는 걸 반복하는 함수
-         * ture인 숫자의 갯수를 카운트
-         * 뽑은 로또의 숫자들을 하나씩 win로또 배열에 비교하는 함수 -> true 리턴
-         */
+        List<Integer> rates = new ArrayList<>();
+        rates.add(first);
+        rates.add(second);
+        rates.add(third);
+        rates.add(fourth);
+        rates.add(fifth);
 
-        for (int i = 0; i < lottoNum; i++) {
+        float rateOfProfit = getRateOfProfit(purchasePrice, rates);
 
-            switch (lotto.get(i).getRank()) {
+        OutputView.printPrizeResult(rates);
+        OutputView.printRateOfProfit(rateOfProfit);
+
+    }
+
+    public void getResult(Rank rank) {
+            switch (rank) {
                 case FIRST:
                     first += 1;
                     break;
@@ -82,45 +91,26 @@ public class LottoController {
                     break;
             }
 
-        }
-
-//        Map<Lotto.LottoRank, Integer> rates = new HashMap<>();
-//        rates.put(FIRST, first);
-//        rates.put(SECOND, second);
-//        rates.put(THIRD, third);
-//        rates.put(FOURTH, fourth);
-//        rates.put(FIFTH, fifth);
-
-        List<Integer> rates = new ArrayList<>();
-        rates.add(first);
-        rates.add(second);
-        rates.add(third);
-        rates.add(fourth);
-        rates.add(fifth);
-
-        long rateOfProfit = getRateOfProfit(purchasePrice, rates);
-
-        OutputView.printPrizeResult(rates);
-        OutputView.printRateOfProfit(rateOfProfit);
 
     }
 
     public int getLottoNum(int purchasePrice) {
-        int lottoNum = purchasePrice / 1000;
+        int lottoNum = purchasePrice / TICKET_PRICE;
         return lottoNum;
     }
 
     public List<Integer> getLottoNumber() {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        sort(lottoNumber);
-        return lottoNumber;
+        List<Integer> modifiableList = new ArrayList<>(lottoNumber);
+        Collections.sort(modifiableList);
+        return modifiableList;
     }
 
     public void getWinLottoNumber() {
         List<Integer> winNumber = InputView.inputWinNumber();
 
         try {
-            winLotto = new Lotto(winNumber);
+            winningTicket = new Lotto(winNumber);
         } catch (IllegalArgumentException e) {
             System.out.println("당첨 번호를 6개 입력해주세요.");
             getWinLottoNumber();
@@ -140,72 +130,59 @@ public class LottoController {
         return bonusNumber;
     }
 
-    public int compareLotto(List<Integer> lottoNumber, List<Integer> winNumber) {
+    public int countMatchingNumbers(List<Integer> userNumbers, List<Integer> winningNumbers) {
 
-        int count = 0;
+        int matchedNumbers = 0;
 
-        for(int i = 0; i < lottoNumber.size(); i++) {
-            if (winNumber.contains(lottoNumber.get(i))) {
-                count += 1;
+        for (int number : userNumbers) {
+            if (winningNumbers.contains(number)) {
+                matchedNumbers++;
             }
         }
 
-        return count;
+        return matchedNumbers;
 
     }
 
-    public boolean compareBonusNumber(Lotto lotto, int bonusNumber) {
+    private Rank setRank(List<Lotto> userNumbers, int matchCount) {
 
-        List<Integer> lottoNumber = lotto.getNumbers();
-
-        if (lottoNumber.contains(bonusNumber)) {
-            return true;
+        if (matchCount == 5 && userNumbers.contains(bonusNumber)) {
+            return SECOND;
         }
 
-        return false;
-    }
-
-    private void setRank(Lotto lotto, int sameNumberCount) {
-        switch (sameNumberCount) {
+        switch (matchCount) {
             case 6:
-                lotto.setRank(FIRST);
-                break;
+                return FIRST;
             case 5:
-                if (compareBonusNumber(lotto, bonusNumber)) {
-                    lotto.setRank(SECOND);
-                    break;
-                }
-                lotto.setRank(THIRD);
-                break;
+                return THIRD;
             case 4:
-                lotto.setRank(THIRD);
-                break;
+                return FOURTH;
             case 3:
-                lotto.setRank(FOURTH);
-                break;
+                return FIFTH;
             case 2:
-                lotto.setRank(FIFTH);
-                break;
+                return LOOSE;
             case 1:
-                lotto.setRank(LOOSE);
-                break;
+                return LOOSE;
             case 0:
-                lotto.setRank(LOOSE);
-                break;
+                return LOOSE;
         }
+
+        return LOOSE;
+
     }
 
-    private long getRateOfProfit(int purchasePrice, List<Integer> rates) {
-        return getTotalAmount(rates) / purchasePrice;
+    private float getRateOfProfit(int purchasePrice, List<Integer> rates) {
+        float totalPrize = getTotalPrize(rates);
+        float rateOfProfit = (totalPrize / (float) purchasePrice) * PERCENTAGE;
+        return rateOfProfit;
     }
 
-    private int getTotalAmount(List<Integer> rates) {
+    private int getTotalPrize(List<Integer> rates) {
         int total = 0;
 
         for (int i = 0; i < 5; i++) {
             total += getRatePrice(i + 1, rates.get(i));
         }
-
         return total;
     }
 

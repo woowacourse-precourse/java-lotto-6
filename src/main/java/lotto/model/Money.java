@@ -8,6 +8,10 @@ public class Money {
         this.money = money;
     }
 
+    public String getMoney() {
+        return money;
+    }
+
     private static void validateMoney(String money) {
         isInteger(money);
         isPaperMoney(money);

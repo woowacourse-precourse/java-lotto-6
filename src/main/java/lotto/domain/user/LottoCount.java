@@ -8,7 +8,7 @@ public class LottoCount {
     int lottoCount;
 
     public LottoCount(int money) {
-        LottoCountValidator.go(money);
+        LottoCountValidator.check(money);
         lottoCount = money / LOTTO_PRICE.getNumber();
     }
 

@@ -7,7 +7,7 @@ public class Lotto {
     private final List<Integer> lotto;
 
     public Lotto(List<Integer> lotto) {
-        LottoValidator.go(lotto);
+        LottoValidator.check(lotto);
         this.lotto = lotto;
     }
 

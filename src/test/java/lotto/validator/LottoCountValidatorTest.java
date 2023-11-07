@@ -12,7 +12,7 @@ public class LottoCountValidatorTest {
     @DisplayName("음수를 입력했을 때 예외가 발생한다.")
     @Test
     void NotPositiveNumberThrowException() {
-        assertThatThrownBy(() -> LottoCountValidator.go(-1))
+        assertThatThrownBy(() -> LottoCountValidator.check(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_NEGATIVE_NUMBER.getErrorMessage());
     }
@@ -20,7 +20,7 @@ public class LottoCountValidatorTest {
     @DisplayName("0을 입력했을 때 예외가 발생한다.")
     @Test
     void ZeroNumberThrowException() {
-        assertThatThrownBy(() -> LottoCountValidator.go(0))
+        assertThatThrownBy(() -> LottoCountValidator.check(0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_ZERO.getErrorMessage());
     }
@@ -28,7 +28,7 @@ public class LottoCountValidatorTest {
     @DisplayName("1000으로 나누어 떨어지지 않는 값을 입력했을 때 예외가 발생한다.")
     @Test
     void NotDivisionNumberThrowException() {
-        assertThatThrownBy(() -> LottoCountValidator.go(8888))
+        assertThatThrownBy(() -> LottoCountValidator.check(8888))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_DIVISION_1000.getErrorMessage());
     }

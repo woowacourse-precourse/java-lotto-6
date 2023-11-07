@@ -8,7 +8,7 @@ import lotto.domain.Lotto;
 import lotto.domain.win.Bonus;
 
 public class WinLottoValidator {
-    public static void go(Lotto lotto, Bonus bonus) {
+    public static void check(Lotto lotto, Bonus bonus) {
         duplication(lotto, bonus);
     }
 

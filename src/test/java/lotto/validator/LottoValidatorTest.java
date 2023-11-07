@@ -17,7 +17,7 @@ public class LottoValidatorTest {
     @DisplayName("List의 길이가 6이 아니면 예외가 발생한다.")
     @Test
     void NotSixNumberLengthThrowException() {
-        assertThatThrownBy(() -> LottoValidator.go(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> LottoValidator.check(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_SIX_LENGTH.getErrorMessage());
     }
@@ -26,7 +26,7 @@ public class LottoValidatorTest {
     @ParameterizedTest
     @MethodSource("invalidParameters")
     void overRangeThrowException(List<Integer> numbers) {
-        assertThatThrownBy(() -> LottoValidator.go(numbers))
+        assertThatThrownBy(() -> LottoValidator.check(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ONE_TO_FORTY_FIVE.getErrorMessage());
     }
@@ -41,7 +41,7 @@ public class LottoValidatorTest {
     @DisplayName("로또 번호가 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void ifDuplicationThrowException() {
-        assertThatThrownBy(() -> LottoValidator.go(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> LottoValidator.check(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_LOTTO_DUPLICATION.getErrorMessage());
     }

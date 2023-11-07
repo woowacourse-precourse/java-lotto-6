@@ -8,7 +8,7 @@ import java.util.List;
 import lotto.Option.GameOption;
 
 public class LottoValidator {
-    public static void go(List<Integer> numbers) {
+    public static void check(List<Integer> numbers) {
         validateLength(numbers);
         validateRange(numbers);
         validateDuplication(numbers);

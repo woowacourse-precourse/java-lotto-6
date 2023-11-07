@@ -15,7 +15,7 @@ public class WinLottoValidatorTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Bonus bonus = new Bonus(1);
 
-        assertThatThrownBy(() -> WinLottoValidator.go(lotto, bonus))
+        assertThatThrownBy(() -> WinLottoValidator.check(lotto, bonus))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

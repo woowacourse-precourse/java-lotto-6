@@ -11,7 +11,7 @@ public class WinLotto {
     private final Bonus bonus;
 
     public WinLotto(Lotto lotto, Bonus bonus) {
-        WinLottoValidator.go(lotto, bonus);
+        WinLottoValidator.check(lotto, bonus);
         this.lotto = lotto;
         this.bonus = bonus;
     }

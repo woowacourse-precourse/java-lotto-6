@@ -1,6 +1,7 @@
 package lotto.util;
 
 public class ViewConstants {
+    public static final String PURCHASED_TICKETS_MESSAGE = "%s%d개를 구매했습니다.";
     public static final String DELIMITER = ", ";
     public static final String PREFIX = "[";
     public static final String SUFFIX = "]";

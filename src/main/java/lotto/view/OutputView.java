@@ -24,7 +24,7 @@ public class OutputView {
     }
 
     private void printLottoTicketsCount(List<LottoDto> lottoTickets) {
-        String message = String.format("%s%d개를 구매했습니다.", Writer.NEW_LINE, lottoTickets.size());
+        String message = String.format(ViewConstants.PURCHASED_TICKETS_MESSAGE, Writer.NEW_LINE, lottoTickets.size());
         writer.writeLine(message);
     }
 

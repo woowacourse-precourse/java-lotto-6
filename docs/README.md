@@ -96,15 +96,11 @@
         - [x] 입력에 공백을 허용
         - [x] 정수와 쉼표로 이루어져 있는지 검증.
 
-    - [ ] BonusInputParser InputParser 구현 클래스
+    - [ ] BonusAndPaymentInputParser InputParser 구현 클래스
         - [ ] int 형태로 파싱(int 최대 범위를 벗어나면 예외처리)
         - [ ] 입력에 공백을 허용
         - [ ] 정수로 이루어져 있는지 검증.
 
-    - [ ] PaymentInputParser InputParser 구현 클래스
-        - [ ] int 형태로 파싱(int 최대 범위를 벗어나면 예외처리)
-        - [ ] 입력에 공백을 허용
-        - [ ] 정수로 이루어져 있는지 검증.
 
 2. UI(View)
     - [ ] InputView
@@ -155,12 +151,9 @@
         - [x] int범위를 넘어가면 예외를 발생하는지 테스트
         - [x] 정수와 쉼표로 이루어져 있는지 검증하는 기능 테스
 
-    - [ ] BonusInputParser 테스트
-        - [ ] int 형태로 파싱(int 최대 범위를 벗어나면 예외처리)
-        - [ ] 정수로 이루어져 있는지 검증.
+    - [ ] BonusAndPaymentInputParser 테스트
+        - [ ] int 최대 범위를 벗어나면 예외처리를 하는지 테스트
+        - [ ] 정수가 아닌 값들은 예외처리를 하는지 테스트
 
-    - [ ] PaymentInputParser 테스트
-        - [ ] int 형태로 파싱(int 최대 범위를 벗어나면 예외처리)
-        - [ ] 정수로 이루어져 있는지 검증.
 
 - [ ] 통합 테스트코드를 작성한다.(ApplicationTest 참고하여)

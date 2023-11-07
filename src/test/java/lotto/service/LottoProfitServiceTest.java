@@ -39,12 +39,12 @@ public class LottoProfitServiceTest {
     @DisplayName("로또 수익률 계산")
     void calculateProfit(List<Integer> rankingCount) {
         EnumMap<LottoWinningRanking, Integer> winningRankingCountMap = new EnumMap<>(LottoWinningRanking.class);
-        winningRankingCountMap.put(LottoWinningRanking.FIRST, rankingCount.get(0));
-        winningRankingCountMap.put(LottoWinningRanking.SECOND, rankingCount.get(1));
-        winningRankingCountMap.put(LottoWinningRanking.THIRD, rankingCount.get(2));
-        winningRankingCountMap.put(LottoWinningRanking.FOURTH, rankingCount.get(3));
-        winningRankingCountMap.put(LottoWinningRanking.FIFTH, rankingCount.get(4));
-        winningRankingCountMap.put(LottoWinningRanking.NONE, rankingCount.get(5));
+        winningRankingCountMap.put(LottoWinningRanking.NONE, rankingCount.get(0));
+        winningRankingCountMap.put(LottoWinningRanking.FIFTH, rankingCount.get(1));
+        winningRankingCountMap.put(LottoWinningRanking.FOURTH, rankingCount.get(2));
+        winningRankingCountMap.put(LottoWinningRanking.THIRD, rankingCount.get(3));
+        winningRankingCountMap.put(LottoWinningRanking.SECOND, rankingCount.get(4));
+        winningRankingCountMap.put(LottoWinningRanking.FIRST, rankingCount.get(5));
 
         int lottoCount = 0;
         for (Integer integer : rankingCount) {
@@ -62,18 +62,22 @@ public class LottoProfitServiceTest {
                 }
             }
         }
+        System.out.println(lottoCount);
+        System.out.println(winningAmount);
         double expectedProfit = (double) winningAmount / (lottoCount * LottoConstants.LOTTO_PRICE.getValue()) * 100.0;
         expectedProfit = Math.round(expectedProfit * 10.0) / 10.0;
 
         double actualProfit = profitService.calculateProfit(winningRankingCountMap, lottoCount);
+        System.out.println(actualProfit);
         assertThat(actualProfit).isEqualTo(expectedProfit);
     }
     
     static Stream<Arguments> generateData() {
         return Stream.of(
-                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 46)),
-                Arguments.of(Arrays.asList(0, 2, 3, 4, 44, 45)),
-                Arguments.of(Arrays.asList(1, 0, 0, 0, 0, 0))
+                Arguments.of(Arrays.asList(0, 0, 0, 0, 0, 0)),
+                Arguments.of(Arrays.asList(46, 5, 4, 3, 2, 1)),
+                Arguments.of(Arrays.asList(45, 44, 10, 2, 3, 0)),
+                Arguments.of(Arrays.asList(0, 0, 0, 0, 0, 1))
         );
     }
 }

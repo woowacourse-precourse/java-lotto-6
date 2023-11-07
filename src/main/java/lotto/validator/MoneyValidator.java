@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.validator;
 
 public class MoneyValidator {
 

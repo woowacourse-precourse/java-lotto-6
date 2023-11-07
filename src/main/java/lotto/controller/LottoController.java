@@ -23,6 +23,7 @@ public class LottoController {
     public void play() {
 
     }
+
     private List<Integer> getWinningLottoNumbers() {
         try {
             List<Integer> winningNumbers = inputView.inputWinningNumbers();
@@ -31,6 +32,25 @@ public class LottoController {
         } catch (IllegalArgumentException exception) {
             outputView.printError(exception.getMessage());
             return getWinningLottoNumbers();
+        }
+    }
+
+    private LottoManager generateLottoManager(List<Integer> winningNumbers, int bonusNumber) {
+        try {
+            LottoManager lottoManager = new LottoManager(winningNumbers, bonusNumber);
+            return lottoManager;
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            return generateLottoManager(winningNumbers, getBonusNumber());
+        }
+    }
+
+    private int getBonusNumber() {
+        try {
+            return inputView.inputBonusNumber();
+        } catch (IllegalArgumentException exception) {
+            outputView.printError(exception.getMessage());
+            return getBonusNumber();
         }
     }
 }

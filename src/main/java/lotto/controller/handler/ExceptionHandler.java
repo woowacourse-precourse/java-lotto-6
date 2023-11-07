@@ -21,8 +21,8 @@ public class ExceptionHandler {
         LottoNumberException exception = new LottoNumberException();
         List<String> numbers = List.of(input.split(","));
 
-        exception.checkBlank(input);         //빈값 입력
-        exception.checkEndWithNumber(input); //[1,2,3,4,5,6,] 입력시 예외발생
+        exception.checkBlank(input);          //빈값 입력
+        exception.checkEndWithNumber(input);  //[1,2,3,4,5,6,] 입력시 예외발생
         exception.checkSixInputs(numbers);    //6개 입력
         exception.checkSixNumbers(numbers);   //6개 숫자
         exception.checkDuplicate(numbers);    //중복 검사

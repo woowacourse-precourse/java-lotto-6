@@ -9,8 +9,11 @@ public class LottoTicket {
     private List<Lotto> lottos;
     private WinningNumber winningNumber;
 
-    public LottoTicket(List<Lotto> lottos, WinningNumber winningNumber) {
+    public void setLottos(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public void setWinningNumber(WinningNumber winningNumber) {
         this.winningNumber = winningNumber;
     }
 

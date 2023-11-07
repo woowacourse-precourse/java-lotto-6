@@ -12,7 +12,8 @@ public class LottoPurchase {
     private LottoReceipt lottoReceipt;
     private final InputView inputView;
 
-    public LottoPurchase(InputView inputView) {
+    public LottoPurchase(LottoReceipt lottoReceipt, InputView inputView) {
+        this.lottoReceipt = lottoReceipt;
         this.inputView = inputView;
     }
 
@@ -49,10 +50,7 @@ public class LottoPurchase {
         int amount = inputAmount();
         int count = amount / LOTTO_PRICE;
 
-        lottoReceipt = new LottoReceipt(amount, count);
-    }
-
-    public int getCount() {
-        return lottoReceipt.getPurchaseCount();
+        lottoReceipt.setAmount(amount);
+        lottoReceipt.setPurchaseCount(count);
     }
 }

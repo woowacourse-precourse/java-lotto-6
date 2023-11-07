@@ -4,27 +4,37 @@ import lotto.controller.handler.DrawHandler;
 import lotto.controller.machine.NumberGenerator;
 import lotto.controller.user.LottoPurchase;
 import lotto.domain.Lotto;
+import lotto.model.LottoReceipt;
+import lotto.model.LottoTicket;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
 
 public class LottoMachine {
-    private List<Lotto> lottos;
+    private LottoReceipt lottoReceipt;
+    private LottoTicket lottoTicket;
 
-    private void createLottos(int count) {
+    public LottoMachine() {
+        lottoTicket = new LottoTicket();
+        lottoReceipt = new LottoReceipt();
+    }
+
+    private List<Lotto> createLottos(int count) {
         NumberGenerator numberGenerator = new NumberGenerator();
-        lottos = numberGenerator.createLottos(count);
+
+        return numberGenerator.createLottos(count);
     }
 
     private void purchase(InputView inputView, OutputView outputView) {
-        LottoPurchase lottoPurchase = new LottoPurchase(inputView);
-
+        LottoPurchase lottoPurchase = new LottoPurchase(lottoReceipt, inputView);
         lottoPurchase.purchase();
-        createLottos(lottoPurchase.getCount());
 
-        outputView.showLottoCount(lottoPurchase.getCount());
-        outputView.showLottos(lottos);
+        List<Lotto> lottos = createLottos(lottoReceipt.getPurchaseCount());
+        lottoTicket.setLottos(lottos);
+
+        outputView.showLottoCount(lottoReceipt.getPurchaseCount());
+        outputView.showLottos(lottoTicket.getLottos());
     }
 
     public void start() {
@@ -33,6 +43,7 @@ public class LottoMachine {
         DrawHandler drawHandler = new DrawHandler(inputView);
 
         purchase(inputView, outputView);
-        drawHandler.drarw();
+        drawHandler.drarw(lottoTicket);
+        System.out.println(lottoTicket.getWinningNumber().toString());
     }
 }

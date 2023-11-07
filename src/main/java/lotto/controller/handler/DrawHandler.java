@@ -4,6 +4,7 @@ import lotto.controller.user.BonusDraw;
 import lotto.controller.user.LottoDraw;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
+import lotto.model.LottoTicket;
 import lotto.view.InputView;
 
 public class DrawHandler {
@@ -40,12 +41,10 @@ public class DrawHandler {
         }
     }
 
-    public void drarw() {
+    public void drarw(LottoTicket lottoTicket) {
         Lotto lotto = drawLottoNumber();
         drawBounsNumber(lotto);
-    }
 
-    public WinningNumber getWinningNumber() {
-        return winningNumber;
+        lottoTicket.setWinningNumber(winningNumber);
     }
 }

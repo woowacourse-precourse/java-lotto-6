@@ -4,8 +4,11 @@ public class LottoReceipt {
     private int amount;
     private int purchaseCount;
 
-    public LottoReceipt(int amount, int purchaseCount) {
+    public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public void setPurchaseCount(int purchaseCount) {
         this.purchaseCount = purchaseCount;
     }
 

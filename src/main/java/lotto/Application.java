@@ -31,6 +31,9 @@ public class Application {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
+
+        int[] winStatistics = calWinStatistics(lottoTickets, winNumbers, bonusNumber);
+        printWinStatistics(winStatistics, price);
     }
 
     enum LottoRank {
@@ -80,5 +83,77 @@ public class Application {
             numbers.add(number);
         }
         return numbers;
+    }
+
+    public static int[] calWinStatistics(List<Lotto> lottoTickets, List<Integer> winNumbers, int bonusNumber) {
+        int[] statistcs = new int[LottoRank.values().length];
+
+        for (Lotto lottoTicket : lottoTickets) {
+            int matchingCount = countMatchNumbers(lottoTicket.getNumbers(), winNumbers);
+            LottoRank rank = getLottoRank(matchingCount, lottoTicket.getNumbers().contains(bonusNumber));
+            statistcs[rank.ordinal()]++;
+        }
+        return statistcs;
+    }
+
+    public static int countMatchNumbers(List<Integer> lottoNumbers, List<Integer> winNumbers) {
+        int countMatch = 0;
+        for (int number : lottoNumbers) {
+            if (winNumbers.contains(number)) {
+                countMatch++;
+            }
+        }
+        return countMatch;
+    }
+
+    public static LottoRank getLottoRank(int matchingCount, boolean hasBonus) {
+        if (matchingCount == 6) {
+            return LottoRank.FIRST;
+        }
+        if (matchingCount == 5 && hasBonus) {
+            return LottoRank.SECOND;
+        }
+        if (matchingCount == 5) {
+            return LottoRank.THIRD;
+        }
+        if (matchingCount == 4) {
+            return LottoRank.FOURTH;
+        }
+        if (matchingCount == 3) {
+            return LottoRank.FIFTH;
+        }
+        return LottoRank.NONE;
+    }
+
+    public static void printWinStatistics(int[] statistics, int price) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        int totalWinAmount = 0;
+        LottoRank[] ranks = LottoRank.values();
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
+        Arrays.sort(ranks, Comparator.comparingInt(LottoRank::getPrize));
+
+        for (LottoRank rank : ranks) {
+            if (rank != LottoRank.NONE) {
+                int prize = rank.getPrize();
+                int matchingCount = rank.getMatchingCount();
+                int numMatches = statistics[rank.ordinal()];
+                int totalPrize = prize * numMatches;
+
+                String bonusBallInfo = "";
+                if (rank == LottoRank.SECOND) {
+                    bonusBallInfo = ", 보너스 볼 일치";
+                }
+
+                String formattedPrize = numberFormat.format(prize);
+                String result = String.format("%d개 일치%s (%s원) - %d개%s", matchingCount, bonusBallInfo, formattedPrize, numMatches, bonusBallInfo);
+                System.out.println(result);
+                totalWinAmount += totalPrize;
+            }
+        }
+
+        double earningRate = ((double) totalWinAmount / price) * 100;
+        System.out.println("총 수익률은 " + String.format("%.1f%%", earningRate) + "입니다.");
     }
 }

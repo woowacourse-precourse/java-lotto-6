@@ -50,6 +50,5 @@ class MoneyTest {
         // then
         assertTrue(isEnough1);
         assertTrue(isEnough2);
-
     }
 }

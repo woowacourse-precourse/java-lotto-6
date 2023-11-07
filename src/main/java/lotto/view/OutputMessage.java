@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.PrizeTable;
+import lotto.util.Utils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +19,11 @@ public final class OutputMessage {
         System.out.println(result);
     }
 
+    public static void winningStatistics() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
+    }
+
     public static void showRankResult(HashMap<PrizeTable, Integer> map) {
         for (PrizeTable rank : PrizeTable.values()) {
             showSingleRankResult(map, rank);
@@ -25,16 +31,19 @@ public final class OutputMessage {
     }
 
     private static void showSingleRankResult(HashMap<PrizeTable, Integer> map, PrizeTable rank) {
-        if (rank.getMatchingNumbers()==0) {
+        if (rank.getMatchingNumbers() == 0) {
             return;
         }
         if (rank.equals(PrizeTable.SECOND_PRIZE)) {
             System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
-                    rank.getMatchingNumbers(), rank.getPrizeAmount(), map.get(rank));
+                    rank.getMatchingNumbers(), Utils.formatNumberWithCommas(rank.getPrizeAmount()), map.get(rank));
             return;
         }
-        System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getMatchingNumbers(), rank.getPrizeAmount(), map.get(rank));
+        System.out.printf("%d개 일치 (%s원) - %d개\n", rank.getMatchingNumbers(), Utils.formatNumberWithCommas(rank.getPrizeAmount()), map.get(rank));
     }
 
+    public static void showYieldResult(double yield) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", yield);
+    }
 
 }

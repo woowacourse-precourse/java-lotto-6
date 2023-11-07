@@ -11,6 +11,10 @@ public enum AmountErrorMessage {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public LottoAmountInputException getException() {
         return new LottoAmountInputException(message);
     }

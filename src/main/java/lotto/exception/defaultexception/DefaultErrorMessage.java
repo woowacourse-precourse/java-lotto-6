@@ -12,6 +12,10 @@ public enum DefaultErrorMessage {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public LottoDefaultException getException() {
         return new LottoDefaultException(message);
     }

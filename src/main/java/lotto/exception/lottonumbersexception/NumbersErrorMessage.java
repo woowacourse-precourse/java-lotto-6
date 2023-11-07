@@ -12,6 +12,10 @@ public enum NumbersErrorMessage {
         this.message = message;
     }
 
+    public String getMessage() {
+        return message;
+    }
+
     public LottoNumbersInputException getException() {
         return new LottoNumbersInputException(message);
     }

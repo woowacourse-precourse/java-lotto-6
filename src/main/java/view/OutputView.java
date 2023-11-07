@@ -1,19 +1,25 @@
 package view;
 
-import java.util.List;
+import static constants.ConstantNumbersManager.FIFTH_INDEX;
+import static constants.ConstantNumbersManager.FIRST_INDEX;
+import static constants.ConstantNumbersManager.FORTH_INDEX;
+import static constants.ConstantNumbersManager.SECOND_INDEX;
+import static constants.ConstantNumbersManager.THIRD_INDEX;
+
 import constants.ConstantStringManager;
+import java.util.List;
 import java.util.stream.Collectors;
-import static constants.ConstantNumbersManager.*;
+
 public class OutputView {
 
     public void printLottoPriceInputNotify() {
-    String message = ConstantStringManager.LOTTO_PRICE_INPUT_NOTIFY.getMessage();
-    System.out.println(message);
+        String message = ConstantStringManager.LOTTO_PRICE_INPUT_NOTIFY.getMessage();
+        System.out.println(message);
     }
 
-    public void printLottoNumberNotify(int number) {
+    public void printLottoNumberNotify(int lottoCount) {
         String message = ConstantStringManager.LOTTO_NUMBER_NOTIFY.getMessage();
-        System.out.printf(message, number);
+        System.out.printf(message, lottoCount);
     }
 
     public void printRandomNumber(List<Integer> randomNumber) {

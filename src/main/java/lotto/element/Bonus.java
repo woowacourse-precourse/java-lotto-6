@@ -1,7 +1,7 @@
 package lotto.element;
 
 public class Bonus {
-    private int number;
+    private final int number;
 
     Bonus(int number, Lotto lotto) {
         validate(number, lotto);
@@ -12,5 +12,9 @@ public class Bonus {
         if (lotto.getLottoNumbers().contains(num)) {
             throw new IllegalArgumentException("번호가 중복됩니다.");
         }
+    }
+
+    boolean isBonusMatch(Lotto other) {
+        return other.getLottoNumbers().contains(number);
     }
 }

@@ -29,7 +29,6 @@ public class BonusNumber {
     private void validateRange(int number) {
         if (number < startNumber || number > endNumber) {
             throw new IllegalArgumentException(errorMessageRange);
-
         }
     }
 

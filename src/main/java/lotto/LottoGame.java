@@ -131,11 +131,11 @@ public class LottoGame {
     private static void printResults(int[] winCounts) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println("3개 일치 (5,000원)- " + winCounts[3] + "개");
-        System.out.println("4개 일치 (50,000원)- " + winCounts[4] + "개");
-        System.out.println("5개 일치 (1,500,000원)- " + winCounts[5] + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원)- " + winCounts[2] + "개");
-        System.out.println("6개 일치 (2,000,000,000원)- " + winCounts[6] + "개");
+        System.out.println("3개 일치 (5,000원) - " + winCounts[3] + "개");
+        System.out.println("4개 일치 (50,000원) - " + winCounts[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winCounts[5] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winCounts[2] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winCounts[6] + "개");
     }
 
     private static void calculateEarnings(int[] winCounts, int lottoCount) {
@@ -146,9 +146,10 @@ public class LottoGame {
         }
         totalWinnings += winnings[2] * winCounts[2];
 
-        long totalSpent = lottoCount * LOTTO_PRICE;
+        long totalSpent = (long) lottoCount * LOTTO_PRICE;
         double earningsRate = (double) totalWinnings / totalSpent;
+        double earningsRatePercentage = (earningsRate * 100) - 100;
 
-        System.out.printf("총 수익률은 %.2f입니다.\n", (earningsRate * 100) -100);
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", earningsRatePercentage);
     }
 }

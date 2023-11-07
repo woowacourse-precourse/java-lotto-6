@@ -14,7 +14,7 @@ public class LottoProvider {
     private static final int LOTTO_NUMBER_CNT = 6;
 
     public List<Lotto> buyLottos(String purchaseAmount) {
-        int purchasableCount = getPurchasableCount(purchaseAmount);
+        int purchasableCount = Integer.parseInt(purchaseAmount) / LOTTO_PRICE;
 
         List<Lotto> lottos = new ArrayList<>();
         for (int i=0; i<purchasableCount; i++) {
@@ -28,13 +28,5 @@ public class LottoProvider {
 
     private List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_NUMBER_CNT);
-    }
-
-    private int getPurchasableCount(String input) {
-        int purchaseAmount = Integer.parseInt(input);
-        if (purchaseAmount%LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException(Error.LOTTO_PURCHASE_AMOUNT_UNIT_ERROR.getMessage());
-        }
-        return purchaseAmount / LOTTO_PRICE;
     }
 }

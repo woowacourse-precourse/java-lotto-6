@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public enum LottoResult {
+public enum Rank {
     FIRST(6,0,2000000000),
     SECOND(5,1,30000000),
     THIRD(5,0,1500000),
@@ -12,9 +12,20 @@ public enum LottoResult {
     private final int bonusNumber;
     private final int winningMoney;
 
-    LottoResult(int winningNumber, int bonusNumber, int winningMoney) {
+    Rank(int winningNumber, int bonusNumber, int winningMoney) {
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
         this.winningMoney = winningMoney;
+    }
+    public int getWinningNumber() {
+        return winningNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public int getWinningMoney() {
+        return winningMoney;
     }
 }

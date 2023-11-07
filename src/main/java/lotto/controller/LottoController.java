@@ -13,12 +13,13 @@ public class LottoController {
     private Amount amount;
     private WinningLotto winningLotto;
     private BonusLotto bonusLotto;
-
+    private Lottos lottoContainer = new Lottos(new ArrayList<>());
     public void run() {
         getLottoMoney();
         printLottoList();
         winningLotto();
         bonusLotto();
+        statisticLotto();
     }
 
     private void getLottoMoney() {
@@ -31,13 +32,11 @@ public class LottoController {
         int count = amount.getCount();
         OutputView.printPurchaseCount(count);
         LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        Lottos lottoContainer = new Lottos(new ArrayList<>());
         for(int i = 0; i  < count; i++){
             Lotto lotto = new Lotto(lottoNumberGenerator.generate());
             lottoContainer.addLotto(lotto);
             OutputView.printBoughtLottoNumbers(lotto.getNumbers());
         }
-        System.out.println(lottoContainer.size());
     }
 
     private void winningLotto() {
@@ -50,6 +49,13 @@ public class LottoController {
         OutputView.printBonusNumber();
         int bonusNumber = InputView.readBonusNumber();
         bonusLotto = new BonusLotto(bonusNumber);
+    }
 
+    private void statisticLotto() {
+        OutputView.printStatistics();
+        List<Lotto> lottos = lottoContainer.getLottos();
+        for (Lotto lotto : lottos) {
+            lottoContainer.countMatchingNumbers(lotto, winningLotto.getWinningNumbers());
+        }
     }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.Constant.LottoCash;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,14 +17,14 @@ public class Player {
     public Player(int cash) {
         validate(cash);
         this.cash = cash;
-        this.attempt = cash / 1000;
+        this.attempt = cash / LottoCash.UNIT.getCash();
         this.lottos = new ArrayList<>();
     }
 
     public void setCash(int cash) {
         validate(cash);
         this.cash = cash;
-        this.attempt = cash / 1000;
+        this.attempt = cash / LottoCash.UNIT.getCash();
         this.lottos = new ArrayList<>();
     }
 
@@ -34,7 +36,7 @@ public class Player {
     }
 
     private void validate(int cash) {
-        if (cash % 1000 != 0)
+        if (cash % LottoCash.UNIT.getCash() != 0)
             throw new IllegalArgumentException();
     }
 

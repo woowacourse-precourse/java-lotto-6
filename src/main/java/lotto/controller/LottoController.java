@@ -20,19 +20,21 @@ public class LottoController {
         randomLottoResult = new ArrayList<>();
     }
 
+    public List<Lotto> getRandomLottoResult() {
+        return randomLottoResult;
+    }
+
     public int getLottoTicket(int money) {
         return lottoResultCalculation.caculateLottoTicket(money);
     }
 
-
-    public List<Lotto> getRandomLottoNumber(int tickets) {
+    public void getRandomLottoNumber(int tickets) {
         randomLottoResult.clear();
         for (int i = 0; i < tickets; i++) {
             randomLottoNumber.initRandomNumber();
             Lotto lottoNumbers = new Lotto(randomLottoNumber.getNumbers());
             this.randomLottoResult.add(lottoNumbers);
         }
-        return randomLottoResult;
     }
 
     public BonusLottoNumber getBounsNumber(int bonus) {
@@ -56,4 +58,6 @@ public class LottoController {
         }
         return stringResult.toString();
     }
+
+
 }

@@ -88,7 +88,7 @@ public class Application {
     public static String winningLottoInput() {
         System.out.println("당첨번호를 입력해 주세요.");
         String numbers = Console.readLine();
-        // Todo : numbersInput에 대해 공백, 구분자, 숫자 외 입력에 대한 검증
+        InputDataException.validateWinningLottoNumbersInput(numbers);
         return numbers;
     }
 

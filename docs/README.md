@@ -48,4 +48,4 @@
 - [x] 로또의 수익률을 출력하는 기능
 
 # 실행 흐름도
-![img.png](img.png)
+![flowchart.png](flowchart.png)

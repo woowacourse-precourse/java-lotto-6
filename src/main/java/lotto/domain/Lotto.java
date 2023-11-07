@@ -44,6 +44,7 @@ public class Lotto {
     private List<Integer> WinningNumbers(String input) {
         String[] splitNumbers = input.replace(" ","").split(",");
         List<Integer> lottoNumbers = changeIntegerNumber(splitNumbers);
+        validate(lottoNumbers);
         sortNumbers(lottoNumbers);
         return lottoNumbers;
     }

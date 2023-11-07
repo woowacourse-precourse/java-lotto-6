@@ -18,9 +18,9 @@ public class LottoResultManager {
     public void calculateResult(WinningLotto winningLotto) {
         for (LottoResult lottoResult : lottoResults.getLottoResults()) {
             lottoResult.calculateResult(winningLotto);
-            WinningType key = lottoResult.getWinning();
+            WinningType winningType = lottoResult.getWinningType();
             lottoStatistics.getStatistics()
-                    .put(key, lottoStatistics.getStatistics().getOrDefault(key, 0) + COUNT);
+                    .put(winningType, lottoStatistics.getStatistics().getOrDefault(winningType, 0) + COUNT);
         }
     }
 

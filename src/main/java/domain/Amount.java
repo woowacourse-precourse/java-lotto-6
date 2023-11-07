@@ -1,8 +1,10 @@
 package domain;
 
 import exception.ImpossibleAmountException;
+import java.text.DecimalFormat;
 
 public class Amount {
+    private static final DecimalFormat decimalFormat = new DecimalFormat("###,###");
     private final long amount;
 
     public Amount(long amount) {
@@ -50,5 +52,9 @@ public class Amount {
 
     public boolean isOverLimitAmount(Amount limitAmount) {
         return limitAmount.amount < this.amount;
+    }
+
+    public String getDecimalFormatAmount() {
+        return decimalFormat.format(this.amount);
     }
 }

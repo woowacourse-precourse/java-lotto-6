@@ -1,21 +1,26 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class LottoMachine {
     private static final int LOTTO_TICKET_PRICE = 1000;
 
-    public List<LottoTicket> issueTickets(int purchaseAmount) {
+    public List<Lotto> issueTickets(int purchaseAmount) {
         int ticketCount = purchaseAmount / LOTTO_TICKET_PRICE;
-        List<LottoTicket> tickets = new ArrayList<>();
+        List<Lotto> tickets = new ArrayList<>();
         for(int i = 0; i < ticketCount; i++) {
-            tickets.add(new LottoTicket(generateRandomNumbers()));
+            tickets.add(new Lotto(generateRandomNumbers()));
         }
         return tickets;
     }
 
-    // 로또 번호 생성 로직 작성 필요
-    private List<LottoNumber> generateRandomNumbers() {
+    private List<Integer> generateRandomNumbers() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
+        return randomNumbers;
     }
 }

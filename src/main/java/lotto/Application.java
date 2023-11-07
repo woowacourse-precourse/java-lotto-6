@@ -5,9 +5,9 @@ import lotto.domain.game.LottoGame;
 import lotto.domain.lotto.BonusNumber;
 import lotto.domain.lotto.WinningNormalNumbers;
 import lotto.domain.number.NumberGenerator;
-import lotto.domain.game.Profit;
 import lotto.domain.lotto.WinningNumbers;
 import lotto.global.view.io.LottoInputProcessor;
+import lotto.global.view.io.LottoInputView;
 import lotto.global.view.io.ProxyLottoInputProcessor;
 import lotto.global.view.output.OutputView;
 
@@ -25,8 +25,9 @@ public class Application {
 
             LottoGame lottoGame = new LottoGame();
 
-            ProxyLottoInputProcessor proxyLottoInputProcessor = new ProxyLottoInputProcessor(lottoInputProcessor);
-            GameController gameController = new GameController(proxyLottoInputProcessor , new NumberGenerator(), lottoGame);
+//            ProxyLottoInputProcessor proxyLottoInputProcessor = new ProxyLottoInputProcessor(lottoInputProcessor);
+            LottoInputView lottoInputView = new LottoInputView(lottoInputProcessor);
+            GameController gameController = new GameController(lottoInputView , new NumberGenerator(), lottoGame);
             gameController.play();
         } catch (Exception e) {
             OutputView.printMessageLine(e.getMessage());

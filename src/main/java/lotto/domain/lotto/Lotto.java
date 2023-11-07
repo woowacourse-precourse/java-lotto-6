@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.global.constant.exception.ExceptionMessage.NUMBERS_DUPLICATED;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -22,7 +24,7 @@ public class Lotto {
     private void validateNumberNotDuplicate(List<Integer> numbers) {
         Set<Integer> numbersWithoutDuplicates = new HashSet<>(numbers);
         if(numbersWithoutDuplicates.size() != numbers.size()) {
-            throw new IllegalArgumentException("중복 x");
+            throw new IllegalArgumentException(NUMBERS_DUPLICATED.getMessage());
         }
     }
 

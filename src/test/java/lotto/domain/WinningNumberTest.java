@@ -1,10 +1,12 @@
 package lotto.domain;
 
 import lotto.domain.lotto.WinningNumber;
+import lotto.global.constant.exception.ExceptionMessage;
 import org.junit.jupiter.api.Test;
 
 import static lotto.global.constant.NumberDefinition.END_INCLUSIVE;
 import static lotto.global.constant.NumberDefinition.START_INCLUSIVE;
+import static lotto.global.constant.exception.ExceptionMessage.NUMBERS_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -14,14 +16,14 @@ public class WinningNumberTest {
     void 숫자가_1미만일때_예외_던지는지_확인() {
         assertThatThrownBy(() -> new WinningNumber(0))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자가 범위 밖임");
+                .hasMessage(NUMBERS_OUT_OF_RANGE.getMessage());
     }
 
     @Test
     void 숫자가_45초과일때_예외_던지는지_확인() {
         assertThatThrownBy(() -> new WinningNumber(46))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("숫자가 범위 밖임");
+                .hasMessage(NUMBERS_OUT_OF_RANGE.getMessage());
     }
 
     @Test

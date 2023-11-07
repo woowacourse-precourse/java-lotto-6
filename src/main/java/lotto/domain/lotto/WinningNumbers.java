@@ -1,9 +1,6 @@
 package lotto.domain.lotto;
 
 import lotto.global.constant.BonusNumberMatch;
-import lotto.global.constant.LottoRank;
-
-import java.util.List;
 
 public class WinningNumbers {
     private WinningNormalNumbers winningNormalNumbers;

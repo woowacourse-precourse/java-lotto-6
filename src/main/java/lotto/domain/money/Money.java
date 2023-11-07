@@ -1,5 +1,7 @@
 package lotto.domain.money;
 
+import static lotto.global.constant.exception.ExceptionMessage.*;
+
 public class Money {
     private static final long LOTTO_COST = 1_000;
     private static final long MAX_LIMIT = 1_000_000_000;
@@ -17,19 +19,19 @@ public class Money {
 
     private void validateMoneyIsMoreThanThousand() {
         if(money < LOTTO_COST) {
-            throw new IllegalArgumentException("1000원 이상 입금");
+            throw new IllegalArgumentException(MONEY_MORE_THAN_THOUSAND.getMessage());
         }
     }
 
     private void validateMoneyLessThanLongMax() {
         if(money >= MAX_LIMIT) {
-            throw new IllegalArgumentException("10억원 미만 구매");
+            throw new IllegalArgumentException(MONEY_LESS_THAN_TEN_BILLION.getMessage());
         }
     }
 
     private void validateMoneyDividedByThousand() {
-        if(money % 1000 != 0) {
-            throw new IllegalArgumentException("돈은 1000원 단위로 나누어 져야 함");
+        if(money % LOTTO_COST != 0) {
+            throw new IllegalArgumentException(MONEY_DIVIDED_INTO_THOUSAND.getMessage());
         }
     }
 

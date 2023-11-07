@@ -1,10 +1,10 @@
 package lotto.global.view.io;
 
-import lotto.domain.lotto.BonusNumber;
-import lotto.domain.lotto.WinningNormalNumbers;
 import lotto.domain.lotto.WinningNumbers;
 import lotto.domain.money.Money;
 import lotto.global.view.output.OutputView;
+
+import static lotto.global.constant.exception.ExceptionMessage.MAX_INPUT_ATTEMPT_COUNT;
 
 public class ProxyLottoInputProcessor implements InputProcessor{
     private InputProcessor inputProcessor;
@@ -22,10 +22,10 @@ public class ProxyLottoInputProcessor implements InputProcessor{
             try {
                 return inputProcessor.inputMoney();
             } catch (Exception e) {
-                OutputView.printMessageLine("[ERROR]" + e.getMessage());
+                OutputView.printMessageLine(e.getMessage());
             }
         }
-        throw new IllegalStateException("[ERROR] 입력 횟수 5번 초과");
+        throw new IllegalStateException(MAX_INPUT_ATTEMPT_COUNT.getMessage());
     }
 
     public WinningNumbers inputWinningNumbers() {
@@ -43,10 +43,10 @@ public class ProxyLottoInputProcessor implements InputProcessor{
                 return inputProcessor.inputWinningNormalNumbers();
 
             } catch (Exception e) {
-                OutputView.printMessageLine("[ERROR]" + e.getMessage());
+                OutputView.printMessageLine(e.getMessage());
             }
         }
-        throw new IllegalStateException("[ERROR] 입력 횟수 5번 초과");
+        throw new IllegalStateException(MAX_INPUT_ATTEMPT_COUNT.getMessage());
     }
 
     @Override
@@ -56,10 +56,10 @@ public class ProxyLottoInputProcessor implements InputProcessor{
             try {
                 return inputProcessor.inputBonusNumber();
             } catch (Exception e) {
-                OutputView.printMessageLine("[ERROR]" + e.getMessage());
+                OutputView.printMessageLine(e.getMessage());
             }
         }
-        throw new IllegalStateException("[ERROR] 입력 횟수 5번 초과");
+        throw new IllegalStateException(MAX_INPUT_ATTEMPT_COUNT.getMessage());
     }
 
 }

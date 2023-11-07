@@ -1,7 +1,10 @@
 package lotto.domain.lotto;
 
+import java.util.Objects;
+
 import static lotto.global.constant.NumberDefinition.END_INCLUSIVE;
 import static lotto.global.constant.NumberDefinition.START_INCLUSIVE;
+import static lotto.global.constant.exception.ExceptionMessage.NUMBERS_OUT_OF_RANGE;
 
 public class WinningNumber {
 
@@ -14,15 +17,12 @@ public class WinningNumber {
 
     public void validateNumberIsInRange(Integer number) {
         if (number < START_INCLUSIVE.getNumber() || number > END_INCLUSIVE.getNumber()) {
-            throw new IllegalArgumentException("숫자가 범위 밖임");
+            throw new IllegalArgumentException(NUMBERS_OUT_OF_RANGE.getMessage());
         }
     }
 
     public boolean isEqualsToLottoNumber(Integer lottoNumber) {
-        if(this.number.equals(lottoNumber)) {
-            return true;
-        }
-        return false;
+        return this.number.equals(lottoNumber);
     }
 
     @Override
@@ -32,7 +32,7 @@ public class WinningNumber {
 
         WinningNumber that = (WinningNumber) o;
 
-        return number != null ? number.equals(that.number) : that.number == null;
+        return Objects.equals(number, that.number);
     }
 
     public Integer getNumber() {

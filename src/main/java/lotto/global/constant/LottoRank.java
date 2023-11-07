@@ -3,6 +3,8 @@ package lotto.global.constant;
 import java.util.Arrays;
 
 import static lotto.global.constant.BonusNumberMatch.*;
+import static lotto.global.constant.NumberDefinition.*;
+import static lotto.global.constant.exception.ExceptionMessage.ILLEGAL_MATCH_COUNT;
 
 public enum LottoRank {
     OUT_OF_RANK("순위 밖",0, 0,NOT_MATTER),
@@ -25,18 +27,18 @@ public enum LottoRank {
     }
 
     public static LottoRank getRank(int matchCount, BonusNumberMatch bonusNumberMatch) {
-        if(matchCount < 0 || matchCount > 6) {
-            throw new IllegalArgumentException("잘못된 값 입력");
+        if(matchCount < 0 || matchCount > LOTTO_NUMBER_COUNT.getNumber()) {
+            throw new IllegalArgumentException(ILLEGAL_MATCH_COUNT.getMessage());
         }
 
-        if(matchCount < 3) {
+        if(matchCount < MINIMUM_MATCH.getNumber()) {
             return OUT_OF_RANK;
         }
 
         return Arrays.stream(LottoRank.values())
                 .filter(lotto -> lotto.matchCount == matchCount)
                 .filter(lottoRank -> {
-                    if(lottoRank.matchCount == 5) {
+                    if(lottoRank.matchCount == BONUS_NUMBER_MATCH_CRITERIA.getNumber()) {
                         return lottoRank.bonusNumberMatch == bonusNumberMatch;
                     }
                     return true;

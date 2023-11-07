@@ -5,6 +5,8 @@ import lotto.global.converter.NumberConverter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.global.constant.exception.ExceptionMessage.*;
+
 public class WinningNormalNumbers {
     private List<WinningNumber> winningNumbers;
 
@@ -27,14 +29,14 @@ public class WinningNormalNumbers {
     private void validateDuplicateNumber(WinningNumber winningNumber) {
         for (WinningNumber winningNormalNumber : winningNumbers) {
             if(winningNormalNumber.equals(winningNumber)) {
-                throw new IllegalArgumentException("중복 x");
+                throw new IllegalArgumentException(NUMBERS_DUPLICATED.getMessage());
             }
         }
     }
 
     private void validateNumberOfWinningNormalNumberIsSix() {
         if(winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("당첨 숫자 개수는 6개");
+            throw new IllegalArgumentException(NUMBERS_COUNT_MUST_BE_SIX.getMessage());
         }
     }
 
@@ -60,7 +62,7 @@ public class WinningNormalNumbers {
     public void validateBonusIsDuplicateWithWinningNormalNumber(BonusNumber bonusNumber) {
         for (WinningNumber number : winningNumbers) {
             if(number.equals(bonusNumber.getBonusNumber())) {
-                throw new IllegalArgumentException("보너스 숫자 중복");
+                throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATED.getMessage());
             }
         }
     }

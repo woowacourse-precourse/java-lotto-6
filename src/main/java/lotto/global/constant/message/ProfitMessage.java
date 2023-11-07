@@ -5,6 +5,8 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public enum ProfitMessage implements MessageUtil<Double> {
+
+
     PROFIT_MESSAGE() {
         public String makeMessage(Double profit) {
             DecimalFormat decimalFormat = new DecimalFormat("#.##");

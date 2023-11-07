@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProfitMessageTest {
+public class ProfitCalculatorMessageTest {
 
     @Test
     void 수익률_메시지가_잘_나오는지_확인() {

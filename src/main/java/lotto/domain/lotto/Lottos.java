@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lottos {
+    private static final String NEXT_LINE = "\n";
+
     private long numberOfTheLotto;
     private NumberUtil numberUtil;
     private List<Lotto> lottos;
@@ -36,7 +38,7 @@ public class Lottos {
             String lottoResult = lottoNumbers.stream()
                     .map(Object::toString)
                     .collect(Collectors.joining(", ","[","]"));
-            result.append(lottoResult).append("\n");
+            result.append(lottoResult).append(NEXT_LINE);
         }
         return result.toString();
     }

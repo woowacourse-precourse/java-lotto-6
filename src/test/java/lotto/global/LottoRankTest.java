@@ -2,6 +2,7 @@ package lotto.global;
 
 import lotto.global.constant.BonusNumberMatch;
 import lotto.global.constant.LottoRank;
+import lotto.global.constant.exception.ExceptionMessage;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -70,7 +71,7 @@ public class LottoRankTest {
         for (Integer number : outOfRangeNumber) {
             assertThatThrownBy(() -> LottoRank.getRank(number, bonusNumberMatch))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage("잘못된 값 입력");
+                    .hasMessage(ExceptionMessage.ILLEGAL_MATCH_COUNT.getMessage());
 
         }
     }

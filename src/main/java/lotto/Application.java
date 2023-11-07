@@ -53,7 +53,7 @@ public class Application {
             try {
                 int bonusNumber=Integer.parseInt(Console.readLine());
                 if (bonusNumber<1 || bonusNumber>45){
-                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 }
                 return bonusNumber;
             } catch (IllegalArgumentException e){
@@ -61,8 +61,32 @@ public class Application {
             }
         }
     }
+    private static List<Lotto> generateLotto(int purchaseAmount) {
+        int numberOfLottos=purchaseAmount/1000;
+        List<Lotto> lottos=new ArrayList<>();
 
-    //parse input
+        for(int i=0;i<numberOfLottos; i++){
+            List<Integer> numbers=generateLottoNumbers();
+            lottos.add(new Lotto(numbers));
+        }
+
+        System.out.println(numberOfLottos+"개 를 구매했습니다.");
+        return lottos;
+    }
+    private  static  List<Integer> generateLottoNumbers(){
+        List<Integer> numbers=new ArrayList<>();
+        while (numbers.size()<6) {
+            int randomNumber=Randoms.pickNumberInRange(1,45);
+            //중복된 숫자가 담기지 않도록
+            if (!numbers.contains(randomNumber)){
+                numbers.add(randomNumber);
+            }
+        }
+        numbers.sort(Integer::compareTo);
+        return numbers;
+    }
+
+
     private static List<Integer> parseCommaSeperatedNumbers(String input){
         String[] tokens=input.split(",");
         //일단 테스트 해보고 수정

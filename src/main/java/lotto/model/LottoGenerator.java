@@ -11,10 +11,14 @@ public class LottoGenerator {
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
 
+    private UserLotto userLotto;
+
     public LottoGenerator(int purchasePrice) {
         int purchaseCount = purchasePrice / ONE_LOTTO_PRICE;
+        userLotto = new UserLotto();
         for (int i = 0; i < purchaseCount; i++) {
-            generateLotto();
+            Lotto newLotto = generateLotto();
+            userLotto.addLotto(newLotto);
         }
     }
 
@@ -23,6 +27,4 @@ public class LottoGenerator {
                 .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
         return new Lotto(randomNumbers);
     }
-
-
 }

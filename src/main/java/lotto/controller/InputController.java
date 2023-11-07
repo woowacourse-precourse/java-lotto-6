@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.TicketAmount;
 import lotto.domain.WinningNumber;
+import lotto.domain.BonusNumber;
 import lotto.util.Validator;
 import lotto.view.InputView;
 
@@ -23,6 +24,16 @@ public class InputController {
             return new WinningNumber(input);
         } catch (IllegalArgumentException e) {
             return setWinningNumber();
+        }
+    }
+
+    public BonusNumber setBonusNumber(WinningNumber winningNumber) {
+        try {
+            String input = InputView.inputBonusNumber();
+            validateInput(input);
+            return new BonusNumber(winningNumber, input);
+        } catch (IllegalArgumentException e) {
+            return setBonusNumber(winningNumber);
         }
     }
 

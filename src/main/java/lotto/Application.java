@@ -12,12 +12,13 @@ public class Application {
     private static final int LOTTO_END_NUMBER = 45;
     private static final int LOTTO_LENGTH = 6;
     private static final int LOTTO_BUY_UNIT = 1000;
+
     public static void main(String[] args) {
 
+        Validation validation = new Validation();
         Purchase purchase = new Purchase();
 
         try {
-            Validation validation = new Validation();
 
             System.out.println("구입금액을 입력해 주세요.");
             String userInput = Console.readLine();
@@ -31,7 +32,7 @@ public class Application {
             validation.validateWinNumbersFormatByChar(winNumbersInput);
             validation.validateWinNumbersFormatByLength(winNumbersInput);
             validation.validateWinNumbersFormatBySide(winNumbersInput);
-            int[] winNumbers = validation.validateWinNumbersInRange(winNumbersInput);
+            List<Integer> winNumbers = validation.validateWinNumbersInRange(winNumbersInput);
             validation.validateWinNumbersByDuplicate(winNumbers);
             /* 당첨번호 validation 종료 */
 
@@ -48,8 +49,8 @@ public class Application {
 
             /* 당첨통계 시작 */
             Set<Integer> setForCompareNumbers = new HashSet<>();
-            for (int i = 0; i < winNumbers.length; i++) {
-                setForCompareNumbers.add(winNumbers[i]);
+            for (int i = 0; i < winNumbers.size(); i++) {
+                setForCompareNumbers.add(winNumbers.get(i));
             }
             int[] winStatistic = new int[5];
             for (int i = 0; i < lottoList.size(); i++) {

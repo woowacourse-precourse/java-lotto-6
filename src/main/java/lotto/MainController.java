@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.LottoOption;
 import lotto.domain.Rank;
+import lotto.domain.ResultSheet;
 import lotto.domain.WinningLotto;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -19,8 +20,8 @@ public class MainController {
         Lottos purchasedLotto = initLottos();
         OutputView.printLottos(purchasedLotto);
         WinningLotto winningLotto = initAnswerLotto();
-        Map<Rank, Integer> resultSheet = winningLotto.calculateResult(purchasedLotto.getLottoItems());
-        OutputView.printResult(resultSheet, purchasedLotto.getCount());
+        ResultSheet resultSheet = winningLotto.calculateResult(purchasedLotto.getLottoItems());
+        OutputView.printResult(resultSheet.getSheet(), purchasedLotto.getCount());
     }
 
     private static Lottos initLottos() {

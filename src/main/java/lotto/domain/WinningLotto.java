@@ -15,12 +15,12 @@ public record WinningLotto(Lotto lotto, BonusNumber bonus) {
         }
     }
 
-    public Map<Rank, Integer> calculateResult(List<Lotto> lottos) {
-        Map<Rank, Integer> resultSheet = Rank.createNewSheet();
+    public ResultSheet calculateResult(List<Lotto> lottos) {
+        Map<Rank, Integer> sheet = Rank.createNewSheet();
         lottos.stream()
                 .map(this::calculateLottoRank)
-                .forEach(rank -> addCountByRank(resultSheet, rank));
-        return resultSheet;
+                .forEach(rank -> addCountByRank(sheet, rank));
+        return new ResultSheet(sheet);
     }
 
     private Integer addCountByRank(Map<Rank, Integer> resultSheet, Rank rank) {

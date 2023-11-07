@@ -6,6 +6,7 @@ import java.util.Map;
 import lotto.domain.LottoOption;
 import lotto.domain.Lottos;
 import lotto.domain.Rank;
+import lotto.domain.ResultSheet;
 import lotto.message.ViewMessage;
 
 public class OutputView {
@@ -21,14 +22,14 @@ public class OutputView {
         System.out.println("[ERROR] : " + e.getMessage());
     }
 
-    public static void printResult(Map<Rank, Integer> resultSheet, int count) {
+    public static void printResult(Map<Rank, Integer> sheet, int count) {
         printResultHeader();
-        printByRank(Rank.FIFTH, resultSheet.get(Rank.FIFTH));
-        printByRank(Rank.FOURTH, resultSheet.get(Rank.FOURTH));
-        printByRank(Rank.THIRD, resultSheet.get(Rank.THIRD));
-        printByRank(Rank.SECOND, resultSheet.get(Rank.SECOND));
-        printByRank(Rank.FIRST, resultSheet.get(Rank.FIRST));
-        printProfitRate(resultSheet, count);
+        printByRank(Rank.FIFTH, sheet.get(Rank.FIFTH));
+        printByRank(Rank.FOURTH, sheet.get(Rank.FOURTH));
+        printByRank(Rank.THIRD, sheet.get(Rank.THIRD));
+        printByRank(Rank.SECOND, sheet.get(Rank.SECOND));
+        printByRank(Rank.FIRST, sheet.get(Rank.FIRST));
+        printProfitRate(sheet, count);
     }
 
     private static void printResultHeader() {

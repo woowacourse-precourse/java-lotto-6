@@ -3,34 +3,44 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.exception.LottoExceptionMessage;
-import lotto.util.OutputTest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-public class BonusNumberTest extends OutputTest {
-    @DisplayName("보너스 번호가 1~45 사이 수가 아니면 에러 메시지가 출력된다.")
+public class BonusNumberTest {
+    private WinningNumbers winningNumbers;
+
+    @BeforeEach
+    void setUp() {
+        winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
+    }
+
+    @DisplayName("보너스 번호가 1~45 사이 수가 아니면 null이 반환된다.")
     @ParameterizedTest
     @CsvSource({"0", "-1", "46"})
-    void getErrorMessageByNotBetweenStartAndEndInclusive(int bonusNumber) {
-        WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
-
-        BonusNumber.of(bonusNumber, winningNumbers);
-        assertThat(output()).contains(
-                LottoExceptionMessage.BONUS_NUMBER_MUST_BETWEEN_START_AND_END_INCLUSIVE.getMessage()
-        );
+    void getNullByNotBetweenStartAndEndInclusive(int bonusNumber) {
+        BonusNumber actual = BonusNumber.of(bonusNumber, winningNumbers);
+        BonusNumber expected = null;
+        assertThat(actual).isEqualTo(expected);
     }
 
-    @DisplayName("보너스 번호가 당첨 번호와 중복되면 에러 메시지가 출력된다.")
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 null이 반환된다.")
     @ParameterizedTest
     @CsvSource({"1", "5", "6"})
-    void getErrorMessageByDuplicateNumber(int bonusNumber) {
-        WinningNumbers winningNumbers = WinningNumbers.from(List.of(1, 2, 3, 4, 5, 6));
-
-        BonusNumber.of(bonusNumber, winningNumbers);
-        assertThat(output()).contains(
-                LottoExceptionMessage.BONUS_NUMBER_MUST_NOT_DUPLICATE.getMessage()
-        );
+    void getNullMessageByDuplicateNumber(int bonusNumber) {
+        BonusNumber actual = BonusNumber.of(bonusNumber, winningNumbers);
+        BonusNumber expected = null;
+        assertThat(actual).isEqualTo(expected);
     }
+
+    @DisplayName("보너스 번호가 1~45 사이 수이고, 당첨 번호와 중복되지 않으면 해당 번호를 가지는 BonusNumber가 생성된다.")
+    @ParameterizedTest
+    @CsvSource({"7", "45"})
+    void getBonusNumberByInputBonusNumber(int inputBonusNumber) {
+        BonusNumber bonusNumber = BonusNumber.of(inputBonusNumber, winningNumbers);
+        int actual = bonusNumber.getBonusNumber();
+        assertThat(actual).isEqualTo(inputBonusNumber);
+    }
+
 }

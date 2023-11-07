@@ -23,7 +23,7 @@ public class ResultController {
         return result;
     }
 
-    public ResultType getLottoResult(int sameNumber, boolean isBonus) {
+    public ResultType getRankResult(int sameNumber, boolean isBonus) {
         if (sameNumber == 3) {
             return ResultType.THIRD;
         }

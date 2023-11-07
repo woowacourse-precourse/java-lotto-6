@@ -30,8 +30,4 @@ public class NumberConstant {
     public static final double PERCENT_MULTIPLIER = 100;
     public static final double DECIMAL_POINT_MULTIPLIER = 100;
     public static final double DECIMAL_POINT_DENOMINATOR = 100.0;
-
-
-    // TEST CASE
-    public static final int TEST_TICKET_NUM = 5;
 }

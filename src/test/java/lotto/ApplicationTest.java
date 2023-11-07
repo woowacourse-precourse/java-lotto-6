@@ -58,35 +58,35 @@ class ApplicationTest extends NsTest {
     void 천원단위_예외_테스트() {
     	assertSimpleTest(() -> {
             runException("1220");
-            assertThat(output()).contains("[ERROR] 구입 금액은 1,000원 단위로 입력해야합니다.");
+            assertThat(output()).contains(ERROR_MESSAGE + " 구입 금액은 1,000원 단위로 입력해야합니다.");
         });
     }
     @Test
     void 당첨번호_입력_예외_테스트() {
     	assertSimpleTest(() -> {
     		runException("8000","a,b,c,d");
-    		assertThat(output()).contains("[ERROR] 숫자를 입력해 주세요.");
+    		assertThat(output()).contains(ERROR_MESSAGE + " 숫자를 입력해 주세요.");
     	});
     }
     @Test
     void 보너스번호_입력_예외_테스트1() {
     	assertSimpleTest(() -> {
     		runException("8000","1,2,3,4,5,6","a");
-    		assertThat(output()).contains("[ERROR] 숫자를 입력해 주세요.");
+    		assertThat(output()).contains(ERROR_MESSAGE + " 숫자를 입력해 주세요.");
     	});
     }
     @Test
     void 보너스번호_입력_예외_테스트2() {
     	assertSimpleTest(() -> {
     		runException("8000","1,2,3,4,5,6","1");
-    		assertThat(output()).contains("[ERROR] 당첨 번호와 다른 숫자를 입력해주세요.");
+    		assertThat(output()).contains(ERROR_MESSAGE + " 당첨 번호와 다른 숫자를 입력해주세요.");
     	});
     }
     @Test
     void 보너스번호_입력_예외_테스트3() {
     	assertSimpleTest(() -> {
     		runException("8000","1,2,3,4,5,6","50");
-    		assertThat(output()).contains("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    		assertThat(output()).contains(ERROR_MESSAGE + " 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     	});
     }
     @Test

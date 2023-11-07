@@ -35,7 +35,7 @@ public class OutputView {
             if (winningResult != WinningResult.SECOND) {
                 System.out.print(winningResult.getValue() + "개 일치");
             }
-            System.out.println(" " + "(" + decimalFormat.format(winningResult.getPrice()) + ")" + " - " + countOfWinningResult.getOrDefault(winningResult, 0) + "개");
+            System.out.println(" " + "(" + decimalFormat.format(winningResult.getPrice()) + "원)" + " - " + countOfWinningResult.getOrDefault(winningResult, 0) + "개");
         }
         System.out.println("총 수익률은 " + calculateRateOfReturn(userLotto) + "%입니다.");
     }

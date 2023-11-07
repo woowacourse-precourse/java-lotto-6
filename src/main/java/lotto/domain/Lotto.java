@@ -19,19 +19,28 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateDuplication(numbers);
+        validateSize(numbers);
+        validateRange(numbers);
+    }
 
-        if (numbers.size() != Set.copyOf(numbers).size()) {
-            throw new IllegalArgumentException(INVALID_DUPLICATION.getMessage());
-        }
-
-        if (numbers.size() != LOTTO_NUMBER_SIZE) {
-            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getMessage());
-        }
-
+    private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(
                 number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER)
         ) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        if (numbers.size() != Set.copyOf(numbers).size()) {
+            throw new IllegalArgumentException(INVALID_DUPLICATION.getMessage());
         }
     }
 

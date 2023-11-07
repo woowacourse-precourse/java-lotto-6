@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -27,8 +28,19 @@ class LottoTest {
     @DisplayName("로또 번호 범위넘어가면 에러가 발생한다.")
     @Test
     void 범위넘어가면_에러발생() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호 오름차순 정렬")
+    @Test
+    void 번호_오름차순_정렬() {
+        Lotto input = new Lotto(List.of(3, 1, 4, 5, 2, 6));
+        List<Integer> expected = List.of(1, 2, 3, 4, 5, 6);
+
+        List<Integer> result = input.sorted(input.getNumbers());
+
+        assertThat(result).containsExactlyElementsOf(expected);
+    }
+
 }

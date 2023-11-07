@@ -19,6 +19,10 @@ public class NumberCheckerService {
         return new Lotto(splitLotto(winningLotto));
     }
 
+    public Bonus generateBonus(final String bonus, final Lotto winningLotto) {
+        return Bonus.of(bonus, winningLotto);
+    }
+
     private static List<Integer> splitLotto(String winningLotto) {
         List<Integer> numbers = new ArrayList<>();
         try {

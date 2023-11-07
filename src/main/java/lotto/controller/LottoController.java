@@ -1,8 +1,10 @@
 package lotto.controller;
 
 import static lotto.view.InputView.readLine;
+import static lotto.view.constants.ViewMessage.GET_BONUS_NUMBER;
 import static lotto.view.constants.ViewMessage.GET_WINNING_NUMBER;
 
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.NumberChecker;
@@ -22,7 +24,20 @@ public class LottoController {
     public NumberChecker createNumberChecker() {
         Lotto winningLotto = createWinningLotto();
 
-        return null;
+        Bonus bonus = createBonus(winningLotto);
+
+        return numberCheckerService.generateNumberChecker(winningLotto, bonus);
+    }
+
+    private Bonus createBonus(final Lotto winningLotto) {
+        while (true) {
+            try {
+                OutputView.printMessage(GET_BONUS_NUMBER);
+                return numberCheckerService.generateBonus(readLine(), winningLotto);
+            } catch (LottoException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     private Lotto createWinningLotto() {

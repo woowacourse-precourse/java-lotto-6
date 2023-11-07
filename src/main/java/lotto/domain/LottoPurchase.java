@@ -3,16 +3,15 @@ package lotto.domain;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import lotto.dto.LottoNumbersInfo;
-import lotto.dto.LottoPurchaseInfo;
 import lotto.message.LottoResult;
 
 public class LottoPurchase {
-    private LottoPurchaseInfo purchaseInfo;
+    private final BigDecimal purchaseAmount;
     private LottoNumbersInfo lottoNumbersInfo;
 
 
-    public LottoPurchase(LottoPurchaseInfo purchaseInfo, LottoNumbersInfo lottoNumbersInfo) {
-        this.purchaseInfo = purchaseInfo;
+    public LottoPurchase(BigDecimal purchaseAmount, LottoNumbersInfo lottoNumbersInfo) {
+        this.purchaseAmount = purchaseAmount;
         this.lottoNumbersInfo = lottoNumbersInfo;
     }
 
@@ -29,6 +28,6 @@ public class LottoPurchase {
             total = total.add(result.get(key).multiply(prize));
         }
 
-        return total.divide(purchaseInfo.getPurchaseAmount()).floatValue() * 100;
+        return total.divide(purchaseAmount).floatValue() * 100;
     }
 }

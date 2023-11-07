@@ -41,13 +41,13 @@ public class Money {
     }
 
     private static void isOverThousand(final String amount) {
-        if ((parseNumeric(amount) < LottoConstant.PRICE.getValue())) {
+        if (parseNumeric(amount) < LottoConstant.PRICE.getValue()) {
             throw new MinimumMoneyException();
         }
     }
 
     private static void isDivisibleByThousand(final String amount) {
-        if ((parseNumeric(amount) % LottoConstant.PRICE.getValue() != 0)) {
+        if (parseNumeric(amount) % LottoConstant.PRICE.getValue() != 0) {
             throw new MoneyUnitException();
         }
     }

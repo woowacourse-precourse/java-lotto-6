@@ -119,12 +119,26 @@ public class Application {
 
         }
 
+
+
         //당첨 통계 출력
         System.out.println("당첨 통계");
         System.out.println("---");
 
 
+        System.out.printf(WinningRankPrize.FIFTH.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.FIFTH.getPrizeAmount(), winRecordBoard.get(5));
+        System.out.printf(WinningRankPrize.FOURTH.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.FOURTH.getPrizeAmount(), winRecordBoard.get(4));
+        System.out.printf(WinningRankPrize.THIRD.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.THIRD.getPrizeAmount(), winRecordBoard.get(3));
+        System.out.printf(WinningRankPrize.SECOND.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.SECOND.getPrizeAmount(), winRecordBoard.get(2));
+        System.out.printf(WinningRankPrize.FIRST.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.FIRST.getPrizeAmount(), winRecordBoard.get(1));
+
+
         //수익률 출력
+
+
+
+
+
 
 
     }

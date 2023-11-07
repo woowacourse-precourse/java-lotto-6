@@ -2,11 +2,15 @@ package lotto.exception;
 
 import lotto.constant.Error;
 
-public class InputException {
+public class InputException extends IllegalArgumentException{
 
     private static InputException inputException = new InputException();
 
-    private InputException() {
+    public InputException() {
+    }
+
+    private InputException(Error error) {
+        super(error.getMessage());
     }
 
     public static InputException getInputException() {
@@ -17,7 +21,8 @@ public class InputException {
         throw new IllegalArgumentException(Error.IS_BRANK.getMessage());
     }
 
-    public void isNotNaturalNumber() {
-        throw new IllegalArgumentException(Error.ABLE_NUMBER.getMessage());
+    public InputException isNotNaturalNumber(Error error) {
+        System.out.println(error.getMessage());
+        throw new IllegalArgumentException(error.getMessage());
     }
 }

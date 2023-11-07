@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.constant.Error;
 import lotto.exception.InputException;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class Input {
 
     private static Input input = new Input();
-
+    private Output output = Output.getOutput();
     private InputException inputException = InputException.getInputException();
 
     private Input() {
@@ -29,8 +30,18 @@ public class Input {
     }
 
     private void manageException(String input) {
+        try {
+            checkBlank(input);
+            validateNumber(input);
+            endWithSeperator(input);
+        } catch (IllegalArgumentException e){
+            inputFromUser();
+        }
+    }
+
+    private void manageSeperatorInputException(String input) {
         checkBlank(input);
-        validateNumber(input);
+        endWithSeperator(input);
     }
 
     private void checkBlank(String input) {
@@ -40,9 +51,13 @@ public class Input {
     }
 
     private void validateNumber(String input) {
-        if (!isNatural(input)) {
-            inputException.isNotNaturalNumber();
+        if(!isNatural(input)){
+            throw inputException.isNotNaturalNumber(Error.ABLE_NUMBER);
         }
+    }
+
+    private void endWithSeperator(String input) {
+
     }
 
     private boolean isNatural(String input) {
@@ -63,4 +78,5 @@ public class Input {
 
         return list;
     }
+
 }

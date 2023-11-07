@@ -75,6 +75,10 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         String str = Console.readLine();
 
+        if (!isDigit(str)) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
+        }
+
         return str;
     }
 

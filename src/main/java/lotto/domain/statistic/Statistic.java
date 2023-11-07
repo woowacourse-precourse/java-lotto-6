@@ -10,8 +10,8 @@ import lotto.domain.ranking.LottoRanking;
 
 public class Statistic {
 
-    private static final int ONE = 1;
-    private static final int EARNING_RATE_CONSTANT = 100;
+    private static final int ADD_VALUE = 1;
+    private static final int EARNING_RATE_MULTIPLE_VALUE = 100;
 
     private final Map<LottoRanking, Integer> winningResult;
 
@@ -43,14 +43,14 @@ public class Statistic {
     }
 
     public void addCount(LottoRanking lottoRanking) {
-        winningResult.compute(lottoRanking, (key, value) -> value + ONE);
+        winningResult.compute(lottoRanking, (key, value) -> value + ADD_VALUE);
     }
 
     public double calculateEarningRate() {
         double principal = calculatePrincipal();
         double totalPrize = calculateTotalPrize();
 
-        return (totalPrize / principal) * EARNING_RATE_CONSTANT;
+        return (totalPrize / principal) * EARNING_RATE_MULTIPLE_VALUE;
     }
 
     private double calculatePrincipal() {

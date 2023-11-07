@@ -2,7 +2,7 @@ package lotto.domain.money;
 
 public class Money {
 
-    private static final int ZERO = 0;
+    private static final int MONEY_MINIMUM_VALUE = 0;
 
     private int value;
 
@@ -16,8 +16,10 @@ public class Money {
     }
 
     private static void validatePositive(int value) {
-        if (value < ZERO) {
-            throw new IllegalArgumentException("금액은 음수일 수 없습니다.");
+        if (value < MONEY_MINIMUM_VALUE) {
+            throw new IllegalArgumentException(
+                String.format("금액은 %d원보다 작을 수 없습니다.", MONEY_MINIMUM_VALUE)
+            );
         }
     }
 
@@ -40,6 +42,6 @@ public class Money {
     }
 
     public boolean isRemain() {
-        return value > ZERO;
+        return value > 0;
     }
 }

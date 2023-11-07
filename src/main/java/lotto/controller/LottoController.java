@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.etc.ErrorConstant.LOW_THOUSAND_ERROR;
 import static lotto.etc.ErrorConstant.NOT_DIVIDE_THOUSAND_ERROR;
 import static lotto.etc.SystemConstant.THREE_ZERO;
+import static lotto.etc.Validate.validateNumber;
 
 import java.util.Arrays;
 import java.util.List;
@@ -35,7 +36,6 @@ public class LottoController {
         return lottoService.createLotto(userNumbers);
     }
     public int createBonusNumber(BonusRequestDTO bonusRequestDTO) {
-
         return lottoService
                 .createBonusNumber(bonusRequestDTO);
     }
@@ -52,6 +52,7 @@ public class LottoController {
         return lottoNumbers;
     }
     private int validate(String time) {
+        validateNumber(time);
         if (time.length() <= 3) {
             throw new IllegalArgumentException(LOW_THOUSAND_ERROR.toString());
         }

@@ -11,7 +11,7 @@ import lotto.view.InputHandler;
 import lotto.view.OutputHandler;
 
 public class LottoController {
-    private static final String SEPARATOR = ",";
+    public static final String SEPARATOR = ",";
     private String purchasePrice;
     private Lottos lottos;
     private WinningNumber winningNumber;

@@ -4,13 +4,13 @@ import static lotto.constant.LottoConfig.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoConfig.MIN_LOTTO_NUMBER;
 import static lotto.constant.LottoConfig.PURCHASE_PRICE;
 import static lotto.constant.LottoConfig.TOTAL_CHOICE_NUMBER;
+import static lotto.controller.LottoController.SEPARATOR;
 
 import java.util.Arrays;
 import java.util.List;
 import lotto.constant.ErrorMessages;
 
 public class InputValidator {
-    private static final String SEPARATOR = ",";
     private static final String VALID_NUMERIC_PATTERN = "^\\d+$";
 
     public static void validatePriceInput(String priceInput) {

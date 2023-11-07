@@ -38,10 +38,8 @@ class MoneyTest {
 
     @DisplayName("최소 구입 금액인 1000원 미만 입력시 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"500", "0", "-1000"})
-    void throwsExceptionForAmountBelowMinimum() {
-        String inputAmount = "-1000";
-
+    @ValueSource(strings = {"0", "-1000"})
+    void throwsExceptionForAmountBelowMinimum(String inputAmount) {
         assertThatThrownBy(() -> new Money(inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Lotto {
@@ -22,5 +23,9 @@ public class Lotto {
 
     public int getNumber(int index) {
         return numbers.get(index);
+    }
+
+    public String toString() {
+        return String.valueOf(numbers);
     }
 }

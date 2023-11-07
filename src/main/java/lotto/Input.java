@@ -5,6 +5,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+
 public class Input {
     private static final String INPUT_USER_CASH = "구입 금액을 입력해 주세요.";
     private static final String INPUT_WIN_LOTTO_NUM = "당첨 번호를 입력해 주세요.";
@@ -17,9 +22,52 @@ public class Input {
         return userCash;
     }
 
-   public void checkCashUnit(int userCash) {
-        if(userCash%1000!=0){
+    public void checkCashUnit(int userCash) {
+        if (userCash % 1000 != 0) {
+            System.out.println("천원맞춰오십시오");
             throw new IllegalArgumentException();
         }
     }
+
+    public List<Integer> printWinnerNum() {
+        System.out.println(INPUT_WIN_LOTTO_NUM);
+        String[] winnerNumList = (Console.readLine()).split(",");
+        List<Integer> winnerNum = makeList(winnerNumList);
+        return winnerNum;
+    }
+
+    public int printBonusNum() {
+        System.out.println(INPUT_USER_BONUS_LOTTO_NUM);
+        String bonus = Console.readLine();
+        int bonusNum = makeNum(bonus);
+        return bonusNum;
+    }
+
+    private List<Integer> makeList(String[] numList) {
+        List<Integer> winnerNumList = new ArrayList<>(numList.length);
+        try {
+            for (int i = 0; i < numList.length; i++) {
+                winnerNumList.add(Integer.parseInt(numList[i]));
+            }
+        } catch (NumberFormatException exception) {
+            System.out.println("숫자를 입력하십시오");
+            throw new IllegalArgumentException();
+        }
+        return winnerNumList;
+    }
+
+    private int makeNum (String bonusNum){
+        int Num;
+        try{
+            Num = Integer.parseInt(bonusNum);
+        }catch(NumberFormatException exception){
+            System.out.println("숫자를 입력하십시오");
+            throw new IllegalArgumentException();
+        }
+        return Num;
+    }
 }
+
+
+
+

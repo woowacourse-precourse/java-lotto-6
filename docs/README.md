@@ -6,7 +6,7 @@
 
 ## 🚀 구현 기능 목록
 
-- [ ] 로또 생성 기능
+- [X] 로또 생성 기능
   - 6개의 숫자로 이루어진 로또 번호 생성 (오름차순 정렬)
   - 1 ~ 45 사이의 숫자가 아닌 경우 예외 발생 (IllegalArgumentException)
   - 6개의 숫자가 아닌 경우 예외 발생 (IllegalArgumentException)

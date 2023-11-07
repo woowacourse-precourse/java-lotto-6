@@ -1,6 +1,11 @@
 package lotto.service;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.PlayerLotto;
+import lotto.dto.WinningStatisticsDto;
+import lotto.service.numbergenerator.SixUniqueNumberGenerator;
 import lotto.utils.message.LottoExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -66,8 +71,42 @@ class LottoGameServiceTest {
 
             Assertions.assertThatCode(() -> lottoGameService.createPlayerLotto(1))
                     .doesNotThrowAnyException();
-
         }
     }
 
+    @Nested
+    @DisplayName("사용자 최종 성적을 요청하여 당첨 통계를 반환하는 기능 테스트")
+    class CalculateWinningStatistics {
+        @ParameterizedTest
+        @MethodSource("lotto.helper.TestHelper#createPlayerLotto")
+        @DisplayName("5개 구매하고 5등 1번, 4등 3번했을 때의 수익률은 3100.0% 이다.")
+        void randomWinningStatisticsTestOne(PlayerLotto playerLotto) {
+            // given
+            LottoGameService lottoGameService = new LottoGameService(new SixUniqueNumberGenerator(),
+                    new YieldCalculator());
+            Lotto winningNumber = new Lotto(List.of(1, 4, 7, 2, 29, 30));
+            LottoNumber lottoNumber = new LottoNumber(8);
+            // when
+            WinningStatisticsDto winningStatisticsDto = lottoGameService.calculateWinningStatistics(playerLotto,
+                    winningNumber, lottoNumber);
+            // then
+            Assertions.assertThat(winningStatisticsDto.getYieldRate().toString()).isEqualTo("3100.0");
+        }
+
+        @ParameterizedTest
+        @MethodSource("lotto.helper.TestHelper#createPlayerLotto")
+        @DisplayName("5개 구매하고 1등 1번, 5등 3번했을 때의 수익률은 40000300.0% 이다.")
+        void randomWinningStatisticsTestTwo(PlayerLotto playerLotto) {
+            // given
+            LottoGameService lottoGameService = new LottoGameService(new SixUniqueNumberGenerator(),
+                    new YieldCalculator());
+            Lotto winningNumber = new Lotto(List.of(11, 12, 13, 3, 2, 7));
+            LottoNumber lottoNumber = new LottoNumber(4);
+            // when
+            WinningStatisticsDto winningStatisticsDto = lottoGameService.calculateWinningStatistics(playerLotto,
+                    winningNumber, lottoNumber);
+            // then
+            Assertions.assertThat(winningStatisticsDto.getYieldRate().toString()).isEqualTo("40000300.0");
+        }
+    }
 }

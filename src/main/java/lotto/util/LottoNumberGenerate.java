@@ -26,7 +26,8 @@ public class LottoNumberGenerate {
     }
 
     private static List<Integer> sortNumbers(List<Integer> numbers){
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> sortingNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortingNumbers);
+        return sortingNumbers;
     }
 }

@@ -48,7 +48,7 @@ public class LottoController {
   }
 
   public static void printLottoResults(int money, List<Integer> rank) {
-    OutputView.printLottoCountMessage(rank.size());
+    OutputView.printSuccessResult();
     OutputView.printRanking(rank);
 
     int prize = LottoResult.lottoPrizeCalculator(rank);

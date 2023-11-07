@@ -17,5 +17,11 @@ public class LottoService {
         customer.pay();
     }
 
+    public String checkLucky() {
+        customer.getLottos().stream()
+                .forEach(lotto -> resultRepository.save(lucky.checkWinning(lotto)));
+
+        return resultRepository.toString();
+    }
 
 }

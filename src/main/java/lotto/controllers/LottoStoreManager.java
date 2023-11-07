@@ -1,5 +1,10 @@
 package lotto.controllers;
 
+import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
+
+import java.util.ArrayList;
+
 import static lotto.model.InputValidator.validateDivisibleByThousand;
 import static lotto.model.InputValidator.validateNonInteger;
 import static lotto.model.Utilities.divide;
@@ -42,9 +47,16 @@ public class LottoStoreManager {
         InputProcessor.close();
     }
 
-    public void lottoMachine() {
-        this.lottoTicketCount = (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
+    public LottoGenerator lottoMachine() {
+        lottoTicketCount = (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
+        return new LottoGenerator(lottoTicketCount);
     }
 
-
+    public void displayLottoTicketsNumber() {
+        LottoGenerator tickets = lottoMachine();
+        ArrayList<Lotto> lottoTickets = tickets.getLottoTickets();
+        for (Lotto lottoTicket : lottoTickets) {
+            System.out.println(lottoTicket);
+        }
+    }
 }

@@ -18,6 +18,6 @@ public class Application {
 
         controller.lottoMachine();
         view.lottoTicketCountView(controller.getLottoTicketCount());
-
+        controller.displayLottoTicketsNumber();
     }
 }

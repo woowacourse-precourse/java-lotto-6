@@ -9,12 +9,14 @@ public enum Prize {
     FIVE(5, 1500000, "5개 일치 (1,500,000원)"),
     BONUS(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     SIX(6, 2000000000, "6개 일치 (2,000,000,000원)");
-    private final int count;
-    private final int amount;
-
-    private final String information;
 
     private static List<String> prizeHistory = new ArrayList<>();
+    private static final String PRINT_WINNING_STATISTICS = "당첨 통계\n---";
+    private static final String EARNING_RATE = "총 수익률은 %s%%입니다.";
+    private int count;
+    private int amount;
+
+    private String information;
 
 
     Prize(int count, int amount, String information) {
@@ -60,7 +62,7 @@ public enum Prize {
             }
         }
         String earningRate = String.format("%.1f", totalAmount * 100 / purchase);
-        System.out.println("총 수익률은 " + earningRate + "%입니다.");
+        System.out.println(String.format(EARNING_RATE, earningRate));
     }
 
     public static void countPrizeHistory(List<Long> matchWinningNumber, List<Long> matchBonusNumber) {
@@ -73,6 +75,7 @@ public enum Prize {
     }
 
     public static void printWinningStatistics() {
+        System.out.println(PRINT_WINNING_STATISTICS);
         for (Prize prize : Prize.values()) {
             long count = prizeHistory.stream().filter(p -> p.equals(prize.name())).count();
             System.out.println(prize.information + " - " + count + "개");

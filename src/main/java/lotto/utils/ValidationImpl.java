@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 public class ValidationImpl implements Validation {
+    private final String DELIMITER = ",";
     private final int NUMBER_START = 1;
     private final int NUMBER_END = 45;
     private final Pattern WINNING_NUMBER_PATTERN = Pattern.compile("[^,\\d]");
@@ -17,17 +18,14 @@ public class ValidationImpl implements Validation {
         if (hasSpecialCharExceptComma(input)) {
             return false;
         }
-        String[] strings = input.split(",");
+        String[] strings = input.split(DELIMITER);
         for (String string : strings) {
             if (!existDigitBetweenComma(string)
                     || !isBetween(Integer.parseInt(string))) {
                 return false;
             }
         }
-        if (isDistinctNumbers(input)) {
-            return true;
-        }
-        return false;
+        return isDistinctNumbers(input);
     }
 
     private boolean hasSpecialCharExceptComma(String input) {
@@ -35,10 +33,7 @@ public class ValidationImpl implements Validation {
     }
 
     private boolean existDigitBetweenComma(String string) {
-        if (string.length() < 1) {
-            return false;
-        }
-        return true;
+        return string.length() >= 1;
     }
 
     private boolean isDistinctNumbers(String input) {
@@ -47,17 +42,11 @@ public class ValidationImpl implements Validation {
         for (String string : strings) {
             distinctNumbers.add(Integer.parseInt(string));
         }
-        if (distinctNumbers.size() < strings.length) {
-            return false;
-        }
-        return true;
+        return distinctNumbers.size() >= strings.length;
     }
 
     private boolean isBetween(int number) {
-        if (number < NUMBER_START || number > NUMBER_END) {
-            return false;
-        }
-        return true;
+        return number >= NUMBER_START && number <= NUMBER_END;
     }
 
     @Override

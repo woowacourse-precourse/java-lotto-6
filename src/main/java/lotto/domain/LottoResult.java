@@ -65,7 +65,7 @@ public class LottoResult {
             return NO_BENEFIT.getSetting();
         }
 
-        return (totalReward / totalSpendAmount) * PERCENTAGE_INDICATOR.getSetting();
+        return (totalReward / (double) totalSpendAmount) * PERCENTAGE_INDICATOR.getSetting();
     }
 
 

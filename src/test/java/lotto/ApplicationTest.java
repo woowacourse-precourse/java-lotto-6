@@ -73,6 +73,17 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    @DisplayName("로또 구입 금액에 맞게 로또의 개수 생성되는지 확인")
+    void 로또_개수_테스트() {
+        LottoService lottoService = new LottoService();
+        List<Lotto> lottos;
+        int price = 5000;
+
+        lottos = lottoService.createLotto(price);
+        assertThat(lottos.size()).isEqualTo(price / 1000);
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

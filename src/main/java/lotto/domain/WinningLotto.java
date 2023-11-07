@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.exception.LottoRangeException;
+import lotto.exception.SameNumberInBonusException;
+import lotto.exception.SameNumberInLottoException;
 
 public class WinningLotto {
     private final Integer MIN_NUM = 1;
@@ -28,19 +31,19 @@ public class WinningLotto {
 
     public void validateSameNumbers(List<Integer> win) {
         if(win.size() != win.stream().distinct().count()){
-            throw new IllegalArgumentException();
+            throw new SameNumberInLottoException();
         }
 
     }
     public void validateBonusInWin(List<Integer> win, Integer bonus) {
         if(win.contains(bonus)){
-            throw new IllegalArgumentException();
+            throw new SameNumberInBonusException();
         }
     }
 
     public void validateRange(Integer number) {
         if(!(number>=MIN_NUM && number<=MAX_NUM)) {
-            throw new IllegalArgumentException();
+            throw new LottoRangeException();
         }
     }
 

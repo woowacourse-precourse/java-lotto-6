@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.exception.LottoSizeException;
 
 public class Lotto {
     private final int YES = 1;
@@ -15,7 +16,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new LottoSizeException();
         }
     }
 

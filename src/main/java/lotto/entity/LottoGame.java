@@ -1,15 +1,15 @@
 package lotto.entity;
 
+import lotto.dto.LottoGameDto;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class LottoGame {
     private Long id;
     private List<Lotto> lottos = new ArrayList<>();
-    private List<Integer> winningNumbers;
-    private Integer bonusNumber;
-
+    List<Integer> winningNumbers;
+    Integer bonusNumber;
     public Long getId() {
         return id;
     }
@@ -22,11 +22,15 @@ public class LottoGame {
         lottos.add(lotto);
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
-    }
-
-    public Integer getBonusNumber() {
-        return bonusNumber;
+    public LottoGameDto.Result doLottoGame() {
+        int[] result = {0, 0, 0, 0, 0, 0, 0, 0};
+        for (Lotto lotto : lottos) {
+            int score = lotto.checkLottoScore(winningNumbers);
+            if (score == 5 && lotto.checkLottoBonus(bonusNumber)) {
+                score = 7;
+            }
+            result[score] += 1;
+        }
+        return new LottoGameDto.Result(result[3], result[4], result[5], result[7], result[6]);
     }
 }

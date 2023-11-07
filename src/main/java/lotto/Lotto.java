@@ -1,6 +1,6 @@
 package lotto;
 
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,6 +15,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
 }

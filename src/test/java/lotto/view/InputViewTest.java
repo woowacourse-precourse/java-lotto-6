@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import lotto.constant.ErrorMessage;
 import lotto.view.InputView;

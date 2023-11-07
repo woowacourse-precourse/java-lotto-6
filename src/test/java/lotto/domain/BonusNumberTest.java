@@ -1,16 +1,13 @@
 package lotto.domain;
 
-import lotto.exception.BonusNumberException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.IllformedLocaleException;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 class BonusNumberTest {
 
@@ -20,7 +17,7 @@ class BonusNumberTest {
     @DisplayName("보너스 숫자로 숫자가 아닌 다른 것이 들어온 경우 예외처리")
     void isNumberTest(){
         assertThatThrownBy(() -> new BonusNumber("abc", list)).isInstanceOf(
-                IllformedLocaleException.class);
+                IllegalArgumentException.class);
     }
 
     @Test

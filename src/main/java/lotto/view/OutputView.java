@@ -40,7 +40,7 @@ public class OutputView {
         printMatchResults(lottoResult);
 
         System.out.printf(ConsoleMessage.EARNINGS_RATE_FORMAT.message,
-            lottoResult.calculateRoundedEarningsRate(purchaseAmount));
+            lottoResult.calculateEarningsRate(purchaseAmount));
     }
 
     private void printMatchResults(LottoResult lottoResult) {

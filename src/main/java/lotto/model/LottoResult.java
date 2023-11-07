@@ -27,10 +27,10 @@ public class LottoResult {
         return result.get(matchCount);
     }
 
-    public double calculateRoundedEarningsRate(final int purchaseAmount) {
+    public double calculateEarningsRate(final int purchaseAmount) {
         long totalEarnings = calculateTotalEarnings();
-        double earningsRate = calculateEarningsRate(totalEarnings, purchaseAmount);
-        return roundEarningsRate(earningsRate);
+        return roundEarningsRate(
+            (double) totalEarnings / purchaseAmount  * Constants.HUNDRED);
     }
 
     private long calculateTotalEarnings() {
@@ -39,10 +39,6 @@ public class LottoResult {
             .sum();
     }
 
-    private double calculateEarningsRate(final long totalEarnings, int purchaseAmount){
-        long totalInvestment = (long) purchaseAmount * Constants.LOTTO_PRICE;
-        return (double) totalEarnings / totalInvestment * Constants.HUNDRED;
-    }
 
     private double roundEarningsRate(final double earningsRate) {
         BigDecimal bd = new BigDecimal(Double.toString(earningsRate))

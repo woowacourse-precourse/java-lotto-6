@@ -46,11 +46,11 @@ class LottoResultTest {
     @Test
     void calculateEarningRateIsCorrect() {
         lottoResult.addResult(MatchCount.THREE_MATCH);
-        int purchaseAmount = 8;
+        int purchaseAmount = 8000;
 
         double expectedEarningsRate = 62.5;
 
-        assertThat(lottoResult.calculateRoundedEarningsRate(purchaseAmount)).isEqualTo(
+        assertThat(lottoResult.calculateEarningsRate(purchaseAmount)).isEqualTo(
             expectedEarningsRate);
     }
 

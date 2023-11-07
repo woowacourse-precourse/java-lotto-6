@@ -3,6 +3,7 @@ package lotto.model;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.ArrayList;
@@ -154,5 +155,19 @@ class LottoResultAnalyzerTest {
                         4000100000L
                 )
         );
+    }
+
+    @DisplayName("총 수익률 계산 확인")
+    @ParameterizedTest(name = "총 당첨 금액: {0} 구입 금액: {1} 일 때 수익률: {2}%")
+    @CsvSource(value = {"4000100000,10000,40001000.0", "60025000,5000,1200500.0", "5000,8000,62.5"})
+    public void 총_수익률_계산(long totalPrize, int purchaseAmount, double expectedReturnRate) {
+        // given
+        LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
+
+        // when
+        double actualReturnRate = lottoResultAnalyzer.calculateTotalReturnRate(totalPrize, purchaseAmount);
+
+        // then
+        assertEquals(expectedReturnRate, actualReturnRate);
     }
 }

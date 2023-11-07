@@ -17,6 +17,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("[");

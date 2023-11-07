@@ -54,7 +54,7 @@ class money_for_lotto{
         return realNumber/1000;
     }
 
-    public static int exceptionRepeat(){
+    public static int exceptionRepeatMoney(){
         int result = 0;
         while (result == 0) {
             result = readLine(result);
@@ -144,16 +144,19 @@ class winning_number{
     }
 }
 
+class bonus_number{
+
+}
+
 public class Application {
     public static void main(String[] args) {
-        int realMoney = money_for_lotto.exceptionRepeat();
+        int realMoney = money_for_lotto.exceptionRepeatMoney();
         int repeatTime = money_for_lotto.repeatTime(realMoney);
 
         System.out.println("\n" + repeatTime + "개를 구매했습니다.");
         List<List<Integer>> totalLotto = random_lotto.print_lotto(repeatTime);
 
         List<Integer> winningNumber = winning_number.exceptionRepeatWinNumber();
-
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();

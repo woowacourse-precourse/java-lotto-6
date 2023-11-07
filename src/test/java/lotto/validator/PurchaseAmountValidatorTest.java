@@ -73,7 +73,7 @@ class PurchaseAmountValidatorTest {
 
         @DisplayName("구입 금액이 " + PurchaseAmountDto.PURCHASE_AMOUNT_UNIT + " 단위가 아니면 예외 발생")
         @Test
-        void test() {
+        void Amount_is_not_divisible_by_the_purchase_amount_unit() {
             // given
             int amount1 = 1_001;
             int amount2 = 43_200;

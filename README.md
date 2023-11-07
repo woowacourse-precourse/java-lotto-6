@@ -272,7 +272,7 @@ public class Lotto {
 - [ ] LottoTickets
 - [ ] WinningResult
 - [ ] WinningNumber
-- [ ] Raking(enum)
+
       
 ### view 
 - [ ] UserInputView
@@ -281,6 +281,7 @@ public class Lotto {
 
 ### controller
 - [ ] LottoController
+- [ ] RakingController
 
 
 

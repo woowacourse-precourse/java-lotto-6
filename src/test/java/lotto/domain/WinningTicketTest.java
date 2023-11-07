@@ -23,7 +23,7 @@ class WinningTicketTest {
                 .isThrownBy(() -> new WinningTicket(winningLotto, bonusNumber));
     }
 
-    public static Stream<Arguments> createWinningNumberByDuplicatedNumbers() {
+    private static Stream<Arguments> createWinningNumberByDuplicatedNumbers() {
         return Stream.of(
                 Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(1)),
                 Arguments.of(new Lotto(List.of(40, 41, 42, 43, 44, 45)), new LottoNumber(45))

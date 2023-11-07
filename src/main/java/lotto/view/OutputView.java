@@ -44,7 +44,7 @@ public class OutputView {
         System.out.print(message);
     }
 
-    private static void appendStatistics(Result winningResult, StringBuilder message) {
+    private void appendStatistics(Result winningResult, StringBuilder message) {
         for (Entry<Rank, Integer> rankIntegerEntry : winningResult.rankResult().entrySet()) {
             message.append(rankIntegerEntry.getKey().getMatchCount()).append(MATCH_COUNT);
 

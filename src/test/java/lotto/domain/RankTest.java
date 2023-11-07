@@ -21,7 +21,7 @@ class RankTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    public static Stream<Arguments> getRankByLottoAndWinningNumber() {
+    private static Stream<Arguments> getRankByLottoAndWinningNumber() {
         return Stream.of(
                 Arguments.of(6, false, Rank.FIRST),
                 Arguments.of(5, true, Rank.SECOND),

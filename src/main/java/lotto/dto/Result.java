@@ -1,8 +1,8 @@
 package lotto.dto;
 
 import java.math.BigDecimal;
-import java.util.EnumMap;
+import java.util.Map;
 import lotto.domain.Rank;
 
-public record Result(EnumMap<Rank, Integer> rankResult, BigDecimal rateOfReturn) {
+public record Result(Map<Rank, Integer> rankResult, BigDecimal rateOfReturn) {
 }

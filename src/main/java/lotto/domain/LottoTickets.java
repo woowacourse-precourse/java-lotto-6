@@ -4,10 +4,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public record LottoTickets(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
 
-    public EnumMap<Rank, Integer> getRankResult(WinningTicket winningTicket) {
+    public Map<Rank, Integer> getRankResult(WinningTicket winningTicket) {
         EnumMap<Rank, Integer> rankResult = initRankResult();
 
         lottos.stream()

@@ -9,11 +9,11 @@ public enum ExceptionMessages {
     NOT_DIVISIBLE_PURCHASE_AMOUNT("구입 금액은 %s원으로 나누어 떨어져야 합니다."),
     INVALID_NUMBER_FORMAT("숫자를 입력해주세요.");
 
-    private static final String messageFormat = "[ERROR] %s";
+    private static final String MESSAGE_FORMAT = "[ERROR] %s";
     private final String message;
 
     ExceptionMessages(String message) {
-        this.message = String.format(messageFormat, message);
+        this.message = String.format(MESSAGE_FORMAT, message);
     }
 
     public String getMessage() {

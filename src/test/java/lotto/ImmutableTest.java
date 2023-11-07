@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
  * 결론: 불변 객체를 생성할 때는 List.copyOf를 사용하자. (만약 참조 필드가 있으면 해당 필드 모두 불변이어야 함)
  * </pre>
  */
-public class ImmutableTest {
+class ImmutableTest {
 
     @DisplayName("Collections.unmodifiableList()은 원본 리스트의 변화를 따라간다")
     @Test()

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,7 +49,7 @@ public enum Rank {
         return scoreCache.getOrDefault(score, NONE);
     }
 
-    public static long getTotalPrize(EnumMap<Rank, Integer> rankResult) {
+    public static long getTotalPrize(Map<Rank, Integer> rankResult) {
         return rankResult.entrySet().stream()
                 .mapToLong(entry -> entry.getKey().prize * entry.getValue())
                 .sum();

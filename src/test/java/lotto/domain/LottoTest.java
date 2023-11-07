@@ -45,7 +45,7 @@ class LottoTest {
     @DisplayName("로또 번호를 생성할 수 있다.")
     @ParameterizedTest
     @MethodSource
-    void createLotto(List<Integer> numbers) throws Exception {
+    void createLotto(List<Integer> numbers) {
         List<LottoNumber> expected = numbers.stream()
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
@@ -63,13 +63,3 @@ class LottoTest {
         );
     }
 }
-//
-//    public int match(Lotto lotto) {
-//        int matchCount = 0;
-//        for (LottoNumber number : lotto.numbers) {
-//            if (numbers.contains(number)) {
-//                matchCount++;
-//            }
-//        }
-//        return matchCount;
-//    }

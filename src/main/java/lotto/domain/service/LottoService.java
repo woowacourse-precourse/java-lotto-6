@@ -1,8 +1,8 @@
 package lotto.domain.service;
 
 import java.math.BigDecimal;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoShop;
 import lotto.domain.LottoTickets;
@@ -18,7 +18,7 @@ public class LottoService {
     }
 
     public Result getWinningResult(LottoTickets lottoTickets, WinningTicket winningTicket) {
-        EnumMap<Rank, Integer> rankResult = lottoTickets.getRankResult(winningTicket);
+        Map<Rank, Integer> rankResult = lottoTickets.getRankResult(winningTicket);
         long totalPrize = Rank.getTotalPrize(rankResult);
         BigDecimal rateOfReturn = lottoTickets.getRateOfReturn(totalPrize);
         return new Result(rankResult, rateOfReturn);

@@ -4,8 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -20,11 +20,11 @@ class LottoTicketsTest {
     void getRankResult(List<Lotto> tickets, WinningTicket winningTicket, Integer[] expected) {
         LottoTickets lottoTickets = new LottoTickets(tickets, new PurchaseAmount(1000));
 
-        EnumMap<Rank, Integer> rankResult = lottoTickets.getRankResult(winningTicket);
+        Map<Rank, Integer> rankResult = lottoTickets.getRankResult(winningTicket);
         assertThat(rankResult.values()).containsExactly(expected);
     }
 
-    public static Stream<Arguments> getRankResult() {
+    private static Stream<Arguments> getRankResult() {
         return Stream.of(
                 Arguments.of(
                         List.of(createLotto(1, 2, 3, 10, 11, 12),
@@ -62,12 +62,12 @@ class LottoTicketsTest {
 
         BigDecimal actual = lottoTickets.getRateOfReturn(totalPrize);
 
-        assertThat(actual.compareTo(expected)).isZero();
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> getRateOfReturn() {
         return Stream.of(
-                Arguments.of(new PurchaseAmount(10000), 5000, new BigDecimal("50")),
+                Arguments.of(new PurchaseAmount(10000), 5000, new BigDecimal("50.0")),
                 Arguments.of(new PurchaseAmount(8000), 5000, new BigDecimal("62.5"))
         );
     }

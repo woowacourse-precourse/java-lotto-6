@@ -15,7 +15,7 @@ public class LottoShop {
         return lottos;
     }
 
-    private static Lotto generateLotto() {
+    private Lotto generateLotto() {
         return new Lotto(RandomNumberGenerator
                 .generateUniqueNumbersInRange(LottoNumber.MIN_NUMBER, LottoNumber.MAX_NUMBER, Lotto.LOTTO_SIZE));
     }

@@ -50,7 +50,7 @@ public class LottoController {
         return new LottoNumber(inputView.inputBonusNumber());
     }
 
-    private static <T> T repeat(Supplier<T> supplier) {
+    private <T> T repeat(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {

@@ -7,9 +7,10 @@ import lotto.utils.StringChanger;
 import lotto.utils.Validator;
 
 public class WinningNumbers {
-    private static final int LOTTO_NUMBER_START = NumberRule.MIN_LOTTO_NUMBER.getNumber();
-    private static final int LOTTO_NUMBER_END = NumberRule.MAX_LOTTO_NUMBER.getNumber();
+    private static final int MIN_LOTTO_NUMBER = NumberRule.MIN_LOTTO_NUMBER.getNumber();
+    private static final int MAX_LOTTO_NUMBER = NumberRule.MAX_LOTTO_NUMBER.getNumber();
     private static final int NOTHING = 0;
+
     private final Lotto firstRankLotto;
     private int bonusNumber = NOTHING;
 
@@ -49,7 +50,7 @@ public class WinningNumbers {
     private void validateWinningNumbersWith(int bonusNumber) {
         List<Integer> winningNumbers = firstRankLotto.getNumbers();
         winningNumbers.add(bonusNumber);
-        Validator.validateUniqueNumbersInRange(winningNumbers, LOTTO_NUMBER_START, LOTTO_NUMBER_END);
+        Validator.validateUniqueNumbersInRange(winningNumbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
     }
 
     private void validateIsNumber(String inputNumber) {

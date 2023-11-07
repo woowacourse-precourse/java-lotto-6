@@ -15,7 +15,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = new ArrayList<>(numbers);
-        sortNumbersToNaturalOrder();
+        sortNumbersByNaturalOrder();
     }
 
     public List<Integer> getNumbers() {
@@ -27,7 +27,7 @@ public class Lotto {
         Validator.validateUniqueNumbersInRange(numbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
     }
 
-    private void sortNumbersToNaturalOrder() {
-        this.numbers.sort(Comparator.naturalOrder());
+    private void sortNumbersByNaturalOrder() {
+        numbers.sort(Comparator.naturalOrder());
     }
 }

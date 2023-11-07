@@ -22,7 +22,7 @@ class LottoResultTest {
     void testCalculateLottoRankAndCount() {
         LottoResult lottoResult = new LottoResult();
         Player player = new Player(UserLottoList, 8000);
-        lottoResult.calculateRankCounts(player.checkLottoTickets(winLotto));
+        lottoResult.updateRankCounts(player.checkLottoTicketResults(winLotto));
         int lotto = lottoResult.getLottoCountByRank(LottoRank.FIFTH);
         Assertions.assertEquals(1, lotto);
     }
@@ -33,7 +33,7 @@ class LottoResultTest {
     void testCalculateUserProfit() {
         LottoResult lottoResult = new LottoResult();
         Player player = new Player(UserLottoList, 8000);
-        double userProfit = lottoResult.calculateProfit(player.checkLottoTickets(winLotto),
+        double userProfit = lottoResult.calculateProfit(player.checkLottoTicketResults(winLotto),
                 player.getMoney());
         Assertions.assertEquals(62.5, userProfit);
     }

@@ -12,8 +12,7 @@ public class Player {
         this.money = money;
     }
 
-
-    public List<LottoRank> checkLottoTickets(WinningNumber winningNumber) {
+    public List<LottoRank> checkLottoTicketResults(WinningNumber winningNumber) {
         return lottoTickets.stream()
                 .map(winningNumber::getLottoRank)
                 .toList();

@@ -9,12 +9,11 @@ public class LottoResult {
     private Map<LottoRank, Integer> map;
 
 
-    //TODO 이름수정
     public int getLottoCountByRank(LottoRank Rank) {
         return map.getOrDefault(Rank, 0);
     }
 
-    public void calculateRankCounts(List<LottoRank> lottoRankList) {
+    public void updateRankCounts(List<LottoRank> lottoRankList) {
         map = new HashMap<>();
         for (LottoRank lottoRank : lottoRankList) {
             map.put(lottoRank, map.getOrDefault(lottoRank, 0) + 1);

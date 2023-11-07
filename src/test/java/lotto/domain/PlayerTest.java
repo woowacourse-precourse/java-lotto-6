@@ -19,7 +19,7 @@ class PlayerTest {
         List<Lotto> lottoList = Arrays.asList(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), new Lotto(pickUniqueNumbersInRange(1, 45, 6)), new Lotto(pickUniqueNumbersInRange(1, 45, 6)));
         player = new Player(lottoList, 0);
         WinningNumber winLotto = new WinningNumber(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 7);
-        List<LottoRank> lottoRanks = player.checkLottoTickets(winLotto);
+        List<LottoRank> lottoRanks = player.checkLottoTicketResults(winLotto);
         Assertions.assertEquals(lottoRanks.size(), 3);
     }
 

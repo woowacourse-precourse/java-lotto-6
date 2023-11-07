@@ -41,9 +41,9 @@ public class LottoGame {
     }
 
     public void evaluateProfitAndPrintResults(Player player, WinningNumber winningNumber) {
-        List<LottoRank> lottoRanks = player.checkLottoTickets(winningNumber);
-        lottoResult.calculateRankCounts(lottoRanks);
-        double profit = lottoResult.calculateProfit(lottoRanks, player.getMoney());
+        List<LottoRank> ticketRanks = player.checkLottoTicketResults(winningNumber);
+        lottoResult.updateRankCounts(ticketRanks);
+        double profit = lottoResult.calculateProfit(ticketRanks, player.getMoney());
         OutputView.printUserPrizeStats(lottoResult);
         OutputView.PrintUserProfit(profit);
     }

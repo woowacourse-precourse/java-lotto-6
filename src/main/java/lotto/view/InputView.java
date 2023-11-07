@@ -6,9 +6,13 @@ import lotto.utils.InputValidator;
 
 import java.util.List;
 
+import static lotto.constant.InputMessage.INPUT_BONUS_NUMBER_MESSAGE;
+import static lotto.constant.InputMessage.INPUT_MONEY_MESSAGE;
+import static lotto.constant.InputMessage.INPUT_WINNING_NUMBER_MESSAGE;
+
 public class InputView {
     public static long inputMoney() {
-        System.out.println("금액을 입력하세요.");
+        System.out.println(INPUT_MONEY_MESSAGE.getMessage());
         String money = Console.readLine();
         InputValidator.validateInputMoney(money);
 
@@ -16,7 +20,7 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumber() {
-        System.out.println("당첨 번호를 입력하세요.");
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE.getMessage());
         String winningNumber = Console.readLine();
         String[] numbers = winningNumber.split(",");
         InputValidator.validateInputWinningNumber(numbers);
@@ -25,7 +29,7 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
-        System.out.println("보너스 번호를 입력하세요.");
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE.getMessage());
         String bonusNumber = Console.readLine();
         InputValidator.validateBonusNumber(bonusNumber);
 

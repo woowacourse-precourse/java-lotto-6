@@ -22,7 +22,7 @@ public class Game {
     }
 
     void showPurchaseResult() {
-        OutputView.outputPurchaseCount(lottoPurchaseInfo.getPurchaseLottoNum());
+        OutputView.outputPurchaseCount(lottoPurchaseInfo.getPurchaseLottoCount());
         OutputView.outputPurchaseLottos(lottoPurchaseInfo.getLottos());
     }
 

@@ -1,5 +1,13 @@
 package lotto.model;
 
+import static lotto.constant.WinningPrize.FIFTH_PLACE_AMOUNT;
+import static lotto.constant.WinningPrize.FIRST_PLACE_AMOUNT;
+import static lotto.constant.WinningPrize.FOURTH_PLACE_AMOUNT;
+import static lotto.constant.WinningPrize.SECOND_PLACE_AMOUNT;
+import static lotto.constant.WinningPrize.THIRD_PLACE_AMOUNT;
+
+import java.math.BigDecimal;
+
 public class WinningResult {
     private final int firstPlaceCount;
     private final int secondPlaceCount;
@@ -94,5 +102,14 @@ public class WinningResult {
 
     public int getFifthPlaceCount() {
         return fifthPlaceCount;
+    }
+
+    public TotalWinningAmount getTotalWinningAmount() {
+        BigDecimal totalWinningAmount = FIRST_PLACE_AMOUNT.getValue().multiply(BigDecimal.valueOf(firstPlaceCount))
+                .add(SECOND_PLACE_AMOUNT.getValue().multiply(BigDecimal.valueOf(secondPlaceCount)))
+                .add(THIRD_PLACE_AMOUNT.getValue().multiply(BigDecimal.valueOf(thirdPlaceCount)))
+                .add(FOURTH_PLACE_AMOUNT.getValue().multiply(BigDecimal.valueOf(fourthPlaceCount)))
+                .add(FIFTH_PLACE_AMOUNT.getValue().multiply(BigDecimal.valueOf(fifthPlaceCount)));
+        return new TotalWinningAmount(totalWinningAmount);
     }
 }

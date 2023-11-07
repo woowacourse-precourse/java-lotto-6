@@ -1,11 +1,11 @@
 package lotto.view;
 
-import component.output.BoughtLottosCountComponent;
-import component.output.DrawingStatisticComponent;
-import component.output.LottoNumbersComponent;
 import io.output.Writer;
 import lotto.controller.dto.output.LottosBuyingResult;
 import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.view.component.output.BoughtLottosCountComponent;
+import lotto.view.component.output.DrawingStatisticComponent;
+import lotto.view.component.output.LottoNumbersComponent;
 
 /**
  * 실행 결과 데이터 Dto를 가공하여

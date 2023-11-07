@@ -46,4 +46,23 @@ class LottoResultTest {
         //then
         assertThat(lottoResult.getPrizeMoney()).isEqualTo(resultMoney);
     }
+
+
+    @Test
+    @DisplayName("당첨 내역 문자열 반환 - 성공")
+    public void get_prize_description_success() {
+        //given
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.addPrize(SECOND);
+        String fifthDescription = "3개 일치 (5,000원) - 0개";
+        String secondDescription = "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개";
+
+        //when
+        String prizeDescriptionFifth = lottoResult.getPrizeDescription(FIFTH.getPrize());
+        String prizeDescriptionSecond = lottoResult.getPrizeDescription(SECOND.getPrize());
+
+        //then
+        assertThat(prizeDescriptionFifth).contains(fifthDescription);
+        assertThat(prizeDescriptionSecond).contains(secondDescription);
+    }
 }

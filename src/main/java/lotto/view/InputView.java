@@ -7,8 +7,8 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         int money = 0;
         try {
-            int input = Integer.parseInt(Console.readLine());
-            validPrice(input);
+            money = Integer.parseInt(Console.readLine());
+            validPrice(money);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 구입금액은 숫자여야 합니다.");
             getPurchasePrice();

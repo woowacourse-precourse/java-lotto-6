@@ -34,7 +34,7 @@ public class Lotto {
         try {
             int moneyInput = Integer.parseInt(Console.readLine());
             money = validateOfMoney(moneyInput);
-
+            purchaseNumber = calculatePurchaseNumber(money);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]");
             System.out.println();
@@ -51,5 +51,9 @@ public class Lotto {
         }
 
         return moneyInput;
+    }
+
+    private int calculatePurchaseNumber(int money) {
+        return money / 1000;
     }
 }

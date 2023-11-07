@@ -31,7 +31,7 @@ public enum Grade {
                 .findAny().orElse(null);
     }
 
-    public static Grade findGradeByKey(String rank) {
+    public static Grade findGradeByRank(String rank) {
         return Arrays.stream(values()).filter(grade -> grade.rank.equals(rank))
                 .findAny().orElseThrow(() -> new IllegalArgumentException(INVALID_KEY_MESSAGE));
     }

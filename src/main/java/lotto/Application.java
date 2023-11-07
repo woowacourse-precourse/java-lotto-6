@@ -67,16 +67,33 @@ public class Application {
         return generatedLottos;
     }
 
+    static void showPurchasedLottos(List<Lotto> purchasedLottos){
+        StringBuilder sb = new StringBuilder();
 
+        int purchasedLottoTotal = purchasedLottos.size();
+        sb.append(Integer.toString(purchasedLottoTotal));
+        sb.append("개를 구매했습니다.\n");
+
+        for(int purchasedLottoCount = 0; purchasedLottoCount<purchasedLottoTotal; purchasedLottoCount++){
+            sb.append(purchasedLottos.get(purchasedLottoCount));
+            sb.append("\n");
+        }
+
+        System.out.print(sb.toString());
+
+    }
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("구입금액을 입력해 주세요.");
         int purchaseLottoCount = calculateLottoCount((sc.nextLine()));
 
 
         List<Lotto> purchasedLottos = generateLottos(purchaseLottoCount);
+
+        showPurchasedLottos(purchasedLottos);
 
 
 

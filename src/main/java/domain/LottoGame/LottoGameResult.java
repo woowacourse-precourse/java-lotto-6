@@ -1,4 +1,4 @@
-package domain;
+package domain.LottoGame;
 
 import java.util.Map;
 

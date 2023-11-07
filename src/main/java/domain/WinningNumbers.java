@@ -1,5 +1,7 @@
 package domain;
 
+import lotto.Lotto;
+
 public class WinningNumbers {
     private final Lotto winningLotto;
     private final int bonusNumber;

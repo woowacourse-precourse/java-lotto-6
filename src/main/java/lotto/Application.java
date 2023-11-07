@@ -16,7 +16,7 @@ public class Application {
         }
 
         Lotto win = lottoGame.inputWinningNumbers();
-        int bonus = lottoGame.inputBonusNumber();
+        int bonus = lottoGame.inputBonusNumber(win);
 
         int[] winningResult = lottoGame.winningResult(draws, win, bonus);
         LottoGame.winningStats(winningResult);

@@ -4,9 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoGame {
     // 로또 발행
@@ -36,6 +34,8 @@ public class LottoGame {
                 List<Integer> numbers = Arrays.stream((input.split(",")))
                         .map(this::parseInteger)
                         .toList();
+                winHasDuplicates(numbers);
+                rangeCheck(numbers);
                 return new Lotto(numbers);
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -43,23 +43,58 @@ public class LottoGame {
         }
     }
 
+    // 당첨 번호끼리 중복되지 않는지 확인
+    public void winHasDuplicates(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException("중복되는 번호가 존재합니다.");
+            }
+        }
+    }
+
     // 보너스 번호 입력
-    public int inputBonusNumber(){
+    public int inputBonusNumber(Lotto win){
         while (true) {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
-                return parseInteger(Console.readLine().strip());
+                int bonus = parseInteger(Console.readLine().strip());
+                bonusOverlap(win, bonus);
+                rangeCheck(bonus);
+                return bonus;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
     }
 
+    // 당첨 번호와 보너스 번호가 중복되는지 확인
+    public void bonusOverlap(Lotto win, int bonus) {
+        if (win.contains(bonus)) {
+            throw new IllegalArgumentException("당첨 번호와 보너스 번호가 중복됩니다.");
+        }
+    }
+
+    // 문자열 Integer 변환
     private Integer parseInteger(String s) {
         try {
             return Integer.valueOf(s);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해주세요.");
+            throw new IllegalArgumentException("정수를 입력해주세요.");
+        }
+    }
+
+    // 숫자 범위 체크
+    public void rangeCheck(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number > 45 || number < 1) {
+                throw new IllegalArgumentException("1부터 45 사이의 숫자를 입력해주세요.");
+            }
+        }
+    }
+    public void rangeCheck(int number) {
+        if (number > 45 || number < 1) {
+            throw new IllegalArgumentException("1부터 45 사이의 숫자를 입력해주세요.");
         }
     }
 
@@ -141,6 +176,4 @@ public class LottoGame {
 
         System.out.printf("총 수익률은 %s%%입니다.\n", formattedRate);
     }
-
-    // 예외 상황 출력
 }

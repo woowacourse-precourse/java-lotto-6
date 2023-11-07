@@ -6,12 +6,21 @@ import java.util.List;
 
 public class User {
 
-    public static List<Lotto> inputPurchaseAmount(){
+    public static LottoTickets inputPurchaseAmount(){
         try{
-            return Lotto.buyLottoTickets(Long.parseLong(Console.readLine()));
-        }catch (IllegalAccessError e){
+            return LottoTickets.crateLottoTickets(Long.parseLong(Console.readLine()));
+        }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputPurchaseAmount();
+        }
+    }
+
+    public static void winningNumbers(){
+        try{
+
+        }catch (IllegalAccessError e){
+            System.out.println(e.getMessage());
+            winningNumbers();
         }
     }
 }

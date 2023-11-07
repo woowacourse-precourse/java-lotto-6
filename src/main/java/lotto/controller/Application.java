@@ -23,7 +23,8 @@ public class Application {
         for (int i = 0; i < count; i++) {
             lottoList.add(getLottoList());
         }
-        List<Integer> selectLottoNumber = getSelectLottoNumbers();
+        String inputLottoNum = InputView.inputLottoNumber();
+        List<Integer> selectLottoNumber = getSelectLottoNumbers(inputLottoNum);
         int bonus = getbonus(selectLottoNumber);
         int[] lottoPrize = getLottoPrize(lottoList, selectLottoNumber, bonus);
         OutputView.result(lottoPrize, getRate(lottoPrize));
@@ -62,11 +63,11 @@ public class Application {
         return numbers;
     }
 
-    private static List<Integer> getSelectLottoNumbers() {
+    private static List<Integer> getSelectLottoNumbers(String inputLottoNum) {
         List<Integer> selectLottoNumber = null;
         while (true) {
             try {
-                selectLottoNumber = getSelectLottoNumber(InputView.inputLottoNumber());
+                selectLottoNumber = getSelectLottoNumber(inputLottoNum);
                 new Lotto(selectLottoNumber);
                 break;
             } catch (IllegalArgumentException e) {

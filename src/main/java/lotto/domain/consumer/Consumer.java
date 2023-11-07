@@ -11,7 +11,7 @@ public record Consumer(Price price, List<Lotto> consumerLottos, Count count) {
 
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
-    private static final int LOTTO_COUNT = 6;
+    private static final int LOTTO_SIZE = 6;
 
     public Consumer {
         consumerLottos = new ArrayList<>();
@@ -19,7 +19,7 @@ public record Consumer(Price price, List<Lotto> consumerLottos, Count count) {
         int value = price.value() / 1000;
 
         for (int i = 0; i < value; i++) {
-            consumerLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_COUNT)));
+            consumerLottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE)));
         }
 
         count = new Count(value);

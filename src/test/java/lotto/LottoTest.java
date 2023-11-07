@@ -94,6 +94,15 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    void 당첨숫자와_보너스볼의_중복여부_테스트(){
+        int bonusBall = 6;
+        List<Integer> winningBalls = List.of(1,2,3,4,5,6);
+        assertThatThrownBy(() ->
+                Validator.validateWinningAndBonus(bonusBall, winningBalls))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 
 }

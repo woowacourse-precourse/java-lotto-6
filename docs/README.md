@@ -59,8 +59,9 @@ Lotto
 * LottoChecker
   - 입력받은 당첨 번호와 보너스 번호를 받아온다.
   - 각 로또마다 몇 개 일치하는지 체크한 뒤, 그 데이터를 반환한다.
-* PrizeCalculator
+* ScoreCalculator
   - 일치한 숫자의 갯수를 확인하고, 일치 정보를 반환한다.
+* ProfitCalculator
   - 일치 정보를 확인하고, 상금을 계산한다.
   - 총 상금을 합산하고 구입금액과 비교하여 총 수익률을 계산한다.
 

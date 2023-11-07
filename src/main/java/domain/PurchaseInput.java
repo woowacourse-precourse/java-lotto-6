@@ -17,26 +17,18 @@ public class PurchaseInput {
     private int readPurchaseAmount() {
         String input = Console.readLine();
         int amount = parseInput(input);
-
         if (amount == -1) {
-            return -1;
+            throw new IllegalArgumentException(LottoError.LOTTO_BUY_FORMAT_ERROR.getMessage());
         }
-
-        if (amount < 0) {
-            System.out.println(LottoError.BUY_ENOUGH_MONEY_ERROR.getMessage());
-            return -1;
+        if (amount < 0) { //음수 예외처리
+            throw new IllegalArgumentException(LottoError.BUY_ENOUGH_MONEY_ERROR.getMessage());
         }
-
-        if (amount < 1000) {
-            System.out.println(LottoError.LOTTO_BUY_MIN_MONEY_ERROR.getMessage());
-            return -1;
+        if (amount < 1000) { //1~999 예외처리
+            throw new IllegalArgumentException(LottoError.LOTTO_BUY_MIN_MONEY_ERROR.getMessage());
         }
-
-        if (amount % 1000 != 0) {
-            System.out.println(LottoError.LOTTO_BUY_CORRECT_ERROR.getMessage());
-            return -1;
+        if (amount % 1000 != 0) { //1000으로 나누어 떨어지지 않을때 예외처리
+            throw new IllegalArgumentException(LottoError.LOTTO_BUY_CORRECT_ERROR.getMessage());
         }
-
         return amount;
     }
 
@@ -46,7 +38,6 @@ public class PurchaseInput {
         try {
             isNumber = Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            System.out.println(LottoError.LOTTO_BUY_FORMAT_ERROR.getMessage());
             isNumber = -1; //예외 발생 시 값을 -1로 설정
         }
 

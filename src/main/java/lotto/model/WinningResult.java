@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum WinningResult {
 
     FIRST("6개 일치 (2,000,000,000원) - %d개", 0, 6, false),
@@ -18,5 +20,11 @@ public enum WinningResult {
         this.countResult = countResult;
         this.matchCount = matchCount;
         this.matchBonus = matchBonus;
+    }
+
+    public static void countLottoResult(int correctCnt, boolean correctBonus) {
+        Arrays.stream(WinningResult.values())
+                .filter(value -> value.matchCount == correctCnt && value.matchBonus == correctBonus)
+                .forEach(value -> value.countResult++);
     }
 }

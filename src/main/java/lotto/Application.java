@@ -44,8 +44,14 @@ public class Application {
 
         validateFirstPrize(numString);
 
+        for (int i = 0; i < LOTTO_NUMBER_COUNT; ++i) {
+            int n = unsafeString2Int(numString.get(i));
+            if (num.contains(n)) {
+                throw new IllegalArgumentException();
+            }
+            num.add(n);
+        }
         lotto = new Lotto(num);
-
         return lotto;
     }
 

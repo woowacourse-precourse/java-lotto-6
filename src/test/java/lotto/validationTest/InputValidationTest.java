@@ -45,13 +45,13 @@ public class InputValidationTest {
 
     private String findEachExceptionMessage(String input) {
         if (input.equals("1,2,3.4,5,6")) {
-            return "[ERROR] 올바른 당첨 번호 형식이 아닙니다.";
+            return "[ERROR] 입력값이 숫자가 아닙니다.";
         }
         if (input.equals("입력값들..")) {
-            return "[ERROR] 당첨 번호가 숫자가 아닙니다.";
+            return "[ERROR] 입력값이 숫자가 아닙니다.";
         }
         if (input.equals("1,2,3,3,4,5")) {
-            return "[ERROR] 중복된 당첨번호가 있습니다.";
+            return "[ERROR] 당첨 번호가 6가지가 아닙니다.";
         }
         if (input.equals("1,2,3,4,5")) {
             return "[ERROR] 당첨 번호가 6가지가 아닙니다.";

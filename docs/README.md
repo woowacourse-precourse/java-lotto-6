@@ -9,8 +9,8 @@
     - [ ] 보너스 번호가 없는 로또 티켓 객체 - NormalLottoTicket (i)LottoTicket
     - [ ] 보너스 번호가 있는 로또 티켓 객체 - BonusLottoTicket (i)LottoTicket
     - [ ] 로또 티켓 팩토리 구현 - LottoTicketFactory
-- [ ] 로또 결과를 관리하는 Enum 객체 구현 - WinningResult
-    - [ ] 로또 결과를 획득 - WinningResult#getLottoResult
+- [x] 로또 결과를 관리하는 Enum 객체 구현 - WinningResult
+    - [x] 로또 결과를 획득 - WinningResult#getLottoResult
 - [ ] 사용자를 관리하는 객체 구현 - (i)User
     - [ ] 로또를 한장 뽑는 기능 - User#drawSingleLotto()
     - [ ] 가진 돈으로 모든 로또를 뽑는 기능 - User#drawLottoWithAllMoney()

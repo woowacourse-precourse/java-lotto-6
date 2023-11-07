@@ -46,4 +46,13 @@ class LottoTest {
         assertThat(lotto.getMatchCount(List.of(1, 7, 8, 9, 10, 11))).isEqualTo(1);
         assertThat(lotto.getMatchCount(List.of(7, 8, 9, 10, 11, 12))).isEqualTo(0);
     }
+
+    @DisplayName("보너스 번호가 로또 번호에 포함되어 있는지 확인한다.")
+    @Test
+    void hasBonusNumber() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 6;
+        Lotto lotto = new Lotto(numbers);
+        assertThat(lotto.hasBonusNumber(bonusNumber)).isTrue();
+    }
 }

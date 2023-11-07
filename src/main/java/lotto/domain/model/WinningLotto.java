@@ -19,13 +19,13 @@ public final class WinningLotto {
         }
     }
 
-    private boolean contains(int number) {
+    private boolean isNumberExistInWinningLotto(int number) {
         return lotto.contains(number);
     }
 
     public int getMatchCounts(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        long count = numbers.stream().filter(this::contains).count();
+        long count = numbers.stream().filter(this::isNumberExistInWinningLotto).count();
 
         return Long.valueOf(count).intValue();
     }

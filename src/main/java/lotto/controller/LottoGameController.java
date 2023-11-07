@@ -4,16 +4,19 @@ import java.util.List;
 import java.util.Map;
 import lotto.StringConstants;
 import lotto.port.InputPort;
+import lotto.port.OutputPort;
 import lotto.service.LottoService;
 
 public class LottoGameController {
 
     private final InputPort inputPort;
+    private final OutputPort outputPort;
     private final LottoService lottoService;
 
 
-    public LottoGameController(InputPort inputPort, LottoService lottoService) {
+    public LottoGameController(InputPort inputPort, OutputPort outputPort, LottoService lottoService) {
         this.inputPort = inputPort;
+        this.outputPort =outputPort;
         this.lottoService = lottoService;
     }
 

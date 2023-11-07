@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class Lotto {
   private final List<Integer> numbers;
@@ -22,5 +23,10 @@ public class Lotto {
       if(numbers.get(i) < 1 || 45 < numbers.get(i))
         throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이의 정수이어야 합니다.");
     }
+  }
+
+  public static List<Integer> generateLotto() {
+    List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
+    return numbers;
   }
 }

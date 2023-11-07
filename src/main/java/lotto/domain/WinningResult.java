@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class WinningResult {
     }
 
     public Map<LottoRank, Integer> getResultByLottoRank() {
-        return resultByLottoRank;
+        return Collections.unmodifiableMap(resultByLottoRank);
     }
 
     public int getPurchasedLottoCount() {

@@ -8,5 +8,6 @@ public class GameController {
     public static void play() {
         LottoTicket lottoTicket = UserInputView.inputPurchaseAmount();
         GameResultOutputView.showLottoTickets(lottoTicket);
+        UserInputView.inputWinningNumber();
     }
 }

@@ -8,10 +8,10 @@ import static lotto.util.NumbersValidator.validate;
 
 public class Lotto {
 
-    private final List<Integer> numbers; //접근제어자 변경 불가능
+    private final List<Integer> numbers;
 
-    //필드(인스턴스 변수) 추가 불가능
-    public Lotto(List<Integer> numbers) { //생성자에 추가 기능 구현 가능
+
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDuplicate(numbers);
         checkElementsInRange(numbers);

@@ -14,7 +14,7 @@ import lotto.view.LottoView;
 import static lotto.model.LottoStatistics.DEFAULT_VALUE;
 import static lotto.util.ErrorMessage.*;
 
-public class LottoController { //입력을 받아서 model에 전달, 간단한 입력형식(공백인지, 숫자인지)검증, view에 정보 요청 및 결과 표시, 예외 상황 처리 및 다시 입력 요청
+public class LottoController {
 
     private final LottoMachine lottoMachine;
     private final LottoStatistics lottoStatistics;

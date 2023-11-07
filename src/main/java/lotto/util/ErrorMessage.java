@@ -1,6 +1,6 @@
 package lotto.util;
 
-public class ErrorMessage { //에러 유형별 메시지 상수 보관
+public class ErrorMessage {
 
     public static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
     public static final String ERROR_MESSAGE_NUMBER_OF_LOTTO_ISNT_SIX = "번호가 6개가 아닙니다.";

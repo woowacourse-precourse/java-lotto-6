@@ -5,7 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 금액을 계산 및 수익률 계산
+public class LottoStatistics {
 
     public enum PrizeInformation {
         FIFTH_PRIZE(5000, "3개 일치"),

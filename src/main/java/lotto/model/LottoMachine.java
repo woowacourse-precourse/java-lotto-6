@@ -11,7 +11,7 @@ import lotto.model.LottoStatistics.PrizeInformation;
 import static lotto.util.ErrorMessage.*;
 import static lotto.util.NumbersValidator.*;
 
-public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, 도메인 로직과 관련된 당첨 번호, 보너스 번호 검증, 각 로또의 당첨 여부 판단
+public class LottoMachine {
 
     private final int THREE_MATCHES = 3;
     private final int FOUR_MATCHES = 4;

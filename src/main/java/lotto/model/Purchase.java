@@ -2,7 +2,7 @@ package lotto.model;
 
 import static lotto.util.ErrorMessage.*;
 
-public class Purchase { //도메인 로직과 관련된 구입 금액 검증 및 저장, 구입 금액에 따른 구매 횟수 계산
+public class Purchase {
 
     private int purchaseAmount;
     private int purchaseNumber;

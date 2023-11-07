@@ -2,9 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class LottoUI {
     public enum PrintMessage{
         INPUT_MONEY("구입금액을 입력해 주세요."),
@@ -28,16 +25,6 @@ public class LottoUI {
         System.out.println(message);
     }
 
-    public void userPrint(List<Integer> number) {
-        System.out.println(number);
-    }
-
-    public void buyLottoNumbersPrint(ArrayList<Lotto> buyLottoNumbers){
-        for (Lotto number : buyLottoNumbers){
-            userPrint(number.getLottoNumbers());
-        }
-    }
-
     public void winnerLottoNumberPrint(int[] winLotto, double rateOfReturn){
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -47,9 +34,5 @@ public class LottoUI {
         System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", winLotto[3]));
         System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", winLotto[4]));
         System.out.println(String.format("총 수익률은 %.1f",  rateOfReturn)+"%입니다.");
-    }
-
-    public void buyLottoCountPrint(int buyCount){
-        System.out.println(buyCount+"개를 구매했습니다.");
     }
 }

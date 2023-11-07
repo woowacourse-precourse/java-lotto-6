@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.view.InputView;
+import lotto.domain.PlayerLottoAmount;
 
 public class LottoController {
 
@@ -15,6 +16,7 @@ public class LottoController {
 
     public void start(){
         String playCount= InputView.inputPlayerPrice();
+        new PlayerLottoAmount(playCount);
 
     }
 }

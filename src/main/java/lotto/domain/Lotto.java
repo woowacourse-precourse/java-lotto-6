@@ -17,8 +17,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ValidateConstants.LOTTO_NUMBER_SIZE_ERROR.getConstants());
+        if (numbers.size() != ValidateConstants.LOTTO_NUMBER_SIZE.getNumber()) {
+            throw new IllegalArgumentException(ValidateConstants.LOTTO_NUMBER_SIZE_ERROR.getMessage());
         }
     }
 

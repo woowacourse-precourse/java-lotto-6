@@ -11,7 +11,7 @@ public enum InputConstants {
         this.message = message;
     }
 
-    public String getConstants() {
+    public String getMessage() {
         return message;
     }
 }

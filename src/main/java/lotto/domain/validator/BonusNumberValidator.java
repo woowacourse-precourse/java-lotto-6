@@ -12,26 +12,26 @@ public class BonusNumberValidator implements Validator<String> {
     }
 
     public void validateNumeric(String inputBonusNumber) {
-        if (inputBonusNumber.matches(ValidateConstants.NUMERIC_REGEX.getConstants())) {
+        if (inputBonusNumber.matches(ValidateConstants.NUMERIC_REGEX.getMessage())) {
             return;
         }
-        throw new IllegalArgumentException(ValidateConstants.BONUS_NUMERIC_ERROR.getConstants());
+        throw new IllegalArgumentException(ValidateConstants.BONUS_NUMERIC_ERROR.getMessage());
     }
 
     public void validateRange(String inputBonusNumber) {
 
-        int min = ValidateConstants.LOTTO_MIN_NUMBER.getNumberConstants();
-        int max = ValidateConstants.LOTTO_MAX_NUMBER.getNumberConstants();
+        int min = ValidateConstants.LOTTO_MIN_NUMBER.getNumber();
+        int max = ValidateConstants.LOTTO_MAX_NUMBER.getNumber();
 
         if (Integer.parseInt(inputBonusNumber) < min || Integer.parseInt(inputBonusNumber) > max) {
-            throw new IllegalArgumentException(ValidateConstants.BONUS_NUMBER_RANGE_ERROR.getConstants());
+            throw new IllegalArgumentException(ValidateConstants.BONUS_NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
     public void validateDuplicateWinnerNumber(int bonusNumber, WinnerNumbers winnerNumbers) {
         List<Integer> numbers = winnerNumbers.getWinnerNumbers();
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(ValidateConstants.BONUS_NUMBER_DUPLICATE_ERROR.getConstants());
+            throw new IllegalArgumentException(ValidateConstants.BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 }

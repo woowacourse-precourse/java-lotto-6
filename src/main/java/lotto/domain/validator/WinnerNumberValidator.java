@@ -14,9 +14,9 @@ public class WinnerNumberValidator implements Validator<List<String>> {
 
     public void validateNumeric(List<String> winnerNumbers) {
         boolean invalidNumeric = winnerNumbers.stream()
-                .anyMatch(string -> !string.matches(ValidateConstants.NUMERIC_REGEX.getConstants()));
+                .anyMatch(string -> !string.matches(ValidateConstants.NUMERIC_REGEX.getMessage()));
         if (invalidNumeric) {
-            throw new IllegalArgumentException(ValidateConstants.LOTTO_NUMBER_NUMERIC_ERROR.getConstants());
+            throw new IllegalArgumentException(ValidateConstants.LOTTO_NUMBER_NUMERIC_ERROR.getMessage());
         }
     }
 }

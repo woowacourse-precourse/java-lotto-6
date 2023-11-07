@@ -28,11 +28,11 @@ public enum ValidateConstants {
         this.message = null;
     }
 
-    public String getConstants() {
+    public String getMessage() {
         return message;
     }
 
-    public int getNumberConstants() {
+    public int getNumber() {
         return number;
     }
 }

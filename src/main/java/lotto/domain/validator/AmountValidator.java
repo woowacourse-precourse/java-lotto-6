@@ -12,20 +12,20 @@ public class AmountValidator implements Validator<String> {
     }
 
     public void validateNumeric(String inputAmount) {
-        if (inputAmount.matches(ValidateConstants.NUMERIC_REGEX.getConstants())) {
+        if (inputAmount.matches(ValidateConstants.NUMERIC_REGEX.getMessage())) {
             return;
         }
-        throw new IllegalArgumentException(ValidateConstants.AMOUNT_NUMERIC_ERROR.getConstants());
+        throw new IllegalArgumentException(ValidateConstants.AMOUNT_NUMERIC_ERROR.getMessage());
     }
 
     public void validateUnitThousand(String inputAmount) {
 
-        int quotient = Integer.parseInt(inputAmount) / DomainConstants.LOTTO_PRICE.getConstants();
-        int remainder = Integer.parseInt(inputAmount) % DomainConstants.LOTTO_PRICE.getConstants();
+        int quotient = Integer.parseInt(inputAmount) / DomainConstants.LOTTO_PRICE.getNumber();
+        int remainder = Integer.parseInt(inputAmount) % DomainConstants.LOTTO_PRICE.getNumber();
 
         if (remainder == 0 && quotient > 0) {
             return;
         }
-        throw new IllegalArgumentException(ValidateConstants.AMOUNT_UNIT_ERROR.getConstants());
+        throw new IllegalArgumentException(ValidateConstants.AMOUNT_UNIT_ERROR.getMessage());
     }
 }

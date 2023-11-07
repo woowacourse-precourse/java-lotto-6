@@ -39,7 +39,7 @@ public class LottoJudge {
     }
 
     private void manageJudgeCount(int judgeCount, boolean checkBonus) {
-        int BONUS_CHECK_CONDITION = DomainConstants.BONUS_CHECK_CONDITION.getConstants();
+        int BONUS_CHECK_CONDITION = DomainConstants.BONUS_CHECK_CONDITION.getNumber();
         if (judgeCount == BONUS_CHECK_CONDITION) {
             addJudgeCountByBonus(judgeCount, checkBonus);
             return;
@@ -48,10 +48,10 @@ public class LottoJudge {
     }
 
     private void addJudgeCount(int judgeCount) {
-        int FIRST_RANK = DomainConstants.FIRST_RANK.getConstants();
-        int FIRST_RANK_CONDITION = DomainConstants.FIRST_RANK_CONDITION.getConstants();
-        int FOURTH_RANK_CONDITION = DomainConstants.FOURTH_RANK_CONDITION.getConstants();
-        int FIFTH_RANK_CONDITION = DomainConstants.FIFTH_RANK_CONDITION.getConstants();
+        int FIRST_RANK = DomainConstants.FIRST_RANK.getNumber();
+        int FIRST_RANK_CONDITION = DomainConstants.FIRST_RANK_CONDITION.getNumber();
+        int FOURTH_RANK_CONDITION = DomainConstants.FOURTH_RANK_CONDITION.getNumber();
+        int FIFTH_RANK_CONDITION = DomainConstants.FIFTH_RANK_CONDITION.getNumber();
 
         if (judgeCount == FIFTH_RANK_CONDITION || judgeCount == FOURTH_RANK_CONDITION) {
             judgeCounter.addCount(8 - judgeCount);
@@ -63,10 +63,10 @@ public class LottoJudge {
     }
 
     private void addJudgeCountByBonus(int judgeCount, boolean isContainBonusNumber) {
-        int SECOND_RANK_CONDITION = DomainConstants.SECOND_RANK_CONDITION.getConstants();
-        int THIRD_RANK_CONDITION = DomainConstants.THIRD_RANK_CONDITION.getConstants();
-        int SECOND_RANK = DomainConstants.SECOND_RANK.getConstants();
-        int THIRD_RANK = DomainConstants.THIRD_RANK.getConstants();
+        int SECOND_RANK_CONDITION = DomainConstants.SECOND_RANK_CONDITION.getNumber();
+        int THIRD_RANK_CONDITION = DomainConstants.THIRD_RANK_CONDITION.getNumber();
+        int SECOND_RANK = DomainConstants.SECOND_RANK.getNumber();
+        int THIRD_RANK = DomainConstants.THIRD_RANK.getNumber();
 
         if (judgeCount == THIRD_RANK_CONDITION && !isContainBonusNumber) {
             judgeCounter.addCount(THIRD_RANK);

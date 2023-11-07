@@ -29,13 +29,13 @@ public class LottoTicket {
     }
 
     private List<Integer> generateRandomNumbers() {
-        int startNumber = DomainConstants.RANDOM_START_NUMBER.getConstants();
-        int endNumber = DomainConstants.RANDOM_END_NUMBER.getConstants();
-        int countNumber = DomainConstants.RANDOM_COUNT_NUMBER.getConstants();
+        int startNumber = DomainConstants.RANDOM_START_NUMBER.getNumber();
+        int endNumber = DomainConstants.RANDOM_END_NUMBER.getNumber();
+        int countNumber = DomainConstants.RANDOM_COUNT_NUMBER.getNumber();
         return Randoms.pickUniqueNumbersInRange(startNumber, endNumber, countNumber);
     }
 
     private int calculateLottoTicket(int amount) {
-        return (amount / DomainConstants.LOTTO_PRICE.getConstants());
+        return (amount / DomainConstants.LOTTO_PRICE.getNumber());
     }
 }

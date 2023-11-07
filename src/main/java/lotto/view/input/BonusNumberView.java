@@ -7,7 +7,7 @@ import lotto.util.constants.InputConstants;
 public class BonusNumberView implements Input {
     @Override
     public String getInput() {
-        System.out.println(InputConstants.INPUT_BONUS_NUMBER.getConstants());
+        System.out.println(InputConstants.INPUT_BONUS_NUMBER.getMessage());
         return readLine();
     }
 }

@@ -21,7 +21,7 @@ public enum DomainConstants {
         this.number = number;
     }
 
-    public int getConstants() {
+    public int getNumber() {
         return number;
     }
 }

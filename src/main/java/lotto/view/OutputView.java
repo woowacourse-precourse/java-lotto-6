@@ -1,9 +1,11 @@
 package lotto.view;
 
+import lotto.config.LottoPrize;
 import lotto.domain.Lotto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
 
@@ -15,7 +17,7 @@ public class OutputView {
         lottos.forEach(lotto -> System.out.println(Arrays.toString(lotto.getNumbers().toArray())));
     }
 
-    public static void printLottoResult(int[] result) {
+    public static void printLottoResult(Map<LottoPrize, Integer> lottoResult) {
         System.out.printf(
                 """
                 당첨 통계
@@ -25,7 +27,12 @@ public class OutputView {
                 5개 일치 (1,500,000원) - %d개
                 5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
                 6개 일치 (2,000,000,000원) - %d개
-                """, result[1], result[2], result[3], result[0], result[4]
+                """,
+                lottoResult.get(LottoPrize.MATCH_3),
+                lottoResult.get(LottoPrize.MATCH_4),
+                lottoResult.get(LottoPrize.MATCH_5),
+                lottoResult.get(LottoPrize.MATCH_5BONUS),
+                lottoResult.get(LottoPrize.MATCH_6)
         );
     }
 

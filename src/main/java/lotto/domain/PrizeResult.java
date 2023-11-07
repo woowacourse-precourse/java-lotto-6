@@ -43,5 +43,4 @@ public class PrizeResult {
     private static boolean hasBonus(Lotto lotto, WinNumber winNumber) {
         return lotto.getNumber().contains(winNumber.getBonusNumber());
     }
-
 }

@@ -1,15 +1,18 @@
 package lotto.util;
 
 import java.util.regex.Pattern;
-import lotto.exception.InputExceptionConstant;
 
 public class InputValidator {
     private static final String REGEXP_PATTERN_NUMBER = "^[\\d]*$";
     private static final String REGEXP_PATTERN_SPACE_CHAR = "^[\\s]*$";
 
+    public static void validatePurchaseNumber(String number) {
+        isOneNaturalNumber(number);
+        hasBlank(number);
+    }
     public static void isOneNaturalNumber(String number) {
         if (!Pattern.matches(REGEXP_PATTERN_NUMBER, number)) {
-            throw new IllegalArgumentException(InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING.getText());
+            throw new IllegalArgumentException();
         }
     }
 
@@ -21,7 +24,7 @@ public class InputValidator {
 
     public static void hasBlank(String input) {
         if (Pattern.matches(REGEXP_PATTERN_SPACE_CHAR, input)) {
-            throw new IllegalArgumentException(InputExceptionConstant.NO_BLANK_IN_STRING.getText());
+            throw new IllegalArgumentException();
         }
     }
 }

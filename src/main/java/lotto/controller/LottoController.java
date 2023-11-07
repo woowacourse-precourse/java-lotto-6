@@ -9,8 +9,6 @@ import lotto.service.LottoService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 import static lotto.Message.ErrorMessage.VALUE_IS_NOT_CONVERT_INTEGER;
 
 public class LottoController {

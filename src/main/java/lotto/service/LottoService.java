@@ -4,7 +4,6 @@ import lotto.config.WinningResultConfig;
 import lotto.model.*;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -15,38 +14,42 @@ public class LottoService {
     private final List<Integer> numbers;
     private final int bonusNumber;
     private final WinningResult winningResult = new WinningResult();
-    private List<Result> results = new ArrayList<>();
+    private final List<Result> results = new ArrayList<>();
 
     public LottoService(List<List<Integer> >userNumbers, List<Integer> numbers, int bonusNumber) {
         this.userNumbers = userNumbers;
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;
     }
+
     public Map<WinningResultConfig, Integer> findWinningResult() {
-        countEqualNumber();
-
-        winningResult.addResult(results);
-
-        return winningResult.getWinningResults().entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, count -> 1, (Integer::sum)));
-    }
-
-    private void countEqualNumber() {
         for (List<Integer> userNums : userNumbers) {
-            long equalCount = userNums.stream()
-                    .filter(number -> numbers.stream().anyMatch(Predicate.isEqual(number)))
-                    .count();
+            Long equalCount = countEqualNumber(userNums);
 
             Result result = new Result(userNums, equalCount);
 
-            if (equalCount == 5) {
-                checkBonus(result);
-            }
+            checkBonus(result, equalCount);
             results.add(result);
         }
+        winningResult.addResult(results.stream().filter(result -> result.getEqualCount() >= Integer.parseInt(WinningResultConfig.THREE.getResultStatus()))
+                .collect(Collectors.toList()));
+
+        for (Map.Entry<WinningResultConfig, List<Result>> entry:  winningResult.getWinningResults().entrySet()) {
+            System.out.println(entry.getKey() + ", " + entry.getValue());
+        }
+        return winningResult.getWinningResults().entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, value -> value.getValue().size()));
     }
 
-    private void checkBonus(Result result) {
-        result.updateBonus(bonusNumber);
+    private Long countEqualNumber(List<Integer> userNums) {
+        return userNums.stream()
+                    .filter(number -> numbers.stream().anyMatch(Predicate.isEqual(number)))
+                    .count();
+    }
+
+    private void checkBonus(Result result, Long equalCount) {
+        if (Long.toString(equalCount).equals(WinningResultConfig.FIVE.getResultStatus())) {
+            result.updateBonus(bonusNumber);
+        }
     }
 }

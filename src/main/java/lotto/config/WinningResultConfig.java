@@ -1,8 +1,6 @@
 package lotto.config;
 
-import javax.swing.plaf.PanelUI;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

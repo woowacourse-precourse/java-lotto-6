@@ -4,15 +4,16 @@ import java.util.*;
 import lotto.config.WinningResultConfig;
 
 public class WinningResult {
-    private final Map<WinningResultConfig, List<Result>> winningResults = new LinkedHashMap<WinningResultConfig, List<Result>>(){
-        {
-            winningResults.put(WinningResultConfig.THREE, List.of());
-            winningResults.put(WinningResultConfig.FOUR, List.of());
-            winningResults.put(WinningResultConfig.FIVE, List.of());
-            winningResults.put(WinningResultConfig.FIVE_AND_BONUS, List.of());
-            winningResults.put(WinningResultConfig.SIX, List.of());
-        }
-    };
+    private Map<WinningResultConfig, List<Result>> winningResults = new LinkedHashMap<>();
+
+    public WinningResult() {
+        winningResults.put(WinningResultConfig.THREE, new ArrayList<>(10));
+        winningResults.put(WinningResultConfig.FOUR, new ArrayList<>(10));
+        winningResults.put(WinningResultConfig.FIVE, new ArrayList<>(10));
+        winningResults.put(WinningResultConfig.FIVE_AND_BONUS, new ArrayList<>(10));
+        winningResults.put(WinningResultConfig.SIX, new ArrayList<>(10));
+
+    }
 
     public void addResult(List<Result> results) {
         for (Result result : results) {

@@ -28,7 +28,7 @@ public class LottoManager {
 
     public Lotto generateLottoTicket() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, NUMBER_OF_LOTTO_NUMBER);
-        return new Lotto(numbers);
+        return new Lotto(numbers.stream().sorted().toList());
     }
 
     public void printLottoTickets(List<Lotto> tickets) {

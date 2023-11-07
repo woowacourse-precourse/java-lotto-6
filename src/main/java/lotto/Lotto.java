@@ -7,7 +7,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers.sort((a, b) -> a - b);
         this.numbers = numbers;
     }
 

@@ -18,15 +18,15 @@ public class InputValidator {
 
     private static final int LOTTO_PRICE = 1000;
 
-    public int validateInputMoney(String stringInteger) {
-        validateNumeric(stringInteger);
-        int purchaseMoney = Integer.parseInt(stringInteger);
+    public int validateInputMoney(String purchaseAmount) {
+        validateNumeric(purchaseAmount);
+        int purchaseMoney = Integer.parseInt(purchaseAmount);
         validatePurchaseAmount(purchaseMoney);
         return purchaseMoney;
     }
 
-    public void validateNumeric(String stringNumber) {
-        if (!stringNumber.chars().allMatch(Character::isDigit)) {
+    public void validateNumeric(String targetNumber) {
+        if (!targetNumber.chars().allMatch(Character::isDigit)) {
             throw new IllegalArgumentException(INVALID_INPUT_NOT_INTEGER_ERROR.getErrorMessage());
         }
     }
@@ -37,9 +37,9 @@ public class InputValidator {
         }
     }
 
-    public int validateBonusNumber(List<Integer> winningNumbers, String stringInteger) {
-        validateNumeric(stringInteger);
-        int bonusNumber = Integer.parseInt(stringInteger);
+    public int validateBonusNumber(List<Integer> winningNumbers, String bonusNumberInput) {
+        validateNumeric(bonusNumberInput);
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
         validateBonusNumberRange(bonusNumber);
         validateBonusNumberNotInLottoNumbers(bonusNumber, winningNumbers);
         return bonusNumber;
@@ -47,11 +47,11 @@ public class InputValidator {
 
     public List<Integer> validateAndParseWinningNumbers(String winningNumbersInput) {
         validateInput(winningNumbersInput);
-        List<Integer> numbers = parseWinningNumbers(winningNumbersInput);
-        validateWinningNumbersCount(numbers);
-        validateNoDuplicateNumbers(numbers);
-        validateRangeOfNumbers(numbers);
-        return numbers;
+        List<Integer> winningNumbers = parseWinningNumbers(winningNumbersInput);
+        validateWinningNumbersCount(winningNumbers);
+        validateNoDuplicateNumbers(winningNumbers);
+        validateRangeOfNumbers(winningNumbers);
+        return winningNumbers;
     }
 
     private void validateInput(String input) {
@@ -71,8 +71,8 @@ public class InputValidator {
         }
     }
 
-    private void validateWinningNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validateWinningNumbersCount(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_WINNING_NUMBER_LENGTH.getErrorMessage());
         }
     }

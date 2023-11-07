@@ -3,6 +3,8 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import java.util.List;
 import lotto.config.LottoRank;
@@ -19,7 +21,7 @@ public class RankServiceTest {
 
     @BeforeEach
     void setUp() {
-        User user = new User(5, createFakeLottos());
+        User user = new User(1000, createFakeLottos());
         List<Integer> winningNumbers = Arrays.asList(1,2,3,4,5,6);
         int bonusNumber = 7;
         rankService = new RankService(user, winningNumbers, bonusNumber);
@@ -59,6 +61,19 @@ public class RankServiceTest {
         Lotto noPrizeLotto = new Lotto(Arrays.asList(7,8,9,10,11,12));
         LottoRank rank = rankService.calculateLottoRank(noPrizeLotto);
         assertNull(rank);
+    }
+
+    @DisplayName("수익률 계산이 정상적으로 작동하는가?(1등:1번, 2등:1번, 3등:2번)")
+    @Test
+    void testRateOfReturn() {
+        BigDecimal expected = new BigDecimal("203300.0");
+
+
+        rankService.calculateLottoRanks();
+        BigDecimal result = rankService.rateOfReturn();
+
+
+        assertEquals(expected, result);
     }
 
     private List<Lotto> createFakeLottos() {

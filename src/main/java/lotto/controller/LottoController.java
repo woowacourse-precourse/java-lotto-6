@@ -1,10 +1,16 @@
 package lotto.controller;
 
 import lotto.model.LottoPurchasingAmount;
-import lotto.view.OutputView;
 
 public class LottoController {
+    private final InputController inputController;
+
+    public LottoController() {
+        this.inputController = new InputController();
+    }
+
     public void initLotto() {
-        OutputView.askLottoPurchasingAmount();
+        LottoPurchasingAmount lottoPurchasingAmount =
+                inputController.getLottoPurchasingAmountFromUser();
     }
 }

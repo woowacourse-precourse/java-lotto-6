@@ -4,6 +4,17 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Checker {
+    public static void winningCorrect(List<Integer> winningNumbers) {
+        winningSix(winningNumbers);
+        winningInRange(winningNumbers);
+        winningNotDuplicated(winningNumbers);
+    }
+
+    public static void bonusCorrect(List<Integer> winningNumbers, Integer bonusNumber) {
+        bonusInRange(bonusNumber);
+        winningAndBonusNotDuplicated(winningNumbers, bonusNumber);
+    }
+
     public static void priceCorrect(Integer price) {
         if (price % LottoInfo.PRICE_UNIT.number() != 0) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위여야 합니다.");

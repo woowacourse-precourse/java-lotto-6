@@ -35,26 +35,30 @@ public class Judge {
         return false;
     }
 
-    public static Ranking resultPerLotto(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
-        Integer winningCount = winningCount(lotto, winningNumbers);
-        Boolean bonusMatch = isBonusMatch(lotto, bonusNumber);
-
+    private static Ranking countRanking(Integer winningCount, Boolean bonusMatch) {
         if (winningCount == 3) {
             return Ranking.FIFTH;
         }
         if (winningCount == 4) {
             return Ranking.FOURTH;
         }
-        if (winningCount == 5) {
-            if (!bonusMatch) {
-                return Ranking.THIRD;
-            }
+        if (winningCount == 5 && !bonusMatch) {
+            return Ranking.THIRD;
+        }
+        if (winningCount == 5 && bonusMatch) {
             return Ranking.SECOND;
         }
         if (winningCount == 6) {
             return Ranking.FIRST;
         }
         return Ranking.NONE;
+    }
+
+    public static Ranking resultPerLotto(Lotto lotto, List<Integer> winningNumbers, Integer bonusNumber) {
+        Integer winningCount = winningCount(lotto, winningNumbers);
+        Boolean bonusMatch = isBonusMatch(lotto, bonusNumber);
+
+        return countRanking(winningCount, bonusMatch);
     }
 
     public static List<Integer> result(List<Lotto> lottos, List<Integer> winningNumbers, Integer bonusNumber) {

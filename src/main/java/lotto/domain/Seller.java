@@ -10,15 +10,13 @@ public class Seller {
     }
 
     public static List<Lotto> makeLottos(Integer numberOfLotto) {
-        List<Lotto> lottos = new Vector<>();
+        List<Lotto> lottos = new ArrayList<>();
 
         for (Integer count = 0; count < numberOfLotto; count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                     LottoInfo.MIN_NUMBER.number(),
                     LottoInfo.MAX_NUMBER.number(),
-                    LottoInfo.NUMBER_COUNT.number()
-            );
-
+                    LottoInfo.NUMBER_COUNT.number());
             List<Integer> sortedNumbers = new ArrayList<>(numbers);
             sortedNumbers.sort(Comparator.naturalOrder());
 

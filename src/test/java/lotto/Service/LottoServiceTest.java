@@ -1,14 +1,11 @@
 package lotto.Service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static lotto.Util.Constants.PERCENT;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import lotto.Domain.BonusNumber;
 import lotto.Domain.Lotto;
 import lotto.Domain.Rank;
-import lotto.Domain.WinningLotto;
+import lotto.Domain.WinningResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -99,10 +96,10 @@ class LottoServiceTest {
             lottoService.createWinningLotto(winningNumber, bonusNumber);
 
             //when
-            Map<Rank, Integer> result = lottoService.createResult();
+            WinningResult result = lottoService.createResult();
 
             //then
-            Assertions.assertThat(result.get(Rank.FIRST) >= 1).isTrue();
+            Assertions.assertThat(result.result().get(Rank.FIRST) >= 1).isTrue();
         }
 
         @DisplayName("구매한 로또 갯수만큼 당첨 결과가 생성된다.")
@@ -115,10 +112,10 @@ class LottoServiceTest {
             lottoService.createWinningLotto(winningNumber, bonusNumber);
 
             //when
-            Map<Rank, Integer> result = lottoService.createResult();
+            WinningResult result = lottoService.createResult();
             int resultCount = 0;
-            for (Rank key : result.keySet()) {
-                resultCount += result.get(key);
+            for (Rank key : result.result().keySet()) {
+                resultCount += result.result().get(key);
             }
 
             //then
@@ -136,11 +133,11 @@ class LottoServiceTest {
             lottoService.createWinningLotto(winningNumber, bonusNumber);
 
             //when
-            Map<Rank, Integer> result = lottoService.createResult();
-            double revenue = lottoService.getRevenue(result);
+            WinningResult result = lottoService.createResult();
+            double revenue = lottoService.getRevenue();
 
             //then
-            Assertions.assertThat(revenue).isEqualTo(Rank.FIRST.getPrizeMoney() / 1000 * 100);
+            Assertions.assertThat(revenue).isEqualTo(result.getIncome()/1000*PERCENT);
         }
     }
 }

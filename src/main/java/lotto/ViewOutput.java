@@ -7,7 +7,7 @@ public class ViewOutput {
     private static StringBuilder stringBuilder = new StringBuilder();
 
     public void showLottoList(List<Lotto> lottoList) {
-        stringBuilder.append("\n" + lottoList.size() + "개를 구매핬습니다.\n");
+        stringBuilder.append("\n" + lottoList.size() + "개를 구매했습니다.\n");
         for(Lotto lotto : lottoList) {
             stringBuilder.append("[");
 

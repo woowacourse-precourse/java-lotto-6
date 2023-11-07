@@ -55,7 +55,7 @@ public class ViewInput {
 
         while(!isValid) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println("\n보너스 번호를 입력해 주세요.");
                 bonusNumber = Integer.parseInt(Console.readLine().trim());
 
                 isValid = inputVerification.verifyBonusNumber(winningNumbers, bonusNumber);

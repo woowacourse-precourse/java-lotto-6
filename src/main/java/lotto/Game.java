@@ -28,10 +28,10 @@ public class Game {
 
         List<Integer> lottoNumbers = lotto.getNumbers();
 
-        for (int index = 0; index < 6; index++) {
-            if (lottoNumbers.get(index) == winningNumbers.get(index))
+        for (Integer lottoNumber : lottoNumbers) {
+            if(winningNumbers.contains(lottoNumber))
                 winningNumberMatchCount++;
-            if (lottoNumbers.get(index) == bonusNumber)
+            if(lottoNumber == bonusNumber)
                 bonusNumberMatchCount++;
         }
         result[0] = winningNumberMatchCount;

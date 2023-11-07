@@ -36,14 +36,14 @@ public class LottoSimulation {
             try {
                 return new Amount(Integer.parseInt(inputView.readPurchaseAmount()));
             } catch (IllegalArgumentException e) {
-                outputView.printMessage(PURCHASE_AMOUNT_ERROR_MESSAGE);
+                outputView.printMessage(String.format(PURCHASE_AMOUNT_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
             }
         }
     }
 
     private List<Lotto> makeLottoList(int count) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = ZERO; i < count; i++) {
+        for (int i = ZERO.getConstant(); i < count; i++) {
             lottos.add(Lotto.make());
         }
         return lottos;
@@ -54,14 +54,14 @@ public class LottoSimulation {
             try {
                 return new WinningNumber(stringToNumberList(inputView.readWinningNumber()));
             } catch (IllegalArgumentException e) {
-                if (e.getMessage().equals(LOTTO_LENGTH_ERROR_MESSAGE)) {
-                    outputView.printMessage(LOTTO_LENGTH_ERROR_MESSAGE);
+                if (e.getMessage().equals(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage())) {
+                    outputView.printMessage(String.format(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
                 }
-                if (e.getMessage().equals(LOTTO_NUMBER_ERROR_MESSAGE)) {
-                    outputView.printMessage(LOTTO_NUMBER_ERROR_MESSAGE);
+                if (e.getMessage().equals(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage())) {
+                    outputView.printMessage(String.format(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
                 }
-                if (e.getMessage().equals(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE)) {
-                    outputView.printMessage(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
+                if (e.getMessage().equals(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage())) {
+                    outputView.printMessage(String.format(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
                 }
             }
         }
@@ -70,10 +70,10 @@ public class LottoSimulation {
     private void readBonusNumber(WinningNumber winningNumber) {
         while (true) {
             try {
-                winningNumber.setBonusNumber(Integer.parseInt(inputView.readBounsNumber()));
+                winningNumber.setBonusNumber(Integer.parseInt(inputView.readBonusNumber()));
                 break;
             } catch (IllegalArgumentException e) {
-                outputView.printMessage(LOTTO_NUMBER_ERROR_MESSAGE);
+                outputView.printMessage(String.format(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage(), ERROR_MESSAGE.getString()));
             }
         }
     }
@@ -87,7 +87,7 @@ public class LottoSimulation {
     }
 
     private List<Integer> stringToNumberList(String input) {
-        return Arrays.stream(input.split(LOTTO_NUMBER_SEPARATER))
+        return Arrays.stream(input.split(LOTTO_NUMBER_SEPARATER.getString()))
                 .map(Integer::parseInt)
                 .toList();
     }

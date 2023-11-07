@@ -37,7 +37,7 @@ class LottoTest {
     void 구입금액_예외처리_테스트() {
         assertThatThrownBy(() -> new Amount(8800))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(PURCHASE_AMOUNT_ERROR_MESSAGE);
+                .hasMessageContaining(PURCHASE_AMOUNT_ERROR_MESSAGE.getErrorMessage());
     }
 
     @Test
@@ -50,10 +50,10 @@ class LottoTest {
     void 당첨번호_예외처리_테스트() {
         assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LOTTO_LENGTH_ERROR_MESSAGE);
+                .hasMessageContaining(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage());
         assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 55, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE);
+                .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage());
     }
 
     @Test
@@ -67,6 +67,6 @@ class LottoTest {
     void 보너스_번호_예외처리_테스트() {
         assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6)).setBonusNumber(55))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE);
+                .hasMessageContaining(LOTTO_NUMBER_ERROR_MESSAGE.getErrorMessage());
     }
 }

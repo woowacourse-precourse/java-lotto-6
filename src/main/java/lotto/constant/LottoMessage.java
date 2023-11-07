@@ -1,18 +1,28 @@
 package lotto.constant;
 
-public class LottoMessage {
-    public static final String INPUT_LOTTO_AMOUNT = "구입급액을 입력해 주세요.";
-    public static final String LOTTO_COUNT = "%d개를 구매했습니다.";
-    public static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    public static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    public static final String WINNING_STATISTICS = "당첨 통계";
-    public static final String DIVIDE_LINE = "---";
-    public static final String CORRECT_MESSAGE = "%d개 일치 (%s원) - %d개";
-    public static final String CORRECT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    public static final String FISRT_PRIZE = "2,000,000,000";
-    public static final String SECOND_PRIZE = "30,000,000";
-    public static final String THIRD_PRIZE = "1,500,000";
-    public static final String FOURTH_PRIZE = "50,000";
-    public static final String FIFTH_PRIZE = "5,000";
-    public static final String EARNING_RATE = "총 수익률은 %.1f%%입니다.";
+public enum LottoMessage {
+    INPUT_LOTTO_AMOUNT("구입급액을 입력해 주세요."),
+    LOTTO_COUNT("%d개를 구매했습니다."),
+    INPUT_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
+    INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    WINNING_STATISTICS("당첨 통계"),
+    DIVIDE_LINE("---"),
+    CORRECT_MESSAGE("%d개 일치 (%s원) - %d개"),
+    CORRECT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
+    FIRST_PRIZE("2,000,000,000"),
+    SECOND_PRIZE("30,000,000"),
+    THIRD_PRIZE("1,500,000"),
+    FOURTH_PRIZE("50,000"),
+    FIFTH_PRIZE("5,000"),
+    EARNING_RATE("총 수익률은 %.1f%%입니다.");
+
+    private final String message;
+
+    LottoMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

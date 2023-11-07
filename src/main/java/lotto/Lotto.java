@@ -19,7 +19,7 @@ public class Lotto {
     }
 
     public static Lotto make() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_LENGTH));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getConstant(), MAXIMUM_LOTTO_NUMBER.getConstant(), LOTTO_LENGTH.getConstant()));
     }
 
     private void validate(List<Integer> numbers) {
@@ -28,15 +28,15 @@ public class Lotto {
     }
 
     private void validateLottoLength(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_LENGTH) {
-            throw new IllegalArgumentException(LOTTO_LENGTH_ERROR_MESSAGE);
+        if (numbers.size() != LOTTO_LENGTH.getConstant()) {
+            throw new IllegalArgumentException(LOTTO_LENGTH_ERROR_MESSAGE.getErrorMessage());
         }
     }
 
     private void validateLottoNumberDuplicate(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (numbers.size() != set.size()) {
-            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE);
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR_MESSAGE.getErrorMessage());
         }
     }
 

@@ -12,7 +12,7 @@ public class LottoOutputView {
 
     public void printLottoNumbers(int count, List<Lotto> numbers) {
         printNewLine();
-        printMessage(String.format(LOTTO_COUNT, count));
+        printMessage(String.format(LOTTO_COUNT.getMessage(), count));
         for (Lotto lotto : numbers) {
             printMessage(lotto.getNumbers().toString());
         }
@@ -20,17 +20,17 @@ public class LottoOutputView {
 
     public void printWinningStatistics(Result result) {
         printNewLine();
-        printMessage(WINNING_STATISTICS);
-        printMessage(DIVIDE_LINE);
-        printMessage(String.format(CORRECT_MESSAGE, FIFTH, FIFTH_PRIZE, result.getResults().get(FIFTH_INDEX)));
-        printMessage(String.format(CORRECT_MESSAGE, FOURTH, FOURTH_PRIZE, result.getResults().get(FOURTH_INDEX)));
-        printMessage(String.format(CORRECT_MESSAGE, THIRD, THIRD_PRIZE, result.getResults().get(THIRD_INDEX)));
-        printMessage(String.format(CORRECT_WITH_BONUS, SECOND, SECOND_PRIZE, result.getResults().get(SECOND_INDEX)));
-        printMessage(String.format(CORRECT_MESSAGE, FIRST, FISRT_PRIZE, result.getResults().get(FIRST_INDEX)));
+        printMessage(WINNING_STATISTICS.getMessage());
+        printMessage(DIVIDE_LINE.getMessage());
+        printMessage(String.format(CORRECT_MESSAGE.getMessage(), FIFTH.getConstant(), FIFTH_PRIZE.getMessage(), result.getResults().get(FIFTH_INDEX.getConstant())));
+        printMessage(String.format(CORRECT_MESSAGE.getMessage(), FOURTH.getConstant(), FOURTH_PRIZE.getMessage(), result.getResults().get(FOURTH_INDEX.getConstant())));
+        printMessage(String.format(CORRECT_MESSAGE.getMessage(), THIRD.getConstant(), THIRD_PRIZE.getMessage(), result.getResults().get(THIRD_INDEX.getConstant())));
+        printMessage(String.format(CORRECT_WITH_BONUS.getMessage(), SECOND.getConstant(), SECOND_PRIZE.getMessage(), result.getResults().get(SECOND_INDEX.getConstant())));
+        printMessage(String.format(CORRECT_MESSAGE.getMessage(), FIRST.getConstant(), FIRST_PRIZE.getMessage(), result.getResults().get(FIRST_INDEX.getConstant())));
     }
 
     public void printEarningRate(double earningRate) {
-        printMessage(String.format(EARNING_RATE, earningRate));
+        printMessage(String.format(EARNING_RATE.getMessage(), earningRate));
     }
 
     public void printMessage(String text) {

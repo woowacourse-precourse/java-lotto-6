@@ -11,12 +11,12 @@ public class Amount {
     public Amount(int amount) {
         validate(amount);
         this.amount = amount;
-        count = amount / PURCHASE_AMOUNT_UNIT;
+        count = amount / PURCHASE_AMOUNT_UNIT.getConstant();
     }
 
     private void validate(int amount) {
-        if (amount % PURCHASE_AMOUNT_UNIT != ZERO) {
-            throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR_MESSAGE);
+        if (amount % PURCHASE_AMOUNT_UNIT.getConstant() != ZERO.getConstant()) {
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR_MESSAGE.getErrorMessage());
         }
     }
 

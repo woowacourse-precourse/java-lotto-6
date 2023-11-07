@@ -7,6 +7,10 @@ public class LottoResult {
 
     private final Map<Rank, Integer> result = new HashMap<>();
 
+    public Map<Rank, Integer> getResult() {
+        return result;
+    }
+
     public void addRank(Rank rank) {
         result.put(rank, result.getOrDefault(rank, 0) + 1);
     }
@@ -17,7 +21,7 @@ public class LottoResult {
 
     public long getTotalPrizeMoney() {
         return result.entrySet().stream()
-                .mapToLong(entry -> entry.getKey().getWinningMoney() * entry.getValue())
+                .mapToLong(entry -> (long) entry.getKey().getWinningMoney() * entry.getValue())
                 .sum();
     }
 

@@ -1,48 +1,82 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.common.Validation;
 import lotto.domain.WinningNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.common.Validation.*;
 import static lotto.domain.LottoConst.*;
 
 public class InputView {
 
-    Validation validation = new Validation();
 
     public int inputPurchaseMoney() {
         try {
             System.out.println(INPUT_PURCHASE_MONEY);
             String input = Console.readLine();
-            return validation.validatePurchaseMoney(input);
+            return validatePurchaseMoney(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputPurchaseMoney();
         }
     }
 
-    public WinningNumbers inputWinningNums() {
+    public WinningNumbers createWinningNums() {
         try {
             System.out.println(INPUT_WINNING_NUMS);
-            List<Integer> winningNums = new ArrayList<>();
-            String inputWinningNums = Console.readLine();
-            String[] split = inputWinningNums.split(",");
-            for (int i = 0; i < split.length; i++) {
-                winningNums.add(Integer.parseInt(split[i]));
-            }
-
-            return new WinningNumbers(winningNums, createBonusNum());
+            List<Integer> winningNums = inputWinningNums();
+            int bonusNum = inputBonusNum(winningNums);
+            return new WinningNumbers(winningNums, bonusNum);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputWinningNums();
+            return createWinningNums();
         }
     }
 
-    private int createBonusNum() {
-        System.out.println(INPUT_BONUS_NUM);
-        return Integer.parseInt(Console.readLine());
+    private static List<Integer> inputWinningNums() {
+        List<Integer> winningNums = parseInputWinningNums(Console.readLine());
+        validateWinningNumbers(winningNums);
+        return winningNums;
     }
+
+    private static List<Integer> parseInputWinningNums(String input) {
+        String[] split = input.split(",");
+        List<Integer> winningNums = new ArrayList<>();
+        for (String number : split) {
+            winningNums.add(parseNumber(number));
+        }
+        return winningNums;
+    }
+
+    private static int parseNumber(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_INPUT_WINNING_NUMS_NUMBER);
+        }
+    }
+
+    private int inputBonusNum(List<Integer> winningNums) {
+        while (true) {
+            try {
+                System.out.println(INPUT_BONUS_NUM);
+                int bonusNum = parseBonusNum(Console.readLine());
+                validateBonusNum(winningNums, bonusNum);
+                return bonusNum;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static int parseBonusNum(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_INPUT_NUM_IN_RANGE);
+        }
+    }
+
 }

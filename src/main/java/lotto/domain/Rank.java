@@ -22,15 +22,13 @@ public enum Rank {
     }
 
     public static Rank valueOf(int matchCount, boolean containsBonus) {
-        return Arrays.stream(values()).filter(rank -> rank.matchCount == matchCount && rank.containsBonus == containsBonus).findFirst().orElse(MISS);
+        return Arrays.stream(
+                values()).filter(rank -> rank.matchCount == matchCount && rank.containsBonus == containsBonus)
+                .findFirst().orElse(MISS);
     }
 
     public int getMatchCount() {
         return matchCount;
-    }
-
-    public boolean isContainsBonus() {
-        return containsBonus;
     }
 
     public int getWinningMoney() {

@@ -9,8 +9,6 @@ import lotto.view.ResultView;
 
 import java.util.List;
 
-import static lotto.domain.LottoConst.*;
-
 public class LottoController {
 
     private final LottoService lottoService;
@@ -32,7 +30,7 @@ public class LottoController {
 
         resultView.printLottos(myLottos);
 
-        WinningNumbers winningNums = inputView.inputWinningNums();
+        WinningNumbers winningNums = inputView.createWinningNums();
 
         LottoResult lottoResult = lottoService.calculateResult(myLottos, winningNums);
 

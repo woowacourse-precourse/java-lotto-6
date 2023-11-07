@@ -21,11 +21,11 @@ public class ResultView {
 
         for (Rank rank : Rank.values()) {
             if (rank == Rank.MISS) continue;
-            System.out.println(String.format("%d개 일치%s (%,d원) - %d개",
+            System.out.printf("%d개 일치%s (%,d원) - %d개%n",
                     rank.getMatchCount(),
                     (rank == Rank.SECOND ? ", 보너스 볼 일치" : ""),
                     rank.getWinningMoney(),
-                    lottoResult.getCount(rank)));
+                    lottoResult.getCount(rank));
         }
 
         Double profitRate = lottoResult.calculateProfitRate(input);

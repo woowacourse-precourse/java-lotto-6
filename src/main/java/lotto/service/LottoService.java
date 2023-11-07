@@ -18,7 +18,6 @@ public class LottoService {
     }
 
     public LottoResult calculateResult(List<Lotto> myLottos, WinningNumbers winningNumbers) {
-
         LottoResult lottoResult = new LottoResult();
 
         for (Lotto lotto : myLottos) {

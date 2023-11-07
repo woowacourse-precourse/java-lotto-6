@@ -21,6 +21,7 @@ public class UI {
         System.out.println("구입금액을 입력해 주세요.");
         String line = readLine();
         System.out.println();
+
         try {
             payment = Integer.parseInt(line);
         } catch (NumberFormatException e) {
@@ -64,12 +65,12 @@ public class UI {
         String line = readLine();
         System.out.println();
         String[] split = line.split(",");
+
         try {
             numbers = Arrays.stream(split).map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(",문자 사이사이에 숫자를 입력하셔야 합니다.");
         }
-
         return numbers;
     }
 
@@ -78,6 +79,7 @@ public class UI {
         System.out.println("보너스 번호를 입력해 주세요.");
         String line = readLine();
         System.out.println();
+
         try {
             bonus = Integer.parseInt(line);
         } catch (NumberFormatException e) {

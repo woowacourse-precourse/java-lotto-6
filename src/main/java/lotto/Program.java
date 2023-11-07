@@ -40,7 +40,6 @@ public class Program {
             }
             break;
         }
-
         this.winning = winning;
     }
 

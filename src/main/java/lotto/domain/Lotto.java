@@ -14,10 +14,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public boolean contains(Integer number) {
-        return numbers.contains(number);
-    }
-
     private void validate(List<Integer> numbers) {
         validateSixNumbers(numbers);
         validateDuplicate(numbers);
@@ -45,8 +41,11 @@ public class Lotto {
         }
     }
 
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }
-    // TODO: 추가 기능 구현
 }

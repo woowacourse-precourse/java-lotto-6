@@ -7,11 +7,11 @@ public class Bonus {
 
     private Bonus(int bonusNumber, Lotto lotto) {
         validateRange(bonusNumber);
-        validateSameNumberInLotto(lotto);
+        validateSameNumberInLotto(lotto, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    public static Bonus from(int inputToNumber, Lotto lotto) {
+    public static Bonus of(int inputToNumber, Lotto lotto) {
         return new Bonus(inputToNumber, lotto);
     }
 
@@ -25,13 +25,9 @@ public class Bonus {
         }
     }
 
-    private void validateSameNumberInLotto(Lotto lotto) {
-        if (hasSameNumberInGeneratedLotto(lotto)) {
+    private void validateSameNumberInLotto(Lotto lotto, int bonusNumber) {
+        if (lotto.hasSameNumber(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.SAME_NUMBER_WITH_LOTTO_NUMBER.getErrorDescription());
         }
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
     }
 }

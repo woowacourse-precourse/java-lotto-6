@@ -1,8 +1,8 @@
-package lotto;
+package model;
 
 import java.util.List;
 
-public class Lotto {
+public class Lotto { //LottoNumberErrorChecker
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

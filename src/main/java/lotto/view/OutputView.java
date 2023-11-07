@@ -45,5 +45,7 @@ public class OutputView {
         System.out.printf(OUTPUT_TOTAL_RETURN, totalReturn);
     }
 
-
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
+    }
 }

@@ -1,10 +1,10 @@
 package lotto.controller;
 
+import lotto.controller.handler.DrawHandler;
 import lotto.controller.machine.NumberGenerator;
-import lotto.controller.user.BonusDraw;
-import lotto.controller.user.LottoDraw;
 import lotto.controller.user.LottoPurchase;
 import lotto.domain.Lotto;
+import lotto.model.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -28,23 +28,12 @@ public class LottoMachine {
         outputView.showLottos(lottos);
     }
 
-    private void draw(InputView inputView) {
-        LottoDraw lottoDraw = new LottoDraw(inputView);
-        lottoDraw.draw();
-    }
-
-    private void drawBounsNumber(InputView inputView) {
-        BonusDraw bonusDraw = new BonusDraw(inputView);
-        bonusDraw.draw();
-    }
-
     public void start() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
+        DrawHandler drawHandler = new DrawHandler(inputView);
 
         purchase(inputView, outputView);
-
-        draw(inputView);
-        drawBounsNumber(inputView);
+        drawHandler.drarw();
     }
 }

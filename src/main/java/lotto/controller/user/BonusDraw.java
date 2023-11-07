@@ -6,6 +6,7 @@ import lotto.view.InputView;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class BonusDraw {
+    private int bonusNumber;
     private final InputView inputView;
 
     public BonusDraw(InputView inputView) {
@@ -25,7 +26,7 @@ public class BonusDraw {
         return true;
     }
 
-    private int inputBonusNumber() {
+    public void draw() {
         String input;
 
         while (true) {
@@ -37,11 +38,10 @@ public class BonusDraw {
                 break;
             }
         }
-
-        return Integer.parseInt(input);
+        bonusNumber = Integer.parseInt(input);
     }
 
-    public void draw() {
-        int bonusNumber = inputBonusNumber();
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

@@ -6,7 +6,7 @@ import lotto.exception.LottoNumberException;
 import java.util.List;
 
 public class ExceptionHandler {
-    public void handlePurchaseAmountException(String input){
+    public void handlePurchaseAmountException(String input) {
         AmountException exception = new AmountException();
 
         exception.checkBlank(input);             //빈칸 입력

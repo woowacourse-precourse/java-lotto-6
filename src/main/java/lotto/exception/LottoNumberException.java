@@ -28,7 +28,7 @@ public class LottoNumberException {
         int length = input.length();
         char lastNumber = input.charAt(length - 1);
 
-        if(lastNumber < '0' || lastNumber > '9') {
+        if (lastNumber < '0' || lastNumber > '9') {
             throw new IllegalArgumentException(END_WITH_NUMBER);
         }
     }
@@ -50,14 +50,15 @@ public class LottoNumberException {
     public void checkSixNumbers(List<String> inputs) {
         for (String input : inputs) {
             checkInteger(input.trim());
+            checkLottoNumber(input.trim());
         }
     }
 
     private boolean isDuplicate(int currentIndex, List<String> numbers) {
         String currentNumber = numbers.get(currentIndex);
 
-        for(int index = currentIndex + 1; index < numbers.size(); index++) {
-            if(currentNumber.equals(numbers.get(index))) {
+        for (int index = currentIndex + 1; index < numbers.size(); index++) {
+            if (currentNumber.equals(numbers.get(index))) {
                 return true;
             }
         }

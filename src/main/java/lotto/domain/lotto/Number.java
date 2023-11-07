@@ -14,7 +14,7 @@ public class Number implements Comparable<Number>{
 
 
     static {
-        for (int i = MIN_NUMBER; i < MAX_NUMBER; i++) {
+        for (int i = MIN_NUMBER; i <= MAX_NUMBER; i++) {
             numbers.add(new Number(i));
         }
     }

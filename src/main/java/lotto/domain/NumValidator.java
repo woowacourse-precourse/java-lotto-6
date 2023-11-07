@@ -1,9 +1,10 @@
 package lotto.domain;
 
+import lotto.view.Message;
+
 import java.util.List;
 
 import static lotto.view.Constants.*;
-import static lotto.view.Message.*;
 
 public class NumValidator {
 
@@ -12,20 +13,23 @@ public class NumValidator {
             return Integer.parseInt(num);
         }
         catch(NumberFormatException e){
-            throw new IllegalArgumentException(NOT_NUMBER_ERROR);
+            Message.typeException();
+            throw new IllegalArgumentException();
         }
     }
 
     public static int checkRange(int num){
         if(num<=0 || num>MAX_NUM){
-            throw new IllegalArgumentException(RANGE_ERROR);
+            Message.rangeException();
+            throw new IllegalArgumentException();
         }
         return num;
     }
 
     public static void checkCntNumber(List<Integer> winningNumbers){
         if(winningNumbers.size()!= NUM_OF_LOTTO){
-            throw new IllegalArgumentException(NUMBER_OF_INPUT_CNT_ERROR);
+            Message.rangeException();
+            throw new IllegalArgumentException();
         }
     }
 

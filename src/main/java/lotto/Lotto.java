@@ -1,11 +1,12 @@
 package lotto;
 
+import lotto.view.Message;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import static lotto.view.Constants.*;
-import static lotto.view.Message.*;
 
 public class Lotto {
 
@@ -31,7 +32,8 @@ public class Lotto {
     }
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUM_OF_LOTTO) {
-            throw new IllegalArgumentException(NUMBER_SIZE_ERROR);
+            Message.cntException();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -43,14 +45,16 @@ public class Lotto {
             overlapCheck.add(numbers.get(i));
         }
         if(overlapCheck.size()!=6){
-            throw new IllegalArgumentException(OVERLAP_NUM_ERROR);
+            Message.overlapException();
+            throw new IllegalArgumentException();
         }
 
     }
 
     public static void validateBonusNumber(List<Integer> numbers, int bonusNumber){
         if(numbers.contains(bonusNumber)){
-            throw new IllegalArgumentException(OVERLAP_NUM_ERROR);
+            Message.overlapException();
+            throw new IllegalArgumentException();
         }
     }
 

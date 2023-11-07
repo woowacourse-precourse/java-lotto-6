@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.view.Message;
+
 import static lotto.view.Constants.*;
 import static lotto.view.Message.*;
 
@@ -26,7 +28,8 @@ public class LottoAmount {
             return amount;
         }
         catch(NumberFormatException e){
-            throw new IllegalArgumentException(NOT_NUMBER_ERROR);
+            Message.typeException();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -34,13 +37,15 @@ public class LottoAmount {
     private static void checkPositive(int amount)
     {
         if(amount<=0){
-            throw new IllegalArgumentException(RANGE_ERROR);
+            Message.rangeException();
+            throw new IllegalArgumentException();
         }
     }
 
     private void checkFormat(int amount){
         if(amount%LOTTO_PRICE !=0){
-            throw new IllegalArgumentException(INPUT_FORMAT_ERROR);
+            Message.numberFormatException();
+            throw new IllegalArgumentException();
 
         }
     }

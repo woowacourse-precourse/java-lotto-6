@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import static lotto.utils.validator.LottoNumberValidator.validateDuplicate;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -107,7 +105,6 @@ public class LottoController {
                                                 BonusNumber bonusNumber) {
         while (true) {
             try {
-                validateDuplicate(winningNumber, bonusNumber);
                 return new WinningNumbers(winningNumber, bonusNumber);
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());

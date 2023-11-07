@@ -23,20 +23,22 @@ public class LottoBuyController implements Controller {
     @Override
     public void process(Map<String, ? super DTO.Input> inputDto,
                         Map<String, ? super DTO.Output> outputDto) {
-        inputDto.put(ParameterConfig.BUY_PRICE, service.getBuyLottoInputDTO());
-        getLottoBuyPrice(inputDto, outputDto);
+        Long price = getBuyLottoPrice(inputDto, outputDto);
+        viewBuyLottoNumbers(outputDto, price);
     }
 
-    private void getLottoBuyPrice(Map<String, ? super DTO.Input> inputDto,
-                                  Map<String, ? super DTO.Output> outputDto) {
-
-        outputView.view(outputDto);
-        inputView.read(inputDto);
-        BuyLottoDTO.Input input = (BuyLottoDTO.Input) inputDto.get(ParameterConfig.BUY_PRICE);
-        BuyLottoDTO.Output purchasedLottoDTO = service.getPurchasedLottoDTO(input.getBuyPrice());
+    private void viewBuyLottoNumbers(Map<String, ? super DTO.Output> outputDto, Long price) {
+        BuyLottoDTO.Output purchasedLottoDTO = service.getPurchasedLottoDTO(price);
         outputDto.put(ParameterConfig.BUY_PRICE, purchasedLottoDTO);
         outputView.view(outputDto);
+    }
 
+    private Long getBuyLottoPrice(Map<String, ? super DTO.Input> inputDto,
+                                  Map<String, ? super DTO.Output> outputDto) {
 
+        inputDto.put(ParameterConfig.BUY_PRICE, service.getBuyLottoInputDTO());
+        outputView.view(outputDto);
+        inputView.read(inputDto);
+        return ((BuyLottoDTO.Input) inputDto.get(ParameterConfig.BUY_PRICE)).getBuyPrice();
     }
 }

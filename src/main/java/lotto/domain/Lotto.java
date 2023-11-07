@@ -13,11 +13,10 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-
+        validateBoundaryNumbers(numbers);
         validateSix(numbers);
         validateOverlapNumber(numbers);
-        this.numbers = numbers;
-        Collections.sort(numbers);
+        this.numbers = sortNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -29,10 +28,10 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_SIX_MESSAGE.getValue());
         }
     }
-    private void validateBoundaryNumbers(List<Integer> input) {
+    private void validateBoundaryNumbers(List<Integer> numbers) {
         try {
-            for (int i = 0; i < input.size(); i++)
-                validateBoundaryNumber(input.get(i));
+            for (int i = 0; i < numbers.size(); i++)
+                validateBoundaryNumber(numbers.get(i));
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }
@@ -48,5 +47,11 @@ public class Lotto {
         for (Integer i : numbers)
             if (Collections.frequency(numbers, i) > 1)
                 throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_OVERLAP_MESSAGE.getValue());
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<Integer>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }

@@ -7,7 +7,7 @@ import lotto.view.LottoView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
 
 public class LottoMakingController {
     private static final LottoView view = new LottoView();
@@ -75,7 +75,9 @@ public class LottoMakingController {
         while (true) {
             try {
                 String input = view.inputWinningNumber();
-                Lotto winningNumber = new Lotto(new ArrayList<Integer>(Arrays.asList(changeStringToIntegers(input))));
+                List<Integer> lotto = new ArrayList<Integer>();
+                lotto.addAll(Arrays.asList(changeStringToIntegers(input)));
+                Lotto winningNumber = new Lotto(new ArrayList<Integer>(lotto));
                 this.winningNumbers = winningNumber;
                 break;
             } catch (IllegalArgumentException e) {

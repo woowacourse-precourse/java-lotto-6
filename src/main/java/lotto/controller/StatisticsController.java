@@ -14,8 +14,9 @@ public class StatisticsController {
     public void CountWinningNumber(Player player) {
         this.player = player;
         matchAllLottos(player.getLottos(), player.getWINNING_NUMBERS());
+        view.outputMatchResult(player.getMatches());
         double rate = calculateRate();
-        view.outputStatisticsResult(player.getMatches(), rate);
+        view.outputStatisticsResult(rate);
     }
 
     private void matchAllLottos(List<Lotto> lottos, Lotto winningNumbers) {
@@ -61,6 +62,6 @@ public class StatisticsController {
         totalMoney += player.getFiveAndBonusMatch() * PrizeMoney.FIVE_AND_BONUS_MATCH_PRIZE_MONEY.getPrize();
         totalMoney += player.getSixMatch() * PrizeMoney.SIX_MATCH_PRIZE_MONEY.getPrize();
 
-        return (totalMoney / player.getPayment()) * 100;
+        return ((double) totalMoney / player.getPayment()) * 100;
     }
 }

@@ -30,9 +30,11 @@ public class LottoView {
         return Console.readLine();
     }
 
-    public void outputStatisticsResult(List<Integer> matches, double rate) {
+    public void outputMatchResult(List<Integer> matches) {
         System.out.println();
         System.out.println(String.format(Message.OUTPUT_WIN_COUNT.getValue(), matches.get(0), matches.get(1), matches.get(2), matches.get(3), matches.get(4)));
+    }
+    public void outputStatisticsResult(double rate) {
         System.out.println(String.format(Message.OUTPUT_STATISTICS.getValue(), rate));
     }
 

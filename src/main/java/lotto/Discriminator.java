@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.dto.ProfitRateDTO;
 import lotto.dto.StatisticDTO;
 
 public class Discriminator {
@@ -28,5 +29,11 @@ public class Discriminator {
 
     public StatisticDTO getStatistic() {
         return new StatisticDTO(info.getStatistic());
+    }
+
+    public ProfitRateDTO getProfitRate(int won) {
+        double rate = ((info.getRewards() * 100) / won) / 100.0;
+
+        return new ProfitRateDTO(rate);
     }
 }

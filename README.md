@@ -282,6 +282,7 @@ public class Lotto {
 ### controller
 - [ ] LottoController
 - [ ] RakingController
+- [ ] WinningController
 
 
 

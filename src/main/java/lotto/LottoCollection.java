@@ -68,7 +68,12 @@ public class LottoCollection {
             System.out.println(rank.getRankMessage() + " - " + count + "개");
         }
     }
-    
+
+    public void printProfitRate() {
+        double profitRate = getProfitRate();
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
+    }
+
     private double getProfitRate() {
         double totalPrize = 0.0;
         for (int i = 5; i > 0; i--){

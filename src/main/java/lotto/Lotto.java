@@ -24,7 +24,7 @@ public class Lotto {
 
     private void validateNumbersVal(List<Integer> numbers) {
         for (int i = 0; i < 6; i++) {
-            if (numbers.get(i) < 1 || numbers.get(i) > 45 || numbers.get(i) == null) {
+            if (numbers.get(i) < 1 || numbers.get(i) > 45) {
                 throw new IllegalArgumentException(INVALID_NUMBERS_VALUE.getErrMsg());
             }
         }

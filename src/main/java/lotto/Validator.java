@@ -1,14 +1,16 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicIntegerArray;
 
 public class Validator {
 
 
-    public static void isValidAmount(String amount) {
+    public static void isValidAmount(String amount) throws IllegalArgumentException{
         String INVALID_AMOUNT_ERROR_MESSAGE = "[ERROR] 자연수를 입력하세요";
         try {
             Integer.parseInt(amount);
@@ -27,7 +29,7 @@ public class Validator {
         }
     }
 
-    public static void isWinningNumberValid(List<String> winningNumber) {
+    public static void isWinningNumberValid(String[] winningNumber) {
         for (String num : winningNumber) {
             validateNumberAndThrow(num);
         }
@@ -51,14 +53,13 @@ public class Validator {
         }
     }
 
-    public static void isWinningNumberDistinct(List<String> winningNumber) {
-        validateDistinctAndThrow(winningNumber);
+    public static void isWinningNumberDistinct(String[] winningNumber) {
+        validateDistinctAndThrow(Arrays.asList(winningNumber));
     }
 
-    public static void isBonusNumberDistinct(List<String> winningNumber, String bonusNumber) {
-        List<String> lottoNumber = new ArrayList<>(winningNumber);
+    public static void isBonusNumberDistinct(String[] winningNumber, String bonusNumber) {
+        List<String> lottoNumber = new ArrayList<>(Arrays.asList(winningNumber));
         lottoNumber.add(bonusNumber);
-
         validateDistinctAndThrow(lottoNumber);
     }
 
@@ -73,7 +74,7 @@ public class Validator {
         }
     }
 
-    public static void isNumberSizeValid(String[] number) {
+    public static void isWinningNumberSizeValid(String[] number) {
         String INVALID_NUMBER_SIZE_ERROR_MESSAGE = "[Error] 당첨번호는 6개의 수를 입력하세요";
         if (number.length != 6) {
             throw new IllegalArgumentException(INVALID_NUMBER_SIZE_ERROR_MESSAGE);

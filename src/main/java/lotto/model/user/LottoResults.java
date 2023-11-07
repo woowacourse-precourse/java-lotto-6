@@ -8,7 +8,7 @@ public class LottoResults {
     private int fourthPlaceCount = 0;
     private int fifthPlaceCount = 0;
 
-    LottoResults(int first, int second, int third, int fourth, int fifth){
+    public LottoResults(int first, int second, int third, int fourth, int fifth){
         firstPlaceCount = first;
         secondPlaceCount = second;
         thirdPlaceCount = third;

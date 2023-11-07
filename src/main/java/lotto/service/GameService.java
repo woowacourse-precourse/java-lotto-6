@@ -3,7 +3,6 @@ package lotto.service;
 import lotto.dto.GameDto;
 import lotto.dto.LottoDto;
 import lotto.model.Game;
-import lotto.util.LottoNumberFactory;
 import lotto.util.NumberFactory;
 
 import java.util.List;
@@ -13,8 +12,8 @@ import static lotto.util.LottoResult.*;
 public class GameService {
     private final NumberFactory numberFactory;
 
-    public GameService(LottoNumberFactory lottoNumberFactory) {
-        this.numberFactory = lottoNumberFactory;
+    public GameService(NumberFactory numberFactory) {
+        this.numberFactory = numberFactory;
     }
 
     public List<LottoDto> purchaseLotto(Game game) {

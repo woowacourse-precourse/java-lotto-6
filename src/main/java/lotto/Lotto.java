@@ -10,11 +10,18 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    public void validate(List<Integer> numbers) {
+        validateSize(numbers.size());
+        validateDuplication(numbers);
+    }
+    private void validateSize(int numbers) {
+        if (numbers != LOTTO_NUMBER_LENGTH) {
             throw new IllegalArgumentException();
         }
     }
-
-    // TODO: 추가 기능 구현
+    private void validateDuplication(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        numbers.stream().forEach(uniqueNumbers::add);
+        validateSize(uniqueNumbers.size());
+    }
 }

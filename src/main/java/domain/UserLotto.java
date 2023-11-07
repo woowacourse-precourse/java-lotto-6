@@ -23,6 +23,7 @@ public class UserLotto {
         }
     }
 
+
     public void setInputLotto(String inputLotto) throws IllegalArgumentException{
         LottoValidator.verifyInputLotto(inputLotto);
 
@@ -39,6 +40,11 @@ public class UserLotto {
     }
 
 
+    public void setInputBonusLotto(String inputBonusLotto) throws IllegalArgumentException{
+        LottoValidator.verifyBonusLotto(inputBonusLotto, this.lotto.getNumbers());
+        setBonusNumber(Integer.parseInt(inputBonusLotto));
+    }
+
     public int getLottoCount() {
         return lottoCount;
     }
@@ -47,4 +53,7 @@ public class UserLotto {
         this.lotto = lotto;
     }
 
+    private void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
 }

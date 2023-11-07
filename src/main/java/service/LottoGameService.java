@@ -25,9 +25,10 @@ public class LottoGameService {
 
         setInputLottoGame();
 
+        setInputBonusLottoGame();
     }
 
-    public void purchaseLottoGame(){
+    private void purchaseLottoGame(){
         boolean isAmount = false;
 
         while(!isAmount){
@@ -60,6 +61,19 @@ public class LottoGameService {
         }
     }
 
+    private void setInputBonusLottoGame(){
+        boolean isInputBonusLotto = false;
+
+        while(!isInputBonusLotto){
+            print(LottoGameMessage.BONUS_NUMBER.toString());
+            try{
+                userLotto.setInputBonusLotto(readInput());
+                isInputBonusLotto = true;
+            }catch (IllegalArgumentException iae){
+                errorPrint(iae.getMessage());
+            }
+        }
+    }
 
     private String readInput(){
         return Console.readLine();

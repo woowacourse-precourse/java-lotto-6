@@ -11,8 +11,11 @@ public class Constant {
     public static final String ERROR_NOT_DIVIDE_MESSAGE = "1,000원으로 나누어 떨어져야 합니다.";
     public static final String ERROR_NOT_BIGGER_MESSAGE = "1,000원 이상이어야 합니다.";
     public static final String ERROR_EMPTY_MESSAGE = "빈칸일 수 없습니다.";
+    public static final String ERROR_NOT_BOUNDARY_MESSAGE = "1부터 45 사이의 숫자여야 합니다.";
 
     public static final String NUMBER_PATTERN = "[0-9]+";
 
     public static final int LOTTO_DIVIDE_PRICE = 1000;
+    public static final int LOTTO_MIN_NUMBER = 1;
+    public static final int LOTTO_MAX_NUMBER = 45;
 }

@@ -31,4 +31,13 @@ public class Bonus {
                     Constant.ERROR_PREFIX + Constant.BONUS_PREFIX + Constant.ERROR_EMPTY_MESSAGE);
         }
     }
+
+    //1~45 사이의 숫자인지 확인
+    private void isBoundary(String bonus) {
+        if (Integer.parseInt(bonus) < Constant.LOTTO_MIN_NUMBER
+                || Integer.parseInt(bonus) > Constant.LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(
+                    Constant.ERROR_PREFIX + Constant.BONUS_PREFIX + Constant.ERROR_NOT_BOUNDARY_MESSAGE);
+        }
+    }
 }

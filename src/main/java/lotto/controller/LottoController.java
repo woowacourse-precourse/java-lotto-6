@@ -46,7 +46,8 @@ public class LottoController {
     }
 
     private WinningLottoWithBonus inputWinningLottoWithBonus() {
-        return repeat(() -> new WinningLottoWithBonus(inputLotto(), inputBonus()));
+        Lotto lotto = repeat(this::inputLotto);
+        return repeat(() -> new WinningLottoWithBonus(lotto, inputBonus()));
     }
 
     private Lotto inputLotto() {

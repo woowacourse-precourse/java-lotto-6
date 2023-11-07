@@ -24,4 +24,20 @@ public class LottoResult {
     public int get(LottoResultStatus resultStatus) {
         return result.get(resultStatus);
     }
+
+    public String roundRateOfReturn(PurchasePrice purchasePrice) {
+        double rateOfReturn = calculateRateOfReturn(purchasePrice);
+        return String.format("%,.1f", rateOfReturn);
+    }
+
+    private double calculateRateOfReturn(PurchasePrice purchasePrice) {
+        int price = purchasePrice.getPrice();
+        return 100.0 * calculateEarnPrice() / price;
+    }
+
+    private long calculateEarnPrice() {
+        return result.entrySet().stream()
+                .mapToLong(entry -> (entry.getKey().getWinnings() * entry.getValue()))
+                .sum();
+    }
 }

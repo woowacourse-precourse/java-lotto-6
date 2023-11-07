@@ -42,6 +42,10 @@ public class PurchasePrice {
         return price / MULTIPLE;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     private void validate(int price) {
         isZero(price);
         isNegative(price);

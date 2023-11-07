@@ -4,7 +4,7 @@ money(model) 생성
 - [ ] inputView 로 string 입력 받기
 - [ ] '숫자 생성기'가 숫자로 변환 
 - [ ] 검증 : stringToInt, **'숫자 생성기'는 숫자에 관련한 검증만 수행**
-- [ ] controller 에게 숫자를 넘겨 money model 생성
+- [X] controller 에게 숫자를 넘겨 money model 생성
 - [X] money 모델에게 생성자로 숫자를 넘겨 money 생성 
 - [X] 검증 : money 모델은 비즈니스 로직만 검증 수행
   - [X] 로또 금액에 맞는 금액 ex) 1000으로 나누어 떨어짐

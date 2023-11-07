@@ -15,6 +15,16 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+    
+    private Integer countSameNumber(WinningNumber winningNumber) {
+        int count = 0;
+        for (Integer number : winningNumber.getNumbers()) {
+            if (numbers.contains(number)) {
+                count += 1;
+            }
+        }
+        return count;
+    }
 
     public List<Integer> getNumbers() {
         return numbers;

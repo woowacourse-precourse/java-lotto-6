@@ -1,6 +1,8 @@
 package lotto.config;
 
 import java.util.Arrays;
+import lotto.Lotto;
+import lotto.domain.WinningLotto;
 
 public enum Rank {
 
@@ -21,7 +23,14 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public static Rank of(int matchedCount, boolean matchesBonusNumber) {
+    public static Rank of(WinningLotto winningLotto, Lotto lotto) {
+        return Rank.of(
+                winningLotto.countMatchingNumbers(lotto),
+                winningLotto.matchesBonusNumber(lotto)
+        );
+    }
+
+    private static Rank of(int matchedCount, boolean matchesBonusNumber) {
         return Arrays.stream(Rank.values())
                 .filter(rank ->
                         rank.matchedCount == matchedCount

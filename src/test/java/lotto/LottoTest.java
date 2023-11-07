@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoAmount;
 import lotto.service.Service;
+import lotto.validation.Validation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -62,4 +63,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 당첨번호 중 중복인 경우")
+    @Test
+    void isNumberInListTest() {
+        Validation validation = new Validation();
+
+        int validNumber = 5;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> validation.isNumberInList(winningNumbers, validNumber))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
+

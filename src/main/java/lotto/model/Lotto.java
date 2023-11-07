@@ -13,9 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoValidator.validateNumbersLength(numbers);
-        LottoValidator.validateNumbersRange(numbers);
-        LottoValidator.validateDuplicatedNumbers(numbers);
+        LottoValidator.validateLottoConstructor(numbers);
     }
 
     public LottoRank getRank(WinningNumber winningNumbers) {

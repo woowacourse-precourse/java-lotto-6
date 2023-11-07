@@ -8,20 +8,25 @@ import java.util.List;
 import lotto.constant.ErrorMessages;
 
 public class LottoValidator {
+    public static void validateLottoConstructor(List<Integer> numbers) {
+        validateNumbersLength(numbers);
+        validateNumbersRange(numbers);
+        validateDuplicatedNumbers(numbers);
+    }
 
-    public static void validateNumbersLength(List<Integer> numbers) {
+    private static void validateNumbersLength(List<Integer> numbers) {
         if (!isValidateNumbersLength(numbers)) {
             throw new IllegalArgumentException(String.format(ErrorMessages.LOTTO_CHOICE_NUMBER, TOTAL_CHOICE_NUMBER.getValue()));
         }
     }
 
-    public static void validateNumbersRange(List<Integer> numbers) {
+    private static void validateNumbersRange(List<Integer> numbers) {
         if (!isValidateNumbersRange(numbers)) {
             throw new IllegalArgumentException(String.format(ErrorMessages.LOTTO_NUMBER_RANGE, MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue()));
         }
     }
 
-    public static void validateDuplicatedNumbers(List<Integer> numbers) {
+    private static void validateDuplicatedNumbers(List<Integer> numbers) {
         if (isDuplicatedNumbers(numbers)) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER);
         }

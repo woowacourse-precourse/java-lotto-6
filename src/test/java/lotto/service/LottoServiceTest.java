@@ -122,7 +122,7 @@ class LottoServiceTest {
                 new Lotto(List.of(2,13,22,32,38,45)),
                 new Lotto(List.of(1,3,5,14,22,45))
         );
-        double returnOnLotto = lottoService.getReturnOnLotto(lottos, winningNumbers, lottoPurchaseAmount, bonusNumber);
+        double returnOnLotto = lottoService.getReturnOnLotto(lottos, winningNumbers, bonusNumber);
 
         double expected = 62.5;
         assertThat(returnOnLotto).isEqualTo(expected);

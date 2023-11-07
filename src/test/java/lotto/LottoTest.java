@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.Model.Lotto.ERROR_LOTTO_NUMBER_COUNT;
+import static lotto.Model.Lotto.ERROR_LOTTO_NUMBER_DUPLICATE;
+import static lotto.Model.Lotto.ERROR_LOTTO_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -15,7 +18,7 @@ class LottoTest {
     void validateSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호를 6개 입력해 주세요.");
+                .hasMessage(ERROR_LOTTO_NUMBER_COUNT);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -23,7 +26,7 @@ class LottoTest {
     void validateDuplicate() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 중복될수 없습니다.");
+                .hasMessage(ERROR_LOTTO_NUMBER_DUPLICATE);
     }
 
     @DisplayName("로또 번호가 1~45인지 테스트.")
@@ -31,7 +34,7 @@ class LottoTest {
     void validateNumberRange() {
         assertThatThrownBy(() -> new Lotto(Arrays.asList(1, 3, 5, 50, 4, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또 번호는 1~45의 숫자만 가능합니다.");
+                .hasMessage(ERROR_LOTTO_NUMBER_RANGE);
     }
 
     @DisplayName("로또 번호가 오름차순으로 출력되는지 확인한다.")

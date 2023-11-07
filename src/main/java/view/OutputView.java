@@ -17,7 +17,6 @@ public class OutputView {
     }
 
     public static void printPurchasedLotteryNumbers(List<Lotto> lotteries) {
-        System.out.println();
         StringBuilder message = new StringBuilder();
         message.append(lotteries.size()).append(OutputMessage.PURCHASE_FINISHED_MESSAGE.getMessage())
                 .append(Symbol.NEXT_LINE.getSymbol());

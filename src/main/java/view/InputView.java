@@ -14,6 +14,7 @@ public class InputView {
         while (true) {
             OutputView.printPurchaseAmountInputMessage();
             String input = Console.readLine();
+            System.out.println();
             try {
                 InputValidator.validatePurchaseAmountInput(input);
                 return Integer.parseInt(input) / Unit.PURCHASE_AMOUNT_UNIT.getUnit();
@@ -28,6 +29,7 @@ public class InputView {
         while (true) {
             OutputView.printWinningNumbersInputMessage();
             String input = Console.readLine();
+            System.out.println();
             try {
                 InputValidator.validateWinningNumbersInput(input);
                 return Arrays.stream(input.split(Symbol.COMMA.getSymbol()))

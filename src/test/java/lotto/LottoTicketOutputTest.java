@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayName("발행한 로또 수량 및 번호를 출력하는 기능 테스트")
 public class LottoTicketOutputTest {
-
     private static ByteArrayOutputStream outputMessage;
 
     @BeforeEach

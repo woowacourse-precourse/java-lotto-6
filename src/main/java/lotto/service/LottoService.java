@@ -18,9 +18,12 @@ import java.util.HashSet;
 
 public class LottoService {
     private static final int TWO_LOTTO_CIPHERS = 12;
+    private static final int TEMPORARY_MULTIPLICATION_FOR_ROUND = 10;
     private final LottoRepository lottoRepository = new LottoRepository();
+    private int paidMoney;
 
     public LottoesDto purchaseLottoes(MoneyDto moneyDto) {
+        paidMoney = moneyDto.amount();
         int lottoesCount = calculateLottoCount(moneyDto.amount());
         List<LottoDto> lottoDtoes = generateLottoes(lottoesCount);
         return new LottoesDto(lottoDtoes);
@@ -40,13 +43,13 @@ public class LottoService {
 
     public ResultDto generateResult(WinNumbersDto winNumbersDto) {
         List<LottoDto> lottoDtoes = lottoRepository.findLottoDtoes();
+
         List<Integer> winNumbers = winNumbersDto.winNumbers();
         int bonusNumber = winNumbersDto.bonusNumber();
 
         Map<Ranking, Integer> rankingCount = generateRankingCount(lottoDtoes, winNumbers, bonusNumber);
-        double tempBenefitRate = 0.9;
-
-        return new ResultDto(rankingCount, tempBenefitRate);
+        double benefitRate = calculateBenefitRate(rankingCount);
+        return new ResultDto(rankingCount, benefitRate);
     }
 
     private Map<Ranking, Integer> generateRankingCount(List<LottoDto> lottoDtoes,
@@ -61,16 +64,6 @@ public class LottoService {
         return rankingCount;
     }
 
-    private void calculateRankingCount(Map<Ranking, Integer> rankingCount,
-                                       int matchedNumberCount, boolean isBonusNumberMatched) {
-        for (Ranking ranking : Ranking.values()) {
-            if (ranking.isThisRanking(matchedNumberCount, isBonusNumberMatched)) {
-                rankingCount.put(ranking, rankingCount.getOrDefault(ranking, 0) + 1);
-                return;
-            }
-        }
-    }
-
     private int countMatchedNumbers(List<Integer> winNumbers, List<Integer> lottoNumbers) {
         Set<Integer> matchingValidator = new HashSet<>(lottoNumbers);
         matchingValidator.addAll(winNumbers);
@@ -81,4 +74,32 @@ public class LottoService {
         return lottoNumbers.contains(bonusNumber);
     }
 
+    private void calculateRankingCount(Map<Ranking, Integer> rankingCount,
+                                       int matchedNumberCount, boolean isBonusNumberMatched) {
+        for (Ranking ranking : Ranking.values()) {
+            if (ranking.isThisRanking(matchedNumberCount, isBonusNumberMatched)) {
+                rankingCount.put(ranking, rankingCount.getOrDefault(ranking, 0) + 1);
+                return;
+            }
+        }
+    }
+
+    private double calculateBenefitRate(Map<Ranking, Integer> rankingCount) {
+        int totalPrizeBenefit = getTotalPrizeBenefit(rankingCount);
+        double benefitRate = (double) totalPrizeBenefit / paidMoney;
+        return roundOffSecondDecimalPlace(benefitRate);
+    }
+
+    private int getTotalPrizeBenefit(Map<Ranking, Integer> rankingCount) {
+        int totalPrizeBenefit = 0;
+        for (Ranking ranking : rankingCount.keySet()) {
+            totalPrizeBenefit += rankingCount.get(ranking) * ranking.getPrizeMoney();
+        }
+        return totalPrizeBenefit;
+    }
+
+    private double roundOffSecondDecimalPlace(double benefitRate) {
+        return (double) Math.round(benefitRate * TEMPORARY_MULTIPLICATION_FOR_ROUND)
+                / TEMPORARY_MULTIPLICATION_FOR_ROUND;
+    }
 }

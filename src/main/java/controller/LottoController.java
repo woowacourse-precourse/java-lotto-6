@@ -65,6 +65,7 @@ public class LottoController {
             matchNumber = isBonusMatchNumber(matchNumber, bonusState);
             outputView.printLottoResult(matchNumber, rewardIndex, bonusMessage, lottoWinners[matchNumber - 3]);
             bonusState = cheackBonusLottoTime(matchNumber, bonusState);
+            rewardIndex++;
         }
     }
 

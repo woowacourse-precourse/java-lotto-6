@@ -114,7 +114,7 @@
        - [x] 로또 당첨 내역 출력 함수 호출
        - checkBonusLottoTime()
          - [x] 보너스 번호 당첨 순서이면서 한 번도 보너스 번호 당첨 순서가 안온 경우인지 확인
-       - [ ] 상금 배열 인덱스 증가
+       - [x] 상금 배열 인덱스 증가
      - decideRevenuePercentage()
        - getInvestRevenue()
          - [ ] 순투자 수익 계산

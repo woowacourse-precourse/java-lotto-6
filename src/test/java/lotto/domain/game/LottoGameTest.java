@@ -42,7 +42,8 @@ class LottoGameTest {
     @Test
     void 로또_게임_생성_및_상금_계산() {
         // given
-        final LottoGame lottoGame = LottoGame.of(money, winningNumber, numberGenerator);
+        final LottoGame lottoGame = LottoGame.of(money, numberGenerator);
+        lottoGame.updateWinningNumber(winningNumber);
 
         // when
         final Prizes prizes = lottoGame.calculatePrizes();
@@ -52,7 +53,7 @@ class LottoGameTest {
                 .hasSize(5)
                 .containsOnly(Prize.FIRST);
 
-        final BigDecimal profit = lottoGame.calculateProfit(prizes);
+        final BigDecimal profit = lottoGame.calculateProfitRate(prizes);
         assertThat(profit).isEqualByComparingTo("200000000.00"); // 기대하는 수익률 값과 비교
     }
 

@@ -12,10 +12,6 @@ public record Lottos(
         this.lottos = makeUnmodifiable(lottos);
     }
 
-    public static Lottos from(final List<Lotto> lottos) {
-        return new Lottos(lottos);
-    }
-
     private List<Lotto> makeUnmodifiable(final List<Lotto> lottos) {
         return List.copyOf(lottos);
     }

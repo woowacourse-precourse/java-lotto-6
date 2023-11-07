@@ -3,7 +3,8 @@ package lotto.domain.lotto;
 import lotto.constants.ErrorConsts;
 import lotto.constants.LottoConsts;
 
-import java.util.HashSet;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,13 +15,14 @@ public record LottoNumbers(
     public LottoNumbers(final Set<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = makeUnmodifiable(numbers);
+//        this.numbers = numbers;
     }
 
     public static LottoNumbers from(final List<Integer> numbers) {
         return new LottoNumbers(
                 numbers.stream()
                         .map(LottoNumber::new)
-                        .collect(Collectors.toSet())
+                        .collect(Collectors.toCollection(LinkedHashSet::new))
         );
     }
 
@@ -35,11 +37,11 @@ public record LottoNumbers(
     }
 
     private Set<LottoNumber> makeUnmodifiable(final Set<LottoNumber> numbers) {
-        return Set.copyOf(numbers);
+        return Collections.unmodifiableSet(new LinkedHashSet<>(numbers));
     }
 
     public int countMatch(final LottoNumbers otherNumbers) {
-        final Set<LottoNumber> intersection = new HashSet<>(this.numbers);
+        final Set<LottoNumber> intersection = new LinkedHashSet<>(this.numbers);
         intersection.retainAll(otherNumbers.numbers);
 
         return intersection.size();

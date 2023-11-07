@@ -96,12 +96,12 @@ class ViewValidatorTest {
         viewValidator.validateMinPrice(buyingPrice);
     }
 
-    @DisplayName("구입 금액이 구입 최소 단위로 나누어 떨어지지 않으면 예외가 발생한다.")
+    @DisplayName("구입 금액이 최소 구입 금액을 넘지 않으면 예외가 발생한다.")
     @Test
     void validateMinPriceFail() {
         // given
         ViewValidator viewValidator = new ViewValidator();
-        int buyingPrice = 0;
+        int buyingPrice = -1;
 
         // expected
         assertThatThrownBy(() ->  viewValidator.validateMinPrice(buyingPrice))

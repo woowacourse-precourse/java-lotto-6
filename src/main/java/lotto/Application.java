@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -30,6 +31,16 @@ public class Application {
     }
     private static List<Integer> makeRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, LOTTO_SIZE);
+    }
+
+    private static List<Lotto> makeAllLottoPaper(int numberOfLotto) {
+        List<Lotto> allOfLottoPapers = new ArrayList<>();
+        for (int i = 0; i < numberOfLotto; i++) {
+            Lotto lottoPaper = new Lotto(makeRandomNumbers());
+            lottoPaper.printLottoPaper(lottoPaper);
+            allOfLottoPapers.add(lottoPaper);
+        }
+        return allOfLottoPapers;
     }
 
 }

@@ -27,21 +27,6 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @DisplayName("LottoNumbers WinningNumbers 비교 테스트")
-    @Test
-    void compareLottoAndBonusNumber_EqualResult_Success() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 7);
-
-        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 6;
-
-        long winner = lotto.compareLottoNumbers(winningNumbers);
-        Boolean bonus = lotto.compareBonusNumber(bonusNumber);
-
-        assertThat(winner).isEqualTo(5);
-        assertThat(bonus).isTrue();
-    }
 
 
 }

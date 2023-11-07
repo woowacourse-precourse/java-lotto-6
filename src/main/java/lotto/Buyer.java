@@ -8,6 +8,10 @@ public class Buyer {
     private LottoMachine lottoMachine;
     private List<Lotto> lottos;
 
+    public Buyer(LottoMachine lottoMachine) {
+        this.lottoMachine = lottoMachine;
+    }
+
     public void buyLotto() {
         while (true) {
             try {

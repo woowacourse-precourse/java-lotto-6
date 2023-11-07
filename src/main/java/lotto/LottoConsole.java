@@ -22,6 +22,16 @@ public class LottoConsole {
     earnedMoney = 0L;
   }
 
+  public void play() {
+    getSpendMoney();
+    buy();
+    getWinningLotto();
+    getBonusNumber();
+    getScores();
+    getEarnedMoney();
+    showTotalScore();
+  }
+
   private void getSpendMoney() {
     try {
       System.out.println("구입금액을 입력해 주세요.");

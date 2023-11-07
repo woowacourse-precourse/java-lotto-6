@@ -44,6 +44,8 @@
   - 당첨된 로또들의 당첨금 합이다.
 - LottoConsole Constructor
   - 멤버 변수들을 초기화 시켜준다.
+- play method
+  - 로또 게임을 수행하는 메서드이다.
 - getSpendMoney method
   - 로또를 구매한 비용을 입력 받는다.
   - 정수인 숫자가 아닌 값을 입력하면 IllegalArgumentException 이 발생하고 메서드가 다시 실행된다.

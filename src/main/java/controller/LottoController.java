@@ -15,12 +15,19 @@ public class LottoController {
     private LottoService lottoService = new LottoService();
 
     public void play() {
-
+        init();
+        initPlayer();
     }
 
     private void init() {
         int input = InputMessage.printMoneyInputMessage();
         List<Lotto> lottosList = lottoService.buyLotto(input);
         OutputMessage.printLottosListOutputMessage(lottosList);
+    }
+
+    private void initPlayer() {
+        List<Integer> winningNumbers = InputMessage.printWinNumberInputMessage();
+        int bonusNumber = InputMessage.printBonusNumberInputMessage();
+        lottoService.setPlayer(winningNumbers, bonusNumber);
     }
 }

@@ -28,4 +28,8 @@ public class LottoService {
         Collections.sort(numbers);
         lottos.addLotto(new Lotto(numbers));
     }
+
+    public void setPlayer(List<Integer> winningNumbers, int bonusNumber) {
+        player = new Player(winningNumbers, bonusNumber);
+    }
 }

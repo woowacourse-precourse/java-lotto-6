@@ -6,7 +6,7 @@ import java.util.List;
 public class GameData {
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
-    private List<Lotto> lottoList;
+    private List<Lotto> lottos;
 
 
     public List<Integer> getWinningNumbers() {
@@ -25,11 +25,11 @@ public class GameData {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Lotto> getLottoList() {
-        return lottoList;
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 
-    public void generateLottoList() {
-        this.lottoList = new ArrayList<>();
+    public void generateLottos() {
+        this.lottos = new ArrayList<>();
     }
 }

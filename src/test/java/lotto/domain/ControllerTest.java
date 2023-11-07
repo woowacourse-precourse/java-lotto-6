@@ -64,19 +64,19 @@ class ControllerTest {
     @Test
     void changeRankByBonusNumber() {
         boolean bonusFlag = true;
-        List<Rank> lotteryRankList = new ArrayList<>();
-        lotteryRankList.add(Rank.FIFTH);
-        lotteryRankList.add(Rank.THIRD);
-        lotteryRankList.add(Rank.FOURTH);
-        lotteryRankList.add(Rank.FIFTH);
-        lotteryRankList.add(Rank.FAIL);
-        lotteryRankList.add(Rank.FAIL);
+        List<Rank> lotteryRanks = new ArrayList<>();
+        lotteryRanks.add(Rank.FIFTH);
+        lotteryRanks.add(Rank.THIRD);
+        lotteryRanks.add(Rank.FOURTH);
+        lotteryRanks.add(Rank.FIFTH);
+        lotteryRanks.add(Rank.FAIL);
+        lotteryRanks.add(Rank.FAIL);
 
         int index = 1;
 
-        Controller.changeRankByBonusNumber(lotteryRankList, bonusFlag, index);
+        Controller.changeRankByBonusNumber(lotteryRanks, bonusFlag, index);
 
-        Assertions.assertThat(lotteryRankList).isEqualTo(List.of(
+        Assertions.assertThat(lotteryRanks).isEqualTo(List.of(
                 Rank.FIFTH, Rank.SECOND, Rank.FOURTH, Rank.FIFTH, Rank.FAIL, Rank.FAIL
         ));
     }

@@ -29,8 +29,8 @@ class ConvertorTest {
     @DisplayName("문자열 배열을 컬렉션(List)로 변환")
     @Test
     void convertToList() {
-        String[] inputArray = new String[]{"1", "2", "3", "4", "5", "6"};
-        List<Integer> inputList = Convertor.convertToList(inputArray);
+        String[] inputs = new String[]{"1", "2", "3", "4", "5", "6"};
+        List<Integer> inputList = Convertor.convertToList(inputs);
 
         Assertions.assertThat(inputList).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }

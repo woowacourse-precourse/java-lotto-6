@@ -26,22 +26,22 @@ public class Controller {
         return matchingCount;
     }
 
-    public static void fillLotteryRankList(List<Rank> lotteryRankList, List<Integer> matchingCountList) {
-        for (Integer matchingNumberCount : matchingCountList) {
+    public static void fillLotteryRankList(List<Rank> lotteryRanks, List<Integer> matchingCounts) {
+        for (Integer matchingNumberCount : matchingCounts) {
             if (matchingNumberCount.equals(6)) {
-                lotteryRankList.add(Rank.FIRST);
+                lotteryRanks.add(Rank.FIRST);
             }
             if (matchingNumberCount.equals(5)) {
-                lotteryRankList.add(Rank.THIRD);
+                lotteryRanks.add(Rank.THIRD);
             }
             if (matchingNumberCount.equals(4)) {
-                lotteryRankList.add(Rank.FOURTH);
+                lotteryRanks.add(Rank.FOURTH);
             }
             if (matchingNumberCount.equals(3)) {
-                lotteryRankList.add(Rank.FIFTH);
+                lotteryRanks.add(Rank.FIFTH);
             }
             if (matchingNumberCount < 3) {
-                lotteryRankList.add(Rank.FAIL);
+                lotteryRanks.add(Rank.FAIL);
             }
         }
     }
@@ -55,23 +55,23 @@ public class Controller {
         return false;
     }
 
-    public static void changeRankByBonusNumber(List<Rank> lotteryRankList, boolean bonusFlag, int index) {
+    public static void changeRankByBonusNumber(List<Rank> lotteryRanks, boolean bonusFlag, int index) {
         if (bonusFlag) {
-            lotteryRankList.set(index, Rank.SECOND);
+            lotteryRanks.set(index, Rank.SECOND);
         }
     }
 
-    public static void fillMatchingCountList(
-            List<Lotto> lottoList,
+    public static void fillMatchingCounts(
+            List<Lotto> lottos,
             List<Integer> winningNumbers,
-            List<Integer> matchingCountList) {
-        for (Lotto lotto : lottoList) {
+            List<Integer> matchingCounts) {
+        for (Lotto lotto : lottos) {
             int countTemp = 0;
             List<Integer> lottoNumbers = lotto.getNumbers();
             for (Integer lottoNumber : lottoNumbers) {
                 countTemp += Controller.countMatchingNumberBetween(winningNumbers, lottoNumber);
             }
-            matchingCountList.add(countTemp);
+            matchingCounts.add(countTemp);
         }
     }
 }

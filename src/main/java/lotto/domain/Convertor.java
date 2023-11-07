@@ -16,12 +16,12 @@ public class Convertor {
     }
 
     public static List<Integer> convertToList(String[] userInputArray) {
-        List<Integer> numbersList = new ArrayList<>();
+        List<Integer> gatheringOfNumbers = new ArrayList<>();
         for (int i = 0; i < LOTTERY_NUMBERS; i++) {
             String numberTemp = userInputArray[i];
             int winningNumber = Integer.parseInt(numberTemp);
-            numbersList.add(winningNumber);
+            gatheringOfNumbers.add(winningNumber);
         }
-        return numbersList;
+        return gatheringOfNumbers;
     }
 }

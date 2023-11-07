@@ -50,15 +50,15 @@ public class Application {
         View.printLotteryCount(lotteryCount);
 
         //로또 생성
-        gameData.generateLottoList();
-        List<Lotto> lottoList = gameData.getLottoList();
+        gameData.generateLottos();
+        List<Lotto> lottos = gameData.getLottos();
 
         for (int i = 0; i < lotteryCount; i++) {
             List<Integer> lotteryNumbers = Lotto.generateLotteryNumbers();
             Controller.sortNumbers(lotteryNumbers);
-            lottoList.add(new Lotto(lotteryNumbers));
+            lottos.add(new Lotto(lotteryNumbers));
         }
-        for (Lotto lotto : lottoList) {
+        for (Lotto lotto : lottos) {
             List<Integer> numbers = lotto.getNumbers();
             View.printLotteryNumbers(numbers);
         }
@@ -68,7 +68,7 @@ public class Application {
         //당첨 번호 입력
         View.printMessage(ASK_WINNING_NUMBERS);
         String winningNumbersInput;
-        String[] winningNumbersArray;
+        String[] winningNumbersAfterSplit;
         List<Integer> winningNumbersTemp;
 
         //당첨 번호 검증
@@ -81,12 +81,12 @@ public class Application {
                 continue;
             }
 
-            winningNumbersArray = Convertor.splitInput(winningNumbersInput);
-            if (Validator.areUserInputsOnlyNumbers(winningNumbersArray)) {
+            winningNumbersAfterSplit = Convertor.splitInput(winningNumbersInput);
+            if (Validator.areUserInputsOnlyNumbers(winningNumbersAfterSplit)) {
                 continue;
             }
 
-            winningNumbersTemp = Convertor.convertToList(winningNumbersArray);
+            winningNumbersTemp = Convertor.convertToList(winningNumbersAfterSplit);
             if (Validator.isNumberCountOutOfRange(winningNumbersTemp)) {
                 continue;
             }
@@ -132,25 +132,25 @@ public class Application {
 
         //당첨 통계 산출
         List<Integer> winningNumbers = gameData.getWinningNumbers();
-        gameStatistics.generateMatchingCountList();
-        List<Integer> matchingCountList = gameStatistics.getMatchingCountList();
-        gameStatistics.generateLotteryRankList();
-        List<Rank> lotteryRankList = gameStatistics.getLotteryRankList();
+        gameStatistics.generateMatchingCounts();
+        List<Integer> matchingCounts = gameStatistics.getMatchingCounts();
+        gameStatistics.generateLotteryRanks();
+        List<Rank> lotteryRanks = gameStatistics.getLotteryRanks();
 
-        Controller.fillMatchingCountList(lottoList, winningNumbers, matchingCountList);
-        Controller.fillLotteryRankList(lotteryRankList, matchingCountList);
+        Controller.fillMatchingCounts(lottos, winningNumbers, matchingCounts);
+        Controller.fillLotteryRankList(lotteryRanks, matchingCounts);
 
         Integer bonusNumber = gameData.getBonusNumber();
-        for (int i = 0; i < lotteryRankList.size(); i++) {
+        for (int i = 0; i < lotteryRanks.size(); i++) {
             boolean bonusFlag;
-            Rank rank = lotteryRankList.get(i);
+            Rank rank = lotteryRanks.get(i);
 
             //3등(번호 5개 일치)인 경우, 보너스 번호 일치 여부 확인 / 2등으로 전환
             if (rank.equals(Rank.THIRD)) {
-                Lotto secondRankCandidateLotto = lottoList.get(i);
+                Lotto secondRankCandidateLotto = lottos.get(i);
                 List<Integer> secondRankCandidateLottoNumbers = secondRankCandidateLotto.getNumbers();
                 bonusFlag = Controller.bonusNumberFlag(secondRankCandidateLottoNumbers, bonusNumber);
-                Controller.changeRankByBonusNumber(lotteryRankList, bonusFlag, i);
+                Controller.changeRankByBonusNumber(lotteryRanks, bonusFlag, i);
             }
         }
 
@@ -161,7 +161,7 @@ public class Application {
 
         for (Rank rank : Rank.values()) {
             DecimalFormat df = new DecimalFormat("###,###");
-            Integer matchingCount = Collections.frequency(lotteryRankList, rank);
+            Integer matchingCount = Collections.frequency(lotteryRanks, rank);
             if (rank.equals(Rank.FAIL)) {
                 continue;
             }
@@ -173,7 +173,7 @@ public class Application {
             }
         }
 
-        Integer totalPrize = Calculator.calculateTotalPrize(lotteryRankList);
+        Integer totalPrize = Calculator.calculateTotalPrize(lotteryRanks);
         Double pricePrizeRatio = Calculator.calculatePricePrizeRatio(totalPrize, budget);
         View.printPricePrizeRatio(pricePrizeRatio);
     }

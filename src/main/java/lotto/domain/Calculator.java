@@ -9,10 +9,10 @@ import static lotto.model.GameStatistics.LOTTERY_PRICE;
 
 public class Calculator {
 
-    public static Integer calculateTotalPrize(List<Rank> rankList) {
+    public static Integer calculateTotalPrize(List<Rank> ranks) {
         Integer totalPrize = 0;
         for (Rank rank : Rank.values()) {
-            int rankFrequency = Collections.frequency(rankList, rank);
+            int rankFrequency = Collections.frequency(ranks, rank);
             totalPrize += rank.calculatePrizeByRank(rankFrequency);
         }
         return totalPrize;

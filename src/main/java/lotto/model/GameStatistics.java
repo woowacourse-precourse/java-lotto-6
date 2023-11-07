@@ -7,25 +7,25 @@ import java.util.List;
 
 public class GameStatistics {
 
-    private List<Integer> matchingCountList;
-    private List<Rank> lotteryRankList;
+    private List<Integer> matchingCounts;
+    private List<Rank> lotteryRanks;
 
     public static final Integer LOTTERY_PRICE = 1_000;
 
-    public void generateMatchingCountList() {
-        this.matchingCountList = new ArrayList<>();
+    public void generateMatchingCounts() {
+        this.matchingCounts = new ArrayList<>();
     }
 
-    public List<Integer> getMatchingCountList() {
-        return matchingCountList;
+    public List<Integer> getMatchingCounts() {
+        return matchingCounts;
     }
 
-    public List<Rank> getLotteryRankList() {
-        return lotteryRankList;
+    public List<Rank> getLotteryRanks() {
+        return lotteryRanks;
     }
 
-    public void generateLotteryRankList() {
-        this.lotteryRankList = new ArrayList<>();
+    public void generateLotteryRanks() {
+        this.lotteryRanks = new ArrayList<>();
     }
 
 }

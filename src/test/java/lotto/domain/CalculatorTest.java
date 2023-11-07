@@ -15,8 +15,8 @@ class CalculatorTest {
     @DisplayName("상금 총액 계산")
     @Test
     void calculateTotalPrize() {
-        List<Rank> rankList = List.of(Rank.FOURTH, Rank.SECOND, Rank.FOURTH, Rank.FIFTH);
-        Integer totalPrize = Calculator.calculateTotalPrize(rankList);
+        List<Rank> ranks = List.of(Rank.FOURTH, Rank.SECOND, Rank.FOURTH, Rank.FIFTH);
+        Integer totalPrize = Calculator.calculateTotalPrize(ranks);
         Assertions.assertThat(totalPrize).isEqualTo(30105000);
     }
 

@@ -1,10 +1,17 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.enums.LottoAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,4 +31,15 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("당첨 횟수를 넣었을 때 맞는 금액이 매핑되어야 한다.")
+    @Test
+    void mappingMatchedCount(){
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> matchNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        LottoResult lottoResult = lotto.matchLotto(matchNumbers, 45);
+        assertThat(LottoAmount.getLottoAmount(lottoResult.getMatchedCntToString()).getAmount()).isEqualTo(2000000000);
+
+    }
 }

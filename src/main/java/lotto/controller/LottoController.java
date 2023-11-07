@@ -38,13 +38,18 @@ public class LottoController {
     }
 
     private Lottos purchaseLotto() {
-        PurchaseAmountDto purchaseAmountDto = inputView.inputPurchaseAmount();
-        Lottos lottos = lottoMachine.issuedLottos(mapToPurchaseAmount(purchaseAmountDto));
+        try {
+            PurchaseAmountDto purchaseAmountDto = inputView.inputPurchaseAmount();
+            Lottos lottos = lottoMachine.issuedLottos(mapToPurchaseAmount(purchaseAmountDto));
 
-        outputView.printPurchaseQuantityLottos(purchaseAmountDto);
-        outputView.printIssuedPurchaseResult(mapToLottosDto(lottos));
+            outputView.printPurchaseQuantityLottos(purchaseAmountDto);
+            outputView.printIssuedPurchaseResult(mapToLottosDto(lottos));
 
-        return lottos;
+            return lottos;
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            return purchaseLotto();
+        }
     }
 
     private PurchaseAmount mapToPurchaseAmount(final PurchaseAmountDto purchaseAmountDto) {
@@ -65,16 +70,35 @@ public class LottoController {
     }
 
     private DrawingResults drawLotto(final Lottos lottos) {
-        WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
-        WinningLotto winningLotto = mapToWinningLotto(winningLottoDto);
-
-        BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
-        BonusNumber bonusNumber = mapToBonusNumber(bonusNumberDto, winningLotto);
+        WinningLotto winningLotto = getWinningLotto();
+        BonusNumber bonusNumber = getBonusNumber(winningLotto);
 
         DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto, bonusNumber);
         outputView.printDrawingResult(mapToDrawingResultDto(drawingResult));
 
         return drawingResult;
+    }
+
+    private WinningLotto getWinningLotto() {
+        try {
+            WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
+            WinningLotto winningLotto = mapToWinningLotto(winningLottoDto);
+            return winningLotto;
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            return getWinningLotto();
+        }
+    }
+
+    private BonusNumber getBonusNumber(WinningLotto winningLotto) {
+        try {
+            BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
+            BonusNumber bonusNumber = mapToBonusNumber(bonusNumberDto, winningLotto);
+            return bonusNumber;
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            return getBonusNumber(winningLotto);
+        }
     }
 
     private WinningLotto mapToWinningLotto(final WinningLottoDto winningLottoDto) {
@@ -90,8 +114,13 @@ public class LottoController {
     }
 
     public void profitRate(final Lottos lottos, final DrawingResults drawingResults) {
-        ProfitRate profitRate = lottoMachine.calculateProfitRate(lottos, drawingResults);
-        outputView.printProfitRate(mapToProfitRateDto(profitRate));
+        try {
+            ProfitRate profitRate = lottoMachine.calculateProfitRate(lottos, drawingResults);
+            outputView.printProfitRate(mapToProfitRateDto(profitRate));
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            profitRate(lottos, drawingResults);
+        }
     }
 
     private ProfitRateDto mapToProfitRateDto(final ProfitRate profitRate) {

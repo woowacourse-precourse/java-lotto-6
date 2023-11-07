@@ -12,10 +12,6 @@ public class Application {
         LottoMachine lottoMachine = new LottoMachine();
         LottoController lottoController = new LottoController(inputView, outputView, lottoMachine);
 
-        try {
-            lottoController.start();
-        } catch (Exception e) {
-            System.out.printf("[ERROR]: %s", e.getMessage());
-        }
+        lottoController.start();
     }
 }

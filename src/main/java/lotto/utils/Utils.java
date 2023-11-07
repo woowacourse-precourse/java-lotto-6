@@ -9,6 +9,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Utils {
 	
+	private static final int SAME = 1;
+	private static final int NOT_SAME = 0;
+	
 	public static void sortListAscendingOrder(List<Integer> numbers) {
 		Collections.sort(numbers);
 	}
@@ -27,6 +30,13 @@ public class Utils {
 		return splitString(input).stream()
 				.map(Integer::valueOf)
 				.collect(Collectors.toList());
+	}
+	
+	public static int countIfSame(int num1, List<Integer> list2) {
+		if ( list2.contains(num1) ) {
+			return SAME;
+		}
+		return NOT_SAME;
 	}
 
 }

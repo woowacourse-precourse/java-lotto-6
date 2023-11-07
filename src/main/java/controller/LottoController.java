@@ -35,6 +35,7 @@ public class LottoController {
         Rank rank = CompareLottoServcie.rank(amount, lottos, winningNumbers);
 
         //printResult
+        OuputView.lottosResult(amount, rank);
     }
 
 }

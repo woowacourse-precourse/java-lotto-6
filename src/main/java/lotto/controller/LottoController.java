@@ -2,7 +2,8 @@ package lotto.controller;
 
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
-import lotto.service.LotteryService;
+import lotto.dto.WinningResultDto;
+import lotto.service.LottoService;
 import lotto.service.Service;
 import lotto.view.View;
 
@@ -16,7 +17,7 @@ public class LottoController {
     }
 
     public static LottoController from(final View view) {
-        return new LottoController(view, LotteryService.create());
+        return new LottoController(view, LottoService.create());
     }
 
     public void run() {
@@ -27,7 +28,11 @@ public class LottoController {
         view.printLottoNumbers(lottosDto);
         String inputWinningNumber = view.askWinningNumber();
         String inputBonusNumber = view.askBonusNumber();
-
+        WinningResultDto winningResultDto = service.generateWinningResult(
+                inputWinningNumber,
+                inputBonusNumber,
+                lottosDto
+        );
         view.close();
     }
 }

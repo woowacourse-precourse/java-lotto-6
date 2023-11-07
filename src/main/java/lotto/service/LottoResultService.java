@@ -6,43 +6,41 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static lotto.constants.OutputConstants.LOTTO_PRICE;
 import static lotto.constants.ServiceConstants.*;
 
 public class LottoResultService {
     public List<LottoResult> countMatchingNumbers(PurchasedLotto purchasedLotto, WinningLotto winningLotto) {
-        List<LottoResult> lottoResults = new ArrayList<>();
-
-        for (Lotto lotto : purchasedLotto.getLottos()) {
-            Integer correctNumbers = winningLotto.countCorrectNumbers(lotto);
-            Boolean isCorrectBonusNumber = winningLotto.isCorrectBonusNumber(lotto);
-
-            lottoResults.add(new LottoResult(correctNumbers, isCorrectBonusNumber));
-        }
-
-        return lottoResults;
+        return purchasedLotto.getLottos().stream()
+                .map(lotto -> new LottoResult(winningLotto.countCorrectNumbers(lotto), winningLotto.isCorrectBonusNumber(lotto)))
+                .collect(Collectors.toList());
     }
 
     public Map<LottoReward, Integer> confirmRewardLottos(List<LottoResult> lottoResults) {
-        Map<LottoReward, Integer> rewardCount = new HashMap<>();
-
-        for (LottoResult lottoResult : lottoResults) {
-            LottoReward lottoReward = LottoReward.getReward(lottoResult.getCorrectNumbers(), lottoResult.getCorrectBonusNumber());
-            rewardCount.put(lottoReward, rewardCount.getOrDefault(lottoReward, INITIAL_COUNT) + INCREMENT);
-        }
-
-        return rewardCount;
+        return lottoResults.stream()
+                .map(lottoResult -> LottoReward.getReward(lottoResult.getCorrectNumbers(), lottoResult.getCorrectBonusNumber()))
+                .collect(Collectors.groupingBy(lottoReward -> lottoReward, Collectors.summingInt(e -> INCREMENT)));
     }
 
     public Double countEarnRate(Map<LottoReward, Integer> reward, Long lottoCount) {
-        Integer totalProfit = INITIAL_COUNT;
-
-        for (Map.Entry<LottoReward, Integer> entry : reward.entrySet()) {
-            totalProfit += entry.getKey().getReward() * entry.getValue();
-        }
-
-        Double earnRate = (double) totalProfit / (lottoCount * LOTTO_PRICE) * PERCENTAGE;
-        return Math.round(earnRate * PERCENTAGE) / PERCENTAGE;
+        Integer totalProfit = calculateTotalProfit(reward);
+        return calculateProfitRate(totalProfit, lottoCount);
     }
+
+    private Integer calculateTotalProfit(Map<LottoReward, Integer> reward) {
+        return INITIAL_COUNT + reward.entrySet().stream()
+                .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
+                .sum();
+    }
+
+    private Double calculateProfitRate(Integer totalProfit, Long lottoCount) {
+        double totalSpent = lottoCount * LOTTO_PRICE;
+        double rawProfitRate = totalProfit / totalSpent;
+        double profitRatePercentage = rawProfitRate * PERCENTAGE;
+
+        return Math.round(profitRatePercentage * PERCENTAGE) / PERCENTAGE;
+    }
+
 }

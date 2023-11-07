@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,5 +19,19 @@ public class MoneyTest {
     public void createMoneyNotDividedByThousand() {
         assertThatThrownBy(() -> new Money(1001))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("Money 객체 생성 성공 후 구매한 로또 개수 반환 성공")
+    @Test
+    public void createMoney() {
+        //given
+        int validAmount = 2000;
+
+        //when
+        Money money = new Money(validAmount);
+        int lottoCount = money.getLottoCount();
+
+        //then
+        Assertions.assertThat(lottoCount).isEqualTo(2);
     }
 }

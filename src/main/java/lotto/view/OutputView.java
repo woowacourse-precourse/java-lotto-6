@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.ArrayList;
+import lotto.Lotto;
 //constant의 값들을 가져오기 위해 import
 import static lotto.constants.InputMessages.*;
 import static lotto.constants.ResponseMessages.*;
@@ -15,8 +16,14 @@ public class OutputView {
         System.out.println(lottoCount + END_BUY_MESSAGE.getMessage());
     }
 
-    public static void printLottoNumbers(ArrayList<Integer> lottoNumbers) {
-        System.out.println(lottoNumbers);
+    public static void printLottoSet(ArrayList<Lotto> lottoList) {
+        for (Lotto lotto : lottoList) {
+            printLottoNumbers(lotto);
+        }
+    }
+
+    public static void printLottoNumbers(Lotto lotto) {
+        System.out.println(lotto.getNumbers());
     }
 
     public static void printGetWinNumberMessage() {

@@ -25,14 +25,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+
         checkDuplication(numbers);
         checkLength(numbers);
+
     }
 
     private void checkDuplication(List<Integer> lotto) {
         List<Integer> distinctList = lotto.stream()
-                                                .distinct()
-                                                .toList();
+                                          .distinct()
+                                          .toList();
         if (distinctList.size() != lotto.size()) {
             throw new LottoNumbersDuplicationException();
         }
@@ -40,7 +42,9 @@ public class Lotto {
 
     private void checkLength(List<Integer> lotto) {
         if (lotto.size() != LENGTH) {
+
             throw new WrongLottoLengthException();
+
         }
     }
 

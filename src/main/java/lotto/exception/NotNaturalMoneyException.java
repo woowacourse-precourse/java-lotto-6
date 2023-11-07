@@ -8,7 +8,9 @@ public class NotNaturalMoneyException extends IllegalArgumentException {
     public static final String ERROR_MESSAGE = "[ERROR] 금액은 자연수여야 합니다.";
 
     public NotNaturalMoneyException() {
+
         super(ERROR_MESSAGE);
+
         System.out.println(ERROR_MESSAGE);
 
     }

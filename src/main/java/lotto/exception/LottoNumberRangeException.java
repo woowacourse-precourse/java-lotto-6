@@ -11,8 +11,11 @@ public class LottoNumberRangeException extends IllegalArgumentException {
             MAX_LOTTO_NUMBER);
 
     public LottoNumberRangeException() {
+
         super(ERROR_MESSAGE);
+
         System.out.println(ERROR_MESSAGE);
+
 
     }
 }

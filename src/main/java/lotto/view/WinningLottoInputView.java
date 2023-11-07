@@ -3,15 +3,11 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import lotto.exception.WrongBonusNumberInputFormatException;
 import lotto.exception.WrongLottoInputFormatException;
-import lotto.exception.WrongMoneyInputFormatException;
 import lotto.validator.InputValidator;
 
 public class WinningLottoInputView extends InputValidator {
-
 
 
     private static final String WINNIG_LOTTO_NUMBERS_REGEX = "^(?:[1-9]|[1-3][0-9]|4[0-5])(,(?:[1-9]|[1-3][0-9]|4[0-5])){5}$";
@@ -22,9 +18,8 @@ public class WinningLottoInputView extends InputValidator {
         String winningLottoInput = Console.readLine();
 
         try {
-            validate(winningLottoInput,WINNIG_LOTTO_NUMBERS_REGEX, new WrongLottoInputFormatException());
-        }
-        catch (WrongLottoInputFormatException e) {
+            validate(winningLottoInput, WINNIG_LOTTO_NUMBERS_REGEX, new WrongLottoInputFormatException());
+        } catch (WrongLottoInputFormatException e) {
             ErrorMessageView.print(e.getMessage());
             inputWinningLottoNumbers();
         }
@@ -40,11 +35,15 @@ public class WinningLottoInputView extends InputValidator {
         String bonusNumberInput = Console.readLine();
 
         try {
-            validate(bonusNumberInput,BONUS_NUMBER_REGEX, new WrongBonusNumberInputFormatException());
-        }
-        catch (WrongLottoInputFormatException e) {
+
+            validate(bonusNumberInput, BONUS_NUMBER_REGEX, new WrongBonusNumberInputFormatException());
+
+        } catch (WrongLottoInputFormatException e) {
+
             ErrorMessageView.print(e.getMessage());
+
             inputWinningLottoNumbers();
+
         }
 
         return bonusNumberInput;

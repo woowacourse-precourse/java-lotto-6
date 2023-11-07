@@ -28,15 +28,21 @@ public enum Rank implements Comparable<Rank> {
     }
 
     public long showPrizeCountOf(int count) {
+
         return prize * count;
+
     }
 
     public long showPrize() {
+
         return prize;
+
     }
 
     public int showMatchCount() {
+
         return count;
+
     }
 
 }

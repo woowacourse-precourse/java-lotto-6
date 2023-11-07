@@ -9,10 +9,14 @@ import lotto.domain.WinningStatistics;
 public class LottoStaticsOutputView {
 
     private static final String RANK_MATCH = "%d개 일치 (%,d원) - %d개\n";
+
     private static final String SECOND_RANK_MATCH = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
 
+    private static final String LOTTO_STATICS_MESSAGE = "당첨통계\n---";
+
+
     public static void outputFrom(WinningStatistics statistics) {
-        System.out.println("당첨통계\n---");
+        System.out.println(LOTTO_STATICS_MESSAGE);
         List<Rank> ranks = Arrays.stream(Rank.values())
                                  .filter(rank -> !rank.equals(Rank.NONE))
                                  .sorted(Comparator.reverseOrder())

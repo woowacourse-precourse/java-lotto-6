@@ -9,22 +9,16 @@ public class Money {
     private final long money;
 
     private Money(Long money) {
+
         checkDividedByCurrency(money);
         checkNaturalWith(money);
+
         this.money = money;
     }
 
     public static Money valueOf(String money) {
 
         return new Money(Long.parseLong(money));
-    }
-
-    public long showCountConvertTo(long currency) {
-        return money / currency;
-    }
-
-    public long showMoney() {
-        return money;
     }
 
     private static void checkDividedByCurrency(long money) {
@@ -35,8 +29,18 @@ public class Money {
 
     private static void checkNaturalWith(long money) {
         if (money <= 0) {
+
             throw new NotNaturalMoneyException();
+
         }
+    }
+
+    public long showCountConvertTo(long currency) {
+        return money / currency;
+    }
+
+    public long showMoney() {
+        return money;
     }
 
 

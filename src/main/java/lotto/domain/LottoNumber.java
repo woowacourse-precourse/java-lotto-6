@@ -12,8 +12,6 @@ import lotto.exception.LottoNumberRangeException;
 public class LottoNumber implements Comparable {
 
 
-    private final int number;
-
     private static final Map<Integer, LottoNumber> lottoNumberStore = new HashMap<>();
 
     static {
@@ -21,19 +19,26 @@ public class LottoNumber implements Comparable {
                  .forEach(number -> lottoNumberStore.put(number, new LottoNumber(number)));
     }
 
+    private final int number;
+
     private LottoNumber(int number) {
 
         this.number = number;
     }
 
     public static LottoNumber valueOf(int number) {
+
         checkRange(number);
+
         return lottoNumberStore.get(number);
     }
 
     private static void checkRange(int number) {
+
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
+
             throw new LottoNumberRangeException();
+
         }
     }
 
@@ -43,7 +48,9 @@ public class LottoNumber implements Comparable {
 
     @Override
     public int compareTo(Object object) {
+
         LottoNumber other = (LottoNumber) object;
+
         return this.number - other.number;
     }
 

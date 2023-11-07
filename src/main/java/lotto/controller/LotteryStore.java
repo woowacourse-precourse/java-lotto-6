@@ -2,12 +2,12 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.service.LottoFactoryService;
 import lotto.domain.LottoRepository;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatistics;
 import lotto.dto.PurchasedLottosDto;
+import lotto.service.LottoFactoryService;
 import lotto.service.RankCalculateService;
 
 public class LotteryStore {
@@ -18,6 +18,7 @@ public class LotteryStore {
     RankCalculateService rankCalculateService = new RankCalculateService();
 
     public void getLottoOrderUpTo(int count) {
+
         List<Lotto> orderedLottos = lottoFactoryService.createRandomLottoUpto(count);
 
         lottoRepository.saveAll(orderedLottos);
@@ -31,12 +32,16 @@ public class LotteryStore {
     }
 
     public WinningStatistics calculateStatistics() {
+
         List<Rank> ranks = rankCalculateService.calculateRanks();
+
         return WinningStatistics.from(ranks);
     }
 
     public void decideWinningLottoFrom(List<String> winningLottoNumbers, String bonusNumber) {
+
         WinningLotto winningLotto = lottoFactoryService.createWinningLottoFrom(winningLottoNumbers, bonusNumber);
+
         lottoRepository.save(winningLotto);
     }
 

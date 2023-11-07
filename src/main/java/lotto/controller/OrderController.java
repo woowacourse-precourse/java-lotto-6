@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.service.OrderLottoService;
+import lotto.service.OrderService;
 import lotto.values.ExceptionMessage;
 import lotto.view.Input;
 import lotto.view.Output;
@@ -8,7 +8,7 @@ import lotto.view.Output;
 import static lotto.values.ExceptionMessage.NOT_NULL;
 
 public class OrderController {
-    OrderLottoService orderLotto;
+    OrderService orderLotto;
     Output output;
 
     public OrderController(){
@@ -26,7 +26,7 @@ public class OrderController {
             output.printMoneyPrompt();
             money = input.get();
 
-            orderLotto = new OrderLottoService();
+            orderLotto = new OrderService();
             exceptionMessage = orderLotto.checkException(money);
 
             if (exceptionMessage != null) {

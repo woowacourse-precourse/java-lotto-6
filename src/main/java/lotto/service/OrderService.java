@@ -5,7 +5,7 @@ import lotto.values.ExceptionMessage;
 
 import static lotto.values.ExceptionMessage.*;
 
-public class OrderLottoService {
+public class OrderService {
     private OrderCalculator calculator;
     public ExceptionMessage checkException(String input){
         if(input.length()==0) return NOT_NULL;

@@ -23,28 +23,33 @@ public class LottoController {
     private LottoGame lottoGame;
 
     public void run() {
-        initBuyer();
+        setPurchaseAmount();
         showPurchaseStatus();
         drawLottoNumbers();
         showWinningStatistics();
     }
 
-    private void initBuyer() {
-        int purchaseAmount = getPurchaseAmount();
-        ArrayList<Lotto> lottoTickets = purchaseLottoTickets(purchaseAmount);
-        buyer = new Buyer(purchaseAmount, lottoTickets);
+    private void setPurchaseAmount() {
+        PurchaseView.printInputPurchaseAmount();
+        int purchaseAmount = inputPurchaseAmount();
+        purchaseLottoTickets(purchaseAmount);
+        System.out.println();
     }
 
     public void showPurchaseStatus() {
         printPurchasedTicketCount();
         printLottoTicketNumbers();
+        System.out.println();
     }
 
     public void drawLottoNumbers() {
-        lottoGame = new LottoGame(
-                getWinningNumbers(),
-                getBonusNumber()
-        );
+        int[] winningNumbers = getWinningNumbers();
+        System.out.println();
+
+        int bonusNumber = getBonusNumber(winningNumbers);
+        System.out.println();
+
+        lottoGame = new LottoGame(winningNumbers, bonusNumber);
     }
 
     public void showWinningStatistics() {
@@ -55,21 +60,19 @@ public class LottoController {
     }
 
     /* 구입금액 입력 */
-    private int getPurchaseAmount() {
-        PurchaseView.printInputPurchaseAmount();
-
+    private int inputPurchaseAmount() {
         try {
             int purchaseAmount = Utils.stringToInt(Console.readLine());
-            Validator.checkInputPriceValidation(purchaseAmount);
+            Validator.checkInputPriceUnitValidation(purchaseAmount);
             return purchaseAmount;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return getPurchaseAmount();
+            return inputPurchaseAmount();
         }
     }
 
     /* 금액에 맞추어 로또 여러 개 발행 */
-    private ArrayList<Lotto> purchaseLottoTickets(int purchaseAmount) {
+    private void purchaseLottoTickets(int purchaseAmount) {
         ArrayList<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < purchaseAmount / 1000; i++) {
@@ -77,7 +80,7 @@ public class LottoController {
             lottoTickets.add(new Lotto(lottoNumbers));
         }
 
-        return lottoTickets;
+        buyer = new Buyer(purchaseAmount, lottoTickets);
     }
 
     /* 로또 6자리 랜덤 숫자 생성 */
@@ -106,16 +109,43 @@ public class LottoController {
             System.out.println(numbers);
     }
 
-    /* 당첨 번호 6자리 입력 */
+    /* 당첨 번호 설정 */
     public int[] getWinningNumbers() {
         NumberSettingView.printInputWinningNumbers();
-        return Utils.stringToIntArray(Console.readLine());
+        return inputWinningNumbers();
     }
 
-    /* 보너스 번호 1자리 입력 */
-    public int getBonusNumber() {
+    /* 당첨 번호 입력 및 검증 */
+    public int[] inputWinningNumbers() {
+        try {
+            int[] winningNumbers = Utils.stringToIntArray(Console.readLine());
+            Validator.checkDuplicateWinningNumber(winningNumbers);
+            Validator.checkWinningNumberCount(winningNumbers);
+            Validator.checkLottoNumberArrayRange(winningNumbers);
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
+    /* 보너스 번호 설정 */
+    public int getBonusNumber(int[] winningNumbers) {
         NumberSettingView.printInputBonusNumber();
-        return Utils.stringToInt(Console.readLine());
+        return inputBonusNumber(winningNumbers);
+    }
+
+    /* 보너스 번호 입력 및 검증 */
+    public int inputBonusNumber(int[] winningNumbers) {
+        try {
+            int bonusNumber = Utils.stringToInt(Console.readLine());
+            Validator.checkDuplicateBonusNumber(bonusNumber, winningNumbers);
+            Validator.checkLottoNumberRange(bonusNumber);
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber(winningNumbers);
+        }
     }
 
     /* 당첨 통계 헤더 출력 */
@@ -126,10 +156,10 @@ public class LottoController {
     /* 당첨 통계 내용 출력 */
     public void printWinningStatisticsContents() {
         HashMap<WinningCondition, Integer> winningResult = buyer.getWinningStatistics();
-        for(WinningCondition winningCondition : WinningCondition.values()){
-            if(winningCondition == WinningCondition.NO_RANK)
+        for (WinningCondition winningCondition : WinningCondition.values()) {
+            if (winningCondition == WinningCondition.NO_RANK)
                 continue;
-            WinningStatisticsView.printContent(winningCondition,winningResult.get(winningCondition));
+            WinningStatisticsView.printContent(winningCondition, winningResult.get(winningCondition));
         }
     }
 

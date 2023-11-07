@@ -8,7 +8,6 @@ import lotto.view.InputView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.validate.Check.numberCount;
 import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputWinningNumber;
 
@@ -77,5 +76,16 @@ public class LottoController {
         return lotto.getNumbers().stream()
                 .mapToInt(Integer::intValue)
                 .anyMatch(number -> number == bonusNumber);
+    }
+
+    private static int numberCount(List<Integer> winningNumbers, Lotto lotto) {
+        int matchCount = 0;
+        int bound = winningNumbers.size();
+        for (int i = 0; i < bound; i++) {
+            if (winningNumbers.contains(lotto.getNumbers().get(i))) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 }

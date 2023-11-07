@@ -41,7 +41,7 @@ public class LottoService {
 			validator.isInRange(numbers[i]);
 			userNumbers.add(Integer.parseInt(numbers[i]));
 		}
-
+		validator.existDuplicateNumber(userNumbers);
 		return userNumbers;
 	}
 

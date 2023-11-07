@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class Validator {
@@ -26,6 +28,13 @@ public class Validator {
 		int checkNumber = Integer.parseInt(number);
 		if (!(1 <= checkNumber && checkNumber <= 45)) {
 			throw new IllegalArgumentException(ErrorCode.NOT_IN_RANGE.getErrorMessage());
+		}
+	}
+
+	public void existDuplicateNumber(List<Integer> userNumbers) throws IllegalArgumentException {
+		Set<Integer> checkNumbers = new HashSet<>(userNumbers);
+		if (checkNumbers.size() != userNumbers.size()) {
+			throw new IllegalArgumentException(ErrorCode.NOT_ALLOW_DUPLICATE.getErrorMessage());
 		}
 	}
 

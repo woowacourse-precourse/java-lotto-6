@@ -40,7 +40,7 @@ public class LottoController {
         final Lottos userLottos = processLottoPurchaseTransaction();
         displayUserLottosInformation(userLottos);
 
-        Lotto winningLotto = processLottoWinningNumbersPickTransaction();
+        Lotto winningLotto = processLottoWinningNumberPickTransaction();
         LottoWinningBonusNumber lottoWinningBonusNumber = processLottoWinningBonusNumberTransaction(winningLotto);
 
         final EnumMap<LottoWinningRanking, Integer> winningRankingCountMap =
@@ -51,17 +51,32 @@ public class LottoController {
         displayProfit(profit);
     }
 
-    private void displayUserLottosInformation(Lottos userLottos) {
-        LottosDto lottosDto = convertLottosDto(userLottos);
-
-        displayUserLottoPurchaseCount(lottosDto);
-        displayUserLottos(lottosDto);
+    private Lottos processLottoPurchaseTransaction() {
+        while (true) {
+            try {
+                outputView.requestPurchaseAmount();
+                int userPurchaseAmount = getUserPurchaseAmount();
+                return lottoPurchaseService.purchaseAutoLottos(userPurchaseAmount);
+            } catch (LottoException | LottoStoreException exception) {
+                outputView.displayErrorMessage(exception.getMessage());
+            }
+        }
     }
 
     private int getUserPurchaseAmount() {
         String userPurchaseAmount = inputView.inputPurchaseAmount();
         Validator.validateLottoAmountNumeric(userPurchaseAmount);
-        return Integer.parseInt(userPurchaseAmount);
+        return parseInt(userPurchaseAmount);
+    }
+
+    private int parseInt(String input) {
+        return Integer.parseInt(input);
+    }
+
+    private void displayUserLottosInformation(Lottos userLottos) {
+        LottosDto lottosDto = convertLottosDto(userLottos);
+        displayUserLottoPurchaseCount(lottosDto);
+        displayUserLottos(lottosDto);
     }
 
     private LottosDto convertLottosDto(Lottos userLottos) {
@@ -76,18 +91,18 @@ public class LottoController {
         outputView.responseUserNumbersSet(userLottosDto);
     }
 
-    private Lotto processLottoWinningNumbersPickTransaction() {
+    private Lotto processLottoWinningNumberPickTransaction() {
         while (true) {
             try {
                 outputView.requestWinningNumbers();
-                return getLottoWinningNumbers();
+                return getLottoWinningNumber();
             } catch (LottoException exception) {
                 outputView.displayErrorMessage(exception.getMessage());
             }
         }
     }
 
-    private Lotto getLottoWinningNumbers() throws LottoException {
+    private Lotto getLottoWinningNumber() throws LottoException {
         String input = inputView.inputWinningNumbers();
         Validator.validatedWinningNumbersFormat(input);
         return lottoWinningNumbersPickService.pickWinningNumbers(input);
@@ -112,10 +127,6 @@ public class LottoController {
         return lottoWinningNumbersPickService.pickBonusNumber(input);
     }
 
-    private LottoWinningRakingCountMapDto convertWinningRankingCountMapDto(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
-        return new LottoWinningRakingCountMapDto(winningRankingCountMap);
-    }
-
     private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, LottoWinningBonusNumber lottoWinningBonusNumber) {
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningLotto, lottoWinningBonusNumber);
         return lottoWinningRankingService.countWinningRankings(userLottos, lottoWinningNumbers);
@@ -126,23 +137,15 @@ public class LottoController {
         outputView.responseWinningStatisticsBody(convertWinningRankingCountMapDto(winningRankingCountMap));
     }
 
-    private void displayProfit(final double profit) {
-        outputView.responseProfit(profit);
+    private LottoWinningRakingCountMapDto convertWinningRankingCountMapDto(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
+        return new LottoWinningRakingCountMapDto(winningRankingCountMap);
     }
 
     private double processUserProfitCalculationTransaction(Lottos userLottos, EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         return lottoProfitService.calculateProfit(winningRankingCountMap, userLottos.getSize());
     }
 
-    private Lottos processLottoPurchaseTransaction() {
-        while (true) {
-            try {
-                outputView.requestPurchaseAmount();
-                int userPurchaseAmount = getUserPurchaseAmount();
-                return lottoPurchaseService.purchaseAutoLottos(userPurchaseAmount);
-            } catch (LottoException | LottoStoreException exception) {
-                outputView.displayErrorMessage(exception.getMessage());
-            }
-        }
+    private void displayProfit(final double profit) {
+        outputView.responseProfit(profit);
     }
 }

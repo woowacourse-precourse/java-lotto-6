@@ -27,7 +27,7 @@ public class BonusNumber {
     }
 
     private void validateNotDuplicate(int bonusNumber, WinningLotto winningLotto){
-        List<Integer> winningNumbers = winningLotto.getNumbers();
+        List<Integer> winningNumbers = winningLotto.getLotto();
         if (winningNumbers.contains(bonusNumber)){
             throw new LottoDuplicateException();
         }

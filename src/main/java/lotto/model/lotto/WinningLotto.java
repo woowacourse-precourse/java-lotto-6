@@ -1,5 +1,6 @@
 package lotto.model.lotto;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.validator.LottoValidator;
 
@@ -11,7 +12,7 @@ public class WinningLotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers(){
-        return numbers;
+    public List<Integer> getLotto(){
+        return Collections.unmodifiableList(numbers);
     }
 }

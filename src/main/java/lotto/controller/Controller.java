@@ -10,22 +10,16 @@ import lotto.domain.InputMoney;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
-import lotto.domain.MoneyValidator;
 import lotto.exception.LottoException;
 import lotto.exception.MoneyException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Controller {
-	private MoneyValidator moneyValidator;
 	private InputMoney inputMoney;
 	private InputAmount inputAmount;
 	private Lottos lottos;
 	private LottoWinningNumbers lottoWinningNumbers;
-
-	public Controller() {
-		this.moneyValidator = new MoneyValidator();
-	}
 
 	public void run() {
 		setUpInputAmount(getUserInputAmount());
@@ -44,7 +38,7 @@ public class Controller {
 	private void setUpInputAmount(String input) {
 		while (true) {
 			try {
-				inputMoney = new InputMoney(moneyValidator, input);
+				inputMoney = new InputMoney(input);
 				inputAmount = new InputAmount(inputMoney.getInputMoney());
 				break;
 			} catch(MoneyException e) {

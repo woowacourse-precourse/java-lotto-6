@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.validation;
 
 import static lotto.constant.GameRule.*;
 import static lotto.exception.ExceptionMessage.*;

@@ -1,11 +1,15 @@
 package lotto.domain;
 
+import static lotto.constant.GameRule.*;
+import static lotto.exception.ExceptionMessage.*;
+
+import lotto.exception.MoneyException;
+import lotto.validation.NumberValidator;
+
 public class InputMoney {
 	private final int inputMoney;
-	private MoneyValidator moneyValidator;
 
-	public InputMoney(MoneyValidator moneyValidator, String input) {
-		this.moneyValidator = moneyValidator;
+	public InputMoney(String input) {
 		this.inputMoney = validateMoney(input);
 	}
 
@@ -14,11 +18,21 @@ public class InputMoney {
 	}
 
 	private int validateMoney(String input) {
-		moneyValidator.validateNumber(input);
+		NumberValidator.validateNumber(input);
 		int inputMoney = Integer.parseInt(input);
 
-		moneyValidator.validatePositive(inputMoney);
-		moneyValidator.validateUnit(inputMoney);
+		NumberValidator.validatePositive(inputMoney);
+		validateUnit(inputMoney);
 		return inputMoney;
+	}
+
+	public void validateUnit(int input) {
+		if (!isRuleUnit(input)) {
+			throw new MoneyException(MONEY_UNIT_ERROR.getMessage());
+		}
+	}
+
+	private boolean isRuleUnit(int input) {
+		return input % MONEY_UNIT == 0;
 	}
 }

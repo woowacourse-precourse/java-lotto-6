@@ -1,6 +1,7 @@
 package lotto.model;
 
 public class PurchasePrice {
+    private static final int ONE_LOTTO_PRICE = 1000;
     private int price;
 
     public PurchasePrice(String price) {
@@ -19,7 +20,7 @@ public class PurchasePrice {
 
     private void validateCondition(String price) {
         int amount = Integer.parseInt(price);
-        if (amount % 1000 != 0) {
+        if (amount % ONE_LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 입력은 1000원 단위로만 가능합니다");
         }
     }

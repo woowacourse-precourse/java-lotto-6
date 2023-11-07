@@ -9,19 +9,19 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
-    public ArrayList<Lotto> getLottos(Integer price) {
+    public ArrayList<Lotto> getLottos(Integer price, Integer minLottoNum, Integer maxLottoNum) {
         int lottoCount = price / Constants.PRICE_UNIT;
         ArrayList<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
-            lottos.add(issueLotto());
+            lottos.add(issueLotto(minLottoNum, maxLottoNum));
         }
 
         return lottos;
     }
 
-    private Lotto issueLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUM, Constants.MAX_LOTTO_NUM, Constants.LOTTO_LENGTH);
+    private Lotto issueLotto(Integer minLottoNum, Integer maxLottoNum) {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minLottoNum, maxLottoNum, Constants.LOTTO_LENGTH);
 
         return new Lotto(numbers);
     }

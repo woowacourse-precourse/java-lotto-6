@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Constants;
 import lotto.domain.Ranking;
 import lotto.service.LottoService;
 import lotto.domain.Lotto;
@@ -23,7 +24,7 @@ public class LottoController {
 
     public void run() {
         Integer price = inputView.getPrice();
-        ArrayList<Lotto> lottos = lottoService.getLottos(price);
+        ArrayList<Lotto> lottos = lottoService.getLottos(price, Constants.MIN_LOTTO_NUM, Constants.MAX_LOTTO_NUM);
         outputView.printLottos(lottoService.getLottoList(lottos), lottos.size());
 
         List<Integer> winningNumber = inputView.getWinningNumber();

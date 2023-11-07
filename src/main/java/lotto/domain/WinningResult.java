@@ -2,6 +2,9 @@ package lotto.domain;
 
 import static lotto.constant.LottoConstant.*;
 import static lotto.exception.ErrorMessage.*;
+import static lotto.view.OutputView.*;
+
+import java.util.List;
 
 public class WinningResult {
 	private final Lotto winningLotto;
@@ -13,8 +16,8 @@ public class WinningResult {
 		this.bonusNumber = bonusNumber;
 	}
 
-	public Lotto getWinningLotto() {
-		return winningLotto;
+	public List<Integer> getWinningNumbers() {
+		return winningLotto.getNumbers();
 	}
 
 	public int getBonusNumber() {
@@ -22,17 +25,22 @@ public class WinningResult {
 	}
 
 	private void validate(int bonusNumber) {
-		validateRange(bonusNumber);
-		validateDuplication(bonusNumber);
+		try {
+			validateRange(bonusNumber);
+			validateDuplication(bonusNumber);
+		} catch (IllegalArgumentException e) {
+			printErrorMessage(e.getMessage());
+			throw e;
+		}
 	}
 
-	private void validateRange(int bonusNumber) {
+	private void validateRange(int bonusNumber) throws IllegalArgumentException {
 		if (bonusNumber < MIN_LOTTO_NUMBER.getValue() || MAX_LOTTO_NUMBER.getValue() < bonusNumber) {
 			throw new IllegalArgumentException(RANGE_ERROR.getMessage());
 		}
 	}
 
-	private void validateDuplication(int bonusNumber) {
+	private void validateDuplication(int bonusNumber) throws IllegalArgumentException {
 		if (this.winningLotto.contains(bonusNumber)) {
 			throw new IllegalArgumentException(DUPLICATED_ERROR.getMessage());
 		}

@@ -21,7 +21,7 @@ class LottoPurchaseAmountTest {
     @DisplayName("유효한 구매 금액 입력 시 티켓 개수를 얻을 수 있다.")
     @ParameterizedTest(name = "[{index}] purchaseAmount: {arguments}")
     @ValueSource(strings = {"1_000", "100_000", "1_000_000", "3_333_000"})
-    void givenValidPurchaseAmount_whenCreateLottoPurchaseAmount_thenReturnsCorrectTicketsCount(
+    void givenValidPurchaseAmount_whenLottoPurchaseAmountIsCreated_thenTicketsCountIsReturned(
             String rawPurchaseAmount) {
         // Given
         String sanitizedPurchaseAmount = rawPurchaseAmount.replace("_", "");

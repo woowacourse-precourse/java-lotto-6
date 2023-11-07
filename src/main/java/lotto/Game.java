@@ -1,13 +1,26 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
+    private InputUser inputUser;
     private List<Lotto> numberTickets;
-    public void makeNumberTicket(Integer totalTicketNumber){
-        while (totalTicketNumber > numberTickets.size()){
-            numberTickets.add(makeNumber());
+    private Integer lottoMoney;
+
+    public Game(){
+        this.inputUser = new InputUser();
+        this.numberTickets = new ArrayList<>();
+    }
+    public void play(){
+        this.lottoMoney = inputUser.inputLottoMoney();
+        makeNumberTicket(lottoMoney);
+    }
+    private void makeNumberTicket(Integer lottoMoney){
+        int totalLottoCount = lottoMoney/1000;
+        for (int i = 0; totalLottoCount > i; i++){
+            this.numberTickets.add(makeNumber());
         }
     }
     private Lotto makeNumber(){

@@ -21,6 +21,9 @@ public class Lottos {
         }
     }
 
+    /**
+     * 각 Lotto별로 출력하는 메서드
+     */
     public void printLottos(){
         lottos.stream().forEach(lotto -> {
             lotto.printLotto();

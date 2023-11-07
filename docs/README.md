@@ -57,7 +57,7 @@
 2. OutputView
 
 - printLottoTicketMessage()
-  - [ ] 발행한 로또 수량 및 안내 메시지 출력
+  - [x] 발행한 로또 수량 및 안내 메시지 출력
 - printLottoNumber()
   - [ ] 발행한 로또 수량 및 번호 출력
 - printLottoResultMessage()
@@ -78,7 +78,7 @@
      - saveLottoMoney()
        - [x] 로또 구매 금액 입력 받는 함수 호출
        - [x] 로또 구매 금액 객체 선언 및 데이터 유효성 검사
-     - [ ] 로또 티켓 개수 안내 메시지 출력
+     - [x] 로또 티켓 개수 안내 메시지 출력
      - saveRandomLottoNumbers()
        - [ ] 1부터 45사이의 6가지 랜덤 수 출력 함수 호출
        - [ ] 발행된 로또 번호 출력 함수 호출

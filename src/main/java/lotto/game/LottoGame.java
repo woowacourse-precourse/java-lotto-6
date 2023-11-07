@@ -51,4 +51,9 @@ public class LottoGame {
         return WinningLotto.of(numbers, bonusNumber);
     }
 
+    // 당첨 번호와 함께 LottoStorage 생성
+    public void createLottoStorageWithWinningNumbers() {
+        WinningLotto winningLotto = createWinningLotto();
+        lottoStorage = LottoStorage.of(automaticLottoStorage, winningLotto);
+    }
 }

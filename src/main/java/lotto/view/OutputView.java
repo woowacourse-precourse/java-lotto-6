@@ -41,5 +41,9 @@ public class OutputView {
         return OUTPUT_LOTTO_RESULT_FORMAT;
     }
 
+    public static void printTotalReturn(double totalReturn) {
+        System.out.printf(OUTPUT_TOTAL_RETURN, totalReturn);
+    }
+
 
 }

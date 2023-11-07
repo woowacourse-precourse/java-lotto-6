@@ -13,6 +13,7 @@ public class AmountToBuyLotto {
     private AmountToBuyLotto(String input) {
         isBlank(input);
         input = input.trim();
+        validateNumberFormat(input);
 
         isZero(input);
         this.amount = Integer.parseInt(input);
@@ -45,5 +46,12 @@ public class AmountToBuyLotto {
     }
 
 
+
+
+    private void validateNumberFormat(String amount) {
+        if (!amount.matches(DIGIT_REGEX)) {
+            throw new IllegalArgumentException(ERROR_INPUT_DIGIT);
+        }
+    }
 
 }

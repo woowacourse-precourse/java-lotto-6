@@ -20,10 +20,12 @@ public class Application {
 
         System.out.println(number/1000+"개를 구매했습니다.");
 
+        List<Lotto> lottos = new ArrayList<>();
         for (int i=0; i<number/1000 ; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             System.out.println(numbers);
+            lottos.add(new Lotto(numbers));
         }
         System.out.println();
 
@@ -34,5 +36,18 @@ public class Application {
         System.out.println("보너스 번호를 입력해 주세요.");
         Integer bonus = Integer.parseInt(Console.readLine());
         System.out.println();
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for(Lotto lotto : lottos) {
+            int lottoMatches = 0;
+            for (String select : winningNumbers) {
+                if (lotto.getNumbers().contains(Integer.parseInt(select))) {
+                    lottoMatches++;
+                }
+            }
+            boolean hasBonusNumber = lotto.getNumbers().contains(bonus);
+        }
     }
 }

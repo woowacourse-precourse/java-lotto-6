@@ -10,10 +10,15 @@ public class WinningNumber {
     private final Lotto lotto;
     private final int bonusNumber;
 
-    public WinningNumber(String lottoNumbers, int bonus) {
-        validateLotto(lottoNumbers);
-        List<Integer> numbers = stringToIntList(lottoNumbers);
-        validateBonusNumber(numbers, bonus);
+    public WinningNumber(String numbers, String number) {
+        validateLotto(numbers);
+        List<Integer> lottoNumbers = stringToIntList(numbers);
+
+        int bonus = Integer.parseInt(number);
+        validateBonusNumber(lottoNumbers, bonus);
+
+        this.lotto = new Lotto(lottoNumbers);
+        this.bonusNumber = bonus;
     }
 
     private static void validateLotto(String numbers) {

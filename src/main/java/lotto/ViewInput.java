@@ -27,15 +27,25 @@ public class ViewInput {
     }
 
     public List<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        tokens = new StringTokenizer(Console.readLine(), ",");
-
+        boolean isValid = false;
         List<Integer> winningNumbers = new ArrayList<>();
-        // 입력수 검증
-        while(tokens.hasMoreTokens()) {
-            winningNumbers.add(Integer.parseInt(tokens.nextToken().trim()));
+
+        while(!isValid) {
+            try {
+                winningNumbers.clear();
+
+                System.out.println("당첨 번호를 입력해 주세요.");
+                tokens = new StringTokenizer(Console.readLine(), ",");
+
+                while(tokens.hasMoreTokens()) {
+                    winningNumbers.add(Integer.parseInt(tokens.nextToken().trim()));
+                }
+                isValid = inputVerification.verifyWinningNumbers(winningNumbers);
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 올바른 입력이 아닙니다.");
+            }
         }
-        // 당첨번호 조건 검증
         return winningNumbers;
     }
 

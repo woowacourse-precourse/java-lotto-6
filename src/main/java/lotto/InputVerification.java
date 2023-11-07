@@ -1,22 +1,17 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InputVerification {
 
     public boolean isMultipleOfThousand(int amount) {
-        if (amount % 1000 == 0)
-            return true;
-
-        throw new IllegalArgumentException("[ERROR] 1000의 배수가 아닙니다.");
+        return amount % 1000 == 0;
     }
 
     public boolean isNumberInRange(int number) {
-        if (number > 0 && number < 46) {
-            return true;
-        }
-
-        throw new IllegalArgumentException("[ERROR] 1~45 사이의 수가 아닙니다.");
+        return number >= 1 && number <= 45;
     }
 
     public boolean isNumbersInRange(List<Integer> numbers) {
@@ -36,9 +31,11 @@ public class InputVerification {
     }
 
     public boolean isNumbersDuplicated(List<Integer> numbers) {
-        for(Integer number : numbers) {
-            if(numbers.contains(number))
-                throw new IllegalArgumentException("[ERROR] 중복된 수가 있습니다.");
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (!uniqueNumbers.add(number)) {
+                return true;
+            }
         }
         return false;
     }
@@ -46,29 +43,33 @@ public class InputVerification {
     public boolean isBonusNumbersDuplicated(List<Integer> numbers, int newNumber) {
         for(Integer number : numbers) {
             if (isNumberDuplicated(number, newNumber)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 넘버 중복입니다.");
+                return true;
             }
         }
-
         return false;
     }
 
     public boolean isInputSizeCorrect(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 입력 개수가 옳지 않습니다.");
+            return false;
         }
         return true;
     }
 
     public boolean verifyWinningNumbers(List<Integer> numbers) {
-        boolean isValid = false;
-        try {
-            isValid = isInputSizeCorrect(numbers);
-            isValid = isNumbersInRange(numbers);
-            isValid = !isNumbersDuplicated(numbers);
+        boolean isValid = true;
 
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        if(!isInputSizeCorrect(numbers)) {
+            System.out.println("[ERROR] 입력 개수가 옳지 않습니다.");
+            isValid = false;
+        }
+        if(!isNumbersInRange(numbers)) {
+            System.out.println("[ERROR] 숫자범위가 옳지 않습니다.");
+            isValid = false;
+        }
+        if(isNumbersDuplicated(numbers)) {
+            System.out.println("[ERROR] 당첨번호가 중복됩니다.");
+            isValid = false;
         }
         return isValid;
     }

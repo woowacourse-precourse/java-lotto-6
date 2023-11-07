@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -21,6 +22,17 @@ public class WinningResult {
             WinningType winningType = WinningType.findWinningType(
                     lottoResultDto.getWinningCount(),
                     lottoResultDto.hasBonusNumber());
+            countWinningType(winningType);
         }
+    }
+
+    private void countWinningType(WinningType winningType) {
+        initializeWinningResult();
+        winningResult.put(winningType, winningResult.get(winningType) + 1);
+    }
+
+    private void initializeWinningResult() {
+        Arrays.stream(WinningType.values())
+                .forEach(winning -> winningResult.put(winning, 0));
     }
 }

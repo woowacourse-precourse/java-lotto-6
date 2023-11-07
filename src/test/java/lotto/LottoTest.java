@@ -28,7 +28,7 @@ class LottoTest extends NsTest {
     @Test
     void isMatch_test() {
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))
-                .countMatch(List.of(1, 2, 3, 4, 5, 6))
+                .countMatch(new Lotto(List.of(1, 2, 3, 4, 5, 6)))
         ).isEqualTo(6);
     }
 

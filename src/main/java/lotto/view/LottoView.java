@@ -28,5 +28,11 @@ public class LottoView {
         return Console.readLine();
     }
 
+    // 보너스 번호 입력 받기
+    public static String inputBonusNumber() {
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
 
 }

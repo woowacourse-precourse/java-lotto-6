@@ -1,10 +1,7 @@
 package lotto.model;
-
-import static lotto.exception.Exceptions.*;
-
 import java.util.*;
 import lotto.exception.Exceptions;
-import lotto.model.LottoConstantsNumber;
+import static lotto.model.LottoConstantsNumber.*;
 import camp.nextstep.edu.missionutils.Randoms;
 public class Lotto {
     private final List<Integer> numbers;
@@ -44,18 +41,28 @@ public class Lotto {
     }
 
     public static Lotto createLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LottoMinNumber, LottoMaxNumber, LottoPcs);
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
     }
 
-    public static void validateInputWinningNumber(String winningNumber){
+    public static String[] validateInputWinningNumberInRange(String winningNumber){
         String[] numberStrings = winningNumber.split(",");
 
         for (String eachNumberStr : numberStrings) {
             int eachNumber=Integer.parseInt(eachNumberStr);
             if(eachNumber<1||eachNumber>45){
-                throw Exceptions.exceptionWinningNumber();
+                throw Exceptions.exceptionWinningNumberNotInRange();
+            }
+        }
+        return numberStrings;
+    }
+
+    public static void validateInputWinningNumberDuplication(String[] winningNumbers){
+        Set<String> uniqueNumbers = new HashSet<>();
+        for (String eachNumber : winningNumbers) {
+            if (!uniqueNumbers.add(eachNumber)) {
+                throw Exceptions.exceptionWinningNumberDuplication();
             }
         }
     }

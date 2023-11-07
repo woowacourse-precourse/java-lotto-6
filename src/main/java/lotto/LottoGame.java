@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -39,6 +40,8 @@ public class LottoGame {
         OutputView.print(Message.WINNING_NUMBER_REQUEST);
         OutputView.print(Message.LINE_BREAK);
         String input = InputView.read();
+        validateInputRequirement(input);
+
 
     }
 
@@ -59,6 +62,14 @@ public class LottoGame {
     public void validateInputRequirement(String input) {
         if (!input.matches("^[0-9]+(,[0-9]+)*$")) {
             throw new IllegalArgumentException("[ERROR] 숫자와 쉼표(,)만 입력하세요");
+        }
+    }
+
+    public void validateRange(String input) {
+        if (Arrays.stream(input.split(","))
+                .map(Integer::parseInt) // 문자열을 정수로 변환
+                .allMatch(num -> num >= 1 && num <= 45)) {
+            throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
         }
     }
 }

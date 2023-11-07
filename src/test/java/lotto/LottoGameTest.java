@@ -29,4 +29,12 @@ public class LottoGameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자와 쉼표(,)만 입력하세요");
     }
+
+    @DisplayName("입력 값이 1과 45 사이의 숫자가 아닐때 예외가 발생한다.")
+    @Test
+    void createNumberByOutOfRange() {
+        assertThatThrownBy(() -> new LottoGame().validateRange("1,2,24,55,48,21"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1과 45 사이의 수를 입력하세요");
+    }
 }

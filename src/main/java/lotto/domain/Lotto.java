@@ -12,7 +12,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        boolean isDuplicate = numbers.stream()
+                .distinct()
+                .count() == numbers.size();
+
+        if (numbers.size() != 6 || isDuplicate) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
         }
     }

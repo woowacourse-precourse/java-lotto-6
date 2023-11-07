@@ -58,7 +58,7 @@ class ApplicationTest extends NsTest {
     void 입력_예외_테스트() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-            run("0", "1,2,3,4,5,6", "7");
+            run("0", "1,2,3,4,5,6,7", "7");
             assertThat(output()).contains(
                     "0개를 구매했습니다.",
                     "3개 일치 (5,000원) - 0개",

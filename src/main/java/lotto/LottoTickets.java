@@ -6,13 +6,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class LottoTickets {
+    public static final int START_NUM = 1;
+    public static final int END_NUM = 45;
+    public static final int COUNT = 6;
+
     private List<Lotto> tickets;
 
     public LottoTickets(LottoMoney money) {
         tickets = new LinkedList<>();
 
         for (int i = 0; i < money.getAmount(); i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, COUNT);
             Lotto lotto = new Lotto(numbers);
             tickets.add(lotto);
         }

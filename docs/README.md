@@ -30,7 +30,7 @@
 
 ```markdown
 
-- LottoBall [ ]
+- LottoBall [ x ]
     - match
     
 ```

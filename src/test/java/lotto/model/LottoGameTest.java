@@ -2,6 +2,7 @@ package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ class LottoGameTest {
             numbers.add(i);
         }
         lotto = new Lotto(numbers);
-        drawResult = new DrawResult(lotto, 6);
+        drawResult = new DrawResult(lotto, 7);
     }
 
 
@@ -109,6 +110,13 @@ class LottoGameTest {
 
     @Test
     void calculationResult() {
+        lottoGame.calculationResult(drawResult);
+        Map<String, Integer> matchResult = lottoGame.getMatchResults();
+        for (String result : matchResult.keySet()) {
+            if (matchResult.get(result) != 0) {
+                assertTrue(lottoGame.getRateOfReturn() > 500.0);
+            }
+        }
     }
 
 }

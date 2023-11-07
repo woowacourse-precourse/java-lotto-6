@@ -28,7 +28,8 @@ public class Lotto {
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != Constant.LOTTO_NUMBER_AMOUNT) {
-            throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
+            String errorMessage = Constant.ERROR_PREFIX + "중복된 숫자가 존재합니다.";
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 

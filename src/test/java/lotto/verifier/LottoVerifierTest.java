@@ -1,6 +1,7 @@
 package lotto.verifier;
 
 import lotto.system.ExceptionMessage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -12,6 +13,7 @@ class LottoVerifierTest {
 
 
     @ParameterizedTest
+    @DisplayName("checkNumberCount 메서드 테스트")
     @ValueSource(strings = {
             "",
             "1",
@@ -28,6 +30,7 @@ class LottoVerifierTest {
     }
 
     @ParameterizedTest
+    @DisplayName("checkEachNumeric 메서드 테스트")
     @ValueSource(strings = {
             "1,a,3,4,k,9",
             "1,2,a,@,4,5",
@@ -40,6 +43,7 @@ class LottoVerifierTest {
     }
 
     @ParameterizedTest
+    @DisplayName("checkEachTypeRange 메서드 테스트")
     @ValueSource(strings = {
             "-9223372036854775809,1,2,3,4,5",
             "1,2,3,4,5,9223372036854775808"
@@ -51,6 +55,7 @@ class LottoVerifierTest {
     }
 
     @ParameterizedTest
+    @DisplayName("checkEachRange 메서드 테스트")
     @ValueSource(strings = {
             "1,2,3,47,4,5",
             "17,148,13,-2,5,9",
@@ -63,6 +68,7 @@ class LottoVerifierTest {
     }
 
     @ParameterizedTest
+    @DisplayName("checkDistinct 메서드 테스트")
     @ValueSource(strings = {
             "1,1,5,8,9,21",
             "2,6,4,8,9,2",

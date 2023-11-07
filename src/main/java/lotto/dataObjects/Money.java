@@ -6,6 +6,7 @@ import lotto.enumContainer.RelateToLotto;
 public class Money {
 
 	private int purchaseMoney;
+	private int benefit;
 
 	public Money(int purchaseMoney) {
 		validateMinimum(purchaseMoney);
@@ -29,6 +30,8 @@ public class Money {
 		}
 	}
 
-
-
+	public void plusBenefit(int benefit) {
+		this.benefit += benefit;
+		System.out.println("개이덕 "+benefit);
+	}
 }

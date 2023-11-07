@@ -10,7 +10,6 @@ import lotto.utils.CommonValidatorImpl;
 public class InputNumberImpl implements InputNumber {
 
 	private final CommonValidator validator;
-	private StringTokenizer numberSplitter;
 
 	public InputNumberImpl() {
 		this.validator = new CommonValidatorImpl();
@@ -24,7 +23,7 @@ public class InputNumberImpl implements InputNumber {
 
 	@Override
 	public void inputWinningNumbers(List<Integer> lottoNumbers) {
-		numberSplitter = new StringTokenizer(Console.readLine(), ",");
+		StringTokenizer numberSplitter = new StringTokenizer(Console.readLine(), ",");
 		validator.validateWinningNumber(numberSplitter, lottoNumbers);
 	}
 
@@ -32,12 +31,6 @@ public class InputNumberImpl implements InputNumber {
 	public int inputBonusNumber() {
 		String bonusNumber = Console.readLine();
 		return validator.validateBonusNumber(bonusNumber);
-	}
-
-	@Override
-	public List<Integer> generateLotto() {
-
-		return null;
 	}
 
 }

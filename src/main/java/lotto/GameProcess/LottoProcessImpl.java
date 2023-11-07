@@ -32,7 +32,9 @@ public class LottoProcessImpl implements LottoProcess {
 		List<List<Integer>> IssuedLotto = generateLotto();
 		inputWinningNumbers();
 		inputBonusNumber();
-
+		//로또 번호 확인
+		lotto.checkLotto(bonus.getNumber(), IssuedLotto, this.money);
+		PrintGenerator.printWinningStatistics();
 
 	}
 
@@ -62,6 +64,7 @@ public class LottoProcessImpl implements LottoProcess {
 		try {
 			int bonusNumber = inputNumber.inputBonusNumber();
 			bonus = new Bonus(bonusNumber, this.lotto);
+			lotto.validateDuplicateWithBonus(bonus.getNumber());
 		} catch (IllegalArgumentException e) {
 			inputBonusNumber();
 		}

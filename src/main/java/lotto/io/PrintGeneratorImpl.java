@@ -2,6 +2,8 @@ package lotto.io;
 
 import java.util.List;
 
+import lotto.enumContainer.LottoResult;
+
 public class PrintGeneratorImpl implements PrintGenerator{
 	@Override
 	public void printInputMent(String keyword) {
@@ -22,7 +24,18 @@ public class PrintGeneratorImpl implements PrintGenerator{
 
 	@Override
 	public void printWinningStatistics() {
+		System.out.println(generateResult(new StringBuilder()));
+	}
 
+	private String generateResult(StringBuilder resultBuilder) {
+		resultBuilder.append("당첨 통계").append("\n");
+		resultBuilder.append("---").append("\n");
+		resultBuilder.append(LottoResult.THREE.getResultString()).append("\n");
+		resultBuilder.append(LottoResult.FOUR.getResultString()).append("\n");
+		resultBuilder.append(LottoResult.FIVE.getResultString()).append("\n");
+		resultBuilder.append(LottoResult.FIVE_BONUS.getResultString()).append("\n");
+		resultBuilder.append(LottoResult.SIX.getResultString()).append("\n");
+		return resultBuilder.toString();
 	}
 
 	@Override

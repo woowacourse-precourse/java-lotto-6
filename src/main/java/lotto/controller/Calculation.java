@@ -1,30 +1,49 @@
 package lotto.controller;
 
+import lotto.model.GameEnvironment;
 import lotto.model.Lotto;
 import lotto.model.LottoTicket;
-
+import lotto.model.Prize;
 import java.util.Collections;
 import java.util.List;
 
 public class Calculation {
 
-    public int countMatchingNumbers(Lotto lotto, LottoTicket ticket) {
-        int count = 0;
-        List<Integer> numbers = lotto.getNumbers();
-        List<List<Integer>> tickets = ticket.getTicketNumbers();
+    private static final int TICKET_PRICE = GameEnvironment.TICKET.getValue();
+
+    public int countMatching (Lotto lotto, LottoTicket ticket) {
+        int matchCount = 0;
+        int[] counts = countMatchingNumbers(lotto,ticket);
+
+        for(int count : counts) {
+            if(count != 0) {
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
+
+    public int[] countMatchingNumbers(Lotto lotto, LottoTicket ticket) {
+        int count[] = new int[ticket.getTickets()];
 
         for(int i = 0; i < ticket.getTickets(); i++) {
-            for(int j = 0; j < maxNumber(numbers,tickets.get(i))+1; j++) {
-                checkMatching(numbers.get(j), tickets.get(i), count);
-            }
+            checkMatching(lotto.getNumbers(), ticket.getTicketNumbers().get(i), count);
         }
 
         return count;
     }
 
-    private void checkMatching(int input, List<Integer> ticket, int count) {
-        if(ticket.contains(input)) {
-            count+=1;
+    private void checkMatching(List<Integer> input, List<Integer> ticket, int[] count) {
+
+        for(int j = 0; j < maxNumber(input,ticket)+1; j++) {
+            int match = 0;
+
+            if(input.get(j).equals(ticket.get(j))) {
+                match++;
+            }
+
+            count[j]=match;
         }
     }
 
@@ -41,12 +60,34 @@ public class Calculation {
         return max;
     }
 
-    public Boolean isMatchBonusNumber(Lotto lotto) {
-        return !lotto.getNumbers().contains(lotto.bonusNumber());
+    public Boolean isMatchBonusNumber(Lotto lotto, LottoTicket ticket) {
+        for(List<Integer> numbers : ticket.getTicketNumbers()) {
+            if(numbers.contains(lotto.bonusNumber())){
+                return false;
+            }
+        }
+        return true;
     }
 
-    public double calculateProfitRate(Lotto lott, LottoTicket ticket){
+    public double calculateProfitRate(Lotto lotto, LottoTicket ticket){
+        int purchaseAmount = TICKET_PRICE*ticket.getTickets();
+        int winningPrize = 0;
+        int count = countMatching(lotto, ticket);
 
-        return 0.0;
+        for(Prize prize : Prize.values()) {
+            if(count == prize.getMatchingNumbers()) {
+                winningPrize = prize.getPrizeAmount();
+            }
+        }
+
+        if(count == 5 && !isMatchBonusNumber(lotto, ticket)){
+            winningPrize = Prize.MATCH_5_WITH_BONUS.getPrizeAmount();
+        }
+
+        double profitRate = (double) winningPrize / purchaseAmount * 100.0;
+        profitRate = Math.round(profitRate * 100.0) / 100.0;
+
+        return profitRate;
     }
+
 }

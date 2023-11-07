@@ -1,6 +1,6 @@
 package domain;
 
-import constant.LottoConfig;
+import constant.ConfigNumber;
 import validator.LottoMoneyValidator;
 
 public class LottoMoney {
@@ -23,7 +23,7 @@ public class LottoMoney {
     }
 
     public int getAvaliablePurcahaseCount(){
-       return money/ LottoConfig.COST.getValue();
+       return money/ ConfigNumber.COST.getValue();
     }
 
 }

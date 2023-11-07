@@ -2,6 +2,7 @@ package domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import validator.LottoValidator;
 
 import java.util.List;
 
@@ -9,6 +10,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
+
+    @DisplayName("로또 번호가 숫자형식이 아니면 예외를 발생한다.")
+    @Test
+    void validateNumberic(){
+        assertThatThrownBy(() -> LottoValidator.validNumberic("a,b,c,d,e,f"))
+                .isInstanceOf(NumberFormatException.class);
+    }
 
     @DisplayName("로또 번호의 개수가 6개가 아니면 예외를 발생한다.")
     @Test

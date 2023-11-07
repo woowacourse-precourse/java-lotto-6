@@ -1,6 +1,6 @@
 package domain;
 
-import constant.LottoConfig;
+import constant.ConfigNumber;
 import util.RandomNumberGenerator;
 
 import java.util.ArrayList;
@@ -25,9 +25,9 @@ public class Lottos {
 
     private Lotto createLotto(){
         List<Integer> notDuplecateNumbers = RandomNumberGenerator.create(
-                LottoConfig.NUM_COUNT.getValue(),
-                LottoConfig.START_INCLUSIVE.getValue(),
-                LottoConfig.END_INCLUSIVE.getValue()
+                ConfigNumber.NUM_COUNT.getValue(),
+                ConfigNumber.START_INCLUSIVE.getValue(),
+                ConfigNumber.END_INCLUSIVE.getValue()
         );
         return new Lotto(notDuplecateNumbers);
     }

@@ -1,6 +1,6 @@
 package controller;
 
-import constant.LottoConfig;
+import constant.ConfigNumber;
 import domain.Lotto;
 import org.junit.jupiter.api.Test;
 import util.RandomNumberGenerator;
@@ -17,9 +17,9 @@ class LottoControllerTest {
 
         for(int i=0; i<issueCount; i++){
             List<Integer> numbers = RandomNumberGenerator.create(
-                    LottoConfig.NUM_COUNT.getValue(),
-                    LottoConfig.START_INCLUSIVE.getValue(),
-                    LottoConfig.END_INCLUSIVE.getValue()
+                    ConfigNumber.NUM_COUNT.getValue(),
+                    ConfigNumber.START_INCLUSIVE.getValue(),
+                    ConfigNumber.END_INCLUSIVE.getValue()
             );
             lottos.add(new Lotto(numbers));
         }

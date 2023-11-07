@@ -17,6 +17,11 @@ public class Input {
         return reanLineValidateNull();
     }
 
+    public String getInputForWinningNumber(){
+        Output.printWinningNumberRequestMessage();
+        return reanLineValidateNull();
+    }
+
     public String reanLineValidateNull(){
         String input = Console.readLine();
         while(true){

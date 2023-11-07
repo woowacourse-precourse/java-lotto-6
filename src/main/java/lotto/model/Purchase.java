@@ -13,7 +13,7 @@ public class Purchase { //도메인 로직과 관련된 구입 금액 검증 및
     }
 
     private void validatePurchaseAmount(int purchaseMoney) {
-        if (purchaseMoney % 1000 != 0) {
+        if (purchaseMoney % 1000 != 0 || purchaseMoney == 0) {
             throw new IllegalArgumentException();
         }
     }

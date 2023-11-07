@@ -1,9 +1,9 @@
 ## 1. **돈 입력받기**
 money(model) 생성
    
-- [ ] inputView 로 string 입력 받기
-- [ ] '숫자 생성기'가 숫자로 변환 
-- [ ] 검증 : stringToInt, **'숫자 생성기'는 숫자에 관련한 검증만 수행**
+- [X] inputView 로 string 입력 받기
+- [X] '숫자 생성기'가 숫자로 변환 
+- [X] 검증 : stringToInt, **'숫자 생성기'는 숫자에 관련한 검증만 수행**
 - [X] controller 에게 숫자를 넘겨 money model 생성
 - [X] money 모델에게 생성자로 숫자를 넘겨 money 생성 
 - [X] 검증 : money 모델은 비즈니스 로직만 검증 수행

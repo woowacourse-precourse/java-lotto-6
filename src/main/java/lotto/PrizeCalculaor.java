@@ -19,4 +19,10 @@ public class PrizeCalculaor {
         prizes.add(countsOfWonLotto.get(4)*SIX_WINNING_PRIZE);
         return prizes;
     }
+
+    int calculateTotalPrize(List<Integer> countsOfWonLotto){
+        List<Integer> prizes = calculatePrize(countsOfWonLotto);
+        int totalPrize = prizes.stream().reduce(0, Integer::sum);
+        return totalPrize;
+    }
 }

@@ -18,9 +18,10 @@ public class LottoController {
     private final DisplayInput displayInput = new DisplayInput();
 
     private final String DELIMETER = ",";
+    private final boolean EXCEPTIONLOOPCHECKER = true;
 
     public void play() {
-        LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
+        LottoAmountofMoney lottoAmountofMoney = controlLottoAmountOfMoney();
         RandomLottos randomLottos = getRandomLottos(lottoAmountofMoney);
         Lotto answerLotto = new Lotto(getAnswerLottoNumber());
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
@@ -31,7 +32,18 @@ public class LottoController {
                 winningRewardChecker);
     }
 
-    private Integer getLottoAmountofMoney() {
+    private LottoAmountofMoney controlLottoAmountOfMoney(){
+        while(EXCEPTIONLOOPCHECKER) {
+            try {
+                LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
+                return lottoAmountofMoney;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private String getLottoAmountofMoney() {
         displayOutput.outputLottoAmountofMoney();
         return displayInput.inputLottoAmountofMoney();
     }

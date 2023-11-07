@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class DisplayInput {
 
-    public Integer inputLottoAmountofMoney() {
-        Integer inputMoney = Integer.parseInt(Console.readLine());
+    public String inputLottoAmountofMoney() {
+        String inputMoney = Console.readLine();
         return inputMoney;
     }
 

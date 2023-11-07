@@ -30,4 +30,12 @@ public class Customer {
         this.lottoPapers.add(new Lotto(lotto));
         return this.lottoPapers.size();
     }
+
+    public int getPurchaseValue() {
+        return purchaseValue;
+    }
+
+    public List<Lotto> getLottoPapers() {
+        return lottoPapers;
+    }
 }

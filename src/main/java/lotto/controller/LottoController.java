@@ -26,6 +26,7 @@ public class LottoController {
         List<Lotto> lottos = pickLottoNumbers(quantity);
         outputView.printLottoNumbers(lottos);
         WinningLotto winningLotto = inputView.getWinningNumbers();
+        inputView.getBonusNumber(winningLotto);
 
     }
 

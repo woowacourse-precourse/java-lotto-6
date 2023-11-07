@@ -13,4 +13,8 @@ public class WinningLotto {
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

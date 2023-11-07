@@ -68,4 +68,24 @@ public class InputView {
         }
     }
 
+    public void getBonusNumber(WinningLotto winningLotto) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = 0;
+        try {
+            bonusNumber = Integer.parseInt(Console.readLine());
+            validNumber(bonusNumber);
+            validDuplicationNumber(bonusNumber, winningLotto);
+            winningLotto.setBonusNumber(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            getPurchasePrice();
+        }
+    }
+
+    private void validDuplicationNumber(int bonusNumber, WinningLotto winningLotto) {
+        if (winningLotto.getNumbers().contains(bonusNumber)) {
+            System.out.println("[ERROR] 당첨 번호에 포함된 보너스 번호입니다.");
+            getBonusNumber(winningLotto);
+        }
+    }
 }

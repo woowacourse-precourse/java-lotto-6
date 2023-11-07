@@ -27,4 +27,8 @@ public class Player {
     public int getTotalWinningAccount() {
         return totalWinningAccount;
     }
+
+    public int getPaymentAccount() {
+        return paymentAccount;
+    }
 }

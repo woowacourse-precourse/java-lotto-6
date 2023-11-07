@@ -20,6 +20,19 @@ class LottoFactoryTest {
     }
 
     @Test
+    void 로또_생성시_LottoGenerator의_전략에_맞는_로또를_생성한다() {
+        List<Integer> fixedLotto = List.of(1, 2, 3, 4, 5, 6);
+        LottoFactory factory = new LottoFactory(() -> fixedLotto);
+        int size = 5;
+
+        List<List<Integer>> createdLottos = factory.createLottos(size).getLottos();
+
+        createdLottos.forEach(
+                lottos -> assertEquals(fixedLotto, lottos)
+        );
+    }
+
+    @Test
     void 갯수로_0이_들어오면_예외를_반환한다() {
         LottoFactory factory = new LottoFactory(() -> List.of(1, 2, 3, 4, 5, 6));
         int size = 0;

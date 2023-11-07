@@ -5,7 +5,8 @@ public enum SymbolType {
     INPUT_SEPARATOR(","),
     PREFIX("["),
     POSTFIX("]"),
-    NEWLINE("\n");
+    NEWLINE("\n"),
+    WINNING_RESULT_SEPARATOR(" - ");
 
     private final String symbol;
 

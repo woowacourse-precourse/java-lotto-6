@@ -52,4 +52,9 @@ public final class Validation {
         }
     }
 
+    public static void lottoPriceCheck(Integer buyPrice) {
+        if (buyPrice % LottoUtil.THOUSAND.getNumber() != LottoUtil.ZERO.getNumber()) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

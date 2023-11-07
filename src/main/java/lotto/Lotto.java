@@ -36,19 +36,26 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public List<Integer> getWinningNumbers() {
+        return numbers;
+    }
+
     public Map<Integer, Integer> winningStatistics(List<List<Integer>> ticketNumbers, int bonusNumber) {
         List<Integer> matchedNumberCount = matchNumbers(ticketNumbers, bonusNumber);
         Map<Integer, Integer> winningStatistics = addWinningStatistics(matchedNumberCount);
         return winningStatistics;
     }
 
+    //일치하는 번호 개수 반환
     private List<Integer> matchNumbers(List<List<Integer>> ticketNumbers, int bonusNumber) {
         List<Integer> matchedNumberCount = new ArrayList<>();
         int bonusCount = 0;
         for (List<Integer> ticket : ticketNumbers) {
             Set<Integer> matchedNumbers = new HashSet<>(ticket);
             matchedNumbers.retainAll(numbers);
+            //일치하는 개수가 5개일 경우
             if (matchedNumbers.size() == 5) {
+                //보너스 번호 체크
                 if (matchedBonus(ticket, bonusNumber)) bonusCount++;
                 else if (!matchedBonus(ticket, bonusNumber)) matchedNumberCount.add(matchedNumbers.size());
             } else if (matchedNumbers.size() != 5) matchedNumberCount.add(matchedNumbers.size());
@@ -57,6 +64,7 @@ public class Lotto {
         return matchedNumberCount;
     }
 
+    //일치하는 번호 개수를 맵형식으로 반환
     private Map<Integer, Integer> addWinningStatistics(List<Integer> matchedNumberCount) {
         Map<Integer, Integer> winningStatistics = new HashMap<>();
         for (int count : matchedNumberCount) {

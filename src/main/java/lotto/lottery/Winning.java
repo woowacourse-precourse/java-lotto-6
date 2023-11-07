@@ -15,7 +15,6 @@ public class Winning {
         this.winningNumbers = inputManager.splitAndConvertToList(winningNumbers);
         Collections.sort(this.winningNumbers);
         checkWinningNumbers(winningNumbers);
-        new Lotto(this.winningNumbers);
     }
 
     //당첨 번호 예외 체크
@@ -24,7 +23,9 @@ public class Winning {
         inputValidator.checkInputValue(winningNumbers);
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+    // Lotto 클래스를 사용하기 위함
+    public Lotto getLotto() {
+        return new Lotto(this.winningNumbers);
     }
+
 }

@@ -41,6 +41,7 @@ public class ProfitCalculator {
         return prizeAmount / buyingAmount * 100;
     }
 
+    //전체 상금 계산
     private Double calculatePrizeAmount(Map<Integer, Integer> winningStatistics) {
         Double prizeAmount = 0.0;
         prizeAmount += winningStatistics.get(Rank.FIRST.getRank()) * Prize.FIRST.getPrize();

@@ -21,15 +21,14 @@ public class GameManager {
         String buyingAmount = getBuyingAmount(inputManager, outputManager);
         List<List<Integer>> ticketNumbers = buyTicket(buyingAmount, outputManager);
         //당첨 번호
-        Winning winning = getWinningNumbers(inputManager, outputManager);
-        List<Integer> winningNumbers = winning.getWinningNumbers();
-
+        Lotto lotto = getWinningNumbers(inputManager, outputManager);
+        List<Integer> winningNumbers = lotto.getWinningNumbers();
+        //보너스 번호
         Bonus bonus = getBonusNumber(inputManager, outputManager, winningNumbers);
-
-        Lotto lotto = new Lotto(winningNumbers);
+        //일치한 번호 개수
         Map<Integer, Integer> winningStatistics = lotto.winningStatistics(ticketNumbers, bonus.getBonus());
         outputManager.printWinningMessage(winningStatistics);
-
+        //수익률
         double profitRate = profitCalculator.calculateProfitRate(winningStatistics, buyingAmount);
         outputManager.printProfitRate(profitRate);
     }
@@ -47,6 +46,7 @@ public class GameManager {
         }
     }
 
+    //구매한 티켓만큼 랜덤 번호 발행
     private List<List<Integer>> buyTicket(String buyingAmount, OutputManager outputManager) {
         Ticket ticket = new Ticket(buyingAmount);
         int ticketCount = ticket.getTicketCount();
@@ -57,13 +57,13 @@ public class GameManager {
         return ticketNumbers;
     }
 
-    private Winning getWinningNumbers(InputManager inputManager, OutputManager outputManager) {
+    private Lotto getWinningNumbers(InputManager inputManager, OutputManager outputManager) {
         outputManager.printWinningNumbers();
         while (true) {
             try {
                 String inputWinningNumbers = inputManager.getUserInput();
                 Winning winning = new Winning(inputWinningNumbers);
-                return winning;
+                return winning.getLotto();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

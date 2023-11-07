@@ -16,6 +16,7 @@ public class Application {
         int bonusNumber = InputView.getBonusNumberInput(winningNumbers);
         Map<Rank, Integer> result = calculateResult(lotteries, winningNumbers, bonusNumber);
         OutputView.printResultStatistics(result);
+        OutputView.printProfit(calculateProfit(purchaseAmount, result));
     }
 
     private static Map<Rank, Integer> calculateResult(List<Lotto> lotteries,
@@ -27,5 +28,14 @@ public class Application {
                     result.put(rank, result.get(rank) + Unit.ONE.getUnit()));
         }
         return result;
+    }
+
+    private static double calculateProfit(int purchaseAmount, Map<Rank, Integer> result) {
+        long totalPrize = 0L;
+        for (Rank rank : Rank.values()) {
+            totalPrize = totalPrize + ((long) rank.getPrize() * result.get(rank));
+        }
+        return (double) totalPrize /
+                (purchaseAmount * Unit.PURCHASE_AMOUNT_UNIT.getUnit()) * Unit.PERCENTAGE.getUnit();
     }
 }

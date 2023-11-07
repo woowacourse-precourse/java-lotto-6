@@ -44,6 +44,15 @@ public class OutputView {
         }
     }
 
+    public static void printProfit(double profit) {
+        StringBuilder message = new StringBuilder();
+        message.append(OutputMessage.PROFIT_FIRST_HALF_MESSAGE.getMessage());
+        DecimalFormat decimalFormat = new DecimalFormat(Symbol.PERCENTAGE_PATTERN.getSymbol());
+        message.append(decimalFormat.format(profit));
+        message.append(OutputMessage.PROFIT_SECOND_HALF_MESSAGE.getMessage());
+        System.out.println(message);
+    }
+
     private static String generateStatisticalMessage(Rank rank, int count) {
         StringBuilder printMessage = new StringBuilder();
         printMessage.append(rank.getMatchCount()).append(OutputMessage.MATCHED_COUNT_MESSAGE.getMessage());

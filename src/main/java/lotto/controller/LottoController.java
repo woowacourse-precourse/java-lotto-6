@@ -1,5 +1,6 @@
 package lotto.controller;
-
+import java.util.ArrayList;
+import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoStatistics;
 import lotto.model.Purchase;
@@ -23,6 +24,7 @@ public class LottoController { //입력을 받아서 model에 전달, 간단한 
     public void run() {
         int purchaseAmount = readAndValidatePurchaseAmount();
 
+        ArrayList<Lotto> lottoTickets = generateLottoTickets(purchaseAmount);
     }
 
     private int readAndValidatePurchaseAmount() {
@@ -39,6 +41,14 @@ public class LottoController { //입력을 받아서 model에 전달, 간단한 
             }
         }
         return purchaseAmount;
+    }
+
+    private ArrayList<Lotto> generateLottoTickets(int purchaseAmount) {
+        purchase.setPurchase(purchaseAmount);
+        int purchaseNumber = purchase.getPurchaseNumber();
+        ArrayList<Lotto> lottoTickets = lottoMachine.runLottoMachine(purchaseNumber);
+        LottoView.printLottoTickets(purchaseNumber, lottoTickets);
+        return lottoTickets;
     }
 
     public void validateNumber(String input) {

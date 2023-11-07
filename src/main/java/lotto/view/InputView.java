@@ -51,6 +51,8 @@ public class InputView {
             System.out.println();
             System.out.println(INPUT_BONUS_NUMBER.getMessage());
             final String requestBonusNumber = getInput();
+            InputValidator.validateRangeNumber(requestBonusNumber);
+            InputValidator.validateNumber(requestBonusNumber);
             return Parser.parseInt(requestBonusNumber);
         } catch (Exception e) {
             throw e;

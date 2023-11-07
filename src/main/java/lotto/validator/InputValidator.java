@@ -36,7 +36,7 @@ public class InputValidator {
 
     public static void validateRangeNumber(final String number) {
         Integer parsedNumber = Parser.parseInt(number);
-        if (!(RANGE_START_NUMBER.getSetting() <= parsedNumber && RANGE_END_NUMBER.getSetting() <= 45)) {
+        if (!(RANGE_START_NUMBER.getSetting() <= parsedNumber && parsedNumber <= RANGE_END_NUMBER.getSetting())) {
             throw new IllegalArgumentException(WRONG_BONUS_NUMBER_RANGE.getMessage());
         }
     }

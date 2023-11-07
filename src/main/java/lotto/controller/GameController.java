@@ -93,8 +93,7 @@ public class GameController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return getWinnerNumbers();
-        }
-        catch (IllegalStateException e) {
+        } catch (IllegalStateException e) {
             throw e;
         }
     }
@@ -106,8 +105,7 @@ public class GameController {
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e);
             return getBonusNumber();
-        }
-        catch (IllegalStateException e) {
+        } catch (IllegalStateException e) {
             throw e;
         }
     }

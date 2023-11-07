@@ -156,6 +156,30 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("보너스 번호 입력시 숫자가 아닌 값 입력할 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1e", "hello", "ㅎ", "안녕"})
+    void inputBonusNumberWithNotNumber(String wrongBonusNumber) {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6", wrongBonusNumber);
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
+    @DisplayName("보너스 번호 입력시 1~45 범위를 벗어난 숫자 입력 할 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "100", "50", "-2"})
+    void inputBonusNumberWithWrongRangeNumber(String wrongBonusNumber) {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6", wrongBonusNumber);
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

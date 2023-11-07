@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Amount;
 
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.Vector;
 import camp.nextstep.edu.missionutils.Console;
@@ -42,7 +43,7 @@ public class Application {
         printStatistics(hm);
 
         double profitRate = (double) winPrice / amount.getAmount() * 100;
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
 
     }
 
@@ -101,19 +102,22 @@ public class Application {
     }
 
     public static void printStatistics(Map<Rank, Integer> statistics) {
-        System.out.println("당첨 통계\n---");
         int totalWinPrice = 0;
+        NumberFormat formatter = NumberFormat.getInstance(Locale.KOREA);
 
-        // Enum.values()는 선언된 순서대로 값을 반환합니다.
-        // Rank Enum이 선언된 순서가 상금이 높은 순서대로 되어있지 않다면,
-        // Rank.values()를 적절한 순서로 정렬해야 할 수도 있습니다.
         for (Rank rank : Rank.values()) {
-            if (rank != Rank.NONE) {
-                int count = statistics.getOrDefault(rank, 0);
-                totalWinPrice += rank.getPrize() * count;
-                String bonusText = rank.isBonusMatch() ? ", 보너스 볼 일치" : "";
-                System.out.println(rank.getMatchCount() + "개 일치" + bonusText + " (" + rank.getPrize() + "원) - " + count + "개");
+            if (rank == Rank.NONE) {
+                continue;
             }
+            int count = statistics.getOrDefault(rank, 0);
+            totalWinPrice += rank.getPrize() * count;
+
+            String bonusText = "";
+            if (rank.isBonusMatch()) {
+                bonusText = ", 보너스 볼 일치";
+            }
+
+            System.out.println(rank.getMatchCount() + "개 일치" + bonusText + " (" + formatter.format(rank.getPrize()) + "원) - " + count + "개");
         }
     }
 }

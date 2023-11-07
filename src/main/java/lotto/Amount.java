@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.Scanner;
 
 public class Amount {
@@ -14,11 +16,11 @@ public class Amount {
         int inputAmount;
         while (true) {
             try {
-                System.out.print("로또를 구매할 금액을 입력하세요: ");
-                String input = scanner.nextLine();
+                System.out.println("구입금액을 입력하세요: ");
+                String input = Console.readLine();
                 inputAmount = Integer.parseInt(input); //throw NumberFormatException
                 validate(inputAmount); //throw IllegalArgumentException
-                System.out.println((inputAmount / 1000) + "개의 로또를 구매했습니다.");
+                System.out.println((inputAmount / 1000) + "개를 구매했습니다.");
                 break; // 올바른 입력이면 루프를 빠져나감
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해야 합니다.");

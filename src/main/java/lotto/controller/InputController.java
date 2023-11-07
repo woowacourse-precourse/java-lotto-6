@@ -53,7 +53,7 @@ public class InputController {
 
         for (String splitNumber : splitNumbers) {
             int number = validateNumber(splitNumber);
-
+            validateNumberRange(number);
             numbers.add(number);
         }
 
@@ -63,8 +63,15 @@ public class InputController {
     public int validateNumber(String splitNumber) {
         try {
             return parseInt(splitNumber);
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             ErrorMessage.numberException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            ErrorMessage.lottoNumberRangeException();
             throw new IllegalArgumentException();
         }
     }

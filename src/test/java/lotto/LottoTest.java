@@ -63,4 +63,14 @@ class LottoTest {
 
         assertThat(result).isFalse();
     }
+
+    @DisplayName("로또 번호에 타겟 숫자가 포함되어 있지 않으면 false를 리턴한다.")
+    @Test
+    void getNumbersTest() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        List<Integer> numbers = lotto.getNumbers();
+
+        assertThat(numbers).isEqualTo(List.of(1,2,3,4,5,6));
+    }
 }

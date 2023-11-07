@@ -6,6 +6,7 @@ public class Constant {
     public static final int LOTTO_NUMBERS_COUNT = 6;
     public static final int LOTTO_PER_PRICE = 1000;
     public static final int PERCENT = 100;
+    public static final String PERCENT_FORMAT = "%.1f";
 
     public static final String FIRST_PRINT_MESSAGE = "6개 일치 (%d원) - %d개";
     public static final String SECOND_PRINT_MESSAGE = "5개 일치, 보너스 볼 일치 (%d원) - %d개";

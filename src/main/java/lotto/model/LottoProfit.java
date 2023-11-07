@@ -6,10 +6,16 @@ import static lotto.model.LottoRanking.FORTH;
 import static lotto.model.LottoRanking.SECOND;
 import static lotto.model.LottoRanking.THIRD;
 import static lotto.util.Constant.PERCENT;
+import static lotto.util.Constant.PERCENT_FORMAT;
 
 public class LottoProfit {
 
     private final String lottoProfit;
+
+    public LottoProfit(long totalPurchaseMoney) {
+        long totalPrizeMoney = getTotalPrizeMoney();
+        this.lottoProfit = StringFormat(totalPrizeMoney, totalPurchaseMoney);
+    }
 
     private static long getTotalPrizeMoney() {
         return FIRST.getPrizeMoney() * FIRST.getCount()
@@ -21,6 +27,10 @@ public class LottoProfit {
 
     private static double calculateProfit(long totalPrizeMoney, long totalPurchaseMoney) {
         return (totalPrizeMoney / totalPurchaseMoney) * PERCENT;
+    }
+
+    private static String StringFormat(long totalPrizeMoney, long totalPurchaseMoney) {
+        return String.format(PERCENT_FORMAT, calculateProfit(totalPrizeMoney, totalPurchaseMoney));
     }
 
 

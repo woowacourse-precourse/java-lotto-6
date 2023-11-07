@@ -154,7 +154,7 @@ public class Application {
         }
         public static double isWinningAndPlusMoney(double sum, MatchResult matchResult){
             if(matchResult.matchedNumbers >= 1){
-                return sum + matchResult.money*matchResult.matchedNumbers;
+                return sum + matchResult.money * matchCountMap.get(matchResult);
             }
             return sum;
         }
@@ -212,6 +212,6 @@ public class Application {
         sum = sum / ((double) amountOfLotto * 1000);
         
         sum = Math.round(sum * 10) / 10.0;
-        System.out.println("총 수익률은 " + sum + "%입니다.");
+        System.out.println("총 수익률은 " + sum * 100 + "%입니다.");
     }
 }

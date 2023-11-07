@@ -33,13 +33,18 @@ public class LottoManager {
         output.printPurchasedLottoTickets(tickets);
     }
 
-    public void getWinningNumbers() {
-        output.printLottoWinningNumbersPrompt();
-        input.readWinningNumbers();
+    public void checkMyWinning() {
+        List<Integer> winningNumbers = this.getWinningNumbers();
+        int bonusNumber = this.getBonusNumber();
     }
 
-    public void getBonusNumber() {
+    private List<Integer> getWinningNumbers() {
+        output.printLottoWinningNumbersPrompt();
+        return input.readWinningNumbers();
+    }
+
+    public int getBonusNumber() {
         output.printLottoBonusNumberPrompt();
-        input.readBonusNumber();
+        return input.readBonusNumber();
     }
 }

@@ -8,7 +8,6 @@ public class Application {
         List<Lotto> myLottoTickets = lottoManager.purchaseLottoTickets();
         lottoManager.printLottoTickets(myLottoTickets);
 
-        lottoManager.getWinningNumbers();
-        lottoManager.getBonusNumber();
+        lottoManager.checkMyWinning();
     }
 }

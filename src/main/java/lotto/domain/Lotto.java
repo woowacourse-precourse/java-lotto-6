@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 import lotto.exception.LottoCountException;
-import lotto.exception.LottoDuplicationException;
+import lotto.exception.LottoDuplicateException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,7 +19,7 @@ public class Lotto {
         }
 
         if (numbers.stream().distinct().count() != 6) {
-            throw new LottoDuplicationException();
+            throw new LottoDuplicateException();
         }
     }
 

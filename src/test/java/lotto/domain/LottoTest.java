@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.exception.LottoCountException;
-import lotto.exception.LottoDuplicationException;
+import lotto.exception.LottoDuplicateException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +21,6 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(LottoDuplicationException.class);
+                .isInstanceOf(LottoDuplicateException.class);
     }
 }

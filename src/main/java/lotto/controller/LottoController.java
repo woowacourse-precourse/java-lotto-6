@@ -7,6 +7,8 @@ import lotto.view.InputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.view.InputView.inputWinningNumber;
+
 public class LottoController {
 
     public static int setPurchaseAmount() {
@@ -31,5 +33,17 @@ public class LottoController {
             list.add(lotto);
         }
         return list;
+    }
+
+    public static List<Integer> lottoNumbers() {
+        try {
+            List<Integer> winningNumber = inputWinningNumber();
+            Lotto lotto = new Lotto(winningNumber);
+            return lotto.getNumbers();
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return lottoNumbers();
+        }
     }
 }

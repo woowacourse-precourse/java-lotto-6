@@ -1,8 +1,6 @@
 package lotto.controller;
 
 
-import static lotto.domain.LottoConfig.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -29,11 +27,7 @@ public class LottoController {
 
     private final InputHandler inputHandler;
 
-    private Money money;
 
-    private String winNumbers;
-
-    private int bonusNumber;
 
     public LottoController(NumberGenerationStrategy numberGenerationStrategy, Input input,
             Output output) {
@@ -43,19 +37,20 @@ public class LottoController {
     }
 
     public void run() {
-        inputPurchaseAmount();
-        Lottos purchasedLottos = purchaseLottos();
+        Money money = inputPurchaseAmount();
+        Lottos purchasedLottos = purchaseLottos(money);
         WinningNumbers winningNumbers = requestWinningNumbers();
-        displayResults(purchasedLottos, winningNumbers);
+        displayResults(purchasedLottos, winningNumbers,money);
     }
 
-    private void inputPurchaseAmount() {
-        money = new Money(inputHandler.requestNumberInput(
-                PrintMessages.INPUT_PURCHASE_AMOUNT.getMessage()));
+    private Money inputPurchaseAmount() {
+        int amount = inputHandler.requestNumberInput(
+                PrintMessages.INPUT_PURCHASE_AMOUNT.getMessage());
+        return new Money(amount);
     }
 
 
-    private Lottos purchaseLottos() {
+    private Lottos purchaseLottos(Money money) {
         int lottoCount = calculateLottoCount(money);
         List<Lotto> lottos = generateLottos(lottoCount);
         Lottos purchasedLottos = new Lottos(lottos);
@@ -64,7 +59,8 @@ public class LottoController {
     }
 
     private int calculateLottoCount(Money money) {
-        return LottoPurchaseCalculator.calculateLottoCount(LOTTO_PRICE.getValue(), money);
+        return LottoPurchaseCalculator.calculateLottoCount(LottoConfig.LOTTO_PRICE.getValue(),
+                money);
     }
 
     private List<Lotto> generateLottos(int count) {
@@ -74,39 +70,39 @@ public class LottoController {
     }
 
     private WinningNumbers requestWinningNumbers() {
-        inputWiningNumbers();
-        inputBonusNumbers();
+        String winNumbers = inputWiningNumbers();
+        int bonusNumber = inputBonusNumbers();
         return WinningNumbers.of(winNumbers, bonusNumber);
     }
 
-    private void inputWiningNumbers() {
-        winNumbers = inputHandler.requestStringInput(
+    private String inputWiningNumbers() {
+        return inputHandler.requestStringInput(
                 PrintMessages.INPUT_WINNING_NUMBERS.getMessage());
     }
 
-    private void inputBonusNumbers() {
-        bonusNumber = inputHandler.requestNumberInput(
+    private int inputBonusNumbers() {
+        return inputHandler.requestNumberInput(
                 PrintMessages.INPUT_BONUS_NUMBER.getMessage());
     }
 
 
-    private void displayResults(Lottos lottos, WinningNumbers winningNumbers) {
+    private void displayResults(Lottos lottos, WinningNumbers winningNumbers,Money money) {
         LottoResults results = calculateLottoResults(lottos, winningNumbers);
-        printLottoResults(results);
+        printLottoResults(results,money);
     }
 
     private LottoResults calculateLottoResults(Lottos lottos, WinningNumbers winningNumbers) {
         return LottoResultCalculator.calculateResults(lottos, winningNumbers);
     }
 
-    private void printLottoResults(LottoResults results) {
+    private void printLottoResults(LottoResults results,Money money) {
         output.displayInputRequest(PrintMessages.WINNING_STATISTICS.getMessage());
         output.displayInputRequest(PrintMessages.SEPARATOR.getMessage());
         output.printWinningStatistics(results);
-        output.printTotalEarningsRate(calculateTotalEarningsRate(results));
+        output.printTotalEarningsRate(calculateTotalEarningsRate(results,money));
     }
 
-    private double calculateTotalEarningsRate(LottoResults results) {
+    private double calculateTotalEarningsRate(LottoResults results,Money money) {
         return RevenueCalculator.calculateRevenueRate(
                 results.calculateTotalEarnings(), money);
     }

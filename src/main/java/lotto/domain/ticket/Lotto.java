@@ -10,12 +10,24 @@ import static lotto.domain.ticket.LottoNumberConfig.NUMBER_COUNT;
 import java.util.ArrayList;
 import java.util.List;
 
+import lotto.domain.dto.LottoResult;
+import lotto.domain.winningnumbers.WinningNumbers;
+
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
+    }
+
+    public LottoResult getResult(WinningNumbers winningNumbers) {
+        return new LottoResult(getCountOfSameNumber(winningNumbers),
+                isContainBonusNumber(winningNumbers));
     }
 
     private void validate(List<Integer> numbers) {
@@ -30,10 +42,20 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
+
+    private int getCountOfSameNumber(WinningNumbers winningNumbers) {
+        return numbers.stream()
+                .filter(winningNumbers::isInWinningNumbers)
+                .toList()
+                .size();
     }
 
+    private boolean isContainBonusNumber(WinningNumbers winningNumbers) {
+        return !numbers.stream()
+                .filter(winningNumbers::isSameWithBonusNumber)
+                .toList()
+                .isEmpty();
+    }
     private boolean validateSize(List<Integer> numbers) {
         return  (numbers.size() != NUMBER_COUNT.getValue());
     }

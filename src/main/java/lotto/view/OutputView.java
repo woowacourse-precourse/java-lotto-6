@@ -60,4 +60,8 @@ public class OutputView {
 
         return WINNIG_DETAILS_MESSAGE;
     }
+
+    public void nextLine() {
+        System.out.println();
+    }
 }

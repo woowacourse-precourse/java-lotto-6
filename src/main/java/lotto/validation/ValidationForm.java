@@ -21,7 +21,7 @@ public class ValidationForm {
             verifyForPurchaseCost(inputValue);
         }
         if (validatorType.equals(BONUS)) {
-
+            verifyForBonusNumber(inputValue);
         }
     }
 

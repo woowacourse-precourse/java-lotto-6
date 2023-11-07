@@ -13,7 +13,8 @@ public class WinningValidator extends RootValidator {
     }
 
     public static void winningsFormatIsCorrect(String winningNumbers) {
-        if (!winningNumbers.matches("(\\d,)*\\d{1}")) {
+        System.out.println("!!=" + winningNumbers);
+        if (!winningNumbers.matches("^(\\d{1,2},)*\\d{1,2}$")) {
             throw new IllegalArgumentException(WINNING_FORMAT_IS_NOT_CORRECT.toString());
         }
     }

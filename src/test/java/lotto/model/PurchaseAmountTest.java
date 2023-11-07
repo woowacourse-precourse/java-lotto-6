@@ -24,11 +24,19 @@ class PurchaseAmountTest {
     }
 
     @Test
-    @DisplayName("1000원 미만의 금액을 입력받았을 시 예외가 발생한다")
+    @DisplayName("1000원 미만의 금액을 입력 받았을 시 예외가 발생한다")
     void inputLessThanLeastMoney() {
         assertThatThrownBy(() -> new PurchaseAmount(500))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 최소 1000원 이상의 돈을 입력해주세요.");
+    }
+
+    @Test
+    @DisplayName("1000원 단위가 아닌 금액을 입력 받았을 시 예외가 발생한다")
+    void inputNotMultipleOfThousand() {
+        assertThatThrownBy(() -> new PurchaseAmount(2500))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1000원 단위의 금액만 입력해주세요.");
     }
 
 }

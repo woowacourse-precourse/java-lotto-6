@@ -5,6 +5,8 @@ import java.util.*;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class Lotto {
+    public static final String ERROR_MESSAGE_DUPLICATE_NUMBERS = "[ERROR] 로또 번호가 중복되어서는 안됩니다.";
+    public static final String ERROR_MESSAGE_NOT_SIX_NUMBERS = "[ERROR] 로또 번호는 6개로 이루어져야 합니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,13 +28,13 @@ public class Lotto {
     private static void validateDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 중복되어서는 안됩니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_DUPLICATE_NUMBERS);
         }
     }
 
     private void validateSixNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개로 이루어져야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_SIX_NUMBERS);
         }
     }
 

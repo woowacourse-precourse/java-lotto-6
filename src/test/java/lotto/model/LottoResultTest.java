@@ -1,18 +1,17 @@
 package lotto.model;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoResultTest {
     private HashMap result = new HashMap<>();
     private HashMap testResult = new HashMap<>();
 
+    @DisplayName("당첨 숫자 개수 확인")
     @Test
     void statistics() {
         LottoResult.initialize();
@@ -26,6 +25,7 @@ class LottoResultTest {
         assertThat(result).isEqualTo(testResult);
     }
 
+    @DisplayName("수익률 확인")
     @Test
     void calculateProfit() {
         LottoResult.initialize();

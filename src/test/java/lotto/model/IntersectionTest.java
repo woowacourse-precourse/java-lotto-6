@@ -26,6 +26,6 @@ class IntersectionTest {
         Intersection intersection = new Intersection();
         List<Set> numbers = List.of(Set.of(1,11,5,24,3,7));
         List result = intersection.checkBonusNumber(1,numbers);
-        assertThat(result).isEqualTo(List.of(1));
+        assertThat(result).isEqualTo(List.of(true));
     }
 }

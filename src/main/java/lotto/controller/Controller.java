@@ -27,6 +27,7 @@ public class Controller {
         WinningLotto winningLotto = getMatchLotto();
 
         view.output(INPUT_BONUS);
+        int bonus = getBonus(winningLotto);
 
     }
 
@@ -56,6 +57,17 @@ public class Controller {
         } catch (IllegalArgumentException e) {
             view.output(e.getMessage());
             return getMatchLotto();
+        }
+    }
+
+    private int getBonus(WinningLotto winningLotto) {
+        try {
+            int bonus = view.inputBonus();
+            winningLotto.validateBonus(bonus);
+            return bonus;
+        } catch (IllegalArgumentException e) {
+            view.output(e.getMessage());
+            return getBonus(winningLotto);
         }
     }
 }

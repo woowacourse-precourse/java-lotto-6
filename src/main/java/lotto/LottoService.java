@@ -53,6 +53,34 @@ public class LottoService {
 		return Integer.parseInt(inputBonusNumber);
 	}
 
-	public List<Integer> getWinningResult(List<Lotto> computerLottos, List<Integer> userNumbers, int bonusNumber) {
+	public List<Integer> getWinningResult(
+			List<Lotto> computerLottos,
+			List<Integer> userNumbers,
+			int bonusNumber) {
+		List<Integer> winningResult = new ArrayList<>();
+		for (Lotto computerLotto : computerLottos) {
+			List<Integer> computerLottoNumber = computerLotto.getNumbers();
+			int win = compareNumber(computerLottoNumber, userNumbers);
+			int bonusWin = compareBonusNumber(computerLottoNumber, bonusNumber);
+		}
+	}
+
+	private int compareNumber(
+			List<Integer> computerLottoNumber,
+			List<Integer> userNumbers) {
+		int win = 0;
+		for (int i = 0; i < countOfLotto; i++) {
+			if (computerLottoNumber.contains(userNumbers.get(i))) {
+				win++;
+			}
+		}
+		return win;
+	}
+
+	private int compareBonusNumber(List<Integer> computerLottoNumber, int bonusNumber) {
+		if (computerLottoNumber.contains(bonusNumber)) {
+			return 1;
+		}
+		return 0;
 	}
 }

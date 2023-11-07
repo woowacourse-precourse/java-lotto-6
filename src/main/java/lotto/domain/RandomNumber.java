@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,11 +29,17 @@ public class RandomNumber {
                 .collect(Collectors.toList());
     }
 
-    public List<Integer> getRandomNumbers() {
-        return randomNumbers;
+    public List<List<Integer>> generateAllRandomNumbers(int ticketCount) {
+        List<List<Integer>> allRandomNumbers = new ArrayList<>();
+        for (int i = 0; i < ticketCount; i++) {
+            List<Integer> randomNumbers = randomNumbers();
+            allRandomNumbers.add(randomNumbers);
+        }
+        return allRandomNumbers;
     }
-
 }
+
+
 
 
 

@@ -8,4 +8,12 @@ public class RandomNumberView {
         System.out.println(numbers);
     }
 
+    public void printAllRandomNumbers(List<List<Integer>> allRandomNumbers) {
+        for (List<Integer> randomNumbers : allRandomNumbers) {
+            printRandomNumber(randomNumbers);
+        }
+        OutputView.printSpace();
+    }
+
+
 }

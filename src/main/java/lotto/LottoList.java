@@ -7,7 +7,11 @@ import java.util.List;
 
 public class LottoList {
     private final int number_of_lotto;
-    public static List<Lotto> lottoList = new ArrayList<>();
+    private List<Lotto> lottoList;
+
+    public LottoList(int purchaseAmount) {
+        this.number_of_lotto = purchaseAmount / 1000;
+    }
 
     public int getNumber_of_lotto() {
         return number_of_lotto;
@@ -15,10 +19,6 @@ public class LottoList {
 
     public int getLottoListSize() {
         return lottoList.size();
-    }
-
-    public LottoList(int purchaseAmount) {
-        this.number_of_lotto = purchaseAmount / 1000;
     }
 
     public void print_numberOfLottoList(){
@@ -29,6 +29,7 @@ public class LottoList {
     }
 
     public void createLottoList(){
+        lottoList = new ArrayList<>();
         for(int i = 1; i <= number_of_lotto; i++) {
             List<Integer> picked_numbers = pickLottoNumbers();
             try {

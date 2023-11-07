@@ -20,6 +20,6 @@ public class Application {
         lottoList.createLottoList();
         lottoList.printLottoList();
 
-        
+
     }
 }

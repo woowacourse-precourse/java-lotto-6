@@ -3,7 +3,7 @@ package lotto;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class PurchaseAmount {
-    private static int amount;
+    private int amount;
 
     public int getAmount() {
         return amount;

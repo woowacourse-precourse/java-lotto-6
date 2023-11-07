@@ -17,23 +17,14 @@ public class LottoStore {
     private long lottoAmount;
     private List<Lotto> lottoPapers;
 
-    public void getMoney(final String moneyInput) throws IllegalArgumentException{
-        this.validateMoneyInput(moneyInput);
+    public void getMoney(final long moneyInput) throws IllegalArgumentException{
         this.chargeMoney(moneyInput);
         validateChargedMoney();
     }
 
 
-    public void validateMoneyInput(final String moneyInput) {
-        moneyInput.chars().forEach(o -> {
-            if (!Character.isDigit(o)) {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");
-            }
-        });
-    }
-
-    public void chargeMoney(final String moneyInput) {
-        this.chargedMoney = Long.parseLong(moneyInput);
+    public void chargeMoney(final long moneyInput) {
+        this.chargedMoney = moneyInput;
     }
 
     public void validateChargedMoney() {

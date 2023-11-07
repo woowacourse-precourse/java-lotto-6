@@ -9,6 +9,10 @@ public class MatchResult {
         this.hasBonusNumber = hasBonusNumber;
     }
 
+    public static MatchResult of(int matchNumbersCount, boolean hasBonusNumber) {
+        return new MatchResult(matchNumbersCount, hasBonusNumber);
+    }
+
     public static MatchResult of(Lotto purchasedLotto, WinningNumbersWithBonus winningNumbersWithBonus) {
         return new MatchResult(winningNumbersWithBonus.countMatchingNumbers(purchasedLotto),
                 winningNumbersWithBonus.containsFrom(purchasedLotto));

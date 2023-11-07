@@ -3,11 +3,23 @@ package lotto;
 import java.util.Map;
 
 public class ProfitCalculator {
-    private static final int FIRST_PRIZE = 2000000000;
-    private static final int SECOND_PRIZE = 30000000;
-    private static final int THIRD_PRIZE = 1500000;
-    private static final int FOURTH_PRIZE = 50000;
-    private static final int FIFTH_PRIZE = 5000;
+    private enum Prize {
+        FIRST(2000000000),
+        SECOND(30000000),
+        THIRD(1500000),
+        FOURTH(50000),
+        FIFTH(5000);
+
+        private final int prize;
+
+        Prize(int prize) {
+            this.prize = prize;
+        }
+
+        public int getPrize() {
+            return prize;
+        }
+    }
 
     public Double calculateProfitRate(Map<Integer, Integer> winningStatistics, String buying) {
         Double prizeAmount = calculatePrizeAmount(winningStatistics);
@@ -17,11 +29,11 @@ public class ProfitCalculator {
 
     private Double calculatePrizeAmount(Map<Integer, Integer> winningStatistics) {
         Double prizeAmount = 0.0;
-        prizeAmount += winningStatistics.get(6) * FIRST_PRIZE;
-        prizeAmount += winningStatistics.get(2) * SECOND_PRIZE;
-        prizeAmount += winningStatistics.get(5) * THIRD_PRIZE;
-        prizeAmount += winningStatistics.get(4) * FOURTH_PRIZE;
-        prizeAmount += winningStatistics.get(3) * FIFTH_PRIZE;
+        prizeAmount += winningStatistics.get(6) * Prize.FIRST.getPrize();
+        prizeAmount += winningStatistics.get(2) * Prize.SECOND.getPrize();
+        prizeAmount += winningStatistics.get(5) * Prize.THIRD.getPrize();
+        prizeAmount += winningStatistics.get(4) * Prize.FOURTH.getPrize();
+        prizeAmount += winningStatistics.get(3) * Prize.FIFTH.getPrize();
 
         return prizeAmount;
     }

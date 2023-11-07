@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -49,6 +50,14 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         assertTrue(lotto.isContainsLottoNumber(number));
+    }
+
+    @Test
+    @DisplayName("올바른 번호들이 입력되면 로또를 생성한다.")
+    void generateLotto() {
+        List<Integer> lottoNumber = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThat(new Lotto(lottoNumber)).isInstanceOf(Lotto.class);
     }
 
     @Nested

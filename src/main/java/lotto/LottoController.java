@@ -7,30 +7,28 @@ import java.util.List;
 public class LottoController {
 
     public static void main(String[] args) {
-
+        int quantity;
         LottoFunction lottoFunction = new LottoFunction();
 
-        int amount;
-
         System.out.println(Print.priceRequest);
+        quantity = lottoFunction.getQuantity(Console.readLine());
+        System.out.println(String.format(Print.quantity, quantity) + "\n");
 
-        amount = lottoFunction.divideThousand(Console.readLine());
-
-        System.out.println(String.format(Print.amount, amount) + "\n");
-
-        List<Lotto> lottos = lottoFunction.buyLotto(amount);
+        List<Lotto> lottos = lottoFunction.buyLotto(quantity);
 
         for (Lotto lotto : lottos) {
             lotto.printNumbers();
         }
 
         System.out.println(Print.lottoNumberRequest);
-        HashSet<Integer> LuckyNumbers = lottoFunction.getLuckyNumbers(Console.readLine());
-
-        System.out.println(LuckyNumbers);
+        HashSet<Integer> luckyNumbers = lottoFunction.getLuckyNumbers(Console.readLine());
 
         System.out.println(Print.bonusNumberRequest);
-        String Number = Console.readLine();
+        Integer bonusNumber = lottoFunction.getBonusNumber(Console.readLine(), luckyNumbers);
+
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.compare(luckyNumbers, bonusNumber));
+        }
 
 
     }

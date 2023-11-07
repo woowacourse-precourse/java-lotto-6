@@ -18,7 +18,7 @@ public class LottoController {
 
     public void play() {
         LottoAmountofMoney lottoAmountofMoney = new LottoAmountofMoney(getLottoAmountofMoney());
-        RandomLottos randomLottos = new RandomLottos(lottoAmountofMoney);
+        RandomLottos randomLottos = getRandomLottos(lottoAmountofMoney);
         Lotto answerLotto = new Lotto(getAnswerLottoNumber());
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
     }
@@ -42,6 +42,11 @@ public class LottoController {
     private Integer getBonusNumber() {
         displayOutput.outputBonusNumber();
         return displayInput.inputBonusNumber();
+    }
+    private RandomLottos getRandomLottos(LottoAmountofMoney lottoAmountofMoney){
+        RandomLottos randomLottos = new RandomLottos(lottoAmountofMoney);
+        displayOutput.outputRandomLottos(randomLottos);
+        return randomLottos;
     }
 
 

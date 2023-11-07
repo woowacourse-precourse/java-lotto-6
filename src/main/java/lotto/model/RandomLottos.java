@@ -34,4 +34,7 @@ public class RandomLottos {
         return lotto;
     }
 
+    public List<Lotto> getRandomLottos(){
+        return randomLottos;
+    }
 }

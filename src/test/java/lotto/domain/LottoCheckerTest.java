@@ -10,6 +10,7 @@ import lotto.model.LottoChecker;
 import lotto.model.LottoRank;
 import lotto.model.LottoRankInfo;
 import lotto.model.Lottos;
+import lotto.model.WinningNumbers;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,7 +26,7 @@ public class LottoCheckerTest {
         Lottos lottos = new Lottos(lottoList);
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 8);
         int bonusNumber = 7;
-        LottoChecker lottoChecker = new LottoChecker(winningNumbers, bonusNumber);
+        LottoChecker lottoChecker = new LottoChecker(new WinningNumbers(winningNumbers), bonusNumber);
 
         LottoRankInfo lottoRankInfo = lottoChecker.createResult(lottos);
         Map<LottoRank, Integer> lottoRank = lottoRankInfo.getLottoRankInfo();

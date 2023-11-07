@@ -13,7 +13,7 @@ public class Game {
     }
 
     public LottoRankInfo createResult(List<Integer> winningNumbers, int bonusNumber) {
-        LottoChecker lottoChecker = new LottoChecker(winningNumbers, bonusNumber);
+        LottoChecker lottoChecker = new LottoChecker(new WinningNumbers(winningNumbers), bonusNumber);
         return lottoChecker.createResult(lottos);
     }
 

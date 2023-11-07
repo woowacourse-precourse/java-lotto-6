@@ -7,11 +7,11 @@ public class LottoChecker {
 
     private List<LottoRank> lottoRanks;
 
-    private List<Integer> winningNumbers;
+    private WinningNumbers winningNumbers;
 
     private int bonusNumber;
 
-    public LottoChecker(List<Integer> winningNumbers, int bonusNumber) {
+    public LottoChecker(WinningNumbers winningNumbers, int bonusNumber) {
         this.lottoRanks = new ArrayList<>();
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
@@ -25,7 +25,7 @@ public class LottoChecker {
 
     public List<LottoRank> createLottoRanks(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
-            long matchCount = lotto.compareLottoNumbers(winningNumbers);
+            long matchCount = winningNumbers.compareWinningNumbers(lotto.getNumbers());
             boolean bonus = lotto.compareBonusNumber(bonusNumber);
             lottoRanks.add(LottoRank.valueOf(matchCount, bonus));
         }

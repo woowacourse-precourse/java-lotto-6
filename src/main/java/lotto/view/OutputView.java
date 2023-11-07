@@ -36,4 +36,8 @@ public class OutputView {
     public void printInputBonusNumber() {
         System.out.println(SystemMessage.INPUT_BONUS_NUMBER.getMessage());
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

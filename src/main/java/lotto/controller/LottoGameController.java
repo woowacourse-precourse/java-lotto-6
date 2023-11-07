@@ -31,7 +31,7 @@ public class LottoGameController {
             String inputBonusNumber = inputView.inputBonusNumber();
             return new BonusNumber(inputBonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
         }
 
         return setBonusNumber(winningNumbers);
@@ -45,7 +45,7 @@ public class LottoGameController {
             List<Integer> numbers = StringToListConverter.convert(inputWinningNumbers);
             return new Lotto(numbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
         }
 
         return setWinningNumbers();
@@ -67,7 +67,7 @@ public class LottoGameController {
             String amount = inputView.inputPurchaseAmount();
             return new PurchaseAmount(amount);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
         }
         return setPurchaseAmount();
     }

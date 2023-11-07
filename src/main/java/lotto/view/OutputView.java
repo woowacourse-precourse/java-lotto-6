@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.config.Rank;
+import lotto.domain.Lotto;
 
 import java.util.List;
 
@@ -15,9 +16,9 @@ public class OutputView {
         System.out.printf(SHOW_LOTTO_CNT_MESSAGE,lottoCnt);
     }
 
-    public static void showLotto(List<List<Integer>> lotto) {
-        for (List<Integer> eachLotto : lotto) {
-            System.out.println(eachLotto);
+    public static void showLotto(List<Lotto> lottoTickets) {
+        for (Lotto lotto : lottoTickets) {
+            System.out.println(lotto.getNumbers());
         }
     }
 

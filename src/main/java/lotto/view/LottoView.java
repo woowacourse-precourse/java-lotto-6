@@ -35,6 +35,12 @@ public class LottoView {
         System.out.println(Views.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
     }
 
+    public void printWinningMessage(){
+        System.out.println();
+        System.out.println(Views.OUTPUT_WINNING_RESULT.getMessage());
+        System.out.println(Views.OUTPUT_UNDER_BAR.getMessage());
+    }
+
     public void printWinningResult(int[] winResult){
         for(Ranking ranking : Ranking.values()){
             String getWinningMessage = ranking.formatMessage(winResult[ranking.getIndex()]);

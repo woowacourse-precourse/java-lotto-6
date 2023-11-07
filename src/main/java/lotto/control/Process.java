@@ -20,9 +20,6 @@ public class Process {
         lottoTargetNumResults = null;
     }
 
-    /**
-     * 로또를 산다.
-     */
     public void buyLotto() {
         LottoEnvelop lottoEnvelop = null;
         Integer moneyOfUser = 0;
@@ -36,16 +33,10 @@ public class Process {
         return lottoSeller.tellNumberLotto();
     }
 
-    /**
-     * 로또를 보여준다.
-     */
     public StringBuilder showLottosInformation() {
         return user.showLottoEnvelop();
     }
 
-    /**
-     * 게임 진행자가 당첨 번호를 뽑는다.
-     */
     public void pickWinNumber() {
         // 로또진행자가 당첨 번호를 뽑는다.
         lottoHost.pickWinNumbers();
@@ -55,11 +46,6 @@ public class Process {
         lottoHost.pickBonusNumber();
     }
 
-    /**
-     * 당첨의 결과를 보여준다.
-     *
-     * @return
-     */
     public StringBuilder showStatisticResult() {
         lottoTargetNumResults = lottoHost.giveLottoTargetNumResults();
         return user.showLottoStatisticResult(lottoTargetNumResults);

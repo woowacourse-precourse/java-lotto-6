@@ -1,6 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Map;
+import lotto.domain.LottoAmount;
+import lotto.domain.Ranking;
 
 public record WinningStatistics(LottoAmount lottoAmount, Map<Ranking, Integer> rankingNumber) {
     public double getReturnRate() {

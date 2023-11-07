@@ -1,9 +1,9 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.Exception.INVALID_BONUS_NUMBER_INPUT_TYPE;
-import static lotto.Exception.INVALID_WINNING_NUMBERS_INPUT_TYPE;
-import static lotto.Exception.ONLY_NUMERIC_INPUT_FOR_MONEY;
+import static lotto.exception.Exception.INVALID_BONUS_NUMBER_INPUT_TYPE;
+import static lotto.exception.Exception.INVALID_WINNING_NUMBERS_INPUT_TYPE;
+import static lotto.exception.Exception.ONLY_NUMERIC_INPUT_FOR_MONEY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

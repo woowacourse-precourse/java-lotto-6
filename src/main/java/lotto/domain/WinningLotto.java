@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
 import static lotto.validator.BonusNumberValidator.validate;

@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.Exception.INVALID_NUMBER_RANGE;
+import static lotto.exception.Exception.INVALID_NUMBER_RANGE;
 import static lotto.validator.NumberValidator.validateRange;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

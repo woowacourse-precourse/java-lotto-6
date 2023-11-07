@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.Exception.ONLY_DIVISIBLE_BY_THOUSAND;
+import static lotto.exception.Exception.ONLY_DIVISIBLE_BY_THOUSAND;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.domain.LottoAmount;
 import org.junit.jupiter.api.Test;
 
 class LottoAmountTest {

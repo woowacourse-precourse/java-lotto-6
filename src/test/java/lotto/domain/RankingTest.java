@@ -1,7 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.domain.Ranking;
 import org.junit.jupiter.api.Test;
 
 class RankingTest {

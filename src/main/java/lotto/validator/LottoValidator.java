@@ -1,7 +1,7 @@
 package lotto.validator;
 
-import static lotto.Exception.DUPLICATE_WINNING_NUMBER;
-import static lotto.Exception.WINNING_NUMBERS_SIZE_SHOULD_BE_SIX;
+import static lotto.exception.Exception.DUPLICATE_WINNING_NUMBER;
+import static lotto.exception.Exception.WINNING_NUMBERS_SIZE_SHOULD_BE_SIX;
 
 import java.util.List;
 

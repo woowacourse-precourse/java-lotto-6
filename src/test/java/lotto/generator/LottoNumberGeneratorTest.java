@@ -1,7 +1,8 @@
-package lotto;
+package lotto.generator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.generator.LottoNumberGenerator;
 import org.junit.jupiter.api.Test;
 
 class LottoNumberGeneratorTest {

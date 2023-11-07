@@ -1,12 +1,12 @@
 package lotto.validator;
 
-import static lotto.Exception.DUPLICATE_WINNING_NUMBER;
-import static lotto.Exception.WINNING_NUMBERS_SIZE_SHOULD_BE_SIX;
+import static lotto.exception.Exception.DUPLICATE_WINNING_NUMBER;
+import static lotto.exception.Exception.WINNING_NUMBERS_SIZE_SHOULD_BE_SIX;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 
 import java.util.List;
-import lotto.WinningLotto;
+import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.Test;
 
 class LottoValidatorTest {

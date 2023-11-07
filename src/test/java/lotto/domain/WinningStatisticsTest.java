@@ -1,9 +1,11 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.Ranking.FIFTH;
+import static lotto.domain.Ranking.FIFTH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
+import lotto.domain.LottoAmount;
+import lotto.domain.WinningStatistics;
 import org.junit.jupiter.api.Test;
 
 class WinningStatisticsTest {

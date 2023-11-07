@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain;
 
-import static lotto.Exception.ONLY_DIVISIBLE_BY_THOUSAND;
+import static lotto.exception.Exception.ONLY_DIVISIBLE_BY_THOUSAND;
 
 public class LottoAmount {
     private final int LOTTO_PRICE = 1_000;

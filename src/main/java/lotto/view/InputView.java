@@ -1,9 +1,9 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.Exception.INVALID_BONUS_NUMBER_INPUT_TYPE;
-import static lotto.Exception.INVALID_WINNING_NUMBERS_INPUT_TYPE;
-import static lotto.Exception.ONLY_NUMERIC_INPUT_FOR_MONEY;
+import static lotto.exception.Exception.INVALID_BONUS_NUMBER_INPUT_TYPE;
+import static lotto.exception.Exception.INVALID_WINNING_NUMBERS_INPUT_TYPE;
+import static lotto.exception.Exception.ONLY_NUMERIC_INPUT_FOR_MONEY;
 
 import java.util.Arrays;
 import java.util.List;

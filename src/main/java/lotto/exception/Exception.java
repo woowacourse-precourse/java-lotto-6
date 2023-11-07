@@ -1,4 +1,4 @@
-package lotto;
+package lotto.exception;
 
 public enum Exception {
     // 구입 금액

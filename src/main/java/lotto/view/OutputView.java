@@ -2,9 +2,9 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
-import lotto.Ranking;
-import lotto.WinningStatistics;
+import lotto.domain.Lotto;
+import lotto.domain.Ranking;
+import lotto.domain.WinningStatistics;
 
 public class OutputView {
     private static final String LOTTO_PURCHASE_QUANTITY = "개를 구매했습니다.";

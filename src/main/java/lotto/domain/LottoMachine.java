@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.generator.LottoNumberGenerator;
 
 public class LottoMachine {
     private final int LOTTO_PRICE = 1_000;

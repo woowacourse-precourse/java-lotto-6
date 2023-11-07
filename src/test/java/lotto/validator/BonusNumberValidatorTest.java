@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.Exception.DUPLICATE_BONUS_NUMBER;
+import static lotto.exception.Exception.DUPLICATE_BONUS_NUMBER;
 import static lotto.validator.BonusNumberValidator.validate;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

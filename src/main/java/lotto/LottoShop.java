@@ -8,6 +8,12 @@ import static lotto.view.OutputView.printLottoStatistics;
 import static lotto.view.OutputView.println;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoAmount;
+import lotto.domain.LottoMachine;
+import lotto.domain.Statistician;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningStatistics;
 
 public class LottoShop {
     private static final String INPUT_PURCHASE_AMOUNT_COMMENT = "구입금액을 입력해 주세요.";

@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.Exception.INVALID_NUMBER_RANGE;
+import static lotto.exception.Exception.INVALID_NUMBER_RANGE;
 
 public abstract class NumberValidator {
     private static final int MIN_NUMBER = 1;

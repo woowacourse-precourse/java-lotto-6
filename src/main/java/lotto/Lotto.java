@@ -23,7 +23,21 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public static List<Integer> makeLotto() {
-            return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+    }
+
+    public int countMatchingNumbers(List<Integer> winNumbers) {
+        int count = 0;
+        for (Integer number : this.numbers) {
+            if (winNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean containsBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
     }
 
 }

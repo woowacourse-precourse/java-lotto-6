@@ -19,8 +19,6 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-
-
     public int countEqualNumber(List<Integer> numbers) {
         List<Integer> originalNumbers = new ArrayList<>(this.numbers);
         originalNumbers.retainAll(numbers);

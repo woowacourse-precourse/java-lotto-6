@@ -19,10 +19,6 @@ public enum ResultCase {
         this.inform = inform;
     }
 
-    public int getRank() {
-        return this.rank;
-    }
-
     public int getCorrectness() {
         return this.correctness;
     }

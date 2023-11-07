@@ -19,12 +19,6 @@ public class Bonus extends Input {
         this.number = number;
     }
 
-    public void isContained(List<Integer> winningNumbers) {
-        if (winningNumbers.contains(this.number)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되어서는 안 됩니다.");
-        }
-    }
-
     protected Integer validate(String readLine) {
         String noEmptyReadLine = removeEmpty(readLine);
         Integer bonusNumber = translateToValueType(noEmptyReadLine);
@@ -44,5 +38,11 @@ public class Bonus extends Input {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력되어야 합니다.");
         }
         return result;
+    }
+
+    private void isContained(List<Integer> winningNumbers) {
+        if (winningNumbers.contains(this.number)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되어서는 안 됩니다.");
+        }
     }
 }

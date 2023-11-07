@@ -29,9 +29,7 @@ public class InputView {
             throw new NumberFormatException(ErrorMessage.DELIMITER.errorMessage);
         }
 
-        String[] splitByDelimiter = this.validateEachWinningNumberInput(winningNumberInput);
-
-        return splitByDelimiter;
+        return validateEachWinningNumberInput(winningNumberInput);
     }
 
     public String[] validateEachWinningNumberInput(final String winningNumberInput) {
@@ -54,29 +52,24 @@ public class InputView {
             throw new NumberFormatException(ErrorMessage.NOT_DIGIT_BONUS_NUM.errorMessage);
         }
 
-        int bonusNumber = Integer.parseInt(bonusNumberInput);
-
-        return bonusNumber;
+        return Integer.parseInt(bonusNumberInput);
     }
 
     public String requestLottoMoneyToBuy() {
         System.out.println(LottoGameMessage.BUY_LOTTO_MONEY.message);
-        String moneyInput = Console.readLine();
 
-        return moneyInput;
+        return Console.readLine();
     }
 
     public String requestWinningNumber() {
         System.out.println(LottoGameMessage.REQUEST_WINNING_NUMBER.message);
-        String winningNumberInput = Console.readLine();
 
-        return winningNumberInput;
+        return Console.readLine();
     }
 
     public String requestBonusNumber() {
         System.out.println(LottoGameMessage.REQUEST_BONUS_NUMBER.message);
-        String bonusNumberInput = Console.readLine();
 
-        return bonusNumberInput;
+        return Console.readLine();
     }
 }

@@ -29,6 +29,8 @@ public class LottoController {
         lottos = createLottos(lottoTicketCount);
         outputView.printLottos(lottos);
 
+        List<Integer> winningNumbers = inputWinnerNumbers();
+        int bonusNumber = inputBonusNumber(winningNumbers);
     }
 
     private int inputLottoAmount() {
@@ -58,6 +60,16 @@ public class LottoController {
             try {
                 winnerLotto = new Lotto(service.splitStringToIntegerList(inputView.inputWinningNumbers()));
                 return winnerLotto.getNumbers();
+            } catch (IllegalArgumentException e) {
+                outputView.printError(e);
+            }
+        }
+    }
+
+    private int inputBonusNumber(List<Integer> winningNumbers) {
+        while (true) {
+            try {
+                return service.validateBonusNumber(winningNumbers, inputView.inputBonusNumber());
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }

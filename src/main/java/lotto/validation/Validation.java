@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.PatternSyntaxException;
+import lotto.view.exception.DuplicateBonusNumberException;
 import lotto.view.exception.DuplicateNumberException;
 import lotto.view.exception.InvalidDivision;
 import lotto.view.exception.InvalidLottoSizeException;
@@ -12,7 +13,7 @@ import lotto.view.exception.InvalidNumberRangeException;
 import lotto.view.exception.InvalidStringSplitException;
 import lotto.view.exception.InvalidZeroException;
 
-public class validation {
+public class Validation {
     private static final int MIN_NUMBER = 1;
     private static final int SIZE = 6;
     private static final int MAX_NUMBER = 45;
@@ -38,6 +39,13 @@ public class validation {
                 throw new InvalidNumberRangeException();
             }
         }
+    }
+
+    public static void validateNumberRange(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            throw new InvalidNumberRangeException();
+        }
+
     }
 
     public static int isInvalidNumber(String amount) {
@@ -68,4 +76,9 @@ public class validation {
         }
     }
 
+    public static void isNumberInList(List<Integer> winningNumbers, int validNumber) {
+        if (winningNumbers.contains(validNumber)) {
+            throw new DuplicateBonusNumberException();
+        }
+    }
 }

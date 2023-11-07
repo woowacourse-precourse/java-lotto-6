@@ -64,6 +64,23 @@ public class LottoUI {
         }
     }
 
+    public static void printWinningStatistics(List<Rank> ranks, double earningRate) {
+        EnumMap<Rank, Integer> countRanks = countRanks(ranks);
+        System.out.println("당첨 통계\n---");
+        for (Rank rank : Rank.values()) {
+            if(rank==Rank.MISS){
+                continue;
+            }
+            System.out.printf("%d개 일치", rank.getMatchCount());
+            if (rank == Rank.FIVE_BONUS) {
+                System.out.print(", 보너스 볼 일치");
+            }
+            String formattedPrize = String.format(Locale.US, "%,d", rank.getPrize());
+            System.out.printf(" (%s원) - %d개\n", formattedPrize, countRanks.get(rank));
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", earningRate);
+    }
+
     private static List<Integer> convertStringToIntegerList(String input) {
         List<Integer> numbers = new ArrayList<>();
         String[] numberStrings = input.split(",");
@@ -76,5 +93,17 @@ public class LottoUI {
             }
         }
         return numbers;
+    }
+
+    private static EnumMap<Rank, Integer> countRanks(List<Rank> ranks){
+        EnumMap<Rank, Integer> countRanks = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            countRanks.put(rank, 0);
+        }
+
+        for (Rank rank : ranks) {
+            countRanks.put(rank, countRanks.get(rank) + 1);
+        }
+        return countRanks;
     }
 }

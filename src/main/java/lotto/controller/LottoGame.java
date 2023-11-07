@@ -25,6 +25,7 @@ public class LottoGame {
         int bonusNum = LottoUI.getBonusNumber(winningLotto);
         List<Rank> ranks = checkRanks(lottos, winningLotto, bonusNum);
         double earningRate = calculateEarningRate(purchaseAmount, ranks);
+        LottoUI.printWinningStatistics(ranks, earningRate);
     }
 
     public List<Lotto> getRandomLottos(int lottoCnt) {

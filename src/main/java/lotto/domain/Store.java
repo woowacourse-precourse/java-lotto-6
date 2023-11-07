@@ -40,4 +40,8 @@ public class Store {
         return this.price / LOTTO_PRICE;
     }
 
+    public int getMoney() {
+        return this.price;
+    }
+
 }

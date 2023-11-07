@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 import static java.math.RoundingMode.HALF_UP;
@@ -15,20 +16,24 @@ public class LottoResults {
         this.ranks = ranks;
     }
 
-    public long calculateTotalWinningMoney() {
+    public double calculateTotalProfitRate(int inputPrice) {
+        return BigDecimal.valueOf(calculatePercent(calculateTotalWinningMoney(), inputPrice))
+                .setScale(SCALE, HALF_UP)
+                .doubleValue();
+    }
+
+    private long calculateTotalWinningMoney() {
         return ranks.stream()
                 .mapToLong(Rank::getWinningMoney)
                 .sum();
     }
 
-    public double calculateTotalProfit(long totalWinningMoney, int inputPrice) {
-        return BigDecimal.valueOf(calculatePercent(totalWinningMoney, inputPrice))
-                .setScale(SCALE, HALF_UP)
-                .doubleValue();
-    }
-
     private double calculatePercent(long totalWinningMoney, double inputPrice) {
         return (totalWinningMoney / inputPrice) * 100;
+    }
+
+    public List<Rank> getRanks() {
+        return Collections.unmodifiableList(ranks);
     }
 
 }

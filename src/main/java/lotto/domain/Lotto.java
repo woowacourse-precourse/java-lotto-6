@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -37,16 +38,18 @@ public class Lotto {
     }
 
     public Rank calculateRank(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        // 매치 개수
         long count = this.numbers.stream()
                 .filter(winningNumbers::hasDuplicate)
                 .count();
 
-        // 보너스 번호 매치 여부
         boolean matchBonus = this.numbers.stream()
                 .anyMatch(bonusNumber::match);
 
         return Rank.valueOf(count, matchBonus);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 
 }

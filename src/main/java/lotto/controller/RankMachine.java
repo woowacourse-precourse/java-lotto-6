@@ -5,9 +5,12 @@ import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
 import lotto.domain.Tickets;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class RankMachine {
     private final List<Rank> ranks;
@@ -31,8 +34,15 @@ public class RankMachine {
     }
 
     public String getWinningStatistics() {
-        // TODO: 당첨 통계 구현
-        return "";
+        NumberFormat formatter = NumberFormat.getNumberInstance();
+        return IntStream
+                .range(0, ranks.size())
+                .mapToObj(index -> String.format(
+                        ranks.get(index).message().getMessage(),
+                        formatter.format(ranks.get(index).reward()),
+                        counts.get(index)
+                ))
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     public String getRateOfReturn() {

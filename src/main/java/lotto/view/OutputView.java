@@ -1,9 +1,8 @@
 package lotto.view;
+
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.Result;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -19,8 +18,7 @@ public class OutputView {
 
     public static void printLottoNumber(List<Lotto> lottos){
         for(Lotto lotto : lottos){
-            Object[] lottoNumber = lotto.getNumbers().toArray();
-            System.out.println(Arrays.toString(lottoNumber));
+            System.out.println(lotto.getNumbers().toString());
         }
     }
 

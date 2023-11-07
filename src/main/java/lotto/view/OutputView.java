@@ -1,8 +1,10 @@
 package lotto.view;
 
+import java.util.ArrayList;
 import java.util.List;
-import lotto.Dto.LottoResultDto;
 import lotto.Dto.MyLottosDto;
+import lotto.Dto.SingleResultDto;
+import lotto.Dto.TotalResultDto;
 import lotto.constants.messages.Notification;
 
 
@@ -25,14 +27,22 @@ public class OutputView {
         System.out.println(Notification.BONUS_LOTTO.getMessage());
     }
 
-    public void showResult(LottoResultDto lottoResultDto) {
+    public void showResult(TotalResultDto totalResultDto) {
         System.out.println(Notification.RESULT_PRE.getMessage());
-        for (List<Integer> x : lottoResultDto.getResult()) {
-            System.out.printf(Notification.RESULT_MATCHED.getMessage(), x.get(0), x.get(2), x.get(3));
+        List<Integer> order = new ArrayList<>(List.of(3, 4, 5, 7, 6));
+        for (Integer x : order) {
+            SingleResultDto singleResultDto = totalResultDto.getSingleResult(x);
+            System.out.printf(Notification.RESULT_MATCHED.getMessage(), singleResultDto.getMatch());
+            if (x == 7) {
+                System.out.print(Notification.RESULT_BONUS.getMessage());
+            }
+            System.out.printf(Notification.RESULT_PRIZE.getMessage(), singleResultDto.getPrize());
+            System.out.printf(Notification.RESULT_WON.getMessage(), singleResultDto.getWon());
             System.out.println();
         }
-        System.out.printf(Notification.RESULT_PROFIT.getMessage(), lottoResultDto.getProfit());
+        System.out.printf(Notification.RESULT_PROFIT.getMessage(), totalResultDto.getProfit());
         System.out.println();
-
     }
+
+
 }

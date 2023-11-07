@@ -45,8 +45,8 @@ class LottoNumbersTest {
 
     @Test
     void contains_포함() {
-        for (int number = MIN_LOTTO_NUMBER; number <= MAX_LOTTO_NUMBER; number++) {
-            assertThat(LottoNumbers.contains(number)).isTrue();
+        for(int lottoNumber : LOTTO_NUMBERS_INTEGERS) {
+            assertThat(LottoNumbers.contains(lottoNumber)).isTrue();
         }
     }
 

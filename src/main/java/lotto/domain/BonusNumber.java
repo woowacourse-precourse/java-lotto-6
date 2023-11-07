@@ -9,6 +9,10 @@ public record BonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
+    public BonusNumber(String bonusNumber) {
+        this(Validator.validateNumeric(bonusNumber));
+    }
+
     private void validate(int bonusNumber) {
         Validator.validateNumberRange(bonusNumber);
     }

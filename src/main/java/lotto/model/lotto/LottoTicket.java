@@ -3,6 +3,7 @@ package lotto.model.lotto;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.model.Budget;
 import lotto.model.machine.LottoMachine;
 
@@ -35,6 +36,13 @@ public class LottoTicket {
 
     public List<Lotto> getLottoTicket(){
         return Collections.unmodifiableList(lottoTicket);
+    }
+
+    @Override
+    public String toString() {
+        return lottoTicket.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining(" "));
     }
 
 }

@@ -44,4 +44,7 @@ public class LottoController {
     {
         return lottoService.ticketMatchUserPickNumber(autoLottoTicket,userLottoNumbers,lottoBonus);
     }
+
+
+
 }

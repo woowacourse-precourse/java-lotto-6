@@ -37,7 +37,6 @@ public class Lotto {
                 }
             }
         }
-        System.out.println("matchCount = " + matchCount);
         if (matchCount == 5 && hitBonusNum) {
             return Result.FIVE_BONUS;
         } else if (matchCount == 3) {

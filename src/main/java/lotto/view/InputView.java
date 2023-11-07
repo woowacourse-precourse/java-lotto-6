@@ -1,17 +1,25 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import lotto.exception.LottoError;
+import lotto.exception.LottoValidationException;
 
 public class InputView {
 
-    /**
-     * 구매 금액을 입력받는 메소드입니다.
-     *
-     * @return 입력받은 구매 금액
-     */
     public static int inputPurchaseAmount() {
-        return 0;
+        System.out.println("구입금액을 입력해 주세요.");
+        return parseToInteger(Console.readLine());
     }
+
+    private static int parseToInteger(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new LottoValidationException(LottoError.INVALID_PURCHASE_AMOUNT.toString());
+        }
+    }
+
 
     /**
      * 당첨 번호를 입력받는 메소드입니다.

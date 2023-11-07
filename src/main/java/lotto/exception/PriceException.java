@@ -1,12 +1,11 @@
 package lotto.exception;
 
 import lotto.model.Price;
+import lotto.view.ErrorMessage;
 
-import static lotto.view.ErrorMessage.notThousandPrice;
-import static lotto.view.ErrorMessage.priceZeroException;
+import static lotto.exception.PriceCheck.*;
 
 public class PriceException {
-    private static final int standardPrice = 1000;
     public static Price priceException(int price) throws IllegalArgumentException{
         try {
             zeroPriceException(price);
@@ -19,30 +18,16 @@ public class PriceException {
 
     public static void zeroPriceException(int price) throws IllegalArgumentException{
         if (!checkZeroPrice(price)) {
-            priceZeroException();
+            ErrorMessage.priceZeroException();
             throw new IllegalArgumentException();
         }
     }
 
     public static void thousandPriceException(int price) throws IllegalArgumentException {
         if (!checkThousandPrice(price)) {
-            notThousandPrice();
+            ErrorMessage.notThousandPrice();
             throw new IllegalArgumentException();
         }
     }
-
-    public static boolean checkZeroPrice(int price){
-        if (price < standardPrice) {
-            return false;
-        }
-        return true;
-    }
-
-    public static boolean checkThousandPrice(int price) {
-        if (price % standardPrice != 0) {
-            return false;
-        }
-        return true;
-    }
-
+    
 }

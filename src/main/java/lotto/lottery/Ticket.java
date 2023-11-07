@@ -14,7 +14,6 @@ public class Ticket {
         this.buyingAmount = Integer.parseInt(buyingAmount);
     }
 
-
     public List<List<Integer>> getTicketNumbers() {
         List<List<Integer>> ticketNumbers = new ArrayList<>();
         ticketNumbers = createRandomNumbers(buyTicket());

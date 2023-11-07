@@ -39,7 +39,7 @@ public class GameManager {
         while (true) {
             try {
                 String buyingAmountInput = inputManager.getUserInput();
-                BuyingAmount buyingAmount = new BuyingAmount(buyingAmountInput);
+                new BuyingAmount(buyingAmountInput);
                 return buyingAmountInput;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

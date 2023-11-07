@@ -1,6 +1,7 @@
 package lotto.lottery;
 
 import lotto.exception.InputValidator;
+
 import java.util.List;
 
 public class Bonus {
@@ -14,13 +15,20 @@ public class Bonus {
         checkBonusNumber(bonus);
     }
 
-    public Bonus(){}
+    public Bonus() {
+    }
 
     public int getBonus() {
         return bonus;
     }
-    public void setBonusCount(int bonusCount){this.bonusCount = bonusCount;}
-    public int getBonusCount(){return bonusCount;}
+
+    public void setBonusCount(int bonusCount) {
+        this.bonusCount = bonusCount;
+    }
+
+    public int getBonusCount() {
+        return bonusCount;
+    }
 
     private void checkBonusNumber(String bonus) {
         InputValidator inputValidator = new InputValidator();

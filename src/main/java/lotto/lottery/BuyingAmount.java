@@ -4,7 +4,7 @@ import lotto.exception.InputValidator;
 
 public class BuyingAmount {
 
-    public BuyingAmount(String buyingAmount){
+    public BuyingAmount(String buyingAmount) {
         checkBuyingAmount(buyingAmount);
     }
 

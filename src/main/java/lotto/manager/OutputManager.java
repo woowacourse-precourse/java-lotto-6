@@ -24,12 +24,12 @@ public class OutputManager {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public void printBonusNumber(){
+    public void printBonusNumber() {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public void printWinningMessage(Map<Integer, Integer> matchedNumberCount){
+    public void printWinningMessage(Map<Integer, Integer> matchedNumberCount) {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -40,7 +40,7 @@ public class OutputManager {
         System.out.println("6개 일치 (2,000,000,000원) - " + matchedNumberCount.get(6) + "개");
     }
 
-    public void printProfitRate(double profitRate){
+    public void printProfitRate(double profitRate) {
         String formatProfitRate = String.format("%.1f%%", profitRate);
         System.out.println("총 수익률은 " + formatProfitRate + "입니다.");
     }

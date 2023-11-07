@@ -23,7 +23,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    public long receivePurchaseAmount() {
+    public long supplyPurchaseAmount() {
         final String purchaseAmount = Console.readLine();
         validatePurchaseAmount(purchaseAmount);
         return Long.parseLong(purchaseAmount);
@@ -49,7 +49,7 @@ public class InputView {
         return !purchaseAmount.matches(NUMBER_REGEX);
     }
 
-    public String receiveWinningNumber() {
+    public String supplyWinningNumber() {
         final String winningNumber = Console.readLine();
         validateWinningNumber(winningNumber);
         return winningNumber;
@@ -85,7 +85,7 @@ public class InputView {
         }
     }
 
-    public int receiveBonusNumber(final String winningNumber) {
+    public int supplyBonusNumber(final String winningNumber) {
         final String bonusNumber = Console.readLine();
         validateBonusNumber(winningNumber, bonusNumber);
         return Integer.parseInt(bonusNumber);

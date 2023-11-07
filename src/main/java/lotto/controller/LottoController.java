@@ -22,21 +22,21 @@ public class LottoController {
     }
 
     public void play() {
-        final Money purchaseAmount = receivePurchaseAmount();
-        final UserLotto userLotto = receiveUserLotto(purchaseAmount);
+        final Money purchaseAmount = getPurchaseAmount();
+        final UserLotto userLotto = getUserLotto(purchaseAmount);
         displayUserLotto(userLotto);
 
-        final WinningLotto winningLotto = receiveWinningLotto();
+        final WinningLotto winningLotto = getWinningLotto();
 
         final LottoResult lottoResult = userLotto.compareAllLotto(winningLotto);
         displayLottoResult(purchaseAmount, lottoResult);
     }
 
-    private Money receivePurchaseAmount() {
+    private Money getPurchaseAmount() {
         return new Money(lottoViewController.receivePurchaseAmount());
     }
 
-    private UserLotto receiveUserLotto(final Money purchaseAmount) {
+    private UserLotto getUserLotto(final Money purchaseAmount) {
         final List<Lotto> userLottoNumbers = lottoGenerator.createLottoByPrice(purchaseAmount);
         return new UserLotto(userLottoNumbers);
     }
@@ -45,10 +45,10 @@ public class LottoController {
         final long lottoCount = userLotto.getLottoCount();
         final String allLotto = userLotto.toString();
 
-        lottoViewController.displayUserLotto(lottoCount, allLotto);
+        lottoViewController.printUserLotto(lottoCount, allLotto);
     }
 
-    private WinningLotto receiveWinningLotto() {
+    private WinningLotto getWinningLotto() {
         final String winningNumbers = lottoViewController.receiveWinningNumber();
         final int bonusNumber = lottoViewController.receiveBonusNumber(winningNumbers);
 

@@ -6,6 +6,7 @@ import lotto.dto.LottoResultDTO;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public final class LottoResultService {
     private final WinningLotto winningLotto;
@@ -33,12 +34,12 @@ public final class LottoResultService {
     private LottoResultDTO convertDto(Map<LottoRankInfo, Integer> result) {
         LottoResult lottoResult = new LottoResult(result);
         Map<LottoRankInfo, Integer> lottoRankDto = convertLottoRanks(result);
-        convertLottoRanks(result);
         return new LottoResultDTO(lottoResult.getReturnRatio(), lottoRankDto);
     }
 
     private Map<LottoRankInfo, Integer> convertLottoRanks(Map<LottoRankInfo, Integer> result) {
-        Map<LottoRankInfo, Integer> lottoRankDto = new EnumMap<>(LottoRankInfo.class);
+        Map<LottoRankInfo, Integer> lottoRankDto = new TreeMap<>((o1, o2) -> o1.getHitCount() - o2.getHitCount());
+
         Arrays.stream(LottoRankInfo.values())
                 .forEach(rank -> lottoRankDto.put(rank, result.get(rank)));
 

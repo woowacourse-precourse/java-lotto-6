@@ -55,5 +55,5 @@
 - [x] PlayerService 테스트
   - [x] 로또 생성 테스트
   - [x] 로또 체크 테스트
-- [ ] ReturnRateCalculator
-  - [ ] 수익률 계산 테스트
+- [x] ReturnRateCalculator 테스트
+  - [x] 수익률 계산 테스트

@@ -5,7 +5,7 @@ public class Application {
         // TODO: 프로그램 구현
         Buyer buyer = new Buyer();
 
-        buyer.buyLotto(8000);
+        buyer.buyLotto();
 
         buyer.drawNumber();
 

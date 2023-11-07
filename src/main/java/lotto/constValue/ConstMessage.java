@@ -14,8 +14,6 @@ public class ConstMessage {
     public static final String SECOND_PLACE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) - ";
 
-    public static final String PLACE_MESSAGE_FOOTER = "개";
-
     public static final String PROFIT_MESSAGE_HEADER = "총 수익률은 ";
     public static final String PROFIT_MESSAGE_FOOTER = "%입니다.";
 

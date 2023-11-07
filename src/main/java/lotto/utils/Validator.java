@@ -1,6 +1,5 @@
 package lotto.utils;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static lotto.constValue.ConstMessage.*;
@@ -10,12 +9,13 @@ public class Validator {
     public static void validateNullOrEmpty(String input) {
         if (input == null){
             System.out.println(NULL_ERROR_MESSAGE);
-            throw new IllegalArgumentException(NULL_ERROR_MESSAGE);
+            throw new IllegalArgumentException();
         }
     }
 
     public static void validateNumbersLength(List<Integer> inputs) {
         if (inputs.size() != 6) {
+            System.out.println(LENGTH_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
     }

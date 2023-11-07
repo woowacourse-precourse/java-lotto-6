@@ -10,6 +10,7 @@ public class Application {
     static List<Integer> lottoAnswer = new ArrayList<>();
     static int bonusNumber;
 
+    static double totalRevenue;
 
     static int validateInputIsNum(String inputStr) {
         int retNum = 0;
@@ -180,6 +181,40 @@ public class Application {
 
     }
 
+
+    static void showLottoWins() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n당첨 통계\n---\n");
+        sb.append("3개 일치 (5,000원) - " + Integer.toString(LottoWin.MATCHED_3.getCount()) + "개\n");
+        sb.append("4개 일치 (50,000원) - " + Integer.toString(LottoWin.MATCHED_4.getCount()) + "개\n");
+        sb.append("5개 일치 (1,500,000원) - " + Integer.toString(LottoWin.MATCHED_5.getCount()) + "개\n");
+        sb.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + Integer.toString(LottoWin.MATCHED_5_WITH_BONUS.getCount()) + "개\n");
+        sb.append("6개 일치 (2,000,000,000원) - " + Integer.toString(LottoWin.MATCHED_6.getCount()) + "개\n");
+        System.out.print(sb.toString());
+    }
+
+    static void calculateRevenue(int winMatchValue, int winCounts) {
+        for (LottoRevenue lr : LottoRevenue.values()) {
+            if (lr.getMatchValue() == winMatchValue) {
+                lr.increaseRevenue(winCounts);
+                totalRevenue += lr.getMatchRevenue();
+            }
+        }
+    }
+
+    static void showRevenue() {
+        for (LottoWin lw : LottoWin.values()) {
+            int winMatchValue = lw.getMatchValue();
+            int winCounts = lw.getCount();
+            calculateRevenue(winMatchValue, winCounts);
+        }
+
+        double result = (totalRevenue / (double) purchaseLottoCost) * 100;
+
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", result));
+
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Scanner sc = new Scanner(System.in);
@@ -192,14 +227,17 @@ public class Application {
 
         showPurchasedLottos(purchasedLottos);
 
-        System.out.print("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         setLottoAnswer(sc.nextLine());
 
-        System.out.print("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         setBonusNumber(sc.nextLine());
 
         validateMyRevenue(purchasedLottos);
 
+        showLottoWins();
+
+        showRevenue();
 
     }
 }

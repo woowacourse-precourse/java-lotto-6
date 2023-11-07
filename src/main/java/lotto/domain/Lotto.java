@@ -17,10 +17,11 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         lottoException.validateLottoNumbers(numbers);
     }
-    public void setBonusNumber(int bonusNumber) {
-        lottoException.validateBonusNumber(numbers, bonusNumber);
+    public void setBonusNumber(int inputBonusNumber) {
+        lottoException.validateBonusNumber(numbers, inputBonusNumber);
+        numbers.add(inputBonusNumber);
     }
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return numbers;
     }
     public int getBonusNumber() {

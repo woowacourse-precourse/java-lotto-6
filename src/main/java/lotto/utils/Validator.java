@@ -56,14 +56,14 @@ public class Validator {
         return false;
     }
 
-    public static boolean validateHasText(String input){
+    private static boolean validateHasText(String input){
         if(input == null || input.isBlank()){
             throw new IllegalArgumentException("[ERROR] 구입 금액이 비어있습니다.");
         }
         return false;
     }
 
-    public static boolean validateInteger(String input){
+    private static boolean validateInteger(String input){
         if(!NUMERIC_PATTERN.matcher(input).matches()){
             throw new IllegalArgumentException("[ERROR] 정수가 아닙니다.");
         }
@@ -71,42 +71,42 @@ public class Validator {
     }
 
 
-    public static boolean validateDivided(String input){
+    private static boolean validateDivided(String input){
         if(Integer.parseInt(input) % 1000!=0){
             throw new IllegalArgumentException("[ERROR] 구입 금액이 1000으로 나누어 떨어지지 않습니다.");
         }
         return false;
     }
 
-    public static boolean validateMinimum(String input){
+    private static boolean validateMinimum(String input){
         if(Integer.parseInt(input) < MinimumAmount){
             throw new IllegalArgumentException("[ERROR] 최소 구입 금액은 1000원 입니다.");
         }
         return false;
     }
 
-    public static boolean validateRange(String input){
+    private static boolean validateRange(String input){
         if(!isInRange(input)){
             throw new IllegalArgumentException("[ERROR] 로또 번호의 범위는 1부터 45 까지 입니다.");
         }
         return false;
     }
 
-    public static boolean isInRange(String input){
+    private static boolean isInRange(String input){
         if(Integer.parseInt(input)<MinimumRange || Integer.parseInt(input)>MaximumRange){
             return false;
         }
         return true;
     }
 
-    public static boolean validateNumberCount(String[] numbers){
+    private static boolean validateNumberCount(String[] numbers){
         if(Arrays.stream(numbers).count()!=6){
             throw new IllegalArgumentException("[ERROR] 로또 번호 갯수가 6개가 아닙니다.");
         }
         return false;
     }
 
-    public static boolean validateSameNumber(String input){
+    private static boolean validateSameNumber(String input){
         if(!numberSet.add(input)){
             throw new IllegalArgumentException("[ERROR] 중복된 로또 번호가 존재합니다.");
         }

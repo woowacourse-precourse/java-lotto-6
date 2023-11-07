@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import jdk.dynalink.beans.StaticClass;
 import lotto.model.LottoGame;
 import lotto.model.User;
 import lotto.model.WinningLotto;
@@ -9,7 +8,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
-import java.util.Stack;
 
 public class Controller {
 

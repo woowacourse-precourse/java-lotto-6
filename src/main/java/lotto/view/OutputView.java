@@ -18,12 +18,12 @@ public class OutputView {
         }
     }
 
-    public static void displayPurchase(int amount){
+    private static void displayPurchase(int amount){
         int purchaseNumber = amount/LOTTO_PRICE;
         System.out.println(purchaseNumber+"개를 구매했습니다.");
     }
 
-    public static void displayLotto(Lotto lotto){
+    private static void displayLotto(Lotto lotto){
         List<Integer> lottoNumbers = lotto.getNumbers();
         System.out.println(lottoNumbers);
     }

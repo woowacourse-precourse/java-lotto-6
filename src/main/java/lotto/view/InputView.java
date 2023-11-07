@@ -55,19 +55,19 @@ public class InputView {
         return lottoNumber;
     }
 
-    public static String inputPurchaseAmount(){
+    private static String inputPurchaseAmount(){
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
         return purchaseAmount;
     }
 
-    public static String[] inputLottoNumber(){
+    private static String[] inputLottoNumber(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String lottoNumber = Console.readLine();
         return lottoNumber.split(",");
     }
 
-    public static String inputBonusNumber(){
+    private static String inputBonusNumber(){
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();
         return bonusNumber;

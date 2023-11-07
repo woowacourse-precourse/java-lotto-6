@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.User;
 import lotto.utils.Calculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;

@@ -15,7 +15,7 @@ public class Input {
         this.winningNumber = winningNumber;
     }
 
-    public void startInput() {
+    public int startInput() {
         System.out.println("구입금액을 입력해 주세요.");
         String purchaseAmount = Console.readLine();
         System.out.println();
@@ -47,5 +47,7 @@ public class Input {
         String bonusNum = Console.readLine();
         int bonusNumber = Integer.parseInt(bonusNum);
         System.out.println();
+
+        return bonusNumber;
     }
 }

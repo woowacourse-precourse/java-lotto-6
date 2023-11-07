@@ -2,9 +2,9 @@ package lotto;
 
 import lotto.controller.ControlMain;
 import lotto.controller.ErrorCheck;
+import lotto.model.EnumRanking;
 import lotto.model.Player;
 import lotto.view.ErrorMessage;
-import lotto.view.OutputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,8 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -119,7 +118,7 @@ class LottoTest {
         }
     }
 
-    @DisplayName("Lotto 당첨 개수 테스트 1,1,1,1,1 이 나와야함")
+    @DisplayName("Lotto 당첨 개수 테스트 1,1,1,1,1 이 나와야함 수익률 테스트")
     @Test
     void lottoTest() {
         List<List<Integer>> mainLotto = new ArrayList<>(List.of(
@@ -139,4 +138,64 @@ class LottoTest {
         assertThat(matchCountList).isEqualTo(Arrays.asList(1, 1, 1, 1, 1));
         assertThat(player.getTotal()).isEqualTo(2031555000);
     }
+
+    @DisplayName("Player price count 입력")
+    @Test
+    void playerPriceTest() {
+        Player player = new Player();
+        player.updatePrice(8000);
+        assertThat(player.getPrice()).isEqualTo(8000);
+        assertThat(player.getCount()).isEqualTo(8);
+
+    }
+
+    @DisplayName("1등")
+    @Test
+    void lottoTest1() {
+        int cnt = 6;
+        assertThat(EnumRanking.Ranking.otherRanking(cnt)).isEqualTo(EnumRanking.Ranking.FIRST);
+    }
+
+    @DisplayName("2등")
+    @Test
+    void lottoTest2() {
+        Player player = new Player();
+        player.updateBonusNumber(45);
+        List<Integer> randomLotto = List.of(1, 2, 3, 4, 5, 45);
+        assertThat(EnumRanking.Ranking.secondOrThird(randomLotto, player)).isEqualTo(EnumRanking.Ranking.SECOND);
+    }
+
+    @DisplayName("3등")
+    @Test
+    void lottoTest3() {
+        Player player = new Player();
+        player.updateBonusNumber(45);
+        List<Integer> randomLotto = List.of(1, 2, 3, 4, 5, 6);
+        assertThat(EnumRanking.Ranking.secondOrThird(randomLotto, player)).isEqualTo(EnumRanking.Ranking.THIRD);
+    }
+
+    @DisplayName("4등")
+    @Test
+    void lottoTest4() {
+        int cnt = 4;
+        assertThat(EnumRanking.Ranking.otherRanking(cnt)).isEqualTo(EnumRanking.Ranking.FOURTH);
+    }
+
+    @DisplayName("5등")
+    @Test
+    void lottoTest5() {
+        int cnt = 3;
+        assertThat(EnumRanking.Ranking.otherRanking(cnt)).isEqualTo(EnumRanking.Ranking.FIFTH);
+    }
+
+    @DisplayName("Last")
+    @Test
+    void lottoTest6() {
+        int[] cnt = {0, 1, 2};
+        for (int i : cnt) {
+            assertThat(EnumRanking.Ranking.otherRanking(i)).isEqualTo(EnumRanking.Ranking.LAST);
+        }
+    }
+
+
 }

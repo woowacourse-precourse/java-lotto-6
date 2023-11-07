@@ -11,7 +11,7 @@ public class ResultService {
 
     public void createResultService(LottoResultCount lottoResultCount, int amount) {
         this.lottoResultCount = lottoResultCount;
-        this.amount = amount;
+        this.amount = amount * 1000;
     }
 
     public LottoResultCount getLottoResultCount() {
@@ -32,11 +32,11 @@ public class ResultService {
                 + (long) this.lottoResultCount.getSixCount() * SIX_COUNT.getPrizeMoney();
     }
 
-    private double calculateRate(long totalMoney, int amount) {
+    private double calculateRate(long totalProfit, int amount) {
         if (amount == 0) {
             return 0.0;
         }
-        double rate = (double) totalMoney / amount;
-        return Math.round(rate * 100.0) / 100.0;
+        double profitRate = (double) totalProfit / amount * 100;
+        return Math.round(profitRate * 100.0) / 100.0;
     }
 }

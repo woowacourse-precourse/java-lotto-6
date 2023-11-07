@@ -10,7 +10,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.mockito.Mockito.*;
 
 class ConsoleReaderTest {
-    ConsoleReader consoleReader;
+    private ConsoleReader consoleReader;
 
     @BeforeEach
     void setUp() {

@@ -1,7 +1,5 @@
 package lotto;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class LottoCheck {
@@ -9,7 +7,8 @@ public class LottoCheck {
     private final List<Integer> lottoNumber; // 로또 뽑기 값
     private final Integer lottoBonus;
     private final Integer[] lottoResult = new Integer[]{0, 0, 0, 0, 0, 0, 0, 0};
-    private final Integer[] lottoPrice = new Integer[]{0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000};
+
+    private final LottoConfig[] lottoConfig = LottoConfig.values();
 
     public LottoCheck(List<Integer>[] lottoPickNumbers, List<Integer> lottoNumber) {
         this.lottoPickNumbers = lottoPickNumbers;
@@ -27,11 +26,7 @@ public class LottoCheck {
     // 결과 값 출력
     public void lottoOutput() {
         System.out.println("당첨통계\n---");
-        System.out.println(place5th(lottoResult[3]));
-        System.out.println(place4th(lottoResult[4]));
-        System.out.println(place3th(lottoResult[5]));
-        System.out.println(place2th(lottoResult[7]));
-        System.out.println(place1th(lottoResult[6]));
+        place(lottoResult);
         System.out.println(profit(profit()));
     }
 
@@ -41,7 +36,8 @@ public class LottoCheck {
         for (Integer number : lottoNumber) {
             if (lottoCheck(lottoPickNumbers,number)) i++;
         }
-        if(i == 5 && (lottoCheck(lottoPickNumbers,lottoBonus))) i+= 2;
+        if(i == 5 && (lottoCheck(lottoPickNumbers,lottoBonus))) i++;
+        if(i == 6) i++;
         return i;
     }
 
@@ -50,29 +46,11 @@ public class LottoCheck {
         return lottoPickNumbers.contains(lottoNumber);
     }
 
-    //3개 일치
-    private String place5th(int number) {
-        return "3개 일치 (5,000원) - " + number + "개";
-    }
-
-    //4개 일치
-    private String place4th(int number) {
-        return "4개 일치 (50,000원) - " + number + "개";
-    }
-
-    //5개 일치
-    private String place3th(int number) {
-        return "5개 일치 (1,500,000원) - " + number + "개";
-    }
-
-    //5개 + 보너스 일치
-    private String place2th(int number) {
-        return "5개 일치, 보너스 볼 일치 (30,000,000원) - " + number + "개";
-    }
-
-    //6개 일치
-    private String place1th(int number) {
-        return "6개 일치 (2,000,000,000원) - " + number + "개";
+    //enum을 활용한 출력.
+    public void place(Integer[] lottoResult) {
+            for(LottoConfig lottoDate : lottoConfig){
+                System.out.println(lottoDate.message() + lottoResult[lottoDate.match()] + "개");
+            }
     }
 
     //수익률 리턴
@@ -85,7 +63,7 @@ public class LottoCheck {
         long sum = 0;
         double profit = 0;
         for (int i = 3; i <= 7; i++) {
-            sum += (long) lottoResult[i] * lottoPrice[i];
+            sum += (long) lottoResult[i] * lottoConfig[i-3].price();
         }
         long money;
         money = lottoPickNumbers.length * 1000L;

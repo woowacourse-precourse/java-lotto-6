@@ -1,9 +1,9 @@
 package lotto.exception;
 
-public class InvalidInputNumberException extends IllegalArgumentException {
+public class InvalidNumberFormatException extends IllegalArgumentException {
     private static final String ERROR_MESSAGE = "숫자를 잘못 입력하셨습니다.";
 
-    public InvalidInputNumberException() {
+    public InvalidNumberFormatException() {
         super(ERROR_MESSAGE);
     }
 }

@@ -9,7 +9,6 @@ public enum ConstantMessage {
     ALARM_THE_RESULT_STARTING_MESSAGE("당첨 통계\n---");
 
 
-
     private final String message;
 
     ConstantMessage(String message) {

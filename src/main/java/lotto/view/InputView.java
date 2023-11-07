@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.dto.input.PurchaseLottoDto;
 import lotto.io.Reader;
 import lotto.io.Writer;
@@ -30,21 +32,23 @@ public class InputView {
         }
     }
 
-    public List<Integer> getWinningNumber() {
+    public Lotto getWinningNumber() {
         writer.writeln(INPUT_WINNING_NUMBERS);
         try {
             String inputNumbers = reader.readLine();
-            return Parser.parseWinningNumbers(inputNumbers);
+            List<Integer> winningNumbers = Parser.parseWinningNumbers(inputNumbers);
+            return new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
             writer.writeln(e.getMessage());
             return getWinningNumber();
         }
     }
 
-    public int getBonusNumber() {
+    public LottoNumber getBonusNumber() {
         writer.writeln(INPUT_BONUS_NUMBERS);
         try {
-            return Parser.parseStrToInt(reader.readLine());
+            int bonusNumber = Parser.parseStrToInt(reader.readLine());
+            return new LottoNumber(bonusNumber);
         } catch (IllegalArgumentException e) {
             writer.writeln(e.getMessage());
             return getBonusNumber();

@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.domain.LottoGenerator;
 import lotto.domain.Purchase;
+import lotto.domain.WinningLotto;
 
 public class Application {
     public static void main(String[] args) {
@@ -10,5 +11,6 @@ public class Application {
         int trials = p.purchasing();
 
         LottoGenerator lottos = new LottoGenerator(trials);
+        WinningLotto.setWinningLotto();
     }
 }

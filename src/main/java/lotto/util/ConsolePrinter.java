@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.List;
 import java.util.Objects;
 import lotto.constants.DomainMessages;
 import lotto.constants.ErrorMessages;
@@ -45,5 +46,11 @@ public class ConsolePrinter {
         validateNull(message);
 
         System.out.print(message.getMessage());
+    }
+
+    public static void showException(ErrorMessages message, List<Integer> numbers) {
+        validateNull(message, numbers);
+
+        System.out.print(message.getMessage(numbers));
     }
 }

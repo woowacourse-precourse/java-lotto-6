@@ -1,5 +1,7 @@
 package lotto.constants;
 
+import java.util.List;
+
 public enum ErrorMessages {
     LOTTO_PURCHASE_AMOUNT_NUMERIC_ONLY("로또 구입 금액은 숫자만 입력 가능 합니다."),
     LOTTO_PURCHASE_AMOUNT_UNIT("로또 구입금액 단위는 %d원 입니다."),
@@ -28,5 +30,9 @@ public enum ErrorMessages {
 
     public String getMessage() {
         return message;
+    }
+
+    public String getMessage(List<Integer> values) {
+        return String.format(message, values.toArray());
     }
 }

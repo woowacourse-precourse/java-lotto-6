@@ -7,6 +7,7 @@ import lotto.domain.lotto.LottoNumbersGenerator;
 import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.domain.lotto.strategy.PickNumbersStrategy;
 import lotto.domain.lotto.strategy.PickRandomNumbersStrategy;
+import lotto.domain.message.Messages;
 import lotto.domain.prize.Prize;
 import lotto.domain.shop.LottoShop;
 import lotto.domain.win.WinStatesCounter;
@@ -43,7 +44,7 @@ public class LottoController {
     }
 
     private void inputPurchaseCash() {
-        // 구입금액을 입력해 주세요.
+        outputView.print(Messages.INPUT_PURCHASE_CASH_AMOUNT.getMessage());
         try {
             purchaseCash = new Cash(inputView.inputNumber());
             lotteriesCount = lottoShop.countPurchasableAmount(purchaseCash.amount());
@@ -54,13 +55,14 @@ public class LottoController {
     }
 
     private void generateLotteries() {
-        // n개를 구매했습니다.
+        outputView.print(Messages.PURCHASED_LOTTERIES_FORMAT.getMessage(lotteriesCount));
         List<LottoNumbersDTO> lottoNumbersDTOs = lottoNumbersGenerator.generateByCount(lotteriesCount);
         lotteries = lottoNumbersDTOs.stream()
                 .map(LottoNumbersDTO::numbers)
                 .map(Lotto::new)
                 .toList();
-        // 발행번호들 출력
+        lottoNumbersDTOs.forEach(dto -> outputView.print(Messages.LOTTERIES_NUMBERS_FORMAT.getMessage(dto.numbers(),
+                        Messages.LOTTERIES_NUMBERS_DELIMITER.getMessage())));
     }
 
     private void inputWinningLottoNumbers() {
@@ -68,7 +70,7 @@ public class LottoController {
     }
 
     private List<Integer> inputWinningNumbers() {
-        // 당첨 번호를 입력해 주세요.
+        outputView.print(Messages.INPUT_WINNING_NUMBERS.getMessage());
         try {
             return inputView.inputNumbers();
         } catch (IllegalArgumentException e) {
@@ -78,7 +80,7 @@ public class LottoController {
     }
 
     private int inputBonusNumber() {
-        // 보너스 번호를 입력해 주세요.
+        outputView.print(Messages.INPUT_BONUS_NUMBERS.getMessage());
         try {
             return inputView.inputNumber();
         } catch (IllegalArgumentException e) {
@@ -90,11 +92,13 @@ public class LottoController {
     private void printResult() {
         WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
         List<WinStateInformationDTO> winStateInformationDTOs = winStatesCounter.getWinStateInformationDTOs();
-        // 당첨 통계\n---
-        // 통계 출력
+        outputView.print(Messages.WINNING_STATISTICS_START.getMessage());
+        winStateInformationDTOs.forEach(dto -> outputView.print(Messages.WINNING_STATISTIC_INFORMATION_FORMAT.getMessage(
+                dto.description(), dto.prize(), dto.winningCount()
+        )));
         Prize prize = Prize.from(winStateInformationDTOs);
         double yield = prize.getYield(purchaseCash);
-        // 수익률 출력
+        outputView.print(Messages.YIELD_FORMAT.getMessage(yield));
     }
 
 }

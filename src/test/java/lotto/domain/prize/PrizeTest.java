@@ -19,7 +19,7 @@ public class PrizeTest {
                 new WinStateInformationDTO("",8,7000)
         );
         Cash cash = new Cash(1000000);
-        double expectedYield = 0.076;
+        double expectedYield = 7.6;
 
         // when
         Prize prize = Prize.from(winStateInformationDTOS);

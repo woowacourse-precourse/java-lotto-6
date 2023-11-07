@@ -20,7 +20,7 @@ public class Prize {
     }
 
     public double getYield(Cash cash) {
-        return (double) this.amount / cash.amount();
+        return (double) this.amount * 100 / cash.amount();
     }
 
 }

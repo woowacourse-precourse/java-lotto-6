@@ -25,8 +25,10 @@ public class LottoNumbersGenerator {
     }
 
     public LottoNumbersDTO generate() {
-        List<Integer> numbers = pickNumbersStrategy.pickNumbers(MIN_NUMBER, MAX_NUMBER, NUMBERS_COUNT);
-        Collections.sort(numbers);
+        List<Integer> numbers = pickNumbersStrategy.pickNumbers(MIN_NUMBER, MAX_NUMBER, NUMBERS_COUNT)
+                .stream()
+                .sorted()
+                .toList();
         return new LottoNumbersDTO(numbers);
     }
 

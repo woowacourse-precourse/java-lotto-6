@@ -1,5 +1,6 @@
 package lotto.domain.win;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 import lotto.dto.LottoNumberMatchDTO;
 import org.assertj.core.api.Assertions;
@@ -13,9 +14,9 @@ public class WinStateTest {
     @DisplayName("일치하는 숫자와 보너스 번호 포함 여부에 대해 알맞는 당첨 여부를 반환할 수 있다.")
     @ParameterizedTest
     @MethodSource("ProvideNumberMatchDTOAndResult")
-    void getWinStateTest(LottoNumberMatchDTO lottoNumberMatchDTO, WinState expectedWinState) {
+    void getWinStateTest(LottoNumberMatchDTO lottoNumberMatchDTO, Optional<WinState> expectedWinState) {
         // when
-        WinState winState = WinState.from(lottoNumberMatchDTO);
+        Optional<WinState> winState = WinState.from(lottoNumberMatchDTO);
 
         // then
         Assertions.assertThat(winState)
@@ -24,15 +25,15 @@ public class WinStateTest {
 
     private static Stream<Arguments> ProvideNumberMatchDTOAndResult() {
         return Stream.of(
-                Arguments.of(new LottoNumberMatchDTO(6, false), WinState.FIRST_PLACE),
-                Arguments.of(new LottoNumberMatchDTO(5, true), WinState.SECOND_PLACE),
-                Arguments.of(new LottoNumberMatchDTO(5, false), WinState.THIRD_PLACE),
-                Arguments.of(new LottoNumberMatchDTO(4, true), WinState.FOURTH_PLACE),
-                Arguments.of(new LottoNumberMatchDTO(4, false), WinState.FOURTH_PLACE),
-                Arguments.of(new LottoNumberMatchDTO(3, true), WinState.FIFTH_PLACE),
-                Arguments.of(new LottoNumberMatchDTO(3, false), WinState.FIFTH_PLACE),
-                Arguments.of(new LottoNumberMatchDTO(2, true), WinState.NONE),
-                Arguments.of(new LottoNumberMatchDTO(0, false), WinState.NONE)
+                Arguments.of(new LottoNumberMatchDTO(6, false), Optional.of(WinState.FIRST_PLACE)),
+                Arguments.of(new LottoNumberMatchDTO(5, true), Optional.of(WinState.SECOND_PLACE)),
+                Arguments.of(new LottoNumberMatchDTO(5, false), Optional.of(WinState.THIRD_PLACE)),
+                Arguments.of(new LottoNumberMatchDTO(4, true), Optional.of(WinState.FOURTH_PLACE)),
+                Arguments.of(new LottoNumberMatchDTO(4, false), Optional.of(WinState.FOURTH_PLACE)),
+                Arguments.of(new LottoNumberMatchDTO(3, true), Optional.of(WinState.FIFTH_PLACE)),
+                Arguments.of(new LottoNumberMatchDTO(3, false), Optional.of(WinState.FIFTH_PLACE)),
+                Arguments.of(new LottoNumberMatchDTO(2, true), Optional.empty()),
+                Arguments.of(new LottoNumberMatchDTO(0, false), Optional.empty())
         );
     }
 

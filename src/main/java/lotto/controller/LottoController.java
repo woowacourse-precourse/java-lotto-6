@@ -34,6 +34,9 @@ public class LottoController { //입력을 받아서 model에 전달, 간단한 
         readAndValidateWinningNumber();
         readAndValidateBonusNumber();
 
+        lottoStatistics.writeStatistics(lottoMachine.determineLottoWinning(lottoTickets));
+        LottoView.printLottoStatistics(lottoStatistics.getStatistics());
+        LottoView.printLottoProfit(lottoStatistics.calculateLottoProfit(purchase.getPurchaseAmount()));
     }
 
     private int readAndValidatePurchaseAmount() {

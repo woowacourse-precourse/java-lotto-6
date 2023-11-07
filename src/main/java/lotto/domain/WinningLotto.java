@@ -7,23 +7,20 @@ public class WinningLotto {
     private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
 
-    public WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
+    private WinningLotto(Lotto winningLotto, LottoNumber bonusNumber) {
         validate(winningLotto, bonusNumber);
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    /*
-     * 1등 : 6개 0
-     * 2등 : 5개 1
-     * 3등 : 5개 0
-     * 4등 : 4개 0
-     * 5등 : 3개 0
-     * */
+    public static WinningLotto of(Lotto winningLotto, LottoNumber bonusNumber) {
+        return new WinningLotto(winningLotto, bonusNumber);
+    }
+
     public Rank match(Lotto lotto) {
         int matchCount = lotto.countMatchedNumbers(winningLotto);
         boolean isContainBonus = lotto.contains(bonusNumber);
-        return Rank.match(matchCount, isContainBonus);
+        return Rank.valueOf(matchCount, isContainBonus);
     }
 
     private void validate(Lotto winningLotto, LottoNumber bonusNumber) {

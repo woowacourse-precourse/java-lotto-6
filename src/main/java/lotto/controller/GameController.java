@@ -25,8 +25,6 @@ public class GameController {
         LottoResult result = new LottoResult(rank);
 
         printGameResult(result, payment);
-
-        Console.close();
     }
 
     private Payment getPaymentFromUser() {
@@ -67,5 +65,7 @@ public class GameController {
 
         String returnRate = payment.getReturnRate(result.getLottoRewardSum());
         OutputView.printReturnRate(returnRate);
+
+        Console.close();
     }
 }

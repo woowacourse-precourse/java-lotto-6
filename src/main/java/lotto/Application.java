@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
 import lotto.util.generator.RandomNumberGenerator;
 import lotto.view.UserIoManager;
@@ -11,5 +12,7 @@ public class Application {
         UserIoManager userIoManager = new UserIoManager(new InputView(), new OutputView());
         LottoController lottoController = new LottoController(userIoManager, new RandomNumberGenerator());
         lottoController.run();
+
+        Console.close();
     }
 }

@@ -18,4 +18,11 @@ public class InputPurchaseAmountTest {
         assertThatThrownBy(() -> InputPurchaseAmount.inputPurchaseAmountPositive(NEGATIVE_PURCHASE))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("입력 받은 로또 구입 가격이 1000 으로 나누어 떨어지지 않는다면 예외가 발생한다.")
+    @Test
+    void createPurchaseByNOTDivide1000() {
+        assertThatThrownBy(() -> InputPurchaseAmount.inputPurchaseAmountDivisible1000(NOT_DIVIDE_1000))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

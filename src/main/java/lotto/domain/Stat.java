@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import lotto.config.Config;
+
 enum CorrectCount {
-    THREE(3), FOUR(4), FIVE_NOT_BONUS(5), SIX(6);
+    THREE(3), FOUR(4), FIVE(5), BONUS(7), SIX(6);
 
     private int correctCount;
 
@@ -19,7 +21,7 @@ enum CorrectCount {
 }
 
 enum Reward {
-    THREE(5000), FOUR(50000), FIVE(1500000), SIX(2000000000);
+    THREE(5000), FOUR(50000), FIVE(1500000), BONUS(30000000), SIX(2000000000);
 
     private int reward;
 
@@ -27,7 +29,7 @@ enum Reward {
         this.reward = reward;
     }
 
-    public int getCorrectCount() {
+    public int getReward() {
         return reward;
     }
 }
@@ -41,14 +43,14 @@ public class Stat {
     static {
         rewardMapping.put(CorrectCount.THREE, Reward.THREE);
         rewardMapping.put(CorrectCount.FOUR, Reward.FOUR);
-        rewardMapping.put(CorrectCount.FIVE_NOT_BONUS, Reward.FIVE);
+        rewardMapping.put(CorrectCount.FIVE, Reward.FIVE);
         rewardMapping.put(CorrectCount.SIX, Reward.SIX);
     }
     public Stat() {
         for (CorrectCount count : CorrectCount.values()) {
-            lottoCorrectStat.put(count.name(), 0);
+            lottoCorrectStat.put(count.name(), Config.CORRECT_COUNT_INIT_VALUE);
         }
-        lottoCorrectStat.put("BONUS", 0);
+        lottoCorrectStat.put("BONUS", Config.CORRECT_COUNT_INIT_VALUE);
     }
     public int getReward() {
         return reward;
@@ -64,8 +66,11 @@ public class Stat {
 
     public void findCorrectName(List<Integer> correctLottoNumbers, List<Integer> userNumbers, int bonusNumber) {
         int correctLottoCount = correctLottoNumbers.size();
-        if (correctLottoCount == 5) {
-            addBonusStat(userNumbers, bonusNumber);
+        if (correctLottoCount == 6) {
+            if(userNumbers.contains(bonusNumber)){
+                addBonusStat(userNumbers, bonusNumber);
+                return;
+            }
         }
         for (CorrectCount count : CorrectCount.values()) {
             if (count.getCorrectCount() == correctLottoCount) {
@@ -80,7 +85,7 @@ public class Stat {
         if (count != null) {
             Reward rewardName = rewardMapping.get(count);
             if (rewardName != null) {
-                reward += rewardName.getCorrectCount();
+                reward += rewardName.getReward();
             }
         }
     }
@@ -95,12 +100,9 @@ public class Stat {
     }
 
     public void addBonusStat(List<Integer> userNumbers, int bonusNumber) {
-        if (!userNumbers.contains(bonusNumber)) {
-            return;
-        }
-        String matchCountName = "BONUS";
+        String matchCountName = CorrectCount.BONUS.toString();
+        Reward bonusReward = Reward.BONUS;
         lottoCorrectStat.put(matchCountName, 1);
-        reward += 30000000;
-        // System.out.println(reward);
+        reward += bonusReward.getReward();
     }
 }

@@ -1,14 +1,16 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import lotto.service.AdminLottoService;
 import lotto.service.UserLottoService;
-import lotto.view.ErrorMessage;
+import lotto.view.AdminInputMessage;
 import lotto.view.UserInputMessage;
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Admin;
 import lotto.domain.Lotto;
 import lotto.domain.Stat;
 import lotto.domain.User;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.Math;
@@ -53,9 +55,9 @@ public class LottoController {
     public void initInputWinningNumber() {
         while (true) {
             try {
-                String bonusNumberStr = InputBonusNumber();
-                int bonusNumber = adminLottoService.parseIntBonusNumber(bonusNumberStr);
-                admin = adminLottoService.setAdmin(winningNumber, bonusNumber);
+                String winningNumberStr = InputWinningNumber();
+                String[] winningNumbersStr = adminLottoService.splitWinningNumbers(winningNumberStr);
+                winningNumber = adminLottoService.initWinningNumber(winningNumbersStr);
                 break;
             } catch (IllegalArgumentException e) {
                 e.getMessage();
@@ -75,19 +77,18 @@ public class LottoController {
             }
         }
     }
-
     public String InputPurchaseAmount() {
         System.out.println(UserInputMessage.INPUT_LOTTO_PURCHASE_AMOUNT_MSG);
         return Console.readLine();
     }
 
     public String InputWinningNumber() {
-        System.out.println(UserInputMessage.INPUT_LOTTO_WINNING_NUMBER);
+        System.out.println(AdminInputMessage.INPUT_LOTTO_WINNING_NUMBER);
         return Console.readLine();
     }
 
     public String InputBonusNumber() {
-        System.out.println(UserInputMessage.INPUT_LOTTO_BONUS_NUMBER);
+        System.out.println(AdminInputMessage.INPUT_LOTTO_BONUS_NUMBER);
         return Console.readLine();
     }
 

@@ -6,18 +6,11 @@ import lotto.lottoGame.rank.Rank;
 import lotto.lottoGame.rank.RankCounter;
 
 public class OutputView {
-    private static final String ISSUANCE_NUMBER_VIEW = "%d개를 구매했습니다.\n";
-    private static final String RESULT_RANK_COUNT_VIEW = "당첨 통계\n"
-        + "---\n"
-        + "3개 일치 (5,000원) - %d개\n"
-        + "4개 일치 (50,000원) - %d개\n"
-        + "5개 일치 (1,500,000원) - %d개\n"
-        + "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"
-        + "6개 일치 (2,000,000,000원) - %d개";
-    private static final String RESULT_INCOME_VIEW = "총 수익률은 %s입니다.\n";
 
     public static void outputIssuance(int index, List<Lotto> lottos) {
-        System.out.printf((ISSUANCE_NUMBER_VIEW), index);
+        OutputFormat issuanceFormat = OutputFormat.ISSUANCE_NUMBER_VIEW;
+
+        System.out.printf((issuanceFormat.getFormat()), index);
         for (Lotto lotto : lottos) {
             System.out.println(lotto.toString());
         }
@@ -25,7 +18,10 @@ public class OutputView {
     }
 
     public static void resultOutput(RankCounter rankCounter, double incomeRate) {
-        String resultString = String.format(RESULT_RANK_COUNT_VIEW,
+        OutputFormat resultRankCountView = OutputFormat.RESULT_RANK_COUNT_VIEW;
+        OutputFormat resultIncomeView = OutputFormat.RESULT_INCOME_VIEW;
+
+        String resultString = String.format(resultRankCountView.getFormat(),
             rankCounter.getRankCount(Rank.FIFTH)
             , rankCounter.getRankCount(Rank.FOURTH)
             , rankCounter.getRankCount(Rank.THIRD)
@@ -33,7 +29,7 @@ public class OutputView {
             , rankCounter.getRankCount(Rank.FIRST));
 
         System.out.println(resultString);
-        System.out.printf(RESULT_INCOME_VIEW, doubleToString(incomeRate));
+        System.out.printf(resultIncomeView.getFormat(), doubleToString(incomeRate));
     }
 
     private static String doubleToString(double incomeRate) {

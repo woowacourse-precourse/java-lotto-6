@@ -1,13 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.IntStream;
-
 // TODO: 로또 생성 전략을 Interface로
 public class PurchaseComputer {
     private static PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();
@@ -25,15 +17,8 @@ public class PurchaseComputer {
     }
 
     private void purchaseEachLotto() {
-        Lotto lottoTicket = new Lotto(generateLottoNumbers());
+        StandardLottoGenerator generator = new StandardLottoGenerator();
+        Lotto lottoTicket = new Lotto(generator.generateLottoNumbers());
         purchaseRepository.recordPurchase(lottoTicket);
-    }
-
-    private List<Integer> generateLottoNumbers() {
-        Set<Integer> numbers = new HashSet<>();
-        while (numbers.size() < 6) {
-            numbers.add(Randoms.pickNumberInRange(1, 45));
-        }
-        return new ArrayList<>(numbers);
     }
 }

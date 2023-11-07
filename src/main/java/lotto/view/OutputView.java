@@ -24,18 +24,13 @@ public class OutputView {
         System.out.println(WINNING_STATUS.getMessage());
     }
 
-    public static void printWinningResult(Map<LottoRank, Integer> winningResult) {
-        winningResult.entrySet().stream()
-                .filter(entry -> !entry.getKey().equals(LottoRank.DEFAULT))
-                .forEach(entry -> showRankResult(winningResult, entry.getKey()));
+    public static void printWinningResult(Map<LottoRank, Integer> winningResult, LottoRank rank) {
+        System.out.printf(WINNING_RESULT.getMessage(), rank.getMatchCount(), rank.getPrize(),
+                winningResult.getOrDefault(rank, ZERO.getNumber()));
     }
 
-    private static void showRankResult(Map<LottoRank, Integer> winningResult, LottoRank rank) {
-        if (rank.equals(LottoRank.SECOND)) {
-            System.out.printf(WINNING_RESULT_BALL.getMessage(), rank.getMatchCount(), rank.getPrize(),
-                    winningResult.getOrDefault(rank, ZERO.getNumber()));
-        }
-        System.out.printf(WINNING_RESULT.getMessage(), rank.getMatchCount(), rank.getPrize(),
+    public static void printSecondWinningResult(Map<LottoRank, Integer> winningResult, LottoRank rank) {
+        System.out.printf(WINNING_RESULT_BALL.getMessage(), rank.getMatchCount(), rank.getPrize(),
                 winningResult.getOrDefault(rank, ZERO.getNumber()));
     }
 

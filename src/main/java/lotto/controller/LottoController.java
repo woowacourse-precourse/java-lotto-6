@@ -1,9 +1,11 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPublisher;
+import lotto.domain.LottoRank;
 import lotto.domain.RankDeterminer;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningResult;
@@ -43,9 +45,24 @@ public class LottoController {
 
     private void printWinningInformation(WinningResult winningResult) {
         OutputView.printWinningStatus();
-        OutputView.printWinningResult(winningResult.getWinningResult());
+        showNonDefaultWinningResults(winningResult.getWinningResult());
         OutputView.printProfitRate(winningResult.getProfitRate());
     }
+
+    private void showNonDefaultWinningResults(Map<LottoRank, Integer> winningResult) {
+        winningResult.entrySet().stream()
+                .filter(entry -> !entry.getKey().equals(LottoRank.DEFAULT))
+                .forEach(entry -> showRankResult(winningResult, entry.getKey()));
+    }
+
+    private void showRankResult(Map<LottoRank, Integer> winningResult, LottoRank rank) {
+        if (rank.equals(LottoRank.SECOND)) {
+            OutputView.printSecondWinningResult(winningResult, rank);
+        }
+        OutputView.printWinningResult(winningResult, rank);
+    }
+
+
 
 
 }

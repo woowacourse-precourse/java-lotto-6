@@ -2,8 +2,6 @@ package lotto.domain;
 
 import static lotto.common.exception.ExceptionMessages.DUPLICATE_WINNING_NUMBER;
 
-import lotto.dto.MatchResult;
-
 public record WinningTicket(Lotto winningLotto, LottoNumber bonusNumber) {
 
     public WinningTicket {
@@ -16,10 +14,10 @@ public record WinningTicket(Lotto winningLotto, LottoNumber bonusNumber) {
         }
     }
 
-    public MatchResult match(Lotto lotto) {
+    public Rank match(Lotto lotto) {
         int matchCount = getMatchCount(lotto);
         boolean hasBonus = getHasBonus(lotto);
-        return new MatchResult(matchCount, hasBonus);
+        return Rank.of(matchCount, hasBonus);
     }
 
     private int getMatchCount(Lotto lotto) {

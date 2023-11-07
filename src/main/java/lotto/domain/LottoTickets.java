@@ -10,7 +10,6 @@ public record LottoTickets(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
 
         lottos.stream()
                 .map(winningTicket::match)
-                .map(Rank::of)
                 .forEach(rankResult::add);
 
         return rankResult;

@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.dto.MatchResult;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,8 +25,8 @@ class WinningTicketTest {
 
     private static Stream<Arguments> createWinningNumberByDuplicatedNumbers() {
         return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(1)),
-                Arguments.of(new Lotto(List.of(40, 41, 42, 43, 44, 45)), new LottoNumber(45))
+                Arguments.of(createLotto(1, 2, 3, 4, 5, 6), new LottoNumber(1)),
+                Arguments.of(createLotto(40, 41, 42, 43, 44, 45), new LottoNumber(45))
         );
     }
 
@@ -43,11 +42,11 @@ class WinningTicketTest {
         assertThat(winningTicket.bonusNumber()).isEqualTo(new LottoNumber(7));
     }
 
-    @DisplayName("로또의 번호가 몇 개 일치하는지 알 수 있다.")
+    @DisplayName("로또를 받아 순위를 계산할 수 있다.")
     @ParameterizedTest
     @MethodSource
-    void match(WinningTicket winningTicket, Lotto lotto, MatchResult expected) {
-        MatchResult actual = winningTicket.match(lotto);
+    void match(WinningTicket winningTicket, Lotto lotto, Rank expected) {
+        Rank actual = winningTicket.match(lotto);
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -56,16 +55,16 @@ class WinningTicketTest {
         return Stream.of(
                 Arguments.of(
                         createWinningTicket(7, 1, 2, 3, 4, 5, 6),
-                        new Lotto(List.of(6, 5, 4, 3, 2, 1)),
-                        new MatchResult(6, false)),
+                        createLotto(1, 2, 3, 4, 5, 6),
+                        Rank.FIRST),
                 Arguments.of(
                         createWinningTicket(7, 1, 2, 3, 4, 5, 6),
-                        new Lotto(List.of(1, 2, 3, 4, 5, 45)),
-                        new MatchResult(5, false)),
+                        createLotto(1, 2, 3, 4, 5, 45),
+                        Rank.THIRD),
                 Arguments.of(
                         createWinningTicket(7, 1, 2, 3, 4, 5, 6),
-                        new Lotto(List.of(7, 8, 9, 10, 11, 12)),
-                        new MatchResult(0, true))
+                        createLotto(7, 8, 9, 10, 11, 12),
+                        Rank.NONE)
         );
     }
 

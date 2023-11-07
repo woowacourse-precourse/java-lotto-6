@@ -3,7 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Stream;
-import lotto.dto.MatchResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -16,7 +15,7 @@ class RankTest {
     @MethodSource
     void getRankByMatchCountAndHasBonus(int matchCount, boolean hasBonus, Rank expected) {
 
-        Rank actual = Rank.of(new MatchResult(matchCount, hasBonus));
+        Rank actual = Rank.of(matchCount, hasBonus);
 
         assertThat(actual).isEqualTo(expected);
     }

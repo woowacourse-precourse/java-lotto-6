@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import lotto.dto.MatchResult;
 
 public enum Rank {
     NONE(0, false, 0L),
@@ -41,11 +40,7 @@ public enum Rank {
         return score;
     }
 
-    public static Rank of(MatchResult matchResult) {
-        return of(matchResult.matchCount(), matchResult.hasBonus());
-    }
-
-    private static Rank of(int matchCount, boolean hasBonusNumber) {
+    public static Rank of(int matchCount, boolean hasBonusNumber) {
         int score = getScore(matchCount, hasBonusNumber);
         return scoreCache.getOrDefault(score, NONE);
     }

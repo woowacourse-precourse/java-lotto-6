@@ -3,9 +3,10 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import static lotto.Rank.*;
 
 public class LottoGame {
 
@@ -46,16 +47,52 @@ public class LottoGame {
         return winningNumbersList;
     }
 
-    public static int getTwoNumbers(List<Integer> winningNumbers, List<List<Integer>> userNumbersBundle, int bonus){
-        int equalNumCount = 0;
+    public static void getTwoNumbers(List<Integer> winningNumbers, List<List<Integer>> userNumbersBundle, int bonus){
+        int[] equalNumCount = new int[2];
         for (List<Integer> userNumbersUnit : userNumbersBundle) {
             equalNumCount = compareNumbers(winningNumbers, userNumbersUnit, bonus);
+            result(equalNumCount);
         }
-
-        return equalNumCount;
     }
 
-    public static void CompareNumbers(List<Integer> winningNumbers, List<Integer> userNumberUnit, int bonus){
+    public static int[] compareNumbers(List<Integer> winningNumbers, List<Integer> userNumberUnit, int bonus){
+        int cnt = 0;
+        int bonusCnt = 0;
+        int[] cntFile = new int[2];
+        for (int winningNumber : winningNumbers) {
+            if (userNumberUnit.contains(winningNumber)) {
+                cnt++;
+            }
+        }
+        if(cnt == 5) {
+            if (userNumberUnit.contains(bonus)){
+                bonusCnt++;
+            }
+        }
+        cntFile[0] = cnt;
+        cntFile[1] = bonusCnt;
+        //System.out.println(cntFile[0]+","+cntFile[1]);
+        return cntFile;
+    }
 
+    public static void result(int[] equalNumCount){
+
+        if (equalNumCount[0] == 3){
+            FIFTH.setCnt();
+        }
+        else if(equalNumCount[0] == 4){
+            FOURTH.setCnt();
+        }
+        else if(equalNumCount[0] == 5){
+            if(equalNumCount[1] == 0){
+                THIRD.setCnt();
+            }
+            else if (equalNumCount[1] == 1){
+                SECOND.setCnt();
+            }
+        }
+        else if (equalNumCount[0] == 6){
+            FIRST.setCnt();
+        }
     }
 }

@@ -8,6 +8,11 @@ import java.util.*;
 
 public class Application {
 
+    static double computeRateOfReturn(Map<Rank, Integer> lottoRanks, long purchaseAmount){
+        long proceeds = lottoRanks.get(Rank.FIFTH) * 5000 + lottoRanks.get(Rank.FOURTH) * 50000 + lottoRanks.get(Rank.THIRD) * 1500000 + lottoRanks.get(Rank.SECOND) * 30000000 + lottoRanks.get(Rank.FIRST) * 2000000000;
+        return Math.abs(proceeds - purchaseAmount) / purchaseAmount * 100 ;
+    }
+
     public static void game() {
         //금액 입력 메서드 나누기
         System.out.println("구입금액을 입력해 주세요.");
@@ -53,13 +58,17 @@ public class Application {
             Rank rank = Lotto.judgeLottoRank(winningNumber, lottos.get(i), bonusNumber);
             lottoRanks.put(rank, lottoRanks.get(rank) + 1);
         }
+        double rateOfReturn = computeRateOfReturn(lottoRanks,purchaseAmount);
 
-        //rankMap 가지고 와서 번 돈 계산
-
-        //수익률 계산
         //당첨 통계 출력
-        //수익률 출력 (원금 - 수익금) / 원금 * 100인듯
-
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n",lottoRanks.get(Rank.FIFTH));
+        System.out.printf("4개 일치 (50,000원) - %d개\n",lottoRanks.get(Rank.FOURTH));
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n",lottoRanks.get(Rank.THIRD));
+        System.out.printf("5개 일치, 보너스 불 일치 (30,000,000원) - %d개\n",lottoRanks.get(Rank.SECOND));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n",lottoRanks.get(Rank.FIRST));
+        System.out.printf("총 수익률은 %f%입니다\n",Math.round(rateOfReturn * 100.) / 100.);
     }
 
     public static void main(String[] args) {

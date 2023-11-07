@@ -43,7 +43,7 @@ class InvalidInputTest {
         numbers.addAll(List.of(1, 2, 3, 3, 5, 6));
 
         //when
-        boolean isDuplicate = invalidInput.duplicateNumberException(numbers);
+        boolean isDuplicate = invalidInput.duplicateNumbersException(numbers);
         //then
         assertThat(isDuplicate).isEqualTo(true);
         assertThat(output.toString().contains("[ERROR] 로또 번호는 중복되지 않는 6개의 숫자여야 합니다."));
@@ -58,7 +58,7 @@ class InvalidInputTest {
         numbers.addAll(List.of(1, 2, 3, 4, 5, 100));
 
         //when
-        boolean isOutOfRange = invalidInput.outOfRangeException(numbers);
+        boolean isOutOfRange = invalidInput.outOfRangeNumbersException(numbers);
         //then
         assertThat(isOutOfRange).isEqualTo(true);
         assertThat(output.toString().contains("[ERROR] 로또 번호의 숫자 범위는 1 ~ 45까지이다."));

@@ -15,4 +15,5 @@ public enum InputConstant {
     public String getMessage() {
         return message;
     }
+
 }

@@ -36,10 +36,11 @@ public class Lotto {
 
         if (invalidInput.sizeExceededException(numbers)) {
             throw new IllegalArgumentException();
-        } else if (invalidInput.duplicateNumberException(numbers)) {
+        } else if (invalidInput.duplicateNumbersException(numbers)) {
             throw new IllegalArgumentException();
-        } else if (invalidInput.outOfRangeException(numbers)) {
+        } else if (invalidInput.outOfRangeNumbersException(numbers)) {
             throw new IllegalArgumentException();
         }
     }
+
 }

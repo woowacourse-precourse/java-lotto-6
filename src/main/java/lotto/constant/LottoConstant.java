@@ -17,4 +17,5 @@ public enum LottoConstant {
     public int getValue() {
         return value;
     }
+
 }

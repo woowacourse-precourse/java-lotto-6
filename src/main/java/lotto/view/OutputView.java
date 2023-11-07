@@ -29,11 +29,12 @@ public class OutputView {
 
     public void printStatistics(List<Integer> statistics) {
         StringBuilder sb = new StringBuilder();
-        sb.append(NEW_LINE + STATISTIC_MESSAGE.getMessage()).append(NEW_LINE).append(SPLIT_LINE.getMessage());
+        sb.append(NEW_LINE.getMessage() + STATISTIC_MESSAGE.getMessage())
+                .append(NEW_LINE.getMessage()).append(SPLIT_LINE.getMessage());
 
         for (int score = START; score < statistics.size(); score++) {
             String message = PrizeConstant.getMessageByScore(score);
-            sb.append(NEW_LINE).append(message + statistics.get(score) + PER.getMessage());
+            sb.append(NEW_LINE.getMessage()).append(message + statistics.get(score) + PER.getMessage());
         }
 
         System.out.println(sb);
@@ -43,4 +44,5 @@ public class OutputView {
         System.out.println(PROFITABILITY_MESSAGE.getMessage() +
                 String.format(PROFITABILITY_FORMAT.getMessage(), profitability) + PERCENT.getMessage());
     }
+
 }

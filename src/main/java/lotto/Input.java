@@ -50,4 +50,5 @@ public class Input {
             return winningNumberWithoutBonus();
         }
     }
+
 }

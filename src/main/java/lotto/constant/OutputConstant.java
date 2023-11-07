@@ -20,4 +20,5 @@ public enum OutputConstant {
     public String getMessage() {
         return message;
     }
+
 }

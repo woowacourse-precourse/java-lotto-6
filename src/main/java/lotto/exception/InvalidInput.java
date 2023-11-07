@@ -5,9 +5,11 @@ import static lotto.constant.LottoConstant.ALLOW_DUPLICATE_NUMBER_COUNT;
 import static lotto.constant.LottoConstant.LOTTO_SIZE;
 import static lotto.constant.LottoConstant.MAX_NUMBER;
 import static lotto.constant.LottoConstant.MIN_NUMBER;
+import static lotto.exception.ExceptionMessage.DUPLICATE_BONUSE_NUMBER;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class InvalidInput {
     private static final int ZERO = 0;
@@ -25,7 +27,7 @@ public class InvalidInput {
     }
 
 
-    public boolean duplicateNumberException(List<Integer> numbers) {
+    public boolean duplicateNumbersException(List<Integer> numbers) {
         message = ExceptionMessage.DUPLICATE_NUMBER.getMessage();
 
         for (Integer number : numbers) {
@@ -36,18 +38,34 @@ public class InvalidInput {
         }
         return false;
     }
-
-    public boolean outOfRangeException(List<Integer> numbers) {
-        message = ExceptionMessage.OUT_OF_RANGE.getMessage();
-
-        for (Integer number : numbers) {
-            if (!isBetweenInRange(number)) {
-                System.out.println(message);
-                return true;
-            }
+    public boolean duplicateNumberException(Lotto winningLottoNumbers, int bonusNumber) {
+        if (winningLottoNumbers.checkContainsSameNumber(bonusNumber)) {
+            System.out.println(DUPLICATE_BONUSE_NUMBER.getMessage());
+            return true;
         }
         return false;
     }
+
+    public boolean outOfRangeNumbersException(List<Integer> numbers) {
+        message = ExceptionMessage.OUT_OF_RANGE.getMessage();
+
+        for (Integer number : numbers) {
+            outOfRangeNumberException(number);
+        }
+
+        return false;
+    }
+
+    public boolean outOfRangeNumberException(int number) {
+        message = ExceptionMessage.OUT_OF_RANGE.getMessage();
+
+        if (!isBetweenInRange(number)) {
+            System.out.println(message);
+            return true;
+        }
+        return false;
+    }
+
     public boolean notIntegerValueException(String number) {
         message = ExceptionMessage.NOT_INTEGER_VALUE.getMessage();
 

@@ -25,4 +25,5 @@ public class InputView {
 
         return readLine();
     }
+
 }

@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static lotto.exception.ExceptionMessage.DUPLICATE_BONUSE_NUMBER;
 
+import lotto.exception.InvalidInput;
+
 
 public class WinningLotto {
     private static final int FIRST_SCORE = 6;
@@ -31,9 +33,13 @@ public class WinningLotto {
     }
 
     private void validate(int bonusNumber) {
-        if (winningLottoNumbers.checkContainsSameNumber(bonusNumber)) {
-            System.out.println(DUPLICATE_BONUSE_NUMBER.getMessage());
+        InvalidInput invalidInput = new InvalidInput();
+
+        if (invalidInput.outOfRangeNumberException(bonusNumber)) {
+            throw new IllegalArgumentException();
+        } else if (invalidInput.duplicateNumberException(winningLottoNumbers, bonusNumber)) {
             throw new IllegalArgumentException();
         }
     }
+
 }

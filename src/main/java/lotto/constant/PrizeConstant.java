@@ -36,4 +36,5 @@ public enum PrizeConstant {
 
         return 0;
     }
+
 }

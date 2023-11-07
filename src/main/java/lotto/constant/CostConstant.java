@@ -11,4 +11,5 @@ public enum CostConstant {
     public int getValue() {
         return value;
     }
+
 }

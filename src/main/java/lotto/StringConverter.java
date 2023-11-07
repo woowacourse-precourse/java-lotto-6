@@ -56,4 +56,5 @@ public class StringConverter {
         InvalidInput invalidInput = new InvalidInput();
         return !invalidInput.notIntegerValueException(numbers);
     }
+
 }

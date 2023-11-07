@@ -17,4 +17,8 @@ public class Utils {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+    public double percentage(double total, double value) {
+        return (value / total) * 100.0;
+    }
 }

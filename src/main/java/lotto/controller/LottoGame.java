@@ -18,7 +18,7 @@ public class LottoGame {
         List<List<Integer>> myLottos = getRandamLottos();
         printMessageAndInputWinningNumber();
         printMessageAndInputBonusNumber();
-        printStatistics();
+        printStatistics(myLottos);
     }
 
     public void printMessageAndInputMoney() {
@@ -50,7 +50,7 @@ public class LottoGame {
         duplicateBonusNumber(bonusNumber);
     }
 
-    public void printStatistics() {
+    public void printStatistics(List<List<Integer>> myLottos) {
         lottoView.printStatisticsMessage();
     }
 

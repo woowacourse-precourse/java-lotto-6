@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,13 +19,15 @@ public class LottoGame {
         boolean isGaming = true;
 
         while (isGaming) {
-            inputMoney();
-            inputNumbers();
+            money = inputMoney();
+            lottoTickets.add(inputNumbers());
         }
     }
 
-    private void inputMoney() {
+    private Integer inputMoney() {
         boolean validInput = false;
+        Integer money;
+
         while (!validInput) {
             try {
                 System.out.println("로또 구입 금액이 얼마인가요?");
@@ -35,6 +38,7 @@ public class LottoGame {
                 System.out.println(e.getMessage());
             }
         }
+        return money;
     }
 
     private void validateThousandWonUnits(Integer money) {
@@ -43,11 +47,11 @@ public class LottoGame {
         }
     }
 
-    private void inputNumbers() {
+    private Lotto inputNumbers() {
         System.out.println("로또 번호를 입력하세요");
 
         String inputNumbers = Console.readLine();
-        lottoTickets.add(new Lotto(splitByComma(inputNumbers)));
+        return new Lotto(splitByComma(inputNumbers));
     }
 
     private List<Integer> splitByComma(String inputNumbers) {
@@ -57,12 +61,8 @@ public class LottoGame {
                 .collect(Collectors.toList());
     }
 
-    private void winnigNumbers() {
-
-    }
-
-    private void pickBonusNumber() {
-
+    private List<Integer> pickWinningNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 7);
     }
 
     private void getLottoRank() {

@@ -15,11 +15,11 @@ public class Calculator {
 
     public static Map<Rank, Integer> classify(List<WinningCount> winningCounts) {
         Map<Rank, Integer> winningResult = new HashMap<>();
-        winningResult.put(FIRST, countFirst(winningCounts));
-        winningResult.put(SECOND, countSecond(winningCounts));
-        winningResult.put(THIRD, countThird(winningCounts));
-        winningResult.put(FOURTH, countFourth(winningCounts));
-        winningResult.put(FIFTH, countFifth(winningCounts));
+        winningResult.put(FIRST, countRank(winningCounts, FIRST));
+        winningResult.put(SECOND, countRank(winningCounts, SECOND));
+        winningResult.put(THIRD, countRank(winningCounts, THIRD));
+        winningResult.put(FOURTH, countRank(winningCounts, FOURTH));
+        winningResult.put(FIFTH, countRank(winningCounts, FIFTH));
         return winningResult;
     }
 
@@ -28,43 +28,17 @@ public class Calculator {
     }
 
     private static int calculateProfit(List<WinningCount> winningCounts) {
-        return countFirst(winningCounts) * FIRST.getPrize()
-                + countSecond(winningCounts) * SECOND.getPrize()
-                + countThird(winningCounts) * THIRD.getPrize()
-                + countFourth(winningCounts) * FOURTH.getPrize()
-                + countFifth(winningCounts) * FIFTH.getPrize();
+        return countRank(winningCounts, FIRST) * FIRST.getPrize()
+                + countRank(winningCounts, SECOND) * SECOND.getPrize()
+                + countRank(winningCounts, THIRD) * THIRD.getPrize()
+                + countRank(winningCounts, FOURTH) * FOURTH.getPrize()
+                + countRank(winningCounts, FIFTH) * FIFTH.getPrize();
     }
 
 
-    private static int countFirst(List<WinningCount> winningCounts) {
+    private static int countRank(List<WinningCount> winningCounts, Rank rank) {
         return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == FIRST.getCount())
-                .count();
-    }
-
-    private static int countSecond(List<WinningCount> winningCounts) {
-        return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == SECOND.getCount()
-                        && winningCount.hasBonusNumber())
-                .count();
-    }
-
-    private static int countThird(List<WinningCount> winningCounts) {
-        return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == THIRD.getCount()
-                        && !winningCount.hasBonusNumber())
-                .count();
-    }
-
-    private static int countFourth(List<WinningCount> winningCounts) {
-        return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == FOURTH.getCount())
-                .count();
-    }
-
-    private static int countFifth(List<WinningCount> winningCounts) {
-        return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == FIFTH.getCount())
+                .filter(winningCount -> winningCount.getWinningCount() == rank.getCount())
                 .count();
     }
 }

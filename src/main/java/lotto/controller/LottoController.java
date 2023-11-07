@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
-import lotto.configuration.PrintMessage;
 import lotto.service.LottoService;
 import lotto.util.Utils;
 import lotto.view.InputView;
@@ -39,8 +38,8 @@ public class LottoController {
         }
     }
 
-    private List<List<Integer>> buyLotto(Long money) {
-        PrintMessage.BUY_LOTTO_COUNT.printMessage(money / ONE_THOUSAND);
+    private List<List<Integer>> buyLotto(long money) {
+        OutputView.OutputViewPurchaseCount(money / ONE_THOUSAND);
         List<List<Integer>> myLotto = lottoService.generateRandomLottoNumbers(money / ONE_THOUSAND);
         for (int i = 0; i < money / ONE_THOUSAND; i++) {
             OutputView.lottoNumbersResult(myLotto.get(i));

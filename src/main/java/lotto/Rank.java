@@ -1,0 +1,5 @@
+package lotto;
+
+public enum Rank {
+    FIRSTPLACE, SECONDPLACE, THIRDPLACE, FOURTHPLACE, FIFTHPLACE, OTHERPLACE;
+}

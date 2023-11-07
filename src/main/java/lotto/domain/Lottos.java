@@ -19,7 +19,7 @@ public class Lottos {
         return new Lottos(lottoDummy);
     }
 
-    private List<Prize> compareAllLottoWithWinnerLotto(final List<Integer> winnerNumbers, final Integer bonusNumber) {
+    private List<Prize> compareWithWinnerLotto(final List<Integer> winnerNumbers, final Integer bonusNumber) {
         return lottos.stream()
                 .map(lotto -> lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber))
                 .collect(Collectors.toList());

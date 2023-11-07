@@ -13,7 +13,7 @@ public class WinningStatisticsView {
 
     public static void printContent(WinningCondition winningCondition, int count) {
         System.out.printf(WinningStatisticsMessage.WINNING_NUMBER_CORRECT, winningCondition.winningNumberCount());
-        if (winningCondition.containBonusNumber()) {
+        if (winningCondition.bonusNumberCount() > 0) {
             System.out.printf(", " + WinningStatisticsMessage.BONUS_NUMBER_CORRECT);
         }
 

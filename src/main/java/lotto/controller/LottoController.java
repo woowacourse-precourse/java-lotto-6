@@ -13,6 +13,7 @@ import lotto.view.PurchaseView;
 import lotto.view.WinningStatisticsView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static lotto.constant.SystemData.*;
@@ -47,6 +48,7 @@ public class LottoController {
     }
 
     public void showWinningStatistics() {
+        computeLottoResults();
         printWinningStatisticsHeader();
         printWinningStatisticsContents();
         printTotalProfitResult();
@@ -123,9 +125,9 @@ public class LottoController {
 
     /* 당첨 통계 내용 출력 */
     public void printWinningStatisticsContents() {
-        computeLottoResults();
+        HashMap<WinningCondition, Integer> winningResult = buyer.getWinningStatistics();
         for(WinningCondition winningCondition : WinningCondition.values()){
-            WinningStatisticsView.printContent(winningCondition,1);
+            WinningStatisticsView.printContent(winningCondition,winningResult.get(winningCondition));
         }
     }
 
@@ -135,7 +137,6 @@ public class LottoController {
                 lottoGame.getWinningNumbers(),
                 lottoGame.getBonusNumber()
         );
-        //TODO
     }
 
     /* 당첨 통계 수익률 출력 */

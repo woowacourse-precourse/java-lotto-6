@@ -1,24 +1,20 @@
 package lotto.model;
 
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public enum WinningCondition {
-    RANK_1(6, false, 2000000000),
-    RANK_2(5, true, 30000000),
-    RANK_3(5, false, 1500000),
-    RANK_4(4, false, 50000),
-    RANK_5(3, false, 5000);
+    RANK_1(6, 0, 2000000000),
+    RANK_2(5, 1, 30000000),
+    RANK_3(5, 0, 1500000),
+    RANK_4(4, 0, 50000),
+    RANK_5(3, 0, 5000),
+    NO_RANK(0, 0, 0);
 
     private final int winningNumberCount;
-    private final boolean containBonusNumber;
+    private final int bonusNumberCount;
     private final int winningAmount;
 
-    WinningCondition(int winningNumberCount, boolean containBonusNumber, int winningAmount) {
+    WinningCondition(int winningNumberCount, int bonusNumberCount, int winningAmount) {
         this.winningNumberCount = winningNumberCount;
-        this.containBonusNumber = containBonusNumber;
+        this.bonusNumberCount = bonusNumberCount;
         this.winningAmount = winningAmount;
     }
 
@@ -26,15 +22,27 @@ public enum WinningCondition {
         return winningNumberCount;
     }
 
-    public boolean containBonusNumber() {
-        return containBonusNumber;
+    public int bonusNumberCount() {
+        return bonusNumberCount;
     }
 
     public int winningAmount() {
         return winningAmount;
     }
 
-    public static WinningCondition rankOfLottoNumbers(int winningNumberCount, boolean containBonusNumber) {
-        return RANK_1;
+    public static WinningCondition valueOfLottoNumbers(int winningNumberCount, int bonusNumberCount) {
+        WinningCondition result = NO_RANK;
+        for (WinningCondition winningCondition : WinningCondition.values()) {
+            if (meetCondition(winningCondition, winningNumberCount, bonusNumberCount)) {
+                result = winningCondition;
+                break;
+            }
+        }
+        return result;
+    }
+
+    public static boolean meetCondition(WinningCondition winningCondition, int winningNumberCount, int bonusNumberCount) {
+        return (winningNumberCount >= winningCondition.winningNumberCount &&
+                bonusNumberCount >= winningCondition.bonusNumberCount);
     }
 }

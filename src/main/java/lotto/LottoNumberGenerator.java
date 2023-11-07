@@ -6,19 +6,33 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoNumberGenerator {
-    LottoInput lottoInput = new LottoInput();
-    private void generateLottoTickets() {
+    private final LottoInput lottoInput;
+
+    public LottoNumberGenerator(LottoInput lottoInput) {
+        this.lottoInput = lottoInput;
+    }
+
+    public List<Lotto> generateLottoTickets() {
         int amount = lottoInput.inputAmount();
-        int tiketCount = lottoInput.checkPurchaseAmount(amount);
-        List<List<Integer>> lottoTickets = new ArrayList<>();
-        for (int i=0; i < tiketCount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            lottoTickets.add(numbers);
+        int ticketCount = lottoInput.checkPurchaseAmount(amount);
+        List<Lotto> lottoTickets = new ArrayList<>();
+
+        for (int i = 0; i < ticketCount; i++) {
+            lottoTickets.add(generateValidLottoTicket());
         }
 
-        for (List<Integer> ticket : lottoTickets) {
-            System.out.println(ticket);
+        return lottoTickets;
+    }
+
+    private Lotto generateValidLottoTicket() {
+        while (true) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            try {
+                return new Lotto(numbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR]" + e.getMessage());
+            }
         }
     }
 }

@@ -7,7 +7,8 @@ import java.util.List;
 public class LottoInput {
 
 
-    public LottoInput (){}
+    public LottoInput() {
+    }
 
     protected int inputAmount() {
         String amount = Console.readLine();
@@ -30,7 +31,7 @@ public class LottoInput {
             String input = "1,3,6,12,9,2";
             isValid = parseAndValidateNumbers(input, winningNumbers);
         } while (!isValid);
-
+        
         return winningNumbers;
     }
 

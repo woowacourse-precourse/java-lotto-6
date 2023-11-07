@@ -5,6 +5,7 @@ import lotto.ConsoleReceiver;
 import lotto.ConsoleWriter;
 import lotto.InputReceiver;
 import lotto.InputView;
+import lotto.OutputView;
 import lotto.OutputWriter;
 import lotto.Parser;
 import lotto.utils.NumberGenerator;
@@ -34,4 +35,7 @@ public class AppConfig {
         return new ConsoleWriter();
     }
 
+    public OutputView outputView() {
+        return new OutputView(outputWriter());
+    }
 }

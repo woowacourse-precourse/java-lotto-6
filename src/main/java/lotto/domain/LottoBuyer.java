@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class LottoBuyer {
 
     private static final int MINIMUM_LOTTO_AMOUNT = 1000;
+
     private final int purchaseAmount;
 
     private final ArrayList<Lotto> purchaseLottos = new ArrayList<>();
@@ -19,6 +20,10 @@ public class LottoBuyer {
 
     public int purchaseCount() {
         return purchaseAmount / MINIMUM_LOTTO_AMOUNT;
+    }
+
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     public ArrayList<Lotto> getPurchaseLottos() {

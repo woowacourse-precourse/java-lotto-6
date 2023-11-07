@@ -32,7 +32,7 @@ public class LottoService {
 
     public void inputBonusNumber() { bonusNumber = UserInput.inputBonusNumber(winningNumbers); }
 
-    public List<Ranking> mapRankingResults() {
+    public List<Ranking> calculateRankingResults() {
         List<Ranking> ticketRankings = new ArrayList<>();
         for (Lotto lotto: lottos) {
             ticketRankings.add(lotto.checkRanking(winningNumbers, bonusNumber));

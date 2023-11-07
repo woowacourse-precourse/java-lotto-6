@@ -21,4 +21,9 @@ public class PlayerLotto {
         }
         return new FinalGrade(results);
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(" playerLottos: " + lottos);
+    }
 }

@@ -31,6 +31,10 @@ public enum WinningStandard {
             }
         }
 
+        return calculatetWinningStandard(matchCount, hasBonusNumber);
+    }
+
+    private static WinningStandard calculatetWinningStandard(int matchCount, boolean hasBonusNumber) {
         if (matchCount == 5) {
             if (hasBonusNumber) {
                 return WinningStandard.SECOND;

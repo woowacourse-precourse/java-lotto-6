@@ -14,8 +14,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Controller {
-    private int lottoCnt;
-    private int userPrice;
     private final int LOTTO_PRICE =1000;
 
 
@@ -24,10 +22,12 @@ public class Controller {
         int totalProfit = 0;
         int totalInvestment = 0;
 
-        init();
-
+        OutputView.printBuyInputPrice();
         UserPrice userPrice = new UserPrice(InputView.inputUserPrice());
-        lottoCnt = userPrice.buyCount(LOTTO_PRICE);
+        int lottoCnt = userPrice.buyCount(LOTTO_PRICE);
+        Lotties boughtLotties = userPrice.buy(lottoCnt);
+
+        OutputView.printBuyLottoCount(lottoCnt);
 
         Lotties lotties = part2();
         WinningNumber winningNumber = part3();
@@ -51,12 +51,7 @@ public class Controller {
     }
 
 
-    public void init() {
-        OutputView.printBuyInputPrice();
-        userPrice = InputView.inputUserPrice();
-        lottoCnt = userPrice / 1000;
-        OutputView.printBuyLottoCount(lottoCnt);
-    }
+
 
     public Lotties part2() {
         Lotties lotties = LottoFactory.generateLotties(lottoCnt);

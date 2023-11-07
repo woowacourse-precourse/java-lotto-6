@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.Lotto;
 import lotto.domain.*;
+import lotto.validator.Validator;
 import lotto.view.SystemOutput;
 import main.java.lotto.domain.WinningLottos;
 import lotto.view.SystemInput;
@@ -24,6 +25,7 @@ public class LottoController {
             start();
         }
         catch(IllegalArgumentException e) {
+            Validator.printErrorMessage(e.getMessage());
 
         }
     }
@@ -45,15 +47,13 @@ public class LottoController {
         for (String userpick : userPickLottoSplit) {
             userPickNumber.add(Integer.parseInt(userpick));
         }
-        String userBonus = SystemInput.readBonusNumber();
-        int userBonusNumber = Integer.parseInt(userBonus);
+
+        int userBonusNumber = SystemInput.readBonusNumber();
         UserLotto userLotto = new UserLotto(userPickNumber, userBonusNumber);
 
         RankContainer rankContainer = new RankContainer();
         Calculator calculator = new Calculator();
         calculator.match(rankContainer, userLotto, winningLottos);
-
-
         int cnt = 0;
         for (Rank rank : Rank.values()) {
             cnt += rankContainer.getRankContainer(rank) * rank.getAward();

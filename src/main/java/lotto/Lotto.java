@@ -20,9 +20,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     @Override
     public String toString() {
-        return "Lotto{" +
-                "numbers=" + numbers +
-                '}';
+        return numbers.toString();
     }
 
     public String length(Lotto lotto){
@@ -34,5 +32,10 @@ public class Lotto {
         }
 
         return Arrays.toString(arr);
+    }
+
+
+    public List<Integer> size() {
+        return numbers;
     }
 }

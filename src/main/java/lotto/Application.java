@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,6 +13,7 @@ public class Application {
         Lotto[] lottos = outputLottoNumber(number);
         String[] winning = winningNumber();
         int bonus = bonusNumber();
+        compare(lottos, winning, bonus);
     }
 
     private static int buyLotto() {
@@ -67,18 +66,21 @@ public class Application {
     private static Lotto[] outputLottoNumber(int number) {
         int i = 0;
         Lotto[] lottos = new Lotto[number];
+        try {
+            while (i < number) {
+                lottos[i] = new Lotto(lottoNumber());
+                i++;
+            }
 
-        while (i < number) {
-            lottos[i] = new Lotto(lottoNumber());
-            i++;
+            System.out.println(number + "개를 구매했습니다.");
+            for (Lotto lotto : lottos) {
+                String str = lotto.length(lotto);
+                System.out.println(str);
+            }
+            System.out.println();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-
-        System.out.println(number + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            String str = lotto.length(lotto);
-            System.out.println(str);
-        }
-        System.out.println();
 
         return lottos;
     }
@@ -99,6 +101,7 @@ public class Application {
             } else if (!checkLength(number)) {
                 throw new IllegalArgumentException("6개 입력해주세요.");
             }
+            System.out.println();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             winningNumber();
@@ -133,8 +136,72 @@ public class Application {
     private static int bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String str = Console.readLine();
-
+        System.out.println();
         return Integer.parseInt(str);
+    }
+
+    private static void compare(Lotto[] lottos, String[] winning, int bonus) {
+        try {
+            int cnt = 0;
+            int[] arr = new int[winning.length];
+            for (int i = 0; i < winning.length; i++) {
+                arr[i] = Integer.parseInt(winning[i]);
+            }
+
+            for (Lotto lotto : lottos) {
+                List<Integer> list = lotto.size();
+
+                for (Integer integer : list) {
+                    for (int k : arr) {
+                        if (integer == k) {
+                            cnt++;
+                        }
+                    }
+                }
+                if (cnt >= 3) {
+                    output(list, cnt, bonus);
+                }
+                cnt = 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private static void output(List<Integer> list, int cnt, int bonus) {
+        int[] arr = new int[5];
+        int correctLottoNumbers = 0;
+        for (Integer integer : list) {
+            if (integer == bonus) {
+                correctLottoNumbers++;
+            }
+        }
+
+        switch (cnt) {
+            case 3 -> arr[0] = 1;
+            case 4 -> arr[1] = 1;
+            case 5 -> {
+                if (correctLottoNumbers >= 1) {
+                    arr[3] = 1;
+                } else if (correctLottoNumbers == 0) {
+                    arr[2] = 1;
+                }
+            }
+            case 6 -> arr[4] = 1;
+        }
+
+        print(arr);
+    }
+
+    private static void print(int[] arr) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + arr[0]);
+        System.out.println("4개 일치 (50,000원) - " + arr[1]);
+        System.out.println("5개 일치 (1,500,000원) - " + arr[2]);
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + arr[3]);
+        System.out.println("6개 일치 (2,000,000,000원) - " + arr[4]);
     }
 
 }

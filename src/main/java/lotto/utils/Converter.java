@@ -3,7 +3,10 @@ package lotto.utils;
 import static lotto.enums.Constant.PATTERN_FLOAT;
 import static lotto.enums.Constant.PATTERN_NUMBER;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
+import lotto.enums.Constant;
 import lotto.enums.ErrorMessage;
 
 public class Converter {
@@ -11,6 +14,16 @@ public class Converter {
         validateNumberPattern(text);
 
         return Integer.parseInt(text);
+    }
+
+    public static List<Integer> stringToIntegerList(String text) {
+        List<Integer> converted = new ArrayList<>();
+
+        for (String item : text.split(Constant.DELIMITER.getContent())) {
+            converted.add(Converter.stringToInteger(item));
+        }
+
+        return converted;
     }
 
     public static Float stringToFloat(String text) {

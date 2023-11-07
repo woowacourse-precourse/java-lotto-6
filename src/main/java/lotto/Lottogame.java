@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
@@ -24,15 +25,10 @@ public class Lottogame {
             List<Integer> lottoNumbers= lotto.getNumbers();
             System.out.println(lottoNumbers);
         }
-
-
-
-
-
-
-
-//        Admin admin = new Admin();
-//        Set<String> usernumbers= admin.usernumbers(count);
-//        System.out.println(usernumbers);
+        Admin admin = new Admin();
+        String[] winumber= admin.winumbers();
+        int bounsnumber =admin.bounsnumber();
+        System.out.println(Arrays.toString(winumber));
+        System.out.println(bounsnumber);
     }
 }

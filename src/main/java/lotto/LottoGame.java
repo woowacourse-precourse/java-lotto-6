@@ -105,37 +105,36 @@ public class LottoGame {
     }
 
     private static void showResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
-        int[] winCounts = new int[LOTTO_NUMBERS_COUNT + 1]; //등수
-
+        int[] winCounts = new int[LOTTO_NUMBERS_COUNT + 1]; // 등수
         for (Lotto lotto : lottos) {
-            int matchCount = 0;
-            boolean bonusMatch = false;
-            for (int number : lotto.getNumbers()) {
-                if (winningNumbers.contains(number)) {
-                    matchCount++;
-                }
-            }
-
-            if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
-                bonusMatch = true;
-            }
-
-            // 당첨 결과를 등수 배열에 기록
-            if (matchCount < 5 && matchCount > 2) {
-                winCounts[matchCount]++;
-            } else if (matchCount == 5) {
-                if (bonusMatch) {
-                    winCounts[2]++; // 2등
-                } else {
-                    winCounts[3]++; // 3등
-                }
-            } else if (matchCount == 6) {
-                winCounts[6]++; // 1등
-            }
+            int matchCount = getMatchCount(lotto, winningNumbers);
+            boolean bonusMatch = isBonusMatch(lotto, bonusNumber, matchCount);
+            updateWinCounts(winCounts, matchCount, bonusMatch);
         }
-
         printResults(winCounts);
         calculateEarnings(winCounts, lottos.size());
+    }
+
+    private static int getMatchCount(Lotto lotto, List<Integer> winningNumbers) {
+        return (int) lotto.getNumbers().stream().filter(winningNumbers::contains).count();
+    }
+
+    private static boolean isBonusMatch(Lotto lotto, int bonusNumber, int matchCount) {
+        return matchCount == 5 && lotto.getNumbers().contains(bonusNumber);
+    }
+
+    private static void updateWinCounts(int[] winCounts, int matchCount, boolean bonusMatch) {
+        if (matchCount < 5 && matchCount > 2) {
+            winCounts[matchCount]++;
+        } else if (matchCount == 5) {
+            if (bonusMatch) {
+                winCounts[2]++; // 2등
+            } else {
+                winCounts[3]++; // 3등
+            }
+        } else if (matchCount == 6) {
+            winCounts[1]++; // 1등
+        }
     }
 
     private static void printResults(int[] winCounts) {

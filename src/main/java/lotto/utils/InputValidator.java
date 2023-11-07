@@ -110,7 +110,13 @@ public class InputValidator {
         checkNoInput(bonusNumberInput);
         checkNumeric(bonusNumberInput);
         checkNumberOfRange(bonusNumberInput);
-        // TODO : 중복된 숫자를 입력했을 경우
     }
 
+    public static void checkDuplicateNumberInBonusNumbers(List<Integer> jackpotNumber, String bonusNumberInput) {
+        for (int i = 0; i < jackpotNumber.size(); i++) {
+            if (jackpotNumber.contains(Integer.parseInt(bonusNumberInput))) {
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_ERROR.getErrorMessage());
+            }
+        }
+    }
 }

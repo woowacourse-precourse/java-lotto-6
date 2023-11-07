@@ -50,6 +50,7 @@ public class LottoController {
                 InputView.printBonusNumberInputMessage();
                 bonusNumberInput = Console.readLine();
                 InputValidator.checkBonusNumberInput(bonusNumberInput);
+                InputValidator.checkDuplicateNumberInBonusNumbers(jackpotNumbers, bonusNumberInput);
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());

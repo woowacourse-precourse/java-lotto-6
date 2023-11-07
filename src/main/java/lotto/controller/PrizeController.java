@@ -28,8 +28,8 @@ public class PrizeController {
     public static Prize requestBonusNumber(final Lotto prizeNumbers) {
         try {
             final String bonusNumberInput = InputReader.readLine();
-
-            return Prize.of(prizeNumbers, bonusNumberInput);
+            final int bonusNumber = Parser.parseStringToInt(bonusNumberInput);
+            return Prize.of(prizeNumbers, bonusNumber);
         } catch (LottoException exception) {
             OutputWriter.println(exception.getMessage());
             return requestBonusNumber(prizeNumbers);

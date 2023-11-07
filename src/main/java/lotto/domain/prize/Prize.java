@@ -2,7 +2,6 @@ package lotto.domain.prize;
 
 import lotto.domain.lottery.Lotto;
 import lotto.domain.lottery.NumberChecker;
-import lotto.domain.lottery.Parser;
 import lotto.exception.LottoException;
 
 import static lotto.exception.ErrorMessage.BONUS_NUMBER_DUPLICATED;
@@ -14,24 +13,22 @@ public final class Prize extends NumberChecker {
     // Constructor
     private Prize(
             final Lotto prizeNumbers,
-            final String bonusNumberInput
+            final int bonusNumber
     ) {
         this.prizeNumbers = prizeNumbers;
+        
+        validateNumberRange(bonusNumber);
+        validateDuplicatedBonusNumber(bonusNumber);
 
-        int parsedBonusNumber = Parser.parseStringToInt(bonusNumberInput);
-
-        validateNumberRange(parsedBonusNumber);
-        validateDuplicatedBonusNumber(parsedBonusNumber);
-
-        this.bonusNumber = parsedBonusNumber;
+        this.bonusNumber = bonusNumber;
     }
 
     // Static Factory Method
     public static Prize of(
             final Lotto prizeNumbers,
-            final String bonusNumberInput
+            final int bonusNumber
     ) {
-        return new Prize(prizeNumbers, bonusNumberInput);
+        return new Prize(prizeNumbers, bonusNumber);
     }
 
     // Utility Method

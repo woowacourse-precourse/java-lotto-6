@@ -1,14 +1,15 @@
 package lotto.util;
 
-public class LottoPlayerValidator {
+public class LottoPriceValidator {
 
     private static final int PRICE_OF_LOTTO = 1000;
 
-    public static void validateTotalPriceOfLotto(String totalPriceOfLotto) {
+    public static int validateTotalPriceOfLotto(String totalPriceOfLotto) {
         try {
             int totalPrice = Integer.parseInt(totalPriceOfLotto);
             validateIsPositiveNumber(totalPrice);
             validateIsDivisible(totalPrice);
+            return totalPrice;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 금액은 숫자가 입력되어야 합니다.");
         }

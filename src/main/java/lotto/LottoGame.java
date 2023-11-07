@@ -20,7 +20,7 @@ public class LottoGame {
 
         while (isGaming) {
             money = inputMoney();
-            lottoTickets.add(inputNumbers());
+            lottoTickets = generateLottoTickets(money);
         }
     }
 
@@ -62,7 +62,6 @@ public class LottoGame {
     }
 
     private List<Integer> pickWinningNumbers() {
-        
         return Randoms.pickUniqueNumbersInRange(1, 45, 7);
     }
 
@@ -74,7 +73,11 @@ public class LottoGame {
 
     }
 
-    private void generateLottoTickets() {
+    private List<Lotto> generateLottoTickets(Integer money) {
+        int ticketAmount = (int) money / 1000;
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(inputNumbers());
+        return lottos;
     }
 
     private void printResult() {

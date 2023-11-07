@@ -10,10 +10,17 @@ import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatistics;
 import lotto.domain.WinningStatisticsCalculator;
 import lotto.utils.InputProcessor;
+import lotto.utils.generator.LottsGenerator;
 import lotto.utils.generator.RandomLottosGenerator;
 import lotto.view.OutputView;
 
 public class LottoController {
+
+    private final LottsGenerator lottsGenerator;
+
+    public LottoController(LottsGenerator lottsGenerator) {
+        this.lottsGenerator = lottsGenerator;
+    }
 
     public void run() {
         PurchasedLottos purchasedLottos = createPurchasedLottos();
@@ -34,7 +41,7 @@ public class LottoController {
         while (true) {
             try {
                 int purchaseAmount = InputProcessor.processPurchaseAmount();
-                return new PurchasedLottos(purchaseAmount, new RandomLottosGenerator(purchaseAmount));
+                return new PurchasedLottos(purchaseAmount, lottsGenerator);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());
             }

@@ -18,8 +18,8 @@ class RandomLottosGeneratorTest {
     @BeforeEach
     void setUp() {
         purchaseAmount = 10000;
-        randomLottosGenerator = new RandomLottosGenerator(purchaseAmount);
-        generatedLottos = randomLottosGenerator.generateLottos();
+        randomLottosGenerator = new RandomLottosGenerator();
+        generatedLottos = randomLottosGenerator.generateLottos(purchaseAmount);
     }
 
     @DisplayName("올바른 로또 범위 내의 숫자를 생성한다.")

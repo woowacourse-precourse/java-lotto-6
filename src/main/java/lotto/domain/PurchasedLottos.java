@@ -13,7 +13,7 @@ public class PurchasedLottos {
     public PurchasedLottos(int purchaseAmount, LottsGenerator lottsGenerator) {
         validate(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
-        this.lottos = lottsGenerator.generateLottos();
+        this.lottos = lottsGenerator.generateLottos(purchaseAmount);
     }
 
     public void validate(int purchaseAmount) {

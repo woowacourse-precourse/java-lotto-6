@@ -11,7 +11,8 @@ public class FixedLottosGenerator implements LottsGenerator {
     }
 
     @Override
-    public List<Lotto> generateLottos() {
+    public List<Lotto> generateLottos(int purchaseAmount) {
+        // purchaseAmount는 무시
         return lottos;
     }
 }

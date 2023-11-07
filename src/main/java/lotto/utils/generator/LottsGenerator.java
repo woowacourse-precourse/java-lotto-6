@@ -5,5 +5,5 @@ import lotto.domain.Lotto;
 
 public interface LottsGenerator {
 
-    List<Lotto> generateLottos();
+    List<Lotto> generateLottos(int purchaseAmount);
 }

@@ -18,7 +18,7 @@ class FixedLottosGeneratorTest {
         Lotto lotto3 = new Lotto(Arrays.asList(7, 11, 16, 35, 36, 44));
         List<Lotto> lottos = Arrays.asList(lotto1, lotto2, lotto3);
         FixedLottosGenerator fixedLottosGenerator = new FixedLottosGenerator(lottos);
-        assertThat(fixedLottosGenerator.generateLottos()).isEqualTo(lottos);
+        assertThat(fixedLottosGenerator.generateLottos(3000)).isEqualTo(lottos);
     }
 
 }

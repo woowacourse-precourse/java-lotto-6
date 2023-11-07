@@ -4,10 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static lotto.User.LOTTO_PRICE;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 class UserTest {
 
@@ -46,7 +49,20 @@ class UserTest {
         });
     }
 
+    @DisplayName("구매한 로또 개수 일치, 유효한 로또 번호 확인, 번호 6개 확인")
     @Test
-    void saveLottos() {
+    void saveLottos_success() {
+        int allLottoPay = 5000;
+        user.inputAmount(allLottoPay);
+        List<Lotto> lottos = user.saveLottos();
+
+        assertThat(lottos).hasSize(allLottoPay / Price.LOTTO.getLottoPrice());
+        for (Lotto lotto : lottos) {
+            assertThat(lotto.getNumbers())
+                    .hasSize(6)
+                    .doesNotHaveDuplicates()
+                    .allMatch(number -> number >= 1 && number <= 45);
+        }
     }
+
 }

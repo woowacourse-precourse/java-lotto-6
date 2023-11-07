@@ -1,24 +1,24 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
-import static lotto.domain.LottoRule.MAXIMUM;
-import static lotto.domain.LottoRule.MINIMUM;
+import static lotto.domain.lotto.LottoRule.MAXIMUM;
+import static lotto.domain.lotto.LottoRule.MINIMUM;
 import static lotto.util.ErrorMessage.INPUT_NOT_IN_RANGE;
 
 public class Bonus {
     private final int bonusNumber;
 
-    public Bonus(int bonusNumber) {
+    public Bonus(final int bonusNumber) {
         validateNumberInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateNumberInRange(int bonusNumber) {
+    private void validateNumberInRange(final int bonusNumber) {
         if (isNotNumberInRange(bonusNumber)) {
             throw new IllegalArgumentException(INPUT_NOT_IN_RANGE.getMessage());
         }
     }
 
-    private boolean isNotNumberInRange(int bonusNumber) {
+    private boolean isNotNumberInRange(final int bonusNumber) {
         return bonusNumber < MINIMUM.getValue() || bonusNumber > MAXIMUM.getValue();
     }
 }

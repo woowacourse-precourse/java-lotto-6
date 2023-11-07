@@ -1,12 +1,12 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
-import static lotto.domain.LottoCriteria.FIFTH_PLACE;
-import static lotto.domain.LottoCriteria.FIRST_PLACE;
-import static lotto.domain.LottoCriteria.FOURTH_PLACE;
-import static lotto.domain.LottoCriteria.SECOND_PLACE;
-import static lotto.domain.LottoCriteria.THIRD_PLACE;
-import static lotto.domain.LottoRule.PERCENT;
-import static lotto.domain.LottoRule.PRICE;
+import static lotto.domain.lotto.LottoCriteria.FIFTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FIRST_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FOURTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.SECOND_PLACE;
+import static lotto.domain.lotto.LottoCriteria.THIRD_PLACE;
+import static lotto.domain.lotto.LottoRule.PERCENT;
+import static lotto.domain.lotto.LottoRule.PRICE;
 
 import java.util.HashMap;
 import java.util.List;
@@ -38,19 +38,19 @@ public class LottoResult {
         Long count = lotto.getNumbers().stream()
                 .filter(winningLotto.lotto().getNumbers()::contains)
                 .count();
-        if (count == FIFTH_PLACE.getCount()) {
+        if (count == FIFTH_PLACE.getMatchNumber()) {
             rankingResult.merge(FIFTH_PLACE, 1L, Long::sum);
         }
-        if (count == FOURTH_PLACE.getCount()) {
+        if (count == FOURTH_PLACE.getMatchNumber()) {
             rankingResult.merge(FOURTH_PLACE, 1L, Long::sum);
         }
-        if (count == THIRD_PLACE.getCount() && !isBonusContain(lotto)) {
+        if (count == THIRD_PLACE.getMatchNumber() && !isBonusContain(lotto)) {
             rankingResult.merge(THIRD_PLACE, 1L, Long::sum);
         }
-        if (count == SECOND_PLACE.getCount() && isBonusContain(lotto)) {
+        if (count == SECOND_PLACE.getMatchNumber() && isBonusContain(lotto)) {
             rankingResult.merge(SECOND_PLACE, 1L, Long::sum);
         }
-        if (count == FIRST_PLACE.getCount()) {
+        if (count == FIRST_PLACE.getMatchNumber()) {
             rankingResult.merge(FIRST_PLACE, 1L, Long::sum);
         }
     }

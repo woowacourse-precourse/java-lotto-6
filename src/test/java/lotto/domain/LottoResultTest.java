@@ -1,13 +1,18 @@
 package lotto.domain;
 
-import static lotto.domain.LottoCriteria.FIFTH_PLACE;
-import static lotto.domain.LottoCriteria.FIRST_PLACE;
-import static lotto.domain.LottoCriteria.FOURTH_PLACE;
-import static lotto.domain.LottoCriteria.THIRD_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FIFTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FIRST_PLACE;
+import static lotto.domain.lotto.LottoCriteria.FOURTH_PLACE;
+import static lotto.domain.lotto.LottoCriteria.THIRD_PLACE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.Map;
+import lotto.domain.lotto.Bonus;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoCriteria;
+import lotto.domain.lotto.LottoResult;
+import lotto.domain.lotto.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

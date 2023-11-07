@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 public enum LottoCriteria {
     FIRST_PLACE("1", 6, 2000000000),
@@ -8,12 +8,12 @@ public enum LottoCriteria {
     FIFTH_PLACE("5", 3, 5000);
 
     private final String place;
-    private final int count;
+    private final int matchNumber;
     private final long amount;
 
-    LottoCriteria(final String place, final int count, final long amount) {
+    LottoCriteria(final String place, final int matchNumber, final long amount) {
         this.place = place;
-        this.count = count;
+        this.matchNumber = matchNumber;
         this.amount = amount;
     }
 
@@ -21,8 +21,8 @@ public enum LottoCriteria {
         return place;
     }
 
-    public final int getCount() {
-        return count;
+    public final int getMatchNumber() {
+        return matchNumber;
     }
 
     public final long getAmount() {

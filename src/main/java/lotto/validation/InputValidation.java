@@ -1,7 +1,6 @@
 package lotto.validation;
 
 
-import java.rmi.server.ExportException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -37,9 +36,13 @@ public class InputValidation {
     }
 
     private static void isExist(String input) {
-        if (input == null || input.isEmpty()) {
+        if (!existCheck(input)) {
             ExceptionMessages.NONE_INPUT.throwException();
         }
+    }
+
+    private static boolean existCheck(String input){
+        return input != null && !input.isEmpty();
     }
 
     private static void isNumbersExist(List<String> input) {

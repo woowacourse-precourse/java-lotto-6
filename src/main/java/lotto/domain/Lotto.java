@@ -1,16 +1,18 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Lotto {
+public record Lotto(List<Integer> numbers) {
 
-    private final List<Integer> numbers;
-
-    public Lotto(List<Integer> numbers) {
+    public Lotto {
         validate(numbers);
-        this.numbers = numbers;
+    }
+
+    public void sortNumbers() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -19,12 +21,9 @@ public class Lotto {
         }
     }
 
-    public void sortNumbers() {
-        Collections.sort(numbers);
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
+    @Override
+    public List<Integer> numbers() {
+        return new ArrayList<>(numbers);
     }
 
 }

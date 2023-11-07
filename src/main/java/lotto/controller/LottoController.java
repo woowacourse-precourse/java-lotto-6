@@ -14,7 +14,6 @@ public class LottoController {
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
-    InputValidation inputValidation = new InputValidation();
 
     private static final int LOTTO_TICKET_PRIZE = 1000;
 
@@ -39,7 +38,7 @@ public class LottoController {
     private int makeBonusNumber(Lotto winningNumbers) {
         try {
             String inputBonusNumber = getBonusNumber();
-            validateBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
+            validateBonusNumber(winningNumbers.numbers(), inputBonusNumber);
             return Integer.parseInt(inputBonusNumber);
         }catch (IllegalArgumentException exception){
             System.out.println(exception.getMessage());
@@ -52,13 +51,13 @@ public class LottoController {
     }
 
     private void validateBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
-        inputValidation.validateBonusNumberInput(winningNumbers, inputBonusNumber);
+        InputValidation.validateBonusNumberInput(winningNumbers, inputBonusNumber);
     }
 
     private int getPurchaseAmount() {
         try {
             String purchaseAmount = inputView.purchaseAmountInput();
-            inputValidation.validatePurchaseAmountInput(purchaseAmount);
+            InputValidation.validatePurchaseAmountInput(purchaseAmount);
             return Integer.parseInt(purchaseAmount);
         }catch (IllegalArgumentException exception){
             System.out.println(exception.getMessage());
@@ -74,7 +73,7 @@ public class LottoController {
         List<Lotto> generatedLottos = lottos.getLottos();
         showNumberOfLottos(generatedLottos.size());
         for (Lotto lotto : generatedLottos) {
-            showGeneratedLottos(lotto.getNumbers());
+            showGeneratedLottos(lotto.numbers());
         }
     }
 
@@ -98,7 +97,7 @@ public class LottoController {
     }
 
     private void validateWinningNumbers(List<String> numbers) {
-        inputValidation.validateWinningNumbersInput(numbers);
+        InputValidation.validateWinningNumbersInput(numbers);
     }
 
     private Lotto makeWinningNumbersToLotto(List<String> winningNumbers) {
@@ -112,20 +111,20 @@ public class LottoController {
         Lottos lottos = new Lottos();
         for (int i = 0; i < numberOfLottoTickets; i++) {
             Lotto randomLotto = generateRandomLotto();
-            randomLotto.sortNumbers();
             lottos.addLotto(randomLotto);
         }
         return lottos;
     }
 
     private int calculateNumberOfLottoTickets(int purchaseAmount) {
-        int parsedPurchaseAmount = purchaseAmount;
-        return parsedPurchaseAmount / LOTTO_TICKET_PRIZE;
+        return purchaseAmount / LOTTO_TICKET_PRIZE;
     }
 
     private static Lotto generateRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(randomNumbers);
+        Lotto randomLotto = new Lotto(randomNumbers);
+        randomLotto.sortNumbers();
+        return randomLotto;
     }
 
     private void showNumberOfLottos(int numberOfLottoTickets) {
@@ -137,9 +136,9 @@ public class LottoController {
     }
 
     private Integer calculateMatchCount(Lotto generatedLotto, Lotto winningNumbers) {
-        List<Integer> winningLottoNumbers = winningNumbers.getNumbers();
+        List<Integer> winningLottoNumbers = winningNumbers.numbers();
         Integer matchCount = 0;
-        for (Integer number : generatedLotto.getNumbers()) {
+        for (Integer number : generatedLotto.numbers()) {
             if (winningLottoNumbers.contains(number)) {
                 matchCount++;
             }
@@ -148,7 +147,7 @@ public class LottoController {
     }
 
     private boolean isBonusNumberMatch(Lotto winningNumbers, Integer bonusNumber) {
-        return winningNumbers.getNumbers().contains(bonusNumber);
+        return winningNumbers.numbers().contains(bonusNumber);
     }
 
     private int calculateMatchResult(Lotto generatedLotto, Lotto winningNumbers,
@@ -204,9 +203,8 @@ public class LottoController {
     }
 
     private double calculateTotalRevenue(Long totalPrize, int purchaseAmount) {
-        long tempPurchaseAmount = purchaseAmount;
-        double totalRevenue = (double) totalPrize / tempPurchaseAmount;
-        return totalRevenue;
+        double totalRevenue = (double) totalPrize / (long) purchaseAmount;
+        return totalRevenue * 100;
     }
 
     private void showTotalRevenue(double totalRevenue) {

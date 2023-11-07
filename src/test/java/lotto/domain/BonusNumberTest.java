@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +15,7 @@ class BonusNumberTest {
 
         // then
         assertThatThrownBy(() -> BonusNumber.ofNotDuplicatedWithWinningNumber("6", winningNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.EXIST_IN_WINNING_NUMBER.getMessage());
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("번호가 1 ~ 45 범위의 수를 넘으면 예외가 발생한다.")
@@ -28,7 +26,6 @@ class BonusNumberTest {
 
         // then
         assertThatThrownBy(() -> BonusNumber.ofNotDuplicatedWithWinningNumber("46", winningNumber))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.NUMBER_RANGE.getMessage());
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.enums.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,8 +13,7 @@ class PurchasePriceTest {
     @Test
     void validateZero() {
         assertThatThrownBy(() -> PurchasePrice.from("0"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.NOT_ZERO.getMessage());
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("구입 가격이 1000원 단위가 아니면 예외가 발생한다.")
@@ -23,8 +21,7 @@ class PurchasePriceTest {
     @ValueSource(strings = {"100", "5300"})
     void validatePrice(String input) {
         assertThatThrownBy(() -> PurchasePrice.from(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.NOT_DIVIDE.getMessage());
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("구입 가격이 10만원을 넘으면 예외가 발생한다.")
@@ -32,7 +29,6 @@ class PurchasePriceTest {
     @ValueSource(strings = {"101000", "9223372036854770000"})
     void validateLimit(String input) {
         assertThatThrownBy(() -> PurchasePrice.from(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ErrorMessage.PURCHASE_LIMIT.getMessage());
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

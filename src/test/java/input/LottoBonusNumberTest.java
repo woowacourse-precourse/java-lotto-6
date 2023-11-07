@@ -25,8 +25,9 @@ public class LottoBonusNumberTest extends NsTest {
     @MethodSource("provideInputForInvalidInputBonusNumber")
     void createLottoBonusNumberByValidRange(String input, String expectedMessage) {
         assertRandomUniqueNumbersInRangeTest(
-                () -> {assertThatThrownBy(() ->
-                        run("3000", "1,2,3,4,5,6", input));
+                () -> {
+                    assertThatThrownBy(() ->
+                            run("3000", "1,2,3,4,5,6", input));
                     assertThat(output()).contains(expectedMessage);
                 },
                 List.of(8, 21, 23, 41, 42, 43),

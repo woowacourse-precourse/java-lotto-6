@@ -25,9 +25,10 @@ public class LottoWinnerNumbersTest extends NsTest {
     @MethodSource("provideInputForInvalidInputNumbers")
     void createLottoWinnerNumbersByValidRange(String input, String expectedMessage) {
         assertRandomUniqueNumbersInRangeTest(
-                () -> {assertThatThrownBy(() ->
-                        run("3000", "1,2," + input + ",4,5,6", "7"));
-                        assertThat(output()).contains(expectedMessage);
+                () -> {
+                    assertThatThrownBy(() ->
+                            run("3000", "1,2," + input + ",4,5,6", "7"));
+                    assertThat(output()).contains(expectedMessage);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
@@ -50,9 +51,10 @@ public class LottoWinnerNumbersTest extends NsTest {
     @MethodSource("provideInputForInvalidInputNumberSize")
     void createLottoWinnerNumbersByValidSize(String input, String expectedMessage) {
         assertRandomUniqueNumbersInRangeTest(
-                () -> {assertThatThrownBy(() ->
-                        run("3000", input, "7"));
-                        assertThat(output()).contains(expectedMessage);
+                () -> {
+                    assertThatThrownBy(() ->
+                            run("3000", input, "7"));
+                    assertThat(output()).contains(expectedMessage);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),
@@ -74,9 +76,10 @@ public class LottoWinnerNumbersTest extends NsTest {
     @MethodSource("provideInputForInvalidInputUniqueNumber")
     void createLottoWinnerNumbersByUniqueValue(String input, String expectedMessage) {
         assertRandomUniqueNumbersInRangeTest(
-                () -> {assertThatThrownBy(() ->
-                        run("3000", input, "7"));
-                        assertThat(output()).contains(expectedMessage);
+                () -> {
+                    assertThatThrownBy(() ->
+                            run("3000", input, "7"));
+                    assertThat(output()).contains(expectedMessage);
                 },
                 List.of(8, 21, 23, 41, 42, 43),
                 List.of(3, 5, 11, 16, 32, 38),

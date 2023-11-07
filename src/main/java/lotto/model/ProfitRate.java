@@ -4,8 +4,8 @@ public class ProfitRate {
 
     private final double profitRate;
 
-    public ProfitRate(double profitRate) {
-        this.profitRate = profitRate;
+    public ProfitRate(int revenue, int purchaseAmount) {
+        this.profitRate = ((double) revenue / purchaseAmount) * 100;
     }
 
     public double getProfitRate() {

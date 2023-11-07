@@ -32,9 +32,7 @@ public class WinningResult {
     }
 
     private ProfitRate calculateProfitRate(int totalWinningMoney, int totalPurchaseAmount) {
-        double profitRate = ((double) totalWinningMoney / totalPurchaseAmount) * 100;
-
-        return new ProfitRate(profitRate);
+        return new ProfitRate(totalWinningMoney, totalPurchaseAmount);
     }
 
     private int calculateTotalPurchaseAmount() {

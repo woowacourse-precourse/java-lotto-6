@@ -1,5 +1,7 @@
 package lotto.model.domain;
 
+import static lotto.model.domain.Ranking.*;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,14 +11,17 @@ public class Statistics {
 
     public void makeResultBoard() {
         results = new HashMap<>();
-        for(Ranking ranking : Ranking.getAllRankingCase()) {
+        for(Ranking ranking : getAllRankingCase()) {
+            if (ranking == NOTHING) {
+                continue;
+            }
             results.put(ranking, 0);
         }
     }
 
     public void createData(List<Ranking> rankings) {
         for(Ranking ranking : rankings) {
-            if(ranking == null) {
+            if(ranking == NOTHING) {
                 continue;
             }
             results.put(ranking, results.get(ranking) + 1);

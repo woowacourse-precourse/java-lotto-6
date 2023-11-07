@@ -1,5 +1,7 @@
 package lotto.model.domain;
 
+import static lotto.model.domain.Ranking.*;
+
 import java.util.List;
 
 public class Result {
@@ -21,13 +23,12 @@ public class Result {
     }
 
     public Ranking checkRanking() {
-        List<Ranking> allRankingCase = Ranking.getAllRankingCase();
+        List<Ranking> allRankingCase = getAllRankingCase();
         for(Ranking ranking : allRankingCase) {
             if((ranking.getMatchedCount() == matchingNumber) && (ranking.getHasBonus().contains(isMatchedBonus))) {
                 return ranking;
             }
         }
-        //TODO: null이 아닌 다른 예외로 처리하기
-        return null;
+        return NOTHING;
     }
 }

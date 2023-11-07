@@ -19,7 +19,6 @@ public class LottoResultCheckService {
             issuedNumbers.retainAll(winningLotto.getNumbers());
             Result result = new Result(issuedNumbers.size(), isMatchedBonusNumber);
             Ranking rankingOfLotto = result.checkRanking();
-            //TODO: null이 들어왔을 때 처리할 방법도 고안해야 한다.
             results.add(rankingOfLotto);
         }
         return results;

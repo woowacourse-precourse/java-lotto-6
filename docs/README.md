@@ -70,15 +70,15 @@
   - [x] 금액을 int 타입 정수로 변환한다. `makeInt()`
   - 👿 금액을 int 타입 정수로 변환할 수 없으면 예외처리
 - [x] 자동 발행한 모든 로또 번호를 사용자에게 보여준다. `provideLotteriesDetails()`
-- [x] 입력받은 당첨 번호를 당첨 번호 생성 도메인 로직으로 넘긴다. `setUPWinningMain()`
+- [x] 입력받은 당첨 번호를 당첨 번호 생성 도메인 로직으로 넘긴다. `processWinningOngoing()`
   - [x] 각 번호를 int 타입 정수로 변환한다. `makeIntegerList()`
   - 👿 번호를 int 타입 정수로 변환할 수 없으면 예외처리
-- [x] 입력받은 보너스 번호를 보너스 번호 생성 도메인 로직으로 넘긴다.`setUPWinningBonus()`
+- [x] 입력받은 보너스 번호를 보너스 번호 생성 도메인 로직으로 넘긴다.`processWinningComplete()`
   - [x] 번호를 int 타입 정수로 변환한다. `makeInt()`
   - 👿 번호를 int 타입 정수로 변환할 수 없으면 예외처리
 - [x] 당첨 번호+보너스 번호를 합쳐서 저장한다. `setUpWinning()`
 - [x] 당첨 통계 내역 전체를 사용자에게 보여준다. `provideWinningDetails()`
 - [x] 수익률을 소수점 둘째 자리에서 반올림한다. `provideRateOfReturn()`
 
-- [x] 예외 상황이 생기면 해당 부분부터 다시 입력받는다. `LottoAction`, `WinningAction`
+- [x] 예외 상황이 생기면 해당 부분부터 다시 입력받는다. `LottoHandler`, `WinningHandler`
   - [미션 진행 계획-입력값 처리](#3-입력값-처리) 참고

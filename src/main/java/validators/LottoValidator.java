@@ -8,13 +8,26 @@ public class LottoValidator {
 
     /** 사용자에 문자열 로또번호 입력 받기
      *
-     * @return 공백 입력 시 예외 발생, 숫자 또는 콤마 외의 문자가 있을 경우 예외 발생
+     * @return 공백 입력, 숫자/콤마 외의 문자가 있을 경우 예외 발생
      */
     public static boolean isVerifyInputLotto(String inputLotto){
         isBlankLottoNumbers(inputLotto);
         isNumberAndComma(inputLotto);
+        isVerifyArrayLotto(inputLotto);
 
         return true;
+    }
+
+    private static void isVerifyArrayLotto(String inputLotto){
+        inputLotto = inputLotto.trim();
+
+        final String COMMA = ",";
+        String[] lottoNumbers = inputLotto.split(COMMA);
+
+        isNullLottoNumbers(lottoNumbers);
+        for(String number : lottoNumbers){
+            isBlankLottoNumbers(number);
+        }
     }
 
     private static void isBlankLottoNumbers(String lottoNumbers){
@@ -28,6 +41,12 @@ public class LottoValidator {
 
         if(!lottoNumber.matches(NUMBER_AND_COMMA_REGEX)) {
             throw new IllegalArgumentException(ErrorCodeConstant.NUMBER_AND_COMMA_VALIDATION_ERROR);
+        }
+    }
+
+    private static void isNullLottoNumbers(String[] lottoNumbers){
+        if(lottoNumbers == null || lottoNumbers.length == 0){
+            throw new IllegalArgumentException(ErrorCodeConstant.STRING_BLANK_ERROR);
         }
     }
 

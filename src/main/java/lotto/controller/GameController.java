@@ -8,6 +8,8 @@ import lotto.view.output.OutputView;
 
 import java.util.List;
 
+import static lotto.util.GameConstant.*;
+
 // 사용자로부터 값을 입력받고, 이를 출력하기 위한 클래스
 public class GameController {
     private final OutputView outputView;
@@ -21,7 +23,7 @@ public class GameController {
     }
 
     public void startGame() {
-        int cost = inputView.getCost();
+        int cost = inputView.getCost(CONSTANT_INITIAL_VALUE.getConstant());
 
         Game game = new Game(cost);
 
@@ -44,14 +46,14 @@ public class GameController {
     }
 
     private List<Integer> getWinnerNumber() {
-        List<Integer> winnerNumber = inputView.getWinnerNumber();
+        List<Integer> winnerNumber = inputView.getWinnerNumber(CONSTANT_INITIAL_VALUE.getConstant());
         outputView.printNewLine();
 
         return winnerNumber;
     }
 
     private int getBonusNumber(List<Integer> winnerNumber) {
-        int bonusNumber = inputView.getBonusNumber(winnerNumber);
+        int bonusNumber = inputView.getBonusNumber(CONSTANT_INITIAL_VALUE.getConstant(), winnerNumber);
         outputView.printNewLine();
         return bonusNumber;
     }

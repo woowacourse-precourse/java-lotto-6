@@ -11,6 +11,6 @@ public class profitMarginCalculation implements Calculation{
         for(LottoRanking lottoRanking : lottoRankings){
             sum += lottoRanking.getPrice();
         }
-        return sum / (lottoRankings.size() * 1000);
+        return sum / (lottoRankings.size() * 10);
     }
 }

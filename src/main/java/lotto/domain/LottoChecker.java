@@ -1,9 +1,7 @@
 package lotto.domain;
 
-import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.Map;
-
-import static java.util.stream.Collectors.toMap;
 
 public class LottoChecker {
 
@@ -11,12 +9,12 @@ public class LottoChecker {
 
     private final Lotto winningLotto;
     private final Bonus bonus;
-
-    private Map<Rank, Integer> winningResult;
+    private final Map<Rank, Integer> winningResult;
 
     public LottoChecker(Lotto winningLotto, Bonus bonus) {
         this.winningLotto = winningLotto;
         this.bonus = bonus;
+        this.winningResult = new EnumMap<>(Rank.class);
     }
 
     public Map<Rank, Integer> checkWinningResult(LottoTickets lottoTickets) {
@@ -29,8 +27,9 @@ public class LottoChecker {
     }
 
     private void initWinningResult() {
-        winningResult = Arrays.stream(Rank.values())
-                .collect(toMap(rank -> rank, rank -> 0));
+        for (Rank rank : Rank.values()) {
+            winningResult.put(rank, 0);
+        }
     }
 
     private Map<Lotto, Rank> findRankByLotto(LottoTickets lottoTickets) {
@@ -42,7 +41,7 @@ public class LottoChecker {
     }
 
     private double calculateTotalReward() {
-        if (winningResult == null) {
+        if (winningResult.isEmpty()) {
             throw new IllegalStateException(WINNING_RESULT_NULL_EXCEPTION);
         }
         return winningResult.entrySet()

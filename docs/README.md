@@ -60,7 +60,7 @@
     - [x] 숫자가 1~45 사이의 숫자인지 검증한다.
     - [x] 당첨 번호 중 중복된 숫자가 없는지 검증한다.
     - [x] 검증에 실패하면 "[ERROR] ~" 메시지와 함께 `IllegalArgumentException`을 던진다.
-- [ ] 당첨 내역을 계산한다.
+- [x] 당첨 내역을 계산한다.
   ```text
   - 1등: 6개 번호 일치 / 2,000,000,000원
   - 2등: 5개 번호 + 보너스 번호 일치 / 30,000,000원
@@ -101,7 +101,7 @@
     - WinNumbersDto createWinNumbers()
       - List<Integer> getWinNumbers()
       - int getBonusNumber()
-    - ResultDto getResult()
+    - ResultDto getResult(WinNumberDto)
 
 ## LottoService
 1. 역할 : 리포지토리에 필요한 데이터를 입력하거나 꺼내서 핵심 비즈니스 로직을 담당
@@ -151,12 +151,13 @@
 
 ## ResultDto
 1. 역할 : 당첨 내역과 수익률을 계산한 결과를 감싸서 서비스에서 컨트롤러로 전달하는 모델
-2. 상태 : Map<Ranking, Integer> rankingNumbers, benefitRate
+2. 상태 : Map<Ranking, Integer> rankingCount, benefitRate
 3. 행위 : 레코드
 
 ## `Enum` Ranking
 1. 역할 : 1~5등에 따른 출력 문장과 상금 정보를 주는 열거형
 2. 상태 : FIRST, SECOND, THIRD, FOURTH, FIFTH
 3. 행위
-    - getMessage()
-    - getPrizeMoney()
+   - getPrizeMoney()
+   - getMessage()
+   - boolean isThisRanking(int matchedNumberCount, boolean isBonusNumberMatched)

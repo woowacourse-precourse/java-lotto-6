@@ -18,4 +18,10 @@ public class LottoRepository {
     private void save(Lotto lotto) {
         lottoes.add(lotto);
     }
+
+    public List<LottoDto> findLottoDtoes() {
+        return lottoes.stream()
+                .map(lotto -> new LottoDto(lotto.getNumbers()))
+                .toList();
+    }
 }

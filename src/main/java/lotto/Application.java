@@ -264,7 +264,11 @@ class profit_margin_caculation{
         totalPrize += 30000000 * Collections.frequency(result, 7);
         totalPrize += 2000000000 * Collections.frequency(result, 6);
         float profitMargin = (float) totalPrize /inputMoney * 100;
-        System.out.println("총 수익률은 "+ String.format("%.1f", profitMargin) + "%입니다.");
+        printProfit(profitMargin);
+    }
+
+    public static void printProfit(float margin){
+        System.out.println("총 수익률은 "+ String.format("%.1f", margin) + "%입니다.");
     }
 
 }

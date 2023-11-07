@@ -1,11 +1,12 @@
-package lotto;
+package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
-import lotto.util.Log;
+import lotto.domain.Lotto;
+import lotto.dto.request.AnswerNumberRequestDto;
 
 public class Input {
-    private static final int LOTTO_PRICE = 1000;
+
     private static final int MINIMUM_PRICE = 0;
     private static final String NUMBER_DIVISION = ",";
 
@@ -57,7 +58,7 @@ public class Input {
     }
 
     private void checkPriceByThousandWonUnitAndMinimum(int money) {
-        if (money % LOTTO_PRICE != 0) {
+        if (money % Lotto.PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 가격은 천원 단위입니다.");
         }
         if (MINIMUM_PRICE >= money) {

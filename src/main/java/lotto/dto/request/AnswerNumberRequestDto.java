@@ -1,6 +1,7 @@
-package lotto;
+package lotto.dto.request;
 
 import java.util.List;
+import lotto.domain.Lotto;
 
 public class AnswerNumberRequestDto {
     private final Lotto lotto;

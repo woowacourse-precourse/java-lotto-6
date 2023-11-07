@@ -1,4 +1,4 @@
-package lotto;
+package lotto.dto.response;
 
 public class StatisticsResponseDto {
 }

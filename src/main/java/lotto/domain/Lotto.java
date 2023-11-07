@@ -48,5 +48,8 @@ public class Lotto {
                 .count();
     }
 
+    public boolean isMatchedBonusNumber(BonusNumber bonusNumber) {
+        return lotto.stream().anyMatch(bonusNumber::isEquals);
+    }
 
 }

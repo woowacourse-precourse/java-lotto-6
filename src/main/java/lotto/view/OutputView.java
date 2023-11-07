@@ -1,51 +1,49 @@
 package lotto.view;
 
+import static lotto.message.ViewMessage.OUTPUT_MATCH_COUNT;
+import static lotto.message.ViewMessage.OUTPUT_PROFIT_RATE;
+import static lotto.message.ViewMessage.OUTPUT_PURCHASE_COUNT;
+import static lotto.message.ViewMessage.OUTPUT_RESULT_HEADER;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.Map;
-import lotto.domain.LottoOption;
 import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import lotto.domain.ResultSheet;
+import lotto.message.ExceptionMessage;
 import lotto.message.ViewMessage;
 
 public class OutputView {
+    private static final NumberFormat format = new DecimalFormat(ViewMessage.PROFIT_PATTERN);
 
-    private static NumberFormat format = new DecimalFormat("#,###.0");
-
-    public static void printLottos(Lottos lottoPurchaseInfo) {
-        System.out.println(lottoPurchaseInfo.getCount() + "개를 구매했습니다.");
-        System.out.println(lottoPurchaseInfo.getLottosNumber());
+    public static void printLottos(Lottos purchasedLotto) {
+        System.out.printf(OUTPUT_PURCHASE_COUNT, purchasedLotto.getCount());
+        System.out.println(purchasedLotto.getLottosNumber());
     }
 
     public static void printException(IllegalArgumentException e) {
-        System.out.println("[ERROR] : " + e.getMessage());
+        System.out.println(ExceptionMessage.PREFIX + e.getMessage());
     }
 
-    public static void printResult(Map<Rank, Integer> sheet, int count) {
+    public static void printResult(ResultSheet sheet) {
         printResultHeader();
-        printByRank(Rank.FIFTH, sheet.get(Rank.FIFTH));
-        printByRank(Rank.FOURTH, sheet.get(Rank.FOURTH));
-        printByRank(Rank.THIRD, sheet.get(Rank.THIRD));
-        printByRank(Rank.SECOND, sheet.get(Rank.SECOND));
-        printByRank(Rank.FIRST, sheet.get(Rank.FIRST));
-        printProfitRate(sheet, count);
+        printByRank(Rank.FIFTH, sheet.findCountByRank(Rank.FIFTH));
+        printByRank(Rank.FOURTH, sheet.findCountByRank(Rank.FOURTH));
+        printByRank(Rank.THIRD, sheet.findCountByRank(Rank.THIRD));
+        printByRank(Rank.SECOND, sheet.findCountByRank(Rank.SECOND));
+        printByRank(Rank.FIRST, sheet.findCountByRank(Rank.FIRST));
+        printProfitRate(sheet);
     }
 
     private static void printResultHeader() {
-        System.out.println(ViewMessage.OUTPUT_RESULT_HEADER);
+        System.out.println(OUTPUT_RESULT_HEADER);
     }
 
     private static void printByRank(Rank rank, int count) {
-        System.out.printf("%s - %d개\n", rank.getMessage(), count);
+        System.out.printf(OUTPUT_MATCH_COUNT, rank.getMessage(), count);
     }
 
-    private static void printProfitRate(Map<Rank, Integer> rankIntegerMap, int count) {
-        int purchaseCost = LottoOption.LOTTO_PRICE * count;
-        int totalPrize = (int) rankIntegerMap.entrySet().stream()
-                .mapToDouble(entry -> entry.getKey().getPrize() * entry.getValue())
-                .sum();
-        float profitRate = ((totalPrize * 1.0f) / purchaseCost) * 100;
-        System.out.printf(ViewMessage.OUTPUT_PROFIT_RATE, format.format(profitRate));
+    private static void printProfitRate(ResultSheet sheet) {
+        System.out.printf(OUTPUT_PROFIT_RATE, format.format(sheet.getTotalProfit()));
     }
 }

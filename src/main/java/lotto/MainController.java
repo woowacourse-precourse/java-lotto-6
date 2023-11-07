@@ -18,7 +18,7 @@ public class MainController {
         OutputView.printLottos(purchasedLotto);
         WinningLotto winningLotto = initAnswerLotto();
         ResultSheet resultSheet = winningLotto.calculateResult(purchasedLotto.getLottoItems());
-        OutputView.printResult(resultSheet.getSheet(), purchasedLotto.getCount());
+        OutputView.printResult(resultSheet);
     }
 
     private static Lottos initLottos() {

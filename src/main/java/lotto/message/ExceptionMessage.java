@@ -3,6 +3,7 @@ package lotto.message;
 import lotto.domain.LottoOption;
 
 public class ExceptionMessage {
+    public static final String PREFIX = "[ERROR] : ";
     public static final String INVALID_SIZE = "허용되는 로또 숫자 개수는 " + LottoOption.LOTTO_SIZE + "입니다.";
     public static final String OUT_OF_RANGE_LOTTO_NUMBER = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String DUPLICATE_LOTTO_NUMBER = "중복되는 숫자가 포함되어 있습니다.";

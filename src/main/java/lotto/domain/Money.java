@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.message.ExceptionMessage;
 
-// TODO 지갑과 로또가 너무 연관있는 것 같음
 public class Money {
     private int amount;
 

@@ -16,7 +16,7 @@ public class PurchasedLottosDTO {
     private static List<List<Integer>> convertLottosToNumbers(List<Lotto> lottos) {
         return lottos.stream()
                 .map(Lotto::getNumbers)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<List<Integer>> getPurchasedLottos() {

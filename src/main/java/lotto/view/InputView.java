@@ -16,17 +16,19 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final String FORMAT_OF_NUMERIC = "[0-9]+";
 
-    public void inputPurchasePrice() {
+    public int inputPurchasePrice() {
         System.out.println(NOTICE_INPUT_PURCHASE_PRICE);
         String input = Console.readLine();
+        int purchasePrice = 0;
         try {
             validatePurchasePriceType(input);
-            int purchasePrice = stringToInt(input);
+            purchasePrice = stringToInt(input);
             validateDividedByLottoPrice(purchasePrice);
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
             inputPurchasePrice();
         }
+        return purchasePrice;
     }
 
     public void inputWinningNumber() {

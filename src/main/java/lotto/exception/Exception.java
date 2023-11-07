@@ -41,6 +41,14 @@ public class Exception {
             }
             numbers.add(number);
         }
+        if(numbers.size() != 6) {
+            System.out.println("[ERROR] 1부터 45까지 중복되지 않은 6개의 숫자를 공백없이 쉼표로 구분하여 입력해주세요.");
+            throw new IllegalArgumentException();
+        }
         return numbers;
+    }
+
+    public boolean checkBonus(String bonus) {
+        return true;
     }
 }

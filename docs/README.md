@@ -23,11 +23,11 @@
 - [x] 로또 발행하기 - Buy#createGames()
   - [x] 구매 금액에 해당하는만큼 로또 발행
 
-- [ ] 당첨 번호 입력하기 - Lotto#winningNumbers()
-  - [ ] 6개의 중복되지 않는 당첨 번호 입력
-  - [ ] 번호는 쉼표를 기준으로 구분
-  - [ ] 1 개의 중복되지 않는 보너스 번호 입력
-  - [ ] 중복되는 숫자일 경우 예외 처리 후 다시 입력
+- [x] 당첨 번호 입력하기 - Draw#winningNumbers()
+  - [x] 6개의 중복되지 않는 당첨 번호 입력
+  - [x] 번호는 쉼표를 기준으로 구분
+  - [x] 1 개의 중복되지 않는 보너스 번호 입력
+  - [x] 중복되는 숫자일 경우 예외 처리 후 다시 입력
 
 - [ ] 로또 번호 비교하기 - Judgement#correctNumbers()
   - [ ] 몇 개의 숫자가 같은지 판단
@@ -42,11 +42,9 @@
 # Exception
 - [ ] 예외 처리
   - [x] String to int 변환 체크 - Exception#checkInt
-    - [x] 에러 메시지 출력
   - [x] 1000 단위 체크 - Exception#checkAmount
-    - [x] 에러 메시지 출력
   - [x] 숫자 6개 중복 여부 체크 - Exception#checkNumbers
-    - [x] 에러 메시지 출력
+  - [ ] 보너스 숫자 중복 여부 체크 - Exception#checkBonus
 
 # view
 - [x] 구매 로또 출력하기 - PrintGames#purchaseHistory()

@@ -31,4 +31,11 @@ public class Lotto {
             throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
         }
     }
+
+    public void validateDuplicateBonusNumber(LottoNumber bonusNumber) {
+        if (numbers.contains(bonusNumber.getLottoNumber())) {
+            String errorMessage = Constant.ERROR_PREFIX + "이미 당첨 번호에 있는 숫자입니다.";
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
 }

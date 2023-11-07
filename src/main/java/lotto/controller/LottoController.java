@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoAmount;
 import lotto.model.RandomNumbers;
@@ -20,6 +21,7 @@ public class LottoController {
         getLottoAmount();
         getLottos();
         getWinningLotto();
+        getBonusNumber();
     }
 
     private List<Lotto> getLottos(){
@@ -48,6 +50,10 @@ public class LottoController {
     }
 
     //bonusNumber 입력 받아서 모델에서 validation 처리 -> bonusNum 모델 생성?
+    public void getBonusNumber(){
+        BonusNumber bonus = new BonusNumber(InputView.bonusNumber(), winningLotto.getNumbers());
+        bonusNumber = bonus.getBonusNumber();
+    }
 
     //amount 값만큼 랜덤 로또 생성, lottos에 저장
 

@@ -20,6 +20,7 @@ public class InputValidator {
     public static void isNaturalNumbers(String[] numbers) {
         for (String number : numbers) {
             isOneNaturalNumber(number);
+            hasBlank(number);
         }
     }
 

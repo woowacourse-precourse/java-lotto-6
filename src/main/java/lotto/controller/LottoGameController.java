@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import java.util.List;
+import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningNumbers;
 import lotto.exception.InputExceptionConstant;
 import lotto.service.LottoGameService;
 import lotto.util.InputValidator;
@@ -21,17 +24,34 @@ public class LottoGameController {
     }
 
     private void initGame() {
-        int purchaseAmount = setPurchaseAmount();
-
+        PurchaseAmount purchaseAmount = setPurchaseAmount();
+        WinningNumbers winningNumbers = setWinningNumbers();
     }
 
-    private int setPurchaseAmount() {
+    private WinningNumbers setWinningNumbers() {
         while (true) {
             try {
-                String purchaseAmount = inputView.inputPurchaseAmount();
-                InputValidator.validatePurchaseNumber(purchaseAmount);
+                String[] inputArray = inputView.inputWinningNumbers();
+                InputValidator.isNaturalNumbers(inputArray);
 
-                return LottoGameUtil.StringToInt(purchaseAmount);
+                List<Integer> numbers = LottoGameUtil.StringArrayToList(inputArray);
+
+                return new WinningNumbers(numbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING_ARRAY.getText());
+            }
+        }
+    }
+
+    private PurchaseAmount setPurchaseAmount() {
+        while (true) {
+            try {
+                String input = inputView.inputPurchaseAmount();
+                InputValidator.validatePurchaseNumber(input);
+
+                int number = LottoGameUtil.StringToInt(input);
+
+                return new PurchaseAmount(number);
             } catch (IllegalArgumentException e) {
                 System.out.println(InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING.getText());
             }

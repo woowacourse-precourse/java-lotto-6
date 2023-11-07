@@ -14,7 +14,7 @@ public class InputReader {
     }
 
     public List<Integer> readAndValidateNumbers() {
-        System.out.println("\n로또 번호를 입력하세요. 번호는 쉼표(,)를 기준으로 구분합니다.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine().replace(" ", "");
         Validator.validateNumbers(input);
         String[] inputStrings = input.split(",");

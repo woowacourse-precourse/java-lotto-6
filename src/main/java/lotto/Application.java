@@ -204,9 +204,7 @@ public class Application {
 
         System.out.println("\n" + repeatTime + "개를 구매했습니다.");
         List<List<Integer>> totalLotto = random_lotto.print_lotto(repeatTime);
-
         List<Integer> winningNumber = winning_number.exceptionRepeatWinNumber();
-
         List<Integer> winPlusBonus = bonus_number.exceptionRepeatBonus(winningNumber);
 
 

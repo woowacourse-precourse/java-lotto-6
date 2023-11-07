@@ -121,7 +121,7 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 문자배열_정수리스트화_테스트(){
+    void 당첨숫자_정수리스트화_테스트(){
         String test = "4,5,9,8,1,2";
         List<Integer> expected = Arrays.asList(4,5,9,8,1,2);
         Assertions.assertEquals(expected,winning_number.splitInput(test));
@@ -133,6 +133,24 @@ class ApplicationTest extends NsTest {
                 () -> winning_number.checkIntOrNot(Word.STRING.getWord()));
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> winning_number.checkIntOrNot(Word.SPACE.getWord()));
+    }
+
+    @Test
+    void 보너스숫자_정수확인_테스트(){
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> bonus_number.intgerBonus(Word.STRING.getWord()));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> bonus_number.intgerBonus(Word.SPACE.getWord()));
+    }
+
+    @Test
+    void 보너스숫자_범위확인_테스트(){
+        int test1 = 0;
+        int test2 = 46;
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> bonus_number.checkBonusRange(test1));
+        Assertions.assertThrows(IllegalArgumentException.class,
+                () -> bonus_number.checkBonusRange(test2));
     }
 
     @Override

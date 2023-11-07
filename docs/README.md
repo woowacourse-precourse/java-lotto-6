@@ -67,7 +67,11 @@ Windows : `gradlew.bat clean test` 또는 `./gradlew.bat clean test`
     - [x] [ERROR] 숫자가 아닌 경우
     - [x] [ERROR] 1~45 사이의 값이 아닌 경우
     - [x] [ERROR] 당첨 번호와 중복된 경우
+
+✅ 보조 기능
+
 - [x] 들어온 String을 List 로 변환하는 기능
+- [ ] 소수점 둘째 자리에서 반올림 하는 기능
 
 ✅ 로또 발행 기능
 

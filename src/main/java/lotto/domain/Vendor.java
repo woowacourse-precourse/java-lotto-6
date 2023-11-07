@@ -6,8 +6,12 @@ import lotto.Constant.ErrorMessageConstant;
 public class Vendor {
     private int money;
 
+    public int getMoney() {
+        return money;
+    }
+
     public int setMoney() {
-        int numOfLotto = 0;
+        int numOfLotto;
         while (true) {
             try {
                 this.money = insertMoney();

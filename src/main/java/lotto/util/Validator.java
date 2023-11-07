@@ -46,11 +46,17 @@ public class Validator {
         }
     }
 
-    //중복된 숫자가 포함된 경우 - 리스트, 보너스
+    //중복된 숫자가 포함된 경우 - 보너스
     public static void duplicateNumber(List<Integer> numbers,  int number){
         numbers.add(number);
         if(numbers.size() != numbers.stream().distinct().count()){
-            throw new IllegalArgumentException("중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException("로또 번호와 중복된 숫자가 있습니다.");
+        }
+    }
+
+    public static void duplicateNumber(List<Integer> numbers){
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException("로또 번호 중 서로 중복된 숫자가 있습니다.");
         }
     }
 }

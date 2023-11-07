@@ -23,6 +23,7 @@ public class LottoReturnTest {
         BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
         lottoResult = new LottoResult(winningNumbersInfo, bonusNumber);
     }
+
     @AfterEach
     void closeConsole() {
         Console.close();

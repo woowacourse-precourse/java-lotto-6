@@ -17,6 +17,7 @@ public class LottoPurchaseTest {
     void setUp() {
         lottoPurchase = new LottoPurchase();
     }
+
     @AfterEach
     void closeConsole() {
         Console.close();
@@ -34,15 +35,16 @@ public class LottoPurchaseTest {
     @Test
     @DisplayName("로또 가격인 1000원보다 아래인 돈을 입력할 시 재입력한다.")
     void purchasePriceInsufficientPrice() {
-        consoleInput("500","8000");
+        consoleInput("500", "8000");
         int purchasePrice = lottoPurchase.inputPurchasePrice();
 
         assertThat(purchasePrice).isEqualTo(lottoPurchase.getPurchasePrice());
     }
+
     @Test
     @DisplayName("문자열을 입력할 시 재입력한다.")
     void purchasePriceIncorrectPrice() {
-        consoleInput("j","8000");
+        consoleInput("j", "8000");
         int purchasePrice = lottoPurchase.inputPurchasePrice();
 
         assertThat(purchasePrice).isEqualTo(lottoPurchase.getPurchasePrice());
@@ -51,11 +53,12 @@ public class LottoPurchaseTest {
     @Test
     @DisplayName("1000원으로 안 나누어질시 재입력한다.")
     void purchasePriceDividePrice() {
-        consoleInput("1500","8000");
+        consoleInput("1500", "8000");
         int purchasePrice = lottoPurchase.inputPurchasePrice();
 
         assertThat(purchasePrice).isEqualTo(lottoPurchase.getPurchasePrice());
     }
+
     private void consoleInput(final String... args) {
         final byte[] buffer = String.join("\n", args).getBytes();
         System.setIn(new ByteArrayInputStream(buffer));

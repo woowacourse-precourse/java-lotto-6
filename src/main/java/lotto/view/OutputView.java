@@ -33,6 +33,6 @@ public class OutputView {
     }
 
     public static void printRateOfReturn(double rateOfReturn) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
+        System.out.printf(OutputViewMessage.PRINT_RATE_OF_RETURN.getMessage(), rateOfReturn);
     }
 }

@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.IssuedLottos;
+import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.service.LottoService;
 import lotto.utility.vo.request.BonusNumberRequest;
@@ -27,7 +29,11 @@ public class LottoController {
     public void run() {
         IssuedLottos issuedLottos = buyLottoTickets();
         printLottoTickets(issuedLottos);
-        determineWinning(issuedLottos);
+
+        List<Rank> rankResult = calculateWinning(issuedLottos);
+        printWinning(rankResult);
+
+        printProfit(rankResult);
     }
 
     private IssuedLottos buyLottoTickets() {
@@ -46,15 +52,29 @@ public class LottoController {
         outputView.informIssuedLottos(lottoResponses);
     }
 
-    private void determineWinning(IssuedLottos issuedLottos) {
-        WinningNumberRequest winningNumberRequest = inputView.getWinningNumber();
-        BonusNumberRequest bonusNumberRequest = inputView.getBonusNumber();
+    private List<Rank> calculateWinning(IssuedLottos issuedLottos) {
+        while(true) {
+            try {
+                WinningNumberRequest winningNumberRequest = inputView.getWinningNumber();
+                Lotto winningLotto = winningNumberRequest.convertToValidLotto();
 
-        List<Rank> ranks = lottoService.determineWinning(
-            issuedLottos, bonusNumberRequest, winningNumberRequest);
+                BonusNumberRequest bonusNumberRequest = inputView.getBonusNumber();
+                BonusNumber bonusNumber = bonusNumberRequest.convertToValidBonusNumber();
+
+                return  lottoService.determineWinning(issuedLottos, winningLotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                outputView.informErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private void printWinning(List<Rank> ranks) {
+        WinningResponse response = new WinningResponse(ranks);
+        outputView.informWinningResult(response);
+    }
+
+    private void printProfit(List<Rank> ranks) {
         ProfitResponse profitResponse = lottoService.createProfit(ranks);
-
-        outputView.informWinningResult(new WinningResponse(ranks));
         outputView.informProfit(profitResponse);
     }
 }

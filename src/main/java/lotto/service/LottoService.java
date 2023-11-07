@@ -35,12 +35,9 @@ public class LottoService {
 
     public List<Rank> determineWinning(
         IssuedLottos issuedLottos,
-        BonusNumberRequest bonusNumberRequest,
-        WinningNumberRequest winningNumberRequest) {
-        Lotto winningLotto = winningNumberRequest.convertToValidLotto();
-        BonusNumber bonusNumber = bonusNumberRequest.convertToValidBonusNumber();
+        Lotto winningLotto,
+        BonusNumber bonusNumber) {
         WinningNumberChecker.validate(winningLotto, bonusNumber);
-
         return issuedLottos.determineRanks(winningLotto, bonusNumber);
     }
 

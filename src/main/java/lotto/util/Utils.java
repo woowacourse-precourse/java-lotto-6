@@ -22,10 +22,15 @@ public class Utils {
     }
 
     public static List<Integer> convertToLottoIntegerList(String userInput) {
+        Validation.verifyIntegerWinningLottoNumber(userInput);
         Validation.verifyRangeWinningLottoNumber(userInput);
         return Arrays.stream(userInput.split(COMMAS))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public static boolean isNumeric(String str) {
+        return str.matches("-?\\d+");
     }
 
 }

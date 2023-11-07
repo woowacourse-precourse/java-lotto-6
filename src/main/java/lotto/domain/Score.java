@@ -18,10 +18,22 @@ public class Score {
         int spent = 0;
         int gain = 0;
         for (LottoRank lottoRank : this.lottoResult.keySet()) {
-            spent += this.lottoResult.get(lottoRank) * LOTTO_PRICE_UNIT.getValue();
-            gain += this.lottoResult.get(lottoRank) * lottoRank.getPrizeMoney();
+            spent += getSpent(lottoRank);
+            gain += getGain(lottoRank);
         }
-        return ((double) gain / (double) spent) * PERCENTAGE;
+        return getPercentage(spent, gain);
+    }
+
+    private static double getPercentage(double spent, double gain) {
+        return (gain / spent) * PERCENTAGE;
+    }
+
+    private int getGain(LottoRank lottoRank) {
+        return this.lottoResult.get(lottoRank) * lottoRank.getPrizeMoney();
+    }
+
+    private int getSpent(LottoRank lottoRank) {
+        return this.lottoResult.get(lottoRank) * LOTTO_PRICE_UNIT.getValue();
     }
 
     public Map<LottoRank, Integer> getLottoResult() {

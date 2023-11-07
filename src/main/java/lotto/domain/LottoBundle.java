@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public class LottoBundle {
+    private static final int INITIAL_SCORE = 0;
+    private static final int INCREASE_SCORE = 1;
     private final List<Lotto> lottoBundle;
 
     public LottoBundle(final List<Lotto> lottoBundle) {
@@ -17,16 +19,16 @@ public class LottoBundle {
         return lottoBundle;
     }
 
-    public Score checkResult(Result result) {
+    public Score checkResult(final Result result) {
         final Map<LottoRank, Integer> lottoResult = new HashMap<>();
         for (Lotto lotto : this.lottoBundle) {
             LottoRank lottoRank = checkSingleLottoRank(lotto, result);
-            lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, 0) + 1);
+            lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, INITIAL_SCORE) + INCREASE_SCORE);
         }
         return new Score(lottoResult);
     }
 
-    private LottoRank checkSingleLottoRank(Lotto lotto, Result result) {
+    private LottoRank checkSingleLottoRank(final Lotto lotto, final Result result) {
         final int matchNumberResult = result.matchWinningLotto(lotto);
         final boolean matchBonusBallResult = result.matchBonusBall(lotto);
         return LottoRank.findLottoRank(matchNumberResult, matchBonusBallResult);

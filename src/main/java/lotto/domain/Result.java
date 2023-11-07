@@ -12,7 +12,7 @@ public class Result {
         this.bonusBall = bonusBall;
     }
 
-    private void validateWinningResult(Lotto lotto, int bonusBall) {
+    private void validateWinningResult(final Lotto lotto, final int bonusBall) {
         if (lotto.containsNumber(bonusBall)) {
             throw new IllegalArgumentException(BONUS_BALL_INCLUDE_ERROR.getMessage());
         }

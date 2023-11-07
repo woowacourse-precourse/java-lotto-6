@@ -11,9 +11,7 @@ import lotto.ui.Output;
 
 public class Game {
     public void run() {
-        int count = Store.convertPriceToCount(getUserPurchasePrice());
-        Output.printPurchaseCount(count);
-        LottoBundle lottoBundle = Store.generateLottoBundle(count);
+        LottoBundle lottoBundle = Store.generateLottoBundle(getUserPurchasePrice());
         Output.printLottoBundle(lottoBundle);
         Result result = makeLottoResult();
         Score score = lottoBundle.checkResult(result);
@@ -22,7 +20,9 @@ public class Game {
 
     private int getUserPurchasePrice() {
         try {
-            return Input.getPurchasePrice();
+            final int count = Store.convertPriceToCount(Input.getPurchasePrice());
+            Output.printPurchaseCount(count);
+            return count;
         } catch (IllegalArgumentException e) {
             Output.printErrorMessage(e.getMessage());
             return getUserPurchasePrice();

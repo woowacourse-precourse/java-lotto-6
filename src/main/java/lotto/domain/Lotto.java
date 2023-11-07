@@ -15,13 +15,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         validateLottoSize(numbers);
         validateDuplicate(numbers);
     }
 
     private void validateLottoSize(final List<Integer> numbers) {
-        if (numbers.size() != LOTTO_BALLS_NUMBER.getValue()) {
+        if (isDifferentSize(numbers, LOTTO_BALLS_NUMBER.getValue())) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR.getMessage());
         }
     }
@@ -29,20 +29,24 @@ public class Lotto {
     private void validateDuplicate(final List<Integer> lotto) {
         final int lottoSizeWithoutDuplicate = (int) lotto.stream().distinct().count();
 
-        if (lotto.size() != lottoSizeWithoutDuplicate) {
+        if (isDifferentSize(lotto, lottoSizeWithoutDuplicate)) {
             throw new IllegalArgumentException(NUMBER_DUPLICATED_ERROR.getMessage());
         }
+    }
+
+    private static boolean isDifferentSize(final List<Integer> lotto, final int lottoSizeWithoutDuplicate) {
+        return lotto.size() != lottoSizeWithoutDuplicate;
     }
 
     public List<Integer> getLotto() {
         return numbers.stream().sorted().toList();
     }
 
-    public boolean containsNumber(int number) {
+    public boolean containsNumber(final int number) {
         return numbers.contains(number);
     }
 
-    public int matchNumber(Lotto lottoToCompare) {
+    public int matchNumber(final Lotto lottoToCompare) {
         return (int) this.numbers.stream()
                 .filter(lottoToCompare::containsNumber)
                 .count();

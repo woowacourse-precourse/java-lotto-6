@@ -18,7 +18,7 @@ public class PrizeNumbersValidator {
     private void canSplitComma(String numbers) {
         try {
             splitedNumbers = Arrays.asList(numbers.split(","));
-            if (splitedNumbers.size() != 6) {
+            if (splitedNumbers.size() != Constants.LOTTO_COUNT) {
                 throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -36,7 +36,7 @@ public class PrizeNumbersValidator {
 
     private void isCorrectNumber() {
         for (int number : this.numbers) {
-            if (number < 1 || number > 45) {
+            if (number < Constants.MIN_NUMBER || number > Constants.MAX_NUMBER) {
                 throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }

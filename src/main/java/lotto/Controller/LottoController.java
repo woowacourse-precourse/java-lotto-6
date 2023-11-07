@@ -1,6 +1,8 @@
 package lotto.Controller;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Domain.Human;
 import lotto.Domain.Lotto;
 import lotto.Domain.WinningLotto;
@@ -8,7 +10,6 @@ import lotto.RandomGenerator.LottoGenerator;
 
 public class LottoController {
     private Human human;
-
     private WinningLotto winningLotto;
 
     public void gameStart(String budgets) {
@@ -38,7 +39,17 @@ public class LottoController {
     }
 
     public void raffleLotto(String normalNumbers, String bonusNumbers) {
-        System.out.println(normalNumbers + bonusNumbers);
+        // Exception Checking will be here
+        // If Exception occur -> return
+        winningLotto = new WinningLotto(
+                Arrays.stream(normalNumbers.split(","))
+                        .map(String::trim) // 부분 문자열의 앞뒤 공백 제거
+                        .map(Integer::parseInt) // 문자열을 정수로 변환
+                        .collect(Collectors.toList()),
+                Integer.valueOf(bonusNumbers)
+        );
+        System.out.println(winningLotto);
+        // return Successful
 
     }
 }

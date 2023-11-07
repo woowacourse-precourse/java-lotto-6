@@ -34,7 +34,8 @@ public class LottoResult {
                     result++;
                 }
             }
-            lottoResult.add(result);
+            if (result >= 3)
+                lottoResult.add(result);
         }
 
         return lottoResult;

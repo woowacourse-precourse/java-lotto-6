@@ -1,6 +1,8 @@
 package lotto.view;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.ErrorMessage;
+import lotto.utils.LottoGameMessage;
 
 public class InputView {
     private final String DELIMITER = ",";
@@ -55,5 +57,26 @@ public class InputView {
         int bonusNumber = Integer.parseInt(bonusNumberInput);
 
         return bonusNumber;
+    }
+
+    public String requestLottoMoneyToBuy() {
+        System.out.println(LottoGameMessage.BUY_LOTTO_MONEY.message);
+        String moneyInput = Console.readLine();
+
+        return moneyInput;
+    }
+
+    public String requestWinningNumber() {
+        System.out.println(LottoGameMessage.REQUEST_WINNING_NUMBER.message);
+        String winningNumberInput = Console.readLine();
+
+        return winningNumberInput;
+    }
+
+    public String requestBonusNumber() {
+        System.out.println(LottoGameMessage.REQUEST_BONUS_NUMBER.message);
+        String bonusNumberInput = Console.readLine();
+
+        return bonusNumberInput;
     }
 }

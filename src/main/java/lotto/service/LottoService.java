@@ -10,6 +10,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
+    private static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
+
+    public String makePurchaseResultOutputStatement(int count) {
+        StringBuilder result = new StringBuilder();
+        result.append(count).append(PURCHASE_X_COUNT+"\n");
+
+        List<Lotto> lottoList = generateLottoList(count);
+
+        for (Lotto lotto : lottoList) {
+            result.append(lotto.getStatus()).append("\n");
+        }
+
+        return result.toString();
+    }
 
     public List<Lotto> generateLottoList(int count) {
         List<Lotto> result = new ArrayList<>();

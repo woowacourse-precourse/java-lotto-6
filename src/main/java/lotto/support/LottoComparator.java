@@ -20,7 +20,7 @@ public class LottoComparator {
             if (lotto.find(winning.get(i))) {
                 count++;
             }
-            if (winning.get(i) == this.bonus) {
+            if (lotto.get(i) == this.bonus) {
                 bonus = true;
             }
         }

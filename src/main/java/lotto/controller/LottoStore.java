@@ -1,13 +1,5 @@
 package lotto.controller;
 
-//import lotto.domain.BonusNumber;
-//import lotto.domain.Lotto;
-//import lotto.domain.PurchaseLotto;
-//import lotto.domain.PurchaseAmount;
-//import lotto.domain.LottoData;
-//import lotto.domain.WinningResultCalculator;
-//import lotto.view.InputView;
-//import lotto.view.OutputView;
 
 import java.util.HashMap;
 import java.util.List;

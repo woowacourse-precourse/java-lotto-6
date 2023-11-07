@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.model.domain.Ranking.*;
+
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
@@ -27,10 +29,14 @@ public class OutputView {
     }
 
     public void printStatisticsResult(Map<Ranking, Integer> results) {
-        List<Ranking> ordered = Ranking.getAllRankingCase();
-        for(Ranking ranking : ordered) {
-            System.out.printf(ranking.getMessage(), ranking.getMatchedCount(), transfer(ranking.getAmount()), results.get(ranking));
-        }
+        getAllRankingCase().stream()
+            .filter(ranking -> ranking != NOTHING)
+            .forEach(ranking -> System.out.printf(
+                ranking.getMessage(),
+                ranking.getMatchedCount(),
+                transfer(ranking.getAmount()),
+                results.get(ranking)
+            ));
     }
 
     private String transfer(int price) {

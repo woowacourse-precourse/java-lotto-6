@@ -4,10 +4,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.view.Constants.*;
+import static lotto.view.Message.*;
+
 public class Lotto {
-    private static final int NUM_OF_LOTTO =6;
-    private static final String NUMBER_SIZE_ERROR = "[ERROR] 당첨 번호는 "+NUM_OF_LOTTO+"개 입력 가능합니다.";
-    private static final String OVERLAP_NUM_ERROR="[ERROR] 중복된 숫자가 존재합니다.";
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

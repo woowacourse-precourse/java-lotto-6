@@ -6,17 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.domain.NumValidator.*;
+import static lotto.view.Message.*;
 
 public class InputView {
-    private static final String INPUT_LOTTO_AMOUNT ="구입금액을 입력해 주세요.";
-    private static final String INPUT_WINNING_NUMBERS ="당첨 번호를 입력해주세요.";
-    private static final String INPUT_BONUS_NUMBER ="보너스 번호를 입력해주세요.";
+
 
     private static List<Integer> winningNumbers;
-
-    private static final int MAX_LOTTO_NUM=45;
-    private static final int LOTTO_NUM=6;
-
 
     public static int inputPlayerAmount(){
         System.out.println(INPUT_LOTTO_AMOUNT);

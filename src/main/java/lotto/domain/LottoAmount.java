@@ -1,11 +1,9 @@
 package lotto.domain;
 
-public class LottoAmount {
-    private static final int LOTTO_PRICE=1000;
-    private static final String NOT_NUMBER_ERROR ="[ERROR] 숫자가 아닌 값을 입력하셨습니다.";
-    private static final String INPUT_FORMAT_ERROR ="[ERROR] 입력값이" +LOTTO_PRICE+"로 나누어 떨어지지 않습니다.";
-    private static final String RANGE_ERROR ="[ERROR] 금액은 양수값이어야 합니다.";
+import static lotto.view.Constants.*;
+import static lotto.view.Message.*;
 
+public class LottoAmount {
     private final int amount;
 
     public LottoAmount(int amount){

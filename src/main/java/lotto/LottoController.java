@@ -233,15 +233,15 @@ public class LottoController {
     private HashMap<Integer, List<Integer>> compareLottoNumber(HashMap<Integer, Lotto> allLotto,
                                                                WinningNumber winningNumber, BonusNumber bonusNumber) {
         HashMap<Integer, List<Integer>> countSameNumbers = new HashMap<>();
-        int winningNumberMatchCount; //countWinningInLotto
-        int bonusNumberMatchCount; //countBonusInLotto
+        int countWinningInLotto;
+        int countBonusInLotto;
 
         for (int key : allLotto.keySet()) {
             List<Integer> randomLottoNumber = allLotto.get(key).getLotto();
-            winningNumberMatchCount = compareWinningAndLottoNumber(randomLottoNumber, winningNumber.getWinningNumber());
-            bonusNumberMatchCount = compareBonusAndLottoNumber(randomLottoNumber, bonusNumber.getBonusNumber());
+            countWinningInLotto = compareWinningAndLottoNumber(randomLottoNumber, winningNumber.getWinningNumber());
+            countBonusInLotto = compareBonusAndLottoNumber(randomLottoNumber, bonusNumber.getBonusNumber());
 
-            countSameNumbers.put(key, List.of(winningNumberMatchCount, bonusNumberMatchCount));
+            countSameNumbers.put(key, List.of(countWinningInLotto, countBonusInLotto));
         }
 
         return countSameNumbers;

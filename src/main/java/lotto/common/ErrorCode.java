@@ -1,4 +1,4 @@
-package lotto;
+package lotto.common;
 
 public enum ErrorCode {
     LOTTO_NUMBER_OVER_SIZE("[ERROR] 로또 번호의 개수는 6개입니다.\n"),

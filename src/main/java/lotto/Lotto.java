@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import java.util.Set;
 import lotto.common.Constraint;
+import lotto.common.ErrorCode;
 
 public class Lotto {
 

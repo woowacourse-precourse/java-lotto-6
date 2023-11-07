@@ -14,16 +14,15 @@ public class LottoGameInputer {
     }
 
     public static Integer inputToInteger() {
-        Integer result = null;
-        while (result == null) {
-            try {
-                result = Integer.parseInt(input());
-            } catch (NumberFormatException exception) {
-                LottoGamePrinter.println(LOTTO_PURCHASE_AMOUNT_INVALID_ERROR.getMessage());
-            }
+
+        try {
+            return Integer.parseInt(input());
+        } catch (NumberFormatException exception) {
+            LottoGamePrinter.println(LOTTO_PURCHASE_AMOUNT_INVALID_ERROR.getMessage());
+            return inputToInteger();
         }
 
-        return result;
+
     }
 
     public static List<Integer> convertCommaSeparatedValuesToList() {

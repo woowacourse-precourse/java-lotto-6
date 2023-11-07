@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Buyer {
@@ -15,7 +16,17 @@ public class Buyer {
         return new Buyer(lotto, bonus);
     }
 
-    public int countMatchNumber(Lotto numbers) {
+    public Rank calculateComparingResult(Lotto numbers) {
+        int matchNumber = countMatchNumber(numbers);
+        boolean hasBonus = hasBonus(numbers);
+
+        return Arrays.stream(Rank.values())
+                .map(rank -> rank.rankByCondition(matchNumber, hasBonus))
+                .findFirst()
+                .orElse(Rank.NONE);
+    }
+
+    private int countMatchNumber(Lotto numbers) {
         List<Integer> lottoNumbers = numbers.getLottoNumbers();
 
         return (int) lottoNumbers.stream()

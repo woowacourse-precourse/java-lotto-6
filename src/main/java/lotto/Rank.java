@@ -6,7 +6,8 @@ public enum Rank {
     THIRD(5, false, 1_500_000),
 
     FOURTH(4, false, 50_000),
-    FIFTH(3, false, 5_000);
+    FIFTH(3, false, 5_000),
+    NONE(0, false, 0);
 
     private final int matchNumber;
     private final boolean hasBonus;
@@ -47,6 +48,10 @@ public enum Rank {
             return Rank.FOURTH;
         }
 
-        return Rank.FIFTH;
+        if (matchNumber == 3) {
+            return Rank.FIFTH;
+        }
+
+        return Rank.NONE;
     }
 }

@@ -1,6 +1,7 @@
 package ui.input;
 
 import camp.nextstep.edu.missionutils.Console;
+import domain.ErrorMessage;
 import domain.WinningNumbers;
 import lotto.Lotto;
 import parser.IntegerParser;
@@ -26,13 +27,13 @@ public class NumbersInput {
 
     private static void validateNumbers(List<Integer> numbers) {
         if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 값이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.toString());
         }
     }
 
     private static void validateNumber(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45 사이의 값이어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.toString());
         }
     }
 }

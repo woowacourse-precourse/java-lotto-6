@@ -35,6 +35,7 @@ public class GameController {
         for (int count = 1; count <= ticketCount; count++) {
             String generateResult = gameService.generateNumber();
             System.out.println(generateResult);
+            System.out.println();
         }
     }
 }

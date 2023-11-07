@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.dto.MoneyDTO;
 import lotto.dto.WinningStatisticDTO;
+import lotto.enums.ErrorMessage;
 import lotto.enums.OutputMessage;
 import lotto.model.Lotto;
 
@@ -35,6 +36,13 @@ public class OutputView {
         System.out.println(String.format(
                 OutputMessage.RETURN_RATE.getMessage(),
                 moneyDTO.getReturnRate()
+        ));
+    }
+
+    public static void printError(String errorMessage) {
+        System.out.println(String.format(
+                ErrorMessage.FORMAT.getMessage(),
+                errorMessage
         ));
     }
 }

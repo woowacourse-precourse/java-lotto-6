@@ -20,6 +20,7 @@ public class OutputView {
     }
 
     public static void printWinningResult(Map<WinningResult, Integer> results) {
+        System.out.println("\n당첨 통계\n---");
         for (WinningResult winningResult : WinningResult.values()) {
             Integer count = results.getOrDefault(winningResult, 0);
             String message = String.format("%s - %d개", winningResult.getMessage(), count);

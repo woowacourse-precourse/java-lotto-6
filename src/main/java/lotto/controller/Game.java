@@ -45,7 +45,7 @@ public class Game {
     public void start() {
         purchaseMethod();
         lottoMethod();
-        AllCalculator();
+        allCalculator();
 
 
     }
@@ -72,7 +72,7 @@ public class Game {
     }
 
 
-    private void AllCalculator() {
+    private void allCalculator() {
         List<ComPareNumber> compareNumbers = generateCompareNumbers(numbers, bonusNumber);
         long totalMoneySum = calculateTotalMoneySum(compareNumbers);
         List<Integer> totalWinCount = calculateTotalWinCounts(compareNumbers);

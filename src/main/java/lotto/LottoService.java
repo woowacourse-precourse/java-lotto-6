@@ -1,0 +1,122 @@
+package lotto;
+
+import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static lotto.ErrorCode.*;
+
+public class LottoService {
+    private static boolean[] isExistNumber;
+
+    public void award(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int times) {
+        int[] countOfPrize = new int[7];
+        float returnRatio = calculateResult(winningLotto, bonusNumber, lottoList, countOfPrize, times);
+
+        LottoRank[] ranks = LottoRank.values();
+        for (int i = 4; i >= 0; i--) {
+            LottoRank rank = ranks[i];
+            System.out.println(rank.description + " - " + countOfPrize[rank.prize] + "개");
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", 100.0 * returnRatio);
+    }
+
+    public float calculateResult(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int[] countOfPrize, int times) {
+        int totalReward = 0;
+        for (Lotto lotto : lottoList) {
+            LottoRank rank = lotto.getRank(winningLotto, bonusNumber);
+            countOfPrize[rank.prize]++;
+            totalReward += rank.reward;
+        }
+        return (float) totalReward / (times * 1000);
+    }
+
+    public int purchaseLotto() {
+        int number = 0;
+        while (number == 0) {
+            try {
+                number = purchase(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                handleIllegalArgumentException(e);
+            }
+        }
+        System.out.println(number + "개를 구매했습니다.");
+        return number;
+    }
+
+    public int purchase(String input) {
+        int number = Integer.parseInt(input);
+        if (number % 1000 != 0)
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_ERROR.getMessage());
+        return number / 1000;
+    }
+
+    public Lotto drawLotto() {
+        Lotto winningLotto = null;
+        while (winningLotto == null) {
+            try {
+                winningLotto = getWinningLotto(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                handleIllegalArgumentException(e);
+            }
+        }
+        return winningLotto;
+    }
+
+    public int drawBonus() {
+        int bonusNumber = 0;
+        while (bonusNumber == 0) {
+            try {
+                bonusNumber = getBonusNumber(Console.readLine());
+            } catch (IllegalArgumentException e) {
+                handleIllegalArgumentException(e);
+            }
+        }
+        return bonusNumber;
+    }
+
+    public Lotto getWinningLotto(String input) {
+        isExistNumber = new boolean[47];
+        List<Integer> winningNumbers = new ArrayList<>();
+        String[] strings = input.split(",");
+        if (strings.length != 6)
+            throw new IllegalArgumentException(LOTTERY_SIZE_ERROR.getMessage());
+        for (String s : strings) {
+            int number = Integer.parseInt(s);
+            validateNumber(number);
+            winningNumbers.add(number);
+            isExistNumber[number] = true;
+        }
+        return new Lotto(winningNumbers);
+    }
+
+    private void validateNumber(int number) {
+        if (number < 1 || number > 45)
+            throw new IllegalArgumentException(LOTTERY_NUMBER_RANGE_ERROR.getMessage());
+        if (isExistNumber[number])
+            throw new IllegalArgumentException(LOTTERY_NUMBER_DUPLICATED_ERROR.getMessage());
+    }
+
+    public int getBonusNumber(String input) {
+        int number = Integer.parseInt(input);
+        validateNumber(number);
+        isExistNumber[number] = true;
+        return number;
+    }
+
+    public List<Lotto> issueLotto(int number) {
+        List<Lotto> lottoList = new ArrayList<>();
+        while (lottoList.size() < number) {
+            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottoList.add(lotto);
+            lotto.printNumbers();
+        }
+        return lottoList;
+    }
+
+    private void handleIllegalArgumentException(IllegalArgumentException e) {
+        System.out.println("[ERROR] " + e.getMessage());
+    }
+}

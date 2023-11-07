@@ -10,6 +10,7 @@ import java.util.List;
 
 public class OutputView {
     private static DecimalFormat df = new DecimalFormat("#,###");
+    private static DecimalFormat rf = new DecimalFormat("#,###.0");
     public static void moneyMessage() {
         printView(Message.MONEY.getMessage());
     }
@@ -44,7 +45,7 @@ public class OutputView {
         printView(String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", 5, df.format(ConstNum.SECOND_PRIZE.getNum()), result.getCount(2)));
         printView(String.format("%d개 일치 (%s원) - %d개",6,df.format(ConstNum.FIRST_PRIZE.getNum()),result.getCount(1)));
 
-        printView(String.format("총 수익률은 %.1f%%입니다.",result.getProfitPercentage(money)));
+        printView(String.format("총 수익률은 %s%%입니다.", rf.format(result.getProfitPercentage(money))));
     }
     public static void errorMessage(String message) {
         printView(String.format("[ERROR] %s",message));

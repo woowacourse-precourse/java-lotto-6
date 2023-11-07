@@ -23,7 +23,6 @@ public class LottoController {
 
         WinningNum winningNum = inputView.winningNumber();
 
-        OutputView.bonusMessage();
         inputView.bonusNumber(winningNum);
 
         Result result = lottoTickets.getResult(winningNum);

@@ -23,25 +23,23 @@ public class Lotto {
     }
 
     private void validLength(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++){
-            int n = numbers.indexOf(i);
-            if (n < 1 || n > 45) throw new IllegalArgumentException(
+        if (numbers.size() != 6){
+            throw new IllegalArgumentException(
                     Constant.error + Constant.invaildLength);
         }
     }
 
     private void validNumber(List<Integer> numbers) {
-        if (numbers.size() != 6){
-            throw new IllegalArgumentException(Constant.error
-                    + Constant.invaildLength);
+        for (int n : numbers) {
+            if (n < 1 || n > 45) throw new IllegalArgumentException(
+                    Constant.error + Constant.invaildNumber);
         }
     }
 
     private void checkDuplication(List<Integer> numbers) {
         List<Integer> l = new ArrayList<>();
 
-        for (int i = 0; i < numbers.size(); i++){
-            int n = numbers.indexOf(i);
+        for (int n : numbers) {
             if (l.contains(n)) throw new IllegalArgumentException(
                     Constant.error + Constant.Deduplication);
             l.add(n);

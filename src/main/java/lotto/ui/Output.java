@@ -13,6 +13,7 @@ public class Output {
     static final String DIVIDE_LINE = "---";
 
     public static final String ERROR = "[ERROR]";
+    public static final String INVALID_INPUT_VALUE_ERROR = ERROR + "올바른 입력값이 아닙니다.";
     public static final String MUST_BE_NUMBERS_BETWEEN_1_45_ERROR = ERROR + "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     public static final String HAS_DUPLICATE_NUMBER_ERROR = ERROR + "중복된 로또 번호 입니다.";
     public static final String MUST_BE_SIX_NUMBER_ERROR = ERROR + "로또 번호는 6자리여야 합니다.";

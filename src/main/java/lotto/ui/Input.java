@@ -10,8 +10,8 @@ public class Input {
         try {
             int money = Integer.parseInt(Console.readLine());
             return money;
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR]");
+        }catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(Output.MUST_INPUT_MONEY_UNITS_OF_1000_WON_ERROR);
         }
     }
 
@@ -24,8 +24,8 @@ public class Input {
                 winningNumber.add(Integer.parseInt(numbers[i]));
             }
             return winningNumber;
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR]");
+        }catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(Output.INVALID_INPUT_VALUE_ERROR);
         }
     }
 
@@ -33,8 +33,8 @@ public class Input {
         try {
             int bonusNumber = Integer.parseInt(Console.readLine());
             return bonusNumber;
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR]");
+        }catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(Output.INVALID_INPUT_VALUE_ERROR);
         }
     }
 }

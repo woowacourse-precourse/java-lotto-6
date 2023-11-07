@@ -21,5 +21,6 @@ public class LottoController {
 
     private void setLottoTickets() {
         LottoTickets lottoTickets = new LottoTickets(ticketCount);
+        OutputView.printLottoNumbers(ticketCount, lottoTickets);
     }
 }

@@ -8,10 +8,8 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class PurchaseComputerTest {
-    PurchaseComputer purchaseComputer = new PurchaseComputer();
+class PurchaseMachineTest {
+    PurchaseMachine purchaseMachine = new PurchaseMachine();
     PurchaseRepository purchaseRepository = PurchaseRepository.getInstance();
 
     @DisplayName("한개당 1000원으로 계산하여 로또를 구매할 수 있다.")
@@ -19,7 +17,7 @@ class PurchaseComputerTest {
     @ValueSource(ints = {1000, 2000, 3000, 4000, 50000})
     void getCountOfPurchasableLotto(int payment) {
         // given
-        int count = purchaseComputer.getCountOfPurchasable(payment);
+        int count = purchaseMachine.getCountOfPurchasable(payment);
         // when & then
         Assertions.assertThat(count).isEqualTo(payment/1000);
     }
@@ -29,7 +27,7 @@ class PurchaseComputerTest {
     @ValueSource(ints = {1500, 2600, 3700, 4800, 50999})
     void getCountOfPurchasableLotto_백원단위_입력(int payment) {
         // given
-        int count = purchaseComputer.getCountOfPurchasable(payment);
+        int count = purchaseMachine.getCountOfPurchasable(payment);
         // when & then
         Assertions.assertThat(count).isEqualTo(payment/1000);
     }
@@ -40,7 +38,7 @@ class PurchaseComputerTest {
         // given
         List<Integer> purchases = List.of(1, 2, 3, 4, 5);
         for (int purchase : purchases) {
-            purchaseComputer.purchaseLottoForCount(purchase);
+            purchaseMachine.purchaseLottoForCount(purchase);
         }
 
         // when & then

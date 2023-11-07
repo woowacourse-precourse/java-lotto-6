@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class WinningLotto {
+    public static final int START_RANGE = 1;
+    public static final int END_RANGE = 45;
     private Lotto winningNumber;
     private Integer bonusNumber;
 
@@ -33,7 +35,7 @@ public class WinningLotto {
     }
 
     private void validateBonusRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < START_RANGE || bonusNumber > END_RANGE) {
             throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 번호만 입력 가능합니다.");
         }
     }

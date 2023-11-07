@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.LottoNumber.*;
+
 import java.util.ArrayList;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -7,10 +9,7 @@ import camp.nextstep.edu.missionutils.Console;
 public class UserInputManager {
 	// 구입 금액은 1000원 단위로 입력
 	private final static int COST_UNIT = 1000;
-	private final static int NUMBER_OF_LOTTO_NUMBERS = 6;
 	private final static String DELIMITER = ",";
-	private final static int MIN_LOTTO_NUMBER = 1;
-	private final static int MAX_LOTTO_NUMBER = 45;
 
 	public static int inputPurchaseAmount() {
 		System.out.println("구입금액을 입력해 주세요.");
@@ -46,7 +45,7 @@ public class UserInputManager {
 
 	private static ArrayList<Integer> checkWinningNumberIsValid(String userInput) {
 		ArrayList<Integer> winningNumber = new ArrayList<>();
-		boolean[] numberUsed = new boolean[MAX_LOTTO_NUMBER + 1];
+		boolean[] numberUsed = new boolean[MAX_LOTTO_NUMBER.getValue() + 1];
 
 		if (userInput.isEmpty()) {
 			throw new IllegalArgumentException("[ERROR] 당첨 번호를 입력하세요.");
@@ -60,14 +59,14 @@ public class UserInputManager {
 			throw new IllegalArgumentException("[ERROR] 숫자를 쉼표(',')로 구분하여 입력하세요.");
 		}
 
-		if (winningNumber.size() != NUMBER_OF_LOTTO_NUMBERS) {
-			throw new IllegalArgumentException("[ERROR] " + NUMBER_OF_LOTTO_NUMBERS + "개의 숫자를 입력하세요.");
+		if (winningNumber.size() != NUMBER_OF_LOTTO_NUMBERS.getValue()) {
+			throw new IllegalArgumentException("[ERROR] " + NUMBER_OF_LOTTO_NUMBERS.getValue() + "개의 숫자를 입력하세요.");
 		}
 
 		for (int number : winningNumber) {
-			if (MIN_LOTTO_NUMBER > number || MAX_LOTTO_NUMBER < number) {
+			if (MIN_LOTTO_NUMBER.getValue() > number || MAX_LOTTO_NUMBER.getValue() < number) {
 				throw new IllegalArgumentException(
-					"[ERROR] " + MIN_LOTTO_NUMBER + " 이상 " + MAX_LOTTO_NUMBER + " 이하의 숫자를 입력하세요.");
+					"[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue() + " 이하의 숫자를 입력하세요.");
 			}
 			if (numberUsed[number]) {
 				throw new IllegalArgumentException("[ERROR] 서로 다른 숫자를 입력하세요.");
@@ -93,9 +92,9 @@ public class UserInputManager {
 			throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
 		}
 
-		if (MIN_LOTTO_NUMBER > bonusNumber || MAX_LOTTO_NUMBER < bonusNumber) {
+		if (MIN_LOTTO_NUMBER.getValue() > bonusNumber || MAX_LOTTO_NUMBER.getValue() < bonusNumber) {
 			throw new IllegalArgumentException(
-				"[ERROR] " + MIN_LOTTO_NUMBER + " 이상 " + MAX_LOTTO_NUMBER + " 이하의 숫자를 입력하세요.");
+				"[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue() + " 이하의 숫자를 입력하세요.");
 		}
 
 		for (int number : winningNumber) {

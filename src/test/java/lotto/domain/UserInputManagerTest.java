@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.domain.LottoNumber.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.lang.reflect.InvocationTargetException;
@@ -12,9 +13,6 @@ import org.junit.jupiter.api.Test;
 
 class UserInputManagerTest {
 	private final static int COST_UNIT = 1000;
-	private final static int NUMBER_OF_LOTTO_NUMBERS = 6;
-	private final static int MIN_LOTTO_NUMBER = 1;
-	private final static int MAX_LOTTO_NUMBER = 45;
 	static Class<UserInputManager> testClass = UserInputManager.class;
 
 	@DisplayName(COST_UNIT + "의 배수 입력")
@@ -124,7 +122,7 @@ class UserInputManagerTest {
 			testMethod.invoke(testClass, "2,5,11,17,19,23,29");
 		} catch (InvocationTargetException e) {
 			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] " + NUMBER_OF_LOTTO_NUMBERS + "개의 숫자를 입력하세요.");
+				.hasMessage("[ERROR] " + NUMBER_OF_LOTTO_NUMBERS.getValue() + "개의 숫자를 입력하세요.");
 		}
 	}
 
@@ -156,7 +154,7 @@ class UserInputManagerTest {
 			testMethod.invoke(testClass, "2,5,11,17,19,47");
 		} catch (InvocationTargetException e) {
 			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER + " 이상 " + MAX_LOTTO_NUMBER + " 이하의 숫자를 입력하세요.");
+				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue() + " 이하의 숫자를 입력하세요.");
 		}
 	}
 
@@ -217,7 +215,7 @@ class UserInputManagerTest {
 			testMethod.invoke(testClass, "47", new ArrayList<>(Arrays.asList(2, 5, 11, 17, 19, 23)));
 		} catch (InvocationTargetException e) {
 			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER + " 이상 " + MAX_LOTTO_NUMBER + " 이하의 숫자를 입력하세요.");
+				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue() + " 이하의 숫자를 입력하세요.");
 		}
 	}
 

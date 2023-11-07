@@ -26,4 +26,14 @@ public class InputView {
         validPositive(price);
     }
 
+    int validIntType(String input){
+        int price;
+        try{
+            price = Integer.parseInt(input);
+        } catch(Exception e) {
+            throw new IllegalArgumentException("[ERROR] 로또 구매는 숫자를 입력해야합니다.");
+        }
+        return price;
+    }
+
 }

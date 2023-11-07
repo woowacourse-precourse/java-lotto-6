@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class LottoInputParser extends InputParser {
 
     private static final String DELIMITER = ",";
-    private static final Pattern numericPattern = Pattern.compile("^\\d+(,\\d+)*$");
+    private static final Pattern PATTERN = Pattern.compile("^\\d+(,\\d+)*$");
 
     @Override
     public List<Integer> parse(String input) {
@@ -32,19 +32,19 @@ public class LottoInputParser extends InputParser {
     }
 
     private boolean isNumericWithCommaDelimiter(String input) {
-        return numericPattern.matcher(input).matches();
+        return PATTERN.matcher(input).matches();
     }
 
-    private List<Integer> parseStringListToIntegerList(List<String> strings) {
-        List<Integer> integers = new ArrayList<>();
-        for (String str : strings) {
+    private List<Integer> parseStringListToIntegerList(List<String> input) {
+        List<Integer> result = new ArrayList<>();
+        for (String str : input) {
             try {
-                int intValue = Integer.parseInt(str);
-                integers.add(intValue);
+                int value = Integer.parseInt(str);
+                result.add(value);
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(PARSE_INT_ERROR_MESSAGE.get());
             }
         }
-        return integers;
+        return result;
     }
 }

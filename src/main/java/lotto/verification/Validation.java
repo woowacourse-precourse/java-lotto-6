@@ -51,6 +51,13 @@ public class Validation {
         }
     }
 
+    public static void verifyEmptyBonusNumber(String string) {
+        if (string.length() == 0) {
+            ErrorMessage.verificationViewEmptyInputBonusNumber();
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void verifyStringToInteger(String string) {
         if (!string.chars().allMatch(Character::isDigit)) {
             ErrorMessage.verificationViewStringToInteger();

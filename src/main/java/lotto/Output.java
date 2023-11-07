@@ -3,7 +3,7 @@ package lotto;
 public enum Output {
 	RESULT_MESSAGE("등 ㅊㅋ"),
 	PURCHASE_MESSAGE("구입할 금액을 입력해 주세요."),
-	PURCHASE_COUNT_MESSAGE("\n8개를 구매했습니다.\n"),
+	PURCHASE_COUNT_MESSAGE("\n개를 구매했습니다.\n"),
 	WINNING_NUMBER_MESSAGE("당첨 번호를 입력해 주세요."),
 	BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
 	STATISTICS_MESSAGE("당첨 통계\n---\n"),
@@ -19,6 +19,9 @@ public enum Output {
 	}
 	public void getMessage() {
 		System.out.println(message);
+	}
+	public void getMessage(int number) {
+		System.out.println(number + message);
 	}
 	public static void printMessage(String message) {
 		System.out.println(message);

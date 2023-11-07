@@ -30,11 +30,15 @@ public class MyLottoStrategy implements LottoStrategy {
     }
 
     private int getmatchingNumbers(Lotto lotto, WinningLotto winningLotto) {
-        return (int) lotto.getLotto().stream().filter(winningLotto.getLotto()::contains).count();
+        return (int) lotto.getLotto()
+                .stream()
+                .filter(winningLotto.getLotto()::contains)
+                .count();
     }
 
     private boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
-        return lotto.getLotto().contains(bonusNumber.getValue());
+        return lotto.getLotto()
+                .contains(bonusNumber.getValue());
     }
 
 }

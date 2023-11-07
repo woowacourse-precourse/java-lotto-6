@@ -103,7 +103,7 @@ public class Application {
 
     static public boolean countNumException(int count){
         try {
-            if (count > 6) throw new IllegalArgumentException();
+            if (count != 6) throw new IllegalArgumentException();
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 당첨번호는 6개여야 합니다.");
             return false;

@@ -11,8 +11,8 @@ public class Writer {
     private static final String PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBERS = "보너스 번호를 입력해 주세요.";
-    private static final String RESULT_FORMAT = "%d개 일치 (%s)원 - %d개";
-    private static final String BONUS_RESULT_FORMAT = "%d개 일치, 보너스 볼 일치 (%s)원 - %d개";
+    private static final String RESULT_FORMAT = "%d개 일치 (%s원) - %d개";
+    private static final String BONUS_RESULT_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###");
     private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final String WINNING_RESULT = "당첨 통계";

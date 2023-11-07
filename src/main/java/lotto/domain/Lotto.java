@@ -1,18 +1,17 @@
 
 package lotto.domain;
 
-import lotto.constants.ErrorConstants;
 import lotto.utils.ListUtil;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

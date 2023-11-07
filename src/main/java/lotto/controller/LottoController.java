@@ -32,7 +32,7 @@ public class LottoController {
                 exceptionCheck = false;
 
             }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -48,7 +48,7 @@ public class LottoController {
                 exceptionCheck = false;
 
             }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -72,7 +72,7 @@ public class LottoController {
                 exceptionCheck = false;
 
             }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.err.println(e.getMessage());
             }
         }
     }

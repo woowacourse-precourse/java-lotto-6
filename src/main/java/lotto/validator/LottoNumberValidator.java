@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.utils.constant.Error;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +16,7 @@ public class LottoNumberValidator {
 
     public static void validateNumberSize(List<Integer> numbers) {
         if(numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개 입니다.");
+            throw new IllegalArgumentException(Error.ERROR_WINNING_NUMBER_SIZE);
         }
     }
 
@@ -23,7 +25,7 @@ public class LottoNumberValidator {
         boolean hasDuplicate = numbers.stream()
                 .anyMatch(number -> !uniqueNumbers.add(number));
         if (hasDuplicate) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 포함되었습니다.");
+            throw new IllegalArgumentException(Error.ERROR_WINNING_NUMBER_DUPLICATE);
         }
     }
 
@@ -31,7 +33,7 @@ public class LottoNumberValidator {
         boolean isRangeValid = numbers.stream()
                 .allMatch(number -> number >= 1 && number <= 45);
         if (!isRangeValid) {
-            throw new IllegalArgumentException("[ERROR] 로또 범위는 1 ~ 45 입니다.");
+            throw new IllegalArgumentException(Error.ERROR_WINNING_NUMBER_RANGE);
         }
     }
 

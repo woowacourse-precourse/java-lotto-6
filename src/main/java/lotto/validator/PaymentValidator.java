@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.utils.constant.Error;
+
 import java.util.regex.Pattern;
 
 public class PaymentValidator {
@@ -12,13 +14,13 @@ public class PaymentValidator {
 
     private static void validateNumeric(String input) {
         if(!MONEY_REGEX.matcher(input).matches()) {
-            throw new IllegalArgumentException("[ERROR] 금액 가격에 숫자가 아닌 정수는 입력할 수 없습니다.");
+            throw new IllegalArgumentException(Error.ERROR_PAYMENT_NOT_INTEGER);
         }
     }
 
     private static void validatePurchaseUnit(String input) {
         if(Integer.parseInt(input) % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로만 구매할 수 있습니다.");
+            throw new IllegalArgumentException(Error.ERROR_PAYMENT_PURCHASE_UNIT);
         }
     }
 }

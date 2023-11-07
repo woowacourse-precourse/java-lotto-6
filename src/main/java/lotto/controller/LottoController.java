@@ -57,13 +57,13 @@ public class LottoController {
 		Double resultMoney = 0.0;
 		System.out.println("당첨 통계");
 		System.out.println("---");
-		for (Lotto lotto : user.getLottoList()) {
+		for (Lotto lotto : user.getLottos()) {
 			lotto.setResult(lotteryCommission.getWinningNumbers(), lotteryCommission.getBonusNumber());
 		}
 
 		for (LottoResult result : resultCheckList) {
 			int count = 0;
-			for (Lotto lotto : user.getLottoList()) {
+			for (Lotto lotto : user.getLottos()) {
 				if (result.equals(lotto.getResult())) {
 					count++;
 				}

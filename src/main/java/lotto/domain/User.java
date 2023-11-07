@@ -8,7 +8,7 @@ import lotto.utils.Constants;
 
 public class User {
 	private Integer money;
-	private List<Lotto> lottoList = new ArrayList<>();
+	private List<Lotto> lottos = new ArrayList<>();
 
 	public User(Integer money) {
 		if (money % 1000 != 0) {
@@ -24,12 +24,12 @@ public class User {
 		for (int i = 0; i < lottoCount; i++) {
 			Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(Constants.LOTTO_MIN_NUMBER, Constants.LOTTO_MAX_NUMBER, Constants.WINNING_NUMBER_LENGTH));
 			System.out.println(lotto);
-			lottoList.add(lotto);
+			lottos.add(lotto);
 		}
 	}
 
-	public List<Lotto> getLottoList() {
-		return lottoList;
+	public List<Lotto> getLottos() {
+		return lottos;
 	}
 
 	public Integer getMoney() {

@@ -30,11 +30,11 @@ public class Lotto {
 		return numbers.toString();
 	}
 
-	public void setResult(List<Integer> winningNumberList, Integer bonus) {
+	public void setResult(List<Integer> winningNumbers, Integer bonus) {
 		int count = 0;
 
 		for (Integer number : numbers) {
-			if (winningNumberList.contains(number)) {
+			if (winningNumbers.contains(number)) {
 				count++;
 			}
 		}

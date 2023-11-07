@@ -1,5 +1,7 @@
 package validator;
 
+import domain.Lotto;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,11 +15,17 @@ public class Validator {
     private final int MAX_NUMBER = 45;
     private final String ERROR_MESSAGE = "[ERROR] ";
 
-    public void checkIsNumber(String input) throws IllegalArgumentException {
-        Matcher matcher = NUMBER_PATTERN.matcher(input);
-        if (!matcher.matches()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "숫자 형식이 아닙니다.");
+    public void checkWinNumbersIsNumber(List<String> splitNumbers) throws IllegalArgumentException {
+        for (String splitNumber : splitNumbers) {
+            checkIsNumber(splitNumber);
         }
+    }
+
+    public void checkIsNumber(String input) throws IllegalArgumentException {
+            Matcher matcher = NUMBER_PATTERN.matcher(input);
+            if (!matcher.matches()) {
+                throw new IllegalArgumentException(ERROR_MESSAGE + "숫자 형식이 아닙니다.");
+            }
     }
 
     public void checkMinMoney(int input) throws IllegalArgumentException {
@@ -51,11 +59,7 @@ public class Validator {
         }
     }
 
-    public void checkDuplicateNumber(List<Integer> numbers, int number) throws IllegalArgumentException {
-        if (numbers.contains(number)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + "중복된 값이 있습니다.");
-        }
-    }
+
 
     public void checkNumberRange(int number) throws IllegalArgumentException {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {

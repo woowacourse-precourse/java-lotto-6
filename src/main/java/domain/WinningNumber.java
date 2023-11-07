@@ -1,19 +1,26 @@
 package domain;
 
-import java.util.Collections;
-import java.util.List;
 
-public record WinningNumber(List<Integer> winningNumber, int bonusNumber) {
-    public WinningNumber(List<Integer> winningNumber, int bonusNumber) {
+public class WinningNumber {
+    private final String ERROR_MESSAGE = "[ERROR] ";
+    private final Lotto winningNumber;
+    private final int bonusNumber;
+    public WinningNumber(Lotto winningNumber, int bonusNumber) {
+        validate(winningNumber,bonusNumber);
         this.winningNumber = winningNumber;
         this.bonusNumber = bonusNumber;
-        Collections.sort(winningNumber);
+    }
+
+    private void validate(Lotto winningNumber, int bonusNumber) {
+        if (winningNumber.getNumbers().contains(bonusNumber)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE + "중복된 값이 있습니다.");
+        }
     }
 
     public int countMatch(Lotto lotto) {
         int count = 0;
-        for (Integer number : lotto.getNumbers()) {
-            if (winningNumber.contains(number)) {
+        for (Integer playerNumber : lotto.getNumbers()) {
+            if (winningNumber.getNumbers().contains(playerNumber)) {
                 count++;
             }
         }

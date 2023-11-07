@@ -18,9 +18,8 @@ public class Controller {
     public void run() {
         int money = getMoneyByUserInput();
         List<Lotto> lottos = purchaseLotto(money);
-        List<Integer> sixWinNumbers = getWinNumbersByUserInput();
-        int bonusNumber = getBonusNumberByUserInput(sixWinNumbers);
-        WinningNumber winningNumber = new WinningNumber(sixWinNumbers, bonusNumber);
+        Lotto winningLotto = getWinNumbersByUserInput();
+        WinningNumber winningNumber  = getBonusNumberByUserInput(winningLotto);
         LinkedHashMap<Rank, Integer> lottoResult = getLottoResult(lottos, winningNumber);
         getRateOfReturn(lottoResult, money);
     }
@@ -51,7 +50,7 @@ public class Controller {
         return lottos;
     }
 
-    public List<Integer> getWinNumbersByUserInput() {
+    public Lotto getWinNumbersByUserInput() {
         while (true) {
             try {
                 InputView.printAskForInputWinNumber();
@@ -63,12 +62,12 @@ public class Controller {
         }
     }
 
-    public int getBonusNumberByUserInput(List<Integer> winningNumber) {
+    public WinningNumber getBonusNumberByUserInput(Lotto winningLotto) {
         while (true) {
             try {
                 InputView.printAskForInputBonusNumber();
                 String input = Console.readLine();
-                return service.getBonusNumberByUserInput(input, winningNumber);
+                return service.getBonusNumberByUserInput(input, winningLotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

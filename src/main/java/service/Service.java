@@ -44,31 +44,28 @@ public class Service {
         return money / THOUSAND;
     }
 
-    public List<Integer> getWinNumbersByUserInput(String input) {
+    public Lotto getWinNumbersByUserInput(String input) {
         validator.checkStartOrEndWithComma(input);
         List<String> splitNumbers = Utility.splitByComma(input);
         validator.checkInputCount(splitNumbers);
-        return generateWinNumbers(splitNumbers);
+        validator.checkWinNumbersIsNumber(splitNumbers);
+        return toParseInt(splitNumbers);
     }
 
-    private List<Integer> generateWinNumbers(List<String> splitNumbers) {
+    private Lotto toParseInt(List<String> splitNumbers) {
         List<Integer> winNumbers = new ArrayList<Integer>();
         for (String splitNumber : splitNumbers) {
-            validator.checkIsNumber(splitNumber);
             int number = Integer.parseInt(splitNumber);
-            validator.checkNumberRange(number);
-            validator.checkDuplicateNumber(winNumbers, number);
             winNumbers.add(number);
         }
-        return winNumbers;
+        return new Lotto(winNumbers);
     }
 
-    public int getBonusNumberByUserInput(String input, List<Integer> winNumbers) {
+    public WinningNumber getBonusNumberByUserInput(String input, Lotto winNumbers) {
         validator.checkIsNumber(input);
         int number = Integer.parseInt(input);
         validator.checkNumberRange(number);
-        validator.checkDuplicateNumber(winNumbers, number);
-        return number;
+        return new WinningNumber(winNumbers,number);
     }
 
     public LinkedHashMap getLottoResult(List<Lotto> lottos, WinningNumber winningNumber) {

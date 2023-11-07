@@ -8,7 +8,5 @@ public class Application {
     public static void main(String[] args) {
         Lotto lotto = new Lotto();
         lotto.printPurchaseLottoNumbers();
-        lotto.getWinningNumber();
-        lotto.getBonusNumber();
     }
 }

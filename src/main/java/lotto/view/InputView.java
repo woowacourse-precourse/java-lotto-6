@@ -15,5 +15,13 @@ public class InputView {
         return read(() -> IntegerConverter.convert(Console.readLine()));
     }
 
+    public static String inputWinningNumbers() {
+        System.out.printf(INPUT_WINNING_NUMBERS_MESSAGE);
+        return Console.readLine();
+    }
 
+    public static int inputBonusNumber() {
+        System.out.printf(INPUT_BONUS_NUMBER_MESSAGE);
+        return read(() -> IntegerConverter.convert(Console.readLine()));
+    }
 }

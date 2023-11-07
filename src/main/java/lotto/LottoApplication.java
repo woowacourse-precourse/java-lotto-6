@@ -1,7 +1,8 @@
 package lotto;
 
-import View.Input;
-import View.Output;
+import lotto.entity.*;
+import view.Input;
+import view.Output;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;

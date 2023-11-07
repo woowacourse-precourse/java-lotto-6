@@ -1,4 +1,4 @@
-package lotto;
+package lotto.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,9 +57,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
-//    @Override
-//    public String toString() {
-//        return numbers.stream().map(String::valueOf).collect(Collectors.joining(", ","[","]"));
-//    }
 }

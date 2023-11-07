@@ -1,4 +1,4 @@
-package lotto;
+package lotto.entity;
 
 public class Ticket {
     private final Lotto lotto;

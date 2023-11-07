@@ -1,4 +1,4 @@
-package lotto;
+package lotto.entity;
 
 public class Buyer {
     private final int receivedAmount;

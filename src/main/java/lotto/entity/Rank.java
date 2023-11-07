@@ -1,4 +1,4 @@
-package lotto;
+package lotto.entity;
 
 import java.text.DecimalFormat;
 

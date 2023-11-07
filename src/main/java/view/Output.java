@@ -1,8 +1,7 @@
-package View;
+package view;
 
-import lotto.Lotto;
-import lotto.Rank;
-import lotto.Result;
+import lotto.entity.Lotto;
+import lotto.entity.Rank;
 
 import java.util.List;
 

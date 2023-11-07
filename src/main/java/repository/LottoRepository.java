@@ -11,8 +11,8 @@ public class LottoRepository {
         lottoList = new ArrayList<>(size);
     }
 
-    public void add(List<Integer> lotto){
-        lottoList.add(new Lotto(lotto));
+    public void add(Lotto lotto){
+        lottoList.add(lotto);
     }
 
     public List<Lotto> findAll(){

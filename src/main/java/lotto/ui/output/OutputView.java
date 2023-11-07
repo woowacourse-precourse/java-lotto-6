@@ -7,6 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 import static lotto.ui.constant.MessageConst.AMOUNT_NOTICE;
+import static lotto.ui.constant.MessageConst.HYPHEN;
+import static lotto.ui.constant.MessageConst.RETURN_NOTICE_PREFIX;
+import static lotto.ui.constant.MessageConst.RETURN_NOTICE_SUFFIX;
+import static lotto.ui.constant.MessageConst.UNIT;
 
 public class OutputView {
 
@@ -25,15 +29,13 @@ public class OutputView {
         System.out.println(Arrays.toString(changeable.toArray()));
     }
 
-    //TODO 상수화?
     public static void printWinningDetail(String description, int count) {
-        System.out.println(description + " - " + count + "개");
+        System.out.println(description + HYPHEN + count + UNIT);
     }
 
-    //TODO 상수화?
     public static void printRateOfReturn(double rateOfReturn) {
         DecimalFormat formatter = new DecimalFormat("###,###.#");
         String format = formatter.format(rateOfReturn);
-        System.out.println("총 수익률은 " + format + "%입니다.");
+        System.out.println(RETURN_NOTICE_PREFIX + format + RETURN_NOTICE_SUFFIX);
     }
 }

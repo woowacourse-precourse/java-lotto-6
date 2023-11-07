@@ -9,4 +9,10 @@ public class MessageConst {
     public static final String AMOUNT_NOTICE = "개를 구매했습니다.";
     public static final String WINNING_DETAILS_NOTICE = "당첨 통계\n---";
 
+    public static final String HYPHEN = " - ";
+    public static final String UNIT = "개";
+
+    public static final String RETURN_NOTICE_PREFIX = "총 수익률은 ";
+    public static final String RETURN_NOTICE_SUFFIX = "%입니다.";
+
 }

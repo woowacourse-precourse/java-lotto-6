@@ -27,7 +27,6 @@ public class LottoStart {
 
 
     public static void first_GameProgress() {
-
         System.out.println(Messages.lottoStartMessages.HOW_MUCH_BUY_MESSAGE.getMessage());
 
         int money = first_InputProgress();
@@ -37,8 +36,10 @@ public class LottoStart {
         System.out.println(numberOfLotto + Messages.lottoStartMessages.HOW_MANY_BUY_MESSAGE.getMessage());
 
         buyer = first_CreateBuyer(money);
+
         first_MakeLotto(buyer, numberOfLotto);
         first_PrintMadeLotto(buyer);
+
         System.out.println();
     }
 
@@ -47,16 +48,14 @@ public class LottoStart {
         List<Integer> inputWinningNumbers = second_InputWinningNumber();
 
         System.out.println(Messages.lottoStartMessages.MAKE_BONUS_NUMBER.getMessage());
-        int inputBonusNumbers = second_InputBonusNumber();
+        int inputBonusNumbers = second_InputBonusNumber(inputWinningNumbers);
 
         second_CreateLottoWinningNumber(inputWinningNumbers, inputBonusNumbers);
     }
 
     private static void last_GameProgress() {
-
         System.out.println(Messages.lottoStartMessages.WINNING_STATISTICS.getMessage());
         System.out.println(Messages.lottoStartMessages.BOARDER_LINE.getMessage());
-        System.out.println();
 
         calculateMachine = last_CreateCalculateMachine();
 
@@ -121,9 +120,19 @@ public class LottoStart {
         return winningNumbers;
     }
 
-    public static int second_InputBonusNumber() {
-        String inputBonusNumbers = Console.readLine();
-        return Integer.parseInt(inputBonusNumbers);
+    public static int second_InputBonusNumber(List<Integer> inputWinningNumbers) {
+        while (true) {
+            try {
+                String inputBonusNumbers = Console.readLine();
+                int num = Integer.parseInt(inputBonusNumbers);
+                if (inputWinningNumbers.contains(num)) {
+                    throw new IllegalArgumentException();
+                }
+                return num;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 당첨번호와 중복 됩니다. 중복 되지 않는 번호를 입력해주세요.");
+            }
+        }
     }
 
     private static void second_CreateLottoWinningNumber(List<Integer> winningNumbers, int bonusNumber) {

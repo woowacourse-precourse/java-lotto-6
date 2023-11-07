@@ -1,13 +1,13 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Buyer {
 
-    private static int money;
+    private int money;
     private List<List<Integer>> lottoCollection = new ArrayList<>();
 
     public Buyer(int money) {
@@ -19,8 +19,10 @@ public class Buyer {
     }
 
     public void setLottoCollection(List<Integer> lotto){
-        //Collections.sort(lotto);
-        lottoCollection.add(lotto);
+        List<Integer> sortedLotto = lotto.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        lottoCollection.add(sortedLotto);
     }
 
     public List<Integer> getLottoCollection(int num){

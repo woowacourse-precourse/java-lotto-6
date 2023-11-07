@@ -1,8 +1,11 @@
 package lotto;
 
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;

@@ -19,12 +19,12 @@ public enum LottoResult {
     }
 
     public static Optional<LottoResult> create(int matchingNumbers, boolean bonusMatch) {
-        if (matchingNumbers == 5 && bonusMatch) {
+        if (matchingNumbers == FIVE_MATCH_WITH_BONUS.matchingNumbers && bonusMatch) {
             return Optional.of(FIVE_MATCH_WITH_BONUS);
         }
 
         return Arrays.stream(values())
-                .filter(l -> l.matchingNumbers == matchingNumbers)
+                .filter(lottoResult -> lottoResult.matchingNumbers == matchingNumbers)
                 .findFirst();
     }
 

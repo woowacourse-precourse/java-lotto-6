@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.config.Rank;
+import lotto.util.Validator;
 
 import java.util.Map;
 
@@ -13,6 +14,7 @@ public class LottoResults {
     }
 
     public static LottoResults from(Map<Rank, Long> results) {
+        Validator.validateNotNull(results);
         return new LottoResults(results);
     }
 

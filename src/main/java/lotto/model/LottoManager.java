@@ -6,14 +6,12 @@ import java.util.List;
 import lotto.utils.Constants;
 
 public class LottoManager {
-    private final int money;
     private final List<Lotto> lottos;
-    private WinningLotto winningLotto;
+    private final WinningLotto winningLotto;
 
-    public LottoManager(final int money) {
-        this.money = money;
-        this.lottos = new ArrayList<>();
-        createLottos();
+    public LottoManager(final List<Lotto> lottos, final WinningLotto winningLotto) {
+        this.lottos = lottos;
+        this.winningLotto = winningLotto;
     }
 
     public List<Lotto> getLottos() {
@@ -24,18 +22,16 @@ public class LottoManager {
         return winningLotto;
     }
 
-    public void setWinningLotto(final WinningLotto winningLotto) {
-        this.winningLotto = winningLotto;
-    }
-
-    public void createLottos() {
+    public static List<Lotto> createLottos(final int money) {
+        final List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < money / Constants.DIVIDE_UNIT; i++) {
             final Lotto lotto = new Lotto(generateLottoNumbers());
             lottos.add(lotto);
         }
+        return lottos;
     }
 
-    private List<Integer> generateLottoNumbers() {
+    private static List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(Constants.MIN_GENERATE_VALUE, Constants.MAX_GENERATE_VALUE, Constants.LOTTO_SIZE);
     }
 }

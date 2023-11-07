@@ -15,6 +15,7 @@ class WinnerTest {
 
     Winner winner;
 
+    @DisplayName("당천번호와 보너스번호")
     @BeforeEach
     public void beforeEach() {
         winner = new Winner("1,6,8,25,33,45");
@@ -72,5 +73,48 @@ class WinnerTest {
         Assertions.assertThat(two).isEqualTo(2);
         Assertions.assertThat(one).isEqualTo(1);
         Assertions.assertThat(zero).isEqualTo(0);
+    }
+
+    @DisplayName("사용자 번호와 당첨 로또 번호를 비교하기")
+    @Test
+    public void 사용자번호_당첨번호_등수_결과() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberSix = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 45)));
+        Lotto sameUserLottoNumberFiveAndBonus = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 5)));
+        Lotto sameUserLottoNumberFiveAndBonusTwo = new Lotto(new ArrayList<>(List.of(1, 6, 8, 5, 33, 45)));
+        Lotto sameUserLottoNumberFive = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 44)));
+        Lotto sameUserLottoNumberFiveTwo = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 27, 45)));
+        Lotto sameUserLottoNumberFour = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 31, 43)));
+        Lotto sameUserLottoNumberThree = new Lotto(new ArrayList<>(List.of(1, 6, 8, 18, 22, 40)));
+        Lotto sameUserLottoNumberTwo = new Lotto(new ArrayList<>(List.of(1, 6, 7, 16, 21, 32)));
+        Lotto sameUserLottoNumberOne = new Lotto(new ArrayList<>(List.of(1, 2, 3, 5, 11, 42)));
+        Lotto sameUserLottoNumberZero = new Lotto(new ArrayList<>(List.of(2, 3, 4, 5, 11, 42)));
+
+        userLottos.add(sameUserLottoNumberSix);
+        userLottos.add(sameUserLottoNumberFiveAndBonus);
+        userLottos.add(sameUserLottoNumberFiveAndBonusTwo);
+        userLottos.add(sameUserLottoNumberFive);
+        userLottos.add(sameUserLottoNumberFiveTwo);
+        userLottos.add(sameUserLottoNumberFour);
+        userLottos.add(sameUserLottoNumberThree);
+        userLottos.add(sameUserLottoNumberTwo);
+        userLottos.add(sameUserLottoNumberOne);
+        userLottos.add(sameUserLottoNumberZero);
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 100000);
+        int sixCount = winner.countTotalLottoPrizes().get(6);
+        int fiveAndBonusCount = winner.countTotalLottoPrizes().get(50);
+        int fiveCount = winner.countTotalLottoPrizes().get(5);
+        int fourCount = winner.countTotalLottoPrizes().get(4);
+        int threeCount = winner.countTotalLottoPrizes().get(3);
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(sixCount).isEqualTo(1);
+        Assertions.assertThat(fiveAndBonusCount).isEqualTo(2);
+        Assertions.assertThat(fiveCount).isEqualTo(2);
+        Assertions.assertThat(fourCount).isEqualTo(1);
+        Assertions.assertThat(threeCount).isEqualTo(1);
     }
 }

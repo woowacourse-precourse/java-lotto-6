@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static lotto.handler.ErrorHandler.DUPLICATE_NUMBER;
 import static lotto.handler.ErrorHandler.INVALID_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -22,12 +23,11 @@ class LottoTest {
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
-    @Test
-    void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> Lotto.create(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+    @ParameterizedTest(name = "[{index}] input {0} " )
+    @ValueSource(strings = {"1,2,3,4,5,5", "1,2,3,5,5,5", "1,2,3,3,3,3"})
+    void createLottoByDuplicatedNumber(String inputValue) {
+        assertThatThrownBy(() -> Lotto.from(inputValue))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATE_NUMBER.getException().getMessage());
     }
-
-    // 아래에 추가 테스트 작성 가능
 }

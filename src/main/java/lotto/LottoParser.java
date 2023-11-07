@@ -31,4 +31,8 @@ public class LottoParser {
         }
         return numbers;
     }
+
+    public static String numberToText(int number) {
+        return Integer.toString(number);
+    }
 }

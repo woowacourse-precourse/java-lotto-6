@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -7,6 +8,16 @@ public class LottoController {
         Lottos lottos = purchaseLotto();
         List<Integer> winningNumbers = setWinningNumbers();
         int bonusNumber = setBonusNumber(winningNumbers);
+        // 당첨 번호와 로또 비교
+        List<Integer> matchedCount = new ArrayList<>();
+        double incomeRate = 12.3;
+        matchedCount.add(1);
+        matchedCount.add(2);
+        matchedCount.add(3);
+        matchedCount.add(4);
+        matchedCount.add(5);
+        printResult(matchedCount, incomeRate);
+
     }
 
     private static Lottos purchaseLotto() {
@@ -34,5 +45,9 @@ public class LottoController {
         int bonusNumber = LottoParser.readLineToNumber(requestBonusNumber);
         LottoInputValidator.bonusNumberIsValid(winningNumbers, bonusNumber);
         return bonusNumber;
+    }
+
+    private static void printResult(List<Integer> matchedCount, double incomeRate) {
+        LottoView.printLottoResult(matchedCount, incomeRate);
     }
 }

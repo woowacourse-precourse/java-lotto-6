@@ -25,7 +25,7 @@ public class Converter {
 
     public static void validateOnlyDigit(String input) {
         if (!input.chars().allMatch(Character::isDigit) || input.isEmpty()) {
-            throw new IllegalArgumentException(NOT_ONLY_DIGIT.getMessage());
+            throw new NumberFormatException(NOT_ONLY_DIGIT.getMessage());
         }
     }
 }

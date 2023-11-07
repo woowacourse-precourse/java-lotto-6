@@ -8,7 +8,8 @@ public enum Command {
     BUY_LOTTO,
     OUTPUT_USER_LOTTO,
     INPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-    INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
+    INPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    OUTPUT_WINNING_RESULT;
 
     private String message;
     private Validator validator;

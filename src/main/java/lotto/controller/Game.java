@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.LottoPurchaseInfo;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Game {
     public Game() {
@@ -18,6 +19,8 @@ public class Game {
         int purchaseLottoNum = purchaseAmount / 1000;
 
         LottoPurchaseInfo lottoPurchaseInfo = new LottoPurchaseInfo(purchaseAmount, purchaseLottoNum);
+        OutputView.outputPurchaseCount(lottoPurchaseInfo.getPurchaseLottoNum());
+        OutputView.outputPurchaseLottos(lottoPurchaseInfo.getLottos());
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] winningNum = readLine().split(",");
 

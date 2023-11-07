@@ -17,7 +17,11 @@ public class LottoPurchaseInfo {
         }
     }
 
-    int getPurchaseLottoNum() {
-        return purchaseLottoNum;
+    public int getPurchaseLottoNum() {
+        return this.purchaseLottoNum;
+    }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
     }
 }

@@ -6,7 +6,7 @@ import lotto.constants.Messages;
 public class InputValidation {
 
     public static void validateNumeric(String value) {
-        if (isNotNumeric(value)) {
+        if (isNotNumeric(value) || hasLeadingZeros(value)) {
             throw new IllegalArgumentException(Messages.ERROR_INVALID_NUMERIC_INPUT);
         }
     }
@@ -27,6 +27,14 @@ public class InputValidation {
     }
 
     private static boolean containsNonNumericValue(List<String> values) {
-        return values.stream().anyMatch(InputValidation::isNotNumeric);
+        System.out.println(values.size());
+        for (String value : values) {
+            System.out.println(value);
+        }
+        return values.stream().anyMatch(value -> isNotNumeric(value) || hasLeadingZeros(value));
+    }
+
+    private static boolean hasLeadingZeros(String value) {
+        return value.matches("^0\\d+");
     }
 }

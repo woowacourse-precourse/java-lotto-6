@@ -1,16 +1,17 @@
 package lotto.controller;
 
 import lotto.domain.BuyPrice;
+import lotto.domain.LottoGroup;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import static lotto.constant.GeneralMessage.NOTIFY_BUY_COUNT;
 
 public class SlotMachine {
 
     public static void run() {
         BuyPrice buyPrice = requestValidBuyPrice();
-        OutputView.printGeneralMessage(NOTIFY_BUY_COUNT, buyPrice.getBuyCount());
+        int count = buyPrice.getBuyCount();
+        LottoGroup lottoGroup = LottoGroup.create(count);
+        OutputView.printBuyLottos(count, lottoGroup.toString());
     }
 
     private static BuyPrice requestValidBuyPrice() {

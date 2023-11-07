@@ -28,7 +28,7 @@ public enum Rank {
         return cnt;
     }
 
-    public void setCnt(int cnt){
-        this.cnt = cnt;
+    public void setCnt(){
+        this.cnt += 1;
     }
 }

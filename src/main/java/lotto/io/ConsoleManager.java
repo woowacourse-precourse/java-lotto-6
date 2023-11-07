@@ -10,7 +10,7 @@ import lotto.Lotto;
 import lotto.WinningType;
 import lotto.io.processor.InputProcessor;
 import lotto.io.processor.OutputProcessor;
-import lotto.vo.Price;
+import lotto.vo.PurchasePrice;
 
 public class ConsoleManager {
 
@@ -26,14 +26,14 @@ public class ConsoleManager {
         inputProcessor.closeConsole();
     }
 
-    public Price inputPurchasePrice() {
+    public PurchasePrice inputPurchasePrice() {
         while (true) {
             outputProcessor.printPurchasePriceHint();
 
             String inputPrice = inputProcessor.inputValue();
 
             try {
-                return new Price(inputPrice);
+                return new PurchasePrice(inputPrice);
             } catch (IllegalArgumentException e) {
                 outputProcessor.outputErrorMessage(e);
             }

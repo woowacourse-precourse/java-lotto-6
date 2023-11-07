@@ -4,14 +4,14 @@ import static lotto.error.ErrorMessage.NEGATIVE_PRICE;
 import static lotto.error.ErrorMessage.NOT_DIGIT_PRICE;
 import static lotto.error.ErrorMessage.NOT_THOUSAND_UNIT_PRICE;
 
-public class Price {
+public class PurchasePrice {
 
     private static final int THOUSAND_UNIT = 1_000;
     private static final int ZERO = 0;
 
     private final int value;
 
-    public Price(final String value) {
+    public PurchasePrice(final String value) {
         int parsedValue = parseInt(value);
 
         validatePositive(parsedValue);

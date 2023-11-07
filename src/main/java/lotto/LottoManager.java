@@ -3,7 +3,7 @@ package lotto;
 import java.util.List;
 import java.util.Map;
 import lotto.io.ConsoleManager;
-import lotto.vo.Price;
+import lotto.vo.PurchasePrice;
 
 public class LottoManager {
 
@@ -18,8 +18,8 @@ public class LottoManager {
     }
 
     protected void buyLotto() {
-        Price price = consoleManager.inputPurchasePrice();
-        int lottoPrice = price.getValue();
+        PurchasePrice purchasePrice = consoleManager.inputPurchasePrice();
+        int lottoPrice = purchasePrice.getValue();
 
         int lottoCount = lottoBuyer.getLottoCount(lottoPrice);
         consoleManager.printLottoCount(lottoCount);

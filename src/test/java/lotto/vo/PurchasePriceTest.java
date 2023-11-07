@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PriceTest {
+class PurchasePriceTest {
 
     @Test
     @DisplayName("구입 금액은 숫자가 아닌 값일 수 없다.")
@@ -18,7 +18,7 @@ class PriceTest {
         String value = "가나다";
 
         // When & Then
-        assertThatThrownBy(() -> new Price(value))
+        assertThatThrownBy(() -> new PurchasePrice(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_DIGIT_PRICE.getMessage());
     }
@@ -30,7 +30,7 @@ class PriceTest {
         String value = "-1";
 
         // When & Then
-        assertThatThrownBy(() -> new Price(value))
+        assertThatThrownBy(() -> new PurchasePrice(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NEGATIVE_PRICE.getMessage());
     }
@@ -42,7 +42,7 @@ class PriceTest {
         String value = "8001";
 
         // When & Then
-        assertThatThrownBy(() -> new Price(value))
+        assertThatThrownBy(() -> new PurchasePrice(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_THOUSAND_UNIT_PRICE.getMessage());
     }
@@ -54,7 +54,7 @@ class PriceTest {
         String value = "8000";
 
         // When
-        Price result = new Price(value);
+        PurchasePrice result = new PurchasePrice(value);
 
         // Then
         assertThat(result.getValue())

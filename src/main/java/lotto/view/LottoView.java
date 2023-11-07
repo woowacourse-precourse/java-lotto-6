@@ -11,10 +11,10 @@ public class LottoView {
     private final LottoInputView inputView = new LottoInputView();
     private final LottoOutputView outputView = new LottoOutputView();
 
-    public Money getLottoPurchase() {
+    public Money getLottoPurchasingCost() {
         Money money;
         do {
-            money = inputView.getLottoPurchase();
+            money = inputView.getLottoPurchasingCost();
         } while (money == null);
 
         return money;

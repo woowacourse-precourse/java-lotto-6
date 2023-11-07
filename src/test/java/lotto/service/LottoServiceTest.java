@@ -8,10 +8,12 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoList;
 import lotto.domain.dto.LottoPrizeDto;
+import lotto.domain.dto.LottoPurchaseDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoServiceTest {
+    private final LottoService lottoService = new LottoService();
 
     @DisplayName("로또 당첨 집계 기능이 정상적으로 작동한다.")
     @Test
@@ -49,8 +51,7 @@ class LottoServiceTest {
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 10;
 
-        LottoService lottoService = new LottoService();
-        LottoPrizeDto dto = lottoService.compareLottos(lottoList, winningNumbers, bonusNumber);
+        LottoPrizeDto dto = lottoService.totalWinnings(LottoPurchaseDto.Of(lottoList, winningNumbers, bonusNumber));
 
         assertThat(dto.getFirst()).isEqualTo(2);
         assertThat(dto.getSecond()).isEqualTo(3);
@@ -77,8 +78,8 @@ class LottoServiceTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
 
-        LottoService service = new LottoService();
-        assertThat(service.calculateRateOfReturn(lottoList, winningNumbers, bonusNumber)).isEqualTo(62.5d);
+        LottoPurchaseDto dto = LottoPurchaseDto.Of(lottoList, winningNumbers, bonusNumber);
+        assertThat(lottoService.calculateRateOfReturn(dto)).isEqualTo(62.5d);
     }
 
 }

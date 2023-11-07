@@ -18,7 +18,7 @@ public class LottoInputView {
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public Money getLottoPurchase() {
+    public Money getLottoPurchasingCost() {
         System.out.println(LOTTO_PURCHASE_MESSAGE);
         try {
             int amount = Integer.parseInt(Console.readLine());

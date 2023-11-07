@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import lotto.domain.Lotto;
+
 class InputValidationTest {
 
 	@Test
@@ -42,7 +44,7 @@ class InputValidationTest {
 	@Test
 	void 유효한_당첨번호() {
 		// Given
-		List<String> validInput = Arrays.asList("1", "2", "3", "4", "5", "6"); // Assuming PICK_COUNT is 6
+		List<String> validInput = Arrays.asList("1", "2", "3", "4", "5", "6");
 
 		// When
 		List<Integer> numbers = InputValidation.validateWinningNumbers(validInput);
@@ -81,10 +83,11 @@ class InputValidationTest {
 	@Test
 	void 유효한_보너스번호() {
 		// Given
+		Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 		String validInput = "45";
 
 		// When
-		int bonusNumber = InputValidation.validateBonusNumber(validInput);
+		int bonusNumber = InputValidation.validateBonusNumber(winningLotto, validInput);
 
 		// Then
 		assertEquals(45, bonusNumber);
@@ -93,9 +96,11 @@ class InputValidationTest {
 	@Test
 	void 보너스번호_숫자가아닐경우() {
 		// Given
+		Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 		String invalidInput = "forty-five";
 
 		// When & Then
-		assertThrows(IllegalArgumentException.class, () -> InputValidation.validateBonusNumber(invalidInput));
+		assertThrows(IllegalArgumentException.class,
+			() -> InputValidation.validateBonusNumber(winningLotto, invalidInput));
 	}
 }

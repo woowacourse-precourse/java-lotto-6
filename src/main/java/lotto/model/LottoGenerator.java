@@ -7,9 +7,9 @@ import lotto.util.IllegalArgumentMessage;
 import lotto.util.LottoConstant;
 
 public class LottoGenerator {
-    private List<Lotto> lottos = new ArrayList<>();
-    private final int maxGeneratingCount;
     private static final int CHANGE = 0;
+    private final int maxGeneratingCount;
+    private List<Lotto> lottos = new ArrayList<>();
 
     public LottoGenerator(int payment) {
         validatePayment(payment);

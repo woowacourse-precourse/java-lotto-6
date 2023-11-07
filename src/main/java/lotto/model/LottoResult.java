@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class LottoResult {
     private final double payment;
+    private Map<LottoPrize, Integer> prizeResult;
     private double totalPrizeMoney;
     private double yieldRate;
-    final Map<LottoPrize, Integer> prizeResult;
 
     public LottoResult(int payment, WinningLotto winningLotto, List<Lotto> lottos) {
         this.payment = payment;

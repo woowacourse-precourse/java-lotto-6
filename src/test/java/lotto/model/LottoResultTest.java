@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("로또 결과에 대한 테스트")
 class LottoResultTest {
-    static final WinningLotto WINNING_LOTTO = new WinningLotto(new Lotto(List.of(8, 2, 3, 4, 6, 5)), 7);
+    private final WinningLotto WINNING_LOTTO =
+            new WinningLotto(new Lotto(List.of(8, 2, 3, 4, 6, 5)), 7);
 
     @Test
     @Disabled("도메인 생성시 도메인의 완전성을 유지하도록 리팩터링 되어 해당 테스트는 실행하지 못함.")

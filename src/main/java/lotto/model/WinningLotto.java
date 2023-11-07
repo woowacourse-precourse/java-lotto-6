@@ -5,10 +5,10 @@ import lotto.util.IllegalArgumentMessage;
 import lotto.util.LottoConstant;
 
 public class WinningLotto {
-    private final Lotto winningNumbers;
-    private final int bonusNumber;
     private static final int MINIMUM_WINNING_COUNT = 3;
     private static final int OUT = 0;
+    private final Lotto winningNumbers;
+    private final int bonusNumber;
 
     public WinningLotto(Lotto winningNumbers, int bonusNumber) {
         validateBonusNumberRange(bonusNumber);

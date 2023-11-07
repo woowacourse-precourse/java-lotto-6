@@ -1,11 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Store;
+import lotto.service.Store;
 import lotto.service.StatisticProducer;
-
-import java.util.List;
 
 public class LottoController {
     private Store store;

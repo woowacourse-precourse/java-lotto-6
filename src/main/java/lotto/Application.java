@@ -23,6 +23,7 @@ public class Application {
             result.addWinningTicket(matchCount, matchBonus);
         }
         result.printResult();
+        printEarningsRate(result, lottos.size());
     }
 
     private static List<Lotto> buyLottos() {
@@ -49,7 +50,7 @@ public class Application {
 
     private static int getInputAmount() {
         while (true) {
-            System.out.println("로또 구입 금액을 입력하세요.");
+            System.out.println("구입금액을 입력해 주세요.");
             String input = Console.readLine();
             if (isNotNumeric(input)) {
                 System.out.println("[ERROR] 잘못된 입력입니다. 숫자를 입력해주세요.");
@@ -99,5 +100,21 @@ public class Application {
             numbers.add(Integer.parseInt(number));
         }
         return numbers;
+    }
+
+    public static void printEarningsRate(WinningResult result, int lottoCount) {
+        long totalPrize = 0;
+        for (Rank rank : Rank.values()) {
+            if (rank == Rank.MISS) continue;
+            totalPrize += rank.getWinningMoney() * result.getCount(rank);
+        }
+
+        long investMoney = 1000 * lottoCount;
+
+        double earningsRate = (double) totalPrize / investMoney;
+
+        earningsRate = Math.round(earningsRate * 100) / 100.0;
+
+        System.out.println("총 수익률은 " + (earningsRate * 100) + "%입니다.");
     }
 }

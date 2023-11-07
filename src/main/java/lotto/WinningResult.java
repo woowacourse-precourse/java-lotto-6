@@ -12,6 +12,10 @@ public class WinningResult {
         result.put(rank, result.getOrDefault(rank, 0) + 1);
     }
 
+    public int getCount(Rank rank) {
+        return result.getOrDefault(rank, 0);
+    }
+
     public void printResult() {
         System.out.println("당첨 통계");
         System.out.println("---------");
@@ -19,8 +23,9 @@ public class WinningResult {
         for (Rank rank : Rank.values()) {
             if (rank == Rank.MISS) continue;
             System.out.println(rank.getCountOfMatch() + "개 일치" + rank.getBonus() +
-                    "(" + numberFormat.format(rank.getWinningMoney()) + "원)- " +
+                    " (" + numberFormat.format(rank.getWinningMoney()) + "원) - " +
                     result.getOrDefault(rank, 0) + "개");
         }
     }
+
 }

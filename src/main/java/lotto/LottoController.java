@@ -56,17 +56,28 @@ public class LottoController {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
 
-        List<Integer> number = new ArrayList<>();
-        try{
-            String[] inputWinningNumber = Console.readLine().split(",");
-            for (String eachNumber : inputWinningNumber) {
-                number.add(Integer.parseInt(eachNumber));
+        List<Integer> number;
+        Lotto winningNumber;
+        while(true){
+            try{
+                number = inputWinningNumber();
+                winningNumber = new Lotto(number);
+                break;
+            } catch(IllegalArgumentException e){
             }
-            return new Lotto(number);
-        } catch(IllegalArgumentException e){
-            getWinningNumber();
         }
-        return new Lotto(number);
+        return winningNumber;
+    }
+
+    private List<Integer> inputWinningNumber(){
+        List<Integer> number = new ArrayList<>();
+
+        String[] inputWinningNumber = Console.readLine().split(",");
+        for (String eachNumber : inputWinningNumber) {
+            number.add(Integer.parseInt(eachNumber));
+        }
+
+        return number;
     }
 
     private int getBonusNumber(Lotto winningNumber) throws IllegalArgumentException{

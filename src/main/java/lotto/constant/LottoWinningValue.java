@@ -1,5 +1,8 @@
 package lotto.constant;
 
+import lotto.domain.LottoWinning;
+
+import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -32,11 +35,17 @@ public enum LottoWinningValue {
         return BY_RANK.get(rank);
     }
 
-    private static final Map<Integer, LottoWinningValue> BY_WINNING_NUM_MATCH_CNT =
-            Stream.of(values()).collect(Collectors.toMap(LottoWinningValue::getWinningNumMatchCnt, e -> e));
+    // 당첨 번호 개수 + 보너스 개수를 키로 하고 해당 열거형 상수를 값으로 가지는 맵
+    private static final Map<String, LottoWinningValue> BY_WINNING_MATCH_CNT = new HashMap<>();
 
-    public static LottoWinningValue valueOfWinningNumMatchCnt(int winningNumMatchCnt) {
-        return BY_WINNING_NUM_MATCH_CNT.get(winningNumMatchCnt);
+    static {
+        for (LottoWinningValue enumValue : LottoWinningValue.values()) {
+            BY_WINNING_MATCH_CNT.put("" + enumValue.getWinnings() + enumValue.getBonusNumMatchCnt(), enumValue);
+        }
+    }
+
+    public static LottoWinningValue valueOfWinningMatchCnt(int winningNumMatchCnt, int bonusNumMatchCnt) {
+        return BY_WINNING_MATCH_CNT.get("" + winningNumMatchCnt + bonusNumMatchCnt);
     }
 
     public int getRank() {

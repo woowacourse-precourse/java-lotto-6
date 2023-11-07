@@ -30,4 +30,16 @@ class ExceptionTest {
         int result = exception.checkInt("test");
         assertThat(result).isEqualTo(0);
     }
+
+    @Test
+    void 단위1000_올바른입력() {
+        boolean result = exception.checkAmount(2000);
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    void 단위1000_잘못된입력() {
+        boolean result = exception.checkAmount(2222);
+        assertThat(result).isEqualTo(false);
+    }
 }

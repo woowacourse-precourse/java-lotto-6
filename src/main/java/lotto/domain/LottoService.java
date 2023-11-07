@@ -8,6 +8,7 @@ public class LottoService {
     private int numOfThirdPlace = 0;
     private int numOfFourthPlace = 0;
     private int numOfFifthPlace = 0;
+    private static final int LOTTO_PRICE = 1000;
 
     public void compareAll(List<Lotto> lottoBundle, List<Integer> winnerNumbers, int bonusNumber) {
         for (Lotto lotto : lottoBundle) {
@@ -29,6 +30,15 @@ public class LottoService {
             }
         }
         return matchCount;
+    }
+
+    public LottoRank getLottoRank(Lotto lotto, WinningNumbers winningNumbers) {
+
+        return LottoRank.FIRST_PLACE;
+    }
+
+    public int calculateLottoCount(int purchaseAmount) {
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     private void checkIfWinFirstPlace(int matchCount, List<Integer> list, int bonusNumber) {
@@ -72,11 +82,11 @@ public class LottoService {
 
     public long getProfit() {
         long profit = 0;
-        profit += numOfFirstPlace * 2_000_000_000L;
-        profit += numOfSecondPlace * 30_000_000L;
-        profit += numOfThirdPlace * 1_500_000L;
-        profit += numOfFourthPlace * 50_000L;
-        profit += numOfFifthPlace * 5_000L;
+        profit += numOfFirstPlace * LottoRank.FIRST_PLACE.getPrize();
+        profit += numOfSecondPlace * LottoRank.SECOND_PLACE.getPrize();
+        profit += numOfThirdPlace * LottoRank.THIRD_PLACE.getPrize();
+        profit += numOfFourthPlace * LottoRank.FOURTH_PLACE.getPrize();
+        profit += numOfFifthPlace * LottoRank.FIFTH_PLACE.getPrize();
 
         return profit;
     }

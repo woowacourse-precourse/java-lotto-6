@@ -4,7 +4,7 @@ public class Price {
     private static final int A_TICKET_PRICE = 1000;
     private static final int ZERO = 0;
 
-    private int price;
+    private final int price;
 
     public Price(int purchaseAmount){
         validateZERO(purchaseAmount);
@@ -27,4 +27,5 @@ public class Price {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위만 가능합니다.");
         }
     }
+
 }

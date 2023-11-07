@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static lotto.constValue.ConstMessage.NUMBER_ERROR_MESSAGE;
 import static lotto.utils.Validator.*;
 
 public class UserInput {
@@ -22,12 +21,10 @@ public class UserInput {
 
     public void inputLottoPrice(){
         String newLottoPrice = Console.readLine();
-        // TODO : 입력값 검증
+
         try{
             validateLottoPrice(newLottoPrice);
             this.lottoPrice = Integer.parseInt(newLottoPrice);
-
-
         } catch (IllegalArgumentException e){
             inputLottoPrice();
         }
@@ -38,7 +35,6 @@ public class UserInput {
 
         try{
             validateWinningNumbers(input);
-
             this.winningNumbers = Arrays.stream(input.split(","))
                     .map(Integer::parseInt)
                     .toList();;

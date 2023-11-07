@@ -3,8 +3,6 @@ package lotto.view;
 import static lotto.util.Introduction.BONUS_PRIZE_LIST;
 import static lotto.util.Introduction.NOT_BONUS_PRIZE_LIST;
 
-import java.util.List;
-import lotto.Lotto;
 import lotto.util.PrizeDetails;
 import lotto.util.PrizeMoney;
 
@@ -20,7 +18,7 @@ public class OutputViewImpl implements OutputView {
         Integer countOfMatchedLottoNumbers = PrizeDetails.getCountOfMatchedLottoNumbers(prize);
 
         System.out.println(String.format(NOT_BONUS_PRIZE_LIST.getIntroduction(), countOfMatchedLottoNumbers,
-                PrizeMoney.getPrizeMoney(prize), count));
+                PrizeMoney.getFormattedPrizeMoney(prize), count));
     }
 
     @Override
@@ -28,6 +26,6 @@ public class OutputViewImpl implements OutputView {
         Integer countOfMatchedLottoNumbers = PrizeDetails.getCountOfMatchedLottoNumbers(prize);
 
         System.out.println(String.format(BONUS_PRIZE_LIST.getIntroduction(), countOfMatchedLottoNumbers,
-                PrizeMoney.getPrizeMoney(prize), count));
+                PrizeMoney.getFormattedPrizeMoney(prize), count));
     }
 }

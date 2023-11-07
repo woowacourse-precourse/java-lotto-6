@@ -19,7 +19,9 @@ public enum ExceptionMessage {
     INVALID_NUMBER_OF_LOTTO_NUMBER(COUNT_OF_LOTTO_NUMBER.getDetails() + "개의 번호를 입력해주세요."),
     SMALLER_THAN_MIN_LOTTO_NUMBER(MINIMUM_OF_LOTTO_NUMBER.getDetails() + " 이상의 번호를 입력해주세요."),
     BIGGER_THAN_MAX_LOTTO_NUMBER(MAXIMUM_OF_LOTTO_NUMBER.getDetails() + " 이하의 번호를 입력해주세요"),
-    DUPLICATE_LOTTO_NUMBER("중복되지 않은 숫자를 입력해주세요.");
+    DUPLICATE_LOTTO_NUMBER("중복되지 않은 숫자를 입력해주세요."),
+
+    INVALID_PRIZE_MONEY("당첨 금액이 올바르지 않습니다.");
 
     private final String ERROR_PREFIX = "[ERROR] ";
     private final String message;

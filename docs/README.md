@@ -24,10 +24,12 @@
             - [X] 1 ~ 45 사이의 숫자여야한다. Validation#validateLottoNumberRange
             - [X] 로또의 숫자와 중복되지 않아야 한다. Validation#validateBonusNumber
 
-- [] 결과를 도출한다.
-    - [] 각각의 로또들을 당첨 번호와 비교하여 list를 추출한다. WinningLotto#compareLottosToRank
-    - [] list를 가지고 구매가와 당첨금을 비교한다. LottoGame#getResult
-    - [] 결과를 출력한다. OutputView#resultOutput
+- [X] 결과를 도출한다.
+    - [X] 각각의 로또들의 등급을 확인한다. LottoGame#allLottosCompare
+        - [X] 로또의 등급을 판별한다. LottoComparator#calculateLottoRank
+        - [X] 등급의 갯수를 늘린다. RankCounter#addCount
+    - [X] 랭크 카운트를 가지고 구매가와 당첨금을 비교한다. ResultCalculrator#calculateIncomeRate
+    - [X] 결과를 출력한다. OutputView#resultOutput
 
 ## 이외의 예외처리
 

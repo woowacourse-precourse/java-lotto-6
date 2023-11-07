@@ -56,4 +56,31 @@ public class IntegerListValidatorTest {
 
     }
 
+    @Test
+    public void 정수리스트_최소_최대_사이의_범위가_아닌값이_있으면_예외처리() {
+        // Given
+        List<Integer> invalidNumbers = Arrays.asList(0, 2, 3, 7, 8, 9);
+        int min = 1;
+        int max = 6;
+
+        // When && Then
+        assertThatThrownBy(() -> IntegerListValidator.validateEachIntegerInRange(
+                invalidNumbers, min, max))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
+    }
+
+    @Test
+    public void 정수리스트_모든값이_최소_최대_사이의_범위라면_정상통과() {
+        // Given
+        List<Integer> validNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int min = 1;
+        int max = 6;
+
+        // When
+        IntegerListValidator.validateEachIntegerInRange(validNumbers, min, max);
+
+        // Then
+
+    }
 }

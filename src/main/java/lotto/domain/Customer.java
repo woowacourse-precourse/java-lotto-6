@@ -15,7 +15,7 @@ public class Customer {
     }
 
     public void checkWinningNumber(LottoChecker lottoChecker) {
-        lottoChecker.insertLottos(this.lottos);
+        lottoChecker.checkLottos(this.lottos);
     }
 
     public List<Lotto> getLottos() {

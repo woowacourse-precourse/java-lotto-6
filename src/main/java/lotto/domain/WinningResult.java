@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
@@ -30,11 +31,7 @@ public class WinningResult {
     }
 
     private void init() {
-        result.put(Rank.FIRST, INITIAL_VALUE);
-        result.put(Rank.SECOND, INITIAL_VALUE);
-        result.put(Rank.THIRD, INITIAL_VALUE);
-        result.put(Rank.FOURTH, INITIAL_VALUE);
-        result.put(Rank.FIFTH, INITIAL_VALUE);
-        result.put(Rank.NOTHING, INITIAL_VALUE);
+        Arrays.stream(Rank.values())
+                .forEach(rank -> result.put(rank, INITIAL_VALUE));
     }
 }

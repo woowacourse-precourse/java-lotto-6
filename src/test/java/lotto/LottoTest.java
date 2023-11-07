@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -37,6 +37,15 @@ class LottoTest {
     @Test
     void checkMultiple1000_TEST() {
         assertThatThrownBy(() -> Application.checkMultiple1000(2200))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("stringToIntArray 테스트.")
+    @Test
+    void stringToIntArray_TEST() {
+        List<Integer> list = Application.stringToIntArray("1,2,5");
+        assertThat(list).containsExactly(1,2,5);
+        assertThatThrownBy(() -> Application.stringToIntArray("1,2,a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

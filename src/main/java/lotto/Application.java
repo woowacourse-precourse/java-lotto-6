@@ -19,7 +19,6 @@ public class Application {
         printLottos(lottos, lotto_purchase_amount);
         winning_numbers = inputWinningNumbers();
         bonus_number = inputBonusNumber();
-        
     }
 
     static int inputBonusNumber(){

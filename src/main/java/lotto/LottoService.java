@@ -4,31 +4,31 @@ import java.util.List;
 
 public class LottoService {
 
-    private Lotto winningLotto;
+    private LotteryTicket winningLotteryTicket;
     private BonusNumber bonusNumber;
 
     public LottoService() { }
 
-    public LottoService(Lotto winningLotto, BonusNumber bonusNumber) {
-        this.winningLotto = winningLotto;
+    public LottoService(LotteryTicket winningLotteryTicket, BonusNumber bonusNumber) {
+        this.winningLotteryTicket = winningLotteryTicket;
         this.bonusNumber = bonusNumber;
     }
 
     public LottoService(List<Integer> winningNumbers, BonusNumber bonusNumber) {
-        this.winningLotto = new Lotto(winningNumbers);
+        this.winningLotteryTicket = new LotteryTicket(winningNumbers);
         this.bonusNumber = bonusNumber;
     }
 
-    public DrawResult checkResult(Lotto lotto) {
-        return DrawResult.resultOf(lotto.countHitNumbers(this.winningLotto),
-                containsBonusNumber(lotto));
+    public DrawResult checkResult(LotteryTicket lotteryTicket) {
+        return DrawResult.resultOf(lotteryTicket.countHitNumbers(this.winningLotteryTicket),
+                containsBonusNumber(lotteryTicket));
     }
 
-    public boolean containsBonusNumber(Lotto lotto) {
-        return lotto.containsBonusNumber(this.bonusNumber);
+    public boolean containsBonusNumber(LotteryTicket lotteryTicket) {
+        return lotteryTicket.containsBonusNumber(this.bonusNumber);
     }
 
     public PortfolioReport analyzePortfolio(LotteryPortfolio portfolio) {
-        return portfolio.analyze(winningLotto, bonusNumber);
+        return portfolio.analyze(winningLotteryTicket, bonusNumber);
     }
 }

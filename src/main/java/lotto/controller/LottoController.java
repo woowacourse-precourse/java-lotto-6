@@ -5,9 +5,9 @@ import static lotto.view.Prompt.WAIT_FOR_PURCHASE_AMOUNT;
 import static lotto.view.Prompt.WAIT_FOR_WINNING_NUMBERS;
 
 import lotto.BonusNumber;
+import lotto.LotteryTicket;
 import lotto.io.ConsoleUserInterface;
 import lotto.LotteryPortfolio;
-import lotto.Lotto;
 import lotto.LottoService;
 import lotto.PurchaseAmount;
 import lotto.RandomLotteryNumberProvider;
@@ -17,7 +17,7 @@ import lotto.view.PortfolioConsoleView;
 public class LottoController {
 
     private PurchaseAmount purchaseAmount;
-    private Lotto winningLotto;
+    private LotteryTicket winningLotteryTicket;
     private BonusNumber bonusNumber;
     private LottoService service;
     private LotteryPortfolio portfolio;
@@ -33,7 +33,7 @@ public class LottoController {
     public void issueRequiredAmountOfLottery() {
         portfolio = new LotteryPortfolio();
         for (int i = 0; i < purchaseAmount.getTicketQuantity(); i++) {
-            portfolio.add(new Lotto(RandomLotteryNumberProvider.lotteryNumbers()));
+            portfolio.add(new LotteryTicket(RandomLotteryNumberProvider.lotteryNumbers()));
         }
     }
 
@@ -48,16 +48,16 @@ public class LottoController {
 
     public void readWinningNumbers() throws IllegalArgumentException {
         ConsoleUserInterface.prompt(WAIT_FOR_WINNING_NUMBERS);
-        winningLotto = new Lotto(UserInputReader.readMultiplePureNumbers());
+        winningLotteryTicket = new LotteryTicket(UserInputReader.readMultiplePureNumbers());
     }
 
     public void readBonusNumber() throws IllegalArgumentException {
         ConsoleUserInterface.prompt(WAIT_FOR_BONUS_NUMBER);
-        bonusNumber = new BonusNumber(winningLotto, UserInputReader.readPureNumber());
+        bonusNumber = new BonusNumber(winningLotteryTicket, UserInputReader.readPureNumber());
     }
 
     public void showPortfolioResult() {
-        service = new LottoService(winningLotto, bonusNumber);
+        service = new LottoService(winningLotteryTicket, bonusNumber);
         ConsoleUserInterface.printMessage(
                 PortfolioConsoleView.reportView(service.analyzePortfolio(portfolio))
                         .toString()

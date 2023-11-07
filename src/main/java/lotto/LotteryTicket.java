@@ -5,21 +5,21 @@ import java.util.stream.Collectors;
 import lotto.exception.DuplicatedNumberException;
 import lotto.exception.InvalidSizeException;
 
-public class Lotto {
+public class LotteryTicket {
 
     private static final int LOTTO_NUMBERS_SIZE = 6;
     private static final int LOTTO_NUMBER_MIN_INCLUDE = 1;
     private static final int LOTTO_NUMBER_MAX_INCLUDE = 45;
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) throws IllegalArgumentException {
+    public LotteryTicket(List<Integer> numbers) throws IllegalArgumentException {
         validate(numbers);
         this.numbers = numbers;
     }
 
-    public int countHitNumbers(Lotto winningLotto) {
+    public int countHitNumbers(LotteryTicket winningLotteryTicket) {
         int hit = 0;
-        for (int number: winningLotto.numbers) {
+        for (int number: winningLotteryTicket.numbers) {
             if (this.numbers.contains(number))
                 hit++;
         }

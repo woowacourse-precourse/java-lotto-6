@@ -9,23 +9,23 @@ import org.junit.jupiter.api.Test;
 
 public class BonusNumberTest {
 
-    static final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+    static final LotteryTicket WINNING_LOTTERY_TICKET = new LotteryTicket(List.of(1, 2, 3, 4, 5, 6));
 
     @DisplayName("보너스 번호는 1부터 45까지의 숫자만 가능하다.")
     @Test
     void validateRange() {
-        assertThatThrownBy(() -> new BonusNumber(winningLotto, 100))
+        assertThatThrownBy(() -> new BonusNumber(WINNING_LOTTERY_TICKET, 100))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> new BonusNumber(winningLotto, 0))
+        assertThatThrownBy(() -> new BonusNumber(WINNING_LOTTERY_TICKET, 0))
                 .isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertDoesNotThrow(() -> new BonusNumber(winningLotto, 10));
+        Assertions.assertDoesNotThrow(() -> new BonusNumber(WINNING_LOTTERY_TICKET, 10));
     }
 
     @DisplayName("보너스 번호는 당첨 번호에 포함될 수 없다.")
     @Test
     void validateAlreadyExistsInWinningNumbers() {
-        assertThatThrownBy(() -> new BonusNumber(winningLotto, 4))
+        assertThatThrownBy(() -> new BonusNumber(WINNING_LOTTERY_TICKET, 4))
                 .isInstanceOf(IllegalArgumentException.class);
-        Assertions.assertDoesNotThrow(() -> new BonusNumber(winningLotto, 45));
+        Assertions.assertDoesNotThrow(() -> new BonusNumber(WINNING_LOTTERY_TICKET, 45));
     }
 }

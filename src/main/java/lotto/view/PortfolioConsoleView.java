@@ -7,7 +7,7 @@ import static lotto.DrawResult.SECOND_PRIZE;
 import static lotto.DrawResult.THIRD_PRIZE;
 
 import lotto.LotteryPortfolio;
-import lotto.Lotto;
+import lotto.LotteryTicket;
 import lotto.PortfolioReport;
 
 public class PortfolioConsoleView {
@@ -44,8 +44,8 @@ public class PortfolioConsoleView {
 
     private PortfolioConsoleView(LotteryPortfolio portfolio) {
         sb = new StringBuilder();
-        for (Lotto lotto : portfolio.getHoldings()) {
-            sb.append(lotto + "\n");
+        for (LotteryTicket lotteryTicket : portfolio.getHoldings()) {
+            sb.append(lotteryTicket + "\n");
         }
     }
 }

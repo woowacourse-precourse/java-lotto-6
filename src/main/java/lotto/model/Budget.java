@@ -17,7 +17,7 @@ public class Budget {
         BudgetValidator.validateBudgetDivision(budget);
     }
 
-    public int getbudget() {
+    public int getValue() {
         return budget;
     }
 

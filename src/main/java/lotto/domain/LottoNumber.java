@@ -30,4 +30,8 @@ public class LottoNumber {
             throw new IllegalArgumentException(IS_INVALID_LOTTO_SIZE.getMessage());
         }
     }
+
+    public int getNumber() {
+        return LottoNumber;
+    }
 }

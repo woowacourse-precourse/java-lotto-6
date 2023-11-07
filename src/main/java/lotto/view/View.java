@@ -14,29 +14,26 @@ public class View {
         this.input = input;
     }
 
-    private void validateCommon(String userInput) {
-        InputValidator.validateBlank(userInput);
-        InputValidator.validateNumeric(userInput);
-    }
-
     public String inputLottoCost() {
         Output.writeLine(OutputMessage.REQUEST_LOTTO_COST.getMessage());
         String userInputLottoCost = input.readLine();
-        validateCommon(userInputLottoCost);
+        InputValidator.validateBlank(userInputLottoCost);
+        InputValidator.validateNumeric(userInputLottoCost);
         return userInputLottoCost;
     }
 
     public String inputWinningNumbers() {
         Output.writeLine(OutputMessage.REQUEST_WINNING_NUMBERS.getMessage());
         String userInputWinningNumbers = input.readLine();
-        validateCommon(userInputWinningNumbers);
+        InputValidator.validateBlank(userInputWinningNumbers);
         return userInputWinningNumbers;
     }
 
     public String inputBonusNumber() {
         Output.writeLine(OutputMessage.REQUEST_BONUS_NUMBER.getMessage());
         String userInputBonusNumber = input.readLine();
-        validateCommon(userInputBonusNumber);
+        InputValidator.validateBlank(userInputBonusNumber);
+        InputValidator.validateNumeric(userInputBonusNumber);
         return userInputBonusNumber;
     }
 

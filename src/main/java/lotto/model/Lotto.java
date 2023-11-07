@@ -1,21 +1,32 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.exceptions.ErrorMessages;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateForDuplicates(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessages.LENGTH_ERROR.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
-
+    private void validateForDuplicates(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if (numberSet.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessages.DUPLICATE_ERROR.getMessage());
+        }
+    }
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -47,4 +47,6 @@ public class UserInputView {
         }
         return Integer.parseInt(purchaseAmount);
     }
+
+
 }

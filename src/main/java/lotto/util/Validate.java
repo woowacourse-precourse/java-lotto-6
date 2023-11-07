@@ -19,8 +19,15 @@ public class Validate {
         return num;
     }
 
-    public static void checkBonusNumberValidate(String bonusNumber) {
+    public static void checkDuplicated(List<String> numbers, List<Integer> lotto) {
+        if (numbers.size() != lotto.stream().distinct().count()) {
+            throw new LottoGameException(ExceptionEnum.CONTAIN_DUPLICATE_NUMBER_EXCEPTION);
+        }
+    }
 
+    public static int checkBonusNumberValidate(String bonusNumber) {
+        int result = checkIntegerAndSpace(bonusNumber);
+        return result;
     }
 
     private static Long checkLongValidate(String purchaseAmount) {
@@ -58,9 +65,5 @@ public class Validate {
         }
     }
 
-    public static void checkDuplicated(List<String> numbers, List<Integer> lotto) {
-        if (numbers.size() != lotto.stream().distinct().count()) {
-            throw new LottoGameException(ExceptionEnum.CONTAIN_DUPLICATE_NUMBER_EXCEPTION);
-        }
-    }
+
 }

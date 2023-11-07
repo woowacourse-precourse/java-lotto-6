@@ -1,13 +1,11 @@
 package lotto.util;
 
 import lotto.domain.Lotto;
-import lotto.exception.ExceptionEnum;
-import lotto.exception.LottoGameException;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 import static lotto.util.Validate.checkDuplicated;

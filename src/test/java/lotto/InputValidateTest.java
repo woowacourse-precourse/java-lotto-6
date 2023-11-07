@@ -30,4 +30,10 @@ public class InputValidateTest {
         List<Integer> input2 = new ArrayList<>(Arrays.asList(1,1,3,4,5,6));
         assertThrows(LottoGameException.class, () -> Validate.checkDuplicated(input1,input2));
     }
+
+    @Test
+    void checkBonusNumberTest() {
+        String input = "1,";
+        assertEquals(1, Validate.checkIntegerAndSpace(input));
+    }
 }

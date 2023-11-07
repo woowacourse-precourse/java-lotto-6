@@ -10,12 +10,12 @@ public class PrizeCalculator {
 
 
     public static double getRateOfReturn(WinningResult winningResult, Amount amount) {
-        int prize = winningResult.getNumberOfFirst() * PRIZE_MONEY_FIRST
+        Integer prize = winningResult.getNumberOfFirst() * PRIZE_MONEY_FIRST
                 + winningResult.getNumberOfSecond() * PRIZE_MONEY_SECOND
                 + winningResult.getNumberOfThird() * PRIZE_MONEY_THIRD
                 + winningResult.getNumberOfFourth() * PRIZE_MONEY_FOURTH
                 + winningResult.getNumberOfFifth() * PRIZE_MONEY_FIFTH;
 
-        return Math.ceil((double) prize / amount.getAmount() * 10 / 10.0);
+        return Math.round((((double)prize / (double)amount.getAmount()) * 10000.0))/ 100.0;
     }
 }

@@ -2,9 +2,9 @@ package lotto.constant.errorMessage.amount;
 
 import lotto.constant.errorMessage.ExceptionStatus;
 
-public class NullAmountException extends NullPointerException {
+public class NumberFormatAmountException extends NumberFormatException {
 
-    public NullAmountException(ExceptionStatus exceptionStatus) {
+    public NumberFormatAmountException(ExceptionStatus exceptionStatus) {
         super(exceptionStatus.getMessage());
     }
 }

@@ -23,8 +23,7 @@ public class InputViewTest {
     @ParameterizedTest
     @EmptySource
     void check_purchase_null_blank(String empty) {
-        NumberValidator numberValidator = new NumberValidator();
-        assertThatThrownBy(() -> numberValidator.validate(empty))
+        assertThatThrownBy(() -> NumberValidator.validate(empty))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("공백은 입력할 수 없습니다.");
     }

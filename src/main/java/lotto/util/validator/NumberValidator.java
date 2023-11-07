@@ -1,32 +1,29 @@
 package lotto.util.validator;
 
 import java.util.regex.Pattern;
-import lotto.util.validator.Validator;
-import lotto.view.InputView;
 
-public class NumberValidator implements Validator {
+public class NumberValidator{
     private static final Pattern NUMBER_PATTERN = Pattern.compile("-?\\d+");
 
-    @Override
-    public void validate(Object value) {
+    public static void validate(Object value) {
         validateNull((String) value);
         validateNumber((String) value);
         validateRange((String) value);
     }
 
-    private void validateNull(String value) {
+    private static void validateNull(String value) {
         if (value.isBlank()) {
             throw new IllegalArgumentException("공백은 입력할 수 없습니다.");
         }
     }
 
-    private void validateNumber(String value) {
+    private static void validateNumber(String value) {
         if (!NUMBER_PATTERN.matcher(value).matches()) {
             throw new IllegalArgumentException("숫자로 입력해야합니다.");
         }
     }
 
-    private void validateRange(String rawValue) {
+    private static void validateRange(String rawValue) {
         try {
             Integer.parseInt(rawValue);
         } catch (NumberFormatException e) {
@@ -34,8 +31,6 @@ public class NumberValidator implements Validator {
         }
     }
 
-    @Override
-    public boolean support(Class<?> clazz) {
-        return InputView.class.isAssignableFrom(clazz);
+    private NumberValidator() {
     }
 }

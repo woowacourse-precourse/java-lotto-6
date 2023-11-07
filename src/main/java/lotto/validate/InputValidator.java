@@ -31,6 +31,7 @@ public class InputValidator {
             Integer integer = validateCorrectIntegerFormat(number);
             validateNonNegativeInteger(integer);
             validateUniqueBonus(integer);
+            validateInRangeForBonus(integer);
             return integer;
         }catch (Exception e){
             System.out.println(ERROR_PREFIX + e.getMessage());
@@ -142,6 +143,12 @@ public class InputValidator {
         }
     }
 
+
+    private void validateInRangeForBonus(int bonus){
+        if (bonus > 45 || bonus < 0){
+            throw new IllegalArgumentException("보너스 번호는 1에서 45 숫자 중 하나여야합니다.");
+        }
+    }
 
 }
 

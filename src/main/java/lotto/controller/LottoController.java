@@ -26,6 +26,8 @@ public class LottoController {
         scoringResult(scoreResult, win, lottos);
 
         printResults(scoreResult);
+        ReturnRate rate = getReturnRate(scoreResult, lotto);
+
     }
 
     public User getMoney(){
@@ -56,5 +58,9 @@ public class LottoController {
 
     public void scoringResult(Compare score, WinningLotto win, Lottos lottos) {
         score.scoringResult(win, lottos);
+    }
+
+    public ReturnRate getReturnRate(Compare scoreResult, User user) {
+        return new ReturnRate(scoreResult, user);
     }
 }

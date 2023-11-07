@@ -24,6 +24,6 @@ public class ProfitRateTest {
         final Money money = Money.of(purchaseAmount);
         final BigDecimal totalAmount = BigDecimal.valueOf(totalWinningAmount);
         final ProfitRate profitRate = new ProfitRate(money, totalAmount);
-        assertThat(profitRate.doubleValue()).isEqualTo(expectedProfit, withPrecision(1d));
+        assertThat(profitRate.doubleValue()).isEqualTo(expectedProfit, withPrecision(0d));
     }
 }

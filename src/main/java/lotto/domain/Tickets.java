@@ -4,14 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Tickets {
-    private List<Lotto> lottos;
-
-
-    private Tickets(List<Lotto> lottos) {
-        this.lottos = lottos;
-    }
-
+public record Tickets(List<Lotto> lottos) {
+    
     public static Tickets generate(int count) {
         return new Tickets(IntStream.range(0, count).mapToObj(i -> Lotto.generate()).toList());
     }

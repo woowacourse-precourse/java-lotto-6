@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.constant.LottoConst.*;
 
 public class WinningLotto {
 
@@ -17,8 +18,6 @@ public class WinningLotto {
         this.bonus = numberBonus;
     }
 
-
-
     public Lotto getWinning() {
         return this.winning;
     }
@@ -29,13 +28,13 @@ public class WinningLotto {
 
     private void validateRangeBonus(int bonus) {
         if (bonus < 1 || bonus > 45) {
-            throw new IllegalArgumentException("수의 범위는 1 ~ 45 입니다.");
+            throw new IllegalArgumentException(IS_DUPLICATE);
         }
     }
 
     private void validateDuplicateBonus(int bonus) {
         if (this.winning.find(bonus)) {
-            throw new IllegalArgumentException("중복된 수를 입력하셨습니다.");
+            throw new IllegalArgumentException(OVER_RANGE);
         }
     }
 
@@ -44,7 +43,7 @@ public class WinningLotto {
             int intNumber = Integer.parseInt(number);
             return intNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수를 입력하세요");
+            throw new IllegalArgumentException(IS_NOT_NUMBER);
         }
 
     }

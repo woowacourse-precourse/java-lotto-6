@@ -3,6 +3,9 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.constant.LottoConst.IS_DUPLICATE;
+import static lotto.constant.LottoConst.OVER_RANGE;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -20,14 +23,14 @@ public class Lotto {
     }
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 수를 입력하면 안됩니다.");
+            throw new IllegalArgumentException(IS_DUPLICATE);
         }
 
     }
     private void validateRange(List<Integer> numbers) {
         for (Integer now : numbers) {
             if (now < 1 || now > 45) {
-                throw new IllegalArgumentException("수의 범위는 1 ~ 45 입니다.");
+                throw new IllegalArgumentException(OVER_RANGE);
             }
         }
     }

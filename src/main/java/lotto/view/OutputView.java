@@ -24,9 +24,10 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printWinningStatistics(String result) {
+    public static void printWinningStatistics(String winningStatistics, String rateOfReturn) {
         System.out.println(NOTIFY_WINNING_STATISTICS.getMessage());
         System.out.println();
-        System.out.println(result);
+        System.out.println(winningStatistics);
+        System.out.println(rateOfReturn);
     }
 }

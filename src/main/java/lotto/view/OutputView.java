@@ -34,7 +34,9 @@ public class OutputView {
     }
 
     private void showRankResult(HashMap<LottoRank, Integer> lottoResult, LottoRank lottoRank) {
-        if (lottoRank.equals(LottoRank.NO_RNAK)) return;
+        if (lottoRank.equals(LottoRank.NO_RNAK)) {
+            return;
+        }
         if (lottoRank.equals(LottoRank.SECOND)) {
             System.out.println(String.format(SECOND_WINNING_RESULT_OUTPUT_MESSAGE, lottoRank.getMatchCount(),
                     lottoRank.getOutputPrize(), lottoResult.get(lottoRank)));

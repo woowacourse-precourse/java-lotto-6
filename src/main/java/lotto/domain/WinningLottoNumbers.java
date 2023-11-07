@@ -52,4 +52,8 @@ public class WinningLottoNumbers {
         winningLotto.getNumbers().contains(bonus);
     }
 
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
 }

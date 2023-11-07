@@ -19,6 +19,5 @@ public class WinningLottoV2 {
         return bonusNumber;
     }
 
-    // TODO : 당첨 확인 로직 추가.
 }
 

@@ -7,7 +7,6 @@ import java.util.List;
 
 public class LottoMachineV2 {
     public LottoV2 generateLotto() {
-        // enum 값을 사용합니다.
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                 LottoConstantsV2.LOTTO_NUMBER_MIN.getValue(),
                 LottoConstantsV2.LOTTO_NUMBER_MAX.getValue(),

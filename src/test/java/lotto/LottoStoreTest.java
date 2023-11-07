@@ -1,8 +1,10 @@
 package lotto;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.ArrayList;
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoStore;
@@ -15,6 +17,22 @@ public class LottoStoreTest {
     @BeforeEach
     public void setUp() {
         lottoStore = new LottoStore();
+    }
+
+    @Test
+    public void testCalculateTotalWinning() {
+        List<Integer> counts = Arrays.asList(0, 0, 0, 1, 1);
+        lottoStore.setTotalWinningMoney(counts);
+        BigDecimal compared = new BigDecimal(2030000000);
+        assertEquals(compared, lottoStore.getTotalWinningMoney());
+    }
+
+    @Test
+    void calculateRateOfReturnTest() {
+        lottoStore.setTotalWinningMoney(new BigDecimal(5000));
+        lottoStore.setLottoSales(8);
+        BigDecimal rateOfReturn = lottoStore.calculateRateOfReturn();
+        assertThat(rateOfReturn).isEqualByComparingTo(BigDecimal.valueOf(62.5));
     }
 
     @Test

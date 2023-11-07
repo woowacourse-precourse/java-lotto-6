@@ -5,17 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGame {
-    private final int numLotto;
-    private final List<Lotto> lottoGames = new ArrayList<>(5);
+    private int numLotto;
+    private List<Lotto> lottoGames = new ArrayList<>(5);
 
+    public  LottoGame(){}
     public LottoGame(int money) {
         this.numLotto = money / 1_000;
     }
+    public LottoGame(int money,List<Lotto> lotto) {
+        this.numLotto = money / 1_000;
+        this.lottoGames = lotto;
+    }
 
-    public void createLotto() {
-        for (int i = 0; i < this.numLotto; i++) {
-            List<Integer> lottoNum = createLottoNumber();
-            Lotto lotto = new Lotto(lottoNum);
+    public void createLotto(int lottoNum) {
+        this.numLotto = lottoNum;
+        for (int i = 0; i < lottoNum; i++) {
+            List<Integer> lottoNumber = createLottoNumber();
+            Lotto lotto = new Lotto(lottoNumber);
             lottoGames.add(lotto);
         }
     }

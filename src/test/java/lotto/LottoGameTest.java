@@ -14,7 +14,7 @@ public class LottoGameTest {
     void MakeLottoIfMoneyInput(int input) {
         LottoGame lottogame = new LottoGame(input);
 
-        lottogame.createLotto();
+        lottogame.createLotto(input);
 
         if (lottogame.getLottoGames().size() != lottogame.getLottoNumber()) {
             fail();

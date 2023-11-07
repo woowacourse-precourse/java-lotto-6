@@ -1,13 +1,14 @@
-package lotto.domain.lotto;
+package lotto.domain.game;
 
 import lotto.global.constant.LottoRank;
 
+import java.text.NumberFormat;
 import java.util.Map;
 
 public class Profit {
     private static final double HUNDRED = 100.0;
 
-    public double calculateProfit(long money, Map<LottoRank, Integer> winningResultMap) {
+    public static double calculateProfit(long money, Map<LottoRank, Integer> winningResultMap) {
         double profit = 0;
         for (LottoRank lottoRank : winningResultMap.keySet()) {
             int rankCount = winningResultMap.getOrDefault(lottoRank, 0);

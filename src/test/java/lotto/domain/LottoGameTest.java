@@ -1,6 +1,6 @@
 //package lotto.domain;
 //
-//import lotto.domain.lotto.LottoGame;
+//import lotto.domain.game.LottoGame;
 //import lotto.domain.lotto.Lottos;
 //import lotto.domain.lotto.WinningNumbers;
 //import lotto.global.constant.LottoRank;

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.lotto.NumberUtil;
+import lotto.domain.number.NumberUtil;
 
 import java.util.List;
 

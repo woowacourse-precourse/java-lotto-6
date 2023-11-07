@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.money;
 
 public class Money {
     private static final long LOTTO_COST = 1_000;
@@ -7,9 +7,14 @@ public class Money {
 
     public Money(long money) {
         this.money = money;
+        validateMoney();
+    }
+
+    public void validateMoney() {
         validateMoneyIsMoreThanThousand();
         validateMoneyDividedByThousand();
     }
+
     private void validateMoneyIsMoreThanThousand() {
         if(money < LOTTO_COST) {
             throw new IllegalArgumentException("1000원 이상 입금");

@@ -1,14 +1,12 @@
 package lotto.domain.lotto.dto;
 
-import java.util.Arrays;
-
-public record WinningNormalNumberDto(String inputNumbers) {
+public record WinningNormalNumberDto(String numbers) {
 
     public WinningNormalNumberDto {
-        if(inputNumbers == null) {
+        if(numbers == null) {
             throw new IllegalArgumentException("null x");
         }
-        validateInputNumbers(inputNumbers);
+        validateInputNumbers(numbers);
     }
 
     private void validateInputNumbers(String inputNumbers) {

@@ -1,5 +1,6 @@
-package lotto.domain.lotto;
+package lotto.domain.game;
 
+import lotto.domain.lotto.*;
 import lotto.global.constant.BonusNumberMatch;
 import lotto.global.constant.LottoRank;
 
@@ -9,23 +10,23 @@ import java.util.Map;
 
 public class LottoGame {
     private Lottos lottos;
+
     private WinningNumbers winningNumbers;
 
-    public LottoGame(Lottos lottos, WinningNumbers winningNumbers) {
-        this.lottos = lottos;
-        this.winningNumbers = winningNumbers;
 
+    public LottoGame() {
     }
 
-    public Map<LottoRank, Integer> calculateLottoResults() {
+    public Map<LottoRank, Integer> calculateLottoResults(Lottos lottos, WinningNumbers winningNumbers) {
         Map<LottoRank, Integer> rankMap = new HashMap<>();
 
-        List<Lotto> lottos = this.lottos.getLottos();
-        for (Lotto lotto : lottos) {
-            int matchNumber = winningNumbers.compareWinningNormalNumberWithLotto(lotto);
-            BonusNumberMatch bonusNumberMatch = winningNumbers.compareBonusNumberWithLotto(lotto, matchNumber);
+        List<Lotto> lottoList = lottos.getLottos();
+        for (Lotto lotto : lottoList) {
 
-            LottoRank rank = LottoRank.getRank(matchNumber, bonusNumberMatch);
+            int matchCnt = winningNumbers.getWinningNumberMatchCount(lotto);
+            BonusNumberMatch bonusNumberMatch = winningNumbers.isBonusNumberMatch(lotto, matchCnt);
+
+            LottoRank rank = LottoRank.getRank(matchCnt, bonusNumberMatch);
             calculateRankMap(rankMap, rank);
         }
         return rankMap;

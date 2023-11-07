@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.domain.game;
 
 import lotto.global.constant.LottoRank;
 

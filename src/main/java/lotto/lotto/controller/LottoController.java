@@ -16,4 +16,8 @@ public class LottoController {
     public void createRandomLottos(int count) {
         lottoService.createLottos(count);
     }
+
+    public List<LottoDto> getRandomLottos() {
+        return lottoService.getLottos();
+    }
 }

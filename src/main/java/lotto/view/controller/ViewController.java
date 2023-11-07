@@ -23,4 +23,7 @@ public class ViewController {
         return viewInputService.inputPurchaseAmount();
     }
 
+    public void printRandomLottos(List<LottoDto> lottoDtos) {
+        viewOutputService.printPurchasedCount(lottoDtos);
+    }
 }

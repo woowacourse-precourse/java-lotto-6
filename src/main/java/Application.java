@@ -1,5 +1,7 @@
 import camp.nextstep.edu.missionutils.Randoms;
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Domain.Lotto;
+import lotto.Domain.Matching;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,7 +9,6 @@ import java.util.List;
 
 
 public class Application {
-
 
 
     public static int getPurchaceAmount() {
@@ -46,16 +47,6 @@ public class Application {
         return winNumber;
     }
 
-
-
-    public static void printLottos(List<Lotto> lottos) {
-        System.out.println();
-        System.out.println(lottos.size() + "개를 구매했습니다.");
-        for (Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
-        System.out.println();
-    }
 
     private static void printResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         Matching matchLotto = new Matching(lottos, winningNumbers, bonusNumber);

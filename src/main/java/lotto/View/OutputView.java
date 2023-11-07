@@ -1,10 +1,22 @@
 package lotto.View;
 
+import lotto.Domain.Lotto;
+import lotto.Domain.Matching;
+
 import java.util.List;
 
 public class OutputView {
 
-    private static void printResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static void printLottos(List<Lotto> lottos) {
+        System.out.println();
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
+        }
+        System.out.println();
+    }
+
+    public static void printResult(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         Matching matchLotto = new Matching(lottos, winningNumbers, bonusNumber);
         System.out.println("당첨 통계");
         System.out.println("---");

@@ -1,3 +1,5 @@
+package lotto.Domain;
+
 import java.util.List;
 
 public class Matching {

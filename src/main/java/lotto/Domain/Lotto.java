@@ -1,3 +1,5 @@
+package lotto.Domain;
+
 import java.util.List;
 
 public class Lotto {
@@ -37,12 +39,6 @@ public class Lotto {
                     throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
                 }
             }
-        }
-    }
-    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            ExceptionMessage.overlapException();
-            throw new IllegalArgumentException();
         }
     }
 

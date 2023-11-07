@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.model.Constants.*;
+import static lotto.util.StringUtil.stringToIntegerList;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -44,17 +45,5 @@ public class InputView {
         System.out.println(INPUT_BONUS_NUMBER);
 
         return Integer.parseInt(Console.readLine());
-    }
-
-    private List<Integer> stringToIntegerList(String string){
-        List<Integer> inputList = new ArrayList<>();
-
-        String[] result = string.split(",");
-
-        for (String s : result) {
-            inputList.add(Integer.parseInt(s));
-        }
-
-        return inputList;
     }
 }

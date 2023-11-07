@@ -8,6 +8,9 @@ import java.util.List;
 
 public class OutputView {
     private StringBuilder outputMessage;
+    public void printErrorMessage(IllegalArgumentException e) {
+        System.out.println(e.getMessage());
+    }
     public void printPurchasedLotteries(List<Lotto> lotteries) {
         List<Integer> lottoTemp;
         outputMessage = new StringBuilder();

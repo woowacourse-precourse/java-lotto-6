@@ -47,7 +47,7 @@ public class LottoController {
                 lottoService.userBonusNumberValidate(inputUserLottoNumbers, inputUserBonusNumber);
                 return inputUserBonusNumber;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                consoleOutputView.outputErrorMessage(e);
             }
         }
     }
@@ -59,7 +59,7 @@ public class LottoController {
                 lottoService.userLottoNumbersValidate(inputUserLottoNumbers);
                 return inputUserLottoNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                consoleOutputView.outputErrorMessage(e);
             }
         }
     }
@@ -71,7 +71,7 @@ public class LottoController {
                 lottoService.buyLottoAmountValidate(inputBuyLottoAmount);
                 return lottoTicketGenerator.createRandomLottoTickets(inputBuyLottoAmount);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                consoleOutputView.outputErrorMessage(e);
             }
         }
     }

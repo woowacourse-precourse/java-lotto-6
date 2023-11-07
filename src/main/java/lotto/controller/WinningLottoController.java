@@ -12,25 +12,29 @@ public class WinningLottoController {
 
     public WinningLottoController(LottoView lottoView) {
         this.lottoView = lottoView;
-        this.winningLotto = winningLottoGenerating(createWinningLotto());
+        this.winningLotto = winningLottoGenerating(WinningLottoNumbersGenerating());
     }
 
-    private Lotto createWinningLotto() {
-        boolean successInput = false;
+    private Lotto WinningLottoNumbersGenerating() {
         Lotto lotto = null;
-        while (!successInput) {
-            try {
-                lotto = winningLottoGenerating(lottoView.winningLottoInput());
-                successInput = true;
-            } catch (IllegalArgumentException e) {
-                lottoView.print(e.getMessage());
-            }
+        while (lotto == null) {
+            lotto = createWinningLottoNumbers(lotto);
             lottoView.print("");
         }
         return lotto;
     }
 
-    private Lotto winningLottoGenerating(String numbers) {
+    private Lotto createWinningLottoNumbers(Lotto lotto){
+        try {
+            lotto = createWinningLottoNumbersComplete(lottoView.winningLottoInput());
+        } catch (IllegalArgumentException e) {
+            lottoView.print(e.getMessage());
+        }
+        return lotto;
+    }
+
+
+    private Lotto createWinningLottoNumbersComplete(String numbers) {
         return new Lotto(
                 Arrays.stream(numbers.split(","))
                         .map(it -> Integer.parseInt(it.trim()))
@@ -38,23 +42,26 @@ public class WinningLottoController {
         );
     }
 
-    public WinningLotto winningLottoGenerating(Lotto winningLottoNumbers) {
+    private WinningLotto winningLottoGenerating(Lotto winningLottoNumbers) {
         WinningLotto winningLotto = null;
-        boolean successInput = false;
-        while (!successInput) {
-            try {
-                int bonusNumber = bonusNumberGenerating(lottoView.bonusNumberInput());
-                winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
-                successInput = true;
-            } catch (IllegalArgumentException e) {
-                lottoView.print(e.getMessage());
-            }
+        while (winningLotto == null) {
+            winningLotto = createWinningLotto(winningLottoNumbers, winningLotto);
             lottoView.print("");
         }
         return winningLotto;
     }
 
-    public int bonusNumberGenerating(String bonusNumber) {
+    private WinningLotto createWinningLotto(Lotto winningLottoNumbers, WinningLotto winningLotto) {
+        try {
+            int bonusNumber = bonusNumberGenerating(lottoView.bonusNumberInput());
+            winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            lottoView.print(e.getMessage());
+        }
+        return winningLotto;
+    }
+
+    private int bonusNumberGenerating(String bonusNumber) {
         return Integer.parseInt(bonusNumber);
     }
 

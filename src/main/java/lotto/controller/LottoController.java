@@ -11,25 +11,28 @@ public class LottoController {
 
     public LottoController(LottoView lottoView) {
         this.lottoView = lottoView;
-        this.lottos = buyingLotto();
+        this.lottos = lottoGenerating();
     }
 
-    private List<Lotto> buyingLotto() {
-        boolean successInput = false;
+    private List<Lotto> lottoGenerating() {
         List<Lotto> lottos = null;
-        while (!successInput) {
-            try {
-                lottos = lottoGenerating(lottoView.paymentInput());
-                successInput = true;
-            } catch (IllegalArgumentException e) {
-                lottoView.print(e.getMessage());
-            }
+        while (lottos == null) {
+            lottos = createLotto(lottos);
             lottoView.print("");
         }
         return lottos;
     }
 
-    private List<Lotto> lottoGenerating(String payment) {
+    private List<Lotto> createLotto(List<Lotto> lottos) {
+        try {
+            lottos = createLottoComplete(lottoView.paymentInput());
+        } catch (IllegalArgumentException e) {
+            lottoView.print(e.getMessage());
+        }
+        return lottos;
+    }
+
+    private List<Lotto> createLottoComplete(String payment) {
         return new LottoGenerator(Integer.parseInt(payment)).getLottos();
     }
 

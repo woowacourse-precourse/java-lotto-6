@@ -4,8 +4,6 @@ import static lotto.error.ErrorMessage.DUPLICATED_LOTTO_NUMBER;
 import static lotto.error.ErrorMessage.INVALID_LOTTO_NUMBER_LENGTH;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,5 +35,19 @@ public class Lotto {
                 throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER);
             }
         }
+    }
+
+    public Grade grade(List<Integer> winningNumbers, Integer bonusNumber) {
+        Integer answer = 0;
+        Integer bonus = 0;
+        for (Integer number : winningNumbers){
+            if (numbers.contains(number)){
+                answer++;
+            }
+        }
+        if (numbers.contains(bonusNumber)){
+            bonus++;
+        }
+        return Grade.from(answer,bonus);
     }
 }

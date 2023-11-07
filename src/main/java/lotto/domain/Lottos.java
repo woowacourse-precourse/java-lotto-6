@@ -4,16 +4,27 @@ import static lotto.domain.Lotto.*;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Lottos {
     private List<Lotto> lottos = new ArrayList<>();
 
     public void inssuance(Integer purchaseAmount) {
         Integer lottoCount = purchaseAmount % PRICE;
-        for (int count=1; count<=lottoCount; count++){
+        for (int count = 1; count <= lottoCount; count++) {
             List<Integer> numbers = pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_LENGTH);
             lottos.add(new Lotto(numbers));
         }
+    }
+
+    public Map<Grade, Integer> grade(List<Integer> winningNumbers, Integer bonusNumber) {
+        Map<Grade, Integer> result = new HashMap<>();
+        for (Lotto lotto : lottos) {
+            Grade grade = lotto.grade(winningNumbers, bonusNumber);
+            result.put(grade, result.getOrDefault(grade, 0) + 1);
+        }
+        return result;
     }
 }

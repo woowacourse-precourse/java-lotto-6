@@ -1,10 +1,12 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.constant.LottoRanking;
 import lotto.generator.RandomUniqueListGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoGameManager;
 import lotto.model.LottoOwner;
+import lotto.model.LottoResult;
 import lotto.model.PurchasePrice;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
@@ -19,11 +21,13 @@ public class LottoController {
             outputView.printEnterPurchaseAmount();
             PurchasePrice purchasePrice = PurchasePrice.from(inputView.getPurchaseAmount());
             List<Lotto> randomLottos = Lotto.createRandomLottos(purchasePrice, new RandomUniqueListGenerator());
-            LottoOwner lottoOwner = LottoOwner.of(purchasePrice, randomLottos);
+            LottoResult lottoResult = LottoResult.from(LottoRanking.convertValuesIntoCounters());
+            LottoOwner lottoOwner = LottoOwner.of(purchasePrice, randomLottos, lottoResult);
             outputView.printLottosInfo(lottoOwner.getLottosInfo());
             WinningLotto winningLotto = WinningLotto.of(getWinningLotto(), getBonusNumber());
             outputView.printWinnerStatistics();
             LottoGameManager lottoGameManager = LottoGameManager.of(lottoOwner, winningLotto);
+            lottoGameManager.matchLottosWithWinningLotto();
             outputView.printWinningStatistics(lottoGameManager.getWinningStatistics());
             outputView.printRateOfReturn(lottoGameManager.getRateOfReturn());
         } catch (IllegalArgumentException | IllegalStateException e) {

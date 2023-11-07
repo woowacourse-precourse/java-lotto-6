@@ -1,10 +1,6 @@
 package lotto.model;
 
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import lotto.constant.LottoRanking;
 import lotto.dto.LottosInfo;
 import lotto.dto.RateOfReturn;
@@ -13,21 +9,16 @@ import lotto.dto.WinningStatistics;
 public class LottoOwner {
     private final PurchasePrice purchasePrice;
     private final List<Lotto> lottos;
-    private final Map<LottoRanking, Integer> lottoResults = new HashMap<>();
+    private final LottoResult lottoResults;
 
-    private LottoOwner(PurchasePrice purchasePrice, List<Lotto> lottos) {
+    private LottoOwner(PurchasePrice purchasePrice, List<Lotto> lottos, LottoResult lottoResults) {
         this.purchasePrice = purchasePrice;
         this.lottos = lottos;
-        initLottoResults();
+        this.lottoResults = lottoResults;
     }
 
-    public static LottoOwner of(PurchasePrice purchasePrice, List<Lotto> lottos) {
-        return new LottoOwner(purchasePrice, lottos);
-    }
-
-    private void initLottoResults() {
-        Arrays.stream(LottoRanking.values())
-                .forEach(ranking -> lottoResults.put(ranking, 0));
+    public static LottoOwner of(PurchasePrice purchasePrice, List<Lotto> lottos, LottoResult lottoResults) {
+        return new LottoOwner(purchasePrice, lottos, lottoResults);
     }
 
     public LottosInfo getLottosInfo() {
@@ -37,24 +28,18 @@ public class LottoOwner {
         return new LottosInfo(lottosText);
     }
 
-    public WinningStatistics matchLottosWithWinningLotto(WinningLotto winningLotto) {
+    public void matchLottosWithWinningLotto(WinningLotto winningLotto) {
         lottos.forEach(lotto -> {
             LottoRanking lottoRanking = winningLotto.calculateLottoRanking(lotto);
-            if (Objects.nonNull(lottoRanking)) {
-                lottoResults.put(lottoRanking, lottoResults.get(lottoRanking) + 1);
-            }
+            lottoResults.addLottoResult(lottoRanking);
         });
-        return new WinningStatistics(lottoResults);
+    }
+
+    public WinningStatistics getWinningStatistics() {
+        return lottoResults.getWinnerStatistics();
     }
 
     public RateOfReturn convertResultToRateOfReturn() {
-        return new RateOfReturn(purchasePrice.calculateRateOfReturn(calculatePrizeSum()));
-    }
-
-    private long calculatePrizeSum() {
-        return lottoResults.keySet().stream()
-                .map(lottoRanking -> lottoRanking.getPrize() * lottoResults.get(lottoRanking))
-                .mapToLong(Long::longValue)
-                .sum();
+        return new RateOfReturn(purchasePrice.calculateRateOfReturn(lottoResults.calculatePrizeSum()));
     }
 }

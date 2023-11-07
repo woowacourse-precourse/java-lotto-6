@@ -16,8 +16,12 @@ public class LottoGameManager {
         return new LottoGameManager(lottoOwner, winningLotto);
     }
 
+    public void matchLottosWithWinningLotto() {
+        lottoOwner.matchLottosWithWinningLotto(winningLotto);
+    }
+
     public WinningStatistics getWinningStatistics() {
-        return lottoOwner.matchLottosWithWinningLotto(winningLotto);
+        return lottoOwner.getWinningStatistics();
     }
 
     public RateOfReturn getRateOfReturn() {

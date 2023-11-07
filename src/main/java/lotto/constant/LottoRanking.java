@@ -1,5 +1,9 @@
 package lotto.constant;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
 public enum LottoRanking {
     FIRST(6, 2000000000L),
     SECOND(5, 30000000L),
@@ -28,6 +32,13 @@ public enum LottoRanking {
             return FIFTH;
         }
         return null;
+    }
+
+    public static Map<LottoRanking, Integer> convertValuesIntoCounters() {
+        Map<LottoRanking, Integer> gameResults = new HashMap<>();
+        Arrays.stream(LottoRanking.values())
+                .forEach(lottoRanking -> gameResults.put(lottoRanking, 0));
+        return gameResults;
     }
 
     public int getSameCount() {

@@ -37,4 +37,18 @@ public class LottoStatisticsTest {
         assertThat(statisticsResult).contains(expectedResult1, expectedResult2);
     }
 
+    @DisplayName("당첨 통계와 구입금액이 입력되면 수익률 계산")
+    @Test
+    void testCalculateProfit() {
+        ArrayList<PrizeInformation> testResult;
+        testResult = new ArrayList<>(List.of(SECOND_PRIZE, THIRD_PRIZE, THIRD_PRIZE));
+        int testPurchaseAmount = 100000;
+        double expectedProfit = 330;
+
+        lottoStatistics.writeStatistics(testResult);
+        double profit = lottoStatistics.calculateLottoProfit(testPurchaseAmount);
+
+        assertThat(profit).isEqualTo(expectedProfit);
+    }
+
 }

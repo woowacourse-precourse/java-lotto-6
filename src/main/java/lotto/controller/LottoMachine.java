@@ -35,7 +35,6 @@ public class LottoMachine {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println();
     }
 
     public void drawLottoNumber() {
@@ -68,7 +67,6 @@ public class LottoMachine {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println();
     }
 
     public void drawBonusNumber() {
@@ -81,7 +79,6 @@ public class LottoMachine {
                 System.out.println(e.getMessage());
             }
         }
-        System.out.println();
     }
 
     public void getWinningStatistics() {
@@ -100,7 +97,6 @@ public class LottoMachine {
 
     public void compareNumber(List<Integer> lottoNumbers, List<Integer> winningLottoNumbers) {
         int matchCount = getMatchCount(lottoNumbers, winningLottoNumbers);
-
         if (matchCount != 5) {
             addLottoWinning(matchCount);
         }

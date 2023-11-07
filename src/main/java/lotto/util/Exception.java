@@ -21,8 +21,8 @@ public class Exception {
         }
     }
 
-    public static void checkDuplicationBonusNumber(List<Integer> winningNumber, int bonusNumber){
-        if(winningNumber.contains(bonusNumber)){
+    public static void checkDuplicationBonusNumber(List<Integer> winningNumber, int bonusNumber) {
+        if (winningNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATION_NUMBER.getMessage());
         }
     }

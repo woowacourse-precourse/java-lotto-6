@@ -13,14 +13,13 @@ public class Result {
     int totalPrize = 0;
 
     public void printLottoNumber(List<Lotto> lottoNumbers) {
-        System.out.print(user.getManyLottoTicket());
+        System.out.print("\n" + user.getManyLottoTicket());
         Message.PURCHASE_LOTTO.getMessage();
         for (Lotto numbers : lottoNumbers) {
             System.out.print("[");
             System.out.print(joinNumber(numbers.getNumbers()));
             System.out.println("]");
         }
-        System.out.println();
     }
 
     public String joinNumber(List<Integer> numbers) {
@@ -32,7 +31,7 @@ public class Result {
     }
 
     public void printWinningStatistics(HashMap<Integer, Integer> winningCount) {
-        for(LottoRank lottoRank : LottoRank.values()){
+        for (LottoRank lottoRank : LottoRank.values()) {
             int rankCount = getRankCount(lottoRank.getRank(), winningCount);
             printWinningResult(lottoRank, rankCount);
         }
@@ -65,7 +64,7 @@ public class Result {
     }
 
     public String getTotalProfit(HashMap<Integer, Integer> winningCount) {
-        for(LottoRank lottoRank : LottoRank.values()){
+        for (LottoRank lottoRank : LottoRank.values()) {
             int rankCount = getRankCount(lottoRank.getRank(), winningCount);
             addTotalPrize(lottoRank.getPrize(), rankCount);
         }
@@ -76,7 +75,7 @@ public class Result {
         totalPrize += prize * rankCount;
     }
 
-    public String calculateProfit(){
+    public String calculateProfit() {
         double TotalProfit = ((double) totalPrize / user.getPaymentAmount()) * 100;
         return String.format("%.1f%%", TotalProfit);
     }

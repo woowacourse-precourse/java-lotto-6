@@ -79,4 +79,18 @@ public class InputView {
         return numbers;
     }
 
+    List<Integer> validLottoNumber(String input){
+        validDelimeter(input);
+        List<Integer> lottoNumbers = splitNumbers(input);
+        validRange(lottoNumbers);
+
+        return lottoNumbers;
+    }
+
+    void validDelimeter(String input){
+        if(!(input.contains(","))){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 쉼표(,) 구분자를 사용하여 입력해야 합니다.");
+        }
+    }
+
 }

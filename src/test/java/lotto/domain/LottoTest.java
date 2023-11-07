@@ -25,8 +25,8 @@ class LottoTest {
 
     @DisplayName("로또 번호와 당첨 번호를 비교해 같은 숫자의 개수를 반환한다.")
     @Test
-    void getNumberOfMatches(){
-        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+    void getNumberOfMatches() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         int numberOfMatches = lotto.getNumberOfMatches(List.of(1, 2, 3, 4, 5, 6));
 

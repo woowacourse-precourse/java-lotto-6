@@ -42,13 +42,13 @@ public class LottoController {
         return winningNumbers;
     }
 
-    private Amount receiveMoney(){
+    private Amount receiveMoney() {
         Output.askAmount();
         Integer money = Input.receiveOneNumber();
         return new Amount(money);
     }
 
-    private List<Lotto> buyLottos(Amount amount){
+    private List<Lotto> buyLottos(Amount amount) {
         List<Lotto> lottos = lottoGenerator.generateLottoes(amount);
         Output.printPublishedLottoInformation(lottos);
         return lottos;

@@ -27,16 +27,16 @@ public class InputValidator {
         }
     }
 
-    public static void isNull(String input){
-        if(input == null) {
+    public static void isNull(String input) {
+        if (input == null) {
             Output.printErrorMessage(ERROR_MESSAGE_NULL);
             throw new IllegalArgumentException();
         }
     }
 
-    public static void isNull(String[] inputs){
+    public static void isNull(String[] inputs) {
         for (int i = 0; i < inputs.length; i++) {
-            if(inputs[i] == null) {
+            if (inputs[i] == null) {
                 Output.printErrorMessage(ERROR_MESSAGE_NULL);
                 throw new IllegalArgumentException();
             }

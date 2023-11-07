@@ -33,7 +33,7 @@ public class OutputTest {
     @DisplayName("금액 입력 메세지 출력")
     void printWinningStatistics() {
         WinningResult winningResult = new WinningResult();
-        winningResult.addResults(6,true);
+        winningResult.addResults(6, true);
         String expectedMessage = "당첨 통계\n"
                 + "---\n"
                 + "3개 일치 (5,000원) - 0개\n"

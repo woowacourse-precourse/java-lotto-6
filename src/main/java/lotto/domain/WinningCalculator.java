@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,9 +16,9 @@ public class WinningCalculator {
         this.bonusNumber = bonusNumber;
     }
 
-    public WinningResult calculate(List<Lotto> lottoes){
+    public WinningResult calculate(List<Lotto> lottoes) {
         WinningResult winningResult = new WinningResult();
-        for(Lotto lotto: lottoes){
+        for (Lotto lotto : lottoes) {
             int numberOfMatches = lotto.getNumberOfMatches(winningNumbers);
             winningResult.addResults(numberOfMatches, lotto.containsBonusNumber(bonusNumber));
         }

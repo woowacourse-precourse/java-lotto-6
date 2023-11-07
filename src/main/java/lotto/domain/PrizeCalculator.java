@@ -16,6 +16,6 @@ public class PrizeCalculator {
                 + winningResult.getNumberOfFourth() * PRIZE_MONEY_FOURTH
                 + winningResult.getNumberOfFifth() * PRIZE_MONEY_FIFTH;
 
-        return Math.round((((double)prize / (double)amount.getAmount()) * 10000.0))/ 100.0;
+        return Math.round((((double) prize / (double) amount.getAmount()) * 10000.0)) / 100.0;
     }
 }

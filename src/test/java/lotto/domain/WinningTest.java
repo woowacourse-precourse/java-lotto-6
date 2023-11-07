@@ -86,7 +86,6 @@ class WinningTest {
                 .hasMessage("[ERROR] 로또 번호는 1~45 사이 숫자 입니다.");
     }
 
-
     @DisplayName("로또 번호가 당첨 번호와 일치하는 개수를 반환한다.")
     @Test
     void getMatchNumberCount() {
@@ -120,6 +119,18 @@ class WinningTest {
         boolean isMatched = winning.isContainBonusNumber(lotto);
         //Then
         assertThat(isMatched).isFalse();
+    }
+
+    @DisplayName("일치하는 로또 번호와 보너스 여부에 따른 상금 결과를 반환한다.")
+    @Test
+    void getPrizeByWinning() {
+        //Given
+        int matchCount = 5;
+        boolean isMatchBonus = true;
+        //When
+        Prize prize = winning.getPrize(matchCount, isMatchBonus);
+        //Then
+        assertThat(prize).isEqualTo(Prize.FIVE_MATCH_BONUS);
     }
 
 }

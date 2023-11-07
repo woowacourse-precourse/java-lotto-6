@@ -8,12 +8,12 @@ public class BonusNumber {
 
     private final int number;
 
-    public BonusNumber(int number) {
+    public BonusNumber(final int number) {
         validateRange(number);
         this.number = number;
     }
 
-    private void validateRange(int number) {
+    private void validateRange(final int number) {
         if (number < MIN_RANGE || MAX_RANGE < number) {
             throw new IllegalArgumentException("[ERROR] 보너스 숫자는 1~45사이 숫자여야 합니다.");
         }

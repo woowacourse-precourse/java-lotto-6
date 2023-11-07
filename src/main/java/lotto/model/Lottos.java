@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    public Lottos(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 

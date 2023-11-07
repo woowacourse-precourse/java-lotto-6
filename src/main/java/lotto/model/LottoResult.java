@@ -13,7 +13,7 @@ public enum LottoResult {
     private final int matchingNumbers;
     private final String prizeAmount;
 
-    LottoResult(int matchingNumbers, String prizeAmount) {
+    LottoResult(final int matchingNumbers, final String prizeAmount) {
         this.matchingNumbers = matchingNumbers;
         this.prizeAmount = prizeAmount;
     }

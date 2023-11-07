@@ -8,7 +8,7 @@ public class UI {
 	LottoService lottoService = new LottoService();
 	long numberOfLottoTickets;
 	List<Lotto> computerLottos;
-	List<Integer> userNumbers;
+	Lotto user;
 	int bonusNumber;
 	long profit;
 
@@ -17,8 +17,8 @@ public class UI {
 		System.out.println("\n" + numberOfLottoTickets + "개를 구매했습니다.");
 		showComputerLottos(numberOfLottoTickets);
 		inputNumbers();
-		inputBonusNumber(userNumbers);
-		showWinningStatistics(computerLottos, userNumbers, bonusNumber);
+		inputBonusNumber(user);
+		showWinningStatistics(computerLottos, user, bonusNumber);
 		showProfitRates(numberOfLottoTickets, profit);
 	}
 
@@ -50,32 +50,32 @@ public class UI {
 		try {
 			System.out.println("\n당첨 번호를 입력해 주세요.");
 			String inputNumbers = Console.readLine();
-			this.userNumbers = lottoService.checkNumbers(inputNumbers);
+			this.user = lottoService.checkNumbers(inputNumbers);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			inputNumbers();
 		}
 	}
 
-	private void inputBonusNumber(List<Integer> userNumbers) {
+	private void inputBonusNumber(Lotto user) {
 		try {
 			System.out.println("\n보너스 번호를 입력해 주세요.");
 			String inputBonusNumber = Console.readLine();
-			this.bonusNumber = lottoService.checkBonusNumber(userNumbers, inputBonusNumber);
+			this.bonusNumber = lottoService.checkBonusNumber(user, inputBonusNumber);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			inputBonusNumber(userNumbers);
+			inputBonusNumber(user);
 		}
 	}
 
 	private void showWinningStatistics(
 			List<Lotto> computerLottos,
-			List<Integer> userNumbers,
+			Lotto user,
 			int bonusNumber) {
 		System.out.println("당첨 통계");
 		System.out.println("---");
 		List<Integer> winningResult =
-				lottoService.getWinningResult(computerLottos, userNumbers, bonusNumber);
+				lottoService.getWinningResult(computerLottos, user, bonusNumber);
 		System.out.println("3개 일치 (5,000원) - " + winningResult.get(5) + "개");
 		System.out.println("4개 일치 (50,000원) - " + winningResult.get(4) + "개");
 		System.out.println("5개 일치 (1,500,000원) - " + winningResult.get(3) + "개");

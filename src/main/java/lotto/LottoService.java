@@ -3,8 +3,10 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoService {
 	Validator validator = new Validator();
@@ -44,24 +46,23 @@ public class LottoService {
 		return true;
 	}
 
-	public List<Integer> checkNumbers(String inputNumbers) throws IllegalArgumentException {
+	public Lotto checkNumbers(String inputNumbers) throws IllegalArgumentException {
 		List<Integer> userNumbers = new ArrayList<>();
 
 		String[] numbers = inputNumbers.split(",");
-		validator.isThisSizeSix(numbers);
-
 		for (int i = 0; i < numbers.length; i++) {
 			String check = numbers[i].strip();
 			validator.isComposedOfNumbers(check);
 			validator.isInRange(check);
 			userNumbers.add(Integer.parseInt(check));
 		}
-		validator.existDuplicateNumber(userNumbers);
-		return userNumbers;
+		Lotto user = new Lotto(userNumbers);
+		return user;
 	}
 
-	public int checkBonusNumber(List<Integer> userNumbers, String inputBonusNumber)
+	public int checkBonusNumber(Lotto user, String inputBonusNumber)
 			throws IllegalArgumentException {
+		List<Integer> userNumbers = user.getNumbers();
 		validator.isComposedOfNumbers(inputBonusNumber);
 		validator.isInRange(inputBonusNumber);
 		validator.containNumber(userNumbers, inputBonusNumber);
@@ -70,9 +71,11 @@ public class LottoService {
 
 	public List<Integer> getWinningResult(
 			List<Lotto> computerLottos,
-			List<Integer> userNumbers,
+			Lotto user,
 			int bonusNumber) {
+		List<Integer> userNumbers = user.getNumbers();
 		int[] checkRank = new int[countOfLotto];
+
 		for (Lotto computerLotto : computerLottos) {
 			List<Integer> computerLottoNumber = computerLotto.getNumbers();
 			int win = compareNumber(computerLottoNumber, userNumbers);
@@ -80,11 +83,7 @@ public class LottoService {
 			checkRank[findRank(win, bonusWin)]++;
 		}
 
-		List<Integer> winningResult = new ArrayList<>();
-		for (int i = 0; i < countOfLotto; i++) {
-			winningResult.add(checkRank[i]);
-		}
-		return winningResult;
+		return Arrays.stream(checkRank).boxed().collect(Collectors.toList());
 	}
 
 	private int compareNumber(

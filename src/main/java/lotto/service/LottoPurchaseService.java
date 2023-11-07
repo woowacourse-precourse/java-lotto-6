@@ -45,7 +45,7 @@ public class LottoPurchaseService {
             throw new LottoStoreException(LottoStoreException.ErrorMessage.EXCEED_LOTTO_MAX_AMOUNT.getMessage());
         }
         if (!isDivisibleByLottoPrice(money)) {
-            throw new LottoStoreException(LottoStoreException.ErrorMessage.NOT_DIVISIBLE_AMOUNT.getMessage());
+            throw new LottoStoreException(LottoStoreException.ErrorMessage.NON_DIVISIBLE_AMOUNT.getMessage());
         }
     }
 

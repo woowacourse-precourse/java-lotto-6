@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -14,21 +11,6 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
-
-    public static Lotto generateRandomLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return new Lotto(numbers);
-    }
-
-    public static List<Lotto> generateRandomLottos(int number) {
-        List<Lotto> generatedLottos = new ArrayList<>();
-
-        for (int i = 0; i < number; i++) {
-            generatedLottos.add(generateRandomLotto());
-        }
-
-        return generatedLottos;
     }
 
     private void validate(List<Integer> numbers) {
@@ -63,5 +45,25 @@ public class Lotto {
         }
 
         return LottoMatchResult.fromMatchedCount(matched, hasBonus);
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public static Lotto generateRandomLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
+    }
+
+    public static List<Lotto> generateRandomLottos(int number) {
+        List<Lotto> generatedLottos = new ArrayList<>();
+
+        for (int i = 0; i < number; i++) {
+            generatedLottos.add(generateRandomLotto());
+        }
+
+        return generatedLottos;
     }
 }

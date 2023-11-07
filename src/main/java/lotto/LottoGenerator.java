@@ -11,7 +11,7 @@ public class LottoGenerator {
     public LottoGenerator(int size) {
         List<Lotto> lottos = new ArrayList<>();
         while (lottos.size() != size) {
-            lottos.add(createLotto());
+            lottos.add(generateLotto());
         }
         this.lottos = lottos;
     }
@@ -20,7 +20,7 @@ public class LottoGenerator {
         return this.lottos;
     }
 
-    private Lotto createLotto() {
+    private Lotto generateLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
     }
 }

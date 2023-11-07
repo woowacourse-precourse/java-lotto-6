@@ -31,6 +31,7 @@ public class PurchaseController {
         String input = inputView.returnInput();
 
         while (!validator.isInputInteger(input)) {
+            System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + NUMBER_FORMAT_EXCEPTION.getMessage());
             return amountOfLottos();
         }
 

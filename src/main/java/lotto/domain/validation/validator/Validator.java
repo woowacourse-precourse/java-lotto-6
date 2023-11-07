@@ -1,7 +1,6 @@
 package lotto.domain.validation.validator;
 
-import static lotto.domain.validation.ExceptionMessage.EXCEPTION_MESSAGE_PREFIX;
-import static lotto.domain.validation.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
+import java.util.List;
 
 public class Validator {
 
@@ -10,7 +9,6 @@ public class Validator {
             Integer.parseInt(input);
             return true;
         } catch (NumberFormatException e) {
-            System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + NUMBER_FORMAT_EXCEPTION.getMessage());
             return false;
         }
     }
@@ -23,6 +21,19 @@ public class Validator {
 
     public void isPurchaseAmountDividedUp(String input) {
         if (Integer.parseInt(input) % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkBonusNumberInRange(String input) {
+        int bonusNumber = Integer.parseInt(input);
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void checkWinningNumberContainsBonusNumber(List<Integer> numbers, String input) {
+        if (numbers.contains(Integer.parseInt(input))) {
             throw new IllegalArgumentException();
         }
     }

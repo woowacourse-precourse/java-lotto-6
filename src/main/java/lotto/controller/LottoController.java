@@ -2,12 +2,14 @@ package lotto.controller;
 
 import lotto.model.LottoAmount;
 import lotto.model.Lottos;
+import lotto.service.Service;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
+    private final Service service;
     private LottoAmount lottoAmount;
 
     private Lottos lottos;
@@ -15,6 +17,7 @@ public class LottoController {
     public LottoController() {
         inputView = new InputView();
         outputView = new OutputView();
+        service = new Service();
     }
 
     public void start() {
@@ -39,7 +42,7 @@ public class LottoController {
     private Lottos createLottos(int lottoTicketCount) {
         while (true) {
             try {
-                return new Lottos(lottoTicketCount);
+                return new Lottos(service.createLottos(lottoTicketCount));
             } catch (IllegalArgumentException e) {
                 outputView.printError(e);
             }

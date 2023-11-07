@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.constant.Rank;
 import lotto.constant.ViewMessage;
+import lotto.model.Lotto;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -27,7 +28,6 @@ public class View {
                 .collect(Collectors.toList());
 
         String lottoNumber = String.join(ViewMessage.PRINT_SEPARATOR.getMessage(), getLottoNumber);
-
         return String.format(ViewMessage.PRINT_PURCHASE_NUMBER.getMessage(), lottoNumber);
     }
 
@@ -39,7 +39,6 @@ public class View {
         if (rank == Rank.SECOND) {
             printMatches = ViewMessage.PRINT_BONUS_MATCHES.getMessage();
         }
-
         return String.format(printMatches, rank.getHits(), df.format(rank.getPrize()), rank.getMatchCount());
     }
 

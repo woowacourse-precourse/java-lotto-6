@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Controller {
+public class LottoController {
     public Integer getPurchaseQuantity() {
         int purchaseAmount = Integer.parseInt(Console.readLine().trim());
 

@@ -29,4 +29,9 @@ public class InputValidation {
         }
     }
 
+    public static void validateNoDuplicateNumbers(List<Integer> list, int number) {
+        if (list.contains(number)) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_DUPLICATE_NUMBER);
+        }
+    }
 }

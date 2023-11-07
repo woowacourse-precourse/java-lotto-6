@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lotto.constants.Rank;
 import lotto.domain.Calculator;
 import lotto.domain.Comparator;
 import lotto.domain.Convertor;
@@ -22,7 +23,7 @@ public class Game {
     private double profitRate;
     private List<Lotto> lottos;
     private List<Integer> winningNumbers;
-    private Map<Integer, Integer> winningResult;
+    private Map<Rank, Integer> winningResult;
 
     public void start() {
         createPurchaseAmount();
@@ -91,7 +92,7 @@ public class Game {
     }
 
     private void createProfitRate() {
-        profitRate = Calculator.calculateProfitRate(purchaseAmount);
+        profitRate = Calculator.calculateProfitRate(createWinningCounts(), purchaseAmount);
     }
 
 

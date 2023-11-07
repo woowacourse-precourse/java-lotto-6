@@ -11,6 +11,7 @@ import static lotto.constants.Rank.THIRD;
 
 import java.util.List;
 import java.util.Map;
+import lotto.constants.Rank;
 import lotto.domain.Lotto;
 
 public class OutputView {
@@ -25,14 +26,14 @@ public class OutputView {
         }
     }
 
-    public static void printWinningResult(Map<Integer, Integer> winningResult) {
+    public static void printWinningResult(Map<Rank, Integer> winningResult) {
         System.out.println();
         System.out.println(WINNING_RESULT.getMessage());
-        System.out.println(FIFTH.getMessage() + winningResult.get(5) + UNIT);
-        System.out.println(FOURTH.getMessage() + winningResult.get(4) + UNIT);
-        System.out.println(THIRD.getMessage() + winningResult.get(3) + UNIT);
-        System.out.println(SECOND.getMessage() + winningResult.get(2) + UNIT);
-        System.out.println(FIRST.getMessage() + winningResult.get(1) + UNIT);
+        System.out.println(FIFTH.getMessage() + winningResult.get(FIFTH) + UNIT);
+        System.out.println(FOURTH.getMessage() + winningResult.get(FOURTH) + UNIT);
+        System.out.println(THIRD.getMessage() + winningResult.get(THIRD) + UNIT);
+        System.out.println(SECOND.getMessage() + winningResult.get(SECOND) + UNIT);
+        System.out.println(FIRST.getMessage() + winningResult.get(FIRST) + UNIT);
     }
 
     public static void printProfitRate(double profitRate) {

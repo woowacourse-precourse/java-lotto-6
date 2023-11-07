@@ -15,6 +15,6 @@ public class LottoService {
     }
 
     public BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers, final long bonusNumber) {
-        return BonusNumber.of(winningLottoNumbers.getWinningLottoNumbers(), bonusNumber);
+        return BonusNumber.of(bonusNumber, winningLottoNumbers.getWinningLottoNumbers());
     }
 }

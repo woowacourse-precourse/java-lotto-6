@@ -1,5 +1,7 @@
 package lotto;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class LottoGameOutput {
@@ -15,9 +17,12 @@ public class LottoGameOutput {
         }
     }
 
-    public void printLottoResult(LottoResult lottoResult) {
+    public void printLottoResult(LottoResult lottoResult, double profit) {
         for(String str: lottoResult.getResultStrings()){
             System.out.println(str);
         }
+        DecimalFormat df = new DecimalFormat("0.0");
+        df.setRoundingMode(RoundingMode.HALF_UP);
+        System.out.println("총 수익률은 "+ df.format(profit) +"%입니다.");
     }
 }

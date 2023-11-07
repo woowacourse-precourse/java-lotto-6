@@ -50,8 +50,7 @@ public class LottoGame {
         if (total == 0) {
             return 0.0;
         }
-
-        return ((double) (total - (amount * 1000L)) / total) * 100.0;
+        return ((double) total / (amount * 1000L)) * 100.0;
     }
 
 }

@@ -20,8 +20,8 @@ public class LottoService {
 
     public List<Integer> createWinningNumbers(String winningInputNumbers) {
         List<Integer> winningNumbers = winningNumberSplitter(winningInputNumbers);
-        duplicatesWinningNumbers(winningNumbers);
-        return new ArrayList<>(winningNumbers);
+        List<Integer> validateCheckOfWinningNumber = duplicatesWinningNumbers(winningNumbers);
+        return new ArrayList<>(validateCheckOfWinningNumber);
     }
 
     public int createBonusNumber(List<LottoDto> lottoDtos, String commonInput) {
@@ -42,9 +42,19 @@ public class LottoService {
         return topCount(lottoMatchCount);
     }
 
-    public void duplicatesWinningNumbers(List<Integer> winningNumbers) {
-        Set<Integer> winningNumberDuplicates = new HashSet<>(winningNumbers);
-        validateDuplicateWinningNumber(winningNumbers.size(), winningNumberDuplicates.size());
+    public List<Integer> duplicatesWinningNumbers(List<Integer> winningNumbers) {
+        while (true) {
+            Set<Integer> winningNumberDuplicates = new HashSet<>(winningNumbers);
+            try {
+                validateDuplicateWinningNumber(winningNumbers.size(), winningNumberDuplicates.size());
+                return winningNumbers;
+            } catch (UserInputException e) {
+                System.out.println(ErrorMsg.ERROR_LOTTO_DUPLICATES_NUMBERS.getMsg());
+            }
+            String userRetryInput = Console.readLine();
+            List<Integer> retryNumberFormat = winningNumberSplitter(userRetryInput);
+            winningNumbers = retryNumberFormat;
+        }
     }
 
     public List<Integer> winningNumberSplitter(String winningInputNumbers) {
@@ -54,15 +64,16 @@ public class LottoService {
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
                 validateWinningNumberLength(winningNumbers.size());
+
                 return winningNumbers;
             } catch (UserInputException e) {
                 System.out.println(ErrorMsg.ERROR_LOTTO_NUMBERS_SIZE_MAX.getMsg());
-            } finally {
-                String retryUserInput = Console.readLine();
-                winningInputNumbers = retryUserInput;
             }
+            String retryUserInput = Console.readLine();
+            winningInputNumbers = retryUserInput;
         }
     }
+
 
     public Map<Integer, Integer> topCount(List<Map<Integer, Integer>> lottoMatchCount) {
         return lottoMatchCount.stream()
@@ -74,10 +85,6 @@ public class LottoService {
         if (lottoNumbers.contains(commonInput)) {
             throw new UserInputException(ErrorMsg.ERROR_LOTTO_DUPLICATES_NUMBERS.getMsg());
         }
-    }
-
-    private void validateDuplicateWinningNumber() {
-
     }
 
     private void validateDuplicateWinningNumber(int originLength, int afterLength) {

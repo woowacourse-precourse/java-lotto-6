@@ -36,12 +36,13 @@ class LottoControllerTest extends NsTest {
     @Test
     void play_WithInvalidWinningNumber() {
         assertSimpleTest(() -> {
-            runException("5000", "", "1:2:3:4:5:6", "1,2,3,4,5,6,7", "1,2,3,4,5,46");
+            runException("5000", "", "1:2:3:4:5:6", "1,2,3,4,5,6,7", "1,2,3,4,5,46", "1,2,3,3,4,5");
             assertThat(output()).contains(
                     "입력이 존재하지 않습니다.",
                     "입력 형식이 올바르지 않습니다.",
                     "당첨 번호는 6개의 숫자로 이루어져야 합니다.",
-                    "숫자 범위는 1부터 45까지 가능합니다."
+                    "숫자 범위는 1부터 45까지 가능합니다.",
+                    "6개의 번호는 중복될 수 없습니다."
             );
         });
     }

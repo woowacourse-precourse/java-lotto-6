@@ -24,4 +24,12 @@ public class LottoManager {
         Prize prize = Prize.determineRank(matchedCount, isMatchedBonusNumber);
         winningDetails.increasePrizeAmount(prize);
     }
+
+    public WinningDetails statisticsPrize(Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
+            awardPrize(lotto);
+        }
+
+        return winningDetails;
+    }
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class Reader {
+    private static final String COMMA = ",";
 
     private Reader() {
         throw new UnsupportedOperationException();
@@ -21,7 +22,7 @@ public final class Reader {
 
     public static List<Integer> winningNumbers() {
         String winningNumber = readLine();
-        String[] winningAmounts = winningNumber.split(",");
+        String[] winningAmounts = winningNumber.split(COMMA);
         return validFormatAndConvert(winningAmounts, INVALID_WINNING_NUMBER_FORMAT);
     }
 

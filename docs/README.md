@@ -10,6 +10,7 @@
 - [x] 발행된 로또 번호를 오름차순으로 정렬하여 출력한다.
 - [x] 당첨 번호를 입력받는다.
   - [x] 입력값이 쉼표(,)를 기준으로 구분된 6개의 숫자인지 검증한다.
+  - [x] 당첨 번호가 1~45 사이의 값인지 검증한다.
   - [x] 당첨 번호 내에 중복 번호가 있는지 검증한다.
 - [x] 보너스 번호를 입력받는다.
   - [x] 입력값이 숫자인지 검증한다.
@@ -26,9 +27,9 @@
 </br>
 
 ## 🚫 예외 처리
-- [ ] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시킨다.
-- [ ] 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-  - [ ] `Exception`이 아닌 `IllegealArgumentException`, `IllegalStateException`등과 같은 명확한 유형을 처리한다.
+- [x] 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시킨다.
+- [x] 사용자가 잘못된 값을 입력할 경우 "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
+  - [x] `Exception`이 아닌 `IllegealArgumentException`, `IllegalStateException`등과 같은 명확한 유형을 처리한다.
 </br>
 
 ## 💵 로또 당첨 기준과 금액

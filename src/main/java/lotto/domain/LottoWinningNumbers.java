@@ -10,6 +10,7 @@ public class LottoWinningNumbers {
 
     public LottoWinningNumbers(List<Integer> numbers) {
         validateNumbersCount(numbers);
+        validateNumberRange(numbers);
         validateDuplicateNumbers(numbers);
         this.numbers = new ArrayList<>();
         addNumbers(numbers);
@@ -18,6 +19,14 @@ public class LottoWinningNumbers {
     private void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 6개 적어주세요.");
+        }
+    }
+
+    private void validateNumberRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1부터 45까지입니다.");
+            }
         }
     }
 

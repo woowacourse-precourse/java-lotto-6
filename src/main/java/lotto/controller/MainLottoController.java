@@ -35,6 +35,8 @@ public class MainLottoController {
     }
 
     private RandomLotto makeRandomLotto(Money money) {
+        Output.printSpace();
+
         int purchasedLottoCount = money.getPurchaseAmount();
         RandomLottoMachine randomLottoMachine =
                 new RandomLottoMachine(purchasedLottoCount);
@@ -76,6 +78,7 @@ public class MainLottoController {
     }
 
     private BonusLotto inputBonusLottoNumber() { //보너스 로또 번호
+        //Output.printSpace();
         try {
             return new BonusLotto(input.getBonusNumber());
         } catch (IllegalArgumentException e) {

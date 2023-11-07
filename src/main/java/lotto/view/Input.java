@@ -22,6 +22,7 @@ public class Input {
     }
 
     public List<Integer> getMainLottoNumber() {
+        Output.printSpace();
         System.out.println(MESSAGE_INPUT_MAIN_LOTTO);
         String answer = Console.readLine();
         try {
@@ -35,6 +36,7 @@ public class Input {
     }
 
     public int getBonusNumber() {
+        Output.printSpace();
         System.out.println(MESSAGE_INPUT_BONUS_LOTTO);
         try {
             return Integer.parseInt(Console.readLine());

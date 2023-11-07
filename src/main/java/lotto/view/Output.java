@@ -7,13 +7,14 @@ import java.util.List;
 
 public class Output {
     public static final String ERROR_RANDOM_MACHINE = "잘못된 랜덤 생성입니다.";
-    public static final String MESSAGE_WINNING_STATISTICS = "당첨 통계";
-    public static final String DIVIDER_THREE_LINES = "---";
-    public static final String MESSAGE_EARNING_RATE = "총 수익률은 %.1f%%입니다.";
-    public static final String MESSAGE_RANKING_LIST_COUNT = "%d개 일치";
-    public static final String MESSAGE_RANKING_LIST_COUNT_SECOND = ", 보너스 볼 일치";
-    public static final String MESSAGE_PRIZE = " (%s원) ";
-    public static final String MESSAGE_MATCH_RESULT = "- %d개";
+    private static final String SPACE = "";
+    private static final String MESSAGE_WINNING_STATISTICS = "당첨 통계";
+    private static final String DIVIDER_THREE_LINES = "---";
+    private static final String MESSAGE_EARNING_RATE = "총 수익률은 %.1f%%입니다.";
+    private static final String MESSAGE_RANKING_LIST_COUNT = "%d개 일치";
+    private static final String MESSAGE_RANKING_LIST_COUNT_SECOND = ", 보너스 볼 일치";
+    private static final String MESSAGE_PRIZE = " (%s원) ";
+    private static final String MESSAGE_MATCH_RESULT = "- %d개";
 
 
     public static void printErrorMessage(String error) {
@@ -52,8 +53,13 @@ public class Output {
     }
 
     public static void printWinningDivider(){
+        Output.printSpace();
         System.out.println(MESSAGE_WINNING_STATISTICS);
         System.out.println(DIVIDER_THREE_LINES);
+    }
+
+    public static void printSpace(){
+        System.out.println(SPACE);
     }
 
 

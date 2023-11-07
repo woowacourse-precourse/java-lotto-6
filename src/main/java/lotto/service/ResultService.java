@@ -39,7 +39,8 @@ public class ResultService {
 
     public void calculateReturnRate(LottosDto purchasedLottos) {
         int purchasedPrice = purchasedLottos.getCountOfPurchase() * Lotto.PRICE;
-        returnRate = (double) calculateTotalPrize() / purchasedPrice * 100;
+        double unroundedReturnRate = (double) calculateTotalPrize() / purchasedPrice * 100;
+        returnRate = Math.round(unroundedReturnRate * 100.0) / 100.0;
     }
 
     private Integer calculateTotalPrize() {

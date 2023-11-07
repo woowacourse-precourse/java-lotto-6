@@ -1,6 +1,7 @@
 package lotto.game;
 
 import java.util.List;
+import lotto.common.PrintMessage;
 import lotto.domain.AutomaticLottoStorage;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoStorage;
@@ -28,7 +29,7 @@ public class LottoGame {
 
     // 구입 금액 입력
     public void inputLottoPurchaseAmount() {
-        LottoGamePrinter.println("구입금액을 입력해 주세요.");
+        LottoGamePrinter.println(PrintMessage.PURCHASE_AMOUNT_PROMPT.getMessage());
         Integer amount = LottoGameInputer.inputToInteger();
         automaticLottoStorage = AutomaticLottoStorage.from(amount);
     }
@@ -40,13 +41,13 @@ public class LottoGame {
 
     // 당첨 번호 입력
     public List<Integer> inputWinningLottoNumbers() {
-        LottoGamePrinter.println("당첨 번호를 입력해 주세요.");
+        LottoGamePrinter.println(PrintMessage.WINNING_NUMBER_PROMPT.getMessage());
         return LottoGameInputer.convertCommaSeparatedValuesToList();
     }
 
     // 보너스 번호 입력
     public Integer inputWinningBonusNumber() {
-        LottoGamePrinter.println("보너스 번호를 입력해 주세요.");
+        LottoGamePrinter.println(PrintMessage.BONUS_NUMBER_PROMPT.getMessage());
         return LottoGameInputer.inputToInteger();
     }
 

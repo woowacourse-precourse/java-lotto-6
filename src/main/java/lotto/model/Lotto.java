@@ -1,14 +1,15 @@
 package lotto.model;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.util.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateNumberUnique(numbers);
         this.numbers = numbers;
         Collections.sort(numbers);
     }
@@ -16,6 +17,14 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateNumberUnique(List<Integer> numbers) {
+        List<Integer> distinctList = numbers.stream().distinct().toList();
+
+        if (numbers.size() != distinctList.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
         }
     }
 

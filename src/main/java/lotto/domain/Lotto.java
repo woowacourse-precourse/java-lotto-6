@@ -31,13 +31,7 @@ public class Lotto {
     }
 
     public static Lotto generateLottoNumbers() {
-        List<Integer> randomNumbers = new ArrayList<>();
-        while (randomNumbers.size() < 6) { // TODO: 6 상수처리
-            int randomNumber = Randoms.pickNumberInRange(1, 45); // TODO: 1, 45 상수처리
-            if (!randomNumbers.contains(randomNumber)) {
-                randomNumbers.add(randomNumber);
-            }
-        }
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(randomNumbers);
     }
 

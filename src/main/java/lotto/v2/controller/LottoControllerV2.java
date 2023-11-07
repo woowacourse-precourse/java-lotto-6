@@ -24,7 +24,6 @@ public class LottoControllerV2 {
         List<LottoV1> purchasedLottos = purchaseLottos(purchaseAmount);
         WinningLottoV1 winningLotto = getWinningLotto();
 
-        // TODO: 당첨 결과 계산 및 출력
         checkResults(purchasedLottos, winningLotto);
     }
 
@@ -36,7 +35,7 @@ public class LottoControllerV2 {
                 validatePurchaseAmount(purchaseAmount);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해주세요.");
             }
         }
         return purchaseAmount;

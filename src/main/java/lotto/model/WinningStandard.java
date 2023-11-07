@@ -18,7 +18,7 @@ public enum WinningStandard {
         this.matchCount = matchCount;
     }
 
-    public static WinningStandard checkMatchNumbers(Lotto lotto, WinningLotto winningLotto) {
+    public static WinningStandard getWinningRanking(Lotto lotto, WinningLotto winningLotto) {
         List<Integer> winningNumbers = winningLotto.getWinningNumbers().getNumbers();
         Integer bonusNumber = winningLotto.getBonusNumber();
 

@@ -27,7 +27,7 @@ public class WinningResult {
     private void updateWinningResult(Lottos lottos, WinningLotto winningLotto) {
         List<Lotto> purchasedLottos = lottos.getLottos();
         for (Lotto lotto : purchasedLottos) {
-            WinningStandard ranking = WinningStandard.checkMatchNumbers(lotto, winningLotto);
+            WinningStandard ranking = WinningStandard.getWinningRanking(lotto, winningLotto);
             addResult(ranking);
         }
     }

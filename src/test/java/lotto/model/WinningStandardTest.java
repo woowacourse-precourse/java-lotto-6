@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.model.WinningStandard.checkMatchNumbers;
+import static lotto.model.WinningStandard.getWinningRanking;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -15,7 +15,7 @@ class WinningStandardTest {
     @ParameterizedTest
     @MethodSource("getLottoNumbersAndRanking")
     @DisplayName("당첨 번호 순위 계산 맞는지 확인")
-    void testCheckMatchNumbers(List<Integer> numbers, WinningStandard standard) {
+    void testgetWinningRanking(List<Integer> numbers, WinningStandard standard) {
         //given
         Lotto lotto = new Lotto(numbers);
 
@@ -23,7 +23,7 @@ class WinningStandardTest {
         WinningLotto winningLotto = new WinningLotto(winningNumbers, 7);
 
         //when
-        WinningStandard rank = checkMatchNumbers(lotto, winningLotto);
+        WinningStandard rank = getWinningRanking(lotto, winningLotto);
 
         //then
         Assertions.assertThat(rank).isEqualTo(standard);

@@ -5,6 +5,11 @@ import lotto.constant.Magic;
 
 public class ConsolePrint {
     public static String readLottoNum() {
+        System.out.println(Magic.INPUT_PRICE);
+        return Console.readLine();
+    }
+
+    public static String readWinningNum() {
         System.out.println(Magic.INPUT_NUM);
         return Console.readLine();
     }

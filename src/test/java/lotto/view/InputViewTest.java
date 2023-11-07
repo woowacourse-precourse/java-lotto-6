@@ -1,6 +1,7 @@
-package lotto;
+package lotto.view;
 
-import lotto.view.InputView;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,6 @@ import java.io.InputStream;
 import static org.assertj.core.api.Assertions.assertThat;
 public class InputViewTest {
     InputView inputView = new InputView();
-
     @Test
     @DisplayName("구입 금액 테스트")
     void buyLottoTickets() {

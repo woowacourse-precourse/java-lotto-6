@@ -1,7 +1,6 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.utils.LottoExceptions;
 
 public class InputView {
 

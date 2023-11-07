@@ -1,8 +1,5 @@
 package lotto.utils;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public enum Prizes {
 
     First(6), Second(777), Third(5), Fourth(4), Fifth(3);

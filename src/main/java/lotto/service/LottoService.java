@@ -7,7 +7,6 @@ import lotto.model.WinningNumbers;
 import lotto.utils.Constants;
 import lotto.utils.LottoExceptions;
 import lotto.utils.Prizes;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,7 +60,7 @@ public class LottoService {
         int thirdPrize = matches.getOrDefault(Prizes.Third, 0) * Constants.THIRD_PRIZE;
         int fourthPrize = matches.getOrDefault(Prizes.Fourth, 0) * Constants.FOURTH_PRIZE;
         int fifthPrize = matches.getOrDefault(Prizes.Fifth, 0) * Constants.FIFTH_PRIZE;
-        return ((double)(firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize) / user.getPayed());
+        return ((double)(firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize) * 100 / user.getPayed());
     }
 
     public void setWinningNumbers(String[] promptedNumbers) {

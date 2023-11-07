@@ -2,7 +2,6 @@ package lotto.model;
 
 import lotto.utils.Constants;
 import lotto.utils.LottoExceptions;
-
 import java.util.*;
 
 public class WinningNumbers{

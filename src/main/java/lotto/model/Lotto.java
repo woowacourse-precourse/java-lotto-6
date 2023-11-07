@@ -1,21 +1,22 @@
 package lotto.model;
 
+import lotto.utils.Constants;
 import lotto.utils.LottoExceptions;
 
 import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
-    static private final int DRAW_COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
-        sort();
+        ArrayList<Integer> mutableNumbers = new ArrayList<>(numbers);
+        mutableNumbers.sort(Comparator.naturalOrder());
+        this.numbers = mutableNumbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != DRAW_COUNT) {
+        if (numbers.size() != Constants.DRAW_COUNT) {
             throw new IllegalArgumentException(LottoExceptions.InvalidCountError.getErrorMessage());
         }
     }
@@ -24,9 +25,6 @@ public class Lotto {
         return Collections.binarySearch(numbers, winnerNumber);
     }
 
-    private void sort(){
-        Collections.sort(numbers);
-    }
 
     public String printLotto() {
        return Arrays.toString(numbers.toArray());

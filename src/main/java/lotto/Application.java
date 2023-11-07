@@ -5,6 +5,10 @@ import lotto.controller.LottoController;
 public class Application {
     public static void main(String[] args) {
         LottoController lottoController = new LottoController();
-        lottoController.playLotto();
+        lottoController.initiateMoney();
+        lottoController.generateLotto();
+        lottoController.initiateWinningNumbers();
+        lottoController.initiateBonus();
+        lottoController.getResult();
     }
 }

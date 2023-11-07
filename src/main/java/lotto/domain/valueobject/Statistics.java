@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import lotto.domain.config.ScoreConfig;
 
 public class Statistics {
@@ -36,8 +36,8 @@ public class Statistics {
         return winning;
     }
 
-    public Integer getRevenue() {
-        AtomicInteger revenue = new AtomicInteger();
+    public Long getRevenue() {
+        AtomicLong revenue = new AtomicLong();
         winning.forEach((key, value) -> revenue.addAndGet(key.getReward() * value));
         return revenue.get();
     }

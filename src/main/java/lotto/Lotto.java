@@ -25,7 +25,7 @@ public class Lotto {
 
     public List<Integer> getNumbers(){
         List<Integer> copyNumbers = new ArrayList<Integer>();
-        for(Integer copyNum : copyNumbers){
+        for(Integer copyNum : numbers){
             copyNumbers.add(copyNum);
         }
         Collections.sort(copyNumbers);

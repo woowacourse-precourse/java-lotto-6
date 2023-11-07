@@ -11,13 +11,10 @@ public class LottoController {
         Lottos lottos = new Lottos(userMoney);
         OutPutView outPutView = new OutPutView();
 
-        System.out.println();
-
         outPutView.outPutViewLottos(lottos, userMoney); //개를 구매했습니다.
 
         LottoResult lottoResult = new LottoResult();
 
-        System.out.println();
 
         lottoResult.calculateWinningResult(lottos, InputView.inputWinningNumbers(), InputView.inputBonusNumber());
 

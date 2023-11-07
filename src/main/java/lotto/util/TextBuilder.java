@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.text.DecimalFormat;
+
 public class TextBuilder {
     private StringBuilder stringBuilder;
 
@@ -15,6 +17,23 @@ public class TextBuilder {
         stringBuilder.append(text);
         return this;
     }
+
+    public TextBuilder appendInteger(Integer number) {
+        stringBuilder.append(number);
+        return this;
+    }
+
+    public TextBuilder appendDouble(Double number) {
+        stringBuilder.append(number);
+        return this;
+    }
+
+    public TextBuilder appendPriceAmount(Integer price) {
+        DecimalFormat format = new DecimalFormat("#,###");
+        stringBuilder.append(format.format(price));
+        return this;
+    }
+
 
     public TextBuilder appendLineSeparator() {
         stringBuilder.append(System.lineSeparator());

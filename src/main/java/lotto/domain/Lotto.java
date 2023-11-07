@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -38,6 +39,16 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    @Override
+    public String toString() {
+        Integer[] arr = listToArray();
+        return Arrays.toString(arr);
+    }
+
+    private Integer[] listToArray() {
+        return numbers.toArray(new Integer[0]);
     }
 
     // TODO: 추가 기능 구현

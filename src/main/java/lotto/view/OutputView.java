@@ -1,25 +1,27 @@
 package lotto.view;
 
+import static lotto.constant.OutputConstant.NEW_LINE;
+import static lotto.constant.OutputConstant.PER;
+import static lotto.constant.OutputConstant.PERCENT;
+import static lotto.constant.OutputConstant.PROFITABILITY_FORMAT;
+import static lotto.constant.OutputConstant.PROFITABILITY_MESSAGE;
+import static lotto.constant.OutputConstant.PURCHASE_MESSAGE;
+import static lotto.constant.OutputConstant.SPLIT_LINE;
+import static lotto.constant.OutputConstant.STATISTIC_MESSAGE;
+
 import java.util.List;
 import lotto.constant.PrizeConstant;
 
 public class OutputView {
-    private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
-    private static final String STATISTIC_MESSAGE = "당첨 통계";
-    private static final String PROFITABILITY_MESSAGE = "총 수익률은 ";
-    private static final String NEW_LINE = "\n";
-    private static final String SPLIT_LINE = "---";
-    private static final String PER = "개";
-    private static final String PERCENT = "%입니다.";
     private static final int START = 3;
-    private static final String FORMAT = "%.1f";
+
 
     public void printLotto(int quantity, List<List<Integer>> myLottoNumbers) {
         StringBuilder sb = new StringBuilder();
-        sb.append(NEW_LINE + quantity + PURCHASE_MESSAGE + NEW_LINE);
+        sb.append(NEW_LINE.getMessage() + quantity + PURCHASE_MESSAGE.getMessage() + NEW_LINE.getMessage());
 
         for (List<Integer> myLottoNumber : myLottoNumbers) {
-            sb.append(myLottoNumber + NEW_LINE);
+            sb.append(myLottoNumber + NEW_LINE.getMessage());
         }
 
         System.out.println(sb);
@@ -27,17 +29,18 @@ public class OutputView {
 
     public void printStatistics(List<Integer> statistics) {
         StringBuilder sb = new StringBuilder();
-        sb.append(NEW_LINE + STATISTIC_MESSAGE).append(NEW_LINE).append(SPLIT_LINE);
+        sb.append(NEW_LINE + STATISTIC_MESSAGE.getMessage()).append(NEW_LINE).append(SPLIT_LINE.getMessage());
 
         for (int score = START; score < statistics.size(); score++) {
             String message = PrizeConstant.getMessageByScore(score);
-            sb.append(NEW_LINE).append(message + statistics.get(score) + PER);
+            sb.append(NEW_LINE).append(message + statistics.get(score) + PER.getMessage());
         }
 
         System.out.println(sb);
     }
 
-    public void printProfitability(double profitability){
-        System.out.println(PROFITABILITY_MESSAGE + String.format(FORMAT, profitability) + PERCENT);
+    public void printProfitability(double profitability) {
+        System.out.println(PROFITABILITY_MESSAGE.getMessage() +
+                String.format(PROFITABILITY_FORMAT.getMessage(), profitability) + PERCENT.getMessage());
     }
 }

@@ -2,13 +2,8 @@ package lotto.domain;
 
 import java.util.Map;
 
-public class ResultSheet {
+public record ResultSheet(Map<Rank, Integer> sheet) {
     private static final int PERCENTAGE = 100;
-    private final Map<Rank, Integer> sheet;
-
-    public ResultSheet(Map<Rank, Integer> sheet) {
-        this.sheet = sheet;
-    }
 
     public int findCountByRank(Rank rank) {
         return sheet.get(rank);

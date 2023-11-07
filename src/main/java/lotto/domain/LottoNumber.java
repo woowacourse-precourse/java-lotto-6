@@ -7,7 +7,6 @@ import static lotto.view.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import java.util.Objects;
 
 public class LottoNumber implements Comparable<LottoNumber> {
-
     private final int value;
 
     private LottoNumber(int value) {

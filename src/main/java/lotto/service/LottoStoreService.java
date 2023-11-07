@@ -7,7 +7,6 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 
 public class LottoStoreService {
-
     private final LottoGeneratorService lottoGeneratorService;
 
     public LottoStoreService(LottoGeneratorService lottoGeneratorService) {

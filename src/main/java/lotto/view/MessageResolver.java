@@ -8,7 +8,6 @@ import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 
 public class MessageResolver {
-
     private static final String PURCHASE_AMOUNT_MESSAGE_FORMAT = "%d개를 구매했습니다.\n";
     private static final String PROFIT_RATE_MESSAGE_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final String NON_BONUS_RANK_DESCRIPTION = "%d개 일치 (%,d원) - %d개";
@@ -29,7 +28,7 @@ public class MessageResolver {
     }
 
     public String resolveResultDescriptionMessage(LottoRank rank, int winCount) {
-        if (rank.getBonusMustMatch()) {
+        if (rank.isBonusMustMatch()) {
             return String.format(BONUS_RANK_DESCRIPTION, rank.getMatchingCount(), rank.getPrize(), winCount);
         }
         return String.format(NON_BONUS_RANK_DESCRIPTION, rank.getMatchingCount(), rank.getPrize(), winCount);
@@ -38,5 +37,4 @@ public class MessageResolver {
     public String resolveProfitRateMessage(double profitRate) {
         return String.format(PROFIT_RATE_MESSAGE_FORMAT, profitRate);
     }
-
 }

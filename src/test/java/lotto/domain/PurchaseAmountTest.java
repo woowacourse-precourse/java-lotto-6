@@ -42,7 +42,7 @@ class PurchaseAmountTest {
     @Test
     void testCalculateProfitRate() {
         PurchaseAmount purchaseAmount = PurchaseAmount.from(8000);
-        double profitRate = purchaseAmount.profitRate(5000L);
+        double profitRate = purchaseAmount.calculateProfitRate(5000L);
         assertThat(profitRate).isEqualTo(62.5);
     }
 }

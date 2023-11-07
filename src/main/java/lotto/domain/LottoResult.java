@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.EnumMap;
 
 public class LottoResult {
-
     private final EnumMap<LottoRank, Integer> rankCounts;
 
     private LottoResult(EnumMap<LottoRank, Integer> rankCounts) {
@@ -25,7 +24,7 @@ public class LottoResult {
                 .sum();
     }
 
-    public double getProfitRate(PurchaseAmount purchaseAmount) {
-        return purchaseAmount.profitRate(getTotalPrize());
+    public double calculateProfitRate(PurchaseAmount purchaseAmount) {
+        return purchaseAmount.calculateProfitRate(getTotalPrize());
     }
 }

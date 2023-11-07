@@ -9,7 +9,6 @@ import lotto.util.StringParser;
 import lotto.util.TypeConverter;
 
 public class InputReader {
-
     public PurchaseAmount readPurchaseAmount() throws IllegalArgumentException {
         Integer amount = TypeConverter.StringToInteger(Console.readLine());
         return PurchaseAmount.from(amount);

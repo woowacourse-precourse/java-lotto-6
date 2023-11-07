@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.domain.LottoRule.LOTTO_LENGTH;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.view.ErrorMessage;
 
 public class Lotto {
@@ -22,7 +21,7 @@ public class Lotto {
         return numbers.stream()
                 .map(LottoNumber::getValue)
                 .sorted()
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public boolean contains(LottoNumber lottoNumber) {

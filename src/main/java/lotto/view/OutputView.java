@@ -5,7 +5,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
 public class OutputView {
-
     private final MessageResolver messageResolver;
 
     public OutputView(MessageResolver messageResolver) {

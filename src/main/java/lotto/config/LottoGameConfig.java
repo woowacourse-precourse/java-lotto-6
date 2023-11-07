@@ -10,7 +10,6 @@ import lotto.view.MessageResolver;
 import lotto.view.OutputView;
 
 public class LottoGameConfig {
-
     public InputView inputView() {
         return new InputView(inputReader());
     }
@@ -42,5 +41,4 @@ public class LottoGameConfig {
     public LottoGameController lottoGameController() {
         return new LottoGameController(inputView(), outputView(), lottoStoreService(), lottoRankCalculatorService());
     }
-
 }

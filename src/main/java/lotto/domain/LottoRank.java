@@ -9,8 +9,7 @@ public enum LottoRank {
     THIRD(5, false, 1_500_000L, (sameNumberCount, bonusMatch) -> sameNumberCount == 5 && !bonusMatch),
     SECOND(5, true, 30_000_000L, (sameNumberCount, bonusMatch) -> sameNumberCount == 5 && bonusMatch),
     FIRST(6, false, 2_000_000_000L, (sameNumberCount, bonusMatch) -> sameNumberCount == 6),
-    NONE(0, false, 0L, (sameNumberCount, bonusMatch) -> sameNumberCount <= 2),
-    ;
+    NONE(0, false, 0L, (sameNumberCount, bonusMatch) -> sameNumberCount <= 2);
 
     private final int matchingCount;
     private final boolean bonusMustMatch;
@@ -41,12 +40,11 @@ public enum LottoRank {
         return matchingCount;
     }
 
-    public boolean getBonusMustMatch() {
+    public boolean isBonusMustMatch() {
         return bonusMustMatch;
     }
 
     public long getPrize() {
         return prize;
     }
-
 }

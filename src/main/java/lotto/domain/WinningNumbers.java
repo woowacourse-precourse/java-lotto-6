@@ -3,14 +3,13 @@ package lotto.domain;
 import lotto.view.ErrorMessage;
 
 public class WinningNumbers {
-
     private final Lotto winningNumbers;
     private final LottoNumber bonusNumber;
 
     private WinningNumbers(Lotto winningNumbers, LottoNumber bonusNumber) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
-        validateBonusNumberHasNoConflict(winningNumbers, bonusNumber);
+        validate(winningNumbers, bonusNumber);
     }
 
     public static WinningNumbers of(Lotto winningLotto, LottoNumber bonusNumber) {

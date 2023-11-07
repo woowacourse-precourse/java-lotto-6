@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.view.ErrorMessage;
 
 public class PurchaseAmount {
-
     private final int purchaseAmount;
 
     private PurchaseAmount(int purchaseAmount) {
@@ -19,7 +18,7 @@ public class PurchaseAmount {
         return purchaseAmount / LottoRule.LOTTO_PRICE.getValue();
     }
 
-    public double profitRate(Long earned) {
+    public double calculateProfitRate(Long earned) {
         double rate = (earned / (double) purchaseAmount) * 100;
         return Math.round(rate * 10.0) / 10.0;
     }

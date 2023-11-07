@@ -10,9 +10,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
 public class LottoGeneratorService {
-
     public Lotto generateLotto() {
-
         List<Integer> numbers = generateUniqueNumbers();
         List<LottoNumber> lottoNumbers = mapToLottoNumbers(numbers);
         return createLotto(lottoNumbers);

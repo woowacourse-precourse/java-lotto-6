@@ -16,18 +16,13 @@ public class Game {
         List<Lotto> lottos = getLottos(cash);
         OutputView.displayLottos(lottos);
 
+        // 당첨 번호, 보너스 번호 입력
         WinningNumbers winningNumbers = getWinningNumbers();
 
-        WinningRanks winningRanks = new WinningRanks(lottos, winningNumbers);
-
-        winningRanks.calculateRanks();
-
-        Profit profit = new Profit();
-        profit.calculateAmount(winningRanks.getRanks());
-
-        WinningYield winningYield = new WinningYield(cash, profit);
-
-        OutputView.displayWinningDetails(winningRanks.getRanks(), winningYield);
+        // 당첨 통계 출력
+        List<Rank> ranks = getRanks(lottos, winningNumbers);
+        WinningYield yield = getYield(cash, ranks);
+        OutputView.displayWinningDetails(ranks, yield);
     }
 
     private Cash getCash() {
@@ -79,5 +74,16 @@ public class Game {
             }
         }
         return new BonusNumber(number);
+    }
+
+    private List<Rank> getRanks(List<Lotto> lottos, WinningNumbers winningNumbers) {
+        WinningRanks winningRanks = new WinningRanks(lottos, winningNumbers);
+        return winningRanks.calculateRanks();
+    }
+
+    private WinningYield getYield(Cash cash, List<Rank> ranks) {
+        Profit profit = new Profit();
+        profit.calculateAmount(ranks);
+        return new WinningYield(cash, profit);
     }
 }

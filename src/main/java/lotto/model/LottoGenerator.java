@@ -6,13 +6,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoGenerator {
-    public List<List<Integer>> generateLotto(int lottoAmount) {
-        List<List<Integer>> lottos = new ArrayList<>();
+    public List<Lotto> generateLotto(int lottoAmount) {
+        List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoAmount; i ++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            lottos.add(numbers);
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
         }
+
         return lottos;
     }
 

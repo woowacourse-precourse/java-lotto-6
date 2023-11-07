@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.ValueValidator;
 import lotto.model.WinningResult;
@@ -22,7 +23,7 @@ public class LottoController {
 
     private final int LOTTO_PRICE = 1000;
 
-    public List<List<Integer>> lottos = new ArrayList<>();
+    public List<Lotto> lottos = new ArrayList<>();
     public List<Integer> winningNumbers = new ArrayList<>();
     public int purchasedPrice;
     public int lottoAmount;
@@ -57,6 +58,7 @@ public class LottoController {
 
     public void generateLottos() {
         lottoAmount = purchasedPrice / LOTTO_PRICE;
+        lottos.clear();
         lottos = lottoGenerator.generateLotto(lottoAmount);
 
         outputView.printPurchasedLottoAmount(lottoAmount);
@@ -96,9 +98,11 @@ public class LottoController {
         int matchNumber;
         boolean isMatchBonus;
 
-        for (List<Integer> lotto : lottos) {
-            matchNumber = winningValidator.countMatchNumbers(winningNumbers, lotto);
-            isMatchBonus = winningValidator.checkWinningBonusNumber(lotto, bonusNumber);
+        for (Lotto lotto : lottos) {
+            List<Integer> numbers = lotto.getNumbers();
+
+            matchNumber = winningValidator.countMatchNumbers(winningNumbers, numbers);
+            isMatchBonus = winningValidator.checkWinningBonusNumber(numbers, bonusNumber);
             winningResult.increaseWinningCount(matchNumber, isMatchBonus);
         }
     }

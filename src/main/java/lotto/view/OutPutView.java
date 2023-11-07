@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import lotto.model.Lotto;
 
 public class OutPutView {
     private final int WINNING_NUMBER_3 = 3;
@@ -16,9 +17,9 @@ public class OutPutView {
         System.out.println(lottoAmount + ViewPrompt.PURCHASE_MESSAGE.getMessage());
     }
 
-    public void printGeneratedLottos(List<List<Integer>> lottos) {
-        for(List<Integer> lotto : lottos) {
-            System.out.println(Arrays.toString(lotto.toArray()));
+    public void printGeneratedLottos(List<Lotto> lottos) {
+        for(Lotto lotto : lottos) {
+            System.out.println(lotto.getNumbers());
         }
         System.out.println();
     }

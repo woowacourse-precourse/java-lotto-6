@@ -5,6 +5,7 @@ import static lotto.constants.LottoConstants.END;
 import static lotto.constants.LottoConstants.FORMMATER_COUNT_BONUS;
 import static lotto.constants.LottoConstants.FORMMATER_COUNT_SEVEN;
 import static lotto.constants.LottoConstants.FORMMATER_COUNT_SIX;
+import static lotto.constants.LottoConstants.RATE_PERCENT;
 import static lotto.constants.LottoConstants.START;
 import static lotto.utils.LottoUtils.getPriceForIntegerParser;
 import static lotto.utils.LottoUtils.rateFormat;
@@ -36,7 +37,7 @@ public class OutView {
 
     public void totalRateMsg(int price) {
         if (PRICE.equals("0")) {
-            System.out.println(String.format(LottoMsg.LOTTO_LATE.getMsg(), PRICE));
+            System.out.println(String.format(LottoMsg.LOTTO_LATE.getMsg(), PRICE + RATE_PERCENT));
         }
         if (!PRICE.equals("0")) {
             rateFormat((double) getPriceForIntegerParser(PRICE) / (double) price);

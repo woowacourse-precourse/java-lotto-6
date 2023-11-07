@@ -34,7 +34,7 @@ public class ConsoleLottoPrinter implements LottoPrinter {
 
 	@Override
 	public void askWinningNumber() {
-
+		System.out.println(PrintMessage.ASK_WINNING_NUMBER);
 	}
 
 	@Override

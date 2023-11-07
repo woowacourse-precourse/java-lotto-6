@@ -13,6 +13,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 class ViewProcessorTest {
@@ -44,9 +46,18 @@ class ViewProcessorTest {
 //                .hasMessageContaining(expect);
 //    }
 
+    @DisplayName("입력 값이 없으면 에러처리 한다.")
+    @Test
+    void checkIsNull() {
+        String input = "";
+        assertThatThrownBy(()->viewProcessor.checkIsNull(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 사용자 입력 값이 null");
+    }
+
     @Test
     void checkLengthWinning_입력값_6자리_판단() {
-        String[] invalidInputs = {"1", "2", "3", "4", "5", "6", "7"};
+        List<String> invalidInputs = Arrays.asList("1", "2", "3", "4", "5", "6", "7");
         assertThatThrownBy(() -> viewProcessor.checkLengthWinning(invalidInputs))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");

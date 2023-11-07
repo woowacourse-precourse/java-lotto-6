@@ -28,11 +28,7 @@ public enum LotteryRank {
             new AbstractMap.SimpleEntry<>(new LotteryResult(2, true), FIFTH_PRIZE)
     );
 
-    public LotteryRank getLotteryRank(LotteryResult lotteryResult) {
-        try {
-            return winningCriteria.get(lotteryResult);
-        } catch (UnsupportedOperationException exception) {
-            return ETC;
-        }
+    public static LotteryRank getLotteryRank(LotteryResult lotteryResult) {
+        return winningCriteria.getOrDefault(lotteryResult, ETC);
     }
 }

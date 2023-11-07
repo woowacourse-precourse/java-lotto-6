@@ -28,8 +28,6 @@ public class LottoOneSet {
     }
 
     private List<Integer> sortRandomNumber(List<Integer> number){
-//        Collections.sort(number);
-//        return number; >> 이 내용 블로그에 정리하자!
         List<Integer> sortedNumbers = new ArrayList<>(number);
         Collections.sort(sortedNumbers);
         return sortedNumbers;

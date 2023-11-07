@@ -85,16 +85,7 @@ public class LottoController {
 
     /* 로또 6자리 랜덤 숫자 생성 */
     private List<Integer> createLottoNumbers() {
-        List<Integer> numbers = new ArrayList<>();
-
-        while (numbers.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(MIN_IN_LOTTO_NUMBER, MAX_IN_LOTTO_NUMBER);
-            if (!numbers.contains(randomNumber)) {
-                numbers.add(randomNumber);
-            }
-        }
-
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(MIN_IN_LOTTO_NUMBER, MAX_IN_LOTTO_NUMBER, NUMBER_OF_WINNING_NUMBER);
     }
 
     /* 로또 구매 개수 출력 */

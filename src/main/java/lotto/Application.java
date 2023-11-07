@@ -9,37 +9,130 @@ public class Application {
     public static void main(String[] args) {
         final int LOTTO_NUMBERS = 6;
         // TODO: 프로그램 구현
-        System.out.println("구입 금액을 입력해 주세요.");
-        int buyMoney = getInt();
+        boolean validInput = false;
+        int buyMoney = 0;
+        while (!validInput) {
+            try {
+                System.out.println("구입 금액을 입력해 주세요.");
+                buyMoney = getInt();
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 정수 금액을 입력해 주세요.");
+            }
+        }
+        System.out.println();
         int number = moneyToLottoNumber(buyMoney);
-        System.out.println(number + "개를 구매했습니다");
+        System.out.println(number + "개를 구매했습니다.");
         List<Lotto> lottoList = new ArrayList<>();
         lottoToList(number, lottoList);
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String winNumbersString = getString();
+        printLottoNumberList(lottoList);
+        validInput = false;
+        String winNumbersString = null;
+        List<Integer> winNumbersList = null;
+        while (!validInput) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                winNumbersString = getString();
+                winNumbersList = new ArrayList<>();
+                fillWinNumbersList(winNumbersString, winNumbersList);
+                validInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
 
-        List<Integer> winNumbersList = new ArrayList<>();
-        fillWinNumbersList(winNumbersString, winNumbersList);
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getInt();
-        int[] resultList = new int[number];
+        Result[] resultList = new Result[number];
+        for (int i = 0; i < resultList.length; i++) {
+            resultList[i] = new Result();
+        }
 
         compareLotto(lottoList, winNumbersList, resultList);
+        int targetValue = 5;
+        List<Integer> indexOf5 = new ArrayList<>();
+        checkIf5NumIsSame(resultList, targetValue, indexOf5);
 
+        checkBonusNumber(indexOf5, lottoList, bonusNumber, resultList);
+
+        int[] resultNumbers = new int[5];
+        fillResult(resultNumbers, resultList);
+        int benefit = calculateBenefit(resultNumbers);
+        double benefitRatio = (double) benefit / buyMoney * 100;
+
+        System.out.println("당첨 통계");
+        System.out.println("3개 일치 (5,000원) - " + resultNumbers[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + resultNumbers[1] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + resultNumbers[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + resultNumbers[3] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + resultNumbers[4] + "개");
+        System.out.printf("총 수익률은 %.1f%%입니다.", benefitRatio);
     }
 
-    private static void compareLotto(List<Lotto> lottoList, List<Integer> winNumbersList, int[] resultList) {
+    private static int calculateBenefit(int[] resultNumbers) {
+        return 5_000 * resultNumbers[0] + 50_000 * resultNumbers[1] + 1_500_000 * resultNumbers[2]
+                + 30_000_000 * resultNumbers[3] + 2_000_000_000 * resultNumbers[4];
+    }
+
+    private static void fillResult(int[] resultNumbers, Result[] resultList) {
+        resultNumbers[0] = checkNumbers(3, false, resultList);
+        resultNumbers[1] = checkNumbers(4, false, resultList);
+        resultNumbers[2] = checkNumbers(5, false, resultList);
+        resultNumbers[3] = checkNumbers(5, true, resultList);
+        resultNumbers[4] = checkNumbers(6, false, resultList);
+    }
+
+    private static void printLottoNumberList(List<Lotto> lottoList) {
+        for (int i = 0; i < lottoList.size(); i++) {
+            System.out.println(lottoList.get(i).getNumbers());
+        }
+    }
+
+    private static int checkNumbers(int num, boolean isTrue, Result[] resultList) {
+        int count = 0;
+        for (int i = 0; i < resultList.length; i++) {
+            if (resultList[i].getSameNumber() == num) {
+                count = checkBoolean(isTrue, resultList, i, count);
+            }
+        }
+        return count;
+    }
+
+    private static int checkBoolean(boolean isTrue, Result[] resultList, int i, int count) {
+        if (resultList[i].isBonusNum() == isTrue) {
+            count++;
+        }
+        return count;
+    }
+
+    private static void checkBonusNumber(List<Integer> indexOf5, List<Lotto> lottoList, int bonusNumber,
+                                         Result[] resultList) {
+        for (int i = 0; i < indexOf5.size(); i++) {
+            boolean bonusNumSame = lottoList.get(indexOf5.get(i)).isNumInList(bonusNumber);
+            resultList[i].setBonusNum(bonusNumSame);
+        }
+    }
+
+    private static void checkIf5NumIsSame(Result[] resultList, int targetValue, List<Integer> indexOf5) {
+        for (int i = 0; i < resultList.length; i++) {
+            if (resultList[i].getSameNumber() == targetValue) {
+                indexOf5.add(i);
+            }
+        }
+    }
+
+    private static void compareLotto(List<Lotto> lottoList, List<Integer> winNumbersList, Result[] resultList) {
         for (int j = 0; j < lottoList.size(); j++) {
             compareOneNumber(winNumbersList, lottoList, j, resultList);
         }
     }
 
     private static void compareOneNumber(List<Integer> winNumbersList, List<Lotto> lottoList, int j,
-                                         int[] resultList) {
+                                         Result[] resultList) {
         for (int i = 0; i < 6; i++) {
             boolean isIn = compareNum(winNumbersList.get(i), lottoList.get(j));
             if (isIn) {
-                resultList[j]++;
+                resultList[j].addNum();
             }
         }
     }
@@ -52,12 +145,18 @@ public class Application {
         String[] numbers = winNumbersString.split(",");
         for (String numberStr : numbers) {
             try {
-                Integer tmp = Integer.parseInt(numberStr);
+                int tmp = Integer.parseInt(numberStr);
+                checkInvalid(tmp);
                 winNumbersList.add(tmp);
             } catch (NumberFormatException e) {
-                // 변환 중에 오류가 발생하면 처리할 수 있음
-                System.out.println("올바르지 않은 숫자 형식: " + numberStr);
+                System.out.println("[ERROR] 올바르지 않은 숫자 형식: " + numberStr);
             }
+        }
+    }
+
+    private static void checkInvalid(int tmp) {
+        if (tmp < 1 || tmp > 45) {
+            throw new IllegalArgumentException();
         }
     }
 
@@ -77,7 +176,11 @@ public class Application {
     }
 
     private static int getInt() {
-        return Integer.parseInt(Console.readLine());
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private static int moneyToLottoNumber(int buyMoney) {

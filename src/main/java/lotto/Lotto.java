@@ -20,4 +20,8 @@ public class Lotto {
     public boolean isNumInList(int number) {
         return numbers.contains(number);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

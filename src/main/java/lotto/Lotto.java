@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -13,7 +16,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateLottoNumber(numbers);
-        this.numbers = numbers;
+        validateDuplicate(numbers);
+        this.numbers = sortedNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -29,5 +33,21 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (int number : numbers) {
+            if (uniqueNumbers.contains(number)) {
+                throw new IllegalArgumentException();
+            }
+            uniqueNumbers.add(number);
+        }
+    }
+
+    private List<Integer> sortedNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

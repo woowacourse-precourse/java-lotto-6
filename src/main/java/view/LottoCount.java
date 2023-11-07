@@ -2,7 +2,6 @@ package view;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.Lotto;
 
@@ -28,7 +27,6 @@ public class LottoCount {
         this.lotties = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
             this.lotties.add(new Lotto(numbers));
         }
     }
@@ -45,5 +43,4 @@ public class LottoCount {
         });
         System.out.println();
     }
-
 }

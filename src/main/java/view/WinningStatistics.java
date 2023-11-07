@@ -75,7 +75,7 @@ public class WinningStatistics {
             }
             System.out.println(ranking.getWinningMessage() + totalRanking.get(ranking) + "개");
         }
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
 
     }
 

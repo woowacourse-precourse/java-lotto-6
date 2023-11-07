@@ -30,6 +30,7 @@ class    LottoTest {
         privateMinLottoNumber.setAccessible(true);
         privateMaxLottoNumber.setAccessible(true);
         privateLottoNumberSize.setAccessible(true);
+
         lottoNumberSize = (Integer) privateLottoNumberSize.get(lotto);
         minLottoNumber = (Integer) privateMinLottoNumber.get(lotto);
         maxLottoNumber = (Integer) privateMaxLottoNumber.get(lotto);
@@ -52,7 +53,7 @@ class    LottoTest {
     @DisplayName("로또 번호가 비어있거나 null값이 들어오면 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource
-    void createLottoByNullOrEmpty(List<Integer> numbers) throws NoSuchFieldException, IllegalAccessException {
+    void createLottoByNullOrEmpty(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] " + lottoNumberSize + "개의 로또번호를 입력해주세요");
@@ -60,7 +61,7 @@ class    LottoTest {
 
     @DisplayName("로또 번호의 개수가 6개보다 부족하면 예외가 발생한다.")
     @Test
-    void createLottoByUnderSize() throws NoSuchFieldException, IllegalAccessException {
+    void createLottoByUnderSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] " + lottoNumberSize + "개의 로또번호를 입력해주세요");
@@ -81,6 +82,15 @@ class    LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다 범위 "
                         + minLottoNumber + "~" + maxLottoNumber);
+    }
+
+    @DisplayName("로또 번호를 String으로 생성할 때 숫자가 아니면 예외를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"테,스,트,4,5,6", "t,e,s,t,5,46"})
+    void createLottoByNonNumericValueNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호에 숫자가 아닌 값이 들어왔습니다.");
     }
 
     @DisplayName("로또번호가 정상적으로 들어온 경우.")

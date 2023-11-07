@@ -12,6 +12,7 @@ public class WinNumber {
     private WinNumber(List<Integer> winNumber) {
         has6Numbers(winNumber);
         isBetween1And45(winNumber);
+        isDuplicated(winNumber);
         this.winNumber = winNumber;
     }
 
@@ -36,6 +37,12 @@ public class WinNumber {
     private void isBetween1And45(List<Integer> numbers) {
         if (!numbers.stream().allMatch((num) -> num >= 1 && num <= 45)) {
             throw new IllegalArgumentException("1부터 45 사이의 수를 입력해야 합니다.");
+        }
+    }
+
+    private void isDuplicated(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException("중복된 숫자를 입력할 수 없습니다.");
         }
     }
 

@@ -28,7 +28,7 @@ public class LottoPurchaseController {
             }
         }
         if (retryCount == MAX_RETRY_ATTEMPTS.getValue()) {
-            System.out.println("[ERROR] 입력 재시도 횟수를 초과했습니다. 프로그램을 종료합니다.");
+            throw new IllegalArgumentException("입력 재시도 횟수를 초과했습니다.");
         }
     }
 

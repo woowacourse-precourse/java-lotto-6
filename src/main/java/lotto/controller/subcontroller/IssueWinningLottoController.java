@@ -7,6 +7,7 @@ import lotto.domain.WinningNumber;
 import lotto.domain.repository.WinningLottoRepository;
 import lotto.util.ExceptionMessage;
 import lotto.util.Util;
+import lotto.util.validator.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,24 +22,38 @@ public class IssueWinningLottoController implements Controllable {
 
     @Override
     public void process() {
-        WinningNumber winning = new WinningNumber(inputWinningNumber());
-        BonusNumber bonus = new BonusNumber(inputBonusNumber(winning));
+        WinningNumber winning = inputWinningNumber();
+        BonusNumber bonus = inputBonusNumber(winning);
 
         WinningLottoRepository.add(new WinningLotto(winning, bonus));
     }
 
-    private List<Integer> inputWinningNumber() {
-        List<Integer> winningNumbers = inputView.inputWinningNumber();
-        return winningNumbers;
+    private WinningNumber inputWinningNumber() {
+        try {
+            List<Integer> winningNumbers = inputView.inputWinningNumber();
+            return new WinningNumber(winningNumbers);
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            return inputWinningNumber();
+        }
     }
 
-    private int inputBonusNumber(WinningNumber winning) {
+    private BonusNumber inputBonusNumber(WinningNumber winning) {
         try {
             int bonusNumber = inputView.inputBonusNumber();
-            return bonusNumber;
+            validateDuplicateWithWinningNumber(winning.getNumbers(), bonusNumber);
+            return new BonusNumber(bonusNumber);
         } catch (IllegalArgumentException exception) {
-            inputView.printExceptionMessage(exception);
+            outputView.printExceptionMessage(exception);
             return inputBonusNumber(winning);
+        }
+    }
+
+    private void validateDuplicateWithWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
+        for (Integer winning : winningNumbers) {
+            if (Util.isEqual(bonusNumber, winning)) {
+                throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_BONUS_NUMBER.getMessage());
+            }
         }
     }
 }

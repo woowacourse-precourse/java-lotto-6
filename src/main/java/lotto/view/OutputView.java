@@ -32,11 +32,10 @@ public class OutputView {
     public void outputLottoResults(List<LottoRank> rankResults) {
         System.out.printf(Message.OUTPUT_LOTTO_RESULTS.message);
 
-        printRankCount(rankResults, LottoRank.FIFTH);
-        printRankCount(rankResults, LottoRank.FOURTH);
-        printRankCount(rankResults, LottoRank.THIRD);
-        printRankCount(rankResults, LottoRank.SECOND);
-        printRankCount(rankResults, LottoRank.FIRST);
+        for (int i = LottoRank.values().length - 1; i >= 0; i--) {
+            LottoRank rank = LottoRank.values()[i];
+            printRankCount(rankResults, rank);
+        }
     }
 
     private static void printRankCount(List<LottoRank> rankResults, LottoRank rank) {
@@ -53,6 +52,10 @@ public class OutputView {
     private String thousandFormatter(double profitRate) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###.#");
         return decimalFormat.format(profitRate);
+    }
+
+    public void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 
     private enum Message {

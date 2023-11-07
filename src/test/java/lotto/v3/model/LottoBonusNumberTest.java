@@ -1,13 +1,11 @@
 package lotto.v3.model;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoBonusNumberTest {
     @Test
@@ -46,6 +44,19 @@ class LottoBonusNumberTest {
         assertThatThrownBy(() -> new LottoBonusNumber(invalidBonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 1부터 45 사이의 값이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복될 때 예외를 던지는지 검증")
+    void testBonusNumberDuplicatesWinningNumber() {
+        // Given
+        int duplicateBonusNumber = 6;
+        Set<Integer> winningNumbers = Set.of(1, 2, 3, 4, 5, 6);
+
+        // When & Then
+        assertThatThrownBy(() -> new LottoBonusNumber(duplicateBonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 
 }

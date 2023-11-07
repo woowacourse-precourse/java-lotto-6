@@ -18,6 +18,10 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
+    public void addBonusNumber(LottoNumber lottoNumber){
+        this.numbers.add(lottoNumber);
+    }
+
     private Lotto(List<LottoNumber> numbers) {
         validateNumberSize(numbers);
         this.numbers.addAll(numbers);

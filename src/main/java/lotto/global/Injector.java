@@ -13,11 +13,12 @@ import lotto.global.validator.UserViewValidator;
 public class Injector {
     private final UserViewValidator userViewValidator = new UserViewValidator();
     private final ConvertService convertService = new ConvertService();
-    private final LottoView lottoView = new LottoView();
     private final LottoNumberService lottoNumberService = new LottoNumberService();
     private final LottoService lottoService = new LottoService(lottoNumberService);
     private final UserService userService = new UserService(lottoService);
     private final UserController userController = new UserController(convertService, userService);
+    private final LottoController lottoController = new LottoController(convertService, lottoService);
+    private final LottoView lottoView = new LottoView(lottoController);
     private final UserView userView = new UserView(userController, userViewValidator);
 
     public UserView getUserView(){

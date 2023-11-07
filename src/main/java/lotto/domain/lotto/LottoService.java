@@ -1,6 +1,9 @@
 package lotto.domain.lotto;
 
+import lotto.domain.number.LottoNumber;
 import lotto.domain.number.LottoNumberService;
+
+import java.util.List;
 
 public class LottoService {
     private final LottoNumberService lottoNumberService;
@@ -12,5 +15,14 @@ public class LottoService {
 
     public Lotto buyLotto(){
         return Lotto.forUserLotto(lottoNumberService.pickAutoNumbers());
+    }
+
+    public RaffleLottoResponse raffleLotto(List<LottoNumber> lottoNumbers){
+        return new RaffleLottoResponse(Lotto.raffle(lottoNumbers));
+    }
+
+    public RaffleLottoResponse addBonusNumber(Lotto lotto, LottoNumber lottoNumber){
+        lotto.addBonusNumber(lottoNumber);
+        return new RaffleLottoResponse(lotto);
     }
 }

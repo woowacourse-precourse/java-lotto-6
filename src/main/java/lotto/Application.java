@@ -10,5 +10,6 @@ public class Application {
         UserView userView = injector.getUserView();
         LottoView lottoView = injector.getLottoView();
         userView.inputUserAssets();
+        lottoView.raffleLotto();
     }
 }

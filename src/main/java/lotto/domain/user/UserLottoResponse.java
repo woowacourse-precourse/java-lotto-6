@@ -23,6 +23,6 @@ public class UserLottoResponse {
     public String toString(){
         return lottoList.stream()
                 .map(Lotto::toString)
-                .collect(Collectors.joining(Separator.NEW_LINE.toString()));
+                .collect(Collectors.joining(Separator.NEW_LINE.toString())) + Separator.NEW_LINE;
     }
 }

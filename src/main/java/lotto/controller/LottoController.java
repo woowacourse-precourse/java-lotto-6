@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -10,13 +11,13 @@ public class LottoController {
         int purchaseAmount = InputView.inputPurchaseAmount();
 
         int lottoCount = purchaseAmount / 1000;
-        List<Lotto> lottos = Lotto.createLottos(lottoCount);
+        List<Lotto> lottos = LottoGenerator.createLottos(lottoCount);
 
         OutputView.printNewLine();
         OutputView.printTicketCount(lottoCount);
 
         for (Lotto lotto : lottos) {
-            lotto.printLottoNumbers();
+            OutputView.printLottoNumbers(lotto);
         }
 
         OutputView.printNewLine();

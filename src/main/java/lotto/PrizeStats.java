@@ -3,11 +3,11 @@ package lotto;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Statistics {
+public class PrizeStats {
     private final Map<PrizeGrade, Integer> gradeDist;
 
-    public Statistics(Lottos lottos, Lotto winningLotto, Bonus bonus) {
-        this.gradeDist = getZeroDist();
+    public PrizeStats(Lottos lottos, Lotto winningLotto, Bonus bonus) {
+        this.gradeDist = getEmptyDist();
         fillDist(lottos, winningLotto, bonus);
     }
 
@@ -15,7 +15,7 @@ public class Statistics {
         return this.gradeDist;
     }
 
-    private Map<PrizeGrade, Integer> getZeroDist() {
+    private Map<PrizeGrade, Integer> getEmptyDist() {
         Map<PrizeGrade, Integer> zeroDist = new HashMap<>();
         for (PrizeGrade prizeGrade : PrizeGrade.values()) {
             zeroDist.put(prizeGrade, ZERO);

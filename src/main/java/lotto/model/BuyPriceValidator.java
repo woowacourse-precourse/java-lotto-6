@@ -1,11 +1,8 @@
 package lotto.model;
 
-import static lotto.utils.Constants.BUY_PRICE_PATTERN_ERROR;
-import static lotto.utils.Constants.BUY_PRICE_UNIT_ERROR;
-import static lotto.utils.Constants.ERROR_MESSAGE;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.utils.ErrorMessage;
 import lotto.utils.Patterns;
 import lotto.view.InputView;
 
@@ -25,14 +22,16 @@ public class BuyPriceValidator {
     public void isNumber() {
         Matcher matcher = Pattern.compile(Patterns.BUY_PRICE_PATTERN.getPattern()).matcher(buyPrice);
         if (!matcher.find()) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + BUY_PRICE_PATTERN_ERROR);
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_MESSAGE.getMessage() + ErrorMessage.BUY_PRICE_PATTERN_ERROR.getMessage());
         }
     }
 
     public void isCorrectUnit() {
         int price = InputView.convertToInt(buyPrice);
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + BUY_PRICE_UNIT_ERROR);
+            throw new IllegalArgumentException(
+                    ErrorMessage.ERROR_MESSAGE.getMessage() + ErrorMessage.BUY_PRICE_UNIT_ERROR.getMessage());
         }
     }
 }

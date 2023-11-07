@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.util.ErrorMessage;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,6 +34,19 @@ public class InputView {
         } catch (NumberFormatException e) {
             System.out.println(NUMERIC_ERROR_MESSAGE);
             return inputWinningNumber();
+        }
+    }
+
+    public static List<Integer> inputBonusNumber() {
+        try {
+            List<Integer> bonusNumbers = new ArrayList<>();
+            System.out.println("보너스 번호를 입력해 주세요.");
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            bonusNumbers.add(bonusNumber);
+            return bonusNumbers;
+        } catch (NumberFormatException e) {
+            System.out.println(NUMERIC_ERROR_MESSAGE);
+            return inputBonusNumber();
         }
     }
 }

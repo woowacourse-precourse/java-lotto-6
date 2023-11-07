@@ -6,7 +6,7 @@ public class RetryLogic {
     private static final String TIME_OUT = "최대 시도 횟수가 초과되었습니다.";
 
     public static void retryCount(Retry retry) {
-        for (int i = 0; i < MAX_RETRIES; i++) {
+        for (int i = 1; i <= MAX_RETRIES; i++) {
             try {
                 retry.run();
                 break;

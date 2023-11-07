@@ -1,7 +1,13 @@
 package lotto;
 
+import lotto.domain.LottoMachine;
+import lotto.domain.Statistician;
+import lotto.generator.LottoNumberGenerator;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoShop lottoShop = new LottoShop(
+                new LottoMachine(new LottoNumberGenerator()), new Statistician());
+        lottoShop.runLottoGame();
     }
 }

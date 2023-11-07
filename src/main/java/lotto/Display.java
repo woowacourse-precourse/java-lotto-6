@@ -63,4 +63,8 @@ public class Display {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + resultRanks.getOrDefault(Rank.second, 0) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + resultRanks.getOrDefault(Rank.first, 0) + "개");
     }
+
+    public static void showStatistics(double revenueRate) {
+        System.out.println("총 수익률은 " + revenueRate + "%입니다.");
+    }
 }

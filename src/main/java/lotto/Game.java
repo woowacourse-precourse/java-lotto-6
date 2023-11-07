@@ -18,15 +18,15 @@ public class Game {
         Bonus bonus = Display.readBonusNumber(winningNumbers);
         Map<Rank, Integer> resultRanks = assignEachRank(winningNumbers, bonus, issuedLottos);
         Display.showRanks(resultRanks);
-//        Display.showStatistics(getRevenueRate(price, resultRanks));
+        Display.showStatistics(getRevenueRate(price, resultRanks));
     }
 
-    private double getRevenueRate(int price, List<Rank> resultRanks) {
+    private double getRevenueRate(int price, Map<Rank, Integer> resultRanks) {
         int totalRevenue = 0;
-        for(Rank rank : resultRanks) {
-            totalRevenue += rank.price;
+        for(Rank rank : resultRanks.keySet()) {
+            totalRevenue += rank.price * resultRanks.get(rank);
         }
-        return Math.round((double) totalRevenue / price * 100) / 100.0;
+        return Math.round((double) totalRevenue / price * 1000) / 10.0;
     }
 
     private Map<Rank, Integer> assignEachRank(Lotto winningNumbers, Bonus bonus, List<Lotto> issuedLottos) {

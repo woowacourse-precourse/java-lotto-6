@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -96,4 +97,19 @@ public class GameTest {
 
         assertThat(ranks.get(Rank.fifth)).isEqualTo(1);
     }
+
+    @DisplayName("수익률 계산")
+    @Test
+    void getRevenueRate() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        Method method = game.getClass().getDeclaredMethod("getRevenueRate", int.class, Map.class);
+        method.setAccessible(true);
+
+        Map<Rank, Integer> ranks = new HashMap<>();
+        ranks.put(Rank.fifth, 1);
+
+        double result = (double) method.invoke(game, 8000, ranks);
+        assertThat(result).isEqualTo(62.5);
+    }
+
+
 }

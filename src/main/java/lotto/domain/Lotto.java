@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 import static lotto.domain.constants.LottoNumber.MAX_NUMBER;
 import static lotto.domain.constants.LottoNumber.MIN_NUMBER;
 import static lotto.domain.constants.LottoNumber.NUMBER_COUNT;

@@ -4,11 +4,11 @@ public class ProfitRate {
 
     private final double profitRate;
 
-    public ProfitRate(int totalWinning, int deposit) {
+    public ProfitRate(long totalWinning, int deposit) {
         this.profitRate = profitRate(totalWinning, deposit);
     }
 
-    private double profitRate(int totalWinning, int deposit) {
+    private double profitRate(long totalWinning, int deposit) {
         return ((double) totalWinning / deposit) * 100;
     }
 

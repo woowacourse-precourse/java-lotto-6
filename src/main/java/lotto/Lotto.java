@@ -23,7 +23,7 @@ public class Lotto {
 	private void checkDuplicate(List<Integer> numbers) {
 		Set<Integer> duplicateNumbers = new HashSet<>();
 		for (Integer num : numbers) {
-			if (!duplicateNumbers.add(num)) {
+			if (num < 1 || num > 45 || !duplicateNumbers.add(num)) {
 				throw new IllegalArgumentException();
 			}
 		}

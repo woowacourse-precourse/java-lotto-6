@@ -36,17 +36,15 @@ public class LottoController {
 	public List<Integer> setWinNumbers(String[] input) {
 		List<Integer> winNumbers = new ArrayList<>();
 
-		for (String str : input) {
-			try {
+		try {
+			for (String str : input) {
 				int num = Integer.parseInt(str.trim());
 				winNumbers.add(num);
-			} catch (NumberFormatException e) {
-				LottoView.getWinLotto();
 			}
-
+		} catch (NumberFormatException e) {
+			LottoView.getWinLotto();
 		}
 		Lotto winLotto = new Lotto(winNumbers);
-		;
 		return winLotto.getNumbers();
 	}
 

@@ -20,4 +20,13 @@ public class LottoMoney {
             throw new IllegalArgumentException(WRONG_LOTTO_MONEY_MESSAGE);
         }
     }
+
+    public double getLottoMoney() {
+        return lottoMoney;
+    }
+
+    public int getLottoTicket() {
+        return lottoTiket;
+    }
+
 }

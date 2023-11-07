@@ -32,4 +32,16 @@ class LottoValidationUtilsV2Test {
         assertThatNoException().isThrownBy(() -> LottoValidationUtilsV2.checkValidLottoNumbers(numbers));
     }
 
+    @Test
+    @DisplayName("로또 번호가 범위를 벗어나면 예외를 던진다")
+    void should_ThrowException_When_LottoNumbersAreOutOfValidRange() {
+        // given
+        List<Integer> numbers = Arrays.asList(0, 2, 3, 4, 5, 46); // 0 and 46 are out of valid range
+
+        // when & then
+        assertThatThrownBy(() -> LottoValidationUtilsV2.checkValidLottoNumbers(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
+    }
+
 }

@@ -23,9 +23,16 @@
 
 ## service
 
+### LottoService
+
 ---
 #### 메소드
 
+-`public List<Integer> parseInputToNumberCandidates(String input) throws NumberFormatException`
+  - 사용자에게 입력받은 문자열을 "," 기준으로 나누고 공백을 자른다.
+  - 각 문자열을 `Integer.parseUnsignedInt()`로 0 이상 2,147,483,647이하의 정수로 바꾼다.
+  - 만약 부호 없는 정수로 바꿀 수 없다면 `NumberFormatException`을 발생시키는데 이를 메소드 호출 위치로 던진다.
+  - 바뀐 정수들을 리스트에 담아 반환한다.
 
 ## domain
 
@@ -37,6 +44,8 @@
 #### 필드
 
 - `private List<Integer> `
+
+#### 메소드
 
 ---
 

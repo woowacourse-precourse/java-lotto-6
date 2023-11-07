@@ -29,5 +29,18 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력해주세요.");
         }
         System.out.println(Math.round(lottoTicket) + "개를 구매했습니다.");
+
+        // 입력한 금액 만큼의 로또 발행
+        List<List<Integer>> saveNumber = new ArrayList<>();
+        for (int i = 0; i < lottoTicket; i++) {
+            List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            saveNumber.add(randomNumber);
+        }
+        for (List<Integer> lottoBox : saveNumber) {
+            List<Integer> purchaseNumber = new ArrayList<>(lottoBox);
+            Collections.sort(purchaseNumber);
+            System.out.println(purchaseNumber);
+        }
+        System.out.println();
     }
 }

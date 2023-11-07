@@ -8,7 +8,6 @@ public class UserLottoRepository {
     private static final List<Lotto> userLotto = new ArrayList<>();
 
     public List<Lotto> save(List<Lotto> lottoList) {
-        lottoList.forEach(Lotto::sortAscending);
         userLotto.addAll(lottoList);
         return lottoList;
     }

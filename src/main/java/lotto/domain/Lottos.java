@@ -22,9 +22,12 @@ public class Lottos {
 
     public Map<Grade, Integer> grade(List<Integer> winningNumbers, Integer bonusNumber) {
         Map<Grade, Integer> result = new HashMap<>();
+        for (Grade grade : Grade.values()){
+            result.put(grade,0);
+        }
         for (Lotto lotto : lottos) {
             Grade grade = lotto.grade(winningNumbers, bonusNumber);
-            result.put(grade, result.getOrDefault(grade, 0) + 1);
+            result.put(grade, result.get(grade)+1);
         }
         return result;
     }

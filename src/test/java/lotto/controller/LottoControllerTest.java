@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import static lotto.view.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -45,5 +47,30 @@ class LottoControllerTest {
         // then
         assertThat(result).isEqualTo(1000);
     }
+
+    @Test
+    @DisplayName("기능16, 기능17 테스트 : 로또 총 구매 비용으로 입력한 값이 숫자가 아니면 예외가 발생한다.")
+    void receiveMoneyShouldThrowIllegalArgumentExceptionWhenInputIsNotNumber() {
+        // given
+        System.setIn(createUserInput("1000j"));
+
+        // when, then
+        assertThatThrownBy(() -> lottoController.receiveMoney())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(NOT_A_NUMBER.getErrorMessage());
+    }
+
+    @Test
+    @DisplayName("기능16, 기능18 테스트 : 로또 총 구매 비용으로 입력한 값이 1000의 배수가 아니면 예외가 발생한다.")
+    void receiveMoneyShouldThrowIllegalArgumentExceptionWhenInputIsNotMultipleOf1000() {
+        // given
+        System.setIn(createUserInput("1001"));
+
+        // when, then
+        assertThatThrownBy(() -> lottoController.receiveMoney())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(RECEIVED_MONEY_NOT_MULTIPLE_OF_1000.getErrorMessage());
+    }
+
 
 }

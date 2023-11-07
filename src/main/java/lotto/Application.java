@@ -46,7 +46,7 @@ public class Application {
         for (int i = 5; i >= 1; i--) {
             RankType type = RankType.values()[i - 1];
             String detail = type.getDetail();
-            String content = String.format("detail - %d개", rankCount[i]);
+            String content = String.format("%s - %d개", detail, rankCount[i]);
             println(content);
         }
 

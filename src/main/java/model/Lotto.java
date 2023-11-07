@@ -2,9 +2,7 @@ package model;
 
 import view.PrintError;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +12,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateNumberRange(numbers);
+        validateDuplicatedNumber(numbers);
         this.numbers = sortNumbers(numbers);
     }
 
@@ -30,6 +29,19 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    // 로또 번호가 중복인지 검증한다.
+    public void validateDuplicatedNumber(List<Integer> numbers) {
+        Set<Object> duplicatedChecker = new HashSet<>();
+        for(Integer number : numbers) {
+            duplicatedChecker.add(number);
+        }
+        if(duplicatedChecker.size() != 6) {
+            printError.numberDuplicatedMessage();
+            throw new IllegalArgumentException();
+        }
+    }
+
 
     // 숫자의 범위가 1~45인지 검증한다.
     public void validateNumberRange(List<Integer> numbers) {

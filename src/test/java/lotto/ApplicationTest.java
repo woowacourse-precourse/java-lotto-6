@@ -57,15 +57,11 @@ class ApplicationTest extends NsTest {
     }
 
 
-
-
-
-
     @Override
     public void runMain() {
         Application.main(new String[]{});
     }
 
     // 아래에 추가 테스트 작성 가능
-
+    
 }

@@ -35,7 +35,10 @@ public class Application {
     }
 
     static int calculateLottoCount(String inputCostStr) {
-        int inputCost = validateInputIsNum(inputCostStr);
+
+        int inputCost = 0;
+
+        inputCost = validateInputIsNum(inputCostStr);
 
         validateInputCostByMod(inputCost);
 
@@ -50,7 +53,9 @@ public class Application {
     static List<Integer> getLottoNumber() {
         List<Integer> LottoNumber = pickUniqueNumbersInRange(1, 45, 6);
 
-        Collections.sort(LottoNumber);
+        if (LottoNumber instanceof ArrayList) {
+            Collections.sort(LottoNumber);
+        }
 
         return LottoNumber;
     }
@@ -217,27 +222,36 @@ public class Application {
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        Scanner sc = new Scanner(System.in);
-
-        System.out.println("구입금액을 입력해 주세요.");
-        int purchaseLottoCount = calculateLottoCount((sc.nextLine()));
+        try {
+            Scanner sc = new Scanner(System.in);
 
 
-        List<Lotto> purchasedLottos = generateLottos(purchaseLottoCount);
+            System.out.println("구입금액을 입력해 주세요.");
+            int purchaseLottoCount = calculateLottoCount((sc.nextLine()));
 
-        showPurchasedLottos(purchasedLottos);
 
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        setLottoAnswer(sc.nextLine());
+            List<Lotto> purchasedLottos = generateLottos(purchaseLottoCount);
 
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        setBonusNumber(sc.nextLine());
+            showPurchasedLottos(purchasedLottos);
 
-        validateMyRevenue(purchasedLottos);
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            setLottoAnswer(sc.nextLine());
 
-        showLottoWins();
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            setBonusNumber(sc.nextLine());
 
-        showRevenue();
+            validateMyRevenue(purchasedLottos);
+
+            showLottoWins();
+
+            showRevenue();
+
+            sc.close();
+
+        } catch (Exception e) {
+            System.out.print(e.getMessage());
+        }
+
 
     }
 }

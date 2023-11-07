@@ -31,7 +31,7 @@ class LottoTest {
         assertEquals(6, numbers.size());
     }
 
-    @DisplayName("로또 번호 가져오기.")
+    @DisplayName("로또 번호 출력하기.")
     @Test
     void lottoToString() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

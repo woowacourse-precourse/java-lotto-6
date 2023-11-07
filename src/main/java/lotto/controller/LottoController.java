@@ -42,9 +42,9 @@ public class LottoController {
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
 
         outputView.inputBonusNumberMessage();
-        Integer bonusNumber = inputView.inputBonusNumber();
+        BonusNumber bonusNumber = inputView.inputBonusNumber();
 
-        return new WinningLotto(winningNumbers, new BonusNumber(bonusNumber));
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
 

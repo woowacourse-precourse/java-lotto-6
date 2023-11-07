@@ -26,7 +26,7 @@ class LottoResultServiceTest {
     @Test
     void countMatchingNumbers() {
         // given
-        WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), new BonusNumber(7));
+        WinningLotto winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), new BonusNumber("7"));
         LottoService lottoService = new LottoService();
         PurchasedLotto purchasedLotto = new PurchasedLotto();
 

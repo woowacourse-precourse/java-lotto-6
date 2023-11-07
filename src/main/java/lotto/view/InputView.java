@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.BonusNumber;
 import lotto.exception.DuplicateInputException;
 import lotto.exception.HasNotCommaException;
 import lotto.exception.InvalidInputException;
@@ -75,20 +76,19 @@ public class InputView {
         return convertWinningNumbers;
     }
 
-    public Integer inputBonusNumber() {
+    public BonusNumber inputBonusNumber() {
         while (true) {
             String bonusNumber = getInput();
             try {
-                validateBonusNumber(bonusNumber);
-                return convertInputToInteger(bonusNumber);
+                return convertInputToBonusNumber(bonusNumber);
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private Integer convertInputToInteger(String bonusNumber) {
-        return Integer.parseInt(bonusNumber);
+    private BonusNumber convertInputToBonusNumber(String bonusNumber) {
+        return new BonusNumber(bonusNumber);
     }
 
     private void validateBonusNumber(String bonusNumber) {

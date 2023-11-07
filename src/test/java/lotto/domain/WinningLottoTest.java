@@ -22,7 +22,7 @@ class WinningLottoTest {
 
     @BeforeEach
     void setUp() {
-       this.winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), new BonusNumber(30));
+       this.winningLotto = new WinningLotto(List.of(1,2,3,4,5,6), new BonusNumber("30"));
     }
 
     static Stream<Arguments> generateData() {

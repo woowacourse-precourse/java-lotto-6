@@ -21,4 +21,10 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.HUNDRED_THOUSAND_OR_UNDER.getMessage());
         }
     }
+
+    public void isInRangeOf1To45(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ErrorMessage.RANGE_1_45.getMessage());
+        }
+    }
 }

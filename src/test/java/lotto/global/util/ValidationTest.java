@@ -48,5 +48,11 @@ class ValidationTest {
                 .hasMessageContaining("[ERROR] 10만원 이하로 구입할 수 있습니다.");
     }
 
-
+    @DisplayName("1~45 사이의 수가 아니면 예외가 발생한다.")
+    @Test
+    void inputNumberOutOfRange() {
+        assertThatThrownBy(() -> validation.isInRangeOf1To45(50))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다.");
+    }
 }

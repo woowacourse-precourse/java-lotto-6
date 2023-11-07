@@ -9,14 +9,14 @@ import java.util.Map;
 
 public class OutputView {
 
-    public void purchaseLottoNumbersDisplay(LottoNumberModel lottos){
-        int lottoQuantity = lottos.getLotto().size();
+    public void purchaseLottoNumbersDisplay(LottoNumberModel LottoNumberModel){
+        int lottoQuantity = LottoNumberModel.getLotto().size();
 
         System.out.println("");
         System.out.println(lottoQuantity+"개를 구매했습니다.");
 
         for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
-            lottos.getLotto().get(quantity-1).lottoNumberDisplay();
+            LottoNumberModel.getLotto().get(quantity-1).lottoNumberDisplay();
         }
 
         System.out.println("");

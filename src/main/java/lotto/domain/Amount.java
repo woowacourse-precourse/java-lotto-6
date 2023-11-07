@@ -5,12 +5,13 @@ import lotto.view.ExceptionMessage;
 import java.util.List;
 
 public class Amount {
+
     private final int total;
     private int count;
 
     public Amount(int total, int ticketPrice) {
-        validateSize(total);
-        validateStyle(total);
+        validateSize(total,ticketPrice);
+        validateStyle(total,ticketPrice);
 
         this.total = total;
         count = calculateCount(total,ticketPrice);
@@ -28,14 +29,14 @@ public class Amount {
         return total/ticketPrice;
     }
 
-    private void validateSize(int total) {
-        if (total<1000) {
+    private void validateSize(int total, int minTicketPrice) {
+        if (total<minTicketPrice) {
             ExceptionMessage.setAmountSizeError();
         }
     }
 
-    private void validateStyle(int total) {
-        if (total%1000!=0) {
+    private void validateStyle(int total, int ticketPrice) {
+        if (total%ticketPrice!=0) {
             ExceptionMessage.setAmountStyleError();
         }
     }

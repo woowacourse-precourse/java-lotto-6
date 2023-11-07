@@ -2,6 +2,7 @@ package lotto.domain.enums;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.domain.lotto.LottoPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,14 +1,14 @@
-package lotto.domain.enums;
+package lotto.domain.lotto;
 
 import java.util.Arrays;
 
 public enum LottoPrize {
     LOSE(0, 0, false),
-    FIFTH(3, 5000, false),
-    FOURTH(4, 50000, false),
-    THIRD(5, 1500000, false),
-    SECOND(4, 30000000, true),
-    FIRST(6, 2000000000, false);
+    FIFTH(3, 5_000, false),
+    FOURTH(4, 50_000, false),
+    THIRD(5, 1_500_000, false),
+    SECOND(4, 30_000_000, true),
+    FIRST(6, 2_000_000_000, false);
 
     private final int matchCount;
     private final int prizeAmount;

@@ -1,6 +1,5 @@
 package lotto.domain.lotto;
 
-import lotto.constants.ErrorMessage;
 import lotto.constants.LottoRule;
 import lotto.domain.winningNumber.FinalWinningNumber;
 import lotto.service.LottoService;
@@ -12,31 +11,10 @@ public class Lottos {
     List<Lotto> lottos = new ArrayList<>();
     HashMap<LottoRank, Integer> rankCount;
 
-    public Lottos(String purchaseAmount) {
-        numberOfLottos = validate(purchaseAmount);
+    public Lottos(int numberOfLottos) {
+        this.numberOfLottos = numberOfLottos;
         initEachLotto();
         initRankCount();
-    }
-
-    private int validate(String purchaseAmount) {
-        validateNumber(purchaseAmount);
-        return validateDivisibilityByLottoPrice(purchaseAmount);
-    }
-
-    private void validateNumber(String purchaseAmount) {
-        try {
-            Integer.parseInt(purchaseAmount);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_NUMBER.getMessage());
-        }
-    }
-
-    private int validateDivisibilityByLottoPrice(String purchaseAmount) {
-        int purchaseResult = Integer.parseInt(purchaseAmount);
-        if(purchaseResult % LottoRule.LOTTO_PRICE.getNumber() != 0) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_AMOUNT.getMessage());
-        }
-        return purchaseResult / LottoRule.LOTTO_PRICE.getNumber();
     }
 
     private void initEachLotto() {

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Purchaser;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.winningNumber.BonusNumber;
@@ -24,11 +25,16 @@ public class LottoController {
     }
 
     private Lottos purchaseLottos() {
+        Purchaser purchaser = payMoney();
+        return new Lottos(purchaser.getNumberOfLottos());
+    }
+
+    private Purchaser payMoney() {
         try {
-            return new Lottos(inputView.inputPurchaseAmount());
+            return new Purchaser(inputView.inputPurchaseAmount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return purchaseLottos();
+            return payMoney();
         }
     }
 

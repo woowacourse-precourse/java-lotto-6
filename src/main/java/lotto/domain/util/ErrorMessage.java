@@ -8,8 +8,7 @@ public enum ErrorMessage {
     INVALID_RANGE_NUMBER("[ERROR] 1-45 이내의 번호를 입력해 주세요."),
     DUPLICATE_BONUS_NUMBER("[ERROR] 당첨 번호와 중복되는 번호입니다."),
     STRING_IS_NULL("[ERROR] 해당 입력 값이 NULL 입니다."),
-    STRING_IS_EMPTY_OR_BLANK("[ERROR] 해당 입력 값에 공백이 있거나 빈 값입니다.")
-    ;
+    STRING_IS_EMPTY_OR_BLANK("[ERROR] 해당 입력 값에 공백이 있거나 빈 값입니다.");
 
     private String errorMessage;
 

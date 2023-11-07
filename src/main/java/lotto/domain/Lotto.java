@@ -48,7 +48,7 @@ public class Lotto {
         return lottoNumbers;
     }
 
-    private static List<Integer> changeIntegerNumber(String[] splitNumbers) {
+    private List<Integer> changeIntegerNumber(String[] splitNumbers) {
         List<Integer> lottoNumbers = new ArrayList<>();
         for(int attempt = 0; attempt < splitNumbers.length; attempt++){
             lottoNumbers.add(Integer.parseInt(splitNumbers[attempt]));

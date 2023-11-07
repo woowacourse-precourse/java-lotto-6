@@ -56,14 +56,23 @@ public class LottoRogic {
                                                          boolean bonus) {
         if (count == 5 && bonus) {
             prizeCount.put(LottoPrize.FIVE_PLUS_BONUS, (prizeCount.get(LottoPrize.FIVE_PLUS_BONUS)) + 1);
-        } else if (count == 5) {
+            return prizeCount;
+        }
+        if (count == 5) {
             prizeCount.put(LottoPrize.FIVE_MATCHES, (prizeCount.get(LottoPrize.FIVE_MATCHES)) + 1);
-        } else if (count == 3) {
+            return prizeCount;
+        }
+        if (count == 3) {
             prizeCount.put(LottoPrize.THREE_MATCHES, (prizeCount.get(LottoPrize.THREE_MATCHES)) + 1);
-        } else if (count == 4) {
+            return prizeCount;
+        }
+        if (count == 4) {
             prizeCount.put(LottoPrize.FOUR_MATCHES, (prizeCount.get(LottoPrize.FOUR_MATCHES)) + 1);
-        } else if (count == 6) {
+            return prizeCount;
+        }
+        if (count == 6) {
             prizeCount.put(LottoPrize.SIX_MATCHES, (prizeCount.get(LottoPrize.SIX_MATCHES)) + 1);
+            return prizeCount;
         }
         return prizeCount;
     }

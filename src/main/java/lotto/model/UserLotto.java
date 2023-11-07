@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.config.LottoConfig.*;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class UserLotto {
@@ -12,9 +13,13 @@ public class UserLotto {
         autoSelectLotto(lottoQuantity);
     }
 
+    private List<Integer> sortedUserLottoNumbers(List<Integer> randomPickNumbers) {
+        return randomPickNumbers.stream().sorted().collect(Collectors.toList());
+    }
+
     private void autoSelectLotto(int lottoQuantity) {
         while (lottoQuantity > ZERO.getValue()) {
-            userLottoNumbers.add(randomPickNumber());
+            userLottoNumbers.add(sortedUserLottoNumbers(randomPickNumber()));
             lottoQuantity--;
         }
     }

@@ -41,4 +41,13 @@ public class Lotto {
 
         return count;
     }
+
+    public boolean runBonus(Integer bonus){
+        for (Integer number : this.numbers) {
+            if (bonus == number) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

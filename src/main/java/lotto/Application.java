@@ -22,6 +22,15 @@ public class Application {
         for (Lotto lottoTicket : lottoTickets) {
             System.out.println(lottoTicket.getNumbers());
         }
+
+        System.out.println();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        List<Integer> winNumbers = readNumbers(input);
+
+        System.out.println();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine());
     }
 
     enum LottoRank {
@@ -61,5 +70,15 @@ public class Application {
             lottoTickets.add(Lotto.pickRandom());
         }
         return lottoTickets;
+    }
+
+    public static List<Integer> readNumbers(String input) {
+        String[] tokens = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String token : tokens) {
+            int number = Integer.parseInt(token);
+            numbers.add(number);
+        }
+        return numbers;
     }
 }

@@ -23,4 +23,8 @@ public class RankResult {
     public void add(Rank rank) {
         results.put(rank, results.get(rank) + INCREMENT);
     }
+
+    public int getCount(Rank rank) {
+        return results.get(rank);
+    }
 }

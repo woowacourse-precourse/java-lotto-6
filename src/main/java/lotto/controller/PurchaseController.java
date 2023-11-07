@@ -7,8 +7,11 @@ import lotto.vo.TotalAmount;
 
 public class PurchaseController {
     public Purchase processPurchase() {
-        TotalAmount totalAmount = InputHandler.processInput(InputConfiguration.createAmountInputHandler(),
-                TotalAmount::from);
+        TotalAmount totalAmount = InputHandler.processInput(
+                InputConfiguration.createAmountInputHandler(),
+                TotalAmount::from
+        );
+
         return Purchase.from(totalAmount);
     }
 }

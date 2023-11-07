@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.controller.IssueController;
 import lotto.controller.PurchaseController;
+import lotto.controller.ResultController;
 import lotto.controller.WinningController;
 import lotto.domain.LottoTickets;
 import lotto.domain.Purchase;
@@ -20,5 +21,9 @@ public class Launcher {
         // 당첨 번호, 보너스 번호 입력 처리
         WinningController winningController = WinningController.from(lottoTickets);
         RankResult rankResult = winningController.determineResults();
+
+        //당첨 결과 출력
+        ResultController resultController = new ResultController(rankResult);
+        resultController.showResults();
     }
 }

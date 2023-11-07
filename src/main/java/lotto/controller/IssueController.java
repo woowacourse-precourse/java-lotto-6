@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoTickets;
 import lotto.domain.Purchase;
-import lotto.dto.LottoIssueResultDTO;
+import lotto.dto.output.LottoIssueResultDTO;
 import lotto.view.console.OutputView;
 
 public class IssueController {

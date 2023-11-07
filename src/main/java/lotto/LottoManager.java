@@ -1,22 +1,32 @@
 package lotto;
 
 import lotto.exception.ExceptionInfo;
+import lotto.generator.LottoNumberGenerator;
+import lotto.lotto.Lotto;
+import lotto.printer.ConsoleLottoPrinter;
+import lotto.printer.LottoPrinter;
 import lotto.receiver.ConsoleLottoReceiver;
 import lotto.receiver.LottoReceiver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoManager {
 	private static final int LOTTO_MINIMUM_PRICE = 1000;
 	private static final int ZERO_CHANGE = 0;
+	private static final int LOOP_START_NUMBER = 0;
 
+	private final LottoPrinter lottoPrinter = new ConsoleLottoPrinter();
 	private final LottoReceiver lottoReceiver = new ConsoleLottoReceiver();
+	private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
 
 	private int purchasePrice;
+	private int lottoCount;
 
 	public void run() {
-		// 가격 입력
 		receivePurchasePrice();
-		// 생성
 
+		List<Lotto> lottos = purchaseLottos();
 		// 당첨 번호 입력
 
 		// 보너스 번호 입력
@@ -27,8 +37,10 @@ public class LottoManager {
 	}
 
 	private void receivePurchasePrice() {
-		// 입력 요청문 출력
 		boolean isReceived = Boolean.FALSE;
+
+		lottoPrinter.askInputPurchasePrice();
+
 		while (!isReceived) {
 			try {
 				isReceived = validatePurchasePrice(lottoReceiver.receive());
@@ -36,6 +48,7 @@ public class LottoManager {
 				System.out.println(e.getMessage());
 			}
 		}
+		calculateLottoCount();
 	}
 
 	private boolean validatePurchasePrice(String purchasePrice) {
@@ -61,4 +74,22 @@ public class LottoManager {
 
 		return purchasePrice;
 	}
+
+	private void calculateLottoCount() {
+		this.lottoCount = this.purchasePrice / LOTTO_MINIMUM_PRICE;
+	}
+
+	private List<Lotto> purchaseLottos() {
+		List<Lotto> lottos = new ArrayList<>();
+
+		for (int i = LOOP_START_NUMBER; i < lottoCount; i++) {
+			lottos.add(new Lotto(lottoNumberGenerator.generateLottoNumber()));
+		}
+
+		lottoPrinter.noticePurchaseLotto(lottos);
+
+		return lottos;
+	}
+
+
 }

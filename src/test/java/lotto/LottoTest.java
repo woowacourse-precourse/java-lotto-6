@@ -58,4 +58,9 @@ class LottoTest {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 6, 6);
         assertThat(numbers.stream().sorted().collect(Collectors.toList())).containsExactly(1, 2, 3, 4, 5, 6);
     }
+
+    @DisplayName("로또 오름차순 정렬 테스트")
+    @Test
+    void lottoCountHitTest() {
+    }
 }

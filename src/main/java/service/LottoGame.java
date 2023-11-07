@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import util.LottoNumberGenerator;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoGame {
@@ -15,8 +16,19 @@ public class LottoGame {
     public void start() {
         int ticketPurchaseAmount = getTicketPurchaseAmount();
         int ticketQuantity = ticketPurchaseAmount / TICKET_PRICE;
-
         List<List<Integer>> tickets = getTickets(ticketQuantity);
+
+        printGeneratedLottoNumbers(ticketQuantity, tickets);
+    }
+
+    private static void printGeneratedLottoNumbers(int ticketQuantity, List<List<Integer>> tickets) {
+        System.out.println(ticketQuantity + "개를 구매했습니다.");
+
+        for (List<Integer> ticket : tickets) {
+            System.out.println(ticket);
+        }
+
+        System.out.println();
     }
 
     private List<List<Integer>> getTickets(int ticketQuantity) {

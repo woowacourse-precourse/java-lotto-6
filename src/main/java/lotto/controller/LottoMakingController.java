@@ -6,13 +6,15 @@ import lotto.domain.Player;
 import lotto.view.ErrorMessage;
 import lotto.view.LottoView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class LottoMakingController {
     private static final LottoView view = new LottoView();
     private final int MONEY_UNIT = 1000;
-    private final int LOTTO_COUNT = 6;
+    private final int LOTTO_START = 1;
+    private final int LOTTO_END = 45;
     private int money;
     private int lottoCount;
 
@@ -47,7 +49,6 @@ public class LottoMakingController {
         for (int i = 0; i < lottoCount; i++)
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         view.outputLottos(lottos, lottos.size());
-
         return lottos;
     }
 
@@ -55,12 +56,16 @@ public class LottoMakingController {
         while (true) {
             try {
                 String input = view.inputWinningNumber();
-                Lotto winningNumber = new Lotto(Arrays.asList(changeStringToInteger(input)));
+                ArrayList<Integer> inputNumbers = new ArrayList<Integer>(Arrays.asList(changeStringToInteger(input)));
+                validateBoundaryNumbers(inputNumbers);
+                Lotto winningNumber = new Lotto(inputNumbers);
                 return winningNumber;
             } catch (NumberFormatException e) {
                 view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
             } catch (IllegalArgumentException e) {
                 view.outputError(e.getMessage());
+            } catch (Exception e) {
+
             }
         }
     }
@@ -79,7 +84,7 @@ public class LottoMakingController {
                 String input = view.inputBonusNumber();
                 validateIsNumber(input);
                 int bonusNumber = Integer.parseInt(input);
-                validateBoundaryNumber(bonusNumber, 1, 45);
+                validateBoundaryNumber(bonusNumber);
                 return bonusNumber;
             } catch (NumberFormatException e) {
                 view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
@@ -89,9 +94,18 @@ public class LottoMakingController {
         }
     }
 
-    public void validateBoundaryNumber(int input, int start, int end) {
-        if (input < start || input > end)
+    public void validateBoundaryNumber(int input) {
+        if (input < LOTTO_START || input > LOTTO_END)
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_1_TO_45_MESSAGE.getValue());
+    }
+
+    public void validateBoundaryNumbers(ArrayList<Integer> input) {
+        try {
+            for (int i = 0; i < input.size(); i++)
+                validateBoundaryNumber(input.get(i));
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
     }
 
 }

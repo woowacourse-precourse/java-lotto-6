@@ -21,5 +21,4 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_SIX_MESSAGE.getValue());
         }
     }
-
 }

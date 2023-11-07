@@ -12,4 +12,8 @@ public class LottoController {
     public static  void putWinningNums(String winningNums){
         WinningNumber.putWinningNum(winningNums);
     }
+    public static void putBonusNum(String bonusNum){
+        WinningNumber.putBonusNum(bonusNum);
+
+    }
 }

@@ -21,12 +21,18 @@ public class WinningNumber {
             winningNumbers.add(Integer.valueOf(winningNum[i]));
         }
         WinningNumber.winningNums = winningNumbers;
-        validate(winningNumbers);
+        validateSize(winningNumbers);
     }
 
-    private static void validate(List<Integer> winningNums){
+    public static void putBonusNum(String bonusNum) throws IllegalArgumentException{
+        WinningNumber.bonusNum = Integer.parseInt(bonusNum);
+    }
+
+    private static void validateSize(List<Integer> winningNums){
         if(winningNums.size() != 6){
-            throw new IllegalArgumentException(ExceptionMessage.inputWinningNumberSizeError.getErrorMessage());
+            throw new IllegalArgumentException(ExceptionMessage.inputWinningNumbersSizeError.getErrorMessage());
         }
     }
+
+
 }

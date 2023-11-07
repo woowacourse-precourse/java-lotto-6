@@ -10,33 +10,38 @@ public class Input {
     private static final String INPUT_MONEY_GUIDE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_LOTTO_GUIDE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER_GUIDE = "보너스 번호를 입력해 주세요.";
+    private static final String INPUT_NUMERIC_PATTERN = "^[0-9]+$";
+    private static final String SEPARATOR = ",";
 
     private Input() {}
 
+    private static String input() {
+        String input = Console.readLine();
+        validateBlank(input);
+        return input;
+    }
+
     public static int inputMoneyGuide() {
-        System.out.println(INPUT_MONEY_GUIDE);
-        String money = Console.readLine();
-        validateBlank(money);
-        validateNumeric(money);
-        return Integer.parseInt(money);
+        Output.printGuide(INPUT_MONEY_GUIDE);
+        String inputMoney = input();
+        validateNumeric(inputMoney);
+        return Integer.parseInt(inputMoney);
     }
 
     public static List<Integer> inputWinningNumbersGuide() {
-        System.out.println(INPUT_WINNING_LOTTO_GUIDE);
-        String winningLotto = Console.readLine();
-        validateBlank(winningLotto);
+        Output.printGuide(INPUT_WINNING_LOTTO_GUIDE);
+        String winningLotto = input();
         validateWinningLottoNumeric(winningLotto);
-        return Arrays.stream(winningLotto.split(","))
+        return Arrays.stream(winningLotto.split(SEPARATOR))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
     public static int inputBonusNumberGuide() {
-        System.out.println(INPUT_BONUS_NUMBER_GUIDE);
-        String bonusNumber = Console.readLine();
-        validateBlank(bonusNumber);
-        validateNumeric(bonusNumber);
-        return Integer.parseInt(bonusNumber);
+        Output.printGuide(INPUT_BONUS_NUMBER_GUIDE);
+        String inputBonusNumber = input();
+        validateNumeric(inputBonusNumber);
+        return Integer.parseInt(inputBonusNumber);
     }
 
     private static void validateBlank(String input) {
@@ -46,13 +51,13 @@ public class Input {
     }
 
     private static void validateNumeric(String input) {
-        if (!input.matches("^[0-9]+$")) {
+        if (!input.matches(INPUT_NUMERIC_PATTERN)) {
             throw new IllegalArgumentException(ExceptionMessages.EXCEPTION_NUMERIC_INPUT.getMessage());
         }
     }
 
     private static void validateWinningLottoNumeric(String winningLotto) {
-        for (String number : winningLotto.split(",")) {
+        for (String number : winningLotto.split(SEPARATOR)) {
             validateNumeric(number);
         }
     }

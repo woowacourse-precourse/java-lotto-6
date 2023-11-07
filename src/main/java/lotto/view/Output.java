@@ -15,6 +15,10 @@ public class Output {
 
     private Output() {}
 
+    public static void printGuide(String guide) {
+        System.out.println(guide);
+    }
+
     public static void printLottoTickets(LottoTicketsDto lottoTicketsDto, int lottoCount) {
         System.out.println(String.format(LOTTO_COUNT_FORMAT, lottoCount));
         for (LottoDto lottoDto : lottoTicketsDto.getLottoTickets()) {

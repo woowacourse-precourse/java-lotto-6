@@ -24,7 +24,7 @@ public class LottoController {
 
     private Amount buyLotto() {
         InputView.buyMessage();
-        Amount amount = MakeObjectService.amount(UserInputService.amount());
+        Amount amount = UserInputService.amount();
         OuputView.buyMessage(amount);
 
         return amount;

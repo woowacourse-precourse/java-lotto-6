@@ -6,6 +6,7 @@ import static util.LottoValidationValue.LOTTO_PRICE;
 import static util.Split.INPUT_SEPERATOR;
 
 import camp.nextstep.edu.missionutils.Console;
+import domain.Amount;
 import domain.BonusNumber;
 import domain.Lotto;
 import java.util.ArrayList;
@@ -18,27 +19,17 @@ public class UserInputService {
     }
 
     // amount
-    public static int amount() {
-        return checkIsDivideByLottoPrice(checkIsNumber());
-    }
-
-    private static int checkIsNumber() {
+    public static Amount amount() {
         while (true) {
             try {
-                return Integer.parseInt(input());
+                Amount amount = MakeObjectService.amount(Integer.parseInt(input()));
+                if(amount.isValid()){
+                    return amount;
+                }
             } catch (IllegalArgumentException e) {
                 System.out.println(ONLY_INPUT_NUMBER.get());
             }
         }
-    }
-
-    private static int checkIsDivideByLottoPrice(int input) {
-        if (input % LOTTO_PRICE.get() != 0) {
-            System.out.println(AMOUNT_MUST_BE_DIVIDED_BY_PRICE.get());
-            return amount();
-        }
-
-        return input / LOTTO_PRICE.get();
     }
 
     //lotto
@@ -71,6 +62,7 @@ public class UserInputService {
         return true;
     }
 
+    //bonusNumber
     public static BonusNumber bonusNumber(Lotto lotto) {
         while (true) {
             try {

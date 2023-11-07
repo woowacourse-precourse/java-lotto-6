@@ -279,7 +279,10 @@ public class Lotto {
 - [ ] ExceptionMessage(enum)
 
 ### controller
-- [ ] LottoController 
+- [ ] LottoController
+
+### repository
+- [ ] LottoRepository 
 
 
 ## 추가된 요구사항 

@@ -42,12 +42,12 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     @Override
-    public String toString() {
-        return String.valueOf(lottoNumber);
+    public int compareTo(LottoNumber otherLottoNumber) {
+        return Integer.compare(lottoNumber, otherLottoNumber.lottoNumber);
     }
 
     @Override
-    public int compareTo(LottoNumber otherLottoNumber) {
-        return Integer.compare(lottoNumber, otherLottoNumber.lottoNumber);
+    public String toString() {
+        return String.valueOf(lottoNumber);
     }
 }

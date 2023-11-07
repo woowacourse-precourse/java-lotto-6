@@ -13,10 +13,12 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
-        }
+        checkNumbersCount(numbers);
     }
 
-    // TODO: 추가 기능 구현
+    private void checkNumbersCount(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호의 개수가 6개가 아닙니다.");
+        }
+    }
 }

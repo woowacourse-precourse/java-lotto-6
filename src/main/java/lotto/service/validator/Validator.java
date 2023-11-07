@@ -21,7 +21,7 @@ public class Validator {
     public void validateDivisible(int amount) {
         if (amount % 1000 != 0) {
             ExceptionMessage.divisibleException();
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException();
         }
     }
 

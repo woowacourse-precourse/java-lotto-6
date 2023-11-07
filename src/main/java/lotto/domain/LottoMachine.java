@@ -13,12 +13,11 @@ public class LottoMachine {
         this.numberGenerator = numberGenerator;
     }
 
-    public Lottos issue(Money money) {
+    public Lottos issue(int issueAmount) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < money.getIssueAmount(); i++) {
+        for (int i = 0; i < issueAmount; i++) {
             lottos.add(new Lotto(numberGenerator.generateSorted()));
         }
         return new Lottos(lottos);
     }
-
 }

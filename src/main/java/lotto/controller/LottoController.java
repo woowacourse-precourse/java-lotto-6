@@ -35,7 +35,7 @@ public class LottoController {
 
     private static Lottos issueLottos(Money money) {
         LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
-        return lottoMachine.issue(money);
+        return lottoMachine.issue(money.getIssueAmount());
     }
 
     private WinningLotto readWinningLotto() {

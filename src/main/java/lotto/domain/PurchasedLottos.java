@@ -10,6 +10,14 @@ public class PurchasedLottos {
         lottos = createLottos(money);
     }
 
+    private PurchasedLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
+    }
+
+    public static PurchasedLottos of(List<Lotto> lottos) {
+        return new PurchasedLottos(lottos);
+    }
+
     public static PurchasedLottos from(Money money) {
         return new PurchasedLottos(money);
     }

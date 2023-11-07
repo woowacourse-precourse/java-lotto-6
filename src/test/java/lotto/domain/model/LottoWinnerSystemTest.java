@@ -31,4 +31,31 @@ class LottoWinnerSystemTest {
         assertThat(isContainBonus).isEqualTo(false);
     }
 
+
+    @Test
+    void 당첨번호_6개_아닐경우() {
+        List<Integer> winNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoWinnerSystem.isValidLength(winNumber, WINNER_NUMBER_COUNT);
+        });
+    }
+
+    @Test
+    void 당첨번호_중복번호_존재할경우() {
+        List<Integer> winNumber = new ArrayList<>(List.of(1, 2, 3, 4, 5, 5));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoWinnerSystem.isDistinct(winNumber);
+        });
+    }
+
+    @Test
+    void 당첨번호_정상범위_아닐경우() {
+        List<Integer> winNumber = new ArrayList<>(List.of(0, 2, 3, 4, 5, 6));
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            lottoWinnerSystem.isValidRange(winNumber);
+        });
+    }
 }

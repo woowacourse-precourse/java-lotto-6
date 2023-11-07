@@ -6,7 +6,7 @@ import java.util.List;
 public class LottoStore {
 
     private int ticket;
-    private final LottoNumberGenerator lottoNumberGenerator = LottoNumberGenerator.getInstance();
+    private final LottoGenerator lottoNumberGenerator = LottoGenerator.getInstance();
 
     private static final LottoStore instance = new LottoStore();
 
@@ -23,10 +23,10 @@ public class LottoStore {
 
     public List<Lotto> buyLotto(int money) {
         buyTicket(money);
-        List<List<Integer>> purchasedLotto = new ArrayList<>();
+        List<Lotto> purchasedLotto = new ArrayList<>();
         for (int i = 0; i < ticket; i++) {
             purchasedLotto.add(lottoNumberGenerator.generate());
         }
-        return purchasedLotto.stream().map(Lotto::new).toList();
+        return purchasedLotto;
     }
 }

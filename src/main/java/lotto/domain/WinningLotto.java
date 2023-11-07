@@ -1,8 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.ErrorMessage;
-import lotto.view.InputView;
+import lotto.constant.ErrorMessage;
 
 public class WinningLotto {
     private final Lotto standardNumbers;

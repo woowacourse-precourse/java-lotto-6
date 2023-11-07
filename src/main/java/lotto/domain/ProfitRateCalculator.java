@@ -3,7 +3,7 @@ package lotto.domain;
 import static java.util.Arrays.stream;
 
 import java.util.List;
-import lotto.Rank;
+import lotto.constant.Rank;
 
 public class ProfitRateCalculator {
     public ProfitRateCalculator() {

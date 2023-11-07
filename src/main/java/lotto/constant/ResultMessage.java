@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum ResultMessage {
     FIFTH_STATISTIC("3개 일치 (5,000원) - %d개"),

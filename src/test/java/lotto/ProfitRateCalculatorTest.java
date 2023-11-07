@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
+import lotto.constant.Rank;
 import lotto.domain.Money;
 import lotto.domain.ProfitRateCalculator;
 import org.junit.jupiter.api.DisplayName;

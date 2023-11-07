@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.Rank;
+import lotto.constant.Rank;
 import lotto.domain.LottoScanner;
 import lotto.domain.Lottos;
 import lotto.domain.Money;

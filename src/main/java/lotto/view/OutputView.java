@@ -1,8 +1,7 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.ResultMessage;
-import lotto.service.LottosDTO;
+import lotto.constant.ResultMessage;
 import lotto.service.ResultDTO;
 
 public class OutputView {

@@ -1,9 +1,12 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.WinningResult;
 
 public class Output {
     private static final String MSG_ASK_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String MSG_PUBLISHED_LOTTO_COUNT = "개를 구매했습니다.";
     private static final String MSG_ASK_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String MSG_ASK_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String MSG_WINNER_STATISTICS_INTRODUCTION = "당첨 통계";
@@ -17,11 +20,28 @@ public class Output {
     private static final String COUNT = "개";
     private static final String DASH = "-";
     private static final String BLANK = " ";
+    private static final String COMMA = ",";
     private static final String NEW_LINE = "\n";
     private static final String PERCENTAGE = "%";
+    private static final String LEFT_BRACKET = "[";
+    private static final String RIGHT_BRACKET = "]";
 
     public static void askAmount() {
         System.out.println(MSG_ASK_AMOUNT);
+    }
+
+    public static void printPublishedLottoInformation(List<Lotto> lottoes) {
+        String message = NEW_LINE + lottoes.size() + MSG_PUBLISHED_LOTTO_COUNT + NEW_LINE;
+        for (int i = 0; i < lottoes.size(); i++) {
+            message += LEFT_BRACKET;
+            List<Integer> numbers = lottoes.get(i).getNumbers();
+            for (int j = 0; j < numbers.size() - 1; j++) {
+                message += numbers.get(j) + COMMA;
+            }
+            message += numbers.get(numbers.size() - 1) + RIGHT_BRACKET + NEW_LINE;
+        }
+
+        System.out.print(message);
     }
 
     public static void askWinningNumber() {

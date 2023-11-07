@@ -1,7 +1,8 @@
 package lotto.constants;
 
 public enum MsgConstants {
-    PLEASE_ENTER_PURCHASE_AMOUNT("구입금액을 입력해 주세요.");
+    PLEASE_ENTER_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
+    PURCHASED_SOME_PIECES("\n%d개를 구매했습니다.\n");
 
     private final String message;
 

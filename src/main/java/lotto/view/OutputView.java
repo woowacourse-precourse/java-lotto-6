@@ -12,4 +12,8 @@ public class OutputView {
     public static void printEnterPurchaseAmount() {
         System.out.println(MsgConstants.PLEASE_ENTER_PURCHASE_AMOUNT.getData());
     }
+
+    public static void printPurchasedLottoNumber(String msg) {
+        System.out.println(msg);
+    }
 }

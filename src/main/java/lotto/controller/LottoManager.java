@@ -15,6 +15,7 @@ public class LottoManager {
 
         purchaseAmount = purchaseLotto();
         LottoChanger lottoChanger = new LottoChanger(Integer.parseInt(purchaseAmount));
+        OutputView.printLottoCount(lottoChanger.getLottoCount());
     }
 
     private String purchaseLotto(){

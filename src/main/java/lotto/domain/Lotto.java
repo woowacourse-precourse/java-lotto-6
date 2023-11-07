@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.exception.lotto.LottoNumberDuplicatedException;
 import lotto.exception.lotto.LottoNumberSizeException;
 
@@ -52,11 +51,8 @@ public class Lotto {
                 .count();
     }
 
-    @Override
     public String toString() {
-        String numbersString = numbers.stream()
-                .map(LottoNumber::toString)
-                .collect(Collectors.joining(", "));
-        return String.format("[%s]", numbersString);
+        return numbers.toString();
     }
+
 }

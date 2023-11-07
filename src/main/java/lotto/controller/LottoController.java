@@ -19,6 +19,7 @@ public class LottoController {
         purchaseLottoes();
         WinNumbersDto winNumbersDto = createWinNumbers();
         ResultDto resultDto = lottoService.generateResult(winNumbersDto);
+        outputView.announceFinalResult(resultDto);
     }
 
     private void purchaseLottoes() {

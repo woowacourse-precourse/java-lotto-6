@@ -4,5 +4,5 @@ import lotto.util.Ranking;
 
 import java.util.Map;
 
-public record ResultDto(Map<Ranking, Integer> rankingCount, double benefitRate) {
+public record ResultDto(Map<Ranking, Integer> rankingCounts, double benefitRate) {
 }

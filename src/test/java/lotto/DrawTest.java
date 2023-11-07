@@ -132,4 +132,32 @@ public class DrawTest extends Draw{
         //then
         assertThat(matchCount).isEqualTo(4);
     }
+
+    @Test
+    void 보너스_번호가_일치하는_경우() {
+
+        //given
+        Lotto lotto = new Lotto(List.of(1, 3, 5, 6, 34, 21));
+        int bonusNum = 21;
+
+        //when
+        boolean result = hasBonus(lotto, bonusNum);
+
+        //then
+        assertThat(result).isEqualTo(true);
+    }
+
+    @Test
+    void 보너스_번호가_일치하지_않는_경우() {
+
+        //given
+        Lotto lotto = new Lotto(List.of(1, 3, 5, 6, 34, 21));
+        int bonusNum = 22;
+
+        //when
+        boolean result = hasBonus(lotto, bonusNum);
+
+        //then
+        assertThat(result).isEqualTo(false);
+    }
 }

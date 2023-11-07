@@ -8,7 +8,9 @@ public class InputView {
 
     public static int getPurchaseMoney() {
         System.out.println(ConsoleMessage.GET_PURCHASE_MONEY.getMessage());
-        return validateNumber(Console.readLine());
+        int number = validateNumber(Console.readLine());
+        System.out.println();
+        return number;
     }
 
 

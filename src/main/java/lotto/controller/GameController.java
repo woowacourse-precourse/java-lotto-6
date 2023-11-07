@@ -38,7 +38,7 @@ public class GameController {
     }
 
     private void inputLottoNumbers() {
-        
+
     }
 
     private void printFinalPrize() {

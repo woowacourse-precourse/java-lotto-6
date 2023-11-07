@@ -17,7 +17,7 @@ public class Validator {
     }
 
     public static void notZeroOfRestDividedThousand(int integerPurchase) {
-        if (integerPurchase % Number.THOUSAND.getMessage() != 0) {
+        if (integerPurchase % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessage.ENTER_NOT_UNDIVIDED_NUMBER_OF_THOUSAND.getMessage());
         }
 

@@ -7,6 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.util.constant.Constant.*;
 
 public class LottoService {
 
@@ -22,7 +23,7 @@ public class LottoService {
     }
 
     public List<Integer> pickLottoNumbers() {
-        List<Integer> pickUniqueNumbersInRange = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6));
+        List<Integer> pickUniqueNumbersInRange = new ArrayList<>(pickUniqueNumbersInRange(LOTTO_MIN_RANGE, LOTTO_MAX_RANGE, LOTTO_NUMBER_SIZE));
         Collections.sort(pickUniqueNumbersInRange);
 
         return pickUniqueNumbersInRange;

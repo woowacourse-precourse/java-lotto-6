@@ -1,12 +1,10 @@
 package lotto.model.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.util.validate.InputValidate;
-
 import java.util.List;
 
-import static camp.nextstep.edu.missionutils.Randoms.*;
-import static lotto.util.validate.InputValidate.*;
+import static lotto.util.constant.Constant.LOTTO_NUMBER_SIZE;
+import static lotto.util.validate.InputValidate.validateRangeInputLottoNumbers;
+import static lotto.util.validate.InputValidate.validateUniqueInputLottoNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,7 +17,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException();
         }
     }

@@ -16,4 +16,8 @@ public class OutputView {
     public static void printPurchasedLottoNumber(String msg) {
         System.out.println(msg);
     }
+    public static void printEnterWinningNumber() {
+        System.out.println(MsgConstants.PLEASE_ENTER_WINNING_NUMBER.getData());
+    }
+
 }

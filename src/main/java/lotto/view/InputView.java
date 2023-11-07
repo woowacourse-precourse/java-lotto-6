@@ -7,5 +7,8 @@ public class InputView {
     public static String getInputPurchaseAmount() {
         return Console.readLine();
     }
+    public static String getInputWinningNumber() {
+        return Console.readLine();
+    }
 
 }

@@ -17,6 +17,8 @@ public class LottoController {
         String purchaseAmount = getPurchaseAmount();
         LottoTicket lottoTicket = getLottoTicket(purchaseAmount);
         printPurchasedLottoNumber(lottoTicket);
+        String winningNumber = getWinningNumber();
+
 
     }
 
@@ -54,5 +56,17 @@ public class LottoController {
         return lottoNumber.stream()
                 .map(String::valueOf)
                 .collect(Collectors.joining(", "));
+    }
+
+    private String getWinningNumber() {
+        try{
+            OutputView.printEnterPurchaseAmount();
+            return InputView.getInputPurchaseAmount();
+        }
+        catch (Exception ex) {
+            OutputView.printErrorMessage(ex.getMessage());
+            return getWinningNumber();
+        }
+
     }
 }

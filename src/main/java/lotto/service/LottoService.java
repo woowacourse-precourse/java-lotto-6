@@ -14,6 +14,9 @@ public class LottoService {
     private static final String COMMON_ERROR_MESSAGE = "[ERROR] ";
     private static final String LOTTO_NUMBER_MESSAGE = COMMON_ERROR_MESSAGE + "당첨 번호는 ";
     private static final String BONUS_NUMBER_MESSAGE = COMMON_ERROR_MESSAGE + "보너스 번호는 ";
+    private static final String BUY_AMOUNT_MESSAGE = COMMON_ERROR_MESSAGE + "구입 가격은 ";
+
+    private static final String INVALID_BUY_AMOUNT = BUY_AMOUNT_MESSAGE + "1000원 단위로 입력해야 합니다.";
 
     private static final String INVALID_LOTTO_SIZE_MESSAGE = "6자리의 숫자여야 합니다.";
     private static final String DUPLICATE_MESSAGE = "서로 중복 될 수 없습니다.";
@@ -28,6 +31,17 @@ public class LottoService {
         userLottoNumbersAndBonusNumber.put("userBonusNumber", inputUserBonusNumber);
 
         return userLottoNumbersAndBonusNumber;
+    }
+
+    public void buyLottoAmountValidate(String inputBuyLottoAmount) {
+        if (!isInteger(inputBuyLottoAmount)) {
+            throw new IllegalArgumentException(BUY_AMOUNT_MESSAGE + ONLY_NUMBER_MESSAGE);
+        }
+
+        int buyLottoAmount = Integer.parseInt(inputBuyLottoAmount);
+        if (buyLottoAmount % 1000 != 0) {
+            throw new IllegalArgumentException(INVALID_BUY_AMOUNT);
+        }
     }
 
     public void userLottoNumbersValidate(String userLottoNumbers) {

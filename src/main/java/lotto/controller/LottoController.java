@@ -14,7 +14,8 @@ public class LottoController {
     }
 
     public void lottoGamePlay() {
-        consoleInputView.inputBuyLottoAmount();
+        String inputBuyLottoAmount = consoleInputView.inputBuyLottoAmount();
+        lottoService.buyLottoAmountValidate(inputBuyLottoAmount);
 
         String inputUserLottoNumbers = consoleInputView.inputUserLottoNumbers();
         lottoService.userLottoNumbersValidate(inputUserLottoNumbers);

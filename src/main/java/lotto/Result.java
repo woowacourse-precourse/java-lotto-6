@@ -27,4 +27,13 @@ public class Result {
 		Message.MATCH_FIVE_WITH_BONUS.getMessage(matchFiveWithBonus);
 		Message.MATCH_SIX.getMessage(matchSix);
 	}
+
+	public void printProfitRate(int money){
+		int total = matchThree * 5000
+				+ matchFour * 50000
+				+ matchFive * 1500000
+				+ matchFiveWithBonus * 30000000
+				+ matchSix * 2000000000;
+		Message.printMessage("총 수익률은 " + total / money + "입니다.");
+	}
 }

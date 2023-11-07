@@ -42,6 +42,5 @@ public class LottoGame {
 			boolean bonus = lotto.matchBonus(winningNumbers.size() - 1);
 			Result.setResult(result, bonus);
 		}
-		Result.printResult();
 	}
 }

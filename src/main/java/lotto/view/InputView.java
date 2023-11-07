@@ -6,8 +6,8 @@ import lotto.domain.Lotto;
 
 import static lotto.utils.Constants.BUY_LOTTERY_INPUT;
 import static lotto.utils.Constants.TICKETS_COUNT_OUTPUT;
-import static lotto.utils.ErrorMessages.INPUT_NUMBER_FORMAT;
-import static lotto.utils.ErrorMessages.PAYMENT_OVER_1000_UNIT;
+import static lotto.view.InputValidator.calculateTicketCount;
+import static lotto.view.InputValidator.parsePayment;
 
 public class InputView {
 
@@ -49,19 +49,6 @@ public class InputView {
     public static void printLotto(Buyer buyer) {
         for (Lotto numbers :buyer.getLotto()){
             System.out.println(numbers.getNumbers());
-        }
-    }
-
-    public static int calculateTicketCount(int payment) {
-        if (payment % 1000 != 0) throw new IllegalArgumentException(PAYMENT_OVER_1000_UNIT);
-        return payment / 1000;
-    }
-
-    private static int parsePayment(String string) {
-        try {
-            return Integer.parseInt(string);
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException(INPUT_NUMBER_FORMAT);
         }
     }
 }

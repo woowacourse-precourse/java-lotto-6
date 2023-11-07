@@ -33,8 +33,8 @@ public class LottoView {
         System.out.println("\n당첨 통계\n---");
     }
 
-    public void outputWinningDescription(String t) {
-        System.out.println(t);
+    public void outputWinningDescription(String description) {
+        System.out.println(description);
     }
 
 

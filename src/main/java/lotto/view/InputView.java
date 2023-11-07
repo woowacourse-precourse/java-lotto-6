@@ -41,6 +41,7 @@ public class InputView {
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumber = readLine();
         try {
+            Validator.validateBonusNumber(bonusNumber, winningNumbers.getNumbers());
             System.out.println();
             return Integer.parseInt(bonusNumber);
         } catch (IllegalArgumentException e) {

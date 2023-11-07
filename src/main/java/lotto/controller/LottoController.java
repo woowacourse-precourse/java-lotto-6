@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.service.LottoService;
+import lotto.utils.InputValidator;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -14,9 +15,19 @@ public class LottoController {
     }
 
     public void start() {
-        InputView.printPayAmountInputMessage();
-        String lottoPayAmount = Console.readLine();
-        // TODO : 로또 구매 기능 인풋 Validate
+        String lottoPayAmount;
+        while (true) {
+            try {
+                InputView.printPayAmountInputMessage();
+                lottoPayAmount = Console.readLine();
+                InputValidator.checkLottoPayAmountInput(lottoPayAmount);
+
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+
         lottoService.publishLottos(Integer.parseInt(lottoPayAmount));
 
         InputView.printJackpotNumberInputMessage();
@@ -32,7 +43,6 @@ public class LottoController {
         long returnAmount = lottoService.announceWinningResult(jackpotNumbers, Integer.parseInt(bonusNumberInput));
 
         lottoService.announceRateOfReturn(Integer.parseInt(lottoPayAmount), returnAmount);
-
 
     }
 

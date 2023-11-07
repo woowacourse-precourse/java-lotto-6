@@ -20,15 +20,16 @@ import java.util.stream.Collectors;
 public class InputChecker {
     static int readLottoPrice() {
         while (true) {
-            System.out.println(PURCHASE_AMOUNT.getPromptMessage());
             try {
-                int price = Integer.parseInt(Console.readLine());
+                String price_string = getPurchaseAmountInput();
+                checkIfNumeric(price_string);
+                int price = Integer.parseInt(price_string);
                 if (price % 1000 != 0) {
                     throw new IllegalArgumentException(THOUSANDS.getErrorMessage());
                 }
                 return price;
-            } catch (NumberFormatException e) {
-                System.out.println(WRONG_FORMAT.getErrorMessage());
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -38,7 +39,7 @@ public class InputChecker {
 
         while (winningNumbers == null) {
             try {
-                String input = getInput();
+                String input = getWinningNumberInput();
                 winningNumbers = processInput(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -48,9 +49,14 @@ public class InputChecker {
         return winningNumbers;
     }
 
-    private String getInput() {
+    private String getWinningNumberInput() {
         System.out.println(WINNING_NUMBERS.getPromptMessage());
         return Console.readLine();
+    }
+    private static String getPurchaseAmountInput() {
+        System.out.println(PURCHASE_AMOUNT.getPromptMessage());
+        String price_string = Console.readLine();
+        return price_string;
     }
 
     private List<Integer> processInput(String input) {
@@ -100,11 +106,13 @@ public class InputChecker {
             try{
                 System.out.println(BONUS_NUMBER.getPromptMessage());
                 bonusNumber = Integer.parseInt(Console.readLine());
-                if(winningNumbers.contains(bonusNumber)) throw new IllegalArgumentException(
-                        DUPLICATES_BONUS_NUMBERS.getErrorMessage());
+
+                if(winningNumbers.contains(bonusNumber)) {
+                    throw new IllegalArgumentException(DUPLICATES_BONUS_NUMBERS.getErrorMessage());
+                }
                 return bonusNumber;
-            }catch (NumberFormatException e) {
-                throw new IllegalArgumentException(WRONG_FORMAT.getErrorMessage());
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

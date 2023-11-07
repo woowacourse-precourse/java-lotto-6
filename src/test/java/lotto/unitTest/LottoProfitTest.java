@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class LottoProfitTest {
 
     @Test
-    public void 수익률_계산_테스트() {
+    void 수익률_계산_테스트() {
         // Given
         int purchasedLottosSize = 10;
         long totalReward = 20000;
@@ -21,7 +21,7 @@ public class LottoProfitTest {
     }
 
     @Test
-    public void 수익률_계산_테스트_2() {
+    void 수익률_계산_테스트_v2() {
         // Given
         int purchasedLottosSize = 8;
         long totalReward = 5000;

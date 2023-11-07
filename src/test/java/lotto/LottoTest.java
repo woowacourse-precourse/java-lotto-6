@@ -1,5 +1,7 @@
 package lotto;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +22,6 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -29,8 +30,11 @@ class LottoTest {
     @DisplayName("로또 번호가 6개보다 적으면 예외가 발생한다.")
     @Test
     void 로또번호_6개미만_오류발생() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    public static InputStream setReadLine(String readLine) {
+        return new ByteArrayInputStream(readLine.getBytes());
     }
 }

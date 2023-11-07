@@ -1,14 +1,14 @@
 package lotto;
 
-import lotto.v1.controller.LottoControllerV1;
-import lotto.v1.model.LottoMachineV1;
-import lotto.v1.view.LottoViewV1;
+import lotto.v2.controller.LottoControllerV2;
+import lotto.v2.model.LottoMachineV2;
+import lotto.v2.view.LottoViewV2;
 
 public class Application {
     public static void main(String[] args) {
-        LottoMachineV1 lottoMachine = new LottoMachineV1();
-        LottoViewV1 lottoView = new LottoViewV1();
-        LottoControllerV1 lottoController = new LottoControllerV1(lottoMachine, lottoView);
-        lottoController.play();
+        LottoMachineV2 lottoMachine = new LottoMachineV2();
+        LottoViewV2 lottoView = new LottoViewV2();
+        LottoControllerV2 controller = new LottoControllerV2(lottoMachine, lottoView);
+        controller.play();
     }
 }

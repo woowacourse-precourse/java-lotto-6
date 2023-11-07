@@ -4,12 +4,14 @@ import lotto.v2.util.LottoRank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 class LottoResultV2Test {
+
 
     @Test
     @DisplayName("생성자는 모든 로또 순위를 0으로 초기화해야 한다.")
@@ -38,5 +40,7 @@ class LottoResultV2Test {
         // then
         assertThat(result.getWinningResult()).containsEntry(LottoRank.valueOf(matchCount, bonusMatch), 1);
     }
+
+    //TODO : updateMatchCount Test Code 작성
 
 }

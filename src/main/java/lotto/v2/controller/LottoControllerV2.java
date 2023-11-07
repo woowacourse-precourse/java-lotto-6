@@ -1,28 +1,28 @@
 package lotto.v2.controller;
 
-import lotto.v1.model.LottoV1;
-import lotto.v1.model.LottoMachineV1;
-import lotto.v1.model.LottoResultV1;
-import lotto.v1.model.WinningLottoV1;
-import lotto.v1.view.LottoViewV1;
+import lotto.v2.model.LottoMachineV2;
+import lotto.v2.model.LottoResultV2;
+import lotto.v2.model.LottoV2;
+import lotto.v2.model.WinningLottoV2;
+import lotto.v2.view.LottoViewV2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoControllerV2 {
     private static final int LOTTO_PRICE = 1000;
-    private final LottoMachineV1 lottoMachine;
-    private final LottoViewV1 lottoView;
+    private final LottoMachineV2 lottoMachine;
+    private final LottoViewV2 lottoView;
 
-    public LottoControllerV2(LottoMachineV1 lottoMachine, LottoViewV1 lottoView) {
+    public LottoControllerV2(LottoMachineV2 lottoMachine, LottoViewV2 lottoView) {
         this.lottoMachine = lottoMachine;
         this.lottoView = lottoView;
     }
 
     public void play() {
         int purchaseAmount = getValidPurchaseAmount();
-        List<LottoV1> purchasedLottos = purchaseLottos(purchaseAmount);
-        WinningLottoV1 winningLotto = getWinningLotto();
+        List<LottoV2> purchasedLottos = purchaseLottos(purchaseAmount);
+        WinningLottoV2 winningLotto = getWinningLotto();
 
         checkResults(purchasedLottos, winningLotto);
     }
@@ -41,25 +41,25 @@ public class LottoControllerV2 {
         return purchaseAmount;
     }
 
-    private List<LottoV1> purchaseLottos(int purchaseAmount) {
+    private List<LottoV2> purchaseLottos(int purchaseAmount) {
         int lottoCount = purchaseAmount / 1000;
         System.out.println(lottoCount + "개를 구매했습니다.");
 
-        List<LottoV1> purchasedLottos = new ArrayList<>();
+        List<LottoV2> purchasedLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; ++i) {
-            LottoV1 lotto = lottoMachine.generateLotto();
+            LottoV2 lotto = lottoMachine.generateLotto();
             purchasedLottos.add(lotto);
             System.out.println(lotto.getNumbers());
         }
         return purchasedLottos;
     }
 
-    private WinningLottoV1 getWinningLotto() {
+    private WinningLottoV2 getWinningLotto() {
         while (true) {
             try {
                 List<Integer> winningNumbers = lottoView.inputWinningNumbers();
                 int bonusNumber = lottoView.inputBonusNumber(winningNumbers);
-                return new WinningLottoV1(winningNumbers, bonusNumber);
+                return new WinningLottoV2(winningNumbers, bonusNumber);
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자 형식이 올바르지 않습니다. 다시 시도해주세요.");
             } catch (IllegalArgumentException e) {
@@ -73,13 +73,13 @@ public class LottoControllerV2 {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위의 정수여야 합니다.");
         }
     }
-    private void checkResults(List<LottoV1> purchasedLottos, WinningLottoV1 winningLotto) {
-        LottoResultV1 lottoResult = new LottoResultV1();
+    private void checkResults(List<LottoV2> purchasedLottos, WinningLottoV2 winningLotto) {
+        LottoResultV2 lottoResult = new LottoResultV2();
         lottoResult.calculateResults(purchasedLottos, winningLotto.getLotto(), winningLotto.getBonusNumber());
 
         lottoResult.printStatistics();
-        double yield = lottoResult.calculateYield(LOTTO_PRICE, purchasedLottos.size());
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
+//        double yield = lottoResult.calculateYield(LOTTO_PRICE, purchasedLottos.size());
+//        System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
     }
 
 }

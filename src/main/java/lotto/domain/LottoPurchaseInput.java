@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import lotto.data.Amount;
 import lotto.data.Lotto;
+import lotto.data.WinningCombination;
 import lotto.message.ErrorMessage;
 import lotto.message.OutputMessage;
 import lotto.utils.Util;
@@ -41,18 +42,20 @@ public class LottoPurchaseInput {
         }
     }
 
-    public static int inputBonusNumber() {
+    public static WinningCombination inputBonusNumber(List<Integer> winningNumbers) {
         try {
             OutputMessage.ASK_BONUS_NUMBER.printMessage();
             String inputBonusNumber = Console.readLine().trim();
 
             validate(inputBonusNumber);
             Util.validateInteger(inputBonusNumber);
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
+            WinningCombination winningCombination = new WinningCombination(winningNumbers, bonusNumber);
 
-            return Integer.parseInt(inputBonusNumber);
+            return winningCombination;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputBonusNumber();
+            return inputBonusNumber(winningNumbers);
         }
     }
 

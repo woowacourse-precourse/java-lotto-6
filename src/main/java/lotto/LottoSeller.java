@@ -24,8 +24,7 @@ public class LottoSeller {
         OutputMessage.printLottos(lottos);
 
         List<Integer> winningNumbers = LottoPurchaseInput.inputWinningNumbers();
-        int bonusNumber = LottoPurchaseInput.inputBonusNumber();
-        WinningCombination winningCombination = new WinningCombination(winningNumbers, bonusNumber);
+        WinningCombination winningCombination = LottoPurchaseInput.inputBonusNumber(winningNumbers);
 
         Map<LottoPrize, BigDecimal> lottoRank = winningCombination.getResultWith(lottos);
         LottoResult lottoResult = new LottoResult(lottoRank, purchaseAmount);

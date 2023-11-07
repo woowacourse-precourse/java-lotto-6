@@ -17,9 +17,13 @@ public class GameMainController {
     }
 
     public void run() {
-        startGame();
-        playGame();
-        stopGame();
+        try {
+            startGame();
+            playGame();
+            stopGame();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void startGame() {

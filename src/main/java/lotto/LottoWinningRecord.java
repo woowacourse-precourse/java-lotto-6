@@ -3,8 +3,8 @@ package lotto;
 import java.util.List;
 
 public class LottoWinningRecord {
-    private List<Integer> winningNumbers;
-    private int bonusNumber;
+    private final List<Integer> winningNumbers;
+    private final int bonusNumber;
 
     public LottoWinningRecord(List<Integer> winningNumbers, int bonusNumber) {
         this.winningNumbers = winningNumbers;

@@ -66,7 +66,8 @@ public class UserInputManager {
 		for (int number : winningNumber) {
 			if (MIN_LOTTO_NUMBER.getValue() > number || MAX_LOTTO_NUMBER.getValue() < number) {
 				throw new IllegalArgumentException(
-					"[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue() + " 이하의 숫자를 입력하세요.");
+					"[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue()
+						+ " 이하의 숫자를 입력하세요.");
 			}
 			if (numberUsed[number]) {
 				throw new IllegalArgumentException("[ERROR] 서로 다른 숫자를 입력하세요.");

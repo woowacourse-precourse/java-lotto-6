@@ -15,7 +15,7 @@ public class MoneyDivisionCondition extends ValidationCondition {
     public void isSatisfiedBy(String money) {
         Money wons = Money.wons(Integer.parseInt(money));
         if (!wons.calculateChange(lottoPrice).equals(Money.ZERO)) {
-            throw new IllegalArgumentException("잔돈이 남습니다.");
+            throw new IllegalArgumentException(ERROR_MSG + "잔돈이 남습니다.");
         }
     }
 }

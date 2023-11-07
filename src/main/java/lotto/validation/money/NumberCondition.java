@@ -15,7 +15,7 @@ public class NumberCondition extends ValidationCondition {
         Matcher matcher = pattern.matcher(money);
 
         if (matcher.find()) {
-            throw new IllegalArgumentException("입력 문자열에 숫자 이외의 문자가 포함되어 있습니다.");
+            throw new IllegalArgumentException(ERROR_MSG + "입력 문자열에 숫자 이외의 문자가 포함되어 있습니다.");
         }
 
     }

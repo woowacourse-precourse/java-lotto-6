@@ -43,6 +43,7 @@ public class LottoGameController {
             errorView.printErrorMessage(e.getMessage());
             buyLotto();
         }
+        outputView.printLineSeparator();
         return player;
     }
 
@@ -55,6 +56,7 @@ public class LottoGameController {
             errorView.printErrorMessage(e.getMessage());
             setWinNumber();
         }
+        outputView.printLineSeparator();
         return winNumber;
     }
 
@@ -67,6 +69,7 @@ public class LottoGameController {
             errorView.printErrorMessage(e.getMessage());
             setBonusNumber();
         }
+        outputView.printLineSeparator();
         return bonusNumber;
     }
 

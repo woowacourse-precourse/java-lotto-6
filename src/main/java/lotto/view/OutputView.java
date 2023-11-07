@@ -40,6 +40,10 @@ public class OutputView {
                 .collect(Collectors.joining(", "));
     }
 
+    public void printLineSeparator() {
+        System.out.println();
+    }
+
     public void printWinNumberInput() {
         System.out.println(WIN_NUMBER_INPUT_MESSAGE);
     }

@@ -1,10 +1,10 @@
 package user;
 
-import lottomachine.CalculatorLottoAmount;
+import lottomachine.LottoAmountCalculator;
 
 public class LottoTicketBuyer {
     public int LottoTicketAmout(int money){
-        CalculatorLottoAmount calculatorLottoAmount = new CalculatorLottoAmount();
-        return calculatorLottoAmount.getLottoAmount(money);
+        LottoAmountCalculator lottoAmountCalculator = new LottoAmountCalculator();
+        return lottoAmountCalculator.getLottoAmount(money);
     }
 }

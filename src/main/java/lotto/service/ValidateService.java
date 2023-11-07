@@ -15,10 +15,6 @@ public class ValidateService {
         }
     }
 
-    public void validatePurchasePriceAll(int purchasePrice) {
-        validatePrice(purchasePrice);
-        validateCheckDivisibility(purchasePrice);
-    }
 
     public void validateInputWinningNumbersAll(List<Integer> winningNumbers) {
         validateInputLottoRange(winningNumbers);
@@ -29,18 +25,6 @@ public class ValidateService {
     public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         validateBonusNumberRange(bonusNumber);
         validateDuplicationWinningNumbersAndBonusNumber(bonusNumber, winningNumbers);
-    }
-
-    private void validatePrice(int purchasePrice) {
-        if (purchasePrice < LottoNumber.LOTTO_PRICE.getNumber()) {
-            throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_PRICE_MESSAGE.getMessage());
-        }
-    }
-
-    private void validateCheckDivisibility(int purchasePrice) {
-        if (purchasePrice % LottoNumber.LOTTO_PRICE.getNumber() != 0) {
-            throw new IllegalArgumentException(ErrorMessage.DIVISIBILITY_CHECK_AMOUNT.getMessage());
-        }
     }
 
     private void validateInputLottoRange(List<Integer> numbers) {

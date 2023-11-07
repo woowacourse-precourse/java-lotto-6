@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumber;
 import lotto.constant.LottoPrice;
 import lotto.service.InputService;
@@ -13,7 +14,6 @@ import lotto.service.ValidateService;
 public class LottoPurchase {
     private final InputService inputService = new InputService();
     private final MessageService messageService = new MessageService();
-    private final ValidateService validateService = new ValidateService();
     private final LottoService lottoService = new LottoService();
 
     private List<Lotto> purchaseLotto = new ArrayList<>();
@@ -23,8 +23,8 @@ public class LottoPurchase {
         messageService.inputPurchasePrice();
         while (true) {
             try {
-                purchasePrice = validateService.validateNumber(inputService.inputValue());
-                validateService.validatePurchasePriceAll(purchasePrice);
+                purchasePrice = validateNumber(inputService.inputValue());
+                validatePurchasePriceAll(purchasePrice);
                 return purchasePrice;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -51,5 +51,28 @@ public class LottoPurchase {
 
     public int getPurchasePrice() {
         return purchasePrice;
+    }
+
+    private void validatePurchasePriceAll(int purchasePrice) {
+        validatePrice(purchasePrice);
+        validateCheckDivisibility(purchasePrice);
+    }
+    private void validatePrice(int purchasePrice) {
+        if (purchasePrice < LottoNumber.LOTTO_PRICE.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_PRICE_MESSAGE.getMessage());
+        }
+    }
+
+    private void validateCheckDivisibility(int purchasePrice) {
+        if (purchasePrice % LottoNumber.LOTTO_PRICE.getNumber() != 0) {
+            throw new IllegalArgumentException(ErrorMessage.DIVISIBILITY_CHECK_AMOUNT.getMessage());
+        }
+    }
+    private int validateNumber(String inputValue) {
+        try {
+            return Integer.parseInt(inputValue);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_ERROR.getMessage());
+        }
     }
 }

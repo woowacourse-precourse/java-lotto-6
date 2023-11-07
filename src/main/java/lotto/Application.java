@@ -62,11 +62,9 @@ public class Application {
     }
     public static void compareLottoWithWinning() {
         for(Lotto lottoTicket : lottoTickets) {
-            List<Integer> resultList = winningNumbers.stream()
-                    .filter(old -> lottoTicket.getNumbers().stream()
-                            .anyMatch(Predicate.isEqual(old)))
-                    .collect(Collectors.toList());
-            Integer sameNumber = resultList.size();
+            Integer sameNumber = (int) lottoTicket.getNumbers().stream()
+                    .filter(winningNumbers::contains)
+                    .count();
             //5개면 보너스가 맞는지
             //enum 어떻게 쓰지?
         }

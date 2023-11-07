@@ -24,7 +24,7 @@ public class PurchaseLotto {
     public long calculateTotalWinningPrice(WinningLotto winningLotto) {
         List<Rank> winningRanks = getWinningRanks(winningLotto);
         return winningRanks.stream()
-                .mapToLong(Rank::getWinningPrice)
+                .mapToLong(Rank::getPrizeAmount)
                 .sum();
     }
 

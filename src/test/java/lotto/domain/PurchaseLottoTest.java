@@ -34,7 +34,7 @@ class PurchaseLottoTest {
         );
         final List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
         final int bonusNumber = 7;
-        final long predicationTotalWinningPrice = Rank.FIRST.getWinningPrice() + Rank.SECOND.getWinningPrice();
+        final long predicationTotalWinningPrice = Rank.FIRST.getPrizeAmount() + Rank.SECOND.getPrizeAmount();
 
         PurchaseLotto purchaseLotto = createPurchaseLotto(purchaseLottoNumbers);
         WinningLotto winningLotto = createWinningLottoBy(winningLottoNumbers, bonusNumber);

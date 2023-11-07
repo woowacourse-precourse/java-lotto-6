@@ -4,6 +4,8 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 
 public class OutputView {
+    private static final String RESULT_MESSAGE = "당첨 통계";
+    private static final String DIVIDING_LINE = "---";
 
     public static void printEmptyLine() {
         System.out.println();
@@ -16,5 +18,9 @@ public class OutputView {
             System.out.println(lotto.getSortedNumbers());
         }
         printEmptyLine();
+    }
+
+    public static void printMatchResult() {
+
     }
 }

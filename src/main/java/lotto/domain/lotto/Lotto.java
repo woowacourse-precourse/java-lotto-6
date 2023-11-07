@@ -50,12 +50,12 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     private boolean isInRange(int number) {
         return number >= STARTINCLUSIVE && number <= ENDINCLUSIVE;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     public boolean hasSameNumber(int number) {
@@ -63,7 +63,13 @@ public class Lotto {
     }
 
     public int countWinningNumbers(List<Integer> winningNumbers) {
-        return -1;
+        int count = 0;
+        for(int number : numbers){
+            if(winningNumbers.contains(number)){
+                count++;
+            }
+        }
+        return count;
     }
 
 }

@@ -3,8 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.GeneralMessage;
 
-import static lotto.constant.GeneralMessage.ASK_BUY_PRICE;
-import static lotto.constant.GeneralMessage.ASK_WINNING_NUMBERS;
+import static lotto.constant.GeneralMessage.*;
 
 public class InputView {
     private static String askWithGeneralMessage(GeneralMessage message) {
@@ -20,5 +19,9 @@ public class InputView {
 
     public static String askWinningNumbers() {
         return askWithGeneralMessage(ASK_WINNING_NUMBERS);
+    }
+
+    public static String askBonusNumber() {
+        return askWithGeneralMessage(ASK_BONUS_NUMBER);
     }
 }

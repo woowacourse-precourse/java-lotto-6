@@ -42,4 +42,14 @@ class WinningNumbersTest {
                 .isThrownBy(() -> new WinningNumbers(winningNumbers));
     }
 
+    @Test
+    void 당첨_번호의_범위가_올바르지_못하면_예외를_발생한다() {
+        // given
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 46);
+
+        // when, then
+        assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

@@ -128,7 +128,7 @@
 * 메소드:
     * match
 
-#### DrawResult (VO)
+#### DrawResult
 
 * 책임:
     * 로또 객체와 보너스 볼 번호를 검증 후 저장한다.
@@ -137,12 +137,14 @@
     * 로또 객체
     * 보너스 볼 번호
 * 메소드:
-    * matchTickets
+    * matchTicket
 
-#### Seller
+#### TicketSeller
 
 * 책임:
     * 티켓 객체를 지정한 규칙에 맞게 생성한다.
+* 메소드:
+    * createTicket
 
 ### 📁 Repository Layer
 

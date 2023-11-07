@@ -96,7 +96,6 @@ public class CommonValidatorImpl implements CommonValidator {
 		} catch (NumberFormatException e) {
 			ErrorOperation.RANGE_ERROR.apply();
 		}
-		System.out.println(parsePrice);
 		return parsePrice;
 	}
 }

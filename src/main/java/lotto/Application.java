@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoGame;
+import lotto.domain.LottoService;
 import lotto.domain.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,7 +11,8 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         User user = new User();
-        LottoGame lottoGame = new LottoGame(inputView, outputView, user);
+        LottoService lottoService = new LottoService();
+        LottoGame lottoGame = new LottoGame(inputView, outputView, user, lottoService);
         lottoGame.start();
     }
 }

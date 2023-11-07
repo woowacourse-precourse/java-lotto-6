@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoService;
 import lotto.domain.User;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,10 +18,13 @@ public class LottoGame {
     private OutputView outputView;
     private User user;
 
-    public LottoGame(InputView inputView, OutputView outputView, User user) {
+    private LottoService lottoService;
+
+    public LottoGame(InputView inputView, OutputView outputView, User user, LottoService lottoService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.user = user;
+        this.lottoService = lottoService;
     }
 
     public void start() {
@@ -28,6 +32,12 @@ public class LottoGame {
         makeLotto();
         winningNumber();
         bonusNumber();
+        winningResult();
+    }
+
+    private void winningResult() {
+        outputView.winningResult();
+        lottoService.compareValue(lottos, user);
     }
 
     private void bonusNumber() {

@@ -53,6 +53,14 @@ public class User {
         return purchaseAmount;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public long getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateRange(int checkNumber) {
         if (checkNumber < 1 || checkNumber > 45) {
             throw new IllegalArgumentException(ErrorMessages.INVALID_RANGE.getMessage());

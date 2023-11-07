@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 
 public class OutputView {
-    private static final int LOTTO_SIZE = 6;
+    public static final int LOTTO_SIZE = 6;
 
     public void printPurchaseAmount(long purchaseAmount) {
         System.out.println("\n" + purchaseAmount + "개를 구매했습니다.");
@@ -39,5 +39,10 @@ public class OutputView {
 
     public void bonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
+    }
+
+    public void winningResult() {
+        System.out.println("\n당첨 통계");
+        System.out.println("---");
     }
 }

@@ -19,15 +19,15 @@ public class GameController {
     private final LottoCalculator lottoCalculator;
     private final RankingCounter rankingCounter;
 
-    public GameController() {
+    public GameController(final InputView inputView, final OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
         this.rankingCounter = new RankingCounter();
-        this.inputView = new InputView();
-        this.outputView = new OutputView();
-        this.inputController = new InputController();
+        this.inputController = new InputController(inputView);
         this.lottoCalculator = new LottoCalculator(rankingCounter);
     }
 
-    public void play() {
+    public void run() {
         int purchasePrice = inputController.inputPurchasePrice();
         int purchaseLottoNumber = Unit.calculateLottoTicketCanPurchase(purchasePrice);
         List<Lotto> playerNumbers = generateLottoNumbers(purchaseLottoNumber);
@@ -60,6 +60,6 @@ public class GameController {
                 System.out.println(e.getMessage());
             }
         }
-        return new WinningLotto(lotto, inputController.checkBonusNumber(lotto.getNumbers()));
+        return WinningLotto.generateWinningLotto(lotto, inputController.checkBonusNumber(lotto.getNumbers()));
     }
 }

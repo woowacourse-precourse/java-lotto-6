@@ -25,6 +25,6 @@ public record PurchaseAmountRequest(Integer purchaseAmount) {
     }
 
     private Boolean isNotPurchaseAmountPositive(Integer purchaseAmount) {
-        return purchaseAmount > LottoConstant.ZERO.getValue();
+        return purchaseAmount <= LottoConstant.ZERO.getValue();
     }
 }

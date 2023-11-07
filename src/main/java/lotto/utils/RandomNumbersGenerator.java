@@ -12,7 +12,7 @@ public class RandomNumbersGenerator {
     private RandomNumbersGenerator() {
     }
 
-    public static List<Integer> createLotto() {
+    public static List<Integer> generateRandomNumber() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_COUNT);
     }
 }

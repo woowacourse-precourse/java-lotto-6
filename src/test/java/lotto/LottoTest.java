@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.domain.lotto.Lotto;
+import lotto.exception.domain.lotto.LottoNumRangeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,4 +26,11 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+
+    @Test
+    @DisplayName("로또 번호 중 하나라도 1~45 범위에서 벗어났다면 예외 발생.")
+    void testOutOfRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(LottoNumRangeException.class);
+    }
 }

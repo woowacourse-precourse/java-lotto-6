@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.constants.LottoConstants;
 import lotto.dto.LottoDto;
 
 import java.util.HashSet;
@@ -10,6 +11,7 @@ import static lotto.exception.LottoErrorCode.*;
 
 public class Lotto {
     private final List<Integer> numbers;
+
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -25,6 +27,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateLottoLength(numbers);
         validateLottoDuplication(numbers);
+        validateInbound(numbers);
     }
 
     private void validateLottoLength(List<Integer> numbers) {
@@ -50,7 +53,7 @@ public class Lotto {
     }
 
     private boolean isLottoNumber(Integer number) {
-        return 1 <= number && number <= 45;
+        return LottoConstants.LOTTO_MIN <= number && number <= LottoConstants.LOTTO_MAX;
     }
 
     public boolean contains(int number) {

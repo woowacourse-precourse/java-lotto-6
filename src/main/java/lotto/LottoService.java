@@ -9,13 +9,9 @@ import lotto.exception.LottoErrorCode;
 import java.util.*;
 import java.util.stream.IntStream;
 
+import static lotto.constants.LottoConstants.*;
+
 public class LottoService {
-
-    private static final int LOTTO_MIN = 1;
-    private static final int LOTTO_MAX = 45;
-    private static final int LOTTO_COUNT = 6;
-
-    private static final int LOTTO_PRICE = 1000;
 
     private final LottoRepository lottoRepository;
 
@@ -108,8 +104,7 @@ public class LottoService {
 
 
     private List<Integer> generateUniqueLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT);
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_LENGTH);
     }
-
 
 }

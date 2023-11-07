@@ -12,6 +12,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(); // 로또 번호는 6자리여야 합니다.
@@ -19,7 +23,7 @@ public class Lotto {
 
         for (Integer number : numbers) {
             if (!(number >= 1 && number <= 45)) {// if 입력된 숫자 1 ~ 45 사이 아닐 때 {
-            throw new IllegalArgumentException(); // 로또 번호는 1부터 45 사이의 숫자여야 합니다.
+                throw new IllegalArgumentException(); // 로또 번호는 1부터 45 사이의 숫자여야 합니다.
             }
         }
 

@@ -1,0 +1,39 @@
+package lotto.model.domain.lotto.lottogenerator;
+
+import java.util.List;
+import lotto.constance.GameConst;
+import lotto.exception.LottoGameException;
+import lotto.model.domain.lotto.Lotto;
+
+public class FixedValueLottoGenerator extends LottoGenerator {
+
+    private final List<Integer> numbers;
+
+    public FixedValueLottoGenerator(List<Integer> numbers) {
+        validateNumbers(numbers);
+        this.numbers = numbers.stream().sorted().toList();
+    }
+
+    private void validateNumbers(List<Integer> numbers) {
+        validateNumbersSize(numbers);
+        validateDuplication(numbers);
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream()
+                .distinct().count()) {
+            throw LottoGameException.DUPLICATED_LOTTO_NUMBER.makeException();
+        }
+    }
+
+    private void validateNumbersSize(List<Integer> numbers) {
+        if (numbers.size() != GameConst.LOTTO_SIZE) {
+            throw LottoGameException.WRONG_LOTTO_SIZE.makeException();
+        }
+    }
+
+    @Override
+    public Lotto generate() {
+        return new Lotto(this.numbers);
+    }
+}

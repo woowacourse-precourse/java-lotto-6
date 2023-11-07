@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import Storage.LottoStorage;
 import java.util.HashMap;
 import java.util.Map;
+import lotto.Storage.LottoStorage;
 import lotto.model.Lotto;
 import lotto.model.Rank;
 import lotto.model.WinningNumbers;

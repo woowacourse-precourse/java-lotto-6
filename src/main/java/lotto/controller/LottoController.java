@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import Storage.LottoStorage;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.Storage.LottoStorage;
 import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
 import lotto.utils.ResultOutput;

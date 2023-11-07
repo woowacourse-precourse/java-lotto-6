@@ -6,7 +6,8 @@ import camp.nextstep.edu.missionutils.*;
 
 public class Ticket{
 	
-	private String win;
+	private Integer correct;
+	private boolean bonuscorrect; 
 	private List<Integer> Ticket = new ArrayList<>();
 	private static final int Len_Number = 6;
 	private static final int Min_Number = 1;
@@ -23,8 +24,14 @@ public class Ticket{
 		return this.Ticket;
 	}
 	
-	public String getWin() {
-		return this.win;
+	public int getWin() {
+		if(this.correct==6) {
+			return 7;
+		}
+		if(this.bonuscorrect) {
+			return correct+1;
+		}
+		return this.correct;
 	}
 	
 	public int NonDuplicated_RandomNumber_Generator(List<Integer> Ticket_Number) {
@@ -36,20 +43,17 @@ public class Ticket{
 	}
 	
 	public void winner(List<Integer> Lotto_Number, Integer Bonus_Number) {
-		Integer Normal = 0;
+		Integer correct = 0;
 		for(int o = 0 ; o < Len_Number; o++) {
 			if(this.Ticket.contains(Lotto_Number.get(o))) {
-				Normal ++;
+				correct ++;
 			}
 		}
-		if(Normal == 6) {
-			this.win="1등";
-			return;
-		}
+		
 		if(this.Ticket.contains(Bonus_Number)) {
-			Normal ++;
+			this.bonuscorrect = true;
 		}
-		this.win= Integer.toString(Normal) + "%d등";
+		this.correct = correct;
 	}
 }
 

@@ -9,13 +9,14 @@ import camp.nextstep.edu.missionutils.*;
 public class Tickets{
 	
 	private List<Ticket> tickets = new ArrayList<>();
+	private List<Integer> Win_count = new ArrayList<>();
 	
 	private static final int Len_Number = 6;
 	private static final int Min_Number = 1;
 	private static final int Max_Number = 45;
 	
+	
 	public Integer Purchase_Number;
-	private Integer win_prize;
 	
 	public Tickets(Integer Purchase_Number) {
 		this.Purchase_Number=Purchase_Number;
@@ -23,6 +24,12 @@ public class Tickets{
 			Ticket ticket = new Ticket();
 			tickets.add(ticket);
 			System.out.println(tickets.get(i).getNumber());
+		}
+	}
+	public void Win_Tickets(List<Integer> Lotto_Number, Integer Bonus_Number) {
+		for(int i =0 ; i < Purchase_Number; i++) {
+			tickets.get(i).winner(Lotto_Number, Bonus_Number);
+			Win_count.add(tickets.get(i).getWin());
 		}
 	}
 }

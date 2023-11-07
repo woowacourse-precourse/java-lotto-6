@@ -1,7 +1,6 @@
-package lotto.MyTest;
+package lotto.ModelTest;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.Model.TicketsAmount;

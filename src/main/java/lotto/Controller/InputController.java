@@ -44,7 +44,7 @@ public class InputController {
         }
     }
 
-    private static List<Integer> toWinningNumbers(String input) {
+    public static List<Integer> toWinningNumbers(String input) {
         try {
             String[] strWinningNums = input.split(",");
             List<Integer> winningNumbers = new ArrayList<>();
@@ -58,7 +58,7 @@ public class InputController {
 
     }
 
-    private static int validateNum(String input) {
+    public static int validateNum(String input) {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {

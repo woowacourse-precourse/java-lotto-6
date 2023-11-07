@@ -1,4 +1,4 @@
-package lotto.MyTest;
+package lotto.ModelTest;
 
 import java.util.ArrayList;
 import java.util.Arrays;

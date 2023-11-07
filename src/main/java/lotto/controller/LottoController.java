@@ -3,6 +3,8 @@ package lotto.controller;
 import lotto.model.LottoDrawMachine;
 import lotto.model.LottoPaper;
 import lotto.model.LottoPurchaseManager;
+import lotto.model.LottoResultAnalyzer;
+import lotto.model.dto.LottoResultDTO;
 import lotto.model.dto.PurchaseResult;
 import lotto.system.util.LottoNumberGenerator;
 import lotto.view.InputView;
@@ -14,6 +16,7 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoPurchaseManager lottoPurchaseManager = new LottoPurchaseManager(new LottoNumberGenerator());
+    private final LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -46,5 +49,29 @@ public class LottoController {
 
         // lottoDrawMachine 에 저장
         return new LottoDrawMachine(winningNumbers, bonusNumber);
+    }
+
+    public void analyzeProcess(LottoDrawMachine lottoDrawMachine, PurchaseResult purchaseResult) {
+        // 로또 용지와 구입 금액
+        List<LottoPaper> purchasedLottoPapers = purchaseResult.getPurchasedLottoPapers();
+        int purchaseAmount = purchaseResult.getPurchaseAmount();
+
+        // 로또 결과 분석 1: 당첨 번호 일치 개수 파악
+        lottoResultAnalyzer.writeResultToLottoPapers(purchasedLottoPapers, lottoDrawMachine.getWinningNumbers());
+
+        // 로또 결과 분석 2: 등수 확인
+        lottoResultAnalyzer.matchByLottoPapers(purchasedLottoPapers, lottoDrawMachine.getBonusNumber());
+
+        // 로또 결과 분석 3: 총 당첨 금액 계산
+        long totalWinningPrize = lottoResultAnalyzer.calculateTotalWinningPrize(lottoResultAnalyzer.getMatchResults());
+
+        // 로또 결과 분석 4: 총 수익률 계산
+        double totalReturnRate = lottoResultAnalyzer.calculateTotalReturnRate(totalWinningPrize, purchaseAmount);
+
+        // 로또 결과지 출력
+        LottoResultDTO dto = lottoResultAnalyzer.makeResultDTO(lottoResultAnalyzer.getMatchResults(), totalReturnRate);
+
+        // 통계 출력
+        outputView.printWinningStatistics(dto);
     }
 }

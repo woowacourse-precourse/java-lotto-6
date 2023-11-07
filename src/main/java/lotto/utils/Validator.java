@@ -7,7 +7,7 @@ import static lotto.constValue.ConstNumber.*;
 
 public class Validator {
     public static void validateNullOrEmpty(String input) {
-        if (input == null){
+        if (input == null || input.isEmpty()){
             System.out.println(NULL_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }

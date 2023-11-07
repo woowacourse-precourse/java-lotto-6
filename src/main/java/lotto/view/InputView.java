@@ -26,7 +26,7 @@ public class InputView {
         try {
             validateFormat(input);
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE);
+            System.out.println(ERROR_MESSAGE + ERROR_NOT_NUMBER);
             input = getInputMoney();
         }
         return input;
@@ -91,7 +91,7 @@ public class InputView {
 
     private void validateFormat(String input) {
         if (!PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException();
         }
     }
 }

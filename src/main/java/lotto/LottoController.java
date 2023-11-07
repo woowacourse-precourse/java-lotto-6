@@ -17,14 +17,12 @@ public class LottoController {
         return cash;
     }
 
-    void showLottoBundle(int cash) {
-        int ticket = lottoService.getTicket(cash);
+    void showLottoBundle(int ticket, List<Lotto> lottoBundle) {
 
         System.out.printf("%d개를 구매했습니다.\n", ticket);
-        List<Lotto> lottos = lottoService.getLottoBundle(ticket);
 
-        for (int i = 0; i < lottos.size(); i++) {
-            List<Integer> lotto = lottos.get(i).getNumbers();
+        for (int i = 0; i < lottoBundle.size(); i++) {
+            List<Integer> lotto = lottoBundle.get(i).getNumbers();
             System.out.println(lotto.toString());
         }
     }

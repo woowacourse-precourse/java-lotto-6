@@ -77,10 +77,10 @@ public class LottoService {
         return lotto;
     }
 
-    List<Lotto> getLottoBundle(int purchaseAmount) {
+    List<Lotto> getLottoBundle(int ticket) {
         List<Lotto> lottoBundle = new ArrayList<>();
 
-        for (int i = 0 ; i < purchaseAmount; i++) {
+        for (int i = 0 ; i < ticket; i++) {
             Lotto lotto = getLotto();
             lottoBundle.add(lotto);
         }

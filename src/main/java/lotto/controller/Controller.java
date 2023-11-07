@@ -2,6 +2,7 @@ package lotto.controller;
 
 import jdk.jfr.Percentage;
 import lotto.domain.*;
+import lotto.util.LottoBonusNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,9 +21,13 @@ public class Controller {
     private static final int PERCENTAGE = 100;
 
     private static List<Integer> lottoNumberList = new ArrayList<>();
+    private static List<Integer> winningNumber;
     private static List<Lotto> lottoList;
     private static LottoPlayer lottoPlayer;
     private static WinningResult winningResult;
+    private static Lotto lotto;
+    private static int inputBonusNumber;
+
     public void run() {
         start();
     }
@@ -37,7 +42,7 @@ public class Controller {
         lottoList = makeLottoList(ticketCount);
 
         //로또 번호와 당첨 번호 비교하기 -> service
-        winningResult = new WinningResult(new Lotto(inputLottoWinningNumber()), InputView.requestLottoBonusNumber());
+        winningResult = new WinningResult(new Lotto(inputLottoWinningNumber()), inputBonusNumber());
 
         lottoFinalResult(ticketCount);
 
@@ -64,13 +69,12 @@ public class Controller {
     private static List<Integer> inputLottoWinningNumber() {
         try {
             Lotto lotto = new Lotto(InputView.requestLottoWinningNumber());
-            List<Integer> winningNumber = lotto.getLottoNumbers();
-            return winningNumber;
+            winningNumber = lotto.getLottoNumbers();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             inputLottoWinningNumber();
         }
-        return null;
+        return winningNumber;
     }
 
     private void responseEarningRate(Map<Rank, Integer> result, int ticketCount) {
@@ -96,6 +100,17 @@ public class Controller {
             inputTotalPrice();
         }
         return lottoPlayer.calculateCountOfLotto();
+    }
+
+    private int inputBonusNumber() {
+        try {
+            inputBonusNumber = InputView.requestLottoBonusNumber();
+            LottoBonusNumberValidator.validateBonusNumber(inputBonusNumber, winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBonusNumber();
+        }
+        return inputBonusNumber;
     }
 
     private static List<Lotto> makeLottoList(int ticketCount) {

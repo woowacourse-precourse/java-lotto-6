@@ -92,11 +92,13 @@ public class LottoController {
     private void printResult() {
         WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
         List<WinStateInformationDTO> winStateInformationDTOs = winStatesCounter.getWinStateInformationDTOs();
-        // 당첨 통계\n---
-        // 통계 출력
+        outputView.print(Messages.WINNING_STATISTICS_START.getMessage());
+        winStateInformationDTOs.forEach(dto -> outputView.print(Messages.WINNING_STATISTIC_INFORMATION_FORMAT.getMessage(
+                dto.description(), dto.prize(), dto.winningCount()
+        )));
         Prize prize = Prize.from(winStateInformationDTOs);
         double yield = prize.getYield(purchaseCash);
-        // 수익률 출력
+        outputView.print(Messages.YIELD_FORMAT.getMessage(yield));
     }
 
 }

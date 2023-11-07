@@ -1,6 +1,10 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class LottoService {
     private static final int LIMIT_NUMBER = 45;
@@ -17,6 +21,16 @@ public class LottoService {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public List<Lotto> provideLotto(int lottoCnt) {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < lottoCnt; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            lottos.add(new Lotto(numbers));
+        }
+        return lottos;
     }
 
     private void containsNonNumericCharacters(String input) {

@@ -7,7 +7,7 @@ import lotto.model.service.LottoStore;
 import lotto.model.vo.BonusNumber;
 import lotto.model.vo.Lottos;
 import lotto.model.vo.Money;
-import lotto.model.RandomNumberGenerateStrategy;
+import lotto.model.service.RandomNumberGenerateStrategy;
 import lotto.model.vo.WinNumber;
 import lotto.view.ErrorView;
 import lotto.view.OutputView;

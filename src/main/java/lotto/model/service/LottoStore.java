@@ -3,7 +3,6 @@ package lotto.model.service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.model.NumberGenerateStrategy;
 import lotto.model.vo.Lotto;
 import lotto.model.vo.Lottos;
 import lotto.model.vo.Money;

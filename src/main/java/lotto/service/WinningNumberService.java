@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.model.domain.WinningNumber;
+import lotto.model.WinningNumber;
 
 public class WinningNumberService {
 

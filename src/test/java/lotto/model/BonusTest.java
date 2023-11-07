@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.model;
 
 import static lotto.util.ExceptionMessage.BONUS_ALREADY_CONTAIN_WINNING;
 import static lotto.util.ExceptionMessage.COMMON_INVALID_TYPE;

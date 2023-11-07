@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.model;
 
 import static lotto.util.Constants.MAX_NUMBER;
 import static lotto.util.Constants.MIN_NUMBER;

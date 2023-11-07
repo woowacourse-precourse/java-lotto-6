@@ -1,6 +1,6 @@
-package lotto.model.domain;
+package lotto.model;
 
-import static lotto.model.domain.Ranking.*;
+import static lotto.model.Ranking.*;
 
 import java.util.HashMap;
 import java.util.List;

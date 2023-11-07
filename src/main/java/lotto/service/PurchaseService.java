@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.model.domain.Purchase;
+import lotto.model.Purchase;
 
 public class PurchaseService {
 

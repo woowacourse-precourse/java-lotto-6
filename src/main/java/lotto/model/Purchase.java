@@ -1,4 +1,4 @@
-package lotto.model.domain;
+package lotto.model;
 
 import static lotto.util.Constants.PURCHASE_PRICE_UNIT;
 import static lotto.util.ExceptionMessage.PURCHASE_INVALID_TYPE;

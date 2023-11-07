@@ -2,12 +2,12 @@ package lotto.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.model.domain.Bonus;
-import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoMachine;
-import lotto.model.domain.Ranking;
-import lotto.model.domain.Result;
-import lotto.model.domain.WinningNumber;
+import lotto.model.Bonus;
+import lotto.model.Lotto;
+import lotto.model.LottoMachine;
+import lotto.model.Ranking;
+import lotto.model.Result;
+import lotto.model.WinningNumber;
 
 public class LottoResultCheckService {
 

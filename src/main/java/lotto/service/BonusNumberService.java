@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.model.domain.Bonus;
-import lotto.model.domain.WinningNumber;
+import lotto.model.Bonus;
+import lotto.model.WinningNumber;
 
 public class BonusNumberService {
     public Bonus getBonusNumberIfValid(WinningNumber winningNumber, String bonusNumber) {

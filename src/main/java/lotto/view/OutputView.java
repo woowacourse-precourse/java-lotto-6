@@ -1,13 +1,13 @@
 package lotto.view;
 
-import static lotto.model.domain.Ranking.*;
+import static lotto.model.Ranking.*;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.model.domain.Lotto;
-import lotto.model.domain.Ranking;
+import lotto.model.Lotto;
+import lotto.model.Ranking;
 
 public class OutputView {
 

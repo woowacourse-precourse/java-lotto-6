@@ -62,7 +62,6 @@ public class LottoNumbers {
         Set<Integer> numSet = new HashSet<>(lottoNumbers);
         if (numSet.size() != lottoNumbers.size()) {
             ExceptionMessage.wrongLottoDuplicateException();
-            //throw new IllegalArgumentException();
             return false;
         }
         return true;

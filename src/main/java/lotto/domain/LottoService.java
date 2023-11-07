@@ -56,6 +56,7 @@ public class LottoService {
         while (numberSet.size()<NUMBER_COUNT.getValue()){
             numberSet.add(getRandomNumber());
         }
+
         return new ArrayList<>(numberSet);
     }
 

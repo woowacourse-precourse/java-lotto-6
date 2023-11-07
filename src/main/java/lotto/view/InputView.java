@@ -38,4 +38,12 @@ public class InputView {
                 .map(Integer::valueOf)
                 .toList();
     }
+
+    public Integer inputBonusNumber(){
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        validateNullAndBlank(input, Exception.BONUS_NUMBER_NULL_BLANK);
+        validateNumeric(input, Exception.BONUS_NUMBER_NUMERIC);
+        return Integer.valueOf(input);
+    }
 }

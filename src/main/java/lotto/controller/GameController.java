@@ -31,6 +31,7 @@ public class GameController {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
     }
@@ -39,6 +40,7 @@ public class GameController {
         lottosPurchased = new LottosPurchased(amount.getAmount());
         outputView.printNumberOfLottosPurchased(lottosPurchased.getNumberOfLottos());
         outputView.printLottosPurchased(lottosPurchased.getLottos());
+        System.out.println();
     }
 
     private void repeatInputWinningNumbers() {
@@ -49,8 +51,10 @@ public class GameController {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
+        System.out.println();
     }
 
     private void repeatInputBonusNumber() {
@@ -60,8 +64,10 @@ public class GameController {
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
+        System.out.println();
     }
 
     private void getAndPrintResults() {

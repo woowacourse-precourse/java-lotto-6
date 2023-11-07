@@ -32,7 +32,7 @@ public final class RandomLottoGenerator implements LottoGenerator {
      * 랜덤 번호를 가진 로또 1장을 생성합니다.
      */
     public Lotto generate() {
-        final List<Integer> numbers = this.sizedNumbersGenerator.generate();
+        final List<Integer> numbers = sizedNumbersGenerator.generate();
         return new Lotto(numbers);
     }
 
@@ -41,9 +41,9 @@ public final class RandomLottoGenerator implements LottoGenerator {
      */
     private SizedNumbersGenerator createDefaultSizedNumbersGenerator() {
         return new SizedNumbersGenerator(
-                LottoNumber.MIN_LOTTO_NUMBER,
-                LottoNumber.MAX_LOTTO_NUMBER,
-                Lotto.LOTTO_NUMBERS_LENGTH
+                LottoNumber.MIN,
+                LottoNumber.MAX,
+                Lotto.NUMBERS_COUNT
         );
     }
 

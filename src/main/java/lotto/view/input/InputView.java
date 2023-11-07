@@ -1,6 +1,5 @@
 package lotto.view.input;
 
-import lotto.exception.GameExceptionMessage;
 import lotto.exception.NotValidDepthException;
 import lotto.exception.NotValidInputException;
 import lotto.util.InputValueChecker;

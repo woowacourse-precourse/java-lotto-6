@@ -21,8 +21,7 @@ public class InputValidation {
         validatePurchaseAmountOutOfRange(purchaseAmount);
         validatePurchaseAmountUnit(purchaseAmount);
 
-        return purchaseAmount;
-    }
+public class NumericInputValidation {
 
     public List<Integer> validateWinnerNumbers(String input) {
         validateInputUseCorrectSeperator(input);

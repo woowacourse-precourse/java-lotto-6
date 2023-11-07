@@ -28,13 +28,6 @@ public class TextBuilder {
         return this;
     }
 
-    public TextBuilder appendPriceAmount(Integer price) {
-        DecimalFormat format = new DecimalFormat("#,###");
-        stringBuilder.append(format.format(price));
-        return this;
-    }
-
-
     public TextBuilder appendLineSeparator() {
         stringBuilder.append(System.lineSeparator());
         return this;

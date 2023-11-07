@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import lotto.domain.statistics.LottoRank;
 import lotto.domain.statistics.LottoResult;
 import lotto.domain.statistics.WinningStatistics;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -14,7 +15,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class StatisticsTest {
 
-    WinningStatistics winningStatistics = new WinningStatistics();
+    WinningStatistics winningStatistics;
+
+    @BeforeEach
+    void init() {
+        winningStatistics = new WinningStatistics();
+    }
 
 
     @ParameterizedTest
@@ -45,6 +51,16 @@ public class StatisticsTest {
         assertThat(countOfRank).isEqualTo(count);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideResultAndPrize")
+    void 생성한_통계_결과가_장확한_총_상금_금액을_갖는다(List<LottoResult> lottoResults,long prize){
+        //when
+        winningStatistics.updateStatistics(lottoResults);
+
+        //then
+        assertThat(winningStatistics.getPrizeMoney()).isEqualTo(prize);
+    }
+
     private static Stream<Arguments> provideRankAndCount() {
         return Stream.of(
                 Arguments.of(LottoRank.FIFTH_PLACE,2),
@@ -54,5 +70,42 @@ public class StatisticsTest {
                 Arguments.of(LottoRank.FIRST_PLACE,1)
         );
     }
+
+    private static Stream<Arguments> provideResultAndPrize() {
+        return Stream.of(
+                Arguments.of(
+                        List.of(
+                                new LottoResult(0,false),
+                                new LottoResult(1,false),
+                                new LottoResult(2,false),
+                                new LottoResult(3,false),
+                                new LottoResult(3,true),
+                                new LottoResult(3,true)
+                        ), 15000
+                ),
+                Arguments.of(
+                        List.of(
+                                new LottoResult(0,false),
+                                new LottoResult(0,false),
+                                new LottoResult(1,false),
+                                new LottoResult(2,false),
+                                new LottoResult(2,true),
+                                new LottoResult(6,false)
+                        ), 2000000000
+                ),
+                Arguments.of(
+                        List.of(
+                                new LottoResult(0,false),
+                                new LottoResult(1,false),
+                                new LottoResult(1,false),
+                                new LottoResult(3,false),
+                                new LottoResult(5,false),
+                                new LottoResult(5,true)
+                        ), 31505000
+                )
+        );
+    }
+
+
 
 }

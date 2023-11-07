@@ -63,11 +63,10 @@ public class Winning {
         }
     }
 
-    public void setBonus(String strBonus){
-        int bonus = strToInt(strBonus);
+    public void setBonus(String s){
+        int bonus = strToInt(s);
 
         validBonus(this.listNumber, bonus);
-        this.bonus = bonus;
     }
 
     private void checkDuplication(List<Integer> numbers) {
@@ -96,9 +95,8 @@ public class Winning {
         }
     }
 
-    public void setListNumber(String strNumber){
+    private List<Integer> validate(String[] arr){
         List<Integer> listNumber = new ArrayList<>();
-        String[] arr = strNumber.split(",");
 
         validArray(arr);
         for (String s : arr) {
@@ -107,7 +105,12 @@ public class Winning {
             listNumber.add(num);
         }
         checkDuplication(listNumber);
-        this.listNumber = listNumber;
+        return listNumber;
+    }
+
+    public void setListNumber(String s){
+        String[] arr = s.split(",");
+        this.listNumber = validate(arr);
     }
 
     public Winning(){

@@ -29,9 +29,9 @@ public class Money {
         }
     }
 
-    public Money(String s){
-        vaildString(s);
-        int money = strToInt(s);
+    public Money(String strMoney){
+        vaildString(strMoney);
+        int money = strToInt(strMoney);
         vaildMoney(money);
         this.val = money;
     }

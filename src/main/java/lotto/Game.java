@@ -4,8 +4,7 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.UserInput.inputBonus;
-import static lotto.UserInput.inputNumbers;
+import static lotto.UserInput.*;
 
 public class Game {
 
@@ -20,7 +19,7 @@ public class Game {
             int value = map.get(key);
             rate += (key * value);
         }
-        return (rate - money) / money * 100;
+        return (rate / money * 100);
     }
 
     private void printRate(HashMap<Integer,Integer> map){
@@ -57,6 +56,27 @@ public class Game {
         printRate(winning.map);
     }
 
+    private void writeBonus(Winning winning){
+        while (true){
+            try {
+                winning.setBonus(inputBonus());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void writeNumbers(Winning winning){
+        while (true){
+            try {
+                winning.setListNumber(inputNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
     private void printListLotto(List<Lotto> listLotto){
         System.out.printf("\n%d개를 구매했습니다.\n", listLotto.size());
@@ -77,17 +97,24 @@ public class Game {
         return list;
     }
 
-    public void run(){
-        String strMoney = UserInput.inputMoney();
-        this.money = new Money(strMoney);
-        this.listLotto = getListLotto(money.val);
+    private void writeMoney(){
+        while (true){
+            try {
+                this.money = new Money(inputMoney());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 
+    public void run(){
+        writeMoney();
+        this.listLotto = getListLotto(money.val);
         printListLotto(this.listLotto);
         Winning winning = new Winning();
-        String strNumbers = inputNumbers();
-        winning.setListNumber(strNumbers);
-        String strBonus = inputBonus();
-        winning.setBonus(strBonus);
+        writeNumbers(winning);
+        writeBonus(winning);
         winning.calc(this.listLotto);
         viewResult(winning);
     }

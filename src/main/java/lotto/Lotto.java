@@ -12,7 +12,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -48,7 +47,10 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     void printNumbers() {
-        System.out.println(this.numbers);
+        List<Integer> temp = new ArrayList<>(this.numbers);
+
+        Collections.sort(temp);
+        System.out.println(temp);
     }
 
     int[] countWin(List<Integer> list, int bonus) {
@@ -57,8 +59,7 @@ public class Lotto {
         for (int item : list){
             if (this.numbers.contains(item)) count[0]++;
         }
-        if (this.numbers.contains(bonus))
-            count[1]++;
+        if (this.numbers.contains(bonus)) count[1]++;
         return count;
     }
 }

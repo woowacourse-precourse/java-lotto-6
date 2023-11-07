@@ -3,18 +3,18 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoMoney;
 
 public class LottoStore {
 
-    private static final int LOTTO_PRICE = 1000;
     private NumberGenerator numberGenerator;
 
     public LottoStore(NumberGenerator numberGenerator) {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Lotto> receiveLottoNumbers(int money) {
-        int quantity = calculateLottoNumberByMoney(money);
+    public List<Lotto> receiveLottoNumbers(LottoMoney money) {
+        int quantity = money.calculateCountLottoPrice();
         return createLottoNumbers(quantity);
     }
 
@@ -28,11 +28,4 @@ public class LottoStore {
         }
         return lottos;
     }
-
-    public int calculateLottoNumberByMoney(int money) {
-//        validate(money);
-        return money / LOTTO_PRICE;
-    }
-
-
 }

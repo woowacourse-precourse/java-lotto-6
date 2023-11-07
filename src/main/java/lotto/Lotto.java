@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -7,7 +8,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUnique(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,8 +22,12 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+    private void validateUnique(List<Integer> numbers) {
+        for (int number : numbers){
+            if (Collections.frequency(numbers, number) != 1){
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     public int countMatch(List<Integer> winningNumber){

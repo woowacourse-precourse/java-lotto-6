@@ -29,8 +29,9 @@ public class LottoGame {
 
     private List<Integer> pickUniqueNumbers(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        List<Integer> lottoNumberList = new ArrayList<>(numbers);
+        lottoNumberList.sort(Comparator.naturalOrder());
+        return lottoNumberList;
     }
 
     private void checkLottos(){

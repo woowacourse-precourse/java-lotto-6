@@ -47,6 +47,7 @@ public class LottoController {
 
         // 수익률을 구한다.
         double lottoRateOfReturn = lottoService.getLottoRateOfReturn(buyLottoAmount, lottoWinningResult);
+        consoleOutputView.outputLottoRateOfReturn(lottoRateOfReturn);
     }
 
     private Map<String, String> getUserLottoNumberAndBonusNumber() {

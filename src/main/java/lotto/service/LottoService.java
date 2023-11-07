@@ -173,6 +173,6 @@ public class LottoService {
         // 수익률 = (수익 / 총투자금액) * 100
         long revenue = totalPrize - inputBuyLottoAmount; // 수익 금액
         double rateOfReturn = (double) revenue / inputBuyLottoAmount * 100; // 수익률
-        return Math.round(rateOfReturn * 100) / 100.0;
+        return Math.round(rateOfReturn * 10) / 10.0;
     }
 }

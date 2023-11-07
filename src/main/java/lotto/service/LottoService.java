@@ -98,6 +98,7 @@ public class LottoService {
             Rank rank = keys.next();
             totalRevenue += lottoResult.get(rank) * rank.reward;
         }
-        return Convert.formatWithCommaAndRound((totalRevenue / (buyAmount * 1000)) * 100);
+        double revenueRate = ((double) totalRevenue / ((double) buyAmount * 1000)) * 100;
+        return Convert.formatWithCommaAndRound(revenueRate);
     }
 }

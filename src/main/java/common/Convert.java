@@ -26,6 +26,6 @@ public class Convert {
     }
 
     public static String formatWithCommaAndRound(double revenueRate) {
-        return new DecimalFormat("#,###.#").format(revenueRate);
+        return new DecimalFormat("#,###.0").format(revenueRate);
     }
 }

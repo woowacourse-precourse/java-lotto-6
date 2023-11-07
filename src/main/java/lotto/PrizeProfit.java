@@ -7,7 +7,7 @@ public class PrizeProfit {
 
     public PrizeProfit(PrizeStats prizeStats, long buyingPrice) {
         long prizeMoney = calculatePrizeMoney(prizeStats);
-        this.rate = (double) prizeMoney / buyingPrice;
+        this.rate = calculateRate(prizeMoney, buyingPrice);
     }
 
     public double getRate() {
@@ -20,5 +20,9 @@ public class PrizeProfit {
             sumOfPrizeMoney += entry.getKey().getPrizeMoney() * entry.getValue();
         }
         return sumOfPrizeMoney;
+    }
+
+    private double calculateRate(long prizeMoney, long buyingPrice) {
+        return (double) prizeMoney / buyingPrice;
     }
 }

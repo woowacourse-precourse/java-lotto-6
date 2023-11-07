@@ -10,7 +10,6 @@ public class Input {
     }
 
     public List<Integer> getWinningNumbers() {
-        Output.printWinningNumberMessage();
         String inputNumbers = Console.readLine();
 
         return Arrays.stream(inputNumbers.split(","))
@@ -20,7 +19,6 @@ public class Input {
     }
 
     public int getBonusNumber() {
-        Output.printBonusNumberMessage();
         return Integer.parseInt(Console.readLine());
     }
 }

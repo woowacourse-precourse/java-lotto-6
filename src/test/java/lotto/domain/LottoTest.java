@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.ErrorMessage.*;
+import static lotto.view.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;

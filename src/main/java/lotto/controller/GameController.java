@@ -19,21 +19,12 @@ public class GameController {
         OutputView.announceLottoPurchaseQuantity(lottoBuyer.getPurchaseQuantity());
         OutputView.announceMultipleLottoNumbers(lottoBuyer.getLottoTickets());
 
-        List<Integer> winningLottoNumbers = requestWinningLottoNumbers();
-        LottoManager lottoManager = new LottoManager(winningLottoNumbers);
-
-        countMatchingCounts(lottoBuyer, lottoManager);
+        LottoManager lottoManager = requestWinningLottoNumbers();
 
 
-    }
+        lottoManager.countMatchingCounts(lottoBuyer, lottoManager);
 
-    private void countMatchingCounts(LottoBuyer lottoBuyer, LottoManager lottoManager) {
-        lottoBuyer.getLottoTickets().forEach(ticket -> {
-            int count = (int) lottoManager.getWinningLottoNumbers().stream()
-                    .filter(ticket.getNumbers()::contains)
-                    .count();
-            lottoManager.addMatchingCount(count);
-        });
+
     }
 
     private LottoBuyer purchaseLottoQuantity() {
@@ -47,13 +38,11 @@ public class GameController {
         }
     }
 
-    private List<Integer> requestWinningLottoNumbers() {
+    private LottoManager requestWinningLottoNumbers() {
         while(true) {
             try {
                 List<Integer> winningLottoNumbers = InputView.requestWinningLottoNumbers();
-                LottoValidator.isValidWinningLottoNumbers(winningLottoNumbers);
-
-                return winningLottoNumbers;
+                return new LottoManager(winningLottoNumbers);
             } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] 번호의 개수는 6개, 범위는 1~45 사이이며 중복된 숫자가 없어야 합니다. 당첨 번호를 다시 입력해주세요.");
             }

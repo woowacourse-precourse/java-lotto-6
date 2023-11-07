@@ -4,6 +4,8 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -103,5 +105,17 @@ public class DrawTest extends Draw{
         //then, when
         assertThatNoException()
                 .isThrownBy(() -> isDuplicate(lotto, 7));
+    }
+
+    @Test
+    void 당첨결과_저장_Map_초기화() {
+
+        //when
+        Map<Rank, Integer> result = initDrawResult();
+
+        //then
+        assertThat(result.size()).isEqualTo(Rank.values().length);
+        assertThat(result.keySet()).contains(Rank.values());
+        assertThat(Set.copyOf(result.values())).isEqualTo(Set.of(0));
     }
 }

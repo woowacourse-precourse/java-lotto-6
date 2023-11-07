@@ -7,7 +7,7 @@ public class Lotto {
     private static final int MAX = 45;
     private static final String ERROR_NUMBER_COUNT = "6개의 숫자를 입력해 주세요.";
     private static final String ERROR_NUMBER_DUPLICATE = "중복되지 않는 숫자를 입력해 주세요.";
-    private static final String ERROR_NUMBER_RANGE = String.format("%d부터 %d까지의 숫자만 입력 가능합니다.", MIN, MAX);
+    private static final String ERROR_NUMBER_RANGE = String.format("%d부터 %d까지의 숫자만 입력해 주세요.", MIN, MAX);
     private final List<Integer> numbers;
 
 

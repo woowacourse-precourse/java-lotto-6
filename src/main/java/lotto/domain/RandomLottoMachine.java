@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RandomLottoMachine {
+    private final int RANDOM_MIN = 1;
+    private final int RANDOM_MAX = 45;
+    private final int RANDOM_COUNT = 6;
 
     private int purchasedLottoCount;
 
@@ -18,7 +21,7 @@ public class RandomLottoMachine {
 
         for (int i = 0; i < purchasedLottoCount; i++) {
             List<Integer> randomNumberForSort = new ArrayList<>(
-                    Randoms.pickUniqueNumbersInRange(1, 45, 6));
+                    Randoms.pickUniqueNumbersInRange(RANDOM_MIN, RANDOM_MAX, RANDOM_COUNT));
 
             randomNumbers.add(new Lotto(randomNumberForSort));
         }

@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import static lotto.domain.Ranking.SIXTH;
 import static lotto.utils.StringUtils.countOccurrences;
 import static lotto.view.ErrorMessage.NOT_A_NUMBER;
 import static lotto.view.ErrorMessage.RECEIVED_MONEY_NOT_MULTIPLE_OF_1000;
@@ -145,5 +144,24 @@ class LottoControllerTest {
 
         // then
         assertThat(lottoList).hasSize(count);
+    }
+
+    @Test
+    @DisplayName("기능27 테스트 : 당첨 통계가 잘 출력된다.")
+    void showWinningResult() {
+        // given
+        int totalPurchaseCount = 5;
+        List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        // when
+        lottoController.showStatisticsResult(lottoList,answer,7);
+        String result = outputStreamCaptor.toString();
+        int count = countOccurrences(result, "원");
+
+        // then
+        assertThat(result).containsSubsequence("당첨 통계", "---", "총 수익률은", "%입니다.");
+        assertThat(count).isEqualTo(totalPurchaseCount);
     }
 }

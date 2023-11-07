@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import java.text.NumberFormat;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class LottoResult {
@@ -45,8 +47,9 @@ public class LottoResult {
         this.yieldRate = Math.round(totalPrizeMoney / payment*1000) / 10.0;
     }
 
-    private double getYieldRate() {
-        return yieldRate;
+    private String getYieldRate() {
+        NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
+        return "총 수익률은 " + formatter.format(yieldRate) + "%입니다.";
     }
 
     @Override
@@ -62,7 +65,6 @@ public class LottoResult {
                         .append(prizeResult.get(prize) + "개\n");
             }
         }
-        winningResult.append("총 수익률은 " + getYieldRate() + "%입니다.");
-        return winningResult.toString();
+        return winningResult + getYieldRate();
     }
 }

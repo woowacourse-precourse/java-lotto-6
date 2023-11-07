@@ -14,7 +14,7 @@ public class Customer {
         lottoStore.getMoney(money);
     }
 
-    public void checkWinningNumber(LottoChecker lottoChecker) {
+    public void checkResult(LottoChecker lottoChecker) {
         lottoChecker.checkLottos(this.lottos);
     }
 

@@ -19,10 +19,10 @@ public class Judge {
         return matchCount;
     }
 
-    public static boolean compareBonusNumber(Lotto lottoWinningNumbers, LottoBonus lottoBonus) {
-        List<Integer> winningNumbers = lottoWinningNumbers.getNumbers();
-        int bonusNumber = lottoBonus.getNumber();
-        if (winningNumbers.contains(bonusNumber)) {
+    public static boolean compareBonusNumber(Lotto givenInput, LottoBonus Bonus) {
+        List<Integer> givenNumbers = givenInput.getNumbers();
+        int bonusNumber = Bonus.getNumber();
+        if (givenNumbers.contains(bonusNumber)) {
             return true;
         }
         return false;

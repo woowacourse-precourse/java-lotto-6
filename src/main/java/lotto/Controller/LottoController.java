@@ -145,7 +145,7 @@ public class LottoController {
 
     public LottoResult findRank(Lotto randomNumbers) {
         int matchCount = Judge.compareWinningNumbers(lottoWinningNumbers, randomNumbers);
-        boolean isMatchBonusNumber = Judge.compareBonusNumber(lottoWinningNumbers, lottoBonusNumber);
+        boolean isMatchBonusNumber = Judge.compareBonusNumber(randomNumbers, lottoBonusNumber);
         return LottoResult.getLottoResult(matchCount, isMatchBonusNumber);
     }
 

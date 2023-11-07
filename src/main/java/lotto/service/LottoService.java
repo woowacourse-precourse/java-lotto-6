@@ -13,7 +13,6 @@ public class LottoService {
 
     private List<Integer> winningNumbers;
 
-
     public User initUser(int count) {
         List<Lotto> lottoNumbers = new ArrayList<>();
         makeRandomLotto(lottoNumbers, count);
@@ -40,18 +39,32 @@ public class LottoService {
     }
 
     public List<Integer> initWinningNumbers(String inputWinningNumbers) {
-        String[] inputNumbers = inputWinningNumbers.split(",");
+        winningNumbers = parseAndValidateWinningNumbers(inputWinningNumbers);
+        return winningNumbers;
+    }
 
+    private List<Integer> parseAndValidateWinningNumbers(String inputWinningNumbers) {
+        String[] inputNumbers = inputWinningNumbers.split(",");
         winningNumbers = new ArrayList<>();
 
         for (String inputNumber : inputNumbers) {
-            int num = Validator.isNumber(inputNumber);
-            Validator.isSmallAndBig(num);
+            int num = parseAndValidateSingleWinningNumber(inputNumber);
             winningNumbers.add(num);
         }
 
+        return validateWinningNumbers(winningNumbers);
+    }
+
+    private int parseAndValidateSingleWinningNumber(String inputNumber) {
+        int num = Validator.isNumber(inputNumber);
+        Validator.isSmallAndBig(num);
+        return num;
+    }
+
+    private List<Integer> validateWinningNumbers(List<Integer> winningNumbers) {
         Validator.isSize(winningNumbers);
         Validator.isDuplicated(winningNumbers);
+
         return winningNumbers;
     }
 

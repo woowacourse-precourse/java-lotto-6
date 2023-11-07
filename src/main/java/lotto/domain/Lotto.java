@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constants.ErrorMessage;
 
 public class Lotto {
     public static final int LOTTO_NUMBER_RANGE_MIN = 1;
@@ -14,16 +15,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if(!isCorrectSize(numbers)) {
-            throw new IllegalArgumentException("로또는 6개의 숫자로 구성되어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_WRONG_SIZE.getMessage());
         }
         if(!isInRange(numbers)) {
-            throw new IllegalArgumentException("1~45 사이의 숫자만 가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_IN_RANGE.getMessage());
         }
         if(!isUniqueNumbers(numbers)) {
-            throw new IllegalArgumentException("중복된 숫자는 불가능합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_UNIQUE.getMessage());
         }
         if(!isAscending(numbers)){
-            throw new IllegalArgumentException("오름차순으로 정렬되어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_ASCENDING.getMessage());
         }
     }
 

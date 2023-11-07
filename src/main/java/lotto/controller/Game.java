@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.model.Bonus;
-import lotto.model.Lotto;
-import lotto.model.LottoGenerator;
-import lotto.model.LottoStorage;
+import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -28,6 +25,8 @@ public class Game {
 
         Lotto winningLotto = requestWinningLotto();
         Bonus bonusLotto = requestBonusLotto();
+        LottoWinner.create(winningLotto, bonusLotto);
+
         inputView.closeInputConsole();
     }
 

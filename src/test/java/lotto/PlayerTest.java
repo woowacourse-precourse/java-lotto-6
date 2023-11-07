@@ -26,6 +26,4 @@ public class PlayerTest {
         assertThatThrownBy(() -> new Player(new Lotto(List.of(1, 2, 3, 4, 5, 6)), target))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }

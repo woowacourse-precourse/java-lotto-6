@@ -1,5 +1,6 @@
 package lotto;
 
+import static lotto.Utils.Utils.calculatePercentage;
 import static lotto.Utils.Utils.getSortedList;
 import static lotto.Utils.Utils.splitWithComma;
 import static lotto.Utils.Utils.stringToInteger;
@@ -37,5 +38,17 @@ public class UtilsTest {
         ArrayList<Integer> result = stringToInteger(target);
 
         assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
+    }
+
+    @Test
+    @DisplayName("수익률을 계산하는 메서드를 테스트합니다.")
+    void calculateProfitTest() {
+        int money = 5000;
+        int totalIncome = 5000;
+        double result = calculatePercentage(totalIncome, money);
+        double answer = 100.0;
+
+        assertThat(result).isEqualTo(answer);
+
     }
 }

@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 class WinnerTest {
 
@@ -116,5 +117,210 @@ class WinnerTest {
         Assertions.assertThat(fiveCount).isEqualTo(2);
         Assertions.assertThat(fourCount).isEqualTo(1);
         Assertions.assertThat(threeCount).isEqualTo(1);
+    }
+
+    @DisplayName("6개 당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_6개_당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberSix = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 45)));
+        userLottos.add(sameUserLottoNumberSix);
+        double calculate = ((double)2000000000/1000)*100;
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        int count = winner.countTotalLottoPrizes().get(6);
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(count).isEqualTo(1);
+    }
+
+    @DisplayName("6개 2번당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_6개_2번_당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberSix = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 45)));
+        userLottos.add(sameUserLottoNumberSix);
+        userLottos.add(sameUserLottoNumberSix);
+        double calculate = ((double)4000000000l/2000)*100;
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 2000);
+        int count = winner.countTotalLottoPrizes().get(6);
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(count).isEqualTo(2);
+    }
+
+    @DisplayName("5개와 보너스번호 1번당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_5개_보너스번호_3번당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberFiveAndBonusOne = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 5)));
+        Lotto sameUserLottoNumberFiveAndBonusTwo = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 5)));
+        Lotto sameUserLottoNumberFiveAndBonusThree = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 5)));
+        userLottos.add(sameUserLottoNumberFiveAndBonusOne);
+        userLottos.add(sameUserLottoNumberFiveAndBonusTwo);
+        userLottos.add(sameUserLottoNumberFiveAndBonusThree);
+        double calculate = ((double)90000000/3000)*100;
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 3000);
+        int count = winner.countTotalLottoPrizes().get(50);
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(count).isEqualTo(3);
+    }
+
+    @DisplayName("6개와 5개 당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_6개와_5개_당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberSix = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 45)));
+        Lotto sameUserLottoNumberFive = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 33, 7)));
+        Lotto sameUserLottoNumberZero = new Lotto(new ArrayList<>(List.of(2, 3, 4, 22, 31, 9)));
+        userLottos.add(sameUserLottoNumberSix);
+        userLottos.add(sameUserLottoNumberFive);
+        userLottos.add(sameUserLottoNumberZero);
+        double calculate = ((double)2001500000/3000)*100;
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.addWinningCount(6);
+        lottoResult.addWinningCount(5);
+        Map<Integer, Integer> check = lottoResult.getWinningCount();
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 3000);
+        Map<Integer, Integer> count = winner.countTotalLottoPrizes();
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(count).isEqualTo(check);
+    }
+
+    @DisplayName("4개 당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_4개_당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberFour = new Lotto(new ArrayList<>(List.of(1, 6, 8, 25, 31, 43)));
+        userLottos.add(sameUserLottoNumberFour);
+        double calculate = ((double)50000/1000)*100;
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.addWinningCount(4);
+        Map<Integer, Integer> check = lottoResult.getWinningCount();
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> fourCount = winner.countTotalLottoPrizes();
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(fourCount).isEqualTo(check);
+    }
+
+    @DisplayName("3개 당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_3개_당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberThree = new Lotto(new ArrayList<>(List.of(1, 6, 8, 5, 31, 43)));
+        userLottos.add(sameUserLottoNumberThree);
+        double calculate = ((double)5000/1000)*100;
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.addWinningCount(3);
+        Map<Integer, Integer> check = lottoResult.getWinningCount();
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> threeCount = winner.countTotalLottoPrizes();
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(threeCount).isEqualTo(check);
+    }
+
+    @DisplayName("2개 당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_2개_당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberTwo = new Lotto(new ArrayList<>(List.of(1, 6, 4, 5, 31, 43)));
+        userLottos.add(sameUserLottoNumberTwo);
+        double calculate = ((double)0/1000)*100;
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.addWinningCount(2);
+        Map<Integer, Integer> check = lottoResult.getWinningCount();
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> threeCount = winner.countTotalLottoPrizes();
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(threeCount).isEqualTo(check);
+    }
+
+    @DisplayName("1개 당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_1개_당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberTwo = new Lotto(new ArrayList<>(List.of(1, 2, 4, 5, 31, 43)));
+        userLottos.add(sameUserLottoNumberTwo);
+        double calculate = ((double)0/1000)*100;
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.addWinningCount(1);
+        Map<Integer, Integer> check = lottoResult.getWinningCount();
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> threeCount = winner.countTotalLottoPrizes();
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(threeCount).isEqualTo(check);
+    }
+
+    @DisplayName("0개 당첨에 따른 수익률 검사")
+    @Test
+    public void 당첨번호_0개_당첨_수익률() throws Exception{
+        //given (주어진 값)
+        List<Lotto> userLottos = new ArrayList<>();
+        Lotto sameUserLottoNumberTwo = new Lotto(new ArrayList<>(List.of(22, 2, 4, 5, 31, 43)));
+        userLottos.add(sameUserLottoNumberTwo);
+        double calculate = ((double)0/1000)*100;
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.addWinningCount(0);
+        Map<Integer, Integer> check = lottoResult.getWinningCount();
+
+        //when (기능 작동)
+        winner.compareWithUserLottoAndWinningLotto(userLottos, 1000);
+        Map<Integer, Integer> threeCount = winner.countTotalLottoPrizes();
+        double profitMoney = winner.totalProfitMargin();
+
+        //then (기능 작동 후 결과)
+        Assertions.assertThat(profitMoney).isEqualTo(calculate);
+        Assertions.assertThat(threeCount).isEqualTo(check);
     }
 }

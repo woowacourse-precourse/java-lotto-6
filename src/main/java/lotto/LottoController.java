@@ -45,15 +45,15 @@ public class LottoController {
 			}
 
 		}
-		return winNumbers;
+		Lotto winLotto = new Lotto(winNumbers);
+		;
+		return winLotto.getNumbers();
 	}
 
 	public void getWinNumbers() {
 		String[] numbers = LottoView.getWinLotto();
 		winNumbers = setWinNumbers(numbers);
 		bonusNumber = getBonusNumber();
-//		System.out.println(winNumbers);
-//		System.out.println(bonusNumber);
 	}
 
 	public int getBonusNumber() {
@@ -94,6 +94,19 @@ public class LottoController {
 		}
 	}
 
+	public void marginRate() {
+		double marginRate = 0;
+		double purchasedMoney = createdLottos.size() * 1000;
+		int winPrice = 0;
+		Map<Ranking, Integer> result = matchRank();
+		for (Ranking rank : result.keySet()) {
+			// 수익률(%) = 당첨금 / 구매비용 * 100
+			winPrice += rank.getPrice() * result.get(rank);
+		}
+		marginRate = (winPrice / purchasedMoney) * 100;
+		LottoView.printMargin(marginRate);
+	}
+
 	public boolean containBonusNumber(List<Integer> numbers) {
 		return numbers.contains(bonusNumber);
 	}
@@ -104,5 +117,6 @@ public class LottoController {
 		this.getWinNumbers();
 		this.matchRank();
 		this.printResult();
+		this.marginRate();
 	}
 }

@@ -37,6 +37,10 @@ public enum Ranking {
 		return this.matchCount == matchCount;
 	}
 
+	public int getPrice() {
+		return price;
+	}
+
 	public void printMessage(int count) {
 		if (this != MISS) {
 			LottoView.printMatchMessage(message, count);

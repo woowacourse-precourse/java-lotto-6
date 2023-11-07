@@ -88,7 +88,7 @@
        - deleteWhiteSpace()
          - [x] 입력한 로또 당첨 번호 공백 제거 후 저장
        - convertStringToStringList()
-         - [ ] 쉼표(,)를 기준으로 분리하여 List형으로 반환
+         - [x] 쉼표(,)를 기준으로 분리하여 List형으로 반환
        - [ ] 로또 객체(lotto) 선언 및 데이터 유효성 검사
      - saveBonusLottoNumber()
        - [ ] 보너스 로또 당첨 번호 입력받는 함수 호출

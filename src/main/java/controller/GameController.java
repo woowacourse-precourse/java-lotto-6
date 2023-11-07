@@ -52,6 +52,8 @@ public class GameController {
             try {
                 String luckeyNumber = inputView.enterLottoNumber();
                 luckeyNumber = deleteWhiteSpace(luckeyNumber);
+                List<Integer> luckeyNumbers = convertStringToStringList(luckeyNumber);
+                System.out.println(luckeyNumbers);
                 restart = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -61,6 +63,16 @@ public class GameController {
 
     private String deleteWhiteSpace(String luckeyNumber) {
         return luckeyNumber.replaceAll(" ", "");
+    }
+
+    private List<Integer> convertStringToStringList(String luckeyNumber) {
+        List<Integer> luckeyNumbers = new ArrayList<>();
+        String[] convertStringArray = luckeyNumber.split(",");
+
+        for (String numbers : convertStringArray) {
+            luckeyNumbers.add(Integer.parseInt(numbers));
+        }
+        return luckeyNumbers;
     }
 
 }

@@ -34,6 +34,7 @@ public class Converter {
     public static Integer convertStringToPositiveInteger(String value) throws IllegalArgumentException{
         IntegerValidator.checkEmptyValue(value);
         IntegerValidator.checkZeroOrPositiveInteger(value);
+        IntegerValidator.checkIntegerMaxValue(value);
         return Integer.valueOf(value);
     }
 }

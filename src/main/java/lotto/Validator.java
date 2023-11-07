@@ -11,4 +11,10 @@ public class Validator {
                 .distinct()
                 .toList().size() == NUMBER_LENGTH.getValue();
     }
+
+    public static void validatePayment(String payment) {
+        if (!payment.chars().allMatch(Character::isDigit)) {
+            throw new IllegalArgumentException();
+        }
+    }
 }

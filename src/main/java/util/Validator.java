@@ -19,12 +19,6 @@ public class Validator {
         checkAllLottoInput(input);
     }
 
-    public void checkLottoStringInput(String input) {
-        checkChar(parser.parseLottoNumber(input));
-        checkEachSpace(parser.parseLottoNumber(input));
-        checkDuplicate(input);
-    }
-
     public void checkBonusLottoInput(String input) {
         checkEmpty(input);
         checkNotNumber(input);
@@ -49,11 +43,6 @@ public class Validator {
         }
     }
 
-    private void checkChar(List<String> userlottoList) {
-        for (int i = 0; i < userlottoList.size(); i++)
-            checkEachChar(userlottoList.get(i));
-    }
-
     private void checkEachChar(String each_num) {
         int check_num = parser.parseNumber(each_num);
         if(check_num > 45 || check_num < 0)
@@ -65,11 +54,6 @@ public class Validator {
         Matcher matcher = pattern.matcher(input);
         if (matcher.find())
             throw new IllegalArgumentException("[ERROR] 문자가 입력되면 안 됩니다.");
-    }
-
-    private void checkEachSpace(List<String> userlottoList) {
-        for (String check_space : userlottoList)
-            checkEachCharSpace(check_space);
     }
 
     private void checkEachCharSpace(String check_space) {
@@ -114,7 +98,7 @@ public class Validator {
         }
     }
 
-    private void checkDuplicate(String input) {
+    public void checkDuplicate(String input) {
         List<String> userlottoList = parser.parseLottoNumber(input);
         for (int i = 0; i < 6; i++) {
             having_lotto[i] = Integer.parseInt(userlottoList.get(i));

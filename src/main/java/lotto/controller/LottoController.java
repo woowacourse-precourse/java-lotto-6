@@ -48,7 +48,7 @@ public class LottoController {
         UserLottos userLottos;
         PurchaseAmount purchaseAmount = inputPurchaseAmount();
 
-        Integer numberOfLotto = purchaseAmount.getNumberOfTicket();
+        Integer numberOfLotto = purchaseAmount.getNumberOfLotto();
 
         userLottos = generateUserLotto(numberOfLotto);
         return userLottos;

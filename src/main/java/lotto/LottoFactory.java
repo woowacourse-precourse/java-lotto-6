@@ -6,8 +6,7 @@ import java.util.List;
 public class LottoFactory {
     public static final int LOTTO_PRICE = 1000;
     private static final PrintOut printOut = new PrintOut();
-    private static final InputService inputService = new ConsoleInputService();
-    private static final InputHandler inputHandler = new InputHandler(inputService);
+    private static final InputHandler inputHandler = new InputHandler();
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
     private static final Validation validation = new Validation();
 
@@ -71,9 +70,14 @@ public class LottoFactory {
         return bonusNumber;
     }
 
-    public void calculateResults(List<Lotto> purchasedLottos, Lotto winningNumber, int bonusNumber, LottoResult lottoResult) {
+    public void calculateResults(
+            List<Lotto> purchasedLottos,
+            Lotto winningLotto,
+            int bonusNumber,
+            LottoResult lottoResult
+    ) {
         for (Lotto purchasedLotto : purchasedLottos) {
-            WinningCriteria criteria = lottoResult.getWinningCriteria(purchasedLotto, winningNumber, bonusNumber);
+            WinningCriteria criteria = lottoResult.getWinningCriteria(purchasedLotto, winningLotto, bonusNumber);
             if (criteria != null) {
                 lottoResult.addWin(criteria);
             }

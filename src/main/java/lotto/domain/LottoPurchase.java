@@ -54,6 +54,7 @@ public class LottoPurchase {
         validatePrice(purchasePrice);
         validateCheckDivisibility(purchasePrice);
     }
+
     private void validatePrice(int purchasePrice) {
         if (purchasePrice < LottoNumber.LOTTO_PRICE.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_PRICE_MESSAGE.getMessage());
@@ -65,6 +66,7 @@ public class LottoPurchase {
             throw new IllegalArgumentException(ErrorMessage.DIVISIBILITY_CHECK_AMOUNT.getMessage());
         }
     }
+
     private int validateNumber(String inputValue) {
         try {
             return Integer.parseInt(inputValue);

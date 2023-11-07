@@ -29,9 +29,11 @@ public class BonusNumber {
             }
         }
     }
+
     public int getNumber() {
         return number;
     }
+
     private int validateNumber(String inputValue) {
         try {
             return Integer.parseInt(inputValue);
@@ -39,6 +41,7 @@ public class BonusNumber {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_ERROR.getMessage());
         }
     }
+
     private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         validateBonusNumberRange(bonusNumber);
         validateDuplicationWinningNumbersAndBonusNumber(bonusNumber, winningNumbers);

@@ -55,6 +55,7 @@ public class LottoWinningNumbers {
         validateDuplicateWinningNumber(winningNumbers);
         validateWinningNumbersCount(winningNumbers);
     }
+
     private void validateInputLottoRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < LottoNumber.START_NUMBER.getNumber() || number > LottoNumber.END_NUMBER.getNumber()) {
@@ -62,11 +63,13 @@ public class LottoWinningNumbers {
             }
         }
     }
+
     private void validateDuplicateWinningNumber(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
+
     private void validateWinningNumbersCount(List<Integer> numbers) {
         if (numbers.size() != LottoNumber.LOTTO_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_INCORRECT_NUMBER_COUNT_ERROR.getMessage());

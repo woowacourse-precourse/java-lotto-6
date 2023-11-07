@@ -21,7 +21,7 @@ public class LottoGame {
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
         BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
         messageService.outputResultMessage();
-        LottoResult lottoResult = new LottoResult(winningNumbersInfo,bonusNumber);
+        LottoResult lottoResult = new LottoResult(winningNumbersInfo, bonusNumber);
         LottoReturn lottoReturn = new LottoReturn(lottoResult.getLottoStatus(purchaseNumbers));
         lottoReturn.getLottoReturnRate(lottoPurchase.getPurchasePrice());
     }

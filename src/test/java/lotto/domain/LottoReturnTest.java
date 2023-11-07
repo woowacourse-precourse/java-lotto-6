@@ -21,7 +21,7 @@ public class LottoReturnTest {
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers();
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
         BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
-        lottoResult = new LottoResult(winningNumbersInfo,bonusNumber);
+        lottoResult = new LottoResult(winningNumbersInfo, bonusNumber);
     }
 
     private void consoleInput(final String... args) {

@@ -4,6 +4,8 @@ import static lotto.exception.ExceptionMessage.DUPLICATE_BONUSE_NUMBER;
 
 
 public class WinningLotto {
+    private static final int FIRST_SCORE = 6;
+    private static final int SECOND_SCORE = 5;
     private final Lotto winningLottoNumbers;
     private final int bonusNumber;
 
@@ -21,7 +23,7 @@ public class WinningLotto {
     private int calculateScore(Lotto myLotto, int sameCount) {
         int score = sameCount;
 
-        if (myLotto.checkContainsSameNumber(bonusNumber) && score == 5 || score == 6) {
+        if (myLotto.checkContainsSameNumber(bonusNumber) && score == SECOND_SCORE || score == FIRST_SCORE) {
             score++;
         }
 

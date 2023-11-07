@@ -14,7 +14,7 @@ import lotto.view.OutputView;
 
 public class MyLotto {
     private static final int START = 0;
-    private final static int INIT = 0;
+    private static final int INIT = 0;
 
     private final int quantity;
     private final List<Lotto> myLottos;

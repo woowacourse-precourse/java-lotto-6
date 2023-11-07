@@ -1,10 +1,14 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.MAX_SCORE;
+import static lotto.constant.LottoConstant.MIN_SCORE;
+
 import java.util.List;
 import lotto.constant.PrizeConstant;
 
 public class Result {
-    private final static int PERCENT = 10;
+    private static final int PERCENT = 10;
+    private static final int MIN_REWARD = 0;
     private final List<Integer> statistics;
     private final int totalReward;
 
@@ -22,12 +26,14 @@ public class Result {
     }
 
     private int getTotalReward() {
-        int totalReward = 0;
-        for (int i = 0; i < statistics.size(); i++) {
-            int reward = PrizeConstant.getRewardByScore(i);
-            int count = statistics.get(i);
+        int totalReward = MIN_REWARD;
+
+        for (int score = MIN_SCORE.getValue(); score <= MAX_SCORE.getValue(); score++) {
+            int reward = PrizeConstant.getRewardByScore(score);
+            int count = statistics.get(score);
             totalReward += (reward * count);
         }
+
         return totalReward;
     }
 

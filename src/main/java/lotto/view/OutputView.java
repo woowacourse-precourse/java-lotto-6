@@ -12,6 +12,7 @@ public class OutputView {
     private static final String PER = "개";
     private static final String PERCENT = "%입니다.";
     private static final int START = 3;
+    private static final String FORMAT = "%.1f";
 
     public void printLotto(int quantity, List<List<Integer>> myLottoNumbers) {
         StringBuilder sb = new StringBuilder();
@@ -28,15 +29,15 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         sb.append(NEW_LINE + STATISTIC_MESSAGE).append(NEW_LINE).append(SPLIT_LINE);
 
-        for (int i = START; i < statistics.size(); i++) {
-            String message = PrizeConstant.getMessageByScore(i);
-            sb.append(NEW_LINE).append(message + statistics.get(i) + PER);
+        for (int score = START; score < statistics.size(); score++) {
+            String message = PrizeConstant.getMessageByScore(score);
+            sb.append(NEW_LINE).append(message + statistics.get(score) + PER);
         }
 
         System.out.println(sb);
     }
 
     public void printProfitability(double profitability){
-        System.out.println(PROFITABILITY_MESSAGE + String.format("%.1f", profitability) + PERCENT);
+        System.out.println(PROFITABILITY_MESSAGE + String.format(FORMAT, profitability) + PERCENT);
     }
 }

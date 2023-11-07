@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class InvalidInput {
+    private static final int ZERO = 0;
     private static String message;
 
     public boolean duplicateNumberException(List<Integer> numbers) {
@@ -61,7 +62,7 @@ public class InvalidInput {
     public boolean notThousandUnitException(int cost) {
         message = ExceptionMessage.NOT_THOUSAND_UNIT.getMessage();
 
-        if (cost % UNIT.getValue() != 0) {
+        if (cost % UNIT.getValue() != ZERO) {
             System.out.println(message);
             return true;
         }

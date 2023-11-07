@@ -25,10 +25,20 @@ class LottoPapersTest {
         LottoPapers lottoPapers = new LottoPapers(amount);
 
         for (Lotto lotto : lottoPapers.getLottoPapers()) {
-            // 모든 번호가 유효한 범위 내에 있는지 확인
             for (int number : lotto.getNumbers()) {
                 assertTrue(number >= 1 && number <= 45);
             }
+        }
+    }
+
+    @Test
+    @DisplayName("로또 번호가 올바른 갯수만큼 있는지 확인")
+    void shouldGenerateUniqueAndCorrectNumberOfLottoNumbers() {
+        int amount = 5;
+        LottoPapers lottoPapers = new LottoPapers(amount);
+
+        for (Lotto lotto : lottoPapers.getLottoPapers()) {
+            assertEquals(6, lotto.getNumbers().size());
         }
     }
 }

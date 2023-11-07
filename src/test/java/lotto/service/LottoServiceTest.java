@@ -3,7 +3,7 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.TestConstant;
-import lotto.constant.LottoConstraint;
+import lotto.constant.Constants;
 import lotto.domain.Rank;
 import lotto.dto.LottoDto;
 import lotto.dto.LottoReceiptDto;
@@ -17,7 +17,7 @@ class LottoServiceTest {
     @DisplayName("구매 금액에 알맞은 로또 영수증을 반환한다.")
     @Test
     void getLottoReceipt() {
-        int payment = LottoConstraint.LOTTO_PRICE.getValue();
+        int payment = Constants.LOTTO_PRICE;
 
         LottoReceiptDto lottoReceiptDto = lottoService.getLottoReceipt(payment);
 
@@ -28,7 +28,7 @@ class LottoServiceTest {
     @DisplayName("로또 결과 통계를 반환한다.")
     @Test
     void getLottoResult() {
-        long payment = LottoConstraint.LOTTO_PRICE.getValue();
+        long payment = Constants.LOTTO_PRICE;
         lottoService.getLottoReceipt(payment);
         lottoService.drawLottoWithoutBonusNumber(TestConstant.NORMAL_NUMBERS);
         lottoService.drawBonusNumber(45);

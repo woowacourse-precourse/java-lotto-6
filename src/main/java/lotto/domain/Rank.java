@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constant.LottoConstraint;
+import lotto.constant.Constants;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -37,7 +37,7 @@ public enum Rank {
     }
 
     private static boolean isDecidedByBonusNumber(int matchedCount) {
-        return matchedCount == LottoConstraint.BONUS_NUMBER_DEPENDENT_RANK_MATCHED_COUNT.getValue();
+        return matchedCount == Constants.BONUS_NUMBER_DEPENDENT_RANK_MATCHED_COUNT;
     }
 
     private static Rank decideByBonusNumberMatched(boolean bonusNumberMatched) {

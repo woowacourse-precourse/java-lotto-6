@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.constant.LottoConstraint;
+import lotto.constant.Constants;
 import lotto.domain.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
@@ -43,9 +43,9 @@ public class LottoService {
 
     private List<Integer> generateLottoNumbers() {
         return randomNumberGenerator.pickUniqueNumbersInRange(
-                LottoConstraint.MIN_LOTTO_NUMBER.getValue(),
-                LottoConstraint.MAX_LOTTO_NUMBER.getValue(),
-                LottoConstraint.LOTTO_NUMBER_COUNT.getValue()
+                Constants.MIN_LOTTO_NUMBER,
+                Constants.MAX_LOTTO_NUMBER,
+                Constants.LOTTO_NUMBER_COUNT
         );
     }
 

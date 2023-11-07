@@ -27,6 +27,7 @@ public class GeneralLottoConfig implements LottoConfig {
     public LottoService lottoService() {
         return new LottoService(randomNumberGenerator());
     }
+
     @Override
     public RandomNumberGenerator randomNumberGenerator() {
         return new GeneralRandomNumberGenerator();

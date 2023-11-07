@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.constant.ErrorMessage;
-import lotto.constant.LottoConstraint;
+import lotto.constant.Constants;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,7 +29,7 @@ public class Lotto {
     }
 
     private boolean isInvalidSize(List<Integer> numbers) {
-        return numbers.size() != LottoConstraint.LOTTO_NUMBER_COUNT.getValue();
+        return numbers.size() != Constants.LOTTO_NUMBER_COUNT;
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
@@ -45,8 +45,8 @@ public class Lotto {
     }
 
     private boolean isOutRangeNumber(int number) {
-        return number < LottoConstraint.MIN_LOTTO_NUMBER.getValue()
-                || number > LottoConstraint.MAX_LOTTO_NUMBER.getValue();
+        return number < Constants.MIN_LOTTO_NUMBER
+                || number > Constants.MAX_LOTTO_NUMBER;
     }
 
     private void validateUniqueNumbers(List<Integer> numbers) {

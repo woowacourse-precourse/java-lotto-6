@@ -10,6 +10,7 @@ import java.util.List;
 public class Application {
     static int lottoMoney = 0;
     static List<Integer> winningLottoNumber;
+    static int bonusNumber = 0;
     public static boolean lottoMoneyInput() {
         try {
             String userInput = Console.readLine();
@@ -23,6 +24,24 @@ public class Application {
             return true;
         }
     }
+
+    public static boolean bonusNumberInput() {
+        try {
+            String userInput = Console.readLine();
+            bonusNumber = Integer.parseInt(userInput);
+            if (bonusNumber < 1 || bonusNumber > 45) {
+                throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자를 입력해 주세요.");
+            }
+            if (winningLottoNumber.contains(bonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되지 않은 숫자를 입력해 주세요.");
+            }
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+    }
+
     public static void main(String[] args) {
         // 로또 구입 금액 입력받고 예외처리
         boolean flag = true;
@@ -42,6 +61,7 @@ public class Application {
             Collections.sort(userLottoNumber);
             System.out.println(userLottoNumber);
         }
+        System.out.println();
 
         // 당첨 번호 6개 쉼표로 구분하여 입력받기
         while (true) {
@@ -60,6 +80,14 @@ public class Application {
                 continue;
             }
             break;
+        }
+        System.out.println();
+
+        // 보너스 번호 1개 입력 받기
+        flag = true;
+        while (flag) {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            flag = bonusNumberInput();
         }
     }
 }

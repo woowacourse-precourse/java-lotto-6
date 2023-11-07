@@ -7,8 +7,10 @@ import lotto.model.WinningNumbers;
 import java.util.List;
 
 public class OutputView {
+    public void printNumberOfPurchase(int purchase) {
+        System.out.println(purchase + "개를 구매했습니다.");
+    }
     public void printLottoTicket(LottoTicket lottoTicket) {
-        System.out.println("구매한 로또 번호는 아래와 같습니다.");
         List<Lotto> lottoList = lottoTicket.getLottoList();
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.getNumbers());

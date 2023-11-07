@@ -10,6 +10,11 @@ public class InputView {
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
 
+        while (!input.matches("\\d+")) {
+            System.out.println("[ERROR] 유효한 숫자를 입력해 주세요.");
+            input = Console.readLine();
+        }
+
         return Integer.parseInt(input);
     }
 

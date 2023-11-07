@@ -29,6 +29,7 @@ public class LottoGameController {
         int totalPrize = lottoTicket.calculateTotalPrize(winningNumbersObject, bonusNumber);
         double earningRate = lottoTicket.calculateEarningRate(totalPrize, purchaseAmount);
 
+        outputView.printNumberOfPurchase(numberOfLotto);
         outputView.printLottoTicket(lottoTicket);
         outputView.printPrize(lottoTicket);
         outputView.printEarningRate(earningRate);

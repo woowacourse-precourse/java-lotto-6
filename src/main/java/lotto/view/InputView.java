@@ -1,18 +1,30 @@
 package lotto.view;
 
-public enum InputView implements PrintView {
-    INPUT_MONEY_MESSAGE("구입금액을 입력해 주세요."),
-    INPUT_WINNING_NUMBER_MESSAGE("당첨 번호를 입력해 주세요."),
-    INPUT_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요.");
+import lotto.util.InputUtil;
 
-    private String message;
+import java.util.List;
+import java.util.Objects;
 
-    InputView(String message) {
-        this.message = message;
-    }
-
-    @Override
-    public void printMessage() {
-        System.out.println(message);
+public enum InputView implements CustomView<Object>{
+    INPUT_MONEY{
+        @Override
+        public Integer activateView() {
+            System.out.println("구입금액을 입력해 주세요.");
+            return InputUtil.enterMoneyWhileVerifying();
+        }
+    },
+    INPUT_WINNING_NUMBER{
+        @Override
+        public List<Integer> activateView() {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            return InputUtil.enterNumbersWhileVerifying();
+        }
+    },
+    INPUT_BONUS_NUMBER {
+        @Override
+        public List<Integer> activateView() {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            return InputUtil.enterNumbersWhileVerifying();
+        }
     }
 }

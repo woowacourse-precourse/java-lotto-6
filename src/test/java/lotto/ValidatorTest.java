@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -68,9 +70,22 @@ public class ValidatorTest {
 	}
 
 	@DisplayName("List<Intger>와 문자열을 받아 문자열을 숫자로 파싱하였을 때," +
-			" 리스트 안에 숫자가 포함되어 있는지 검사하는 메서드 테스트")
-	@Test
-	void containNumberTest() {
+			" 리스트 안에 숫자가 포함되어 있는지 검사하는 메서드 테스트 - 성공")
+	@ParameterizedTest
+	@ValueSource(strings = {"1", "2", "3", "4", "5", "6"})
+	void containNumberTest1(String check) {
+		List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+		assertThatThrownBy(() -> validator.containNumber(list, check))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("[ERROR] 번호는 중복될 수 없습니다.");
+	}
 
+	@DisplayName("List<Intger>와 문자열을 받아 문자열을 숫자로 파싱하였을 때," +
+			" 리스트 안에 숫자가 포함되어 있는지 검사하는 메서드 테스트 - 실패")
+	@ParameterizedTest
+	@ValueSource(strings = {"7", "8", "9", "10", "11", "12"})
+	void containNumberTest2(String check) {
+		List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+		assertDoesNotThrow(() -> validator.containNumber(list, check));
 	}
 }

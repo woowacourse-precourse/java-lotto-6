@@ -3,16 +3,12 @@ package lotto.domain;
 public class PurchaseCount {
     private final int value;
 
-    public PurchaseCount(String input) {
+    public PurchaseCount(int input) {
         validate(input);
-        this.value = Integer.parseInt(input) / 1000;
+        this.value = input/1000;
     }
 
-    private void validate(String input) {
-        try {
-            int value = Integer.parseInt(input) / 1000;
-        } catch (NumberFormatException e) {
-        }
+    private void validate(int input) {
     }
 
     public int getValue() {

@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.domain.PurchaseCount;
 import lotto.domain.LottoService;
 import lotto.domain.Lottos;
 import lotto.domain.WinningLotto;
@@ -20,15 +19,19 @@ public class GameController {
     }
 
     public void run(){
-        PurchaseCount purchaseCount = new PurchaseCount(view.inputLottoPurchaseAmount());
-        model.issueLottos(purchaseCount.getValue());
-        printLottos(purchaseCount.getValue(), model.findAllLottos());
+        int purchaseAmount = getPurchaseAmount(view.inputLottoPurchaseAmount());
+        model.savePurchaseCount(purchaseAmount);
+
+        model.issueLottos(model.findPurchaseCount());
+        printLottos(model.findPurchaseCount(), model.findAllLottos());
 
         List<Integer> numbers = getLottoNumbers(view.inputLottoNumbers());
         int bonusNumber = getLottoBonusNumber(view.inputLottoBonusNumber());
         WinningLotto winningLotto = new WinningLotto(numbers, bonusNumber);
-        System.out.println(winningLotto.getNumbers());
-        System.out.println( winningLotto.getBonusNumber());
+    }
+
+    private int getPurchaseAmount(String lottPurchaseAmount) {
+        return inputParser.parseToInteger(lottPurchaseAmount);
     }
 
     private List<Integer> getLottoNumbers(String lottoNumbers) {
@@ -36,7 +39,7 @@ public class GameController {
     }
 
     private int getLottoBonusNumber(String lottoBonusNumber) {
-        return inputParser.parseLottoBonusNumber(lottoBonusNumber);
+        return inputParser.parseToInteger(lottoBonusNumber);
     }
 
     private void printLottos(int lottoPurchaseCount, Lottos lottos) {

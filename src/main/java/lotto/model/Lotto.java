@@ -4,6 +4,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
+    public static final int TICKET_PRICE = 1000;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -20,6 +21,20 @@ public class Lotto {
     public static Lotto generate() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
+    }
+
+    public int numberOfWinningNumbers(WinningNumbers winningNumbers) {
+        int count = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
 }

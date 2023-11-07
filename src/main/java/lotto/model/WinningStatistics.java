@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.utils.WinningRank;
 
 public class WinningStatistics {
+    private static final int PROFIT_RATE_PERCENTAGE = 100;
     private Map<WinningRank, Integer> winningRecords;
     private int totalWinningAmount;
     private double profitRate;
@@ -32,7 +33,7 @@ public class WinningStatistics {
     }
 
     public void calculateProfitRate() {
-        profitRate = ((double) totalWinningAmount) / purchaseAmount * 100;
+        profitRate = ((double) totalWinningAmount) / purchaseAmount * PROFIT_RATE_PERCENTAGE;
     }
 
     private void calculateTotalAmount(int additionalAmount) {

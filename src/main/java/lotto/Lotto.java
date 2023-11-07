@@ -43,4 +43,9 @@ public class Lotto {
     private boolean isNotEqual(final long distinctCount, final int lottoNumbersCount) {
         return distinctCount != lottoNumbersCount;
     }
+
+    private boolean contains(final int other) {
+        return numbers.stream()
+                .anyMatch(number -> number.equals(other));
+    }
 }

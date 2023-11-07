@@ -3,7 +3,7 @@ package lotto.view;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Map;
-import lotto.lotto.Lotto;
+import lotto.lotto.LottoPaper;
 import lotto.money.Money;
 import lotto.ranking.Ranking;
 import lotto.statistics.Statistics;
@@ -25,10 +25,11 @@ public class OutputView {
         System.out.println(INPUT_MONEY_MESSAGE);
     }
 
-    public static void buyLottos(Money money, List<Lotto> lottos) {
+    public static void buyLottoPaper(Money money, LottoPaper lottoPaper) {
         System.out.println();
         System.out.println(money.getLottoCount() + BUY_LOTTOS);
-        lottos.forEach(System.out::println);
+        List<String> lottoPaperMessage = lottoPaper.getLottoPaperMessage();
+        lottoPaperMessage.forEach(System.out::println);
     }
 
     public static void inputWinningLotto() {

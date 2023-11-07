@@ -14,7 +14,7 @@ public class LottoService {
         this.numberGenerator = numberGenerator;
     }
 
-    public List<Lotto> makeLottos(Money money) {
+    public List<Lotto> makeLottoPaper(Money money) {
         return Stream.generate(numberGenerator::generate)
                 .limit(money.getLottoCount())
                 .map(Lotto::new)

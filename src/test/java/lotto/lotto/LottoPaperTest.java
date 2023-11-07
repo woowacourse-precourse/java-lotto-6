@@ -1,26 +1,23 @@
-package lotto.statistics;
+package lotto.lotto;
 
 import java.util.Collections;
 import java.util.List;
 import lotto.bonus.BonusNumber;
-import lotto.lotto.Lotto;
-import lotto.lotto.WinningLotto;
 import lotto.ranking.Ranking;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class RankingResultsTest {
+public class LottoPaperTest {
 
-    @DisplayName("로또 결과를 종합하여 결과 리스트를 생성한다.")
+    @DisplayName("로또 종이에 당첨 번호와 보너스 번호로 랭킹 결과를 생성")
     @Test
     void createRankingResults() {
-        List<Lotto> lottos = getTestLottos();
+        LottoPaper lottoPaper = new LottoPaper(getTestLottos());
         WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6");
         BonusNumber bonusNumber = new BonusNumber("7");
 
-        RankingResults rankingResults = RankingResults.of(lottos, winningLotto, bonusNumber);
-        List<Ranking> rankings = rankingResults.getRankings();
+        List<Ranking> rankings = lottoPaper.calculateRankings(winningLotto, bonusNumber);
 
         Assertions.assertAll(
                 () -> Assertions.assertEquals(Collections.frequency(rankings, Ranking.FIRST), 1),

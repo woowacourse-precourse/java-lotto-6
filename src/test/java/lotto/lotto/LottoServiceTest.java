@@ -24,7 +24,7 @@ class LottoServiceTest {
     void makeLottos() {
         Money money = new Money("6000");
 
-        List<Lotto> lottos = lottoService.makeLottos(money);
+        List<Lotto> lottos = lottoService.makeLottoPaper(money);
 
         Assertions.assertThat(lottos).hasSize(6);
     }

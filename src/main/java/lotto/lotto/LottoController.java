@@ -3,7 +3,7 @@ package lotto.lotto;
 import java.util.List;
 import lotto.bonus.BonusNumber;
 import lotto.money.Money;
-import lotto.statistics.RankingResults;
+import lotto.ranking.Ranking;
 import lotto.statistics.Statistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -18,14 +18,18 @@ public class LottoController {
 
     public void run() {
         Money money = receiveMoney();
-        List<Lotto> lottos = buyLottos(money);
-        aggregateResult(lottos, money);
+        LottoPaper lottoPaper = buyLottoPaper(money);
+        aggregateResult(lottoPaper, money);
     }
 
-    private List<Lotto> buyLottos(Money money) {
-        List<Lotto> lottos = lottoService.makeLottos(money);
-        OutputView.buyLottos(money, lottos);
-        return lottos;
+    private LottoPaper buyLottoPaper(Money money) {
+        LottoPaper lottoPaper = new LottoPaper(makeLottoPaper(money));
+        OutputView.buyLottoPaper(money, lottoPaper);
+        return lottoPaper;
+    }
+
+    private List<Lotto> makeLottoPaper(Money money) {
+        return lottoService.makeLottoPaper(money);
     }
 
     private Money receiveMoney() {
@@ -58,15 +62,19 @@ public class LottoController {
         }
     }
 
-    private void aggregateResult(List<Lotto> lottos, Money money) {
+    private void aggregateResult(LottoPaper lottoPaper, Money money) {
         WinningLotto winningLotto = receiveWinningLotto();
         BonusNumber bonusNumber = receiveBonusNumber();
-        RankingResults results = RankingResults.of(lottos, winningLotto, bonusNumber);
+        Statistics results = calculateStatistics(lottoPaper, winningLotto, bonusNumber);
         showStatistics(money, results);
     }
 
-    private void showStatistics(Money money, RankingResults results) {
-        Statistics statistics = new Statistics(results.getRankings());
+    private Statistics calculateStatistics(LottoPaper lottoPaper, WinningLotto winningLotto, BonusNumber bonusNumber) {
+        List<Ranking> rankings = lottoPaper.calculateRankings(winningLotto, bonusNumber);
+        return new Statistics(rankings);
+    }
+
+    private void showStatistics(Money money, Statistics statistics) {
         OutputView.showStatists(statistics, money);
     }
 }

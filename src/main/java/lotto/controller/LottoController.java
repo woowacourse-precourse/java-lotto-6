@@ -8,23 +8,22 @@ import lotto.domain.RandomLottoNumber;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoGetter implements LottoGetterInterface {
+public class LottoController {
     private LottoResultCalculation lottoResultCalculation;
     private RandomLottoNumber randomLottoNumber;
     private List<Lotto> randomLottoResult;
 
-    public LottoGetter() {
+    public LottoController() {
         lottoResultCalculation = new LottoResultCalculation();
         randomLottoNumber = new RandomLottoNumber();
         randomLottoResult = new ArrayList<>();
     }
 
-    @Override
     public int getLottoTicket(int money) {
         return lottoResultCalculation.caculateLottoTicket(money);
     }
 
-    @Override
+
     public List<Lotto> getLottoNumber(int tickets) {
         randomLottoResult.clear();
         for (int i = 0; i < tickets; i++) {
@@ -35,12 +34,12 @@ public class LottoGetter implements LottoGetterInterface {
         return randomLottoResult;
     }
 
-    @Override
+
     public BonusLottoNumber getBounsNumber(int bonus) {
         return new BonusLottoNumber(bonus);
     }
 
-    @Override
+
     public String getLottoString() {
         StringBuffer stringResult = new StringBuffer();
         for (Lotto lotto : randomLottoResult) {

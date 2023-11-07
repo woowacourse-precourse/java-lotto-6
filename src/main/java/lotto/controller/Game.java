@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
+import lotto.dto.WinningNumbers;
 import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -51,10 +52,10 @@ public class Game {
     }
 
     private WinningNumbers getWinningNumbers() {
-        return new WinningNumbers(getWinningNumber(), getBonusNumber());
+        return new WinningNumbers(getWinningLotto(), getBonusNumber());
     }
 
-    private Lotto getWinningNumber() {
+    private Lotto getWinningLotto() {
         return new Lotto(getNumbers());
     }
 

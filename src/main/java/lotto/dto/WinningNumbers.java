@@ -1,5 +1,7 @@
-package lotto.domain;
+package lotto.dto;
 
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.exception.ErrorMessage;
 import lotto.exception.LottoGameException;
 

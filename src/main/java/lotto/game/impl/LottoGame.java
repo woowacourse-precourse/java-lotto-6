@@ -34,6 +34,7 @@ public class LottoGame implements Game {
     @Override
     public void playLotto() {
         Money money = moneyController.make();
+        printController.LottoCount(money);
         Wallet wallet = walletController.make(money);
         printController.newLine();
         WinningLotto winningLotto = winningLottoController.make();

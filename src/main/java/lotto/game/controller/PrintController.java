@@ -26,6 +26,12 @@ public class PrintController {
         rankStatistics.forEach(ioAdapter::printMessage);
     }
 
+    public void LottoCount(Money money) {
+        LottoMessage howManyBuyMessage = LottoMessage.HOW_MANY_BUY_LOTTO;
+        String lottoCount = money.lottoExchangeCount();
+        ioAdapter.printMessage(lottoCount + howManyBuyMessage.getMessage());
+    }
+
     public void rateOfReturn(Money money, Statistics statistics) {
         BigDecimal calcRateOfReturn = statistics.calcRateOfReturn(money.getMoney());
         LottoMessage rateOfReturnHead = LottoMessage.RATE_OF_RETURN_HEAD;

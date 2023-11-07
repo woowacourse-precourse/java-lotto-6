@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 
 public enum InputPattern {
     NUMERIC_PATTERN(Pattern.compile("^\\d*$")),
-    DIVISION_COMMA_PATTERN(Pattern.compile("^\\w+[?:,\\w+]*$"));
+    DIVISION_COMMA_PATTERN(Pattern.compile("^\\d+[,\\d+]*$"));
 
     private final Pattern pattern;
 

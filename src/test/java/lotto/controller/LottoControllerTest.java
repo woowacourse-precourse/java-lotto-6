@@ -4,8 +4,7 @@ import static lotto.utils.StringUtils.countOccurrences;
 import static lotto.view.ErrorMessage.*;
 import static lotto.view.ErrorMessage.NOT_A_INTEGER_NUMBER;
 import static lotto.view.ErrorMessage.RECEIVED_MONEY_NOT_MULTIPLE_OF_1000;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
@@ -14,6 +13,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -157,7 +157,7 @@ class LottoControllerTest {
         int bonusNumber = 7;
 
         // when
-        lottoController.showStatisticsResult(lottoList,answer,7);
+        lottoController.showStatisticsResult(lottoList, answer, 7);
         String result = outputStreamCaptor.toString();
         int count = countOccurrences(result, "원");
 
@@ -214,4 +214,20 @@ class LottoControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
     }
+
+    @Test
+    @DisplayName("기능21 테스트 : 사용자의 입력을 로또 객체로 변환한다.")
+    void registerWinningNumberShouldReturnLottoInstance() {
+        // given
+        System.setIn(createUserInput("1,2,3,4,5,6"));
+
+        // when
+        Lotto lotto = lottoController.registerWinningLottoCombination();
+        String result = lotto.getStatus();
+
+        // then
+        assertThat(result).containsSubsequence("[", "1", "2", "3", "4", "5", "6", "]");
+    }
+
+
 }

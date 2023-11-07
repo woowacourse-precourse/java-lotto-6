@@ -1,12 +1,10 @@
 package lotto.model;
 
-import static lotto.utils.Constants.MAX_NUMBER;
-import static lotto.utils.Constants.MIN_NUMBER;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.utils.Constants;
 import lotto.utils.ErrorMessage;
 import lotto.utils.Patterns;
 
@@ -49,7 +47,8 @@ public class WinningNumberValidator {
     private void isCorrectRange() {
         numbers.stream()
                 .map(Integer::parseInt)
-                .filter(number -> number < MIN_NUMBER || number > MAX_NUMBER)
+                .filter(number -> number < Constants.MIN_NUMBER.getNumber()
+                        || number > Constants.MAX_NUMBER.getNumber())
                 .findAny()
                 .ifPresent(number -> {
                     throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE.getMessage()

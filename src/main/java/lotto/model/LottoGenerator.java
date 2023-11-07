@@ -1,11 +1,10 @@
 package lotto.model;
 
-import static lotto.utils.Constants.LOTTO_PRICE_PER_UNIT;
-
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import lotto.Lotto;
+import lotto.utils.Constants;
 import lotto.utils.NumberGenerator;
 
 public class LottoGenerator {
@@ -18,6 +17,6 @@ public class LottoGenerator {
     }
 
     private int generateLottoCount(int price) {
-        return price / LOTTO_PRICE_PER_UNIT;
+        return price / Constants.LOTTO_PRICE_PER_UNIT.getNumber();
     }
 }

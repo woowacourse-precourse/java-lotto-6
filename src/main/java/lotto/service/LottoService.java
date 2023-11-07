@@ -105,7 +105,7 @@ public class LottoService {
 
         System.out.println("당첨 통계");
         System.out.println("---");
-        Integer sum = 0;
+        int sum = 0;
         for (Winning winning : Winning.values()) {
             System.out.println(winning.getMessage() + "(" + winning.getAmount() + ") - " + result.get(0) + "개");
             sum += winning.getAmount() * result.get(0);

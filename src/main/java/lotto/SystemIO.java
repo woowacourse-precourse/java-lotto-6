@@ -51,6 +51,9 @@ public class SystemIO {
         }
     }
 
-    public static void showResult() {
+    public static void showResult(Map<WinningRank, Integer> winningTally) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
     }
 }

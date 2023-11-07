@@ -6,6 +6,7 @@ import java.util.Map;
 public class Calculations {
     private final Map<Integer, WinningRank> winningTable = new HashMap<>();
     private Map<WinningRank, Integer> winningTally = new HashMap<>();
+    private Long winningAmount = 0L;
 
     public Calculations() {
         winningTable.put(1, WinningRank.FIRST_WINNING);
@@ -27,9 +28,15 @@ public class Calculations {
     public void tallyWinnings(int winningRank) {
         int existValue = winningTally.get(winningTable.get(winningRank));
         winningTally.put(winningTable.get(winningRank), existValue + 1);
+        String stringWinningAmount = winningTable.get(winningRank).getLotteryWinningAmount();
+        winningAmount = Long.valueOf(stringWinningAmount.replace(",",""));
     }
 
     public Map<WinningRank, Integer> getWinningTally() {
         return winningTally;
+    }
+
+    public Long getWinningAmount() {
+        return winningAmount;
     }
 }

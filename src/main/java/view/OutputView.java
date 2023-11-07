@@ -1,7 +1,10 @@
 package view;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
+import lotto.Rank;
 import message.InputMessage;
 import message.OutputMessage;
 import message.Symbol;
@@ -32,5 +35,27 @@ public class OutputView {
 
     public static void printBonusNumberInputMessage() {
         System.out.println(InputMessage.BONUS_NUMBER_MESSAGE.getMessage());
+    }
+
+    public static void printResultStatistics(Map<Rank, Integer> result) {
+        System.out.println(OutputMessage.STATISTICS_HEADER_MESSAGE.getMessage());
+        for (Rank rank : Rank.values()) {
+            System.out.println(generateStatisticalMessage(rank, result.get(rank)));
+        }
+    }
+
+    private static String generateStatisticalMessage(Rank rank, int count) {
+        StringBuilder printMessage = new StringBuilder();
+        printMessage.append(rank.getMatchCount()).append(OutputMessage.MATCHED_COUNT_MESSAGE.getMessage());
+        if (rank.isBonusNeeded()) {
+            printMessage.append(OutputMessage.BONUS_NUMBER_MATCH_MESSAGE.getMessage());
+        }
+        printMessage.append(Symbol.SPACE.getSymbol()).append(Symbol.OPEN_BRACKET.getSymbol());
+        DecimalFormat decimalFormat = new DecimalFormat(Symbol.DECIMAL_PATTERN.getSymbol());
+        printMessage.append(decimalFormat.format(rank.getPrize())).append(Symbol.WON.getSymbol())
+                .append(Symbol.CLOSE_BRACKET.getSymbol()).append(Symbol.SPACE.getSymbol())
+                .append(Symbol.DASH.getSymbol()).append(Symbol.SPACE.getSymbol())
+                .append(count).append(Symbol.COUNT.getSymbol());
+        return printMessage.toString();
     }
 }

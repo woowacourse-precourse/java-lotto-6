@@ -15,6 +15,7 @@ public class Application {
         List<Integer> winningNumbers = InputView.getWinningNumbers();
         int bonusNumber = InputView.getBonusNumberInput(winningNumbers);
         Map<Rank, Integer> result = calculateResult(lotteries, winningNumbers, bonusNumber);
+        OutputView.printResultStatistics(result);
     }
 
     private static Map<Rank, Integer> calculateResult(List<Lotto> lotteries,

@@ -31,6 +31,18 @@ public enum Rank {
         return Optional.empty();
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean isBonusNeeded() {
+        return bonusNeeded;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
     private static int getMatchCount(List<Integer> lotteryNumbers, List<Integer> winningNumbers) {
         int count = 0;
         for (int number : lotteryNumbers) {

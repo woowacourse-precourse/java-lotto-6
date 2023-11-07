@@ -64,6 +64,20 @@ class PrizeTest extends NsTest {
         assertThat(output()).contains("5개 일치, 보너스 볼 일치 (30,000,000원)");
     }
 
+    @DisplayName("1등 당첨을 판별한다.")
+    @Test
+    void isPrizeFirst() {
+        final int count = 6;
+        final boolean isBonus = false;
+        final Prize first = Arrays.stream(Prize.values())
+                .filter(prize -> prize.judge(count, isBonus))
+                .findFirst()
+                .orElse(Prize.NONE);
+        System.out.println("first = " + first);
+
+        assertThat(output()).contains("6개 일치 (2,000,000,000원)");
+    }
+
     @Override
     protected void runMain() {
 

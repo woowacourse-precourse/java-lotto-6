@@ -7,7 +7,7 @@ public class Money {
 
     private final int money;
 
-    public Money(int money) {
+    public Money(final int money) {
         validateMultipleOfThousand(money);
         validateNonPositiveAmount(money);
         this.money = money;

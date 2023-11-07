@@ -24,8 +24,7 @@ public class OutputView {
     }
 
     public void printLottoTicket(final LottoTicket lottoTicket) {
-        lottoTicket.getLottos()
-                .forEach(System.out::println);
+        System.out.println(lottoTicket);
     }
 
     public void printWinningNumbersMessage() {

@@ -23,9 +23,9 @@ public class LottoController {
     }
 
     public void play() {
-        Money purchaseAmount = generateValidMoney();
+        final Money purchaseAmount = generateValidMoney();
 
-        LottoTicket lottoTicket = LottoTicket.create(purchaseAmount);
+        final LottoTicket lottoTicket = LottoTicket.create(purchaseAmount);
 
         outputView.printNumberOfLotto(purchaseAmount.getNumberOfLotto());
         outputView.printLottoTicket(lottoTicket);
@@ -49,7 +49,7 @@ public class LottoController {
     }
 
     private WinningNumbers createValidWinningNumbers() {
-        Lotto winningNumbers = createValidWinningNumbersData();
+        final Lotto winningNumbers = createValidWinningLotto();
         while (true) {
             try {
                 outputView.printBonusNumberMessage();
@@ -61,11 +61,11 @@ public class LottoController {
         }
     }
 
-    private Lotto createValidWinningNumbersData() {
+    private Lotto createValidWinningLotto() {
         while (true) {
             try {
                 outputView.printWinningNumbersMessage();
-                List<Integer> winningNumbers = inputView.inputWinningNumbers();
+                final List<Integer> winningNumbers = inputView.inputWinningNumbers();
                 return new Lotto(winningNumbers);
             } catch (final IllegalArgumentException illegalArgumentException) {
                 outputView.printExceptionMessage(illegalArgumentException);

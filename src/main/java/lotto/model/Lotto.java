@@ -69,7 +69,7 @@ public class Lotto {
         return number < LottoConstants.START_NUMBER || number > LottoConstants.END_NUMBER;
     }
 
-    private List<Integer> sortLottoNumber(List<Integer> numbers) {
+    private List<Integer> sortLottoNumber(final List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();

@@ -35,7 +35,7 @@ public enum Rank {
         return findOther(matchingNumber);
     }
 
-    private static Rank findOther(int matchingNumber) {
+    private static Rank findOther(final int matchingNumber) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> isSameMatchingNumber(rank.matchingNumber, matchingNumber))
                 .filter(rank -> rank != SECOND)

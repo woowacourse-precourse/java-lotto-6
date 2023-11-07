@@ -1,6 +1,7 @@
 package lotto.domain;
 
 public class BonusNumber {
+    private static final String WRONG_RANGE_MESSAGE = "보너스 번호는 1-45 숫자로 입력해주세요";
     Integer bonusNumber;
 
     public BonusNumber(int input) {
@@ -10,7 +11,7 @@ public class BonusNumber {
 
     private void validateRange(int input) {
         if (input > 0 && input <= 45) return;
-        throw new IllegalArgumentException("보너스 번호는 1-45 숫자로 입력해주세요");
+        throw new IllegalArgumentException(WRONG_RANGE_MESSAGE);
     }
 
     @Override

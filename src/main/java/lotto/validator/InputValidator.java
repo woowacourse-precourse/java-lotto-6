@@ -2,15 +2,14 @@ package lotto.validator;
 
 import static lotto.constant.ConstantInteger.MAX_LENGTH;
 import static lotto.constant.ConstantInteger.MAX_PRICE;
-import static lotto.constant.ConstantInteger.NUMBER_COUNT;
 import static lotto.constant.ConstantInteger.UNIT;
 import static lotto.constant.ConstantInteger.ZERO;
 import static lotto.constant.ConstantString.SEPARATOR;
 import static lotto.exception.ExceptionMessage.DIFFERENT_FORMAT_EXCEPTION_MESSAGE;
 import static lotto.exception.ExceptionMessage.MAX_PRICE_MESSAGE;
 import static lotto.exception.ExceptionMessage.NOT_NUMBER_EXCEPTION_MESSAGE;
+import static lotto.exception.ExceptionMessage.NOT_NUMBER_INPUT_MESSAGE;
 import static lotto.exception.ExceptionMessage.NULL_POINTER_EXCEPTION_MESSAGE;
-import static lotto.exception.ExceptionMessage.UNAVAILABLE_NUMBER_COUNT;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,14 +58,19 @@ public class InputValidator {
         return Integer.parseInt(input);
     }
 
-    public void validateNumberCount(String input){
-        if(separateInput(input).size()!=NUMBER_COUNT){
-            throw new LottoApplicationException(UNAVAILABLE_NUMBER_COUNT);
-        }
+    public List<String> separateInput(String input) {
+        return Arrays.stream(input.split(SEPARATOR)).toList();
     }
 
-    public List<String> separateInput(String input){
-        return Arrays.stream(input.split(SEPARATOR)).toList();
+    public void validateLuckyNumberIsNumber(List<String> input) {
+        input.forEach(element -> {
+                    try {
+                        Integer.parseInt(element);
+                    } catch (NumberFormatException e) {
+                        throw new LottoApplicationException(NOT_NUMBER_INPUT_MESSAGE);
+                    }
+                }
+        );
     }
 
 }

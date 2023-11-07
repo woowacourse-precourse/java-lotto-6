@@ -27,7 +27,4 @@ public class LottoMoneyValidator {
         }
     }
 
-    private static void isTooBig(String lottoMoneyInput) {
-
-    }
 }

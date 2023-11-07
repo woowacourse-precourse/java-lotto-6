@@ -18,6 +18,10 @@ public enum Rank {
         this.prizeMoney = prizeMoney;
     }
 
+    public static Rank from(MatchDetail matchDetail) {
+        return Rank.of(matchDetail.matchedCount(), matchDetail.matchedBonus());
+    }
+
     public static Rank of(int matchedCount, boolean isBonusNumberMatched) {
         if (matchedCount == THIRD.matchedCount && !isBonusNumberMatched) {
             return THIRD;

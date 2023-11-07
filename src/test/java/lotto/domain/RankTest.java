@@ -50,4 +50,23 @@ class RankTest {
         assertThat(third).isEqualTo(Rank.THIRD);
     }
 
+    @ParameterizedTest
+    @ValueSource(ints = {1, 3, 4, 5, 6})
+    @DisplayName("매칭 결과가 주어졌을 때, 올바르게 등수를 계산한다.")
+    public void getRankByMatchDetail(int matchedCount){
+        Map<Integer, Rank> map = Map.ofEntries(
+                entry(1, Rank.NONE),
+                entry(3, Rank.FIFTH),
+                entry(4, Rank.FOURTH),
+                entry(5, Rank.THIRD),
+                entry(6, Rank.FIRST)
+        );
+        // given
+        MatchDetail matchDetail = new MatchDetail(matchedCount, false);
+        // when
+        Rank actualRank = Rank.from(matchDetail);
+        // then
+        assertThat(actualRank).isEqualTo(map.get(matchedCount));
+    }
+
 }

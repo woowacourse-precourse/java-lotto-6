@@ -8,10 +8,10 @@ public class WinnerLotto {
     private final BonusNumber bonusNumber;
     private final Lotto lotto;
 
-    public WinnerLotto(List<Integer> playerLotto, Integer bonusNumber) {
-        lotto = new Lotto(playerLotto);
-        validateDuplicateBonus(playerLotto, bonusNumber);
-        this.bonusNumber = new BonusNumber(bonusNumber);
+    public WinnerLotto(Lotto lotto, BonusNumber bonusNumber) {
+        this.lotto = lotto;
+        validateDuplicateBonus(lotto, bonusNumber);
+        this.bonusNumber = bonusNumber;
     }
 
     public boolean matchesLottoNumber(int lottoNumber) {
@@ -23,8 +23,8 @@ public class WinnerLotto {
         return this.bonusNumber.equals(bonusNumber);
     }
 
-    private void validateDuplicateBonus(List<Integer> playerLotto, Integer bonusNumber) {
-        if (playerLotto.contains(bonusNumber)) {
+    private void validateDuplicateBonus(Lotto lotto, BonusNumber bonusNumber) {
+        if (lotto.getNumbers().contains(bonusNumber.getBonusNumber())) {
             throw new DuplicateNumberException();
         }
     }

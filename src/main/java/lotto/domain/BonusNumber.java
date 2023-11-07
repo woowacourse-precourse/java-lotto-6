@@ -14,6 +14,10 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public Integer getBonusNumber() {
+        return this.bonusNumber;
+    }
+
     public boolean equals(Integer bonusNumber) {
         return this.bonusNumber.equals(bonusNumber);
     }

@@ -3,6 +3,8 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.LottosGenerator;
 import lotto.domain.Money;
@@ -42,9 +44,9 @@ public class LottoController {
     }
 
     private WinnerLotto getWinnerLotto() {
-        List<Integer> lottoNumbers = inputView.readLottoNumbers();
-        Integer bonusNumber = inputView.readBonusNumber();
-        return new WinnerLotto(lottoNumbers, bonusNumber);
+        Lotto winninglotto = new Lotto(inputView.readLottoNumbers());
+        BonusNumber bonusNumber = new BonusNumber(inputView.readBonusNumber());
+        return new WinnerLotto(winninglotto, bonusNumber);
     }
 
     private Map<Prize, Long> getPrizeResults(Lottos lottos, WinnerLotto winnerLotto) {

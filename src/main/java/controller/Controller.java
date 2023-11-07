@@ -121,7 +121,7 @@ public class Controller {
 
     private String checkLottoValidation(String input) {
         try {
-            validator.checkNotNumber(input); //미리 no number인지 체크
+            validator.checkNotNumberAndSpace(input); //미리 no number인지 체크
             new Lotto(parser.parseLottoNumberToInt(input)); //숫자만 있을 때 체크
             validator.checkDuplicate(input); //Duplicate 저장
             return input;

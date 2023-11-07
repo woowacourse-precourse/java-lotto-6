@@ -10,6 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        duplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -18,6 +19,12 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 입력되는 숫자는 6자리 여야 합니다.");
         }
         changeIntegerToString(numbers);
+    }
+
+    private void duplicate(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void changeIntegerToString(List<Integer> numbers) {

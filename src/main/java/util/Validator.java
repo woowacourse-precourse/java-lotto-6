@@ -25,32 +25,25 @@ public class Validator {
         checkThousand(input); //checkInteger에서 exception이 끝나지만 버그 대비
     }
 
-    private void checkAllLottoInput(List<Integer> numbers) {
-        checkLength(numbers);
-        checkEmpty(numbers.toString());
-    }
-
-    private void checkLength(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리여야 합니다.");
-        }
-    }
-
     private void checkEachChar(String each_num) {
         int check_num = parser.parseNumber(each_num);
         if(check_num > 45 || check_num < 0)
             throw new IllegalArgumentException("[ERROR] 값의 범위는 1부터 45까지 입니다.");
     }
 
-    public void checkNotNumber(String input) {
+    public void checkNotNumberAndSpace(String input) {
+        checkNotNumber(input);
+        checkEachCharSpace(input);
+    }
+
+    private void checkNotNumber(String input) {
         Pattern pattern = Pattern.compile("[^,0-9]+");
         Matcher matcher = pattern.matcher(input);
         if (matcher.find())
             throw new IllegalArgumentException("[ERROR] 문자가 입력되면 안 됩니다.");
     }
-
     private void checkEachCharSpace(String check_space) {
-        if(check_space.contains(" "))
+        if (check_space.contains(" "))
             throwSpaceException();
     }
 

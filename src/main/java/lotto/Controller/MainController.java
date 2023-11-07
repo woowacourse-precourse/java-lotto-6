@@ -32,7 +32,7 @@ public class MainController {
                 rank_cnt[cnt - 3]++;
             }else if(cnt == 5){
                 // 보너스번호가 일치하는가?
-                if(lotto.getNumbers().contains(user_lotto.getNumbers().indexOf(user_lotto.getNumbers().size() - 1))){
+                if(lotto.getNumbers().contains(user_lotto.getNumbers().get(user_lotto.getNumbers().size() - 1))){
                     rank_cnt[3]++;
                 }else
                     rank_cnt[2]++;

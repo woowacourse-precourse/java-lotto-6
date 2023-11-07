@@ -10,25 +10,15 @@ import java.util.List;
 public class LottoRandom {
     public String[] getBuyLotto(int count) {
         List<Integer> numbers = new ArrayList<>();
-        List<Integer> a;
+        List<Integer> sliceList;
         String[] list = new String[count];
         for(int i = 0; i < count; i++){
             numbers.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            a = numbers.subList(6 * i, 6 * (i + 1));
-            Collections.sort(a);
-            list[i] = a.toString();
+            sliceList = numbers.subList(6 * i, 6 * (i + 1));
+            Collections.sort(sliceList);
+            list[i] = sliceList.toString();
             System.out.println(list[i]);
         }
         return list;
     }
-//    public String[] getBuyLotto(int count) {
-//        String[] numbers = new String[count];
-//        for(int i = 0; i < count; i++){
-//            List list = (Randoms.pickUniqueNumbersInRange(1, 45, 6));
-//            Collections.sort(list);
-//            numbers[i] = list.toString();
-//            System.out.println(numbers[i]);
-//        }
-//        return numbers;
-//    }
 }

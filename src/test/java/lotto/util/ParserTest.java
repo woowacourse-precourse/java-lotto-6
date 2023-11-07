@@ -17,7 +17,7 @@ public class ParserTest {
     }
 
     @Test
-    @DisplayName("정상적으로 입력했을 경우")
+    @DisplayName("정상적으로 입력했을 때 테스트")
     public void testParserValidInput() {
         String input = "1000";
         int expected = 1000;

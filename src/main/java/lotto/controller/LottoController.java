@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.Coin;
+import lotto.model.LottoPaper;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,6 +34,8 @@ public class LottoController {
 
             Coin coin = new Coin(amount);
             outputView.printNewLine();
+
+            List<LottoPaper> lotto = machine.publishLottoPaper(coin);
 
         } catch (IllegalArgumentException e) {
             outputView.printError(e);

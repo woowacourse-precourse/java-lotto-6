@@ -23,7 +23,7 @@ public class WinningNumbers {
         }
     }
 
-    public int getWinningRank(Lotto lotto) {
+    public int getRank(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         int matchingNumbers = (int) lottoNumbers.stream().filter(numbers::contains).count();
         boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);

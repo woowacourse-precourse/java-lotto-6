@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.Constant.LOTTO_TICKET_PRICE;
+import static lotto.Util.println;
 
 public class Application {
-    static final int LOTTO_TICKET_PRICE = 1_000;
-
     public static void main(String[] args) {
-        System.out.println("구입금액을 입력해 주세요.");
+        println("구입금액을 입력해 주세요.");
         int purchaseAmount = Integer.parseInt(readLine());
 
         int ticketCount = purchaseAmount / LOTTO_TICKET_PRICE;
@@ -19,10 +19,10 @@ public class Application {
         System.out.printf("\n%d개를 구매했습니다.\n", ticketCount);
         for (int i = 0; i < ticketCount; i++) {
             tickets[i] = Lotto.generate();
-            System.out.println(tickets[i].getNumbers());
+            println(tickets[i].getNumbers());
         }
 
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        println("\n당첨 번호를 입력해 주세요.");
         String lottoNumbers = readLine();
 
         List<Integer> numbers = Arrays.stream(lottoNumbers.split(","))
@@ -30,38 +30,34 @@ public class Application {
                 .boxed()
                 .collect(Collectors.toList());
 
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(readLine());
 
         WinningNumbers win = new WinningNumbers(numbers, bonusNumber);
 
         int[] rankCount = new int[6];
         for (int i = 0; i < ticketCount; i++) {
-            int rank = win.getWinningRank(tickets[i]);
+            int rank = win.getRank(tickets[i]);
             rankCount[rank]++;
         }
 
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
+        println("\n당첨 통계");
+        println("---");
         for (int i = 5; i >= 1; i--) {
-            if (i == 1) {
-                System.out.println(WinMessageType.FIRST.getDetail() + " - " + rankCount[i] + "개");
-            } else if (i == 2) {
-                System.out.println(WinMessageType.SECOND.getDetail() + " - " + rankCount[i] + "개");
-            } else if (i == 3) {
-                System.out.println(WinMessageType.THIRD.getDetail() + " - " + rankCount[i] + "개");
-            } else if (i == 4) {
-                System.out.println(WinMessageType.FOURTH.getDetail() + " - " + rankCount[i] + "개");
-            } else if (i == 5) {
-                System.out.println(WinMessageType.FIFTH.getDetail() + " - " + rankCount[i] + "개");
-            }
+            RankType type = RankType.values()[i - 1];
+            String detail = type.getDetail();
+            String content = String.format("detail - %d개", rankCount[i]);
+            println(content);
         }
 
         int profitTotal = 0;
         for (int i = 1; i <= 5; i++) {
-            profitTotal += rankCount[i] * Constant.PRIZE_MONEYS[i];
+            RankType type = RankType.values()[i - 1];
+            profitTotal += type.multiplePrize(rankCount[i]);
         }
+
         double profitRate = (double)(profitTotal) / purchaseAmount * 100;
-        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitRate));
+        String temp = String.format("총 수익률은 %.1f%%입니다.", profitRate);
+        println(temp);
     }
 }

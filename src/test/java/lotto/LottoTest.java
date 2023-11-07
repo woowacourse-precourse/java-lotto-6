@@ -40,7 +40,7 @@ class LottoTest {
     @DisplayName("로또 번호가 오름차순으로 출력되는지 확인한다.")
     @Test
     void sorted() {
-        Lotto lotto = new Lotto(Arrays.asList(1,6,5,42,34,2));
+        Lotto lotto = new Lotto(Arrays.asList(1, 6, 5, 42, 34, 2));
 
         String expectedResult = "[1, 2, 5, 6, 34, 42]";
         assertThat(lotto.toString()).isEqualTo(expectedResult);

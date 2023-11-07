@@ -180,6 +180,19 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("입력한 당첨 번호와 보너스 번호 사이에 중복된 숫자가 있을 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2", "3", "4", "5"})
+    void inputDuplicatedNumberBetweenWinnerNumberAndBonusNumber(String bonusNumber) {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", "1,2,3,4,5,6", bonusNumber);
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

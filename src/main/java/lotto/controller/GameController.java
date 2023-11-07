@@ -37,11 +37,10 @@ public class GameController {
         try {
             Cash cash = depositCash();
             Lottos lottos = purchaseLotto(cash);
-            List<Integer> winnerNumbers = getWinnerNumbers();
-            Integer bonusNumber = getBonusNumber();
-            RequestWinnerLotto requestWinnerLotto = RequestWinnerLotto.of(winnerNumbers, bonusNumber);
-            WinnerLotto winnerLotto = WinnerLotto.create(requestWinnerLotto.winnerNumbers(), requestWinnerLotto.bonusNumber());
+            WinnerLotto winnerLotto = getWinnerLotto();
             compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e);
         } catch (IllegalStateException e) {
             outputView.printErrorMessage(e);
         } finally {

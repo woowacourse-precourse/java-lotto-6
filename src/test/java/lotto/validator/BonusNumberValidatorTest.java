@@ -1,12 +1,12 @@
 package lotto.validator;
 
-import lotto.constant.TestConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import lotto.constant.TestConstant;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 
 class BonusNumberValidatorTest {
 

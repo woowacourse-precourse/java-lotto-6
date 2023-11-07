@@ -1,6 +1,7 @@
 package lotto.domain.calculator;
 
 import java.util.Map;
+
 import lotto.constant.Rank;
 
 public class ProfitCalculator {

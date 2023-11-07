@@ -1,16 +1,17 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import lotto.constant.TestConstant;
-import lotto.domain.Lotto;
-import lotto.domain.winningnumber.WinningNumbers;
-import lotto.domain.winningnumber.WinningNumbersFactory;
+
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.assertj.core.api.Assertions;
+
+import lotto.constant.TestConstant;
+import lotto.domain.winningnumber.WinningNumbers;
+import lotto.domain.winningnumber.WinningNumbersFactory;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 
 class WinningNumbersTest {
 

@@ -2,10 +2,12 @@ package lotto.calculator;
 
 import java.text.DecimalFormat;
 import java.util.Map;
-import lotto.constant.Rank;
-import lotto.domain.calculator.ProfitCalculator;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import lotto.constant.Rank;
+import lotto.domain.calculator.ProfitCalculator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

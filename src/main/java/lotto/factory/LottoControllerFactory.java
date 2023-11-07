@@ -1,9 +1,9 @@
 package lotto.factory;
 
 import lotto.controller.LottoController;
-import lotto.domain.numbergenerator.RandomLottoNumberGenerator;
 import lotto.domain.calculator.LottoResultCalculator;
 import lotto.domain.calculator.ProfitCalculator;
+import lotto.domain.numbergenerator.RandomLottoNumberGenerator;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

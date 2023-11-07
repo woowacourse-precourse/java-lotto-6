@@ -3,6 +3,7 @@ package lotto.domain.calculator;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+
 import lotto.constant.Rank;
 import lotto.domain.Lotto;
 import lotto.domain.winningnumber.WinningNumbers;

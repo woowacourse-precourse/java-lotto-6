@@ -1,18 +1,20 @@
 package lotto.calculator;
 
-import lotto.domain.Lotto;
-import lotto.domain.winningnumber.WinningNumbers;
-import lotto.domain.calculator.LottoResultCalculator;
-import lotto.constant.Rank;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import lotto.constant.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.calculator.LottoResultCalculator;
+import lotto.domain.winningnumber.WinningNumbers;
+
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 class LottoResultCalculatorTest {
 

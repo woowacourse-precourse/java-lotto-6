@@ -1,12 +1,12 @@
 package lotto.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 import lotto.constant.PurchaseAmount;
 import lotto.domain.Lotto;
 import lotto.domain.numbergenerator.RandomLottoNumberGenerator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LottoService {
 

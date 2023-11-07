@@ -2,12 +2,12 @@ package lotto.validator;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
-import lotto.constant.message.ErrorMessage;
 import lotto.constant.LottoNumber;
+import lotto.constant.message.ErrorMessage;
 
 public class LottoNumberValidator {
 

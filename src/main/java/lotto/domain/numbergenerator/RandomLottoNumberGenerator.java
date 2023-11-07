@@ -1,9 +1,12 @@
 package lotto.domain.numbergenerator;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import camp.nextstep.edu.missionutils.Randoms;
+
 import lotto.constant.LottoNumber;
+
 
 public class RandomLottoNumberGenerator implements LottoNumberGenerator {
 

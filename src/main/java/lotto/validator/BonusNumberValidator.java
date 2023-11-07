@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import java.util.List;
+
 import lotto.constant.LottoNumber;
 import lotto.constant.message.ErrorMessage;
 

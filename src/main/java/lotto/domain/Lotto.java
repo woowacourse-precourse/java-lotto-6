@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+
 import lotto.validator.LottoNumberValidator;
 
 public record Lotto(List<Integer> numbers) {

@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import lotto.factory.LottoControllerFactory;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import lotto.controller.LottoController;
+
+import lotto.factory.LottoControllerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

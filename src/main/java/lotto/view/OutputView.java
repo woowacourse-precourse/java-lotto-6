@@ -2,13 +2,14 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+
+import lotto.constant.Rank;
 import lotto.constant.message.OutputMessage;
 import lotto.domain.Lotto;
 
-import java.util.List;
-import lotto.constant.Rank;
 
 public class OutputView {
 

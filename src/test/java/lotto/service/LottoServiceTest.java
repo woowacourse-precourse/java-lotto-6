@@ -1,11 +1,12 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.numbergenerator.RandomLottoNumberGenerator;
-import lotto.service.LottoService;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import lotto.domain.Lotto;
+import lotto.domain.numbergenerator.RandomLottoNumberGenerator;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -18,7 +18,7 @@ public class RandomLottoGenerator implements LottoGenerator {
                         LottoBall.MAX_RANGE,
                         Lotto.LOTTO_BALL_COUNT)
                 .stream()
-                .map(LottoBall::new)
+                .map(LottoBall::getInstance)
                 .toList();
     }
 }

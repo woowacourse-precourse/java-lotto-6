@@ -11,7 +11,6 @@ import lotto.domain.LottoBall;
 import lotto.domain.MatchDetail;
 import lotto.domain.WinningNumbers;
 import lotto.exception.InvalidMoneyInput;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,7 +44,7 @@ class UserLottoInputTest {
         WinningNumbers winningNumbers = input.getWinningNumbers();
         // then
         Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 7)
-                .map(LottoBall::new)
+                .map(LottoBall::getInstance)
                 .toList());
         MatchDetail match = winningNumbers.match(lotto);
 

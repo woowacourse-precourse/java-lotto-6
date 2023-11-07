@@ -16,15 +16,15 @@ class LottoReceiptTest {
         // given
         LottoReceipt lottoReceipt = new LottoReceipt(
                 List.of(
-                        new Lotto(Stream.of(1, 2, 3, 4, 5, 6).map(LottoBall::new).toList()),
-                        new Lotto(Stream.of(1, 2, 3, 4, 5, 6).map(LottoBall::new).toList()),
-                        new Lotto(Stream.of(3, 10, 11, 12, 13, 14).map(LottoBall::new).toList()),
-                        new Lotto(Stream.of(3, 10, 11, 12, 13, 14).map(LottoBall::new).toList()),
-                        new Lotto(Stream.of(3, 10, 11, 13, 15, 16).map(LottoBall::new).toList())
+                        new Lotto(Stream.of(1, 2, 3, 4, 5, 6).map(LottoBall::getInstance).toList()),
+                        new Lotto(Stream.of(1, 2, 3, 4, 5, 6).map(LottoBall::getInstance).toList()),
+                        new Lotto(Stream.of(3, 10, 11, 12, 13, 14).map(LottoBall::getInstance).toList()),
+                        new Lotto(Stream.of(3, 10, 11, 12, 13, 14).map(LottoBall::getInstance).toList()),
+                        new Lotto(Stream.of(3, 10, 11, 13, 15, 16).map(LottoBall::getInstance).toList())
                 )
         );
-        Lotto winningLotto = new Lotto(Stream.of(1, 2, 3, 4, 10, 12).map(LottoBall::new).toList());
-        LottoBall bonusBall = new LottoBall(6);
+        Lotto winningLotto = new Lotto(Stream.of(1, 2, 3, 4, 10, 12).map(LottoBall::getInstance).toList());
+        LottoBall bonusBall = LottoBall.getInstance(6);
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusBall);
 
         // when

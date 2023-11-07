@@ -19,7 +19,7 @@ class LottoTest {
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(
                 IntStream.of(1, 2, 3, 4, 5, 6, 7)
-                        .mapToObj(LottoBall::new)
+                        .mapToObj(LottoBall::getInstance)
                         .toList())
         ).isInstanceOf(IllegalArgumentException.class);
     }
@@ -30,7 +30,7 @@ class LottoTest {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(
                 IntStream.of(1, 2, 3, 4, 5, 5)
-                        .mapToObj(LottoBall::new)
+                        .mapToObj(LottoBall::getInstance)
                         .toList())
         ).isInstanceOf(IllegalArgumentException.class);
     }
@@ -41,13 +41,13 @@ class LottoTest {
     public void lottoContains(int number) {
         // given
         List<LottoBall> balls = IntStream.rangeClosed(1, 6)
-                .mapToObj(LottoBall::new)
+                .mapToObj(LottoBall::getInstance)
                 .toList();
         Lotto lotto = new Lotto(balls);
 
         // when, then
         Assertions.assertDoesNotThrow(() -> {
-            lotto.contains(new LottoBall(number));
+            lotto.contains(LottoBall.getInstance(number));
         });
     }
 
@@ -55,13 +55,13 @@ class LottoTest {
     public void matchCount() {
         // given
         List<LottoBall> balls = IntStream.rangeClosed(1, 6)
-                .mapToObj(LottoBall::new)
+                .mapToObj(LottoBall::getInstance)
                 .toList();
         Lotto lotto = new Lotto(balls);
 
         Lotto secondLotto = new Lotto(
                 IntStream.rangeClosed(3, 8)
-                        .mapToObj(LottoBall::new)
+                        .mapToObj(LottoBall::getInstance)
                         .toList()
         );
         // when

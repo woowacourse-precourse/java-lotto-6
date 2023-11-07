@@ -8,9 +8,19 @@ public class LottoBall {
 
     private final int number;
 
-    public LottoBall(int number) {
+    private LottoBall(int number) {
         validateNumberRange(number);
         this.number = number;
+    }
+
+    public static LottoBall getInstance(int number) {
+        if (LottoBallFactory.isExists(number)) {
+            return LottoBallFactory.grabFromPool(number);
+        } else {
+            LottoBall lottoBall = new LottoBall(number);
+            LottoBallFactory.addToPool(number, lottoBall);
+            return lottoBall;
+        }
     }
 
     private void validateNumberRange(int number) {

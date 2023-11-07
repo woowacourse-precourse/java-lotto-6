@@ -17,11 +17,11 @@ class WinningNumbersTest {
         // given
         Lotto lotto = new Lotto(
                 IntStream.rangeClosed(1, 6)
-                        .mapToObj(LottoBall::new)
+                        .mapToObj(LottoBall::getInstance)
                         .toList()
         );
 
-        LottoBall bonusBall = new LottoBall(number);
+        LottoBall bonusBall = LottoBall.getInstance(number);
 
         // when, then
         assertThatThrownBy(() -> new WinningNumbers(lotto, bonusBall))
@@ -35,11 +35,11 @@ class WinningNumbersTest {
         // given
         Lotto lotto = new Lotto(
                 IntStream.rangeClosed(1, 6)
-                        .mapToObj(LottoBall::new)
+                        .mapToObj(LottoBall::getInstance)
                         .toList()
         );
 
-        LottoBall bonusBall = new LottoBall(number);
+        LottoBall bonusBall = LottoBall.getInstance(number);
 
         // when, then
         assertDoesNotThrow(() -> new WinningNumbers(lotto, bonusBall));

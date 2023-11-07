@@ -23,8 +23,13 @@ public class LottoBuyController implements Controller {
     @Override
     public void process(Map<String, ? super DTO.Input> inputDto,
                         Map<String, ? super DTO.Output> outputDto) {
-        Long price = getBuyLottoPrice(inputDto, outputDto);
-        viewBuyLottoNumbers(outputDto, price);
+        try {
+            Long price = getBuyLottoPrice(inputDto, outputDto);
+            viewBuyLottoNumbers(outputDto, price);
+        } catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage());
+            process(inputDto, outputDto);
+        }
     }
 
     private void viewBuyLottoNumbers(Map<String, ? super DTO.Output> outputDto, Long price) {

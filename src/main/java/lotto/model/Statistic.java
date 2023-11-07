@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -11,9 +12,9 @@ public class Statistic {
     private static final Integer FIVE_COUNT = 5;
     private static final Integer COUNT = 1;
 
-    private Map<LottoRank, Integer> rank;
+    private final Map<LottoRank, Integer> rank;
 
-    private Statistic(Map<LottoRank, Integer> rank) {
+    private Statistic(final Map<LottoRank, Integer> rank) {
         this.rank = rank;
     }
 
@@ -32,10 +33,10 @@ public class Statistic {
             playerRank.put(rank, playerRank.getOrDefault(rank, DEFAULT_COUNT) + COUNT);
         }
 
-        return playerRank;
+        return Collections.unmodifiableMap(playerRank);
     }
 
-    private static LottoRank determineRank(Integer matchedCount, Boolean includeBonus) {
+    private static LottoRank determineRank(final Integer matchedCount, final Boolean includeBonus) {
         if (isSecondRank(matchedCount, includeBonus)) {
             return LottoRank.SECOND_RANK;
         }
@@ -46,11 +47,11 @@ public class Statistic {
                 .orElse(LottoRank.NON_RANK);
     }
 
-    private static boolean isSecondRank(Integer matchedCount, Boolean includeBonus) {
+    private static boolean isSecondRank(final Integer matchedCount, final Boolean includeBonus) {
         return matchedCount == FIVE_COUNT && includeBonus;
     }
 
     public Map<LottoRank, Integer> getRank() {
-        return rank;
+        return Collections.unmodifiableMap(rank);
     }
 }

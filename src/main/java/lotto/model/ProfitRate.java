@@ -26,7 +26,7 @@ public class ProfitRate {
         return (reward / (double) buyAmount.amount()) * PERCENTAGE;
     }
 
-    private static Long calculateEachRankReward(Map<LottoRank, Integer> result, LottoRank lottoRank) {
+    private static Long calculateEachRankReward(final Map<LottoRank, Integer> result, final LottoRank lottoRank) {
         return lottoRank.getPrizeMoney() * result.get(lottoRank);
     }
 

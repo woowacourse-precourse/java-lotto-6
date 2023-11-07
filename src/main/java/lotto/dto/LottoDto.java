@@ -20,11 +20,11 @@ public class LottoDto {
 
     private static LottoDto from(final Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        Collections.unmodifiableList(numbers);
-        return new LottoDto(numbers);
+        
+        return new LottoDto(Collections.unmodifiableList(numbers));
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 }

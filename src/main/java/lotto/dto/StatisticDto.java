@@ -47,6 +47,6 @@ public class StatisticDto {
     }
 
     public Map<LottoRank, Integer> getRank() {
-        return rank;
+        return Collections.unmodifiableMap(rank);
     }
 }

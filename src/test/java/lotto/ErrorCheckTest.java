@@ -33,5 +33,21 @@ class ErrorCheckTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 유효한 범위를 벗어나면(45 초과) 에러가 발생해야 한다.")
+    @Test
+    void checkErrorOccurBonusNumExceed45() {
+        int invalidBonusNum = 46;
+        assertThatThrownBy(() -> ErrorCheck.validateBonusNum(invalidBonusNum))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 유효한 범위를 벗어나면(1미만) 에러가 발생해야 한다.")
+    @Test
+    void checkErrorOccurBonusNumUnder1() {
+        int invalidBonusNum = 0;
+        assertThatThrownBy(() -> ErrorCheck.validateBonusNum(invalidBonusNum))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

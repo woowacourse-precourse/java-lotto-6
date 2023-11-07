@@ -50,24 +50,17 @@ public class LottoService {
         List<Integer> winningNumbers = new ArrayList<>();
 
         for (String inputNumber : inputNumbers) {
-            int num = parseAndValidateSingleWinningNumber(inputNumber);
+            int num = Validator.validateSingleNumber(inputNumber);
             winningNumbers.add(num);
         }
 
         return winningNumbers;
     }
 
-    private int parseAndValidateSingleWinningNumber(String inputNumber) {
-        int num = Validator.isNumber(inputNumber);
-        Validator.isSmallAndBig(num);
-        return num;
-    }
 
-
-    public int initBonusNumber(String inputBonusNumber) {
-        int num = Validator.isNumber(inputBonusNumber);
-        Validator.isSmallAndBig(num);
-        Validator.isDuplicatedBonus(lotto.getNumbers(), num);
+    public int initBonusNumber(List<Integer> winningNumbers, String inputBonusNumber) {
+        int num = Validator.validateSingleNumber(inputBonusNumber);
+        Validator.isDuplicatedBonus(winningNumbers, num);
 
         return num;
     }

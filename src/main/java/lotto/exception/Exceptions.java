@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import java.util.List;
+
 public class Exceptions {
     public void isInvalidPurchaseMoneyAmount(int money, int divided) {
         if (money % divided != 0) {

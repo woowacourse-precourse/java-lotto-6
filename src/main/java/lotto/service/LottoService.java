@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.Exceptions;
 import lotto.model.Customer;
 import lotto.model.Lotto;
+import lotto.model.Ranking;
+import lotto.model.WinningNumber;
 
 import java.util.*;
 import java.util.stream.Collectors;

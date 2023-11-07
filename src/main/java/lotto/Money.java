@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.exception.money.MoneyPositiveException;
+import lotto.exception.money.NonPositiveTargetException;
 
 public class Money {
     public static final int MIN_BOUND = 0;
@@ -26,6 +27,17 @@ public class Money {
     }
 
     public boolean isMultipleOf(int target) {
+        validateTargetPositive(target);
         return this.value % target == 0;
+    }
+
+    private void validateTargetPositive(int target) {
+        if (!hasGreaterZeroValue(target)) {
+            throw new NonPositiveTargetException();
+        }
+    }
+
+    private boolean hasGreaterZeroValue(int target) {
+        return target > MIN_BOUND;
     }
 }

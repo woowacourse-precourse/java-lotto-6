@@ -97,29 +97,29 @@
 
 ### 기본
 
-- [ ] JDK 17 버전에서 실행 가능하도록 한다.
-- [ ] 프로그램의 시작점을 `Application.main()`으로 설정한다.
-- [ ] 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
-- [ ] 프로그램 구현 후 `ApplicationTest`의 모든 테스트가 성공하는지 확인한다.
-- [ ] indent depth가 3이 넘지 않도록 한다.
-- [ ] 3항 연산자를 사용하지 않는다.
-- [ ] JUnit5와 AssertJ를 통해 기능 구현 목록 테스트를 진행한다.
+- [X] JDK 17 버전에서 실행 가능하도록 한다.
+- [X] 프로그램의 시작점을 `Application.main()`으로 설정한다.
+- [X] 프로그램 종료 시 `System.exit()`를 호출하지 않는다.
+- [X] 프로그램 구현 후 `ApplicationTest`의 모든 테스트가 성공하는지 확인한다.
+- [X] indent depth가 3이 넘지 않도록 한다.
+- [X] 3항 연산자를 사용하지 않는다.
+- [X] JUnit5와 AssertJ를 통해 기능 구현 목록 테스트를 진행한다.
 
 ### 추가 요구 사항
 
-- [ ] 각각의 메서드의 길이가 15라인이 넘지 않는지 확인한다. (한 가지 일만 하도록 구현)
-- [ ] `else` 예약어를 사용하지 않는다.
-- [ ] `switch/case` 문을 사용하지 않는다.
-- [ ] Java Enum을 사용한다.
-- [ ] 도메인 로직에 단위 테스트를 구현한다. (단, UI 로직은 제외)
+- [X] 각각의 메서드의 길이가 15라인이 넘지 않는지 확인한다. (한 가지 일만 하도록 구현)
+- [X] `else` 예약어를 사용하지 않는다.
+- [X] `switch/case` 문을 사용하지 않는다.
+- [X] Java Enum을 사용한다.
+- [X] 도메인 로직에 단위 테스트를 구현한다. (단, UI 로직은 제외)
 
 ### 라이브러리
 
-- [ ] 로또 랜덤 번호 추출에 `camp.nextsetp.edu.missionutils.Randoms.pickUniqueNumbersInRange()`를 활용한다.
-- [ ] 사용자가 입력하는 값은 `camp.nextsetp.edu.missionutils.Console.readLine()`을 활용한다.
+- [X] 로또 랜덤 번호 추출에 `camp.nextsetp.edu.missionutils.Randoms.pickUniqueNumbersInRange()`를 활용한다.
+- [X] 사용자가 입력하는 값은 `camp.nextsetp.edu.missionutils.Console.readLine()`을 활용한다.
 
 ### Lotto 클래스
 
-- [ ] 제공된 `Lotto` 클래스를 활용한다.
-    - [ ] `numbers`의 접근 제어자인 `private`을 변경하지 않는다.
-    - [ ] `Lotto`에 필드(인스턴스 변수)를 추가하지 않는다.
+- [X] 제공된 `Lotto` 클래스를 활용한다.
+    - [X] `numbers`의 접근 제어자인 `private`을 변경하지 않는다.
+    - [X] `Lotto`에 필드(인스턴스 변수)를 추가하지 않는다.

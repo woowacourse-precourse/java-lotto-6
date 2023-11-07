@@ -13,12 +13,13 @@ public class JudgementTest {
     void checkWinningLottoNumbers() {
         Lottos lottos = new Lottos(0);
         lottos.addLottos(new Lotto(List.of(1,2,3,4,5,6)));
+        lottos.addLottos(new Lotto(List.of(1,2,3,4,5,7)));
         lottos.addLottos(new Lotto(List.of(3,4,5,6,7,8)));
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
         WinningLotto winningLotto = new WinningLotto(winningNumbers);
         winningLotto.addBonusNumber("7");
         Judgement.checkLottoNumber(lottos,winningLotto);
-        Assertions.assertEquals(lottos.getWinningCounts(), List.of(7,5));
+        Assertions.assertEquals(lottos.getWinningCounts(), List.of(7,6,5));
     }
 
     @DisplayName("로또 랭킹 테스트, 로또 번호가 (1,2,3,4,5,6), (3,4,5,6,7,8) 당첨번호가 1,2,3,4,5,6 보너스가 7일 경우 등수 확인")
@@ -26,13 +27,14 @@ public class JudgementTest {
     void checkWinningLottoRank() {
         Lottos lottos = new Lottos(0);
         lottos.addLottos(new Lotto(List.of(1,2,3,4,5,6)));
+        lottos.addLottos(new Lotto(List.of(1,2,3,4,5,7)));
         lottos.addLottos(new Lotto(List.of(3,4,5,6,7,8)));
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
         WinningLotto winningLotto = new WinningLotto(winningNumbers);
         winningLotto.addBonusNumber("7");
         Judgement.checkLottoNumber(lottos,winningLotto);
         List<Integer> rank = Judgement.judgeAllLottoRank(lottos);
-        Assertions.assertEquals(rank, List.of(0,0,1,0,1));
+        Assertions.assertEquals(rank, List.of(0,0,1,1,1));
     }
 
     @DisplayName("수익률 계산")

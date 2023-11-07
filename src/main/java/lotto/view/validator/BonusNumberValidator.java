@@ -6,7 +6,7 @@ import lotto.view.message.LottoInputExceptionMessage;
 public class BonusNumberValidator {
     public void validate(String bonusNumber) {
         isNotEmpty(bonusNumber);
-        isNotNumeric(bonusNumber);
+        isNumeric(bonusNumber);
         isNotExceedInputRange(bonusNumber);
     }
 
@@ -16,7 +16,7 @@ public class BonusNumberValidator {
         }
     }
 
-    private void isNotNumeric(String bonusNumber) {
+    private void isNumeric(String bonusNumber) {
         try {
             Long.parseLong(bonusNumber);
         } catch (NumberFormatException e) {

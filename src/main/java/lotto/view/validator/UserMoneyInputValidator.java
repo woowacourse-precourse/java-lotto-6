@@ -8,7 +8,7 @@ import lotto.view.message.LottoInputExceptionMessage;
 public class UserMoneyInputValidator {
     public void validate(String userMoney) {
         isNotEmpty(userMoney);
-        isNotNumeric(userMoney);
+        isNumeric(userMoney);
         isDivisibleWithLottoPrice(userMoney);
     }
 
@@ -18,7 +18,7 @@ public class UserMoneyInputValidator {
         }
     }
 
-    private void isNotNumeric(String userMoney) {
+    private void isNumeric(String userMoney) {
         try {
             Long.parseLong(userMoney);
         } catch (NumberFormatException e) {

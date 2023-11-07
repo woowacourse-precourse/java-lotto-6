@@ -12,6 +12,7 @@ public class WinningLottoNumbersInputValidator {
         isNotEmpty(winningLottoNumbers);
         containsDelimiter(winningLottoNumbers);
         containsSixNumbers(winningLottoNumbers);
+        isEachNumberNumeric(winningLottoNumbers);
         isEachNumberNotEmpty(winningLottoNumbers);
         isEachNumberNotExceedInputRange(winningLottoNumbers);
     }
@@ -37,6 +38,21 @@ public class WinningLottoNumbersInputValidator {
     private boolean dividedIntoSixNumbers(String winningLottoNumbers) {
         return splitNumbersWithDelimiter(winningLottoNumbers).length
                 == LottoConstant.LOTTO_ITEM_COUNT.getValue();
+    }
+
+    private void isEachNumberNumeric(String winningLottoNumbers) {
+        String[] lottoNumbers = splitNumbersWithDelimiter(winningLottoNumbers);
+        for (String lottoNumber : lottoNumbers) {
+            throwExceptionIfNotNumeric(lottoNumber);
+        }
+    }
+
+    private void throwExceptionIfNotNumeric(String lottoNumber) {
+        try {
+            Long.parseLong(lottoNumber);
+        } catch (NumberFormatException e) {
+            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBER_IS_NOT_NUMERIC_TYPE);
+        }
     }
 
     private void isEachNumberNotEmpty(String winningLottoNumbers) {

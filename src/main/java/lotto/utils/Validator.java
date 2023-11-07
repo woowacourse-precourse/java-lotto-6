@@ -28,7 +28,7 @@ public class Validator {
     }
 
     public static void validatePriceModIsZero(String input) {
-        if (Integer.parseInt(input) / LOTTO_PRICE != 0 ){
+        if (Integer.parseInt(input) % LOTTO_PRICE != 0 ){
             System.out.println(MOD_ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }

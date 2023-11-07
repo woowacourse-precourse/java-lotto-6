@@ -52,4 +52,13 @@ public class WinningNumbers {
             throw new IllegalArgumentException();
         }
     }
+
+    private List<Integer> inputToNumbers(String inputLotto) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String splittedInput : inputLotto.split(COMMA)) {
+            numbers.add(Integer.parseInt(splittedInput));
+        }
+        return numbers;
+    }
+
 }

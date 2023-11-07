@@ -32,7 +32,7 @@ public class LottoShop {
 
     public static void validateAmountDivisible(PurchaseAmount purchaseAmount) {
         if(!purchaseAmount.divisible(LOTTO_AMOUNT)) {
-            throw new IllegalArgumentException("[ERROR]");
+            throw new IllegalArgumentException("구입금액은 1000원 단위여야 합니다.");
         }
     }
 }

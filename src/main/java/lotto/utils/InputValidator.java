@@ -34,10 +34,15 @@ public class InputValidator {
     public static void checkJackpotNumberInput(String jackpotNumberInput) {
         checkHasComma(jackpotNumberInput);
         checkContainSpace(jackpotNumberInput);
-        // TODO : 숫자를 입력하지 않았을 경우
+        checkJackpotNumberNumeric(jackpotNumberInput);
         // TODO : 숫자가 6개가 아닐 경우
         // TODO : 중복된 숫자를 입력했을 경우
 
+    }
+
+    private static void checkJackpotNumberNumeric(String jackpotNumberInput) {
+        String replaceNumberInput = jackpotNumberInput.replace(",", "");
+        checkNumeric(replaceNumberInput);
     }
 
     private static void checkContainSpace(String jackpotNumberInput) {

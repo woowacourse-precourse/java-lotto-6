@@ -1,6 +1,7 @@
 package Model;
 
 import Controller.ModelHandler;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +11,7 @@ public class Domain {
     private final Service SERVICE = Service.getInstance();
     private final List<Integer> lottoWinningNumber = SERVICE.lottoGenerator();
     private List<Lotto> myLotto;
-    private List<Integer> correctNumberCount;
+    private List<Integer> duplicatedNumberCount;
     private List<Integer> winningRanking;
     private int bonusNumber;
     private int price;
@@ -18,6 +19,13 @@ public class Domain {
     private double revenueRate;
 
     private Domain() {
+        myLotto = new ArrayList<>();
+        duplicatedNumberCount = new ArrayList<>();
+        winningRanking = new ArrayList<>();
+        bonusNumber = 0;
+        price = 0;
+        winnings = 0;
+        revenueRate = 0;
     }
 
     private class Singleton {
@@ -28,36 +36,44 @@ public class Domain {
         return Singleton.INSTANCE;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
-    }
+    public void setWinningRanking() {}
 
     public void setBonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
 
-    public void compareNumbers() {
-        for (var e : myLotto) {
-            correctNumberCount.add(numberFrequencyCount(e.getNumbers()));
-        }
+    public void setPrice(int price) {
+        this.price = price;
     }
 
-    public int numberFrequencyCount(List<Integer> list) {
-        Set<Integer> set = new HashSet<>(lottoWinningNumber);
-        return (int) list.stream()
-                .filter(set::contains)
-                .count();
+    public void sumWinnings() {
+        for (var Ranking : winningRanking) {
+            if (Ranking != 0) {
+                winnings += SERVICE.getMyWinning(Ranking);
+            }
+        }
     }
 
     public void setRevenueRate() {
         revenueRate = winnings / price;
     }
 
-    public void sumWinningPrice() {
-        for (var Ranking : winningRanking) {
-            if (Ranking != 0) {
-                winnings += SERVICE.getMyWinning(Ranking);
-            }
+    //로또 당첨 횟수 = 총 myLotto 사이즈 만큼 나옴
+    public void compareNumbers() {
+        for (var e : myLotto) {
+            duplicatedNumberCount.add(numberFrequencyCount(e.getNumbers()));
         }
+    }
+
+    private int numberFrequencyCount(List<Integer> list) {
+        Set<Integer> set = new HashSet<>(lottoWinningNumber);
+        return (int) list.stream()
+                .filter(set::contains)
+                .count();
+    }
+
+    //중복된 숫자 만큼 등수 계산
+    public void calWinningsRank() {
+
     }
 }

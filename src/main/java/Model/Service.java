@@ -10,7 +10,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Service {
-    private final Domain DOMAIN = Domain.getInstance();
 
     private Service() {
     }
@@ -35,17 +34,20 @@ public class Service {
     }
 
     public int getMyWinning(int winningNumber) {
-        if(winningNumber == 1) {
-            return Winnings.FIRST_PLACE.getValue();
-        } else if(winningNumber == 2) {
-            return Winnings.SECOND_PLACE.getValue();
-        } else if(winningNumber == 3) {
-            return Winnings.THIRD_PLACE.getValue();
-        } else if(winningNumber == 4) {
-            return Winnings.FOURTH_PLACE.getValue();
-        } else if(winningNumber == 5) {
-            return Winnings.FIFTH_PLACE.getValue();
+        if (winningNumber == 1) {
+            return Winnings.FIRST_PRIZE_MONEY.getValue();
+        } else if (winningNumber == 2) {
+            return Winnings.SECOND_PRIZE_MONEY.getValue();
+        } else if (winningNumber == 3) {
+            return Winnings.THIRD_PRIZE_MONEY.getValue();
+        } else if (winningNumber == 4) {
+            return Winnings.FOURTH_PRIZE_MONEY.getValue();
+        } else if (winningNumber == 5) {
+            return Winnings.FIFTH_PRIZE_MONEY.getValue();
         }
         throw new IllegalArgumentException("잘못된 값이 들어감");
+    }
+
+    public int calWinningsRank(int count) {
     }
 }

@@ -6,7 +6,8 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
     private ModelHandler moder = ModelHandler.getInstance();
 
-    private InputView() {}
+    private InputView() {
+    }
 
     private class Singleton {
         private static final InputView INSTANCE = new InputView();

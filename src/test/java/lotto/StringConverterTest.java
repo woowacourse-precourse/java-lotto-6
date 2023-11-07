@@ -14,7 +14,7 @@ class StringConverterTest {
     void convertToIntegerList() {
         //given
         StringConverter stringConverter = new StringConverter();
-        String numbers = "2,3,4,5,6,1";
+        String numbers = "1,2,3,4,5,6";
 
         //when
         List<Integer> convertedNumbers = stringConverter.convertToIntegerList(numbers);

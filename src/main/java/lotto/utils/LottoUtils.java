@@ -2,14 +2,14 @@ package lotto.utils;
 
 import static lotto.constants.LottoConstants.LOTTO_DIVISION;
 import static lotto.constants.LottoConstants.LOTTO_MIN_LENGTH;
+import static lotto.constants.LottoConstants.LOTTO_MULTIPLE_100;
 import static lotto.constants.LottoConstants.LOTTO_NOT_DIVISION;
 import static lotto.constants.LottoConstants.LOTTO_NUMBER_OVER_MAX;
 import static lotto.constants.LottoConstants.LOTTO_SIZE_MAX_LENGTH;
-import static lotto.constants.LottoConstants.PATTERN;
+import static lotto.constants.LottoConstants.RATE_PERCENT;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import java.text.DecimalFormat;
 import java.util.List;
 import lotto.constants.LottoMsg;
 import lotto.exception.ErrorMsg;
@@ -40,9 +40,8 @@ public class LottoUtils {
     }
 
     public static void rateFormat(double rateNumber) {
-        DecimalFormat decimalFormat = new DecimalFormat(PATTERN);
-        System.out.println(
-                String.format(LottoMsg.LOTTO_LATE.getMsg(), decimalFormat.format(rateNumber)));
+        String rate = rateNumber * LOTTO_MULTIPLE_100 + RATE_PERCENT;
+        System.out.println(String.format(LottoMsg.LOTTO_LATE.getMsg(), rate));
     }
 
     public static int getPriceForIntegerParser(String price) {

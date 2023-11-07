@@ -25,7 +25,7 @@ public class Application {
         }
 
         List<Integer> selectLottoNumber = getSelectLottoNumbers();
-        int bonus = getbonus(selectLottoNumber);
+        int bonus = getbonus(selectLottoNumber).getBonus();
         int[] lottoPrize = getLottoPrize(lottoList, selectLottoNumber, bonus);
         OutputView.result(lottoPrize, getRate(lottoPrize));
 
@@ -83,18 +83,22 @@ public class Application {
         return Arrays.stream(InputLotto.split(",")).map(Integer::parseInt).collect(Collectors.toList());
     }
 
-    private static int getbonus(List<Integer> selectLottoNumber) {
-        int bonus;
+    private static Bonus getbonus(List<Integer> selectLottoNumber) {
         while (true) {
             try {
                 String inputBonusNumber = InputView.getInputBonusNumber();
-                return bonus = new Bonus(inputBonusNumber, selectLottoNumber).getBonus();
+                 return getValidateBonus(selectLottoNumber, inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
 
             }
         }
     }
+
+    private static Bonus getValidateBonus(List<Integer> selectLottoNumber, String inputBonusNumber) {
+        return new Bonus(inputBonusNumber, selectLottoNumber);
+    }
+
     public static int[] getLottoPrize(List<Lotto> lottoNumbers, List<Integer> selectLottoNumber, int bonus) {
         int[] lottoPrize = new int[8];
         for (Lotto lotto : lottoNumbers) {

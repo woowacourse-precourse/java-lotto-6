@@ -1,29 +1,42 @@
-package lotto.controller;
+package lotto;
 
-import lotto.NumberGenerator;
-import lotto.model.Money;
+import lotto.controller.LottosController;
+import lotto.domain.NumberGenerator;
+import lotto.controller.MoneyController;
+import lotto.domain.Lottos;
+import lotto.domain.Money;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 import static lotto.configuration.Constants.*;
 
-public class GameController {
+public class GameManager {
     private final InputView inputView;
     private final OutputView outputView;
 
     private final NumberGenerator numberGenerator;
 
     private final MoneyController moneyController;
+    private final LottosController lottosController;
 
-    public GameController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator, MoneyController moneyController) {
+
+    public GameManager(InputView inputView,
+                       OutputView outputView,
+                       NumberGenerator numberGenerator,
+                       MoneyController moneyController,
+                       LottosController lottosController) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;
         this.moneyController = moneyController;
+        this.lottosController = lottosController;
     }
 
     public void play() {
         Money money = getMoney();
+        Lottos lottos = getLottos(money.getLottoCount());
     }
 
     private Money getMoney() {
@@ -38,4 +51,12 @@ public class GameController {
             }
         }
     }
+
+    private Lottos getLottos(int lottoCount) {
+        List<List<Integer>> randomNumberLists = numberGenerator.createRandomNumberLists(lottoCount);
+        Lottos lottos = lottosController.create(randomNumberLists);
+        outputView.println(lottos);
+        return lottos;
+    }
+
 }

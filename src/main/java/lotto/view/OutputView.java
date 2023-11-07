@@ -1,7 +1,7 @@
 package lotto.view;
 
 public class OutputView {
-    public void println(String message) {
-        System.out.println(message);
+    public void println(Object object) {
+        System.out.println(object);
     }
 }

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import lotto.configuration.Constants;
 
@@ -12,6 +12,10 @@ public class Money {
 
     public int getMoney() {
         return money;
+    }
+
+    public int getLottoCount() {
+        return money / Constants.Rule.PRICE;
     }
 
     private void validate(int money) {

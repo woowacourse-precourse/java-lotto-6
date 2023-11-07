@@ -1,9 +1,12 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class LottoController {
@@ -24,5 +27,16 @@ public class LottoController {
         return lottos;
     }
 
+    public Map<Rank, Integer> compareLottoNumbers(List<Lotto> lottos, WinningLotto winningLotto) {
+        Map<Rank, Integer> result = new HashMap<>();
 
+        for (Lotto lotto : lottos) {
+            int shot = lotto.compareNumbers(winningLotto.getLotto().getNumbers());
+            boolean bonus = lotto.getNumbers().stream().anyMatch(n -> winningLotto.getBonusNumber() == n);
+            result.put(Rank.getRank(shot, bonus),
+                    result.getOrDefault(Rank.getRank(shot, bonus), 0) + 1);
+        }
+
+        return result;
+    }
 }

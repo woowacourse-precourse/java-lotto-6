@@ -18,7 +18,7 @@ public class LottoManager {
 
     public void purchaseLottos() {
         int amount = getAmount();
-        for (int i = 0; i < amount / 1000; i++) {
+        for (int i = 0; i < amount / Constraint.PURCHASE_AMOUNT_UNIT.getValue(); i++) {
             List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, Constraint.LOTTO_MAX_SIZE.getValue());
             this.lottos.add(new Lotto(randomNumbers));
         }

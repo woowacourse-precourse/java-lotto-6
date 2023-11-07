@@ -3,11 +3,12 @@ package lotto.controller;
 import lotto.service.SetWinningNumService;
 import lotto.view.Input;
 import lotto.view.Output;
+import lotto.vo.WinningNumber;
 
 import java.util.List;
 
 public class SetWinningNumController {
-    List<Integer> winningNumber;
+    WinningNumber winningNumber;
     public void setWinningNum(){
         Input input = new Input();
         Output output = new Output();
@@ -25,10 +26,10 @@ public class SetWinningNumController {
             }
         }
 
-        this.winningNumber = service.getWinningNumber();
+        this.winningNumber = new WinningNumber(service.getWinningNumber());
     }
 
-    public List<Integer> getWinningNumber(){
+    public WinningNumber getWinningNumber(){
         return winningNumber;
     }
 }

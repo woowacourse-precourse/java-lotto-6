@@ -3,8 +3,10 @@ package lotto.controller;
 import lotto.service.SetBonusNumService;
 import lotto.view.Input;
 import lotto.view.Output;
+import lotto.vo.BonusNumber;
+
 public class SetBonusNumController {
-    int bonusNumber;
+    BonusNumber bonusNumber;
     public void setBonusNum(){
         Input input = new Input();
         Output output = new Output();
@@ -21,10 +23,10 @@ public class SetBonusNumController {
                 output.printError(e.getMessage());
             }
         }
-        this.bonusNumber = service.getBonusNumber();
+        this.bonusNumber = new BonusNumber(service.getBonusNumber());
     }
 
-    public int getBonusNumber(){
+    public BonusNumber getBonusNumber(){
         return this.bonusNumber;
     }
 }

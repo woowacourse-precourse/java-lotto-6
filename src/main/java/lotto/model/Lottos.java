@@ -17,5 +17,14 @@ public class Lottos {
                 .map(LottoPaper::new)
                 .toList();
     }
+
+    public WinningResult createWinningResult(WinnigLotto winnigLotto) {
+        WinningResult winningResult = new WinningResult();
+        for (Lotto lotto : lottos) {
+            lotto.calculateLottoPlace(winnigLotto)
+                    .ifPresent(winningResult::plusLottoPlace);
+        }
+        return winningResult;
+    }
 }
 

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.utils.Parsor;
+import lotto.utils.Parser;
 
 import java.util.Collections;
 import java.util.List;
@@ -15,6 +15,6 @@ public class Lotto {
     @Override
     public String toString() {
         Collections.sort(numbers);
-        return Parsor.intListToString(numbers);
+        return Parser.intListToString(numbers);
     }
 }

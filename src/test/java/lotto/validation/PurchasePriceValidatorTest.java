@@ -1,20 +1,17 @@
 package lotto.validation;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ValidatorTest {
+class PurchasePriceValidatorTest {
     @Test
     void 로또_구입_금액_입력이_null이면_예외발생() {
         // given
         String purchasePrice = null;
 
         // when, then
-        assertThrows(IllegalArgumentException.class, () -> {
-            Validator.validatePurchasePrice(purchasePrice);
-        });
+        assertThrowOnInvalidPurchasePrice(purchasePrice);
     }
 
     @Test
@@ -23,9 +20,7 @@ class ValidatorTest {
         String purchasePrice = "";
 
         // when, then
-        assertThrows(IllegalArgumentException.class, () -> {
-            Validator.validatePurchasePrice(purchasePrice);
-        });
+        assertThrowOnInvalidPurchasePrice(purchasePrice);
     }
 
     @Test
@@ -34,9 +29,7 @@ class ValidatorTest {
         String purchasePrice = "1000a";
 
         // when, then
-        assertThrows(IllegalArgumentException.class, () -> {
-            Validator.validatePurchasePrice(purchasePrice);
-        });
+        assertThrowOnInvalidPurchasePrice(purchasePrice);
     }
 
     @Test
@@ -45,9 +38,7 @@ class ValidatorTest {
         String purchasePrice = "10000000000000";
 
         // when, then
-        assertThrows(IllegalArgumentException.class, () -> {
-            Validator.validatePurchasePrice(purchasePrice);
-        });
+        assertThrowOnInvalidPurchasePrice(purchasePrice);
     }
 
     @Test
@@ -56,9 +47,7 @@ class ValidatorTest {
         String purchasePrice = "-100000";
 
         // when, then
-        assertThrows(IllegalArgumentException.class, () -> {
-            Validator.validatePurchasePrice(purchasePrice);
-        });
+        assertThrowOnInvalidPurchasePrice(purchasePrice);
     }
 
     @Test
@@ -67,9 +56,7 @@ class ValidatorTest {
         String purchasePrice = "100001";
 
         // when, then
-        assertThrows(IllegalArgumentException.class, () -> {
-            Validator.validatePurchasePrice(purchasePrice);
-        });
+        assertThrowOnInvalidPurchasePrice(purchasePrice);
     }
 
     @Test
@@ -78,7 +65,17 @@ class ValidatorTest {
         String purchasePrice = "100000";
 
         // when, then
+        assertNotThrowsOnValidPurchasePrice(purchasePrice);
+    }
+
+    private static void assertNotThrowsOnValidPurchasePrice(String purchasePrice) {
         assertDoesNotThrow(() -> {
+            Validator.validatePurchasePrice(purchasePrice);
+        });
+    }
+
+    private static void assertThrowOnInvalidPurchasePrice(String purchasePrice) {
+        assertThrows(IllegalArgumentException.class, () -> {
             Validator.validatePurchasePrice(purchasePrice);
         });
     }

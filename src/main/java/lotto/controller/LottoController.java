@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoController {
 
@@ -52,6 +54,7 @@ public class LottoController {
 
     public EnumMap<Prize, Integer> compareWithWinningNum(List<Lotto> lottoList, WinningLotto winningLotto) {
         boolean isEqualWithBonus = false;
+        initalizeEnumMap();
         for (int i=0; i<lottoList.size(); i++) {
             int equalCount = lottoList.get(i).compareWithLotto(winningLotto);
 
@@ -64,7 +67,18 @@ public class LottoController {
         return prizeMap;
     }
 
+    private void initalizeEnumMap() {
+        for (Prize prize : Prize.values()) {
+            if (prize == Prize.ZERO) {
+                continue;
+            }
+            prizeMap.put(prize, 0);
+        }
+    }
 
+    public void LottoResult() {
+        OutputView.outputWinningInfo(prizeMap);
+    }
 
 
 }

@@ -10,12 +10,15 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public enum Prize {
-    FIRST(6, false,2000000000),
-    SECOND(5, true, 30000000),
-    THIRD(5, false,1500000),
-    FOURTH(4, false, 50000),
+    ZERO(0, false, 0),
     FIFTH(3, false, 5000),
-    ZERO(0, false, 0);
+    FOURTH(4, false, 50000),
+    THIRD(5, false,1500000),
+    SECOND(5, true, 30000000),
+    FIRST(6, false,2000000000);
+
+
+
 
     private int equalNumCount;
     private boolean hasCheckBonus;
@@ -39,6 +42,11 @@ public enum Prize {
                 .filter(prize -> prize.equalNumCount == matchingCount)
                 .findAny()
                 .orElse(ZERO);
+
+    }
+
+    public String convertWinningAmount() {
+        return Integer.toString(winningAmount).replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
 
     }
 

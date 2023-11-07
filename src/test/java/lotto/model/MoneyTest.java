@@ -11,14 +11,16 @@ public class MoneyTest {
     @Test
     void createMoneyLessThanZero() {
         assertThatThrownBy(() -> new Money(0))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 0원보다 많아야 합니다.");
     }
 
     @DisplayName("구매 금액이 1000원 단위가 아닌 경우 예외 발생")
     @Test
     public void createMoneyNotDividedByThousand() {
         assertThatThrownBy(() -> new Money(1001))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 구입 금액은 1,000원으로 나누어 떨어져야 합니다.");
     }
 
     @DisplayName("Money 객체 생성 성공 후 구매한 로또 개수 반환 성공")

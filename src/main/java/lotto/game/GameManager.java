@@ -1,6 +1,5 @@
 package lotto.game;
 
-import lotto.exceptions.GameNullPointerException;
 import lotto.game.result.AfterLoopResult;
 import lotto.game.result.BeforeLoopResult;
 import lotto.game.result.GameLoopResult;
@@ -10,7 +9,7 @@ public class GameManager {
 
     public GameManager(Game game) {
         if (game == null) {
-            throw new GameNullPointerException();
+            throw new NullPointerException();
         }
         this.game = game;
     }

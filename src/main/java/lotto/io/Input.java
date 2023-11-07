@@ -1,9 +1,10 @@
 package lotto.io;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.exceptions.ReadIntegerException;
+import lotto.exceptions.InvalidNumberException;
 
 public class Input {
     public static String promptLine(Object message) {
@@ -15,9 +16,8 @@ public class Input {
         String line = Console.readLine();
         try {
             return Integer.parseInt(line);
-        }
-        catch (NumberFormatException e) {
-            throw new ReadIntegerException();
+        } catch (NumberFormatException e) {
+            throw new InvalidNumberException();
         }
     }
 
@@ -30,7 +30,7 @@ public class Input {
                 ret.add(Integer.parseInt(sp));
             }
         } catch (NumberFormatException e) {
-            throw new ReadIntegerException();
+            throw new InvalidNumberException();
         }
         return ret;
     }

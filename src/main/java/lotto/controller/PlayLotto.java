@@ -1,14 +1,12 @@
 package lotto.controller;
 
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.PurchaseLotto;
+import lotto.domain.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class PlayLotto {
     Input input = new Input();
@@ -17,6 +15,7 @@ public class PlayLotto {
     PurchaseLotto purchaseLotto;
     Lotto lotto;
     BonusNumber bonusNumber;
+    WinningChecker winningChecker;
 
     public void playLotto() {
         int purchaseLottoCount = getPurchaseLottoCount(input, output);
@@ -24,6 +23,7 @@ public class PlayLotto {
         ArrayList<List<Integer>> purchaseLottoNumbers = getPurchaseLottoNumbers(output, purchaseLottoCount);
         List<Integer> winningNumbers = getWinningNumbers(input);
         int bonusNumber = getBonusNumber(input, winningNumbers);
+        Map<Rank, Integer> matchRankCount = getMatchCount(output, purchaseLottoNumbers, winningNumbers, bonusNumber);
     }
 
     private int getPurchaseLottoCount(Input input, Output output) {
@@ -91,5 +91,12 @@ public class PlayLotto {
         String bonusNumberInput = input.bonusNumber();
         bonusNumber = new BonusNumber(bonusNumberInput, winningNumbers);
         return bonusNumber.getBonusNumber();
+    }
+
+    private Map<Rank, Integer> getMatchCount(Output output, ArrayList<List<Integer>> purchaseLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        winningChecker = new WinningChecker(purchaseLottoNumbers, winningNumbers, bonusNumber);
+        Map<Rank, Integer> matchRankCount = winningChecker.getMatchCount();
+        output.printWinningResultsByRank(matchRankCount);
+        return matchRankCount;
     }
 }

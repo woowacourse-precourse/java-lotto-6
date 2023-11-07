@@ -63,10 +63,9 @@
 
 ## 당첨 - Match
 
-- 사용자의 로또 번호와 당첨 번호를 비교하여 일치하는 번호 개수를 반환 (HashSet) - **checkMatchingNumbers**
-- 보너스 번호가 일치하는지 확인하고, 일치 여부를 반환 - **checkBonusNumber**
-- 당첨금 - **calculatePrizeAmount**
+- [x] 사용자의 로또 번호와 당첨 번호를 비교하여 일치하는 번호 개수를 반환 (HashSet) - **checkMatchingNumbers**
 
 ## 수익률 - ProfitRate
 
 - 일치하는 번호의 개수에 따라 상금을 계산( 구입 금액 / 총 당첨 금액 )- **calculateMoneyByMatchingNumbers**
+- 당첨금 - **calculateTotalPrizeAmount**

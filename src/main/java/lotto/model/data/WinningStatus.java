@@ -1,5 +1,6 @@
 package lotto.model.data;
 
+import static lotto.util.AmountOfLotto.MAXIMUM_AMOUNT_OF_LOTTO;
 import static lotto.util.ExceptionMessage.INVALID_PRIZE_MONEY;
 
 import java.util.HashMap;
@@ -10,7 +11,8 @@ import lotto.util.PrizeMoney;
 public class WinningStatus {
     private static final Integer NOT_WIN = 0;
     private static final Long MINIMUM_PRIZE = 0L;
-    private static final Long MAXIMUM_PRIZE = 4294966000000000L;
+    private static final Long MAXIMUM_PRIZE =
+            MAXIMUM_AMOUNT_OF_LOTTO.getPrice().longValue() * PrizeMoney.getPrizeMoney(1).longValue();
 
     private Map<Integer, Integer> prizes;
 

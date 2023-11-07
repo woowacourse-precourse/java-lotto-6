@@ -1,15 +1,12 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumber;
-import lotto.constant.LottoPrice;
 import lotto.service.InputService;
 import lotto.service.LottoService;
 import lotto.service.MessageService;
-import lotto.service.ValidateService;
 
 public class LottoPurchase {
     private final InputService inputService = new InputService();

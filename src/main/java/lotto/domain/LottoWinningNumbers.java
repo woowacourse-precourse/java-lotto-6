@@ -7,7 +7,6 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumber;
 import lotto.service.InputService;
 import lotto.service.MessageService;
-import lotto.service.ValidateService;
 
 public class LottoWinningNumbers {
     private final InputService inputService = new InputService();

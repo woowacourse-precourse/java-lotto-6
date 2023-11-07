@@ -5,12 +5,10 @@ import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumber;
 import lotto.service.InputService;
 import lotto.service.MessageService;
-import lotto.service.ValidateService;
 
 public class BonusNumber {
     private final MessageService messageService = new MessageService();
     private final InputService inputService = new InputService();
-    private final ValidateService validateService = new ValidateService();
     private final LottoWinningNumbers lottoWinningNumbers;
     private int number;
 

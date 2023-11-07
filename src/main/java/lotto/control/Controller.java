@@ -44,4 +44,12 @@ public class Controller {
         if (matchCount == 6) return 4;
         return -1;
     }
+
+    double getRevenue(int[] winCount) {
+        int sum = 0;
+        for (WinningDetails wd : WinningDetails.values()) {
+            sum += winCount[wd.ordinal()] * wd.getPrize();
+        }
+        return (double) sum / amount * 100;
+    }
 }

@@ -15,6 +15,10 @@ public enum WinningDetails {
         this.prize = prize;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     @Override
     public String toString() {
         return matchingNumbers + "개 일치 (" + prize + ") ";

@@ -22,9 +22,8 @@ public class Validator {
 		}
 	}
 
-	public void checkContainNumber(List<Integer> userNumbers, String inputBonusNumber) throws IllegalArgumentException {
-		int checkNumber = Integer.parseInt(inputBonusNumber);
-		if (userNumbers.contains(checkNumber)) {
+	public void checkContainNumber(List<Integer> userNumbers, int bonusNumber) throws IllegalArgumentException {
+		if (userNumbers.contains(bonusNumber)) {
 			throw new IllegalArgumentException(ErrorCode.NOT_ALLOW_DUPLICATE.getErrorMessage());
 		}
 	}

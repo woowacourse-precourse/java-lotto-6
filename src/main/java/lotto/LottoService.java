@@ -64,9 +64,10 @@ public class LottoService {
 			throws IllegalArgumentException {
 		List<Integer> userNumbers = user.getNumbers();
 		validator.checkComposedOfNumbers(inputBonusNumber);
-		validator.checkInRange(Integer.parseInt(inputBonusNumber));
-		validator.checkContainNumber(userNumbers, inputBonusNumber);
-		return Integer.parseInt(inputBonusNumber);
+		int bonusNumber = Integer.parseInt(inputBonusNumber);
+		validator.checkInRange(bonusNumber);
+		validator.checkContainNumber(userNumbers, bonusNumber);
+		return bonusNumber;
 	}
 
 	public List<Integer> getWinningResult(List<Lotto> computerLottos, Lotto user, int bonusNumber) {

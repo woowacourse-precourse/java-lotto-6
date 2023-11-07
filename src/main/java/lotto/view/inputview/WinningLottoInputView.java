@@ -21,11 +21,11 @@ public final class WinningLottoInputView implements InputView {
     );
 
     @Override
-    public void read(Map<String, ? extends DTO.Input> parameter) {
+    public void read(Map<String, ? super DTO.Input> parameter) {
         parameter.forEach(this::runMethod);
     }
 
-    private void runMethod(String key, DTO.Input value) {
+    private void runMethod(String key, Object value) {
         WinningLottoDTO dto = (WinningLottoDTO) value;
 
         if (methods.containsKey(key)) {

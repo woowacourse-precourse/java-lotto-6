@@ -14,7 +14,7 @@ import static lotto.view.ParameterConfig.BUY_PRICE;
 
 public final class LottoBuyOutputView implements OutputView {
     @Override
-    public void view(Map<String, ? extends DTO.Output> model) {
+    public void view(Map<String, ? super DTO.Output> model) {
         if (model.containsKey(BUY_PRICE) && model.get(BUY_PRICE) != null) {
             BuyLottoDTO.Output buyLottoDto = (BuyLottoDTO.Output) model.get(BUY_PRICE);
             viewAllBuyLotto(buyLottoDto.getPurchasedLotto());

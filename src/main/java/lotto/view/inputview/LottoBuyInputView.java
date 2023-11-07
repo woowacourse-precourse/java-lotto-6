@@ -11,7 +11,7 @@ import static lotto.view.ParameterConfig.BUY_PRICE;
 
 public final class LottoBuyInputView implements InputView {
     @Override
-    public void read(Map<String, ? extends DTO.Input> parameter) {
+    public void read(Map<String, ? super DTO.Input> parameter) {
         BuyLottoDTO.Input dto = (BuyLottoDTO.Input) parameter.get(BUY_PRICE);
 
         inputBuyPrice(dto);

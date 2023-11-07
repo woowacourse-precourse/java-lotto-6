@@ -13,7 +13,7 @@ public class WinningLottoOutputView implements OutputView {
     );
 
     @Override
-    public void view(Map<String, ? extends DTO.Output> model) {
+    public void view(Map<String, ? super DTO.Output> model) {
         model.keySet().forEach(this::runMethod);
     }
 

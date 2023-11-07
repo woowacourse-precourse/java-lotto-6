@@ -11,7 +11,7 @@ import static lotto.view.ParameterConfig.LOTTO_RESULT;
 
 public final class LottoResultOutputView implements OutputView {
     @Override
-    public void view(Map<String, ? extends DTO.Output> model) {
+    public void view(Map<String, ? super DTO.Output> model) {
         LottoResultDTO dto = (LottoResultDTO) model.get(LOTTO_RESULT);
 
         viewInitText();

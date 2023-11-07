@@ -10,8 +10,9 @@ public enum Rank {
     SECOND(5, true, 30000000, "(30,000,000원)"),
     FIRST(6, false, 2000000000, "(2,000,000,000원)");
 
-    private static final String CORRECT_MESSAGE = "개 일치";
+    private static final String CORRECT_MESSAGE = "%s개 일치";
     private static final String BONUS_NUMBER_MESSAGE = ", 보너스 볼 일치";
+    private static final String EMPTY_SPACE = " ";
 
     private final int matchCount;
     private final boolean isMatchBonusNumber;
@@ -44,17 +45,16 @@ public enum Rank {
     }
 
     public String getRankMessage() {
-        StringJoiner stringJoiner = new StringJoiner(" ");
+        StringJoiner stringJoiner = new StringJoiner(EMPTY_SPACE);
         String correctMessages = CORRECT_MESSAGE;
 
         if (isMatchBonusNumber) {
             correctMessages += BONUS_NUMBER_MESSAGE;
         }
 
-        stringJoiner.add(String.format("%s" + correctMessages, matchCount));
+        stringJoiner.add(String.format(correctMessages, matchCount));
         stringJoiner.add(rewardMessage);
 
         return stringJoiner.toString();
     }
-
 }

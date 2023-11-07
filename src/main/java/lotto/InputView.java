@@ -6,13 +6,18 @@ import java.util.List;
 import lotto.util.Validator;
 
 public class InputView {
+    private static final String INPUT_BUY_CASH_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String INPUT_WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String COMMA = ",";
+
     public long inputBuyCashFromUser() {
-        System.out.println("구입금액을 입력하세요");
+        System.out.println(INPUT_BUY_CASH_MESSAGE);
         return inputNumericValue();
     }
 
     public long inputBonusNumberFromUser() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         return inputNumericValue();
     }
 
@@ -25,7 +30,7 @@ public class InputView {
     }
 
     public List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해주세요.");
+        System.out.println(INPUT_WINNING_NUMBERS_MESSAGE);
         List<String> inputNumbers = split(readLine());
         inputNumbers.forEach(Validator.INSTANCE::numberValidate);
 
@@ -33,7 +38,7 @@ public class InputView {
     }
 
     private List<String> split(String input) {
-        return List.of(input.split(","));
+        return List.of(input.split(COMMA));
     }
 
     private List<Integer> toIntegerList(List<String> inputNumbers) {

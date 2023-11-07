@@ -32,7 +32,7 @@ public class LottoValidator {
         }
     }
 
-    private static void validateBonusRange(int number) {
+    public static void validateBonusRange(int number) {
         if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException(LottoError.LOTTO_BONUS_NUMBER_RANGE.getMessage());
         }
@@ -48,6 +48,14 @@ public class LottoValidator {
         validateBonusRange(bonusNumber);
         validateBonusDuplicated(numbers, bonusNumber);
         return bonusNumber;
+    }
+
+    public static void validateBonus(String bonusNumber) {
+        try {
+            Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(LottoError.LOTTO_INPUT_FAILED_NUMBER.getMessage());
+        }
     }
 
 

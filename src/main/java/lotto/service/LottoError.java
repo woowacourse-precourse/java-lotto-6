@@ -2,6 +2,7 @@ package lotto.model;
 
 public enum LottoError {
     LOTTO_INPUT_FAILED_PRICE("[ERROR] 로또 구입 금액은 숫자여야 합니다."),
+    LOTTO_INPUT_FAILED_NUMBER("[ERROR] 보너스 번호는 숫자여야 합니다."),
     LOTTO_PRICE("[ERROR] 로또 구입 금액은 1000원 단위 입니다."),
     LOTTO_NUMBER_COUNT("[ERROR] 로또 당첨 번호는 6개 입니다."),
     LOTTO_NUMBER_DUPLICATE("[ERROR] 로또 번호는 중복될 수 없습니다."),

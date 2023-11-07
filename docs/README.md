@@ -21,45 +21,49 @@
 
 ***
 
-## 2. model 패키지
+## 2. domain 패키지
 ### 2.1. Lotto 
 - [X] validate() 메서드를 통해 입력받은 로또 개수가 유효한지 확인
 
 ### 2.2.LottoNumbers
 - [X] createPlayerLotto() 메서드를 통해 로또 번호를 생성 (오름차순)
 
-### 2.3. LottoResult
+### 2.3. BonusNumber
+- [X] validate() 메서드를 통해 입력받은 보너스 번호가 유효한지 확인
+
+### 2.4. Price
+- [X] validate() 메서드를 통해 입력받은 구입 금액이 유효한지 확인
+
+***
+
+## 3. service 패키지
+### 3.1. LottoResult
 - [X] statisticsLotto() 메서드를 통해 로또 당첨 통계를 생성
 - [X] rateOfReturn() 메서드를 통해 로또 수익률을 계산
 - [X] compareLotto() 메서드를 통해 로또 당첨 번호와 로또 구매 번호를 비교
-### 2.4. LottoType Enum Class
+### 3.2. LottoType Enum Class
 - [X] LottoType enum class를 통해 로또 등수를 정의
 - [X] getPrize() 메서드를 통해 로또 등수에 따른 상금을 반환
 - [X] getMatchCount() 메서드를 통해 로또 등수에 따른 일치 개수를 반환
 - [X] getBonus() 메서드를 통해 로또 등수에 따른 보너스 여부를 반환
 - [X] getLottoType() 메서드를 통해 로또 등수를 반환
-### 2.5. Error Enum Class
+### 3.3. Error Enum Class
 - [X] Error enum class를 통해 예외 메시지를 정의
 
-### 2.6. LottoValidator Class
+### 3.4. LottoValidator Class
 - [X] validateDuplicate() 메서드를 통해 입력받은 로또 번호가 중복되지 않는지 확인
 - [X] validateRange() 메서드를 통해 입력받은 로또 번호가 1~45 사이의 숫자인지 확인
 - [X] validateBonus() 메서드를 통해 입력받은 보너스 번호가 1~45 사이의 숫자인지 확인
 - [X] validateBonusOverlap() 메서드를 통해 입력받은 로또 번호와 보너스 번호가 중복되지 않는지 확인
 - [X] validate() 메서드를 통해 입력받은 로또 개수가 유효한지 확인
 
-### 2.7. Price Class
-- [X] validate() 메서드를 통해 입력받은 구입 금액이 유효한지 확인
-- [X] getLottoTicket() 메서드를 통해 입력받은 구입 금액에 따른 로또 개수를 반환
-- [X] getPrice() 메서드를 통해 입력받은 구입 금액을 반환
-
-### 2.8 Price Validator Class
+### 3.5 Price Validator Class
 - [X] validate() 메서드를 통해 입력받은 구입 금액이 유효한지 확인
 - [X] validateNumber() 메서드를 통해 입력받은 구입 금액이 숫자인지 확인
 - [X] validateMinPrice() 메서드를 통해 입력받은 구입 금액 1000원 이상인지 확인
 - [X] validateUnitPrice() 메서드를 통해 입력받은 구입 금액이 1000원 단위인지 확인
 
-### 2.6. LottoValidator Class
+### 3.6. LottoValidator Class
 - [X] validateDuplicate() 메서드를 통해 입력받은 로또 번호가 중복되지 않는지 확인
 - [X] validateRange() 메서드를 통해 입력받은 로또 번호가 1~45 사이의 숫자인지 확인
 - [X] validateBonus() 메서드를 통해 입력받은 보너스 번호가 1~45 사이의 숫자인지 확인

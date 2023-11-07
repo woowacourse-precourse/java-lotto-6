@@ -13,10 +13,6 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     public static List<Lotto> generator(int count) {
         List<Lotto> result = new ArrayList<>();
 
@@ -27,5 +23,9 @@ public class Lottos {
             result.add(new Lotto(number));
         }
         return result;
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

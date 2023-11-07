@@ -14,8 +14,8 @@ public enum WinningResult {
     private final String message;
     private final int correctCond;
     private final boolean isBonus;
-    private int winningCount;
     private final int money;
+    private int winningCount;
 
     WinningResult(String message, int correctCount, boolean isBonus, int winningCount, int money) {
         this.message = message;
@@ -23,10 +23,6 @@ public enum WinningResult {
         this.isBonus = isBonus;
         this.winningCount = winningCount;
         this.money = money;
-    }
-
-    public int getWinningCount() {
-        return winningCount;
     }
 
     public static void printWinningResult() {
@@ -80,5 +76,9 @@ public enum WinningResult {
         for (WinningResult value : WinningResult.values()) {
             value.winningCount = 0;
         }
+    }
+
+    public int getWinningCount() {
+        return winningCount;
     }
 }

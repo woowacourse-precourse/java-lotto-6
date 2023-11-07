@@ -16,5 +16,5 @@ public class RandomNumber {
                         LOTTO_SIZE.getNumber()));
         return randomNumber;
     }
-    
+
 }

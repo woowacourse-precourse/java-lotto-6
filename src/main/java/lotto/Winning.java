@@ -14,10 +14,7 @@ public class Winning {
                 String[] winningNumbers = a.split(",");
 
                 for (int i = 0; i < winningNumbers.length; i++) {
-                    int x = Integer.parseInt(winningNumbers[i]);
-                    if (!numbers.contains(x)) {
-                        numbers.add(x);
-                    }
+                    numbers.add(Integer.parseInt(winningNumbers[i]));
                 }
                 Lotto lotto = new Lotto(numbers);
                 break;

@@ -3,6 +3,7 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class ValidateBonusBallTest {
@@ -17,6 +18,13 @@ public class ValidateBonusBallTest {
     void 범위_내의_숫자_작음() {
         assertThatThrownBy(() -> new ValidateBonusBall().isInRange(0))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR] 1보다 작은 숫자는 입력 할 수 없습니다.");
+    }
+
+    @Test
+    void 보너스볼_중복() {
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+        assertThatThrownBy(() -> new BonusBall(1, lotto))
+                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR] 보너스볼의 숫자와 같은 숫자가 존재합니다.");
     }
 
 }

@@ -16,7 +16,7 @@ public class LottoControl {
         return parseInt(boughtLottoPrice);
     }
 
-    private static boolean isLottoPriceError(String boughtLottoPrice) {
+    public static boolean isLottoPriceError(String boughtLottoPrice) {
         try {
             checkLottoPriceError(boughtLottoPrice);
             return false;

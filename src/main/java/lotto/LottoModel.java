@@ -58,7 +58,7 @@ public class LottoModel {
         LottoView.printProfitRate(calcProfitPercentage());
     }
 
-    private List<Lotto> generateLottos(int lottoPrice) {
+    public static List<Lotto> generateLottos(int lottoPrice) {
         List<Lotto> generatedLottos = new ArrayList<>();
 
         for (int i = 0; i < lottoPrice / 1000; i++) {
@@ -76,7 +76,7 @@ public class LottoModel {
         }
     }
 
-    private int checkWonNumber(Lotto boughtLotto) {
+    public int checkWonNumber(Lotto boughtLotto) {
         int wonNumber = 0;
         for (int number : boughtLotto.getNumbers()) {
             if (WINNINGLOTTO.getNumbers().contains(number)) {

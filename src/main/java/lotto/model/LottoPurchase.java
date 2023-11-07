@@ -3,7 +3,6 @@ package lotto.model;
 import static lotto.util.Constant.LOTTO_PER_PRICE;
 
 public class LottoPurchase {
-
     private int lottoPurchaseCount;
 
     private int getLottoPurchaseCount(int totalPrice) {

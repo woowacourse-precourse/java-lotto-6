@@ -8,9 +8,9 @@ public class WinningLotto {
 
     private final Lotto winning;
 
-    private int bonus;
+    private final int bonus;
 
-    public WinningLotto(List<Integer> numbers,String bonus) {
+    public WinningLotto(List<Integer> numbers, String bonus) {
         this.winning = new Lotto(numbers);
         int numberBonus = validateBonus(bonus);
         validateDuplicateBonus(numberBonus);

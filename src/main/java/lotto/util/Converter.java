@@ -25,8 +25,7 @@ public class Converter {
 
     public static String from(List<Integer> numbers) {
 
-        return numbers.stream().map(String::valueOf)
-                .collect(Collectors.joining(","));
+        return numbers.stream().map(String::valueOf).collect(Collectors.joining(","));
     }
 
 }

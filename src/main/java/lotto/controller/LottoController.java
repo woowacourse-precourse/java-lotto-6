@@ -11,7 +11,6 @@ import lotto.util.OutputManager;
 import java.util.List;
 
 
-
 public class LottoController {
 
     private static final LottoService lottoService = new LottoService();
@@ -25,7 +24,7 @@ public class LottoController {
         List<Lotto> lottos = randomLotto.RandomLottos(lottoTimes);
         WinningLotto winningLotto = setWinningNumbers();
 
-        lottoService.execute(lottos,winningLotto);
+        lottoService.execute(lottos, winningLotto);
     }
 
 
@@ -55,8 +54,6 @@ public class LottoController {
         }
         return customer.getCount();
     }
-
-
 
 
 }

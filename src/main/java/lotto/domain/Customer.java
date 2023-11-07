@@ -4,7 +4,7 @@ import static lotto.constant.CustomerConst.*;
 
 public class Customer {
 
-    private int money;
+    private final int money;
 
     public Customer(String StringMoney) {
         int numberMoney = validateNumber(StringMoney);

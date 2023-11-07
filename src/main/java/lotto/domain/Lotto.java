@@ -21,12 +21,14 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
     private void validateDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(IS_DUPLICATE);
         }
 
     }
+
     private void validateRange(List<Integer> numbers) {
         for (Integer now : numbers) {
             if (now < 1 || now > 45) {
@@ -36,16 +38,12 @@ public class Lotto {
     }
 
     public boolean find(Integer number) {
-        if (numbers.contains(number)) {
-            return true;
-        }
-        return false;
+        return numbers.contains(number);
     }
 
     public void print() {
-        String message = numbers.stream().map(String::valueOf)
-                .collect(Collectors.joining(","));
-        System.out.println("["+message+"]");
+        String message = numbers.stream().map(String::valueOf).collect(Collectors.joining(","));
+        System.out.println("[" + message + "]");
 
     }
 
@@ -56,7 +54,6 @@ public class Lotto {
     public int get(int index) {
         return this.numbers.get(index);
     }
-
 
 
 }

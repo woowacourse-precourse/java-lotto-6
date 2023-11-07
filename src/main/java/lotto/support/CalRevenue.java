@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CalRevenue {
-    private List<Rate> result;
+    private final List<Rate> result;
 
-    private HashMap<String, Integer> count = new HashMap<>();
+    private final HashMap<String, Integer> count = new HashMap<>();
 
     private double revenue;
 

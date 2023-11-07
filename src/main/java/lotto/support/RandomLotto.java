@@ -18,6 +18,7 @@ public class RandomLotto {
         }
         return lottos;
     }
+
     private List<Integer> getRandomLotto() {
 
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

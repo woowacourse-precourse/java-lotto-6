@@ -4,9 +4,9 @@ import lotto.domain.Lotto;
 
 public class LottoComparator {
 
-    private Lotto winning;
+    private final Lotto winning;
 
-    private int bonus;
+    private final int bonus;
 
     public LottoComparator(Lotto winning, int bonus) {
         this.winning = winning;
@@ -27,7 +27,6 @@ public class LottoComparator {
 
         return Rate.valueOf(count, bonus);
     }
-
 
 
 }

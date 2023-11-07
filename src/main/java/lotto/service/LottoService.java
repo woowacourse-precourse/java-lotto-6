@@ -11,8 +11,9 @@ import java.util.List;
 
 public class LottoService {
 
-    private List<Rate> rate = new ArrayList<>();
-    public void execute(List<Lotto> lottos,WinningLotto winningLotto) {
+    private final List<Rate> rate = new ArrayList<>();
+
+    public void execute(List<Lotto> lottos, WinningLotto winningLotto) {
 
         LottoComparator lottoComparator = new LottoComparator(winningLotto.getWinning(), winningLotto.getBonus());
 

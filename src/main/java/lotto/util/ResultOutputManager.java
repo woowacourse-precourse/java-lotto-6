@@ -16,8 +16,8 @@ public class ResultOutputManager {
     private final String FIRST = "6개 일치 (2,000,000,000원) - %d개\n";
     private final String REVENUE = "총 수익률은 %.1f%%입니다.\n";
 
-    private List<Rate> result;
-    private CalRevenue calRevenue;
+    private final List<Rate> result;
+    private final CalRevenue calRevenue;
 
 
     public ResultOutputManager(List<Rate> result) {
@@ -32,12 +32,12 @@ public class ResultOutputManager {
 
         System.out.println(SUMMING_UP);
         System.out.println(LINE);
-        System.out.printf(FIFTH,count.getOrDefault("fifth",0));
-        System.out.printf(FOURTH,count.getOrDefault("fourth",0));
-        System.out.printf(THIRD,count.getOrDefault("third",0));
-        System.out.printf(SECOND,count.getOrDefault("second",0));
-        System.out.printf(FIRST,count.getOrDefault("first",0));
-        System.out.printf(REVENUE,revenue);
+        System.out.printf(FIFTH, count.getOrDefault("fifth", 0));
+        System.out.printf(FOURTH, count.getOrDefault("fourth", 0));
+        System.out.printf(THIRD, count.getOrDefault("third", 0));
+        System.out.printf(SECOND, count.getOrDefault("second", 0));
+        System.out.printf(FIRST, count.getOrDefault("first", 0));
+        System.out.printf(REVENUE, revenue);
 
     }
 

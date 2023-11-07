@@ -15,7 +15,8 @@ public class PurchasePrice {
         try {
             amount = Integer.parseInt(price);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다");
+            System.out.print("[ERROR] 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
     }
 

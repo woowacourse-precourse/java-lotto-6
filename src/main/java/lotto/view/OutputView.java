@@ -4,10 +4,12 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.MatchResult;
 import lotto.model.OutputByRank;
+import lotto.model.PurchasePrice;
 
 public class OutputView {
     private static final String RESULT_MESSAGE = "당첨 통계";
     private static final String DIVIDING_LINE = "---";
+    private static final int ADJUST_EARNING_RATE = 100;
 
     public static void printEmptyLine() {
         System.out.println();
@@ -34,7 +36,8 @@ public class OutputView {
         }
     }
 
-    public static void printEarningsRate() {
-
+    public static void printEarningsRate(MatchResult matchResult, PurchasePrice purchasePrice) {
+        double earningRate = matchResult.getSumOfPrizeMoney()/purchasePrice.getPrice()*ADJUST_EARNING_RATE;
+        System.out.printf("총 수익률은 %.1f%%입니다",earningRate);
     }
 }

@@ -22,6 +22,7 @@ public class LottoController {
         makeSeveralLottos();
         makeMyLottoNumbers();
         compareLottos();
+        OutputView.printEarningsRate(matchResult,purchasePrice);
     }
 
     private void setPurchasePrice() {

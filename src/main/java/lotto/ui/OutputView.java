@@ -1,7 +1,11 @@
 package lotto.ui;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import lotto.Lotto;
+import lotto.NumberGenerator;
 import lotto.Rank;
 
 public class OutputView {
@@ -16,13 +20,21 @@ public class OutputView {
     private static final String WINNING_LOTTO_NUMBER_MESSAGE = "%d개";
     private static final String EARNING_RATE_NOTIFY_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public static void printLottoNumbers(List<Integer> numbers) {
-        System.out.println(numbers);
-    }
-
     public static void printLottoQuantity(int lottoQuantity) {
         System.out.print(NEW_LINE);
         System.out.println(String.format(LOTTO_QUANTITY_NOTIFY_MESSAGE, lottoQuantity));
+    }
+
+    public static void printLottos(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            List<Integer> sortedLotto = new ArrayList<>(lotto.getNumbers());
+            sortLottoAscendingOrder(sortedLotto);
+            System.out.println(sortedLotto);
+        }
+    }
+
+    private static void sortLottoAscendingOrder(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     public static void printStatistics(Map<Rank, Integer> finalResult) {

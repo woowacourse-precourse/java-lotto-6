@@ -26,8 +26,6 @@ public class LottoProcess {
         for (int i = 0; i < lottoQuantity; i++) {
             Lotto lotto = new Lotto(NumberGenerator.generate());
             lottos.add(lotto);
-
-            OutputView.printLottoNumbers(lotto.getNumbers());
         }
 
         return lottos;

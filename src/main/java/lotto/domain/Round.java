@@ -17,13 +17,18 @@ public class Round {
 
     private int payment;   // 지불 금액
     private List<Integer> winCnts;    // 당첨 개수
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottos;
     private List<Boolean> containsBonus;
-    private final Map<Integer, Long> winningAmount = new HashMap<>();
+    private final Map<Integer, Long> winningAmount;
+
+    public Round() {
+        lottos = new ArrayList<Lotto>();
+        winningAmount = new HashMap<Integer, Long>();
+    }
 
     public void extractor(int totalCnt) {
         for (int i=0; i<totalCnt; i++) {
-            List<Integer> randomNums = pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> randomNums = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(randomNums);
             Lotto lotto = new Lotto(randomNums);
             lottos.add(lotto);

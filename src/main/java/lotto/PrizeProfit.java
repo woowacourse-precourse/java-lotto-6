@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Map;
+
 public class PrizeProfit {
     private final double rate;
 
@@ -10,5 +12,13 @@ public class PrizeProfit {
 
     public double getRate() {
         return this.rate;
+    }
+
+    private long calculatePrizeMoney(PrizeStats prizeStats) {
+        long sumOfPrizeMoney = 0;
+        for (Map.Entry<PrizeGrade, Integer> entry : prizeStats.getGradeDist().entrySet()) {
+            sumOfPrizeMoney += entry.getKey().getPrizeMoney() * entry.getValue();
+        }
+        return sumOfPrizeMoney;
     }
 }

@@ -1,12 +1,13 @@
 package lotto.util;
 
-import lotto.constants.LottoRule;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
-import lotto.message.ErrorMessage;
 
 import java.util.List;
 import java.util.stream.Stream;
+
+import static lotto.constants.LottoRule.STANDARD;
+import static lotto.message.ErrorMessage.INVALID_LOTTO_AMOUNT;
 
 public class LottoShop {
 
@@ -20,18 +21,18 @@ public class LottoShop {
 
     private static List<Lotto> createLottos(long amount) {
         return Stream.generate(LottoFactory::createLotto)
-                .limit(amount / LottoRule.STANDARD.getLottoPrice())
+                .limit(amount / STANDARD.getLottoPrice())
                 .toList();
     }
 
     private static void validateLottoPurchase(long amount) {
         if (isPurchaseLottoPossible(amount)) {
-            throw new IllegalStateException(ErrorMessage.INVALID_LOTTO_AMOUNT.getMessage());
+            throw new IllegalStateException(INVALID_LOTTO_AMOUNT.getMessage());
         }
     }
 
     private static boolean isPurchaseLottoPossible(long amount) {
-        return amount % LottoRule.STANDARD.getLottoPrice() != 0;
+        return amount % STANDARD.getLottoPrice() != 0;
     }
 
 }

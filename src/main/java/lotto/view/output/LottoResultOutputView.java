@@ -1,21 +1,24 @@
 package lotto.view.output;
 
 import lotto.domain.lotto.LottoRank;
-import lotto.view.output.message.LottoOutputMessage;
 
 import java.io.PrintStream;
 import java.util.Map;
 import java.util.Set;
 
+import static lotto.view.output.message.LottoOutputMessage.WINNING_STATISTICS;
+import static lotto.view.output.message.LottoOutputMessage.DASH_LINE;
+import static lotto.view.output.message.LottoOutputMessage.TOTAL_PROFIT_FORMAT;
+
 public class LottoResultOutputView {
     private static final double PERCENTAGE = 100.0;
 
     public void printWinningStatisticsStartMessage() {
-        System.out.println(LottoOutputMessage.WINNING_STATISTICS.getMessage());
+        System.out.println(WINNING_STATISTICS.getMessage());
     }
 
     public void printDashLine() {
-        System.out.println(LottoOutputMessage.DASH_LINE.getMessage());
+        System.out.println(DASH_LINE.getMessage());
     }
 
     public void printLottoAllMatch(Map<LottoRank, Long> lottoRankCountMap) {
@@ -36,8 +39,7 @@ public class LottoResultOutputView {
         Set<LottoRank> lottoRanks = lottoRankCountMap.keySet();
         long totalAmount = getTotalAmount(lottoRankCountMap, lottoRanks);
 
-        System.out.printf(LottoOutputMessage.TOTAL_PROFIT_FORMAT.getMessage(),
-                calculatePercentage(amount, totalAmount));
+        System.out.printf(TOTAL_PROFIT_FORMAT.getMessage(), calculatePercentage(amount, totalAmount));
     }
 
     private long getTotalAmount(Map<LottoRank, Long> lottoRankCountMap, Set<LottoRank> lottoRanks) {

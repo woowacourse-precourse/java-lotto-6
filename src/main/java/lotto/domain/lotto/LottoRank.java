@@ -43,9 +43,9 @@ public enum LottoRank {
 
     private static LottoRank getRankWithBonus(boolean isBonus) {
         if (isBonus){
-            return LottoRank.SECOND;
+            return SECOND;
         }
-        return LottoRank.THIRD;
+        return THIRD;
     }
 
     private static boolean isRank(int count, LottoRank lottoRank) {

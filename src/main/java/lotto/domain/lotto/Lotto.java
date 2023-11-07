@@ -1,9 +1,12 @@
 package lotto.domain.lotto;
 
-import lotto.constants.LottoRule;
-import lotto.message.ErrorMessage;
-
 import java.util.*;
+
+import static lotto.constants.LottoRule.STANDARD;
+import static lotto.message.ErrorMessage.LOTTO_NUMBERS_NOT_SORTED;
+import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBER_COUNT;
+import static lotto.message.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
+import static lotto.message.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,8 +20,8 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LottoRule.STANDARD.getLottoSize()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_COUNT.getMessage());
+        if (numbers.size() != STANDARD.getLottoSize()) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getMessage());
         }
     }
 
@@ -28,7 +31,7 @@ public class Lotto {
 
         for (int number : numbers) {
             if(!checkNumbers.add(number)) {
-                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER.getMessage());
+                throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getMessage());
             }
         }
     }
@@ -53,7 +56,7 @@ public class Lotto {
     private void validateSortedAscending(List<Integer> numbers) {
         List<Integer> sortedNumber = getSortedNumber(numbers);
         if (isNotSort(numbers,sortedNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_NOT_SORTED.getMessage());
+            throw new IllegalArgumentException(LOTTO_NUMBERS_NOT_SORTED.getMessage());
         }
     }
 
@@ -71,13 +74,13 @@ public class Lotto {
     public void validateLottoNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (isLottoNumberRange(number)) {
-                throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getMessage());
+                throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
             }
         }
     }
 
     private boolean isLottoNumberRange(int number) {
-        return number < LottoRule.STANDARD.getStartNumber() || number > LottoRule.STANDARD.getLastNumber();
+        return number < STANDARD.getStartNumber() || number > STANDARD.getLastNumber();
     }
 
     public List<Integer> getNumbers() {

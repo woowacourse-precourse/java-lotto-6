@@ -25,11 +25,9 @@ public class LottoOutputController {
     }
 
     public void resultMessage(LottoGameInfo lottoGameInfo, LottoResult lottoResult) {
-        //당첨 통계
         Map<LottoRank, Long> lottoRankCountMap =
                 printResult(lottoGameInfo.getLottos(), lottoResult);
 
-        //총 수익률
         printTotalProfitRate(lottoGameInfo.getAmount(), lottoRankCountMap);
     }
 

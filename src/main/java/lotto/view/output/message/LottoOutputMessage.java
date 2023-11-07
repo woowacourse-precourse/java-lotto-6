@@ -4,7 +4,7 @@ public enum LottoOutputMessage {
     WINNING_STATISTICS("당첨 통계"),
     DASH_LINE("---"),
     TOTAL_PROFIT_FORMAT("총 수익률은 %.1f%%입니다."),
-    PURCHASED_LOTTO_COUNT_MESSAGE_FORMAT("%s개를 구매했습니다.");
+    PURCHASED_LOTTO_COUNT_MESSAGE_FORMAT("%s개를 구매했습니다.\n");
 
     private final String message;
 

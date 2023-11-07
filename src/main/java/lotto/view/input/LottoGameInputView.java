@@ -1,13 +1,16 @@
 package lotto.view.input;
 
 import lotto.domain.lotto.Lotto;
-import lotto.view.input.message.LottoBuyInputMessage;
 import lotto.util.LottoFactory;
 import lotto.view.input.validator.LottoGameInputValidator;
 import lotto.view.input.validator.LottoNumberInputValidator;
 
 import java.util.Arrays;
 import java.util.List;
+
+import static lotto.view.input.message.LottoBuyInputMessage.PURCHASE_AMOUNT_PROMPT_MESSAGE;
+import static lotto.view.input.message.LottoBuyInputMessage.WINNING_NUMBERS_PROMPT_MESSAGE;
+import static lotto.view.input.message.LottoBuyInputMessage.BONUS_NUMBER_PROMPT_MESSAGE;
 
 public class LottoGameInputView implements ConsoleInput {
 
@@ -36,7 +39,7 @@ public class LottoGameInputView implements ConsoleInput {
     }
 
     private void printRequestLottoPurchaseAmount() {
-        System.out.println(LottoBuyInputMessage.PURCHASE_AMOUNT_PROMPT_MESSAGE.getMassage());
+        System.out.println(PURCHASE_AMOUNT_PROMPT_MESSAGE.getMassage());
     }
 
     @Override
@@ -50,7 +53,7 @@ public class LottoGameInputView implements ConsoleInput {
     }
 
     private void printRequestWinningLottoNumbers() {
-        System.out.println(LottoBuyInputMessage.WINNING_NUMBERS_PROMPT_MESSAGE.getMassage());
+        System.out.println(WINNING_NUMBERS_PROMPT_MESSAGE.getMassage());
     }
 
     private List<Integer> getNumbers() {
@@ -71,7 +74,7 @@ public class LottoGameInputView implements ConsoleInput {
     }
 
     private void printRequestBonusLottoNumber() {
-        System.out.println(LottoBuyInputMessage.BONUS_NUMBER_PROMPT_MESSAGE.getMassage());
+        System.out.println(BONUS_NUMBER_PROMPT_MESSAGE.getMassage());
     }
 
     private void validateBonusLottoNumber(int bonusNumber, Lotto winningLotto) {

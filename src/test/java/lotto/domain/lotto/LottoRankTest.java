@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LottoRankTest {
 
-     @DisplayName("맞춘 개수의 해당하는 순위를 반환한다.")
-     @TestFactory
-     Collection<DynamicTest> getRank(){
+    @DisplayName("맞춘 개수의 해당하는 순위를 반환한다.")
+    @TestFactory
+    Collection<DynamicTest> getRank(){
         boolean isBonus = true;
         boolean anyBonus = false;
         // given
@@ -58,11 +58,8 @@ class LottoRankTest {
         );
     }
     @DisplayName("로또 당첨된 개수를 전달하면 각 등수의 총 금액을 반환받는다.")
-     @TestFactory
-     Collection<DynamicTest> calculate(){
-        boolean isBonus = true;
-        boolean anyBonus = false;
-        // given
+    @TestFactory
+    Collection<DynamicTest> calculate(){
         return List.of(
                 DynamicTest.dynamicTest("1등은 2,000,000,000원", () -> {
                     //when

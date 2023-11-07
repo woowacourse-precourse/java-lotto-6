@@ -32,7 +32,7 @@ class LottoBuyDisplayViewTest extends DisplayTestSupport {
         // given
         Lottos lottos = createLottos();
         String result = "[1, 2, 3, 4, 5, 6]\n" +
-                        "[1, 2, 3, 4, 5, 6]\n\n";
+                "[1, 2, 3, 4, 5, 6]\n\n";
         // when
         lottoBuyOutputView.printAllLottoNumbers(lottos);
         // then
@@ -41,7 +41,8 @@ class LottoBuyDisplayViewTest extends DisplayTestSupport {
 
     private Lottos createLottos() {
         Lottos lottos = new Lottos(
-                List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 6))));
+                List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 6))));
         return lottos;
     }
 

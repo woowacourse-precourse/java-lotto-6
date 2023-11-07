@@ -41,8 +41,12 @@ public class WinningLottoCalculator {
 			long matchCount = getMatchCount(lotto, winningLotto);
 			boolean bonusNumberMatchLotto = isBonusNumberMatchLotto(lotto, winningLotto);
 
-			LottoPrize lottoPrizeType = LottoPrize.getLottoPrizeType(matchCount, bonusNumberMatchLotto);
-			lottoPrizes.put(lottoPrizeType, lottoPrizes.get(lottoPrizeType) + 1);
+			increaseLottoPrizes(matchCount, bonusNumberMatchLotto);
 		}
+	}
+
+	private void increaseLottoPrizes(long matchCount, boolean bonusNumberMatchLotto) {
+		LottoPrize lottoPrizeType = LottoPrize.getLottoPrizeType(matchCount, bonusNumberMatchLotto);
+		lottoPrizes.put(lottoPrizeType, lottoPrizes.get(lottoPrizeType) + 1);
 	}
 }

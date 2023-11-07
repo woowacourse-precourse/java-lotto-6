@@ -24,10 +24,20 @@ public class OutputView {
 	public static void printResult(Map<Prize, Integer> results) {
 		for (Prize prize : Prize.values()) {
 			int count = results.getOrDefault(prize, 0);
-			if (count >= 0) {
-				System.out.println(String.format(PRINT_RESULT, prize.getMatchAmount(), convertWithDelimiter(prize.getPrize()), count));
-			}
+			printResult(prize, count);
 		}
+	}
+
+	private static void printResult(Prize prize, int count) {
+		if (isAboutBonus(prize)) {
+			System.out.println(String.format(PRINT_RESULT_WITH_BONUS, prize.getMatchAmount(), convertWithDelimiter(prize.getPrize()), count));
+		}
+
+		System.out.println(String.format(PRINT_RESULT, prize.getMatchAmount(), convertWithDelimiter(prize.getPrize()), count));
+	}
+
+	private static boolean isAboutBonus(Prize prize) {
+		return prize.getPrize() == Prize.FIVEANDBONUS.getPrize();
 	}
 
 	private static List<Integer> sortAscending(List<Integer> numbers) {
@@ -42,6 +52,6 @@ public class OutputView {
 
 	public static void printRateOfResult(double rateOfReturn) {
 		double value = Math.round(rateOfReturn * 100.0) / 100.0;
-		System.out.println(String.format(PRINT_RATE_OF_RETURN, value));
+		System.out.println(String.format(PRINT_RATE_OF_RETURN, String.valueOf(value)));
 	}
 }

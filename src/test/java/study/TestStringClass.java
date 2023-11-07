@@ -2,8 +2,6 @@ package study;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -43,5 +41,16 @@ public class TestStringClass {
         }
     }
 
-    
+    @Test
+    @DisplayName("인덱스를 기준으로 부분 문자열을 생성한다.")
+    void testSubstring() {
+        // given
+        String input = "(1,2)";
+
+        // when
+        String substring = input.substring(1, 4);
+
+        // then
+        assertThat(substring).isEqualTo("1,2");
+    }
 }

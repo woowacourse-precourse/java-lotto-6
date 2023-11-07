@@ -25,10 +25,22 @@ public class LottoService {
 		for (int i = 1; i <= numberOfLottoTickets; i++) {
 			List<Integer> numbers =
 					Randoms.pickUniqueNumbersInRange(lottoRangeStart, lottoRangeEnd, countOfLotto);
+			if (!isSortedInAscendingOrder(numbers)) {
+				Collections.sort(numbers);
+			}
 			Lotto lotto = new Lotto(numbers);
 			lottos.add(lotto);
 		}
 		return lottos;
+	}
+
+	private boolean isSortedInAscendingOrder(List<Integer> numbers) {
+		for (int i = 1; i < numbers.size(); i++) {
+			if (numbers.get(i - 1) > numbers.get(i)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public List<Integer> checkNumbers(String inputNumbers) throws IllegalArgumentException {

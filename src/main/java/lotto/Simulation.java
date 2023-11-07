@@ -27,7 +27,8 @@ public class Simulation {
 
         int bonusNumber = getUserBonusNumber(); // 보너스 번호 입력
         System.out.println();
-        getMatchingNumber(winningNumber, bonusNumber, userCost);
+
+        getMatchingNumber(winningNumber, bonusNumber, userCost); // 일치확인
     }
 
     // 당첨 통계 계산

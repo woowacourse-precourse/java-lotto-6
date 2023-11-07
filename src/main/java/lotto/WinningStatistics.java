@@ -27,7 +27,6 @@ public class WinningStatistics {
         return ticket;
     }
 
-    // 로또 번호 생성 및 저장
     public List<Integer> generateSaveLottoNumbers() {
         Lotto lotto = Lotto.generateLottoNumbers();
         List<Integer> numbers = lotto.getNumbers();
@@ -36,38 +35,23 @@ public class WinningStatistics {
         return numbers;
     }
 
-    // 일치한 갯수 확인
+    // 로또 당첨번호가 일치하는 경우 값 갱신
     public void calculateStatistics(List<Integer> winningNumber, int bonusNumber) {
         for (Lotto lotto : lottoTickets) {
-            calculateMatchingNumbers(lotto, winningNumber, bonusNumber);
+            List<Integer> updateNumber = lotto.calculateMatchingNumbers(winningNumber, bonusNumber);
+            updateMatchingNumber(updateNumber);
         }
     }
 
-    // 일치하는 번호를 확인하는 함수
-    public int calculateMatchingNumbers(Lotto lotto, List<Integer> winningNumber, int bonusNumber) {
-        int count = 0;
-        List<Integer> lottoNumbers = lotto.getNumbers();
-        for (int number : lottoNumbers) {
-            if (winningNumber.contains(number)) {
-                count++;
-            }
+    // 실제 값 갱신하는 함수
+    private void updateMatchingNumber(List<Integer> updateNumber) {
+        for (int i = 0; i < updateNumber.size(); i++) {
+            int originalValue = matchingNumber.get(i);
+            int updateValue = updateNumber.get(i);
+            matchingNumber.set(i, originalValue + updateValue);
         }
-        matchingNumberSet(lotto, bonusNumber, count);
-        return count;
     }
 
-    // 3개 이상 일치하는 경우부터 저장
-    public List<Integer> matchingNumberSet(Lotto lotto, int bonusNumber, int count) {
-        // 5개일치 + 보너스번호 일치 확인
-        if (count == 5 && lotto.getNumbers().contains(bonusNumber)) {
-            int currentValue = matchingNumber.get(count);
-            matchingNumber.set(0, currentValue + 1);
-        } else if (count >= 3) {
-            int currentValue = matchingNumber.get(count);
-            matchingNumber.set(count, currentValue + 1);
-        }
-        return matchingNumber;
-    }
 
     // 이득률 계산
     public double matchingTotal(long userCost) {

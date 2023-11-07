@@ -32,7 +32,7 @@ public class Application {
 			throw new ArithmeticException("1,000원 단위로 입력해주세요.");
 		}
 		System.out.println();
-		System.out.println(seedMoney % 1000 + "개를 구매했습니다.");
+		System.out.println(seedMoney / 1000 + "개를 구매했습니다.");
 	}
 
 	private static void pickRandomNumber() {

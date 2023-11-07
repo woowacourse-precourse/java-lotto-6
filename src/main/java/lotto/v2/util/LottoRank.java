@@ -31,18 +31,24 @@ public enum LottoRank {
     }
 
     public static LottoRank valueOf(int matchCount, boolean bonusMatch) {
+        if (matchCount < FIFTH.matchCount) {
+            throw new IllegalArgumentException("[ERROR] 일치하는 로또 순위가 없습니다.");
+        }
+
         if (matchCount == SECOND.matchCount && bonusMatch) {
             return SECOND;
         }
+
         for (LottoRank rank : values()) {
             if (rank.matchCount == matchCount && !rank.bonusMatch) {
                 return rank;
             }
         }
-        return null; // or throw an exception if match count is not a valid rank
+        
+        throw new IllegalArgumentException("[ERROR] 일치하는 로또 순위가 없습니다.");
     }
 }
 
 
 
-}
+

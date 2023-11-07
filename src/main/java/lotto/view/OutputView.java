@@ -10,7 +10,7 @@ import java.util.List;
 
 public class OutputView {
     private static DecimalFormat df = new DecimalFormat("#,###");
-    private static DecimalFormat rf = new DecimalFormat("#,###.0");
+    private static DecimalFormat rf = new DecimalFormat("#,##0.0");
     public static void moneyMessage() {
         printView(Message.MONEY.getMessage());
     }

@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import lotto.data.Lotto;
-import lotto.message.LottoResult;
+import lotto.data.LottoResult;
+import lotto.data.WinningNumbers;
+import lotto.message.LottoPrize;
 import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;
 import lotto.utils.Util;
@@ -23,14 +25,10 @@ public class LottoPurchaseManager {
         List<Lotto> lottos = LottoUtil.generateLottos(numberOfLottoPurchased, () -> LottoUtil.generateLotto());
         OutputMessage.printLottos(lottos);
 
-        List<Integer> winningNumbers = LottoPurchaseInput.inputWinningNumbers();
-        int bonusNumber = LottoPurchaseInput.inputBonusNumber();
+        WinningNumbers winningNumbers = LottoPurchaseInput.inputWinningNumbers();
 
-        LottoNumbersInfo lottoNumbersInfo = new LottoNumbersInfo(lottos, winningNumbers, bonusNumber);
-        LottoPurchase purchase = new LottoPurchase(purchaseAmount, lottoNumbersInfo);
-
-        HashMap<LottoResult, BigDecimal> result = purchase.getResult();
-        float profitRate = purchase.getProfitRate();
-        OutputMessage.printWinningStatistics(result, profitRate);
+        HashMap<LottoPrize, BigDecimal> lottoRank = winningNumbers.getResultWith(lottos);
+        LottoResult lottoResult = new LottoResult (lottoRank, purchaseAmount);
+        OutputMessage.printWinningStatistics(lottoResult);
     }
 }

@@ -1,7 +1,7 @@
-package ui;
+package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
-import domain.LottoPurchaseManager;
+import lotto.domain.LottoPurchaseManager;
 
 public class LottoPurchaseConsoleUI {
 

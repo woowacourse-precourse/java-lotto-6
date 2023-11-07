@@ -1,7 +1,7 @@
 package lotto;
 
-import domain.LottoPurchaseManager;
-import ui.LottoPurchaseConsoleUI;
+import lotto.domain.LottoPurchaseManager;
+import lotto.ui.LottoPurchaseConsoleUI;
 
 public class Application {
     public static void main(String[] args) {

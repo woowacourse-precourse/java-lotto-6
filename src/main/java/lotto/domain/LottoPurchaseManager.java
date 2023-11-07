@@ -1,10 +1,10 @@
-package domain;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoPurchaseManager {
 
-    static final int PRICE_OF_LOTTO = 1000;
+    public static final int PRICE_OF_LOTTO = 1000;
 
     public int calculateNumOfLotto(int purchaseAmount) {
         if (purchaseAmount % PRICE_OF_LOTTO != 0) {

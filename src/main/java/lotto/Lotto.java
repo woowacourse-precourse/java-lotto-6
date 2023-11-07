@@ -1,6 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,4 +20,15 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+   /* public static Lotto buyLotto(Integer money, Customer customer) {
+        if((money % 1000) != 0){
+            throw new IllegalArgumentException("[ERROR] 천원 단위의 금액을 입력해 주세요");
+        }
+        System.out.println(money + "개를 구입했습니다.");
+        Integer[] tmp = new Integer[6];
+        for(int i=0; i< money/1000; i++){
+            customer.addPocket(customer,makingLotto());
+        }
+        return lotto;
+    }*/
 }

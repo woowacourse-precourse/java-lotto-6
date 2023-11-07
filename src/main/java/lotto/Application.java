@@ -66,7 +66,7 @@ public class Application {
         String inputMoney = Console.readLine();
         Integer money;
         try {
-            if(IsValidMoney(inputMoney)){
+            if (IsValidMoney(inputMoney)) {
                 throw new IllegalArgumentException(errorMessage);
             }
             money = Integer.valueOf(inputMoney);
@@ -78,10 +78,10 @@ public class Application {
     }
 
     private static boolean IsValidMoney(String inputmoney) {
-        if(IsInteger(inputmoney)){
-           return true;
+        if (IsInteger(inputmoney)) {
+            return true;
         }
-        if(IsZero(inputmoney)){
+        if (IsZero(inputmoney)) {
             return true;
         }
         if (Integer.valueOf(inputmoney) % lottoPrice != 0) {
@@ -92,7 +92,7 @@ public class Application {
     }
 
     private static boolean IsZero(String inputMoney) {
-        if(Integer.parseInt(inputMoney)<=0){
+        if (Integer.parseInt(inputMoney) <= 0) {
             errorMessage = "[ERROR] 입력은 0원 초과여야 합니다.";
             return true;
         }
@@ -156,7 +156,7 @@ public class Application {
     }
 
     private static boolean CheckLength(String[] input) {
-        if (input.length < 6) {
+        if (input.length != 6) {
             errorMessage = "[ERROR] 로또 번호는 6개의 숫자를 입력해야 합니다.";
             return true;
         }

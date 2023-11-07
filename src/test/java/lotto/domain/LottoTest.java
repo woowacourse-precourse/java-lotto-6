@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.common.Constant;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -46,9 +47,7 @@ class LottoTest {
         // Arrange
         Lotto lotto = new Lotto();
 
-        // Act
-
         // Assert
+        Assertions.assertEquals(Constant.LOTTO_NUM_SIZE, lotto.getNumbers().size());
     }
-
 }

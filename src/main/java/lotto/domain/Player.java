@@ -23,7 +23,7 @@ public class Player {
         generateLottos();
     }
 
-    public int getNumberOfPurchases() {
+    private int getNumberOfPurchases() {
         return purchaseAmount / LOTTO_PRICE;
     }
 
@@ -40,17 +40,17 @@ public class Player {
         return ((double) totalPrizeMoney / (double) purchaseAmount) * PERCENTAGE;
     }
 
-    public void validatePurchaseAmount(int purchaseAmount) {
+    private void validatePurchaseAmount(int purchaseAmount) {
         validateLeast1000(purchaseAmount);
         validateDivisibleBy1000(purchaseAmount);
     }
 
-    public void validateLeast1000(int purchaseAmount) {
+    private void validateLeast1000(int purchaseAmount) {
         if (purchaseAmount < LOTTO_PRICE)
             throw new IllegalArgumentException(SMALL_PURCHASE_AMOUNT_ERROR_MESSAGE);
     }
 
-    public void validateDivisibleBy1000(int purchaseAmount) {
+    private void validateDivisibleBy1000(int purchaseAmount) {
         if ((purchaseAmount % LOTTO_PRICE) != 0)
             throw new IllegalArgumentException(NOT_DIVIDE_1000_ERROR_MESSAGE);
     }

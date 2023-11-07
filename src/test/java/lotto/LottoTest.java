@@ -1,7 +1,9 @@
 package lotto;
 
 import lotto.Lottery.Service.Lotto;
+import lotto.Lottery.Util.BonusChecker;
 import lotto.Lottery.Util.CostChecker;
+import lotto.Lottery.Util.LottoChecker;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

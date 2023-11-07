@@ -12,7 +12,6 @@ import lotto.view.OutputView;
 public class Controller {
     public static final int LOTTO_PRICE = 1000;
 
-
     public void run() {
         UserPrice userPrice = inputUserPrice();
         Lotties lotties = buyLotties(userPrice);
@@ -51,6 +50,5 @@ public class Controller {
 
         return new WinningNumber(new Lotto(numbers), bonusNumber);
     }
-
 
 }

@@ -11,10 +11,11 @@ public enum Rank {
     LOSER(0, 0, 0, 0);
 
     private int place;
+
     private int matchingNumberCount;
+    // todo : boolean으로 수정
     private int matchingBonusNumberCount;
     private int prize;
-
     Rank(int place, int matchingNumberCount, int matchingBonusNumberCount, int prize) {
         this.place = place;
         this.matchingNumberCount = matchingNumberCount;
@@ -26,7 +27,7 @@ public enum Rank {
         return Arrays.stream(Rank.values())
                 .filter((rank) -> rank.matchingNumberCount == matchingNumberCount
                         && rank.matchingBonusNumberCount <= matchingBonusNumberCount)
-                .findAny()
+                .findFirst()
                 .orElse(LOSER);
     }
 
@@ -36,5 +37,13 @@ public enum Rank {
 
     public int getPrize() {
         return prize;
+    }
+
+    public int getMatchingNumberCount() {
+        return matchingNumberCount;
+    }
+
+    public int getMatchingBonusNumberCount() {
+        return matchingBonusNumberCount;
     }
 }

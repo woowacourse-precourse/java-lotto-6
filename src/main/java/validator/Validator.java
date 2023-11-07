@@ -66,6 +66,12 @@ public class Validator {
         }
     }
 
+    public static void validateBonusNumberUniqueness(List<Integer> winningNumbers, int bonusNumber) {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("당첨 번호와 중복되지 않는 보너스 번호를 입력해 주세요.");
+        }
+    }
+
     public static void validateBonusNumberInRange(int bonusNumber) {
         if (isLottoNumberOutOfBounds(bonusNumber)) {
             throw new IllegalArgumentException("보너스 번호는 1 이상, 45 이하로 입력해 주세요. ");

@@ -10,7 +10,7 @@ public class WinningNumbers {
     public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
         validateWinningNumbers(winningNumbers);
         this.winningNumbers = winningNumbers;
-        validateBonusNumber(bonusNumber);
+        validateBonusNumber(winningNumbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
@@ -19,7 +19,8 @@ public class WinningNumbers {
         Validator.validateWinningNumbersInRange(winningNumbers);
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         Validator.validateBonusNumberInRange(bonusNumber);
+        Validator.validateBonusNumberUniqueness(winningNumbers, bonusNumber);
     }
 }

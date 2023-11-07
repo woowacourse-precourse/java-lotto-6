@@ -1,4 +1,4 @@
-package lotto.Domain;
+package lotto.Enum;
 
 import java.text.DecimalFormat;
 
@@ -25,6 +25,7 @@ public enum WinningType {
     public int getMatchCnt() {
         return matchCnt;
     }
+
     public String getWinningPricePrintType() {
         DecimalFormat df = new DecimalFormat("###,###");
         return df.format(getWinningPrice());

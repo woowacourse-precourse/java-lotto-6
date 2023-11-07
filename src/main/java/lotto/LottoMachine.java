@@ -12,10 +12,9 @@ public class LottoMachine {
     private final static int MAX_LOTTO_NUMBER = 45;
     private final static int LOTTO_PRICE = 1000;
 
-    private int lottoCount;
-    private List<Lotto> lottoBundle;
+    public int lottoCount;
+    public List<Lotto> lottoBundle = new ArrayList<>();
 
-    public void insertMoneyView() {
 
     public void lottoMachineInput() {
         try {
@@ -28,7 +27,7 @@ public class LottoMachine {
         }
     }
 
-    private void insertMoney(String input) {
+    public void insertMoney(String input) {
         Exception.validateMoney(input);
         lottoCount = Integer.parseInt(input) / LOTTO_PRICE;
     }
@@ -45,14 +44,14 @@ public class LottoMachine {
         return lottoBundle;
     }
 
-    private void generateLottoBundle() {
+    public void generateLottoBundle() {
         for (int i = 0; i < lottoCount; i++) {
             Lotto processingLotto = new Lotto(generateLottoNumbers());
             lottoBundle.add(processingLotto);
         }
     }
 
-    private List<Integer> generateLottoNumbers() {
+    public List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_LENGTH);
     }
 

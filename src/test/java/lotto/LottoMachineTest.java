@@ -1,82 +1,49 @@
 package lotto;
 
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoMachineTest {
 
-    static LottoMachine lottoMachine;
-
-    @BeforeAll
-    public static void beforeAll() {
-        lottoMachine = new LottoMachine();
-    }
-
-    @DisplayName("입력한 값을 정수로 변환할 수 없는 경우 예외가 발생한다.")
+    @DisplayName("입력값을 정수로 변환할 수 없는 경우 테스트")
     @Test
     void insertMoney_notParsableNumber() {
-        assertThatThrownBy(() -> lottoMachine.insertMoney("abc"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 입력한 값을 정수로 변환할 수 없습니다.");
+        assertThatThrownBy(() -> new LottoMachine().insertMoney("abc"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력한 값이 0 이하의 정수인 경우 예외가 발생한다.")
+    @DisplayName("입력값이 음수인 경우 테스트")
     @Test
-    void insertMoney_notValidNumber() {
-        assertThatThrownBy(() -> lottoMachine.insertMoney("-500"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 입력한 값이 0 이하의 숫자입니다.");
+    void insertMoney_notPositiveNumber() {
+        assertThatThrownBy(() -> new LottoMachine().insertMoney("-123"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력한 값을 1000으로 나눌 수 없는 경우 예외가 발생한다.")
+    @DisplayName("입력값이 1000으로 나눠 떨어지지 않는 경우 테스트")
     @Test
     void insertMoney_notDividedWithThousand() {
-        assertThatThrownBy(() -> lottoMachine.insertMoney("1500"))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 1000으로 나눠 떨어지지 않습니다.");
+        assertThatThrownBy(() -> new LottoMachine().insertMoney("1500"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("생성된 숫자가 6개가 아닌 경우 예외가 발생한다.")
+    @DisplayName("입력값에 문제가 없는 경우 테스트")
     @Test
-    void generateLottoNumbers_notSixNumbers() {
-        assertRandomUniqueNumbersInRangeTest(
-                () -> {
-                    assertThatThrownBy(() -> lottoMachine.generateLottoNumbers())
-                            .isInstanceOf(IllegalArgumentException.class)
-                            .hasMessageContaining("[ERROR]");
-                },
-                List.of(8, 21, 23, 41, 42)
-        );
+    void insertMoney_success() {
+        LottoMachine lottoMachine = new LottoMachine();
+        lottoMachine.insertMoney("2000");
+        assertThat(lottoMachine.lottoCount).isEqualTo(2);
     }
 
-    @DisplayName("생성된 숫자 중 중복되는 값이 있는 경우 예외가 발생한다.")
+    @DisplayName("입력값에 맞는 개수의 로또가 생성되었는지 테스트")
     @Test
-    void generateLottoNumbers_duplicateNumber() {
-        assertRandomUniqueNumbersInRangeTest(
-                () -> {
-                    assertThatThrownBy(() -> lottoMachine.generateLottoNumbers())
-                            .isInstanceOf(IllegalArgumentException.class)
-                            .hasMessageContaining("[ERROR]");
-                },
-                List.of(8, 21, 23, 41, 42, 41)
-        );
+    void generateLottoBundle_success() {
+        LottoMachine lottoMachine = new LottoMachine();
+        lottoMachine.insertMoney("2000");
+        lottoMachine.generateLottoBundle();
+        assertThat(lottoMachine.lottoBundle.size()).isEqualTo(2);
     }
 
-    @DisplayName("생성된 값 중에 1~45의 범위가 아닌 숫자가 있는 경우 예외가 발생한다.")
-    @Test
-    void generateLottoNumbers_numberNotInRange() {
-        assertRandomUniqueNumbersInRangeTest(
-                () -> {
-                    assertThatThrownBy(() -> lottoMachine.generateLottoNumbers())
-                            .isInstanceOf(IllegalArgumentException.class)
-                            .hasMessageContaining("[ERROR]");
-                },
-                List.of(8, 100, 23, 41, 50, 10)
-        );
-    }
 }

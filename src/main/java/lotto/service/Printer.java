@@ -34,13 +34,13 @@ public class Printer {
         int[] statistic = statisticDTO.getStatistic();
         sb.append("\n당첨 통계\n").append("---\n")
                 .append("3개 일치 (5,000원) - ").append(statistic[Grade.FIFTH_GRADE.getGrade()])
-                .append("\n").append("4개 일치 (50,000원) - ")
-                .append(statistic[Grade.FORTH_GRADE.getGrade()]).append("\n")
+                .append("개\n").append("4개 일치 (50,000원) - ")
+                .append(statistic[Grade.FORTH_GRADE.getGrade()]).append("개\n")
                 .append("5개 일치 (1,500,000원) - ").append(statistic[Grade.THIRD_GRADE.getGrade()])
-                .append("\n").append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
-                .append(statistic[Grade.SECCOND_GRADE.getGrade()]).append("\n")
+                .append("개\n").append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
+                .append(statistic[Grade.SECCOND_GRADE.getGrade()]).append("개\n")
                 .append("6개 일치 (2,000,000,000원) - ")
-                .append(statistic[Grade.FIRST_GRADE.getGrade()]);
+                .append(statistic[Grade.FIRST_GRADE.getGrade()]).append("개");
         System.out.println(sb);
     }
 

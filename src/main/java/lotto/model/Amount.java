@@ -54,11 +54,12 @@ public class Amount {
     // 1000의 배수 검증
     private void validateDivisibleIntegerInput(int amount) {
         if (amount % LOTTO_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException(NOT_DIVISIBLE_INTEGER_INPUT_MESSAGE.getMessage());
-        }
             throw new NotDivisibleIntegerException();
         }
     }
 
+    //로또 개수 로직
+    public int calculateCount() {
+        return this.amount / LOTTO_PRICE.getValue();
     }
 }

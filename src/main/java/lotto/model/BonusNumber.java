@@ -3,15 +3,14 @@ package lotto.model;
 public class BonusNumber {
     private final int bonusNumber;
 
-    public BonusNumber(Lotto lotto, String bonusNumber) {
-        validateBonusNumber(lotto, bonusNumber);
+    public BonusNumber(String bonusNumber) {
+        validateBonusNumber(bonusNumber);
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
-    private void validateBonusNumber(Lotto lotto, String bonus) {
+    private void validateBonusNumber(String bonus) {
         isInteger(bonus);
         isCorrectRange(bonus);
-        isDuplicateWinningLotto(lotto, bonus);
     }
 
     private void isInteger(String bonus) {
@@ -28,11 +27,7 @@ public class BonusNumber {
         }
     }
 
-    private void isDuplicateWinningLotto(Lotto lotto, String bonus) {
-        int bonusNumber = Integer.parseInt(bonus);
-
-        if (lotto.isContain(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되면 안됩니다.");
-        }
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

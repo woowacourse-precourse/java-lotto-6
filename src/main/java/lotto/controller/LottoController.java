@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.constant.Constant.ZERO;
+import static lotto.constant.ConstantInteger.ZERO;
 
 import java.util.List;
 
@@ -29,5 +29,15 @@ public class LottoController {
         }
         return lottoTickets.getLottoTickets();
     }
+
+    public void setLuckyNumber(Lotto luckyNumber){
+        lottoTicketManager.getLuckyNumber(luckyNumber);
+    }
+
+    public void validateBonusNumber(Integer bonusNumber){
+        lottoTicketManager.getBonusNumber(bonusNumber);
+    }
+
+
 
 }

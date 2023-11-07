@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     public static void main(String[] args) {
@@ -15,5 +17,11 @@ public class Application {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }
+        
+        System.out.println("지난 주 당첨 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
+            .map(Integer::parseInt)
+            .collect(Collectors.toList());
+        WinningLotto winningLotto = new WinningLotto(winningNumbers);
     }
 }

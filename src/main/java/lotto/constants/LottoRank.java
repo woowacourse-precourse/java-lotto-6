@@ -3,17 +3,17 @@ package lotto.constants;
 import java.util.function.BiPredicate;
 
 public enum LottoRank {
-    FIRST("2,000,000,000원", (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 6),
-    SECOND("30,000,000원", (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && bonusWinningNumber),
-    THIRD("1,500,000원", (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && !bonusWinningNumber),
-    FOURTH("50,000원", (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 4),
-    FIFTH("5,000원", (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 3),
-    NONE("", (matchedNumbers, bonusWinningNumber) -> matchedNumbers < 3);
+    FIRST(2000000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 6),
+    SECOND(30000000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && bonusWinningNumber),
+    THIRD(1500000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 5 && !bonusWinningNumber),
+    FOURTH(50000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 4),
+    FIFTH(5000, (matchedNumbers, bonusWinningNumber) -> matchedNumbers == 3),
+    NONE(0, (matchedNumbers, bonusWinningNumber) -> matchedNumbers < 3);
 
     private final BiPredicate<Integer, Boolean> picked;
-    private final String prizeMoney;
+    private final int prizeMoney;
 
-    LottoRank(String prizeMoney, BiPredicate<Integer, Boolean> picked) {
+    LottoRank(int prizeMoney, BiPredicate<Integer, Boolean> picked) {
         this.prizeMoney = prizeMoney;
         this.picked = picked;
     }

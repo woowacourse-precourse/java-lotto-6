@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.validation.InputException;
 import lotto.view.Input;
+import lotto.view.Output;
 
 public class WinningLotto {
     private final List<Integer> winningNumbers;
@@ -21,7 +22,7 @@ public class WinningLotto {
             stringInputValidate(input);
             inputNumbers = parseNumbers(input);
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
+            Output.illegalArgumentException(illegalArgumentException);
 
             return initializeWinningNumbers(Input.winningNumbers());
         }
@@ -46,7 +47,7 @@ public class WinningLotto {
         try {
             bonusNumberValidate(input, this.winningNumbers);
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println(illegalArgumentException.getMessage());
+            Output.illegalArgumentException(illegalArgumentException);
 
             return initializeBonusNumber(Input.bonusNumber());
         }

@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.Constant;
 import lotto.constant.Rank;
 
 public class Statistics {
@@ -13,6 +12,10 @@ public class Statistics {
         this.purchasedLotto = purchasedLotto;
     }
 
+    public Ranking getRanking() {
+        return this.ranking;
+    }
+
     private int sumRevenue() {
         return ranking.getRankStatus().get(Rank.FOURTH) * Rank.FOURTH.getPrize()
                 + ranking.getRankStatus().get(Rank.THIRD) * Rank.THIRD.getPrize()
@@ -21,27 +24,10 @@ public class Statistics {
                 + ranking.getRankStatus().get(Rank.FIRST) * Rank.FIRST.getPrize();
     }
 
-    private double totalRevenue() {
+    public double getTotalRevenue() {
         final int totalRevenue = sumRevenue();
         final double revenue = (double) totalRevenue / (purchasedLotto.getAmount() * 10);
 
         return Math.round(revenue * 100.0) / 100.0;
-    }
-
-    public final void printRevenue() {
-        System.out.printf("총 수익률은 %.1f%%입니다.", totalRevenue());
-    }
-
-    private void getRank(final String phrase, final Rank rank) {
-        System.out.printf("%s%d개\n", phrase, ranking.getRankStatus().get(rank));
-    }
-
-    public final void printRank() {
-        System.out.println(Constant.result);
-        getRank(Constant.fourth, Rank.FOURTH);
-        getRank(Constant.third, Rank.THIRD);
-        getRank(Constant.second, Rank.SECOND);
-        getRank(Constant.secondWithBonus, Rank.SECOND_WITH_BONUS);
-        getRank(Constant.first, Rank.FIRST);
     }
 }

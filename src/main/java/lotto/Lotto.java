@@ -19,8 +19,4 @@ public class Lotto {
     public final List<Integer> getNumbers() {
         return this.numbers;
     }
-
-    public final void printLottoNumber() {
-        System.out.println(this.numbers);
-    }
 }

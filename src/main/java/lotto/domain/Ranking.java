@@ -18,6 +18,7 @@ public class Ranking {
         this.winningNumbers = winningLotto.getWinningNumbers();
         this.bonusNumber = winningLotto.getBonusNumber();
         this.rankStatus = initializeRankStatus();
+        rankingLotto();
     }
 
     private Map<Rank, Integer> initializeRankStatus() {
@@ -30,7 +31,7 @@ public class Ranking {
         return rankStatus;
     }
 
-    public final void matchLotto() {
+    private void rankingLotto() {
         for (Lotto lotto : purchasedLotto.getPurchasedLotto()) {
             final int matchCount = isContainLottoNumbers(lotto);
             final int totalMatchCount = matchBonusNumber(matchCount, lotto);

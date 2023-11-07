@@ -36,9 +36,9 @@ public class LottoGame {
             ConsolePrinter.printPurchaseAmountMessage();
 
             String str = ConsoleScanner.scanPurchaseAmount();
-            Integer purchasedAmount = StringParser.parsePurchaseAmount(str);
-            LottoValidator.validatePurchaseAmount(purchasedAmount);
-            this.purchaseAmount = purchasedAmount;
+            Integer parsed = StringParser.parsePurchaseAmount(str);
+            LottoValidator.validatePurchaseAmount(parsed);
+            this.purchaseAmount = parsed;
         } catch (Exception e) {
             ConsolePrinter.printErrorMessage(e.getMessage());
 
@@ -58,7 +58,18 @@ public class LottoGame {
     }
 
     private void initiateWinningNumber() {
+        try {
+            ConsolePrinter.printWinningNumberMessage();
 
+            String str = ConsoleScanner.scanWinningNumber();
+            WinningNumber parsed = StringParser.parseWinningNumber(str);
+            LottoValidator.validateWinningNumber(parsed);
+            this.winningNumber = parsed;
+        } catch (Exception e) {
+            ConsolePrinter.printErrorMessage(e.getMessage());
+
+            initiateWinningNumber();
+        }
     }
 
     private void initiateBonus() {

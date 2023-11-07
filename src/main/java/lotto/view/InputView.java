@@ -46,6 +46,7 @@ public class InputView {
         try {
             System.out.println(WINNING_NUMBERS_MESSAGE);
             String inputWinningNumbers = Console.readLine().trim();
+            System.out.println();
             validateLottoNumbers(inputWinningNumbers);
             return convertWinningNumbersToList(inputWinningNumbers);
         } catch(IllegalArgumentException e) {
@@ -62,7 +63,7 @@ public class InputView {
 
             int bonusNumber = Integer.parseInt(inputValue);
             validateBonusNumber(bonusNumber, winningNumbers);
-
+            System.out.println();
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

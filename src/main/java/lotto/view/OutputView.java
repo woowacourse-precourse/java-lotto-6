@@ -18,6 +18,7 @@ public class OutputView {
     private static final String NEW_LINE = "\n";
 
     public void printLottoCountOfPurchase(int lottosCount) {
+        System.out.println();
         System.out.println(String.format(LOTTO_COUNT_OF_PURCHASES_FORMAT, lottosCount));
     }
 

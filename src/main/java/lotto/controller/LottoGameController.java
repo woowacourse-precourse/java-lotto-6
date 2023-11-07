@@ -34,16 +34,13 @@ public class LottoGameController {
     private void initGame() {
         int lottoPurchaseAmount = inputView.requestLottoPurchaseAmount();
         this.lottos = lottoService.createLottos(lottoPurchaseAmount);
-        System.out.println();
         outputView.printLottoCountOfPurchase(this.lottos.size());
         outputView.printLottos(this.lottos);
     }
 
     private void setWinningCondition() {
         this.winningNumbers = inputView.requestWinningNumbers();
-        System.out.println();
         this.bonusNumber = inputView.requestBonusNumber(this.winningNumbers);
-        System.out.println();
     }
 
     private void result() {

@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class RandomLottos {
-    private int counting;
-    private List<Lotto> randomLottos;
+    private final int counting;
+    private final List<Lotto> randomLottos;
 
     public RandomLottos(Price price) {
         this.counting = price.countPurchasedLotto();

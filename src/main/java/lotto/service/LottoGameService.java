@@ -71,6 +71,10 @@ public class LottoGameService {
         outputView.printTotalReturn(result);
     }
 
+    public void endGame() {
+        inputView.close();
+    }
+
     private Lotto getWinningLottoNumbers() {
         outputView.requestWinningLottoNumbers();
         try {

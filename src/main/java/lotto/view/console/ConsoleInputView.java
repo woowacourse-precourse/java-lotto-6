@@ -29,6 +29,10 @@ public class ConsoleInputView implements InputView {
         return convertToList(winningNumbers);
     }
 
+    public void close() {
+        Console.close();
+    }
+
     private String readLineWithoutGap() {
         return Console.readLine().trim();
     }

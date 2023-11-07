@@ -27,5 +27,6 @@ public class LottoGameController {
         final WinningLotto winningLotto = lottoGameService.generateWinningLotto();
         lottoGameService.printWinningResult(winningLotto, lottos);
         lottoGameService.printTotalReturn(countOfLotto);
+        lottoGameService.endGame();
     }
 }

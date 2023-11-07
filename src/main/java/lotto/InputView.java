@@ -47,8 +47,19 @@ public class InputView {
     }
 
     public static Integer inputBonusNumber() {
-        System.out.println(MessageConstants.BONUS_NUMBER_GUIDE);
-        Integer inputValue = Integer.parseInt(Console.readLine());
-        return inputValue;
+        String inputValue = null;
+        Boolean flag = false;
+
+        while (!flag) {
+            System.out.println(MessageConstants.BONUS_NUMBER_GUIDE);
+            inputValue = Console.readLine();
+
+            try {
+                InputValidator.validateBonusNumType(inputValue);
+                InputValidator.validateBonusNumRange(inputValue);
+                flag = true;
+            } catch (IllegalArgumentException e) {}
+        }
+        return Integer.parseInt(inputValue);
     }
 }

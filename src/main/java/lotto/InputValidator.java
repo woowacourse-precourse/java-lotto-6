@@ -62,4 +62,20 @@ public class InputValidator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateBonusNumType(String inputValue) {
+        for (int i = 0; i < inputValue.length(); i++) {
+            if (!isNumeric(inputValue.charAt(i))) {
+                System.out.println("[ERROR] 보너스 번호는 숫자만!");
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public static void validateBonusNumRange(String inputValue) {
+        if(1 >Integer.parseInt(inputValue) || 45 < Integer.parseInt(inputValue)) {
+            System.out.println("[ERROR] 보너스 번호는 1이상 45이하!");
+            throw new IllegalArgumentException();
+        }
+    }
 }

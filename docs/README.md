@@ -1,3 +1,6 @@
+[플로우]
+lottoNumberSetHolder에 담긴 lotto들을 LottoNumberComparater에 넣어서 값을 받아 LottoWinResultsHolder에 넣기
+
 <lotto 패키지>
 - application 클래스 ( 게임컨트롤러 실행)
 

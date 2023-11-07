@@ -8,6 +8,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 import model.enums.LottoWinResults;
 
 public class LottoResultJudger {
@@ -25,7 +26,7 @@ public class LottoResultJudger {
      * @Method : inputLottoNum()
      * @return : String
      */
-    public String judgeLottoResult(ArrayList<Integer> lottoNum){
+    public String judgeLottoResult(List<Integer> lottoNum){
         int countCorrectNum = checkResultLottoNum(lottoNum);
         boolean isBonusIn = checkResultBonusNum(lottoNum);
 
@@ -47,7 +48,7 @@ public class LottoResultJudger {
      * @Method : checkresultLottoNum()
      * @return : int
      */
-    public int checkResultLottoNum(ArrayList<Integer> lottoNum){
+    public int checkResultLottoNum(List<Integer> lottoNum){
         int countCorrectNum = 0;
         for ( int num : lottoNum ){
             if (resultLottoNum.contains(num)){
@@ -63,7 +64,7 @@ public class LottoResultJudger {
      * @Method : inputLottoNum()
      * @return : boolean
      */
-    public boolean checkResultBonusNum(ArrayList<Integer> lottoNum){
+    public boolean checkResultBonusNum(List<Integer> lottoNum){
         if (lottoNum.contains(resultBonusNum)){
             return true;
         }

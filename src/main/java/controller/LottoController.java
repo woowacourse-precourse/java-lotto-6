@@ -11,9 +11,11 @@ import java.util.ArrayList;
 
 import model.Lotto;
 import model.LottoNumberPicker;
+import model.LottoNumberComparater;
 import model.LottoNumberSetHolder;
 import model.LottoResultJudger;
 import model.LottoTicketSeller;
+import model.LottoWinResultsHolder;
 import view.InputView;
 import view.OutputView;
 
@@ -44,8 +46,15 @@ public class LottoController {
         ArrayList<Integer> resultLottoNum = inputView.inputLottoNum();
         outputView.printBonusNumRequest();
         int resultBonusNum = inputView.inputBonusNum();
-        LottoResultJudger LottoResultJudger = new LottoResultJudger(resultLottoNum, resultBonusNum);
+        LottoNumberComparater lottoNumberComparater = new LottoNumberComparater(resultLottoNum, resultBonusNum);
 
-        // lottoNumberSetHolder에 담긴 lotto들을 LottoResultJudger에 넣어서 값을 받아 LottoWinResultsHolder에 넣기
+        // lottoNumberSetHolder에 담긴 lotto들을 LottoNumberComparater에 넣어서 값을 받아 LottoWinResultsHolder에 넣기
+        ArrayList<Lotto> LottoNumberSet = lottoNumberSetHolder.getLottoNumberSet();
+        LottoWinResultsHolder lottoWinResultsHolder = new LottoWinResultsHolder();
+        for (Lotto lotto : LottoNumberSet){
+            String LottoWinResult = lottoNumberComparater.comparaterLottoResult(lotto.getLottoNumbers());
+            lottoWinResultsHolder.lottoWinResultsAdd(LottoWinResult);
+        }
+        // LottoNumberComparater
     }
 }

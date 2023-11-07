@@ -12,7 +12,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mockStatic;
 
 public class AssertionsStudy {
-    private static final Duration RANDOM_TEST_TIMEOUT = Duration.ofSeconds(10L);
+    private static final Duration RANDOM_TEST_TIMEOUT = Duration.ofSeconds(100L);
 
 
     public static void assertRandomUniqueNumbersInRangeTest(

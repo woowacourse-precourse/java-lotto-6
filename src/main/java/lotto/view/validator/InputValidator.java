@@ -8,7 +8,7 @@ public class InputValidator {
 
     }
 
-    public static void validatePurchaseAmount(String input) {
+    public static void validatePurchaseAmountInput(String input) {
         try {
             validateIsEmpty(input);
             validateIsDigit(input);
@@ -17,7 +17,7 @@ public class InputValidator {
         }
     }
 
-    public static void validateBonusNumber(String input) {
+    public static void validateBonusNumberInput(String input) {
         try {
             validateIsEmpty(input);
             validateIsDigit(input);

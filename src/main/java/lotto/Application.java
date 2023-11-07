@@ -8,7 +8,7 @@ public class Application {
         // TODO: 프로그램 구현
 
         //로또 구매 가격 & 로또 구매 개수
-        int purchaseAmount;
+        int purchaseAmount = 0;
         int purchaseCount = 0;
 
         List<Integer> lottoNumbers = null;
@@ -125,16 +125,18 @@ public class Application {
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        //루프 리팩토링 가능?
+        System.out.printf(WinningRankPrize.FIFTH.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.FIFTH.getPrizeAmount(), winRecordBoard.get(5));
+        System.out.printf(WinningRankPrize.FOURTH.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.FOURTH.getPrizeAmount(), winRecordBoard.get(4));
+        System.out.printf(WinningRankPrize.THIRD.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.THIRD.getPrizeAmount(), winRecordBoard.get(3));
+        System.out.printf(WinningRankPrize.SECOND.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.SECOND.getPrizeAmount(), winRecordBoard.get(2));
+        System.out.printf(WinningRankPrize.FIRST.getMatchCount() + " (%s원) - %d개%n", WinningRankPrize.FIRST.getPrizeAmount(), winRecordBoard.get(1));
 
-        System.out.printf(WinningRankPrize.FIFTH.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.FIFTH.getPrizeAmount(), winRecordBoard.get(5));
-        System.out.printf(WinningRankPrize.FOURTH.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.FOURTH.getPrizeAmount(), winRecordBoard.get(4));
-        System.out.printf(WinningRankPrize.THIRD.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.THIRD.getPrizeAmount(), winRecordBoard.get(3));
-        System.out.printf(WinningRankPrize.SECOND.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.SECOND.getPrizeAmount(), winRecordBoard.get(2));
-        System.out.printf(WinningRankPrize.FIRST.getMatchCount() + " (%s) - %d개%n", WinningRankPrize.FIRST.getPrizeAmount(), winRecordBoard.get(1));
 
-
-        //수익률 출력
-
+        //수익률 계산 & 출력
+        Process endProcess = new Process();
+        float rateOfReturn = endProcess.calculateRateOfReturn(purchaseAmount, winRecordBoard);
+        System.out.printf("총 수익률은 %.2f%%입니다.", rateOfReturn);
 
 
 

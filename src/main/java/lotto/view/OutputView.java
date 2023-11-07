@@ -8,17 +8,13 @@ import lotto.domain.Profit;
 import lotto.enums.Rank;
 
 public class OutputView {
-    private static final String PURCHASE_PRICE_INPUT = "구입금액을 입력해 주세요.";
-    private static final String WINNING_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
-    private static final String WINNING_STATISTICS = "당첨 통계\n---";
     private static final String RATE_FORMAT = "#,##0.0";
 
     private OutputView() {
     }
 
     public static void printPurchaseMessage() {
-        System.out.println(PURCHASE_PRICE_INPUT);
+        System.out.println("구입금액을 입력해 주세요.");
     }
 
     public static void printPurchaseCount(LottoTicket lottoTicket) {
@@ -31,15 +27,15 @@ public class OutputView {
     }
 
     public static void printWinningNumberMessage() {
-        System.out.println(WINNING_NUMBER_INPUT);
+        System.out.println("당첨 번호를 입력해 주세요.");
     }
 
     public static void printBonusNumberMessage() {
-        System.out.println(BONUS_NUMBER_INPUT);
+        System.out.println("보너스 번호를 입력해 주세요.");
     }
 
     public static void printWinningResult(LottoResult lottoResult) {
-        System.out.println(WINNING_STATISTICS);
+        System.out.println("당첨 통계\n---");
         Arrays.stream(Rank.values())
                 .forEach(rank -> System.out.printf(rank.getMatchInfo(), lottoResult.findMatchCountFor(rank)));
         printNewLine();

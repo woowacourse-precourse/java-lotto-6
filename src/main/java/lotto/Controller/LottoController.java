@@ -102,13 +102,10 @@ public class LottoController {
         }
     }
 
-    public LottoResult findRank() {
-        for (Lotto randomNumbers : lottoRandomNumbers) {
-            int matchCount = Judge.compareWinningNumbers(lottoWinningNumbers, randomNumbers);
-            boolean isMatchBonusNumber = Judge.compareBonusNumber(lottoWinningNumbers, lottoBonusNumber);
-            return LottoResult.getLottoResult(matchCount, isMatchBonusNumber);
-        }
-        return null;
+    public LottoResult findRank(Lotto randomNumbers) {
+        int matchCount = Judge.compareWinningNumbers(lottoWinningNumbers, randomNumbers);
+        boolean isMatchBonusNumber = Judge.compareBonusNumber(lottoWinningNumbers, lottoBonusNumber);
+        return LottoResult.getLottoResult(matchCount, isMatchBonusNumber);
     }
 
 

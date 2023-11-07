@@ -11,9 +11,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottiesTest {
-    @DisplayName("Lotto List 를 반환할 땐 unmodifiedList 를 반환")
+    @DisplayName("lotties 반환된 리스트가 수정이 불가능인지 확인한다")
     @Test
-    public void returnLottoListAsUnmodifiable(){
+    public void returnLottiesListAsUnmodifiable(){
         Lotties lotties = new Lotties(List.of(new Lotto(List.of(1,2,3,4,5,6))));
         List<Lotto> valueLotto = lotties.getLotties();
         assertThatThrownBy(
@@ -33,9 +33,9 @@ class LottiesTest {
     @Test
     public void testSize() {
         List<Lotto> lottos = Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
-                new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)),
-                new Lotto(Arrays.asList(13, 14, 15, 16, 17, 18))
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new Lotto(List.of(7, 8, 9, 10, 11, 12)),
+                new Lotto(List.of(13, 14, 15, 16, 17, 18))
         );
         Lotties lotties = new Lotties(new ArrayList<>(lottos));
         int expectedSize = lottos.size();

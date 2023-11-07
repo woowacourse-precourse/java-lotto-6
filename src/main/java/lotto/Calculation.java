@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.model.Lotto;
+import lotto.model.LottoTicket;
+
 import java.util.Collections;
 import java.util.List;
 

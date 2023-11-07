@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public final class Statement {
     public static final String ASK_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";

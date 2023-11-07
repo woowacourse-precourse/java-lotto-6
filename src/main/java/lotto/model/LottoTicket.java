@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -54,7 +54,7 @@ public class LottoTicket {
     }
 
     private int calculate(int money) {
-        int ticketCost = 1000;
+        int ticketCost = GameEnvironment.TICKET.getValue();
         calculationValidation(money);
         return money/ticketCost;
     }

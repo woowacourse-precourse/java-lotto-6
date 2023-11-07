@@ -41,7 +41,7 @@ public class OutputMessage {
         return String.format(WINNING_RESULT_MESSAGE, rankingDto.matchCount(), decimalFormat.format(rankingDto.reward()), rankingDto.count());
     }
 
-    public static String getRateOfReturnMessage(WinningResultDto winningResultDto) {
+    public static String getReturnRateMessage(WinningResultDto winningResultDto) {
         String returnRate = String.format("%,.1f", winningResultDto.returnRate());
         return String.format(RATE_OF_RETURN_MESSAGE, returnRate);
     }

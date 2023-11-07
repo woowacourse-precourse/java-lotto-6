@@ -31,13 +31,19 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printWinningResult(WinningResultDto winningResultDto) {
         print(OutputMessage.getWinningResultStartMessage());
+        printRanking(winningResultDto);
+        printReturnRate(winningResultDto);
+    }
 
+    private void printRanking(WinningResultDto winningResultDto) {
         winningResultDto.rankingDtos().stream()
                 .forEach(rankingDto -> {
                     if (rankingDto.rankingNumber().equals("FAIL")) return;
                     print(OutputMessage.getWinningResultMessage(rankingDto));
                 });
+    }
 
-        print(OutputMessage.getRateOfReturnMessage(winningResultDto));
+    private void printReturnRate(WinningResultDto winningResultDto) {
+        print(OutputMessage.getReturnRateMessage(winningResultDto));
     }
 }

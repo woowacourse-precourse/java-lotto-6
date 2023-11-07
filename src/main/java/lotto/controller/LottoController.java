@@ -58,10 +58,12 @@ public class LottoController {
     }
 
     private List<Integer> drawLottoNumbers() {
-        String inputWinningNumbers = inputView.askWinningNumbers();
-        List<String> splitWinningNumbers = Arrays.stream(inputWinningNumbers.split(",")).toList();
-        List<String> trimWinningNumbers = splitWinningNumbers.stream().map(String::trim).toList();
-        return inputValidator.validateNumbers(trimWinningNumbers);
+        String inputLottoNumbers = inputView.askLottoNumbers();
+
+        List<String> splitLottoNumbers = Arrays.stream(inputLottoNumbers.split(",")).toList();
+        List<String> trimLottoNumbers = splitLottoNumbers.stream().map(String::trim).toList();
+
+        return inputValidator.validateNumbers(trimLottoNumbers);
     }
 
     private int drawBonusNumber() {

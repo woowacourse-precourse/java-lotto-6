@@ -24,7 +24,7 @@ public class ConsoleInputView implements InputView {
     }
 
     @Override
-    public String askWinningNumbers() {
+    public String askLottoNumbers() {
         print(ASK_WINNING_NUMBERS_MESSAGE);
         return getInput();
     }

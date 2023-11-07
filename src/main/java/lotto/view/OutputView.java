@@ -11,7 +11,7 @@ public interface OutputView {
 
     void printWinningResult(WinningResultDto winningResultDto);
 
-    default void print(Object printMessage) {
+    default <T> void print(T printMessage) {
         System.out.println(printMessage);
     }
 

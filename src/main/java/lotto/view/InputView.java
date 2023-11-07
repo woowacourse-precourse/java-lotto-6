@@ -6,7 +6,7 @@ public interface InputView {
 
     String askPurchasePrice();
 
-    String askWinningNumbers();
+    String askLottoNumbers();
 
     String askBonusNumber();
 

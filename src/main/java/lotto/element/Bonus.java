@@ -3,7 +3,7 @@ package lotto.element;
 public class Bonus {
     private final int number;
 
-    Bonus(int number, Lotto lotto) {
+    public Bonus(int number, Lotto lotto) {
         validate(number, lotto);
         this.number = number;
     }

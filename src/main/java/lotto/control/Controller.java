@@ -27,4 +27,9 @@ public class Controller {
         }
         output.printLottoes(lottoes);
     }
+
+    void getWinningNumbers() {
+        winning = new Lotto(input.inputNumbers());
+        bonus = new Bonus(input.inputBonus(), winning);
+    }
 }

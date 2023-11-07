@@ -78,6 +78,18 @@ public class LottoService {
         return bonusNumber.equals(userLotto.getNumbers());
     }
 
+    public int calculateTotalPrize(Map<Winning, Integer> winningCounts) {
+        int totalPrize = 0;
+
+        for (Winning result : Winning.values()) {
+            int count = winningCounts.getOrDefault(result, 0);
+            int prize = result.getWinningAmount();
+            totalPrize += count * prize;
+        }
+
+        return totalPrize;
+    }
+
     public void checkWinningsForUserLottos(User user, LottoData lottoData) {
         for (Lotto userLotto : user.getLottos()) {
             Winning result = checkWinning(lottoData, userLotto);

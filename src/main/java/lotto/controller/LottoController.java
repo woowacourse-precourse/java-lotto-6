@@ -28,7 +28,7 @@ public class LottoController {
         beforeStart();
         setLottoData();
         lottoService.checkWinningsForUserLottos(user, lottoData);
-        printStatistics(lottoService.getWinningCounts(), calculateTotalPrize(lottoService.getWinningCounts()));
+        printStatistics();
     }
 
     private void beforeStart() {
@@ -76,20 +76,10 @@ public class LottoController {
         }
     }
 
-    private void printStatistics(Map<Winning, Integer> winningCounts, int totalPrize) {
+    private void printStatistics() {
+        Map<Winning, Integer> winningCounts = lottoService.getWinningCounts();
+        int totalPrize = lottoService.calculateTotalPrize(winningCounts);
         outputView.printWinningStatistics();
         outputView.printStatistics(winningCounts, totalPrize, user.getPurchaseAmount().amount());
-    }
-
-    private int calculateTotalPrize(Map<Winning, Integer> winningCounts) {
-        int totalPrize = 0;
-
-        for (Winning result : Winning.values()) {
-            int count = winningCounts.getOrDefault(result, 0);
-            int prize = result.getWinningAmount();
-            totalPrize += count * prize;
-        }
-
-        return totalPrize;
     }
 }

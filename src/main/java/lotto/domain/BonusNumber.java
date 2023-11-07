@@ -5,9 +5,8 @@ import lotto.utils.Validation;
 
 public record BonusNumber(int bonusNumber) {
 
-    public BonusNumber(int bonusNumber) {
+    public BonusNumber {
         validate(bonusNumber);
-        this.bonusNumber = bonusNumber;
     }
 
     private void validate(int bonusNumber) {

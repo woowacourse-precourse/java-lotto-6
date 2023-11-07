@@ -6,8 +6,10 @@ import lotto.constants.ErrorMessages;
 import lotto.domain.Lotto;
 
 public class ConsolePrinter {
-    private static void validateNull(Object target) {
-        Objects.requireNonNull(target);
+    private static void validateNull(Object... targets) {
+        for(Object target : targets) {
+            Objects.requireNonNull(target);
+        }
     }
 
     public static void showMessage(DomainMessages message) {
@@ -17,8 +19,7 @@ public class ConsolePrinter {
     }
 
     public static void showMessageWithNumber(DomainMessages message, Integer number) {
-        validateNull(message);
-        validateNull(number);
+        validateNull(message, number);
 
         String showMessage = String.format(message.getMessage(), number);
         System.out.print(showMessage);

@@ -6,6 +6,8 @@ public class InputValidator {
     private static final int LESS_AMOUNT = 1000;
     private static final int JACKPOT_MINIMUM_NUMBER = 1;
     private static final int JACKPOT_MAXIMUM_NUMBER = 45;
+    private static final int JACKPOT_MAXIMUM_SIZE = 6;
+    private static final int BONUS_MAXIMUM_SIZE = 1;
 
     public static void checkLottoPayAmountInput(String lottoPayAmount) {
         checkNumeric(lottoPayAmount);
@@ -62,7 +64,7 @@ public class InputValidator {
 
     private static void checkJackpotNumberSize(String jackpotNumberInput) {
         String[] jackpotNumbers = jackpotNumberInput.split(",");
-        if (jackpotNumbers.length != 6) {
+        if (jackpotNumbers.length != JACKPOT_MAXIMUM_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.JACKPOT_NUMBER_SIZE_ERROR.getErrorMessage());
         }
     }
@@ -81,6 +83,21 @@ public class InputValidator {
     private static void checkHasComma(String jackpotNumberInput) {
         if (!jackpotNumberInput.contains(",")) {
             throw new IllegalArgumentException(ErrorMessage.HAS_NOT_COMMA_ERROR.getErrorMessage());
+        }
+    }
+
+    public static void checkBonusNumberInput(String bonusNumberInput) {
+        checkBonusNumberSize(bonusNumberInput);
+        // TODO : 중복된 숫자를 입력했을 경우
+    }
+
+    private static void checkBonusNumberSize(String bonusNumberInput) {
+        if (bonusNumberInput.length() == 0) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_SIZE_ERROR.getErrorMessage());
+        }
+        String[] bonusNumbers = bonusNumberInput.split(",");
+        if (bonusNumbers.length != BONUS_MAXIMUM_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_SIZE_ERROR.getErrorMessage());
         }
     }
 }

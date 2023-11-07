@@ -44,9 +44,17 @@ public class LottoController {
 
         List<Integer> jackpotNumbers = converteToList(jackpotNumberInput);
 
-        InputView.printBonusNumberInputMessage();
-        String bonusNumberInput = Console.readLine();
-        // TODO : 보너스 번호 인풋 Validate
+        String bonusNumberInput;
+        while (true) {
+            try {
+                InputView.printBonusNumberInputMessage();
+                bonusNumberInput = Console.readLine();
+                InputValidator.checkBonusNumberInput(bonusNumberInput);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
 
         long returnAmount = lottoService.announceWinningResult(jackpotNumbers, Integer.parseInt(bonusNumberInput));
 

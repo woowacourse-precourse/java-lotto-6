@@ -5,16 +5,17 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Buyer;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
+import lotto.model.WinningCondition;
 import lotto.utils.Utils;
 import lotto.validation.Validator;
 import lotto.view.NumberSettingView;
 import lotto.view.PurchaseView;
+import lotto.view.WinningStatisticsView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.constant.SystemData.MAX_IN_LOTTO_NUMBER;
-import static lotto.constant.SystemData.MIN_IN_LOTTO_NUMBER;
+import static lotto.constant.SystemData.*;
 
 public class LottoController {
     private Buyer buyer;
@@ -24,6 +25,7 @@ public class LottoController {
         initBuyer();
         showPurchaseStatus();
         drawLottoNumbers();
+        showWinningStatistics();
     }
 
     private void initBuyer() {
@@ -42,6 +44,12 @@ public class LottoController {
                 getWinningNumbers(),
                 getBonusNumber()
         );
+    }
+
+    public void showWinningStatistics() {
+        printWinningStatisticsHeader();
+        printWinningStatisticsContents();
+        printTotalProfitResult();
     }
 
     /* 구입금액 입력 */
@@ -108,7 +116,31 @@ public class LottoController {
         return Utils.stringToInt(Console.readLine());
     }
 
-    public void showWinningResult() {
-        //TODO: 당첨 통계 출력
+    /* 당첨 통계 헤더 출력 */
+    public void printWinningStatisticsHeader() {
+        WinningStatisticsView.printHeader();
+    }
+
+    /* 당첨 통계 내용 출력 */
+    public void printWinningStatisticsContents() {
+        computeLottoResults();
+        for(WinningCondition winningCondition : WinningCondition.values()){
+            WinningStatisticsView.printContent(winningCondition,1);
+        }
+    }
+
+    /* 로또 티켓 별 당첨 개수 계산 */
+    public void computeLottoResults() {
+        buyer.computeLottoResults(
+                lottoGame.getWinningNumbers(),
+                lottoGame.getBonusNumber()
+        );
+        //TODO
+    }
+
+    /* 당첨 통계 수익률 출력 */
+    public void printTotalProfitResult() {
+        float totalProfitRate = buyer.getTotalProfitRate();
+        WinningStatisticsView.printTotalProfitResult(totalProfitRate);
     }
 }

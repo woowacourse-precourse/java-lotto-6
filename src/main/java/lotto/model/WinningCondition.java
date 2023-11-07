@@ -1,5 +1,10 @@
 package lotto.model;
 
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum WinningCondition {
     RANK_1(6, false, 2000000000),
     RANK_2(5, true, 30000000),
@@ -15,5 +20,21 @@ public enum WinningCondition {
         this.winningNumberCount = winningNumberCount;
         this.containBonusNumber = containBonusNumber;
         this.winningAmount = winningAmount;
+    }
+
+    public int winningNumberCount() {
+        return winningNumberCount;
+    }
+
+    public boolean containBonusNumber() {
+        return containBonusNumber;
+    }
+
+    public int winningAmount() {
+        return winningAmount;
+    }
+
+    public static WinningCondition rankOfLottoNumbers(int winningNumberCount, boolean containBonusNumber) {
+        return RANK_1;
     }
 }

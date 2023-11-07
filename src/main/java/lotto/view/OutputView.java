@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.Lotto;
-import lotto.Prize;
+import lotto.domain.Prize;
 import lotto.utils.LottoGameMessage;
 
 import java.util.List;

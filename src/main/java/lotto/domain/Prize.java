@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public enum Prize {
     FIRST(6, "2,000,000,000원", 2000000000L),

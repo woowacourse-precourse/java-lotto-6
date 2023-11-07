@@ -11,7 +11,7 @@ public class TokenizedInputValidator {
     private final static String DIGIT_REGEX = "^[0-9]+$";
     private final static String NOT_CORRECT_SIZE_MSG = "[ERROR] 당첨 숫자의 개수는 6개여야 합니다.";
     private final static String DUPLICATE_MSG = "[ERROR] 중복 숫자를 입력할 수 없습니다.";
-    private final static String WRONG_FORMAT_MSG = "1 ~ 45 사이의 숫자와 쉼표만 입력 가능합니다.";
+    private final static String WRONG_FORMAT_MSG = "[ERROR] 1 ~ 45 사이의 숫자와 쉼표만 입력 가능합니다.";
 
     public static void check(String[] input) {
         checkFormat(input);

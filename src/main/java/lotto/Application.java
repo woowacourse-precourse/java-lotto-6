@@ -12,10 +12,10 @@ public class Application {
     static String lottoPurchaseAmount = "";
     static int lottoPurchaseCount;
     static List<Integer> lottoNumbersDrawn = new ArrayList<>();
-    static boolean inputAgain;
     static List<List<Integer>> lottoNumbersDrawnContainer = new ArrayList<>();
+    static String lottoWinnerInputNum;
     static List<Integer> lottoWinnerNum = new ArrayList<>();
-    static int lottoWinnerBonusNum = 0;
+    static String lottoWinnerBonusNum = "";
     static int matchCount = 0;
     static int bonusMatchCount = 0;
     static int Match_3_Count = 0;
@@ -28,44 +28,57 @@ public class Application {
     public static void main(String[] args) {
         getLottoPurchaseAmount();
         generateLottoNumbers();
-        // printLottoNumbers();
-        inputWinningNumbers();
+        getWinningNumbers();
         inputBonusNumber();
         compareNumbers();
         displayWinningStatistics();
+        calculateTotalPrizeMoney();
         printProfitability();
     }
 
     static void getLottoPurchaseAmount() {
+        printPurchaseAmountMessage();
+        do {
+            inputLottoPurchaseAmount();
+        } while (validatePurchaseAmount());
+    }
+
+    static void printPurchaseAmountMessage() {
         System.out.println("구입금액을 입력해 주세요.");
-        inputAgain = true;
-        againLoop:
-        while (inputAgain) {
-            lottoPurchaseAmount = Console.readLine();
-            for (int i = 0; i < lottoPurchaseAmount.length(); i++) {
-                try {
-                    if (lottoPurchaseAmount.charAt(i) < '0' || lottoPurchaseAmount.charAt(i) > '9') {
-                        throw new IllegalArgumentException();
-                    }
-                    if (lottoPurchaseAmount.charAt(0) == '0') {
-                        throw new IllegalArgumentException();
-                    }
-                    if (Integer.parseInt(lottoPurchaseAmount) % 1000 != 0) {
-                        throw new IllegalArgumentException();
-                    }
-                } catch (IllegalArgumentException e) {
-                    System.out.println("[ERROR] 1,000원 단위의 숫자를 입력해주세요.");
-                    continue againLoop;
+    }
+
+    static void inputLottoPurchaseAmount() {
+        lottoPurchaseAmount = Console.readLine();
+    }
+
+    static boolean validatePurchaseAmount() {
+        for (int i = 0; i < lottoPurchaseAmount.length(); i++) {
+            try {
+                if (lottoPurchaseAmount.charAt(i) < '0' || lottoPurchaseAmount.charAt(i) > '9') {
+                    throw new IllegalArgumentException();
                 }
+                if (lottoPurchaseAmount.charAt(0) == '0') {
+                    throw new IllegalArgumentException();
+                }
+                if (Integer.parseInt(lottoPurchaseAmount) % 1000 != 0) {
+                    throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 1,000원 단위의 숫자를 입력해주세요.");
+                return true;
             }
-            inputAgain = false;
         }
+        return false;
     }
 
     static void generateLottoNumbers() {
         lottoPurchaseCount = Integer.parseInt(lottoPurchaseAmount) / 1000;
-        System.out.printf("%n%d개를 구매했습니다.%n", lottoPurchaseCount);
+        printLottoPurchaseCountMessage();
+        generateRandomLottoNumbers();
 
+    }
+
+    static void generateRandomLottoNumbers() {
         for (int i = 0; i < lottoPurchaseCount; i++) {
             lottoNumbersDrawn = new ArrayList<>();
             while (lottoNumbersDrawn.size() < 6) {
@@ -80,84 +93,101 @@ public class Application {
         }
     }
 
+    static void printLottoPurchaseCountMessage() {
+        System.out.printf("%n%d개를 구매했습니다.%n", lottoPurchaseCount);
+    }
+
     static void printLottoNumbers() {
         System.out.printf(lottoNumbersDrawn + "%n");
     }
 
+    static void printInputWinningNumbersMessage() {
+        System.out.printf("%n당첨 번호를 입력해 주세요.%n");
+    }
 
     static void inputWinningNumbers() {
+        lottoWinnerInputNum = Console.readLine();
+    }
 
-        System.out.printf("%n당첨 번호를 입력해 주세요.%n");
-        inputAgain = true;
-
-        againLoop:
-        while (inputAgain) {
-            String lottoWinnerInputNum = Console.readLine();
-            // 1,2,3,4,5,6
-            String[] lottoWinnerInputNumTemp = lottoWinnerInputNum.split(",");
-            for (int i = 0; i < 6; i++) {
-                try {
-                    if (lottoWinnerNum.contains(Integer.parseInt(lottoWinnerInputNumTemp[i]))) {
-                        throw new IllegalArgumentException();
-                    }
-                    if (1 > Integer.parseInt(lottoWinnerInputNumTemp[i])
-                            || Integer.parseInt(lottoWinnerInputNumTemp[i]) > 45) {
-                        throw new IllegalArgumentException();
-                    }
-                } catch (IllegalArgumentException e) {
-                    System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                    continue againLoop;
+    static boolean validateWinningNum() {
+        // 1,2,3,4,5,6
+        String[] lottoWinnerInputNumTemp = lottoWinnerInputNum.split(",");
+        for (int i = 0; i < 6; i++) {
+            try {
+                if (lottoWinnerNum.contains(Integer.parseInt(lottoWinnerInputNumTemp[i]))) {
+                    throw new IllegalArgumentException();
                 }
-                try {
-                    if (lottoWinnerInputNumTemp.length != 6) {
-                        throw new IllegalArgumentException();
-                    }
-                } catch (IllegalArgumentException e) {
-                    System.out.println("[ERROR] 여섯 개의 숫자를 입력해주세요.");
-                    continue againLoop;
-                }
-                lottoWinnerNum.add(Integer.parseInt(lottoWinnerInputNumTemp[i]));
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 중복된 값은 입력 불가합니다.");
+                return true;
             }
-            Collections.sort(lottoWinnerNum);
-
-
-            inputAgain = false;
+            try {
+                if (1 > Integer.parseInt(lottoWinnerInputNumTemp[i])
+                        || Integer.parseInt(lottoWinnerInputNumTemp[i]) > 45) {
+                    throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                return true;
+            }
+            try {
+                if (lottoWinnerInputNumTemp.length != 6) {
+                    throw new IllegalArgumentException();
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 여섯 개의 숫자를 입력해주세요.");
+                return true;
+            }
+            lottoWinnerNum.add(Integer.parseInt(lottoWinnerInputNumTemp[i]));
         }
+        Collections.sort(lottoWinnerNum);
+        return false;
+    }
+
+    static void getWinningNumbers() {
+        printInputWinningNumbersMessage();
+        do {
+            inputWinningNumbers();
+        } while (validateWinningNum());
+    }
+
+    static void printInputBonusNumberMessage() {
+        System.out.printf("%n보너스 번호를 입력해 주세요.%n");
     }
 
     static void inputBonusNumber() {
-        System.out.printf("%n보너스 번호를 입력해 주세요.%n");
-        inputAgain = true;
+        printInputBonusNumberMessage();
+        do {
+            lottoWinnerBonusNum = Console.readLine();
+        } while (validateBonusNum());
+    }
 
-        while (inputAgain) {
-            try {
-                lottoWinnerBonusNum = Integer.parseInt(Console.readLine());
-                if (!(1 <= lottoWinnerBonusNum && lottoWinnerBonusNum <= 45)) {
-                    throw new IllegalArgumentException();
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                continue;
+    static boolean validateBonusNum() {
+        try {
+            if ((1 > Integer.parseInt(lottoWinnerBonusNum) || Integer.parseInt(lottoWinnerBonusNum) > 45)) {
+                throw new IllegalArgumentException();
             }
-
-            try {
-                if (lottoWinnerNum.contains(lottoWinnerBonusNum)) {
-                    throw new IllegalArgumentException();
-                }
-
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 당첨 번호와 중복되지 않는 숫자여야 합니다.");
-                continue;
-            }
-
-            inputAgain = false;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            return true;
         }
+        try {
+            if (lottoWinnerNum.contains(Integer.parseInt(lottoWinnerBonusNum))) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 당첨 번호와 중복되지 않는 숫자여야 합니다.");
+            return true;
+        }
+        return false;
+    }
+
+    static void printWinningStatisticsMessage() {
+        System.out.printf("%n당첨 통계%n");
+        System.out.printf("---%n");
     }
 
     static void compareNumbers() {
-        System.out.printf("%n당첨 통계%n");
-        System.out.printf("---%n");
-
         for (int i = 0; i < lottoPurchaseCount; i++) {
             matchCount = 0;
             bonusMatchCount = 0;
@@ -165,7 +195,7 @@ public class Application {
                 if (lottoWinnerNum.contains(lottoNumbersDrawnContainer.get(i).get(j))) {
                     matchCount++;
                 }
-                if ((lottoNumbersDrawnContainer.get(i).get(j)).equals(lottoWinnerBonusNum)) {
+                if ((lottoNumbersDrawnContainer.get(i).get(j)).equals(Integer.parseInt(lottoWinnerBonusNum))) {
                     bonusMatchCount++;
                 }
             }
@@ -188,12 +218,17 @@ public class Application {
     }
 
     static void displayWinningStatistics() {
+        printWinningStatisticsMessage();
         System.out.printf("3개 일치 (5,000원) - %d개%n", Match_3_Count);
         System.out.printf("4개 일치 (50,000원) - %d개%n", Match_4_Count);
         System.out.printf("5개 일치 (1,500,000원) - %d개%n", Match_5_Count);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개%n", Match_5_AndBonusCount);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개%n", Match_6_Count);
 
+
+    }
+
+    static void calculateTotalPrizeMoney() {
         totalPrizeMoney = Match_3_Count * 5000L + Match_4_Count * 50000L + Match_5_Count * 1500000L
                 + Match_5_AndBonusCount * 30000000L + Match_6_Count * 2000000000L;
     }

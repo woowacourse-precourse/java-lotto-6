@@ -1,11 +1,9 @@
 package lotto.domain;
 import java.util.*;
 public class RandomLotto {
-    private static int numbersOfLotto;
     private static List<List<Integer>> lottoLists;
 
     public RandomLotto(int numbersOfLotto){
-        this.numbersOfLotto = numbersOfLotto;
         lottoLists = new ArrayList<>();
     }
 

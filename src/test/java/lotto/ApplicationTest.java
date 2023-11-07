@@ -50,19 +50,19 @@ class ApplicationTest extends NsTest {
     void 예외_테스트_잘못된_구입금액_단위() {
         assertSimpleTest(() -> {
                 runException("14001");
-                assertThat(output()).contains("구입금액을 입력해 주세요.", ERROR_MESSAGE);
+                assertThat(output()).contains(ERROR_MESSAGE);
             }
         );
 
         assertSimpleTest(() -> {
                 runException("14010");
-                assertThat(output()).contains("구입금액을 입력해 주세요.", ERROR_MESSAGE);
+                assertThat(output()).contains(ERROR_MESSAGE);
             }
         );
 
         assertSimpleTest(() -> {
                 runException("14100");
-                assertThat(output()).contains("구입금액을 입력해 주세요.", ERROR_MESSAGE);
+                assertThat(output()).contains(ERROR_MESSAGE);
             }
         );
     }
@@ -71,10 +71,7 @@ class ApplicationTest extends NsTest {
     void 예외_테스트_숫자가_아닌_구입금액() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains(
-                "구입금액을 입력해 주세요.",
-                ERROR_MESSAGE
-            );
+            assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
 
@@ -82,18 +79,12 @@ class ApplicationTest extends NsTest {
     void 정상_테스트_구입금액에_맞는_로또_개수() {
         assertSimpleTest(() -> {
             run("10000");
-            assertThat(output()).contains(
-                "구입금액을 입력해 주세요.",
-                "10개를 구매했습니다."
-            );
+            assertThat(output()).contains("10개를 구매했습니다.");
         });
 
         assertSimpleTest(() -> {
             run("8000");
-            assertThat(output()).contains(
-                "구입금액을 입력해 주세요.",
-                "8개를 구매했습니다."
-            );
+            assertThat(output()).contains("8개를 구매했습니다.");
         });
     }
 

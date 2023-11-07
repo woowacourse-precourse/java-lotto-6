@@ -17,6 +17,9 @@ public class Constants {
     public static final int FIFTH_PRIZE_MONEY = 5000;
 
 
-    public static final int ZERO = 0;
     public static final int BONUS_CHECK_NUMBER = 5;
+
+    public static final int ZERO = 0;
+    public static final int HUNDRED = 100;
+
 }

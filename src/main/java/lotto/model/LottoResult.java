@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
+import lotto.utils.Constants;
 
 public class LottoResult {
 
@@ -13,7 +14,7 @@ public class LottoResult {
     public LottoResult() {
         this.result = new HashMap<>();
         for (MatchCount matchCount : MatchCount.values()) {
-            result.put(matchCount, 0);
+            result.put(matchCount, Constants.ZERO);
         }
     }
 
@@ -28,7 +29,7 @@ public class LottoResult {
 
     public double calculateEarningsRate(final int purchaseAmount) {
         long totalEarnings = calculateTotalEarnings();
-        return roundEarningsRate((double) totalEarnings / purchaseAmount * 100);
+        return roundEarningsRate((double) totalEarnings / purchaseAmount * Constants.HUNDRED);
     }
 
     private long calculateTotalEarnings() {

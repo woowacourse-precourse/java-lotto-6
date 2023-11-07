@@ -30,6 +30,7 @@ public class InputViewImpl implements InputView {
     @Override
     public List<LottoNumber> readWinnerLottoNumbers() throws IllegalArgumentException {
         List<LottoNumber> lottoNumbers = Arrays.stream(readLine().trim().split(","))
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());

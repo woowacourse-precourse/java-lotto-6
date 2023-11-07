@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.Money;
-import lotto.domain.RandomLottoFactory;
+import lotto.domain.*;
+import lotto.dto.WinningResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,10 +11,12 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final LotteryMachine lotteryMachine;
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    public LottoController(InputView inputView, OutputView outputView, LotteryMachine lotteryMachine) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.lotteryMachine = lotteryMachine;
     }
 
     public void run() {
@@ -28,9 +28,9 @@ public class LottoController {
 
         LottoNumber lottoBonusNumber = getLottoBonusNumber();
 
-        // TODO : 로또 결과 계산
+        WinningResult winningResult = lotteryMachine.judge(lottos, lottoWinnerNumbers, lottoBonusNumber);
 
-        outputView.writeResult();
+        outputView.writeResult(winningResult);
     }
 
     private List<Lotto> generateRandomLottos(int lottoQuantity) {

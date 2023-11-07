@@ -13,6 +13,10 @@ public class WinningResult {
         this.ranks = ranks;
     }
 
+    public Map<Rank, Integer> getRanks() {
+        return ranks;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

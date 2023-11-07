@@ -1,11 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Rank;
+import lotto.utils.SortingList;
+import lotto.utils.Validator;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static constant.MessageList.*;
@@ -16,20 +15,14 @@ public class OutputView {
     }
 
     public static void printLottoNumbers(List<Integer> lottoNumbers) {
-        System.out.println(lottoNumbers);
+        SortingList sortingList = new SortingList();
+        System.out.println(sortingList.sortList(lottoNumbers));
     }
 
     public static void printWinningStatistics(Map<Rank, Integer> prizeCount) {
         System.out.println(WINNING_STATISTICS_MESSAGE);
         System.out.println(DIVIDE_LINE);
 
-//        Iterator<Rank> iterator = prizeCount.keySet().iterator();
-//
-//        while (iterator.hasNext()) {
-//            Rank key = iterator.next();
-//            int value = (int) prizeCount.get(key);
-//            System.out.println(key.resultMessage + value + NUMBER);
-//        }
         System.out.println(Rank.FIFTH.resultMessage + prizeCount.get(Rank.FIFTH) + NUMBER);
         System.out.println(Rank.FOURTH.resultMessage + prizeCount.get(Rank.FOURTH) + NUMBER);
         System.out.println(Rank.THIRD.resultMessage + prizeCount.get(Rank.THIRD) + NUMBER);

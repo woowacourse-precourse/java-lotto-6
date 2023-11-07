@@ -15,6 +15,7 @@ public class Validator {
             throw new IllegalArgumentException(ERROR_INPUT_IS_NOT_NUMBER);
         }
     }
+
     public List<Integer> validateInput(String winningNumberFromPlayer) {
         try {
             List<String> temporary = Arrays.asList(winningNumberFromPlayer.split(","));

@@ -16,14 +16,10 @@ public class LottoWinningResult {
     private int correctCount;
 
     public LottoWinningResult(List<Integer> numberFromPlayer, int bonusNumber, List<List<Integer>> quantityOfLotto) {
-        this.numberFromPlayer = sortList(numberFromPlayer);
+        this.numberFromPlayer = numberFromPlayer;
         this.quantityOfLotto = quantityOfLotto;
         this.bonusNumber = bonusNumber;
         this.prizeCount = setPrizeCount();
-    }
-
-    private List<Integer> sortList(List<Integer> number) {
-        return number.stream().sorted().collect(Collectors.toList());
     }
 
     private Map<Rank, Integer> setPrizeCount() {

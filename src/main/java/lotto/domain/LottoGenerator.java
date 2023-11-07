@@ -12,6 +12,9 @@ public class LottoGenerator {
     private final Integer money;
     private final int numberOfTickets;
 
+    public LottoGenerator() {
+        money = numberOfTickets = 0;
+    }
 
     public LottoGenerator(String input) {
         checkInputFormat(input);

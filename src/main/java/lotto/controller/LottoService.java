@@ -14,15 +14,15 @@ public class LottoService {
     private final OutputView outputView;
     private LottoGenerator lottoGenerator;
     private LottoComputer lottoComputer;
-    private Integer userMoney;
     private Lottos myLottos;
-    private Integer myBonusNumber;
     private Lotto winnerLotto;
 
-    public LottoService(InputView inputView, OutputView outputView) {
+    public LottoService(InputView inputView, OutputView outputView, LottoComputer lottoComputer,
+                        LottoGenerator lottoGenerator) {
         this.inputView = inputView;
         this.outputView = outputView;
-        lottoComputer = new LottoComputer();
+        this.lottoComputer = lottoComputer;
+        this.lottoGenerator = lottoGenerator;
     }
 
     public void run() {

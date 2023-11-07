@@ -26,4 +26,13 @@ class LottosListTest {
         HashSet<Integer> set = new HashSet<>(list);
         assertThat(list.size()).isEqualTo(set.size());
     }
+
+    @DisplayName("입력 받은 구입 금액에 해당하는 로또 개수 생성")
+    @Test
+    public void createLottos() {
+        LottosList lottosList = new LottosList();
+        lottosList.createLottos(5);
+        assertThat(lottosList.getLottosList().size()).isEqualTo(5);
+
+    }
 }

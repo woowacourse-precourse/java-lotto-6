@@ -2,9 +2,11 @@ package lotto;
 
 import java.util.List;
 
-import lotto.Control.InputPurchaseAmount;
+//import lotto.Control.InputPurchaseAmount;
 import lotto.Control.PressEnter;
+import lotto.DTO.SystemMessageDTO;
 import lotto.Model.MakeAutoTicket;
+import lotto.View.CallSystemMessage;
 
 public class Application {
     public static void main(String[] args) {
@@ -18,5 +20,10 @@ public class Application {
         lottosystem.plzPressEnter();
         String res = lottosystem.getInput();
         System.out.println(res);
+
+
+
+        CallSystemMessage callmessage = new CallSystemMessage();
+        callmessage.printMessage(SystemMessageDTO.INPUT_PURCHASE_AMOUNT);
     }
 }

@@ -1,10 +1,10 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 import lotto.domain.LottoWinningRanking;
-import lotto.vo.LottoWinningNumbers;
+import lotto.domain.Lottos;
 import lotto.vo.LottoNumber;
+import lotto.vo.LottoWinningNumbers;
 
 import java.util.EnumMap;
 

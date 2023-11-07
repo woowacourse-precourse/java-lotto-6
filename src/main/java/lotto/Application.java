@@ -3,8 +3,8 @@ package lotto;
 import lotto.controller.LottoController;
 import lotto.service.LottoProfitService;
 import lotto.service.LottoPurchaseService;
-import lotto.service.LottoWinningRankingService;
 import lotto.service.LottoWinningNumbersPickService;
+import lotto.service.LottoWinningRankingService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

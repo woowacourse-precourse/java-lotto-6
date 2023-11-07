@@ -17,4 +17,8 @@ public class Lotto {
         List<String> parsedNumbers = numbers.stream().map((number) -> Integer.toString(number)).toList();
         return "[" + String.join(", ", parsedNumbers) + "]";
     }
+
+    public boolean isContainNumber(int number) {
+        return numbers.contains(number);
+    }
 }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.constants.ExceptionConstants.INPUT_ZERO_MESSAGE;
+import static lotto.constants.ExceptionConstants.INVALID_NON_THOUSAND_UNIT_MESSAGE;
 import static lotto.constants.ServiceConstants.*;
 
 public class LottoPurchaseService {

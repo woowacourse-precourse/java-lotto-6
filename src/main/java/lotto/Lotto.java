@@ -19,6 +19,10 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
+  public List<Integer> getNumbers(){
+    return this.numbers;
+  }
+
 
   public void printLotto(){
     System.out.println(this.numbers.stream().sorted().collect(Collectors.toList()));

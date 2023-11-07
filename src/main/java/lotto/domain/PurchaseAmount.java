@@ -5,7 +5,7 @@ import lotto.constant.NumberConstant;
 
 public class PurchaseAmount {
 
-    private int totalPrice;
+    private final int totalPrice;
 
     private PurchaseAmount(String price) {
         int totalPrice = convertStrtoInt(price);

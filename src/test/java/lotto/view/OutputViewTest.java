@@ -35,15 +35,4 @@ class OutputViewTest {
     void printEarningRate() {
         outputView.printEarningRate(62.5);
     }
-
-    @Test
-    void testGameResult() {
-        Lotteries ex2 = Lotteries.from(5);
-        System.out.println(lotteries.getNumbersOfLotteries());
-        WinningLotto lotto = WinningLotto.of("1,2,3,4,5,6", "7");
-        LottoResult lottoResult = LottoResult.from();
-        lottoResult.countWinningCase(ex2.getLotteries(), lotto);
-        outputView.printGameResult(lottoResult.getResultMap());
-        System.out.println(lottoResult.getResultMap());
-    }
 }

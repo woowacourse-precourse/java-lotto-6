@@ -1,8 +1,13 @@
 package lotto.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import lotto.constant.StringConstant;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotteries;
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
@@ -18,8 +23,10 @@ public class GameService {
         purchaseAmount = PurchaseAmount.from(userInput);
     }
 
-    public void createWinningLotto(String winningNumber, String bonusNumber) {
-        winningLotto = WinningLotto.of(winningNumber, bonusNumber);
+    public void createWinningLotto(String winningNumber, String userBonusNumber) {
+        Lotto lotto = new Lotto(convertStrToList(winningNumber));
+        BonusNumber bonusNumber = BonusNumber.of(userBonusNumber, lotto);
+        winningLotto = WinningLotto.of(lotto, bonusNumber);
     }
 
     public void createLotteries() {
@@ -45,5 +52,11 @@ public class GameService {
 
     public double printEarningRate() {
         return lottoResult.calculateEarningRate(purchaseAmount.getTotalPrice());
+    }
+
+    private List<Integer> convertStrToList(String winningLotto) {
+        return Arrays.stream(winningLotto.split(StringConstant.DIVISION_STANDARD.getMessage()))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }

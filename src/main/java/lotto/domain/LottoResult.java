@@ -8,7 +8,8 @@ import lotto.constant.PriceConstant;
 
 public class LottoResult {
 
-    Map<String, Integer> resultMap;
+    private static final Double PERCENTAGE = 100.0;
+    private Map<String, Integer> resultMap;
     private int winningCount;
 
     private LottoResult() {
@@ -34,7 +35,7 @@ public class LottoResult {
         for (Lotto lotto : lotteries) {
             winningCount = lotto.compareTo(winningLotto.getWinningLotto());
             countResultMap(winningCount);
-            countBonusNumber(lotto, winningLotto.getBonusNumber());
+            countBonusNumber(lotto, winningLotto.getBonusNumber().getNumber());
         }
     }
 
@@ -75,7 +76,7 @@ public class LottoResult {
             return 0;
         }
 
-        return (double) totalEarning / (double) purchaseAmount * 100;
+        return (double) totalEarning / (double) purchaseAmount * PERCENTAGE;
     }
 
     private int calculateTotalEarning() {

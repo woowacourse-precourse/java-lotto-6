@@ -62,7 +62,7 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-    
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

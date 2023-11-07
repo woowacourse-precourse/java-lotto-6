@@ -127,7 +127,7 @@ public class LottoService {
     private static int getRankByNumberOfHits(int numberOfHits, Lotto winningNumbers, Integer bonusNumber) {
         if (numberOfHits == 6) {
             return 1;
-        } else if (numberOfHits == 5 && bonusNumberInwinningNumbers(winningNumbers, bonusNumber)) {
+        } else if (numberOfHits == 5 && bonusNumberInWinningNumbers(winningNumbers, bonusNumber)) {
             return 2;
         } else if (numberOfHits == 5) {
             return 3;
@@ -139,7 +139,7 @@ public class LottoService {
         return 6;
     }
 
-    private static boolean bonusNumberInwinningNumbers(Lotto winningNumbers, Integer bonusNumber) {
+    private static boolean bonusNumberInWinningNumbers(Lotto winningNumbers, Integer bonusNumber) {
         List<Integer> numbers = winningNumbers.getNumbers();
         return numbers.contains(bonusNumber);
     }

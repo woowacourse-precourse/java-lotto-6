@@ -14,7 +14,7 @@ public class OutputView {
     private static final String BONUS_WINNING_SENTENCE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RETURN_RATE_SENTENCE = "총 수익률은 %s%%입니다.";
     private static final String EMPTY_LINE = "";
-    private static final String DASH = "-";
+    private static final String DASHS = "---";
 
     public static void printGeneratedLottos(Lottos lottos) {
         System.out.println(EMPTY_LINE);
@@ -39,7 +39,7 @@ public class OutputView {
     public static void printWinningResult(LottoResult result) {
         System.out.println(EMPTY_LINE);
         System.out.println(PRINT_RESULT_START_SENTENCE);
-        System.out.println(DASH.repeat(3));
+        System.out.println(DASHS);
 
         printRankCount(result);
     }

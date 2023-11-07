@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Utils;
 
 import static lotto.Utils.Utils.calculatePercentage;
 import static lotto.Utils.Utils.getSortedList;

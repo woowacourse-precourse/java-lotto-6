@@ -40,13 +40,13 @@ public class DrawnNumbers {
         return uniqueSize != winningNumbers.size();
     }
 
-    private static int getUniqueSize(List<Integer> winningNumbers) {
+    private int getUniqueSize(List<Integer> winningNumbers) {
         return (int) winningNumbers.stream()
                 .distinct()
                 .count();
     }
 
-    private static void validateInvalidRange(List<Integer> winningNumbers) {
+    private void validateInvalidRange(List<Integer> winningNumbers) {
         if (isInvalidRange(winningNumbers)) {
             throw LottoException.from(ErrorMessage.INVALID_RANGE_ERROR);
         }

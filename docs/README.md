@@ -5,9 +5,9 @@
     - 로또 1장의 가격 = 1000원
     - [x] 입력 값이 숫자 형식이 아닌 경우 예외 처리
   - [x] 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리 - Amount#validate()
-- [ ] 로또 발행 
-  - [ ] 입력받은 금액만큼 로또 발행 - LottoPublisher#publishLottosByAmount()
-    - [ ] 발행 가능한 로또 개수 계산 - LottoPublisher#countLottoTicketsAvailableForPurchase()
+- [x] 로또 발행 
+  - [x] 입력받은 금액만큼 로또 발행 - LottoPublisher#publishLottosByAmount()
+    - [x] 발행 가능한 로또 개수 계산 - LottoPublisher#countLottoTicketsAvailableForPurchase()
     - [ ] "0개를 구매했습니다." - OutputView#printIssuedLotto()
     - [ ] "[0, 0, 0, 0, 0, 0]" - OutputView#printIssuedLotto()
     - [x] 중복되지 않는 랜덤 6개 숫자 - RandomNumberGenerator#createUniqueRandomNumbers()

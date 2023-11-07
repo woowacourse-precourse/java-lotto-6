@@ -16,4 +16,9 @@ public class Lottos{
     public WinningResult determineWinnings(LotteryResult lotteryResult){
         return null;
     }
+
+    public int getSize(){
+        return lottos.size();
+    }
+
 }

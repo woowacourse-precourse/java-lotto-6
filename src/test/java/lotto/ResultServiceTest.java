@@ -31,15 +31,15 @@ public class ResultServiceTest {
         resultService.setFirstRankNumbers(firstRankNumbersInput);
         resultService.setBonusNumber(bonusNumberInput);
         for (Lotto lotto : userLotteries) {
-            resultService.deterMineScore(lotto);
+            resultService.determineScore(lotto);
         }
     }
 
     @DisplayName("등수별 당첨 로또 개수 도출 확인")
     @Test
     void 로또_등수별_집계_확인() {
-        assertThat(resultService.getCountOf(Rank.SIX_MATCH)).isEqualTo(2);
-        assertThat(resultService.getCountOf(Rank.FIVE_AND_BONUS_MATCH)).isEqualTo(1);
+        assertThat(resultService.getCountOf(Rank.FIRST)).isEqualTo(2);
+        assertThat(resultService.getCountOf(Rank.SECOND)).isEqualTo(1);
     }
 
     @DisplayName("수익률 계산 확인")

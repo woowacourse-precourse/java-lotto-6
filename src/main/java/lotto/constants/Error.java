@@ -15,7 +15,7 @@ public enum Error {
     ),
     INVALID_BONUS_NUMBER(
             ERROR_HEADER.message + " " +
-                    Rank.SIX_MATCH.getNumber() + "등 당첨번호와 중복되지 않는 " +
+                    "당첨번호와 중복되지 않는 " +
                     NumberRule.MIN_LOTTO_NUMBER.getNumber() + "이상 " +
                     NumberRule.MAX_LOTTO_NUMBER.getNumber() + "이하의 수를 입력하세요."
     );

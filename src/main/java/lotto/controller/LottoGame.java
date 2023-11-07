@@ -89,7 +89,7 @@ public class LottoGame {
 
     private void determineAllLottoScore() {
         for (Lotto lotto : userLotteries) {
-            resultService.deterMineScore(lotto);
+            resultService.determineScore(lotto);
         }
     }
 

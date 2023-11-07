@@ -27,47 +27,47 @@ public class ScoreDeterminerTest {
     @Test
     void getFirstTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Rank rank = scoreDeterminer.getRankBy(lotto);
-        assertThat(rank).isEqualTo(Rank.SIX_MATCH);
+        Rank rank = scoreDeterminer.getRankOf(lotto);
+        assertThat(rank).isEqualTo(Rank.FIRST);
     }
 
     @DisplayName("2등 판별 테스트")
     @Test
     void getSecondTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 6, 7));
-        Rank rank = scoreDeterminer.getRankBy(lotto);
-        assertThat(rank).isEqualTo(Rank.FIVE_AND_BONUS_MATCH);
+        Rank rank = scoreDeterminer.getRankOf(lotto);
+        assertThat(rank).isEqualTo(Rank.SECOND);
     }
 
     @DisplayName("3등 판별 테스트")
     @Test
     void getThirdTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
-        Rank rank = scoreDeterminer.getRankBy(lotto);
-        assertThat(rank).isEqualTo(Rank.FIVE_MATCH);
+        Rank rank = scoreDeterminer.getRankOf(lotto);
+        assertThat(rank).isEqualTo(Rank.THIRD);
     }
 
     @DisplayName("4등 판별 테스트")
     @Test
     void getFourthTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 45));
-        Rank rank = scoreDeterminer.getRankBy(lotto);
-        assertThat(rank).isEqualTo(Rank.FOUR_MATCH);
+        Rank rank = scoreDeterminer.getRankOf(lotto);
+        assertThat(rank).isEqualTo(Rank.FOURTH);
     }
 
     @DisplayName("5등 판별 테스트")
     @Test
     void getFifthTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-        Rank rank = scoreDeterminer.getRankBy(lotto);
-        assertThat(rank).isEqualTo(Rank.THREE_MATCH);
+        Rank rank = scoreDeterminer.getRankOf(lotto);
+        assertThat(rank).isEqualTo(Rank.FIFTH);
     }
 
     @DisplayName("등수 없음 판별 테스트")
     @Test
     void getNoRankTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 7, 8, 9, 38));
-        Rank rank = scoreDeterminer.getRankBy(lotto);
+        Rank rank = scoreDeterminer.getRankOf(lotto);
         assertThat(rank).isEqualTo(Rank.NO_RANK);
     }
 }

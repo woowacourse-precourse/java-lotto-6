@@ -15,7 +15,7 @@ public class ResultService {
 
     private final Seller seller = new Seller();
     private final ScoreDeterminer scoreDeterminer = new ScoreDeterminer();
-    private final HashMap<Integer, Integer> rankCounts = new HashMap<>();
+    private final HashMap<Rank, Integer> rankCounts = new HashMap<>();
     private long winnings = NOTHING;
 
     public void setAmount(String userInput) {
@@ -37,16 +37,15 @@ public class ResultService {
         scoreDeterminer.setBonusNumber(userInput);
     }
 
-    public void deterMineScore(Lotto lotto) {
-        Rank rank = scoreDeterminer.getRankBy(lotto);
-        recordCountBy(rank.getNumber());
+    public void determineScore(Lotto lotto) {
+        Rank rank = scoreDeterminer.getRankOf(lotto);
+        recordCountOf(rank);
         addUpTo(rank.getWinnings());
     }
 
     public int getCountOf(Rank rank) {
-        int rankNumber = rank.getNumber();
-        if (rankCounts.containsKey(rankNumber)) {
-            return rankCounts.get(rankNumber);
+        if (rankCounts.containsKey(rank)) {
+            return rankCounts.get(rank);
         }
         return NOTHING;
     }
@@ -62,7 +61,7 @@ public class ResultService {
         return (double) winnings / amount * TO_PERCENTAGE;
     }
 
-    private void recordCountBy(int rank) {
+    private void recordCountOf(Rank rank) {
         if (rankCounts.containsKey(rank)) {
             rankCounts.put(rank, rankCounts.get(rank) + COUNT_ONE);
             return;

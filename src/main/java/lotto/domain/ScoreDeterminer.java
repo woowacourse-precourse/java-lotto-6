@@ -14,12 +14,12 @@ public class ScoreDeterminer {
         winningNumbers.setBonusNumber(userInput);
     }
 
-    public Rank getRankBy(Lotto lotto) {
+    public Rank getRankOf(Lotto lotto) {
         int matchedCount = compareFirstRankNumberWith(lotto);
         boolean isMatchedWithBonusNumber = compareBonusNumberWith(lotto);
         Rank rank = Rank.getRankBy(matchedCount);
-        if (rank == Rank.FIVE_MATCH && isMatchedWithBonusNumber) {
-            return Rank.FIVE_AND_BONUS_MATCH;
+        if (rank == Rank.THIRD && isMatchedWithBonusNumber) {
+            return Rank.SECOND;
         }
         return rank;
     }

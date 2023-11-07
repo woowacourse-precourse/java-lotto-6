@@ -12,6 +12,8 @@ import lotto.util.Constants;
 import lotto.util.ErrorConstants;
 
 public class InputValidator {
+    private static final String COMMA_SEPARATED_SIX_NUMBERS_REGEX = "^(\\d+,){5}\\d+$";
+
     private static void inputIsBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ErrorConstants.BLANK);
@@ -46,7 +48,7 @@ public class InputValidator {
     }
 
     private static void isCommaSeparated(String input) {
-        if (!input.matches("^(\\d+,){5}\\d+$")) {
+        if (!input.matches(COMMA_SEPARATED_SIX_NUMBERS_REGEX)) {
             throw new IllegalArgumentException(ErrorConstants.INADEQUATE_INPUT);
         }
     }

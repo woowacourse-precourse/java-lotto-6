@@ -1,4 +1,6 @@
-package lotto.constant;
+package lotto.constant.message;
+
+import lotto.constant.Number;
 
 public enum Error {
     PURCHASE_TYPE("[ERROR] 구매 금액은 숫자여야 합니다."),

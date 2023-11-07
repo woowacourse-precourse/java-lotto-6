@@ -8,8 +8,9 @@ public class OutputView {
     private static final String LOTTO_AMOUNT_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_RESULT_MESSAGE = "당첨 통계";
     private static final String LINE_MESSAGE = "---";
-    private static final int MIN_MATCHING_COUNT = 3;
-    private static final int MAX_MATCHING_COUNT = 6;
+    private static final String UNIT_MESSAGE = "개";
+    private static final String TOTAL_PROFIT_RATE_MESSAGE = "총 수익률은 ";
+    private static final String PERCENT_STATEMENT_MESSAGE = "%입니다.";
 
     public static void printLottoAmount(int lottoPurchaseCount) {
 
@@ -24,16 +25,16 @@ public class OutputView {
         }
     }
     public static void printSuccessResult() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(WINNING_RESULT_MESSAGE);
+        System.out.println(LINE_MESSAGE);
     }
 
     public static void printSuccessMessage(String message, int numberOfMatch) {
-        System.out.println(message + numberOfMatch + "개");
+        System.out.println(message + numberOfMatch + UNIT_MESSAGE);
     }
 
     public static void printProfitRate(double profitRate) {
-        System.out.println("총 수익률은 " + String.format("%.1f", profitRate) + "%입니다.");
+        System.out.println(TOTAL_PROFIT_RATE_MESSAGE + String.format("%.1f", profitRate) + PERCENT_STATEMENT_MESSAGE);
     }
 }
 

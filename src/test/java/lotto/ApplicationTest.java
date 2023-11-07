@@ -47,10 +47,90 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 구입금액_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 구입금액_단위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("12300");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 당첨로또_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,a", "8");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 당첨로또_개수_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6,7", "8");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 당첨로또_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,100", "8");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 당첨로또_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,5", "8");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 보너스로또_범위_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "0");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 보너스로또_중복_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "6");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 보너스로또_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", "?");
+            assertThat(output().contains(ERROR_MESSAGE));
+        });
+    }
+
+    @Test
+    void 보너스로또_공백_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6", " ");
+            assertThat(output().contains(ERROR_MESSAGE));
         });
     }
 

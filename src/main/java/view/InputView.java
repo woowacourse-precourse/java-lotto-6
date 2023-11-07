@@ -39,16 +39,13 @@ public class InputView {
                 return exceptionHandler.validateBonusNumber(winningNumbers);
             } catch (NumberFormatException e) {
                 System.out.println(ErrorMessage.onlyNumberMessage);
-            }catch (IllegalStateException e){
+            } catch (IllegalStateException e) {
                 System.out.println(ErrorMessage.existInWinningNumbers);
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(ErrorMessage.enterOneToFourtyFiveMessage);
             }
         }
     }
-
-
 
 
     public List<Integer> enterWinningNumber() {
@@ -67,8 +64,6 @@ public class InputView {
             }
         }
     }
-
-
 
 
 }

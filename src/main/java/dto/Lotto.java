@@ -18,12 +18,12 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()){
+        if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    public void showLottoNumbers(){
+    public void showLottoNumbers() {
         System.out.print(Constants.PRINT_LOTTO_START);
         for (int i = 0; i < 5; i++) {
             System.out.print(numbers.get(i) + Constants.COMMA_AND_SPACE);
@@ -31,7 +31,7 @@ public class Lotto {
         System.out.println(numbers.get(5) + Constants.PRINT_LOTTO_END);
     }
 
-    public List<Integer> getLottoNumbers(){
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 

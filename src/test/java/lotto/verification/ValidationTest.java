@@ -81,6 +81,30 @@ class ValidationTest {
         });
     }
 
+    @DisplayName("입력 받은 당첨 로또 문자열 값이 숫자가 아닌 값이 포함되있으면 예외가 발생한다.")
+    @Test
+    void verifyIntegerWinningLottoNumber() {
+        //given
+        final String case1 = "1,a,b";
+        final String case2 = "a,b,c";
+        final String case3 = "abc";
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyIntegerWinningLottoNumber(case1);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyIntegerWinningLottoNumber(case2);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyIntegerWinningLottoNumber(case3);
+        });
+    }
+
     @Test
     void verifyRangeWinningLottoNumber() {
     }

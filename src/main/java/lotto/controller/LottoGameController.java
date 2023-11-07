@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.StringConstants;
 import lotto.port.InputPort;
-import lotto.port.LottoNumbersProvider;
 import lotto.port.OutputPort;
 import lotto.service.LottoNumberGenerationService;
 import lotto.service.LottoPurchaseService;

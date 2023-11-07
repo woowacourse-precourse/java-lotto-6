@@ -15,7 +15,7 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
 
-        if (numbers.stream().count() > 0) {
+        if (numbers.stream().distinct().count() != numbers.size()) {
             throw new IllegalArgumentException();
         }
     }

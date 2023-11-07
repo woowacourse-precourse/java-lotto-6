@@ -38,4 +38,22 @@ public class Calculation {
         }
         return count;
     }
+
+    public void get_score(List<Integer> user_number, List<Integer> lotto_number, int bonus_number, int[] scoreBoard) {
+        int score = 0;
+        score = compare_number(user_number, lotto_number);
+        
+        if(score !=5) {
+            scoreBoard[score] = scoreBoard[score]+1;
+        }
+        if(score == 5 && user_number.contains(bonus_number)) {
+            scoreBoard[7] = scoreBoard[7]+1;
+        }
+    }
+
+    public void get_all_score(List<List<Integer>> all_user_numbers, List<Integer> lotto_number, int bonus_number, int[] scoreBoard) {
+        for(List<Integer> user_number:all_user_numbers) {
+            get_score(user_number, lotto_number, bonus_number, scoreBoard);
+        }
+    }
 }

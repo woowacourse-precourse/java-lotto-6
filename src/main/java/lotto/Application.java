@@ -14,5 +14,5 @@ public class Application {
 }
 
 enum Prize {
-    FIRST, SECOND, THIRD, FOURTH, FIFTH
+    FIRST, SECOND, THIRD, FOURTH, FIFTH, NONE
 }

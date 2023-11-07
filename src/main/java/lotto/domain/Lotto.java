@@ -57,4 +57,8 @@ public class Lotto {
         return numbers.stream().sorted().toList();
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

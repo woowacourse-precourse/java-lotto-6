@@ -31,4 +31,11 @@ public class LottoTickets {
     private void buyLottoTickets() {
         lottoTickets.add(LottoGenerator.generate());
     }
+
+    @Override
+    public String toString() {
+        return String.join("\n", IntStream.range(0, numberOfLottoTickets)
+                .mapToObj(i -> lottoTickets.get(i).toString())
+                .collect(Collectors.toList()));
+    }
 }

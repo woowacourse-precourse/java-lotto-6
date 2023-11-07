@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottosPurchased;
 
 import java.util.List;
 
@@ -21,16 +22,18 @@ public class OutputView {
         }
     }
 
-    private static final String NUMBER_OF_LOTTOS_PURCHASED_PRINT_MESSAGE = "개를 구매했습니다.";
-    private static final String WINNING_STATISTICS_PRINT_MESSAGE = "당첨 통계\n---";
+    public void printNumberOfLottosPurchased(LottosPurchased lottosPurchased) {
+        int numberOfLottos = lottosPurchased.getNumberOfLottos();
 
-    public void printLottosPurchased(List<Lotto> lottosPurchased) {
-        System.out.println();
-        System.out.print(lottosPurchased.size());
+        System.out.print(numberOfLottos);
         System.out.println(PrintMessage.NUMBER_OF_LOTTOS);
+    }
 
-        for (Lotto lotto : lottosPurchased) {
-            System.out.println(lotto);
+    public void printLottosPurchased(LottosPurchased lottosPurchased) {
+        int numberOfLottos = lottosPurchased.getNumberOfLottos();
+
+        for (int i = 0; i < numberOfLottos; i++) {
+            System.out.println(lottosPurchased.getLotto(i));
         }
     }
 }

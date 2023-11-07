@@ -34,11 +34,14 @@ public class GameController {
                 System.out.println();
             }
         }
+        System.out.println();
     }
 
     private void purchaseLottos() {
         lottosPurchased = new LottosPurchased(amount.getAmount());
-        outputView.printLottosPurchased(lottosPurchased.getLottos());
+
+        outputView.printNumberOfLottosPurchased(lottosPurchased);
+        outputView.printLottosPurchased(lottosPurchased);
         System.out.println();
     }
 

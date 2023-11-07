@@ -1,19 +1,16 @@
 package lotto.controller;
 
-import java.util.List;
-import lotto.domain.Amount;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
-import lotto.domain.LottoData;
-import lotto.domain.User;
+import java.util.Map;
+import lotto.domain.*;
 import lotto.service.LottoService;
 import lotto.utils.InputProcessor;
 import lotto.utils.Validation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController {
+import java.util.List;
 
+public class LottoController {
     private Lotto winningNumbers;
     private User user;
     private LottoData lottoData;
@@ -30,6 +27,8 @@ public class LottoController {
     public void run() {
         beforeStart();
         setLottoData();
+        lottoService.checkWinningsForUserLottos(user, lottoData);
+        printStatistics(lottoService.getWinningCounts(), calculateTotalPrize(lottoService.getWinningCounts()));
     }
 
     private void beforeStart() {
@@ -52,7 +51,7 @@ public class LottoController {
     }
 
     private void setLottoData() {
-        lottoData = lottoService.setWinningNumbers(setWinningNumbers(),setBonusNumber());
+        lottoData = lottoService.setWinningNumbers(setWinningNumbers(), setBonusNumber());
     }
 
     private Lotto setWinningNumbers() {
@@ -75,5 +74,22 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             return setBonusNumber();
         }
+    }
+
+    private void printStatistics(Map<Winning, Integer> winningCounts, int totalPrize) {
+        outputView.printWinningStatistics();
+        outputView.printStatistics(winningCounts, totalPrize, user.getPurchaseAmount().getAmount());
+    }
+
+    private int calculateTotalPrize(Map<Winning, Integer> winningCounts) {
+        int totalPrize = 0;
+
+        for (Winning result : Winning.values()) {
+            int count = winningCounts.getOrDefault(result, 0);
+            int prize = result.getWinningAmount();
+            totalPrize += count * prize;
+        }
+
+        return totalPrize;
     }
 }

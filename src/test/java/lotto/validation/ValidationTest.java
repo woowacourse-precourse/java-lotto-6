@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -82,4 +82,11 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호에 문자가 들어있으면 예외가 발생한다.")
+    @Test
+    public void 로또_번호에_문자가_들어있으면_예외가_발생한다() {
+        String lotto = "1,2,3,a,5,6";
+        assertThatThrownBy(() -> Validation.checkStringConsistOfNaturalNumbers(lotto.split(",")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

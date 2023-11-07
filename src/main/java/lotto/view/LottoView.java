@@ -37,6 +37,11 @@ public class LottoView {
                 .collect(Collectors.toList());
     }
 
+    public int inputBonusNumber() {
+        String input = input("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(input);
+    }
+
     private void validateIsNumber(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");

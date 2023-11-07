@@ -34,9 +34,18 @@ public class GameController {
     }
 
     private static int readPurchaseAmount() {
-        OutputView.printMessage(INPUT_PURCHASE_AMOUNT.getMessage());
-        String purchaseAmount = InputView.read();
-        PurchaseAmountValidator.validate(purchaseAmount);
+        String purchaseAmount;
+
+        while (true) {
+            try {
+                OutputView.printMessage(INPUT_PURCHASE_AMOUNT.getMessage());
+                purchaseAmount = InputView.read();
+                PurchaseAmountValidator.validate(purchaseAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
 
         return parseInt(purchaseAmount);
     }

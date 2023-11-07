@@ -2,6 +2,11 @@ package lotto.error;
 
 public enum ErrorMessage {
 
+    // 로또 번호
+    NOT_RIGHT_SIZE_LOTTO_NUMBER("로또 번호는 총 6개여야 합니다."),
+    DUPLICATED_LOTTO_NUMBER("로또 번호는 중복될 수 없습니다."),
+    OVER_RANGE_LOTTO_NUMBER("로또 번호는 1~45사이의 숫자여야 합니다."),
+    
     // 로또 구입 금액
     NOT_INTEGER_LOTTO_PURCHASE_AMOUNT("로또 구입 금액은 숫자만으로 이루어져야 합니다."),
     START_ZERO_LOTTO_PURCHASE_AMOUNT("로또 구입 금액은 0으로 시작할 수 없습니다."),

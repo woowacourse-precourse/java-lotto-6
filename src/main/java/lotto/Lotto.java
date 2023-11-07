@@ -3,6 +3,9 @@ package lotto;
 import static lotto.constant.Constant.LOTTO_CNT;
 import static lotto.constant.Constant.LOTTO_MAX_VALUE;
 import static lotto.constant.Constant.LOTTO_MIN_VALUE;
+import static lotto.error.ErrorMessage.DUPLICATED_LOTTO_NUMBER;
+import static lotto.error.ErrorMessage.NOT_RIGHT_SIZE_LOTTO_NUMBER;
+import static lotto.error.ErrorMessage.OVER_RANGE_LOTTO_NUMBER;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,17 +24,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
 
-        // TODO 에러메시지 만들기
         if (!isRightSize(numbers.size())) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_RIGHT_SIZE_LOTTO_NUMBER.getMessage());
         }
 
         if (!isExistDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }
 
         if (!isInRangeLottoNumbers(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(OVER_RANGE_LOTTO_NUMBER.getMessage());
         }
     }
 

@@ -11,7 +11,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -29,7 +28,9 @@ public class Lotto {
     }
 
     public String sayNumbers() {
-        String numberLine = numbers.stream().map(String::valueOf).collect(Collectors.joining(", "));
+        ArrayList<Integer> sortableNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortableNumbers);
+        String numberLine = sortableNumbers.stream().map(String::valueOf).collect(Collectors.joining(", "));
         return MessageFormat.format("[{0}]", numberLine);
     }
 

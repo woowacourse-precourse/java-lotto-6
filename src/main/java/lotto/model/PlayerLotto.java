@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -11,8 +12,9 @@ public class PlayerLotto {
     private List<Integer> playerLotto;
 
     public PlayerLotto() {
-        this.playerLotto = Randoms.pickUniqueNumbersInRange(NumberConst.MIN_RANGE, NumberConst.MAX_RANGE,
-                NumberConst.LOTTO_SIZE);
+        this.playerLotto = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(NumberConst.MIN_RANGE, NumberConst.MAX_RANGE,
+                        NumberConst.LOTTO_SIZE));
         Collections.sort(playerLotto);
     }
 

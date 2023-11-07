@@ -12,9 +12,13 @@ public class LottoMachine {
     private final Cash cash;
 
 
-    public LottoMachine(final NumberGenerator numberGenerator, final Cash cash) {
+    private LottoMachine(final NumberGenerator numberGenerator, final Cash cash) {
         this.numberGenerator = numberGenerator;
         this.cash = cash;
+    }
+
+    public static LottoMachine create(final NumberGenerator numberGenerator, final Cash cash) {
+        return new LottoMachine(numberGenerator, cash);
     }
 
     public Lottos purchaseLottos() {

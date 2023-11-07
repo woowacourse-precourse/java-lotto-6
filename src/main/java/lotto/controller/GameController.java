@@ -46,7 +46,7 @@ public class GameController {
 
 
     private Lottos purchaseLotto(Cash cash) {
-        LottoMachine lottoMachine = new LottoMachine(numberGenerator, cash);
+        LottoMachine lottoMachine = LottoMachine.create(numberGenerator, cash);
         Lottos lottos = lottoMachine.purchaseLottos();
         outputView.printPurchasedLottos(lottos);
         return lottos;

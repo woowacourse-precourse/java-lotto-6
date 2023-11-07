@@ -1,9 +1,9 @@
 package lotto.Domain;
 
 
+import lotto.View.ExceptionMessages;
+
 public class LottoPurchaseAmount {
-    private final static String INVALID_TYPE_MESSAGE = "[ERROR] 숫자로 이루어진 값을 입력해주세요";
-    private final static String INVALID_NUMBER_MESSAGE = "[ERROR] 올바른 금액을 입력해주세요";
     private final int purchaseAmount;
 
     public LottoPurchaseAmount(String purchaseAmount) {
@@ -20,15 +20,15 @@ public class LottoPurchaseAmount {
         try {
             return Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            System.out.println(INVALID_TYPE_MESSAGE);
-            throw new IllegalArgumentException(INVALID_TYPE_MESSAGE);
+            ExceptionMessages.purchaseAmountTypeError();
+            throw new IllegalArgumentException();
         }
     }
 
     public static void validateFitPurchaseAmountCondition(int purchaseAmount) {
         if (purchaseAmount <= 0 || purchaseAmount % 1000 != 0) {
-            System.out.println(INVALID_NUMBER_MESSAGE);
-            throw new IllegalArgumentException(INVALID_NUMBER_MESSAGE);
+            ExceptionMessages.purchaseAmountRangeError();
+            throw new IllegalArgumentException();
         }
     }
 }

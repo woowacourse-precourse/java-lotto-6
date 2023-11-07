@@ -7,7 +7,11 @@ import static lotto.views.MessageManager.getProgramClosePromoptMessage;
 
 public class DongHangLottery {
     private String inputLottoNumber;
-    public void drawWinningNumbers() {
+
+    public DongHangLottery() {
+        initialize();
+    }
+    public void initialize() {
         inputLottoNumber = readLine();
         try {
             validateContainsCommaSeparator(inputLottoNumber);

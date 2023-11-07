@@ -1,13 +1,13 @@
 package lotto.controller;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoMachine;
 import lotto.domain.Rank;
 import lotto.domain.ResultMaker;
+import lotto.domain.SelectedBonus;
 import lotto.domain.SelectedLotto;
+import lotto.domain.SelectedNumbers;
 import lotto.util.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -43,6 +43,11 @@ public class Controller {
         outputView.printLottos(lottoBundle.getBundle());
     }
 
+    private void checkLotto() {
+        resultMaker = new ResultMaker(lottoBundle, selectWinningLotto());
+        resultMaker.updateResult();
+    }
+
     private void showYourResult() {
         Map<Rank, Integer> lottoResult = resultMaker.giveResult();
         outputView.printResult(lottoResult);
@@ -53,52 +58,32 @@ public class Controller {
         outputView.printRateOfReturn(rateOfReturn);
     }
 
-    private void checkLotto() {
-        resultMaker = new ResultMaker(lottoBundle, selectWinningLotto());
-        resultMaker.updateResult();
-    }
-
     private SelectedLotto selectWinningLotto() {
-        String nums = selectNumbers();
-        String bonus = selectBonus(makeSplittedNumbers(nums));
+        SelectedNumbers nums = selectNumbers();
+        SelectedBonus bonus = selectBonus(nums);
         return new SelectedLotto(nums, bonus);
     }
 
-    private String selectNumbers() {
-        String nums = "";
+    private SelectedNumbers selectNumbers() {
         while (true) {
             try {
-                nums = inputView.readSelectedNumbers();
-                List<String> splitted = makeSplittedNumbers(nums);
-                validator.lottoNumbers(splitted);
-                break;
+                return new SelectedNumbers(inputView.readSelectedNumbers());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return nums;
     }
 
-    private String selectBonus(List<String> splitted) {
-        String bonus = "";
+    private SelectedBonus selectBonus(SelectedNumbers selectedNumbers) {
         while (true) {
             try {
-                bonus = inputView.readSelectedBonus();
-                validator.bonusNumber(bonus, splitted);
-                break;
+                return new SelectedBonus(inputView.readSelectedBonus(),
+                        selectedNumbers.giveSplittedNumbers());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return bonus;
     }
 
-    private List<String> makeSplittedNumbers(String InputNumbers) {
 
-        List<String> numbers = Arrays.asList(InputNumbers.split(",", -1));
-        for (int i = 0; i < numbers.size(); i++) {
-            numbers.set(i, numbers.get(i).trim());
-        }
-        return numbers;
-    }
 }

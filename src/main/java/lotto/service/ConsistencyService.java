@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 import lotto.domain.UserLotto;
 
 public class ConsistencyService {
-    private static List<Integer> lottoConsistency = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
+    private static List<Integer> totalConsistency = new ArrayList<>(Arrays.asList(0, 0, 0, 0, 0));
     private static int bonusConsistency = 0;
     private static int rateMoney;
     private static int capital;
@@ -15,7 +15,7 @@ public class ConsistencyService {
         this.capital = capital;
         this.userLotto = userLotto;
     }
-    public void winnerGraph(List<List<Integer>> numList){
+    public List<Integer> winnerGraph(List<List<Integer>> numList){
         numList.stream().forEach(list->{
             bonusConsistency = 0;
             int lottoCount = getLottoConsistency(list);
@@ -28,14 +28,15 @@ public class ConsistencyService {
             }
 
         });
+        return totalConsistency;
     }
 
     private static void setTotalConsistency(int lottoCount) {
         if(bonusConsistency == 1){
-            lottoConsistency.set(3, lottoConsistency.get(3)+1);
+            totalConsistency.set(3, totalConsistency.get(3)+1);
         }
         if(bonusConsistency == 0){
-            lottoConsistency.set(lottoCount -3, lottoConsistency.get(lottoCount -3)+1);
+            totalConsistency.set(lottoCount -3, totalConsistency.get(lottoCount -3)+1);
         }
     }
 
@@ -53,17 +54,13 @@ public class ConsistencyService {
 
     public void setRateMoney(){
         for(int i=0;i<5;i++){
-            rateMoney += moneyList.get(i)*lottoConsistency.get(i);
+            rateMoney += moneyList.get(i)*totalConsistency.get(i);
         }
     }
 
-    public void setRateOfReturn(){
-        rateOfReturn = ((long) rateMoney/capital)*100;
-    }
-
     public long getRateOfReturn(){
+        rateOfReturn = ((long) rateMoney/capital)*100;
         return rateOfReturn;
     }
-
 
 }

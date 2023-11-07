@@ -17,10 +17,8 @@ public class InputBonusNumberView extends InputView {
         System.out.println();
         try {
             validate(input);
-            int bonus = Integer.parseInt(input);
-            validateRangeNumber(bonus);
-            validateDuplicate(winningNumbers, bonus);
-            return bonus;
+            validateDuplicate(winningNumbers, input);
+            return convertBonus(input);
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE);
             return getBonusNumber(winningNumbers);
@@ -28,8 +26,10 @@ public class InputBonusNumberView extends InputView {
     }
 
     private void validate(String input) {
+        int bonus = Integer.parseInt(input);
         validateNumeric(input);
         validateBlank(input);
+        validateRangeNumber(bonus);
     }
 
     private void validateNumeric(String input) {
@@ -50,9 +50,14 @@ public class InputBonusNumberView extends InputView {
         }
     }
 
-    private void validateDuplicate(List<Integer> numbers, int number) {
+    private void validateDuplicate(List<Integer> numbers, String input) {
+        int number = convertBonus(input);
         if (numbers.contains(number)) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private int convertBonus(String input) {
+        return Integer.parseInt(input);
     }
 }

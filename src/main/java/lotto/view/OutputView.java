@@ -62,6 +62,10 @@ public class OutputView {
                         Rank.getValue()));
     }
 
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
+    }
+
     private static List<Map.Entry<LottoRanking, Integer>> filterAndSortResult(Result result) {
         return result.getLottoResult().entrySet().stream()
                 .filter(entry -> LottoRanking.NO_MATCH != entry.getKey())

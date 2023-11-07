@@ -44,7 +44,7 @@ public class GameManager {
             lottoReturnRate = new LottoReturnRate(purchaseAmount);
             outputView.printPurchasedLottoTickets(lottoTickets);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             publishLottoTickets();
         }
     }
@@ -58,7 +58,7 @@ public class GameManager {
             lottoWinningNumbers = new LottoWinningNumbers(winningNumbers);
             generateLottoBonusNumber(winningNumbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             generateLottoWinningNumbers();
         }
     }
@@ -79,7 +79,7 @@ public class GameManager {
             String inputString = inputView.readBonusNumber();
             bonusNumber = new LottoBonusNumber(parseToInt(inputString), winningNumbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            outputView.printErrorMessage(e.getMessage());
             generateLottoBonusNumber(winningNumbers);
         }
     }

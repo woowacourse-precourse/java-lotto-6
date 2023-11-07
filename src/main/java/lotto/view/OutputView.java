@@ -38,4 +38,8 @@ public class OutputView {
     public void printReturnRate(LottoReturnRate lottoReturnRate) {
         System.out.println("총 수익률은 " + String.format("%.1f", lottoReturnRate.getReturnRate()) + "%입니다.");
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

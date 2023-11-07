@@ -3,23 +3,14 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
     Message message = new Message();
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
         this.numbers = numbers;
-    }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
     }
 
     public void playLotto() {
@@ -82,11 +73,47 @@ public class Lotto {
         String numberInput = Console.readLine();
         String[] numbersInput = numberInput.split(",");
 
-        //Integer로 타입 변환 후 리스트에 저장
-        for (String number : numbersInput) {
-            int typeChange = Integer.parseInt(number.trim());
-            numbers.add(typeChange);
+        try {
+            //Integer로 타입 변환 후 리스트에 저장
+            for (String number : numbersInput) {
+                int typeChange = Integer.parseInt(number.trim());
+                numbers.add(typeChange);
+            }
+            //예외 검사
+            validateOfNumbers(numbers, numberInput);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            winnersNumber();
         }
 
+    }
+
+    private void validateOfNumbers(List<Integer> numbers, String numberInput) {
+        // 로또 번호를 6개보다 적게 또는 많이 입력 했을 경우
+        if (numbers.size() != 6) {
+            numbers.clear();
+            throw new IllegalArgumentException();
+
+        } else if (false == doubleCheck()) {
+            numbers.clear();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private boolean doubleCheck() {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+
+        for (int i = 0; i < numbers.size(); i++) {
+            //중복 찾기
+            if (numberSet.size() != numbers.size()) {
+                return false;
+            }
+            //숫자 범위 제한
+            if (numbers.get(i) < 0 || numbers.get(i) > 45) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

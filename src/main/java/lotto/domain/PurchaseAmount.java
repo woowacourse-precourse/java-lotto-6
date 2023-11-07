@@ -17,7 +17,7 @@ public class PurchaseAmount {
 
     private void validateMoneyRange(int money) {
         if(money < LIMIT_MONEY) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException("돈은 음수이면 안됩니다");
         }
     }
 

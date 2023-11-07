@@ -7,6 +7,7 @@ import static lotto.utils.LottoUtils.generateRandomNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.dto.LottoDto;
 import lotto.model.Lotto;
 import lotto.service.LottoService;
@@ -33,11 +34,12 @@ public class LottoController {
         List<Integer> lottoWinningNumbers = lottoService.createWinningNumbers(inputView.commonInput());
         outView.lottoCommonNumberView(BONUS);
         int lottoBonusNumber = lottoService.createBonusNumber(generateLottoNumbersDto, inputView.commonInput());
-        lottoService.findWinners(lottoWinningNumbers, lottoBonusNumber, generateLottoNumbersDto);
-
-        outView.winnersMsg(generateLottoNumbersDto, lottoWinningNumbers, lottoBonusNumber);
-
+        Map<Integer, Integer> lottoFindWinner = lottoService.findWinners(lottoWinningNumbers,
+                lottoBonusNumber,
+                generateLottoNumbersDto);
+        outView.winnersMsg(lottoFindWinner);
     }
+
 
     public List<LottoDto> createLottoGenerate(int divisionLottoPrice) {
         List<LottoDto> lottoDtos = new ArrayList<>();

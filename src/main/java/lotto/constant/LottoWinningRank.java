@@ -1,6 +1,8 @@
 package lotto.constant;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public enum LottoWinningRank {
     FIRST(6, false, 2000000000),
@@ -42,6 +44,13 @@ public enum LottoWinningRank {
         }
 
         return THIRD;
+    }
+
+    public static List<LottoWinningRank> getLottoWinningRanksIgnoreNoLuck() {
+        List<LottoWinningRank> winningRanks = new ArrayList<>(Arrays.asList(LottoWinningRank.values()));
+        winningRanks.remove(NO_LUCK);
+
+        return winningRanks;
     }
 
     public int getMatchingNumberCount() {

@@ -55,24 +55,24 @@ public final class OutputView {
     }
 
     private static void printEachRankResult(final EnumMap<Rank, Integer> rankResult) {
-        rankResult.forEach((rank, rankingCount) -> {
+        rankResult.forEach((rank, winningCount) -> {
             int matchingCount = rank.matchingCount();
             String reward = applyRewardFormat(rank);
             if (rank.isSecond(rank)) {
-                printSecondRankResult(matchingCount, reward, rankingCount);
+                printSecondRankResult(matchingCount, reward, winningCount);
             }
             if (!rank.isSecond(rank)) {
-                printRankResult(matchingCount, reward, rankingCount);
+                printRankResult(matchingCount, reward, winningCount);
             }
         });
     }
 
-    private static void printSecondRankResult(final int matchingCount, final String reward, final int rankingCount) {
-        System.out.printf(addLineSeparatorInSuffix(SECOND_RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
+    private static void printSecondRankResult(final int matchingCount, final String reward, final int winningCount) {
+        System.out.printf(addLineSeparatorInSuffix(SECOND_RANK_RESULT_GUIDE), matchingCount, reward, winningCount);
     }
 
-    private static void printRankResult(final int matchingCount, final String reward, final int rankingCount) {
-        System.out.printf(addLineSeparatorInSuffix(RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
+    private static void printRankResult(final int matchingCount, final String reward, final int winningCount) {
+        System.out.printf(addLineSeparatorInSuffix(RANK_RESULT_GUIDE), matchingCount, reward, winningCount);
     }
 
     private static String applyRewardFormat(final Rank rank) {

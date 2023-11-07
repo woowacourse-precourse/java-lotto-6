@@ -257,10 +257,11 @@ public class Application {
 		return 0;
 	}
 	
-	private int cntBonusNumber(ArrayList<Integer> lst) {
+	private int cntBonusNumber(ArrayList<Integer> lst){
+		if (lst.contains(winningNumbers.get(6)))
+			return 1;
 		return 0;
 	}
-	
 	private void printResult() {
 		
 	}

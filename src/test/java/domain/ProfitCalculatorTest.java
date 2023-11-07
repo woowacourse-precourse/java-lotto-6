@@ -9,17 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * packageName    : domain
- * fileName       : ProfitCalculatorTest
- * author         : qkrtn_ulqpbq2
- * date           : 2023-11-07
- * description    :
- * ===========================================================
- * DATE              AUTHOR             NOTE
- * -----------------------------------------------------------
- * 2023-11-07        qkrtn_ulqpbq2       최초 생성
- */
+
 public class ProfitCalculatorTest {
 
     @DisplayName("주어진 로또목록과 당첨번호를 토대로 당첨내역이 올바르게 반환하는지 검증합니다.")

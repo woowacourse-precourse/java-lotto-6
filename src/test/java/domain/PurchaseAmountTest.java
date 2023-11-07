@@ -7,17 +7,7 @@ import util.ExceptionMessage;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-/**
- * packageName    : domain
- * fileName       : PurchaseAmountTest
- * author         : qkrtn_ulqpbq2
- * date           : 2023-11-06
- * description    :
- * ===========================================================
- * DATE              AUTHOR             NOTE
- * -----------------------------------------------------------
- * 2023-11-06        qkrtn_ulqpbq2       최초 생성
- */
+
 public class PurchaseAmountTest {
 
     @DisplayName("로또 구매 금액을 올바르게 입력했는지 검증합니다. - 정상으로 금액을 입력한 경우를 검증합니다.")

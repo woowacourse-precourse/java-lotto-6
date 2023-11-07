@@ -4,17 +4,7 @@ import util.ExceptionMessage;
 
 import static util.ExceptionMessage.PURCHASE_AMOUNT_IS_NOT_NUMBER;
 
-/**
- * packageName    : domain
- * fileName       : PurchaseAmount
- * author         : qkrtn_ulqpbq2
- * date           : 2023-11-06
- * description    :
- * ===========================================================
- * DATE              AUTHOR             NOTE
- * -----------------------------------------------------------
- * 2023-11-06        qkrtn_ulqpbq2       최초 생성
- */
+
 public class PurchaseAmount {
 
     private static final int ZERO = 0;

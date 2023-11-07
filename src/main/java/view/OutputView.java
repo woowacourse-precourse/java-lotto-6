@@ -4,17 +4,6 @@ import domain.Lotto;
 
 import java.util.List;
 
-/**
- * packageName    : view
- * fileName       : OutputView
- * author         : qkrtn_ulqpbq2
- * date           : 2023-11-06
- * description    :
- * ===========================================================
- * DATE              AUTHOR             NOTE
- * -----------------------------------------------------------
- * 2023-11-06        qkrtn_ulqpbq2       최초 생성
- */
 public class OutputView {
     private static String OUTPUT_PURCHASE_AMOUNT_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";

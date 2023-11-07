@@ -1,16 +1,5 @@
 package util;
 
-/**
- * packageName    : util
- * fileName       : ExceptionMessage
- * author         : qkrtn_ulqpbq2
- * date           : 2023-11-06
- * description    :
- * ===========================================================
- * DATE              AUTHOR             NOTE
- * -----------------------------------------------------------
- * 2023-11-06        qkrtn_ulqpbq2       최초 생성
- */
 public enum ExceptionMessage {
     PURCHASE_AMOUNT_IS_NOT_NUMBER("금액을 입력해 주셔야 합니다."),
     PURCHASE_AMOUNT_IS_NOT_EXCEED_ZERO("0보다 큰 금액을 투입해 주셔야 합니다."),

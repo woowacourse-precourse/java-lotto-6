@@ -2,17 +2,7 @@ package domain;
 
 import util.ExceptionMessage;
 
-/**
- * packageName    : domain
- * fileName       : BonusNumber
- * author         : qkrtn_ulqpbq2
- * date           : 2023-11-06
- * description    :
- * ===========================================================
- * DATE              AUTHOR             NOTE
- * -----------------------------------------------------------
- * 2023-11-06        qkrtn_ulqpbq2       최초 생성
- */
+
 public class BonusNumber {
 
     private static final int LOTTO_GAME_START_NUMBER = 1;

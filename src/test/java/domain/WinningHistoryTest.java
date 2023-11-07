@@ -6,17 +6,6 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-/**
- * packageName    : domain
- * fileName       : WinningHistoryTest
- * author         : qkrtn_ulqpbq2
- * date           : 2023-11-07
- * description    :
- * ===========================================================
- * DATE              AUTHOR             NOTE
- * -----------------------------------------------------------
- * 2023-11-07        qkrtn_ulqpbq2       최초 생성
- */
 public class WinningHistoryTest {
 
     @DisplayName("당첨 번호 개수와 보너스 당첨 여부에 따른 등수를 검증합니다. 6개가 일치하였다면, 1등입니다.")

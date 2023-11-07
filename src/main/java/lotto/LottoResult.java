@@ -29,7 +29,7 @@ public class LottoResult {
         return total;
     }
 
-    public void result(Lottos lottos, WinningLotto winningLotto) {
+    public void result(final Lottos lottos, final WinningLotto winningLotto) {
         List<Rank> matched = lottos.matched(winningLotto);
         matched.forEach(this::putRank);
     }

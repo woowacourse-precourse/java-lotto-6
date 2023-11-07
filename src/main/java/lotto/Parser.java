@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface Parser {
 
-    List<String> split(String numbers);
+    List<String> split(final String numbers);
 }

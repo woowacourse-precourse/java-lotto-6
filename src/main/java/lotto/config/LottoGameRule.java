@@ -8,7 +8,7 @@ public enum LottoGameRule {
     PURCHASE_AMOUNT_UNIT(1000),
     ;
 
-    private int value;
+    private final int value;
 
     LottoGameRule(int value) {
         this.value = value;

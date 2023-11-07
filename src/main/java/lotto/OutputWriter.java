@@ -2,7 +2,7 @@ package lotto;
 
 public interface OutputWriter {
 
-    void writeLine(String message);
+    void writeLine(final String message);
 
-    void writeLineWithoutNewLine(String rankMessage);
+    void writeLineWithoutNewLine(final String rankMessage);
 }

@@ -8,7 +8,7 @@ public class LottoGameController {
 
     private final AppConfig appConfig;
 
-    public LottoGameController(AppConfig appConfig) {
+    public LottoGameController(final AppConfig appConfig) {
         this.appConfig = appConfig;
     }
 

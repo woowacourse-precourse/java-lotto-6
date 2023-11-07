@@ -7,7 +7,7 @@ import lotto.exception.LessThanLottoPriceException;
 public class Money {
     private final int num;
 
-    public Money(int num) {
+    public Money(final int num) {
         if (num < LottoGameRule.LOTTO_PRICE.value()) {
             throw new LessThanLottoPriceException();
         }

@@ -2,11 +2,11 @@ package lotto;
 
 public class ConsoleWriter implements OutputWriter {
     @Override
-    public void writeLine(String message) {
+    public void writeLine(final String message) {
         System.out.println(message);
     }
 
-    public void writeLineWithoutNewLine(String message) {
+    public void writeLineWithoutNewLine(final String message) {
         System.out.print(message);
     }
 }

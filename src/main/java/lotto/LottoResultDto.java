@@ -6,11 +6,11 @@ import java.util.Map;
 public class LottoResultDto {
     private final Map<Rank, Integer> result;
 
-    public LottoResultDto(Map<Rank, Integer> result) {
+    public LottoResultDto(final Map<Rank, Integer> result) {
         this.result = result;
     }
 
-    public static LottoResultDto from(LottoResult lottoResult) {
+    public static LottoResultDto from(final LottoResult lottoResult) {
         return new LottoResultDto(lottoResult.getResult());
     }
 

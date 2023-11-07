@@ -17,17 +17,17 @@ public class OutputView {
         this.outputWriter = outputWriter;
     }
 
-    public void printPurchasedLottos(LottoDto lottoDto) {
+    public void printPurchasedLottos(final LottoDto lottoDto) {
         List<Integer> numbers = lottoDto.numbers();
         Collections.sort(numbers);
         outputWriter.writeLine(String.join(DELIMITER, numbers.toString()));
     }
 
-    public void printPurchasedLottoSize(int purchased) {
+    public void printPurchasedLottoSize(final int purchased) {
         outputWriter.writeLine(purchased + LottoGameMessage.OUTPUT_PURCHASED_LOTTO_SIZE.message());
     }
 
-    public void printWinningResults(LottoResultDto resultDto) {
+    public void printWinningResults(final LottoResultDto resultDto) {
         outputWriter.writeLine(LottoGameMessage.OUTPUT_WINNING_RESULTS.message());
         outputWriter.writeLine(LottoGameMessage.OUTPUT_WINNING_RESULTS_LINES.message());
 

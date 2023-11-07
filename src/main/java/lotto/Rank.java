@@ -19,7 +19,7 @@ public enum Rank {
         this.winningMoney = winningMoney;
     }
 
-    public static Rank Of(int matched, boolean matchedBonus) {
+    public static Rank Of(final int matched, final boolean matchedBonus) {
         if (matched == SECOND.matched) {
             if (matchedBonus) {
                 return SECOND;

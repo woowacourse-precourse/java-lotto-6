@@ -3,7 +3,7 @@ package lotto;
 public class LottoPurchaser {
     private final Money money;
 
-    public LottoPurchaser(Money money) {
+    public LottoPurchaser(final Money money) {
         this.money = money;
     }
 

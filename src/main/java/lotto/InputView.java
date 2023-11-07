@@ -2,8 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.config.AppConfig;
 import lotto.config.LottoGameMessage;
-import lotto.exception.DuplicateNumberException;
 import lotto.exception.NonNumericAmountException;
 import lotto.utils.Validator;
 
@@ -33,7 +33,7 @@ public class InputView {
         return inputWinningNumbers();
     }
 
-    public LottoNumber getBonusNumber(Lotto lotto) {
+    public LottoNumber getBonusNumber(final Lotto lotto) {
         System.out.println(LottoGameMessage.INPUT_BONUS_NUMBER.message());
         try {
             String bonusNumber = receiver.readLine();
@@ -61,7 +61,7 @@ public class InputView {
         }
     }
 
-    private List<Integer> convertToInts(List<String> parsedString) {
+    private List<Integer> convertToInts(final List<String> parsedString) {
         List<Integer> numbers = new ArrayList<>();
         for (String number : parsedString) {
             numbers.add(convertToInt(number));
@@ -69,12 +69,13 @@ public class InputView {
         return numbers;
     }
 
-    private static List<String> getParsedString(String winningNumbers) {
-        Parser parser = new CommaParser();
+    private List<String> getParsedString(final String winningNumbers) {
+        AppConfig appConfig = new AppConfig();
+        Parser parser = appConfig.parser();
         return parser.split(winningNumbers);
     }
 
-    private static void validate(List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         Validator.validateDuplicate(numbers);
         Validator.validateInRange(numbers);
         Validator.validateSize(numbers);
@@ -90,12 +91,13 @@ public class InputView {
         }
     }
 
-    private int convertToInt(String money) {
+    private int convertToInt(final String money) {
         try {
             return Integer.parseInt(money);
         } catch (NumberFormatException e) {
             throw new NonNumericAmountException();
         }
     }
+
 }
 

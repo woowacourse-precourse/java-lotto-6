@@ -3,10 +3,10 @@ package lotto.controller.lotto;
 import lotto.controller.InputController;
 import lotto.controller.validation.LottoPurchaseMoneyValidator;
 import lotto.domain.LottoPurchaseMoney;
-import lotto.view.MessageOutputController;
+import lotto.view.MessageOutputView;
 
 public class LottoPurchaseMoneyScanController {
-	MessageOutputController messageOutputController = new MessageOutputController();
+	MessageOutputView messageOutputController = new MessageOutputView();
 	InputController inputController = new InputController();
 	LottoPurchaseMoneyValidator lottoPurchaseMoneyValidator = new LottoPurchaseMoneyValidator();
 	public void scanLottoPurchaseMoney(LottoPurchaseMoney lottoPurchaseMoney) {

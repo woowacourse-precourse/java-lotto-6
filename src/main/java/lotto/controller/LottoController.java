@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.LottoTickets;
 import lotto.domain.TicketAmount;
 import lotto.domain.WinningNumber;
@@ -9,6 +10,7 @@ public class LottoController {
     private TicketAmount ticketAmount;
     private int ticketCount;
     private WinningNumber winningNumber;
+    private BonusNumber bonusNumber;
 
     public void run() {
         setTicketAmountAndCount();
@@ -35,5 +37,6 @@ public class LottoController {
 
     private void setBonusNumber() {
         OutputView.printBonusNumberInputMessage();
+        bonusNumber = InputController.setBonusNumber(winningNumber);
     }
 }

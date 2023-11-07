@@ -22,6 +22,7 @@ class WinningDetailTest {
     private static final List<Lotto> LOTTOS = new ArrayList<>();
     private static final int TWO = 2;
     private static final int ONE = 1;
+    private static final long TOTAL_PROFIT = 4_033_060_000L;
 
     @BeforeAll
     static void init() {
@@ -44,5 +45,13 @@ class WinningDetailTest {
         assertThat(winningCount.get(Ranking.FOURTH_RANKING)).isEqualTo(ONE);
         assertThat(winningCount.get(Ranking.FIFTH_RANKING)).isEqualTo(TWO);
         assertThat(winningCount.get(Ranking.NO_RANK)).isEqualTo(ONE);
+    }
+
+    @DisplayName("당첨된 로또 개수에 따른 총 수익을 구한다")
+    @Test
+    void totalProfitTest() {
+        WinningDetail winningDetail = new WinningDetail(LOTTOS, WINNING_NUMBER);
+        long totalProfit = winningDetail.totalProfit();
+        assertThat(totalProfit).isEqualTo(TOTAL_PROFIT);
     }
 }

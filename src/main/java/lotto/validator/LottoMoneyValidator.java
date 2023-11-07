@@ -22,6 +22,9 @@ public class LottoMoneyValidator {
     }
 
     private static void isOverThousands(String lottoMoneyInput) {
+        if (Integer.parseInt(lottoMoneyInput) < 1000) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_ENOUGH_MONEY.getMessage());
+        }
     }
 
     private static void isTooBig(String lottoMoneyInput) {

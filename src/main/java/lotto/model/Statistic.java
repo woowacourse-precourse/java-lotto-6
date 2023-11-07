@@ -34,9 +34,12 @@ public class Statistic {
     }
 
     private static LottoRank determineRank(Integer matchedCount, Boolean includeBonus) {
+        if (matchedCount == 5 && includeBonus) {
+            return LottoRank.SECOND_RANK;
+        }
+
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.getMatchedCount() == matchedCount &&
-                        rank.isIncludeBonus() == includeBonus)
+                .filter(rank -> rank.getMatchedCount() == matchedCount && rank.isIncludeBonus() == false)
                 .findFirst()
                 .orElse(LottoRank.NON_RANK);
     }

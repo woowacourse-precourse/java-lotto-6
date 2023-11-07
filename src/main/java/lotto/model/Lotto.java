@@ -37,8 +37,7 @@ public class Lotto {
     private void duplicate(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.size() != numbers.stream().distinct().count()) {
-                System.out.println("[ERROR] 중복된 숫자가 있습니다.");
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
             }
         }
     }
@@ -46,8 +45,7 @@ public class Lotto {
     private void outOfRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number > 45 || number < 1) {
-                System.out.println("[ERROR] 1부터 45사이의 숫자가 아닙니다.");
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("[ERROR] 1부터 45사이의 숫자가 아닙니다.");
             }
         }
     }

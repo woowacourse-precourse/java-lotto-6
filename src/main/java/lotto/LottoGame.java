@@ -11,6 +11,7 @@ public class LottoGame {
         int purchaseAmount = getValidPurchaseAmount();
         System.out.println();
         List<Lotto> lottos = generateLottos(purchaseAmount);
+        showLottos(lottos);
     }
 
     private static int getValidPurchaseAmount() {
@@ -50,6 +51,10 @@ public class LottoGame {
             lottos.add(new Lotto(numbers));
         }
         return lottos;
+    }
+    private static void showLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        lottos.forEach(lotto -> System.out.println(lotto));
     }
 
 }

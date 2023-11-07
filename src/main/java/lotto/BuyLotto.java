@@ -12,8 +12,8 @@ public class BuyLotto {
         lottoNumbers = new ArrayList<>();
     }
 
-    public LottoNumbers lotto(int purchaseCount) {
-        for (int i = 0; i < purchaseCount; i++) {
+    public LottoNumbers lotto(Money money) {
+        for (int i = 0; i < money.availableCount(); i++) {
             List<Integer> lottoNumber =  GenerateLottoNumber.generate();
             lottoNumbers.add(lottoNumber);
         }

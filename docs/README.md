@@ -117,8 +117,8 @@
        - [x] 상금 배열 인덱스 증가
      - decideRevenuePercentage()
        - getInvestRevenue()
-         - [ ] 순투자 수익 계산
-       - [ ] 수익률 계산하여 반환
+         - [x] 순투자 수익 계산
+       - [x] 수익률 계산하여 반환
 3. RandomUtility
 
 - generateRandomLottoNumbers()

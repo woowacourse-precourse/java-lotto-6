@@ -12,6 +12,7 @@ public class LottoController {
     private static final int MINIMUM_LOTTO_NUMBER = 2;
     private static final int START_WINNER_NUMBER = 3;
     private static final int END_WINNER_NUMBER = 6;
+    private static final int[] REWARD = { 5000, 50000, 1500000, 30000000, 2000000000 };
 
     LuckeyLotto luckeyLotto;
     LottoMoney lottoMoney;
@@ -29,6 +30,8 @@ public class LottoController {
         outputView.printLottoResultMessage();
         decideLottoWinner(lottonumbers);
         infoLottoWinner();
+        double revenuePercentage = decideRevenuePercentage();
+        System.out.println(revenuePercentage);
     }
 
     private void decideLottoWinner(List<List<Integer>> lottoNumbers) {
@@ -86,5 +89,19 @@ public class LottoController {
 
     private boolean cheackBonusLottoTime(int matchNumber, boolean bonusState) {
         return matchNumber == LOTTO_BONUS_NUMBER_INDEX && bonusState == false;
+    }
+
+    private double decideRevenuePercentage() {
+        double investRevenue = getInvestRevenue();
+        double revenuePercentage = investRevenue / lottoMoney.getLottoMoney() * 100;
+        return revenuePercentage;
+    }
+
+    private double getInvestRevenue() {
+        double InvestRevenue = 0.0;
+        for (int i = 0; i < lottoWinners.length; i++) {
+            InvestRevenue += lottoWinners[i] * REWARD[i];
+        }
+        return InvestRevenue;
     }
 }

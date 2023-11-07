@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 import lotto.LottoMoney;
 
 public class OutputView {
@@ -8,5 +10,9 @@ public class OutputView {
 
     public void printLottoTicketMessage(LottoMoney lottoMoney) {
         System.out.println(LINEBREAK + lottoMoney.getLottoTicket() + LOTTO_TICKET_MESSAGE);
+    }
+
+    public void printLottoNumber(List<Integer> numbers) {
+        System.out.println(numbers);
     }
 }

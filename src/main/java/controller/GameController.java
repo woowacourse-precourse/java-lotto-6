@@ -36,6 +36,7 @@ public class GameController {
     private void saveRandomLottoNumbers(LottoMoney lottoMoney) {
         for (int i = 0; i < lottoMoney.getLottoTicket(); i++) {
             List<Integer> numbers = randomUtility.generateRandomLottoNumbers();
+            outputView.printLottoNumber(numbers);
         }
     }
 

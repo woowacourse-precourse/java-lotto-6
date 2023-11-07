@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 import lotto.domain.DrawingResults;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
-import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
 import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.WinningLottoDto;
@@ -21,13 +21,13 @@ public class LottoMachine {
     }
 
 
-    public DrawingResultDto draw(final LottosDto lottosDto, final WinningLottoDto winningLottoDto,
+    public DrawingResultDto draw(final Lottos lottos, final WinningLottoDto winningLottoDto,
                                  final BonusNumberDto bonusNumberDto) {
-        List<LottoDto> lottos = lottosDto.lottos();
+        List<Lotto> lottosContents = lottos.getLottos();
 
         DrawingResults drawingResults = new DrawingResults();
 
-        for (LottoDto lotto : lottos) {
+        for (Lotto lotto : lottosContents) {
             int matchedWinningLottoCount = lotto.matchWinningLottoCount(winningLottoDto);
             boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumberDto);
 

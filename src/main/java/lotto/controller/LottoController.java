@@ -61,12 +61,12 @@ public class LottoController {
         return new LottosDto(lottoStore);
     }
 
-    private DrawingResultDto drawLotto(final LottosDto lottosDto) {
+    private DrawingResultDto drawLotto(final Lottos lottos) {
         WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
         BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
         BonusNumberValidator.validateBonusNumberDuplicate(winningLottoDto, bonusNumberDto);
 
-        DrawingResultDto drawingResultDto = lottoMachine.draw(lottosDto, winningLottoDto, bonusNumberDto);
+        DrawingResultDto drawingResultDto = lottoMachine.draw(lottos, winningLottoDto, bonusNumberDto);
         outputView.printDrawingResult(drawingResultDto);
 
         return drawingResultDto;

@@ -22,7 +22,7 @@ public class WinningNumber {
     }
 
     public Integer compare(List<Integer> lottoNumbers) {
-        Set<Integer> uniqueNumbers = winningNumbers;
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
         uniqueNumbers.addAll(lottoNumbers);
         return 12 - uniqueNumbers.size();
     }

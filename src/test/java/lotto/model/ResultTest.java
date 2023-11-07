@@ -32,10 +32,10 @@ public class ResultTest {
         LottoDto lottoDto = LottoDto.create(lotto);
 
         //when
-        Integer lottoResult = Result.calculate(lottoDto, winningNumber, bonusNumber);
+        Result lottoResult = Result.calculate(lottoDto, winningNumber, bonusNumber);
 
         //then
-        assertThat(lottoResult).isEqualTo(prize);
+        assertThat(lottoResult.getPrize()).isEqualTo(prize);
     }
 
     static Stream<Arguments> lottoAndPrizeProvider() {

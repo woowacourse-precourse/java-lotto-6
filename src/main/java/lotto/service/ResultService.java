@@ -23,17 +23,20 @@ public class ResultService {
     private Double returnRate = 0.0;
 
     public ResultService() {
-        totalResult = Arrays.asList(new Integer[]{0, 0, 0, 0, 0});
-        prizeAmount = Arrays.asList(new Integer[]{FIFTH_PRIZE_AMOUNT, SECOND_PRIZE_AMOUNT,
-                THIRD_PRIZE_AMOUNT, FOURTH_PRIZE_AMOUNT, FIFTH_PRIZE_AMOUNT});
+        totalResult = Arrays.asList(0, 0, 0, 0, 0);
+        prizeAmount = Arrays.asList(FIRST_PRIZE_AMOUNT, SECOND_PRIZE_AMOUNT,
+                THIRD_PRIZE_AMOUNT, FOURTH_PRIZE_AMOUNT, FIFTH_PRIZE_AMOUNT);
     }
 
     public void calculateWinningStatistics(LottosDto purchasedLottos, WinningNumber winningNumber,
                                            BonusNumber bonusNumber) {
         for (LottoDto lottoDto : purchasedLottos.getLottoDtos()) {
-            Integer result = Result.calculate(lottoDto, winningNumber, bonusNumber);
-            Integer currentValue = totalResult.get(result - 1);
-            totalResult.set(result - 1, currentValue + 1);
+            Result result = Result.calculate(lottoDto, winningNumber, bonusNumber);
+            int resultIndex = result.getPrize() - 1;
+            if (resultIndex >= 0) {
+                Integer currentValue = totalResult.get(resultIndex);
+                totalResult.set(resultIndex, currentValue + 1);
+            }
         }
     }
 

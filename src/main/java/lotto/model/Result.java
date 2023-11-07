@@ -13,8 +13,8 @@ public class Result {
         }
     }
 
-    public static Integer calculate(LottoDto lotto, WinningNumber winningNumber, BonusNumber bonusNumber) {
-        return new Result(lotto.getLottoNumbers(), winningNumber, bonusNumber).getPrize();
+    public static Result calculate(LottoDto lotto, WinningNumber winningNumber, BonusNumber bonusNumber) {
+        return new Result(lotto.getLottoNumbers(), winningNumber, bonusNumber);
     }
 
     private Integer calculate_prize(Integer winningMatchedCount, List<Integer> lottoNumbers, BonusNumber bonusNumber) {

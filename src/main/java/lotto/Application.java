@@ -7,8 +7,21 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
 	public static void main(String[] args) {
-		List<Integer> lottoNum = getLotto();
 		int countLotto = countLotto(inputMoney());
+		// 금액과 발행 가능한 로또 개수 확인
+		List<Lotto> lottoList = makeLotto(countLotto);
+		// 구매 가능한 수만큼 로또 발행
+		printLottoList(lottoList);
+		// 발행한 로또 목록 출력
+		
+		System.out.println();
+		Lotto lotto = inputUserLotto(); // 당첨 번호 생성
+		
+		System.out.println();
+		int bonus = bonusInput(); // 보너스 번호
+		
+		System.out.println();
+		printResult(lottoList); // 통계 결과 출력
 	}
 
 	public static int inputMoney() {
@@ -80,7 +93,7 @@ public class Application {
 		return Integer.parseInt(Console.readLine());
 	}
 
-	public static void printResult(List<Integer> lottoNum) {
+	public static void printResult(List<Lotto> lottoList) {
 		System.out.println("당첨 통계");
 		System.out.println("---");
 		System.out.println();

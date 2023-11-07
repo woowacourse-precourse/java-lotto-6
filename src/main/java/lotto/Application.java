@@ -21,6 +21,25 @@ public class Application {
         winning_numbers = inputWinningNumbers();
         bonus_number = inputBonusNumber(winning_numbers);
         winning_lottos = rankingJudgement(lottos, winning_numbers, bonus_number);
+        printResult(winning_lottos, lotto_purchase_amount);
+    }
+
+    static void printResult(Map<LottoRank, Integer> winning_lottos, int lotto_purchase_amount){
+        int prize = 0;
+        System.out.println("\n당첨 통계\n---");
+        for (LottoRank lotto_rank : LottoRank.values()) {
+            if (lotto_rank == LottoRank.OUT){
+                continue;
+            }
+            System.out.println(lotto_rank.getComment() + winning_lottos.get(lotto_rank) +"개");
+            prize += winning_lottos.get(lotto_rank) * lotto_rank.getPrize();
+        }
+        System.out.println("총 수익률은 "+ String.format("%.1f", checkYield(prize, lotto_purchase_amount)) +"%입니다.");
+    }
+
+    static double checkYield(int prize, int lotto_purchase){
+        double tmp = (double) prize / lotto_purchase / 10;
+        return Math.round((tmp*10)/10.0);
     }
 
     static Map<LottoRank, Integer> rankingJudgement(List<Lotto> lottos, Lotto winning_numbers, int bonus_number){
@@ -65,7 +84,7 @@ public class Application {
         Lotto winning_numbers;
         while(true){
             try {
-                String input_winning_numbers = inputMethod("당첨 번호를 입력해 주세요");
+                String input_winning_numbers = inputMethod("당첨 번호를 입력해 주세요.");
                 winning_numbers = new Lotto(stringToIntArray(input_winning_numbers));
                 break;
             } catch (IllegalArgumentException e) {

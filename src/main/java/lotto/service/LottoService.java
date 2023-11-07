@@ -16,11 +16,15 @@ public class LottoService {
 
         LottoComparator lottoComparator = new LottoComparator(winningLotto.getWinning(), winningLotto.getBonus());
 
+        compareLottos(lottos, lottoComparator);
+        ResultOutputManager resultOutputManager = new ResultOutputManager(rate);
+        resultOutputManager.print();
+    }
+
+    private void compareLottos(List<Lotto> lottos, LottoComparator lottoComparator) {
         for (int i = 0; i < lottos.size(); i++) {
             rate.add(lottoComparator.compareLotto(lottos.get(i)));
         }
-        ResultOutputManager resultOutputManager = new ResultOutputManager(rate);
-        resultOutputManager.print();
     }
 
 }

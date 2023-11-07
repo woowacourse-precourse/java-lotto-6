@@ -14,6 +14,7 @@ public class AmountToBuyLotto {
         isBlank(input);
         input = input.trim();
 
+        isZero(input);
         this.amount = Integer.parseInt(input);
 
     }
@@ -30,6 +31,11 @@ public class AmountToBuyLotto {
         return amount / lottoPrice;
     }
 
+    private void isZero(String input) {
+        if (Integer.parseInt(input) == ZERO) {
+            throw new IllegalArgumentException(ERROR_NO_INPUT_ZERO);
+        }
+    }
 
     private void isBlank(String input) {
         if (input != null && !input.isBlank()) {

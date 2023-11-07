@@ -8,7 +8,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int lotto_num = input();
-        Lotto_Wallet Lottos = new Lotto_Wallet(); // 로또 지갑 객체 생성
+        Lotto_Wallet Wallet = new Lotto_Wallet(); // 로또 지갑 객체 생성
     }
     private static int input(){                // input 통합 부분, 재귀함수 처리
         String input = input_money();
@@ -42,7 +42,12 @@ public class Application {
         return money / 1000;
     }
 
-
+    private static void makeManyLottos(Lotto_Wallet Wallet, int n){
+        for (int i=0 ; i < n; i++) {
+            Lotto temp = makeOneLotto();
+            Wallet.setLottos(temp);
+        }
+    }
     private static Lotto makeOneLotto(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);

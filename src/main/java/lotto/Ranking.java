@@ -1,23 +1,23 @@
 package lotto;
 
 public enum Ranking {
-    FRIST(6, 2000000000),
-    SECOND(15, 30000000),
-    THIRD(5, 1500000),
-    FOURTH(4, 50000),
-    FIFTH(3, 5000);
+    FIRST(0, 2000000000),
+    SECOND(1, 30000000),
+    THIRD(2, 1500000),
+    FOURTH(3, 50000),
+    FIFTH(4, 5000);
 
-    private final int matchCount;
+    private final int matchCountIdx;
     private final int prizeMoney;
 
-    Ranking(final int matchCount, final int prizeMoney) {
-        this.matchCount = matchCount;
+    Ranking(final int matchCountIdx, final int prizeMoney) {
+        this.matchCountIdx = matchCountIdx;
         this.prizeMoney = prizeMoney;
     }
 
-    public static int getPrizeMoney(final int userMatchCount) {
+    public static int getPrizeMoney(final int userMatchCountIdx) {
         for (Ranking ranking : Ranking.values()) {
-            if (ranking.matchCount == userMatchCount) {
+            if (ranking.matchCountIdx == userMatchCountIdx) {
                 return ranking.prizeMoney;
             }
         }

@@ -38,19 +38,31 @@ public class Application {
 
         List<Lotto> lotties = createLotties(purchaseAmount);
         List<Integer> lottoMatchCounts = getLottoMatchCounts(lotties, userLottoNumbers, bonusNumber);
-        printLottoWinResult(lottoMatchCounts);
-//        for (Lotto lotto : lotties) {
-//            lotto.printLottoNumbers();
-//            int matchCount = lotto.compareWithUserNumbers(userLottoNumbers, bonusNumber);
-//            System.out.println("matchCount" + matchCount);
-//            int prizeMoney = Ranking.getPrizeMoney(matchCount);
-//            System.out.println("prizeMoney" + prizeMoney);
-//        }
+        List<Integer> numOfRankings = getNumOfRankings(lottoMatchCounts);
+        printLottoWinResult(numOfRankings);
+        printYieldRate(purchaseAmount, numOfRankings);
     }
 
-    public static void printLottoWinResult(final List<Integer> lottoMatchCounts) {
-        List<Integer> numOfRankings = getNumOfRankings(lottoMatchCounts);
+    public static void printYieldRate(final int purchaseAmount, final List<Integer> lottoMatchCounts) {
+        int totalPrize = getTotalPrize(lottoMatchCounts);
 
+        float yieldRate = ((float) totalPrize / purchaseAmount) * 100;
+
+        System.out.println(String.format("총 수익률은 %.1f입니다.", yieldRate));
+    }
+
+    public static int getTotalPrize(final List<Integer> lottoMatchCounts) {
+        int totalPrize = 0;
+        for (int i = 0; i < lottoMatchCounts.size(); i++) {
+            System.out.println("lottoMatchCounts " + lottoMatchCounts.get(i));
+            totalPrize += Ranking.getPrizeMoney(i) * lottoMatchCounts.get(i);
+        }
+        System.out.println("totalPrize " + totalPrize);
+
+        return totalPrize;
+    }
+
+    public static void printLottoWinResult(final List<Integer> numOfRankings) {
         System.out.println(String.format("3개 일치 (5,000원) - %d개", numOfRankings.get(4)));
         System.out.println(String.format("4개 일치 (50,000원) - %d개", numOfRankings.get(3)));
         System.out.println(String.format("5개 일치 (1,500,000원) - %d개", numOfRankings.get(2)));
@@ -149,7 +161,7 @@ public class Application {
     public static boolean validateInputPurchaseAmount(final String inputPurchaseAmount) {
         if (!validateInputPurchaseAmountIsNumber(inputPurchaseAmount)
                 || !validateDivideToThousand(inputPurchaseAmount)) {
-            throwIllegalArgumentException();
+            wrongPurchaseAmountInputThrowIllegalArgumentException();
             return false;
         }
 
@@ -185,7 +197,7 @@ public class Application {
                 || !validateEachLottoIsNumber(inputLottoNumbers)
                 || !validateEachLottoIsInBound(inputLottoNumbers)
                 || !validateDuplicateLottoNumbers(inputLottoNumbers)) {
-            throwIllegalArgumentException();
+            wrongInputUserNumbersThrowIllegalArgumentException();
             return false;
         }
 
@@ -258,7 +270,7 @@ public class Application {
         if (!validateInputBonusNumberIsNumber(inputBonusNumber)
                 || !validateInputBonusNumberIsInBound(inputBonusNumber)
                 || !validateInputBonusNumberDuplicateWithLottoNumbers(lottoNumbers, inputBonusNumber)) {
-            throwIllegalArgumentException();
+            wrongInputBonusNumberThrowIllegalArgumentException();
             return false;
         }
 
@@ -292,12 +304,30 @@ public class Application {
         return true;
     }
 
-    public static void throwIllegalArgumentException() {
+    public static void wrongPurchaseAmountInputThrowIllegalArgumentException() {
         try {
             throw new IllegalArgumentException();
         }
         catch (IllegalArgumentException exception) {
-            System.out.println("[ERROR] 잘못된 입력 값을 입력하셨습니다. 다시 입력해 주세요!");
+            System.out.println("[ERROR] 로또는 1000원 단위로 구매할 수 있습니다.");
+        }
+    }
+
+    public static void wrongInputUserNumbersThrowIllegalArgumentException() {
+        try {
+            throw new IllegalArgumentException();
+        }
+        catch (IllegalArgumentException exception) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
+
+    public static void wrongInputBonusNumberThrowIllegalArgumentException() {
+        try {
+            throw new IllegalArgumentException();
+        }
+        catch (IllegalArgumentException exception) {
+            System.out.println("[ERROR] 보너스 번호는 로또 번호와 겹치지 않는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 }

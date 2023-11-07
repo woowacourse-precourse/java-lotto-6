@@ -1,6 +1,10 @@
 package lotto.view;
 
+import lotto.model.Rank;
+
 import java.util.List;
+
+import static lotto.model.Rank.*;
 
 public class OutputView {
 
@@ -35,25 +39,11 @@ public class OutputView {
 
         StringBuilder result = new StringBuilder();
 
-        result.append("3개 일치 (5,000원) - ");
-        result.append(rates.get(4));
-        result.append("개\n");
-
-        result.append("4개 일치 (50,000원) - ");
-        result.append(rates.get(3));
-        result.append("개\n");
-
-        result.append("5개 일치 (1,500,000원) - ");
-        result.append(rates.get(2));
-        result.append("개\n");
-
-        result.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ");
-        result.append(rates.get(1));
-        result.append("개\n");
-
-        result.append("6개 일치 (2,000,000,000원) - ");
-        result.append(rates.get(0));
-        result.append("개");
+        result.append(getResultMessage(FIFTH) + rates.get(4) + "개\n");
+        result.append(getResultMessage(FOURTH) + rates.get(3) + "개\n");
+        result.append(getResultMessage(THIRD) + rates.get(2) + "개\n");
+        result.append(getResultMessage(SECOND) + rates.get(1) + "개\n");
+        result.append(getResultMessage(FIRST) + rates.get(0) + "개");
 
         System.out.println(result);
     }

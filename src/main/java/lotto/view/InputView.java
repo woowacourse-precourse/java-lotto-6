@@ -34,4 +34,5 @@ public class InputView {
 
         return bonusNumber;
     }
+
 }

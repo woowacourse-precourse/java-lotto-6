@@ -16,8 +16,19 @@ public class Lotto {
                 .distinct()
                 .count() != numbers.size();
 
-        if (numbers.size() != 6 || isDuplicate) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
+        boolean outOfRange = numbers.stream()
+                .anyMatch(num -> num < 0 || 45 < num);
+
+        if (numbers.size() != 6 ) {
+            throw new IllegalArgumentException("로또 번호는 6개 이어야 합니다.\n");
+        }
+
+        if(isDuplicate) {
+            throw new IllegalArgumentException("로또 번호는 중복 되어서는 안됩니다.\n");
+        }
+
+        if(outOfRange) {
+            throw new IllegalArgumentException("로또 1부터 45까지 입니다.\n");
         }
     }
 

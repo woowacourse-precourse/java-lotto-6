@@ -1,7 +1,7 @@
 package lotto.service;
 
 public class Utils {
-    public static Float convertInput(String Input){
-        return Float.valueOf(Input);
+    public static Double convertInput(String Input){
+        return Double.valueOf(Input);
     }
 }

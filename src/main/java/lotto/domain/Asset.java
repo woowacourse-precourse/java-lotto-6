@@ -1,35 +1,52 @@
 package lotto.domain;
 
 public class Asset {
-    private final Float money;
-    private Float income;
+    private final Double money;
+    private Double income;
 
-    public Asset(Float money) {
+    public Asset(Double money) {
         validate(money);
         this.money = money;
-        this.income = 0F;
+        this.income = 0D;
     }
 
-    private void validate(Float money) {
+    private void validate(Double money) {
         if(money % 1000 != 0){
+            System.out.println("1000");
             throw new IllegalArgumentException("wrong money input");
         }
 
-        if(money != (long) money.floatValue()){
-            throw new IllegalArgumentException("wrong money input");
+        if(money > Double.MAX_VALUE){
+            System.out.println("over");
+            throw new IllegalArgumentException("wrong money input or money overflow");
         }
     }
 
     public void increaseIncome(Grade grade){
         income += grade.getPrize();
+        System.out.println(income);
+        validateIncome(income);
     }
 
-    public Float getRate(){
-        if (money == 0) return 0F;
+    private void validateIncome(Double income){
+        if(income > Double.MAX_VALUE){
+            throw new IllegalArgumentException("income overflow");
+        }
+    }
+
+    public Double getRate(){
+        if (money == 0) return 0D;
         return (income / money) * 100;
     }
 
-    public Float getMoney(){
+    public Double getMoney(){
         return money;
+    }
+
+    public Double getIncome() { return income; }
+
+    public void setIncome(Double income) {
+        validateIncome(income);
+        this.income = income;
     }
 }

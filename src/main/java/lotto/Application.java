@@ -14,6 +14,8 @@ public class Application {
 
         LottoMachine.judgeGrade(lottoGame, player);
 
+        Output.printTickets(player.getLottoTickets(), player.getTicketNum());
+
         Output.printResult(player);
     }
 }

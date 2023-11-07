@@ -6,11 +6,13 @@ public class Player {
     private List<Lotto> lottoTickets;
     private State state;
     private Asset asset;
+    private Long ticketNum;
 
     public Player(Asset asset){
         this.asset = asset;
         this.state = new State();
-        this.lottoTickets = LottoMachine.issuedLotto(asset.getMoney());
+        this.ticketNum = calTicketNum(asset.getMoney());
+        this.lottoTickets = LottoMachine.issuedLotto(ticketNum);
     }
 
     public List<Lotto> getLottoTickets(){
@@ -25,12 +27,18 @@ public class Player {
         return state;
     }
 
+    public Long getTicketNum() { return ticketNum; }
+
     public void setAsset(Grade grade) {
-        this.asset.increaseIncome(grade);
+        asset.increaseIncome(grade);
     }
 
     public void setState(Grade grade) {
         state.setGradeState(grade);
+    }
+
+    public Long calTicketNum(Double money){
+        return (long) (money / 1000);
     }
     public void updatePlayer(List<Grade> grades){
         grades.stream()

@@ -13,7 +13,7 @@ public class Input {
     public static Asset askMoney(){
         try{
             System.out.println("구입금액을 입력해 주세요.");
-            Float money = Utils.convertInput(Console.readLine());
+            Double money = Utils.convertInput(Console.readLine());
             return new Asset(money);
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] :" + e.getMessage());

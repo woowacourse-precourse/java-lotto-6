@@ -12,7 +12,7 @@ public class Validation {
 
     private static void isEmpty(String purchaseAmount){
         if(purchaseAmount.isEmpty()){
-            throw new IllegalArgumentException(ExceptionMessages.IS_EMPTY.getMessage());
+            throw new IllegalStateException(ExceptionMessages.IS_EMPTY.getMessage());
         }
     }
 

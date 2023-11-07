@@ -8,11 +8,11 @@ public class InputValidator {
 
     }
 
-    public static void validateLottoNumber(String input) {
+    public static void validateLottoNumberInput(String input) {
         try {
             validateIsEmpty(input);
             validateIsRightFormat(input);
-        } catch(IllegalArgumentException exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
     }

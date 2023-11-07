@@ -20,7 +20,7 @@ public class InputView {
 
     protected List<Integer> readLottoNumbers() {
         String input = Console.readLine();
-        InputValidator.validateLottoNumber(input);
+        InputValidator.validateLottoNumberInput(input);
         return InputUtil.convertToList(input);
     }
 }

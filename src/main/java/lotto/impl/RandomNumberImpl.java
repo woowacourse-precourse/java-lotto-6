@@ -3,6 +3,7 @@ package lotto.impl;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.RandomNumberProvider;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RandomNumberImpl implements RandomNumberProvider {
@@ -12,7 +13,7 @@ public class RandomNumberImpl implements RandomNumberProvider {
     public static final int LOTTO_NUM_COUNT = 6;
     @Override
     public List<Integer> generateRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, LOTTO_NUM_COUNT);
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, LOTTO_NUM_COUNT));
     }
 
 }

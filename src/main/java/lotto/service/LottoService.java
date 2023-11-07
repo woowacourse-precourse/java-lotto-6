@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.domain.UserMoney;
 import lotto.domain.WinningLottoNumbers;
 import lotto.domain.constant.LottoConstant;
@@ -16,7 +17,7 @@ public class LottoService {
     }
 
     public WinningLottoNumbers initWinningLottoNumbers(final List<Integer> winningLottoNumbers) {
-        return WinningLottoNumbers.from(winningLottoNumbers);
+        return WinningLottoNumbers.from(new Lotto(winningLottoNumbers));
     }
 
     public BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers, final int bonusNumber) {

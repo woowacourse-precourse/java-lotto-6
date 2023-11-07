@@ -256,7 +256,7 @@ class lotto_result{
 }
 
 class profit_margin_caculation{
-    public static void profitMargin(List<Integer> result, int inputMoney){
+    public static float profitMargin(List<Integer> result, int inputMoney){
         int totalPrize = 0;
         totalPrize += 5000 * Collections.frequency(result, 3);
         totalPrize += 50000 * Collections.frequency(result, 4);
@@ -265,6 +265,7 @@ class profit_margin_caculation{
         totalPrize += 2000000000 * Collections.frequency(result, 6);
         float profitMargin = (float) totalPrize /inputMoney * 100;
         printProfit(profitMargin);
+        return profitMargin;
     }
 
     public static void printProfit(float margin){

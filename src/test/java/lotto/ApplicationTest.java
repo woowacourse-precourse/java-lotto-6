@@ -180,6 +180,12 @@ class ApplicationTest extends NsTest {
         Assertions.assertEquals(5, lotto_result.eachLottoCheck(criteria,thirdPrize,Num.ENDRANGE.getNum()));
     }
 
+    @Test
+    void 이익률_계산_테스트(){
+        int test = 10000;
+        Assertions.assertEquals(15500, profit_margin_caculation.profitMargin(criteria,test));
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

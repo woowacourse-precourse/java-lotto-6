@@ -2,6 +2,7 @@ package lotto.domain.constant;
 
 import static lotto.domain.constant.DomainConstant.ZERO;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 import lotto.domain.money.Money;
@@ -24,9 +25,9 @@ public enum LottoPrizes {
 
     public static Map<LottoPrizes, Long> getPrizesCountMap() {
         Map<LottoPrizes, Long> prizesCountsMap = new EnumMap<>(LottoPrizes.class);
-        for (LottoPrizes lottoPrizes : LottoPrizes.values()) {
-            prizesCountsMap.put(lottoPrizes, ZERO);
-        }
+        Arrays.stream(LottoPrizes.values())
+                .forEach(prize -> prizesCountsMap.put(prize, ZERO));
+
         return prizesCountsMap;
     }
 }

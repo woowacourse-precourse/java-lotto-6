@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.domain.WinResult;
 import lotto.util.WinnerRank;
 
-import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
@@ -53,7 +52,7 @@ public class OutputView {
         return WIN_RESULT_WITHOUT_BONUS.getMessage();
     }
 
-    private static String formatNumberWithCommas(int winMoney) {
+    private String formatNumberWithCommas(int winMoney) {
         NumberFormat numberFormat = NumberFormat.getInstance();
         String winMoneyComma = numberFormat.format(winMoney);
 

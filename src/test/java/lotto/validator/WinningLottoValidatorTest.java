@@ -13,7 +13,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 public class WinningLottoValidatorTest {
-    private static WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
+    private WinningLottoValidator winningLottoValidator = new WinningLottoValidator();
 
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 46})

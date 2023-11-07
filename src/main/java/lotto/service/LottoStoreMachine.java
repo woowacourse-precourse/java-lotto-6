@@ -23,7 +23,8 @@ public class LottoStoreMachine {
     }
 
     private List<Integer> makeLottoNumbers() {
-        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lotto = new ArrayList<>();
+        lotto.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lotto);
 
         return lotto;

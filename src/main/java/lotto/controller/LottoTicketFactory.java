@@ -19,7 +19,7 @@ public class LottoTicketFactory {
     }
 
     private static Lotto lottoTicket() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }

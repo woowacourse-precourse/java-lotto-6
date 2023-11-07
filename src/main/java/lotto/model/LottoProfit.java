@@ -13,7 +13,12 @@ public class LottoProfit {
     }
 
     public Double getResult(){
+        calculate();
         return result;
+    }
+
+    private void calculate() {
+        result = ((double) calculateSum() / money.getMoney()) * 100;
     }
 
     private int calculateSum() {

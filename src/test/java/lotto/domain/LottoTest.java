@@ -71,14 +71,26 @@ class LottoTest {
     }
 
     @Test
-    void getNumbers() {
+    @DisplayName("로또가 수들을 제대로 반환하는지 확인")
+    void Given_DefinedList_When_UseGetNumbers_Then_ListNumberAndLottoNumberIsSame() {
+        //Given
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(list);
+        //When
+        List<Integer> numbers = lotto.getNumbers();
+        //Then
+        assertThat(list).isEqualTo(numbers);
     }
 
     @Test
-    void contains() {
-    }
-
-    @Test
-    void toLotto() {
+    @DisplayName("로또가 수가 포함 되어 있는지 제대로 확인하는지 확인")
+    void Given_DefinedList_When_UseContains_Then_NumberNotInListReturnsFalse() {
+        //Given
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(list);
+        //When
+        boolean isThere = lotto.contains(45);
+        //Then
+        assertThat(isThere).isEqualTo(false);
     }
 }

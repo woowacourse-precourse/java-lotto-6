@@ -4,9 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoUtil {
     final String NUM_REG = "[0-9]+";
@@ -24,12 +22,10 @@ public class LottoUtil {
         return lottos;
     }
 
-    public boolean validateNumberCheck(String number) {
+    public void validateNumberCheck(String number) {
         String deleteCommaNumber = number.replaceAll(",", "").replaceAll(" ", "");
-        if(deleteCommaNumber.matches(NUM_REG)) {
-            return true;
+        if(!deleteCommaNumber.matches(NUM_REG)) {
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER.getValue());
         }
-        System.out.println(ExceptionMessage.WINNING_NUMBER.getValue());
-        return false;
     }
 }

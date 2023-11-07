@@ -31,12 +31,9 @@ public class LottoGame {
 
     public void printMessageAndInputWinningNumber() {
         lottoView.printWinningNumberMessage();
-        boolean numberCheck = false;
         String winningNumber;
-        while (!numberCheck) {
-            winningNumber = lottoUtil.getUserInput();
-            numberCheck = lottoUtil.validateNumberCheck(winningNumber);
-        }
+        winningNumber = lottoUtil.getUserInput();
+        lottoUtil.validateNumberCheck(winningNumber);
     }
 
 }

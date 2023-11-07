@@ -22,15 +22,20 @@ class InputValidatorTest {
 
     @DisplayName("입력값이 음수일 때 예외처리 테스트")
     @Test
-    void validatePositiveNumberTest() {
+    void validatePositiveNumberThrowExceptionTest() {
         String negativeNumber = "-5";
 
         assertThatThrownBy(() -> InputValidator.validatePositiveNumber(negativeNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("입력값이 양수일 때 예외처리 테스트")
     @Test
-    void validatePositiveNumber() {
+    void validatePositiveNumberDoesNotThrowException() {
+        String negativeNumber = "5";
+
+        Assertions.assertThatCode(() -> InputValidator.validatePositiveNumber(negativeNumber))
+                .doesNotThrowAnyException();
     }
 
     @DisplayName("입력값이 비어있을때 예외처리 테스트")

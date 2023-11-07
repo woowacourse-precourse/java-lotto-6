@@ -8,6 +8,7 @@ import lotto.domain.LottoMatch;
 import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.ResultView;
 
 public class LottoController {
 
@@ -15,6 +16,7 @@ public class LottoController {
         InputView inputView = new InputView();
         CreateLottoNumbers createLottoNumbers = new CreateLottoNumbers();
         LottoMatch lottoMatch = new LottoMatch();
+        ResultView resultView = new ResultView();
 
         int amount = inputView.lottoAmount();
         List<Lotto> lottoNumbers = createLottoNumbers.createLottoMain(amount);
@@ -22,6 +24,6 @@ public class LottoController {
 
         Map<Rank, Integer> result = lottoMatch.scoreBoard(lottoNumbers, winningLotto);
         double earningRates = lottoMatch.earningRateMain(result, amount);
-        System.out.println("earningRates = " + earningRates);
+        resultView.lottoResultPrint(result, earningRates);
     }
 }

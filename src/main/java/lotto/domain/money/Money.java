@@ -17,6 +17,10 @@ public class Money {
         return userMoney / LOTTO_COST.getValue();
     }
 
+    public double getRateOfReturn(long prizeMoney) {
+        return (double)prizeMoney / userMoney * 100.0;
+    }
+
     private void validateMoney(int money) {
         if(validateMoneyNotMoreThanZero(money)) {
             throw new IllegalArgumentException(MONEY_NOT_MORE_THAN_ZERO.toString());

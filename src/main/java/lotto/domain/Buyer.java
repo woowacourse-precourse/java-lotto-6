@@ -1,6 +1,8 @@
 package lotto.domain;
 
-public class LottoBuyer {
+import lotto.util.BusinessVaildator;
+
+public class Buyer {
     private int purchaseAmount;
     private int ticketQuantity;
     private int winningAmount;
@@ -10,6 +12,7 @@ public class LottoBuyer {
     }
 
     public void setPurchaseAmount(int purchaseAmount) {
+        BusinessVaildator.vaildateCurrencyAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 

@@ -4,16 +4,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class LottoGroup {
+public class Tickets {
     private List<Lotto> lottos;
 
 
-    private LottoGroup(List<Lotto> lottos) {
+    private Tickets(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static LottoGroup create(int count) {
-        return new LottoGroup(IntStream.range(0, count).mapToObj(i -> Lotto.generate()).toList());
+    public static Tickets generate(int count) {
+        return new Tickets(IntStream.range(0, count).mapToObj(i -> Lotto.generate()).toList());
     }
 
     @Override

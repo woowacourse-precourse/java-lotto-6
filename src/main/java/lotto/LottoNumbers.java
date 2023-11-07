@@ -1,8 +1,10 @@
 package lotto;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoNumbers {
 	public static double earningsRate = 0;
@@ -41,6 +43,9 @@ public class LottoNumbers {
 			setRanking(cnt);
 		}
 		missOrNot();
+
+		WinningResult winning = new WinningResult(earningsRate, result);
+		winning.printingResult();
 	}
 
 	private void setRanking(int num) {

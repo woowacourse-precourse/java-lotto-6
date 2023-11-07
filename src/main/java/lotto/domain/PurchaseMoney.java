@@ -2,7 +2,9 @@ package lotto.domain;
 
 import static lotto.enums.ExceptionMessages.*;
 import static lotto.utils.LottoNumberUtil.removeSpace;
+import static lotto.utils.LottoNumberUtil.splitComma;
 
+import java.util.Arrays;
 import lotto.enums.Constants;
 
 public class PurchaseMoney {
@@ -25,6 +27,8 @@ public class PurchaseMoney {
             PURCHASE_MONEY_IS_EMPTY_VALUE.throwException();
         }
 
+        money = removeSpace(money);
+
         if(!isDigit(money)){
             PURCHASE_MONEY_IS_NOT_NUMBER.throwException();
         }
@@ -45,12 +49,8 @@ public class PurchaseMoney {
     private boolean isDigit(String money){
 
         money = money.replace("-","");
-
-        for (int i = 0; i < money.length(); i++) {
-            if(!Character.isDigit(money.charAt(i))) return false;
-        }
-
-        return true;
+        String[] splitMoney = money.split("");
+        return Arrays.stream(splitMoney).allMatch(number -> Character.isDigit(number.charAt(0)));
     }
 
     private boolean isDividedByOneThousand(final String money){

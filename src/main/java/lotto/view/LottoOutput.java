@@ -11,6 +11,7 @@ public class LottoOutput {
         System.out.println(INPUT_DEPOSIT);
     }
     public static void ticketsCount(int lottoTickets) {
+        System.out.println();
         System.out.println(lottoTickets + "개를 구매했습니다.");
     }
     public static void lottoTickets(List<Lotto> tickets) {

@@ -27,13 +27,13 @@ class LottoPurchaseManagerTest {
     @Test
     void createLottoNumbers() {
         // given
-        lottoPurchaseManager = new LottoPurchaseManager(1000);
+        lottoPurchaseManager = new LottoPurchaseManager(3000);
 
         // when
         lottoPurchaseManager.generateLottos();
 
         // then
-        lottoPurchaseManager.getLottos().stream().forEach(System.out::println);
+        lottoPurchaseManager.getLottos().forEach(System.out::println);
     }
 
     @DisplayName("유효하지 않은 카운트일때 로또가 생성되지 않는지 확인")

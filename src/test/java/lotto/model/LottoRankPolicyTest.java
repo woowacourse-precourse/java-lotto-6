@@ -24,7 +24,7 @@ class LottoRankPolicyTest {
         lottoRankPolicy = new LottoRankPolicy(winningNumbers, bonusNumber);
 
         // then
-        Assertions.assertThat(lottoRankPolicy.getRank(lotto1)).isEqualTo(LottoRank.FIRST_PRIZE.name());
+        Assertions.assertThat(lottoRankPolicy.calculateRank(lotto1)).isEqualTo(LottoRank.FIRST_PRIZE.name());
     }
 
     @DisplayName("숫자가 5개 맞고 보너스 넘버가 같을때 2등 결과를 출력한다")
@@ -39,7 +39,7 @@ class LottoRankPolicyTest {
         lottoRankPolicy = new LottoRankPolicy(winningNumbers, bonusNumber);
 
         // then
-        Assertions.assertThat(lottoRankPolicy.getRank(lotto1)).isEqualTo(LottoRank.SECOND_PRIZE.name());
+        Assertions.assertThat(lottoRankPolicy.calculateRank(lotto1)).isEqualTo(LottoRank.SECOND_PRIZE.name());
     }
 
     @DisplayName("숫자가 5개 맞았을 때 3등 결과를 출력한다")
@@ -54,7 +54,7 @@ class LottoRankPolicyTest {
         lottoRankPolicy = new LottoRankPolicy(winningNumbers, bonusNumber);
 
         // then
-        Assertions.assertThat(lottoRankPolicy.getRank(lotto1)).isEqualTo(LottoRank.THIRD_PRIZE.name());
+        Assertions.assertThat(lottoRankPolicy.calculateRank(lotto1)).isEqualTo(LottoRank.THIRD_PRIZE.name());
     }
 
     @DisplayName("숫자가 4개 맞았을 때 4등 결과를 출력한다")
@@ -69,7 +69,7 @@ class LottoRankPolicyTest {
         lottoRankPolicy = new LottoRankPolicy(winningNumbers, bonusNumber);
 
         // then
-        Assertions.assertThat(lottoRankPolicy.getRank(lotto1)).isEqualTo(LottoRank.FOURTH_PRIZE.name());
+        Assertions.assertThat(lottoRankPolicy.calculateRank(lotto1)).isEqualTo(LottoRank.FOURTH_PRIZE.name());
     }
 
     @DisplayName("숫자가 3개 맞았을 때 5등 결과를 출력한다")
@@ -84,7 +84,7 @@ class LottoRankPolicyTest {
         lottoRankPolicy = new LottoRankPolicy(winningNumbers, bonusNumber);
 
         // then
-        Assertions.assertThat(lottoRankPolicy.getRank(lotto1)).isEqualTo(LottoRank.FIFTH_PRIZE.name());
+        Assertions.assertThat(lottoRankPolicy.calculateRank(lotto1)).isEqualTo(LottoRank.FIFTH_PRIZE.name());
     }
 
     @DisplayName("숫자가 2개 이하 맞았을 때 낙첨 결과를 출력한다")
@@ -104,6 +104,6 @@ class LottoRankPolicyTest {
         lottoRankPolicy = new LottoRankPolicy(winningNumbers, bonusNumber);
 
         // then
-        Assertions.assertThat(lottoRankPolicy.getRank(lotto1)).isEqualTo(LottoRank.NO_PRIZE.name());
+        Assertions.assertThat(lottoRankPolicy.calculateRank(lotto1)).isEqualTo(LottoRank.NO_PRIZE.name());
     }
 }

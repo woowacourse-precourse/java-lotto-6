@@ -65,7 +65,7 @@ public class Result {
 
     public double calculateWinningRate() {
         int price = calculatePrice();
-        double winningRate = (double) price / payment.getPayment() * 100;
+        double winningRate = (double) price / payment.payment() * 100;
         return Math.round(winningRate * 10.0) / 10.0;
     }
 

@@ -17,7 +17,7 @@ public class LottoMachine {
 
     public LottoMachine(Payment payment) {
         this.payment = payment;
-        this.lottoTicketNumber = payment.getPayment() / payment.getLottoPrice();
+        this.lottoTicketNumber = payment.payment() / payment.getLottoPrice();
     }
 
     public void generateLotto() {

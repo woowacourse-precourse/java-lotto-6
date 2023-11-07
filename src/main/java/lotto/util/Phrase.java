@@ -3,7 +3,7 @@ package lotto.util;
 public class Phrase {
     public enum InputPhrase {
         INPUT_COST("구입금액을 입력해 주세요."),
-        INPUT_NUMBER("당첨 번호를 입력해 주세요."),
+        INPUT_ORIGINALNUMBER("당첨 번호를 입력해 주세요."),
         INPUT_BONUS("보너스 번호를 입력해 주세요.");
         private final String message;
 

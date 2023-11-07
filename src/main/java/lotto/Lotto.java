@@ -5,9 +5,22 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
-    private static final String WRONG_LEGNTH_LOTTO_NUMBER_MESSAGE = "[ERROR] 로또 번호는 6개의 숫자여야 합니다.";
-    private static final String WRONG_RANGE_LOTTO_NUMBER_MESSAGE = "[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.";
-    private static final String WRONG_SAME_LOTTO_NUMBER_MESSAGE = "[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.";
+    private enum ErrorMessage {
+        WRONG_LENGTH("[ERROR] 로또 번호는 6개의 숫자여야 합니다."),
+        WRONG_RANGE("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다"),
+        WRONG_SAME("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다");
+
+        private final String message;
+
+        ErrorMessage(String message) {
+            this.message = message;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
+
     private static final int LOTTO_NUMBER_RANGE_START = 1;
     private static final int LOTTO_NUMBER_RANGE_END = 45;
     private final List<Integer> numbers;
@@ -19,11 +32,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (!isSameLength(numbers)) {
-            throw new IllegalArgumentException(WRONG_LEGNTH_LOTTO_NUMBER_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_LENGTH.getMessage());
         } else if (!isWithValidRange(numbers)) {
-            throw new IllegalArgumentException(WRONG_RANGE_LOTTO_NUMBER_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_RANGE.getMessage());
         } else if (!isDifferentLottoNumber(numbers)) {
-            throw new IllegalArgumentException(WRONG_SAME_LOTTO_NUMBER_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessage.WRONG_SAME.getMessage());
         }
     }
 

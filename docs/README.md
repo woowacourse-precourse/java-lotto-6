@@ -32,7 +32,7 @@
   - isDifferentLottoNumber()
     - [x] 로또 번호가 중복되지 않는 숫자인지 확인
   - [x] get 메서드 생성
-  - [ ] 에러 메시지 Java Enum 적용
+  - [x] 에러 메시지 Java Enum 적용
 
 3. LuckeyLotto
 

@@ -43,4 +43,13 @@ public class LottoStatisticTest {
         Assertions.assertThat(fourth).isEqualTo(0);
         Assertions.assertThat(fifth).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("총 수익률 구하기 테스트")
+    void 총_수익률_구하기() {
+        int purchaseAmount = 20000000;
+        double returnRate = lottoStatistic.getAllReturnRate(purchaseAmount);
+
+        Assertions.assertThat(returnRate).isEqualTo(((double) 2031510000 / purchaseAmount) * 100);
+    }
 }

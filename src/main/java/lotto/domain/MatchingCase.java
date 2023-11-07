@@ -9,7 +9,7 @@ public enum MatchingCase {
     FIVE_MATCHING(5, 1500000),
     FIVE_MATCHING_WITH_BONUS(5, 30000000),
     SIX_MATCHING(6, 2000000000),
-    INIT(0, 0);
+    NEW_GAME(0, 0);
 
     private int matchingValue;
     private int prize;
@@ -21,10 +21,33 @@ public enum MatchingCase {
         this.winningCount = 0;
     }
 
-    public void initMathcingCase() {
-        for (MatchingCase matchingCase:values()) {
+    public void initMatchingCase() {
+        for (MatchingCase matchingCase : values()) {
             matchingCase.winningCount = 0;
         }
+    }
+
+    public void increaseMatchingCaseCount(int matchingCount, boolean bonusNumberMatching) {
+        if (matchesFiveWithBonus(matchingCount, bonusNumberMatching)) {
+            winningCount++;
+        }
+        if (matches(matchingCount, bonusNumberMatching)) {
+            winningCount++;
+        }
+    }
+
+    private boolean matchesFiveWithBonus(int matchingCount, boolean bonusNumberMatching) {
+        return this == FIVE_MATCHING_WITH_BONUS && bonusNumberMatching && matchingCount == matchingValue;
+    }
+
+    private boolean matches(int matchingCount, boolean bonusNumberMatching) {
+        return this != FIVE_MATCHING_WITH_BONUS && !bonusNumberMatching && matchingCount == matchingValue;
+    }
+
+    public List<MatchingCase> getResult() {
+        return Arrays.stream(values())
+                .filter(matchingCase -> matchingCase != NEW_GAME)
+                .toList();
     }
 
     public int getMatchingValue() {
@@ -37,20 +60,5 @@ public enum MatchingCase {
 
     public int getWinningCount() {
         return winningCount;
-    }
-
-    public void increaseSameCaseCount(int matchingCount, boolean bonusNumberMatching) {
-        if (this == FIVE_MATCHING_WITH_BONUS && matchingCount == matchingValue && bonusNumberMatching ) {
-            winningCount++;
-        }
-        if (this != FIVE_MATCHING_WITH_BONUS && matchingCount == matchingValue && !bonusNumberMatching ) {
-            winningCount++;
-        }
-    }
-
-    public List<MatchingCase> getValues() {
-        return Arrays.stream(values())
-                .filter(matchingCase -> matchingCase != INIT)
-                .toList();
     }
 }

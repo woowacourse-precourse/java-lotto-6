@@ -52,11 +52,11 @@ public class LottoController {
     }
 
     private List<MatchingCase> calculateMatchingResult(LottoCollection lottoCollection) {
-        MatchingCase.NEW_GAME.initMathcingCase();
+        MatchingCase.NEW_GAME.initMatchingCase();
         Lotto winningLotto = readWinningLotto();
         int bonusNumber = readBonusNumber(winningLotto);
         lottoCollection.setResultGroup(winningLotto, bonusNumber);
-        return MatchingCase.NEW_GAME.getValues();
+        return MatchingCase.NEW_GAME.getResult();
     }
 
     private Lotto readWinningLotto() {

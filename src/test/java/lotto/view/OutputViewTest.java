@@ -5,18 +5,16 @@ import static lotto.constant.testConstant.LOTTO_1_TO_5_WITH_45;
 import static lotto.constant.testConstant.LOTTO_1_TO_6;
 import static lotto.constant.testConstant.LOTTO_3_TO_8;
 import static lotto.constant.testConstant.LOTTO_7_TO_12;
-import static lotto.domain.MatchingCase.INIT;
+import static lotto.domain.MatchingCase.NEW_GAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
 import lotto.domain.LottoCount;
 import lotto.domain.LottoResult;
-import lotto.domain.MatchingCase;
 import lotto.domain.Profit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -49,12 +47,12 @@ public class OutputViewTest {
 
     @Test
     void check_result() {
-        INIT.initMathcingCase();
+        NEW_GAME.initMatchingCase();
         LottoCollection lottoCollection = LottoCollection.from(
                 List.of(LOTTO_1_TO_5_WITH_45, LOTTO_1_TO_6, LOTTO_3_TO_8));
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoCollection.setResultGroup(winningLotto, BONUS_NUMBER_45);
-        OutputView.printResult(INIT.getValues());
+        OutputView.printResult(NEW_GAME.getResult());
         assertThat(outputStream.toString())
                 .hasToString("당첨 통계\n"
                         + "---\n"
@@ -67,7 +65,7 @@ public class OutputViewTest {
 
     @Test
     void check_profit() {
-        INIT.initMathcingCase();
+        NEW_GAME.initMatchingCase();
         LottoResult lottoResult_1500000 = LottoResult.of(5, false);
         lottoResult_1500000.setResult();
         LottoResult lottoResult_30000000 = LottoResult.of(5, true);

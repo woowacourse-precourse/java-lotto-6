@@ -1,6 +1,7 @@
 package lotto;
 
 import domain.LottoGenerator;
+import domain.LottoPrinter;
 import domain.PurchaseInput;
 
 import java.util.List;
@@ -14,5 +15,6 @@ public class Application {
         List<List<Integer>> lottoNumbers = lottoGenerator.generateLottoNumbers(purchaseAmount);
 
         System.out.println("\n" + lottoNumbers.size() + "개를 구매했습니다.");
+        LottoPrinter.printFormattedLottoNumbers(lottoNumbers);
     }
 }

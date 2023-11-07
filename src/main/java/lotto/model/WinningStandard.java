@@ -22,16 +22,20 @@ public enum WinningStandard {
         List<Integer> winningNumbers = winningLotto.getWinningNumbers().getNumbers();
         Integer bonusNumber = winningLotto.getBonusNumber();
 
-        int matchCount = 0;
+        int matchCount = calculateMatchCount(lotto, winningNumbers);
         boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber);
 
+        return calculatetWinningStandard(matchCount, hasBonusNumber);
+    }
+
+    private static int calculateMatchCount(Lotto lotto, List<Integer> winningNumbers) {
+        int matchCount = 0;
         for (Integer number : lotto.getNumbers()) {
             if (winningNumbers.contains(number)) {
                 matchCount++;
             }
         }
-
-        return calculatetWinningStandard(matchCount, hasBonusNumber);
+        return matchCount;
     }
 
     private static WinningStandard calculatetWinningStandard(int matchCount, boolean hasBonusNumber) {

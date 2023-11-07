@@ -75,7 +75,7 @@ public class LottoJudger {
         for (Result result : Result.values()) {
             returnAmount += statisticMap.get(result) * result.price;
         }
-        return (float) returnAmount / this.purchaseAmount;
+        return ((float) returnAmount / this.purchaseAmount) * 100;
     }
 
     private int getCountOfWinningNumbersInLottoNumbers(List<Integer> lottoNumbers) {

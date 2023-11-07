@@ -1,8 +1,11 @@
 package lotto;
 
+import lotto.util.ExceptionMessageGenerator;
+
 public class WinningLotto {
     private final Lotto winningNumbers;
     private final LottoNumber bonusNumber;
+    private static final String OVERLAPPING_WITH_WINNING_NUMBERS = "보너스번호는 당첨번호와 중복되지 않아야 합니다.";
 
     public WinningLotto(Lotto winningNumbers, LottoNumber bonusNumber) {
         validate(winningNumbers, bonusNumber);
@@ -12,8 +15,10 @@ public class WinningLotto {
     }
 
     private void validate(Lotto winningNumbers, LottoNumber bonusNumber) {
+        ExceptionMessageGenerator exceptionMessageGenerator = ExceptionMessageGenerator.INSTANCE;
+
         if (winningNumbers.isContains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(exceptionMessageGenerator.makeMessage(OVERLAPPING_WITH_WINNING_NUMBERS));
         }
     }
 

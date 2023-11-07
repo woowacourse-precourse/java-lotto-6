@@ -1,7 +1,8 @@
 package lotto;
 
+import lotto.util.ExceptionMessageGenerator;
+
 public class BuyCash {
-    private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
     private static final String NOT_DIVIDED_MESSAGE = "구매금액이 1000원으로 나눠지지 않습니다.";
     private static final String NOT_POSITIVE_MESSAGE = "구매금액은 양수여야 합니다.";
     private static final int BUY_UNIT = 1000;
@@ -13,12 +14,13 @@ public class BuyCash {
     }
 
     private void validate(long buyCash) {
-        if (isNotPositive(buyCash)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEADER + NOT_POSITIVE_MESSAGE);
-        }
+        ExceptionMessageGenerator exceptionMessageGenerator = ExceptionMessageGenerator.INSTANCE;
 
+        if (isNotPositive(buyCash)) {
+            throw new IllegalArgumentException(exceptionMessageGenerator.makeMessage(NOT_POSITIVE_MESSAGE));
+        }
         if (isNotDividedByUnit(buyCash)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEADER + NOT_DIVIDED_MESSAGE);
+            throw new IllegalArgumentException(exceptionMessageGenerator.makeMessage(NOT_DIVIDED_MESSAGE));
         }
     }
 

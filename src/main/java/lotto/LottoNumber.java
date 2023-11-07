@@ -1,13 +1,14 @@
 package lotto;
 
+import lotto.util.ExceptionMessageGenerator;
+
 public class LottoNumber implements Comparable<LottoNumber> {
     private static final int NUMBER_LOW_BOUND = 1;
     private static final int NUMBER_HIGH_BOUND = 45;
-    private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
-    private static final String OUT_OF_RANGE_MESSAGE = "숫자가 아닌 값이 입력되었습니다.";
+    private static final String OUT_OF_RANGE_MESSAGE = String.format("로또 번호는 %d부터 %d 사이의 숫자여야 합니다.", NUMBER_LOW_BOUND,
+            NUMBER_HIGH_BOUND);
 
     private final int number;
-
 
     public LottoNumber(long number) {
         validate(number);
@@ -15,8 +16,10 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     private void validate(long nubmer) {
+        ExceptionMessageGenerator exceptionMessageGenerator = ExceptionMessageGenerator.INSTANCE;
+
         if (isOutOfRange(nubmer)) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEADER + OUT_OF_RANGE_MESSAGE);
+            throw new IllegalArgumentException(exceptionMessageGenerator.makeMessage(OUT_OF_RANGE_MESSAGE));
         }
     }
 

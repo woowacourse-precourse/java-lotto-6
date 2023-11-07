@@ -1,11 +1,7 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.*;
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.Console.readLine;
-
 public class Application {
     public static void main(String[] args) {
         // String howMuch = readLine();
@@ -86,10 +82,10 @@ public class Application {
         }
     }
 
-    static public List<Integer> tokenSeparation(String string) {
+    static public List<Integer> tokenSeparation(String s) {
         int count = 0, emptynum=0;
         List<Integer> winnum = new ArrayList<>();
-        StringTokenizer st = new StringTokenizer(string, ",");
+        StringTokenizer st = new StringTokenizer(s, ",");
         while (st.hasMoreTokens()) {
             emptynum = changeToInteger(st.nextToken());
             if(emptynum == 0) return null;

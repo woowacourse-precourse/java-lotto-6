@@ -22,4 +22,10 @@ public class Statistics {
         }
         return zeroDist;
     }
+
+    private void fillDist(Lottos lottos, Lotto winningLotto, Bonus bonus) {
+        for (Lotto lotto : lottos.getTickets()) {
+            addFrequency(determineGrade(lotto, winningLotto, bonus));
+        }
+    }
 }

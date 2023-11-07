@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,7 +62,6 @@ public class Lotto {
         for (Lotto lotto : lottos) {
             List<Integer> issueNumbers = lotto.getNumbers();
             int matchCount = compareMatch(issueNumbers, winNumbers);
-
             boolean matchBonus = false;
             if (matchCount == fiveMatch) {
                 matchBonus = compareBonus(issueNumbers, bonusNumber);

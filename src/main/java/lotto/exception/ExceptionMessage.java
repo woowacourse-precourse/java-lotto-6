@@ -10,11 +10,11 @@ public enum ExceptionMessage {
     private static final String OPENING_PHRASE = "[ERROR]";
     private String message;
 
-    ExceptionMessage(String message){
+    ExceptionMessage(String message) {
         this.message = OPENING_PHRASE + message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return this.message;
     }
 }

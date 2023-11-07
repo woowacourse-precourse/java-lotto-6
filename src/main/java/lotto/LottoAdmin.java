@@ -63,6 +63,10 @@ public class LottoAdmin {
         return false;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     public void setWinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
     }

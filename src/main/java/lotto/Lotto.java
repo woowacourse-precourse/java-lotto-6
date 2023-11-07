@@ -17,15 +17,30 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(LOTTO_OVERSIZED_MESSAGE);
+        validateSize(numbers);
+        validateDuplication(numbers);
+        numbers.forEach(Lotto::validateRange);
+    }
+
+    // TODO: 추가 기능 구현
+
+    public static void validateRange(int number) {
+        if (number < LOTTO_MIN || number > LOTTO_MAX) {
+            throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE_MESSAGE);
         }
+    }
+
+    private void validateDuplication(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() < LOTTO_SIZE) {
             throw new IllegalArgumentException(LOTTO_DUPLICATED_MESSAGE);
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(LOTTO_OVERSIZED_MESSAGE);
+        }
+    }
 
     public boolean contains(Integer number) {
         return numbers.contains(number);

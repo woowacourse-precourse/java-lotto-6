@@ -69,14 +69,7 @@ public class Game {
         List<Integer> numbers = Arrays.stream(Console.readLine().split(WINNING_NUMBERS_DELIMITER))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        numbers.forEach(this::validateNumber);
         return numbers;
-    }
-
-    private void validateNumber(int number) {
-        if (number < LOTTO_MIN || number > LOTTO_MAX) {
-            throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE_MESSAGE);
-        }
     }
 
     private int inputBonus() {
@@ -87,7 +80,6 @@ public class Game {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_PARSING_ERROR_MESSAGE);
         }
-        validateNumber(bonus);
         return bonus;
     }
 

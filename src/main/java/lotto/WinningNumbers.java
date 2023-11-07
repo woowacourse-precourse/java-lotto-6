@@ -15,6 +15,7 @@ public class WinningNumbers {
     }
 
     private void validate(Integer bonus) {
+        Lotto.validateRange(bonus);
         if (winning.contains(bonus)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_AND_BONUS_DUPLICATED_MESSAGE);
         }

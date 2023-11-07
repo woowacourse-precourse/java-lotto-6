@@ -3,9 +3,7 @@ package lotto.view;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.WinningPrize;
 
@@ -23,35 +21,51 @@ public class OutputView {
     }
 
     public void printLottos(List<Lotto> lottos) {
+        StringBuilder stringBuilder = new StringBuilder();
         lottos.forEach(lotto -> {
-            System.out.println(lotto.getNumbers());
+            List<Integer> numbers = lotto.getNumbers().stream()
+                    .sorted()
+                    .collect(Collectors.toList());
+            stringBuilder.append(numbers);
         });
+        System.out.println(stringBuilder);
     }
 
     public void printResult(Map<WinningPrize, Integer> winningPrizes, double ReturnOnLotto) {
         System.out.println(WINNING_STATISTICS_MESSAGE);
         System.out.println(DASH.repeat(RESULT_DASH_COUNT));
+        printWinningStatistics(winningPrizes);
 
+        System.out.println(String.format(RETURN_ON_LOTTO_MESSAGE, ReturnOnLotto));
+    }
+
+    private void printWinningStatistics(Map<WinningPrize, Integer> winningPrizes) {
         Arrays.stream(WinningPrize.values())
                 .forEach(winningPrize -> {
                     if (winningPrize == WinningPrize.EMPTY_PRIZE) {
                         return;
                     }
-                    String messageFormat = WINNING_PRIZE_MESSAGE;
-                    if (winningPrize == WinningPrize.SECOND_PRIZE) {
-                        messageFormat = WINNING_SECOND_PRIZE_MESSAGE;
-                    }
-
-                    String message = String
-                            .format(
-                                    messageFormat,
-                                    winningPrize.getWinningNumbersCount(),
-                                    winningPrize.getWinningPrizeAmount(),
-                                    winningPrizes.getOrDefault(winningPrize, 0)
-                            );
-                    System.out.println(message);
+                    int winningPrizeCount = winningPrizes.getOrDefault(winningPrize, 0);
+                    String winningPrizeMessage = generateWinningPrizeMessage(winningPrize, winningPrizeCount);
+                    System.out.println(winningPrizeMessage);
                 });
+    }
 
-        System.out.println(String.format(RETURN_ON_LOTTO_MESSAGE, ReturnOnLotto));
+    private String generateWinningPrizeMessage(WinningPrize winningPrize, int winningPrizeCount) {
+        String messageFormat = getWinningMessageFormat(winningPrize);
+        return String
+                .format(
+                        messageFormat,
+                        winningPrize.getWinningNumbersCount(),
+                        winningPrize.getWinningPrizeAmount(),
+                        winningPrizeCount
+                );
+    }
+
+    private String getWinningMessageFormat(WinningPrize winningPrize) {
+        if (winningPrize != WinningPrize.SECOND_PRIZE) {
+            return WINNING_PRIZE_MESSAGE;
+        }
+        return  WINNING_SECOND_PRIZE_MESSAGE;
     }
 }

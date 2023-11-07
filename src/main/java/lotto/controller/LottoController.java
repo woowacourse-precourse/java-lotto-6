@@ -33,6 +33,7 @@ public class LottoController {
         WinningNumbers winningNumbers = getValidWinningNumbersInput();
         BonusNumber bonusNumber = getValidBonusNumberInput(winningNumbers);
         Map<Rank, Integer> rankCount = calculator.calculateRankCount(userLottos, winningNumbers, bonusNumber);
+        OutputView.printWinningStatistics();
         OutputView.printRankCount(rankCount);
         printRateOfReturn(rankCount, money);
     }
@@ -72,7 +73,7 @@ public class LottoController {
 
     private void printRateOfReturn(Map<Rank, Integer> rankCount, Money money) {
         int totalPrize = calculator.calculateTotalPrize(rankCount);
-        double earningRate = calculator.calculateRateOfReturn(totalPrize, money);
-        OutputView.printEarningRate(earningRate);
+        double rateOfReturn = calculator.calculateRateOfReturn(totalPrize, money);
+        OutputView.printRateOfReturn(rateOfReturn);
     }
 }

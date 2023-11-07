@@ -17,7 +17,7 @@ public class Validator {
     public static final Integer NUMBERS_MIN_DUPLICATE_COUNT = 2;
     public static final Integer BONUS_NUMBER_MIN_DUPLICATE_COUNT = 1;
 
-
+    public static final Integer NO_REMAINDER = 0;
     public static boolean isEmpty_(String userInput) {
         try {
             if (userInput.isEmpty()) {
@@ -74,7 +74,7 @@ public class Validator {
 
     public static boolean isIndivisible(Integer inputBudget) {
         try {
-            if ((inputBudget % LOTTERY_PRICE) != 0) {
+            if ((inputBudget % LOTTERY_PRICE) != NO_REMAINDER) {
                 throw new IllegalArgumentException(ErrorMessages.IS_INDIVISIBLE_BY_1000.writeErrorMessageByCase());
             }
         } catch (IllegalArgumentException e) {

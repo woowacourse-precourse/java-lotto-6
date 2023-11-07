@@ -8,6 +8,13 @@ import java.util.List;
 
 public class Controller {
 
+    public static final Integer SIX_MATCHED = 6;
+    public static final Integer FIVE_MATCHED = 5;
+    public static final Integer FOUR_MATCHED = 4;
+    public static final Integer THREE_MATCHED = 3;
+    public static final Integer MATCHING_FAIL = 2;
+
+
     public static void sortNumbers(List<Integer> numbers) {
         numbers.sort(Comparator.naturalOrder());
     }
@@ -24,19 +31,19 @@ public class Controller {
 
     public static void fillRanks(List<Rank> lotteryRanks, List<Integer> matchingCounts) {
         for (Integer matchingNumberCount : matchingCounts) {
-            if (matchingNumberCount.equals(6)) {
+            if (matchingNumberCount.equals(SIX_MATCHED)) {
                 lotteryRanks.add(Rank.FIRST);
             }
-            if (matchingNumberCount.equals(5)) {
+            if (matchingNumberCount.equals(FIVE_MATCHED)) {
                 lotteryRanks.add(Rank.THIRD);
             }
-            if (matchingNumberCount.equals(4)) {
+            if (matchingNumberCount.equals(FOUR_MATCHED)) {
                 lotteryRanks.add(Rank.FOURTH);
             }
-            if (matchingNumberCount.equals(3)) {
+            if (matchingNumberCount.equals(THREE_MATCHED)) {
                 lotteryRanks.add(Rank.FIFTH);
             }
-            if (matchingNumberCount < 3) {
+            if (matchingNumberCount <= MATCHING_FAIL) {
                 lotteryRanks.add(Rank.FAIL);
             }
         }

@@ -7,10 +7,10 @@ import java.util.List;
 
 public class GameStatistics {
 
+    public static final Integer LOTTERY_PRICE = 1_000;
     private List<Integer> matchingCounts;
     private List<Rank> lotteryRanks;
 
-    public static final Integer LOTTERY_PRICE = 1_000;
 
     public void generateMatchingCounts() {
         this.matchingCounts = new ArrayList<>();

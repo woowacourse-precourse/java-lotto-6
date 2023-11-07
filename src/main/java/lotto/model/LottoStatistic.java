@@ -10,12 +10,8 @@ public class LottoStatistic {
         this.lottoStatistic = new HashMap<>();
     }
 
-    public LottoStatistic(LottoStatistic lottoStatistic) {
-        this.lottoStatistic = lottoStatistic.getLottoStatistic();
-    }
-
     public Map<LottoPrize, Integer> getLottoStatistic() {
-        return lottoStatistic;
+        return new HashMap<>(this.lottoStatistic);
     }
 
     public void addStatistic(LottoPrize prize) {

@@ -57,31 +57,31 @@ public class GameService {
     } // setGame() END
 
     public void resultGame() {
+        System.out.println("\n당첨 통계\n---");
         Map<Rank, Integer> matchingCounts = new HashMap<>();
         for (Rank rank : Rank.values()) {
             matchingCounts.put(rank, 0);
         }
 
-        int bonusNumberCount = 0; // 보너스 볼 일치 수
-
         for (List<Integer> playerLotto : lottos) {
             int matchingNumbers = referee.compare(playerLotto);
             boolean bonusNumberMatch = referee.getBonusNumber();
-
-            if (bonusNumberMatch) {
-                bonusNumberCount++;
-            }
-
             Rank rank = matchingNumbersToRank(matchingNumbers, bonusNumberMatch);
 
-            matchingCounts.put(rank, matchingCounts.get(rank) + 1);
+            if (rank != Rank.NO_MATCH) {
+                matchingCounts.put(rank, matchingCounts.get(rank) + 1);
+            }
         }
 
-        for (Rank rank : matchingCounts.keySet()) {
-            int count = matchingCounts.get(rank);
-            String resultDescription = rank.getDescription();
-            System.out.println(resultDescription + " - " + count + "개");
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NO_MATCH) {
+                int count = matchingCounts.get(rank);
+                String resultDescription = rank.getDescription();
+                System.out.println(resultDescription + " - " + count + "개");
+            }
         }
+
+        System.out.println("총 수익률 ");
     }
 
     private Rank matchingNumbersToRank(int matchingNumbers, boolean bonusNumberMatch) {

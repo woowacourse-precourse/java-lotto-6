@@ -25,31 +25,27 @@ import lotto.exception.LottoGameException;
 
 public enum WinningGrade {
     
-    CORRECT_ZERO_NUMBER(ZERO, (always) -> true, CORRECT_ZERO_NUMBER_PRICE),
-    CORRECT_ONE_NUMBER(ONE, (always) -> true, CORRECT_ONE_NUMBER_PRICE),
-    CORRECT_TWO_NUMBERS(TWO, (always) -> true, CORRECT_TWO_NUMBERS_PRICE),
-    CORRECT_THREE_NUMBERS(THREE, (always) -> true, CORRECT_THREE_NUMBERS_PRICE),
-    CORRECT_FOUR_NUMBERS(FOUR, (always) -> true, CORRECT_FOUR_NUMBERS_PRICE),
-    CORRECT_FIVE_NUMBERS(
-            FIVE,
-            (incorrectBonusNumber) -> !incorrectBonusNumber,
-            CORRECT_FIVE_NUMBERS_PRICE),
-    CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER(
-            FIVE,
-            (correctBonusNumber) -> correctBonusNumber,
-            CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE),
-    CORRECT_SIX_NUMBERS(SIX, (always) -> true, CORRECT_SIX_NUMBERS_PRICE);
+    CORRECT_ZERO_NUMBER(ZERO, CORRECT_ZERO_NUMBER_PRICE, (always) -> true),
+    CORRECT_ONE_NUMBER(ONE, CORRECT_ONE_NUMBER_PRICE, (always) -> true),
+    CORRECT_TWO_NUMBERS(TWO, CORRECT_TWO_NUMBERS_PRICE, (always) -> true),
+    CORRECT_THREE_NUMBERS(THREE, CORRECT_THREE_NUMBERS_PRICE, (always) -> true),
+    CORRECT_FOUR_NUMBERS(FOUR, CORRECT_FOUR_NUMBERS_PRICE, (always) -> true),
+    CORRECT_FIVE_NUMBERS(FIVE, CORRECT_FIVE_NUMBERS_PRICE,
+            (incorrectBonusNumber) -> !incorrectBonusNumber),
+    CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER(FIVE, CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE,
+            (correctBonusNumber) -> correctBonusNumber),
+    CORRECT_SIX_NUMBERS(SIX, CORRECT_SIX_NUMBERS_PRICE, (always) -> true);
     
     private final MatchingCount matchingCount;
-    private final UnaryOperator<Boolean> matchingBonus;
     private final WinningPrize price;
+    private final UnaryOperator<Boolean> matchingBonus;
     
     WinningGrade(
-            MatchingCount matchingCount, UnaryOperator<Boolean> matchingBonus, WinningPrize price) {
+            MatchingCount matchingCount, WinningPrize price, UnaryOperator<Boolean> matchingBonus) {
         
         this.matchingCount = matchingCount;
-        this.matchingBonus = matchingBonus;
         this.price = price;
+        this.matchingBonus = matchingBonus;
     }
     
     public static WinningGrade receiveLottoRank(MatchingResult lottoMatchingResult) {

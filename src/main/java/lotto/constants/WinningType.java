@@ -1,5 +1,7 @@
 package lotto.constants;
 
+import static lotto.constants.Message.NEW_LINE;
+
 public enum WinningType implements Calculator {
     NONE("") {
         @Override
@@ -64,6 +66,10 @@ public enum WinningType implements Calculator {
     }
 
     public String getMessage() {
-        return message;
+        if (this == NONE) {
+            return message;
+        }
+
+        return message + NEW_LINE.getMessage();
     }
 }

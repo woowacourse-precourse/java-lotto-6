@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.constants.Message.CONTOUR;
 import static lotto.constants.Message.NEW_LINE;
 import static lotto.constants.Message.PROFIT_RATE;
 import static lotto.constants.Message.TICKET_PREFIX;
@@ -41,9 +40,7 @@ public class OutputView {
 
     public void printWinningResult(WinningResult lottoResult) {
         consoleOutputDevice.printLine(WINNING_HEADER.getMessage());
-        consoleOutputDevice.printLine(CONTOUR.getMessage());
-
-        consoleOutputDevice.printLine(getResult(lottoResult.getWinningMap()));
+        consoleOutputDevice.printByFormat(getResult(lottoResult.getWinningMap()));
     }
 
     private String getResult(Map<WinningType, Integer> winningMap) {
@@ -52,7 +49,7 @@ public class OutputView {
                 .forEach((winningType) -> {
                     String message = winningType.getMessage();
                     int quantity = winningMap.get(winningType);
-                    builder.append(String.format(message + NEW_LINE.getMessage(), quantity));
+                    builder.append(String.format(message, quantity));
                 });
         return builder.toString();
     }

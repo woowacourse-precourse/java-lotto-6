@@ -38,7 +38,7 @@ public class Input {
             try {
                 System.out.println(INPUT_WINNING_NUMBERS);
                 String[] inputNumbers = Console.readLine().split(",");
-                winningNumberException.validate(inputNumbers);
+                winningNumberException.word(inputNumbers);
                 int[] winningNumbers = Arrays.stream(inputNumbers).mapToInt(Integer::parseInt).toArray();
                 Lotto winningLotto = new Lotto(Arrays.stream(winningNumbers).boxed().collect(Collectors.toList()));
                 System.out.println();

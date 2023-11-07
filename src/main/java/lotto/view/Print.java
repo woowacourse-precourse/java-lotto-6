@@ -1,11 +1,14 @@
 package lotto.view;
 
-import static lotto.type.Win.*;
+import static lotto.type.Win.FIFTH;
+import static lotto.type.Win.FIRST;
+import static lotto.type.Win.FOURTH;
+import static lotto.type.Win.SECOND;
+import static lotto.type.Win.THIRD;
 
 import java.text.DecimalFormat;
 import java.util.List;
 import lotto.Lotto;
-import lotto.type.Win;
 
 public class Print {
 

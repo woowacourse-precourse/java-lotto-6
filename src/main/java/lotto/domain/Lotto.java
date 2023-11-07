@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
 
 import static lotto.domain.LottoConstant.LOTTO_NUMBER_SIZE;
@@ -13,7 +14,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
+
         if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException();
+        }
+
+        if (uniqueNumbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException();
         }
     }

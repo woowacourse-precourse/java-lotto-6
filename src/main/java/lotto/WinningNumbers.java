@@ -84,5 +84,4 @@ public class WinningNumbers {
 			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
 		}
 	}
-
 }

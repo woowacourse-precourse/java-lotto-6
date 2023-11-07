@@ -59,6 +59,7 @@ IDE에서 실행
 
 ```bash
 ├── domain
+├── LottoProcess.java
 │   ├── vendingMachine
 │   │   ├── LottoVendingMachine.java
 │   │   ├── cash
@@ -91,6 +92,7 @@ IDE에서 실행
 │        
 ├── constants
     ├── InputOutputConstants.java
+    ├── LottoDrawConstants.java
     └── LottoConstants.java
 ``` 
 

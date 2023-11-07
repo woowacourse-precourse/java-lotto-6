@@ -5,8 +5,8 @@ public class WinningLotto {
     private final int bonusNumber;
 
     public WinningLotto(Lotto winningNumber, int bonusNumber) {
-        validate(bonusNumber);
         this.winningNumber = winningNumber;
+        validate(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 

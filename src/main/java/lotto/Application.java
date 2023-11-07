@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -50,12 +50,10 @@ public class Application {
         System.out.println("---");
 
         for(Lotto lotto : lottos) {
-            int lottoMatches = 0;
-            for (String select : winningNumbers) {
-                if (lotto.getNumbers().contains(Integer.parseInt(select))) {
-                    lottoMatches++;
-                }
-            }
+            int lottoMatches = (int) Arrays.stream(winningNumbers)
+                    .map(Integer::parseInt)
+                    .filter(num -> lotto.getNumbers().contains(num))
+                    .count();
             boolean hasBonusNumber = lotto.getNumbers().contains(bonus);
 
             LottoRank.getByCountAndBonus(lottoMatches,hasBonusNumber);

@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.Game;
+import lotto.domain.LottoBoard;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningInformation;
@@ -32,27 +32,21 @@ public class GameManager {
         Lotto winningLotto = requestRepeatedly(this::chooseWinningNumbers);
 
         outputProcessor.outputBonusNumberInputMessage();
-        Game game = requestRepeatedly(lottos, winningLotto, this::startGame);
+        LottoBoard lottoBoard = requestRepeatedly(lottos, winningLotto, this::makeLottoBoard);
 
-        processResult(game);
+        processResult(lottoBoard);
     }
 
-    private void processResult(Game game) {
-        WinningInformation winningInformation = WinningInformation.of(game.calculateRanks());
+    private void processResult(LottoBoard lottoBoard) {
+        WinningInformation winningInformation = WinningInformation.of(lottoBoard.calculateRanks());
         outputProcessor.outputWinningInformation(winningInformation);
     }
 
-    private Game startGame(List<Lotto> lottos, Lotto winningLotto) {
+    private LottoBoard makeLottoBoard(List<Lotto> lottos, Lotto winningLotto) {
         int bonusNumber = inputProcessor.getBonusNumber();
-        Game game = new Game(winningLotto, bonusNumber, lottos);
+        LottoBoard lottoBoard = new LottoBoard(winningLotto, bonusNumber, lottos);
         outputProcessor.outputNewLine();
-        return game;
-    }
-
-    private int chooseBonusNumber() {
-        int bonusNumber = inputProcessor.getBonusNumber();
-        outputProcessor.outputNewLine();
-        return bonusNumber;
+        return lottoBoard;
     }
 
     private Lotto chooseWinningNumbers() {

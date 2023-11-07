@@ -30,6 +30,7 @@ public class LottoController {
         for (int i = 0; i < amount; i++) {
             lottos.add((Lotto) randomNumbers.getRandomNumbers());
         }
+
         return lottos;
     }
 
@@ -55,7 +56,6 @@ public class LottoController {
         BonusNumber bonus = new BonusNumber(InputView.bonusNumber(), winningLotto.getNumbers());
         bonusNumber = bonus.getBonusNumber();
     }
-
 
     //각 로또가 몇개 맞았는지 확인, lottos, amount, winningNumbers, bonusNumber 등등 활용,
     //모델 생성(로또 결과 모델)해서 각 로또가 몇개 맞혔는지 보너스는 맞혔는지 확인하고 map에 넣기

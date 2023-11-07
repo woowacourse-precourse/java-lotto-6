@@ -4,7 +4,7 @@ import lotto.model.Lotto;
 
 import java.util.List;
 
-public class outputView {
+public class OutputView {
     //발행된 로또 번호 출력
     public static void IssuedLottoNumbers(int amount, List<Lotto> lottos) {
         System.out.println(amount + "개를 구입했습니다.");

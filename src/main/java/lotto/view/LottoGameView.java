@@ -40,14 +40,15 @@ public class LottoGameView implements GameView {
         lottoGame = (LottoGame) game;
         Winning currentRank = Winning.FIFTH;
 
+        System.out.println(message.get("lottery-statistics"));
         while (currentRank != Winning.LOSE) {
             System.out.println(matchingResult(currentRank, lottoGame));
             currentRank = currentRank.minus(1);
         }
 
         System.out.print(message.get("all-roi-prefix"));
-        System.out.print(lottoGame.getReturnOnInvestment());
-        System.out.print(message.get("all-roi-postfix"));
+        System.out.print(lottoGame.getReturnOnInvestment() + "%");
+        System.out.println(message.get("all-roi-postfix"));
     }
 
     private StringBuilder matchingResult(Winning rank, LottoGame game) {

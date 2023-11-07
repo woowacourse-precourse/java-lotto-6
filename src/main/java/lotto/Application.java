@@ -10,7 +10,7 @@ import lotto.view.LottoGameView;
 public class Application {
     public static void main(String[] args) {
         Application.run(LottoGame.class, LottoGameView.class, LottoGameController.class,
-                "src/main/resources/messages/racing-car-game-messages.properties");
+                "src/main/resources/messages/lotto-game-messages.properties");
     }
 
     public static void run(Class<? extends Game> gameClass, Class<? extends GameView> viewClass,

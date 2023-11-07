@@ -3,7 +3,6 @@ package lotto.dto;
 import static lotto.util.Seperator.WINNING_NUMBERS_SEPARATOR;
 
 import java.util.List;
-import lotto.domain.Purchase;
 import lotto.util.Converter;
 import lotto.util.Seperator;
 import lotto.util.validator.Validator;
@@ -22,7 +21,7 @@ public class WinningNumbersDto {
     }
 
     private static List<Integer> convert(String rawWinningNumbers) {
-        List<String> rawWinningNumberGroup = WINNING_NUMBERS_SEPARATOR.split(rawWinningNumbers);
+        List<String> rawWinningNumberGroup = Seperator.split(WINNING_NUMBERS_SEPARATOR, rawWinningNumbers);
         return Converter.convertToInt(rawWinningNumberGroup);
     }
 

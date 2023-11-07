@@ -44,14 +44,14 @@ public class Calculator {
 
     private static int countSecond(List<WinningCount> winningCounts, Rank rank) {
         return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == SECOND.getCount()
+                .filter(winningCount -> winningCount.getWinningCount() == rank.getCount()
                         && winningCount.hasBonusNumber())
                 .count();
     }
 
     private static int countThird(List<WinningCount> winningCounts, Rank rank) {
         return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == THIRD.getCount()
+                .filter(winningCount -> winningCount.getWinningCount() == rank.getCount()
                         && !winningCount.hasBonusNumber())
                 .count();
     }

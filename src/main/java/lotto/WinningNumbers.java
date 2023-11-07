@@ -7,6 +7,14 @@ public record WinningNumbers(Lotto numbers, int bonusNumber) {
         validate(numbers, bonusNumber);
     }
 
+    public Lotto getLottoNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(Lotto numbers, int bonusNumber) {
         validate(numbers);
         validate(bonusNumber);
@@ -14,7 +22,7 @@ public record WinningNumbers(Lotto numbers, int bonusNumber) {
     }
 
     private void validate(Lotto numbers) {
-        numbers.getSortedNumbers().forEach(this::validateNumberInRange);
+        numbers.getNumbers().forEach(this::validateNumberInRange);
     }
 
     private void validate(int bonusNumber) {
@@ -28,10 +36,9 @@ public record WinningNumbers(Lotto numbers, int bonusNumber) {
     }
 
     private void validateNotDuplicated(Lotto numbers, int bonusNumber) {
-        List<Integer> winningNumbers = numbers.getSortedNumbers();
-        winningNumbers.add(bonusNumber);
-        if (winningNumbers.stream().distinct().count() != winningNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
+        List<Integer> winningNumbers = numbers.getNumbers();
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }

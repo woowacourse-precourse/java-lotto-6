@@ -1,6 +1,7 @@
 package lotto.model;
 
-import java.util.Arrays;
+import static java.util.stream.Collectors.toMap;
+
 import java.util.EnumMap;
 
 public class LottoStatistic {
@@ -9,19 +10,31 @@ public class LottoStatistic {
     private static final int RATE = 100;
 
     private final EnumMap<LottoPrize, Integer> prizeCounts;
+    private final PurchaseAmount purchaseAmount;
     private long winningAmount = 0;
 
-    private LottoStatistic() {
+    public LottoStatistic(final PurchaseAmount purchaseAmount) {
         prizeCounts = new EnumMap<>(LottoPrize.class);
-        Arrays.stream(LottoPrize.values()).forEach(prize -> prizeCounts.put(prize, INITIAL_COUNT));
+        initializePrizeCounts();
+        this.purchaseAmount = purchaseAmount;
     }
 
-    public static LottoStatistic create() {
-        return new LottoStatistic();
+    private void initializePrizeCounts() {
+        prizeCounts.putAll(
+                LottoPrize.stream()
+                        .collect(toMap(key -> key, value -> INITIAL_COUNT))
+        );
     }
 
-    public void add(final LottoPrize prize) {
-        prizeCounts.compute(prize, (key, count) -> ++count);
+    public void match(final Lottos lottos, final WinningNumbers winningNumbers) {
+        lottos.stream()
+                .map(winningNumbers::match)
+                .map(LottoPrize::from)
+                .forEach(this::add);
+    }
+
+    private void add(final LottoPrize prize) {
+        prizeCounts.computeIfPresent(prize, (key, count) -> ++count);
         winningAmount += prize.getAmount();
     }
 
@@ -29,7 +42,7 @@ public class LottoStatistic {
         return prizeCounts.get(prize);
     }
 
-    public double getEarningRate(final PurchaseAmount amount) {
-        return (double) winningAmount / amount.toInt() * RATE;
+    public double getEarningRate() {
+        return (double) winningAmount / purchaseAmount.toInt() * RATE;
     }
 }

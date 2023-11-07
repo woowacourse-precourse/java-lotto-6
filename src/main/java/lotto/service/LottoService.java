@@ -1,12 +1,13 @@
 package lotto.service;
 
-import java.util.Collections;
+import static lotto.model.Lotto.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.stream.Stream;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.InputCallback;
+import lotto.exception.InputExceptionTemplate;
 import lotto.model.Lotto;
-import lotto.model.LottoPrize;
 import lotto.model.LottoStatistic;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
@@ -14,25 +15,42 @@ import lotto.model.WinningNumbers;
 
 public class LottoService {
 
-    public Lottos generateLottos(final PurchaseAmount amount) {
-        int lottoCount = amount.toInt() / PurchaseAmount.LOTTO_PRICE;
-        return Lottos.from(Stream.generate(this::createLotto)
+    private final InputExceptionTemplate inputExceptionTemplate;
+
+    public LottoService(final InputExceptionTemplate inputExceptionTemplate) {
+        this.inputExceptionTemplate = inputExceptionTemplate;
+    }
+
+    public PurchaseAmount askPurchaseAmount(InputCallback<Integer> callback) {
+        return inputByExceptionTemplate(() -> PurchaseAmount.from(inputByExceptionTemplate(callback)));
+    }
+
+    public Lottos buyLottos(PurchaseAmount amount) {
+        int lottoCount = amount.toInt() / LOTTO_PRICE;
+        return Lottos.from(Stream.generate(Lotto::create)
                 .limit(lottoCount)
                 .toList());
     }
 
-    public LottoStatistic generateStatistic(final Lottos lottos, final WinningNumbers winningNumbers) {
-        LottoStatistic statistic = LottoStatistic.create();
-        lottos.stream()
-                .map(winningNumbers::match)
-                .map(LottoPrize::from)
-                .forEach(statistic::add);
+    public List<Integer> askWinningNumbers(InputCallback<List<Integer>> callback) {
+        return inputByExceptionTemplate(callback);
+    }
+
+    public int askBonusNumber(InputCallback<Integer> callback) {
+        return inputByExceptionTemplate(callback);
+    }
+
+    public WinningNumbers createWinningNumbers(List<Integer> numbers, int bonusNumber) {
+        return inputByExceptionTemplate(() -> WinningNumbers.of(numbers, bonusNumber));
+    }
+
+    public LottoStatistic createStatisticOf(PurchaseAmount amount, Lottos lottos, WinningNumbers winningNumbers) {
+        LottoStatistic statistic = new LottoStatistic(amount);
+        statistic.match(lottos, winningNumbers);
         return statistic;
     }
 
-    private Lotto createLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
-        return new Lotto(numbers);
+    private <T> T inputByExceptionTemplate(InputCallback<T> callback) {
+        return inputExceptionTemplate.run(callback);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import lotto.model.result.LottoMatchResult;
 
@@ -39,6 +40,10 @@ public enum LottoPrize {
 
     private static boolean isPrize3(final LottoMatchResult result) {
         return PRIZE_3.hasBonus == result.hasBonus() && PRIZE_3.matchCount == result.matchCount();
+    }
+
+    public static Stream<LottoPrize> stream() {
+        return Stream.of(values());
     }
 
     public int getMatchCount() {

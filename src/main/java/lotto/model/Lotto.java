@@ -1,9 +1,14 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 public class Lotto {
+
+    public static final int LOTTO_PRICE = 1_000;
 
     private static final String INVALID_COUNT = "로또 번호는 6개를 입력해야 합니다.";
     private static final String NUMBER_OUT_OF_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
@@ -20,6 +25,12 @@ public class Lotto {
         validateInRange(numbers);
         validateNotDuplicated(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto create() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 
     protected void validateCount(final List<Integer> numbers) {

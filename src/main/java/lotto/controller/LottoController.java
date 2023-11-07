@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import static lotto.exception.ErrorMessage.ERROR;
-
 import java.util.List;
 
 import lotto.model.LottoStatistic;
@@ -25,44 +23,33 @@ public class LottoController {
     }
 
     public void play() {
-        PurchaseAmount purchaseAmount = createPurchaseAmount();
-        Lottos lottos = lottoService.generateLottos(purchaseAmount);
-        outputView.printPurchaseResult(lottos);
+        PurchaseAmount amount = askPurchaseAmount();
+        Lottos lottos = buyLottos(amount);
+        printLottos(lottos);
         WinningNumbers winningNumbers = askWinningNumbers();
-        LottoStatistic statistic = lottoService.generateStatistic(lottos, winningNumbers);
-        outputView.printStatistic(purchaseAmount, statistic);
+        LottoStatistic statistic = createStatisticOf(amount, lottos, winningNumbers);
+        outputView.printStatistic(statistic);
     }
 
-    private PurchaseAmount createPurchaseAmount() {
-        while (true) {
-            try {
-                return PurchaseAmount.from(askPurchaseAmount());
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR + e.getMessage());
-            }
-        }
+    private PurchaseAmount askPurchaseAmount() {
+        return lottoService.askPurchaseAmount(inputView::askPurchaseAmount);
     }
 
-    private int askPurchaseAmount() {
-        while (true) {
-            try {
-                return inputView.askPurchaseAmount();
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR + e.getMessage());
-            }
-        }
+    private Lottos buyLottos(final PurchaseAmount amount) {
+        return lottoService.buyLottos(amount);
+    }
 
+    private void printLottos(Lottos lottos) {
+        outputView.printLottos(lottos);
     }
 
     private WinningNumbers askWinningNumbers() {
-        while (true) {
-            try {
-                List<Integer> numbers = inputView.askWinningNumbers();
-                int bonusNumber = inputView.askBonusNumber();
-                return WinningNumbers.of(numbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(ERROR + e.getMessage());
-            }
-        }
+        List<Integer> numbers = lottoService.askWinningNumbers(inputView::askWinningNumbers);
+        int bonusNumber = lottoService.askBonusNumber(inputView::askBonusNumber);
+        return lottoService.createWinningNumbers(numbers, bonusNumber);
+    }
+
+    private LottoStatistic createStatisticOf(PurchaseAmount amount, Lottos lottos, WinningNumbers winningNumbers) {
+        return lottoService.createStatisticOf(amount, lottos, winningNumbers);
     }
 }

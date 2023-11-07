@@ -27,7 +27,7 @@ public class LottoService {
 
     public Lottos purchase() {
         final PurchaseAmount purchaseAmount = domainRepository.getPurchaseAmount();
-        final Lottos lottos = lottoPublisher.createLottos(purchaseAmount);
+        final Lottos lottos = lottoPublisher.publish(purchaseAmount);
         domainRepository.saveLottos(lottos);
         return lottos;
     }

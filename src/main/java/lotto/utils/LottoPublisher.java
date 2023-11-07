@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 public class LottoPublisher {
 
-    public Lottos createLottos(final PurchaseAmount purchaseAmount) {
+    public Lottos publish(final PurchaseAmount purchaseAmount) {
         return Stream.generate(this::generateRandomNumbers)
                 .limit(purchaseAmount.numOfLotto())
                 .map(Lotto::new)

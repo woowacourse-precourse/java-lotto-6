@@ -32,6 +32,26 @@ public class WinningResult {
         return winningResult;
     }
 
+    public int getFirstPrizeLottoCount(){
+        return winningResult.getOrDefault(FIRST,0);
+    }
+
+    public int getSecondPrizeLottoCount(){
+        return winningResult.getOrDefault(SECOND,0);
+    }
+
+    public int getThirdPrizeLottoCount(){
+        return winningResult.getOrDefault(THIRD,0);
+    }
+
+    public int getFourthPrizeLottoCount(){
+        return winningResult.getOrDefault(FOURTH,0);
+    }
+
+    public int getFifthPrizeLottoCount(){
+        return winningResult.getOrDefault(FIFTH,0);
+    }
+
     public long getLotteryPrize() {
         return -1;
     }

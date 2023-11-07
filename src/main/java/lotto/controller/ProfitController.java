@@ -1,20 +1,15 @@
 package lotto.controller;
 
-import static lotto.util.Constants.ZERO;
 
 import java.util.Map;
-import java.util.Optional;
 import lotto.model.BonusNumber;
 import lotto.model.LottoBundle;
 import lotto.model.ProfitCalculator;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
-import lotto.util.enums.LottoResult;
 import lotto.view.OutputView;
 
 public class ProfitController {
-    private static final Long LONG_ZERO = 0L;
-
     private final LottoBundle lottoBundle;
     private final PurchaseAmount amount;
 
@@ -25,7 +20,7 @@ public class ProfitController {
 
     public void displayProfitReport(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
         Map<String, Integer> compareResult = displayStatisticReport(winningNumbers, bonusNumber);
-        long totalPrize = calculateTotalPrize(compareResult);
+        long totalPrize = lottoBundle.totalPrize(compareResult);
         double profit = calculateProfit(totalPrize);
         OutputView.getProfit(profit);
     }
@@ -40,23 +35,6 @@ public class ProfitController {
 
     private Map<String, Integer> lottoComparator(final WinningNumbers winningNumbers, final BonusNumber bonusNumber) {
         return lottoBundle.compareLotto(winningNumbers, bonusNumber);
-    }
-
-    private long calculateTotalPrize(Map<String, Integer> compareResult) {
-        return compareResult.entrySet().stream()
-                .filter(this::shouldIncludeEntry)
-                .mapToLong(this::calculatePrizeForEntry)
-                .sum();
-    }
-
-    private boolean shouldIncludeEntry(Map.Entry<String, Integer> entry) {
-        Optional<LottoResult> result = LottoResult.fromDescription(entry.getKey());
-        return result.isPresent() && entry.getValue() > ZERO;
-    }
-
-    private long calculatePrizeForEntry(Map.Entry<String, Integer> entry) {
-        Optional<LottoResult> result = LottoResult.fromDescription(entry.getKey());
-        return result.map(lottoResult -> (long) lottoResult.getPrize() * entry.getValue()).orElse(LONG_ZERO);
     }
 
     private double calculateProfit(long totalPrize) {

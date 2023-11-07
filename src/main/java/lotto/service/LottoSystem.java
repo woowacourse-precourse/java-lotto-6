@@ -10,7 +10,7 @@ import java.util.List;
 
 public class LottoSystem {
 
-    private List<Integer> winningNumbers = new ArrayList<>();
+    private List<Integer> winningNumbers;
     private int bonusNumber;
 
     public LottoSystem(List<Integer> winningNumbers, int bonusNumber) {
@@ -18,7 +18,7 @@ public class LottoSystem {
         this.bonusNumber = bonusNumber;
     }
 
-    public static Lotto generateLotto(List<Integer> newLottoNumbers){
+    public static Lotto generateLotto(){
 
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);

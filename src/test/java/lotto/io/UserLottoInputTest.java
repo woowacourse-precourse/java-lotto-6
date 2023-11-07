@@ -52,7 +52,9 @@ class UserLottoInputTest {
         // given
         UserLottoInput input = new UserLottoInput();
         // when
-        WinningNumbers winningNumbers = input.getWinningNumbers();
+        Lotto playerLotto = input.getLotto();
+        LottoBall bonusNumber = input.getBall();
+        WinningNumbers winningNumbers = new WinningNumbers(playerLotto, bonusNumber);
         // then
         Lotto lotto = new Lotto(Stream.of(1, 2, 3, 4, 5, 7)
                 .map(LottoBall::getInstance)

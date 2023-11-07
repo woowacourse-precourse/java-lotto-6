@@ -3,10 +3,12 @@ package lotto.io;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
 import lotto.domain.WinningNumbers;
 import lotto.exception.InvalidMoneyInput;
+import lotto.exception.LottoIllegalArgumentException;
 
 public class UserLottoInput implements LottoInput {
     private final String DELIMITER = ",";
@@ -20,9 +22,7 @@ public class UserLottoInput implements LottoInput {
         return amount;
     }
 
-
-    @Override
-    public WinningNumbers getWinningNumbers() {
+    private WinningNumbers getWinningNumbers() {
         Lotto lotto = getLotto();
         LottoBall bonusBall = getBall();
 

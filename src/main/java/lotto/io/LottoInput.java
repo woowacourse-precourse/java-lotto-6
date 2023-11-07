@@ -1,8 +1,8 @@
 package lotto.io;
 
+import java.util.function.Supplier;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
-import lotto.domain.WinningNumbers;
 
 public interface LottoInput {
     int getMoneyAmount();
@@ -11,5 +11,4 @@ public interface LottoInput {
 
     LottoBall getBall();
 
-    WinningNumbers getWinningNumbers();
 }

@@ -105,18 +105,4 @@ class LottoTest {
 
         assertTrue(isContained);
     }
-
-    @DisplayName("번호를 포함하고 지 검사하는 기능 테스트")
-    @Test
-    void contain_test() {
-        // given
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        Lotto lotto = Lotto.createWinningLotto(numbers);
-
-        // when
-        boolean contains = lotto.contain(1);
-
-        // then
-        assertTrue(contains);
-    }
 }

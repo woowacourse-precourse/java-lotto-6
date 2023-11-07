@@ -76,11 +76,11 @@ public class Lotto {
         return this.contain(bonusNumber.number());
     }
 
-    public boolean contain(Integer number) {
+    private boolean contain(final Integer number) {
         return numbers.contains(number);
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 }

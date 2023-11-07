@@ -84,28 +84,28 @@
     - [x] 당첨 번호와 중복될 때
 
 ## 프로그래밍 요구 사항  
-- [ ] JDK17
-- [ ] 시작점: Application의 main()
-- [ ] build.gradle 수정 불가
-- [ ] JAVA 코드 컨벤션 가이드 준수
-- [ ] System.exit(0) 호출 금지
-- [ ] ApplicationTest 통과
-- [ ] 요구사항 없으면 파일, 패키지 이름 수정하지 않는다
+- [x] JDK17
+- [x] 시작점: Application의 main()
+- [x] build.gradle 수정 불가
+- [x] JAVA 코드 컨벤션 가이드 준수
+- [x] System.exit(0) 호출 금지
+- [x] ApplicationTest 통과
+- [x] 요구사항 없으면 파일, 패키지 이름 수정하지 않는다
 - [ ] 들여쓰기 최대 2
-- [ ] 3항 연산자를 사용하지 않는다
+- [x] 3항 연산자를 사용하지 않는다
 - [ ] 메서드는 한 가지 일만 하도록 최대한 작게
-  - [ ] 메서드는 15라인을 넘을 수 없다
+  - [x] 메서드는 15라인을 넘을 수 없다
 - [ ] JUnit5와 AssertJ를 활용해서 프로그램 테스트
   - [ ] 도메인 로직에 단위 테스트 구현
   - [ ] UI로직은 제외
-- [ ] else 예약어를 쓰지 않는다
-- [ ] JAVA ENUM을 적용한다
-- [ ] 라이브러리
-  - [ ] Randoms 및 Console API 사용 
-  - [ ] Random 값 추출: Randoms.pickUniqueNumbersInRange()
-  - [ ] 사용자 입력: Console.readLine()
-- [ ] Lotto 클래스
-  - [ ] Lotto 클래스를 최대한 활용
-  - [ ] 접근제어자 유지
-  - [ ] 인스턴스 변수를 추가할 수 없다
-  - [ ] 패키지 변경은 가능
+- [x] else 예약어를 쓰지 않는다
+- [x] JAVA Enum을 적용한다
+- [x] 라이브러리
+  - [x] Randoms 및 Console API 사용 
+  - [x] Random 값 추출: Randoms.pickUniqueNumbersInRange()
+  - [x] 사용자 입력: Console.readLine()
+- [x] Lotto 클래스
+  - [x] Lotto 클래스를 최대한 활용
+  - [x] 접근제어자 유지
+  - [x] 인스턴스 변수를 추가할 수 없다
+  - [x] 패키지 변경은 가능

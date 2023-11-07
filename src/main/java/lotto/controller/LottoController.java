@@ -1,16 +1,16 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningLotto;
 import lotto.service.GetLottoTicket;
-import lotto.service.InputLotto;
 import lotto.service.InputLottoAmount;
+import lotto.service.InputWinningLotto;
 
 public class LottoController {
     public void startLotto() {
         int lottoTicketCount = setAmount();
         Lottos lottos = getLottos(lottoTicketCount);
-        Lotto lotto = setLotto();
+        WinningLotto lotto = setWinningLotto();
     }
 
     public int setAmount() {
@@ -23,8 +23,8 @@ public class LottoController {
         return lottos;
     }
 
-    public Lotto setLotto() {
-        Lotto lotto = InputLotto.setInputLotto();
-        return lotto;
+    public WinningLotto setWinningLotto() {
+        WinningLotto winningLotto = InputWinningLotto.setInputWinningLotto();
+        return winningLotto;
     }
 }

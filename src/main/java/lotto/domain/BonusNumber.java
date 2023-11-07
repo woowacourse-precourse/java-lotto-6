@@ -1,8 +1,9 @@
 package lotto.domain;
 
+import lotto.domain.constant.LottoConstant;
+import lotto.exception.lotto.LottoRangeException;
+
 public class BonusNumber {
-    private static final int MIN_VALUE = 1;
-    private static final int MAX_VALUE = 45;
     private final int number;
 
     private BonusNumber(final int number) {
@@ -15,8 +16,8 @@ public class BonusNumber {
     }
 
     private void validate(final int number) {
-        if (number < MIN_VALUE || number > MAX_VALUE) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+        if (number < LottoConstant.MIN_NUMBER.getValue() || number > LottoConstant.MAX_NUMBER.getValue()) {
+            throw new LottoRangeException();
         }
     }
 

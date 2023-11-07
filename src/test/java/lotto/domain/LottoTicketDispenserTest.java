@@ -36,4 +36,16 @@ class LottoTicketDispenserTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("로또 구입 금액은 %d 단위입니다.", Lotto.PRICE));
     }
+
+    @Test
+    void 주어진_숫자_생성_결과로_로또_티켓을_발행할_수_있다() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto expectedLotto = new Lotto(numbers);
+        // when
+        Lotto actualLotto = lottoTicketDispenser.createWinningTicket(() -> numbers);
+        // then
+        assertThat(actualLotto.confirmLottoWinning(expectedLotto, 7))
+                .isEqualTo(LottoWinning.FIRST);
+    }
 }

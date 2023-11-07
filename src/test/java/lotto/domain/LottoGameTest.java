@@ -3,6 +3,7 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class LottoGameTest {
@@ -30,5 +31,18 @@ class LottoGameTest {
         assertThatThrownBy(() -> lottoGame.purchaseLottoTickets(cost))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("유효하지 않은 금액입니다.");
+    }
+
+    @Test
+    void 로또_게임의_당첨_번호로_당첨_로또를_생성한다() {
+        // given
+        LottoGame lottoGame = new LottoGame(ticketDispenser);
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto expectedLotto = new Lotto(numbers);
+        // when
+        Lotto actualLotto = lottoGame.createWinningLotto(numbers);
+        // then
+        assertThat(actualLotto.confirmLottoWinning(expectedLotto, 7))
+                .isEqualTo(LottoWinning.FIRST);
     }
 }

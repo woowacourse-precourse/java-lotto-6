@@ -1,24 +1,30 @@
 package lotto.domain;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
+    private static final String LENGTH_ERROR_MESSAGE = "[ERROR] 로또 숫자의 갯수를 확인하세요.";
+    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 중복 숫자가 존재합니다";
+
     public Lotto(List<Integer> numbers) {
-        try {
-            validate(numbers);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        validateLottoLength(numbers);
+        validateDuplicateNumber(numbers);
+
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLottoLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
+        }
+    }
+
+    private void validateDuplicateNumber(List<Integer> numbers) {
+        HashSet<Integer> distinctNumbers = new HashSet<>(numbers);
+        if (distinctNumbers.size() != 6) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
         }
     }
 

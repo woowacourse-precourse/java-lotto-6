@@ -38,6 +38,19 @@ public class Lotto {
           throw new IllegalArgumentException(BONUS_ERROR);
         }
     }
+    public int calculateSameCount(Lotto otherLotto) {
+        return compareLottoNumbers(otherLotto.number());
+    }
+
+    private int compareLottoNumbers(List<Integer> otherNumbers) {
+        Set<Integer> commonNumbers = new HashSet<>(this.numbers);
+        commonNumbers.retainAll(otherNumbers);
+        return commonNumbers.size();
+    }
+
+    public List<Integer> number() {
+        return numbers;
+    }
 }
 
 

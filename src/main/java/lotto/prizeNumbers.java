@@ -11,4 +11,9 @@ public class prizeNumbers {
     private void validateDuplicateNumber(BonusNumber bonusNumber) {
         lotto.checkForBonusNumber(bonusNumber);
     }
+
+    public Ranking calculatePrize(Lotto otherLottoNumbers) {
+        int cnt = lotto.calculateSameCount(otherLottoNumbers);
+        return Ranking.findRankingByCnt(cnt);
+    }
 }

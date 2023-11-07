@@ -19,6 +19,10 @@ public class Utils {
     }
 
     public static List<Integer> makeRandomNumbers(int start, int end, int cnt){
-        return Randoms.pickUniqueNumbersInRange(start, end, cnt);
+        List<Integer> makedNumbers;
+        do {
+            makedNumbers = Randoms.pickUniqueNumbersInRange(start, end, cnt);
+        } while(makedNumbers.stream().distinct().count() != makedNumbers.size());
+        return makedNumbers;
     }
 }

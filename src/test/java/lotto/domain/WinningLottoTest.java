@@ -52,8 +52,21 @@ class WinningLottoTest {
         );
     }
 
-    @Test
-    void isWinningNumber() {
+    @DisplayName("당첨 로또 번호가 일치하는지 테스트")
+    @ParameterizedTest
+    @MethodSource("getLottoNumbersAndExpectedNumber")
+    void checkWinningNumber(List<Integer> numbers, Integer bonusNumber, Integer expectedNumber) {
+        // Arrange
+        WinningLotto winningLotto = WinningLotto.of(numbers, bonusNumber);
 
+        // Act & Assert
+        Assertions.assertTrue(winningLotto.isWinningNumber(expectedNumber));
+    }
+
+    private static Stream<Arguments> getLottoNumbersAndExpectedNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 7, 6),
+                Arguments.of(List.of(10, 12, 14, 19, 22, 44), 7, 44)
+        );
     }
 }

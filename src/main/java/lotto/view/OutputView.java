@@ -58,7 +58,7 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void printRateOfProfit(long rateOfProfit) {
+    public static void printRateOfProfit(double rateOfProfit) {
 
         StringBuilder result = new StringBuilder();
 

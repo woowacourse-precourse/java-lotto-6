@@ -1,13 +1,13 @@
 package lotto.domain.dto;
 
 
-import lotto.validatior.InputPurchaseAmountValidator;
+import static lotto.validatior.InputPurchaseAmountValidator.validatePurchaseAmount;
 
 public class InputMoney {
     private final String money;
 
     public InputMoney(String money) {
-        InputPurchaseAmountValidator.validatePurchaseAmount(money);
+        validatePurchaseAmount(money);
         this.money = money;
     }
 

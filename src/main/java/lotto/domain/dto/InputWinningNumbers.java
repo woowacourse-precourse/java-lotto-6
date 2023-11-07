@@ -1,13 +1,29 @@
 package lotto.domain.dto;
 
+import static lotto.validatior.InputWinningNumbersValidator.validateOnlyPositiveWinningNumbers;
+import static lotto.validatior.InputWinningNumbersValidator.validateWinningNumbers;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class InputWinningNumbers {
-    private final String inputWinningNumbers;
+    private final List<Integer> inputWinningNumbers;
 
     public InputWinningNumbers(String inputWinningNumbers) {
-        this.inputWinningNumbers = inputWinningNumbers;
+        validateOnlyPositiveWinningNumbers(inputWinningNumbers);
+        List<Integer> inputNumbers = convertToList(inputWinningNumbers);
+        validateWinningNumbers(inputNumbers);
+        this.inputWinningNumbers = inputNumbers;
     }
 
-    public String getInputWinningNumbers() {
+    public List<Integer> getInputWinningNumbers() {
         return inputWinningNumbers;
+    }
+
+    private List<Integer> convertToList(String numbersString) {
+        return Arrays.stream(numbersString.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }

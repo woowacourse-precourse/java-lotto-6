@@ -12,13 +12,13 @@ public class Money {
     }
 
     private static void validateMoneyPositive(int value) {
-        if (!hasOverZeroValue(value)) {
+        if (!hasGreaterEqualZeroValue(value)) {
             throw new MoneyPositiveException();
         }
     }
 
-    private static boolean hasOverZeroValue(int value) {
-        return value > MIN_BOUND;
+    private static boolean hasGreaterEqualZeroValue(int value) {
+        return value >= MIN_BOUND;
     }
 
     public boolean isGreaterEqual(int target) {

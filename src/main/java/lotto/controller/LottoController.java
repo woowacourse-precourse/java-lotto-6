@@ -37,9 +37,14 @@ public class LottoController {
     }
 
     private int makeBonusNumber(Lotto winningNumbers) {
-        String inputBonusNumber = getBonusNumber();
-        validateBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
-        return Integer.parseInt(inputBonusNumber);
+        try {
+            String inputBonusNumber = getBonusNumber();
+            validateBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
+            return Integer.parseInt(inputBonusNumber);
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+            return makeBonusNumber(winningNumbers);
+        }
     }
 
     private String getBonusNumber() {
@@ -51,9 +56,14 @@ public class LottoController {
     }
 
     private int getPurchaseAmount() {
-        String purchaseAmount = inputView.purchaseAmountInput();
-        inputValidation.validatePurchaseAmountInput(purchaseAmount);
-        return Integer.parseInt(purchaseAmount);
+        try {
+            String purchaseAmount = inputView.purchaseAmountInput();
+            inputValidation.validatePurchaseAmountInput(purchaseAmount);
+            return Integer.parseInt(purchaseAmount);
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+            return getPurchaseAmount();
+        }
     }
 
     private int purchaseLottoTickets(int purchaseAmount) {
@@ -69,9 +79,14 @@ public class LottoController {
     }
 
     private Lotto makeWinningNumbers() {
-        List<String> inputWinningNumbers = splitWinningNumbers(getWinningNumbers());
-        validateWinningNumbers(inputWinningNumbers);
-        return makeWinningNumbersToLotto(inputWinningNumbers);
+        try {
+            List<String> inputWinningNumbers = splitWinningNumbers(getWinningNumbers());
+            validateWinningNumbers(inputWinningNumbers);
+            return makeWinningNumbersToLotto(inputWinningNumbers);
+        }catch (IllegalArgumentException exception){
+            System.out.println(exception.getMessage());
+            return makeWinningNumbers();
+        }
     }
 
     private String getWinningNumbers() {

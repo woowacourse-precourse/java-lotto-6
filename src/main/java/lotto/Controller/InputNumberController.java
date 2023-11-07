@@ -1,6 +1,5 @@
 package lotto.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.Model.Lotto;
 import lotto.View.InputView.InputBonus;

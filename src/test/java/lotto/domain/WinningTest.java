@@ -86,6 +86,22 @@ class WinningTest {
                 .hasMessage("[ERROR] 로또 번호는 1~45 사이 숫자 입니다.");
     }
 
+    @DisplayName("당첨 통계를 계산한다.")
+    @Test
+    void calcTotalPrize() {
+        //Given
+        List<Lotto> lottos = List.of(
+                new Lotto(List.of(2, 3, 4, 5, 6, 7)),   //5개 적중
+                new Lotto(List.of(2, 3, 4, 5, 6, 8))    //5개 + 보너스 적중
+        );
+        winning.setBonusNumber(8);
+        //When
+        Map<Prize, Integer> totalPrize = winning.calcTotalPrize(lottos);
+        //Then
+        assertThat(totalPrize.get(Prize.FIVE_MATCH)).isEqualTo(1);
+        assertThat(totalPrize.get(Prize.FIVE_MATCH_BONUS)).isEqualTo(1);
+    }
+
     @DisplayName("로또 번호가 당첨 번호와 일치하는 개수를 반환한다.")
     @Test
     void getMatchNumberCount() {

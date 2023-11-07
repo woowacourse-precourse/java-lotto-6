@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static util.Validator.validateTicketPurchaseAmount;
+import static util.TicketPurchaseAmountValidator.validateTicketPurchaseAmount;
 
 public class LottoGame {
     static final int TICKET_PRICE = 1000;

@@ -34,6 +34,6 @@ public class LottoController {
         }
 
         outputView.printResult(user);
-        outputView.printProfitRate(user, userService.calcutateProfitRate(user));
+        outputView.printProfitRate(userService.calcutateProfitRate(user));
     }
 }

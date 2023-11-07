@@ -37,6 +37,10 @@ public class User {
             this.lottoRanks[6]+=1;
             return;
         }
+        if (identifyNum == 6) {
+            this.lottoRanks[7]+=1;
+            return;
+        }
         this.lottoRanks[identifyNum]+=1;
     }
 

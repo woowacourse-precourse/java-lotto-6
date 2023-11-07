@@ -30,5 +30,10 @@ public class Lotto {
     	numbers.addAll(generateNumbers);
     }
     
+    public int CountLottoTickets(int money) {
+    	int ticketQty = money / 1000;
+    	return ticketQty;
+    }
+    
   
 }

@@ -26,7 +26,7 @@ public class LottoWinningNumbersTest {
         String inputValues = "1,2,3,4,5,6\n";
         System.setIn(new ByteArrayInputStream(inputValues.getBytes()));
 
-        List<Integer> winningNumbers = lottoWinningNumbers.getWinningNumbers();
+        List<Integer> winningNumbers = lottoWinningNumbers.inputWinningNumbers();
 
         assertThat(winningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
         System.setIn(originalSystemIn);

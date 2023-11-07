@@ -25,8 +25,8 @@ class LottoServiceTest {
                     purchaseLottoGivenCount(1);
                     WinNumbersDto winNumbersDto = new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
                     ResultDto resultDto = lottoService.generateResult(winNumbersDto);
-                    assertThat(resultDto.rankingCount().containsKey(Ranking.FIRST)).isTrue();
-                    assertThat(resultDto.rankingCount().get(Ranking.FIRST)).isEqualTo(1);
+                    assertThat(resultDto.rankingCounts().containsKey(Ranking.FIRST)).isTrue();
+                    assertThat(resultDto.rankingCounts().get(Ranking.FIRST)).isEqualTo(1);
                 }, List.of(1, 2, 3, 4, 5, 6)
         );
     }
@@ -38,8 +38,8 @@ class LottoServiceTest {
                     purchaseLottoGivenCount(2);
                     WinNumbersDto winNumbersDto = new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
                     ResultDto resultDto = lottoService.generateResult(winNumbersDto);
-                    assertThat(resultDto.rankingCount().get(Ranking.SECOND)).isEqualTo(1);
-                    assertThat(resultDto.rankingCount().get(Ranking.THIRD)).isEqualTo(1);
+                    assertThat(resultDto.rankingCounts().get(Ranking.SECOND)).isEqualTo(1);
+                    assertThat(resultDto.rankingCounts().get(Ranking.THIRD)).isEqualTo(1);
                 },
                 List.of(1, 2, 3, 4, 5, 7),
                 List.of(1, 2, 3, 4, 5, 8)
@@ -52,12 +52,39 @@ class LottoServiceTest {
                     purchaseLottoGivenCount(1);
                     WinNumbersDto winNumbersDto = new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
                     ResultDto resultDto = lottoService.generateResult(winNumbersDto);
-                    assertThat(resultDto.rankingCount().containsKey(Ranking.SECOND)).isFalse();
-                    assertThat(resultDto.rankingCount().get(Ranking.SECOND)).isNull();
-                    assertThat(resultDto.rankingCount().get(Ranking.FIFTH)).isNull();
+                    assertThat(resultDto.rankingCounts().containsKey(Ranking.SECOND)).isFalse();
+                    assertThat(resultDto.rankingCounts().get(Ranking.SECOND)).isNull();
+                    assertThat(resultDto.rankingCounts().get(Ranking.FIFTH)).isNull();
                 },
                 List.of(1, 2, 3, 4, 5, 6)
         );
+    }
+
+    @Test
+    void 수익률을_계산해서_반환한다() {
+        assertRandomUniqueNumbersInRangeTest(() -> {
+                    purchaseLottoGivenCount(2);
+                    WinNumbersDto winNumbersDto = new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+                    ResultDto resultDto = lottoService.generateResult(winNumbersDto);
+                    assertThat(resultDto.benefitRate())
+                            .isEqualTo(101500000.0);
+                    },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7));
+    }
+
+    @Test
+    void 수익률은_소수점_둘째자리에서_반올림한다() {
+        assertRandomUniqueNumbersInRangeTest(() -> {
+                    purchaseLottoGivenCount(3);
+                    WinNumbersDto winNumbersDto = new WinNumbersDto(Arrays.asList(1, 2, 3, 4, 5, 6), 7);
+                    ResultDto resultDto = lottoService.generateResult(winNumbersDto);
+                    assertThat(resultDto.benefitRate())
+                            .isEqualTo(1833.3);
+                },
+                List.of(1, 2, 3, 8, 9, 10),
+                List.of(1, 2, 3, 4, 11, 12),
+                List.of(21, 22, 23, 24, 25, 26));
     }
 
     private void purchaseLottoGivenCount(int count) {

@@ -3,7 +3,6 @@ package lotto.domain.winningnumber;
 import java.util.List;
 
 import lotto.domain.Lotto;
-import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoNumberValidator;
 
 public class WinningNumbers {
@@ -12,7 +11,7 @@ public class WinningNumbers {
 
     public WinningNumbers(String winningNumbersInput, int bonusNumber) {
         this.winningNumbers = LottoNumberValidator.convertStringToList(winningNumbersInput);
-        this.bonusNumber = BonusNumberValidator.validate(bonusNumber, winningNumbers);
+        this.bonusNumber = bonusNumber;
     }
 
     public boolean matchBonus(Lotto lotto) {

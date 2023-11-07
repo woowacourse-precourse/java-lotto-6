@@ -14,8 +14,9 @@ public class LottoGenerationController {
         this.machine = machine;
     }
 
-    public void generateLottoTickets(int numberOfTickets) {
+    public List<Lotto> generateLottoTickets(int numberOfTickets) {
         List<Lotto> tickets = machine.generateTickets(numberOfTickets);
         generateView.displayLottoTickets(tickets);
+        return tickets;
     }
 }

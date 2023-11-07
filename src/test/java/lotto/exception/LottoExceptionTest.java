@@ -9,7 +9,7 @@ public class LottoExceptionTest {
     @DisplayName("예외 메시지가 올바르게 출력된다.")
     @Test
     void printException() {
-        LottoException lottoException = LottoException.of(NOT_INTEGER);
+        IllegalArgumentException lottoException = ErrorMessage.newIllegalArgumentException(NOT_INTEGER);
         System.out.println(lottoException.getMessage());
     }
 }

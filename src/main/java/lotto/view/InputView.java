@@ -7,7 +7,6 @@ import static lotto.view.constants.ConstantMessage.REQUEST_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
-import lotto.exception.LottoException;
 import lotto.parser.Parser;
 import lotto.view.constants.ConstantMessage;
 
@@ -21,7 +20,7 @@ public class InputView {
                 String purchaseAmount = Console.readLine();
                 ticketAmount = Parser.parsePurchaseAmount(purchaseAmount);
                 break;
-            } catch (LottoException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -37,7 +36,7 @@ public class InputView {
                 String winningNumbers = Console.readLine();
                 winnigLotto = Parser.parseWinningNumbers(winningNumbers);
                 break;
-            } catch (LottoException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -53,7 +52,7 @@ public class InputView {
                 String bonusNumber = Console.readLine();
                 bonusLotto = Parser.parseBonusNumber(bonusNumber, winnigLotto);
                 break;
-            } catch (LottoException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

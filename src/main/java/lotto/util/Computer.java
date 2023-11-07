@@ -3,6 +3,7 @@ package lotto.util;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import lotto.domain.Rank;
+import lotto.view.constants.Prize;
 
 public class Computer {
     private static final int LOTTO_PRICE = 1000;

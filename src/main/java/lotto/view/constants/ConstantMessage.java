@@ -1,13 +1,12 @@
 package lotto.view.constants;
 
-import static lotto.util.Prize.FIFTH_PRIZE;
-import static lotto.util.Prize.FIRST_PRIZE;
-import static lotto.util.Prize.FOURTH_PRIZE;
-import static lotto.util.Prize.SECOND_PRIZE;
-import static lotto.util.Prize.THIRD_PRIZE;
+import static lotto.view.constants.Prize.FIFTH_PRIZE;
+import static lotto.view.constants.Prize.FIRST_PRIZE;
+import static lotto.view.constants.Prize.FOURTH_PRIZE;
+import static lotto.view.constants.Prize.SECOND_PRIZE;
+import static lotto.view.constants.Prize.THIRD_PRIZE;
 
 import lotto.parser.Parser;
-import lotto.util.Prize;
 
 public enum ConstantMessage {
     NEW_LINE("\r"),

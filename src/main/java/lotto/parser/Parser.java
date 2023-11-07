@@ -7,7 +7,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Lotto;
-import lotto.exception.LottoException;
+import lotto.exception.ErrorMessage;
 import lotto.validator.Validator;
 
 public class Parser {
@@ -43,7 +43,7 @@ public class Parser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw LottoException.of(NOT_INTEGER);
+            throw ErrorMessage.newIllegalArgumentException(NOT_INTEGER);
         }
     }
 }

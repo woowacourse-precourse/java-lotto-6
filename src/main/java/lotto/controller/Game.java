@@ -15,10 +15,10 @@ import lotto.view.OutputView;
 
 public class Game {
     public static void start() {
-        // 예외 발생해도 해당 부분에서 다시 시작하기 위해 try-catch 문 추가 예정
-
-        // 구입금액
+        // 구입 금액
         int ticketAmount = InputView.requestPurchaseAmount();
+
+        // 자동 번호 생성
         List<Lotto> tickets = Generator.publishTickets(ticketAmount);
         OutputView.responseTickets(ticketAmount, tickets);
 
@@ -28,13 +28,13 @@ public class Game {
         // 보너스 번호
         int bonusLotto = InputView.requestBonusNumber(winnigLotto);
 
-        // 로또 번호 맞추기
+        // 로또 번호 추첨
         List<Result> results = Matcher.matchResult(tickets, winnigLotto, bonusLotto);
 
-        // 당첨된 등수 세기
+        // 당첨된 등수 계산
         Rank rank = Counter.countRank(results);
 
-        // 수익률 계산하기
+        // 수익률 계산
         BigDecimal profit = Computer.computeProfit(ticketAmount, rank);
 
         // 당첨 통계 발표

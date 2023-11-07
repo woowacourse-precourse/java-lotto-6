@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.Manager;
+import lotto.LottoManager;
 import lotto.message.ErrorMessage;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class Validator {
     }
 
     public static void validateNumberOfLottoNumbers(List<Integer> lotto) {
-        if (lotto.size() != Manager.NUMBER_OF_LOTTO_NUMBER) {
+        if (lotto.size() != LottoManager.NUMBER_OF_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_LOTTO_NUMBER_COUNT);
         }
     }

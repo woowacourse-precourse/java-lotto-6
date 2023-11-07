@@ -7,7 +7,7 @@ import lotto.view.Output;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Manager {
+public class LottoManager {
     public static final int NUMBER_OF_LOTTO_NUMBER = 6;
     private final Input input = new Input();
     private final Output output = new Output();

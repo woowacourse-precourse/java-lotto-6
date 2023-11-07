@@ -14,12 +14,7 @@ public class InputView {
 
     private static String getInput(final String message) {
         System.out.println(message);
-        try {
-            return InputValidator.validate(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getInput(message);
-        }
+        return InputValidator.validate(Console.readLine());
     }
 
     public static Money getMoneyInput() {

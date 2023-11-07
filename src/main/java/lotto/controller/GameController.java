@@ -6,6 +6,7 @@ import lotto.domain.LottoManager;
 import lotto.domain.MatchNumber;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
+import lotto.utils.ExceptionHandler;
 import lotto.utils.LottoCaclulator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -20,16 +21,16 @@ public class GameController {
 
     public void run() {
 
-        money = InputView.getMoneyInput();
+        money = ExceptionHandler.input(InputView::getMoneyInput);
         lottoManager.buyAutoLottos(money.requestLottoCount());
         OutputView.printEmpty();
         showBought();
 
         OutputView.printEmpty();
-        WinningLotto winningLotto = InputView.getWinningInput();
+        WinningLotto winningLotto = ExceptionHandler.input(InputView::getWinningInput);
         OutputView.printEmpty();
 
-        Bonus bonus = InputView.getBonusInput();
+        Bonus bonus = ExceptionHandler.input(InputView::getBonusInput);
 
         lottoManager.createWinning(winningLotto, bonus);
         OutputView.printEmpty();

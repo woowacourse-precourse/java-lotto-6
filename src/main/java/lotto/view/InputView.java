@@ -8,7 +8,8 @@ public class InputView {
 
     private enum InputMessage {
         INPUT_PURCHASE_MONEY("구입금액을 입력해 주세요."),
-        INPUT_WINNING_LOTTO_NUMBER("당첨 번호를 입력해 주세요.");
+        INPUT_WINNING_LOTTO_NUMBER("당첨 번호를 입력해 주세요."),
+        INPUT_BONUS_LOTTO_NUMBER("보너스 번호를 입력해 주세요.");
 
         private final String message;
 
@@ -25,5 +26,10 @@ public class InputView {
     public static List<Integer> inputWinningLottoNumber() {
         System.out.println(InputMessage.INPUT_WINNING_LOTTO_NUMBER.message);
         return Converter.splitWithComma(Console.readLine());
+    }
+
+    public static String inputBonusNumber() {
+        System.out.println(InputMessage.INPUT_BONUS_LOTTO_NUMBER.message);
+        return Console.readLine();
     }
 }

@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.utils.ErrorMessage;
 
 public class InputView {
 
@@ -18,20 +19,24 @@ public class InputView {
     }
 
     public static int inputUserPrice() {
-        String input = userInput();
-        return userInputParsedInt(input);
+        try {
+            String input = userInput();
+            return userInputParsedInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_ONLY_NUMBER.getMessage());
+        }
     }
 
 
     public static List<Integer> inputLottoNumbers() {
         String input = InputView.userInput();
         List<Integer> numbers = new ArrayList<>();
-        for(String s : input.split(",")) {
-            try  {
+        for (String s : input.split(",")) {
+            try {
                 int num = Integer.parseInt(s);
                 numbers.add(num);
-            } catch (NumberFormatException e ){
-                throw new IllegalArgumentException("숫자 입력해라");
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ErrorMessage.USER_INSERT_ONLY_NUMBER.getMessage());
             }
         }
         return numbers;
@@ -39,10 +44,10 @@ public class InputView {
 
     public static int inputBonusNumber() {
         String input = InputView.userInput();
-        try  {
+        try {
             return Integer.parseInt(input);
-        } catch (NumberFormatException e ){
-            throw new IllegalArgumentException("숫자 입력해라");
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_ONLY_NUMBER.getMessage());
         }
     }
 }

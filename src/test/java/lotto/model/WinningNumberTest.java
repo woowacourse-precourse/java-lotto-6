@@ -24,4 +24,11 @@ class WinningNumberTest {
         assertThatThrownBy(() -> new WinningNumber("0,2,3,4,5,45"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    @DisplayName("로또 번호 입력시 문자가 입력 되면 예외가 발생한다.")
+    void createLottoByLetter(){
+        assertThatThrownBy(() -> new WinningNumber("letter"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

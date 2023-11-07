@@ -21,7 +21,11 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-    public boolean calculateWinNumber(int number) {
-        return numbers.contains(number);
+    public int calculateWinNumber(LottoNumber lottoNumber) {
+        int winCount = (int) numbers.stream()
+                .map(lottoNumber::calculateScore)
+                .filter(result -> result)
+                .count();
+        return winCount;
     }
 }

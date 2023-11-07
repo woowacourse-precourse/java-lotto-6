@@ -35,9 +35,13 @@ public class LottoMachine {
     }
 
     public Lotto makeWinningLotto(String winningNumbers) {
-        return new Lotto(Arrays.stream(winningNumbers.split(DELIMITER))
+        return new Lotto(makeLottoNumber(winningNumbers));
+    }
+
+    private List<Integer> makeLottoNumber(String numbers) {
+        return Arrays.stream(numbers.split(DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)
-                .toList());
+                .toList();
     }
 }

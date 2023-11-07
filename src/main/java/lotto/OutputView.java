@@ -11,8 +11,8 @@ import lotto.config.LottoGameMessage;
 
 public class OutputView {
 
-    private final OutputWriter outputWriter;
     private static final String DELIMITER = ", " ;
+    private final OutputWriter outputWriter;
 
     public OutputView(OutputWriter outputWriter) {
         this.outputWriter = outputWriter;

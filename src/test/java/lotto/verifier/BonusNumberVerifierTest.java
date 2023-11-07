@@ -11,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 
 import java.math.BigInteger;
@@ -46,17 +47,21 @@ class BonusNumberVerifierTest extends NsTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.IS_NOT_NUMERIC);
         }
-        @Test
-        void Long_타입으로변환될수없는_보너스번호가_주어진경우(){
-            BigInteger LongExceedingMax = BigInteger.valueOf(Long.MAX_VALUE).add(BigInteger.TEN);
-            assertThatThrownBy(() -> bonusNumberVerifier.check(LongExceedingMax.toString()))
+        @ParameterizedTest
+        @ValueSource(strings = {
+                "-9223372036854775809",
+                "9223372036854775808",
+                "812878316387112231331"
+        })
+        void Long_타입으로변환될수없는_보너스번호가_주어진경우(String input){
+            assertThatThrownBy(() -> bonusNumberVerifier.check(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.NUMBER_OUT_OF_TYPE_RANGE);
         }
         @ParameterizedTest
         @MethodSource("parameterProvider")
         void 보너스번호가_1부터45사이의_숫자가_아닌경우(String input) {
-            assertThatThrownBy(() -> bonusNumberVerifier.check("48"))
+            assertThatThrownBy(() -> bonusNumberVerifier.check(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.NUMBER_EACH_OUT_OF_RANGE);
         }

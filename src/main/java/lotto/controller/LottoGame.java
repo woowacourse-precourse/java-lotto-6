@@ -16,7 +16,9 @@ public class LottoGame {
     InputView inputView = new InputView();
 
     public void run() {
-        buyLottoTicket();
+        int inputPrice = inputView.inputPrice();
+
+        buyLottoTicket(inputPrice);
         setWinningLotto();
         setBonusLotto();
 
@@ -36,8 +38,7 @@ public class LottoGame {
         }
     }
 
-    private void buyLottoTicket() { //금액만큼 로또 구입 후 출력
-        int inputPrice = inputView.inputPrice();
+    private void buyLottoTicket(int inputPrice) { //금액만큼 로또 구입 후 출력
 
         lottoTicketGenerate = new LottoTicketGenerate(inputPrice);
         lottoTicketGenerate.sortLottoTicketEntities();

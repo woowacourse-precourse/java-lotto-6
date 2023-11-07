@@ -1,7 +1,7 @@
 package lotto.model;
 
 public interface AppConstants {
-    public enum exceptionMessage {
+    enum exceptionMessage {
         INPUT_MUST_NOT_CONTAINS_SPACE("[ERROR]] 공백없이 입력해주세요."),
         INPUT_MUST_BE_NUMERIC("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
         INPUT_MUST_BE_1000s("[ERROR] 로또 가격은 1000원 단위로 입력해주세요."),
@@ -17,7 +17,7 @@ public interface AppConstants {
         }
     }
 
-    public enum lottoConstants {
+    enum lottoConstants {
         LOTTO_NUMBER_MAX(45),
         LOTTO_NUMBER_MIN(1),
         TOTAL_LOTTO_NUMBER_COUNT(6),
@@ -33,6 +33,26 @@ public interface AppConstants {
             return constantName;
         }
 
+    }
+
+    enum lottoMatchingConstants {
+        MATCHING_3("5등",5_000),
+        MATCHING_4("4등",50_000),
+        MATCHING_5("3등",1_500_000),
+        MATCHING_5_AND_BONUS("2등",30_000_000),
+        MATCHING_6("1등",2_000_000_000);
+
+        public final String grade;
+        public final int prizeAmount;
+
+        lottoMatchingConstants(final String grade,final int prizeAmount) {
+            this.grade = grade;
+            this.prizeAmount = prizeAmount;
+        }
+
+        public int getValue() {
+            return prizeAmount;
+        }
     }
 
 }

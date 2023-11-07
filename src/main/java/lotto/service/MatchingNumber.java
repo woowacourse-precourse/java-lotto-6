@@ -4,6 +4,8 @@ import lotto.model.LottoTicketEntity;
 
 import java.util.*;
 
+import static lotto.model.AppConstants.lottoMatchingConstants.*;
+
 public class MatchingNumber {
     private Map<String ,Integer> lottoRankList;
     private final List<LottoTicketEntity> lottoTickets;
@@ -43,32 +45,31 @@ public class MatchingNumber {
     }
 
     private void updateRank(int matchCount, int bonusMatchCount) {
-        int rank = 0;
+        String rank = null;
         if(matchCount == 6) {
-            rank = 1;
+            rank = MATCHING_6.grade;
         } else if(matchCount == 5 && bonusMatchCount == 1) {
-            rank = 2;
+            rank = MATCHING_5_AND_BONUS.grade;
         } else if(matchCount == 5) {
-            rank = 3;
+            rank = MATCHING_5.grade;
         } else if(matchCount == 4) {
-            rank = 4;
+            rank = MATCHING_4.grade;
         } else if(matchCount == 3) {
-            rank = 5;
+            rank = MATCHING_3.grade;
         }
 
-        if(rank > 0) {
-            String rankKey = rank + "등";
-            lottoRankList.put(rankKey, lottoRankList.get(rankKey) + 1);
+        if(rank != null) {
+            lottoRankList.put(rank, lottoRankList.get(rank) + 1);
         }
     }
 
     private Map<String, Integer> initializeRankMap() {
         Map<String, Integer> ranks = new LinkedHashMap<>();
-        lottoRankList.put("1등", 0);
-        lottoRankList.put("2등", 0);
-        lottoRankList.put("3등", 0);
-        lottoRankList.put("4등", 0);
-        lottoRankList.put("5등", 0);
+        ranks.put(MATCHING_6.grade, 0);
+        ranks.put(MATCHING_5_AND_BONUS.grade, 0);
+        ranks.put(MATCHING_5.grade, 0);
+        ranks.put(MATCHING_4.grade, 0);
+        ranks.put(MATCHING_3.grade, 0);
         return ranks;
     }
     public Map<String, Integer> getLottoRankList() {

@@ -79,9 +79,9 @@ public class LottoResult {
         return String.format("%,d", prizeMoney);
     }
 
-    public double calculateYield(int pricePerLotto) {
+    public double calculateYield(int pricePerLotto, int totalLottoCount) {
         long totalPrize = calculateTotalPrize();
-        long totalSpent = (long) pricePerLotto * matchCounts.values().stream().mapToInt(Integer::intValue).sum();
+        long totalSpent = (long) pricePerLotto * totalLottoCount; 
         return calculateYieldPercentage(totalPrize, totalSpent);
     }
 

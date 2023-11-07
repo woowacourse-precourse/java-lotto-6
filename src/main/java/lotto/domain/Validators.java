@@ -10,7 +10,7 @@ public class Validators {
            validateMoneyIsLottoAffordable(Integer.parseInt(inputMoney));
         }
         catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 구입금액은 1,000원 단위의 숫자여야 합니다.");
+            System.out.println("[ERROR] 구입금액은 1,000원 이상의 1,000원 단위 숫자여야 합니다.");
             return false;
         }
         return true;
@@ -18,15 +18,14 @@ public class Validators {
 
     private static void validateStringIsIntegerConvertable(String inputString) {
         try {
-            int convertedInteger = Integer.parseInt(inputString);
+            Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException();
         }
-
     }
 
     private static void validateMoneyIsLottoAffordable(int money) {
-        if (money % TICKET_UNIT > 0) {
+        if (money % TICKET_UNIT != 0 || money == 0) {
             throw new IllegalArgumentException();
         }
     }

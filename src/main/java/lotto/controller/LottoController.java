@@ -3,18 +3,23 @@ package lotto.controller;
 import java.util.List;
 import java.util.function.Supplier;
 import lotto.model.Amount;
+import lotto.model.InputParser;
+import lotto.model.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.LottoNumbersGenerator;
 import lotto.model.Lottos;
+import lotto.model.WinLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     Lottos lottos;
+    InputValidator inputValidator;
 
     public void run() {
         Amount amount = getValidInput(() -> new Amount(InputView.requestAmount()));
         createLottos(amount);
+        WinLotto winLotto = createWinLotto();
     }
 
     // IllegalArgumentException 발생 시 해당 메소드 반복
@@ -39,5 +44,13 @@ public class LottoController {
         int count = amount.calculateCount();
         OutputView.printCount(count);
         return new LottoNumbersGenerator().generateLottos(count);
+    }
+
+    // 우승 로또 생성
+    private WinLotto createWinLotto() {
+        Lotto winNumbers = getValidInput(() -> new Lotto(
+                inputValidator.validateInput(InputParser.parseInput(InputView.requestWinningNumbers()))));
+        return getValidInput(() -> new WinLotto(winNumbers,
+                getValidInput(() -> inputValidator.validateInput(InputView.requestBonusNumber()))));
     }
 }

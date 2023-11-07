@@ -21,17 +21,17 @@ class MoneyValidatorTest extends NsTest {
     @DisplayName("금액이 숫자가 아니다.")
     @Test
     void validateNumberFormat() {
-        moneyValidator.validateNumberFormat("a");
-
-        assertThat(output()).contains("[ERROR] 입력은 숫자이어야 합니다. 다시 입력하세요.");
+        assertThatThrownBy(() -> moneyValidator.validateNumberFormat("a"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 입력은 숫자이어야 합니다. 다시 입력하세요.");
     }
 
     @DisplayName("금액이 음수다.")
     @Test
     void validateNumberFormat2() {
-        moneyValidator.validateNumberFormat("-1000");
-
-        assertThat(output()).contains("[ERROR] 입력은 숫자이어야 합니다. 다시 입력하세요.");
+        assertThatThrownBy(() -> moneyValidator.validateNumberFormat("-2000"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 입력은 숫자이어야 합니다. 다시 입력하세요.");
     }
 
     @DisplayName("금액이 0원이다.")

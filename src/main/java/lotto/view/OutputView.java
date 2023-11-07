@@ -20,4 +20,14 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void askWinningNumbers() {
+        OutputMessages message = OutputMessages.ASK_WINNING_NUMBER_MESSAGE;
+        System.out.println(message.getMessage());
+    }
+
+    public static void askBonusNumber() {
+        OutputMessages message = OutputMessages.ASK_BONUS_NUMBER_MESSAGE;
+        System.out.println(message.getMessage());
+    }
 }

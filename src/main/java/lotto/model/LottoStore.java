@@ -8,6 +8,10 @@ public class LottoStore {
     private static List<Lotto> lottoList;
     private static int lottoCount;
 
+    private List<Integer> winningNumbers;
+
+    private Integer bonusNumber;
+
     public List<Lotto> buyLottos(String userInput) {
         int amount = getPurchaseAmount(userInput);
         lottoCount = calculateAttemptCount(amount);
@@ -40,6 +44,14 @@ public class LottoStore {
         LottoGenerator lottoGenerator = new LottoGenerator();
         Lotto lotto = new Lotto(lottoGenerator.generateLotto());
         return lotto;
+    }
+
+    public void setWinningNumbers(List<Integer> winningNumbers) {
+        this.winningNumbers = winningNumbers;
+    }
+
+    public void setBonusNumber(Integer bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 
 

@@ -6,6 +6,7 @@ import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import java.util.stream.LongStream;
 
 public final class LottoGenerator {
 
@@ -15,6 +16,12 @@ public final class LottoGenerator {
     public static Lotto autoGenerate() {
         List<Integer> randomNumbers = generateRandomNumbers();
         return new Lotto(randomNumbers);
+    }
+
+    public static List<Lotto> autoGenerateBy(long lottoCount) {
+        return LongStream.rangeClosed(1, lottoCount)
+                .mapToObj(c -> LottoGenerator.autoGenerate())
+                .toList();
     }
 
     public static Lotto manualGenerate(List<Integer> numbers) {

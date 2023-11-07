@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.LongStream;
 
 public class PurchaseLotto {
     private final List<Lotto> lottos;
@@ -14,10 +13,7 @@ public class PurchaseLotto {
     }
 
     public static PurchaseLotto purchaseAutoLotto(long lottoCount) {
-        List<Lotto> autoLottos = LongStream.rangeClosed(1, lottoCount)
-                .mapToObj(c -> LottoGenerator.autoGenerate())
-                .toList();
-
+        List<Lotto> autoLottos = LottoGenerator.autoGenerateBy(lottoCount);
         return new PurchaseLotto(autoLottos);
     }
 

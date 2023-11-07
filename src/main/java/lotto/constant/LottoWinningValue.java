@@ -8,22 +8,24 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public enum LottoWinningValue {
-    FIRST_PLACE(1, 6, 0, "6개 일치 (2,000,000,000원)"),
-    SECOND_PLACE(2, 5, 1, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
-    THIRD_PLACE(3, 5, 0, "5개 일치 (1,500,000원)"),
-    FOURTH_PLACE(4, 4, 0, "4개 일치 (50,000원)"),
-    FIFTH_PLACE(5, 3, 0, "3개 일치 (5,000원)");
+    FIRST_PLACE(1, 6, 0, 2000000000, "6개 일치 (2,000,000,000원)"),
+    SECOND_PLACE(2, 5, 1, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    THIRD_PLACE(3, 5, 0, 1500000, "5개 일치 (1,500,000원)"),
+    FOURTH_PLACE(4, 4, 0, 50000, "4개 일치 (50,000원)"),
+    FIFTH_PLACE(5, 3, 0, 5000, "3개 일치 (5,000원)");
 
     private int rank;
     private int winningNumMatchCnt;
     private int bonusNumMatchCnt;
-    private String winnings;
+    private int winningAmount;
+    private String winningsPhrase;
 
-    LottoWinningValue(int rank, int winningNumMatchCnt, int bonusNumMatchCnt, String winnings) {
+    LottoWinningValue(int rank, int winningNumMatchCnt, int bonusNumMatchCnt, int winningAmount, String winningsPhrase) {
         this.rank = rank;
         this.winningNumMatchCnt = winningNumMatchCnt;
         this.bonusNumMatchCnt = bonusNumMatchCnt;
-        this.winnings = winnings;
+        this.winningAmount = winningAmount;
+        this.winningsPhrase = winningsPhrase;
     }
 
     // 모든 상수에 대한 맵을 BY_RANK라는 private static final 맵으로 미리 만들어 놓음
@@ -40,7 +42,7 @@ public enum LottoWinningValue {
 
     static {
         for (LottoWinningValue enumValue : LottoWinningValue.values()) {
-            BY_WINNING_MATCH_CNT.put("" + enumValue.getWinnings() + enumValue.getBonusNumMatchCnt(), enumValue);
+            BY_WINNING_MATCH_CNT.put("" + enumValue.getWinningNumMatchCnt() + enumValue.getBonusNumMatchCnt(), enumValue);
         }
     }
 
@@ -60,7 +62,11 @@ public enum LottoWinningValue {
         return bonusNumMatchCnt;
     }
 
-    public String getWinnings() {
-        return winnings;
+    public int getWinningAmount() {
+        return winningAmount;
+    }
+
+    public String getWinningsPhrase() {
+        return winningsPhrase;
     }
 }

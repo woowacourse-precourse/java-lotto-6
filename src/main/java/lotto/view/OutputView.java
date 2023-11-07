@@ -33,7 +33,7 @@ public class OutputView {
         for (int i = winningRanks.length - 2; i >= 0; i--) {
             System.out.print(winningRanks[i].getMessage());
             System.out.print(MessageConst.BLANK);
-            System.out.print("(" + decimalFormat(winningRanks[i].getReward()) + "원)");
+            System.out.print("(" + rewardDecimalFormat(winningRanks[i].getReward()) + "원)");
             System.out.print(" - ");
             System.out.print(getWinningRankCount(winningResult, winningRanks[i]));
             System.out.println("개");
@@ -48,15 +48,20 @@ public class OutputView {
         return winningRankCount;
     }
 
-    public String decimalFormat(int reward) {
+    public String rewardDecimalFormat(int reward) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
         return decimalFormat.format(reward);
+    }
+
+    public String profitDecimalFormat(double profit) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        return decimalFormat.format(profit);
     }
 
     public void printProfit(int money, int totalRevenue) {
         double profit = ((double) totalRevenue / money) * 100;
         System.out.print("총 수익률은 ");
-        System.out.print(String.format("%.1f", profit));
+        System.out.print(profitDecimalFormat(profit));
         System.out.println("%입니다.");
     }
 

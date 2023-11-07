@@ -11,8 +11,8 @@ import java.util.List;
 
 public class LottoNumberValidator {
 
-    public static void validateDuplicateNumbers(List<Integer> winningNumber) {
-        if (isDuplicateNumbers(winningNumber)) {
+    public static void validateDuplicateNumbers(List<Integer> lottoNumbers) {
+        if (isDuplicateNumbers(lottoNumbers)) {
             throw new IllegalArgumentException(NO_DUPLICATE_ERROR_MESSAGE);
         }
     }

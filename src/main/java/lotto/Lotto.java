@@ -59,6 +59,9 @@ public class Lotto {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
 
+    public List<Integer> returnNumbers() {
+        return numbers;
+    }
     public String toString() {
         return numbers.toString();
     }

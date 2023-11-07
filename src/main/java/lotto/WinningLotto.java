@@ -1,32 +1,29 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.Constant;
 import lotto.validation.InputException;
+import lotto.view.Input;
 
 public class WinningLotto {
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
-    public WinningLotto() {
-        this.winningNumbers = initializeWinningNumbers();
-        this.bonusNumber = initializeBonusNumber();
+    public WinningLotto(String winningNumbers, String bonusNumber) {
+        this.winningNumbers = initializeWinningNumbers(winningNumbers);
+        this.bonusNumber = initializeBonusNumber(bonusNumber);
     }
 
-    private List<Integer> initializeWinningNumbers() {
-        System.out.println(Constant.winningNumber);
-
+    private List<Integer> initializeWinningNumbers(String input) {
         final List<Integer> inputNumbers;
-        final String input = Console.readLine();
 
         try {
             stringInputValidate(input);
             inputNumbers = parseNumbers(input);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
-            return initializeWinningNumbers();
+
+            return initializeWinningNumbers(Input.winningNumbers());
         }
 
         return inputNumbers;
@@ -38,21 +35,20 @@ public class WinningLotto {
         for (String number : input.split(",")) {
             numbers.add(Integer.parseInt(number));
         }
+
         listValidate(numbers);
 
         return numbers;
     }
 
-    private int initializeBonusNumber() {
-        System.out.println(Constant.bonusNumber);
-
-        final String input = Console.readLine();
+    private int initializeBonusNumber(final String input) {
 
         try {
             bonusNumberValidate(input, this.winningNumbers);
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
-            return initializeBonusNumber();
+
+            return initializeBonusNumber(Input.bonusNumber());
         }
 
         return Integer.parseInt(input);

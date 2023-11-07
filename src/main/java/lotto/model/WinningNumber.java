@@ -39,7 +39,7 @@ public class WinningNumber {
         }
     }
 
-    public List<Integer> validateWinningNumberIsNumeric(List<String> numbers) {
+    private List<Integer> validateWinningNumberIsNumeric(List<String> numbers) {
         List<Integer> integerNumbers = new ArrayList<>();
         for (String number : numbers) {
             try {
@@ -52,7 +52,7 @@ public class WinningNumber {
         return integerNumbers;
     }
 
-    public void validateNumberBetweenInRange(List<Integer> integerNumbers) {
+    private void validateNumberBetweenInRange(List<Integer> integerNumbers) {
         for(int number : integerNumbers) {
             if (number < MIN_NUMBER || number > MAX_NUMBER) {
                 throw new IllegalArgumentException(COMMON_INVALID_RANGE.format(MIN_NUMBER, MAX_NUMBER));

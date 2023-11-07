@@ -36,6 +36,6 @@ class ResultStaticsTest {
         int phrasedMoney = statics.getPhrasedMoney();
         long totalEarning = statics.calculateTotalEarning();
         Assertions.assertThat(earningRate)
-                .isEqualTo(((double)totalEarning / phrasedMoney) * 100);
+                .isEqualTo(((double) totalEarning / phrasedMoney) * 100);
     }
 }

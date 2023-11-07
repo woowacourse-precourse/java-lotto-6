@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.domain.LottoPrice.LOTTO_UNIT_PRICE;
 
 import java.util.List;
+
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;

@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import lotto.util.ErrorMessages;
 
 public class Lotto {
@@ -44,7 +45,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public int calculateMatchCount(Lotto issuedLotto) {
         List<Integer> issuedLottoNumbers = issuedLotto.numbers;
-        return (int)numbers.stream()
+        return (int) numbers.stream()
                 .filter(num -> issuedLottoNumbers.contains(num))
                 .count();
     }

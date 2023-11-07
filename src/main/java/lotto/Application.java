@@ -68,10 +68,8 @@ public class Application {
 			} catch (NumberFormatException e) {
 				System.out.println("[ERROR] 숫자를 입력해 주세요.");
 			} catch (IllegalArgumentException e) {
-				System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-			} catch (IllegalStateException e) {
-				System.out.println("[ERROR] 당첨 번호와 다른 숫자를 입력해주세요.");
-			}
+				System.out.println(e.getMessage());
+			} 
 		}
 
 		// 사용자가 구매한 로또 번호와 당첨 번호를 비교하는 기능
@@ -165,10 +163,10 @@ public class Application {
 	private static void checkBonusNumber(int bonusNumber, List<Integer> winNumbers) {
 
 		if (bonusNumber < 1 || bonusNumber > 45) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
 		}
 		if (winNumbers.contains(bonusNumber)) {
-			throw new IllegalStateException();
+			throw new IllegalArgumentException("[ERROR] 당첨 번호와 다른 숫자를 입력해주세요.");
 		}
 	}
 

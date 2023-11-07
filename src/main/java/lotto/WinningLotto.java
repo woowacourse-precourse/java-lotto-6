@@ -19,7 +19,7 @@ public class WinningLotto {
     }
 
     private static void validateBonus(Lotto lotto, int bonus) {
-        if (bonus<1||bonus>45) {
+        if (bonus < 1 || bonus > 45) {
             throw new IllegalArgumentException();
         }
         if (lotto.hasNumber(bonus)) {

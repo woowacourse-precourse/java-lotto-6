@@ -3,8 +3,6 @@ package lotto.controller;
 import lotto.service.LottoService;
 import lotto.view.ConsoleInputView;
 
-import java.util.*;
-
 public class LottoController {
 
     private final ConsoleInputView consoleInputView;
@@ -19,11 +17,14 @@ public class LottoController {
         consoleInputView.inputBuyLottoAmount();
 
         String inputUserLottoNumbers = consoleInputView.inputUserLottoNumbers();
+        lottoService.userLottoNumbersValidate(inputUserLottoNumbers);
+
         String inputUserBonusNumber = consoleInputView.inputUserBonusNumber();
-        Map<String, String> userLottoNumbersAndBonusNumber =
+
+        /*Map<String, String> userLottoNumbersAndBonusNumber =
                 lottoService.setUserLottoNumbersAndBonusNumber(
                         inputUserLottoNumbers, inputUserBonusNumber
-                );
+                );*/
     }
 
 

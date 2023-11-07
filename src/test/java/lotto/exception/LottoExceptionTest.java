@@ -34,4 +34,9 @@ class LottoExceptionTest {
         Assertions.assertThat(lottoException.numberLengthCheckMain(List.of(1, 2, 3, 4, 5, 6))).isTrue();
     }
 
+    @Test
+    @DisplayName("로또 번호가 1부터 45 까지의 숫자로 구성했는지 테스트")
+    void lottoRangeCheckTest() {
+        Assertions.assertThat(lottoException.lottoRangeCheckMain(46)).isFalse();
+    }
 }

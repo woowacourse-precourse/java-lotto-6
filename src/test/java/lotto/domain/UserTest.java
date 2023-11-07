@@ -89,7 +89,7 @@ class UserTest {
         int ticketSize = Integer.parseInt(input) / 1000;
 
         //then
-        assertThat(user.getSortedLottoTickets().size()).isEqualTo(ticketSize);
+        assertThat(user.getLottoTickets().size()).isEqualTo(ticketSize);
 
     }
 

@@ -20,7 +20,7 @@ public class Customer {
     }
 
     public List<Lotto> getPurchasedLottos() {
-        return purchasedLottos;
+        return List.copyOf(purchasedLottos);
     }
 
     public void setMoney(int money) {

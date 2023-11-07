@@ -21,12 +21,12 @@ public class NumberScanner {
         String[] seperated = input.split(",");
         try {
             return Arrays.stream(seperated)
+                    .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_NOT_A_NUMBER);
         }
-
     }
 
     public void close() {

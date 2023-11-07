@@ -13,7 +13,7 @@ public class LottoResult {
         totalReward += prize.getReward();
     }
 
-    public String getReport() {
+    public String getTotalReport() {
         System.out.println("당첨 통계");
         System.out.println("---");
         List<Prize> prizes = List.of(Prize.FIFTH, Prize.FOURTH, Prize.THIRD, Prize.SECOND, Prize.FIRST);

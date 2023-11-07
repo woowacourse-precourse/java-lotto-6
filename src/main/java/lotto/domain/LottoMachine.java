@@ -37,8 +37,4 @@ public class LottoMachine {
                 rule.getLottoNumberSize());
         return new Lotto(lottoNumbers);
     }
-
-    public LottoResult drawLotto(Lotto winningNumber, int bonusNumber) {
-        return null;
-    }
 }

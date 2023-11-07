@@ -31,7 +31,7 @@ public class LottoMatcher {
         return new MatchResult(correctNumber, correctBonusNumber);
     }
 
-    public LottoResult matchAll(List<Lotto> lottos) {
+    public LottoResult draw(List<Lotto> lottos) {
         LottoResult result = new LottoResult();
         lottos.stream()
                 .map(this::match)

@@ -30,6 +30,7 @@ public class LottoScenario implements Scenario {
                 this::printResult);
 
         scenarios.forEach(scenario -> scenario.playUntilSuccess(errorHandler));
+        scanner.close();
     }
 
     public void purchaseLottos() {
@@ -62,7 +63,7 @@ public class LottoScenario implements Scenario {
     }
 
     public void printResult() {
-        LottoResult result = matcher.matchAll(customer.getPurchasedLottos());
-        System.out.println(result.getReport());
+        LottoResult result = matcher.draw(customer.getPurchasedLottos());
+        System.out.println(result.getTotalReport());
     }
 }

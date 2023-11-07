@@ -22,6 +22,7 @@ public class LottoProcess {
     public void run() {
         List<Lotto> lottos = null;
         boolean isCollectMoneyInput = true;
+        boolean isCollectLottoDrawNumberInput = true;
         while (isCollectMoneyInput) {
             try {
                 Integer money = inputLotto.inputPayLottoMoney();
@@ -33,7 +34,15 @@ public class LottoProcess {
         }
         lottoOutput.displayLottosNumber(lottos);
         LottoDraw lottoDraw = null;
-        lottoDraw = lottoDrawMachine.Raffle();
+        while (isCollectLottoDrawNumberInput) {
+            try {
+                lottoDraw = lottoDrawMachine.Raffle();
+                isCollectLottoDrawNumberInput = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         winningCheck.discrimination(lottos, lottoDraw);
     }
 }

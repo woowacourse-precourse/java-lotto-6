@@ -1,6 +1,6 @@
 package lotto.io;
 
-enum IoException {
+public enum IoException {
     ERROR("[ERROR] "),
     NOT_NUMBER(ERROR.message + "입력값이 숫자가 아닙니다."),
     ;

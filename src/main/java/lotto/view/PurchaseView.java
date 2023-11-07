@@ -29,9 +29,7 @@ public class PurchaseView {
     private void validateMoney(String input) {
         validateNotNull(input);
         validateNotNumber(input);
-        validateUnderZero(input);
         validateEnterComma(input);
-        validateNotDivide(input);
     }
 
     private void validateNotNumber(String input) {
@@ -49,20 +47,6 @@ public class PurchaseView {
     private void validateEnterComma(String input) {
         if (input.contains(",")) {
             throw new IllegalArgumentException(NOT_CONTAIN_COMMA.getMessage());
-        }
-    }
-
-    private void validateNotDivide(String input) {
-        int num = Integer.parseInt(input);
-        if (num % 1000 != 0) {
-            throw new IllegalArgumentException(NOT_DIVIDE.getMessage());
-        }
-    }
-
-    private void validateUnderZero(String input) {
-        int num = Integer.parseInt(input);
-        if (num <= 0) {
-            throw new IllegalArgumentException(STRANGE_INTEGER.getMessage());
         }
     }
 

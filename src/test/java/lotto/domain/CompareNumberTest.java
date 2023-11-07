@@ -16,11 +16,13 @@ public class CompareNumberTest {
     @DisplayName("6개의 숫자가 전부 같은 경우")
     @Test
     void 일등_당첨() {
+
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> randomNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 3;
+        int bonusNumber = 7;
 
         ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResults();
 
         assertEquals(WinPriceMessage.First.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(0));
@@ -34,6 +36,8 @@ public class CompareNumberTest {
         int bonusNumber = 7;
 
         ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResults();
+
         assertEquals(WinPriceMessage.Second.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(1));
 
@@ -47,6 +51,8 @@ public class CompareNumberTest {
         int bonusNumber = 8;
 
         ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResults();
+
         assertEquals(WinPriceMessage.Third.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(2));
 
@@ -60,6 +66,8 @@ public class CompareNumberTest {
         int bonusNumber = 5;
 
         ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResults();
+
         assertEquals(WinPriceMessage.Fourth.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(3));
 
@@ -73,13 +81,12 @@ public class CompareNumberTest {
         int bonusNumber = 5;
 
         ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
+        comPareNumber.calculateResults();
+
         assertEquals(WinPriceMessage.Fifth.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(4));
 
     }
-
-
-
 
 
 }

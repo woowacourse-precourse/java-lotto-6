@@ -11,12 +11,11 @@ import lotto.constant.LottoNumberMessage;
 public class BonusNumberView {
 
     public int bonusNumber() {
+
         BonusNumberMessage(ASK_BONUS_NUMBER);
         String input = inputBonusNumber();
         validateBonusNumber(input);
-        int number = conversion(input);
-        printSpace();
-        return number;
+        return conversion(input);
     }
 
     private String inputBonusNumber() {

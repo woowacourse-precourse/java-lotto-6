@@ -28,7 +28,7 @@ public class RandomNumber {
                 .collect(Collectors.toList());
     }
 
-    public List<Integer> getNumbers() {
+    public List<Integer> getRandomNumbers() {
         return randomNumbers;
     }
 

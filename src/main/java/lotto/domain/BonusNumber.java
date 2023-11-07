@@ -32,7 +32,7 @@ public class BonusNumber {
         }
     }
 
-    public int getNumber() {
+    public int getBonusNumber() {
         return bonusNumber;
     }
 }

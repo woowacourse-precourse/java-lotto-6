@@ -10,75 +10,101 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.constant.OutputMessage;
-import lotto.constant.PurchaseMessage;
-import lotto.constant.WinPriceMessage;
 import lotto.domain.BonusNumber;
 import lotto.domain.ComPareNumber;
 import lotto.domain.Lotto;
+import lotto.domain.Purchase;
 import lotto.domain.RandomNumber;
 import lotto.domain.Ticket;
+import lotto.validator.CheckValidator;
 import lotto.view.BonusNumberView;
 import lotto.view.LottoView;
 import lotto.view.PurchaseView;
 import lotto.view.RandomNumberView;
 import lotto.view.WinPriceView;
 
+
 public class Game {
 
+    private CheckValidator checkValidator;
     private PurchaseView purchaseView = new PurchaseView();
-    private RandomNumber randomNumber = new RandomNumber();
-    private RandomNumberView randomNumberView = new RandomNumberView();
     private LottoView lottoView = new LottoView();
     private BonusNumberView bonusNumberView = new BonusNumberView();
-    private BonusNumber bonusNumber;
-    private ComPareNumber comPareNumber;
-    private Lotto lotto;
-    private Ticket ticket;
-    private WinPriceView winPriceView = new WinPriceView();
-    private WinPriceMessage winPriceMessage;
+    private Purchase purchase;
     private List<List<Integer>> AllRandomNumbers = new ArrayList<>();
+    private RandomNumber randomNumber = new RandomNumber();
+    private RandomNumberView randomNumberView = new RandomNumberView();
+    private WinPriceView winPriceView = new WinPriceView();
+    private Lotto lotto;
+    private List<Integer> numbers;
+    private int bonusNumber;
+    private Ticket ticket;
 
 
-    public void start() {
-        int money = purchaseView.requestMoney();
-        ticket = new Ticket(money);
-        printReceipt(ticket.getTicket());
-
-        addAllRandomNumbers();
-
-        List<ComPareNumber> compareNumbers = calculateCompareNumbers();
-        long totalMoneySum = calculateTotalMoneySum(compareNumbers);
-        List<Integer> totalWinCount = calculateTotalWinCounts(compareNumbers);
-
-        printStatistic();
-        printTotalResults(totalWinCount);
-        printProfit(totalMoneySum, money);
+    public Game() {
+        this.checkValidator = new CheckValidator(this.purchaseView, this.lottoView,
+                this.bonusNumberView);
     }
 
-    private void addAllRandomNumbers() {
+    public void start() {
+        purchaseMethod(); // 굿잡 clear.
+        lottoMethod(); // clear
+        AllCalculator();
+
+    }
+
+
+    private void purchaseMethod() {
+        this.purchase = checkValidator.validatePurchase();
+        ticket = new Ticket(purchase.getMoney());
+        printReceipt(ticket.getTicket());
+        printSpace();
+        addAllRandomNumbers();
+    }
+
+    private void lottoMethod() {
+        this.numbers = checkValidator.validateLotto().getNumbers();
+        this.bonusNumber = checkValidator.validateBonusNumber().getBonusNumber();
+    }
+
+    private void printReceipt(int ticket) {
+        String printReceiptMessage = String.format(BUY_RECEIPT.getMessage(),
+                String.format("%s", ticket));
+        System.out.println();
+        System.out.println(printReceiptMessage);
+    }
+
+
+    private void printSpace() {
+        System.out.println();
+    }
+
+
+    private void addAllRandomNumbers() { // clear
         for (int i = 0; i < ticket.getTicket(); i++) {
             List<Integer> randomNumbers = randomNumber.randomNumbers();
             AllRandomNumbers.add(randomNumbers);
             randomNumberView.printRandomNumber(randomNumbers);
         }
-        randomNumberView.printSpace();
-
-    }
-
-    private List<ComPareNumber> calculateCompareNumbers() {
-        List<Integer> numbers = lottoView.numbers();
-        int bonusNumber = bonusNumberView.bonusNumber();
-        return generateCompareNumbers(numbers, bonusNumber);
-    }
-
-    private long calculateTotalMoneySum(List<ComPareNumber> compareNumbers) {
-        return compareNumbers.stream()
-                .mapToLong(ComPareNumber::getMoneySum)
-                .sum();
+        printSpace();
     }
 
 
+    private void AllCalculator() {
+        List<ComPareNumber> compareNumbers = generateCompareNumbers(numbers, bonusNumber);
+        long totalMoneySum = calculateTotalMoneySum(compareNumbers);
+        List<Integer> totalWinCount = calculateTotalWinCounts(compareNumbers);
+
+        printCalculationResults(totalWinCount, totalMoneySum);
+    }
+
+    private void printCalculationResults(List<Integer> totalWinCount, long totalMoneySum) {
+        printTotalResults(totalWinCount);
+        printStatistic();
+        printProfit(totalMoneySum, purchase.getMoney());
+    }
+
+    // clear
     private List<ComPareNumber> generateCompareNumbers(List<Integer> numbers, int bonusNumber) {
         return AllRandomNumbers.stream()
                 .map(randomNumbers -> createAndCalculateCompareNumber(numbers, randomNumbers,
@@ -86,12 +112,21 @@ public class Game {
                 .collect(Collectors.toList());
     }
 
+    //clear
     private ComPareNumber createAndCalculateCompareNumber(List<Integer> numbers,
             List<Integer> randomNumbers, int bonusNumber) {
         ComPareNumber compareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
         compareNumber.calculateResults();
         return compareNumber;
     }
+
+    // clear
+    private long calculateTotalMoneySum(List<ComPareNumber> compareNumbers) {
+        return compareNumbers.stream()
+                .mapToLong(ComPareNumber::getMoneySum)
+                .sum();
+    }
+
 
     private List<Integer> calculateTotalWinCounts(List<ComPareNumber> compareNumbers) {
         List<Integer> totalWinCount = Arrays.asList(0, 0, 0, 0, 0);
@@ -110,6 +145,11 @@ public class Game {
         winPriceView.printAllWinPrices(totalWinCount);
     }
 
+    private void printResult(List<Integer> totalWinCount) {
+        printStatistic();
+        printTotalResults(totalWinCount);
+    }
+
     private double calculateProfit(long moneySum, int money) {
         double profit = (double) moneySum / money;
         return Math.round(profit * 1000.0) / 1000.0;
@@ -117,17 +157,11 @@ public class Game {
 
     private void printProfit(long moneySum, int money) {
         double profitRate = calculateProfit(moneySum, money) * 100;
-        String profitMessage = String.format(OutputMessage.PROFIT.getOutputMessage(),
+        String profitMessage = String.format(PROFIT.getOutputMessage(),
                 String.format("%.1f", profitRate));
         System.out.println(profitMessage);
     }
 
-    private void printReceipt(int ticket) {
-        String printReceiptMessage = String.format(BUY_RECEIPT.getMessage(),
-                String.format("%s", ticket));
-        System.out.println();
-        System.out.println(printReceiptMessage);
-    }
 
     private void printStatistic() {
         System.out.println(WIN_STATISTICS.getOutputMessage());
@@ -136,6 +170,15 @@ public class Game {
 
 
 }
+
+
+
+
+
+
+
+
+
 
 
 

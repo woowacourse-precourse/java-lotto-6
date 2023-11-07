@@ -19,12 +19,15 @@ public class LottoView {
 
 
     public List<Integer> numbers() {
+        List<Integer> lottoNumbers;
         printLottoNumberMessage(ASK_Lotto_NUMBER);
         String input = Console.readLine();
         validate(input);
         printSpace();
-        return parseNumbers(input);
+        lottoNumbers = parseNumbers(input);
+        return lottoNumbers;
     }
+
 
     private void validate(String input) {
         validateNotNull(input);
@@ -78,7 +81,8 @@ public class LottoView {
             throw new IllegalArgumentException(CONTAIN_BLANK.getMessage());
         }
     }
-    private void printSpace(){
+
+    private void printSpace() {
         System.out.println();
     }
 

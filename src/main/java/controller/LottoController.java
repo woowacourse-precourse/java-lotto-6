@@ -73,7 +73,7 @@ public class LottoController {
         Map<String, Integer> winResults = lottoWinResultsHolder.getWinResults();
         outputView.printWinStatistic(winResults);
 
-        LottoResultJudger lottoResultJudger = new LottoResultJudger(winResults);
+        LottoResultJudger lottoResultJudger = new LottoResultJudger(winResults,money);
         double profit = lottoResultJudger.getProfit();
         outputView.printTotalProfit(profit);
 

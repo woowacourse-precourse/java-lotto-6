@@ -13,17 +13,20 @@ import model.enums.LottoWinResults;
 
 public class LottoResultJudger {
     private double profit;
+    private int paidMoney;
 
-    public LottoResultJudger(Map<String, Integer> winResults){
+    public LottoResultJudger(Map<String, Integer> winResults,int paidMoney){
         profit = 0.0;
         profit += winResults.get(LottoWinResults.LOTTO_3SAME.getMessage()) * LottoWinPrize.LOTTO_3SAME_PRIZE.getValue();
         profit += winResults.get(LottoWinResults.LOTTO_4SAME.getMessage()) * LottoWinPrize.LOTTO_4SAME_PRIZE.getValue();
         profit += winResults.get(LottoWinResults.LOTTO_5SAME.getMessage()) * LottoWinPrize.LOTTO_5SAME_PRIZE.getValue();
         profit += winResults.get(LottoWinResults.LOTTO_5SAME_BONUS.getMessage()) * LottoWinPrize.LOTTO_5SAME_BONUS_PRIZE.getValue();
         profit += winResults.get(LottoWinResults.LOTTO_6SAME.getMessage()) * LottoWinPrize.LOTTO_6SAME_PRIZE.getValue();
+
+        this.paidMoney = paidMoney;
     }
 
     public double getProfit(){
-        return profit;
+        return Double.parseDouble(String.format("%.2f", (profit/paidMoney*100)));
     }
 }

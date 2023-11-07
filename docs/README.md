@@ -2,7 +2,7 @@
 lottoNumberSetHolder에 담긴 lotto들을 LottoNumberComparater에 넣어서 값을 받아 LottoWinResultsHolder에 넣기
 
 <lotto 패키지>
-- application 클래스 ( 게임컨트롤러 실행)
+- application 클래스 ( 게임컨트롤러 실행)⭕️1차구현완료
 
 <model 패키지>
 - 로또 티켓 판매 클래스 ( 돈 받고 몇 개 샀는지 반환 ) ⭕️1차구현완료
@@ -23,7 +23,7 @@ lottoNumberSetHolder에 담긴 lotto들을 LottoNumberComparater에 넣어서 �
 - 출력용 enum ⭕️1차구현완료
 
 <controller 패키지>
-- 게임 컨트롤러 클래스
+- 게임 컨트롤러 클래스⭕️1차구현완료
 
 <utility 패키지>
 - api 사용 클래스(static) ⭕️1차구현완료

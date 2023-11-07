@@ -51,6 +51,7 @@ public enum Score {
 
     public static String stats(List<Score> scores) {
         return Stream.of(values())
+                .filter(score -> !Objects.equals(score, Nothing))
                 .map(score -> score.msg +
                         DASH +
                         Collections.frequency(scores, score) +

@@ -14,4 +14,10 @@ package lotto.control;public class Lottogame {
 
         view.printWinningResult(winCounts, purchaseAmount);
     }
+
+    private int inputPurchaseAmount() {
+        int purchaseAmount = readPurchaseAmount();
+        validatePurchaseAmount(purchaseAmount);
+        return purchaseAmount;
+    }
 }

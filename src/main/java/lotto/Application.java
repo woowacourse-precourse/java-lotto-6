@@ -146,11 +146,14 @@ public class Application {
 //    }
 
     public static void main(String[] args) {
+        PrintInstructions.printAmountInstruction();
         int amountOfMoney = InputRequirement.inputLottoAmount();
 
+        PrintInstructions.printWinningNumberInstruction();
         List<Lotto> allLotto = LottoGenerator.generateLottos(amountOfMoney/price);
         LottoGenerator.printGeneratedLottos(allLotto, amountOfMoney/price);
 
+        PrintInstructions.printBonusInstruction();
         Lotto winningLotto = InputRequirement.inputWinningNumbers();
         int bonusNumber = InputRequirement.inputBonusNumber();
 

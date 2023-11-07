@@ -10,7 +10,6 @@ public class InputRequirement {
     static List<String> winningNums = new ArrayList<>();
 
     public static int inputLottoAmount() {
-        PrintInstructions.printAmountInstruction();
         try {
             int amount = Integer.parseInt(Console.readLine());
             Validation.validateAmount(amount);
@@ -25,7 +24,6 @@ public class InputRequirement {
     }
 
     public static int inputBonusNumber() {
-        PrintInstructions.printBonusInstruction();
         try{
             int bonus = Integer.parseInt(Console.readLine());
             Validation.validateNumberRange(bonus);
@@ -40,7 +38,6 @@ public class InputRequirement {
     }
 
     public static Lotto inputWinningNumbers() {
-        PrintInstructions.printWinningNumberInstruction();
         winningNums = (Arrays.asList(Console.readLine().split(",")));
         try {
             Validation.isAllValidNumbers(winningNums);

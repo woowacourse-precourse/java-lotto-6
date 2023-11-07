@@ -1,26 +1,30 @@
 package lotto.util;
 
 import java.util.regex.Pattern;
+import lotto.exception.InputExceptionConstant;
 
 public class InputValidator {
     private static final String REGEXP_PATTERN_NUMBER = "^[\\d]*$";
     private static final String REGEXP_PATTERN_SPACE_CHAR = "^[\\s]*$";
 
-    public static boolean isNaturalNumber(String number) {
-        return Pattern.matches(REGEXP_PATTERN_NUMBER, number);
+    public static void isNaturalNumber(String number) {
+        if (!Pattern.matches(REGEXP_PATTERN_NUMBER, number)) {
+            throw new IllegalArgumentException(InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING.getText());
+        }
     }
 
-    public static boolean isNaturalNumber(String[] numbers) {
+    public static void isNaturalNumber(String[] numbers) {
         for (String number : numbers) {
             if (!Pattern.matches(REGEXP_PATTERN_NUMBER, number)) {
-                return false;
+                throw new IllegalArgumentException(
+                        InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING_ARRAY.getText());
             }
         }
-
-        return true;
     }
 
-    public static boolean hasBlank(String input) {
-        return Pattern.matches(REGEXP_PATTERN_SPACE_CHAR, input);
+    public static void hasBlank(String input) {
+        if (Pattern.matches(REGEXP_PATTERN_SPACE_CHAR, input)) {
+            throw new IllegalArgumentException(InputExceptionConstant.NO_BLANK_IN_STRING.getText());
+        }
     }
 }

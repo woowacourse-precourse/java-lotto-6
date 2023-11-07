@@ -14,14 +14,6 @@ public enum LottoPrize {
         this.prizeMoney = prizeMoney;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public long getPrizeMoney() {
-        return prizeMoney;
-    }
-
     public static Long findPrizeMoney(int number) {
         for (LottoPrize prize : values()) {
             if (prize.count == number) {

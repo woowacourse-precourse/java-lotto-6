@@ -13,9 +13,9 @@ class ResultDetailsTest {
     @MethodSource("lottoNumbersAndMatchingNumber")
     public void 로또와_일치하는_숫자_개수_테스트(Lotto lotto, Rank rank) {
         // given
-        final WinningNumbersData winningNumbersData = new WinningNumbersData(List.of(1, 2, 3, 4, 5, 6));
+        final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         final BonusNumber bonusNumber = new BonusNumber(7);
-        final WinningNumbers winningNumbers = new WinningNumbers(winningNumbersData, bonusNumber);
+        final WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
 
         // then
         Assertions.assertThat(

@@ -27,19 +27,14 @@ public class InputView {
         return Parser.parseToBudget(input);
     }
 
-    public WinningLotto inputWinningLotto() {
-        Lotto lotto = inputWinningNumbers();
-        Bonus bonus = inputBonusNumbers();
-        return new WinningLotto(lotto, bonus);
-    }
 
-    private Lotto inputWinningNumbers() {
+    public Lotto inputWinningNumbers() {
         System.out.printf(ConsoleMessage.INPUT_WINNING_NUMBER.message);
         String input = Console.readLine();
         return Parser.parseToLotto(input);
     }
 
-    private Bonus inputBonusNumbers() {
+    public Bonus inputBonusNumbers() {
         System.out.printf(ConsoleMessage.INPUT_BONUS_NUMBER.message);
         String input = Console.readLine();
         return Parser.parseToBonus(input);

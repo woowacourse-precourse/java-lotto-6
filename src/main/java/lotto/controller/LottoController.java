@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.function.Supplier;
+import lotto.model.Bonus;
 import lotto.model.Budget;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
@@ -24,8 +25,9 @@ public class LottoController {
 
     public void run() {
         Budget budget = getValidInput(inputView::inputBudget);
-        List<Lotto> purchasedLottos = getValidInput(()->purchaseLottos(budget));
-        WinningLotto winningLotto = getValidInput(inputView::inputWinningLotto);
+        List<Lotto> purchasedLottos = getValidInput(() -> purchaseLottos(budget));
+        Lotto winningNumbers = getValidInput(inputView::inputWinningNumbers);
+        WinningLotto winningLotto = getValidWinningLotto(winningNumbers);
         printLottoResult(purchasedLottos, winningLotto, budget);
     }
 
@@ -33,6 +35,17 @@ public class LottoController {
         while (true) {
             try {
                 return action.get();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto getValidWinningLotto(Lotto winningNumbers) {
+        while (true) {
+            try {
+                Bonus bonusNumber = inputView.inputBonusNumbers();
+                return new WinningLotto(winningNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -50,6 +63,10 @@ public class LottoController {
         Budget budget) {
         LottoResult lottoResult = new LottoMatcher(winningLotto).matchLottos(purchasedLottos);
         outputView.printLottoResult(lottoResult, budget.inputMoney());
+    }
+
+    private WinningLotto createWinningLotto(Lotto lottoNumbers, Bonus bonus) {
+        return new WinningLotto(lottoNumbers, bonus);
     }
 
 

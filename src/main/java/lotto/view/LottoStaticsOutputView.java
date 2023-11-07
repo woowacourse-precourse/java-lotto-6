@@ -1,35 +1,53 @@
 package lotto.view;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+
+import java.util.Map;
 import lotto.domain.Rank;
 import lotto.domain.WinningStatistics;
 
 public class LottoStaticsOutputView {
 
-    private static final String RANK_MATCH = "%d개 일치 (%,d원) - %d개\n";
-
-    private static final String SECOND_RANK_MATCH = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개\n";
+    private static final String MATCHED_LOTTO_NUMBER_COUNT = "%d개 일치";
+    private static final String PRIZE_UNIT = " (%,d원)";
+    private static final String BONUS_BALL_MATCH = ", 보너스 볼 일치";
+    private static final String RANK_LOTTO_COUNT = " - %d개\n";
 
     private static final String LOTTO_STATICS_MESSAGE = "당첨통계\n---";
 
 
     public static void outputFrom(WinningStatistics statistics) {
-        System.out.println(LOTTO_STATICS_MESSAGE);
-        List<Rank> ranks = Arrays.stream(Rank.values())
-                                 .filter(rank -> !rank.equals(Rank.NONE))
-                                 .sorted(Comparator.reverseOrder())
-                                 .toList();
-        for (Rank rank : ranks) {
 
-            if (rank.equals(Rank.SECOND)) {
-                System.out.printf(SECOND_RANK_MATCH, rank.showMatchCount(), rank.showPrize(),
-                        statistics.showCountOf(rank));
-                continue;
-            }
-            System.out.printf(RANK_MATCH, rank.showMatchCount(), rank.showPrize(), statistics.showCountOf(rank));
+        System.out.println(LOTTO_STATICS_MESSAGE);
+
+        for (Map.Entry<Rank, Integer> rankCount : statistics.showRankCount()) {
+
+            Rank rank = rankCount.getKey();
+            int count = rankCount.getValue();
+
+            String message = createStatisticsMessageFrom(rank, count);
+            System.out.printf(message);
         }
     }
+
+    private static String createStatisticsMessageFrom(Rank rank, int count) {
+        StringBuilder statisticsMessage = new StringBuilder();
+
+        statisticsMessage.append(String.format(MATCHED_LOTTO_NUMBER_COUNT, rank.showMatchCount()));
+
+        statisticsMessage.append(String.format(PRIZE_UNIT, rank.showMatchCount()));
+
+        if (rank.equals(Rank.SECOND)) {
+
+            statisticsMessage.append(BONUS_BALL_MATCH);
+
+        }
+
+        statisticsMessage.append(RANK_LOTTO_COUNT);
+
+        statisticsMessage.append(String.format(MATCHED_LOTTO_NUMBER_COUNT, rank.showPrize()));
+        return statisticsMessage.toString();
+
+    }
+
 
 }

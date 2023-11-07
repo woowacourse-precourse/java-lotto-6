@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class WinningStatistics {
 
@@ -33,6 +35,13 @@ public class WinningStatistics {
                              .reduce(0L, Long::sum);
 
         return revenue;
+    }
+
+    public List<Entry<Rank, Integer>> showRankCount() {
+
+        return rankCount.entrySet()
+                .stream()
+                .toList();
     }
 
 

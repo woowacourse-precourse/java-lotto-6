@@ -24,7 +24,7 @@ public class LottoDraw {
         payLottoAmount();
 
         // 로또 발행
-        if (issueLotto()) return;
+        issueLotto();
 
         // 당첨 번호 입력
         inputWinningNumber();
@@ -81,8 +81,7 @@ public class LottoDraw {
         return false;
     }
 
-    private boolean issueLotto() {
-        boolean flag = false;
+    private void issueLotto() {
         // 로또 발행
         numOfLotto = customer.getMoney() / LOTTO_PRICE.getNumber();
         OutputView.printBuyLotto(BUY_LOTTO, numOfLotto);
@@ -93,9 +92,7 @@ public class LottoDraw {
                 customer.throwLastLotto();
             }
         }
-
         OutputView.printLottos(customer);
-        return flag;
     }
 
     private void inputBonusNumber() {

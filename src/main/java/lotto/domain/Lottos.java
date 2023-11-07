@@ -20,4 +20,10 @@ public class Lottos {
             lottos.add(new Lotto(numbers));
         }
     }
+
+    public void printLottos(){
+        lottos.stream().forEach(lotto -> {
+            lotto.printLotto();
+        });
+    }
 }

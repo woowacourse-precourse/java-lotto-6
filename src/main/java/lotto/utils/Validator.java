@@ -24,10 +24,15 @@ public class Validator {
         return inputValue;
     }
 
+
     public static void checkWinningNumber(List<Integer> winningNumber) throws IllegalArgumentException{
         checkLottoNumberSize(winningNumber);
         checkLottoNumberRange(winningNumber);
         checkLottoNumberDuplicate(winningNumber);
+    }
+
+    public static void checkPublishLottoNumber(List<Integer> lottoNumbers) throws IllegalArgumentException{
+        checkLottoNumberSize(lottoNumbers);
     }
 
     public static void checkBonusNumber(List<Integer> winningNumber, Integer bonusNumber) throws IllegalArgumentException{

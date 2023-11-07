@@ -82,6 +82,11 @@ public class LottoController {
     public void saveLottoNumbers(List<Integer> lottoNumbers) {
         lottos.add(new Lotto(lottoNumbers));
     }
+    public void createLottos() {
+        for (int i = 0; i < lottoCounts; i++) {
+            saveLottoNumbers(GenerateRandomNumber());
+        }
+    }
 
 
     // 순서 - 상수, 클래스 변수

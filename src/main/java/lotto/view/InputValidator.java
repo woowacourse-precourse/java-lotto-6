@@ -22,12 +22,6 @@ public class InputValidator {
         return inputMoney.matches(NUMERIC);
     }
 
-    public void validateBonusNumber(String bonusNumber) {
-        if (!isNumeric(bonusNumber)) {
-            throw new InvalidInputException(INVALID_INPUT_MESSAGE);
-        }
-    }
-
     public void validateConvertInputToList(List<Integer> inputWinningNumbers) {
         if (isValidSize(inputWinningNumbers)) {
             throw new InvalidInputException(SIZE_NOT_VALID_MESSAGE);

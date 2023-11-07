@@ -27,5 +27,4 @@ class PurchasedLottoTest {
         Integer updatedSize = purchasedLotto.getLottos().size();
         assertEquals(2, updatedSize - initialSize);
     }
-
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.exception.DuplicateInputException;
 import lotto.exception.InvalidInputException;
 import lotto.service.LottoResultService;
 import lotto.service.LottoPurchaseService;
@@ -38,13 +39,19 @@ public class LottoController {
     }
 
     private WinningLotto winningInput() {
-        outputView.inputWinningNumbersMessage();
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        while (true) {
+            try {
+                outputView.inputWinningNumbersMessage();
+                List<Integer> winningNumbers = inputView.inputWinningNumbers();
 
-        outputView.inputBonusNumberMessage();
-        BonusNumber bonusNumber = inputView.inputBonusNumber();
+                outputView.inputBonusNumberMessage();
+                BonusNumber bonusNumber = inputView.inputBonusNumber();
 
-        return new WinningLotto(winningNumbers, bonusNumber);
+                return new WinningLotto(winningNumbers, bonusNumber);
+            } catch (DuplicateInputException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
     }
 
 
@@ -63,9 +70,9 @@ public class LottoController {
     private Long purchaseLotto() {
         while (true) {
             outputView.purchaseLottoMessage();
-            Long userMoney = inputView.purchaseLotto();
 
             try {
+                Long userMoney = inputView.purchaseLotto();
                 Long lottoCount = lottoPurchaseService.calculateNumberOfLotto(userMoney);
                 outputView.purchaseLottoCountMessage(lottoCount);
 

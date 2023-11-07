@@ -23,17 +23,10 @@ public class InputView {
     }
 
     public Long purchaseLotto() {
-        while (true) {
-            String inputMoney = getInput();
-            try {
-                validateInputMoney(inputMoney);
-                return convertInputToLong(inputMoney);
-            } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 초과하는 금액 입리");
-            }
-        }
+        String inputMoney = getInput();
+        validateInputMoney(inputMoney);
+
+        return convertInputToLong(inputMoney);
     }
 
     private Long convertInputToLong(String inputMoney) {

@@ -24,7 +24,7 @@ public class WinningLotto {
     }
 
     private Boolean hasDuplicatedNumber(List<Integer> winningNumbers, BonusNumber bonusNumber) {
-        return winningNumbers.contains(bonusNumber);
+        return winningNumbers.contains(bonusNumber.getNumber());
     }
 
     public Integer countCorrectNumbers(Lotto lotto) {

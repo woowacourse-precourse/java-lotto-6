@@ -3,7 +3,6 @@ package lotto.controller;
 import static lotto.domain.BonusNumber.bonusNumber;
 import static lotto.domain.WinningNumbers.createWinningNumbers;
 import static lotto.domain.WinningNumbers.getWinningNumbers;
-import static lotto.exception.ErrorMessage.RUN_MESSAGE;
 import static lotto.view.InputView.requestBonusNumber;
 import static lotto.view.InputView.requestLotteryNumber;
 import static lotto.view.InputView.requestPurchaseAmount;
@@ -18,8 +17,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Result;
-import lotto.exception.LottoException;
-
 public class LottoController {
     private static int count;
     private static int bonusNumber;
@@ -27,17 +24,20 @@ public class LottoController {
     private static List<Lotto> lotto;
     private static List<Integer> winningNumbers;
     public static void prosess (){
+        try {
         start();
         createLottoNumber();
         inputWinningNumbers();
         result();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void start() {
             PurchaseAmount.creat(requestPurchaseAmount());
             count = PurchaseAmount.count;
             responseCount(count);
-
     }
 
     public static List<Lotto> createLottoNumber() {

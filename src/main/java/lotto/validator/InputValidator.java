@@ -21,6 +21,7 @@ public class InputValidator {
             throw LottoException.of(IS_NOT_NUMBER);
         }
     }
+
     public static boolean isNumber(final String number) {
         return String.valueOf(number).matches("\\d+");
     }

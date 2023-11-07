@@ -1,29 +1,22 @@
 package lotto.view;
 
-import static lotto.view.constans.constantMessage.PURCHASED_TICKET_COUNT;
-
 import java.util.List;
 import java.util.Map;
-import lotto.view.constans.constantMessage;
 
 public class OutputView {
 
-    public static void printConstantMessage(constantMessage constantMessage) {
-        System.out.println(constantMessage.getMessage());
+    public static void responseCount(int count) {
+        System.out.println(count + "개를 구매했습니다.");
     }
 
-    public static void responseCount(int count){
-        System.out.print(count);
-        printConstantMessage(PURCHASED_TICKET_COUNT);
-    }
-
-    public static void responseLottoNumber(List<Integer> lotto){
-            System.out.println(lotto);
+    public static void responseLottoNumber(List<Integer> lotto) {
+        System.out.println(lotto);
     }
 
     public static void responseResult(Map<String, Object> result) {
         double profitPercentage = (double) result.get("총 수익률");
 
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - " + result.get("5등") + "개");

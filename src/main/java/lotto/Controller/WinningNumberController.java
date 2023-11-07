@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import lotto.View.InputUI;
 import lotto.View.OutputUI;
 import java.util.List;
 
@@ -8,5 +9,6 @@ public class WinningNumberController extends Controller{
     @Override
     public void run(){
         OutputUI.printRequestWinningNumber();
+        winningNumber = InputUI.inputWinningNumber();   // inherent validating
     }
 }

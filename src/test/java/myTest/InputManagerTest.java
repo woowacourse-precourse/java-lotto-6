@@ -3,19 +3,16 @@ package myTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 import java.util.List;
-import lotto.BuyLotto;
 import lotto.InputManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class BuyLottoTest {
+class InputManagerTest {
 
-    private BuyLotto buyLotto;
     private InputManager inputManager;
 
     @BeforeEach
     void setUp() {
-        buyLotto = new BuyLotto();
         inputManager = new InputManager();
     }
 

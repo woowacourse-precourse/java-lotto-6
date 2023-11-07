@@ -56,7 +56,7 @@ public class LottoMachine {
         System.out.println("당첨 통계");
         System.out.println("---");
         for (Result r : Result.values()) {
-            System.out.printf("%s %d개\n", r.getResult(), lottoResult.get(r));
+            System.out.printf("%s%d개\n", r.getResult(), lottoResult.get(r));
             total += r.getPrizeMoney() * lottoResult.get(r);
         }
         return total;

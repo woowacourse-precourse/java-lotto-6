@@ -14,7 +14,7 @@ public class BuyLotto {
         System.out.println("구입 금액을 입력 해 주세요.");
         long money = inputManager.getMoney();
         long lottoCount = money / 1000;
-        System.out.printf("%d개를 구매 했습니다.\n", lottoCount);
+        System.out.printf("%d개를 구매했습니다.\n", lottoCount);
         lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             lottos.add(generateLotto());
@@ -41,7 +41,6 @@ public class BuyLotto {
 
     public Lotto generateLotto() {
         List<Integer> balls = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(balls);
         return new Lotto(balls);
     }
 }

@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,7 +33,9 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public void showBallNumber() {
-        System.out.println(numbers.toString());
+        List<Integer> balls = new ArrayList<>(numbers);
+        Collections.sort(balls);
+        System.out.println(balls.toString());
     }
 
     public boolean hasCorrectNum(int number) {

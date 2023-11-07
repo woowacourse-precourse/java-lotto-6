@@ -228,17 +228,10 @@ class ApplicationTest extends NsTest {
     @Test
     public void enum_test() throws Exception {
         // given
-        LottoRank lottoRank = LottoRank.MONEY_FIRST_PLACE;
 
         // when
 
         // then
-        System.out.println(lottoRank.getCount());
-        System.out.println();
-
-        lottoRank.increaseCount();
-        System.out.println(lottoRank.getCount());
-
     }
 
     @Override

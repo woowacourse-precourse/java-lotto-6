@@ -7,8 +7,8 @@ public class ParserValidator {
 
     private final List<String> splitNumbers;
 
-    public ParserValidator(String input) {
-        this.splitNumbers = Arrays.asList(input.split(","));
+    public ParserValidator(List<String> splitNumbers) {
+        this.splitNumbers = splitNumbers;
     }
 
     public void validateAll() {

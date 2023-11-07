@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoTicket;
@@ -41,11 +41,12 @@ public class Calculation {
         return max;
     }
 
-    public Boolean isMatchBonusNumber(Lotto lott, LottoTicket ticket) {
-        return true;
+    public Boolean isMatchBonusNumber(Lotto lotto) {
+        return !lotto.getNumbers().contains(lotto.bonusNumber());
     }
 
     public double calculateProfitRate(Lotto lott, LottoTicket ticket){
+
         return 0.0;
     }
 }

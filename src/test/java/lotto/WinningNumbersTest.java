@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.domain.WinningNumbersGenerator;
+import lotto.domain.WinningNumbers;
 import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,20 +10,20 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
-class WinningNumbersGeneratorTest {
+class WinningNumbersTest {
     private final String ERROR_PHRASES = "[ERROR]";
 
     @DisplayName("당첨 번호의 갯수가 6미만일 경우 예외 처리")
     @Test
     void winningNumbersLengthLessThanSize() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] winningNumbersInput = {"1", "2", "3", "4", "5"};
+        List<Integer> winningNumbersInput = List.of(1, 2, 3, 4, 5);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateEachWinningNumberInput(winningNumbersInput))
+        assertThatThrownBy(() -> winningNumbers.validateWinningNumberInputSize(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_SIX_NUMBER.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -33,13 +33,13 @@ class WinningNumbersGeneratorTest {
     @Test
     void winningWinningNumbersLengthOverThanSize() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] winningNumbersInput = {"1", "2", "3", "4", "5", "6", "7"};
+        List<Integer> winningNumbersInput = List.of(1, 2, 3, 4, 5, 6, 7);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateEachWinningNumberInput(winningNumbersInput))
+        assertThatThrownBy(() -> winningNumbers.validateWinningNumberInputSize(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.NOT_SIX_NUMBER.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -49,13 +49,13 @@ class WinningNumbersGeneratorTest {
     @Test
     void duplicatedNumberInWinningNumbers() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] winningNumbersInput = {"1", "2", "3", "4", "5", "5"};
+        List<Integer> winningNumbersInput = List.of(1, 2, 3, 4, 5, 5);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateEachWinningNumberInput(winningNumbersInput))
+        assertThatThrownBy(() -> winningNumbers.validateDuplicateWinningNumber(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.DUPLICATED_NUMBER.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -65,13 +65,13 @@ class WinningNumbersGeneratorTest {
     @Test
     void winningNumberOverRange() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] winningNumbersInput = {"1", "2", "3", "4", "5", "46"};
+        List<Integer> winningNumbersInput = List.of(1, 2, 3, 4, 5, 46);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateDividedInput(winningNumbersInput))
+        assertThatThrownBy(() -> winningNumbers.validateWinningNumberRange(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.RANGE.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -81,13 +81,13 @@ class WinningNumbersGeneratorTest {
     @Test
     void winningNumberLessRange() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] winningNumbersInput = {"0", "1", "2", "3", "4", "5"};
+        List<Integer> winningNumbersInput = List.of(0, 2, 3, 4, 5, 6);
 
         //then
-        assertThatThrownBy(() -> winningNumbersGenerator.validateDividedInput(winningNumbersInput))
+        assertThatThrownBy(() -> winningNumbers.validateWinningNumberRange(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.RANGE.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -97,15 +97,15 @@ class WinningNumbersGeneratorTest {
     @Test
     void generateWinningNumber() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumber = new WinningNumbers();
 
         //when
-        String[] numbers = {"1", "2", "6", "7", "43", "21"};
-        winningNumbersGenerator.generateWinningNumbers(numbers);
+        List<Integer> winningNumbersInput = List.of(1, 2, 6, 7, 43, 21);
+        winningNumber.generateWinningNumbers(winningNumbersInput);
         List<Integer> expectedWinningNumbers = List.of(1, 2, 6, 7, 43, 21);
 
         //then
-        List<Integer> winningNumbers = winningNumbersGenerator.getWinningNumbers();
+        List<Integer> winningNumbers = winningNumber.getWinningNumbers();
         assertThat(winningNumbers.size()).isEqualTo(6);
         assertThat(winningNumbers).containsAnyElementsOf(expectedWinningNumbers);
     }
@@ -114,17 +114,16 @@ class WinningNumbersGeneratorTest {
     @Test
     void bonusNumberOverRange() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] numbers = {"1", "2", "6", "7", "43", "21"};
-        winningNumbersGenerator.generateWinningNumbers(numbers);
+        List<Integer> winningNumbersInput = List.of(1, 2, 6, 7, 43, 21);
+        winningNumbers.generateWinningNumbers(winningNumbersInput);
 
         int bonusNumberInput = 46;
-        winningNumbersGenerator.saveBonusNumber(bonusNumberInput);
 
         //then
-        assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
+        assertThatThrownBy(() -> winningNumbers.validateBonusNumber(bonusNumberInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.RANGE.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -134,18 +133,16 @@ class WinningNumbersGeneratorTest {
     @Test
     void bonusNumberLessRange() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] numbers = {"1", "2", "6", "7", "43", "21"};
-        winningNumbersGenerator.generateWinningNumbers(numbers);
+        List<Integer> winningNumbersInput = List.of(1, 2, 6, 7, 43, 21);
+        winningNumbers.generateWinningNumbers(winningNumbersInput);
 
         int bonusNumberInput = 0;
 
-        winningNumbersGenerator.saveBonusNumber(bonusNumberInput);
-
         //then
-        assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
+        assertThatThrownBy(() -> winningNumbers.validateBonusNumber(bonusNumberInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.RANGE.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -155,18 +152,16 @@ class WinningNumbersGeneratorTest {
     @Test
     void winningNumbersContainBonusNumber() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] numbers = {"1", "2", "6", "7", "43", "21"};
-        winningNumbersGenerator.generateWinningNumbers(numbers);
+        List<Integer> winningNumbersInput = List.of(1, 2, 6, 7, 43, 21);
+        winningNumbers.generateWinningNumbers(winningNumbersInput);
 
         int bonusNumberInput = 43;
 
-        winningNumbersGenerator.saveBonusNumber(bonusNumberInput);
-
         //then
-        assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
+        assertThatThrownBy(() -> winningNumbers.validateBonusNumber(bonusNumberInput))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.WINNING_NUM_CONTAIN_BONUS_NUM.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -176,16 +171,16 @@ class WinningNumbersGeneratorTest {
     @Test
     void generateBonusNumber() {
         //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+        WinningNumbers winningNumbers = new WinningNumbers();
 
         //when
-        String[] numbers = {"1", "2", "6", "7", "43", "21"};
-        winningNumbersGenerator.generateWinningNumbers(numbers);
+        List<Integer> winningNumbersInput = List.of(1, 2, 6, 7, 43, 21);
+        winningNumbers.generateWinningNumbers(winningNumbersInput);
 
         int bonusNumber = 45;
-        winningNumbersGenerator.generateBonusNumber(bonusNumber);
+        winningNumbers.generateBonusNumber(bonusNumber);
 
         //then
-        assertThat(winningNumbersGenerator.getBonusNumber()).isEqualTo(bonusNumber);
+        assertThat(winningNumbers.getBonusNumber()).isEqualTo(bonusNumber);
     }
 }

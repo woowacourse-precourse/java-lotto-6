@@ -67,7 +67,7 @@ public class InputView {
     }
 
     private static List<Integer> convertStringToListWithDelimeter(String input) {
-        return Arrays.stream(input.split(COMMA)).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
+        return Arrays.stream(input.replaceAll(" ", "").split(COMMA)).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
     }
 
 }

@@ -9,9 +9,16 @@ public class RunLotto {
         UserOutputView.outputPurchaseAmount();
         UserInputView.inputPurchaseAmount();
 
+        UserOutputView.getBuyLottoTicketsNum();
         UserOutputView.getBuyLottoTickets();
-        UserInputView.putWinningNums();
-        UserInputView.putBonusNum();
+
+        UserOutputView.outputWinningNums();
+        UserInputView.inputWinningNums();
+
+        UserOutputView.outputBonusNum();
+        UserInputView.inputBonusNum();
+
+
 
     }
 }

@@ -22,6 +22,10 @@ public class LottoTickets {
         return LottoTickets.lottoTickets.size();
     }
 
+    public static List<Lotto> getBuyLottoTickets(){
+        return LottoTickets.lottoTickets;
+    }
+
     private static List<Lotto> putBuyLottoTickets(long purchaseAmount){
         List<Lotto> buyLottoTickets = new ArrayList<>();
         int purchasesNum = (int) (purchaseAmount/1000);

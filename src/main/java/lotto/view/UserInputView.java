@@ -17,22 +17,22 @@ public class UserInputView {
         }
     }
 
-    public static void putWinningNums(){
+    public static void inputWinningNums(){
         try{
             LottoController.putWinningNums(Console.readLine());
 
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            putWinningNums();
+            inputWinningNums();
         }
     }
 
-    public static  void putBonusNum(){
+    public static  void inputBonusNum(){
         try{
             LottoController.putBonusNum(Console.readLine());
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            putBonusNum();
+            inputBonusNum();
         }
     }
 }

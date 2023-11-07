@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.constant.RankingMessage;

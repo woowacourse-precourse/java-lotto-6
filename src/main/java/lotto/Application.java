@@ -1,7 +1,14 @@
 package lotto;
 
+import lotto.Controller.LottoController;
+import lotto.Model.User;
+import lotto.View.LottoView;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        User[] user = new User[3];
+        LottoView lottoView = new LottoView();
+        LottoController lottoControl = new LottoController(user,lottoView);
+        lottoControl.start();
     }
 }

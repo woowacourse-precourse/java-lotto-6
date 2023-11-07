@@ -9,21 +9,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    private User user;
+    final int LOTTOPRICE = 1000;
+    private User[] user;
     private LottoView view;
 
-    public LottoController(User user, LottoView view) {
+    private int userBuyCount;
+
+
+    public LottoController(User[] user, LottoView lottoView) {
         this.user = user;
-        this.view = view;
+        this.view = lottoView;
     }
 
-    public List<Integer> MakeLotto(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+    public void start(){
+        inputPrice();
+        amountLottos();
+    }
+
+    public void inputPrice() {
+        view.printInputPrice();
+        view.setPrice();
+    }
+
+    public void amountLottos(){
+        setUserBuyCount(view.getPrice());
+        view.printNumOfLotto(userBuyCount);
+    }
+
+    public List<Integer> makeLotto() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;
     }
 
-    public void setLottoNumber(){
-        this.user.setUserLotto(MakeLotto());
+    public void setLottoNumber() {
+        for (int i = 0; i < userBuyCount; i++) {
+            user[i].setUserLotto(makeLotto());
+        }
+    }
+
+    public void setUserBuyCount(int price) {
+        userBuyCount = price / LOTTOPRICE;
     }
 }

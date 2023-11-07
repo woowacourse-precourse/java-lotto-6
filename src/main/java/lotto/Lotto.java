@@ -1,7 +1,9 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.enums.Rank;
@@ -11,6 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        CheckDuplicateNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -26,6 +29,13 @@ public class Lotto {
     //테스트코드에서 써보기
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void CheckDuplicateNumber(List<Integer> numbers){
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if(uniqueNumbers.size() != numbers.size()){
             throw new IllegalArgumentException();
         }
     }

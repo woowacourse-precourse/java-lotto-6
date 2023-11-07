@@ -3,11 +3,9 @@ package lotto;
 import java.util.List;
 
 import lotto.controller.NumberGenerator;
-import lotto.controller.Referee;
 
 public class Application {
     static Lotto lotto;
-    static Referee referee = new Referee();
     public static void main(String[] args) {
         NumberGenerator numbergenerator = new NumberGenerator();
         final int num = numbergenerator.inputBuyCost();

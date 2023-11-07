@@ -1,11 +1,17 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.*;
+
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) {
-        int lottoPrice = UserController.inputLottoPrice();
-        System.out.println("입력한 로또 금액 = " + lottoPrice);
+        User user = new User();
+        List<Lotto> userLottos = user.buyLotto();
+        LottoWinningNumber lottoWinningNumber = user.createWinningLottoNumber();
+
+        Referee referee = new Referee(lottoWinningNumber, userLottos);
+        referee.showResult();
     }
 }

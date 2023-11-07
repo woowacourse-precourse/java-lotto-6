@@ -1,9 +1,10 @@
 package model;
 
+import static constants.ConstantNumbersManager.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import static constants.ConstantNumbersManager.*;
 
 public class Validation {
     private List<Integer> winningNumbers;
@@ -15,7 +16,7 @@ public class Validation {
     }
 
     public int lottoPurchaseNumber(int payment) {
-        return payment / LOTTO_PRICE;
+        return payment / ONE_LOTTO_PRICE;
     }
 
     public List<Integer> winningStatics(List<List<Integer>> fullLottoValue) {

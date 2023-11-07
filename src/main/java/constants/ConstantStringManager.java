@@ -1,4 +1,5 @@
 package constants;
+
 public enum ConstantStringManager {
     LOTTO_PRICE_INPUT_NOTIFY("구입금액을 입력해 주세요"),
     LOTTO_NUMBER_NOTIFY("%d개를 구매했습니다.\n"),

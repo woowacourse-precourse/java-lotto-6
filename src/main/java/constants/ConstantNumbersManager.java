@@ -9,7 +9,6 @@ public class ConstantNumbersManager {
     public static final int LOTTO_NUMBER_SIZE = 6;
     public static final int MINIMUM_LOTTO_NUMBER = 1;
     public static final int MAXIMUM_LOTTO_NUMBER = 45;
-    public static final int NOT_RANKED = -1;
     public static final int COINCIDE_THREE = 3;
     public static final int COINCIDE_FOUR = 4;
     public static final int COINCIDE_FIVE = 5;
@@ -20,6 +19,7 @@ public class ConstantNumbersManager {
     public static final int THIRD_RANK = 2;
     public static final int SECOND_RANK = 3;
     public static final int FIRST_RANK = 4;
+    public static final int NOT_RANKED = -1;
     public static final int FIRST_INDEX = 0;
     public static final int SECOND_INDEX = 1;
     public static final int THIRD_INDEX = 2;

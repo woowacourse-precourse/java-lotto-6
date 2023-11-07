@@ -36,19 +36,34 @@ public class LottoResult {
         for (int matchNumber : match) {
             correctCount++;
         }
+        checkFirstPlace();
+        checkSecondOrThirdPlace(lotto);
+        checkFourthPlace();
+        checkFifthPlace();
+    }
 
+    private void checkFirstPlace() {
         if (correctCount == Rank.FIRST.correctCount) {
             prizeCount.put(Rank.FIRST, prizeCount.get(Rank.FIRST) + COUNT);
         }
+    }
+
+    private void checkSecondOrThirdPlace(List<Integer> lotto) {
         if (correctCount == Rank.SECOND.correctCount && isSecondPlace(lotto)) {
             prizeCount.put(Rank.SECOND, prizeCount.get(Rank.SECOND) + COUNT);
         }
         if (correctCount == Rank.SECOND.correctCount && !isSecondPlace(lotto)) {
             prizeCount.put(Rank.THIRD, prizeCount.get(Rank.THIRD) + COUNT);
         }
+    }
+
+    private void checkFourthPlace() {
         if (correctCount == Rank.FOURTH.correctCount) {
             prizeCount.put(Rank.FOURTH, prizeCount.get(Rank.FOURTH) + COUNT);
         }
+    }
+
+    private void checkFifthPlace() {
         if (correctCount == Rank.FIFTH.correctCount) {
             prizeCount.put(Rank.FIFTH, prizeCount.get(Rank.FIFTH) + COUNT);
         }

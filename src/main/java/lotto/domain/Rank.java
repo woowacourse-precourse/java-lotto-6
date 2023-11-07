@@ -26,7 +26,7 @@ public enum Rank {
         return bonusBall;
     }
     public int getAwardMoney() {
-        return getAwardMoney();
+        return awardMoney;
     }
     public String getMessage() {
         return message;

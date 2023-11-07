@@ -4,7 +4,9 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static lotto.Lotto.lottoRangeFirstNum;
 import static lotto.Lotto.lottoRangeLastNum;
@@ -103,5 +105,18 @@ public class Draw {
         }
 
         return lottos;
+    }
+
+    Map<Rank, Integer> draw(Lotto winning, int bonusNum, List<Lotto> lottos) {
+        Map<Rank, Integer> drawResult = initDrawResult();
+        return drawResult;
+    }
+
+    Map<Rank, Integer> initDrawResult() {
+        Map<Rank, Integer> drawResult = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            drawResult.put(rank, 0);
+        }
+        return drawResult;
     }
 }

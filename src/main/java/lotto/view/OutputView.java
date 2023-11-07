@@ -18,10 +18,6 @@ public class OutputView {
         for (Lotto lotto: lottoTickets) {
             System.out.println(lotto.getNumbers());
         }
-        lineBreakMessage();
-    }
-
-    public static void lineBreakMessage() {
         System.out.println();
     }
 

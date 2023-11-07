@@ -26,7 +26,7 @@ public class Lotto {
     private void duplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int lottoNumber : numbers) {
-            if(!uniqueNumbers.add(lottoNumber)) {
+            if (!uniqueNumbers.add(lottoNumber)) {
                 VerificationView.verificationViewDuplicateLottoNumber();
                 throw new IllegalArgumentException();
             }

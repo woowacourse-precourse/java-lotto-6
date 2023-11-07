@@ -1,12 +1,17 @@
 package lotto.winning;
 
+import static lotto.Settings.MAIN_MATCH_FOR_FIFTH;
+import static lotto.Settings.MAIN_MATCH_FOR_FIRST;
+import static lotto.Settings.MAIN_MATCH_FOR_FOURTH;
+import static lotto.Settings.MAIN_MATCH_FOR_SECOND;
+import static lotto.Settings.MAIN_MATCH_FOR_THIRD;
 import static lotto.winning.Prize.FIFTH;
 import static lotto.winning.Prize.FIRST;
 import static lotto.winning.Prize.FOURTH;
 import static lotto.winning.Prize.SECOND;
 import static lotto.winning.Prize.THIRD;
-import static lotto.winning.Tally.COUNT;
 import static lotto.winning.Tally.AMOUNT;
+import static lotto.winning.Tally.COUNT;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -49,15 +54,15 @@ public class Analyst {
     private Prize determinePrizeRank(int winningMatchCount, int bonusMatchCount) {
         Prize rank = null;
 
-        if (winningMatchCount == 6)
+        if (winningMatchCount == MAIN_MATCH_FOR_FIRST.getNumber())
             rank = FIRST;
-        if (winningMatchCount == 5 && bonusMatchCount > 0)
+        if (winningMatchCount == MAIN_MATCH_FOR_SECOND.getNumber() && bonusMatchCount > 0)
             rank = SECOND;
-        if (winningMatchCount == 5 && bonusMatchCount == 0)
+        if (winningMatchCount == MAIN_MATCH_FOR_THIRD.getNumber() && bonusMatchCount == 0)
             rank = THIRD;
-        if (winningMatchCount == 4)
+        if (winningMatchCount == MAIN_MATCH_FOR_FOURTH.getNumber())
             rank = FOURTH;
-        if (winningMatchCount == 3)
+        if (winningMatchCount == MAIN_MATCH_FOR_FIFTH.getNumber())
             rank = FIFTH;
 
         return rank;

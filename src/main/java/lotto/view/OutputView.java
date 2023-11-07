@@ -1,8 +1,11 @@
 package lotto.view;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 
 public class OutputView {
     public static void printQuantityOfLotto(int quantity){
@@ -26,7 +29,20 @@ public class OutputView {
                 .collect(Collectors.joining(", ","[","]"));
         System.out.println(result);
     }
-    public static void printWinningStatics(){}
+    public static void displayResults(List<LottoResult> results) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Map<LottoResult, Integer> resultCounts = new HashMap<>();
+        for (LottoResult result : results) {
+            resultCounts.put(result, resultCounts.getOrDefault(result, 0) + 1);
+        }
+        for (LottoResult result : LottoResult.values()) {
+            if (result != LottoResult.NONE) {
+                int count = resultCounts.getOrDefault(result, 0);
+                System.out.println(result.getMatchCount() + "개 일치 (" + result.getPrize() + "원) - " + count + "개");
+            }
+        }
+    }
 
     public static void printTotalRevenue(double revenue){
         System.out.println("총 수익률은 "+revenue+"%입니다.");

@@ -3,7 +3,9 @@ package lotto.view;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
+import javax.management.relation.RelationNotification;
 import lotto.model.Lotto;
+import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.Money;
 import lotto.model.Rank;
@@ -26,38 +28,25 @@ public class OutputView {
     }
 
     public void showLottoStatistics(Lottos lottos, User user, Money money) {
-        Map<Rank, Integer> rankResult = lottos.saveRankResult(user);
-        System.out.println(STAT_MESSAGE);
-        Arrays.stream(rankResult.keySet().toArray(new Rank[0]))
-                .filter(rank -> !rank.equals(Rank.ECT))
-                .forEach(rank -> System.out.println(getLottoStatistics(rank, rankResult)));
-
-        System.out.printf(EARNING_RATE, getEarningRate(calEarnings(rankResult), money.getMoney()));
-    }
-
-    private double calEarnings(Map<Rank, Integer> rankResult) {
-        double earnings = 0;
+        LottoResult lottoResult = new LottoResult(lottos, user);
         for (Rank rank : Rank.values()) {
-            earnings += (rankResult.get(rank) * rank.getPrize());
+            System.out.println(getLottoStatistics(lottoResult, rank));
         }
-        return earnings;
+        System.out.println(STAT_MESSAGE);
+        printEarningRate(lottoResult.calEarningRate(money.getMoney()));
     }
 
-    private String getEarningRate(double earnings, int cost) {
-        return String.format(EARNING_FORMAT.format(calEarningRate(earnings, cost)));
+    private void printEarningRate(double earningRate) {
+        System.out.printf(EARNING_RATE, String.format(EARNING_FORMAT.format(earningRate)));
     }
 
-    private double calEarningRate(double earnings, int cost) {
-        return (earnings / cost) * 100;
-    }
-
-    private String getLottoStatistics(Rank rank, Map<Rank, Integer> rankResult) {
+    private String getLottoStatistics(LottoResult lottoResult, Rank rank) {
         if (rank == Rank.FIVE_BONUS) {
             return String.format(STAT_RESULT_BONUS, rank.getMatchingNumber(),
-                    MONEY_FORMAT.format(rank.getPrize()), rankResult.get(rank));
+                    MONEY_FORMAT.format(rank.getPrize()), lottoResult.getResult(rank));
         }
         return String.format(STAT_RESULT, rank.getMatchingNumber(),
-                MONEY_FORMAT.format(rank.getPrize()), rankResult.get(rank));
+                MONEY_FORMAT.format(rank.getPrize()), lottoResult.getResult(rank));
     }
 
     private void printLottos(Lottos lottos) {

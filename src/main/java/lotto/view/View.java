@@ -9,7 +9,9 @@ import lotto.common.constants.GuideMessage;
 import lotto.common.constants.LottoDefaultRule;
 import lotto.common.constants.LottoRankRule;
 import lotto.common.constants.Rank;
+import lotto.common.constants.RankMessage;
 import lotto.common.constants.Symbol;
+import lotto.common.constants.Unit;
 import lotto.common.utils.Utils;
 import lotto.common.validate.Validate;
 
@@ -86,7 +88,6 @@ public class View {
             int ticketBonusNumber = useBonusNumber(ticketNumbers);
             rankResult(numberMatchCount, ticketBonusNumber, bonusNumber);
         });
-        System.out.println(matchRecords);
     }
 
     private int ticketNumberAndLottoNumberMatchCount(List<Integer> ticketNumbers, List<Integer> lottoNumbers) {
@@ -105,16 +106,13 @@ public class View {
         if (numberMatchCount == LottoRankRule.FIRST_RANK_MATCH_COUNT.getRank()) {
             matchRecords.put(Rank.FIRST_RANK.getRank(), matchRecords.get(Rank.FIRST_RANK.getRank()) + 1);
             return true;
-        }
-        if (numberMatchCount == LottoRankRule.SECOND_RANK_MATCH_COUNT.getRank()) {
+        } if (numberMatchCount == LottoRankRule.SECOND_RANK_MATCH_COUNT.getRank()) {
             isMatchTicketAndBonus(ticketNumberOnlyOne, bonusNumber);
             return true;
-        }
-        if (numberMatchCount == LottoRankRule.FOURTH_RANK_MATCH_COUNT.getRank()) {
+        } if (numberMatchCount == LottoRankRule.FOURTH_RANK_MATCH_COUNT.getRank()) {
             matchRecords.put(Rank.FOURTH_RANK.getRank(), matchRecords.get(Rank.FOURTH_RANK.getRank()) + 1);
             return true;
-        }
-        if (numberMatchCount == LottoRankRule.FIFTH_RANK_MATCH_COUNT.getRank()) {
+        } if (numberMatchCount == LottoRankRule.FIFTH_RANK_MATCH_COUNT.getRank()) {
             matchRecords.put(Rank.FIFTH_RANK.getRank(), matchRecords.get(Rank.FIFTH_RANK.getRank()) + 1);
             return true;
         }
@@ -128,5 +126,26 @@ public class View {
         }
         matchRecords.put(Rank.THIRD_RANK.getRank(), matchRecords.get(Rank.THIRD_RANK.getRank()) + 1);
         return true;
+    }
+
+    public void outputPrizeStats() {
+        System.out.println(RankMessage.FIFTH_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.FIFTH_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
+        System.out.println(RankMessage.FOURTH_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.FOURTH_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
+        System.out.println(RankMessage.THIRD_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.THIRD_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
+        System.out.println(RankMessage.SECOND_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.SECOND_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
+        System.out.println(RankMessage.FIRST_RANK_MESSAGE.getMessage() + matchRecords.get(Rank.FIRST_RANK.getRank()) + Unit.TOTAL_NUMBER.getUnit());
+    }
+
+    public void outputProfitRate(double buyPrice) {
+        double totalProfitPrice = (calculateTotalProfitPrice() / buyPrice) * 100.0;
+        System.out.println(GuideMessage.OUTPUT_TOTAL_PROFIT_PRICE_START.getMessage() + String.format("%.1f", totalProfitPrice) + GuideMessage.OUTPUT_TOTAL_PROFIT_PRICE_END.getMessage());
+    }
+
+    private int calculateTotalProfitPrice() {
+        return LottoRankRule.FIRST_RANK_PRICE.getRank() * matchRecords.get(Rank.FIRST_RANK.getRank())
+                + LottoRankRule.SECOND_RANK_PRICE.getRank() * matchRecords.get(Rank.SECOND_RANK.getRank())
+                + LottoRankRule.THIRD_RANK_PRICE.getRank() * matchRecords.get(Rank.THIRD_RANK.getRank())
+                + LottoRankRule.FOURTH_RANK_PRICE.getRank() * matchRecords.get(Rank.FOURTH_RANK.getRank())
+                + LottoRankRule.FIFTH_RANK_PRICE.getRank() * matchRecords.get(Rank.FIFTH_RANK.getRank());
     }
 }

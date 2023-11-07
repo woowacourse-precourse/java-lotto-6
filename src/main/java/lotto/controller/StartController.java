@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.common.utils.Utils;
 import lotto.common.validate.Validate;
 import lotto.domain.Bonus;
 import lotto.domain.Buy;
@@ -37,8 +36,10 @@ public class StartController {
     }
 
     public void resultLotto() {
-        prizeStats();
-        profitRate();
+        view.prizeStatsMessage();
+        view.compareTicketsAndLotto(ticket.getLottoTicket(), lotto.getNumbers(), bonus.getNumber());
+        view.outputPrizeStats();
+        view.outputProfitRate(buy.getBuyPrice());
     }
 
     private void buyPrice() {
@@ -77,21 +78,5 @@ public class StartController {
     private void lottoTicket() {
         ticket.setLottoTicket(buy.getBuyTicketCount());
         view.lottoTicketNumbers(ticket.getLottoTicket());
-    }
-
-    // 당첨 내역 통계
-
-    private void prizeStats() {
-        view.prizeStatsMessage();
-        compareTicketAndLottoAndBonus();
-        // 당첨 통계 출력
-    }
-
-    private void profitRate() {
-        // 수익률 출력
-    }
-
-    private void compareTicketAndLottoAndBonus() { // 당첨 통계 출력
-        view.compareTicketsAndLotto(ticket.getLottoTicket(), lotto.getNumbers(), bonus.getNumber());
     }
 }

@@ -3,10 +3,10 @@ package lotto.service;
 import lotto.view.Rank;
 import lotto.view.RankResult;
 
-public class Statics {
+public class Statistics {
 
     private double rate;
-    public Statics(int money, RankResult rankResult) {
+    public Statistics(int money, RankResult rankResult) {
         this.rate = (getTotalMoney(rankResult) / money)*100;
     }
     private long getTotalMoney(RankResult rankResult) {

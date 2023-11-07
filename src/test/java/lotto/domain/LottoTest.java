@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -38,7 +39,7 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("발행된 로또의 숫자를 조회한다.")
+    @DisplayName("발행된 로또의 숫자를 오름차순으로 조회한다.")
     public void getLottoNumberTest() throws Exception {
         // given
         ArrayList arrayList = new ArrayList(List.of(1, 2, 3, 4, 9, 5));
@@ -49,5 +50,21 @@ class LottoTest {
 
         // then
         assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 9));
+    }
+
+    @Test
+    @DisplayName("로또 두개를 비교할 때, 몇개의 원소가 포함되어 있는가?")
+    public void rottosMatchCountTest() throws Exception {
+        // given
+        List<Integer> winningNumbers = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
+        List<Integer> numbers = new ArrayList<>(List.of(8, 7, 3, 2, 42, 43));
+        Lotto winningLotto = new Lotto(winningNumbers);
+        Lotto buyLotto = new Lotto(numbers);
+
+        // when
+        int count = buyLotto.matchCount(winningLotto);
+
+        // then
+        Assertions.assertThat(count).isEqualTo(2);
     }
 }

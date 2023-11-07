@@ -14,10 +14,6 @@ public class BonusNumber {
         }
     }
 
-    public Integer convertToInteger(String number) {
-        return Integer.parseInt(number);
-    }
-
     public Integer getBonusNumber() {
         return this.bonusNumber;
     }

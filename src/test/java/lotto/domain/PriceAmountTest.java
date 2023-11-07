@@ -17,6 +17,5 @@ public class PriceAmountTest {
         PriceAmount priceAmount = new PriceAmount(8000);
         int purchaseNumber = priceAmount.getPurchaseNumber();
         assertThat(purchaseNumber).isEqualTo(8);
-
     }
 }

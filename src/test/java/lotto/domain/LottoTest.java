@@ -1,13 +1,13 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.ArrayList;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -43,7 +43,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호 리스트가 정렬이 되었느지 확인")
+    @DisplayName("로또 번호 리스트가 정렬이 되었는지 확인")
     @Test
     void CheckLottoNumberSorted() {
         List<Integer> numbers = new ArrayList<>(List.of(6, 2, 4, 1, 5, 3));

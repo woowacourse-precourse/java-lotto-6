@@ -63,4 +63,7 @@ public class WinningNumbers {
         }
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
 }

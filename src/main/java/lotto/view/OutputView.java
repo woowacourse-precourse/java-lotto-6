@@ -37,13 +37,12 @@ public class OutputView {
             }
             System.out.println(" " + "(" + decimalFormat.format(winningResult.getPrice()) + ")" + " - " + countOfWinningResult.getOrDefault(winningResult, 0) + "개");
         }
-
         System.out.println("총 수익률은 " + calculateRateOfReturn(userLotto) + "%입니다.");
     }
 
     private double calculateRateOfReturn(UserLotto userLotto) {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        return Double.parseDouble(decimalFormat.format(userLotto.getWinningPrice() / userLotto.getPurchasePrice() * 100));
+        return Double.parseDouble(decimalFormat.format((double) userLotto.getWinningPrice() / userLotto.getPurchasePrice() * 100));
     }
 
 }

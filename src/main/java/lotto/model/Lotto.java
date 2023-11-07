@@ -7,7 +7,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -24,5 +24,15 @@ public class Lotto {
         return numbers.stream()
                 .distinct()
                 .count() != 6;
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .toList();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

@@ -20,7 +20,7 @@ public enum LottoRanking {
     }
 
     public static LottoRanking findByCondition(int correctNumberCount, boolean isCorrectBonusNumber) {
-        if (correctNumberCount == 5) {
+        if (correctNumberCount == SECOND.correctNumberCount) {
             if (isCorrectBonusNumber) {
                 return SECOND;
             }

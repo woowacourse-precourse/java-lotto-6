@@ -1,11 +1,10 @@
 package lotto.validate;
 
 public class LottoNumberValidator {
-    public static boolean validateWinningNumber(String winningNumber) {
+    public static void validateWinningNumber(String winningNumber) {
         String[] splitLottoNumber = winningNumber.split(",");
         isValidLength(splitLottoNumber);
         isValidType(splitLottoNumber);
-        return true;
     }
 
     private static void isValidType(String[] split) {

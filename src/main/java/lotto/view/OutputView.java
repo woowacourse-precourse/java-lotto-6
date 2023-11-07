@@ -21,5 +21,9 @@ public class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
+    public void printTicketNumber(int ticketNumber) {
+        String output = ticketNumber + "개를 구매했습니다.";
+        System.out.println(output);
+    }
 
 }

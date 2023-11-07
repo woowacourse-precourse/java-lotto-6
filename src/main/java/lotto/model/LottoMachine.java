@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.util.ErrorMessage.*;
 import static lotto.util.NumbersValidator.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -56,12 +57,12 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
     }
     private void checkIntegerInRange(Integer number) {
         if (number < RANDOM_NUMBER_MIN_VALUE || number > RANDOM_NUMBER_MAX_VALUE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
     private void checkIntegerInList(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.stream().anyMatch(number -> number.equals(bonusNumber))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_CANT_BE_DUPLICATED);
         }
     }
     public Integer getBonusNumber() {

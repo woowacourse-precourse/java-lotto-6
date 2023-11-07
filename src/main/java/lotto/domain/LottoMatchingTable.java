@@ -7,7 +7,7 @@ public enum LottoMatchingTable {
 
     FIFTH(3),
     FOURTH(4),
-    THIRD(5),
+    THIRD(5, false),
     SECOND(5, true),
     FIRST(6),
     ;

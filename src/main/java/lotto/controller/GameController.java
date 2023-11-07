@@ -12,7 +12,7 @@ import lotto.view.OutputMessage;
 
 public class GameController {
 
-    private static final int LOTTO_FISRT_NUMBER = 1;
+    private static final int LOTTO_FIRST_NUMBER = 1;
     private static final int LOTTO_LAST_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
@@ -62,7 +62,7 @@ public class GameController {
             InputMessage.inputWinningNumbers();
             List<Integer> winningNumbers = Util.splitInputNumbers(Console.readLine());
             Validation.validateListSize(winningNumbers, LOTTO_SIZE);
-            Validation.validateListNumbersInRange(winningNumbers, LOTTO_FISRT_NUMBER, LOTTO_LAST_NUMBER);
+            Validation.validateListNumbersInRange(winningNumbers, LOTTO_FIRST_NUMBER, LOTTO_LAST_NUMBER);
             Validation.validateListDuplication(winningNumbers);
             return winningNumbers;
         } catch (IllegalArgumentException e) {
@@ -77,7 +77,7 @@ public class GameController {
             Validation.validateInputIsNumber(input);
 
             int bonusNumber = Util.stringToInt(input);
-            Validation.validateNumberInRange(bonusNumber, LOTTO_FISRT_NUMBER, LOTTO_LAST_NUMBER);
+            Validation.validateNumberInRange(bonusNumber, LOTTO_FIRST_NUMBER, LOTTO_LAST_NUMBER);
             Validation.validateNumberInList(winningNumbers, bonusNumber);
 
             return bonusNumber;

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Objects;
 import lotto.util.AutoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -31,7 +32,17 @@ public class LottoGame {
     }
 
     private PurchasePrice inputPurchasePrice() {
-        return inputView.inputPurchasePrice();
+        PurchasePrice purchasePrice = null;
+        while (!isValidPurchasePrice(purchasePrice)) {
+            int price = inputView.inputPrice();
+            purchasePrice = PurchasePrice.from(price);
+        }
+
+        return purchasePrice;
+    }
+
+    private boolean isValidPurchasePrice(PurchasePrice purchasePrice) {
+        return Objects.nonNull(purchasePrice);
     }
 
     private WinningNumbers inputWinningNumbers() {

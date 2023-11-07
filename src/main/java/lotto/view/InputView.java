@@ -6,23 +6,20 @@ import java.util.List;
 import java.util.Objects;
 import lotto.constant.Message;
 import lotto.domain.BonusNumber;
-import lotto.domain.PurchasePrice;
 import lotto.domain.WinningNumbers;
 import lotto.exception.LottoExceptionMessage;
 
 public class InputView {
-    public PurchasePrice inputPurchasePrice() {
-        PurchasePrice purchasePrice = null;
+    public int inputPrice() {
+        Integer validPrice = null;
 
-        while (isNotValidPurchasePrice(purchasePrice)) {
+        while (!isValidPrice(validPrice)) {
             printNewLine();
             System.out.println(Message.INPUT_PRICE.getMessage());
             String inputPrice = Console.readLine().trim();
-            Integer validPrice = parseValidPrice(inputPrice);
-
-            purchasePrice = createPurchasePrice(validPrice);
+            validPrice = parseValidPrice(inputPrice);
         }
-        return purchasePrice;
+        return validPrice;
     }
 
     public WinningNumbers inputWinningNumbers() {
@@ -51,17 +48,6 @@ public class InputView {
             bonusNumber = createBonusNumber(validBonusNumber, winningNumbers);
         }
         return bonusNumber;
-    }
-
-    private PurchasePrice createPurchasePrice(Integer validPrice) {
-        if (isValidPrice(validPrice)) {
-            return PurchasePrice.from(validPrice);
-        }
-        return null;
-    }
-
-    private boolean isNotValidPurchasePrice(PurchasePrice purchasePrice) {
-        return Objects.isNull(purchasePrice);
     }
 
     private boolean isValidPrice(Integer validPrice) {

@@ -16,7 +16,6 @@ public class LottoStore {
     private static final int MIN_PRICE = 1000;
 
     private long chargedMoney;
-    private long lottoAmount;
     private List<Lotto> lottos;
 
     public void getMoney(final long moneyInput) {
@@ -39,37 +38,26 @@ public class LottoStore {
     }
 
     public void sellLottos(final Customer customer) {
-        calculateLottoAmount();
         generateAllLottos();
-        customer.setLotto(this.lottos);
+        customer.setLotto(lottos);
     }
 
-    public void calculateLottoAmount() {
-        this.lottoAmount = this.chargedMoney / LOTTO_PRICE;
-    }
 
     public void generateAllLottos() {
-        this.lottos = new ArrayList<>();
+        lottos = new ArrayList<>();
 
-        LongStream.range(0, this.lottoAmount)
-                .forEach(i -> lottos.add(generateLottoByNumbers(generateLottoNumbers())));
+        LongStream.range(0, chargedMoney / LOTTO_PRICE)
+                .forEach(i -> lottos.add(generateLottoNumbers()));
     }
 
-    public Lotto generateLottoByNumbers(List<Integer> numbers) {
-        return new Lotto(numbers);
-    }
 
-    public List<Integer> generateLottoNumbers() {
+    public Lotto generateLottoNumbers() {
         final List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUM, END_NUM, NUM_COUNT)
                 .stream()
                 .sorted()
                 .toList();
 
-        return numbers;
-    }
-
-    public long getLottoAmount() {
-        return this.lottoAmount;
+        return new Lotto(numbers);
     }
 
     public long getChargedMoney() {

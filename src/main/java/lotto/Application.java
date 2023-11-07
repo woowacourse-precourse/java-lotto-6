@@ -57,11 +57,22 @@ public class Application {
             }
         }
 
+        System.out.println("\n" + "당첨 통계" + "\n" + "---");
         System.out.println("3개 일치 (5,000원) - " + matchingCounts[0] + "개");
         System.out.println("4개 일치 (50,000원) - " + matchingCounts[1] + "개");
         System.out.println("5개 일치 (1,500,000원) - " + matchingCounts[2] + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchingCounts[3] + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + matchingCounts[4] + "개");
+
+        double sumOfPrize = matchingCounts[0] * 5_000 +
+                matchingCounts[1] * 50_000 +
+                matchingCounts[2] * 1_500_000 +
+                matchingCounts[3] * 30_000_000 +
+                matchingCounts[4] * 2_000_000_000;
+
+        double rateOfReturn =  sumOfPrize / howMuchPurchase * 100;
+
+        System.out.printf("총 수익률은 %.1f%%입니다",rateOfReturn);
     }
 
 

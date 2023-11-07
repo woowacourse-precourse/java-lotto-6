@@ -1,25 +1,27 @@
 package lotto.Domain;
 
 import java.util.*;
+import java.util.Collections;
+import lotto.Domain.*;
 
 import camp.nextstep.edu.missionutils.*;
 
-public class Lotto_Number{
+public class Tickets{
 	
-	private List<Integer> Lotto_Number = new ArrayList<Integer>(); 
+	private List<Ticket> tickets;
+	private Integer win_prize;
+	private List<Integer> Ticket_Number; 
 	private static final int Len_Number = 6;
 	private static final int Min_Number = 1;
 	private static final int Max_Number = 45;	
 	
-	public Lotto_Number() {
-		
+	private List<Integer> Ticket_Code_Generate() {
+		List<Integer> Ticket_Code= new ArrayList<>();
 		for(int i =0; i< Len_Number; i++) {
-			this.Lotto_Number.add(NonDuplicated_RandomNumber_Generator(this.Lotto_Number));
+			Ticket_Code.add(NonDuplicated_RandomNumber_Generator(Ticket_Code));
 		}
-		Collections.sort(Lotto_Number);
-	}
-	public List<Integer> getNumber(){
-		return Lotto_Number;
+		Collections.sort(Ticket_Code);
+		return Ticket_Code;
 	}
 		
 	public int NonDuplicated_RandomNumber_Generator(List<Integer> Ticket_Number) {

@@ -21,12 +21,13 @@ public class Game{
 
 	
 	
-	
 	public static void start() {
+		Budget budget = new Budget(InputView.Input_Budget());
 		Lotto_Number Lotto = new Lotto_Number();
-		Budget budget = budget.
-				Budget(InputView.Input_Budget());
 		System.out.println(Lotto.getNumber());
+		List<Integer> Win_Lotto = InputView.Lotto_Number();
+		Integer Lotto_Bonus = InputView.Lotto_Bonus_Number();
+		
 	}
 }
 

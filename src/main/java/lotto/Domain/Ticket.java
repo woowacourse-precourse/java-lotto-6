@@ -18,7 +18,7 @@ public class Ticket{
 		for(int i =0; i< Len_Number; i++) {
 			Ticket_Code.add(NonDuplicated_RandomNumber_Generator(Ticket_Code));
 		}
-		return Ticket_Code;
+		return Ticket_Code.sort(null);
 	}
 		
 	public int NonDuplicated_RandomNumber_Generator(List<Integer> Ticket_Number) {

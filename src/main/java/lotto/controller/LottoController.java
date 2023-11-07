@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,9 +24,12 @@ public class LottoController {
         outputView.printPurchase(lottoCount);
         Lottos lottos = createLottos(lottoCount);
         outputView.printLottos(lottos);
-        outputView.printWinningInput();
         WinningLotto winningLotto = createWinningLotto();
 
+        Result result = new Result();
+        result.calculateWinning(lottos, winningLotto);
+        outputView.printResults(result);
+        outputView.printRate(result, money);
     }
 
     private Money createMoneyInput() {

@@ -6,8 +6,21 @@ import java.lang.reflect.Method;
 
 public class AppManager {
 
-    public void handleInvalidInput(String controllerName) {
+    private static AppManager appManager;
 
+    private AppManager() {
+
+    }
+
+    public static AppManager getInstance() {
+        if (appManager == null) {
+            appManager = new AppManager();
+        }
+
+        return appManager;
+    }
+
+    public void handleInvalidInput(String controllerName) {
         try {
             Class<?> entryPointController = Class.forName(controllerName);
             Method handle = entryPointController.getMethod("handle");
@@ -15,11 +28,9 @@ public class AppManager {
             Object entryPointInstance = constructor.newInstance();
 
             handle.invoke(entryPointInstance);
-
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException |
                  InvocationTargetException e) {
             System.err.println(e.getMessage());
         }
-
     }
 }

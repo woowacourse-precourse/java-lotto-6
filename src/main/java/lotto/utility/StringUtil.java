@@ -5,7 +5,7 @@ import static lotto.utility.IntegerUtil.*;
 public enum StringUtil {
 
     ENTER_PAY_AMOUNT("구입금액을 입력해 주세요."),
-    PRINT_LOTTO_COUNT("\n%d개를 구매했습니다.\n"),
+    PRINT_TICKET_COUNT("\n%d개를 구매했습니다.\n"),
     ENTER_WINNING_NUMBER("\n당첨 번호를 입력해 주세요."),
     ENTER_BONUS_NUMBER("\n보너스 번호를 입력해 주세요."),
     PRINT_WINNING_STATISTICS_PHRASES("\n당첨 통계\n---"),
@@ -18,10 +18,10 @@ public enum StringUtil {
             LOTTO_NUMBER_START_INCLUSIVE.getValue(),
             LOTTO_NUMBER_END_INCLUSIVE.getValue()
     )),
-    PRINT_ERR_WINNING_NUMBER_INVALID_COUNT(String.format("[ERROR] %d개로 구성된 번호들을 입력해주세요.\n", LOTTO_NUMBER_COUNT.getValue())),
+    PRINT_ERR_NUMBER_INVALID_COUNT(String.format("[ERROR] %d개로 구성된 번호들을 입력해주세요.\n", LOTTO_NUMBER_COUNT.getValue())),
     PRINT_ERR_WINNING_NUMBER_DUPLICATE(String.format("중복되지 않은 %d개의 숫자를 입력해주세요.\n", LOTTO_NUMBER_COUNT.getValue()));
 
-    private String message;
+    private final String message;
 
     StringUtil(String message) {
         this.message = message;

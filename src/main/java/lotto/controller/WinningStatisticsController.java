@@ -1,19 +1,15 @@
 package lotto.controller;
 
-import lotto.manager.AppManager;
 import lotto.manager.IOManager;
-import lotto.manager.LottoManager;
+import lotto.manager.StatisticsManager;
 
 public class WinningStatisticsController {
-
-    private final AppManager appManager = new AppManager();
-    private final LottoManager lottoManager = LottoManager.getInstance();
-    private final IOManager ioManager = new IOManager();
+    private final IOManager ioManager = IOManager.getInstance();
+    private final StatisticsManager statisticsManager = StatisticsManager.getInstance();
 
     public void handle() {
         ioManager.printWinningStatisticsGuide();
-        lottoManager.calculateAllLotto();
-        ioManager.printWinningStatistics();
+        statisticsManager.calculateAllStatistics();
+        statisticsManager.printWinningStatistics();
     }
-
 }

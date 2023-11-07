@@ -7,7 +7,7 @@ public enum IntegerUtil {
     LOTTO_NUMBER_START_INCLUSIVE(1),
     LOTTO_NUMBER_END_INCLUSIVE(45);
 
-    private int value;
+    private final int value;
 
     IntegerUtil(int value) {
         this.value = value;

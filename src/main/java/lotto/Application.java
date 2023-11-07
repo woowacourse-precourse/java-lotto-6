@@ -3,13 +3,14 @@ package lotto;
 import lotto.controller.*;
 
 public class Application {
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        BuyingController buyingController = new BuyingController();
-        buyingController.handle();
-
-        LottoNumberAddController lottoNumberAddController = new LottoNumberAddController();
-        lottoNumberAddController.handle();
+        PurchaseController purchaseController = new PurchaseController();
+        purchaseController.handle();
+        
+        NumberGenerateController numberGenerateController = new NumberGenerateController();
+        numberGenerateController.handle();
 
         WinningNumberController winningNumberController = new WinningNumberController();
         winningNumberController.handle();
@@ -22,5 +23,6 @@ public class Application {
 
         ProfitController profitController = new ProfitController();
         profitController.handle();
+
     }
 }

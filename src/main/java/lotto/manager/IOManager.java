@@ -1,35 +1,31 @@
 package lotto.manager;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.InputValidator;
-import lotto.Lotto;
-import lotto.Statistics;
+import lotto.validator.InputValidator;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import static lotto.utility.StringUtil.*;
 
 public class IOManager {
+
+    private static IOManager ioManager;
+
+    private IOManager() {
+
+    }
+
+    public static IOManager getInstance() {
+        if (ioManager == null) {
+            ioManager = new IOManager();
+        }
+
+        return ioManager;
+    }
 
     InputValidator inputValidator = new InputValidator();
 
     public void printPayAmountInputGuide() {
         System.out.println(ENTER_PAY_AMOUNT.getMessage());
-    }
-
-    public void printLottoTicketCount(int lottoTicketCount) {
-        System.out.printf(PRINT_LOTTO_COUNT.getMessage(), lottoTicketCount);
-    }
-
-    public void printExceptionMessage(String message) {
-        System.out.println(message);
-    }
-
-    public void printLottoList(List<Lotto> lottoList) {
-        for (Lotto lotto : lottoList) {
-            System.out.println(lotto.getNumbers());
-        }
     }
 
     public void printWiningNumberInputGuide() {
@@ -44,22 +40,10 @@ public class IOManager {
         System.out.println(PRINT_WINNING_STATISTICS_PHRASES.getMessage());
     }
 
-    public void printWinningStatistics() {
-        Statistics statistics = Statistics.getInstance();
-
-        Map<Integer, Integer> winningNumberMatchCount = statistics.getWinningNumberMatchCount();
-
-        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "3개 일치", "5,000", winningNumberMatchCount.get(3));
-        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "4개 일치", "50,000", winningNumberMatchCount.get(4));
-        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "5개 일치", "1,500,000", winningNumberMatchCount.get(5));
-        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "5개 일치, 보너스 볼 일치", "30,000,000", winningNumberMatchCount.get(51));
-        System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "6개 일치", "2,000,000,000", winningNumberMatchCount.get(6));
-
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
     }
 
-    public void printProfit(double profit) {
-        System.out.printf(PRINT_PROFIT.getMessage(), profit);
-    }
     public int readPayAmount() {
         String inputPayAmount = Console.readLine().replaceAll("\\s", "");
 
@@ -92,29 +76,30 @@ public class IOManager {
         }
 
         if (!inputValidator.isVailidWinningNumberCount(winningNumber)) {
-            throw new IllegalArgumentException(PRINT_ERR_WINNING_NUMBER_INVALID_COUNT.getMessage());
+            throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_COUNT.getMessage());
         }
 
         if (!inputValidator.hasDuplicates(winningNumber)) {
             throw new IllegalArgumentException(PRINT_ERR_WINNING_NUMBER_DUPLICATE.getMessage());
         }
+
         return winningNumber;
     }
 
     public int readWinningBonusNumber() {
         String inputBonusNumber = Console.readLine();
+        int bonusNumber;
 
         if (!inputValidator.isDigit(inputBonusNumber)) {
             throw new IllegalArgumentException(PRINT_ERR_NUMBER_NOT_DIGIT.getMessage());
         }
 
-        int bonusNumber = Integer.parseInt(inputBonusNumber);
+        bonusNumber = Integer.parseInt(inputBonusNumber);
 
         if (!inputValidator.isValidNumberRange(bonusNumber)) {
             throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_RANGE.getMessage());
         }
 
         return bonusNumber;
-
     }
 }

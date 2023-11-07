@@ -1,12 +1,14 @@
 package lotto;
 
+import static lotto.LottoConstants.NUMBER_HIGH_BOUND;
+import static lotto.LottoConstants.NUMBER_LOW_BOUND;
+
 import lotto.util.ExceptionMessageGenerator;
 
 public class LottoNumber implements Comparable<LottoNumber> {
-    private static final int NUMBER_LOW_BOUND = 1;
-    private static final int NUMBER_HIGH_BOUND = 45;
-    private static final String OUT_OF_RANGE_MESSAGE = String.format("로또 번호는 %d부터 %d 사이의 숫자여야 합니다.", NUMBER_LOW_BOUND,
-            NUMBER_HIGH_BOUND);
+    private static final String OUT_OF_RANGE_MESSAGE = String.format("로또 번호는 %d부터 %d 사이의 숫자여야 합니다.",
+            NUMBER_LOW_BOUND.getValue(),
+            NUMBER_HIGH_BOUND.getValue());
 
     private final int number;
 
@@ -24,7 +26,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
     }
 
     private boolean isOutOfRange(long number) {
-        return number < NUMBER_LOW_BOUND || number > NUMBER_HIGH_BOUND;
+        return number < NUMBER_LOW_BOUND.getValue() || number > NUMBER_HIGH_BOUND.getValue();
     }
 
     public String getNumberMessage() {

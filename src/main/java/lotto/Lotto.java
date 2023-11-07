@@ -1,12 +1,13 @@
 package lotto;
 
+import static lotto.LottoConstants.LOTTO_SIZE;
+
 import java.util.List;
 import java.util.StringJoiner;
 import lotto.util.ExceptionMessageGenerator;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-    private static final String NOT_SIZE = String.format("로또 번호는 %d자리여야 합니다.", LOTTO_SIZE);
+    private static final String NOT_SIZE = String.format("로또 번호는 %d자리여야 합니다.", LOTTO_SIZE.getValue());
     private static final String NOT_UNIQUE = "로또번호는 중복되지 않아야 합니다.";
     private static final String SEPERATOR = ", ";
     private static final String FRONT = "[";
@@ -21,7 +22,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         ExceptionMessageGenerator exceptionMessageGenerator = ExceptionMessageGenerator.INSTANCE;
 
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
             throw new IllegalArgumentException(exceptionMessageGenerator.makeMessage(NOT_SIZE));
         }
         if (isDuplicated(numbers)) {
@@ -31,7 +32,7 @@ public class Lotto {
 
     private boolean isDuplicated(List<Integer> numbers) {
         int uniqueSize = numbers.stream().distinct().toList().size();
-        return uniqueSize != LOTTO_SIZE;
+        return uniqueSize != LOTTO_SIZE.getValue();
     }
 
     private List<LottoNumber> convertToLottoNumber(List<Integer> numbers) {

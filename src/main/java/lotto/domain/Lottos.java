@@ -17,6 +17,10 @@ public class Lottos {
         }
     }
 
+    public Lottos(final List<Lotto> lottos) {
+        this.lottos.addAll(lottos);
+    }
+
     public List<Lotto> getLottos() {
         return lottos;
     }

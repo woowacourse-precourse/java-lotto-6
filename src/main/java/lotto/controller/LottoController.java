@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.Number;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,12 +18,16 @@ public class LottoController {
     }
 
     public void startLotto(){
+
         int price = inputView.readPrice();
         int count = price/1000;
         createBoughtLotto(count);
-
-
+        List<Integer> splittedNumber = inputView.readLotto();
         outputView.printBoughtLotto(count,boughtLotto);
+        Lotto lotto = new Lotto(splittedNumber);
+        System.out.println(splittedNumber);
+        inputView.readBonusNumber();
+
 
     }
 

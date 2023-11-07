@@ -35,7 +35,7 @@ public class OutputView {
         System.out.println(PRINT_RESULT_START_MESSAGE);
         System.out.println(SECTION_LINE);
 
-        results.forEach(result -> System.out.println(result));
+        results.forEach(System.out::println);
 
         System.out.println(String.format(PRINT_PROFIT_MESSAGE, profit));
     }

@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputView {
-    public void requestMoney() {
-        System.out.println(LottoGameMessage.BUY_LOTTO_MONEY.message);
-    }
 
     public void lottoAmount(final long lottoAmount) {
         System.out.println(lottoAmount + LottoGameMessage.LOTTOS_AMOUNT.message);
@@ -18,14 +15,6 @@ public class OutputView {
 
     public void showLottos(final List<Lotto> lottos) {
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
-    }
-
-    public void requestWinningNumber() {
-        System.out.println(LottoGameMessage.REQUEST_WINNING_NUMBER.message);
-    }
-
-    public void requestBonusNumber() {
-        System.out.println(LottoGameMessage.REQUEST_BONUS_NUMBER.message);
     }
 
     public void prizeResult(Map<Prize, Integer> result) {

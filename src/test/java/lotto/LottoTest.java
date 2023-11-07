@@ -135,7 +135,7 @@ class LottoTest {
         ControlMain.equalsNumber(mainLotto, lotto.getNumbers(), player);
         int[] matchCountArray = player.getMatchCount();
         List<Integer> matchCountList = Arrays.stream(matchCountArray).boxed().collect(Collectors.toList());
-        assertThat(matchCountList).isEqualTo(Arrays.asList(1, 1, 1, 1, 1));
+        assertThat(matchCountList).isEqualTo(List.of(1, 1, 1, 1, 1));
         assertThat(player.getTotal()).isEqualTo(2031555000);
     }
 
@@ -153,7 +153,13 @@ class LottoTest {
     @Test
     void lottoTest1() {
         int cnt = 6;
+        Player player = new Player();
         assertThat(EnumRanking.Ranking.otherRanking(cnt)).isEqualTo(EnumRanking.Ranking.FIRST);
+        player.updateMatchCountAndTotal(EnumRanking.Ranking.otherRanking(cnt));
+        assertThat(player.getTotal()).isEqualTo(2000000000);
+        int[] matchCountArray = player.getMatchCount();
+        List<Integer> matchCountList = Arrays.stream(matchCountArray).boxed().collect(Collectors.toList());
+        assertThat(matchCountList).isEqualTo(List.of(1,0,0,0,0));
     }
 
     @DisplayName("2등")
@@ -163,6 +169,11 @@ class LottoTest {
         player.updateBonusNumber(45);
         List<Integer> randomLotto = List.of(1, 2, 3, 4, 5, 45);
         assertThat(EnumRanking.Ranking.secondOrThird(randomLotto, player)).isEqualTo(EnumRanking.Ranking.SECOND);
+        player.updateMatchCountAndTotal(EnumRanking.Ranking.secondOrThird(randomLotto, player));
+        assertThat(player.getTotal()).isEqualTo(30000000);
+        int[] matchCountArray = player.getMatchCount();
+        List<Integer> matchCountList = Arrays.stream(matchCountArray).boxed().collect(Collectors.toList());
+        assertThat(matchCountList).isEqualTo(List.of(0,1,0,0,0));
     }
 
     @DisplayName("3등")
@@ -172,28 +183,51 @@ class LottoTest {
         player.updateBonusNumber(45);
         List<Integer> randomLotto = List.of(1, 2, 3, 4, 5, 6);
         assertThat(EnumRanking.Ranking.secondOrThird(randomLotto, player)).isEqualTo(EnumRanking.Ranking.THIRD);
+        player.updateMatchCountAndTotal(EnumRanking.Ranking.secondOrThird(randomLotto, player));
+        assertThat(player.getTotal()).isEqualTo(1500000);
+        int[] matchCountArray = player.getMatchCount();
+        List<Integer> matchCountList = Arrays.stream(matchCountArray).boxed().collect(Collectors.toList());
+        assertThat(matchCountList).isEqualTo(List.of(0,0,1,0,0));
     }
 
     @DisplayName("4등")
     @Test
     void lottoTest4() {
         int cnt = 4;
+        Player player = new Player();
         assertThat(EnumRanking.Ranking.otherRanking(cnt)).isEqualTo(EnumRanking.Ranking.FOURTH);
+        player.updateMatchCountAndTotal(EnumRanking.Ranking.otherRanking(cnt));
+        assertThat(player.getTotal()).isEqualTo(50000);
+        int[] matchCountArray = player.getMatchCount();
+        List<Integer> matchCountList = Arrays.stream(matchCountArray).boxed().collect(Collectors.toList());
+        assertThat(matchCountList).isEqualTo(List.of(0,0,0,1,0));
     }
 
     @DisplayName("5등")
     @Test
     void lottoTest5() {
         int cnt = 3;
+        Player player = new Player();
         assertThat(EnumRanking.Ranking.otherRanking(cnt)).isEqualTo(EnumRanking.Ranking.FIFTH);
+        player.updateMatchCountAndTotal(EnumRanking.Ranking.otherRanking(cnt));
+        assertThat(player.getTotal()).isEqualTo(5000);
+        int[] matchCountArray = player.getMatchCount();
+        List<Integer> matchCountList = Arrays.stream(matchCountArray).boxed().collect(Collectors.toList());
+        assertThat(matchCountList).isEqualTo(List.of(0,0,0,0,1));
     }
 
     @DisplayName("Last")
     @Test
     void lottoTest6() {
-        int[] cnt = {0, 1, 2};
-        for (int i : cnt) {
-            assertThat(EnumRanking.Ranking.otherRanking(i)).isEqualTo(EnumRanking.Ranking.LAST);
+        int[] cntList = {0, 1, 2};
+        Player player = new Player();
+        for (int cnt : cntList) {
+            assertThat(EnumRanking.Ranking.otherRanking(cnt)).isEqualTo(EnumRanking.Ranking.LAST);
+            player.updateMatchCountAndTotal(EnumRanking.Ranking.otherRanking(cnt));
+            assertThat(player.getTotal()).isEqualTo(0);
+            int[] matchCountArray = player.getMatchCount();
+            List<Integer> matchCountList = Arrays.stream(matchCountArray).boxed().collect(Collectors.toList());
+            assertThat(matchCountList).isEqualTo(List.of(0,0,0,0,0));
         }
     }
 

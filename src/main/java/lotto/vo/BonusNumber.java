@@ -1,9 +1,6 @@
 package lotto.vo;
 
-import lotto.domain.WinningChecker;
 import lotto.values.CorrectNumber;
-
-import java.util.List;
 
 import static lotto.values.CorrectNumber.SECOND_PLACE;
 import static lotto.values.CorrectNumber.THIRD_PLACE;
@@ -12,7 +9,6 @@ import static lotto.values.LottoInformation.*;
 
 public class BonusNumber {
     int bonusNumber;
-
     public BonusNumber(String bonusNumber, WinningNumber winningNumber) {
         checkException(bonusNumber);
         checkNotInWinnerNumber(winningNumber);
@@ -39,9 +35,8 @@ public class BonusNumber {
             throw new IllegalArgumentException(BONUS_NUMBER_IN_WINNING_NUMBER.getMessage());
     }
 
-    public CorrectNumber compareLotto(Lotto lotto) {
-        List<Integer> lottoNumbers = lotto.getNumbers();
-        if (lottoNumbers.contains(bonusNumber)) return SECOND_PLACE;
+    public CorrectNumber selectPlace(Lotto lotto) {
+        if (lotto.correctBonusNumber(this.bonusNumber)) return SECOND_PLACE;
         return THIRD_PLACE;
     }
 }

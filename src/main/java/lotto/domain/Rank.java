@@ -10,11 +10,11 @@ public enum Rank {
     ZERO_MATCH(0, 0),
     ONE_MATCH(0, 1),
     TWO_MATCH(0, 2),
-    THREE_MATCH(5000, 3),
-    FOUR_MATCH(50000, 4),
-    FIVE_MATCH(1500000, 5),
-    FIVE_AND_BONUS_MATCH(30000000, 5),
-    SIX_MATCH(2000000000, 6);
+    THREE_MATCH(5_000, 3),
+    FOUR_MATCH(50_000, 4),
+    FIVE_MATCH(1_500_000, 5),
+    FIVE_AND_BONUS_MATCH(30_000_000, 5),
+    SIX_MATCH(2_000_000_000, 6);
 
     private final int prizeMoney;
     private final int matchedCount;

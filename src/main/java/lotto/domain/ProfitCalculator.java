@@ -13,14 +13,17 @@ public class ProfitCalculator {
     }
 
     private long calculateUsedAmountOfMoney(Map<Rank, Integer> result) {
-        int lottoCount = result.size();
+        int lottoCount = result.keySet()
+                .stream()
+                .map(result::get)
+                .reduce(0, Integer::sum);
         return (long) lottoCount * PurchaseService.LOTTO_PRICE;
     }
 
     private long calculateEarnedMoney(Map<Rank, Integer> result) {
         return result.keySet()
                 .stream()
-                .map(rank -> rank.calculateTotalPrizeMoney(result.get(rank)))
+                .map(rank -> rank.calculateTotalPrizeMoney(result.getOrDefault(rank, 0)))
                 .reduce(0L, Long::sum);
     }
 }

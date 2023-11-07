@@ -17,10 +17,10 @@ class ProfitCalculatorTest {
         // given
         ProfitCalculator profitCalculator = new ProfitCalculator();
         Map<Rank, Integer> result = Map.ofEntries(
-                Map.entry(Rank.FOURTH, 3),
-                Map.entry(Rank.THIRD, 1),
-                Map.entry(Rank.NONE, 16),
-                Map.entry(Rank.FIFTH, 7)
+                Map.entry(Rank.FOURTH, 10),
+                Map.entry(Rank.THIRD, 10),
+                Map.entry(Rank.NONE, 10),
+                Map.entry(Rank.FIFTH, 10)
         );
         // when
         double actualPercentage = profitCalculator.calculateProfitRateInPercentage(result);
@@ -28,7 +28,7 @@ class ProfitCalculatorTest {
         assertThat(actualPercentage).isEqualByComparingTo(
                 (double) (Rank.FOURTH.calculateTotalPrizeMoney(3) +
                         Rank.THIRD.calculateTotalPrizeMoney(1) +
-                        Rank.FIFTH.calculateTotalPrizeMoney(7)) / (result.size() * PurchaseService.LOTTO_PRICE) * 100
+                        Rank.FIFTH.calculateTotalPrizeMoney(7)) / (40 * PurchaseService.LOTTO_PRICE) * 100
         );
     }
 }

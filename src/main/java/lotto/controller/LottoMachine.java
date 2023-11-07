@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
@@ -10,8 +11,8 @@ public class LottoMachine {
     private static final int LOTTO_PRICE = 1000;
     private int lottoCount;
 
-    private void purchaseLotto() {
-        LottoPurchase lottoPurchase = new LottoPurchase();
+    private void purchaseLotto(InputView inputView) {
+        LottoPurchase lottoPurchase = new LottoPurchase(inputView);
         int purchaseAmount = lottoPurchase.inputAmount();
 
         lottoCount = purchaseAmount / LOTTO_PRICE;
@@ -30,14 +31,22 @@ public class LottoMachine {
         return lottos;
     }
 
+    private void drawLotto(InputView inputView) {
+        LottoDraw lottoDraw = new LottoDraw();
+        lottoDraw.drawLotto(inputView);
+    }
+
     public void start() {
         List<Lotto> lottos;
+        InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
-        purchaseLotto();
+        purchaseLotto(inputView);
         lottos = createLottos();
 
         outputView.showLottoCount(lottoCount);
         outputView.showLottos(lottos);
+
+        drawLotto(inputView);
     }
 }

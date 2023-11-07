@@ -13,6 +13,8 @@ public class OutputView {
     }
 
     public void showLottos(List<Lotto> lottos) {
+        System.out.println();
+
         for (Lotto lotto: lottos) {
             System.out.println(lotto.toString());
         }

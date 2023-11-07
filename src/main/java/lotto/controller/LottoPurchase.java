@@ -9,9 +9,9 @@ public class LottoPurchase {
     private final AmountException amountException;
     private final InputView inputView;
 
-    public LottoPurchase() {
+    public LottoPurchase(InputView inputView) {
         amountException = new AmountException();
-        inputView = new InputView();
+        this.inputView = inputView;
     }
 
     private boolean isCorrectAmount(String input) {

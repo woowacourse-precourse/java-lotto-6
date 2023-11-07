@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class Validator {
     public static String validationNull(String input) {
         if (Objects.isNull(input) || input.length() == 0) {
-            throw new IllegalArgumentException("[ERROR] 금액이 입력되지 않았습니다.");
+            throw new IllegalArgumentException("[ERROR] 입력된 내용이 없습니다.");
         }
         return input;
     }
@@ -16,5 +16,9 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력할 수 있습니다.");
         }
         return Integer.parseInt(input);
+    }
+
+    public static void validationBonusNumber(int bonusNumber, Lotto lotto) {
+        WinnerLotto.of(lotto, bonusNumber);
     }
 }

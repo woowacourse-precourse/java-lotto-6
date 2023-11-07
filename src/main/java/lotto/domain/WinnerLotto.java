@@ -21,7 +21,7 @@ public class WinnerLotto {
         }
     }
 
-    public static void validateDuplicationBonusNumber(Lotto lotto, int bonusNumber) {
+    private void validateDuplicationBonusNumber(Lotto lotto, int bonusNumber) {
         if(lotto.getLotto()
                 .stream()
                 .anyMatch(lottoNumber -> lottoNumber == bonusNumber)) {

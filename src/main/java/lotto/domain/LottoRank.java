@@ -9,8 +9,7 @@ public enum LottoRank {
     SECOND(5, true, 30000000),
     THIRD(5, false, 1500000),
     FOURTH(4, false, 50000),
-    FIFTH(3, false, 5000),
-    SIXTH(2, false, 1000); //Test
+    FIFTH(3, false, 5000);
 
     private final int matchLottoCount;
     private final boolean matchBonus;

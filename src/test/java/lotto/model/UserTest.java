@@ -11,9 +11,7 @@ import org.junit.jupiter.api.Test;
 class UserTest {
 
     private User user;
-    private final double EARN_MONEY = 5000;
     private final double SPEND_MONEY = 8000;
-    private WinningLotto winningLotto;
 
     @BeforeEach
     void createUser() {
@@ -33,7 +31,7 @@ class UserTest {
         );
         Lotto lotto = new Lotto(new Input("1,2,3,4,5,6").ofNums());
         int bonus = new Input("7").ofBonus(lotto.getNumbers());
-        winningLotto = new WinningLotto(lotto, bonus);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonus);
         user.calculateLottoResults(winningLotto);
     }
 
@@ -48,7 +46,8 @@ class UserTest {
     @DisplayName("유저의_로또_수익률_계산")
     void getStatistics() {
         user.getLottoResults();
-        double expectedStatistics = EARN_MONEY * 100 / SPEND_MONEY;
+        double earnMoney = 5000;
+        double expectedStatistics = earnMoney * 100 / SPEND_MONEY;
 
         Assertions.assertThat(user.calculateStatistics())
                 .isEqualTo(expectedStatistics);

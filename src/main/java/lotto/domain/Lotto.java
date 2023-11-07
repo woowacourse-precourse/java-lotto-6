@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.config.LottoConfig;
+import lotto.view.ErrorMessage;
 
 public record Lotto(List<Integer> numbers) {
     public Lotto {
@@ -9,8 +11,8 @@ public record Lotto(List<Integer> numbers) {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != LottoConfig.LOTTO_NUMBER_COUNT.getValue()) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_LOTTO_NUMBER_SIZE_ERROR_MESSAGE.getMessage());
         }
     }
 

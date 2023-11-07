@@ -1,8 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.Collections;
-import java.util.List;
 
 public class GameInput {
 
@@ -19,17 +17,15 @@ public class GameInput {
         }
     }
 
-    public static Lotto insertWinnigNumbers(){
+    public static Lotto insertWinnigNumbers() throws IllegalArgumentException{
         String commaWinnigNumbers = Console.readLine();
         try {
-            IntegerValidator.checkWinnigNumbersValue(commaWinnigNumbers);
+            Lotto winningNumbers = Converter.convertCommaStringToLotto(commaWinnigNumbers);
+            return winningNumbers;
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
             return null;
         }
-        List<Integer> winningNumbers = Converter.convertCommaStringToListInt(commaWinnigNumbers);
-        Collections.sort(winningNumbers);
-        return new Lotto(Collections.unmodifiableList(winningNumbers));
     }
 
     public static Integer insertBonusNumber(){

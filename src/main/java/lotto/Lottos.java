@@ -7,7 +7,6 @@ import static Constant.LottoSettingValue.NUMBER_OF_UNIQUE_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
@@ -21,10 +20,9 @@ public class Lottos {
         Integer issueCount = countNumberOfLottoIssue(money);
         List<Lotto> numberOfLotto = new ArrayList<Lotto>(issueCount);
         for (Integer count = 0; count < issueCount; count++) {
-            List<Integer> randomNumbers = new ArrayList<Integer>(Randoms.pickUniqueNumbersInRange(
+            Lotto lotto = Converter.convertListIntToLotto(Randoms.pickUniqueNumbersInRange(
                     LOTTO_MINIMAL_NUMBER, LOTTO_MAXIMUM_NUMBER,NUMBER_OF_UNIQUE_NUMBERS));
-            Collections.sort(randomNumbers);
-            numberOfLotto.add(new Lotto(Collections.unmodifiableList(randomNumbers)));
+            numberOfLotto.add(lotto);
         }
         return new Lottos(numberOfLotto);
     }

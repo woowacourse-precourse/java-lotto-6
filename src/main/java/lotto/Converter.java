@@ -4,6 +4,7 @@ import static Constant.GuideMessagePiece.COMMA;
 import static Constant.LottoSettingValue.LOTTO_SIZE;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Converter {
@@ -16,12 +17,19 @@ public class Converter {
         return result;
     }
 
-    public static List<Integer> convertCommaStringToListInt(String commaValue){
-        List<Integer> winnigNumbers = new ArrayList<>(LOTTO_SIZE);
-        for(String number : commaValue.split(COMMA)){
-            winnigNumbers.add(Integer.valueOf(number));
+    public static Lotto convertCommaStringToLotto(String commaValue){
+        List<Integer> numbers = new ArrayList<>(LOTTO_SIZE);
+        for(String splitValue : commaValue.split(COMMA)){
+            numbers.add(Integer.valueOf(splitValue));
         }
-        return winnigNumbers;
+        Collections.sort(numbers);
+        return new Lotto(Collections.unmodifiableList(numbers));
+    }
+
+    public static Lotto convertListIntToLotto(List<Integer> value){
+        List<Integer> randomNumbers = new ArrayList<Integer>(value);
+        Collections.sort(randomNumbers);
+        return new Lotto(Collections.unmodifiableList(randomNumbers));
     }
 
     public static Integer convertStringToMoney(String value)throws IllegalArgumentException{
@@ -37,4 +45,5 @@ public class Converter {
         IntegerValidator.checkIntegerMaxValue(value);
         return Integer.valueOf(value);
     }
+
 }

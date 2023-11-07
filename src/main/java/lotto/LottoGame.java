@@ -75,4 +75,38 @@ public class LottoGame {
         }
         return numbers;
     }
+
+    private static void showResults(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        int[] winCounts = new int[LOTTO_NUMBERS_COUNT + 1]; //등수
+
+        for (Lotto lotto : lottos) {
+            int matchCount = 0;
+            boolean bonusMatch = false;
+            for (int number : lotto.getNumbers()) {
+                if (winningNumbers.contains(number)) {
+                    matchCount++;
+                } else if (number == bonusNumber) {
+                    bonusMatch = true;
+                }
+            }
+            if (matchCount == 5 && bonusMatch) {
+                winCounts[2]++;
+            } else {
+                winCounts[matchCount]++;
+            }
+        }
+
+        //printResult(winCounts);
+        //calculateEarnings(winCounts, lottos.size());
+    }
+
+    private static void printResults(int[] winCounts) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원)- " + winCounts[3] + "개");
+        System.out.println("4개 일치 (50,000원)- " + winCounts[4] + "개");
+        System.out.println("5개 일치 (1,500,000원)- " + winCounts[5] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원)- " + winCounts[2] + "개");
+        System.out.println("6개 일치 (2,000,000,000원)- " + winCounts[6] + "개");
+    }
 }

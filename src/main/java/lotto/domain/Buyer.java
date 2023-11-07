@@ -46,9 +46,15 @@ public class Buyer {
 	public long getTotalPrize() {
 		long totalPrize = 0;
 		for(Rank rank : lottoRankResult.keySet()) {
-			totalPrize += rank.getPrizeAmount() * getLottoResult().get(rank);
+			totalPrize += rank.getPrize() * getLottoResult().get(rank);
 		}
 		return totalPrize;
+	}
+	
+	public double getProfitRate() {
+		double ProfitRate = 0;
+		ProfitRate = getTotalPrize()/ purchaseAmount;
+		return ProfitRate;
 	}
 
 }

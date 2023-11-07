@@ -19,11 +19,12 @@ public class Service {
 	private static final int LOTTO_SIZE = 6;
 	private static final int LOTTO_PRICE = 1_000;
 	private static final int LIMITED_AMOUNT = 100_000;
+	private static final long NOT_WINNING_PRIZE = 0;
 	
 	Buyer buyer;
 	LottoGame lottoGame;
 	
-	public void readyLottoGame() {
+	public void goLottoGame() {
 		lottoGame = new LottoGame(getInputWinningNumbers());
 		int bonusNumber = getInputBonusNumber();
 		Validation.validateNumberNotInList(lottoGame.getWinningNumbers(), bonusNumber);
@@ -102,12 +103,36 @@ public class Service {
 	}
 	
 	public void countEachRank() {
+		buyer.initLottoResult();
 		Map<Rank, Integer> lottoResults = buyer.getLottoResult();
 		for (Lotto lotto : buyer.getPurchasedLotteries()) {
-			int count = lottoResults.get(checkLottoRank(lotto));
+			int count = (int)lottoResults.get(checkLottoRank(lotto));
 			count++;
 			lottoResults.put(checkLottoRank(lotto), count);
 		}
+	}
+	
+	public void showResultStats() {
+		OutputView.printResultIntro();
+		showAllRankResult(buyer.getLottoResult());
+		OutputView.printYieldRate(buyer.getProfitRate());
+	}
+	
+	public void showAllRankResult(Map<Rank, Integer> map) {
+		for(Rank rank : Rank.values()) {
+			showOneRankResult(rank, map);
+		}
+	}
+	
+	public void showOneRankResult(Rank rank, Map<Rank, Integer> map) {
+		if (rank.getPrize() == NOT_WINNING_PRIZE) {
+			return;
+		}
+		if (rank.equals(Rank.SECOND)) {
+			OutputView.printSecondRankResult(rank.getCount(), rank.getPrizeText(), map.get(rank));
+			return;
+		}
+		OutputView.printOneRankResult(rank.getCount(), rank.getPrizeText(), buyer.getLottoResult().get(rank));
 	}
 
 }

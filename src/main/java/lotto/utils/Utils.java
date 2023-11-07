@@ -46,9 +46,5 @@ public class Utils {
 		}
 		return count;
 	}
-	
-	public static double rounding(double number) {
-		return Math.round(number * 10D) / 10D ;
-	}
 
 }

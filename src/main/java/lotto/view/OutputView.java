@@ -5,7 +5,7 @@ import java.util.List;
 public class OutputView {
 	
 	public static void printCountOfLotto(int count) {
-		System.out.printf("%d개를 구매했습니다.\n", count);
+		System.out.printf("\n%d개를 구매했습니다.\n", count);
 	}
 
 	public static void printNumbersOfLotto(List<Integer> numbers) {
@@ -13,15 +13,19 @@ public class OutputView {
 	}
 	
 	public static void printResultIntro() {
-		System.out.println("당첨 통계\n---");
+		System.out.println("\n당첨 통계\n---");
 	}
-	
-	public static void printLottoResult(int standardCount, String prizeText, int cerrectCount) {
+
+	public static void printOneRankResult(int standardCount, String prizeText, int cerrectCount) {
 		System.out.printf("%d개 일치 (%s원) - %d개\n", standardCount, prizeText, cerrectCount);
 	}
 	
+	public static void printSecondRankResult(int standardCount, String prizeText, int cerrectCount) {
+		System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n", standardCount, prizeText, cerrectCount);
+	}
+	
 	public static void printYieldRate(double yieldRate) {
-		System.out.println("총 수익률은 %f%입니다.");
+		System.out.printf("총 수익률은 %.1f%%입니다.", yieldRate);
 	}
 	
 }

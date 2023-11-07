@@ -26,7 +26,7 @@ public enum Rank {
 	}
 	
 	public static Rank ranking(int correctCount, boolean correctBonusNumber) {
-		List<Rank> applyRanks = Arrays.stream(values()).filter(rank -> rank.getStandardCount() == correctCount)
+		List<Rank> applyRanks = Arrays.stream(values()).filter(rank -> rank.getCount() == correctCount)
 				.collect(Collectors.toList());
 		if (applyRanks.size() != DEFINITE_SIZE) {
 			return isSecondOrThird(correctBonusNumber);
@@ -41,11 +41,11 @@ public enum Rank {
 		return THIRD;
 	}
 	
-	public int getStandardCount() {
+	public int getCount() {
 		return standardCount;
 	}
 	
-	public Long getPrizeAmount() {
+	public Long getPrize() {
 		return prize;
 	}
 	

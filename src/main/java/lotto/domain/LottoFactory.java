@@ -19,9 +19,9 @@ public class LottoFactory {
         return lottoTickets;
     }
 
-    private List<Lotto> generate(long ticketAcounts) {
+    private List<Lotto> generate(long ticketCounts) {
         List<Lotto> lottoTickets = new ArrayList<>();
-        for (int i = 0; i < ticketAcounts; i++) {
+        for (int i = 0; i < ticketCounts; i++) {
             lottoTickets.add(makeLotto());
         }
         return lottoTickets;

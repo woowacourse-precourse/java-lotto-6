@@ -32,9 +32,9 @@ public class WinningNumbers {
         return Arrays.asList(numbers.split(COMMA_DELIMITER));
     }
 
-    private List<String> trimList(List<String> lottonNumbers) {
+    private List<String> trimList(List<String> lottoNumbers) {
         List<String> trimmed = new ArrayList<>();
-        for (String name : lottonNumbers) {
+        for (String name : lottoNumbers) {
             trimmed.add(name.trim());
         }
         return trimmed;

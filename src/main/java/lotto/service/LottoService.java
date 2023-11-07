@@ -24,20 +24,27 @@ public class LottoService {
         return new ArrayList<>(validateCheckOfWinningNumber);
     }
 
-    public int createBonusNumber(List<LottoDto> lottoDtos, String commonInput) {
-        for (LottoDto lottoDto : lottoDtos) {
-            List<Integer> lottoNumbers = lottoDto.lottoRandomNumbers();
-            validateBonusNumberCheck(lottoNumbers, commonInput);
+    public int createBonusNumber(List<Integer> generateLottoNumbers, String commonInput) {
+        while (true) {
+            try {
+                validateBonusNumberCheck(generateLottoNumbers, Integer.parseInt(commonInput));
+                return Integer.parseInt(commonInput);
+            } catch (UserInputException e) {
+                System.out.println(ErrorMsg.ERROR_LOTTO_DUPLICATES_NUMBERS.getMsg());
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMsg.ERROR_INPUT_NOT_NUMBER.getMsg());
+            }
+            commonInput = Console.readLine();
         }
-        return Integer.parseInt(commonInput);
+
     }
 
     public Map<Integer, Integer> findWinners(List<Integer> lottoWinningNumbers, int lottoBonusNumber,
             List<LottoDto> generateLottoNumbersDto) {
         List<Map<Integer, Integer>> lottoMatchCount = new ArrayList<>();
         for (LottoDto lottoDto : generateLottoNumbersDto) {
-            Map<Integer, Integer> matchCount = lottoDto.matchCount(lottoWinningNumbers, lottoBonusNumber);
-            lottoMatchCount.add(matchCount);
+//            Map<Integer, Integer> matchCount = lottoDto.matchCount(lottoWinningNumbers, lottoBonusNumber);
+//            lottoMatchCount.add(matchCount);
         }
         return topCount(lottoMatchCount);
     }
@@ -74,14 +81,13 @@ public class LottoService {
         }
     }
 
-
     public Map<Integer, Integer> topCount(List<Map<Integer, Integer>> lottoMatchCount) {
         return lottoMatchCount.stream()
                 .max(Comparator.comparing(map -> map.keySet().stream().max(Integer::compareTo).orElse(0)))
                 .orElse(Collections.emptyMap());
     }
 
-    private void validateBonusNumberCheck(List<Integer> lottoNumbers, String commonInput) {
+    private void validateBonusNumberCheck(List<Integer> lottoNumbers, int commonInput) {
         if (lottoNumbers.contains(commonInput)) {
             throw new UserInputException(ErrorMsg.ERROR_LOTTO_DUPLICATES_NUMBERS.getMsg());
         }

@@ -33,7 +33,7 @@ public class LottoController {
         outView.lottoCommonNumberView(WINNING);
         List<Integer> lottoWinningNumbers = lottoService.createWinningNumbers(inputView.commonInput());
         outView.lottoCommonNumberView(BONUS);
-        int lottoBonusNumber = lottoService.createBonusNumber(generateLottoNumbersDto, inputView.commonInput());
+        int lottoBonusNumber = lottoService.createBonusNumber(lottoWinningNumbers, inputView.commonInput());
         Map<Integer, Integer> lottoFindWinner = lottoService.findWinners(lottoWinningNumbers,
                 lottoBonusNumber,
                 generateLottoNumbersDto);

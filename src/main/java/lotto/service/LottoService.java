@@ -6,13 +6,28 @@ import lotto.domain.Lotto;
 import lotto.domain.Prize;
 import lotto.view.InputView;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
 
+    private static final int SIX = 6;
+    private static final int FIVE = 5;
+    private static final int FOUR = 4;
+    private static final int THREE = 3;
+    private static final int TWO = 2;
+    private static final int ONE = 1;
+
     private InputView inputView = new InputView();
     private Buyer buyer = new Buyer();
+    private List<Integer> prizeCount = new ArrayList<>();
+
+    public LottoService() {
+        for(int i=0; i<6; i++) {
+            prizeCount.add(0);
+        }
+    }
 
     public int getLotteryTicketCount(int purchasePrice) {
         return purchasePrice / 1000;
@@ -20,17 +35,18 @@ public class LottoService {
 
     public List<Integer> issueLotteryTicket() {
         List<Integer> lotteryTicketNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lotteryTicketNumbers);
+        List<Integer> newLotteryTicketNumbers = new ArrayList<>(lotteryTicketNumbers);
+        Collections.sort(newLotteryTicketNumbers);
 
-        Lotto lotto = new Lotto(lotteryTicketNumbers);
+        Lotto lotto = new Lotto(newLotteryTicketNumbers);
         buyer.addLotto(lotto);
 
-        return lotteryTicketNumbers;
+        return newLotteryTicketNumbers;
     }
 
     public Buyer issueLotteryTicketAll(int purchasePrice) {
         int lotteryTicketCount = getLotteryTicketCount(purchasePrice);
-        while(lotteryTicketCount-- > 0) {
+        while (lotteryTicketCount-- > 0) {
             issueLotteryTicket();
         }
         return buyer;
@@ -56,19 +72,24 @@ public class LottoService {
         int matchingNumbers = getMatchingNumbers(lotteryNumbers, winningNumbers);
         boolean isMatchingBonusNumber = isMatchingBonusNumber(lotteryNumbers, bonusNumber);
 
-        if (matchingNumbers == 6) {
+        if (matchingNumbers == SIX) {
+            prizeCount.add(ONE, prizeCount.get(ONE) + 1);
             return Prize.FIRST_PLACE;
         }
-        if (matchingNumbers == 5 && isMatchingBonusNumber) {
+        if (matchingNumbers == FIVE && isMatchingBonusNumber) {
+            prizeCount.add(TWO, prizeCount.get(TWO) + 1);
             return Prize.SECOND_PLACE;
         }
-        if(matchingNumbers == 5) {
+        if (matchingNumbers == FIVE) {
+            prizeCount.add(THREE, prizeCount.get(THREE) + 1);
             return Prize.THIRD_PLACE;
         }
-        if(matchingNumbers == 4) {
+        if (matchingNumbers == FOUR) {
+            prizeCount.add(FOUR, prizeCount.get(FOUR) + 1);
             return Prize.FOURTH_PLACE;
         }
-        if(matchingNumbers == 3) {
+        if (matchingNumbers == THREE) {
+            prizeCount.add(FIVE, prizeCount.get(FIVE) + 1);
             return Prize.FIFTH_PLACE;
         }
 
@@ -77,7 +98,7 @@ public class LottoService {
 
     public double getRateOfReturn(List<Prize> prizes, double purchasePrice) {
         double totalPrizeMoney = getTotalPrizeMoney(prizes);
-        return totalPrizeMoney / purchasePrice * 100;
+        return (totalPrizeMoney / purchasePrice) * 100;
     }
 
     private double getTotalPrizeMoney(List<Prize> prizes) {
@@ -97,5 +118,9 @@ public class LottoService {
 
     public Buyer getBuyer() {
         return buyer;
+    }
+
+    public List<Integer> getPrizeCount() {
+        return prizeCount;
     }
 }

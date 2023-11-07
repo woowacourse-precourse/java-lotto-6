@@ -50,4 +50,17 @@ class AmountTest {
         // then
         assertThat(lottoQuantity).isEqualTo(10);
     }
+
+    @Test
+    void 수익률을_계산한다() {
+        // given
+        final int purchaseAmount = 10000;
+        final Amount amount = new Amount(purchaseAmount);
+
+        // when
+        double yield = amount.calculateYield(5000);
+
+        // then
+        assertThat(yield).isEqualTo(50.0);
+    }
 }

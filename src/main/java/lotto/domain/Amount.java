@@ -25,4 +25,8 @@ public record Amount(int amount) {
     public int getLottoQuantity() {
         return amount / LOTTO_PRICE.getValue();
     }
+
+    public double calculateYield(final int winningAmount) {
+        return (double) winningAmount / this.amount() * 100;
+    }
 }

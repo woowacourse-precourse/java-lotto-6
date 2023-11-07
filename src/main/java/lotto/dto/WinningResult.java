@@ -12,11 +12,7 @@ public record WinningResult(Map<Prize, Integer> prizes) {
         return prizes.getOrDefault(prize, ZERO);
     }
 
-    public double calculateYield(final Amount amount) {
-        return (double) this.totalWinningAmount() / amount.amount() * 100;
-    }
-
-    private int totalWinningAmount() {
+    public int totalWinningAmount() {
         IntBinaryOperator multiply = (a, b) -> a * b;
         return prizes.keySet().stream()
                 .filter(prize -> prize != Prize.NONE)

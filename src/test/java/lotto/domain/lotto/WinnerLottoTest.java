@@ -23,7 +23,7 @@ class WinnerLottoTest {
         );
 
         assertThatThrownBy(() ->
-                        new WinnerLotto(new Lotto(lottoNumbers),new LottoNumber(7)))
+                new WinnerLotto(new Lotto(lottoNumbers), new LottoNumber(7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

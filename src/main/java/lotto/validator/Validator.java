@@ -30,7 +30,7 @@ public class Validator {
 
     public static void divideByThousand(int money) {
         if (money % 1000 != 0) {
-            System.out.println(ErrorMessage.MONEY_ERROR_MESSAGE);
+            System.out.println(ErrorMessage.MONEY_ERROR_MESSAGE.getErrorMessage());
             throw new IllegalArgumentException();
         }
     }

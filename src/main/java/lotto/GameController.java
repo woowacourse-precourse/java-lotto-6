@@ -9,7 +9,7 @@ public class GameController {
     public void start() {
         int ticketCount = cashToTicket();
         buyTicket(ticketCount);
-        int winNumber = getWinNumber();
+        int winNumber = pickWinNumber();
     }
 
     public int cashToTicket() {
@@ -37,5 +37,23 @@ public class GameController {
             System.out.println(generateResult);
             System.out.println();
         }
+    }
+
+    public String inputWinNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    public int pickWinNumber() {
+        int winNumber;
+
+        while (true) {
+            String rawWinNumber = inputWinNumber();
+            winNumber = gameService.validWinNumber(rawWinNumber);
+            if (winNumber != ERROR) {
+                break;
+            }
+        }
+        return winNumber;
     }
 }

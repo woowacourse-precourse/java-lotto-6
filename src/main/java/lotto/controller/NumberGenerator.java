@@ -35,13 +35,7 @@ public class NumberGenerator {
     }
 
     public List<Integer> createRandomNumber(){
-        List<Integer> lotto = new ArrayList<>();
-        while (lotto.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!lotto.contains(randomNumber)) {
-                lotto.add(randomNumber);
-            }
-        }
+        List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return sortAscendingNumbers(lotto);
     }
 

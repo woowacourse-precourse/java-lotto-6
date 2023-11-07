@@ -165,11 +165,24 @@ public class Application {
 	}
 	
 	private boolean arrayListAdd(int n) {
+		if (winningNumbers.contains(n))
+			return true;
+		winningNumbers.add(n);
 		return false;
 	}
 	
 	private void bonusNumber() {
-		
+		String str = Console.readLine();
+	    String[] parts = str.split(" ");
+	    try {
+	        lenCheck(parts, 1);
+	        valueCheck(parts);
+			isDuplicated(parts);
+			validBonusNum = true;
+	        
+	    } catch (IllegalArgumentException e) {
+	        System.out.println("[ERROR] 보너스 번호는 1~45 사이의 1개의 정수로 당첨 번호와 중복되지 않아야 합니다.");
+	    }
 	}
 	
 	private void finish() {

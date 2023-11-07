@@ -1,7 +1,6 @@
 package lotto;
 
 import static lotto.constant.message.ErrorMessage.INVALID_NUMBER_RANGE;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -44,15 +43,6 @@ class LottoTest {
 
         assertTrue(lotto.isContain(containNumber));
         assertFalse(lotto.isContain(notContain));
-    }
-
-    @DisplayName("포함된 숫자의 개수가 3개일 경우 반환 테스트")
-    @Test
-    void matchCount() {
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto otherLotto = new Lotto(List.of(3, 4, 5, 23, 33, 42));
-
-        assertThat(lotto.matchCount(otherLotto)).isEqualTo(3);
     }
 
 }

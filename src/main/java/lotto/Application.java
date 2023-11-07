@@ -9,16 +9,20 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
-        int paid = 0;
+        int paid;
 
-        try {
-            paid = Integer.parseInt(Console.readLine());
-            if(paid % 1000 != 0) {
-                throw new IllegalArgumentException();
+        while(true) {
+            try {
+                paid = Integer.parseInt(Console.readLine());
+                if(paid % 1000 != 0) {
+                    throw new IllegalArgumentException();
+                }
+
+                break;
             }
-        }
-        catch(IllegalArgumentException e) {
-            System.out.println("[ERROR] 구입금액은 1000의 배수여야 합니다.");
+            catch(IllegalArgumentException e) {
+                System.out.println("[ERROR] 구입금액은 1000의 배수여야 합니다.");
+            }
         }
 
         System.out.println();

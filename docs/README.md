@@ -158,6 +158,20 @@
   // IllegalArgumentException 발생
   [ERROR] 숫자만 가능합니다. 다시 입력하세요.
   // '보너스 번호 입력'으로 돌아가기
+- - -
+
+## 테스트 코드
+
+### LottoTicketQuantity
+- [x] 숫자를 넣으면 1000으로 나눈 값을 반환한다.
+
+
+
+
+
+
+
+
 
 - - -
 

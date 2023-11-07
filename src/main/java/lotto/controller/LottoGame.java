@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import static lotto.constant.GameOptions.PRICE;
+
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumber;
 import lotto.ui.ConsolePrinter;
@@ -9,9 +12,10 @@ import lotto.util.StringParser;
 
 public class LottoGame {
     private Integer purchaseAmount;
-    private Lottos lottos;
+    private Lottos lottos = new Lottos();
     private WinningNumber winningNumber;
     private Integer bonus;
+    private LottoGenerator lottoGenerator = new LottoGenerator();
 
     public LottoGame() {
     }
@@ -43,7 +47,14 @@ public class LottoGame {
     }
 
     private void initiateLottos() {
+        int lottoCount = purchaseAmount % PRICE.getValue();
+        ConsolePrinter.printLottoPurchasedMessage(lottoCount);
 
+        for (int i = 0; i < lottoCount; i++) {
+            Lotto lotto = lottoGenerator.generate();
+            ConsolePrinter.printLottoNumbers(lotto);
+            lottos.add(lotto);
+        }
     }
 
     private void initiateWinningNumber() {

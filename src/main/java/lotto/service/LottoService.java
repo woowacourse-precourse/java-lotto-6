@@ -44,4 +44,32 @@ public class LottoService {
         winningNumber.inputBonusNum();
     }
 
+    public void lottoResultAddPrizes() {
+        user.getLottoTickets().forEach(lotto -> {
+            int matchesNumber = countMatchingNumbers(lotto, winningNumber);
+            boolean bonusNumber = isBonusNumber(lotto, winningNumber, matchesNumber);
+            lottoResult.addPrize(LottoPrize.getLottoPrizeByMatchesNumber(matchesNumber, bonusNumber));
+        });
+    }
+
+    public String getPrizeDescription(int prize) {
+        return lottoResult.getPrizeDescription(prize);
+    }
+
+    public double getRevenue() {
+        return user.getRevenue(lottoResult.getPrizeMoney());
+    }
+
+    private int countMatchingNumbers(Lotto lotto, WinningNumber winningNumber) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningNumber.getWinnerNumbers()::contains)
+                .count();
+    }
+
+    private boolean isBonusNumber(Lotto lotto, WinningNumber winningNumber, int matchesNumber) {
+        boolean bonusNum = lotto.getNumbers().stream()
+                .anyMatch(num -> num == winningNumber.getBonusNumber());
+        return matchesNumber == 5 && bonusNum;
+    }
+
 }

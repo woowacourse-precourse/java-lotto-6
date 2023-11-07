@@ -48,7 +48,14 @@ public class LottoPurchaseTest {
         assertThat(purchasePrice).isEqualTo(lottoPurchase.getPurchasePrice());
     }
 
+    @Test
+    @DisplayName("1000원으로 안 나누어질시 재입력한다.")
+    void purchasePriceDividePrice() {
+        consoleInput("1500","8000");
+        int purchasePrice = lottoPurchase.inputPurchasePrice();
 
+        assertThat(purchasePrice).isEqualTo(lottoPurchase.getPurchasePrice());
+    }
     private void consoleInput(final String... args) {
         final byte[] buffer = String.join("\n", args).getBytes();
         System.setIn(new ByteArrayInputStream(buffer));

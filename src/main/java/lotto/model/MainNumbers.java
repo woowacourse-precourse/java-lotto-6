@@ -47,4 +47,9 @@ public class MainNumbers {
     private boolean hasDuplicate(List<MainNumber> mainNumbers) {
         return mainNumbers.size() != new HashSet<>(mainNumbers).size();
     }
+
+    public boolean hasNumber(int number) {
+        return mainNumbers.stream()
+                .anyMatch(mainNumber -> mainNumber.isNumberEqual(number));
+    }
 }

@@ -9,6 +9,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.MainNumbers;
 import lotto.model.PurchaseAmount;
+import lotto.model.WinningNumbers;
 import lotto.util.generator.LottoNumberGenerator;
 import lotto.util.generator.NumberGenerator;
 import lotto.util.mapper.DtoModelMapper;
@@ -27,9 +28,7 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = getValidPurchaseAmount();
         Lottos lottos = issueLottos(new LottoNumberGenerator(), purchaseAmount.calculateLottoCount());
-
-        MainNumbers mainNumbers = getValidMainNumbers();
-        BonusNumber bonusNumber = getValidBonusNumbers();
+        WinningNumbers winningNumbers = getWinningNumbers();
     }
 
     private PurchaseAmount getValidPurchaseAmount() {
@@ -65,6 +64,19 @@ public class LottoController {
         while (true) {
             try {
                 return DtoModelMapper.dtoToBonusNumbers(inputView.readBonusNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningNumbers getWinningNumbers() {
+        MainNumbers mainNumbers = getValidMainNumbers();
+
+        while (true) {
+            BonusNumber bonusNumber = getValidBonusNumbers();
+            try {
+                return WinningNumbers.of(mainNumbers, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

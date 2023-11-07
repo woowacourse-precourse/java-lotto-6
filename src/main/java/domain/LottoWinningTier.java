@@ -51,16 +51,34 @@ public enum LottoWinningTier {
     }
 
     public static Optional<LottoWinningTier> calculateTier(int matchCount, boolean matchBonus) {
-        validateMatchCount(matchCount);
+        validateMatchCondition(matchCount, matchBonus);
 
         return calculateBonusTier(matchCount, matchBonus)
                 .or(() -> Optional.ofNullable(TIER_CALCULATOR_WITH_NO_BONUS.get(matchCount)));
     }
 
-    private static void validateMatchCount(int matchCount) {
-        if (matchCount < 0 || FIRST_TIER.getMatchCount() < matchCount) {
+    private static void validateMatchCondition(int matchCount, boolean matchBonus) {
+        if (isMatchCountLessThanZero(matchCount) || isMatchConditionOverFirstTier(matchCount, matchBonus)) {
             throw new ImpossibleStateException();
         }
+    }
+
+    private static boolean isMatchCountLessThanZero(int matchCount) {
+        return matchCount < 0;
+    }
+
+    private static boolean isMatchConditionOverFirstTier(int matchCount, boolean matchBonus) {
+        int matchBonusCount = convertBooleanToInt(matchBonus);
+
+        return FIRST_TIER.getMatchCount() < matchCount + matchBonusCount;
+    }
+
+    private static int convertBooleanToInt(boolean matchBonus) {
+        if (matchBonus) {
+            return 1;
+        }
+
+        return 0;
     }
 
     private static Optional<LottoWinningTier> calculateBonusTier(int matchCount, boolean matchBonus) {

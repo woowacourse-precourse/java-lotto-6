@@ -17,7 +17,7 @@ import lotto.domain.Lotto;
 public class ConsolePrinter {
 
     public static void printPurchaseAmountMessage() {
-        System.out.println(PURCHASE_AMOUNT_MESSAGE.getValue());
+        System.out.println(PURCHASE_AMOUNT_MESSAGE);
     }
 
     public static void printLottoNumbers(Lotto lotto) {
@@ -29,31 +29,31 @@ public class ConsolePrinter {
     }
 
     public static void printLottoPurchasedMessage(int count) {
-        System.out.printf(LOTTO_PURCHASED_MESSAGE.getValue(), count);
+        System.out.printf(LOTTO_PURCHASED_MESSAGE.toString(), count);
     }
 
     public static void printWinningNumberMessage() {
-        System.out.println(WINNING_NUMBER_MESSAGE.getValue());
+        System.out.println(WINNING_NUMBER_MESSAGE);
     }
 
     public static void printBonusNumberMessage() {
-        System.out.println(BONUS_NUMBER_MESSAGE.getValue());
+        System.out.println(BONUS_NUMBER_MESSAGE);
     }
 
     public static void printWinningStatsMessage() {
-        System.out.println(WINNING_STATS_MESSAGE.getValue());
+        System.out.println(WINNING_STATS_MESSAGE);
     }
 
     public static void printWinningAward(int rank, String award, int count) {
-        System.out.printf(WINNING_AWARD.getValue(), rank, award, count);
+        System.out.printf(WINNING_AWARD.toString(), rank, award, count);
     }
 
     public static void printBonusAward(int rank, String award, int count) {
-        System.out.printf(WINNING_BONUS_AWARD.getValue(), rank, award, count);
+        System.out.printf(WINNING_BONUS_AWARD.toString(), rank, award, count);
     }
 
     public static void printTotalProfit(float profit) {
-        System.out.printf(TOTAL_PROFIT.getValue(), profit);
+        System.out.printf(TOTAL_PROFIT.toString(), profit);
     }
 
 }

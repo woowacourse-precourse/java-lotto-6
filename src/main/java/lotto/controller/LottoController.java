@@ -13,6 +13,7 @@ public class LottoController {
         buyTickets();
         printTickets();
         readWinningNumbers();
+        showStatistics();
     }
 
     private void buyTickets() {
@@ -32,6 +33,7 @@ public class LottoController {
     private void readWinningNumbers() {
         readMainNumbers();
         readBonusNumber();
+        lottoService.initWinningNumbers();
     }
 
     private void readMainNumbers() {
@@ -50,6 +52,10 @@ public class LottoController {
             System.out.println(e.getMessage());
             readBonusNumber();
         }
+    }
+
+    private void showStatistics(){
+        OutputView.printStatistics(lottoService.getPrizeResult());
     }
 
 }

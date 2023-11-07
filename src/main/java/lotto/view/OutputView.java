@@ -16,7 +16,7 @@ public class OutputView {
         System.out.printf(ViewConstant.TICKET_MESSAGE.toString(), ticket);
     }
 
-    public static void printStatisticsLine(StatisticsResult response){
+    public static void printStatistics(StatisticsResult response){
         System.out.println(ViewConstant.STATISTICS_MESSAGE);
         System.out.println(ViewConstant.SEPARATOR_LINE_MESSAGE);
         printCountingResponse(response.prizeCount());

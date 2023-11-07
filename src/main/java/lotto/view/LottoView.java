@@ -1,6 +1,6 @@
 package lotto.view;
 
-public class OutputView {
+public class LottoView {
     public static final String START_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String NUMBER_OF_BUYS_MESSAGE = "%s개를 구매했습니다.";
     public static final String INPUT_MATCH_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";

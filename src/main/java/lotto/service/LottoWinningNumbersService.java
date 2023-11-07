@@ -1,22 +1,14 @@
 package lotto.service;
 
-import static lotto.validation.constant.CommonErrorConstant.SPLIT_MESSAGE;
-
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.LottoWinningNumbers;
+import lotto.util.Parser;
 
 public class LottoWinningNumbersService {
 
     public LottoWinningNumbers createLottoWinningNumbers(String numbers, String number) {
-        List<Integer> winningNumbers = stringToCollection(numbers);
+        List<Integer> winningNumbers = Parser.stringToIntList(numbers);
         int bonusNumber = Integer.parseInt(number);
         return LottoWinningNumbers.create(winningNumbers, bonusNumber);
-    }
-
-    private List<Integer> stringToCollection(String input) {
-        return Arrays.stream(input.split(SPLIT_MESSAGE.getMessage()))
-                .map(Integer::parseInt)
-                .toList();
     }
 }

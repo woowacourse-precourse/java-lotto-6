@@ -10,15 +10,15 @@ import static lotto.validation.constant.CommonErrorConstant.LOTTO_MIN_NUMBER;
 import static lotto.validation.constant.CommonErrorConstant.NUMBER_RANGE_MESSAGE;
 import static lotto.validation.constant.CommonErrorConstant.SPLIT_MESSAGE;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.util.Parser;
 
 public class WinningNumbersInputValidator {
 
     public void validateNumberRange(String input) {
-        List<String> numbers = stringToCollection(input);
+        List<String> numbers = Parser.stringToList(input);
         numbers.forEach(number -> isValidNumberRange(Integer.parseInt(number)));
     }
 
@@ -40,15 +40,11 @@ public class WinningNumbersInputValidator {
     }
 
     public void validateNumberDuplication(String input) {
-        List<String> numbers = stringToCollection(input);
+        List<String> numbers = Parser.stringToList(input);
         Set<String> distinctNumbers = new HashSet<>(numbers);
         if (distinctNumbers.size() < numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_MESSAGE.getMessage());
         }
-    }
-
-    private List<String> stringToCollection(String input) {
-        return Arrays.asList(input.split(SPLIT_MESSAGE.getMessage()));
     }
 
     public void validateNumbersCount(String input) {
@@ -63,7 +59,7 @@ public class WinningNumbersInputValidator {
     }
 
     public void validateInputNumbersNumericFormat(String input) {
-        List<String> numbers = stringToCollection(input);
+        List<String> numbers = Parser.stringToList(input);
         numbers.forEach(CommonErrorValidator::validateInputNumericFormat);
     }
 

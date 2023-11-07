@@ -4,25 +4,18 @@ import static lotto.validation.constant.BonusInputConstant.DUPLICATION_BONUS_NUM
 import static lotto.validation.constant.CommonErrorConstant.LOTTO_MAX_NUMBER;
 import static lotto.validation.constant.CommonErrorConstant.LOTTO_MIN_NUMBER;
 import static lotto.validation.constant.CommonErrorConstant.NUMBER_RANGE_MESSAGE;
-import static lotto.validation.constant.CommonErrorConstant.SPLIT_MESSAGE;
 
-import java.util.Arrays;
 import java.util.List;
+import lotto.util.Parser;
 
 public class BonusInputValidator {
 
     public void validateBonusNumberDuplication(String numbers, String number) {
-        List<Integer> winningNumbers = stringToCollection(numbers);
+        List<Integer> winningNumbers = Parser.stringToIntList(numbers);
         int bonusNumber = Integer.parseInt(number);
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATION_BONUS_NUMBER.getMessage());
         }
-    }
-
-    private List<Integer> stringToCollection(String input) {
-        return Arrays.stream(input.split(SPLIT_MESSAGE.getMessage()))
-                .map(Integer::parseInt)
-                .toList();
     }
 
     public void validateNumberRange(String input) {

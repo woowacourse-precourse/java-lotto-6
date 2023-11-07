@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import static lotto.Utils.convertIntegerList;
+import static lotto.model.WinningLottoValidator.validateWinningLotto;
 import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputMoney;
 import static lotto.view.InputView.inputWinningNumber;
@@ -51,7 +52,11 @@ public class InputController {
 
     public static Lotto makeWinningNumbers() {
         try {
-            Lotto winningNumbers = new Lotto(convertIntegerList(inputWinningNumber()));
+            String inputWinningNumber = inputWinningNumber();
+
+            validateWinningLotto(inputWinningNumber);
+            Lotto winningNumbers = new Lotto(convertIntegerList(inputWinningNumber));
+
             return winningNumbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

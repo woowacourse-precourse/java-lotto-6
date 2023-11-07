@@ -8,6 +8,7 @@ public class Amount {
     private static final String AMOUNT_REGEXP = "^[0-9]+$";
     private final int AMOUNT_MIN = 1000;
     private final int amount;
+    private final int countLotto;
 
     public Amount(String input){
         validateInput(input);
@@ -16,6 +17,7 @@ public class Amount {
         validateDivision(amount);
 
         this.amount = amount;
+        this.countLotto = calculatePurchaseCount(amount);
     }
 
     private void validateInput(String input){
@@ -46,5 +48,9 @@ public class Amount {
 
     public int getAmount(){
         return amount;
+    }
+
+    public int getCountLotto(){
+        return countLotto;
     }
 }

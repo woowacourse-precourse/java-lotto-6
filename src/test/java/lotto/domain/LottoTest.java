@@ -54,5 +54,14 @@ public class LottoTest {
         assertFalse(resultFalse);
     }
 
+    @Test
+    public void 중복되는_숫자가있으면_예외처리() {
+        // Given
+        String unrefinedNumbers = "1,2,3,4,5,5";
 
+        // When && Then
+        assertThatThrownBy(() -> Lotto.create(unrefinedNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 값은 입력할 수 없습니다.");
+    }
 }

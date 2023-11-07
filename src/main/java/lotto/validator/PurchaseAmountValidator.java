@@ -1,9 +1,11 @@
 package lotto.validator;
 
-import lotto.Constant.ErrorMessage;
-import lotto.Constant.PurchaseAmount;
+import lotto.constant.ErrorMessage;
+import lotto.constant.PurchaseAmount;
 
 public class PurchaseAmountValidator {
+
+    private PurchaseAmountValidator() {}
 
     public static int validate(String input) {
         try {
@@ -19,19 +21,22 @@ public class PurchaseAmountValidator {
 
     private static void validateAmountIsAtLeastMinimum(int amount) {
         if (amount < PurchaseAmount.UNIT.getAmount()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_MIN_AMOUNT.getMessage(PurchaseAmount.UNIT.getAmount()));
+            throw new IllegalStateException(
+                    ErrorMessage.INVALID_MIN_AMOUNT.getMessage(PurchaseAmount.UNIT.getAmount()));
         }
     }
 
     private static void validateAmountDivisibleByUnit(int amount) {
         if (amount % PurchaseAmount.UNIT.getAmount() != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_UNIT_AMOUNT.getMessage(PurchaseAmount.UNIT.getAmount()));
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_UNIT_AMOUNT.getMessage(PurchaseAmount.UNIT.getAmount()));
         }
     }
 
     private static void validateMaxAmount(int amount) {
         if (amount > PurchaseAmount.MAX.getAmount()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_MAX_AMOUNT.getMessage(PurchaseAmount.MAX.getAmount()));
+            throw new IllegalArgumentException(
+                    ErrorMessage.INVALID_MAX_AMOUNT.getMessage(PurchaseAmount.MAX.getAmount()));
         }
     }
 }

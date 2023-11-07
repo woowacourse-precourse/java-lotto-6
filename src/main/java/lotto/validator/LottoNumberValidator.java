@@ -6,10 +6,12 @@ import java.util.stream.Collectors;
 import java.util.Set;
 import java.util.TreeSet;
 
-import lotto.Constant.ErrorMessage;
-import lotto.Constant.LottoNumber;
+import lotto.constant.ErrorMessage;
+import lotto.constant.LottoNumber;
 
 public class LottoNumberValidator {
+
+    private LottoNumberValidator() {}
 
     public static void isValid(List<Integer> numbers) {
         hasCorrectLength(numbers);
@@ -17,26 +19,26 @@ public class LottoNumberValidator {
     }
 
     public static List<Integer> convertStringToList(String winningNumbers) {
-        List<String> numberStrings = splitNumbers(winningNumbers);
-        return convertStringsToIntegers(numberStrings);
+        List<String> splitNumberStrings = splitNumbers(winningNumbers);
+        return convertStringsToIntegers(splitNumberStrings);
     }
 
     private static List<String> splitNumbers(String winningNumbers) {
         return Arrays.asList(winningNumbers.split(","));
     }
 
-    private static List<Integer> convertStringsToIntegers(List<String> numberStrings) {
-        return numberStrings.stream()
+    private static List<Integer> convertStringsToIntegers(List<String> splitNumberStrings) {
+        return splitNumberStrings.stream()
                 .map(String::trim)
                 .map(LottoNumberValidator::parseNumber)
                 .collect(Collectors.toList());
     }
 
-    private static int parseNumber(String numberString) {
+    private static int parseNumber(String splitNumberString) {
         try {
-            return Integer.parseInt(numberString);
+            return Integer.parseInt(splitNumberString);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT.getMessage());
+            throw new NumberFormatException(ErrorMessage.INVALID_FORMAT.getMessage());
         }
     }
 
@@ -56,15 +58,15 @@ public class LottoNumberValidator {
     }
 
     private static void validateRange(int number) {
-        if (!isNumberInRange(number)) {
+        if (isNumberOutOfRange(number)) {
             throw new IllegalArgumentException(
                     ErrorMessage.INVALID_RANGE.getMessage(LottoNumber.MIN_INCLUSIVE.getNumber()
                             , LottoNumber.MAX_INCLUSIVE.getNumber()));
         }
     }
 
-    public static boolean isNumberInRange(int number) {
-        return number >= LottoNumber.MIN_INCLUSIVE.getNumber() && number <= LottoNumber.MAX_INCLUSIVE.getNumber();
+    public static boolean isNumberOutOfRange(int number) {
+        return number < LottoNumber.MIN_INCLUSIVE.getNumber() || number > LottoNumber.MAX_INCLUSIVE.getNumber();
     }
 
     private static void validateDuplication(int number, Set<Integer> winningNumbersSet) {

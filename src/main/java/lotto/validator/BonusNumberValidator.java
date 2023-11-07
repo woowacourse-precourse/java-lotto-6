@@ -1,9 +1,12 @@
 package lotto.validator;
 
 import java.util.List;
-import lotto.Constant.ErrorMessage;
+
+import lotto.constant.ErrorMessage;
 
 public class BonusNumberValidator {
+
+    private BonusNumberValidator() {}
 
     public static int validate(String input) {
         try {
@@ -22,8 +25,8 @@ public class BonusNumberValidator {
     }
 
     private static void validateRange(int number) {
-        if (!LottoNumberValidator.isNumberInRange(number)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE.getMessage());
+        if (LottoNumberValidator.isNumberOutOfRange(number)) {
+            throw new IndexOutOfBoundsException(ErrorMessage.INVALID_RANGE.getMessage());
         }
     }
 

@@ -14,30 +14,23 @@ public class Application {
         int purchaseAmount = Integer.parseInt(Console.readLine());
         /* 추가할 것 : 입력한 구입금액이 1000원으로 나누어 떨어지지 않을 경우 예외처리한다. */
 
-        int lottoTickets = purchaseAmount / 1000;
-        System.out.printf("\n%d개를 구매했습니다.%n", lottoTickets);
+        int ticketNumber = purchaseAmount / 1000;
+        System.out.printf("\n%d개를 구매했습니다.%n", ticketNumber);
 
         //로또 발행
-        List[] allTickets = new List[lottoTickets];
-        automaticNum(allTickets, lottoTickets);
+        List[] allTickets = new List[ticketNumber];
+        Purchase buyingTickets = new Purchase();
+        allTickets = buyingTickets.automaticNum(allTickets, ticketNumber);
 
         List<Integer> numbers = new ArrayList<>();
         int bonus = 0;
         bonus = winningBonusNum(numbers, bonus);
 
         int[] rank;
-        rank = rank(lottoTickets, allTickets, bonus, numbers);
+        rank = rank(ticketNumber, allTickets, bonus, numbers);
         rate(rank, purchaseAmount);
     }
 
-    public static void automaticNum(List[] allTickets, int lottoTickets) {
-        for (int i = 0; i < lottoTickets; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            numbers.sort(Comparator.naturalOrder());
-            allTickets[i] = numbers;
-            System.out.println(numbers);
-        }
-    }
 
     public static int winningBonusNum(List<Integer> numbers, int bonus) {
         while (true) {
@@ -60,14 +53,14 @@ public class Application {
             }
         }
 
-        while (true){
+        while (true) {
             try {
                 System.out.println("\n보너스 번호를 입력해 주세요.");
                 bonus = Integer.parseInt(Console.readLine());
                 Lotto lotto2 = new Lotto(numbers);
                 lotto2.bonusNum(bonus);
                 return bonus;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

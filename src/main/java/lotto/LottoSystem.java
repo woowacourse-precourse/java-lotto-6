@@ -21,6 +21,7 @@ public class LottoSystem {
 
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getBonusNumber(Console.readLine());
+        int[] winLotto = lottoWinCheck(buyLottoNumbers, winningNumber, bonusNumber);
     }
 
     public int buyLottoTicket(String money) throws IllegalArgumentException {
@@ -72,5 +73,41 @@ public class LottoSystem {
         }catch(NumberFormatException e){
             throw new IllegalArgumentException("입력받은 보너스의 값이 잘못되었습니다.");
         }
+    }
+
+    public int[] lottoWinCheck(ArrayList<Lotto> lottoNumbers, List<Integer> winningNumbers, int bonusNumber){
+        int[] winCheckNumber = new int[5];
+        for(Lotto number : lottoNumbers){
+            int equalNumbers = number.lottoNumbersContains(winningNumbers);
+            int rank = lottoEqualNumber(equalNumbers, number, bonusNumber);
+            if (rank != -1) {
+                winCheckNumber[rank]++;
+            }
+        }
+        return winCheckNumber;
+    }
+
+    public int lottoEqualNumber(int equalNumbers, Lotto lottoNumber, int bonusNumber){
+        if (equalNumbers == 3){
+            return 0;
+        }
+        if (equalNumbers == 4){
+            return 1;
+        }
+        if (equalNumbers == 5){
+            return lottoEqualBonusNumber(equalNumbers, lottoNumber, bonusNumber);
+        }
+        if (equalNumbers == 6){
+            return 4;
+        }
+        return -1;
+    }
+
+    public int lottoEqualBonusNumber(int equalNumbers, Lotto lottoNumber, int bonusNumber){
+        equalNumbers = lottoNumber.bonusNumberContains(equalNumbers, bonusNumber);
+        if (equalNumbers == 6){
+            return 3;
+        }
+        return 2;
     }
 }

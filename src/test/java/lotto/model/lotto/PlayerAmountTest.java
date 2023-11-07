@@ -30,7 +30,7 @@ class PlayerAmountTest {
 
     @DisplayName("사용자에게 로또 구입 금액을 입력 받고 로또 수량 계산을 테스트한다.")
     @Test
-    void calculateAmountFromMoney() {
+    void testCalculateAmountFromMoney() {
         PlayerAmount playerAmount = PlayerAmount.getInstance(1000);
         assertThat(playerAmount.getAmount()).isEqualTo(1);
     }

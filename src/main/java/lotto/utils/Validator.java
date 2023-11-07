@@ -34,6 +34,13 @@ public class Validator {
         throw new InvalidDuplicateLottoNumberException();
     }
 
+    public static void validateBonusDuplicates(List<Integer> numbers, int bonus) {
+        if (isBonusNumberDistinct(numbers, bonus)) {
+            return;
+        }
+        throw new InvalidDuplicateLottoNumberException();
+    }
+
     public static void validateMinimumAmount(int money) {
         if (isAmountAboveMinimum(money)) {
             return;
@@ -54,6 +61,10 @@ public class Validator {
 
     private static boolean isNumberInRange(int number) {
         return number >= MIN_LOTTO.getValue() && number <= MAX_LOTTO.getValue();
+    }
+
+    private static boolean isBonusNumberDistinct(List<Integer> numbers, int bonus) {
+        return !numbers.contains(bonus);
     }
 
     private static boolean isAmountAboveMinimum(int money) {

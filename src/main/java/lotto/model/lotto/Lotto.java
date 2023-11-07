@@ -15,8 +15,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        numbers.forEach(Validator::validateLottoRange);
         validateLottoSize(numbers);
+        numbers.forEach(Validator::validateLottoRange);
         validateLottoDuplicates(numbers);
     }
 

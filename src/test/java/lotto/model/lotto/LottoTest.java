@@ -26,8 +26,7 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(
-                () -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -40,7 +39,7 @@ class LottoTest {
 
     @DisplayName("로또 번호가 몇 개 일치하는지 테스트한다.")
     @Test
-    void countMatchNumbers() {
+    void testLottoNumbersAndBonusMatch() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 10;
         Winning winning = Winning.of(lotto, bonus);
@@ -52,7 +51,7 @@ class LottoTest {
 
     @DisplayName("로또 보너스 번호가 일치하는지 테스트한다.")
     @Test
-    void isMatchNumber() {
+    void testBonusNumberMatch() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonus = 3;
 

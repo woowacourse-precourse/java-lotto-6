@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import static lotto.utils.Validator.validateBonusDuplicates;
 import static lotto.utils.Validator.validateDivisibleAmount;
 import static lotto.utils.Validator.validateLottoDuplicates;
 import static lotto.utils.Validator.validateLottoRange;
@@ -30,6 +31,13 @@ class ValidatorTest {
     @Test
     void testLottoDuplicates() {
         assertThatThrownBy(() -> validateLottoDuplicates(List.of(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("배열과 정수가 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void testBonusDuplicates() {
+        assertThatThrownBy(() -> validateBonusDuplicates(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

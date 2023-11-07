@@ -1,10 +1,7 @@
 package lotto.model.lotto;
 
-import static lotto.utils.Validator.validateLottoDuplicates;
+import static lotto.utils.Validator.validateBonusDuplicates;
 import static lotto.utils.Validator.validateLottoRange;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Winning {
     private final Lotto lotto;
@@ -22,9 +19,7 @@ public class Winning {
 
     private static void validate(Lotto lotto, int bonus) {
         validateLottoRange(bonus);
-        List<Integer> copyLottoList = new ArrayList<>(lotto.getNumbers());
-        copyLottoList.add(bonus);
-        validateLottoDuplicates(copyLottoList);
+        validateBonusDuplicates(lotto.getNumbers(), bonus);
     }
 
     public Lotto getLotto() {

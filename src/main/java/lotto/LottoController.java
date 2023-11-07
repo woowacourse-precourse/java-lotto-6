@@ -18,7 +18,7 @@ public class LottoController {
         printAllLotto(lottoNumbers);
 
         WinningNumber winningNumber = inputValueToWinningNumber();
-        BonusNumber bonusNumber = createBonusNumber(winningNumber);
+        BonusNumber bonusNumber = inputValueToBonusNumber(winningNumber);
         HashMap<Integer, List<Integer>> compareLottoNumResult =
                 compareLottoNumber(lottoNumbers, winningNumber, bonusNumber);
 
@@ -91,7 +91,7 @@ public class LottoController {
         }
     }
 
-    private BonusNumber createBonusNumber(WinningNumber winningNumber) {
+    private BonusNumber inputValueToBonusNumber(WinningNumber winningNumber) {
         BonusNumber lottoBonus = null;
         boolean loop = true;
 

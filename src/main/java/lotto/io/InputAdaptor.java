@@ -26,12 +26,12 @@ public class InputAdaptor {
     }
 
     private static void validateRawStringOfPurchasePrice(String rawStr) {
-        Validator.checkIfInteger(rawStr);
+        Validator.validateStringToBeInteger(rawStr);
     }
 
     private static void validateParsedPurchasePrice(int num) {
-        Validator.checkIfNonNegative(num);
-        Validator.checkIfMultipleOfPriceOfLotto(num);
+        Validator.validateSign(num);
+        Validator.validateDivisibility(num);
     }
 
     /**
@@ -52,13 +52,13 @@ public class InputAdaptor {
     }
 
     private static void validateRawStringOfWinningNumbers(String rawStr) {
-        Validator.checkIfWinningNumbersAreInteger(rawStr);
+        Validator.validateStringToBeMultipleIntegers(rawStr);
     }
 
     private static void validateParsedWinningNumbers(List<Integer> parsedWinningNumbers) {
-        Validator.checkRangeOfEachWinningNumber(parsedWinningNumbers);
-        Validator.checkIfNoDuplicateInWinningNumbers(parsedWinningNumbers);
-        Validator.checkIfWinningNumbersAreSix(parsedWinningNumbers);
+        Validator.validateRangeOfWinningNumbers(parsedWinningNumbers);
+        Validator.validateDuplicate(parsedWinningNumbers);
+        Validator.validateNumOfWinningNumbers(parsedWinningNumbers);
     }
 
     public static int readBonusNumber() {
@@ -70,10 +70,10 @@ public class InputAdaptor {
     }
 
     private static void validateRawStringOfBonusNumber(String rawStr) {
-        Validator.checkIfInteger(rawStr);
+        Validator.validateStringToBeInteger(rawStr);
     }
 
     private static void validateParsedBonusNumber(int parsedBonusNumber) {
-        Validator.checkRangeOfBonusNumber(parsedBonusNumber);
+        Validator.validateRangeOfBonusNumber(parsedBonusNumber);
     }
 }

@@ -31,15 +31,15 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        Validator.checkIfWinningNumbersAreSix(numbers);
+        Validator.validateNumOfWinningNumbers(numbers);
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        Validator.checkIfNoDuplicateInWinningNumbers(numbers);
+        Validator.validateDuplicate(numbers);
     }
 
     private void validateRange(List<Integer> numbers) {
-        Validator.checkRangeOfEachWinningNumber(numbers);
+        Validator.validateRangeOfWinningNumbers(numbers);
     }
 
     /**

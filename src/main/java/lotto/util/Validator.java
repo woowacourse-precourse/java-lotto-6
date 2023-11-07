@@ -21,7 +21,7 @@ public class Validator {
      * @param toValidate 정수인지 검증할 문자열
      * @throws IllegalArgumentException toValidate가 정수를 나타내는 문자열이 아닐 경우 발생한다.
      */
-    public static void checkIfInteger(String toValidate) throws IllegalArgumentException {
+    public static void validateStringToBeInteger(String toValidate) throws IllegalArgumentException {
         try {
             Integer.parseInt(toValidate);
         } catch (NumberFormatException e) {
@@ -35,7 +35,7 @@ public class Validator {
      * @param numToValidate 검증할 정수.
      * @throws IllegalArgumentException numToValidate >= 0인 경우 발생한다.
      */
-    public static void checkIfNonNegative(int numToValidate) throws IllegalArgumentException {
+    public static void validateSign(int numToValidate) throws IllegalArgumentException {
         if (numToValidate < 0) {
             throw new IllegalArgumentException(ErrorMessages.PURCHASE_NUMBER_IS_NEGATIVE.get());
         }
@@ -47,7 +47,7 @@ public class Validator {
      * @param numToValidate 검증할 정수.
      * @throws IllegalArgumentException numToValidate가 PRICE_OF_LOTTO의 배수가 아닐 경우 발생한다.
      */
-    public static void checkIfMultipleOfPriceOfLotto(int numToValidate) throws IllegalArgumentException {
+    public static void validateDivisibility(int numToValidate) throws IllegalArgumentException {
         if (!isMultipleOfPriceOfLotto(numToValidate)) {
             throw new IllegalArgumentException(ErrorMessages.PURCHASE_NUMBER_IS_NOT_MULTIPLE_OF_1000.get());
         }
@@ -63,9 +63,10 @@ public class Validator {
      * @throws IllegalArgumentException winningNumbersInput이 공백이나 미리 지정된 delimiter나 정수가 아닌 문자를 포함할
      *                                  경우 발생한다.
      */
-    public static void checkIfWinningNumbersAreInteger(String winningNumbersInput) throws IllegalArgumentException {
+    public static void validateStringToBeMultipleIntegers(String winningNumbersInput)
+            throws IllegalArgumentException {
         Arrays.asList(winningNumbersInput.split(InputConfiguration.DELIMITER_TO_PARSE_INPUT_OF_WINNING_NUMBER))
-                .forEach(Validator::checkIfInteger);
+                .forEach(Validator::validateStringToBeInteger);
     }
 
     /**
@@ -74,7 +75,7 @@ public class Validator {
      * @param winningNumbers 당첨 번호가 담긴 리스트.
      * @throws IllegalArgumentException winningNumbers.size() != 6일 경우 발생한다.
      */
-    public static void checkIfWinningNumbersAreSix(List<Integer> winningNumbers) throws IllegalArgumentException {
+    public static void validateNumOfWinningNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessages.WINNING_NUMBERS_ARE_NOT_SIX.get());
         }
@@ -85,7 +86,7 @@ public class Validator {
      * @param winningNumbers 당첨 번호가 담긴 리스트.
      * @throws IllegalArgumentException 중복된 번호가 있을 경우 발생한다.
      */
-    public static void checkIfNoDuplicateInWinningNumbers(List<Integer> winningNumbers)
+    public static void validateDuplicate(List<Integer> winningNumbers)
             throws IllegalArgumentException {
         int numOfElements = winningNumbers.size();
         Set<Integer> notAllowDuplicate = new HashSet<>(winningNumbers);
@@ -101,7 +102,8 @@ public class Validator {
      * @param winningNumbers 당첨 번호가 담긴 리스트.
      * @throws IllegalArgumentException 단 하나의 번호라도 로또 번호 범위에 포함되지 않을 경우 발생한다.
      */
-    public static void checkRangeOfEachWinningNumber(List<Integer> winningNumbers) throws IllegalArgumentException {
+    public static void validateRangeOfWinningNumbers(List<Integer> winningNumbers)
+            throws IllegalArgumentException {
         winningNumbers.forEach((n) ->
                 checkIfRangeOfNumberIsProper(n, ErrorMessages.WINNING_NUMBERS_NOT_IN_PROPER_RANGE.get()));
     }
@@ -113,7 +115,7 @@ public class Validator {
      * @param bonusNumber 검증할 보너스 번호.
      * @throws IllegalArgumentException 보너스 번호가 로또 번호 범위에 포함되지 않을 경우 발생한다.
      */
-    public static void checkRangeOfBonusNumber(Integer bonusNumber) throws IllegalArgumentException {
+    public static void validateRangeOfBonusNumber(Integer bonusNumber) throws IllegalArgumentException {
         checkIfRangeOfNumberIsProper(bonusNumber, ErrorMessages.BONUS_NUMBER_NOT_IN_PROPER_RANGE.get());
     }
 

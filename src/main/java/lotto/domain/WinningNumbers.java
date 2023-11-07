@@ -19,7 +19,7 @@ public class WinningNumbers extends Lotto {
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
         super(numbers);
         this.bonusNumber = bonusNumber;
-        Validator.checkRangeOfBonusNumber(bonusNumber);
+        Validator.validateRangeOfBonusNumber(bonusNumber);
     }
 
     /**

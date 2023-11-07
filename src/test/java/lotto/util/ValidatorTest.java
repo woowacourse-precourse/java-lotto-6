@@ -25,7 +25,7 @@ class ValidatorTest {
 
         for (String testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfInteger(testCase))
+                    .isThrownBy(() -> Validator.validateStringToBeInteger(testCase))
                     .withMessageContaining(ErrorMessages.NOT_AN_INTEGER.get());
         }
     }
@@ -40,7 +40,7 @@ class ValidatorTest {
 
         for (String testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfInteger(testCase))
+                    .isThrownBy(() -> Validator.validateStringToBeInteger(testCase))
                     .withMessageContaining(ErrorMessages.NOT_AN_INTEGER.get());
         }
     }
@@ -59,7 +59,7 @@ class ValidatorTest {
         };
 
         for (String testCase : testCases) {
-            assertThatNoException().isThrownBy(() -> Validator.checkIfInteger(testCase));
+            assertThatNoException().isThrownBy(() -> Validator.validateStringToBeInteger(testCase));
         }
     }
 
@@ -73,7 +73,7 @@ class ValidatorTest {
 
         for (int testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfNonNegative(testCase))
+                    .isThrownBy(() -> Validator.validateSign(testCase))
                     .withMessageContaining(ErrorMessages.PURCHASE_NUMBER_IS_NEGATIVE.get());
         }
     }
@@ -87,7 +87,7 @@ class ValidatorTest {
         };
 
         for (int testCase : testCases) {
-            assertThatNoException().isThrownBy(() -> Validator.checkIfNonNegative(testCase));
+            assertThatNoException().isThrownBy(() -> Validator.validateSign(testCase));
         }
     }
 
@@ -100,7 +100,7 @@ class ValidatorTest {
 
         for (int testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfMultipleOfPriceOfLotto(testCase))
+                    .isThrownBy(() -> Validator.validateDivisibility(testCase))
                     .withMessageContaining(ErrorMessages.PURCHASE_NUMBER_IS_NOT_MULTIPLE_OF_1000.get());
         }
     }
@@ -112,7 +112,7 @@ class ValidatorTest {
         };
 
         for (int testCase : testCases) {
-            assertThatNoException().isThrownBy(() -> Validator.checkIfMultipleOfPriceOfLotto(testCase));
+            assertThatNoException().isThrownBy(() -> Validator.validateDivisibility(testCase));
         }
     }
 
@@ -128,7 +128,7 @@ class ValidatorTest {
 
         for (String testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfWinningNumbersAreInteger(testCase))
+                    .isThrownBy(() -> Validator.validateStringToBeMultipleIntegers(testCase))
                     .withMessageContaining(ErrorMessages.NOT_AN_INTEGER.get());
         }
     }
@@ -143,7 +143,7 @@ class ValidatorTest {
 
         for (String testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfWinningNumbersAreInteger(testCase))
+                    .isThrownBy(() -> Validator.validateStringToBeMultipleIntegers(testCase))
                     .withMessageContaining(ErrorMessages.NOT_AN_INTEGER.get());
         }
     }
@@ -161,7 +161,7 @@ class ValidatorTest {
         };
 
         for (String testCase : testCases) {
-            assertThatNoException().isThrownBy(() -> Validator.checkIfWinningNumbersAreInteger(testCase));
+            assertThatNoException().isThrownBy(() -> Validator.validateStringToBeMultipleIntegers(testCase));
         };
     }
 
@@ -175,7 +175,7 @@ class ValidatorTest {
 
         testCases.forEach((l) -> {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfWinningNumbersAreSix(l))
+                    .isThrownBy(() -> Validator.validateNumOfWinningNumbers(l))
                     .withMessageContaining(ErrorMessages.WINNING_NUMBERS_ARE_NOT_SIX.get());
         });
     }
@@ -184,7 +184,7 @@ class ValidatorTest {
     void testCheckIfWinningNumbersAreSix_noException() {
         List<Integer> testCase = Arrays.asList(3, 6, 9, 12, 15, 18);
         assertThatNoException()
-                .isThrownBy(() -> Validator.checkIfWinningNumbersAreSix(testCase));
+                .isThrownBy(() -> Validator.validateNumOfWinningNumbers(testCase));
     }
 
     @Test
@@ -197,7 +197,7 @@ class ValidatorTest {
 
         for (List<Integer> testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfNoDuplicateInWinningNumbers(testCase))
+                    .isThrownBy(() -> Validator.validateDuplicate(testCase))
                     .withMessageContaining(ErrorMessages.WINNING_NUMBERS_HAS_DUPLICATE.get());
         }
     }
@@ -212,7 +212,7 @@ class ValidatorTest {
 
         for (List<Integer> testCase : testCases) {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkIfNoDuplicateInWinningNumbers(testCase))
+                    .isThrownBy(() -> Validator.validateDuplicate(testCase))
                     .withMessageContaining(ErrorMessages.WINNING_NUMBERS_HAS_DUPLICATE.get());
         }
     }
@@ -227,7 +227,7 @@ class ValidatorTest {
 
         for (List<Integer> testCase : testCases) {
             assertThatNoException()
-                    .isThrownBy(() -> Validator.checkIfNoDuplicateInWinningNumbers(testCase));
+                    .isThrownBy(() -> Validator.validateDuplicate(testCase));
         }
     }
 
@@ -242,7 +242,7 @@ class ValidatorTest {
 
         testCases.forEach((l) -> {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkRangeOfEachWinningNumber(l))
+                    .isThrownBy(() -> Validator.validateRangeOfWinningNumbers(l))
                     .withMessageContaining(ErrorMessages.WINNING_NUMBERS_NOT_IN_PROPER_RANGE.get());
         });
     }
@@ -258,7 +258,7 @@ class ValidatorTest {
 
         testCases.forEach((l) -> {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkRangeOfEachWinningNumber(l))
+                    .isThrownBy(() -> Validator.validateRangeOfWinningNumbers(l))
                     .withMessageContaining(ErrorMessages.WINNING_NUMBERS_NOT_IN_PROPER_RANGE.get());
         });
     }
@@ -271,7 +271,7 @@ class ValidatorTest {
 
         testCases.forEach((l) -> {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkRangeOfEachWinningNumber(l))
+                    .isThrownBy(() -> Validator.validateRangeOfWinningNumbers(l))
                     .withMessageContaining(ErrorMessages.WINNING_NUMBERS_NOT_IN_PROPER_RANGE.get());
         });
     }
@@ -286,7 +286,7 @@ class ValidatorTest {
 
         testCases.forEach((l) -> {
             assertThatNoException()
-                    .isThrownBy(() -> Validator.checkRangeOfEachWinningNumber(l));
+                    .isThrownBy(() -> Validator.validateRangeOfWinningNumbers(l));
         });
     }
 
@@ -298,7 +298,7 @@ class ValidatorTest {
 
         Arrays.asList(testCases).forEach(e -> {
             assertThatExceptionOfType(IllegalArgumentException.class)
-                    .isThrownBy(() -> Validator.checkRangeOfBonusNumber(e))
+                    .isThrownBy(() -> Validator.validateRangeOfBonusNumber(e))
                     .withMessageContaining(ErrorMessages.BONUS_NUMBER_NOT_IN_PROPER_RANGE.get());
         });
     }
@@ -310,7 +310,7 @@ class ValidatorTest {
         };
 
         Arrays.asList(testCases).forEach(e -> {
-            assertThatNoException().isThrownBy(() -> Validator.checkRangeOfBonusNumber(e));
+            assertThatNoException().isThrownBy(() -> Validator.validateRangeOfBonusNumber(e));
         });
     }
 }

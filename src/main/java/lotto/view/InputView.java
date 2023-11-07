@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Cash;
 import lotto.domain.WinnerLotto;
+import lotto.dto.RequestCash;
 import lotto.parser.Parser;
 import lotto.validator.InputValidator;
 
@@ -16,16 +17,19 @@ import static lotto.view.InputViewMessage.*;
 
 public class InputView {
 
-    public Cash inputCash() throws IllegalArgumentException, IllegalStateException {
+    public RequestCash requestCash() throws IllegalStateException {
         try {
             System.out.println(INPUT_CASH_MESSAGE.getMessage());
             final String requestCash = getInput();
             final Integer cash = Parser.parseInt(requestCash);
-            return new Cash(cash);
-        } catch (Exception e) {
+            return RequestCash.of(cash);
+        } catch (IllegalArgumentException e) {
+            return requestCash();
+        } catch (IllegalStateException e) {
             throw e;
         }
     }
+
     public List<Integer> inputWinnerNumbers() throws IllegalArgumentException, IllegalStateException {
         try {
             System.out.println();

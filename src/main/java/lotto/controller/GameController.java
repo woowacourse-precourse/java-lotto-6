@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.dto.RequestCash;
 import lotto.util.NumberGenerator;
 import lotto.util.UniqueRandomNumbersGenerator;
 import lotto.view.InputView;
@@ -34,17 +35,17 @@ public class GameController {
         }
     }
 
+
     private Cash depositCash() throws IllegalStateException {
         try {
-            Cash cash = inputView.inputCash();
-            return cash;
-        } catch (IllegalArgumentException e) {
-            return depositCash();
+            RequestCash requestCash = inputView.requestCash();
+            return Cash.create(
+                    requestCash.depositAmount(),
+                    requestCash.spendAmount());
         } catch (IllegalStateException e) {
             throw e;
         }
     }
-
 
     private Lottos purchaseLotto(Cash cash) {
         LottoMachine lottoMachine = new LottoMachine(numberGenerator, cash);
@@ -69,6 +70,7 @@ public class GameController {
         }
 
     }
+
 
 
 }

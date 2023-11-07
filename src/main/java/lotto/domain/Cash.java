@@ -2,24 +2,37 @@ package lotto.domain;
 
 import static lotto.constant.CashConstant.INIT_SPEND_AMOUNT;
 import static lotto.constant.CashConstant.UNIT;
-import static lotto.exception.CashExceptionMessage.NOT_MORE_THAN_UNIT;
-import static lotto.exception.CashExceptionMessage.NOT_DIVISIBLE_BY_UNIT;
+import static lotto.exception.CashExceptionMessage.*;
 
 
 public class Cash {
     private final Integer depositAmount;
     private Integer spendAmount;
 
-    public Cash(final Integer depositAmount) {
+    private Cash(final Integer depositAmount,
+                 final Integer spendAmount) {
         validateMoreThanUnit(depositAmount);
         validateDivisibleByUnit(depositAmount);
+        validateInitSpendAmount(spendAmount);
         this.depositAmount = depositAmount;
-        this.spendAmount = INIT_SPEND_AMOUNT.getSetting();
+        this.spendAmount = spendAmount;
     }
 
-    private void validateMoreThanUnit(final Integer amount) {
-        if (amount < UNIT.getSetting()) {
+    public static Cash create(final Integer depositAmount,
+                              final Integer spendAmount)
+            throws IllegalArgumentException, IllegalStateException {
+        return new Cash(depositAmount, spendAmount);
+    }
+
+    private void validateMoreThanUnit(final Integer depositAmount) {
+        if (depositAmount < UNIT.getSetting()) {
             throw new IllegalArgumentException(NOT_MORE_THAN_UNIT.getMessage());
+        }
+    }
+
+    private void validateInitSpendAmount(final Integer spendAmount) {
+        if (spendAmount != INIT_SPEND_AMOUNT.getSetting()) {
+            throw new IllegalStateException(WRONG_INIT_AMOUNT.getMessage());
         }
     }
 

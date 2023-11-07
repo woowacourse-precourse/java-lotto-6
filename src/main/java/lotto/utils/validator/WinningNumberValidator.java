@@ -24,6 +24,7 @@ public class WinningNumberValidator {
         validateEachNumberIsNumeric(winningNumbers);
         validateEachNumberIsInRange(winningNumbers);
         validateDuplicate(winningNumbers);
+        validateTotalCount(winningNumbers);
     }
 
     private static void validateBlank(String target) {
@@ -82,6 +83,13 @@ public class WinningNumberValidator {
         Set<String> unique = new HashSet<>(target);
         if (unique.size() != target.size()) {
             throw new IllegalArgumentException(WinningInformationExceptionMessage.DUPLICATE_EXISTS.getError());
+        }
+    }
+
+
+    private static void validateTotalCount(List<String> target) {
+        if (target.size() != WINNING_NUMBER_COUNT) {
+            throw new IllegalArgumentException(WinningInformationExceptionMessage.INVALID_COUNT.getError());
         }
     }
 }

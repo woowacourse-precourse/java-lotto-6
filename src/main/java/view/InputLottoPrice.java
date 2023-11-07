@@ -11,10 +11,10 @@ public final class InputLottoPrice {
 
     public Integer inputLottoPrice() {
         System.out.println(INPUT_MESSAGE);
-        String result = Console.readLine();
+        String price = Console.readLine();
         System.out.println();
-        validate(result);
-        return Integer.parseInt(result);
+        validate(price);
+        return Integer.parseInt(price);
     }
 
     private void validate(String inputValue) {

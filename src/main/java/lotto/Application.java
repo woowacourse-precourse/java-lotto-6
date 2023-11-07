@@ -1,13 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import service.BonusDraw;
-import service.LottoDraw;
-import service.Purchase;
+import domain.BonusDraw;
+import domain.LottoDraw;
+import domain.Purchase;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Application {
 

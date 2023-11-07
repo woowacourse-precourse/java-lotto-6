@@ -9,7 +9,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RankTest {
-
     @ParameterizedTest
     @CsvSource(value = {
             "0, true, NONE",
@@ -35,5 +34,18 @@ class RankTest {
     void findRankByWrongMatchCount(int matchCount) {
         assertThatThrownBy(() -> Rank.find(matchCount, true))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "1, 5000",
+            "2, 10000",
+            "3, 15000",
+            "4, 20000"
+    })
+    @DisplayName("5등 당첨 횟수만큼의 상금을 계산한다.")
+    void calculateReward(int number, int expected) {
+        int reward = Rank.FIVE.calculateReward(number);
+        assertThat(reward).isEqualTo(expected);
     }
 }

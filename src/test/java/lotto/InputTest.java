@@ -22,10 +22,10 @@ class InputTest {
 
     @DisplayName("아무 입력도 하지않으면 에러가 발생한다.")
     @Test
-    void inputPurchaseAmountByBlank() {
+    void inputByBlank() {
         String inputString = "";
         provideInput(inputString);
-        assertThatThrownBy(() -> input.inputPurchaseAmount())
+        assertThatThrownBy(() -> input.input())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INPUT_EMPTY.getErrMsg());
     }
@@ -48,6 +48,46 @@ class InputTest {
         assertThatThrownBy(() -> input.inputPurchaseAmount())
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(UNDIVIDED_PURCHASE_AMOUNT.getErrMsg());
+    }
+
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
+    @Test
+    void inputWinningNumbersByOverSize() {
+        String inputString = "1,2,3,4,5,6,7";
+        provideInput(inputString);
+        assertThatThrownBy(() -> input.inputWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_NUMBERS_SIZE.getErrMsg());
+    }
+
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void inputWinningNumbersByDuplicatedNumber() {
+        String inputString = "1,2,3,4,5,5";
+        provideInput(inputString);
+        assertThatThrownBy(() -> input.inputWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATE_NUMBERS.getErrMsg());
+    }
+
+    @DisplayName("로또 번호에 46이상의 숫자가있으면 예외가 발생한다.")
+    @Test
+    void inputWinningNumbersByInvalidedNumber_01() {
+        String inputString = "1,2,3,4,5,46";
+        provideInput(inputString);
+        assertThatThrownBy(() -> input.inputWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_NUMBERS_VALUE.getErrMsg());
+    }
+
+    @DisplayName("로또 번호에 1이하의 숫자가있으면 예외가 발생한다.")
+    @Test
+    void inputWinningNumbersByInvalidedNumber_02() {
+        String inputString = "-1,2,3,4,5,6";
+        provideInput(inputString);
+        assertThatThrownBy(() -> input.inputWinningNumbers())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_NUMBERS_VALUE.getErrMsg());
     }
 
     @AfterEach

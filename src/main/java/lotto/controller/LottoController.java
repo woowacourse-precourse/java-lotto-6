@@ -22,44 +22,33 @@ public class LottoController {
     }
 
     public void run() {
-        Money money = getMoney();
-        List<Lotto> lottos = generateLottos(money);
-        WinLotto winLotto = getWinLotto();
+        Money money = createMoney();
+        List<Lotto> lottos = createLottos(money);
+        WinLotto winLotto = createWinLotto();
         showResults(lottos, winLotto, money);
     }
 
-    private Money getMoney() {
-        while (true) {
-            try {
-                return Money.from(inputView.getPurchaseAmount());
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+    private Money createMoney() {
+        try {
+            return lottoService.createMoney(inputView.getPurchaseAmount());
+        } catch (IllegalArgumentException error) {
+            outputView.printError(error.getMessage());
+            return createMoney();
         }
     }
 
-    private List<Lotto> generateLottos(Money money) {
-        while (true) {
-            try {
-                List<Lotto> lottos = lottoService.generateWith(money);
-                outputView.print(lottos);
-                return lottos;
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
-        }
+    private List<Lotto> createLottos(Money money) {
+        List<Lotto> lottos = lottoService.createLottos(money);
+        outputView.print(lottos);
+        return lottos;
     }
 
-    private WinLotto getWinLotto() {
-        while (true) {
-            try {
-                return lottoService.createWinLottoWith(
-                        inputView.getWinLottoNumber(),
-                        inputView.getBonusBall()
-                );
-            } catch (IllegalArgumentException e) {
-                outputView.printError(e.getMessage());
-            }
+    private WinLotto createWinLotto() {
+        try {
+            return lottoService.createWinLotto(inputView.getWinNumbers(), inputView.getBonus());
+        } catch (IllegalArgumentException error) {
+            outputView.printError(error.getMessage());
+            return createWinLotto();
         }
     }
 

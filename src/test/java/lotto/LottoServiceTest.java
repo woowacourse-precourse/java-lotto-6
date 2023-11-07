@@ -19,7 +19,7 @@ public class LottoServiceTest {
     @CsvSource({"1000,1", "2000,2", "5000,5", "10000,10"})
     void createTest(int purchaseAmount, int expectedLottoCount) {
         LottoService lottoService = new LottoService(new RandomNumberGenerator());
-        List<Lotto> lottos = lottoService.generateWith(Money.from(purchaseAmount));
+        List<Lotto> lottos = lottoService.createLottos(Money.from(purchaseAmount));
 
         assertThat(lottos.size()).isEqualTo(expectedLottoCount);
     }

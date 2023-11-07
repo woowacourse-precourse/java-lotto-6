@@ -2,6 +2,7 @@ package lotto.service;
 
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.common.CommonUtil;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoResult;
@@ -17,14 +18,17 @@ public class LottoService {
         this.generator = generator;
     }
 
-    public List<Lotto> generateWith(Money money) {
-        return Stream.generate(()-> Lotto.from(generator.generate()))
-            .limit(money.getLottoCount())
-            .toList();
+    public List<Lotto> createLottos(Money money) {
+        return Stream.generate(() -> Lotto.from(generator.generate()))
+                .limit(money.getLottoCount())
+                .toList();
     }
 
-    public WinLotto createWinLottoWith(List<Integer> winLottoNumber, int bonusBall) {
-        return WinLotto.of(Lotto.from(winLottoNumber), LottoNumber.getInstance(bonusBall));
+    public WinLotto createWinLotto(String numberInput, String bonusInput) {
+        List<Integer> winLottoNumbers = CommonUtil.convertToNumbers(numberInput);
+        int bonusBall = CommonUtil.convertToNumber(bonusInput);
+
+        return WinLotto.of(Lotto.from(winLottoNumbers), LottoNumber.getInstance(bonusBall));
     }
 
     public LottoResult calculateResult(List<Lotto> lottos, WinLotto winLotto) {
@@ -33,5 +37,10 @@ public class LottoService {
 
     public Profit calculateProfit(LottoResult lottoResult, Money money) {
         return Profit.of(money.getValue(), lottoResult.getTotalPrize());
+    }
+
+    public Money createMoney(String input) {
+        long money = CommonUtil.convertToLong(input);
+        return Money.from(money);
     }
 }

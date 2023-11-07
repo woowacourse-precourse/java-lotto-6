@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.util.LottoNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +11,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LottoNumberGeneratorTest {
 
-    @Test
     @DisplayName("unique한 값만을 포함한다.")
+    @Test
     void uniquenessTest() {
         //given
         //when
@@ -21,8 +22,8 @@ class LottoNumberGeneratorTest {
         assertThat(result).doesNotHaveDuplicates();
     }
 
-    @Test
     @DisplayName("지정한 개수의 원소를 포함한다.")
+    @Test
     void numberOfElementTest() {
         //given
         int expectedNumber = 6;
@@ -33,8 +34,8 @@ class LottoNumberGeneratorTest {
                 .hasSize(expectedNumber);
     }
 
-    @Test
     @DisplayName("지정한 범위 내의 수만을 포함한다.")
+    @Test
     void numberRangeTest() {
         //given
         //when

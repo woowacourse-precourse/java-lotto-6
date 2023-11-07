@@ -106,8 +106,10 @@ public class LottoController {
             int matchCount = Judge.compareWinningNumbers(lottoWinningNumbers, randomNumbers);
             boolean isMatchBonusNumber = Judge.compareBonusNumber(lottoWinningNumbers, lottoBonusNumber);
             totalEarnings += LottoResult.getWinningAmount(matchCount, isMatchBonusNumber);
+
         }
     }
+
 
     public void printOutWinningResult() {
         System.out.println(LOTTO_RESULTS_MESSAGE);

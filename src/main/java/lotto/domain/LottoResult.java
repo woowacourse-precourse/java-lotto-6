@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.exception.ErrorMessage.WRONG_RANK_STATE;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,6 +31,15 @@ public enum LottoResult {
             }
         }
         return 0;
+    }
+
+    public static int getRankCount(int lottoMatchCount, Boolean isMatchBonusNumber) {
+        for (LottoResult result : values()) {
+            if (result.lottoMatchCount == lottoMatchCount && result.isMatchBonusNumber.contains(isMatchBonusNumber)) {
+                return result.rank;
+            }
+        }
+        throw new IllegalStateException(WRONG_RANK_STATE);
     }
 
     public int getRank() {

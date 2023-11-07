@@ -45,4 +45,10 @@ public class InputValidator {
     private static boolean isNumberValidRange(int number){
         return number >= 1 && number <= 45;
     }
+
+    public static void isInputEmpty(String input){
+        if (input.isEmpty()){
+            illegalArgument(EMPTY_INPUT.getMessage());
+        }
+    }
 }

@@ -6,17 +6,17 @@
 
 ---
 ![Generic badge](https://img.shields.io/badge/precourse-week3-green.svg)
-![Generic badge](https://img.shields.io/badge/test-1_passed-blue.svg)
+![Generic badge](https://img.shields.io/badge/test-2_passed-blue.svg)
 ![Generic badge](https://img.shields.io/badge/version-1.0.1-brightgreen.svg)
 
 > 우아한테크코스 6기 프리코스 3주차 미션 <로또>를 구현한 저장소입니다.
 
 # 목차
-- [1️⃣ 기능 목록](#1️⃣기능-목록)
+- [기능 목록](#기능-목록)
 
 ---
 
-# 1️⃣기능-목록
+# 기능-목록
 - 입력 받는 기능을 구현한다.
   - 로또 구입 금액을 입력 받는다.
     - [예외] 입력값이 0일 경우

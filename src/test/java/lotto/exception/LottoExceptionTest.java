@@ -24,13 +24,13 @@ class LottoExceptionTest {
 
     @Test
     @DisplayName("로또번호나 보너스 번호에 숫자가 아닌 문자가 있을경우 테스트")
-    void checkNumberFalseTest() {
+    void numberFalseCheckTest() {
         Assertions.assertThat(lottoException.numberCheck("q")).isFalse();
     }
 
     @Test
     @DisplayName("로또번호가 6자리인지 확인하는 테스트")
-    void checkNumberLengthTest() {
+    void numberLengthCheckTest() {
         Assertions.assertThat(lottoException.numberLengthCheckMain(List.of(1, 2, 3, 4, 5, 6))).isTrue();
     }
 
@@ -42,7 +42,7 @@ class LottoExceptionTest {
 
     @Test
     @DisplayName("보너스 번호가 로또 번호에 포함될경우 테스트")
-    void checkDuplicateBonusNoTest() {
+    void checkDuplicateBonusNumberCheckTest() {
         Assertions.assertThat(lottoException.duplicateBonusNumberCheckMain(List.of(1, 2, 3, 4, 5, 6), 1)).isFalse();
     }
 }

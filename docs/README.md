@@ -8,14 +8,10 @@
 
 ---
 
-**lotto ( controller?)**
+**lotto**
 
-- [ ] 구입 티켓 수 만큼 아래 반복 generateTickets
-
-- [ ] 6가지 랜덤 숫자를 리스트에 넣는다. generateTicket
-
-- [ ] 랜덤 숫자를 반환한다. randomNumber = generateRandomNumber()
-
+- [X] lotto ticket으로써 6가지 숫자를 생성자에서 받는다.
+- [X] 6가지 숫자와 당첨번호, 보너스 당첨번호를 비교하여 몇개가 일치하는지 저장한다.
 ---
 
 **random**

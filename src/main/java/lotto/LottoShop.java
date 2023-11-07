@@ -18,6 +18,10 @@ public class LottoShop {
 		this.winningNumbers = decideWinningNumbers();
 		this.bonusNumber = decideBonusNumber();
 		generateLotto(numberOfLotto);
+		System.out.println(this.getLottos().size() + "개를 구매했습니다.");
+        for (Lotto lotto : this.getLottos()) {
+            System.out.println(lotto.getNumbers());
+        }
 		Console.close();
 	}
 	private int buyLotto(){

@@ -17,12 +17,12 @@ public final class InputLottoPrice {
         return Integer.parseInt(price);
     }
 
-    private void validate(String inputValue) {
-        validateFormat(inputValue);
+    private void validate(String price) {
+        validateFormat(price);
     }
 
-    private void validateFormat(String inputValue) {
-        if (!PATTERN.matcher(inputValue).matches()) {
+    private void validateFormat(String price) {
+        if (!PATTERN.matcher(price).matches()) {
             throw new IllegalArgumentException(ErrorMessage.INTEGER_ERROR);
         }
     }

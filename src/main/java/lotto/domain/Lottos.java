@@ -8,4 +8,8 @@ public class Lottos {
 	public Lottos(List<Lotto> lotts) {
 		this.lotts = lotts;
 	}
+
+	public List<Lotto> getLotts() {
+		return lotts;
+	}
 }

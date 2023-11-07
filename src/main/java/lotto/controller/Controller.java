@@ -13,6 +13,7 @@ import lotto.domain.MoneyValidator;
 import lotto.exception.LottoException;
 import lotto.exception.MoneyException;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Controller {
 	private MoneyValidator moneyValidator;
@@ -27,6 +28,8 @@ public class Controller {
 	public void run() {
 		setUpInputAmount(getUserInputAmount());
 		setUpLottos(inputAmount.getInputAmount());
+		System.out.println();
+		OutputView.printLottos(inputAmount.getInputAmount(), lottos.getLotts());
 	}
 
 	private String getUserInputAmount() {

@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PrizeCalculatorTest {
 
-    //TODO: 테스트를 위해서 이렇게 생성해도 될까?
     private final Calculator prizeCalculator = new PrizeCalculator();
 
     @DisplayName("로또 수익률 계산")

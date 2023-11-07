@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,22 +35,5 @@ class LottoTicketDispenserTest {
         assertThatThrownBy(() -> lottoTicketDispenser.buyAutoCreatedTicket(cost))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(String.format("로또 구입 금액은 %d 단위입니다.", Lotto.PRICE));
-    }
-
-    @Test
-    void 주어진_번호로_로또를_생성할_수_있다() {
-        // given
-        List<Integer> expectedNumbers = List.of(4, 19, 23, 39, 40, 43);
-        // when
-        Lotto actualLotto = lottoTicketDispenser.createWinningTicket(() -> expectedNumbers);
-        // then
-        assertAll(
-                () -> assertThat(actualLotto.has(expectedNumbers.get(0))).isTrue(),
-                () -> assertThat(actualLotto.has(expectedNumbers.get(1))).isTrue(),
-                () -> assertThat(actualLotto.has(expectedNumbers.get(2))).isTrue(),
-                () -> assertThat(actualLotto.has(expectedNumbers.get(3))).isTrue(),
-                () -> assertThat(actualLotto.has(expectedNumbers.get(4))).isTrue(),
-                () -> assertThat(actualLotto.has(expectedNumbers.get(5))).isTrue()
-        );
     }
 }

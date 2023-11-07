@@ -55,7 +55,7 @@ public class Lotto {
                 .collect(Collectors.toSet());
     }
 
-    public boolean has(int number) {
+    private boolean has(int number) {
         return this.numbers.contains(number);
     }
 

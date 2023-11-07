@@ -5,12 +5,15 @@ import java.util.List;
 import java.util.Set;
 import lotto.exception.InvalidSizeLottoNumberException;
 import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.InvalidRangeLottoNumberException;
 import java.util.stream.Collectors;
 
 
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
 
     private final List<Integer> numbers;
 
@@ -22,11 +25,22 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateRange(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new InvalidSizeLottoNumberException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        numbers.forEach(this::validateRange);
+    }
+
+    private void validateRange(Integer number) {
+        if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
+            throw new InvalidRangeLottoNumberException();
         }
     }
 

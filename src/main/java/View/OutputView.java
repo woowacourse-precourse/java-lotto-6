@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 import service.EnumToList;
 
-public class OuputView {
+public class OutputView {
 
     private static final int PERCENTAGE = 100;
     private static final double FOR_ROUND_OFF = 100;

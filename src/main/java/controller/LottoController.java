@@ -1,7 +1,7 @@
 package controller;
 
 import View.InputView;
-import View.OuputView;
+import View.OutputView;
 import domain.Amount;
 import domain.BonusNumber;
 import domain.Lotto;
@@ -19,20 +19,20 @@ public class LottoController {
         Lottos lottos = createLottos(amount);
         WinningNumbers winningNumbers = createWinningNumbers();
         Rank rank = CompareLottoServcie.calculateRank(amount, lottos, winningNumbers);
-        OuputView.lottosResult(amount, rank);
+        OutputView.lottosResult(amount, rank);
     }
 
     private Amount buyLotto() {
         InputView.buyMessage();
         Amount amount = UserInputService.amount();
-        OuputView.buyMessage(amount);
+        OutputView.buyMessage(amount);
 
         return amount;
     }
 
     private Lottos createLottos(Amount amount) {
         Lottos lottos = MakeObjectService.lottos(amount);
-        OuputView.lottosNumbers(lottos);
+        OutputView.lottosNumbers(lottos);
 
         return lottos;
     }

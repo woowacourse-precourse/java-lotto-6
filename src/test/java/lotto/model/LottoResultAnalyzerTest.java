@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.model.dto.LottoResultDTO;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -169,5 +170,41 @@ class LottoResultAnalyzerTest {
 
         // then
         assertEquals(expectedReturnRate, actualReturnRate);
+    }
+
+    @DisplayName("결과지인 LottoResultDTO 생성 확인")
+    @ParameterizedTest(name = "{1} {2}%")
+    @MethodSource("makeResultDTO")
+    public void 결과지_생성(EnumMap<PrizeCategory, Integer> matchResult, String status, double expectedReturnRate) {
+        // given
+        LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
+
+        // when
+        LottoResultDTO lottoResultDTO = lottoResultAnalyzer.makeResultDTO(matchResult, expectedReturnRate);
+
+        // then
+        assertAll(
+                "3개 일치 5개, 5개 일치 2개, 수익률 62.5% 확인",
+                () -> assertThat(lottoResultDTO.getMatchResult(PrizeCategory.THREE_MATCH))
+                        .isEqualTo(matchResult.get(PrizeCategory.THREE_MATCH)),
+                () -> assertThat(lottoResultDTO.getMatchResult(PrizeCategory.FIVE_MATCH_NO_BONUS))
+                        .isEqualTo(matchResult.get(PrizeCategory.FIVE_MATCH_NO_BONUS)),
+                () -> assertThat(lottoResultDTO.getTotalReturnRate())
+                        .isEqualTo(expectedReturnRate)
+        );
+    }
+
+    static Stream<Arguments> makeResultDTO() {
+        EnumMap<PrizeCategory, Integer> matchResultFirstCase = new EnumMap<>(PrizeCategory.class);
+        matchResultFirstCase.put(PrizeCategory.THREE_MATCH, 5);
+        matchResultFirstCase.put(PrizeCategory.FIVE_MATCH_NO_BONUS, 2);
+
+        return Stream.of(
+                Arguments.of(
+                        matchResultFirstCase,
+                        "5등: 5개, 2등: 2개, 총 수익률: ",
+                        62.5
+                )
+        );
     }
 }

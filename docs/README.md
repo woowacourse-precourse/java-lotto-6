@@ -102,14 +102,14 @@
 ### 🎮 Application Layer
 
 * Presentation Layer로부터 전달받은 요청을 처리한다.
-* Domain Layer와 Repository Layer에 요청을 전달한다.
+* Domain Layer에 요청을 전달한다.
+* Repository Layer 대신, Domain Layer의 인스턴스를 저장한다.
 
 #### LottoService
 
 ### 💡 Domain Layer
 
 * Application Layer로부터 전달받은 요청을 처리한다.
-* Repository Layer에 요청을 전달한다.
 
 #### Lotto (VO)
 
@@ -166,8 +166,5 @@
 
 ### 📁 Repository Layer
 
-* Domain Class의 인스턴스가 여기에 저장된다.
-
-#### TicketRepository
-
-#### DrawResultRepository
+* DB 저장 등의 기능이 필요하지 않으므로 구현하지 않는다.
+* 인스턴스는 필요한 기간 동안 Application Layer에서 저장한다.

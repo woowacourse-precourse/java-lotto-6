@@ -23,10 +23,10 @@ public class Store {
     }
 
     private LottoTickets makeLottoTickets() {
-        List<Lotto> lottoList = IntStream.range(0, lottoCount)
+        List<Lotto> lottos = IntStream.range(0, lottoCount)
                 .mapToObj(i -> new Lotto(makeLotto()))
                 .collect(Collectors.toList());
 
-        return new LottoTickets(lottoList);
+        return new LottoTickets(lottos);
     }
 }

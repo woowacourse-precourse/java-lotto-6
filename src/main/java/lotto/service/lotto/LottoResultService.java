@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.service.lotto;
 
 import lotto.constant.RankCategory;
 import lotto.model.*;

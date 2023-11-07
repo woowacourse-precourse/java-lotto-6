@@ -4,6 +4,7 @@ import lotto.constant.RankCategory;
 import lotto.model.LottoResult;
 import lotto.model.ProfitRate;
 import lotto.model.LottoPurchaseAmount;
+import lotto.service.lotto.LottoResultService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

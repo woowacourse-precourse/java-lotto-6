@@ -44,7 +44,7 @@ public class OutputView {
         printMessage(DIVISION_LINE.getMessage());
     }
 
-    public static void printLottoResult(LottoResult lottoResult, ProfitRate profitRate) {
+    public static void printLottoResult(LottoResult lottoResult) {
         StringBuilder sb = new StringBuilder();
         for (RankCategory rankCategory : RankCategory.values()) {
             if (rankCategory == RankCategory.NONE) {
@@ -67,6 +67,11 @@ public class OutputView {
                     .append(count)
                     .append("개\n");
         }
+        printMessage(sb.toString().trim());
+    }
+
+    public static void printProfitRate(ProfitRate profitRate) {
+        StringBuilder sb = new StringBuilder();
         sb.append("총 수익률은 ")
                 .append(String.format("%.1f", profitRate.getRate()))
                 .append("%입니다.");

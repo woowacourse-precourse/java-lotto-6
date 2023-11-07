@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.WinningNumbers;
 import lotto.model.LottoBundle;
+import lotto.service.lotto.LottoResultService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

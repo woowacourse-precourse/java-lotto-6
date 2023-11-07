@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.model.Lotto;
 import lotto.model.LottoPurchaseAmount;
 import lotto.model.LottoTicketCount;
+import lotto.service.lotto.LottoTicketService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;

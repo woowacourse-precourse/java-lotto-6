@@ -3,9 +3,9 @@
 - [x] 로또 구입 금액 입력
  - [x] 구입 금액 `Integer` 형태로 변환 
    - [x] 구입 금액이 정수 형태가 아닐 경우 `IllegalArgumentException` `구입 금액이 정수 형태가 아닙니다`
-- [ ] 당첨 번호 입력
-  - [ ] 당첨 번호 `Integer` 형태로 변환
-    - [ ] 당첨 번호가 정수 형태가 아닌 경우 `IllegalArgumentException` `당첨 번호가 정수 형태가 아닙니다`
+- [x] 당첨 번호 입력
+  - [x] 당첨 번호 `Integer` 형태로 변환
+    - [x] 당첨 번호가 정수 형태가 아닌 경우 `IllegalArgumentException` `당첨 번호가 정수 형태가 아닙니다`
 - [ ] 보너스 번호 입력
   - [ ] 보너스 번호 `Integer` 형태로 변환 
     - [ ] 보너스 번호가 정수 형태가 아닌 경우 `IllegalArguemtnException` `보너스 번호가 정수 형태가 아닙니다`

@@ -10,7 +10,7 @@ public class GetNumberOfLottosController implements BasicController {
 
     @Override
     public String handle(Map<String, Object> model) throws IllegalArgumentException {
-        List<String> printMessage = lotteryService.getNumberOfLottos();
+        List<String> printMessage = lotteryService.getNumberOfLottery();
 
         model.put("messages", printMessage);
         return "printLottos";

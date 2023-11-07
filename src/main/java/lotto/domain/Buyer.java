@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Buyer {
     private int desiredPurchaseAmount;
-    private int numberOfLotto;
+    private int numberOfLottery;
     private double rateOfReturn;
     private List<Lotto> lottos = new ArrayList<>();
     private Map<Integer, LotteryRankInfo> rankingAccumulator = new HashMap<>();
@@ -30,12 +30,12 @@ public class Buyer {
         this.desiredPurchaseAmount = desiredPurchaseAmount;
     }
 
-    public int getNumberOfLotto() {
-        return numberOfLotto;
+    public int getNumberOfLottery() {
+        return numberOfLottery;
     }
 
-    public void setNumberOfLotto(int numberOfLotto) {
-        this.numberOfLotto = numberOfLotto;
+    public void setNumberOfLottery(int numberOfLottery) {
+        this.numberOfLottery = numberOfLottery;
     }
 
     public double getRateOfReturn() {

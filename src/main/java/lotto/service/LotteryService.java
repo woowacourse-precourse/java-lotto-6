@@ -4,22 +4,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Buyer;
 import lotto.dto.LotteryWinningNumbers;
 import lotto.domain.Lotto;
-import lotto.domain.LotteryRankInfo;
-import lotto.repository.LottoRepository;
+import lotto.repository.LotteryRepository;
 import lotto.validator.Validations;
 import lotto.view.ErrorView;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 
 import static lotto.enums.ErrorMessage.*;
 import static lotto.enums.GuideMessage.INFORM_PURCHASED_LOTTOS_NUMBERS_MESSAGE;
 
 public class LotteryService {
     private static final LotteryService singleton = new LotteryService();
-    private final LottoRepository repository = LottoRepository.getInstance();
+    private final LotteryRepository repository = LotteryRepository.getInstance();
     private final ErrorView errorView = ErrorView.getInstance();
     private final Validations validations = Validations.getInstance();
     private final ResultCalculationService resultCalculationService = ResultCalculationService.getInstance();
@@ -36,9 +34,9 @@ public class LotteryService {
 
         Buyer buyer = repository.getBuyer();
         buyer.setDesiredPurchaseAmount(desiredPurchaseAmount);
-        buyer.setNumberOfLotto(desiredPurchaseAmount / 1000);
+        buyer.setNumberOfLottery(desiredPurchaseAmount / 1000);
 
-        createNewLottos(buyer.getLottos(), buyer.getNumberOfLotto());
+        createNewLottos(buyer.getLottos(), buyer.getNumberOfLottery());
     }
 
     private void createNewLottos(List<Lotto> lottos, int numberOfLotto) {
@@ -68,8 +66,8 @@ public class LotteryService {
         validations.validateEnteredBonusNumber(winningNumbers, input);
     }
 
-    public List<String> getNumberOfLottos() {
-        int numberOfLotto = repository.getBuyer().getNumberOfLotto();
+    public List<String> getNumberOfLottery() {
+        int numberOfLotto = repository.getBuyer().getNumberOfLottery();
 
         return List.of(String.format(INFORM_PURCHASED_LOTTOS_NUMBERS_MESSAGE.getMessage(), numberOfLotto));
     }

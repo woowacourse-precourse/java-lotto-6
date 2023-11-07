@@ -3,15 +3,15 @@ package lotto.repository;
 import lotto.domain.Buyer;
 import lotto.dto.LotteryWinningNumbers;
 
-public class LottoRepository {
-    private static final LottoRepository singleton = new LottoRepository();
+public class LotteryRepository {
+    private static final LotteryRepository singleton = new LotteryRepository();
 
     private Buyer buyer = new Buyer();
     private LotteryWinningNumbers lotteryWinningNumbers = new LotteryWinningNumbers();
 
-    private LottoRepository(){}
+    private LotteryRepository(){}
 
-    public static LottoRepository getInstance() {
+    public static LotteryRepository getInstance() {
         return singleton;
     }
 

@@ -10,9 +10,9 @@ public class Application {
     private static String errorMessage;
 
     public static void main(String[] args) {
-        String[] inputNumberString,resultString={"3개 일치 (5,000원) - ","4개 일치 (50,000원) - ","5개 일치 (1,500,000원) - ","5개 일치, 보너스 볼 일치 (30,000,000원) - ","6개 일치 (2,000,000,000원) - "};
-        Integer[] result={0,0,0,0,0},pride={5000,50000,1500000,30000000,200000000};
-        int sum=0;
+        String[] inputNumberString, resultString = {"3개 일치 (5,000원) - ", "4개 일치 (50,000원) - ", "5개 일치 (1,500,000원) - ", "5개 일치, 보너스 볼 일치 (30,000,000원) - ", "6개 일치 (2,000,000,000원) - "};
+        Integer[] result = {0, 0, 0, 0, 0}, pride = {5000, 50000, 1500000, 30000000, 200000000};
+        int sum = 0;
         System.out.println("구입금액을 입력해 주세요.");
         Integer inputMoney = InputMoney();
         Lotto lottoArray[] = new Lotto[inputMoney / lottoPrice];
@@ -31,50 +31,62 @@ public class Application {
         }
         System.out.println("\n보너스 번호를 입력해 주세요.");
         Integer bonusNumber = Integer.valueOf(InputBonusNumber(inputNumber));
-        for(int i=0;i<lottoArray.length;i++){
-            int n = IsResult(lottoArray[i],inputNumber,bonusNumber);
-            if(n==0)continue;
-            result[n-1]++;
+        for (int i = 0; i < lottoArray.length; i++) {
+            int n = IsResult(lottoArray[i], inputNumber, bonusNumber);
+            if (n == 0) continue;
+            result[n - 1]++;
         }
         System.out.println("\n당첨통계\n---");
-        for(int i=0;i<result.length;i++){
-            System.out.println(resultString[i]+result[i]+"개");
-            sum+=result[i]*pride[i];
+        for (int i = 0; i < result.length; i++) {
+            System.out.println(resultString[i] + result[i] + "개");
+            sum += result[i] * pride[i];
         }
-        System.out.println("총 수익률은 "+String.format("%.1f", Double.valueOf(sum/Double.valueOf(inputMoney))*100)+"% 입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", Double.valueOf(sum / Double.valueOf(inputMoney)) * 100) + "%입니다.");
 
     }
 
     private static int IsResult(Lotto lotto, Integer[] inputNumber, Integer bonusNumber) {
-        if(CheckNumber(lotto,inputNumber)==6)return 5;
-        if(CheckNumber(lotto,inputNumber)==5&&lotto.getNumbers().contains(bonusNumber))return 4;
-        if(CheckNumber(lotto,inputNumber)==5)return 3;
-        if(CheckNumber(lotto,inputNumber)==4)return 2;
-        if(CheckNumber(lotto,inputNumber)==3)return 1;
+        if (CheckNumber(lotto, inputNumber) == 6) return 5;
+        if (CheckNumber(lotto, inputNumber) == 5 && lotto.getNumbers().contains(bonusNumber)) return 4;
+        if (CheckNumber(lotto, inputNumber) == 5) return 3;
+        if (CheckNumber(lotto, inputNumber) == 4) return 2;
+        if (CheckNumber(lotto, inputNumber) == 3) return 1;
         return 0;
     }
 
     private static int CheckNumber(Lotto lotto, Integer[] inputNumber) {
-        int count=0;
-        for (int i=0;i<inputNumber.length;i++){
-            if(lotto.getNumbers().contains(inputNumber[i]))count++;
+        int count = 0;
+        for (int i = 0; i < inputNumber.length; i++) {
+            if (lotto.getNumbers().contains(inputNumber[i])) count++;
         }
         return count;
     }
 
     private static int InputMoney() {
-        Integer inputMoney = Integer.valueOf(Console.readLine());
+        String inputMoney = Console.readLine();
         Integer money;
         try {
-            if (inputMoney % lottoPrice != 0) {
+            if(IsInteger(inputMoney)){
+                throw new IllegalArgumentException("[ERROR] 입력은 숫자만 가능합니다.");
+            }
+            if (Integer.valueOf(inputMoney) % lottoPrice != 0) {
                 throw new IllegalArgumentException("[ERROR] 입력 단위는 1,000원 단위여야 합니다.");
             }
-            money = inputMoney;
+            money = Integer.valueOf(inputMoney);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             money = InputMoney();
         }
         return money;
+    }
+
+    public static boolean IsInteger(String strValue) {
+        try {
+            Integer.parseInt(strValue);
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
+        }
     }
 
     private static void Sort(Lotto lotto) {

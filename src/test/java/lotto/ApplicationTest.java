@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
@@ -35,14 +37,14 @@ class ApplicationTest extends NsTest {
                             "총 수익률은 62.5%입니다."
                     );
                 },
-                List.of(8, 21, 23, 41, 42, 43),
-                List.of(3, 5, 11, 16, 32, 38),
-                List.of(7, 11, 16, 35, 36, 44),
-                List.of(1, 8, 11, 31, 41, 42),
-                List.of(13, 14, 16, 38, 42, 45),
-                List.of(7, 11, 30, 40, 42, 43),
-                List.of(2, 13, 22, 32, 38, 45),
-                List.of(1, 3, 5, 14, 22, 45)
+                new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43)),
+                new ArrayList<>(Arrays.asList(3, 5, 11, 16, 32, 38)),
+                new ArrayList<>(Arrays.asList(7, 11, 16, 35, 36, 44)),
+                new ArrayList<>(Arrays.asList(1, 8, 11, 31, 41, 42)),
+                new ArrayList<>(Arrays.asList(13, 14, 16, 38, 42, 45)),
+                new ArrayList<>(Arrays.asList(7, 11, 30, 40, 42, 43)),
+                new ArrayList<>(Arrays.asList(2, 13, 22, 32, 38, 45)),
+                new ArrayList<>(Arrays.asList(1, 3, 5, 14, 22, 45))
         );
     }
 
@@ -57,5 +59,95 @@ class ApplicationTest extends NsTest {
     @Override
     public void runMain() {
         Application.main(new String[]{});
+    }
+
+    @Test
+    void 당첨숫자6개미만입력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "[ERROR] 로또 번호는 6개의 숫자를 입력해야 합니다."
+                    );
+                },
+                new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43))
+        );
+    }
+
+    @Test
+    void 당첨숫자로또범위밖입력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,60", "-1,2,3,4,5,6", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+                    );
+                },
+                new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43))
+        );
+    }
+
+    @Test
+    void 당첨숫자중복입력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,5", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "[ERROR] 로또 번호는 중복되지 않은 숫자여야 합니다."
+                    );
+                },
+                new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43))
+        );
+    }
+    @Test
+    void 보너스숫자중복입력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "6", "7");
+                    assertThat(output()).contains(
+                            "[ERROR] 보너스 번호는 로또 번호와 중복되지 않은 숫자여야 합니다."
+                    );
+                },
+                new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43))
+        );
+    }
+
+    @Test
+    void 보너스숫자범위밖입력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "70", "7");
+                    assertThat(output()).contains(
+                            "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."
+                    );
+                },
+                new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43))
+        );
+    }
+
+    @Test
+    void 금액숫자이외입력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000j", "1000", "1,2,3,4,5,6", "70", "7");
+                    assertThat(output()).contains(
+                            "[ERROR] 입력은 숫자만 가능합니다."
+                    );
+                },
+                new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43))
+        );
+    }
+
+    @Test
+    void 금액1000단위이외입력() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1100", "1000", "1,2,3,4,5,6", "70", "7");
+                    assertThat(output()).contains(
+                            "[ERROR] 입력 단위는 1,000원 단위여야 합니다."
+                    );
+                },
+                new ArrayList<>(Arrays.asList(8, 21, 23, 41, 42, 43))
+        );
     }
 }

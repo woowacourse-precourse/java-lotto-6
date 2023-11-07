@@ -38,9 +38,10 @@ public class LottoService {
 		validator.isThisSizeSix(numbers);
 
 		for (int i = 0; i < numbers.length; i++) {
-			validator.isComposedOfNumbers(numbers[i]);
-			validator.isInRange(numbers[i]);
-			userNumbers.add(Integer.parseInt(numbers[i]));
+			String check = numbers[i].strip();
+			validator.isComposedOfNumbers(check);
+			validator.isInRange(check);
+			userNumbers.add(Integer.parseInt(check));
 		}
 		validator.existDuplicateNumber(userNumbers);
 		return userNumbers;

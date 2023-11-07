@@ -12,16 +12,16 @@ public enum LottoPrize {
     FIRST(6, 2_000_000_000),
     ETC(0, 0);
 
-    private final int prizeRank;
+    private final int prizeCount;
     private final double prizeMoney;
 
     LottoPrize(int matchCount, double prizeMoney) {
-        this.prizeRank = matchCount;
+        this.prizeCount = matchCount;
         this.prizeMoney = prizeMoney;
     }
 
-    public int getPrizeRank() {
-        return prizeRank;
+    public int getPrizeCount() {
+        return prizeCount;
     }
 
     public double getPrizeMoney() {
@@ -33,7 +33,7 @@ public enum LottoPrize {
             return SECOND;
         }
         return Arrays.stream(values())
-                .filter(it -> it.prizeRank == matchCount)
+                .filter(it -> it.prizeCount == matchCount)
                 .findFirst()
                 .orElse(ETC);
     }

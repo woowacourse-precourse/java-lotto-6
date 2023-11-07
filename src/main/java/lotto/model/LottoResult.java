@@ -17,9 +17,7 @@ public class LottoResult {
         this.totalPrizeMoney = 0;
         this.yieldRate = 0;
         this.prizeResult = new EnumMap<LottoPrize, Integer>(LottoPrize.class);
-        for (LottoPrize prize : LottoPrize.values()) {
-            prizeResult.put(prize, 0);
-        }
+        initPrizeResult();
         calculateWinningResult(winningLotto, lottos);
     }
 
@@ -27,15 +25,25 @@ public class LottoResult {
         return prizeResult;
     }
 
+    private void initPrizeResult() {
+        for (LottoPrize prize : LottoPrize.values()) {
+            this.prizeResult.put(prize, 0);
+        }
+    }
+
     private void calculateWinningResult(WinningLotto winningLotto, List<Lotto> lottos) {
+        calulatePrizeResult(winningLotto, lottos);
+        calculateTotalPrizeMoney();
+        calculateYieldRate();
+    }
+
+    private void calulatePrizeResult(WinningLotto winningLotto, List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             int matchCount = winningLotto.lottoNumbersMatch(lotto);
             boolean matchBonus = winningLotto.lottoBonusNumberMatch(lotto);
             LottoPrize prize = LottoPrize.valueOf(matchCount, matchBonus);
             prizeResult.put(prize, prizeResult.get(prize) + 1);
         }
-        calculateTotalPrizeMoney();
-        calculateYieldRate();
     }
 
     private void calculateTotalPrizeMoney() {
@@ -50,25 +58,32 @@ public class LottoResult {
         this.yieldRate = Math.round(totalPrizeMoney / payment * roundingFactor) / decimalAdjustment;
     }
 
-    private String getYieldRate() {
+    private String getYieldRateResult() {
+        StringBuilder yieldRateResult = new StringBuilder();
         NumberFormat formatter = NumberFormat.getNumberInstance(Locale.KOREA);
-        return "총 수익률은 " + formatter.format(yieldRate) + "%입니다.";
+        yieldRateResult.append("총 수익률은 " + formatter.format(yieldRate) + "%입니다.");
+        return yieldRateResult.toString();
+    }
+
+    private String getPrizeCountResult(LottoPrize prize) {
+        StringBuilder prizeCountResult = new StringBuilder();
+        prizeCountResult.append(prize.getPrizeCount() + "개 일치");
+        if (prize == LottoPrize.SECOND) {
+            prizeCountResult.append(", 보너스 볼 일치");
+        }
+        return prizeCountResult.toString();
     }
 
     @Override
     public String toString() {
         StringBuilder winningResult = new StringBuilder();
         for (LottoPrize prize : LottoPrize.values()) {
-            if (prize == LottoPrize.ETC) {
-                continue;
+            if (prize != LottoPrize.ETC) {
+                winningResult.append(getPrizeCountResult(prize))
+                        .append(" " + prize + " - ")
+                        .append(prizeResult.get(prize) + "개\n");
             }
-            winningResult.append(prize.getPrizeRank() + "개 일치");
-            if (prize == LottoPrize.SECOND) {
-                winningResult.append(", 보너스 볼 일치");
-            }
-            winningResult.append(" " + prize + " - ")
-                    .append(prizeResult.get(prize) + "개\n");
         }
-        return winningResult + getYieldRate();
+        return winningResult + getYieldRateResult();
     }
 }

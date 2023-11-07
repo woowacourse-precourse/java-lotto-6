@@ -78,7 +78,7 @@ public class Controller {
         while (true) {
             try {
                 return new SelectedBonus(inputView.readSelectedBonus(),
-                        selectedNumbers.giveSplittedNumbers());
+                        selectedNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

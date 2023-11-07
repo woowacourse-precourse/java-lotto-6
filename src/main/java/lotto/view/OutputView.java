@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.domain.IssuedLottos;
 import lotto.utility.io.Writer;
 import lotto.utility.vo.LottoResponse;
+import lotto.utility.vo.ProfitResponse;
 import lotto.utility.vo.WinningResponse;
 
 public class OutputView {
@@ -25,5 +26,9 @@ public class OutputView {
         winningResponse.createdMessage()
             .stream()
             .forEach(Writer::println);
+    }
+
+    public void informProfit(ProfitResponse profitResponse) {
+        Writer.println(profitResponse.createMessage());
     }
 }

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Issue {
-    private static int lottoQuantity;
     public static int initialCash;
     public static List<List<Integer>> lottoGroup = new ArrayList<>();
+    private static int lottoQuantity;
 
     static void inputCash() {
         System.out.println("구입금액을 입력해 주세요.");

@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pick {
-    private static String groupNumbers;
+    public static List<Integer> luckyNumber = new ArrayList<Integer>();
     public static int bonusNumber;
     static String[] separatedNumbers;
-    public static List<Integer> luckyNumber = new ArrayList<Integer>();
+    private static String groupNumbers;
 
     static void inputNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");

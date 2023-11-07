@@ -9,7 +9,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 /*
-- [ ] 로또 구입 금액을 입력받는 기능
+- [v] 로또 구입 금액을 입력받는 기능
     - [v] "구입금액을 입력해 주세요." 메시지를 출력하는 기능
 - [v] 랜덤 메서드를 이용해서 중복되지 않는 숫자를 뽑는 기능 -> 컨트롤러에서 하기
 - [v] 뽑은 숫자를 저장하는 기능 -> 이것도 컨트롤러
@@ -86,6 +86,11 @@ public class LottoController {
         for (int i = 0; i < lottoCounts; i++) {
             saveLottoNumbers(GenerateRandomNumber());
         }
+    }
+    public void run() {
+        printLottoPrices();
+        inputLottoPrices();
+        iterateLottos();
     }
 
 

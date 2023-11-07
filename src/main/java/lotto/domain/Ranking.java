@@ -1,9 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public enum Ranking {
     FIRST(2000000000, 6, false),

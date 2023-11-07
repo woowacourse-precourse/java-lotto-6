@@ -7,6 +7,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Ranking;
+import lotto.domain.prizeNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

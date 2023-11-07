@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class prizeNumbers {
     private Lotto lotto;

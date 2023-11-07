@@ -1,7 +1,4 @@
-package lotto;
-
-import java.util.Collection;
-import java.util.List;
+package lotto.domain;
 
 public class BonusNumber extends LottoNumber{
     public BonusNumber(int number) {

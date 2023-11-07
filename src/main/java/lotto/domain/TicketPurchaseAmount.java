@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domain;
 
 public class TicketPurchaseAmount {
     private static final int DIVISOR = 1000;

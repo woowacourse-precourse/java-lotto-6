@@ -36,11 +36,11 @@ public class WinResult {
         winResult.put(rankKey, winResult.get(rankKey) + incrementWinResult);
     }
 
-    public boolean isOverTwo(int sameNumberNum) {
-        return sameNumberNum > LOTTO_SAME_NUMBER_TWO.getValue();
+    public boolean isOverTwo(int sameNumberCount) {
+        return sameNumberCount > LOTTO_SAME_NUMBER_TWO.getValue();
     }
 
-    public boolean isFiveSame(int sameNumberNum) {
-        return sameNumberNum == LOTTO_SAME_NUMBER_FIVE.getValue();
+    public boolean isFiveSame(int sameNumberCount) {
+        return sameNumberCount == LOTTO_SAME_NUMBER_FIVE.getValue();
     }
 }

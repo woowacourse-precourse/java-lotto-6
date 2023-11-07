@@ -9,8 +9,8 @@ public class LottoWinResultService {
 
     public WinResult getWinResult(List<Lotto> lottos, WinningLotto winningLotto) {
         for (Lotto userLotto : lottos) {
-            int sameNumberNum = winningLotto.matchSameNumberNum(userLotto);
-            changeWinResultBySameNumberNum(winningLotto, userLotto, sameNumberNum);
+            int sameNumberCount = winningLotto.matchSameNumberCount(userLotto);
+            changeWinResultBySameNumberCount(winningLotto, userLotto, sameNumberCount);
         }
 
         return winResult;
@@ -21,9 +21,9 @@ public class LottoWinResultService {
         return profitRate;
     }
 
-    private void changeWinResultBySameNumberNum(WinningLotto winningLotto, Lotto userLotto, int sameNumberNum) {
-        if (winResult.isOverTwo(sameNumberNum)) {
-            int rankKey = checkSameNumberCountFiveAndContainBonusNumber(winningLotto, userLotto, sameNumberNum);
+    private void changeWinResultBySameNumberCount(WinningLotto winningLotto, Lotto userLotto, int sameNumberCount) {
+        if (winResult.isOverTwo(sameNumberCount)) {
+            int rankKey = checkSameNumberCountFiveAndContainBonusNumber(winningLotto, userLotto, sameNumberCount);
             increaseWinResultValueByRankKey(rankKey);
         }
     }

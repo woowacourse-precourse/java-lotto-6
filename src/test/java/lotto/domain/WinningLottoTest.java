@@ -20,14 +20,14 @@ public class WinningLottoTest {
     private WinningLotto winningLotto = new WinningLotto(winLotto);
 
     @ParameterizedTest
-    @MethodSource("lottoAndSameNumberNumProvider")
-    void checkMatchingSameNumberNum(Lotto userLotto, int answer) {
-        int sameNumberNum = winningLotto.matchSameNumberNum(userLotto);
+    @MethodSource("lottoAndSameNumberCountProvider")
+    void checkMatchingSameNumberCount(Lotto userLotto, int answer) {
+        int sameNumberCount = winningLotto.matchSameNumberCount(userLotto);
 
-        assertThat(answer).isEqualTo(sameNumberNum);
+        assertThat(answer).isEqualTo(sameNumberCount);
     }
 
-    private static Stream<Arguments> lottoAndSameNumberNumProvider() {
+    private static Stream<Arguments> lottoAndSameNumberCountProvider() {
         return Stream.of(
                 arguments(new Lotto(new ArrayList<>(List.of(1, 3, 6, 7, 44, 45))), 3),
                 arguments(new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 45))), 5),

@@ -59,21 +59,58 @@ public class Lottos {
     }
 
     private void calculateWinning(int count) {
-        if (count == 3) {
-            threeWins++;
+        if(checkFifthPlaceCondition(count)){
             return;
         }
-        if (count == 4) {
-            fourWins++;
+        if(checkFourthPlaceCondition(count)){
             return;
         }
-        if (count == 5) {
-            fiveWins++;
+        if(checkThirdAndSecondPlaceCondition(count)){
             return;
         }
+        checkFirstPlaceCondition(count);
+    }
+
+    private void checkFirstPlaceCondition(int count) {
         if (count == 6) {
             sixWins++;
         }
+    }
+
+    private boolean checkThirdAndSecondPlaceCondition(int count) {
+        if (count == 5) {
+            if (checkSecondPlaceCondition(count)) {
+                fiveAndBonusWins++;
+                return true;
+            }
+            fiveWins++;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkSecondPlaceCondition(int count) {
+        if (bonusWins) {
+            fiveAndBonusWins++;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkFourthPlaceCondition(int count) {
+        if (count == 4) {
+            fourWins++;
+            return true;
+        }
+        return false;
+    }
+
+    private boolean checkFifthPlaceCondition(int count) {
+        if (count == 3) {
+            threeWins++;
+            return true;
+        }
+        return false;
     }
 
     public void generate() {

@@ -33,10 +33,8 @@ public class Lotto {
     }
 
     private void validateNumbers(List<Integer> numbers) {
-        for(int number : numbers) {
-            if (!LottoNumbers.contains(number)) {
-                throw new IllegalArgumentException();
-            }
+        if (!numbers.stream().allMatch(LottoNumbers::contains)) {
+            throw new IllegalArgumentException();
         }
     }
 

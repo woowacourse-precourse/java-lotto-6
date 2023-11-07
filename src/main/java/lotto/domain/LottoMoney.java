@@ -27,4 +27,13 @@ public enum LottoMoney {
         }
         return ZERO;
     }
+
+    public int getMatchCount() {
+        return matchNumber;
+    }
+
+
+    public int getMoney() {
+        return money;
+    }
 }

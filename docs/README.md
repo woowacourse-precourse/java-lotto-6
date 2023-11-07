@@ -22,7 +22,7 @@
     - 로또 구입 금액 / 1000 ✔️
   - 당첨 번호 입력 시 중복 체크 ✔️
   - 보너스 번호 입력 시 중복 체크 ✔️
-  - 로또 번호 생성
+  - 로또 번호 생성 ✔️
     - camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange() 활용 ✔️
     - 1~45 사이 정수 6개 생성 ✔️
     - 발행한 로또 수량 만큼 반복 ✔️

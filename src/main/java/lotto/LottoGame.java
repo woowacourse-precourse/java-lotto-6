@@ -1,8 +1,6 @@
 package lotto;
 
 import java.util.*;
-
-import lotto.User;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoGame {

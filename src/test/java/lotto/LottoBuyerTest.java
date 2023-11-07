@@ -35,7 +35,7 @@ class LottoBuyerTest {
         Lotto lotto = new Lotto(List.of(6, 1, 4, 5, 12, 41));
 
         buyer.addMyLottos(lotto);
-        Lotto compareLotto = buyer.getMyLotts().get(0);
+        Lotto compareLotto = buyer.getMyLottos().get(0);
 
         assertThat(compareLotto.getNumbers()).containsExactly(6, 1, 4, 5, 12, 41);
     }

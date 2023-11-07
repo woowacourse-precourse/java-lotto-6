@@ -142,7 +142,7 @@ public class LottoManager {
     }
 
     public void setWinningResult() {
-        for (Lotto lotto : lottoBuyer.getMyLotts()) {
+        for (Lotto lotto : lottoBuyer.getMyLottos()) {
             int matchedCount = lotto.getWinningCount(winningNumbers);
             if(matchedCount < LottoManagerConsts.MIN_CORRECT_COUNT.getConst()) {
                 continue;

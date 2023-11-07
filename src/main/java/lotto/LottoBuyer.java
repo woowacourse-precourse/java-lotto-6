@@ -8,14 +8,14 @@ public class LottoBuyer {
     final String PRINT_MY_LOTTOS = "%d개를 구매했습니다.\n";
     final int LOTTO_PURCHASE_UNIT = 1000;
     private int purchaseAmount;
-    private int purchaseLottoCount;
+    private int publishLottoCount;
     private ArrayList<Lotto> myLottos;
     ErrorMessages errorType;
 
     public LottoBuyer() {
         this.purchaseAmount = 0;
-        this.purchaseLottoCount = 0;
-        this.myLottos = new ArrayList<>();
+        this.publishLottoCount = 0;
+        this.myLottos = new ArrayList<Lotto>();
     }
 
     public void inputPurchaseAmount() {
@@ -61,7 +61,7 @@ public class LottoBuyer {
         return purchaseAmount / LOTTO_PURCHASE_UNIT;
     }
 
-    public ArrayList<Lotto> getMyLotts() {
+    public ArrayList<Lotto> getMyLottos() {
         return myLottos;
     }
 

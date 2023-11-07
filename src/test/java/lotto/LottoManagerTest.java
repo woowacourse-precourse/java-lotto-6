@@ -19,7 +19,7 @@ class LottoManagerTest {
 
         manager.publishLotto();
 
-        assertThat(buyer.getMyLotts().size()).isEqualTo(11);
+        assertThat(buyer.getMyLottos().size()).isEqualTo(11);
     }
 
     @Test

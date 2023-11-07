@@ -14,7 +14,7 @@ class LottoValidationUtilsV2Test {
     @DisplayName("로또 번호가 6개가 아니면 예외를 던진다")
     void should_ThrowException_When_LottoNumbersSizeIsNotSix() {
         // given
-        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5); // 5 numbers, not 6
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5); 
 
         // when & then
         assertThatThrownBy(() -> LottoValidationUtilsV2.checkValidLottoNumbers(numbers))
@@ -36,7 +36,7 @@ class LottoValidationUtilsV2Test {
     @DisplayName("로또 번호가 범위를 벗어나면 예외를 던진다")
     void should_ThrowException_When_LottoNumbersAreOutOfValidRange() {
         // given
-        List<Integer> numbers = Arrays.asList(0, 2, 3, 4, 5, 46); // 0 and 46 are out of valid range
+        List<Integer> numbers = Arrays.asList(0, 2, 3, 4, 5, 46);
 
         // when & then
         assertThatThrownBy(() -> LottoValidationUtilsV2.checkValidLottoNumbers(numbers))
@@ -48,13 +48,26 @@ class LottoValidationUtilsV2Test {
     @DisplayName("보너스 번호가 범위를 벗어나면 예외를 던진다")
     void should_ThrowException_When_BonusNumberIsOutOfValidRange() {
         // given
-        int bonusNumber = 0; // Out of valid range
+        int bonusNumber = 0;
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         // when & then
         assertThatThrownBy(() -> LottoValidationUtilsV2.checkValidBonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외를 던진다")
+    void should_ThrowException_When_BonusNumberIsDuplicatedInWinningNumbers() {
+        // given
+        int bonusNumber = 3;
+        List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        // when & then
+        assertThatThrownBy(() -> LottoValidationUtilsV2.checkValidBonusNumber(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
     }
 
 }

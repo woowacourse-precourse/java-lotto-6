@@ -18,7 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != NUMBER_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자 6개를 입력해주세요.");
         }
     }
 
@@ -32,26 +32,30 @@ public class Lotto {
         }
     }
 
-    public int compareLottoNumber(Lotto lotto){
+    public int compareLottoNumber(Lotto lotto) {
         int count = 0;
-        for (LottoNumber lottoNumber : lotto.numbers){
-            if( containLottoNumber(lottoNumber) ){
+        for (LottoNumber lottoNumber : lotto.numbers) {
+            if (containLottoNumber(lottoNumber)) {
                 count++;
             }
         }
         return count;
     }
-    public boolean containLottoNumber(LottoNumber lottoNumber){
+
+    public boolean containLottoNumber(LottoNumber lottoNumber) {
         return numbers.contains(lottoNumber);
     }
 
     @Override
     public String toString() {
+        List<LottoNumber> sortList = numbers.stream()
+                .sorted()
+                .toList();
         StringBuilder result = new StringBuilder("[");
-        for(LottoNumber lottoNumber : numbers){
+        for (LottoNumber lottoNumber : sortList) {
             result.append(lottoNumber).append(", ");
         }
-        result.delete(result.length()-2, result.length());
+        result.delete(result.length() - 2, result.length());
         result.append("]");
         return result.toString();
     }

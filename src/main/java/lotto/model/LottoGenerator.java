@@ -11,20 +11,22 @@ public class LottoGenerator {
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
 
-    private UserLotto userLotto;
-
-    public LottoGenerator(int purchasePrice) {
+    public static void generateLotto(int purchasePrice) {
         int purchaseCount = purchasePrice / ONE_LOTTO_PRICE;
-        userLotto = new UserLotto();
+
         for (int i = 0; i < purchaseCount; i++) {
-            Lotto newLotto = generateLotto();
-            userLotto.addLotto(newLotto);
+            List<Integer> randomNumbers = pickRandomNumbers();
+            keepLottoInStorage(randomNumbers);
         }
     }
 
-    private Lotto generateLotto() {
-        List<Integer> randomNumbers = Randoms
+    private static void keepLottoInStorage(List<Integer> randomNumbers) {
+        Lotto newLotto = new Lotto(randomNumbers);
+        UserLotto.addLotto(newLotto);
+    }
+
+    private static List<Integer> pickRandomNumbers() {
+        return Randoms
                 .pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_NUMBER_COUNT);
-        return new Lotto(randomNumbers);
     }
 }

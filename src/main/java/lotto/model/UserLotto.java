@@ -3,11 +3,11 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserLotto {
+public class UserLotto { // LottoStorage
 
-    private List<Lotto> lottoGroup = new ArrayList<>();
+    private static List<Lotto> lottoGroup = new ArrayList<>();
 
-    public void addLotto(Lotto lotto) {
+    public static void addLotto(Lotto lotto) {
         lottoGroup.add(lotto);
     }
 

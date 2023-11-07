@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
-import lotto.constants.ErrorConsts;
+import lotto.constants.LottoConsts;
+import lotto.exception.constants.ErrorConsts;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,8 +10,6 @@ import java.util.Set;
 public record LottoNumbers(
         List<LottoNumber> numbers
 ) {
-    private static final int LOTTO_NUMBERS_SIZE = 6;
-
     public LottoNumbers(final List<LottoNumber> numbers) {
         validate(numbers);
         this.numbers = makeUnmodifiable(numbers);
@@ -22,14 +21,14 @@ public record LottoNumbers(
     }
 
     private void validateSize(final List<LottoNumber> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
+        if (numbers.size() != LottoConsts.LOTTO_NUMBERS_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorConsts.LOTTO_NUMBERS_SIZE_NOT_MATCH.getMessage());
         }
     }
 
     private void validateDuplicated(final List<LottoNumber> numbers) {
         Set<LottoNumber> lottoNumbers = Set.copyOf(numbers);
-        if (lottoNumbers.size() != LOTTO_NUMBERS_SIZE) {
+        if (lottoNumbers.size() != LottoConsts.LOTTO_NUMBERS_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorConsts.LOTTO_NUMBERS_DUPLICATED.getMessage());
         }
     }

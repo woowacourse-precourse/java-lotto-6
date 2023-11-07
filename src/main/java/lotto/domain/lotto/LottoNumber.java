@@ -1,13 +1,11 @@
 package lotto.domain.lotto;
 
-import lotto.constants.ErrorConsts;
+import lotto.constants.LottoConsts;
+import lotto.exception.constants.ErrorConsts;
 
 public record LottoNumber(
         int number
 ) {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-
     public LottoNumber {
         validate(number);
     }
@@ -17,7 +15,7 @@ public record LottoNumber(
     }
 
     private void validateRange(final int number) {
-        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+        if (number < LottoConsts.LOTTO_NUMBER_MIN.getValue() || number > LottoConsts.LOTTO_NUMBER_MIN.getValue()) {
             throw new IllegalArgumentException(ErrorConsts.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
         }
     }

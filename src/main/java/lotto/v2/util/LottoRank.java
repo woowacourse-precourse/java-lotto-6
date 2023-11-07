@@ -44,7 +44,7 @@ public enum LottoRank {
                 return rank;
             }
         }
-        
+
         throw new IllegalArgumentException("[ERROR] 일치하는 로또 순위가 없습니다.");
     }
 }

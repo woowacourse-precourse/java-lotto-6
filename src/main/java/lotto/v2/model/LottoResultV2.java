@@ -7,53 +7,32 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResultV2 {
-    // TODO : enum 으로 변경해서 중복 제거.
-    // TODO : equals, hashcode 구현.
-    private static final int MAX_MATCH_COUNT = 6;
-    private Map<Integer, Integer> matchCounts = new HashMap<>();
-    private Map<Integer, Long> prizeMap = initializePrizeMap();
-    private Map<Integer, Integer> secondPrizeWinners = new HashMap<>();
+    private Map<LottoRank, Integer> matchCounts = new HashMap<>();
 
     public LottoResultV2() {
-        for (int i = 0; i <= MAX_MATCH_COUNT; i++) {
-            matchCounts.put(i, 0);
-            secondPrizeWinners.put(5, 0);
+        for (LottoRank rank : LottoRank.values()) {
+            matchCounts.put(rank, 0);
         }
     }
 
-    public Map<Integer, Integer> getWinningResult() {
-        Map<Integer, Integer> winningResult = new HashMap<>();
-        for (int i = 3; i <= MAX_MATCH_COUNT; i++) {
-            winningResult.put(i, matchCounts.getOrDefault(i, 0));
-        }
-        int secondPrizeWinners = matchCounts.getOrDefault(5, 0);
-        winningResult.put(5, secondPrizeWinners); // 5개 맞고 보너스 볼 안 맞은 경우 3등으로 처리.
-        winningResult.put(2, matchCounts.getOrDefault(MAX_MATCH_COUNT, 0)); // 5개 맞고 보너스 볼 맞은 경우 2등으로 처리.
-
-        return winningResult;
-    }
-
-    private Map<Integer, Long> initializePrizeMap() {
-        Map<Integer, Long> prizeMap = new HashMap<>();
-        prizeMap.put(3, 5_000L);
-        prizeMap.put(4, 50_000L);
-        prizeMap.put(5, 1_500_000L);
-        prizeMap.put(6, 2_000_000_000L);
-        return prizeMap;
+    public Map<LottoRank, Integer> getWinningResult() {
+        return matchCounts;
     }
 
     public void updateMatchCount(LottoV2 purchasedLotto, LottoV2 winningLotto, int bonusNumber) {
         int matchCount = purchasedLotto.matchCount(winningLotto);
         boolean bonusMatch = purchasedLotto.containsNumber(bonusNumber);
-        LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
 
-        if (rank != null) {
+        try {
+            LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
             incrementMatchCount(rank);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
 
     private void incrementMatchCount(LottoRank rank) {
-        matchCounts.put(rank.getMatchCount(), matchCounts.getOrDefault(rank.getMatchCount(), 0) + 1);
+        matchCounts.put(rank, matchCounts.getOrDefault(rank, 0) + 1);
     }
 
     public void calculateResults(List<LottoV2> purchasedLottos, LottoV2 winningLotto, int bonusNumber) {
@@ -63,36 +42,37 @@ public class LottoResultV2 {
     }
 
     public void printStatistics() {
-        matchCounts.forEach((matchCount, count) -> {
-            if (prizeMap.containsKey(matchCount) && count > 0) {
-                printMatchStatistics(matchCount, count);
-            }
-        });
-        int secondPrizeCount = secondPrizeWinners.getOrDefault(5, 0);
-        if (secondPrizeCount > 0) {
-            System.out.printf("5개 일치, 보너스 볼 일치 (%s원) - %d개\n", formatPrizeMoney(30_000_000L), secondPrizeCount);
+        for (Map.Entry<LottoRank, Integer> entry : matchCounts.entrySet()) {
+            printStatisticForRank(entry);
         }
     }
 
-    private void printMatchStatistics(int matchCount, int count) {
-        System.out.printf("%d개 일치 (%s원) - %d개\n", matchCount, formatPrizeMoney(prizeMap.get(matchCount)), count);
+    private void printStatisticForRank(Map.Entry<LottoRank, Integer> entry) {
+        if (entry.getValue() > 0) {
+            String matchString = getMatchString(entry.getKey());
+            String prizeMoney = formatPrizeMoney(entry.getKey().getPrizeMoney());
+            System.out.printf("%d개 일치%s (%s원) - %d개\n",
+                    entry.getKey().getMatchCount(),
+                    matchString,
+                    prizeMoney,
+                    entry.getValue());
+        }
+    }
+    
+    private String getMatchString(LottoRank rank) {
+        return rank.isBonusMatch() ? ", 보너스 볼 일치" : "";
     }
 
     private String formatPrizeMoney(long prizeMoney) {
         return String.format("%,d", prizeMoney);
     }
 
-    public double calculateYield(int pricePerLotto, int totalLottoCount) {
-        long totalPrize = calculateTotalPrize();
-        long totalSpent = (long) pricePerLotto * totalLottoCount;
-        return calculateYieldPercentage(totalPrize, totalSpent);
-    }
-
     private long calculateTotalPrize() {
-        return matchCounts.entrySet().stream()
-                .filter(entry -> prizeMap.containsKey(entry.getKey()))
-                .mapToLong(entry -> entry.getValue() * prizeMap.get(entry.getKey()))
-                .sum();
+        long totalPrize = 0L;
+        for (Map.Entry<LottoRank, Integer> entry : matchCounts.entrySet()) {
+            totalPrize += entry.getValue() * entry.getKey().getPrizeMoney();
+        }
+        return totalPrize;
     }
 
     private double calculateYieldPercentage(long totalPrize, long totalSpent) {

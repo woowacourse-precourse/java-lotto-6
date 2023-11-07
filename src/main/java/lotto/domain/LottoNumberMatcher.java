@@ -1,5 +1,10 @@
 package lotto.domain;
 
+import lotto.domain.lottos.BonusLotto;
+import lotto.domain.lottos.Lotto;
+import lotto.domain.lottos.RandomLotto;
+import lotto.domain.lottos.UserLotto;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

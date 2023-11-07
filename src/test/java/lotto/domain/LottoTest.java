@@ -1,6 +1,7 @@
 package lotto.domain;
 
 
+import lotto.domain.lottos.Lotto;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

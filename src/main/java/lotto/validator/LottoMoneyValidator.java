@@ -5,7 +5,6 @@ public class LottoMoneyValidator {
         isNumeric(lottoMoneyInput);
         isThousands(lottoMoneyInput);
         isOverThousands(lottoMoneyInput);
-        isTooBig(lottoMoneyInput);
     }
 
     private static void isNumeric(String lottoMoneyInput) {

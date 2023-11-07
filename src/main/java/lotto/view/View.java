@@ -116,6 +116,7 @@ public class View {
         }
     }
 
+
     private static void printErrorMessage(ErrorMessage errorMessage) {
         System.out.println(ERROR_PREFIX + errorMessage.getMessage());
     }

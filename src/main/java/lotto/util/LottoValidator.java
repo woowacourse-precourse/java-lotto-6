@@ -15,22 +15,7 @@ import java.util.List;
 import java.util.Set;
 import lotto.domain.WinningNumber;
 
-public class Validator {
-
-    public static void validatePositiveInteger(Integer number) {
-        if (number < 1) {
-            throw new IllegalStateException();
-        }
-    }
-
-    public static void validatePositiveIntegerList(List<Integer> numbers) {
-        for (Integer number : numbers) {
-            if (number < 1) {
-                throw new IllegalStateException();
-            }
-        }
-    }
-
+public class LottoValidator {
     public static void validatePurchaseAmount(Integer purchaseAmount) {
         validateOverMinimum(purchaseAmount);
         validateDivisibility(purchaseAmount);
@@ -61,7 +46,7 @@ public class Validator {
     }
 
     private static void validateNumbersRange(List<Integer> numbers) {
-        numbers.forEach(Validator::validateNumberRange);
+        numbers.forEach(LottoValidator::validateNumberRange);
     }
 
     private static void validateNumberRange(Integer number) {
@@ -90,4 +75,5 @@ public class Validator {
             throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_EXCEPTION_MESSAGE.toString());
         }
     }
+
 }

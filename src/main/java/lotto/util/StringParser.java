@@ -14,7 +14,7 @@ public class StringParser {
     public static Integer parsePurchaseAmount(String str) {
         try {
             int parsed = Integer.parseInt(str);
-            Validator.validatePositiveInteger(parsed);
+            TypeValidator.validatePositiveInteger(parsed);
             return parsed;
         } catch (Exception e) {
             throw new IllegalArgumentException(PURCHASE_AMOUNT_FORMAT_EXCEPTION_MESSAGE.toString());
@@ -26,7 +26,7 @@ public class StringParser {
             List<Integer> parsed = Arrays.asList(str.split(DELIMITER)).stream()
                     .map(Integer::parseInt)
                     .toList();
-            Validator.validatePositiveIntegerList(parsed);
+            TypeValidator.validatePositiveIntegerList(parsed);
             return new WinningNumber(parsed);
         } catch (Exception e) {
             throw new IllegalArgumentException(WINNING_NUMBER_FORMAT_EXCEPTION_MESSAGE.toString());
@@ -36,7 +36,7 @@ public class StringParser {
     public static Integer parseBonusNumber(String str) {
         try {
             int parsed = Integer.parseInt(str);
-            Validator.validatePositiveInteger(parsed);
+            TypeValidator.validatePositiveInteger(parsed);
             return parsed;
         } catch (Exception e) {
             throw new IllegalArgumentException(BONUS_NUMBER_FORMAT_EXCEPTION_MESSAGE.toString());

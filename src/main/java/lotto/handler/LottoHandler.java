@@ -26,26 +26,40 @@ public class LottoHandler {
 
     public void run() {
         Money money = getMoney();
+        Lottos lottos = generateLottos(money);
+
+        WinningLotto winningLotto = generateWinningLotto();
+        LottoResult lottoResult = lottoManager.calculateResult(lottos, winningLotto);
+
+        showResult(lottoResult);
+        showProfit(money, lottoResult);
+    }
+
+    private void showProfit(Money money, LottoResult lottoResult) {
+        double profit = lottoResult.calculateProfit(money.getMoney());
+        writer.write(lottoViewResolver.parseProfit(profit));
+    }
+
+    private void showResult(LottoResult lottoResult) {
+        LottoDto.Result result = LottoDto.Result.from(lottoResult);
+        writer.write(lottoViewResolver.parseLottoResult(result));
+    }
+
+    private WinningLotto generateWinningLotto() {
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+        WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
+        return winningLotto;
+    }
+
+    private Lottos generateLottos(Money money) {
         Lottos lottos = lottoManager.createLottos(money.getMoney());
 
         LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
 
         writer.write(lottos.size() + LottoGuideMessage.BOUGHT_LOG.getMessage());
         writer.write(lottoViewResolver.parseLottosDetail(lottoInformation));
-
-
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
-        WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
-
-
-        LottoResult lottoResult = lottoManager.calculateResult(lottos, winningLotto);
-
-        LottoDto.Result result = LottoDto.Result.from(lottoResult);
-        writer.write(lottoViewResolver.parseLottoResult(result));
-
-        double profit = lottoResult.calculateProfit(money.getMoney());
-        writer.write(lottoViewResolver.parseProfit(profit));
+        return lottos;
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {

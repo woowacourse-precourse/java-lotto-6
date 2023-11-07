@@ -61,14 +61,21 @@ public class Lotto {
 
     private boolean checkValidNumberRange(List<Integer> numbers) {
         try {
-            for (int number : numbers) {
-                if (number < 1 || number > 45) {
-                    throw new IllegalArgumentException();
-                }
+            if(!checkRange(numbers)){
+                throw new IllegalArgumentException();
             }
         } catch (IllegalArgumentException e) {
             System.out.println(LOTTO_NUMBER_RANGE.get());
             return false;
+        }
+        return true;
+    }
+
+    private boolean checkRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < LOTTO_NUMBER_MINIMUM.get() || number > LOTTO_NUMBER_MAXIMUM.get()) {
+                return false;
+            }
         }
         return true;
     }

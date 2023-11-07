@@ -1,8 +1,6 @@
 package service;
 
-import static util.ErrorMessage.AMOUNT_MUST_BE_DIVIDED_BY_PRICE;
 import static util.ErrorMessage.ONLY_INPUT_NUMBER;
-import static util.LottoValidationValue.LOTTO_PRICE;
 import static util.Split.INPUT_SEPERATOR;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -20,14 +18,17 @@ public class UserInputService {
 
     // amount
     public static Amount amount() {
+        Amount amount;
         while (true) {
             try {
-                Amount amount = MakeObjectService.amount(Integer.parseInt(input()));
-                if(amount.isValid()){
-                    return amount;
-                }
+                amount = MakeObjectService.amount(Integer.parseInt(input()));
             } catch (IllegalArgumentException e) {
                 System.out.println(ONLY_INPUT_NUMBER.get());
+                continue;
+            }
+
+            if (amount.isValid()) {
+                return amount;
             }
         }
     }
@@ -35,13 +36,15 @@ public class UserInputService {
     //lotto
     public static Lotto lotto() {
         List<Integer> numbers = new ArrayList<>();
+        Lotto lotto = null;
 
         while (true) {
             if (checkIsNumberList(input().split(INPUT_SEPERATOR.get()), numbers)) {
-                Lotto lotto = MakeObjectService.lotto(numbers);
-                if (lotto.isValid()) {
-                    return lotto;
-                }
+                lotto = MakeObjectService.lotto(numbers);
+            }
+
+            if (lotto != null && lotto.isValid()) {
+                return lotto;
             }
             numbers.clear();
         }
@@ -64,15 +67,18 @@ public class UserInputService {
 
     //bonusNumber
     public static BonusNumber bonusNumber(Lotto lotto) {
+        int number;
+        BonusNumber bonusNumber;
         while (true) {
             try {
-                int number = Integer.parseInt(input());
-                BonusNumber bonusNumber = MakeObjectService.bonusNumber(number, lotto);
-                if (bonusNumber.isValid()) {
-                    return bonusNumber;
-                }
+                number = Integer.parseInt(input());
+                bonusNumber = MakeObjectService.bonusNumber(number, lotto);
             } catch (IllegalArgumentException e) {
                 System.out.println(ONLY_INPUT_NUMBER.get());
+                continue;
+            }
+            if (bonusNumber.isValid()) {
+                return bonusNumber;
             }
         }
     }

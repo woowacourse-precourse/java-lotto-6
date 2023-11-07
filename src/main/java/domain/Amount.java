@@ -3,8 +3,6 @@ package domain;
 import static util.ErrorMessage.AMOUNT_MUST_BE_DIVIDED_BY_PRICE;
 import static util.LottoValidationValue.LOTTO_PRICE;
 
-import java.util.List;
-
 public class Amount {
     private final int amount;
 

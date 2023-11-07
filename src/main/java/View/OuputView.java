@@ -49,7 +49,6 @@ public class OuputView {
         List<Integer> equalNumber = EnumToList.equalNumberAccordRankToList();
 
         for (int i = FIFTH.get(); i >= FIRST.get(); i--) {
-
             if (i != SECOND.get()) {
                 System.out.printf(COUNT_RANK.get(),
                         equalNumber.get(i - 1), formatByDecimal(price.get(i - 1)),
@@ -64,6 +63,7 @@ public class OuputView {
     private static void showRateOfReturn(Map<Integer, Integer> rankCount, List<Integer> price, List<Integer> rankNumber,
                                          Amount amount) {
         int revenue = 0;
+
         for (int i = FIFTH.get(); i >= FIRST.get(); i--) {
             revenue += price.get(i - 1) * rankCount.get(rankNumber.get(i - 1));
         }
@@ -72,7 +72,6 @@ public class OuputView {
 
     private static String formatByDecimal(int value) {
         DecimalFormat decFormat = new DecimalFormat(FORMAT_WITH_COMMA.get());
-
         return decFormat.format(value);
     }
 

@@ -38,11 +38,11 @@ public class OutputManager {
                 continue;
             }
             String match = result.getMatchingNumbers() + "개 일치";
-            if (result==SECOND_PRIZE) {
-                match += ", 보너스 볼 일치" ;
+            if (result == SECOND_PRIZE) {
+                match += ", 보너스 볼 일치";
             }
             String prize = " (" + String.format("%,d", result.getPrize()) + "원) - ";
-            String matchingNum = results.stream().filter(r-> r==result).count() + "개";
+            String matchingNum = results.stream().filter(r -> r == result).count() + "개";
 
             System.out.println(match + prize + matchingNum);
         }

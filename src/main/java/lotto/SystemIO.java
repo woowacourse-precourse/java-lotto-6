@@ -51,9 +51,21 @@ public class SystemIO {
         }
     }
 
-    public static void showResult(Map<WinningRank, Integer> winningTally) {
+    public static void showResult(Map<WinningRank, Integer> winningTally, Long winningAmount, String purchaseAmount) {
+        double rateOfReturn = Math.round(winningAmount / Long.valueOf(purchaseAmount)*1000)/10;
         System.out.println("당첨 통계");
         System.out.println("---");
+        showWinningAmountEachRank(winningTally, WinningRank.FIFTH_WINNING);
+        showWinningAmountEachRank(winningTally, WinningRank.FOURTH_WINNING);
+        showWinningAmountEachRank(winningTally, WinningRank.THIRD_WINNING);
+        showWinningAmountEachRank(winningTally, WinningRank.SECOND_WINNING);
+        showWinningAmountEachRank(winningTally, WinningRank.FIRST_WINNING);
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+    }
 
+    public static void showWinningAmountEachRank(Map<WinningRank, Integer> winningTally, WinningRank winningRank) {
+        System.out.printf(winningRank.getConditionsForWinning());
+        System.out.printf(" ("+ winningRank.getLotteryWinningAmount()+"원) - ");
+        System.out.println(winningTally.get(winningRank)+"개");
     }
 }

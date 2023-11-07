@@ -22,6 +22,6 @@ public class Application {
             Lotto lotto = new Lotto(value);
             calculations.tallyWinnings(lotto.getWinningRank(winningNumbers, bonusNumber));
         }
-        SystemIO.showResult(calculations.getWinningTally());
+        SystemIO.showResult(calculations.getWinningTally(),calculations.getWinningAmount(),purchaseAmount);
     }
 }

@@ -31,11 +31,14 @@ public enum LottoCompare {
     }
 
     public static LottoCompare getCompareResult(int match, boolean needBonus) {
+        if(match == SECOND.match && needBonus != SECOND.needBonus) {
+            return THIRD;
+        }
         if(match < FIFTH.match) {
             return NONE;
         }
         return Arrays.stream(LottoCompare.values())
-                .filter(i -> i.match == match && i.needBonus == needBonus)
+                .filter(i -> i.match == match)
                 .findAny()
                 .orElseThrow(IllegalStateException::new);
     }

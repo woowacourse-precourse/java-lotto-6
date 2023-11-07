@@ -11,7 +11,8 @@ public enum ErrorMessages {
     MAX_LENGTH_ERROR("[ERROR]6개의 숫자를 입력해야 합니다."),
     NON_DIGIT_ERROR("[ERROR]숫자만 입력해야 합니다."),
     NON_DIGIT_AND_COMMA_ERROR("[ERROR]숫자와 쉼표로만 입력해야 합니다."),
-    INPUT_DUPLICATE_ERROR("중복된 숫자는 입력할 수 없습니다."),
+    INPUT_DUPLICATE_ERROR("[ERROR]중복된 숫자는 입력할 수 없습니다."),
+    INPUT_RANGE_ERROR("[ERROR]입력한 숫자 번호의 범위가 1에서 45사이의 숫자가 아닙니다.")
     ;
     private final String message;
 

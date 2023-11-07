@@ -10,10 +10,13 @@ public class UserInputView {
 
     private static final String INPUT_PURCHASE_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String DELIMITER = ",";
     private static final int MIN_PURCHASE_AMOUNT = 1000;
     private static final int ZERO = 0;
     private static final int MAX_LOTTO_LENGTH = 6;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int MAX_LOTTO_NUMBER = 45;
 
     public static LottoTicket inputPurchaseAmount() {
         int lottoTicketCount;
@@ -103,4 +106,19 @@ public class UserInputView {
         }
     }
 
+    public static List<Integer> inputBonusNumber(List<Integer> winningNumbers) {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        String input = Console.readLine();
+        int bonusNumber = validateNumber(input);
+        validateRange(bonusNumber);
+        winningNumbers.add(bonusNumber);
+        return winningNumbers;
+    }
+
+    private static int validateRange(int bonusNumber) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessages.INPUT_RANGE_ERROR.getMessage());
+        }
+        return bonusNumber;
+    }
 }

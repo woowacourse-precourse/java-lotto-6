@@ -5,10 +5,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.ExceptionConstant;
 import lotto.constant.InputConstant;
 import lotto.constant.NumberConstant;
 
 public class InputException {
+    private static final String ERROR_MESSAGE = "[ERROR] ";
     public static int validMoney(String input){
         int money = validMoneyInteger(input);
         validMoneyPositive(money);
@@ -39,19 +41,19 @@ public class InputException {
         try{
             return Integer.parseInt(input);
         } catch (NumberFormatException ex){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
         }
     }
 
     private static void validMoneyPositive(int money){
         if (money >= NumberConstant.DEFAULT_VALUE){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.POSITIVE_EXCEPTION.getMessage());
         }
     }
 
     private static void validMoneyDivide(int money){
         if (money % NumberConstant.LOTTO_PRICE != NumberConstant.DEFAULT_VALUE){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.DIVIDE_EXCEPTION);
         }
     }
 
@@ -68,12 +70,12 @@ public class InputException {
         List<Integer> lottoNumbers = new ArrayList<>();
         for(String str : strArr){
             if (isLottoContainBlank(str)){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.BLANK_EXCEPTION.getMessage());
             }
             try{
                 lottoNumbers.add(Integer.parseInt(str));
             } catch(NumberFormatException ex){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
             }
         }
         return lottoNumbers;
@@ -81,14 +83,14 @@ public class InputException {
 
     private static void validLottoLength(List<Integer> numbers){
         if (numbers.size() != NumberConstant.LOTTO_RANGE){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_LENGTH_EXCEPTION.getMessage());
         }
     }
 
     private static void validLottoNumberRange(List<Integer> numbers){
         for (int number : numbers){
             if (number < NumberConstant.MIN_NUMBER || number > NumberConstant.MAX_NUMBER){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_RANGE_EXCEPTION.getMessage());
             }
         }
     }
@@ -96,7 +98,7 @@ public class InputException {
     private static void validLottoDuplicate(List<Integer> numbers){
         Set<Integer> sNumbers = new HashSet<>(numbers);
         if (sNumbers.size() != numbers.size()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
@@ -104,13 +106,13 @@ public class InputException {
         try{
             return Integer.parseInt(input);
         } catch(NumberFormatException ex){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_EXCEPTION);
         }
     }
 
     private static void validBonusRange(int number){
         if (number < NumberConstant.MIN_NUMBER || number > NumberConstant.MAX_NUMBER){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_RANGE_EXCEPTION);
         }
     }
 
@@ -118,7 +120,7 @@ public class InputException {
         Set<Integer> sNumbers = new HashSet<>(numbers);
         sNumbers.add(number);
         if(sNumbers.size() != numbers.size() + 1){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_DUPLICATE_EXCEPTION);
         }
     }
 }

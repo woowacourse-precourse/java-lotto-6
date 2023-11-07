@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameService {
     static final int ERROR = -1;
@@ -23,7 +24,7 @@ public class GameService {
         }
     }
 
-    public void generateNumber(){
+    public String generateNumber(){
         ArrayList<Integer> numbers = new ArrayList<>();
 
         while (numbers.size() < 6){
@@ -32,6 +33,8 @@ public class GameService {
                 numbers.add(randomNumber);
             }
         }
-        //todo: GameRepository.saveNumber(numbers)
+        Collections.sort(numbers);
+        // todo: GameRepository.saveNumber(numbers)
+        return numbers.toString();
     }
 }

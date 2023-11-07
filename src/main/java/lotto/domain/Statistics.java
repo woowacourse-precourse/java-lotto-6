@@ -5,6 +5,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import static lotto.domain.Rank.LOSE;
+
 public class Statistics {
     private final Map<Rank, Integer> results;
     private final Buyer buyer;
@@ -47,11 +49,14 @@ public class Statistics {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
+        DecimalFormat moneyFormat = new DecimalFormat("#,###");
+
         results.forEach((rank, count) -> {
-            DecimalFormat moneyFormat = new DecimalFormat("#,###");
-            String prize = moneyFormat.format(rank.getPrize());
-            String message = String.format(rank.getMessage(), prize, count);
-            stringBuilder.append(message).append("\n");
+            if (rank != LOSE) {
+                String prize = moneyFormat.format(rank.getPrize());
+                String message = String.format(rank.getMessage(), prize, count);
+                stringBuilder.append(message).append("\n");
+            }
         });
         return stringBuilder.toString();
     }

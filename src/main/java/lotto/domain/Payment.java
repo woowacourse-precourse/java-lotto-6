@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
+
 import static lotto.exception.ErrorMessage.INVALID_PAYMENT_FORM;
 import static lotto.exception.ErrorMessage.INVALID_PAYMENT_RANGE;
 
@@ -28,5 +30,15 @@ public class Payment {
 
     public int calculateLottoAmount() {
         return pay / PRICE_PER_LOTTO;
+    }
+
+    public String getReturnRate(int reward) {
+        double result = (double) reward / pay * PRICE_PER_LOTTO;
+        return formatReturnRate(result);
+    }
+
+    private String formatReturnRate(Double reward){
+        DecimalFormat formatter = new DecimalFormat("###,###.##");
+        return formatter.format(reward);
     }
 }

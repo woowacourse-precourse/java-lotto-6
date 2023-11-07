@@ -1,8 +1,9 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.ErrorMessage.INVALID_NUMBERS_SIZE;
-import static lotto.ErrorMessage.NUMBERS_DUPLICATE;
+import static lotto.Constant.*;
+import static lotto.ErrorMessage.INVALID_NUMBER_SIZE;
+import static lotto.ErrorMessage.NUMBER_DUPLICATE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,20 +19,20 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_NUMBERS_SIZE.getMessage());
+        if (numbers.size() != MAX_NUMBER_SIZE) {
+            throw new IllegalArgumentException(INVALID_NUMBER_SIZE.getMessage());
         }
-        else if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException(NUMBERS_DUPLICATE.getMessage());
+        else if (numbers.stream().distinct().count() != MAX_NUMBER_SIZE) {
+            throw new IllegalArgumentException(NUMBER_DUPLICATE.getMessage());
         }
     }
 
     public static Lotto generate() {
         return new Lotto(
                 pickUniqueNumbersInRange(
-                        1,
-                        45,
-                        6
+                        LOTTO_MIN_VALUE,
+                        LOTTO_MAX_VALUE,
+                        MAX_NUMBER_SIZE
                 )
         );
     }

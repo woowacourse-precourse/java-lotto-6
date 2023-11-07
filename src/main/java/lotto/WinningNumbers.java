@@ -3,8 +3,9 @@ package lotto;
 import java.util.Collections;
 import java.util.List;
 
-import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.Constant.MAX_NUMBER_SIZE;
 import static lotto.ErrorMessage.*;
+import static lotto.RankType.*;
 
 public class WinningNumbers {
     private final List<Integer> numbers;
@@ -19,11 +20,11 @@ public class WinningNumbers {
     }
 
     private void validate(List<Integer> numbers, int bonusNumber) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(INVALID_NUMBERS_SIZE.getMessage());
+        if (numbers.size() != MAX_NUMBER_SIZE) {
+            throw new IllegalArgumentException(INVALID_NUMBER_SIZE.getMessage());
         }
         else if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException(NUMBERS_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(NUMBER_DUPLICATE.getMessage());
         }
         else if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_DUPLICATE.getMessage());
@@ -32,18 +33,20 @@ public class WinningNumbers {
 
     public int getRank(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
-        int matchingNumbers = (int) lottoNumbers.stream().filter(numbers::contains).count();
+        int matchingNumbers = (int) lottoNumbers.stream().
+                filter(numbers::contains)
+                .count();
         boolean hasBonusNumber = lottoNumbers.contains(bonusNumber);
 
-        if (matchingNumbers == 6) {
+        if (matchingNumbers == FIRST.getMatch()) {
             return 1;
-        } else if (matchingNumbers == 5 && hasBonusNumber) {
+        } else if (matchingNumbers == SECOND.getMatch() && hasBonusNumber) {
             return 2;
-        } else if (matchingNumbers == 5) {
+        } else if (matchingNumbers == THIRD.getMatch()) {
             return 3;
-        } else if (matchingNumbers == 4) {
+        } else if (matchingNumbers == FOURTH.getMatch()) {
             return 4;
-        } else if (matchingNumbers == 3) {
+        } else if (matchingNumbers == FIFTH.getMatch()) {
             return 5;
         }
 

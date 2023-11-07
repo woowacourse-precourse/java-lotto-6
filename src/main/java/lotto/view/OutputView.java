@@ -49,7 +49,7 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public void printLottosStatics(HashMap<WinningCriteria, Integer> winningRecords) {
+    public void printLottoStatics(HashMap<WinningCriteria, Integer> winningRecords) {
         System.out.println(LOTTO_STATISTICS);
         for (WinningCriteria currentRank : orderPrintRank) {
             printLottoStatics(

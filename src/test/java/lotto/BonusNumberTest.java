@@ -20,7 +20,15 @@ public class BonusNumberTest {
     @DisplayName("보너스 번호가 입력한 당첨 번호에 포함되면 예외가 발생한다.")
     @Test
     void createBonusNumberExistInLotto() {
-        assertThatThrownBy(() -> new User(lotto, "5")).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new User(lotto, "5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoByString() {
+        assertThatThrownBy(() -> new User(lotto, "a"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

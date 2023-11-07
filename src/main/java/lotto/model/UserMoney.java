@@ -3,6 +3,8 @@ package lotto.model;
 import static lotto.util.message.ErrorMessages.USER_MONEY_UNIT_EXCEPTION;
 
 public class UserMoney {
+    private static final int LOTTO_PRICE = 1000;
+
     int amount;
 
     public UserMoney(int amount) {
@@ -14,5 +16,9 @@ public class UserMoney {
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException(USER_MONEY_UNIT_EXCEPTION);
         }
+    }
+
+    public int getLottoAmount() {
+        return amount / LOTTO_PRICE;
     }
 }

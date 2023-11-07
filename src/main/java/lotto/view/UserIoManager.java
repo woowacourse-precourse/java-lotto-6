@@ -46,4 +46,8 @@ public class UserIoManager {
             }
         }
     }
+
+    public void printLottoAmount(UserMoney userMoney) {
+        outputView.printLottoAmount(userMoney);
+    }
 }

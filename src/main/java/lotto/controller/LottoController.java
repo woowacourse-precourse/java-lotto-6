@@ -21,6 +21,7 @@ public class LottoController {
         initialize();
         List<LottoRank> ranks = getRanks(lottos, winningNumber);
         LottoResult lottoResult = new LottoResult(ranks);
+        showResult(lottoResult, money.getMoney());
     }
 
     private void initialize() {
@@ -99,5 +100,9 @@ public class LottoController {
         }
 
         return ranks;
+    }
+
+    private void showResult(LottoResult lottoResult, long money) {
+        OutputView.showResult(lottoResult, money);
     }
 }

@@ -58,6 +58,10 @@ public class LottoView {
         System.out.printf(format, results.getOrDefault(rank, 0L));
     }
 
+    public void printError(String message) {
+        System.out.println(message);
+    }
+
     private void validateIsNumber(String input) {
         if (!NUMBER_PATTERN.matcher(input).matches()) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해주세요.");

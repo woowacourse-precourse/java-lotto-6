@@ -33,7 +33,7 @@ public class LottoView {
 		System.out.println(numbers);
 	}
 
-	public String[] getWinLotto() { // 사용자의 당첨번호를 입력받는 메서드
+	public String[] getWinNumbers() { // 사용자의 당첨번호를 입력받는 메서드
 		System.out.printf("%n당첨번호를 입력해 주세요.%n");
 		while (true) {
 			try {
@@ -86,6 +86,11 @@ public class LottoView {
 		}
 	}
 
+	public void printSumOfwinResult() {
+		System.out.printf("%n당첨 통계%n");
+		System.out.println("---");	
+	}
+	
 	public static void printMatchMessage(String message, int matchNumber) {
 		System.out.println(message + matchNumber + "개");
 	}

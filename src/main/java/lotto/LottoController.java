@@ -28,7 +28,7 @@ public class LottoController {
 			List<Integer> randomNumbers = pickUniqueNumbersInRange(1, 45, 6);
 			randomLotto = new Lotto(randomNumbers);
 			LottoView.printLottos(randomLotto.getNumbers());
-			createdLottos.add(randomNumbers);
+			createdLottos.add(randomNumbers); // 생성된 로또를 저장한다.
 		}
 	}
 
@@ -37,30 +37,29 @@ public class LottoController {
 		return createdLottos;
 	}
 
-	private void getWinNumbers() {
-		String[] numbers = LottoView.getWinLotto();
-		winNumbers = setWinNumbers(numbers);
-		bonusNumber = getBonusNumber();
+	private void setWinNumbers() { // 사용자가 입력한 당첨번호와 보너스번호를 할당한다
+		String[] numbers = LottoView.getWinNumbers(); // 사용자로부터 당첨 번호를 입력받아 할당한다.
+		winNumbers = stringArrayToList(numbers);
 	}
 
-	public List<Integer> setWinNumbers(String[] input) {
-		List<Integer> winNumbers = new ArrayList<>();
+	private List<Integer> stringArrayToList(String[] input) { // 사용자가 입력한 당첨번호를 정수형 리스트로 변환한다.
+		List<Integer> numbers = new ArrayList<>();
 
 		try {
 			for (String str : input) {
 				int num = Integer.parseInt(str.trim());
-				winNumbers.add(num);
+				numbers.add(num);
 			}
 		} catch (NumberFormatException e) {
-			LottoView.getWinLotto();
+			LottoView.getWinNumbers();
 		}
-		Lotto winLotto = new Lotto(winNumbers);
+		Lotto winLotto = new Lotto(numbers);
 		return winLotto.getNumbers();
 	}
 
-	public int getBonusNumber() {
-		int bonusNumber = LottoView.getBonusNumber();
-		return bonusNumber;
+	private void setBonusNumber() {
+		int number = LottoView.getBonusNumber();
+		bonusNumber = number;
 	}
 
 	public Map<Ranking, Integer> setResult() {
@@ -72,16 +71,16 @@ public class LottoController {
 		return result;
 	}
 
-	public Map<Ranking, Integer> matchRank(List<List<Integer>> Lottos, List<Integer> numbers) {
+	public Map<Ranking, Integer> matchRank(List<List<Integer>> lottos, List<Integer> numbers) {
 		Map<Ranking, Integer> result = setResult();
-		for (List<Integer> innerList : Lottos) {
+		for (List<Integer> lotto : lottos) {
 			int count = 0;
 			for (int num : numbers) {
-				if (innerList.contains(num)) {
+				if (lotto.contains(num)) {
 					count++;
 				}
 			}
-			Ranking rank = Ranking.valueOf(count, containBonusNumber(innerList)); // 일치하는 숫자 수와 보너스 숫자 매칭 여부에 따른 등 반환
+			Ranking rank = Ranking.valueOf(count, containBonusNumber(lotto)); // 일치하는 숫자 수와 보너스 숫자 매칭 여부에 따른 등수 반환
 			result.put(rank, result.get(rank) + 1); // 결과에 값 넣어주기
 		}
 		return result;
@@ -89,23 +88,22 @@ public class LottoController {
 
 	private void printResult() {
 		Map<Ranking, Integer> result = matchRank(createdLottos, winNumbers);
-		System.out.printf("%n당첨 통계%n");
-		System.out.println("---");
-		for (int i = Ranking.values().length - 1; i >= 0; i--) {
+		LottoView.printSumOfwinResult();
+		for (int i = Ranking.values().length - 1; i >= 0; i--) { // result에 저장되어있는 값 출력
 			Ranking.values()[i].printMessage(result.get(Ranking.values()[i]));
 		}
 	}
 
 	private void marginRate() {
 		double marginRate = 0;
-		double purchasedMoney = createdLottos.size() * 1000;
+		double costOfPayment = createdLottos.size() * 1000;
 		int winPrice = 0;
 		Map<Ranking, Integer> result = matchRank(createdLottos, winNumbers);
 		for (Ranking rank : result.keySet()) {
-			// 수익률(%) = 당첨금 / 구매비용 * 100
-			winPrice += rank.getPrice() * result.get(rank);
+			winPrice += rank.getPrice() * result.get(rank); // 당첨금액을 다 합한다.
 		}
-		marginRate = (winPrice / purchasedMoney) * 100;			
+		// 수익률(%) = 당첨금 / 구매비용 * 100
+		marginRate = (winPrice / costOfPayment) * 100;
 		LottoView.printMargin(marginRate);
 	}
 
@@ -116,7 +114,8 @@ public class LottoController {
 	public void processGame() {
 		int count = getCount();
 		this.createRandomLotto(count);
-		this.getWinNumbers();
+		this.setWinNumbers();
+		this.setBonusNumber();
 		this.printResult();
 		this.marginRate();
 	}

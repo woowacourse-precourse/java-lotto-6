@@ -37,7 +37,7 @@ public class Validator {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != GameConstant.NUMBER_SIZE) {
-            throw new IllegalArgumentException(ValidateErrorMessage.NUMBERS_SIZE_ERROR.getMessage());
+            throw new IllegalArgumentException(ValidateErrorMessage.LOTTO_SIZE_ERROR.getMessage());
         }
     }
     public int validate(int bonusNumber, List<Integer> numbers) {

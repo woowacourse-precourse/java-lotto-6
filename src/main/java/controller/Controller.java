@@ -1,16 +1,10 @@
 package controller;
 
-import service.Service;
-import view.InputView;
+import domain.Buyer;
 
 public class Controller {
-    Service service = new Service();
+    Buyer buyer = new Buyer();
+    public void run() {
 
-    public void run(){
-        inputPriceControl();
-    }
-    public int inputPriceControl(){
-        InputView.priceInputView();
-        return service.inputPrice();
     }
 }

@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.constant.message.ErrorMessage.BLANK_LINE;
+import static lotto.constant.message.ErrorMessage.INVALID_BLANK;
 import static lotto.constant.message.InputMessage.INPUT_BONUS_NUMBER;
 import static lotto.constant.message.InputMessage.INPUT_MONEY;
 import static lotto.constant.message.InputMessage.INPUT_WINNING_NUMBER;
@@ -64,7 +64,7 @@ public class InputView {
 
     private void validateEmptyLine(String input) {
         if (input.trim().isEmpty()) {
-            throw new IllegalArgumentException(BLANK_LINE.getMessage());
+            throw new IllegalArgumentException(INVALID_BLANK.getMessage());
         }
     }
 }

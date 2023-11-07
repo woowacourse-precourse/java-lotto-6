@@ -15,12 +15,10 @@ public class Converter {
     }
 
     public static List<Integer> convertIntegerList(String input) {
-        List<Integer> numbers;
-        numbers = Arrays.stream(input.split(DELIMITER, -1))
+        return Arrays.stream(input.split(DELIMITER, -1))
                 .peek(Converter::validateOnlyDigit)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-        return numbers;
     }
 
     public static void validateOnlyDigit(String input) {

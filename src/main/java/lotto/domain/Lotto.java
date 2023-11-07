@@ -35,9 +35,7 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        boolean result = numbers.stream().allMatch(this::isValidRange);
-
-        if (!result) {
+        if (!numbers.stream().allMatch(this::isValidRange)) {
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }

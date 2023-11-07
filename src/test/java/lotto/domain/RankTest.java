@@ -3,8 +3,10 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RankTest {
 
@@ -25,5 +27,13 @@ class RankTest {
     void findRank(int matchCount, boolean hasBonus, Rank expected) {
         Rank rank = Rank.find(matchCount, hasBonus);
         assertThat(rank).isEqualTo(expected);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 7, 8})
+    @DisplayName("당첨 조건에 없는 매칭 개수일 경우 예외가 발생합니다.")
+    void findRankByWrongMatchCount(int matchCount) {
+        assertThatThrownBy(() -> Rank.find(matchCount, true))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

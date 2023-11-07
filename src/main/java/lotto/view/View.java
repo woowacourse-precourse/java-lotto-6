@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.Tickets;
 import lotto.enums.Messages;
 
 public class View {
@@ -18,16 +19,17 @@ public class View {
         System.out.println(Messages.PRICE_INPUT_GUIDE.getMsg());
     }
 
-    public void printLottoInfo(List<Lotto> tickets) {
-        System.out.println(tickets.size() + Messages.TICKET_AMOUNT.getMsg());
-
-        for (Lotto ticket : tickets) {
+    public void printLottoInfo(Tickets tickets) {
+        printEmptyLine();
+        System.out.println(tickets.getTicketAmount() + Messages.TICKET_AMOUNT.getMsg());
+        List<Lotto> unmodifiableTickets = tickets.getTickets();
+        for (Lotto ticket : unmodifiableTickets) {
             printLottoNumbers(ticket);
         }
     }
 
     private void printLottoNumbers(Lotto ticket) {
-        System.out.println(ticket);
+        System.out.println(ticket.getNumbers());
     }
 
     public void winningNumberInputGuideMsg() {

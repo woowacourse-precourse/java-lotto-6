@@ -7,7 +7,8 @@ public enum ErrorMessage {
     LOTTO_PURCHASE_ERROR("로또 구매 금액은 %,d원 단위여야 합니다."),
     BONUS_NUMBER_DUPLICATE_ERROR("보너스 번호는 당첨 번호에 포함될 수 없습니다."),
     PURCHASE_MONEY_INPUT_ERROR("구입 금액은 숫자여야 합니다."),
-    WINNING_NUMBERS_INPUT_ERROR("당첨 번호는 '%s'로 구분된 숫자여야 합니다.");
+    WINNING_NUMBERS_INPUT_ERROR("당첨 번호는 '%s'로 구분된 숫자여야 합니다."),
+    END_WITH_DELIMITER_ERROR("입력은 구분자 '%s'로 끝날 수 없습니다.");
 
     public static final String HEADER = "[ERROR]";
 

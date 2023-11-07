@@ -4,8 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static lotto.ErrorMessage.PURCHASE_MONEY_INPUT_ERROR;
-import static lotto.ErrorMessage.WINNING_NUMBERS_INPUT_ERROR;
+import static lotto.ErrorMessage.*;
 
 public class InputView {
     private static final String PURCHASE_MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -33,8 +32,16 @@ public class InputView {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
 
         String readLine = reader.get();
+        validateEndWithDelimiter(readLine);
 
         return toWinningNumbers(readLine);
+    }
+
+    private void validateEndWithDelimiter(String readLine) {
+        if (readLine.endsWith(WINNING_NUMBERS_INPUT_DELIMITER)) {
+            throw new IllegalArgumentException(
+                    String.format(END_WITH_DELIMITER_ERROR.getMessage(), WINNING_NUMBERS_INPUT_DELIMITER));
+        }
     }
 
     public List<Integer> toWinningNumbers(String readLine) {

@@ -15,7 +15,6 @@ import lotto.view.OutputView;
 public class LottoGameController {
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoMachine lottoMachine;
     private WinningLotto winningLotto;
     private Bonus bonus;
     private final PurchaseService purchaseService = new PurchaseService();
@@ -28,16 +27,17 @@ public class LottoGameController {
 
     public void playing() {
         Purchase purchase = purchaseLottoTickets();
-        getLottoTickets(purchase);
-        getWinningNumbers();
-        getBonusNumber();
-        getLotteryStatistics(purchase);
+        LottoMachine lottoTickets = getLottoTickets(purchase);
+        WinningLotto winningNumbers = getWinningNumbers();
+        getBonusNumber(winningNumbers);
+        getLotteryStatistics(lottoTickets, purchase);
     }
 
-    private void getLottoTickets(Purchase purchase) {
-        lottoMachine = new LottoMachine(purchase.getTicketCount());
+    private LottoMachine getLottoTickets(Purchase purchase) {
+        LottoMachine lottoMachine = new LottoMachine(purchase.getTicketCount());
         outputView.printPurchases(purchase.getTicketCount());
         outputView.printIssuedLotto(lottoMachine.getIssuedLotto());
+        return lottoMachine;
     }
 
     //TODO: PurchaseService가 Purchase 반환하게 만들기
@@ -52,19 +52,17 @@ public class LottoGameController {
 
 
     //TODO: 메서드 리팩토링
-    private void getWinningNumbers() {
+    private WinningLotto getWinningNumbers() {
+        WinningLotto winningLotto = null;
         while (winningLotto == null) {
             String winningNumbers = inputView.requestWinningNumber();
-            try {
-                winningLotto = winningNumberService.getWinningNumberIfValid(winningNumbers);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            winningLotto = winningNumberService.getWinningNumberIfValid(winningNumbers);
         }
+        return winningLotto;
     }
 
     //TODO: 메서드 리팩토링
-    private void getBonusNumber() {
+    private void getBonusNumber(WinningLotto winningLotto) {
         boolean isValidInput = false;
         BonusValidator validator = new BonusValidator();
         while (!isValidInput) {
@@ -85,7 +83,7 @@ public class LottoGameController {
 
     }
 
-    private void getLotteryStatistics(Purchase purchase) {
+    private void getLotteryStatistics(LottoMachine lottoMachine, Purchase purchase) {
         LottoResultChecker resultChecker = new LottoResultChecker(lottoMachine.getIssuedLotto(), winningLotto, bonus);
         Statistics statistics = new Statistics();
         statistics.makeResultBoard();

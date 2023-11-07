@@ -9,10 +9,15 @@ public class WinningNumberService {
     private final WinningLottoValidator validator = new WinningLottoValidator();
 
     public WinningLotto getWinningNumberIfValid(String winningNumbers) {
-        List<String> inputDividedByComma = validator.validateDelimiterComma(winningNumbers);
-        validator.validateSixElements(inputDividedByComma);
-        List<Integer> integerNumbers = validator.validateWinningNumberIsNumeric(inputDividedByComma);
-        validator.validateNumberBetweenInRange(integerNumbers);
-        return new WinningLotto(integerNumbers);
+        try {
+            List<String> inputDividedByComma = validator.validateDelimiterComma(winningNumbers);
+            validator.validateSixElements(inputDividedByComma);
+            List<Integer> integerNumbers = validator.validateWinningNumberIsNumeric(inputDividedByComma);
+            validator.validateNumberBetweenInRange(integerNumbers);
+            return new WinningLotto(integerNumbers);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 }

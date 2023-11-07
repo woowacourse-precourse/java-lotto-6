@@ -17,6 +17,10 @@ public enum LottoRanking {
         this.count = count;
     }
 
+    public static void addCount(LottoRanking lottoRanking) {
+        lottoRanking.count++;
+    }
+
     public int getMatchCount() {
         return matchCount;
     }
@@ -27,9 +31,5 @@ public enum LottoRanking {
 
     public int count() {
         return count;
-    }
-
-    public void addCount(LottoRanking lottoRanking) {
-        lottoRanking.count++;
     }
 }

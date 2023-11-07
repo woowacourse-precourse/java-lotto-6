@@ -21,6 +21,9 @@ public class Buyer {
     }
 
     private void validate(int cost) {
+        if (cost < PRICE) {
+            throw new IllegalArgumentException(Exception.COST_MIN);
+        }
         if (cost % PRICE != MOD) {
             throw new IllegalArgumentException(Exception.COST_MOD);
         }

@@ -1,6 +1,7 @@
 package lotto.formatter;
 
 import lotto.constants.ProgressMessage;
+import lotto.constants.ViewElement;
 import lotto.constants.WinningFactor;
 
 import java.text.NumberFormat;
@@ -8,8 +9,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class GameResultFormatter {
-    private static final String DELIMITER_ENTER = "\n";
-    private static final String SPACE = " ";
 
     private final Map<WinningFactor, Integer> statistics;
     private final Double totalRate;
@@ -23,7 +22,7 @@ public class GameResultFormatter {
         return statistics.entrySet().stream()
                 .filter(entry -> entry.getKey() != WinningFactor.NONE_MATCH)
                 .map(entry -> buildStatisticsMessage(entry.getKey(), entry.getValue()))
-                .collect(Collectors.joining(DELIMITER_ENTER));
+                .collect(Collectors.joining(ViewElement.NEXT_LINE));
     }
 
     private String buildStatisticsMessage(WinningFactor winningFactor, Integer count) {
@@ -35,7 +34,7 @@ public class GameResultFormatter {
         if (Boolean.TRUE.equals(winningFactor.isMatchBonusNumber())) {
             return ProgressMessage.MATCH_BONUS_BALL;
         }
-        return SPACE;
+        return ViewElement.SPACE;
     }
 
     public String toTotalRateMessage() {

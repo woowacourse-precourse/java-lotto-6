@@ -1,8 +1,9 @@
 package lotto.io;
 
 import lotto.constants.ProgressMessage;
-import lotto.formatter.PlayerLottosFormatter;
+import lotto.constants.ViewElement;
 import lotto.formatter.GameResultFormatter;
+import lotto.formatter.PlayerLottosFormatter;
 
 public class OutputView {
 
@@ -45,7 +46,7 @@ public class OutputView {
 
     public void printWinningStatisticsMessage() {
         printNextLine();
-        System.out.println(ProgressMessage.WINNING_STATISTICS);
+        System.out.println(ProgressMessage.WINNING_STATISTICS + ViewElement.NEXT_LINE + ProgressMessage.DASH);
     }
 
     public void printNextLine() {

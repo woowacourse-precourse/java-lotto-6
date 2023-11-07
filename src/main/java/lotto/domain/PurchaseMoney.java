@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.message.ConsoleMessage;
+
 public class PurchaseMoney {
     private final int money;
 
@@ -8,6 +10,13 @@ public class PurchaseMoney {
     }
 
     public static PurchaseMoney of(int money) {
+        validateThousandMoney(money);
         return new PurchaseMoney(money);
+    }
+
+    private static void validateThousandMoney(int money) {
+        if (money%1000 != 0) {
+            throw new IllegalArgumentException(ConsoleMessage.PURCHASE_MONEY_ERROR.getMessage());
+        }
     }
 }

@@ -20,7 +20,7 @@ class PurchaseAmountTest {
                 .hasMessageContaining("[ERROR] 로또 구입 금액이 로또 1장의 가격으로 나누어 떨어지지 않습니다.");
     }
 
-    @DisplayName("입력 받은 금액에 따른 구매 가능 로또 개수 계산 기능 검증")
+    @DisplayName("입력 받은 금액에 따른 구매 가능 로또 개수 계산 기능 테스트")
     @Test
     void getLottoCount() {
         //given

@@ -25,7 +25,11 @@ public class Reward {
         return new HashMap<>(rewardTable);
     }
 
-    private void calculate(Map<String, Long> winningResult) {
+    public int getReward() {
+        return reward;
+    }
+
+    public void calculate(Map<String, Long> winningResult) {
         winningResult.forEach((rank, purchaseNum) -> {
             reward += rewardTable.get(rank) * purchaseNum;
         });

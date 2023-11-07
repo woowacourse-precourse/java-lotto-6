@@ -1,9 +1,9 @@
 package lotto.controller;
 
-import lotto.controller.dto.input.BuyLottosDto;
-import lotto.controller.dto.input.DrawLottosDto;
-import lotto.controller.dto.output.LottosBuyingResult;
-import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.controller.dto.input.BuyLottosInput;
+import lotto.controller.dto.input.DrawLottosInput;
+import lotto.controller.dto.output.LottosBuyingOutput;
+import lotto.controller.dto.output.LottosDrawingOutput;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -51,8 +51,8 @@ public final class LottoController {
      * 3. 로또 구매 결과를 출력한다.
      */
     private void buyLottos() {
-        final BuyLottosDto inputDto = inputView.inputBuyLottosDto();
-        final LottosBuyingResult outputDto = lottoService.buyLottos(inputDto);
+        final BuyLottosInput inputDto = inputView.inputBuyLottosDto();
+        final LottosBuyingOutput outputDto = lottoService.buyLottos(inputDto);
         outputView.printLottosBuyingResult(outputDto);
     }
 
@@ -69,8 +69,8 @@ public final class LottoController {
      * 3. 로또 당첨 통계 결과를 출력한다.
      */
     private void drawLottos() {
-        final DrawLottosDto inputDto = inputView.inputDrawLottosDto();
-        final LottosDrawingResult outputDto = lottoService.drawLottos(inputDto);
+        final DrawLottosInput inputDto = inputView.inputDrawLottosDto();
+        final LottosDrawingOutput outputDto = lottoService.drawLottos(inputDto);
         outputView.printLottosDrawingResult(outputDto);
     }
 }

@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.EnumMap;
-import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.controller.dto.output.LottosDrawingOutput;
 import lotto.domain.money.Money;
 
 /**
@@ -56,8 +56,8 @@ public final class LottoDrawingData {
     /**
      * 중간 결과가 담긴 EnumMap을 최종적으로 DTO로 변환
      */
-    public LottosDrawingResult toLottoDrawingResult() {
-        return new LottosDrawingResult(
+    public LottosDrawingOutput toLottoDrawingResult() {
+        return new LottosDrawingOutput(
                 data.get(LottoPrize.FIRST),
                 data.get(LottoPrize.SECOND),
                 data.get(LottoPrize.THIRD),

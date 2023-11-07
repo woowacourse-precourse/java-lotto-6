@@ -3,9 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import io.output.Writer;
 import java.util.function.Supplier;
-import lotto.controller.dto.input.BuyLottosDto;
-import lotto.controller.dto.input.DrawLottosDto;
-import lotto.controller.dto.input.builder.DrawLottosDtoBuilder;
+import lotto.controller.dto.input.BuyLottosInput;
+import lotto.controller.dto.input.DrawLottosInput;
+import lotto.controller.dto.input.DrawLottosInput.Builder;
 import lotto.view.component.input.InputBonusNumberComponent;
 import lotto.view.component.input.InputLottoNumbersComponent;
 import lotto.view.component.input.InputMoneyComponent;
@@ -36,10 +36,10 @@ public final class InputView {
      * <p>
      * retryUntilSuccess는 이름 그대로 콜백 함수에서 예외가 발생하지 않을 때까지 재호출합니다.
      */
-    public BuyLottosDto inputBuyLottosDto() {
+    public BuyLottosInput inputBuyLottosDto() {
         return retryUntilSuccess(() -> {
             new InputMoneyComponent().renderTo(writer);
-            return BuyLottosDto.from(readLine());
+            return BuyLottosInput.from(readLine());
         });
     }
 
@@ -47,8 +47,8 @@ public final class InputView {
     /**
      * 로또 추첨을 위한 당첨 번호 및 보너스 번호를 입력 받아서 Dto로 변환합니다.
      */
-    public DrawLottosDto inputDrawLottosDto() {
-        final DrawLottosDtoBuilder builder = DrawLottosDtoBuilder.builder();
+    public DrawLottosInput inputDrawLottosDto() {
+        final Builder builder = DrawLottosInput.builder();
 
         retryUntilSuccess(() -> inputLottoNumbers(builder));
         retryUntilSuccess(() -> inputBonusNumber(builder));
@@ -64,7 +64,7 @@ public final class InputView {
      * 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
      * <p>
      */
-    private DrawLottosDtoBuilder inputLottoNumbers(final DrawLottosDtoBuilder builder) {
+    private Builder inputLottoNumbers(final Builder builder) {
         new InputLottoNumbersComponent().renderTo(writer);
         return builder.lottoNumbers(readLine());
     }
@@ -78,7 +78,7 @@ public final class InputView {
      * 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
      * <p>
      */
-    private DrawLottosDtoBuilder inputBonusNumber(final DrawLottosDtoBuilder builder) {
+    private Builder inputBonusNumber(final Builder builder) {
         new InputBonusNumberComponent().renderTo(writer);
         return builder.bonusNumber(readLine());
     }

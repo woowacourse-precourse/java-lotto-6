@@ -1,16 +1,16 @@
 package lotto.service;
 
-import lotto.controller.dto.input.BuyLottosDto;
-import lotto.controller.dto.input.DrawLottosDto;
-import lotto.controller.dto.output.LottosBuyingResult;
-import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.controller.dto.input.BuyLottosInput;
+import lotto.controller.dto.input.DrawLottosInput;
+import lotto.controller.dto.output.LottosBuyingOutput;
+import lotto.controller.dto.output.LottosDrawingOutput;
 import lotto.domain.lotto.LottoDrawingData;
 import lotto.domain.lotto.LottoDrawingMachine;
 import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningLotto;
+import lotto.domain.lotto.repository.LottoRepository;
 import lotto.domain.money.Wallet;
-import lotto.repository.LottoRepository;
 import lotto.service.mapper.LottoFromDtoMapper;
 import lotto.service.mapper.LottoToDtoMapper;
 import lotto.service.mapper.WalletFromDtoMapper;
@@ -57,20 +57,20 @@ public final class LottoService {
     /**
      * 로또 구매 입력에 대한 Dto를 받아서 구매 로직을 처리하고, 응답을 Dto로 변환 및 반환
      */
-    public LottosBuyingResult buyLottos(final BuyLottosDto dto) {
-        final Wallet wallet = WalletFromDtoMapper.mapFrom(dto);
+    public LottosBuyingOutput buyLottos(final BuyLottosInput dto) {
+        final Wallet wallet = WalletFromDtoMapper.from(dto);
         final Lottos boughtLottos = lottoStore.buyUntilOutOfMoney(wallet);
         final Lottos clonedLottos = boughtLottos.clone();
         lottoRepository.saveAll(boughtLottos);
 
-        return LottoToDtoMapper.mapFrom(clonedLottos);
+        return LottoToDtoMapper.from(clonedLottos);
     }
 
     /**
      * 로또 추첨에 대한 입력 Dto를 받아서 추첨 로직을 처리하고, 응답을 Dto로 변환 및 반환
      */
-    public LottosDrawingResult drawLottos(final DrawLottosDto dto) {
-        final WinningLotto winningLotto = LottoFromDtoMapper.mapFrom(dto);
+    public LottosDrawingOutput drawLottos(final DrawLottosInput dto) {
+        final WinningLotto winningLotto = LottoFromDtoMapper.from(dto);
         final LottoDrawingMachine lottoDrawingMachine = new LottoDrawingMachine(winningLotto);
         final Lottos lottos = new Lottos(lottoRepository.findAll());
 

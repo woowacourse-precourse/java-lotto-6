@@ -5,7 +5,7 @@ import lotto.controller.LottoController;
 import lotto.domain.lotto.LottoGenerator;
 import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.RandomLottoGenerator;
-import lotto.repository.LottoRepository;
+import lotto.domain.lotto.repository.LottoRepository;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

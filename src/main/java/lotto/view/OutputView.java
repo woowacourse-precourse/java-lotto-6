@@ -1,8 +1,8 @@
 package lotto.view;
 
 import io.output.Writer;
-import lotto.controller.dto.output.LottosBuyingResult;
-import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.controller.dto.output.LottosBuyingOutput;
+import lotto.controller.dto.output.LottosDrawingOutput;
 import lotto.view.component.output.BoughtLottosCountComponent;
 import lotto.view.component.output.DrawingStatisticComponent;
 import lotto.view.component.output.LottoNumbersComponent;
@@ -30,7 +30,7 @@ public final class OutputView {
     /**
      * 로또 구매 시, 구매한 로또 개수 및 모든 로또의 번호를 출력합니다.
      */
-    public void printLottosBuyingResult(final LottosBuyingResult data) {
+    public void printLottosBuyingResult(final LottosBuyingOutput data) {
         new BoughtLottosCountComponent(data)
                 .compose(new LottoNumbersComponent(data))
                 .renderTo(writer);
@@ -41,7 +41,7 @@ public final class OutputView {
      * <p>
      * 수익률, 등수 별 장 수를 출력합니다.
      */
-    public void printLottosDrawingResult(final LottosDrawingResult data) {
+    public void printLottosDrawingResult(final LottosDrawingOutput data) {
         new DrawingStatisticComponent(data).renderTo(writer);
     }
 }

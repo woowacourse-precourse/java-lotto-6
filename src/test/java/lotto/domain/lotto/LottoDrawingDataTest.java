@@ -3,7 +3,7 @@ package lotto.domain.lotto;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.EnumMap;
-import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.controller.dto.output.LottosDrawingOutput;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -43,7 +43,7 @@ final class LottoDrawingDataTest {
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingResult result = data.toLottoDrawingResult();
+        final LottosDrawingOutput result = data.toLottoDrawingResult();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -63,7 +63,7 @@ final class LottoDrawingDataTest {
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingResult result = data.toLottoDrawingResult();
+        final LottosDrawingOutput result = data.toLottoDrawingResult();
 
         // then
         assertThat(result.firstCount()).isEqualTo(1);
@@ -83,7 +83,7 @@ final class LottoDrawingDataTest {
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingResult result = data.toLottoDrawingResult();
+        final LottosDrawingOutput result = data.toLottoDrawingResult();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -103,7 +103,7 @@ final class LottoDrawingDataTest {
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingResult result = data.toLottoDrawingResult();
+        final LottosDrawingOutput result = data.toLottoDrawingResult();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -123,7 +123,7 @@ final class LottoDrawingDataTest {
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingResult result = data.toLottoDrawingResult();
+        final LottosDrawingOutput result = data.toLottoDrawingResult();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -143,7 +143,7 @@ final class LottoDrawingDataTest {
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingResult result = data.toLottoDrawingResult();
+        final LottosDrawingOutput result = data.toLottoDrawingResult();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);
@@ -163,7 +163,7 @@ final class LottoDrawingDataTest {
         data.save(lottoPrize);
 
         // when
-        final LottosDrawingResult result = data.toLottoDrawingResult();
+        final LottosDrawingOutput result = data.toLottoDrawingResult();
 
         // then
         assertThat(result.firstCount()).isEqualTo(0);

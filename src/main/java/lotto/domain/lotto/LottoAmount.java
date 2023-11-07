@@ -23,6 +23,14 @@ public class LottoAmount {
         validateRemainder(amount);
     }
 
+    private static int validateNumber(String lottoMoneyString) {
+        try {
+            return Integer.parseInt(lottoMoneyString);
+        } catch (NumberFormatException e) {
+            throw new LottoNumNotNumException();
+        }
+    }
+
     private static void validatePositive(int amount) {
         if(amount <= 0){
             throw new LottoMoneyLessException();
@@ -32,14 +40,6 @@ public class LottoAmount {
     private static void validateRemainder(int amount) {
         if (amount % LOTTO_AMOUNT_DIVIDE != 0) {
             throw new LottoMoneyDivideException();
-        }
-    }
-
-    private static int validateNumber(String lottoMoneyString) {
-        try {
-            return Integer.parseInt(lottoMoneyString);
-        } catch (NumberFormatException e) {
-            throw new LottoNumNotNumException();
         }
     }
 }

@@ -35,7 +35,6 @@ public class Result {
         for(LottoRank lottoRank : LottoRank.values()){
             int rankCount = getRankCount(lottoRank.getRank(), winningCount);
             printWinningResult(lottoRank, rankCount);
-            addTotalPrize(lottoRank.getPrize(), rankCount);
         }
     }
 
@@ -61,15 +60,23 @@ public class Result {
         return prize;
     }
 
+    public void printTotalProfit(HashMap<Integer, Integer> winningCount) {
+        System.out.println("총 수익률은 " + getTotalProfit(winningCount) + "입니다.");
+    }
+
+    public String getTotalProfit(HashMap<Integer, Integer> winningCount) {
+        for(LottoRank lottoRank : LottoRank.values()){
+            int rankCount = getRankCount(lottoRank.getRank(), winningCount);
+            addTotalPrize(lottoRank.getPrize(), rankCount);
+        }
+        return calculateProfit();
+    }
+
     public void addTotalPrize(int prize, int rankCount) {
         totalPrize += prize * rankCount;
     }
 
-    public void printTotalProfit() {
-        System.out.println("총 수익률은 " + getTotalProfit() + "입니다.");
-    }
-
-    public String getTotalProfit() {
+    public String calculateProfit(){
         double TotalProfit = ((double) totalPrize / user.getPaymentAmount()) * 100;
         return String.format("%.1f%%", TotalProfit);
     }

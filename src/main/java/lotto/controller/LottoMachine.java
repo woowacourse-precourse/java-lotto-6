@@ -89,7 +89,7 @@ public class LottoMachine {
         System.out.println("---");
         compareLottoTicket();
         result.printWinningStatistics(winningCount);
-        result.printTotalProfit();
+        result.printTotalProfit(winningCount);
     }
 
     public void compareLottoTicket() {

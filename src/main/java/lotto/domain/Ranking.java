@@ -36,4 +36,20 @@ public enum Ranking {
     public long calculate(Integer count) {
         return (long) prize * count;
     }
+
+    public long multiple(Integer count) {
+        return (long) prize * count;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public boolean getHasBonusBall() {
+        return hasBonusNumber;
+    }
 }

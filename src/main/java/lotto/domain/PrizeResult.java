@@ -32,4 +32,7 @@ public class PrizeResult {
             prizeResult.put(ranking, 0);
         }
     }
+    public Map<Ranking, Integer> getPrizeResult() {
+        return prizeResult;
+    }
 }

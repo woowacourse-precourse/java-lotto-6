@@ -11,31 +11,26 @@ public class Exception {
         }
     }
 
-    public static void notThousandWon(String inputData) throws IllegalArgumentException {
+    public static void notThousandWon(int purchaseAmount) throws IllegalArgumentException {
         final int thousandWon = 1000;
         final int zero = 0;
-        int amount = Integer.parseInt(inputData);
 
-        if (amount == zero || amount % thousandWon != zero) {
+        if (purchaseAmount == zero || purchaseAmount % thousandWon != zero) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로만 입력 가능합니다.");
         }
     }
 
-    public static void overLimitCount(int inputSize, int limitCount) throws IllegalArgumentException {
+    public static void overLimitCount(int inputSize) throws IllegalArgumentException {
+        final int limitCount = 6;
+
         if (inputSize != limitCount) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개만 입력 가능합니다.");
         }
     }
 
     public static void duplicateWinNumbers(List<Integer> winNumbers) throws IllegalArgumentException {
-        final int firstIndex = 0;
-
-        for (int i = 0; i < winNumbers.size(); i++) {
-            int number = winNumbers.remove(firstIndex);
-            if (winNumbers.contains(number)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 다른 숫자만 입력 가능합니다.");
-            }
-            winNumbers.add(number);
+        if (winNumbers.size() != winNumbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 서로 다른 숫자만 입력 가능합니다.");
         }
     }
 

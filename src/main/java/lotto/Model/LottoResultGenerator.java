@@ -1,7 +1,9 @@
 package lotto.Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import lotto.Controller.LottoController;
 import lotto.Global.LottoResult;
 
 public class LottoResultGenerator {
@@ -22,6 +24,10 @@ public class LottoResultGenerator {
     private static int SECOND_WINNING_AMOUNT = 30000000;
     private static int FIRST_WINNING_NUMBER_MATCH_COUNT = 6;
     private static int FIRST_WINNING_AMOUNT = 2000000000;
+
+    public LottoResultGenerator() {
+        this.selledLottos = new ArrayList<>();
+    }
 
     private class WinningLotto {
         private List<Integer> winningNumber;
@@ -48,15 +54,9 @@ public class LottoResultGenerator {
         winningLotto = new WinningLotto(winningNumber, bonusNumber);
     }
 
-    public HashMap<String, Integer> getTotalLottoResult() {
-        HashMap<String, Integer> result = getLottosResult();
-        result.put(LottoResult.RATE_OF_RETURN_RESULT.getName(), getLottoRateOfResult(result));
-        return result;
-    }
-
     public HashMap<String, Integer> getLottosResult() {
         HashMap<String, Integer> result = new HashMap<>();
-        result.put(LottoResult.FIFTH_RESULT.getName(), getResultNumber(FIRST_WINNING_NUMBER_MATCH_COUNT));
+        result.put(LottoResult.FIFTH_RESULT.getName(), getResultNumber(FIFTH_WINNING_NUMBER_MATCH_COUNT));
         result.put(LottoResult.FOURTH_RESULT.getName(), getResultNumber(FOURTH_WINNING_NUMBER_MATCH_COUNT));
         result.put(LottoResult.THIRD_RESULT.getName(),
                 getResultNumber(THIRD_WINNING_NUMBER_MATCH_COUNT, THIRD_BONUS_NUMBER_MATCH_COUNT));
@@ -66,13 +66,14 @@ public class LottoResultGenerator {
         return result;
     }
 
-    public int getLottoRateOfResult(HashMap<String, Integer> lottoResult) {
-        int result = 0;
+    public float getLottoRateOfResult(HashMap<String, Integer> lottoResult) {
+        float result = 0;
         result += lottoResult.get(LottoResult.FIFTH_RESULT.getName()) * FIFTH_WINNING_AMOUNT;
         result += lottoResult.get(LottoResult.FOURTH_RESULT.getName()) * FOURTH_WINNING_AMOUNT;
         result += lottoResult.get(LottoResult.THIRD_RESULT.getName()) * THIRD_WINNING_AMOUNT;
         result += lottoResult.get(LottoResult.SECOND_RESULT.getName()) * SECOND_WINNING_AMOUNT;
         result += lottoResult.get(LottoResult.FIRST_RESULT.getName()) * FIRST_WINNING_AMOUNT;
+        result = (result / (selledLottos.size() * LottoController.LOTTO_SALES_AMOUNT_MONEY)) * 100;
         return result;
     }
 

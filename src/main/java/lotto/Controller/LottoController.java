@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.Global.Exception;
 import lotto.Model.LottoMachine;
@@ -44,6 +45,7 @@ public class LottoController {
     }
 
     private void getLottoResult() {
-        view.putLottoResult(lottoMachine.getResult());
+        HashMap<String, Integer> result = lottoMachine.getResult();
+        view.putLottoResult(result, lottoMachine.getRateOfResult(result));
     }
 }

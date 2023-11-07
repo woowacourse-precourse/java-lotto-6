@@ -35,19 +35,19 @@ public class View {
         return inputView.SingleNumberInput();
     }
 
-    public void putLottoResult(HashMap<String, Integer> result) {
+    public void putLottoResult(HashMap<String, Integer> result, float rateOfResult) {
         outputView.printPhrase(PrintPhrase.WINNING_INFORMATION_OUTPUT.getPhrase());
-        outputView.printMultiplePhrase(getLottoResultPhrase(result));
+        outputView.printMultiplePhrase(getLottoResultPhrase(result, rateOfResult));
     }
 
-    private List<String> getLottoResultPhrase(HashMap<String, Integer> lottoResult) {
+    private List<String> getLottoResultPhrase(HashMap<String, Integer> lottoResult, float rateOfResult) {
         List<String> result = new ArrayList<>();
         List<LottoResult> resultType = List.of(LottoResult.FIFTH_RESULT, LottoResult.FOURTH_RESULT,
-                LottoResult.THIRD_RESULT, LottoResult.SECOND_RESULT, LottoResult.FIRST_RESULT,
-                LottoResult.RATE_OF_RETURN_RESULT);
+                LottoResult.THIRD_RESULT, LottoResult.SECOND_RESULT, LottoResult.FIRST_RESULT);
         for (LottoResult type : resultType) {
             result.add(type.getResultState(lottoResult.get(type.getName())));
         }
+        result.add(LottoResult.RATE_OF_RETURN_RESULT.getResultState(rateOfResult));
         return result;
     }
 

@@ -21,7 +21,7 @@ public class Lotto {
     public String getLottoCreatedResult() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[]");
-        String result = numbers.stream().map(Object::toString).collect(Collectors.joining(","));
+        String result = numbers.stream().map(Object::toString).collect(Collectors.joining(", "));
         stringBuilder.insert(1, result);
         return stringBuilder.toString();
     }

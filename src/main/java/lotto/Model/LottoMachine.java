@@ -33,7 +33,11 @@ public class LottoMachine {
     }
 
     public HashMap<String, Integer> getResult() {
-        return lottoResultGenerator.getTotalLottoResult();
+        return lottoResultGenerator.getLottosResult();
+    }
+
+    public float getRateOfResult(HashMap<String, Integer> result) {
+        return lottoResultGenerator.getLottoRateOfResult(result);
     }
 
 

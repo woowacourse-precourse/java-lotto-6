@@ -7,7 +7,7 @@ public enum LottoResult {
     THIRD_RESULT("5개 일치 (1,500,000원) - %d개", "third_result"),
     SECOND_RESULT("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", "second_result"),
     FIRST_RESULT("6개 일치 (2,000,000,000원) - %d개", "first_result"),
-    RATE_OF_RETURN_RESULT("총 수익률은 %d%입니다.", "rate");
+    RATE_OF_RETURN_RESULT("총 수익률은 %.1f%%입니다.", "rate");
 
     private String resultPhrase;
     private String name;
@@ -23,6 +23,10 @@ public enum LottoResult {
     }
 
     public String getResultState(int value) {
+        return String.format(this.resultPhrase, value);
+    }
+
+    public String getResultState(float value) {
         return String.format(this.resultPhrase, value);
     }
 

@@ -18,6 +18,18 @@ public enum ExceptionMessages {
         this.exceptionMessage = ERROR_TAG + exceptionMessage;
     }
 
+    public String getMessage() {
+        return exceptionMessage;
+    }
+
+    public String getMessage(int param1) {
+        return String.format(exceptionMessage, param1);
+    }
+
+    public String getMessage(int param1, int param2) {
+        return String.format(exceptionMessage, param1, param2);
+    }
+
     public void throwException() {
         throw new IllegalArgumentException(exceptionMessage);
     }

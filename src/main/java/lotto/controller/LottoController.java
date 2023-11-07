@@ -42,11 +42,7 @@ public class LottoController {
             user = new User(purchaseAmount);
             lottoService.buyLottoAll(user);
             printBuyLotto();
-        } catch (NumberFormatException e) {
-            System.out.println(ExceptionMessages.STRING_TO_INTEGER.getMessage());
-            beforeStartRecursive();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             beforeStartRecursive();
         }
     }
@@ -70,11 +66,7 @@ public class LottoController {
             List<Integer> userInputWinningNumbers = inputProcessor.getUserInputWinningNumbers();
             lottoData = new LottoData(new Lotto(userInputWinningNumbers),null);
             return lottoData.winningNumbers();
-        } catch (NumberFormatException e) {
-            System.out.println(ExceptionMessages.STRING_TO_INTEGER.getMessage());
-            return setWinningNumbers();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             return setWinningNumbers();
         }
     }
@@ -85,11 +77,7 @@ public class LottoController {
             int bonusNumber = inputProcessor.getUserInputBonusNumber();
             Validation.validateBonusNumberNotInWinningNumber(bonusNumber, lottoData.winningNumbers().getNumbers());
             return new BonusNumber(bonusNumber);
-        } catch (NumberFormatException e) {
-            System.out.println(ExceptionMessages.STRING_TO_INTEGER.getMessage());
-            return setBonusNumber();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
             return setBonusNumber();
         }
     }

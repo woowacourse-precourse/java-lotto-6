@@ -7,12 +7,13 @@ public class Wallet {
 
     public Wallet(String money) {
         validateMoney(money);
-        this.money = Integer.parseInt(money);
+        this.money = convertStringToInt(money);
     }
 
     private void validateMoney(String money) {
         validateNotNullMoney(money);
         validateNonNumericMoney(money);
+        validateOutOfRangeMoney(money);
     }
 
     private void validateNonNumericMoney(String money) {
@@ -26,5 +27,26 @@ public class Wallet {
             throw new IllegalArgumentException("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
                     + MAXIMUM_PURCHASE_AMOUNT + "원.");
         }
+    }
+
+    private void validateOutOfRangeMoney(String money) {
+        int convertMoney = convertStringToInt(money);
+
+        if (convertMoney > MAXIMUM_PURCHASE_AMOUNT) {
+            throw new IllegalArgumentException("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
+                    + MAXIMUM_PURCHASE_AMOUNT + "원.");
+        }
+
+    }
+    private int convertStringToInt(String money) {
+        int convertMoney;
+
+        try {
+            convertMoney = Integer.parseInt(money);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
+                    + MAXIMUM_PURCHASE_AMOUNT + "원.");
+        }
+        return convertMoney;
     }
 }

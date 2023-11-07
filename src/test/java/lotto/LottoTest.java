@@ -122,9 +122,14 @@ class LottoTest {
         int inputMoney = 8000;
         int getMoney = 5000;
 
-        double getMoneyRatio = (((double) getMoney / (double) inputMoney) * 100);
+        int inputMoney2 = 13000;
+        int getMoney2 = 5000;
+
+
+        double getMoneyRatio = Math.round(((double) getMoney / (double) inputMoney) * 1000) /10.0;
+        double getMoneyRatio2 = Math.round(((double) getMoney2 / (double) inputMoney2) * 1000)/10.0;
 
         assertThat(getMoneyRatio).isEqualTo(62.5);
-
+        assertThat(getMoneyRatio2).isEqualTo(38.5);
     }
 }

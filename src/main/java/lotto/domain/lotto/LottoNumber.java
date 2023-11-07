@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
+import lotto.constants.ErrorConsts;
 import lotto.constants.LottoConsts;
-import lotto.exception.constants.ErrorConsts;
 
 public record LottoNumber(
         int number

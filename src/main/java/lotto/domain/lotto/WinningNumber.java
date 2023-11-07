@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
-import lotto.exception.constants.ErrorConsts;
+import lotto.constants.ErrorConsts;
 
 import java.util.Set;
 

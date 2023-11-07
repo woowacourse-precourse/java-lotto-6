@@ -1,7 +1,7 @@
 package lotto.domain.game;
 
+import lotto.constants.ErrorConsts;
 import lotto.constants.LottoConsts;
-import lotto.exception.constants.ErrorConsts;
 
 public record Money(
         int price

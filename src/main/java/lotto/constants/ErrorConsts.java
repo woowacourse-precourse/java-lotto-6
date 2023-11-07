@@ -1,4 +1,4 @@
-package lotto.exception.constants;
+package lotto.constants;
 
 public enum ErrorConsts {
     LOTTO_NUMBER_OUT_OF_RANGE("로또 번호는 1 ~ 45 사이의 숫자만 가능합니다."),

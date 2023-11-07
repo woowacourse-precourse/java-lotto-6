@@ -6,6 +6,8 @@ import lotto.repository.Repository;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.List;
+
 public class LottoService {
     private boolean isUseFulLottoCount = true;
     private boolean isUseFulAnswerLotto = true;
@@ -29,6 +31,24 @@ public class LottoService {
 
         makeRandomLotto();
         output.printRandomLottoNum(repository.getLottoNumbers());
+
+        output.printGetLottoAnswer();
+        do{
+            List<Integer> tempAnswer = input.getLottoAnswerNum();
+            if(!tempAnswer.isEmpty()){
+                repository.setAnswerLotto(new Lotto(tempAnswer));
+                isUseFulAnswerLotto = false;
+            }
+        }while(isUseFulAnswerLotto);
+
+        output.printGetBonusNum();
+        do{
+            repository.saveBonusNumber(input.getBonusNum());
+            if(repository.getBonusNumber() != 0){
+                isUseFulBonusNumber = false;
+            }
+        }while(isUseFulBonusNumber);
+
     }
 
     private void getMoney() {

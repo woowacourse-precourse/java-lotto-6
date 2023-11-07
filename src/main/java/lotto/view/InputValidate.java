@@ -24,15 +24,11 @@ public class InputValidate {
         try{
             String[] temp = getLottoByString(lottoNum);
             for(String num : temp){
-                try {
-                    answerLotto.add(isLottoNumber(validateIsDigit(num)));
-                }catch (IllegalArgumentException e){
-                    System.out.println("[ERROR] 로또 번호 형식이 맞지 않습니다.");
-                    return new ArrayList<>();
-                }
+                answerLotto.add(isLottoNumber(validateIsDigit(num)));
             }
         }catch(IllegalArgumentException e){
             System.out.println("[ERROR] 로또 번호 형식이 맞지 않습니다.");
+            return new ArrayList<>();
         }
 
         return answerLotto;
@@ -40,7 +36,7 @@ public class InputValidate {
 
     public int bonusNumValidate(String bonusNum){
         try{
-            return validateIsDigit(bonusNum);
+            checkBonusNumberInAnswer(isLottoNumber(validateIsDigit(bonusNum)));
         }catch (IllegalArgumentException e){
             System.out.println("[ERROR] 로또 구매 금액 형식이 맞지 않습니다.");
         }
@@ -69,8 +65,10 @@ public class InputValidate {
         return splitLottoAnswer;
     }
 
-    private boolean checkBonusNumberInAnswer(int bonus){
+    private void checkBonusNumberInAnswer(int bonus){
         List<Integer> lottoAnswer = repository.getAnswerLotto().getLottoDetail();
-        return !lottoAnswer.contains(bonus);
+        if(lottoAnswer.contains(bonus)){
+            throw new IllegalArgumentException();
+        }
     }
 }

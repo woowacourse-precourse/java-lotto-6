@@ -11,11 +11,9 @@ import lotto.view.InputValidate;
 import lotto.view.Output;
 
 public class AppConfig {
-    public Repository getRepository(){
-        return new LottoRepository();
-    }
+    private final Repository repository = new LottoRepository();
     public InputValidate getInputValidate(){
-        return new InputValidate(getRepository());
+        return new InputValidate(repository);
     }
     public Input getInput(){
         return new Input(getInputValidate());
@@ -30,6 +28,6 @@ public class AppConfig {
         return new lottoMakerByRandom();
     }
     public LottoService getLottoService(){
-        return new LottoService(getOutput(), getInput(), getRepository(), getCalculation(), getLottoMaker());
+        return new LottoService(getOutput(), getInput(),repository , getCalculation(), getLottoMaker());
     }
 }

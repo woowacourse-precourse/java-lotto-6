@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.enums.ErrorEnum;
 import lotto.enums.ErrorMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,6 +16,11 @@ class LottoPurchaseTest {
     void createLottoPurchase() {
         lottoPurchase = LottoPurchase.valueOf(1000);
         lottoPurchase = LottoPurchase.valueOf("1000");
+    }
+
+    @Test
+    void createLottoPurchaseByNonNumeric() {
+        assertThatThrownBy(() -> LottoPurchase.valueOf("1000j")).isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.NON_NUMERIC_INPUT_MESSAGE.getMessage());
     }
 
 

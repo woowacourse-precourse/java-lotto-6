@@ -19,14 +19,44 @@ public class LottoController {
 
     public void start() {
         Money money = getValidMoneyInput();
+        int ticketCount = BuyLotto(money);
+        Lottos userLottos = generateLottoNumbers(ticketCount);
+        WinningNumbers winningNumbers = generateWinningNumbers();
+        BonusNumber bonusNumber = generateBonusNumber(winningNumbers);
+        Map<Rank, Integer> rankCount = checkLottoGameResult(userLottos, winningNumbers, bonusNumber);
+        printWinningStatistics(rankCount, money);
+    }
+
+    private int BuyLotto(Money money) {
         int ticketCount = money.calculateTicketCount();
         OutputView.printTicketCount(ticketCount);
+        return ticketCount;
+    }
+
+    private Lottos generateLottoNumbers(int ticketCount) {
         Lottos userLottos = lottoManager.generateUserLottos(ticketCount);
         OutputView.printUserLottos(userLottos.getLottos());
+        return userLottos;
+    }
+
+    private WinningNumbers generateWinningNumbers() {
         WinningNumbers winningNumbers = getValidWinningNumbersInput();
+        return winningNumbers;
+    }
+
+    private BonusNumber generateBonusNumber(WinningNumbers winningNumbers) {
         BonusNumber bonusNumber = getValidBonusNumberInput(winningNumbers);
+        return bonusNumber;
+    }
+
+    private Map<Rank, Integer> checkLottoGameResult(Lottos userLottos, WinningNumbers winningNumbers,
+                                                    BonusNumber bonusNumber) {
         Map<Rank, Integer> rankCount = lottoManager.calculateRankCount(userLottos, winningNumbers, bonusNumber);
         OutputView.printWinningStatistics();
+        return rankCount;
+    }
+
+    private void printWinningStatistics(Map<Rank, Integer> rankCount, Money money) {
         OutputView.printRankCount(rankCount);
         lottoManager.printRateOfReturn(rankCount, money);
     }

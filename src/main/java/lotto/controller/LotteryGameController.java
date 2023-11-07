@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.domain.Computer;
 import lotto.domain.LotteryMessageBuilder;
 import lotto.domain.lottery.*;
-import lotto.domain.validation.validator.Validator;
 import lotto.view.OutputView;
 import lotto.view.InputView;
 
@@ -12,46 +11,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.domain.constants.LottoConstraint.LOTTO_PRICE;
-
 public class LotteryGameController {
 
     private final static String SPLIT_SYMBOL = ",";
 
-    private final InputView inputView = new InputView();
-    private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-    private final LotteryMessageBuilder lotteryMessageBuilder = new LotteryMessageBuilder();
-    private final Computer computer = new Computer();
-    private final Validator validator = new Validator();
-
-    private int lottoAmount;
-    private final Lottos purchasedLotto = new Lottos();
+    static int purchaseAmount;
+    static int lottoAmount;
     private Lotto winningLotto;
     private BonusNumber bonusNumber;
 
+    static final Lottos purchasedLotto = new Lottos();
+    private final InputView inputView = new InputView();
+    private final LotteryMessageBuilder lotteryMessageBuilder = new LotteryMessageBuilder();
+    private final Computer computer = new Computer();
+    private final PurchaseController purchaseController = new PurchaseController();
+
     public void run() {
-        OutputView.requestPurchaseAmountMessage();
-        int purchaseAmount = amountOfLottos();
-
-        purchaseLotto(purchaseAmount);
-        OutputView.printNewLine();
-        OutputView.returnLottery(lottoAmount,
-                lotteryMessageBuilder.returnLottoList(purchasedLotto.getLottos()));
-
+        purchaseController.purchaseStage();
         requestWinningNumber();
         requestBonusNumber();
 
         returnLotteryResult(purchaseAmount);
         inputView.closeConsole();
-    }
-
-    private int amountOfLottos() {
-        String input = inputView.returnInput();
-
-        while (validator.isPurchaseAmountInteger(input)) {
-            return amountOfLottos();
-        }
-        return Integer.parseInt(input);
     }
 
     private void returnLotteryResult(int purchaseAmount) {
@@ -85,13 +66,5 @@ public class LotteryGameController {
         }
 
         return numbers;
-    }
-
-    private void purchaseLotto(int purchaseAmount) {
-        lottoAmount = purchaseAmount / LOTTO_PRICE.getValue();
-
-        for (int i = 0; i < lottoAmount; i++) {
-            purchasedLotto.addLotto(new Lotto(lottoNumberGenerator.generateSortedLottoNumber()));
-        }
     }
 }

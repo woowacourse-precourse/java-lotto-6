@@ -32,6 +32,43 @@ class ValidationTest {
         });
     }
 
+
+    @DisplayName("구입 금액 입력 값이 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void verifyStringToLong() {
+        //given
+        final String case1 = "a123";
+        final String case2 = "  ";
+        final String case3 = "asdfb";
+        final String case4 = "1    ";
+        final String case5 = "10000";
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyStringToLong(case1);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyStringToLong(case2);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyStringToLong(case3);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyStringToLong(case4);
+        });
+
+        //when & then
+        assertDoesNotThrow(() -> {
+            Validation.verifyStringToLong(case5);
+        });
+    }
+
     @Test
     void verifyIntegerWinningLottoNumber() {
     }

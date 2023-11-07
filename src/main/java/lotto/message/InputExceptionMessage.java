@@ -1,5 +1,8 @@
 package lotto.message;
 
+/**
+ * 입력시 예외값 정의 enum
+ */
 public enum InputExceptionMessage {
     INVALID_PRICE_TYPE("[ERROR] 로또 구입 금액은 자연수여야 합니다."),
     INVALID_PRICE("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다."),

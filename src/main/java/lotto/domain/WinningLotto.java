@@ -18,13 +18,17 @@ public class WinningLotto {
                 .filter(winningNumbers.getNumbers()::contains)
                 .count();
     }
+    private boolean matchBonus(Lotto ticket) {
+        return ticket.getNumbers().contains(bonusNumber.getNumbers().get(0));
+    }
 
     // 당첨 결과 계산 로직 작성 필요
     public LottoResult compare(List<Lotto> tickets) {
         LottoResult result = new LottoResult();
         for (Lotto ticket : tickets) {
             int matchCount = getMatchCount(ticket);
-            result.add(LottoRank.valueOf(matchCount));
+            boolean matchBonus = matchBonus(ticket);
+            result.add(LottoEnum.LottoRank.valueOf(matchCount, matchBonus));
         }
         return result;
     }

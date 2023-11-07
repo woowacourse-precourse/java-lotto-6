@@ -21,6 +21,7 @@ public final class Message {
     public static final String ERROR_NOT_ONE_NUMBER = "(은)는 1자리 숫자여야 합니다.";
     public static final String ERROR_DUPLICATED_NUMBER = "(은)는 중복될 수 없습니다.";
 
+    public static final String PURCHASED_LOTTO = "%d개를 구매했습니다. \n";
     public static final String RESULT_MESSAGE =
             """
             당첨통계

@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import static lotto.view.ExceptionMessage.*;
+import lotto.view.ExceptionMessage;
+
 
 public class LottoAmount {
     private static final int LOTTO_AMOUNT = 1000;
@@ -20,7 +21,7 @@ public class LottoAmount {
 
     private void validateDivide(int lottoAmount) {
         if (lottoAmount % LOTTO_AMOUNT != ZERO) {
-            throw new IllegalArgumentException(amountDivideException());
+            throw new IllegalArgumentException(ExceptionMessage.amountDivideException());
         }
     }
 

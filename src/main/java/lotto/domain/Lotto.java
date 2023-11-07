@@ -1,9 +1,9 @@
 package lotto.domain;
 
+import lotto.view.ExceptionMessage;
+
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static lotto.view.ExceptionMessage.*;
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
@@ -31,7 +31,7 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(sizeException() + numbers.size());
+            throw new IllegalArgumentException(ExceptionMessage.sizeException() + numbers.size());
         }
     }
 
@@ -39,7 +39,7 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) throws IllegalArgumentException {
         for (int number : numbers) {
             if (number < MIN_RANGE || number > MAX_RANGE) {
-                throw new IllegalArgumentException(rangeException());
+                throw new IllegalArgumentException(ExceptionMessage.rangeException());
             }
         }
     }
@@ -54,7 +54,7 @@ public class Lotto {
 
     private void duplicatedChecking(Set<Integer> duplicateCheck) {
         if (duplicateCheck.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(duplicatedException());
+            throw new IllegalArgumentException(ExceptionMessage.duplicatedException());
         }
     }
 

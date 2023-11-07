@@ -1,10 +1,11 @@
 package lotto.domain;
 
+import lotto.view.ExceptionMessage;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.view.ExceptionMessage.*;
 
 public class WinningNumber {
     private static final Integer DUPLICATE_CHECK_SIZE = 7;
@@ -28,13 +29,13 @@ public class WinningNumber {
         Set<Integer> checkSet = new HashSet<>(winningLotto);
         checkSet.add(bonusBall);
         if (checkSet.size() != DUPLICATE_CHECK_SIZE) {
-            throw new IllegalArgumentException(lottoNumberAndBonusDuplicatedException());
+            throw new IllegalArgumentException(ExceptionMessage.lottoNumberAndBonusDuplicatedException());
         }
     }
 
     private void bonusBallValidate(int bonusBall) {
         if (bonusBall < MIN_RANGE || bonusBall > MAX_RANGE) {
-            throw new IllegalArgumentException(rangeException());
+            throw new IllegalArgumentException(ExceptionMessage.rangeException());
         }
     }
 

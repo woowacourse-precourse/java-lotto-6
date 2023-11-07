@@ -1,13 +1,15 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.RateOnReturn;
 import lotto.domain.WinningStatistics;
 
 import java.util.Arrays;
+import java.util.List;
 
 
-public class OutputLottoResult {
+public class OutputView {
     private static final String LOTTO_TICKET_COUNT_MESSAGE = "개를 구매했습니다.";
     private static final String NEWLINE = "\n";
 
@@ -16,6 +18,13 @@ public class OutputLottoResult {
     private static final String BONUS_MATCH_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
 
     private static final String OUTPUT_RATE_OF_RETURN = "총 수익률은 %.1f%%입니다.";
+
+    public static void printLottoList(List<Lotto> lotto){
+        for (int i = 0; i < lotto.size(); i++) {
+            System.out.println(lotto.get(i));
+        }
+    }
+
 
     public static void printTicketCount(int ticketCount) {
         System.out.println();

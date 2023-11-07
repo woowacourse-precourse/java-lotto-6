@@ -1,17 +1,19 @@
 package lotto.controller;
 
+import lotto.view.ExceptionMessage;
 import lotto.view.InputView;
 import lotto.domain.*;
+import lotto.view.OutputView;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.view.ExceptionMessage.*;
-import static lotto.view.OutputLottoList.*;
-import static lotto.view.OutputLottoResult.*;
 
 public class LottoController {
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
+    private ExceptionMessage exceptionMessage = new ExceptionMessage();
     private static LottoAmount lottoAmount;
     private static int ticketCount;
     private static List<Lotto> lotto = new ArrayList<>();
@@ -34,12 +36,12 @@ public class LottoController {
     private void getLottoAmount() {
         while (true) {
             try {
-                lottoAmount = new LottoAmount(InputView.setPurchaseAmount());
+                lottoAmount = new LottoAmount(inputView.setPurchaseAmount());
                 ticketCount = lottoAmount.getTicketCount();
-                printTicketCount(ticketCount);
+                outputView.printTicketCount(ticketCount);
                 break;
             } catch (NumberFormatException e) {
-                System.err.println(notNumberException());
+                System.err.println(exceptionMessage.notNumberException());
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }
@@ -49,14 +51,14 @@ public class LottoController {
     private void generateLottoNumbers(int ticketCount) {
         LottoGenerator lottoGenerator = new LottoGenerator();
         lotto = lottoGenerator.randomNumber(ticketCount);
-        printLottoList(lotto);
+        outputView.printLottoList(lotto);
 
     }
 
     private void getInputLottoNumbers() {
         while (true) {
             try {
-                Lotto winnerLotto = new Lotto(InputView.setLottoNumber());
+                Lotto winnerLotto = new Lotto(inputView.setLottoNumber());
                 winnerLottoList = winnerLotto.getNumbers();
                 break;
             } catch (IllegalArgumentException e) {
@@ -69,11 +71,11 @@ public class LottoController {
         int bonusNumber;
         while (true) {
             try {
-                bonusNumber = InputView.setBonusBall();
+                bonusNumber = inputView.setBonusBall();
                 winningNumber = new WinningNumber(winnerLottoList, bonusNumber);
                 break;
             } catch (NumberFormatException e) {
-                System.err.println(notNumberException());
+                System.err.println(exceptionMessage.notNumberException());
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }
@@ -83,9 +85,9 @@ public class LottoController {
     private void resultLotto(LottoAmount lottoAmount, WinningNumber winningNumber) {
         LottoResult lottoResult = new LottoResult();
 
-        printResultMessage();
+        outputView.printResultMessage();
         lottoResult.calcWinning(winningNumber, lotto);
         RateOnReturn rateOnReturn = new RateOnReturn(lottoAmount, lottoResult);
-        printStatistics(lottoResult, rateOnReturn);
+        outputView.printStatistics(lottoResult, rateOnReturn);
     }
 }

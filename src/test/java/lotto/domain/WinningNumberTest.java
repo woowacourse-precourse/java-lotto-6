@@ -31,7 +31,7 @@ public class WinningNumberTest {
     @DisplayName("당첨 번호와 보너스 번호가 중복되면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedBonusNumber() {
-        assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6),6))
+        assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

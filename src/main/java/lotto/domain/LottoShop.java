@@ -8,7 +8,6 @@ public class LottoShop {
     private static final int LOTTO_PRICE = 1000;
 
     public List<Lotto> purchase(PurchaseAmount purchaseAmount) {
-
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseAmount.getQuantity(LOTTO_PRICE); i++) {
             lottos.add(generateLotto());

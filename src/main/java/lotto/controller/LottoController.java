@@ -23,21 +23,31 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = repeat(() -> new PurchaseAmount(inputView.inputPurchaseAmount()));
-
+        PurchaseAmount purchaseAmount = repeat(this::getPurchaseAmount);
         LottoTickets lottoTickets = lottoService.purchase(purchaseAmount);
         outputView.printPurchasedLottos(lottoTickets.lottos());
 
         WinningTicket winningTicket = repeat(this::getWinningTicket);
-
         Result winningResult = lottoService.getWinningResult(lottoTickets, winningTicket);
         outputView.printWinningResult(winningResult);
     }
 
+    private PurchaseAmount getPurchaseAmount() {
+        return new PurchaseAmount(inputView.inputPurchaseAmount());
+    }
+
     private WinningTicket getWinningTicket() {
-        Lotto winningLotto = repeat(() -> new Lotto(inputView.inputWinningNumbers()));
-        LottoNumber bonusNumber = repeat(() -> new LottoNumber(inputView.inputBonusNumber()));
+        Lotto winningLotto = repeat(this::getLotto);
+        LottoNumber bonusNumber = repeat(this::getLottoNumber);
         return new WinningTicket(winningLotto, bonusNumber);
+    }
+
+    private Lotto getLotto() {
+        return new Lotto(inputView.inputWinningNumbers());
+    }
+
+    private LottoNumber getLottoNumber() {
+        return new LottoNumber(inputView.inputBonusNumber());
     }
 
     private static <T> T repeat(Supplier<T> supplier) {

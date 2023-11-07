@@ -43,6 +43,7 @@ public class LottoController {
         payMoney();
         issueLottos(this.budget);
         printStatus(this.user);
+        readAnswer();
     }
 
     private void payMoney() {
@@ -84,7 +85,17 @@ public class LottoController {
             Collections.sort(row);
             OutputView.printLotto(row);
         }
+    }
 
+    private void readAnswer() {
+        boolean configured = false;
+        while (!configured) {
+            configured = doReadAnswer();
+        }
+    }
+
+    private void doReadAnswer() {
+        OutputView.printAnswerInputDescription();
     }
 
 }

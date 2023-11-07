@@ -13,10 +13,10 @@ public class NumberCandidateString {
     }
 
     public Money toMoney() {
-        return Money.of(getNumber());
+        return Money.of(toNumber());
     }
 
-    public Integer getNumber() {
+    public Integer toNumber() {
         return Integer.parseInt(numericString);
     }
 

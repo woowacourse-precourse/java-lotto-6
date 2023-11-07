@@ -11,6 +11,6 @@ public class WinnerLottoFactory {
     public  WinnerLotto generate(NumberCandidateStrings winningNumber, NumberCandidateString bonus) {
         Lotto lotto = new Lotto(winningNumber.toLottoNumberList());
 
-        return new WinnerLotto(lotto, new LottoNumber(bonus.getNumber()));
+        return new WinnerLotto(lotto, new LottoNumber(bonus.toNumber()));
     }
 }

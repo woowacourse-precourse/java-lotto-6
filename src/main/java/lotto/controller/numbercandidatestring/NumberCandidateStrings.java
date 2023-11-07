@@ -13,7 +13,7 @@ public class NumberCandidateStrings {
     }
 
     public List<LottoNumber> toLottoNumberList(){
-        return numberCandidateStrings.stream().map(NumberCandidateString::getNumber).map(LottoNumber::new).toList();
+        return numberCandidateStrings.stream().map(NumberCandidateString::toNumber).map(LottoNumber::new).toList();
     }
 
     public static NumberCandidateStrings valueOf(String numberCandiate){

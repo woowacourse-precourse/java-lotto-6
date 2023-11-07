@@ -23,6 +23,7 @@ public class Application {
         Lotto winningNumber = createWinningNumber(inputWinningNumber());
 
         System.out.println(InputMessage.BONUS_NUMBER);
+        checkNull(Console.readLine());
     }
 
     private static String inputWinningNumber() {

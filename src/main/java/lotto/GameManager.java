@@ -91,22 +91,14 @@ public class GameManager {
     protected int getWinningMoney(Lotto lotto) {
         int money = 0;
         int winningCount = getWinningCount(lotto);
-        switch (winningCount) {
-            case 3:
-                money = THREE_NUMBER_WINNING_MONEY;
-                break;
-            case 4:
-                money = FOUR_NUMBER_WINNING_MONEY;
-                break;
-            case 5:
-                money = FIVE_NUMBER_WINNING_MONEY;
-                break;
-            case 6:
-                money = SIX_NUMBER_WINNING_MONEY;
-                break;
-            default:
-                break;
-        }
+        if(winningCount==3)
+            money = THREE_NUMBER_WINNING_MONEY;
+        if(winningCount==4)
+            money = FOUR_NUMBER_WINNING_MONEY;
+        if(winningCount==5)
+            money = FIVE_NUMBER_WINNING_MONEY;
+        if(winningCount==6)
+            money = SIX_NUMBER_WINNING_MONEY;
         if (isWinningCountWithBonusNumber(winningCount, lotto)) {
             money = FIVE_NUMBER_WINNING_MONEY_WITH_BONUS_NUMBER;
         }

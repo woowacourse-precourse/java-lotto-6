@@ -8,7 +8,7 @@ public enum ConsoleMessages {
     WINNING_STATS_MESSAGE("당첨 통계\n---"),
     WINNING_REWARD("%d개 일치 (%s원) - %d개"),
     WINNING_BONUS_REWARD("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
-    TOTAL_PROFIT("총 수익률은 %f%입니다.");
+    RETURN_RATE("총 수익률은 %.1f%입니다.");
 
     private String value;
 

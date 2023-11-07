@@ -3,13 +3,14 @@ package lotto.ui;
 import static lotto.constant.ConsoleMessages.BONUS_NUMBER_MESSAGE;
 import static lotto.constant.ConsoleMessages.LOTTO_PURCHASED_MESSAGE;
 import static lotto.constant.ConsoleMessages.PURCHASE_AMOUNT_MESSAGE;
-import static lotto.constant.ConsoleMessages.TOTAL_PROFIT;
+import static lotto.constant.ConsoleMessages.RETURN_RATE;
 import static lotto.constant.ConsoleMessages.WINNING_BONUS_REWARD;
 import static lotto.constant.ConsoleMessages.WINNING_NUMBER_MESSAGE;
 import static lotto.constant.ConsoleMessages.WINNING_REWARD;
 import static lotto.constant.ConsoleMessages.WINNING_STATS_MESSAGE;
 
 import java.util.List;
+import lotto.constant.Rewards;
 import lotto.domain.Lotto;
 import lotto.util.StringUtil;
 
@@ -41,16 +42,19 @@ public class ConsolePrinter {
         System.out.println(WINNING_STATS_MESSAGE);
     }
 
-    public static void printWinningReward(int rank, int reward, int count) {
-        System.out.printf(WINNING_REWARD.toString(), rank, StringUtil.toStringWithCommas(reward), count);
+    public static void printWinningReward(Rewards reward, int count) {
+        if (reward == Rewards.FIFTH) {
+            System.out.printf(WINNING_BONUS_REWARD.toString(), reward.getCount(),
+                    StringUtil.toStringWithCommas(reward.getValue()), count);
+            return;
+        }
+
+        System.out.printf(WINNING_REWARD.toString(), reward.getCount(),
+                StringUtil.toStringWithCommas(reward.getValue()), count);
     }
 
-    public static void printBonusReward(int rank, int reward, int count) {
-        System.out.printf(WINNING_BONUS_REWARD.toString(), rank, StringUtil.toStringWithCommas(reward), count);
-    }
-
-    public static void printTotalProfit(float profit) {
-        System.out.printf(TOTAL_PROFIT.toString(), profit);
+    public static void printTotalReturnRate(double returnRate) {
+        System.out.printf(RETURN_RATE.toString(), returnRate);
     }
 
     public static void printErrorMessage(String message) {

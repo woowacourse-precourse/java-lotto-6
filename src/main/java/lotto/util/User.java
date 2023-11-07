@@ -60,6 +60,7 @@ public class User {
     public void checkBonusNumber(String input) {
         bonusNumber = Exception.checkInvalidNumber(input);
         Exception.checkRangeLottoNumber(bonusNumber);
+        Exception.checkDuplicationBonusNumber(winningNumber.getNumbers(), bonusNumber);
     }
 
     public int getPaymentAmount() {

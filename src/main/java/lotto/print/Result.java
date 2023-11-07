@@ -61,7 +61,7 @@ public class Result {
     public void printWinningResult(LottoRank lottoRank, int rankCount) {
         String prize = formatNumber(lottoRank.getPrize());
         System.out.print(lottoRank.getMatchCount() + "개 일치");
-        if (lottoRank.getRank() == 2){
+        if (lottoRank.getRank() == 2) {
             System.out.print(", 보너스 볼 일치");
         }
         System.out.println(" (" + prize + "원) - " + rankCount + "개");
@@ -72,11 +72,11 @@ public class Result {
         return prize;
     }
 
-    public void addTotalPrize(int prize, int rankCount){
+    public void addTotalPrize(int prize, int rankCount) {
         totalPrize += prize * rankCount;
     }
 
-    public void printTotalProfit(){
+    public void printTotalProfit() {
         System.out.println("총 수익률은 " + getTotalProfit() + "입니다.");
     }
 

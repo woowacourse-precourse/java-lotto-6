@@ -21,6 +21,12 @@ public class Exception {
         }
     }
 
+    public static void checkDuplicationBonusNumber(List<Integer> winningNumber, int bonusNumber){
+        if(winningNumber.contains(bonusNumber)){
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATION_NUMBER.getMessage());
+        }
+    }
+
     public static void checkUnitPaymentAmount(int paymentAmount) {
         if (paymentAmount % LottoNumberRange.MIN_PAYMENT_AMOUNT.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.getMessage());

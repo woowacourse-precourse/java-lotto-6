@@ -7,6 +7,7 @@ import lotto.service.LottoService;
 public class LottoController {
 
     int amount;
+    int bonusNum;
     Lotto lotto;
     private final LottoService lottoService = new LottoService();
     public void getLottoInput() {
@@ -17,5 +18,10 @@ public class LottoController {
     public void getAmountInput() {
         String amountInput = Console.readLine();
         amount = Integer.parseInt(amountInput);
+    }
+
+    public void getBonusNumInput() {
+        String bonusNumInput = Console.readLine();
+        bonusNum = Integer.parseInt(bonusNumInput);
     }
 }

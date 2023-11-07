@@ -1,9 +1,11 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.Constant.Constant;
 import lotto.Domain.Bonus;
 import lotto.Domain.Money;
+import lotto.Parser.Parser;
 
 public class InputView {
 
@@ -19,6 +21,11 @@ public class InputView {
     public Money inputMoney() {
         System.out.println(Constant.INPUT_PRICE_MESSAGE);
         return new Money(Console.readLine());
+    }
+
+    public List<Integer> inputLotto() {
+        System.out.println(Constant.INPUT_LOTTO_NUMBERS_MESSAGE);
+        return Parser.parseLottoNumbers(Console.readLine());
     }
 
     public Bonus inputBonus() {

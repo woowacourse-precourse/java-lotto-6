@@ -1,6 +1,7 @@
 package lotto.Controller;
 
 import lotto.Domain.Bonus;
+import lotto.Domain.Lotto;
 import lotto.Domain.Money;
 import lotto.View.InputView;
 
@@ -19,6 +20,7 @@ public class LottoController {
 
     public void run() {
         Money money = getMoney();
+        Lotto lotto = getLotto();
         Bonus bonus = getBonus();
     }
 
@@ -26,6 +28,16 @@ public class LottoController {
         while (true) {
             try {
                 return inputView.inputMoney();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public Lotto getLotto() {
+        while (true) {
+            try {
+                return new Lotto(inputView.inputLotto());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

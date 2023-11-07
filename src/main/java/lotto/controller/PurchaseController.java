@@ -11,7 +11,9 @@ public class PurchaseController {
     }
 
     public static Lottos purchase(final Buyer buyer) {
-        Lottos lottos = Lottos.from(buyer);
+        final int ticketCount = buyer.getTicketCount();
+
+        Lottos lottos = Lottos.from(ticketCount);
 
         LottoNumberResponses lottoResponses =
                 LottoNumberResponses.build(buyer, lottos);

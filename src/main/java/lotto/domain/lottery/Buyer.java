@@ -15,20 +15,19 @@ public class Buyer {
     private final int ticketCount;
 
     // Constructor
-    private Buyer(final String paymentInput) {
-        int parsedPayment = Parser.parseStringToInt(paymentInput);
+    private Buyer(final int payment) {
 
-        validateMinimumPayment(parsedPayment);
-        validateMaximumPayment(parsedPayment);
-        validateUnitPrice(parsedPayment);
+        validateMinimumPayment(payment);
+        validateMaximumPayment(payment);
+        validateUnitPrice(payment);
 
-        this.payment = parsedPayment;
-        this.ticketCount = calculateTicketCount(parsedPayment);
+        this.payment = payment;
+        this.ticketCount = calculateTicketCount(payment);
     }
 
     // Static Factory Method
-    public static Buyer from(final String paymentInput) {
-        return new Buyer(paymentInput);
+    public static Buyer from(final int payment) {
+        return new Buyer(payment);
     }
 
     // Utility Method

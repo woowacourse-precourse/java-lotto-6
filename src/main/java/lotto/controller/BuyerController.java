@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.lottery.Buyer;
+import lotto.domain.lottery.Parser;
 import lotto.exception.LottoException;
 import lotto.view.input.InputReader;
 import lotto.view.output.OutputWriter;
@@ -19,7 +20,9 @@ public class BuyerController {
     private static Buyer readPaymentInfo() {
         try {
             final String paymentInput = InputReader.readLine();
-            return Buyer.from(paymentInput);
+            final int payment = Parser.parseStringToInt(paymentInput);
+
+            return Buyer.from(payment);
         } catch (LottoException exception) {
             OutputWriter.println(exception.getMessage());
             return readPaymentInfo();

@@ -10,15 +10,13 @@ public class Lottos {
     private final List<Lotto> lottoTickets;
 
     // Constructor
-    private Lottos(final Buyer buyer) {
-        final int ticketCount = buyer.getTicketCount();
-
+    private Lottos(final int ticketCount) {
         this.lottoTickets = LottoService.generateLottos(ticketCount);
     }
 
     // Static Factory Method
-    public static Lottos from(final Buyer buyer) {
-        return new Lottos(buyer);
+    public static Lottos from(final int ticketCount) {
+        return new Lottos(ticketCount);
     }
 
     // Utility Method

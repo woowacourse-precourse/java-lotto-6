@@ -5,7 +5,6 @@ import lotto.dto.LottoGameResult;
 import lotto.dto.PurchaseResult;
 import lotto.dto.YieldResult;
 import lotto.service.LottoService;
-import lotto.view.InputView;
 import lotto.view.InputViewProxy;
 import lotto.view.OutputView;
 

@@ -8,6 +8,7 @@ import lotto.model.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
@@ -45,14 +46,37 @@ public class Application {
     }
 
     private static Jackpot createJackPotProcess(LottoController lottoController, InputView inputView) {
-        String winningNumbers = inputView.inputWinningNumbers();
-        String bonusNumber = inputView.inputBonusNumber();
-        return lottoController.createWinningNumbers(winningNumbers, bonusNumber);
+        Jackpot jackpot = null;
+        boolean isValidateInput = false;
+
+        while (!isValidateInput) {
+            try {
+                String winningNumbers = inputView.inputWinningNumbers();
+                String bonusNumber = inputView.inputBonusNumber();
+                jackpot = lottoController.createWinningNumbers(winningNumbers, bonusNumber);
+                isValidateInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return jackpot;
     }
 
     private static List<Lotto> generateLottoTicketsProcess(LottoController lottoController, OutputView outputView, Purchase purchase) {
-        List<Lotto> lottos = lottoController.generateLottoTickets(purchase);
-        outputView.printLottos(lottos);
+        List<Lotto> lottos = new ArrayList<>();
+        boolean isValidateInput = false;
+
+        while (!isValidateInput) {
+            try {
+                lottos = lottoController.generateLottoTickets(purchase);
+                outputView.printLottos(lottos);
+                isValidateInput = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
         return lottos;
     }
 
@@ -60,7 +84,7 @@ public class Application {
         Purchase purchase = null;
         boolean isValidateInput = false;
 
-        while (!isValidateInput){
+        while (!isValidateInput) {
             try {
                 String amount = inputView.inputPurchaseAmount();
                 purchase = lottoController.purcahseLottos(amount);

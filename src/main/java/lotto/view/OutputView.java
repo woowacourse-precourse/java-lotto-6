@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.Prize;
+import lotto.domain.Prize;
 
 import java.util.Map;
 
@@ -11,7 +11,9 @@ public class OutputView {
     private static final String INPUT_BONUS_NUM_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String TICKET_COUNT_MESSAGE = "개를 구매했습니다.";
     private static final String LOTTO_RESULT_BAR_MESSAGE = "당첨 통계";
-    private static final String TOTAL_RATE_MESSAGE = "총 수익률은 ";
+    private static final String LOTTO_SECOND_RESULT_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
+    private static final String LOTTO_RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
+    private static final String TOTAL_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void inputBuyMessage(){
         System.out.println(INPUT_BUY_MESSAGE);
@@ -39,27 +41,26 @@ public class OutputView {
     }
 
     public static void printResult(Map<Prize,Integer> lottoResult){
-        for (Map.Entry<Prize, Integer> entry : lottoResult.entrySet()) {
-            Prize prize = entry.getKey();
-            int count = entry.getValue();
-            String reward = formatReward(prize.getReward());
-            if (prize == Prize.SECOND_GRADE){
-                System.out.println(prize.getMatchCount()+"개 일치, 보너스 볼 일치 ("+reward+"원) - "+count+"개");
-                continue;
-            }
-            if (prize.getMatchCount()==0){
-                continue;
-            }
-            System.out.println(prize.getMatchCount()+"개 일치 ("+reward+"원) - "+count+"개");
+        lottoResult.entrySet().stream()
+                .filter(entry -> entry.getKey() != Prize.FAIL)
+                .forEach(entry -> System.out.println(getPrintResult(entry.getKey(), entry.getValue())));
+    }
+
+    public static String getPrintResult(Prize prize, int count){
+        if (prize == Prize.SECOND_GRADE){
+            return String.format(LOTTO_SECOND_RESULT_MESSAGE
+                    , prize.getMatchCount()
+                    , String.format("%,d",prize.getReward())
+                    , count);
         }
+        return String.format(LOTTO_RESULT_MESSAGE
+                , prize.getMatchCount()
+                , String.format("%,d",prize.getReward())
+                , count);
     }
 
-    private static String formatReward(int amount) {
-        return String.format("%,d", amount);
+    public static void printTotalRate(double totalRate) {
+        System.out.printf(TOTAL_RATE_MESSAGE, totalRate);
     }
 
-    public static void printTotalRate(int money, int price) {
-        double totalRate = ((double) price / money) * 100;
-        System.out.println(TOTAL_RATE_MESSAGE + String.format("%.1f%%", totalRate) + "입니다.");
-    }
 }

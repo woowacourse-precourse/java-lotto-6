@@ -32,4 +32,16 @@ public enum LottoOutcome {
         }
         return none;
     }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public int getMatchOfNum() {
+        return matchOfNum;
+    }
+
+    public int getBonus() {
+        return bonus;
+    }
 }

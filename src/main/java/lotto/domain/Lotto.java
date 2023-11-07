@@ -12,8 +12,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        checkDuplicate(numbers);
-        validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
@@ -21,16 +19,17 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getMessage());
         }
-
+        validateDuplicate(numbers);
+        validateNumberRange(numbers);
     }
-    private void checkDuplicate(List<Integer> numbers){
+    private void validateDuplicate(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }
 
-    public void validateLottoNumbers(List<Integer> numbers){
+    public void validateNumberRange(List<Integer> numbers){
         if (numbers.stream().anyMatch(number-> number <0 || number>45)){
             throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }

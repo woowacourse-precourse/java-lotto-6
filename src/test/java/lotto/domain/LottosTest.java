@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.domain.lotto.Lottos;
+import lotto.domain.random.LottoNumberPicker;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,7 +14,7 @@ class LottosTest {
         LottoAmount lottoAmount = new LottoAmount(2000);
 
         // When
-        Lottos lottos = Lottos.generateByAmount(lottoAmount);
+        Lottos lottos = Lottos.generateByAmount(lottoAmount, new LottoNumberPicker());
 
         // Then
         assertNotNull(lottos);

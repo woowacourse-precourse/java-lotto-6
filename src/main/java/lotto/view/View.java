@@ -5,6 +5,7 @@ import java.util.Map;
 import lotto.IO.Input;
 import lotto.IO.Output;
 import lotto.common.config.LottoWinningRule;
+import lotto.validator.InputValidator;
 
 public class View {
     private final Input input;
@@ -13,19 +14,30 @@ public class View {
         this.input = input;
     }
 
+    private void validateCommon(String userInput) {
+        InputValidator.validateBlank(userInput);
+        InputValidator.validateNumeric(userInput);
+    }
+
     public String inputLottoCost() {
         Output.writeLine(OutputMessage.REQUEST_LOTTO_COST.getMessage());
-        return input.readLine();
+        String userInputLottoCost = input.readLine();
+        validateCommon(userInputLottoCost);
+        return userInputLottoCost;
     }
 
     public String inputWinningNumbers() {
         Output.writeLine(OutputMessage.REQUEST_WINNING_NUMBERS.getMessage());
-        return input.readLine();
+        String userInputWinningNumbers = input.readLine();
+        validateCommon(userInputWinningNumbers);
+        return userInputWinningNumbers;
     }
 
     public String inputBonusNumber() {
         Output.writeLine(OutputMessage.REQUEST_BONUS_NUMBER.getMessage());
-        return input.readLine();
+        String userInputBonusNumber = input.readLine();
+        validateCommon(userInputBonusNumber);
+        return userInputBonusNumber;
     }
 
     public void outputPublishedLotto(List<String> publishedLotto) {

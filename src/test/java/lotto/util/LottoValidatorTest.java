@@ -3,6 +3,7 @@ package lotto.util;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
+import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -64,6 +65,33 @@ class LottoValidatorTest {
     }
 
     @Test
-    void validateBonusNumber() {
+    @DisplayName("유효한 보너스 번호 유효성 검증")
+    void validateBonusNumber_유효한_보너스_번호() {
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 10, 15, 24, 30, 48));
+        Integer bonus = 13;
+
+        LottoValidator.validateBonusNumber(bonus, winningNumber);
+    }
+
+    @Test
+    @DisplayName("범위 밖 보너스 번호 유효성 검증 시 예외 발생")
+    void validateBonusNumber_범위_밖_보너스_번호() {
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 10, 15, 24, 30, 48));
+        Integer bonus = 46;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoValidator.validateBonusNumber(bonus, winningNumber);
+        });
+    }
+
+    @Test
+    @DisplayName("중복 보너스 번호 유효성 검증 시 예외 발생")
+    void validateBonusNumber_중복_보너스_번호() {
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 10, 15, 24, 30, 48));
+        Integer bonus = 24;
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            LottoValidator.validateBonusNumber(bonus, winningNumber);
+        });
     }
 }

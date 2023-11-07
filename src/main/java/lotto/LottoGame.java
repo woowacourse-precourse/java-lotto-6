@@ -7,11 +7,10 @@ import java.util.List;
 public class LottoGame {
     public void play() {
         //request price
-        System.out.println("구입금액을 입력해 주세요.");
-        String inputPrice = Console.readLine();
+        String userPrice = InputView.requestPrice();
 
         //parseToInt
-        Integer ticketCount = Integer.parseInt(inputPrice) / 1000;
+        Integer ticketCount = Integer.parseInt(userPrice) / 1000;
 
         //create Lottos
         Lottos randomLottos = Lottos.create(ticketCount);

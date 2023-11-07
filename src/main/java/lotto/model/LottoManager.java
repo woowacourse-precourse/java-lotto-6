@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.Set;
 import lotto.utils.GameConstants;
 import lotto.utils.WinningRank;
+import lotto.view.Observer;
 
-public class LottoManager {
+public class LottoManager extends Observable {
     private ArrayList<Lotto> lottos;
     private WinningStatistics statistics;
-    RankEvaluator rankEvaluator;
+    private RankEvaluator rankEvaluator;
 
 
     public LottoManager() {
@@ -28,6 +29,7 @@ public class LottoManager {
             List<Integer> numbers = getLottoNumbers();
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
+            notifyObserver(lotto);
             lottoCount--;
         }
     }
@@ -46,7 +48,7 @@ public class LottoManager {
         return lottos.iterator();
     }
 
-    public String calculateStatistics() {
+    public void calculateStatistics() {
         for (Lotto lotto : lottos) {
             Iterator<Integer> lottoNumbers = lotto.getIterator();
             WinningRank rank = rankEvaluator.getRank(lottoNumbers);
@@ -54,7 +56,15 @@ public class LottoManager {
         }
         statistics.calculateProfitRate();
 
-        return statistics.toString();
+        notifyObserver(statistics);
     }
 
+    @Override
+    public void unsubscribe(Observer observer) {
+    }
+
+    @Override
+    public void notifyObserver(Object o) {
+        observer.update(o);
+    }
 }

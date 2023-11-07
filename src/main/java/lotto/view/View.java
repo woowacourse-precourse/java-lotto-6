@@ -4,9 +4,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.Iterator;
 import lotto.model.Lotto;
+import lotto.model.Observable;
 import lotto.utils.Message;
 
-public class View {
+public class View implements Observer {
+    public View(Observable observable) {
+        observable.subscribe(this);
+    }
+
     public void displayPurchaseAmountMessage() {
         System.out.println(Message.PURCHASE_AMOUNT_MESSAGE);
     }
@@ -51,5 +56,10 @@ public class View {
 
     public void displayWinningStatistics(String statistics) {
         System.out.println(statistics);
+    }
+
+    @Override
+    public void update(Object o) {
+        System.out.println(o);
     }
 }

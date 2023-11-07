@@ -24,17 +24,6 @@ public class WinningStatistics {
         calculateTotalAmount(rank.getWinningAmount());
     }
 
-//    public void calculateStatistics(PrizeNumbers prizeNumbers, Iterator<Lotto> lottoIterator) {
-//        RankEvaluator rankEvaluator = new RankEvaluator(prizeNumbers);
-//        while (lottoIterator.hasNext()) {
-//            Lotto lotto = lottoIterator.next();
-//            WinningRank winningRank = rankEvaluator.getRank(lotto.getIterator());
-//            updateWinningCount(winningRank);
-//            calculateTotalAmount(winningRank.getWinningAmount());
-//        }
-//        calculateProfitRate();
-//    }
-
     private void updateWinningCount(WinningRank winningRank) {
         int updatedWinningCount = winningRecords.get(winningRank) + 1;
         winningRecords.put(winningRank, updatedWinningCount);

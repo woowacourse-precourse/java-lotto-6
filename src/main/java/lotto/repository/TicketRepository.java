@@ -17,4 +17,6 @@ public interface TicketRepository {
 
     BonusNumber announcementBonus(BonusNumber bonusNumber);
 
+    BonusNumber findBonusNumber();
+
 }

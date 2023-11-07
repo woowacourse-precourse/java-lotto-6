@@ -15,7 +15,7 @@ import java.util.Map;
 
 public class LottoGame {
 
-    private final static int LOTTO_PRICE = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
     private final InputSystem inputSystem = new InputSystem();
     private final PrintSystem printSystem = new PrintSystem();

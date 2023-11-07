@@ -146,11 +146,11 @@ class winning_number{
 }
 
 class bonus_number{
-    public static void addBonus(List<Integer> winNumbers, String bonus){
+    public static int checkBonus(List<Integer> winNumbers, String bonus){
         int bonusNumber = intgerBonus(bonus);
         checkBonusRange(bonusNumber);
         circulationForCheck(winNumbers, bonusNumber);
-        winNumbers.add(bonusNumber);
+        return bonusNumber;
     }
 
     public static int intgerBonus(String bonus){
@@ -180,21 +180,24 @@ class bonus_number{
         }
     }
 
-    public static List<Integer> exceptionRepeatBonus(List<Integer> winningNumber){
-        while(winningNumber.size() == 6){
-            readLine(winningNumber);
+    public static int exceptionRepeatBonus(List<Integer> winningNumber){
+        int bonusNumber = 0;
+        while(bonusNumber == 0){
+            bonusNumber = readLine(winningNumber);
         }
-        return winningNumber;
+        return bonusNumber;
     }
 
-    public static void readLine(List<Integer> winningNumber){
+    public static int readLine(List<Integer> winningNumber){
+        int IntegeredBbonus = 0;
         try{
             System.out.println("\n보너스 번호를 입력해 주세요.");
             String bonusNumber = Console.readLine();
-            bonus_number.addBonus(winningNumber, bonusNumber);
+            IntegeredBbonus = bonus_number.checkBonus(winningNumber, bonusNumber);
         }catch (IllegalArgumentException e) {
             System.out.println(Error.ERROR.getError());
         }
+        return IntegeredBbonus;
     }
 }
 
@@ -259,7 +262,8 @@ public class Application {
         System.out.println("\n" + repeatTime + "개를 구매했습니다.");
         List<List<Integer>> totalLotto = random_lotto.print_lotto(repeatTime);
         List<Integer> winningNumber = winning_number.exceptionRepeatWinNumber();
-        List<Integer> winPlusBonus = bonus_number.exceptionRepeatBonus(winningNumber);
+        int realBonus = bonus_number.exceptionRepeatBonus(winningNumber);
+
 
         System.out.println("\n당첨 통계\n---");
 

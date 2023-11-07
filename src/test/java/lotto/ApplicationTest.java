@@ -165,11 +165,9 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 보너스숫자_당첨숫자_결합_테스트(){
-        List<Integer> winNumbers = new ArrayList<>(Arrays.asList(4,5,9,8,1));
-        String bonus = "2";
-        bonus_number.addBonus(winNumbers, bonus);
-        Assertions.assertEquals(criteria, winNumbers);
+    void checkBonus_테스트(){
+        String test = "45";
+        Assertions.assertEquals(45,bonus_number.checkBonus(criteria,test));
     }
 
     @Override

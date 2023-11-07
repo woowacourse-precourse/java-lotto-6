@@ -21,7 +21,7 @@ public class LottoGame {
 
     public void buyLotto(Integer purchaseAmount){
         Print.printPurchase(purchaseAmount);
-        for (int i = 0; i < purchaseAmount % 1000; i++){
+        for (int i = 0; i < purchaseAmount / 1000; i++){
             purchasedLotto.add(new Lotto(Utils.makeRandomNumbers(1, 45, 6)));
         }
         Print.printPurchasedLotto(purchasedLotto);

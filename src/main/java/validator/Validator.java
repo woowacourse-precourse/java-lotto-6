@@ -1,5 +1,7 @@
 package validator;
 
+import java.util.List;
+
 public class Validator {
     private static final int LOTTO_PRICE = 1_000;
     private static final int REMAINDER_ZERO = 0;
@@ -19,7 +21,7 @@ public class Validator {
 
     public static void validateSeparatedByComma(String winningNumbers) {
         if (!hasComma(winningNumbers)) {
-            throw new IllegalArgumentException("콤마(,)로 숫자를 구분해 주세요.");
+            throw new IllegalArgumentException("당첨 번호 6개를 콤마(,)로 구분해 주세요.");
         }
         String[] separatedWinningNumbers = winningNumbers.split(",");
         for (String winningNumber : separatedWinningNumbers) {
@@ -35,5 +37,11 @@ public class Validator {
 
     public static boolean isNumeric(String input) {
         return input.matches(ONLY_NUMBER_REGEX);
+    }
+
+    public static void validateWinningNumberCount(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("당첨 번호 6개를 입력해 주세요.");
+        }
     }
 }

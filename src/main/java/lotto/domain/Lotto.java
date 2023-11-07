@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -12,7 +13,7 @@ public class Lotto {
     }
 
     public Lotto() {
-        this.numbers = makeSixLottoNum();
+        this.numbers = makeSixSortedLottoNum();
     }
 
     private void validate(List<Integer> numbers) {
@@ -21,8 +22,14 @@ public class Lotto {
         }
     }
 
-    private List<Integer> makeSixLottoNum() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    private List<Integer> makeSixSortedLottoNum() {
+        List<Integer> sixLottoNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(sixLottoNum);
+        return sixLottoNum;
+    }
+
+    public List<Integer> getNumbers() {
+        return this.numbers;
     }
 
     // TODO: 추가 기능 구현

@@ -18,6 +18,7 @@ public class ControllerTest {
     @Test
     void purchaseLottoTicketsTest() {
         controller.purchaseLotto(8);
-        assertThat(8).isEqualTo(controller.getLottoTickets().size());
+        int result = controller.lottoMachine.getLottoTickets().size();
+        assertThat(result).isEqualTo(8);
     }
 }

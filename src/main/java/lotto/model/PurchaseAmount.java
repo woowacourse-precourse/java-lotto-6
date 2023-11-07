@@ -11,7 +11,7 @@ public class PurchaseAmount {
         this.paidMoney = paidMoney;
     }
 
-    public Integer getNumberOfTicket() {
+    public Integer getNumberOfLotto() {
         return Math.toIntExact(paidMoney / PRICE_OF_LOTTO.get());
     }
 

@@ -22,6 +22,7 @@ public class Application {
 
     private static void validateWinningNumber(String winningNumber) {
         checkNull(winningNumber);
+        checkEmpty(winningNumber);
     }
 
     public static int inputPurchaseAmount() {

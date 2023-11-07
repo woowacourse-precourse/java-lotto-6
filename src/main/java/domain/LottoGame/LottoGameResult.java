@@ -9,10 +9,6 @@ public class LottoGameResult {
         this.matchCounts = matchCounts;
     }
 
-    public void updateResult(int matchCount) {
-        matchCounts.put(matchCount, matchCounts.getOrDefault(matchCount, 0L) + 1);
-    }
-
     public Map<Integer, Long> getMatchCounts() {
         return matchCounts;
     }

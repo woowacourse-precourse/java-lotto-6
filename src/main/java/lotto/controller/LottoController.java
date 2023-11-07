@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
-    private static ArrayList<Lotto> myLottos = new ArrayList<>();
     public void play() {
 
     }
@@ -23,10 +22,13 @@ public class LottoController {
 
     public void buyLottos(int trial) {
         OutputView.printNoticeTrialMessage(trial);
+
+        List<Lotto> myLottos = new ArrayList<>();
         do {
-            List<Integer> numbers = Numbers.makeRandomNumbers();
+            List<Integer> numbers = Numbers.pickRandomNumbers();
             myLottos.add(new Lotto(numbers));
         } while (myLottos.size() < trial);
-        System.out.println(myLottos);
+
+        OutputView.printBoughtLottos(myLottos);
     }
 }

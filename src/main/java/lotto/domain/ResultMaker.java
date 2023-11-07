@@ -35,7 +35,7 @@ public class ResultMaker {
     public String calculateRateOfReturn() {
         int investment = bundle.showInvestment();
         calculateTotalPrize();
-        double rateOfReturn = totalPrize / investment * 100;
+        double rateOfReturn = (double) totalPrize / investment * 100;
         return String.format("%.1f", rateOfReturn);
     }
 

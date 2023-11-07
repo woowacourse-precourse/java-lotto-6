@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -24,7 +25,9 @@ public class Lotto {
     }
 
     public String toString() {
-        return numbers.toString();
+        List<Integer> copied = new ArrayList<>(numbers);
+        Collections.sort(copied);
+        return copied.toString();
     }
 
     public int compareWithSelected(List<Integer> selectedLottos) {

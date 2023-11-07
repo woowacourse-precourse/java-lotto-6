@@ -8,6 +8,7 @@ public enum ExceptionMessage {
     DUPLICATE_NUMBERS_LOTTO("보너스 번호는 로또 번호와 중복되지 않아야 합니다"),
     INVALID_COMMA_USAGE("콤마를 올바르게 찍어야합니다"),
     LOTTO_INPUT_AMOUNT_INCREMENT("1000원 단위로 입력해야 합니다"),
+    INPUT_NOT_ZERO("입력금액은 0원 보다 커야합니다"),
     INVALID_AMOUNT_MESSAGE("1부터 45 사이의 숫자여야 합니다."),
     INVALID_AMOUNT_PRICE_MESSAGE("너무 크거나 작은수를 입력했습니다(9,223,372,036,854,775,807이하의 1000단위를 입력하세요)");
 

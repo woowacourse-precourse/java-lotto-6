@@ -11,8 +11,8 @@ public class PurchaseProcessor {
     private final long lottoCount;
 
     public PurchaseProcessor(String price) {
-        long convertedCount = convertNumber(trim(price));
-        this.lottoCount = convertCount(convertedCount);
+        long convertedPirce = convertNumber(trim(price));
+        this.lottoCount = convertCount(convertedPirce);
     }
 
     private String trim(String price) {
@@ -51,7 +51,7 @@ public class PurchaseProcessor {
 
     private void ensurePositiveValue(BigInteger bigPrice) {
         if (bigPrice.compareTo(ONE) < 0) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_NOT_ZERO.getMessage());
         }
     }
 

@@ -40,7 +40,7 @@ class PurchaseProcessorTest {
     void priceIsNegative() {
         assertThatThrownBy(() -> new PurchaseProcessor("-1000"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
+                .hasMessageContaining(ExceptionMessage.INPUT_NOT_ZERO.getMessage());
     }
 
     @DisplayName("입력 가격이 1000으로 나누어 떨어지지 않을 경우 예외 발생")
@@ -56,7 +56,7 @@ class PurchaseProcessorTest {
     void priceIsZero() {
         assertThatThrownBy(() -> new PurchaseProcessor("0"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.LOTTO_INPUT_AMOUNT_INCREMENT.getMessage());
+                .hasMessageContaining(ExceptionMessage.INPUT_NOT_ZERO.getMessage());
     }
 
 }

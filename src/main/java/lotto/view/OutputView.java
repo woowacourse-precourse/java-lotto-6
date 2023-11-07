@@ -11,7 +11,7 @@ public class OutputView {
     private static final String NUMBER_OF_PURCHASE = "\n%d개를 구매했습니다.\n";
     private static final String WINNING_STATISTICS = "\n당첨 통계\n---";
     private static final String WINNING_RESULT = "%s - %d개\n";
-    private static final String RATE_OF_RETURN = "총 수익률은 %d%%입니다.";
+    private static final String RATE_OF_RETURN = "총 수익률은 %s입니다.";
 
     private static final int HIGHEST_RANK = LottoWinningValue.values()[0].getRank();
     private static final int LOWEST_RANK = LottoWinningValue.values()[LottoWinningValue.values().length - 1].getRank();
@@ -37,7 +37,7 @@ public class OutputView {
 
         for (int i = HIGHEST_RANK; i <= LOWEST_RANK; i++) {
             String winnings = LottoWinningValue.valueOfRank(i).getWinningsPhrase();
-            int cnt = winningCnt.get(i);
+            int cnt = winningCnt.getOrDefault(i, 0);
 
             System.out.printf(WINNING_RESULT, winnings, cnt);
         }

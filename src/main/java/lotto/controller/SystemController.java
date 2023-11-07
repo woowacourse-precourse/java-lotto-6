@@ -20,9 +20,14 @@ public class SystemController {
     }
 
     public WinningStats getWinningStats() {
+        return WinningStats.of(getPurchasedLottosAndPrintFromMoney(purchasedAmount),
+                WinningNumbersWithBonus.createManual());
+    }
+
+    private PurchasedLottos getPurchasedLottosAndPrintFromMoney(Money purchasedAmount) {
         PurchasedLottos purchasedLottos = PurchasedLottos.from(purchasedAmount);
         OutputView.printPurchasedLottos(purchasedLottos);
-        return WinningStats.of(purchasedLottos, WinningNumbersWithBonus.createManual());
+        return purchasedLottos;
     }
 
     public void showResult() {

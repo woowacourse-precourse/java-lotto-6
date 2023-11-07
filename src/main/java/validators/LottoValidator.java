@@ -11,7 +11,7 @@ public class LottoValidator {
      * @return 공백 입력, 숫자/콤마 외의 문자가 있을 경우 예외 발생
      */
     public static void verifyInputLotto(String inputLotto){
-        isBlankLottoNumbers(inputLotto);
+        CommonValidator.isBlank(inputLotto);
         isNumberAndComma(inputLotto);
         isVerifyArrayLotto(inputLotto);
     }
@@ -24,15 +24,10 @@ public class LottoValidator {
 
         isNullLottoNumbers(lottoNumbers);
         for(String number : lottoNumbers){
-            isBlankLottoNumbers(number);
+            CommonValidator.isBlank(number);
         }
     }
 
-    private static void isBlankLottoNumbers(String lottoNumbers){
-        if(lottoNumbers.isBlank()){
-            throw new IllegalArgumentException(ErrorCodeConstant.STRING_BLANK_ERROR);
-        }
-    }
 
     private static void isNumberAndComma(String lottoNumber){
         final String NUMBER_AND_COMMA_REGEX = "^[0-9,]+$";
@@ -64,6 +59,11 @@ public class LottoValidator {
         if (number < GameConstant.MIN_LOTTO_NUMBER || number > GameConstant.MAX_LOTTO_NUMBER)  {
             throw new IllegalArgumentException(ErrorCodeConstant.BETWEEN_LOTTO_NUMBER_ERROR);
         }
+    }
+
+    public static void verifyBonusLotto(String inputBonusLotto){
+        CommonValidator.isBlank(inputBonusLotto);
+        CommonValidator.isOnlyNumber(inputBonusLotto);
     }
 
 }

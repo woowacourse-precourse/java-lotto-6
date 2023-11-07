@@ -18,16 +18,19 @@ public class OutputView {
         return String.format(QUANTITY_MSG, lottosDto.quantity());
     }
 
-    private static String getNumbers(LottoDto lotto) {
-        return lotto.numbers()
+    private static String getNumbers(LottoDto lottoDto) {
+        return lottoDto.numbers()
                 .toString();
     }
 
     public void printPurchasedLotto(LottosDto lottosDto) {
         writer.writeln(getQuantity(lottosDto));
-        List<LottoDto> lottoTickets = lottosDto.lottoTickets();
-        for (LottoDto lotto : lottoTickets) {
-            writer.writeln(getNumbers(lotto));
+        List<LottoDto> lottoTickets = lottosDto.lottoNumbers();
+        for (LottoDto lottoTicket : lottoTickets) {
+            writer.writeln(lottoTicket.numbers().toString());
         }
     }
+
+
 }
+

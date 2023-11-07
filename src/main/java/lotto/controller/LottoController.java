@@ -19,8 +19,7 @@ public class LottoController {
     }
     private void makeSeveralLottos() {
         lottos = new Lottos();
-        int countPurchaseLottos = purchasePrice.getPrice() / ONE_LOTTO_PRICE;
-        for (int nums = 0; nums < countPurchaseLottos; nums++) {
+        for (int nums = 0; nums < purchasePrice.countPurchasedLottos(); nums++) {
             lottos.add(makeLotto());
         }
     }

@@ -9,6 +9,7 @@ public class PurchasePrice {
         validateCondition(price);
         this.price = Integer.parseInt(price);
     }
+
     private void validateNumber(String price) {
         int amount;
         try {
@@ -24,7 +25,12 @@ public class PurchasePrice {
             throw new IllegalArgumentException("[ERROR] 입력은 1000원 단위로만 가능합니다");
         }
     }
+
     public int getPrice() {
         return price;
+    }
+
+    public int countPurchasedLottos() {
+        return price/ONE_LOTTO_PRICE;
     }
 }

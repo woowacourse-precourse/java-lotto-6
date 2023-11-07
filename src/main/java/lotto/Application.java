@@ -76,6 +76,16 @@ public class Application {
             sumMoney += prizeMoney(index);
             counts[index]++;
         }
+        returnRate = (float)sumMoney / money * 100;
+
+        System.out.println("\n당첨 통계\n---");
+        System.out.println("3개 일치 (5,000원) - " + counts[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + counts[1] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + counts[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + counts[3] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + counts[4] + "개");
+        System.out.println(sumMoney + " " + money);
+        System.out.printf("총 수익률은 %.1f입니다.", returnRate);
     }
 
     public static void validateRange(int number, int startLottoNumber, int endLottoNumber) {

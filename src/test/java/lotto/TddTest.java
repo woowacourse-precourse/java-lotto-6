@@ -8,7 +8,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -19,19 +21,19 @@ public class TddTest {
 
     @Test
     public void 로또는_한장에_천원() {
-        Lottos lottos = new Lottos();
-        int lottoCount = lottos.calculateLottoCount(8000);
+        LottoController lottoController = new LottoController();
+        int lottoCount = lottoController.calculateLottoCount(8000);
 
         assertThat(lottoCount).isEqualTo(8);
     }
 
     @Test
     public void 로또_구매입력이_1000원_단위가_아닐때() {
-        Lottos lottos = new Lottos();
+        LottoController lottoController = new LottoController();
 
         int money = 1500;
         assertThatThrownBy(() -> {
-            lottos.calculateLottoCount(money);
+            lottoController.calculateLottoCount(money);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("로또는 1000원 단위만 구매할 수 있습니다.");
     }
@@ -71,6 +73,8 @@ public class TddTest {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
+
 
 
 

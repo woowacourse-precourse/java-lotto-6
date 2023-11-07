@@ -31,11 +31,6 @@ public class Controller {
 
         WinningNumber winningNumber = inputWinningNumber();
 
-        for (Lotto lotto : lotties.getLotties()) {
-            Result result = findResult(lotto, winningNumber);
-            int resultCnt = score.getOrDefault(result, 0);
-            score.put(result, resultCnt + 1);
-        }
 
 
         for (Result result : score.keySet()) {
@@ -59,18 +54,6 @@ public class Controller {
         return new WinningNumber(new Lotto(numbers), bonusNumber);
     }
 
-    private Result findResult(Lotto lotto, WinningNumber winningNumber) {
-        List<Integer> numbers = lotto.getNumbers();
-        List<Integer> winningLottoNumbers = winningNumber.getLottoNumbers();
-        int bonusNumber = winningNumber.getBonusNumber();
-        int matchCount = 0;
-        for(int number : numbers) {
-            if(winningLottoNumbers.contains(number)) {
-                matchCount++;
-            }
-        }
-        boolean isBonusMatched = numbers.contains(bonusNumber);
-        return Result.find(matchCount, isBonusMatched);
-    }
+
 
 }

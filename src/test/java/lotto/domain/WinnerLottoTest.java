@@ -13,14 +13,14 @@ public class WinnerLottoTest {
 
     @DisplayName("보너스 숫자가 로또 숫자와 중복되면 예외가 발생한다.")
     @Test
-    void createPlayerLottoWithDuplicateBonusNumber() {
+    void createWinnerLottoWithDuplicateBonusNumber() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinnerLotto(lottoNumbers, 6));
     }
 
     @DisplayName("보너스 숫자가 허용된 범위 밖의 숫자면 예외가 발생한다.")
     @Test
-    void createPlayerLottoWithBonusNumberOutOfRange() {
+    void createWinnerLottoWithBonusNumberOutOfRange() {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> new WinnerLotto(lottoNumbers, 0));
         assertThatIllegalArgumentException()
@@ -29,7 +29,7 @@ public class WinnerLottoTest {
 
     @DisplayName("플레이어 로또 생성에 성공한다.")
     @Test
-    void createPlayerLottoSuccessfully() {
+    void createWinnerLottoSuccessfully() {
         Assertions.assertAll(() -> new WinnerLotto(lottoNumbers, 7));
     }
 

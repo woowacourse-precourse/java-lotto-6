@@ -21,7 +21,7 @@ public class WinningNumberInputValidator implements InputValidator {
     public void validate(String input) {
         convertStringNumber(input);
         numberInputValidator();
-        throwIfContainsDuplicateNumber();
+        validateDuplicateNumber();
         validateLottoNumbersSize();
     }
 
@@ -36,9 +36,9 @@ public class WinningNumberInputValidator implements InputValidator {
         }
     }
 
-    private void throwIfContainsDuplicateNumber() {
-        Set<String> duplicateChecker = new HashSet<>(inputLottoNumbers);
-        if (duplicateChecker.size() != LOTTO_LENGTH) {
+    private void validateDuplicateNumber() {
+        Set<String> validateDuplicateNumber = new HashSet<>(inputLottoNumbers);
+        if (validateDuplicateNumber.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(ENTER_DIFFERENT_6_DIGITS);
         }
     }

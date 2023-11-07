@@ -3,7 +3,7 @@ package lotto.validator;
 public class NumberInputValidator implements InputValidator {
 
     private final static String ENTER_LOTTO_NUMBER_RANGE_1_TO_45 = "로또 번호는 1부터 45 사이의 숫자로 입력해주세요.";
-    private final static String ENTER_LOTTO_NUMBER = "구입 금액은 양수이며, 숫자로 입력하시길 바랍니다.";
+    private final static String ENTER_LOTTO_NUMBER = "유효한 숫자로 입력하시길 바랍니다.";
     private final static String NUMBER_REGULAR_EXPRESSION = "^[0-9]+$";
     private final static int LOTTO_NUM_MIN_RANGE = 1;
     private final static int LOTTO_NUM_MAX_RANGE = 45;

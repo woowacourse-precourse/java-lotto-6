@@ -3,7 +3,7 @@ package lotto.validator;
 public class PurchaseAmountInputValidator implements InputValidator {
 
     private final static String ENTER_PURCHASE_AMOUNT_1000_WON = "구입 금액은 1,000원 단위로 입력 가능합니다.";
-    private final static String ENTER_PURCHASE_AMOUNT_NUMBERS = "구입 금액은 양수이며, 숫자로 입력하시길 바랍니다.";
+    private final static String ENTER_PURCHASE_AMOUNT_NUMBERS = "유효한 숫자로 입력하시길 바랍니다.";
     private final static String NUMBER_REGULAR_EXPRESSION = "^[0-9]+$";
     private final static int DIVIDE_BY_1000 = 1000;
 

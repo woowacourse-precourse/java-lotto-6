@@ -13,10 +13,10 @@ public class Payment {
     }
 
     private void checkValidate(int payment) {
-        if(isLowerThanPrice(payment)) {
+        if (isLowerThanPrice(payment)) {
             throw new IllegalArgumentException(IS_LOWER_THAN_PRICE.getMessage().formatted(LOTTO_PRICE));
         }
-        if(isNotDividedBy(payment)) {
+        if (isNotDividedBy(payment)) {
             throw new IllegalArgumentException(IS_NOT_DIVIDED_INTO.getMessage().formatted(LOTTO_PRICE));
         }
     }
@@ -25,7 +25,7 @@ public class Payment {
         return payment;
     }
 
-    public int getLottoPrice(){
+    public int getLottoPrice() {
         return LOTTO_PRICE;
     }
 

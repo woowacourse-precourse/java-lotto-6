@@ -31,7 +31,7 @@ public class Lotto {
     }
 
     private void isLottoDuplicated(List<Integer> numbers) {
-        if(numbers.size() != numbers.stream().distinct().count()){
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException(IS_LOTTO_DUPLICATED.getMessage());
         }
     }

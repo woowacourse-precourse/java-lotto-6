@@ -24,19 +24,19 @@ public class LottoController {
 
         Lotto winningNumbers = inputView.inputWinningNumbers();
         BonusNumber bonusNumber = inputView.inputBonusNumber(winningNumbers);
-        Result result = calculateResult(lottoMachine,winningNumbers,bonusNumber);
+        Result result = calculateResult(lottoMachine, winningNumbers, bonusNumber);
 
         printResult(result);
     }
 
-    private void printLottoNumbers(LottoMachine lottoMachine){
+    private void printLottoNumbers(LottoMachine lottoMachine) {
         lottoMachine.generateLotto();
         outputView.printLottoNumbers(lottoMachine.getLottos());
     }
 
     private Result calculateResult(LottoMachine lottoMachine, Lotto winningNumbers, BonusNumber bonusNumber) {
         Result result = new Result(lottoMachine);
-        result.calculateResult(winningNumbers,bonusNumber);
+        result.calculateResult(winningNumbers, bonusNumber);
         return result;
     }
 

@@ -28,7 +28,7 @@ public class LottoMachine {
     }
 
     public static List<Integer> generateRandomNumbers() {
-        return pickUniqueNumbersInRange(NUMBER_MIN_SIZE.getValue(),NUMBER_MAX_SIZE.getValue(),LOTTO_SIZE.getValue());
+        return pickUniqueNumbersInRange(NUMBER_MIN_SIZE.getValue(), NUMBER_MAX_SIZE.getValue(), LOTTO_SIZE.getValue());
     }
 
     public List<Lotto> getLottos() {

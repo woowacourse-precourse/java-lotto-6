@@ -23,15 +23,15 @@ public class LottoSystem {
         lottoUI.userPrint(LottoUI.PrintMessage.INPUT_MONEY.getMessage());
         int lottoTicket = buyLottoTicket(lottoUI.userInput());
         ArrayList<Lotto> buyLottoNumbers = buyLotto(lottoTicket);
-        buyLottoNumbersPrint(buyLottoNumbers);
+        lottoUI.buyLottoNumbersPrint(buyLottoNumbers);
 
         lottoUI.userPrint(LottoUI.PrintMessage.INPUT_WIN_NUMBER.getMessage());
-        List<Integer> winningNumber = getWinningNumbers(lottoUI.userInput());
+        Lotto winningNumber = new Lotto(getWinningNumbers(lottoUI.userInput()));
 
         lottoUI.userPrint(LottoUI.PrintMessage.INPUT_BONUS_NUMBER.getMessage());
         int bonusNumber = getBonusNumber(lottoUI.userInput());
-        bonusNumberOverlap(winningNumber, bonusNumber);
-        int[] winLotto = lottoWinCheck(buyLottoNumbers, winningNumber, bonusNumber);
+        bonusNumberOverlap(winningNumber.getLottoNumbers(), bonusNumber);
+        int[] winLotto = lottoWinCheck(buyLottoNumbers, winningNumber.getLottoNumbers(), bonusNumber);
         winnerLottoNumbersPrint(lottoTicket, winLotto);
     }
 
@@ -53,7 +53,7 @@ public class LottoSystem {
     }
 
     public ArrayList<Lotto> buyLotto(int buyCount){
-        System.out.println(buyCount+"개를 구매했습니다.");
+        lottoUI.buyLottoCountPrint(buyCount);
         ArrayList<Lotto> buyLottoNumbers = new ArrayList<>();
         for (int i=0;i<buyCount;i++){
             List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
@@ -61,12 +61,6 @@ public class LottoSystem {
             buyLottoNumbers.add((new Lotto(numbers)));
         }
         return buyLottoNumbers;
-    }
-
-    public void buyLottoNumbersPrint(ArrayList<Lotto> buyLottoNumbers){
-        for (Lotto number : buyLottoNumbers){
-            System.out.println(number.getLottoNumbers());
-        }
     }
 
     public List<Integer> getWinningNumbers(String winNumbers){
@@ -83,15 +77,7 @@ public class LottoSystem {
                 throw new IllegalArgumentException(Message.Error.INVALID_INPUT.getMessage());
             }
         }
-        winningNumbersOverlap(winningNumbers);
         return winningNumbers;
-    }
-
-    public void winningNumbersOverlap(List<Integer> winningNumbers){
-        HashSet<Integer> overlapCheck = new HashSet<>(winningNumbers);
-        if (overlapCheck.size() != winningNumbers.size()){
-            throw new IllegalArgumentException(Message.Error.OVERLAP_INPUT.getMessage());
-        }
     }
 
     public int getBonusNumber(String bonusNumber){

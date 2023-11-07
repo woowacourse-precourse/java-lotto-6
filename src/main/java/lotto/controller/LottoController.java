@@ -50,23 +50,14 @@ public class LottoController {
 
     private void lottoProcess() {
 
-        setWinLottoNumber();
-
-        setBonusNumber();
-    }
-
-    private void setWinLottoNumber() {
-
         OutputValue.winLottoNumberMessage();
-        lottoService.setWinLotto(InputValue.getWinLottoNumbers());
+        List<Integer> winLotto = InputValue.getWinLottoNumbers();
+        lottoService.setWinLotto(winLotto);
 
         OutputValue.changeLine();
-    }
-
-    private void setBonusNumber() {
 
         OutputValue.bonusNumberMessage();
-        lottoService.setBonusNumber(InputValue.getBonusNumber());
+        lottoService.setBonusNumber(InputValue.getBonusNumber(winLotto));
 
         OutputValue.changeLine();
     }

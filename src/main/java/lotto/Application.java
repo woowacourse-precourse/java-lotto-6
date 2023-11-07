@@ -31,5 +31,8 @@ public class Application {
         checkAllLotto(winLotto, userData);
         userData.printRanks();
 
+        userData.calculateReturnRate();
+        System.out.println("총 수익률은 " + String.format("%.1f", userData.returnRate) + "%입니다.");
+
     }
 }

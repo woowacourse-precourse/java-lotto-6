@@ -6,12 +6,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.round;
+
 public class UserData {
     public int money;
     public int lottoCount;
     public List<Lotto> userLotto;
     public double returnRate;
-    public int[] userRanks = new int[6];
+    public int[] userRanks = new int[5];
+    public int[] prize = {2000000000, 30000000, 1500000, 50000, 5000};
+    public int earn = 0;
 
     public UserData(){
         inputMoney();
@@ -92,5 +96,19 @@ public class UserData {
         System.out.printf("5개 일치 (1,500,000원) - %d개\n", userRanks[2]);
         System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", userRanks[1]);
         System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", userRanks[0]);
+    }
+
+    public void calculateEarn(){
+        for(int i= 0;i<5;i++){
+            earn += userRanks[i] * prize[i];
+        }
+    }
+
+    public void calculateReturnRate(){
+        calculateEarn();
+        System.out.println((double)earn);
+        System.out.println((double)money);
+        returnRate = (double) earn/(double) money*100;
+        System.out.println(returnRate);
     }
 }

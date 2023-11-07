@@ -24,4 +24,26 @@ public class Lotto {
                 .collect(Collectors.joining(", "));
         System.out.println("[" + numbersStr + "]");
     }
+
+    public int compareWinningNumbers(List<Integer> winningNumbers) {
+        int matchedCount = 0;
+
+        for (int winningNumber : winningNumbers) {
+            if (compareNumber(winningNumber)) {
+                matchedCount++;
+            }
+        }
+
+        return matchedCount;
+    }
+
+    public boolean compareNumber(int winningNumber) {
+        for (int number : this.numbers) {
+            if (number == winningNumber) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

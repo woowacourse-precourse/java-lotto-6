@@ -28,4 +28,8 @@ public class LottoDraw {
         System.out.print("\n" + this.lottoTicketsNumber + "개를 구매했습니다.\n");
         this.lottos.forEach(Lotto::printLottoNumbers);
     }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
 }

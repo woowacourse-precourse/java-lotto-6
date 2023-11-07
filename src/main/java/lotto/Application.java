@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.LottoDraw;
+import lotto.domain.LottoResult;
 import lotto.ui.Input;
 
 public class Application {
@@ -12,5 +13,8 @@ public class Application {
         lottoDraw.printPurchaseHistory();
         input.winningNumbers();
         input.BonusNumber();
+        LottoResult lottoResult = new LottoResult(lottoDraw.getLottos());
+        lottoResult.configurePrizeCount(input.getWinningNumbers());
+        lottoResult.printWinningHistory();
     }
 }

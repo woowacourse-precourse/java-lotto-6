@@ -1,9 +1,11 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Input {
 
@@ -52,8 +54,15 @@ public class Input {
                 System.out.print("[ERROR] " + e.getMessage());
             }
         }
+
+        this.winningNumbers.add(this.input); // 당첨 번호에 보너스 번호도 추가
     }
 
+    public List<Integer> getWinningNumbers() {
+        return this.winningNumbers.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
 
     private void readPurchasePrice() {
         System.out.print("구입 금액을 입력해 주세요.\n");
@@ -61,14 +70,14 @@ public class Input {
     }
 
     private void readWinningNumbers() {
-        System.out.print("당첨 번호를 입력해 주세요.\n");
+        System.out.print("\n당첨 번호를 입력해 주세요.\n");
         this.input = Console.readLine().trim();
 
-        this.winningNumbers = List.of(this.input.split(","));
+        this.winningNumbers = new ArrayList<>(List.of(this.input.split(",")));
     }
 
     private void readBonusNumber() {
-        System.out.print("보너스 번호를 입력해 주세요.\n");
+        System.out.print("\n보너스 번호를 입력해 주세요.\n");
         this.input = Console.readLine().trim();
     }
 

@@ -1,10 +1,14 @@
 package lotto;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class Lottos {
-    ArrayList<Lotto> cars = new ArrayList<>();
-
-    public Lottos(Lotto lotto) {
+    private final List<Lotto> lottos;
+    public Lottos() {
+        lottos = new ArrayList<>();
+    }
+    public void addLotto(Lotto lotto) {
+        lottos.add(lotto);
     }
 }

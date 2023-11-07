@@ -30,10 +30,10 @@ public class LottoController {
     private final LottoReturnsCalculator returnsCalculator = new LottoReturnsCalculator(1000);  // 로또 티켓 가격이 1000으로 가정
     private final LottoReturnsOutput returnsOutput = new LottoReturnsOutput();
     private final LottoReturnsController returnsController = new LottoReturnsController(returnsCalculator, returnsOutput);
-    private int purchaseAmount;
+
 
     public void start() {
-        purchaseAmount = purchaseController.getPurchaseAmount();
+        int purchaseAmount = purchaseController.getPurchaseAmount();
         List<Lotto> lotto = ticketCreator.createLottoTickets(purchaseAmount);
         lottoPrintController.handleLottoDisplay(lotto);
         List<Integer> winningNumbers = winningNumberController.getWinningNumbers();
@@ -44,6 +44,6 @@ public class LottoController {
     public void result() {
         Map<LottoRank, Integer> rankResult = rankChecker.determineRank(matchingData);
         statisticsController.displayStatistics(rankResult);
-        returnsController.displayReturnRate(rankResult, purchaseAmount);
+        returnsController.displayReturnRate(rankResult);
     }
 }

@@ -16,7 +16,7 @@ public class LottoReturnsController {
         this.returnsOutput = returnsOutput;
     }
 
-    public void displayReturnRate(Map<LottoRank, Integer> rankResults, int ticketCost) {
+    public void displayReturnRate(Map<LottoRank, Integer> rankResults) {
         double returnRate = returnsCalculator.calculateReturnRate(rankResults);
         returnsOutput.displayReturnRate(returnRate);
     }

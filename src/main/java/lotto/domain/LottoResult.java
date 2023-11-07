@@ -32,12 +32,17 @@ public class LottoResult {
 	}
 
 	public double calculateReturnRate() {
+		long totalPrize = getTotalPrize();
+		return ((double) totalPrize / lottoPlayer.getPurchaseAmount().getAmount()) * 100;
+	}
+
+	private long getTotalPrize() {
 		long totalPrize = 0;
 
 		for (LottoRank rank : LottoRank.values()) {
 			totalPrize += rank.getWinningMoney() * rankResult.getOrDefault(rank, 0);
 		}
 
-		return lottoPlayer.getPurchaseAmount().calculateReturnRate(totalPrize);
+		return totalPrize;
 	}
 }

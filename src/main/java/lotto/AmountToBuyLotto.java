@@ -25,6 +25,9 @@ public class AmountToBuyLotto {
         return amount;
     }
 
+    public int dividedByLottoPrice(int lottoPrice) {
+        return amount / lottoPrice;
+    }
 
 
 }

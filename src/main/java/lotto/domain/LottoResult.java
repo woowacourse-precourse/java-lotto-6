@@ -38,4 +38,8 @@ public class LottoResult {
     public String toString() {
         return lottoNumbers.toString();
     }
+
+    public Lotto getLottoNumbers() {
+        return lottoNumbers;
+    }
 }

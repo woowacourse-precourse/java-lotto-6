@@ -4,6 +4,7 @@ import lotto.model.LotteryMachine;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.model.WinningNumbers;
+import lotto.utils.LottoExceptions;
 import lotto.utils.Prizes;
 
 import java.util.ArrayList;
@@ -25,8 +26,15 @@ public class LottoService {
         user.setLottos(lottoDrawn);
     }
 
-    public void setMoney(int money){
-        user.setPayed(money);
+    public void setMoney(String money){
+        if (!money.matches("[0-9]+")){
+            throw new IllegalArgumentException(LottoExceptions.InputTypeError.getErrorMessage());
+        }
+        int payed = Integer.parseInt(money);
+        if (payed == 0 || payed % 1000 != 0){
+            throw new IllegalArgumentException(LottoExceptions.CurrencyUnitError.getErrorMessage());
+        }
+        user.setPayed(payed);
     }
 
     public User getUser(){

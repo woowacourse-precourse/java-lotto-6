@@ -1,20 +1,13 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.utils.LottoExceptions;
 
 public class InputView {
 
-    public int getMoney(){
+    public String getMoney(){
         System.out.println("구입금액을 입력해 주세요.");
-        String userInput = Console.readLine();
-        if (!userInput.matches("[0-9]+")){
-            throw new IllegalArgumentException("숫자를 입력해주세요.");
-        }
-        int money = Integer.parseInt(userInput);
-        if (money == 0 || money % 1000 != 0){
-            throw new IllegalArgumentException("1000단위의 수를 입력해주세요.");
-        }
-        return money;
+        return Console.readLine();
     }
 
     public String[] getWinningNumbers(){

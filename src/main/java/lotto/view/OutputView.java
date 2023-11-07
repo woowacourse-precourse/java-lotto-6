@@ -25,6 +25,6 @@ public class OutputView {
     }
 
     public void printPercentage(double earnedPerPayed){
-        System.out.println("총 수익률은" + String.format("%.1f", earnedPerPayed) + "% 입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", earnedPerPayed) + "% 입니다.");
     }
 }

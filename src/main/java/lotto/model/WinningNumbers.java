@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.utils.LottoExceptions;
+
 import java.util.*;
 
 public class WinningNumbers{
@@ -20,14 +22,14 @@ public class WinningNumbers{
     private void checkDuplicate(List<Integer> numbers){
         Set<Integer> duplicateTest = new HashSet<>(numbers);
         if (duplicateTest.size() < numbers.size()){
-            throw new IllegalArgumentException("숫자 중복");
+            throw new IllegalArgumentException(LottoExceptions.DuplicateError.getErrorMessage());
         }
     }
 
     private void isInRange(List<Integer> numbers){
         numbers.forEach(num ->{
             if (num > 45 || num < 1){
-                throw new IllegalArgumentException("숫자는 1과 45사이의 수여야 합니다.");
+                throw new IllegalArgumentException(LottoExceptions.NotInRangeError.getErrorMessage());
             }
         });
     }
@@ -37,10 +39,10 @@ public class WinningNumbers{
                 .filter(num -> num.matches("[0-9 ]+"))
                 .toList();
         if (filteredNumbers.size() < numbers.length){
-            throw new IllegalArgumentException("숫자만 입력해주세요.");
+            throw new IllegalArgumentException(LottoExceptions.InputTypeError.getErrorMessage());
         }
         if (filteredNumbers.size() < 6){
-            throw new IllegalArgumentException("6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(LottoExceptions.InvalidCountError.getErrorMessage());
         }
         List<Integer> finalNumbers = filteredNumbers.stream().map(num -> Integer.parseInt(num.trim())).toList();
         isInRange(finalNumbers);
@@ -50,15 +52,15 @@ public class WinningNumbers{
 
     private int validateBonus(String bonusNumber){
         if (!bonusNumber.matches("[0-9 ]+")){
-            throw new IllegalArgumentException("only numbers");
+            throw new IllegalArgumentException(LottoExceptions.InputTypeError.getErrorMessage());
         }
         int bonus = Integer.parseInt(bonusNumber.trim());
         if (bonus > 45 || bonus < 1) {
-            throw new IllegalArgumentException("숫자는 1과 45사이의 수여야 합니다.");
+            throw new IllegalArgumentException(LottoExceptions.NotInRangeError.getErrorMessage());
         }
         for (int num : numbers){
             if (bonus == num){
-                throw new IllegalArgumentException("중복되는 숫자는 입력할 수 없습니다.");
+                throw new IllegalArgumentException(LottoExceptions.DuplicateError.getErrorMessage());
             }
         }
         return bonus;

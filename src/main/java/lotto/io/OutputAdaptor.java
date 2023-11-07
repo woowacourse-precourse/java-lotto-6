@@ -5,7 +5,6 @@ import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.util.Utils;
 
-import java.util.Collections;
 import java.util.List;
 
 import static lotto.configure.OutputConfiguration.*;
@@ -34,34 +33,29 @@ public class OutputAdaptor {
     }
 
     public static void displayResult(Result result) {
-        Printer.print(LINE_BRAKING + WINNING_SUM + LINE_BRAKING);
+        Printer.print(LINE_BRAKING + WINNING_SUM);
         List<Integer> matches = DomainConfiguration.RANK_PER_NUM_OF_MATCHES.keySet().stream().sorted().toList();
         for (Integer match : matches) {
             Integer rank = DomainConfiguration.RANK_PER_NUM_OF_MATCHES.get(match);
             if (rank.equals(DomainConfiguration.RANK_FOR_CHECK_BONUS_NUMBER)) {
-                withBonusNumber(result, match, rank);
+                forBonusNumber(result, match, rank);
                 continue;
             }
-            int reward = DomainConfiguration.REWARD_PER_RANK.get(rank);
-            Printer.print(
-                    match + NUM_OF_MATCHES + " (" + formatReward(reward)
-                    + WON + ") - " + result.getCount(rank) + COUNT + LINE_BRAKING
-            );
+            Printer.print(getFormattedString(match, DomainConfiguration.REWARD_PER_RANK.get(rank),
+                    result.getCount(rank), ""));
         }
     }
 
-    private static void withBonusNumber(Result result, Integer match, Integer rank) {
-        int rewardWithoutBonusMatch = DomainConfiguration.REWARD_PER_RANK.get(rank + 1);
-        int rewardWithBonusMatch = DomainConfiguration.REWARD_PER_RANK.get(rank);
-        Printer.print(
-                match + NUM_OF_MATCHES + " (" + formatReward(rewardWithoutBonusMatch)
-                + WON + ") - " + result.getCount(rank + 1) + COUNT + LINE_BRAKING
-        );
-        Printer.print(
-                match + NUM_OF_MATCHES + ", " + MATCH_BONUS_NUMBER
-                + " (" + formatReward(rewardWithBonusMatch)
-                + WON + ") - " + result.getCount(rank) + COUNT + LINE_BRAKING
-        );
+    private static void forBonusNumber(Result result, Integer match, Integer rank) {
+        Printer.print(getFormattedString(match, DomainConfiguration.REWARD_PER_RANK.get(rank + 1),
+                result.getCount(rank + 1), ""));
+        Printer.print(getFormattedString(match, DomainConfiguration.REWARD_PER_RANK.get(rank),
+                result.getCount(rank), ", " + MATCH_BONUS_NUMBER));
+    }
+
+    private static String getFormattedString(int match, int reward, int count, String forBonus) {
+        return match + NUM_OF_MATCHES + forBonus + " (" + formatReward(reward) + WON + ") - "
+                + count + COUNT + LINE_BRAKING;
     }
 
     private static String formatReward(int reward) {

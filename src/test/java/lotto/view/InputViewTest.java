@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class InputViewTest extends NsTest {
 
     @Test
-    @DisplayName("로또 구입 금액이 숫자가 아닌 입력이 들어오면 예외가 발생한다.")
+    @DisplayName("로또 구입 금액에 숫자가 아닌 입력이 들어오면 예외가 발생한다.")
     void inputLottoPurchaseAmountByOnlyInteger() {
         assertSimpleTest(() -> {
             runException("1000j");
@@ -35,6 +35,42 @@ class InputViewTest extends NsTest {
         assertSimpleTest(() -> {
             runException("1234");
             assertThat(output()).contains(ErrorMessage.NOT_DIVIDE_LOTTO_PURCHASE_MINIMUM_AMOUNT.getMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("로또 당첨 번호에 빈 입력이 들어오면 예외가 발생한다.")
+    void inputWinningNumbersByBlankInput() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,");
+            assertThat(output()).contains(ErrorMessage.BLANK_LOTTO_WINNING_NUMBER.getMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("로또 당첨 번호에 숫자가 아닌 입력이 들어오면 예외가 발생한다.")
+    void inputWinningNumbersByOnlyInteger() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,wea,4,5,");
+            assertThat(output()).contains(ErrorMessage.NOT_INTEGER_WINNING_NUMBER.getMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("로또 당첨 번호가 0으로 시작하면 예외가 발생한다.")
+    void inputWinningNumbersByStartZero() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,05,0,5,");
+            assertThat(output()).contains(ErrorMessage.START_ZERO_WINNING_NUMBER.getMessage());
+        });
+    }
+
+    @Test
+    @DisplayName("로또 당첨 번호가 총 6개가 아니면 예외가 발생한다.")
+    void inputWinningNumbersByRightSize() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6,7");
+            assertThat(output()).contains(ErrorMessage.NOT_RIGHT_SIZE_WINNING_NUMBER.getMessage());
         });
     }
 

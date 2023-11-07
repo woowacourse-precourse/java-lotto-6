@@ -13,8 +13,7 @@ public class Application {
         List<Lotto> lottoNumbers = LottoRandomNumbersGenerator.generateLottoNumbers(lottoPurchaseAmount);
         OutputView.printLottoNumbersByPurchaseAmount(lottoNumbers);
 
-
-
+        Lotto winningNumbers = InputView.getWinningNumbers();
 
 
     }

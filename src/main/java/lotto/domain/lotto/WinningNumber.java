@@ -26,5 +26,11 @@ public class WinningNumber {
         }
     }
 
+    public int countMatch(final Lotto lotto) {
+        return lotto.countMatch(winningNumbers);
+    }
 
+    public boolean checkBonusNumber(final Lotto lotto) {
+        return lotto.checkBonusNumber(bonusNumber);
+    }
 }

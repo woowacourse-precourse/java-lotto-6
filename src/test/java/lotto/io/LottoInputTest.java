@@ -59,4 +59,10 @@ class LottoInputTest {
                 .hasMessageContaining(IoException.ERROR.getMessage());
     }
 
+    @Test
+    void 보너스_번호를_입력받는다() {
+        LottoInput lottoInput = new LottoInput(() -> "1");
+
+        assertEquals(1, lottoInput.receiveBonus());
+    }
 }

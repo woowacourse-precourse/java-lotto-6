@@ -29,7 +29,7 @@ public class PrintMessage {
         if (lottoPrize.isBonus()) {
             result += ", 보너스 볼 일치 ";
         }
-        result += "(" + lottoPrize.getPrize() + "원) - " + count + "개";
+        result += "(" + String.format("%,d", lottoPrize.getPrize()) + "원) - " + count + "개";
         System.out.println(result);
     }
 }

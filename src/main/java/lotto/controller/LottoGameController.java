@@ -5,7 +5,7 @@ import lotto.model.LottoGenerator;
 
 public class LottoGameController {
 
-    private void play() {
+    public void play() {
         LottoBundle lottoBundle = LottoGenerator.getLottoBundle();
 
 

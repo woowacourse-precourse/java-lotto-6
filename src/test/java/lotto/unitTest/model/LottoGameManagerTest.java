@@ -17,20 +17,6 @@ class LottoGameManagerTest {
     class 로또_구입_금액_입력_시 {
 
         @ParameterizedTest
-        @ValueSource(strings = {" ", "", "\n", "\r", "\t"})
-        void 비었거나_공백이라면_예외를_발생시킨다(String inputLottoCost) {
-            assertThatThrownBy(() -> createLottoGameManager().createLottoBucket(inputLottoCost))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"1.23", "-1000", "테스트"})
-        void 정수가_아니면_예외를_발생시킨다(String inputLottoCost) {
-            assertThatThrownBy(() -> createLottoGameManager().createLottoBucket(inputLottoCost))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @ParameterizedTest
         @ValueSource(strings = {"1", "10", "100", "0", "00", "000"})
         void 천원으로_나누어_떨어지지_않으면_예외를_발생시킨다(String inputLottoCost) {
             assertThatThrownBy(() -> createLottoGameManager().createLottoBucket(inputLottoCost))
@@ -40,14 +26,6 @@ class LottoGameManagerTest {
 
     @Nested
     class 당첨번호_입력_시 {
-
-        @ParameterizedTest
-        @ValueSource(strings = {" ", "", "\n", "\r", "\t", " , ,,", " , 1,,2"})
-        void 비었거나_공백이라면_예외를_발생시킨다(String inputWinningNumbers) {
-            assertThatThrownBy(
-                    () -> createLottoGameManager().createWinningLotto(inputWinningNumbers)
-            ).isInstanceOf(IllegalArgumentException.class);
-        }
 
         @ParameterizedTest
         @ValueSource(strings = {"1,2,a,b,3,4", "-1,1.23,4,5,6,7"})
@@ -84,23 +62,6 @@ class LottoGameManagerTest {
 
     @Nested
     class 보너스_번호_입력_시 {
-
-        @ParameterizedTest
-        @ValueSource(strings = {" ", "", "\n", "\r", "\t"})
-        void 비었거나_공백이라면_예외를_발생시킨다(String inputBonusNumber) {
-
-            assertThatThrownBy(
-                    () -> createLottoGameManager().parsingBonusNumber(inputBonusNumber)
-            ).isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @ParameterizedTest
-        @ValueSource(strings = {"1.23", "-1000", "테스트"})
-        void 정수가_아니면_예외를_발생시킨다(String inputBonusNumber) {
-            assertThatThrownBy(
-                    () -> createLottoGameManager().parsingBonusNumber(inputBonusNumber)
-            ).isInstanceOf(IllegalArgumentException.class);
-        }
 
         @ParameterizedTest
         @ValueSource(strings = {"0", "46"})

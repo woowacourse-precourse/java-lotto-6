@@ -8,7 +8,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-
 class LottoValidationUtilsV2Test {
     @Test
     @DisplayName("로또 번호가 6개가 아니면 예외를 던진다")
@@ -19,7 +18,7 @@ class LottoValidationUtilsV2Test {
         // when & then
         assertThatThrownBy(() -> LottoValidationUtilsV2.checkValidLottoNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 6개여야 합니다.");
+                .hasMessageContaining("[ERROR] 당첨 번호는 " + LottoConstantsV2.LOTTO_NUMBERS_SIZE.getValue() + "개여야 합니다.");
     }
 
     @Test
@@ -41,7 +40,9 @@ class LottoValidationUtilsV2Test {
         // when & then
         assertThatThrownBy(() -> LottoValidationUtilsV2.checkValidLottoNumbers(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 당첨 번호는 1에서 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining("[ERROR] 당첨 번호는 " +
+                        LottoConstantsV2.LOTTO_NUMBER_MIN.getValue() + "에서 " +
+                        LottoConstantsV2.LOTTO_NUMBER_MAX.getValue() + " 사이의 숫자여야 합니다.");
     }
 
     @Test
@@ -54,7 +55,9 @@ class LottoValidationUtilsV2Test {
         // when & then
         assertThatThrownBy(() -> LottoValidationUtilsV2.checkValidBonusNumber(bonusNumber, winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 1에서 45 사이의 숫자여야 합니다.");
+                .hasMessageContaining("[ERROR] 보너스 번호는 " +
+                        LottoConstantsV2.LOTTO_NUMBER_MIN.getValue() + "에서 " +
+                        LottoConstantsV2.LOTTO_NUMBER_MAX.getValue() + " 사이의 숫자여야 합니다.");
     }
 
     @Test
@@ -80,5 +83,4 @@ class LottoValidationUtilsV2Test {
         // when & then
         assertThatNoException().isThrownBy(() -> LottoValidationUtilsV2.checkValidBonusNumber(bonusNumber, winningNumbers));
     }
-
 }

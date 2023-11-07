@@ -1,7 +1,6 @@
 package lotto.v2.util;
 
 import java.util.List;
-import lotto.v2.util.LottoConstantsV2;
 public class LottoValidationUtilsV2 {
 
     public static void checkValidLottoNumbers(List<Integer> numbers) {

@@ -1,32 +1,33 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.domain.LottoMachine;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.Profit;
 import lotto.domain.WinningLotto;
-import lotto.service.LottoService;
+import lotto.util.random.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
-    private final LottoService lottoService;
+    private final NumberGenerator numberGenerator;
 
-    public LottoController(LottoService lottoService) {
-        this.lottoService = lottoService;
+    public LottoController(NumberGenerator numberGenerator) {
+        this.numberGenerator = numberGenerator;
     }
 
     public void run() {
         Money money = readMoney();
-        Lottos lottos = lottoService.issueLottos(money.getIssueAmount());
+        Lottos lottos = issueLottos(money);
         OutputView.printPurchasedLottos(lottos.tickets());
 
         WinningLotto winningLotto = readWinningLotto();
 
-        LottoResult lottoResult = lottoService.getResult(winningLotto, lottos);
+        LottoResult lottoResult = LottoResult.of(winningLotto, lottos);
         printResultAndProfitRate(money, lottoResult);
     }
 
@@ -37,6 +38,11 @@ public class LottoController {
             OutputView.printError(e.getMessage());
             return readMoney();
         }
+    }
+
+    private Lottos issueLottos(Money money) {
+        LottoMachine lottoMachine = new LottoMachine(numberGenerator);
+        return lottoMachine.issue(money.getIssueAmount());
     }
 
     private WinningLotto readWinningLotto() {

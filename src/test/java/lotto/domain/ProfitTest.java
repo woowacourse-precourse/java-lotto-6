@@ -2,20 +2,34 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Map;
-import lotto.config.Rank;
+import java.util.List;
+import lotto.Lotto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("[단위 테스트] 수익률")
 class ProfitTest {
 
+    private WinningLotto winningLotto;
+
+    @BeforeEach
+    void setUp() {
+        winningLotto = new WinningLotto(
+                new Lotto(List.of(1, 2, 3, 4, 5, 6)),
+                new LottoNumber(7)
+        );
+    }
+
     @DisplayName("수익률 0%일 때 정확한 결과를 계산한다.")
     @Test
     void get_profit_rate_of_zero() {
         // given
         Money money = new Money(5000);
-        LottoResult lottoResult = new LottoResult(Map.of(Rank.NO_RANK, 0L));
+        LottoResult lottoResult = LottoResult.of(
+                winningLotto,
+                new Lottos(List.of(new Lotto(List.of(11, 12, 13, 14, 15, 16))))
+        );
 
         // when
         Profit profit = new Profit(money, lottoResult);
@@ -31,7 +45,10 @@ class ProfitTest {
     void get_profit_rate_of_100() {
         // given
         Money money = new Money(5000);
-        LottoResult lottoResult = new LottoResult(Map.of(Rank.FIFTH, 1L));
+        LottoResult lottoResult = LottoResult.of(
+                winningLotto,
+                new Lottos(List.of(new Lotto(List.of(1, 2, 3, 7, 8, 9))))
+        );
 
         // when
         Profit profit = new Profit(money, lottoResult);
@@ -47,7 +64,10 @@ class ProfitTest {
     void get_profit_rate_of_rounding() {
         // given
         Money money = new Money(9000);
-        LottoResult lottoResult = new LottoResult(Map.of(Rank.FIFTH, 1L));
+        LottoResult lottoResult = LottoResult.of(
+                winningLotto,
+                new Lottos(List.of(new Lotto(List.of(1, 2, 3, 7, 8, 9))))
+        );
 
         // when
         Profit profit = new Profit(money, lottoResult);

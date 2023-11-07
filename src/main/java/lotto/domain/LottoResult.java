@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.config.Rank;
 
 public class LottoResult {
@@ -12,9 +13,16 @@ public class LottoResult {
 
     private final Map<Rank, Long> results = new EnumMap<>(Rank.class);
 
-    public LottoResult(Map<Rank, Long> results) {
+    private LottoResult(Map<Rank, Long> results) {
         initData();
         this.results.putAll(results);
+    }
+
+    public static LottoResult of(WinningLotto winningLotto, Lottos lottos) {
+        return new LottoResult(lottos.tickets().stream()
+                .map(lotto -> Rank.of(winningLotto, lotto))
+                .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()))
+        );
     }
 
     private void initData() {

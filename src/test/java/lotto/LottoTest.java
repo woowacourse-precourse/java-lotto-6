@@ -41,13 +41,6 @@ class LottoTest {
         assertTrue(numbers.stream().allMatch(n -> n <= 45 && n >= 1));
     }
 
-    @DisplayName("로또 번호 범위 숫자 생성시 1~45 범위의 정수를 생성한다.")
-    @RepeatedTest(10)
-    void checkGeneratedOneLottoNumber() {
-        Integer number = Lotto.generateOneLottoNumber();
-        assertTrue(number <= 45 && number >=1);
-    }
-
     @DisplayName("Lotto의 numbers와 주어진 숫자들의 일치하는 숫자를 센다.")
     @ParameterizedTest
     @MethodSource("provideTestLotto")

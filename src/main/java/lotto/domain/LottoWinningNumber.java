@@ -12,7 +12,9 @@ public class LottoWinningNumber {
         String[] numbers = winningNumber.split(",");
         winningNumbers = new ArrayList<>();
         for (int i = 0; i < numbers.length; i++) {
-            PlayerInputValidator.validateNumber(numbers[i]);
+            if (!PlayerInputValidator.isNumeric(numbers[i])) {
+                throw new IllegalArgumentException();
+            }
             winningNumbers.add(Integer.parseInt(numbers[i]));
         }
         return winningNumbers;

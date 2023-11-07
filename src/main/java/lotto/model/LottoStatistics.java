@@ -2,6 +2,8 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 금액을 계산 및 수익률 계산
 
@@ -51,5 +53,27 @@ public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 �
     public HashMap<PrizeInformation, Integer> getStatistics() {
         return lottoStatistics;
     }
+
+
+    public double calculateLottoProfit(int purchaseAmount) {
+        int winningAmount = sumWinningAmount();
+
+        double profit;
+        profit = winningAmount / purchaseAmount;
+
+        return profit;
+    }
+
+    private int sumWinningAmount() {
+        int sum = 0;
+        Set<Entry<PrizeInformation, Integer>> ranks = lottoStatistics.entrySet();
+        for (Entry<PrizeInformation, Integer> singleRank : ranks) {
+            int prizeAmount = singleRank.getKey().prizeAmount;
+            int winningCount = singleRank.getValue();
+            sum += prizeAmount * winningCount;
+        }
+        return sum;
+    }
+
 
 }

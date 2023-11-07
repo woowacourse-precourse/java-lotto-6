@@ -19,6 +19,14 @@ public class LottoSystem {
         this.purchaseLottos = createLottos();
     }
 
+    public static List<Lotto> getPurchaseLottos() {
+        return purchaseLottos;
+    }
+
+    public static int getPurchaseLottoCount() {
+        return purchaseLottos.size();
+    }
+
     private static List<Lotto> createLottos() {
         List<Lotto> lottos = new ArrayList<>();
 

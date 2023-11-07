@@ -17,6 +17,8 @@ public class GameService {
 
     private final int NUMBER_START_RANGE = 1;
     private final int NUMBER_END_RANGE = 45;
+    private final int MAX_COUNT = 6;
+    private final int UNIT_MONEY = 1000;
     private final int METHOD_PURCHASE_AMOUNT = 1;
     private final int METHOD_SAVE_WINNING_NUMBERS = 2;
     private final int METHOD_SAVE_BONUS_NUMBER = 3;
@@ -65,6 +67,7 @@ public class GameService {
     public void saveBonusNumber(String input) {
 
         validateInput(input, METHOD_SAVE_BONUS_NUMBER);
+        validateBonusNumber(input);
 
         int bonusNumber = Integer.parseInt(input);
         winningInfo.saveBonusNumber(bonusNumber);
@@ -84,8 +87,6 @@ public class GameService {
 
     public GameResultDTO getGameResult() {
 
-        //GameResult gameResult = new GameResult(winningInfo);
-
         List<Lotto> lottos = buyer.getLottos();
 
         gameResult.matchPurchasedLottos(lottos);
@@ -101,22 +102,12 @@ public class GameService {
 
         int amount = buyer.getAmount();
 
-        return (double) prizeMoney/(amount * 1000) * 100;
+        return (double) prizeMoney/(amount * UNIT_MONEY) * 100;
     }
 
     private List<Integer> createNumbers() {
 
-        List<Integer> numbers = new ArrayList<>();
-
-        while (numbers.size() < 6) {
-
-            int number = Randoms.pickNumberInRange
-                    (NUMBER_START_RANGE, NUMBER_END_RANGE);
-
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-            }
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(NUMBER_START_RANGE, NUMBER_END_RANGE, MAX_COUNT);
 
         return numbers;
     }
@@ -133,6 +124,15 @@ public class GameService {
         }
     }
 
+    private void validateBonusNumber(String input){
+
+        String [] tmp = input.split(",");
+
+        if(tmp.length != 1) {
+
+            throw new IllegalArgumentException(Message.BONUS_NUMBERS_SIZE_ERROR_MESSAGE.name());
+        }
+    }
 
     private void findErrorMethod(int methodName) {
 

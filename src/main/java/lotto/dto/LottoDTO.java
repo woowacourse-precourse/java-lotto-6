@@ -19,7 +19,9 @@ public class LottoDTO {
 
     public void saveNumbers(List<Integer> numbers){
 
-        Collections.sort(numbers);
+        //Collections.sort(numbers);
+
+
 
         firstNumber = numbers.get(0);
         secondNumber = numbers.get(1);

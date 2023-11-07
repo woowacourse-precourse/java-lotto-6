@@ -32,7 +32,6 @@ public class GameResultDTO {
                      .append("6개 일치 (").append(PrizeMoney.FIRST)
                      .append("원) - ").append(prize.get("1등")).append("개\n");
 
-
         gameResult = stringBuilder.toString();
     }
 

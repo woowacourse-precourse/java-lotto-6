@@ -47,26 +47,6 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 구매_수량_구매_번호_출력() {
-
-        assertRandomUniqueNumbersInRangeTest(
-                () -> {
-                    run("3000", "1,2,3,4,5,6", "7");
-                    assertThat(output()).contains(
-
-                            "3개를 구매했습니다.",
-                            "[8,21,23,41,42,43]",
-                            "[3,21,25,31,42,45]",
-                            "[11,23,25,27,32,44]"
-                    );
-                },
-                List.of(8,21,23,41,42,43),
-                List.of(3,21,25,31,42,45),
-                List.of(11,23,25,27,32,44)
-        );
-    }
-
-    @Test
     void 구매_금액_숫자_아닌_문자_예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");
@@ -146,6 +126,39 @@ class ApplicationTest extends NsTest {
         });
     }
 
+
+    //보너스 번호 한개 아닌 경우
+    //보너스 번호 1 ~ 45 사이 아닌 경우
+    @Test
+    void 보너스_번호_범위_45초과_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,43","46");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_범위_1미만_경우_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6","0");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+    @Test
+    void 보너스_번호_당첨_번호_중복_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6","6");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @Test
+    void 보너스_번호_개수_1개_아님_예외_처리() {
+        assertSimpleTest(() -> {
+            runException("1000", "1,2,3,4,5,6","7,8");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

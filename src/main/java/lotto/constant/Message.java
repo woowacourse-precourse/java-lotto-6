@@ -16,8 +16,9 @@ public enum Message {
     WINNING_NUMBERS_SIZE_ERROR_MESSAGE("[ERROR] 당첨 번호의 갯수가 6개가 아닙니다."),
     WINNING_NUMBERS_OVER_RANGE_ERROR_MESSAGE("[ERROR] 1 ~ 45 범위를 벗어난 당첨 번호가 존재합니다."),
     WINNING_NUMBER_DUPLICATE_ERROR_MESSAGE("[ERROR] 입력한 당첨 번호와 중복된 번호가 존재합니다."),
-    BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE("[ERROR] 입력한 보너스 번호와 중복된 번호가 존재합니다.");
-
+    BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE("[ERROR] 입력한 보너스 번호와 중복된 번호가 존재합니다."),
+    BONUS_NUMBERS_OVER_RANGE_ERROR_MESSAGE("[ERROR] 1 ~ 45 범위를 벗어난 보너스 번호가 존재합니다."),
+    BONUS_NUMBERS_SIZE_ERROR_MESSAGE("[ERROR] 보너스 번호의 갯수가 1개가 아닙니다.");
 
     private String message;
 

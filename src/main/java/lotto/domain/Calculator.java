@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.Constant.LottoCashConstant;
+import lotto.domain.Constant.LottoCash;
 
 public class Calculator {
     public static int calculateReturn(int lottoCount, boolean isBonus) {
@@ -8,7 +8,7 @@ public class Calculator {
 
         // 5개 일치, 보너스 볼 일치 (30,000,000원)
         if (isBonus && lottoCount == 5) {
-            sum += LottoCashConstant.match5AndBonus.getCash();
+            sum += LottoCash.MATCH5ANDBONUS.getCash();
             return sum;
         }
 
@@ -18,16 +18,16 @@ public class Calculator {
         // 6개 일치 (2,000,000,000원) - 0개
         switch (lottoCount) {
             case 3:
-                sum += LottoCashConstant.match3.getCash();
+                sum += LottoCash.MATCH3.getCash();
                 break;
             case 4:
-                sum += LottoCashConstant.match4.getCash();
+                sum += LottoCash.MATCH4.getCash();
                 break;
             case 5:
-                sum += LottoCashConstant.match5.getCash();
+                sum += LottoCash.MATCH5.getCash();
                 break;
             case 6:
-                sum += LottoCashConstant.match6.getCash();
+                sum += LottoCash.MATCH6.getCash();
                 break;
         }
 

@@ -19,6 +19,7 @@ public class LottoGame {
     private Input lottoInput = new Input();
     private List<Lotto> purchasedLotto;
     private int[] winningCount;
+
     public LottoGame() {
         purchasedLotto = new ArrayList<>();
         lottoAmountByRank = Arrays.asList(ZERO, ZERO, ZERO, FIVE_RANK, FOUR_RANK, THREE_RANK, ONE_RANK, TWO_RANK);
@@ -39,7 +40,7 @@ public class LottoGame {
     }
 
     public void buyLotto(Integer purchaseAmount){
-        Print.printPurchase(purchaseAmount);
+        Print.printPurchase(purchaseAmount/ LOTTO_PRICE);
         for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++){
             List<Integer> makedNumbers = Utils.makeRandomNumbers(1, 45, 6);
             Collections.sort(makedNumbers);

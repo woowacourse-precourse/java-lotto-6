@@ -8,7 +8,7 @@ import java.util.Set;
 
 
 public class CustomizedException {
-    static final String ERROR_MESSAGE_INIT = "[ERROR] ";
+    public static final String ERROR_MESSAGE_INIT = "[ERROR] ";
     static final int WINNING_NUMBERS_SIZE = 6;
 
     public static void notDivisibleByThousandException(int price) {

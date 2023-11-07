@@ -16,10 +16,12 @@ public class InputView {
                 LottoPrice = Integer.parseInt(Console.readLine());
                 CustomizedException.notDivisibleByThousandException(LottoPrice);
                 break;
-            } catch (IllegalArgumentException e) {
+            }catch (NumberFormatException e) {
+                System.out.println(CustomizedException.ERROR_MESSAGE_INIT + "유효한 구입금액을 입력해주세요.");
+            }
+            catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
         return LottoPrice;
     }

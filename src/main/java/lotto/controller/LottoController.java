@@ -18,6 +18,12 @@ public class LottoController {
         this.outputView = new OutputView();
     }
 
+    public void start() {
+        purchaseLotto();
+        makeResultLotto();
+        result();
+    }
+
     private void purchaseLotto() {
         while (true) {
             try {

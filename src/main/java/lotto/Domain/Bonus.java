@@ -11,6 +11,10 @@ public class Bonus {
         this.bonus = Integer.parseInt(bonus);
     }
 
+    public Integer getBonus() {
+        return bonus;
+    }
+
     private void validate(String bonus) {
         isEmpty(bonus);
         isNumber(bonus);

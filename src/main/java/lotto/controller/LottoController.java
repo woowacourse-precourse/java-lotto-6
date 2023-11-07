@@ -3,6 +3,8 @@ package lotto.controller;
 import lotto.domain.common.Lotto;
 import lotto.domain.consumer.Consumer;
 import lotto.domain.consumer.Price;
+import lotto.domain.producer.Bonus;
+import lotto.domain.producer.Producer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,6 +22,9 @@ public class LottoController {
 
         printProducerLottoMessage();
         Lotto producerLotto = createProducerLotto();
+        printProducerLottoBonusMessage();
+        Producer producer = getProducer(producerLotto);
+
     }
 
     private void printPriceMessage() {
@@ -67,5 +72,35 @@ public class LottoController {
             }
         }
         return lotto;
+    }
+
+    private void printProducerLottoBonusMessage() {
+        outputView.printProducerBonusMessage();
+    }
+
+    public Producer getProducer(Lotto producerLotto) {
+        Bonus producerLottoBonus = createProducerLottoBonus(producerLotto);
+        Producer producer = createProducer(producerLotto, producerLottoBonus);
+        return producer;
+    }
+
+    private Bonus createProducerLottoBonus(Lotto producerLotto) {
+        boolean valid = false;
+        Bonus bonus = null;
+
+        while(!valid) {
+            try {
+                int bonusInt = inputView.inputBonus();
+                bonus = new Bonus(producerLotto, bonusInt);
+                valid = true;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonus;
+    }
+
+    public Producer createProducer(Lotto producerLotto, Bonus bonus) {
+        return new Producer(producerLotto, bonus);
     }
 }

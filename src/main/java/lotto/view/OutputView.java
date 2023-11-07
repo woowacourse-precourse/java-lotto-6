@@ -12,6 +12,7 @@ public class OutputView {
     private final static String PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private final static String COUNT_MESSAGE = "개를 구매했습니다.";
     private final static String PRODUCER_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private final static String PRODUCER_BONUS_MESSAGE = "\n보너스 번호를 입력해 주세요.";
 
     public void printPriceMessage() {
         System.out.println(PRICE_MESSAGE);
@@ -34,4 +35,9 @@ public class OutputView {
     public void printProducerLottoMessage() {
         System.out.println(PRODUCER_NUMBER_MESSAGE);
     }
+
+    public void printProducerBonusMessage() {
+        System.out.println(PRODUCER_BONUS_MESSAGE);
+    }
+
 }

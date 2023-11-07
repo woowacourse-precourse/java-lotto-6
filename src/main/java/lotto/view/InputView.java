@@ -12,7 +12,7 @@ public class InputView {
             InputValidate.validateIsDivideThousand(number);
         }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
-            getLottoNumber();
+            return getLottoNumber();
         }
         return Integer.parseInt(number)/1000;
     }

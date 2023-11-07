@@ -16,6 +16,22 @@ public enum LottoResult {
         this.prize=prize;
     }
 
+    public static LottoResult findRank(int matchCount, boolean hasBonus) {
+        if (matchCount == 3) {
+            return FIFTH;
+        } else if (matchCount == 4) {
+            return FOURTH;
+        } else if (matchCount == 5 && !hasBonus) {
+            return THIRD;
+        } else if (matchCount == 5 && hasBonus) {
+            return SECOND;
+        } else if (matchCount == 6) {
+            return FIRST;
+        } else {
+            return NONE;
+        }
+    }
+
     public int getMatchCount() {
         return matchCount;
     }

@@ -45,12 +45,13 @@ public class WinningNumber {
     }
 
     private void validateBonusNumber(String bonus) {
-        if (!isDigit(bonus)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
-        }
 
         if (isEmptyOrBlank(bonus)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
+        }
+
+        if (!isDigit(bonus)) {
+            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
         }
 
         if (isDuplicatedWinningNumber(bonus)) {

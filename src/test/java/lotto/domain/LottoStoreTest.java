@@ -22,5 +22,4 @@ class LottoStoreTest {
 
         assertEquals(expected, actual);
     }
-
 }

@@ -1,10 +1,17 @@
-package lotto.input;
+package lotto;
 
-public class InputLottoValidator {
+public class InputViewValidator {
     private static final String ACCEPT_CHARACTERS = "[0-9,]+";
     private static final String MESSAGE_EXCEPTION_CHARACTER_ERROR = "[ERROR]: 숫자와 쉼표(,)만 입력해주세요.";
+    private static final InputViewValidator inputLottoValidator = new InputViewValidator();
 
-    public InputLottoValidator(String input) {
+    private InputViewValidator() {}
+
+    public static InputViewValidator getInstance() {
+        return InputViewValidator.inputLottoValidator;
+    }
+
+    public void validate(String input) {
         validateAcceptCharacter(input);
     }
 

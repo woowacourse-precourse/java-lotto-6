@@ -58,7 +58,7 @@ public class Application {
         // 총 수익률 출력
         int total = getTotalMoney();
         double profit = (double) total / userMoney * 100;
-        System.out.print("총 수익률은 " + String.format("%,.1f", profit) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%,.1f", profit) + "%입니다.");
     }
 
     public enum Prize {

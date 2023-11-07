@@ -20,4 +20,19 @@ class LottosTest {
         assertNotNull(lottos);
         assertEquals(severalLottos, lottos.getLottos());
     }
+
+    @DisplayName("로또들의 로또 번호들을 정상적으로 반환한다.")
+    @Test
+    void getLottosNumbers() {
+        List<Lotto> severalLottos = new ArrayList<>(
+            List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 7))));
+        Lottos lottos = new Lottos(severalLottos);
+
+        List<List<Integer>> expectedLottosNumbers = new ArrayList<>(
+            List.of(List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 7)));
+
+        List<List<Integer>> actualLottosNumbers = lottos.getLottosNumbers();
+
+        assertEquals(expectedLottosNumbers, actualLottosNumbers);
+    }
 }

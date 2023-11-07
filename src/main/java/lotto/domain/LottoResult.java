@@ -55,6 +55,5 @@ public class LottoResult {
         }
 
         return (sum * TO_DECIMAL / totalPrice) * PERCENTAGE_SCALE;
-        // sum이 5000이고 totalPrice이 8000이면 그냥 나눗셈을 하면 0이 된다. 하지만 1.0을 곱해 소숫점 형태로 만들고 나누면 0.625가 나온다.
     }
 }

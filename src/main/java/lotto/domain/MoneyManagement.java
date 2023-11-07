@@ -51,5 +51,11 @@ public class MoneyManagement {
     public int getQuantity() {
         return quantity;
     }
-    
+
+    public static long totalAmount(LottoResult lottoResult) {
+        return lottoResult.getResults().entrySet()
+                .stream()
+                .mapToLong(entry -> entry.getKey().getAmount() * entry.getValue())
+                .sum();
+    }
 }

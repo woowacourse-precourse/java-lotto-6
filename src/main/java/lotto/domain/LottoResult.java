@@ -24,5 +24,8 @@ public class LottoResult {
         return results.getOrDefault(rank, 0);
     }
 
+    public Map<LottoRank, Integer> getResults() {
+        return results;
+    }
 
 }

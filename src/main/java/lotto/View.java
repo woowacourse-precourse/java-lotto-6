@@ -6,7 +6,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class View {
     private Map<Integer, Integer> userWinningRanks;
-    private float profitSummary;
+    private double profitSummary;
     private int lottoPurchaseNum;
     private String winningNumber;
     private String bounsNumber;

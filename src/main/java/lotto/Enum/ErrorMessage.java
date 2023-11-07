@@ -7,6 +7,10 @@ public enum ErrorMessage {
 	NOT_DIVISIBLE_BY_1000("구입금액은 1000으로 나누어 떨어져야 합니다."),
 	LESS_THAN_1000("1000 이상의 숫자를 입력해주세요."),
 
+	//Lotto Error
+	NOT_RIGHT_LOTTO_SIZE("[ERROR] 로또의 숫자는 6개로 이루어져 있어야 합니다."),
+	NOT_UNIQUE_NUMBER("[ERROR] 로또의 숫자 중 중복된 숫자가 존재합니다."),
+
 	//WinningNumber Error
 	INVALID_WINNING_NUMBERS_FORMAT("[ERROR] , 로 구분하여 입력해주세요."),
 	INVALID_NUMBER_COUNT("[ERROR] 6개의 숫자를 입력해주세요."),

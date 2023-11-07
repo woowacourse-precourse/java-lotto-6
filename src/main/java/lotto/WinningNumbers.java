@@ -72,10 +72,9 @@ public class WinningNumbers {
 	}
 
 	private List<Integer> changeStringToList(String input){
-		List<Integer> numbers = Arrays.stream(input.split(","))
-			.map(Integer::parseInt)
+		return Arrays.stream(input.split(","))
+			.map(this::parseNumber)
 			.collect(Collectors.toList());
-		return numbers;
 	}
 
 	private int parseNumber(String value) {

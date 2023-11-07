@@ -1,13 +1,21 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.*;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 class LottoTest {
+    @DisplayName("조건을 만족하면 정상적인 로또가 생성된다.")
+    @Test
+    void testCreateValidLotto() {
+        List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(validNumbers);
+        assertThat(lotto).isNotNull();
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {

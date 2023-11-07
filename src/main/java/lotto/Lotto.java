@@ -1,7 +1,12 @@
 //Lotto.java
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+import lotto.Enum.ErrorMessage;
 
 public class Lotto {
     //Lotto에 인스턴스 변수 추가 불가
@@ -17,20 +22,22 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.NOT_RIGHT_LOTTO_SIZE.getMessage());
         }
+
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+
+        if (uniqueNumbers.size() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.NOT_UNIQUE_NUMBER.getMessage());
+        }
+
     }
 
     public String toString(){
-        StringBuilder sb = new StringBuilder("[");
-        for (int i = 0; i < numbers.size(); i++) {
-            sb.append(numbers.get(i));
-            if (i < numbers.size() - 1) {
-                sb.append(", ");
-            }
-        }
-        sb.append("]");
-        return sb.toString();
+        List<String> numberStrings = numbers.stream()
+            .map(String::valueOf)
+            .collect(Collectors.toList());
+        return "[" + String.join(", ", numberStrings) + "]";
     }
 
     public boolean have(Integer numberToFind){

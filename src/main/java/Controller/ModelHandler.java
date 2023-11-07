@@ -7,13 +7,9 @@ import View.InputView;
 import java.util.List;
 
 public class ModelHandler {
-    private final Domain DOMAIN = Domain.getInstance();
     private final Service SERVICE = Service.getInstance();
     private final InputView INPUT_VIEW = InputView.getInstance();
     private final ExceptionHandler EXCEPTION = new ExceptionHandler();
-
-    public List<Lotto> MY_LOTTO = DOMAIN.getMyLotto();
-    public List<Integer> CORRECT_NUMBER_COUNT = DOMAIN.getCorrectNumberCount();
 
     private ModelHandler() {}
 
@@ -25,17 +21,16 @@ public class ModelHandler {
         return Singleton.INSTANCE;
     }
 
-    public void setInputPrice() {
-         EXCEPTION.checkPriceUnit(INPUT_VIEW.inputPrice());
-         DOMAIN.setPrice(INPUT_VIEW.inputPrice());
+    public List<Integer> setInputWinningNumber() {
+        return SERVICE.makeLotto(INPUT_VIEW.inputWinningNumber());
     }
 
-    public void setInputWinningNumber() {
-        DOMAIN.setLottoWinningNumber(SERVICE.makeLotto(INPUT_VIEW.inputWinningNumber()));
+    public int setBonusNumber() {
+        return INPUT_VIEW.inputBonusNumber();
     }
 
-    public void setInputBonusNumber() {
-
-        DOMAIN.setBonusNumber(INPUT_VIEW.inputBonusNumber());
+    public int setPrice() {
+        EXCEPTION.checkPriceUnit(INPUT_VIEW.inputPrice());
+        return INPUT_VIEW.inputPrice();
     }
 }

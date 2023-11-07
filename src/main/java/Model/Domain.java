@@ -9,15 +9,19 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 public class Domain {
-    public static final int LOTTO_PRICE = 1000;
+    private final ModelHandler MODEL = ModelHandler.getInstance();
     private final Service SERVICE = Service.getInstance();
-    private final List<Integer> lottoWinningNumber = SERVICE.lottoGenerator();
+    private final List<Integer> LOTTO_WINNING_NUMBER = MODEL.setInputWinningNumber();
+
+    public static final int LOTTO_PRICE = 1000;
+    private final int BONUS_NUMBER = MODEL.setBonusNumber();
+    private final int PRICE = MODEL.setPrice();
+    private final int LOTTO_NUM = PRICE / LOTTO_PRICE;
+
     private List<Lotto> myLotto;
     private List<Integer> duplicatedNumberCount;
     private List<Integer> winningRanking;
     private List<Boolean> duplicatedBonusNumber;
-    private int bonusNumber;
-    private int price;
     private int winnings;
     private double revenueRate;
 
@@ -26,8 +30,6 @@ public class Domain {
         duplicatedNumberCount = new ArrayList<>();
         duplicatedBonusNumber = new ArrayList<>();
         winningRanking = new ArrayList<>();
-        bonusNumber = 0;
-        price = 0;
         winnings = 0;
         revenueRate = 0;
     }
@@ -40,22 +42,14 @@ public class Domain {
         return Singleton.INSTANCE;
     }
 
-    public void setWinningRanking() {
+    private void setWinningRanking() {
         for (int i = 0; i < duplicatedNumberCount.size(); i++) {
             int rank = SERVICE.calWinningsRank(duplicatedNumberCount.get(i), duplicatedBonusNumber.get(i));
             winningRanking.add(rank);
         }
     }
 
-    public void setBonusNumber(int bonusNumber) {
-        this.bonusNumber = bonusNumber;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public void sumWinnings() {
+    private void sumWinnings() {
         for (var Ranking : winningRanking) {
             if (Ranking != 0) {
                 winnings += SERVICE.getMyWinning(Ranking);
@@ -63,8 +57,14 @@ public class Domain {
         }
     }
 
-    public void setRevenueRate() {
-        revenueRate = winnings / price;
+    private void setRevenueRate() {
+        revenueRate = winnings / PRICE;
+    }
+
+    private void setMyLotto() {
+        for(int i = 0; i < LOTTO_NUM; i++) {
+            myLotto.add(new Lotto(SERVICE.lottoGenerator()));
+        }
     }
 
     //로또 당첨 횟수 = 총 myLotto 사이즈 만큼 나옴
@@ -76,7 +76,7 @@ public class Domain {
     }
 
     private int numberDuplicateCount(List<Integer> list) {
-        Set<Integer> set = new HashSet<>(lottoWinningNumber);
+        Set<Integer> set = new HashSet<>(LOTTO_WINNING_NUMBER);
 
         return (int) list.stream()
                 .filter(set::contains)
@@ -85,15 +85,10 @@ public class Domain {
 
     private boolean bonusNumberDuplicateCount(List<Integer> list) {
         for (int number : list) {
-            if (number == bonusNumber) {
+            if (number == BONUS_NUMBER) {
                 return true;
             }
         }
         return false;
-    }
-
-    //중복된 숫자 만큼 등수 계산
-    public void calWinningsRank() {
-
     }
 }

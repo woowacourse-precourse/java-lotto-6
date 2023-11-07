@@ -23,8 +23,7 @@ public class Service {
     }
 
     public List<Integer> lottoGenerator() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
     public List<Integer> makeLotto(String lottoNumber) {
@@ -55,7 +54,7 @@ public class Service {
             return WinningRanks.FOURTH_RANK.getValue();
         } else if(count == 5) {
             if(bonus) {
-                return Winnings.SECOND_PRIZE_MONEY.getValue();
+                return WinningRanks.SECOND_RANK.getValue();
             }
             return WinningRanks.THIRD_RANK.getValue();
         } else if(count == 6) {

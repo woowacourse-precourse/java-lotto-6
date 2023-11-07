@@ -28,6 +28,7 @@ public class LottoController {
         Player player = setPlayerVariableValue(input);
         List<Integer> winningNumbers = getwinningNumbers();
         List<Integer> winningNumbersAddExtraWinningNumber = getExtraWinningNumber(winningNumbers);
+        calculateWinningStatistics(player,winningNumbersAddExtraWinningNumber);
     }
 
     private String getUserInput() {
@@ -118,5 +119,10 @@ public class LottoController {
         int extraWinningNumberInteger = Integer.parseInt(extraWinningNumber);
         winningNumber.add(extraWinningNumberInteger);
         return winningNumber;
+    }
+
+    private void calculateWinningStatistics(Player player, List<Integer> winningNumber) {
+        ConsoleOutput.printNewLine();
+        ConsoleOutput.displayWinningStatistics();
     }
 }

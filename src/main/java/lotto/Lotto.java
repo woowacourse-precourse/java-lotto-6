@@ -27,7 +27,7 @@ public class Lotto {
     private void validateRange(List<Integer> numbers) {
         for (Integer n : numbers) {
             if ((n < NUMBER_MIN) || (NUMBER_MAX < n)) {
-                throw new IllegalArgumentException(String.format("로또 번호 %d가 주어진 범위를 벗어났습니다", n));
+                throw new IllegalArgumentException(String.format("로또 번호 %d가 주어진 범위를 벗어났습니다.", n));
             }
         }
     }

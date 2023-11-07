@@ -18,14 +18,15 @@ public class BuyLotto {
 
     private int userMoney;
 
-    public int getInputMoney() {
+    private int getInputMoney() {
         String inputMoney = inputFunction.getUserInput();
+        validationFunction.validateMoneyIsNumber(inputMoney);
         int money = Integer.parseInt(inputMoney);
         return validationFunction.validateMoney(money);
     }
 
-    public int countLottoQuantity(int money) {
-        int LottoQuantity = money / 1000 ;
+    private int countLottoQuantity(int money) {
+        int LottoQuantity = money / 1000;
         printMessageFunction.printBuyResult(LottoQuantity);
 
         return LottoQuantity;
@@ -33,11 +34,10 @@ public class BuyLotto {
 
     public BuyLotto getBuyInfo() {
         int userMoney = getInputMoney();
-        System.out.println(userMoney);
         List<Lotto> userLottos = new ArrayList<>();
         int LottoQuantity = countLottoQuantity(userMoney);
 
-        for(int i=0;i<LottoQuantity;i++) {
+        for (int i = 0; i < LottoQuantity; i++) {
             Lotto lotto = getLottoNumbers.LottoNumbers();
             userLottos.add(lotto);
         }

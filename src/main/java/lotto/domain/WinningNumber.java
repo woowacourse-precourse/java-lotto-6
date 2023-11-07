@@ -3,8 +3,7 @@ package lotto.domain;
 
 import java.util.List;
 
-import static lotto.util.Const.MAX_NUMBER;
-import static lotto.util.Const.MIN_NUMBER;
+import static lotto.util.Const.*;
 import static lotto.util.ValidateMessage.*;
 
 public class WinningNumber {

@@ -26,8 +26,9 @@ public class Lotto {
     public int compare(Lotto lotto) {
         int count = 0;
         for (Integer number : numbers) {
-            lotto.contains(number);
-            count++;
+            if (lotto.contains(number)) {
+                count++;
+            }
         }
         return count;
     }

@@ -45,13 +45,13 @@ public class LottoService {
     private static Lotto generateWinningLotto() {
         printWinningNumInputForm();
 
-        return readWinningNumbers();
+        return readWinningLotto();
     }
 
     private static int generateBonusNum(Lotto winningLotto) {
         printBonusNumInputForm();
 
-        return readBonusNumber(winningLotto);
+        return readBonusNum(winningLotto);
     }
 
 

@@ -82,7 +82,7 @@ public class LottoController {
      */
     private void printPurchasedLottos() {
         try {
-            purchasedLottos.getLottos().forEach(lotto -> {
+            purchasedLottos.lottos().forEach(lotto -> {
                 lottoOutputView.printLotto(LottoParser.parseLottoNumberListToString(lotto.getSortedLottoNumbers()));
             });
         } catch (Exception e) {
@@ -137,7 +137,7 @@ public class LottoController {
      */
     private void displayWinningStatistics(WinningLotto winningLotto, int purchaseAmount) {
         try {
-            Map<Prize, Integer> statistics = LottoUtil.calculatePrizeCounts(purchasedLottos.getLottos(), winningLotto);
+            Map<Prize, Integer> statistics = LottoUtil.calculatePrizeCounts(purchasedLottos.lottos(), winningLotto);
             double totalPrizeAmount = LottoUtil.calculateTotalPrizeAmount(statistics);
 
             lottoOutputView.printStatistics();

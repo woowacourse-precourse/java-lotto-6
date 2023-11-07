@@ -8,9 +8,9 @@ import lotto.view.View;
 public class LottoGameController {
     private final View view;
     private final LottoGameManager lottoGameManager;
-    private final LottoCostController lottoCostController;
-    private final WinningNumbersController winningNumbersController;
-    private final BonusNumberController bonusNumberController;
+    private final RequestController lottoCostController;
+    private final RequestController winningNumbersController;
+    private final RequestController bonusNumberController;
     private RankingManager rankingManager;
 
     public LottoGameController() {

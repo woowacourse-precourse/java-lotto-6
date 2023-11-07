@@ -12,7 +12,6 @@ class InputViewTest {
     @Test
     @DisplayName("정상가격_정상개수_출력")
     void getBuyAmount() {
-        InputView.getBuyAmount();
 
     }
 

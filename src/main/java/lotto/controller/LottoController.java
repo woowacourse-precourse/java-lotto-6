@@ -23,8 +23,10 @@ public class LottoController {
         int buyAmount = InputView.getBuyAmount();
         OutputView.printBuyAmount(buyAmount);
         List<Lotto> userLottos = lottoService.getLottoNumbers(buyAmount);
-        OutputView.printUserLottos(userLottos);
+        OutputView.printgUserLottos(userLottos);
         OutputView.printRequireMessage();
-        InputView.getWinningNumber();
+        List<Integer> winningNumber = InputView.getWinningNumber();
+        InputView.getBonusNumber(winningNumber);
+
     }
 }

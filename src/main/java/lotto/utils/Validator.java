@@ -18,10 +18,10 @@ public class Validator {
         if(validateInteger(amount)){
             return true;
         }
-        if(validateDivided(amount)){
+        if(validateMinimum(amount)){
             return true;
         }
-        if(validateMinimum(amount)){
+        if(validateDivided(amount)){
             return true;
         }
         return false;

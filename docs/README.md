@@ -45,8 +45,8 @@
 
 ### Lottos (로또 모음) → **First Class Collection**
 
-- [ ]  `로또들을 모아 저장`한다.
-- [ ]  `로또들을 모아 제공`한다.
+- [x]  `로또들을 모아 저장`한다.
+- [x]  `로또들을 모아 제공`한다.
 
 ### LottoWinningAnalyzer (로또 당첨 결과 분석기)
 

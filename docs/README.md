@@ -76,3 +76,7 @@
 - - WinningCalculation클래스의 winningCheck함수와 bonusCheck함수의 값을 받아 게임 수 만큼 진행하여 resultCount변수 내에 저장하는 resultCheck 함수
 - - resultCheck의 값과 BuyLotto 클래스의 buyMoney변수를 받아와 수익률을 계산하는 resultCalculation함수
 - - resultCalculation의 값을  화면에 출력하는 resultPrint 함수
+
+
+# 진행중 문제점
+- Bonus의 경우 5개가 일치하며 그 5개 가운데 보너스번호가 있어야하므로 이또한 구현함에 어려움을 겪었다.

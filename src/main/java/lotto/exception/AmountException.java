@@ -1,6 +1,6 @@
 package lotto.exception;
 
-public class LottoNumberException {
+public class AmountException {
     private final static int BILLION_DIGITS = 10;
     private final static int SAME = 0;
     private static final int MIN_AMOUNT = 1000;

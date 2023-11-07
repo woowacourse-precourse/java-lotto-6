@@ -25,6 +25,7 @@ public class GameController {
         randomUtility.generateRandomLottoNumbers();
         saveRandomLottoNumbers(lottoMoney);
         saveLuckeyNumbers();
+        inputView.enterBonusLottoNumber();
     }
 
     private void saveLottoMoney() {
@@ -54,7 +55,6 @@ public class GameController {
                 String luckeyNumber = inputView.enterLottoNumber();
                 luckeyNumber = deleteWhiteSpace(luckeyNumber);
                 List<Integer> luckeyNumbers = convertStringToStringList(luckeyNumber);
-                System.out.println(luckeyNumbers);
                 lotto = new Lotto(luckeyNumbers);
                 restart = false;
             } catch (IllegalArgumentException e) {

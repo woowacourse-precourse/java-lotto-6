@@ -36,5 +36,11 @@ public class PrizeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    
+    @DisplayName("보너스 번호가 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void checkBonusInputIsNumber() {
+        assertThatThrownBy(() -> InputView.conventToInt("a"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

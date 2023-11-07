@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.controller.input.InputConverter.*;
+import static lotto.exception.WinningCheck.checkCommaCount;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputConverterTest {
@@ -70,21 +71,4 @@ public class InputConverterTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("',' 테스트")
-    @Test
-    void checkCommaTest() {
-        String input1 = ",1,2,3,4,5,6,";
-        String input2 = "1,2,3,4,5,6,";
-        String input3 = ",,1,2,3,4,5,6";
-        String input4 = "1,2,3,4,5,6,,";
-
-        assertThatThrownBy(() -> checkCommaCount(input1))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> checkCommaCount(input2))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> checkCommaCount(input3))
-                .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> checkCommaCount(input4))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 }

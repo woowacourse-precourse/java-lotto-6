@@ -1,46 +1,43 @@
 package lotto.exception;
 
 import lotto.model.WinningNumber;
-
 import java.util.List;
 
-import static lotto.view.ErrorMessage.duplicatedWinningNumbers;
+import static lotto.exception.WinningCheck.checkCommaCount;
+import static lotto.exception.WinningCheck.checkNumberLength;
+import static lotto.view.ErrorMessage.muchComma;
 import static lotto.view.ErrorMessage.notEnoughLengthOfWinningNumbersExceptionMessage;
 
 public class WinningException extends NumberException {
-    public static WinningNumber winningException(List<Integer> winningNumbers) throws IllegalArgumentException {
-        try {
-            winningNumRangeRotate(winningNumbers);
-            winningNumLengthException(winningNumbers);
-            duplicateException(winningNumbers);
-            //winningNumDuplicate(winningNumbers);
-            return new WinningNumber(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
+    public static WinningNumber winningException(List<Integer> numbers, String inputWinning) throws IllegalArgumentException {
+        winningNumberRotate(numbers);
+        winningNumberLengthException(numbers);
+        duplicateException(numbers);
+        winningNumberCommaException(inputWinning);
+        return new WinningNumber(numbers);
     }
 
-    private static void winningNumLengthException(List<Integer> winningNumbers) throws IllegalArgumentException {
-        try {
-            WinningNumber.checkNumberLength(winningNumbers);
-        } catch (IllegalArgumentException e) {
+    public static void winningNumberLengthException(List<Integer> numbers) throws IllegalArgumentException {
+        if (!checkNumberLength(numbers)) {
             notEnoughLengthOfWinningNumbersExceptionMessage();
             throw new IllegalArgumentException();
         }
     }
-/*
-    private static void winningNumDuplicate(List<Integer> winningNumbers) throws IllegalArgumentException{
-        try {
-            WinningNumber.checkDuplicate(winningNumbers);
-        } catch (IllegalArgumentException e) {
-            duplicatedWinningNumbers();
+
+    public static void winningNumberCommaException(String inputWinning) throws IllegalArgumentException{
+        if (!checkCommaCount(inputWinning)) {
+            muchComma();
             throw new IllegalArgumentException();
         }
-    }*/
+    }
 
-    private static void winningNumRangeRotate(List<Integer> winningNumbers) {
+    public static void winningNumberRotate(List<Integer> winningNumbers) throws IllegalArgumentException{
         for (int number : winningNumbers) {
             numberRangeException(number);
         }
     }
+
+
+
+
 }

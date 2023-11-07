@@ -1,8 +1,5 @@
 package lotto.model;
 
-import static lotto.view.ErrorMessage.notDigitExceptionMessage;
-import static lotto.view.ErrorMessage.priceZeroException;
-
 public class Price {
     private final int price;
     private static final int minPrice = 1000;

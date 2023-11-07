@@ -1,9 +1,6 @@
 package lotto.exception;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import static lotto.exception.NumberCheck.*;
 import static lotto.view.ErrorMessage.*;
 

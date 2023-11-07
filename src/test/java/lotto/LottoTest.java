@@ -80,17 +80,27 @@ class    LottoTest {
 
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다 범위 "
+                .hasMessageContaining("[ERROR] 로또 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
                         + minLottoNumber + "~" + maxLottoNumber);
     }
 
     @DisplayName("로또 번호를 String으로 생성할 때 숫자가 아니면 예외를 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"테,스,트,4,5,6", "t,e,s,t,5,46"})
-    void createLottoByNonNumericValueNumbers() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+    void createLottoByNonNumericValueNumbers(String lottoNumbers) {
+        assertThatThrownBy(() -> new Lotto(lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호에 숫자가 아닌 값이 들어왔습니다.");
+    }
+
+    @DisplayName("로또 번호를 String으로 생성할 때 쉼표가 연속해서 들어온 경우 예외를 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"24,,1,2,3,4,5", ",,1,2,3,"})
+    void createLottoByConsecutiveCommasValueNumbers(String numbers) {
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+                        + minLottoNumber + "~" + maxLottoNumber);
     }
 
     @DisplayName("로또번호가 정상적으로 들어온 경우.")

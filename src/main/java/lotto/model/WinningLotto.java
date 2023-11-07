@@ -1,8 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class WinningLotto extends Lotto{
     private final Integer bonusNumber;
 
@@ -13,16 +10,16 @@ public class WinningLotto extends Lotto{
     }
 
     private void validateBonusNumber(String bonusNumber) {
-        validateCastingBeforeBonusNumber(bonusNumber);
-        validateCastingAfterBonusNumber(convertStringToInteger(bonusNumber));
+        validateConvertBeforeBonusNumber(bonusNumber);
+        validateConvertAfterBonusNumber(convertStringToInteger(bonusNumber));
     }
 
-    private void validateCastingBeforeBonusNumber(String bonusNumber) {
+    private void validateConvertBeforeBonusNumber(String bonusNumber) {
         validateNotNullBonusNumber(bonusNumber);
         validateNonNumericBonusNumber(bonusNumber);
     }
 
-    private void validateCastingAfterBonusNumber(Integer bonusNumber) {
+    private void validateConvertAfterBonusNumber(Integer bonusNumber) {
         vaildateOutOfRangeBonusNumber(bonusNumber);
         vaildateLottoNumbersContainBonusNumber(bonusNumber);
     }
@@ -34,14 +31,14 @@ public class WinningLotto extends Lotto{
     }
 
     private void validateNonNumericBonusNumber(String bonusNumber) {
-        if (!bonusNumber.matches("\\d+")) {
+        if (!bonusNumber.matches("^[0-9]*")) {
             throw new IllegalArgumentException("[Error] 보너스 번호에 숫자가 아닌 값이 들어왔습니다.");
         }
     }
 
     private void vaildateOutOfRangeBonusNumber(Integer bonusNumber) {
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
                     + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
         }
     }
@@ -52,13 +49,14 @@ public class WinningLotto extends Lotto{
         }
     }
 
-    private Integer convertStringToInteger(String bonusNumber) {
+    @Override
+    protected Integer convertStringToInteger(String bonusNumber) {
         Integer convertBonusNumber;
 
         try {
             convertBonusNumber = Integer.parseInt(bonusNumber);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+            throw new IllegalArgumentException("[ERROR] 보너스 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
                     + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
         }
         return convertBonusNumber;

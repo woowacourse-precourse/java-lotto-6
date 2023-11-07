@@ -15,7 +15,6 @@ import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WinningLottoTest {
-    static Integer lottoNumberSize;
     static Integer minLottoNumber;
     static Integer maxLottoNumber;
 
@@ -23,14 +22,11 @@ public class WinningLottoTest {
     public static void getConstantValue() throws NoSuchFieldException, IllegalAccessException {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        Field privateLottoNumberSize = Lotto.class.getDeclaredField("LOTTO_NUMBER_SIZE");
         Field privateMinLottoNumber = Lotto.class.getDeclaredField("MIN_LOTTO_NUMBER");
         Field privateMaxLottoNumber = Lotto.class.getDeclaredField("MAX_LOTTO_NUMBER");
         privateMinLottoNumber.setAccessible(true);
         privateMaxLottoNumber.setAccessible(true);
-        privateLottoNumberSize.setAccessible(true);
 
-        lottoNumberSize = (Integer) privateLottoNumberSize.get(lotto);
         minLottoNumber = (Integer) privateMinLottoNumber.get(lotto);
         maxLottoNumber = (Integer) privateMaxLottoNumber.get(lotto);
     }
@@ -47,10 +43,10 @@ public class WinningLottoTest {
     @DisplayName("보너스 번호에 범위(1 ~ 45) 밖의 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "46", "21474836478"})
-    void createWinningLottoByOverRangeBonusNumber(String bonusNumber) throws Exception {
+    void createWinningLottoByOverRangeBonusNumber(String bonusNumber) {
         assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+                .hasMessageContaining("[ERROR] 보너스 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
                         + minLottoNumber + "~" + maxLottoNumber);
     }
 

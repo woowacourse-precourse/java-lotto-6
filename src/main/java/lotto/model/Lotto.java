@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +74,7 @@ public class Lotto {
     private void validateOutOfRangeNumber(List<Integer> numbers) {
         if (numbers.stream()
                 .anyMatch(num -> num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+            throw new IllegalArgumentException("[ERROR] 로또 번호를 지정된 범위안의 숫자로 넣어주세요. 범위 "
                   + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
         }
     }
@@ -85,14 +84,14 @@ public class Lotto {
     }
 
     protected Integer convertStringToInteger(String numbers) {
-        Integer convertnumbers;
+        Integer convertNumbers;
 
         try {
-            convertnumbers = Integer.parseInt(numbers);
+            convertNumbers = Integer.parseInt(numbers);
         } catch (NumberFormatException exception) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
                     + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
         }
-        return convertnumbers;
+        return convertNumbers;
     }
 }

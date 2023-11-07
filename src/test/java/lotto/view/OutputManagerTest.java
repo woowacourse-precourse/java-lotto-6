@@ -15,6 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class OutputManagerTest {
     private static OutputStream outputMessage;
+    private OutputManager outputManager = OutputManager.getInstance();
 
     @BeforeEach
     void setUpStreams() {
@@ -30,7 +31,6 @@ class OutputManagerTest {
     @DisplayName("입력받은 메시지를 출력한다.")
     @Test
     void printMessage() {
-        OutputManager outputManager = new OutputManager();
         String expectedMessage = "테스트 메시지입니다.";
         outputManager.printMessage(expectedMessage);
         assertThat(expectedMessage).isEqualTo(outputMessage.toString().trim());
@@ -39,7 +39,6 @@ class OutputManagerTest {
     @DisplayName("로또의 번호를 출력한다.")
     @Test
     void printLotto() {
-        OutputManager outputManager = new OutputManager();
         String expectedMessage = "[1, 2, 3, 4]";
         List<Integer> numbers = new ArrayList<>();
         numbers.add(1);

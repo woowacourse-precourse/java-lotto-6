@@ -1,16 +1,14 @@
 package lotto;
 
 import lotto.controller.LottoController;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.util.RandomNumbers;
 import lotto.view.InputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -43,7 +41,7 @@ public class TddTest {
         List<Integer> numbers = RandomNumbers.generateRandomNumbers();
 
         for (int number : numbers) {
-                assertThat(number).isBetween(1, 45);
+            assertThat(number).isBetween(1, 45);
         }
     }
     @Test
@@ -67,13 +65,39 @@ public class TddTest {
         List<Integer> WinningNumbers = parseNumbers("1,2,3,4,5,6");
         assertThat(WinningNumbers).isEqualTo(expectedWinningNumbers);
     }
+    @Test
+    public void 로또_번호가_같은게_있으면_예외처리(){
+        List<Lotto> lottoList = new ArrayList<>();
+        lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
+
+        assertThatThrownBy(() -> new Lottos(lottoList))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("로또 번호가 중복되었습니다.");
+    }
+
+    @Test
+    public void HashMap값_확인(){
+        List<Lotto> lottoList = new ArrayList<>();
+        lottoList.add(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)));
+        lottoList.add(new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)));
+        lottoList.add(new Lotto(Arrays.asList(13, 14, 15, 16, 17, 18)));
+
+        Lottos lottos = new Lottos(lottoList);
+
+        Map<Long,Long> testMap = lottos.checkWinningNumbers(Arrays.asList(2, 5, 9, 15, 18, 20), 7);
+        for (Map.Entry<Long, Long> entry : testMap.entrySet()) {
+            Long key = entry.getKey();
+            Long value = entry.getValue();
+            System.out.println("당첨 개수: " + key + ", 당첨 횟수: " + value);
+        }
+    }
 
     private List<Integer> parseNumbers(String input) {
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-
 
 
 

@@ -53,7 +53,7 @@ public class WinningNumber {
     }
 
     private void validateNumberBetweenInRange(List<Integer> integerNumbers) {
-        for(int number : integerNumbers) {
+        for (int number : integerNumbers) {
             if (number < MIN_NUMBER || number > MAX_NUMBER) {
                 throw new IllegalArgumentException(COMMON_INVALID_RANGE.format(MIN_NUMBER, MAX_NUMBER));
             }

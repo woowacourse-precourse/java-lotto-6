@@ -13,7 +13,7 @@ public class LottoResultCheckService {
 
     public List<Ranking> checkResult(LottoMachine lottoMachine, WinningNumber winningNumber, Bonus bonus) {
         List<Ranking> results = new ArrayList<>();
-        for(Lotto lotto : lottoMachine.getIssuedLotto()) {
+        for (Lotto lotto : lottoMachine.getIssuedLotto()) {
             Result result = getCommonResult(lotto, winningNumber, bonus);
             Ranking rankingOfLotto = result.checkRanking();
             results.add(rankingOfLotto);

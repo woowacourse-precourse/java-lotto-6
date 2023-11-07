@@ -48,7 +48,7 @@ public class LottoGameController {
 
     private Purchase purchaseLottoTickets() {
         Purchase purchase = null;
-        while(purchase == null) {
+        while (purchase == null) {
             String price = inputView.requestPrice();
             purchase = purchaseService.getPurchaseIfValid(price);
         }

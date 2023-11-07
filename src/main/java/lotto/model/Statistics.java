@@ -20,7 +20,7 @@ public class Statistics {
     }
 
     public void createData(List<Ranking> rankings) {
-        for(Ranking ranking : rankings) {
+        for (Ranking ranking : rankings) {
             if(ranking == NOTHING) {
                 continue;
             }
@@ -30,7 +30,7 @@ public class Statistics {
 
     private float getRateOfReturn() {
         float revenue = 0;
-        for(Ranking ranking : results.keySet()) {
+        for (Ranking ranking : results.keySet()) {
             revenue += (ranking.getAmount() * results.get(ranking));
         }
         return revenue;

@@ -18,12 +18,16 @@ public class Result {
     
     public Ranking checkRanking() {
         List<Ranking> allRankingCase = Ranking.getAllRankingCase();
-        for(Ranking ranking : allRankingCase) {
-            if((ranking.getMatchedCount() == matchingNumber) && (ranking.getHasBonus().contains(isMatchedBonus))) {
+        for (Ranking ranking : allRankingCase) {
+            if (determineRanking(ranking)) {
                 return ranking;
             }
         }
         return Ranking.NOTHING;
+    }
+
+    private boolean determineRanking(Ranking ranking) {
+        return (ranking.getMatchedCount() == matchingNumber) && (ranking.getHasBonus().contains(isMatchedBonus));
     }
 
     private void validateMatchingCount(int matchingNumber) {

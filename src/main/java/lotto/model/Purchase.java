@@ -30,7 +30,7 @@ public class Purchase {
     }
 
     private int validatePriceInThousandUnit(int price) {
-        if(price % PURCHASE_PRICE_UNIT != 0) {
+        if (price % PURCHASE_PRICE_UNIT != 0) {
             throw new IllegalArgumentException(PURCHASE_INVALID_UNIT.format(PURCHASE_PRICE_UNIT));
         }
         return price/PURCHASE_PRICE_UNIT;

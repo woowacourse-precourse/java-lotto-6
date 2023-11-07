@@ -1,21 +1,20 @@
 package lotto.customer;
 
-import static lotto.validation.Validation.validatePriceDividePossible;
-import static lotto.validation.Validation.validatePriceFormat;
+import static lotto.validation.PurchaseValidation.validatePriceDividePossible;
+import static lotto.validation.PurchaseValidation.validatePriceFormat;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
-import lotto.validation.Validation;
 
 public class Customer {
     private int purchaseValue;
-    private final List<Lotto> lottoPapers;
+    private final List<Lotto> lottos;
 
     public Customer(String purchaseValue) {
         int purchasePossibleValue = priceToInt(purchaseValue);
-        this.purchaseValue = Integer.parseInt(purchaseValue);
-        this.lottoPapers = new ArrayList<>();
+        this.purchaseValue = purchasePossibleValue;
+        this.lottos = new ArrayList<>();
     }
 
     private int priceToInt(String purchaseValue) {
@@ -26,16 +25,20 @@ public class Customer {
         return purchasePossibleValue;
     }
 
-    public int buy(List<Integer> lotto) {
-        this.lottoPapers.add(new Lotto(lotto));
-        return this.lottoPapers.size();
+    public int buy(Lotto lotto) {
+        this.lottos.add(lotto);
+        return this.lottos.size();
     }
 
     public int getPurchaseValue() {
-        return purchaseValue;
+        return this.purchaseValue;
     }
 
-    public List<Lotto> getLottoPapers() {
-        return lottoPapers;
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
+
+    public int getLottoSize() {
+        return this.lottos.size();
     }
 }

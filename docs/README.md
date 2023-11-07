@@ -5,14 +5,15 @@
     - [X] 가격 입력 문구 출력 InputView#inputPrice
     - [X] 가격을 입력받는다.
         - [X] 1000원 단위를 입력 받았는지 검증. Customer#validatePrice
-    - [] 가격에 맞는 갯수로 로또를 생성한다. Customer#buy
-        - [] 로또 생성 LottoRandomGenerator#generateLottoSortedNumbers
+    - [X] 가격에 맞는 갯수로 로또를 생성한다. Customer#buy 
+        - [X] 로또 생성 LottoRandomGenerator#generateLottoSortedNumbers
             - 유효성검사 Lotto#validateLotto
-            - [] 1 ~ 45 사이의 값이여야 한다. Validation#validateLottoNumberRange
-            - [] 6자리 숫자여야한다. Validation#validateLottoSize
-            - [] 중복값이 없어야한다. Validation#validateNumberIsUnique
+            - [X] 1 ~ 45 사이의 값이여야 한다. Validation#validateLottoNumberRange
+            - [X] 6자리 숫자여야한다. Validation#validateLottoSize
+            - [X] 중복값이 없어야한다. Validation#validateNumberIsUnique
             - 정렬한다.
-                - [] 생성 후 리스트 형식으로 출력한다. Customer#getLotto
+                - [X] 생성 후 리스트 형식으로 출력한다. Customer#getLottos
+            - [X] 로또 발행 갯수와 로또 정보를 출력한다. OutputView#outputIssuance 
     - [] 당첨 번호를 생성한다. WinningLotto#WinningLotto
         - [] 로또 번호 입력 문구를 출력한다. InputView#inputWinningLottoNumber
         - [] 당첨 번호를 입력받는다. InputView#inputWinningLottoNumber

@@ -2,9 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import lotto.domain.BonusNumber;
 import lotto.domain.Calculator;
 import lotto.domain.Lotto;
@@ -39,12 +41,19 @@ public class LottoController {
     }
 
     private <T> T getValidInput(Supplier<T> inputSupplier) {
-        while (true) {
-            try {
-                return inputSupplier.get();
-            } catch (IllegalArgumentException e) {
-                OutputView.printException(e);
-            }
+        return Stream.generate(() -> tryGet(inputSupplier))
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .findFirst()
+                .orElseThrow();
+    }
+
+    private <T> Optional<T> tryGet(Supplier<T> inputSupplier) {
+        try {
+            return Optional.of(inputSupplier.get());
+        } catch (IllegalArgumentException e) {
+            OutputView.printException(e);
+            return Optional.empty();
         }
     }
 
@@ -57,7 +66,6 @@ public class LottoController {
                 .mapToObj(i -> generateValidLotto())
                 .collect(Collectors.toList());
     }
-
 
     private Lotto generateValidLotto() {
         return getValidInput(() -> new Lotto(numberGenerator.createRandomLottoNumbers()));

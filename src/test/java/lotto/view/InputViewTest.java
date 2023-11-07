@@ -116,5 +116,17 @@ public class InputViewTest {
         assertThatThrownBy(() -> InputView.readBonusNumber()).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호 winningNumber와 중복일 경우 예외 발생")
+    @Test
+    void readBonusNumber_IsDuplcate_ExceptionThrow() {
+        String input = "1,2,3,4,5,6";
+        setInputValues(input);
+        InputView.readWinningNumber();
+        Console.close();
+        input = "6";
+        setInputValues(input);
+        assertThatThrownBy(() -> InputView.readBonusNumber()).isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

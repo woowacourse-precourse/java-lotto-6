@@ -18,7 +18,8 @@ public class LottoController {
         OutputView.displayLottos(lottoService.getLottoDtos());
         initWinningLotto();
         initWinningNumbers();
-        OutputView.displayResult(lottoService.compareNumbers());
+        lottoService.compareNumbers();
+        OutputView.displayResult(lottoService.getLottoResultDto());
     }
 
     private void initWinningNumbers() {

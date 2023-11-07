@@ -15,6 +15,7 @@ public class LottoService {
     private LottoTicket lottoTicket = new LottoTicket();
     private Lotto winningLotto;
     private WinningNumbers winningNumbers;
+    private LottoResult lottoResult;
 
     public void initPurchaseAmount(String inputMoney) {
         this.purchaseAmount = new PurchaseAmount(Converter.stringToInt(inputMoney));
@@ -37,8 +38,12 @@ public class LottoService {
         this.winningNumbers = new WinningNumbers(winningLotto, Converter.stringToInt(inputBonusNumber));
     }
 
-    public LottoResult compareNumbers() {
-        return new LottoResult(lottoTicket.compareLotto(winningNumbers));
+    public void compareNumbers() {
+        lottoResult = new LottoResult(lottoTicket.compareLotto(winningNumbers));
+    }
+
+    public LottoResultDto getLottoResultDto() {
+        return lottoResult.getLottoResultDto();
     }
 
 }

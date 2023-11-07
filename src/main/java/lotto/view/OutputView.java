@@ -1,9 +1,10 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
 import lotto.enums.LottoStatus;
-import lotto.model.LottoResult;
 import lotto.service.LottoDto;
+import lotto.service.LottoResultDto;
 
 public class OutputView {
     public static final String WINNING_STATISTICS = "당첨 통계";
@@ -21,21 +22,22 @@ public class OutputView {
         printEmptyLine();
     }
 
-    public static void displayResult(LottoResult lottoResult) {
+    public static void displayResult(LottoResultDto lottoResultDto) {
+        Map<LottoStatus, Integer> lottoStatusCounts = lottoResultDto.lottoStatusCounts();
         printEmptyLine();
         System.out.println(WINNING_STATISTICS);
         System.out.println("---");
         System.out.println(
-                LottoStatus.FIFTH.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.FIFTH) + "개");
+                LottoStatus.FIFTH.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.FIFTH) + "개");
         System.out.println(
-                LottoStatus.FOURTH.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.FOURTH) + "개");
+                LottoStatus.FOURTH.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.FOURTH) + "개");
         System.out.println(
-                LottoStatus.THIRD.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.THIRD) + "개");
+                LottoStatus.THIRD.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.THIRD) + "개");
         System.out.println(
-                LottoStatus.SECOND.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.SECOND) + "개");
+                LottoStatus.SECOND.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.SECOND) + "개");
         System.out.println(
-                LottoStatus.FIRST.getStatusMessage() + " - " + lottoResult.statusCount(LottoStatus.FIRST) + "개");
-        System.out.println("총 수익률은 " + lottoResult.caculateProfitRate() + "%입니다.");
+                LottoStatus.FIRST.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.FIRST) + "개");
+//        System.out.println("총 수익률은 " + lottoResult.caculateProfitRate() + "%입니다.");
     }
 
     public static void printEmptyLine() {

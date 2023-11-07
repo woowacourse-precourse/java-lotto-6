@@ -1,8 +1,8 @@
 package lotto.util;
 
-import static lotto.util.ErrorMessage.*;
-
 import java.util.List;
+
+import static lotto.util.ErrorMessage.*;
 
 public class NumbersValidator { //검증 메소드들을 모아 놓은 클래스
 

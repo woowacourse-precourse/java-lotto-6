@@ -1,14 +1,12 @@
 package lotto.model; //패키지 변경은 가능
 
+import java.util.List;
 
 import static lotto.util.NumbersValidator.checkDuplicate;
 import static lotto.util.NumbersValidator.checkElementsInRange;
 import static lotto.util.NumbersValidator.validate;
 
-import java.util.List;
-
-
-public class Lotto { //로또 번호를 오름차순으로 정렬
+public class Lotto {
 
     private final List<Integer> numbers; //접근제어자 변경 불가능
 

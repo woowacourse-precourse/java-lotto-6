@@ -3,10 +3,12 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.model.LottoStatistics.PrizeInformation;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import lotto.model.LottoStatistics.PrizeInformation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

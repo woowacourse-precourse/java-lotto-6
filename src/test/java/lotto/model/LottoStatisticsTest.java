@@ -1,19 +1,20 @@
 package lotto.model;
 
-import static lotto.model.LottoStatistics.PrizeInformation.SECOND_PRIZE;
-import static lotto.model.LottoStatistics.PrizeInformation.THIRD_PRIZE;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
-import lotto.model.LottoStatistics.PrizeInformation;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import lotto.model.LottoStatistics.PrizeInformation;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static lotto.model.LottoStatistics.PrizeInformation.SECOND_PRIZE;
+import static lotto.model.LottoStatistics.PrizeInformation.THIRD_PRIZE;
 
 public class LottoStatisticsTest {
 

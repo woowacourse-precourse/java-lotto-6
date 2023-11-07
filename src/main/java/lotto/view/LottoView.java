@@ -1,14 +1,15 @@
 package lotto.view;
 
-import static lotto.model.LottoStatistics.*;
-
-import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import camp.nextstep.edu.missionutils.Console;
+
 import lotto.model.Lotto;
+import lotto.model.LottoStatistics.PrizeInformation;
 import lotto.util.ErrorMessage;
 
 public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨 번호, 보너스 번호 입력 요청, 당첨 통계 및 결과 메세지 출력, 에러 메세지 출력

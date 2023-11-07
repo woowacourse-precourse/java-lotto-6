@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
+    private static final int LOTTO_PRICE = 1000;
     private final LottoMachine lottoMachine;
     private final LottoView lottoView;
 
@@ -78,7 +79,7 @@ public class LottoController {
         lottoResult.calculateResults(purchasedLottos, winningLotto.getLotto(), winningLotto.getBonusNumber());
 
         lottoResult.printStatistics();
-        double yield = lottoResult.calculateYield(1000); // 로또 한 장의 가격을 인자로 전달합니다.
+        double yield = lottoResult.calculateYield(LOTTO_PRICE, purchasedLottos.size());
         System.out.printf("총 수익률은 %.2f%%입니다.\n", yield);
     }
 

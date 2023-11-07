@@ -81,7 +81,7 @@ public class LottoResult {
 
     public double calculateYield(int pricePerLotto, int totalLottoCount) {
         long totalPrize = calculateTotalPrize();
-        long totalSpent = (long) pricePerLotto * totalLottoCount; 
+        long totalSpent = (long) pricePerLotto * totalLottoCount;
         return calculateYieldPercentage(totalPrize, totalSpent);
     }
 

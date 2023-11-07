@@ -22,9 +22,7 @@ public class LottoApplication {
     }
 
     void run() {
-        // Controller 에서 원하는 객체를 반환하는 구간이다
         UserMoney userMoney = registerUserMoney();
-
         displayGeneratedLotto(userMoney);
 
         Lotto userLotto = registerUserLotto();
@@ -35,11 +33,7 @@ public class LottoApplication {
     }
 
     private UserMoney registerUserMoney() {
-        UserMoney userMoney = new RegisterUserMoneyController(lottoRepository, lottoScreen).process();
-        if (userMoney == null) {
-            throw new IllegalStateException();
-        }
-        return userMoney;
+        return new RegisterUserMoneyController(lottoRepository, lottoScreen).process();
     }
 
     private void displayGeneratedLotto(UserMoney userMoney) {

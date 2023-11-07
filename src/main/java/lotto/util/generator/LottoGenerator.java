@@ -1,17 +1,13 @@
-package lotto.util;
+package lotto.util.generator;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.service.LottoService;
-import lotto.util.generator.RandomStrategy;
 
 public class LottoGenerator {
     public static Lotto generateLotto(RandomStrategy randomGenerator) {
-        List<Integer> randomNumbers = randomGenerator.generate();
-        List<Integer> sortingNumbers = new ArrayList<>(randomNumbers);
+        List<Integer> sortingNumbers = new ArrayList<>(randomGenerator.generate());
         Collections.sort(sortingNumbers);
         return Lotto.from(sortingNumbers);
     }

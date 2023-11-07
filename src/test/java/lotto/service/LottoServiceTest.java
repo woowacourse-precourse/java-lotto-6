@@ -3,13 +3,12 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoWithBonus;
-import lotto.util.LottoGenerator;
+import lotto.util.generator.LottoGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;

@@ -21,7 +21,6 @@ public class UserLottoDTO {
     }
 
     public Lotto toLotto() {
-        // inputLotto -> List<Integer> 로 변환해야 한다
         return Lotto.from(Parser.inputToLottoNumbers(inputLotto));
     }
 }

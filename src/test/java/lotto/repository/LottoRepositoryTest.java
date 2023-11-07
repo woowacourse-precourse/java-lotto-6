@@ -2,14 +2,10 @@ package lotto.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
-import java.util.stream.Stream;
 import lotto.domain.Lotto;
-import lotto.util.LottoGenerator;
-import lotto.util.generator.MockedRandomGenerator;
+import lotto.util.generator.LottoGenerator;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.Arguments;
 
 public class LottoRepositoryTest {
     private LottoRepository lottoRepository = new LottoRepository();

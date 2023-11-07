@@ -12,13 +12,22 @@ import lotto.io.Writer;
 import lotto.repository.LottoRepository;
 
 public class LottoScreen {
-    public static final String RATE_FORMAT = "%.1f";
-    public static final String RESULT_PREFIX = "총 수익률은";
-    public static final String RESULT_SUFFIX = "%입니다.\n";
-    public static final String RESULT_FORMAT = "%s " + RATE_FORMAT +"%s";
-    public static final String REWIND_FORMAT = "\n%d개를 구매했습니다.\n";
+    private static final String INPUT_MONEY_MESSAGE= "구입 금액을 입력해 주세요.";
+    private static final String INPUT_BONUS_MESSAGE = "\n보너스 번호를 입력해 주세요.";
+    private static final String INPUT_LOTTO_MESSAGE = "\n당첨 번호를 입력해 주세요.";
 
-    public static final String LOTTO_RESULT_FORMAT = "%s (%,d원) - %d개\n";
+    private static final String REWIND_FORMAT = "\n%d개를 구매했습니다.\n";
+    private static final String DISPLAY_LOTTO_FORMAT = "[%s]\n";
+
+    private static final String LOTTO_RESULT_MESSAGE = "\n당첨 통계\n---";
+    private static final String LOTTO_RESULT_FORMAT = "%s (%,d원) - %d개\n";
+
+    private static final String RATE_FORMAT = "%.1f";
+    private static final String RESULT_PREFIX = "총 수익률은";
+    private static final String RESULT_SUFFIX = "%입니다.\n";
+    private static final String RESULT_FORMAT = "%s " + RATE_FORMAT +"%s";
+
+    private static final String DELIMITER = ", ";
 
     private final Reader reader;
     private final Writer writer;
@@ -29,19 +38,18 @@ public class LottoScreen {
     }
 
     public UserMoneyDTO inputUserMoney() {
-        writer.writeLine("구입 금액을 입력해 주세요.");
-        String line = reader.readLine();
-        return new UserMoneyDTO(line.trim());
-    }
-
-    public UserBonusDTO registerBonus() {
-        writer.writeLine(("\n보너스 번호를 입력해 주세요."));
-        return new UserBonusDTO(reader.readLine().trim());
+        writer.writeLine(INPUT_MONEY_MESSAGE);
+        return new UserMoneyDTO(reader.readLine().trim());
     }
 
     public UserLottoDTO registerLotto() {
-        writer.writeLine("\n당첨 번호를 입력해 주세요.");
+        writer.writeLine(INPUT_LOTTO_MESSAGE);
         return new UserLottoDTO(reader.readLine().trim());
+    }
+
+    public UserBonusDTO registerBonus() {
+        writer.writeLine(INPUT_BONUS_MESSAGE);
+        return new UserBonusDTO(reader.readLine().trim());
     }
 
     public void displayGeneratedLotto(UserMoney userMoney, LottoRepository lottoRepository) {
@@ -49,15 +57,14 @@ public class LottoScreen {
 
         List<Lotto> allLottos = lottoRepository.getAllLottos();
         List<String> convertedLottos = allLottos.stream()
-                .map((lotto) -> String.join(", ", convertNumbers(lotto.getLotto())))
+                .map((lotto) -> String.join(DELIMITER, convertNumbers(lotto.getLotto())))
                 .toList();
 
-        convertedLottos.forEach((lotto -> writer.writeFormat("[%s]\n", lotto)));
+        convertedLottos.forEach((lotto -> writer.writeFormat(DISPLAY_LOTTO_FORMAT, lotto)));
     }
 
     public void displayLottoResult(LottoFinalResult lottoFinalResult) {
-        writer.writeLine("\n당첨 통계");
-        writer.writeLine("---");
+        writer.writeLine(LOTTO_RESULT_MESSAGE);
 
         lottoFinalResult.getFinalResultMap()
                 .entrySet()

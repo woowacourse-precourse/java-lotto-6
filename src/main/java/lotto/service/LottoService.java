@@ -11,10 +11,10 @@ import lotto.domain.LottoResult;
 import lotto.domain.LottoWithBonus;
 import lotto.domain.UserMoney;
 import lotto.repository.LottoRepository;
-import lotto.util.LottoGenerator;
+import lotto.util.generator.LottoGenerator;
 
 public class LottoService {
-    public static final int STANDARD_SIZE = 6;
+    private static final int STANDARD_SIZE = 6;
     private static final int SPECIAL_CASE = 5;
     private static final int SPECIAL_RESULT = 7;
     private static final int START_INCLUSIVE = 0;

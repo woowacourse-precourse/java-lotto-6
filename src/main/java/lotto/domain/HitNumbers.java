@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,10 +8,10 @@ public class HitNumbers {
     private final List<Integer> hitNumbers;
 
     public HitNumbers(List<Integer> hitNumbers) {
-        this.hitNumbers = hitNumbers;
+        this.hitNumbers = new ArrayList<>(hitNumbers);
     }
 
-    public Collection<Integer> getHitNumbers() {
-        return Collections.unmodifiableCollection(hitNumbers);
+    public List<Integer> getHitNumbers() {
+        return Collections.unmodifiableList(hitNumbers);
     }
 }

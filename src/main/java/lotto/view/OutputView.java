@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.controller.dto.PurchaseHistoryDto;
+import lotto.controller.dto.WinningStatisticDto;
 
 public class OutputView {
 
@@ -10,6 +11,7 @@ public class OutputView {
     private static final String QUANTITY_OUTPUT_MESSAGE = "개를 구매했습니다.";
     private static final String WIN_NUMBER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
+    private static final String STATISTIC_MESSAGE = "당첨 통계\n---";
 
     public void printPurchaseInput() {
         System.out.println(PURCHASE_INPUT_MESSAGE);
@@ -50,5 +52,16 @@ public class OutputView {
 
     public void printBonusNumberInput() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
+    public void printWinningStatistic(WinningStatisticDto dto) {
+        System.out.println(STATISTIC_MESSAGE);
+        List<Integer> count = dto.getCount();
+        System.out.println("3개 일치 (5,000원) - " + count.get(4) + "개");
+        System.out.println("4개 일치 (50,000원) - " + count.get(3) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + count.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + count.get(1) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + count.get(0) + "개");
+        System.out.format("총 수익률은 %.1f%%입니다.", dto.getYield());
     }
 }

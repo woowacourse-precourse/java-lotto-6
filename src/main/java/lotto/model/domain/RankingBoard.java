@@ -72,4 +72,8 @@ public class RankingBoard {
             ranks.get(4).addWinner();
         }
     }
+
+    public List<Rank> getRanks() {
+        return ranks;
+    }
 }

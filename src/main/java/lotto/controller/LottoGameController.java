@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.PurchaseHistoryDto;
+import lotto.controller.dto.WinningStatisticDto;
 import lotto.model.domain.LottoWinNumber;
 import lotto.controller.dto.MoneyLottosDto;
 import lotto.model.domain.RankingBoard;
@@ -82,6 +83,10 @@ public class LottoGameController {
             LottoWinNumber lottoWinNumber = lottoHeadQuarter.pickNumber(winNumber, bonusNumber);
             RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, moneyLottosDto.getLottos());
 
+            double yield = lottoHeadQuarter.calculateReturn(moneyLottosDto.getMoney(), rankingBoard);
+
+            WinningStatisticDto dto = WinningStatisticDto.from(rankingBoard, yield);
+            outputView.printWinningStatistic(dto);
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
             setBonusNumber();

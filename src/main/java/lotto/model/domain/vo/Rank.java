@@ -23,4 +23,8 @@ public class Rank {
     public int getHeadCount() {
         return headCount;
     }
+
+    public int getMoney() {
+        return money.getMoney();
+    }
 }

@@ -27,7 +27,7 @@ public class LottoOffice {
     public Map<LottoRank, Integer> getResult(List<Lotto> lottoList) {
         for (Lotto lotto : lottoList) {
             int rightNumber = compareNumbers(lotto.getNumbers(), winningNumbers);
-            int rightBonus = compareBonusNumber(winningNumbers, bonusNumber);
+            int rightBonus = compareBonusNumber(lotto.getNumbers(), bonusNumber);
             saveResult(rightNumber, rightBonus);
         }
         return result;
@@ -62,8 +62,8 @@ public class LottoOffice {
         return cnt;
     }
 
-    private int compareBonusNumber(List<Integer> winningNumbers, int bonus) {
-        if (winningNumbers.contains(bonus)) return COUNT_ONE;
+    private int compareBonusNumber(List<Integer> lottoNumbers, int bonus) {
+        if (lottoNumbers.contains(bonus)) return COUNT_ONE;
         return COUNT_ZERO;
     }
 

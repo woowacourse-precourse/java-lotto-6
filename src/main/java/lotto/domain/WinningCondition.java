@@ -9,12 +9,10 @@ import java.util.NoSuchElementException;
 import lotto.dto.BonusNumber;
 import lotto.dto.LottoCompareResult;
 import lotto.dto.WinningNumber;
-import lotto.view.InputReader;
 
 public class WinningCondition {
     private WinningNumber winningNumber;
     private BonusNumber bonusNumber;
-    private final InputReader inputReader;
 
     public LottoCompareResult compare(Lotto lotto) {
         int matchCount = calculateMatchCount(lotto.getNumbers());
@@ -32,14 +30,12 @@ public class WinningCondition {
         return lottoNumbers.contains(bonusNumber.getNumber());
     }
 
-    public void inputBonusNumbers() {
-        String readLine = inputReader.readInput(INPUT_BONUS_NUMBER);
+    public void inputBonusNumbers(String readLine) {
         Integer parsingNumber = parseToInteger(readLine);
         if (isWinningNumberContains(parsingNumber)) {
             throw new IllegalArgumentException();
         }
         BonusNumber bonusNumber = new BonusNumber(parsingNumber);
-        System.out.println();
         this.bonusNumber = bonusNumber;
     }
 
@@ -59,8 +55,7 @@ public class WinningCondition {
         return number;
     }
 
-    public void inputWinningNumbers() {
-        String readLine = inputReader.readInput(INPUT_WINNING_NUMBER);
+    public void inputWinningNumbers(String readLine) {
         List<Integer> parsingNumbers = parseToIntegerList(readLine);
         WinningNumber winningNumber = new WinningNumber(parsingNumbers);
         System.out.println();
@@ -86,8 +81,7 @@ public class WinningCondition {
         }
         return parsingNumbers;
     }
-    public WinningCondition(InputReader inputReader) {
-        this.inputReader = inputReader;
+    public WinningCondition() {
     }
 
     public BonusNumber getBonusNumber() {

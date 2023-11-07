@@ -1,6 +1,8 @@
 package lotto.controller;
 
+import static lotto.constants.Message.INPUT_BONUS_NUMBER;
 import static lotto.constants.Message.INPUT_MONEY;
+import static lotto.constants.Message.INPUT_WINNING_NUMBER;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +20,15 @@ public class LottoController {
 
     public void run() {
         LottoMachine lottoMachine = new LottoMachine();
-        WinningCondition winningCondition = new WinningCondition(inputReader);
         Result result = new Result();
 
         // 구입 금액 입력
-        String inputMoney = inputReader.readInput(INPUT_MONEY);
-        lottoMachine.insertMoney(inputMoney);
-        outputView.printGeneratedLottos(lottoMachine);
+        insertMoneyTo(lottoMachine);
 
         // 로또 생성
         lottoMachine.generateLottos();
 
-        winningCondition.inputWinningNumbers();
-        winningCondition.inputBonusNumbers();
+        WinningCondition winningCondition = generateWinningCondition();
 
         List<LottoCompareResult> compareResults = new ArrayList<>();
         for (Lotto lotto : lottoMachine.getLottos()) {
@@ -40,5 +38,22 @@ public class LottoController {
 
         long totalProfit = result.getTotalWinningMoney(compareResults);
 
+    }
+
+    private WinningCondition generateWinningCondition() {
+        WinningCondition winningCondition = new WinningCondition();
+        String winningNumber = inputReader.readInput(INPUT_WINNING_NUMBER);
+        winningCondition.inputWinningNumbers(winningNumber);
+
+        String bonusNumber = inputReader.readInput(INPUT_BONUS_NUMBER);
+        winningCondition.inputBonusNumbers(bonusNumber);
+
+        return winningCondition;
+    }
+
+    private void insertMoneyTo(LottoMachine lottoMachine) {
+        String inputMoney = inputReader.readInput(INPUT_MONEY);
+        lottoMachine.insertMoney(inputMoney);
+        outputView.printGeneratedLottos(lottoMachine);
     }
 }

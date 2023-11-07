@@ -14,8 +14,7 @@ public class InputUtil {
     public static int enterMoneyWhileVerifying() {
         try {
             String money = readLine().trim();
-            ViewValidate.validateNotNull(money);
-            ViewValidate.validateNotSpaceOrEmpty(money);
+            validate(money);
             return ViewValidate.validateAndConvertString2Int(money);
         } catch (IllegalArgumentException | NullPointerException e) {
             System.out.println(e.getMessage());
@@ -27,8 +26,7 @@ public class InputUtil {
         try {
             List<Integer> numbers = new ArrayList<>();
             for (String number : readLine().trim().split(",")) {
-                ViewValidate.validateNotNull(number);
-                ViewValidate.validateNotSpaceOrEmpty(number);
+                validate(number);
                 numbers.add(ViewValidate.validateAndConvertString2Int(number));
             }
             return numbers;
@@ -36,5 +34,10 @@ public class InputUtil {
             System.out.println(e.getMessage());
             return enterNumbersWhileVerifying();
         }
+    }
+
+    private static void validate(String num) {
+        ViewValidate.validateNotNull(num);
+        ViewValidate.validateNotSpaceOrEmpty(num);
     }
 }

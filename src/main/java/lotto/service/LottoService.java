@@ -33,6 +33,16 @@ public class LottoService {
 			.collect(Collectors.toList());
 	}
 
+	public Map<WinningRank, Integer> totalStatistics(List<LottoResult> lottoResults) {
+		Map<WinningRank, Integer> statisticsMap = new HashMap<>();
+
+		lottoResults.stream()
+			.map(lottoResult -> lottoResult.getWinningRank())
+			.forEach(winningRank -> statisticsMap.put(winningRank,statisticsMap.getOrDefault(winningRank,0)+1));
+
+		return statisticsMap;
+	}
+
 	private LottoResult createLottoResult(Lotto lotto, Lotto winningNumbers, int bonusNumber) {
 		return new LottoResult(compareLottoNumbers(lotto, winningNumbers),
 			containsBonusNumber(lotto, bonusNumber));

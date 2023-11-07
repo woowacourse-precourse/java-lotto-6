@@ -16,6 +16,10 @@ public class Lotto {
                                 .collect(java.util.stream.Collectors.toList());
     }
 
+    public String toString() {
+        return numbers.toString();
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);

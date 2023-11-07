@@ -53,8 +53,13 @@ public class Lotto {
     }
 
     public static Lotto createLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(lottoMinNumber, lottoMaxNumber, lottoPcs);
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(lottoMinNumber, lottoMaxNumber, lottoPcs));
         Collections.sort(randomNumbers);
+        Set<Integer> numberSet = new HashSet<>(randomNumbers);
+        if (numberSet.size() < randomNumbers.size()) {
+            // 중복된 숫자가 존재
+            throw Exceptions.exceptionLottoDuplication();
+        }
         return new Lotto(randomNumbers);
     }
 
@@ -78,6 +83,13 @@ public class Lotto {
         }
         return winningNumbers;
     }
+
+    public static void validateInputWinningNumberSize(String[] winningNumberStr) {
+        if (winningNumberStr.length != 6) {
+            throw Exceptions.exceptionWinningNumberSize();
+        }
+    }
+
 
     public static void validateInputBonusNumberInRange(String inputBonusNumber){
         int bonusNumber=Integer.parseInt(inputBonusNumber);

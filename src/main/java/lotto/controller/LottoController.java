@@ -44,6 +44,7 @@ public class LottoController {
             try {
                 // 입력 당첨 번호가 유효하면 종료
                 String[] winningNumberStr=validateInputWinningNumberInRange(inputWinningNumber);
+                //validateInputWinningNumberSize(winningNumberStr);
                 strTotalWinningNumbers=validateInputWinningNumberDuplication(winningNumberStr);
                 break; //
             } catch (IllegalArgumentException e) {

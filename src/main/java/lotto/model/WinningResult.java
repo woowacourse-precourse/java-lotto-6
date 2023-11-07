@@ -8,7 +8,7 @@ public class WinningResult {
     Lotto lotto;
     Bonus bonus;
     PlayerLottos playerLottos;
-    int totalRevenue;
+    double totalRevenue;
 
     public WinningResult(Lotto lotto, Bonus bonus, PlayerLottos playerLottos) {
         this.lotto = lotto;
@@ -21,7 +21,7 @@ public class WinningResult {
     private void calculateTotalRevenue() {
         totalRevenue = 0;
         for (WinningRank winningRank : winningResult.keySet()) {
-            totalRevenue += (winningResult.get(winningRank) * winningRank.getReward());
+            totalRevenue += ((double)winningResult.get(winningRank) * winningRank.getReward());
         }
     }
 
@@ -43,7 +43,7 @@ public class WinningResult {
         return WinningRank.getWinningRank(matchCount, hasBonus);
     }
 
-    public int getTotalRevenue() {
+    public double getTotalRevenue() {
         return totalRevenue;
     }
 

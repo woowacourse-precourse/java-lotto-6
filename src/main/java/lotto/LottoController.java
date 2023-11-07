@@ -24,6 +24,7 @@ public class LottoController {
         List<Lotto> userLottos = userLotto(lottoCount);
 
         Lotto winLotto = getWinNumber();
+        int bonusNumber = getBonusNumber(winLotto);
     }
 
     private int buyLotto() {
@@ -36,7 +37,7 @@ public class LottoController {
         int price = 0;
 
         try {
-            Error.CHECK.isAllInteger(new String[]{inputPrice});
+            Error.CHECK.isAllInteger(inputPrice);
             price = Integer.parseInt(inputPrice);
             Error.CHECK.isUnder1000Price(price);
         } catch (IllegalArgumentException e) {
@@ -106,6 +107,22 @@ public class LottoController {
 
     public List<Integer> arrayToList(int[] array) {
         return Arrays.stream(array).boxed().collect(Collectors.toList());
+    }
+
+    public int getBonusNumber(Lotto number) {
+        int bonusNumber = 0;
+
+        try {
+            OUTPUT_VIEW.printInsertBonusMessage();
+            String input = Console.readLine();
+            Error.CHECK.isAllInteger(input);
+            bonusNumber = Integer.parseInt(input);
+            Error.CHECK.isDuplicate(number, bonusNumber);
+            Error.CHECK.isRange45(List.of(bonusNumber));
+        } catch (IllegalArgumentException e) {
+            getBonusNumber(number);
+        }
+        return bonusNumber;
     }
 
 }

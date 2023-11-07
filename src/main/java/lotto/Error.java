@@ -32,6 +32,13 @@ public class Error {
         }
     }
 
+    public void isAllInteger(String number) {
+        if (!number.chars().allMatch(Character::isDigit)) {
+            ONLY_INTEGER_ERROR_MESSAGE.print();
+            throw new IllegalArgumentException(ONLY_INTEGER_ERROR_MESSAGE.get());
+        }
+    }
+
     public void isRange45(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
@@ -43,6 +50,13 @@ public class Error {
 
     public void isDuplicate(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
+            DUPLICATE_NUMBER_ERROR_MESSAGE.print();
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE.get());
+        }
+    }
+
+    public void isDuplicate(Lotto numbers, int number) {
+        if (numbers.getNumbers().contains(number)) {
             DUPLICATE_NUMBER_ERROR_MESSAGE.print();
             throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR_MESSAGE.get());
         }

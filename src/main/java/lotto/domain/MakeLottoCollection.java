@@ -11,11 +11,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class MakeLottoCollection {
-    public static PurchaseLottoCollection getCollection(int purchaseLottoCount){
+    public static PurchaseLottoCollection getCollection(int purchaseLottoCount) {
         List<PurchaseLotto> purchaseLottos = new ArrayList<>();
 
         for (int i = 0; i < purchaseLottoCount; i++) {
-            List<Integer> lottoNumber=new PurchaseLottoGetter().getRandomNumbers();
+            List<Integer> lottoNumber = new PurchaseLottoGetter().getRandomNumbers();
             PurchaseLotto newLotto = new PurchaseLotto(lottoNumber);
             purchaseLottos.add(newLotto);
         }

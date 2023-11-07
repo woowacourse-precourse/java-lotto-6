@@ -7,6 +7,7 @@ import java.util.List;
 
 public class OutputAboutLotto {
     public static void printInputLottoNumber() {
+        System.out.println();
         System.out.println(Phrases.lottoInputPhrase);
     }
 
@@ -15,6 +16,7 @@ public class OutputAboutLotto {
     }
 
     public static void printInputBonusNumber() {
+        System.out.println();
         System.out.println(Phrases.bonusInputPhrase);
     }
 }

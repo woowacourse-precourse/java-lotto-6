@@ -6,19 +6,33 @@ import java.util.List;
 
 public class InputView {
 
-    public static String requestLottoPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        return Console.readLine();
+    public static int requestLottoPurchaseAmount() {
+        while(true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String stringInput = Console.readLine();
+                return Integer.parseInt(stringInput);
+            } catch (NumberFormatException e) {
+                System.err.println("[ERROR] 올바른 입력이 아닙니다. 구입금액을 다시 입력해주세요.");
+            }
+        }
     }
 
     public static List<Integer> requestWinningLottoNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String stringInput = Console.readLine();
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String stringInput = Console.readLine();
 
-        String[] stringWinningLottoNumbers = stringInput.split(",");
+                String[] stringWinningLottoNumbers = stringInput.split(",");
 
-        return Arrays.stream(stringWinningLottoNumbers)
-                .map(Integer::parseInt).toList();
+                return Arrays.stream(stringWinningLottoNumbers)
+                        .map(Integer::parseInt)
+                        .toList();
+            } catch (NumberFormatException e) {
+                System.err.println("[ERROR] 올바른 입력이 아닙니다. 당첨 번호를 다시 입력해주세요.");
+            }
+        }
     }
 
     public static String requestBonusLottoNumbers() {

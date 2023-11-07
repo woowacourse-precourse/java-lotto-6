@@ -10,7 +10,6 @@ public class WrongLottoLengthException extends IllegalArgumentException {
     public WrongLottoLengthException() {
 
         super(ERROR_MESSAGE);
-        System.out.println(ERROR_MESSAGE);
 
     }
 }

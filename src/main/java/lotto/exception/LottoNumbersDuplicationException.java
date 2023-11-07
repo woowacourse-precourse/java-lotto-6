@@ -8,6 +8,5 @@ public class LottoNumbersDuplicationException extends IllegalArgumentException {
 
         super(ERROR_MESSAGE);
 
-        System.out.println(ERROR_MESSAGE);
     }
 }

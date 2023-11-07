@@ -10,6 +10,5 @@ public class WrongMoneyUnitException extends IllegalArgumentException {
 
         super(ERROR_MESSAGE);
 
-        System.out.println(ERROR_MESSAGE);
     }
 }

@@ -1,5 +1,7 @@
 package lotto.Domain;
 
+import lotto.Validator.Validator;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +11,7 @@ public class User {
     private final int lottoQuantity;
 
     public User(List<Lotto> userLottos, int lottoQuantity) {
+        Validator.validateUserLottoCount(userLottos, lottoQuantity);
         this.userLottos = userLottos;
         this.lottoQuantity = lottoQuantity;
     }

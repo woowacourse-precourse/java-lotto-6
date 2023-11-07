@@ -1,5 +1,7 @@
 package lotto.Validator;
 
+import lotto.Domain.Lotto;
+
 import static lotto.Validator.ValidatorConstant.*;
 
 import java.util.List;
@@ -21,6 +23,11 @@ public class Validator {
     public static void validateDivisibleBy1000(int input) {
         if (input % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(Not_DIVISION_BY_1000_ERROR.getMessage());
+        }
+    }
+    public static void validateUserLottoCount(List<Lotto> lottos, int lottoQuantity) {
+        if (lottos.size() != lottoQuantity) {
+            throw new IllegalArgumentException(NOT_EQUAL_LOTTO_COUNT.getMessage());
         }
     }
 

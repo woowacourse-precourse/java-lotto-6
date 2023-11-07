@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.Model.*;
 import lotto.View.PrintInput;
 import lotto.View.PrintOutput;

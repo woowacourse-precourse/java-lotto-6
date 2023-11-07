@@ -14,10 +14,11 @@ class UnitTest extends NsTest {
     @Test
     void input_money_Test() {
         assertSimpleTest(() -> {
-            run("1900", "a", "2000", "1,2,3,4,5,6", "7");
+            run("1900", "a", "-1", "2000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains(
                     "[ERROR] 입력 금액은 1000의 배수로 입력해주세요.",
                     "[ERROR] 숫자를 입력해주세요",
+                    "[ERROR] 로또를 한 개 이상 구입하셔야 합니다",
                     "2개를 구매했습니다.");
         });
     }
@@ -103,7 +104,7 @@ class UnitTest extends NsTest {
     void all_Test() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
-                    run("a", "1900", "3000",
+                    run("a", "1900","-1" ,"3000",
                             "1,2,3,4,5,6,7",
                             "1,1,2,3,4,5",
                             "1,2,a,v,c,d",
@@ -118,6 +119,7 @@ class UnitTest extends NsTest {
                             "[1, 2, 3, 4, 5, 10]",
                             "[ERROR] 로또 번호는 6개의 수를 입력해주세요.",
                             "[ERROR] 로또 수는 중복 없이 입력해주세요.",
+                            "[ERROR] 로또를 한 개 이상 구입하셔야 합니다.",
                             "[ERROR] 로또 번호 1부터 45까지의 수로 입력해주세요.",
                             "[ERROR] 숫자를 입력해주세요.",
                             "[ERROR] 1부터 45까지의 숫자를 입력해주세요.",

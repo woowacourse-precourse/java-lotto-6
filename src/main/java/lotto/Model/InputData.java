@@ -17,6 +17,7 @@ public class InputData {
             try {
                 input = Console.readLine();
                 validation.inputToInt(input);
+                validation.check_minusMoney(input);
                 validation.check_money(input);
 
                 break;

@@ -7,12 +7,20 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicationNumber(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR]번호는 6개가 부여되야 합니다.");
+        }
+    }
+
+    private void validateDuplicationNumber(List numbers) {
+        boolean result = numbers.stream().distinct().count() <numbers.size();
+        if(result){
+            throw new IllegalArgumentException("[ERROR]당첨 번호와 중복되지 않는 값을 입력해주세요.");
         }
     }
 

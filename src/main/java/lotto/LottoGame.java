@@ -2,23 +2,26 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoGame {
     private List<Integer> winningNumbers = new ArrayList<>();
     private List<Lotto> lottoTickets = new ArrayList<>();
     private Integer money;
-    private Boolean isGaming = true;
 
     public LottoGame() {
     }
 
     public void start() {
+        boolean isGaming = true;
+
         while (isGaming) {
             inputMoney();
+            inputNumbers();
         }
     }
-
 
     private void inputMoney() {
         boolean validInput = false;
@@ -41,11 +44,17 @@ public class LottoGame {
     }
 
     private void inputNumbers() {
+        System.out.println("로또 번호를 입력하세요");
 
+        String inputNumbers = Console.readLine();
+        lottoTickets.add(new Lotto(splitByComma(inputNumbers)));
     }
 
-    private void splitByComma() {
-        
+    private List<Integer> splitByComma(String inputNumbers) {
+        return Arrays.stream(inputNumbers.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     private void winnigNumbers() {

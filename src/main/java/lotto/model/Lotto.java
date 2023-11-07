@@ -2,11 +2,14 @@ package lotto.model;
 
 import java.util.List;
 
+import static java.util.Collections.sort;
+
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        sort(numbers);
         this.numbers = numbers;
     }
 

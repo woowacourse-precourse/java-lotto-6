@@ -1,6 +1,5 @@
 package lotto.validator;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Pattern;
 import lotto.util.ConverterUtil;
@@ -23,7 +22,7 @@ public class InputWinningNumberValidator {
             throw new IllegalArgumentException();
         }
         if (incorrectLottoNumberSize(winningNumber)) {
-            System.out.println("[ERROR] 로또번호는 6개만 입력해야 합니다.");
+            System.out.println("[ERROR] 로또번호는 6개를 입력해야 합니다.");
             throw new IllegalArgumentException();
         }
         if (isOverlapLottoNumber(winningNumber)) {
@@ -39,19 +38,15 @@ public class InputWinningNumberValidator {
             throw new IllegalArgumentException();
         }
         if (isNotLottoBonusNumber(bonusNumber)) {
-            System.out.println("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
+            System.out.println("[ERROR] 보너스 번호는 1부터 45사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }
 
     private static boolean isNotLottoNumber(String purchaseAmount) {
         List<Integer> winningNumbers = ConverterUtil.covertStringToList(purchaseAmount);
-        for (int winningNumber : winningNumbers) {
-            if (winningNumber < MIN_LOTTO_NUMBER || winningNumber > MAX_LOTTO_NUMBER) {
-                return true;
-            }
-        }
-        return false;
+        return winningNumbers.stream()
+                .anyMatch(winningNumber -> winningNumber < MIN_LOTTO_NUMBER || winningNumber > MAX_LOTTO_NUMBER);
     }
 
     private static boolean isNotSeparateByComma(String purchaseAmount) {
@@ -66,11 +61,7 @@ public class InputWinningNumberValidator {
 
     private static boolean isOverlapLottoNumber(String purchaseAmount) {
         List<Integer> winningNumbers = ConverterUtil.covertStringToList(purchaseAmount);
-        HashSet<Integer> lottoNums = new HashSet<>();
-        for (int num : winningNumbers) {
-            lottoNums.add(num);
-        }
-        return lottoNums.size() != WINNING_LOTTO_SIZE;
+        return winningNumbers.stream().distinct().count() != WINNING_LOTTO_SIZE;
     }
 
     private static boolean isNotDigit(String bonusNumber) {
@@ -78,10 +69,7 @@ public class InputWinningNumberValidator {
     }
 
     private static boolean isNotLottoBonusNumber(String bonusNumber) {
-        int bonusNum = Integer.parseInt(bonusNumber);
-        if (bonusNum < MIN_LOTTO_NUMBER || bonusNum > MAX_LOTTO_NUMBER) {
-            return true;
-        }
-        return false;
+        int bonusNum = ConverterUtil.convertStringToInt(bonusNumber);
+        return bonusNum < MIN_LOTTO_NUMBER || bonusNum > MAX_LOTTO_NUMBER;
     }
 }

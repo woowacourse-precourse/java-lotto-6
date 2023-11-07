@@ -10,6 +10,8 @@
     - 오름차순으로 정렬 (1,2,3)
 - 당첨번호를 입력받는다.
     - 이때 6자리의 숫자가 아니면 `IllegalArgumentException`
+    - 1 ~ 45 사이의 수가 아니면 `RunTimeException` -> parseInt 중간에 나는 거라 RunTime으로 예외터진다.
+    - 중복된 숫자가 있는지 확인하고 `IllegalArgumentException`
 - 보너스 숫자를 입력받는다.
     - 숫자가 아니면 `IllegalArgumentException`
 - 당첨통계를 호출한다.

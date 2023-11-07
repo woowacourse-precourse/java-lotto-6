@@ -7,7 +7,6 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.NoSuchElementException;
 import lotto.config.Constants;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -33,7 +32,7 @@ class PriceInputHandlerTest {
         setIn(input);
 
         assertThatThrownBy(() ->
-                        priceInputHandler.dividePaymentIntoLottoPrice())
+                        priceInputHandler.divideRequestPaymentIntoLottoPrice())
                 .isInstanceOf(NoSuchElementException.class);
     }
 
@@ -42,7 +41,7 @@ class PriceInputHandlerTest {
     void 구매입력_테스트2(String input) {
         setIn(input);
 
-        int amount = priceInputHandler.dividePaymentIntoLottoPrice();
+        int amount = priceInputHandler.divideRequestPaymentIntoLottoPrice();
 
         assertThat(amount).isEqualTo(Integer.parseInt(input) / Constants.LOTTO_PRICE);
     }

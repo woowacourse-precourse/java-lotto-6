@@ -9,7 +9,7 @@ public class PriceInputHandler {
     private static final int PURCHASE_MIN = 1000;
     private static final int PURCHASE_MAX = 1000000000;
 
-    public int dividePaymentIntoLottoPrice() {
+    public int divideRequestPaymentIntoLottoPrice() {
         System.out.println(RequestPrompt.PURCHASE_REQUEST.message);
         int payment = handleInputToPayment();
         return payment / Constants.LOTTO_PRICE;
@@ -19,27 +19,27 @@ public class PriceInputHandler {
         boolean isInputInvalid = true;
         int result = 0;
 
-        while (isInputInvalid) {
+        do {
             try {
-                String input = Console.readLine();
-                result = parsePayment(input);
+                result = parseInputToPayment();
                 isInputInvalid = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorPrompt.PURCHASE_ERROR.message);
             }
-        }
+        } while (isInputInvalid);
         return result;
     }
 
-    private int parsePayment(String input) {
-        int price = Integer.parseInt(input.trim());
-        validateRange(price, PURCHASE_MIN, PURCHASE_MAX);
-        validateUnit(price);
-        return price;
+    private int parseInputToPayment() {
+        String input = Console.readLine();
+        int payment = Integer.parseInt(input.trim());
+        validateRange(payment);
+        validateUnit(payment);
+        return payment;
     }
 
-    private void validateRange(int target, int start, int end) {
-        if (target < start || target > end) {
+    private void validateRange(int target) {
+        if (target < PURCHASE_MIN || target > PURCHASE_MAX) {
             throw new IllegalArgumentException();
         }
     }

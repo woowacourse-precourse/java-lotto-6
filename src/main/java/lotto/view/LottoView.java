@@ -11,7 +11,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Rank;
 
 public class LottoView {
-    protected enum Message {
+    enum Message {
         PURCHASE("%d개를 구매했습니다."),
         RATE_OF_RETURN("총 수익률은 %,.1f%%입니다."),
         PRINT_RESULT("%d개 일치 (%,d원) - %d개"),

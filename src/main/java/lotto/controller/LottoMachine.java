@@ -26,7 +26,7 @@ public class LottoMachine {
     }
 
     private LottoBuyer buyLotto() {
-        int amount = priceInputHandler.dividePaymentIntoLottoPrice();
+        int amount = priceInputHandler.divideRequestPaymentIntoLottoPrice();
         List<Lotto> lottoTickets = lottoShop.sell(amount);
         lottoView.printLotto(lottoTickets);
 

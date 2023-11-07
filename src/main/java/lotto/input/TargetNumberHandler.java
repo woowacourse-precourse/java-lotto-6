@@ -20,7 +20,7 @@ public class TargetNumberHandler {
         boolean isInputInvalid = true;
         do {
             try {
-                target = getValidTargetNumberInput();
+                target = parseInputToLotto();
                 isInputInvalid = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorPrompt.TARGET_ERROR.message);
@@ -29,7 +29,7 @@ public class TargetNumberHandler {
         return target;
     }
 
-    private Lotto getValidTargetNumberInput() {
+    private Lotto parseInputToLotto() {
         String input = Console.readLine();
         String[] strings = input.split(INPUT_DELIMITER, Constants.LOTTO_SIZE);
         List<Integer> list = convertToIntegerList(strings);
@@ -55,9 +55,7 @@ public class TargetNumberHandler {
         int bonus = 0;
         do {
             try {
-                int tmp = getValidBonusInput();
-                validateBonus(tmp, target);
-                bonus = tmp;
+                bonus = parseInputToBonus(target);
                 isInputInvalid = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(ErrorPrompt.BONUS_ERROR.message);
@@ -66,10 +64,11 @@ public class TargetNumberHandler {
         return bonus;
     }
 
-    private int getValidBonusInput() {
+    private int parseInputToBonus(Lotto target) {
         String input = Console.readLine();
-        int tmp = Integer.parseInt(input.trim());
-        return tmp;
+        int bonus = Integer.parseInt(input.trim());
+        validateBonus(bonus, target);
+        return bonus;
     }
 
     private void validateBonus(int bonus, Lotto target) {

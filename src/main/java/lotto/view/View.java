@@ -22,8 +22,8 @@ public class View {
         System.out.printf((PURCHASED_LOTTO.message()), purchasedLottoAmount);
     }
 
-    public void printIssuedLotto(String lotto) {
-        System.out.println(lotto);
+    public void printIssuedLotto(String issuedLotto) {
+        System.out.println(issuedLotto);
     }
 
     public void printWinningNumbersInputMessage() {
@@ -35,11 +35,11 @@ public class View {
     }
 
     public void printLottoResultMessage() {
-        System.out.println(LOTTO_RESULT.message());
+        System.out.println(WINNING_STATISTICS.message());
     }
 
-    public void printLottoResult(String prize, int prizeCount) {
-        System.out.printf("%s - %d개\n", prize, prizeCount);
+    public void printLottoResult(String winningPrize, int prizeCount) {
+        System.out.printf(LOTTO_RESULT.message(), winningPrize, prizeCount);
     }
 
     public void printRateOfReturn(double rateOfReturn) {

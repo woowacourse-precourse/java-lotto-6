@@ -19,6 +19,7 @@ public class Output {
         List<Lotto> lottos = ticket.getLottos();
         System.out.println(ticket.getLottos().size() + OUTPUT_TICKET_AMOUNT_MESSAGE);
         lottos.forEach(Lotto::printLotto);
+        System.out.println();
     }
 
     public static void printStatistics(EnumMap<Prize, Integer> statistics) {

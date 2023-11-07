@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.dto.request.WinningNumbersDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,8 @@ public class WinningNumbers {
         this.bonus = bonus;
     }
 
-    public WinningNumbers from(WinningNumbersDto winningNumbersDto) {
-        return new WinningNumbers(winningNumbersDto.getNumbers(), winningNumbersDto.getBonus());
+    public static WinningNumbers of(List<Integer> numbers, int bonus) {
+        return new WinningNumbers(numbers, bonus);
     }
 
     public List<Integer> getNumbers() {

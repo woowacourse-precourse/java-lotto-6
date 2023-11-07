@@ -1,7 +1,6 @@
 package lotto;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.data.Lotto;
@@ -23,9 +22,11 @@ public class LottoSeller {
         List<Lotto> lottos = LottoUtil.generateLottos(numberOfLottoPurchased, () -> LottoUtil.generateLotto());
         OutputMessage.printLottos(lottos);
 
-        WinningCombination winningNumbers = LottoPurchaseInput.inputWinningNumbers();
+        List<Integer> winningNumbers = LottoPurchaseInput.inputWinningNumbers();
+        int bonusNumber = LottoPurchaseInput.inputBonusNumber();
+        WinningCombination winningCombination = new WinningCombination(winningNumbers, bonusNumber);
 
-        Map<LottoPrize, BigDecimal> lottoRank = winningNumbers.getResultWith(lottos);
+        Map<LottoPrize, BigDecimal> lottoRank = winningCombination.getResultWith(lottos);
         LottoResult lottoResult = new LottoResult(lottoRank, purchaseAmount);
         OutputMessage.printWinningStatistics(lottoResult);
     }

@@ -3,7 +3,7 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Console;
 import java.math.BigDecimal;
 import java.util.List;
-import lotto.data.WinningCombination;
+import lotto.data.Lotto;
 import lotto.message.ErrorMessage;
 import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;
@@ -26,22 +26,34 @@ public class LottoPurchaseInput {
         }
     }
 
-    public static WinningCombination inputWinningNumbers() {
+    public static List<Integer> inputWinningNumbers() {
         try {
             OutputMessage.ASK_WINNING_LOTTO_NUMBER.printMessage();
             String inputNumbers = Console.readLine().trim();
+
             validate(inputNumbers);
-
-            OutputMessage.ASK_BONUS_NUMBER.printMessage();
-            String inputBonusNumber = Console.readLine().trim();
-            validate(inputBonusNumber);
-            Util.validateInteger(inputBonusNumber);
-
             List<Integer> numbers = Util.convertToIntegerList(inputNumbers, ",");
-            return new WinningCombination(numbers, Integer.parseInt(inputBonusNumber));
+            Lotto.validate(numbers);
+
+            return numbers;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNumbers();
+        }
+    }
+
+    public static int inputBonusNumber() {
+        try {
+            OutputMessage.ASK_BONUS_NUMBER.printMessage();
+            String inputBonusNumber = Console.readLine().trim();
+
+            validate(inputBonusNumber);
+            Util.validateInteger(inputBonusNumber);
+
+            return Integer.parseInt(inputBonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputBonusNumber();
         }
     }
 

@@ -1,13 +1,11 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
-import lotto.domain.LottoPrize;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
 
@@ -23,7 +21,7 @@ public class Application {
     public static List<Lotto> buyingLotto() {
         boolean successInput = false;
         List<Lotto> lottos = null;
-        while(!successInput) {
+        while (!successInput) {
             try {
                 lottos = lottoGenerating(paymentInput());
                 successInput = true;
@@ -48,7 +46,7 @@ public class Application {
 
     public static void printLotto(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
         System.out.println();
@@ -57,7 +55,7 @@ public class Application {
     public static WinningLotto winningLottoGenerating(Lotto winningLottoNumbers) {
         WinningLotto winningLotto = null;
         boolean successInput = false;
-        while(!successInput) {
+        while (!successInput) {
             try {
                 int bonusNumber = bonusNumberGenerating(bonusNumberInput());
                 winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
@@ -73,7 +71,7 @@ public class Application {
     public static Lotto createWinningLotto() {
         boolean successInput = false;
         Lotto lotto = null;
-        while(!successInput) {
+        while (!successInput) {
             try {
                 lotto = winningLottoGenerating(winningLottoInput());
                 successInput = true;
@@ -95,8 +93,8 @@ public class Application {
     public static Lotto winningLottoGenerating(String numbers) {
         return new Lotto(
                 Arrays.stream(numbers.trim().split(","))
-                .map(it -> Integer.parseInt(it.trim()))
-                .collect(Collectors.toList())
+                        .map(it -> Integer.parseInt(it.trim()))
+                        .collect(Collectors.toList())
         );
     }
 

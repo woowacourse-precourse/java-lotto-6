@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 @DisplayName("로또 결과에 대한 테스트")
 class LottoResultTest {
     static final WinningLotto WINNING_LOTTO = new WinningLotto(new Lotto(List.of(8, 2, 3, 4, 6, 5)), 7);
+
     @Test
     void 당첨_결과_초기상태() {
         LottoResult lottoResult = new LottoResult(1000);

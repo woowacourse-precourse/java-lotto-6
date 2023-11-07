@@ -27,7 +27,7 @@ public class LottoResult {
     }
 
     public void calculateWinningResult(WinningLotto winningLotto, List<Lotto> lottos) {
-        for(Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             int matchCount = winningLotto.lottoNumbersMatch(lotto);
             boolean matchBonus = winningLotto.lottoBonusNumberMatch(lotto);
             LottoPrize prize = LottoPrize.valueOf(matchCount, matchBonus);
@@ -38,13 +38,13 @@ public class LottoResult {
     }
 
     private void calculateTotalPrizeMoney() {
-        for(LottoPrize prize : LottoPrize.values()) {
+        for (LottoPrize prize : LottoPrize.values()) {
             this.totalPrizeMoney += (prizeResult.get(prize) * prize.getPrizeMoney());
         }
     }
 
     private void calculateYieldRate() {
-        this.yieldRate = Math.round(totalPrizeMoney / payment*1000) / 10.0;
+        this.yieldRate = Math.round(totalPrizeMoney / payment * 1000) / 10.0;
     }
 
     private String getYieldRate() {
@@ -55,10 +55,10 @@ public class LottoResult {
     @Override
     public String toString() {
         StringBuilder winningResult = new StringBuilder();
-        for(LottoPrize prize : LottoPrize.values()) {
-            if(prize != LottoPrize.ETC) {
+        for (LottoPrize prize : LottoPrize.values()) {
+            if (prize != LottoPrize.ETC) {
                 winningResult.append(prize.getPrizeRank() + "개 일치");
-                if(prize == LottoPrize.SECOND) {
+                if (prize == LottoPrize.SECOND) {
                     winningResult.append(", 보너스 볼 일치");
                 }
                 winningResult.append(" " + prize + " - ")

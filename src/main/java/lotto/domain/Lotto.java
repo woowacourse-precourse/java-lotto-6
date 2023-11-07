@@ -35,8 +35,8 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        for(Integer number : numbers) {
-            if(number < MINIMUM_RANGE || number > MAXIMUM_RANGE) {
+        for (Integer number : numbers) {
+            if (number < MINIMUM_RANGE || number > MAXIMUM_RANGE) {
                 throw new IllegalArgumentException("[Error] 로또 번호는 1부터 45까지입니다.");
             }
         }

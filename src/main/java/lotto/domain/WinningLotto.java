@@ -18,13 +18,13 @@ public class WinningLotto {
     }
 
     private void validateBonusNumberRange(int bonusNumber) {
-        if(bonusNumber < MINIMUM_RANGE || bonusNumber > MAXIMUM_RANGE) {
+        if (bonusNumber < MINIMUM_RANGE || bonusNumber > MAXIMUM_RANGE) {
             throw new IllegalArgumentException("[Error] 보너스 번호는 1부터 45까지 존재합니다.");
         }
     }
 
     private void validateBonusNumberDuplication(Lotto winningNumbers, int bonusNumber) {
-        if(winningNumbers.getNumbers().contains(bonusNumber)) {
+        if (winningNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[Error] 로또 번호에 보너스 번호와 중복된 번호가 존재합니다.");
         }
     }
@@ -33,7 +33,7 @@ public class WinningLotto {
         int matchCount = winningNumbers.getNumbers().stream()
                 .filter(it -> lottoNumbers.getNumbers().contains(it))
                 .collect(Collectors.toList()).size();
-        if(matchCount < MINIMUM_WINNING_COUNT) {
+        if (matchCount < MINIMUM_WINNING_COUNT) {
             return ZERO_COUNT;
         }
         return matchCount;

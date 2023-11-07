@@ -16,20 +16,20 @@ public class LottoGenerator {
 
     public LottoGenerator(int payment) {
         this.lottoCount = validatePayment(payment);
-        for(int lotto = ZERO_COUNT; lotto < lottoCount; lotto++) {
+        for (int lotto = ZERO_COUNT; lotto < lottoCount; lotto++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MINIMUM_RANGE, MAXIMUM_RANGE, NUMBER_PICK_COUNT);
             this.lottos.add(new Lotto(numbers));
         }
     }
 
     private int validatePayment(int payment) {
-        if(payment < LOTTO_PRICE_UNIT) {
+        if (payment < LOTTO_PRICE_UNIT) {
             throw new IllegalArgumentException("[Error] 최소 결제 금액은 1,000원 입니다.");
         }
-        if(payment % LOTTO_PRICE_UNIT != CHANGE) {
+        if (payment % LOTTO_PRICE_UNIT != CHANGE) {
             throw new IllegalArgumentException("[Error] 1,000원 단위로 결제해주세요.");
         }
-        return payment/LOTTO_PRICE_UNIT;
+        return payment / LOTTO_PRICE_UNIT;
     }
 
     public List<Lotto> getLottos() {

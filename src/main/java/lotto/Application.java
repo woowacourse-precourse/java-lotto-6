@@ -47,5 +47,48 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputlottoNumber = Console.readLine();
         String[] lottoNumber = inputlottoNumber.split(",");
+
+        // 1~45가 아닌 숫자를 입력했을 때
+        for (int q=0; q<6; q++) {
+            if (Integer.parseInt(lottoNumber[q]) < 1 || Integer.parseInt(lottoNumber[q]) > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+        // 숫자 범위 미달, 초과 예외 처리
+        if (lottoNumber.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호를 다시 입력해주세요.");
+        }
+        // 숫자 중복 예외 처리
+        for (int p = 0; p < 5; p++) {
+            if (lottoNumber[p].equals(lottoNumber[p + 1])) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
+        }
+        for (int p = 0; p < 4; p++) {
+            if (lottoNumber[p].equals(lottoNumber[p + 2])) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
+        }
+        for (int p = 0; p < 3; p++) {
+            if (lottoNumber[p].equals(lottoNumber[p + 3])) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
+        }
+        for (int p = 0; p < 2; p++) {
+            if (lottoNumber[p].equals(lottoNumber[p + 4])) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
+        }
+        int p = 0;
+        if (lottoNumber[p].equals(lottoNumber[p + 5])) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
+
+        // Null값 예외 처리
+        for (int w=0; w<6; w++) {
+            if (lottoNumber[p].equals(" ")) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
+        }
     }
 }

@@ -20,6 +20,11 @@ public class Lotto {
         this.numbers = List.copyOf(numbers);
     }
 
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
     public LottoResult calculateResult(WinningLotto winningLotto) {
         return LottoResult.compareLottoNums(numbers, winningLotto);
     }

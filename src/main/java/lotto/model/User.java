@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -14,6 +13,13 @@ public class User {
         this.spendMoney = money;
         this.lottos = buyLottos(spendMoney.getPurchaseLottoCount())
                 .stream().collect(Collectors.toMap(lotto -> lotto, result -> LottoResult.DEFAULT));
+    }
+
+    private List<Lotto> buyLottos(int lottoCount) {
+        RandomLottoGenerator lottoGenerator = new RandomLottoGenerator();
+        return IntStream.range(0, lottoCount)
+                .mapToObj(i -> lottoGenerator.generate())
+                .toList();
     }
 
     public void calculateLottoResults(WinningLotto winningLotto) {
@@ -28,7 +34,13 @@ public class User {
     }
 
     public List<LottoResult> getLottoResults() {
-        return lottos.values().stream().filter(LottoResult::isNotDefault).toList();
+        List<LottoResult> returnResults = LottoResult.getLottoResultWithoutDefault();
+        returnResults.forEach(retRes -> {
+            int count = (int) lottos.values().stream().filter(userRes -> userRes == retRes).count();
+            retRes.addCount(count);
+        });
+
+        return returnResults;
     }
 
     public double calculateStatistics() {
@@ -36,16 +48,9 @@ public class User {
         return calculateRateOfReturn(earnedMoney, spendMoney.getMoney());
     }
 
-    private List<Lotto> buyLottos(int lottoCount) {
-        RandomLottoGenerator lottoGenerator = new RandomLottoGenerator();
-        return IntStream.range(0, lottoCount)
-                .mapToObj(i -> lottoGenerator.generate())
-                .toList();
-    }
-
     private double sumEarnedMoney() {
         return lottos.values().stream()
-                .filter(Objects::nonNull)
+                .filter(LottoResult::isNotDefault)
                 .mapToDouble(LottoResult::getPrize)
                 .sum();
     }

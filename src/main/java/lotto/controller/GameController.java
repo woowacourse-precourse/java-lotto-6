@@ -25,6 +25,7 @@ public class GameController {
         printUserLottos();
         setWinningLotto();
         calculateLottoStatistics();
+        printLottoResult();
         printLottoStatistics();
     }
 
@@ -49,8 +50,12 @@ public class GameController {
         statistics = user.calculateStatistics();
     }
 
+    private void printLottoResult() {
+        OutputView.printLottoResult(results);
+    }
+
     private void printLottoStatistics() {
-        OutputView.printLottoStatistics(results, statistics);
+        OutputView.printLottoStatistics(statistics);
     }
 
 }

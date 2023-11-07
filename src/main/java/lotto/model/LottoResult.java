@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,10 +12,13 @@ public enum LottoResult {
     FIRST(6, 0, "6개 일치", 2000000000),
     DEFAULT(0, 0, "초기값", 0);
 
+    private static final String DECIMAL_FORMAT = "###,###";
+
     private final int winningCnt;
     private final int bonusCnt;
     private final String rule;
     private final long prize;
+    private int count;
 
     LottoResult(int winningCnt, int bonusCnt, String rule, int prize) {
         this.winningCnt = winningCnt;
@@ -23,12 +27,19 @@ public enum LottoResult {
         this.prize = prize;
     }
 
-    public String getRule() {
-        return rule;
+    @Override
+    public String toString() {
+        DecimalFormat decFormat = new DecimalFormat(DECIMAL_FORMAT);
+
+        return rule + " (" + decFormat.format(prize) + "원) - " + count + "개";
     }
 
     public long getPrize() {
         return prize;
+    }
+
+    public void addCount(int count) {
+        this.count += count;
     }
 
     public static LottoResult compareLottoNums(List<Integer> LottoNums, WinningLotto winningLotto) {
@@ -60,7 +71,7 @@ public enum LottoResult {
     }
 
     private static LottoResult findCorrectLottoResult(int equalLottoCnt, int equalBonusCnt) {
-        LottoResult findLottoResult = null;
+        LottoResult findLottoResult = LottoResult.DEFAULT;
         List<LottoResult> lottoResults = getLottoResultWithoutDefault();
         for (LottoResult lottoResult : lottoResults) {
             if (lottoResult.winningCnt != equalLottoCnt) {

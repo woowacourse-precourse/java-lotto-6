@@ -104,4 +104,20 @@ public class Validator {
         return hashSet.size() != input.size();
     }
 
+    public void check_BonusNum(String input) throws IllegalArgumentException{
+        check_Empty(input);
+        check_NotNumber(input);
+
+        int bonusNum = Integer.parseInt(input);
+
+        check_BonusNumRange(bonusNum);
+    }
+
+    private void check_BonusNumRange(int input){
+        if(!isValidLottoNumberRange(input)){
+            throw new IllegalArgumentException(ErrorMessage.IS_NOT_LOTTO_NUMBER_RANGE.getMessage());
+        }
+    }
+
+    //보너스 숫자와 당첨 번호중 하나가 중첩될 경우
 }

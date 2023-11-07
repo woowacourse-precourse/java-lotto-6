@@ -1,4 +1,4 @@
-package Enum;
+package lotto.domain;
 
 public enum LottoInformation {
 }

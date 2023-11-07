@@ -1,4 +1,9 @@
-package View;
+package lotto.view;
+
+
 
 public class InputView {
+
+
+
 }

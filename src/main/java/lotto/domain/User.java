@@ -1,4 +1,4 @@
-package Domain;
+package lotto.domain;
 
 public class User {
 }

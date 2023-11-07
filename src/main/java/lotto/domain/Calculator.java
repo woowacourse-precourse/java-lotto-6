@@ -42,16 +42,16 @@ public class Calculator {
                 .count();
     }
 
-    private static int countSecond(List<WinningCount> winningCounts, Rank rank) {
+    private static int countSecond(List<WinningCount> winningCounts, Rank SECOND) {
         return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == rank.getCount()
+                .filter(winningCount -> winningCount.getWinningCount() == SECOND.getCount()
                         && winningCount.hasBonusNumber())
                 .count();
     }
 
-    private static int countThird(List<WinningCount> winningCounts, Rank rank) {
+    private static int countThird(List<WinningCount> winningCounts, Rank THIRD) {
         return (int) winningCounts.stream()
-                .filter(winningCount -> winningCount.getWinningCount() == rank.getCount()
+                .filter(winningCount -> winningCount.getWinningCount() == THIRD.getCount()
                         && !winningCount.hasBonusNumber())
                 .count();
     }

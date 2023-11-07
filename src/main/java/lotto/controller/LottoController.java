@@ -28,12 +28,21 @@ public class LottoController {
     }
 
     public void start() {
-        readUserBudget();
+
     }
 
-    public String readUserBudget() {
+
+
+    public int readUserBudget() {
         OutputView.printBudgetInputDescription();
-        return null;
+        int budget = 0;
+        try {
+            budget = InputView.inputBudget();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return budget;
     }
 
 }

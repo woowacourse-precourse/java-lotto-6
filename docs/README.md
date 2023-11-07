@@ -48,43 +48,38 @@
 #### 상수
 
 - NOT_A_NUMBER
-  - Msg : "(은)는 숫자여야 합니다."
+  - Msg : Message.ERROR_MSG_NOT_A_NUMBER
   - test(String input)
     - input을 받아 숫자로 변환한다.
     - 변환할 수 없으면 NumberFormatException이 발생하면 `true`를 반환한다.
     - 모두 바꿀 수 있으면 error가 아니므로 `false`를 반환한다.
     
 - NOT_IN_THOUSANDS
-  - Msg : "(은)는 1000원 단위여야 합니다."
+  - Msg : Message.ERROR_MSG_NOT_IN_THOUSANDS
   - test(String input)
     - input을 받아 숫자로 변환하고 1000원 단위인지 확인한다.
     - 1000원 단위가 아니면 `true`를 반환한다.
     - 1000원 단위면 `false`를 반환한다.
     
 - OUT_OF_RANGE
-  - Msg : "(은)는 1부터 45 사이의 수여야 합니다."
+  - Msg : Message.ERROR_MSG_OUT_OF_RANGE
   - test(String input)
     - input을 받아 숫자로 변환한 뒤 각 수가 1 ~ 45 사이의 수인지 확인한다.
     - 하나의 숫자라도 1 ~ 45의 범위에 있으면 `true`를 반환한다.
     - 모두 1 ~ 45의 범위에 있으면 `false`를 반환한다.
     
 - LENGTH_NOT_MATCH
-  - Msg : "(은)는 6자리여야 합니다."
+  - Msg : Message.ERROR_MSG_LENGTH_NOT_MATCH
   - test(String input)
     - input을 ',' 기준으로 나눠 길이가 6자리인지 확인한다.
     - 6자리가 아니면 `true`를 반환한다.
     - 6자리면 `false`를 반환한다.
     
 - DUPLICATED_NUMBER
-  - Msg : "(은)는 중복될 수 없습니다."
+  - Msg : Message.ERROR_MSG_DUPLICATED_NUMBER
   - test(String input)
     - input을 `,`로 나눠 각 문자열을 숫자로 변환한다.
-    - 숫자가 중복되면 `true`를 하나도 중복이 없으면 `false`를 반환한다.
-    
-- NOT_AN_ERROR
-  - Msg : "정상"
-  - null
-    - 모든 에러에 해당하지 않으면 NOT_AN_ERROR를 내뱉는다.
+    - 숫자가 중복되면 `true`를 하나도 중복이 없으면 `false`를 반환한다. 
 
 #### 필드
 - `private String errorMsg`
@@ -154,23 +149,13 @@
 ### InputView
 
 ---
-#### 필드
-
-- `private final String purchaseMessage`
-  - "구입금액을 입력해 주세요."
-- `private final String winningNumberMessage`
-  - "당첨 번호를 입력해 주세요."
-- `private final String bonusNumberMessage`
-  - "보너스 번호를 입력해 주세요."
-
----
 #### 메소드
 - `public String inputPurchaseAmount()`
-  - purchaseMessage를 출력하고 `Console.readLine()`으로 한 줄을 읽어온다.
+  - Message.purchaseMessage를 출력하고 `Console.readLine()`으로 한 줄을 읽어온다.
 - `public String drawWinningString()`
-  - winningNumberMessage를 출력하고 `Console.readLine()`으로 한 줄을 읽어온다.
+  - Message.winningNumberMessage를 출력하고 `Console.readLine()`으로 한 줄을 읽어온다.
 - `public String drawBonusString()`
-  - bonusNumberMessage를 출력하고 `Console.readLine()`으로 한 줄을 읽어온다.
+  - Message.bonusNumberMessage를 출력하고 `Console.readLine()`으로 한 줄을 읽어온다.
 ---
 
 ### OutputView
@@ -186,6 +171,13 @@
 
 ---
 #### 필드
+
+- `PURCHASE_MONEY`
+  - "구입금액";
+- `WINNING_NUMBERS`
+  - "당첨 번호"
+- `BONUS_NUMBERS`
+  - "보너스 번호"
 - `PURCHASE_MESSAGE`
   - "구입금액을 입력해 주세요.";
 - `WINNING_NUMBERS_MESSAGE`

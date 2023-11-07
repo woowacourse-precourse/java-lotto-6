@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utils {
     public static int convertStringToInt(String purchasePriceInput) {
@@ -16,5 +18,12 @@ public class Utils {
 
     public static List<Integer> makeLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public static List<Integer> convertStringToListOfIntegers(String numbers) {
+        return Arrays.stream(numbers.split(","))
+                .map(String::trim) // 공백 제거
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 }

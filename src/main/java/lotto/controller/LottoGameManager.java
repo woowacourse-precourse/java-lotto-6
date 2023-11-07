@@ -1,5 +1,5 @@
 package lotto.controller;
-
+import lotto.Utils;
 import lotto.model.Lotto;
 import lotto.model.Purchase;
 
@@ -10,6 +10,7 @@ public class LottoGameManager {
 
     private final UserInputManager userInputManager;
     private List<Lotto> userLottos;
+    private Lotto winningLotto;
 
     public LottoGameManager(UserInputManager userInputManager) {
         this.userInputManager = userInputManager;
@@ -25,11 +26,18 @@ public class LottoGameManager {
         userLottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
+    private void setWinningLotto() {
+        String winningNumbersInput = userInputManager.getWinningNumbersInput();
+        List<Integer> winningNumbers = Utils.convertStringToListOfIntegers(winningNumbersInput);
+        this.winningLotto = new Lotto(winningNumbers);
+    }
+
     public void play() {
         String purchasePriceInput = userInputManager.getPurchasePriceInput();
         Purchase purchase = new Purchase(purchasePriceInput);
         int lottoCount = purchase.getLottoCount();
         createLotto(lottoCount);
         printLotto();
+        setWinningLotto();
     }
 }

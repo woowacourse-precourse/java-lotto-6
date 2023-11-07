@@ -6,6 +6,7 @@ public record Money(int amount) {
 
     private static final int MIN_PURCHASE_AMOUNT = 1_000;
     private static final int MAX_PURCHASE_AMOUNT = 100_000;
+    private static final int AMOUNT_MULTIPLE_UNIT = 1_000;
 
     public Money {
         validateMinimumAmount(amount);
@@ -38,7 +39,7 @@ public record Money(int amount) {
     }
 
     private void validateAmountMultipleOfThousand(int amount) {
-        if (amount % 1_000 != 0) {
+        if (amount % AMOUNT_MULTIPLE_UNIT != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_MULTIPLE_OF_THOUSAND.getMessage());
         }
     }

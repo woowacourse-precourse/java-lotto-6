@@ -1,5 +1,7 @@
 package lotto.domain.rank;
 
+import lotto.view.OutputView;
+
 public enum Rank {
     NONE(0, 0, ""),
     FIFTH(5000, 3,"3개 일치 (5,000원) - "),
@@ -19,7 +21,7 @@ public enum Rank {
     }
 
     public static Rank of(int matchCnt, boolean isBonusNumMatch) {
-        if (matchCnt < NONE.matchCnt) {
+        if (matchCnt < FIFTH.matchCnt) {
             return NONE;
         }
         if(SECOND.isMatch(matchCnt) && isBonusNumMatch){
@@ -37,11 +39,13 @@ public enum Rank {
         return reward;
     }
 
-    public int getMatchCnt(){
-        return matchCnt;
-    }
-
     public boolean isMatch(int matchCnt){
         return this.matchCnt == matchCnt;
+    }
+
+    public void printMessage(int matchCnt) {
+        if (this != NONE) {
+            OutputView.printSuccessMessage(message, matchCnt);
+        }
     }
 }

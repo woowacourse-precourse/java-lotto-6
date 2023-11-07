@@ -19,6 +19,4 @@ public abstract class Validator<T> {
             throw new IllegalArgumentException(INVALID_OUT_OF_RANGE.getMessage());
         }
     }
-
-    public abstract T validate(String input);
 }

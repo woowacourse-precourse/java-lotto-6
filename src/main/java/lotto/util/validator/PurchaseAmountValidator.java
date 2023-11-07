@@ -5,7 +5,6 @@ import static lotto.util.ErrorMessage.*;
 
 public class PurchaseAmountValidator extends Validator {
 
-    @Override
     public Integer validate(String input) {
         validateNumber(input, PURCHASE_AMOUNT_PATTERN);
         int amount = Integer.parseInt(input);

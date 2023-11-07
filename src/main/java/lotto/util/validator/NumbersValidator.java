@@ -3,25 +3,26 @@ package lotto.util.validator;
 import static lotto.util.Constant.*;
 import static lotto.util.ErrorMessage.*;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WinningNumbersValidator extends Validator {
+public class NumbersValidator extends Validator {
 
-    @Override
-    public List<Integer> validate(String input) {
-        validateNumber(input, WINNING_NUMBERS_PATTERN);
-        List<Integer> numbers = Arrays.stream(input.split(DELIMITER))
-                .map(Integer::parseInt).toList();
+    public void validate(List<Integer> numbers) {
+        validateSize(numbers);
         validateRange(numbers);
         validateDuplication(numbers);
-        return numbers;
     }
 
-    public static WinningNumbersValidator createValidator() {
-        return new WinningNumbersValidator();
+    public static NumbersValidator createValidator() {
+        return new NumbersValidator();
+    }
+
+    private static void validateSize(List<Integer> numbers) {
+        if (numbers.size() != NUMBER_PICK_COUNT) {
+            throw new IllegalArgumentException(INVALID_LOTTO_SIZE.getMessage());
+        }
     }
 
     private void validateRange(List<Integer> numbers) {

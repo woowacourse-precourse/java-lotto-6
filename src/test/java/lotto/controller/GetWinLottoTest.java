@@ -73,7 +73,7 @@ public class GetWinLottoTest {
     @Test
     void 올바른_당첨_번호(){
         WinLotto winLotto = getWinLotto.validWinLotto("1,4,5,17,42,43","10");
-        Assertions.assertThat(winLotto.getWinLotto().getNumbers()).containsExactly(1,4,5,17,42,43);
+        Assertions.assertThat(winLotto.getWinLottoNumbers()).containsExactly(1,4,5,17,42,43);
         Assertions.assertThat(winLotto.getSecondPlaceLottos().get(0).getNumbers())
                 .containsExactly(4,5,10,17,42,43);
         Assertions.assertThat(winLotto.getSecondPlaceLottos().get(1).getNumbers())

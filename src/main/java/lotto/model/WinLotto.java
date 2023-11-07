@@ -34,8 +34,8 @@ public class WinLotto {
         return secondPlaceLottos;
     }
 
-    public Lotto getWinLotto() {
-        return winLotto;
+    public List<Integer> getWinLottoNumbers() {
+        return winLotto.getNumbers();
     }
 
     public int getBonusNum(){

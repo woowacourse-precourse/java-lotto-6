@@ -19,6 +19,10 @@ public class InputView {
         return LazyHolder.INSTANCE;
     }
 
+    private static class LazyHolder {
+        private static final InputView INSTANCE = new InputView();
+    }
+
     public PurchaseAmountDto readPurchaseAmount() {
         String amount = Console.readLine();
         return PurchaseAmountDto.from(amount);
@@ -38,9 +42,5 @@ public class InputView {
         return Arrays.stream(numbers.split(","))
                 .map(Validator::validateAndParseInteger)
                 .collect(Collectors.toList());
-    }
-
-    private static class LazyHolder {
-        private static final InputView INSTANCE = new InputView();
     }
 }

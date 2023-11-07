@@ -18,6 +18,10 @@ public class PurchaseAmount {
         return amount / DIVIDE_UNIT;
     }
 
+    public double calculateProfit(long prizeSum) {
+        return prizeSum / amount ;
+    }
+
     private void validate(int inputAmount) {
         validateNaturalNumber(inputAmount);
         validateDivideUnit(inputAmount);

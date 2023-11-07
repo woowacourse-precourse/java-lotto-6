@@ -5,13 +5,13 @@ import java.util.List;
 
 public class LottoGenerator {
     public List<Lotto> generateLottoGroup(int createLottoCount) {
-        List<Lotto> lottos = new ArrayList<>();
+        List<Lotto> lottoGroup = new ArrayList<>();
 
-        while (lottos.size() < createLottoCount) {
-            lottos.add(generateLotto());
+        while (lottoGroup.size() < createLottoCount) {
+            lottoGroup.add(generateLotto());
         }
 
-        return lottos;
+        return lottoGroup;
     }
 
     public Lotto generateLotto() {

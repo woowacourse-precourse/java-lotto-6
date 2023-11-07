@@ -24,6 +24,7 @@ public class LottoGame {
         List<Lotto> purchaseLotto = lottoController.buyTicket(price);
         outputView.printLottoTicket(purchaseLotto);
         initLuckyNumber();
+        initBonusNumber();
 
     }
 
@@ -44,5 +45,23 @@ public class LottoGame {
 
     private boolean isAvailLuckyNumbers(Lotto luckyNumber) {
         return luckyNumber!=null;
+    }
+
+    private void initBonusNumber() {
+        while (true) {
+            try {
+                Integer bonusNumber = inputView.writeBonusNumber();
+                lottoController.validateBonusNumber(bonusNumber);
+                if (isAvailBonusNumbers(bonusNumber)) {
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private boolean isAvailBonusNumbers(Integer bonusNumber) {
+        return bonusNumber!=null;
     }
 }

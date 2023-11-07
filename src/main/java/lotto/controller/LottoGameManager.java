@@ -17,6 +17,6 @@ public class LottoGameManager {
 
         System.out.println(lottoCount);
 
-        // 추가적인 로직을 수행할 수 있습니다.
+        
     }
 }

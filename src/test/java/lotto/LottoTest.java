@@ -8,14 +8,18 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
+	@AfterEach
+    void closeConsole() {
+    	Console.close();
+	}
+	
 	@DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
 	@Test
 	void createLottoByOverSize() {
@@ -47,8 +51,27 @@ class LottoTest {
 		final Ranking rank = Ranking.SECOND; 
 		
 		// then
-		 assertThat(Ranking.valueOf(matchCount, matchOfBonus)) // when
-         .isEqualTo(rank);
+		assertThat(Ranking.valueOf(matchCount, matchOfBonus)) // when
+     		.isEqualTo(rank);
 	}
 	
+	@DisplayName("당첨 등수를 매치해서 결과를 리턴한다.")
+	@Test
+	void missLottoMessage() {
+		// given 
+		LottoController lotto = new LottoController();
+		final List<List <Integer>> createdLotto = lotto.setCreatedLottos(List.of(1, 2, 3, 4, 5, 6)); 
+		final List<Integer> winNumbers = List.of(1, 2, 3, 4, 5, 6);
+		
+		// when
+		Map<Ranking, Integer> result = lotto.matchRank(createdLotto, winNumbers); // 1등 설정
+		
+		// then
+		assertThat(result.get(Ranking.values()[0])).isEqualTo(1); // 1등당첨 갯수 리턴
+	}
+	
+	
+	InputStream createUserInput(String input) {
+        return new ByteArrayInputStream(input.getBytes());
+    }
 }

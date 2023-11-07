@@ -58,7 +58,8 @@ public class LottoView {
 		for (String numStr : input) {
 			int num;
 			num = Integer.parseInt(numStr);
-			if (num < 1 || num > 45 || !numbers.add(num)) {
+			validateNumberRange(num);
+			if (!numbers.add(num)) {
 				throw new IllegalStateException();
 			}
 		}

@@ -21,8 +21,9 @@ public class LottoController {
 
     private void init() {
         int input = InputMessage.printMoneyInputMessage();
-        OutputMessage.moneyToNumberPrint(input);
-        List<Lotto> lottosList = lottoService.buyLotto(input);
+        int totalCount = lottoService.getTotalCount(input);
+        OutputMessage.moneyToNumberPrint(totalCount);
+        List<Lotto> lottosList = lottoService.buyLotto(totalCount);
         OutputMessage.printLottosListOutputMessage(lottosList);
     }
 

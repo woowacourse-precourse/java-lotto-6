@@ -31,4 +31,7 @@ public class OutputMessage {
         System.out.println(lottoNumberBuilder);
     }
 
+    public static void printResultOutputMessage() {
+
+    }
 }

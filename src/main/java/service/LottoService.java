@@ -22,6 +22,10 @@ public class LottoService {
         return lottos.getLottoList();
     }
 
+    public int getTotalCount(int input) {
+        return input / 1000;
+    }
+
     private void getLottoNumbers() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);

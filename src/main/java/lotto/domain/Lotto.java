@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstraint.MAX_LOTTO_NUM;
+import static lotto.domain.LottoConstraint.MIN_LOTTO_NUM;
 import static lotto.exception.LottoErrorMsg.DUPLICATED;
 import static lotto.exception.LottoErrorMsg.OUT_OF_RANGE;
 
@@ -10,13 +12,13 @@ import lotto.exception.LottoException;
 public class Lotto {
     private final List<Integer> numbers;
 
-    private static final int MAX_LOTTE_NUM = 45;
-    private static final int MIN_LOTTO_NUM = 1;
-
-
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -32,7 +34,7 @@ public class Lotto {
 
     }
     private boolean isDuplicatedNum(List<Integer> numbers){
-        boolean[] isNumInNums = new boolean[MAX_LOTTE_NUM+1];
+        boolean[] isNumInNums = new boolean[MAX_LOTTO_NUM +1];
         Arrays.fill(isNumInNums,false);
         for (int num:numbers){
             if (isNumInNums[num]){
@@ -45,10 +47,11 @@ public class Lotto {
 
     private boolean isValidRange(List<Integer> numbers){
         for (int num : numbers){
-            if (num < MIN_LOTTO_NUM || num > MAX_LOTTE_NUM){
+            if (num < MIN_LOTTO_NUM || num > MAX_LOTTO_NUM){
                 return false;
             }
         }
         return true;
     }
+
 }

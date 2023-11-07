@@ -20,6 +20,7 @@ public class OutputView {
         System.out.println(ViewConstant.STATISTICS_MESSAGE);
         System.out.println(ViewConstant.SEPARATOR_LINE_MESSAGE);
         printCountingResponse(response.prizeCount());
+        printRevenue(response.prizeMoney(), response.payment());
     }
 
     private static void printCountingResponse(Map<String, Integer> counter){
@@ -28,6 +29,10 @@ public class OutputView {
         System.out.printf(ViewConstant.THIRD_PRIZE_MESSAGE.toString(), counter.get("THIRD"));
         System.out.printf(ViewConstant.SECOND_PRIZE_MESSAGE.toString(), counter.get("SECOND"));
         System.out.printf(ViewConstant.FIRST_PRIZE_MESSAGE.toString(), counter.get("FIRST"));
+    }
+
+    private static void printRevenue(int prizeMoney, int payment){
+        System.out.printf(ViewConstant.REVENUE_MESSAGE.toString(), ((double)prizeMoney/payment));
     }
 
 }

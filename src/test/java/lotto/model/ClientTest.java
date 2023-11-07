@@ -3,7 +3,6 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import lotto.model.constans.WinningRank;
 import org.junit.jupiter.api.DisplayName;

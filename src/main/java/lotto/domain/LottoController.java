@@ -44,11 +44,11 @@ public class LottoController {
         printTickets(userLottoTickets); // 구매한 로또들 번호 출력
 
         lotto = new Lotto(handleWinningNumbers()); // 당첨번호 입력, lotto 객체에 저장
-        handleCompareWinningNumbers(userLottoTickets); // 당첨번호와 추첨번호 비교
-        handleBonusNumber(userLottoTickets);
+        compareNumbers(userLottoTickets); // 당첨번호와 추첨번호 비교
+        compareBonusNumber(userLottoTickets);
 
     }
-    public void handleBonusNumber(List<LottoTicket> userLottoTickets) {
+    public void compareBonusNumber(List<LottoTicket> userLottoTickets) {
         System.out.println(LottoMessage.REQUEST_BOUNS_NUMBERS.getMessage());
         String input = userInput.input();
         int bonusNumber = 0;
@@ -60,7 +60,7 @@ public class LottoController {
                 lottoTicket.setBonusNumberMatch(lotto.compareBonusNumber(lottoTicket, bonusNumber));
         }
     }
-    public void handleCompareWinningNumbers(List<LottoTicket> userLottoTickets) {
+    public void compareNumbers(List<LottoTicket> userLottoTickets) {
         int matchCount = 0;
         for (LottoTicket lottoTicket : userLottoTickets) {
             matchCount = lotto.compareWinningNumbers(lottoTicket);

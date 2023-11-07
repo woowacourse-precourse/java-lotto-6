@@ -21,6 +21,7 @@ public class Application {
         printOutput.printRandomLottosNumbers(randomLottos);
         printOutput.printLottoNumberQuestion();
         int[] inputLottoNumbers = inputParam.inputLottoNumbers();
+        printOutput.printBonusNumberQuestion();
         int bonusNumber = inputParam.inputBonusNumber();
         int[] stats = compareRandomLottosAndInputLotto(randomLottos, inputLottoNumbers, bonusNumber);
         double profit = calculateProfit(money, stats);

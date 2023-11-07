@@ -7,11 +7,7 @@ import lotto.domain.PlayerLotto;
 import lotto.dto.PurchaseLottoDto;
 import lotto.dto.WinningStatisticsDto;
 import lotto.service.LottoGameService;
-import lotto.utils.GameUtils;
-import lotto.utils.validator.BonusNumberValidator;
-import lotto.utils.validator.PurchaseAmountValidator;
 import lotto.utils.validator.WinningInformationValidator;
-import lotto.utils.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -38,9 +34,9 @@ public class LottoGameController {
     private int setPurchaseTotalCount() {
         while (true) {
             try {
-                String purchaseAmount = inputView.readPurchaseAmount();
-                PurchaseAmountValidator.validate(purchaseAmount);
-                return Integer.parseInt(purchaseAmount) / 1000;
+                int purchaseAmount = inputView.readPurchaseAmount();
+
+                return purchaseAmount / 1000;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -56,10 +52,9 @@ public class LottoGameController {
     private Lotto openWinningNumbers() {
         while (true) {
             try {
-                String winningNumbers = inputView.readWinningNumbers();
-                WinningNumberValidator.validate(winningNumbers);
+                List<Integer> winningNumbers = inputView.readWinningNumbers();
 
-                return new Lotto(GameUtils.parse(winningNumbers));
+                return new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -69,9 +64,8 @@ public class LottoGameController {
     private LottoNumber openBonusNumber(final Lotto winningNumbers) {
         while (true) {
             try {
-                String bonusNumberInput = inputView.readBonusNumber();
-                BonusNumberValidator.validate(bonusNumberInput);
-                LottoNumber bonusNumber = new LottoNumber(Integer.parseInt(bonusNumberInput));
+                int bonusNumberInput = inputView.readBonusNumber();
+                LottoNumber bonusNumber = new LottoNumber(bonusNumberInput);
                 WinningInformationValidator.validate(winningNumbers, bonusNumber);
 
                 return bonusNumber;

@@ -5,7 +5,7 @@ public class LottoNumberGenerator {
 
     private LottoNumberGenerator() {}
 
-    public LottoNumberGenerator getLottoNumberGenerator() {
+    public static LottoNumberGenerator getLottoNumberGenerator() {
         if (lottoNumberGenerator == null) {
             lottoNumberGenerator = new LottoNumberGenerator();
         }

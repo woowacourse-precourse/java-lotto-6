@@ -9,6 +9,11 @@ import java.util.stream.Collectors;
 public final class LottoInput implements InputPort{
 
     private static final String delimiter = ",";
+    private final InputReader reader;
+
+    public LottoInput(InputReader reader) {
+        this.reader = reader;
+    }
 
     @Override
     public int receiveMoney() {

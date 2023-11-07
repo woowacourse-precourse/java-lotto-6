@@ -12,4 +12,8 @@ public class UserLotto {
         this.bonusNum = bonusNum;
         this.amount = amount;
     }
+
+    public int calcIssueCount() {
+        return amount / 1000;
+    }
 }

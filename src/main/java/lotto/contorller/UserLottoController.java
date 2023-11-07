@@ -5,9 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.UserLotto;
 import lotto.service.UserLottoService;
 
-import static java.lang.Integer.parseInt;
-
-public class LottoController {
+public class UserLottoController {
     UserLotto userLotto;
     private final UserLottoService lottoService = new UserLottoService();
     public Lotto getLottoInput() {
@@ -27,6 +25,5 @@ public class LottoController {
 
     public void init() {;
         userLotto = lottoService.getUserLotto(getLottoInput(), getBonusNumInput(), getAmountInput());
-
     }
 }

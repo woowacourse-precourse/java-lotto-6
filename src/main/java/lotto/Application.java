@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.contorller.LottoController;
+import lotto.contorller.UserLottoController;
 
 public class Application {
     public static void main(String[] args) {
-        LottoController lottoController = new LottoController();
+        UserLottoController lottoController = new UserLottoController();
     }
 }

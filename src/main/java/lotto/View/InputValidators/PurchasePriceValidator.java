@@ -15,13 +15,13 @@ public class PurchasePriceValidator extends InputValidator{
         try {
             purchasePrice = validateStringIsInt(userInputPurchasePrice);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorMessages.PURCHASE_PRICE_FORM.name());
+            throw new IllegalArgumentException(ErrorMessages.PURCHASE_PRICE_FORM.getString());
         }
         if (purchasePrice < 1000) {
-            throw new IllegalArgumentException(ErrorMessages.PURCHASE_PRICE_MINIMUM.name());
+            throw new IllegalArgumentException(ErrorMessages.PURCHASE_PRICE_MINIMUM.getString());
         }
         if (purchasePrice % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessages.PURCHASE_PRICE_FORM.name());
+            throw new IllegalArgumentException(ErrorMessages.PURCHASE_PRICE_FORM.getString());
         }
         validatedPurchasePrice = purchasePrice;
     }

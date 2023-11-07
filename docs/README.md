@@ -23,7 +23,7 @@ README를 적어나갈수록 점점 감이 안온다. Model, View, Controller, D
   - 정수 형식이 아닐 경우: `[ERROR] 1,000원 단위의 정수로 입력해 주세요.`
   - 1,000원으로 나누어 떨어지지 않는 경우: `[ERROR] 1,000원 단위의 정수로 입력해 주세요.`
   - 너무 적은 금액을 입력했을 경우: `[ERROR] 최소 1개를 살 수 있는 금액을 입력해 주세요.`
-- 구입 금액에 따른 로또 발행 수 환산
+- ~~구입 금액에 따른 로또 발행 수 환산~~
   - 로또는 하나에 1,000원이다.
 - 구매 완료 메시지 출력
   - `\n8개를 구매했습니다.\n`
@@ -80,11 +80,12 @@ README를 적어나갈수록 점점 감이 안온다. Model, View, Controller, D
 MVCS 패턴을 이용한다. 
 Model: Lotto 클래스를 포함해 모든 Data Logic을 책임진다.
 - Domain: 모든 Data를 책임진다.
-- Service: 모든 Service Logic을 책임진다.
-- 
+- Enums: 모든 상수(불변값들)를 책임진다.
 View: UI를 책임진다.
-Controller: 
-Service:
+- InputValidators: 모든 Input관련 검증 로직을 책임진다.
+Controller: 흐름을 관리한다. Client로부터 요청을 받아 Model에게서 data를 받고 View에 전달한다.
+- MainController: 하위 Controller들을 생성해 호출한다. 시간순으로 Purchase - DrawTickets - WinningNumber - CalculateResult
+
 주어진 클래스 Lotto: numbers와 validate(numbers)를 포함한 클래스인 것을 보아 당첨번호 또는 추첨번호를 저장하는 객체를 만드는
 클래스인 것 같다. 자식 클래스로 당첨번호와 추첨번호를 각각 만드는 것은 어떨까?
 ### 간략한 클래스 및 메서드 정리

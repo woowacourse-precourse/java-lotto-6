@@ -12,4 +12,8 @@ public class LottoTickets {
     public int getSize() {
         return tickets.size();
     }
+
+    protected List<Lotto> getTickets() {
+        return tickets.stream().toList();
+    }
 }

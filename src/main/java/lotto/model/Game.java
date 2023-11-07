@@ -17,6 +17,14 @@ public class Game {
         this.issuedLottoTickets = lottoStore.purchaseRandomLottoTickets(purchaseAmount);
     }
 
+    public int getNumberOfLottoIssued() {
+        return issuedLottoTickets.getSize();
+    }
+
+    public List<Lotto> getIssuedLottoTickets() {
+        return issuedLottoTickets.getTickets();
+    }
+
     public void setWinningNumbers(List<Integer> winningNumber) {
         this.winningNumber.setWinningNumber(new Lotto(winningNumber));
     }

@@ -1,7 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
-import java.util.concurrent.Callable;
+import lotto.dto.IssuedLottoTicketsDto;
+import lotto.dto.LottoDto;
 import lotto.model.Game;
 import lotto.util.converter.BonusNumberConverter;
 import lotto.util.converter.PurchaseAmountConverter;
@@ -18,17 +19,19 @@ public class GameController {
     }
 
     public void run() {
-        // TODO: 게임 로직 작성
-        retryUntilValidInput(this::handlePurchaseLottoTickets);
-        retryUntilValidInput(this::handleWinningNumbers);
-        retryUntilValidInput(this::handleBonusNumber);
+        purchaseLottoTickets();
+        displayIssuedLottoTickets();
+        inputWinningNumbers();
+        inputBonusNumber();
+        displayResult();
     }
 
-    private void retryUntilValidInput(Callable<Boolean> containUserInput) {
+    private void retryUntilValidInput(Runnable userInputTask) {
         boolean validInput = false;
         while (!validInput) {
             try {
-                validInput = containUserInput.call();
+                userInputTask.run();
+                validInput = true;
             } catch (IllegalArgumentException e) {
                 view.displayException(e.getMessage());
             } catch (Exception e) {
@@ -37,36 +40,40 @@ public class GameController {
         }
     }
 
-    private boolean handlePurchaseLottoTickets() {
-        int purchaseAmount = inputPurchaseAmount();
-        game.purchaseLottoTickets(purchaseAmount);
-        return true;
+    private void purchaseLottoTickets() {
+        retryUntilValidInput(() -> {
+            String input = view.getPurchaseAmount();
+            int purchaseAmount = PurchaseAmountConverter.convert(input);
+            game.purchaseLottoTickets(purchaseAmount);
+        });
     }
 
-    private int inputPurchaseAmount() {
-        String input = view.getPurchaseAmount();
-        return PurchaseAmountConverter.convert(input);
+    private void displayIssuedLottoTickets() {
+        int numberOfLottoIssued = game.getNumberOfLottoIssued();
+        List<LottoDto> issuedTickets = game.getIssuedLottoTickets().stream()
+                .map(LottoDto::of)
+                .toList();
+        view.displayIssuedLottoTickets(new IssuedLottoTicketsDto(numberOfLottoIssued, issuedTickets));
     }
 
-    private boolean handleWinningNumbers() {
-        List<Integer> winningNumbers = inputWinningNumbers();
-        game.setWinningNumbers(winningNumbers);
-        return true;
+    private void inputWinningNumbers() {
+        retryUntilValidInput(() -> {
+            String input = view.getWinningNumbers();
+            List<Integer> winningNumbers = WinningNumberConverter.convert(input);
+            game.setWinningNumbers(winningNumbers);
+        });
     }
 
-    private List<Integer> inputWinningNumbers() {
-        String input = view.getWinningNumbers();
-        return WinningNumberConverter.convert(input);
+    private void inputBonusNumber() {
+        retryUntilValidInput(() -> {
+            String input = view.getBonusNumber();
+            int bonusNumber = BonusNumberConverter.convertAndValidate(input);
+            game.setBonusNumber(bonusNumber);
+        });
     }
 
-    private boolean handleBonusNumber() {
-        int bonusNumber = inputBonusNumber();
-        game.setBonusNumber(bonusNumber);
-        return true;
+    private void displayResult() {
+        //TODO
     }
 
-    private int inputBonusNumber() {
-        String input = view.getBonusNumber();
-        return BonusNumberConverter.convertAndValidate(input);
-    }
 }

@@ -67,6 +67,10 @@ public class Lotto {
         return Objects.equals(numbers, lotto.numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public boolean contains(int value) {
         return numbers.contains(value);
     }

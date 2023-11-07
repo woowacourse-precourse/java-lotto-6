@@ -6,6 +6,7 @@ import lotto.domain.Lotto;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import static lotto.domain.LottoMoney.MONEY_UNIT;
 import static lotto.service.LottoMachine.*;
@@ -13,7 +14,7 @@ import static lotto.util.ErrorMessage.*;
 
 public class Validator {
 
-    private static final String NOT_SPECIAL_REGEX = "^[a-zA-Z0-9,]*$";
+    private static final Pattern NOT_SPECIAL_REGEX = Pattern.compile("^[a-zA-Z0-9,]*$");
 
     private Validator() { }
 
@@ -78,7 +79,7 @@ public class Validator {
     }
 
     public static void checkComma(String target) {
-        if (!target.matches(NOT_SPECIAL_REGEX)) {
+        if (!NOT_SPECIAL_REGEX.matcher(target).matches()) {
             throw new IllegalArgumentException(SPLIT_REGEX_ERROR.getMessage());
         }
     }

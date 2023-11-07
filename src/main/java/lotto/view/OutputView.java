@@ -40,4 +40,8 @@ public class OutputView {
     public void printRateOfRevenue(double rateOfRevenue) {
         System.out.println(String.format(RATE_OF_REVENUE_FORMAT.get(), rateOfRevenue));
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

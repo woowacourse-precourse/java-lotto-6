@@ -14,32 +14,17 @@ public class InputView {
 
     public int readPaymentInput() {
         outputView.paymentPrompt();
-        try {
-            return bonusAndPaymentParser.parse(Console.readLine()).get(0);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readPaymentInput();
-        }
+        return bonusAndPaymentParser.parse(Console.readLine()).get(0);
     }
 
     public int readBonusInput() {
         outputView.bonusPrompt();
-        try {
-            return bonusAndPaymentParser.parse(Console.readLine()).get(0);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readBonusInput();
-        }
+        return bonusAndPaymentParser.parse(Console.readLine()).get(0);
     }
 
     public List<Integer> readWinningNumber() {
         outputView.winningNumberPrompt();
-        try {
-            return winningParser.parse(Console.readLine());
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return readWinningNumber();
-        }
+        return winningParser.parse(Console.readLine());
     }
 
 }

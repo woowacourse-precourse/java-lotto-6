@@ -54,4 +54,15 @@ class ValidateTest {
         assertDoesNotThrow(() -> Validator.validateWinningNumber(number1));
         assertThrows(IllegalArgumentException.class, () -> Validator.validateWinningNumber(number2));
     }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되는지 검증 테스트")
+    @Test
+    void 보너스_번호_중복_테스트() {
+        List<Integer> number1 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        String bonusNumber1 = "7";
+        String bonusNumber2 = "5";
+
+        assertDoesNotThrow(() -> Validator.validateBonusNumber(number1, bonusNumber1));
+        assertThrows(IllegalArgumentException.class, () -> Validator.validateBonusNumber(number1, bonusNumber2));
+    }
 }

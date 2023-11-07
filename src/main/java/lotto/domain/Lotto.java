@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.constants.LottoValues;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,10 +12,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        Integer lottoNumbersCount = LottoValues.NUMBERS_COUNT.getValue();
+        if (numbers.size() != lottoNumbersCount) {
+            String errorMessage = String.format("로또 번호 개수는 %d 개 여야 합니다.", lottoNumbersCount);
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

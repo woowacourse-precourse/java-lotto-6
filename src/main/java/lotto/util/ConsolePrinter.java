@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Objects;
 import lotto.constants.PrintMessages;
+import lotto.domain.Lotto;
 
 public class ConsolePrinter {
     private static void nullCheck(Object target) {
@@ -19,6 +20,14 @@ public class ConsolePrinter {
         nullCheck(number);
 
         String showMessage = String.format(message.getMessage(), number);
+        System.out.print(showMessage);
+    }
+
+    public static void showLottoNumbers(Lotto lotto) {
+        nullCheck(lotto);
+
+        PrintMessages messageTemplate = PrintMessages.LOTTO_NUMBERS;
+        String showMessage = messageTemplate.getMessageWithLotto(lotto);
         System.out.print(showMessage);
     }
 }

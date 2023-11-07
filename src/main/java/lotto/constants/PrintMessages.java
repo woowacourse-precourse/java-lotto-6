@@ -1,5 +1,8 @@
 package lotto.constants;
 
+import java.util.List;
+import lotto.domain.Lotto;
+
 public enum PrintMessages {
     PROMPT_LOTTO_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     PROMPT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
@@ -10,7 +13,8 @@ public enum PrintMessages {
     FOURTH_PLACE_MESSAGE("4개 일치 (50,000원) - %d개"),
     THIRD_PLACE_MESSAGE("5개 일치 (1,500,000원) - %d개"),
     SECOND_PLACE_MESSAGE("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개"),
-    FIRST_PLACE_MESSAGE("6개 일치 (2,000,000,000원) - %d개");
+    FIRST_PLACE_MESSAGE("6개 일치 (2,000,000,000원) - %d개"),
+    LOTTO_NUMBERS("[%d, %d, %d, %d, %d, %d]");
 
     private final String message;
 
@@ -35,5 +39,10 @@ public enum PrintMessages {
 
     public String getMessageWithNumber(Integer number) {
         return String.format(message, number);
+    }
+
+    public String getMessageWithLotto(Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        return String.format(message, lottoNumbers.toArray());
     }
 }

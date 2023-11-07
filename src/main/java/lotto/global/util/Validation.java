@@ -41,4 +41,10 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE.getMessage());
         }
     }
+
+    public void hasSameNumberInList(int number, List<Integer> numbers) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS.getMessage());
+        }
+    }
 }

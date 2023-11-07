@@ -84,4 +84,11 @@ class ValidationTest {
                 .hasMessageContaining("[ERROR] 로또 번호는 중복이 없어야 합니다.");
     }
 
+    @DisplayName("리스트 내에 특정 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void pickExistNumberInList() {
+        assertThatThrownBy(() -> validation.hasSameNumberInList(1, Arrays.asList(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
 }

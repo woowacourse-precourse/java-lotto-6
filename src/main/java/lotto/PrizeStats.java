@@ -6,9 +6,9 @@ import java.util.TreeMap;
 public class PrizeStats {
     private final TreeMap<PrizeGrade, Integer> gradeDist;
 
-    public PrizeStats(List<Lotto> lottos, Lotto winningLotto, Bonus bonus) {
+    public PrizeStats(List<Lotto> lottos, WinningNumbers winningNumbers) {
         this.gradeDist = getEmptyDist();
-        fillDist(lottos, winningLotto, bonus);
+        fillDist(lottos, winningNumbers);
     }
 
     public TreeMap<PrizeGrade, Integer> getGradeDist() {
@@ -23,14 +23,14 @@ public class PrizeStats {
         return zeroDist;
     }
 
-    private void fillDist(List<Lotto> lottos, Lotto winningLotto, Bonus bonus) {
+    private void fillDist(List<Lotto> lottos, WinningNumbers winningNumbers) {
         for (Lotto lotto : lottos) {
-            addFrequency(determineGrade(lotto, winningLotto, bonus));
+            addFrequency(determineGrade(lotto, winningNumbers.getWinningLotto(), winningNumbers.getBonusNumber()));
         }
     }
 
-    private PrizeGrade determineGrade(Lotto lotto, Lotto winningLotto, Bonus bonus) {
-        return PrizeGrade.of(lotto.countMatches(winningLotto), lotto.matchWithBonus(bonus));
+    private PrizeGrade determineGrade(Lotto lotto, Lotto winningLotto, int bonusNumber) {
+        return PrizeGrade.of(lotto.countMatches(winningLotto), lotto.matchWithBonus(bonusNumber));
     }
 
     private void addFrequency(PrizeGrade prizeGrade) {

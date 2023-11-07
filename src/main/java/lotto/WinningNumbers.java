@@ -15,8 +15,8 @@ public class WinningNumbers {
         this.bonusNumber = inputToNumber(inputBonus);
     }
 
-    public List<Integer> getWinningLottoNumbers() {
-        return this.winningLotto.getNumbers();
+    public Lotto getWinningLotto() {
+        return this.winningLotto;
     }
 
     public int getBonusNumber() {

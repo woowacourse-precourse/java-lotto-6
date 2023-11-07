@@ -41,6 +41,7 @@ public class LottoController {
             initBonusNumber();
         }
 
+
     }
 
     public void initPurchaseQuantity() {
@@ -125,7 +126,7 @@ public class LottoController {
     }
 
     public void validateInputMoney(String input) {
-        String regex = "\\d+";
+        String regex = "^[0-9]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(input);
         if (!matcher.find()) {

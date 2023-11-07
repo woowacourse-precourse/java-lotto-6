@@ -10,6 +10,10 @@ public class Lottos {
         this.lottos.add(lotto);
     }
 
+    public ArrayList<Lotto> getLottos(){
+        return lottos;
+    }
+
     public void printLottosNumbers() {
         for (int i = 0; i < lottos.size(); i++) {
             lottos.get(i).printLottoNumbers();

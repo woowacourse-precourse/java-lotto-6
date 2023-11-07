@@ -4,14 +4,14 @@ import lotto.model.*;
 
 import java.util.*;
 
-import static lotto.exception.BonusNumberCommonException.checkBonusNumberException;
+import static lotto.exception.BonusException.bonusException;
 import static lotto.controller.InputConverter.*;
 import static lotto.controller.InputHandler.*;
 import static lotto.controller.Statistic.*;
 import static lotto.controller.lotteryController.*;
 import static lotto.controller.winningController.*;
 import static lotto.exception.PriceException.checkPriceException;
-import static lotto.exception.WinningCommonException.checkWinningNumberException;
+import static lotto.exception.WinningException.winningException;
 import static lotto.view.Message.*;
 import static lotto.view.Print.*;
 
@@ -67,7 +67,7 @@ public class Play {
             messageAboutUserLottoNumber();
             String tmpWinningNumbers = inputWinningNumbers();
             try {
-                winningNumbers = checkWinningNumberException(convertWinningNum(tmpWinningNumbers));
+                winningNumbers = winningException(convertWinningNum(tmpWinningNumbers));
                 break;
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();
@@ -81,7 +81,7 @@ public class Play {
             messageAboutUserBonusNumber();
             String tmpBonusNumber = inputBonusNumber();
             try {
-                bonus =  checkBonusNumberException(numbers, convertDigit(tmpBonusNumber));
+                bonus =  bonusException(numbers, convertDigit(tmpBonusNumber));
                 break;
             } catch (IllegalArgumentException e) {
                 //System.out.println("[ERROR]");

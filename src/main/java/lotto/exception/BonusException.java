@@ -7,19 +7,19 @@ import java.util.List;
 
 import static lotto.view.ErrorMessage.duplicatedBonusNumber;
 
-public class BonusNumberCommonException extends CommonException {
+public class BonusException extends CommonException {
 
-    public static BonusNumber checkBonusNumberException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
+    public static BonusNumber bonusException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
         try {
             checkNumberException(bonus);
-            checkBonusDuplicateException(numbers, bonus);
+            bonusDuplicateException(numbers, bonus);
             return new BonusNumber(bonus);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
         }
     }
 
-    public static void checkBonusDuplicateException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
+    public static void bonusDuplicateException(List<Integer> numbers, int bonus) throws IllegalArgumentException {
         try {
             Number.checkDuplicate(numbers, bonus);
         } catch (IllegalArgumentException e) {

@@ -7,9 +7,10 @@ import lotto.model.Budget;
 
 public class LottoTicket {
     private final List<Lotto> lottoTicket;
-    private final LottoMachine lottoMachine = new RandomLottoMachine();
+    private final LottoMachine lottoMachine;
 
-    public LottoTicket(Budget price) {
+    public LottoTicket(Budget price, LottoMachine lottoMachine) {
+        this.lottoMachine = lottoMachine;
         this.lottoTicket = createLottoTicket(price);
     }
 

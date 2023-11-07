@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -41,7 +40,7 @@ class LottosTest {
 
         // then
         assertThat(result.containsKey(expectedRank)).isTrue();
-        assertEquals(expectedCount, result.get(expectedRank));
+        assertThat(result.get(expectedRank)).isEqualTo(expectedCount);
     }
 
     static Stream<Arguments> provideDataForGetRankResult() {
@@ -66,7 +65,7 @@ class LottosTest {
         long result = userLottos.calculateTotalReward(userLottos.getRankResult(winningLotto));
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(result);
     }
 
     static Stream<Arguments> provideDataForCalculateTotalReward() {

@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -21,7 +21,7 @@ class LottoNumbersRuleTest {
         boolean result = LottoNumbersRule.hasOutOfRangeNumber(number);
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
@@ -32,7 +32,7 @@ class LottoNumbersRuleTest {
         boolean result = LottoNumbersRule.isLottoNumbersSizeMismatched(numbers);
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     static Stream<Arguments> provideDataForIsLottoNumbersSizeMismatched() {

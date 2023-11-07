@@ -1,8 +1,8 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -62,7 +62,7 @@ class WinningLottoTest {
         int result = winningLotto.countMatchingNumber(userLotto);
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     static Stream<Arguments> provideDataForCountMatchingNumber() {
@@ -88,7 +88,7 @@ class WinningLottoTest {
         boolean result = winningLotto.hasBonusNumber(userLotto);
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     static Stream<Arguments> provideDataForHasBonusNumber() {

@@ -1,7 +1,7 @@
 package lotto.domain.strategy;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
@@ -33,7 +33,7 @@ class IssuableStrategyTest {
         Lotto result = manualIssuanceStrategy.issue();
 
         // then
-        assertEquals(new Lotto(List.of(1, 2, 3, 4, 5, 6)), result);
+        assertThat(result).isEqualTo(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
     }
 
 }

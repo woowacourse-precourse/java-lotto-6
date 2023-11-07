@@ -1,6 +1,6 @@
 package lotto.converter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,7 +19,7 @@ class PrintFormatConverterTest {
         String result = PrintFormatConverter.convertToRewardFormat(reward);
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
@@ -30,7 +30,7 @@ class PrintFormatConverterTest {
         String result = PrintFormatConverter.convertToYieldFormat(yield);
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
 }

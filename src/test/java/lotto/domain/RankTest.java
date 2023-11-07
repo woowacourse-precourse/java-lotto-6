@@ -1,8 +1,6 @@
 package lotto.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.stream.Stream;
 
@@ -23,7 +21,7 @@ class RankTest {
         Rank result = Rank.find(matchingCount, bonusNumberExistence);
 
         // then
-        assertEquals(expected, result);
+        assertThat(result).isEqualTo(expected);
     }
 
     static Stream<Arguments> provideDataForFind() {
@@ -49,7 +47,7 @@ class RankTest {
         boolean result = rank.isUnranked(rank);
 
         // then
-        assertTrue(result);
+        assertThat(result).isTrue();
     }
 
     @ParameterizedTest(name = "입력값 : {0}, 기대값 : {1}")
@@ -60,7 +58,7 @@ class RankTest {
         boolean result = rank.isUnranked(rank);
 
         // then
-        assertFalse(result);
+        assertThat(result).isFalse();
     }
 
     @ParameterizedTest(name = "입력값 : {0}")
@@ -71,7 +69,7 @@ class RankTest {
         boolean result = rank.isSecond(rank);
 
         // then
-        assertTrue(result);
+        assertThat(result).isTrue();
     }
 
     @ParameterizedTest(name = "입력값 : {0}")
@@ -82,7 +80,7 @@ class RankTest {
         boolean result = rank.isSecond(rank);
 
         // then
-        assertFalse(result);
+        assertThat(result).isFalse();
     }
 
 }

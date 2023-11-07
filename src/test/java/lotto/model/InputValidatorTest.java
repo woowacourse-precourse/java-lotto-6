@@ -43,7 +43,7 @@ public class InputValidatorTest {
     @Test
     void 보너스_번호가_일과_사십오사이의_수가_맞는지_테스트() {
         assertThrows(IllegalArgumentException.class, () -> {
-            InputValidator.validateBonusNumber("0");
+            InputValidator.validateBonusNumberInOneToFortyFive("0");
         });
     }
 }

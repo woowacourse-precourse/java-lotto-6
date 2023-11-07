@@ -21,7 +21,5 @@ public class Application {
         System.out.println();
         getLottoNumberPromptMessage();
         DongHangLottery lottoMatcher = new DongHangLottery();
-
-
     }
 }

@@ -7,7 +7,6 @@ import static lotto.views.MessageManager.getBonusNumberPromptMessage;
 import static lotto.views.MessageManager.getProgramClosePromoptMessage;
 
 public class DongHangLottery {
-    private String inputLottoNumber;
 
     public DongHangLottery() {
         winningNumberValidate();
@@ -16,7 +15,7 @@ public class DongHangLottery {
         bonusNumberValidate();
     }
     public void winningNumberValidate() {
-        inputLottoNumber = readLine();
+        String inputLottoNumber = readLine();
         try {
             validateContainsCommaSeparator(inputLottoNumber);
             validateDuplicateNumber(inputLottoNumber);
@@ -27,7 +26,13 @@ public class DongHangLottery {
     }
 
     public void bonusNumberValidate() {
-        inputLottoNumber = readLine();
+        String inputWinningNumber = readLine();
+
+        try {
+            validateBonusNumberInOneToFortyFive(inputWinningNumber);
+        } catch (IllegalArgumentException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
 

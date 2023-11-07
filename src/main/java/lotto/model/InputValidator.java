@@ -52,10 +52,10 @@ public class InputValidator {
             throw new IllegalArgumentException(getWinningNumberInOneToFortyFiveMessage());
         }
     }
-    public static void validateBonusNumber(String input) {
+    public static void validateBonusNumberInOneToFortyFive(String input) {
         String regex = "^[1-9]|[1-3][0-9]|4[0-5]$";
         if (!input.matches(regex)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(getBonusNumberInOneToFortyFiveMessage());
         }
     }
 

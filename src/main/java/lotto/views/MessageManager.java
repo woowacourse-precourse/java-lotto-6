@@ -36,10 +36,16 @@ public class MessageManager {
     public static String getCommaSeparatorMissingMessage() {
         return exceptionMessages.getString("commaSeparatorMissing.message");
     }
+
     public static String getDuplicateNumberMessage() {
         return exceptionMessages.getString("duplicateNumber.message");
     }
+
     public static String getWinningNumberInOneToFortyFiveMessage() {
         return exceptionMessages.getString("winningNumberInOneToFortyFive.message");
+    }
+
+    public static String getBonusNumberInOneToFortyFiveMessage() {
+        return exceptionMessages.getString("bonusNumberInOneToFortyFive.message");
     }
 }

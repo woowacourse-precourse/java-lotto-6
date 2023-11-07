@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import lotto.domain.Lotto;
+import lotto.exception.LottoCountException;
+import lotto.exception.LottoDuplicationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,15 +14,13 @@ class LottoTest {
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoCountException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(LottoDuplicationException.class);
     }
-
-    // 아래에 추가 테스트 작성 가능
 }

@@ -23,6 +23,7 @@ public class LottoRankTest {
 
         //then
         assertThat(result).isEqualTo(LottoRank.SECOND);
+        assertThat(result).isNotNull();
 
     }
 
@@ -57,9 +58,6 @@ public class LottoRankTest {
         assertThat(result).isEqualTo(LottoRank.FIRST);
 
     }
-
-
-
 
 
 }

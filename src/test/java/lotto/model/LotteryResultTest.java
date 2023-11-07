@@ -1,13 +1,9 @@
 package lotto.model;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import lotto.util.NumbersGenerator;
-import lotto.util.RandomNumbersGenerator;
 import lotto.util.TestFixNumbersGenerator;
 import lotto.util.TestRandomNumbersGenerator;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,15 +15,15 @@ class LotteryResultTest {
 
   @BeforeEach
   void setup() {
-    numbersGenerator = new TestRandomNumbersGenerator();
+    numbersGenerator = new TestFixNumbersGenerator();
   }
 
   @Test
   void test() {
-    int money = 3000;
+    int money = 4000;
     PurchaseMoney purchasedMoney = new PurchaseMoney(money);
     PersonLotto personLotto = new PersonLotto(numbersGenerator, purchasedMoney);
-    Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 24, 25, 26)));
+    Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
     WinningLotto winningLotto = new WinningLotto(lotto);
     LotteryMachine lotteryMachine = new LotteryMachine(personLotto, winningLotto);
 
@@ -37,6 +33,7 @@ class LotteryResultTest {
     Map<WinningMoney, Integer> store = lotteryMachine.drawingLotto(bonus);
 
     LotteryResult lotteryResult = new LotteryResult(store);
-    String profitPercentage = lotteryResult.getProfitPercentage(purchasedMoney);
+    //String profitPercentage = lotteryResult.getProfitPercentage(purchasedMoney);
+    //System.out.println(profitPercentage);
   }
 }

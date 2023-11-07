@@ -1,9 +1,11 @@
 package lotto.model;
 
-public class PurchaseMoney {
+import static lotto.util.Constants.DIVIDE_PRICE;
+import static lotto.util.Constants.MIN_PRICE;
 
-  private static final int MIN_PRICE = 1000;
-  private static final int DIVIDE_MONEY = 1000;
+import lotto.exception.ErrorType;
+
+public class PurchaseMoney {
 
   private int purchaseMoney;
 
@@ -13,7 +15,7 @@ public class PurchaseMoney {
   }
 
   public int getPurchaseAmount() {
-    return purchaseMoney / DIVIDE_MONEY;
+    return purchaseMoney / DIVIDE_PRICE;
   }
 
   public int getPurchaseMoney() {
@@ -27,18 +29,18 @@ public class PurchaseMoney {
 
   private void validateMinPrice(int purchaseMoney) {
     if (purchaseMoney < MIN_PRICE) {
-      throw new IllegalArgumentException("최소 구입 금액은 1,000원 이상입니다.");
+      throw new IllegalArgumentException(ErrorType.INVALID_MIN_PRICE.getMessage());
     }
   }
 
   private void validateAmount(int purchaseMoney) {
     if (isDivisible(purchaseMoney)) {
-      throw new IllegalArgumentException("구입 금액은 1,000원 단위입니다.");
+      throw new IllegalArgumentException(ErrorType.INVALID_DIVIDE_PRICE.getMessage());
     }
   }
 
   private boolean isDivisible(int purchaseMoney) {
-    return purchaseMoney % DIVIDE_MONEY != 0;
+    return purchaseMoney % DIVIDE_PRICE != 0;
   }
 
 }

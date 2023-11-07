@@ -4,8 +4,9 @@ import static lotto.util.Constants.MAX_NUMBER_RANGE;
 import static lotto.util.Constants.MIN_NUMBER_RANGE;
 
 import java.util.Objects;
+import lotto.exception.ErrorType;
 
-public class Number {
+public class Number implements Comparable<Number> {
 
   private int number;
 
@@ -16,7 +17,7 @@ public class Number {
 
   private void validateRangeNumber(int number) {
     if (isInRange(number)) {
-      throw new IllegalArgumentException();
+      throw new IllegalArgumentException(ErrorType.INVALID_IN_RANGE.getMessage());
     }
   }
 
@@ -26,6 +27,11 @@ public class Number {
 
   public int getNumber() {
     return number;
+  }
+
+  @Override
+  public int compareTo(Number o) {
+    return this.number - o.number;
   }
 
   @Override

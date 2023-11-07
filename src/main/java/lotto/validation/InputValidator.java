@@ -2,41 +2,32 @@ package lotto.validation;
 
 import java.util.Arrays;
 import java.util.regex.Pattern;
+import lotto.exception.ErrorType;
 
 public class InputValidator {
-
-  private static final String INPUT_BLANK_MESSAGE = "입력은 공백일 수 없습니다.";
-  private static final String INPUT_EMPTY_MESSAGE = "입력은 비어있을 수 없습니다.";
-  private static final String INPUT_NUMERIC_MESSAGE = "숫자만 입력할 수 있습니다.";
 
   private static final Pattern ONLY_NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
 
   public void validateInputEmpty(String input) {
     if (isEmpty(input)) {
-      throw new IllegalArgumentException(INPUT_EMPTY_MESSAGE);
+      throw new IllegalArgumentException(ErrorType.INPUT_NOT_EMPTY.getMessage());
     }
   }
 
   public void validateInputBlank(String input) {
     if (isBlank(input)) {
-      throw new IllegalArgumentException(INPUT_BLANK_MESSAGE);
+      throw new IllegalArgumentException(ErrorType.INPUT_NOT_BLANK.getMessage());
     }
   }
 
   public void validateInputNumeric(String input) {
     if (isMatchNumber(input)) {
-      throw new IllegalArgumentException(INPUT_NUMERIC_MESSAGE);
+      throw new NumberFormatException(ErrorType.INPUT_NOT_NUMERIC.getMessage());
     }
   }
 
-  public void validateNumbersNumeric(String[] inputNumbers) {
-    if (isMatchNumbers(inputNumbers)) {
-      throw new IllegalArgumentException(INPUT_NUMERIC_MESSAGE);
-    }
-  }
-
-  private boolean isMatchNumbers(String[] inputNumbers) {
-    return Arrays.stream(inputNumbers).allMatch(this::isMatchNumber);
+  public void validateMatchNumbers(String[] inputNumbers) {
+    Arrays.stream(inputNumbers).allMatch(this::isMatchNumber);
   }
 
   private boolean isEmpty(String input) {

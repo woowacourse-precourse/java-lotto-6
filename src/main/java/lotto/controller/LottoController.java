@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Bonus;
@@ -11,7 +12,7 @@ import lotto.model.PersonLotto;
 import lotto.model.PurchaseMoney;
 import lotto.model.WinningLotto;
 import lotto.model.WinningMoney;
-import lotto.util.RandomNumbersGenerator;
+import lotto.util.NumbersGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -19,39 +20,51 @@ public class LottoController {
 
   private final InputView inputView;
   private final OutputView outputView;
+  private final NumbersGenerator generate;
 
-  public LottoController(InputView inputView, OutputView outputView) {
+  public LottoController(InputView inputView, OutputView outputView,
+      NumbersGenerator numbersGenerator) {
     this.inputView = inputView;
     this.outputView = outputView;
+    this.generate = numbersGenerator;
   }
 
   public void start() {
-    PurchaseMoney purchaseMoney = initPurchaseMoney();
-    RandomNumbersGenerator generate = new RandomNumbersGenerator();
-    PersonLotto personLotto = new PersonLotto(generate, purchaseMoney);
-    outputView.outputPurchase(purchaseMoney, personLotto);
-
+    PurchaseMoney purchaseMoney = initPurchaseMoney(inputView.inputPurchaseMoneyOfLotto());
+    PersonLotto personLotto = initPersonLotto(generate, purchaseMoney);
     WinningLotto winningLotto = initWinningNumbers();
-
     Bonus bonus = initBonusNumber(winningLotto);
+    LotteryMachine lotteryMachine = initLotteryMachine(personLotto, winningLotto);
 
-    LotteryMachine lotteryMachine = new LotteryMachine(personLotto, winningLotto);
+    result(lotteryMachine, bonus, purchaseMoney);
+  }
+
+  private void result(LotteryMachine lotteryMachine, Bonus bonus, PurchaseMoney purchaseMoney) {
     Map<WinningMoney, Integer> result = lotteryMachine.drawingLotto(bonus);
-
     LotteryResult lotteryResult = new LotteryResult(result);
-    lotteryResult.getProfitPercentage(purchaseMoney);
     outputView.outputResult(lotteryResult, purchaseMoney);
   }
 
-  private PurchaseMoney initPurchaseMoney() {
+  private LotteryMachine initLotteryMachine(PersonLotto personLotto, WinningLotto winningLotto) {
+    LotteryMachine lotteryMachine = new LotteryMachine(personLotto, winningLotto);
+    return lotteryMachine;
+  }
+
+  private PersonLotto initPersonLotto(NumbersGenerator generate, PurchaseMoney purchaseMoney) {
+    PersonLotto personLotto = new PersonLotto(generate, purchaseMoney);
+    outputView.outputPurchase(purchaseMoney, personLotto);
+    return personLotto;
+  }
+
+  private PurchaseMoney initPurchaseMoney(int inputMoney) {
     PurchaseMoney readValue;
     while (true) {
       try {
-        int money = inputView.inputPurchaseMoneyOfLotto();
-        readValue = new PurchaseMoney(money);
+        readValue = new PurchaseMoney(inputMoney);
         break;
       } catch (Exception ex) {
         ex.printStackTrace();
+        Console.close();
       }
     }
     return readValue;
@@ -66,12 +79,14 @@ public class LottoController {
         break;
       } catch (Exception ex) {
         ex.printStackTrace();
+        Console.close();
       }
     }
     return readValue;
   }
 
   private Bonus initBonusNumber(WinningLotto winningLotto) {
+    System.out.println();
     Bonus readValue;
     while (true) {
       try {

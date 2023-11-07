@@ -12,13 +12,15 @@ public class InputView {
   private final InputValidator inputValidator;
   private final InputConverter inputConverter;
 
+  // private ConsoleReader consoleReader = ConsoleReader.getInstance();
+
   public InputView(InputValidator inputValidator, InputConverter inputConverter) {
     this.inputValidator = inputValidator;
     this.inputConverter = inputConverter;
   }
 
   private enum InputMessage {
-    PURCHASE_MONEY("구매금액을 입력해 주세요."),
+    PURCHASE_MONEY("구입금액을 입력해 주세요."),
     WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER("보너스 번호를 입력해 주세요.");
 
@@ -65,7 +67,7 @@ public class InputView {
   private void validateWinningNumbers(String input, String[] inputNumbers) {
     inputValidator.validateInputEmpty(input);
     inputValidator.validateInputBlank(input);
-    inputValidator.validateNumbersNumeric(inputNumbers);
+    inputValidator.validateMatchNumbers(inputNumbers);
   }
 
   private void validateBonusNumber(String input) {

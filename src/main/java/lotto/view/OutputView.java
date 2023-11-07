@@ -11,7 +11,7 @@ import lotto.util.SpecialSign;
 public class OutputView {
 
   private enum OutputMessage {
-    PURCHASE_MESSAGE("개를 구매했습니다."),
+    PURCHASE_MESSAGE("%d개를 구매했습니다."),
     WINNING_NUMBER("당첨 번호를 입력해 주세요."),
     STATISTICS_MESSAGE("당첨 통계"),
     DIVIDER_MESSAGE("---"),
@@ -43,8 +43,7 @@ public class OutputView {
   public void outputPurchase(PurchaseMoney purchaseMoney, PersonLotto personLotto) {
     StringBuilder sb = new StringBuilder();
     sb.append(SpecialSign.NEW_LINE.getSign())
-        .append(purchaseMoney.getPurchaseAmount())
-        .append(OutputMessage.PURCHASE_MESSAGE.message)
+        .append(String.format(OutputMessage.PURCHASE_MESSAGE.message, purchaseMoney.getPurchaseAmount()))
         .append(SpecialSign.NEW_LINE.getSign())
         .append(purchaseLottoResult(personLotto));
 
@@ -58,17 +57,12 @@ public class OutputView {
         .append(SpecialSign.NEW_LINE.getSign())
         .append(OutputMessage.DIVIDER_MESSAGE.message)
         .append(SpecialSign.NEW_LINE.getSign())
-        .append(winningLottoResult(lotteryResult.getStore()))
-        .append(SpecialSign.NEW_LINE.getSign())
-        .append(OutputMessage.PROFIT_PERCENTAGE_MESSAGE.message)
-        .append(lotteryResult.getProfitPercentage(purchaseMoney))
-        .append(SpecialSign.PERCENTAGE_MESSAGE.getSign())
-        .append(OutputMessage.END_MESSAGE.message);
+        .append(winningLottoResult(lotteryResult.getStore(), lotteryResult, purchaseMoney));
 
     System.out.print(sb);
   }
 
-  private String winningLottoResult(Map<WinningMoney, Integer> store) {
+  private String winningLottoResult(Map<WinningMoney, Integer> store, LotteryResult lotteryResult, PurchaseMoney purchaseMoney) {
     StringBuilder sb = new StringBuilder();
     return sb
         .append(OutputMessage.statisticsMessage(OutputMessage.THREE_MATCH_MESSAGE, store, WinningMoney.THREE_MATCH))
@@ -80,6 +74,11 @@ public class OutputView {
         .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_AND_BONUS_MATCH_MESSAGE, store, WinningMoney.FIVE_MATCH_BONUS))
         .append(SpecialSign.NEW_LINE.getSign())
         .append(OutputMessage.statisticsMessage(OutputMessage.SIX_MATCH_MESSAGE, store, WinningMoney.SIX_MATCH))
+        .append(SpecialSign.NEW_LINE.getSign())
+        .append(OutputMessage.PROFIT_PERCENTAGE_MESSAGE.message)
+        .append(lotteryResult.getProfitPercentage(purchaseMoney))
+        .append(SpecialSign.PERCENTAGE_MESSAGE.getSign())
+        .append(OutputMessage.END_MESSAGE.message)
         .toString();
   }
 

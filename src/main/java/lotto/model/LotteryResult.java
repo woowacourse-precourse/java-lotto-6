@@ -8,15 +8,14 @@ public class LotteryResult {
 
   private static final String DECIMAL_FORMAT = "#,##0.0";
 
-  private Map<WinningMoney, Integer> store;
+  private final Map<WinningMoney, Integer> store;
 
   public LotteryResult(Map<WinningMoney, Integer> store) {
     this.store = store;
   }
 
   public String getProfitPercentage(PurchaseMoney purchaseMoney) {
-    double profitPercentage = (double) calculateProfit() / purchaseMoney.getPurchaseMoney();
-
+    double profitPercentage = (double) calculateProfit() / purchaseMoney.getPurchaseMoney() * 100;
     return new DecimalFormat(DECIMAL_FORMAT).format(profitPercentage);
   }
 
@@ -37,7 +36,6 @@ public class LotteryResult {
     if (store.containsKey(winningMoney)) {
       return WinningMoney.calculateMoney(winningMoney, store.get(winningMoney));
     }
-
     return 0;
   }
 }

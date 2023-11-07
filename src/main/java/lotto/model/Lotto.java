@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.exception.ErrorType;
 
 public class Lotto {
 
@@ -15,7 +16,6 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
         this.numbers = toNumber(numbers);
     }
 
@@ -28,6 +28,7 @@ public class Lotto {
     private List<Number> toNumber(List<Integer> numbers) {
         return numbers.stream()
             .map(Number::new)
+            .sorted()
             .toList();
     }
 
@@ -38,32 +39,14 @@ public class Lotto {
 
     private void validateOverSize(List<Integer> numbers) {
         if (numbers.size() != CONFIG_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("로또는 숫자 6개로 구성됩니다.");
-            // String.format("%s에 맞게 입력해주세요", CONFIG_NUMBERS_SIZE)
+            throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_SIZE.getMessage());
         }
     }
 
     private void validateDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> checkDuplicate = new HashSet<>(numbers);
         if (checkDuplicate.size() != CONFIG_NUMBERS_SIZE) {
-            throw new IllegalArgumentException("중복된 수가 존재");
+            throw new IllegalArgumentException(ErrorType.DUPLICATED_LOTTO_NUMBER.getMessage());
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        Lotto lotto = (Lotto) o;
-        return Objects.equals(numbers, lotto.numbers);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(numbers);
     }
 }

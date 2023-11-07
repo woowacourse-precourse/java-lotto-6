@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.exception.ErrorType;
+
 public class Bonus {
 
   private Number bonusNumber;
@@ -15,7 +17,7 @@ public class Bonus {
 
   private void validateDuplicatedInWinningLotto(Number bonusNumber, WinningLotto winningLotto) {
     if (isDuplicate(bonusNumber, winningLotto)) {
-      throw new IllegalArgumentException("보너스 숫자가 중복됩니다.");
+      throw new IllegalArgumentException(ErrorType.DUPLICATED_BONUS_NUMBER.getMessage());
     }
   }
 

@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.model.LottoManager;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -34,7 +35,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액이 1000원으로 나누어떨어지지 않는 경우 예외 처리")
+    @DisplayName("구입 금액이 1000원으로 나누어떨어지지 않는 경우 예외 처리한다.")
     @Test
     void purchaseAmountNotDivisibleBy1000Exception() {
         int purchaseAmount = 7777;
@@ -42,7 +43,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("구입 금액에 따라 로또 티켓 수를 계산")
+    @DisplayName("구입 금액에 따라 로또 티켓 수를 계산한다.")
     @Test
     void calculateNumberOfLottoTicketsToBuy() {
         int purchaseAmount = 8000;
@@ -51,7 +52,7 @@ class LottoTest {
         assertEquals(expectedTicketCount, actualTicketCount);
     }
 
-    @DisplayName("로또 티켓 개수에 따라 정확한 티켓 목록 생성")
+    @DisplayName("로또 티켓 개수에 따라 정확한 티켓 목록 생성한다.")
     @Test
     void generateLottoTickets() {
         int numberOfTickets = 3;
@@ -59,7 +60,7 @@ class LottoTest {
         assertEquals(numberOfTickets, lottoTickets.size());
     }
 
-    @DisplayName("구입 금액에 따라 로또 티켓 목록 생성")
+    @DisplayName("구입 금액에 따라 로또 티켓 목록 생성한다.")
     @Test
     void buyLottoTickets() {
         int purchaseAmount = 5000;
@@ -68,7 +69,7 @@ class LottoTest {
         assertEquals(expectedTicketCount, lottoTickets.size());
     }
 
-    @DisplayName("로또 번호가 오름차순으로 출력")
+    @DisplayName("로또 번호를 오름차순으로 출력한다.")
     @Test
     void testGetAscendingSortedNumbers() {
         List<Integer> numbers = Arrays.asList(26, 42, 4, 12, 5, 31);
@@ -76,5 +77,34 @@ class LottoTest {
         List<Integer> sortedNumbers = lotto.getAscendingSortedNumbers();
         List<Integer> expectedSortedNumbers = Arrays.asList(4, 5, 12, 26, 31, 42);
         assertEquals(expectedSortedNumbers, sortedNumbers);
+    }
+
+    @DisplayName("당첨 번호 입력이 5개가 아니라면 예외가 발생한다.")
+    @Test
+    void validateWinningNumbersCount() {
+        assertThatThrownBy(() -> new LottoManager(List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호 입력이 1~45 범위가 아니라면 예외가 발생한다.")
+    @Test
+    void validateWinningNumbersInRange() {
+        assertThatThrownBy(() -> new LottoManager(List.of(51, 22, 31, 40, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있다면 예외가 발생한다.")
+    @Test
+    void validateWinningNumbersDuplicate() {
+        assertThatThrownBy(() -> new LottoManager(List.of(22, 22, 31, 40, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 당첨번호와 중복된 숫자가 있다면 예외가 발생한다.")
+    @Test
+    void validateWinningNumbersAndBonusNumberDuplicate() {
+        LottoManager lottoManager = new LottoManager(List.of(1, 2, 3, 4, 5));
+        assertThatThrownBy(() -> lottoManager.addBonusNumber(1))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -15,6 +15,7 @@ public class StringHandler {
 
     public static String joinBy(List<Integer> input, String splitter) {
         return input.stream()
+                .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(splitter));
     }

@@ -15,7 +15,6 @@ public enum ConstantStringManager {
     LIST_END_MARK("]\n"),
     LIST_SPLIT_MARK(", ");
 
-
     private final String message;
 
     ConstantStringManager(String message) {

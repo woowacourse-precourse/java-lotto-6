@@ -66,7 +66,7 @@ public class Validation {
         if (matchNumber == COINCIDE_SIX) {
             return 4;
         }
-        return -1;
+        return NOT_RANKED;
     }
 
     public double totalReturnCalculate(List<Integer> winningStaticsResult, int payment) {

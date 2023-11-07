@@ -25,7 +25,7 @@ public class InputView {
                 input = Console.readLine();
                 userInputException.winningNumberValidate(input);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 당첨 번호는 중복 없는 6자리 입니다.");
+                System.out.println("[ERROR] 로또 당첨 번호는 중복 없는 6자리여야 하며, 6개의 숫자여야 합니다.");
             }
         }
         return input;

@@ -14,26 +14,20 @@ public class UserInputException {
 
     public void winningNumberValidate(String winningNumber) {
         Transform transform = new Transform();
-        List<Integer> winningNumberList;
-        winningNumberList = transform.winningNumberToList(winningNumber);
-        duplicate(winningNumberList);
-        if(winningNumberList.size() != 6) {
+        List<Integer> winningNumberList = transform.winningNumberToList(winningNumber);
+        if (winningNumberList.size() != 6 || hasDuplicates(winningNumberList)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void duplicate(List<Integer> numbers) {
+    private boolean hasDuplicates(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>(numbers);
-        if (set.size() < numbers.size()) {
-            throw new IllegalArgumentException();
-        }
+        return set.size() < numbers.size();
     }
 
     public void bonusNumberValidate(int bonusNumber) {
-        if(bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException();
         }
     }
-
-
 }

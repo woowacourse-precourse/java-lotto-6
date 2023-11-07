@@ -30,9 +30,17 @@ public class LottoController {
 
         lottoService.publishLottos(Integer.parseInt(lottoPayAmount));
 
-        InputView.printJackpotNumberInputMessage();
-        String jackpotNumberInput = Console.readLine();
-        // TODO : 당첨번호 인풋 Validate
+        String jackpotNumberInput;
+        while (true) {
+            try {
+                InputView.printJackpotNumberInputMessage();
+                jackpotNumberInput = Console.readLine();
+                InputValidator.checkJackpotNumberInput(jackpotNumberInput);
+                break;
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
 
         List<Integer> jackpotNumbers = converteToList(jackpotNumberInput);
 

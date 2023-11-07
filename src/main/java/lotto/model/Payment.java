@@ -24,4 +24,8 @@ public class Payment {
     }
   }
 
+  public int ticketNumber(int payment){
+    int ticket = payment / 1000;
+    return ticket;
+  }
 }

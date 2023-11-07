@@ -1,12 +1,14 @@
 package lotto.util;
 
+import java.text.NumberFormat;
+
 public enum LottoRank {
+    NO_PRIZE(0,0L,0),
     FIRST_PRIZE(1,2_000_000_000L,6),
     SECOND_PRIZE(2,30_000_000L,5),
     THIRD_PRIZE(3,1_500_000L,5),
     FOURTH_PRIZE(4,50_000L,4),
-    FIFTH_PRIZE(5,5_000L,3),
-    NO_PRIZE(0,0L,0);
+    FIFTH_PRIZE(5,5_000L,3);
 
     private final int rank;
     private final Long winningAmount;
@@ -43,6 +45,9 @@ public enum LottoRank {
     }
     public Long getWinningAmount() {
         return winningAmount;
+    }
+    public String getWinningAmountFormat(){
+        return NumberFormat.getNumberInstance().format(winningAmount);
     }
 
     public int getMatchCount() {

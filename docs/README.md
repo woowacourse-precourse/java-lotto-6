@@ -75,7 +75,9 @@
 ## WinningLotto
 > ### 사용자가 정한 로또 당첨 번호
 > ### 로또번호 6개와 보너스번호로 구성
-> ### 보너스 숫자와 당첨 번호가 겹치는지 확인
+
+> ### 보너스 숫자와 당첨 번호가 겹치는지 확인하는 메서드
+> ### 로또 객체 삽입시 몇등인지 구하는 메서드
 
 ## LottoController
 > ### OutputView와 InputView와 InputValidator를 주입받아 생성

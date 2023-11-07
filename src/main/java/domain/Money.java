@@ -29,4 +29,8 @@ public class Money {
             throw new InvalidUnitOfMoneyException();
         }
     }
+
+    public int buyLottoTicket() {
+        return money / 1000;
+    }
 }

@@ -8,18 +8,22 @@ import static lotto.constant.LottoConstant.SECOND_THIRD_PLACE_MATCH_COUNT;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.constant.LottoConstant;
 import lotto.constant.NumberConstant;
 
 public class LottoMachine {
     private List<Lotto> lottos;
-    private final User user;
 
-    public LottoMachine(int money, User user){
+    public LottoMachine(int money){
         int count = getLottoCount(money);
         this.lottos = createLottos(count);
-        this.user = user;
+    }
+
+    public List<Lotto> getLottos(){
+        return lottos;
     }
 
     //로또 생성
@@ -38,35 +42,5 @@ public class LottoMachine {
 
     private List<Integer> makeRandomLotto(){
         return Randoms.pickUniqueNumbersInRange(NumberConstant.MIN_NUMBER, NumberConstant.MAX_NUMBER, NumberConstant.LOTTO_RANGE);
-    }
-
-    //로또 당첨금
-    private List<Integer> getRanks(List<Integer> userNumbers){
-        List<Integer> rank = Arrays.asList(0, 0, 0, 0, 0);
-
-        for (Lotto lotto : lottos){
-            List<Integer> numbers = lotto.getNumbers();
-            boolean bonus = user.isRightBonus(numbers);
-            int count = user.getRightCount(numbers);
-            int index = getRankIndex(count, bonus);
-            if (index != LottoConstant.NO_PRIZE_INDEX.getValue())
-                rank.set(index, rank.get(index) + 1);
-        }
-
-        return rank;
-    }
-
-    private int getRankIndex(int count, boolean flag){
-        if (count == FIRST_PLACE_MATCH_COUNT.getValue())
-            return 4;
-        if (count == SECOND_THIRD_PLACE_MATCH_COUNT.getValue()){
-            if (flag) return 3;
-            return 2;
-        }
-        if (count == FOURTH_PLACE_MATCH_COUNT.getValue())
-            return 1;
-        if (count == FIFTH_PLACE_MATCH_COUNT.getValue())
-            return 0;
-        return -1;
     }
 }

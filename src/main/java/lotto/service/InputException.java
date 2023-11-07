@@ -46,14 +46,14 @@ public class InputException {
     }
 
     private static void validMoneyPositive(int money){
-        if (money >= NumberConstant.DEFAULT_VALUE){
+        if (money <= NumberConstant.DEFAULT_VALUE){
             throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.POSITIVE_EXCEPTION.getMessage());
         }
     }
 
     private static void validMoneyDivide(int money){
         if (money % NumberConstant.LOTTO_PRICE != NumberConstant.DEFAULT_VALUE){
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.DIVIDE_EXCEPTION);
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.DIVIDE_EXCEPTION.getMessage());
         }
     }
 
@@ -106,7 +106,7 @@ public class InputException {
         try{
             return Integer.parseInt(input);
         } catch(NumberFormatException ex){
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_EXCEPTION);
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_EXCEPTION.getMessage());
         }
     }
 
@@ -120,7 +120,7 @@ public class InputException {
         Set<Integer> sNumbers = new HashSet<>(numbers);
         sNumbers.add(number);
         if(sNumbers.size() != numbers.size() + 1){
-            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_DUPLICATE_EXCEPTION);
+            throw new IllegalArgumentException(ERROR_MESSAGE + ExceptionConstant.NUMBER_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 }

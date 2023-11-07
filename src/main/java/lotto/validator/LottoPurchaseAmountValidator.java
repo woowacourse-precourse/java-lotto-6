@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import lotto.GameDetail;
 import lotto.exception.PurchaseAmountExceptionMessage;
 
 /**
@@ -31,7 +32,7 @@ public class LottoPurchaseAmountValidator implements AmountValidator {
      * 입력값이 1000원 단위인지 검증
      */
     private static boolean isMultipleOf1000(int purchaseAmount) {
-        return purchaseAmount % 1000 == 0;
+        return purchaseAmount % GameDetail.AMOUNT_UNIT == 0;
     }
 
     /**

@@ -14,6 +14,15 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 
     // TODO: 추가 기능 구현

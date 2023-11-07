@@ -9,6 +9,7 @@ import view.InputView;
 import view.OutputView;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -74,16 +75,18 @@ public class Controller {
         }
     }
 
-    public Map getLottoResult(List<Lotto> lottos, WinningNumber winningNumber){
-        HashMap<Rank,Integer> result = new HashMap<Rank,Integer>();
+    public void getLottoResult(List<Lotto> lottos, WinningNumber winningNumber){
+        LinkedHashMap<Rank,Integer> result = new LinkedHashMap<Rank,Integer>();
         for(Rank rank : Rank.values()){
             result.put(rank,0);
         }
+        System.out.println(result.entrySet());
         for(Lotto lotto : lottos){
             Rank rank = getTicketRank(lotto, winningNumber);
             result.put(rank,result.get(rank)+1);
         }
-        return result;
+        OutputView.printStatisticsResult(result);
+
     }
 
     public Rank getTicketRank(Lotto lotto , WinningNumber winningNumber){

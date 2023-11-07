@@ -1,6 +1,10 @@
 package view;
 
 import domain.Lotto;
+import domain.Rank;
+
+import java.util.Map;
+
 
 public class OutputView {
     public static void printPurchaseAmount(int lottoAmount){
@@ -9,8 +13,10 @@ public class OutputView {
     public static void printLotto(Lotto lotto) {
         System.out.println(lotto.getNumbers().toString());
     }
-    public static void printStatisticsResult(Lotto lotto) {
-        System.out.println("당첨 통계\n ---");
+    public static void printStatisticsResult(Map<Rank,Integer> result) {
+        System.out.println("당첨 통계\n---");
+        for (int i = 1; i < Rank.values().length; i++) {
+            System.out.println(Rank.values()[i].getMessage() + result.get(Rank.values()[i])+"개");
+        }
     }
-
 }

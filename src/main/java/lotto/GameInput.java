@@ -11,13 +11,12 @@ public class GameInput {
     public static Integer insertMoney(){
         String money = Console.readLine();
         try{
-            InputValidator.checkMoney(money);
+            return Converter.convertStringToMoney(money);
         }
         catch (IllegalArgumentException illegalArgumentException){
             System.out.println(illegalArgumentException.getMessage());
             return INPUT_FAIL;
         }
-        return Integer.valueOf(money);
     }
 
     public static Lotto insertWinnigNumbers(){

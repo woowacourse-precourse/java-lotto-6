@@ -23,4 +23,16 @@ public class Converter {
         }
         return winnigNumbers;
     }
+
+    public static Integer convertStringToMoney(String value){
+        Integer money = convertStringToPositiveInteger(value);
+        return money;
+    }
+
+    /* include 0 */
+    public static Integer convertStringToPositiveInteger(String value) throws IllegalArgumentException{
+        IntegerValidator.checkEmptyValue(value);
+        IntegerValidator.checkZeroOrPositiveInteger(value);
+        return Integer.valueOf(value);
+    }
 }

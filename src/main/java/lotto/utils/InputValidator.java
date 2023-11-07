@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.enums.ErrorMessage;
 
 public class InputValidator {
@@ -43,8 +45,19 @@ public class InputValidator {
         checkJackpotNumberSize(jackpotNumberInput);
         checkEndsWithComma(jackpotNumberInput);
         checkNumberOfRange(jackpotNumberInput);
-        // TODO : 중복된 숫자를 입력했을 경우
+        checkDuplicateNumberInJackpotNumbers(jackpotNumberInput);
+    }
 
+    private static void checkDuplicateNumberInJackpotNumbers(String jackpotNumberInput) {
+        List<Integer> setNumbers = new ArrayList<>();
+        String[] splitNumbers = jackpotNumberInput.split(",");
+        for (int i = 0; i < splitNumbers.length; i++) {
+            int nowNumber = Integer.parseInt(splitNumbers[i]);
+            if (setNumbers.contains(nowNumber)) {
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_ERROR.getErrorMessage());
+            }
+            setNumbers.add(nowNumber);
+        }
     }
 
     private static void checkNoInput(String jackpotNumberInput) {

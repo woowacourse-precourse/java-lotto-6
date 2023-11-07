@@ -9,7 +9,8 @@ public enum ErrorMessage {
     JACKPOT_NUMBER_SIZE_ERROR("[ERROR] 당첨번호는 6개를 입력해야합니다."),
     END_WITH_COMMA_ERROR("[ERROR] 입력이 쉼표(,)로 끝나면 안됩니다."),
     JACKPOT_NUMBER_OUT_OF_RANGE_ERROR("[ERROR] 당첨번호는 1~45의 숫자입니다."),
-    NO_INPUT_ERROR("[ERROR] 아무것도 입력하지 않으셨습니다.");
+    NO_INPUT_ERROR("[ERROR] 아무것도 입력하지 않으셨습니다."),
+    DUPLICATE_NUMBER_ERROR("[ERROR] 중복된 값이 존재합니다.");
 
     private final String errorMessage;
 

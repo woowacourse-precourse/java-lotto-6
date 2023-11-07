@@ -1,6 +1,7 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import lotto.common.config.LottoGameRule;
 import lotto.common.config.LottoWinningRule;
@@ -10,7 +11,7 @@ public class RankingManager {
     private final Lotto winningLotto;
     private final int bonusNumber;
 
-    private final Map<LottoWinningRule, Integer> winningDetails = new HashMap<>() {{
+    private final Map<LottoWinningRule, Integer> winningDetails = new LinkedHashMap<>() {{
         put(LottoWinningRule.RANK_FIVE, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
         put(LottoWinningRule.RANK_FOUR, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
         put(LottoWinningRule.RANK_THREE, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
@@ -27,7 +28,7 @@ public class RankingManager {
 
     public String calculateEarningsRate() {
         double lottoCost = lottoBucket.getLottoAmount() * LottoGameRule.LOTTO_COST_UNIT.getConstant();
-        return String.format("%.2f", (calculateTotalWinningSum() - lottoCost) / lottoCost
+        return String.format("%.1f", calculateTotalWinningSum() / lottoCost
                 * LottoGameRule.EARNINGS_RATE_PERCENTAGE.getConstant());
     }
 
@@ -37,7 +38,7 @@ public class RankingManager {
     }
 
     public Map<LottoWinningRule, Integer> getWinningDetails() {
-        return winningDetails;
+        return Collections.unmodifiableMap(winningDetails);
     }
 
     private void checkWinning() {

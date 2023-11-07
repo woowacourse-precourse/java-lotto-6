@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T17:44:09.118Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="QKbhfM7ftaZSOmDZZ1J-" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T17:55:21.552Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="tQyVs4EnCGPmJEOdCV9a" version="22.0.8" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2722" dy="1967" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1557" dy="1827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -73,6 +73,9 @@
           <mxGeometry x="520" y="280" width="140" height="60" as="geometry" />
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-33" target="KO2VrwFwqGaNlMHXGD8G-64">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-33" target="S85b0i-1O2o0kIJ1ZnP2-82">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="KO2VrwFwqGaNlMHXGD8G-33" value="Lottery&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Count&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Service" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
@@ -169,7 +172,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="KO2VrwFwqGaNlMHXGD8G-64" value="CashValidator" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="-360" y="-170" width="120" height="60" as="geometry" />
+          <mxGeometry x="-370" y="-80" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-69" target="KO2VrwFwqGaNlMHXGD8G-70">
           <mxGeometry relative="1" as="geometry" />
@@ -275,6 +278,51 @@
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-77" value="User" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="530" y="-165" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-80" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt; 금액에 대한 검증&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-370" y="-20" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-81" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;금액에 대해 매핑&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-370" y="-350" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-82" value="CashValidator" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-370" y="-300" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-84" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;티켓 가격에 따른 티켓 개수 계산&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-230" y="-340" width="260" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-85" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;티켓 개수 처리&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-230" y="-120" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-86" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;로또 번호 개수 정책&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="-40" y="-510" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-87" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;로또 번호 범위 정책&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="135" y="-510" width="170" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-88" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;로또 번호 생성자&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="324" y="-260" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-89" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;로또&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="190" y="-340" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-90" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;로또 발행 처리&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="59" y="-110" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-92" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;로또 구매 진행&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="100" y="90" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-93" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;JetBrains Mono&#39;,monospace;font-size:10.5pt;&quot;&gt;{&lt;span style=&quot;font-family:&#39;Courier New&#39;,monospace;&quot;&gt;구매한 여러개의 로또들&lt;/span&gt;},{&lt;span style=&quot;font-family:&#39;Courier New&#39;,monospace;&quot;&gt;구매액&lt;/span&gt;}&lt;span style=&quot;font-family:&#39;Courier New&#39;,monospace;&quot;&gt;을 가지고 있는 사용자&lt;/span&gt;&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="450" y="-220" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-94" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt; 로또 게임 진행&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="354" y="-140" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-95" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;입력뷰&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="390" y="-20" width="80" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-96" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;출력뷰&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="394" y="140" width="80" height="70" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -21,4 +21,8 @@ public class Lotto {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE_MESSAGE);
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

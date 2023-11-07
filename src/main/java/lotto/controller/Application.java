@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domin.PlayerLottoAmount;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -9,7 +10,7 @@ public class Application {
         PlayerLottoAmount playerLottoAmount = null;
         playerLottoAmount = getPlayerLottoAmount(playerLottoAmount);
         int count = playerLottoAmount.calculateLottoCount();
-
+        OutputView.printTicketCount(count);
 
 
     }

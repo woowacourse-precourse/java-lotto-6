@@ -31,3 +31,4 @@
 
 ---
 - [X] 정적 클래스는 객체로 생성되어선 안된다. ShouldNotCreatedClassException 
+ 

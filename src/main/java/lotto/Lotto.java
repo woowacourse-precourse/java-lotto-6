@@ -22,12 +22,30 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateSizeFrom(numbers);
+        validateDuplicateFrom(numbers);
+    }
+
+    private void validateSizeFrom(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_LENGTH.message);
+        }
+    }
+
+    private void validateDuplicateFrom(List<Integer> numbers) {
+        if (numbers.stream()
+                .distinct()
+                .findAny()
+                .isPresent()) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_DUPLICATE_NUMBER.message);
         }
     }
 
     private void sort() {
         Collections.sort(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

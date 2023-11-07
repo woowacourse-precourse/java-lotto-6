@@ -1,10 +1,14 @@
 package lotto.service;
 
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.utils.LottoConstants.LOTTO_SIZE;
+import static lotto.utils.LottoConstants.NUMBER_MAX_SIZE;
+import static lotto.utils.LottoConstants.NUMBER_MIN_SIZE;
+
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Payment;
-import lotto.domain.RandomNumbers;
 
 public class LottoMachine {
     private int lottoTicketNumber;
@@ -22,9 +26,13 @@ public class LottoMachine {
 
     public void generateLotto() {
         for (int i = 0; i < lottoTicketNumber; i++) {
-            Lotto lotto = new Lotto(RandomNumbers.generateRandomNumbers());
+            Lotto lotto = new Lotto(generateRandomNumbers());
             lottos.add(lotto);
         }
+    }
+
+    public static List<Integer> generateRandomNumbers() {
+        return pickUniqueNumbersInRange(NUMBER_MIN_SIZE.getValue(),NUMBER_MAX_SIZE.getValue(),LOTTO_SIZE.getValue());
     }
 
     public List<Lotto> getLottos() {

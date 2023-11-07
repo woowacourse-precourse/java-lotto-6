@@ -10,9 +10,10 @@ import static lotto.enums.ExceptionMessage.INPUT_DUPLICATE_DIGIT_EXCEPTION;
 import static lotto.enums.ExceptionMessage.INPUT_WRONG_RANGE_EXCEPTION;
 import static lotto.enums.ExceptionMessage.NOT_DIVIDING_BY_LOTTO_PRICE_EXCEPTION;
 import static lotto.enums.ExceptionMessage.NOT_SIX_DIGITS_SEPARATED_BY_COMMAS_EXCEPTION;
+import static lotto.enums.ExceptionMessage.PURCHASE_AMOUNT_IS_ZERO_EXCEPTION;
 import static lotto.enums.ExceptionMessage.WINNING_NUMBERS_CONTAIN_BONUS_NUMBER;
-import static lotto.enums.Regex.NON_DIGIT_REGEX;
 import static lotto.enums.Regex.INPUT_WINNING_NUMBERS_REGEX;
+import static lotto.enums.Regex.NON_DIGIT_REGEX;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -32,18 +33,6 @@ public class LottoGameService {
         initLottoRakingMap();
     }
 
-    private static boolean isBonusNumberWrongRange(String bonusNumber) {
-        return Integer.parseInt(bonusNumber) < 1 || Integer.parseInt(bonusNumber) > 45;
-    }
-
-    private static boolean isBonusNumberNonDigit(String bonusNumber) {
-        return Pattern.compile(NON_DIGIT_REGEX.getRegex()).matcher(bonusNumber).matches();
-    }
-
-    private static boolean isWinningNumbersContainBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
-        return winningNumbers.contains(Integer.parseInt(bonusNumber));
-    }
-
     private void initLottoRakingMap() {
         for (LottoRank rank : LottoRank.values()) {
             lottoRakingMap.put(rank, INITIAL_COUNT.getNumber());
@@ -59,6 +48,9 @@ public class LottoGameService {
         if (isStringContainNonDigit(lottoPurchaseAmount)) {
             throw new IllegalArgumentException(CONTAIN_NON_DIGIT_EXCEPTION.getMessage());
         }
+        if (isInputZero(lottoPurchaseAmount)) {
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_IS_ZERO_EXCEPTION.getMessage());
+        }
         if (isMultipleOfLottoPrice(lottoPurchaseAmount)) {
             throw new IllegalArgumentException(NOT_DIVIDING_BY_LOTTO_PRICE_EXCEPTION.getMessage());
         }
@@ -66,6 +58,10 @@ public class LottoGameService {
 
     private boolean isStringContainNonDigit(String lottoPurchaseAmount) {
         return Pattern.compile(NON_DIGIT_REGEX.getRegex()).matcher(lottoPurchaseAmount).find();
+    }
+
+    private boolean isInputZero(String lottoPurchaseAmount) {
+        return Integer.parseInt(lottoPurchaseAmount) == ZERO_VALUE.getNumber();
     }
 
     private boolean isMultipleOfLottoPrice(String lottoPurchaseAmount) {
@@ -127,6 +123,18 @@ public class LottoGameService {
         if (isWinningNumbersContainBonusNumber(bonusNumber, winningNumbers)) {
             throw new IllegalArgumentException(WINNING_NUMBERS_CONTAIN_BONUS_NUMBER.getMessage());
         }
+    }
+
+    private boolean isBonusNumberWrongRange(String bonusNumber) {
+        return Integer.parseInt(bonusNumber) < 1 || Integer.parseInt(bonusNumber) > 45;
+    }
+
+    private boolean isBonusNumberNonDigit(String bonusNumber) {
+        return Pattern.compile(NON_DIGIT_REGEX.getRegex()).matcher(bonusNumber).matches();
+    }
+
+    private boolean isWinningNumbersContainBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+        return winningNumbers.contains(Integer.parseInt(bonusNumber));
     }
 
     public long getCollectNumberCount(List<Integer> purchasedLotto, List<Integer> winningLotto) {

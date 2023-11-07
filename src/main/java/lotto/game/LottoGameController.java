@@ -21,6 +21,18 @@ public class LottoGameController {
         this.writer = writer;
     }
 
+    private WinningNumber inputWinningNumber() {
+        display(WINNING_NUMBER_INPUT_MESSAGE);
+        while (true) {
+            try {
+                String input = reader.read();
+                return WinningNumber.newInstance(input);
+            } catch (IllegalArgumentException e) {
+                writer.write(e.getMessage());
+            }
+        }
+
+    }
 
     private AmountToBuyLotto inputMoney() {
         display(AMOUNT_TO_BUY_LOTTO_INPUT_MESSAGE);

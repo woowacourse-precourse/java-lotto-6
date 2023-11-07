@@ -46,7 +46,7 @@
 | 검증   | V-02(Validation) | 당첨 번호 입력 검증 | 1. 입력한 번호가 6개가 아니라면 IllegalArgumentException 을 발생시키고 [ERROR]로 시작하는 에러 메시지를 출력 후 입력을 다시 받는다. <br> 2. 입력한 번호가 중복되면 IllegalArgumentException을 발생시키고 [ERROR]로 시작하는 에러 메시지를 출력 후 입력을 다시 받는다. <br> 3. 입력한 번호가 1~45사이의 정수가 아니라면 IllegalArgumentException을 발생시키고 [ERROR]로 시작하는 에러 메시지를 출력 후 입력을 다시 받는다. |
 | 검증   | V-03(Validation) | 보너스 번호 검증   | 1. 입력한 번호가 당첨 번호와 중복되면 IllegalArgumentException을 발생시키고 [ERROR]로 시작하는 에러 메시지를 출력 후 입력을 다시 받는다. <br> 2. 입력한 번호가 1~45 사이의 정수가 아니라면 IllegalArgumentException을 발생시키고 [ERROR]로 시작하는 에러 메시지를 출력 후 입력을 다시 받는다.                                                                                          |
 | 진행   | P-01(Process)    | 로또 발행       | 로또기계가 중복되지 않는 6개의 번호를 반환한다.                                                                                                                                                                                                                                                                     |
-| 진행   | P-02(Process)    | 결과 조회       | 로또기계가 사용자에게 입력 받은 당첨 번호와 발행된 로또들을 비교하여 일치 여부에 따른 당첨금을 반환한다.                                                                                                                                                                                                                                     |
+| 진행   | P-02(Process)    | 결과 조회       | 로또기계가 사용자에게 입력 받은 당첨 번호와 발행된 로또들을 비교(1)하여 일치 여부에 따른 당첨금을 반환(2)한다.                                                                                                                                                                                                                               |
 | 진행   | P-03(Process)    | 당첨금 수령      | 사용자가 로또 기계에게 로또 결과에 따른 당첨금을 수령한다.                                                                                                                                                                                                                                                               |
 | 출력   | O-01(Output)     | 발행 로또 출력    | 발행한 로또 수량 및 번호를 출력한다. 로또 번호는 오름차순으로 출력한다. <br> ”x개를 구매했습니다. <br> [1, 2, 3, 4, 5, 6]”                                                                                                                                                                                                            |
 | 출력   | O-02(Output)     | 당첨 내역 출력    | 당첨 내역을 출력한다. <br> ”당첨 통계 <br> --- <br> 3개 일치 (5,000원) - a개 <br> 4개 일치 (50,000원) - b개 <br> 5개 일치 (1,500,000원) - c개 <br> 5개 일치, 보너스 볼 일치 (30,000,000원) - d개 <br> 6개 일치 (2,000,000,000원) - e개”                                                                                                     |
@@ -77,8 +77,8 @@ classDiagram
 	GameView *-- OutputView
 	GameView *-- InputView
 	Application *-- GameManager
-	Lotto -- ComparisionScore
-	ComparisionScore -- Prize
+	Lotto -- ComparisonScore
+    ComparisonScore -- Prize
 	class Application{
 		+main()$
 	}
@@ -108,7 +108,7 @@ classDiagram
 		-numbers: List<int>
 		Lotto(numbers: List)
 		-validate(numbers: List)
-		+getComparisionScore(lottery: Lotto)
+		+getComparisonScore(lottery: Lotto) int
 		+toString()
 	}
 	class Prize{
@@ -171,7 +171,7 @@ sequenceDiagram
 	participant GameManager
 	participant GameView
 	사용자 -->> +GameManager : 로또 구매
-	GameManager->>+GameView: puchaseAmountView()
+	GameManager->>+GameView: purchaseAmountView()
 	GameView->>OutputView: printGetPurchaseAmount()
 	GameView->>+InputView: readPurchaseAmount()
 	InputView->>InputView: validation()
@@ -226,8 +226,10 @@ sequenceDiagram
 	GameManager ->> +User : collectPrize(machine: Machine)
 	loop All lotteries
 		User ->> +Machine : payPrize(lottery: Lotto)
-		Machine ->> +Lotto : getComparisionScore(lottery: Lotto)
-		Lotto -->> -Machine : comparisionScore
+		Machine ->> +Lotto : getComparisonScore(lottery: Lotto)
+		Lotto -->> -Machine : comparisonScore
+		Machine ->> +Prize : valueOf(comparisonScore)
+		Prize -->> -Machine : prize
 		Machine -->> -User : prize
 	end
 	User -->> -GameManager : 

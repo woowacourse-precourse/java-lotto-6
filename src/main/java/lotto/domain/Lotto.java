@@ -2,10 +2,10 @@ package lotto.domain;
 
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 import lotto.view.ErrorMessage;
 
 public class Lotto {
@@ -16,8 +16,9 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto() {
-        this.numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_SIZE);
-        Collections.sort(this.numbers);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, LOTTO_SIZE);
+        lottoNumbers = sorted(lottoNumbers);
+        this.numbers = lottoNumbers;
         System.out.println(numbers);
     }
 
@@ -26,6 +27,12 @@ public class Lotto {
         validateNumberRange(numbers);
         validateDuplicateNumber(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     private void validate(List<Integer> numbers) {

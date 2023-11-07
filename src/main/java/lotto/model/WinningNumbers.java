@@ -12,6 +12,18 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
+    public static WinningNumbers makeWinningNumbers(Lotto winningNumbers, BonusNumber bonusNumber) {
+        return new WinningNumbers(winningNumbers, bonusNumber);
+    }
+
+    public Lotto getWinningNumbers() {
+        return this.winningNumbers;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return this.bonusNumber;
+    }
+
     private void isNotDuplicate(Lotto winningNumbers, BonusNumber bonusNumber) {
         for (Integer lottoNumber : winningNumbers.getLottoNumbers()) {
             if (bonusNumber.getBonusNumber() == lottoNumber) {
@@ -20,5 +32,4 @@ public class WinningNumbers {
             }
         }
     }
-
 }

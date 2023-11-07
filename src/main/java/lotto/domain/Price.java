@@ -7,6 +7,8 @@ public class Price {
     private int price;
 
     public Price(int purchaseAmount){
+        validateZERO(purchaseAmount);
+        validatePriceUnit(purchaseAmount);
         this.price = purchaseAmount;
     }
 

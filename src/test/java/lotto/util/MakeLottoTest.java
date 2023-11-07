@@ -1,5 +1,6 @@
 package lotto.util;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,11 +22,11 @@ class MakeLottoTest {
     @DisplayName("수 받아서 그 만큼 로또리스트를 만드는지 확인")
     void makeLotto(){
         //given
-        int purchaseAmount = 3000;
+        int lottoCount = 6;
         //when
-        List<Integer> list = makeLotto.makeLottoList(purchaseAmount);
+        List<Lotto> list = new MakeLotto().makeLottoList(lottoCount);
         //then
-        assertEquals(list.size(),3);
+        assertEquals(list.size(),6);
     }
 
 }

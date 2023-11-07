@@ -1,5 +1,7 @@
 package lotto.validation;
 
+import java.util.List;
+
 public class LottoValidation {
     private static final int STANDARD_UNIT = 1000;
     private static final int START_NUMBER = 1;
@@ -32,6 +34,18 @@ public class LottoValidation {
     public static void validateInRange(int input) {
         if (input < START_NUMBER || input > END_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45사이의 숫자여야 합니다.");
+        }
+    }
+
+    public static void validateIsSize(int size) {
+        if (size != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 개수는 6개여야 합니다.");
+        }
+    }
+
+    public static void validateIsDuplicated(List<Integer> num) {
+        if (num.stream().count() != num.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복을 허용하지 않습니다.");
         }
     }
 }

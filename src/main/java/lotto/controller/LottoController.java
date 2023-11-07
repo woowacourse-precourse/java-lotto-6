@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Player;
 import lotto.validation.LottoValidation;
@@ -32,14 +33,9 @@ public class LottoController {
     }
 
     private void progressLotto() {
-        try {
-            List<Integer> winningNumber = getWinningNumber();
-            int bonusNumber = getBonusNumber();
-            lottos = new Lottos(winningNumber, bonusNumber, player);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e);
-            progressLotto();
-        }
+        List<Integer> winningNumber = getWinningNumber();
+        int bonusNumber = getBonusNumber();
+        lottos = new Lottos(winningNumber, bonusNumber, player);
     }
 
     private int getAmount() {
@@ -55,9 +51,17 @@ public class LottoController {
     }
 
     private List<Integer> getWinningNumber() {
-        InputView.inputWinningNumber();
-        String input = Console.readLine();
-        return convertStringToIntList(input);
+        try {
+            InputView.inputWinningNumber();
+            String input = Console.readLine();
+            List<Integer> number =  convertStringToIntList(input);
+            validateWinningNumber(number);
+            return number;
+        }
+        catch (IllegalArgumentException e) {
+            System.out.println(e);
+            return getWinningNumber();
+        }
     }
 
     private int getBonusNumber() {
@@ -71,6 +75,14 @@ public class LottoController {
         } catch (IllegalArgumentException e) {
             System.out.println(e);
             return getBonusNumber();
+        }
+    }
+
+    private void validateWinningNumber(List<Integer> winningNumber) {
+        LottoValidation.validateIsSize(winningNumber.size());
+        LottoValidation.validateIsDuplicated(winningNumber);
+        for (Integer num : winningNumber) {
+            LottoValidation.validateInRange(num);
         }
     }
 

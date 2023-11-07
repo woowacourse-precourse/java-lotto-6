@@ -2,6 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,11 +37,24 @@ class PrizeTest {
         );
     }
 
+    @DisplayName("수익률 계산")
     @Test
     void earningRateCalculator() {
+        //given
+        List<Long> matchWinningNumber = new ArrayList<>();
+        List<Long> matchBonusNumber = new ArrayList<>();
+        int purchase = 1000;
+
+        //when
+        matchWinningNumber.add(5L);
+        matchBonusNumber.add(1L);
+
+        //then
+        assertThat(Prize.earningRateCalculator(matchWinningNumber, matchBonusNumber, purchase)).isEqualTo("3000000.0");
     }
 
     @Test
     void countPrizeHistory() {
+
     }
 }

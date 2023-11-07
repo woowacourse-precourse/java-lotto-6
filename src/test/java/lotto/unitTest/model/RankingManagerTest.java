@@ -12,7 +12,7 @@ import lotto.common.config.UserRule;
 import lotto.model.Lotto;
 import lotto.model.LottoBucket;
 import lotto.model.LottoCreator;
-import lotto.model.LottoRanking;
+import lotto.model.RankingManager;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.MockedStatic;
 
-class LottoRankingTest {
+class RankingManagerTest {
     private static MockedStatic<LottoCreator> lottoCreator;
 
     @BeforeAll
@@ -33,8 +33,8 @@ class LottoRankingTest {
         lottoCreator.close();
     }
 
-    private static LottoRanking createLottoRanking(LottoBucket lottoBucket, Lotto winningLotto) {
-        return new LottoRanking(lottoBucket, winningLotto, 1);
+    private static RankingManager createLottoRanking(LottoBucket lottoBucket, Lotto winningLotto) {
+        return new RankingManager(lottoBucket, winningLotto, 1);
     }
 
     @Test
@@ -42,11 +42,11 @@ class LottoRankingTest {
         //given
         Lotto publishedLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         when(LottoCreator.createRandomLotto()).thenReturn(publishedLotto);
-        LottoRanking lottoRanking = createLottoRanking(new LottoBucket(1),
+        RankingManager rankingManager = createLottoRanking(new LottoBucket(1),
                 new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12)));
 
         //when
-        Map<LottoWinningRule, Integer> winningDetails = lottoRanking.getWinningDetails();
+        Map<LottoWinningRule, Integer> winningDetails = rankingManager.getWinningDetails();
 
         //then
         assertThat(winningDetails.values().stream().mapToInt(Integer::intValue).sum()).isEqualTo(0);
@@ -57,11 +57,11 @@ class LottoRankingTest {
         //given
         Lotto publishedLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         when(LottoCreator.createRandomLotto()).thenReturn(publishedLotto);
-        LottoRanking lottoRanking = createLottoRanking(new LottoBucket(1),
+        RankingManager rankingManager = createLottoRanking(new LottoBucket(1),
                 new Lotto(Arrays.asList(2, 3, 4, 5, 6, 12)));
 
         //when
-        Map<LottoWinningRule, Integer> winningDetails = lottoRanking.getWinningDetails();
+        Map<LottoWinningRule, Integer> winningDetails = rankingManager.getWinningDetails();
 
         //then
         assertThat(winningDetails.values().stream().mapToInt(Integer::intValue).sum()).isEqualTo(1);
@@ -82,10 +82,10 @@ class LottoRankingTest {
         List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()))
                 .map(Integer::parseInt)
                 .toList();
-        LottoRanking lottoRanking = new LottoRanking(new LottoBucket(1), new Lotto(numbers), bonusNumber);
+        RankingManager rankingManager = new RankingManager(new LottoBucket(1), new Lotto(numbers), bonusNumber);
 
         //when
-        Map<LottoWinningRule, Integer> winningDetails = lottoRanking.getWinningDetails();
+        Map<LottoWinningRule, Integer> winningDetails = rankingManager.getWinningDetails();
 
         //then
         assertThat(winningDetails.get(rank)).isEqualTo(1);
@@ -104,10 +104,10 @@ class LottoRankingTest {
         List<Integer> numbers = Arrays.stream(inputWinningNumbers.split(UserRule.WINING_NUMBERS_SEPARATOR.getValue()))
                 .map(Integer::parseInt)
                 .toList();
-        LottoRanking lottoRanking = new LottoRanking(new LottoBucket(1), new Lotto(numbers), bonusNumber);
+        RankingManager rankingManager = new RankingManager(new LottoBucket(1), new Lotto(numbers), bonusNumber);
 
         //when
-        String calculatedEarningsRate = lottoRanking.calculateEarningsRate();
+        String calculatedEarningsRate = rankingManager.calculateEarningsRate();
 
         //then
         assertThat(calculatedEarningsRate).isEqualTo(earningsRate);

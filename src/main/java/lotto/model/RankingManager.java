@@ -5,7 +5,7 @@ import java.util.Map;
 import lotto.common.config.LottoGameRule;
 import lotto.common.config.LottoWinningRule;
 
-public class LottoRanking {
+public class RankingManager {
     private final LottoBucket lottoBucket;
     private final Lotto winningLotto;
     private final int bonusNumber;
@@ -18,7 +18,7 @@ public class LottoRanking {
         put(LottoWinningRule.RANK_ONE, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
     }};
 
-    public LottoRanking(LottoBucket lottoBucket, Lotto winningLotto, int bonusNumber) {
+    public RankingManager(LottoBucket lottoBucket, Lotto winningLotto, int bonusNumber) {
         this.bonusNumber = bonusNumber;
         this.winningLotto = winningLotto;
         this.lottoBucket = lottoBucket;

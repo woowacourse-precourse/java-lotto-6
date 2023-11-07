@@ -1,15 +1,16 @@
 package lotto.view;
 
-import lotto.model.Lotto;
-import lotto.model.WinningResult;
-import lotto.model.LottoNumberGenerator;
-import lotto.model.LottoGame;
-
+import lotto.model.*;
 import java.util.*;
-import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoView {
+    private final InputValidator inputValidator;
+
+    public LottoView(InputValidator inputValidator) {
+        this.inputValidator = inputValidator;
+    }
+
     public void startNewGame() {
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> purchasedLottos = generatePurchasedLottos(purchaseAmount);
@@ -25,13 +26,19 @@ public class LottoView {
 
     public int getPurchaseAmount() {
         System.out.println("구입 금액을 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
+                return Integer.parseInt(Console.readLine());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력하세요.");
+            }
+        }
     }
 
     public List<Lotto> generatePurchasedLottos(int count) {
         List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            List<Integer> lottoNumbers = LottoNumberGenerator.generateRandomLottoNumbers();
+            List<Integer> lottoNumbers = inputValidator.getValidLottoNumbers();
             purchasedLottos.add(new Lotto(lottoNumbers));
         }
         return purchasedLottos;
@@ -39,22 +46,19 @@ public class LottoView {
 
     public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        return inputValidator.getValidLottoNumbers();
     }
 
     public int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        return inputValidator.getValidBonusNumber();
     }
 
     public void printNumberOfPurchasedTickets(int count, List<Lotto> purchasedLottos) {
         System.out.printf("%d개를 구매했습니다.%n", count);
         if (count > 0) {
             for (Lotto lotto : purchasedLottos) {
-                List<Integer> lottoNumbers = lotto.getNumbers(); // Lotto 클래스에서 삭제한 부분 수정
+                List<Integer> lottoNumbers = lotto.getNumbers();
                 System.out.println(lottoNumbers);
             }
         }

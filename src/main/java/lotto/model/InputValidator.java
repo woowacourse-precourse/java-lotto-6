@@ -9,10 +9,23 @@ public class InputValidator {
     public static List<Integer> getValidLottoNumbers() {
         while (true) {
             try {
-                System.out.println("로또 번호 6개를 입력하세요 (1부터 45까지의 숫자):");
                 List<Integer> lottoNumbers = parseInput(Console.readLine());
                 validateLottoNumbers(lottoNumbers);
                 return lottoNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    public static int getValidBonusNumber() {
+        while (true) {
+            try {
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                if (bonusNumber < 1 || bonusNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -31,17 +44,12 @@ public class InputValidator {
         if (lottoNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if (!isWithinRange(lottoNumbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-    }
 
-    private static boolean isWithinRange(List<Integer> lottoNumbers) {
         for (int number : lottoNumbers) {
             if (number < 1 || number > 45) {
-                return false;
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
-        return true;
     }
 }
+

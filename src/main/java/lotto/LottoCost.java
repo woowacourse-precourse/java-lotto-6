@@ -15,7 +15,7 @@ public class LottoCost {
         return cost;
     }
 
-    public int getTicket() {
+    public int getNumberOfLotto() {
         return ticket;
     }
 

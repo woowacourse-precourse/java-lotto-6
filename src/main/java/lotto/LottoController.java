@@ -10,7 +10,7 @@ public class LottoController {
 
     public void run() {
         LottoCost lottoCost = createLottoCost();
-        int lottoTicket = lottoCost.getTicket();
+        int lottoTicket = lottoCost.getNumberOfLotto();
         output.printNumberOfPurchase(lottoTicket);
 
         LottoGenerate lottoGenerate = new LottoGenerate(lottoTicket);
@@ -225,8 +225,8 @@ public class LottoController {
                                                                Lotto lotto, LottoBonus lottoBonus) {
         HashMap<Integer, List<Integer>> countSameNumbers = new HashMap<>();
         HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
-        int winningNumberMatchCount;
-        int bonusNumberMatchCount;
+        int winningNumberMatchCount; //countWinningInLotto
+        int bonusNumberMatchCount; //countBonusInLotto
 
         for (int key : lottoGenerate.getRandomLottoNumbers().keySet()) {
             List<Integer> randomLottoNumber = randomLottoNumbers.get(key);
@@ -240,7 +240,7 @@ public class LottoController {
     }
 
     private int compareWinningAndLottoNumber(List<Integer> randomLottoNumber, List<Integer> winningNumber) {
-        int matchCount = 0;
+        int matchCount = 0; //countSameNumber
 
         for (int number : randomLottoNumber) {
             if (winningNumber.contains(number)) {
@@ -252,7 +252,7 @@ public class LottoController {
     }
 
     private int compareBonusAndLottoNumber(List<Integer> randomLottoNumber, int bonusNumber) {
-        int matchCount = 0;
+        int matchCount = 0; //countSameNumber
 
         for (int number : randomLottoNumber) {
             if (number == bonusNumber) {

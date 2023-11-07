@@ -52,4 +52,7 @@ public class LottoService {
 		validator.containNumber(userNumbers, inputBonusNumber);
 		return Integer.parseInt(inputBonusNumber);
 	}
+
+	public List<Integer> getWinningResult(List<Lotto> computerLottos, List<Integer> userNumbers, int bonusNumber) {
+	}
 }

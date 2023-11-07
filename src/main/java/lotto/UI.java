@@ -10,6 +10,7 @@ public class UI {
 	List<Lotto> computerLottos;
 	List<Integer> userNumbers;
 	int bonusNumber;
+	long profit;
 
 	void on() {
 		inputMoney();
@@ -17,7 +18,9 @@ public class UI {
 		showComputerLottos(numberOfLottoTickets);
 		inputNumbers();
 		inputBonusNumber(userNumbers);
+		showWinningStatistics(computerLottos,userNumbers,bonusNumber);
 	}
+
 
 	private void inputMoney() {
 		try {
@@ -63,5 +66,15 @@ public class UI {
 			System.out.println(e.getMessage());
 			inputBonusNumber(userNumbers);
 		}
+	}
+
+	private void showWinningStatistics(
+			List<Lotto> computerLottos,
+			List<Integer> userNumbers,
+			int bonusNumber) {
+		System.out.println("당첨 통계");
+		System.out.println("---");
+		List<Integer> winningResult =
+				lottoService.getWinningResult(computerLottos,userNumbers,bonusNumber);
 	}
 }

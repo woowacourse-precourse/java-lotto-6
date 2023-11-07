@@ -19,7 +19,7 @@ public class Application {
 
         Set<Integer> winningNumbers = getWinningNumbers();
 
-        BonusNumber.bonusInput(winningNumbers);
+        int bonusNum = BonusNumber.bonusInput(winningNumbers);
 
     }
 }

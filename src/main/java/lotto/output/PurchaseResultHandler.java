@@ -1,10 +1,13 @@
 package lotto.output;
 
-import lotto.input.PurchaseInputHandler;
+import lotto.input.PurchaseHandler;
+
+import static lotto.output.Constants.LottoConstants.LOTTO_COUNT_MESSAGE;
+import static lotto.output.Constants.PurchaseHandlerConstants.AMOUNT_INPUT;
 
 public class PurchaseResultHandler {
     public static int purchaseRequest() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(AMOUNT_INPUT);
         int amount = getValidAmount();
         System.out.println();
         return numberOfLotto(amount);
@@ -15,7 +18,7 @@ public class PurchaseResultHandler {
         int amount = 0;
         while (true) {
             try {
-                amount = PurchaseInputHandler.getAmount();
+                amount = PurchaseHandler.getAmount();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -26,7 +29,7 @@ public class PurchaseResultHandler {
 
     private static int numberOfLotto(int amount) {
         int lotto = amount / 1000;
-        System.out.println(lotto + "개를 구매했습니다.");
+        System.out.println(lotto + LOTTO_COUNT_MESSAGE);
         return lotto;
     }
 }

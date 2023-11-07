@@ -5,10 +5,12 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.Set;
 
-public class WinningNumbers extends NumberInput {
-    private static final String LENGTH_ERROR_MESSAGE = "[ERROR] 6개의 서로 다른 숫자를 입력하세요.";
+import static lotto.output.Constants.WinningNumbersConstants.SIX_LENGTH_ERROR_MESSAGE;
+import static lotto.output.Constants.WinningNumbersConstants.SIX_NUMBERS_INPUT_MESSAGE;
+
+public class WinningNumbers extends NumbersValidator {
     public static Set<Integer> getWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(SIX_NUMBERS_INPUT_MESSAGE);
         while (true) {
             try {
                 return inputNumbers();
@@ -29,7 +31,8 @@ public class WinningNumbers extends NumberInput {
 
     protected static void validateInput(String[] inputNumbers, Set<Integer> winningNumbers) {
         if (inputNumbers.length != 6) {
-            throw new IllegalArgumentException(LENGTH_ERROR_MESSAGE);
+            System.out.println();
+            throw new IllegalArgumentException(SIX_LENGTH_ERROR_MESSAGE);
         }
         storeNumbers(inputNumbers, winningNumbers);
     }

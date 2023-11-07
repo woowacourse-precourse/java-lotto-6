@@ -2,7 +2,10 @@ package lotto.input;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class PurchaseInputHandler {
+import static lotto.output.Constants.PurchaseHandlerConstants.MINIMUM_AMOUNT_ERROR_MESSAGE;
+import static lotto.output.Constants.PurchaseHandlerConstants.THOUSAND_FORMAT_ERROR_MESSAGE;
+
+public class PurchaseHandler {
     public static int getAmount() {
         while (true) {
             try {
@@ -21,7 +24,7 @@ public class PurchaseInputHandler {
             String amountInput = input.replace(",", "");
             return Integer.parseInt(amountInput);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 형식이 아닙니다. 1000원 단위로 다시 입력해주세요.");
+            throw new IllegalArgumentException(THOUSAND_FORMAT_ERROR_MESSAGE);
         }
 
     }
@@ -29,10 +32,10 @@ public class PurchaseInputHandler {
 
     private static void validateAmount(int amount) {
         if (amount < 1000) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 이상이어야 합니다.");
+            throw new IllegalArgumentException(MINIMUM_AMOUNT_ERROR_MESSAGE);
         }
         if (amount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 올바른 형식이 아닙니다. 1000원 단위로 다시 입력해주세요.");
+            throw new IllegalArgumentException(THOUSAND_FORMAT_ERROR_MESSAGE);
         }
     }
 

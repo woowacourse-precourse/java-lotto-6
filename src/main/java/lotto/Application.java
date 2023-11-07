@@ -6,15 +6,15 @@ import java.util.Map;
 public class Application {
     public static void main(String[] args) {
         User user = new User();
+        LottoMaker lottoMaker = new LottoMaker();
         MatchingMachine machine = new MatchingMachine();
         Calculator calculator = new Calculator();
         int volume = user.getMoney();
-        List<Lotto> allLotto = user.getLottoAsMuchAsVolume(volume);
-        user.getAllLottoAsConsole(allLotto);
+        List<Lotto> allLotto = lottoMaker.getLottoAsMuchAsVolume(volume);
+        lottoMaker.getAllLottoAsConsole(allLotto);
         Lotto winningLotto = user.getWinningLotto();
         int bonusNum = user.getBonusNumber(winningLotto);
         List<MatchingCount> matchingCounts = machine.countAllLottoMatchingNumbers(allLotto,winningLotto,bonusNum);
-        machine.getLottoResultAsMap(matchingCounts);
         machine.getResultAsConsole(matchingCounts);
         int sumPrize = calculator.getProfitMoney(matchingCounts);
         double profitPercentage = calculator.getProfitPercentage(sumPrize, volume);

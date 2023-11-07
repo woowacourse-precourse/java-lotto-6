@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Game {
 
@@ -14,28 +16,38 @@ public class Game {
         Display.showIssuedLottos(issuedLottos);
         Lotto winningNumbers = Display.readWinningNumbers();
         int bonusNumber = Display.readBonusNumber();
-        List<Rank> resultRanks = assignEachRank(winningNumbers, bonusNumber, issuedLottos);
+        Map<Rank, Integer> resultRanks = assignEachRank(winningNumbers, bonusNumber, issuedLottos);
+        Display.showRanks(resultRanks);
+//        Display.showStatistics(getRevenueRate(price, resultRanks));
     }
 
-    private List<Rank> assignEachRank(Lotto winningNumbers, int bonusNumber, List<Lotto> issuedLottos) {
-        List<Rank> results = new ArrayList<>();
+    private double getRevenueRate(int price, List<Rank> resultRanks) {
+        int totalRevenue = 0;
+        for(Rank rank : resultRanks) {
+            totalRevenue += rank.price;
+        }
+        return Math.round((double) totalRevenue / price * 100) / 100.0;
+    }
+
+    private Map<Rank, Integer> assignEachRank(Lotto winningNumbers, int bonusNumber, List<Lotto> issuedLottos) {
+        Map<Rank, Integer> results = new HashMap<>();
         for(Lotto lotto : issuedLottos) {
             int matchCnt = winningNumbers.matchLotto(lotto);
             if(matchCnt == 6) {
-                results.add(Rank.first);
+                results.put(Rank.first, results.getOrDefault(Rank.first, 0) + 1);
             }
             if(matchCnt == 5 && lotto.getNumbers().contains(bonusNumber)) {
-                results.add(Rank.second);
+                results.put(Rank.second, results.getOrDefault(Rank.second, 0) + 1);
                 continue;
             }
             if(matchCnt == 5) {
-                results.add(Rank.third);
+                results.put(Rank.third, results.getOrDefault(Rank.third, 0) + 1);
             }
             if(matchCnt == 4) {
-                results.add(Rank.fourth);
+                results.put(Rank.fourth, results.getOrDefault(Rank.fourth, 0) + 1);
             }
             if(matchCnt == 3) {
-                results.add(Rank.fifth);
+                results.put(Rank.fifth, results.getOrDefault(Rank.fifth, 0) + 1);
             }
         }
         return results;

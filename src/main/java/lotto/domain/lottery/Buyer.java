@@ -16,7 +16,6 @@ public class Buyer {
 
     // Constructor
     private Buyer(final int payment) {
-
         validateMinimumPayment(payment);
         validateMaximumPayment(payment);
         validateUnitPrice(payment);

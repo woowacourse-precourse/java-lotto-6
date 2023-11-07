@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static lotto.domain.lottery.constants.LottoConstraint.LOTTO_PICK_COUNT;
-import static lotto.exception.ErrorMessage.NUMBER_COUNT_INVALID;
+import static lotto.exception.ErrorMessage.*;
 
 public class Lotto extends NumberChecker {
     private final List<Integer> numbers;
@@ -38,15 +38,33 @@ public class Lotto extends NumberChecker {
     }
 
     // Exception Handling Method
+    private void validateNumbersRange(final List<Integer> numbers) {
+        if (areOutOfRange(numbers)) {
+            throw LottoException.from(NUMBER_OUT_OF_RANGE);
+        }
+    }
+
     private void validateNumberCount(final List<Integer> numbers) {
         if (isInvalidPickCount(numbers)) {
             throw LottoException.from(NUMBER_COUNT_INVALID);
         }
     }
 
+    private void validateDuplicatedList(final List<Integer> numbers) {
+        if (isDuplicated(numbers)) {
+            throw LottoException.from(NUMBER_DUPLICATED);
+        }
+    }
+
     // Validation Method
     private boolean isInvalidPickCount(final List<Integer> numbers) {
         return !Objects.equals(numbers.size(), LOTTO_PICK_COUNT.getValue());
+    }
+
+    private boolean isDuplicated(final List<Integer> numbers) {
+        final int uniqueNumberCount = (int) numbers.stream().distinct().count();
+
+        return !Objects.equals(numbers.size(), uniqueNumberCount);
     }
 
     // Getter

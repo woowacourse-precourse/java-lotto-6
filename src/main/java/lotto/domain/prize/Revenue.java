@@ -1,7 +1,7 @@
 package lotto.domain.prize;
 
 import lotto.domain.lottery.Buyer;
-import lotto.domain.lottery.LottoService;
+import lotto.service.LottoService;
 
 import java.math.BigDecimal;
 

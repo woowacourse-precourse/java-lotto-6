@@ -1,6 +1,7 @@
-package lotto.domain.lottery;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.lottery.Lotto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

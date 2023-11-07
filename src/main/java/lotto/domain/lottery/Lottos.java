@@ -2,6 +2,7 @@ package lotto.domain.lottery;
 
 import lotto.domain.prize.MatchingResult;
 import lotto.domain.prize.Prize;
+import lotto.service.LottoService;
 
 import java.util.List;
 import java.util.function.Function;

@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.lottery.Lotto;
-import lotto.domain.lottery.Parser;
 import lotto.domain.prize.Prize;
 import lotto.exception.LottoException;
+import lotto.service.Parser;
 import lotto.view.input.InputReader;
 import lotto.view.output.OutputWriter;
 

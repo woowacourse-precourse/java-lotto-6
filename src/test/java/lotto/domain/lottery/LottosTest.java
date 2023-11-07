@@ -39,9 +39,10 @@ class LottosTest {
         @DisplayName("[Success] 정상적인 인자로 결과 리스트 생성 성공")
         void Should_Success_When_Valid() {
             // given
-            Buyer buyer = VALID.toEntity();
+            final int lottoCount = 1;
+
             Prize prize = NumberFixture.VALID.toPrizeEntity();
-            Lottos generatedLottos = Lottos.from(buyer);
+            Lottos generatedLottos = Lottos.from(lottoCount);
             // when && then
             List<MatchingResult> matchingResults = generatedLottos.generateMatchingResultList(prize);
 

@@ -16,15 +16,15 @@ public class LottoBonus {
         try {
             return Integer.parseInt(number);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NOT_INTEGER.getMessage());
+            throw new IllegalArgumentException(LottoExceptionType.NOT_INTEGER.getMessage());
         }
     }
 
     private void validate(final Lotto winningLotto, final int number) {
         if (!isInRange(number)) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(LottoExceptionType.OUT_OF_RANGE.getMessage());
         } else if (winningLotto.contains(number)) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_LOTTO_CONTAINS_BONUS.getMessage());
+            throw new IllegalArgumentException(LottoExceptionType.INCLUDED_IN_WINNING_LOTTO.getMessage());
         }
     }
 

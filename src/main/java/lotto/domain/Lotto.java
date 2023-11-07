@@ -17,11 +17,11 @@ public class Lotto {
 
     private void validate(final List<Integer> numbers) {
         if (!isSixNumbers(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_WRONG_SIZE.getMessage());
+            throw new IllegalArgumentException(LottoExceptionType.WRONG_SIZE.getMessage());
         } else if (!isInRange(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_OUT_OF_RANGE.getMessage());
+            throw new IllegalArgumentException(LottoExceptionType.OUT_OF_RANGE.getMessage());
         } else if (hasDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATE_NUMBERS.getMessage());
+            throw new IllegalArgumentException(LottoExceptionType.DUPLICATE_NUMBERS.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class Lotto {
             try {
                 numbersConverted.add(Integer.parseInt(number.strip()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ExceptionMessage.LOTTO_NOT_INTEGER.getMessage());
+                throw new IllegalArgumentException(LottoExceptionType.WRONG_SIZE.getMessage());
             }
         }
         return numbersConverted;

@@ -11,7 +11,7 @@ public enum Rank {
     FIRST(6, 2_000_000_000, "6개 일치 (%d원) - %d개");
 
     private final int match;
-    private final int prize;
+    private final long prize;
     private final String message;
 
     Rank(int match, int prize, String message) {
@@ -37,7 +37,7 @@ public enum Rank {
                 .orElse(LOSE);
     }
 
-    public int getPrize() {
+    public long getPrize() {
         return prize;
     }
 

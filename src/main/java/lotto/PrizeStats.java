@@ -35,6 +35,6 @@ public class PrizeStats {
     }
 
     private void addFrequency(PrizeGrade prizeGrade) {
-        gradeDist.put(prizeGrade, Integer.valueOf(gradeDist.get(prizeGrade) + 1));
+        gradeDist.put(prizeGrade, gradeDist.get(prizeGrade) + 1);
     }
 }

@@ -1,11 +1,13 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.lotto.BonusNumber;
+import lotto.util.LottoConstants;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,5 +25,19 @@ class BonusNumberTest {
         boolean actualValue = bonusNumber.isContains(numbers);
 
         assertEquals(expected, actualValue);
+    }
+
+    @DisplayName("로또 번호의 숫자 범위를 벗어난 값일 때 예외처리 테스트")
+    @Test
+    void validateBonusNumberRangeThrowExceptionTest() {
+        assertThatThrownBy(() -> new BonusNumber(46))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 숫자 범위를 벗어난 값일 때 예외처리 테스트")
+    @Test
+    void validateBonusNumberRangeDoesNotThrowExceptionTest() {
+        Assertions.assertThatCode(() -> new BonusNumber(5))
+                .doesNotThrowAnyException();
     }
 }

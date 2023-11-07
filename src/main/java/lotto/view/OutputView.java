@@ -1,20 +1,12 @@
 package lotto.view;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import lotto.domain.Lotto;
 import lotto.domain.Price;
 import lotto.domain.Rank;
 
 public class OutputView {
-    public static void printLotteryNumber(List<Lotto> lottery) {
-        String lottoNumberInfo = lottery
-                .stream()
-                .map(Lotto::lottoNumbers)
-                .map(String::valueOf)
-                .collect(Collectors.joining("\n"));
-        System.out.println(lottoNumberInfo+"\n");
+    public static void printLotteryNumber(String lottoNumbers) {
+        System.out.println(lottoNumbers+"\n");
     }
 
     public static void printLotteryResult(Map<Rank, Integer> resultCount) {

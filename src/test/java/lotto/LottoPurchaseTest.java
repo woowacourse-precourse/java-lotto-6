@@ -25,4 +25,12 @@ public class LottoPurchaseTest {
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> LottoPurchase.validateMinimunPrice(price));
     }
+
+    @DisplayName("입력한 구입 금액이 1000원으로 나누어지는지 검증한다.")
+    @Test
+    void validateDivideBy1000() {
+        int price = 7777;
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> LottoPurchase.validateDivideLottoPrice(price));
+    }
 }

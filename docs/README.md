@@ -15,8 +15,8 @@ Error 메시지, 등수별 상금
 - [x] 당첨 번호를 입력, 쉼표를 기준으로 구분한다.
 - [x] 당첨 번호를 검증 - 예외처리 IllegalArgumentException
 
-- [ ] 보너스 번호 입력
-- [ ] 보너스 번호 검증 - 예외처리 IllegalArgumentException 
+- [x] 보너스 번호 입력
+- [x] 보너스 번호 검증 - 예외처리 IllegalArgumentException 
 
 ### 메인
 - [ ] 입력 클래스로 호출해서 값을 받아옴

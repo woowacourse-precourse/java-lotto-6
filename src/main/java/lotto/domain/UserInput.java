@@ -23,16 +23,19 @@ public class UserInput {
     }
 
     public List<Integer> getUserWinningNumbers(UserInputChecker checker, String inputWinningNumbers) { // 당첨번호
-        String[] winnigNumbers = inputWinningNumbers.split(",");
         List<Integer> checkedNumbers = new ArrayList<>();
-        checkedNumbers =  checker.checkWinningNumbers(winnigNumbers);
+        String[] winnigNumbers = inputWinningNumbers.split(",");
+        checkedNumbers = checker.checkWinningNumbers(winnigNumbers);
         if (checkedNumbers == null)
             return null;
 
         return checkedNumbers;
     }
 
-    public int getUserBonusNumber() { // 보너스번호
+    public int getUserBonusNumber(UserInputChecker checker, String inputBonusNumber) { // 보너스번호
+        checker.checkBonusNumber(inputBonusNumber);
+
+
         return 0;
     }
 

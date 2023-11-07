@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.Lotto;
+
 import java.util.*;
 
 public class UserInputChecker {
@@ -33,19 +35,13 @@ public class UserInputChecker {
     }
 
     public List<Integer> checkWinningNumbers(String[] input) { // 당첨번호 입력값 확인 메서드
-        String[] checkResult = checkTypeWinningNumbers(input); // 숫자인지 확인
-        if (checkResult == null)
-            return null;
         List<Integer> winningNumbers = new ArrayList<>();
-        for (String checkNumber : checkResult) {
-            int checkedNumber = checkNumberInRange(Integer.parseInt(checkNumber)); // 숫자 범위 확인
-            if (checkedNumber == 0)
-                return null;
-            winningNumbers.add(checkedNumber);
-        }
-        if (hasDuplicateWinningNumbers(winningNumbers)) // 중복 숫자 확인
+        String[] checkedNumber = checkTypeWinningNumbers(input); // 숫자인지 확인
+        if (checkedNumber == null)
             return null;
-
+        for (String number : checkedNumber) {
+            winningNumbers.add(Integer.parseInt(number)); // List<Integer>로 변환
+        }
         return winningNumbers;
     }
 
@@ -61,28 +57,17 @@ public class UserInputChecker {
         return input;
     }
 
-    public boolean hasDuplicateWinningNumbers(List<Integer> winningNumbers) { // 당첨 번호 중복 확인
-        Set<Integer> set = new HashSet<>(winningNumbers);
-        try {
-            if (set.size() != winningNumbers.size())
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        }
-        return false;
-    }
-
-    public int checkNumberInRange(int number) { // 입력된 번호가 1~45 사이의 숫자인지 확인
-        try {
-            if (number < 1 || number > 45)
-                throw new IllegalArgumentException("[ERROR] 1~45사이의 값이 아닙니다.");
+    public int checkBonusNumber(String inputbonusNumber) { // 보너스 번호 확인
+        int bonusNumber;
+        try { // 숫자인지 확인
+            checkInt(inputbonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return 0;
         }
+        bonusNumber = Integer.parseInt(inputbonusNumber);
 
-        return number;
+        return bonusNumber;
     }
 
     public void checkInt(String input) { // 입력값이 숫자인지 확인

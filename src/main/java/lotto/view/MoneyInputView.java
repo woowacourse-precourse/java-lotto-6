@@ -6,9 +6,10 @@ import java.util.regex.Pattern;
 import lotto.exception.NotNaturalMoneyException;
 import lotto.exception.WrongMoneyInputFormatException;
 import lotto.exception.WrongMoneyUnitException;
+import lotto.validator.InputValidator;
 
 
-public class MoneyInputView {
+public class MoneyInputView extends InputValidator {
     private static final String match = "^[1-9](\\d*)0{3}$";
 
     public static String input() {
@@ -16,7 +17,7 @@ public class MoneyInputView {
         String money = Console.readLine();
 
         try {
-            validateMoney(money);
+            validate(money, match, new WrongMoneyInputFormatException());
 
         } catch(WrongMoneyInputFormatException e) {
             ErrorMessageView.print(e.getMessage());
@@ -26,13 +27,4 @@ public class MoneyInputView {
         return  money;
     }
 
-    private static void validateMoney(String moneyInput) {
-        Pattern matcher = Pattern.compile(match);
-        Matcher matcher1 = matcher.matcher(moneyInput);
-        if (!matcher1.find()) {
-            throw new WrongMoneyInputFormatException();
-        }
-
-
-    }
 }

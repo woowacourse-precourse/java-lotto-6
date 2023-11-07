@@ -8,8 +8,9 @@ import java.util.regex.Pattern;
 import lotto.exception.WrongBonusNumberInputFormatException;
 import lotto.exception.WrongLottoInputFormatException;
 import lotto.exception.WrongMoneyInputFormatException;
+import lotto.validator.InputValidator;
 
-public class WinningLottoInputView {
+public class WinningLottoInputView extends InputValidator {
 
 
 
@@ -21,7 +22,7 @@ public class WinningLottoInputView {
         String winningLottoInput = Console.readLine();
 
         try {
-            validateWinningLottoInput(winningLottoInput);
+            validate(winningLottoInput,WINNIG_LOTTO_NUMBERS_REGEX, new WrongLottoInputFormatException());
         }
         catch (WrongLottoInputFormatException e) {
             ErrorMessageView.print(e.getMessage());
@@ -39,7 +40,7 @@ public class WinningLottoInputView {
         String bonusNumberInput = Console.readLine();
 
         try {
-            validateWinningLottoInput(bonusNumberInput);
+            validate(bonusNumberInput,BONUS_NUMBER_REGEX, new WrongBonusNumberInputFormatException());
         }
         catch (WrongLottoInputFormatException e) {
             ErrorMessageView.print(e.getMessage());
@@ -49,22 +50,5 @@ public class WinningLottoInputView {
         return bonusNumberInput;
     }
 
-    private static void validateWinningLottoInput(String winningLottoInput) {
-        Pattern pattern = Pattern.compile(WINNIG_LOTTO_NUMBERS_REGEX);
-        Matcher matcher = pattern.matcher(winningLottoInput);
-
-        if (!matcher.find()) {
-            throw new WrongLottoInputFormatException();
-        }
-    }
-
-    private static void validateBonusNumberInput(String bonusNumberInput) {
-        Pattern pattern = Pattern.compile(BONUS_NUMBER_REGEX);
-        Matcher matcher = pattern.matcher(bonusNumberInput);
-
-        if (!matcher.find()) {
-            throw new WrongBonusNumberInputFormatException();
-        }
-    }
 
 }

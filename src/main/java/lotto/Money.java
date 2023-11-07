@@ -11,6 +11,14 @@ public class Money {
 		this.money = validateAndParse(input);
 	}
 
+	public int calculateAffordableLottoCount(){
+		return money / LottoInfo.getPRICE();
+	}
+
+	public int getMoney(){
+		return money;
+	}
+
 	private int validateAndParse(String input) {
 		int pay = parseInputToInteger(input);
 
@@ -47,13 +55,5 @@ public class Money {
 
 	private boolean isLessThan1000(int value) {
 		return value < 1000;
-	}
-
-	public int calculateAffordableLottoCount(){
-		return money / LottoInfo.getPRICE();
-	}
-
-	public int getMoney(){
-		return money;
 	}
 }

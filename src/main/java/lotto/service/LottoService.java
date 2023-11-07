@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.exception.LottoValidationException;
@@ -15,8 +16,8 @@ public class LottoService {
     }
 
     public Lotto generateSingleLotto() {
-        // TODO: 하나의 로또 생성 로직 구현
         List<Integer> numbers = numberGenerator.generateUniqueNumbers();
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 

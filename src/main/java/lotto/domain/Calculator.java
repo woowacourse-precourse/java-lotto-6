@@ -39,13 +39,14 @@ public class Calculator {
                 .count();
     }
 
-    public float calculateReturnOfRate(Map<Ranking, Integer> result, int ticketQuantity) {
+    public float calculateReturnOfRate(Map<Ranking, Integer> result, PurchaseAmount purchaseAmount) {
+        int amount = purchaseAmount.getAmount();
         int totalRevenue = 0;
         for (Map.Entry<Ranking, Integer> entry : result.entrySet()) {
             int eachRankRevenue = entry.getKey().getReward() * entry.getValue();
             totalRevenue += eachRankRevenue;
         }
-        return (float) totalRevenue / (ticketQuantity * LOTTO_TICKET_PRICE) * 100;
+        return (float) totalRevenue / amount * 100;
     }
 
 }

@@ -16,7 +16,7 @@ public class InputController {
         this.inputValidator = new InputValidator();
     }
 
-    public PurchaseAmount settingTicketQuantity() {
+    public PurchaseAmount settingPurchaseAmount() {
         PurchaseAmount purchaseAmount = null;
         while (purchaseAmount == null) {
             purchaseAmount = tryGetPurchaseAmount();

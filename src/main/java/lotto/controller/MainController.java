@@ -60,8 +60,7 @@ public class MainController {
     }
 
     public float getReturnOfRate(Map<Ranking, Integer> resultBoard, PurchaseAmount purchaseAmount) {
-        int ticketQuantity = purchaseAmount.getTicketQuantity();
-        float returnOfRate = calculator.calculateReturnOfRate(resultBoard, ticketQuantity);
+        float returnOfRate = calculator.calculateReturnOfRate(resultBoard, purchaseAmount);
         return returnOfRate;
     }
 

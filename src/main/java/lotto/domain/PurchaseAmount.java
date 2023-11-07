@@ -33,6 +33,10 @@ public class PurchaseAmount {
         }
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public int getTicketQuantity() {
         return amount / LOTTO_TICKET_PRICE;
     }

@@ -65,7 +65,9 @@ class CalculatorTest {
         board.put(Ranking.Second, 0);
         board.put(Ranking.First, 0);
 
-        float returnOfRate = calculator.calculateReturnOfRate(board, 16);
+
+        PurchaseAmount purchaseAmount = new PurchaseAmount(16000);
+        float returnOfRate = calculator.calculateReturnOfRate(board, purchaseAmount);
         int totalReward = Ranking.Fifth.getReward() * 3 + Ranking.Fourth.getReward() * 2 + Ranking.Third.getReward();
         float answer = (float) totalReward / (16 * LOTTO_TICKET_PRICE) * 100;
 

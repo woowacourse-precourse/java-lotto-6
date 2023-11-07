@@ -23,7 +23,7 @@ public class LottoGame {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = inputController.settingTicketQuantity();
+        PurchaseAmount purchaseAmount = inputController.settingPurchaseAmount();
         outputController.orderPrintTicketQuantity(purchaseAmount);
 
         ArrayList<Lotto> consumerLottos = mainController.settingConsumerLottos(purchaseAmount);

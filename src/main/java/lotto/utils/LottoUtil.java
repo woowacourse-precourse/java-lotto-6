@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoUtil {
     final String NUM_REG = "[0-9]+";
@@ -25,6 +26,10 @@ public class LottoUtil {
 
     public boolean validateNumberCheck(String number) {
         String deleteCommaNumber = number.replaceAll(",", "").replaceAll(" ", "");
-        return deleteCommaNumber.matches(NUM_REG);
+        if(deleteCommaNumber.matches(NUM_REG)) {
+            return true;
+        }
+        System.out.println();
+        return false;
     }
 }

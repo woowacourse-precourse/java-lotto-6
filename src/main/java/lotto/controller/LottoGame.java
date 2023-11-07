@@ -9,11 +9,12 @@ public class LottoGame {
     LottoView lottoView = new LottoView();
     LottoUtil lottoUtil = new LottoUtil();
     Money money;
+    Lotto lotto;
 
     public void start() {
         printMessageAndInputMoney();
         List<List<Integer>> lottos = getRandamLottos();
-//        printMessageAndInputWinningNumber();
+        printMessageAndInputWinningNumber();
     }
 
     public void printMessageAndInputMoney() {
@@ -28,10 +29,14 @@ public class LottoGame {
         return lottos;
     }
 
-    public String printMessageAndInputWinningNumber() {
+    public void printMessageAndInputWinningNumber() {
         lottoView.printWinningNumberMessage();
-        String winningNumber = lottoUtil.getUserInput();
-        return winningNumber;
+        boolean numberCheck = false;
+        String winningNumber;
+        while (!numberCheck) {
+            winningNumber = lottoUtil.getUserInput();
+            numberCheck = lottoUtil.validateNumberCheck(winningNumber);
+        }
     }
 
 }

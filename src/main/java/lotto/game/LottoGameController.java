@@ -21,7 +21,19 @@ public class LottoGameController {
         this.writer = writer;
     }
 
-
+    public void play() {
+        AmountToBuyLotto amountToBuyLotto = inputMoney();
+        LottoGame lottoGame = new LottoGame(new LottoNumberGeneratorImpl());
+        lottoGame.saleLotto(amountToBuyLotto);
+        display(lottoGame.getIssuedLottosMessage());
+        WinningNumber winningNumber = inputWinningNumber();
+        LottoNumber bonusNumber = inputBonusNumber(winningNumber);
+        WinningStatistic winningStatistic = lottoGame.createWinningStatistic(winningNumber,
+            bonusNumber);
+        YieldRate yieldRate = lottoGame.calculateYieldRate(amountToBuyLotto, winningStatistic);
+        display(winningStatistic.getStatisticMessage());
+        display(yieldRate.getRateMessage());
+    }
 
 
     private LottoNumber inputBonusNumber(WinningNumber winningNumber) {

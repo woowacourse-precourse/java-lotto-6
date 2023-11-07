@@ -9,14 +9,21 @@ import lotto.constants.messages.Error;
 
 public class LottoGenerator {
 
-    private final Integer money;
-    private final int numberOfTickets;
+    private Integer money;
+    private int numberOfTickets;
 
     public LottoGenerator() {
         money = numberOfTickets = 0;
     }
 
-    public LottoGenerator(String input) {
+//    public LottoGenerator(String input) {
+//        checkInputFormat(input);
+//        int money = Integer.parseInt(input);
+//        this.money = money;
+//        this.numberOfTickets = money / 1000;
+//    }
+
+    public void insertMoney(String input) {
         checkInputFormat(input);
         int money = Integer.parseInt(input);
         this.money = money;

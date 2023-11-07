@@ -73,7 +73,7 @@ public class Lotto {
     }
 
 
-    private void validateToLotto(List<String> numbers) {
+    private static void validateToLotto(List<String> numbers) {
         try {
             for (String number : numbers) {
                 Integer.parseInt(number);
@@ -85,7 +85,7 @@ public class Lotto {
     }
 
 
-    public Lotto toLotto(String number) {
+    public static Lotto toLotto(String number) {
         if (number == null) {
             throw new IllegalArgumentException();
         }

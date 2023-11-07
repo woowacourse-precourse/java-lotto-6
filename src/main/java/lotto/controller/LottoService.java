@@ -42,7 +42,7 @@ public class LottoService {
         outputView.askWinnerNumber();
         while (true) {
             try {
-                winnerLotto = new Lotto().toLotto(inputView.readWinnerNumber());
+                winnerLotto = Lotto.toLotto(inputView.readWinnerNumber());
                 lottoComputer.config(winnerLotto);
                 break;
             } catch (Exception e) {
@@ -68,7 +68,7 @@ public class LottoService {
         outputView.askMoney();
         while (true) {
             try {
-                lottoGenerator = new LottoGenerator(inputView.readMoney());
+                lottoGenerator.insertMoney(inputView.readMoney());
                 break;
             } catch (Exception e) {
                 System.err.println(e.getMessage());

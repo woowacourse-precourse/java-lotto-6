@@ -30,6 +30,12 @@ public class ErrorValidation {
         }
     }
 
+    public static void isDividedOneThousand(int money) {
+        if ((money % 1000) != 0) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void isInputContainComma(String userInput) {
         if (!Pattern.matches("^\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2},\\d{1,2}$", userInput)) {
             throw new IllegalArgumentException();

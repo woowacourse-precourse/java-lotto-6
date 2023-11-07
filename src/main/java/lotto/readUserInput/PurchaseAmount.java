@@ -9,7 +9,7 @@ public class PurchaseAmount implements UserInput {
     public static int lottoQuantity;
 
     public void read() {
-        lottoQuantity = singleTypeConversion(userInput());
+        lottoQuantity = singleTypeConversion(userInput()) / 1000;
     }
 
     public String userInput() {
@@ -24,9 +24,18 @@ public class PurchaseAmount implements UserInput {
         return readMoney;
     }
 
-    public int singleTypeConversion(String money) {
-        return Integer.parseInt(money) / 1000;
+    public int singleTypeConversion(String readMoney) {
+        int money = Integer.parseInt(readMoney);
+        try {
+            ErrorValidation.isDividedOneThousand(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ErrorMessage.ERROR_PURCHASE_DIVIDED_ONE_THOUSAND.getMessage());
+            money = singleTypeConversion(userInput());
+        }
+        return money;
     }
+
+
 
 
 

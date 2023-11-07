@@ -1,12 +1,17 @@
 package lotto.view;
 
+import lotto.values.ExceptionMessage;
 import lotto.values.WinningResult;
 
 import java.util.ArrayList;
 
+import static lotto.values.ExceptionMessage.ERROR;
 import static lotto.values.GuideMessage.*;
 
 public class Output {
+    public void printError(ExceptionMessage exceptionMessage){
+        System.out.println(ERROR.getMessage() + exceptionMessage.getMessage());
+    }
     public void printMoneyPrompt() {
         System.out.println(REQUEST_MONEY_MESSAGE.getMessage());
     }

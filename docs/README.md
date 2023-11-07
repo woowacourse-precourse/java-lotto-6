@@ -106,7 +106,7 @@
 ##### void printWinnings(int[])
 + 상금과 등수를 출력함
 
-##### void printRevenue(int)
+##### void printRevenue(double)
 + 수익률을 출력함
 
 ##### void printError(e)

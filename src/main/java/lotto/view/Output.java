@@ -18,4 +18,8 @@ public class Output {
             System.out.printf("- %d개\n", winCount[wd.ordinal()]);
         }
     }
+
+    void printRevenue(double revenue) {
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", revenue);
+    }
 }

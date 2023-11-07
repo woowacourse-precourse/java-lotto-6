@@ -38,7 +38,7 @@ public class winningControllerTest {
         BonusNumber bonus5 = new BonusNumber(1);
         int resultCount5 = 3;
 
-        Assertions.assertThat(findRank(resultCount1, lotto1, bonus1)).isEqualTo(Rank.First);
+        Assertions.assertThat(findRank(resultCount1, lotto1, bonus1)).isEqualTo(Rank.FIRST);
         Assertions.assertThat(findRank(resultCount2, lotto2, bonus2)).isEqualTo(Rank.SECOND);
         Assertions.assertThat(findRank(resultCount3, lotto3, bonus3)).isEqualTo(Rank.THIRD);
         Assertions.assertThat(findRank(resultCount4, lotto4, bonus4)).isEqualTo(Rank.FOURTH);

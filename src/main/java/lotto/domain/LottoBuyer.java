@@ -5,15 +5,12 @@ import java.util.List;
 public class LottoBuyer {
 
     private final int purchaseAmount;
-    private List<Lotto> lottoTickets;
     private final LottoSeller lottoSeller;
+    private List<Lotto> lottoTickets;
 
     public LottoBuyer(int purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
         this.lottoSeller = new LottoSeller();
-    }
-
-    public void purchaseLottoTickets() {
         this.lottoTickets = lottoSeller.exchangeTickets(purchaseAmount);
     }
 

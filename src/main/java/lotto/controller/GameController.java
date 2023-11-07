@@ -12,8 +12,7 @@ public class GameController {
 
     public void run() {
 
-        LottoBuyer lottoBuyer = purchaseLottoQuantity();
-        lottoBuyer.purchaseLottoTickets();
+        LottoBuyer lottoBuyer = purchaseLottoTickets();
 
         OutputView.announceLottoPurchaseQuantity(lottoBuyer.getPurchaseQuantity());
         OutputView.announceMultipleLottoNumbers(lottoBuyer.getLottoTickets());
@@ -25,7 +24,7 @@ public class GameController {
         lottoManager.countMatchingCounts(lottoBuyer, lottoManager);
     }
 
-    private LottoBuyer purchaseLottoQuantity() {
+    private LottoBuyer purchaseLottoTickets() {
         while (true) {
             try {
                 int purchaseAmount = InputView.requestLottoPurchaseAmount();

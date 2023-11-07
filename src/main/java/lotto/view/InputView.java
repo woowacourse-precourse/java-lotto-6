@@ -20,11 +20,7 @@ public class InputView {
     public String[] getWinningNumbers(){
         System.out.println("당첨 번호를 입력해 주세요.");
         String numbers = Console.readLine();
-        if (!numbers.matches("^[0-9, ]$")){
-            throw new IllegalArgumentException("쉼표와 숫자만 입력해주세요.");
-        }
-        String[] promptedNumbers = numbers.split(",");
-        return promptedNumbers;
+        return numbers.split(",");
     }
 
     public int getBonusNumber(){

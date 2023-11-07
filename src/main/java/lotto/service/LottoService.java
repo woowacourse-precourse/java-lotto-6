@@ -4,8 +4,10 @@ import lotto.model.LotteryMachine;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.model.WinningNumbers;
+import lotto.utils.Prizes;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class LottoService {
@@ -31,13 +33,33 @@ public class LottoService {
         return user;
     }
 
-    public void getNumberMatches(){
+    public HashMap<Prizes, Integer> getNumberMatches(){
+        HashMap<Prizes, Integer> matchCounts = new HashMap<>();
         for (Lotto lotto : user.getLottos()){
             int matchCount = winningNumbers.compare(lotto);
+            Prizes tier = Prizes.findByMatchCount(matchCount);
+            if (matchCount == 5 && winningNumbers.matchesBonus(lotto)){
+                tier = Prizes.Second;
+            }
+            matchCounts.put(tier, matchCounts.getOrDefault(tier, 0) + 1);
         }
+        return matchCounts;
     }
 
-    public void setWinningNumbers(String[] winningNumbers) {
-        winningNumbers = new WinningNumbers(winningNumbers);
+    public double calculatePercentage(HashMap<Prizes, Integer> matches){
+        int firstPrize = matches.getOrDefault(Prizes.First, 0) * 2000000000;
+        int secondPrize = matches.getOrDefault(Prizes.Second, 0) * 30000000;
+        int thirdPrize = matches.getOrDefault(Prizes.Third, 0) * 1500000;
+        int fourthPrize = matches.getOrDefault(Prizes.Fourth, 0) * 50000;
+        int fifthPrize = matches.getOrDefault(Prizes.Fifth, 0) * 5000;
+        return ((double)(firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize) / user.getPayed());
+    }
+
+    public void setWinningNumbers(String[] promptedNumbers) {
+       winningNumbers = new WinningNumbers(promptedNumbers);
+    }
+
+    public void setBonusNumber(String bonus){
+        winningNumbers.setBonus(bonus);
     }
 }

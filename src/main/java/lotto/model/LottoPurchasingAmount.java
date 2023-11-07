@@ -10,6 +10,7 @@ public class LottoPurchasingAmount {
 
     public LottoPurchasingAmount(String moneyFromUserInput) {
         int moneyFromUser = validateNumber(moneyFromUserInput);
+        validateMinimumPrice(moneyFromUser);
         this.lottoAmount = moneyFromUser / LOTTO_MINIMUM_PRICE;
     }
 
@@ -18,6 +19,13 @@ public class LottoPurchasingAmount {
             return parseInt(money);
         } catch (NumberFormatException e) {
             ErrorMessage.numberException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateMinimumPrice(int money) {
+        if (money < LOTTO_MINIMUM_PRICE) {
+            ErrorMessage.minimumLottoPriceException();
             throw new IllegalArgumentException();
         }
     }

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.domain.dto.input.PurchaseLottoDto;
+import lotto.domain.dto.output.DrawLottoDto;
 import lotto.domain.dto.output.LottosDto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -24,8 +25,10 @@ public class GameController {
         LottosDto lottosDto = lottos.toLottosDto();
         outputView.printPurchasedLotto(lottosDto);
         Lotto winningNumbers = inputView.getWinningNumber();
-        LottoNumber bonusNumber = inputView.getBonusNumber();
-        DrawMachine drawMachine = new DrawMachine(winningNumbers, bonusNumber, lottosDto);
-        drawMachine.draw();
+        LottoNumber bonusNumber = inputView.getBonusNumber(winningNumbers);
+        WinningLottoNumbers winningLottoNumbers = new WinningLottoNumbers(winningNumbers, bonusNumber);
+        DrawMachine drawMachine = new DrawMachine(winningLottoNumbers);
+        DrawLottoDto drawLottoDto = drawMachine.drawAllTicket(lottos);
+        outputView.printDrawResult(drawLottoDto);
     }
 }

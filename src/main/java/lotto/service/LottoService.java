@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Collections;
 import lotto.constant.PurchaseAmount;
 import lotto.domain.Lotto;
 import lotto.domain.numbergenerator.RandomLottoNumberGenerator;
@@ -27,7 +28,7 @@ public class LottoService {
     private List<Lotto> getLottos(long lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
         getLotto(lottoQuantity, lottos);
-        return lottos;
+        return Collections.unmodifiableList(lottos);
     }
 
     private void getLotto(long lottoQuantity, List<Lotto> lottos) {

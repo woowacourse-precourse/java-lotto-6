@@ -5,7 +5,7 @@ public class Info {
     private int[] statistics;
     private int rewards;
 
-    public Info(int numOfLotto) {
+    public Info() {
         this.statistics = new int[NUM_OF_GRADES+1];
         this.rewards = 0;
     }

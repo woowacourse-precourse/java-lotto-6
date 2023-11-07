@@ -21,9 +21,11 @@ public class LottoProfit {
         return new LottoProfit();
     }
 
-    public void createLottoProfit(LottoPrize lottoPrize, LottoPurchase lottoPurchase) {
+    public void updateLottoProfit(LottoPrize lottoPrize, LottoPurchase lottoPurchase) {
         double totalWinningAmount = createTotalWinningAmount(lottoPrize);
         double totalPurchaseAmount = createTotalPurchaseAmount(lottoPurchase);
+        double lottoProfit = roundToTwoDigits(totalWinningAmount, totalPurchaseAmount);
+        this.profitRate.updateProfitRate(lottoProfit);
     }
 
     public int createTotalWinningAmount(LottoPrize lottoPrize) {
@@ -38,5 +40,14 @@ public class LottoProfit {
 
     public int createTotalPurchaseAmount(LottoPurchase lottoPurchase) {
         return lottoPurchase.getPurchaseCount().getCount() * LOTTO_PRICE.getNumber();
+    }
+
+    public double roundToTwoDigits(double totalWinningAmount, double totalPurchaseAmount) {
+        double lottoProfit = totalWinningAmount / totalPurchaseAmount * 100;
+        return Math.round(lottoProfit * 10) / 10.0;
+    }
+
+    public ProfitRate getTotalProfitRate() {
+        return profitRate;
     }
 }

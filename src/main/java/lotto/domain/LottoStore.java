@@ -1,16 +1,19 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.ui.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class LottoStore {
     public static final int LOTTO_PRICE = 1000;
     public static List<Lotto> lottoIssuance(int amount){
         List<Lotto> lottos = new ArrayList<>();
+        int countOfLotto = amount/LOTTO_PRICE;
 
-        for (int i = 0; i < amount/LOTTO_PRICE; i++) {
+        for (int i = 0; i < countOfLotto; i++) {
             lottos.add(new Lotto(generateRandomLottoNumbers()));
         }
         return lottos;

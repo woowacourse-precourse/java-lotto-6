@@ -1,8 +1,12 @@
 package lotto.domain;
 
 import lotto.ui.InputView;
+import lotto.ui.OutputView;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static lotto.ui.OutputView.outputLottoList;
 
 public class User {
 
@@ -12,6 +16,7 @@ public class User {
     private User(int amount,List<Lotto> lottos){
         this.PURCHASE_AMOUNT = amount;
         this.lottos = lottos;
+        outputLottoList(lottos.size(),toString());
     }
 
     public static User buyLotto(){
@@ -38,10 +43,9 @@ public class User {
     }
 
 
-
-
     @Override
     public String toString() {
-        return lottos.toString();
+        return lottos.stream().map(Lotto::toString)
+                .collect(Collectors.joining());
     }
 }

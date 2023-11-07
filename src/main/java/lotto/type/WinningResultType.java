@@ -1,6 +1,6 @@
-package lotto;
+package lotto.type;
 
-public enum WinningResult {
+public enum WinningResultType {
     WINNING_RESULT_NOTHING("당첨 안됨", 0),
     WINNING_RESULT_3_MATCH("3개 일치", 5000),
     WINNING_RESULT_4_MATCH("4개 일치", 50000),
@@ -12,7 +12,7 @@ public enum WinningResult {
     private String winningResult;
     private int winningPrice;
 
-    WinningResult(String winningResult, int winningPrice) {
+    WinningResultType(String winningResult, int winningPrice) {
         this.winningResult = winningResult;
         this.winningPrice = winningPrice;
     }

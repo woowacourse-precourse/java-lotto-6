@@ -1,22 +1,18 @@
 package lotto.controller;
 
-import lotto.domain.Buyer;
-import lotto.domain.Lotto;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.view.View;
-import lotto.view.constant.Message;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.view.constant.Message.INPUT_MATCH;
-import static lotto.view.constant.Message.OUTPUT_BUY;
+import static lotto.view.constant.Message.*;
 
 public class Controller {
 
     private final static View view = new View();
     public void start() {
-        view.output(Message.INPUT_COST);
+        view.output(INPUT_COST);
         Buyer buyer = getCost();
 
         int count = buyer.getBuyCount();
@@ -29,6 +25,8 @@ public class Controller {
 
         view.output(INPUT_MATCH);
         WinningLotto winningLotto = getMatchLotto();
+
+        view.output(INPUT_BONUS);
 
     }
 

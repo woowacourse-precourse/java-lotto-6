@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.constants.ExceptionMessage.EXCEED_LIMIT;
 import static lotto.constants.ExceptionMessage.HAS_LETTER;
 import static lotto.constants.ExceptionMessage.IS_NOT_THOUSAND_UNIT;
 import static lotto.constants.Notice.ASK_BONUS_NUMBER;
@@ -14,6 +15,7 @@ public class InputView {
         validateType(input);
         int won = Integer.parseInt(input);
         validateThousandUnit(won);
+        validatePurchaseLimit(won);
         return won;
     }
 
@@ -43,6 +45,12 @@ public class InputView {
     private static void validateThousandUnit(int won) {
         if (won % 1000 != 0) {
             throw new IllegalArgumentException(IS_NOT_THOUSAND_UNIT.getMessage());
+        }
+    }
+
+    private static void validatePurchaseLimit(int won) {
+        if (won > 100000) {
+            throw new IllegalArgumentException(EXCEED_LIMIT.getMessage());
         }
     }
 }

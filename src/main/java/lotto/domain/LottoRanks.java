@@ -29,8 +29,7 @@ public class LottoRanks {
                 .filter(WinningGrade::isGreaterThanStartLottoCount)
                 .collect(toMap(
                         grade -> grade,
-                        grade -> lottoRanks.getOrDefault(grade, LONG_TYPE_ZERO)
-                ));
+                        grade -> lottoRanks.getOrDefault(grade, LONG_TYPE_ZERO)));
         
         return RankingResult.from(result);
     }
@@ -43,8 +42,7 @@ public class LottoRanks {
                         grade -> grade,
                         grade -> receiveLottoRank(result, grade) + INCREASE_NUMBER,
                         (existing, replacement) -> existing,
-                        () -> new EnumMap<>(WinningGrade.class)
-                ));
+                        () -> new EnumMap<>(WinningGrade.class)));
     }
     
     private Long receiveLottoRank(

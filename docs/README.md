@@ -1,32 +1,121 @@
-# 기능명세서
+# 📑 기능명세서
 
-## 구성 클래스 목록
+## 🗂️ 패키지 구조 & 클래스 목록
 
-| 클래스 명                | 역할 및 책임                                     |
-|----------------------|---------------------------------------------|
-| Lotto                | 로또 번호를 저장하는 도메인 클래스                         |
-| Cash                 | 사용자가 지불할 금액 도메인 클래스                         |
-| LottoSeller          | 로또를 발행을 관리하는 도메인 클래스                        |
-| Customer             | 로또 판매자에게 금액을 지불하고 로또를 구매하는 역할을 수행하는 도메인 클래스 |
-| WinningNumber        | 한개의 당첨 번호를 검증하고 저장하는 도메인 클래스                |
-| BonusNumber          | 보너스 번호를 검증하고 저장하는 도메인 클래스                   |
-| WinningNumbers       | 당첨 숫자와 보너스 번호를 저장하는 도메인 클래스                 |
-| Profit               | 수익을 저장하는 도메인 클래스                            |
-| Rank                 | 당첨 규칙과 금액을 저장하는 Enum 클래스                    |
-| WinningRanks         | 당첨 내역을 제공하는 도메인 클래스                         |
-| WinningYield         | 수익률을 저장하는 도메인 클래스                           |
-| InputView            | 사용자 입력 UI 를 관리하는 클래스                        |
-| OutputView           | 입력에 대한 결과를 출력하는 UI를 관리하는 클래스                |
-| Game                 | 전체 게임의 흐름을 관리하는 컨트롤러 클래스                    |
-| Validator            | 데이터 검증 로직을 제공하는 유틸 클래스                      |
-| ErrorMessage         | 예외 메시지를 저장하는 Enum 클래스                       |
-| LottoGameException   | 로또 게임 전체의 예외를 관리하는 클래스                      |
-| LottoNumberGenerator | 로또 숫자를 생성하는 유틸 클래스                          |
-| LottoConstants       | 로또 관련 상수를 관리하는 유틸 클래스                       |
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#aabcfe;border-spacing:0;}
+.tg td{background-color:#e8edff;border-color:#aabcfe;border-style:solid;border-width:0px;color:#669;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#b9c9fe;border-color:#aabcfe;border-style:solid;border-width:0px;color:#039;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-u479{background-color:#D2E4FC;border-color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-km2t{border-color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-zv4m{border-color:#ffffff;text-align:left;vertical-align:top}
+.tg .tg-q2ja{background-color:#D2E4FC;border-color:#ffffff;text-align:left;vertical-align:top}
+.tg .tg-9sg9{background-color:#ecf4ff;border-color:#ffffff;font-style:italic;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-rwdp{background-color:#D2E4FC;border-color:#efefef;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-9sg9">패키지</th>
+    <th class="tg-9sg9">클래스 명</th>
+    <th class="tg-9sg9">역할 및 책임</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-u479">controller</td>
+    <td class="tg-u479">Game</td>
+    <td class="tg-q2ja">전체 게임의 흐름을 관리하는 컨트롤러 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t" rowspan="9">domain</td>
+    <td class="tg-km2t">Cash</td>
+    <td class="tg-zv4m"><span style="font-weight:400;font-style:normal">구매자가 지불할 금액 관련 로직을 담당하는 도메인 클래스</span></td>
+  </tr>
+  <tr>
+    <td class="tg-u479">Customer</td>
+    <td class="tg-q2ja">로또 판매자에게 금액을 지불하고 로또를 구매하는 역할을 수행하는 도메인 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t">Lotto</td>
+    <td class="tg-zv4m">로또 번호 관련 로직을 담당하는 도메인 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-u479">LottoSeller</td>
+    <td class="tg-rwdp">로또를 생성하고 판매하는 로직을 담당하는 도메인 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t">BonusNumber</td>
+    <td class="tg-zv4m">보너스 숫자 관련 로직을 담당하는 도메인 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-u479">Profit</td>
+    <td class="tg-q2ja">수익 관련 로직을 담당하는 도메인 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t">Rank</td>
+    <td class="tg-zv4m">당첨 순위 관련 로직을 담당하는 도메인 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-u479">WinningRanks</td>
+    <td class="tg-q2ja">당첨 순위를 계산하는 로직을 담당하는 도메인 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t">WinningYield</td>
+    <td class="tg-zv4m">수익률을 계산하는 로직을 담당하는 도메인 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-u479" rowspan="3">dto</td>
+    <td class="tg-u479">Lottos</td>
+    <td class="tg-q2ja">로또 리스트를 저장하는 일급 컬렉션</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t">Ranks</td>
+    <td class="tg-zv4m">순위 리스트를 저장하는 일급 컬렉션</td>
+  </tr>
+  <tr>
+    <td class="tg-u479">WinningNumbers</td>
+    <td class="tg-q2ja">당첨 로또 번호와 보너스 번호를 저장하는 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t" rowspan="2">exception</td>
+    <td class="tg-km2t">ErrorMessage</td>
+    <td class="tg-zv4m">에러 원인에 해당하는 메시지를 관리하는 Enum 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-u479">LottoGameException</td>
+    <td class="tg-q2ja">로또 게임의 전체 에러를 관리하는 커스텀 에러 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t" rowspan="2">util</td>
+    <td class="tg-km2t">LottoConstants</td>
+    <td class="tg-zv4m">로또 관련 상수를 관리하는 Enum 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-u479">LottoNumberGenerator</td>
+    <td class="tg-q2ja">랜덤한 6개의 로또 번호를 생성하는 유틸 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-km2t" rowspan="2">view</td>
+    <td class="tg-km2t">InputView</td>
+    <td class="tg-zv4m">사용자 입력 관련 로직을 담당하는 뷰 클래스</td>
+  </tr>
+  <tr>
+    <td class="tg-u479">OutputView</td>
+    <td class="tg-q2ja">결과 출력 관련 로직을 담당하는 뷰 클래스</td>
+  </tr>
+</tbody>
+</table>
 
-## 구현 기능 목록
+## 🔗 클래스 다이어그램
 
-### Controller Layer
+![클래스 다이어그램](./image/lotto.png)
+
+## 📝 구현 기능 목록
+
+### ⚙️ Controller Layer
 
 - [X]  게임을 세팅한다.
     - [X]  로또를 생성한다.
@@ -42,7 +131,7 @@
 - [X]  게임을 종료한다.
     - [X]  Scanner 를 반환한다.
 
-### Domain Layer
+### 📦 Domain Layer
 
 - [X]  로또 번호를 발행한다.
     - [X]  로또 번호가 6개 인지 검증한다.
@@ -67,7 +156,7 @@
     - [X]  당첨 내역을 계산한다.
         - [X]  매칭 규칙에 맞는 랭크를 반환한다.
 
-### View Layer
+### 🖥️ View Layer
 
 - [X]  구입 금액 입력 UI를 출력한다.
     - [X]  구입 금액 사용자 입력을 처리한다.
@@ -92,11 +181,11 @@
 - [X]  예외 상황시 에러 문구를 출력한다.
     - [X]  에러문구는 [ERROR] 로 시작한다.
 
-### Util
+### 🛠️ Util
 
 - [X] 범위 내의 랜덤한 6개의 로또 번호를 생성한다.
 - [X] 로또 관련 상수를 제공한다.
 
-### Exception
+### ⚠️ Exception
 
-- [ ] 각 에러 원인에 대한 적절한 메시지를 제공한다.
+- [X] 각 에러 원인에 대한 적절한 메시지를 제공한다.

@@ -40,7 +40,11 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        doBuyLotto();
+        boolean purchased = false;
+
+        while (!purchased) {
+            purchased = doBuyLotto();
+        }
 
     }
 

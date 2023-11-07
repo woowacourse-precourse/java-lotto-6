@@ -1,15 +1,12 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.WinnerLotto;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class LottoService {
     public Money putMoney() {
@@ -40,6 +37,35 @@ public class LottoService {
 
     public WinnerLotto putWinnerLotto() {
         return InputView.inputWinnerLotto();
+    }
+
+    /*
+    TODO
+    Service에서 로또 매칭결과 생성
+    -> Rank별 결과 출력
+    -> 수익통계 결과 출력
+     */
+
+    public void calculateLottoResults(Lottos userLottos, WinnerLotto winnerLotto) {
+        Map<LottoRank, Integer> allRankResult = new LinkedHashMap<>();
+        List<LottoRank> userLottoResults = getUserLottoResults(userLottos, winnerLotto);
+        Arrays.stream(LottoRank.values())
+                .filter(userLottoResults::contains)
+                .forEach(rank -> allRankResult.put(rank, getWinningCount(rank, userLottoResults)));
+        OutputView.outputAllRankMatchResults(allRankResult);
+    }
+
+    private List<LottoRank> getUserLottoResults(Lottos userLottos, WinnerLotto winnerLotto) {
+        return userLottos.getLottos().stream()
+                .map(winnerLotto::matchWinnerLotto)
+                .filter(Objects::nonNull)
+                .toList();
+    }
+
+    private int getWinningCount(LottoRank rank, List<LottoRank> userLottoResults) {
+        return Long.valueOf(userLottoResults.stream()
+                .filter(result -> rank.compareTo(result) == 0)
+                .count()).intValue();
     }
 
 }

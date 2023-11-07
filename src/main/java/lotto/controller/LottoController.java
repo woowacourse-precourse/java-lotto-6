@@ -11,7 +11,8 @@ public class LottoController {
     public LottoController(LottoService lottoService) { this.lottoService = lottoService; }
     public void start() {
         Money money = lottoService.putMoney();
-        Lottos lottos = lottoService.buyLottos(money);
+        Lottos userLottos = lottoService.buyLottos(money);
         WinnerLotto winnerLotto = lottoService.putWinnerLotto();
+        lottoService.calculateLottoResults(userLottos, winnerLotto);
     }
 }

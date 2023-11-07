@@ -36,4 +36,20 @@ public class Lotto {
     public List<Integer> getLotto() {
         return this.numbers;
     }
+
+    public int matchingLottoNumber(Lotto compareLotto) {
+        Long matchCount = this.getLotto()
+                .stream()
+                .filter(number -> compareLotto.getLotto()
+                        .stream()
+                        .anyMatch(compareNumber -> compareNumber == number))
+                .count();
+        return Long.valueOf(matchCount).intValue();
+    }
+
+    public boolean matchingBonusNumber(int bonusNumber) {
+        return this.getLotto()
+                .stream()
+                .anyMatch(number -> number.equals(bonusNumber));
+    }
 }

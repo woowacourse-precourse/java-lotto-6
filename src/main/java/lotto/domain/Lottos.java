@@ -11,4 +11,8 @@ public class Lottos {
     public static Lottos from(List<Lotto> lottos) {
         return new Lottos(lottos);
     }
+
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
 }

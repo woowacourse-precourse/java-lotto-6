@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class WinnerLotto {
     private Lotto winnerLotto;
     private int bonusNumber;
@@ -27,5 +30,11 @@ public class WinnerLotto {
                 .anyMatch(lottoNumber -> lottoNumber == bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복된 번호가 있습니다.");
         }
+    }
+
+    public LottoRank matchWinnerLotto(Lotto lotto) {
+        int matchLottoCount = this.winnerLotto.matchingLottoNumber(lotto);
+        boolean matchBonusResult = lotto.matchingBonusNumber(this.bonusNumber);
+        return LottoRank.valueOf(matchLottoCount, matchBonusResult);
     }
 }

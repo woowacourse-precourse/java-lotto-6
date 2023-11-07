@@ -1,9 +1,8 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 
-public class LottoResultCaculation {
+public class LottoResultCalculation {
     public int caculateLottoTicket(int money) {
         if(money % 1000 != 0) {
             throw new IllegalArgumentException();

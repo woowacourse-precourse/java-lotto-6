@@ -16,10 +16,9 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     private Game game;
-    private LottoRankInfo lottoRankInfo;
+    private int buyAmount = 0;
     private List<Integer> winningNumbers;
     private int bonusNumber = 0;
-    private int buyAmount = 0;
 
     public LottoGameController(Game game) {
         this.game = game;
@@ -31,9 +30,7 @@ public class LottoGameController {
         createLottos();
         getWinningNumbers();
         getBonusNumber();
-        createResult();
-        printRank();
-        printProfit();
+        printResult(createResult());
     }
 
     private void getBuyAmount() {
@@ -69,16 +66,21 @@ public class LottoGameController {
         bonusNumber = Integer.parseInt(InputView.readBonusNumber());
     }
 
-    private void createResult() {
-        lottoRankInfo = game.createResult(winningNumbers, bonusNumber);
+    private LottoRankInfo createResult() {
+        return game.createResult(winningNumbers, bonusNumber);
     }
 
-    private void printRank() {
+    private void printResult(LottoRankInfo lottoRankInfo) {
+        printRank(lottoRankInfo);
+        printProfit(lottoRankInfo);
+    }
+
+    private void printRank(LottoRankInfo lottoRankInfo) {
         OutputView.printStartResult();
         OutputView.printWinningResult(lottoRankInfo.getLottoRankInfo());
     }
 
-    private void printProfit() {
+    private void printProfit(LottoRankInfo lottoRankInfo) {
         OutputView.printProfitRate(game.createProfit(buyAmount, lottoRankInfo.getLottoRankInfo()));
     }
 

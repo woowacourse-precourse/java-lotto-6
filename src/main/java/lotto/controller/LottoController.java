@@ -25,9 +25,9 @@ public class LottoController {
     public void buyLottos() {
         while (true) {
             try {
-                outputView.requestMoney();
+                String moneyInput = inputView.requestLottoMoneyToBuy();
 
-                long money = inputView.validateCustomerMoneyInput(Console.readLine());
+                long money = inputView.validateCustomerMoneyInput(moneyInput);
                 customer.insertMoney(lottoStore, money);
                 break ;
             } catch (IllegalArgumentException e) {
@@ -48,9 +48,9 @@ public class LottoController {
     public void generateWinningNumber() {
         while (true) {
             try {
-                outputView.requestWinningNumber();
+                String winningNumberInput = inputView.requestWinningNumber();
 
-                String[] winningNumber = inputView.validateWinningNumberInput(Console.readLine());
+                String[] winningNumber = inputView.validateWinningNumberInput(winningNumberInput);
                 winningNumbersGenerator.generateWinningNumbers(winningNumber);
                 break ;
             } catch (IllegalArgumentException e) {
@@ -62,9 +62,9 @@ public class LottoController {
     public void generateBonusNumber() {
         while (true) {
             try {
-                outputView.requestBonusNumber();
+                String bonusNumberInput = inputView.requestBonusNumber();
 
-                int bonusNumber = inputView.validateBonusNumberInput(Console.readLine());
+                int bonusNumber = inputView.validateBonusNumberInput(bonusNumberInput);
                 winningNumbersGenerator.generateBonusNumber(bonusNumber);
                 break ;
             } catch (IllegalArgumentException e) {

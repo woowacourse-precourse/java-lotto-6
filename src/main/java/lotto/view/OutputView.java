@@ -54,7 +54,7 @@ public class OutputView {
         if (bonusStatus == BonusStatus.IS_IN_LOTTO) {
             return bonusNumberMatch;
         }
-        return StringConstants.EMPTY.getValue();
+        return StringConstants.BLANK.getValue();
     }
 
     private static String getRewardWithSeparator(long reward) {

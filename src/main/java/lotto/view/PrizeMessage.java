@@ -6,9 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 public class PrizeMessage {
-    private List<String> resultOutput =new ArrayList<>();
+    private List<String> resultOutput;
+
+    public PrizeMessage() {
+        this.resultOutput = new ArrayList<>();
+    }
 
     public List<String> makePrizeMessage(HashMap<String,Integer> result){
+
+
         Map<Prize, Integer> winnings = new HashMap<>();
         winnings.put(Prize.THREE_MATCH, result.get("Three"));
         winnings.put(Prize.FOUR_MATCH, result.get("Four"));

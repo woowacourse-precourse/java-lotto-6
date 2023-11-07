@@ -18,6 +18,8 @@ public class LottoStart {
 
     private static Buyer buyer;
     private static LottoWinningNumber lottoWinningNumber;
+    private static CalculateMachine calculateMachine;
+    private static PrintWinningResult printWinningResult;
 
     public static void run() {
 
@@ -30,11 +32,12 @@ public class LottoStart {
 
     public static void firstGameProgress() {
         System.out.println(LottoStart.HOW_MUCH_BUY_MESSAGE);
-        int num = firstInputProgress() / 1000;
+        int money = firstInputProgress();
+        int num = money / 1000;
         System.out.println();
         System.out.println(num+LottoStart.HOW_MANY_BUY_MESSAGE);
 
-        buyer = new Buyer(num);
+        buyer = new Buyer(money);
 
         for (int i = 0; i < num; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -64,8 +67,8 @@ public class LottoStart {
 
     public static List<Integer> secondInputProgress() {
         String inputWinningNumbers = Console.readLine();
-        //여기 수정하기
-        List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.substring(1, inputWinningNumbers.length()-1).split(","))
+
+        List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.split(","))
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .map(Integer::parseInt)
@@ -80,14 +83,18 @@ public class LottoStart {
     }
 
     private static void GameResult() {
+
         System.out.println(LottoStart.WINNING_STATISTICS);
         System.out.println(LottoStart.BOARDER_LINE);
 
-        CalculateMachine calculateMachine = new CalculateMachine(buyer.getAllLottoCollection(), lottoWinningNumber.getWinningNumbers(), lottoWinningNumber.getBonusNumber());
+        calculateMachine = new CalculateMachine(buyer.getAllLottoCollection(), lottoWinningNumber.getWinningNumbers(), lottoWinningNumber.getBonusNumber());
 
-        int[] lottoCalculateResult = calculateMachine.calculateResult();
+        int[] lottoCalculateResult = calculateMachine.lottoResult();
+        printWinningResult = new PrintWinningResult(lottoCalculateResult);
+        printWinningResult.printLottoResult();
 
-        PrintWinningResult.printLottoResult(lottoCalculateResult);
+        double lottoProfitResult = calculateMachine.profitResult(buyer.getMoney(), lottoCalculateResult);
+        printWinningResult.printProfitResult(lottoProfitResult);
 
     }
 

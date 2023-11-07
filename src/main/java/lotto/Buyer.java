@@ -7,11 +7,15 @@ import java.util.List;
 
 public class Buyer {
 
-    private static int num;
+    private static int money;
     private List<List<Integer>> lottoCollection = new ArrayList<>();
 
-    public Buyer(int num) {
-        this.num = num;
+    public Buyer(int money) {
+        this.money = money;
+    }
+
+    public int getMoney(){
+        return money;
     }
 
     public void setLottoCollection(List<Integer> lotto){

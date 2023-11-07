@@ -48,6 +48,7 @@ public class OutputProcessor {
 
     public void outputLotto(Lotto lotto) {
         List<String> numbers = lotto.getLottoNumbers().stream()
+                .sorted()
                 .map(String::valueOf)
                 .toList();
         outputSender.send(LEFT_BRACKET +

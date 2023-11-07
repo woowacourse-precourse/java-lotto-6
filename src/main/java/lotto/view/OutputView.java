@@ -2,9 +2,6 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
-import java.util.Map;
-import javax.management.relation.RelationNotification;
-import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.Money;

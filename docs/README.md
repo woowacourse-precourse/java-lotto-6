@@ -16,21 +16,22 @@
 
 - [ ] 6가지 랜덤 숫자를 리스트에 넣는다. generateTicket
 
-- [ ] 랜덤 숫자를 반환한다. randomNumber = generateRandomNumber(list)
+- [ ] 랜덤 숫자를 반환한다. randomNumber = generateRandomNumber()
 
 ---
 
 **random**
 
-- [X] 중복되지 않는 랜덤숫자를 반환한다. randomNumber = generateRandomNumber(list)
+- [X] 1~45 사이 랜덤 숫자를 반환한다. lottoNumber = generateLottoNumber(1, 45);
+- [X] 중복되지 않는 랜덤숫자들을를 반환한다. lottoNumbers = generateLottoNumbers()
 
 ---
 
 **picker**
 
-- [ ] 당첨 번호 입력 generateLottoNumber
+- [X] 당첨 번호 입력 generateWinNumbers()
 
-- [ ] 보너스 번호 입력 generateLottoBonusNumber
+- [X] 보너스 번호 입력 generateWindBonusNumber()
 
 ---
 

@@ -8,11 +8,11 @@ public enum LottoRank {
         5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
         6개 일치 (2,000,000,000원) - 0개
     */
-    FIRST(200000000, 6, false),
+    FIRST(2000000000, 6, false),
     SECOND(30000000, 5, true),
     THIRD(1500000, 5, false),
     FOURTH(50000, 4, false),
-    FIFTH(30000000, 3, false),
+    FIFTH(5000, 3, false),
     NONE(0, 0, false);
     private final int amount;
     private final int count;
@@ -22,6 +22,39 @@ public enum LottoRank {
         this.amount = amount;
         this.count = count;
         this.hasBonus = hasBonus;
+    }
+
+    public static LottoRank of(final int count, final boolean hasBonus) {
+        if (count == 5) {
+            return whenCountFive(hasBonus);
+        }
+        return determineRank(count);
+    }
+
+    private static LottoRank determineRank(int count) {
+        // count 값에 따라 LottoRank의 Count가 같은 등수를 return
+        for (LottoRank rank : values()) {
+            if (rank.getCount() == count && !rank.hasBonus) {
+                return rank;
+            }
+        }
+
+        return NONE;
+    }
+
+    private static LottoRank whenCountFive(boolean hasBonus) {
+        if (hasBonus) {
+            return SECOND;
+        }
+        return THIRD;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public int getAmount() {
+        return amount;
     }
 
 }

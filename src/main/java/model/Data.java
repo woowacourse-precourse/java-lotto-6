@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import controller.InputMoney;
-import controller.InputNumbers;
+import features.InputMoney;
+import features.InputNumbers;
 import lotto.Lotto;
 
 import static model.FixedValues.*;
@@ -25,8 +25,8 @@ public class Data {
 	public Lotto getLotto() {
 		return lotto;
 	}
-	public void setLotto(String input) {
-		this.lotto=CREATOR.numbersCreator().select_numbers(input);
+	public void setLotto() {
+		this.lotto=CREATOR.numbersCreator().select_numbers();
 	}
 	public List<List<Integer>> getLottoList(){
 		return lotto_list;
@@ -38,8 +38,8 @@ public class Data {
 	public int getBonus() {
 		return bonus;
 	}
-	public void setBonus(String input) {
-		this.bonus=CREATOR.numbersCreator().select_bonus(input);
+	public void setBonus() {
+		this.bonus=CREATOR.numbersCreator().select_bonus();
 	}
 	public int getLottoCount() {
 		return lotto_count;

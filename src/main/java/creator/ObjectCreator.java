@@ -2,12 +2,15 @@ package creator;
 
 import java.util.List;
 
-import controller.InputMoney;
-import controller.InputNumbers;
-import controller.RunGame;
-import controller.Statistics;
+import features.InputMoney;
+import features.InputNumbers;
+import features.RunGame;
+import features.Statistics;
 import lotto.Lotto;
 import model.Data;
+import validator.Validator_Lotto;
+import validator.Validator_Money;
+import validator.Provider;
 import view.Announcer;
 
 public class ObjectCreator {
@@ -38,5 +41,21 @@ public class ObjectCreator {
 	
 	public Announcer announcerCreator() {
 		return new Announcer();
+	}
+	
+	public Validator_Lotto validator_lotto(List<Integer> numbers) {
+		return new Validator_Lotto(numbers);
+	}
+	
+	public Validator_Money validator_money(String purchase_amount) {
+		return new Validator_Money(purchase_amount);
+	}
+	
+	public Validator_Lotto convertor() {
+		return new Validator_Lotto();
+	}
+	
+	public Validator_Lotto warnning() {
+		return new Validator_Lotto();
 	}
 }

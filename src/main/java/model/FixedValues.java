@@ -7,6 +7,8 @@ public class FixedValues {
 	public static final int UNIT_PRICE=Constants.UNIT_PRICE.getConstants();
 	public static final int INIT_CNT=Constants.INIT_CNT.getConstants();
 	
+	public static final double PARSING_TO_DOUBLE_PERCENTAGE=100.0;
+	
 	public static final int MIN_NUM=Constants.MIN_NUM.getConstants();
 	public static final int MAX_NUM=Constants.MAX_NUM.getConstants();
 	public static final int CORRECT_CNT=Constants.CORRECT_CNT.getConstants();
@@ -33,11 +35,11 @@ public class FixedValues {
 	public static final String BONUS_GUIDE=Announcement.BONUS_GUIDE.getAnnouncement();
 	
 	public static final String STATISTICS_START=Announcement.STATISTICS_START.getAnnouncement();
-	public static final String CORRES_THREE=Announcement.CORRES_THREE.getAnnouncement();
-	public static final String CORRES_FOUR=Announcement.CORRES_FOUR.getAnnouncement();
-	public static final String CORRES_FIVE=Announcement.CORRES_FIVE.getAnnouncement();
-	public static final String CORRES_BONUS=Announcement.CORRES_BONUS.getAnnouncement();
-	public static final String CORRES_ALL=Announcement.CORRES_ALL.getAnnouncement();
+	public static final String CORRESPONDING_THREE=Announcement.CORRES_THREE.getAnnouncement();
+	public static final String CORRESPONDING_FOUR=Announcement.CORRES_FOUR.getAnnouncement();
+	public static final String CORRESPONDING_FIVE=Announcement.CORRES_FIVE.getAnnouncement();
+	public static final String CORRESPONDING_BONUS=Announcement.CORRES_BONUS.getAnnouncement();
+	public static final String CORRESPONDING_ALL=Announcement.CORRES_ALL.getAnnouncement();
 	
 	public static final ObjectCreator CREATOR=new ObjectCreator();
 }

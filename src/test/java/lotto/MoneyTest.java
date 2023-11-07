@@ -3,7 +3,9 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import controller.InputMoney;
+import features.InputMoney;
+
+import static model.FixedValues.*;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class MoneyTest {
 	
-	private final InputMoney money=new InputMoney();
+	private final InputMoney money=CREATOR.moneyCreator();
 	
 	private static final String VALID_INPUT="50, 00 0.0  ";
 	private static final String EMPTY_INPUT="";

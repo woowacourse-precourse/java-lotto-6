@@ -1,8 +1,7 @@
-package controller;
+package features;
 
 import java.util.List;
 
-import lotto.Lotto;
 import model.Data;
 
 import static model.FixedValues.*;
@@ -11,26 +10,12 @@ public class Statistics {
 
 	private Data data;
 	
-	private static int [] classify= {0,0,0,0,0};
+	private int [] classify= {0,0,0,0,0};
 	
 	public Statistics(Data data) {
 		this.data=data;
-		//getStatistics();
 	}
-	/*private void getStatistics() {
-		compareNumbers();
-		//announceResult();
-		int winnings=getProfitAmount();
-		getRateOfReturn(winnings);
-	}*/
-	
-	/*private void compareNumbers() {		
-		for(List<Integer> nums:lottery_list) {
-			int cnt=countMathcingNums(nums);
-			boolean lucky=luckyThough(nums);
-			classifyWinningTypes(cnt, lucky);
-		}
-	}*/
+
 	public int [] compareNumbers() {	
 		int [] mathcing_types=new int[CORRECT_CNT];
 		
@@ -43,13 +28,13 @@ public class Statistics {
 	}
 	
 	public double getRateOfReturn(int winnings) {
-		double rate=winnings*100.0/(data.getLottoList().size()*UNIT_PRICE);
+		int howMuchDidIBought=data.getLottoList().size();
 		
-		return rate;
+		return winnings*PARSING_TO_DOUBLE_PERCENTAGE/(howMuchDidIBought*UNIT_PRICE);
 	}
 	
 	public int getProfitAmount(int [] classify) {
-		int winnings=0;
+		int winnings=INIT_CNT;
 		
 		winnings+=classify[0]*MATCHING_THREE;
 		winnings+=classify[1]*MATCHING_FOUR;
@@ -66,7 +51,6 @@ public class Statistics {
 		if(cnt==5&&!lucky) {classify[2]=classify[2]+1;}
 		if(cnt==5&&lucky) {classify[3]=classify[3]+1;}
 		if(cnt==6) {classify[4]=classify[4]+1;}
-		//announceResult();
 		
 		return classify;
 	}

@@ -3,8 +3,8 @@ package view;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
-import controller.RunGame;
-import controller.Statistics;
+import features.RunGame;
+import features.Statistics;
 import model.Data;
 
 import static model.FixedValues.*;
@@ -27,6 +27,8 @@ public class Viewer {
 	
 	private void purchaseGuide() {
 		announcer.purchase_guidance();
+		//String purchase_amount=Console.readLine();
+		
 		data.purchaseLotto();
 		announcer.feedback_purchase(data.getLottoCount());
 		
@@ -43,12 +45,10 @@ public class Viewer {
 	
 	private void numbersGuide() {
 		announcer.winning_num_guidance();
-		String num_input=Console.readLine();
-		data.setLotto(num_input);
+		data.setLotto();
 		
 		announcer.bonus_guidance();
-		String bonus_input=Console.readLine();
-		data.setBonus(bonus_input);
+		data.setBonus();
 		
 		stat=CREATOR.statCreator(data);
 	}

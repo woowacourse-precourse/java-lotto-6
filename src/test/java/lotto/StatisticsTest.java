@@ -10,7 +10,9 @@ import java.util.Vector;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import controller.Statistics;
+import features.Statistics;
+import model.Data;
+import static model.FixedValues.*;
 
 public class StatisticsTest {
 
@@ -26,6 +28,8 @@ public class StatisticsTest {
 		List<Integer> l5=List.of(8, 12, 4, 44, 30, 2);//3
 		
 		Lotto lotto=new Lotto(l5);
+		
+		Data testdata=CREATOR.dataCreator()
 		
 		Statistics stat=new Statistics(lottery_list, 7, lotto);
 		

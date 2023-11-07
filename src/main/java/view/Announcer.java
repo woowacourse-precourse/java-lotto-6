@@ -25,11 +25,11 @@ public class Announcer {
 	}
 	
 	public void announceResult(int [] classify) {
-		System.out.println(CORRES_THREE+classify[0]+"개");
-		System.out.println(CORRES_FOUR+classify[1]+"개");
-		System.out.println(CORRES_FIVE+classify[2]+"개");
-		System.out.println(CORRES_BONUS+classify[3]+"개");
-		System.out.println(CORRES_ALL+classify[4]+"개");
+		System.out.println(CORRESPONDING_THREE+classify[0]+"개");
+		System.out.println(CORRESPONDING_FOUR+classify[1]+"개");
+		System.out.println(CORRESPONDING_FIVE+classify[2]+"개");
+		System.out.println(CORRESPONDING_BONUS+classify[3]+"개");
+		System.out.println(CORRESPONDING_ALL+classify[4]+"개");
 	}
 	
 	public void announce_rate(double rate) {

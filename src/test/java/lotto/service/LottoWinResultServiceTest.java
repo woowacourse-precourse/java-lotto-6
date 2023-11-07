@@ -38,4 +38,12 @@ public class LottoWinResultServiceTest {
         assertThat(winResult.getWinResultValue(7)).isEqualTo(1);
         assertThat(winResult.getWinResultValue(6)).isEqualTo(1);
     }
+
+    @Test
+    void calculateProfitRate() {
+        PurchasePrice purchasePrice = new PurchasePrice(PRICE);
+        String profitRate = lottoWinResultService.calculateProfitRate(purchasePrice);
+
+        assertThat(profitRate).isEqualTo("40630200");
+    }
 }

@@ -44,4 +44,8 @@ public class LottoService {
 
 		return userNumbers;
 	}
+
+	public int checkBonusNumber(String inputBonusNumber) {
+		return 0;
+	}
 }

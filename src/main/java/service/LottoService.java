@@ -13,13 +13,14 @@ public class LottoService {
     private Player player;
     private Lottos lottos = new Lottos();
 
-    public void buyLotto(int input) {
+    public List<Lotto> buyLotto(int input) {
         lottos = new Lottos();
         Validator.checkMoney(input);
         int lottoCount = input / 1000;
         for (int i = 0; i < lottoCount; i++) {
             getLottoNumbers();
         }
+        return lottos.getLottoList();
     }
 
     private void getLottoNumbers() {

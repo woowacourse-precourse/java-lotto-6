@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,8 @@ public class View {
     private Map<Integer, Integer> userWinningRanks;
     private float profitSummary;
     private int lottoPurchaseNum;
+    private String winningNumber;
+    private String bounsNumber;
     private final String LOTTO_PURCHASE_NUMBERS_OUTPUTMESSAGE = String.format("%d개를 구매했습니다.", lottoPurchaseNum);
     private final String WINNING_STATISTICS_OUTPUTMESSAGE = String.format("""
                 당첨 통계
@@ -70,12 +73,15 @@ public class View {
             if(Integer.parseInt(winningnum)<1 && Integer.parseInt(winningnum)>45){
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
+            if(Arrays.asList(winningNumber.split(",")).contains(winningnum)){
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
         }
     }
 
     public List<Integer> winningNumberInput(){
         System.out.println(InputMassage.LOTTO_WINNING_NUMBER_INPUTMESSAGE);
-        String winningNumber = readLine();
+        winningNumber = readLine();
         checkWinningNumber(winningNumber);
         List<Integer> winNumberInt = new ArrayList<Integer>();
         for(String winningnum : winningNumber.split(",")){
@@ -93,11 +99,14 @@ public class View {
         if(Integer.parseInt(bonusNumber)<1 && Integer.parseInt(bonusNumber)>45){
             throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+        if(Arrays.asList(winningNumber.split(",")).contains(bonusNumber)){
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+        }
     }
     
     public int bonusNumberInput(){
         System.out.println(InputMassage.LOTTO_BONUS_NUMBER_INPUTMESSAGE);
-        String bounsNumber = readLine();
+        bounsNumber = readLine();
         checkbounsNumber(bounsNumber);
         return Integer.parseInt(bounsNumber);
     }

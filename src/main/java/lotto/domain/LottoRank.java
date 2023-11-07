@@ -1,12 +1,14 @@
 package lotto.domain;
 
+import static lotto.domain.LottoConstant.*;
+
 public enum LottoRank {
 
-    FIFTH(3, 5_000, "%d개 일치 (%,d원) - %d"),
-    FOURTH(4, 50_000, "%d개 일치 (%,d원) - %d"),
-    THIRD(5, 1_500_000, "%d개 일치 (%,d원) - %d"),
-    SECOND(5, 30_000_000, "%d개 일치, 보너스 볼 일치 (%,d원) - %d"),
-    FIRST(6, 2_000_000_000, "%d개 일치 (%,d원) - %d");
+    FIFTH(FIRST_WINNER_HIT_COUNT, FIRST_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d"),
+    FOURTH(SECOND_WINNER_HIT_COUNT, SECOND_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d"),
+    THIRD(THIRD_WINNER_HIT_COUNT, THIRD_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d"),
+    SECOND(FORTH_WINNER_HIT_COUNT, FORTH_WINNER_AMOUNT, "%d개 일치, 보너스 볼 일치 (%,d원) - %d"),
+    FIRST(FIFTH_WINNER_HIT_COUNT, FIFTH_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d");
 
     private int matchCount;
     private int winningAmount;

@@ -8,19 +8,11 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.UserLotto;
 
+import static lotto.domain.LottoConstant.*;
+
 public class LottoService {
 
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_NUMBER_COUNT = 6;
     private static final String LOTTO_NUMBER_SEPARATOR = ",";
-    private static final int FIRST_WINNER_HIT_COUNT = 6;
-    private static final int SECOND_WINNER_HIT_COUNT = 5;
-    private static final int THIRD_WINNER_HIT_COUNT = 5;
-    private static final int FORTH_WINNER_HIT_COUNT = 4;
-    private static final int FIFTH_WINNER_HIT_COUNT = 3;
-    private static final int PRICE_PER_LOTTO = 1000;
-
 
     public int calculateLottoSheet(int price) {
         if (price % PRICE_PER_LOTTO != 0) {
@@ -121,7 +113,7 @@ public class LottoService {
     }
 
     private static List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_SIZE);
         Collections.sort(lottoNumbers);
 
         return lottoNumbers;

@@ -48,6 +48,12 @@ public class Application {
                 }
             }
             boolean hasBonusNumber = lotto.getNumbers().contains(bonus);
+
+            LottoRank.getByCountAndBonus(lottoMatches,hasBonusNumber);
+        }
+
+        for(LottoRank rank : LottoRank.values()) {
+            System.out.println(rank.getPrizeInfo()+rank.getAdditionalMatches()+"개");
         }
     }
 }

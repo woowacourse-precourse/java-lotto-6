@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import static lotto.domain.Lotto.*;
+import static lotto.error.ErrorMessage.BONUS_NUMBER_OUT_OF_RANGE;
+import static lotto.error.ErrorMessage.DUPLICATE_BONUS_NUMBER;
 import static lotto.error.ErrorMessage.DUPLICATE_WINNING_NUMBER;
 import static lotto.error.ErrorMessage.INVALID_WINNING_NUMBER_LENGTH;
 import static lotto.error.ErrorMessage.NEGATIVE_PURCHASE_AMOUNT;
@@ -39,7 +41,7 @@ public class Validator {
         validateDuplicate(winningNumbers, DUPLICATE_WINNING_NUMBER);
     }
 
-    private static void validateLength(List<Integer> winningNumbers, String error) {
+    private void validateLength(List<Integer> winningNumbers, String error) {
         if (winningNumbers.size() != NUMBER_LENGTH) {
             throw new IllegalArgumentException(error);
         }
@@ -59,5 +61,16 @@ public class Validator {
             }
             checkDuplicate.add(number);
         }
+    }
+
+    private void validateDuplicate(List<Integer> numbers,Integer number, String error) {
+        if (numbers.contains(number)){
+            throw new IllegalArgumentException(error);
+        }
+    }
+
+    public void validateBonusNumber(List<Integer> winningNumbers, Integer bonusNumber) {
+        validateRange(bonusNumber,BONUS_NUMBER_OUT_OF_RANGE);
+        validateDuplicate(winningNumbers,bonusNumber,DUPLICATE_BONUS_NUMBER);
     }
 }

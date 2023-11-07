@@ -26,4 +26,12 @@ public class OutputView {
             print("["+modifiedLottoNumbers+"]");
         }
     }
+
+    public static void askWinningLottoNumbers() {
+        print(Message.ASK_WINNING_LOTTO_NUMBERS.getMessage());
+    }
+
+    public static void askBonusNumber() {
+        print(Message.ASK_BONUS_NUMBER.getMessage());
+    }
 }

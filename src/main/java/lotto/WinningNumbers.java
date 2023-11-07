@@ -2,19 +2,19 @@ package lotto;
 
 import java.util.List;
 
-public record WinningNumbers(Lotto numbers, int bonusNumber) {
+public record WinningNumbers(Lotto winningLotto, int bonusNumber) {
     public WinningNumbers {
-        validate(numbers, bonusNumber);
+        validate(winningLotto, bonusNumber);
     }
 
-    private void validate(Lotto numbers, int bonusNumber) {
-        validate(numbers);
+    private void validate(Lotto winningLotto, int bonusNumber) {
+        validate(winningLotto);
         validate(bonusNumber);
-        validateNotDuplicated(numbers, bonusNumber);
+        validateNotDuplicated(winningLotto, bonusNumber);
     }
 
-    private void validate(Lotto numbers) {
-        numbers.getNumbers().forEach(this::validateNumberInRange);
+    private void validate(Lotto winningLotto) {
+        winningLotto.getNumbers().forEach(this::validateNumberInRange);
     }
 
     private void validate(int bonusNumber) {

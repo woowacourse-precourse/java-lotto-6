@@ -39,7 +39,7 @@ public class Calculator {
 
     private void rankCountForEachLotto() {
         for (Lotto lotto : playerLottos) {
-            int matchCount = lotto.matchCountWith(winningNumbers.numbers());
+            int matchCount = lotto.matchCountWith(winningNumbers.winningLotto());
             boolean isBonusNumberMatched = lotto.contains(winningNumbers.bonusNumber());
             Rank rank = Rank.valueOf(matchCount, isBonusNumberMatched);
             winningStatistics.put(rank, winningStatistics.get(rank) + 1);

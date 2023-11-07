@@ -44,6 +44,14 @@ public class Exception {
         }
     }
 
+    public static void notParsableNumber(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR + "입력한 값을 정수로 변환할 수 없습니다.");
+        }
+    }
+
     private static void notSixNumbers(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
             throw new IllegalArgumentException(ERROR + "6개의 숫자를 가지고 있지 않습니다.");
@@ -60,14 +68,6 @@ public class Exception {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != numbers.size()) {
             throw new IllegalArgumentException(ERROR + "중복 숫자가 존재합니다.");
-        }
-    }
-
-    private static void notParsableNumber(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR + "입력한 값을 정수로 변환할 수 없습니다.");
         }
     }
 

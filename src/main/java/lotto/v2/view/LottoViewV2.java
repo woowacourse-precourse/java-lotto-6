@@ -2,6 +2,7 @@ package lotto.v2.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.v1.util.LottoValidationUtilsV1;
+import lotto.v2.util.LottoValidationUtilsV2;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,12 +25,20 @@ public class LottoViewV2 {
 
     public List<Integer> inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요. (쉼표로 구분)");
-        String input = Console.readLine();
-        List<Integer> winningNumbers = Stream.of(input.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-        return winningNumbers;
+        return parseWinningNumbers(Console.readLine());
+    }
+
+    private List<Integer> parseWinningNumbers(String input) {
+        try {
+            List<Integer> winningNumbers = Stream.of(input.split(","))
+                    .map(String::trim)
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+            LottoValidationUtilsV2.checkValidLottoNumbers(winningNumbers);
+            return winningNumbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.");
+        }
     }
 
     public int inputBonusNumber(List<Integer> winningNumbers) {

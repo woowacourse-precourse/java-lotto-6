@@ -15,6 +15,8 @@ public class LottoWinnerSystem {
     private final int WINNER_NUMBER_COUNT = 6;
     private final int BONUS_NUMBER_COUNT = 1;
 
+    private final int WINNING_CRITERIA = 3;
+
     private final static int FIRST_PRIZE_MONEY = 2000000000;
     private final static int SECOND_PRIZE_MONEY = 30000000;
     private final static int THIRD_PRIZE_MONEY = 1500000;
@@ -70,7 +72,7 @@ public class LottoWinnerSystem {
         for (int i = 0; i < purchasedLotto.size(); i++) {
             List<Integer> compareLotto = purchasedLotto.get(i).getLotto();
             int matchCount = getMatchNumberCount(compareLotto, winNumber);
-            if (matchCount >= 3) {
+            if (matchCount >= WINNING_CRITERIA) {
                 compareOneLotto(compareLotto, bonusNumber, matchCount);
             }
         }

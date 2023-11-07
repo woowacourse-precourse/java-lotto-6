@@ -29,6 +29,6 @@ public class OutputView {
     }
 
     public void printLottoBenefitResult(Referee referee) {
-        System.out.printf("총 수익률은 %.1f%s입니다.\n", referee.getLottoBenefit(), "%");
+        System.out.printf("총 수익률은 %,.1f%s입니다.\n", referee.getLottoBenefit(), "%");
     }
 }

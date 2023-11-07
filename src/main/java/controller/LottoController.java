@@ -73,7 +73,7 @@ public class LottoController {
         if(matchedNumberCount == 5 && isEqualToBonus) {
             return 2;
         }
-        if(matchedNumberCount == 5 && !isEqualToBonus){
+        if(matchedNumberCount == 5) {
             return 3;
         }
         if(matchedNumberCount == 4) {

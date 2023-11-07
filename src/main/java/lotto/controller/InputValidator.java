@@ -10,17 +10,19 @@ public class InputValidator {
     public static final String WHITE_SPACE = " ";
     public static final String NOT_INTEGER = "정수가 아닙니다.";
     public static final String NOT_POSITIVE_INTEGER = "양의 정수가 아닙니다.";
-    public static final String NOT_DIVIDED_BY_1000 = "1000으로 나누어 떨어지는 수가 아닙니다.";
+    public static final String NOT_DIVIDED_BY_LOTTO_TICKET_PRICE = "로또 티켓 금액의 배수가 아닙니다.";
     public static final String NOT_PROPER_SIZE_OF_LOTTO = "번호의 개수가 6개가 아닙니다.";
     public static final String NUMBER_NOT_IN_RANGE = "올바른 범위의 수가 아닙니다.";
     public static final String HAS_DUPLICATED_NUMBER = "중복 값이 존재합니다.";
+    public static final int LOTTO_TICKET_PRICE = 1000;
+
 
     // 구입 금액 입력 검증
     public void validateBudgetInput(String userInput) {
         validateInteger(userInput);
         int number = Integer.parseInt(userInput);
         validatePositiveInteger(number);
-        validateDividedBy1000(number);
+        validateDividedByLottoTicketPrice(number);
     }
 
     // 당첨 번호 입력 검증
@@ -54,9 +56,9 @@ public class InputValidator {
         }
     }
 
-    public void validateDividedBy1000(int number) {
-        if (number % 1000 != 0) {
-            throw new IllegalArgumentException(createErrorMessage(NOT_DIVIDED_BY_1000));
+    public void validateDividedByLottoTicketPrice(int number) {
+        if (number % LOTTO_TICKET_PRICE != 0) {
+            throw new IllegalArgumentException(createErrorMessage(NOT_DIVIDED_BY_LOTTO_TICKET_PRICE));
         }
     }
 

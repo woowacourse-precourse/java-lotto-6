@@ -25,7 +25,7 @@ public class LottoController {
         // 로또 살 금액 입력
         lottoMoney = getLottoMeney();
 
-       // lottos = issueLottos(getLottoCountFromCost(lottoMoney));
+        lottos = issueLottos(lottoMoney.getAvaliablePurcahaseCount());
        // printPublishedLottos();
     }
 

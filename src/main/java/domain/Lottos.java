@@ -19,6 +19,10 @@ public class Lottos {
         this.lottos = lottos;
     }
 
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
     private Lotto createLotto(){
         List<Integer> notDuplecateNumbers = RandomNumberGenerator.create(
                 LottoConfig.NUM_COUNT.getValue(),

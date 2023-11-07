@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.domain;
+
+import lotto.service.LottoValidator;
 
 import java.util.List;
 

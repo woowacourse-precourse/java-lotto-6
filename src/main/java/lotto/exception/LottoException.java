@@ -13,7 +13,11 @@ public class LottoException {
         return lottoException;
     }
 
-    public void InvalidCount() {
+    public void invalidCount() {
         throw new IllegalArgumentException(Error.INVALID_NUMBER_COUNT.getMessage());
+    }
+
+    public void duplicateNumber() {
+        throw new IllegalArgumentException(Error.DUPLICATED_NUMBER.getMessage());
     }
 }

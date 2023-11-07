@@ -17,11 +17,12 @@ public class OutputView {
     private static final String STAT_RESULT_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String EARNING_RATE = "총 수익률은 %s%%입니다.";
     private static final DecimalFormat MONEY_FORMAT = new DecimalFormat("###,###");
-    private static final DecimalFormat EARNING_FORMAT = new DecimalFormat("###,###.0");
+    private static final DecimalFormat EARNING_FORMAT = new DecimalFormat("###,##0.0");
 
     public void showNumberOfLotto(Money money) {
         System.out.printf(SHOW_LOTTO, money.calNumberOfLotto());
     }
+
     public void showLottos(List<Integer> lotto) {
         System.out.println(lotto);
     }
@@ -50,6 +51,10 @@ public class OutputView {
         }
         return String.format(STAT_RESULT, rank.getMatchingNumber(),
                 MONEY_FORMAT.format(rank.getPrize()), lottoResult.findResult(rank));
+    }
+
+    public void printLine() {
+        System.out.println();
     }
 
 }

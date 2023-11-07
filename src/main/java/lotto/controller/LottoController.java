@@ -24,6 +24,7 @@ public class LottoController {
         Money money = getMoney();
         outputView.showNumberOfLotto(money);
         Lottos lottos = lottoGenerateService.makeLotto(money);
+        outputView.printLine();
         Lotto userLotto = getLotto();
         User user = getBonus(userLotto);
         outputView.showLottoStatistics(lottos, user, money);

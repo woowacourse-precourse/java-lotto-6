@@ -8,22 +8,25 @@ import java.util.List;
 import lotto.lottoUI.LottoUI;
 
 public class LottoPublisher {
+    public LottoPublisher(int Amount) {
+        this.publish_num = (Amount / Lotto_price);
+    }
+    private static int publish_num;
     static final int Lotto_price = 1000;
     private static final int MIN = 1;
     private static final int MAX = 45;
     private static final int LottoNum = 6;
-    public static int publish_num;
+
     private static List<List<Integer>> lottoNumbers = new ArrayList<>();
 
-    public static void PrintLotto(int Amount) {
-        publish_num = (Amount / Lotto_price);
+    public static void PrintLotto() {
         LottoUI.DisplayOfLottoNumber(publish_num);
         List<List<Integer>> lottoNumbers = LottoSixNumber(publish_num);
         printLottoNumbers(lottoNumbers);
         LottoNumberSetter.parseWinningNumbers(publish_num);
     }
 
-    private static List<List<Integer>> LottoSixNumber(int count) {
+    public static List<List<Integer>> LottoSixNumber(int count) {
         for (int i = 0; i < count; i++) {
             lottoNumbers.add(generateLotto());
         }
@@ -45,5 +48,9 @@ public class LottoPublisher {
 
     public static List<List<Integer>> getLottoNumbers() {
         return lottoNumbers;
+    }
+
+    public static int getPublish_num() {
+        return publish_num;
     }
 }

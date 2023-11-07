@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class LottosListTest {
 
-    private LottosList lottosList = new LottosList();
+    private LottosList lottosList;
 
     @BeforeEach
     public void setUp() {

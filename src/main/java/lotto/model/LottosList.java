@@ -13,8 +13,13 @@ import java.util.List;
 public class LottosList {
     private List<Lotto> lottosList;
 
+
     public LottosList() {
-        lottosList = new ArrayList<>();
+
+    }
+
+    public LottosList(List<Lotto> lottos) {
+        this.lottosList = lottos;
 
     }
 
@@ -33,7 +38,7 @@ public class LottosList {
     public void createLottos(int lottoNum) {
         for (int i = 0; i < lottoNum; i++) {
             List<Integer> numbers = generateUniqueNumbers();
-//            System.out.println(numbers.toString());
+            System.out.println(numbers.toString());
             lottosList.add(new Lotto(numbers));
         }
     }

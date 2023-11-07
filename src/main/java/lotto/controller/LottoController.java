@@ -11,7 +11,6 @@ public class LottoController {
 
     private final InputView inputView;
     private final OutputView outputView;
-
     private final LottoService lottoService;
 
     public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
@@ -25,5 +24,7 @@ public class LottoController {
 
         List<Lotto> lottos = lottoService.buyLotto(money);
         outputView.printPurchasedLottos(lottos);
+
+        Lotto winningLotto = inputView.inputWinningLotto();
     }
 }

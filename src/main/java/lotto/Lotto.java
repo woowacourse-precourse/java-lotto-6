@@ -1,6 +1,8 @@
 package lotto;
 
 
+import lotto.validator.LottoValidator;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,15 +15,16 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         Collections.sort(numbers);
+
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException();
-        }
-        if(hasDuplicatedNumber(numbers)) {
-            throw new IllegalArgumentException();
+        LottoValidator.validateIsProperSize(numbers);
+        LottoValidator.validateDuplicatedNumber(numbers);
+
+        for (int number : numbers) {
+            LottoValidator.validateRangeOfNumber(number);
         }
     }
     private boolean hasDuplicatedNumber(List<Integer> numbers) {

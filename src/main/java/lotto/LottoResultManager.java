@@ -3,6 +3,7 @@ package lotto;
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -51,11 +52,10 @@ public class LottoResultManager {
         double lottoTotalBuyPrice = lottoCount * Lotto.PRICE;
         long lottoWinnings = calculateLottoWinnings();
 
-        return BigDecimal.valueOf(lottoWinnings)
+        return String.format("%,.1f", BigDecimal.valueOf(lottoWinnings)
                 .divide(BigDecimal.valueOf(lottoTotalBuyPrice), MathContext.DECIMAL64)
                 .multiply(BigDecimal.valueOf(100))
-                .setScale(returnDecimalDigit, RoundingMode.HALF_UP)
-                .toString();
+                .doubleValue());
     }
 
     public void printLottoResult() {

@@ -1,11 +1,5 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class LottoController {
     private final InputController inputController = new InputController();
 

@@ -45,9 +45,9 @@ public class WinningLotto {
             throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_NOT_INITIALIZED.getMessage());
         }
 
-        int matchedNumberCount = lotto.countMatchedNumber(comparedLotto);
+        int matchedCount = lotto.countMatchedNumber(comparedLotto);
         boolean bonusNumberMatched = comparedLotto.containNumber(bonusNumber);
 
-        return Rank.findByMatchedNumberCountAndBonusNumberMatched(matchedNumberCount, bonusNumberMatched);
+        return Rank.findByMatchedCountAndBonusNumberMatched(matchedCount, bonusNumberMatched);
     }
 }

@@ -65,9 +65,9 @@ class LottoTest {
         Lotto lotto1 = new Lotto(List.of(6, 5, 4, 3, 2, 1));
         Lotto lotto2 = new Lotto(TestConstant.NORMAL_NUMBERS);
 
-        int matchedNumberCount = lotto1.countMatchedNumber(lotto2);
+        int matchedCount = lotto1.countMatchedNumber(lotto2);
 
-        assertThat(matchedNumberCount).isEqualTo(6);
+        assertThat(matchedCount).isEqualTo(6);
     }
 
     @DisplayName("로또 두 개를 비교하여 몇 개의 번호가 일치하는지 계산한다. - 0개 일치")
@@ -76,9 +76,9 @@ class LottoTest {
         Lotto lotto1 = new Lotto(TestConstant.NORMAL_NUMBERS);
         Lotto lotto2 = new Lotto(List.of(45, 44, 43, 42, 41, 40));
 
-        int matchedNumberCount = lotto1.countMatchedNumber(lotto2);
+        int matchedCount = lotto1.countMatchedNumber(lotto2);
 
-        assertThat(matchedNumberCount).isEqualTo(0);
+        assertThat(matchedCount).isEqualTo(0);
     }
 
     @DisplayName("로또 두 개를 비교하여 몇 개의 번호가 일치하는지 계산한다. - 3개 일치")
@@ -87,8 +87,8 @@ class LottoTest {
         Lotto lotto1 = new Lotto(TestConstant.NORMAL_NUMBERS);
         Lotto lotto2 = new Lotto(List.of(1, 45, 2, 3, 44, 43));
 
-        int matchedNumberCount = lotto1.countMatchedNumber(lotto2);
+        int matchedCount = lotto1.countMatchedNumber(lotto2);
 
-        assertThat(matchedNumberCount).isEqualTo(3);
+        assertThat(matchedCount).isEqualTo(3);
     }
 }

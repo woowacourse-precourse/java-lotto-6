@@ -72,15 +72,15 @@ public class Lotto {
     }
 
     public int countMatchedNumber(Lotto lotto) {
-        int matchedNumberCount = 0;
+        int matchedCount = 0;
 
         for (Integer comparedNumber : lotto.numbers) {
             if (containNumber(comparedNumber)) {
-                matchedNumberCount++;
+                matchedCount++;
             }
         }
 
-        return matchedNumberCount;
+        return matchedCount;
     }
 
     public boolean containNumber(int comparedNumber) {

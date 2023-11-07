@@ -15,25 +15,23 @@ public enum Rank {
     SIX_MATCH(2000000000, 6);
 
     private final int prizeMoney;
-    private final int matchedNumberCount;
+    private final int matchedCount;
 
-    Rank(int prizeMoney, int matchedNumberCount) {
+    Rank(int prizeMoney, int matchedCount) {
         this.prizeMoney = prizeMoney;
-        this.matchedNumberCount = matchedNumberCount;
+        this.matchedCount = matchedCount;
     }
 
-    private static final Map<Integer, Rank> matchedNumberCountToRank
+    private static final Map<Integer, Rank> matchedCountToRank
             = Stream.of(values())
-                    .filter(rank -> !isDecidedByBonusNumber(rank.matchedNumberCount))
+                    .filter(rank -> !isDecidedByBonusNumber(rank.matchedCount))
                     .collect(Collectors.toUnmodifiableMap(Rank::getMatchedNumberCount, Function.identity()));
     
-    public static Rank findByMatchedNumberCountAndBonusNumberMatched(
-            int matchedNumberCount, boolean bonusNumberMatched
-    ) {
-        if (isDecidedByBonusNumber(matchedNumberCount)) {
+    public static Rank findByMatchedCountAndBonusNumberMatched(int matchedCount, boolean bonusNumberMatched) {
+        if (isDecidedByBonusNumber(matchedCount)) {
             return decideByBonusNumberMatched(bonusNumberMatched);
         }
-        return matchedNumberCountToRank.getOrDefault(matchedNumberCount, OUT_RANK);
+        return matchedCountToRank.getOrDefault(matchedCount, OUT_RANK);
     }
 
     private static boolean isDecidedByBonusNumber(int matchedCount) {
@@ -52,6 +50,6 @@ public enum Rank {
     }
 
     public int getMatchedNumberCount() {
-        return matchedNumberCount;
+        return matchedCount;
     }
 }

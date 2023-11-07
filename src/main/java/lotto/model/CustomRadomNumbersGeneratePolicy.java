@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.constant.LottoConstant;
 
-public class RadomNumbersGeneratePolicy {
+public class CustomRadomNumbersGeneratePolicy {
     public List<Integer> generate() {
         List<Integer> numbers = new ArrayList<>();
         while (numbers.size() != LottoConstant.SIZE) {

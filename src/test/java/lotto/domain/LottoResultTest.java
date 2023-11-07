@@ -28,21 +28,21 @@ class LottoResultTest {
     static Stream<Arguments> calculateBenefitSuccessDummy() {
         return Stream.of(
                 Arguments.arguments(
-                        new LottoResult(
+                        LottoResult.create(
                                 List.of(FIFTH_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE)
                         ),
                         8000,
                         62.5
                 ),
                 Arguments.arguments(
-                        new LottoResult(
+                        LottoResult.create(
                                 List.of(FIFTH_PLACE, FIFTH_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE)
                         ),
                         8000,
                         125.0
                 ),
                 Arguments.arguments(
-                        new LottoResult(
+                        LottoResult.create(
                                 List.of(FIRST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE, LAST_PLACE)
                         ),
                         8000,

@@ -45,10 +45,20 @@ public class WalletTest {
 
     @DisplayName("구입 금액이 최대금액을 넘는 경우 예외가 발생한다.")
     @Test
-    void createWinningLottoByNullOrEmptyBonusNumber() {
+    void createWalletByNullMoney() {
         Integer inputMoney = maximumPurchaseAmount + 1000;
 
         assertThatThrownBy(() -> new Wallet(inputMoney.toString()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
+                        + maximumPurchaseAmount + "원.");
+    }
+
+    @DisplayName("구입 금액이 1000으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"1234", "12", "51007", "0"})
+    void createWalletByNotDivisibleBy1000(String money) {
+        assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
                         + maximumPurchaseAmount + "원.");

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 
 public class InputView {
     private final static int LOTTO_UNIT_PRICE = 1000;
@@ -47,6 +48,22 @@ public class InputView {
         if(price <= 0){
             throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 1000원 이상 입력해야 합니다.");
         }
+    }
+
+    List<Integer> inputLottoNumber(){
+        List<Integer> lottoNumbers = null;
+        boolean isValid = false;
+        while (!isValid){
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String inputLottoNumbers = Console.readLine();
+                lottoNumbers = validLottoNumber(inputLottoNumbers);
+                isValid = true;
+            } catch (IllegalArgumentException e){
+                System.out.printf(e.getMessage());
+            }
+        }
+        return lottoNumbers;
     }
 
 }

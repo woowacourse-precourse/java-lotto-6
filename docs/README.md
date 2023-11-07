@@ -48,35 +48,46 @@
 #### 상수
 
 - NOT_A_NUMBER
-  - Msg : Message.ERROR_MSG_NOT_A_NUMBER
+  - Msg : Message.ERROR_NOT_A_NUMBER
   - test(String input)
     - input을 받아 숫자로 변환한다.
     - 변환할 수 없으면 NumberFormatException이 발생하면 `true`를 반환한다.
     - 모두 바꿀 수 있으면 error가 아니므로 `false`를 반환한다.
     
 - NOT_IN_THOUSANDS
-  - Msg : Message.ERROR_MSG_NOT_IN_THOUSANDS
+  - Msg : Message.ERROR_NOT_IN_THOUSANDS
   - test(String input)
     - input을 받아 숫자로 변환하고 1000원 단위인지 확인한다.
     - 1000원 단위가 아니면 `true`를 반환한다.
     - 1000원 단위면 `false`를 반환한다.
     
-- OUT_OF_RANGE
-  - Msg : Message.ERROR_MSG_OUT_OF_RANGE
+- MONEY_OUT_OF_RANGE
+  - Msg : Message.ERROR_MONEY_OUT_OF_RANGE
+  - test(String input)
+    - input을 받아 숫자로 변환한 뒤 각 수가 0 ~ `Long.MAX_VALUE` 사이의 수인지 확인한다.
+    - 하나의 숫자라도 0 ~`Long.MAX_VALUE`의 범위에 있으면 `true`를 그렇지 않으면 `false`를 반환한다.
+  
+- NUMBER_OUT_OF_RANGE
+  - Msg : Message.ERROR_NUMBER_OUT_OF_RANGE
   - test(String input)
     - input을 받아 숫자로 변환한 뒤 각 수가 1 ~ 45 사이의 수인지 확인한다.
-    - 하나의 숫자라도 1 ~ 45의 범위에 있으면 `true`를 반환한다.
-    - 모두 1 ~ 45의 범위에 있으면 `false`를 반환한다.
+    - 하나의 숫자라도 1 ~ 45의 범위에 있으면 `true`를 그렇지 않으면 `false`를 반환한다.
     
-- LENGTH_NOT_MATCH
-  - Msg : Message.ERROR_MSG_LENGTH_NOT_MATCH
-  - test(String input)
+- NOT_SIX_WINNING_NUMBERS
+  - Msg : Message.ERROR_NOT_SIX_WINNING_NUMBERS
+  - test(String input) : 당첨 번호를 받을 때 사용한다.
     - input을 ',' 기준으로 나눠 길이가 6자리인지 확인한다.
-    - 6자리가 아니면 `true`를 반환한다.
-    - 6자리면 `false`를 반환한다.
+    - 6자리가 아니면 `true`를 그렇지 않으면 `false`를 반환한다.
+    
+- NOT_ONE_NUMBER
+  - Msg : Message.ERROR_NOT_ONE_NUMBER
+  - test(String input) : 금액과 보너스 번호를 입력받을 때 사용한다.
+    - input을 ',' 기준으로 나눠 길이가 1자리인지 확인한다.
+    - 1자리가 아니면 `true`를 반환한다.
+    - 1자리면 `false`를 반환한다.
     
 - DUPLICATED_NUMBER
-  - Msg : Message.ERROR_MSG_DUPLICATED_NUMBER
+  - Msg : Message.ERROR_DUPLICATED_NUMBER
   - test(String input)
     - input을 `,`로 나눠 각 문자열을 숫자로 변환한다.
     - 숫자가 중복되면 `true`를 하나도 중복이 없으면 `false`를 반환한다. 
@@ -107,21 +118,24 @@
   - domain : 구입금액
   - `List<ErrorType>`
     - `NOT_A_NUMBER`
+    - `NOT_ONE_NUMBER`
+    - `MONEY_OUT_OF_RANGE`
     - `NOT_IN_THOUSANDS`
 
 - `DRAW_WINNING_NUMBERS`
   - domain : 당첨 번호
   - `List<ErrorType>`
-    - `LENGTH_NOT_MATCH`
     - `NOT_A_NUMBER`
-    - `OUT_OF_RANGE`
+    - `NOT_SIX_WINNING_NUMBERS`
+    - `NUMBER_OUT_OF_RANGE`
     - `DUPLICATED_NUMBER`
     
 - `DRAW_BONUS_NUMBER`
   - domain : 보너스 번호
   - `List<ErrorType>`
     - `NOT_A_NUMBER`
-    - `OUT_OF_RANGE`
+    - `NOT_ONE_NUMBER`
+    - `NUMBER_OUT_OF_RANGE`
 
 
 #### 필드
@@ -188,14 +202,18 @@
 - `ERROR_TEMPLATE`
   - "[ERROR] %s%s\n"
     - [ERROR]와 함께 어떤 단계에서 어떤 에러가 발생했는지 알려주는 메시지
-- `ERROR_MSG_NOT_A_NUMBER`
+- `ERROR_NOT_A_NUMBER`
   - "(은)는 숫자여야 합니다.";
-- `ERROR_MSG_NOT_IN_THOUSANDS`
+- `ERROR_NOT_IN_THOUSANDS`
   - "(은)는 1000원 단위여야 합니다.";
-- `ERROR_MSG_OUT_OF_RANGE`
-  - "(은)는 1부터 45 사이의 수여야 합니다.";
-- `ERROR_MSG_LENGTH_NOT_MATCH`
-  - "(은)는 6자리여야 합니다.";
+- `ERROR_MONEY_OUT_OF_RANGE`
+  - "(은)는 0이상의 숫자여야 합니다.";
+- `ERROR_NUMBER_OUT_OF_RANGE`
+  - "(은)는 1부터 45 사이의 숫자여야 합니다.";
+- `ERROR_NOT_SIX_WINNING_NUMBERS`
+  - "(은)는 6자리 숫자여야 합니다.";
+- `ERROR_NOT_ONE_NUMBER`
+  - "(은)는 1자리 숫자여야 합니다.";
 - `ERROR_MSG_DUPLICATED_NUMBER`
   - "(은)는 중복될 수 없습니다.";
 

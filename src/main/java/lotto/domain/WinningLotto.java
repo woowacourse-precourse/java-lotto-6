@@ -1,19 +1,21 @@
 package lotto.domain;
 
+import static lotto.validator.LottoNumberValidator.validate_MIN_SIZE;
+
 import java.util.List;
 import lotto.validator.LottoNumberValidator;
 import lotto.validator.NumberValidator;
-import lotto.vo.WinningLottoNumbers;
 
 public class WinningLotto {
-    private final WinningLottoNumbers lottoNumbers;
+    private final List<Integer> lottoNumbers;
 
     public WinningLotto(List<Integer> lottoNumbers){
-        this.lottoNumbers = new WinningLottoNumbers(lottoNumbers);
+        validate_MIN_SIZE(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
     }
 
     public List<Integer> getWinning_number(){
-        return this.lottoNumbers.value();
+        return this.lottoNumbers;
     }
 
     public void addBonusNumber(String bonus_number){

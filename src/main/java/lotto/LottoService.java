@@ -39,16 +39,17 @@ public class LottoService {
         }
     }
 
-    public List<Integer> inputWinningNumbers() {
+    public Lotto inputWinningNumbers() {
         while (true) {
             String input = Console.readLine().trim();
             List<Integer> winningNumbers = new ArrayList<>();
             try {
-                for (String number : input.split(", ")) {
+                for (String number : input.split(",")) {
+                    number = number.replaceAll("\\s", "");
                     validateOneNumber(number);
                     winningNumbers.add(Integer.parseInt(number));
                 }
-                return winningNumbers;
+                return new Lotto(winningNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

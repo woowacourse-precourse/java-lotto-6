@@ -26,7 +26,6 @@ public class Inputter {
         System.out.println("구입금액을 입력해 주세요.");
         won = parseInt(Console.readLine());
         System.out.println();
-        validatePurchase(won);
         return won;
     }
 
@@ -39,12 +38,6 @@ public class Inputter {
     public int bonus() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         return parseInt(Console.readLine());
-    }
-
-    private void validatePurchase(int won) {
-        if (won % MONEY_UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] "+ MONEY_UNIT + "원 단위로 입력해주세요.");
-        }
     }
 
     private int parseInt(String value) {

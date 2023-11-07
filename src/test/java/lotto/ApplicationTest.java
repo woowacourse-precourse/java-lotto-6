@@ -1,13 +1,16 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
+import lotto.util.ParseString;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +55,28 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("문자열을 정수로 변환")
+    @Test
+    void parseToInt() {
+        String number = "12348";
+
+        assertThat(Integer.parseInt(number)).isEqualTo(12348);
+
+    }
+
+    @DisplayName("문자열을 문자열 배열로 변환")
+    @ParameterizedTest
+    @ValueSource(strings = "1,2,3,4,5,6")
+    void split(String input) {
+        ParseString parse = new ParseString();
+
+        String[] splitedInput = parse.split(input);
+
+        for (int i = 1; i < 7; i++) {
+            assertThat(splitedInput[i - 1]).isEqualTo(Integer.toString(i));
+        }
     }
 
     @Override

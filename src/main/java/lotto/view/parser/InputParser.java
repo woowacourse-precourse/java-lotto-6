@@ -32,6 +32,7 @@ public class InputParser {
     }
 
     public String parseBonusNumber(String bonusNumber) {
+        bonusNumber = removeBlank(bonusNumber);
         bonusNumberValidator.validate(bonusNumber);
         return bonusNumber;
     }

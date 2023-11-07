@@ -7,6 +7,7 @@ import lotto.domain.WinningLotto;
 import lotto.service.LottoService;
 import lotto.support.RandomLotto;
 import lotto.util.ControllerOutputManager;
+import lotto.util.Converter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,40 +20,33 @@ public class LottoController {
     private static final ControllerOutputManager controllerOutputManager = new ControllerOutputManager();
     public void execute() {
 
-        List<Lotto> lottos = new ArrayList<>();
-
         int lottoTimes = BuyLotto();
+        List<Lotto> lottos = RandomLottos(lottoTimes);
+        WinningLotto winningLotto = setWinningNumbers();
+
+        lottoService.execute(lottos,winningLotto);
+    }
+
+    private static List<Lotto> RandomLottos(int lottoTimes) {
+        List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoTimes; i++) {
             Lotto lotto = new Lotto(randomLotto.getRandomLotto());
             lotto.print();
             lottos.add(lotto);
         }
-        WinningLotto winningLotto = setWinningNumbers();
-        setBonusNumber(winningLotto);
-
-
-        lottoService.execute(lottos,winningLotto);
+        return lottos;
     }
 
-    private void setBonusNumber(WinningLotto winningLotto) {
-        controllerOutputManager.BONUS_PRINT();
-        String bonusNumber = Console.readLine();
-        try {
-            winningLotto.setBonus(bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 잘못된 입력입니다.");
-            setBonusNumber(winningLotto);
-
-        }
-
-    }
 
     private WinningLotto setWinningNumbers() {
         WinningLotto winningLotto = null;
         try {
             controllerOutputManager.WINNING_PRINT();
             String winningNumbers = Console.readLine();
-            winningLotto = new WinningLotto(winningNumbers);
+            List<Integer> integers = Converter.to(winningNumbers);
+            controllerOutputManager.BONUS_PRINT();
+            String bonusNumber = Console.readLine();
+            winningLotto = new WinningLotto(integers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 잘못된 입력입니다.");
             setWinningNumbers();

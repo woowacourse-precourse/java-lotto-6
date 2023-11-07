@@ -49,40 +49,5 @@ public class WinningLotto {
 
     }
 
-    private void validateDuplicate(List<Integer> splitNumber) {
-        if (splitNumber.size() != splitNumber.stream().distinct().count()) {
-            throw new IllegalArgumentException("중복된 수를 입력하면 안됩니다.");
-        }
-
-    }
-
-    private void validateRange(List<Integer> splitNumber) {
-        for (Integer now : splitNumber) {
-            if (now < 1 || now > 45) {
-                throw new IllegalArgumentException("수의 범위는 1 ~ 45 입니다.");
-            }
-        }
-    }
-
-    private void toList(String[] split, List<Integer> splitNumber) {
-        for (String now : split) {
-            try {
-                Integer nowNumber = Integer.parseInt(now);
-                splitNumber.add(nowNumber);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("정수를 입력하세요");
-            }
-        }
-    }
-
-    private void validateSize(List<Integer> inputNumbers) {
-        if (inputNumbers.size() != 6) {
-            throw new IllegalArgumentException("6개의 수를 입력해주세요");
-        }
-
-
-    }
-
-
 
 }

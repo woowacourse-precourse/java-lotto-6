@@ -6,11 +6,11 @@ import java.util.List;
 
 public class LottoComparator {
 
-    private List<Integer> winning;
+    private Lotto winning;
 
     private int bonus;
 
-    public LottoComparator(List<Integer> winning, int bonus) {
+    public LottoComparator(Lotto winning, int bonus) {
         this.winning = winning;
         this.bonus = bonus;
     }
@@ -18,7 +18,7 @@ public class LottoComparator {
     public Rate compareLotto(Lotto lotto) {
         int count = 0;
         boolean bonus = false;
-        for (int i = 0; i < winning.size(); i++) {
+        for (int i = 0; i < winning.getLottoSize(); i++) {
             if (lotto.find(winning.get(i))) {
                 count++;
             }

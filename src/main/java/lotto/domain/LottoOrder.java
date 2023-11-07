@@ -43,6 +43,10 @@ public class LottoOrder {
         return this.purchaseLotto.getAllLottoNumber();
     }
 
+    public int getLottoCount() {
+        return this.purchaseLotto.getAmount();
+    }
+
     private void validatePrice(Long purchasePrice) {
         if (purchasePrice == 0 || Math.floorMod(purchasePrice, BASIC_LOTTO_PRICE) != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_PRICE_UNIT.getDesc());

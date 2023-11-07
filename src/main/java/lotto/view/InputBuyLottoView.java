@@ -10,8 +10,10 @@ public final class InputBuyLottoView extends BuyLottoFormatException {
     private static final Pattern PATTERN = Pattern.compile("\\d+");
     private static final Integer THOUSAND = 1000;
     private static final Integer ZERO = 0;
+    private static final String INPUT_MESSAGE = "구입금액을 입력해 주세요.";
 
     public String getValue() {
+        System.out.println(INPUT_MESSAGE);
         String result = inputValue();
         validate(result);
         return result;

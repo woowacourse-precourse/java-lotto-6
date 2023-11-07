@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constant.ErrorMessage;
 import lotto.constant.InputMessage;
 
 public class InputView {
@@ -23,7 +24,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine().trim());
         } catch(IllegalArgumentException e) {
-            System.out.println("[ERROR]: 한 개의 숫자를 입력하셔야 됩니다.");
+            System.out.println(ErrorMessage.INPUT_MULTIPLE_INPUT.getMessage());
             return inputWinningLottoBonusNumber();
         }
     }
@@ -33,7 +34,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine().trim());
         } catch(IllegalArgumentException e) {
-            System.out.println("[ERROR]: 숫자를 입력 하셔야 합니다.");
+            System.out.println(ErrorMessage.INPUT_NOT_A_NUMBER.getMessage());
             return inputMoney();
         }
     }
@@ -45,7 +46,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .toList();
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR]: 숫자를 입력 하셔야하고 각 숫자는 ,로 구분되어야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_CANT_DELIMITER.getMessage());
         }
     }
 }

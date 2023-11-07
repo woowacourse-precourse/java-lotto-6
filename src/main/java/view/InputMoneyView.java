@@ -9,7 +9,7 @@ public class InputMoneyView {
     private static final String MONEY_MESSAGE = "구입금액을 입력해 주세요.";
     private static final int ZERO = 0;
 
-    public Money getMoney() {
+    public Money getValue() {
         System.out.println(MONEY_MESSAGE);
         String money = Console.readLine();
 

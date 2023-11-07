@@ -7,18 +7,11 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicate(numbers);
         validateNumbers(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private static void validateDuplicate(List<Integer> numbers) {
         numbers = numbers.stream()
                 .distinct()
                 .toList();

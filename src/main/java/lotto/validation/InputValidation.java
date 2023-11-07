@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 public class InputValidation {
     private static final Pattern NUMBER = Pattern.compile("[0-9]*$");
     private static final Pattern NUMBER_AND_COMMA = Pattern.compile("[0-9,]*[0-9]$");
-    private static final String ERROR_PURCHASING_AMOUNT = "[ERROR] 1,000 ~ 100,000 사이의 숫자만 입력해 주세요.";
+    private static final String ERROR_PURCHASING_AMOUNT = "[ERROR] 1,000 ~ 100,000 사이의 숫자를 1,000 단위로 입력해 주세요.";
     private static final String ERROR_WINNING_NUMBERS = "[ERROR] 1 ~ 45 사이의 숫자, 6개를 정확하게 입력해 주세요. 예)1,2,3,4,5,6";
     private static final String ERROR_BONUS_NUMBER = "[ERROR] 1 ~ 45 사이의 숫자 중, 당첨 번호와 동일하지 않은 숫자 하나만 입력해 주세요.";
 
@@ -45,7 +45,7 @@ public class InputValidation {
         return true;
     }
 
-    public boolean validateBonusNumber(String winningNumbers, String bonusNumber) {
+    public boolean validateBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
         exception = new IllegalArgumentException(ERROR_BONUS_NUMBER);
 
         if (!checkDuplicateWithWinningNumber(winningNumbers, bonusNumber)) {
@@ -58,11 +58,10 @@ public class InputValidation {
         return true;
     }
 
-    private boolean checkDuplicateWithWinningNumber(String winningNumbers, String bonusNumber) {
-        String[] readNumbers = winningNumbers.split(",");
-        List<String> numbers = Arrays.asList(readNumbers);
+    private boolean checkDuplicateWithWinningNumber(List<Integer> winningNumbers, String bonusNumber) {
+        int number = Integer.parseInt(bonusNumber);
 
-        if (numbers.contains(bonusNumber)) {
+        if (winningNumbers.contains(number)) {
             return false;
         }
         return true;

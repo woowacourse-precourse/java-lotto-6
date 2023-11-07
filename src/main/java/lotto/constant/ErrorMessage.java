@@ -9,8 +9,8 @@ public enum ErrorMessage {
     )),
     OUT_RANGE_AMOUNT(String.format(
             "%,d원 이상, %,d원 이하의 금액을 입력해야 합니다.",
-            (long) Constants.MIN_PURCHASE_QUANTITY * Constants.LOTTO_PRICE,
-            (long) Constants.MAX_PURCHASE_QUANTITY * Constants.LOTTO_PRICE
+            Constants.MIN_AMOUNT,
+            Constants.MAX_AMOUNT
     )),
 
     INVALID_LOTTO_NUMBERS_SIZE(String.format(

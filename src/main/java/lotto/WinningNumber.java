@@ -33,7 +33,6 @@ public class WinningNumber {
         catch (NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
         }
-
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -53,5 +52,21 @@ public class WinningNumber {
                 numbers.stream().mapToInt(v -> v).max().orElse(0) > LOTTO_MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다");
         }
+    }
+    public int checkLotto(List<Integer> numbers, BonusNumber bonus){
+        int count = 0;
+        for(int number: numbers){
+            if(winningNumbers.contains(number)){
+                count++;
+            }
+            if(count == 5){
+                count += 2 * Boolean.compare(bonus.checkBonus(numbers),false);
+            }
+        }
+        return count;
+    }
+
+    public List<Integer> getWinningNumbers(){
+        return this.winningNumbers;
     }
 }

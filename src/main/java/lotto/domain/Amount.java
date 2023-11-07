@@ -5,6 +5,9 @@ import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
 import static lotto.enums.LottoConfig.LOTTO_PRICE;
 
 public record Amount(int amount) {
+    private static final int ZERO = 0;
+    private static final int PERCENT = 100;
+
     public Amount {
         validateLottoPrice(amount);
         validateAmountUnit(amount);
@@ -17,7 +20,7 @@ public record Amount(int amount) {
     }
 
     private void validateAmountUnit(final int amount) {
-        if (amount % LOTTO_PRICE.getValue() != 0) {
+        if (amount % LOTTO_PRICE.getValue() != ZERO) {
             throw new IllegalArgumentException(INVALID_AMOUNT_UNIT.getMassage());
         }
     }
@@ -27,6 +30,6 @@ public record Amount(int amount) {
     }
 
     public double calculateYield(final int winningAmount) {
-        return (double) winningAmount / this.amount() * 100;
+        return (double) winningAmount / this.amount() * PERCENT;
     }
 }

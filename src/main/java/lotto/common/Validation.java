@@ -37,4 +37,19 @@ public final class Validation {
             throw new IllegalArgumentException();
         }
     }
+
+    public static Integer lottoDuplicateBonusNumber(String lotto, String bonus) {
+        if (lotto.contains(bonus)) {
+            throw new IllegalArgumentException();
+        }
+
+        return Integer.parseInt(bonus);
+    }
+
+    public static void blankCheck(String strLotto) {
+        if (strLotto.isEmpty() || strLotto.equals(",")) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

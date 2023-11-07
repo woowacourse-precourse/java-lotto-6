@@ -55,9 +55,10 @@ public class Result {
         }
     }
 
-    public float calculateWinningRate() {
+    public double calculateWinningRate() {
         int price = calculatePrice();
-        return (float) price / payment.getPayment();
+        double winningRate = (double) price / payment.getPayment();
+        return Math.round(winningRate * 100.0) / 100.0;
     }
 
     private int calculatePrice() {

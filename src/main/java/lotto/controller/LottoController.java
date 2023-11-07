@@ -27,7 +27,7 @@ public class LottoController {
         Result result = new Result(lottoBuyer);
         result.calculateResult(winningNumbers,bonusNumber);
         outputView.printWinningResult(result);
-        float winningRate = result.calculateWinningRate();
+        double winningRate = result.calculateWinningRate();
     }
 
 

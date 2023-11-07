@@ -6,7 +6,7 @@ import lotto.enums.ErrorMessage;
 public class Bonus {
     private final Integer bonusNumber;
 
-    public Bonus (Integer bonusNumber) {
+    public Bonus(Integer bonusNumber) {
         validateRange(bonusNumber);
 
         this.bonusNumber = bonusNumber;

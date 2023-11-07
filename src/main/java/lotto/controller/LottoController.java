@@ -2,9 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.IssuedLottos;
+import lotto.domain.Rank;
 import lotto.service.LottoService;
 import lotto.utility.vo.BonusNumberRequest;
 import lotto.utility.vo.LottoResponse;
+import lotto.utility.vo.ProfitResponse;
 import lotto.utility.vo.PurchaseAmountRequest;
 import lotto.utility.vo.WinningNumberRequest;
 import lotto.utility.vo.WinningResponse;
@@ -41,9 +43,11 @@ public class LottoController {
         WinningNumberRequest winningNumberRequest = inputView.getWinningNumber();
         BonusNumberRequest bonusNumberRequest = inputView.getBonusNumber();
 
-        WinningResponse winningResponse = lottoService.determineWinning(
+        List<Rank> ranks = lottoService.determineWinning(
             issuedLottos, bonusNumberRequest, winningNumberRequest);
+        ProfitResponse profitResponse = lottoService.createProfit(ranks);
 
-        outputView.informWinningResult(winningResponse);
+        outputView.informWinningResult(new WinningResponse(ranks));
+        outputView.informProfit(profitResponse);
     }
 }

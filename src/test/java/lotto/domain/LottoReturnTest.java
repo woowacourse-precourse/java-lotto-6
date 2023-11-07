@@ -14,8 +14,6 @@ import org.junit.jupiter.api.Test;
 
 public class LottoReturnTest {
     private LottoResult lottoResult;
-    private LottoWinningNumbers lottoWinningNumbers;
-    private BonusNumber bonusNumber;
 
     @BeforeEach
     void setUp() {

@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class LottoInputParser extends InputParser {
+public class WinningNumbersInputParser extends InputParser {
 
     private static final String DELIMITER = ",";
     private static final Pattern PATTERN = Pattern.compile("^\\d+(,\\d+)*$");

@@ -7,8 +7,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoInputParserTest {
-    InputParser inputParser = new LottoInputParser();
+public class WinningNumbersInputParserTest {
+    InputParser inputParser = new WinningNumbersInputParser();
 
     @Test
     @DisplayName("정수가 아닌 값을 넣으면 예외가 발생한다.")

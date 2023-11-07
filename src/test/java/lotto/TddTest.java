@@ -93,6 +93,13 @@ public class TddTest {
         }
     }
 
+    @Test
+    public void 로또_번호는_오름차순_정렬(){
+        Lotto lotto = new Lotto(Arrays.asList(5, 20, 1, 42, 3, 59));
+
+        assertThat(lotto.getNumbers()).isEqualTo(Arrays.asList(1, 3, 5, 20, 42, 59));
+    }
+
     private List<Integer> parseNumbers(String input) {
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)

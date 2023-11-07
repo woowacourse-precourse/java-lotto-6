@@ -1,13 +1,13 @@
 package lotto.domain.Constant;
 
-public enum LottoNumberConstant {
+public enum LottoNumber {
     MIN(1),
     MAX(45),
     COUNT(6);
 
     private Integer value;
 
-    private LottoNumberConstant(Integer value) {
+    private LottoNumber(Integer value) {
         this.value = value;
     }
 

@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.Domain.Lotto.*;
+
 public class InputView {
     private static final int LOTTO_PRICE = 1000;
 
@@ -23,9 +25,10 @@ public class InputView {
         for (String number : numbertmp) {
             numbers.add(Integer.parseInt(number));
         }
+        validateDuplicate(numbers);
+        validateRange(numbers);
         return numbers;
     }
-
 
 
     public static int getBonusNumber() {

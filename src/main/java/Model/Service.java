@@ -28,31 +28,13 @@ public class Service {
         return numbers;
     }
 
-    public int numberGenerator() {
-        return Randoms.pickNumberInRange(1, 45);
-    }
-
-    private int numberFrequencyCount(List<Integer> list) {
-        Set<Integer> set = new HashSet<>(DOMAIN.lottoWinningNumber);
-        return (int) list.stream()
-                .filter(set::contains)
-                .count();
-    }
-
-    public void compareNumbers() {
-        for (var e : DOMAIN.getMyLotto()) {
-            DOMAIN.getCorrectNumberCount()
-                    .add(numberFrequencyCount(e.getNumbers()));
-        }
-    }
-
     public List<Integer> makeLotto(String lottoNumber) {
         return Arrays.stream(lottoNumber.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 
-    private int getMyWinning(int winningNumber) {
+    public int getMyWinning(int winningNumber) {
         if(winningNumber == 1) {
             return Winnings.FIRST_PLACE.getValue();
         } else if(winningNumber == 2) {
@@ -65,9 +47,5 @@ public class Service {
             return Winnings.FIFTH_PLACE.getValue();
         }
         throw new IllegalArgumentException("잘못된 값이 들어감");
-    }
-
-    public void setRevenueRate(int winningNumber) {
-        DOMAIN.revenueRate = getMyWinning(winningNumber) / DOMAIN.price;
     }
 }

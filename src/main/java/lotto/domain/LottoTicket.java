@@ -29,4 +29,8 @@ public class LottoTicket {
         if (count != MAX_NUMBER_OF_NUMBERS) throw new IllegalArgumentException();
     }
 
+    public List<LottoNumber> getLottoNumbers() {
+        return Collections.unmodifiableList(lottoNumbers);
+    }
+
 }

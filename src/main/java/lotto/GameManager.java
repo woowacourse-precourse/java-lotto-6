@@ -11,6 +11,7 @@ import lotto.output.OutputProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 public class GameManager {
@@ -23,13 +24,16 @@ public class GameManager {
     }
 
     public void run() {
-        List<Lotto> lottos = purchase();
+        outputProcessor.outputPurchaseMoneyInputMessage();
+        List<Lotto> lottos = requestRepeatedly(this::purchase);
         showLottos(lottos);
 
-        List<Integer> winningNumbers = chooseWinningNumbers();
-        int bonusNumber = chooseBonusNumber();
+        outputProcessor.outputWinningNumberInputMessage();
+        Lotto winningLotto = requestRepeatedly(this::chooseWinningNumbers);
 
-        Game game = new Game(winningNumbers, bonusNumber, lottos);
+        outputProcessor.outputBonusNumberInputMessage();
+        Game game = requestRepeatedly(lottos, winningLotto, this::startGame);
+
         processResult(game);
     }
 
@@ -38,24 +42,28 @@ public class GameManager {
         outputProcessor.outputWinningInformation(winningInformation);
     }
 
+    private Game startGame(List<Lotto> lottos, Lotto winningLotto) {
+        int bonusNumber = inputProcessor.getBonusNumber();
+        Game game = new Game(winningLotto, bonusNumber, lottos);
+        outputProcessor.outputNewLine();
+        return game;
+    }
+
     private int chooseBonusNumber() {
-        outputProcessor.outputBonusNumberInputMessage();
-        // BonusNumber의 중복 여부를 여기서 직접 확인하지 않아서 try문에 안잡힘
-        int bonusNumber = requestRepeatedly(inputProcessor::getBonusNumber);
+        int bonusNumber = inputProcessor.getBonusNumber();
         outputProcessor.outputNewLine();
         return bonusNumber;
     }
 
-    private List<Integer> chooseWinningNumbers() {
-        outputProcessor.outputWinningNumberInputMessage();
-        List<Integer> winningNumbers = requestRepeatedly(inputProcessor::getWinningNumbers);
+    private Lotto chooseWinningNumbers() {
+        List<Integer> winningNumbers = inputProcessor.getWinningNumbers();
+        Lotto winningLotto = new Lotto(winningNumbers);
         outputProcessor.outputNewLine();
-        return winningNumbers;
+        return winningLotto;
     }
 
     private List<Lotto> purchase() {
-        outputProcessor.outputPurchaseMoneyInputMessage();
-        Integer amount = requestRepeatedly(inputProcessor::getUserPurchaseMoney);
+        Integer amount = inputProcessor.getUserPurchaseMoney();
         PurchaseAmount purchaseAmount = new PurchaseAmount(amount);
         int numberOfLottos = purchaseAmount.toNumberOfLottos();
         List<Lotto> lottos = issueLottos(numberOfLottos);
@@ -75,6 +83,16 @@ public class GameManager {
         while (true) {
             try {
                 return supplier.get();
+            } catch (IllegalArgumentException e) {
+                outputProcessor.outputError(e.getMessage());
+            }
+        }
+    }
+
+    private <T, U, R> R requestRepeatedly(T t, U u, BiFunction<T, U, R> biFunction) {
+        while (true) {
+            try {
+                return biFunction.apply(t, u);
             } catch (IllegalArgumentException e) {
                 outputProcessor.outputError(e.getMessage());
             }

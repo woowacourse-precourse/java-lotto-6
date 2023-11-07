@@ -58,7 +58,7 @@ public class LottoController {
         }
     }
 
-    private Integer inputBonusNumber() {
+    private int inputBonusNumber() {
         InputView.inputViewBonusNumber();
         while (true) {
             try {
@@ -97,7 +97,7 @@ public class LottoController {
         return Utils.convertToLottoIntegerList(userInput);
     }
 
-    private Integer getInputBonusNumber() {
+    private int getInputBonusNumber() {
         String userInput = InputView.input().trim();
         return Utils.stringToInteger(userInput);
     }

@@ -14,9 +14,15 @@ import lotto.io.lottos.LottosRandoms;
 public class Application {
 
     public static void main(String[] args) {
-        try {
+        runExceptionHandled(() -> {
             LottoGame lottoGame = getLottoGame();
             lottoGame.run();
+        });
+    }
+
+    private static void runExceptionHandled(Runnable runnable) {
+        try {
+            runnable.run();
         } catch (Exception e) {
             System.out.println(EXCEPTION_APPLICATION.get());
             throw e;

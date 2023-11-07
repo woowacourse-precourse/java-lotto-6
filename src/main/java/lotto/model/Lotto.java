@@ -11,7 +11,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        LottoValidation.lottoValidation(numbers);
+        LottoVaildationInterface.lottoValidation(new LottoValidation(),numbers);
     }
 
     public List<Integer> getNumbers() {

@@ -13,8 +13,4 @@ public class LottoRepository {
         }
         return lottos;
     }
-
-    public Lottos getLottos() {
-        return lottos;
-    }
 }

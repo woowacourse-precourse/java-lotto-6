@@ -33,15 +33,20 @@ public class GameController {
     }
 
     public void play() {
-        int amount = setAmount();
-        ticketCount = amount / TICKET_PRICE;
-        setLottoTicket();
-        outputView.displayLottoTicket(OutputMessage.DISPLAY_TICKET_COUNT, ticketCount, lottoTicket);
+        int amount = initGame();
         setWinningNumbers();
         setBonusNumber();
         LottoResultAnalyze lottoResultAnalyze = new LottoResultAnalyze();
         Map<String, Integer> lottoResult = lottoResultAnalyze.calculateResult(lottoTicket, winningNumbers, bonusNumber);
         double profit = calculateProfit(amount, lottoResult);
+    }
+
+    private int initGame() {
+        int amount = setAmount();
+        int ticketCount = amount / TICKET_PRICE;
+        setLottoTicket(ticketCount);
+        displayTicketInfo(amount);
+        return amount;
     }
 
     private int setAmount() {
@@ -52,6 +57,11 @@ public class GameController {
 
     private void setLottoTicket() {
         lottoTicket = LottoMachine.createLottoTicket(ticketCount);
+    }
+
+    private void displayTicketInfo(int amount) {
+        int ticketCount = amount / TICKET_PRICE;
+        outputView.displayLottoTicket(OutputMessage.DISPLAY_TICKET_COUNT, ticketCount, lottoTicket);
     }
 
     private void setWinningNumbers() {

@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +23,7 @@ public class LottoController {
 		return LottoView.getMoney();
 	}
 
-	public void createRandomLotto(int count) { // 사용자가 입력한 갯수에 따라 로또를 생성한다.
+	private void createRandomLotto(int count) { // 사용자가 입력한 갯수에 따라 로또를 생성한다.
 		for (int i = 0; i < count; i++) {
 			List<Integer> randomNumbers = pickUniqueNumbersInRange(1, 45, 6);
 			randomLotto = new Lotto(randomNumbers);
@@ -33,7 +32,7 @@ public class LottoController {
 		}
 	}
 
-	public void getWinNumbers() {
+	private void getWinNumbers() {
 		String[] numbers = LottoView.getWinLotto();
 		winNumbers = setWinNumbers(numbers);
 		bonusNumber = getBonusNumber();
@@ -83,7 +82,8 @@ public class LottoController {
 		return result;
 	}
 
-	public void printResult() {
+	private void printResult() {
+		matchRank();
 		Map<Ranking, Integer> result = matchRank();
 		System.out.printf("%n당첨 통계%n");
 		System.out.println("---");
@@ -92,7 +92,7 @@ public class LottoController {
 		}
 	}
 
-	public void marginRate() {
+	private void marginRate() {
 		double marginRate = 0;
 		double purchasedMoney = createdLottos.size() * 1000;
 		int winPrice = 0;
@@ -113,7 +113,7 @@ public class LottoController {
 		int count = getCount();
 		this.createRandomLotto(count);
 		this.getWinNumbers();
-		this.matchRank();
+//		this.matchRank();
 		this.printResult();
 		this.marginRate();
 	}

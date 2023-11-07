@@ -7,29 +7,18 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.message.ErrorMessage;
 
 public class InputView {
-	public String getPurchaseAmount() {
+	public String purchaseAmount() {
 		String input = Console.readLine();
 		return input;
 	}
 	
-	public String getWinningNumbers() {
+	public String winningNumbers() {
 		String input = Console.readLine();
 		return input;
 	}
-	
-	public WinningNumbers getWinningNumbers() {
+		
+	public String bonusNumber() {
 		String input = Console.readLine();
-		List<Integer> winningNumbers = new ArrayList<>();
-		for(String s : input.split(",")) {
-			// 검사
-			winningNumbers.add(Integer.parseInt(s));
-		}
-		return new WinningNumbers(winningNumbers);
-	}
-	
-	
-	public int getBonusNumber() {
-		int input = Integer.parseInt(Console.readLine());
 		return input;
 	}
 }

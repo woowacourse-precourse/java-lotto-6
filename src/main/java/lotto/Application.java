@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,7 +15,50 @@ public class Application {
         List<Lotto> lotto = makeLottos(numberOfTicket);
         printLotto(lotto);
 
+        Lotto firstPrize = getInputFirstPrizeLotto();
+        int bonusNumber = getInputBonusNumber();
 
+
+    }
+
+    public static int getInputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String str = Console.readLine();
+        int num = unsafeString2Int(str);
+        validateNumberRange(num);
+        return num;
+    }
+
+    public static Lotto getInputFirstPrizeLotto() {
+        Lotto lotto;
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        List<String> numString = Arrays.stream(input.split(","))
+                .toList();
+        List<Integer> num = new ArrayList<>();
+
+        validateFirstPrize(numString);
+
+        lotto = new Lotto(num);
+
+        return lotto;
+    }
+
+    private static void validateFirstPrize(List<String> numString) {
+        final int FIRST_PRIZE_NUMBER_COUNT = 6;
+        if (numString.size() != FIRST_PRIZE_NUMBER_COUNT) {
+            throw new IllegalArgumentException();
+        }
+        for (int i = 0; i < FIRST_PRIZE_NUMBER_COUNT; ++i) {
+            int num = unsafeString2Int(numString.get(i));
+            validateNumberRange(num);
+        }
+    }
+
+    private static void validateNumberRange(int num) {
+        if (num < 1 || 45 < num) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static void printLotto(List<Lotto> lotto) {

@@ -66,11 +66,8 @@ public class Application {
         String inputMoney = Console.readLine();
         Integer money;
         try {
-            if(IsInteger(inputMoney)){
-                throw new IllegalArgumentException("[ERROR] 입력은 숫자만 가능합니다.");
-            }
-            if (Integer.valueOf(inputMoney) % lottoPrice != 0) {
-                throw new IllegalArgumentException("[ERROR] 입력 단위는 1,000원 단위여야 합니다.");
+            if(IsValidMoney(inputMoney)){
+                throw new IllegalArgumentException(errorMessage);
             }
             money = Integer.valueOf(inputMoney);
         } catch (Exception e) {
@@ -80,11 +77,34 @@ public class Application {
         return money;
     }
 
-    public static boolean IsInteger(String strValue) {
+    private static boolean IsValidMoney(String inputmoney) {
+        if(IsInteger(inputmoney)){
+           return true;
+        }
+        if(IsZero(inputmoney)){
+            return true;
+        }
+        if (Integer.valueOf(inputmoney) % lottoPrice != 0) {
+            errorMessage = "[ERROR] 입력 단위는 1,000원 단위여야 합니다.";
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean IsZero(String inputMoney) {
+        if(Integer.parseInt(inputMoney)<=0){
+            errorMessage = "[ERROR] 입력은 0원 초과여야 합니다.";
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean IsInteger(String inputmoney) {
         try {
-            Integer.parseInt(strValue);
+            Integer.parseInt(inputmoney);
             return false;
         } catch (NumberFormatException e) {
+            errorMessage = "[ERROR] 입력은 숫자만 가능합니다.";
             return true;
         }
     }

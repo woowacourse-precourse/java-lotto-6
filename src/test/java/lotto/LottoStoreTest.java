@@ -8,30 +8,33 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoStore;
+import lotto.model.WinningCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class LottoStoreTest {
-    private LottoStore lottoStore = new LottoStore();
+    private LottoStore lottoStore;
+    private WinningCalculator winnings;
 
     @BeforeEach
     public void setUp() {
         lottoStore = new LottoStore();
+        winnings = new WinningCalculator();
     }
 
     @Test
     public void testCalculateTotalWinning() {
         List<Integer> counts = Arrays.asList(7, 0, 0, 0, 1, 1);
-        lottoStore.setTotalWinningMoney(counts);
+        winnings.setTotalWinningMoney(counts);
         BigDecimal compared = new BigDecimal(2030000000);
-        assertEquals(compared, lottoStore.getTotalWinningMoney());
+        assertEquals(compared, winnings.getTotalWinningMoney());
     }
 
     @Test
     void calculateRateOfReturnTest() {
-        lottoStore.setTotalWinningMoney(new BigDecimal(5000));
-        lottoStore.setLottoSales(8);
-        BigDecimal rateOfReturn = lottoStore.calculateRateOfReturn();
+        winnings.setTotalWinningMoney(new BigDecimal(5000));
+        winnings.setSales(8);
+        BigDecimal rateOfReturn = winnings.calculateRateOfReturn();
         assertThat(rateOfReturn).isEqualByComparingTo(BigDecimal.valueOf(62.5));
     }
 

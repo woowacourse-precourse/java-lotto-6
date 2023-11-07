@@ -4,10 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.constant.PrizesConstant.INIT_REWARD;
-import static lotto.constant.PrizesConstant.NO_BENEFIT;
-import static lotto.constant.PrizesConstant.PERCENTAGE_INDICATOR;
-import static lotto.constant.PrizesConstant.ROUND_INDICATOR;
+import static lotto.constant.LottoResultConstant.INIT_REWARD;
+import static lotto.constant.LottoResultConstant.NO_BENEFIT;
+import static lotto.constant.LottoResultConstant.PERCENTAGE_INDICATOR;
+import static lotto.constant.LottoResultConstant.ROUND_INDICATOR;
 
 public class LottoResult {
 

@@ -1,7 +1,7 @@
 package lotto.constant;
 
 
-public enum PrizesConstant {
+public enum LottoResultConstant {
 
     NO_BENEFIT(0.0),
     INIT_REWARD(0.0),
@@ -11,7 +11,7 @@ public enum PrizesConstant {
 
     private final Double setting;
 
-    PrizesConstant(Double setting) {
+    LottoResultConstant(Double setting) {
         this.setting = setting;
     }
 

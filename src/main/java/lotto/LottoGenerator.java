@@ -24,4 +24,8 @@ public class LottoGenerator {
         }
         return lottos;
     }
+
+    private Lotto generateLotto() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6));
+    }
 }

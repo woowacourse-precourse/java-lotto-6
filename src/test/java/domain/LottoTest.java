@@ -39,7 +39,7 @@ class LottoTest {
     @Test
     void createLottoBySortedNumbers() {
         Lotto lotto = new Lotto(Arrays.asList(2, 1, 3, 4, 6, 5));
-        assertThat(lotto).hasToString("[1, 2, 3, 4, 5, 6]");
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @Test

@@ -64,11 +64,6 @@ public class Lotto {
         return numbers.contains(bonus.getNumber());
     }
 
-    @Override
-    public String toString() {
-        return numbers.toString();
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
     }

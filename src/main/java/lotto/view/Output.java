@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoTickets;
 import lotto.domain.Rank;
 
@@ -45,7 +46,9 @@ public class Output {
 
     private void showLottoNumbers(LottoTickets lottoTickets) {
         lineBreak();
-        lottoTickets.getLottos().forEach(System.out::println);
+        lottoTickets.getLottos().stream()
+                .map(Lotto::getNumbers)
+                .forEach(System.out::println);
     }
 
     public void showWinningStats(Map<Rank, Integer> winningResult, double totalReturn) {

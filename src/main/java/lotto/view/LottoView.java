@@ -1,8 +1,10 @@
 package lotto.view;
 
+import lotto.constant.Ranking;
 import lotto.constant.Views;
 import lotto.domain.Lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoView {
@@ -17,6 +19,7 @@ public class LottoView {
     }
 
     public void printPurchaseLotto(List<Lotto> lotts){
+        List<Integer> sortLottoNumber = new ArrayList<>();
         for(Lotto lotto : lotts){
             System.out.println(lotto.getNumbers());
         }
@@ -28,6 +31,19 @@ public class LottoView {
     }
 
     public void printInputBonusNumber(){
+        System.out.println();
         System.out.println(Views.INPUT_BONUS_NUMBER_MESSAGE.getMessage());
+    }
+
+    public void printWinningResult(int[] winResult){
+        for(Ranking ranking : Ranking.values()){
+            String getWinningMessage = ranking.formatMessage(winResult[ranking.getIndex()]);
+            System.out.println(getWinningMessage);
+        }
+    }
+
+    public void printRate(String winRate){
+        String getResultRateMessage = Views.OUTPUT_RATE_RESULT_MESSAGE.formatMessage(winRate);
+        System.out.println(getResultRateMessage);
     }
 }

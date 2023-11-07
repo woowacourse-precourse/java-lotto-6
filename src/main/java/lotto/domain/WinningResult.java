@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import lotto.constants.LottoConstants;
 import lotto.constants.LottoReward;
+import lotto.dto.WinningResultDto;
 
 public class WinningResult {
     private final EnumMap<LottoReward, Integer> winningResult;
@@ -33,5 +34,9 @@ public class WinningResult {
 
     public Integer getWinningCount(LottoReward winningReward) {
         return winningResult.get(winningReward);
+    }
+
+    public WinningResultDto toDto() {
+        return new WinningResultDto(winningResult);
     }
 }

@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import lotto.constants.LottoConstants;
 import lotto.constants.LottoReward;
+import lotto.dto.ReturnsRateDto;
 
 public class ReturnsRate {
     private final double returnsRate;
@@ -26,6 +27,10 @@ public class ReturnsRate {
                 .mapToLong(winningReward -> winningResult.getWinningCount(winningReward)
                         * Long.parseLong(winningReward.getWinningAmount().replace(",", "")))
                 .sum();
+    }
+
+    public ReturnsRateDto toDto() {
+        return new ReturnsRateDto(returnsRate);
     }
 }
 

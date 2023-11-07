@@ -1,9 +1,12 @@
 package lotto.view;
 
-import lotto.domain.*;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoPaper;
+import lotto.domain.lotto.LottoPrize;
+import lotto.domain.lotto.LottoRank;
+import lotto.domain.prize.Statistic;
+import lotto.domain.result.LottoResult;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 

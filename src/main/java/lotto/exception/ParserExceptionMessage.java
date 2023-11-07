@@ -1,6 +1,5 @@
 package lotto.exception;
 
-import lotto.domain.constant.LottoConstant;
 import lotto.domain.constant.ParserConstant;
 
 public enum ParserExceptionMessage implements ParserConstant {

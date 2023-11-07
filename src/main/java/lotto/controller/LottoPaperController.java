@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoPaper;
-import lotto.domain.Payment;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoPaper;
+import lotto.domain.payment.Payment;
 import lotto.util.LottoNumberGenerator;
 import lotto.util.LottoTicketCalculator;
 import lotto.view.OutputView;

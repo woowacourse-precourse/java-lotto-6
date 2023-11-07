@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import lotto.domain.LottoRank;
-import lotto.domain.LottoResult;
-import lotto.domain.Prize;
+import lotto.domain.lotto.LottoRank;
+import lotto.domain.result.LottoResult;
+import lotto.domain.prize.Prize;
 
 import java.util.EnumMap;
 

@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.constant.LottoConstant;
+import lotto.domain.lotto.LottoConstant;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoDraw;
 import lotto.exception.LottoException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

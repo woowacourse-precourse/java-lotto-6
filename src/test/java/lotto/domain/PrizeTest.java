@@ -1,13 +1,13 @@
 package lotto.domain;
 
-import lotto.domain.constant.PrizeConstant;
+import lotto.domain.prize.PrizeConstant;
+import lotto.domain.lotto.LottoRank;
+import lotto.domain.prize.Prize;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.EnumMap;
-import java.util.List;
-import java.util.Map;
 
 public class PrizeTest {
     @Test

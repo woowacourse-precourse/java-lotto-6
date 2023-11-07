@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.domain.lotto;
+
+import lotto.domain.result.MatchResult;
 
 public enum LottoRank {
     FIRST(6, false),

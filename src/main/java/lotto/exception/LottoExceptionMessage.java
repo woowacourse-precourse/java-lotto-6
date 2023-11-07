@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.domain.constant.LottoConstant;
+import lotto.domain.lotto.LottoConstant;
 
 public enum LottoExceptionMessage implements LottoConstant {
     INVALID_PICK_COUNT(String.format("%d개의 숫자를 입력해주세요!",PICK_COUNT)),

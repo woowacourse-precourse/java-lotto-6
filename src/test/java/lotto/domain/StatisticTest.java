@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.prize.Statistic;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

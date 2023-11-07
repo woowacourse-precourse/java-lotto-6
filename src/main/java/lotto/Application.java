@@ -2,7 +2,12 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.*;
-import lotto.domain.*;
+import lotto.domain.lotto.LottoDraw;
+import lotto.domain.lotto.LottoPaper;
+import lotto.domain.payment.Payment;
+import lotto.domain.prize.Prize;
+import lotto.domain.prize.Statistic;
+import lotto.domain.result.LottoResult;
 
 public class Application {
     public static void main(String[] args) {

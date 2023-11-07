@@ -1,8 +1,8 @@
 package lotto.util;
 
-import lotto.domain.LottoPrize;
-import lotto.domain.LottoRank;
-import lotto.domain.constant.PrizeConstant;
+import lotto.domain.lotto.LottoPrize;
+import lotto.domain.lotto.LottoRank;
+import lotto.domain.prize.PrizeConstant;
 
 import java.util.EnumMap;
 

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoPaper;
+import lotto.domain.payment.Payment;
 import lotto.util.LottoNumberGenerator;
 import lotto.util.LottoTicketCalculator;
 import org.junit.jupiter.api.Assertions;

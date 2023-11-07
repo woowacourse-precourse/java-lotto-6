@@ -1,13 +1,18 @@
 package lotto.controller;
 
-import lotto.domain.*;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoDraw;
+import lotto.domain.lotto.LottoPaper;
+import lotto.domain.lotto.LottoRank;
+import lotto.domain.result.LottoResult;
+import lotto.domain.result.MatchResult;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoResultController {
-    public LottoResult createLottoResult(LottoPaper lottoPaper,LottoDraw lottoDraw){
+    public LottoResult createLottoResult(LottoPaper lottoPaper, LottoDraw lottoDraw){
         final List<Lotto> lottoTickets = lottoPaper.lottoTickets();
         List<MatchResult> matchResults = generateMatchResults(lottoTickets,lottoDraw);
         List<LottoRank> lottoRanks = generateLottoRanks(matchResults);

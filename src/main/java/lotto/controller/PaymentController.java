@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.domain.Payment;
+import lotto.domain.payment.Payment;
 import lotto.exception.ParserException;
 import lotto.exception.PaymentException;
 import lotto.exception.PaymentExceptionMessage;

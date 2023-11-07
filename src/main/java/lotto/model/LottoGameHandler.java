@@ -1,5 +1,10 @@
 package lotto.model;
 
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class LottoGameHandler {
 
     //로또 발행기능
@@ -8,7 +13,8 @@ public class LottoGameHandler {
     }
 
     //당첨로또 발행기능
-    public void createWinningTicket() {
+    public WinningTicket createWinningTicket(List<Integer> winningNum, int bonumNum) {
+        return new WinningTicket(winningNum, bonumNum);
 
     }
 

@@ -32,13 +32,18 @@ class LottoTest {
                 .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
     }
 
-    @DisplayName("로또 번호에 1~45 범위를 벗어난 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("로또 번호에 45보다 큰 숫자가 있으면 예외가 발생한다.")
     @Test
-    void createLottoByOutOfRange() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
+    void createLottoByOverRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 56)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1~45 사이 숫자 입니다.");
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+    }
+
+    @DisplayName("로또 번호에 1보다 작은 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1~45 사이 숫자 입니다.");
     }

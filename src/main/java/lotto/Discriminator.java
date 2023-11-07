@@ -1,20 +1,21 @@
 package lotto;
 
 import java.util.List;
+import lotto.dto.LottoNumberDTO;
 import lotto.dto.ProfitRateDTO;
 import lotto.dto.StatisticDTO;
 
 public class Discriminator {
     private Info info;
-    private List<Integer> correctNumbers;
+    private Lotto correctLotto;
     private int bonus;
 
     public Discriminator() {
         this.info = new Info();
     }
 
-    public void setCorrectNumbers(List<Integer> correctNumbers) {
-        this.correctNumbers = correctNumbers;
+    public void setCorrectNumbers(Lotto lotto) {
+        this.correctLotto = lotto;
     }
 
     public void setBonus(int bonus) {
@@ -25,7 +26,7 @@ public class Discriminator {
         int cnt = 0;
 
         for (int n : lotto) {
-            if (correctNumbers.contains(cnt)) {
+            if (correctLotto.getNumbers().contains(n)) {
                 cnt++;
             }
         }

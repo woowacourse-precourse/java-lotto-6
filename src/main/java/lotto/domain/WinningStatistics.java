@@ -41,4 +41,27 @@ public class WinningStatistics {
         this.winningRate = winningRate;
     }
 
+    public double getWinningRate() {
+        return winningRate;
+    }
+
+    public int getFirstPlace() {
+        return firstPlace;
+    }
+
+    public int getSecondPlace() {
+        return secondPlace;
+    }
+
+    public int getThirdPlace() {
+        return thirdPlace;
+    }
+
+    public int getFourthPlace() {
+        return fourthPlace;
+    }
+
+    public int getFifthPlace() {
+        return fifthPlace;
+    }
 }

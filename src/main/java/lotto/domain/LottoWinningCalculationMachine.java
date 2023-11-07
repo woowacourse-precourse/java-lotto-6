@@ -24,14 +24,15 @@ public class LottoWinningCalculationMachine {
 
     public WinningStatistics calculateWinningStatistics(Lottos lottos, WinningNumber winningNumber) {
         WinningStatistics winningStatistics = new WinningStatistics();
+        int lottoCount = lottos.size();
 
-        for (int i = 0; i < lottos.size(); i++) {
+        for (int i = 0; i < lottoCount; i++) {
             int correctWinningNumber = calculateWinningNumber(lottos.get(i), winningNumber);
             int correctBonusNumber = calculateBonusNumber(lottos.get(i), winningNumber);
             calculatePlace(winningStatistics, correctWinningNumber, correctBonusNumber);
         }
 
-        calculateWinningRate(winningStatistics);
+        calculateWinningRate(winningStatistics, lottoCount);
 
         return winningStatistics;
     }
@@ -50,7 +51,17 @@ public class LottoWinningCalculationMachine {
         }
     }
 
-    public void calculateWinningRate(WinningStatistics winningStatistics) {
+    public void calculateWinningRate(WinningStatistics winningStatistics, int lottoCount) {
+        long firstPlaceMoney = winningStatistics.getFirstPlace() * LottoPlaceMoney.FIRST_PLACE_MONEY.lottoPlaceMoney;
+        long secondPlaceMoney = winningStatistics.getSecondPlace() * LottoPlaceMoney.SECOND_PLACE_MONEY.lottoPlaceMoney;
+        long thirdPlaceMoney = winningStatistics.getThirdPlace() * LottoPlaceMoney.THIRD_PLACE_MONEY.lottoPlaceMoney;
+        long fourthPlaceMoney = winningStatistics.getFourthPlace() * LottoPlaceMoney.FOURTH_PLACE_MONEY.lottoPlaceMoney;
+        long fifthPlaceMoney = winningStatistics.getFifthPlace() * LottoPlaceMoney.FIFTH_PLACE_MONEY.lottoPlaceMoney;
 
+        long winningMoney = firstPlaceMoney + secondPlaceMoney + thirdPlaceMoney + fourthPlaceMoney + fifthPlaceMoney;
+
+        int money = lottoCount * 1000;
+        double winningRate = money / winningMoney * 100;
+        winningStatistics.setWinningRate(winningRate);
     }
 }

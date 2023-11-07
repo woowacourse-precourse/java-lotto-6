@@ -28,4 +28,8 @@ public class Lotto {
     public void sortAsc(List<Integer> numbers) {
         Collections.sort(numbers);
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

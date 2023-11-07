@@ -7,6 +7,8 @@ import lotto.domain.LottoAmountGenerator;
 import lotto.domain.LottoGenerator;
 import lotto.domain.WinningNumbersGenerator;
 import lotto.io.OutputHandler;
+import lotto.util.Calculator;
+import lotto.util.Winning;
 
 public class Application {
     static int amount;
@@ -24,5 +26,8 @@ public class Application {
 
         winningNumbers = WinningNumbersGenerator.generateWinningNumbers();
         bonusNumber = BonusNumberGenerator.generateBonusNumber();
+
+        Calculator calculator = new Calculator(lottos);
+        System.out.println(calculator.countSameNumber(Winning.FIRST, winningNumbers, bonusNumber));
     }
 }

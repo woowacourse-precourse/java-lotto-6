@@ -2,32 +2,101 @@ package lotto;
 
 import java.util.List;
 import lotto.Model.Bonus;
-import lotto.Model.Lotto;
+import lotto.Model.RandomLotto;
 import lotto.Model.Rank;
 import lotto.Model.WinningLotto;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class RankTest {
-
-    @DisplayName("발행된 랜덤 로또, 당첨 로또, 보너스 번호가 주어졌을 때, 당첨 등수를 잘 계산하는지 테스트")
+    private RandomLotto randomLotto;
+    @BeforeEach
+    void set() {
+        randomLotto = new RandomLotto(List.of(1, 3, 5, 10, 35, 45));
+    }
+    @DisplayName("당첨 1등을 계산하는 테스트, 맞춘 로또개수 6개")
     @Test
-    void calculateRank1() {
-        Lotto lotto = new Lotto(List.of(1, 3, 5, 10, 11, 12));
+    void calculateWinningRank1() {
         WinningLotto winningLotto = new WinningLotto("1,3,5,10,35,45");
-        Bonus bonus = new Bonus("30");
+        Bonus bonus = new Bonus("30", winningLotto);
 
-        Assertions.assertThat(Rank.calculateRank(lotto, winningLotto, bonus)).isEqualTo(Rank.FOURTH);
+        Rank actualRank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
+        Rank expectedRank = Rank.FIRST;
+
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
     }
 
-    @DisplayName("발행된 랜덤 로또, 당첨 로또, 보너스 번호가 주어졌을 때, 당첨 등수를 잘 계산하는지 테스트")
+    @DisplayName("당첨 2등을 계산하는 테스트, 맞춘 로또개수 5개, 보너스 O")
     @Test
-    void calculateRank2() {
-        Lotto lotto = new Lotto(List.of(1, 3, 5, 10, 11, 12));
-        WinningLotto winningLotto = new WinningLotto("1,3,5,10,11,45");
-        Bonus bonus = new Bonus("12");
+    void calculateWinningRank2() {
+        WinningLotto winningLotto = new WinningLotto("1,3,5,10,35,44");
+        Bonus bonus = new Bonus("45", winningLotto);
 
-        Assertions.assertThat(Rank.calculateRank(lotto, winningLotto, bonus)).isEqualTo(Rank.SECOND);
+        Rank actualRank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
+        Rank expectedRank = Rank.SECOND;
+
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
+    }
+
+    @DisplayName("당첨 3등을 계산하는 테스트, 맞춘 로또개수 5개, 보너스 X")
+    @Test
+    void calculateWinningRank3() {
+        WinningLotto winningLotto = new WinningLotto("1,3,5,10,35,44");
+        Bonus bonus = new Bonus("43", winningLotto);
+
+        Rank actualRank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
+        Rank expectedRank = Rank.THIRD;
+
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
+    }
+
+    @DisplayName("당첨 4등을 계산하는 테스트, 맞춘 로또개수 4개, 보너스 O")
+    @Test
+    void calculateWinningRank4_1() {
+        WinningLotto winningLotto = new WinningLotto("1,3,5,10,29,44");
+        Bonus bonus = new Bonus("35", winningLotto);
+
+        Rank actualRank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
+        Rank expectedRank = Rank.FOURTH;
+
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
+    }
+
+    @DisplayName("당첨 4등을 계산하는 테스트, 맞춘 로또개수 4개, 보너스 X")
+    @Test
+    void calculateWinningRank4_2() {
+        WinningLotto winningLotto = new WinningLotto("1,3,5,10,29,44");
+        Bonus bonus = new Bonus("30", winningLotto);
+
+        Rank actualRank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
+        Rank expectedRank = Rank.FOURTH;
+
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
+    }
+
+    @DisplayName("당첨 5등을 계산하는 테스트, 맞춘 로또개수 3개")
+    @Test
+    void calculateWinningRank5() {
+        WinningLotto winningLotto = new WinningLotto("1,3,5,9,29,44");
+        Bonus bonus = new Bonus("30", winningLotto);
+
+        Rank actualRank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
+        Rank expectedRank = Rank.FIFTH;
+
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
+    }
+
+    @DisplayName("당첨 -등을 계산하는 테스트, 맞춘 로또개수 2개 이하")
+    @Test
+    void calculateWinningRank6() {
+        WinningLotto winningLotto = new WinningLotto("1,3,6,9,29,44");
+        Bonus bonus = new Bonus("30", winningLotto);
+
+        Rank actualRank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
+        Rank expectedRank = Rank.NONE;
+
+        Assertions.assertThat(actualRank).isEqualTo(expectedRank);
     }
 }

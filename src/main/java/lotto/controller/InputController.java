@@ -1,9 +1,8 @@
 package lotto.controller;
 
-import lotto.view.ConsoleView;
+import lotto.logic.Logic;
 import lotto.view.View;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,10 +13,14 @@ public class InputController {
         this.view = view;
     }
 
+    public View getView() {
+        return view;
+    }
+
     public int getPurchaseAmount() {
         String input = view.getPurchaseAmount();
         try {
-            return validPayment(input);
+            return validatePurchaseAmount(input);
         } catch (IllegalArgumentException e) {
             view.printError(e.getMessage());
             return getPurchaseAmount();
@@ -27,8 +30,8 @@ public class InputController {
     public List<Integer> getWinningNumber() {
         String input = view.getWinningNumbers();
         try {
-            return Arrays.stream(input.split(","))
-                    .map((o) -> validNumber(o))
+            return parseToWinningNumbers(input).stream()
+                    .map((o) -> parseNumber(o))
                     .toList();
         } catch (IllegalArgumentException e) {
             view.printError(e.getMessage());
@@ -39,39 +42,45 @@ public class InputController {
     public int getBonusNumber() {
         String input = view.getBonusNumber();
         try {
-            return validNumber(input);
+            return parseNumber(input);
         } catch (IllegalArgumentException e) {
             view.printError(e.getMessage());
             return getBonusNumber();
         }
     }
 
-    private int validPayment(String input) {
-        int payment;
-
-        try {
-            payment = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("지불 금액은 정수여야 합니다.");
+    private List<String> parseToWinningNumbers(String input) {
+        List<String> numbers = Arrays.asList(input.split(","));
+        if (numbers.size() != Logic.NUMBER_COUNT) {
+            throw new IllegalArgumentException("당첨번호는 6개여야 합니다.");
         }
+        for (int idx = 0; idx < numbers.size(); idx++) {
+            if (numbers.lastIndexOf(idx) != idx) {
+                throw new IllegalArgumentException("당첨번호는 중복될 수 없습니다.");
+            }
+        }
+        return numbers;
+    }
 
-        if (payment <= 0) {
-            throw new IllegalArgumentException("지불 금액은 0 보다 커야 합니다.");
-        } else if (payment % 1000 != 0) {
-            throw new IllegalArgumentException("지불 금액은 1000원 단위여야 합니다.");
+    private int validatePurchaseAmount(String inputNumber) {
+        int payment = parseNumber(inputNumber);
+        if (payment <= 0 || payment % 1000 != 0) {
+            throw new IllegalArgumentException("지불 금액은 1000원 단위의 양수여야 합니다.");
         }
         return payment;
     }
 
-    private int validNumber(String inputNumber) {
-        int number;
-
+    private int parseNumber(String inputNumber) {
+        int number = 0;
         try {
             number = Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException("입력은 숫자만으로 이루어져야 합니다.");
         }
+        return validateNumber(number);
+    }
 
+    private int validateNumber(int number) {
         if (number <= 0 || number > 45) {
             throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
         }

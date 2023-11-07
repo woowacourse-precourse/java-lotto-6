@@ -30,7 +30,9 @@ public class Application {
         InputInterface in = new InputInterface(Console::readLine, System.out::println, converter);
         NumberFormat numberFormat = NumberFormat.getIntegerInstance();
         ReceiptRenderer receiptRenderer = new ReceiptRenderer();
-        OutputInterface out = new OutputInterface(System.out::println, numberFormat, receiptRenderer);
+        LotteryResultRenderer lotteryResultRenderer = new LotteryResultRenderer(numberFormat);
+        OutputInterface out = new OutputInterface(System.out::println, receiptRenderer,
+                lotteryResultRenderer);
 
         Controller controller = new Controller(in, out, username, purchaseLotteryService,
                 applyWinningLotteryService, calculateResultService);

@@ -11,7 +11,7 @@ public class Input {
     }
 
     public String readWinningNumbers() {
-        return read();
+        return inputValidator.validateNumberAndDelimiterFormat(read());
     }
 
     public String readBonusNumber() {

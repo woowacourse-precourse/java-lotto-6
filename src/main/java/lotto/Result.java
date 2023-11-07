@@ -21,7 +21,6 @@ public class Result {
         for (Integer ticketNumber : ticketNumbers) {
             if (lottoNumbers.contains(ticketNumber)) {
                 matchingNumbersCounter++;
-
             }
         }
 

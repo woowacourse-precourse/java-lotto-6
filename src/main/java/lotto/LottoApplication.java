@@ -11,32 +11,27 @@ import java.util.List;
 public class LottoApplication {
     void execute() {
         try {
-            int receivedAmount = getReceivedAmount();
-
-            List<Lotto> createdLottos = new ArrayList<>();
-            final int NUMBER_OF_LOTTO_TO_DRAW = getNumberOfLotto(receivedAmount);
-            for (int i = 0; i < NUMBER_OF_LOTTO_TO_DRAW; i++) {
-                createdLottos.add(drawLotto());
-            }
-            Output.printCreatedLottos(createdLottos);
-
-            Lotto pickedNumbers = getPickedNumbers();
-            Bonus bonus = getBonusNumber();
-
-            Ticket ticket = new Ticket(pickedNumbers, bonus); // 구매자의 티켓
-
-            List<Result> results = compareTicketAndLottos(ticket, createdLottos);
-
-            int[] rankCounter = getRankingCounter(results);
-            Output.printWinningStatistic(rankCounter);
-
-            double totalProfit = calculateWinningProfit(receivedAmount, calculateTotalWinningAmount(rankCounter));
-            Output.printTotalProfit(String.valueOf(totalProfit));
-
+            Buyer buyer = new Buyer(getReceivedAmount(), new Ticket(getPickedNumbers(), getBonusNumber()));
+            List<Lotto> drawnLottos = drawLottos(buyer);
+            List<Result> results = compareTicketAndLottos(buyer.getTicket(), drawnLottos);
+            int[] rankCounter = getRankCounter(results);
+            calculateWinningProfit(buyer.getReceivedAmount(), calculateTotalWinningAmount(rankCounter));
         } catch (IllegalArgumentException iae) {
             Output.printErrorMessage(iae.getMessage());
         }
+    }
 
+    private List<Lotto> drawLottos(Buyer buyer) {
+        List<Lotto> drawnLottos = new ArrayList<>();
+        final int NUMBER_OF_LOTTO_TO_DRAW = getNumberOfLotto(buyer.getReceivedAmount());
+
+        for (int i = 0; i < NUMBER_OF_LOTTO_TO_DRAW; i++) {
+            drawnLottos.add(drawLotto());
+        }
+
+        Output.printCreatedLottos(drawnLottos);
+
+        return drawnLottos;
     }
 
     private int getReceivedAmount() {
@@ -68,7 +63,6 @@ public class LottoApplication {
         } catch (NumberFormatException nfe) { // pickedNumbers 중 정수값이 없을 경우
             throw new IllegalArgumentException("1부터 45까지의 정수 값만 입력할 수 있습니다.");
         }
-
     }
 
     private Bonus getBonusNumber() {
@@ -97,12 +91,14 @@ public class LottoApplication {
         return results;
     }
 
-    private int[] getRankingCounter(List<Result> results) {
+    private int[] getRankCounter(List<Result> results) {
         int[] rankCounter = new int[6]; // index 0은 사용 안 함
 
         for (Result result : results) {
             rankCounter[result.getRank().getNumber()]++;
         }
+
+        Output.printWinningStatistic(rankCounter);
 
         return rankCounter;
     }
@@ -117,8 +113,10 @@ public class LottoApplication {
         return totalWinningAmount;
     }
 
-    private double calculateWinningProfit(int receivedAmount, long totalWinningAmount) {
-        return Math.round(totalWinningAmount / (double) receivedAmount * 1000.0) / 10.0;
+    private void calculateWinningProfit(int receivedAmount, long totalWinningAmount) {
+        double totalProfit = Math.round(totalWinningAmount / (double) receivedAmount * 1000.0) / 10.0;
+
+        Output.printTotalProfit(String.valueOf(totalProfit));
     }
 
 //    private BigDecimal calculateTotalWinningAmount(int[] rankingCounter) {

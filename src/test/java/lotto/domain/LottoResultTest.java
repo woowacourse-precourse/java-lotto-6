@@ -1,10 +1,12 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import java.util.Arrays;
 import java.util.List;
 
 import lotto.util.ErrorMessages;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +18,7 @@ class LottoResultTest {
         int count = 7;
         LottoResult result = new LottoResult(lotto, count);
 
-        Assertions.assertThat(result.getBonusNumber())
+        assertThat(result.getBonusNumber())
                 .isEqualTo(count);
     }
 
@@ -27,7 +29,7 @@ class LottoResultTest {
         Lotto lotto = new Lotto(numberList);
         int count = 6;
 
-        Assertions.assertThatThrownBy(() -> new LottoResult(lotto, count))
+        assertThatThrownBy(() -> new LottoResult(lotto, count))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.DUPLICATE_BONUS_NUMBER_ERROR.getMessage());
     }

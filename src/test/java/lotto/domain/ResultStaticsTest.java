@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ class ResultStaticsTest {
         int phrasedMoney = statics.getPhrasedMoney();
         long totalEarning = statics.calculateTotalEarning();
 
-        Assertions.assertThat(earningRate)
+        assertThat(earningRate)
                 .isEqualTo(((double) totalEarning / phrasedMoney) * 100);
     }
 
@@ -44,7 +44,7 @@ class ResultStaticsTest {
         lottos = new Lottos(lottoList);
         statics = lottos.calculateResult(lottoResult);
 
-        Assertions.assertThat(statics.getTotalEarning())
+        assertThat(statics.getTotalEarning())
                 .isEqualTo(LottoPrize.SECOND_PRIZE.getPrizeMoney());
     }
 
@@ -59,7 +59,7 @@ class ResultStaticsTest {
         lottoResult = new LottoResult(new Lotto(List.of(1, 2, 3, 4, 5, 9)), 10);
         lottos = new Lottos(lottoList);
         statics = lottos.calculateResult(lottoResult);
-        Assertions.assertThat(statics.getTotalEarning())
+        assertThat(statics.getTotalEarning())
                 .isEqualTo(LottoPrize.THIRD_PRIZE.getPrizeMoney());
     }
 }

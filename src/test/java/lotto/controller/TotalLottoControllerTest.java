@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
@@ -10,9 +11,7 @@ import java.io.PrintStream;
 import java.util.NoSuchElementException;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
-import lotto.util.ErrorMessages;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +34,7 @@ class TotalLottoControllerTest {
         String moneyAmount = "3000";
         provideInput(moneyAmount);
         Lottos lottos = controller.issueLottos();
-        Assertions.assertThat(lottos.issuedSize())
+        assertThat(lottos.issuedSize())
                 .isEqualTo(3);
     }
 
@@ -44,7 +43,7 @@ class TotalLottoControllerTest {
     void issueLottosByInvalidMoney() {
         String moneyAmount = "3100";
         provideInput(moneyAmount);
-        Assertions.assertThatThrownBy(() -> controller.issueLottos())
+        assertThatThrownBy(() -> controller.issueLottos())
                 .isInstanceOf(NoSuchElementException.class);
     }
 
@@ -55,7 +54,7 @@ class TotalLottoControllerTest {
         String bonusNumber = "7";
         provideInput(number, bonusNumber);
         LottoResult lottoResult = controller.issueLottoResult();
-        Assertions.assertThat(lottoResult.getBonusNumber())
+        assertThat(lottoResult.getBonusNumber())
                 .isEqualTo(7);
     }
 
@@ -65,7 +64,7 @@ class TotalLottoControllerTest {
         String number = "1,2,3,4,5,6";
         String bonusNumber = "6";
         provideInput(number, bonusNumber);
-        Assertions.assertThatThrownBy(() -> controller.issueLottoResult())
+        assertThatThrownBy(() -> controller.issueLottoResult())
                 .isInstanceOf(NoSuchElementException.class);
     }
 
@@ -75,7 +74,7 @@ class TotalLottoControllerTest {
         String number = "1,2,3,4,6,6";
         String bonusNumber = "7";
         provideInput(number, bonusNumber);
-        Assertions.assertThatThrownBy(() -> controller.issueLottoResult())
+        assertThatThrownBy(() -> controller.issueLottoResult())
                 .isInstanceOf(NoSuchElementException.class);
     }
 

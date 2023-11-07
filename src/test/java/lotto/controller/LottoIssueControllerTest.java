@@ -1,8 +1,10 @@
 package lotto.controller;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
 import lotto.domain.Lottos;
 import lotto.util.ErrorMessages;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,14 +16,14 @@ class LottoIssueControllerTest {
     @Test
     void issueLottosByDividedThousand() {
         Lottos lottos = controller.issueLottos(2000);
-        Assertions.assertThat(lottos.issuedSize())
+        assertThat(lottos.issuedSize())
                 .isEqualTo(2);
     }
 
     @DisplayName("1,000원으로 나눠떨어지지 않는 금액을 받으면, 예외가 발생한다.")
     @Test
     void issueLottosByCantDividedThousand() {
-        Assertions.assertThatThrownBy(() -> controller.issueLottos(1500))
+        assertThatThrownBy(() -> controller.issueLottos(1500))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessages.MONEY_CANT_DIVIDE_ERROR.getMessage());
     }

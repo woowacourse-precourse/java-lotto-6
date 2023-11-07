@@ -3,7 +3,6 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.utils.Constants;
 import lotto.utils.ErrorMessage;
 import lotto.utils.GameMessage;
 
@@ -30,7 +29,7 @@ public class InputView {
     }
 
     private static void validateIntegerForWinningNumbersInput(String input) {
-        String[] parts = input.split(Constants.COMMA);
+        String[] parts = input.split(",");
         for (String part : parts) {
             if (!isInteger(part.trim())) {
                 throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_NOT_INTEGER_ERROR.getMessage());
@@ -39,7 +38,7 @@ public class InputView {
     }
 
     private static List<Integer> convertStringToIntegerList(String input) {
-        String[] parts = input.split(Constants.COMMA);
+        String[] parts = input.split(",");
         List<Integer> result = new ArrayList<>();
 
         for (String part : parts) {

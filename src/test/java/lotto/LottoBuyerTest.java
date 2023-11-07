@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoBuyerTest {
-    LottoBuyer lottoBuyer;
     Lotto target = new Lotto(List.of(6, 5, 4, 3, 2, 1));
     int bonus = 7;
     Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
@@ -23,6 +22,7 @@ public class LottoBuyerTest {
     Lotto lotto6 = new Lotto(List.of(1, 2, 13, 14, 15, 16));
     Lotto lotto7 = new Lotto(List.of(1, 12, 13, 14, 15, 16));
     Lotto lotto8 = new Lotto(List.of(11, 12, 13, 14, 15, 16));
+    LottoBuyer lottoBuyer;
 
     @BeforeEach
     void 생성자주입() {
@@ -31,7 +31,7 @@ public class LottoBuyerTest {
     }
 
     @Test
-    @DisplayName("실패는 모두 매핑되지않고, 당첨은 각 등수마다 1개씩 매핑된다.")
+    @DisplayName("실패는 모두 매핑되지않고, 당첨은 각 등수마다 조건이 맞으면 1개씩 매핑된다.")
     void 로또바이어_통합_테스트() {
         Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
 

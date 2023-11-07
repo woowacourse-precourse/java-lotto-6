@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.config.Constants;
 
 public class LottoNumberGenerator {
+
     public List<Integer> generate() {
         return Randoms.pickUniqueNumbersInRange(
                 Constants.LOTTO_NUMBER_MIN_RANGE,

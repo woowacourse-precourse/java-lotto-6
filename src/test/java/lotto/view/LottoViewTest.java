@@ -1,6 +1,7 @@
 package lotto.view;
 
-import static org.assertj.core.api.Assertions.assertThat;
+
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +29,7 @@ public class LottoViewTest {
         String string = lotto.toString();
 
         //then
-        Assertions.assertThat(string).isEqualTo("[1, 6, 12, 22, 31, 43]");
+        assertThat(string).isEqualTo("[1, 6, 12, 22, 31, 43]");
     }
 
     @Test

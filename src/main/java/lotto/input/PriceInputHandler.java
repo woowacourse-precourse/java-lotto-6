@@ -8,11 +8,9 @@ public class PriceInputHandler {
     private static final int ZERO = 0;
     private static final int PURCHASE_MIN = 1000;
     private static final int PURCHASE_MAX = 1000000000;
-    private static final String PURCHASE_INFO_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String PURCHASE_ERROR_MESSAGE = "[ERROR] 지불할 금액을 다시 입력해주세요.";
 
     public int dividePaymentIntoLottoPrice() {
-        System.out.println(PURCHASE_INFO_MESSAGE);
+        System.out.println(RequestPrompt.PURCHASE_REQUEST.message);
         int payment = handleInputToPayment();
         return payment / Constants.LOTTO_PRICE;
     }
@@ -27,7 +25,7 @@ public class PriceInputHandler {
                 result = parsePayment(input);
                 isInputInvalid = false;
             } catch (IllegalArgumentException e) {
-                System.out.println(PURCHASE_ERROR_MESSAGE);
+                System.out.println(ErrorPrompt.PURCHASE_ERROR.message);
             }
         }
         return result;

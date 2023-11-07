@@ -12,7 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoBuyerUnitTest {
-    LottoBuyer lottoBuyer;
+    LottoBuyer lottoBuyer1;
     Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
     int bonus = 7;
 
@@ -21,10 +21,10 @@ public class LottoBuyerUnitTest {
     void 로또바이어_1등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        lottoBuyer = new LottoBuyer(List.of(lotto));
+        lottoBuyer1 = new LottoBuyer(List.of(lotto));
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
+        Map<Rank, Integer> map = lottoBuyer1.checkAllLotto(target, bonus);
 
         //then
         Rank rank = map.keySet().stream()
@@ -38,10 +38,10 @@ public class LottoBuyerUnitTest {
     void 로또바이어_2등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        lottoBuyer = new LottoBuyer(List.of(lotto));
+        lottoBuyer1 = new LottoBuyer(List.of(lotto));
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
+        Map<Rank, Integer> map = lottoBuyer1.checkAllLotto(target, bonus);
 
         //then
         Rank rank = map.keySet().stream()
@@ -55,10 +55,10 @@ public class LottoBuyerUnitTest {
     void 로또바이어_3등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 10));
-        lottoBuyer = new LottoBuyer(List.of(lotto));
+        lottoBuyer1 = new LottoBuyer(List.of(lotto));
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
+        Map<Rank, Integer> map = lottoBuyer1.checkAllLotto(target, bonus);
 
         //then
         Rank rank = map.keySet().stream()
@@ -72,10 +72,10 @@ public class LottoBuyerUnitTest {
     void 로또바이어_4등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 10));
-        lottoBuyer = new LottoBuyer(List.of(lotto));
+        lottoBuyer1 = new LottoBuyer(List.of(lotto));
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
+        Map<Rank, Integer> map = lottoBuyer1.checkAllLotto(target, bonus);
 
         //then
         Rank rank = map.keySet().stream()
@@ -89,10 +89,10 @@ public class LottoBuyerUnitTest {
     void 로또바이어_5등_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 11, 7, 10));
-        lottoBuyer = new LottoBuyer(List.of(lotto));
+        lottoBuyer1 = new LottoBuyer(List.of(lotto));
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
+        Map<Rank, Integer> map = lottoBuyer1.checkAllLotto(target, bonus);
 
         //then
         Rank rank = map.keySet().stream()
@@ -106,10 +106,10 @@ public class LottoBuyerUnitTest {
     void 로또바이어_무효_테스트() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 15, 11, 7, 10));
-        lottoBuyer = new LottoBuyer(List.of(lotto));
+        lottoBuyer1 = new LottoBuyer(List.of(lotto));
 
         //when
-        Map<Rank, Integer> map = lottoBuyer.checkAllLotto(target, bonus);
+        Map<Rank, Integer> map = lottoBuyer1.checkAllLotto(target, bonus);
 
         //then
         long count = map.keySet().stream()
@@ -121,13 +121,18 @@ public class LottoBuyerUnitTest {
     @Test
     void 로또바이어_지불액() {
         //given
-        Lotto lotto = new Lotto(List.of(1, 2, 15, 11, 7, 10));
-        lottoBuyer = new LottoBuyer(List.of(lotto));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 15, 11, 7, 10));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        lottoBuyer1 = new LottoBuyer(List.of(lotto1));
+        LottoBuyer lottoBuyer2 = new LottoBuyer(List.of(lotto1, lotto2, lotto3));
 
         //when
-        int payment = lottoBuyer.payment();
+        int payment1 = lottoBuyer1.payment();
+        int payment2 = lottoBuyer2.payment();
 
         //then
-        Assertions.assertThat(payment).isEqualTo(1000);
+        Assertions.assertThat(payment1).isEqualTo(1000);
+        Assertions.assertThat(payment2).isEqualTo(3000);
     }
 }

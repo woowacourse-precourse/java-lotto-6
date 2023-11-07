@@ -8,13 +8,9 @@ import lotto.domain.Lotto;
 
 public class TargetNumberHandler {
     private static final String INPUT_DELIMITER = ",";
-    private static final String TARGET_INFO_MESSAGE = "정답인 6개의 로또번호를 입력해주세요.";
-    private static final String TARGET_ERROR_MESSAGE = "[ERROR] 유효한 로또 정답 입력이 아닙니다.";
-    private static final String BONUS_INFO_MESSAGE = "6개의 번호와 중복되지 않는 보너스번호를 입력해주세요.";
-    private static final String BONUS_ERROR_MESSAGE = "[ERROR] 유효한 보너스 번호 입력이 아닙니다.";
 
     public Lotto setTargetLottoByInput() {
-        System.out.println(TARGET_INFO_MESSAGE);
+        System.out.println(RequestPrompt.TARGET_REQUEST.message);
         Lotto lotto = handleInputToLotto();
         return lotto;
     }
@@ -27,7 +23,7 @@ public class TargetNumberHandler {
                 target = getValidTargetNumberInput();
                 isInputInvalid = false;
             } catch (IllegalArgumentException e) {
-                System.out.println(TARGET_ERROR_MESSAGE);
+                System.out.println(ErrorPrompt.TARGET_ERROR.message);
             }
         } while (isInputInvalid);
         return target;
@@ -49,7 +45,7 @@ public class TargetNumberHandler {
     }
 
     public int setBonusByInput(Lotto target) {
-        System.out.println(BONUS_INFO_MESSAGE);
+        System.out.println(RequestPrompt.BONUS_REQUEST.message);
         int bonus = handleInputToBonus(target);
         return bonus;
     }
@@ -64,7 +60,7 @@ public class TargetNumberHandler {
                 bonus = tmp;
                 isInputInvalid = false;
             } catch (IllegalArgumentException e) {
-                System.out.println(BONUS_ERROR_MESSAGE);
+                System.out.println(ErrorPrompt.BONUS_ERROR.message);
             }
         } while (isInputInvalid);
         return bonus;
@@ -72,7 +68,7 @@ public class TargetNumberHandler {
 
     private int getValidBonusInput() {
         String input = Console.readLine();
-        int tmp = Integer.parseInt(input);
+        int tmp = Integer.parseInt(input.trim());
         return tmp;
     }
 

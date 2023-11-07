@@ -1,5 +1,7 @@
 package lotto.input;
 
+import static org.assertj.core.api.Assertions.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -30,7 +32,7 @@ class PriceInputHandlerTest {
     void 구매입력_테스트(String input) {
         setIn(input);
 
-        Assertions.assertThatThrownBy(() ->
+        assertThatThrownBy(() ->
                         priceInputHandler.dividePaymentIntoLottoPrice())
                 .isInstanceOf(NoSuchElementException.class);
     }
@@ -42,6 +44,6 @@ class PriceInputHandlerTest {
 
         int amount = priceInputHandler.dividePaymentIntoLottoPrice();
 
-        Assertions.assertThat(amount).isEqualTo(Integer.parseInt(input) / Constants.LOTTO_PRICE);
+        assertThat(amount).isEqualTo(Integer.parseInt(input) / Constants.LOTTO_PRICE);
     }
 }

@@ -1,5 +1,7 @@
 package lotto.input;
 
+import static org.assertj.core.api.Assertions.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -33,7 +35,7 @@ public class TargetNumberHandlerTest {
     void 타겟번호_테스트(String input) {
         setIn(input);
 
-        Assertions.assertThatThrownBy(() ->
+        assertThatThrownBy(() ->
                         targetNumberHandler.setTargetLottoByInput())
                 .isInstanceOf(NoSuchElementException.class);
     }
@@ -44,7 +46,7 @@ public class TargetNumberHandlerTest {
     void 타겟번호_테스트2(String input) {
         Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         setIn(input);
-        Assertions.assertThatThrownBy(() ->
+        assertThatThrownBy(() ->
                         targetNumberHandler.setBonusByInput(target))
                 .isInstanceOf(NoSuchElementException.class);
     }

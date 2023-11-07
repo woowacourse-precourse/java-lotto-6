@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
 import lotto.input.PriceInputHandler;
@@ -35,6 +36,7 @@ public class LottoMachine {
     private Map<Rank, Integer> matchLotto(LottoBuyer buyer) {
         Lotto target = targetNumberHandler.setTargetLottoByInput();
         int bonus = targetNumberHandler.setBonusByInput(target);
+        Console.close();
 
         return buyer.checkAllLotto(target, bonus);
     }

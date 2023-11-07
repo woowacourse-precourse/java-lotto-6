@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static org.assertj.core.api.Assertions.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -27,8 +29,8 @@ public class LottoNumberGeneratorTest {
         }
 
         //then
-        Assertions.assertThat(createdNumbers).contains(1, 45);
-        Assertions.assertThat(createdNumbers.size()).isEqualTo(45);
+        assertThat(createdNumbers).contains(1, 45);
+        assertThat(createdNumbers.size()).isEqualTo(45);
     }
 
     @RepeatedTest(1000)
@@ -41,6 +43,6 @@ public class LottoNumberGeneratorTest {
         long count = lottoNumbers.stream().distinct().count();
 
         //then
-        Assertions.assertThat(count).isEqualTo(lottoNumbers.size());
+        assertThat(count).isEqualTo(lottoNumbers.size());
     }
 }

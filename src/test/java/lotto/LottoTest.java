@@ -1,5 +1,6 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -31,10 +32,21 @@ class LottoTest {
     // 아래에 추가 테스트 작성 가능
 
     //컨벤션상 위에 있어야 하지만, 윗 부분을 변경하지 않기 위해 작성하였음.
+
     Lotto target = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
+    @DisplayName("로또 번호의 개수가 6개 보다 작아도 예외가 발생한다.")
     @Test
-    @DisplayName("1등은 모든 숫자가 맞아야 한다.")
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+
+        assertThatThrownBy(() -> new Lotto(List.of()))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("1등은 모든 숫자가 맞아야 한다. 순서는 상관 없다.")
     void 등수확인_1등() {
         //given
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
@@ -44,7 +56,7 @@ class LottoTest {
         Rank rank = lotto.match(target, bonus);
 
         //then
-        Assertions.assertThat(rank).isEqualTo(Rank.FIRST);
+        assertThat(rank).isEqualTo(Rank.FIRST);
     }
 
     @Test
@@ -58,7 +70,7 @@ class LottoTest {
         Rank rank = lotto.match(target, bonus);
 
         //then
-        Assertions.assertThat(rank).isEqualTo(Rank.SECOND);
+        assertThat(rank).isEqualTo(Rank.SECOND);
     }
 
     @Test
@@ -72,7 +84,7 @@ class LottoTest {
         Rank rank = lotto.match(target, bonus);
 
         //then
-        Assertions.assertThat(rank).isEqualTo(Rank.THIRD);
+        assertThat(rank).isEqualTo(Rank.THIRD);
     }
 
     @Test
@@ -88,8 +100,8 @@ class LottoTest {
         Rank rank2 = lotto2.match(target, bonus);
 
         //then
-        Assertions.assertThat(rank1).isEqualTo(Rank.FORTH);
-        Assertions.assertThat(rank2).isEqualTo(Rank.FORTH);
+        assertThat(rank1).isEqualTo(Rank.FORTH);
+        assertThat(rank2).isEqualTo(Rank.FORTH);
     }
 
     @Test
@@ -105,8 +117,8 @@ class LottoTest {
         Rank rank2 = lotto2.match(target, bonus);
 
         //then
-        Assertions.assertThat(rank1).isEqualTo(Rank.FIFTH);
-        Assertions.assertThat(rank2).isEqualTo(Rank.FIFTH);
+        assertThat(rank1).isEqualTo(Rank.FIFTH);
+        assertThat(rank2).isEqualTo(Rank.FIFTH);
     }
 
     @ParameterizedTest
@@ -121,7 +133,7 @@ class LottoTest {
         Rank rank = lotto.match(target, bonus);
 
         //then
-        Assertions.assertThat(rank).isEqualTo(Rank.FAIL);
+        assertThat(rank).isEqualTo(Rank.FAIL);
     }
 
     private static Stream<List<Integer>> failSource() {

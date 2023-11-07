@@ -6,6 +6,8 @@ public class Money {
 
     private static final String NUMBER_PATTERN = "[0-9]+";
     private static final String NOT_NUMBER_MESSAGE = "숫자만 입력해야 합니다.";
+    private static final String CANT_DIVISION_MESSAGE = "원 단위의 금액을 입력해야 합니다.";
+    private static final int LOTTO_PRICE = 1000;
     private final int value;
 
     public Money(String value) {
@@ -15,6 +17,7 @@ public class Money {
 
     private void validate(String value) {
         validateIsNumber(value);
+        validateMoney(value);
     }
 
     private void validateIsNumber(String value) {
@@ -24,4 +27,12 @@ public class Money {
         }
     }
 
+    // 금액이 LOTTO_PRICE로 나누어 떨어지는지 검사한다.
+    private void validateMoney(String value) {
+        int inputMoney = Integer.parseInt(value);
+        if(inputMoney % LOTTO_PRICE != 0) {
+            String errorMessage = Constant.ERROR_PREFIX + LOTTO_PRICE + CANT_DIVISION_MESSAGE;
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
 }

@@ -9,8 +9,6 @@ import lotto.view.OutputView;
 public class LottoGame {
     private InputView inputView;
     private OutputView outputView;
-    private LottoResult lottoResult;
-    private PurchaseLottos purchaseLottos;
 
     public LottoGame() {
         inputView = new InputView();
@@ -19,14 +17,14 @@ public class LottoGame {
 
     public void start() {
         PurchasePrice purchasePrice = inputPurchasePrice();
-        purchaseLottos = new PurchaseLottos(purchasePrice, new AutoGenerator());
+        PurchaseLottos purchaseLottos = new PurchaseLottos(purchasePrice, new AutoGenerator());
 
         outputView.printPurchaseLottos(purchaseLottos);
 
         WinningNumbers winningNumbers = inputWinningNumbers();
         BonusNumber bonusNumber = inputBonusNumber(winningNumbers);
 
-        lottoResult = LottoResult.of(purchaseLottos, winningNumbers, bonusNumber);
+        LottoResult lottoResult = LottoResult.of(purchaseLottos, winningNumbers, bonusNumber);
 
         outputView.printLottoResult(lottoResult);
         outputView.printRateOfReturn(lottoResult, purchasePrice);

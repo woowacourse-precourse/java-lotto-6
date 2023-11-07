@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -13,17 +10,6 @@ public class View {
     private int lottoPurchaseNum;
     private String winningNumber;
     private String bounsNumber;
-    private final String LOTTO_PURCHASE_NUMBERS_OUTPUTMESSAGE = String.format("%d개를 구매했습니다.", lottoPurchaseNum);
-    private final String WINNING_STATISTICS_OUTPUTMESSAGE = String.format("""
-                당첨 통계
-                ---
-                3개 일치 (5,000원) - %d개
-                4개 일치 (50,000원) - %d개
-                5개 일치 (1,500,000원) - %d개
-                5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
-                6개 일치 (2,000,000,000원) - %d개     
-            """, userWinningRanks.get(0), userWinningRanks.get(1), userWinningRanks.get(2), userWinningRanks.get(3), userWinningRanks.get(4));
-    private final String PROFIT_SUMMARY_OUTPUTMESSAGE = String.format("총 수익률은 %.1f%입니다.", profitSummary);
 
     public enum InputMassage{
         LOTTO_PURCHASE_AMOUNT_INPUTMESSAGE("구입금액을 입력해 주세요."),
@@ -124,18 +110,27 @@ public class View {
     }
 
 
-    public void lottoPurchaseNumbersOutput(ArrayList<Lotto> userLottos){
-        System.out.println(LOTTO_PURCHASE_NUMBERS_OUTPUTMESSAGE);
-        for(Lotto lotto : userLottos){
-            System.out.println(lotto.getNumbers().toString());
-        }
+    public void lottoPurchaseNumbersOutput(){
+        System.out.println(String.format("%d개를 구매했습니다.", lottoPurchaseNum));
+    }
+
+    public void userLottoNumbersOutput(List<Integer> userNums){
+        System.out.println(userNums.toString());
     }
     
     public void winningStatisticsOutput(){
-        System.out.println(WINNING_STATISTICS_OUTPUTMESSAGE);
+        System.out.println(String.format("""
+                당첨 통계
+                ---
+                3개 일치 (5,000원) - %d개
+                4개 일치 (50,000원) - %d개
+                5개 일치 (1,500,000원) - %d개
+                5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
+                6개 일치 (2,000,000,000원) - %d개     
+            """, userWinningRanks.get(5), userWinningRanks.get(4), userWinningRanks.get(3), userWinningRanks.get(2), userWinningRanks.get(1)));
     }
     
     public void profitSummaryOutput(){
-        System.out.println(PROFIT_SUMMARY_OUTPUTMESSAGE);
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitSummary));
     }
 }

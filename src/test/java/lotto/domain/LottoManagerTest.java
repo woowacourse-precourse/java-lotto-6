@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import java.util.Map;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -30,6 +29,7 @@ public class LottoManagerTest {
         assertThat(ranks.get(Rank.SECOND)).isEqualTo(2);
         assertThat(ranks.get(Rank.THIRD)).isEqualTo(1);
     }
+
     @DisplayName("보너스 숫자가 1과 45사이가 아니면 예외가 발생한다")
     @Test
     void checkBonusNumberRange() {

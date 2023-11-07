@@ -56,4 +56,9 @@ public class Lotto {
                 .filter(other::contains)
                 .collect(collectingAndThen(counting(), Long::intValue));
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

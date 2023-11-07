@@ -13,9 +13,8 @@ money(model) 생성
 lottos(model) 생성
    
 - [X] 숫자 생성기로 랜덤 숫자 리스트들을 담은 리스트 생성
-- [ ] controller 에게 인자로 리스트들을 넘겨서 Lottos 모델 반환
-- [ ] lottos 모델에게 리스트를 넘겨 lottos 생성
-- [ ] lottos 모델은 lotto 모델에게 리스트 하나 넘겨서 Lotto 모델 생성
+- [] controller 에게 인자로 리스트들을 넘겨서 Lottos 모델 반환
+- [X] lottos 모델에게 리스트를 넘겨 lottos 생성
 - [ ] outputView 에게 Lottos model 을 전달하여 결과 출력
 ***
 ## 3. **정답 로또 생성하기**

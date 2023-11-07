@@ -1,172 +1,357 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
+import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constants.Rank;
 import lotto.constants.Value;
-import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
-import lotto.service.LottoResultService;
+import lotto.manager.LottoManager;
+import lotto.utils.OutputUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static lotto.constants.Value.*;
 
-public class LottoResultTest extends NsTest {
+public class LottoResultTest {
 
-    LottoResultService lottoResultService;
-    WinningLotto winningLotto;
-    List<Lotto> buyLottos;
-
+    LottoManager lottoManager;
+    List<Integer> buyLottoNumbers;
+    List<Integer> winningLottoNumbers;
     @BeforeEach
-    void setWinningLotto() {
-        lottoResultService = new LottoResultService();
-        winningLotto = new WinningLotto(List.of(1,2,3,4,5,6));
-        winningLotto.setBonusNumber(7);
-        lottoResultService.setWinningLotto(winningLotto);
-
-        buyLottos = new ArrayList<>();
+    void init() {
+        lottoManager = new LottoManager();
+        lottoManager.setBuyLottos(LOTTO_TICKET_PRICE);
+        buyLottoNumbers = lottoManager.getBuyLottos().get(0).getNumbers();
+        winningLottoNumbers = new ArrayList<>();
     }
 
-    @DisplayName("1개의 번호가 일치될 경우 로또 결과 확인")
+    void setWinningLottoNumbers() {
+        while (winningLottoNumbers.size() != LOTTO_NUMBER_SIZE) {
+            int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
+            if (!buyLottoNumbers.contains(randomNumber) && !winningLottoNumbers.contains(randomNumber)) {
+                winningLottoNumbers.add(randomNumber);
+            }
+        }
+        lottoManager.setWinningLotto(new WinningLotto(winningLottoNumbers));
+    }
+
+
+    @DisplayName("0개 일치 시 랭크에 포함되지 않는 것 확인")
     @Test
-    void createLottoResultRankByNoRankOne() {
-        buyLottos.add(new Lotto(List.of(1,2,7,8,9,10)));
+    void rankOfNONE_ZERO() {
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
 
-        lottoResultService.showRank(buyLottos);
-        int payMoney = buyLottos.size() * Value.LOTTO_TICKET_PRICE;
-        lottoResultService.showProfitRate(payMoney);
+        Map<Rank, Integer> expectResult = new LinkedHashMap<>();
+        expectResult.put(Rank.FIFTH, 0);
+        expectResult.put(Rank.FOURTH, 0);
+        expectResult.put(Rank.THIRD, 0);
+        expectResult.put(Rank.SECOND, 0);
+        expectResult.put(Rank.FIRST, 0);
 
-        assertThat(output()).contains(
-                "3개 일치 (5,000원) - 0개",
-                "4개 일치 (50,000원) - 0개",
-                "5개 일치 (1,500,000원) - 0개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                "6개 일치 (2,000,000,000원) - 0개",
-                "총 수익률은 0%입니다."
-        );
+        Assertions.assertEquals(expectResult, lottoManager.getLottoResults());
     }
 
-
-    @DisplayName("2개의 번호가 일치될 경우 로또 결과 확인")
+    @DisplayName("0개 일치 시 수익률 0% 확인")
     @Test
-    void createLottoResultRankByNoRankTwo() {
-        buyLottos.add(new Lotto(List.of(1,2,7,8,9,10)));
+    void checkProfitRateAtSameCountZero() {
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
 
-        lottoResultService.showRank(buyLottos);
-        int payMoney = buyLottos.size() * Value.LOTTO_TICKET_PRICE;
-        lottoResultService.showProfitRate(payMoney);
+        String profitRate = lottoManager.calculateProfitRate(LOTTO_TICKET_PRICE);
 
-        assertThat(output()).contains(
-                "3개 일치 (5,000원) - 0개",
-                "4개 일치 (50,000원) - 0개",
-                "5개 일치 (1,500,000원) - 0개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                "6개 일치 (2,000,000,000원) - 0개",
-                "총 수익률은 0%입니다."
-        );
+        Assertions.assertEquals("0", profitRate);
     }
 
-    @DisplayName("3개의 번호가 일치될 경우 로또 결과 확인")
+    @DisplayName("1개 일치 시 랭크에 포함되지 않는 것 확인")
     @Test
-    void createLottoResultRankByFIFTH() {
-        buyLottos.add(new Lotto(List.of(1,2,3,7,8,9)));
+    void rankOfNONE_ONE() {
+        for (int i = 0; i < 1; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
 
-        lottoResultService.showRank(buyLottos);
-        int payMoney = buyLottos.size() * Value.LOTTO_TICKET_PRICE;
-        lottoResultService.showProfitRate(payMoney);
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
 
-        assertThat(output()).contains(
-                "3개 일치 (5,000원) - 1개",
-                "4개 일치 (50,000원) - 0개",
-                "5개 일치 (1,500,000원) - 0개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                "6개 일치 (2,000,000,000원) - 0개",
-                "총 수익률은 500%입니다."
-        );
+        Map<Rank, Integer> expectResult = new LinkedHashMap<>();
+        expectResult.put(Rank.FIFTH, 0);
+        expectResult.put(Rank.FOURTH, 0);
+        expectResult.put(Rank.THIRD, 0);
+        expectResult.put(Rank.SECOND, 0);
+        expectResult.put(Rank.FIRST, 0);
+
+        Assertions.assertEquals(expectResult, lottoManager.getLottoResults());
     }
 
-    @DisplayName("4개의 번호가 일치될 경우 로또 결과 확인")
+    @DisplayName("1개 일치 시 수익률 0% 확인")
     @Test
-    void createLottoResultRankByFourth() {
-        buyLottos.add(new Lotto(List.of(1,2,3,4,8,9)));
+    void checkProfitRateAtSameCountOne() {
+        for (int i = 0; i < 1; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
 
-        lottoResultService.showRank(buyLottos);
-        int payMoney = buyLottos.size() * Value.LOTTO_TICKET_PRICE;
-        lottoResultService.showProfitRate(payMoney);
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
 
-        assertThat(output()).contains(
-                "3개 일치 (5,000원) - 0개",
-                "4개 일치 (50,000원) - 1개",
-                "5개 일치 (1,500,000원) - 0개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                "6개 일치 (2,000,000,000원) - 0개",
-                "총 수익률은 5000%입니다."
-        );
+        String profitRate = lottoManager.calculateProfitRate(LOTTO_TICKET_PRICE);
+
+        Assertions.assertEquals("0", profitRate);
     }
 
-    @DisplayName("5개의 번호가 일치될 경우 로또 결과 확인")
+    @DisplayName("2개 일치 시 랭크에 포함되지 않는 것 확인")
     @Test
-    void createLottoResultRankByThird() {
-        buyLottos.add(new Lotto(List.of(1,2,3,4,5,9)));
+    void rankOfNONE_TWO() {
+        for (int i = 0; i < 2; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
 
-        lottoResultService.showRank(buyLottos);
-        int payMoney = buyLottos.size() * Value.LOTTO_TICKET_PRICE;
-        lottoResultService.showProfitRate(payMoney);
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
 
-        assertThat(output()).contains(
-                "3개 일치 (5,000원) - 0개",
-                "4개 일치 (50,000원) - 0개",
-                "5개 일치 (1,500,000원) - 1개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                "6개 일치 (2,000,000,000원) - 0개",
-                "총 수익률은 150000%입니다."
-        );
+        Map<Rank, Integer> expectResult = new LinkedHashMap<>();
+        expectResult.put(Rank.FIFTH, 0);
+        expectResult.put(Rank.FOURTH, 0);
+        expectResult.put(Rank.THIRD, 0);
+        expectResult.put(Rank.SECOND, 0);
+        expectResult.put(Rank.FIRST, 0);
+
+        Assertions.assertEquals(expectResult, lottoManager.getLottoResults());
     }
 
-    @DisplayName("5개의 번호와 보너스 번호가 일치될 경우 로또 결과 확인")
+
+    @DisplayName("2개 일치 시 수익률 0% 확인")
     @Test
-    void createLottoResultRankBySecond() {
-        buyLottos.add(new Lotto(List.of(1,2,3,4,5,7)));
+    void checkProfitRateAtSameCountTwo() {
+        for (int i = 0; i < 2; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
 
-        lottoResultService.showRank(buyLottos);
-        int payMoney = buyLottos.size() * Value.LOTTO_TICKET_PRICE;
-        lottoResultService.showProfitRate(payMoney);
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
 
-        assertThat(output()).contains(
-                "3개 일치 (5,000원) - 0개",
-                "4개 일치 (50,000원) - 0개",
-                "5개 일치 (1,500,000원) - 0개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
-                "6개 일치 (2,000,000,000원) - 0개",
-                "총 수익률은 3000000%입니다."
-        );
+        String profitRate = lottoManager.calculateProfitRate(LOTTO_TICKET_PRICE);
+
+        Assertions.assertEquals("0", profitRate);
     }
 
-    @DisplayName("6개의 번호가 일치될 경우 로또 결과 확인")
+    @DisplayName("3개 일치 시 5000원 1개 당첨으로 출력되는지 확인")
     @Test
-    void createLottoResultRankByOne() {
-        buyLottos.add(new Lotto(List.of(1,2,3,4,5,6)));
+    void rankOfFIFTH() {
+        for (int i = 0; i < 3; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
 
-        lottoResultService.showRank(buyLottos);
-        int payMoney = buyLottos.size() * Value.LOTTO_TICKET_PRICE;
-        lottoResultService.showProfitRate(payMoney);
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
 
-        assertThat(output()).contains(
-                "3개 일치 (5,000원) - 0개",
-                "4개 일치 (50,000원) - 0개",
-                "5개 일치 (1,500,000원) - 0개",
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
-                "6개 일치 (2,000,000,000원) - 1개",
-                "총 수익률은 200000000%입니다."
-        );
+        Map<Rank, Integer> expectResult = new LinkedHashMap<>();
+        expectResult.put(Rank.FIFTH, 1);
+        expectResult.put(Rank.FOURTH, 0);
+        expectResult.put(Rank.THIRD, 0);
+        expectResult.put(Rank.SECOND, 0);
+        expectResult.put(Rank.FIRST, 0);
+
+        Assertions.assertEquals(expectResult, lottoManager.getLottoResults());
+    }
+
+    @DisplayName("3개 일치 시 수익률 500% 확인")
+    @Test
+    void checkProfitRateAtSameCountThree() {
+        for (int i = 0; i < 3; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
+
+        String profitRate = lottoManager.calculateProfitRate(LOTTO_TICKET_PRICE);
+
+        Assertions.assertEquals("500", profitRate);
     }
 
 
-    @Override
-    protected void runMain() {
-        Application.main(new String[]{});
+    @DisplayName("4개 일치 시 50000원 1개 당첨으로 출력되는지 확인")
+    @Test
+    void rankOfFOURTH() {
+        for (int i = 0; i < 4; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
+
+        Map<Rank, Integer> expectResult = new LinkedHashMap<>();
+        expectResult.put(Rank.FIFTH, 0);
+        expectResult.put(Rank.FOURTH, 1);
+        expectResult.put(Rank.THIRD, 0);
+        expectResult.put(Rank.SECOND, 0);
+        expectResult.put(Rank.FIRST, 0);
+
+        Assertions.assertEquals(expectResult, lottoManager.getLottoResults());
     }
+
+    @DisplayName("4개 일치 시 수익률 5000% 확인")
+    @Test
+    void checkProfitRateAtSameCountFour() {
+        for (int i = 0; i < 4; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
+
+        String profitRate = lottoManager.calculateProfitRate(LOTTO_TICKET_PRICE);
+
+        Assertions.assertEquals("5000", profitRate);
+    }
+
+    @DisplayName("5개 일치 시 1500000원 1개 당첨으로 출력되는지 확인")
+    @Test
+    void rankOfTHIRD() {
+        for (int i = 0; i < 5; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
+
+        Map<Rank, Integer> expectResult = new LinkedHashMap<>();
+        expectResult.put(Rank.FIFTH, 0);
+        expectResult.put(Rank.FOURTH, 0);
+        expectResult.put(Rank.THIRD, 1);
+        expectResult.put(Rank.SECOND, 0);
+        expectResult.put(Rank.FIRST, 0);
+
+        Assertions.assertEquals(expectResult, lottoManager.getLottoResults());
+    }
+
+    @DisplayName("5개 일치 시 수익률 150000% 확인")
+    @Test
+    void checkProfitRateAtSameCountFive() {
+        for (int i = 0; i < 5; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
+
+        String profitRate = lottoManager.calculateProfitRate(LOTTO_TICKET_PRICE);
+
+        Assertions.assertEquals("150000", profitRate);
+    }
+
+    @DisplayName("6개 일치 시 2000000000원 1개 당첨으로 출력되는지 확인")
+    @Test
+    void rankOfFIRST() {
+        for (int i = 0; i < 6; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
+
+        Map<Rank, Integer> expectResult = new LinkedHashMap<>();
+        expectResult.put(Rank.FIFTH, 0);
+        expectResult.put(Rank.FOURTH, 0);
+        expectResult.put(Rank.THIRD, 0);
+        expectResult.put(Rank.SECOND, 0);
+        expectResult.put(Rank.FIRST, 1);
+
+        Assertions.assertEquals(expectResult, lottoManager.getLottoResults());
+    }
+
+    @DisplayName("6개 일치 시 수익률 150000% 확인")
+    @Test
+    void checkProfitRateAtSameCountSix() {
+        for (int i = 0; i < 6; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        setWinningLottoNumbers();
+        lottoManager.calculateRank();
+
+        String profitRate = lottoManager.calculateProfitRate(LOTTO_TICKET_PRICE);
+
+        Assertions.assertEquals("200000000", profitRate);
+    }
+
+
+    @DisplayName("5개 번호와 보너스 번호 일치 시 30000000원 1개 당첨으로 출력되는지 확인")
+    @Test
+    void rankOfSECOND() {
+        for (int i = 0; i < 5; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        while (winningLottoNumbers.size() != LOTTO_NUMBER_SIZE) {
+            int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
+            if (!buyLottoNumbers.contains(randomNumber) && !winningLottoNumbers.contains(randomNumber)) {
+                winningLottoNumbers.add(randomNumber);
+            }
+        }
+
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers);
+
+        while (true) {
+            int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
+            if (buyLottoNumbers.contains(randomNumber) && !winningLottoNumbers.contains(randomNumber)) {
+                winningLotto.setBonusNumber(randomNumber);
+                break;
+            }
+        }
+
+        lottoManager.setWinningLotto(winningLotto);
+
+
+        lottoManager.calculateRank();
+
+        Map<Rank, Integer> expectResult = new LinkedHashMap<>();
+        expectResult.put(Rank.FIFTH, 0);
+        expectResult.put(Rank.FOURTH, 0);
+        expectResult.put(Rank.THIRD, 0);
+        expectResult.put(Rank.SECOND, 1);
+        expectResult.put(Rank.FIRST, 0);
+
+        Assertions.assertEquals(expectResult, lottoManager.getLottoResults());
+    }
+
+
+    @DisplayName("5개, 보너스 일치 시 수익률 150000% 확인")
+    @Test
+    void checkProfitRateAtSameCountSixWithBonus() {
+        for (int i = 0; i < 5; i++) {
+            winningLottoNumbers.add(buyLottoNumbers.get(i));
+        }
+
+        while (winningLottoNumbers.size() != LOTTO_NUMBER_SIZE) {
+            int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
+            if (!buyLottoNumbers.contains(randomNumber) && !winningLottoNumbers.contains(randomNumber)) {
+                winningLottoNumbers.add(randomNumber);
+            }
+        }
+
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers);
+
+        while (true) {
+            int randomNumber = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
+            if (buyLottoNumbers.contains(randomNumber) && !winningLottoNumbers.contains(randomNumber)) {
+                winningLotto.setBonusNumber(randomNumber);
+                break;
+            }
+        }
+
+        lottoManager.setWinningLotto(winningLotto);
+        lottoManager.calculateRank();
+
+        String profitRate = lottoManager.calculateProfitRate(LOTTO_TICKET_PRICE);
+
+        Assertions.assertEquals("3000000", profitRate);
+    }
+
 }

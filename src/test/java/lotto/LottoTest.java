@@ -83,4 +83,11 @@ class LottoTest {
         Assertions.assertEquals(payMoney/ Value.LOTTO_TICKET_PRICE, lottoManager.getBuyLottos().size());
     }
 
+    @DisplayName("로또 결과가 정상적으로 출력되는 지 화깅ㄴ")
+    @Test
+    void resultTest() {
+//        winning을 buyLotto에서 3가지 값만 가져와서 저장하고 나머지는 0으로 세팅...이 안되네
+//        안겹치는 값으로 세팅해서 확인하자...싯팔...
+    }
+
 }

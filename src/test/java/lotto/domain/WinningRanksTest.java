@@ -18,18 +18,16 @@ class WinningRanksTest {
         Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 15));
         lottos.add(lotto1);
         lottos.add(lotto2);
-
         WinningNumber winningNumber = new WinningNumber(List.of(34, 21, 22, 43, 15, 7));
         BonusNumber bonusNumber = new BonusNumber(10);
         WinningNumbers winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
-
         WinningRanks winningRanks = new WinningRanks(lottos, winningNumbers);
 
         // when
-        winningRanks.calculateRanks();
+        List<Rank> ranks = winningRanks.calculateRanks();
 
         // then
-        assertThat(winningRanks.getRanks().size()).isEqualTo(lottos.size());
-        assertThat(winningRanks.getRanks().get(1)).isEqualTo(Rank.FIFTH);
+        assertThat(ranks.size()).isEqualTo(lottos.size());
+        assertThat(ranks.get(1)).isEqualTo(Rank.FIFTH);
     }
 }

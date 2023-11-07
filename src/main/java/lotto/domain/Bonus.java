@@ -17,4 +17,8 @@ public class Bonus {
 		LottoValidator.validateRange(inputBonus);
 		return inputBonus;
 	}
+
+	public boolean compareWith(Lotto lotto) {
+		return lotto.getLotto().contains(bonus);
+	}
 }

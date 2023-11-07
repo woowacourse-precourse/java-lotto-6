@@ -1,34 +1,32 @@
 package lotto.domain;
 
-import static lotto.constant.GameRule.*;
-
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import lotto.validation.LottoValidator;
+import java.util.Map;
 
 public class WinningLotto {
-	private List<Integer> winningNumbers;
+	private WinningNumbers winningNumbers;
+	private Bonus bonus;
+	private Map<Prize, Integer> results = new HashMap<>();
 
-	public WinningLotto(String input) {
-		List<Integer> numbers = convertAndvalidateLottos(input);
-		this.winningNumbers = numbers;
+	public WinningLotto(WinningNumbers winningNumbers, Bonus bonus) {
+		this.winningNumbers = winningNumbers;
+		this.bonus = bonus;
 	}
 
-	public List<Integer> getWinningNumbers() {
-		return winningNumbers;
+	public Map calculateWinningLotto(List<Lotto> lottos) {
+		for (Lotto lotto : lottos) {
+				int matchNumber = winningNumbers.compareWith(lotto);
+				boolean isBonus = canMatchBonus(lotto);
+				Prize prize = Prize.createResult(matchNumber, isBonus);
+
+				results.put(prize, results.getOrDefault(prize, 0) + 1);
+		}
+		return results;
 	}
 
-	private List<Integer> convertToList(String input) {
-		return Arrays.stream(input.split(WINNING_INPUT_DELIMITER))
-			.map(Integer::parseInt)
-			.collect(Collectors.toList());
+	public boolean canMatchBonus(Lotto lotto) {
+		return winningNumbers.compareWith(lotto) == 5 && bonus.compareWith(lotto);
 	}
 
-	private List<Integer> convertAndvalidateLottos(String input) {
-		List<Integer> numbers = convertToList(input);
-		LottoValidator.canBeLotto(numbers);
-		return numbers;
-	}
 }

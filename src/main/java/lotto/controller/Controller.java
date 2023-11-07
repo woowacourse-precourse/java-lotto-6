@@ -17,5 +17,6 @@ public class Controller {
 		lottoService.createLotto(lottoAmountService.getLottoAmount());
 		lottoService.printLottos(lottoAmountService.getLottoAmount());
 		lottoService.setUpWinningAndBonusLotto();
+		lottoService.calculateWinningLotto();
 	}
 }

@@ -9,14 +9,14 @@ import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumbers;
 import lotto.exception.LottoException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoService {
 	private Lottos lottos;
-	private WinningLotto lottoWinningNumbers;
-	private Bonus bonus;
+	private WinningLotto winningLotto;
 
 	public void createLotto(int numbers) {
 		lottos = new Lottos(createLottos(numbers));
@@ -28,9 +28,14 @@ public class LottoService {
 	}
 
 	public void setUpWinningAndBonusLotto() {
-		setUpWinningLotto();
+		WinningNumbers winningNumbers = setUpWinningLotto();
 		System.out.println();
-		setUpBonusLotto();
+		Bonus bonus = setUpBonusLotto();
+		winningLotto = new WinningLotto(winningNumbers, bonus);
+	}
+
+	public void calculateWinningLotto() {
+		winningLotto.calculateWinningLotto(lottos.getLotts());
 	}
 
 	private List<Lotto> createLottos(int numbers) {
@@ -45,23 +50,23 @@ public class LottoService {
 		return null;
 	}
 
-	private void setUpWinningLotto() {
+	private WinningNumbers setUpWinningLotto() {
 		try {
 			InputView.askWinningNumbers();
-			lottoWinningNumbers = new WinningLotto(Console.readLine());
+			return new WinningNumbers(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			setUpWinningLotto();
+			return setUpWinningLotto();
 		}
 	}
 
-	private void setUpBonusLotto() {
+	private Bonus setUpBonusLotto() {
 		try {
 			InputView.askBonusNumber();
-			bonus = new Bonus(Console.readLine());
+			return new Bonus(Console.readLine());
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			setUpBonusLotto();
+			return setUpBonusLotto();
 		}
 	}
 }

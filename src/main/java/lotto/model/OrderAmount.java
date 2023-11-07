@@ -1,10 +1,13 @@
 package lotto.model;
 
+import static lotto.model.validator.InputValidator.numberMustBeMultipleOf1000;
+
 public class OrderAmount {
     private int money;
 
-    public OrderAmount(int order) {
-        this.money = order;
+    public OrderAmount(String order) {
+        numberMustBeMultipleOf1000(order);
+        this.money = Integer.parseInt(order);
     }
 
     public int amountOfLotto() {

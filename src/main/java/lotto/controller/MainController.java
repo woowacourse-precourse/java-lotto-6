@@ -20,7 +20,8 @@ public class MainController {
 
     private LottoTickets purchaseLottoTickets() {
         String order = view.askPurchasingAmount();
-        payedMoney = new OrderAmount(Integer.parseInt(order));
+
+        payedMoney = new OrderAmount(order);
         view.printOrderedLottoCount(payedMoney.amountOfLotto());
         return new LottoTickets(payedMoney.amountOfLotto());
     }

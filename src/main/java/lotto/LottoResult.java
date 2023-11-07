@@ -1,12 +1,13 @@
 package lotto;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 public class LottoResult {
 
-    private Map<Rank, Integer> result = new HashMap<>();
+    private final Map<Rank, Integer> result = new HashMap<>();
 
     public LottoResult() {
         for (Rank rank : Rank.values()) {
@@ -26,6 +27,15 @@ public class LottoResult {
             total += rank.prize() * count;
         }
         return total;
+    }
+
+    public void result(Lottos lottos, WinningLotto winningLotto) {
+        List<Rank> matched = lottos.matched(winningLotto);
+        matched.forEach(this::putRank);
+    }
+
+    public Map<Rank, Integer> getResult() {
+        return result;
     }
 }
 

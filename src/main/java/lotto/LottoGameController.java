@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.config.AppConfig;
 import lotto.utils.NumberGenerator;
@@ -26,7 +25,7 @@ public class LottoGameController {
             Lotto lotto = numberGenerator.generate();
             if (!lottos.contain(lotto)) {
                 lottos.add(lotto);
-                OutputView.printPurchasedLottos(LottoDto.from(lotto));
+                outputView.printPurchasedLottos(LottoDto.from(lotto));
                 purchased--;
             }
         }
@@ -34,9 +33,12 @@ public class LottoGameController {
         InputView inputView = appConfig.inputView();
         List<Integer> winningNumbers = inputView.getWinningNumbers();
         Lotto lotto = new Lotto(winningNumbers);
-
         LottoNumber bonusNumber = inputView.getBonusNumber(lotto);
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.result(lottos, winningLotto);
+        outputView.printWinningResults(LottoResultDto.from(lottoResult));
     }
 
     public Money getMoney() {

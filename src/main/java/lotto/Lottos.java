@@ -19,4 +19,10 @@ public class Lottos {
         return lottos.stream()
                 .anyMatch(l -> l.countMatchingNumbers(lotto) == lotto.size());
     }
+
+    public List<Rank> matched(WinningLotto winningLotto) {
+        return lottos.stream()
+                .map(winningLotto::match)
+                .toList();
+    }
 }

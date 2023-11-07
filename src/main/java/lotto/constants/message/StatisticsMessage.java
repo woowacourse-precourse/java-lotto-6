@@ -1,4 +1,4 @@
-package constants.message;
+package lotto.constants.message;
 
 public class StatisticsMessage {
     public static final String START = "당첨 통계";

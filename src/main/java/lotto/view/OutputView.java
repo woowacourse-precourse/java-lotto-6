@@ -1,7 +1,7 @@
-package view;
+package lotto.view;
 
-import constants.message.RequestMessage;
-import constants.message.StatisticsMessage;
+import lotto.constants.message.RequestMessage;
+import lotto.constants.message.StatisticsMessage;
 
 public class OutputView {
     public void requestPayment(){

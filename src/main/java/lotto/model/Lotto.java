@@ -1,9 +1,9 @@
-package lotto;
+package lotto.model;
 
-import constants.Constants;
-import exception.DuplicateLottoNumberException;
-import exception.InvalidLottoLengthException;
-import exception.OutOfLottoNumberRangeException;
+import lotto.constants.Constants;
+import lotto.exception.DuplicateLottoNumberException;
+import lotto.exception.InvalidLottoLengthException;
+import lotto.exception.OutOfLottoNumberRangeException;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,6 +16,10 @@ public class Lotto {
         validateNoDuplicates(numbers);
         validateRange(numbers);
         this.numbers = numbers;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validateLength(List<Integer> numbers) {
@@ -41,7 +45,7 @@ public class Lotto {
         }
     }
 
-    private void sort() {
-        Collections.sort(numbers);
+    public void sort() {
+        Collections.sort(this.numbers);
     }
 }

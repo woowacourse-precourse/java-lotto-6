@@ -1,10 +1,9 @@
-package model;
+package lotto.model;
 
-import constants.Constants;
-import exception.NotDivisibleByLottoPriceException;
+import lotto.constants.Constants;
+import lotto.exception.NotDivisibleByLottoPriceException;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Lotto;
 
 public class LottoShop {
 

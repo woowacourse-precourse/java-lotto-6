@@ -1,4 +1,4 @@
-package constants.message;
+package lotto.constants.message;
 
 public class RequestMessage {
     public static final String PAYMENT = "구입금액을 입력해 주세요.";

@@ -1,9 +1,8 @@
-package model;
+package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import constants.Constants;
+import lotto.constants.Constants;
 import java.util.List;
-import lotto.Lotto;
 
 public class LottoIssuer {
 

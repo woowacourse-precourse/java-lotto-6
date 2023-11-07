@@ -1,6 +1,6 @@
-package exception;
+package lotto.exception;
 
-import constants.Constants;
+import lotto.constants.Constants;
 
 public class OutOfLottoNumberRangeException extends IllegalArgumentException {
 

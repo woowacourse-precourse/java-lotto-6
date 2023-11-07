@@ -1,4 +1,4 @@
-package model;
+package lotto.model;
 
 public enum LottoRank {
     FIRST(2000000000),

@@ -1,4 +1,4 @@
-package constants;
+package lotto.constants;
 
 public class Constants {
     public static final int LOTTO_LENGTH = 6;

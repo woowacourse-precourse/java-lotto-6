@@ -2,8 +2,9 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import exception.OutOfLottoNumberRangeException;
+import lotto.exception.OutOfLottoNumberRangeException;
 import java.util.List;
+import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

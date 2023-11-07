@@ -1,14 +1,13 @@
-package model;
+package lotto.model;
 
-import constants.Constants;
-import exception.DuplicateBonusNumberException;
-import exception.InvalidWinningLottoFormatException;
-import exception.NonNumericBonusNumberException;
-import exception.OutOfLottoNumberRangeException;
+import lotto.constants.Constants;
+import lotto.exception.DuplicateBonusNumberException;
+import lotto.exception.InvalidWinningLottoFormatException;
+import lotto.exception.NonNumericBonusNumberException;
+import lotto.exception.OutOfLottoNumberRangeException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
-import lotto.Lotto;
 
 public class Initializer {
 

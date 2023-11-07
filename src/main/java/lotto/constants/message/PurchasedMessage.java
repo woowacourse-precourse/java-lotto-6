@@ -1,4 +1,4 @@
-package constants.message;
+package lotto.constants.message;
 
 public class PurchasedMessage {
     public static final String PURCHASE_QUANTITY = "%d개를 구매했습니다.";

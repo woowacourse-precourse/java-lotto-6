@@ -18,15 +18,16 @@ public class LottoGame {
         // randomLotto는 발행된 랜덤 로또 개수
         RandomLottos randomLottos = new RandomLottos(price);
 
-        OutputView.printRandomLottosNumberAndCounting(randomLottos);
+        OutputView.newLine();
+        OutputView.printCounting(randomLottos);
+        OutputView.printNumbers(randomLottos);
 
         // ------로또 구입 금액 받아서 랜덤로또번호 출력까지
-
         WinningLotto winningLotto = createWinningLotto();
         Bonus bonus = createBonusNumber(winningLotto);
 
         Result result = new Result();
-        result.compare(randomLottos, winningLotto, bonus);
+        result.calculateWinningResult(randomLottos, winningLotto, bonus);
 
         // Rate는 총 Rank의 합
         Rate rate = new Rate(result);
@@ -60,9 +61,7 @@ public class LottoGame {
 
     private Bonus createBonusNumber(WinningLotto winningLotto) {
         try {
-            Bonus bonus = new Bonus(InputView.inputBonusNumber());
-            winningLotto.contain(bonus);
-            return bonus;
+            return new Bonus(InputView.inputBonusNumber(), winningLotto);
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e.getMessage());
             return createBonusNumber(winningLotto);

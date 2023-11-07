@@ -13,12 +13,12 @@ public class Application {
 
         Integer sameSount = lotto.getSameNumberCount(list2);
 
-        if (sameSount == 5 && !lotto.containsBonusNumber(10)) {
-            RankRepository.increaseNumberOfWins(3);
-            RankRepository.increaseNumberOfWins(3);
-            RankRepository.increaseNumberOfWins(3);
-            RankRepository.increaseNumberOfWins(3);
-            RankRepository.increaseNumberOfWins(3);
+        if (sameSount == 5 && lotto.containsBonusNumber(6)) {
+            RankRepository.increaseNumberOfWins(2);
+            RankRepository.increaseNumberOfWins(2);
+            RankRepository.increaseNumberOfWins(2);
+            RankRepository.increaseNumberOfWins(2);
+            RankRepository.increaseNumberOfWins(2);
         }
 
         OutputView.outputWinningStatistics();

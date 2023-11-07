@@ -21,6 +21,7 @@ public class OutputView {
         outputFifthPlaceCount();
         outputFourthPlaceCount();
         outputThirdPlaceCount();
+        outputSecondPlaceCount();
     }
 
     private static void outputFifthPlaceCount() {
@@ -36,5 +37,10 @@ public class OutputView {
     private static void outputThirdPlaceCount() {
         System.out.println(String.format(OutputMessages.THIRD_PLACE.getMessage(),
                 RankRepository.getWinningStatistics(WinnerRank.THIRD_PLACE.getRank())));
+    }
+
+    private static void outputSecondPlaceCount() {
+        System.out.println(String.format(OutputMessages.SECOND_PLACE.getMessage(),
+                RankRepository.getWinningStatistics(WinnerRank.SECOND_PLACE.getRank())));
     }
 }

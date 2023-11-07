@@ -43,5 +43,11 @@ class LottoTest {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         assertTrue(lotto.contains(6));
     }
-    
+    @DisplayName("로또 번호에 보너스 번호가 포함되어 있지 않으면 false를 반환한다.")
+    @Test
+    public void testNotContains() {
+        Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        assertFalse(lotto.contains(7));
+    }
+
 }

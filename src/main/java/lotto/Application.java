@@ -31,14 +31,23 @@ public class Application {
 
         // 보너스 번호를 입력받는다.
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = readLine().trim();
-        Integer bonus = stringToInteger(bonusNumber);
-        validateBonusNumber(bonus, lotto);
+        String bonus = readLine().trim();
+        Integer bonusNumber = stringToInteger(bonus);
+        validateBonusNumber(bonusNumber, lotto);
 
         // 결과를 출력한다.
         System.out.println("당첨 통계");
         System.out.println("---");
 
+        List<Integer> lottoResults = Lotto.checkLottoNumber(lotto, randomLottos);
+        List<Boolean> bonusNumberResults = Lotto.checkBonusNumber(randomLottos, bonusNumber);
+        if (lottoResults.size() != bonusNumberResults.size()) {
+            throw new RuntimeException("[ERROR] 로또번호 확인 중 에러가 발생했습니다.");
+        }
+
+        for (Result result : Result.values()) {
+            System.out.println(result);
+        }
     }
 
     private static void validateBonusNumber(Integer bonus, Lotto lotto) {

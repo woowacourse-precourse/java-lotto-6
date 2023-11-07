@@ -1,5 +1,7 @@
 package lotto;
 
+import java.awt.font.ShapeGraphicAttribute;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -36,7 +38,27 @@ public class Lotto {
     }
 
 
-    public static void checkLottoNumber(Lotto lotto, Integer bonusNumber) {
+    public static List<Integer> checkLottoNumber(Lotto lotto, List<RandomLotto> randomLottos) {
+        List<Integer> result = new ArrayList<>();
 
+        for (RandomLotto randomLotto : randomLottos) {
+            List<Integer> combinedNumbers = new ArrayList<>();
+            combinedNumbers.addAll(randomLotto.getRandomNumbers());
+            combinedNumbers.addAll(lotto.getNumbers());
+
+            List<Integer> distinctNumbers = combinedNumbers.stream().distinct().toList();
+
+            Integer duplicatedNumbers = combinedNumbers.size() - distinctNumbers.size();
+            result.add(duplicatedNumbers);
+        }
+        return result;
+    }
+
+    public static List<Boolean> checkBonusNumber(List<RandomLotto> randomLottos, Integer bonusNumber) {
+        List<Boolean> bonusNumberResult = new ArrayList<>();
+        for (RandomLotto randomLotto : randomLottos) {
+            bonusNumberResult.add(randomLotto.getRandomNumbers().contains(bonusNumber));
+        }
+        return bonusNumberResult;
     }
 }

@@ -18,11 +18,10 @@ public class LottoService {
     }
 
     public void createLotto(String purchaseAmount) {
-        purchaseMoney = Integer.parseInt(purchaseAmount);
+        lottoUtil.validatePurchaseAmount(purchaseAmount);
 
-        if (!lottoUtil.checkPurchaseAmount(purchaseMoney)) {
-            throw new IllegalArgumentException(Exception.LOTTO_PURCHASE_EXCEPTION.getMessage());
-        }
+        purchaseMoney = Integer.parseInt(purchaseAmount);
+        lottoUtil.checkPurchaseAmount(purchaseMoney);
 
         for (int index = 0; index < lottoUtil.calculateCount(purchaseMoney); index++) {
             lottos.add(lottoUtil.pickLottoNumber());

@@ -42,5 +42,10 @@ public class Application {
             System.out.println(purchaseNumber);
         }
         System.out.println();
+
+        // 당첨 번호 입력
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String inputlottoNumber = Console.readLine();
+        String[] lottoNumber = inputlottoNumber.split(",");
     }
 }

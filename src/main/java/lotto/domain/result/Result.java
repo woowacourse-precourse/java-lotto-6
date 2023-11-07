@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.result;
 
 public enum Result {
     FIRST(2000000000, "2,000,000,000원", 0),

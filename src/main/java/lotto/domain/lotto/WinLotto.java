@@ -1,9 +1,10 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.lotto.etc.BounsNumber;
 import lotto.utils.Prints;
 
 public class WinLotto {

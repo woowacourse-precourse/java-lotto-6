@@ -1,10 +1,14 @@
-package lotto.domain;
+package lotto.domain.player;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinLotto;
+import lotto.domain.lotto.etc.LottoAmount;
+import lotto.domain.lotto.etc.LottoCount;
 import lotto.utils.Prints;
 import lotto.utils.Utils;
 

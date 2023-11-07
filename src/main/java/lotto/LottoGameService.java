@@ -1,7 +1,7 @@
 package lotto;
 
-import lotto.domain.Player;
-import lotto.domain.Results;
+import lotto.domain.player.Player;
+import lotto.domain.result.Results;
 import lotto.utils.Prints;
 
 public class LottoGameService {

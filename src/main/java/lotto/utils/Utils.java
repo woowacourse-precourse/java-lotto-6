@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import lotto.domain.Result;
+import lotto.domain.result.Result;
 
 public class Utils {
     public static int parseIntValidate(String num) {

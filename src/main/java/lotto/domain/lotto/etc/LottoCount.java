@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto.etc;
 
 public class LottoCount {
     private final static int UNIT = 1000;

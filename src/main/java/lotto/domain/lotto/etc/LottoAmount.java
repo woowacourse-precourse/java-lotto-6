@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto.etc;
 
 public class LottoAmount {
     private static int lottoAmount;

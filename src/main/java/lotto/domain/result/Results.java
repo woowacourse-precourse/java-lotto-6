@@ -1,6 +1,9 @@
-package lotto.domain;
+package lotto.domain.result;
 
 import java.util.List;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.WinLotto;
+import lotto.domain.lotto.etc.BounsNumber;
 
 public class Results {
     private static List<Lotto> lottos;

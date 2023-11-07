@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotto.etc;
 
 public class BounsNumber {
     private final int bounsNumber;

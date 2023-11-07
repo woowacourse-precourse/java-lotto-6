@@ -63,4 +63,12 @@ public class Lotto {
     }
   }
 
+  // 당첨번호랑 보너스번호 중복 체크
+  public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+    if (numbers.contains(bonusNumber)) {
+      ExceptionMessage.overlapException();
+      throw new IllegalArgumentException();
+    }
+  }
+
 }

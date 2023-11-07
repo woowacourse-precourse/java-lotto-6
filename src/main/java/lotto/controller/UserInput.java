@@ -1,7 +1,7 @@
-package lotto;
+package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.LottoTicketMoney;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 

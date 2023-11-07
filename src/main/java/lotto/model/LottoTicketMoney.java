@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 public class LottoTicketMoney extends Money {
     private static final int singleTicketPrice = 1000;

@@ -28,6 +28,7 @@ public class Lotto {
     protected boolean isCorrectRange(int bonusNumber) {
         return bonusNumber >= 1 && bonusNumber <= 45;
     }
+
     protected boolean isCorrectRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (!isCorrectRange(number)) {
@@ -55,6 +56,30 @@ public class Lotto {
             }
         }
         return count;
+    }
+
+    protected List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public Result getResult(WinningLotto winningLotto) {
+        int count = getSameNumberCount(winningLotto.getNumbers());
+        if (count == 6) {
+            return Result.FIRST;
+        }
+        if (count == 5) {
+            if (numbers.contains(winningLotto.getBonusNumber())) {
+                return Result.SECOND;
+            }
+            return Result.THIRD;
+        }
+        if (count == 4) {
+            return Result.FOURTH;
+        }
+        if (count == 3) {
+            return Result.FIFTH;
+        }
+        return Result.NONE;
     }
 
 }

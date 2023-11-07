@@ -1,18 +1,33 @@
 package lotto.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class MyLottoNumbersTest {
-    @DisplayName("로또 번호의 개수가 6개가 넘으면 예외처리")
+    @DisplayName("숫자가 아닌 입력값이 있을 경우 예외처리")
     @Test
-    void 로또번호_개수검사() {
-        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,6,7)))
-                .isInstanceOf(IllegalArgumentException.class);
+    void 입력값_숫자확인() {
+        assertThatThrownBy(() -> new MyLottoNumbers("1,e,3,A,5,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자들만 입력 가능합니다");
+    }
+
+    @DisplayName("숫자가 아닌 입력값이 있을 경우 예외처리")
+    @Test
+    void 입력값_범위확인() {
+        assertThatThrownBy(() -> new MyLottoNumbers("0,1,2,3,4,500"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1~45의 숫자들만 입력 가능합니다");
+    }
+
+    @DisplayName("숫자가 아닌 입력값이 있을 경우 예외처리")
+    @Test
+    void 입력값_개수확인() {
+        assertThatThrownBy(() -> new MyLottoNumbers("1,2,3,4,5,6,7,8,9,10"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("6개의 숫자로 구성되어야 합니다");
     }
 
 }

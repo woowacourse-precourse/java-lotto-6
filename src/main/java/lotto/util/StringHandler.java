@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringHandler {
     public static List<Integer> separatedWith(String input, String delimiter) {
@@ -10,6 +11,12 @@ public class StringHandler {
                 .map(StringHandler::stringToInt)
                 .sorted()
                 .toList();
+    }
+
+    public static String joinBy(List<Integer> input, String splitter) {
+        return input.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(splitter));
     }
 
     public static int stringToInt(String input) {

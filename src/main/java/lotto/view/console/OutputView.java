@@ -6,6 +6,7 @@ public class OutputView {
 
     private static final String START_INPUT_AMOUNT = "구입 금액을 입력해 주세요.";
     private static final String START_INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String START_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
     public static void printInputAmount() {
         System.out.println(START_INPUT_AMOUNT);
@@ -13,6 +14,10 @@ public class OutputView {
 
     public static void printInputWinningNumbers() {
         System.out.println(START_INPUT_WINNING_NUMBERS);
+    }
+
+    public static void printInputBonus() {
+        System.out.println(START_INPUT_BONUS_NUMBER);
     }
 
     public static void printLottoIssueResult(LottoIssueResultDTO resultDTO) {

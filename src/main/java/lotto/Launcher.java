@@ -1,11 +1,11 @@
 package lotto;
 
 import java.util.List;
+import lotto.config.InputConfiguration;
 import lotto.controller.IssueController;
 import lotto.domain.Purchase;
 import lotto.domain.vo.TotalAmount;
 import lotto.domain.vo.WinningNumbers;
-import lotto.config.InputConfiguration;
 import lotto.util.handler.InputHandler;
 
 public class Launcher {

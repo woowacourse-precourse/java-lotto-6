@@ -2,7 +2,9 @@ package lotto.message;
 
 public enum SystemMessage implements MessageProvider{
     INPUT_PURCHASE_PRICE("구입금액을 입력해 주세요."),
-    OUTPUT_PURCHASE_LOTTO_AMOUNT("%d개를 구매했습니다.");
+    OUTPUT_PURCHASE_LOTTO_AMOUNT("%d개를 구매했습니다."),
+    OUTPUT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
+    OUTPUT_BONUS_NUMBER("보너스 번호를 입력해 주세요.");
 
     private final String message;
 

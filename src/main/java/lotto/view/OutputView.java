@@ -10,8 +10,12 @@ public class OutputView {
     public static void printMessage(MessageProvider message) {
         System.out.println(message.getMessage());
     }
-    public static void print(String message) {
+    public static <T> void print(T message){
         System.out.println(message);
+    }
+    public static <T> void printWithBlankLine(T message) {
+        System.out.println(message);
+        printMessageBlankLine();
     }
     public static <T> void printMessagesWithBlankLine(List<T> messages) {
         messages.forEach(System.out::println);

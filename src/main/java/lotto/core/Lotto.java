@@ -2,7 +2,7 @@ package lotto.core;
 
 import java.util.List;
 import static lotto.utils.Validator.*;
-import static lotto.constValue.ConstMessage.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 

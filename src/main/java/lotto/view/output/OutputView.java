@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class OutputView {
     OutputMaker outputMaker = new OutputMaker();
-    public void showPurchasedLotto(int purchasedLottoCount, ArrayList<Lotto> purchasedLotto) {
+
+    public void printPurchasedLotto(int purchasedLottoCount, ArrayList<Lotto> purchasedLotto) {
         System.out.println(purchasedLottoCount + "개를 구매했습니다.");
         for (Lotto lotto : purchasedLotto) {
             String lottoNumber = outputMaker.lottoNumberCheckMaker(lotto.getNumbers());
@@ -15,11 +16,11 @@ public class OutputView {
         generateBlank();
     }
 
-    public void WinningGradeVisualization(int[] winningGrade, double profitRate) {
+    public void printLottoGameResult(int[] winningData, double profitRate) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        String winningGradeVisualization = outputMaker.visualizeWinningGrade(winningGrade);
-        System.out.println(winningGradeVisualization);
+        String winningDataVisualization = outputMaker.visualizeWinningData(winningData);
+        System.out.println(winningDataVisualization);
         String profitMessage = outputMaker.makeProfitMessage(profitRate);
         System.out.println(profitMessage);
     }

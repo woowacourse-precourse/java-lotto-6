@@ -1,6 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.constant.WinningDataCategory;
 import lotto.model.Buyer;
 import lotto.model.Lotto;
 import lotto.model.LottoDecision;
@@ -13,11 +14,11 @@ public class LottoGameService {
     private static final int LOTTO_PRICE = 1000;
     private static final int WINNING_NUMBER_LENGTH = 7;
     private static final int BONUS_NUMBER_POSITION = 6;
-    private static final int WINNING_GRADE_LENGTH = 6;
+    private static final int WINNING_DATA_LENGTH = 6;
     Buyer buyer;
     LottoDecision lottoDecision;
 
-    public int setUpLotto(int paymentAmount) {
+    public int setUpPurchasedLotto(int paymentAmount) {
         int purchasableLottoCount = getPurchasableLottoCount(paymentAmount);
         buyer = new Buyer(purchasableLottoCount);
         IntStream.range(0, purchasableLottoCount)
@@ -62,17 +63,17 @@ public class LottoGameService {
         return finalWinningNumber;
     }
 
-    public void makeWinningGrade() {
+    public void makeWinningData() {
         ArrayList<Lotto> purchasedLotto = buyer.getPurchasedLotto();
         int[] winningNumber = lottoDecision.getWinningNumber();
-        int[] winningGrade = new int[WINNING_GRADE_LENGTH];
+        int[] winningData = new int[WINNING_DATA_LENGTH];
 
         for (Lotto lotto : purchasedLotto) {
             List<Integer> numbers = lotto.getNumbers();
             int lottoResult = decisionWinningCount(numbers, winningNumber);
-            settingWinningGrade(numbers, winningGrade, lottoResult, winningNumber);
+            settingWinningData(numbers, winningData, lottoResult, winningNumber);
         }
-        lottoDecision.setWinningGrade(winningGrade);
+        lottoDecision.setWinningData(winningData);
     }
 
     private int decisionWinningCount(List<Integer> numbers, int[]winningNumber) {
@@ -85,19 +86,19 @@ public class LottoGameService {
         return winningCountPerOneLotto;
     }
 
-    private void settingWinningGrade(List<Integer> numbers, int[] lottoResultList, int lottoResult, int[] winningNumber) {
+    private void settingWinningData(List<Integer> numbers, int[] lottoResultList, int lottoResult, int[] winningNumber) {
         if (lottoResult == 3) {
-            lottoResultList[0] += 1;
+            lottoResultList[WinningDataCategory.THREE_MATCH.getPosition()] += 1;
         }
         if (lottoResult == 4) {
-            lottoResultList[1] += 1;
+            lottoResultList[WinningDataCategory.FOUR_MATCH.getPosition()] += 1;
         }
         if (lottoResult == 5) {
-            if (isBonusNumberExist(numbers, winningNumber)) {
-                lottoResultList[3] += 1;
-            }
             if (!isBonusNumberExist(numbers, winningNumber)) {
-                lottoResultList[2] += 1;
+                lottoResultList[WinningDataCategory.FIVE_MATCH.getPosition()] += 1;
+            }
+            if (isBonusNumberExist(numbers, winningNumber)) {
+                lottoResultList[WinningDataCategory.BONUS_MATCH.getPosition()] += 1;
             }
         }
         if (lottoResult == 6) {
@@ -109,17 +110,17 @@ public class LottoGameService {
         return numbers.contains(winningNumber[BONUS_NUMBER_POSITION]);
     }
 
-    public int[] getWinningGrade() {
-        return lottoDecision.getWinningGrade();
+    public int[] getWinningData() {
+        return lottoDecision.getWinningData();
     }
 
-    public double calculateProfitRate(int[] winningGrade) {
+    public double calculateProfitRate(int[] winningData) {
         int totalProfit = 0;
-        totalProfit += 5000 * winningGrade[0];
-        totalProfit += 50000 * winningGrade[1];
-        totalProfit += 1500000 * winningGrade[2];
-        totalProfit += 30000000 * winningGrade[3];
-        totalProfit += 2000000000 * winningGrade[4];
+        totalProfit += WinningDataCategory.THREE_MATCH.getPrize() * winningData[0];
+        totalProfit += WinningDataCategory.FOUR_MATCH.getPrize() * winningData[1];
+        totalProfit += WinningDataCategory.FIVE_MATCH.getPrize() * winningData[2];
+        totalProfit += WinningDataCategory.BONUS_MATCH.getPrize() * winningData[3];
+        totalProfit += WinningDataCategory.SIX_MATCH.getPrize() * winningData[4];
 
         double buyerPay = 1000.0 * buyer.getPurchasedLottoCount();
         return (totalProfit / buyerPay) * 100.0;

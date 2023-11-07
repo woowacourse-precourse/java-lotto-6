@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class LottoDecision {
     private final int[] winningNumber;
-    private int[] winningGrade;
+    private int[] winningData;
     private float rateOfReturn;
 
     public LottoDecision(int[] winningNumber) {
@@ -16,11 +16,11 @@ public class LottoDecision {
     }
 
 
-    public void setWinningGrade(int[] winningGrade) {
-        this.winningGrade = winningGrade;
+    public void setWinningData(int[] winningData) {
+        this.winningData = winningData;
     }
 
-    public int[] getWinningGrade() {
-        return this.winningGrade;
+    public int[] getWinningData() {
+        return this.winningData;
     }
 }

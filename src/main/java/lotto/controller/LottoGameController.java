@@ -19,17 +19,17 @@ public class LottoGameController {
     }
 
     public void start() {
-        buyLotto();
+        purchaseLotto();
         generateWinningNumber();
-        announceResult();
+        announceGameResult();
     }
 
-    private void buyLotto() {
+    private void purchaseLotto() {
         int paymentAmount = Integer.parseInt(inputView.enterPaymentAmount());
         outputView.generateBlank();
-        int purchasedLottoCount = lottoGameService.setUpLotto(paymentAmount);
+        int purchasedLottoCount = lottoGameService.setUpPurchasedLotto(paymentAmount);
         ArrayList<Lotto> purchasedAllLotto = lottoGameService.checkPurchasedLotto();
-        outputView.showPurchasedLotto(purchasedLottoCount, purchasedAllLotto);
+        outputView.printPurchasedLotto(purchasedLottoCount, purchasedAllLotto);
     }
 
     private void generateWinningNumber() {
@@ -38,10 +38,10 @@ public class LottoGameController {
         lottoGameService.completeMakingWinningNumber(winningNumbers, bonusWinningNumber);
     }
 
-    private void announceResult() {
-        lottoGameService.makeWinningGrade();
-        int[] winningGrade = lottoGameService.getWinningGrade();
-        double profitRate = lottoGameService.calculateProfitRate(winningGrade);
-        outputView.WinningGradeVisualization(winningGrade, profitRate);
+    private void announceGameResult() {
+        lottoGameService.makeWinningData();
+        int[] winningData = lottoGameService.getWinningData();
+        double profitRate = lottoGameService.calculateProfitRate(winningData);
+        outputView.printLottoGameResult(winningData, profitRate);
     }
 }

@@ -55,30 +55,30 @@ public class Application {
         }
     }
 
-    private static void outputLottoNumber(int number){
+    private static void outputLottoNumber(int number) {
         int i = 0;
         Lotto[] lottos = new Lotto[number];
 
-        while (i < number){
+        while (i < number) {
             lottos[i] = new Lotto(lottoNumber());
             i++;
         }
 
-        System.out.println(number +"개를 구매했습니다.");
+        System.out.println(number + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
             String str = lotto.length(lotto);
             System.out.println(str);
         }
     }
 
-    private static String winningNumber(){
+    private static String winningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String str = Console.readLine();
 
         return str;
     }
 
-    private static int bonusNumber(){
+    private static int bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String str = Console.readLine();
 

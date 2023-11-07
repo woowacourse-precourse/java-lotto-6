@@ -43,7 +43,7 @@ public class Play {
 
     public static void winningResult() {
         messageAboutWinningStatistic();
-        result = createResult(lottery, winningNumbers.getWinningNumbers(), bonus);
+        result = createResult(lottery, winningNumbers, bonus);
         WinningRate.calResultPlay(result, price);
     }
 

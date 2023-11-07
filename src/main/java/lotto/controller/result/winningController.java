@@ -3,6 +3,7 @@ package lotto.controller.result;
 import lotto.controller.result.Rank;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
+import lotto.model.WinningNumber;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -13,10 +14,10 @@ import static lotto.controller.result.Rank.getRank;
 
 public class winningController {
 
-    public static HashMap<Rank, Integer> createResult(List<Lotto> lottery, List<Integer> winningNumbers, BonusNumber bonus) {
+    public static HashMap<Rank, Integer> createResult(List<Lotto> lottery, WinningNumber winningNumbers, BonusNumber bonus) {
         HashMap<Rank, Integer> result = new HashMap<>();
         for (Lotto lotto : lottery) {
-            int resultCount = compareLottoAndWinningNumber(lotto.getLotto(), winningNumbers);
+            int resultCount = compareLottoAndWinningNumber(lotto.getLotto(), winningNumbers.getWinningNumbers());
             Rank resultRank = findRank(resultCount);
             if (resultRank == null) {
                 continue;

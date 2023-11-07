@@ -18,12 +18,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-    public List<Integer> getLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        sort(lottoNumbers);
-        return lottoNumbers;
-    }
-
-    // TODO: 추가 기능 구현
 }

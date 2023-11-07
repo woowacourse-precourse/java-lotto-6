@@ -1,9 +1,6 @@
 package lotto.controller;
 
-import lotto.domin.Bonus;
-import lotto.domin.Lotto;
-import lotto.domin.LottoNumbers;
-import lotto.domin.PlayerLottoAmount;
+import lotto.domin.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -29,6 +26,7 @@ public class Application {
         }
         List<Integer> selectLottoNumber = getSelectLottoNumbers();
         int bonus = getbonus(selectLottoNumber);
+        int[] lottoPrize = getLottoPrize(lottoList, selectLottoNumber, bonus);
 
 
     }
@@ -91,5 +89,18 @@ public class Application {
             }
         }
     }
+    public static int[] getLottoPrize(List<Lotto> lottoNumbers, List<Integer> selectLottoNumber, int bonus) {
+        int[] lottoPrize = new int[8];
+        for (Lotto lotto : lottoNumbers) {
+            long lottoCount = lotto.getNumbers().stream().filter(selectLottoNumber::contains).count();
+            if (lottoCount == 5 && lotto.getNumbers().contains(bonus)) { //보너스
+                lottoPrize[LottoPrice.FIVE_AND_BONUS.getLottoNum()]++;
+                continue;
+            }
+            lottoPrize[(int) lottoCount]++;
+        }
+        return lottoPrize;
+    }
+
 
 }

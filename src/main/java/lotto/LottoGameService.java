@@ -7,7 +7,6 @@ import lotto.utils.Prints;
 public class LottoGameService {
 
     public void exec() {
-
         Player player = new Player();
         player.setLottoAmount();
         player.setLottoCount();

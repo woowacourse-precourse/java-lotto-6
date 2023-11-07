@@ -37,10 +37,18 @@ public class Player {
             System.out.println(String.format("[ERROR] %s", e.getMessage()));
             setLottoAmount();
         }
+
     }
 
     public void setLottoCount() {
-        this.lottoCount = new LottoCount(lottoAmount.getLottoAmount());
+        try {
+            this.lottoCount = new LottoCount(lottoAmount.getLottoAmount());
+        } catch (IllegalArgumentException e) {
+            System.out.println(String.format("[ERROR] %s", e.getMessage()));
+            setLottoAmount();
+            setLottoCount();
+        }
+
     }
 
     public void showLottos() {

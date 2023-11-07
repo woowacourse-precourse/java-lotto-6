@@ -15,10 +15,16 @@ public class WinLotto {
     }
 
     public void createLotto() {
-        Prints.print_input_winLotto();
-        lotto = new Lotto(inputWinNumber());
-        lotto.lottoByDuplicateNumber();
-        lotto.lottoByRange();
+        try {
+            Prints.print_input_winLotto();
+            lotto = new Lotto(inputWinNumber());
+            lotto.lottoByDuplicateNumber();
+            lotto.lottoByRange();
+        } catch (IllegalArgumentException e) {
+            System.out.println(String.format("[ERROR] %s", e.getMessage()));
+            createLotto();
+        }
+
     }
 
     public void createBonusNumber() {

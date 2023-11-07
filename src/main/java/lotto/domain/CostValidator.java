@@ -20,13 +20,13 @@ public class CostValidator {
     }
 
     private void isPositive() {
-        if (this.cost < 1000) {
+        if (this.cost < Constants.MIN_COST) {
             throw new IllegalArgumentException("음수이거나 값이 너무 작은 문제");
         }
     }
 
     private void isPerThousand() {
-        if (this.cost % 1000 != 0) {
+        if (this.cost % Constants.COST_UNIT != Constants.ZERO) {
             throw new IllegalArgumentException("천원 단위로 안나눠지는 에러");
         }
     }

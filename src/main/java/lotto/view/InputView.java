@@ -11,38 +11,55 @@ import static lotto.util.validate.InputValidate.*;
 public class InputView {
 
     public int inputPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = readLine();
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = readLine();
 
-        int parseIntInputValue = validateInputFormat(input);
-        validateThousandUnitInputFormat(parseIntInputValue);
+                int parseIntInputValue = validateInputFormat(input);
+                validateThousandUnitInputFormat(parseIntInputValue);
+                validateNumberRangeInputFormat(parseIntInputValue);
 
-        return Integer.parseInt(input) / 1000;
+                return Integer.parseInt(input) / 1000;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public List<Integer> inputWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String input = readLine();
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = readLine();
 
-        List<Integer> winningNumbers = Arrays.stream(input.split(",")).
-                mapToInt(Integer::parseInt).boxed().toList();
+                List<Integer> winningNumbers = Arrays.stream(input.split(",")).
+                        mapToInt(Integer::parseInt).boxed().toList();
 
-        validateRangeInputLottoNumbers(winningNumbers);
-        validateUniqueInputLottoNumbers(winningNumbers);
+                validateRangeInputLottoNumbers(winningNumbers);
+                validateUniqueInputLottoNumbers(winningNumbers);
 
-        return winningNumbers;
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public int inputBonusNumber(List<Integer> winningNumbers) {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String input = readLine();
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = readLine();
 
-        int bonusNumber = validateInputFormat(input);
-        validateRangeInputLottoBonusNumber(bonusNumber);
-        validateUniqueInputLottoBonusNumber(winningNumbers, bonusNumber);
+                int bonusNumber = validateInputFormat(input);
+                validateRangeInputLottoBonusNumber(bonusNumber);
+                validateUniqueInputLottoBonusNumber(winningNumbers, bonusNumber);
 
-        return Integer.parseInt(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
-
-
 }

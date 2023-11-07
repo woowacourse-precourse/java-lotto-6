@@ -1,7 +1,9 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import ui.Input;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -9,9 +11,19 @@ public class Game {
     private int price;
     private int bonusNumber;
     private List<Integer> winningNumbers;
+    private List<Lotto> lottos = new ArrayList<>();
     private Error errorState = Error.NO_PROBLEM;
 
 
+    private void generateLotto() {
+        int numberOfLotto = price/1000;
+        int index = 0;
+        while (lottos.size() < numberOfLotto){
+            lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+            lottos.get(index).printLottoNumbers();
+            index++;
+        }
+    }
 
     private void setPrice() {
         while (!errorState.equals(Error.NO_PROBLEM)) {

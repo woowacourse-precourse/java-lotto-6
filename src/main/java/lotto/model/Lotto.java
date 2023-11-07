@@ -75,4 +75,18 @@ public class Lotto {
         return null; // 당첨되지 않음
     }
 
+    private int countMatchingNumbers(List<Integer> winningNumbers) {
+        int matchingCount = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                matchingCount++;
+            }
+        }
+        return matchingCount;
+    }
+
+    private boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
+
 }

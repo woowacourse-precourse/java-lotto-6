@@ -3,6 +3,7 @@ package lotto;
 import lotto.controllers.LottoStoreManager;
 import lotto.views.LottoView;
 
+import static lotto.views.MessageManager.getLottoNumberPromptMessage;
 import static lotto.views.MessageManager.getPurchaseAmountPromptMessage;
 
 public class Application {
@@ -15,8 +16,11 @@ public class Application {
 
         System.out.println();
 
-        controller.lottoMachine();
         view.lottoTicketCountView(controller.getLottoTicketCount());
         controller.displayLottoTicketsNumber();
+
+        System.out.println();
+        getLottoNumberPromptMessage();
+
     }
 }

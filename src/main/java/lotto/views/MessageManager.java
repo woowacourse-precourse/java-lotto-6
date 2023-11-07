@@ -10,8 +10,13 @@ public class MessageManager {
     public static void getPurchaseAmountPromptMessage() {
         System.out.println(messages.getString("purchaseAmountPrompt.message"));
     }
+
     public static void getProgramClosePromoptMessage() {
         System.err.println(messages.getString("programClosePromopt.message"));
+    }
+
+    public static void getLottoNumberPromptMessage() {
+        System.out.println(messages.getString("lottoNumberPrompt.message"));
     }
 
 

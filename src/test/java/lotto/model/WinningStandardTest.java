@@ -15,7 +15,7 @@ class WinningStandardTest {
     @ParameterizedTest
     @MethodSource("getLottoNumbersAndRanking")
     @DisplayName("당첨 번호 순위 계산 맞는지 확인")
-    void testgetWinningRanking(List<Integer> numbers, WinningStandard standard) {
+    void testGetWinningRanking(List<Integer> numbers, WinningStandard standard) {
         //given
         Lotto lotto = new Lotto(numbers);
 

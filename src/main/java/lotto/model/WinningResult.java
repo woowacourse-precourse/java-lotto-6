@@ -1,13 +1,19 @@
 package lotto.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class WinningResult {
     private final Map<WinningStandard, Integer> winningResult = new HashMap<>();
 
-    public WinningResult() {
+    public WinningResult(Lottos lottos, WinningLotto winningLotto) {
         initialized();
+        updateWinningResult(lottos, winningLotto);
+    }
+
+    public Map<WinningStandard, Integer> getWinningResult() {
+        return winningResult;
     }
 
     private void initialized() {
@@ -16,11 +22,15 @@ public class WinningResult {
         }
     }
 
-    public void addResult(WinningStandard standard, int count) {
-        winningResult.put(standard, winningResult.get(standard) + count);
+    private void updateWinningResult(Lottos lottos, WinningLotto winningLotto) {
+        List<Lotto> purchasedLottos = lottos.getLottos();
+        for (Lotto lotto : purchasedLottos) {
+            WinningStandard ranking = WinningStandard.checkMatchNumbers(lotto, winningLotto);
+            addResult(ranking, 1);
+        }
     }
 
-    public Map<WinningStandard, Integer> getWinningResult() {
-        return winningResult;
+    private void addResult(WinningStandard standard, int count) {
+        winningResult.put(standard, winningResult.get(standard) + count);
     }
 }

@@ -27,7 +27,7 @@ class LottoMachineTest {
 
     @Nested
     @DisplayName("issuedLottos 메소드 test")
-    class IssuedLottos {
+    class IssuedLottosTest {
         @DisplayName("발행된 로또 수는 구입 금액을 " + PurchaseAmount.PURCHASE_AMOUNT_UNIT + "으로 나눈 값과 같다")
         @Test
         void Issued_lotto_count_is_equal_to_purchase_amount() {
@@ -59,8 +59,7 @@ class LottoMachineTest {
             BonusNumber bonusNumber = new BonusNumber(45);
 
             // when
-            DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto,
-                    bonusNumber);
+            DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto, bonusNumber);
             Integer firstCount = drawingResult.getResults().get(Rank.FIRST);
             Integer thirdCount = drawingResult.getResults().get(Rank.THIRD);
             Integer fourthCount = drawingResult.getResults().get(Rank.FOURTH);
@@ -74,8 +73,8 @@ class LottoMachineTest {
     }
 
     @Nested
-    @DisplayName("-")
-    class CalculateProfitRate {
+    @DisplayName("calculateProfitRate 메소드 test")
+    class CalculateProfitRateTest {
         @DisplayName("추첨 결과에 따른 수익률을 반환한다.")
         @Test
         void Calculate_profit() {

@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 class WinningLottoValidatorTest {
     @Nested
     @DisplayName("validateWinningNumber 메소드 test")
-    class validateInputWinningNumber {
+    class validateInputWinningNumberTest {
         @DisplayName("당첨 번호가 숫자와 '" + WinningLottoValidator.DELIMITER + "'만으로 이루어져 있으면 검증 성공")
         @Test
         void Winning_number_is_matched_winning_numbers_regex() {
@@ -67,7 +67,7 @@ class WinningLottoValidatorTest {
 
     @Nested
     @DisplayName("validateLottoSize 메소드 test")
-    class ValidateLottoSize {
+    class ValidateLottoSizeTest {
         @DisplayName("숫자 개수가 " + Lotto.SIZE + "와 일치하면 검증 통과")
         @Test
         void Match_lotto_size() {
@@ -99,7 +99,7 @@ class WinningLottoValidatorTest {
 
     @Nested
     @DisplayName("validateNumbersInLottoRange 메소드 test")
-    class ValidateNumbersInLottoRange {
+    class ValidateNumbersInLottoRangeTest {
         @DisplayName("번호가 " + Lotto.MIN_LOTTO_NUMBER + " ~ " + Lotto.MAX_LOTTO_NUMBER + " 범위에 있으면 검증 통과")
         @Test
         void Numbers_in_range_lotto_range() {
@@ -130,7 +130,7 @@ class WinningLottoValidatorTest {
 
     @Nested
     @DisplayName("validateDuplicateNumbers 메소드 test")
-    class ValidateDuplicateNumbers {
+    class ValidateDuplicateNumbersTest {
         @DisplayName("숫자가 중복되지 않으면 검증 통과")
         @Test
         void Has_unique_numbers() {

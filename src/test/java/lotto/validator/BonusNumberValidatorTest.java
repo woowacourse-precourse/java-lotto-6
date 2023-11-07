@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class BonusNumberValidatorTest {
     @Nested
     @DisplayName("inputValidate 메소드 test")
-    class ValidateInputBonusNumber {
+    class ValidateInputBonusNumberTest {
         @DisplayName("보너스 번호로 숫자가 들어오면 검증 통과")
         @Test
         void Bonus_number_consists_of_numbers() {
@@ -56,7 +56,7 @@ class BonusNumberValidatorTest {
 
     @Nested
     @DisplayName("validateBonusNumber 메소드 test")
-    class ValidateBonusNumber {
+    class ValidateBonusNumberTest {
         @DisplayName("번호가 " + Lotto.MIN_LOTTO_NUMBER + " ~ " + Lotto.MAX_LOTTO_NUMBER + " 범위에 있으면 검증 통과")
         @Test
         void Numbers_in_range_lotto_range() {

@@ -26,7 +26,7 @@ class LottoTest {
 
     @Nested
     @DisplayName("matchWinningLottoCount 메소드 test")
-    class MatchWinningLottoCount {
+    class MatchWinningLottoCountTest {
         private Lotto lotto;
 
         @BeforeEach
@@ -63,7 +63,7 @@ class LottoTest {
 
     @Nested
     @DisplayName("hasBonusNumber 메소드 test")
-    class HasBonusNumber {
+    class HasBonusNumberTest {
         private Lotto lotto;
 
         @BeforeEach

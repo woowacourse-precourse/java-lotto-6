@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class PurchaseAmountDtoTest {
     @Nested
     @DisplayName("purchaseQuantityLottos 메소드 test")
-    class PurchaseQuantityLottos {
+    class PurchaseQuantityLottosTest {
         @DisplayName("구입 금액을 " + PurchaseAmount.PURCHASE_AMOUNT_UNIT + "으로 나눈값을 반환한다.")
         @Test
         void test() {

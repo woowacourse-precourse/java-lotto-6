@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class RankTest {
     @Nested
     @DisplayName("calculate 메소드 test")
-    class Calculate {
+    class CalculateTest {
         @DisplayName("일치하는 개수가 2등 일치개수와 같다면 2등을 반환한다.")
         @Test
         void Matching_count_equals_second_rank() {

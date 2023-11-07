@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.domain.dto.BonusNumberDto;
 import lotto.validator.LottoValidator;
 
 public class Lotto {
@@ -31,8 +30,8 @@ public class Lotto {
         return matchCount;
     }
 
-    public boolean hasBonusNumber(final BonusNumberDto bonusNumberDto) {
-        return numbers.stream().anyMatch(i -> i.equals(bonusNumberDto.number()));
+    public boolean hasBonusNumber(final BonusNumber bonusNumber) {
+        return numbers.stream().anyMatch(i -> i.equals(bonusNumber.getNumber()));
     }
 
     public List<Integer> getNumbers() {

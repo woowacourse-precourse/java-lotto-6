@@ -18,6 +18,7 @@ public class LottoApp {
         int times = getPurchaseMoney() / PRICE_LOTTO;
         player.generateLottos(times);
         admin.checkLottos(player);
+        admin.printPrize(player);
         admin.payPrizeMoney(player);
     }
 

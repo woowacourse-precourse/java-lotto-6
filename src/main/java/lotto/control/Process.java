@@ -47,6 +47,7 @@ public class Process {
 
     public StringBuilder showStatisticResult() {
         lottoTargetNumResults = lottoHost.giveLottoTargetNumResults();
+
         return user.showLottoStatisticResult(lottoTargetNumResults);
     }
 

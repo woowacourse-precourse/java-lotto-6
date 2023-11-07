@@ -1,10 +1,8 @@
 package lotto.controller;
 
 import lotto.Lotto;
-import lotto.domain.Calculator;
-import lotto.domain.LottoGenerator;
+import lotto.domain.*;
 import main.java.lotto.domain.WinningLottos;
-import lotto.domain.UserLotto;
 import lotto.view.SystemInput;
 
 import java.util.ArrayList;
@@ -49,5 +47,12 @@ public class LottoController {
 
         Calculator calculator = new Calculator();
         calculator.match(userLotto, winningLottos);
+
+        RankContainer rankContainer = new RankContainer();
+        int cnt = 0;
+        for (Rank rank : Rank.values()) {
+            cnt += rankContainer.getRankContainer(rank) * rank.getAward();
+        }
+        double rate = (cnt * 0.1) / ((money) / 1000);
     }
 }

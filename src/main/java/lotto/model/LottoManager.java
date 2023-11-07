@@ -43,11 +43,7 @@ public class LottoManager extends Observable {
         PrizeNumbers prizeNumbers = new PrizeNumbers(winningNumbers, bonusNumber);
         rankEvaluator = new RankEvaluator(prizeNumbers);
     }
-
-    public Iterator<Lotto> getLottoListIterator() {
-        return lottos.iterator();
-    }
-
+    
     public void calculateStatistics() {
         for (Lotto lotto : lottos) {
             Iterator<Integer> lottoNumbers = lotto.getIterator();

@@ -3,6 +3,7 @@ package validators;
 import constants.ErrorCodeConstant;
 import constants.GameConstant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoValidator {
 
@@ -28,7 +29,6 @@ public class LottoValidator {
         }
     }
 
-
     private static void isNumberAndComma(String lottoNumber){
         final String NUMBER_AND_COMMA_REGEX = "^[0-9,]+$";
 
@@ -43,10 +43,12 @@ public class LottoValidator {
         }
     }
 
+
     public static void verifyLotto(List<Integer> numbers){
         isLottoNumber6Length(numbers);
         numbers.stream()
                 .forEach(number -> isBetweenLottoNumber(number));
+        isDuplicatesLottoNumber(numbers);
     }
 
     private static void isLottoNumber6Length(List<Integer> numbers){
@@ -61,9 +63,34 @@ public class LottoValidator {
         }
     }
 
-    public static void verifyBonusLotto(String inputBonusLotto){
+    private static void isDuplicatesLottoNumber(List<Integer> numbers){
+        if (isDuplicatesNumber(numbers)) {
+            throw new IllegalArgumentException(ErrorCodeConstant.DUPLICATES_LOTTO_NUMBER_ERROR);
+        }
+    }
+
+    private static boolean isDuplicatesNumber(List<Integer> numbers) {
+        List<Integer> distinctNumbers = numbers.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        return distinctNumbers.size() < numbers.size();
+    }
+
+
+    public static void verifyBonusLotto(String inputBonusLotto, List<Integer> lottoNumber){
         CommonValidator.isBlank(inputBonusLotto);
         CommonValidator.isOnlyNumber(inputBonusLotto);
+
+        int bonusLotto = Integer.parseInt(inputBonusLotto);
+        isBetweenLottoNumber(bonusLotto);
+        isContainsLottoNumber(bonusLotto, lottoNumber);
+    }
+
+    private static void isContainsLottoNumber(int bonusLotto, List<Integer> lottoNumber){
+        if (lottoNumber.contains(bonusLotto)) {
+            throw new IllegalArgumentException(ErrorCodeConstant.DUPLICATES_LOTTO_NUMBER_ERROR);
+        }
     }
 
 }

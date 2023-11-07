@@ -24,15 +24,15 @@ public class LottoDraw {
 
     private void validate(List<Integer> winningNumber) {
         if (winningNumber.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 ");
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6자리 입니다.");
         }
 
         if (hasDuplicates(winningNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복값이 없어야 합니다.");
         }
 
         if (isNumbersOutOfRange(winningNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 1~45 숫자만 입력 해주세요.");
         }
     }
 
@@ -51,16 +51,16 @@ public class LottoDraw {
 
     private void validateBonusNumber(Integer bonusNumber) {
         if (bonusNumber == null) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 ");
+            throw new IllegalArgumentException("[ERROR] 보너스번호는 비어 있을 수 없습니다.");
         }
 
         if(this.winningNumber.contains(bonusNumber)){
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 ");
+            throw new IllegalArgumentException("[ERROR] 중복값이 없어야 합니다.");
         }
 
         if( bonusNumber < LottoConstants.MIN_NUMBER_OF_LOTTO.getValue()
                 || bonusNumber > LottoConstants.MAX_NUMBER_OF_LOTTO.getValue()){
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 ");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 숫자만 입력 해주세요.");
         }
     }
 

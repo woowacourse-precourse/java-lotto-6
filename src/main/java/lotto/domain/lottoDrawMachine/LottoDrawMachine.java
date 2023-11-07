@@ -14,6 +14,7 @@ public class LottoDrawMachine {
 
     public LottoDraw Raffle() {
         boolean isCollectNumberInput = true;
+        boolean isCollectBonusNumberInput = true;
         List<Integer> lottoDrawNumbers = null;
         Integer lottoDrawBonusNumber = null;
         LottoDraw lottoDraw = null;
@@ -21,16 +22,23 @@ public class LottoDrawMachine {
             try {
                 String inputLottoDrawNumbers = inputLottoDraw.inputLottoDrawNumber();
                 lottoDrawNumbers = inputDataAdapter.transformLottoDrawNumber(inputLottoDrawNumbers);
-
-                String inputLottoDrawBonusNumber = inputLottoDraw.inputLottoDrawBonusNumber();
-                lottoDrawBonusNumber = inputDataAdapter.transformLottoDrawBonusNumber(inputLottoDrawBonusNumber);
-
-                lottoDraw = lottoDrawGenerator.generate(lottoDrawNumbers, lottoDrawBonusNumber);
                 isCollectNumberInput = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+
+        while (isCollectBonusNumberInput) {
+            try {
+                String inputLottoDrawBonusNumber = inputLottoDraw.inputLottoDrawBonusNumber();
+                lottoDrawBonusNumber = inputDataAdapter.transformLottoDrawBonusNumber(inputLottoDrawBonusNumber, lottoDrawNumbers);
+                isCollectBonusNumberInput = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        lottoDraw = lottoDrawGenerator.generate(lottoDrawNumbers, lottoDrawBonusNumber);
+
         return lottoDraw;
     }
 }

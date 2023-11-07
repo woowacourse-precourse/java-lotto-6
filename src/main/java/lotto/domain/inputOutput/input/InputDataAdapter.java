@@ -42,14 +42,22 @@ public class InputDataAdapter {
                         -> number < LottoConstants.MIN_NUMBER_OF_LOTTO.getValue()
                         || number > LottoConstants.MAX_NUMBER_OF_LOTTO.getValue());
     }
-    public Integer transformLottoDrawBonusNumber(String lottoDrawBonusNumber) throws IllegalArgumentException {
-        if (lottoDrawBonusNumber.matches("\\d+")) {
-            return Integer.parseInt(lottoDrawBonusNumber);
-        }
-
-        else {
+    public Integer transformLottoDrawBonusNumber(String lottoDrawBonusNumber, List<Integer> lottoDrawNumbers) throws IllegalArgumentException {
+        if (!lottoDrawBonusNumber.matches("\\d+")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
         }
+
+        Integer bonusNumberInt = Integer.parseInt(lottoDrawBonusNumber);
+        if (bonusNumberInt < LottoConstants.MIN_NUMBER_OF_LOTTO.getValue()
+                || bonusNumberInt > LottoConstants.MAX_NUMBER_OF_LOTTO.getValue()){
+            throw new IllegalArgumentException("[ERROR] 1~45 숫자만 입력 해주세요.");
+        }
+
+        if(lottoDrawNumbers.contains(bonusNumberInt)){
+            throw new IllegalArgumentException("[ERROR] 중복값이 없어야 합니다.");
+        }
+
+        return bonusNumberInt;
     }
 
 

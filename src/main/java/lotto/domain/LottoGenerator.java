@@ -6,6 +6,9 @@ import java.util.List;
 
 public class LottoGenerator {
     public static final int LOTTO_PRICE = 1000;
+    public static final int MIN_NUMBER = 1;
+    public static final int MAX_NUMBER = 45;
+    public static final int LOTTO_NUM_LENGTH = 6;
 
     public List<Lotto> makeTickets(int tickets){
         List<Lotto> allTickets = new ArrayList<>();
@@ -16,7 +19,7 @@ public class LottoGenerator {
     }
 
     public Lotto generateTicket(){
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUM_LENGTH));
     }
 
 }

@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.constant.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,20 +19,20 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 6개가 아닙니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_COUNT.getMessage());
         }
 
     }
     private void checkDuplicate(List<Integer> numbers){
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.getMessage());
         }
     }
 
     public void validateLottoNumbers(List<Integer> numbers){
         if (numbers.stream().anyMatch(number-> number <0 || number>45)){
-            throw new IllegalArgumentException("[ERROR] 1~45 사이의 번호만 가능합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 

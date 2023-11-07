@@ -10,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -78,4 +79,38 @@ class LottoTicketManagerTest {
                 Arguments.of(new Lotto(List.of(11, 12, 13, 14, 15, 16)), false)
         );
     }
+
+    @Test
+    @DisplayName("당첨금 총 합계가 정상 작동하는지 확인 합니다.")
+    public void 당첨금_총합계_테스트() {
+        lottoTicketManager.countTickets("5000");
+        lottoTicketManager.getUserLottoTickets(new ArrayList<>(initLottoList()));
+        lottoTicketManager.getLuckyNumber(new Lotto(List.of(11, 12, 13, 14, 25, 36)));
+        lottoTicketManager.getBonusNumber(2);
+        lottoTicketManager.makeResult();
+        Assertions.assertThat(lottoTicketManager.getTotalPrize()).isEqualTo(2_030_100_000);
+    }
+
+    @Test
+    @DisplayName("수익률 계산이 정상 작동하는지 확인 합니다.")
+    public void 수익률_계산_테스트() {
+        lottoTicketManager.countTickets("5000");
+        lottoTicketManager.getUserLottoTickets(new ArrayList<>(initLottoList()));
+        lottoTicketManager.getLuckyNumber(new Lotto(List.of(11, 12, 13, 14, 25, 36)));
+        lottoTicketManager.getBonusNumber(2);
+        lottoTicketManager.makeResult();
+        Assertions.assertThat(lottoTicketManager.calculateRevenue()).isEqualTo(40_602_000);
+    }
+
+    private List<Lotto> initLottoList() {
+        List<Lotto> list = new ArrayList<>();
+        list.add(new Lotto(List.of(11, 12, 13, 14, 25, 36)));
+        list.add(new Lotto(List.of(11, 12, 13, 14, 25, 2)));
+        list.add(new Lotto(List.of(11, 12, 13, 14, 17, 1)));
+        list.add(new Lotto(List.of(11, 12, 13, 14, 29, 1)));
+        list.add(new Lotto(List.of(11, 12, 23, 24, 39, 1)));
+        return list;
+    }
+
+
 }

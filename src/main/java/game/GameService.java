@@ -16,6 +16,8 @@ public class GameService {
         List<Lotto> lottos = createLottoByPrice(price);
         getLottoByPrice(lottos);
 
+        List<Integer> winningNumber = getWinningNumber();
+
 
     }
 
@@ -55,4 +57,30 @@ public class GameService {
         }
     }
 
+    public List<Integer> getWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] winningNumberInput = Console.readLine().split(",");
+        validateWinningNumber(winningNumberInput);
+
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : winningNumberInput) {
+            winningNumbers.add(Integer.parseInt(number));
+        }
+
+        return winningNumbers;
+    }
+
+    public void validateWinningNumber(String[] winningNumber) {
+        if (winningNumber.length != 6) {
+            throw new IllegalArgumentException();
+        }
+        for (String number : winningNumber) {
+            if (!number.matches("\\d+")) {
+                throw new IllegalArgumentException();
+            }
+            if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

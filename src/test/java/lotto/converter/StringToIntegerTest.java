@@ -36,4 +36,12 @@ class StringToIntegerTest {
         StringToInteger converter = new StringToInteger();
         assertThat(converter.convert(value)).isEqualTo(Integer.valueOf(value));
     }
+
+    @DisplayName("앞뒤로 공백을 제거하고 Integer로 변환한다.")
+    @ParameterizedTest(name = "{displayName}: {0}")
+    @ValueSource(strings = {" 10", "99 ", " 101 "})
+    void createConverterWithWhiteSpace(String value) {
+        StringToInteger converter = new StringToInteger();
+        assertThat(converter.convert(value)).isEqualTo(Integer.valueOf(value.trim()));
+    }
 }

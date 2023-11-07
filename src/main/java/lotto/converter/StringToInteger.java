@@ -11,7 +11,7 @@ public class StringToInteger implements Converter<String, Integer> {
     @Override
     public Integer convert(String source) {
         validate(source);
-        return Integer.valueOf(source);
+        return Integer.valueOf(source.trim());
     }
 
     private void validate(String source) {
@@ -20,14 +20,14 @@ public class StringToInteger implements Converter<String, Integer> {
     }
 
     private void validateType(String source) {
-        if (source == null || !NUMERIC_PATTERN.matcher(source).matches()) {
+        if (source == null || !NUMERIC_PATTERN.matcher(source.trim()).matches()) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE.getMessage());
         }
     }
 
     private void validateRange(String source) {
         try {
-            Integer.parseInt(source);
+            Integer.parseInt(source.trim());
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE.getMessage(), e);
         }

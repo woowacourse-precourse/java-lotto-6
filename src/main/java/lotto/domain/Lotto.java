@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자가 필요합니다.");
         }
     }
 

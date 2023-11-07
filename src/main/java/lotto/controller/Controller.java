@@ -1,11 +1,10 @@
 package lotto.controller;
 
+//*의 경우 해당 패키지 내 모든 클래스 참조
+
 import lotto.model.*;
-import lotto.service.LottoService;
-import lotto.service.NumberMatchingService;
-import lotto.service.EarningRateService;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.service.*;
+import lotto.view.*;
 
 import java.util.EnumMap;
 import java.util.List;
@@ -33,6 +32,7 @@ public class Controller {
         winningNumberSetting();
         bonusNumberSetting();
         showSystemMessage();
+        lottoResultSetting();
         showWinningResults();
         showEarningRate();
     }
@@ -86,8 +86,13 @@ public class Controller {
         OutputView.displaySystemMessage();
     }
 
+    private void lottoResultSetting() {
+        this.winCount = numberMatchingService.calculateWinCounts(this.lottos,
+                winningNumbers,
+                bonusNumber);
+    }
+
     private void showWinningResults() {
-        this.winCount = numberMatchingService.calculateWinCounts(this.lottos, winningNumbers, bonusNumber);
         OutputView.displayLottoResult(winCount);
     }
 

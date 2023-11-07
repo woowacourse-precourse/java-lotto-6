@@ -9,10 +9,12 @@ import java.util.HashMap;
 public class OutPutView {
 
     public void outPutViewLottos(Lottos lottos, int userMoney) {
+        System.out.println();
         int lottoCount = lottos.numberLottos(userMoney);
-        System.out.println(lottoCount + "개를 구매했습니다.");
 
+        System.out.println(lottoCount + "개를 구매했습니다.");
         System.out.println(lottos);
+        System.out.println();
     }
 
     public void outPutViewWinningStatistics(LottoResult lottoResult) {

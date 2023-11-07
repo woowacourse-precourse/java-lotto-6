@@ -37,7 +37,7 @@ class MessageResolverTest {
         LottoResult result = LottoResult.from(countByRanks);
         MessageResolver messageResolver = new MessageResolver();
         String message = messageResolver.resolveResultMessage(result);
-        String expected = "3개 일치 (5,000원) - 0개\n4개 일치 (50,000원) - 0개\n5개 일치 (1,500,000원) - 0개\n5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n6개 일치 (2,000,000,000원) - 2개";
+        String expected = "당첨 통계\n---\n3개 일치 (5,000원) - 0개\n4개 일치 (50,000원) - 0개\n5개 일치 (1,500,000원) - 0개\n5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n6개 일치 (2,000,000,000원) - 2개";
         assertThat(message.trim()).isEqualTo(expected.trim());
     }
 

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoNumber;
 import lotto.domain.player.Player;
 import lotto.dto.response.PrizeResponse;
 import lotto.util.RandomUtil;
@@ -37,6 +36,15 @@ public class LottoSystem {
 
     private int getPurchasedLottoCount() {
         return player.getPurchasedLottoCount();
+    }
+
+    public List<PrizeResponse> getWinningResult() {
+        List<Prize> winningPrizes = getWinningPrizes();
+        Map<Prize, Integer> winningCounts = getWinningCountForEachPrize(winningPrizes);
+
+        return winningCounts.entrySet().stream()
+                .map(winningCount -> PrizeResponse.of(winningCount.getKey(), winningCount.getValue()))
+                .toList();
     }
 
     private Map<Prize, Integer> getWinningCountForEachPrize(List<Prize> winningPrizes) {

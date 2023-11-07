@@ -34,4 +34,20 @@ class LottoCheckerTest {
         assertThat(winningResult).containsEntry(Rank.TWO, 1);
         assertThat(winningResult).containsEntry(Rank.THREE, 1);
     }
+
+    @Test
+    @DisplayName("로또의 총 수익률을 구한다.")
+    void calculateTotalReturn() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 8, 9, 10));
+        LottoTickets lottoTickets = new LottoTickets(List.of(lotto));
+        lottoChecker.checkWinningResult(lottoTickets);
+
+        //when
+        Money money = new Money(5000);
+        double totalReturn = lottoChecker.calculateTotalReturn(money);
+
+        //then
+        assertThat(totalReturn).isEqualTo(100.0);
+    }
 }

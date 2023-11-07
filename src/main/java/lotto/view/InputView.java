@@ -13,13 +13,9 @@ public class InputView {
 
     private static List<Integer> winningNumbers;
 
-    public static int inputPlayerAmount(){
+    public static String inputPlayerAmount(){
         System.out.println(INPUT_LOTTO_AMOUNT);
-        return convertToInt(Console.readLine());
-    }
-
-    public static int convertToInt(String inputAmount) {
-        return Integer.parseInt(inputAmount);
+        return Console.readLine();
     }
 
     public static List<Integer> inputWinningNumbers(){

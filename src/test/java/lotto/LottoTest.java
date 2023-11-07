@@ -33,14 +33,14 @@ class LottoTest {
     @Test
     void 음수금액_test(){
         assertThrows(IllegalArgumentException.class, ()-> {
-            LottoAmount lotto=new LottoAmount(-1000);
+            LottoAmount lotto=new LottoAmount("-1000");
         });
     }
 
     @Test
     void 단위불일치_test(){
         assertThrows(IllegalArgumentException.class, ()-> {
-            LottoAmount lotto=new LottoAmount(2100);
+            LottoAmount lotto=new LottoAmount("2100");
         });
     }
 

@@ -8,24 +8,24 @@ import static lotto.view.Message.*;
 public class LottoAmount {
     private final int amount;
 
-    public LottoAmount(int amount){
-        checkAmount(amount);
-        this.amount =amount;
+    public LottoAmount(String amount){
+        this.amount=checkAmount(amount);
     }
 
     public int calcLottoNum(){
         return amount /LOTTO_PRICE;
     }
 
-    private void checkAmount(int amount){
-        checkNumber(amount);
-        checkPositive(amount);
-        checkFormat(amount);
+    private int checkAmount(String amount){
+        int num=checkNumber(amount);
+        checkPositive(num);
+        checkFormat(num);
+        return num;
 
     }
-    private static int checkNumber(int amount) {
+    private static int checkNumber(String amount) {
         try{
-            return amount;
+            return Integer.parseInt(amount);
         }
         catch(NumberFormatException e){
             Message.typeException();

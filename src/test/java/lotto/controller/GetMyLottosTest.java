@@ -2,7 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
-import lotto.model.BuyNumber;
+import lotto.model.GameMoney;
 import lotto.view.OutputView;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -28,7 +28,7 @@ public class GetMyLottosTest {
 
     @Test
     void 로또_수령_테스트(){
-        BuyNumber buyNumber = new BuyNumber(3000);
+        GameMoney gameMoney = new GameMoney(3000);
 
         List<Lotto> lottos = new ArrayList<>();
 
@@ -39,13 +39,13 @@ public class GetMyLottosTest {
                                 List.of(3, 5, 11, 16, 32, 38),
                                 List.of(7, 11, 16, 35, 36, 44)
                                 );
-                lottos.addAll(getMyLottos.getMyLottos(buyNumber));
+                lottos.addAll(getMyLottos.getMyLottos(gameMoney));
             }
         });
 
-        Assertions.assertThat(lottos.get(0).getLotto()).containsExactly(8, 21, 23, 41, 42, 43);
-        Assertions.assertThat(lottos.get(1).getLotto()).containsExactly(3, 5, 11, 16, 32, 38);
-        Assertions.assertThat(lottos.get(2).getLotto()).containsExactly(7, 11, 16, 35, 36, 44);
+        Assertions.assertThat(lottos.get(0).getNumbers()).containsExactly(8, 21, 23, 41, 42, 43);
+        Assertions.assertThat(lottos.get(1).getNumbers()).containsExactly(3, 5, 11, 16, 32, 38);
+        Assertions.assertThat(lottos.get(2).getNumbers()).containsExactly(7, 11, 16, 35, 36, 44);
 
 
 

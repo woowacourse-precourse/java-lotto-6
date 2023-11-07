@@ -1,11 +1,11 @@
 package lotto.model;
 
-public class BuyNumber {
+public class GameMoney {
 
     private int money;
     private int gameCount;
 
-    public BuyNumber(int money){
+    public GameMoney(int money){
         this.money=money;
         this.gameCount=money/1000;
     }

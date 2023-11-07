@@ -16,7 +16,7 @@ public class OutputView {
         for(Lotto lotto:Lottos){
             StringBuilder concatenatedNums = new StringBuilder();
 
-            for (int num : lotto.getLotto()) {
+            for (int num : lotto.getNumbers()) {
                 concatenatedNums.append(num);
                 concatenatedNums.append(", ");
             }

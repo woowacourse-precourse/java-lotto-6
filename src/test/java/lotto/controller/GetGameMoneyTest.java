@@ -1,21 +1,21 @@
 package lotto.controller;
 
 import lotto.ErrorMessage;
-import lotto.model.BuyNumber;
+import lotto.model.GameMoney;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class GetBuyNumberTest {
+public class GetGameMoneyTest {
 
     GetBuyNumber getBuyNumber=new GetBuyNumber();
 
 
     @Test
     void 알맞은_가격_입력(){
-        BuyNumber buyNumber = getBuyNumber.getValid("8000");
-        Assertions.assertThat(buyNumber.getGameCount()).isEqualTo(8);
-        BuyNumber buyNumber2 = getBuyNumber.getValid("15000");
-        Assertions.assertThat(buyNumber2.getGameCount()).isEqualTo(15);
+        GameMoney gameMoney = getBuyNumber.getValid("8000");
+        Assertions.assertThat(gameMoney.getGameCount()).isEqualTo(8);
+        GameMoney gameMoney2 = getBuyNumber.getValid("15000");
+        Assertions.assertThat(gameMoney2.getGameCount()).isEqualTo(15);
     }
 
     @Test

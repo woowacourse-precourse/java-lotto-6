@@ -1,19 +1,19 @@
 package lotto.controller;
 
 import lotto.ErrorMessage;
-import lotto.model.BuyNumber;
+import lotto.model.GameMoney;
 import lotto.view.InputView;
 
 public class GetBuyNumber {
 
     private final InputView inputView=new InputView();
 
-    public BuyNumber getBuyNumber(){
+    public GameMoney getBuyNumber(){
         String money=inputView.inputMoney();
         return getValid(money);
     }
 
-    public BuyNumber getValid(String money){
+    public GameMoney getValid(String money){
         int moneyNum;
 
         try{
@@ -27,7 +27,7 @@ public class GetBuyNumber {
         if(moneyNum%1000!=0){
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_THOUSANDS_UNIT.toString());
         }
-        return new BuyNumber(moneyNum);
+        return new GameMoney(moneyNum);
     }
 
 }

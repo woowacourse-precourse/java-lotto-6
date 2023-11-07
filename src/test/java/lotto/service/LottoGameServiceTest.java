@@ -1,7 +1,7 @@
 package lotto.service;
 
 import java.util.List;
-import lotto.LottoExceptionMessage;
+import lotto.utils.message.LottoExceptionMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -68,7 +68,6 @@ class LottoGameServiceTest {
                     .doesNotThrowAnyException();
 
         }
-
     }
 
 }

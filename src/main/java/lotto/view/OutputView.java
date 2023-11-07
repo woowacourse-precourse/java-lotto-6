@@ -35,7 +35,7 @@ public class OutputView {
         System.out.println(GET_BONUS_NUMBER_MESSAGE);
     }
 
-    public static void printWinningStatistics(HashMap<String, Integer> finalScore, float yield) {
+    public static void printWinningStatistics(HashMap<String, Integer> finalScore, double yield) {
         System.out.println();
         System.out.println(WIN_STATS_MESSAGE);
         System.out.println(LINE_MESSAGE);

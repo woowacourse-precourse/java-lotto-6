@@ -3,6 +3,7 @@ package lotto;
 //import static lotto.view.OutputView.printStartBuyMessage;
 
 import static lotto.LottoListMaker.makeLottoList;
+import static lotto.calculator.ScoreCalculator.getScore;
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 import static lotto.calculator.ProfitCalculator.*;
@@ -34,6 +35,10 @@ public class Application {
 
         System.out.println();
 
+        HashMap<String, Integer> finalScore = getScore(lottoList, winLotto, bonus);
+        int prize = caculatePrize(finalScore);
+        double yield = caculateProfit(prize, buyMoney);
+        printWinningStatistics(finalScore, yield);
 
 
     }

@@ -1,6 +1,8 @@
 package lotto.ui;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.message.Error;
+import lotto.message.Inquire;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,35 +15,47 @@ public class InputHandler {
         this.outputHandler = outputHandler;
     }
 
-    public int getValidPurchaseAmount() {
-        outputHandler.printMessage(OutputForm.ASK_PURCHASE_AMOUNT);
-        String userInput = Console.readLine();
+    public int getValidPurchaseAmount() throws IllegalArgumentException {
+        outputHandler.printMessage(Inquire.PURCHASE_AMOUNT);
+        String userInput = getUserInput();
+        return validatePurchaseAmount(userInput);
+    }
 
-        if (!isInteger(userInput)) {
-            throw new IllegalArgumentException("[ERROR] 정수만 입력 가능합니다.");
+    private String getUserInput() {
+        return Console.readLine();
+    }
+
+    private int validatePurchaseAmount(String userInput) {
+        if (!isPositiveInteger(userInput)) {
+            throw new IllegalArgumentException(Error.POSITIVE_INTEGER.getMessage());
         }
 
         int purchaseAmount = Integer.parseInt(userInput);
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해야 합니다.");
+        if (!isThousandUnits(purchaseAmount)) {
+            throw new IllegalArgumentException(Error.THOUSAND_UNITS.getMessage());
         }
         return purchaseAmount;
     }
 
-    public boolean isInteger(String str) {
-        Pattern pattern = Pattern.compile("^-?\\d+$");
+    public boolean isPositiveInteger(String str) {
+        Pattern pattern = Pattern.compile("^[1-9]\\d*$");
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
     }
 
+    private boolean isThousandUnits(int purchaseAmount) {
+        return purchaseAmount % 1000 == 0;
+    }
+
+
     public String getWinnerNumbers() {
-        outputHandler.printMessage(OutputForm.ASK_WINNER_NUMBERS);
-        return Console.readLine();
+        outputHandler.printMessage(Inquire.WINNER_NUMBERS);
+        return getUserInput();
     }
 
     public int getBonusNumber() {
-        outputHandler.printMessage(OutputForm.ASK_BONUS_NUMBER);
-        return Integer.parseInt(Console.readLine());
+        outputHandler.printMessage(Inquire.BONUS_NUMBER);
+        return Integer.parseInt(getUserInput());
     }
 
 }

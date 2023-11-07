@@ -1,4 +1,6 @@
-package lotto.validator;
+package lotto.validator.input;
+
+import lotto.exception.input.EmptyInputException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +14,7 @@ public class WinningNumberValidator {
 
     private void validateNotEmpty(String userInput) {
         if (userInput.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new EmptyInputException("입력이 비었습니다.");
         }
     }
 
@@ -22,7 +24,7 @@ public class WinningNumberValidator {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (Exception e) {
-            throw new IllegalArgumentException();
+            throw new NumberFormatException("정수 형태의 입력이 쉼표로 구분 되어야 합니다.");
         }
     }
 }

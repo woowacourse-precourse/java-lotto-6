@@ -1,4 +1,6 @@
-package lotto.validator;
+package lotto.validator.input;
+
+import lotto.exception.input.EmptyInputException;
 
 public class PurchaseAmountValidator {
 
@@ -9,7 +11,7 @@ public class PurchaseAmountValidator {
 
     private void validateNotEmpty(String userInput) {
         if (userInput.isEmpty()) {
-            throw new NumberFormatException();
+            throw new EmptyInputException("입력이 비었습니다.");
         }
     }
 
@@ -17,7 +19,7 @@ public class PurchaseAmountValidator {
         try {
             return Integer.parseInt(userInput);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException();
+            throw new NumberFormatException("입력이 정수가 아닙니다.");
         }
     }
 }

@@ -61,7 +61,3 @@ class LottoShopTest {
         assertThat(winningLotto).isInstanceOf(WinningLotto.class);
     }
 }
-
-
-
-

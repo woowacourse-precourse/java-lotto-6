@@ -55,6 +55,17 @@ public class Lotto {
                 .collect(Collectors.toSet());
     }
 
+    public LottoWinning confirmLottoWinning(Lotto winningLotto, int bonusNumber) {
+        int matchCount = confirmMatchCount(winningLotto);
+        boolean isBonusNumber = has(bonusNumber);
+        return LottoWinning.findByMatchOf(matchCount, isBonusNumber);
+    }
+
+    private int confirmMatchCount(Lotto winningLotto) {
+        return (int) this.numbers.stream()
+                .filter(winningLotto::has)
+                .count();
+    }
     private boolean has(int number) {
         return this.numbers.contains(number);
     }

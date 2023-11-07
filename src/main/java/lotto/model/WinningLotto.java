@@ -19,8 +19,8 @@ public class WinningLotto {
         }
     }
 
-    public LottoPrize getLottoPrize(Lotto boughtLotto) {
-        return LottoPrize.from(lotto.count(boughtLotto), bonus.hasBonusNumber(boughtLotto));
+    public Rank getRank(Lotto boughtLotto) {
+        return Rank.from(lotto.count(boughtLotto), bonus.hasBonusNumber(boughtLotto));
     }
 
     @Override

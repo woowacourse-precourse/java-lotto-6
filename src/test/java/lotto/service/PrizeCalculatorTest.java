@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.model.LottoPrize;
+import lotto.model.Rank;
 import lotto.model.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -12,11 +12,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static lotto.model.LottoPrize.FIFTH_PLACE;
-import static lotto.model.LottoPrize.FIRST_PLACE;
-import static lotto.model.LottoPrize.FOURTH_PLACE;
-import static lotto.model.LottoPrize.SECOND_PLACE;
-import static lotto.model.LottoPrize.THIRD_PLACE;
+import static lotto.model.Rank.FIFTH;
+import static lotto.model.Rank.FIRST;
+import static lotto.model.Rank.FOURTH;
+import static lotto.model.Rank.SECOND;
+import static lotto.model.Rank.THIRD;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class PrizeCalculatorTest {
@@ -26,8 +26,8 @@ class PrizeCalculatorTest {
     @DisplayName("로또 수익률 계산")
     @ParameterizedTest(name = "{displayName} prizes: {0}, expected: {1}")
     @MethodSource("totalReturnParametersProvider")
-    void checkTotalReturn(List<LottoPrize> prizes, PurchaseAmount amount, String expected) {
-        Long revenue = LottoPrize.sum(prizes);
+    void checkTotalReturn(List<Rank> prizes, PurchaseAmount amount, String expected) {
+        Long revenue = Rank.sum(prizes);
         Long investmentCost = Long.valueOf(amount.getAmount());
         Double totalReturn = prizeCalculator.calculate(revenue, investmentCost);
         assertThat(String.format("%.1f", totalReturn * 100)).isEqualTo(expected);
@@ -50,13 +50,13 @@ class PrizeCalculatorTest {
         return PurchaseAmount.of(value);
     }
 
-    static List<LottoPrize> prizeCount(int first, int second, int third, int fourth, int fifth) {
+    static List<Rank> prizeCount(int first, int second, int third, int fourth, int fifth) {
         return Stream.of(
-                        Collections.nCopies(first, FIRST_PLACE),
-                        Collections.nCopies(second, SECOND_PLACE),
-                        Collections.nCopies(third, THIRD_PLACE),
-                        Collections.nCopies(fourth, FOURTH_PLACE),
-                        Collections.nCopies(fifth, FIFTH_PLACE)
+                        Collections.nCopies(first, FIRST),
+                        Collections.nCopies(second, SECOND),
+                        Collections.nCopies(third, THIRD),
+                        Collections.nCopies(fourth, FOURTH),
+                        Collections.nCopies(fifth, FIFTH)
                 )
                 .flatMap(Collection::stream)
                 .toList();

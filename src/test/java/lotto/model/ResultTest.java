@@ -13,8 +13,8 @@ class ResultTest {
     @Test
     void checkResultDto() {
         //given
-        List<LottoPrize> lottoPrizes = List.of(LottoPrize.FIFTH_PLACE, LottoPrize.THIRD_PLACE);
-        Result result = Result.from(lottoPrizes);
+        List<Rank> ranks = List.of(Rank.FIFTH, Rank.THIRD);
+        Result result = Result.from(ranks);
         //when
         StringBuilder stringBuilder = new StringBuilder();
         result.forEachOrdered(lottoPrize ->

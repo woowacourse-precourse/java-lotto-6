@@ -16,20 +16,21 @@ public class LottoResult {
 	}
 
 	public enum Prize{
-		FIRST_PLACE(7,2_000_000_000),
-		SECOND_PLACE(6,300_000_000),
-		THIRD_PLACE(5,1_500_000),
-		FORTH_PLACE(4,50_000),
-		FIFHT_PLACE(3,5_000);
+		FIFHT_PLACE(3,5_000,"3개 일치 (5,000원) - "),
+		FOURTH_PLACE(4,50_000,"4개 일치 (50,000원) - "),
+		THIRD_PLACE(5,1_500_000,"5개 일치 (1,500,000원) - "),
+		SECOND_PLACE(7,30_000_000,"5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+		FIRST_PLACE(6,2_000_000_000,"6개 일치 (2,000,000,000원) - ");
 
 		private final int matchCount;
 		private final int prizeMoney;
+		private final String resultText;
 
-		Prize(int matchCount, int prizeMoney) {
+		Prize(int matchCount, int prizeMoney, String resultText) {
 			this.matchCount = matchCount;
 			this.prizeMoney = prizeMoney;
+			this.resultText = resultText;
 		}
-
 		public int getPrizeMoney() {
 			return prizeMoney;
 		}
@@ -62,37 +63,31 @@ public class LottoResult {
 			}
 		}
 		if (numberOfHits == LOTTO_LENGTH - 1 && lotto.contains(bonusNumber)) {
-			numberOfHits++; // 보너스 볼을 맞췄을 경우
-		}
-		if(numberOfHits == LOTTO_LENGTH){
-			numberOfHits++; //1등은 7 return
+			numberOfHits += 2; // 보너스 볼을 맞췄을 경우 7 return
 		}
 		return numberOfHits ;
 	}
 
-	private void printResult() {
+	public void printResult() {
 		int totalProfit = 0;
 		System.out.println("당첨 통계\n---");
 		// 2등을 제외한 나머지 등수에 대한 출력
 		for (Prize prize : Prize.values()) {
-			if (prize != Prize.SECOND_PLACE) { // 2등을 제외하고 처리
-				int prizeCount = (int) lottoResult.stream().filter(prizeMoney -> prizeMoney == prize.getPrizeMoney()).count();
-				System.out.println(prize.matchCount + "개 일치 (" + prize.getPrizeMoney() + "원) - " + prizeCount + "개");
-				totalProfit += prizeCount * prize.getPrizeMoney();
+			if (prize == Prize.SECOND_PLACE) { // 2등에 해당하는 경우만 특별하게 처리
+			int prizeCount = (int) lottoResult.stream().filter(prizeMoney -> prizeMoney == prize.getPrizeMoney()).count();
+			System.out.println(prize.resultText + prizeCount + "개");
+			totalProfit += prizeCount * Prize.SECOND_PLACE.getPrizeMoney();
+			continue;
 			}
-		}
-		// 2등에 해당하는 경우만 특별하게 처리
-		int secondPrizeCount = (int) lottoResult.stream().filter(prizeMoney -> prizeMoney == Prize.SECOND_PLACE.getPrizeMoney()).count();
-		if (secondPrizeCount > 0) {
-			// "5개 일치, 보너스 볼 일치" 로 출력하기 위해 matchCount를 5로 설정
-			System.out.println("5개 일치, 보너스 볼 일치 (" + Prize.SECOND_PLACE.getPrizeMoney() + "원) - " + secondPrizeCount + "개");
-			totalProfit += secondPrizeCount * Prize.SECOND_PLACE.getPrizeMoney();
+			// 2등을 제외하고 처리
+			int prizeCount = (int) lottoResult.stream().filter(prizeMoney -> prizeMoney == prize.getPrizeMoney()).count();
+			System.out.println(prize.resultText+ prizeCount + "개");
+			totalProfit += prizeCount * prize.getPrizeMoney();
 		}
 		// 수익률 계산 및 출력
-		double rateOfProfit = getRateOfProfit(totalProfit);
-		System.out.println("총 수익률은 " + rateOfProfit + "%입니다.");
+		System.out.println("총 수익률은 " + getRateOfProfit(totalProfit) + "%입니다.");
 	}
-	
+
 	
 
 	private double getRateOfProfit(int profit) {

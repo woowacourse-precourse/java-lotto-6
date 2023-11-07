@@ -10,11 +10,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import lotto.common.MultiplePureNumbers;
+import lotto.common.PureNumber;
 import lotto.core.BonusNumber;
 import lotto.core.DrawResult;
 import lotto.core.LotteryPortfolio;
 import lotto.core.LotteryTicket;
 import lotto.service.LottoService;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +26,13 @@ public class LotteryTicketServiceTest {
     static final List<Integer> winningNumbers = List.of(1, 2, 32, 43, 29, 45);
     static final LotteryTicket WINNING_LOTTERY_TICKET = new LotteryTicket(winningNumbers);
     static BonusNumber bonusNumber = new BonusNumber(WINNING_LOTTERY_TICKET, 25);
-    static final LottoService service = new LottoService(winningNumbers, bonusNumber);
+    static final LottoService service = new LottoService();
+
+    @BeforeAll
+    static void setWinninConditions() {
+        service.setWinningNumbers(MultiplePureNumbers.wrap("1,2 , 32, 43,29, 45"));
+        service.setBonusNumber(PureNumber.wrap(" 25"));
+    }
 
     @DisplayName("당첨금 계산 (보너스 숫자 안 맞은 경우)")
     @Test

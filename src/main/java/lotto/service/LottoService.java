@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.util.List;
 import lotto.common.MultiplePureNumbers;
 import lotto.common.PureNumber;
 import lotto.core.BonusNumber;
@@ -19,11 +18,6 @@ public class LottoService {
 
     public LottoService() {
         portfolio = new LotteryPortfolio();
-    }
-
-    public LottoService(List<Integer> winningNumbers, BonusNumber bonusNumber) {
-        this.winningLotteryTicket = new LotteryTicket(winningNumbers);
-        this.bonusNumber = bonusNumber;
     }
 
     public LotteryPortfolio issueRequiredAmountOfLotteryTickets(PureNumber number) throws IllegalArgumentException {

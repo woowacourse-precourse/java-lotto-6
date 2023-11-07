@@ -58,9 +58,12 @@ public class LottoResultV2 {
                     entry.getValue());
         }
     }
-    
+
     private String getMatchString(LottoRank rank) {
-        return rank.isBonusMatch() ? ", 보너스 볼 일치" : "";
+        if (rank.isBonusMatch()) {
+            return ", 보너스 볼 일치";
+        }
+        return "";
     }
 
     private String formatPrizeMoney(long prizeMoney) {

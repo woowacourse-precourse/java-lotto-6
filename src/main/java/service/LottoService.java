@@ -16,7 +16,15 @@ public class LottoService {
     public void buyLotto(int input) {
         lottos = new Lottos();
         Validator.checkMoney(input);
-
+        int lottoCount = input / 1000;
+        for (int i = 0; i < lottoCount; i++) {
+            getLottoNumbers();
+        }
     }
 
+    private void getLottoNumbers() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
+        lottos.addLotto(new Lotto(numbers));
+    }
 }

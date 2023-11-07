@@ -1,7 +1,5 @@
 package lotto.controller;
 
-import static lotto.view.InputView.inputMoney;
-
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoTicket;

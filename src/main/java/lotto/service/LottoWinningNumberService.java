@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.utils.Constant.LOTTO_SIZE;
+import static lotto.utils.Constant.SEPARATOR;
 import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputWinningNumbers;
 
@@ -39,8 +41,8 @@ public class LottoWinningNumberService {
     }
 
     private static List<String> separateStringByComma(String inputWinningNumbers) {
-        List<String> separatedString = Arrays.asList(inputWinningNumbers.split(","));
-        if (separatedString.size() != 6) {
+        List<String> separatedString = Arrays.asList(inputWinningNumbers.split(SEPARATOR));
+        if (separatedString.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("[ERROR] 구분자를 확인해주세요.");
         }
         return separatedString;

@@ -21,8 +21,7 @@ public class OutputView {
     }
 
     public static void printProfit(Profit profit) {
-        String roundedProfit = String.format("%.1f", profit.getProfit() * 100);
-        System.out.println("총 수익률은 " + roundedProfit + "%입니다.");
+        System.out.println("총 수익률은 " + profit.getProfit() + "%입니다.");
     }
 
     public static void printLottoResult(Map<Rank, Integer> lottoResult) {

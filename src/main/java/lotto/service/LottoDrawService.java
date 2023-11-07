@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.utils.Constant.ZERO;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +28,7 @@ public class LottoDrawService {
     private static int getWinningNumberAmount(Lotto lotto, LottoWinningNumber lottoWinningNumber) {
         List<Integer> lottoNumbers = lotto.getNumbers();
         List<Integer> lottoWinningNumbers = lottoWinningNumber.getWinningNumbers();
-        int winningNumberAmount = 0;
+        int winningNumberAmount = ZERO;
         for (int lottoNumber : lottoNumbers) {
             if (lottoWinningNumbers.contains(lottoNumber)) {
                 winningNumberAmount++;
@@ -38,7 +40,7 @@ public class LottoDrawService {
     private static Map<Rank, Integer> initLotto() {
         Map<Rank, Integer> lottoResult = new EnumMap<>(Rank.class);
         for (Rank rank : Rank.values()) {
-            lottoResult.put(rank, 0);
+            lottoResult.put(rank, ZERO);
         }
         return lottoResult;
     }

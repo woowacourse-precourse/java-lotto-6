@@ -1,6 +1,8 @@
 package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.utils.Constant.LOTTO_PRICE;
+import static lotto.utils.Constant.ZERO;
 
 public class InputView {
 
@@ -14,8 +16,7 @@ public class InputView {
 
     public static String inputWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String inputWinningNumbers = readLine();
-        return inputWinningNumbers;
+        return readLine();
     }
 
     public static int inputBonusNumber() {
@@ -33,7 +34,7 @@ public class InputView {
     }
 
     private static void canDivideByKilo(String money) {
-        if (Integer.parseInt(money) % 1000 != 0) {
+        if (Integer.parseInt(money) % LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException("[ERROR] 천 원단위로 입력해 주세요.");
         }
     }

@@ -1,5 +1,6 @@
 package controller;
 
+import domain.PrizeUtil;
 import domain.PublishLottoUtil;
 import domain.ScoreUtil;
 import dto.Lotto;
@@ -14,6 +15,7 @@ public class LottoGame {
     private final OutputView outputView;
     private final PublishLottoUtil publishLottoUtil;
     private final ScoreUtil scoreUtil;
+    private final PrizeUtil prizeUtil;
 
 
     public LottoGame() {
@@ -21,6 +23,7 @@ public class LottoGame {
         outputView = new OutputView();
         publishLottoUtil = new PublishLottoUtil();
         scoreUtil = new ScoreUtil();
+        prizeUtil = new PrizeUtil();
     }
 
     public void playLottoGame() {
@@ -32,5 +35,6 @@ public class LottoGame {
         List<Integer> winningNumbers = Arrays.stream(getWinningNumbers.split(",")).map(Integer::parseInt).toList();
         Map<Integer, Integer> lottoScore = scoreUtil.updateScore(lottoCnt, lottos, bonusNumber, winningNumbers);
         outputView.showScore(lottoScore, ScoreUtil.hasFiveAndbonusNumber);
+        outputView.showEarningRate(prizeUtil.calculateEarningRate(lottoCnt, lottoScore, ScoreUtil.hasFiveAndbonusNumber));
     }
 }

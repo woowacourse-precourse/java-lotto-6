@@ -1,6 +1,6 @@
 package dto;
 
-import domain.Constants;
+import constant.Constants;
 import java.util.List;
 
 public class Lotto {

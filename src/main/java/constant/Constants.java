@@ -1,4 +1,4 @@
-package domain;
+package constant;
 
 public final class Constants {
     public static final String ENTER_PRICE_TO_BUY_MESSAGE = "구입금액을 입력해 주세요.";

@@ -1,10 +1,11 @@
 package view;
 
-import dto.Lotto;
-import java.util.List;
 import java.util.Map;
 
 public class OutputView {
+    public void showEarningRate(String earningRate){
+        System.out.println("총 수익률은 " + earningRate + "%입니다.");
+    }
     public void showScore(Map<Integer, Integer> lottoScore, int hasFiveAndbonusNumber) {
         System.out.println();
         System.out.println("당첨 통계");

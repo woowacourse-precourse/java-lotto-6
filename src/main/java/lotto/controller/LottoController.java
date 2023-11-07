@@ -102,6 +102,8 @@ public class LottoController {
      * 사용자로부터 구매 금액을 입력받고, 로또를 구매하고, 지갑에 저장한다.
      */
     private void buyLotto() {
+        printPurchaseAmount();
+
         while (true) {
             try {
                 Money money = getAmount();
@@ -122,8 +124,6 @@ public class LottoController {
      * @return Money 금액
      */
     private Money getAmount() {
-        printPurchaseAmount();
-
         Money coin = new Money(getPurchaseAmount());
         lottoService.validateUnit(coin);
 

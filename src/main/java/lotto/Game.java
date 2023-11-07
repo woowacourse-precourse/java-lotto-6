@@ -84,8 +84,8 @@ public class Game {
 
         printListLotto(this.listLotto);
         Winning winning = new Winning();
-        String[] Numbers = inputNumbers().split(",");
-        winning.setListNumber(Numbers);
+        String strNumbers = inputNumbers();
+        winning.setListNumber(strNumbers);
         String strBonus = inputBonus();
         winning.setBonus(strBonus);
         winning.calc(this.listLotto);

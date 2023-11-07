@@ -70,6 +70,16 @@ public class Winning {
         this.bonus = bonus;
     }
 
+    private void checkDuplication(List<Integer> numbers) {
+        List<Integer> l = new ArrayList<>();
+
+        for (int n : numbers) {
+            if (l.contains(n)) throw new IllegalArgumentException(
+                    Constant.error + Constant.Deduplication);
+            l.add(n);
+        }
+    }
+
     private void validNum(int num){
         if (num < 1 || num > 45) {
             throw new IllegalArgumentException(
@@ -86,8 +96,9 @@ public class Winning {
         }
     }
 
-    public void setListNumber(String[] arr){
+    public void setListNumber(String strNumber){
         List<Integer> listNumber = new ArrayList<>();
+        String[] arr = strNumber.split(",");
 
         validArray(arr);
         for (String s : arr) {
@@ -95,6 +106,7 @@ public class Winning {
             validNum(num);
             listNumber.add(num);
         }
+        checkDuplication(listNumber);
         this.listNumber = listNumber;
     }
 

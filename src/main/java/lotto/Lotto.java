@@ -1,5 +1,6 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class Lotto {
@@ -20,5 +21,10 @@ public class Lotto {
     int countPurchasedLotto(int totalPrice){
         int count = totalPrice/LOTTO_UNIT_PRICE;
         return count;
+    }
+
+    List<Integer> generateSixRandomNumber(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return numbers;
     }
 }

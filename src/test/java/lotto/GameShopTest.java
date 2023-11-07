@@ -38,7 +38,7 @@ class GameShopTest {
     @Test
     void prizeFirst() {
         Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8)));
-        gameShop.startLottoGame(new WinningLotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8)), 7));
+        gameShop.startLottoGame(new WinningLotto(new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8))), 7));
         Prize prize = gameShop.getResult(lotto);
         Assertions.assertEquals(Prize.FIRST, prize);
     }
@@ -47,7 +47,7 @@ class GameShopTest {
     @Test
     void prizeSecond() {
         Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8)));
-        gameShop.startLottoGame(new WinningLotto(new ArrayList<>(List.of(1, 3, 4, 5, 8, 9)), 6));
+        gameShop.startLottoGame(new WinningLotto(new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 8, 9))), 6));
         Prize prize = gameShop.getResult(lotto);
         Assertions.assertEquals(Prize.SECOND, prize);
     }
@@ -56,7 +56,7 @@ class GameShopTest {
     @Test
     void prizeThird() {
         Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8)));
-        gameShop.startLottoGame(new WinningLotto(new ArrayList<>(List.of(1, 3, 4, 5, 8, 9)), 10));
+        gameShop.startLottoGame(new WinningLotto(new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 8, 9))), 10));
         Prize prize = gameShop.getResult(lotto);
         Assertions.assertEquals(Prize.THIRD, prize);
     }
@@ -65,7 +65,7 @@ class GameShopTest {
     @Test
     void prizeNone() {
         Lotto lotto = new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8)));
-        gameShop.startLottoGame(new WinningLotto(new ArrayList<>(List.of(11, 12, 13, 14, 15, 16)), 6));
+        gameShop.startLottoGame(new WinningLotto(new Lotto(new ArrayList<>(List.of(11, 12, 13, 14, 15, 16))), 6));
         Prize prize = gameShop.getResult(lotto);
         Assertions.assertEquals(Prize.NONE, prize);
     }

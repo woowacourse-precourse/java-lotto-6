@@ -5,6 +5,7 @@ import lotto.domain.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -36,7 +37,7 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedBonusNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 6))
+        assertThatThrownBy(() -> new WinningLotto(new Lotto(new ArrayList<>(List.of(1, 2, 3, 4, 5, 6))), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     // 아래에 추가 테스트 작성 가능

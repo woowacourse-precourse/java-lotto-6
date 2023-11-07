@@ -26,7 +26,7 @@ public class WinningLotto {
         if(winningNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 할 수 없습니다.");
         }
-        if(isInRange(bonusNumber)) {
+        if(!isInRange(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 1~45 까지의 수를 입력해주세요");
         }
     }

@@ -38,7 +38,7 @@ class ConsumerTest {
     void getConsumerReturnRate() {
         consumer = Consumer.purchaseLotto(new ArrayList<>(List.of(new Lotto(new ArrayList<>(List.of(1, 3, 4, 5, 6, 8))),
                 new Lotto(new ArrayList<>(List.of(2, 3, 4, 5, 6, 7))))));
-        gameShop.startLottoGame(new WinningLotto(List.of(1, 3, 4, 6, 8, 9), 14));
+        gameShop.startLottoGame(new WinningLotto(new Lotto(List.of(1, 3, 4, 6, 8, 9)), 14));
         consumer.setPrizeResult(gameShop.getResults(consumer.getPurchasedLotto()));
         Assertions.assertEquals((double) (1500000 + 5000) / 2000, consumer.getReturnRate());
     }

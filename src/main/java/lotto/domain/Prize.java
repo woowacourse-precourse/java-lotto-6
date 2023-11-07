@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,14 @@ public class Prize {
 
     public Prize() {
         prizeRankingCountMap = new HashMap<>();
+    }
+
+    public Integer getTotalPrizeAmount() {
+        return Arrays.asList(PrizeRankConstants.values())
+                .stream()
+                .filter(rank -> prizeRankingCountMap.containsKey(rank))
+                .mapToInt(rank -> prizeRankingCountMap.get(rank))
+                .sum();
     }
 
     public void increaseCountOf(PrizeRankConstants rank) {

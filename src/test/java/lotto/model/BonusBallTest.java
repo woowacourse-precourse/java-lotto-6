@@ -3,7 +3,7 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.common.exception.ErrorMessage;
+import lotto.common.exception.LottoErrorMessage;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,7 +30,7 @@ class BonusBallTest {
             //when then
             assertThatThrownBy(() -> new BonusBall(number))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue());
+                    .hasMessageContaining(LottoErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue());
         }
     }
 }

@@ -1,27 +1,31 @@
 package lotto.model;
 
 import lotto.common.constants.LottoRule;
-import lotto.common.exception.ErrorMessage;
+import lotto.common.exception.LottoErrorMessage;
 
 public class LottoPurchaseAmount {
     private final int amount;
 
-    public LottoPurchaseAmount(int amount) {
+    protected LottoPurchaseAmount(int amount) {
         validatePurchaseAmountRange(amount);
         validatePurchaseAmountUnit(amount);
         this.amount = amount;
     }
 
+    public static LottoPurchaseAmount from(int amount) {
+        return new LottoPurchaseAmount(amount);
+    }
+
     private void validatePurchaseAmountUnit(int amount) {
-        if (amount % LottoRule.LOTTO_PURCHASE_AMOUNT_UNIT.getValue() != 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getValue(amount));
+        if (amount % LottoRule.LOTTO_PURCHASE_AMOUNT_UNIT.value != 0) {
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_PURCHASE_AMOUNT_UNIT.getValue(amount));
         }
     }
 
     private void validatePurchaseAmountRange(int amount) {
-        if (amount < LottoRule.LOTTO_PURCHASE_AMOUNT_MIN.getValue()
-                || LottoRule.LOTTO_PURCHASE_AMOUNT_MAX.getValue() < amount) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getValue(amount));
+        if (amount < LottoRule.LOTTO_PURCHASE_AMOUNT_MIN.value
+                || LottoRule.LOTTO_PURCHASE_AMOUNT_MAX.value < amount) {
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getValue(amount));
         }
     }
 
@@ -34,5 +38,9 @@ public class LottoPurchaseAmount {
         return "LottoPurchaseAmount{" +
                 "amount=" + amount +
                 '}';
+    }
+
+    public int calculateTotalLottos() {
+        return amount / LottoRule.LOTTO_PURCHASE_AMOUNT_UNIT.value;
     }
 }

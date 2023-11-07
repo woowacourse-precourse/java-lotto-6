@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.common.exception.ErrorMessage;
+import lotto.common.exception.LottoErrorMessage;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -44,7 +44,7 @@ class LottoTest {
             //when then
             assertThatThrownBy(() -> new Lotto(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.getValue());
+                    .hasMessageContaining(LottoErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.getValue());
         }
 
         @Test
@@ -54,7 +54,7 @@ class LottoTest {
             //when then
             assertThatThrownBy(() -> new Lotto(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.DUPLICATED_NUMBER.getValue());
+                    .hasMessageContaining(LottoErrorMessage.DUPLICATED_NUMBER.getValue());
         }
 
         @Test
@@ -64,7 +64,7 @@ class LottoTest {
             //when then
             assertThatThrownBy(() -> new Lotto(numbers))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue());
+                    .hasMessageContaining(LottoErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue());
         }
     }
 }

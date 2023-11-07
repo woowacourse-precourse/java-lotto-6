@@ -8,13 +8,9 @@ public enum LottoRule {
     LOTTO_PURCHASE_AMOUNT_MIN(1_000),
     LOTTO_PURCHASE_AMOUNT_MAX(100_000_000);
 
-    private final int value;
+    public final int value;
 
     LottoRule(int value) {
         this.value = value;
-    }
-
-    public int getValue() {
-        return value;
     }
 }

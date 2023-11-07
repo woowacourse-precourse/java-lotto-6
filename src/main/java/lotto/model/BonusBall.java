@@ -1,7 +1,7 @@
 package lotto.model;
 
 import lotto.common.constants.LottoRule;
-import lotto.common.exception.ErrorMessage;
+import lotto.common.exception.LottoErrorMessage;
 
 public class BonusBall {
     private final int number;
@@ -12,8 +12,8 @@ public class BonusBall {
     }
 
     private void validateLottoNumberRange(int number) {
-        if (number < LottoRule.LOTTO_NUMBER_MIN.getValue() || LottoRule.LOTTO_NUMBER_MAX.getValue() < number) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue(number));
+        if (number < LottoRule.LOTTO_NUMBER_MIN.value || LottoRule.LOTTO_NUMBER_MAX.value < number) {
+            throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBER_RANGE.getValue(number));
         }
     }
 

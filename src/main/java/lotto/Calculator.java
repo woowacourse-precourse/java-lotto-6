@@ -22,11 +22,14 @@ public class Calculator {
         Map<Rank, Integer> winningResults = new EnumMap<>(Rank.class);
         Lotto winningLotto = winningNumbers.getLottoNumbers();
         int bonusNumber = winningNumbers.getBonusNumber();
+        for (Rank rank : Rank.values()) {
+            winningResults.put(rank, 0);
+        }
         for (Lotto lotto : userLottos.getLottos()) {
             int hitCount = lotto.matchCountWith(winningLotto);
             boolean isBonusNumberMatched = lotto.contains(bonusNumber);
             Rank rank = Rank.valueOf(hitCount, isBonusNumberMatched);
-            winningResults.put(rank, winningResults.getOrDefault(rank, 0) + 1);
+            winningResults.put(rank, winningResults.get(rank) + 1);
         }
         return winningResults;
     }

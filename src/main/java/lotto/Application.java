@@ -1,7 +1,17 @@
 package lotto;
 
+import java.util.*;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        printResult();
     }
+
+    public static void printResult() {
+        for (WinningResult result : WinningResult.values()) {
+            System.out.println(result.getPhrase() + " - " + result.getCount() + "개");
+        }
+    }
+
 }

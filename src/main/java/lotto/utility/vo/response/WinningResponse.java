@@ -1,4 +1,4 @@
-package lotto.utility.vo;
+package lotto.utility.vo.response;
 
 import java.util.ArrayList;
 import java.util.Arrays;

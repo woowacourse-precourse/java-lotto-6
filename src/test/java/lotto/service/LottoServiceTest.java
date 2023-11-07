@@ -3,7 +3,7 @@ package lotto.service;
 import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.domain.IssuedLottos;
-import lotto.utility.vo.PurchaseAmountRequest;
+import lotto.utility.vo.request.PurchaseAmountRequest;
 import org.junit.jupiter.api.Test;
 
 class LottoServiceTest {

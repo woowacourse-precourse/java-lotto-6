@@ -7,7 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.utility.validation.LottoNumberChecker;
-import lotto.utility.vo.LottoResponse;
+import lotto.utility.vo.response.LottoResponse;
 
 public class Lotto {
     private final List<Integer> numbers;

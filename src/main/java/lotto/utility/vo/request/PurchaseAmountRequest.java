@@ -1,4 +1,4 @@
-package lotto.utility.vo;
+package lotto.utility.vo.request;
 
 import static lotto.constants.ErrorMessage.NOT_INTEGER;
 

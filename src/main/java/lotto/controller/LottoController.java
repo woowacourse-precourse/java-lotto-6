@@ -4,12 +4,12 @@ import java.util.List;
 import lotto.domain.IssuedLottos;
 import lotto.domain.Rank;
 import lotto.service.LottoService;
-import lotto.utility.vo.BonusNumberRequest;
-import lotto.utility.vo.LottoResponse;
-import lotto.utility.vo.ProfitResponse;
-import lotto.utility.vo.PurchaseAmountRequest;
-import lotto.utility.vo.WinningNumberRequest;
-import lotto.utility.vo.WinningResponse;
+import lotto.utility.vo.request.BonusNumberRequest;
+import lotto.utility.vo.response.LottoResponse;
+import lotto.utility.vo.response.ProfitResponse;
+import lotto.utility.vo.request.PurchaseAmountRequest;
+import lotto.utility.vo.request.WinningNumberRequest;
+import lotto.utility.vo.response.WinningResponse;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

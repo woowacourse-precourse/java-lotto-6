@@ -2,9 +2,9 @@ package lotto.view;
 
 import java.util.List;
 import lotto.utility.io.Writer;
-import lotto.utility.vo.LottoResponse;
-import lotto.utility.vo.ProfitResponse;
-import lotto.utility.vo.WinningResponse;
+import lotto.utility.vo.response.LottoResponse;
+import lotto.utility.vo.response.ProfitResponse;
+import lotto.utility.vo.response.WinningResponse;
 
 public class OutputView {
     private static final String NUMBER_OF_LOTTOS_MESSAGE = "개를 구매했습니다.";

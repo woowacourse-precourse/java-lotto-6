@@ -1,9 +1,10 @@
-package lotto.utility.vo;
+package lotto.utility.vo.response;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
 import lotto.domain.Lotto;
+import lotto.utility.vo.response.LottoResponse;
 import org.junit.jupiter.api.Test;
 
 class LottoResponseTest {

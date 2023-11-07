@@ -1,10 +1,11 @@
-package lotto.utility.vo;
+package lotto.utility.vo.response;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Rank;
+import lotto.utility.vo.response.WinningResponse;
 import org.junit.jupiter.api.Test;
 
 class WinningResponseTest {

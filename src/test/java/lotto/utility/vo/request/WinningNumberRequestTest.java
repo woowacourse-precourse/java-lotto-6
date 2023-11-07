@@ -1,10 +1,11 @@
-package lotto.utility.vo;
+package lotto.utility.vo.request;
 
 import static lotto.constants.ErrorMessage.NOT_INTEGER;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import lotto.domain.Lotto;
+import lotto.utility.vo.request.WinningNumberRequest;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 

@@ -16,10 +16,6 @@ public class Lotto {
         this.numbers = sortAscending(numbers);
     }
 
-    private static boolean isNumbersCountNotSix(List<Integer> numbers) {
-        return numbers.size() != LOTTO_NUMBER_COUNT.getNumber();
-    }
-
     private void validate(List<Integer> numbers) {
         if (isNumbersCountNotSix(numbers)) {
             throw new IllegalArgumentException(NOT_SIX_NUMBERS_EXCEPTION.getMessage());
@@ -32,14 +28,18 @@ public class Lotto {
         }
     }
 
-    private boolean isContainDuplicateDigits(List<Integer> numbers) {
-        return numbers.stream()
-                .distinct().count() != LOTTO_NUMBER_COUNT.getNumber();
+    private boolean isNumbersCountNotSix(List<Integer> numbers) {
+        return numbers.size() != LOTTO_NUMBER_COUNT.getNumber();
     }
 
     private boolean isNumbersWrongRange(List<Integer> numbers) {
         return numbers.stream()
                 .anyMatch(number -> number < 1 || number > 45);
+    }
+
+    private boolean isContainDuplicateDigits(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct().count() != LOTTO_NUMBER_COUNT.getNumber();
     }
 
     public List<Integer> sortAscending(List<Integer> numbers) {

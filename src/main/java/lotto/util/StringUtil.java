@@ -1,12 +1,7 @@
 package lotto.util;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static lotto.model.Constants.INVALID_MONEY_FORMAT;
-import static lotto.model.Constants.INVALID_NUMBER_FORMAT;
 
 public class StringUtil {
     private StringUtil() {}
@@ -16,12 +11,8 @@ public class StringUtil {
 
         String[] result = string.split(",");
 
-        try{
-            for (String s : result) {
-                inputList.add(Integer.parseInt(s));
-            }
-        } catch (NumberFormatException e){
-            throw new IllegalArgumentException(INVALID_NUMBER_FORMAT);
+        for (String s : result) {
+            inputList.add(Integer.parseInt(s));
         }
 
         return inputList;

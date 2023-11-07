@@ -14,8 +14,7 @@ public class LottoController {
     }
 
     public void lottoGamePlay() {
-        String inputBuyLottoAmount = consoleInputView.inputBuyLottoAmount();
-        lottoService.buyLottoAmountValidate(inputBuyLottoAmount);
+        buyLottoTickets();
 
         String inputUserLottoNumbers = consoleInputView.inputUserLottoNumbers();
         lottoService.userLottoNumbersValidate(inputUserLottoNumbers);
@@ -29,6 +28,15 @@ public class LottoController {
                 );*/
     }
 
-
-
+    public void buyLottoTickets() {
+        while (true) {
+            try {
+                String inputBuyLottoAmount = consoleInputView.inputBuyLottoAmount();
+                lottoService.buyLottoAmountValidate(inputBuyLottoAmount);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
 }

@@ -39,7 +39,7 @@ public class LottoService {
         }
 
         int buyLottoAmount = Integer.parseInt(inputBuyLottoAmount);
-        if (buyLottoAmount % 1000 != 0) {
+        if (buyLottoAmount % 1000 != 0 || buyLottoAmount == 0) {
             throw new IllegalArgumentException(INVALID_BUY_AMOUNT);
         }
     }

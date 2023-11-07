@@ -35,21 +35,28 @@ public final class WinningLottoController implements Controller {
         }
     }
 
-    private void inputBonusNumber(Map<String, ? super DTO.Input> inputDto,
-                                  Map<String, ? super DTO.Output> outputDto) {
-        try {
-            outputDto.put(ParameterConfig.BONUS_NUMBER, null);
-            outputView.view(outputDto);
-            inputView.read(inputDto);
+    private void viewText(Map<String, ? super DTO.Input> inputs, Map<String, ? super DTO.Output> outputs, String param) {
+        outputs.put(param, null);
+        outputView.view(outputs);
+        inputView.read(inputs);
 
-            WinningLottoDTO dto = (WinningLottoDTO) inputDto.get(ParameterConfig.WINNING_LOTTO);
-            outputDto.remove(ParameterConfig.BONUS_NUMBER);
-            new WinningLotto(dto.getLotto(), dto.getBonus());
+        outputs.remove(param);
+    }
+
+    private void inputBonusNumber(Map<String, ? super DTO.Input> inputs,
+                                  Map<String, ? super DTO.Output> outputs) {
+        try {
+            viewText(inputs, outputs, ParameterConfig.BONUS_NUMBER);
+            validateDuplication(inputs);
         } catch (IllegalArgumentException e) {
             System.out.print(e.getMessage());
-            WinningLottoDTO dto = (WinningLottoDTO) inputDto.get(ParameterConfig.WINNING_LOTTO);
-            dto.setBonus(null);
-            inputBonusNumber(inputDto, outputDto);
+            ((WinningLottoDTO) inputs.get(ParameterConfig.WINNING_LOTTO)).setBonus(null);
+            inputBonusNumber(inputs, outputs);
         }
+    }
+
+    private void validateDuplication(Map<String, ? super DTO.Input> inputs) {
+        WinningLottoDTO dto = (WinningLottoDTO) inputs.get(ParameterConfig.WINNING_LOTTO);
+        new WinningLotto(dto.getLotto(), dto.getBonus());
     }
 }

@@ -9,9 +9,9 @@ public class RateOfReturn {
     private static final List<Integer> RANK_VALUE = List.of(5000, 5000, 1500000, 30000000, 2000000000);
 
     public static double calculateRateOfReturn(int ticket,List<Integer> winnings) {
-        int startMoney = ticketToMoney(ticket);
-        int totalResultMoney = addTotalResult(winnings);
-        return rateOfReturn(startMoney, totalResultMoney);
+        int investment = ticketToMoney(ticket);
+        int profit = addTotalResult(winnings);
+        return rateOfReturn(investment, profit);
     }
 
     private static int ticketToMoney(int ticket) {
@@ -30,10 +30,8 @@ public class RateOfReturn {
         return total;
     }
 
-    private static double rateOfReturn(int startMoney, int totalResultMoney) {
-        double rate = (double) totalResultMoney / startMoney * 100.0;
-        double roundedValue = Math.round(rate * 100.0) / 100.0;
-        return roundedValue;
+    public static double rateOfReturn(int investment, int profit) {
+        return (double) profit / investment * 100.0;
     }
 
     public static void rateOfReturnOutput(double result) {

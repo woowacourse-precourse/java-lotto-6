@@ -28,7 +28,7 @@ class InputViewTest {
     @DisplayName("입력된 당첨번호가 빈 문자열이거나, 공백문자가 사용되었거나, 쉼표(,)를 잘못 사용했을 시 에러메시지 발생")
     @ValueSource(strings = {
             "1, 2, 3, 4, 5, 6", "1,,2,3,4,5,6", ",1,2,3,4,5,6",
-            "1,2,3,4,5,6,", " 1,2,3,4,5,6", "1,2,3,4,5,6 "
+            "1,2,3,4,5,6,", " 1,2,3,4,5,6", "123456"
     })
     void validateInputWInnerNum_test(String input) {
         Throwable exception = assertThrows(IllegalArgumentException.class, () -> sample.validateInputWinnerNum(input));

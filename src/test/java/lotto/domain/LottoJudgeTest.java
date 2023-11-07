@@ -26,6 +26,7 @@ public class LottoJudgeTest {
                 Arguments.of(BuyLottos.create(List.of(Lotto.from("1,2,10,9,8,7"))),  LottoHandler.OTHER)
         );
     }
+
     private WinLottoWithBonus winLottoWithBonus;
 
     @BeforeEach

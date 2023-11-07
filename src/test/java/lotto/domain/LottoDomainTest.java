@@ -72,7 +72,7 @@ class LottoDomainTest {
         int purchaseAmount = 10;
 
         //when
-        float earningRatio = lottoDomain.printLottoStats(lottoResult, purchaseAmount);
+        double earningRatio = lottoDomain.printLottoStats(lottoResult, purchaseAmount);
 
         //then
         Assertions.assertThat(earningRatio).isEqualTo(50.0f);

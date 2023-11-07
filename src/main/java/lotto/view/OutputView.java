@@ -61,7 +61,7 @@ public class OutputView {
 
     }
 
-    public void printEarningRatio(float earningMoney) {
+    public void printEarningRatio(double earningMoney) {
         System.out.printf(EARNINGS_RATIO, earningMoney);
     }
 

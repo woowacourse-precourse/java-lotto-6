@@ -18,24 +18,38 @@ public class LottoController {
     InputService inputService = new InputService(inputView, inputValidation, outputView);
     LottoDomain lottoDomain = new LottoDomain(outputView);
 
+    Lottos lottos;
+    int purchaseCount = 0;
+    int bonusNumber = 0;
+    WinningNumbers winningNumbers;
+    double earningMoney;
+
     public void runGame() {
+        purchaseLottos();
+        inputNumbers();
+        lottoResult();
+    }
+
+    private void purchaseLottos() {
         outputView.printInputPurchaseMoney();
-        int purchaseCount = inputService.readPurchasingAmount();
-        Lottos lottos = lottoDomain.createLottos(purchaseCount);
+        purchaseCount = inputService.readPurchasingAmount();
+        lottos = lottoDomain.createLottos(purchaseCount);
 
         outputView.printPurchaseResult(lottos, purchaseCount);
-
+    }
+    private void inputNumbers() {
         outputView.printInputWinningNumber();
         List<Integer> winningNum = inputService.readWinningNumbers();
 
         outputView.printInputBonusNumber();
-        int bonusNumber = inputService.readBonusNumber(winningNum);
-        WinningNumbers winningNumbers = lottoDomain.createWinningNumbers(winningNum, bonusNumber);
-
+        bonusNumber = inputService.readBonusNumber(winningNum);
+        winningNumbers = lottoDomain.createWinningNumbers(winningNum, bonusNumber);
+    }
+    private void lottoResult() {
         outputView.printWinningState();
 
         Map<String, Integer> resultStats = lottoDomain.compareNumbers(lottos, winningNumbers);
-        float earningMoney = lottoDomain.printLottoStats(resultStats, purchaseCount);
+        earningMoney = lottoDomain.printLottoStats(resultStats, purchaseCount);
 
         outputView.printEarningRatio(earningMoney);
     }

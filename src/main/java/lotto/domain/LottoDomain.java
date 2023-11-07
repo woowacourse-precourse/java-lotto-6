@@ -54,13 +54,12 @@ public class LottoDomain {
         return lottoStats;
     }
 
-    public float printLottoStats(Map<String, Integer> resultStats, int purchaseCount) {
-        float purchaseAmount = (float) purchaseCount * LottoConstants.DIVISION_THOUSAND;
+    public double printLottoStats(Map<String, Integer> resultStats, int purchaseCount) {
+        double purchaseAmount = (double) (purchaseCount * LottoConstants.DIVISION_THOUSAND);
         int earningMoney = 0;
 
         for (Entry<String, Integer> entrySet : resultStats.entrySet()) {
             outputView.printWinningDetail(entrySet.getKey(), entrySet.getValue());
-
             earningMoney += getMoney(entrySet.getKey()) * entrySet.getValue();
         }
 

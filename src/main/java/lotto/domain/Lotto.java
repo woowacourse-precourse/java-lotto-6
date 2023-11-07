@@ -43,6 +43,18 @@ public class Lotto {
         }
     }
 
+    private boolean containBonusNumber(LottoNumber bonusNumber) {
+        return numbers.stream()
+                .anyMatch(num -> num.equals(bonusNumber));
+    }
+
+    private int getMatchingCount(Lotto winningNumbers) {
+        return (int) winningNumbers.numbers
+                .stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
     public LottoDto toLottoDto() {
         List<Integer> lottoNumbers = numbers.stream()
                 .map(LottoNumber::getNumber)

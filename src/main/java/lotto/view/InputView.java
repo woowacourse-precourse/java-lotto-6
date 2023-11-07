@@ -26,20 +26,7 @@ public class InputView {
             try {
                 System.out.println("당첨 번호를 입력해주세요.");
                 String numbers = Console.readLine();
-                String[] splitNumbers = numbers.split(",");
-                if (splitNumbers.length != 6) {
-                    throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
-                }
-                Set<Integer> uniqueNumbers = new HashSet<>();
-                for (String number : splitNumbers) {
-                    int num = Integer.parseInt(number.trim());
-                    if (num < 1 || num > 45) {
-                        throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-                    }
-                    if (!uniqueNumbers.add(num)) {
-                        throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-                    }
-                }
+                validateWinningNumbers(numbers);
                 return numbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -47,19 +34,54 @@ public class InputView {
         }
     }
 
-    public static int inputBonusNumber() {
+    private static void validateWinningNumbers(String numbers) {
+        String[] splitNumbers = numbers.split(",");
+        if (splitNumbers.length != 6) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        }
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (String number : splitNumbers) {
+            int num = Integer.parseInt(number.trim());
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            if (!uniqueNumbers.add(num)) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            }
+        }
+    }
+
+
+    public static int inputBonusNumber(String winningNumbers) {
+        Set<Integer> uniqueNumbers = convertToSet(winningNumbers);
         while (true) {
             try {
                 System.out.println("보너스 번호를 입력해주세요.");
                 int bonus = Integer.parseInt(Console.readLine());
-                if (bonus < 1 || bonus > 45) {
-                    throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-                }
-
+                validateBonusNumber(bonus, uniqueNumbers);
                 return bonus;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    private static Set<Integer> convertToSet(String numbers) {
+        String[] splitNumbers = numbers.split(",");
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (String number : splitNumbers) {
+            int num = Integer.parseInt(number.trim());
+            uniqueNumbers.add(num);
+        }
+        return uniqueNumbers;
+    }
+
+    private static void validateBonusNumber(int bonus, Set<Integer> winningNumbers) {
+        if (bonus < 1 || bonus > 45) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+        if (winningNumbers.contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 }

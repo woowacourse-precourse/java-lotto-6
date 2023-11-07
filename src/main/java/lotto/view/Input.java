@@ -24,10 +24,6 @@ public class Input {
     }
 
     public List<Integer> getWinningNumbers() {
-        return validationWinningNumbers();
-    }
-
-    private List<Integer> validationWinningNumbers() {
         try {
             String inputNumbers = Console.readLine();
             List<Integer> winningNumbers = Arrays.stream(inputNumbers.split(","))
@@ -66,7 +62,7 @@ public class Input {
     }
 
     private void validationWinningNumbersLength(List<Integer> winningNumbers) {
-        if (winningNumbers.size() > 6) {
+        if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(WINNING_NUMBERS_LENGTH.errorMessage());
         }
     }
@@ -75,7 +71,7 @@ public class Input {
         winningNumbers.stream().filter(number -> !(1 <= number && number <= 45))
                 .findAny()
                 .ifPresent(number -> {
-                    throw new IllegalStateException(WINNING_NUMBERS_RANGE.errorMessage());
+                    throw new IllegalArgumentException(WINNING_NUMBERS_RANGE.errorMessage());
                 });
     }
 

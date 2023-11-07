@@ -2,10 +2,12 @@ package lotto.controller;
 
 import lotto.constant.Announcer;
 import lotto.constant.LottoAnnouncer;
+import lotto.domain.Lotto;
 import lotto.exception.PurchaseException;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Setting {
@@ -51,11 +53,20 @@ public class Setting {
         }
     }
 
-    public List<Integer> pickLotto() {
-        List<Integer> lotto = providerRandomValue.provideLotto();
-        output.printMessage(LottoAnnouncer.LOTTO_LIST.getListFormat(lotto));
+    public List<Lotto> pickLottos(int repetitions) {
+        List<Integer> numbers=new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
 
-        return lotto;
+        for (int i = 0; i < repetitions; i++) {
+            numbers = providerRandomValue.provideLotto();
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+
+            output.printMessage(LottoAnnouncer.LOTTO_LIST.getListFormat(numbers));
+
+        }
+
+        return lottos;
     }
 
 }

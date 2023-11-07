@@ -4,7 +4,7 @@ import java.util.List;
 
 public enum LottoAnnouncer {
 
-    LOTTO_LIST("[%s]\n"),
+    LOTTO_LIST("%s\n"),
     PRIZE_STATISTICS("당첨 통계\n"),
     SEPARATOR("---\n"),
     ACCORDANCE_THREE("3개 일치 (5,000원) - %d개\n"),

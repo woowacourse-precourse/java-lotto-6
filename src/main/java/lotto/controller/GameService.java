@@ -19,9 +19,6 @@ public class GameService {
     public void play() {
         int repetitions = setting.purchaseLotto();
 
-        for (int i = 0; i < repetitions; i++) {
-            Lotto lotto = new Lotto(setting.pickLotto());
-            lottos.add(lotto);
-        }
+        lottos = setting.pickLottos(repetitions);
     }
 }

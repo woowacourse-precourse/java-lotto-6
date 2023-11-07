@@ -48,6 +48,10 @@ public class OutputView {
         printMessage(LOTTO_NUMBERS_INPUT_MESSAGE);
     }
 
+    public static void printBonusNumberInputMessage() {
+        printMessage(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
     private static void printMessage(String message) {
         System.out.println(message);
     }

@@ -17,7 +17,7 @@ public class Output {
     private static final String MSG_WINNER_STATISTICS_1ST = "6개 일치 (2,000,000,000원)";
     private static final String MSG_TOTAL_RETURN_HEAD = "총 수익률은 ";
     private static final String MSG_TOTAL_RETURN_FOOT = "입니다.";
-    private static final String MSG_ERROR_INSTRUCTION = "입니다.";
+    private static final String MSG_ERROR_INSTRUCTION = "[ERROR]";
     private static final String COUNT = "개";
     private static final String DASH = "-";
     private static final String BLANK = " ";
@@ -37,7 +37,7 @@ public class Output {
             message += LEFT_BRACKET;
             List<Integer> numbers = lottoes.get(i).getNumbers();
             for (int j = 0; j < numbers.size() - 1; j++) {
-                message += numbers.get(j) + COMMA;
+                message += numbers.get(j) + COMMA + BLANK;
             }
             message += numbers.get(numbers.size() - 1) + RIGHT_BRACKET + NEW_LINE;
         }

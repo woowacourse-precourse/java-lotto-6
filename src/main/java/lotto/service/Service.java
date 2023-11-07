@@ -4,7 +4,6 @@ import lotto.model.Lotto;
 import lotto.model.Prize;
 import lotto.utils.LottoAmountValidator;
 import lotto.utils.PrizeNumberValidator;
-import lotto.view.InputView;
 
 import java.util.List;
 
@@ -15,7 +14,13 @@ public class Service {
         LottoAmountValidator validation = new LottoAmountValidator(amount);
         return validation.amount / LOTTO_MIN_AMOUNT;
     }
-    
+
+    public static Prize setPrize(List<Integer> winNumber, int bonusNumber) {
+        new PrizeNumberValidator(winNumber, bonusNumber);
+        Lotto lotto = new Lotto(winNumber);
+        List<Integer> winningNumber = lotto.getLottoNumbers();
+        return new Prize(new Lotto(winningNumber), bonusNumber);
+    }
 
 }
 

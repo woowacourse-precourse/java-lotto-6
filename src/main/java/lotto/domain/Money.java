@@ -2,13 +2,14 @@ package lotto.domain;
 
 import lotto.exception.DivideByLottoPriceException;
 import lotto.exception.EmptyStringException;
-import lotto.exception.InvalidInputNumberException;
+import lotto.exception.InvalidNumberFormatException;
 
 public class Money {
     private static final Integer LOTTO_PRICE = 1000;
     Integer money;
 
     public Money(Integer money) {
+
         validateNull(money);
         validateNumberScope(money);
         validateDivideByThousand(money);
@@ -24,7 +25,7 @@ public class Money {
 
     private void validateNumberScope(Integer money) {
         if (!isPositiveNumber(money)) {
-            throw new InvalidInputNumberException();
+            throw new InvalidNumberFormatException();
         }
     }
 

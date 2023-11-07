@@ -28,7 +28,7 @@ public class LottoGameServiceImpl implements LottoGameService {
     }
 
     private Lotto generateLotto() {
-        List<Integer> lottoNumbers = RandomNumberGenerator.generateNotDuplicatedRandomNumbers();
+        List<Integer> lottoNumbers = RandomNumberGenerator.generateNotDuplicatedRandomNumbersOrderByAsc();
         return new Lotto(lottoNumbers);
     }
 }

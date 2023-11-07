@@ -21,6 +21,16 @@ public class LottoNumberValidator {
         }
     }
 
+    public static void validateNumbersOrder(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size() - 1; i++) {
+            if (numbers.get(i) > numbers.get(i + 1)) {
+                throw new IllegalArgumentException(INVALID_NUMBERS_ORDER_EXCEPTION
+                        + (i + 1) + NUMBER_INDICATION + numbers.get(i) + ", "
+                        + (i + 2) + NUMBER_INDICATION + numbers.get(i + 1));
+            }
+        }
+    }
+
     private static void matchTwoNumbers(List<Integer> numbers, int i) {
         for (int j = i + 1; j < numbers.size(); j++) {
             if (numbers.get(i) == numbers.get(j)) {

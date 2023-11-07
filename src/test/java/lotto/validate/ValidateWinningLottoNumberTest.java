@@ -41,11 +41,19 @@ public class ValidateWinningLottoNumberTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,47", "4,33,34,48,11,3", "6,50,8,9,10,11", "-1,16,17,13,12,11"})
+    @ValueSource(strings = {"1,2,3,4,5,47", "4,33,34,48,11,3", "6,50,8,9,10,11", "48,16,17,13,12,11"})
     @DisplayName("당첨_번호_입력_검증_실패_범위_초과")
     void 당첨_번호_입력_검증_실패_범위_초과(String input) {
         List<Integer> winningNumbers = inputProcessor.getUserInputWinningNumbers(input);
         assertThatCode(() -> new Lotto(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"-5,2,3,4,5,1", "4,33,34,-1,11,3", "6,-5,8,9,10,11", "-4,16,17,13,12,11"})
+    @DisplayName("당첨_번호_입력_검증_실패_범위_미만")
+    void 당첨_번호_입력_검증_실패_범위_미만(String input) {
+        assertThatCode(() -> inputProcessor.getUserInputWinningNumbers(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

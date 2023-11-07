@@ -36,4 +36,9 @@ public class LottoAnswer extends Lotto {
     public boolean hasBonusNumber() {
         return bonusNumber != null;
     }
+
+    public void setBonusNumber(BonusNumber bonusNumber) {
+        isUnique(getNumbers(), bonusNumber.getNumber());
+        this.bonusNumber = bonusNumber;
+    }
 }

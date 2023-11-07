@@ -46,6 +46,12 @@ public class LottoResultAnalyzer {
                 .forEach(paper -> matchByLottoPaper(paper, bonusNumber));
     }
 
+    public long calculateTotalWinningPrize(EnumMap<PrizeCategory, Integer> matchResults) {
+        return matchResults.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().calculatePrize(entry.getValue()))
+                .sum();
+    }
+
     public EnumMap<PrizeCategory, Integer> getMatchResults() {
         return matchResults;
     }

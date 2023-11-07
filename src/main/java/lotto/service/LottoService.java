@@ -1,26 +1,16 @@
 package lotto.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.LottoConstants;
+import lotto.StringConstants;
 import lotto.domain.Lotto;
 import lotto.port.LottoNumbersProvider;
 
 public class LottoService {
-
-    private static final int LOTTO_TICKET_PRICE = 1000;
-    private static final int LOTTO_NUMBER_MIN = 1;
-    private static final int LOTTO_NUMBER_MAX = 45;
-    private static final String FIRST_ERROR_MESSAGE = "[ERROR] ";
-    private static final String PURCHASE_AMOUNT_DIVIDE_EXCEPTION_MESSAGE = "로또 구입 금액은 1,000원으로 나누어 떨어져야합니다.";
-    private static final String PURCHASE_AMOUNT_NOT_DIGIT_EXCEPTION_MESSAGE = "로또 구입 금액은 숫자여야 합니다.";
-    private static final String WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE = "당첨 번호는 숫자여야 합니다.";
-    private static final String BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE = "보너스 번호는 숫자여야 합니다.";
-    private static final String BONUS_NUMBER_RANGE_EXCEPTION_MESSAGE = "보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String BONUS_NUMBER_WINNING_NUMBERS_DUPLICATE_EXCEPTION_MESSAGE = "보너스 번호와 당첨번호가 겹치면 안됩니다.";
 
     private final LottoNumbersProvider lottoNumbersProvider;
 
@@ -30,25 +20,25 @@ public class LottoService {
 
     public int calculateNumberOfLottoTickets(String purchaseAmount) {
         validateLottoPurchaseAmount(purchaseAmount);
-        return Integer.parseInt(purchaseAmount) / LOTTO_TICKET_PRICE;
+        return Integer.parseInt(purchaseAmount) / LottoConstants.PRICE.getValue();
     }
 
     public void validateLottoPurchaseAmount(String lottoPurchaseAmount) {
 
         if (PurchaseAmountNOTDivideBy1000(lottoPurchaseAmount)) {
             throw new IllegalArgumentException(
-                FIRST_ERROR_MESSAGE + PURCHASE_AMOUNT_DIVIDE_EXCEPTION_MESSAGE);
+                StringConstants.FIRST_ERROR_MESSAGE + StringConstants.PURCHASE_AMOUNT_DIVIDE_EXCEPTION_MESSAGE);
         }
 
         if (PurchaseAmountNotDigit(lottoPurchaseAmount)) {
             throw new IllegalArgumentException(
-                FIRST_ERROR_MESSAGE + PURCHASE_AMOUNT_NOT_DIGIT_EXCEPTION_MESSAGE);
+                StringConstants.FIRST_ERROR_MESSAGE + StringConstants.PURCHASE_AMOUNT_NOT_DIGIT_EXCEPTION_MESSAGE);
         }
     }
 
     private boolean PurchaseAmountNOTDivideBy1000(String lottoPurchaseAmount) {
         int amount = Integer.parseInt(lottoPurchaseAmount);
-        return amount % LOTTO_TICKET_PRICE != 0;
+        return amount % LottoConstants.PRICE.getValue() != 0;
     }
 
     private boolean PurchaseAmountNotDigit(String lottoPurchaseAmount) {
@@ -89,7 +79,7 @@ public class LottoService {
             try {
                 lottoNumbers.add(Integer.parseInt(number.trim()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE);
+                throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.WINNING_NUMBERS_NOT_DIGIT_EXCEPTION_MESSAGE);
             }
         }
         return lottoNumbers;
@@ -97,13 +87,13 @@ public class LottoService {
 
     public void validateBonusNumber(List<Integer> lottoWinningNumbers, String bonusNumber) {
         if (bonusNumberNotDigit(bonusNumber)) {
-            throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_NOT_DIGIT_EXCEPTION_MESSAGE);
         }
         if (bonusNumberWrongRange(bonusNumber)) {
-            throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + BONUS_NUMBER_RANGE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_RANGE_EXCEPTION_MESSAGE);
         }
         if (bonusNumberDuplicateWinningNumbers(lottoWinningNumbers, bonusNumber)) {
-            throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + BONUS_NUMBER_WINNING_NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(StringConstants.FIRST_ERROR_MESSAGE + StringConstants.BONUS_NUMBER_WINNING_NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
@@ -118,7 +108,7 @@ public class LottoService {
 
     public boolean bonusNumberWrongRange(String bonusNumber) {
         int number = Integer.parseInt(bonusNumber);
-        return number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX;
+        return number < LottoConstants.NUMBER_MIN.getValue() || number > LottoConstants.NUMBER_MAX.getValue();
     }
 
     public boolean bonusNumberDuplicateWinningNumbers(List<Integer> lottoWinningNumbers, String bonusNumber) {
@@ -169,7 +159,7 @@ public class LottoService {
         totalPrize += matchingCounts.getOrDefault(5, 0) * 1500000;
         totalPrize += matchingCounts.getOrDefault(7, 0) * 30000000;
         totalPrize += matchingCounts.getOrDefault(6, 0) * 2000000000;
-        double purchaseAmount = lottoTicketsCount * LOTTO_TICKET_PRICE;
+        double purchaseAmount = lottoTicketsCount * LottoConstants.PRICE.getValue();
         return totalPrize / purchaseAmount * 100;
     }
 }

@@ -2,14 +2,11 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
+import lotto.StringConstants;
 import lotto.port.InputPort;
 import lotto.service.LottoService;
 
 public class LottoGameController {
-
-    private final String INPUT_PURCHASEAMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
-    private final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     private final InputPort inputPort;
     private final LottoService lottoService;
@@ -30,7 +27,7 @@ public class LottoGameController {
     }
 
     private List<List<Integer>> buyLottoTickets() {
-        System.out.println(INPUT_PURCHASEAMOUNT_MESSAGE);
+        System.out.println(StringConstants.INPUT_PURCHASEAMOUNT_MESSAGE);
         String purchaseAmount = inputPort.readLine();
         int lottoTicketsCount = lottoService.calculateNumberOfLottoTickets(purchaseAmount);
 
@@ -38,14 +35,14 @@ public class LottoGameController {
     }
 
     private List<Integer> inputWinningNumber() {
-        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+        System.out.println(StringConstants.INPUT_WINNING_NUMBER_MESSAGE);
         String winningNumbers = inputPort.readLine();
 
         return lottoService.addLottoNumberToWinningNumbers(winningNumbers);
     }
 
     private int inputBonusNumber(List<Integer> winningNumbers) {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        System.out.println(StringConstants.INPUT_BONUS_NUMBER_MESSAGE);
         String bonusNumber = inputPort.readLine();
         lottoService.validateBonusNumber(winningNumbers, bonusNumber);
 

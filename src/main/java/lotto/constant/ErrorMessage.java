@@ -8,10 +8,10 @@ public enum ErrorMessage {
     STRANGE_INTEGER("[ERROR] 구입금액은 0원 보다 커야합니다"),
     OUT_OF_NUMBER_RANGE("[ERROR] 번호의 범위는 1~45 이어야 합니다"),
     DUPLICATE_NUMBER("[ERROR] 중복된 숫자가 있습니다"),
-    WRONG_LENGTH("[ERROR] 숫자를 6개 입력하지 않았습니다"),
+    WRONG_LENGTH("[ERROR] 숫자는 총 6개여야 합니다"),
     CONTAIN_BLANK("[ERROR] 입력에 공백이 섞여있습니다"),
     ANOTHER_COMMA("[ERROR] 입력은 ',' 으로 구분해야합니다"),
-    SEQUENCE_COMMA("[ERROR] ','를 연속해서 적었습니다"),
+    SEQUENCE_COMMA("[ERROR] ',' 를 확인해주세요"),
     BONUS_NUMBER_DUPLICATE("[ERROR] 보너스 번호는 기존 번호와 중복될 수 없습니다");
 
 

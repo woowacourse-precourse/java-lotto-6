@@ -5,6 +5,7 @@ import static lotto.constant.ErrorMessage.ANOTHER_COMMA;
 import static lotto.constant.ErrorMessage.CONTAIN_BLANK;
 import static lotto.constant.ErrorMessage.EMPTY;
 import static lotto.constant.ErrorMessage.INPUT_STRING;
+import static lotto.constant.ErrorMessage.SEQUENCE_COMMA;
 import static lotto.constant.LottoNumberMessage.ASK_Lotto_NUMBER;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import lotto.constant.LottoNumberMessage;
 
 public class LottoView {
@@ -32,8 +34,9 @@ public class LottoView {
     private void validate(String input) {
         validateNotNull(input);
         validateSequenceComma(input);
-        validateAnotherComma(input);
+        validateIncorrectDelimiter(input);
         validateContainBlank(input);
+
     }
 
     private List<Integer> parseNumbers(String input) {
@@ -53,10 +56,12 @@ public class LottoView {
     }
 
     private void validateSequenceComma(String input) {
-        long commaCount = input.chars().filter(ch -> ch == ',').count();
-        if (commaCount > 5) {
-            throw new IllegalArgumentException(ANOTHER_COMMA.getMessage());
-        }
+        IntStream.range(1, input.length())
+                .filter(i -> input.charAt(i) == ',' && input.charAt(i - 1) == ',')
+                .findFirst()
+                .ifPresent(i -> {
+                    throw new IllegalArgumentException(SEQUENCE_COMMA.getMessage());
+                });
     }
 
 
@@ -67,9 +72,8 @@ public class LottoView {
     }
 
 
-    private void validateAnotherComma(String input) {
-        long commaCount = input.chars().filter(ch -> ch == ',').count();
-        if (commaCount != 5) {
+    private void validateIncorrectDelimiter(String input) {
+        if (input.contains(".")) {
             throw new IllegalArgumentException(ANOTHER_COMMA.getMessage());
         }
     }

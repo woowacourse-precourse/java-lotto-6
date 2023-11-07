@@ -5,20 +5,12 @@ import java.util.List;
 
 public class OutputView {
 
-    private static final String inputAmount = "구입금액을 입력해 주세요.";
-    private static final String buy = "\n%d개를 구매했습니다.\n";
-    private static final String inputNumbers = "\n당첨 번호를 입력해 주세요.";
-    private static final String inputBonus = "\n보너스 번호를 입력해 주세요.";
-    private static final String stats = "\n당첨 통계";
-    private static final String dash = "---";
-    private static final String result = "총 수익률은 %s%%입니다.";
-
     public static void printAmount() {
-        System.out.println(inputAmount);
+        System.out.println(RequestLine.requestAmount);
     }
 
     public static void printBuy(int purchasesNumber) {
-        System.out.printf(buy, purchasesNumber);
+        System.out.printf(RequestLine.resultBuy.getLine(), purchasesNumber);
     }
 
     public static void printMyLottos(List<List<Integer>> myLottos) {
@@ -28,23 +20,23 @@ public class OutputView {
     }
 
     public static void printNumbers() {
-        System.out.println(inputNumbers);
+        System.out.println(RequestLine.requestLotto);
     }
 
     public static void printBonus() {
-        System.out.println(inputBonus);
+        System.out.println(RequestLine.requestBonus);
     }
 
     public static void printStats() {
-        System.out.println(stats);
+        System.out.println(RequestLine.resultStats);
     }
 
     public static void printDash() {
-        System.out.println(dash);
+        System.out.println(RequestLine.hyphen);
     }
 
     public static void printResult(float rate) {
-        System.out.printf(result, String.format("%.1f", rate));
+        System.out.printf(RequestLine.resultRate.getLine(), String.format("%.1f", rate));
     }
 
     public static void eachResult(List<Integer> matchingLotto) {

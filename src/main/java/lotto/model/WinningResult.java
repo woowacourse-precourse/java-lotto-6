@@ -38,7 +38,7 @@ public class WinningResult {
     }
 
     private WinningRank calculateRank(PlayerLotto playerLotto) {
-        int matchCount = playerLotto.countIntersection(lotto, bonus);
+        int matchCount = playerLotto.countIntersection(lotto);
         boolean hasBonus = playerLotto.hasBonus(bonus);
         return WinningRank.getWinningRank(matchCount, hasBonus);
     }

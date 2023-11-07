@@ -22,9 +22,8 @@ public class PlayerLotto {
         return playerLotto.contains(bonus.getBonus());
     }
 
-    public int countIntersection(Lotto lotto, Bonus bonus) {
+    public int countIntersection(Lotto lotto) {
         Set<Integer> winningNumbers = new HashSet<>(lotto.getNumbers());
-        winningNumbers.add(bonus.getBonus());
         Set<Integer> playerNumbers = new HashSet<>(playerLotto);
 
         winningNumbers.retainAll(playerNumbers);

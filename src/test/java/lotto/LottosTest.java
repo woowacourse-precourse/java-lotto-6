@@ -1,5 +1,6 @@
 package lotto;
 
+import domain.Lotto;
 import domain.Lottos;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,11 +14,11 @@ public class LottosTest {
     @Test
     void countWinningNumbersTest() {
         Lottos lottos = new Lottos();
-        lottos.addLotto(List.of(1, 2, 3, 4, 5, 6, 7));
-        lottos.addLotto(List.of(8, 2, 3, 4, 10, 26, 27));
-        lottos.addLotto(List.of(31, 32, 33, 34, 35, 36, 37));
+        lottos.addLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottos.addLotto(new Lotto(List.of(8, 2, 3, 4, 10, 26)));
+        lottos.addLotto(new Lotto(List.of(31, 32, 33, 34, 35, 36)));
 
-        lottos.countWinningNumber(List.of(11, 2, 3, 4, 15, 16, 17));
+        lottos.countWinningNumber(new Lotto(List.of(11, 2, 3, 4, 15, 16)));
         int threeWins = lottos.getThreeWins();
 
         Assertions.assertThat(threeWins).isEqualTo(2);

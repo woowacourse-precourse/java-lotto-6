@@ -1,4 +1,4 @@
-package lotto;
+package domain;
 
 import java.util.HashSet;
 import java.util.List;
@@ -28,5 +28,13 @@ public class Lotto {
 
     public boolean containsNumber(int number) {
         return numbers.contains(number);
+    }
+
+    public int size() {
+        return numbers.size();
+    }
+
+    public int getNumber(int index) {
+        return numbers.get(index);
     }
 }

@@ -5,8 +5,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 class LottoSellerTest {
 
     @DisplayName("셀러__로또_하나_정렬상태_테스트")
@@ -24,9 +22,9 @@ class LottoSellerTest {
         int money = 6000;
 
         LottoSeller seller = LottoSeller.create();
-        List<Lotto> lottos = seller.sellLottos(money);
+        LottoPaper lottoPaper = seller.sellLottos(money);
 
         int answerCount = money / Value.THOUSAND.get();
-        Assertions.assertThat(lottos.size()).isEqualTo(answerCount);
+        Assertions.assertThat(lottoPaper.size()).isEqualTo(answerCount);
     }
 }

@@ -7,7 +7,7 @@ import lotto.domain.LottoSeller;
 import lotto.domain.MatchCounter;
 import lotto.domain.User;
 import lotto.domain.WinCounter;
-import lotto.domain.Lotto;
+import lotto.domain.LottoPaper;
 import lotto.dto.MatchCountDto;
 import lotto.io.InputStream;
 import lotto.io.OutputStream;
@@ -47,11 +47,10 @@ public class LottoController {
 
     public void buyLottos() {
         int money = user.pay();
-        List<Lotto> lottos = seller.sellLottos(money);
-        user.setLottos(lottos);
-        outputView.printBuyMessage(lottos.size());
-        lottos.forEach(lotto -> outputView.print(lotto.toString()));
-        outputView.printEmptyLine();
+        LottoPaper lottoPaper = seller.sellLottos(money);
+        user.setLottoPaper(lottoPaper);
+        outputView.printBuyMessage(lottoPaper.size());
+        outputView.print(lottoPaper.toString());
     }
 
     public void inputWinNumbers() {
@@ -85,7 +84,7 @@ public class LottoController {
     public void getWinStatistics() {
         outputView.printStatisticsMessage();
         winCounter = new WinCounter();
-        for (MatchCountDto counting : matchCounter.getMatchCounts(user.getLottos())) {
+        for (MatchCountDto counting : matchCounter.getMatchCounts(user.getLottoPaper())) {
             try {
                 WinType winType = WinType.get(counting.match(), counting.bonus());
                 int count = winCounter.getCount(winType);

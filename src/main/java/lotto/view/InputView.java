@@ -1,15 +1,31 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+
+import java.util.List;
+
+import static lotto.util.Message.*;
 
 public class InputView {
-    private static final String INPUT_LOTTO_AMOUNT = "구입금액을 입력해 주세요.";
-    private static final String INPUT_LOTTO_PRIZE = "당첨 번호를 입력해 주세요.";
-    private static final String INPUT_LOTTO_BONNER = "보너스 번호를 입력해 주세요.";
-    public static String inputPrice(){
+
+
+    public static String inputPrice() {
         System.out.println(INPUT_LOTTO_AMOUNT);
         return Console.readLine();
     }
+
+    public static String inputPrizeNumber() {
+        System.out.println(INPUT_LOTTO_PRIZE);
+        return Console.readLine();
+    }
+
+    public static String inputBonus() {
+        System.out.println(INPUT_LOTTO_BONNER);
+        return Console.readLine();
+    }
+
+
 }
 
 

@@ -4,6 +4,7 @@ import lotto.Lotto;
 import lotto.PublicLotto;
 import lotto.service.RandomLottoNumber;
 import lotto.view.InputBuyLotto;
+import lotto.view.InputLottoNumber;
 
 import java.util.List;
 
@@ -21,10 +22,15 @@ public class LottoController {
         List<Lotto> lotto = publicLotto.getLotto();
         showLottoNumbers(lotto);
 
+        InputLottoNumber inputLottoNumber = new InputLottoNumber();
+        List<Integer> lottoNumbers = inputLottoNumber.getLottoNumbers();
+
 
     }
 
     private void showLottoNumbers(List<Lotto> lottoNumbers) {
+
         lottoNumbers.forEach(System.out::println);
+        System.out.println();
     }
 }

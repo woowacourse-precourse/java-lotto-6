@@ -20,7 +20,7 @@ public class InputLottoNumber {
     private static final int SIZE=6;
 
 
-    private List<Integer> getLottoNumbers() {
+    public List<Integer> getLottoNumbers() {
         System.out.println(INPUT_LOTTO_MESSAGE);
         String lottoNumbs = Console.readLine();
         System.out.println();

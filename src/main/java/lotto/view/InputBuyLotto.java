@@ -43,5 +43,4 @@ public class InputBuyLotto {
             throw new DivideThousandException();
         }
     }
-
 }

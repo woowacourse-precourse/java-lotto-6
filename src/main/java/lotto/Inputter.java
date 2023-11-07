@@ -25,18 +25,20 @@ public class Inputter {
 
         System.out.println("구입금액을 입력해 주세요.");
         won = parseInt(Console.readLine());
+        System.out.println();
         validatePurchase(won);
         return won;
     }
 
     public LottoNumberDTO lottoNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         return new LottoNumberDTO(isDup(Arrays.stream(Console.readLine().split(","))
                 .mapToInt(this::parseInt).map(this::validateLottoNumber)
                 .boxed().collect(Collectors.toList())));
     }
 
     public int bonus() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         return validateLottoNumber(parseInt(Console.readLine()));
     }
 

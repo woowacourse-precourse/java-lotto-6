@@ -31,7 +31,7 @@ public class Printer {
     public void statistic(StatisticDTO statisticDTO) {
         StringBuilder sb = new StringBuilder();
         int[] statistic = statisticDTO.getStatistic();
-        sb.append("당첨 통계\n").append("---\n")
+        sb.append("\n당첨 통계\n").append("---\n")
                 .append("3개 일치 (5,000원) - ").append(statistic[Grade.FIFTH_GRADE.getGrade()])
                 .append("\n").append("4개 일치 (50,000원) - ")
                 .append(statistic[Grade.FIFTH_GRADE.getGrade()]).append("\n")

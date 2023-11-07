@@ -23,6 +23,7 @@ public class Game {
     private final String ERROR_MESSAGE_1000 = "[ERROR] 1,000단위로 입력해주세요.";
     private final String ERROR_MESSAGE_NUMBER = "[ERROR] 숫자를 입력해주세요.";
     private final String ERROR_MESSAGE_REPEAT = "[ERROR] 숫자가 중복되지 않도록 입력해주세요.";
+    private final String ERROR_MESSAGE_OVERLESS = "[ERROR] 숫자가 45보다 크거나 1보다 작지 않도록 입력해주세요.";
     private String ERROR_MESSAGE;
 
     public Game() {
@@ -110,12 +111,17 @@ public class Game {
     public void changePrizeNumber(String PRIZE){
         changeNumbers(PRIZE.split(","));    // 숫자로 변경
         validate_Duplication(prizes); // 중복 예외 처리
-
+        validate_OverLess(prizes); //당첨 번호 45 초과, 1 미만 예외 처리
     }
 
     public void changeNumbers(String[] prizeNumbers){
-        for (String prizeNumber : prizeNumbers) {
-            prizes.add(Integer.parseInt(prizeNumber));
+        try {
+            for (String prizeNumber : prizeNumbers) {
+                prizes.add(Integer.parseInt(prizeNumber));
+            }
+        }catch (IllegalArgumentException e){
+            ERROR_MESSAGE = ERROR_MESSAGE_NUMBER;
+            throw new IllegalArgumentException();
         }
     }
 
@@ -134,6 +140,16 @@ public class Game {
             }
         }
     }
+
+    private void validate_OverLess(List<Integer> prizes){
+        for (int prize : prizes) {
+            if(prize > 45 || prize < 1){
+                ERROR_MESSAGE = ERROR_MESSAGE_OVERLESS;
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
 
     public String bonusNumberInput(){
         //예외 처리 추가해야 함
@@ -192,5 +208,4 @@ public class Game {
         }
         return false;
     }
-
 }

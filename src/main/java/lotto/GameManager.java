@@ -1,6 +1,6 @@
 package lotto;
 
-import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
+import static lotto.message.ErrorMessage.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import lotto.domain.WinningStatistics;
 
 public class GameManager {
     public List<Lotto> createLotto(int purchaseAmount) {
-        int purchaseQuantity = getPurchaseQuantity(purchaseAmount);
+        int purchaseQuantity = purchaseAmount / 1000;
         List<Lotto> totalLotto = new ArrayList<>();
 
         IntStream.range(0, purchaseQuantity)
@@ -26,19 +26,7 @@ public class GameManager {
         return totalLotto;
     }
 
-    private int getPurchaseQuantity(int purchaseAmount) {
-        validationPurchaseAmountInThousands(purchaseAmount);
-        return purchaseAmount / 1000;
-    }
-
-    private void validationPurchaseAmountInThousands(int purchaseAmount) {
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException(DIVISIBLE_BY_1000.errorMessage());
-        }
-    }
-
-    public void compareTotalLotto(List<Lotto> totalLotto, List<Integer> winningNumbers, int bonusNumber,
-                                  WinningStatistics winningStatistics) {
+    public void compareTotalLotto(List<Lotto> totalLotto, List<Integer> winningNumbers, int bonusNumber, WinningStatistics winningStatistics) {
         for (Lotto lotto : totalLotto) {
             compareLottoWithWinningNumbers(lotto, winningNumbers, bonusNumber, winningStatistics);
         }

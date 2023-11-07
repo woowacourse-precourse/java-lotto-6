@@ -5,7 +5,7 @@ import lotto.util.message.ExceptionMessage;
 import java.util.List;
 
 import static lotto.domain.LottoInfo.*;
-import static lotto.util.message.ExceptionMessage.CHECK_SIZE_NUM;
+import static lotto.util.message.ExceptionMessage.*;
 
 public class Lotto {
 
@@ -30,13 +30,13 @@ public class Lotto {
                 .count();
 
         if (distinctCount != numbers.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.CHECK_DUPLICATES.getMessage());
+            throw new IllegalArgumentException(CHECK_DUPLICATES.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         if (numbers.stream().anyMatch(this::isNotInRange)) {
-            throw new IllegalArgumentException(ExceptionMessage.CHECK_RANGE_BONUS_NUM.getMessage());
+            throw new IllegalArgumentException(CHECK_RANGE_BONUS_NUM.getMessage());
         }
     }
 

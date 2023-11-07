@@ -22,8 +22,15 @@ public class InputValidate {
         }
     }
 
+    public static void validateNumberRangeInputFormat(int input) {
+        if (input <= 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 이상 입력해야 합니다.");
+        }
+    }
+
     public static void validateUniqueInputLottoNumbers(List<Integer> lottoNumbers) {
         Set<Integer> checkingUniqueNumbers = new HashSet<>(lottoNumbers);
+        System.out.println(checkingUniqueNumbers);
         if (checkingUniqueNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 입력한 로또 당첨 번호 중 중복된 숫자가 존재합니다.");
         }
@@ -31,14 +38,14 @@ public class InputValidate {
 
     public static void validateRangeInputLottoNumbers(List<Integer> lottoNumbers) {
         for (Integer lottoNumber : lottoNumbers) {
-            if (isValidNumberRange(lottoNumber)) {
+            if (!isValidNumberRange(lottoNumber)) {
                 throw new IllegalArgumentException("[ERROR] 입력한 로또 당첨 번호는 1 ~ 45 사이의 숫자여야 합니다.");
             }
         }
     }
 
     public static void validateRangeInputLottoBonusNumber(int bonusNumber) {
-        if (isValidNumberRange(bonusNumber)) {
+        if (!isValidNumberRange(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 입력한 로또 당첨 보너스 번호는 1 ~ 45 사이의 숫자여야 합니다.");
         }
     }

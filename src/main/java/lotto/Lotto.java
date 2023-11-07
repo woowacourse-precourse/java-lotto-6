@@ -31,13 +31,6 @@ public class Lotto {
         }
     }
 
-    private boolean hasDuplicatedNumber(List<Integer> numbers) {
-        return numbers.size() != numbers.stream()
-                .distinct()
-                .count();
-    }
-
-
     public boolean contains(int number) {
         return numbers.contains(number);
     }

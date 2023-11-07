@@ -13,17 +13,24 @@ public class WinningLotto {
     List<LottoNumber> winningLotto;
     LottoNumber bonusNumber;
 
-    public WinningLotto(List<String> winningLottoNumbers, String bonusNumber) {
+    private WinningLotto(List<Integer> winningLottoNumbers, Integer bonusNumber) {
 
         checkDuplication(winningLottoNumbers);
         checkDuplicationFrom(winningLottoNumbers, bonusNumber);
         checkLength(winningLottoNumbers);
         winningLotto = winningLottoNumbers.stream()
-                                          .map(Integer::parseInt)
-                                          .map(number -> LottoNumber.valueOf(number))
-                                          .toList();
-        this.bonusNumber = LottoNumber.valueOf(Integer.parseInt(bonusNumber));
+            .map(LottoNumber::valueOf)
+            .toList();
+        this.bonusNumber = LottoNumber.valueOf(bonusNumber);
 
+    }
+
+    public static WinningLotto from(List<String> lottoNumbers, String decidedBonusNumber) {
+        List<Integer> winningLottoNumbers = lottoNumbers.stream()
+            .map(Integer::parseInt)
+            .toList();
+        Integer bonusNumber = Integer.parseInt(decidedBonusNumber);
+        return new WinningLotto(winningLottoNumbers, bonusNumber);
     }
 
     public boolean contains(LottoNumber lottoNumber) {
@@ -35,8 +42,8 @@ public class WinningLotto {
     }
 
 
-    private void checkDuplication(List<String> winningLotto) {
-        List<String> distinctList = winningLotto.stream()
+    private void checkDuplication(List<Integer> winningLotto) {
+        List<Integer> distinctList = winningLotto.stream()
                                                 .distinct()
                                                 .toList();
         if (distinctList.size() != winningLotto.size()) {
@@ -44,13 +51,13 @@ public class WinningLotto {
         }
     }
 
-    private void checkDuplicationFrom(List<String> winningLotto, String bonusNumber) {
+    private void checkDuplicationFrom(List<Integer> winningLotto, Integer bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
             throw new BonusNumberDuplicationException();
         }
     }
 
-    private void checkLength(List<String> lottoNumbers) {
+    private void checkLength(List<Integer> lottoNumbers) {
         if (lottoNumbers.size() != LENGTH) {
             throw new WrongLottoLengthException();
         }

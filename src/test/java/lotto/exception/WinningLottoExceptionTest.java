@@ -13,7 +13,7 @@ public class WinningLottoExceptionTest {
     void lottoNumberDuplicationTest() {
 
         Assertions.assertThatThrownBy(
-                () -> new WinningLotto(List.of("1", "1", "3", "4", "5", "6"), "10"))
+                () -> WinningLotto.from(List.of("1", "1", "3", "4", "5", "6"), "10"))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
@@ -23,7 +23,7 @@ public class WinningLottoExceptionTest {
     void bonusNumberDuplicationTest() {
 
         Assertions.assertThatThrownBy(
-                          () -> new WinningLotto(List.of("1", "2", "3", "4", "5", "6"), "1"))
+                          () -> WinningLotto.from(List.of("1", "2", "3", "4", "5", "6"), "1"))
                   .isInstanceOf(IllegalArgumentException.class);
 
 
@@ -34,7 +34,7 @@ public class WinningLottoExceptionTest {
     void wrongLottoNumbersLengthExceptionTest() {
 
         Assertions.assertThatThrownBy(
-                          () -> new WinningLotto(List.of("1", "2", "3", "4", "5", "6", "8"), "9"))
+                          () -> WinningLotto.from(List.of("1", "2", "3", "4", "5", "6", "8"), "9"))
                   .isInstanceOf(IllegalArgumentException.class);
     }
 

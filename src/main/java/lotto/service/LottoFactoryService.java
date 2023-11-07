@@ -30,7 +30,7 @@ public class LottoFactoryService {
 
     public WinningLotto createWinningLottoFrom(List<String> winningLotto, String bonusNumber) {
 
-        return new WinningLotto(winningLotto, bonusNumber);
+        return WinningLotto.from(winningLotto, bonusNumber);
     }
 
 

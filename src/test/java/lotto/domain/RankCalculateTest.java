@@ -14,7 +14,7 @@ public class RankCalculateTest {
     @Test
     void rankCalculateTest() {
         //given
-        WinningLotto winningLotto = new WinningLotto(List.of("1", "2", "3", "5", "7", "8"), "9");
+        WinningLotto winningLotto = WinningLotto.from(List.of("1", "2", "3", "5", "7", "8"), "9");
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto lotto2 = new Lotto(List.of(1, 2, 3, 5, 7, 9));
         Lotto lotto3 = new Lotto(List.of(1, 2, 11, 12, 13, 14));

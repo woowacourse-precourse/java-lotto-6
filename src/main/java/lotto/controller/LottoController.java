@@ -24,17 +24,12 @@ public class LottoController {
     //winning 입력 받아서 모델에서 validation 처리 -> Lotto에서
     public void getWinningLotto(){
         Lotto lotto = new Lotto(lottoStringtoIntegerList());
-        winningLotto = (Lotto) lotto.getNumbers();
+        winningLotto = lotto;
     }
 
     private List<Integer> lottoStringtoIntegerList(){
-        String strLotto = InputView.winningNumber();
-        List<String> strNumbers = Arrays.asList(strLotto.split(","));
-        List<Integer> numbers = new ArrayList<>();
-        for(String number : strNumbers){
-            numbers.add(Integer.parseInt(number));
-        }
-        return numbers;
+        Lotto lotto = new Lotto(InputView.winningNumber());
+        return lotto.getNumbers();
     }
 
     //bonusNumber 입력 받아서 모델에서 validation 처리 -> bonusNum 모델 생성?

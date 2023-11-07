@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Validator {
@@ -20,11 +21,14 @@ public class Validator {
     }
 
     //숫자가 아닌 경우-리스트 버전
-    public static void isDigit(List<String> numbers) {
+    public static List<Integer> isDigit(List<String> numbers) {
         try {
+            List<Integer> intNumbers = new ArrayList<>();
             for (String number : numbers) {
-                Integer.parseInt(number);
+                intNumbers.add(Integer.parseInt(number));
             }
+
+            return intNumbers;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("로또 번호 중 숫자가 아닌 입력이 있습니다.");
         }

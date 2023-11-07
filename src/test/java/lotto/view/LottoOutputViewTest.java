@@ -87,6 +87,6 @@ public class LottoOutputViewTest {
         int inputAfter = 1555;
 
         outputView.printProfit(inputBefore, inputAfter);
-        assertEquals("총 수익률은 55.5%입니다.", capture.toString().trim());
+        assertEquals("총 수익률은 155.5%입니다.", capture.toString().trim());
     }
 }

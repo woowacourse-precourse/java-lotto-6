@@ -17,12 +17,13 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 public class LottoMachineTest {
+    private final int INPUT_MONEY = 1000;
 
     @DisplayName("당첨내역을 제대로 계산하는지 확인한다.")
     @ParameterizedTest
     @MethodSource("validParameters")
     void checkCompareSystem(List<Integer> numbers, int number, GameStatus gameStatus, int equalNumber) {
-        LottoCount lottoCount = new LottoCount(1000);
+        LottoCount lottoCount = new LottoCount(INPUT_MONEY);
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(new MockNumberGenerator());
 
@@ -43,11 +44,11 @@ public class LottoMachineTest {
                 Arguments.of(List.of(1, 2, 3, 5, 7, 9), 11, GameStatus.FIVE_AND_BONUS_EQUAL, 1)
         );
     }
-    
+
     @Test
     @DisplayName("수익률을 제대로 계산하는지 확인한다.")
     void checkCalculateRate() {
-        LottoCount lottoCount = new LottoCount(1000);
+        LottoCount lottoCount = new LottoCount(INPUT_MONEY);
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(new MockNumberGenerator());
 

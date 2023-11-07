@@ -8,10 +8,6 @@ public abstract class InputParser {
 
     abstract void validate(String input);
 
-    protected void throwException(String errorMessage) {
-        throw new IllegalArgumentException(errorMessage);
-    }
-
     protected String removeSpaces(String input) {
         return input.replaceAll(" ", "");
     }

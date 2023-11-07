@@ -41,7 +41,7 @@ public class LottoController {
     }
 
     private void showResult() {
-        List<LottoRank> ranks = lottoTickets.getWiningRanks(winningLottoNumbers);
+        List<LottoRank> ranks = lottoTickets.getWinningRanks(winningLottoNumbers);
         Map<LottoRank, Integer> countRanks = getCountRanks(ranks);
 
         List<String> results = countRanks.entrySet().stream()

@@ -27,11 +27,14 @@ public enum LottoRank {
     public static LottoRank get(WinningLottoNumbers winningLottoNumbers, Lotto lotto) {
         int winingCount = winningLottoNumbers.countWining(lotto);
         boolean winingBonus = winningLottoNumbers.isWiningBonus(lotto);
+
         if (winingCount < FIFTY_WINING_COUNT.get()) {
             return NONE;
         }
+        
         List<LottoRank> lottoRanks = Arrays.stream(values())
                 .filter(lottoRank -> lottoRank.getMatchingCount() == winingCount).toList();
+
         if (winingCount == SECOND_AND_THIRD_WINING_COUNT.get()) {
             return getThirdOrSecond(winingBonus);
         }

@@ -21,6 +21,10 @@ public enum ErrorMessage {
         this.message = message;
     }
 
+    public static void throwException(String errorMessage) {
+        throw new IllegalArgumentException(errorMessage);
+    }
+
     public String get() {
         return message;
     }

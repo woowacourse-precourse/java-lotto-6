@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.ErrorMessage.BONUS_DUPLICATION_ERROR_MESSAGE;
+import static lotto.ErrorMessage.throwException;
 
 public class WinningLottoNumbers {
     private final Lotto winingLotto;
@@ -30,7 +31,4 @@ public class WinningLottoNumbers {
         return lotto.hasNumber(bonus.get());
     }
 
-    private void throwException(String errorMessage) {
-        throw new IllegalArgumentException(errorMessage);
-    }
 }

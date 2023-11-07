@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.ErrorMessage.LOTTO_HAS_DUPLICATION_ERROR_MESSAGE;
 import static lotto.ErrorMessage.LOTTO_WRONG_RANGE_ERROR_MESSAGE;
 import static lotto.ErrorMessage.LOTTO_WRONG_SIZE_ERROR_MESSAGE;
+import static lotto.ErrorMessage.throwException;
 import static lotto.LottoConstance.LOTTO_SIZE;
 import static lotto.LottoConstance.MAX_NUMBER_LOTTO_RANGE;
 import static lotto.LottoConstance.MIN_NUMBER_LOTTO_RANGE;
@@ -47,10 +48,6 @@ public class Lotto {
 
     private boolean isLottoSize(List<Integer> numbers) {
         return numbers.size() == LOTTO_SIZE.get();
-    }
-
-    private void throwException(String errorMessage) {
-        throw new IllegalArgumentException(errorMessage);
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

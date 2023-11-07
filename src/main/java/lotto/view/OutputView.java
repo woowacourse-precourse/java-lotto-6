@@ -1,7 +1,9 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.ProfitRate;
 import lotto.model.WinningDetails;
 import lotto.model.WinningSummary;
 
@@ -16,6 +18,9 @@ public class OutputView {
 
     private static final String WINNING_DETAILS_HEADER = "\n당첨 통계";
     private static final String WINNING_DETAILS_LINE = "---";
+
+    private static final String PROFIT_RATE_FORMAT = "총 수익률은 %s%%입니다.";
+    private static final DecimalFormat RATE_PRECISION_FORMAT = new DecimalFormat(",##0.0");
 
     // 기본 생성자가 만들어지는 것을 막는다. (인스턴스화 방지용).
     private OutputView() {
@@ -39,14 +44,19 @@ public class OutputView {
     }
 
     private static void printWinningSummary(final WinningSummary summary) {
-        final StringBuilder sb = new StringBuilder();
-        sb.append(String.format(MATCH_COUNT_FORMAT, summary.numberOfMatches()));
+        final StringBuilder message = new StringBuilder();
+        message.append(String.format(MATCH_COUNT_FORMAT, summary.numberOfMatches()));
 
         if (summary.containsBonus()) {
-            sb.append(BONUS_MATCH_FORMAT);
+            message.append(BONUS_MATCH_FORMAT);
         }
-        sb.append(String.format(TOTAL_AMOUNT_FORMAT, summary.prize()));
-        sb.append(String.format(RANK_MATCH_COUNT_FORMAT, summary.frequency()));
-        System.out.println(sb);
+        message.append(String.format(TOTAL_AMOUNT_FORMAT, summary.prize()));
+        message.append(String.format(RANK_MATCH_COUNT_FORMAT, summary.frequency()));
+        System.out.println(message);
+    }
+
+    public static void printProfitRate(final ProfitRate profitRate) {
+        final String formattedRate = RATE_PRECISION_FORMAT.format(profitRate.doubleValue());
+        System.out.printf(PROFIT_RATE_FORMAT + "%n", formattedRate);
     }
 }

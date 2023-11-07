@@ -77,4 +77,23 @@ public class Global {
         int rankCount = rankStatistics.get(rank);
         System.out.println(rankLabel + " - " + rankCount + "개");
     }
+
+    public double calculateRateOfReturn(double lottoPurchaseMoney) {
+        double rankingMoney = getRankingMoney();
+        return rankingMoney / lottoPurchaseMoney * 100.0;
+    }
+
+    private int getRankingMoney() {
+        int rankingMoney = 0;
+        for (Rank rank : rankStatistics.keySet()) {
+            rankingMoney += getEachRankMoney(rank);
+        }
+        return rankingMoney;
+    }
+
+    private double getEachRankMoney(Rank rank) {
+        double rankMoney = rank.getPrice();
+        double rankCount = (double) rankStatistics.get(rank);
+        return rankMoney * rankCount;
+    }
 }

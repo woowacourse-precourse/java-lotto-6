@@ -16,6 +16,7 @@ public class Application {
         issueLottos(global, lottoPurchaseMoney);
         List<Integer> winningLotto = getWinningLotto(user);
         getLottoRanking(global, winningLotto);
+        getRateOfReturn(global, lottoPurchaseMoney);
     }
 
     private static int purchaseLotto(User user) {
@@ -41,6 +42,10 @@ public class Application {
     private static void getLottoRanking(Global global, List<Integer> winningLotto) {
         global.calculateRanking(winningLotto);
         global.printRanking();
+    }
+
+    private static void getRateOfReturn(Global global, int lottoPurchaseMoney) {
+        double rateOfReturn = global.calculateRateOfReturn(lottoPurchaseMoney);
     }
 
     private static List<Integer> convertStringToIntegerList(String input) {

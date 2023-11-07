@@ -7,7 +7,6 @@ import java.util.List;
 public class LottoDraw {
     public static List<Integer> generateRandomLotto() {
         List<Integer> numbers = new ArrayList<>();
-
         while (numbers.size() < 6) {
             int randomNum = Randoms.pickNumberInRange(1, 45);
 
@@ -15,7 +14,6 @@ public class LottoDraw {
                 numbers.add(randomNum);
             }
         }
-
         return numbers;
     }
 }

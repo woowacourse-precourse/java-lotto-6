@@ -1,43 +1,35 @@
 package lotto.func;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.List;
 
 public class Rank {
 
     public void myRanking(List<Integer> winningNumbers, int bonus, List<List<Integer>> lottoTickets) {
-        int[] matchCount = new int[5];
+        int[] matchCount = new int[WinningRank.values().length];
 
         for (List<Integer> ticket : lottoTickets) {
             int ticketMatchCount = countMatchingNumbers(ticket, winningNumbers);
             boolean hasBonusMatch = ticket.contains(bonus);
 
-            if (ticketMatchCount == 6) {
-                matchCount[4]++;
-            } else if (ticketMatchCount == 5) {
-                if (hasBonusMatch) {
-                    matchCount[3]++;
-                } else {
-                    matchCount[2]++;
-                }
-            } else if (ticketMatchCount == 4) {
-                matchCount[1]++;
-            } else if (ticketMatchCount == 3) {
-                matchCount[0]++;
+            WinningRank rank = WinningRank.calculateRank(ticketMatchCount, hasBonusMatch);
+            if (rank != null) {
+                matchCount[rank.ordinal()]++;
             }
         }
         winningStatistics(matchCount, lottoTickets.size());
     }
-
     private void winningStatistics(int[] matchCount, int totalTickets) {
         System.out.println("당첨 통계");
-        String[] ranks = {"3개 일치", "4개 일치", "5개 일치", "5개 일치, 보너스 볼 일치", "6개 일치"};
+        System.out.println("---");
         int[] prizes = {5000, 50000, 1500000, 30000000, 2000000000};
-
         int totalPrize = 0;
-        for (int i = 0; i < ranks.length; i++) {
-            totalPrize += matchCount[i] * prizes[i];
-            System.out.printf("%s (%,d원) - %d개\n", ranks[i], prizes[i], matchCount[i]);
+
+        for (WinningRank rank : WinningRank.values()) {
+            int index = rank.ordinal();
+            totalPrize += matchCount[index] * prizes[index];
+            System.out.printf("%s (%,d원) - %d개\n", rank.getDescription(), prizes[index], matchCount[index]);
         }
         calculateProfitRate(totalPrize, totalTickets);
     }
@@ -46,10 +38,11 @@ public class Rank {
         int totalCost = totalTickets * 1000;
         double profitRate = ((double) totalPrize / totalCost) * 100;
 
-        DecimalFormat decimalFormat = new DecimalFormat("0.0%");
-        String formattedProfitRate = decimalFormat.format(profitRate / 100);
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
+        String formattedProfitRate = decimalFormat.format(profitRate);
 
-        System.out.println("총 수익률은 " + formattedProfitRate + "입니다.");
+        System.out.println("총 수익률은 " + formattedProfitRate + "%입니다.");
     }
 
     private int countMatchingNumbers(List<Integer> ticket, List<Integer> winningNumbers) {

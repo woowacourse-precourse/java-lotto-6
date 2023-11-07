@@ -7,7 +7,7 @@ public class LottoPlayer {
     private final List<Lotto> lottos = new ArrayList<>();
     private int money = 0;
 
-    public void generateLottos(int number) {
+    public void buyLottos(int number) {
         System.out.printf("%d개를 구매했습니다.\n", number);
         for (int i = 0; i < number; i++) {
             Lotto lotto = new Lotto(List.of(1,2,3,4,5,6)); // naturalOrder 적용 필요

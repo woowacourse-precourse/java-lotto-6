@@ -18,7 +18,7 @@ public class LottoApp {
     }
 
     public void playGame() {
-        player.generateLottos(getPurchaseMoney() / PRICE_LOTTO);
+        player.buyLottos(getPurchaseMoney() / PRICE_LOTTO);
         admin.setWinningNumbers(getWinningNumbers());
         admin.setBonusNumber(getBonusNumber());
 

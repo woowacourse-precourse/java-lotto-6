@@ -8,9 +8,9 @@ public class OutputViewMessage {
     public static final String WINNING_STATISTICS = "당첨 통계\n---";
     public static final String TOTAL_PROFIT_RATE = "총 수익률은 %s%%입니다.";
 
-    public static final String FIRST_PRINT_MESSAGE = "6개 일치 (%d원) - %d개";
-    public static final String SECOND_PRINT_MESSAGE = "5개 일치, 보너스 볼 일치 (%d원) - %d개";
-    public static final String THIRD_PRINT_MESSAGE = "5개 일치 (%d원) - %d개";
-    public static final String FORTH_PRINT_MESSAGE = "4개 일치 (%d원) - %d개";
-    public static final String FIFTH_PRINT_MESSAGE = "3개 일치 (%d원) - %d개";
+    public static final String FIRST_PRINT_MESSAGE = "6개 일치 (%d원) - %d개\n";
+    public static final String SECOND_PRINT_MESSAGE = "5개 일치, 보너스 볼 일치 (%d원) - %d개\n";
+    public static final String THIRD_PRINT_MESSAGE = "5개 일치 (%d원) - %d개\n";
+    public static final String FORTH_PRINT_MESSAGE = "4개 일치 (%d원) - %d개\n";
+    public static final String FIFTH_PRINT_MESSAGE = "3개 일치 (%d원) - %d개\n";
 }

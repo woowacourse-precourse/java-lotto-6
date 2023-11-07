@@ -1,8 +1,11 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
 import lotto.generator.NumberGenerator;
 import lotto.generator.RandomNumberGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +19,29 @@ class PurchasedLottosTest {
         Money money = new Money("5000");
         PurchasedLottos purchasedLottos = PurchasedLottos.createPurchasedLottos(generator, money);
 
-        Assertions.assertThat(purchasedLottos.purchasedLottosCount()).isEqualTo(5);
+        assertThat(purchasedLottos.purchasedLottosCount()).isEqualTo(5);
     }
 
+    @DisplayName("당첨 번호와 구매한 로또를 비교하여 등수 리스트를 반환한다.")
+    @Test
+    public void testMatchLottos() {
+        //항상 고정된 1,2,3,4,5,6의 로또를 생성하는 StubLottoNumberGenerator
+        NumberGenerator testGenerator = new StubLottoNumberGenerator();
+        Money money = new Money("2000");
+        PurchasedLottos purchasedLottos = PurchasedLottos.createPurchasedLottos(testGenerator, money);
+        WinningLotto winningLotto = WinningLotto.createWinningLotto("1,2,3,4,5,6", "7");
+
+        List<LottoRank> matchedRanks = purchasedLottos.matchLottos(winningLotto);
+
+        assertThat(matchedRanks).containsExactly(LottoRank.FIRST, LottoRank.FIRST);
+    }
+
+    //항상 고정된 1,2,3,4,5,6의 로또를 생성하는 StubLottoNumberGenerator
+    static class StubLottoNumberGenerator implements NumberGenerator {
+
+        @Override
+        public List<Integer> generate(int size) {
+            return Arrays.asList(1, 2, 3, 4, 5, 6);
+        }
+    }
 }

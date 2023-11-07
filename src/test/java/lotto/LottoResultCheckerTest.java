@@ -31,4 +31,22 @@ class LottoResultCheckerTest {
         assertThatCode(() -> lottoResultChecker.checkLotto(lottos, winningLotto))
                 .doesNotThrowAnyException();
     }
+
+    @DisplayName("성공: 당첨 내역을 출력할 수 있다.")
+    @Test
+    void test3() {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottos.add(new Lotto(List.of(4, 5, 6, 7, 8, 9)));
+        lottos.add(new Lotto(List.of(3, 4, 5, 6, 9, 10)));
+        lottos.add(new Lotto(List.of(31, 32, 33, 34, 35, 36)));
+
+        Lotto pickedLotto = new Lotto(List.of(3, 4, 5, 6, 9, 10));
+        WinningLotto winningLotto = new WinningLotto(pickedLotto, 20);
+
+        LottoResultChecker lottoResultChecker = new LottoResultChecker();
+        lottoResultChecker.checkLotto(lottos, winningLotto);
+        assertThatCode(lottoResultChecker::printTotalPrize)
+                .doesNotThrowAnyException();
+    }
 }

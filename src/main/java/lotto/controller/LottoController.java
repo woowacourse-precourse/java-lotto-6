@@ -6,6 +6,7 @@ import lotto.domain.LottoResultCalculation;
 import lotto.domain.RandomLottoNumber;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -38,6 +39,14 @@ public class LottoController {
         return new BonusLottoNumber(bonus);
     }
 
+    public Lotto getLotto(String numbers) {
+        String[] splitedNumbers = numbers.split(",");
+        List<Integer> intNumbers = new ArrayList<>();
+        for(String str : splitedNumbers) {
+            intNumbers.add(Integer.parseInt(str));
+        }
+        return new Lotto(intNumbers);
+    }
 
     public String getLottoString() {
         StringBuffer stringResult = new StringBuffer();

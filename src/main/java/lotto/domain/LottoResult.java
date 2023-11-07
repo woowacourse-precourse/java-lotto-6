@@ -9,7 +9,6 @@ import java.util.Map;
 import lotto.constants.Prize;
 
 public class LottoResult {
-
     public Map<Prize, Integer> state;
 
     public LottoResult() {
@@ -32,6 +31,4 @@ public class LottoResult {
 
         return ((double) sum / (lottoCount * LOTTO_PRICE.get())) * PERCENT.get();
     }
-
-
 }

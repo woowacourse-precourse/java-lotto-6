@@ -17,7 +17,6 @@ import static lotto.constants.Error.ZERO_INCLUSION_ERROR;
 import static lotto.constants.Value.ZERO;
 
 public class Validator {
-
     public static void checkNumber(String userInput) {
         try {
             Integer.parseInt(userInput);

@@ -15,7 +15,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
 public class Output {
-
     public static void printError(IllegalArgumentException ex) {
         System.out.println(ex.getMessage());
     }

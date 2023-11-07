@@ -10,7 +10,6 @@ import java.util.List;
 import lotto.constants.Prize;
 
 public class LottoManager {
-
     public static List<Lotto> sortLottos(List<Lotto> lottos) {
         List<Lotto> sortedLottos = new ArrayList<>();
 

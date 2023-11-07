@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.List;
 
 public class User {
-
     public Integer lottoCount;
     public List<Lotto> lottos;
 

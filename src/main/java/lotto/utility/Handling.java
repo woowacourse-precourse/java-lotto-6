@@ -9,7 +9,6 @@ import lotto.validator.Validator;
 import lotto.domain.Lotto;
 
 public class Handling {
-
     public static List<String> split(String lotto) {
         Validator.checkComma(lotto);
         return Arrays.asList(lotto.split(COMMA.getMessage()));
@@ -25,6 +24,4 @@ public class Handling {
 
         return inputNumber;
     }
-
-
 }

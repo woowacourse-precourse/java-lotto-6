@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,8 +11,9 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 당첨 번호는 6개여야 합니다.");
             throw new IllegalArgumentException();
         }
     }

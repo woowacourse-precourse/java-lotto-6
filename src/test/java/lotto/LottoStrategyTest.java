@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.model.Budget;
@@ -28,6 +29,7 @@ public class LottoStrategyTest {
     private LottoMachine lottoMachine;
     private BonusNumber bonusNumber;
     private LottoStrategy lottoStrategy;
+    private EnumMap<LottoRank, Integer> expectedCounts;
 
     @BeforeEach
     void setUp() {
@@ -35,66 +37,97 @@ public class LottoStrategyTest {
         winningLotto = new WinningLotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         bonusNumber = new BonusNumber(7, winningLotto);
         lottoStrategy = new MyLottoStrategy();
+        expectedCounts =  new EnumMap<>(LottoRank.class);
     }
 
     @DisplayName("6개 번호 일치 시 RANK1 출력 테스트")
     @Test
     void testRank1() {
+        //given
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        assertThat(lottoStrategy.determineRank(lottoTicket, winningLotto, bonusNumber))
-                .isEqualTo(LottoRank.RANK1);
+        expectedCounts.put(LottoRank.RANK1, 1);
+        //when
+        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        //then
+        assertThat(actualCounts)
+                .isEqualTo(expectedCounts);
     }
 
     @DisplayName("5개 번호와 보너스 번호 일치 시 RANK2 출력 테스트")
     @Test
     void testRank2() {
+        //given
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 5, 7);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        assertThat(lottoStrategy.determineRank(lottoTicket, winningLotto, bonusNumber))
-                .isEqualTo(LottoRank.RANK2);
+        expectedCounts.put(LottoRank.RANK2, 1);
+        //when
+        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        //then
+        assertThat(actualCounts)
+                .isEqualTo(expectedCounts);
     }
 
     @DisplayName("5개 번호 일치 시 RANK3 출력 테스트")
     @Test
     void testRank3() {
+        //given
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 5, 10);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        assertThat(lottoStrategy.determineRank(lottoTicket, winningLotto, bonusNumber))
-                .isEqualTo(LottoRank.RANK3);
+        expectedCounts.put(LottoRank.RANK3, 1);
+        //when
+        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        //then
+        assertThat(actualCounts)
+                .isEqualTo(expectedCounts);
     }
 
     @DisplayName("4개 번호 일치 시 RANK4 출력 테스트")
     @Test
     void testRank4() {
+        //given
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 9, 10);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        assertThat(lottoStrategy.determineRank(lottoTicket, winningLotto, bonusNumber))
-                .isEqualTo(LottoRank.RANK4);
+        expectedCounts.put(LottoRank.RANK4, 1);
+        //when
+        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        //then
+        assertThat(actualCounts)
+                .isEqualTo(expectedCounts);
     }
 
     @DisplayName("3개 번호 일치 시 RANK5 출력 테스트")
     @Test
     void testRank5() {
+        //given
         List<Integer> testNumbers = Arrays.asList(1, 2, 3, 8, 9, 10);
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        assertThat(lottoStrategy.determineRank(lottoTicket, winningLotto, bonusNumber))
-                .isEqualTo(LottoRank.RANK5);
+        expectedCounts.put(LottoRank.RANK5, 1);
+        //when
+        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        //then
+        assertThat(actualCounts)
+                .isEqualTo(expectedCounts);
     }
 
     @DisplayName("2개 이하 번호 일치 시 FAIL 출력 테스트")
     @ParameterizedTest
     @MethodSource("rankNothingTestNumbers")
     void testRankFail(List<Integer> testNumbers) {
+        //given
         lottoMachine = new FixedLottoMachine(testNumbers);
         lottoTicket = new LottoTicket(budget, lottoMachine);
-        assertThat(lottoStrategy.determineRank(lottoTicket, winningLotto, bonusNumber))
-                .isEqualTo(LottoRank.FAIL);
+        expectedCounts.put(LottoRank.FAIL, 1);
+        //when
+        EnumMap<LottoRank, Integer> actualCounts = lottoStrategy.determineRankCounts(lottoTicket, winningLotto, bonusNumber);
+        //then
+        assertThat(actualCounts)
+                .isEqualTo(expectedCounts);
     }
 
     static Stream<Arguments> rankNothingTestNumbers() {

@@ -11,7 +11,8 @@ public enum ExceptionMessage {
             LottoInfo.MIN_NUMBER.getNumberInfo(),
             LottoInfo.MAX_NUMBER.getNumberInfo()
     )),
-    CHECK_SIZE_NUM(String.format("%s개의 번호를 입력해주세요.", LottoInfo.MAX_SIZE.getNumberInfo()));
+    CHECK_SIZE_NUM(String.format("%s개의 번호를 입력해주세요.", LottoInfo.MAX_SIZE.getNumberInfo())),
+    CHECK_DUPLICATES("로또 숫자에 중복된 값이 존재합니다.");
 
     private static final String ERROR = "[ERROR] %s";
     private final String message;

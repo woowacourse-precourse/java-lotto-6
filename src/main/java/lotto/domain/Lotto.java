@@ -20,7 +20,18 @@ public class Lotto {
     private Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateRange(numbers);
+        validateDuplicates(numbers);
         this.numbers = numbers;
+    }
+
+    private void validateDuplicates(List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+
+        if (distinctCount != numbers.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.CHECK_DUPLICATES.getMessage());
+        }
     }
 
     private void validateRange(List<Integer> numbers) {

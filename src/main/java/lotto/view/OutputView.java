@@ -46,7 +46,7 @@ public class OutputView {
         INPUT_MONEY("%d개를 구매했습니다.%n"),
         SEPARATOR("---"),
         WINNING_STATS_HEADER("당첨 통계"),
-        TOTAL_YIELD("총 수익률은 %s %% 입니다.");
+        TOTAL_YIELD("총 수익률은 %s%%입니다.");
 
 
         private final String message;

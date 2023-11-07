@@ -24,10 +24,4 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.of(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    @Test
-    void tete() {
-            RankInfo rankByValue = RankInfo.getRankByValue(1, false);
-            System.out.println(rankByValue);
-    }
 }

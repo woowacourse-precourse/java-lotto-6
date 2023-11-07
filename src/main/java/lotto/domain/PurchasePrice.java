@@ -28,6 +28,6 @@ public class PurchasePrice {
     }
 
     public Double calcYieldBy(long totalWinningPrize) {
-        return (double) (totalWinningPrize / this.money) * PERCENT;
+        return totalWinningPrize * PERCENT / this.money;
     }
 }

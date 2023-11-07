@@ -3,6 +3,7 @@ package lotto.util;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.LottoInfo;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +20,8 @@ public class RandomNumbersGenerator {
                 LottoInfo.MAX_NUMBER.getNumberInfo(),
                 LottoInfo.MAX_SIZE.getNumberInfo());
 
-        Collections.sort(randomNumbers);
-        return randomNumbers;
+        List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }

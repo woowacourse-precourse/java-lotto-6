@@ -26,4 +26,8 @@ public class Amount {
     public Integer divideByThousand() {
         return value / THOUSAND;
     }
+
+    public Integer toValue() {
+        return value;
+    }
 }

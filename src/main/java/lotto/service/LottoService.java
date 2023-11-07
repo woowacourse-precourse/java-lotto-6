@@ -31,23 +31,6 @@ public class LottoService {
         return new Lottos(elements);
     }
 
-    //    public WinningStatistic compareLotto(final Lottos lottos, final WinningLotto winningLotto) {
-//        List<Integer> winningLottoNumbers = winningLotto.toLotto().getNumbers();
-//        Integer bonusNumber = winningLotto.toBonusNumber().toValue();
-//        EnumMap<LottoResultRule, Integer> enumMap = new EnumMap<>(LottoResultRule.class);
-//        for (Lotto lotto : lottos.toElements()) {
-//            List<Integer> LottoNumbers = lotto.getNumbers();
-//            Long count = LottoNumbers.stream().filter(winningLottoNumbers::contains).distinct().count();
-//            if (count == 5) {
-//                if (LottoNumbers.contains(bonusNumber)) {
-//                    enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), true), 1);
-//                }
-//                enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false), 1);
-//            }
-//            enumMap.put(LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false), 1);
-//        }
-//        return new WinningStatistic(enumMap);
-//    }
     public WinningStatistic compareLotto(final Lottos lottos, final WinningLotto winningLotto) {
         List<Integer> winningLottoNumbers = winningLotto.toLotto().getNumbers();
         Integer bonusNumber = winningLotto.toBonusNumber().toValue();
@@ -59,9 +42,7 @@ public class LottoService {
             if (count == 5 && lottoNumbers.contains(bonusNumber)) {
                 incrementEnumMap(enumMap, LottoResultRule.matchCount(5, true));
             }
-            if (count != 5) {
-                incrementEnumMap(enumMap, LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false));
-            }
+            incrementEnumMap(enumMap, LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false));
         }
         return new WinningStatistic(enumMap);
     }
@@ -75,4 +56,14 @@ public class LottoService {
         enumMap.put(key, value);
     }
 
+    public String getPerformance(final WinningStatistic winningStatistic, final Amount amount) {
+        Integer totalProfit = winningStatistic.getTotalProfit();
+        Integer lottoAmount = amount.toValue();
+
+        Double dividedResult = (double) totalProfit / lottoAmount;
+
+        // 소수점 2자리에서 반올림
+        Double roundedResult = Math.round(dividedResult * 100.0) / 100.0;
+        return roundedResult.toString();
+    }
 }

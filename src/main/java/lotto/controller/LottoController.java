@@ -53,5 +53,7 @@ public class LottoController {
         winningLotto.updateBonusNumber(bonusNumber.toValue());
         WinningStatistic winningStatistic = lottoService.compareLotto(lottos, winningLotto);
         outputView.printResultLotto(winningStatistic);
+        String profit = lottoService.getPerformance(winningStatistic, amount);
+        outputView.printProfit(profit);
     }
 }

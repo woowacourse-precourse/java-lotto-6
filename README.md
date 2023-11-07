@@ -232,18 +232,18 @@ public class Lotto {
 ## 구현할 기능 정리
 
 ### 입력
--[ ] 로또 구입 금액을 입력받는다. InputView#getLottoPrice
-  -[ ] 금액은 1000원 이상이어야 한다. Validator#LottoPrice
-  -[ ] 1000원 단위로 입력받아야 한다. Validator#LottoPrice
-  -[ ] 위의 형식이 지켜지지 않을 경우 InvalidPurchaseAmountException
+- [ ] 로또 구입 금액을 입력받는다. InputView#getLottoPrice
+  - [ ] 금액은 1000원 이상이어야 한다. Validator#LottoPrice
+  - [ ] 1000원 단위로 입력받아야 한다. Validator#LottoPrice
+  - [ ] 위의 형식이 지켜지지 않을 경우 InvalidPurchaseAmountException
 
 ### 핵심
--[ ] 로또 구입 금액/1000 만큼 로또 번호를 생성한다. LottoNumberCreator#createLottoTickets(int purchaseAmount)
--[ ] 당첨번호와 보너스 번호를 입력받는다. LottoTicketGenerator#getWinningNumberAndBonus
+- [ ] 로또 구입 금액/1000 만큼 로또 번호를 생성한다. LottoNumberCreator#createLottoTickets(int purchaseAmount)
+- [ ] 당첨번호와 보너스 번호를 입력받는다. LottoTicketGenerator#getWinningNumberAndBonus
   - [ ] 번호는 1-45 사이이다.
   - [ ] 위의 형식이 지켜지지 않을 경우 InValidLottoNumberException
 
--[ ] 로또를 순회하며 각 회차당, LottoResultChecker
+- [ ] 로또를 순회하며 각 회차당, LottoResultChecker
   - [ ] 당첨 번호와 3개가 일치하면 5등, 5000 LottoResultChecker#checkFifthRank
   - [ ] 당첨 번호와 4개가 일치하면 4등, 50,000 LottoResultChecker#checkFourthRank
   - [ ] 당첨 번호와 5개가 일치하면 3등, 1,500,000 LottoResultChecker#checkThirdRank
@@ -253,5 +253,5 @@ public class Lotto {
 - [ ] Winners에 따라 수익률을 계산한다. LottoResultChecker#calculateProfitPercentage(Winners winners)
 
 ### 출력
--[ ] Winners 결과를 각 등수마다 출력한다. OutputView#printWinningSummary
--[ ] 수익률을 출력한다. OutputView#printProfitPercentage
+- [ ] Winners 결과를 각 등수마다 출력한다. OutputView#printWinningSummary
+- [ ] 수익률을 출력한다. OutputView#printProfitPercentage

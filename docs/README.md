@@ -2,7 +2,8 @@
 - [X] 6자리 로또 번호 생성하기 (범위 1~45)                                                     Lotto#generateLottoNumbers()
     - [X] 단, 증복 X  -> Randoms.pickUniqueNumbersInRange(1, 45, 6) 중복없이 6개의 숫자 뽑기                                                                     
     - [X] 오름차순 정리 -> Collections.sort() 사용하기                                                                   
-- [] 구입 금액에 따라 발행할 로또 티켓 계산하기                                                   Lotto#CountLottoTickets()
+- [X] 구입 금액에 따라 발행할 로또 티켓 계산하기                                                   Lotto#countLottoTickets()
+- [X] 로또 티켓 개수에 맞춰 발권하기 (배열 생성)                                                   Lotto#createLottoTickets()
 
 - [] 당첨 확인하기                                                                         Judgement#compareLottoNumbers()
 - [] 총 수익률 계산하기 (소수점 둘째 자리에서 반올림)                                              Judgement#calculateRevenue()
@@ -12,7 +13,7 @@
 - [] 보너스 번호를 입력 받기                                                                  UserInput#getBonusNumbers()
 
 - [X] 입력사항 출력하기 (구입금액을 입력해 주세요/당첨 번호를 입력해 주세요/보너스 번호를 입력해 주세요.)        Printer#printDirection()
-- [] 발행한 로또 수량 및 번호를 출력하기                                                         Printer#printLottoTickets()
+- [X] 발행한 로또 수량 및 번호를 출력하기                                                         Printer#printLottoTickets()
 - [] 당첨 내역을 출력                                                                        Printer#printWinnersDetail()
 
 

@@ -65,3 +65,33 @@
         - 당첨 번호에 있는 숫자들과 중복되어서는 안된다.
         - 정수여야 한다.
         - 1 ~ 45 사이의 숫자여야 한다.
+
+<br/>
+<br/>
+
+## 최종구조
+
+- lotto
+   - controller
+      - Controller : domain, view의 파일들을 연결해준다.
+   - domain
+      - Lotto : 6개의 로또 번호를 한 묶음으로 생성 및 관리한다.
+      - LottoGenerate : 로또 번호를 랜덤으로 생성한다.
+      - Lottos : 구입한 금액에 따른 로또 번호 묶음들을 한꺼번에 관리한다.
+      - Rank : enum을 활용하여 결과의 틀을 관리한다.
+      - Ranking : 로또 번호에 따른 결과들을 Rank에 입력해준다.
+      - Rate : 수익률을 계산한다.
+      - Winnings : 사용자가 입력한 당첨 번호와 보너스 번호를 관리한다. 
+   - exception
+      - BonusNumException : 보너스 번호의 예외처리를 한다.
+      - BuyLottoException : 구입한 금액의 예외처리를 한다.
+      - LottoNumbersException : 생성한 로또 번호의 예외처리를 한다.
+      - WinningNumException : 당첨 번호의 예외처리를 한다.
+   - view
+      - BonusLottoInput : 보너스 번호를 입력 받는다.
+      - BuyLottoInput : 구입 금액을 입력 받는다.
+      - LottosOutput : 구입한 금액에 따른 로또 번호 묶음을 출력한다.
+      - RankingOutput : 로또 번호의 당첨 통계를 출력한다.
+      - UserInput : 사용자에게 어떠한 값을 입력받는다.(사용자에게 어떤 값을 입력 받았는지에 따라 위의 input파일에서 쓰인다.)
+      - WinningLottoInput : 당첨 번호를 입력 받는다.
+   - Application : 로또 미션을 실행한다.

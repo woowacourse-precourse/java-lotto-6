@@ -13,7 +13,8 @@ public enum ErrorProperty {
     COST_FORMAT_IS_NOT_CORRECT("구입금액은 %s 단위로 구매해야합니다.".formatted(COST_UNIT_STANDARD)),
     COST_IS_STANDARD_UNDER("구입금액은 최소 %s 입니다.".formatted(COST_UNIT_STANDARD)),
     FILED_MAPPER_IS_NOT_CORRECT_PARAMETER("Getter 사용시 잘못된 값이 포함되었습니다."),
-    LOTTO_SIZE_IS_NOT_STANDARD("로또의 개수는 %s개 이어야합니다.".formatted(WINNING_SIZE));
+    LOTTO_SIZE_IS_NOT_STANDARD("로또의 개수는 %s개 이어야합니다.".formatted(WINNING_SIZE)),
+    LOTTO_RESULT_GENERATE_ERROR("로또 결과 생성중 에러가 발생하였습니다.");
 
     private String errorMessage;
 

@@ -52,13 +52,23 @@ public class MainController {
 
     private void purchaseResult(List<Lotto> lottos) {
         WeekWinning weekWinning = publishWeekWinning();
+        LottoManager lottoManager = new LottoManager();
         for (int i = 0; i < lottos.size(); i++) {
-            winningPolicy.winningCount(lottos.get(i).getNumbers(), weekWinning.winning(), weekWinning.bonus());
+            List<Integer> lottoNumbers = lottos.get(i).getNumbers();
+            lottoManager.purchasedLottosResult(
+                    winningPolicy.winningCount(lottoNumbers, weekWinning.winning()),
+                    winningPolicy.hitBonus(lottoNumbers, weekWinning.bonus())
+            );
         }
+        System.out.println(lottoManager.getResultEnumMap());
     }
 
     private WeekWinning publishWeekWinning() {
-        return new WeekWinning(inputWinning().getWinningNumbers(), inputBonus().getBonusNumber());
+        Winning winning = inputWinning();
+        outputLineBreak();
+        Bonus bonus = inputBonus();
+        outputLineBreak();
+        return new WeekWinning(winning.getWinningNumbers(), bonus.getBonusNumber());
     }
 
     private Winning inputWinning() {

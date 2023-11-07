@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameManager {
-    private Result result;
-    private List<Lotto> lottos;
+    private final Result result;
+    private final List<Lotto> lottos;
     private List<Integer> winningNumbers;
     private Integer bonusNumber;
     
@@ -17,6 +17,13 @@ public class GameManager {
         this.lottos = new ArrayList<>();
         this.winningNumbers = null;
         this.bonusNumber = null;
+    }
+    
+    public Result getResult() {
+        return this.result;
+    }
+    public List<Lotto> getLottos() {
+        return this.lottos;
     }
     
     public void generateLotto(Integer money) {
@@ -42,12 +49,6 @@ public class GameManager {
     
     public void setBonusNumber(Integer bonusNumber) {
         this.bonusNumber = bonusNumber;
-    }
-    
-    public void printLottos() {
-        for(Lotto lotto : lottos) {
-            System.out.println(lotto.getNumbers());
-        }
     }
     
     public void updateResult() {

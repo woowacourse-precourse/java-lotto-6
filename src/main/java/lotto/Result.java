@@ -7,14 +7,8 @@ import java.util.Set;
 
 public class Result {
     private List<Score> scores;
-    private Long profit;
-
     public Result() {
         this.scores = new ArrayList<>();
-        this.profit = null;
-    }
-    public Long getProfit() {
-        return this.profit;
     }
     public List<Score> getScores() { return this.scores; }
 

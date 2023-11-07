@@ -14,7 +14,7 @@ class GameManagerTest {
     void testGenerateLotto() {
         int money = 12000;
         gameManager.generateLotto(money);
-        gameManager.printLottos();
+        PrintHandler.printLottos(gameManager.getLottos());
         assertThat(gameManager.getGameSize()).isEqualTo(12);
     }
 }

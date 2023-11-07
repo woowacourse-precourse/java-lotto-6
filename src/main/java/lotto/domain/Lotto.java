@@ -18,8 +18,9 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        List<Integer> sortable = new ArrayList<>(numbers);
+        Collections.sort(sortable);
+        this.numbers = sortable;
     }
 
     private void validateSize(List<Integer> numbers) {

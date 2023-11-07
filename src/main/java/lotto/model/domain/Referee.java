@@ -1,8 +1,16 @@
 package lotto.model.domain;
 
+import lotto.util.validate.DomainValidate;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
+
+
+import static lotto.model.domain.Rank.*;
+import static lotto.util.constant.Constant.*;
+import static lotto.util.validate.DomainValidate.*;
 
 public class Referee {
 
@@ -19,29 +27,30 @@ public class Referee {
     }
 
     public List<Integer> initLottoRank() {
-        List<Integer> lottoRank = new ArrayList<>();
-        for (int i = 0; i <= 5; i++) {
-            lottoRank.add(0);
-        }
-
-        return lottoRank;
+        return IntStream.range(INITIALIZE_NUMBER_MIN, INITIALIZE_NUMBER_MAX)
+                .map(e -> 0)
+                .boxed()
+                .toList();
     }
 
     public void increaseCountForRank(int rank) {
+        validateOutOfRankingIndex(rank);
         int count = this.lottoRank.get(rank);
-        this.lottoRank.set(rank, count + 1);
+        this.lottoRank.set(rank, count + PLUS_RANK);
     }
 
     public void calculateLottoBenefit(int lottoAmount) {
-        int first = lottoRank.get(1) * 2_000_000_000;
-        int second = lottoRank.get(2) * 30_000_000;
-        int third = lottoRank.get(3) * 1_500_000;
-        int fourth = lottoRank.get(4) * 50_000;
-        int fifth = lottoRank.get(5) * 5_000;
+        DomainValidate.validateDivideZeroDenominator(lottoAmount);
+
+        long first = lottoRank.get(FIRST.getRank()) * FIRST.getReward();
+        long second = lottoRank.get(SECOND.getRank()) * SECOND.getReward();
+        long third = lottoRank.get(THIRD.getRank()) * THIRD.getReward();
+        long fourth = lottoRank.get(FOURTH.getRank()) * FOURTH.getReward();
+        long fifth = lottoRank.get(FIFTH.getRank()) * FIFTH.getReward();
 
         long sum = first + second + third + fourth + fifth;
 
-        this.lottoBenefit = (sum * 100 / (double) lottoAmount);
+        this.lottoBenefit = (sum * PERCENTAGE / (double) lottoAmount);
     }
 
     public List<Integer> getWinningNumbers() {

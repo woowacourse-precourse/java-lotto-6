@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.controller.validator.InputValidator;
 import lotto.model.Lotto;
 import lotto.model.WinningLotto;
 import lotto.utils.Parser;

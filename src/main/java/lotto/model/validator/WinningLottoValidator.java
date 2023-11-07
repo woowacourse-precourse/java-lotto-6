@@ -1,6 +1,5 @@
 package lotto.model.validator;
 
-import lotto.constant.ErrorMessage;
 import lotto.constant.LottoConstants;
 import lotto.model.Lotto;
 import lotto.model.WinningLotto;

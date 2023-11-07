@@ -19,7 +19,7 @@ public class LottoManager {
     }
 
     public void ticket() {
-        while (token.canTicket(lottos.size())) {
+        while (token.canTicket(ticketedCount())) {
             lottos.add(new Lotto(pickNumbers()));
         }
     }

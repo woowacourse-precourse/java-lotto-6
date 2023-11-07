@@ -30,6 +30,24 @@ public class InputIntegrationTest extends NsTest {
         );
     }
 
+    @DisplayName("잘못된 당첨 번호를 입력했을 때 예외가 발생하고, 재 입력한다.")
+    @Test
+    void inputWrongWinningNumber() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1000", "1,2,3,4,4,6", "0,1,2,3,4,6", "asd,2,3,4,5,6", "1,2,3,4,5,6,7","1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "1개를 구매했습니다.",
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

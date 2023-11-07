@@ -41,7 +41,7 @@ public class LottoStore {
         return purchaseAmount;
     }
 
-    public List<PlayerLotto> make(final Randoms lottosRandoms) {
+    public List<PlayerLotto> issue(final Randoms lottosRandoms) {
         int ticketAmount = getTicketAmount();
 
         while (true) {

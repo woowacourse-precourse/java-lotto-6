@@ -44,7 +44,7 @@ class LottoStoreTest {
 
         LottoStore lottoStore = new LottoStore();
         lottoStore.purchase(1000);
-        List<PlayerLotto> actual = lottoStore.make(() -> List.of(1, 2, 3, 4, 5, 6));
+        List<PlayerLotto> actual = lottoStore.issue(() -> List.of(1, 2, 3, 4, 5, 6));
 
         assertThat(actual.size()).isEqualTo(1);
         assertThat(actual.get(0).toString()).isEqualTo(expected.toString());

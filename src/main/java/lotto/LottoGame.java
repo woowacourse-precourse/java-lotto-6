@@ -129,6 +129,20 @@ public class LottoGame {
             Prize prize = lotto.calculatePrize(winningNumbers, bonusNumber);
             stats.put(prize, stats.getOrDefault(prize, 0) + 1);
         }
+        printStats(stats, lottos);
+    }
+
+    private static void printStats(Map<Prize, Integer> stats, List<Lotto> lottos) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        for (Prize prize : Prize.values()) {
+            int count = stats.getOrDefault(prize, 0);
+            if (count >= 0 && prize != Prize.NO_PRIZE) {
+                String prizeString = prize.getPrizeString();
+                System.out.printf("%s - %d개%n", prizeString, count);
+            }
+        }
     }
 
 }

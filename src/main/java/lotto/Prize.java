@@ -18,4 +18,7 @@ public enum Prize {
         this.prizeAmount = prizeAmount;
     }
 
+    public String getPrizeString() {
+        return prizeString;
+    }
 }

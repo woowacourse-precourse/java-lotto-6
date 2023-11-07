@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.Map;
 
 public class LotteryResult {
@@ -18,6 +19,10 @@ public class LotteryResult {
     System.out.println(profitPercentage);
 
     return new DecimalFormat(DECIMAL_FORMAT).format(profitPercentage);
+  }
+
+  public Map<WinningMoney, Integer> getStore() {
+    return Collections.unmodifiableMap(store);
   }
 
   private long calculateProfit() {

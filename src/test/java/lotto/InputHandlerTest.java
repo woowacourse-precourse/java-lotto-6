@@ -1,24 +1,9 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import camp.nextstep.edu.missionutils.Console;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-//import static jdk.internal.org.objectweb.asm.util.CheckClassAdapter.verify;
 import static org.assertj.core.api.Assertions.assertThat;
-
-import org.junit.jupiter.api.DisplayName;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 
 public class InputHandlerTest {

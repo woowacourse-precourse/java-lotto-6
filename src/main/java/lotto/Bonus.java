@@ -6,7 +6,6 @@ public class Bonus {
     private final Integer number;
     private final Lotto lotto;
 
-
     public Bonus(Integer number, Lotto lotto) {
         validate(number, lotto);
         this.number = number;

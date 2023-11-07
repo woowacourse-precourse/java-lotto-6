@@ -12,10 +12,13 @@ public class InputView {
     }
 
     public static String inputWinningNumber(){
-        return Validator.checkNullValue(Console.readLine());
+        String winningNumber = Console.readLine();
+        Validator.checkWinningNumberForm(winningNumber);
+        return Validator.checkNullValue(winningNumber);
     }
 
     public static String inputBonusNumber() {
+        String bonusNumber = Console.readLine();
         return Validator.checkNullValue(Console.readLine());
     }
 }

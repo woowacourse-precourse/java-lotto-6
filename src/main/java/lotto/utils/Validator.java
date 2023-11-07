@@ -1,5 +1,6 @@
 package lotto.utils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -68,6 +69,18 @@ public class Validator {
         Long lottoNumberCount = lottoNumber.stream().distinct().count();
         if(lottoNumberCount != lottoNumber.size()){
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 존재합니다.");
+        }
+    }
+
+    public static void checkWinningNumberForm(String input) throws IllegalArgumentException {
+        String[] parts = input.split(",");
+
+        for (String part : parts) {
+            try {
+                int checkNumber = Integer.parseInt(part.trim());
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] 입력 형식에 올바르게 입력되지 않았습니다.");
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.controllers.DongHangLottery;
 import lotto.controllers.LottoStoreManager;
 import lotto.views.LottoView;
 
@@ -14,6 +15,7 @@ public class Application {
         LottoStoreManager controller = new LottoStoreManager();
         LottoView view = new LottoView();
 
+
         System.out.println();
 
         view.lottoTicketCountView(controller.getLottoTicketCount());
@@ -21,6 +23,7 @@ public class Application {
 
         System.out.println();
         getLottoNumberPromptMessage();
-
+        DongHangLottery commander = new DongHangLottery();
+        commander.drawWinningNumbers();
     }
 }

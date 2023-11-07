@@ -35,8 +35,8 @@
     feat - [x] View 사용자 입력 기능(Console)
     feat - [x] Controller 입력된 문자열(당첨 번호) 저장 기능
     feat - [x] Model 저장된 당첨 번호가 구분자 쉼표(,)로 쪼개지지 않으면 IllegalArgumentException을 발생시키는 기능
-    feat - [ ] Controller IllegalArgumentException이 발생하면 [ERROR]로 시작하는 View의 에러 메세지 출력 기능 호출 기능
-    feat - [ ] View “[ERROR] 구분자는 오직 쉼표(,)여야 합니다. 재입력 부탁드립니다.” 예외 메세지 출력 기능
+    feat - [x] Controller IllegalArgumentException이 발생하면 [ERROR]로 시작하는 View의 에러 메세지 출력 기능 호출 기능
+    feat - [x] View “[ERROR] 구분자는 오직 쉼표(,)여야 합니다. 재입력 부탁드립니다.” 예외 메세지 출력 기능
     feat - [ ] Model 저장된 당첨 번호에 중복이 있으면 IllegalArgumentException을 발생시키는 기능
     feat - [ ] Controller IllegalArgumentException이 발생하면 [ERROR]로 시작하는 View의 에러 메세지 출력 기능 호출 기능
     feat - [ ] View “[ERROR] 중복값이 존재합니다. 재입력 부탁드립니다.” 예외 메세지 출력 기능

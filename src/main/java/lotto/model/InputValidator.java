@@ -21,7 +21,7 @@ public class InputValidator {
 
     public static void validateContainsCommaSeparator(String input) {
         if (!containsCommaSeparator(input)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(getCommaSeparatorMissingMessage());
         }
     }
 

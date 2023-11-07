@@ -50,7 +50,6 @@ public class LottoStoreManager {
             getProgramClosePromoptMessage();
         }
         lottoTicketCount = (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
-        InputProcessor.close();
     }
 
     public LottoGenerator lottoMachine() {

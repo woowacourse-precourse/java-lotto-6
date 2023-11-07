@@ -24,8 +24,13 @@ public class MessageManager {
     public static String getValidateNonIntegerMessage() {
         return exceptionMessages.getString("validateNonInteger.message");
     }
+
     public static String getValidateDivisibleByThousandMessage() {
         return exceptionMessages.getString("validateDivisibleByThousand.message");
+    }
+
+    public static String getCommaSeparatorMissingMessage() {
+        return exceptionMessages.getString("commaSeparatorMissing.message");
     }
 
 }

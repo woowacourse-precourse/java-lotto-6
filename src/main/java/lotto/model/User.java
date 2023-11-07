@@ -3,7 +3,6 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.util.LottoCheck;
 import lotto.view.ErrorMessage;
 import lotto.view.InputMessage;
 import lotto.view.OutputMessage;
@@ -13,9 +12,7 @@ public class User {
     private int money;
     private int ticketCount;
     private List<Lotto> lottos;
-    private Lotto winLotto;
-    private int bonusNumber;
-    private LottoCheck winLottoCheck;
+
 
     public void getMoney() {
         System.out.println(InputMessage.INPUT_MONEY.getMsg());
@@ -49,30 +46,9 @@ public class User {
         }
     }
 
-    public void getWinLotto() {
-        System.out.println("\n" + InputMessage.REQUEST_WIN_LOTTO.getMsg());
-        String winLotto = Console.readLine();
-
-        winLottoCheck = new LottoCheck();
-        this.winLotto = new Lotto(winLottoCheck.winLottoErrorCheck(winLotto));
-    }
-
-
-    public void getBonusNumber() {
-        System.out.println("\n" + InputMessage.REQUEST_BONUS_LOTTO.getMsg());
-        String bonusLotto = Console.readLine();
-
-        winLottoCheck = new LottoCheck();
-        this.bonusNumber = winLottoCheck.bonusLottoErrorCheck(bonusLotto);
-    }
-
-    public void countResult() {
+    public void countResult(Result result) {
         for(Lotto lotto: lottos){
-            compareToLotto(winLotto, lotto);
+            result.compareToLotto(lotto);
         }
-    }
-
-    private void compareToLotto(Lotto winLotto, Lotto lotto) {
-
     }
 }

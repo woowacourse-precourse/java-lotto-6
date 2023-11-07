@@ -1,11 +1,13 @@
 package lotto.controller;
 
 import lotto.model.Lotto;
+import lotto.model.Result;
 import lotto.model.User;
 
 public class MainController {
     private static MainController intstance;
     private static User user = new User();
+    private static Result result = new Result();
     private MainController(){}
     public static MainController getIntstance(){
         if(intstance == null){
@@ -19,10 +21,10 @@ public class MainController {
         user.getTicketCount();
         user.getLottosThroughTicketCount();
 
-        user.getWinLotto();
-        user.getBonusNumber();
+        result.getWinLotto();
+        result.getBonusNumber();
 
-        user.countResult();
+        user.countResult(result);
 
     }
 

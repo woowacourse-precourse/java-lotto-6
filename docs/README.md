@@ -24,12 +24,15 @@
 - [x] 구매 개수를 출력하는 기능 구현
 - PurchaseQuantity 구매 개수 반환하는 기능
 - OutputView 구매 개수를 출력
-- [ ] InputView, OutputView 책임 변경 및 메서드 수정
+- [x] InputView, OutputView 책임 변경 및 메서드 수정
 - view 패키지 클래스들에 출력하는 기능만 넣을 거라면, 기본 출력 메서드와 다를게 없다는 생각이 들어 책임을 변경했다.
   - InputView에서는 입력을 받고, 입력을 요구하는 책임을 가지도록 수정
+  - InputView에 구매 금액 입력 기능 추가 
   - OutputView는 처리한 입력값을 변환하여 출력해주는 책임을 가지도록 수정
+  - OutputView에 구매 수량과 객체를 출력하는 기능 추가
+  - InputUtils는 기본적인 타입을 체크하고 입력받는 책임
 - toString()은 객체 자체의 정보를 나타낼때만 사용하기
-- [ ] PurchaseBudget 메서드로 PurchaseQuantity 반환하도록 수정
+- PurchaseBudget 메서드로 PurchaseQuantity 생성해 반환도록 수정
 ## 로또 번호를 발행하고 출력하는 기능
 - [ ] 6자리 로또 번호를 발행하는 기능 구현
 - 숫자 범위 검증
@@ -63,10 +66,8 @@
 
 
 ## 추가 기능
-- [ ] MVC 모방해보기.
-  - InputView에 도메인 생성 로직과 readInt()로 입력받는 로직 분리
-    - InputUtils에 입력받는 로직 분리
-    - Service를 만들어서 도메인 객체를 매핑해서 가져오거나 비즈니스 로직 실행하기
+- [ ] MVC 모방해보기
+  - Service를 만들어서 도메인 객체를 매핑해서 가져오거나 비즈니스 로직 실행하기
 # 전체 체크리스트
 
 ## 공통  피드백 + 커밋 전 확인 사항

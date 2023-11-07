@@ -14,12 +14,18 @@ import java.util.List;
 
 public class Setting {
 
+    private static Setting setting = new Setting();
+
     private Input input = Input.getInput();
     private Output output = Output.getOutput();
     private ProviderRandomValue providerRandomValue;
 
-    public Setting() {
+    private Setting() {
         providerRandomValue = new ProviderRandomValue();
+    }
+
+    public static Setting getSetting() {
+        return setting;
     }
 
     public int purchaseLotto() {
@@ -81,7 +87,7 @@ public class Setting {
         return new Jackpot(jackpot, pickbonus());
     }
 
-    private int pickbonus() {
+    public int pickbonus() {
         output.printMessage(Announcer.LOTTO_BONUS_NUMBER.getMessage());
         return Integer.parseInt(input.inputFromUser());
     }

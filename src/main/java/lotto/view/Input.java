@@ -32,7 +32,7 @@ public class Input {
         try {
             checkBlank(input);
             validateNumber(input);
-            endWithSeperator(input);
+            endWithSeparator(input);
         } catch (IllegalArgumentException e) {
             inputFromUser();
         }
@@ -41,7 +41,7 @@ public class Input {
     private void manageSeperatorInputException(String input) {
         try {
             checkBlank(input);
-            endWithSeperator(input);
+            endWithSeparator(input);
         } catch (IllegalArgumentException e) {
             inputFromUser();
         }
@@ -49,7 +49,7 @@ public class Input {
 
     private void checkBlank(String input) {
         if (input.equals("") || input.equals(" ")) {
-            new InputException(Error.ABLE_NUMBER);
+            new InputException(Error.IS_BRANK);
         }
     }
 
@@ -59,9 +59,9 @@ public class Input {
         }
     }
 
-    private void endWithSeperator(String input) {
+    private void endWithSeparator(String input) {
         if (input.endsWith(",")) {
-            new InputException(Error.ENDS_WITH_SEPERATOR);
+            new InputException(Error.ENDS_WITH_SEPARATOR);
         }
     }
 

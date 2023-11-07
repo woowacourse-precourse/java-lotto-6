@@ -7,8 +7,9 @@ import lotto.exception.LottoException;
 import java.util.List;
 
 public class Lotto {
+
+    private Setting setting = Setting.getSetting();
     private final List<Integer> numbers;
-    private Setting setting;
 
     public Lotto(List<Integer> numbers) {
         manageException(numbers);
@@ -19,8 +20,9 @@ public class Lotto {
         try {
             validateSize(numbers);
             validateDuplication(numbers);
-        } catch (IllegalArgumentException e){
-
+            validateRange(numbers);
+        } catch (IllegalArgumentException e) {
+            setting.pickJackpot();
         }
 
     }
@@ -42,6 +44,17 @@ public class Lotto {
         return numbers.stream()
                 .distinct()
                 .count() != numbers.size();
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        if (!checkRange(numbers)) {
+            new LottoException(Error.INVALID_RANGE);
+        }
+    }
+
+    private boolean checkRange(List<Integer> numbers) {
+        return numbers.stream()
+                .allMatch(num -> num >= 1 && num <= 45);
     }
 
 }

@@ -6,6 +6,8 @@ import java.util.List;
 import lotto.utils.ErrorMessage;
 
 public class InputView {
+    private static final int BONUS_NUMBER_MIN_RANGE = 1;
+    private static final int BONUS_NUMBER_MAX_RANGE = 45;
 
     private InputView() {
     }
@@ -70,11 +72,24 @@ public class InputView {
     }
 
     private static int userBonusNumber() {
-        String input = InputView.userInput();
-        try {
-            return Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_BONUS_ONLY_NUMBER.getMessage());
+        while (true) {
+            try {
+                String input = InputView.userInput();
+                return bonusNumber(input);
+            } catch (NumberFormatException e) {
+                System.out.println(ErrorMessage.USER_INSERT_BONUS_ONLY_NUMBER.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
+
+    private static int bonusNumber(String input) {
+        int bonusNumber = Integer.parseInt(input);
+        if (bonusNumber < BONUS_NUMBER_MIN_RANGE || bonusNumber > BONUS_NUMBER_MAX_RANGE) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE_ERROR.getMessage());
+        }
+        return bonusNumber;
+    }
+
 }

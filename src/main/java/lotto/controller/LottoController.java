@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.view.InputView;
+import lotto.view.Message;
 import lotto.view.OutputView;
 
 import java.util.Arrays;
@@ -25,6 +26,7 @@ public class LottoController {
         Lottos lottos = new Lottos(buyCount);
         printInfo(lottos.getLottos());
         lottos.checkWinningNumbers(parseNumbers(inputView.readWinningNumbers()), inputView.readBonusNumber());
+        Message.displayStatistics();
     }
 
     private void printInfo(List<Lotto> lottos) {

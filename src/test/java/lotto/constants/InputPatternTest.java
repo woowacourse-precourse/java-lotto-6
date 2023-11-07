@@ -37,12 +37,25 @@ class InputPatternTest {
 
     @Test
     @DisplayName("컴마 구분 정규식 상수에 컴마를 구분자로 입력 안하면 true를 반환한다.")
-    void When_InputDivisionComma_Then_True() {
+    void When_InputNotDivisionComma_Then_True() {
         //given
         String givenNotDivisionComma = "1/2/3";
 
         //when
         boolean isNotDivisionComma = InputPattern.isNotDivisionComma(givenNotDivisionComma);
+
+        //then
+        assertTrue(isNotDivisionComma);
+    }
+
+    @Test
+    @DisplayName("컴마 구분 정규식 상수에 문자열을 입력하면 true를 반환한다.")
+    void When_InputTestInDivisionComma_Then_True() {
+        //given
+        String givenDivisionComma = "pobi";
+
+        //when
+        boolean isNotDivisionComma = InputPattern.isNotDivisionComma(givenDivisionComma);
 
         //then
         assertTrue(isNotDivisionComma);
@@ -59,7 +72,5 @@ class InputPatternTest {
 
         //then
         assertFalse(isNotDivisionComma);
-
     }
-
 }

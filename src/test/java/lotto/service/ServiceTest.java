@@ -26,12 +26,22 @@ class ServiceTest {
         }
     }
 
-    @DisplayName("Lotto list가 잘 생성되는지 테스트")
+    @DisplayName("로또 리스트가 잘 생성되는지 테스트")
     @Test
     void 로또_리스트_생성_테스트() {
         int lottoCount = 10;
 
         List<Lotto> lottoList = gameService.createLotto(lottoCount);
         assertEquals(lottoCount, lottoList.size());
+    }
+
+    @DisplayName("당첨 번호 리스트가 잘 생성되는지 테스트")
+    @Test
+    void 당첨_리스트_생성_테스트() {
+        String numbers = "1, 2, 3, 4, 5, 6";
+        List<Integer> expectedList = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+        List<Integer> winNumberList = gameService.generateWinNumber(numbers);
+        assertEquals(winNumberList, expectedList);
     }
 }

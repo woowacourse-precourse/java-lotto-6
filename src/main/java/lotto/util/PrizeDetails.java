@@ -1,6 +1,7 @@
 package lotto.util;
 
 public enum PrizeDetails {
+
     FIRST_PRIZE(6, 0, 1),
     SECOND_PRIZE(5, 1, 2),
     THIRD_PRIZE(5, 0, 3),
@@ -17,7 +18,11 @@ public enum PrizeDetails {
         this.prize = prize;
     }
 
-    public static Integer getPrize(Integer countOfMatchedLottoNumbers, Integer countOfMatchedBonusNumber) {
+    public Integer getPrize() {
+        return prize;
+    }
+
+    public static Integer calculatePrize(Integer countOfMatchedLottoNumbers, Integer countOfMatchedBonusNumber) {
         for (PrizeDetails prizeDetail : PrizeDetails.values()) {
             if (prizeDetail.countOfLottoWinning.equals(countOfMatchedLottoNumbers) &&
                     prizeDetail.countOfBonusWinning.equals(countOfMatchedBonusNumber)) {

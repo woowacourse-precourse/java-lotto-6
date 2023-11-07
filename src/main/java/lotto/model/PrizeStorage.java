@@ -21,7 +21,6 @@ public class PrizeStorage {
     public List<Integer> getPrizeCount() {
         List<Integer> count = new ArrayList<>();
         for(Prize prize : Prize.values()) {
-            System.out.println("테스트 메시지 : " + prize);
             count.add(prizeCount.getOrDefault(prize, 0));
         }
         return count;

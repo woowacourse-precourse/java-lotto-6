@@ -10,7 +10,7 @@ public class WinningLotto {
         bonusNumber = bonus;
     }
 
-    public void validateWinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+    private void validateWinningLotto(Lotto lotto, BonusNumber bonusNumber) {
         isDuplicateWinningLotto(lotto, bonusNumber);
     }
 

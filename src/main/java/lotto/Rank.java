@@ -8,7 +8,8 @@ public enum Rank {
     SECOND_PLACE(5,1,30000000),
     THIRD_PLACE(5,0,1500000),
     FOURTH_PLACE(4,0,50000),
-    FIFTH_PLACE(3,0,5000);
+    FIFTH_PLACE(3,0,5000),
+    NOT_WIN(0,0,0);
 
     private final int hit;
     private final int bonusHit;
@@ -44,6 +45,9 @@ public enum Rank {
     }
 
     static Rank getRank(int hit,int bonus){
+        if(hit<3){
+            return NOT_WIN;
+        }
         return Arrays.asList(Rank.values()).stream()
                 .filter(rank -> rank.getHit()==hit)
                 .filter(rank -> rank.getBonusHit()==bonus)

@@ -15,7 +15,7 @@ public class Application {
     public static void main(String[] args) {
 
         String username = "user0";
-        LottoRandom random = new LottoRandom();
+        LottoRandom random = new MissionLottoRandom();
         LotteryOperator operator = new LotteryOperator();
         LotteryRetailer retailer = new LotteryRetailer(random);
         UserService userService = new UserService();

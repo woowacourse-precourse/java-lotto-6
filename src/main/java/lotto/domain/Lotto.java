@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import lotto.validator.InputValidator;
-import lotto.view.OutputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -45,10 +44,10 @@ public class Lotto {
         }
     }
 
-    public void printNaturalOrder() {
+    public String getNumbersNaturalOrder() {
         List<Integer> naturalOrderNumbers = new ArrayList<>(numbers);
         naturalOrderNumbers.sort(Comparator.naturalOrder());
-        OutputView.printMessage(naturalOrderNumbers.toString());
+        return naturalOrderNumbers.toString();
     }
 
     public List<Integer> getNumbers() {

@@ -9,6 +9,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final List<Lotto> lottos;
@@ -39,7 +40,7 @@ public class LottoController {
 
     public void printLottos() {
         for (Lotto lotto : lottos) {
-            lotto.printNaturalOrder();
+            OutputView.printMessage(lotto.getNumbersNaturalOrder());
         }
     }
 

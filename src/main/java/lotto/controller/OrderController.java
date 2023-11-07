@@ -4,17 +4,19 @@ import lotto.service.OrderService;
 import lotto.view.Input;
 import lotto.view.Output;
 
+
 public class OrderController {
-    OrderService orderLotto;
     Output output;
+    int lottoNumber;
 
     public OrderController(){
         output = new Output();
         getMoney();
-        output.printPurchasedResult(saleLotto());
+        output.printPurchasedResult(lottoNumber);
     }
-    public void getMoney(){
+    private void getMoney(){
         Input input = new Input();
+        OrderService orderLotto = null;
 
         String money;
         boolean checkException = false;
@@ -29,8 +31,10 @@ public class OrderController {
                 output.printError(e.getMessage());
             }
         }
+
+        this.lottoNumber = orderLotto.getLottoNumber();
     }
-    public int saleLotto(){
-        return orderLotto.executeOrder();
+    public int getLottoNumber(){
+        return lottoNumber;
     }
 }

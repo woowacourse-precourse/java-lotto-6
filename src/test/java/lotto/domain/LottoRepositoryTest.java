@@ -32,4 +32,21 @@ class LottoRepositoryTest {
         }
     }
 
+    @Nested
+    @DisplayName("size 메소드 테스트")
+    class Size {
+        @Test
+        void 로또가_저장됨에_따라_올바른_SIZE를_반환하는지_테스트() {
+            LottoRepository lottoRepository1 = new LottoRepository();
+            LottoRepository lottoRepository2 = new LottoRepository();
+            lottoRepository2.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+            lottoRepository2.add(new Lotto(List.of(10, 11, 12, 13, 14, 15)));
+
+            Assertions.assertAll(() -> {
+                assertThat(lottoRepository1.size()).isEqualTo(0);
+                assertThat(lottoRepository2.size()).isEqualTo(2);
+            });
+        }
+    }
+
 }

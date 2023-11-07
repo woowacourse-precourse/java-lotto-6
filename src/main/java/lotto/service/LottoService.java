@@ -1,7 +1,6 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -25,7 +24,9 @@ public class LottoService {
     public List<Lotto> makeLottos(int lottoAmount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoAmount; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
+            ArrayList<Integer> numbers = new ArrayList<>();
+            numbers.addAll(randomNumbers);
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }

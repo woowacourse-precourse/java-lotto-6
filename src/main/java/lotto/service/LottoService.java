@@ -25,8 +25,6 @@ public class LottoService {
         }
     }
 
-
-
     public List<Lotto> getLottoNumbers(int buyAmount) {
         List<Lotto> userLottos = new ArrayList<>();
         for (int i = 0; i < buyAmount; ++i) {
@@ -40,8 +38,6 @@ public class LottoService {
     }
 
     public Map<Rank, Integer> calculateResult(List<Lotto> userLottos, List<Integer> winningNumber, int bonusNumber) {
-
-
         for (Lotto userLotto : userLottos) {
             int matchNumberCount = getMatchNumberCount(userLotto.getNumbers(), winningNumber);
             boolean isMatchBonusNumber = getBonusNumberMatch(userLotto.getNumbers(), bonusNumber);

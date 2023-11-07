@@ -27,7 +27,6 @@ public class LottoController {
         OutputView.printUserLottos(userLottos);
         List<Integer> winningNumber = getWinningNumbers();
         int bonusNumber = getBonusNumber(winningNumber);
-
         Map<Rank, Integer> lottoResult = lottoService.calculateResult(userLottos, winningNumber, bonusNumber);
         OutputView.printLottoResult(lottoResult);
         String revenueRate = lottoService.calculateRevenueRate(buyAmount, lottoResult);

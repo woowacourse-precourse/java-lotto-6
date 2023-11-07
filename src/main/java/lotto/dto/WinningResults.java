@@ -3,6 +3,7 @@ package lotto.dto;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import lotto.domain.lotto.LottoRewardCondition;
 import lotto.domain.money.LottoMoneyCondition;
@@ -11,7 +12,7 @@ public record WinningResults(Map<LottoRewardCondition, Integer> results) {
 
     public static WinningResults createFrom(final List<LottoRewardCondition> rewards) {
         return new WinningResults(rewards.stream()
-                .collect(Collectors.groupingBy(lottoReward -> lottoReward,
+                .collect(Collectors.groupingBy(Function.identity(),
                         Collectors.collectingAndThen(Collectors.counting(), Long::intValue))));
     }
 
@@ -23,18 +24,18 @@ public record WinningResults(Map<LottoRewardCondition, Integer> results) {
     }
 
     public double getProfitRatio() {
-        long totalPrizeMoney = calculateTotalPrizeMoney();
-        int buyingCount = getBuyingCount();
-        return calculateProfitRatio(totalPrizeMoney, buyingCount);
+        long prizeMoney = calculatePrizeMoney();
+        int buyingCount = calculateBuyingCount();
+        return calculateProfitRatio(prizeMoney, buyingCount);
     }
 
-    private int getBuyingCount() {
+    private int calculateBuyingCount() {
         return results.values().stream()
                 .mapToInt(Integer::intValue)
                 .sum();
     }
 
-    private long calculateTotalPrizeMoney() {
+    private long calculatePrizeMoney() {
         return results.entrySet().stream()
                 .mapToLong(result -> result.getValue() * result.getKey().getRewardMoney())
                 .sum();

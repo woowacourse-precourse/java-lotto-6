@@ -31,8 +31,8 @@ public class ThousandUnitMoney {
         return this.amount + money.amount;
     }
 
-    public boolean isSameAmount(int amount) {
-        return this.amount == amount;
+    public int divide(int value) {
+        return this.amount / value;
     }
 
     @Override

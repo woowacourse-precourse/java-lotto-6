@@ -1,11 +1,11 @@
 # 기능 목록
 - [x] 로또를 발행한다. - LottoMachine#generate
   - [x] 구입금액을 입력받는다. (구입 금액에 따라, 1장당 1000원) - LottoMachine#readAmount
-    - [ ] 발행된 복권 리스트 보여주기 - Printer#displayLottos
+    - [ ] 발행된 복권 리스트 보여주기 - Display#Lottos
   - [ ] 당첨번호+보너스번호 입력받기 - LottoMachine#readWinningNumber, LottoMachine#readBonusNumber
 
 - [ ] 로또 번호와 당첨 번호를 비교한다. - Operator#matchNumbers
-- [ ] 당첨내역 및 수익률을 출력한다. - Printer#displayWinningRecords, Printer#displayProfitRate
+- [ ] 당첨내역 및 수익률을 출력한다. - Display#WinningRecords, Display#ProfitRate
   - [ ] 수익률은 소수점 둘째 자리에서 반올림한다.
 
 - [ ] 예외 상황(잘못된 값 입력)시 에러문구를 출력한다. - Lotto#validate

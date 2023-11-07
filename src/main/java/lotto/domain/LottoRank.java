@@ -32,5 +32,19 @@ public enum LottoRank {
         return this.prizeAmount * count;
     }
 
+    public boolean isContainBonusRank() {
+        return this.equals(SECOND);
+    }
 
+    public boolean isNotNothing() {
+        return !this.equals(NOTHING);
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
 }

@@ -81,7 +81,7 @@ public class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("숫자가 아닌 문자가 입력된 경우")
+    @DisplayName("음수가 입력된 경우")
     void 음수_입력() throws Exception{
         //given
         final String number = "-2";
@@ -89,6 +89,6 @@ public class BonusNumberTest {
         //when, then
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).hasMessage(
-                ExceptionMessages.BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
+                ExceptionMessages.BONUS_NUMBER_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.getMessage());
     }
 }

@@ -9,12 +9,18 @@ public class LottoPurchaseInputView {
     private static final String LOTTO_PURCHASE_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
 
     public static int getLottoPurchaseAmount() {
-        System.out.println(LOTTO_PURCHASE_INPUT_MESSAGE);
-        String purchaseAmount = Console.readLine().trim();
-        System.out.println();
-        inputValidate(purchaseAmount);
-        validateLottoPurchaseAmount(purchaseAmount);
-        return Integer.parseInt(purchaseAmount);
+        while (true) {
+            try {
+                System.out.println(LOTTO_PURCHASE_INPUT_MESSAGE);
+                String purchaseAmount = Console.readLine().trim();
+                System.out.println();
+                inputValidate(purchaseAmount);
+                validateLottoPurchaseAmount(purchaseAmount);
+                return Integer.parseInt(purchaseAmount);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static void inputValidate(String inputWinningNumbers) {

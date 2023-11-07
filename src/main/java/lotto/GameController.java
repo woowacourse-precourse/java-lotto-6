@@ -21,13 +21,13 @@ public class GameController {
 
         LottoNumberOutputView.printLottos(lottos);
 
-        List<Integer> winningNumbers = WinningNumbersInputView.getWinningNumbers();
+        Lotto winningNumbers = WinningNumbersInputView.getWinningNumbers();
 
-        int bonusNumber = BonusNumberInputView.getBonusNumber();
+        WinningNumber winningNumberWithBonusNumber = BonusNumberInputView.getWinningNumberWithBonusNumber(
+                winningNumbers);
 
-        WinningNumber winningNumber = new WinningNumber(winningNumbers, bonusNumber);
-        WinningResultOutputView.printResult(lottos, winningNumber);
-        WinningPrizeOutputView.printTotalPrize(lottos, winningNumber, purchaseAmount);
+        WinningResultOutputView.printResult(lottos, winningNumberWithBonusNumber);
+        WinningPrizeOutputView.printTotalPrize(lottos, winningNumberWithBonusNumber, purchaseAmount);
     }
 
     private List<Lotto> getLottos(int purchaseAmount) {

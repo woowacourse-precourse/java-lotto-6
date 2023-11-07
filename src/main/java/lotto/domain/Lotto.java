@@ -1,14 +1,16 @@
 package lotto.domain;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.exception.DuplicateNumberException;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
+        duplicateValidate(numbers);
         this.numbers = numbers;
     }
 
@@ -22,7 +24,17 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
+    private static void duplicateValidate(List<Integer> numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+
+        for (int number : numbers) {
+            if (uniqueNumbers.contains(number)) {
+                throw new DuplicateNumberException();
+            }
+            uniqueNumbers.add(number);
+        }
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

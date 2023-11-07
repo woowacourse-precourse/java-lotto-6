@@ -21,7 +21,7 @@ class WinningNumberTest {
         int bonusNumber = 3;
 
         assertThrows(DuplicateNumberException.class, () -> {
-            new WinningNumber(numbers, bonusNumber);
+            new WinningNumber(new Lotto(numbers), bonusNumber);
         });
     }
 
@@ -33,7 +33,7 @@ class WinningNumberTest {
         numbers.add(3);
         int bonusNumber = 4;
 
-        new WinningNumber(numbers, bonusNumber);
+        new WinningNumber(new Lotto(numbers), bonusNumber);
     }
 
     @Test
@@ -45,7 +45,7 @@ class WinningNumberTest {
         int bonusNumber = 4;
 
         assertThrows(DuplicateNumberException.class, () -> {
-            new WinningNumber(numbers, bonusNumber);
+            new WinningNumber(new Lotto(numbers), bonusNumber);
         });
     }
 

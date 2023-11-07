@@ -10,7 +10,7 @@ public class Buyer {
     private final List<Lotto> lottos;
 
     public Buyer(Long prise) {
-        this.lottos = generateLottos(LottoUtils.getLottoAmout(prise));
+        this.lottos = generateLottos(LottoUtils.getLottoAmount(prise));
         OutputView.buyAmount(lottos.size());
     }
 

@@ -21,9 +21,19 @@ class CalculatorTest {
         assertThat(winningResult.get(SECOND)).isEqualTo(1);
     }
 
+    @Test
+    void calculateProfitRateTest() {
+        Map<Rank, Integer> winningResult = Calculator.classify(winningCounts);
+        int purchaseAmount = 100000;
+        double profitRate = Calculator.calculateProfitRate(winningResult, purchaseAmount);
+        assertThat(profitRate).isEqualTo(30000000 * 100.0 / 100000);
+    }
+
     @BeforeEach
     void setUp() {
         winningCounts = new ArrayList<>();
         winningCounts.add(new WinningCount(5, true));
     }
+
+
 }

@@ -67,6 +67,40 @@ public class Lotto {
                 .collect(Collectors.joining(", ")) + "]";
     }
 
+    public void setWinnerLottoNumbers(Set<Integer> winnerLottoNumbers) {
+        winnerLottoNumbers.addAll(numbers);
+    }
+
+    public WinnerRating judgeWinner(Set<Integer> winnerLottoNumbers, int bonusNumber) {
+        int correctCnt = 0;
+        boolean isContainBonusNumber = false;
+        for (int number : numbers) {
+            if (winnerLottoNumbers.contains(number)) {
+                correctCnt++;
+            }
+            if (number == bonusNumber) {
+                isContainBonusNumber = true;
+            }
+        }
+
+        return calculateRating(correctCnt, isContainBonusNumber);
+    }
+
+    private WinnerRating calculateRating(int correctCnt, boolean isContainBonusNumber) {
+        if (correctCnt == 3) {
+            return WinnerRating.FIFTH;
+        } else if (correctCnt == 4) {
+            return WinnerRating.FOURTH;
+        } else if (correctCnt == 5) {
+            if (isContainBonusNumber) {
+                return WinnerRating.SECOND;
+            }
+            return WinnerRating.THIRD;
+        } else if (correctCnt == 6) {
+            return WinnerRating.FIRST;
+        }
+        return WinnerRating.NO_LUCK;
+    }
 
     public static Lotto issueLotto(List<Integer> numbers) {
         return new Lotto(numbers);

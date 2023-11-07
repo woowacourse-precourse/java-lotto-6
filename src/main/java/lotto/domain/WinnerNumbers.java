@@ -24,6 +24,14 @@ public class WinnerNumbers {
         validateNumbersRange(numbers);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(List<Integer> numbers, int bonusNumber) {
         validateNumbers(numbers);
         validateNumberRange(bonusNumber);

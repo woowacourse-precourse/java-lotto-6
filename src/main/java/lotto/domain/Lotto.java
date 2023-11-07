@@ -5,6 +5,7 @@ import static lotto.util.Censor.validateLotto;
 import java.util.List;
 
 public class Lotto {
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

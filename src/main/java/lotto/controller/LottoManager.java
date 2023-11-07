@@ -41,6 +41,9 @@ public class LottoManager {
             bonusNumber(InputView.bonusNumber());
         }
 
+        OutputView.displayStatistic(ticketService.prizeCount(),
+                ticketService.getPurchaseAmount());
+
     }
 
     private void bonusNumber(String bonusNumber) {

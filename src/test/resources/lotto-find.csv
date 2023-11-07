@@ -1,0 +1,4 @@
+Lotto,Number to find,Does contain
+"1, 2, 3, 4, 5, 6",1,true
+"17, 44, 29, 9, 18, 32",29,true
+"17, 44, 29, 9, 18, 32",20,false

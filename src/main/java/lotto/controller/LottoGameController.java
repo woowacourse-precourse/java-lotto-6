@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.LottoRank;
 import lotto.domain.Lotto;
 import lotto.model.LottoNumberModel;
 import lotto.model.LottoResultModel;
@@ -7,8 +8,9 @@ import lotto.service.LottoGameService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
+
 
 public class LottoGameController {
 
@@ -77,7 +79,22 @@ public class LottoGameController {
     }
 
     private void lottoWinningResultModelAndView(){
-        LottoResultModel lottoResultModel = lottoGameService.lottoWinningResultCalculation(lotto, winningNumber, bonusNumber);
+        List<LottoRank> lottoRanks = lottoGameService.lottoWinningResult(lotto, winningNumber, bonusNumber);
+        BigDecimal totalReturnRate = lottoGameService.totalReturnRateCalculation(lottoRanks);
+        int threeMatch = 0;
+        int fourMatch = 0;
+        int fiveMatch = 0;
+        int fiveBonusMatch = 0;
+        int sixMatch = 0;
+
+        for(LottoRank lottoRank : lottoRanks){
+            if(lottoRank.getRank()==1) sixMatch++;
+            if(lottoRank.getRank()==2) fiveBonusMatch++;
+            if(lottoRank.getRank()==3) fiveMatch++;
+            if(lottoRank.getRank()==4) fourMatch++;
+            if(lottoRank.getRank()==5) threeMatch++;
+        }
+        LottoResultModel lottoResultModel = new LottoResultModel(totalReturnRate.toString(),String.valueOf(threeMatch),String.valueOf(fourMatch),String.valueOf(fiveMatch),String.valueOf(fiveBonusMatch),String.valueOf(sixMatch));
         outputView.lottoResultDisplay(lottoResultModel);
     }
 

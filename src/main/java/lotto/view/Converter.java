@@ -16,7 +16,6 @@ public class Converter {
 
     public static List<Integer> stringToListInteger(String number) {
         List<String> stringNumbers = Arrays.stream(number.split(",")).toList();
-
         try {
             return stringNumbers.stream()
                     .map(Integer::parseInt)

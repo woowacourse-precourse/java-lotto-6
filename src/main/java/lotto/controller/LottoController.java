@@ -8,8 +8,6 @@ import lotto.ui.OutputView;
 import java.util.List;
 import java.util.Map;
 
-import static lotto.domain.constant.ExceptionMessage.UNMODIFIABLE_LIST;
-
 public class LottoController {
 
     private final InputView inputView;
@@ -23,40 +21,52 @@ public class LottoController {
     }
 
     public void run() {
-        try {
-            generateLottos();
+        generateLottos();
 
-            generateWinningLotto();
+        generateWinningLotto();
 
-            getLottoResults();
-        } catch (IllegalArgumentException e) {
-            outputView.printException(e.getMessage());
-        } catch (UnsupportedOperationException e) {
-            outputView.printException(UNMODIFIABLE_LIST.getErrorMessage());
-        }
+        getLottoResults();
     }
 
     public void generateLottos() {
-        String moneyInput = inputView.inputMoney();
-        List<List<Integer>> lottos = lottoService.generateLottos(moneyInput);
-        int purchaseLottoCount = lottoService.getPurchaseLottoCount();
+        try {
+            String moneyInput = inputView.inputMoney();
+            List<List<Integer>> lottos = lottoService.generateLottos(moneyInput);
+            int purchaseLottoCount = lottoService.getPurchaseLottoCount();
 
-        outputView.printPurchaseCount(purchaseLottoCount);
-        outputView.printGenerateLottos(lottos);
+            outputView.printPurchaseCount(purchaseLottoCount);
+            outputView.printGenerateLottos(lottos);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+
+            generateLottos();
+        }
     }
 
     public void generateWinningLotto() {
-        List<String> lottoInput = inputView.inputWinningNumbers();
-        String bonusInput = inputView.inputBonusNumber();
+        try {
+            List<String> lottoInput = inputView.inputWinningNumbers();
+            String bonusInput = inputView.inputBonusNumber();
 
-        lottoService.createWinningLotto(lottoInput, bonusInput);
+            lottoService.createWinningLotto(lottoInput, bonusInput);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+
+            generateWinningLotto();
+        }
     }
 
     public void getLottoResults() {
-        Map<LottoPrize, Integer> lottoPrizeHistory = lottoService.getLottoResults();
-        double profitRate = lottoService.getProfitRate();
+        try {
+            Map<LottoPrize, Integer> lottoPrizeHistory = lottoService.getLottoResults();
+            double profitRate = lottoService.getProfitRate();
 
-        outputView.printLottoResults(lottoPrizeHistory);
-        outputView.printProfitRate(profitRate);
+            outputView.printLottoResults(lottoPrizeHistory);
+            outputView.printProfitRate(profitRate);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+
+            getLottoResults();
+        }
     }
 }

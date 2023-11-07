@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Domain;
 
 public enum WinningRank {
     ALL(6, 2000000000),

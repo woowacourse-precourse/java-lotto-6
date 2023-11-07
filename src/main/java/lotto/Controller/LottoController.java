@@ -1,13 +1,15 @@
-package lotto;
+package lotto.Controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Lotto;
+import lotto.WinningStatistics;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoGame {
+public class LottoController {
 
     private static final int LOTTO_PRICE = 1000;
 
@@ -40,7 +42,7 @@ public class LottoGame {
         return lottos;
     }
 
-    private static List<Integer> getWinningNumbers() {
+    public static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] numbertmp = Console.readLine().split(",");
         List<Integer> numbers = new ArrayList<>();
@@ -50,12 +52,12 @@ public class LottoGame {
         return numbers;
     }
 
-    private static int getBonusNumber() {
+    public static int getBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine());
     }
 
-    private static void printLottos(List<Lotto> lottos) {
+    public static void printLottos(List<Lotto> lottos) {
         System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottos) {
@@ -64,7 +66,7 @@ public class LottoGame {
         System.out.println();
     }
 
-    private static void printWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static void printWinningStatistics(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         WinningStatistics statistics = new WinningStatistics(lottos, winningNumbers, bonusNumber);
         System.out.println("당첨 통계");
         System.out.println("---");

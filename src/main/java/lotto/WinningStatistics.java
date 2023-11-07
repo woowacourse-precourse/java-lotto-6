@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.Domain.WinningRank;
+
 import java.util.List;
 
 public class WinningStatistics {
@@ -95,7 +97,6 @@ public class WinningStatistics {
                 countMatchingFive() * WinningRank.FIVE.getPrize() +
                 countMatchingFiveBonus() * WinningRank.FIVE_BONUS.getPrize() +
                 countMatchingAll() * WinningRank.ALL.getPrize();
-        System.out.println(WinningRank.THREE.getPrize());
         return (double) totalPrize / (lottos.size() * 1000) * 100;
     }
 

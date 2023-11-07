@@ -7,6 +7,7 @@ public enum LottoConstraint {
     LOTTO_NUMBER_COUNT(6),
     MIN_LOTTO_NUMBER(1),
     MAX_LOTTO_NUMBER(45),
+    DECIDED_RANK_BY_BONUS_NUMBER(5)
     ;
 
     private final int value;

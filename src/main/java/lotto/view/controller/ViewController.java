@@ -15,4 +15,12 @@ public class ViewController {
         this.viewInputService = viewInputService;
         this.viewOutputService = viewOutputService;
     }
+
+    public int inputPurchaseAmount() {
+        // 당첨 금액 입력 요구 메세지
+        viewInputService.printMessagePurchaseAmount();
+        // 당첨 금액 입력
+        return viewInputService.inputPurchaseAmount();
+    }
+
 }

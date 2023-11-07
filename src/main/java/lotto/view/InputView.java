@@ -11,29 +11,19 @@ public class InputView {
     private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public int inputPurchaseAmount() {
-        while (true) {
-            try {
-                System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
-                String purchaseAmount = Console.readLine();
-                System.out.println();
-                InputPurchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
-                return ConverterUtil.convertStringToInt(purchaseAmount);
-            } catch (IllegalArgumentException e) {
-            }
-        }
+        System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
+        String purchaseAmount = Console.readLine();
+        System.out.println();
+        InputPurchaseAmountValidator.validatePurchaseAmount(purchaseAmount);
+        return ConverterUtil.convertStringToInt(purchaseAmount);
     }
 
     public String inputWinningNumber() {
-        while (true) {
-            try {
-                System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
-                String winningNumber = Console.readLine();
-                System.out.println();
-                InputWinningNumberValidator.validateWinningNumber(winningNumber);
-                return winningNumber;
-            } catch (IllegalArgumentException e) {
-            }
-        }
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+        String winningNumber = Console.readLine();
+        System.out.println();
+        InputWinningNumberValidator.validateWinningNumber(winningNumber);
+        return winningNumber;
     }
 
     public int inputBonusNumber() {

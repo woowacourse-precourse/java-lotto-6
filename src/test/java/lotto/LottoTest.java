@@ -49,4 +49,30 @@ class LottoTest {
         Assertions.assertThat(lottoOne).isEqualTo(checkOne);
         Assertions.assertThat(lottoTwo).isEqualTo(checkTwo);
     }
+    @DisplayName("사용자의 로또 번호 중 당첨번호가 없을경우")
+    @ParameterizedTest
+    @ValueSource(ints = {1,5,7,8,9,11})
+    public void 당첨번호가_없을경우(int number){
+        //given
+        List<Integer> numbers = new ArrayList<>(List.of(2,3,24,34,25,45));
+
+        //when
+        Lotto lotto = new Lotto(numbers);
+        boolean check = lotto.checkUserAndLottoNumbers(numbers,number);
+        //then
+        Assertions.assertThat(check).isFalse();
+    }
+    @DisplayName("사용자의 로또 번호 중 당첨번호가 있을경우")
+    @ParameterizedTest
+    @ValueSource(ints = {1,5,7,8,9,11})
+    public void 당첨번호가_있을경우(int number){
+        //given
+        List<Integer> numbers = new ArrayList<>(List.of(1,5,7,8,9,11));
+
+        //when
+        Lotto lotto = new Lotto(numbers);
+        boolean check = lotto.checkUserAndLottoNumbers(numbers,number);
+        //then
+        Assertions.assertThat(check).isTrue();
+    }
 }

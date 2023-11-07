@@ -17,6 +17,7 @@ public class LottoController {
         getWinningLotto(inputWinningNumber());
 
 
+
     }
 
     private LottoAmount inputAmount() {

@@ -21,6 +21,11 @@ public class GameController {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
+    public void startGame() {
+        init();
+        doGame();
+    }
+
     private void doGame() {
         printer.countOfLotto(money / CommonUnits.MONEY_UNIT);
         printer.allLotto(pocket.getLottos().stream().map(LottoNumberDTO::new)

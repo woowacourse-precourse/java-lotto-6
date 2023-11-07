@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public enum Rank {
-
     NONE(0, false, 0, "0개 일치 (0원)"),
     FIFTH(3, false, 5000, "3개 일치 (5,000원)"),
     FOURTH(4, false, 50000, "4개 일치 (50,000원)"),
@@ -12,13 +11,15 @@ public enum Rank {
     SECOND(5, true, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     FIRST(6, false, 2000000000, "6개 일치 (2,000,000,000원)");
 
-    private final int matchingBall;
+    private static final int MATCHING_COUNTS_DISTINGUISH_SECOND_FROM_THIRD = 5;
+
+    private final int countsOfMatchingLottoNumber;
     private final boolean bonusBall;
     private final int prize;
     private final String message;
 
-    Rank(int matchingBall, boolean bonusBall, int prize, String message) {
-        this.matchingBall = matchingBall;
+    Rank(int countsOfMatchingLottoNumber, boolean bonusBall, int prize, String message) {
+        this.countsOfMatchingLottoNumber = countsOfMatchingLottoNumber;
         this.bonusBall = bonusBall;
         this.prize = prize;
         this.message = message;
@@ -32,32 +33,36 @@ public enum Rank {
         return rank.message;
     }
 
-    public static Rank calculateRank(Lotto lotto, WinningLotto winningLotto, Bonus bonus) {
-        List<Integer> lottoNumbers = lotto.getNumbers();
+    public static Rank calculateWinningRank(RandomLotto randomLotto, WinningLotto winningLotto, Bonus bonus) {
+        List<Integer> randomLottoNumbers = randomLotto.getNumbers();
         List<Integer> winningLottoNumbers = winningLotto.getWinningLotto().getNumbers();
+        int matchingCounts = 0;
+        boolean isMatchingBonus = false;
 
-        int winningCount = 0;
-        boolean isBonus = false;
-
-        for (int number : lottoNumbers) {
-            if (winningLottoNumbers.contains(number)) {
-                winningCount++;
+        for (int randomLottoNumber : randomLottoNumbers) {
+            if (winningLottoNumbers.contains(randomLottoNumber)) {
+                matchingCounts++;
             }
         }
-        if (winningCount == 5) {
-            isBonus = lottoNumbers.contains(bonus.getBonusNumber());
+        if (isDistinguishSecondFromThird(matchingCounts)) {
+            isMatchingBonus = isSecondRank(randomLottoNumbers, bonus);
         }
-        //System.out.println(winningCount+ "" +isBonus);
-        return getRank(winningCount, isBonus);
+        return getRank(matchingCounts, isMatchingBonus);
     }
 
-    private static Rank getRank(int winningCount, boolean isBonus) {
-        Rank[] ranks = Rank.values();
+    private static boolean isDistinguishSecondFromThird(int matchingCounts) {
+        return matchingCounts == MATCHING_COUNTS_DISTINGUISH_SECOND_FROM_THIRD;
+    }
 
-        //System.out.println(ranks);
+    private static boolean isSecondRank(List<Integer> randomLottoNumbers, Bonus bonus) {
+        return randomLottoNumbers.contains(bonus.getBonusNumber());
+    }
+
+    private static Rank getRank(int matchingCounts, boolean isMatchingBonus) {
+        Rank[] ranks = Rank.values();
         return Stream.of(ranks)
-                .filter(rank -> rank.matchingBall == winningCount)
-                .filter(rank -> rank.bonusBall == isBonus)
+                .filter(rank -> rank.countsOfMatchingLottoNumber == matchingCounts)
+                .filter(rank -> rank.bonusBall == isMatchingBonus)
                 .findAny()
                 .orElse(NONE);
     }

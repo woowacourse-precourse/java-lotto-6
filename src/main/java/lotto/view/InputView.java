@@ -37,6 +37,10 @@ public class InputView {
         return stringToInt(input);
     }
 
+    public void closeInputConsole() {
+        Console.close();
+    }
+
     private List<Integer> stringListToIntList(List<String> before) {
         return before.stream()
                 .map(this::stringToInt)

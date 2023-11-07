@@ -28,7 +28,7 @@ public class Game {
 
         Lotto winningLotto = requestWinningLotto();
         Bonus bonusLotto = requestBonusLotto();
-        // TODO: close input console!
+        inputView.closeInputConsole();
     }
 
     private int requestPurchasePrice() {

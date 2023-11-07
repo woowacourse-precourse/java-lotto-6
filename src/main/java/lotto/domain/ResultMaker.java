@@ -8,6 +8,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class ResultMaker {
+    private static final int LESS_THAN_THOUSAND = 6;
+    private static final int DECIMAL_POINT = 2;
     private final LottoBundle bundle;
     private final SelectedLotto selectedLottos;
     private final Map<Rank, Integer> lottoResult = new HashMap<>();
@@ -41,13 +43,13 @@ public class ResultMaker {
     }
 
     private String formattingNumber(String rawNumber) {
-        if (rawNumber.length() < 6) {
+        if (rawNumber.length() < LESS_THAN_THOUSAND) {
             return rawNumber;
         }
         StringBuilder formattedNumber = new StringBuilder(rawNumber);
-        for (int i = 0; i < rawNumber.length() - 2; i++) {
+        for (int i = 0; i < rawNumber.length() - DECIMAL_POINT; i++) {
             if (i % 3 == 0 && i != 0) {
-                formattedNumber.insert(rawNumber.length() - 2 - i, ",");
+                formattedNumber.insert(rawNumber.length() - DECIMAL_POINT - i, ",");
             }
         }
         return formattedNumber.toString();
@@ -70,8 +72,7 @@ public class ResultMaker {
     private double counting(Lotto lotto) {
         List<Integer> answerLottos = selectedLottos.getSelectedNumbers();
         int bonus = selectedLottos.getBonus();
-        double corrects = 0;
-        corrects = lotto.compareWithSelected(answerLottos);
+        double corrects = lotto.compareWithSelected(answerLottos);
         if (corrects == Rank.THIRD_PLACE.getCorrects() && lotto.findBonus(bonus)) {
             corrects = Rank.SECOND_PLACE.getCorrects();
         }

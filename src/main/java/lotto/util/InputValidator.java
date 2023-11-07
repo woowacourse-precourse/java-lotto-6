@@ -14,16 +14,14 @@ public class InputValidator {
     private static final String regEx = "^[0-9]*$";
     private static final String SEPARATOR = ",";
 
-    public int validateMoney(String price) {
+    public void validateMoney(String price) {
         validateInputEmpty(price);
         validateInputBlank(price);
         validateNonNumberInput(price);
         validatePriceDivideBy1000(price);
-
-        return Integer.parseInt(price);
     }
 
-    public List<Integer> validateAnswerNumbers(String answer) {
+    public void validateHitNumbers(String answer) {
         validateInputEmpty(answer);
         validateInputBlank(answer);
         validateInputForm(answer);
@@ -33,8 +31,6 @@ public class InputValidator {
         validateAnswerElements(splitAnswer);
         Set<String> duplicateRemovedAnswer = convertListToSet(splitAnswer);
         validateDuplicatedNumber(duplicateRemovedAnswer);
-
-        return convertStringListToIntegerList(splitAnswer);
     }
 
     public void validateBonusNumber(String input, HitNumbers hitNumbers) {
@@ -127,12 +123,6 @@ public class InputValidator {
 
     private List<String> convertStringToList(String answer) {
         return Arrays.stream(answer.split(SEPARATOR))
-                .collect(Collectors.toList());
-    }
-
-    private List<Integer> convertStringListToIntegerList(List<String> preConvert) {
-        return preConvert.stream()
-                .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
 

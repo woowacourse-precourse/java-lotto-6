@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
+import lotto.dto.Lottos;
 import lotto.dto.WinningNumbers;
 import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
@@ -15,7 +16,7 @@ public class Game {
         Cash cash = getCash();
 
         // 구매 로또 출력
-        List<Lotto> lottos = getLottos(cash);
+        Lottos lottos = getLottos(cash);
         OutputView.displayLottos(lottos);
 
         // 당첨 번호, 보너스 번호 입력
@@ -45,7 +46,7 @@ public class Game {
         }
     }
 
-    private List<Lotto> getLottos(Cash cash) {
+    private Lottos getLottos(Cash cash) {
         LottoSeller lottoSeller = new LottoSeller(new LottoNumberGenerator());
         Customer customer = new Customer(cash, lottoSeller);
         return customer.purchaseLottos();
@@ -83,7 +84,7 @@ public class Game {
         }
     }
 
-    private List<Rank> getRanks(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    private List<Rank> getRanks(Lottos lottos, WinningNumbers winningNumbers) {
         WinningRanks winningRanks = new WinningRanks(lottos, winningNumbers);
         return winningRanks.calculateRanks();
     }

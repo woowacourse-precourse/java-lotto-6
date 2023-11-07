@@ -1,22 +1,23 @@
 package lotto.domain;
 
+import lotto.dto.Lottos;
 import lotto.dto.WinningNumbers;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WinningRanks {
-    private final List<Lotto> lottos;
+    private final Lottos lottos;
     private final WinningNumbers winningNumbers;
 
-    public WinningRanks(List<Lotto> lottos, WinningNumbers winningNumbers) {
+    public WinningRanks(Lottos lottos, WinningNumbers winningNumbers) {
         this.lottos = lottos;
         this.winningNumbers = winningNumbers;
     }
 
     public List<Rank> calculateRanks() {
         List<Rank> ranks = new ArrayList<>();
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
             Rank rank = generateRank(lotto);
             ranks.add(rank);
         }

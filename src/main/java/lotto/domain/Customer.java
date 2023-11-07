@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.List;
+import lotto.dto.Lottos;
 
 public class Customer {
     private final Cash cash;
@@ -11,7 +11,7 @@ public class Customer {
         this.lottoSeller = lottoSeller;
     }
 
-    public List<Lotto> purchaseLottos() {
+    public Lottos purchaseLottos() {
         return lottoSeller.sellLottos(cash);
     }
 }

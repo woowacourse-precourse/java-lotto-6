@@ -14,7 +14,7 @@ class LottoSellerTest {
     void createLottoByCash() {
         Cash cash = new Cash(3000);
 
-        assertThat(lottoSeller.sellLottos(cash).size()).isEqualTo(3);
+        assertThat(lottoSeller.sellLottos(cash).getSize()).isEqualTo(3);
     }
 
 }

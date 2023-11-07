@@ -19,6 +19,6 @@ class CustomerTest {
         customer.purchaseLottos();
 
         // then
-        assertThat(customer.purchaseLottos().size()).isEqualTo(3);
+        assertThat(customer.purchaseLottos().getSize()).isEqualTo(3);
     }
 }

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.dto.Lottos;
 import lotto.dto.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class WinningRanksTest {
         Lotto winningLotto = new Lotto(List.of(34, 21, 22, 43, 15, 7));
         BonusNumber bonusNumber = new BonusNumber(10);
         WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
-        WinningRanks winningRanks = new WinningRanks(lottos, winningNumbers);
+        WinningRanks winningRanks = new WinningRanks(new Lottos(lottos), winningNumbers);
 
         // when
         List<Rank> ranks = winningRanks.calculateRanks();

@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.domain.WinningYield;
+import lotto.dto.Lottos;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -11,8 +12,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
-    public static void displayLottos(List<Lotto> lottos) {
-        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
+    public static void displayLottos(Lottos lottos) {
+        System.out.println("\n" + lottos.getSize() + "개를 구매했습니다.");
         printLottos(lottos);
     }
 
@@ -55,8 +56,8 @@ public class OutputView {
         return rank == Rank.SECOND;
     }
 
-    private static void printLottos(List<Lotto> lottos) {
-        for (Lotto lotto : lottos) {
+    private static void printLottos(Lottos lottos) {
+        for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto.getNumbers());
         }
     }

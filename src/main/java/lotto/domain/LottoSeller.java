@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.dto.Lottos;
 import lotto.util.LottoNumberGenerator;
 
 import java.util.List;
@@ -13,15 +14,16 @@ public class LottoSeller {
         this.lottoNumberGenerator = lottoNumberGenerator;
     }
 
-    public List<Lotto> sellLottos(Cash cash) {
+    public Lottos sellLottos(Cash cash) {
         Integer lottoCounts = cash.calculateNumberOfLottos();
         return createLottos(lottoCounts);
     }
 
-    private List<Lotto> createLottos(Integer lottoCounts) {
-        return Stream.generate(this::generateLotto)
+    private Lottos createLottos(Integer lottoCounts) {
+        List<Lotto> lottos = Stream.generate(this::generateLotto)
                 .limit(lottoCounts)
                 .toList();
+        return new Lottos(lottos);
     }
 
     private Lotto generateLotto() {

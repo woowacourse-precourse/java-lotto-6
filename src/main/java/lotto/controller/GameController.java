@@ -39,6 +39,8 @@ public class GameController {
             compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
         } catch (IllegalStateException e) {
             outputView.printErrorMessage(e);
+        } finally {
+            inputView.close();
         }
     }
 

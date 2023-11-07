@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.validate.Validator;
 import lotto.view.LottoView;
 
 public class LottoController {
@@ -12,7 +13,16 @@ public class LottoController {
 
     public int inputPurchaseMoney() {
         lottoView.printPurchasePrompt();
-        int purchaseMoney = Integer.parseInt(Console.readLine());
-        return purchaseMoney;
+        String purchaseMoney = "";
+        while(true) {
+            try{
+                purchaseMoney = Console.readLine();
+                Validator.validatePurchaseMoney(purchaseMoney);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return Integer.parseInt(purchaseMoney);
     }
 }

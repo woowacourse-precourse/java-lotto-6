@@ -6,6 +6,7 @@ public class Player {
     private int  MyTicketCount;
 
     public int payTicketPrice(){
+        System.out.println("구입금액을 입력해 주세요.");
         String ticketPriceInput = readLine();
         validateTicketPrice(ticketPriceInput);
         this.ticketPrice = Integer.parseInt(ticketPriceInput);
@@ -29,5 +30,9 @@ public class Player {
     public int getMyTicketCount(){
         this.MyTicketCount = this.ticketPrice/1000;
         return this.MyTicketCount;
+    }
+
+    public void printMyTicketCount(){
+        System.out.println("\n"+this.MyTicketCount+"개를 구매했습니다.");
     }
 }

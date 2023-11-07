@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Picker {
-    private List<Integer> winNumbers;
+    private List<Integer> winNumbers = new ArrayList<Integer>();
     private Integer winBonusNumber;
 
     public List<Integer> generateWinNumbers(){
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String winNumbersInput = readLine();
         validateWinNumbers(winNumbersInput);
 
@@ -46,6 +47,7 @@ public class Picker {
     }
 
     public int generateWinBonusNumber(){
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         String winBonusNumberInput = readLine();
         validateWinBonusNumber(winBonusNumberInput);
         this.winBonusNumber = Integer.parseInt(winBonusNumberInput);

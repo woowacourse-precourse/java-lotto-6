@@ -31,4 +31,9 @@ public class Lotto {
         }
         return this.winCount;
     }
+
+    @Override
+    public String toString() {
+        return numbers.toString() ;
+    }
 }

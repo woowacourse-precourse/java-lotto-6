@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import lotto.util.Convertor;
+import lotto.util.Validator;
 
 public class Money {
 
@@ -9,24 +11,9 @@ public class Money {
     private final int UNIT = 1000;
 
     public Money(String inputMoney) {
-        int money = convertToInt(inputMoney);
-        validateUnit(money);
+        int money = Convertor.getInstance().convertToInt(inputMoney);
+        Validator.getInstance().validateMoney(money);
         this.money = money;
-    }
-
-    private int convertToInt(String money) {
-        try {
-            return Integer.parseInt(money);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 금액은 숫자여야 합니다.");
-        }
-    }
-
-    private void validateUnit(int money) {
-        if (money % UNIT != 0 || money == 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 1000원 단위여야 합니다.");
-        }
-
     }
 
     public int calculateTicket() {

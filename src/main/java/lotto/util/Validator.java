@@ -27,9 +27,24 @@ public class Validator {
         }
     }
 
-    public static void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) throws IllegalArgumentException {
+    public static void validateBonusNumberDuplicate(List<Integer> winningNumbers, int bonusNumber) throws IllegalArgumentException {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE);
         }
+    }
+
+    public static void validateRangeOfNumbers(List<Integer> winningNumbers) throws IllegalArgumentException {
+        for (int number : winningNumbers) {
+            if (!(1 <= number && number <= 45)) {
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE);
+            }
+        }
+    }
+
+    public static void validateRangeOfNumbers(List<Integer> winningNumbers, int bonusNumber) throws IllegalArgumentException {
+        if (!(1 <= bonusNumber && bonusNumber <= 45)) {
+            throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE);
+        }
+        validateRangeOfNumbers(winningNumbers);
     }
 }

@@ -1,6 +1,9 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+
+import static lotto.util.Validator.validateRangeOfNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +17,12 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (new HashSet<>(numbers).size() != 6) {
+            throw new IllegalArgumentException();
+        }
+
+        validateRangeOfNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {

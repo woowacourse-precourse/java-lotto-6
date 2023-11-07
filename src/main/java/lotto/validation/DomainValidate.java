@@ -26,4 +26,10 @@ public class DomainValidate {
             throw new IllegalArgumentException(ErrorMessage.NOT_ENOUGH_BONUS.getMessage());
         }
     }
+
+    public static void validateNegativeMoney(int money) {
+        if (money < 0) {
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NEGATIVE_NUMBER.getMessage());
+        }
+    }
 }

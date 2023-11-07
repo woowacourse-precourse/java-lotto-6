@@ -35,4 +35,10 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개로 입력해야 합니다.");
         }
     }
+
+    public static void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
+        }
+    }
 }

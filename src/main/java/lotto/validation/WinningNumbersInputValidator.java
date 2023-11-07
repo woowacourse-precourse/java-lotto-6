@@ -65,7 +65,13 @@ public class WinningNumbersInputValidator {
         return numbers.length != COUNT_NUMBERS.getNumber();
     }
 
+    public void validateInputNumbersNumericFormat(String input) {
+        List<String> numbers = stringToCollection(input);
+        numbers.forEach(CommonErrorValidator::validateInputNumericFormat);
+    }
+
     public void validateWinningNumbers(String input) {
+        validateInputNumbersNumericFormat(input);
         validateNumberRange(input);
         validateCommaSeparatedNumbers(input);
         validateNumberDuplication(input);

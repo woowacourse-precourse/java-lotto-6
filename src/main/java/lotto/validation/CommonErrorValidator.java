@@ -33,13 +33,13 @@ public class CommonErrorValidator {
         return input.trim().isEmpty();
     }
 
-    public void validateInputNumericFormat(String input) {
+    public static void validateInputNumericFormat(String input) {
         if (isNotNumericFormat(input)) {
             throw new IllegalArgumentException(NUMERIC_FORMAT_MESSAGE.getMessage());
         }
     }
 
-    private boolean isNotNumericFormat(String input) {
+    private static boolean isNotNumericFormat(String input) {
         return !input.chars().allMatch(Character::isDigit);
     }
 

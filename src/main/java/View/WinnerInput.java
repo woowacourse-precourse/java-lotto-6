@@ -17,30 +17,36 @@ public class WinnerInput {
     public static List<Integer> getWinner() {
         try {
             System.out.println("당첨 번호를 입력해 주세요.");
-            List<String> temp= Arrays.asList(Console.readLine().split(","));
+            List<String> temp = Arrays.asList(Console.readLine().split(","));
             for (String s : temp) {
                 winnerCode.add(parseInt(s));
             }
-            if (winnerCode.size()!=6){
-                throw new IllegalArgumentException();
-            }
-            checkRange(winnerCode);
-        }catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
             getWinner();
-        }
-
-        catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            System.out.println(ERROR_MESSAGE.WRONG_COUNTS);
-            getWinner();
+        }finally{
+            checkCounts();
+            checkRange();
         }
         return winnerCode;
 
     }
 
-    private static List<Integer> checkRange(List<Integer> winnerCode) {
+    private static void checkCounts() {
+        try{
+            if(winnerCode.size()!=6) {
+                throw new IllegalArgumentException();
+            }
+        }
+        catch(IllegalArgumentException e){
+            e.printStackTrace();
+            System.out.println(ERROR_MESSAGE.WRONG_COUNTS);
+            getWinner();
+        }
+    }
+
+    private static void checkRange() {
         try {
             if (Collections.min(winnerCode) <=0 || Collections.max(winnerCode)>46){
                 throw new IllegalArgumentException();
@@ -48,8 +54,7 @@ public class WinnerInput {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
-            return getWinner();
+            getWinner();
         }
-        return winnerCode;
     }
 }

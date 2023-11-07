@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.utils.Utils;
 import lotto.utils.Validation;
 
 
@@ -9,7 +10,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = Utils.sortListAscending(numbers);
     }
 
     private void validate(List<Integer> numbers) {

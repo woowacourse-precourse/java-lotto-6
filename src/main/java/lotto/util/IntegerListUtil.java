@@ -10,7 +10,6 @@ public class IntegerListUtil {
 
     public static List<Integer> parseListseperatedBy(String input, String seperateStandard) {
         return Arrays.stream(input.split(seperateStandard))
-                .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .map(IntegerUtil::trimAndParseInt)
                 .collect(Collectors.toList());

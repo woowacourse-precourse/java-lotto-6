@@ -24,6 +24,11 @@ public class Lotto {
             .count();
     }
     
+//    로또 번호가 포함되어 있는지 확인하는 메서드 추가
+    public boolean contains(int number) {
+        return this.numbers.contains(number);
+    }
+    
     @Override
     public String toString() {
         return numbers.toString();

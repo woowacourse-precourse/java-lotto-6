@@ -24,20 +24,42 @@ public class Application {
         List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
             .map(Integer::parseInt)
             .collect(Collectors.toList());
-        WinningLotto winningLotto = new WinningLotto(winningNumbers);
         
-        Map<Integer, Integer> matchCount = new HashMap<>();
+        System.out.println("보너스 볼을 입력해 주세요.");
+        int bonusBall = Integer.parseInt(Console.readLine());
+        
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusBall);
+        
+        Map<String, Integer> matchCount = new HashMap<>();
+        matchCount.put("3개 일치 (5,000원)", 0);
+        matchCount.put("4개 일치 (50,000원)", 0);
+        matchCount.put("5개 일치 (1,500,000원)", 0);
+        matchCount.put("5개 일치, 보너스 볼 일치(30,000,000원)", 0);
+        matchCount.put("6개 일치 (2,000,000,000원)", 0);
+        
         for (Lotto lotto : lottos) {
             int count = lotto.countMatchedNumbers(winningLotto.getLotto());
-            matchCount.put(count, matchCount.getOrDefault(count, 0) + 1);
+            if (count == 6) {
+                matchCount.put("6개 일치 (2,000,000,000원)", matchCount.get("6개 일치 (2,000,000,000원)") + 1);
+            } else if (count == 5) {
+                if (winningLotto.isSecondRank(lotto)) {
+                    matchCount.put("5개 일치, 보너스 볼 일치(30,000,000원)", matchCount.get("5개 일치, 보너스 볼 일치(30,000,000원)") + 1);
+                } else {
+                    matchCount.put("5개 일치 (1,500,000원)", matchCount.get("5개 일치 (1,500,000원)") + 1);
+                }
+            } else if (count == 4) {
+                matchCount.put("4개 일치 (50,000원)", matchCount.get("4개 일치 (50,000원)") + 1);
+            } else if (count == 3) {
+                matchCount.put("3개 일치 (5,000원)", matchCount.get("3개 일치 (5,000원)") + 1);
+            }
         }
         
         System.out.println("당첨 통계");
         System.out.println("---------");
-        System.out.println("3개 일치 (5,000원)- " + matchCount.getOrDefault(3, 0) + "개");
-        System.out.println("4개 일치 (50,000원)- " + matchCount.getOrDefault(4, 0) + "개");
-        System.out.println("5개 일치 (1,500,000원)- " + matchCount.getOrDefault(5, 0) + "개");
-        System.out.println("6개 일치 (2,000,000,000원)- " + matchCount.getOrDefault(6, 0) + "개");
+        System.out.println("3개 일치 (5,000원)- " + matchCount.get("3개 일치 (5,000원)") + "개");
+        System.out.println("4개 일치 (50,000원)- " + matchCount.get("4개 일치 (50,000원)") + "개");
+        System.out.println("5개 일치 (1,500,000원)- " + matchCount.get("5개 일치 (1,500,000원)") + "개");
+        System.out.println("5개 일치, 보너스 볼 일치(30,000,000원)- " + matchCount.get("5개 일치, 보너스 볼 일치(30,000,000원)") + "개");
+        System.out.println("6개 일치 (2,000,000,000원)- " + matchCount.get("6개 일치 (2,000,000,000원)") + "개");
     }
 }
-

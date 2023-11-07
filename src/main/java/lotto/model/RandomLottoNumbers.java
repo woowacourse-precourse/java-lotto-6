@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public class RandomLottoNumbers {
                 lottoNumbers.add(numbers);
             }
         }
-        return lottoNumbers;
+        return sortLotto(lottoNumbers);
     }
 
     public Boolean duplicateCheck(List<Integer> numbers) {
@@ -26,5 +27,12 @@ public class RandomLottoNumbers {
             return false;
         }
         return true;
+    }
+
+    public List<List<Integer>> sortLotto(List<List<Integer>> lottoNumbers) {
+        for(int i = 0; i < lottoNumbers.size(); i++) {
+            Collections.sort(lottoNumbers.get(i));
+        }
+        return lottoNumbers;
     }
 }

@@ -55,11 +55,12 @@ public class LottoService {
         }
     }
 
-    public int inputBonusNumber() {
+    public int inputBonusNumber(Lotto winningNumbers) {
         while (true) {
             String input = Console.readLine();
             try {
                 validateOneNumber(input);
+                isWinningNumbersContainBonusNumber(winningNumbers.getNumbers(), input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

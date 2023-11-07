@@ -1,8 +1,7 @@
 package lotto;
 
 import javax.lang.model.type.ArrayType;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -77,18 +76,18 @@ public class Application {
 
 
         ///
-        List<Integer> winRecordBoard = new ArrayList<>();
+        Map<Integer, Integer> winRecordBoard = new LinkedHashMap<>();
         Integer firstPlaceCount = Integer.valueOf(0);
         Integer secondPlaceCount = Integer.valueOf(0);
         Integer thirdPlaceCount = Integer.valueOf(0);
         Integer fourthPlaceCount = Integer.valueOf(0);
         Integer fifthPlaceCount = Integer.valueOf(0);
 
-        winRecordBoard.set(1, firstPlaceCount);
-        winRecordBoard.set(2, secondPlaceCount);
-        winRecordBoard.set(3, thirdPlaceCount);
-        winRecordBoard.set(4, fourthPlaceCount);
-        winRecordBoard.set(5, fifthPlaceCount);
+        winRecordBoard.put(1, firstPlaceCount);
+        winRecordBoard.put(2, secondPlaceCount);
+        winRecordBoard.put(3, thirdPlaceCount);
+        winRecordBoard.put(4, fourthPlaceCount);
+        winRecordBoard.put(5, fifthPlaceCount);
 
         ///
 
@@ -101,21 +100,21 @@ public class Application {
             boolean matchedBonusNumber = (boolean) result.get(1);
 
             if (mainMatchNumber == 3) {
-                winRecordBoard.set(5, ++fifthPlaceCount);
+                winRecordBoard.put(5, ++fifthPlaceCount);
             }
             if (mainMatchNumber == 4) {
-                winRecordBoard.set(4, ++fourthPlaceCount);
+                winRecordBoard.put(4, ++fourthPlaceCount);
             }
             if (mainMatchNumber == 5 && !matchedBonusNumber) {
-                winRecordBoard.set(3, ++thirdPlaceCount);
+                winRecordBoard.put(3, ++thirdPlaceCount);
             }
 
             if (mainMatchNumber == 5 && matchedBonusNumber) {
-                winRecordBoard.set(2, ++secondPlaceCount);
+                winRecordBoard.put(2, ++secondPlaceCount);
             }
 
             if (mainMatchNumber == 6) {
-                winRecordBoard.set(1, ++firstPlaceCount);
+                winRecordBoard.put(1, ++firstPlaceCount);
             }
 
         }

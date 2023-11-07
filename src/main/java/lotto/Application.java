@@ -8,6 +8,8 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
+import lotto.util.IllegalArgumentMessage;
+import lotto.util.InputDataException;
 
 public class Application {
     public static void main(String[] args) {
@@ -35,8 +37,8 @@ public class Application {
 
     public static String paymentInput() {
         System.out.println("구입금액을 입력해 주세요.");
-        String payment = Console.readLine();
-        // Todo : payment에 대해 공백, 숫자 외 문자에 대한 검증하기
+        String payment = Console.readLine().trim();
+        InputDataException.validatePaymentInput(payment);
         return payment;
     }
 

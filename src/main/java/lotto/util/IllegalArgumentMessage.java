@@ -6,4 +6,5 @@ public final class IllegalArgumentMessage {
     public static final String ERROR_LESS_THAN_MINIMUM_PRICE = "[Error] 최소 결제 금액은 1,000원 입니다.";
     public static final String ERROR_NOT_PRICE_UNIT = "[Error] 1,000원 단위로 결제해주세요.";
     public static final String ERROR_PICK_COUNT = "[Error] 로또 번호는 6개입니다.";
+    public static final String ERROR_PAYMENT_INPUT = "[Error] 구입금액을 정수로 입력해주세요.";
 }

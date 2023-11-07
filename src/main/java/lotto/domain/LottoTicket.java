@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.util.LottoGenerator;
@@ -28,13 +27,15 @@ public class LottoTicket {
 
     private static Lotto generateLotto() {
         List<Integer> lottoNumbers = generateLottoNumbers();
-        Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }
 
     private static List<Integer> generateLottoNumbers() {
         LottoGenerator lottoGenerator = new RandomLottoGenerator();
-        return lottoGenerator.generateNumber();
+        return lottoGenerator.generateNumber()
+                .stream()
+                .sorted()
+                .toList();
     }
 
     public List<Lotto> getLottos() {

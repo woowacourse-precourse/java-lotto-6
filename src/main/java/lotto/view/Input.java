@@ -2,8 +2,6 @@ package lotto.view;
 
 import static lotto.message.ErrorMessage.BONUS_NUMBER_RANGE;
 import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
-import static lotto.message.ErrorMessage.FOUNT_MATCH_RANKING;
-import static lotto.message.ErrorMessage.LOTTO_RANGE;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_BONUS_NUMBER;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_WINNING_NUMBERS;
@@ -16,14 +14,9 @@ import java.util.List;
 
 public class Input {
     public int getPurchaseAmount() {
-        return validationPurchaseAmount();
-    }
-
-    private int validationPurchaseAmount() {
         try {
             int purchaseAmount = Integer.parseInt(Console.readLine());
             validationPurchaseAmountInThousands(purchaseAmount);
-
             return purchaseAmount;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_MONEY.errorMessage());

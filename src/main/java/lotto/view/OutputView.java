@@ -21,7 +21,7 @@ public class OutputView {
 
     private static void showIssuedLottos(PurchaseQuantity quantity) {
         quantity.forEach((repeat) -> {
-            printObject(Lotto.from(generateLottoNumbers()));
+            printObject(new Lotto(generateLottoNumbers()));
             lineBreak();
         });
     }

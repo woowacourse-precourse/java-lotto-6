@@ -8,11 +8,13 @@ import static lotto.constants.ErrorMessage.DUPLICATED_NUMBER_EXIST;
 import static lotto.constants.ErrorMessage.WRONG_LOTTO_SIZE;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {
@@ -27,14 +29,6 @@ public class Lotto {
 
     private boolean isDuplicatedNumberExist(List<Integer> numbers) {
         return new HashSet<>(numbers).size() != LOTTO_SIZE.getValue();
-    }
-
-    public static Lotto from(List<LottoNumber> lottoNumbers) {
-        List<Integer> numbers = lottoNumbers.stream()
-                .map(LottoNumber::getNumber)
-                .toList();
-
-        return new Lotto(numbers);
     }
 
     @Override

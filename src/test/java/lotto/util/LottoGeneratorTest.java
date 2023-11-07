@@ -1,6 +1,5 @@
 package lotto.util;
 
-import lotto.domain.LottoNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 
@@ -16,10 +15,7 @@ public class LottoGeneratorTest {
     @RepeatedTest(30)
     public void generateLotto_repeat30_inRange() throws Exception {
         //given
-        List<Integer> numbers = LottoGenerator.generateLottoNumbers()
-                .stream()
-                .map(LottoNumber::getNumber)
-                .toList();
+        List<Integer> numbers = LottoGenerator.generateLottoNumbers();
 
         //when, then
         assertThat(numbers).allMatch((number) ->

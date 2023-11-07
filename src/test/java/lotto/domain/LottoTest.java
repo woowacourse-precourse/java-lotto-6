@@ -47,7 +47,7 @@ class LottoTest {
                 .toList();
 
         //when
-        Lotto lotto = Lotto.from(lottoNumbers);
+        Lotto lotto = new Lotto(numbers);
 
         //then
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 7]");

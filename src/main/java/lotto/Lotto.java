@@ -1,13 +1,32 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.enums.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSize(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
+    }
+
+    private void validateDuplicate(List<Integer> numbers) {
+        List<Integer> setNumbers = new ArrayList<>();
+        for (int number : numbers) {
+            if (setNumbers.contains(number)) {
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_ERROR.getErrorMessage());
+            }
+            setNumbers.add(number);
+        }
+    }
+
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validate(List<Integer> numbers) {

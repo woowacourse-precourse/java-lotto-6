@@ -1,6 +1,7 @@
 package lotto.domain;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import lotto.common.PrintMessage;
@@ -45,9 +46,9 @@ public class LottoStorage {
     }
 
     public void showLottoProfitRate(List<LottoRank> lottoRanks) {
-        Double profit = LottoProfitCalculator.calculate(lottoRanks, automaticLottoStorage.getTotalPrice());
+        BigDecimal profit = LottoProfitCalculator.calculate(lottoRanks, automaticLottoStorage.getTotalPrice());
 
-        TextBuilder textBuilder = TextBuilder.fromString("총 수익률은 ").appendDouble(profit).append("%입니다.").appendLineSeparator();
+        TextBuilder textBuilder = TextBuilder.fromString("총 수익률은 ").append(profit.toPlainString()).append("%입니다.").appendLineSeparator();
         LottoGamePrinter.println(textBuilder.build());
     }
 

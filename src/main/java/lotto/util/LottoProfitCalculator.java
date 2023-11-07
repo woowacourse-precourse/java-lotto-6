@@ -1,16 +1,20 @@
 package lotto.util;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import lotto.domain.LottoRank;
 
 
 public class LottoProfitCalculator {
-    public static Double calculate(List<LottoRank> results, Integer totalPrice) {
-        int sum = results.stream()
-                .mapToInt(LottoRank::getPrizeAmount)
-                .sum();
+    public static BigDecimal calculate(List<LottoRank> lottoRanks, Integer totalPrice) {
 
-        double roi = (double) (sum * 100) / totalPrice;
-        return Math.round(roi * 100.0) / 100.0; // 소수점 둘째 자리에서 반올림
+        BigDecimal sum = lottoRanks.stream()
+                .map(lottoRank -> new BigDecimal(lottoRank.getPrizeAmount()))
+                .reduce(new BigDecimal(0), BigDecimal::add);
+
+
+        BigDecimal roi = sum.multiply(new BigDecimal(100)).divide(new BigDecimal(totalPrice), 2, RoundingMode.HALF_UP);
+        return roi.stripTrailingZeros();
     }
 }

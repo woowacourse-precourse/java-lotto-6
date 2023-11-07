@@ -1,4 +1,8 @@
-package lotto;
+package lotto.model;
+
+import lotto.validation.Validator;
+import lotto.view.OutputView;
+import lotto.view.constant.ErrorMessage;
 
 import java.util.List;
 
@@ -13,8 +17,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (Validator.checkDuplicateValue(numbers)) {
+            OutputView.printError(ErrorMessage.DUPLICATE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage() + ErrorMessage.DUPLICATE_NUMBER.getMessage());
+        }
+
+        if (numbers.size() != LOTTO_SIZE.getNumber()) {
+            OutputView.printError(ErrorMessage.SIZE_IS_NOT_SIX.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage() + ErrorMessage.SIZE_IS_NOT_SIX.getMessage());
         }
     }
 

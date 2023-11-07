@@ -1,16 +1,16 @@
 package lotto;
-import camp.nextstep.edu.missionutils.Console;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static java.lang.Integer.parseInt;
+
+import camp.nextstep.edu.missionutils.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoControl {
     public static int inputLottoPrice() {
         LottoView.signalInputLottoPrice();
         String boughtLottoPrice = Console.readLine();
-        while(isLottoPriceError(boughtLottoPrice)) {
+        while (isLottoPriceError(boughtLottoPrice)) {
             boughtLottoPrice = Console.readLine();
         }
         return parseInt(boughtLottoPrice);
@@ -26,7 +26,7 @@ public class LottoControl {
     }
 
     private static void checkLottoPriceError(String boughtLottoPrice) {
-        if(!boughtLottoPrice.chars().allMatch(Character::isDigit)) {
+        if (!boughtLottoPrice.chars().allMatch(Character::isDigit)) {
             System.out.println("[ERROR] 구입한 값은 정수여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 구입한 값은 정수여야 합니다.");
         } else if (parseInt(boughtLottoPrice) < 1) {
@@ -42,7 +42,7 @@ public class LottoControl {
         LottoView.signalInputWinningNumbers();
         String[] winningNumbers = Console.readLine().split(",");
 
-        while(isWinningNumbersError(winningNumbers)) {
+        while (isWinningNumbersError(winningNumbers)) {
             winningNumbers = Console.readLine().split(",");
         }
         return setWinningNumbers(winningNumbers);
@@ -57,10 +57,9 @@ public class LottoControl {
         }
     }
 
-
     private static void checkWinningNumberError(String[] winningNumbers) {
-        for(String winningNumber : winningNumbers) {
-            if(!winningNumber.chars().allMatch(Character::isDigit)) {
+        for (String winningNumber : winningNumbers) {
+            if (!winningNumber.chars().allMatch(Character::isDigit)) {
                 System.out.println("[ERROR] 당첨 번호는 정수여야 합니다. (공백 불허)");
                 throw new IllegalArgumentException("[ERROR] 당첨 번호는 정수여야 합니다. (공백 불허)");
             }
@@ -71,7 +70,7 @@ public class LottoControl {
     private static Lotto setWinningNumbers(String[] winningNumbers) {
         List<Integer> numbers = new ArrayList<>();
 
-        for(String winningNumber : winningNumbers) {
+        for (String winningNumber : winningNumbers) {
             numbers.add(parseInt(winningNumber));
         }
 
@@ -81,7 +80,7 @@ public class LottoControl {
     public static int inputBonusNumber(Lotto winningNumbers) {
         LottoView.signalInputBonusNumber();
         String bonusNumber = Console.readLine();
-        while(isBonusNumberError(bonusNumber, winningNumbers)) {
+        while (isBonusNumberError(bonusNumber, winningNumbers)) {
             bonusNumber = Console.readLine();
         }
 
@@ -98,14 +97,15 @@ public class LottoControl {
     }
 
     private static void checkBonusNumberError(String bonusNumber, Lotto winningNumbers) {
-        if(!bonusNumber.chars().allMatch(Character::isDigit)) {
+        if (!bonusNumber.chars().allMatch(Character::isDigit)) {
             System.out.println("[ERROR] 보너스 번호는 정수여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 정수여야 합니다.");
-        } else if(parseInt(bonusNumber) < 1 || parseInt(bonusNumber) > 45) {
+        } else if (parseInt(bonusNumber) < 1 || parseInt(bonusNumber) > 45) {
             System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        } else if(winningNumbers.getNumbers().contains(parseInt(bonusNumber))) {
+        } else if (winningNumbers.getNumbers().contains(parseInt(bonusNumber))) {
             System.out.println("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");}
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+        }
     }
 }

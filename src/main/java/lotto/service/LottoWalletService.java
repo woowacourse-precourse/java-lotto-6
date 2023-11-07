@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.model.LottoRule.BONUS_CONDITIONS;
 import static lotto.model.LottoRule.LOTTO_PRICE;
 
 import java.util.List;
@@ -108,7 +109,7 @@ public class LottoWalletService {
         }
 
         int bonusNumber = lottoBonusNumber.getBonusNumber();
-        if (sameValue == 5 && userNumbers.contains(bonusNumber)) {
+        if (sameValue == BONUS_CONDITIONS && userNumbers.contains(bonusNumber)) {
             sameValue += 0.5; // 5개를 맞추고, 보너스도 맞추면 0.5점 증가
         }
 

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.LottoRule.BONUS_CONDITIONS;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -11,7 +13,7 @@ public enum LottoRank {
     /**
      * 로또 당첨 순위: 2등
      */
-    RANK_2ND(2, 5.5, 30000000),
+    RANK_2ND(2, (double) BONUS_CONDITIONS + 0.5, 30000000),
     /**
      * 로또 당첨 순위: 3등
      */

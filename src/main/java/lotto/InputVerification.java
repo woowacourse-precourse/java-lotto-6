@@ -73,4 +73,18 @@ public class InputVerification {
         }
         return isValid;
     }
+
+    public boolean verifyBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        boolean isValid = true;
+
+        if(!isNumberInRange(bonusNumber)) {
+            System.out.println("[ERROR] 숫자범위가 옳지 않습니다.");
+            isValid = false;
+        }
+        if(isBonusNumbersDuplicated(winningNumbers, bonusNumber)) {
+            System.out.println("[ERROR] 당첨번호와 보너스번호가 중복됩니다.");
+            isValid = false;
+        }
+        return isValid;
+    }
 }

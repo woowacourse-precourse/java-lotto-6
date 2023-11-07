@@ -49,12 +49,20 @@ public class ViewInput {
         return winningNumbers;
     }
 
-    public int getBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        boolean isValid = false;
+        int bonusNumber = 0;
 
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        // 보너스 번호 조건 검증
+        while(!isValid) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                bonusNumber = Integer.parseInt(Console.readLine().trim());
 
+                isValid = inputVerification.verifyBonusNumber(winningNumbers, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 올바른 입력이 아닙니다.");
+            }
+        }
         return bonusNumber;
     }
 }

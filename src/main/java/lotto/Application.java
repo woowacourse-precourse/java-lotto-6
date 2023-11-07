@@ -9,10 +9,13 @@ public class Application {
         // TODO: 프로그램 구현
         int result = viewInput.getPurchaseAmount();
         List<Integer> numbers = viewInput.getWinningNumbers();
+        int bonusNumber = viewInput.getBonusNumber(numbers);
 
         System.out.println(result);
 
         for(Integer number : numbers)
             System.out.println(number);
+        System.out.println(bonusNumber);
+
     }
 }

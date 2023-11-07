@@ -1,6 +1,10 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoRule;
 import lotto.exception.ExceptionMessage;
 
 public class Winning extends LottoRule {
@@ -14,20 +18,22 @@ public class Winning extends LottoRule {
         this.numbers = numbers;
     }
 
+    public int calcMatchNumberCount(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+
+        return numbers.stream()
+                .filter(this.numbers::contains)
+                .collect(Collectors.toList())
+                .size();
+    }
+
     public void validateBonus(int bonusNumber) {
         if (isDuplicateBonusNumber(bonusNumber)) {
             ExceptionMessage.BONUS_NUMBER_DUPLICATE.throwException();
         }
-        if (isOutOfRange(bonusNumber)){
+        if (isOutOfRange(bonusNumber)) {
             ExceptionMessage.LOTTO_OUT_OF_RANGE.throwException();
         }
-    }
-
-    private boolean isDuplicateBonusNumber(int bonusNumber) {
-        if (numbers.contains(bonusNumber)) {
-            return true;
-        }
-        return false;
     }
 
     public List<Integer> getNumbers() {
@@ -47,4 +53,13 @@ public class Winning extends LottoRule {
         validateBonus(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
+
+    private boolean isDuplicateBonusNumber(int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
+
+
 }

@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import java.util.Map;
+import lotto.domain.lotto.Lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -83,4 +85,16 @@ class WinningTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 1~45 사이 숫자 입니다.");
     }
+
+    @DisplayName("로또 번호가 당첨 번호와 일치하는 개수를 반환한다.")
+    @Test
+    void getMatchNumberCount() {
+        //Given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        //When
+        int matchCount = winning.calcMatchNumberCount(lotto);
+        //Then
+        assertThat(matchCount).isEqualTo(6);
+    }
+    
 }

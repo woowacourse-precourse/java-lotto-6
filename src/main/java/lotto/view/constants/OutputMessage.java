@@ -4,8 +4,9 @@ public enum OutputMessage {
     ASK_PURCHASING_AMOUNT("구입금액을 입력해 주세요."),
     COUNT_BUYING_TICKETS("개를 구매했습니다."),
     ASK_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
-    ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
+    ASK_BONUS_NUMBER("\n보너스 번호를 입력해 주세요."),
     STATISTICS("""
+                
                 당첨 통계
                 ---
                 """),

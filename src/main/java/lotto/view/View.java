@@ -16,7 +16,7 @@ public class View {
     }
 
     public void printOrderedLottoCount(int ticketCount) {
-        printMessage(ticketCount + COUNT_BUYING_TICKETS.getMessage());
+        printMessage("\n" + ticketCount + COUNT_BUYING_TICKETS.getMessage());
     }
 
     public void printLottoTickets(String tickets){

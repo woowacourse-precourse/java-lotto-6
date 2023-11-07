@@ -9,25 +9,29 @@ public class LottoService {
     private int numOfFourthPlace = 0;
     private int numOfFifthPlace = 0;
 
-    public void compare(List<Lotto> lottoBundle, List<Integer> winnerNumbers, int bonusNumber) {
+    public void compareAll(List<Lotto> lottoBundle, List<Integer> winnerNumbers, int bonusNumber) {
         for (Lotto lotto : lottoBundle) {
-            List<Integer> list = lotto.getNumbers();
-            int matchCount = getMatchCount(winnerNumbers, list);
-            checkIfWinFirstPlace(matchCount, list, bonusNumber);
+            compare(winnerNumbers, bonusNumber, lotto);
         }
     }
 
-    private int getMatchCount(List<Integer> winnerNumbers, List<Integer> list) {
+    private void compare(List<Integer> winnerNumbers, int bonusNumber, Lotto lotto) {
+        List<Integer> list = lotto.getNumbers();
+        int matchCount = getMatchCount(winnerNumbers, list);
+        checkIfWinFirstPlace(matchCount, list, bonusNumber);
+    }
+
+    private int getMatchCount(List<Integer> winnerNumbers, List<Integer> lotto) {
         int matchCount = 0;
-        for (int winNum : winnerNumbers) {
-            if (list.contains(winNum)) {
+        for (int num : winnerNumbers) {
+            if (lotto.contains(num)) {
                 matchCount++;
             }
         }
         return matchCount;
     }
 
-    public void checkIfWinFirstPlace(int matchCount, List<Integer> list, int bonusNumber) {
+    private void checkIfWinFirstPlace(int matchCount, List<Integer> list, int bonusNumber) {
         if (matchCount == 6) {
             numOfFirstPlace++;
             return;
@@ -35,7 +39,7 @@ public class LottoService {
         checkIfWinSecondPlace(matchCount, list, bonusNumber);
     }
 
-    public void checkIfWinSecondPlace(int matchCount, List<Integer> list, int bonusNumber) {
+    private void checkIfWinSecondPlace(int matchCount, List<Integer> list, int bonusNumber) {
         if (matchCount == 5 && list.contains(bonusNumber)) {
             numOfSecondPlace++;
             return;
@@ -43,7 +47,7 @@ public class LottoService {
         checkIfWinThirdPlace(matchCount, list, bonusNumber);
     }
 
-    public void checkIfWinThirdPlace(int matchCount, List<Integer> list, int bonusNumber) {
+    private void checkIfWinThirdPlace(int matchCount, List<Integer> list, int bonusNumber) {
         if (matchCount == 5) {
             numOfThirdPlace++;
             return;
@@ -51,7 +55,7 @@ public class LottoService {
         checkIfWinFourthPlace(matchCount, list, bonusNumber);
     }
 
-    public void checkIfWinFourthPlace(int matchCount, List<Integer> list, int bonusNumber) {
+    private void checkIfWinFourthPlace(int matchCount, List<Integer> list, int bonusNumber) {
         if (matchCount == 4) {
             numOfFourthPlace++;
             return;

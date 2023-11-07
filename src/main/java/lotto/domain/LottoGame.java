@@ -32,7 +32,7 @@ public class LottoGame {
 
         int bonusNumber = inputHandler.getBonusNumber();
         LottoService lottoService = new LottoService();
-        lottoService.compare(lottoBundle, winnerNumbers, bonusNumber);
+        lottoService.compareAll(lottoBundle, winnerNumbers, bonusNumber);
         long profit = lottoService.getProfit();
         double profitRate = profit / (double) purchaseAmount * 100;
 

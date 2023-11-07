@@ -11,8 +11,7 @@ public class Application {
         IOView.printLottoNumbers(lottoTickets);
 
         WinningNumberDTO winningNumbers = IOView.getWinningNumbers();
-        lottoTickets.matchPrize(winningNumbers);
-
-        // TODO: 프로그램 구현
+        LottoPrizeBag prizeBag = lottoTickets.matchPrize(winningNumbers);
+        IOView.printPrizes(prizeBag);
     }
 }

@@ -2,6 +2,8 @@ package ui;
 
 import java.text.MessageFormat;
 import java.util.List;
+import lotto.LottoPrize;
+import lotto.LottoPrizeBag;
 
 class OutputView {
     private OutputView() {
@@ -31,8 +33,18 @@ class OutputView {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 
-    public static void printResult() {
+    public static void printStatics(LottoPrizeBag prizeBag) {
         System.out.println("당첨 통계");
         System.out.println("---");
+        for (LottoPrize prizeLevel : LottoPrize.values()) {
+            if (prizeLevel.equals(LottoPrize.NONE)) {
+                continue;
+            }
+            System.out.println(prizeBag.sayAbout(prizeLevel));
+        }
+    }
+
+    public static void printRateOfReturn(LottoPrizeBag lottoPrizeBag) {
+        System.out.printf("총 수익률은 %.1f%%", lottoPrizeBag.getRateOfReturn());
     }
 }

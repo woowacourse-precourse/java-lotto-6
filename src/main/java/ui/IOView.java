@@ -2,6 +2,7 @@ package ui;
 
 import dto.WinningNumberDTO;
 import java.util.List;
+import lotto.LottoPrizeBag;
 import lotto.LottoTickets;
 
 public class IOView {
@@ -29,5 +30,11 @@ public class IOView {
         int bonusNumber = InputView.getBonusNumber(commonNumbers);
 
         return new WinningNumberDTO(commonNumbers, bonusNumber);
+    }
+
+    public static void printPrizes(LottoPrizeBag prizeBag) {
+        OutputView.printStatics(prizeBag);
+        OutputView.printRateOfReturn(prizeBag);
+
     }
 }

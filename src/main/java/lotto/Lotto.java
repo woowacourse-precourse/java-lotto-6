@@ -39,5 +39,18 @@ public class Lotto {
         return MessageFormat.format("[{0}]", numberLine);
     }
 
-    // TODO: 추가 기능 구현
+    public LottoPrize match(List<Integer> commonNumbers, int bonusNumber) {
+        int hitTimes = 0;
+        boolean hitBonus = false;
+        for (Integer number : numbers) {
+            if (commonNumbers.contains(number)) {
+                hitTimes = hitTimes + 1;
+            }
+        }
+        if (numbers.contains(bonusNumber)) {
+            hitBonus = true;
+        }
+
+        return LottoPrize.of(hitTimes, hitBonus);
+    }
 }

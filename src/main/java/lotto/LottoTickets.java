@@ -5,13 +5,13 @@ import static lotto.LottoConfig.END_NUM;
 import static lotto.LottoConfig.START_NUM;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import dto.LottoResultDTO;
 import dto.WinningNumberDTO;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class LottoTickets {
-    private List<Lotto> tickets;
+    private final List<Lotto> tickets;
 
     public static LottoTickets buy(int money) {
         int amount = money / LottoConfig.PRICE;
@@ -38,8 +38,13 @@ public class LottoTickets {
         return lines;
     }
 
-    public LottoResultDTO matchPrize(WinningNumberDTO winningNumbers) {
-        return null;
+    public LottoPrizeBag matchPrize(WinningNumberDTO winningNumbers) {
+        List<LottoPrize> lottoPrizes = new ArrayList<>();
+        for (Lotto ticket : tickets) {
+            LottoPrize prize = ticket.match(winningNumbers.getCommonNumbers(), winningNumbers.getBonusNumber());
+            lottoPrizes.add(prize);
+        }
+        return new LottoPrizeBag(lottoPrizes);
     }
 
     public int size() {

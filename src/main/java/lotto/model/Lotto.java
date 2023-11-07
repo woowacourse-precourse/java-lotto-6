@@ -39,8 +39,7 @@ public class Lotto {
             throw new IllegalArgumentException(String.format(
                     "숫자는 %d에서 %d사이여야합니다."
                     , LottoConstant.MIN_NUMBER
-                    , LottoConstant.MAX_NUMBER
-            )
+                    , LottoConstant.MAX_NUMBER)
             );
         }
     }

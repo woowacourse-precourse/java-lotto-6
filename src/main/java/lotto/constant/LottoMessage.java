@@ -15,7 +15,7 @@ public class LottoMessage {
     public static final String WINNING_STATISTICS_MESSAGE = "당첨 통계\n";
     public static final String LINE_DIVIDER = "---\n";
     public static final String LOTTO_RESULT_MESSAGE = "%s (%,d원) - %d개\n";
-    public static final String TOTAL_RETURN_RATE_MESSAGE = "총 수익률은 %.2f%%입니다.";
+    public static final String TOTAL_RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static final String FIFTH_PLACE_MESSAGE = "3개 일치";
     public static final String FOURTH_PLACE_MESSAGE = "4개 일치";

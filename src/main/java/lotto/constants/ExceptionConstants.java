@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public class InvalidExceptionConstants {
+public class ExceptionConstants {
     public static final String SIZE_NOT_VALID_MESSAGE = "[ERROR] 로또 번호는 정확히 6개여야 합니다.";
     public static final String INVALID_LOTTO_NUMBER_RANGE_MESSAGE = "[ERROR] 로또 번호는 1부터 45까지의 숫자여야 합니다.";
     public static final String INVALID_BONUS_NUMBER_RANGE_MESSAGE = "[ERROR] 보너스 번호는 1부터 45까지의 숫자여야 합니다.";

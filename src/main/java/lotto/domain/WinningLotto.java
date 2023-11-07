@@ -3,6 +3,8 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.constants.DomainConstants.MATCHING_COUNT;
+
 public class WinningLotto {
     private final List<Integer> winningNumbers;
     private final BonusNumber bonusNumber;
@@ -13,7 +15,7 @@ public class WinningLotto {
     }
 
     public Integer countCorrectNumbers(Lotto lotto) {
-        Integer matchingNumber = 0;
+        Integer matchingNumber = MATCHING_COUNT;
 
         for (Integer number : lotto.getNumbers()) {
             if (hasWinningNumberAndBonusNumber(number)) {

@@ -15,14 +15,6 @@ public class LottoException {
     private static final String BONUS_ERROR_MESSAGE = "당첨 숫자와 중복됩니다. 다시 입력해 주세요.";
 
 
-    public boolean purchaseAmountCheckSub(String purchaseAmount) {
-        int amount = Integer.parseInt(purchaseAmount);
-        if ((amount < lottoConfig.TICKET_PRICE) || ((amount % lottoConfig.TICKET_PRICE) != ZERO_PRICE)) {
-            throw new IllegalArgumentException(ERROR_PREFIX + TICKET_ERROR_MESSAGE);
-        }
-        return true;
-    }
-
     public boolean purchaseAmountCheckMain(String purchaseAmount) {
         try {
             return purchaseAmountCheckSub(purchaseAmount);
@@ -30,6 +22,14 @@ public class LottoException {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public boolean purchaseAmountCheckSub(String purchaseAmount) {
+        int amount = Integer.parseInt(purchaseAmount);
+        if ((amount < lottoConfig.TICKET_PRICE) || ((amount % lottoConfig.TICKET_PRICE) != ZERO_PRICE)) {
+            throw new IllegalArgumentException(ERROR_PREFIX + TICKET_ERROR_MESSAGE);
+        }
+        return true;
     }
 
     public boolean numberCheck(String userInput) {

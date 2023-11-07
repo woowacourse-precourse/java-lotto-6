@@ -9,16 +9,19 @@ public class InputView {
     public static int readLottoPurchasePrice() {
         System.out.println("구입금액을 입력해 주세요.");
 
-        Input input = Input.readLine();
-        IntegerInput integerInput = new IntegerInput(input.trimmed());
+        IntegerInput integerInput = new IntegerInput(readTrimmedInput());
         return integerInput.value();
     }
 
     public static List<Integer> readWinningLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
 
-        Input input = Input.readLine();
-        IntegerInputs integerInputs = new IntegerInputs(input.trimmed());
+        IntegerInputs integerInputs = new IntegerInputs(readTrimmedInput());
         return integerInputs.values();
+    }
+
+    private static String readTrimmedInput() {
+        Input input = Input.readLine();
+        return input.trimmed();
     }
 }

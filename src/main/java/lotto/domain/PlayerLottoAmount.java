@@ -1,13 +1,21 @@
 package lotto.domain;
 
+import lotto.view.ExceptionMessage;
+
 public class PlayerLottoAmount {
 
     public PlayerLottoAmount(String amount){
         validateNumber(amount);
     }
 
-    private void validateNumber(String amount) {
-        int amountCheck = Integer.parseInt(amount);
-        if(amountCheck%1000 !=0) throw new IllegalArgumentException();
+    private static int validateNumber(String amount) throws IllegalArgumentException{
+        try{
+            return Integer.parseInt(amount);
+        }
+        catch(NumberFormatException e){
+            ExceptionMessage.numberException();
+            throw new IllegalArgumentException();
+        }
+
     }
 }

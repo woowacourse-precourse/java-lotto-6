@@ -1,5 +1,8 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import lotto.message.RunMessage;
 
 public class OutputView {
@@ -9,6 +12,10 @@ public class OutputView {
 
     public void printBuyLottoMessage(int lottoCount){
         System.out.printf(RunMessage.PRINT_LOTTO_COUNT.getMessage(),lottoCount);
+    }
+
+    public void printLottoNumber(List<Integer> numbers){
+        System.out.println(numbers.toString());
     }
 
     public void printWinningNumberInputMessage(){

@@ -25,6 +25,7 @@ public class Print {
     }
 
     public void printDrawResultStats(int money, Map<Rank, Integer> drawResult) {
+        System.out.println("당첨 통계\n---");
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NO_RANK) {
                 continue;

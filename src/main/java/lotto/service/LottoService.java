@@ -2,9 +2,11 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import lotto.Enum.Winning;
@@ -32,6 +34,8 @@ public class LottoService {
         }
         //로또 생성
         int lottoCount = tryNum / LOTTO_PRICE;
+        System.out.println();
+        System.out.println(lottoCount + "개를 구매했습니다.");
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> randomNum = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -106,8 +110,9 @@ public class LottoService {
         System.out.println("당첨 통계");
         System.out.println("---");
         int sum = 0;
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
         for (Winning winning : Winning.values()) {
-            System.out.println(winning.getMessage() + "(" + winning.getAmount() + ") - " + result.get(0) + "개");
+            System.out.println(winning.getMessage() + "(" + decimalFormat.format(winning.getAmount()) + "원) - " + result.get(0) + "개");
             sum += winning.getAmount() * result.get(0);
             result.remove(0);
         }

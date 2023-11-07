@@ -141,3 +141,4 @@
 ---
 ### 프로세스 흐름 및 클래스 다이어그램
 ![diagram](../docs/diagram.png)
+![diagram_kor](../docs/diagram_kor.png)

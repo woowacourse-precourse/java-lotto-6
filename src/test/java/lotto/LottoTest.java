@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -69,6 +70,20 @@ class LottoTest {
         assertThatThrownBy(() -> Check.rightRange(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액 / 1000 == 로또 구입 수량이 아닐 경우 예외가 발생한다.")
+    @Test
+    void createPurchaseAmountByCount() {
+
+
+        PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
+        int lottoCount = purchaseAmount.lottoCount();
+
+        assertEquals(5,lottoCount);
+
+    }
+
+
 
 
 }

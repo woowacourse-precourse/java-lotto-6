@@ -1,8 +1,10 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottosResult {
 
@@ -22,13 +24,10 @@ public class LottosResult {
     }
 
     public List<Integer> countEachRank(Map<Rank, Integer> results) {
-        List<Integer> eachRankNumber = new ArrayList<>();
-        for (Rank rank : Rank.values()) {
-            if (isZero(rank)) {
-                continue;
-            }
-            eachRankNumber.add(results.getOrDefault(rank,0));
-        }
+        List<Integer> eachRankNumber = Arrays.stream(Rank.values())
+                .filter(rank -> !isZero(rank))
+                .map(rank -> results.getOrDefault(rank, 0))
+                .collect(Collectors.toList());
         return eachRankNumber;
     }
 

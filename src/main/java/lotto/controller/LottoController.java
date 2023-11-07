@@ -33,7 +33,16 @@ public class LottoController {
     }
 
     private Money getMoney() {
-        return new Money(inputView.readMoney());
+        Money money;
+        while (true) {
+            try {
+                money = new Money(inputView.readMoney());
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return money;
     }
 
     private int getNumberOfPurchasedLottos(Money money) {

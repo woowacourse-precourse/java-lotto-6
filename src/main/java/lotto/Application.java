@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Application {
@@ -16,6 +15,8 @@ public class Application {
     private static Lotto winLotto;
 
     private static int winBonusLottoNumber;
+
+    private static int rateOfReturn;
 
     private static List<Integer> correctCount = new ArrayList<>();
     private static List<Integer> totalWinResult = new ArrayList<>();
@@ -184,6 +185,21 @@ public class Application {
         System.out.println("6개 일치 (2,000,000,000원) - " + totalWinResult.get(0) + "개");
     }
 
+    private static double calculateTotalAmount() {
+        double totalAmount = 0;
+        totalAmount += lottoResult.six.winPrize * totalWinResult.get(0);
+        totalAmount += lottoResult.fiveAndBonus.winPrize * totalWinResult.get(1);
+        totalAmount += lottoResult.five.winPrize * totalWinResult.get(2);
+        totalAmount += lottoResult.four.winPrize * totalWinResult.get(3);
+        totalAmount += lottoResult.three.winPrize * totalWinResult.get(4);
+
+        return totalAmount;
+    }
+
+    private static void printRateOfReturn(int purchaseAmount) {
+        System.out.println("총 수익률은 " + calculateTotalAmount() / purchaseAmount * 100 + "%입니다.");
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
@@ -212,5 +228,6 @@ public class Application {
 
         whatIsMyResult(myLottos, purchaseNumber);
         printTotalWinResult();
+        printRateOfReturn(purchaseAmount);
     }
 }

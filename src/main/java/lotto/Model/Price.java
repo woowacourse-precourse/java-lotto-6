@@ -17,7 +17,6 @@ public class Price {
     int purchasePrice;
 
     public Price(String input) {
-        
         validate(input);
         this.purchasePrice = toInt(input);
     }
@@ -34,12 +33,12 @@ public class Price {
     }
 
     private void validate(String input) throws IllegalArgumentException {
-        int numberInput = checkNumber(input);
-        checkDividingUnitOfOneLottoPrice(numberInput);
-        checkValidRange(numberInput);
+        int numberInput = validateNumber(input);
+        validateDividingUnitOfOneLottoPrice(numberInput);
+        validateNumberRange(numberInput);
     }
 
-    private int checkNumber(String input) {
+    private int validateNumber(String input) {
         try {
             return toInt(input);
         } catch (NumberFormatException e) {
@@ -47,13 +46,13 @@ public class Price {
         }
     }
 
-    private void checkDividingUnitOfOneLottoPrice(int validInput) {
+    private void validateDividingUnitOfOneLottoPrice(int validInput) {
         if (validInput % UNIT_OF_ONE_LOTTO_PRICE != ZERO) {
             throw new IllegalArgumentException(ERROR_UNIT_PRICE_OF_PURCHASED_LOTTO);
         }
     }
 
-    private void checkValidRange(int validInput) {
+    private void validateNumberRange(int validInput) {
         if (validInput <= UNIT_OF_ONE_LOTTO_PRICE) {
             throw new IllegalArgumentException(ERROR_NOT_PURCHASE_LOTTO);
         }

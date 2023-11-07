@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class LottosResult {
 
-    public int calculateTotalPrize(Map<Rank, Integer> results) {
+    public long calculateTotalPrize(Map<Rank, Integer> results) {
         int totalPrize = 0;
         for (Map.Entry<Rank, Integer> entry : results.entrySet()) {
             totalPrize += calculateOncePrize(entry);
@@ -16,7 +16,7 @@ public class LottosResult {
         return totalPrize;
     }
 
-    private int calculateOncePrize(Map.Entry<Rank, Integer> entry) {
+    private long calculateOncePrize(Map.Entry<Rank, Integer> entry) {
         Rank rank = entry.getKey();
         int count = entry.getValue();
         int prize = rank.getPrizeMoney();

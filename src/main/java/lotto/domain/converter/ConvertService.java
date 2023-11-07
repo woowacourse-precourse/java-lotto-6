@@ -1,10 +1,10 @@
-package lotto.converter;
+package lotto.domain.converter;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.enums.Separator;
-import lotto.number.LottoNumber;
+import lotto.global.enums.Separator;
+import lotto.domain.number.LottoNumber;
 
 public class ConvertService {
 

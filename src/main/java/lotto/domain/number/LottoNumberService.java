@@ -1,7 +1,6 @@
-package lotto.number;
+package lotto.domain.number;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.lotto.LottoService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +15,7 @@ public class LottoNumberService {
     public List<LottoNumber> pickAutoNumbers(){
         return Randoms.pickUniqueNumbersInRange(NUMBER_MIN_VALUE, NUMBER_MAX_VALUE, LOTTO_NUMBERS_SIZE)
                 .stream().map(LottoNumber::fromAutoLotto)
+                .sorted()
                 .collect(Collectors.toList());
     }
 

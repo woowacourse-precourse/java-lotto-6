@@ -1,11 +1,14 @@
-package lotto.enums;
+package lotto.global.enums;
 
 public enum Separator {
 
     EMPTY_SPACE(" "),
-    COMMA(",");
+    COMMA(","),
+    NEW_LINE("\n"),
+    OPENING_BRACKET("["),
+    CLOSING_BRACKET("]");
 
-    private String separator;
+    private final String separator;
 
     Separator (String separator){
         this.separator = separator;
@@ -13,7 +16,7 @@ public enum Separator {
 
     @Override
     public String toString(){
-        return this.separator;
+        return separator;
     }
 
 }

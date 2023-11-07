@@ -1,10 +1,6 @@
-package lotto.lotto;
+package lotto.domain.lotto;
 
-import java.util.stream.IntStream;
-
-import lotto.number.LottoNumberService;
-import lotto.user.User;
-import lotto.user.UserService;
+import lotto.domain.number.LottoNumberService;
 
 public class LottoService {
     private final LottoNumberService lottoNumberService;
@@ -14,7 +10,7 @@ public class LottoService {
         this.lottoNumberService = lottoNumberService;
     }
 
-    public Lotto buyLotto(User user){
+    public Lotto buyLotto(){
         return Lotto.forUserLotto(lottoNumberService.pickAutoNumbers());
     }
 }

@@ -1,10 +1,9 @@
-package lotto.number;
+package lotto.domain.number;
 
-import lotto.enums.ErrorMessage;
-import lotto.exception.InvalidValueException;
-import lotto.lotto.Lotto;
+import lotto.global.enums.ErrorMessage;
+import lotto.global.exception.InvalidValueException;
 
-public class LottoNumber extends Number {
+public class LottoNumber extends Number  {
 
     private boolean isBonus;
     private static final int MIN_VALUE = 1;
@@ -42,7 +41,6 @@ public class LottoNumber extends Number {
         }
     }
 
-
     private void validateNumberValue(int value){
         if (value > MAX_VALUE || value < MIN_VALUE){
             throw new InvalidValueException(ErrorMessage.INVALID_NUMBER_VALUE);
@@ -54,4 +52,10 @@ public class LottoNumber extends Number {
             throw new InvalidValueException(ErrorMessage.INVALID_STRING_INPUT);
         }
     }
+
+    @Override
+    public String toString(){
+        return String.valueOf(super.value);
+    }
+
 }

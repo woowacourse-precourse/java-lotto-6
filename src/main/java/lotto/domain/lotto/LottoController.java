@@ -1,10 +1,10 @@
-package lotto.lotto;
+package lotto.domain.lotto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import lotto.converter.ConvertService;
-import lotto.number.LottoNumber;
+import lotto.domain.converter.ConvertService;
+import lotto.domain.number.LottoNumber;
 
 public class LottoController {
 

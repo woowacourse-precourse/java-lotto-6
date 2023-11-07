@@ -1,4 +1,4 @@
-package lotto.enums;
+package lotto.global.enums;
 
 public enum ErrorMessage {
     INVALID_STRING_INPUT("[ERROR] 잘못된 문자열 입력입니다."), // 추가된 에러 메시지

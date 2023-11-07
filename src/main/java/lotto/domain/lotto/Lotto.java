@@ -1,10 +1,9 @@
-package lotto.lotto;
+package lotto.domain.lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.number.LottoNumber;
+
+import lotto.domain.number.LottoNumber;
 
 public class Lotto {
 
@@ -31,7 +30,7 @@ public class Lotto {
     }
     @Override
     public String toString(){
-        return this.numbers.toString();
+        return numbers.toString();
     }
 
 }

@@ -1,19 +1,14 @@
 package lotto;
 
-import lotto.converter.ConvertService;
-import lotto.lotto.LottoController;
-import lotto.lotto.LottoService;
-import lotto.lotto.LottoView;
-import lotto.user.UserController;
-import lotto.user.UserService;
-import lotto.user.UserView;
+import lotto.domain.lotto.LottoView;
+import lotto.domain.user.UserView;
+import lotto.global.Injector;
 
 public class Application {
     public static void main(String[] args) {
         Injector injector = new Injector();
-        UserController userController = injector.createUserController();
-        LottoController lottoController = injector.createLottoController();
-        userController.buyLotto();
-        lottoController.pickLottoNumber();
+        UserView userView = injector.getUserView();
+        LottoView lottoView = injector.getLottoView();
+        userView.inputUserAssets();
     }
 }

@@ -1,7 +1,7 @@
-package lotto.lotto;
+package lotto.domain.lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.enums.ViewMessage;
+import lotto.global.enums.ViewMessage;
 
 public class LottoView {
 

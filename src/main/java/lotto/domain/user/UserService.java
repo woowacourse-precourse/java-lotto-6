@@ -1,9 +1,6 @@
-package lotto.user;
+package lotto.domain.user;
 
-
-import lotto.lotto.Lotto;
-import lotto.lotto.LottoService;
-import lotto.number.LottoNumberService;
+import lotto.domain.lotto.LottoService;
 
 import java.util.stream.IntStream;
 
@@ -19,9 +16,10 @@ public class UserService {
         return new User(assets);
     }
 
-    public void buyAllPurchasableLotto(User user){
+    public UserLottoResponse buyAllPurchasableLotto(User user){
         IntStream.range(0, getPurchasableLottoCount(user))
-                .forEach(index -> lottoService.buyLotto(user));
+                .forEach(index -> user.addLotto(lottoService.buyLotto()));
+        return new UserLottoResponse(user);
     }
 
     public int getUserAssets(User user){

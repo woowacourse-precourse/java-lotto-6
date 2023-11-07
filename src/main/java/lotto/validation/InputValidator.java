@@ -1,9 +1,9 @@
-package validation;
+package lotto.validation;
 
 import java.util.*;
 
 public class InputValidator {
-    private static final int UNIT_AMOUNT = 1000;
+    private static final int LOTTO_UNIT_AMOUNT = 1000;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
@@ -45,11 +45,11 @@ public class InputValidator {
     }
 
     private static boolean isDivisible(String lottoMoney) {
-        return (Integer.parseInt(lottoMoney) % UNIT_AMOUNT) > 0;
+        return (Integer.parseInt(lottoMoney) % LOTTO_UNIT_AMOUNT) > 0;
     }
 
     private static boolean isMoneyRange(String lottoMoney) {
-        return Integer.parseInt(lottoMoney) < UNIT_AMOUNT;
+        return Integer.parseInt(lottoMoney) < LOTTO_UNIT_AMOUNT;
     }
 
     private static boolean isNumberRange(List<Integer> winningNumber) {

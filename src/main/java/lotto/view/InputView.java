@@ -1,7 +1,7 @@
-package view;
+package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import validation.InputValidator;
+import lotto.validation.InputValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,7 @@ public class InputView {
     public static final String WINIING_NUMBER_PROMPT = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요.";
 
-    public static int inputMoney() {
+    public static int getInputMoney() {
         System.out.println(INPUT_MONEY_PROMPT);
         String lottoMoney = Console.readLine();
         return validateInputMoney(lottoMoney);
@@ -23,7 +23,7 @@ public class InputView {
             return Integer.parseInt(lottoMoney);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] "+e.getMessage());
-            return inputMoney();
+            return getInputMoney();
         }
     }
 

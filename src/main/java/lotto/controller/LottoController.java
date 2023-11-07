@@ -67,7 +67,6 @@ public class LottoController {
     //수익률 출력 -> 당첨금/로또 구입금
     //해쉬 맵 format의 lottoOfMatching * integer 해서 수익금 구하기
     private void getLottoResults(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber) {
-        System.out.println("문제 메소드에 들어온 당첨 번호: "+winningNumbers);
         LottoResult lottoResult = new LottoResult();
         int matchCount = 0;
 
@@ -94,14 +93,9 @@ public class LottoController {
     private void calculateReturnOnLotto(Map<LottoResultFormat, Integer> lottoResults, int amount) {
         double returnOfLotto = 0;
         for (LottoResultFormat key : lottoResults.keySet()) {
-            returnOfLotto += lottoResults.getOrDefault(key, 0) * /*removeCommas(key.getWinningAmount()*/key.getWinningAmount();
+            returnOfLotto += lottoResults.getOrDefault(key, 0) * key.getWinningAmount();
         }
         OutputView.totalReturnOnLotto(returnOfLotto / amount * 100);
     }
-
-//    private int removeCommas(String winningAmount) {
-//        String remove = winningAmount.replaceAll(",", "");
-//        return Integer.parseInt(remove);
-//    }
 
 }

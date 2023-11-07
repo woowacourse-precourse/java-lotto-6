@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 import lotto.utils.InputUtil;
 import lotto.utils.LottoUtils;
@@ -23,6 +24,12 @@ public class LottoService {
     public WinningLotto initWinningLotto() {
         List<Integer> correctNumbers = inputWinningLotto();
         return inputBonusNumberAndGenerateWinningLotto(correctNumbers);
+    }
+
+    public Rank getRankCode(Lotto lotto, WinningLotto winningLotto) {
+        int cnt = LottoUtils.matchLotto(lotto.getNumbers(), winningLotto.getNumbers());
+        boolean bonusMatch = LottoUtils.matchBonus(cnt, lotto, winningLotto.getBonus());
+        return Rank.getPrize(cnt, bonusMatch);
     }
 
     private List<Integer> inputWinningLotto() {
@@ -58,4 +65,5 @@ public class LottoService {
         Validation.checkIsNumber(num);
         Validation.checkIsNatural(Integer.parseInt(num));
     }
+
 }

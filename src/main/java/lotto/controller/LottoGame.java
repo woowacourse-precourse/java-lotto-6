@@ -11,7 +11,7 @@ import lotto.utils.LottoUtils;
 import lotto.view.OutputView;
 
 public class LottoGame {
-    private static final String DECIMAL_FORMAT = "###,###.0";
+    private static final String DECIMAL_FORMAT = "###,##0.0";
     private static final int LOTTO_PRISE = 1000;
     private static final int PERCENT = 100;
     private final LottoService lottoService = new LottoService();
@@ -38,14 +38,12 @@ public class LottoGame {
 
     private void matchLottos() {
         for (Lotto lotto : buyer.getLottos()) {
-            int cnt = LottoUtils.matchLotto(lotto.getNumbers(), winningLotto.getNumbers());
-            boolean bonusMatch = LottoUtils.matchBonus(cnt, lotto, winningLotto.getBonus());
-            calcPrize(cnt, bonusMatch);
+            Rank rank = lottoService.getRankCode(lotto, winningLotto);
+            calcPrize(rank);
         }
     }
 
-    private void calcPrize(int cnt, boolean bonus) {
-        Rank rank = Rank.getPrize(cnt, bonus);
+    private void calcPrize(Rank rank) {
         result.put(rank, result.get(rank) + 1);
         reward = rank.calculateReward(reward);
     }

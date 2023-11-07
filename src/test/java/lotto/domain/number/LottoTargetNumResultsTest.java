@@ -11,6 +11,7 @@ import java.util.List;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class LottoTargetNumResultsTest {
+    private static final Integer BONUS_INDEX = 6;
     private LottoTargetNumResults lottoTargetNumResults;
     private WinLottoNums winLottoNums;
     private BonusLottoNum bonusLottoNum;
@@ -21,7 +22,6 @@ class LottoTargetNumResultsTest {
         bonusLottoNum = new BonusLottoNum(7);
         lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), 7);
     }
-
 
     @DisplayName("당첨 번호 추첨 번호가 같은지 확인한다.")
     @ParameterizedTest
@@ -38,7 +38,7 @@ class LottoTargetNumResultsTest {
     @Test
     void isSameBonusNum() {
         Integer targetNum = 7;
-        Integer indexOfSpecial = 6;
+        Integer indexOfSpecial = BONUS_INDEX;
 
         // when
         Boolean result = lottoTargetNumResults.isSameBonusNum(targetNum, indexOfSpecial);

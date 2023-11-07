@@ -29,7 +29,7 @@ public class Controller {
         OutputView.printBuyLottoCount(lotties.size());
         OutputView.printLotties(lotties.getLottiesNumbers());
 
-        WinningNumber winningNumber = part3();
+        WinningNumber winningNumber = inputWinningNumber();
 
         for (Lotto lotto : lotties.getLotties()) {
             Result result = findResult(lotto, winningNumber);
@@ -49,7 +49,7 @@ public class Controller {
         OutputView.printProfit(formattedProfitPercentage);
     }
 
-    public WinningNumber part3() {
+    public WinningNumber inputWinningNumber() {
         OutputView.printEnterWinningNumber();
         List<Integer> numbers = InputView.inputLottoNumbers();
 

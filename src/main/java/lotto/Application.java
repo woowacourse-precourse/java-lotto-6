@@ -10,8 +10,13 @@ public class Application {
     public static void main(String[] args) {
         System.out.println(InputMessage.purchaseAmount);
         int result = inputPurchaseAmount();
+
         List<Lotto> lottos = createLottos(result);
+
         printPurchaseCount();
+        printLottos(lottos);
+
+        System.out.println(InputMessage.WINNING_NUMBER);
     }
 
     public static int inputPurchaseAmount() {
@@ -84,7 +89,7 @@ public class Application {
         return lottos;
     }
 
-    public static void printPurchaseCount() {
+    public static void  printPurchaseCount() {
         System.out.println(OuputMessage.purchaseCount);
     }
 

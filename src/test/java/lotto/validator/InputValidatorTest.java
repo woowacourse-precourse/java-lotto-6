@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
@@ -22,8 +22,7 @@ class InputValidatorTest {
 
     @DisplayName("사용자 입력 값이 공백, 길이가 0, null이면 예외 발생")
     @ParameterizedTest
-    @ValueSource(strings = {"", " "})
-    @NullSource
+    @NullAndEmptySource
     void should_Throw_Exception_For_Null_Or_Blank_Input(String input) {
         // when
         // then

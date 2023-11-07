@@ -2,7 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.service.CalculateProiftService;
+import lotto.service.CalculateProfitService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ public class CalculateProfitTest {
     void calculateProfit() {
         int winPrice = 5000;
         int buyPrice = 8000;
-        CalculateProiftService service = new CalculateProiftService();
+        CalculateProfitService service = new CalculateProfitService();
 
         double result = service.calculateProfit(winPrice, buyPrice);
 

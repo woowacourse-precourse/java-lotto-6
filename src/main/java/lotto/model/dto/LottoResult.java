@@ -11,4 +11,12 @@ public class LottoResult {
         this.winngResult = winngResult;
         this.marginRate = marginRate;
     }
+
+    public WinningResult getWinngResult() {
+        return winngResult;
+    }
+
+    public MarginRate getMarginRate() {
+        return marginRate;
+    }
 }

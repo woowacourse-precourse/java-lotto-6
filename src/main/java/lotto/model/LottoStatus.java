@@ -13,6 +13,14 @@ public class LottoStatus {
         this.isBonusNumberCorrect = isBonusNumberCorrect;
     }
 
+    public int getCorrectNumber() {
+        return correctNumber;
+    }
+
+    public boolean isBonusNumberCorrect() {
+        return isBonusNumberCorrect;
+    }
+
     public static LottoStatus createEmptyStatus() {
         return new LottoStatus(0,false);
     }

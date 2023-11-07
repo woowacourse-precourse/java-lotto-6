@@ -13,7 +13,7 @@ public class Bonus {
     public Bonus(int number, Lotto winningLotto) {
         validateNumberInRange(number);
         validateNotInWinningNumbers(number, winningLotto);
-        
+
         this.number = number;
     }
 
@@ -34,5 +34,9 @@ public class Bonus {
         if (winningNumbers.contains(number)) {
             throw new IllegalArgumentException(DUPLICATE_BONUS_MESSAGE);
         }
+    }
+
+    public int getNumber() {
+        return number;
     }
 }

@@ -5,6 +5,7 @@ import lotto.domain.Balance;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoDraw;
+import lotto.dto.LottoResults;
 import lotto.utils.Parser;
 import lotto.utils.RetryExecutor;
 import lotto.view.Input;
@@ -22,8 +23,13 @@ public class LottoGame {
         Bonus winningBonus = RetryExecutor.execute(() -> makeWinningBonus(winningLotto),
                 IllegalArgumentException.class);
 
-        LottoDraw.of(winningLotto, winningBonus);
+        LottoDraw lottoDraw = LottoDraw.of(winningLotto, winningBonus);
 
+        LottoChecker lottoChecker = new LottoChecker(lottoDraw, lottos);
+
+        int purchaseAmount = balance.getPurchaseAmount();
+        LottoResults lottoResults = lottoChecker.createLottoResults(purchaseAmount);
+        Output.printResults(lottoResults);
     }
 
     private Balance makeBalance() {

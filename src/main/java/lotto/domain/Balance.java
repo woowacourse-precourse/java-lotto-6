@@ -6,10 +6,12 @@ public class Balance {
     private static final String INSUFFICIENT_BALANCE_MESSAGE = "[ERROR] 잔액이 부족합니다. 로또 티켓을 더 이상 구매할 수 없습니다.";
 
     private int amount;
+    private final int purchaseAmount;
 
     private Balance(int amount) {
         validatePurchaseWithoutChange(amount);
         this.amount = amount;
+        this.purchaseAmount = amount;
     }
 
     public static Balance create(int amount) {
@@ -26,6 +28,10 @@ public class Balance {
         }
 
         amount -= LOTTO_TICKET_PRICE;
+    }
+    
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 
     private void validatePurchaseWithoutChange(int amount) {

@@ -20,13 +20,18 @@ public class OutputView {
     }
 
     //당첨통계를 출력하는 기능
-    public void winningRecords() {
+    public void winningRecords(List<Integer> rankResult) {
 
+        System.out.printf("3개 일치 (5,000원) - %d개 %n", rankResult.get(4));
+        System.out.printf("4개 일치 (50,000원) - %d개 %n", rankResult.get(3));
+        System.out.printf("5개 일치 (1,500,000원) - %d개 %n", rankResult.get(2));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개 %n", rankResult.get(1));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개 %n", rankResult.get(0));
     }
 
     //상금 수익율을 보여주는 기능
-    public void prizesSummary() {
-
+    public void prizesSummary(float rateOfReturn) {
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
 }

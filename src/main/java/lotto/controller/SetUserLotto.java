@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetUserLotto {
-
+    private final int bonusNumber = bonusNumber();
     private Lotto userLotto() {
         List<Integer> numbers = InputNumbers();
         return new Lotto(numbers);
@@ -23,7 +23,6 @@ public class SetUserLotto {
                 rangeValidation(Integer.parseInt(str));
                 inputNumbers.add(Integer.parseInt(str));
             }
-
             sizeValidation(inputNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(ExceptionMessage.INVALID_INPUT_NUMBER.getMessage());
@@ -36,7 +35,7 @@ public class SetUserLotto {
         int number = Integer.parseInt(Console.readLine());
         try {
             bonusNumberValidation(number);
-            rangeBonusValidation(number);
+            rangeValidation(number);
         } catch (IllegalArgumentException e) {
             System.out.println(ExceptionMessage.INVALID_INPUT_NUMBER.getMessage());
         }
@@ -44,9 +43,7 @@ public class SetUserLotto {
     }
 
     private void bonusNumberValidation(int number) {
-        Lotto lotto = new Lotto(numbers);
-
-        if(lotto.getNumbers().contains(number)) {
+        if(userLotto().getNumbers().contains(number)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER.getMessage());
         }
 
@@ -54,7 +51,7 @@ public class SetUserLotto {
 
     private void sizeValidation(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            if(numbers.size() == 0){
+            if(numbers.isEmpty()){
                 throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_EMPTY.getMessage());
             }
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_COUNT.getMessage());
@@ -65,16 +62,6 @@ public class SetUserLotto {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
         }
-    }
-
-    private void rangeBonusValidation(int number) {
-        if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
     }
 
 }

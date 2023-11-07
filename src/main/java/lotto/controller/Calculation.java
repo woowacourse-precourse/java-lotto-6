@@ -62,7 +62,7 @@ public class Calculation {
 
     public Boolean isMatchBonusNumber(Lotto lotto, LottoTicket ticket) {
         for(List<Integer> numbers : ticket.getTicketNumbers()) {
-            if(numbers.contains(lotto.bonusNumber())){
+            if(numbers.contains(bonusNumber())){
                 return false;
             }
         }

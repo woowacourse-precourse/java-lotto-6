@@ -1,51 +1,30 @@
 package lotto.domain;
 
-import static lotto.etc.ErrorConstant.BONUS_ERROR;
-import static lotto.etc.ErrorConstant.DUPLICATE_ERROR;
-import static lotto.etc.ErrorConstant.NOT_SIX_ERROR;
-import static lotto.etc.RuleConstant.SIX_MATCH;
-import static lotto.etc.Validate.checkOneAndFortyFive;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import lotto.Service.ValidateService;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        ArrayList<Integer> tempNumbers = new ArrayList<>(numbers);
-        Collections.sort(tempNumbers);
-        this.numbers = tempNumbers;
+        this.numbers = validateAndSortNumbers(numbers);
     }
 
     public List<Integer> getNumbers(){
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != SIX_MATCH.toInt()) {
-            throw new IllegalArgumentException(NOT_SIX_ERROR.toString());
-        }
+    private List<Integer> validateAndSortNumbers(List<Integer> numbers){
+        ValidateService validateService = ValidateService.getInstance();
 
-        if(new HashSet<>(numbers).size() != SIX_MATCH.toInt()){
-            throw new IllegalArgumentException(DUPLICATE_ERROR.toString());
-        }
+        validateService.checkSixLength(numbers);
+        validateService.checkDuplicateNumber(numbers);
 
-        for(Integer number : numbers){
-            checkOneAndFortyFive(number);
-        }
+        ArrayList<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
-    public void duplicateBonusNumber(int bonus){
-        checkOneAndFortyFive(bonus);
-        Set<Integer> userSet = new HashSet<>(numbers);
-        userSet.add(bonus);
-        if(userSet.size() == SIX_MATCH.toInt()){
-            throw new IllegalArgumentException(BONUS_ERROR.toString());
-        }
-    }
 }

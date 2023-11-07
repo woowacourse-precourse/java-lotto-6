@@ -1,21 +1,30 @@
 package lotto.Service;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
-import static lotto.etc.RuleConstant.*;
-import static lotto.etc.Validate.checkOneAndFortyFive;
-import static lotto.etc.Validate.validateNumber;
+import static lotto.etc.RuleConstant.COUNT;
+import static lotto.etc.RuleConstant.END_INCLUSIVE;
+import static lotto.etc.RuleConstant.FIFTH;
+import static lotto.etc.RuleConstant.FIRST;
+import static lotto.etc.RuleConstant.FIVE_MATCH;
+import static lotto.etc.RuleConstant.FORE_MATCH;
+import static lotto.etc.RuleConstant.FOURTH;
+import static lotto.etc.RuleConstant.SECOND;
+import static lotto.etc.RuleConstant.SIX_MATCH;
+import static lotto.etc.RuleConstant.START_INCLUSIVE;
+import static lotto.etc.RuleConstant.THIRD;
+import static lotto.etc.RuleConstant.THREE_MATCH;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import lotto.domain.Lotto;
-import lotto.dto.BonusRequestDTO;
 import lotto.dto.CountScoreRequestDTO;
 import lotto.dto.CountScoreResponseDTO;
 
 public class LottoService {
     private static final LottoService instance = new LottoService();
-
     private LottoService() {}
-
     public static LottoService getInstance() {
         return instance;
     }
@@ -24,21 +33,10 @@ public class LottoService {
         List<Lotto> lottoTickets = new ArrayList<>();
         for (int i = 0; i < time; i++) {
             List<Integer> numbers = pickUniqueNumbersInRange(START_INCLUSIVE.toInt(), END_INCLUSIVE.toInt(), COUNT.toInt());
-            Lotto lotto = createLotto(numbers);
+            Lotto lotto = new Lotto(numbers);
             lottoTickets.add(lotto);
         }
         return lottoTickets;
-    }
-
-    public Lotto createLotto(List<Integer> numbers) {
-        return new Lotto(numbers);
-    }
-
-    public int createBonusNumber(BonusRequestDTO bonusRequestDTO) {
-        int bonusNumber = validateNumber(bonusRequestDTO.getBonus());
-        checkOneAndFortyFive(bonusNumber);
-        bonusRequestDTO.getLotto().duplicateBonusNumber(bonusNumber);
-        return bonusNumber;
     }
 
     public CountScoreResponseDTO countScore(CountScoreRequestDTO countScoreRequestDTO) {

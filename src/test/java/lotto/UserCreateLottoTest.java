@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
+import lotto.Service.LottoService;
 import lotto.domain.Lotto;
 import lotto.dto.CountScoreResponseDTO;
-import lotto.Service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

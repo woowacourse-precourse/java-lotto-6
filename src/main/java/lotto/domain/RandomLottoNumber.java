@@ -6,6 +6,7 @@ import java.util.List;
 
 public class RandomLottoNumber {
     private List<Integer> numbers;
+
     public RandomLottoNumber() {
         getRandomNumber();
     }
@@ -14,7 +15,7 @@ public class RandomLottoNumber {
         return numbers;
     }
 
-    private void getRandomNumber() {
+    public void getRandomNumber() {
         this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 

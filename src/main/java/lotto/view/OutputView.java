@@ -59,19 +59,19 @@ public final class OutputView {
             int matchingCount = rank.matchingCount();
             String reward = applyRewardFormat(rank);
             if (rank.isSecond(rank)) {
-                printSecondRankResult(rankingCount, matchingCount, reward);
+                printSecondRankResult(matchingCount, reward, rankingCount);
             }
             if (!rank.isSecond(rank)) {
-                printRankResult(rankingCount, matchingCount, reward);
+                printRankResult(matchingCount, reward, rankingCount);
             }
         });
     }
 
-    private static void printSecondRankResult(final int rankingCount, final int matchingCount, final String reward) {
+    private static void printSecondRankResult(final int matchingCount, final String reward, final int rankingCount) {
         System.out.printf(addLineSeparatorInSuffix(SECOND_RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
     }
 
-    private static void printRankResult(final int rankingCount, final int matchingCount, final String reward) {
+    private static void printRankResult(final int matchingCount, final String reward, final int rankingCount) {
         System.out.printf(addLineSeparatorInSuffix(RANK_RESULT_GUIDE), matchingCount, reward, rankingCount);
     }
 

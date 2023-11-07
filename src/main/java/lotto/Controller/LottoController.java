@@ -102,14 +102,13 @@ public class LottoController {
         }
     }
 
-    public void calculateEarnings() {
+    public LottoResult findRank() {
         for (Lotto randomNumbers : lottoRandomNumbers) {
             int matchCount = Judge.compareWinningNumbers(lottoWinningNumbers, randomNumbers);
             boolean isMatchBonusNumber = Judge.compareBonusNumber(lottoWinningNumbers, lottoBonusNumber);
-            LottoResult lottoResult = LottoResult.getLottoResult(matchCount, isMatchBonusNumber);
-
-            totalEarnings +=
+            return LottoResult.getLottoResult(matchCount, isMatchBonusNumber);
         }
+        return null;
     }
 
 

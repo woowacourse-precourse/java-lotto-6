@@ -7,9 +7,9 @@ public enum RankTable {
     BONUS(5, true,  30_000_000),
     SIX(6, false, 2_000_000_000);
 
-    private int matchNumber;
-    private boolean bonus;
-    private int money;
+    private final int matchNumber;
+    private final boolean bonus;
+    private final int money;
 
     RankTable(int matchNumber, boolean bonus, int money) {
         this.matchNumber = matchNumber;

@@ -71,7 +71,7 @@ public class LottoMachineTest {
 
     @DisplayName("로또 번호가 당첨 번호와 일치하는 갯수에 따라 당첨 판단")
     @Test
-    void test() {
+    void testCorrectPrizeAwardedForMatchingLottoNumbers() {
         int bonusNumber = 15;
         List<Integer> winningNumbers = List.of(1, 7, 14, 21, 35, 41);
         ArrayList<Lotto> testLotto = new ArrayList<>();

@@ -15,8 +15,9 @@ class WinnerNumberExceptionTest {
     void isNumberTest(){
         //given
         String input = "1,2,3,a,5";
+        List<Integer> list = Arrays.asList(1,2,3,4,5,6);
         //then
-        assertThatThrownBy(() -> new WinnerNumberException().isNumber(input)).isInstanceOf(
+        assertThatThrownBy(() -> new WinnerNumberException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -26,7 +27,7 @@ class WinnerNumberExceptionTest {
         //given
         String input = "1,2,3.4.5";
         //then
-        assertThatThrownBy(() -> new WinnerNumberException().isComma(input)).isInstanceOf(
+        assertThatThrownBy(() -> new WinnerNumberException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -36,7 +37,7 @@ class WinnerNumberExceptionTest {
         //given
         List<Integer> input = Arrays.asList();
         //then
-        assertThatThrownBy(() -> new WinnerNumberException().isBlank(input)).isInstanceOf(
+        assertThatThrownBy(() -> new WinnerNumberException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -46,7 +47,7 @@ class WinnerNumberExceptionTest {
         //given
         List<Integer> input = Arrays.asList(0,30,8);
         //then
-        assertThatThrownBy(() -> new WinnerNumberException().isRightRange(input)).isInstanceOf(
+        assertThatThrownBy(() -> new WinnerNumberException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -56,7 +57,7 @@ class WinnerNumberExceptionTest {
         //given
         List<Integer> input = Arrays.asList(1,2,3,4,5,6,7);
         //then
-        assertThatThrownBy(() -> new WinnerNumberException().isSize(input)).isInstanceOf(
+        assertThatThrownBy(() -> new WinnerNumberException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 
@@ -66,7 +67,7 @@ class WinnerNumberExceptionTest {
         //given
         List<Integer> input = Arrays.asList(1,1,3);
         //then
-        assertThatThrownBy(() -> new WinnerNumberException().isDuplicate(input)).isInstanceOf(
+        assertThatThrownBy(() -> new WinnerNumberException(input)).isInstanceOf(
                 IllegalArgumentException.class);
     }
 

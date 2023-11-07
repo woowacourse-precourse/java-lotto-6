@@ -21,7 +21,7 @@ public enum LottoRanking {
         return ((long) prize * count);
     }
 
-    public boolean isCorrectCondition(int correctCount) {
+    public boolean isSameCorrectCount(int correctCount) {
         return correctNumberCount == correctCount;
     }
 }

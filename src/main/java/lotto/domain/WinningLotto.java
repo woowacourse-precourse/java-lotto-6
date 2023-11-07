@@ -14,14 +14,14 @@ public class WinningLotto {
     }
 
     public LottoRanking calculateRanking(Lotto lotto) {
-        int correctCount = countCorrectWinningNumber(lotto);
+        int correctCount = calculateWinningNumbersCount(lotto);
         boolean isCorrectBonusNumber = lotto.contains(bonusNumber);
 
         return findRankingByCondition(correctCount, isCorrectBonusNumber);
     }
 
     private LottoRanking findRankingByCondition(int correctCount, boolean isCorrectBonusNumber) {
-        if (LottoRanking.SECOND.isCorrectCondition(correctCount)) {
+        if (LottoRanking.SECOND.isSameCorrectCount(correctCount)) {
             if (isCorrectBonusNumber) {
                 return LottoRanking.SECOND;
             }
@@ -29,12 +29,12 @@ public class WinningLotto {
         }
 
         return Arrays.stream(LottoRanking.values())
-                .filter(rank -> rank.isCorrectCondition(correctCount))
+                .filter(rank -> rank.isSameCorrectCount(correctCount))
                 .findFirst()
                 .orElse(LottoRanking.NO_LUCK);
     }
 
-    private int countCorrectWinningNumber(Lotto lotto) {
+    private int calculateWinningNumbersCount(Lotto lotto) {
         return (int) winningNumbers.stream()
                 .filter(lotto::contains)
                 .count();

@@ -37,4 +37,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호를 쉼표로 구분하지 않으면 예외가 발생한다.")
+    @Test
+    void createLottoByInvalidSeparator() {
+        assertThatThrownBy(() -> new Lotto("1.2.3.4.5.6"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

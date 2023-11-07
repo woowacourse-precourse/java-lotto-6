@@ -16,10 +16,10 @@ public class Application {
         int ticketCount = purchaseAmount / LOTTO_TICKET_PRICE;
         Lotto[] tickets = new Lotto[ticketCount];
 
+
         for (int i = 0; i < ticketCount; i++) {
             tickets[i] = Lotto.generate();
         }
-
 
         System.out.println("당첨 번호를 입력해 주세요.");
         String lottoNumbers = readLine();
@@ -30,8 +30,15 @@ public class Application {
                 .collect(Collectors.toList());
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        String bonusNumber = readLine();
+        int bonusNumber = Integer.parseInt(readLine());
 
-        Lotto win = new Lotto(numbers);
+        WinningNumbers win = new WinningNumbers(numbers, bonusNumber);
+
+
+
+
+
+
+
     }
 }

@@ -38,6 +38,20 @@ class LottoResultDTOTest {
 
     }
 
+    @DisplayName("결과 DTO의 총 수익률 확인")
+    @ParameterizedTest(name = "수익률 {2}% 확인")
+    @MethodSource("getMatchResultSource")
+    void getTotalReturnRate(EnumMap<PrizeCategory, Integer> matchResults, String expectedStatus, double expectedReturnRate) {
+        // given
+        LottoResultDTO lottoResultDTO = new LottoResultDTO(matchResults, expectedReturnRate);
+
+        // when
+        double totalReturnRate = lottoResultDTO.getTotalReturnRate();
+
+        // then
+        assertEquals(expectedReturnRate, totalReturnRate);
+    }
+
     static Stream<Arguments> getMatchResultSource() {
         EnumMap<PrizeCategory, Integer> firstCase = new EnumMap<>(PrizeCategory.class);
         firstCase.put(PrizeCategory.THREE_MATCH, 2);
@@ -54,8 +68,14 @@ class LottoResultDTOTest {
         secondCase.put(PrizeCategory.SIX_MATCH, 0);
 
         return Stream.of(
-                Arguments.of(firstCase, "3개 일치: 2, 4개 일치: 1", 0.0),
-                Arguments.of(secondCase, "5개 일치: 4, 5개 일치, 보너스 일치: 5", 0.0)
+                Arguments.of(
+                        firstCase,
+                        "3개 일치: 2, 4개 일치: 1",
+                        Math.round(((double) 15000 / 10000) * 100.0) / 100.0),
+                Arguments.of(
+                        secondCase,
+                        "5개 일치: 4, 5개 일치, 보너스 일치: 5",
+                        Math.round(((double) 156000000 / 10000) * 100.0) / 100.0)
         );
     }
 }

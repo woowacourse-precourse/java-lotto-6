@@ -1,8 +1,6 @@
 package lotto.model;
 
-import java.util.EnumMap;
-import java.util.List;
-
+import java.util.*;
 
 public class WinStatistics {
     private static final double PERCENTAGE_UNIT = 100.0;
@@ -21,9 +19,8 @@ public class WinStatistics {
 
     private static EnumMap<Ranking, Integer> initStatistics() {
         EnumMap<Ranking, Integer> statistics = new EnumMap<>(Ranking.class);
-        for (Ranking rank : Ranking.values()) {
-            statistics.put(rank, 0);
-        }
+        Arrays.stream(Ranking.values())
+                .forEach(rank -> statistics.put(rank, 0));
         return statistics;
     }
 

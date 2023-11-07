@@ -26,8 +26,8 @@ public class InputParser {
     }
 
     public List<Long> parseWinningLottoNumbers(String winningLottoNumbers) {
-        winningLottoNumbersInputValidator.validate(winningLottoNumbers);
         winningLottoNumbers = removeBlankInEachSeperatedItems(winningLottoNumbers);
+        winningLottoNumbersInputValidator.validate(winningLottoNumbers);
         return parseToLongList(winningLottoNumbers);
     }
 

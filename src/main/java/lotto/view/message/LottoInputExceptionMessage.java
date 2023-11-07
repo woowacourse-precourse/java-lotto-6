@@ -16,6 +16,8 @@ public enum LottoInputExceptionMessage {
             OutputConstant.ERROR_WARNING + "입력된 당첨번호가 6개가 아닙니다." + OutputConstant.NEW_LINE),
     WINNING_LOTTO_NUMBERS_CONTAINS_EMPTY_NUMBER(
             OutputConstant.ERROR_WARNING + "입력된 당첨번호 중 비어있는 값이 존재합니다." + OutputConstant.NEW_LINE),
+    WINNING_LOTTO_NUMBERS_INPUT_EXCEED_INPUT_RANGE(
+            OutputConstant.ERROR_WARNING + "입력된 당첨번호 중 입력값의 범위를 초과하는 값이 존재합니다." + OutputConstant.NEW_LINE),
     WINNING_LOTTO_NUMBERS_ENDS_WITH_DELIMITER(
             OutputConstant.ERROR_WARNING + "입력된 당첨번호가 " + InputConstant.COMMA_SYMBOL + "("
                     + InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER + ")로 끝납니다." + OutputConstant.NEW_LINE),
@@ -24,7 +26,7 @@ public enum LottoInputExceptionMessage {
     WINNING_LOTTO_NUMBERS_ARE_DUPLICATED(
             OutputConstant.ERROR_WARNING + "당첨번호 입력값 중 중복된 값이 존재합니다." + OutputConstant.NEW_LINE),
     LOTTO_NUMBER_IS_NOT_IN_APPROPRIATE_RANGE(
-            OutputConstant.ERROR_WARNING + "로또 번호는 " + LottoConstant.LOTTO_MIN_NUM.getValue() + "부터"
+            OutputConstant.ERROR_WARNING + "로또 번호는 " + LottoConstant.LOTTO_MIN_NUM.getValue() + "부터 "
                     + LottoConstant.LOTTO_MAX_NUM.getValue() + " 사이의 숫자여야 합니다." + OutputConstant.NEW_LINE),
     BONUS_NUMBER_IS_NOT_NUMERIC_TYPE(
             OutputConstant.ERROR_WARNING + "보너스 숫자는 숫자 형식의 입력이어야 합니다." + OutputConstant.NEW_LINE),

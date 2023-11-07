@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.constant.Message;
 import lotto.dto.LottoPurchaseDto;
 import lotto.dto.LottosDto;
 import lotto.dto.WinningResultDto;
@@ -33,6 +34,7 @@ public class LottoController {
                 inputBonusNumber,
                 lottosDto
         );
+        view.printMessage(Message.WINNING_STATS);
         view.close();
     }
 }

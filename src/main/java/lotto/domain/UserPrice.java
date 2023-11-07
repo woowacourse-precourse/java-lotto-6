@@ -11,4 +11,9 @@ public class UserPrice {
     public int buyCount(int lottoPrice) {
         return price / lottoPrice;
     }
+
+    public Lotties buy(int lottoPrice){
+        int lottoCnt = price / lottoPrice;
+        return LottoFactory.generateLotties(lottoCnt);
+    }
 }

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
@@ -15,6 +16,8 @@ import lotto.view.OutputView;
 public class LottoService {
 	private Lottos lottos;
 	private LottoWinningNumbers lottoWinningNumbers;
+	private Bonus bonus;
+
 	public void createLotto(int numbers) {
 		lottos = new Lottos(createLottos(numbers));
 	}
@@ -24,8 +27,10 @@ public class LottoService {
 		System.out.println();
 	}
 
-	public void setWinningLotto() {
-		setUpLottoWinningNumbers(getWinningNumbers(), getBonusNumber());
+	public void setUpWinningAndBonusLotto() {
+		setUpWinningLotto();
+		System.out.println();
+		setUpBonusLotto();
 	}
 
 	private List<Lotto> createLottos(int numbers) {
@@ -40,22 +45,23 @@ public class LottoService {
 		return null;
 	}
 
-	private String getWinningNumbers() {
-		InputView.askWinningNumbers();
-		return Console.readLine();
-	}
-
-	private String getBonusNumber() {
-		InputView.askBonusNumber();
-		return Console.readLine();
-	}
-
-	private void setUpLottoWinningNumbers(String numbers, String bonus) {
+	private void setUpWinningLotto() {
 		try {
-			lottoWinningNumbers = new LottoWinningNumbers(numbers, bonus);
-		} catch(LottoException e) {
+			InputView.askWinningNumbers();
+			lottoWinningNumbers = new LottoWinningNumbers(Console.readLine());
+		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			setWinningLotto();
+			setUpWinningLotto();
+		}
+	}
+
+	private void setUpBonusLotto() {
+		try {
+			InputView.askBonusNumber();
+			bonus = new Bonus(Console.readLine());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			setUpBonusLotto();
 		}
 	}
 }

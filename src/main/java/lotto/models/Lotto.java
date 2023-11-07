@@ -37,6 +37,10 @@ public class Lotto {
         return ComparisonScore.valueOf(countOfMatch, hasMatchBonus);
     }
 
+    public boolean hasNumber(int number){
+        return this.numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         return String.format(

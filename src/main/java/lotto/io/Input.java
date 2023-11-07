@@ -38,15 +38,15 @@ public class Input {
         }
     }
 
-    public static int bonusNumber() {
+    public static int bonusNumber(List<Integer> winningNumbers) {
         try {
             System.out.println(INPUT_BONUS_MESSAGE);
             String input = Console.readLine();
-            InputValidator.validateBonusNumber(input);
+            InputValidator.validateBonusNumber(input, winningNumbers);
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return bonusNumber();
+            return bonusNumber(winningNumbers);
         }
     }
 }

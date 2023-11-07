@@ -12,8 +12,7 @@ public class LottoController {
     public static void run() {
         Ticket ticket = getTicket();
         List<Integer> winningNumbers = Input.winningNumbers();
-        int bonusNumber = Input.bonusNumber();
-        validateDuplicate(winningNumbers, bonusNumber);
+        int bonusNumber = Input.bonusNumber(winningNumbers);
         printResult(ticket, winningNumbers, bonusNumber);
     }
 
@@ -28,11 +27,5 @@ public class LottoController {
         EnumMap<Prize, Integer> statistics = TicketService.getStatistics(ticket, winningNumbers, bonusNumber);
         Output.printStatistics(statistics);
         Output.printProfitRate(ticket, winningNumbers, bonusNumber);
-    }
-
-    private static void validateDuplicate(List<Integer> winningNumbers, int bonusNumber) {
-        if(winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
-        }
     }
 }

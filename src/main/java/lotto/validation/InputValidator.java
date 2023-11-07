@@ -29,9 +29,10 @@ public class InputValidator {
         validateWinningNumbersSize(winningNumbers);
         validateDuplicateNumber(winningNumbers);
     }
-    public static void validateBonusNumber(String input) {
+    public static void validateBonusNumber(String input, List<Integer> winningNumbers) {
         validateInteger(input);
         int bonusNumber = Integer.parseInt(input);
+        validateDuplicateBonusNumber(winningNumbers, bonusNumber);
         validateLottoNumberRange(bonusNumber);
     }
 
@@ -79,6 +80,12 @@ public class InputValidator {
     private static void validateDuplicateNumber(List<Integer> numbers) {
         if(numbers.size() != numbers.stream().distinct().count()) {
             throw new WinningNumberDuplicationException();
+        }
+    }
+
+    private static void validateDuplicateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+        if(winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException();
         }
     }
 }

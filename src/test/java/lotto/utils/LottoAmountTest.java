@@ -1,0 +1,17 @@
+package lotto.utils;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+public class LottoAmountTest {
+    @DisplayName("구입 금액에 숫자 외의 다른 문자가 포함되어 있는 경우 예외가 발생한다.")
+    @Test
+    void containAnyString() {
+        assertThatThrownBy(() -> new LottoAmountValidator("giltae1234"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+
+}

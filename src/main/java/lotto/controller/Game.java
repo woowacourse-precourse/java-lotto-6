@@ -5,46 +5,20 @@ import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
     public void start() {
-        //
+        // 구매 금액 입력
         Cash cash = getCash();
 
+        // 구매 로또 출력
         List<Lotto> lottos = getLottos(cash);
-
         OutputView.displayLottos(lottos);
 
-        List<Integer> winningNumbers = new ArrayList<>();
-        while (true) {
-            try {
-                winningNumbers = InputView.getWinningNumbers();
-                // 입력이 유효하면 계속 진행
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
+        WinningNumbers winningNumbers = getWinningNumbers();
 
-        Integer number = 0;
-
-        while (true) {
-            try {
-                number = InputView.getBonusNumber();
-                // 입력이 유효하면 계속 진행
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
-            }
-        }
-
-        WinningNumber winningNumber = new WinningNumber(winningNumbers);
-        BonusNumber bonusNumber = new BonusNumber(number);
-
-        WinningNumbers winningNumbers1 = new WinningNumbers(winningNumber, bonusNumber);
-        WinningRanks winningRanks = new WinningRanks(lottos, winningNumbers1);
+        WinningRanks winningRanks = new WinningRanks(lottos, winningNumbers);
 
         winningRanks.calculateRanks();
 
@@ -57,11 +31,10 @@ public class Game {
     }
 
     private Cash getCash() {
-        int purchaseAmount = 0;
+        int purchaseAmount;
         while (true) {
             try {
                 purchaseAmount = InputView.getPurchaseAmount();
-                // 입력이 유효하면 계속 진행
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
@@ -71,11 +44,40 @@ public class Game {
     }
 
     private List<Lotto> getLottos(Cash cash) {
-        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-        LottoSeller lottoSeller = new LottoSeller(lottoNumberGenerator);
-
+        LottoSeller lottoSeller = new LottoSeller(new LottoNumberGenerator());
         Customer customer = new Customer(cash, lottoSeller);
-
         return customer.purchaseLottos();
+    }
+
+    private WinningNumbers getWinningNumbers() {
+        WinningNumber winningNumber = getWinningNumber();
+        BonusNumber bonusNumber = getBonusNumber();
+        return new WinningNumbers(winningNumber, bonusNumber);
+    }
+
+    private WinningNumber getWinningNumber() {
+        List<Integer> winningNumbers;
+        while (true) {
+            try {
+                winningNumbers = InputView.getWinningNumbers();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+        return new WinningNumber(winningNumbers);
+    }
+
+    private BonusNumber getBonusNumber() {
+        int number;
+        while (true) {
+            try {
+                number = InputView.getBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] " + e.getMessage());
+            }
+        }
+        return new BonusNumber(number);
     }
 }

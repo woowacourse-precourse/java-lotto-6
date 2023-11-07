@@ -1,8 +1,6 @@
 package lotto.View;
 
 import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class OutputView {
 
@@ -10,8 +8,8 @@ public class OutputView {
         System.out.println("\n"+cnt+"개를 구매했습니다.");
     }
 
-    public void printGeneratedNums(List<Integer> nums){
-        System.out.println(nums.stream().map(i -> i.toString()).collect(Collectors.joining(", ", "[", "]")));
+    public void printGeneratedNums(String output){
+        System.out.println(output);
     }
 
     public void printWinningStatistics(){
@@ -39,9 +37,8 @@ public class OutputView {
         System.out.println("6개 일치 (2,000,000,000원) - "+cnt+"개");
     }
 
-    public void printProfit(double profit){
-        BigDecimal bigDecimal = new BigDecimal(Double.parseDouble(Double.toString(profit)));
-        System.out.println("총 수익률은 "+String.format("%,.1f", bigDecimal)+"%입니다.");
+    public void printProfit(String profit){
+        System.out.println("총 수익률은 "+profit+"%입니다.");
     }
 
 }

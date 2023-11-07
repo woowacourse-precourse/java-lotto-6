@@ -39,7 +39,7 @@ public class StaisticsResult {
         outputView.print5MatchsWithBonus(countMap.get(FIVE_AND_BONUS.getNum()));
         outputView.print6Matchs(countMap.get(SIX.getNum()));
         int profit = calculate.getProfitCost(countMap);
-        double profitRate = calculate.getProfitRate(profit, cost);
+        String profitRate = calculate.getProfitRate(profit, cost);
         outputView.printProfit(profitRate);
     }
 

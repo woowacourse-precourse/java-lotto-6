@@ -6,7 +6,6 @@ import static lotto.MatchNums.*;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
-import lotto.Constants;
 
 public class Calculate {
     private static final double POINT = 10.0;
@@ -23,9 +22,9 @@ public class Calculate {
         return false;
     }
 
-    public double getProfitRate(double investment, double current){
+    public String getProfitRate(double investment, double current){
         double result = investment/current * 100;
-        return Math.round(result*POINT)/POINT;
+        return String.format("%,.1f", Math.round(result*POINT)/POINT);
     }
 
     public int getProfitCost(Map<Integer, Integer> matchMap){

@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.View.InputView;
 import lotto.View.OutputView;
 import lotto.Model.Generator;
@@ -87,10 +88,14 @@ public class ProcessLotto {
             count--;
             List<Integer> generateNums = generator.generate6Nums();
             Lotto lotto = new Lotto(generateNums);
-            outputView.printGeneratedNums(generateNums);
+            outputView.printGeneratedNums(listToString(generateNums));
             lottos.add(lotto);
         }
         return lottos;
+    }
+
+    private String listToString(List<Integer> nums){
+        return nums.stream().map(i -> i.toString()).collect(Collectors.joining(", ", "[", "]"));
     }
 
 

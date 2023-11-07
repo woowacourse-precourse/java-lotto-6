@@ -45,16 +45,23 @@ public class Application {
         System.out.println("---");
         for (int i = 5; i >= 1; i--) {
             if (i == 1) {
-                System.out.println(WinMessageType.FIRST.getDetail() + " - " + rankCount[i]);
+                System.out.println(WinMessageType.FIRST.getDetail() + " - " + rankCount[i] + "개");
             } else if (i == 2) {
-                System.out.println(WinMessageType.SECOND.getDetail() + " - " + rankCount[i]);
+                System.out.println(WinMessageType.SECOND.getDetail() + " - " + rankCount[i] + "개");
             } else if (i == 3) {
-                System.out.println(WinMessageType.THIRD.getDetail() + " - " + rankCount[i]);
+                System.out.println(WinMessageType.THIRD.getDetail() + " - " + rankCount[i] + "개");
             } else if (i == 4) {
-                System.out.println(WinMessageType.FOURTH.getDetail() + " - " + rankCount[i]);
+                System.out.println(WinMessageType.FOURTH.getDetail() + " - " + rankCount[i] + "개");
             } else if (i == 5) {
-                System.out.println(WinMessageType.FIFTH.getDetail() + " - " + rankCount[i]);
+                System.out.println(WinMessageType.FIFTH.getDetail() + " - " + rankCount[i] + "개");
             }
         }
+
+        int profitTotal = 0;
+        for (int i = 1; i <= 5; i++) {
+            profitTotal += rankCount[i] * Constant.PRIZE_MONEYS[i];
+        }
+        double profitRate = (double)(profitTotal) / purchaseAmount * 100;
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitRate));
     }
 }

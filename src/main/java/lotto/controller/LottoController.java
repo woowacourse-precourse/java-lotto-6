@@ -23,7 +23,7 @@ public class LottoController {
         WinningNumbers winningNumbers = drawWinningNumbers();
         BonusNumber bonusNumber = drawBonusNumber();
         List<PrizeType> lottoResult = LottoReader.read(winningNumbers, bonusNumber, lottoTicket);
-        drawStatistic(lottoResult);
+        drawStatistic(lottoResult, deposit);
     }
 
     public Deposit makeDeposit() {

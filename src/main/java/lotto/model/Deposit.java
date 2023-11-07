@@ -34,4 +34,8 @@ public class Deposit {
     public Integer calculateBuyableLottoAmount() {
         return this.amount / DIVISION_UNIT;
     }
+
+    public String calculateEarningsRate(Integer earnings) {
+        return String.valueOf(Math.round(earnings * 1000.0 / this.amount) / 10.0);
+    }
 }

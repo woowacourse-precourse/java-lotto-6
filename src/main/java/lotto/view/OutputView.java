@@ -21,4 +21,8 @@ public class OutputView {
     public static void printLottoStatistic(PrizeType type, Integer amount) {
         System.out.println(type.getDescription() + " - " + amount + "개");
     }
+
+    public static void printEarningsRate(String earningsRate) {
+        System.out.println("총 수익률은 " + earningsRate + "%입니다.\n");
+    }
 }

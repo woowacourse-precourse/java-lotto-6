@@ -2,10 +2,7 @@ package lotto.domain;
 
 import lotto.constant.LottoRank;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EnumMap;
-import java.util.List;
+import java.util.*;
 
 public class LottoStatistics {
 
@@ -24,18 +21,22 @@ public class LottoStatistics {
 
     @Override
     public String toString() {
-
-        List<String> response = new ArrayList<>();
-
-        statistics.entrySet().stream()
-                .filter(pair -> pair.getKey() != LottoRank.NOTHING)
-                .forEach(pair -> response.add(buildLine(pair.getKey(), pair.getValue())));
-
+        List<String> response = buildStrings();
         return String.join("\n", response);
-
     }
 
-    private String buildLine(LottoRank rank, Integer count) {
+    private List<String> buildStrings() {
+        return statistics.entrySet().stream()
+                .filter(pair -> pair.getKey() != LottoRank.NOTHING)
+                .map(this::buildString)
+                .toList();
+    }
+
+    private String buildString(Map.Entry<LottoRank, Integer> pair) {
+        return buildString(pair.getKey(), pair.getValue());
+    }
+
+    private String buildString(LottoRank rank, Integer count) {
         return rank.toString(count);
     }
 

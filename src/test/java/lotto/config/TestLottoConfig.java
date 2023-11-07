@@ -1,6 +1,6 @@
 package lotto.config;
 
-import lotto.TestConstant;
+import lotto.TestConstants;
 import lotto.controller.LottoController;
 import lotto.random.RandomNumberGenerator;
 import lotto.service.LottoService;
@@ -30,6 +30,6 @@ public class TestLottoConfig implements LottoConfig {
 
     @Override
     public RandomNumberGenerator randomNumberGenerator() {
-        return (min, max, count) -> TestConstant.NORMAL_NUMBERS;
+        return (min, max, count) -> TestConstants.NORMAL_NUMBERS;
     }
 }

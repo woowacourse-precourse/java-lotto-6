@@ -7,8 +7,8 @@ public class LottoController {
     private static final int LOTTO_PRICE = 1000;
 
     public void GameProgress() {
-        int lottoCount = Integer.parseInt(InputView.InputBuyCost());
-        OutputView.OutputLottoPurchased(lottoCount);
+        int lottoPurchased = Integer.parseInt(InputView.InputBuyCost());
+        OutputView.OutputLottoPurchased(lottoPurchased);
 
     }
 }

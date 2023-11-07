@@ -10,10 +10,10 @@ public record PurchaseLottoComponent(InputView inputView, OutputView outputView,
     public void render() {
         final var payment = inputView.readPaymentPrice();
 
-        final var purchasedLottoState = eventListener.listenWithParameterAndResult(PurchaseLottoEvent::new)
+        final var purchasedLottoState = eventListener
+                .listenWithParameterAndResult(PurchaseLottoEvent::new)
                 .apply(payment);
 
         outputView.print(purchasedLottoState);
-
     }
 }

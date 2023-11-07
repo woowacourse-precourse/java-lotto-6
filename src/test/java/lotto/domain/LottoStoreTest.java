@@ -1,12 +1,12 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import java.util.List;
 import lotto.domain.exception.DomainExceptionCode;
 import lotto.domain.strategy.RandomLottoPublisher;
 import lotto.domain.strategy.RandomNumbersGenerator;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,7 +34,7 @@ class LottoStoreTest {
 
         final var purchasedLottoBundle = lottoStore.purchaseLotto(new Money(quantity * 1000));
 
-        Assertions.assertThat(purchasedLottoBundle.getQuantity()).isEqualTo(quantity);
+        assertThat(purchasedLottoBundle.getQuantity()).isEqualTo(quantity);
 
 
     }

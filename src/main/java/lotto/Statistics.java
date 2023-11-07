@@ -72,9 +72,8 @@ public class Statistics {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matching_bonus +"개");
         System.out.println("6개 일치 (2,000,000,000원) - " + matching_6 +"개");
 
-       int revenue = (matching_3*5000)+(matching_4*50000)+(matching_5*1500000)+(matching_bonus*30000000)+(matching_6*2000000000);
-
-       int revenuePercent = revenue /(lottoNumbers.size()*1000)*100;
+        double revenue = (matching_3*5000)+(matching_4*50000)+(matching_5*1500000)+(matching_bonus*30000000)+(matching_6*2000000000);
+        double revenuePercent = revenue/(lottoNumbers.size()*1000)*100;
         System.out.println("총 수익률은 "+revenuePercent+"%입니다.");
     }
 }

@@ -16,7 +16,6 @@ import lotto.utility.vo.BonusNumberRequest;
 import lotto.utility.vo.ProfitResponse;
 import lotto.utility.vo.PurchaseAmountRequest;
 import lotto.utility.vo.WinningNumberRequest;
-import lotto.utility.vo.WinningResponse;
 
 public class LottoService {
     public IssuedLottos generateLottos(PurchaseAmountRequest purchaseAmount) {

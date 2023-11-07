@@ -3,7 +3,6 @@ package lotto.utility.vo;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
-import java.util.List;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.Test;
 

@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 import static lotto.constants.ErrorMessage.NEGATIVE_INTEGER;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 

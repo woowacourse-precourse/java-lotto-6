@@ -12,7 +12,7 @@ public class PurchaseAmountRequest {
     }
 
     private Integer validateInteger(String input) {
-        try{
+        try {
             return Integer.valueOf(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NOT_INTEGER);

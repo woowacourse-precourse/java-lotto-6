@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import static lotto.constants.Condition.MAXIMUM_VALUE;
-import static lotto.constants.Condition.MINIMUM_VALUE;
 import static lotto.constants.ErrorMessage.DUPLICATED_LOTTO_NUMBER;
-import static lotto.constants.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 
 import java.util.Collections;
 import java.util.HashSet;

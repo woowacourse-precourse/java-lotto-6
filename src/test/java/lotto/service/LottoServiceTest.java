@@ -10,7 +10,7 @@ class LottoServiceTest {
     private final LottoService lottoService = new LottoService();
 
     @Test
-    void 로또_발행하기() {
+    void 로또를_발행한다() {
         // given
         PurchaseAmountRequest 구매금액요청 = new PurchaseAmountRequest("5000");
 

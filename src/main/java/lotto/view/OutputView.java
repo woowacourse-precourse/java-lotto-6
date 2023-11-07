@@ -1,7 +1,6 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.domain.IssuedLottos;
 import lotto.utility.io.Writer;
 import lotto.utility.vo.LottoResponse;
 import lotto.utility.vo.ProfitResponse;

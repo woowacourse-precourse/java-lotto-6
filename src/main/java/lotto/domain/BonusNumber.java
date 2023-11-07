@@ -7,7 +7,8 @@ public class BonusNumber extends LottoNumber {
         super(number);
     }
 
-    public static BonusNumber from(final List<LottoNumber> lottoNumbers) {
+    public static BonusNumber from(final List<LottoNumber> lottoNumbers, final long bonusNumber) {
+        validate(bonusNumber);
         return new BonusNumber(generateBonusNumber(lottoNumbers));
     }
 

@@ -15,6 +15,6 @@ public class LottoService {
     }
 
     public BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers, final String bonusNumber) {
-        return BonusNumber.from(winningLottoNumbers.getWinningLottoNumbers());
+        return BonusNumber.from(winningLottoNumbers.getWinningLottoNumbers(), Long.parseLong(bonusNumber));
     }
 }

@@ -5,10 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoMachine {
+    private static final int COUNT_ZERO = 0;
     private List<Lotto> lotteries = new ArrayList<>();
 
     public List<Lotto> publishLotteries(int count) {
-        while (count > 0) {
+        while (count > COUNT_ZERO) {
             lotteries.add(this.generateLotto());
             count--;
         }

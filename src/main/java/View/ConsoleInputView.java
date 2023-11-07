@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import utils.Validator;
 
 public class ConsoleInputView implements InputView {
+    private static String ERROR_LOWER_MIN_PHUCHASE_PRICE = "[ERROR] 최소 구매가능 금액은 1000원 입니다.";
+    private static String ERROR_INVALID_AMOUNT_FORMAT = "[ERROR] 구매금액은 1,000단위로 입력하여야 합니다.";
 
     @Override
     public String inputPuchasePrice() {
@@ -30,13 +32,13 @@ public class ConsoleInputView implements InputView {
 
     private void validateUnderThousand(String userInput) {
         if (Integer.parseInt(userInput) < 1000) {
-            throw new IllegalArgumentException("최소 구매가능 금액은 1000원 입니다.");
+            throw new IllegalArgumentException(ERROR_LOWER_MIN_PHUCHASE_PRICE);
         }
     }
 
     private void validateMulitpleOfThousand(String userInput) {
         if (Integer.parseInt(userInput) % 1000 != 0) {
-            throw new IllegalArgumentException("구매금액은 1,000단위로 입력하여야 합니다.");
+            throw new IllegalArgumentException(ERROR_INVALID_AMOUNT_FORMAT);
         }
     }
 

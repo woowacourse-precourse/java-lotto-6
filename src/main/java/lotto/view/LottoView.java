@@ -34,4 +34,8 @@ public class LottoView {
         System.out.println(String.format(Message.OUTPUT_WIN_COUNT.getValue(), matches.get(0), matches.get(1), matches.get(2), matches.get(3), matches.get(5)));
         System.out.println(String.format(Message.OUTPUT_STATISTICS.getValue(), 22.5));
     }
+
+    public void outputError(String errorMsg) {
+        System.out.println(errorMsg);
+    }
 }

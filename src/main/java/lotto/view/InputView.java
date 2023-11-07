@@ -27,7 +27,7 @@ public class InputView{
 
     public static Lotto inputWinningNumbers(){
         System.out.println(WINNING_NUMBERS_INPUT.message());
-        List<Integer> numbers = new ArrayList<>();
+        List<Integer> numbers;
         try{
             numbers = Arrays.asList(readLine().split(",")).stream().map(s -> Integer.parseInt(s)).toList();
         } catch (NumberFormatException NPE){

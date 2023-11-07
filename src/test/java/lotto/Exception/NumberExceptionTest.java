@@ -45,14 +45,14 @@ public class NumberExceptionTest {
     @DisplayName("입력한 보너스 숫자가 당첨 숫자와 중복되면 예외 처리")
     @Test
     void checkDuplicateExceptionTestBonus() {
-        Assertions.assertThatThrownBy(() -> checkDuplicateException(List.of(1,6,2,3,4,5), 1)).
+        Assertions.assertThatThrownBy(() -> duplicateException(List.of(1,6,2,3,4,5), 1)).
                 isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("입력한 보너스 숫자가 당첨 숫자와 중복되면 예외 처리")
     @Test
     void checkRightDuplicateExceptionTestBonus() {
-        checkDuplicateException(List.of(1,9,2,3,4,5), 10);
+        duplicateException(List.of(1,9,2,3,4,5), 10);
     }
 
 

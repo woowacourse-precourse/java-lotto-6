@@ -4,6 +4,7 @@ import lotto.model.BonusNumber;
 
 import java.util.List;
 
+import static lotto.exception.NumberCheck.checkDuplicate;
 import static lotto.view.ErrorMessage.duplicatedBonusNumber;
 
 public class BonusException extends NumberException {

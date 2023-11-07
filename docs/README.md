@@ -8,6 +8,7 @@
 
 Lotto
 - [ ] 로또 발행
+- [ ] 로또 번호와 당첨 번호 비교
 
 RandomNumberGenerator
 - [ ] 중복되지 않는 숫자 6개 생성
@@ -19,8 +20,7 @@ LottoGame
 Winners
 - [ ] 당첨자 선정
 
-LottoNumberComparator
-- [ ] 로또 번호와 당첨 번호 비교
+
 
 
 

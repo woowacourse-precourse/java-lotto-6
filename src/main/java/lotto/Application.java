@@ -57,14 +57,9 @@ public class Application {
 
         //보너스 번호 입력
         int bonusNumber = 0;
-        System.out.println("보너스 번호를 입력해 주세요.");
-
         UserInput userInputBonusNumber = new UserInput();
 
-        while (UserInput.repeatBonusNumber) {
-            bonusNumber = userInputBonusNumber.getBonusNumber();
-            userInputBonusNumber.overlapWithNumber(winningNumbers, bonusNumber);
-        }
+        bonusNumber = userInputBonusNumber.getBonusNumber(winningNumbers);
 
         System.out.println();
 

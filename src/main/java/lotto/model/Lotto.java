@@ -5,7 +5,6 @@ import static lotto.LottoValidator.validateNumbers;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class Lotto {
 
@@ -22,12 +21,14 @@ public class Lotto {
         return modifiableNumbers.toString();
     }
 
-    public boolean contain(final int number) {
-        return numbers.contains(number);
+    public int getMatchCount(final Lotto lotto) {
+        return (int) numbers.stream()
+            .filter(lotto.numbers::contains)
+            .count();
     }
 
-    protected Stream<Integer> getNumberStream() {
-        return numbers.stream();
+    public boolean contains(final int num) {
+        return numbers.contains(num);
     }
 
 }

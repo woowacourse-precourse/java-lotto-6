@@ -2,29 +2,35 @@ package lotto.model;
 
 import java.util.List;
 
-public class LottoChecker extends Lotto {
+public class LottoChecker {
 
-    private final int bonusNumber;
+    private final Lotto winningLotto;
+    private final int bonus;
 
-    public LottoChecker(List<Integer> winningNumber, int bonusNumber) {
-        super(winningNumber);
-        this.bonusNumber = bonusNumber;
+    public LottoChecker(List<Integer> winningNumbers, int bonus) {
+        this.winningLotto = new Lotto(winningNumbers);
+        this.bonus = bonus;
     }
 
-    public LottoRank checkTicket(Lotto ticket) {
-        int matchCount = getMatchCount(ticket);
+    public LottoResult checkLottos(final List<Lotto> lottos) {
+        final LottoResult result = new LottoResult();
+        for (final Lotto lotto : lottos) {
+            final LottoRank lottoRank = getLottoRank(lotto);
+            result.increaseRankCount(lottoRank);
+        }
+        return result;
+    }
+
+    private LottoRank getLottoRank(final Lotto lotto) {
+        final int matchCount = winningLotto.getMatchCount(lotto);
         if (matchCount == 5) {
-            return LottoRank.valueFrom(matchCount, hasBonusNumber(ticket));
+            return LottoRank.valueFrom(matchCount, hasBonusNumber(lotto));
         }
         return LottoRank.valueFrom(matchCount);
     }
 
-    private int getMatchCount(Lotto ticket) {
-        return (int) getNumberStream().filter(ticket::contain).count();
-    }
-
-    private boolean hasBonusNumber(Lotto ticket) {
-        return ticket.contain(bonusNumber);
+    private boolean hasBonusNumber(final Lotto lotto) {
+        return lotto.contains(bonus);
     }
 
 }

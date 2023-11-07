@@ -4,10 +4,6 @@ import java.util.*;
 
 public class InputHandler {
     
-    private static final Integer maxNumber = 45;
-    private static final Integer minNumber = 1;
-    
-    
     public Integer readCost(String input) {
         try {
             Integer cost = Integer.parseInt(input);
@@ -47,27 +43,41 @@ public class InputHandler {
     }
     
     private void validateNumber(List<Integer> winningNumbers) {
-        if(winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6 개의 숫자를 입력해 주세요.");
-        }
-        if(winningNumbers.stream().anyMatch(i -> i < minNumber || i > maxNumber)) {
-            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력해야 합니다.");
-        }
         Set<Integer> set = new HashSet<>(winningNumbers);
+        isItMissSized(winningNumbers);
+        isNumberOutOfRange(winningNumbers);
         isItDuplicated(set);
     }
+    
+    private void isItMissSized(List<Integer> winningNumbers) {
+        if(winningNumbers.size() != Constants.LOTTONUMBER) {
+            throw new IllegalArgumentException("[ERROR] 6 개의 숫자를 입력해 주세요.");
+        }
+    }
+    
+    private void isNumberOutOfRange(List<Integer> winningNumbers) {
+        if(winningNumbers.stream().anyMatch(i -> i < Constants.MIN || i > Constants.MAX)) {
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력해야 합니다.");
+        }
+    }
+    
     private void isItDuplicated(Set<Integer> winningNumbers) {
         Set<Integer> set = new HashSet<>(winningNumbers);
-        if(set.size() < 6) {
+        if(set.size() < Constants.LOTTONUMBER) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하습니다.");
         }
     }
     
     private void validateNumber(Integer bonusNumber, List<Integer> winnginNumbers) {
-        if(bonusNumber < minNumber || bonusNumber > maxNumber){
+        isNumberOutOfRange(bonusNumber);
+        isItDuplicated(bonusNumber, winnginNumbers);
+    }
+    
+    private void isNumberOutOfRange(Integer bonusNumber) {
+        if(bonusNumber < Constants.MIN || bonusNumber > Constants.MAX){
             throw new IllegalArgumentException(" 입력[ERROR] 1~45 사이의 숫자를해야 합니다.");
         }
-        isItDuplicated(bonusNumber, winnginNumbers);
+
     }
     private void isItDuplicated(Integer bonusNumer, List<Integer> winnginNumber) {
         if(winnginNumber.contains(bonusNumer)) {

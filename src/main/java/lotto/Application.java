@@ -38,8 +38,8 @@ public class Application {
             String numberInput = Console.readLine();
             gameManager.setBonusNumber(inputHandler.readBonusNumber(numberInput,gameManager.getWinningNumbers()));
         }
-
         
         // 당첨 통계 처리 및 출력
+        gameManager.updateResult();
     }
 }

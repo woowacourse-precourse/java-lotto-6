@@ -13,19 +13,19 @@ public class GameManager {
     private Integer bonusNumber;
     
     public GameManager() {
-        this.result = null;
+        this.result = new Result();
         this.lottos = new ArrayList<>();
         this.winningNumbers = null;
         this.bonusNumber = null;
     }
     
     public void generateLotto(Integer money) {
-        Integer iterNum = money / 1000;
+        int iterNum = money / Constants.LOTTOCOST;
         for(int i = 0; i < iterNum; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
-            lottos.add(lotto);
+            this.lottos.add(lotto);
         }
     }
     public Integer getGameSize() {
@@ -48,6 +48,10 @@ public class GameManager {
         for(Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+    
+    public void updateResult() {
+        this.result.makeScores(winningNumbers,bonusNumber,this.lottos);
     }
     
 }

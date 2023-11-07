@@ -1,11 +1,9 @@
 package lotto.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 import lotto.domain.DrawingResults;
-import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
@@ -18,22 +16,10 @@ import lotto.domain.dto.WinningLottoDto;
 
 public class LottoMachine {
 
-    public LottosDto issuedLottos(final PurchaseAmount purchaseAmount) {
-        List<Lotto> lottos = new Lottos(purchaseAmount).getLottos();
-
-        return new LottosDto(toLottoDto(lottos));
+    public Lottos issuedLottos(final PurchaseAmount purchaseAmount) {
+        return new Lottos(purchaseAmount);
     }
 
-    private List<LottoDto> toLottoDto(final List<Lotto> lottos) {
-        List<LottoDto> lottoStore = new ArrayList<>();
-
-        for (Lotto lotto : lottos) {
-            LottoDto lottoDto = new LottoDto(lotto.getNumbers());
-            lottoStore.add(lottoDto);
-        }
-
-        return lottoStore;
-    }
 
     public DrawingResultDto draw(final LottosDto lottosDto, final WinningLottoDto winningLottoDto,
                                  final BonusNumberDto bonusNumberDto) {

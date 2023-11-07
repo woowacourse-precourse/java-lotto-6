@@ -1,8 +1,13 @@
 package lotto.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
+import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
 import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.PurchaseAmountDto;
@@ -24,19 +29,19 @@ public class LottoController {
     }
 
     public void start() {
-        LottosDto lottosDto = purchaseLotto();
-        DrawingResultDto drawingResultDto = drawLotto(lottosDto);
-        profitRate(lottosDto, drawingResultDto);
+        Lottos lottos = purchaseLotto();
+        DrawingResultDto drawingResultDto = drawLotto(lottos);
+        profitRate(lottos, drawingResultDto);
     }
 
-    private LottosDto purchaseLotto() {
+    private Lottos purchaseLotto() {
         PurchaseAmountDto purchaseAmountDto = inputView.inputPurchaseAmount();
-        LottosDto lottosDto = lottoMachine.issuedLottos(mapToPurchaseAmount(purchaseAmountDto));
+        Lottos lottos = lottoMachine.issuedLottos(mapToPurchaseAmount(purchaseAmountDto));
 
         outputView.printPurchaseQuantityLottos(purchaseAmountDto);
-        outputView.printIssuedPurchaseResult(lottosDto);
+        outputView.printIssuedPurchaseResult(mapToLottosDto(lottos));
 
-        return lottosDto;
+        return lottos;
     }
 
     private PurchaseAmount mapToPurchaseAmount(final PurchaseAmountDto purchaseAmountDto) {

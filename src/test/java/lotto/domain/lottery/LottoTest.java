@@ -1,6 +1,5 @@
-package lotto.domain;
+package lotto.domain.lottery;
 
-import lotto.domain.lottery.Lotto;
 import lotto.domain.prize.Prize;
 import lotto.fixture.NumberFixture;
 import org.junit.jupiter.api.Assertions;
@@ -58,19 +57,15 @@ class LottoTest {
         @Test
         @DisplayName("[Exception] 리스트 숫자의 각 요소가 제약조건(Default 1 ~ 45)를 만족하지 않는 요청 예외처리")
         void Should_ThrowException_When_DifferentNumberRangeConstraint() {
-            // given
-            NumberFixture exceed = NumberFixture.EXCEED_CONSTRAINT;
-            NumberFixture zero = NumberFixture.ZERO;
-            NumberFixture negativeNumber = NumberFixture.NEGATIVE_INTEGER;
-            // when && then
+            // given && when && then
             assertAll(
-                    () -> assertThatThrownBy(exceed::toLottoEntity)
+                    () -> assertThatThrownBy(EXCEED_CONSTRAINT::toLottoEntity)
                             .isInstanceOf(IllegalArgumentException.class)
                             .hasMessageContaining(NUMBER_OUT_OF_RANGE.getMessage()),
-                    () -> assertThatThrownBy(zero::toLottoEntity)
+                    () -> assertThatThrownBy(ZERO::toLottoEntity)
                             .isInstanceOf(IllegalArgumentException.class)
                             .hasMessageContaining(NUMBER_OUT_OF_RANGE.getMessage()),
-                    () -> assertThatThrownBy(negativeNumber::toLottoEntity)
+                    () -> assertThatThrownBy(NEGATIVE_INTEGER::toLottoEntity)
                             .isInstanceOf(IllegalArgumentException.class)
                             .hasMessageContaining(NUMBER_OUT_OF_RANGE.getMessage())
             );
@@ -79,10 +74,8 @@ class LottoTest {
         @Test
         @DisplayName("[Exception] 리스트 숫자에 중복된 요소가 포함되는 요청 예외처리")
         void Should_ThrowException_When_DuplicatedParameter() {
-            // given
-            NumberFixture dupliacted = NumberFixture.DUPLICATED;
-            // when && then
-            assertThatThrownBy(dupliacted::toLottoEntity)
+            // given && when && then
+            assertThatThrownBy(DUPLICATED::toLottoEntity)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(NUMBER_DUPLICATED.getMessage());
         }

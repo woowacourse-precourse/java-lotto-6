@@ -1,7 +1,5 @@
-package lotto.domain;
+package lotto.domain.lottery;
 
-import lotto.domain.lottery.Buyer;
-import lotto.domain.lottery.Lottos;
 import lotto.domain.prize.MatchingResult;
 import lotto.domain.prize.Prize;
 import lotto.fixture.BuyerFixture;

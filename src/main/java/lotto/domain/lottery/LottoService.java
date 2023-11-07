@@ -5,7 +5,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -22,10 +21,10 @@ public class LottoService {
     // Utility Method
     public static List<Integer> generateOrderedLottoNumbers() {
         List<Integer> randomNumbers = generateLottoNumber();
-        List<Integer> sortedNumbers = new ArrayList<>(randomNumbers);
+        List<Integer> copiedNumbers = new ArrayList<>(randomNumbers);
 
-        Collections.sort(sortedNumbers);
-        return randomNumbers;
+        copiedNumbers.sort(null);
+        return copiedNumbers;
     }
 
     private static List<Integer> generateLottoNumber() {
@@ -59,7 +58,7 @@ public class LottoService {
                 .toList();
     }
 
-    public static List<List<Integer>> generateRandomNumbers(final int ticketCount) {
+    private static List<List<Integer>> generateRandomNumbers(final int ticketCount) {
         return Stream.generate(LottoService::generateOrderedLottoNumbers)
                 .limit(ticketCount)
                 .toList();

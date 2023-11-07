@@ -16,7 +16,7 @@ class LottoControllerTest {
     @DisplayName("무작위 로또 번호의 출력 확인")
     @Test
     void getLottoString() {
-        lottoController.getLottoNumber(5);
+        lottoController.getRandomLottoNumber(5);
         String result = lottoController.getLottoString();
         assertThat(result).contains("[", "]");
     }

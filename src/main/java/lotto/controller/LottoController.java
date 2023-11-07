@@ -24,7 +24,7 @@ public class LottoController {
     }
 
 
-    public List<Lotto> getLottoNumber(int tickets) {
+    public List<Lotto> getRandomLottoNumber(int tickets) {
         randomLottoResult.clear();
         for (int i = 0; i < tickets; i++) {
             randomLottoNumber.initRandomNumber();
@@ -33,7 +33,6 @@ public class LottoController {
         }
         return randomLottoResult;
     }
-
 
     public BonusLottoNumber getBounsNumber(int bonus) {
         return new BonusLottoNumber(bonus);

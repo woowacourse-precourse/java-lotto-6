@@ -8,6 +8,10 @@ public class Lotto {
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
 
+    private static final String ERROR_INPUT_LENGTH = "\n[ERROR] 로또 번호는 6개의 수를 입력해주세요.";
+    private static final String ERROR_RANGE_NUMBER = "\n[ERROR] 로또 번호 1부터 45까지의 수로 입력해주세요.";
+    private static final String ERROR_DUPLICATE_NUMBER = "\n[ERROR] 로또 수는 중복 없이 입력해주세요.";
+
     public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         size_check(numbers);
         duplication_check(numbers);
@@ -18,7 +22,7 @@ public class Lotto {
 
     private void size_check(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            System.out.println("\n[ERROR] 로또 번호는 6개의 수를 입력해주세요.");
+            System.out.println(ERROR_INPUT_LENGTH);
             throw new IllegalArgumentException();
         }
 
@@ -27,7 +31,7 @@ public class Lotto {
     private void number_check(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_NUMBER || number > MAX_NUMBER) {
-                System.out.println("\n[ERROR] 로또 번호 1부터 45까지의 수로 입력해주세요.");
+                System.out.println(ERROR_RANGE_NUMBER);
                 throw new IllegalArgumentException();
             }
         }
@@ -36,7 +40,7 @@ public class Lotto {
     private void duplication_check(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != LOTTO_SIZE) {
-            System.out.println("\n[ERROR] 로또 수는 중복 없이 입력해주세요.");
+            System.out.println(ERROR_DUPLICATE_NUMBER);
             throw new IllegalArgumentException();
         }
     }

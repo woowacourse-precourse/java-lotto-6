@@ -36,7 +36,11 @@ public class OutputView {
                 + count + LottoGameMessage.COUNT.message);
     }
 
-    public void errorMessage(final String errorMessage) {
-        System.out.println(errorMessage);
+    public void numberFormatExceptionMessage(final NumberFormatException numberFormatException) {
+        System.out.println(numberFormatException.getMessage());
+    }
+
+    public void illegalArgumentExceptionMessage(final IllegalArgumentException illegalArgumentException) {
+        System.out.println(illegalArgumentException.getMessage());
     }
 }

@@ -8,7 +8,6 @@ public enum LottoValue {
     PURCHASE_LIMIT_PRICE(100_000),
     FIVE_MATCH(5);
 
-
     private final int value;
 
     LottoValue(int value) {

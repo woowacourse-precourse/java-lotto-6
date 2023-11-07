@@ -4,6 +4,8 @@ import lotto.io.FakeLottoInput;
 import lotto.io.FakeLottoOutput;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoControllerTest {
@@ -19,5 +21,12 @@ class LottoControllerTest {
         Money money = controller.receiveMoney();
 
         assertEquals(new Money(1000), money);
+    }
+
+    @Test
+    void 당첨_번호_입력_테스트() {
+        Lotto lotto = controller.receiveWinningNumber();
+
+        assertEquals(new Lotto(List.of(1, 2, 3, 4, 5, 6)), lotto);
     }
 }

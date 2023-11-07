@@ -1,4 +1,4 @@
-package lotto.utils.ui;
+package lotto.utils.io;
 
 import lotto.domain.Lottos;
 

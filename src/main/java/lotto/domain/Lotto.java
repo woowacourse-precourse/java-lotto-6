@@ -25,8 +25,17 @@ public class Lotto {
         }
     }
 
+    private void validate(int bonusNumber){
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT);
+        } else if (numbers.contains(bonusNumber)) {
+            Error.errorMessage(ErrorType.DUPLICATION);
+        }
+    }
+
     // TODO: 추가 기능 구현
     public void inputBonusNumber(int bonusNumber) {
+        validate(bonusNumber);
         this.numbers.add(bonusNumber);
     }
 }

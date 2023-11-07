@@ -46,16 +46,19 @@ public class LottoResults {
     }
 
     private void calculateResult(int size, Lotto lotto) {
-        for (LottoInfo info : LottoInfo.values()) {
-            if (info.getNumberMatch() == size && size!=5) {
-                resultAmount.add(info.getWinningAmount());
-            }
-            if (info.getNumberMatch() == size && size == 5) {
-                resultAmount.add(ifMatchNumberFive(lotto));
-            }
+        if (size == 3) {
+            resultAmount.add(LottoInfo.FIFTH_WINNER.getWinningAmount());
+        }
+        if (size == 4) {
+            resultAmount.add(LottoInfo.FOURTH_WINNER.getWinningAmount());
+        }
+        if (size == 5) {
+            resultAmount.add(ifMatchNumberFive(lotto));
+        }
+        if (size == 6) {
+            resultAmount.add(LottoInfo.FIRST_WINNER.getWinningAmount());
         }
     }
-
     private int ifMatchNumberFive(Lotto lotto) {
         List<Integer> lottoNumber = lotto.getNumbers();
         if (lottoNumber.contains(requirements.getBonusNumber())) {

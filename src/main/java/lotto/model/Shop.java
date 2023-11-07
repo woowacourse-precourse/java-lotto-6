@@ -2,6 +2,7 @@ package lotto.model;
 
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoGenerator;
+import lotto.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ public class Shop {
     private final int purchaseAmount;
     private final int purchaseNumber;
     private final PaperBag paperBag;
+    private static final Log log = new Log();
 
     private Shop(int purchaseAmount) {
         isPurchaseAmountValid(purchaseAmount);
@@ -20,7 +22,8 @@ public class Shop {
 
     private void isPurchaseAmountValid(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1000 단위의 숫자여야 합니다.");
+            log.error("1000 단위의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 

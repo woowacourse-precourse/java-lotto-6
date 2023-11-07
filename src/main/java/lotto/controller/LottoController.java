@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import lotto.domain.BonusNumber;
 import lotto.domain.Calculator;
 import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.NumberGenerator;
 import lotto.domain.Rank;
@@ -30,11 +31,12 @@ public class LottoController {
         Money money = getValidMoneyInput();
         int ticketCount = money.calculateTicketCount();
         OutputView.printTicketCount(ticketCount);
-        List<Lotto> userLottos = generateUserLottos(ticketCount);
-        OutputView.printUserLottos(userLottos);
+        Lottos userLottos = generateUserLottos(ticketCount);
+        OutputView.printUserLottos(userLottos.getLottos());
         WinningNumbers winningNumbers = getValidWinningNumbersInput();
         BonusNumber bonusNumber = getValidBonusNumberInput(winningNumbers);
-        Map<Rank, Integer> rankCount = calculator.calculateRankCount(userLottos, winningNumbers, bonusNumber);
+        Map<Rank, Integer> rankCount = calculator.calculateRankCount(userLottos.getLottos(), winningNumbers,
+                bonusNumber);
         OutputView.printWinningStatistics();
         OutputView.printRankCount(rankCount);
         printRateOfReturn(rankCount, money);
@@ -61,11 +63,11 @@ public class LottoController {
         return getValidInput(() -> new Money(InputView.getMoneyInput()));
     }
 
-    private List<Lotto> generateUserLottos(int ticketCount) {
+    private Lottos generateUserLottos(int ticketCount) {
         List<Lotto> lottos = IntStream.range(0, ticketCount)
                 .mapToObj(i -> generateValidLotto())
                 .collect(Collectors.toList());
-        return List.copyOf(lottos);
+        return new Lottos(lottos);
     }
 
     private Lotto generateValidLotto() {

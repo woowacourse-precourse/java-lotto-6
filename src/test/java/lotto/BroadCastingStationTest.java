@@ -15,7 +15,7 @@ class BroadCastingStationTest {
         Integer bonus = 5;
         BroadCastingStation broadCastingStation = new BroadCastingStation();
         Assertions.assertThatThrownBy(() -> {
-                    broadCastingStation.drawLotto(lotto, 5);
+                    broadCastingStation.drawLotto(lotto, bonus);
                 }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 번호와 보너스 번호가 중복됩니다.");
     }

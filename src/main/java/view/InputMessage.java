@@ -3,6 +3,7 @@ package view;
 import camp.nextstep.edu.missionutils.Console;
 import type.TextType;
 import utils.Parser;
+import utils.Validator;
 
 import java.util.List;
 
@@ -10,7 +11,9 @@ public class InputMessage {
     public static int printMoneyInputMessage() {
         System.out.println(TextType.START.getText());
         String input = Console.readLine();
-        return Parser.convertNumberInput(input);
+        int convertNum = Parser.convertNumberInput(input);
+        Validator.checkMoney(convertNum);
+        return convertNum;
     }
 
     public static List<Integer> printWinNumberInputMessage() {

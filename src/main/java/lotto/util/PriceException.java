@@ -1,6 +1,6 @@
 package lotto.util;
 
-public class InputException {
+public class PriceException {
     public static void validPrice(int money) {
 
     }
@@ -16,6 +16,12 @@ public class InputException {
     private static void checkMultipleOfThousand (int number){
         if(number % 1000 != 0){
             throw new IllegalArgumentException("[ERROR] : 구입 가격은 1000원 단위입니다.");
+        }
+    }
+
+    private static void checkPositiveNumber (int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("[ERROR] : 구입 가격은 양수여야 합니다.");
         }
     }
 }

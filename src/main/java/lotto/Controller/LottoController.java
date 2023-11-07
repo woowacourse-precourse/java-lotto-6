@@ -26,13 +26,13 @@ public class LottoController {
 
     int purchaseAmount;
     int totalEarnings;
-    Lotto lottoWinningNumbers;
-    LottoBonus lottoBonusNumber;
-    List<Lotto> lottoRandomNumbers;
-    LottoRankCount lottoRankCount;
+    Lotto winningNumbers;
+    LottoBonus bonusNumber;
+    List<Lotto> randomNumbers;
+    LottoRankCount rankCount;
 
     {
-        lottoRandomNumbers = new ArrayList<>();
+        randomNumbers = new ArrayList<>();
     }
 
 
@@ -66,7 +66,7 @@ public class LottoController {
         int lottoTicket = purchaseAmount / LOTTO_PRICE;
         System.out.printf(LOTTO_TICKETS_PURCHASED_MESSAGE + "\n", lottoTicket);
         generateLottoRandomNumbers(lottoTicket);
-        for (Lotto randomNumber : lottoRandomNumbers) {
+        for (Lotto randomNumber : randomNumbers) {
             System.out.println(randomNumber);
         }
         System.out.println();
@@ -74,8 +74,8 @@ public class LottoController {
 
     public void generateLottoRandomNumbers(int lottoTicket) {
         for (int i = 0; i < lottoTicket; i++) {
-            Lotto randomNumbers = new Lotto(generateRandomNumbers(lottoTicket));
-            lottoRandomNumbers.add(randomNumbers);
+            Lotto randomNumber = new Lotto(generateRandomNumbers(lottoTicket));
+            randomNumbers.add(randomNumber);
         }
     }
 
@@ -84,7 +84,7 @@ public class LottoController {
         String userInput = Console.readLine();
         try {
             isWinningNumberValid(userInput);
-            lottoWinningNumbers = makeWinningNumbers(userInput);
+            winningNumbers = makeWinningNumbers(userInput);
             System.out.println();
         } catch (Exception error) {
             System.out.println(error.getMessage());
@@ -97,9 +97,9 @@ public class LottoController {
         String userInput = Console.readLine();
         try {
             isBonusNumberValid(userInput);
-            int bonusNumber = Integer.parseInt(userInput);
-            isBonusNumberDuplicate(lottoWinningNumbers.getNumbers(), bonusNumber);
-            lottoBonusNumber = new LottoBonus(bonusNumber);
+            int bonus = Integer.parseInt(userInput);
+            isBonusNumberDuplicate(winningNumbers.getNumbers(), bonus);
+            bonusNumber = new LottoBonus(bonus);
             System.out.println();
         } catch (Exception error) {
             System.out.println(error.getMessage());
@@ -118,8 +118,8 @@ public class LottoController {
     }
 
     public void calculateResult() {
-        totalEarnings = Judge.calculateEarnings(lottoRandomNumbers, lottoWinningNumbers, lottoBonusNumber);
-        lottoRankCount = Judge.calculateRank(lottoRandomNumbers, lottoWinningNumbers, lottoBonusNumber);
+        totalEarnings = Judge.calculateEarnings(randomNumbers, winningNumbers, bonusNumber);
+        rankCount = Judge.calculateRank(randomNumbers, winningNumbers, bonusNumber);
     }
 
     public void printOutMatchingResult() {
@@ -129,11 +129,11 @@ public class LottoController {
             int winningAmount = result.getLottoWinningAmount();
             int rank = result.getRank();
             String rankName = result.name();
-            int rankCount = lottoRankCount.getCount(rank);
+            int currentRankCount = rankCount.getCount(rank);
             if (rankName.equals("SECOND_PLACE")) {
                 messageFormat = MATCH_BONUS_MESSAGE;
             }
-            System.out.printf(messageFormat + "\n", matchCount, addThousandsSeparator(winningAmount), rankCount);
+            System.out.printf(messageFormat + "\n", matchCount, addThousandsSeparator(winningAmount), currentRankCount);
         }
     }
 

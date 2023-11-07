@@ -23,6 +23,9 @@ public enum LottoRank {
         if (count == 5 && hasbonusNumber) {
             return SECOND;
         }
+        if (count == 5 && !hasbonusNumber) {
+            return THIRD;
+        }
         return Arrays.stream(LottoRank.values()).filter(rank -> rank.count == count).findAny().orElse(NOTHING);
     }
 

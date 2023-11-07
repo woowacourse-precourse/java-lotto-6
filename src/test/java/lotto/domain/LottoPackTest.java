@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.util.NumberGenerator.INumberGenerator;
+import lotto.util.FakeNumberGenerator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -44,20 +44,5 @@ class LottoPackTest {
 
     }
 
-
-}
-
-class FakeNumberGenerator implements INumberGenerator {
-
-    private final List<Integer> list;
-
-    public FakeNumberGenerator(List<Integer> list) {
-        this.list = list;
-    }
-
-    @Override
-    public List<Integer> generateNumbers() {
-        return list;
-    }
 
 }

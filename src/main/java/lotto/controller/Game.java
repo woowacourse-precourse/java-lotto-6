@@ -29,7 +29,7 @@ public class Game {
         int purchaseQuantity = purchaseAmount / THOUSAND_UNIT;
         createLottos(purchaseQuantity);
         OutputView.printPurchaseResult(lottos);
-        createWinningLotto();
+        createWinningNumbers();
         createBonusNumber();
         createWinningResult();
         createProfitRate();
@@ -56,10 +56,10 @@ public class Game {
         }
     }
 
-    private void createWinningLotto() {
+    private void createWinningNumbers() {
         while (true) {
             try {
-                Lotto lotto = new Lotto(createWinningNumbers());
+                Lotto lotto = new Lotto(Convertor.convertToNumbers(InputView.askWinningNumbers()));
                 winningNumbers = lotto.getNumbers();
                 break;
             } catch (IllegalArgumentException e) {
@@ -67,12 +67,6 @@ public class Game {
             }
         }
     }
-
-    private List<Integer> createWinningNumbers() {
-        Convertor convertor = new Convertor();
-        return convertor.convertToNumbers(InputView.askWinningNumbers());
-    }
-
 
     private void createBonusNumber() {
         while (true) {
@@ -86,24 +80,24 @@ public class Game {
         }
     }
 
-    private void validateDuplicated() {
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(IS_DUPLICATE_BONUS_NUMBER.getMessage());
-        }
-    }
-
     private void createWinningResult() {
         List<WinningCount> winningCounts = createWinningCounts();
         winningResult = Calculator.classify(winningCounts);
     }
 
     private List<WinningCount> createWinningCounts() {
-        Comparator comparator = new Comparator();
-        return comparator.compare(lottos, winningNumbers,
+        return Comparator.compare(lottos, winningNumbers,
                 bonusNumber);
     }
 
     private void createProfitRate() {
         profitRate = Calculator.calculateProfitRate(purchaseAmount);
+    }
+
+
+    private void validateDuplicated() {
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(IS_DUPLICATE_BONUS_NUMBER.getMessage());
+        }
     }
 }

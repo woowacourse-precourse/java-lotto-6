@@ -62,6 +62,7 @@ public class LottoWinningCalculationMachine {
 
         int money = lottoCount * 1000;
         double winningRate = money / winningMoney * 100;
-        winningStatistics.setWinningRate(winningRate);
+        double twoWinningRate = Math.round(winningRate * 100) / 100;
+        winningStatistics.setWinningRate(twoWinningRate);
     }
 }

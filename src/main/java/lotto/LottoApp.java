@@ -32,7 +32,8 @@ public class LottoApp {
         System.out.println("구입금액을 입력해주세요.");
         try {
             int money = Integer.parseInt(Console.readLine());
-            if (money % PRICE_LOTTO != 0) throw new BusinessException(ErrorCode.MoneyInputError);
+            if (money % PRICE_LOTTO != 0)
+                throw new IllegalArgumentException("[ERROR]1,000원으로 나누어 떨어지는 수를 입력해야 합니다.");
             return money;
         } catch (NumberFormatException ne) {
             System.out.println("[ERROR]숫자를 입력해야 합니다.");
@@ -53,8 +54,8 @@ public class LottoApp {
                     .collect(Collectors.toList());
         } catch (NumberFormatException ne) {
             System.out.println("[ERROR]숫자를 입력해야 합니다.");
-        } catch (BusinessException be) {
-            System.out.println(be.getMessage());
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
         }
         return getWinningNumbers();
     }
@@ -67,14 +68,14 @@ public class LottoApp {
             return bonusNumber;
         } catch (NumberFormatException ne) {
             System.out.println("[ERROR]숫자를 입력해야 합니다.");
-        } catch (BusinessException be) {
-            System.out.println(be.getMessage());
+        } catch (IllegalArgumentException ie) {
+            System.out.println(ie.getMessage());
         }
         return getBonusNumber();
     }
 
-    private int validateLottoNumber(int number) throws BusinessException {
-        if (number < 1 || number > 45) throw new BusinessException(ErrorCode.LottoNumberInputError);
+    private int validateLottoNumber(int number) throws IllegalArgumentException {
+        if (number < 1 || number > 45) throw new IllegalArgumentException("[ERROR]1-45 사이의 숫자를 입력해야 합니다.");
         return number;
     }
 }

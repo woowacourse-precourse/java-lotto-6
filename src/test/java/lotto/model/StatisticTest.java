@@ -13,11 +13,11 @@ class StatisticTest {
     @Test
     void statistics_create_test() {
         // given
-        List<Integer> matchedNumberCount = List.of(3, 3, 4, 4, 5, 5, 6);
+        List<Integer> matchedCount = List.of(3, 3, 4, 4, 5, 5, 6);
         List<Boolean> containBonusNumber = List.of(false, true, false, true, false, true, true);
 
         // when
-        Statistic statistic = Statistic.createStatistic(matchedNumberCount, containBonusNumber);
+        Statistic statistic = Statistic.createStatistic(matchedCount, containBonusNumber);
         Map<LottoRank, Integer> rank = statistic.getRank();
 
         // then

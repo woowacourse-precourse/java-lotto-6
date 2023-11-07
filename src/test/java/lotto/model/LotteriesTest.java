@@ -56,10 +56,10 @@ class LotteriesTest {
         Lotto winningLotto = Lotto.createWinningLotto(winningNumbers);
 
         // when
-        List<Integer> matchCounts = lotteries.countMatchedNumbers(winningLotto);
+        List<Integer> matchedCount = lotteries.countMatchedNumbers(winningLotto);
 
         // then
-        matchCounts.forEach(count -> {
+        matchedCount.forEach(count -> {
             assertTrue(count.equals(3));
         });
 
@@ -72,10 +72,10 @@ class LotteriesTest {
         BonusNumber bonusNumber = new BonusNumber(7);
 
         // when
-        List<Boolean> bonusCounts = lotteries.checkBonusNumberContain(bonusNumber);
+        List<Boolean> containBonusNumber = lotteries.checkBonusNumberContain(bonusNumber);
 
         // then
-        bonusCounts.forEach(include -> assertFalse(include.booleanValue()));
+        containBonusNumber.forEach(include -> assertFalse(include.booleanValue()));
     }
 
     @DisplayName("구매한 로또에 보너스 번호가 있는 경우 List에 true를 저장한다.")
@@ -85,10 +85,10 @@ class LotteriesTest {
         BonusNumber bonusNumber = new BonusNumber(6);
 
         // when
-        List<Boolean> bonusCounts = lotteries.checkBonusNumberContain(bonusNumber);
+        List<Boolean> containBonusNumber = lotteries.checkBonusNumberContain(bonusNumber);
 
         // then
-        bonusCounts.forEach(include -> assertTrue(include.booleanValue()));
+        containBonusNumber.forEach(include -> assertTrue(include.booleanValue()));
     }
 
 }

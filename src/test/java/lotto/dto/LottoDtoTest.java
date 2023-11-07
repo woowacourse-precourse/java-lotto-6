@@ -24,10 +24,10 @@ class LottoDtoTest {
         );
 
         // when
-        List<LottoDto> lottoDtos = LottoDto.toDto(lotteries);
+        List<LottoDto> lotteriesDto = LottoDto.toDto(lotteries);
 
         // then
-        assertEquals(lotteries.size(), lottoDtos.size());
+        assertEquals(lotteries.size(), lotteriesDto.size());
         lotteries.forEach(lotto -> {
             List<Integer> expectedNumbers = lotto.getNumbers();
             List<Integer> actualNumbers = lotto.getNumbers();
@@ -47,9 +47,9 @@ class LottoDtoTest {
         });
 
         // when
-        List<LottoDto> lottoDtos = LottoDto.toDto(lotteries.getLotteries());
+        List<LottoDto> lotteriesDto = LottoDto.toDto(lotteries.getLotteries());
 
         // then
-        assertThrows(UnsupportedOperationException.class, () -> lottoDtos.get(0).getNumbers().add(7));
+        assertThrows(UnsupportedOperationException.class, () -> lotteriesDto.get(0).getNumbers().add(7));
     }
 }

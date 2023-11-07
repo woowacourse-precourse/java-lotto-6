@@ -3,8 +3,7 @@ package lotto.controllers;
 import static lotto.controllers.InputProcessor.readLine;
 import static lotto.model.InputValidator.*;
 import static lotto.model.Utilities.inputIntegerParsing;
-import static lotto.views.MessageManager.getBonusNumberPromptMessage;
-import static lotto.views.MessageManager.getProgramClosePromoptMessage;
+import static lotto.views.MessageManager.*;
 
 public class DongHangLottery {
     private String inputWinningNumber;
@@ -15,6 +14,9 @@ public class DongHangLottery {
         System.out.println();
         getBonusNumberPromptMessage();
         bonusNumberValidate();
+        System.out.println();
+        getWinnersCountPromptMessage();
+        getHyphenPromptPromptMessage();
     }
     public void winningNumberValidate() {
         int maxAttempts = 3;

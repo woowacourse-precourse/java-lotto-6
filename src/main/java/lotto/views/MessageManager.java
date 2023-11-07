@@ -23,6 +23,13 @@ public class MessageManager {
         System.out.println(messages.getString("bonusNumberPrompt.message"));
     }
 
+    public static void getWinnersCountPromptMessage() {
+        System.out.println(messages.getString("winnersCountPrompt.message"));
+    }
+
+    public static void getHyphenPromptPromptMessage() {
+        System.out.println(messages.getString("hyphenPrompt.message"));
+    }
 
     //Exception Messages
     public static String getValidateNonIntegerMessage() {

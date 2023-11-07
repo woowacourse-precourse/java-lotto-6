@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,6 +96,11 @@ public class LottoServiceTest {
 	@DisplayName("수익률은 소수점 둘째 자리에서 반올림되는지 확인하는 테스트")
 	@Test
 	void getProfitRateTest2() {
+		long numberOfLottoTickets = 8L;
+		long profit = 5000L;
+
+		String result = lottoService.getProfitRate(numberOfLottoTickets, profit);
+		assertEquals('.', result.charAt(result.length() - 2));
 	}
 
 	private boolean isSortedInAscendingOrder(List<Integer> numbers) {

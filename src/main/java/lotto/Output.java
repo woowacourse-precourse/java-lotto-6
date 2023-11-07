@@ -61,7 +61,6 @@ public class Output {
         if (totalPrice != 0) 
             benefit = Math.round(totalPrice / priceAmount * 1000) / 10.0;
 
-      //  System.out.println("총 수익률은 " + String.format("%.2f", benefit) + "% 입니다.");
          System.out.println("총 수익률은 " + benefit + "%입니다.");
     }
 }

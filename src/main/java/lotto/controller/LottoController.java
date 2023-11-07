@@ -23,6 +23,7 @@ public class LottoController {
         LottoView.printResult(rank);
 
         Double rateOfReturn = LottoService.calculateReturnRate(numberOfLotto, rank);
+        LottoView.printRateOfReturn(rateOfReturn);
 
 
     }

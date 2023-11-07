@@ -13,6 +13,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkRedundantNumbers(numbers);
+        checkNumbersInRange(numbers);
         this.numbers = numbers;
     }
 
@@ -30,6 +31,15 @@ public class Lotto {
         if(numbers.size() != 6){
             System.out.println("[ERROR] 중복된 숫자를 입력할 수 없습니다.");
             throw new IllegalArgumentException();
+        }
+    }
+
+    private void checkNumbersInRange(List<Integer> numbers){
+        for(int number : numbers){
+            if(number < 1 || number > 45){
+                System.out.println("[ERROR] 1 ~ 45 사이의 숫자만 입력해야 합니다.");
+                throw new IllegalArgumentException();
+            }
         }
     }
 

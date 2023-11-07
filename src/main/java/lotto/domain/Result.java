@@ -1,7 +1,12 @@
 package lotto.domain;
 
 import static lotto.constants.constants.NULL_POINTER_EXCEPTION;
+import static lotto.constants.constants.ZERO_PROFIT;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,6 +37,21 @@ public class Result {
         long profit = sumProfit();
         int costNumber = cost.getCost();
         return (float) profit / costNumber * 100;
+    }
+
+    public List<String> fetchMatchResult() {
+        List<Ranks> ranks = sortRanks();
+        List<String> results = new ArrayList<>();
+        ranks.forEach(rank -> {
+            results.add(rank.getPresentPrize() + " - " + rankResult.get(rank) + "개");
+        });
+        return results;
+    }
+
+    private List<Ranks> sortRanks() {
+        Ranks[] ranks = Ranks.values();
+        Arrays.sort(ranks, Comparator.comparingLong(Ranks::getPrize));
+        return Arrays.stream(ranks).filter(rank -> rank.getPrize() != ZERO_PROFIT).toList();
     }
 
 }

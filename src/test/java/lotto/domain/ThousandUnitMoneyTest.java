@@ -103,19 +103,30 @@ public class ThousandUnitMoneyTest {
     }
 
     @Test
-    public void 금액_더하기는_새로운Money객체_반환() {
+    public void 금액_더하기는_int합_반환() {
         // Given
         ThousandUnitMoney money1 = ThousandUnitMoney.create(1000);
         ThousandUnitMoney money2 = ThousandUnitMoney.create(2000);
 
         // When
-        ThousandUnitMoney result = money1.plus(money2);
+        int result = money1.plus(money2);
 
         // Then
-        assertThat(result).isNotSameAs(money1);
-        assertThat(result).isNotSameAs(money2);
-        assertTrue(result.isSameAmount(3000));
+        assertThat(result).isEqualTo(3000);
     }
+
+    @Test
+    public void 금액_더하기_int범위초과시_예외처리() {
+        // Given
+        ThousandUnitMoney money1 = ThousandUnitMoney.create(1200000000);
+        ThousandUnitMoney money2 = ThousandUnitMoney.create(1000000000);
+
+        // When && Then
+        assertThatThrownBy(() -> money1.plus(money2))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정수 범위를 벗어난 값은 더할 수 없습니다.");
+    }
+
 
     @Test
     public void 금액_천단위_구분자_문자형식으로_변환() {

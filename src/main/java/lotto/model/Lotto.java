@@ -20,13 +20,16 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (Objects.isNull(numbers)) {
+        if (Objects.isNull(numbers)
+                || numbers.size() != LottoNumber.COUNT
+                || isOutOfRange(numbers)
+                || hasDuplicatedNumber(numbers)) {
             throw new IllegalArgumentException();
         }
+    }
 
-        if (numbers.size() != LottoNumber.COUNT | hasDuplicatedNumber(numbers)) {
-            throw new IllegalArgumentException();
-        }
+    private boolean isOutOfRange(List<Integer> numbers) {
+        return numbers.stream().anyMatch(number -> number < LottoNumber.MINIMUM || number > LottoNumber.MAXIMUM);
     }
 
     private boolean hasDuplicatedNumber(List<Integer> numbers) {

@@ -15,27 +15,21 @@ class LottoResultTest {
 
     @Test
     void statistics() {
-        for (int i = 0; i < 5; i++) {
-            result.put(i,0);
-        }
-        for (int i = 0; i < 5; i++) {
+        LottoResult.initialize();
+        for (int i = 3; i < 8; i++) {
             testResult.put(i,1);
         }
-        new LottoResult(result);
-        for (int i = 3; i < 7; i++) {
-            LottoResult.statistics(i,0);
+        for (int i = 3; i < 8; i++) {
+            LottoResult.statistics(i,false);
         }
-        LottoResult.statistics(5,1);
+        result = LottoResult.statistics(5,true);
         assertThat(result).isEqualTo(testResult);
     }
 
     @Test
     void calculateProfit() {
-        for (int i = 0; i < 5; i++) {
-            result.put(i,0);
-        }
-        result.put(1,1);
-        new LottoResult(result);
+        LottoResult.initialize();
+        LottoResult.statistics(5,true);
         double profit = LottoResult.calculateProfit(2);
         assertThat(profit).isEqualTo(1500000);
     }

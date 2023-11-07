@@ -16,6 +16,10 @@ public class LottoPlayer {
         this.numberOfLottoTickets = calculateNumberOfLottoTickets();
     }
 
+    public int getPurchaseMoney() {
+        return purchaseMoney;
+    }
+
     public int getNumberOfLottoTickets() {
         return numberOfLottoTickets;
     }

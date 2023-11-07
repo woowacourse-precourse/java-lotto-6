@@ -10,8 +10,7 @@ import static lotto.view.OutputMessage.REQUEST_PURCHASE_AMOUNT;
 import static lotto.view.OutputMessage.REQUEST_WINNING_NUMBER;
 
 import java.util.List;
-import lotto.domain.Cashier;
-import lotto.domain.Customer;
+import lotto.service.LottoDto;
 import lotto.service.LottoService;
 import lotto.service.ResultDto;
 import lotto.view.InputView;
@@ -21,7 +20,6 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
-    Cashier cashier = new Cashier();
 
     public LottoController(InputView inputView, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
@@ -30,18 +28,26 @@ public class LottoController {
     }
 
     public void run() {
-        Customer customer = new Customer(getPurchaseAmount());
-        int lottoQuantity = cashier.calculateMoney(customer.getMoney());
+        buyLotto();
+        setWinningNumbers();
+        showResults();
+    }
+
+    public void buyLotto() {
+        int lottoQuantity = lottoService.calculateLotto(getPurchaseAmount());
         outputView.printPurchaseResult(lottoQuantity);
 
-        lottoService.issueLotto(customer, lottoQuantity);
-        outputView.printIssuedLottos(customer.getIssuedLottos());
+        LottoDto lottoDto = lottoService.issueLotto(lottoQuantity);
+        outputView.printIssuedLottos(lottoDto.getLottos());
+    }
 
+    public void setWinningNumbers() {
         List<Integer> winningNumber = getWinningNumber();
         int bonusNumber = getBonusNumber(winningNumber);
-
         lottoService.saveWinningLotto(winningNumber, bonusNumber);
+    }
 
+    public void showResults() {
         outputView.printWinningStatistics();
         ResultDto resultDto = lottoService.getResult();
         outputView.printWinningDetails(resultDto.getResult());

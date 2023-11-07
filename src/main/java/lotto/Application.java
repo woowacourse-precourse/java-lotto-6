@@ -1,10 +1,13 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.BiFunction;
-import java.util.stream.Collectors;
-import lotto.model.Validator;
+import lotto.view.View;
 
 public class Application {
 
@@ -28,70 +31,48 @@ public class Application {
 
 
     public static void main(String[] args) {
-        int totalSpendings = 0;
-        while (true) {
-            System.out.println("로또를 구매할 금액을 입력하세요.");
-            try {
-                String input = Console.readLine().trim();
-                Validator.validatePurchaseInput(input);
-                totalSpendings = Integer.parseInt(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
 
+        // 로또 구매 급액 입력 로직
+        System.out.println("로또를 구매할 금액을 입력하세요.");
+        int totalSpendings = View.getPurchaseAmount();
 
+        // 입력받은 금액으로 구매한 로또 갯수
         int numberOfPurchasedLottos = totalSpendings / LOTTO_PRICE;
         System.out.println(numberOfPurchasedLottos + "개를 구매했습니다.");
 
         long totalWinnings = 0;
 
+        // 구매한 로또의 리스트
         List<Lotto> purchasedLottos = new ArrayList<>();
+
+        // 당첨된 기록을 담을 hashmap
         Map<Integer, Long> winningsMap = new HashMap<>();
 
-        System.out.println(numberOfPurchasedLottos + "개를 구매했습니다.");
+
+
+        // 구매한 갯수만큼 로또 생성
         for (int i = 0; i < numberOfPurchasedLottos; i++) {
             Lotto lotto = Lotto.generate();
             purchasedLottos.add(lotto);
             System.out.println(lotto.getNumbers());
         }
 
-        List<Integer> winningNumbers = new ArrayList<>();
-        int bonusNumber = 0;
-        boolean isValidBonusNumber = false;
 
+        List<Integer> winningNumbers;
+        int bonusNumber = 0;
 
         // 당첨 번호 입력 로직
         System.out.println("당첨 번호를 쉼표로 구분하여 입력하세요.");
-        while (true) {
-            try {
-                String winningNumbersInput = Console.readLine();
-                Validator.validateWinningNumbers(winningNumbersInput); // Validator 클래스 사용
-                winningNumbers = Arrays.stream(winningNumbersInput.split(","))
-                        .map(String::trim)
-                        .map(Integer::parseInt)
-                        .collect(Collectors.toList());
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        winningNumbers = View.getWinningNumbers();
 
 
+        // 보너스 번호 입력 로직
         System.out.println("보너스 번호를 입력하세요.");
-        while (!isValidBonusNumber) {
-            try {
-                String bonusNumberInput = Console.readLine().trim();
-                bonusNumber = Integer.parseInt(bonusNumberInput);
-                Validator.validateBonusNumber(bonusNumber, winningNumbers); // Validator 클래스 사용
-                isValidBonusNumber = true;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        bonusNumber = View.getBonusNumber(winningNumbers);
         System.out.println("입력된 당첨 번호: " + winningNumbers + " + 보너스 번호: " + bonusNumber);
 
+
+        // 로또 당첨 계산 로직
         for (Lotto lotto : purchasedLottos) {
             int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
             boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
@@ -140,26 +121,6 @@ public class Application {
         return uniqueNumbers.size();
     }
 
-    private static void validateWinningNumbers(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
-        }
-        if (winningNumbers.stream().anyMatch(num -> num < 1 || num > 45)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        if (winningNumbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
-        }
-    }
-
-    private static void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
-        }
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
-    }
 
     private static int rankForFiveMatches(Integer matches, Boolean bonus) {
         if (bonus) {

@@ -8,7 +8,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.api.DisplayName;
 
 import java.util.stream.Stream;
+
 import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.Optional;
 
 public class MatchResultTest {

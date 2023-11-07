@@ -8,6 +8,7 @@ import lotto.domain.LottoResultCalculator;
 import lotto.domain.LottoResults;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -19,24 +20,26 @@ import java.util.stream.Stream;
 class LottoResultsTest {
 
     @Test
-    public void shouldCalculateResultsCorrectly() {
+    @DisplayName("로또 결과 확인 테스트")
+    public void CalculateResultsTest() {
         Lottos lottos = new Lottos(Arrays.asList(
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), // 1등
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 10)), // 3등
-                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 11)) // 3등
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 10)),
+                new Lotto(Arrays.asList(1, 2, 3, 4, 5, 11))
         ));
 
         WinningNumbers winningNumbers = WinningNumbers.of("1,2,3,4,5,6", 7);
 
         LottoResults results = LottoResultCalculator.calculateResults(lottos, winningNumbers);
         assertThat(results.rankCounts().get(LottoRank.FIRST)).isEqualTo(1);
-        assertThat(results.rankCounts().get(LottoRank.SECOND)).isEqualTo(null);
+        assertThat(results.rankCounts().get(LottoRank.SECOND)).isEqualTo(0);
         assertThat(results.rankCounts().get(LottoRank.THIRD)).isEqualTo(2);
-        assertThat(results.rankCounts().get(LottoRank.FOURTH)).isEqualTo(null);
-        assertThat(results.rankCounts().get(LottoRank.FIFTH)).isEqualTo(null);
+        assertThat(results.rankCounts().get(LottoRank.FOURTH)).isEqualTo(0);
+        assertThat(results.rankCounts().get(LottoRank.FIFTH)).isEqualTo(0);
     }
 
     @ParameterizedTest
+    @DisplayName("로또 수익 합 확인 테스트")
     @MethodSource("provideDataForTotalEarningsTest")
     void testCalculateTotalEarnings(WinningNumbers winningNumbers, long expectedTotalEarnings) {
         Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));

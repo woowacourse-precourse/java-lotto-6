@@ -133,6 +133,7 @@ public class ControlMain {
                 priceLottoAllError(price);
                 int priceInt = Integer.parseInt(price);
                 player.updatePrice(priceInt);
+                OutputView.printPrice(priceInt);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

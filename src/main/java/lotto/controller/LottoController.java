@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.BonusNumber;
@@ -48,5 +49,8 @@ public class LottoController {
 
     }
 
+    public void makeRank(List<Integer> sames) {
+        int result = Collections.frequency(sames, 3);
+    }
 
 }

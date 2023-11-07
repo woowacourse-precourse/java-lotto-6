@@ -4,6 +4,11 @@ import static lotto.constant.Magic.EXECUTE_RESULT;
 import static lotto.constant.Magic.INPUT_NUMBERS;
 import static lotto.constant.Magic.INPUT_PRICE;
 import static lotto.constant.Magic.PRINT_BUYNUMBER;
+import static lotto.constant.Rank.SAME_NUMBER_3;
+import static lotto.constant.Rank.SAME_NUMBER_4;
+import static lotto.constant.Rank.SAME_NUMBER_5_BONUSE_O;
+import static lotto.constant.Rank.SAME_NUMBER_5_BONUX_X;
+import static lotto.constant.Rank.SAME_NUMBER_6;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.Magic;
@@ -36,4 +41,26 @@ public class ConsolePrint {
     public static void printStatics() {
         System.out.print(EXECUTE_RESULT);
     }
+
+    public static void print3Same(int num) {
+        System.out.println(String.format("%s - %d개", SAME_NUMBER_3.getMessage(), num));
+    }
+
+    public static void print4Same(int num) {
+        System.out.println(String.format("%s - %d개", SAME_NUMBER_4.getMessage(), num));
+    }
+
+    public static void printBonusX(int num) {
+        System.out.println(String.format("%s - %d개", SAME_NUMBER_5_BONUX_X.getMessageBonusX(), num));
+    }
+
+    public static void printBonusO(int num) {
+        System.out.println(String.format("%s - %d개", SAME_NUMBER_5_BONUSE_O.getMessage(), num));
+    }
+
+    public static void print6Same(int num) {
+        System.out.println(String.format("%s - %d개", SAME_NUMBER_6.getMessage(), num));
+
+    }
+
 }

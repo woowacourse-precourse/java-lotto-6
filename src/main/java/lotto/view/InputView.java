@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.utils.constants.InputConstants.HAS_NOT_COMMA_MESSAGE;
 import static lotto.utils.constants.InputConstants.SPLIT_STANDARD;
 
 public class InputView {
@@ -58,9 +59,13 @@ public class InputView {
     }
 
     private List<Integer> convertInputToList(String inputWinningNumbers) {
-        return Arrays.stream(inputWinningNumbers.split(SPLIT_STANDARD))
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        try {
+            return Arrays.stream(inputWinningNumbers.split(SPLIT_STANDARD))
+                    .map(Integer::parseInt)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException(HAS_NOT_COMMA_MESSAGE);
+        }
     }
 
     public Integer inputBonusNumber() {

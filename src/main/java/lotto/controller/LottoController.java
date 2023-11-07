@@ -59,13 +59,13 @@ public class LottoController {
 
     private PurchasedLotto purchaseLottoByLottoCount(Integer lottoCount) {
         PurchasedLotto purchasedLotto = new PurchasedLotto();
+
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> randomNumbers = lottoService.createRandomNumbers();
             purchasedLotto.addLotto(new Lotto(randomNumbers));
         }
 
         outputView.purchaseLottoNumbers(purchasedLotto);
-
         return purchasedLotto;
     }
 

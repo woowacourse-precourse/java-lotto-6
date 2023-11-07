@@ -2,6 +2,8 @@ package lotto.model.result;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.constant.BonusMatchType;
+import lotto.constant.MatchNumber;
 import lotto.constant.Winning;
 
 public class WinningRank {
@@ -13,44 +15,22 @@ public class WinningRank {
     private static int fifthPrizeCount = 0;
 
 
-    public void recorder(Map<String, Integer> result) {
-        int count = result.get("matchedNumberCount");
-        int bonus = result.get("isMatchedBonusNumber");
-        if(count == 3) {
+    public void recorderWinningRank(int count, BonusMatchType bonus) {
+        if(count == MatchNumber.THREE.getNumber()) {
             fifthPrizeCount++;
         }
-        if(count == 4) {
+        if(count == MatchNumber.FOUR.getNumber()) {
             fourthPrizeCount++;
         }
-        if(count == 5 && bonus == 0) {
+        if(count == MatchNumber.FIVE.getNumber() && bonus == BonusMatchType.MISMATCH) {
             thirdPrizeCount++;
         }
-        if(count == 5 && bonus == 1) {
+        if(count == MatchNumber.FIVE.getNumber() && bonus == BonusMatchType.MATCH) {
             secondPrizeCount++;
         }
-        if(count == 6) {
+        if(count == MatchNumber.SIX.getNumber()) {
             firstPrizeCount++;
         }
-    }
-
-    public int getFirstPrizeCount() {
-        return firstPrizeCount;
-    }
-
-    public int getSecondPrizeCount() {
-        return secondPrizeCount;
-    }
-
-    public int getThirdPrizeCount() {
-        return thirdPrizeCount;
-    }
-
-    public int getFourthPrizeCount() {
-        return fourthPrizeCount;
-    }
-
-    public int getFifthPrizeCount() {
-        return fifthPrizeCount;
     }
 
     public Map<Winning, Integer> getAllPrizeCount() {

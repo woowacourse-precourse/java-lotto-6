@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.BonusMatchType;
+import lotto.constant.MatchNumber;
 import lotto.constant.Winning;
 import lotto.model.player.BonusNumber;
 import lotto.model.Lotto;
@@ -88,13 +90,19 @@ public class Controller {
                 = new CheckWinning(winningNumber, bonusNumber);
         WinningRank winningRank = new WinningRank();
         for(Lotto lotto : lottoPurchaseNumbers) {
-            wonRecordManager(winningRank, checkWinning.calculate(lotto.getNumbers()));
+            List<Integer> purchaseLottoNumber = lotto.getNumbers();
+            int count = CheckWinning.winningNumberCounter(purchaseLottoNumber);
+            BonusMatchType bonus = BonusMatchType.NOT_APPLICABLE;
+            if(count == MatchNumber.FIVE.getNumber()) {
+                bonus = CheckWinning.bonusNumberCounter(purchaseLottoNumber);
+            }
+            wonRecordManager(winningRank, count, bonus);
         }
         return winningRank.getAllPrizeCount();
     }
 
-    private void wonRecordManager(WinningRank winningRank, Map<String, Integer> result) {
-        winningRank.recorder(result);
+    private void wonRecordManager(WinningRank winningRank, int count, BonusMatchType bonus) {
+        winningRank.recorderWinningRank(count, bonus);
     }
 
     private void rateOfReturnManager(int purchase, Map<Winning, Integer> allPrizeCount) {

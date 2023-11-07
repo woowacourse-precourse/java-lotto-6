@@ -2,6 +2,8 @@ package lotto.model.calculator;
 
 import java.util.List;
 import java.util.Map;
+import lotto.constant.BonusMatchType;
+import lotto.constant.MatchNumber;
 
 public class CheckWinning {
     private static List<Integer> winningNumber;
@@ -12,34 +14,21 @@ public class CheckWinning {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<String, Integer> calculate(List<Integer> purchaseNumber) {
-        int count = winningNumberCounter(purchaseNumber);
-        int isMatchedBonusNumber = 0; // false
-        if(count == 5) {
-            isMatchedBonusNumber = bonusNumberCounter(purchaseNumber);
-        }
-        Map<String, Integer> result = Map.of(
-                "matchedNumberCount", count,
-                "isMatchedBonusNumber", isMatchedBonusNumber
-        );
-        return result;
-    }
-
-    private static Integer winningNumberCounter(List<Integer> purchaseNumber) {
+    public static Integer winningNumberCounter(List<Integer> purchaseNumber) {
         int count = 0;
         for(int i = 0; i < 6; i++) {
             if(purchaseNumber.contains(winningNumber.get(i))) {
                 count++;
-            };
+            }
         }
         return count;
     }
 
-    private static int bonusNumberCounter(List<Integer> purchaseNumber) {
-        int number = 0;
+    public static BonusMatchType bonusNumberCounter(List<Integer> purchaseNumber) {
+        BonusMatchType bonus = BonusMatchType.MISMATCH;
         if(purchaseNumber.contains(bonusNumber)) {
-            number =1;
+            bonus = BonusMatchType.MATCH;
         }
-        return number;
+        return bonus;
     }
 }

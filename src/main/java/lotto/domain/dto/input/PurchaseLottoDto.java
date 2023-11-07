@@ -1,10 +1,10 @@
 package lotto.domain.dto.input;
 
-import lotto.validator.PurchaseLottoValidator;
+import lotto.validator.PurchaseAmountValidator;
 
 public record PurchaseLottoDto(int amount) {
     public PurchaseLottoDto {
-        PurchaseLottoValidator.checkAmountRange(amount);
-        PurchaseLottoValidator.checkRemainder(amount);
+        PurchaseAmountValidator.checkAmountRange(amount);
+        PurchaseAmountValidator.checkRemainder(amount);
     }
 }

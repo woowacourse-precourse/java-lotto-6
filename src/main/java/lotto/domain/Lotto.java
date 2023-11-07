@@ -23,5 +23,19 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int compare(Lotto lotto) {
+        int count = 0;
+        for (Integer number : numbers) {
+            lotto.contains(number);
+            count++;
+        }
+        return count;
+    }
+
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
+    }
+
+
+// TODO: 추가 기능 구현
 }

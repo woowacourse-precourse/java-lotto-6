@@ -25,7 +25,7 @@ class PurchaseAmountTest {
         String money = "7000";
         System.setIn(new ByteArrayInputStream(money.getBytes()));
         purchaseAmount.read();
-        Assertions.assertThat(PurchaseAmount.lottoQuantity).isEqualTo(7);
+        Assertions.assertThat(purchaseAmount.purchasedAmountPrint()).isEqualTo("7개를 구매했습니다.");
     }
 
 }

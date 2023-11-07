@@ -1,10 +1,7 @@
 package lotto.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
-import java.util.Map.Entry;
 import lotto.readUserInput.PurchaseAmount;
 import lotto.readUserInput.WinningNumbers;
 import org.assertj.core.api.Assertions;
@@ -17,6 +14,7 @@ class RateOfReturnTest {
     void afterEach() {
         Console.close();
     }
+
     @Test
     void 총수익률검증() {
         PurchaseAmount purchaseAmount = new PurchaseAmount();
@@ -30,7 +28,7 @@ class RateOfReturnTest {
         System.setIn(new ByteArrayInputStream(numbers.getBytes()));
         winningNumbers.read();
 
-        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
+        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
 
         double benefit = 0;
         benefit += purchasedLottoTickets.eachRankCount().get("1st") * 2000000000;
@@ -39,9 +37,7 @@ class RateOfReturnTest {
         benefit += purchasedLottoTickets.eachRankCount().get("4th") * 50000;
         benefit += purchasedLottoTickets.eachRankCount().get("5th") * 5000;
 
-        double result = benefit / (PurchaseAmount.lottoQuantity * 1000) * 100;
-
-
+        double result = benefit / (purchasedLottoTickets.allTicketCount() * 1000) * 100;
 
         RateOfReturn rateOfReturn = new RateOfReturn(purchasedLottoTickets);
         Assertions.assertThat(rateOfReturn.calculate()).isEqualTo(String.format("%.1f", result));

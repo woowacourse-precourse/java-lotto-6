@@ -1,14 +1,19 @@
 package lotto.service;
 
 import java.util.Map;
-import lotto.readUserInput.PurchaseAmount;
 
 public class RateOfReturn {
     private Map<String, Integer> ticketResult;
+    private PurchasedLottoTickets purchasedLottoTickets;
 
 
     public RateOfReturn(PurchasedLottoTickets purchasedLottoTickets) {
-        this.ticketResult = purchasedLottoTickets.eachRankCount();
+        this.purchasedLottoTickets = purchasedLottoTickets;
+        initTicketResult();
+    }
+
+    public void initTicketResult() {
+        ticketResult = purchasedLottoTickets.eachRankCount();
     }
 
     public String calculate() {
@@ -19,7 +24,7 @@ public class RateOfReturn {
         benefit += ticketResult.get("4th") * 50000;
         benefit += ticketResult.get("5th") * 5000;
 
-        double result = benefit / (PurchaseAmount.lottoQuantity * 1000) * 100;
+        double result = benefit / (purchasedLottoTickets.allTicketCount() * 1000) * 100;
 
         return String.format("%.1f", result);
     }

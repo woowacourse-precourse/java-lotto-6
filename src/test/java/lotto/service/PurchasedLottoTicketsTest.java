@@ -14,6 +14,7 @@ class PurchasedLottoTicketsTest {
     void afterEach() {
         Console.close();
     }
+
     @Test
     void 당첨정보확인() {
         PurchaseAmount purchaseAmount = new PurchaseAmount();
@@ -27,7 +28,7 @@ class PurchasedLottoTicketsTest {
         System.setIn(new ByteArrayInputStream(numbers.getBytes()));
         winningNumbers.read();
 
-        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
+        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
         Integer count = purchasedLottoTickets.eachRankCount().get("lose");
 
         Assertions.assertThat(count).isLessThan(101);

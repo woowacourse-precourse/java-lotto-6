@@ -9,14 +9,16 @@ import lotto.readUserInput.PurchaseAmount;
 
 public class PurchasedLottoTickets {
     private List<Lotto> tickets;
+    private PurchaseAmount purchaseAmount;
 
-    public PurchasedLottoTickets() {
+    public PurchasedLottoTickets(PurchaseAmount purchaseAmount) {
         this.tickets = new ArrayList<>();
+        this.purchaseAmount = purchaseAmount;
         register();
     }
 
     public void register() {
-        while (tickets.size() < PurchaseAmount.lottoQuantity) {
+        while (purchaseAmount.addTicketByPurchaseAmount(tickets.size())) {
             RandomNumbers randomNumbers = new RandomNumbers();
             Lotto lotto = new Lotto(randomNumbers.draw());
             tickets.add(lotto);
@@ -48,5 +50,9 @@ public class PurchasedLottoTickets {
         for (Lotto lotto : tickets) {
             System.out.println(lotto.sortLottoNumbers());
         }
+    }
+
+    public int allTicketCount() {
+        return tickets.size();
     }
 }

@@ -18,11 +18,12 @@ public class Application {
         PurchaseAmount purchaseAmount = new PurchaseAmount();
         purchaseAmount.read();
 
-        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
+        PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
 
-        gameGuidePrint.purchaseCompletePrint();
+        PurchasedLottoNumbersPrint purchasedLottoNumbersPrint = new PurchasedLottoNumbersPrint(purchasedLottoTickets,
+                purchaseAmount);
+        purchasedLottoNumbersPrint.purchaseCompletePrint();
 
-        PurchasedLottoNumbersPrint purchasedLottoNumbersPrint = new PurchasedLottoNumbersPrint(purchasedLottoTickets);
         purchasedLottoNumbersPrint.printTickets();
 
         gameGuidePrint.scanWinningNumberPrint();

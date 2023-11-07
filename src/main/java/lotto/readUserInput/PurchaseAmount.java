@@ -5,7 +5,7 @@ import lotto.validation.ErrorMessage;
 import lotto.validation.ErrorValidation;
 
 public class PurchaseAmount implements UserInput {
-    public static int lottoQuantity;
+    private int lottoQuantity;
 
     public void read() {
         lottoQuantity = singleTypeConversion(userInput()) / 1000;
@@ -34,5 +34,12 @@ public class PurchaseAmount implements UserInput {
         return money;
     }
 
+    public boolean addTicketByPurchaseAmount(int number) {
+        return number < lottoQuantity;
+    }
+
+    public String purchasedAmountPrint() {
+        return lottoQuantity + "개를 구매했습니다.";
+    }
 
 }

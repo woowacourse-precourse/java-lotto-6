@@ -29,7 +29,7 @@ public class LottoController {
     private void purchaseLottos() {
         PurchasePrice purchasePrice = ioManager.inputPurchasePrice();
         lottoService.saveLottos(purchasePrice);
-        outputView.printLottoResult(lottoService.getPlayerLottoNumbers());
+        outputView.printLottoResultMessage(lottoService.getPlayerLottoNumbers());
     }
 
     private void inputWinningLotto() {
@@ -41,9 +41,9 @@ public class LottoController {
     }
 
     private void resultLottoStatistics() {
-        outputView.printWinningStatistics();
+        outputView.printWinningStatisticsMessage();
         lottoService.calculateWinningStatistics();
         lottoService.calculateTotalRate();
-        outputView.printGameResult(lottoService.getGameResult());
+        outputView.printGameResultMessage(lottoService.getGameResult());
     }
 }

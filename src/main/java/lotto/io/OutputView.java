@@ -24,26 +24,26 @@ public class OutputView {
         System.out.println(ProgressMessage.INPUT_LOTTO_PURCHASE_PRICE_MESSAGE);
     }
 
-    public void printLottoResult(PlayerLottosFormatter lottoResultFormatter) {
+    public void printLottoResultMessage(PlayerLottosFormatter lottoResultFormatter) {
         printNextLine();
         System.out.println(lottoResultFormatter.toResultLottoMessage());
     }
 
-    public void printGameResult(GameResultFormatter lottoStatisticsResultFormatter) {
+    public void printGameResultMessage(GameResultFormatter lottoStatisticsResultFormatter) {
         System.out.println(lottoStatisticsResultFormatter.toStatisticsResultMessage());
         System.out.println(lottoStatisticsResultFormatter.toTotalRateMessage());
     }
 
-    public void printWinningNumbers() {
+    public void printWinningNumbersMessage() {
         System.out.println(ProgressMessage.INPUT_WINNING_NUMBERS_MESSAGE);
     }
 
-    public void printBonusNumber() {
+    public void printBonusNumberMessage() {
         printNextLine();
         System.out.println(ProgressMessage.INPUT_BONUS_NUMBER_MESSAGE);
     }
 
-    public void printWinningStatistics() {
+    public void printWinningStatisticsMessage() {
         printNextLine();
         System.out.println(ProgressMessage.WINNING_STATISTICS);
     }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.GameConstant.LOTTO_PRICE;
+
 import java.util.NoSuchElementException;
 
 public class Money {
@@ -21,7 +23,7 @@ public class Money {
     }
 
     public void isThousands(int money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_PRICE != 0) {
             System.out.println("[ERROR] 구입 금액은 1000의 단위여야 합니다.");
             throw new IllegalArgumentException();
         }

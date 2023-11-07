@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.GameConstant.LOTTO_SIZE;
+import static lotto.domain.GameConstant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.domain.GameConstant.MINIMUM_LOTTO_NUMBER;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +29,7 @@ public class Lotto {
     public int getWins(Lotto winningLotto) {
         int winCount = 0;
 
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < LOTTO_SIZE; i++) {
             if (winningLotto.numbers.contains(this.numbers.get(i))) {
                 winCount++;
             }
@@ -35,7 +39,7 @@ public class Lotto {
 
     public void isInRangeLottoNumbers(List<Integer> numbers) {
         for (int num : numbers) {
-            if (num > 45 || num < 1) {
+            if (num > MAXIMUM_LOTTO_NUMBER || num < MINIMUM_LOTTO_NUMBER) {
                 System.out.println("[ERROR] 로또 번호는 1부터 45사이의 숫자여야 합니다.");
                 throw new IllegalArgumentException();
             }
@@ -43,7 +47,7 @@ public class Lotto {
     }
 
     public void isCorrectSizeLottoNumbers(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             System.out.println("[ERROR] 로또 번호의 개수는 6개여야 합니다.");
             throw new IllegalArgumentException();
         }

@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.domain.GameConstant.LOTTO_SIZE;
+
 import java.util.List;
 import lotto.domain.GameResult;
 import lotto.domain.Lotto;
@@ -29,7 +31,7 @@ public class OutputView {
 
     public void printNumbers(List<Integer> numbers) {
         System.out.print(OUTPUT_START_NUMBERS + numbers.get(0));
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < LOTTO_SIZE; i++) {
             System.out.print(OUTPUT_SPLIT_STRING + numbers.get(i));
         }
         System.out.println(OUTPUT_FINISH_NUMBERS);

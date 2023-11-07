@@ -44,6 +44,7 @@ public class GameController {
         }
 
         outputView.printGameResult(gameResult);
+
         profit.setProfit(gameResult);
         profit.setProfitRate(money);
         outputView.printProfitRate(profit.getProfitRate());

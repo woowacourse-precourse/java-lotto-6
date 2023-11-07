@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.GameConstant.LOTTO_SIZE;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +17,7 @@ public class GameResult {
     }
 
     public boolean hasBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < LOTTO_SIZE; i++) {
             if (lotto.getNumbers().get(i) == bonusNumber.getBonusNumber()) {
                 return true;
             }

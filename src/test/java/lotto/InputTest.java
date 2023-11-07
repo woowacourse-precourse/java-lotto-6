@@ -69,14 +69,37 @@ public class InputTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
-    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @DisplayName("당첨 번호 입력시 비정상적인 문자열을 받는 경우")
     @Test
-    void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+    void illigalWinningNumberInput() {
+        Input input = new Input();
+
+        // 정상적인 경우 테스트
+        assertThat(input.winningNumbersInput("1,2,3,4,5,6"))
+                .isEqualTo(new ArrayList<>(Arrays.asList(1,2,3,4,5,6)));
+        assertThat(input.bonusNumberInput("10,14,18,22,26,30"))
+                .isEqualTo(new ArrayList<>(Arrays.asList(10,14,18,22,26,30)));
+
+        // 비정상적인 경우 테스트
+        // 문자열에 숫자와 쉼표를 제외한 다른 문자가 있을 경우
+        assertThatThrownBy(() -> input.winningNumbersInput("!,2,3,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> input.winningNumbersInput("@,2,3,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+        // 쉼표 구분이 적절하게 이뤄지지 않은 경우
+        assertThatThrownBy(() -> input.winningNumbersInput("1,2,3,4,5,6,"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> input.winningNumbersInput(",1,2,3,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> input.winningNumbersInput("1,,2,3,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class);
+        // 문자열이 비어있는 경우
+        assertThatThrownBy(() -> input.winningNumbersInput(""))
+                .isInstanceOf(IllegalArgumentException.class);
+        // 당첨 번호가 1 ~ 45 사이가 아닐 경우
+        assertThatThrownBy(() -> input.winningNumbersInput("0,1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> input.winningNumbersInput("41,42,43,44,45,46"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    // 아래에 추가 테스트 작성 가능
 }

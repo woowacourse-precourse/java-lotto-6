@@ -30,7 +30,7 @@ public class Lotto {
     }
 
     private static void validate(final List<Integer> numbers) {
-        LottoValidator validator=new LottoValidator();
+        LottoValidator validator = new LottoValidator();
         validator.validateLottoNumbers(numbers);
     }
 

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 import lotto.model.Budget;
@@ -41,6 +42,7 @@ public class LottoController {
     public void start() {
         payMoney();
         issueLottos(this.budget);
+        printStatus(this.user);
     }
 
     private void payMoney() {
@@ -72,5 +74,13 @@ public class LottoController {
         user = new User(budget.getLottoCount(), lottos);
     }
 
+    private void printStatus(User user) {
+        int amount = user.getPurchaseCount();
+        List<Lotto> userLottos = user.getLottos();
+
+        OutputView.printLottoStatusDescription(amount);
+
+
+    }
 
 }

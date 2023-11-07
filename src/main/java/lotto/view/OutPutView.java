@@ -1,18 +1,10 @@
 package lotto.view;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import lotto.model.Lotto;
 
 public class OutPutView {
-    private final int WINNING_NUMBER_3 = 3;
-    private final int WINNING_NUMBER_6 = 6;
-
-    public void displayMessage(ViewPrompt viewPrompt) {
-        System.out.println(viewPrompt.getMessage());
-    }
-
     public void printPurchasedLottoAmount(int lottoAmount) {
         System.out.println(lottoAmount + ViewPrompt.PURCHASE_MESSAGE.getMessage());
     }

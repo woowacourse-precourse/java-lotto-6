@@ -16,4 +16,12 @@ public class LottoGenerator {
     public List<Lotto> getLottos() {
         return this.lottos;
     }
+
+    private List<Lotto> generateLottos(long buyingCount) {
+        List<Lotto> lottos = new ArrayList<>();
+        while (lottos.size() != buyingCount) {
+            lottos.add(generateLotto());
+        }
+        return lottos;
+    }
 }

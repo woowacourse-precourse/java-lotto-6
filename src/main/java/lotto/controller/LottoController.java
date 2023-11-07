@@ -21,7 +21,8 @@ public class LottoController {
 
 
     public void lotto() {
-        int ticket = inputBuyLotto.getTicket(inputBuyLotto.getMoney());
+        int money = inputBuyLotto.getMoney();
+        int ticket = inputBuyLotto.getTicket(money);
         List<Lotto> lottoNumbers = getLottoNumbers(randomLottoNumber, ticket);
         List<Integer> inputlottoNumbers = inputLottoNumber.getLottoNumbers();
         int bonus = inputBonus.getBonus();

@@ -32,4 +32,8 @@ public enum Rank {
                 .orElse(NOTHING);
     }
 
+    public int getMoney() {
+        return reward;
+    }
+
 }

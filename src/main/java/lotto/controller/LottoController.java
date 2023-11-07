@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.global.SingletonRegistry;
+import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,5 +19,16 @@ public class LottoController {
             SingletonRegistry.register(key, new LottoController(inputView, outputView));
         }
         return (LottoController) SingletonRegistry.getInstance(key);
+    }
+    public void run(){
+        buyLotto();
+    }
+
+    private void buyLotto(){
+        outputView.outputPayment();
+        int payment = inputView.inputPayment();
+        Lottos lottos = new Lottos();
+        lottos.buyMultipleAllRandom(payment);
+        outputView.outputBuy(lottos);
     }
 }

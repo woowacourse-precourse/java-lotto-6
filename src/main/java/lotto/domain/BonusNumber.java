@@ -10,24 +10,25 @@ public class BonusNumber {
 
 
     private BonusNumber(int bonusNumber) {
-        validateRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }
 
     public static BonusNumber from(String bonusNumber) {
+        validateNumeric(bonusNumber);
+        int convertedBonusNumber = Integer.parseInt(bonusNumber);
+        validateRange(convertedBonusNumber);
+        return new BonusNumber(convertedBonusNumber);
+    }
+
+    private static void validateNumeric(String bonusNumber) {
         try {
-            int convertBonusNumber = Integer.parseInt(bonusNumber);
-            return new BonusNumber(convertBonusNumber);
+            Integer.parseInt(bonusNumber);
         } catch (NumberFormatException ex) {
             throw new IllegalArgumentException(BONUS_NUMBER_MUST_NUMERIC_MESSAGE);
         }
     }
 
-    public int toInt() {
-        return bonusNumber;
-    }
-
-    public void validateRange(int bonusNumber) {
+    public static void validateRange(int bonusNumber) {
         if (isOverRange(bonusNumber)) {
             throw new IllegalArgumentException(BONUS_NUMBER_RANGE_MESSAGE);
         }
@@ -35,5 +36,9 @@ public class BonusNumber {
 
     private static boolean isOverRange(int number) {
         return number < START_RANGE_VALUE || number > END_RANGE_VALUE;
+    }
+
+    public int toInt() {
+        return bonusNumber;
     }
 }

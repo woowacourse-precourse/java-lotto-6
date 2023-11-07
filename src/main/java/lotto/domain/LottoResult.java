@@ -8,11 +8,11 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class PrizeResult {
+public class LottoResult {
 
     private final Map<Prize, Long> prizeResult;
 
-    public PrizeResult(final Lottos lottos, final WinnerLotto winnerLotto) {
+    public LottoResult(final Lottos lottos, final WinnerLotto winnerLotto) {
         this.prizeResult = processPrizeResult(calculatePrizeResult(lottos, winnerLotto));
     }
 

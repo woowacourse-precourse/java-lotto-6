@@ -7,7 +7,7 @@ import lotto.domain.Lottos;
 import lotto.domain.LottosGenerator;
 import lotto.domain.Money;
 import lotto.domain.Prize;
-import lotto.domain.PrizeResult;
+import lotto.domain.LottoResult;
 import lotto.domain.WinnerLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -49,12 +49,12 @@ public class LottoController {
     }
 
     private Map<Prize, Long> getPrizeResults(Lottos lottos, WinnerLotto winnerLotto) {
-        PrizeResult prizeResult = new PrizeResult(lottos, winnerLotto);
-        return prizeResult.getPrizeResult();
+        LottoResult lottoResult = new LottoResult(lottos, winnerLotto);
+        return lottoResult.getPrizeResult();
     }
 
     private Double getProfitRate(Money money, Lottos lottos, WinnerLotto winnerLotto) {
-        PrizeResult prizeResult = new PrizeResult(lottos, winnerLotto);
-        return prizeResult.calculateProfitRate(money.getMoney(), prizeResult.getPrizeResult());
+        LottoResult lottoResult = new LottoResult(lottos, winnerLotto);
+        return lottoResult.calculateProfitRate(money.getMoney(), lottoResult.getPrizeResult());
     }
 }

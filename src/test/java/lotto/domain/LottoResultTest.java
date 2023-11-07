@@ -9,7 +9,7 @@ import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class PrizeResultTest {
+public class LottoResultTest {
 
     private final int numberOfLottos = 7;
     private final int moneySpent = numberOfLottos * 1000;
@@ -38,8 +38,8 @@ public class PrizeResultTest {
 
     @Test
     @DisplayName("당첨 결과를 계산한다.")
-    void calculatePrizeResults() {
-        assertThat(new PrizeResult(new Lottos(lottos), winnerLotto).getPrizeResult())
+    void calculateLottoResults() {
+        assertThat(new LottoResult(new Lottos(lottos), winnerLotto).getPrizeResult())
                 .containsExactlyInAnyOrderEntriesOf(Map.of(
                         Prize.FIRST_PLACE, 1L,
                         Prize.SECOND_PLACE, 1L,
@@ -51,7 +51,7 @@ public class PrizeResultTest {
 
     @Test
     @DisplayName("정돈된 당첨 결과를 계산한다.")
-    void getPrizeResults() {
+    void getLottoResults() {
         Map<Prize, Long> prizeResults = Map.of(
                 Prize.FIRST_PLACE, 1L,
                 Prize.SECOND_PLACE, 1L,
@@ -67,17 +67,17 @@ public class PrizeResultTest {
                 Prize.FIRST_PLACE, 1L
         );
 
-        PrizeResult prizeResult = new PrizeResult(new Lottos(lottos), winnerLotto);
+        LottoResult lottoResult = new LottoResult(new Lottos(lottos), winnerLotto);
 
-        assertThat(prizeResult.getPrizeResult())
+        assertThat(lottoResult.getPrizeResult())
                 .isEqualTo(finalPrizeResults);
     }
 
     @Test
     @DisplayName("수익률을 계산한다.")
     void calculateProfitRate() {
-        PrizeResult prizeResult = new PrizeResult(new Lottos(lottosSmallPrize), winnerLotto);
-        assertThat(prizeResult.calculateProfitRate(moneySpent, Map.of(
+        LottoResult lottoResult = new LottoResult(new Lottos(lottosSmallPrize), winnerLotto);
+        assertThat(lottoResult.calculateProfitRate(moneySpent, Map.of(
                 Prize.FIRST_PLACE, 0L,
                 Prize.SECOND_PLACE, 0L,
                 Prize.FOURTH_PLACE, 0L,

@@ -59,6 +59,9 @@
   - [x] 1부터 45까지 중복되지 않는 숫자 6개
   - [x] Randoms의 pickUniqueNumbersInRange() 활용
   - [x] 오름차순 정렬
+#### Reward
+- 상금 데이터 관리 및 상금 당첨 확인에 대한 로직 처리
+  - [x] 상금 조건 충족 시 해당 상금 데이터 반환
 
 ## Util
 #### Validator

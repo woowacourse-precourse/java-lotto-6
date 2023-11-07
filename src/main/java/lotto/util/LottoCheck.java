@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.view.ErrorMessage;
 
-public class WinLottoCheck {
+public class LottoCheck {
 
     public List<Integer> winLottoErrorCheck(String winLotto) throws IllegalArgumentException {
         winLottoFormatCheck(winLotto);
@@ -20,6 +20,13 @@ public class WinLottoCheck {
             tempLottoNumbers.add(checkedNumber);
         }
         return tempLottoNumbers;
+    }
+
+    public int bonusLottoErrorCheck(String bonusLotto) throws IllegalArgumentException{
+        lottoNumberTypeCheck(bonusLotto);
+        int bonusLottoNumber = Integer.parseInt(bonusLotto);
+        winNumberRangeCheck(bonusLottoNumber);
+        return bonusLottoNumber;
     }
 
     private void winNumberRangeCheck(int checkedNumber) {

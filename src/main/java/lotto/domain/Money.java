@@ -34,4 +34,8 @@ public class Money {
     public int getMoney(){
         return this.money;
     }
+
+    public int getLottoCount(){
+        return money/1000;
+    }
 }

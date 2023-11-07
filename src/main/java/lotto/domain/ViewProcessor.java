@@ -78,6 +78,13 @@ public class ViewProcessor {
         }
     }
 
+    public boolean checkIsNull(String inputStr) {
+        if (inputStr == null || inputStr.length() == 0) {
+            throw new IllegalArgumentException("사용자 입력값 null");
+        }
+        return true;
+    }
+
     public void checkLengthWinning(String[] parsedWinnings) {
         if (parsedWinnings.length != MagicNums.LOTTO_LENGTH.getValue()) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
@@ -111,7 +118,7 @@ public class ViewProcessor {
     public void checkRangePurchase(int invalidCost) {
         if (invalidCost <= MagicNums.PURCHASE_MIN.getValue()) {
             throw new IllegalArgumentException(
-                    "[ERROR] 구입 금액은 " + MagicNums.PURCHASE_MIN.getValue() + "원 이상이여야 합니다."
+                    "[ERROR] 구입 금액은 " + MagicNums.PURCHASE_MIN.getValue() + "원 초과해야 합니다."
             );
         }
     }
@@ -124,16 +131,17 @@ public class ViewProcessor {
         }
     }
 
-    public List<Integer> checkValidWinnings(String[] parsedWinnings) {
+    public void checkValidWinnings(String inputWinnings) {
         try {
-            List<Integer> winningNum = new ArrayList<>();
+            checkIsNull(inputWinnings);
+            String[] parsedWinnings = inputWinnings.split(",");
             checkLengthWinning(parsedWinnings);
+            List<Integer> winningNum = new ArrayList<>();
             for (String element : parsedWinnings) {
                 int winning = Integer.parseInt(element);
                 checkExceptionWinning(winning);
                 winningNum.add(winning);
             }
-            return winningNum;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
         } catch (IllegalArgumentException e) {
@@ -183,17 +191,15 @@ public class ViewProcessor {
         }
     }
 
-    public void winnings() {
-        while (true) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String inputWinnings = Console.readLine();
-                String[] parsedWinnings = inputWinnings.split(",");
-                winningNums = checkValidWinnings(parsedWinnings);
-                break;
-            } catch (IllegalArgumentException e) {
-                throw e;
-            }
+    public boolean winnings(String inputWinnings) {
+
+        try {
+            checkValidWinnings(inputWinnings);
+            lottomodel.computeLotto(winningNums,bonusNum);
+            return States.STATE_SUCESS.getState();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return States.STATE_FALSE.getState();
         }
     }
 

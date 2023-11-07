@@ -24,4 +24,9 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @Test
+    void 로또가_1_45숫자인지_테스트(){
+        assertThatThrownBy(()-> new Lotto(List.of(1,2,3,4,5,46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

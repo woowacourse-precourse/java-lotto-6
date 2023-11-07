@@ -27,4 +27,11 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateInputRange(int input) {
+        if (input < Constants.MIN_NUMBER || input > Constants.MAX_NUMBER) {
+            ErrorMessage.printOutOfRangeNumberErrorMessage();
+            throw new IllegalArgumentException();
+        }
+    }
 }

@@ -25,4 +25,21 @@ class LottosTest {
 
         assertThat(lottos.getLottosNumbers()).isEqualTo(result);
     }
+
+    @DisplayName("가지고 있는 로또 전체와 당첨 로또를 비교하여 결과를 가져온다.")
+    @Test
+    void createLottosAndCompareWithWinningLotto() {
+        WinningLotto winningLotto = new WinningLotto(LottoGenerator.createLotto(List.of(3, 4, 5, 6, 7, 8)),
+                new BonusNumber(9));
+
+        String result = """
+                3개 일치 (5,000원) - 0개
+                4개 일치 (50,000원) - 1개
+                5개 일치 (1,500,000원) - 0개
+                5개 일치, 보너스 볼 일치 (30,000,000원) - 1개
+                6개 일치 (2,000,000,000원) - 0개
+                """;
+
+        assertThat(lottos.compareLottos(winningLotto).getResult()).isEqualTo(result);
+    }
 }

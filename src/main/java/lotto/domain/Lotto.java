@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -7,7 +9,9 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        validateDuplicate(numbers);
+        this.numbers = new ArrayList<>(numbers);
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -20,4 +24,11 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public void validateDuplicate(List<Integer> numbers) {
+        if (numbers.stream().distinct().count() != 6)
+            throw new IllegalArgumentException();
+    }
+
+
 }

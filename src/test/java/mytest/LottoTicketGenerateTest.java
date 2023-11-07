@@ -2,7 +2,7 @@ package mytest;
 
 import lotto.model.LottoTicketEntity;
 import lotto.service.LottoTicketGenerate;
-import lotto.service.LottoValidateRegistry;
+import lotto.service.validator.LottoValidator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,7 +38,7 @@ public class LottoTicketGenerateTest {
     @MethodSource("overSizeLottoNumbers")
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외 발생")
     void lottoByOverSizeTest(List<Integer> lottoNumbers) {
-        assertThrows(IllegalArgumentException.class, () -> LottoValidateRegistry.lottoTicketValidate(lottoNumbers));
+        assertThrows(IllegalArgumentException.class, () -> LottoValidator.lottoTicketValidate(lottoNumbers));
     }
     private static Stream<Arguments> overSizeLottoNumbers() {
         return Stream.of(
@@ -52,7 +52,7 @@ public class LottoTicketGenerateTest {
     @MethodSource("duplicateLottoNumbers")
     @DisplayName("중복된 숫자가 발생 시 예외 발생")
     void duplicateLottoTest(List<Integer> lottoNumbers) {
-        assertThrows(IllegalArgumentException.class, () -> LottoValidateRegistry.lottoTicketValidate(lottoNumbers));
+        assertThrows(IllegalArgumentException.class, () -> LottoValidator.lottoTicketValidate(lottoNumbers));
     }
     private static Stream<Arguments> duplicateLottoNumbers() {
         return Stream.of(
@@ -66,7 +66,7 @@ public class LottoTicketGenerateTest {
     @MethodSource("rangeLottoNumbers")
     @DisplayName("1 ~ 45 범위안에 없을 시 예외 발생")
     void rangeLottoTest(List<Integer> lottoNumbers) {
-        assertThrows(IllegalArgumentException.class, () -> LottoValidateRegistry.lottoTicketValidate(lottoNumbers));
+        assertThrows(IllegalArgumentException.class, () -> LottoValidator.lottoTicketValidate(lottoNumbers));
     }
     private static Stream<Arguments> rangeLottoNumbers() {
         return Stream.of(

@@ -30,8 +30,8 @@ public class Lotto {
     }
 
     public Result determineResult(List<Integer> winningNumbers, int bonusBall) {
-        int matchCount = getMatchCount(numbers, winningNumbers);
-        boolean bonusMatch = getBonusMatch(numbers, bonusBall);
+        int matchCount = getMatchCount(winningNumbers);
+        boolean bonusMatch = getBonusMatch(bonusBall);
 
         return new Result(matchCount, bonusMatch);
     }
@@ -43,21 +43,21 @@ public class Lotto {
         return sortedNumbers;
     }
 
-    private int getMatchCount(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    private int getMatchCount(List<Integer> winningNumbers) {
         int matchCount = DEFAULT_MATCH_COUNT;
 
         for (Integer winningNumber : winningNumbers) {
-            if (lottoNumbers.contains(winningNumber)) {
+            if (numbers.contains(winningNumber)) {
                 matchCount++;
             }
         }
         return matchCount;
     }
 
-    private boolean getBonusMatch(List<Integer> lottoNumbers, int bonusNumber) {
+    private boolean getBonusMatch(int bonusNumber) {
         boolean bonusMatch = false;
 
-        if (lottoNumbers.contains(bonusNumber)) {
+        if (numbers.contains(bonusNumber)) {
             bonusMatch = true;
         }
         return bonusMatch;

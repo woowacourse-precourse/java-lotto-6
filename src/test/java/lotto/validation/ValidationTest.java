@@ -7,6 +7,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class ValidationTest {
 
@@ -59,6 +61,15 @@ class ValidationTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("범위안에 있으면 예외가 발생하지 않는다")
+    @ParameterizedTest
+    @ValueSource(ints = {2, 3, 4, 5, 6, 41, 42})
+    public void 범위안에_있으면_예외가_발생하지_않는다(int num) {
+        int start = 1;
+        int end = 45;
+        assertDoesNotThrow(() -> Validation.checkNumberIsBetweenStartAndEnd(start, end, num));
+    }
+
     @DisplayName("중복되는 숫자가 존재하면 예외가 발생한다")
     @Test
     public void 중복되는_숫자가_존재하면_예외가_발생한다() {
@@ -71,11 +82,11 @@ class ValidationTest {
     }
 
     @DisplayName("보너스 번호가 중복되면 예외가 발생한다")
-    @Test
-    public void 보너스_번호가_중복되면_예외가_발생한다() {
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    public void 보너스_번호가_중복되면_예외가_발생한다(int bonus) {
         // given
         List<Integer> lotto = List.of(1, 2, 3, 4, 5, 6);
-        int bonus = 1;
 
         // then
         assertThatThrownBy(() -> Validation.checkLottoNumbersHasBonusNumber(lotto, bonus))

@@ -13,7 +13,7 @@ public class InputView {
             try{
                 System.out.println("구입금액을 입력해 주세요.");
                 String input = Console.readLine();
-                validInput(input);
+                price = validInput(input);
                 isValid = true;
             } catch (IllegalArgumentException e){
                 System.out.printf(e.getMessage());
@@ -22,10 +22,11 @@ public class InputView {
         return price;
     }
 
-    void validInput(String input){
+    int validInput(String input){
         int price = validIntType(input);
         validUnit(price);
         validPositive(price);
+        return price;
     }
 
     int validIntType(String input){

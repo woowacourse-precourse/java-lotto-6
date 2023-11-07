@@ -187,31 +187,129 @@
 ---
 <br>
 
+## 📚 패키지 구조
+```
+...
+├──  docs
+|    └── README.md
+└──  src
+     └── main/java/lotto
+         ├── Controller
+         |	 └── LottogameController.java        
+         |
+         ├── Domain
+         |	 ├── Lotto.java
+         |	 ├── PlayerNumber.java
+         |   └── PlayerPrice.java
+         |
+         ├── Enum
+         |   └── LottoRankingInfo.java
+         |
+         ├── Exception
+         |   ├── PlayerBuyingPayException.java
+         |   ├── LottoNumberException.java
+         |   └── BonusNumberException.java
+         |
+         ├── Service
+         |   ├── PlayerInputManagerService.java
+         |   ├── LotteryDrawerInputManagerService.java
+         |   └── WinningNumberComparatorService.java
+         |
+         ├── Util
+         |   ├── LottoNumberGenerator.java
+         |   └── InputNumberParser.java
+         |
+         ├── View
+         |   ├── InputView.java
+         |   └── OutputView.java
+         |
+         └── Application.java
+```
+---
+<br>
+
 ## 📂 궁금했어요
 
 **개발하면서 궁금했던 부분들에 대한 정리**
 
-### 😎 제목
-- 내용
+### 📤 Lotto 클래스의 예외 처리를 별도의 패키지에서 진행해도 될까?
+- Lotto 클래스에서 변경하고자 하는 부분
+```
+private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+```
+- 제약 사항
+    - 제공된 ```Lotto``` 클래스를 활용해 구현해야 한다.
+    - ```numbers```의 접근 제어자인 private을 변경할 수 없다.
+    - ```Lotto에``` 필드(인스턴스 변수)를 추가할 수 없다.
+    - ```Lotto의``` 패키지 변경은 가능하다.
 
+- 4번째 조건을 분석하자.
+  - [[java] 클래스변수, 인스턴스 변수 차이(static변수와 non Static변수)](https://sujinhope.github.io/2021/03/03/Java-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%B3%80%EC%88%98,-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%B3%80%EC%88%98-%EC%B0%A8%EC%9D%B4(Static%EB%B3%80%EC%88%98%EC%99%80-Non-Static%EB%B3%80%EC%88%98).html)
+  - 조건에서는 필드에서도 특히, **인스턴스 변수**를 추가할 수 없다고 명시했기 때문에 **클래스 변수**만 선언하는 것으로 결론을 내림.
+<br>
+<br>
+
+### 🦦 당첨 번호와 보너스 번호를 뽑는 사람이 플레이어...?
+- 초기의 생각
+  - 플레이어가 구입 금액을 입력하고, 그에 맞게 번호를 부여 받는다.
+  - 그 플레이어가 당첨 번호와 보너스 번호를 입력하면 당첨 여부를 알려준다.
+  ```이러면..로또를 왜 사지? 그냥 바로 당첨번호 적어서 하나만 사면 될텐데?```
+
+- 다시 생각하자!
+  - 로또를 직접 산다고 생각해보자.
+    ```
+    1. 로또를 사러 간다.
+    2. 로또 얼만큼 살건지 생각하고, 그에 맞는 금액을 판매처에 드린다.(ex.8000원 -> 8장)
+    3. 시간이 흐르고 로또 추첨 시간이 되면, 추첨하는 곳에서 당첨번호와 보너스번호를 추첨한다.
+    4. 그 당첨 번호를 내가 산 로또 번호와 비교해 당첨 여부를 확인한다.
+    ```
+  - 플레이어가 아닌 별도의 **추첨자**가 당첨 번호와 보너스 번호를 입력한다는 개념으로 이해해야 한다.
+  - 로또 추첨 방송에서 번호를 추첨하듯이 말이다!
 ---
 
 ## 📂 배웠어요
 
 **개발을 진행하며 겪었던 문제들의 트러블슈팅을 [velog](https://velog.io/@dlgkdis801/%EC%9A%B0%EC%95%84%ED%95%9C%ED%85%8C%ED%81%AC%EC%BD%94%EC%8A%A4-6%EA%B8%B0-%ED%94%84%EB%A6%AC%EC%BD%94%EC%8A%A4-3%EC%A3%BC%EC%B0%A8-%EB%A1%9C%EB%98%90)에 정리**(3주차 미션이 끝난 이후 공개 예정)
 
-### ⚙️ 제목
+### 🙉 “Exception이 아닌 ```IllegalArgumentException```, ```IllegalStateException```등과 같은 명확한 유형을 처리한다.”는 조건의 의미는?
 
 - 상세 내용
-    - 내용
-      <br>
+    - 기능 요구사항의 마지막 부분에 대한 의문
+      - IllegalArgumentException을 발생시키라는 조건의 하위에 있는 말은 무슨 의미일까?
+        <br>
 
 - 해결 방법
-    - 내용
+    - [🔗Java Exception](https://hyeon9mak.github.io/Java-exception/)
+    - ```IllegalArgumentException```에 대해서만 명시적으로 코드에 예외를 작성하면 된다!
+      - ```llegalStateException```은 게임이 **running 상태가 아닐 때** 발생하는데, 그렇다면 인텔리제이에서는 **콘솔 자체가 Read-Only 상태**가 되기 때문에 예외가 발생하지 않을 것으로 판단!
+<br>
+<br>
+
+### 🌱 “도메인 로직의 테스트 코드 작성”에서 도메인 로직이란?
+
+- 상세 내용
+    - "도메인 로직"이 정확히 어떤 구분인지에 대한 고민
+        - 내 Domain 패키지 내의 코드
+        - 도메인의 역할을 하는 코드 모두
+          <br>
+
+- 해결 방법
+    - Hint
+      - [🔗[우아한테크코스 5기] 프리코스 3주차 회고](https://makemepositive.tistory.com/16)
+      - 도메인/비즈니스 로직이라는 말은, 그러한 **로직**을 담당하는 코드 모두를 말한다!
+          - ```도메인/비즈니스의 로직을 담당하는 코드 전체```를 도메인 로직으로 잡고 테스트 코드를 작성하면 된다!
+
+
+
+
 ---
 <br>
 
-## 참고 ) ☑️ 깃 커밋 체크리스트
+### 참고 ) ☑️ 깃 커밋 체크리스트
 ### GitCommitRule
 **해당 규칙은 우아한테크코스에서 제공한 [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 기준으로 하여 해당 프로젝트의 규칙을 정했음을 알립니다.**
 #### ✍️ 기본 규칙

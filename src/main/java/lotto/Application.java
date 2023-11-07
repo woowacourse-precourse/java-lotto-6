@@ -1,7 +1,11 @@
 package lotto;
 
+import lotto.domain.model.Lotto;
+import lotto.domain.utils.LottoGenerator;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGame game = new LottoGame();
+        game.play();
     }
 }

@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.Collection;
+
 public class LottoNumber {
     private static final int MIN = 1;
     private static final int MAX = 45;
@@ -13,5 +15,8 @@ public class LottoNumber {
         if (number < MIN || number > MAX) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR);
         }
+    }
+    protected boolean isContainedIn(Collection<Integer> numbers) {
+        return numbers.contains(this.number);
     }
 }

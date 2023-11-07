@@ -25,6 +25,8 @@ public class Application {
     private static void validateWinningNumber(String winningNumber) {
         checkNull(winningNumber);
         checkEmpty(winningNumber);
+        checkDelimiter(winningNumber);
+        winningNumber.split(",");
     }
 
     public static int inputPurchaseAmount() {
@@ -106,7 +108,7 @@ public class Application {
                 .forEach((lotto -> System.out.println(lotto)));
     }
 
-    public void checkDelimiter(String input) {
+    public static void checkDelimiter(String input) {
         String regex = "[^0-9,]";
 
         Pattern pattern = Pattern.compile(regex);

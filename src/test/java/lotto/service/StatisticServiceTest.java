@@ -37,7 +37,7 @@ public class StatisticServiceTest {
 
     @Test
     void testCalculatePrize() {
-        LottoStatistic lottoStatistic = new LottoStatistic(statisticService.calculateLottoStatistics(results));
+        LottoStatistic lottoStatistic = statisticService.calculateLottoStatistics(results);
         int expectedCount = 3;
         int actualCount = lottoStatistic.getLottoStatistic().get(LottoPrize.SECOND_PRIZE);
 

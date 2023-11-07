@@ -1,16 +1,15 @@
 package lotto;
 
-import java.util.List;
 import lotto.exception.lottomanager.InsufficientMoneyException;
 import lotto.exception.lottomanager.NonMultipleMoneyException;
 
 public class LottoManager {
     public static final int LOTTO_PRICE = 1000;
 
-    public List<Lotto> sell(Money payedMoney) {
+    public LottoBundle sell(Money payedMoney) {
         validateOverSingleLottoPrice(payedMoney);
         validateMultipleOfLottoPrice(payedMoney);
-        return publishLottos(payedMoney);
+        return publishLottoBundle(payedMoney);
     }
 
     private void validateOverSingleLottoPrice(Money payedMoney) {
@@ -33,8 +32,8 @@ public class LottoManager {
         return payedMoney.isMultipleOf(LOTTO_PRICE);
     }
 
-    private List<Lotto> publishLottos(Money payedMoney) {
-        // TODO: 로또 발행 로직 구현
+    private LottoBundle publishLottoBundle(Money payedMoney) {
+        // TODO: 로또 번들 발행 로직 구현
         return null;
     }
 }

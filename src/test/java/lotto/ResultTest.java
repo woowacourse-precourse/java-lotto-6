@@ -2,6 +2,8 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class ResultTest {
@@ -13,13 +15,11 @@ public class ResultTest {
 
     @Test
     public void 결과_갯수_테스트() {
-
         Result result = new Result();
 
         // 결과 추가
-        result.addResult(first);
-        result.addResult(first);
-        result.addResult(second);
+        List<LottoCompareResult> compareResultList = new ArrayList<>(List.of(first, first,second));
+        result.getTotalWinningMoney(compareResultList);
 
         // 결과 확인
         assertEquals(2, result.getCount(Rank.FIRST));
@@ -34,14 +34,10 @@ public class ResultTest {
         Result result = new Result();
 
         // 결과 추가
-        result.addResult(first);  // 2,000,000,000
-        result.addResult(second); // 30,000,000
-        result.addResult(third);  // 1,500,000
-        result.addResult(fourth); // 50,000
-        result.addResult(fifth);  // 5,000
+        List<LottoCompareResult> compareResultList = new ArrayList<>(List.of(first, second,third,fourth,fifth));
 
         // 총 당첨금 확인
-        assertEquals(2_031_555_000, result.getTotalWinningMoney());
+        assertEquals(2_031_555_000, result.getTotalWinningMoney(compareResultList));
     }
 
 

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.*;
 import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
@@ -23,6 +24,10 @@ public class Game {
         List<Rank> ranks = getRanks(lottos, winningNumbers);
         WinningYield yield = getYield(cash, ranks);
         OutputView.displayWinningDetails(ranks, yield);
+    }
+
+    public void finish() {
+        Console.close();
     }
 
     private Cash getCash() {

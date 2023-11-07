@@ -27,16 +27,22 @@ public class OutputView {
         System.out.println(RESPONSE_WINNING_STATISTICS.getMassage());
         Arrays.stream(Prize.PRIZES)
                 .filter(prize -> prize != Prize.NONE)
-                .forEach(p -> System.out.printf(getFormat(p),
-                        p.getMatchedCount(), Converter.convertNumberWithComma(p.getWinningMoney()), winningResult.countOf(p)));
-    } // TODO 수정
+                .forEach(prize -> System.out.println(createResultMessage(winningResult.countOf(prize), prize)));
+    }
 
-    private String getFormat(final Prize prize) {
+    private String createResultMessage(final int countOfPrize, final Prize prize) {
+        final int matchedCount = prize.getMatchedCount();
+        final String winningMoney = Converter.convertNumberWithComma(prize.getWinningMoney());
+        final String format = this.determineFormatByPrize(prize);
+        return String.format(format, matchedCount, winningMoney, countOfPrize);
+    }
+
+    private String determineFormatByPrize(final Prize prize) {
         if (prize == Prize.SECOND) {
             return RESPONSE_WINNING_STATISTICS_FORMAT_WITH_BONUS.getMassage();
         }
         return RESPONSE_WINNING_STATISTICS_FORMAT.getMassage();
-    } // TODO 수정
+    }
 
     public void printYield(final String yield) {
         System.out.printf(RESPONSE_YIELD.getMassage(), yield);

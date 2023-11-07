@@ -8,6 +8,9 @@ public class Validator {
     public void validateInteger(String input) {
     }
 
+    public void validatePositiveInteger(int lottoPurchaseCost) {
+    }
+
 
 
 

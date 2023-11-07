@@ -13,7 +13,7 @@ public class LottoGroup {
     }
 
     public static LottoGroup create(int count) {
-        return new LottoGroup(IntStream.range(0, count).mapToObj(i -> Lotto.create()).toList());
+        return new LottoGroup(IntStream.range(0, count).mapToObj(i -> Lotto.generate()).toList());
     }
 
     @Override

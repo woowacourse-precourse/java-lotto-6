@@ -9,17 +9,16 @@ import static lotto.constant.Config.*;
 import static lotto.constant.ErrorMessage.*;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> numbers;
 
     public Lotto(List<Integer> numbers) {
         validateCount(numbers);
         validateNotDuplicated(numbers);
-        validateInRange(numbers);
         validateAscending(numbers);
-        this.numbers = numbers;
+        this.numbers = numbers.stream().map(LottoNumber::new).toList();
     }
 
-    public static Lotto create() {
+    public static Lotto generate() {
         return new Lotto(
                 pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_COUNT)
                         .stream()
@@ -40,22 +39,16 @@ public class Lotto {
         }
     }
 
-    private void validateInRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX)) {
-            throw new IllegalArgumentException(LOTTO_NOT_IN_RANGE);
-        }
-    }
-
     private void validateAscending(List<Integer> numbers) {
-        if (IntStream.range(1, numbers.size())
-                .map(index -> numbers.get(index - 1).compareTo(numbers.get(index)))
-                .anyMatch(order -> order > 0)) {
+        if (IntStream
+                .range(1, numbers.size())
+                .anyMatch(index -> numbers.get(index - 1) > numbers.get(index))) {
             throw new IllegalArgumentException(LOTTO_NOT_ASCENDING);
         }
     }
 
-    public boolean hasNumber(int number) {
-        return numbers.contains(number);
+    public boolean hasNumber(LottoNumber number) {
+        return numbers.stream().anyMatch(lottoNumber -> lottoNumber.number() == number.number());
     }
 
     public int countMatched(Lotto lotto) {

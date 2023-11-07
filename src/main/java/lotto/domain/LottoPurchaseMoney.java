@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.*;
+
+import lotto.constant.ErrorMessage;
+
 public class LottoPurchaseMoney {
     private static final int TICKET_PRICE = 1000;
 
@@ -9,7 +13,7 @@ public class LottoPurchaseMoney {
 
     public int getTicketCount(int money){
         if (money % TICKET_PRICE != 0){
-            throw new IllegalArgumentException("[ERROR] 1000원으로 나누어 떨어지는 수여야 합니다.");
+            throw new IllegalArgumentException(INVALID_DIVISION_AMOUNT.getMessage());
         }
         return money / TICKET_PRICE;
     }

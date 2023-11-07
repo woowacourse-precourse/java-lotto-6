@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 
 public class LottoTicket {
@@ -10,15 +12,21 @@ public class LottoTicket {
         this.ticketNumbers = ticketNumbers;
     }
 
-    private int calculate (int money) {
+    public int purchaseTicket() {
+        int money = Integer.parseInt(Console.readLine());
+        return calculate(money);
+    }
+
+    private int calculate(int money) {
         int ticketCost = 1000;
         calculationValidation(money);
         return money/ticketCost;
     }
 
-    public void calculationValidation (int money) {
-        if(money%1000 != 0){
+    public void calculationValidation(int money) {
+        if (money%1000 != 0){
             throw new IllegalArgumentException();
         }
     }
+
 }

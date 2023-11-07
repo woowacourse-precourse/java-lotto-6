@@ -23,12 +23,12 @@
 
 ### 1. 문제풀이 기본 요구사항 정리
 **<로또 구매 기능>**  
-✅ 구매한 로또 개수를 알려주는 showLottoTicket 메소드  
-✅ 구매한 로또 티켓의 번호를 알려주는 showLottoTicketNumbers 메소드
+✅ 구매한 로또 개수를 알려주는 purchaseTicket 메소드  
+✅ 구매한 로또 티켓의 번호를 알려주는 purchaseTicketNumbers 메소드
 
 **<일치율 계산 기능>**  
-✅ 일치한 숫자를 세는 countMatchingNumbers 메소드  
-✅ 당첨을 통계내는 analyzeLottoResult 메소드
+✅ 6개의 숫자 중 일치를 찾는 countMatchingNumbers 메소드  
+✅ 보너스 숫자의 일치를 찾는 isMatchBonusNumber 메소드  
 
 **<로또 결과 도출 기능>**  
 ✅ 수익률을 계산하는 calculateProfitRate 메소드  

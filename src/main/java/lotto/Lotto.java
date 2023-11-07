@@ -28,6 +28,8 @@ public class Lotto {
         int bonusInput = 0;
         List<List<Integer>> allNumbers = new ArrayList<>();
         money = purchaseResult(purchaseNumber, money, allNumbers);
+        winnersNumber();
+
     }
 
     // 구입 금액 입력 받고 예외 처리한 뒤 리턴
@@ -71,5 +73,20 @@ public class Lotto {
             System.out.println(randomNumber);
             allNumbers.add(randomNumber);
         }
+    }
+
+    private void winnersNumber() {
+        System.out.println();
+        message.winningNumberMessage();
+
+        String numberInput = Console.readLine();
+        String[] numbersInput = numberInput.split(",");
+
+        //Integer로 타입 변환 후 리스트에 저장
+        for (String number : numbersInput) {
+            int typeChange = Integer.parseInt(number.trim());
+            numbers.add(typeChange);
+        }
+
     }
 }

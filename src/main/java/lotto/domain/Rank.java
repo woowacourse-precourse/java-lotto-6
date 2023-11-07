@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
+
 public enum Rank {
 	FIRST(1, 6, false, 2_000_000_000),
 	SECOND(2, 5, true, 30_000_000),
@@ -21,6 +23,11 @@ public enum Rank {
 
 	public int getReward() {
 		return reward;
+	}
+
+	public String getRewardString() {
+		DecimalFormat decimalFormat = new DecimalFormat("#,###");
+		return decimalFormat.format(reward);
 	}
 
 	public int getMatchNormalCount() {

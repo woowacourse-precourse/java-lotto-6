@@ -53,7 +53,7 @@
 
 ```markdown
 
-- Shop [ ]
+- Shop [ x ]
     - operate
 
 - Machine [ x ]

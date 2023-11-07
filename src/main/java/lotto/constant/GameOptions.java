@@ -1,10 +1,10 @@
 package lotto.constant;
 
 public enum GameOptions {
-    LOTTO_MIN_NUMBER(1),
-    LOTTO_MAX_NUMBER(45),
-    LOTTO_NUMBER_COUNT(6),
-    LOTTO_PRICE(1000);
+    MIN_NUMBER(1),
+    MAX_NUMBER(45),
+    NUMBER_COUNT(6),
+    PRICE(1000);
 
     private int value;
 

@@ -5,10 +5,10 @@ import static lotto.constant.ExceptionMessages.MIN_PURCHASE_AMOUNT_EXCEPTION_MES
 import static lotto.constant.ExceptionMessages.WINNING_NUMBER_COUNT_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.WINNING_NUMBER_DUPLICATION_EXCEPTION_MESSAGE;
 import static lotto.constant.ExceptionMessages.WINNING_NUMBER_RANGE_EXCEPTION_MESSAGE;
-import static lotto.constant.GameOptions.LOTTO_MAX_NUMBER;
-import static lotto.constant.GameOptions.LOTTO_MIN_NUMBER;
-import static lotto.constant.GameOptions.LOTTO_NUMBER_COUNT;
-import static lotto.constant.GameOptions.LOTTO_PRICE;
+import static lotto.constant.GameOptions.MAX_NUMBER;
+import static lotto.constant.GameOptions.MIN_NUMBER;
+import static lotto.constant.GameOptions.NUMBER_COUNT;
+import static lotto.constant.GameOptions.PRICE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,13 +22,13 @@ public class LottoValidator {
     }
 
     private static void validateDivisibility(Integer purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE.getValue() != 0) {
+        if (purchaseAmount % PRICE.getValue() != 0) {
             throw new IllegalArgumentException(MIN_PURCHASE_AMOUNT_EXCEPTION_MESSAGE.toString());
         }
     }
 
     private static void validateOverMinimum(Integer purchaseAmount) {
-        if (purchaseAmount < LOTTO_PRICE.getValue()) {
+        if (purchaseAmount < PRICE.getValue()) {
             throw new IllegalArgumentException(MIN_PURCHASE_AMOUNT_EXCEPTION_MESSAGE.toString());
         }
     }
@@ -40,7 +40,7 @@ public class LottoValidator {
     }
 
     private static void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT.getValue()) {
+        if (numbers.size() != NUMBER_COUNT.getValue()) {
             throw new IllegalArgumentException(WINNING_NUMBER_COUNT_EXCEPTION_MESSAGE.toString());
         }
     }
@@ -50,7 +50,7 @@ public class LottoValidator {
     }
 
     private static void validateNumberRange(Integer number) {
-        if (number < LOTTO_MIN_NUMBER.getValue() || number > LOTTO_MAX_NUMBER.getValue()) {
+        if (number < MIN_NUMBER.getValue() || number > MAX_NUMBER.getValue()) {
             throw new IllegalArgumentException(WINNING_NUMBER_RANGE_EXCEPTION_MESSAGE.toString());
         }
     }

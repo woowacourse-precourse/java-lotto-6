@@ -11,6 +11,14 @@ public class InputView {
         return purchaseAmount;
     }
 
+    private void validateDigit(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해야합니다.");
+        }
+    }
+
     public String readWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         return Console.readLine();
@@ -19,13 +27,5 @@ public class InputView {
     public String readBonusNumber() {
         System.out.println("\n보너스 번호를 입력해 주세요.");
         return Console.readLine();
-    }
-
-    private void validateDigit(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해야합니다.");
-        }
     }
 }

@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -14,7 +16,7 @@ public class Lotto {
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 6이 아닙니다.");
         }
     }

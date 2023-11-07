@@ -4,6 +4,8 @@ import java.util.List;
 
 public class LottoBonusNumber {
 
+    private static final int REMOVER_TO_MAX_INDEX = -1;
+
     private final int bonusNumber;
 
     public LottoBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
@@ -18,7 +20,7 @@ public class LottoBonusNumber {
                 .count();
 
         if (distinctCount != numbers.size()) {
-            numbers.remove(numbers.size() - 1);
+            numbers.remove(numbers.size() + REMOVER_TO_MAX_INDEX);
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
     }

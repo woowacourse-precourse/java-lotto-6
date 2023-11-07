@@ -14,6 +14,8 @@ public enum LottoRankInfo {
     FIFTH(3, 5_000),
     NO_WIN(0, 0);
 
+    private static final int MINIMUM_WINNING_MATCHING_COUNT = 3;
+
     private final int matchingCount;
     private final int prizeMoney;
 
@@ -24,7 +26,7 @@ public enum LottoRankInfo {
 
     public static List<LottoRankInfo> getRankInfoByList() {
         List<LottoRankInfo> lottoRankInfos = Stream.of(LottoRankInfo.values())
-                .filter(rank -> rank.matchingCount >= 3)
+                .filter(rank -> rank.matchingCount >= MINIMUM_WINNING_MATCHING_COUNT)
                 .collect(Collectors.toList());
         Collections.reverse(lottoRankInfos);
         return lottoRankInfos;

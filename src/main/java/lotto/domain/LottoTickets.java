@@ -8,17 +8,23 @@ import java.util.List;
 
 public class LottoTickets {
 
+    private static final int LOTTO_PRICE = 1000;
+    private static final int REMAINDER_ZERO = 0;
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+    private static final int LOTTO_NUMBERS_MINIMUM = 1;
+    private static final int LOTTO_NUMBERS_MAXIMUM = 45;
+
     private final List<Lotto> lottoTickets;
 
     public LottoTickets(int purchaseAmount) {
         validateDivisibleByLottoPrice(purchaseAmount);
-        int lottoCount = purchaseAmount / 1000;
+        int lottoCount = purchaseAmount / LOTTO_PRICE;
         lottoTickets = new ArrayList<>();
         publishLottoTickets(lottoCount);
     }
 
     private void validateDivisibleByLottoPrice(int purchaseAmount) {
-        if (purchaseAmount % 1000 > 0) {
+        if (purchaseAmount % LOTTO_PRICE > REMAINDER_ZERO) {
             throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원단위로 입력해주세요.");
         }
     }
@@ -30,7 +36,7 @@ public class LottoTickets {
     }
 
     private Lotto createLottoByRandomNumbers() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBERS_MINIMUM, LOTTO_NUMBERS_MAXIMUM, LOTTO_NUMBERS_SIZE);
         return new Lotto(randomNumbers);
     }
 

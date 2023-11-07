@@ -6,6 +6,10 @@ import java.util.List;
 
 public class LottoWinningNumbers {
 
+    private static final int LOTTO_NUMBERS_SIZE = 6;
+    private static final int LOTTO_NUMBERS_MINIMUM = 1;
+    private static final int LOTTO_NUMBERS_MAXIMUM = 45;
+
     private final List<Integer> numbers;
 
     public LottoWinningNumbers(List<Integer> numbers) {
@@ -17,14 +21,14 @@ public class LottoWinningNumbers {
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호를 6개 적어주세요.");
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < 1 || number > 45) {
+            if (number < LOTTO_NUMBERS_MINIMUM || number > LOTTO_NUMBERS_MAXIMUM) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1부터 45까지입니다.");
             }
         }

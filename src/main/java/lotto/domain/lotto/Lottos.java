@@ -3,6 +3,7 @@ package lotto.domain.lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.ErrorMessage;
 import lotto.domain.LottoAmount;
+import lotto.domain.random.RandomNumberRangePicker;
 import lotto.domain.result.Result;
 import lotto.dto.LottoDto;
 import lotto.dto.LottosDto;
@@ -19,11 +20,11 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos generateByAmount(LottoAmount lottoAmount) {
+    public static Lottos generateByAmount(LottoAmount lottoAmount, RandomNumberRangePicker randomNumberRangePicker) {
         List<Lotto> lottos = new ArrayList<>();
         int purchaseNumber = lottoAmount.getPurchaseNumber();
         for (int count = 0; count < purchaseNumber; count++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = randomNumberRangePicker.pickNumbers();
             lottos.add(new Lotto(numbers));
         }
         return new Lottos(lottos);

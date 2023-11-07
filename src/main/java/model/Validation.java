@@ -52,25 +52,25 @@ public class Validation {
 
     private int checkLottoRank(int matchNumber, boolean bonusNumberValidator) {
         if (matchNumber == COINCIDE_THREE) {
-            return 0;
+            return FIFTH_RANK;
         }
         if (matchNumber == COINCIDE_FOUR) {
-            return 1;
+            return FOURTH_RANK;
         }
         if (matchNumber == COINCIDE_FIVE && !bonusNumberValidator) {
-            return 2;
+            return THIRD_RANK;
         }
         if (matchNumber == COINCIDE_FIVE_BONUS) {
-            return 3;
+            return SECOND_RANK;
         }
         if (matchNumber == COINCIDE_SIX) {
-            return 4;
+            return FIRST_RANK;
         }
         return NOT_RANKED;
     }
 
     public double totalReturnCalculate(List<Integer> winningStaticsResult, int payment) {
-        double income = 0;
+        double income = INDEX_RESET;
 
         for (int index = INDEX_RESET; index < winningStaticsResult.size(); index++) {
             income += totalIncomeCalculate(winningStaticsResult.get(index), index);
@@ -96,6 +96,6 @@ public class Validation {
         if (index == FIRST_RANK && staticIndexValue != NOTHING) {
             return FIRST_REWARD * staticIndexValue;
         }
-        return 0;
+        return NOTHING;
     }
 }

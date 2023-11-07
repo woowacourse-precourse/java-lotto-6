@@ -15,7 +15,7 @@ public class BonusNumber {
         return lotto.contains(bonusNumber);
     }
 
-    public boolean isDuplicateNumber(WinningNumber winningNumber) {
+    public boolean hasBonus(WinningNumber winningNumber) {
         return winningNumber.contains(bonusNumber);
     }
 }

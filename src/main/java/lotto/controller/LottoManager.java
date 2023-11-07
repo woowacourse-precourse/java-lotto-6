@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Ticket;
+import lotto.service.BonusNumberService;
 import lotto.service.TicketService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,14 +11,21 @@ import lotto.view.OutputView;
 public class LottoManager {
 
     private final TicketService ticketService;
+    private final BonusNumberService bonusNumberService;
 
-    public LottoManager(TicketService ticketService) {
+    public LottoManager(TicketService ticketService, BonusNumberService bonusNumberService) {
         this.ticketService = ticketService;
+        this.bonusNumberService = bonusNumberService;
     }
 
     public void run() {
         purchaseTickets(InputView.purchaseAmount());
         winningTicket(InputView.winningNumbers());
+        bonusNumber(InputView.bonusNumber());
+    }
+
+    private void bonusNumber(String bonusNumber) {
+        bonusNumberService.announcementBonusNumber(bonusNumber);
     }
 
     private void winningTicket(String numbers) {

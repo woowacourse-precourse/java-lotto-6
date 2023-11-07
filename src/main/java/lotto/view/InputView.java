@@ -1,8 +1,10 @@
 package lotto.view;
 
 import static lotto.util.Censor.validatePurchaseAmount;
+import static lotto.util.Censor.validateWinningBonusNumbersInput;
 import static lotto.util.Censor.validateWinningNumbersInput;
 import static lotto.util.content.DisplayMessage.NEXT_LINE;
+import static lotto.util.content.DisplayMessage.SET_BONUS_NUMBER;
 import static lotto.util.content.DisplayMessage.SET_PURCHASE_AMOUNT;
 import static lotto.util.content.DisplayMessage.SET_WIN_NUMBERS;
 
@@ -20,4 +22,8 @@ public class InputView {
         return validateWinningNumbersInput(Console.readLine());
     }
 
+    public static String bonusNumber() {
+        System.out.println(NEXT_LINE.getContent() + SET_BONUS_NUMBER.getContent());
+        return validateWinningBonusNumbersInput(Console.readLine());
+    }
 }

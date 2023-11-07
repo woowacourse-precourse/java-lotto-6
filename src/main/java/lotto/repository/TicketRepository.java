@@ -1,6 +1,7 @@
 package lotto.repository;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Ticket;
 import lotto.domain.WinningTicket;
 
@@ -11,5 +12,7 @@ public interface TicketRepository {
     List<Ticket> findAll();
 
     WinningTicket announcement(WinningTicket winningTicket);
+
+    BonusNumber announcementBonus(BonusNumber bonusNumber);
 
 }

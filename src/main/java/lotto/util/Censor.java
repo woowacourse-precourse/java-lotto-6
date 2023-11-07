@@ -55,6 +55,13 @@ public class Censor {
         return input;
     }
 
+    public static String validateWinningBonusNumbersInput(String input) {
+        validateCommonInput(input);
+        validateNumericInput(input);
+        // TODO: 티켓 번호 숫자에 입력된 숫자와 보너스 번호에 입력된 숫자가 중복인지 검증하는 메소드 구현 (중복 처리)
+        return input;
+    }
+
     private static void validateCommonInput(String input) {
         if (input == null) {
             throw new IllegalArgumentException(INPUT_SPACE_ERROR.getContent());

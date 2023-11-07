@@ -21,7 +21,6 @@ public class OutputView {
         for (Lotto lotto : lottos.getLottos()) {
             System.out.println(lotto);
         }
-        System.out.println();
     }
 
     public void printWinningInput() {
@@ -38,9 +37,9 @@ public class OutputView {
             if (rank.getCorrectNumbers() > 0) {
                 String isBonus = "";
                 if (rank == Rank.SECOND) {
-                    isBonus = ", 보너스 볼 일치 ";
+                    isBonus = ", 보너스 볼 일치";
                 }
-                System.out.printf("%d개 일치%s(%,d원)- %d개\n",
+                System.out.printf("%d개 일치%s (%,d원) - %d개\n",
                         rank.getCorrectNumbers(), isBonus, rank.getWinnings(),
                         result.getResult().getOrDefault(rank, 0));
             }
@@ -55,3 +54,4 @@ public class OutputView {
         System.out.println("[ERROR] " + errorMessage);
     }
 }
+

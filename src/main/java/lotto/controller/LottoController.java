@@ -22,16 +22,19 @@ public class LottoController {
     }
 
     public void run() {
-        UserLottos userLottos = issueLotto();
+        Price price = getPrice();
+        UserLottos userLottos = issueLotto(price);
         LottoWinning lottoWinning = getWinningNumbers();
-        printLottoResult(userLottos, lottoWinning);
+        printLottoResult(userLottos, lottoWinning, price);
     }
 
-    private UserLottos issueLotto() {
+    private Price getPrice() {
         // 구매 가격 받아 오기
         inputView.requestPurchasePrice();
-        Price price = user.requestPurchasePrice();
+        return user.requestPurchasePrice();
+    }
 
+    private UserLottos issueLotto(Price price) {
         // 로또 발행 하고 출력
         UserLottos userLottos = lottoGame.generateAllLottos(price);
         outputView.printNumberOfPurchase(userLottos.getLottos().size());
@@ -52,9 +55,9 @@ public class LottoController {
         return lottoWinning;
     }
 
-    private void printLottoResult(UserLottos userLottos, LottoWinning lottoWinning) {
+    private void printLottoResult(UserLottos userLottos, LottoWinning lottoWinning, Price price) {
         Map<Integer, Integer> rankMap = lottoGame.calcWinningStatistics(userLottos, lottoWinning);
-        RateOfReturn rateOfReturn = lottoGame.calcRateOfReturn(rankMap);
+        RateOfReturn rateOfReturn = lottoGame.calcRateOfReturn(rankMap, price);
 
         outputView.printWinningStatistics(rankMap, rateOfReturn);
     }

@@ -17,6 +17,7 @@ public class User {
                 return Integer.parseInt(input);
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
+                System.out.println();
             }
         }
     }
@@ -30,7 +31,6 @@ public class User {
     }
 
     public static List<Integer> getWinningNumber(){
-        System.out.println();
         while (true) {
             try{
                 System.out.println(GET_WINNING_NUMBER_MSG);
@@ -43,7 +43,6 @@ public class User {
     }
 
     public static int getBonusNumber(List<Integer> winningNumber){
-        System.out.println();
         while (true) {
             try{
                 System.out.println(GET_BONUS_NUMBER_MSG);
@@ -57,6 +56,16 @@ public class User {
     }
 
     public static void printResult(Map<Rank, Integer> result){
+        System.out.println(PRINT_RESULT_MSG);
+        for (Rank rank : Rank.values()){
+            printRank(rank, result.get(rank));
+        }
+    }
+
+    public static void printRank(Rank rank, int amount){
+        if (rank != Rank.MISS){
+            System.out.println(rank.getMessage() + amount+AMOUNT_MSG);
+        }
     }
 
 }

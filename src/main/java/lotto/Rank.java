@@ -22,6 +22,18 @@ public enum Rank {
         this.message = message;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
     public static Rank checkLotto(Lotto lotto, List<Integer> winningNumber, int bonusNumber){
         int matchWinningNumber = lotto.countMatch(winningNumber);
         boolean containBonus = lotto.containBonusNUmber(bonusNumber);

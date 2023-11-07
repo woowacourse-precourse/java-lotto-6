@@ -56,4 +56,8 @@ public class User {
         });
     }
 
+    public double getRevenue(int gain) {
+        return (double) gain / money * 100;
+    }
+
 }

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -52,23 +51,5 @@ class LottoTicketsTest {
 
     private static Lotto createLotto(Integer... nums) {
         return new Lotto(Arrays.asList(nums));
-    }
-
-    @DisplayName("수익률을 구할 수 있다")
-    @ParameterizedTest
-    @MethodSource
-    void getRateOfReturn(PurchaseAmount purchaseAmount, long totalPrize, BigDecimal expected) {
-        LottoTickets lottoTickets = new LottoTickets(List.of(), purchaseAmount);
-
-        BigDecimal actual = lottoTickets.getRateOfReturn(totalPrize);
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> getRateOfReturn() {
-        return Stream.of(
-                Arguments.of(new PurchaseAmount(10000), 5000, new BigDecimal("50.0")),
-                Arguments.of(new PurchaseAmount(8000), 5000, new BigDecimal("62.5"))
-        );
     }
 }

@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -30,8 +29,6 @@ public record LottoTickets(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
     }
 
     public BigDecimal getRateOfReturn(long totalPrize) {
-        return new BigDecimal(totalPrize)
-                .multiply(new BigDecimal("100"))
-                .divide(new BigDecimal(purchaseAmount.amount()), 1, RoundingMode.HALF_UP);
+        return purchaseAmount.getRateOfReturn(totalPrize);
     }
 }

@@ -15,6 +15,10 @@ public class Global {
         this.rankStatistics = new HashMap<>();
     }
 
+    public void setIssuedLottos(List<Lotto> issuedLottos) {
+        this.issuedLottos = issuedLottos;
+    }
+
     public int getLottoCount(int money) {
         return money / 1000;
     }
@@ -42,13 +46,14 @@ public class Global {
         }
     }
 
-    public void calculateRanking(List<Integer> winningLotto) {
+    public HashMap<Rank, Integer> calculateRanking(List<Integer> winningLotto) {
         initRankStatistics();
         for (Lotto lotto : issuedLottos) {
             Rank rank = lotto.compareWithWinningNumbers(winningLotto);
             int value = rankStatistics.get(rank);
             rankStatistics.put(rank, ++value);
         }
+        return rankStatistics;
     }
 
     private void initRankStatistics() {

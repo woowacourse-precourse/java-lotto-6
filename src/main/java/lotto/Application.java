@@ -87,14 +87,14 @@ public class Application {
 
     public static String winningLottoInput() {
         System.out.println("당첨번호를 입력해 주세요.");
-        String numbers = Console.readLine();
+        String numbers = Console.readLine().trim();
         InputDataException.validateWinningLottoNumbersInput(numbers);
         return numbers;
     }
 
     public static Lotto winningLottoGenerating(String numbers) {
         return new Lotto(
-                Arrays.stream(numbers.trim().split(","))
+                Arrays.stream(numbers.split(","))
                         .map(it -> Integer.parseInt(it.trim()))
                         .collect(Collectors.toList())
         );

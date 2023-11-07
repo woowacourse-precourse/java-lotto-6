@@ -6,30 +6,40 @@ import java.util.stream.Collectors;
 
 public class InputDataException {
     public static void validatePaymentInput(String payment) {
-        if(!payment.matches("\\d+")) {
-            throw new IllegalArgumentException(IllegalArgumentMessage.ERROR_PAYMENT_INPUT);
-        }
+        validateOnlyNumbers(payment, IllegalArgumentMessage.ERROR_PAYMENT_INPUT);
     }
 
     public static void validateWinningLottoNumbersInput(String numbersInput) {
-        if(!numbersInput.contains(",")) {
-            throw new IllegalArgumentException(IllegalArgumentMessage.ERROR_SPLIT_IDENTIFICATION);
-        }
+        validateSplit(numbersInput, ",");
 
-        List<String> numbers = Arrays.stream(numbersInput.split(",")).collect(Collectors.toList());
-        if(numbers.size() != LottoConstant.PICK_COUNT) {
-            throw new IllegalArgumentException(IllegalArgumentMessage.ERROR_PICK_COUNT);
-        }
-        for(String number : numbers) {
-            if(!number.matches("\\d+")) {
-                throw new IllegalArgumentException(IllegalArgumentMessage.ERROR_ONLY_NUMBERS);
-            }
+        List<String> numbers = Arrays.stream(numbersInput.split(","))
+                .map(it -> it.trim())
+                .collect(Collectors.toList());
+        validateSize(numbers.size());
+        for (String number : numbers) {
+            validateOnlyNumbers(number, IllegalArgumentMessage.ERROR_ONLY_NUMBERS);
         }
     }
 
     public static void validateBonusNumberInput(String bonusNumberInput) {
-        if(!bonusNumberInput.matches("\\d+")) {
-            throw new IllegalArgumentException(IllegalArgumentMessage.ERROR_ONLY_NUMBERS);
+        validateOnlyNumbers(bonusNumberInput, IllegalArgumentMessage.ERROR_ONLY_NUMBERS);
+    }
+
+    private static void validateOnlyNumbers(final String source, final String errorMesage) {
+        if (!source.matches("\\d+")) {
+            throw new IllegalArgumentException(errorMesage);
+        }
+    }
+
+    private static void validateSplit(final String source, final String regex) {
+        if (!source.contains(regex)) {
+            throw new IllegalArgumentException(IllegalArgumentMessage.ERROR_SPLIT_IDENTIFICATION);
+        }
+    }
+
+    private static void validateSize(final int numberCount) {
+        if (numberCount != LottoConstant.PICK_COUNT) {
+            throw new IllegalArgumentException(IllegalArgumentMessage.ERROR_PICK_COUNT);
         }
     }
 }

@@ -76,4 +76,14 @@ public class LottoWinningResult {
             compareLotto(numberFromPlayer, lotto);
         }
     }
+
+    public double calculateRateOfReturn(int purchaseAmount, int prizeMoney) {
+        prizeMoney += prizeCount.get(Rank.FIRST) * Rank.FIRST.prizeMoney;
+        prizeMoney += prizeCount.get(Rank.SECOND) * Rank.SECOND.prizeMoney;
+        prizeMoney += prizeCount.get(Rank.THIRD) * Rank.THIRD.prizeMoney;
+        prizeMoney += prizeCount.get(Rank.FOURTH) * Rank.FOURTH.prizeMoney;
+        prizeMoney += prizeCount.get(Rank.FIFTH) * Rank.FIFTH.prizeMoney;
+
+        return (double) prizeMoney / (double) purchaseAmount * 100;
+    }
 }

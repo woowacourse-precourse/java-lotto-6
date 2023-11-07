@@ -29,11 +29,16 @@ public class LottoGame {
     private List<Integer> numberFromPlayer;
     private int bonusNumber;
     private Map<Rank, Integer> prizeCount;
+    private int prizeMoney;
 
     public LottoGame() {
         lottoNumbers = new LottoNumbers();
         validator = new Validator();
         lottoAmount = new LottoAmount();
+        prizeMoney = 0;
+        numberFromPlayer = new ArrayList<>();
+        lottoNumber = new ArrayList<>();
+        quantityOfLotto = new ArrayList<>();
 
     }
 
@@ -47,6 +52,7 @@ public class LottoGame {
         this.bonusNumber = setBonusNumber();
         lottoWinningResult = new LottoWinningResult(numberFromPlayer, bonusNumber, quantityOfLotto);
         printWinningResult();
+        printTotalRateOfReturn();
     }
 
     public int setPurchaseAmount() {
@@ -59,10 +65,8 @@ public class LottoGame {
     }
 
     public List<List<Integer>> makeListOfLotto() {
-        quantityOfLotto = new ArrayList<>();
         for (int i = 0; i < purchaseQuantity; i++) {
             lottoNumber = lottoNumbers.generateLottoNumbers();
-            Collections.sort(lottoNumber);
             quantityOfLotto.add(lottoNumber);
             OutputView.printLottoNumbers(lottoNumber);
         }
@@ -92,5 +96,10 @@ public class LottoGame {
         lottoWinningResult.compare(numberFromPlayer, quantityOfLotto);
         prizeCount = lottoWinningResult.getPrizeCount();
         OutputView.printWinningStatistics(prizeCount);
+    }
+
+    public void printTotalRateOfReturn() {
+        double rateOfReturn = lottoWinningResult.calculateRateOfReturn(purchaseAmount, prizeMoney);
+        OutputView.printTotalRateOfReturn(rateOfReturn);
     }
 }

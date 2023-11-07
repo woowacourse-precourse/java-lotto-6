@@ -61,27 +61,18 @@ class LottoTest {
         assertThat(lottoAmount.getPurchaseQuantityOfLotto(8400)).isEqualTo(8);
     }
 
-    @Test
-    void ex() {
-        List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2, 3));
-        List<Integer> list2 = new ArrayList<>(Arrays.asList(2, 1, 3));
-        if (list1.equals(list2)) {
-            System.out.println("same");
-        } else {
-            System.out.println("nooooo");
-        }
-    }
-
-    @Test
-    void ex2() {
-        System.out.println(lottoNumbers.generateLottoNumbers());
-    }
-
     @DisplayName("사용자가 구매한 로또 번호와 당첨 번호를 비교한다.")
     @Test
     void getWinningResult() {
         lottoWinningResult.compare(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)), new ArrayList<>(Arrays.asList(new ArrayList<>(Arrays.asList(2, 3, 4, 11, 33, 41)), new ArrayList<>(Arrays.asList(1, 2, 3, 40, 41, 42)))));
         Map<Rank, Integer> prizeCount = lottoWinningResult.getPrizeCount();
         assertThat(prizeCount.get(Rank.FIFTH)).isEqualTo(2);
+    }
+
+    @DisplayName("수익률 계산하기")
+    @Test
+    void getRateOfReturn() {
+        double rateOfReturn = lottoWinningResult.calculateRateOfReturn(8000, 5000);
+        assertThat(rateOfReturn).isEqualTo(62.5);
     }
 }

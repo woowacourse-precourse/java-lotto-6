@@ -4,11 +4,11 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum LottoPlace {
-    FIRST(new LottoStatus(6), new Money("5000"), false),
-    SECOND(new LottoStatus(5, true), new Money("50000"), true),
+    FIFTH(new LottoStatus(3), new Money("5000"), false),
+    FOURTH(new LottoStatus(4), new Money("50000"), false),
     THIRD(new LottoStatus(5), new Money("1500000"), false),
-    FOURTH(new LottoStatus(4), new Money("30000000"), false),
-    FIFTH(new LottoStatus(3), new Money("2000000000"), false);
+    SECOND(new LottoStatus(5, true), new Money("30000000"), true),
+    FIRST(new LottoStatus(6), new Money("2000000000"), false);
 
     private final LottoStatus lottoStatus;
     private final Money prizeAmount;

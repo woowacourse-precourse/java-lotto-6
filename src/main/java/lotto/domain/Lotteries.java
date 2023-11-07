@@ -32,14 +32,6 @@ public class Lotteries {
                 .collect(Collectors.toList());
     }
 
-    public List<List<Integer>> getNumbersOfLotteries() {
-        List<List<Integer>> lotteriesNumbers = new ArrayList<>();
-        for (Lotto lotto : lotteries) {
-            lotteriesNumbers.add(lotto.getNumbers());
-        }
-        return lotteriesNumbers;
-    }
-
     public List<Lotto> getLotteries() {
         return lotteries;
     }

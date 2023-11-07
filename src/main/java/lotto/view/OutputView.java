@@ -2,7 +2,10 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import lotto.constant.PriceConstant;
+import lotto.domain.Lotteries;
+import lotto.domain.Lotto;
 
 public class OutputView {
 
@@ -16,10 +19,11 @@ public class OutputView {
         System.out.printf(PRINT_PURCHASE_RESULT_MESSAGE, purchaseAmount);
     }
 
-    public void printLottoNumbers(List<List<Integer>> lotteriesNumber) {
-        for (List<Integer> lottoNumbers : lotteriesNumber) {
-            System.out.println(lottoNumbers);
-        }
+    public void printLottoNumbers(Lotteries lotteries) {
+        String lotteriesNumbers = lotteries.getLotteries().stream()
+                .map(lotto -> String.valueOf(lotto.getNumbers()))
+                .collect(Collectors.joining("\n"));
+        System.out.println(lotteriesNumbers);
     }
 
     public void printGameResult(Map<String, Integer> lottoResult) {

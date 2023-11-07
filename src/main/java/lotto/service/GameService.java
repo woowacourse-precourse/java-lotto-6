@@ -47,8 +47,8 @@ public class GameService {
         lottoResult.countWinningCase(lotteries.getLotteries(), winningLotto);
     }
 
-    public List<List<Integer>> printLottoNumbers() {
-        return lotteries.getNumbersOfLotteries();
+    public Lotteries printLottoNumbers() {
+        return lotteries;
     }
 
     public int printPurchaseAmount() {

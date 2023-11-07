@@ -7,7 +7,7 @@ public class Application {
 
         while(true) {
             try {
-                purchaseAmount.print_inputAmount();
+                purchaseAmount.printInputAmountMessage();
                 purchaseAmount.inputAmount();
                 break;
             } catch (IllegalArgumentException e) {
@@ -16,7 +16,7 @@ public class Application {
         }
 
         LottoList lottoList = new LottoList(purchaseAmount.getAmount());
-        lottoList.print_numberOfLottoList();
+        lottoList.printNumberOfLottoList();
         lottoList.createLottoList();
         lottoList.printLottoList();
 

@@ -10,7 +10,6 @@ public class Input {
         System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
         validateAmount(amount);
-        System.out.printf("\n%d개를 구매했습니다.\n", (int)amount / 1000);
         return amount;
     }
 

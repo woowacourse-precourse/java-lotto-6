@@ -1,3 +1,4 @@
+
 package lotto.model.validator;
 
 import java.util.Arrays;
@@ -56,6 +57,3 @@ public class LottoWinningNumberValidator {
         }
     }
 }
-
-
-

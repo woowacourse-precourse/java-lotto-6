@@ -1,3 +1,4 @@
+
 package lotto.model.lottoGenerator;
 
 public class LottoTicketCalculator {

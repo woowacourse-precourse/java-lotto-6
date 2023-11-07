@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
+import java.util.List;
 
 public class InputView {
 
@@ -16,6 +17,7 @@ public class InputView {
     private final static int VALID_LENGTH = 6;
     private final static int MAKE_PERCENTAGE = 1000;
     private final static int REMAIN_ZERO = 0;
+    private static String winningInput;
 
 
     public static String readBuyAmount() {
@@ -33,6 +35,7 @@ public class InputView {
         validateIsSixNumberWinningNumber(input);
         validateDuplicatedWinningNumber(input);
         validateRangeWinningNumber(input);
+        winningInput = input;
         return input;
     }
 
@@ -41,7 +44,15 @@ public class InputView {
         validateSpaceBonusNumber(input);
         validateNotIntegerBonusNumber(input);
         validateRangeBonusNumber(input);
+        validateDuplcateBonusNumber(input, winningInput);
         return input;
+    }
+
+    private static void validateDuplcateBonusNumber(String input, String winningInput) {
+        List<String> winningNumbers = List.of(winningInput.split(","));
+        if (winningNumbers.contains(input)) {
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+        }
     }
 
     private static void validateSpaceBonusNumber(String input) {

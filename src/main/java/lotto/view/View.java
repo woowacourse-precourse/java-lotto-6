@@ -37,4 +37,8 @@ public class View {
             System.out.println(prizeDescriptions[i] + " - " + matchingCounts.getMatchingCount().get(i) + "개");
         }
     }
+
+    public void displayProfitPercent(Calculator calculator, MatchingCounts matchingCounts){
+        System.out.println("총 수익률은 " + calculator.calculateProfitPercentage(matchingCounts) + "%입니다.");
+    }
 }

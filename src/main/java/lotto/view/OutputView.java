@@ -2,17 +2,18 @@ package lotto.view;
 
 import lotto.Lotto;
 import lotto.Prize;
+import lotto.utils.LottoGameMessage;
 
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
     public void requestMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(LottoGameMessage.BUY_LOTTO_MONEY.message);
     }
 
     public void lottoAmount(final long lottoAmount) {
-        System.out.println(lottoAmount + "개를 구매했습니다.");
+        System.out.println(lottoAmount + LottoGameMessage.LOTTOS_AMOUNT.message);
     }
 
     public void showLottos(final List<Lotto> lottos) {
@@ -20,11 +21,11 @@ public class OutputView {
     }
 
     public void requestWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(LottoGameMessage.REQUEST_WINNGIN_NUMBER.message);
     }
 
     public void requestBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(LottoGameMessage.REQUEST_BONUS_NUMBER.message);
     }
 
     public void prizeResult(Map<Prize, Integer> result) {
@@ -38,11 +39,12 @@ public class OutputView {
     }
 
     public void profitRate(final String profitRate) {
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        System.out.println(LottoGameMessage.PROFIT_RATE.message + profitRate + LottoGameMessage.PERCENT.message);
     }
 
     public void prizeWinCount(Prize prize, int count) {
-        System.out.println(Prize.prizeInfo(prize) + " - " + count + "개");
+        System.out.println(Prize.prizeInfo(prize) + LottoGameMessage.DASH.message
+                + count + LottoGameMessage.COUNT.message);
     }
 
     public void errorMessage(final String errorMessage) {

@@ -23,16 +23,11 @@ public class NumberGenerator {
     }
 
     public List<Integer> generateLottoNumber() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-
-        while (lottoNumbers.size() < LottoConfiguration.NUMBERS.getValue()) {
-            List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(
-                    LottoConfiguration.MIN_NUMBER.getValue(),
-                    LottoConfiguration.MAX_NUMBER.getValue(),
-                    LottoConfiguration.NUMBERS.getValue()
-            );
-            lottoNumbers.addAll(lottoNumber);
-        }
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
+                LottoConfiguration.MIN_NUMBER.getValue(),
+                LottoConfiguration.MAX_NUMBER.getValue(),
+                LottoConfiguration.NUMBERS.getValue()
+        );
 
         return lottoNumbers;
     }

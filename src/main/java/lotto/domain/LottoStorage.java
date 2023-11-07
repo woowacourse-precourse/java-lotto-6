@@ -3,7 +3,9 @@ package lotto.domain;
 
 import java.util.List;
 import java.util.Objects;
+import lotto.common.PrintMessage;
 import lotto.domain.dto.LottoNumberCompareResult;
+import lotto.util.KRWFormatter;
 import lotto.util.LottoGamePrinter;
 import lotto.util.LottoProfitCalculator;
 import lotto.util.TextBuilder;
@@ -24,21 +26,19 @@ public class LottoStorage {
     }
 
     public void showAllLottoRankResult(List<LottoRank> lottoRanks) {
-        TextBuilder textBuilder = TextBuilder
-                .fromString("당첨 통계").appendLineSeparator()
-                .append("---").appendLineSeparator();
+        TextBuilder textBuilder = TextBuilder.fromString(PrintMessage.WINNING_STATISTICS_HEADER.getMessage()).appendLineSeparator();
+        textBuilder.append(PrintMessage.WINNING_STATISTICS_SEPARATOR.getMessage()).appendLineSeparator();
 
         for(LottoRank lottoRank : LottoRank.values()) {
-            textBuilder.appendInteger(lottoRank.getMatchingCount()).append("개 일치");
+            textBuilder
+                    .append(String.format(PrintMessage.MATCH_COUNT_FORMAT.getMessage(), lottoRank.getMatchingCount()));
 
-            if(lottoRank.isBonusIncluded()) {
-                textBuilder.append(", 보너스 볼 일치");
-            }
-
-            textBuilder.append(" (").appendPriceAmount(lottoRank.getPrizeAmount()).append(")");
+            if(lottoRank.isBonusIncluded()) textBuilder.append((PrintMessage.BONUS_BALL_FORMAT.getMessage()));
+            textBuilder.append(String.format(PrintMessage.PRIZE_AMOUNT_FORMAT.getMessage(), KRWFormatter.format(lottoRank.getPrizeAmount())));
 
             int count = (int) lottoRanks.stream().filter(lottoRank::equals).count();
-            textBuilder.append(" - ").appendInteger(count).append("개").appendLineSeparator();
+            textBuilder.append(String.format(PrintMessage.MATCHING_COUNT_FORMAT.getMessage(), count))
+                    .appendLineSeparator();
         }
 
         LottoGamePrinter.println(textBuilder.build());

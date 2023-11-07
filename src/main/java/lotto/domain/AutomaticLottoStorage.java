@@ -3,13 +3,13 @@ package lotto.domain;
 import java.util.List;
 import lotto.common.Constant;
 import lotto.common.ErrorMessage;
+import lotto.common.PrintMessage;
 import lotto.util.LottoGamePrinter;
 import lotto.util.TextBuilder;
 
 public class AutomaticLottoStorage {
 
     private List<AutomaticLotto> automaticLottos;
-
 
     private final Integer totalPrice;
 
@@ -25,7 +25,8 @@ public class AutomaticLottoStorage {
     }
 
     public void showAutomaticLottosResult() {
-        TextBuilder textBuilder = TextBuilder.fromString(getTicketCount() + "개를 구매했습니다.").appendLineSeparator();
+
+        TextBuilder textBuilder = TextBuilder.fromString(String.format(PrintMessage.PURCHASE_MESSAGE_FORMAT.getMessage(), getTicketCount())).appendLineSeparator();
 
         automaticLottos.forEach(
                 automaticLotto -> textBuilder
@@ -38,7 +39,7 @@ public class AutomaticLottoStorage {
         return automaticLottos;
     }
 
-    private Integer getTicketCount() {
+    public Integer getTicketCount() {
         return this.totalPrice / Constant.LOTTO_TICKET_PRICE;
     }
 
@@ -48,7 +49,7 @@ public class AutomaticLottoStorage {
 
     private void validate(final Integer totalPrice) {
         if (totalPrice % Constant.LOTTO_TICKET_PRICE > 0) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_PURCHASE_AMOUNT_INVALID_ERROR.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_PURCHASE_AMOUNT_DIGIT_ERROR.getMessage());
         }
     }
 }

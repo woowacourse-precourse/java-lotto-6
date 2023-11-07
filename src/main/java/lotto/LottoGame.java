@@ -4,27 +4,27 @@ import java.util.List;
 
 public class LottoGame {
     private final UserInterface userInterface = new UserInterface();
-    private final Validator validator = new Validator();
     private List<Lotto> lottos;
 
     // 로또 게임 진행 시작
     public void start() {
-        getLottoAmount();
+        int amount = getLottoAmount();
     }
 
     // 구입금액 입력
-    private void getLottoAmount() {
+    private int getLottoAmount() {
+        String amount = "";
         while (true) {
             try {
                 userInterface.showText("구입금액을 입력해 주세요.");
-                String amount = userInterface.getUserInput();
-                // 구입금액 검증 로직 구현
+                amount = userInterface.getUserInput();
+                Validator.validateAmount(amount);
             } catch (IllegalArgumentException e) {
                 userInterface.showText(e.getMessage());
                 continue;
             }
             userInterface.newLine();
-            break;
+            return Integer.parseInt(amount);
         }
     }
 

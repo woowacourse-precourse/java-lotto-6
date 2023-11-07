@@ -29,7 +29,7 @@ public class LottoGameController {
         Lottos lottos = buyLotto();
         WinNumber winNumber = setWinNumber();
         BonusNumber bonusNumber = setBonusNumber();
-        playLottoGame(winNumber, bonusNumber);
+        playLottoGame(lottos, winNumber, bonusNumber);
     }
 
     private Lottos buyLotto() {
@@ -76,11 +76,11 @@ public class LottoGameController {
         return bonusNumber;
     }
 
-    private void playLottoGame(WinNumber winNumber, BonusNumber bonusNumber) {
+    private void playLottoGame(Lottos lottos, WinNumber winNumber, BonusNumber bonusNumber) {
         try {
             LottoHeadQuarter lottoHeadQuarter = new LottoHeadQuarter();
             LottoWinNumber lottoWinNumber = lottoHeadQuarter.pickNumber(winNumber, bonusNumber);
-
+            lottoHeadQuarter.drawWinner(lottoWinNumber, lottos);
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
             setBonusNumber();

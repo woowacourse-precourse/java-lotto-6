@@ -1,5 +1,6 @@
 package lotto.model.domain;
 
+import java.util.List;
 import lotto.model.domain.vo.BonusNumber;
 import lotto.model.domain.vo.WinNumber;
 
@@ -27,5 +28,13 @@ public class LottoWinNumber {
     private boolean isDuplicatedBetweenWinAndBonus(WinNumber winNumber, BonusNumber bonusNumber) {
         return winNumber.getWinNumber().stream()
                 .anyMatch((w) -> w.equals(bonusNumber.getBonusNumber()));
+    }
+
+    public List<Integer> getWinNumber() {
+        return winNumber.getWinNumber();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getBonusNumber();
     }
 }

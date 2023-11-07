@@ -1,7 +1,9 @@
 package lotto.model.service;
 
 import lotto.model.domain.LottoWinNumber;
+import lotto.model.domain.RankingBoard;
 import lotto.model.domain.vo.BonusNumber;
+import lotto.model.domain.vo.Lottos;
 import lotto.model.domain.vo.WinNumber;
 
 public class LottoHeadQuarter {
@@ -13,8 +15,9 @@ public class LottoHeadQuarter {
         return LottoWinNumber.from(winNumber, bonusNumber);
     }
 
-    public void drawWinner() {
-
+    public void drawWinner(LottoWinNumber lottoWinNumber, Lottos playerLottos) {
+        RankingBoard rankingBoard = RankingBoard.from(lottoWinNumber);
+        rankingBoard.drawWinner(playerLottos);
     }
 
     public void calculateReturn() {

@@ -23,4 +23,8 @@ public class Lottos {
                 .map(Lotto::getNumbers)
                 .toList();
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
 }

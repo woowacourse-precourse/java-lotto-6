@@ -9,7 +9,7 @@ public class LottoMachine {
 
     private static final int START_INCLUSIVE = 1;
     private static final int END_INCLUSIVE = 45;
-    private static final int LOTTO_LENGTH = 6;
+    public static final int LOTTO_LENGTH = 6;
 
     private LottoMachine() { }
 

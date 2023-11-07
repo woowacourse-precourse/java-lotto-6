@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import static lotto.domain.LottoMoney.MONEY_UNIT;
+import static lotto.service.LottoMachine.LOTTO_LENGTH;
 import static lotto.util.ErrorMessage.*;
 
 public class Validator {
@@ -54,7 +55,7 @@ public class Validator {
     }
 
     private static void checkSize(List<Integer> target) {
-        if (target.size() != 6) {
+        if (target.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getMessage());
         }
     }

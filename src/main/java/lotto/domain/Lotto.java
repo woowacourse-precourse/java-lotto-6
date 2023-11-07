@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.view.ErrorMessage;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -10,6 +11,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSix(numbers);
         this.numbers = numbers;
+        Collections.sort(numbers);
     }
 
     public List<Integer> getNumbers() {

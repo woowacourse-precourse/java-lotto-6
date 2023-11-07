@@ -13,16 +13,34 @@ public class Application {
     private static int bonusNumber;
 
     public static void main(String[] args) {
+
         // TODO: 프로그램 구현
         Amount amount = new Amount(); //가격을 입력으로 받고 validation함
+
+        List<Lotto> myLottos = new ArrayList<>();
+
+        for(int iter = 1;iter <= amount.getAmount()/1000;iter++){ //입력금액 / 1000 만큼 iter 실행
+            Lotto curLotto = makeRandomLotto();
+            curLotto.printLotto();
+            myLottos.add(curLotto);
+        }
 
         Lotto WinLotto = getWinNumbers(); // 로또 당첨 번호를 입력받음
 
         bonusNumber = getBonusNumber(WinLotto); //보너스 번호 입력 받음
 
-        for(int iter = 1;iter <= amount.getAmount()/1000;iter++){ //입력금액 / 1000 만큼 iter 실행
-            makeRandomLotto();
+        int winPrice = 0;
+        HashMap<Rank, Integer> hm = initHashMap(); // 새 HashMap을 생성하고 초기화
+
+        for(Lotto curLotto : myLottos){
+            Rank curRank = Rank.calculateRank(WinLotto, bonusNumber, curLotto);
+            //System.out.println(curRank);
+            winPrice += curRank.getPrize();
+            hm.put(curRank, hm.get(curRank) + 1);
         }
+
+        printStatistics(hm);
+
     }
 
     private static List<Integer> parseLottoNumbers(String lottoNums) { //입력 -> List<Integer>
@@ -71,4 +89,28 @@ public class Application {
         return new Lotto(numberList);
     }
 
+    private static HashMap<Rank, Integer> initHashMap(){
+        HashMap<Rank, Integer> hm = new HashMap<>();
+        for (Rank rank : Rank.values()) {
+            hm.put(rank, 0);
+        }
+        return hm;
+    }
+
+    public static void printStatistics(Map<Rank, Integer> statistics) {
+        System.out.println("당첨 통계\n---");
+        int totalWinPrice = 0;
+
+        // Enum.values()는 선언된 순서대로 값을 반환합니다.
+        // Rank Enum이 선언된 순서가 상금이 높은 순서대로 되어있지 않다면,
+        // Rank.values()를 적절한 순서로 정렬해야 할 수도 있습니다.
+        for (Rank rank : Rank.values()) {
+            if (rank != Rank.NONE) {
+                int count = statistics.getOrDefault(rank, 0);
+                totalWinPrice += rank.getPrize() * count;
+                String bonusText = rank.isBonusMatch() ? ", 보너스 볼 일치" : "";
+                System.out.println(rank.getMatchCount() + "개 일치" + bonusText + " (" + rank.getPrize() + "원) - " + count + "개");
+            }
+        }
+    }
 }

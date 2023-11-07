@@ -17,6 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         isValidateLottoNumberRange(numbers);
+        isValidateLottoNumberDuplicate(numbers);
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_SIX_SIZE.getMessage());
         }
@@ -30,6 +31,12 @@ public class Lotto {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE_RANGE_ERROR.getMessage());
             }
         });
+    }
+
+    private static void isValidateLottoNumberDuplicate(List<Integer> numbers) {
+        if( new HashSet<>(numbers).size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_DUPLICATE.getMessage());
+        }
     }
 
     public List<Integer> getNumbers() {

@@ -30,4 +30,5 @@ class MyLottoNumbersTest {
                 .hasMessageContaining("6개의 숫자로 구성되어야 합니다");
     }
 
+
 }

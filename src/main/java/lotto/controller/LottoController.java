@@ -38,7 +38,9 @@ public class LottoController {
 
     private void makeMyLottoNumbers() {
         myLottoNumbers = new MyLottoNumbers(InputView.inputMyLottoNumbers());
+        myLottoNumbers.setBonusNumber(InputView.inputBonusNumber());
         System.out.println(myLottoNumbers.getMyNumbers());
+        System.out.println(myLottoNumbers.getBonusNumber());
     }
 
 }

@@ -17,6 +17,22 @@ public class MyLottoNumbers {
         myNumbers = validateSize(beForeCheck);
     }
 
+    public void setBonusNumber(String bonusInput) {
+        try {
+            this.bonusNumber = validateRange(Integer.parseInt(bonusInput));
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
+        }
+    }
+
+    public List<Integer> getMyNumbers() {
+        return myNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private List<String> validateSplit(String input) {
         try {
             return Arrays.asList(input.split(","));
@@ -51,7 +67,4 @@ public class MyLottoNumbers {
         return numbers;
     }
 
-    public List<Integer> getMyNumbers() {
-        return myNumbers;
-    }
 }

@@ -1,18 +1,26 @@
-package lotto.error;
+package lotto;
 
 public class Error {
     final int LOTTO_PRICE = 1000;
 
     public boolean isInRange(int number) {
-        return true;
+        return (1 <= number && number <= 45);
     }
 
     public boolean isNegative(int number) {
         return number < 0;
     }
 
-    public boolean isDigit(char digit) {
+    private boolean isDigit(char digit) {
         return Character.isDigit(digit);
+    }
+    public boolean isStringDigit(String number) {
+        for (int i = 0; i < number.length(); i++) {
+            if (!isDigit(number.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean isRemainder(int number) {

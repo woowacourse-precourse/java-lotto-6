@@ -2,20 +2,20 @@
 
 ## 로또 번호를 생성
 
-- [⎷]임의의 숫자 6개를 중복없이 생성 - NumberGenerator#getNumbers()
-- [⎷]당첨 갯수를 비교하는 기능 - Judgement#compareNumbers()
+- [x] 임의의 숫자 6개를 중복없이 생성 - NumberGenerator#getNumbers()
+- [x] 몇 개의 숫자가 같은지 알 수 있는 기능 - Judgement#compareNumbers()
 
 ## 로또의 구매금액을 입력받는다. - getMoney()
-- []공백 제거 -trim()
-- []음수면 Error -isNegative()
-- []1000단위 아니면 에러 -isRemainder()
-- []숫자가 아닌 글자 포함 시 에러 -isDigit()
-- []구매 금액만큼 로또 번호 생성 -getLotto()
+- [x] 공백 제거 -trim()
+- [x] 음수면 Error -isNegative()
+- [x] 1000단위 아니면 에러 -isRemainder()
+- [x] 숫자가 아닌 글자 포함 시 에러 -isDigit()
+- [ ] 구매 금액만큼 로또 번호 생성 -getLotto()
 
 ## 당첨번호 숫자와 보너스 숫자를 입력받는다. -getAnswerNumbers()
-- []공백 제거 -trim()
-- []범위는 1~45밖이면 에러 -isInRange()
-- []음수 에러 -isNegative()
-- []숫자가 아닌 글자 포함 시 에러 -isDigit()
-- []중복되지 않도록. -isDuplication()
-- []등수에 알맞은 해당 메시지를 출력한다. -  Output#printMessage()
+- [ ] 공백 제거 -trim()
+- [ ] 범위는 1~45밖이면 에러 -isInRange()
+- [ ] 음수 에러 -isNegative()
+- [ ] 숫자가 아닌 글자 포함 시 에러 -isDigit()
+- [ ] 중복되지 않도록. -isDuplication()
+- [ ] 등수에 알맞은 해당 메시지를 출력한다. -  Output#printMessage()

@@ -47,12 +47,10 @@ class PaymentValidatorTest {
                 .withMessageContaining("구입 금액은 1,000원 단위 입니다.");
     }
 
-    @Test
+    @ParameterizedTest(name = "입력값 : {0}")
+    @ValueSource(strings = {"2000001000", "200000100000000000"})
     @DisplayName("구입 금액 예외 처리: 최대 금액 2,000,000,000원을 초과한 경우")
-    void givenOverTwoBillion_whenValidateMaxAmount_thenThrowException() {
-        // given
-        String amount = "2000001000";
-
+    void givenOverTwoBillion_whenValidateMaxAmount_thenThrowException(String amount) {
         // when & then
         assertThatIllegalArgumentException()
                 .isThrownBy(() -> PaymentValidator.validate(amount))

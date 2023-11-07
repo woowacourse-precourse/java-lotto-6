@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import java.math.BigInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,9 +48,13 @@ public final class PaymentValidator {
     }
 
     private static void validateMaximumAmount(final String amount) {
-        if (Integer.parseInt(amount) > MAX_AMOUNT) {
+        if (isBiggerThanMaxAmount(new BigInteger(amount))) {
             throw new IllegalArgumentException(MAX_AMOUNT_ERROR_MESSAGE);
         }
+    }
+
+    private static boolean isBiggerThanMaxAmount(final BigInteger bigInteger) {
+        return bigInteger.compareTo(BigInteger.valueOf(MAX_AMOUNT)) > 0;
     }
 
 }

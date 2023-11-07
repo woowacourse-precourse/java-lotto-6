@@ -1,12 +1,12 @@
 package lotto;
 
-public enum Message {
+public enum OutputMessage {
 
-    INPUT_MONEY("구입금액을 입력해 주세요.");
+    OUTPUT_BUY_MESSAGE("개를 구매했습니다.");
 
     private final String message;
 
-    Message(String message) {
+    OutputMessage(String message) {
         this.message = message;
     }
 

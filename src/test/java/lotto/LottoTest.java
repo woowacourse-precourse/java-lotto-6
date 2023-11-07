@@ -70,8 +70,10 @@ class LottoTest {
 
     private static Stream<Arguments> getBonusNumberTestArguments() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), new BonusNumber("6"), true),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), new BonusNumber("7"), false)
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6),
+                        new BonusNumber("6", new WinningLotto("1,2,3,4,5,7")), true),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6),
+                        new BonusNumber("7", new WinningLotto("1,2,3,4,5,6")), false)
         );
     }
 }

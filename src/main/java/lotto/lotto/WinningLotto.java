@@ -8,11 +8,11 @@ public class WinningLotto {
 
     private static final String NOT_NUMBERS_MESSAGE = "당첨 번호는 숫자로 입력해야 합니다.";
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("^\\d+(,\\d+)*");
-    private final Lotto lotto;
+    private final Lotto winningLotto;
 
     public WinningLotto(String numbers) {
         validate(numbers);
-        this.lotto = splitStringToLotto(numbers);
+        this.winningLotto = splitStringToLotto(numbers);
     }
 
     private void validate(String numbers) {
@@ -27,6 +27,10 @@ public class WinningLotto {
     }
 
     public Integer getMatchNumberCount(Lotto lotto) {
-        return this.lotto.findMatchCount(lotto);
+        return this.winningLotto.findMatchCount(lotto);
+    }
+
+    public boolean containsNumber(Integer number) {
+        return winningLotto.hasSameNumber(number);
     }
 }

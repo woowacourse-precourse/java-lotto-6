@@ -15,7 +15,7 @@ public class InputView {
         return new WinningLotto(Console.readLine());
     }
 
-    public static BonusNumber getBonusNumber() {
-        return new BonusNumber(Console.readLine());
+    public static BonusNumber getBonusNumber(WinningLotto winningLotto) {
+        return new BonusNumber(Console.readLine(), winningLotto);
     }
 }

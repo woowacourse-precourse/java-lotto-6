@@ -52,19 +52,19 @@ public class LottoController {
         }
     }
 
-    private BonusNumber receiveBonusNumber() {
+    private BonusNumber receiveBonusNumber(WinningLotto winningLotto) {
         try {
             OutputView.inputBonusNumber();
-            return InputView.getBonusNumber();
+            return InputView.getBonusNumber(winningLotto);
         } catch (IllegalArgumentException e) {
             OutputView.printError(e);
-            return receiveBonusNumber();
+            return receiveBonusNumber(winningLotto);
         }
     }
 
     private void aggregateResult(LottoPaper lottoPaper, Money money) {
         WinningLotto winningLotto = receiveWinningLotto();
-        BonusNumber bonusNumber = receiveBonusNumber();
+        BonusNumber bonusNumber = receiveBonusNumber(winningLotto);
         Statistics results = calculateStatistics(lottoPaper, winningLotto, bonusNumber);
         showStatistics(money, results);
     }

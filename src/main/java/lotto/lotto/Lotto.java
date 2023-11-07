@@ -53,6 +53,10 @@ public class Lotto {
         return numbers.stream().anyMatch(bonusNumber::isSameNumber);
     }
 
+    public boolean hasSameNumber(Integer number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

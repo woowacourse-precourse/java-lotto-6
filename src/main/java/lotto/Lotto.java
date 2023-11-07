@@ -20,6 +20,12 @@ public class Lotto {
         }
     }
 
+    private static void validateDuplicate(final List<Integer> numbers, final int NUMBER_OF_LOTTO_NUMBERS) {
+        if (numbers.stream().distinct().count() != NUMBER_OF_LOTTO_NUMBERS) {
+            throw new IllegalArgumentException("[ERROR] 중복되지 않은 숫자여야 합니다.");
+        }
+    }
+
             throw new IllegalArgumentException("[ERROR] 로또 번호는 " + MIN_LOTTO_NUMBER + "부터 " + MAX_LOTTO_NUMBER + " 사이의 숫자여야 합니다.");
         }
     }

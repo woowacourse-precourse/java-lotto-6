@@ -33,4 +33,23 @@ class LottoWinningCalculationMachineTest {
         int actualCount = calculationMachine.calculateWinningNumber(oneLotto, winningNumber);
         Assertions.assertThat(actualCount).isEqualTo(expectedCount);
     }
+
+    static Stream<Arguments> generateLottoBonusData() {
+        return Stream.of(
+                Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 7), 1),
+                Arguments.of(Arrays.asList(8, 2, 3, 4, 15, 28), 0),
+                Arguments.of(Arrays.asList(6, 5, 4, 3, 2, 1), 0),
+                Arguments.of(Arrays.asList(8, 9, 7, 30, 15, 28), 1)
+        );
+    }
+
+    @ParameterizedTest
+    @MethodSource("generateLottoBonusData")
+    @DisplayName("보너스 번호와 일치 개수 테스트")
+    void 보너스번호_일치_개수_테스트(List<Integer> lotto, int expectedCount) {
+        Lotto oneLotto = new Lotto(lotto);
+        int actualCount = calculationMachine.calculateBonusNumber(oneLotto, winningNumber);
+        Assertions.assertThat(actualCount).isEqualTo(expectedCount);
+    }
+
 }

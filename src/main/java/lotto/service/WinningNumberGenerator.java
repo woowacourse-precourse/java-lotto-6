@@ -21,7 +21,7 @@ public class WinningNumberGenerator {
                 bonusNumber = inputBonusNumber();
                 NumberValidator.validate(bonusNumber, winningNumbers);
                 break;
-            }catch(IllegalArgumentException e){            }
+            }catch(IllegalArgumentException e){}
         }
         return bonusNumber;
     }
@@ -51,7 +51,7 @@ public class WinningNumberGenerator {
     }
 
     private Integer inputBonusNumber() throws IllegalArgumentException {
-        Integer bonusNumber = null;
+        Integer bonusNumber;
 
         try {
             bonusNumber = InputController.inputBonusNumber();

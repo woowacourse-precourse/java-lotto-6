@@ -32,10 +32,6 @@ public class Player {
 
     public void setLottoCorrectCount(Lotto lotto, CorrectCount correctCount){
         CorrectCount replace = lottos.replace(lotto, correctCount);
-
-        if(replace == null){
-            //TODO: 존재하지 않는 로또에 대해서는 예외처리가 필요함.
-        }
     }
 
     public int getNumberCount(String message, int rankCount) {

@@ -5,7 +5,9 @@ import lotto.domain.Lotto;
 import lotto.domain.PlayerLotto;
 import lotto.dto.PurchaseLottoDto;
 import lotto.service.LottoGameService;
+import lotto.utils.GameUtils;
 import lotto.utils.validator.PurchaseAmountValidator;
+import lotto.utils.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -36,5 +38,18 @@ public class LottoGameController {
         List<Lotto> purchaseLotto = lottoGameService.createPlayerLotto(purchaseTotalCount);
         outputView.printPurchaseLotto(new PurchaseLottoDto(purchaseLotto));
         return new PlayerLotto(purchaseLotto);
+    }
+
+    private Lotto openWinningNumbers() {
+        while (true) {
+            try {
+                String winningNumbers = inputView.readWinningNumbers();
+                WinningNumberValidator.validate(winningNumbers);
+
+                return new Lotto(GameUtils.parse(winningNumbers));
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

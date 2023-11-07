@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class LottoGameServiceTest {
     private LottoGameService lottoGameService = new LottoGameServiceImpl();
 
-    @DisplayName("구입금액에서 로또 가격을 나눈 만큼의 Lotto를 발행한다.")
+    @DisplayName("구입금액에서 로또 가격을 나눈 만큼의 로또 개수를 반환한다.")
     @ParameterizedTest
     @CsvSource({"1000", "3000", "10000", "600000", "7000000"})
     void computeLottoCount(String purchaseAmount) {

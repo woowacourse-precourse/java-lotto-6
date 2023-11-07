@@ -1,8 +1,10 @@
 package lotto;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.enums.ErrorMessage;
 
 public class Lotto {
     private List<Integer> numbers;
@@ -20,6 +22,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        validateWinningNumbersNotSame(numbers);
     }
 
     private void sort() {
@@ -47,5 +50,11 @@ public class Lotto {
 
     public static int getPrice() {
         return PRICE;
+    }
+
+    private static void validateWinningNumbersNotSame(List<Integer> inputs) {
+        if (new HashSet<>(inputs).size() != inputs.size()) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_OF_WINNIG_NUMBER_SAME_NUMBER.getMessage());
+        }
     }
 }

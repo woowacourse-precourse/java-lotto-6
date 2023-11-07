@@ -14,14 +14,10 @@ public class Validator {
 
     public int validatePrice(String price){
         int my_price;
-        try {
-            checkPriceNull(price);
-            my_price = checkPriceInteger(price);
-            checkPrice1000(my_price);
-        }catch (IllegalArgumentException e){
-            throw new IllegalArgumentException();
-        }
-        return Integer.parseInt(price);
+        checkPriceNull(price);
+        my_price = checkPriceInteger(price);
+        checkPrice1000(my_price);
+        return my_price;
     }
     public void checkPriceNull(String price){
         if (price == null){

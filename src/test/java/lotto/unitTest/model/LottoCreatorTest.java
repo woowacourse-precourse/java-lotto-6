@@ -31,9 +31,7 @@ class LottoCreatorTest {
 
         Lotto manualLotto = LottoCreator.createWinningLotto(numbers);
 
-        numbers.forEach(
-                number -> assertTrue(manualLotto.contains(number), String.format("생성된 로또가 %d를 포함하지 않습니다.", number))
-        );
+        assertThat(manualLotto.showNumbers()).contains("1","2","3","4","5","6");
     }
 
     @ValueSource(strings = {"1,", "1,2,3,4,5,6,7"})

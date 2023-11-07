@@ -40,18 +40,14 @@ class LottoTest {
     void 로또가_숫자를_포함하면_true_포함하지_않으면_false를_반환한다(int number, boolean result) {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        boolean containsResult = lotto.contains(number);
-
-        assertThat(containsResult).isEqualTo(result);
+        assertThat(lotto.contains(number)).isEqualTo(result);
     }
 
     @Test
     void 오름차순으로_정렬된_로또_번호들을_보여준다() {
         Lotto lotto = new Lotto(Arrays.asList(6, 5, 4, 3, 2, 1));
 
-        String showNumbersResult = lotto.showNumbers();
-
-        assertThat(showNumbersResult).isEqualTo("[1, 2, 3, 4, 5, 6]");
+        assertThat(lotto.showNumbers()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
     @Test
@@ -59,8 +55,6 @@ class LottoTest {
         Lotto lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         Lotto otherLotto = new Lotto(Arrays.asList(4, 5, 6, 7, 8, 9));
 
-        int countMatchOtherLottoResult = lotto.countMatchOtherLotto(otherLotto);
-
-        assertThat(countMatchOtherLottoResult).isEqualTo(3);
+        assertThat(lotto.countMatchOtherLotto(otherLotto)).isEqualTo(3);
     }
 }

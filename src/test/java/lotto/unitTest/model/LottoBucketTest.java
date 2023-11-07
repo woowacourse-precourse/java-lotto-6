@@ -6,7 +6,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mockStatic;
 
 import java.util.Arrays;
-import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoBucket;
 import lotto.model.LottoCreator;
@@ -36,9 +35,7 @@ class LottoBucketTest {
     void 로또_바구니의_로또_개수는_구입_개수와_같다(int purchasedLottoAmount) {
         LottoBucket lottoBucket = new LottoBucket(purchasedLottoAmount);
 
-        int lottoAmountOfLottoBucket = lottoBucket.getLottoAmount();
-
-        assertThat(lottoAmountOfLottoBucket).isEqualTo(purchasedLottoAmount);
+        assertThat(lottoBucket.getLottoAmount()).isEqualTo(purchasedLottoAmount);
     }
 
     @ParameterizedTest
@@ -55,9 +52,7 @@ class LottoBucketTest {
         given(LottoCreator.createRandomLotto()).willReturn(mockLotto);
         LottoBucket lottoBucket = new LottoBucket(1);
 
-        Lotto returnedLotto = lottoBucket.getLotto(0);
-
-        assertThat(returnedLotto).isEqualTo(mockLotto);
+        assertThat(lottoBucket.getLotto(0)).isEqualTo(mockLotto);
     }
 
     @Test
@@ -66,8 +61,6 @@ class LottoBucketTest {
         given(LottoCreator.createRandomLotto()).willReturn(mockLotto);
         LottoBucket lottoBucket = new LottoBucket(1);
 
-        List<String> publishedLotto = lottoBucket.getPublishedLotto();
-
-        assertThat(publishedLotto.get(0)).isEqualTo(mockLotto.showNumbers());
+        assertThat(lottoBucket.getPublishedLotto().get(0)).isEqualTo(mockLotto.showNumbers());
     }
 }

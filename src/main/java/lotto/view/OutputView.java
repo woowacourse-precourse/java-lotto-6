@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
-import lotto.utils.LottoGameMessage;
+import lotto.constant.LottoGameMessage;
 
 import java.util.List;
 import java.util.Map;
@@ -36,11 +36,7 @@ public class OutputView {
                 + count + LottoGameMessage.COUNT.message);
     }
 
-    public void numberFormatExceptionMessage(final NumberFormatException numberFormatException) {
-        System.out.println(numberFormatException.getMessage());
-    }
-
-    public void illegalArgumentExceptionMessage(final IllegalArgumentException illegalArgumentException) {
+    public void exceptionMessage(final IllegalArgumentException illegalArgumentException) {
         System.out.println(illegalArgumentException.getMessage());
     }
 }

@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.utils.ErrorMessage;
-import lotto.utils.LottoGameMessage;
+import lotto.constant.ErrorMessage;
+import lotto.constant.LottoGameMessage;
 
 public class InputView {
     private final String DELIMITER = ",";

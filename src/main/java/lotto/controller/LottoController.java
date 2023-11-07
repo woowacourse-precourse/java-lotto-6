@@ -30,10 +30,8 @@ public class LottoController {
                 long money = inputView.validateCustomerMoneyInput(moneyInput);
                 customer.insertMoney(lottoStore, money);
                 break;
-            } catch (NumberFormatException e) {
-                outputView.numberFormatExceptionMessage(e);
             } catch (IllegalArgumentException e) {
-                outputView.illegalArgumentExceptionMessage(e);
+                outputView.exceptionMessage(e);
             }
         }
     }
@@ -55,10 +53,8 @@ public class LottoController {
                 String[] winningNumber = inputView.validateWinningNumberInput(winningNumberInput);
                 winningNumbersGenerator.generateWinningNumbers(winningNumber);
                 break ;
-            } catch (NumberFormatException e) {
-                outputView.numberFormatExceptionMessage(e);
             } catch (IllegalArgumentException e) {
-                outputView.illegalArgumentExceptionMessage(e);
+                outputView.exceptionMessage(e);
             }
         }
     }
@@ -71,10 +67,8 @@ public class LottoController {
                 int bonusNumber = inputView.validateBonusNumberInput(bonusNumberInput);
                 winningNumbersGenerator.generateBonusNumber(bonusNumber);
                 break ;
-            } catch (NumberFormatException e) {
-                outputView.numberFormatExceptionMessage(e);
             } catch (IllegalArgumentException e) {
-                outputView.illegalArgumentExceptionMessage(e);
+                outputView.exceptionMessage(e);
             }
         }
     }
@@ -86,9 +80,9 @@ public class LottoController {
         );
 
         customer.checkWinningNumber(lottoChecker);
-        lottoChecker.saveLottosResult();
-        lottoChecker.calculateTotalPrize();
-        lottoChecker.calculateProfitRate();
+//        lottoChecker.saveLottosResult();
+//        lottoChecker.calculateTotalPrize();
+//        lottoChecker.calculateProfitRate();
 
         Map<Prize, Integer> result = lottoChecker.getResult();
         String profitRate = lottoChecker.getProfitRate();

@@ -2,7 +2,7 @@ package lotto;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
-import lotto.utils.ErrorMessage;
+import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

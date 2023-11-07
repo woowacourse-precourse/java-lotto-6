@@ -18,6 +18,7 @@ public class LottoController {
         printLottos(lottos);
         Lotto winningNumber = getNumber();
         BonusNumber bonusNumber = getBonusNumber(winningNumber);
+
     }
 
     private Money getMoney() {
@@ -54,7 +55,7 @@ public class LottoController {
         return new BonusNumber(bonusNumber, winningNumber);
     }
 
-    private void calculateWin() {
+    private void calculateReward() {
 
     }
 

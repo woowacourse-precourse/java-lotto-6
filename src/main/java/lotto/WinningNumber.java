@@ -10,8 +10,8 @@ import java.util.stream.Collectors;
 
 public class WinningNumber {
 
-    static private List<Integer> winningNumbers;
-    static private int bonusNumber;
+    static List<Integer> winningNumbers;
+    static int bonusNumber;
 
     static public void gettingWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");

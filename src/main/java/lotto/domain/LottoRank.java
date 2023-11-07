@@ -3,11 +3,11 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum LottoRank {
-    FIFTH_PLACE(3, 0, 5000L, "5,000"),
-    FOURTH_PLACE(4, 0, 50000L, "50,000"),
-    THIRD_PLACE(5, 0, 1500000L, "1,500,000"),
-    SECOND_PLACE(5, 1, 30000000L, "30,000,000"),
-    FIRST_PLACE(6, 0,2000000000L, "2,000,000,000");
+    FIFTH_PLACE(3, 0, 5_000L, "5,000"),
+    FOURTH_PLACE(4, 0, 50_000L, "50,000"),
+    THIRD_PLACE(5, 0, 1_500_000L, "1,500,000"),
+    SECOND_PLACE(5, 1, 30_000_000L, "30,000,000"),
+    FIRST_PLACE(6, 0, 2_000_000_000L, "2,000,000,000");
 
     private final int rightCnt;
     private final int bonusCnt;

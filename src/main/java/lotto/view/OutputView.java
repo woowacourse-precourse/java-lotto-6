@@ -12,7 +12,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printLottoList(List<Lotto> lottoList, int numberOfLotto) {;
+    public static void printLottoList(List<Lotto> lottoList, int numberOfLotto) {
         printMessage("\n" + numberOfLotto + PrintMessage.PRINT_NUMBER_OF_PURCHASES);
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.getNumbers());

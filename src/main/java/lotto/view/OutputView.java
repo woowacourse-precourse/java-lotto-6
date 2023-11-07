@@ -16,8 +16,8 @@ public class OutputView {
     public static void displayLottos(List<LottoDto> lottoDtos) {
         printEmptyLine();
         System.out.println(lottoDtos.size() + "개를 구매했습니다.");
-        for (int i = 0; i < lottoDtos.size(); i++) {
-            System.out.println(lottoDtos.get(i).numbers());
+        for (LottoDto lottoDto : lottoDtos) {
+            System.out.println(lottoDto.numbers());
         }
         printEmptyLine();
     }

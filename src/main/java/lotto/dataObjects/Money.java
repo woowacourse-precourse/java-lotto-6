@@ -1,6 +1,7 @@
 package lotto.dataObjects;
 
 import lotto.enumContainer.ErrorOperation;
+import lotto.enumContainer.RelateToLotto;
 
 public class Money {
 
@@ -12,14 +13,18 @@ public class Money {
 		this.purchaseMoney = purchaseMoney;
 	}
 
+	public int calculateAmount() {
+		return purchaseMoney/RelateToLotto.MINIMUM_MONEY.number();
+	}
+
 	private void validateMinimum(int purchaseMoney) {
-		if (purchaseMoney < 1000) {
+		if (purchaseMoney < RelateToLotto.MINIMUM_MONEY.number()) {
 			ErrorOperation.MINIMUM_ERROR.apply();
 		}
 	}
 
 	private void validateRest(int purchaseMoney) {
-		if (purchaseMoney % 1000 != 0) {
+		if (purchaseMoney % RelateToLotto.MINIMUM_MONEY.number() != 0) {
 			ErrorOperation.UNIT_ERROR.apply();
 		}
 	}

@@ -3,11 +3,13 @@ package lotto.GameProcess;
 import java.util.ArrayList;
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Input.InputNumber;
 import lotto.Input.InputNumberImpl;
 import lotto.dataObjects.Bonus;
 import lotto.dataObjects.Lotto;
 import lotto.dataObjects.Money;
+import lotto.enumContainer.RelateToLotto;
 
 public class LottoProcessImpl implements LottoProcess {
 
@@ -23,8 +25,11 @@ public class LottoProcessImpl implements LottoProcess {
 	@Override
 	public void playGame() {
 		inputPrice();
-		inputBonusNumber();
 		inputWinningNumbers();
+		inputBonusNumber();
+		List<List<Integer>> IssuedLotto = generateLotto();
+
+
 	}
 
 	private void inputPrice() {
@@ -53,5 +58,17 @@ public class LottoProcessImpl implements LottoProcess {
 		} catch (IllegalArgumentException e) {
 			inputBonusNumber();
 		}
+	}
+
+	private List<List<Integer>> generateLotto() {
+		List<List<Integer>> bundleOfLotto = new ArrayList<>();
+		int perchaceCount = money.calculateAmount();
+		for (int count = 0; count < perchaceCount; count++) {
+			List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(RelateToLotto.START.number(),
+				RelateToLotto.END.number(),
+				RelateToLotto.COUNT.number());
+			bundleOfLotto.add(lottoNumbers);
+		}
+		return bundleOfLotto;
 	}
 }

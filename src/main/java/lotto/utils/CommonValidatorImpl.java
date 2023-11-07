@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import lotto.enumContainer.ErrorOperation;
-import lotto.enumContainer.LottoRange;
+import lotto.enumContainer.RelateToLotto;
 
 public class CommonValidatorImpl implements CommonValidator {
 
@@ -39,10 +39,10 @@ public class CommonValidatorImpl implements CommonValidator {
 
 	private int validateLottoRange(String lottoNumber) {
 		int parseNumber = validateRange(lottoNumber);
-		if (parseNumber < LottoRange.START.range()) {
+		if (parseNumber < RelateToLotto.START.number()) {
 			ErrorOperation.UNDER_ERROR.apply();
 		}
-		if (parseNumber > LottoRange.END.range()) {
+		if (parseNumber > RelateToLotto.END.number()) {
 			ErrorOperation.OVER_ERROR.apply();
 		}
 		return parseNumber;

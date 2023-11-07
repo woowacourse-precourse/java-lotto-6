@@ -11,14 +11,14 @@ public class Parser {
     public static final String COMMA = ",";
 
     public static int convertNumberInput(String input) {
-        if (input.matches("^[0-9]+$")) {
+        if (!input.matches("^[0-9]+$")) {
             throw new IllegalArgumentException(ErrorType.INVALID_NUMBER_INPUT.getText());
         }
         return Integer.parseInt(input);
     }
 
     public static List<Integer> convertWinningNumberInput(String input) {
-        if (input.matches("^(\\d{6},){5}\\d{6}$")) {
+        if (!input.matches("^(\\d{6},){5}\\d{6}$")) {
             throw new IllegalArgumentException(ErrorType.INVALID_WINNING_NUMBER_INPUT.getText());
         }
         return Arrays.stream(input.split(COMMA))

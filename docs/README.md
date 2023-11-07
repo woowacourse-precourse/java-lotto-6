@@ -51,12 +51,13 @@
     - [x] 보너스 번호 입력: enterBonusNumber
     - [x] 입력 닫기: inputClose
 - [ ] 출력: Output
-    - [ ] 구입금액 입력 요청: requestAmount
-    - [ ] 구매 갯수 출력: printPurchaseCount
-    - [ ] 구매 로또 번호 출력: printLottoNumber
-    - [ ] 당첨 번호 입력 요청: requestWiningNumber
-    - [ ] 보너스 번호 입력 요청: requestBonusNumber
-    - [ ] 당첨 통계 시작 문구: printWiningStatisticsStart
+    - [x] 구입금액 입력 요청: requestAmount
+    - [x] 구매 갯수 출력: printPurchaseCount
+    - [x] 구매 로또 출력: printLottos
+    - [x] 당첨 번호 입력 요청: requestWiningNumber
+    - [x] 보너스 번호 입력 요청: requestBonusNumber
+    - [ ] 로또 결과 출력: printResultLotto
+    - [x] 당첨 통계 시작 문구: printWiningStatisticsStart
     - [ ] 당첨 갯수 출력: printWiningCount
     - [ ] 수익률 출력: printReturnRate
 ***

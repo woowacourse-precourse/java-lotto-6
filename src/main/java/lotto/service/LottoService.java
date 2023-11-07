@@ -1,6 +1,7 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
@@ -46,12 +47,24 @@ public class LottoService {
         return lottoCount;
     }
 
-    public void announceWinningResult(List<Integer> jackpotNumbers, int bonusNumber) {
+    public long announceWinningResult(List<Integer> jackpotNumbers, int bonusNumber) {
         OutputView.printWinningStatisticsMessage();
         HashMap<WinningRank, Integer> winningStatistics = getWinningStatistics(jackpotNumbers, bonusNumber);
         OutputView.printWinningStatistics(winningStatistics);
 
-        // TODO : 총 수익률 계산
+        return calculateReturnAmount(winningStatistics);
+    }
+
+    private long calculateReturnAmount(HashMap<WinningRank, Integer> winningStatistics) {
+        long totalReturnAmount = 0;
+        List<WinningRank> ranks = Arrays.stream(WinningRank.values()).toList();
+
+        for (WinningRank rank : ranks) {
+            int rankCount = winningStatistics.get(rank);
+            totalReturnAmount += (long) rankCount * rank.getReturnAmount();
+        }
+
+        return totalReturnAmount;
     }
 
     private HashMap<WinningRank, Integer> getWinningStatistics(List<Integer> jackpotNumbers, int bonusNumber) {
@@ -90,5 +103,11 @@ public class LottoService {
         }
 
         return matchCount;
+    }
+
+    public void announceRateOfReturn(int payAmount, long returnAmount) {
+        double ratio = (((double) returnAmount / (double) payAmount) * 100);
+        double rateOfReturn = Math.round(ratio * 100) / 100.0;
+        OutputView.printRateOfReturn(rateOfReturn);
     }
 }

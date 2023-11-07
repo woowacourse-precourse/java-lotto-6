@@ -29,7 +29,9 @@ public class LottoController {
         String bonusNumberInput = Console.readLine();
         // TODO : 보너스 번호 인풋 Validate
 
-        lottoService.announceWinningResult(jackpotNumbers, Integer.parseInt(bonusNumberInput));
+        long returnAmount = lottoService.announceWinningResult(jackpotNumbers, Integer.parseInt(bonusNumberInput));
+
+        lottoService.announceRateOfReturn(Integer.parseInt(lottoPayAmount), returnAmount);
 
 
     }

@@ -44,6 +44,10 @@ public class OutputView {
         System.out.println(
                 WINNING_RANK_SECOND_MESSAGE + winningStatistics.get(WinningRank.SECOND) + COUNT_UNIT_MESSAGE);
         System.out.println(
-                WINNING_RANK_FIRST_MESSAGE + winningStatistics.get(WinningRank.FIFTH) + COUNT_UNIT_MESSAGE);
+                WINNING_RANK_FIRST_MESSAGE + winningStatistics.get(WinningRank.FIRST) + COUNT_UNIT_MESSAGE);
+    }
+
+    public static void printRateOfReturn(double rateOfReturn) {
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 }

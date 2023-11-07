@@ -33,10 +33,30 @@ public class GameController {
         int ticketCnt = moneyToCnt();
         printTicketCnt(ticketCnt);
 
+        lottoList = makeLottoList(ticketCnt);
+
+
     }
 
     public int moneyToCnt(){
         lottoAmount = new LottoAmount(InputView.getInputAmount());
         return lottoAmount.amountChangeToLottoCnt();
+    }
+
+    private List<Lotto> makeLottoList(int ticketCnt) {
+        lottoList = new ArrayList<>();
+        for (int i = 0; i < ticketCnt; i++) {
+            lottoList.add(makeLotto());
+        }
+        return lottoList;
+    }
+
+    private Lotto makeLotto(){
+        LottoNumber lottoNumbers = new LottoNumber();
+        lotto = new ArrayList<>();
+
+        lotto = lottoNumbers.setLottoNumbers();
+        System.out.println(lotto);
+        return new Lotto(lotto);
     }
 }

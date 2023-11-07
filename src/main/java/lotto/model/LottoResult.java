@@ -19,17 +19,21 @@ public class LottoResult {
         Map<Rank, Integer> result = new HashMap<>();
         for (Lotto lotto : lottos) {
             Rank rank = Rank.getRankByLotto(lotto, winningLotto);
-            result.put(rank, result.getOrDefault(rank, DEFAULT_COUNT) + INCREMENT);
+            updateRankCount(result, rank);
         }
         return result;
+    }
+
+    private void updateRankCount(Map<Rank, Integer> result, Rank rank) {
+        result.put(rank, result.getOrDefault(rank, DEFAULT_COUNT) + INCREMENT);
     }
 
     public double calculateReturnRatePercentage(Map<Rank, Integer> result, int money) {
         double totalReward = result.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
                 .sum();
-        double returnRate = totalReward / money * PERCENTAGE;
-        return roundToTwoDecimalPlaces(returnRate);
+        double returnRatePercentage = totalReward / money * PERCENTAGE;
+        return roundToTwoDecimalPlaces(returnRatePercentage);
     }
 
     private double roundToTwoDecimalPlaces(double returnRate) {

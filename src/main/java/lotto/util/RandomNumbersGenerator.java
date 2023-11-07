@@ -9,10 +9,10 @@ import java.util.List;
 
 public class RandomNumbersGenerator implements NumbersGenerator {
 
-  @Override
-  public List<Integer> generate() {
-    return Randoms.pickUniqueNumbersInRange(
-        MIN_NUMBER_RANGE, MAX_NUMBER_RANGE, CONFIG_NUMBERS_SIZE
-    );
-  }
+    @Override
+    public List<Integer> generate() {
+        return Randoms.pickUniqueNumbersInRange(
+                MIN_NUMBER_RANGE, MAX_NUMBER_RANGE, CONFIG_NUMBERS_SIZE
+        );
+    }
 }

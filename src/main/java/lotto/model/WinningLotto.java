@@ -4,13 +4,13 @@ import java.util.List;
 
 public class WinningLotto {
 
-  private Lotto winningLotto;
+    private Lotto winningLotto;
 
-  public WinningLotto(Lotto winningLotto) {
-    this.winningLotto = winningLotto;
-  }
+    public WinningLotto(Lotto winningLotto) {
+        this.winningLotto = winningLotto;
+    }
 
-  public List<Integer> getWinningNumbers() {
-    return winningLotto.getNumbers();
-  }
+    public List<Integer> getWinningNumbers() {
+        return winningLotto.getNumbers();
+    }
 }

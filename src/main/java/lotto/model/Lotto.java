@@ -20,15 +20,15 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers.stream()
-            .map(Number::getNumber)
-            .collect(Collectors.toList());
+                .map(Number::getNumber)
+                .collect(Collectors.toList());
     }
 
     private List<Number> toNumber(List<Integer> numbers) {
         return numbers.stream()
-            .map(Number::new)
-            .sorted()
-            .collect(Collectors.toList());
+                .map(Number::new)
+                .sorted()
+                .collect(Collectors.toList());
     }
 
     private void validate(List<Integer> numbers) {

@@ -6,35 +6,36 @@ import java.util.Map;
 
 public class LotteryMachine {
 
-  private Map<WinningMoney, Integer> store;
-  private PersonLotto personLotto;
-  private WinningLotto winningLotto;
+    private Map<WinningMoney, Integer> store;
 
-  public LotteryMachine(PersonLotto personLotto, WinningLotto winningLotto) {
-    this.store = new EnumMap<>(WinningMoney.class);
-    this.personLotto = personLotto;
-    this.winningLotto = winningLotto;
-  }
+    private PersonLotto personLotto;
 
-  public Map<WinningMoney, Integer> drawingLotto(Bonus bonus) {
-    personLotto.getPurchaseLotto().forEach(
-        lotto -> {
-          int matchCount = checkMatch(lotto);
-          WinningMoney result = WinningMoney.from(matchCount, checkBonus(lotto, bonus));
-          store.put(result, store.getOrDefault(result , 0) + 1);
-        }
-    );
+    private WinningLotto winningLotto;
 
-    return store;
-  }
+    public LotteryMachine(PersonLotto personLotto, WinningLotto winningLotto) {
+        this.store = new EnumMap<>(WinningMoney.class);
+        this.personLotto = personLotto;
+        this.winningLotto = winningLotto;
+    }
 
-  private int checkMatch(Lotto lotto) {
-    List<Integer> purchasedLotto = lotto.getNumbers();
-    purchasedLotto.retainAll(winningLotto.getWinningNumbers());
-    return purchasedLotto.size();
-  }
+    public Map<WinningMoney, Integer> drawingLotto(Bonus bonus) {
+        personLotto.getPurchaseLotto().forEach(
+                lotto -> {
+                    int matchCount = checkMatch(lotto);
+                    WinningMoney result = WinningMoney.from(matchCount, checkBonus(lotto, bonus));
+                    store.put(result, store.getOrDefault(result, 0) + 1);
+                }
+        );
+        return store;
+    }
 
-  private boolean checkBonus(Lotto lotto, Bonus bonus) {
-    return lotto.getNumbers().contains(bonus.getBonusNumber());
-  }
+    private int checkMatch(Lotto lotto) {
+        List<Integer> purchasedLotto = lotto.getNumbers();
+        purchasedLotto.retainAll(winningLotto.getWinningNumbers());
+        return purchasedLotto.size();
+    }
+
+    private boolean checkBonus(Lotto lotto, Bonus bonus) {
+        return lotto.getNumbers().contains(bonus.getBonusNumber());
+    }
 }

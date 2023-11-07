@@ -16,7 +16,7 @@ import lotto.repository.WinningLottoRepository;
 import lotto.utils.Converter;
 
 public class CalculateLotteryServiceImpl implements CalculateLotteryService {
-    private static final Integer ZERO = 0;
+    private static final Long ZERO = 0L;
     private static final Integer returnsOfThreeMatched = 5000;
     private static final Integer returnsOfFourMatched = 50000;
     private static final Integer returnsOfFiveMatched = 1500000;
@@ -51,17 +51,17 @@ public class CalculateLotteryServiceImpl implements CalculateLotteryService {
 
     @Override
     public MoneyDTO calculateReturnRates(MoneyDTO moneyDTO, WinningStatisticDTO winningStatisticDTO) {
-        Integer earn = getEarn(winningStatisticDTO);
+        Long earn = getEarn(winningStatisticDTO);
 
-        Float returnRates = Converter.integerToFloat(earn) / Converter.integerToFloat(moneyDTO.getAmount()) * Constant.NUMBER_USED_TO_MAKE_PERCENTAGE.getContentToFloat();
-        Integer offsetNumber = Constant.NUMBER_USED_TO_ROUND_FIRST_DIGIT.getContentToInteger();
-        returnRates = Math.round(returnRates * offsetNumber) / Converter.integerToFloat(offsetNumber);
+        Float returnRates = Converter.longToFloat(earn) / Converter.integerToFloat(moneyDTO.getAmount()) * Constant.NUMBER_USED_TO_MAKE_PERCENTAGE.getContentToFloat();
+        Long offsetNumber = Constant.NUMBER_USED_TO_ROUND_FIRST_DIGIT.getContentToLong();
+        returnRates = Math.round(returnRates * offsetNumber) / Converter.longToFloat(offsetNumber);
 
         return new MoneyDTO(moneyDTO.getAmount(), returnRates);
     }
 
-    private Integer getEarn(WinningStatisticDTO winningStatisticDTO) {
-        Integer earn = ZERO;
+    private Long getEarn(WinningStatisticDTO winningStatisticDTO) {
+        Long earn = ZERO;
         earn += returnsOfThreeMatched * winningStatisticDTO.getMatched3();
         earn += returnsOfFourMatched * winningStatisticDTO.getMatched4();
         earn += returnsOfFiveMatched * winningStatisticDTO.getMatched5();

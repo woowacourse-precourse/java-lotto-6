@@ -19,7 +19,17 @@ public class Converter {
         return Float.parseFloat(text);
     }
 
+    public static Long stringToLong(String text) {
+        validateNumberPattern(text);
+
+        return Long.parseLong(text);
+    }
+
     public static Float integerToFloat(Integer number) {
+        return (Float)(Number)number;
+    }
+
+    public static Float longToFloat(Long number) {
         return (Float)(Number)number;
     }
 

@@ -30,6 +30,9 @@ public enum Constant {
     public Integer getContentToInteger() {
         return Converter.stringToInteger(content);
     }
+    public Long getContentToLong() {
+        return Converter.stringToLong(content);
+    }
 
     public Float getContentToFloat() {
         return Converter.stringToFloat(content);

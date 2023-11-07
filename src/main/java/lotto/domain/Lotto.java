@@ -5,9 +5,13 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<Integer> numbers) {
         validate();
         this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> lottoNumbers) {
+        return new Lotto(lottoNumbers);
     }
 
     public void validate() {

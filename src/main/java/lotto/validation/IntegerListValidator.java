@@ -18,4 +18,11 @@ public class IntegerListValidator {
         }
     }
 
+    public static void validateSize(List<Integer> numbers, int size) {
+        if (numbers.size() != size) {
+            ExceptionUtil.throwInvalidValueException(INVALID_LOTTO_NUMBER_COUNT_MESSAGE.getMessage());
+        }
+    }
+
+
 }

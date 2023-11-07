@@ -56,7 +56,7 @@ public class LottoTicket {
         calculationValidation(money);
         return money/ticketCost;
     }
-
+//todo: private으로 fix
     public void calculationValidation(int money) {
         if (money%1000 != 0){
             throw new IllegalArgumentException();

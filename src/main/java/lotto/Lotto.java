@@ -12,7 +12,7 @@ public class Lotto {
         validate(numbers);
         this.numbers = InputMatchedNumbers();
     }
-
+//todo: 변수 수정
     public List<Integer> InputMatchedNumbers() {
         String[] a = Console.readLine().split(",");
         List<Integer> b = new ArrayList<>();
@@ -24,8 +24,19 @@ public class Lotto {
         return b;
     }
 
-    public int bonusNumber () {
-        return Integer.parseInt(Console.readLine());
+    public int bonusNumber() {
+        int number = Integer.parseInt(Console.readLine());
+        bonusNumberValidation(number);
+        return number;
+    }
+
+    private void bonusNumberValidation(int number) {
+        Lotto lotto = new Lotto(numbers);
+
+        if(lotto.getNumbers().contains(number)) {
+            throw new IllegalArgumentException();
+        }
+
     }
 
     private void validate(List<Integer> numbers) {
@@ -37,4 +48,5 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
 }

@@ -5,6 +5,8 @@ import java.util.List;
 
 public class Jackpot {
     public static final String NUMBER_PATTERN = "\\d+";
+    public static final String ERROR_MESSAGE_WINNING_NUMBERS_NUMERIC = "[ERROR] 당첨 번호는 숫자로만 이루어져야 합니다.";
+    public static final String ERROR_MESSAGE_NOT_SIX_NUMBERS = "[ERROR] 당첨 번호는 6개로 이루어져야 합니다.";
 
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
@@ -35,13 +37,13 @@ public class Jackpot {
 
     private static void validateNumeric(String number) {
         if (!number.matches(NUMBER_PATTERN)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자로만 이루어져야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_WINNING_NUMBERS_NUMERIC);
         }
     }
 
     private static void validateWinningNumbersSize(String[] splitWinningNumbers) {
         if (splitWinningNumbers.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개로 이루어져야 합니다.");
+            throw new IllegalArgumentException(ERROR_MESSAGE_NOT_SIX_NUMBERS);
         }
     }
 

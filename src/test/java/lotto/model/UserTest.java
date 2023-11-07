@@ -32,25 +32,25 @@ class UserTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
         Lotto lotto = new Lotto(new Input("1,2,3,4,5,6").ofNums());
-        int bonus = new Input("7").ofBonus(lotto.numbers());
+        int bonus = new Input("7").ofBonus(lotto.getNumbers());
         winningLotto = new WinningLotto(lotto, bonus);
+        user.calculateLottoResults(winningLotto);
     }
 
     @Test
     @DisplayName("유저의_로또_결과_계산")
     void getLottoResults() {
-
-        Assertions.assertThat(user.getLottoResults(winningLotto))
+        Assertions.assertThat(user.getLottoResults())
                 .contains(LottoResult.FIFTH);
     }
 
     @Test
     @DisplayName("유저의_로또_수익률_계산")
     void getStatistics() {
-        user.getLottoResults(winningLotto);
+        user.getLottoResults();
         double expectedStatistics = EARN_MONEY * 100 / SPEND_MONEY;
 
-        Assertions.assertThat(user.getStatistics())
+        Assertions.assertThat(user.calculateStatistics())
                 .isEqualTo(expectedStatistics);
     }
 }

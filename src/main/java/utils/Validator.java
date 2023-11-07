@@ -27,4 +27,10 @@ public class Validator {
             }
         }
     }
+
+    public static void checkMoney(int money) {
+        if (money % 1000 != 0 || money <= 0) {
+            throw new IllegalArgumentException(ErrorType.INVALID_PRICE_INPUT.getText());
+        }
+    }
 }

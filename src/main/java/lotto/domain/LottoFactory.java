@@ -5,15 +5,18 @@ import java.util.stream.IntStream;
 import lotto.domain.number.NumberGenerator;
 
 public class LottoFactory {
+    private final NumberGenerator generator;
 
-    private LottoFactory() {
+    public LottoFactory(NumberGenerator generator) {
+        this.generator = generator;
     }
 
-    public static LottoBundle createLottos(final int count, final NumberGenerator generator) {
+    public LottoBundle createBundle(final int count) {
         final List<Lotto> lottos = IntStream
                 .range(0, count)
                 .mapToObj(i -> new Lotto(generator.generate()))
                 .toList();
-        return LottoBundle.create(lottos);
+        return LottoBundle.from(lottos);
     }
 }
+

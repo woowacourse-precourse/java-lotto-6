@@ -11,7 +11,6 @@ public enum Rank {
     private static final String MATCH_COUNT_DESCRIPTION = "%d개 일치";
     private static final String BONUS_DESCRIPTION = ", 보너스 볼 일치";
     private static final String PRIZE_DESCRIPTION = " (%,d원)";
-
     private final int matchCount;
     private final boolean matchBonus;
     private final int prize;

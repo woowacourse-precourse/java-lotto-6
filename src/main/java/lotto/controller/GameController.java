@@ -42,7 +42,7 @@ public class GameController {
     private void decideOutcome() {
         Map<Rankings, Integer> statistics = gameService.getStatistics();
         outputView.printWinningResult(statistics);
-        String yield = gameService.getCalculatedMargin();
+        String yield = gameService.getCalculatedYield();
         outputView.printYield(yield);
     }
 

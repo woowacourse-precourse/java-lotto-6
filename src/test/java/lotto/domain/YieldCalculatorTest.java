@@ -12,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 class YieldCalculatorTest {
 
     private static final String DAEBAK_RATE = "200,000,000.0%";
+
     @DisplayName("당첨 결과를 통해 수익률을 구할 수 있다.")
     @ParameterizedTest
     @MethodSource("provideWinningResultAndPurchaseAmount")

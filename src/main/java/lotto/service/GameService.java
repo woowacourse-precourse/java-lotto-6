@@ -12,8 +12,8 @@ import lotto.domain.lotto.Lotto;
 public class GameService {
 
     private final List<Lotto> issuedLotto;
-    private LotteryOffice lotteryOffice;
     private final int userPurchaseAmount;
+    private LotteryOffice lotteryOffice;
 
     public GameService(List<Lotto> issuedLotto, int userPurchaseAmount) {
         this.issuedLotto = issuedLotto;
@@ -36,10 +36,10 @@ public class GameService {
         return lotteryOffice.getWinningsAndCounts();
     }
 
-    public String getCalculatedMargin() {
-        YieldCalculator marginCalculator = new YieldCalculator(
+    public String getCalculatedYield() {
+        YieldCalculator yieldCalculator = new YieldCalculator(
                 lotteryOffice.getWinningsAndCounts(), userPurchaseAmount);
-        return marginCalculator.getYield();
+        return yieldCalculator.getYield();
     }
 
 

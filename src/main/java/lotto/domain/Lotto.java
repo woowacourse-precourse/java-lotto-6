@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.view.VerificationView;
+import lotto.view.ErrorMessage;
 
 import java.util.HashSet;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            VerificationView.verificationViewLengthLottoNumberList();
+            ErrorMessage.verificationViewLengthLottoNumberList();
             throw new IllegalArgumentException();
         }
     }
@@ -27,7 +27,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (int lottoNumber : numbers) {
             if (!uniqueNumbers.add(lottoNumber)) {
-                VerificationView.verificationViewDuplicateLottoNumber();
+                ErrorMessage.verificationViewDuplicateLottoNumber();
                 throw new IllegalArgumentException();
             }
         }

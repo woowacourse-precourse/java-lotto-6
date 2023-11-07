@@ -1,7 +1,7 @@
 package lotto.verification;
 
 import lotto.util.Utils;
-import lotto.view.VerificationView;
+import lotto.view.ErrorMessage;
 
 public class Validation {
 
@@ -9,28 +9,28 @@ public class Validation {
 
     public static void verifyRangeInputMoney(long myMoney) {
         if (myMoney / 1000 < 1 || myMoney % 1000 != 0) {
-            VerificationView.verificationViewRangeInputMoney();
+            ErrorMessage.verificationViewRangeInputMoney();
             throw new IllegalArgumentException();
         }
     }
 
     public static void verifyStringToLong(String string) {
         if (!string.chars().allMatch(Character::isDigit)) {
-            VerificationView.verificationViewStringToLong();
+            ErrorMessage.verificationViewStringToLong();
             throw new IllegalArgumentException();
         }
     }
 
     public static void verifyRangeInputBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            VerificationView.verificationViewRangeInputBonusNumber();
+            ErrorMessage.verificationViewRangeInputBonusNumber();
             throw new IllegalArgumentException();
         }
     }
 
     public static void verifyStringToInteger(String string) {
         if (!string.chars().allMatch(Character::isDigit)) {
-            VerificationView.verificationViewStringToInteger();
+            ErrorMessage.verificationViewStringToInteger();
             throw new IllegalArgumentException();
         }
     }
@@ -41,7 +41,7 @@ public class Validation {
         for (String lottoNumber : lottoNumbers) {
             int number = Integer.parseInt(lottoNumber);
             if (number < 1 || number > 45) {
-                VerificationView.verificationViewRangeLottoNumber();
+                ErrorMessage.verificationViewRangeLottoNumber();
                 throw new IllegalArgumentException();
             }
         }
@@ -52,7 +52,7 @@ public class Validation {
 
         for (String lottoNumber : lottoNumbers) {
             if (!Utils.isNumeric(lottoNumber)) {
-                VerificationView.verificationViewIntegerLottoNumberList();
+                ErrorMessage.verificationViewIntegerLottoNumberList();
                 throw new IllegalArgumentException();
             }
         }

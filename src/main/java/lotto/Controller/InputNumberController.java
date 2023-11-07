@@ -17,7 +17,7 @@ public class InputNumberController {
     }
 
     private List<Integer> inputWinningNumber() {
-        List<Integer> result = new ArrayList<>();
+        List<Integer> result;
         while (true) {
             try {
                 InputWinningNumber inputWinningNumber = new InputWinningNumber();

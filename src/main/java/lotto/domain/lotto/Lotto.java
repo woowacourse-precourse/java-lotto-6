@@ -49,10 +49,6 @@ public class Lotto {
         return numbers.contains(bonus);
     }
 
-    public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
-    }
-
     private void validateSortedAscending(List<Integer> numbers) {
         List<Integer> sortedNumber = getSortedNumber(numbers);
         if (isNotSort(numbers,sortedNumber)) {
@@ -69,5 +65,9 @@ public class Lotto {
 
     private boolean isNotSort(List<Integer> numbers, List<Integer> sortedNumber) {
         return !sortedNumber.equals(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

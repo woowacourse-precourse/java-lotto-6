@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.message.ConsoleMessage;
@@ -11,6 +12,8 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         validateDuplicate(numbers);
+
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -20,10 +23,13 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
     private void validateDuplicate(List<Integer> numbers) {
         HashSet set = new HashSet(numbers);
         if(set.size()!= numbers.size()){
-            throw new IllegalArgumentException(ConsoleMessage.);
+            throw new IllegalArgumentException(ConsoleMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 

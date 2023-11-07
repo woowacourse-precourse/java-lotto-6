@@ -6,6 +6,9 @@ public enum ConsoleMessage {
     //Input Message
     GET_PURCHASE_MONEY("구입금액을 입력해 주세요."),
 
+    //Output Message
+    CREATE_LOTTOS_COUNT("개를 구매했습니다."),
+
     //Error Message
     ERROR_STRING("[ERROR] "),
     LOTTO_NUMBER_RANGE_ERROR("로또 번호는 1부터 45 사이의 숫자여야 합니다."),

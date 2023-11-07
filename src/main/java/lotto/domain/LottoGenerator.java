@@ -8,9 +8,13 @@ public class LottoGenerator {
     private final LottoNumberGenerator lottoNumberGenerator;
     private final PurchaseMoney purchaseMoney;
 
-    public LottoGenerator(LottoNumberGenerator lottoNumberGenerator, PurchaseMoney purchaseMoney) {
+    private LottoGenerator(LottoNumberGenerator lottoNumberGenerator, PurchaseMoney purchaseMoney) {
         this.lottoNumberGenerator = lottoNumberGenerator;
         this.purchaseMoney = purchaseMoney;
+    }
+
+    public static LottoGenerator of(LottoNumberGenerator lottoNumberGenerator, PurchaseMoney purchaseMoney) {
+        return new LottoGenerator(lottoNumberGenerator, purchaseMoney);
     }
 
     public Lottos createLottos() {

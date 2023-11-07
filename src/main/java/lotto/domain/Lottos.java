@@ -14,7 +14,9 @@ public class Lottos {
     public static Lottos of(int number, LottoNumberGenerator lottoNumberGenerator) {
         return new Lottos(createLottos(number, lottoNumberGenerator));
     }
-
+    public List<Lotto> getLottos() {
+        return this.lottos;
+    }
     public int getLottosSize() {
         return this.lottos.size();
     }

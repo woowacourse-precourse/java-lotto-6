@@ -18,7 +18,7 @@ public class OutputFormatterTest {
     @BeforeEach
     void setUp() {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 11, 12));
+        Lotto lotto2 = new Lotto(List.of(7, 8, 9, 10, 12, 11));
         buyerLottoHistory = new BuyerLottoHistory(2, List.of(lotto1, lotto2));
 
         WinningResult firstPrize = new WinningResult(WinningRule.FIRST_PRIZE, 0);
@@ -37,7 +37,7 @@ public class OutputFormatterTest {
     }
 
     @Test
-    void 구매된_로또_번호들을_포맷팅한다() {
+    void 구매된_로또_번호들을_오름차순_정렬해_포맷팅한다() {
         assertThat(OutputFormatter.formatBuyerLottos(buyerLottoHistory))
                 .isEqualTo("[1, 2, 3, 4, 5, 6]\n[7, 8, 9, 10, 11, 12]");
     }

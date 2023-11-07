@@ -38,6 +38,7 @@ public class OutputFormatter {
 
     private static String formatLottoNumbers(Lotto lotto) {
         return lotto.getNumbers().stream()
+                .sorted()
                 .map(Object::toString)
                 .collect(Collectors.joining(LOTTO_NUMBERS_DELIMITER, LOTTO_NUMBERS_PREFIX, LOTT_NUMBERS_SUFFIX));
     }

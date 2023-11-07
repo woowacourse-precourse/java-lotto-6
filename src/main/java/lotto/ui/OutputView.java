@@ -5,16 +5,16 @@ import java.util.Map;
 import lotto.Rank;
 
 public class OutputView {
-    private static String LOTTO_QUANTITY_NOTIFY_MESSAGE = "%d개를 구매했습니다.";
-    private static String WINNING_STATISTICS_MESSAGE = "당첨 통계";
-    private static String NEW_LINE = "\n";
-    private static String DASH = "-";
-    private static String OVERLAP_NOTIFY_MESSAGE = "%d개 일치";
-    private static String OVERLAP_AND_BONUS_NOTIFY_MESSAGE = "%d개 일치, 보너스 볼 일치";
-    private static String SPACE = " ";
-    private static String PRIZE_MESSAGE = "(%,d원)";
-    private static String WINNING_LOTTO_NUMBER_MESSAGE = "%d개";
-    private static String EARNING_RATE_NOTIFY_MESSAGE = "총 수익률은 %.1f%%입니다.";
+    private static final String LOTTO_QUANTITY_NOTIFY_MESSAGE = "%d개를 구매했습니다.";
+    private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
+    private static final String NEW_LINE = "\n";
+    private static final String DASH = "-";
+    private static final String OVERLAP_NOTIFY_MESSAGE = "%d개 일치";
+    private static final String OVERLAP_AND_BONUS_NOTIFY_MESSAGE = "%d개 일치, 보너스 볼 일치";
+    private static final String SPACE = " ";
+    private static final String PRIZE_MESSAGE = "(%,d원)";
+    private static final String WINNING_LOTTO_NUMBER_MESSAGE = "%d개";
+    private static final String EARNING_RATE_NOTIFY_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void printLottoNumbers(List<Integer> numbers) {
         System.out.println(numbers);
@@ -28,16 +28,16 @@ public class OutputView {
     public static void printStatistics(Map<Rank, Integer> finalResult) {
         System.out.println(NEW_LINE + WINNING_STATISTICS_MESSAGE + NEW_LINE + DASH + DASH + DASH);
         Rank[] ranks = Rank.values();
-        for (int i = 0; i < ranks.length; i++) {
+        for (Rank rank : ranks) {
             StringBuilder statistics = new StringBuilder();
-            if (!ranks[i].getChecked()) {
-                statistics.append(String.format(OVERLAP_NOTIFY_MESSAGE, ranks[i].getCounted())).append(SPACE);
+            if (!rank.getChecked()) {
+                statistics.append(String.format(OVERLAP_NOTIFY_MESSAGE, rank.getCounted())).append(SPACE);
             }
-            if (ranks[i].getChecked()) {
-                statistics.append(String.format(OVERLAP_AND_BONUS_NOTIFY_MESSAGE, ranks[i].getCounted())).append(SPACE);
+            if (rank.getChecked()) {
+                statistics.append(String.format(OVERLAP_AND_BONUS_NOTIFY_MESSAGE, rank.getCounted())).append(SPACE);
             }
-            statistics.append(String.format(PRIZE_MESSAGE, ranks[i].getPrize())).append(SPACE + DASH + SPACE)
-                    .append(String.format(WINNING_LOTTO_NUMBER_MESSAGE, finalResult.get(ranks[i])));
+            statistics.append(String.format(PRIZE_MESSAGE, rank.getPrize())).append(SPACE + DASH + SPACE)
+                    .append(String.format(WINNING_LOTTO_NUMBER_MESSAGE, finalResult.get(rank)));
             System.out.println(statistics);
         }
     }

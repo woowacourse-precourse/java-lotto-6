@@ -37,12 +37,7 @@ public class LottoManager {
     }
 
     public EarningRate calEarningRate() {
-        int earning = calScore().stream()
-                .map(Score::getPrize)
-                .reduce(Integer::sum)
-                .get();
-
-        return new EarningRate(token.amount(), earning);
+        return new EarningRate(token.amount(), calScore());
     }
 
     public List<Score> calScore() {

@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import repository.RankRepository;
+import view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
@@ -11,9 +12,15 @@ public class Application {
         Lotto lotto = new Lotto(list);
 
         Integer sameSount = lotto.getSameNumberCount(list2);
-        System.out.println(sameSount);
 
-        RankRepository.putRank(sameSount);
+        if (sameSount == 3) {
+            RankRepository.increaseNumberOfWins(5);
+            RankRepository.increaseNumberOfWins(5);
+            RankRepository.increaseNumberOfWins(5);
+            RankRepository.increaseNumberOfWins(5);
+            RankRepository.increaseNumberOfWins(5);
+        }
 
+        OutputView.outputWinningStatistics();
     }
 }

@@ -2,6 +2,8 @@ package view;
 
 import java.util.List;
 import lotto.Lotto;
+import lotto.WinnerRank;
+import repository.RankRepository;
 
 public class OutputView {
 
@@ -12,5 +14,11 @@ public class OutputView {
 
     public static void outputLottoList(List<Lotto> lottoList) {
         lottoList.stream().forEach(Lotto::printLottoNumbers);
+    }
+
+    public static void outputWinningStatistics() {
+        System.out.println(OutputMessages.WINNING_STATISTICS.getMessage());
+        System.out.println(String.format(OutputMessages.FIFTH_PLACE.getMessage(),
+                RankRepository.getWinningStatistics(WinnerRank.FIFTH.getRank())));
     }
 }

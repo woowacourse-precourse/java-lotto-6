@@ -6,6 +6,7 @@ public class Constants {
     public static final int MAX_RANGE_NUMBER = 45;
     public static final int DESIGNATED_LOTTO_LENGTH = 6;
     public static final int LOTTO_PRICE = 1000;
+    public static final int BONUS_INDEX = 6;
 
     // ERROR Message
     public static final String ERROR = "[ERROR] ";

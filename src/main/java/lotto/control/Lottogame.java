@@ -35,5 +35,40 @@ package lotto.control;public class Lottogame {
         }
     }
 
-    
+    private List<Integer> inputWinningNumbers() {
+        List<Integer> winningNumbers = new ArrayList<>();
+        while (winningNumbers.size() != 6) {
+            try {
+                String input = readLineWithMessage("당첨 번호를 입력해 주세요. (쉼표(,)로 구분)");
+                winningNumbers = parseWinningNumbers(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningNumbers;
+    }
+
+    private List<Integer> parseWinningNumbers(String input) {
+        String[] numbers = input.split(",");
+        List<Integer> winningNumbers = new ArrayList<>();
+        for (String number : numbers) {
+            try {
+                int num = parseIntWithMessage(number, "[ERROR] 유효한 번호를 입력해 주세요.");
+                validateWinningNumber(num);
+                winningNumbers.add(num);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        validateWinningNumbersCount(winningNumbers);
+        return winningNumbers;
+    }
+
+    private void validateWinningNumber(int num) {
+        if (num < 1 || num > 45) {
+            throw new IllegalArgumentException("[ERROR] 유효한 번호를 입력해 주세요.");
+        }
+    }
+
+  
 }

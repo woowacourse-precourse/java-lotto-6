@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.domain.config.ScoreConfig;
 import lotto.domain.entity.lotto.Lotto;
 import lotto.domain.entity.lotto.WinningLotto;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -15,7 +16,12 @@ class LottoRefereeTest {
     private static final Integer BONUS_NUMBER = 7;
     private static final WinningLotto WINNING_LOTTO = new WinningLotto(WINNING_NUMBERS, BONUS_NUMBER);
     private ILottoReferee iLottoReferee;
-    
+
+    @BeforeEach
+    void setUp() {
+        iLottoReferee = new LottoReferee();
+    }
+
     @ParameterizedTest
     @CsvSource({
             "1,2,3,4,5,6,FIRST",

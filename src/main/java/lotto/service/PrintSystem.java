@@ -1,8 +1,10 @@
 package lotto.service;
 
 import lotto.model.Lotto;
+import lotto.type.WinningResultType;
 
 import java.util.List;
+import java.util.Map;
 
 public class PrintSystem {
     private static final String INPUT_PAYMENT_ACCOUNT_MESSAGE = "구입금액을 입력해주세요";
@@ -42,15 +44,16 @@ public class PrintSystem {
         }
     }
 
-    public void printResultWinningStatisticsAndRateOfRevenue(List<Integer> results,double rateRevenue){
-        System.out.println(PRINT_WINNING_STATISTICS_MESSAGE);
-        System.out.println(PRINT_3_MATCH_RESULT_MESSAGE + results.get(0) + COUNT_UNIT);
-        System.out.println(PRINT_4_MATCH_RESULT_MESSAGE + results.get(1) + COUNT_UNIT);
-        System.out.println(PRINT_5_MATCH_RESULT_MESSAGE + results.get(2) + COUNT_UNIT);
-        System.out.println(PRINT_5_MATCH_AND_BONUS_MATCH_RESULT_MESSAGE + results.get(3) + COUNT_UNIT);
-        System.out.println(PRINT_6_MATCH_RESULT_MESSAGE + results.get(4) + COUNT_UNIT);
+    public void printResultWinningStatisticsAndRateOfRevenue(Map<WinningResultType, Integer> results, double rateRevenue) {
 
-        System.out.println(PRINT_TOTAL_RATE_OF_REVENUE_FRONT+String.format("0.1f",rateRevenue)+PERCENT_UNIT+PRINT_TOTAL_RATE_OF_REVENUE_BACK);
+        System.out.println(PRINT_WINNING_STATISTICS_MESSAGE);
+        System.out.println(PRINT_3_MATCH_RESULT_MESSAGE + results.get(WinningResultType.WINNING_RESULT_3_MATCH) + COUNT_UNIT);
+        System.out.println(PRINT_4_MATCH_RESULT_MESSAGE + results.get(WinningResultType.WINNING_RESULT_4_MATCH) + COUNT_UNIT);
+        System.out.println(PRINT_5_MATCH_RESULT_MESSAGE + results.get(WinningResultType.WINNING_RESULT_5_MATCH) + COUNT_UNIT);
+        System.out.println(PRINT_5_MATCH_AND_BONUS_MATCH_RESULT_MESSAGE + results.get(WinningResultType.WINNING_RESULT_5_MATCH_AND_BONUS_MATCH) + COUNT_UNIT);
+        System.out.println(PRINT_6_MATCH_RESULT_MESSAGE + results.get(WinningResultType.WINNING_RESULT_6_MATCH) + COUNT_UNIT);
+
+        System.out.println(PRINT_TOTAL_RATE_OF_REVENUE_FRONT + String.format("%.1f", rateRevenue) + PERCENT_UNIT + PRINT_TOTAL_RATE_OF_REVENUE_BACK);
     }
 
 }

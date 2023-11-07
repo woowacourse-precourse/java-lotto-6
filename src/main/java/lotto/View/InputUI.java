@@ -1,9 +1,11 @@
 package lotto.View;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.View.InputValidators.PurchasePriceValidator;
 
 public class InputUI {
-    public String inputPurchasePrice(){
-        return Console.readLine();
+    public int inputPurchasePrice() throws IllegalArgumentException{
+        // PurchasePriceValidator inherits InputValidator, so constructing it includes input process
+        PurchasePriceValidator purchasePriceValidator = new PurchasePriceValidator();
+        return purchasePriceValidator.returnValidatedPrice();
     }
 }

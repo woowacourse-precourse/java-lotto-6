@@ -12,7 +12,7 @@ public class WinningNumberTest {
     void contains() {
         Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         LottoNumber bonusNumber = new LottoNumber(6);
-        assertThatThrownBy(() -> new WinningNumber(winningLotto, bonusNumber))
+        assertThatThrownBy(() -> new WinningNumber(winningLotto, bonusNumber.getNumber()))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

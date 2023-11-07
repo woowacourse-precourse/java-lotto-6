@@ -38,7 +38,7 @@ public class Lotto {
                     LOTTO_NUMBER_SIZE));
     }
 
-    public boolean contains(LottoNumber number) {
-        return numbers.contains(number.getNumber());
+    public boolean contains(Integer number) {
+        return numbers.contains(number);
     }
 }

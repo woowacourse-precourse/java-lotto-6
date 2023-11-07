@@ -6,4 +6,5 @@ public class Constants {
     public final static int THOUSAND = 1000;
     public static final int LOTTO_LENGTH = 6;
     public final static String ERROR = "[ERROR] ";
+    public static final int MAX_NUMBER = 45;
 }

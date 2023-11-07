@@ -1,6 +1,7 @@
 package lotto.util.validators;
 
 import static lotto.util.Constants.ERROR;
+import static lotto.util.Constants.MAX_NUMBER;
 import static lotto.util.Constants.ZERO;
 import static lotto.util.enums.ErrorMessage.NUMBER_CANNOT_PARSE;
 
@@ -20,7 +21,7 @@ public class BonusNumberValidator {
     }
 
     private static void validateMaxNumber(String bonusNumbers) {
-        if (Integer.parseInt(bonusNumbers) > 45) {
+        if (Integer.parseInt(bonusNumbers) > MAX_NUMBER) {
             throw new NumberGreaterException();
         }
     }

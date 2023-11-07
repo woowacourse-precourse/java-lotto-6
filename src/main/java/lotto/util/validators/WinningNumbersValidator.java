@@ -1,9 +1,8 @@
 package lotto.util.validators;
 
-import static lotto.util.Constants.ERROR;
 import static lotto.util.Constants.LOTTO_LENGTH;
+import static lotto.util.Constants.MAX_NUMBER;
 import static lotto.util.Constants.ZERO;
-import static lotto.util.enums.ErrorMessage.NUMBER_CANNOT_PARSE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -19,8 +18,6 @@ import lotto.util.exception.input.WinningNumbersLengthMatchException;
 
 
 public class WinningNumbersValidator {
-    private static final int MAX_NUMBER = 45;
-
     public static void validateWinningNumbers(String winningNumbers) {
         validateNotNullAndNotEmpty(winningNumbers);
 
@@ -32,18 +29,6 @@ public class WinningNumbersValidator {
         lengthCheck(parseWinningNumbers);
         validateNonPositiveWinningNumber(parseWinningNumbers);
     }
-
-//    private static List<Integer> parseIntWinningNumbers(List<String> numbers) {
-//        return numbers.stream()
-//                .map(str -> {
-//                    try {
-//                        return Integer.valueOf(str);
-//                    } catch (NumberFormatException e) {
-//                        throw new NumberFormatException(ERROR + NUMBER_CANNOT_PARSE.getMessage());
-//                    }
-//                })
-//                .collect(Collectors.toList());
-//    }
 
     private static List<Integer> parseIntWinningNumbers(List<String> numbers) {
         return numbers.stream()

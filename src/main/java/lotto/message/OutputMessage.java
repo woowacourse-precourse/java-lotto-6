@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import lotto.data.Lotto;
+import lotto.data.LottoResult;
 
 public enum OutputMessage {
     ASK_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
@@ -26,15 +27,17 @@ public enum OutputMessage {
         System.out.println(sb);
     }
 
-    public static void printWinningStatistics(HashMap<LottoResult, BigDecimal> result, float profitRate) {
+    public static void printWinningStatistics(LottoResult lottoResult) {
         StringBuilder sb = new StringBuilder();
+        HashMap<LottoPrize, BigDecimal> result = lottoResult.getLottoRank();
+        System.out.println(result);
         sb.append("당첨 통계\n").append("---------\n");
-        sb.append(LottoResult.FIFTH.getMessage()).append(" - ").append(result.get(LottoResult.FIFTH)).append("개\n");
-        sb.append(LottoResult.FOURTH.getMessage()).append(" - ").append(result.get(LottoResult.FOURTH)).append("개\n");
-        sb.append(LottoResult.THIRD.getMessage()).append(" - ").append(result.get(LottoResult.THIRD)).append("개\n");
-        sb.append(LottoResult.SECOND.getMessage()).append(" - ").append(result.get(LottoResult.SECOND)).append("개\n");
-        sb.append(LottoResult.FIRST.getMessage()).append(" - ").append(result.get(LottoResult.FIRST)).append("개\n");
-        sb.append(String.format("총 수익률은 %.1f%%입니다.", profitRate));
+        sb.append(LottoPrize.FIFTH.getMessage()).append(" - ").append(result.get(LottoPrize.FIFTH)).append("개\n");
+        sb.append(LottoPrize.FOURTH.getMessage()).append(" - ").append(result.get(LottoPrize.FOURTH)).append("개\n");
+        sb.append(LottoPrize.THIRD.getMessage()).append(" - ").append(result.get(LottoPrize.THIRD)).append("개\n");
+        sb.append(LottoPrize.SECOND.getMessage()).append(" - ").append(result.get(LottoPrize.SECOND)).append("개\n");
+        sb.append(LottoPrize.FIRST.getMessage()).append(" - ").append(result.get(LottoPrize.FIRST)).append("개\n");
+        sb.append(String.format("총 수익률은 %.1f%%입니다.", lottoResult.getProfitPercent()));
         System.out.println(sb);
     }
 }

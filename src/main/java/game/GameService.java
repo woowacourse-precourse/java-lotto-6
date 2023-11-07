@@ -80,13 +80,21 @@ public class GameService {
         if (winningNumber.length != 6) {
             throw new IllegalArgumentException();
         }
+
+        List<Integer> uniqueWinningNumber = new ArrayList<>();
         for (String number : winningNumber) {
             if (!number.matches("\\d+")) {
                 throw new IllegalArgumentException();
             }
+
             if (Integer.parseInt(number) < 1 || Integer.parseInt(number) > 45) {
                 throw new IllegalArgumentException();
             }
+
+            if (uniqueWinningNumber.contains(number)) {
+                throw new IllegalArgumentException();
+            }
+            uniqueWinningNumber.add(Integer.parseInt(number));
         }
     }
 

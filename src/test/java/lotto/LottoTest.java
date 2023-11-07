@@ -42,35 +42,35 @@ class LottoTest {
     void compareLottoWithGivenLottoSix() {
         Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.SIX_MATCHES);
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(6);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 5")
     @Test
     void compareLottoWithGivenLottoFive() {
         Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 7));
         Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.FIVE_MATCHES);
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(5);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 4")
     @Test
     void compareLottoWithGivenLottoFour() {
         Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 8, 7));
         Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.FOUR_MATCHES);
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(4);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 3")
     @Test
     void compareLottoWithGivenLottoThree() {
         Lotto userLotto =  new Lotto(List.of(1, 2, 3, 7, 12, 9));
         Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.THREE_MATCHES);
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(3);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 2")
     @Test
     void compareLottoWithGivenLottoUnder() {
         Lotto userLotto =  new Lotto(List.of(1, 2, 7, 8, 9, 10));
         Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(LottoResult.UNDER_THREE);
+        assertThat(answerLotto.matchUp(userLotto)).isEqualTo(2);
     }
     @DisplayName("로또 번호랑 보너스 번호를 비교를 한다. : 5개 일치인 경우")
     @Test
@@ -78,7 +78,8 @@ class LottoTest {
         Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 10));
         Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Integer bonusNumber = 10;
-        assertThat(userLotto.matchUp(answerLotto,bonusNumber)).isEqualTo(LottoResult.FIVE_PLUS_BONUS);
+        int sameBallNumber = userLotto.matchUp(answerLotto);
+        assertThat(LottoResult.matchUp(sameBallNumber,userLotto,bonusNumber)).isEqualTo(LottoResult.FIVE_PLUS_BONUS);
     }
 
 

@@ -23,6 +23,14 @@ public enum LottoResult {
         return message;
     }
 
+    public static LottoResult matchUp(Integer sameBall , Lotto given ,Integer bonusNumber) {
+        LottoResult result = getResultByNumberOfBall(sameBall);
+        if (wonFiveBonusNumber(result,given,bonusNumber) )return LottoResult.FIVE_PLUS_BONUS;
+        return result;
+    }
+    private static boolean wonFiveBonusNumber(LottoResult result, Lotto given ,Integer bonusNumber) {
+        return result.equals(LottoResult.FIVE_MATCHES) && given.haveSameBall(bonusNumber);
+    }
     public static LottoResult getResultByNumberOfBall(int countBall) {
         if (countBall == 3) {
             return THREE_MATCHES;

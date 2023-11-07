@@ -1,47 +1,52 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-
 public class Lotto {
+    private static final String ERRORHEAD ="[ERROR]" ;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
-    public static Lotto newInstance(){
-        List<Integer> numbers =Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public static Lotto newInstance(List<Integer> numbers){
         return new Lotto(numbers);
     }
-    private void validate(List<Integer> numbers) {
-        LottoValidator lottoValidator = new LottoValidator();
-        lottoValidator.validateLotto(numbers);
-    }
 
-    public LottoResult matchUp(Lotto givenLotto) {
-        int countBall = (int)numbers.stream()
+    public Integer matchUp(Lotto givenLotto) {
+        return (int)numbers.stream()
                 .filter(givenLotto::haveSameBall)
                 .count();
-        return LottoResult.getResultByNumberOfBall(countBall);
     }
-
-    public LottoResult matchUp(Lotto answerLotto, Integer bonusNumber) {
-        LottoResult result = this.matchUp(answerLotto);
-        if (wonFiveBonusNumber(result, bonusNumber)) return LottoResult.FIVE_PLUS_BONUS;
-        return result;
-    }
-
-    private boolean haveSameBall(Integer number) {
+    public boolean haveSameBall(Integer number) {
         return this.numbers.contains(number);
     }
-
-    private boolean wonFiveBonusNumber(LottoResult result, Integer bonusNumber) {
-        return result.equals(LottoResult.FIVE_MATCHES) && haveSameBall(bonusNumber);
-    }
-
     public List<Integer> getNumbersForMessage() {
         return numbers;
+    }
+    public void validate(List<Integer> numbers) {
+        validateSize(numbers);
+        validateRange(numbers);
+        validateDuplicate(numbers);
+    }
+    public void validateSize(List<Integer> numbers) {
+        if (numbers.size() != 6) throw new IllegalArgumentException(ERRORHEAD);
+    }
+
+    public void validateDuplicate(List<Integer> numbers) {
+        long distinctCount = numbers.stream().distinct().count();
+        if (numbers.size() != distinctCount) {
+            throw new IllegalArgumentException(ERRORHEAD);
+        }
+    }
+
+    public  static void validateRange(List<Integer> numbers) {
+        numbers.stream()
+                .filter(number -> number < 1 || number > 45)
+                .findAny()
+                .ifPresent(number -> {
+                    throw new IllegalArgumentException(ERRORHEAD);
+                });
     }
 }

@@ -14,10 +14,6 @@ public class GameInput {
         this.bonusNumber = inputReader.readAndValidateBonumNumber();
     }
 
-    public int getPurchaseAmount() {
-        return purchaseAmount;
-    }
-
     public List<Integer> getLottoNumbers() {
         return lottoNumbers;
     }

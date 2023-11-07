@@ -99,7 +99,6 @@ public class LottoController {
 
     private Integer getInputBonusNumber() {
         String userInput = InputView.input().trim();
-        int bonusNumber = Utils.stringToInteger(userInput);
-        return Utils.rangeInputBonusNumber(bonusNumber);
+        return Utils.stringToInteger(userInput);
     }
 }

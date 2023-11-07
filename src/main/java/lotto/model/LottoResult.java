@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.constants.LottoConstants.THOUSAND;
+
 import java.util.EnumMap;
 import java.util.EnumSet;
 
@@ -26,7 +28,7 @@ public class LottoResult {
         for (Rank rank : getLottoResult().keySet()) {
             sumPrize += rank.getReward() * lottoResult.get(rank);
         }
-        return ((double)sumPrize / 1000) / money.getLottoCount() * 100;
+        return ((double)sumPrize / THOUSAND) / money.getLottoCount() * 100;
     }
 
     public EnumMap<Rank, Integer> getLottoResult() {

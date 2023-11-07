@@ -1,14 +1,14 @@
 package lotto.model;
 
+import static lotto.constants.LottoConstants.LOTTO_SIZE;
+import static lotto.constants.LottoConstants.MAX_RANGE;
+import static lotto.constants.LottoConstants.MIN_RANGE;
+
 import java.util.HashSet;
 import java.util.List;
 import lotto.exceptionMessages.ExceptionMessages;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = 6;
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 45;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

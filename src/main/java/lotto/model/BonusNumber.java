@@ -1,11 +1,12 @@
 package lotto.model;
 
+import static lotto.constants.LottoConstants.MAX_RANGE;
+import static lotto.constants.LottoConstants.MIN_RANGE;
+
 import lotto.exceptionMessages.ExceptionMessages;
 
 public class BonusNumber {
     private final int bonusNumber;
-    private static final int MIN_RANGE = 1;
-    private static final int MAX_RANGE = 45;
 
     public BonusNumber(int bonusNumber) {
         validate(bonusNumber);

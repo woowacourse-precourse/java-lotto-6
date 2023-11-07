@@ -1,9 +1,10 @@
 package lotto.model;
 
+import static lotto.constants.LottoConstants.THOUSAND;
+
 import lotto.exceptionMessages.ExceptionMessages;
 
 public class Money {
-    private static final int THOUSAND = 1_000;
     private static final int ZERO = 0;
 
     private final int money;

@@ -10,13 +10,15 @@ import inputdata.LottoBonusNumberInput;
 import inputdata.LottoTicketInput;
 import inputdata.LottoWinningNumberInput;
 import java.util.List;
+import lotto.Lotto;
+import validate.Validator;
 
 public class LottoManager {
     private LottoTicketInput lottoTicketInput;
     private LottoBonusNumberInput lottoBonusNumberInput;
     private LottoWinningNumberInput lottoWinningNumberInput;
-
-    public LottoManager() {}
+    public LottoManager() {
+    }
 
     public void setInputLottoTicketPrice() {
         while (true) {
@@ -49,19 +51,15 @@ public class LottoManager {
             try {
                 int bonusNumber = Integer.parseInt(Console.readLine());
                 lottoBonusNumberInput.setBonusNumbers(bonusNumber);
-                this.lottoBonusNumberInput = new LottoBonusNumberInput(bonusNumber);
                 validateBonusNumber(bonusNumber);
+                this.lottoBonusNumberInput = new LottoBonusNumberInput(bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-    }
 
-    private void printPurchasedTickets(int size) {
-        System.out.println(size + "개를 구매했습니다.");
     }
-
-    private void lottoNumbers(List<Integer> lottoNumbers) {
-        System.out.println(lottoNumbers);
+    public int setLottoTicket() {
+        return lottoTicketInput.getLottoTicketPrice() / 1000;
     }
 }

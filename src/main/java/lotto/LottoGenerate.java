@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import lotto.Config;
 import lotto.domain.Lotto;
 
 public class LottoGenerate {
@@ -20,8 +19,8 @@ public class LottoGenerate {
     }
 
     private Lotto createLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Config.MIN_LOTTO_NUMBER,
-                Config.MAX_LOTTO_NUMBER, Config.SIZE_OF_LOTTO);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LottoConfig.MIN_LOTTO_NUMBER,
+                LottoConfig.MAX_LOTTO_NUMBER, LottoConfig.SIZE_OF_LOTTO);
         Collections.sort(numbers);
 
         return new Lotto(numbers);

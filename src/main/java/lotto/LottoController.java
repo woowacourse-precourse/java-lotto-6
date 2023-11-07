@@ -70,7 +70,7 @@ public class LottoController {
         boolean loop = true;
 
         while (loop) {
-            List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(Config.SPLIT_SYMBOL));
+            List<String> inputWinningNumbers = Arrays.asList(input.winningNumbers().split(LottoConfig.SPLIT_SYMBOL));
             try {
                 isNumber(inputWinningNumbers);
                 Lotto lotto = new Lotto(inputWinningNumbers.stream().map(Integer::valueOf).toList());
@@ -135,72 +135,72 @@ public class LottoController {
     }
 
     private float getReturnRate(HashMap<String, Integer> countByPrize, int lottoCost) {
-        int totalFirstReward = rewardToNumber(Config.FIRST_PRIZE_REWARD)
-                * countByPrize.get(Config.FIRST_PRIZE_REWARD);
-        int totalSecondReward = rewardToNumber(Config.SECOND_PRIZE_REWARD)
-                * countByPrize.get(Config.SECOND_PRIZE_REWARD);
-        int totalThirdReward = rewardToNumber(Config.THIRD_PRIZE_REWARD)
-                * countByPrize.get(Config.THIRD_PRIZE_REWARD);
-        int totalFourthReward = rewardToNumber(Config.FOURTH_PRIZE_REWARD)
-                * countByPrize.get(Config.FOURTH_PRIZE_REWARD);
-        int totalFifthReward = rewardToNumber(Config.FIFTH_PRIZE_REWARD)
-                * countByPrize.get(Config.FIFTH_PRIZE_REWARD);
+        int totalFirstReward = rewardToNumber(LottoConfig.FIRST_PRIZE_REWARD)
+                * countByPrize.get(LottoConfig.FIRST_PRIZE_REWARD);
+        int totalSecondReward = rewardToNumber(LottoConfig.SECOND_PRIZE_REWARD)
+                * countByPrize.get(LottoConfig.SECOND_PRIZE_REWARD);
+        int totalThirdReward = rewardToNumber(LottoConfig.THIRD_PRIZE_REWARD)
+                * countByPrize.get(LottoConfig.THIRD_PRIZE_REWARD);
+        int totalFourthReward = rewardToNumber(LottoConfig.FOURTH_PRIZE_REWARD)
+                * countByPrize.get(LottoConfig.FOURTH_PRIZE_REWARD);
+        int totalFifthReward = rewardToNumber(LottoConfig.FIFTH_PRIZE_REWARD)
+                * countByPrize.get(LottoConfig.FIFTH_PRIZE_REWARD);
 
         int totalReward = totalFirstReward + totalSecondReward + totalThirdReward
                 + totalFourthReward + totalFifthReward;
 
-        return (float) totalReward / lottoCost * Config.PERCENTAGE;
+        return (float) totalReward / lottoCost * LottoConfig.PERCENTAGE;
     }
 
     private int rewardToNumber(String reward) {
-        return Integer.parseInt(reward.replace(Config.THOUSANDS_SEPARATOR, ""));
+        return Integer.parseInt(reward.replace(LottoConfig.THOUSANDS_SEPARATOR, ""));
     }
 
     private void printFirstPrizeCount(HashMap<String, Integer> countByPrize) {
         System.out.printf(output.printCompareLottoNumberResultExceptSecondPrize(),
-                Config.FIRST_PRIZE_HAS_WINNING, Config.FIRST_PRIZE_REWARD,
-                countByPrize.get(Config.FIRST_PRIZE_REWARD));
+                LottoConfig.FIRST_PRIZE_HAS_WINNING, LottoConfig.FIRST_PRIZE_REWARD,
+                countByPrize.get(LottoConfig.FIRST_PRIZE_REWARD));
     }
 
     private void printSecondPrizeCount(HashMap<String, Integer> countByPrize) {
         System.out.printf(output.printCompareLottoNumberResultSecondPrize(),
-                Config.SECOND_PRIZE_HAS_WINNING, Config.SECOND_PRIZE_REWARD,
-                countByPrize.get(Config.SECOND_PRIZE_REWARD));
+                LottoConfig.SECOND_PRIZE_HAS_WINNING, LottoConfig.SECOND_PRIZE_REWARD,
+                countByPrize.get(LottoConfig.SECOND_PRIZE_REWARD));
     }
 
     private void printThirdPrizeCount(HashMap<String, Integer> countByPrize) {
         System.out.printf(output.printCompareLottoNumberResultExceptSecondPrize(),
-                Config.THIRD_PRIZE_HAS_WINNING, Config.THIRD_PRIZE_REWARD,
-                countByPrize.get(Config.THIRD_PRIZE_REWARD));
+                LottoConfig.THIRD_PRIZE_HAS_WINNING, LottoConfig.THIRD_PRIZE_REWARD,
+                countByPrize.get(LottoConfig.THIRD_PRIZE_REWARD));
     }
 
     private void printFourthPrizeCount(HashMap<String, Integer> countByPrize) {
         System.out.printf(output.printCompareLottoNumberResultExceptSecondPrize(),
-                Config.FOURTH_PRIZE_HAS_WINNING, Config.FOURTH_PRIZE_REWARD,
-                countByPrize.get(Config.FOURTH_PRIZE_REWARD));
+                LottoConfig.FOURTH_PRIZE_HAS_WINNING, LottoConfig.FOURTH_PRIZE_REWARD,
+                countByPrize.get(LottoConfig.FOURTH_PRIZE_REWARD));
     }
 
     private void printFifthPrizeCount(HashMap<String, Integer> countByPrize) {
         System.out.printf(output.printCompareLottoNumberResultExceptSecondPrize(),
-                Config.FIFTH_PRIZE_HAS_WINNING, Config.FIFTH_PRIZE_REWARD,
-                countByPrize.get(Config.FIFTH_PRIZE_REWARD));
+                LottoConfig.FIFTH_PRIZE_HAS_WINNING, LottoConfig.FIFTH_PRIZE_REWARD,
+                countByPrize.get(LottoConfig.FIFTH_PRIZE_REWARD));
     }
 
     //이 아래는 추후 LottoService 클래스로 이동(일부 메서드 접근 제어자 수정 필요)
     private HashMap<String, Integer> checkRewardByLotto(HashMap<Integer, List<Integer>> checkMatchCountResult) {
         HashMap<String, Integer> countByPrize = new HashMap<>();
 
-        countByPrize.put(Config.FIRST_PRIZE_REWARD,
-                checkMatchCountByLotto(checkMatchCountResult, Config.FIRST_PRIZE_HAS_WINNING));
-        countByPrize.put(Config.SECOND_PRIZE_REWARD,
-                checkMatchCountByLotto(checkMatchCountResult, Config.SECOND_PRIZE_HAS_WINNING,
-                        Config.SECOND_PRIZE_HAS_BONUS));
-        countByPrize.put(Config.THIRD_PRIZE_REWARD,
-                checkMatchCountByLotto(checkMatchCountResult, Config.THIRD_PRIZE_HAS_WINNING));
-        countByPrize.put(Config.FOURTH_PRIZE_REWARD,
-                checkMatchCountByLotto(checkMatchCountResult, Config.FOURTH_PRIZE_HAS_WINNING));
-        countByPrize.put(Config.FIFTH_PRIZE_REWARD,
-                checkMatchCountByLotto(checkMatchCountResult, Config.FIFTH_PRIZE_HAS_WINNING));
+        countByPrize.put(LottoConfig.FIRST_PRIZE_REWARD,
+                checkMatchCountByLotto(checkMatchCountResult, LottoConfig.FIRST_PRIZE_HAS_WINNING));
+        countByPrize.put(LottoConfig.SECOND_PRIZE_REWARD,
+                checkMatchCountByLotto(checkMatchCountResult, LottoConfig.SECOND_PRIZE_HAS_WINNING,
+                        LottoConfig.SECOND_PRIZE_HAS_BONUS));
+        countByPrize.put(LottoConfig.THIRD_PRIZE_REWARD,
+                checkMatchCountByLotto(checkMatchCountResult, LottoConfig.THIRD_PRIZE_HAS_WINNING));
+        countByPrize.put(LottoConfig.FOURTH_PRIZE_REWARD,
+                checkMatchCountByLotto(checkMatchCountResult, LottoConfig.FOURTH_PRIZE_HAS_WINNING));
+        countByPrize.put(LottoConfig.FIFTH_PRIZE_REWARD,
+                checkMatchCountByLotto(checkMatchCountResult, LottoConfig.FIFTH_PRIZE_HAS_WINNING));
 
         return countByPrize;
     }
@@ -211,7 +211,7 @@ public class LottoController {
         for (int key : compareNumberResult.keySet()) {
             List<Integer> compareNumbersResult = compareNumberResult.get(key);
 
-            if (compareNumbersResult.get(Config.INDEX_WINNING_NUMBER) == countWinningInLotto) {
+            if (compareNumbersResult.get(LottoConfig.INDEX_WINNING_NUMBER) == countWinningInLotto) {
                 count++;
             }
         }
@@ -226,8 +226,8 @@ public class LottoController {
         for (int key : compareNumberResult.keySet()) {
             List<Integer> compareNumbersResult = compareNumberResult.get(key);
 
-            if (compareNumbersResult.get(Config.INDEX_WINNING_NUMBER) == countWinningInLotto
-                    && compareNumbersResult.get(Config.INDEX_BONUS_NUMBER) == countBonusInLotto) {
+            if (compareNumbersResult.get(LottoConfig.INDEX_WINNING_NUMBER) == countWinningInLotto
+                    && compareNumbersResult.get(LottoConfig.INDEX_BONUS_NUMBER) == countBonusInLotto) {
                 count++;
             }
         }

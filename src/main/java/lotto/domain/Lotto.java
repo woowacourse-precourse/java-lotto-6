@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.Config;
+import lotto.LottoConfig;
 import lotto.ErrorMessages;
 
 public class Lotto {
@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     private void checkSize(List<Integer> numbers) {
-        if (numbers.size() != Config.SIZE_OF_LOTTO) {
+        if (numbers.size() != LottoConfig.SIZE_OF_LOTTO) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_SIZE_INCORRECT.getMessage());
         }
     }
@@ -27,7 +27,7 @@ public class Lotto {
 
     private void checkNumberInRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < Config.MIN_LOTTO_NUMBER || number > Config.MAX_LOTTO_NUMBER) {
+            if (number < LottoConfig.MIN_LOTTO_NUMBER || number > LottoConfig.MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(ErrorMessages.ERROR_OUT_OF_RANGE_LOTT_NUMBER.getMessage());
             }
         }

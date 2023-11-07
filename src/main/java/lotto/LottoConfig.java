@@ -1,6 +1,6 @@
 package lotto;
 
-public class Config {
+public class LottoConfig {
     public final static int UNIT = 1000;
     public final static String SPLIT_SYMBOL = ",";
     public final static int MIN_LOTTO_NUMBER = 1;

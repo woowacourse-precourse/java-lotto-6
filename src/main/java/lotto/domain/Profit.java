@@ -1,19 +1,27 @@
 package lotto.domain;
 
+import java.util.List;
+import lotto.util.enumerator.WinningAmount;
+
 public class Profit {
-    private final long amount;
-    private final double rate;
-
-    public Profit(long amount, double rate) {
-        this.amount = amount;
-        this.rate = rate;
+    public long calculateTotalProfitAmount(List<WinningAmount> winningAmount) {
+        long result = 0L;
+        for (WinningAmount amount : winningAmount) {
+            result += amount.getAmount();
+        }
+        return result;
     }
 
-    public long getAmount() {
-        return amount;
+    public double calculateTotalProfitRate(double profitAmount, double purchaseAmount) {
+        double profitRate = calculateRate(profitAmount, purchaseAmount);
+        return calculateRoundedRate(profitRate);
     }
 
-    public double getRate() {
-        return rate;
+    private double calculateRate(double profitAmount, double purchaseAmount) {
+        return profitAmount / purchaseAmount * 100.0;
+    }
+
+    private double calculateRoundedRate(double profitRate) {
+        return Math.round(profitRate * 100) / 100.0;
     }
 }

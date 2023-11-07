@@ -1,6 +1,7 @@
 package controller;
 
 import domain.*;
+import util.ExceptionMessage;
 import view.InputView;
 import view.OutputView;
 
@@ -30,9 +31,9 @@ public class LottoController {
             setWinningAndBonus();
             printWinngingStatics();
         } catch(NumberFormatException e){
-
+            System.out.println(ExceptionMessage.NUMBER_FORMAT_EXCEPTION);
         } catch(IllegalArgumentException e){
-
+            System.out.println(e.getMessage());
         }
     }
 
@@ -76,6 +77,8 @@ public class LottoController {
         profitCalculator.calculateProfit(lotto, winningNumbers, bonusNumber.getBonusNumber());
         HashMap<WinningHistory, Integer> winningHistories = profitCalculator.getWinningHistory();
         String rateOfReturn = profitCalculator.calculateRateOfReturn(amount);
-
+        String winningMessage = profitCalculator.getWinningMessages(winningHistories);
+        OutputView.printWinningStatisticsHeader();
+        OutputView.printWinningMessage(winningMessage, rateOfReturn);
     }
 }

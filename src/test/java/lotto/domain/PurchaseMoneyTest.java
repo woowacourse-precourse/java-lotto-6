@@ -63,7 +63,7 @@ public class PurchaseMoneyTest {
     }
 
     @Test
-    @DisplayName("빈 값을 입력한 경우")
+    @DisplayName("널 값을 입력한 경우")
     void 널_값_입력() throws Exception{
 
         //given

@@ -15,10 +15,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해주세요");
         }
+        Error.CHECK.isDuplicate(numbers);
     }
 
     // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
-        return numbers;
+        return this.numbers;
     }
 }

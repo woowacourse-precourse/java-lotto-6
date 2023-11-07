@@ -29,7 +29,6 @@ public class LottoController {
         int bonusNumber = getBonusNumber(winLotto);
 
         winnerStatistics(userLottos, winLotto, bonusNumber);
-
     }
 
     private int buyLotto() {
@@ -73,7 +72,8 @@ public class LottoController {
         List<Lotto> lottos = new ArrayList<>();
 
         while (lottoCount > 0) {
-            List<Integer> lotto = Randoms.pickUniqueNumbersInRange(MIN_NUMBER_LOTTO, MAX_NUMBER_LOTTO, COUNT_OF_LOTTO);
+            List<Integer> randomNumber = Randoms.pickUniqueNumbersInRange(MIN_NUMBER_LOTTO, MAX_NUMBER_LOTTO, COUNT_OF_LOTTO);
+            List<Integer> lotto = new ArrayList<>(randomNumber);
             Collections.sort(lotto);
             lottos.add(new Lotto(lotto));
             lottoCount--;

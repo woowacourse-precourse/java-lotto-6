@@ -13,7 +13,6 @@ public class Statistics {
     private static final double RANK_3 = 1500000;
     private static final double RANK_4 = 50000;
     private static final double RANK_5 = 5000;
-
     private static final int SIX_NUMBER_MATCH = 6;
     private static final int FIVE_BONUS_NUMBER_MATCH = 7;
     private static final int FIVE_NUMBER_MATCH = 5;

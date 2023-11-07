@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.data.Lotto;
 import lotto.domain.LottoGenerator;
-import lotto.message.ErrorMessage;
 
 public class LottoUtil {
 
@@ -22,6 +21,4 @@ public class LottoUtil {
     public static Lotto generateLotto() {
         return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
-
-
 }

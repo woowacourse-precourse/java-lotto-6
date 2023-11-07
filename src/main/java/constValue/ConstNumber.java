@@ -5,11 +5,13 @@ public enum ConstNumber {
     MINIMUM_LOTTO_NUMBER(1),
     MAXIMUM_LOTTO_NUMBER(45),
     LOTTO_NUMBER_COUNT(6),
-    FIRST_PRIZE(2000000000),
-    SECOND_PRIZE(30000000),
-    THIRD_PRIZE(1500000),
-    FOURTH_PRIZE(50000),
-    FIFTH_PRIZE(5000);
+    FIRST_GRADE(1),
+    SECOND_GRADE(2),
+    THIRD_GRADE(3),
+    FOURTH_GRADE(4),
+    FIFTH_GRADE(5),
+    LOSE(0),
+    RESULT_ARRAY_SIZE(5);
     final private int value;
 
     public int getValue() {

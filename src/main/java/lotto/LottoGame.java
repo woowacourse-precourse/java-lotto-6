@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import constValue.ConstMessage;
 import constValue.ConstNumber;
+import constValue.LottoPrize;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +27,7 @@ public class LottoGame {
         this.correctLotto = enterCorrectNumber();
         System.out.println("보너스 번호를 입력해 주세요.");
         this.bonusNumber = enterBonusNumber();
+        printResult(calculateResult());
     }
 
     private Integer enterPurchaseAmount() {
@@ -120,5 +122,43 @@ public class LottoGame {
             numbers.add(Integer.parseInt(number));
         }
         return numbers;
+    }
+
+    private void printResult(Integer[] results) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(ConstMessage.FIFTH_PRIZE_MESSAGE.getMessage() + results[4] + "개");
+        System.out.println(ConstMessage.FOURTH_PRIZE_MESSAGE.getMessage() + results[3] + "개");
+        System.out.println(ConstMessage.THIRD_PRIZE_MESSAGE.getMessage() + results[2] + "개");
+        System.out.println(ConstMessage.SECOND_PRIZE_MESSAGE.getMessage() + results[1] + "개");
+        System.out.println(ConstMessage.FIRST_PRIZE_MESSAGE.getMessage() + results[0] + "개");
+        System.out.println("총 수익률은 " + calculateBenefitRate(results) + "%입니다.");
+    }
+
+    private Integer[] calculateResult() {
+        Integer[] results = new Integer[ConstNumber.RESULT_ARRAY_SIZE.getValue()];
+        Arrays.fill(results, 0);
+
+        for (Lotto lotto : getLottos()) {
+            Integer index = lotto.calculateGrade(this.correctLotto, this.bonusNumber) - 1;
+            if (index > 0 && index < results.length) {
+                results[index]++;
+            }
+        }
+
+        return results;
+    }
+
+    private String calculateBenefitRate(Integer[] results) {
+        Double sum = 0.0;
+        Integer purchaseAmount = getLottoGameCount() * ConstNumber.LOTTO_PRICE.getValue();
+
+        for(LottoPrize prize : LottoPrize.values()){
+            sum += results[prize.getGrade()-1] * prize.getValue();
+        }
+
+        Double benefitRate = Math.round(sum/purchaseAmount * 1000) / 10.0;
+
+        return String.format("%.1f", benefitRate);
     }
 }

@@ -11,7 +11,7 @@ public final class Message {
     public static final String WINNING_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-    public static final String ERROR_TEMPLATE = "[ERROR] %s\n";
+    public static final String ERROR_TEMPLATE = "[ERROR] %s%s\n";
     public static final String ERROR_MSG_NOT_A_NUMBER = "(은)는 숫자여야 합니다.";
 
     public static final String ERROR_MSG_NOT_IN_THOUSANDS = "(은)는 1000원 단위여야 합니다.";

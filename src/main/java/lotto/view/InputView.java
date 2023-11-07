@@ -30,11 +30,11 @@ public class InputView {
         return convertStringToIntegerList(winningNumber);
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(List<Integer> lottoNumbers) {
         printMessage(BONUS_NUMBER_INPUT_MSG);
 
         String bonusNumber = Console.readLine();
-        InputValidator.checkBonusNumber(bonusNumber);
+        InputValidator.checkBonusNumber(lottoNumbers, bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 

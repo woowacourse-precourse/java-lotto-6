@@ -14,18 +14,15 @@ public class Amount{
     private final int count;
     private final int LOTTO_TICKET_PRICE = 1000;
     public Amount(int amount){
-        validate(amount);
-        this.amount = amount;
-        this.count = amount/LOTTO_TICKET_PRICE;
+        this.amount = validate(amount);
+        this.count = this.amount/LOTTO_TICKET_PRICE;
     }
 
-    private void validate(int amount) {
-        if(!validateIsPositive(amount)){
-            inputLottoPurchaseAmount();
+    private int validate(int amount) {
+        if(!validateIsPositive(amount) || !validateIsDivisible(amount)){
+            return validate(inputLottoPurchaseAmount());
         }
-        if(!validateIsDivisible(amount)){
-            inputLottoPurchaseAmount();
-        }
+        return amount;
     }
 
     private boolean validateIsPositive(int amount) {

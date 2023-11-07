@@ -13,9 +13,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class InputView {
-    public static Amount inputLottoPurchaseAmount() {
+    public static int inputLottoPurchaseAmount() {
         System.out.println(INPUT_AMOUNT.getProgressMessage());
-        return new Amount(validateIsNumber());
+        return validateIsNumber();
     }
 
     private static int validateIsNumber(){

@@ -1,16 +1,12 @@
 package lotto.controller;
-
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.IssueLottery;
 import lotto.domain.JudgeWinningTickets;
 import lotto.domain.Lotto;
 import lotto.domain.Revenue;
-import lotto.validation.ValidInput;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +16,6 @@ public class LotteryController {
     private IssueLottery issueLottery;
     private OutputView outputView;
     private JudgeWinningTickets judgeWinningTickets;
-    private ValidInput validInput;
     private int payment;
     private int ticketCount;
     private int bonusNumber;
@@ -38,7 +33,6 @@ public class LotteryController {
         outputView = new OutputView();
         judgeWinningTickets = new JudgeWinningTickets();
         revenue = new Revenue();
-        validInput = new ValidInput();
     }
 
     public void lottoGameStart() {
@@ -79,6 +73,7 @@ public class LotteryController {
     private void setBonusNumber() {
         String input = inputView.askBonusNumber();
         bonusNumber = Integer.parseInt(input);
+        System.out.println();
     }
 
     private void setRevenue() {

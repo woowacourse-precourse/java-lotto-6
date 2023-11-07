@@ -15,8 +15,8 @@ public class LottoPrizeTest {
 
     @Test
     void increaseCountTest() {
-        assertEquals("3개 일치 (5,000원) - 0개",LottoPrize.FIFTH.toString());
+        int beforeCount=LottoPrize.FIFTH.getCount();
         LottoPrize.FIFTH.increaseCount();
-        assertEquals("3개 일치 (5,000원) - 1개",LottoPrize.FIFTH.toString());
+        assertEquals(beforeCount+1,LottoPrize.FIFTH.getCount());
     }
 }

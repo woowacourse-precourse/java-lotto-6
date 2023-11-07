@@ -20,12 +20,20 @@ public enum LottoPrize {
         this.count = 0;
     }
 
+    public int getCount() {
+        return this.count;
+    }
+
+    public int getPrize() {
+        return this.prize;
+    }
+
     public void increaseCount() {
         this.count++;
     }
 
     @Override
-    public String toString(){
-        return description+"("+ String.format("%,d", this.prize)+"원) - "+this.count+"개";
+    public String toString() {
+        return description + "(" + String.format("%,d", this.prize) + "원) - " + this.count + "개";
     }
 }

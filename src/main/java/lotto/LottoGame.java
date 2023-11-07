@@ -35,8 +35,7 @@ public class LottoGame {
             System.out.println("\n구입금액을 입력해 주세요");
             String input = Console.readLine();
             try {
-                Money money = new Money(Integer.parseInt(input));
-                return money;
+                return new Money(Integer.parseInt(input));
             } catch (NumberFormatException e) {
                 System.out.println(ExceptionList.MONEYEXCEPTION.content());
             } catch (IllegalArgumentException e) {
@@ -53,8 +52,7 @@ public class LottoGame {
                 List<String> input_lotto = List.of(input.split(","));
                 List<Integer> winning_lotto = input_lotto.stream().map(x -> Integer.parseInt(x))
                         .collect(Collectors.toList());
-                Lotto lotto = new Lotto(winning_lotto);
-                return lotto;
+                return new Lotto(winning_lotto);
             } catch (NumberFormatException e) {
                 System.out.println(ExceptionList.LOTTOEXCEPTION.content());
             } catch (IllegalArgumentException e) {

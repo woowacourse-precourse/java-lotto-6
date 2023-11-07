@@ -26,4 +26,3 @@ public class LottoNumberGeneratorTest {
         assertEquals(6, uniqueLottoNumbers.size());
     }
 }
-인

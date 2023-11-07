@@ -16,6 +16,9 @@ public final class Validator {
         if(amountInteger < 1000) {
             throw new IllegalArgumentException("[ERROR] 1000원 이상만 구매가능합니다.");
         }
+        if(amountInteger >= Integer.MAX_VALUE - 1) {
+            throw new IllegalArgumentException("[ERROR] 2100000000 이하의 값만 입력 가능합니다.");
+        }
     }
 
     public static void validateWinningNumber(String winningNum) {

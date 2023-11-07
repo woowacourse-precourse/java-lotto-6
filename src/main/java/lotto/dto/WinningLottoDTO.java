@@ -15,12 +15,11 @@ public final class WinningLottoDTO extends DTO.Input {
         this.lotto = lotto;
     }
 
-    public int getBonus() {
+    public Integer getBonus() {
         return bonus;
     }
 
     public void setBonus(Integer bonus) {
-        validateOverride(this.bonus);
         this.bonus = bonus;
     }
 }

@@ -10,7 +10,7 @@ public class LottoSeller {
     public static final LottoMachine lottoMachine = new LottoMachine();
     private Money money;
     private List<Lotto> createdLotto;
-    private List<Rank> result;
+    private List<Rank> ranks;
 
     public void buyLotto() {
         money = receiveMoneyFromPlayer();
@@ -41,7 +41,7 @@ public class LottoSeller {
         outputView.printLottos(createdLotto);
     }
 
-    public void calculateRank() {
-        lottoMachine.calculateRank(createdLotto);
+    private List<Rank> calculateRank() {
+        return lottoMachine.calculateRank(createdLotto);
     }
 }

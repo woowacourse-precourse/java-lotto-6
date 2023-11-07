@@ -42,7 +42,7 @@ public class InputView {
     }
 
     public List<Integer> inputWinningNumber() {
-        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
+        System.out.println("\n" + INPUT_WINNING_NUMBER_MESSAGE);
         String winningNumber = Console.readLine();
         validateWinningNumber(winningNumber);
         return winningNumberStringToList(winningNumber);
@@ -68,7 +68,7 @@ public class InputView {
     }
 
     public int inputBonusNumber() {
-        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        System.out.println("\n" + INPUT_BONUS_NUMBER_MESSAGE);
         String bonusNumber = Console.readLine();
         validateBonusNUmber(bonusNumber);
         return Integer.parseInt(bonusNumber);

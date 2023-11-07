@@ -13,7 +13,7 @@ public class WinningNumberManager {
         LottoMachineFromSeller.setWinningNumberToCalculator(winningNumber);
     }
 
-    public void inputWinningNumber() {
+    private void inputWinningNumber() {
         while (true) {
             try {
                 winningNumber.setNumbers(inputView.inputWinningNumber());
@@ -24,7 +24,7 @@ public class WinningNumberManager {
         }
     }
 
-    public void inputBonusNumber() {
+    private void inputBonusNumber() {
         while (true) {
             try {
                 winningNumber.setBonusNumber(inputView.inputBonusNumber());

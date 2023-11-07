@@ -42,10 +42,10 @@ class LottoResultTest {
     }
 
     @Test
-    @DisplayName("수익률 계산")
+    @DisplayName("수익률 계산할 때 소숫점 둘째에서 반올림되어야 한다")
     void calculateReturnRatePercentage() {
         Map<Rank, Integer> result = lottoResult.checkResult(winningLotto);
         double returnRatePercentage = lottoResult.calculateReturnRatePercentage(result, 6000);
-        assertThat(returnRatePercentage).isEqualTo(550916.67);
+        assertThat(returnRatePercentage).isEqualTo(550916.7);
     }
 }

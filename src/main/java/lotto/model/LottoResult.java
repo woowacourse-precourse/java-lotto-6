@@ -37,6 +37,6 @@ public class LottoResult {
     }
 
     private double roundToTwoDecimalPlaces(double returnRate) {
-        return (double) Math.round(returnRate * 100) / 100.0;
+        return Double.parseDouble(String.format("%.1f", returnRate));
     }
 }

@@ -2,7 +2,6 @@ package lotto.domain;
 
 import lotto.configure.DomainConfiguration;
 import lotto.util.RandomNumberGenerator;
-import lotto.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;

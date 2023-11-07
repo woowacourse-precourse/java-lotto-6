@@ -6,23 +6,27 @@ import java.util.List;
 
 public class UI {
 	LottoService lottoService = new LottoService();
+	long numberOfLottoTickets;
+	List<Lotto> computerLottos;
+	List<Integer> userNumbers;
+	int bonusNumber;
 
 	void on() {
-		long numberOfLottoTickets = inputMoney();
+		inputMoney();
 		System.out.println("\n" + numberOfLottoTickets + "개를 구매했습니다.");
 		showComputerLottos(numberOfLottoTickets);
-		List<Integer> userNumbers = inputNumbers();
-		int bonusNumber = inputBonusNumber(userNumbers);
+		inputNumbers();
+		inputBonusNumber(userNumbers);
 	}
 
-	private long inputMoney() {
+	private void inputMoney() {
 		try {
 			System.out.println("구입금액을 입력해 주세요.");
 			String cost = Console.readLine();
-			return lottoService.getNumberOfLottoTickets(cost);
+			numberOfLottoTickets = lottoService.getNumberOfLottoTickets(cost);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return inputMoney();
+			inputMoney();
 		}
 	}
 
@@ -32,29 +36,32 @@ public class UI {
 			for (int i = 0; i < lottos.size(); i++) {
 				System.out.println(lottos.get(i).getNumbers());
 			}
-			System.out.println();
+			computerLottos = lottos;
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 			on();
 		}
 	}
 
-	private List<Integer> inputNumbers() {
+	private void inputNumbers() {
 		try {
 			System.out.println("\n당첨 번호를 입력해 주세요.");
 			String inputNumbers = Console.readLine();
-			List<Integer> userNumbers = lottoService.checkNumbers(inputNumbers);
-			return userNumbers;
+			this.userNumbers = lottoService.checkNumbers(inputNumbers);
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
-			return inputNumbers();
+			inputNumbers();
 		}
 	}
 
-	private int inputBonusNumber(List<Integer> userNumbers) {
-		System.out.println("\n보너스 번호를 입력해 주세요.");
-		String inputBonusNumber = Console.readLine();
-		int userBonusNumber = lottoService.checkBonusNumber(userNumbers, inputBonusNumber);
-		return userBonusNumber;
+	private void inputBonusNumber(List<Integer> userNumbers) {
+		try {
+			System.out.println("\n보너스 번호를 입력해 주세요.");
+			String inputBonusNumber = Console.readLine();
+			this.bonusNumber = lottoService.checkBonusNumber(userNumbers, inputBonusNumber);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			inputBonusNumber(userNumbers);
+		}
 	}
 }

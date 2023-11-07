@@ -50,6 +50,6 @@ public class LottoService {
 		validator.isComposedOfNumbers(inputBonusNumber);
 		validator.isInRange(inputBonusNumber);
 		validator.containNumber(userNumbers, inputBonusNumber);
-		return 0;
+		return Integer.parseInt(inputBonusNumber);
 	}
 }

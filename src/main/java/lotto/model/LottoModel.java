@@ -42,7 +42,6 @@ public class LottoModel {
         } else if (sameNumberCount == 6) {
             result.set(4, result.get(4) + 1);
         }
-
     }
 
     public List<Integer> getResult() {

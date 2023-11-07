@@ -22,8 +22,7 @@ public class Purchase {
             throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_NOT_DIVISIBLE.getMessage());
         }
     }
-
-
+    
     public int getPurchase() {
         return money;
     }

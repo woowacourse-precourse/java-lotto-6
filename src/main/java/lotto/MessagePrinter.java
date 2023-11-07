@@ -3,7 +3,6 @@ package lotto;
 import static lotto.Util.formatCurrency;
 import static lotto.Util.getLottoCount;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +25,7 @@ public class MessagePrinter {
     public static void printCompletePurchase(int purchaseCount, List<Lotto> lottoNumbers) {
         System.out.println(NEW_LINE + getLottoCount(purchaseCount) + COMPLETE_PURCHASE);
         for (Lotto lottoNumber : lottoNumbers) {
-            System.out.println(lottoNumber);
+            System.out.println(lottoNumber.ascendingSort());
         }
         System.out.println();
     }

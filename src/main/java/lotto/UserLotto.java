@@ -4,7 +4,6 @@ import static lotto.Util.generateNumbers;
 import static lotto.Util.getLottoCount;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,6 @@ public class UserLotto {
         userLottos = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = generateNumbers();
-            Collections.sort(lottoNumbers);
             userLottos.add(new Lotto(lottoNumbers));
         }
     }

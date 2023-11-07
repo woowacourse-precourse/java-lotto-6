@@ -36,13 +36,18 @@ public class LottoManager {
     }
 
     public EarningRate calEarningRate() {
-        int earning = lottos.stream()
-                .map(lotto -> answerLotto.contains(lotto))
+        int earning = calScore().stream()
                 .map(Score::getPrize)
                 .reduce(Integer::sum)
                 .get();
 
         return new EarningRate(token.amount(), earning);
+    }
+
+    public List<Score> calScore() {
+        return lottos.stream()
+                .map(lotto -> answerLotto.contains(lotto))
+                .toList();
     }
 
     @Override

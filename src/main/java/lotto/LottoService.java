@@ -9,6 +9,36 @@ public class LottoService {
     private static final int LIMIT_NUMBER = 45;
     private static final int PURCHASE_STANDARD = 1000;
 
+    public LottoResult lotteryStatistics(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
+        LottoResult result = new LottoResult();
+        for (Lotto lotto : lottos) {
+            int correctCnt = count(lotto.getNumbers(), winningNumbers.getNumbers());
+            boolean bonus = false;
+            if (correctCnt == 5) {
+                bonus = isBonusNumberCorrect(lotto.getNumbers(), bonusNumber);
+            }
+            result.plusCnt(correctCnt, bonus);
+        }
+        return result;
+    }
+
+    public int count(List<Integer> numbers, List<Integer> winningNumbers) {
+        int cnt = 0;
+        for (int number : numbers) {
+            if (winningNumbers.contains(number)) {
+                cnt++;
+            }
+        }
+        return cnt;
+    }
+
+    public boolean isBonusNumberCorrect(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            return true;
+        }
+        return false;
+    }
+
     public int inputPurchaseAmount() {
         while (true) {
             String input = Console.readLine();

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.type.ResultType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,15 @@ class LottoControllerTest {
     @DisplayName("무작위 로또 번호의 출력 확인")
     @Test
     void getLottoString() {
-        lottoController.getRandomLottoNumber(5);
+        lottoController.setRandomLottoNumber(5);
         String result = lottoController.getLottoString();
         assertThat(result).contains("[", "]");
+    }
+
+    @DisplayName("결과 판단에 대한 정상 테스트")
+    @Test
+    void getLottoResultTest() {
+        assertThat(lottoController.getRankResult(5, false))
+                .isEqualTo(ResultType.FIFTH);
     }
 }

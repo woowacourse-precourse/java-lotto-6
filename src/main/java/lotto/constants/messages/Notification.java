@@ -7,8 +7,11 @@ public enum Notification {
     BONUS_LOTTO("보너스 번호를 입력해 주세요."),
     RESULT_PRE("당첨 통계\n"
             + "---"),
-    RESULT_MATCHED("%d개 일치 (%d원) - %d개"),
-    RESULT_PROFIT("총 수익률은 %lf%입니다.");
+    RESULT_MATCHED("%d개 일치"),
+    RESULT_PRIZE(" (%,d원) "),
+    RESULT_WON("- %d개 "),
+    RESULT_BONUS(", 보너스 볼 일치"),
+    RESULT_PROFIT("총 수익률은 %.1f%%입니다.");
 
 
     private final String message;

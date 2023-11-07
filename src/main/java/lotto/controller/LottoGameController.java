@@ -1,71 +1,86 @@
 package lotto.controller;
 
 import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Result;
-import lotto.domain.Results;
 import lotto.domain.Tickets;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
 
-    private final InputView inputView = new InputView();
+    private final LottoGameService lottoGameService = new LottoGameService();
 
     public void run() {
+        Tickets tickets = buyLottos();
 
-        String purchaseAmount = inputView.inputPurchaseAmount();
+        OutputView.printNumberOfTickets(tickets.getNumberOfTickets());
 
-        int userMoney = parseStringToUnsignedInt(purchaseAmount);
+        Lottos lottos = lottoGameService.buyLottos(tickets);
 
-        Tickets tickets = Tickets.of(userMoney);
+        OutputView.printLottoNumbers(lottos);
 
-        OutputView.printPurchaseNumber(tickets.getNumberTickets());
+        String winningNumber = InputView.WinningNumber();
 
-        List<Lotto> asdf = IntStream.range(0, tickets.getNumberTickets())
-            .mapToObj(i -> Lotto.generateRandomLottoNumbers())
-            .toList();
+        Lotto winningLottoNumber = parseStringToLotto(winningNumber);
 
-        Lottos lottos = Lottos.of(asdf);
+        int bonusNumber = getBonusNumber(winningLottoNumber);
 
-        lottos.getLottos().stream()
-            .map(Lotto::toString)
-            .forEach(System.out::println);
-
-        String winningNumber = inputView.inputWinningNumber();
-
-        List<Integer> winningNumbers = Arrays.stream(winningNumber.split(","))
-            .map(Integer::parseInt)
-            .toList();
-
-        Lotto userLottoNumbers = Lotto.of(winningNumbers);
-
-        String bonusNumber = inputView.inputBonusNumber();
-
-        int bonusNumberInt = parseStringToUnsignedInt(bonusNumber);
-
-        boolean isBonusNumber = userLottoNumbers.getMatchBonus(bonusNumberInt);
-
-        Result[] results = Result.getAllLottoResult(lottos, userLottoNumbers, isBonusNumber);
+        Result[] results = Result.getAllLottoResult(lottos, winningLottoNumber, bonusNumber);
 
         OutputView.printWinningStatistics(results);
 
-        double profitRate = Result.getProfitRate(results, userMoney);
+        double profitRate = Result.getProfitRate(results, tickets.getUserMoney());
 
         OutputView.printProfitRate(profitRate);
+    }
 
+    private Tickets buyLottos() {
+        String input = InputView.PurchaseAmount();
+        try {
+            int userMoney = parseStringToUnsignedInt(input);
+            return lottoGameService.getTickets(userMoney);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return buyLottos();
+        }
+    }
 
+    private int getBonusNumber(Lotto winningLottoNumber) {
+        String bonusNumber = InputView.BonusNumber();
+        try {
+            int bonusNumberInt = Integer.parseUnsignedInt(bonusNumber);
+            if(winningLottoNumber.checkDuplicate(bonusNumberInt)){
+                throw new IllegalArgumentException("[ERROR]보너스 번호는 당첨 번호와 중복될 수 없습니다");
+            }
+            if(bonusNumberInt < 1 || bonusNumberInt > 45) {
+                throw new IllegalArgumentException("[ERROR]1~45 사이의 숫자만 입력가능합니다");
+            }
+            return bonusNumberInt;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getBonusNumber(winningLottoNumber);
+        }
+    }
+
+    private Lotto parseStringToLotto(String input) {
+        try {
+            return Lotto.of(Arrays.stream(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList());
+        } catch (IllegalArgumentException e) {
+            return parseStringToLotto(InputView.WinningNumber());
+        }
     }
 
     private int parseStringToUnsignedInt(String input) {
         try {
             return Integer.parseUnsignedInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("0이상의 숫자만 입력가능합니다");
+            System.out.println("[ERROR]0이상의 숫자만 입력가능합니다");
+            return parseStringToUnsignedInt(InputView.PurchaseAmount());
         }
     }
-
 }

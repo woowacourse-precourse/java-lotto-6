@@ -27,16 +27,18 @@ public enum Result {
     public static Result[] getAllLottoResult(
         Lottos lottos,
         Lotto userLottoNumbers,
-        boolean isBonusNumber
+        int BonusNumber
     ) {
-            getLottoResults(lottos, userLottoNumbers, isBonusNumber);
+            getLottoResults(lottos, userLottoNumbers, BonusNumber);
         return Result.values();
     }
 
-    private static void getLottoResults(Lottos lottos, Lotto userLottoNumbers, boolean isBonusNumber) {
-        lottos.getLottos().stream()
-            .map(lotto -> lotto.getMatchCount(userLottoNumbers))
-            .forEach(matchCount -> findprize(matchCount, isBonusNumber));
+    private static void getLottoResults(Lottos lottos, Lotto userLottoNumbers, int BonusNumber) {
+        for(Lotto lotto : lottos. getLottos()) {
+            int matchCount = lotto.getMatchCount(userLottoNumbers);
+            boolean isBonusNumber = lotto.checkDuplicate(BonusNumber);
+            findprize(matchCount, isBonusNumber);
+        }
     }
 
     private static void findprize(int matchCount, boolean bonusNumber) {

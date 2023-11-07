@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.Input.InputType;
 
@@ -22,7 +23,9 @@ public class LottoGame {
     public void buyLotto(Integer purchaseAmount){
         Print.printPurchase(purchaseAmount);
         for (int i = 0; i < purchaseAmount / 1000; i++){
-            purchasedLotto.add(new Lotto(Utils.makeRandomNumbers(1, 45, 6)));
+            List<Integer> makedNumbers = Utils.makeRandomNumbers(1, 45, 6);
+            Collections.sort(makedNumbers);
+            purchasedLotto.add(new Lotto(makedNumbers));
         }
         Print.printPurchasedLotto(purchasedLotto);
     }

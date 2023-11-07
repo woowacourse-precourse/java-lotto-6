@@ -14,11 +14,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionCase.LOTTERY_NUMBER_SIZE_IS_NOT_SIX.getErrMessage());
         }
         for (Integer number : numbers) {
             if (numbers.indexOf(number) != numbers.lastIndexOf(number)) {
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ExceptionCase.DUPLICATION_OF_LOTTERY_NUMBERS.getErrMessage());
             }
         }
     }

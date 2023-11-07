@@ -25,7 +25,7 @@ public class SystemIO {
             try {
                 winningNumbers.add(Integer.parseInt(stringWinningNumber));
             } catch (NumberFormatException e) {
-                throw new IllegalStateException();
+                throw new IllegalStateException(ExceptionCase.WINNING_NUMBER_IS_NOT_INTEGER.getErrMessage());
             }
         }
         return winningNumbers;
@@ -40,11 +40,11 @@ public class SystemIO {
         try {
             return Integer.parseInt(readLine());
         } catch (NumberFormatException e) {
-            throw new IllegalStateException();
+            throw new IllegalStateException(ExceptionCase.BONUS_NUMBER_IS_NOT_INTEGER.getErrMessage());
         }
     }
 
-    public static void showTickets(Map<Long, List<Integer>> tickets) {
+    public static void showTickets(Map<Integer, List<Integer>> tickets) {
         System.out.println(tickets.size() + "개를 구매했습니다.");
         for (List<Integer> ticket : tickets.values()) {
             System.out.println(ticket);
@@ -52,7 +52,7 @@ public class SystemIO {
     }
 
     public static void showResult(Map<WinningRank, Integer> winningTally, Long winningAmount, String purchaseAmount) {
-        double rateOfReturn = Math.round(winningAmount / Long.valueOf(purchaseAmount)*1000)/10;
+        Double rateOfReturn = (Double.valueOf(winningAmount) / Double.valueOf(purchaseAmount))*100;
         System.out.println("당첨 통계");
         System.out.println("---");
         showWinningAmountEachRank(winningTally, WinningRank.FIFTH_WINNING);
@@ -60,7 +60,7 @@ public class SystemIO {
         showWinningAmountEachRank(winningTally, WinningRank.THIRD_WINNING);
         showWinningAmountEachRank(winningTally, WinningRank.SECOND_WINNING);
         showWinningAmountEachRank(winningTally, WinningRank.FIRST_WINNING);
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.");
     }
 
     public static void showWinningAmountEachRank(Map<WinningRank, Integer> winningTally, WinningRank winningRank) {

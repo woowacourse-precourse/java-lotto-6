@@ -2,24 +2,24 @@ package lotto.service;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.LottoManager;
+import lotto.domain.LottoSeller;
 import lotto.domain.Lottos;
 import lotto.domain.Prize;
 import lotto.domain.WinningDetails;
 import lotto.domain.WinningLotto;
 
 public class LottoService {
-    private final LottoManager lottoManager;
+    private final LottoSeller lottoSeller;
     private final WinningDetails winningDetails;
     private WinningLotto winningLotto;
 
-    public LottoService(LottoManager lottoManager, WinningDetails winningDetails) {
-        this.lottoManager = lottoManager;
+    public LottoService(LottoSeller lottoSeller, WinningDetails winningDetails) {
+        this.lottoSeller = lottoSeller;
         this.winningDetails = winningDetails;
     }
 
     public Lottos buyLotto(int money) {
-        int numberOfLottos = lottoManager.calculateNumberOfLottos(money);
+        int numberOfLottos = lottoSeller.calculateNumberOfLottos(money);
         return Lottos.createLottos(numberOfLottos);
     }
 
@@ -44,6 +44,6 @@ public class LottoService {
 
     public double getProfitRate(int money) {
         int totalPrize = winningDetails.calculateTotalPrize();
-        return lottoManager.calculateProfitRate(money, totalPrize);
+        return lottoSeller.calculateProfitRate(money, totalPrize);
     }
 }

@@ -8,12 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoManagerTest {
-    private LottoManager lottoManager;
+class LottoSellerTest {
+    private LottoSeller lottoSeller;
 
     @BeforeEach
     void setUp() {
-        lottoManager = new LottoManager();
+        lottoSeller = new LottoSeller();
     }
 
     @DisplayName("로또 구입 개수를 계산하는 기능 테스트")
@@ -22,7 +22,7 @@ class LottoManagerTest {
         int money = 2_000;
         int expectedAmount = 2;
 
-        int lottoAmount = lottoManager.calculateNumberOfLottos(money);
+        int lottoAmount = lottoSeller.calculateNumberOfLottos(money);
 
         assertThat(lottoAmount).isEqualTo(expectedAmount);
     }
@@ -32,7 +32,7 @@ class LottoManagerTest {
     void validatePurchaseAmountThrowsExceptionTest() {
         int money = 1_200;
 
-        assertThatThrownBy(() -> lottoManager.validatePurchaseAmount(money))
+        assertThatThrownBy(() -> lottoSeller.validatePurchaseAmount(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
     }
@@ -42,7 +42,7 @@ class LottoManagerTest {
     void validatePurchaseAmountDoesNotThrowExceptionTest() {
         int money = 1_000;
 
-        assertThatCode(() -> lottoManager.validatePurchaseAmount(money))
+        assertThatCode(() -> lottoSeller.validatePurchaseAmount(money))
                 .doesNotThrowAnyException();
     }
 
@@ -55,7 +55,7 @@ class LottoManagerTest {
         int totalPrize = winningDetails.calculateTotalPrize();
         double expectedRate = 62.5;
 
-        double profitRate = lottoManager.calculateProfitRate(money, totalPrize);
+        double profitRate = lottoSeller.calculateProfitRate(money, totalPrize);
 
         assertThat(profitRate).isEqualTo(expectedRate);
     }

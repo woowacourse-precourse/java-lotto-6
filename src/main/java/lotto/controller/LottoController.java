@@ -3,7 +3,7 @@ package lotto.controller;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.domain.LottoManager;
+import lotto.domain.LottoSeller;
 import lotto.domain.Lottos;
 import lotto.domain.WinningDetails;
 import lotto.service.LottoService;
@@ -22,7 +22,7 @@ public class LottoController {
     }
 
     public LottoService initializeLottoService() {
-        return new LottoService(new LottoManager(), WinningDetails.createWinningDetails());
+        return new LottoService(new LottoSeller(), WinningDetails.createWinningDetails());
     }
 
     public void run() {

@@ -1,6 +1,6 @@
 package lotto.model.validator;
 
-public class FirstInputValidator {
+public class LottoPurchaseValidator {
 
     public static int validatePurchaseAmount(String input) throws IllegalArgumentException {
         validateEmptyInput(input);

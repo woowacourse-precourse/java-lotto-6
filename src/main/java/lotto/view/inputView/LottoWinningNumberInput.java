@@ -2,8 +2,6 @@ package lotto.view.inputView;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import lotto.model.validator.SecondInputValidator;
-import java.util.List;
 
 
 public class LottoWinningNumberInput {

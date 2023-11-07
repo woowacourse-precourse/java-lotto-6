@@ -1,6 +1,6 @@
 package lotto.controller.inputController;
 
-import lotto.model.validator.SecondInputValidator;
+import lotto.model.validator.LottoWinningNumberValidator;
 import lotto.view.inputView.LottoBonusWinningNumberInput;
 import lotto.view.inputView.LottoWinningNumberInput;
 
@@ -20,7 +20,7 @@ public class LottoWinningNumberController {
         while (true) {
             try {
                 String input = winningNumberInput.requestWinningNumbers();
-                return SecondInputValidator.validateWinningNumbers(input);
+                return LottoWinningNumberValidator.validateWinningNumbers(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

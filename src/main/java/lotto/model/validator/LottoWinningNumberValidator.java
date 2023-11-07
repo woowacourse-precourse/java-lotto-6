@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SecondInputValidator {
+public class LottoWinningNumberValidator {
     public static List<Integer> validateWinningNumbers(String input) {
         ensureNotEmpty(input);
         String[] numberStrings = splitInput(input);

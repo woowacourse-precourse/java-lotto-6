@@ -1,17 +1,16 @@
 package lotto.view;
 
-import static lotto.domain.LottoValue.LOTTO_PRICE;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 
 public class InputView {
 
-    public static final String LOTTO_PRICE_PER_THOUSAND = "[ERROR] 로또 금액은 1000원 단위로 판매할 수 있습니다.";
     private static final String ASK_PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String ASK_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String ASK_BONUS_WINNING_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
@@ -24,10 +23,9 @@ public class InputView {
 
     public int askPrice() {
         try {
-            printHowManyPurchase();
-            String input = Console.readLine();
+            String input = printHowManyPurchase();
             validateBlankAndEmptyInteger(input);
-            return validInputMoney(validateNegativeIntegerAndZero(validateInteger(input)));
+            return (validateNegativeIntegerAndZero(validateInteger(input)));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askPrice();
@@ -36,15 +34,25 @@ public class InputView {
 
     public Lotto askWinningNumber() {
         try {
-            printWinningNumber();
-            String input = Console.readLine();
+            String input = printWinningNumber();
             validateBlankAndEmptyInteger(input);
             validateFirstCharacter(input);
             validateLastCharacter(input);
-            return new Lotto(new ArrayList<>(parseNumbers(input)));
+            return new Lotto(new ArrayList<>((Collection) new LottoNumber(Integer.parseInt(input))));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askWinningNumber();
+        }
+    }
+
+    public int askBonusWinningNumber() {
+        try {
+            String input = printBonusWinningNumber();
+            validateBlankAndEmptyInteger(input);
+            return validateInteger(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return askBonusWinningNumber();
         }
     }
 
@@ -67,16 +75,19 @@ public class InputView {
         throw new IndexOutOfBoundsException(INDEX_OUT_OF_INPUT_LENGTH);
     }
 
-    private void printWinningNumber() {
+    private String printWinningNumber() {
         System.out.println(ASK_WINNING_NUMBER_MESSAGE);
+        return Console.readLine();
     }
 
-    private void printBonusWinningNumber() {
+    private String printBonusWinningNumber() {
         System.out.println(ASK_BONUS_WINNING_NUMBER_MESSAGE);
+        return Console.readLine();
     }
 
-    private void printHowManyPurchase() {
+    private String printHowManyPurchase() {
         System.out.println(ASK_PURCHASE_MESSAGE);
+        return Console.readLine();
     }
 
     private int validateInteger(String input) {
@@ -106,10 +117,5 @@ public class InputView {
                 .collect(Collectors.toList());
     }
 
-    private int validInputMoney(int money) {
-        if (money % LOTTO_PRICE != 0 || money <= 0) {
-            throw new IllegalArgumentException(LOTTO_PRICE_PER_THOUSAND);
-        }
-        return money;
-    }
+
 }

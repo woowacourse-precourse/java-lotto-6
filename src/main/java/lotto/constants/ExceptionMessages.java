@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.constants;
 
 public enum ExceptionMessages {
 

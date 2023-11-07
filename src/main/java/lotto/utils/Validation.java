@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.constants.LottoRules;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.view.ExceptionMessages;
+import lotto.constants.ExceptionMessages;
 
 public class Validation {
 

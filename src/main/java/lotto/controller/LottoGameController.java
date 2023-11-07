@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningNumbers;
 import lotto.exception.InputExceptionConstant;
@@ -26,6 +27,22 @@ public class LottoGameController {
     private void initGame() {
         PurchaseAmount purchaseAmount = setPurchaseAmount();
         WinningNumbers winningNumbers = setWinningNumbers();
+        BonusNumber bonusNumber = setBonusNumber();
+    }
+
+    private BonusNumber setBonusNumber() {
+        while (true) {
+            try {
+                String input = inputView.inputPurchaseAmount();
+                InputValidator.validatePurchaseNumber(input);
+
+                int number = LottoGameUtil.StringToInt(input);
+
+                return new BonusNumber(number);
+            } catch (IllegalArgumentException e) {
+                System.out.println(InputExceptionConstant.ONLY_NATURAL_NUMBER_IN_STRING);
+            }
+        }
     }
 
     private WinningNumbers setWinningNumbers() {

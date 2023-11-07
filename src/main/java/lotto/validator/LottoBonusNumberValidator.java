@@ -23,6 +23,7 @@ public class LottoBonusNumberValidator {
         if(number.trim().isEmpty() || number.trim().isBlank()){
             throw new IllegalArgumentException((ExceptionMessage.WINNER_NUMBER_BLANK_CHECK));
         }
+
     }
 
 }

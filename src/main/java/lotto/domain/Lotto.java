@@ -23,6 +23,9 @@ public class Lotto {
         if (numbers.size() != NumberUtil.LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.NUMERIC_LENGTH_CHECK);
         }
+        if (isDuplicate(numbers)) {
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBER_CHECK);
+        }
     }
 
     // TODO: 추가 기능 구현
@@ -42,13 +45,18 @@ public class Lotto {
 
     // 중복된 로또를 생성하고 반환하는 메서드
     public static Lotto generateUniqueLotto() {
-        List<Integer> numbers;
-        do {
-            numbers = Randoms.pickUniqueNumbersInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER, NumberUtil.LOTTO_NUMBER_COUNT);
-        } while (isDuplicate(numbers)); // 중복이 있는 경우 다시 생성
+        List<Integer> numbers = new ArrayList<>();
+
+        while (numbers.size() < NumberUtil.LOTTO_NUMBER_COUNT) {
+            int number = Randoms.pickNumberInRange(LOTTO_START_NUMBER, LOTTO_END_NUMBER);
+            if (!numbers.contains(number)) {
+                numbers.add(number);
+            }
+        }
 
         return new Lotto(numbers);
     }
+
 
     //로또에 중복이 없는지 체크
     public static boolean isDuplicate(List<Integer> numbers) {

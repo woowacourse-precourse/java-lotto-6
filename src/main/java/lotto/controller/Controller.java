@@ -22,6 +22,7 @@ public class Controller {
 
     public void run() {
         buyLotto();
+        outputView.printLottos(lottoBundle.getBundle());
     }
 
     private void buyLotto() {

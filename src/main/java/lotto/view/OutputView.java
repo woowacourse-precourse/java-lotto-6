@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 
 public class OutputView {
     public void printLottos(List<Lotto> bundle) {
-        System.out.printf("%d" + InformationMessage.PURCHASE.getMessage(), bundle.size());
+        System.out.printf("%d" + InformationMessage.PURCHASE.getMessage() + "\n", bundle.size());
         for (Lotto lotto : bundle) {
             System.out.println(lotto);
         }

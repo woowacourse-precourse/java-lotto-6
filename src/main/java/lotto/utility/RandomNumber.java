@@ -13,11 +13,10 @@ public class RandomNumber {
 
     public List<Integer> makeLottoNumber() {
         List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, NUMBER_COUNT);
-        sortLottoNumber(lottoNumber);
-        return lottoNumber;
+        return sortLottoNumber(lottoNumber);
     }
 
-    private void sortLottoNumber(List<Integer> lottoNumber) {
-        lottoNumber.stream().collect(Collectors.toList());
+    private List<Integer> sortLottoNumber(List<Integer> lottoNumber) {
+        return lottoNumber.stream().sorted().collect(Collectors.toList());
     }
 }

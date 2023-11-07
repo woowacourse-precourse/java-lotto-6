@@ -1,21 +1,30 @@
 package lotto.controller;
 
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static lotto.controller.RandNumber.randomLottoNumber;
 
 public class RandNumberTest {
 
     @Test
-    @DisplayName("로또 번호 6개 생성")
-    void createLottoNumberTest() {
+    @DisplayName("중복되지 않는 로또 번호 6개 생성")
+    public void testRandomNumber() {
         RandNumber randNumber = new RandNumber();
-        List<Integer> numbers = randomLottoNumber();
-        Assertions.assertThat(numbers.size()).isEqualTo(6);
+        List<Integer> lottoNumbers = randNumber.makeLottoNumber();
+
+        // 로또 번호가 6개인가?
+        assertThat(lottoNumbers).hasSize(6);
+
+        // 1과 45 사이인가?
+        assertThat(lottoNumbers).allSatisfy(number -> assertThat(number).isBetween(1,45));
+
+        // 중복되지 않아야한다.
+        assertThat(lottoNumbers).doesNotHaveDuplicates();
+
     }
+
 }

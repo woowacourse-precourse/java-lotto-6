@@ -1,5 +1,6 @@
 package lotto;
 
+import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +25,25 @@ public class LottoResultChecker {
     }
 
     public void printTotalPrize() {
+        for (LottoRank lottoRank : LottoRank.values()) {
+            System.out.println(printPrize(lottoRank));
+        }
+    }
+
+    public String printPrize(LottoRank lottoRank) {
+        String commaPrize = NumberFormat.getInstance().format(lottoRank.getPrize());
+
+        if (lottoRank.isCorrectBonus()) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개",
+                    lottoRank.getCorrectCount(),
+                    commaPrize,
+                    this.lottoResult.get(lottoRank));
+        }
+
+        return String.format("%d개 일치 (%s원) - %d개",
+                lottoRank.getCorrectCount(),
+                commaPrize,
+                this.lottoResult.get(lottoRank));
     }
 
     public void printProfit() {

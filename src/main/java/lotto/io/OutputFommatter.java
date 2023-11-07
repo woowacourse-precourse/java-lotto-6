@@ -1,9 +1,10 @@
 package lotto.io;
 
 import java.util.EnumMap;
+import lotto.constant.LottoConstant;
+import lotto.constant.LottoResultMessage;
 import lotto.constant.LottoResultRule;
 import lotto.constant.ProcessMessage;
-import lotto.constant.LottoResultMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Ticket;
@@ -11,7 +12,6 @@ import lotto.domain.WinningStatistic;
 
 public class OutputFommatter {
 
-    private static final int UNNECESSARY_INDEX = 2;
 
     public String toNumberOfTicket(final Ticket ticket) {
         return String.format(ProcessMessage.NUMBER_OF_LOTTO_TICKET.toMessage(), ticket.toValue());
@@ -24,15 +24,16 @@ public class OutputFommatter {
             for (Integer number : lotto.getNumbers()) {
                 stringBuilder.append(number).append(ProcessMessage.COMMA.toMessage());
             }
-            stringBuilder.delete(stringBuilder.length() - UNNECESSARY_INDEX, stringBuilder.length());
-            stringBuilder.append(ProcessMessage.RIGHT_SQUARE_BRACKET.toMessage() + ProcessMessage.NEW_LINE.toMessage());
+            stringBuilder.delete(stringBuilder.length() - LottoConstant.UNNECESSARY_INDEX, stringBuilder.length());
+            stringBuilder.append(ProcessMessage.RIGHT_SQUARE_BRACKET.toMessage())
+                    .append(ProcessMessage.NEW_LINE.toMessage());
         }
         return stringBuilder.toString();
     }
 
     public String toLottoResult(final WinningStatistic winningStatistic) {
         final StringBuilder stringbuilder = new StringBuilder();
-        EnumMap<LottoResultRule, Integer> enumMap = winningStatistic.toelements();
+        EnumMap<LottoResultRule, Integer> enumMap = winningStatistic.toElements();
         stringbuilder.append(String.format(LottoResultMessage.THREE_MATCH.toMessage(),
                         enumMap.get(LottoResultRule.THREE_MATCH).toString()))
                 .append(ProcessMessage.NEW_LINE.toMessage());
@@ -49,6 +50,15 @@ public class OutputFommatter {
                 enumMap.getOrDefault(LottoResultRule.SIX_MATCH, 0).toString()));
         return stringbuilder.toString();
     }
+
+//    public String toLottoResult(final WinningStatistic winningStatistic) {
+//        EnumMap<LottoResultRule, Integer> enumMap = winningStatistic.toElements();
+//
+//        return Arrays.stream(LottoResultRule.values())
+//                .map(rule -> String.format(LottoResultMessage.getEnum(LottoResultRule.getEnum(rule.toString())),
+//                        enumMap.getOrDefault(rule, 0).toString()) + ProcessMessage.NEW_LINE.toMessage())
+//                .collect(Collectors.joining());
+//    }
 
     public String toLottoProfit(final String profit) {
         return String.format(LottoResultMessage.Profit.toMessage(), profit);

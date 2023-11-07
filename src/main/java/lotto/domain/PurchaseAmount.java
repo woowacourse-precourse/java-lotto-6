@@ -3,13 +3,11 @@ package lotto.domain;
 import lotto.constant.ExceptionMessage;
 import lotto.constant.LottoConstant;
 
-public class Amount {
+public class PurchaseAmount {
 
-    private static final int THOUSAND = 1000;
-    private static final int ZERO = 0;
     private final Integer value;
 
-    public Amount(final Integer value) {
+    public PurchaseAmount(final Integer value) {
         validateOverOneHundredThousand(value);
         validateDivisibilityByThousand(value);
         this.value = value;
@@ -22,7 +20,7 @@ public class Amount {
     }
 
     private boolean isDivideByThousand(final Integer value) {
-        return value % THOUSAND != ZERO;
+        return value % LottoConstant.THOUSAND != LottoConstant.ZERO;
     }
 
     private void validateOverOneHundredThousand(final Integer value) {
@@ -31,8 +29,8 @@ public class Amount {
         }
     }
 
-    public Integer divideByThousand() {
-        return value / THOUSAND;
+    public Integer getDivideByThousand() {
+        return value / LottoConstant.THOUSAND;
     }
 
     public Integer toValue() {

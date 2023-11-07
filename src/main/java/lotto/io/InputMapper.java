@@ -2,20 +2,20 @@ package lotto.io;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.domain.Amount;
+import lotto.constant.LottoConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.PurchaseAmount;
 
 public class InputMapper {
 
-    private static final String DELIMITER = ",";
 
-    public Amount toAmount(final String input) {
-        return new Amount(Integer.parseInt(input));
+    public PurchaseAmount toAmount(final String input) {
+        return new PurchaseAmount(Integer.parseInt(input));
     }
 
     public Lotto toWinningLotto(final String input) {
-        List<Integer> numbers = Stream.of(input.split(DELIMITER))
+        List<Integer> numbers = Stream.of(input.split(LottoConstant.DELIMITER))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .toList();

@@ -41,11 +41,11 @@ public class OutputView {
         System.out.println(outputFommatter.toLottoResult(winningStatistic));
     }
 
-    public void printProfit(final String profit) {
+    public void printTotalPrize(final String profit) {
         System.out.println(outputFommatter.toLottoProfit(profit));
     }
 
-    public void printExceptionMessage(IllegalArgumentException e) {
+    public void printExceptionMessage(final IllegalArgumentException e) {
         System.out.println(e.getMessage());
     }
 }

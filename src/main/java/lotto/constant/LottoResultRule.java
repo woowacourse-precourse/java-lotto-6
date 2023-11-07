@@ -23,15 +23,14 @@ public enum LottoResultRule {
 
     public static LottoResultRule matchCount(final Integer matchCount, final Boolean hasBonus) {
         return Arrays.stream(LottoResultRule.values())
-//                .filter(v -> matchCount == v.matchCount && hasBonus == v.hasBonus)
                 .filter(v -> Objects.equals(matchCount, v.matchCount) && Objects.equals(hasBonus, v.hasBonus))
                 .findFirst()
                 .orElse(NONE);
     }
 
-    public int toMatchCount() {
-        return matchCount;
-    }
+//    public static String getEnum(String input) {
+//        return LottoResultRule.valueOf(input).toString();
+//    }
 
     public int toPrize() {
         return prize;

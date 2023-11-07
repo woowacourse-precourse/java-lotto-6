@@ -1,7 +1,7 @@
 package lotto.io;
 
-import lotto.domain.Amount;
 import lotto.domain.BonusNumber;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
 
 public class InputManager {
@@ -14,7 +14,7 @@ public class InputManager {
         this.inputMapper = inputMapper;
     }
 
-    public Amount readPurchaseAmount() {
+    public PurchaseAmount readPurchaseAmount() {
         final String input = inputView.readPurchaseAmount();
         return inputMapper.toAmount(input);
     }

@@ -15,7 +15,7 @@ public enum ProcessMessage {
 
     private final String message;
 
-    ProcessMessage(String message) {
+    ProcessMessage(final String message) {
         this.message = message;
     }
 

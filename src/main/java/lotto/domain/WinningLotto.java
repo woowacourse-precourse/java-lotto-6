@@ -11,7 +11,7 @@ public class WinningLotto {
         this.lotto = lotto;
     }
 
-    public void updateBonusNumber(Integer value) {
+    public void updateBonusNumber(final Integer value) {
         validateDuplicateeNumber(value);
         this.bonusNumber = new BonusNumber(value);
     }

@@ -16,6 +16,8 @@ public class Ticket {
     }
 
     public void validateNullTicket(final Integer value) {
-        throw new IllegalStateException(ExceptionMessage.INVALID_NULL.toMessage());
+        if (value == null) {
+            throw new IllegalStateException(ExceptionMessage.INVALID_NULL.toMessage());
+        }
     }
 }

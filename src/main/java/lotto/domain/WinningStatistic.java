@@ -13,17 +13,15 @@ public class WinningStatistic {
         }
     }
 
-    public Integer getTotalProfit() {
-        int totalProfit = 0;
-
+    public Integer getTotalPrize() {
+        Integer totalPrize = 0;
         for (LottoResultRule rule : elements.keySet()) {
-            totalProfit += rule.toPrize() * elements.get(rule);
+            totalPrize += rule.toPrize() * elements.get(rule);
         }
-
-        return totalProfit;
+        return totalPrize;
     }
 
-    public EnumMap<LottoResultRule, Integer> toelements() {
+    public EnumMap<LottoResultRule, Integer> toElements() {
         return elements;
     }
 }

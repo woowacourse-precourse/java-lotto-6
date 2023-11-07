@@ -8,27 +8,27 @@ public class InputValidator {
 
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
 
-    private static boolean isContainDelimiter(String input) {
+    private static boolean isContainDelimiter(final String input) {
         return !input.contains(LottoConstant.DELIMITER);
     }
 
-    public void validateNumeric(String input) {
+    public void validateNumeric(final String input) {
         if (isNumeric(input)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMERIC_INPUT.toMessage());
         }
     }
 
-    private boolean isNumeric(String input) {
+    private boolean isNumeric(final String input) {
         return !NUMERIC_PATTERN.matcher(input).matches();
     }
 
-    public void validateNull(String input) {
+    public void validateNull(final String input) {
         if (input == null) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_INPUT_NULL.toMessage());
         }
     }
 
-    public void validateHasDelimiter(String input) {
+    public void validateHasDelimiter(final String input) {
         if (isContainDelimiter(input)) {
             throw new IllegalArgumentException(ExceptionMessage.DO_NOT_HAVE_DELIMITER.toMessage());
         }

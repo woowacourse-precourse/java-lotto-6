@@ -7,7 +7,7 @@ public class BonusNumber {
 
     private final Integer value;
 
-    public BonusNumber(Integer value) {
+    public BonusNumber(final Integer value) {
         validateNumberRange(value);
         this.value = value;
     }
@@ -16,7 +16,7 @@ public class BonusNumber {
         return value;
     }
 
-    public void validateNumberRange(Integer value) {
+    public void validateNumberRange(final Integer value) {
         if (value > LottoConstant.MAX_LOTTO_NUMBER_RANGE || value < LottoConstant.MIN_LOTTO_NUMBER_RANGE) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE.toMessage());
         }

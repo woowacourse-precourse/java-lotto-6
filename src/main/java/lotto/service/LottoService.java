@@ -3,10 +3,11 @@ package lotto.service;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.constant.LottoConstant;
 import lotto.constant.LottoResultRule;
-import lotto.domain.Amount;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.Ticket;
 import lotto.domain.WinningLotto;
 import lotto.domain.WinningStatistic;
@@ -20,11 +21,11 @@ public class LottoService {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
-    public Ticket calculateTicketFromAmonut(final Amount amount) {
-        return new Ticket(amount.divideByThousand());
+    public Ticket calculateTicketFromAmonut(final PurchaseAmount purchaseAmount) {
+        return new Ticket(purchaseAmount.getDivideByThousand());
     }
 
-    public Lottos saveLottos(Ticket ticket) {
+    public Lottos saveLottos(final Ticket ticket) {
         List<Lotto> elements = Stream.generate(() -> new Lotto(randomNumberGenerator.generateUniqueNumbers()))
                 .limit(ticket.toValue())
                 .toList();
@@ -32,36 +33,37 @@ public class LottoService {
     }
 
     public WinningStatistic compareLotto(final Lottos lottos, final WinningLotto winningLotto) {
-        List<Integer> winningLottoNumbers = winningLotto.toLotto().getNumbers();
-        Integer bonusNumber = winningLotto.toBonusNumber().toValue();
-        EnumMap<LottoResultRule, Integer> enumMap = new EnumMap<>(LottoResultRule.class);
+        final List<Integer> winningLottoNumbers = winningLotto.toLotto().getNumbers();
+        final Integer bonusNumber = winningLotto.toBonusNumber().toValue();
+        final EnumMap<LottoResultRule, Integer> enumMap = new EnumMap<>(LottoResultRule.class);
 
         for (Lotto lotto : lottos.toElements()) {
             List<Integer> lottoNumbers = lotto.getNumbers();
             long count = lottoNumbers.stream().filter(winningLottoNumbers::contains).distinct().count();
-            if (count == 5 && lottoNumbers.contains(bonusNumber)) {
-                incrementEnumMap(enumMap, LottoResultRule.matchCount(5, true));
+            if (count == LottoConstant.BONUS_NUMBER_CHECK && lottoNumbers.contains(bonusNumber)) {
+                incrementEnumMap(enumMap, LottoResultRule.matchCount(LottoConstant.BONUS_NUMBER_CHECK, true));
             }
             incrementEnumMap(enumMap, LottoResultRule.matchCount(Integer.parseInt(String.valueOf(count)), false));
         }
         return new WinningStatistic(enumMap);
     }
 
-    private void incrementEnumMap(EnumMap<LottoResultRule, Integer> enumMap, LottoResultRule key) {
+    private void incrementEnumMap(final EnumMap<LottoResultRule, Integer> enumMap, final LottoResultRule key) {
         Integer value = enumMap.get(key);
         if (value == null) {
-            value = 0;
+            value = LottoConstant.ZERO;
         }
-        value = value + 1;
+        value = value + LottoConstant.ONE;
         enumMap.put(key, value);
     }
 
-    public String getPerformance(final WinningStatistic winningStatistic, final Amount amount) {
-        Integer totalProfit = winningStatistic.getTotalProfit();
-        Integer lottoAmount = amount.toValue();
+    public String getPerformance(final WinningStatistic winningStatistic, final PurchaseAmount purchaseAmount) {
+        final Integer totalProfit = winningStatistic.getTotalPrize();
+        final Integer lottoAmount = purchaseAmount.toValue();
 
         double dividedResult = (double) totalProfit / lottoAmount;
-        double roundedResult = Math.round(dividedResult * 10000.0) / 10000.0 * 100.0;
+        double roundedResult = Math.round(
+                dividedResult * LottoConstant.TEN_THOUSAND) / LottoConstant.TEN_THOUSAND * LottoConstant.ONE_HUNDRED;
 
         return Double.toString(roundedResult);
     }

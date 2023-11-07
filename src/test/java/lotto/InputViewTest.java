@@ -1,15 +1,14 @@
 package lotto;
 
+import lotto.utils.ErrorMessage;
 import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
 import static org.assertj.core.api.AssertionsForClassTypes.*;
 
 public class InputViewTest {
-
+    private final String ERROR_PHRASES = "[ERROR]";
     @DisplayName("로또 구매 입력값이 없을 경우 예외 처리")
     @Test
     void emptyMoneyInput() {
@@ -22,8 +21,8 @@ public class InputViewTest {
         //then
         assertThatThrownBy(() -> inputView.validateCustomerMoneyInput(moneyInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 입력값이 없습니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.EMPTY.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("로또 구매 입력값이 숫자가 아닐 경우 예외 처리")
@@ -40,18 +39,18 @@ public class InputViewTest {
         //then
         assertThatThrownBy(() -> inputView.validateCustomerMoneyInput(englishInMoney))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만 입력해주세요.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_DIGIT_MONEY.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
 
         assertThatThrownBy(() -> inputView.validateCustomerMoneyInput(koreanInMoney))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만 입력해주세요.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_DIGIT_MONEY.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
 
         assertThatThrownBy(() -> inputView.validateCustomerMoneyInput(specialSignInMoney))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 숫자만 입력해주세요.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_DIGIT_MONEY.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("올바른 로또 구매 입력값 처리")
@@ -81,8 +80,8 @@ public class InputViewTest {
         //then
         assertThatThrownBy(() -> inputView.validateWinningNumberInput(winningNumberInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 입력값이 없습니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.EMPTY.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("당첨 번호 입력 값이 \',\'로 구분되어 있지 않을 경우")
@@ -97,8 +96,8 @@ public class InputViewTest {
         //then
         assertThatThrownBy(() -> inputView.validateWinningNumberInput(winningNumberInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] ','로 구분해주시길 바랍니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.DELIMITER.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("당첨 번호 입력값이 숫자가 아닌 경우 예외 처리")
@@ -113,8 +112,8 @@ public class InputViewTest {
         //then
         assertThatThrownBy(() -> inputView.validateEachWinningNumberInput(winningNumbersInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 숫자여야 합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_DIGIT_WINNING_NUM.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("올바른 당첨 번호 처리")
@@ -145,8 +144,8 @@ public class InputViewTest {
         //then
         assertThatThrownBy(() -> inputView.validateBonusNumberInput(bonusNumberInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 입력값이 없습니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.EMPTY.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("보너스 번호 입력값이 숫자가 아닐 경우 예외 처리")
@@ -163,18 +162,18 @@ public class InputViewTest {
         //then
         assertThatThrownBy(() -> inputView.validateBonusNumberInput(englishInBonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 숫자여야 합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_DIGIT_BONUS_NUM.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
 
         assertThatThrownBy(() -> inputView.validateBonusNumberInput(koreanInBonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 숫자여야 합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_DIGIT_BONUS_NUM.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
 
         assertThatThrownBy(() -> inputView.validateBonusNumberInput(specialSignInBonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 보너스 번호는 숫자여야 합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_DIGIT_BONUS_NUM.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("올바른 보너스 번호 입력값 처리")

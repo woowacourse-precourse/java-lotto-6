@@ -31,7 +31,7 @@ public class LottoController {
                 customer.insertMoney(lottoStore, money);
                 break ;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.errorMessage(e.getMessage());
             }
         }
     }
@@ -54,7 +54,7 @@ public class LottoController {
                 winningNumbersGenerator.generateWinningNumbers(winningNumber);
                 break ;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.errorMessage(e.getMessage());
             }
         }
     }
@@ -68,7 +68,7 @@ public class LottoController {
                 winningNumbersGenerator.generateBonusNumber(bonusNumber);
                 break ;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.errorMessage(e.getMessage());
             }
         }
     }
@@ -78,6 +78,7 @@ public class LottoController {
                 winningNumbersGenerator.getWinningNumbers(),
                 winningNumbersGenerator.getBonusNumber()
         );
+
         customer.checkWinningNumber(lottoChecker);
         lottoChecker.saveLottosResult();
         lottoChecker.calculateTotalPrize();
@@ -85,8 +86,8 @@ public class LottoController {
 
         Map<Prize, Integer> result = lottoChecker.getResult();
         String profitRate = lottoChecker.getProfitRate();
-        outputView.prizeResult(result);
 
+        outputView.prizeResult(result);
         outputView.profitRate(profitRate);
     }
 }

@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
 class WinningNumbersGeneratorTest {
-
+    private final String ERROR_PHRASES = "[ERROR]";
 
     @DisplayName("당첨 번호의 갯수가 6미만일 경우 예외 처리")
     @Test
@@ -24,8 +25,8 @@ class WinningNumbersGeneratorTest {
         //then
         assertThatThrownBy(winningNumbersGenerator::validateEachWinningNumberInput)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 6개의 번호가 필요합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_SIX_NUMBER.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("당첨 번호의 갯수가 6초과일 경우 예외 처리")
@@ -41,8 +42,8 @@ class WinningNumbersGeneratorTest {
         //then
         assertThatThrownBy(winningNumbersGenerator::validateEachWinningNumberInput)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 6개의 번호가 필요합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.NOT_SIX_NUMBER.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("당첨 번호에 중복된 값이 존재할 경우 예외 처리")
@@ -58,8 +59,8 @@ class WinningNumbersGeneratorTest {
         //then
         assertThatThrownBy(winningNumbersGenerator::validateEachWinningNumberInput)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 중복된 번호가 있습니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.DUPLICATED_NUMBER.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("당첨 번호가 범위를 초과한 경우 예외 처리")
@@ -75,8 +76,8 @@ class WinningNumbersGeneratorTest {
         //then
         assertThatThrownBy(winningNumbersGenerator::validateDividedInput)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.RANGE.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("당첨 번호가 범위에 미달일 경우 예외 처리")
@@ -92,8 +93,8 @@ class WinningNumbersGeneratorTest {
         //then
         assertThatThrownBy(winningNumbersGenerator::validateDividedInput)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.RANGE.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("당첨 번호 생성 후 저장")
@@ -129,8 +130,8 @@ class WinningNumbersGeneratorTest {
         //then
         assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.RANGE.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("보너스 번호가 범위 미달일 경우 예외 처리")
@@ -150,7 +151,8 @@ class WinningNumbersGeneratorTest {
         //then
         assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.RANGE.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("보너스 번호가 당첨 번호에 존재할 경우 예외 처리")
@@ -170,8 +172,8 @@ class WinningNumbersGeneratorTest {
         //then
         assertThatThrownBy(winningNumbersGenerator::validateBonusNumber)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호 중 보너스 번호가 존재합니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.WINNING_NUM_CONTAIN_BONUS_NUM.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("보너스 번호 생성 후 저장")

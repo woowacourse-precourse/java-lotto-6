@@ -44,4 +44,8 @@ public class OutputView {
     public void prizeWinCount(Prize prize, int count) {
         System.out.println(Prize.prizeInfo(prize) + " - " + count + "개");
     }
+
+    public void errorMessage(final String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }

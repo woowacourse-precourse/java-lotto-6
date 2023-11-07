@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.utils.ErrorMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +30,10 @@ public class LottoStore {
 
     public void validateChargedMoney() {
         if (this.chargedMoney < MIN_PRICE) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 부터입니다.");
+            throw new IllegalArgumentException(ErrorMessage.LESS_THAN_THOUSAND.errorMessage);
         }
         if (this.chargedMoney % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위 입니다.");
+            throw new IllegalArgumentException(ErrorMessage.DIVIDED_DISABLE.errorMessage);
         }
     }
 

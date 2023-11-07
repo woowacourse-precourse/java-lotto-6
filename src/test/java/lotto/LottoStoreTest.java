@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.view.InputView;
+import lotto.utils.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +16,7 @@ public class LottoStoreTest {
     private final int LOTTO_START_NUM = 1;
     private final int LOTTO_END_NUM = 45;
     private final int LOTTO_NUM_COUNT = 6;
+    private final String ERROR_PHRASES = "[ERROR]";
 
     @DisplayName("로또를 사기 위한 금액이 1000원 미만이면 예외가 발생한다")
     @Test
@@ -30,8 +31,8 @@ public class LottoStoreTest {
         //then
         assertThatThrownBy(() -> lottoStore.validateChargedMoney())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입금액은 1000원 부터입니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.LESS_THAN_THOUSAND.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("로또를 사기 위한 금액이 1000원 단위가 아닐 경우 예외가 발생한다")
@@ -47,8 +48,8 @@ public class LottoStoreTest {
         //then
         assertThatThrownBy(() -> lottoStore.validateChargedMoney())
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 구입금액은 1000원 단위 입니다.")
-                .hasMessageContaining("[ERROR]");
+                .hasMessage(ErrorMessage.DIVIDED_DISABLE.errorMessage)
+                .hasMessageContaining(ERROR_PHRASES);
     }
 
     @DisplayName("올바른 금액 저장")

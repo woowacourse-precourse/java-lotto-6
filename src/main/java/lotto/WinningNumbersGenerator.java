@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.utils.ErrorMessage;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -27,13 +29,13 @@ public class WinningNumbersGenerator {
 
     public void validateEachWinningNumberInput() {
         if (this.winningNumberInput.length != NUM_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 6개의 번호가 필요합니다.");
+            throw new IllegalArgumentException(ErrorMessage.NOT_SIX_NUMBER.errorMessage);
         }
 
         final Set<String> noDuplicatedInput = Arrays.stream(this.winningNumberInput)
                 .collect(Collectors.toSet());
         if (noDuplicatedInput.size() != NUM_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.errorMessage);
         }
     }
 
@@ -42,7 +44,7 @@ public class WinningNumbersGenerator {
             int winningNumber = Integer.parseInt(winningNumberInput);
 
             if (winningNumber > END_NUM || winningNumber < START_NUM) {
-                throw new IllegalArgumentException("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.RANGE.errorMessage);
             }
         }
     }
@@ -64,10 +66,10 @@ public class WinningNumbersGenerator {
 
     public void validateBonusNumber() {
         if (this.bonusNumber > END_NUM || this.bonusNumber < START_NUM) {
-            throw new IllegalArgumentException("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.RANGE.errorMessage);
         }
         if (this.winningNumbers.contains(this.bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 중 보너스 번호가 존재합니다.");
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUM_CONTAIN_BONUS_NUM.errorMessage);
         }
     }
 

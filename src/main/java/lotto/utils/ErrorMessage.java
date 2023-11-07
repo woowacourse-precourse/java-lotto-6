@@ -13,8 +13,6 @@ public enum ErrorMessage {
     RANGE("[ERROR] 번호는 1부터 45사이의 숫자여야 합니다."),
     WINNING_NUM_CONTAIN_BONUS_NUM("[ERROR] 당첨 번호 중 보너스 번호가 존재합니다.");
 
-
-
     public final String errorMessage;
 
     ErrorMessage(final String errorMessage) {

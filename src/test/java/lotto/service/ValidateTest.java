@@ -43,7 +43,7 @@ class ValidateTest {
     }
 
     @Test
-    @DisplayName("사용자가 당첨번호를 정할때 양끝에 ,를 둘 수 없습니다.")
+    @DisplayName("사용자가 문자열을 입력할 때 양끝에 ,를 둘 수 없습니다.")
     void ValidateCommaBeforeAndAfter() {
         // given
         String[] inputs = {",1,2", "1,2,", ",1,2,3,"};

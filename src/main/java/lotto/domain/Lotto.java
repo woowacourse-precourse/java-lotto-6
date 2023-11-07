@@ -80,7 +80,10 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     public static Lotto generate() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> numbers = Randoms
+                .pickUniqueNumbersInRange(LottoSetting.NUMBER_RANGE_START.getValue()
+                        , LottoSetting.NUMBER_RANGE_END.getValue()
+                        , LottoSetting.NUMBER_COUNT.getValue());
         Collections.sort(numbers);
         return new Lotto(numbers);
     }

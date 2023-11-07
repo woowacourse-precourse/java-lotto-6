@@ -6,19 +6,20 @@ public class ControllerOutputManager {
     private final String WINNING_PRINT = "당첨 번호를 입력해 주세요.";
     private final String BONUS_PRINT = "보너스 번호를 입력해 주세요.";
 
-    public String getSTART_PRINT() {
-        return START_PRINT;
+    public void START_PRINT() {
+        System.out.println(START_PRINT);
+
     }
 
-    public String getBUY_PRINT() {
-        return BUY_PRINT;
+    public void BUY_PRINT(int count) {
+        System.out.println(count + BUY_PRINT);
     }
 
-    public String getWINNING_PRINT() {
-        return WINNING_PRINT;
+    public void WINNING_PRINT() {
+        System.out.println(WINNING_PRINT);
     }
 
-    public String getBONUS_PRINT() {
-        return BONUS_PRINT;
+    public void BONUS_PRINT() {
+        System.out.println(BONUS_PRINT);
     }
 }

@@ -2,10 +2,7 @@ package lotto.util;
 
 import lotto.verification.Validation;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Utils {
@@ -58,4 +55,11 @@ public class Utils {
         return result;
     }
 
+    public static StringJoiner convertListToFormattedString(List<Integer> lotto) {
+        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        for (Integer number : lotto) {
+            joiner.add(number.toString());
+        }
+        return joiner;
+    }
 }

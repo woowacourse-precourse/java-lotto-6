@@ -71,7 +71,7 @@ public class LottoGameController {
 
     private int createTicket(Money money){
         int ticket = money.divideMoney1000();
-        outputView.printMoneyInputResultMessage(ticket);
+        outputView.moneyInputResultMessage(ticket);
         return ticket;
     }
 }

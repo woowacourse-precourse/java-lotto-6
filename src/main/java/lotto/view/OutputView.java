@@ -16,20 +16,20 @@ public class OutputView {
         System.out.println();
     }
 
-    public void printBonusInputMessage(){
+    public void bonusInputMessage(){
         println();
         println(BONUS_INPUT_MESSAGE);
     }
 
-    public void printLottoInputMessage(){
+    public void lottoInputMessage(){
         println(LOTTO_INPUT_MESSAGE);
     }
 
-    public void printMoneyInputMessage(){
+    public void moneyInputMessage(){
         println(MONEY_INPUT_MESSAGE);
     }
 
-    public void printMoneyInputResultMessage(int money){
+    public void moneyInputResultMessage(int money){
         println();
         System.out.printf(MONEY_INPUT_RESULT_MESSAGE, money);
     }

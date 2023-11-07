@@ -16,20 +16,20 @@ public class InputView {
     }
 
     public int inputBonus(){
-        outputView.printBonusInputMessage();
+        outputView.bonusInputMessage();
         String input = userInput();
-        inputValidate.inputBonusRangeValidate(input);
+        inputValidate.bonusRangeValidate(input);
         int bonus = Integer.parseInt(input);
         return bonus;
     }
 
     public List<Integer> inputLotto(){
-        outputView.printLottoInputMessage();
+        outputView.lottoInputMessage();
         List<Integer> lotto = new ArrayList<>();
         String[] input = userInput().split(",");
         for(String num : input){
-            inputValidate.inputBlankValidate(num);
-            inputValidate.inputIsDigitValidate(num);
+            inputValidate.blankValidate(num);
+            inputValidate.isDigitValidate(num);
             int lottoNum = Integer.parseInt(num);
             lotto.add(lottoNum);
         }
@@ -37,10 +37,10 @@ public class InputView {
     }
 
     public int inputMoney(){
-        outputView.printMoneyInputMessage();
+        outputView.moneyInputMessage();
         String input = userInput();
-        inputValidate.inputBlankValidate(input);
-        inputValidate.inputIsDigitValidate(input);
+        inputValidate.blankValidate(input);
+        inputValidate.isDigitValidate(input);
         return Integer.parseInt(input);
     }
 }

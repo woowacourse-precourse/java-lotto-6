@@ -72,4 +72,13 @@ public class InputTest {
         int bonusNumber = 6;
         assertThrows(IllegalArgumentException.class, () -> inputValidator.checkBonusNumber(bonusNumber, numbers));
     }
+
+    @DisplayName("1000으로 나누어지지 않을 시 오류가 발생한다.")
+    @Test
+    void divisibleBy1000(){
+        int buyinAmount = 1100;
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.checkBuyingAmount(buyinAmount));
+    }
+
+    
 }

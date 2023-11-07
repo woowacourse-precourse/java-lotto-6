@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.ExceptionMessage.ERROR_LOTTO_COUNT;
+import static lotto.ExceptionMessage.ERROR_LOTTO_DUPICATED;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -9,24 +13,25 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers); // 복제된 리스트 생성
+        Collections.sort(this.numbers);
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_LOTTO_COUNT.getMessage());
         }
         validateDuplicateNumber(numbers);
     }
 
     private void validateDuplicateNumber(List<Integer> numbers) {
         if (new HashSet<>(numbers).size() != 6) {
-            throw new IllegalArgumentException("로또 당첨 번호에 중복된 번호가 있습니다. 다른 번호를 입력하세요.");
+            throw new IllegalArgumentException(ERROR_LOTTO_DUPICATED.getMessage());
         }
     }
 
     public List<Integer> getNumbers() {
+
         return numbers;
     }
 

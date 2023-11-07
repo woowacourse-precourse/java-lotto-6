@@ -26,6 +26,6 @@ public class LottoStore {
 
     private Lotto generateRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER_RANGE, MAX_LOTTO_NUMBER_RANGE, LOTTO_NUMBERS_SIZE);
-        return new Lotto(randomNumbers);
+        return Lotto.from(randomNumbers);
     }
 }

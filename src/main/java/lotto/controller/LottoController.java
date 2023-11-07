@@ -32,7 +32,7 @@ public class LottoController {
     }
 
     private Lotto inputWinLottoNumbers() {
-        return new Lotto(inputView.inputWinNumbers());
+        return Lotto.from(inputView.inputWinNumbers());
     }
 
     private WinLotto inputWinLottoNumbersWithBonus(Lotto winLotto) {

@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -21,5 +23,17 @@ public class Lotto {
         if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATED_LOTTO);
         }
+    }
+
+    public String toString() {
+        return ascend(numbers).toString();
+    }
+
+    public List<Integer> ascend(List<Integer> numbers) {
+        List<Integer> result = new ArrayList<>(numbers);
+
+        result.sort(Comparator.naturalOrder());
+
+        return result;
     }
 }

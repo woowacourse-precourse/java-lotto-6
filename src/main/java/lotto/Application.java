@@ -87,4 +87,9 @@ public class Application {
     public static void printPurchaseCount() {
         System.out.println(OuputMessage.purchaseCount);
     }
+
+    public static void printLottos(List<Lotto> lottos) {
+        lottos.stream()
+                .forEach((lotto -> System.out.println(lotto)));
+    }
 }

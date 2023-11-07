@@ -2,9 +2,12 @@ package lotto.controller;
 
 import lotto.model.Customer;
 import lotto.model.LottoWinning;
+import lotto.validation.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.constant.ErrorMessage;
 
+import static java.lang.Integer.parseInt;
 import static lotto.constant.LottoConstant.LOTTO_PRICE;
 import static lotto.view.constant.ConstantMessage.*;
 
@@ -16,35 +19,25 @@ public class LottoDraw {
     public LottoDraw() {}
     public void start() {
         // 로또 구입 금액을 입력
-        OutputView.printConstantMessage(PAY_MONEY);
-        customer = new Customer(InputView.requestPayMoney());
-        OutputView.printNewLine();
-        OutputView.println(String.valueOf(customer.getMoney()));
-        OutputView.printNewLine();
+        if (payLottoAmount()) return;
 
         // 로또 발행
         numOfLotto = customer.getMoney() / LOTTO_PRICE.getLottoConstant();
         OutputView.printBuyLotto(BUY_LOTTO, numOfLotto);
-        OutputView.printNewLine();
         for(int i = 0; i < numOfLotto ; i++) {
             customer.buyLotto();
         }
         OutputView.printLottos(customer);
-        OutputView.printNewLine();
 
         // 당첨 번호 입력
         OutputView.printConstantMessage(WINNING_NUMBER);
         lottoWinning = new LottoWinning(InputView.requestWinnerNumber());
-        OutputView.printNewLine();
         OutputView.printLottoWinning(lottoWinning.getWinningNumber());
-        OutputView.printNewLine();
 
         // 보너스 번호 입력
         OutputView.printConstantMessage(BONUS_NUMBER);
         lottoWinning.initBonusNumber(InputView.requestBonusNumber());
-        OutputView.printNewLine();
         OutputView.println(String.valueOf(lottoWinning.getBonusNumber()));
-        OutputView.printNewLine();
 
         // 당첨 확인
         customer.calcWinningLotto(lottoWinning.getWinningNumber(), lottoWinning.getBonusNumber());
@@ -60,4 +53,35 @@ public class LottoDraw {
         // 총 수익률 출력
         OutputView.printRateOfReturn(customer.getRateOrReturn());
     }
+
+    private boolean payLottoAmount() {
+        // 로또 구입 금액을 입력
+        OutputView.printConstantMessage(PAY_MONEY);
+        String pay = InputView.requestPayMoney();
+        if (validationPayAmount(pay)) {
+            return true;
+        }
+
+        customer = new Customer(parseInt(pay));
+        OutputView.println(String.valueOf(customer.getMoney()));
+        return false;
+    }
+
+    private boolean validationPayAmount(String pay) {
+        if (Validator.checkIsNotNumber(pay)) {
+            OutputView.printError(ErrorMessage.PAY_NOT_NUMBER.getMessage());
+            return true;
+        }
+
+        if (Validator.checkIsZero(parseInt(pay))) {
+            OutputView.printError(ErrorMessage.PAY_IS_ZERO.getMessage());
+            return true;
+        }
+
+        if (Validator.checkMultipleOf1000(parseInt(pay))) {
+            OutputView.printError(ErrorMessage.PAY_NOT_MULTIPLE_OF_1000.getMessage());
+        }
+        return false;
+    }
+
 }

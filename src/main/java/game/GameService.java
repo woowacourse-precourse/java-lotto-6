@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.WinningNumber;
 
 public class GameService {
 
@@ -16,7 +17,7 @@ public class GameService {
         List<Lotto> lottos = createLottoByPrice(price);
         getLottoByPrice(lottos);
 
-        List<Integer> winningNumber = getWinningNumber();
+        WinningNumber winningNumber = getWinningNumber();
 
 
     }
@@ -57,17 +58,22 @@ public class GameService {
         }
     }
 
-    public List<Integer> getWinningNumber() {
+    public WinningNumber getWinningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] winningNumberInput = Console.readLine().split(",");
         validateWinningNumber(winningNumberInput);
+
+        WinningNumber winningNumber;
 
         List<Integer> winningNumbers = new ArrayList<>();
         for (String number : winningNumberInput) {
             winningNumbers.add(Integer.parseInt(number));
         }
 
-        return winningNumbers;
+        int bonus = getBonusNumber(winningNumbers);
+
+        winningNumber = new WinningNumber(winningNumbers, bonus);
+        return winningNumber;
     }
 
     public void validateWinningNumber(String[] winningNumber) {
@@ -83,4 +89,25 @@ public class GameService {
             }
         }
     }
+
+    public int getBonusNumber(List<Integer> winningNumbers) {
+        String bonusInput = Console.readLine();
+        validateBonus(bonusInput, winningNumbers);
+        return Integer.parseInt(bonusInput);
+    }
+
+    public void validateBonus(String bonus, List<Integer> winningNumbers) {
+        if (!bonus.matches("\\d+")) {
+            throw new IllegalArgumentException();
+        }
+
+        if (Integer.parseInt(bonus) < 1 || Integer.parseInt(bonus) > 45) {
+            throw new IllegalArgumentException();
+        }
+
+        if (winningNumbers.contains(Integer.parseInt(bonus))) {
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

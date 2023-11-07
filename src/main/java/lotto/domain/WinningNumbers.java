@@ -4,7 +4,6 @@ import lotto.util.Constant;
 import lotto.util.ErrorConstant;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.regex.Pattern;
@@ -78,5 +77,13 @@ public class WinningNumbers {
         if(winningNumbers.contains(tmp)){
             throw new IllegalArgumentException(ErrorConstant.DUPLICATE_NUMBER);
         }
+    }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
     }
 }

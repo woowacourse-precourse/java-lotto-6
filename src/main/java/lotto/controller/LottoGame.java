@@ -1,10 +1,8 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.PurchaseManager;
-import lotto.domain.WinningNumbers;
+import lotto.domain.*;
+import lotto.service.WinningStatisticsService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -13,11 +11,12 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
-    private static InputView inputView;
-    private static OutputView outputView;
-    private static PurchaseManager purchaseManager;
-    private static Lottos lottos;
-    private static WinningNumbers winningNumbers;
+    private InputView inputView;
+    private OutputView outputView;
+    private PurchaseManager purchaseManager;
+    private Lottos lottos;
+    private WinningNumbers winningNumbers;
+    private Result result;
 
     public LottoGame(){
         inputView = new InputView();
@@ -29,6 +28,8 @@ public class LottoGame {
         makeLottos();
         getWinningNumbers();
         getBonusNumber();
+        calcWinning();
+        outputView.printStatistics(result);
     }
     private void purchase(){
         boolean validateInput=false;
@@ -88,5 +89,9 @@ public class LottoGame {
             e.printStackTrace();
             return false;
         }
+    }
+    private void calcWinning(){
+        WinningStatisticsService winningStatisticsService = new WinningStatisticsService();
+        result = winningStatisticsService.calcScore(lottos.getLottos(), winningNumbers.getWinningNumbers(), winningNumbers.getBonusNumber());
     }
 }

@@ -39,7 +39,7 @@ public class OutputView {
         System.out.println(OutputMessage.RESULT_SUMMARY);
 
         for (LottoResult result : values) {
-            if(result.isWin()){
+            if (result.isWin()) {
                 System.out.println(result.getDescription() + " - " + resultMap.getOrDefault(result, 0) + "개");
             }
         }

@@ -27,16 +27,21 @@ public class OutputView {
         }
     }
 
-    public void printPrizeResult(List<Integer> rank){
-        printPrizeMessage();
-        printFifthPlaceResult(rank.get(FIFTH_PLACE.getIndex()));
-        printFourthPlaceResult(rank.get(FOURTH_PLACE.getIndex()));
-        printThirdPlaceResult(rank.get(THIRD_PLACE.getIndex()));
-        printSecondPlaceResult(rank.get(SECOND_PLACE.getIndex()));
-        printFirstPlaceResult(rank.get(FIRST_PLACE.getIndex()));
+    public void printResult(List<Integer> ranks, double rate){
+        printPrizeResult(ranks);
+        printProfitRateResult(rate);
     }
 
-    public void printProfitRateResult(double rate){
+    private void printPrizeResult(List<Integer> ranks){
+        printPrizeMessage();
+        printFifthPlaceResult(ranks.get(FIFTH_PLACE.getIndex()));
+        printFourthPlaceResult(ranks.get(FOURTH_PLACE.getIndex()));
+        printThirdPlaceResult(ranks.get(THIRD_PLACE.getIndex()));
+        printSecondPlaceResult(ranks.get(SECOND_PLACE.getIndex()));
+        printFirstPlaceResult(ranks.get(FIRST_PLACE.getIndex()));
+    }
+
+    private void printProfitRateResult(double rate){
         System.out.println(PROFIT_RATE_MESSAGE.getMessage(rate));
     }
 

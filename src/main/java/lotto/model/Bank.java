@@ -36,8 +36,8 @@ public class Bank {
         return profit;
     }
 
-    public double getFormatProfitRate(int money, int profit){
-        double profitRate = getProfitRate(money, profit);
+    public double getFormatProfitRate(int count, int profit){
+        double profitRate = getProfitRate(count, profit);
         return Math.round(profitRate * NumberConstant.RATE_FORMAT_NUMBER.getValue()) / (double) NumberConstant.RATE_FORMAT_NUMBER.getValue();
     }
 
@@ -56,8 +56,8 @@ public class Bank {
         return getRank(rightCount, bonus);
     }
 
-    private double getProfitRate(int money, int profit){
-        return (double) profit / money;
+    private double getProfitRate(int count, int profit){
+        return (double) profit / (count * NumberConstant.LOTTO_PRICE.getValue());
     }
 
     private int getRank(int count, boolean bonus){

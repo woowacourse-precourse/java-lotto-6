@@ -29,7 +29,7 @@ public class LottoMachine {
         return newLottos;
     }
 
-    private int getLottoCount(int money){
+    public int getLottoCount(int money){
         return money / NumberConstant.LOTTO_PRICE.getValue();
     }
 

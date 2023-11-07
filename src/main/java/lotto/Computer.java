@@ -14,7 +14,7 @@ public class Computer {
     public List<Lotto> makeLottoList(int lottoCount) {
         List<Lotto> lottoList = new ArrayList<>();
 
-        for(int count = 0; count < lottoCount; lottoCount++) {
+        for(int count = 0; count < lottoCount; count++) {
             lottoList.add(new Lotto(makeLottoNumbers()));
         }
         return lottoList;

@@ -38,7 +38,6 @@ public class Process {
     }
 
     public void pickWinNumber() {
-        // 로또진행자가 당첨 번호를 뽑는다.
         lottoHost.pickWinNumbers();
     }
 

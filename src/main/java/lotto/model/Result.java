@@ -40,7 +40,7 @@ public class Result {
 
     private int calculateTotalAmount() {
         return result.entrySet().stream()
-                .map(entry -> entry.getKey().getMoney() * entry.getValue())
+                .map(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
                 .mapToInt(Integer::intValue)
                 .sum();
     }

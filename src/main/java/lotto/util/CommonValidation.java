@@ -16,7 +16,7 @@ public class CommonValidation {
         isZero(input);
     }
     private static void isZero(final String input) {
-        if(input.equals(INITIAL_VALUE)) throw new IllegalArgumentException(INVALID_ZERO_NUMBER.getErrorMessage());
+        if(input.equals(String.valueOf(INITIAL_VALUE))) throw new IllegalArgumentException(INVALID_ZERO_NUMBER.getErrorMessage());
     }
     private static void isNumber(final String input) {
         if(!input.matches(NUMBER_REGEXP)) throw new IllegalArgumentException(INVALID_STRING.getErrorMessage());

@@ -13,7 +13,7 @@ public class Lotto {
     }
     private void validate(final List<Integer> numbers) {
         for (Integer number : numbers) {
-            LottoValidation.isPermitRange(number, Constants.LOTTO);
+            LottoValidation.isPermitRange(number, Constants.Format.LOTTO.getType());
         }
         LottoValidation.lottoCountIsSix(numbers);
         LottoValidation.duplicateLottoNumber(numbers);

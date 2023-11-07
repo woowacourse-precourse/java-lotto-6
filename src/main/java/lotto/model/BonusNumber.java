@@ -3,7 +3,6 @@ package lotto.model;
 import lotto.util.CommonValidation;
 import lotto.util.Constants;
 import lotto.util.LottoValidation;
-
 import java.util.List;
 
 public class BonusNumber {
@@ -11,9 +10,9 @@ public class BonusNumber {
     private BonusNumber(int bonusNumber) {
         this.bonusNumber = bonusNumber;
     }
-    public static BonusNumber createBonusNumber(List<Integer> lotto, String bonusNumber) {
+    public static BonusNumber bonusNumberOf(List<Integer> lotto, String bonusNumber) {
         CommonValidation.validate(bonusNumber);
-        LottoValidation.isPermitRange(Integer.parseInt(bonusNumber), Constants.BONUS_NUMBER);
+        LottoValidation.isPermitRange(Integer.parseInt(bonusNumber), Constants.Format.BONUS_NUMBER.getType());
         LottoValidation.duplicationLottoAndBonusNumber(lotto,bonusNumber);
         return new BonusNumber(Integer.parseInt(bonusNumber));
     }

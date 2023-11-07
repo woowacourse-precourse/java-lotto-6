@@ -7,9 +7,9 @@ import lotto.exception.InvalidInputException;
 import java.util.List;
 
 import static lotto.constants.DomainConstants.*;
+import static lotto.constants.ExceptionConstants.*;
 import static lotto.constants.InputConstants.NUMERIC;
 import static lotto.constants.InputConstants.SPLIT_STANDARD;
-import static lotto.constants.ExceptionConstants.*;
 
 public class InputValidator {
     public void validateInputMoney(String inputMoney) {

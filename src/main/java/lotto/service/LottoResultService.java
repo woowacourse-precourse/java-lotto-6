@@ -1,9 +1,10 @@
 package lotto.service;
 
-import lotto.domain.*;
+import lotto.domain.LottoResult;
+import lotto.domain.LottoReward;
+import lotto.domain.PurchasedLotto;
+import lotto.domain.WinningLotto;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;

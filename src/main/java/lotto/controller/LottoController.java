@@ -3,8 +3,8 @@ package lotto.controller;
 import lotto.domain.*;
 import lotto.exception.DuplicateInputException;
 import lotto.exception.InvalidInputException;
-import lotto.service.LottoResultService;
 import lotto.service.LottoPurchaseService;
+import lotto.service.LottoResultService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

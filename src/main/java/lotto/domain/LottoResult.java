@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
-
 public class LottoResult {
     private Integer correctNumbers;
     private Boolean isCorrectBonusNumber;

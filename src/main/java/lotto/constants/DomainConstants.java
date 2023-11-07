@@ -7,4 +7,5 @@ public class DomainConstants {
     public static final Integer MIN_NUMBER = 1;
     public static final Integer MAX_NUMBER = 45;
     public static final Integer MATCHING_COUNT = 0;
+    public static final Integer SECOND_STANDARD = 5;
 }

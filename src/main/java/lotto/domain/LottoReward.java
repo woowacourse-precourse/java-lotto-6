@@ -1,14 +1,14 @@
 package lotto.domain;
 
+import static lotto.constants.DomainConstants.SECOND_STANDARD;
+
 public enum LottoReward {
     FIRST(6, 2_000_000_000),
     SECOND(5, 30_000_000),
     THIRD(5, 1_500_000),
     FOURTH(4, 50_000),
     FIFTH(3, 5_000),
-    NOTHING(0,0);
-
-    private static final Integer SECOND_STANDARD = 5;
+    NOTHING(0, 0);
 
     private Integer matchCount;
     private Integer reward;

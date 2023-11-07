@@ -7,7 +7,6 @@ import java.util.List;
 import static lotto.util.LottoConstants.*;
 
 public class Lotto {
-
     private final List<Integer> lottoNumbers;
 
     public Lotto(List<Integer> lottoNumbers) {

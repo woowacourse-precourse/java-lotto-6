@@ -1,7 +1,8 @@
 package lotto.util;
 
 public final class LottoConstants {
-    private LottoConstants() {}
+    private LottoConstants() {
+    }
 
     public static final int MIN_UNIT = 1_000;
     public static final int LOTTO_NUMBERS_SIZE = 6;

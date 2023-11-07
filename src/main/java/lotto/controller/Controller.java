@@ -5,15 +5,16 @@ import lotto.constants.Message;
 import lotto.constants.Value;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
-import lotto.service.InputService;
 import lotto.service.LottoResultService;
 import lotto.service.LottoService;
+import lotto.utils.InputUtils;
 
 import java.util.List;
 
 public class Controller {
 
-    InputService inputService = new InputService();
+    InputUtils inputUtils = new InputUtils();
+
     LottoService lottoService = new LottoService();
     LottoResultService lottoResultService = new LottoResultService();
 
@@ -28,7 +29,7 @@ public class Controller {
         System.out.println(Message.PAY_MONEY_REQUEST_MESSAGE);
         while (true) {
             try {
-                int payMoney = inputService.inputPayMoney();
+                int payMoney = inputUtils.inputPayMoney();
                 lottoService.setBuyLotto(payMoney);
                 break;
             } catch (IllegalArgumentException e){
@@ -43,7 +44,7 @@ public class Controller {
         System.out.println(Message.WINNING_NUMBER_REQUEST_MESSAGE);
         while (true) {
             try {
-                List<Integer> winningLottoNumbers = inputService.inputWinningLottoNumbers();
+                List<Integer> winningLottoNumbers = inputUtils.inputWinningLottoNumbers();
                 WinningLotto winningLotto = new WinningLotto(winningLottoNumbers);
                 createWinningLottoBonus(winningLotto);
                 lottoResultService.setWinningLotto(winningLotto);
@@ -58,7 +59,7 @@ public class Controller {
         System.out.println(Message.BONUS_NUMBER_REQUEST_MESSAGE);
         while (true) {
             try {
-                int winningBonusNumber = inputService.inputWinningBonusNumber(winningLotto);
+                int winningBonusNumber = inputUtils.inputWinningBonusNumber();
                 winningLotto.setBonusNumber(winningBonusNumber);
                 break;
             } catch (IllegalArgumentException e) {

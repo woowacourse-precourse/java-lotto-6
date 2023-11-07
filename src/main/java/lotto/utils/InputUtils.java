@@ -1,19 +1,13 @@
-package lotto.service;
+package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constants.ErrorMessage;
-import lotto.constants.Message;
-import lotto.constants.Value;
-import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
-import lotto.utils.ParseUtils;
 
 import java.util.List;
 
-public class InputService {
+public class InputUtils {
 
     ParseUtils parseUtils = new ParseUtils();
-
 
     public int inputPayMoney() {
         String payMoney = Console.readLine();
@@ -23,12 +17,10 @@ public class InputService {
     public List<Integer> inputWinningLottoNumbers() {
         String inputWinningLottoNumbers = Console.readLine();
         return parseUtils.parseStringToIntegerList(inputWinningLottoNumbers);
-
     }
 
-    public int inputWinningBonusNumber(WinningLotto winningLotto) {
+    public int inputWinningBonusNumber() {
         String winningBonusNumber = Console.readLine();
         return parseUtils.parseStringToInt(winningBonusNumber);
     }
-
 }

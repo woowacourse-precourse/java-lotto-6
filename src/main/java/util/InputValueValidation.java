@@ -1,4 +1,4 @@
-package lotto;
+package util;
 
 import domain.BonusNumber;
 import domain.PrizeNumber;
@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
-import util.ErrorMessage;
 
-public class InputValidate {
+public class InputValueValidation {
     PurchaseAmount purchaseAmount = PurchaseAmount.getInstance();
     PrizeNumber prizeNumber = PrizeNumber.getInstance();
     BonusNumber bonusNumber = BonusNumber.getInstance();
+
     public void validatePurchaseAmount(String inputStr) {
         if (!inputStr.matches("^\\d+$")) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_CAN_ONLY_NUMBER.getMessage());
@@ -69,7 +69,8 @@ public class InputValidate {
         }
 
         if (prizeNumber.getPrizeNumber().contains(bonusNumberTemp)) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_MUST_NOT_BE_DUPLICATED_WITH_PRIZE_NUMBER.getMessage());
+            throw new IllegalArgumentException(
+                    ErrorMessage.BONUS_NUMBER_MUST_NOT_BE_DUPLICATED_WITH_PRIZE_NUMBER.getMessage());
         }
         bonusNumber.setBonusNumber(bonusNumberTemp);
     }

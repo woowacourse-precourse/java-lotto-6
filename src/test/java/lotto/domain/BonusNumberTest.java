@@ -19,7 +19,7 @@ public class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("올바른 보너스 번호가 입력된 경우")
+    @DisplayName("올바른 보너스 번호가 입력한 경우")
     void 올바른_보너스번호_입력() throws Exception{
         //given
         final String number = "23";
@@ -32,7 +32,7 @@ public class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("공백과 함께 올바른 보너스 번호가 입력된 경우")
+    @DisplayName("공백과 함께 올바른 보너스 번호가 입력한 경우")
     void 올바른_보너스번호_공백_입력() throws Exception{
         //given
         final String number = "  23    ";
@@ -45,7 +45,7 @@ public class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("1~45사이의 수가 입력되지 않은 경우")
+    @DisplayName("1~45사이의 수가 입력하지 않은 경우")
     void 올바르지_않은_범위의_보너스번호_입력() throws Exception{
         //given
         final String number = "46";
@@ -57,7 +57,7 @@ public class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("아무런 값도 입력되지 않은 경우")
+    @DisplayName("아무런 값도 입력하지 않은 경우")
     void 빈값_입력() throws Exception{
         //given
         final String number = "";
@@ -69,7 +69,7 @@ public class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("숫자가 아닌 문자가 입력된 경우")
+    @DisplayName("숫자가 아닌 문자를 입력한 경우")
     void 숫자가_아닌_문자입력() throws Exception{
         //given
         final String number = "a";
@@ -81,7 +81,7 @@ public class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("음수가 입력된 경우")
+    @DisplayName("음수를 입력한 경우")
     void 음수_입력() throws Exception{
         //given
         final String number = "-2";

@@ -1,9 +1,6 @@
 package lotto;
 
-import Input.LottoInput;
-import View.View;
-
-import static camp.nextstep.edu.missionutils.Console.readLine;
+import view.View;
 
 public class LottoGame {
     private Lotto answer;

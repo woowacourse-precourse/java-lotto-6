@@ -84,23 +84,6 @@ class ApplicationTest extends NsTest {
         boolean check = lottoService.compareBonusNumber(lotto1, 7);
         assertThat(check).isEqualTo(false);
     }
-
-    @Test
-    void 로또_숫자_입력() {
-        String lotto = "1,2,3,4,5,6";
-        System.setIn(new ByteArrayInputStream(lotto.getBytes()));
-        List<Integer> result = LottoInput.makeAnswerNumber();
-        assertThat(result).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
-    }
-
-    @Test
-    void 보너스_숫자_입력() {
-        String bonus = "7";
-        System.setIn(new ByteArrayInputStream(bonus.getBytes()));
-        int num = LottoInput.makeBonusNumber();
-        assertThat(num).isEqualTo(7);
-    }
-
     @Test
     void 로또_입력_예외1() {
         assertThrows(IllegalArgumentException.class,

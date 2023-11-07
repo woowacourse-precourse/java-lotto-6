@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.utils.LottoExceptionMessage;
+import lotto.utils.message.LottoExceptionMessage;
 
 public class Lotto {
     private static final int REQUIRED_COUNT = 6;
@@ -23,6 +23,7 @@ public class Lotto {
         return numbers.stream()
                 .map(LottoNumber::new)
                 .distinct()
+                .sorted()
                 .toList();
     }
 
@@ -62,5 +63,5 @@ public class Lotto {
     public String toString() {
         return String.valueOf(lottoNumbers);
     }
-    
+
 }

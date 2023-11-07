@@ -36,6 +36,7 @@ public class InputValidator {
     }
 
     public static void checkJackpotNumberInput(String jackpotNumberInput) {
+        checkNoInput(jackpotNumberInput);
         checkHasComma(jackpotNumberInput);
         checkContainSpace(jackpotNumberInput);
         checkJackpotNumberNumeric(jackpotNumberInput);

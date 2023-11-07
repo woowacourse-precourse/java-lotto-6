@@ -6,71 +6,69 @@ import java.util.stream.Collectors;
 
 public class ValueValidator {
     public boolean validatePurchasedPrice(String inputPurchasedPrice) {
-        if (!validatePurchasedPriceValue(inputPurchasedPrice) && !validatePurchasedPriceValueRange(inputPurchasedPrice)) {
-            return false;
-        }
+        validatePurchasedPriceValue(inputPurchasedPrice);
+        validatePurchasedPriceValueRange(inputPurchasedPrice);
+
         return true;
     }
 
-    private boolean validatePurchasedPriceValue(String inputPurchasedPrice) {
+    private void validatePurchasedPriceValue(String inputPurchasedPrice) {
         if (!inputPurchasedPrice.matches("\\d+")) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_FORMAT.getMessage());
         }
-        return true;
     }
 
-    private boolean validatePurchasedPriceValueRange(String inputPurchasedPrice) {
+    private void validatePurchasedPriceValueRange(String inputPurchasedPrice) {
         int purchasedPrice = Integer.parseInt(inputPurchasedPrice);
         if (purchasedPrice < 1000) {
             throw new IllegalArgumentException(ErrorMessage.INSUFFICIENT_PURCHASE_AMOUNT.getMessage());
         }
+    }
+
+    public boolean validateWinningNumbersValue(List<Integer> winningNumbers) {
+        validateWinningNumbersSize(winningNumbers);
+        validateDuplicateWinningNumbers(winningNumbers);
+
         return true;
     }
 
-    public boolean validateWinningInputValue(List<Integer> winningNumbers) {
-        if (!validateWinningInputValueSize(winningNumbers) && !validateDuplicateWinningInputValue(winningNumbers)) {
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validateWinningInputValueSize(List<Integer> winningNumbers) {
+    private void validateWinningNumbersSize(List<Integer> winningNumbers) {
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_SIZE.getMessage());
         }
-        return true;
     }
 
-    private boolean validateDuplicateWinningInputValue(List<Integer> winningNumbers) {
+    private void validateDuplicateWinningNumbers(List<Integer> winningNumbers) {
         winningNumbers.stream()
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .forEach((number, count) -> {
                     if (count > 1) {
                         throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
                     }
+                    if (number < 1 || number > 45) {
+                        throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_RANGE.getMessage());
+                    }
                 });
-        return true;
     }
 
     public boolean validateBonusNumber(String inputBonusNumber) {
-        if (!validateBonusNumberValue(inputBonusNumber) && !validateBonusNumberValueRange(inputBonusNumber)) {
-            return false;
-        }
+        validateBonusNumberValue(inputBonusNumber);
+        validateBonusNumberValueRange(inputBonusNumber);
+
         return true;
     }
 
-    private boolean validateBonusNumberValue(String inputBonusNumber) {
+    private void validateBonusNumberValue(String inputBonusNumber) {
         if (!inputBonusNumber.matches("\\d+")) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_FORMAT.getMessage());
         }
-        return true;
     }
 
-    private boolean validateBonusNumberValueRange(String inputBonusNumber) {
+    private void validateBonusNumberValueRange(String inputBonusNumber) {
         int bonusNumber = Integer.parseInt(inputBonusNumber);
+
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_RANGE.getMessage());
         }
-        return true;
     }
 }

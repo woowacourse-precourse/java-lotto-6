@@ -19,9 +19,17 @@ public class LottoGenerator {
     }
 
     public List<Integer> winningInputToWinningLotto(String winningInput) {
+        validateWinningInput(winningInput);
+
         List<Integer> winningNumbers = Arrays.stream(winningInput.split(","))
                 .map(Integer::parseInt)
                 .toList();
         return winningNumbers;
+    }
+
+    private void validateWinningInput(String winningInput) {
+        if (!winningInput.matches("^[\\d,\\s]+$")) {
+            throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_FORMAT.getMessage());
+        }
     }
 }

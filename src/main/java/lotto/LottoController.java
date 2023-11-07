@@ -71,7 +71,7 @@ public class LottoController {
             try {
                 String winningInput = inputView.promptForWinningCondition();
                 winningNumbers = lottoGenerator.winningInputToWinningLotto(winningInput);
-                isValidated = valueValidator.validateWinningInputValue(winningNumbers);
+                isValidated = valueValidator.validateWinningNumbersValue(winningNumbers);
 
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

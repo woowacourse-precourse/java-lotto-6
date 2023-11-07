@@ -43,7 +43,7 @@ public class WinningNumberTest {
                 .withMessage(DUPLICATED_BONUS_NUMBER.getMessage());
     }
 
-    @DisplayName("[Exception] 보너스 번호에 1~45 이외의 숫자를 입력하 예외가 발생한다.")
+    @DisplayName("[Exception] 보너스 번호에 1~45 이외의 숫자를 입력하면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "46"})
     void createBonusNumberByOutRangeNumber(String input) {

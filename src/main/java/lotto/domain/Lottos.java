@@ -52,7 +52,7 @@ public class Lottos {
     }
 
     private long moneyToQuantity(long money) throws LottoException {
-        if (money % LOTTO_PRICE.getValue() > 0) {
+        if (money % LOTTO_PRICE.getValue() != 0) {
             throw new LottoException(INDIVISIBLE);
         }
         return money / LOTTO_PRICE.getValue();

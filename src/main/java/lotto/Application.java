@@ -12,27 +12,33 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        printConsole("구입금액");
-        UserData userData = new UserData();
+        try{
+            printConsole("구입금액");
+            UserData userData = new UserData();
 
-        System.out.println(userData.money);
+            System.out.println(userData.money);
 
-        System.out.printf("\n%d개를 구매했습니다.\n", userData.lottoCount);
-        userData.printUserLotto();
+            System.out.printf("\n%d개를 구매했습니다.\n", userData.lottoCount);
+            userData.printUserLotto();
 
-        System.out.println();
-        printConsole("당첨 번호");
-        WinLotto winLotto = new WinLotto();
+            System.out.println();
+            printConsole("당첨 번호");
+            WinLotto winLotto = new WinLotto();
 
-        System.out.println();
-        printConsole("보너스 번호");
-        winLotto.setBonus();
+            System.out.println();
+            printConsole("보너스 번호");
+            winLotto.setBonus();
 
-        checkAllLotto(winLotto, userData);
-        userData.printRanks();
+            checkAllLotto(winLotto, userData);
+            userData.printRanks();
 
-        userData.calculateReturnRate();
-        System.out.println("총 수익률은 " + String.format("%.1f", userData.returnRate) + "%입니다.");
+            userData.calculateReturnRate();
+            System.out.println("총 수익률은 " + String.format("%.1f", userData.returnRate) + "%입니다.");
+
+        }
+        catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
 
     }
 }

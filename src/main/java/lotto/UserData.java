@@ -25,14 +25,19 @@ public class UserData {
     }
 
     public void inputMoney(){
-        int rawMoney = Integer.parseInt(Console.readLine());
+        String rawMoney = Console.readLine();
         validateMoney(rawMoney);
-        money = rawMoney;
+        money = Integer.parseInt(rawMoney);
     }
 
-    public void validateMoney(int raw){
-        if(raw % 1000 != 0) {
-            throw new IllegalArgumentException();
+    public void validateMoney(String raw){
+        try {
+            if(Integer.parseInt(raw) % 1000 != 0) {
+                throw new IllegalArgumentException("[ERROR] 구입금액의 단위는 1000원 이어야 합니다.");
+            }
+        }
+        catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 정수여야 합니다.");
         }
     }
 

@@ -33,14 +33,14 @@ public class WinLotto {
 
     public void validRawWinNum(String raw){
         if(!raw.replaceAll(",", "").matches("^[0-9]*$")){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] ,로 구분된 입력값을 입력해야 합니다.");
         }
     }
 
     public void validWinNum(List<Integer> winNum){
         Set<Integer> removeDuplicate = new HashSet<>(winNum);
         if(winNum.size() != removeDuplicate.size()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 값이 존재합니다.");
         }
 
         for(int i = 0; i<winNum.size(); i++){
@@ -62,12 +62,12 @@ public class WinLotto {
 
     public void validDuplicateBonus(int bonus){
         if(WinLottoNumbers.contains(bonus)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 값이 존재합니다.");
         }
     }
     public void validRange(int num){
         if(num > 45){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이의 숫자여야 합니다. ");
         }
     }
 }

@@ -3,21 +3,26 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void validateDuplicate(List<Integer> winNum){
+        Set<Integer> removeDuplicate = new HashSet<>(winNum);
+        if(winNum.size() != removeDuplicate.size()){
             throw new IllegalArgumentException();
         }
     }

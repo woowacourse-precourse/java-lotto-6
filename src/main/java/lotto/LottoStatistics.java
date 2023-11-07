@@ -30,17 +30,17 @@ public class LottoStatistics {
     @Override
     public String toString() {
         StringBuilder msgBuilder = new StringBuilder("");
-        msgBuilder.append("3개 일치 (5,000원) - ")
-                .append(statistics.get(LottoResult.MATCH3)).append("개\n");
-        msgBuilder.append("4개 일치 (50,000원) - ")
-                .append(statistics.get(LottoResult.MATCH4)).append("개\n");
-        msgBuilder.append("5개 일치 (1,500,000원) - ")
-                .append(statistics.get(LottoResult.MATCH5)).append("개\n");
-        msgBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ")
-                .append(statistics.get(LottoResult.MATCH5_AND_BONUS)).append("개\n");
-        msgBuilder.append("6개 일치 (2,000,000,000원) - ")
-                .append(statistics.get(LottoResult.MATCH6)).append("개\n");
-        msgBuilder.append("총 수익률은 ").append(returnRate).append("%입니다.\n");
+        for (LottoResult result : statistics.keySet()) {
+            if (result == LottoResult.OTHER) {
+                continue;
+            }
+            msgBuilder.append(result.getMsg());
+            msgBuilder.append(statistics.get(result));
+            msgBuilder.append("개\n");
+        }
+        msgBuilder.append("총 수익률은 ")
+                .append(returnRate)
+                .append("%입니다.\n");
         return msgBuilder.toString();
     }
 

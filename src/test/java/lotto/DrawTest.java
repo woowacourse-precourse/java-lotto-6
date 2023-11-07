@@ -2,6 +2,8 @@ package lotto;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.Map;
@@ -134,28 +136,45 @@ public class DrawTest extends Draw{
     }
 
     @Test
-    void 보너스_번호가_일치하는_경우() {
+    void 로또번호가_5개_일치하고_보너스_번호도_일치하는_경우() {
 
         //given
         Lotto lotto = new Lotto(List.of(1, 3, 5, 6, 34, 21));
+        int matchCount = 5;
         int bonusNum = 21;
 
         //when
-        boolean result = hasBonus(lotto, bonusNum);
+        boolean result = hasBonus(lotto, matchCount, bonusNum);
 
         //then
         assertThat(result).isEqualTo(true);
     }
 
     @Test
-    void 보너스_번호가_일치하지_않는_경우() {
+    void 로또번호가_5개_일치하지만_보너스_번호가_일치_X() {
 
         //given
         Lotto lotto = new Lotto(List.of(1, 3, 5, 6, 34, 21));
+        int matchCount = 5;
         int bonusNum = 22;
 
         //when
-        boolean result = hasBonus(lotto, bonusNum);
+        boolean result = hasBonus(lotto, matchCount, bonusNum);
+
+        //then
+        assertThat(result).isEqualTo(false);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"3", "4", "6"})
+    void 보너스_번호가_의미없는_경우(int matchCount) {
+
+        //given
+        Lotto lotto = new Lotto(List.of(1, 3, 5, 6, 34, 21));
+        int bonusNum = 21;
+
+        //when
+        boolean result = hasBonus(lotto, matchCount, bonusNum);
 
         //then
         assertThat(result).isEqualTo(false);

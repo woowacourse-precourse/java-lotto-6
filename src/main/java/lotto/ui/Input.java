@@ -6,7 +6,7 @@ public class Input {
 
     private String input;
 
-    public void purchasePriceInput() {
+    public int purchasePriceInput() {
         boolean isValid = false;
 
         while (!isValid) {
@@ -18,6 +18,8 @@ public class Input {
                 System.out.print("[ERROR] " + e.getMessage());
             }
         }
+
+        return getLottoTicketsNumber();
     }
 
     private void readPurchasePrice() {
@@ -31,5 +33,9 @@ public class Input {
         }
 
         return true;
+    }
+
+    private int getLottoTicketsNumber() {
+        return Integer.parseInt(this.input) / 1000;
     }
 }

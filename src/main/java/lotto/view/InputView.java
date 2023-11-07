@@ -9,6 +9,9 @@ import static lotto.constants.Notice.ASK_PURCHASE_PRICE;
 import static lotto.constants.Notice.ASK_WINNING_NUMBERS;
 
 public class InputView {
+    private static final int THOUSAND_UNIT = 1000;
+    private static final int PURCHASE_LIMIT = 100000;
+
     public static int askPurchaseAmount() throws IllegalArgumentException {
         System.out.println(ASK_PURCHASE_PRICE.getMessage());
         String input = readLine();
@@ -43,13 +46,13 @@ public class InputView {
     }
 
     private static void validateThousandUnit(int won) {
-        if (won % 1000 != 0) {
+        if (won % THOUSAND_UNIT != 0) {
             throw new IllegalArgumentException(IS_NOT_THOUSAND_UNIT.getMessage());
         }
     }
 
     private static void validatePurchaseLimit(int won) {
-        if (won > 100000) {
+        if (won > PURCHASE_LIMIT) {
             throw new IllegalArgumentException(EXCEED_LIMIT.getMessage());
         }
     }

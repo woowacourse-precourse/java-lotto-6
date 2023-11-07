@@ -18,4 +18,8 @@ public class LottoPurchaseService {
         }
         return lotto;
     }
+
+    public static int getLottoPrice() {
+        return LOTTO_PRICE;
+    }
 }

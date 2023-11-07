@@ -54,6 +54,8 @@ public class LottoController {
 
     private void printLottoResult(UserLottos userLottos, LottoWinning lottoWinning) {
         Map<Integer, Integer> rankMap = lottoGame.calcWinningStatistics(userLottos, lottoWinning);
+        RateOfReturn rateOfReturn = lottoGame.calcRateOfReturn(rankMap);
 
+        outputView.printWinningStatistics(rankMap, rateOfReturn);
     }
 }

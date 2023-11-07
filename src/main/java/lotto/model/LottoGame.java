@@ -66,4 +66,15 @@ public class LottoGame {
         }
         return -1;
     }
+
+    // 수익률 계산해서 반환하는 메서드
+    public RateOfReturn calcRateOfReturn(Map<Integer, Integer> rankMap) {
+        int rateOfReturn = 0;
+        for (int rank : rankMap.keySet()) {
+            if (-1 == rank) continue;
+
+            rateOfReturn += rankMap.get(rank) * LottoWinningValue.valueOfRank(rank).getWinningAmount();
+        }
+        return new RateOfReturn(rateOfReturn);
+    }
 }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.constant.LottoWinningValue;
 import lotto.domain.Lotto;
+import lotto.domain.RateOfReturn;
 import lotto.domain.UserLottos;
 
 import java.util.Map;
@@ -31,11 +32,11 @@ public class OutputView {
         System.out.println(lotto.getNumbers());
     }
 
-    public void printWinningStatistics(Map<Integer, Integer> winningCnt, int rateOfReturn) {
+    public void printWinningStatistics(Map<Integer, Integer> winningCnt, RateOfReturn rateOfReturn) {
         System.out.println(WINNING_STATISTICS);
 
         for (int i = HIGHEST_RANK; i <= LOWEST_RANK; i++) {
-            String winnings = LottoWinningValue.valueOfRank(i).getWinnings();
+            String winnings = LottoWinningValue.valueOfRank(i).getWinningsPhrase();
             int cnt = winningCnt.get(i);
 
             System.out.printf(WINNING_RESULT, winnings, cnt);
@@ -44,7 +45,7 @@ public class OutputView {
         printRateOfReturn(rateOfReturn);
     }
 
-    private void printRateOfReturn(int rateOfReturn) {
-        System.out.printf(RATE_OF_RETURN, rateOfReturn);
+    private void printRateOfReturn(RateOfReturn rateOfReturn) {
+        System.out.printf(RATE_OF_RETURN, rateOfReturn.getRateOfReturn());
     }
 }

@@ -20,6 +20,7 @@ public class LottoNumber {
     }
 
     public LottoNumber(String number) {
+        number = number.trim();
         validateNumber(number);
 
         int num = Integer.parseInt(number);
@@ -32,8 +33,6 @@ public class LottoNumber {
     }
 
     private void validateNumber(String number) {
-        number = number.trim();
-
         // 공백 입력하면 예외 처리
         if (number.isBlank() || number == null) {
             throw new IllegalArgumentException(ErrorMessage.BLANK_VALUE.getMessage());

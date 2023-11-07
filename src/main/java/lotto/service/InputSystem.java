@@ -46,7 +46,7 @@ public class InputSystem {
         try{
             Integer.parseInt(inputNum);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]: 숫자를 입력해주세요.");
         }
     }
 }

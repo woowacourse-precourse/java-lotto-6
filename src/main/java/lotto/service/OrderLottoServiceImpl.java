@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import lotto.dto.MoneyDTO;
 import lotto.enums.Constant;
+import lotto.enums.OutputMessage;
 import lotto.model.Lotto;
 import lotto.repository.LottoRepository;
 import lotto.utils.RandomGenerator;
@@ -28,7 +29,15 @@ public class OrderLottoServiceImpl implements OrderLottoService {
 
     @Override
     public String getOrderList() {
-        return null;
+        List<Lotto> entireLotto = lottoRepository.findAll();
+        String result = "";
+
+        for (Lotto lotto : entireLotto) {
+            result += String.format(OutputMessage.LOTTO_NUMBERS.getMessage(), lotto);
+            result += Constant.LINE_FEED.getContent();
+        }
+
+        return result;
     }
 
     private Integer getCountOfLotto(MoneyDTO moneyDTO) {

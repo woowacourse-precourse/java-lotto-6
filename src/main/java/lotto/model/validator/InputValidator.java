@@ -10,6 +10,8 @@ import static lotto.model.validator.ExceptionMessage.*;
 
 public class InputValidator {
     private static final Pattern MULTIPLE_1000 = Pattern.compile("([1-9]+)(0{3,})");
+    private static final Pattern NUMERIC = Pattern.compile("^[1-9]\\d*");
+
     public static void numberMustBeMultipleOf1000(String input){
         if (MULTIPLE_1000.matcher(input).matches()) return;
 
@@ -50,5 +52,10 @@ public class InputValidator {
         if (input.isEmpty()){
             illegalArgument(EMPTY_INPUT.getMessage());
         }
+    }
+
+    public static void checkNumericInput(String input){
+        if (NUMERIC.matcher(input).matches()) return;
+        illegalArgument(INPUT_MUST_BE_NUMERIC.getMessage());
     }
 }

@@ -104,4 +104,21 @@ public class InputTest {
         );
     }
 
+
+    @ParameterizedTest
+    @MethodSource("stringToInteger")
+    @DisplayName("구분자 분할 테스트")
+    public void 구분자_분할_테스트(List<String> input, List<Integer> expected) {
+        assertThat(inputView.convertLuckyNumberForm(input)).isEqualTo(expected);
+    }
+
+    static Stream<Arguments> stringToInteger(){
+        return Stream.of(
+                Arguments.of(Arrays.asList("1","2","3","4","5","6"), Arrays.asList(1,2,3,4,5,6)),
+                Arguments.of(Arrays.asList("44","12","6","2","7","9"), Arrays.asList(44,12,6,2,7,9))
+        );
+    }
+
+
+
 }

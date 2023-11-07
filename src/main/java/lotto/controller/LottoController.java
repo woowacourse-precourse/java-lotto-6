@@ -61,7 +61,7 @@ public class LottoController {
             winningStatistics.addRanking(ranking);
 
         }
-
+        outputResult();
     }
 
     public void outputResult(){

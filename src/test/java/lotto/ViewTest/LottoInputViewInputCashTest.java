@@ -8,7 +8,7 @@ import lotto.View.LottoInputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoInputViewTest extends NsTest {
+public class LottoInputViewInputCashTest extends NsTest {
 
     private static final String ERROR_MESSAGE = "[ERROR]";
     @DisplayName("숫자가 아닌 금액이 포함되었을 경우 예외가 발생한다.")
@@ -25,6 +25,15 @@ public class LottoInputViewTest extends NsTest {
     void createInputCashByNotUnitCash() {
         assertSimpleTest(() -> {
             runException("7500");
+            assertThat(output()).contains(ERROR_MESSAGE);
+        });
+    }
+
+    @DisplayName("1000원 이하의 금액을 입력했을 경우 예외가 발생한다.")
+    @Test
+    void createInputCashByUnderMinimum() {
+        assertSimpleTest(() -> {
+            runException("900");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LottoMakingServiceTest {
+
     @DisplayName("정확한 숫자의 로또 개수를 가진 컨테이너를 생성한다.")
     @Test
     void createLottoContainerHavingCorrectNumbersOfPapers() {
@@ -19,7 +20,7 @@ public class LottoMakingServiceTest {
         assertEquals(lottoContainer.getLottos().size(), cash / Constant.LOTTO_PRICE);
     }
 
-    @DisplayName("정확한 숫자의 로또 개수를 가진 컨테이너를 생성한다.")
+    @DisplayName("유일한 숫자들로 이루어진 오름차순의 로또를 생성한다.")
     @Test
     void createLottoPaperHavingUniqueSortedNumbersInRange() {
         LottoMakingService lottoMakingService = new LottoMakingService();
@@ -31,4 +32,6 @@ public class LottoMakingServiceTest {
         assertTrue(lotto.getNumbers().stream().allMatch(num ->
                 num >= Constant.LOTTO_START_NUMBER && num <= Constant.LOTTO_END_NUMBER));
     }
+
+
 }

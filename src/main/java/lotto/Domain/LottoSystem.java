@@ -10,6 +10,7 @@ import static lotto.Util.InputValidator.isValidRangeNumber;
 import static lotto.Util.TypeCaster.convertStringToIntegerList;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +27,8 @@ public class LottoSystem {
             checkDistinctNumbers(lottoWinningNumber);
         }
         this.lottoWinningNumbers = convertStringToIntegerList(lottoWinningNumber);
-        lottoBonusNumber = lottoBonusNumber.replaceAll(" ", "");
+        Collections.sort(this.lottoWinningNumbers);
+        lottoBonusNumber.trim();
         if (isValidRangeNumber(lottoBonusNumber)) {
             checkDistinctBetweenWinningAndBonusNumber(lottoWinningNumber, lottoBonusNumber);
             this.lottoBonusNumber = Integer.parseInt(lottoBonusNumber);
@@ -43,7 +45,8 @@ public class LottoSystem {
             boolean bonusNumberflag = false;
 
             for (int ticketNumber : ticketNumbers) {
-                countMatchingNumber = checkContainWinningNumber(this.lottoWinningNumbers, ticketNumber, countMatchingNumber);
+                countMatchingNumber = checkContainWinningNumber(this.lottoWinningNumbers, ticketNumber,
+                        countMatchingNumber);
                 bonusNumberflag = checkContainBonusNumber(this.lottoBonusNumber, ticketNumber);
             }
             countMatchingNumber = checkBonusNumber(countMatchingNumber, bonusNumberflag);

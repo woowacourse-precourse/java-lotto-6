@@ -11,7 +11,7 @@ import java.util.List;
 import lotto.Lotto;
 
 public class LottoStore {
-    public List<Lotto> generateLotto(String lottoQuantity) { // System으로 옮겨도 될 듯
+    public List<Lotto> generateLotto(String lottoQuantity) {
         int quantity = 0;
 
         checkDivisibleBy1000(lottoQuantity);
@@ -20,7 +20,10 @@ public class LottoStore {
         List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
+            List<Integer> mutableList = new ArrayList<>(numbers);
+
+            // 가변 리스트를 오름차순으로 정렬
+            Collections.sort(mutableList);
             lotto.add(new Lotto(numbers));
         }
         return lotto;

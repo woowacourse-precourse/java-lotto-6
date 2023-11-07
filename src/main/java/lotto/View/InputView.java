@@ -13,7 +13,7 @@ public class InputView {
     public static String inputLottoPurchaseAmount() {
         boolean isNumber = false;
         boolean isEmpty = false;
-        String input="";
+        String input = "";
         while (!isNumber || !isEmpty) {
             try {
                 System.out.println(INPUT_LOTTO_PUCAHSE_AMOUNT_MESSAGE);
@@ -27,10 +27,10 @@ public class InputView {
         return input;
     }
 
-    public static String inputLottoWinningNumber(){
+    public static String inputLottoWinningNumber() {
         boolean isNumber = false;
         boolean isEmpty = false;
-        String input="";
+        String input = "";
         while (!isNumber || !isEmpty) {
             try {
                 System.out.println(INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
@@ -44,10 +44,10 @@ public class InputView {
         return input;
     }
 
-    public static String inputLottoBonusNumber(){
+    public static String inputLottoBonusNumber() {
         boolean isNumber = false;
         boolean isEmpty = false;
-        String input="";
+        String input = "";
         while (!isNumber || !isEmpty) {
             try {
                 System.out.println(INPUT_LOTTO_BONUS_NUMBER_MESSAGE);

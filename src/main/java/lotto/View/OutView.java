@@ -11,15 +11,15 @@ public class OutView {
     public static void printPurchasedLottos(List<String> lottoNumbers) {
         System.out.println(lottoNumbers.size() + SUCCESFULLY_PURCHASE_LOTTO_MESSAGE);
         for (String lottoNumber : lottoNumbers) {
-            System.out.println("[" + lottoNumber +"]");
+            System.out.println("[" + lottoNumber + "]");
         }
     }
 
-    public static void printLottoWinningStatistics(Map<String, Integer> lottoWinningStatistics){
+    public static void printLottoWinningStatistics(Map<String, Integer> lottoWinningStatistics) {
         System.out.println(LOTTO_WINNING_STATISTICS_START_MESSAGE);
         int index = 3;
-        for(WinningStatistics message : WinningStatistics.values()){
-            if(lottoWinningStatistics.get(Integer.toString(index)) == null){
+        for (WinningStatistics message : WinningStatistics.values()) {
+            if (lottoWinningStatistics.get(Integer.toString(index)) == null) {
                 System.out.println(message.getMessage() + "0개");
                 index++;
                 continue;
@@ -29,7 +29,7 @@ public class OutView {
         }
     }
 
-    public static void printRateOfReturn(double result){
-        System.out.println("총 수익률은 "+ result + "%입니다.");
+    public static void printRateOfReturn(double result) {
+        System.out.println("총 수익률은 " + result + "%입니다.");
     }
 }

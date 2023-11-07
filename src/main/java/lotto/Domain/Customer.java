@@ -1,6 +1,5 @@
 package lotto.Domain;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,16 +22,15 @@ public class Customer {
         return purchasedLottoNumbers;
     }
 
-    public double calculateRateOfReturn(Map<String, Integer> lottoWinningStatistics){
+    public double calculateRateOfReturn(Map<String, Integer> lottoWinningStatistics) {
         double investMoney = purchasedLottos.size() * 1000;
         double totalReward = 0;
-        int i=3;
-        for(WinningStatistics num : WinningStatistics.values()){
-            if(lottoWinningStatistics.get(Integer.toString(num.getMatchNumber())) != null){
-                totalReward += (double)lottoWinningStatistics.get(Integer.toString(num.getMatchNumber())) * num.getReward();
+        for (WinningStatistics num : WinningStatistics.values()) {
+            if (lottoWinningStatistics.get(Integer.toString(num.getMatchNumber())) != null) {
+                totalReward += (double) lottoWinningStatistics.get(Integer.toString(num.getMatchNumber())) * num.getReward();
             }
         }
-        double rateOfReturn = totalReward/investMoney * 100;
+        double rateOfReturn = totalReward / investMoney * 100;
         return Math.round(rateOfReturn * 10.0) / 10.0;
     }
 }

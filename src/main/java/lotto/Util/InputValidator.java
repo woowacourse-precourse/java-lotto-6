@@ -18,8 +18,7 @@ public class InputValidator {
     public static final String NOT_A_DISTINCT_NUMBER_ERROR = "로또 번호의 각 자리수는 서로 달라야합니다.";
 
 
-
-    public static boolean isEmpty(String input){
+    public static boolean isEmpty(String input) {
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NULL_OR_EMPTY_ERROR);
         }
@@ -52,8 +51,8 @@ public class InputValidator {
     }
 
     public static boolean isValidRangeNumber(String input) {
-        if(!input.contains(",")){
-            if(Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45){
+        if (!input.contains(",")) {
+            if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 45) {
                 throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_VALID_RANGE_NUMBER_ERROR);
             }
         }
@@ -75,7 +74,7 @@ public class InputValidator {
         }
     }
 
-    public static void checkDistinctNumbers(String input){
+    public static void checkDistinctNumbers(String input) {
         List<String> numbers = List.of(input.split(","));
         Set<String> uniqueNumbers = new HashSet<>();
         for (String number : numbers) {
@@ -85,9 +84,9 @@ public class InputValidator {
         }
     }
 
-    public static void checkDistinctBetweenWinningAndBonusNumber(String winningNumbers, String bonusNumber){
+    public static void checkDistinctBetweenWinningAndBonusNumber(String winningNumbers, String bonusNumber) {
         Set<String> numbers = new HashSet<>(Arrays.asList(winningNumbers.split(",")));
-        if(!numbers.add(bonusNumber)){
+        if (!numbers.add(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NOT_A_DISTINCT_NUMBER_ERROR);
         }
     }

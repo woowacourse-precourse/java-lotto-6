@@ -119,22 +119,27 @@ public class LottoService {
     public Map<Integer, Integer> calculateMatchingCounts(List<List<Integer>> userLottoNumbers, List<Integer> winningNumbers, int bonusNumber) {
         Map<Integer, Integer> matchingCounts = new HashMap<>();
         for (List<Integer> lottoNumbers : userLottoNumbers) {
-            int count = 0;
-            boolean isBonusMatched = false;
-            for (int number : lottoNumbers) {
-                if (winningNumbers.contains(number)) {
-                    count++;
-                }
-                if (number == bonusNumber) {
-                    isBonusMatched = true;
-                }
-            }
-            if (count == 5 && isBonusMatched) {
+            int count = countMatchedNumbers(lottoNumbers, winningNumbers);
+            if (count == 5 && isMatchedBonusNumber(lottoNumbers, bonusNumber)) {
                 count = 7;
             }
             matchingCounts.put(count, matchingCounts.getOrDefault(count, 0) + 1);
         }
         return matchingCounts;
+    }
+
+    public int countMatchedNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+        int count = 0;
+        for (int number : lottoNumbers) {
+            if (winningNumbers.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean isMatchedBonusNumber(List<Integer> lottoNumbers, int bonusNumber) {
+        return lottoNumbers.contains(bonusNumber);
     }
 
     public void printStatistics(Map<Integer, Integer> matchingCounts) {

@@ -31,6 +31,7 @@ public class Analyst {
 
     public HashMap<Prize, HashMap<Tally, Integer>> updatePrizes(List<Integer> winningNumberMatchCounts,
                                                                 List<Integer> bonusNumberMatchCounts) {
+
         HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes = createDefaultPrizes();
 
         for (int i = 0; i < winningNumberMatchCounts.size(); i++) {

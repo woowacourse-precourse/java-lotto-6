@@ -1,10 +1,10 @@
 # 기능 요구사항
 
 - [] 로또를 시작한다. LottoGame#run
-    - [] 입력문구를 출력한다. InputView#inputPrice
-    - [] 가격 입력 문구 출력 InputView#inputPrice
-    - [] 가격을 입력받는다.
-        - [] 1000원 단위를 입력 받았는지 검증. Customer#validatePrice
+    - [X] 입력문구를 출력한다. InputView#inputPrice
+    - [X] 가격 입력 문구 출력 InputView#inputPrice
+    - [X] 가격을 입력받는다.
+        - [X] 1000원 단위를 입력 받았는지 검증. Customer#validatePrice
     - [] 가격에 맞는 갯수로 로또를 생성한다. Customer#buy
         - [] 로또 생성 LottoRandomGenerator#generateLotto
             - 유효성검사 LottoPaper#validateLotto
@@ -26,3 +26,8 @@
     - [] 각각의 로또들을 당첨 번호와 비교하여 list를 추출한다. WinningLotto#compareLottoPapersToRank
     - [] list를 가지고 구매가와 당첨금을 비교한다. LottoGame#getResult
     - [] 결과를 출력한다. OutputView#resultOutput
+
+## 이외의 예외처리
+
+---
+- [X] 정적 클래스는 객체로 생성되어선 안된다. ShouldNotCreatedClassException 

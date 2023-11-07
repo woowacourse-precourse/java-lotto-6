@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,7 +10,7 @@ public class PurchaseLotto {
     private final List<Lotto> lottos;
 
     public PurchaseLotto(List<Lotto> lottos) {
-        this.lottos = lottos;
+        this.lottos = new ArrayList<>(lottos);
     }
 
     public static PurchaseLotto purchaseAutoLotto(long lottoCount) {

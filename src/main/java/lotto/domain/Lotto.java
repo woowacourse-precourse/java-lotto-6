@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,7 @@ public class Lotto {
         validateRange(numbers);
         validateDuplication(numbers);
 
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
     }
 
     public int getMatchingNumberCount(Lotto targetLotto) {
@@ -30,7 +31,7 @@ public class Lotto {
         return this.numbers.contains(bonusNumber);
     }
 
-    public List<Integer> getNumbers() {
+    public List<Integer> getNumbers(){
         return this.numbers;
     }
 

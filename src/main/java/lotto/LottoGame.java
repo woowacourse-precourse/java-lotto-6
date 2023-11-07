@@ -18,7 +18,7 @@ public class LottoGame {
         return lottoCnt;
     }
 
-    public static List<List<Integer>> getLotto(){
+    public static List<List<Integer>> getLottoBundle(){
         List<List<Integer>> tickets = new ArrayList<>();
         for (int i = 0; i < lottoCnt; i++) {
             tickets.add(getRandomNumbers());
@@ -44,5 +44,15 @@ public class LottoGame {
         }
 
         return winningNumbersList;
+    }
+
+    public static void GetTwoNumbers(List<Integer> winningNumbers, List<List<Integer>> userNumbersBundle, int bonus){
+        for (List<Integer> userNumbersUnit : userNumbersBundle) {
+            CompareNumbers(winningNumbers, userNumbersUnit, bonus);
+        }
+    }
+
+    public static void CompareNumbers(List<Integer> winningNumbers, List<Integer> userNumberUnit, int bonus){
+
     }
 }

@@ -1,8 +1,9 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
+import lotto.domain.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

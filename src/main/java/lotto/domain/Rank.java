@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.function.BiPredicate;
+import lotto.domain.money.Money;
 
 public enum Rank {
     SIX(6, Money.of(2000000000)),

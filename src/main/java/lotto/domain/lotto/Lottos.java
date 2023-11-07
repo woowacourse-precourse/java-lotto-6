@@ -1,10 +1,11 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
+import lotto.domain.Rank;
 import lotto.utils.RandomNumberGenerator;
 
 public class Lottos {

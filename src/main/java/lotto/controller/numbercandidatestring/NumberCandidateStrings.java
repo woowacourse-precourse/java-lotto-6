@@ -1,9 +1,8 @@
-package lotto.controller;
+package lotto.controller.numbercandidatestring;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.LottoNumber;
-import lotto.domain.NumberCandidateString;
+import lotto.domain.lotto.LottoNumber;
 
 public class NumberCandidateStrings {
 
@@ -17,10 +16,14 @@ public class NumberCandidateStrings {
         return numberCandidateStrings.stream().map(NumberCandidateString::getNumber).map(LottoNumber::new).toList();
     }
 
-    public static NumberCandidateStrings valueOf(String[] splitStrings){
-        List<NumberCandidateString> numberCandidateStrings = Arrays.stream(splitStrings)
+    public static NumberCandidateStrings valueOf(String numberCandiate){
+        List<NumberCandidateString> numberCandidateStrings = Arrays.stream(toSplit(numberCandiate))
                 .map(NumberCandidateString::new)
                 .toList();
         return new NumberCandidateStrings(numberCandidateStrings);
+    }
+
+    private static String[] toSplit(String numberCandiate) {
+        return numberCandiate.split(",");
     }
 }

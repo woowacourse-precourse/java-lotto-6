@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.dto;
 
 import java.util.HashMap;
 import lotto.domain.Rank;

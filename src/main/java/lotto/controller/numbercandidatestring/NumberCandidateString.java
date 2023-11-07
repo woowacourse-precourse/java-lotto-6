@@ -1,4 +1,6 @@
-package lotto.domain;
+package lotto.controller.numbercandidatestring;
+
+import lotto.domain.money.Money;
 
 public class NumberCandidateString {
 

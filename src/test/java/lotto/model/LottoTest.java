@@ -8,7 +8,7 @@ import lotto.utils.FixNumberGenerator;
 import lotto.utils.NumberGenerator;
 import org.junit.jupiter.api.Test;
 
-public class LottosTest {
+public class LottoTest {
 
     @Test
     void 몇_개의_숫자가_일치하는지_테스트() {

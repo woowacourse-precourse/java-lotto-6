@@ -1,6 +1,8 @@
 package lotto;
 
+import static lotto.message.ErrorMessage.BONUS_NUMBER_RANGE;
 import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
+import static lotto.message.ErrorMessage.NUMBER_FORMAT_BONUS_NUMBER;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_WINNING_NUMBERS;
 import static lotto.message.ErrorMessage.WINNING_NUMBERS_LENGTH;
@@ -20,16 +22,15 @@ public class Game {
         WinningStatistics winningStatistics = new WinningStatistics();
 
         int purchaseAmount = validatePurchaseAmount();
-        List<Lotto> totalLotto = gameManager.createLotto(purchaseAmount);
         List<Integer> winningNumbers;
+        int bonusNumber;
+        List<Lotto> totalLotto = gameManager.createLotto(purchaseAmount);
 
         Output.printPurchaseLottoQuantityMessage(totalLotto.size());
         Output.printTotalLotto(totalLotto);
 
         winningNumbers = validateWinningNumbers();
-
-        Output.printBonusNumberMessage();
-        int bonusNumber = input.getBonusNumber();
+        bonusNumber = validateBonusNumber();
 
         gameManager.compareTotalLotto(totalLotto, winningNumbers, bonusNumber, winningStatistics);
         Output.printWinningStatisticsMessage();
@@ -37,6 +38,30 @@ public class Game {
 
         double profitPercentage = gameManager.calculateProfitPercentage(winningStatistics, purchaseAmount);
         Output.printProfitPercentage(profitPercentage);
+    }
+
+    private int validateBonusNumber() {
+        int bonusNumber;
+        while (true){
+            Output.printBonusNumberMessage();
+            try {
+                bonusNumber = input.getBonusNumber();
+                break;
+            }catch (IllegalArgumentException e){
+                checkBonusNumberExceptionCategory(e);
+            }
+        }
+        return bonusNumber;
+    }
+
+    private static void checkBonusNumberExceptionCategory(IllegalArgumentException e) {
+        if(e.getMessage().equals(BONUS_NUMBER_RANGE.errorMessage())){
+            System.out.println(BONUS_NUMBER_RANGE.errorMessage());
+        }
+
+        if (e.getMessage().equals(NUMBER_FORMAT_BONUS_NUMBER.errorMessage())){
+            System.out.println(NUMBER_FORMAT_BONUS_NUMBER.errorMessage());
+        }
     }
 
     private List<Integer> validateWinningNumbers() {

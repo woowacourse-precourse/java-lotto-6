@@ -20,5 +20,7 @@ public class LottoGameService {
         winLotto.createLotto();
         Prints.print_input_bonusnumber();
         winLotto.createBonusNumber();
+
+        Prints.print_game_result();
     }
 }

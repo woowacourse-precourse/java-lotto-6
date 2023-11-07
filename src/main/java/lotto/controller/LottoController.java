@@ -18,7 +18,7 @@ public class LottoController {
 
     private Purchase purchase;
     private Lottos lottos;
-    private WinningNumber winningLotto;
+    private WinningNumber winningNumber;
     private BonusNumber bonusNumber;
 
     public void run() {
@@ -48,10 +48,10 @@ public class LottoController {
     }
 
     private void getWinningLotto() {
-        String winningNumber = input(WINNING_NUMBER.getMessage());
+        String winningNumberInput = input(WINNING_NUMBER.getMessage());
 
         try {
-            winningLotto = new WinningNumber(stringToList(winningNumber));
+            winningNumber = new WinningNumber(stringToList(winningNumberInput));
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception.getMessage());
             getWinningLotto();
@@ -62,7 +62,7 @@ public class LottoController {
         String bonus = input(BONUS_NUMBER.getMessage());
 
         try {
-            bonusNumber = new BonusNumber(stringToInt(bonus), winningLotto.getWinning());
+            bonusNumber = new BonusNumber(stringToInt(bonus), winningNumber.getWinning());
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception.getMessage());
             getBonusLotto();
@@ -70,7 +70,7 @@ public class LottoController {
     }
 
     private void showWinningResult() {
-        WinningResult.checkWinning(bonusNumber.getBonus(), winningLotto.getWinning(), lottos.getLottos());
+        WinningResult.checkWinning(bonusNumber.getBonus(), winningNumber.getWinning(), lottos.getLottos());
         OutputView.printResultStatistics(purchase.getMoney());
     }
 }

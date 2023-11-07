@@ -19,37 +19,37 @@ public class Lotto {
     }
 
     public void validateBonusNumber(Integer bonusNumber) {
-        validateSingleNumberRange(bonusNumber);
-        validateBonusNumberDuplicate(bonusNumber);
+        validateSingleNumberRange(bonusNumber, NumberType.BONUS_NUMBER);
+        validateBonusNumberDuplicate(bonusNumber, NumberType.BONUS_NUMBER);
     }
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != NUMBER_LENGTH) {
-            throw new IllegalArgumentException(String.format("%s 로또 번호는 %d개여야 합니다.", ERROR_NOTICE, NUMBER_LENGTH));
+            throw new IllegalArgumentException(String.format("%s %s는 %d개여야 합니다.", ERROR_NOTICE, NumberType.BASIC_NUMBER, NUMBER_LENGTH));
         }
     }
 
-    private void validateSingleNumberRange(Integer number) {
+    private void validateSingleNumberRange(Integer number, NumberType numberType) {
         if ((number < NUMBER_MIN) || (NUMBER_MAX < number)) {
-            throw new IllegalArgumentException(String.format("%s 로또 번호 %d가 주어진 범위를 벗어났습니다.", ERROR_NOTICE, number));
+            throw new IllegalArgumentException(String.format("%s %s %d가 주어진 범위를 벗어났습니다.", ERROR_NOTICE, numberType, number));
         }
     }
     private void validateNumbersRange(List<Integer> numbers) {
         for (Integer n : numbers) {
-            validateSingleNumberRange(n);
+            validateSingleNumberRange(n, NumberType.BASIC_NUMBER);
         }
     }
 
-    private void validateBonusNumberDuplicate(Integer number) {
+    private void validateBonusNumberDuplicate(Integer number, NumberType numberType) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException(String.format("%s 로또 번호 %d가 중복으로 포함되었습니다.", ERROR_NOTICE, number));
+            throw new IllegalArgumentException(String.format("%s %s %d가 중복으로 포함되었습니다.", ERROR_NOTICE, numberType, number));
         }
     }
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer n : numbers) {
             if (!uniqueNumbers.add(n)) {
-                throw new IllegalArgumentException(String.format("%s 로또 번호 %d가 중복으로 포함되었습니다.", ERROR_NOTICE, n));
+                throw new IllegalArgumentException(String.format("%s %s %d가 중복으로 포함되었습니다.", ERROR_NOTICE, NumberType.BASIC_NUMBER, n));
             }
         }
     }

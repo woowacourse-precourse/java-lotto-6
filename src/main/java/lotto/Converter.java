@@ -24,17 +24,17 @@ public class Converter {
                     .toList();
             return winningNumbers;
         } catch (Exception e) {
-            OutputHandler.requireFiveCommas();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_FIVE_COMMAS.getMessage());
+            OutputHandler.requireInteger();
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER.getMessage());
         }
     }
 
-    public static Integer bonusNumbers(String numberInput) {
+    public static Integer bonusNumbers(String numberInput) throws IllegalArgumentException {
         try {
             return Integer.parseInt(numberInput);
         } catch (Exception e) {
-            OutputHandler.requireRightRangeNumber();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
+            OutputHandler.requireInteger();
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER.getMessage());
         }
     }
 }

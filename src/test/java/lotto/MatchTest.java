@@ -1,11 +1,17 @@
 package lotto;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.InputBonusNumber;
+import lotto.model.InputLottoNumber;
+import lotto.model.Lotto;
+import lotto.model.Match;
+import lotto.model.MatchResult;
+import lotto.model.RandomNumber;
+import lotto.model.Statistics;
 import org.junit.jupiter.api.Test;
 
 class MatchTest extends NsTest {

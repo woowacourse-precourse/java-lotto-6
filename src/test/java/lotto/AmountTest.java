@@ -3,6 +3,7 @@ package lotto;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import lotto.model.Amount;
 import org.junit.jupiter.api.Test;
 
 class AmountTest {

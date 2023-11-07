@@ -20,11 +20,11 @@ public class Computer {
         Output.printBonusNumber(bonusNumber);
     }
 
-    public List<Integer> getSixLottoNumber(){
+    public List<Integer> getSixLottoNumber() {
         return sixLottoNumber.getSixLottoNumbers();
     }
 
-    public int getBonusNumber(){
+    public int getBonusNumber() {
         return bonusNumber;
     }
 
@@ -33,7 +33,6 @@ public class Computer {
             try {
                 List<String> sixLottoNumber = new ArrayList<>(List.of(Console.readLine().split(",")));
 
-                validateInputSize(sixLottoNumber);
                 validateLottoNumberInputFormat(sixLottoNumber);
 
                 return new Lotto(Parse.parseInteger(sixLottoNumber));
@@ -43,20 +42,13 @@ public class Computer {
         }
     }
 
-
-    private void validateInputSize(List<String> sixLottoNumbers) {
-        if (sixLottoNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 당첨 번호 6개를 입력해주세요.");
-        }
-    }
-
     private void validateLottoNumberInputFormat(List<String> numbers) {
         for (String lottoNumber : numbers) {
             if (!lottoNumber.matches("^\\d+$")) {
-                throw new IllegalArgumentException("[ERROR] 쉼표(,)를 기준으로 공백없이 입력해야합니다. (ex) 1,8,24,45,35,6");
+                throw new IllegalArgumentException("[ERROR] 쉼표(,) 기준으로 공백없이 숫자를 입력해야합니다.(ex)1,2,3,4,5,6");
             }
             if (!lottoNumber.matches("^[1-9][0-9]?$")) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 0으로 시작할 수 없습니다. (ex) 1,8,24,47,35,6");
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 0으로 시작할 수 없습니다. (ex)1,2,3,4,5,6");
             }
         }
     }

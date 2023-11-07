@@ -9,7 +9,6 @@ public record Money(long value) {
     }
 
     public double calculateProfitMargin(Money profit) {
-        var temp = profit.value * 1.0 / value * 100;
-        return (double) Math.round(temp * 100) / 100;
+        return profit.value * 1.0 / value * 100;
     }
 }

@@ -34,7 +34,7 @@ public final class InputView extends ConsoleWriter {
 
         return Arrays.stream(input.split(","))
                 .map(this::convertStringToInteger)
-                .map(INSERT_BONUS_NUMBER::apply)
+                .map(PAYMENT_PRICE_MUST_BE_INTEGER::apply)
                 .toList();
 
     }

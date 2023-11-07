@@ -11,6 +11,7 @@ import java.util.List;
 public class WinningNumberController {
     private LottoView lottoView = new LottoView();
     private LottoService lottoService = new LottoService();
+
     public Lotto runWinningNumber(){
         return processWinningNumber();
     }

@@ -8,7 +8,6 @@ import static lotto.model.enums.ErrorMessage.NUMBERS_SIZE_ERROR_MESSAGE;
 import static lotto.model.enums.ErrorMessage.NUMBERS_DUPLICATION_ERROR_MESSAGE;
 import static lotto.model.enums.ErrorMessage.NUMBERS_RANGE_ERROR_MESSAGE;
 
-
 public class LottoException extends IllegalArgumentException {
     private LottoException(String message) {
         super(message);

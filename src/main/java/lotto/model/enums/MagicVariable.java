@@ -4,7 +4,6 @@ public enum MagicVariable {
     NUMBERS_SIZE(6),
     NUMBERS_MIN_RANGE(1),
     NUMBERS_MAX_RANGE(45),
-    NONE_PURCHASE_PRICE(0),
     LOTTO_PRICE(1000);
 
     private final int number;

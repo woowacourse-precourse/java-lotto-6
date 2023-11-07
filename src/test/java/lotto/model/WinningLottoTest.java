@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static lotto.model.enums.ErrorMessage.ERROR_HEAD_MESSAGE;
 
-
 class WinningLottoTest {
     private WinningLotto winningLottoTest;
 

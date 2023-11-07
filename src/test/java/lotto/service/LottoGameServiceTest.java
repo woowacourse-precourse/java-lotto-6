@@ -187,4 +187,26 @@ class LottoGameServiceTest {
         assertThat(lottoGameService.isContainBonusNumber(purchaseLotto, bonusNumber))
                 .isEqualTo(true);
     }
+
+    @DisplayName("당첨 번호와 5개 일치, 보너스 번호 미포함일 경우 3등")
+    @Test
+    void collectNumberIsFiveAndNotContainBonusNumber() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 12);
+        int bonusNumber = 13;
+
+        assertThat(lottoGameService.determineWinningRank(purchaseLotto, winningLotto, bonusNumber))
+                .isEqualTo(LottoRank.THIRD_PLACE);
+    }
+
+    @DisplayName("당첨 번호와 5개 일치, 보너스 번호 포함일 경우 2등")
+    @Test
+    void collectNumberIsFiveAndContainBonusNumber() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 12);
+        int bonusNumber = 6;
+
+        assertThat(lottoGameService.determineWinningRank(purchaseLotto, winningLotto, bonusNumber))
+                .isEqualTo(LottoRank.SECOND_PLACE);
+    }
 }

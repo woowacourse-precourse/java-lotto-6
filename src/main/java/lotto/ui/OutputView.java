@@ -12,9 +12,9 @@ public class OutputView {
     private static String OVERLAP_NOTIFY_MESSAGE = "%d개 일치";
     private static String OVERLAP_AND_BONUS_NOTIFY_MESSAGE = "%d개 일치, 보너스 볼 일치";
     private static String SPACE = " ";
-    private static String PRIZE_MESSAGE = "(%,d)";
+    private static String PRIZE_MESSAGE = "(%,d원)";
     private static String WINNING_LOTTO_NUMBER_MESSAGE = "%d개";
-    private static String EARNING_RATE_NOTIFY_MESSAGE = "총 수익률은 %.1f%%입니다";
+    private static String EARNING_RATE_NOTIFY_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public static void printLottoNumbers(List<Integer> numbers) {
         System.out.println(numbers);

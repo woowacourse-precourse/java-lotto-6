@@ -28,7 +28,7 @@ public class Statistics {
         return Math.round(revenue * 100.0) / 100.0;
     }
 
-    public void printRevenue() {
+    public final void printRevenue() {
         System.out.printf("총 수익률은 %.1f%%입니다.", totalRevenue());
     }
 
@@ -36,7 +36,7 @@ public class Statistics {
         System.out.printf("%s%d개\n", phrase, ranking.getRankStatus().get(rank));
     }
 
-    public void printRank() {
+    public final void printRank() {
         System.out.println(Constant.result);
         getRank(Constant.fourth, Rank.FOURTH);
         getRank(Constant.third, Rank.THIRD);

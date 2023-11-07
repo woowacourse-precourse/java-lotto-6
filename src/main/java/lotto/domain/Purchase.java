@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.constant.Constant;
 import lotto.validation.InputException;
 
 public class Purchase {
@@ -17,6 +18,7 @@ public class Purchase {
     }
 
     private int initializeAmount() {
+        System.out.println(Constant.amount);
         String amount = Console.readLine();
 
         try {
@@ -40,15 +42,17 @@ public class Purchase {
         return purchasedLotto;
     }
 
-    public int getAmount() {
+    public final int getAmount() {
         return this.amount;
     }
 
-    public List<Lotto> getPurchasedLotto() {
+    public final List<Lotto> getPurchasedLotto() {
         return this.purchasedLotto;
     }
 
-    public void printPurchasedLotto() {
+    public final void printPurchasedLotto() {
+        System.out.println("\n" + this.getAmount() + Constant.purchaseCount);
+
         for (Lotto lotto : this.purchasedLotto) {
             lotto.printLottoNumber();
         }

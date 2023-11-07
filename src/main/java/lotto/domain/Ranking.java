@@ -30,7 +30,7 @@ public class Ranking {
         return rankStatus;
     }
 
-    public void matchLotto() {
+    public final void matchLotto() {
         for (Lotto lotto : purchasedLotto.getPurchasedLotto()) {
             final int matchCount = isContainLottoNumbers(lotto);
             final int totalMatchCount = matchBonusNumber(matchCount, lotto);
@@ -80,7 +80,7 @@ public class Ranking {
         return Rank.ELSE;
     }
 
-    public Map<Rank, Integer> getRankStatus() {
+    public final Map<Rank, Integer> getRankStatus() {
         return rankStatus;
     }
 }

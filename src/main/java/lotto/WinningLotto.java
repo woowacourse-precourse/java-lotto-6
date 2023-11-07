@@ -7,17 +7,17 @@ import lotto.constant.Constant;
 import lotto.validation.InputException;
 
 public class WinningLotto {
-
     private final List<Integer> winningNumbers;
     private final int bonusNumber;
 
     public WinningLotto() {
         this.winningNumbers = initializeWinningNumbers();
-        System.out.println(Constant.bonusNumber);
         this.bonusNumber = initializeBonusNumber();
     }
 
     private List<Integer> initializeWinningNumbers() {
+        System.out.println(Constant.winningNumber);
+
         final List<Integer> inputNumbers;
         final String input = Console.readLine();
 
@@ -44,6 +44,8 @@ public class WinningLotto {
     }
 
     private int initializeBonusNumber() {
+        System.out.println(Constant.bonusNumber);
+
         final String input = Console.readLine();
 
         try {
@@ -56,11 +58,11 @@ public class WinningLotto {
         return Integer.parseInt(input);
     }
 
-    public List<Integer> getWinningNumbers() {
+    public final List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
 
-    public int getBonusNumber() {
+    public final int getBonusNumber() {
         return bonusNumber;
     }
 

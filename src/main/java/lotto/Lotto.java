@@ -16,11 +16,11 @@ public class Lotto {
         InputException.numberDuplicate(numbers);
     }
 
-    public List<Integer> getNumbers() {
+    public final List<Integer> getNumbers() {
         return this.numbers;
     }
 
-    public void printLottoNumber() {
+    public final void printLottoNumber() {
         System.out.println(this.numbers);
     }
 }

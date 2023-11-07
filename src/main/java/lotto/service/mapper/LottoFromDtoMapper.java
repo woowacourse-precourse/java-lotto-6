@@ -1,4 +1,4 @@
-package lotto.mapper;
+package lotto.service.mapper;
 
 import lotto.controller.dto.input.DrawLottosDto;
 import lotto.domain.lotto.WinningLotto;

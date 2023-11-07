@@ -1,4 +1,4 @@
-package lotto.mapper;
+package lotto.service.mapper;
 
 import java.util.List;
 import lotto.controller.dto.output.LottoDto;

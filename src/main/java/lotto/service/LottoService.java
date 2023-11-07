@@ -10,10 +10,10 @@ import lotto.domain.lotto.LottoStore;
 import lotto.domain.lotto.Lottos;
 import lotto.domain.lotto.WinningLotto;
 import lotto.domain.money.Wallet;
-import lotto.mapper.LottoFromDtoMapper;
-import lotto.mapper.LottoToDtoMapper;
-import lotto.mapper.WalletMapper;
 import lotto.repository.LottoRepository;
+import lotto.service.mapper.LottoFromDtoMapper;
+import lotto.service.mapper.LottoToDtoMapper;
+import lotto.service.mapper.WalletFromDtoMapper;
 
 /**
  * 여러 도메인 객체의 흐름을 관장하는 Service 계층입니다.
@@ -58,7 +58,7 @@ public final class LottoService {
      * 로또 구매 입력에 대한 Dto를 받아서 구매 로직을 처리하고, 응답을 Dto로 변환 및 반환
      */
     public LottosBuyingResult buyLottos(final BuyLottosDto dto) {
-        final Wallet wallet = WalletMapper.mapFrom(dto);
+        final Wallet wallet = WalletFromDtoMapper.mapFrom(dto);
         final Lottos boughtLottos = lottoStore.buyUntilOutOfMoney(wallet);
         final Lottos clonedLottos = boughtLottos.clone();
         lottoRepository.saveAll(boughtLottos);

@@ -49,6 +49,13 @@ public final class Lottos {
         return !lottos.isEmpty();
     }
 
+    /**
+     * Dto로 변환하기 위해 중간 단계인 Opened 클래스로 변환하는 로직.
+     * <p>
+     * Domain -> Opened -> Dto로 변환하면
+     * <p>
+     * Domain의 캡슐화는 지키면서 Opened를 통해 Dto 변환 가능.
+     */
     public LottosOpened toOpened() {
         final List<LottoOpened> lottoOpeneds = lottos.stream()
                 .map(Lotto::toOpened)

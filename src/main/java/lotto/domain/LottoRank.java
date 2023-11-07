@@ -16,5 +16,30 @@ public enum LottoRank {
         this.matchCount = matchCount;
         this.prizeAmount = prizeAmount;
     }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrizeAmount() {
+        return prizeAmount;
+    }
+
+    public static LottoRank calculateRank(List<Integer> ticketNumbers, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = (int) ticketNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        if (matchCount == SECOND.getMatchCount() && ticketNumbers.contains(bonusNumber)) {
+            return SECOND;
+        }
+        for (LottoRank rank : values()) {
+            if (rank.getMatchCount() == matchCount) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
+
 }
 

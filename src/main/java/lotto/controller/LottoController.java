@@ -17,6 +17,7 @@ public class LottoController {
         outputView.displayLottoTickets(lottoTickets);
         List<Integer> winningNumbers = inputView.readWinningNumbers();
         int bonusNumber = inputView.readBonusNumber();
+        outputView.displayResults(lottoService.checkWinningResults(lottoTickets, winningNumbers, bonusNumber));
     }
 
 }

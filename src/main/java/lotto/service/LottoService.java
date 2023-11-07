@@ -3,8 +3,11 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
+import lotto.domain.LottoRank;
 
 public class LottoService {
     private static final int START_NUMBER = 1;
@@ -21,6 +24,15 @@ public class LottoService {
             tickets.add(new Lotto(generateLottoNumbers()));
         }
         return tickets;
+    }
+
+    public Map<LottoRank, Integer> checkWinningResults(List<Lotto> lottoTickets, List<Integer> winningNumbers, int bonusNumber) {
+        Map<LottoRank, Integer> results = new HashMap<>();
+        for (Lotto ticket : lottoTickets) {
+            LottoRank lottoRank = LottoRank.calculateRank(ticket.getNumbers(), winningNumbers, bonusNumber);
+            results.put(lottoRank, results.getOrDefault(lottoRank, 0) + 1);
+        }
+        return results;
     }
 
     private void validatePurchaseAmount(int purchaseAmount) {

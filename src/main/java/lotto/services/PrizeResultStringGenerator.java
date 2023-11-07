@@ -1,10 +1,10 @@
 package lotto.services;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.EnumMap;
 import java.util.Map;
 import lotto.enums.LottoPrize;
-import lotto.utils.CurrencyFormatter;
 
 public class PrizeResultStringGenerator {
     private static final String DEFAULT_RANK_PRINT_FORMAT = "%d개 일치 (%s원) - %d개";
@@ -39,8 +39,11 @@ public class PrizeResultStringGenerator {
         int matchCount = prize.getMatchCount();
         BigDecimal prizeAmount = BigDecimal.valueOf(prize.getPrizeAmount());
 
-        return String.format(resultFormat, matchCount,
-                CurrencyFormatter.format(prizeAmount),
-                count);
+        return String.format(resultFormat, matchCount, formatCurrency(prizeAmount), count);
+    }
+
+    public static String formatCurrency(BigDecimal amount) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        return decimalFormat.format(amount);
     }
 }

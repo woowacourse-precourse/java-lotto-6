@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.LottoFactory;
 import lotto.utils.NumberGenerator;
 import lotto.utils.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -26,8 +26,8 @@ public class LottoNumberGeneratorTest {
     @Test
     void generateLottoNumberForPurchaseCount() {
         int purchaseCount = 5;
-        Lottos lottos = new Lottos(lottoNumberGenerator, purchaseCount);
-        List<Lotto> generatedLotto = lottos.getLottos();
+        LottoFactory lottos = new LottoFactory(lottoNumberGenerator);
+        List<Lotto> generatedLotto = lottos.purchaseLottos(purchaseCount);
 
         for (Lotto lotto : generatedLotto) {
             System.out.println("생성된 로또 번호: " + lotto.getNumbers());

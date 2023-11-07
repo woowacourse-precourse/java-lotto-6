@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.enums.LottoPrize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,14 +15,13 @@ import org.junit.jupiter.api.Test;
 
 public class NumberComparatorTest {
 
-    private final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-    private final int bonusNumber = 7;
+    private final WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 7);
 
     private LottoNumberComparator comparator;
 
     @BeforeEach
     void init() {
-        comparator = new LottoNumberComparator(List.of(), winningLotto, bonusNumber);
+        comparator = new LottoNumberComparator(List.of(), winningLotto);
     }
 
     @DisplayName("로또 번호 일치 개수 계산 테스트")
@@ -36,7 +36,7 @@ public class NumberComparatorTest {
     @Test
     void testBonusNumberMatched() {
         Lotto purchasedLotto = new Lotto(List.of(10, 20, 30, 40, 50, 7));
-        assertTrue(comparator.isBonusNumberMatched(purchasedLotto));
+        assertTrue(comparator.isBonusNumberMatched(purchasedLotto, winningLotto.getBonusNumber()));
     }
 
     @DisplayName("당첨 등수 판별 테스트")
@@ -77,7 +77,7 @@ public class NumberComparatorTest {
                 new Lotto(List.of(1, 2, 3, 4, 44, 45))  // 4등
         );
 
-        comparator = new LottoNumberComparator(purchasedLottos, winningLotto, bonusNumber);
+        comparator = new LottoNumberComparator(purchasedLottos, winningLotto);
         comparator.calculatePrizes();
 
         EnumMap<LottoPrize, Integer> expectedPrizeCount = new EnumMap<>(LottoPrize.class);

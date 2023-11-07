@@ -15,8 +15,8 @@ public class OutputView {
     public void printStatistics(WinningResult winningResult) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        printWinningResult(winningResult.getWinningResult());
-        printWinningRate(winningResult.getWinningRate());
+        printWinningResult(winningResult.winningStatistics());
+        printWinningRate(winningResult.winningRate());
     }
 
     private void printWinningResult(Map<Rank, Integer> winningResult) {

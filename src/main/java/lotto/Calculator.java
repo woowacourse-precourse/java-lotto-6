@@ -21,12 +21,12 @@ public class Calculator {
         return winningStatistics;
     }
 
-    public Double calculateWinningRate(Map<Rank, Integer> winningResults, int money) {
-        return sumTotalPrize(winningResults) / (double) money * 100;
+    public Double calculateWinningRate(Map<Rank, Integer> winningResult, int money) {
+        return sumTotalPrize(winningResult) / (double) money * 100;
     }
 
-    private Long sumTotalPrize(Map<Rank, Integer> winningResults) {
-        return winningResults.entrySet().stream()
+    private Long sumTotalPrize(Map<Rank, Integer> winningResult) {
+        return winningResult.entrySet().stream()
                 .mapToLong(entry -> (long) entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }

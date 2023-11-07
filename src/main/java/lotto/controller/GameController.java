@@ -37,9 +37,7 @@ public class GameController {
         try {
             Cash cash = depositCash();
             Lottos lottos = purchaseLotto(cash);
-            List<Integer> winnerNumbers = getWinnerNumbers();
-            Integer bonusNumber = getBonusNumber();
-            WinnerLotto winnerLotto = WinnerLotto.create(winnerNumbers, bonusNumber);
+            WinnerLotto winnerLotto = getWinnerLotto();
             compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
         } catch (IllegalStateException e) {
             outputView.printErrorMessage(e);
@@ -71,6 +69,17 @@ public class GameController {
         return lottos;
     }
 
+    private WinnerLotto getWinnerLotto() throws IllegalStateException {
+        try {
+            List<Integer> winnerNumbers = getWinnerNumbers();
+            Integer bonusNumber = getBonusNumber();
+            RequestWinnerLotto requestWinnerLotto = RequestWinnerLotto.of(winnerNumbers, bonusNumber);
+            return WinnerLotto.create(requestWinnerLotto.winnerNumbers(), requestWinnerLotto.bonusNumber());
+        } catch (IllegalStateException e) {
+            throw e;
+        }
+    }
+
 
 
     private List<Integer> getWinnerNumbers() throws IllegalStateException {
@@ -96,6 +105,7 @@ public class GameController {
             throw e;
         }
     }
+
 
 
     private void compareLottosWithWinnerLotto(Lottos lottos, WinnerLotto winnerLotto, Cash cash) {

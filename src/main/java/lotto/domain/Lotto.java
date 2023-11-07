@@ -7,6 +7,7 @@ import static lotto.constant.message.ErrorMessage.DUPLICATE_NUMBER;
 import static lotto.constant.message.ErrorMessage.INVALID_COUNT;
 import static lotto.constant.message.ErrorMessage.INVALID_NUMBER_RANGE;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -52,6 +53,6 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return Collections.unmodifiableList(numbers);
     }
 }

@@ -45,4 +45,5 @@ public class LottoCalculator {
     public Map<Prize, Integer> getResult() {
         return Collections.unmodifiableMap(result);
     }
+    
 }

@@ -2,8 +2,8 @@ package lotto.domain;
 
 public class LottoMatch {
 
-    private int matchCount;
-    private boolean bonusMatch;
+    private final int matchCount;
+    private final boolean bonusMatch;
 
     public LottoMatch(int matchCount, boolean bonusMatch) {
         this.matchCount = matchCount;

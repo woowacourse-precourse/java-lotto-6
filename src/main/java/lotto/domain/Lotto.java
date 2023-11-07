@@ -7,7 +7,7 @@ import lotto.constant.Number;
 
 public class Lotto {
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     // 자동 숫자 추첨
     public Lotto() {

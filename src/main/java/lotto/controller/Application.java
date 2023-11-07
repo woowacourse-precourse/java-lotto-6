@@ -7,7 +7,9 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.view.OutputView.PrintLottoNumbers;
 
@@ -24,6 +26,7 @@ public class Application {
             Lotto lotto = null;
             getLottoList(lottoList, lotto);
         }
+        List<Integer> selectLottoNumber = getSelectLottoNumbers();
 
 
     }
@@ -57,6 +60,22 @@ public class Application {
         return new Lotto(numbers);
     }
 
+    private static List<Integer> getSelectLottoNumbers() {
+        List<Integer> selectLottoNumber = null;
+        while (true) {
+            try {
+                selectLottoNumber = getSelectLottoNumber(InputView.inputLottoNumber());
+                new Lotto(selectLottoNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return selectLottoNumber;
+    }
+    private static List<Integer> getSelectLottoNumber(String InputLotto) {
+        return Arrays.stream(InputLotto.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+    }
 
 
 }

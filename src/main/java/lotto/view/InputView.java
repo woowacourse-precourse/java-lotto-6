@@ -11,4 +11,14 @@ public class InputView {
         System.out.println("구입 금액을 입력해주세요.");
         return Console.readLine().trim();
     }
+
+    public static String inputNumbers() {
+        System.out.println("당첨 번호를 입력해주세요.");
+        return Console.readLine().trim();
+    }
+
+    public static String inputBonusNumer() {
+        System.out.println("보너스 번호를 입력해주세요.");
+        return Console.readLine().trim();
+    }
 }

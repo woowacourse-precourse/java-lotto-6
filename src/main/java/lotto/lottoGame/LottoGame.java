@@ -1,25 +1,36 @@
 package lotto.lottoGame;
 
+import lotto.WinningLotto;
 import lotto.customer.Customer;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGame {
     private final LottoRandomGenerator lottoRandomGenerator;
+    private final LottoInputGenerator lottoInputGenerator;
 
-    public LottoGame(LottoRandomGenerator lottoRandomGenerator) {
+    public LottoGame(LottoRandomGenerator lottoRandomGenerator, LottoInputGenerator lottoInputGenerator) {
         this.lottoRandomGenerator = lottoRandomGenerator;
+        this.lottoInputGenerator = lottoInputGenerator;
     }
 
     private Customer initCustomer() {
         String inputPurchaseValue = InputView.inputPrice();
         return new Customer(inputPurchaseValue);
     }
+    private WinningLotto initWinningLotto() {
+        String inputWinningNumbers = InputView.inputNumbers();
+        String inputBonusNumber = InputView.inputBonusNumer();
+        return new WinningLotto();
+    }
 
     public void run() {
         Customer customer = initCustomer();
         issuanceLottos(customer);
+
+        WinningLotto winningLotto = initWinningLotto();
     }
+
 
     private void issuanceLottos(Customer customer) {
         int index = customer.getPurchaseValue() / 1000;

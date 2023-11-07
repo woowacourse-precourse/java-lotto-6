@@ -1,13 +1,13 @@
-package lotto.collaboration.lottos.dto;
+package lotto.collaboration.dto;
 
-import static lotto.collaboration.lottos.dto.enums.PlayerLottoMessage.EXCEPTION_IS_NULL;
-import static lotto.collaboration.lottos.dto.enums.PlayerLottoMessage.EXCEPTION_NOT_SIX;
-import static lotto.collaboration.lottos.dto.enums.PlayerLottoMessage.EXCEPTION_OUT_OF_RANGE;
+import static lotto.collaboration.dto.enums.PlayerLottoMessage.EXCEPTION_IS_NULL;
+import static lotto.collaboration.dto.enums.PlayerLottoMessage.EXCEPTION_NOT_SIX;
+import static lotto.collaboration.dto.enums.PlayerLottoMessage.EXCEPTION_OUT_OF_RANGE;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
-import lotto.collaboration.lottos.Lotto;
+import lotto.collaboration.Lotto;
 
 public class PlayerLotto {
 

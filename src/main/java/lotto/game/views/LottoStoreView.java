@@ -3,7 +3,7 @@ package lotto.game.views;
 import static lotto.game.views.enums.LottoStoreViewMessage.ASK_PURCHASE_AMOUNT;
 
 import java.util.List;
-import lotto.collaboration.lottos.dto.PlayerLotto;
+import lotto.collaboration.dto.PlayerLotto;
 import lotto.game.io.Input;
 import lotto.game.io.InteractionRepeatable;
 import lotto.game.io.Output;

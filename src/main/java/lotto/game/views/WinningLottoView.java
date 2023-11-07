@@ -13,8 +13,8 @@ import static lotto.game.views.enums.WinningLottoViewMessage.MIN_NUMBER_RANGE;
 
 import java.util.List;
 import java.util.Map;
-import lotto.collaboration.lottostore.dto.PlayerLotto;
-import lotto.collaboration.lottostore.enums.Prize;
+import lotto.collaboration.dto.PlayerLotto;
+import lotto.collaboration.enums.Prize;
 import lotto.game.io.Input;
 import lotto.game.io.InteractionRepeatable;
 import lotto.game.io.Output;

@@ -2,8 +2,8 @@ package lotto.game.views;
 
 import java.util.List;
 import java.util.Map;
-import lotto.collaboration.lottostore.dto.PlayerLotto;
-import lotto.collaboration.lottostore.enums.Prize;
+import lotto.collaboration.dto.PlayerLotto;
+import lotto.collaboration.enums.Prize;
 
 public class LottoGameView {
 

@@ -2,14 +2,14 @@ package lotto;
 
 import static lotto.enums.ApplicationMessage.EXCEPTION_APPLICATION;
 
-import lotto.collaboration.lottos.LottoStore;
+import lotto.collaboration.LottoStore;
 import lotto.game.LottoGame;
 import lotto.game.views.LottoGameView;
 import lotto.game.views.LottoStoreView;
 import lotto.game.views.WinningLottoView;
 import lotto.io.ConsoleInput;
 import lotto.io.ConsoleOutput;
-import lotto.io.lottos.LottosRandoms;
+import lotto.io.game.LottosRandoms;
 
 public class Application {
 

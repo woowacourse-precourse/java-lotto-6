@@ -1,4 +1,4 @@
-package lotto.io.lottos;
+package lotto.io.game;
 
 import java.util.List;
 import lotto.game.io.Randoms;

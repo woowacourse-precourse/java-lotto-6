@@ -1,4 +1,4 @@
-package lotto.collaboration.lottos.enums;
+package lotto.collaboration.enums;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

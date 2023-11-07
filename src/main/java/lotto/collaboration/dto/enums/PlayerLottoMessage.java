@@ -1,4 +1,4 @@
-package lotto.collaboration.lottos.dto.enums;
+package lotto.collaboration.dto.enums;
 
 public enum PlayerLottoMessage {
 

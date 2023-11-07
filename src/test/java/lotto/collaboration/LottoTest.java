@@ -1,4 +1,4 @@
-package lotto.collaboration.lottostore;
+package lotto.collaboration;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

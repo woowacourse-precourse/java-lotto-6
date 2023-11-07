@@ -1,9 +1,9 @@
 package lotto.game;
 
 import java.util.List;
-import lotto.collaboration.lottos.LottoStore;
-import lotto.collaboration.lottos.WinningLotto;
-import lotto.collaboration.lottos.dto.PlayerLotto;
+import lotto.collaboration.LottoStore;
+import lotto.collaboration.WinningLotto;
+import lotto.collaboration.dto.PlayerLotto;
 import lotto.game.io.InteractionRepeatable;
 import lotto.game.io.Randoms;
 import lotto.game.views.LottoGameView;

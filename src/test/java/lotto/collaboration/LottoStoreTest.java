@@ -1,11 +1,11 @@
-package lotto.collaboration.lottos;
+package lotto.collaboration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.collaboration.lottos.dto.PlayerLotto;
+import lotto.collaboration.dto.PlayerLotto;
 import org.junit.jupiter.api.Test;
 
 class LottoStoreTest {

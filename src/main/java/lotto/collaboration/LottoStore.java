@@ -1,11 +1,11 @@
-package lotto.collaboration.lottos;
+package lotto.collaboration;
 
-import static lotto.collaboration.lottos.enums.LottoStoreMessage.makeMessageForIndivisible;
-import static lotto.collaboration.lottos.enums.LottoStoreMessage.makeMessageForOutOfRange;
+import static lotto.collaboration.enums.LottoStoreMessage.makeMessageForIndivisible;
+import static lotto.collaboration.enums.LottoStoreMessage.makeMessageForOutOfRange;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.collaboration.lottos.dto.PlayerLotto;
+import lotto.collaboration.dto.PlayerLotto;
 import lotto.game.io.Randoms;
 
 public class LottoStore {

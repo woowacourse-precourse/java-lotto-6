@@ -1,4 +1,4 @@
-package lotto.io.lottos;
+package lotto.io.game;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Comparator;

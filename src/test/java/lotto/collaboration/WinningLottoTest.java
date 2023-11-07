@@ -1,4 +1,4 @@
-package lotto.collaboration.lottos;
+package lotto.collaboration;
 
 import static lotto.collaboration.enums.Prize.FIFTH;
 import static lotto.collaboration.enums.Prize.FIRST;
@@ -10,8 +10,8 @@ import static lotto.collaboration.enums.Prize.THIRD;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.collaboration.dto.PlayerLotto;
 import lotto.collaboration.enums.Prize;
-import lotto.collaboration.lottos.dto.PlayerLotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

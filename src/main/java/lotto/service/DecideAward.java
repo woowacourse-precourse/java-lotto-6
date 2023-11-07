@@ -6,9 +6,8 @@ import lotto.domain.Result;
 import lotto.domain.Rank;
 
 public class DecideAward {
-    public static Result userResult(Lotto lotto, int bonus, JackpotNumber jackpotNumber) {
-        Result result = new Result();
-        result.add(Rank.valueOf(countMatch(lotto, jackpotNumber), matchBonusNumber(bonus, jackpotNumber)));
+    public static Result userResult(Result result,Lotto lotto, JackpotNumber jackpotNumber) {
+        result.add(Rank.valueOf(countMatch(lotto, jackpotNumber), matchBonusNumber(lotto, jackpotNumber)));
         return result;
     }
 
@@ -18,8 +17,8 @@ public class DecideAward {
                 .count();
         return (int) count;
     }
-    private static boolean matchBonusNumber(int bonus, JackpotNumber jackpotNumber) {
-        if (bonus == jackpotNumber.getBonusNumber()) {
+    private static boolean matchBonusNumber(Lotto lotto, JackpotNumber jackpotNumber) {
+        if ( lotto.getNumbers().contains(jackpotNumber.getBonusNumber())) {
             return true;
         }
         return false;

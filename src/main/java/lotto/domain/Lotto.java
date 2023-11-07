@@ -1,6 +1,10 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.error.Error;
+import lotto.error.Error.ErrorType;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,8 +15,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        Set<Integer> setNumbers = new HashSet<>(numbers);
+        boolean duplication = setNumbers.size() != numbers.size();
+
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT);
+        } else if (duplication) {
+            Error.errorMessage(ErrorType.DUPLICATION);
         }
     }
 

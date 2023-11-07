@@ -5,6 +5,7 @@ import static lotto.Utils.Utils.stringToInteger;
 import static lotto.Validator.InputValidator.checkInputBlank;
 import static lotto.Validator.InputValidator.checkInputDigit;
 import static lotto.Validator.InputValidator.checkInputEmpty;
+import static lotto.Validator.InputValidator.checkInvalidComma;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import lotto.Constants.InputConstants;
 
 public class InputView {
 
-    public static void printInsertMoney() {
+    public void printInsertMoney() {
         System.out.println(InputConstants.ENTER_MONEY.getMessage());
     }
 
@@ -22,7 +23,7 @@ public class InputView {
         return Integer.parseInt(money);
     }
 
-    public static void printInsertLottoNumbers() {
+    public void printInsertLottoNumbers() {
         System.out.println(InputConstants.ENTER_LOTTO_NUMBERS.getMessage());
     }
 
@@ -54,6 +55,7 @@ public class InputView {
         checkInputEmpty(input);
         checkInputBlank(input);
         checkInputDigit(input);
+        checkInvalidComma(input);
     }
 
     private void validateLottoNumber(String input) {

@@ -4,6 +4,8 @@ import lotto.Constants.ErrorMessage;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewValidatorTest {
 
@@ -37,4 +39,12 @@ public class InputViewValidatorTest {
                 .hasMessageContaining(ErrorMessage.INPUT_EMPTY_MESSGAE.getMessage());
     }
 
+    @ParameterizedTest
+    @DisplayName("로또 번호입력 맨 앞 혹은 맨 뒤에 ,(comma)를 입력했는지 확인합니다.")
+    @ValueSource(strings = {",1,2,3,4,5,6", "1,2,3,4,5,6,", ",", ",,"})
+    void checkInvalidCommaPosition(String target) {
+        Assertions.assertThatThrownBy(() -> InputValidator.checkInvalidComma(target))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ErrorMessage.INVALID_COMMA_POSITION_MESSAGE.getMessage());
+    }
 }

@@ -26,6 +26,12 @@ public class InputValidator {
         }
     }
 
+    public static void checkInvalidComma(String input) {
+        if (startWithComma(input) || endWithComma(input)) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_COMMA_POSITION_MESSAGE.getMessage());
+        }
+    }
+
     private static boolean isBlank(String input) {
         return input.isBlank();
     }
@@ -41,5 +47,13 @@ public class InputValidator {
             }
         }
         return false;
+    }
+
+    private static boolean startWithComma(String input) {
+        return input.startsWith(",");
+    }
+
+    private static boolean endWithComma(String input) {
+        return input.endsWith(",");
     }
 }

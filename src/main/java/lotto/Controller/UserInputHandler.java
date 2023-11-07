@@ -1,8 +1,5 @@
 package lotto.Controller;
 
-import static lotto.View.InputView.printInsertLottoNumbers;
-import static lotto.View.InputView.printInsertMoney;
-
 import java.util.List;
 import lotto.Model.Cpu;
 import lotto.Model.Lotto;
@@ -19,7 +16,7 @@ public class UserInputHandler {
     public Cpu getUserValidMoney() {
         while (true) {
             try {
-                printInsertMoney();
+                inputView.printInsertMoney();
                 int money = inputView.insertMoney();
                 return new Cpu(money);
             } catch (IllegalArgumentException e) {
@@ -31,7 +28,7 @@ public class UserInputHandler {
     public Lotto getUserValidLottoNumber() {
         while (true) {
             try {
-                printInsertLottoNumbers();
+                inputView.printInsertLottoNumbers();
                 List<Integer> playerLottoNumbers = inputView.insertLottoNumbers();
                 return new Lotto(playerLottoNumbers);
             } catch (IllegalArgumentException e) {

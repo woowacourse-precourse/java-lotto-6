@@ -2,11 +2,24 @@ package lotto.controller;
 
 import lotto.model.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class PrizeController {
     PrizeMoney prizeMoney;
     WinnerLotto winnerLotto = new WinnerLotto();
+    public void createLottoRankStore(){
+        HashMap<PrizeMoney,Integer> lottoRankStore = new HashMap<>();
+        lottoRankStore.put(PrizeMoney.FIRST_PRIZE,0);
+        lottoRankStore.put(PrizeMoney.SECOND_PRIZE,0);
+        lottoRankStore.put(PrizeMoney.THIRD_PRIZE,0);
+        lottoRankStore.put(PrizeMoney.FOURTH_PRIZE,0);
+        lottoRankStore.put(PrizeMoney.FIFTH_PRIZE,0);
+        for(PrizeMoney p : lottoRankStore.keySet()){
+            System.out.println("PrizeMoney: "+p.getPrizeMoney());
+        }
+        winnerLotto.setLottoRankStore(lottoRankStore);
+    }
     public void comparePrizeNumToLottoNum(PrizeLotto prizeLotto , UserLotto userLotto){
         //배열을 생성해서 로또마다 몇개 맞췄는지 배열에 인덱스로 장
         //예로 3개 맞으면 인덱스 3을 하나 증

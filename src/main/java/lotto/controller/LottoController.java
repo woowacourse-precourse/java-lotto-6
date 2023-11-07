@@ -30,6 +30,7 @@ public class LottoController {
         System.out.println("보너스 번호="+ prizeLotto.getBonusNum());
 
         prizeController.comparePrizeNumToLottoNum(prizeLotto,userLotto);
+        prizeController.createLottoRankStore();
 
     }
     public PrizeLotto createPrizeNum(){

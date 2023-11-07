@@ -219,7 +219,8 @@ public class Lotto {
 - validatePrice(): 올바르게 금액을 입력했는지 확인
 - getWinningNumber(): 당첨 번호를 입력받는다.
 - getBonusNumber(): 보너스 번호를 입력받는다.
-- validateNumber(): 번호들이 정수형인지 검증한다.
+- validateWinningNumber(): 사용자가 입력한 로또 번호가 정수형인지 검증한다.
+- validateBonusNumber(): 보너스 번호가 정수형인지 검증한다.
 
 ## 🐥class RandomNumberCreate
 - constructor

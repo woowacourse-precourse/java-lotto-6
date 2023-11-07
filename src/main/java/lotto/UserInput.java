@@ -1,36 +1,80 @@
 package lotto;
 
 import java.util.List;
+import camp.nextstep.edu.missionutils.Console;
 
 public class UserInput {
+
+
     public UserInput(){
-
     }
 
-    public int getPrice(){
-        // validatePrice로 입력받은 값을 확인하고
-        // 입력 받은 가격을 리턴한다.
-        // Lotto에 validate 참고
+    public void getPrice(){
+        String input = null;
+        int inputInt = 0;
+
+        System.out.println("구입금액을 입력해 주세요.");
+        input = Console.readLine();
+
+        RandomNumberCreate randomNumberCreate = new RandomNumberCreate(validatePrice(input));
+        randomNumberCreate.createRandomNumber();
+        getWinningNumber();
+        getBonusNumber();
     }
 
-    private void validatePrice(int price){
-        // price가 유효한 값인지 확인한다.
-        // 문제 없으면 그대로 함수 종료.
+    private int validatePrice(String input){
+        int inputInt = 0;
+
+        try{
+            inputInt = Integer.parseInt(input);
+        } catch(Exception e) {
+            System.out.println("[ERROR] 구입금액은 정수이어야 합니다.");
+            throw new IllegalArgumentException();
+        }
+
+        if(inputInt % 1000 != 0){
+            System.out.println("[ERROR] 구입금액은 천원 단위이어야 합니다.");
+            throw new IllegalArgumentException();
+        }
+        return inputInt / 1000;
     }
 
-    public List<Integer> getWinningNumber(){
-        // 이용자가 입력한 로또 숫자를 받는다.
-        // validateNumber에 넘기기. int형인지 검증받는다.
+    public void getWinningNumber(){
+        String[] input;
+        System.out.println("당첨 번호를 입력해 주세요.");
+        input = Console.readLine().split(",");
+        Lotto lotto = new Lotto(validateWinningNumber(input));
     }
 
     public int getBonusNumber(){
-        // bonus number를 입력받는다.
+        String input;
+        System.out.println("보너스 번호를 입력해 주세요.");
+        input = Console.readLine();
+        validateBonusNumber(input);
     }
 
-    public void validateNumber(){
-        // winning number와 bonus number를 검증
-        // 정수형인지 검증한다.
-        // Lotto class 호출, 파라메터로 winning number 넘기기
+    public List<Integer> validateWinningNumber(String[] input){
+        List<Integer> inputList = null;
+        try{
+            for (int i = 0; i < input.length; i++) {
+                inputList.add(Integer.parseInt(input[i]));
+            }
+        } catch(Exception e) {
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+        return inputList;
+    }
+
+    public int validateBonusNumber(String input){
+        int bonusNumber;
+        try {
+            bonusNumber = Integer.parseInt(input);
+        } catch(Exception e){
+            System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+        return bonusNumber;
     }
 
 }

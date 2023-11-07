@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.lottery.WinningLotto;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Nested;
@@ -52,8 +51,7 @@ public class WinningLottoTest {
         }
 
         @Test
-        @DisplayName("당첨 번호와 중복된 보너스 번호를 가지면 예외가 발생한다.")
-        void duplicateBonusNumberException() {
+        void 당첨_번호와_중복된_보너스_번호를_가지면_예외가_발생한다() {
             // Given
             List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
             int duplicateBonusNumber = 1;

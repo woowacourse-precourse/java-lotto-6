@@ -17,7 +17,7 @@ public class LottoController {
     public static final int ONE_LOTTO_PRICE = 1000;
     private LottoService lottoService;
 
-    public LottoController(LottoService lottoService) {
+    public LottoController() {
         this.lottoService = new LottoService();
     }
 
@@ -58,7 +58,7 @@ public class LottoController {
     }
 
     public void showStatisticsResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
-        String result = lottoService.makeWinningResultOutputStatement(lottoList, answer, bonusNumber);
+        String result = lottoService.makeStatisticsResultOutputStatement(lottoList, answer, bonusNumber);
         printResult(result);
     }
 

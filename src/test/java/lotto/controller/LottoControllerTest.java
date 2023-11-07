@@ -32,7 +32,7 @@ class LottoControllerTest {
 
     @BeforeEach
     public void beforeEach() {
-        lottoController = new LottoController(new LottoService());
+        lottoController = new LottoController();
         System.setOut(new PrintStream(outputStreamCaptor));
     }
 

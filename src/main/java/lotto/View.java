@@ -2,10 +2,12 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class View {
-    private List<Integer> userWinningRanks;
+    private Map<Integer, Integer> userWinningRanks;
     private float profitSummary;
     private int lottoPurchaseNum;
     private final String LOTTO_PURCHASE_NUMBERS_OUTPUTMESSAGE = String.format("%d개를 구매했습니다.", lottoPurchaseNum);
@@ -100,7 +102,7 @@ public class View {
         return Integer.parseInt(bounsNumber);
     }
 
-    public void setUserWinningRanks(List<Integer> userWinningRanks){
+    public void setUserWinningRanks(Map<Integer, Integer> userWinningRanks){
         this.userWinningRanks = userWinningRanks;
     }
 

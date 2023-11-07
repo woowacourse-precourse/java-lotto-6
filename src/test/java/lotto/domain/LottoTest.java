@@ -9,6 +9,8 @@ import java.util.List;
 
 import static lotto.domain.Lotto.randomLottery;
 import static lotto.utils.Constants.*;
+import static lotto.utils.ErrorMessages.CHECK_DUPLICATE_NUMBER;
+import static lotto.utils.ErrorMessages.CHECK_NUMBER_SIZE;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;

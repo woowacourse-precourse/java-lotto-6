@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import static lotto.utils.Constants.MIN_NUMBER_IN_RANGE;
 import static lotto.utils.Constants.MAX_NUMBER_IN_RANGE;
-import static lotto.utils.Constants.CHECK_NUMBER_IN_RANGE;
+import static lotto.utils.ErrorMessages.CHECK_NUMBER_IN_RANGE;
 
 public class GenerateRandomNum {
 

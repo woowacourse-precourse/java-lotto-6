@@ -8,7 +8,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static lotto.domain.GenerateRandomNum.pickNumber;
-import static lotto.utils.Constants.*;
+import static lotto.utils.Constants.LOTTO_SIZE;
+import static lotto.utils.ErrorMessages.CHECK_DUPLICATE_NUMBER;
+import static lotto.utils.ErrorMessages.CHECK_NUMBER_SIZE;
+
 
 public class Lotto {
     private final List<Integer> numbers;

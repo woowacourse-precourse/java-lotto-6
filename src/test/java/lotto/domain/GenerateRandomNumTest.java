@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static lotto.utils.Constants.MIN_NUMBER_IN_RANGE;
 import static lotto.utils.Constants.MAX_NUMBER_IN_RANGE;
-import static lotto.utils.Constants.CHECK_NUMBER_IN_RANGE;
+import static lotto.utils.ErrorMessages.CHECK_NUMBER_IN_RANGE;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 

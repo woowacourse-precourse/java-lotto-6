@@ -4,26 +4,31 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 
-import java.util.List;
-
 import static lotto.utils.Constants.BUY_LOTTERY_INPUT;
 import static lotto.utils.Constants.TICKETS_COUNT_OUTPUT;
+import static lotto.utils.ErrorMessages.INPUT_NUMBER_FORMAT;
+import static lotto.utils.ErrorMessages.PAYMENT_OVER_1000_UNIT;
 
 public class InputView {
 
     public static void payForLottery() {
         System.out.println(BUY_LOTTERY_INPUT);
         try {
-            String payment = Console.readLine();
-            int paymentNumber = checkPaymentIsNumber(payment);
-            int cnt = checkTruncatedTo1000(paymentNumber);
-            Buyer buyer = new Buyer(paymentNumber, cnt);
+            int paymentNumber = getPaymentNumber();
+            int ticketCount = calculateTicketCount(paymentNumber);
+            Buyer buyer = new Buyer(paymentNumber, ticketCount);
             printTickets(buyer);
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static int getPaymentNumber() {
+        System.out.println(BUY_LOTTERY_INPUT);
+        String payment = Console.readLine();
+        return parsePayment(payment);
     }
 
     public static void printTickets(Buyer buyer) {
@@ -47,16 +52,16 @@ public class InputView {
         }
     }
 
-    public static int checkTruncatedTo1000(int payment) {
-        if (payment % 1000 != 0) throw new IllegalArgumentException("[ERROR] 1,000원 단위 이상으로만 입력하세요.");
+    public static int calculateTicketCount(int payment) {
+        if (payment % 1000 != 0) throw new IllegalArgumentException(PAYMENT_OVER_1000_UNIT);
         return payment / 1000;
     }
 
-    private static int checkPaymentIsNumber(String string) {
+    private static int parsePayment(String string) {
         try {
             return Integer.parseInt(string);
         } catch (NumberFormatException e) {
-            throw new NumberFormatException("[ERROR] 숫자만 입력할 수 있습니다.");
+            throw new NumberFormatException(INPUT_NUMBER_FORMAT);
         }
     }
 }

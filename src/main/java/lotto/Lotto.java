@@ -29,4 +29,11 @@ public class Lotto {
     List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
     return numbers;
   }
+
+  public Boolean matchWithBonusNumber(Integer bonusNumber) {
+    for(Integer number : numbers) {
+      if (number == bonusNumber) return true;
+    }
+    return false;
+  }
 }

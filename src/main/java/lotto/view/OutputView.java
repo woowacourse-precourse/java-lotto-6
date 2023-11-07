@@ -4,6 +4,7 @@ import lotto.constants.OutputMessage;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseQuantity;
 
+import static lotto.constants.OutputMessage.*;
 import static lotto.constants.OutputMessage.ANNOUNCE_PURCHASE_QUANTITY_FORMAT;
 import static lotto.util.LottoGenerator.generateLottoNumbers;
 
@@ -28,6 +29,11 @@ public class OutputView {
 
     public static void printObject(OutputMessage outputMessage, Object object) {
         System.out.print(String.format(outputMessage.getMessage(), object.toString()));
+    }
+
+    public static void announceWinningStatistics() {
+        System.out.println(ANNOUNCE_WINNING_STATISTICS_START.getMessage());
+        System.out.println(DIVISION_LINE.getMessage());
     }
 
     public static void printObject(Object object) {

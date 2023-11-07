@@ -18,7 +18,7 @@ public class Application {
         OutputView outputView = new OutputView();
 
         // 로또 구매
-        Purchase purchase = purchaseLottsProcess(lottoController, inputView, outputView);
+        Purchase purchase = purchaseLottosProcess(lottoController, inputView, outputView);
 
         // 로또 발급
         List<Lotto> lottos = generateLottoTicketsProcess(lottoController, outputView, purchase);
@@ -80,7 +80,7 @@ public class Application {
         return lottos;
     }
 
-    private static Purchase purchaseLottsProcess(LottoController lottoController, InputView inputView, OutputView outputView) {
+    private static Purchase purchaseLottosProcess(LottoController lottoController, InputView inputView, OutputView outputView) {
         Purchase purchase = null;
         boolean isValidateInput = false;
 

@@ -43,6 +43,17 @@ public class NumericValidator {
         }
     }
 
+    public static void validateNumberRange(
+            int number,
+            int startInclusive,
+            int endInclusive,
+            String message
+    ) {
+        if (!isInRange(number, startInclusive, endInclusive)) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
     private static boolean duplicatedExists(List<Integer> numbers) {
         return Set.copyOf(numbers).size() != numbers.size();
     }
@@ -50,6 +61,10 @@ public class NumericValidator {
     private static boolean isInRange(List<Integer> numbers, int startInclusive, int endInclusive) {
         return numbers.stream()
                 .allMatch(number -> number >= startInclusive && number <= endInclusive);
+    }
+
+    private static boolean isInRange(int number, int startInclusive, int endInclusive) {
+        return number >= startInclusive && number <= endInclusive;
     }
 
     private static boolean isPositive(int number) {

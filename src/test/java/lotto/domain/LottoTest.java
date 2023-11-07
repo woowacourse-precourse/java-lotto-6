@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -36,5 +37,20 @@ class LottoTest {
 
         assertThatCode(() -> new Lotto(numbers))
                 .doesNotThrowAnyException();
+    }
+
+    @DisplayName("로또 번호에 중복값이 있을 때 예외처리 테스트")
+    @Test
+    void validateDuplicationThrowExceptionTest() {
+        List<Integer> numbers = Arrays.asList(1,2,3,3,4,5);
+
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호에 중복값이 없을 때 예외처리 테스트")
+    @Test
+    void validateDuplicationDoesNotThrowExceptionTest() {
+        
     }
 }

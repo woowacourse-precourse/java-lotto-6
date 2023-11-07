@@ -21,10 +21,10 @@ class LottoServiceTest {
     @DisplayName("수익률 계산 테스트")
     void 수익률_계산_로직_테스트() {
         PurchaseAmount purchaseAmount = new PurchaseAmount(1000);
-        int revenue = 50000;
+        float revenue = 50000f;
         float earningRate = lottoService.getEarningRate(purchaseAmount, revenue);
 
-        Assertions.assertThat(earningRate).isEqualTo(5000);
+        Assertions.assertThat(earningRate).isEqualTo(5000f);
     }
 
     @ParameterizedTest
@@ -75,6 +75,6 @@ class LottoServiceTest {
         LottoResult lottoResult = lottoService.getLottoResult(lottos, winningNumbers, bonusNumber);
         float revenue = lottoService.getRevenue(lottoResult);
 
-        Assertions.assertThat(revenue).isEqualTo(30000000);
+        Assertions.assertThat(revenue).isEqualTo(30000000f);
     }
 }

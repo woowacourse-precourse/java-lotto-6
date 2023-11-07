@@ -73,4 +73,33 @@ public class LottoService {
         }
     }
 
+    public static Integer inputBonusNumber() {
+        Integer bonusNumber = null;
+        while (bonusNumber == null) {
+            try {
+                String input = LottoView.inputBonusNumber();
+                validateBonusNumber(input);
+                bonusNumber = Integer.valueOf(input);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
+    }
+
+    private static void validateBonusNumber(String input) {
+        try {
+            Integer bonusNumber = Integer.parseInt(input);
+            bonusNumberIsInRange(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+    }
+
+    private static void bonusNumberIsInRange(Integer bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이에 숫자를 입력해주세요.");
+        }
+    }
 }

@@ -15,7 +15,8 @@ public class Application {
         PurchaseService purchaseService = new PurchaseService();
         ResultService resultService = new ResultService();
         WinningNumberService winningNumberService = new WinningNumberService();
-        LottoController lottoController = new LottoController(inputView,outputView,purchaseService,resultService,winningNumberService);
+        LottoController lottoController = new LottoController(inputView, outputView, purchaseService, resultService,
+                winningNumberService);
         lottoController.play();
     }
 }

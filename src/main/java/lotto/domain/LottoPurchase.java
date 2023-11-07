@@ -9,7 +9,7 @@ public class LottoPurchase {
     private List<Lotto> purchaseLotto;
     private int amount;
 
-    public void LottoPurchaseCreat(int purchaseMoney){
+    public void LottoPurchaseCreat(int purchaseMoney) {
         purchaseMoney /= PURCHASE_AMOUNT_COND.getNumber();
         this.amount = purchaseMoney;
     }
@@ -22,6 +22,7 @@ public class LottoPurchase {
     public int getAmount() {
         return amount;
     }
+
     public List<Lotto> getPurchaseLotto() {
         return purchaseLotto;
     }

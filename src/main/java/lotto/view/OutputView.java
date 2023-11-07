@@ -13,15 +13,16 @@ import lotto.domain.LottoResultCount;
 
 public class OutputView {
 
-    public void printAboutPurchase(int amount, List<Lotto> purchaseLotto){
+    public void printAboutPurchase(int amount, List<Lotto> purchaseLotto) {
         printPurchaseAmount(amount);
         printPurchaseLotto(purchaseLotto);
     }
+
     private void printPurchaseAmount(int amount) {
-        System.out.println("\n"+amount+PURCHASE_LOTTO.getMessage());
+        System.out.println("\n" + amount + PURCHASE_LOTTO.getMessage());
     }
 
-    private void printPurchaseLotto(List<Lotto> purchaseLotto){
+    private void printPurchaseLotto(List<Lotto> purchaseLotto) {
         for (Lotto lotto :
                 purchaseLotto) {
             printPurchaseLottoNumber(lotto.getLottoNumbers());
@@ -41,19 +42,21 @@ public class OutputView {
         return joiner.toString();
     }
 
-    public void outputWinningResult(LottoResultCount lottoResultCount, double rate){
+    public void outputWinningResult(LottoResultCount lottoResultCount, double rate) {
         System.out.println(OutputMessage.RESULT_START.getMessage());
         winningResultOutput(lottoResultCount);
-        System.out.printf(PROFIT_RATE.getMessage(),rate);
+        System.out.printf(PROFIT_RATE.getMessage(), rate);
     }
 
-    public void winningResultOutput(LottoResultCount lottoResultCount){
+    public void winningResultOutput(LottoResultCount lottoResultCount) {
         printWinningResult(THREE_COUNT.getPrizeCount(), THREE_COUNT.getPrizeMoney(), lottoResultCount.getThreeCount());
         printWinningResult(FOUR_COUNT.getPrizeCount(), FOUR_COUNT.getPrizeMoney(), lottoResultCount.getFourCount());
         printWinningResult(FIVE_COUNT.getPrizeCount(), FIVE_COUNT.getPrizeMoney(), lottoResultCount.getFiveCount());
-        printWinningResult(FIVE_COUNT_WITH_BONUS.getPrizeCount(), FIVE_COUNT_WITH_BONUS.getPrizeMoney(), lottoResultCount.getFiveWithBonusCount());
+        printWinningResult(FIVE_COUNT_WITH_BONUS.getPrizeCount(), FIVE_COUNT_WITH_BONUS.getPrizeMoney(),
+                lottoResultCount.getFiveWithBonusCount());
         printWinningResult(SIX_COUNT.getPrizeCount(), SIX_COUNT.getPrizeMoney(), lottoResultCount.getSixCount());
     }
+
     public void printWinningResult(int number, int price, int matchCount) {
         String priceWithComma = String.format("%,d", price);
         if (number == FIVE_COUNT_WITH_BONUS.getPrizeCount()) {

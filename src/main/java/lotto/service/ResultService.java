@@ -1,6 +1,7 @@
 package lotto.service;
 
 import static lotto.constant.LottoResult.*;
+
 import lotto.domain.LottoResultCount;
 
 public class ResultService {
@@ -18,12 +19,12 @@ public class ResultService {
     }
 
 
-    public Double getLottoProfitRate(){
+    public Double getLottoProfitRate() {
         long total = totalWinningProfit();
         return calculateRate(total, amount);
     }
 
-    private long totalWinningProfit(){
+    private long totalWinningProfit() {
         return (long) this.lottoResultCount.getThreeCount() * THREE_COUNT.getPrizeMoney()
                 + (long) this.lottoResultCount.getFourCount() * FOUR_COUNT.getPrizeMoney()
                 + (long) this.lottoResultCount.getFiveCount() * FIVE_COUNT.getPrizeMoney()

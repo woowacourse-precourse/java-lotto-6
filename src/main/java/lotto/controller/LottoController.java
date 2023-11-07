@@ -14,8 +14,10 @@ public class LottoController {
     private final PurchaseService purchaseService;
     private final ResultService resultService;
     private final WinningNumberService winningNumberService;
+    private LottoPurchase lottoPurchase;
 
-    public LottoController(InputView inputView, OutputView outputView, PurchaseService purchaseService, ResultService resultService,WinningNumberService winningNumberService) {
+    public LottoController(InputView inputView, OutputView outputView, PurchaseService purchaseService,
+                           ResultService resultService, WinningNumberService winningNumberService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.purchaseService = purchaseService;
@@ -23,21 +25,31 @@ public class LottoController {
         this.winningNumberService = winningNumberService;
     }
 
-    // model과 view에 의존해도 된다(코드 존재 가능)
-    public void play(){
+    public void play() {
         try {
-            String purchase = inputView.getInputWithMessage(InputMessage.INPUT_PURCHASE.getMessage());
-            LottoPurchase purchases = purchaseService.getInputPurchase(purchase);
-            outputView.printAboutPurchase(purchases.getAmount(),purchases.getPurchaseLotto());
-
-            String number = inputView.getInputWithMessage(InputMessage.INPUT_NUMBER.getMessage());
-            String bonusNum = inputView.getInputWithMessage(InputMessage.INPUT_BONUS.getMessage());
-            winningNumberService.getInputWinningNumber(number, bonusNum);
-
-            winningNumberService.getLottoWinningResult(purchases, resultService);
-            outputView.outputWinningResult(resultService.getLottoResultCount(),resultService.getLottoProfitRate());
+            purchaseLotto();
+            winningLottoNumber();
+            winningLottoResult();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private void purchaseLotto() {
+        String purchaseMoney = inputView.getInputWithMessage(InputMessage.INPUT_PURCHASE.getMessage());
+        lottoPurchase = purchaseService.getInputPurchase(purchaseMoney);
+        outputView.printAboutPurchase(lottoPurchase.getAmount(), lottoPurchase.getPurchaseLotto());
+    }
+
+    private void winningLottoNumber() {
+        String number = inputView.getInputWithMessage(InputMessage.INPUT_NUMBER.getMessage());
+        winningNumberService.getInputWinningSixNumber(number);
+        String bonusNum = inputView.getInputWithMessage(InputMessage.INPUT_BONUS.getMessage());
+        winningNumberService.getInputWinningNumber(bonusNum);
+    }
+
+    private void winningLottoResult() {
+        winningNumberService.getLottoWinningResult(lottoPurchase, resultService);
+        outputView.outputWinningResult(resultService.getLottoResultCount(), resultService.getLottoProfitRate());
     }
 }

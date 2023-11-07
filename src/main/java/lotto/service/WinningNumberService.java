@@ -15,17 +15,21 @@ import lotto.view.OutputView;
 
 public class WinningNumberService {
     private final LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
-    private final ValidationUtil validationUtil =new ValidationUtil();
+    private final ValidationUtil validationUtil = new ValidationUtil();
     private final LottoResultCount lottoResultCount = new LottoResultCount();
 
-    public void getInputWinningNumber(String number, String bonusNum){
-        List<Integer> winning = validationUtil.validateWinningNumber(number);
+    public void getInputWinningSixNumber(String number) {
+        lottoWinningNumber.getWinningSixNumbersInfo(validationUtil.validateWinningNumber(number));
+    }
+
+    public void getInputWinningNumber(String bonusNum) {
+        List<Integer> winning = lottoWinningNumber.getWinningNums();
         int bonus = validationUtil.validateWinningNumberWithBonus(bonusNum, winning);
-        lottoWinningNumber.getWinningNumbersInfo(winning, bonus);
+        lottoWinningNumber.getWinningBonusNumbersInfo(bonus);
     }
 
     public void getLottoWinningResult(LottoPurchase lottoPurchase, ResultService resultService) {
-        for (Lotto lotto: lottoPurchase.getPurchaseLotto()) {
+        for (Lotto lotto : lottoPurchase.getPurchaseLotto()) {
             List<Integer> LottoNums = lotto.getLottoNumbers();
             int matchCount = getMatchCount(LottoNums);
             addMatchCount(checkBonusNumber(LottoNums, matchCount));

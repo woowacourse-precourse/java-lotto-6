@@ -22,14 +22,20 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 
 public class OutputHandler {
+    private static final String LEFT_BRACKET = "[";
+    private static final String RIGHT_BRACKET = "]";
+    private static final String REWARD_FORMAT = "%,d";
+    private static final String LOTTO_NUMBER_DELIMITER = ", ";
+
     public static void printPurchaseInput() {
         System.out.println(INPUT_PRICE);
     }
 
     public static void printPurchaseHistory(Lottos lottos) {
         System.out.printf(PURCHASES_NUMBER, lottos.getSize());
+
         for (Lotto lotto : lottos.getLottos()) {
-            printNumbers(lotto.getNumbers());
+            printLottoNumbers(lotto.getNumbers());
         }
     }
 
@@ -46,7 +52,7 @@ public class OutputHandler {
 
         for (LottoRank rank : ranks) {
             int matchedNormalNum = rank.getMatchedNormalNum();
-            String reward = String.format("%,d", rank.getReward());
+            String reward = String.format(REWARD_FORMAT, rank.getReward());
             long count = lottoRanks.stream().filter(r -> r == rank).count();
 
             if (rank == RANK_TWO) {
@@ -61,17 +67,14 @@ public class OutputHandler {
         System.out.println(WINNING_DETAILS);
     }
 
-    private static void printNumbers(List<Integer> numbers){
-        final String LEFT_BRACKET = "[";
-        final String RIGHT_BRACKET = "]";
-
+    private static void printLottoNumbers(List<Integer> numbers){
         List<Integer> sortedNumbers = numbers.stream()
                 .sorted()
                 .toList();
 
         String numbersWithComma = sortedNumbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER));
 
         System.out.println(LEFT_BRACKET + numbersWithComma + RIGHT_BRACKET);
     }

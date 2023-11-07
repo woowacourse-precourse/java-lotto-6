@@ -8,9 +8,9 @@ import java.util.List;
 import lotto.domain.WinningNumber;
 
 public class StringParser {
-    String DELIMITER = ",";
+    private static String DELIMITER = ",";
 
-    public Integer parsePurchaseAmount(String str) {
+    public static Integer parsePurchaseAmount(String str) {
         try {
             int parsed = Integer.parseInt(str);
             Validator.validatePositiveInteger(parsed);
@@ -20,7 +20,7 @@ public class StringParser {
         }
     }
 
-    public WinningNumber parseWinningNumber(String str) {
+    public static WinningNumber parseWinningNumber(String str) {
         try {
             List<Integer> parsed = Arrays.asList(str.split(DELIMITER)).stream()
                     .map(Integer::parseInt)

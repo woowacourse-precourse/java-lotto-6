@@ -18,4 +18,12 @@ class LottiesTest {
                 ()-> valueLotto.add(new Lotto(List.of(1,2,3,4,5,6)))
         ).isInstanceOf(UnsupportedOperationException.class);
     }
+
+    @DisplayName(" 로또 리스트를 바탕으로 lotties 생성")
+    @Test
+    public void createLotties(){
+        List<Lotto> lottos = List.of(new Lotto(List.of(1,2,3,4,5,6)));
+        Lotties lotties = new Lotties(lottos);
+        assertThat(lotties.getLotties()).isEqualTo(lottos);
+    }
 }

@@ -23,4 +23,11 @@ class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @Test
+    @DisplayName("당첨 번호에 들어있는 수를 입력 받은 경우")
+    void createBonusNumber_Duplicate() {
+        assertThatThrownBy(() -> new BonusNumber(1, Arrays.asList(1,2,3,4,5,6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

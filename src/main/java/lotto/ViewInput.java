@@ -26,7 +26,7 @@ public class ViewInput {
         return purchaseAmount;
     }
 
-    public List<Integer> getWinningNumber() {
+    public List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         tokens = new StringTokenizer(Console.readLine(), ",");
 

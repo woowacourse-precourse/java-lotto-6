@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Calculator {
-    Map<Rank, Integer> rankCount = new HashMap<>();
+    private final Map<Rank, Integer> rankCount = new HashMap<>();
+
+    public Calculator() {
+    }
 
     public static int calculateTotalPrize(Map<Rank, Integer> rankCount) {
         int totalPrize = 0;

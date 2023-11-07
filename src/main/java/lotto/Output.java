@@ -10,6 +10,7 @@ public class Output {
     private static int third = 0;
     private static int fourth = 0;
     private static int fifth = 0;
+    private static double reward = 0;
 
     private static final int LOTTOPRICE = 1000;
     private static final int FIRSTNUM = 6;
@@ -74,18 +75,23 @@ public class Output {
 
     public static void printRateOfReturn(Customer customer) {
 
-        double reward = 0;
-        reward += fifth * Prize.FIFTH.getPrizeAmount();
-        reward += fourth * Prize.FOURTH.getPrizeAmount();
-        reward += third * Prize.THIRD.getPrizeAmount();
-        reward += second * Prize.SECOND.getPrizeAmount();
-        reward += first * Prize.FIRST.getPrizeAmount();
-
+        calculateReward();
         double rate = customer.calculateRateOfReturn(reward);
 
         DecimalFormat decimalFormat = new DecimalFormat("0.0");
         String formattedNumber = decimalFormat.format(rate);
 
         System.out.println("총 수익률은 " + formattedNumber + "%입니다.");
+    }
+
+    private static double calculateReward() {
+
+        reward += fifth * Prize.FIFTH.getPrizeAmount();
+        reward += fourth * Prize.FOURTH.getPrizeAmount();
+        reward += third * Prize.THIRD.getPrizeAmount();
+        reward += second * Prize.SECOND.getPrizeAmount();
+        reward += first * Prize.FIRST.getPrizeAmount();
+
+        return reward;
     }
 }

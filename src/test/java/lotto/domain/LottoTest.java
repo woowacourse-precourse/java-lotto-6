@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -28,19 +27,4 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(46, 0, -1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-    /*@DisplayName("구매 로또 번호와 당첨 내역이 일치하는지 확인한다.")
-    @Test
-    void checkSameNumber(){
-        // given
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
-        List<Integer> ticket = List.of(2,3,14,21,26,30);
-        Lotto lotto = new Lotto(numbers);
-
-        // when
-        int sameCount = lotto.sameTicket(ticket);
-
-        // then
-        assertThat(sameCount).isEqualTo(2);
-    }*/
 }

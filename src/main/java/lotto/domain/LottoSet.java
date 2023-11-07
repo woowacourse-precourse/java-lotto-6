@@ -46,13 +46,9 @@ public class LottoSet {
     }
 
     public int sameLottoNumber(List<Integer> ticket) {
-        long count = 0L;
-        for (Integer integer : ticket) {
-            if (lottoNumbers.contains(integer)) {
-                count++;
-            }
-        }
-        return (int) count;
+        return (int) ticket.stream()
+                .filter(integer -> lottoNumbers.contains(integer))
+                .count();
     }
 
     public int sameBonusNumber(List<Integer> ticket){

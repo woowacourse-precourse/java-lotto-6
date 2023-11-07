@@ -36,10 +36,10 @@ public class GameController {
         while(true){
             try{
                 lottoCount = getLottoCount();
+                break;
             }catch(IllegalArgumentException e){
-                continue;
+                System.out.println(ErrorMessage.ERROR_INPUT_PRICE_MESSAGE);
             }
-            break;
         }
     }
 
@@ -47,7 +47,7 @@ public class GameController {
         try {
             customerPrice = InputController.inputPrice();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_PRICE_MESSAGE.toString());
+            throw new IllegalArgumentException();
         }
 
         return parseLottoCount(customerPrice);
@@ -55,7 +55,7 @@ public class GameController {
 
     private int parseLottoCount(int customerPrice) throws IllegalArgumentException{
         if (customerPrice % LottoValues.LOTTO_PRICE != 0) {
-            throw new IllegalStateException(ErrorMessage.ERROR_INPUT_PRICE_MESSAGE.toString());
+            throw new IllegalArgumentException();
         }
         return customerPrice / LottoValues.LOTTO_PRICE;
     }

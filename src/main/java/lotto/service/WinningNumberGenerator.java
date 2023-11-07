@@ -43,7 +43,7 @@ public class WinningNumberGenerator {
         try {
             winningNumber = InputController.inputWinningNumber();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_WINNING_NUMBER_MESSAGE.toString());
+            throw new IllegalArgumentException(String.valueOf(ErrorMessage.ERROR_INPUT_WINNING_NUMBER_MESSAGE));
         }
         return winningNumber;
     }
@@ -54,7 +54,7 @@ public class WinningNumberGenerator {
         try {
             bonusNumber = InputController.inputBonusNumber();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_BONUS_NUMBER_MESSAGE.toString());
+            throw new IllegalArgumentException(String.valueOf(ErrorMessage.ERROR_INPUT_BONUS_NUMBER_MESSAGE));
         }
         return bonusNumber;
     }

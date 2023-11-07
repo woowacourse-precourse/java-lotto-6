@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.PurchaseHistoryDto;
+import lotto.model.LottoHeadQuarter;
 import lotto.model.LottoStore;
 import lotto.model.vo.BonusNumber;
 import lotto.model.vo.Money;
@@ -25,6 +26,7 @@ public class LottoGameController {
         Player player = buyLotto();
         WinNumber winNumber = setWinNumber();
         BonusNumber bonusNumber = setBonusNumber();
+        playLottoGame(winNumber, bonusNumber);
     }
 
     private Player buyLotto() {
@@ -54,7 +56,7 @@ public class LottoGameController {
             winNumber = WinNumber.of(input());
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
-            setWinNumber();
+            winNumber = setWinNumber();
         }
         outputView.printLineSeparator();
         return winNumber;
@@ -67,10 +69,20 @@ public class LottoGameController {
             bonusNumber = BonusNumber.of(input());
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
-            setBonusNumber();
+            bonusNumber = setBonusNumber();
         }
         outputView.printLineSeparator();
         return bonusNumber;
+    }
+
+    private void playLottoGame(WinNumber winNumber, BonusNumber bonusNumber) {
+        try {
+            LottoHeadQuarter lottoHeadQuarter = new LottoHeadQuarter();
+            lottoHeadQuarter.pickWinNumber(winNumber, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            errorView.printErrorMessage(e.getMessage());
+            setBonusNumber();
+        }
     }
 
     private String input() {

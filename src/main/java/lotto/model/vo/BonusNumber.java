@@ -10,7 +10,7 @@ public class BonusNumber {
     }
 
     public static BonusNumber of(String input) {
-        BonusNumber bonusNumber = null;
+        BonusNumber bonusNumber;
         try {
             bonusNumber = new BonusNumber(Integer.parseInt(input));
         } catch (NumberFormatException e) {
@@ -27,5 +27,9 @@ public class BonusNumber {
 
     private boolean isBetween1And45(int bonusNumber) {
         return !(bonusNumber >= 1 && bonusNumber <= 45);
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

@@ -21,17 +21,24 @@ public class Ticket {
     }
 
     private static void validateMoney(final int money) {
+        validateAmountMoney(money);
+        validateUnit(money);
+    }
+
+    private static void validateAmountMoney(int money) {
         if (isNotEnough(money)) {
             throw LottoException.from(NOT_ENOUGH_MONEY);
-        }
-
-        if (isNotCorrectUnit(money)) {
-            throw LottoException.from(INVALID_UNIT);
         }
     }
 
     private static boolean isNotEnough(final int money) {
         return money < MONEY_UNIT.getValue();
+    }
+
+    private static void validateUnit(int money) {
+        if (isNotCorrectUnit(money)) {
+            throw LottoException.from(INVALID_UNIT);
+        }
     }
 
     private static boolean isNotCorrectUnit(final int money) {

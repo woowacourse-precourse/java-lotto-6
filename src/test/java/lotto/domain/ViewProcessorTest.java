@@ -51,7 +51,7 @@ class ViewProcessorTest {
     @Test
     void checkIsNull() {
         String input = "";
-        assertThatThrownBy(()->viewProcessor.checkIsNull(input))
+        assertThatThrownBy(() -> viewProcessor.checkIsNull(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 사용자 입력 값이 null");
     }
@@ -66,7 +66,7 @@ class ViewProcessorTest {
 
     @DisplayName("당첨 번호의 범위가 1~45 사이가 아닐경우 에러 처리한다.")
     @ParameterizedTest
-    @CsvSource({"-10","51"})
+    @CsvSource({"-10", "51"})
     void checkRangeWinning(int invalidNum) {
         assertThatThrownBy(() -> viewProcessor.checkRangeWinning(invalidNum))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -76,8 +76,8 @@ class ViewProcessorTest {
     @DisplayName("당첨 번호에 중복된 수가 있으면 예외처리 한다.")
     @Test
     void checkExistWinning() {
-        List<Integer> ExsistList = List.of(1,2,3,4);
-        assertThatThrownBy(() -> viewProcessor.checkExistWinning(ExsistList,4))
+        List<Integer> ExsistList = List.of(1, 2, 3, 4);
+        assertThatThrownBy(() -> viewProcessor.checkExistWinning(ExsistList, 4))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 서로 다른 숫자여야 합니다.");
     }
@@ -133,9 +133,29 @@ class ViewProcessorTest {
         assertThat(viewProcessor.moneyEdit(reward)).isEqualTo(expect);
     }
 
+    @DisplayName("당첨 번호 처리가 성공하면 SUCESS, 예외 발생시 FAILDURE 반환한다.")
+    @ParameterizedTest
+    @MethodSource("parameterProviderWinnings")
+    void winnings(String tempWinnings, String state) {
+        boolean expect = state.equals("FAILDURE");
+        assertThat(viewProcessor.winnings(tempWinnings)).isEqualTo(expect);
+    }
+
+    static Stream parameterProviderWinnings() {
+        return Stream.of(
+                arguments("1,2,3,4,5,6","SUCESS"),
+                arguments("","FAILDURE"),
+                arguments("1,2,3,4,5","FAILDURE"),
+                arguments("1,2,three,4,5,6","FAILDURE"),
+                arguments("1,2,,4,5,6","FAILDURE"),
+                arguments("1,2,3,4,5,60","FAILDURE"),
+                arguments("1,2,3,4,5,5","FAILDURE")
+        );
+    }
+
     @DisplayName("구입 금액 처리가 성공하면 SUCESS, 예외 발생시 FAILDURE 반환한다.")
     @ParameterizedTest
-    @CsvSource({"10000,SUCESS","15,FAILDURE","만원,FAILDURE","-10,FAILDURE"})
+    @CsvSource({"10000,SUCESS", "15,FAILDURE", "만원,FAILDURE", "-10,FAILDURE"})
     void purchase(String tempCost, String state) {
         boolean expect = state.equals("FAILDURE");
         assertThat(viewProcessor.purchase(tempCost)).isEqualTo(expect);

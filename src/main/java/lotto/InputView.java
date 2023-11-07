@@ -24,10 +24,21 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers() {
-        System.out.println(MessageConstants.WINNING_NUMBERS_GUIDE);
-        String[] inputValues = Console.readLine().split(",");
-        List<Integer> inputIntValues = parseStringToInteger(inputValues);
-        return inputIntValues;
+        String[] inputValues = null;
+        Boolean flag = false;
+        while (!flag) {
+            System.out.println(MessageConstants.WINNING_NUMBERS_GUIDE);
+            inputValues = Console.readLine().split(",");
+            try {
+                InputValidator.validateLength(inputValues); // 개수
+                InputValidator.validateType(inputValues); // 숫자
+                InputValidator.validateRange(inputValues); // 범위
+                InputValidator.validateDuplicate(inputValues); // 중복
+                flag = true;
+            } catch (IllegalArgumentException e) {}
+        }
+
+        return parseStringToInteger(inputValues);
     }
 
     private static List<Integer> parseStringToInteger(String[] inputValues) {

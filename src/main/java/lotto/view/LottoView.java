@@ -9,9 +9,11 @@ import lotto.dto.PurchaseAmountRequest;
 public class LottoView {
 
     private final InputMapper inputMapper;
+    private final OutputMaker outputMaker;
 
-    public LottoView(InputMapper inputMapper) {
+    public LottoView(InputMapper inputMapper, OutputMaker outputMaker) {
         this.inputMapper = inputMapper;
+        this.outputMaker = outputMaker;
     }
 
     public PurchaseAmountRequest readPurchaseAmount() {
@@ -22,6 +24,7 @@ public class LottoView {
     public void writeLottosInfo(LottoInfoResponse lottoInfoResponse) {
         write(LottoMessage.getEmpty());
         write(LottoMessage.getPurchaseCountMessage(lottoInfoResponse.lottoCount()));
+        write(outputMaker.makeLottosNumbersOutput(lottoInfoResponse.lottoNumbers()));
     }
 
     private void write(String output) {

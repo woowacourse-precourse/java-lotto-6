@@ -41,10 +41,6 @@ public enum LottoRankInfo {
                 && Objects.equals(isBonusHit, e.isBonusHit);
     }
 
-    public int getHitCount() {
-        return hitCount;
-    }
-
     public Long getRewardPrice() {
         return rewardPrice;
     }

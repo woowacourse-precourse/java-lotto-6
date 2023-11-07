@@ -9,13 +9,33 @@ public class InputView {
 
     public static void payForLottery() {
         System.out.println(BUY_LOTTERY_INPUT);
-        String string = Console.readLine();
-        getTickets(string);
+        try {
+            String payment = Console.readLine();
+            int paymentNumber = checkPaymentIsNumber(payment);
+            int cnt = checkTruncatedTo1000(paymentNumber);
+            printTicketCnt(cnt);
+        } catch (NumberFormatException e) {
+            System.out.println(e.getMessage());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public static void getTickets(String string) {
+    public static void printTicketCnt(int cnt) {
         System.out.println();
-        int payment = Integer.parseInt(string);
-        System.out.printf(TICKETS_COUNT_OUTPUT, payment / 1000);
+        System.out.printf(TICKETS_COUNT_OUTPUT, cnt);
+    }
+
+    public static int checkTruncatedTo1000(int payment) {
+        if(payment % 1000 != 0) throw new IllegalArgumentException("[ERROR] 1,000원 단위 이상으로만 입력하세요.");
+        return payment / 1000;
+    }
+
+    private static int checkPaymentIsNumber(String string) {
+        try {
+            return Integer.parseInt(string);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 숫자만 입력할 수 있습니다.");
+        }
     }
 }

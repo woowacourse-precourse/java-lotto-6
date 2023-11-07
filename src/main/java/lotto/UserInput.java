@@ -22,7 +22,6 @@ public class UserInput {
     public List<Integer> lottoNumber() {
         String input = Console.readLine();
         List<Integer> lottoNumbers = from(input);
-        isValidNumber(lottoNumbers);
         return lottoNumbers;
     }
 
@@ -32,9 +31,4 @@ public class UserInput {
         return lottoNumbers;
     }
 
-    private void isValidNumber(List<Integer> lottoNumbers) {
-        ValidateUserNumber.isLengthSix(lottoNumbers);
-        ValidateUserNumber.isDuplicate(lottoNumbers);
-        ValidateUserNumber.isInRange(lottoNumbers);
-    }
 }

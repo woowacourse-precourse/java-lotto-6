@@ -26,12 +26,12 @@ public class WiningLottoNumbers {
     }
 
     private void validate(Lotto lotto, Bonus bonus) {
-        if (hasBonusNumberInLotto(lotto, bonus)) {
+        if (validateDuplication(lotto, bonus)) {
             throwException(BONUS_DUPLICATION_ERROR_MESSAGE.get());
         }
     }
 
-    private boolean hasBonusNumberInLotto(Lotto lotto, Bonus bonus) {
+    private boolean validateDuplication(Lotto lotto, Bonus bonus) {
         return lotto.hasNumber(bonus.get());
     }
 

@@ -108,5 +108,13 @@ public class InputViewTest {
         assertThatThrownBy(() -> InputView.readBonusNumber()).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호에 숫자가 아닌 값이 들어올 경우 예외가 발생한다.")
+    @Test
+    void readBonusNumber_NotInteger_ExceptionThrow() {
+        String input = "AAA";
+        setInputValues(input);
+        assertThatThrownBy(() -> InputView.readBonusNumber()).isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

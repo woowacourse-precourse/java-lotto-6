@@ -1,43 +1,35 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Game {
-    private static final Player player = new Player();
-    private static final Map<Lotto, Float> lottos = new HashMap<Lotto, Float>();
-    private static Float lottoReturns;
+    private final GameView gameView;
+    private final Player player;
+    private final Map<Lotto, Float> lottos;
+    private Float lottoReturns;
 
+    public Game() {
+        this.gameView = new GameView();
+        this.player = new Player();
+        this.lottos = new HashMap<>();
+        this.lottoReturns = 0.0f;
+    }
 
-    public static void play() {
-        inputLottoPurchaseAmount();
+    public void play() {
+        gameView.inputLottoPurchaseAmount(player);
         issueLottos();
-        printLottos();
-        inputLottoWinningNumbers();
-        inputLottoBonusNumber();
+        gameView.printLottos(lottos);
+        gameView.inputLottoWinningNumbers(player);
+        gameView.inputLottoBonusNumber(player);
         confirmLottoWin();
         calculateLottoReturns();
-        printLottoWinAndLottoReturns();
+        gameView.printLottoWinAndLottoReturns(lottoReturns);
     }
 
-    private static void inputLottoPurchaseAmount() {
-        while (true) {
-            System.out.println("구매금액을 입력해 주세요.");
-            String input = Console.readLine();
-
-            try {
-                player.setPurchaseAmount(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 구매 금액은 1,000원 단위의 숫자여야 합니다.");
-            }
-        }
-    }
-
-    private static void issueLottos() {
+    private void issueLottos() {
         int lottoCount = player.getPurchaseLottoCount();
 
         for (int i = 0; i < lottoCount; i++) {
@@ -45,49 +37,11 @@ public class Game {
         }
     }
 
-    private static List<Integer> getRandomNumbers() {
+    private List<Integer> getRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(Lotto.MINIMUM_NUMBER, Lotto.MAXIMUM_NUMBER, Lotto.NUMBERS_SIZE);
     }
 
-    private static void printLottos() {
-        System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
-
-        for (Lotto lotto : lottos.keySet()) {
-            System.out.println(lotto.getNumbers());
-        }
-    }
-
-    private static void inputLottoWinningNumbers() {
-        System.out.println();
-        while (true) {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            String input = Console.readLine();
-
-            try {
-                player.setWinningNumbers(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 당첨 번호는 1부터 45 사이의 숫자 6개여야 합니다.");
-            }
-        }
-    }
-
-    private static void inputLottoBonusNumber() {
-        System.out.println();
-        while (true) {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            String input = Console.readLine();
-
-            try {
-                player.setBonusNumber(input);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 보너스 번호는 1부터 45 사이의 숫자이며, 당첨 번호에 포함되지 않아야 합니다.");
-            }
-        }
-    }
-
-    private static void confirmLottoWin() {
+    private void confirmLottoWin() {
         for (Lotto lotto : lottos.keySet()) {
             compareWinningNumbers(lotto);
             compareBonusNumber(lotto);
@@ -95,14 +49,14 @@ public class Game {
         }
     }
 
-    private static void calculateLottoRankingCount(Lotto lotto) {
+    private void calculateLottoRankingCount(Lotto lotto) {
         float lottoScore = lottos.get(lotto);
         if (lottoScore >= 3.0f) {
             LottoRanking.valueOfScore(lottos.get(lotto)).plusCount();
         }
     }
 
-    private static void compareWinningNumbers(Lotto lotto) {
+    private void compareWinningNumbers(Lotto lotto) {
         for (int winningNumber : player.getWinningNumbers()) {
             if (lotto.containNumber(winningNumber)) {
                 lottos.replace(lotto, lottos.get(lotto) + 1.0f);
@@ -110,18 +64,18 @@ public class Game {
         }
     }
 
-    private static void compareBonusNumber(Lotto lotto) {
+    private void compareBonusNumber(Lotto lotto) {
         if (lotto.containNumber(player.getBonusNumber())) {
             lottos.replace(lotto, lottos.get(lotto) + 0.5f);
         }
     }
 
-    private static void calculateLottoReturns() {
+    private void calculateLottoReturns() {
         int totalPrizeMoney = calculateTotalPrizeMoney();
         lottoReturns = (float) totalPrizeMoney / player.getPurchaseAmount() * 100.0f;
     }
 
-    private static Integer calculateTotalPrizeMoney() {
+    private Integer calculateTotalPrizeMoney() {
         int totalPrizeMoney = 0;
 
         for (LottoRanking lottoRanking : LottoRanking.values()) {
@@ -129,16 +83,5 @@ public class Game {
         }
 
         return totalPrizeMoney;
-    }
-
-    private static void printLottoWinAndLottoReturns() {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
-
-        for (LottoRanking lottoRanking : LottoRanking.values()) {
-            System.out.println(lottoRanking.getResult());
-        }
-
-        System.out.println("총 수익률은 " + String.format("%.1f", lottoReturns) + "%입니다.");
     }
 }

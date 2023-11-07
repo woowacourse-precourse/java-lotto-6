@@ -2,17 +2,25 @@ package lotto;
 
 import java.util.List;
 import static lotto.validator.BonusNumberValidator.validate;
-import static lotto.validator.WinningNumbersValidator.validate;
+import static lotto.validator.LottoValidator.validate;
 
-public class WinningNumbers {
+public class WinningLotto {
     private final List<Integer> numbers;
     private final int bonusNumber;
 
-    public WinningNumbers(List<Integer> numbers, int bonusNumber) {
+    public WinningLotto(List<Integer> numbers, int bonusNumber) {
         validate(numbers);
         validate(bonusNumber, numbers);
 
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 }

@@ -5,7 +5,7 @@ import static lotto.Exception.WINNING_NUMBERS_SIZE_SHOULD_BE_SIX;
 
 import java.util.List;
 
-public class WinningNumbersValidator extends NumberValidator {
+public class LottoValidator extends NumberValidator {
     private static final int WINNING_NUMBERS_SIZE = 6;
 
     public static void validate(List<Integer> numbers) {

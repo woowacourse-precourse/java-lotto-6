@@ -1,6 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.constants.ErrorMessage;
 import lotto.domain.PurchaseAmount;
@@ -61,5 +62,15 @@ class PurchaseAmountTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ErrorMessage.PURCHASE_AMOUNT_WRONG_UNIT_INPUT.getMessage());
         }
+    }
+
+    @DisplayName("PurchaseAmount 필드 검증")
+    @Test
+    void createPurchaseAmount() {
+        PurchaseAmount purchaseAmount = new PurchaseAmount("1000");
+        assertAll(
+                () -> assertThat(purchaseAmount.getAmount()).isEqualTo(1000),
+                () -> assertThat(purchaseAmount.getNumberOfLotto()).isEqualTo(1)
+        );
     }
 }

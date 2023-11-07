@@ -24,8 +24,7 @@ public class Parser {
 
     public int stringToInteger(String playerInputNum) {
         try{
-            int result=Integer.parseInt(playerInputNum);
-            return result;
+            return Integer.parseInt(playerInputNum);
         } catch(NumberFormatException e){
             throw new IllegalArgumentException(INPUT_STYLE_ERROR_INT);
         }

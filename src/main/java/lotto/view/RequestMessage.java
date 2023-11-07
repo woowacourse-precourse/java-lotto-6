@@ -17,6 +17,4 @@ public class RequestMessage {
         System.out.println();
         System.out.println(BONUS_NUM);
     }
-
-    //TODO : 예외 기능 처리
 }

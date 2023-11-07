@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import domain.ErrorMessage;
 
 public class Application {
     public static void main(String[] args) {
@@ -27,7 +28,7 @@ public class Application {
         double lottoTicket = money / 1000;
         double lottoTicketComparison = money / 1000;
         if (lottoTicket != Math.round(lottoTicketComparison)) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT.toString());
         }
         System.out.println(Math.round(lottoTicket) + "개를 구매했습니다.");
 
@@ -52,45 +53,45 @@ public class Application {
         // 1~45가 아닌 숫자를 입력했을 때
         for (int q=0; q<6; q++) {
             if (Integer.parseInt(lottoNumber[q]) < 1 || Integer.parseInt(lottoNumber[q]) > 45) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.toString());
             }
         }
 
         // 숫자 범위 미달, 초과 예외 처리
         if (lottoNumber.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호를 다시 입력해주세요.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_INPUT_CNT.toString());
         }
 
         // 숫자 중복 예외 처리
         for (int p = 0; p < 5; p++) {
             if (lottoNumber[p].equals(lottoNumber[p + 1])) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_DUPLICATE.toString());
             }
         }
         for (int p = 0; p < 4; p++) {
             if (lottoNumber[p].equals(lottoNumber[p + 2])) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_DUPLICATE.toString());
             }
         }
         for (int p = 0; p < 3; p++) {
             if (lottoNumber[p].equals(lottoNumber[p + 3])) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_DUPLICATE.toString());
             }
         }
         for (int p = 0; p < 2; p++) {
             if (lottoNumber[p].equals(lottoNumber[p + 4])) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_DUPLICATE.toString());
             }
         }
         int p = 0;
         if (lottoNumber[p].equals(lottoNumber[p + 5])) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_DUPLICATE.toString());
         }
 
         // Null값 예외 처리
         for (int w=0; w<6; w++) {
             if (lottoNumber[p].equals(" ")) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_FORMAT.toString());
             }
         }
 
@@ -140,7 +141,6 @@ public class Application {
             if (saveNumber.get(i).contains(intLottoNumber[5])) {
                 lucky ++;
             }
-            /////////////////////////// duplicate 쓰기!!!
             if (saveNumber.get(i).contains(Integer.parseInt(lottoBonusNumber))) {
                 bonus ++;
             } else if (!saveNumber.get(i).contains(Integer.parseInt(lottoBonusNumber))) {

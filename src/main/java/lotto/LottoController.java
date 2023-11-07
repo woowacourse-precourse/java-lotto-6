@@ -110,7 +110,7 @@ public class LottoController {
         outputView.printOutputStartMessage();
 
         Map<String, Integer> winningResults = winningResult.displayWinningResults();
-        double yeild = yieldCalculator.calculateYieldCalulator(winningResults, purchasedPrice);
+        double yeild = yieldCalculator.calculateYieldCalculator(winningResults, purchasedPrice);
 
         outputView.printWinningCountResult(winningResults);
         outputView.printYield(yeild);

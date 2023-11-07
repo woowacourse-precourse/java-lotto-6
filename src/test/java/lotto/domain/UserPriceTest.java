@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class UserPriceTest {
-    @DisplayName("구매 금액을 생성을 검증한다.")
+    @DisplayName("구매 금액을 생성을 검증하기.")
     @Test
     void userPrice(){
         int price = LOTTO_PRICE * 3;
@@ -25,5 +25,12 @@ class UserPriceTest {
         ).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구매 금액이 1000 으로 나눠 떨어지는지 검증하기.")
+    @Test
+    void userPriceUnit(){
+        assertThatThrownBy(
+                () -> new UserPrice(LOTTO_PRICE + 1)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
 
 }

@@ -29,7 +29,12 @@ public class Lotto {
     }
 
     private boolean isOutOfRange(List<Integer> numbers) {
-        return numbers.stream().anyMatch(number -> number < LottoNumber.MINIMUM || number > LottoNumber.MAXIMUM);
+        return numbers.stream()
+                .anyMatch(this::isOutOfRange);
+    }
+
+    private boolean isOutOfRange(int number) {
+        return number < LottoNumber.MINIMUM || number > LottoNumber.MAXIMUM;
     }
 
     private boolean hasDuplicatedNumber(List<Integer> numbers) {

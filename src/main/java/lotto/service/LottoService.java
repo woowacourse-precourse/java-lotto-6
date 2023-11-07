@@ -7,10 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
 import lotto.domain.PurchasedLottoNumbers;
+import lotto.domain.User;
+import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
     private static PurchasedLottoNumbers purchasedLottoNumbers;
+
+    public static void lottoStart(InputMoney inputMoney){
+        User user = new User(inputMoney.getMoney());
+        lottoGenerator(user.getAmount());
+    }
 
     public static List<Lotto> lottoGenerator(int purchaseAmount) {
         int pickCount = purchaseAmount / 1000;

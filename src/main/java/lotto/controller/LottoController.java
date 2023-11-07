@@ -72,12 +72,12 @@ public class LottoController {
         return retryUntilSuccess(method);
     }
 
-    static <T> T retryUntilSuccess(Supplier<T> supplier) {
+    private <T> T retryUntilSuccess(Supplier<T> supplier) {
         while(true) {
             try {
                 return supplier.get();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException exception) {
+                outputView.printExceptionMessage(exception);
             }
         }
     }

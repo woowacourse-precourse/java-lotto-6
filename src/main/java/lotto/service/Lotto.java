@@ -13,7 +13,7 @@ public class Lotto {
     }
     public void isContainNumber(int bonusNumber) {
         if(numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호가 중복됩니다.");
+            throw new IllegalStateException("[ERROR] 보너스 번호와 당첨 번호가 중복됩니다.");
         }
     }
 

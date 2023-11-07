@@ -51,4 +51,5 @@ public class WinningStatisticsService {
             winningStatistics.put(winningPolicy, winningStatistics.get(winningPolicy) + 1);
         }
     }
+
 }

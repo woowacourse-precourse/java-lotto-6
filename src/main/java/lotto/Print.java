@@ -3,7 +3,7 @@ package lotto;
 public class Print {
 
     final static String priceRequest = "구입금액을 입력해 주세요.";
-    final static String amount = "%d개를 구매했습니다.";
+    final static String quantity = "%d개를 구매했습니다.";
     final static String lottoNumberRequest = "당첨 번호를 입력해 주세요.";
     final static String bonusNumberRequest = "보너스 번호를 입력해 주세요.";
     final static String winningAnalysis = "당첨 통계";

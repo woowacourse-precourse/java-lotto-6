@@ -16,11 +16,12 @@ public class Application {
         int lottoAmount = priceAmount / 1000;
         ArrayList<LottoResult> matchResults = new ArrayList<>();
 
+
         for (int i = 0; i < lottoAmount; i++) {
             List<Integer> userNumber =  GenerateRandom.getRandomNumbers();
             userNumbers.add(userNumber);
         }
-
+        Output.lottoInfoPrint(userNumbers);
 
         for (int i = 0; i < lottoAmount; i++) {
             int matchCount = MatchLotto.isNumbersMatching(winningnumbers, userNumbers.get(i));
@@ -30,7 +31,7 @@ public class Application {
             matchResults.add(LottoResult.getResult(matchCount, matchBonus));
         }
 
-
+        Output.resultPrint(matchResults, priceAmount);
 
         
     }

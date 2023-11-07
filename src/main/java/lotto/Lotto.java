@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,5 +29,14 @@ public class Lotto {
         if (set.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
         }
+    }
+
+    public ArrayList<Integer> getWinningNumbers() {
+        ArrayList<Integer> returnNumbers = new ArrayList<>();
+        for (Integer num : numbers) {
+            returnNumbers.add(num);
+        }
+        
+        return returnNumbers;
     }
 }

@@ -1,21 +1,31 @@
 package lotto;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Input {
 
-    public int priceAmountInput() {
-        int priceAmount;
+    public static int priceAmountInput() {
+        int priceAmount = 0;
 
         System.out.println("구입금액을 입력해 주세요.");
-        priceAmount = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        if (!input.matches("\\d+")) {
+            System.out.print("[ERROR]");
+            throw new NoSuchElementException("구입 금액은 숫자만 입력해주세요.");
+     //       throw new NumberFormatException("[ERROR] 구입 금액은 숫자만 입력해주세요.");
+       
+        //    throw new IllegalArgumentException("[ERROR]");
+        } 
+        priceAmount = Integer.parseInt(input);
+       
         if (!priceAmountVaildation(priceAmount)) {
             throw new IllegalArgumentException("[ERROR] 입력값은 1000원 단위여야 합니다.");
         }
 
+
+        System.out.println();
         return priceAmount;
     }
 
@@ -24,7 +34,7 @@ public class Input {
      * @param priceAmount
      * @return 입력값의 유효값 결과를 return
      */
-    private boolean priceAmountVaildation(int priceAmount) {
+    private static boolean priceAmountVaildation(int priceAmount) {
         if (priceAmount % 1000 == 0) 
             return true;
         
@@ -35,7 +45,7 @@ public class Input {
      * 당첨 번호와 보너스 번호를 입력받아 Lotto 객체를 생성합니다.
      * @return Lotto 객체 
      */
-    public Lotto winningNumberInput() {
+    public static Lotto winningNumberInput() {
         ArrayList<Integer> winningNumber = new ArrayList<Integer>();
         
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -53,10 +63,11 @@ public class Input {
      * 보너스 번호 입력 
      * @return 보너스 번호
      */
-    public int bonusNumberInput() {
+    public static int bonusNumberInput() {
         System.out.println("\n" + "보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
 
+        System.out.println();
         return bonusNumber;
     }
 

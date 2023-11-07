@@ -43,7 +43,6 @@ public class LottoController {
         int count = purchase.getCount();
 
         lottos = new Lottos(Lottos.generator(count));
-
         OutputView.printLottoInfo(lottos.getLottos(), count);
     }
 

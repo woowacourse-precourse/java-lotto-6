@@ -1,8 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.*;
-import lotto.view.InputView;
-import lotto.view.OutputView;
+import lotto.view.*;
 
 import java.util.List;
 
@@ -23,8 +22,8 @@ public class LottoController {
     }
 
     private Money getInputMoney() {
-        InputView inputView = new InputView();
-        String inputMoney = inputView.getInputMoney();
+        InputMoneyView inputMoneyView = new InputMoneyView();
+        String inputMoney = inputMoneyView.getInputMoney();
         int money = Integer.parseInt(inputMoney);
         return new Money(money);
     }
@@ -35,10 +34,11 @@ public class LottoController {
     }
 
     private WinningNumber getWinningNumber() {
-        InputView inputView = new InputView();
+        InputWinningNumberView inputWinningNumberView = new InputWinningNumberView();
+        InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
 
-        List<Integer> winningNumbers = inputView.getWinningNumber();
-        Integer bonusNumber = inputView.getBonusNumber();
+        List<Integer> winningNumbers = inputWinningNumberView.getWinningNumber();
+        Integer bonusNumber = inputBonusNumberView.getBonusNumber();
 
         return new WinningNumber(winningNumbers, bonusNumber);
     }

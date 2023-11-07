@@ -12,7 +12,7 @@ public class BonusValidatorTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 46})
     void overRangeNumberThrowException(int number) {
-        assertThatThrownBy(() -> BonusValidator.range(number))
+        assertThatThrownBy(() -> BonusValidator.check(number))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ONE_TO_FORTY_FIVE.getErrorMessage());
     }

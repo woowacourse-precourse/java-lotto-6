@@ -15,12 +15,12 @@ public class LottoManager {
     private final int bonusNumber;
 
     public LottoManager(List<Integer> lottoNumbers, int bonusNumber) {
-        validateBonusNumber(bonusNumber);
+        validateBonusNumber(bonusNumber, lottoNumbers);
         this.winningLotto = new Lotto(lottoNumbers);
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<Rank,Integer> getLottosRanks(List<Lotto> lottos) {
+    public Map<Rank,Integer> calculateLottosRanks(List<Lotto> lottos) {
         Map<Rank,Integer> ranks = new HashMap<>();
         for (Lotto lotto : lottos) {
             Rank rank = Rank.decideRank(getSameNumberCount(lotto), isContainBonusNumber(lotto, bonusNumber));
@@ -45,9 +45,12 @@ public class LottoManager {
         ranks.put(rank, ranks.get(rank) + INCREASE_RANKS_VALUE);
     }
 
-    private void validateBonusNumber(int bonusNumber) {
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < MIN_NUMBER_RANGE || bonusNumber > MAX_NUMBER_RANGE) {
-            throw new IllegalArgumentException("[ERROR] ");
+            throw new IllegalArgumentException("숫자는 1과 45사이여야 합니다.");
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("로또 숫자와 보너스 숫자는 중복되면 안됩니다");
         }
     }
 }

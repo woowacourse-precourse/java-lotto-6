@@ -50,7 +50,9 @@ public class Game {
     }
 
     private void showLotto(List<Integer> uniqueNumbers) {
-        String result = uniqueNumbers.stream()
+        ArrayList<Integer> copyNumbers = new ArrayList<>(uniqueNumbers);
+        Collections.sort(copyNumbers);
+        String result = copyNumbers.stream()
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));
         System.out.println(result);

@@ -12,32 +12,25 @@ import lotto.View.OutputView;
 public class LottoGame {
 
     public void start() {
-        // price는 로또 구매 가격
         Price price = createPrice();
-
-        // randomLotto는 발행된 랜덤 로또 개수
         RandomLottos randomLottos = new RandomLottos(price);
+        printSettingRandomLottos(randomLottos);
 
-        OutputView.newLine();
-        OutputView.printCounting(randomLottos);
-        OutputView.printNumbers(randomLottos);
-
-        // ------로또 구입 금액 받아서 랜덤로또번호 출력까지
         WinningLotto winningLotto = createWinningLotto();
         Bonus bonus = createBonusNumber(winningLotto);
 
         Result result = new Result();
-        result.calculateWinningResult(randomLottos, winningLotto, bonus);
-
-        // Rate는 총 Rank의 합
         Rate rate = new Rate(result);
+        result.makeWinningResultWith(randomLottos, winningLotto, bonus);
 
-        // 당첨 결과 출력
         OutputView.printWinningResult(result);
-
-        // 수익률 결과 출력
         OutputView.printWinningRate(rate.calculateWinningRate(price));
+    }
 
+    private void printSettingRandomLottos(RandomLottos randomLottos) {
+        OutputView.newLine();
+        OutputView.printCounting(randomLottos);
+        OutputView.printNumbers(randomLottos);
     }
 
     private Price createPrice() {

@@ -26,6 +26,7 @@ public class LottoGameController {
         int bonusNumber = inputBonusNumber(winningNumbers);
         Map<Integer, Integer> matchingCounts = lottoService.calculateMatchingCounts(userLottoNumbers, winningNumbers, bonusNumber);
         lottoService.printStatistics(matchingCounts);
+        lottoService.printReturnRate(matchingCounts, userLottoNumbers.size());
     }
 
     private List<List<Integer>> buyLottoTickets() {

@@ -152,4 +152,20 @@ public class LottoService {
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchingCounts.getOrDefault(6, 0) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + matchingCounts.getOrDefault(7, 0) + "개");
     }
+
+    public void printReturnRate(Map<Integer, Integer> matchingCounts, int lottoTicketsCount) {
+        double returnRate = calculateReturnRate(matchingCounts, lottoTicketsCount);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", returnRate);
+    }
+
+    public double calculateReturnRate(Map<Integer, Integer> matchingCounts, int lottoTicketsCount) {
+        int totalPrize = 0;
+        totalPrize += matchingCounts.getOrDefault(3, 0) * 5000;
+        totalPrize += matchingCounts.getOrDefault(4, 0) * 50000;
+        totalPrize += matchingCounts.getOrDefault(5, 0) * 1500000;
+        totalPrize += matchingCounts.getOrDefault(6, 0) * 30000000;
+        totalPrize += matchingCounts.getOrDefault(7, 0) * 2000000000;
+        double purchaseAmount = lottoTicketsCount * LOTTO_TICKET_PRICE;
+        return totalPrize / purchaseAmount * 100;
+    }
 }

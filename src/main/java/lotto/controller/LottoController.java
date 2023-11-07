@@ -45,7 +45,7 @@ public class LottoController {
     }
 
     public void inputWinNumber() {
-        String winNumber = inputView.inputWinNumber();
+        String winNumber = inputView.inputWinNumber2();
         String[] winNumberList = winNumber.trim().split("\\s*,\\s*");
         for (String numberStr : winNumberList) {
             this.winNumber.add(Integer.parseInt(numberStr));
@@ -54,7 +54,7 @@ public class LottoController {
     }
 
     public void inputBonusNumber() {
-        String bonusNumber = inputView.inputBonusNumber();
+        String bonusNumber = inputView.inputBonusNumber2(this.winNumber);
         this.bonusNumber = Integer.parseInt(bonusNumber);
     }
 
@@ -62,27 +62,16 @@ public class LottoController {
         Map<LottoRanking, Integer> result = new HashMap<>();
         for (LottoRanking rank : LottoRanking.values()) {
             result.put(rank, 0);
-            // result.forEach((LottoRanking, Integer) -> {System.out.println(LottoRanking + ":" + Integer);});
-            // System.out.println("--");
         }
         for (Lotto lotto : lottoList) {
-            // System.out.println("--");
-            // System.out.println(lotto.getNumbers().toString());
             int count = 0;
-            // System.out.println(count);
             for (int number : win) {
-                // System.out.println(number);
-                // System.out.println(lotto.getNumbers().contains(number));
                 if (lotto.getNumbers().contains(number)) {
                     count++;
                 }
             }
-            // System.out.println("최종: " + count);
-            // System.out.println("Bonus: " + containBonusNumber(lotto.getNumbers()));
             LottoRanking rank = LottoRanking.valueOf(count, containBonusNumber(lotto.getNumbers()));
-            // System.out.println("rank:" + rank.getMsg());
             result.put(rank, result.get(rank) + 1);
-            // result.forEach((LottoRanking, Integer) -> {System.out.println(LottoRanking + ":" + Integer);});
         }
         return result;
     }

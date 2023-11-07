@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
 import lotto.constant.LottoConstant;
 import lotto.constant.OutputMessage;
@@ -14,17 +13,13 @@ public class Lottoes {
     private final List<Lotto> elements = new ArrayList<>();
     private final LottoResult result = new LottoResult();
 
-    public Lottoes(int ticketCounts) {
-        createLottoes(ticketCounts);
+    public Lottoes(NumberGenerator numberGenerator, int ticketCounts) {
+        createLottoes(numberGenerator, ticketCounts);
     }
 
-    private void createLottoes(int ticketCounts) {
+    private void createLottoes(NumberGenerator numberGenerator, int ticketCounts) {
         for (int i = 0; i < ticketCounts; i++) {
-            int start = LottoConstant.START_NUMBER.getValue();
-            int end = LottoConstant.END_NUMBER.getValue();
-            int count = LottoConstant.COUNT.getValue();
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(start, end, count);
-            elements.add(new Lotto(numbers));
+            elements.add(new Lotto(numberGenerator.create()));
         }
     }
 

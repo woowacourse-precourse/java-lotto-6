@@ -36,7 +36,7 @@ class LottoResultCalculationTest {
     @DisplayName("보너스 숫자에 대한 정상 테스트")
     @Test
     void checkBounsNumberTest() {
-        assertThat(lottoResultCalculation.checkBounsNumber
+        assertThat(lottoResultCalculation.checkBonusNumber
                 (List.of(20, 30, 24, 1, 3, 4), 3))
                 .isTrue();
     }

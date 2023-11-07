@@ -44,7 +44,7 @@ public class ResultController {
     public ResultType getTotalResult(List<Integer> target, List<Integer> tryLotto, int bonus) {
         int sameNumber = getLottoResult(target, tryLotto);
         boolean isBonus = getBonusResult(target, bonus);
-        ResultType resultType = getLottoResult(sameNumber, isBonus);
+        ResultType resultType = getRankResult(sameNumber, isBonus);
         return resultType;
     }
 }

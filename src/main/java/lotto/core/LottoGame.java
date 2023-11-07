@@ -27,28 +27,17 @@ public class LottoGame {
     }
 
     public Lotto makeLotto(RandomNumGenerator generator) {
-        List<Integer> lotto = new ArrayList<>();
-        for (int i = 0; i < LottoConst.LOTTO_SIZE; i++) {
-            lotto.add(drawNumber(generator, lotto));
-        }
+        List<Integer> lotto = new ArrayList<>(generator.generate(LottoConst.LOTTO_SIZE));
         Collections.sort(lotto);
         return new Lotto(lotto);
-    }
-
-    public static int drawNumber(RandomNumGenerator generator, List<Integer> lotto) {
-        int num;
-        do {
-            num = generator.generate();
-        } while (lotto.contains(num));
-        return num;
     }
 
     public List<Rank> findWinningResults() {
         List<Rank> results = new ArrayList<>();
         List<Integer> matchingCounts = lottos.compareAll(winningLotto);
-        for (int i = 0; i < matchingCounts.size(); i++) {
-            Rank result = makeResult(matchingCounts.get(i));
-            result = decideSecondOrThirdPlace(i, result);
+        for (int order = 0; order < matchingCounts.size(); order++) {
+            Rank result = makeRank(matchingCounts.get(order));
+            result = decideSecondOrThirdPlace(order, result);
             leaveOnlyWinners(results, result);
         }
         return results;
@@ -60,12 +49,8 @@ public class LottoGame {
         }
     }
 
-    private static Rank makeResult(int matchingCount) {
+    private static Rank makeRank(int matchingCount) {
         return Rank.getRank(matchingCount);
-    }
-
-    private void makeWinningResults(List<Rank> results, List<Integer> matchingCounts, int i) {
-
     }
 
     private Rank decideSecondOrThirdPlace(int i, Rank result) {

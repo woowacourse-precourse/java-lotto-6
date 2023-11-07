@@ -31,4 +31,8 @@ public class ErrorMessage {
     public static void muchComma() {
         System.out.println(error + " 반점은 숫자마다 하나씩 넣어주세요.");
     }
+
+    public static void notThousandPrice() {
+        System.out.println(error + " 로또는 한 장에 천 원입니다. 천 원 단위로 입력해주세요.");
+    }
 }

@@ -10,7 +10,7 @@ import static lotto.controller.input.InputConverter.convertDigit;
 import static lotto.controller.input.InputConverter.convertWinningNum;
 import static lotto.controller.input.InputHandler.*;
 import static lotto.exception.BonusException.bonusException;
-import static lotto.exception.PriceException.checkPriceException;
+import static lotto.exception.PriceException.priceException;
 import static lotto.exception.WinningException.winningException;
 import static lotto.view.Message.*;
 
@@ -20,7 +20,7 @@ public class createObject {
             messageAboutPrice();
             String tmpPrice = inputPrice();
             try {
-                return checkPriceException(convertDigit(tmpPrice));
+                return priceException(convertDigit(tmpPrice));
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();
             }

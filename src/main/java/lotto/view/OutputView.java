@@ -4,18 +4,14 @@ import static lotto.message.ViewMessage.OUTPUT_MATCH_COUNT;
 import static lotto.message.ViewMessage.OUTPUT_PROFIT_RATE;
 import static lotto.message.ViewMessage.OUTPUT_PURCHASE_COUNT;
 import static lotto.message.ViewMessage.OUTPUT_RESULT_HEADER;
+import static lotto.message.ViewMessage.PROFIT_FORMAT;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import lotto.domain.Lottos;
 import lotto.domain.Rank;
 import lotto.domain.ResultSheet;
 import lotto.message.ExceptionMessage;
-import lotto.message.ViewMessage;
 
 public class OutputView {
-    private static final NumberFormat format = new DecimalFormat(ViewMessage.PROFIT_PATTERN);
-
     public static void printLottos(Lottos purchasedLotto) {
         System.out.printf(OUTPUT_PURCHASE_COUNT, purchasedLotto.getCount());
         System.out.println(purchasedLotto.getLottosNumber());
@@ -44,6 +40,7 @@ public class OutputView {
     }
 
     private static void printProfitRate(ResultSheet sheet) {
-        System.out.printf(OUTPUT_PROFIT_RATE, format.format(sheet.getTotalProfit()));
+        double totalProfit = sheet.getTotalProfit();
+        System.out.printf(OUTPUT_PROFIT_RATE, PROFIT_FORMAT.format(totalProfit));
     }
 }

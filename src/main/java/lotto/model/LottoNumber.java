@@ -16,4 +16,3 @@ public record LottoNumber(List<Integer> numbers) {
         return (matchingCount == 5 && hasBonusNumber(bonusNumber)) ? 6 : matchingCount;
     }
 }
-

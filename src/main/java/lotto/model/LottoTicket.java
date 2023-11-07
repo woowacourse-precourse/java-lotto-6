@@ -19,5 +19,3 @@ public class LottoTicket {
         return tickets;
     }
 }
-
-

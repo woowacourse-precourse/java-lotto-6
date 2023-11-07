@@ -2,6 +2,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -9,6 +10,7 @@ public class Application {
         // TODO: 프로그램 구현
         int lotto_num = input();
         Lotto_Wallet Wallet = new Lotto_Wallet(); // 로또 지갑 객체 생성
+        makeManyLottos(Wallet, lotto_num);
     }
     private static int input(){                // input 통합 부분, 재귀함수 처리
         String input = input_money();
@@ -43,13 +45,15 @@ public class Application {
     }
 
     private static void makeManyLottos(Lotto_Wallet Wallet, int n){
+        System.out.print("\n"+n+"개를 구매했습니다.\n");
         for (int i=0 ; i < n; i++) {
-            Lotto temp = makeOneLotto();
-            Wallet.setLottos(temp);
+            Wallet.setLottos(makeOneLotto());
         }
     }
     private static Lotto makeOneLotto(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        String numbersString = Arrays.toString(numbers.toArray());
+        System.out.print(numbersString+"\n");
         return new Lotto(numbers);
     }
 

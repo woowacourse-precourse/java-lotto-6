@@ -12,7 +12,7 @@ public class InputController {
         try {
             return new Cost(InputTool.readLineByInputTool());
         } catch (IllegalArgumentException e) {
-            OutputView.outputFormatting(e.toString());
+            OutputView.outputFormatting(e.getMessage().toString());
             return inputPurchaseCost();
         }
     }
@@ -21,7 +21,7 @@ public class InputController {
         try {
             return new Winning(InputTool.readLineByInputTool());
         } catch (IllegalArgumentException e) {
-            OutputView.outputFormatting(e.toString());
+            OutputView.outputFormatting(e.getMessage().toString());
             return inputWinningNumbers();
         }
     }
@@ -30,7 +30,7 @@ public class InputController {
         try {
             return new Bonus(InputTool.readLineByInputTool());
         } catch (IllegalArgumentException e) {
-            OutputView.outputFormatting(e.toString());
+            OutputView.outputFormatting(e.getMessage().toString());
             return inputBonusNumber();
         }
     }

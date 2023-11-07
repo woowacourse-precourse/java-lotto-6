@@ -45,11 +45,11 @@ public class Game {
         PRIZE = prizeNumberInput(); //당첨 번호 입력
         changePrizeNumber(PRIZE);   //당첨 번호 변환
 
-        checkPrize(lottos, prizes); //당첨 개수 확인
-
         inputView.bonusNumberView();
         PAST_BONUS_NUMBER = bonusNumberInput(); //보너스 번호 입력
         BONUS_NUMBER = changeBonusNumber(PAST_BONUS_NUMBER);    //보너스 번호 변환
+
+        checkPrize(lottos, prizes); //당첨 개수 확인
 
         outputView.winningStatistics(checkCount); //당첨 통계 출력
         //수익률 구현해야 함
@@ -139,7 +139,7 @@ public class Game {
 
     public Boolean isBonus(Lotto lotto){
         List<Integer> numbers = lotto.getNumbers();
-        int count = 0;
+
         for (int number : numbers) {
             if(BONUS_NUMBER == number){
                 return true;

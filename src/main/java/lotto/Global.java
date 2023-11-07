@@ -57,4 +57,19 @@ public class Global {
             rankStatistics.put(rank, 0);
         }
     }
+
+    public void printRanking() {
+        System.out.println("\n당첨 통계\n---");
+        printEachRanking(Rank.FIFTH);
+        printEachRanking(Rank.FOURTH);
+        printEachRanking(Rank.THIRD);
+        printEachRanking(Rank.SECOND);
+        printEachRanking(Rank.FIRST);
+    }
+
+    private void printEachRanking(Rank rank) {
+        String rankLabel = rank.getLabel();
+        int rankCount = rankStatistics.get(rank);
+        System.out.println(rankLabel + " - " + rankCount + "개");
+    }
 }

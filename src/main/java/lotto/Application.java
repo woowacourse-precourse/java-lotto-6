@@ -40,6 +40,7 @@ public class Application {
 
     private static void getLottoRanking(Global global, List<Integer> winningLotto) {
         global.calculateRanking(winningLotto);
+        global.printRanking();
     }
 
     private static List<Integer> convertStringToIntegerList(String input) {

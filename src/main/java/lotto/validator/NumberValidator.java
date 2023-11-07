@@ -9,14 +9,14 @@ import java.util.stream.Collectors;
 public class NumberValidator {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    public void validateLength(List<Integer> numbers) {
+    public static void validateLength(List<Integer> numbers) {
         if (numbers.size() != 6) {
             System.out.println(ERROR_MESSAGE);
             throw new IllegalArgumentException();
         }
     }
 
-    public void validateLottoDuplication(List<Integer> numbers) {
+    public static void validateLottoDuplication(List<Integer> numbers) {
         List<Integer> collect = numbers.stream().distinct()
                 .collect(Collectors.toList());
 
@@ -26,7 +26,7 @@ public class NumberValidator {
         }
     }
 
-    public void validateLottoNumberRange(List<Integer> numbers) {
+    public static void validateLottoNumberRange(List<Integer> numbers) {
         Optional<Integer> max = numbers.stream().max(Integer::compareTo);
         Optional<Integer> min = numbers.stream().min(Integer::compareTo);
 

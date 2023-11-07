@@ -10,6 +10,14 @@ public class LottoGame {
 
         String money = InputView.read();
         validateNumber(money);
+        validateMultiple(money);
+        int payment = Integer.parseInt(money);
+
+        OutputView.print(Message.LINE_BREAK);
+        int numberOfLotto = payment / 1000;
+        OutputView.print(String.valueOf(numberOfLotto));
+        OutputView.print(Message.PAYMENT_COMPLETE);
+
 
     }
 

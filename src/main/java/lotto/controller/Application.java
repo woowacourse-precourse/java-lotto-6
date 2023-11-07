@@ -21,8 +21,7 @@ public class Application {
 
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            Lotto lotto = null;
-            getLottoList(lottoList, lotto);
+            lottoList.add(getLottoList());
         }
         List<Integer> selectLottoNumber = getSelectLottoNumbers();
         int bonus = getbonus(selectLottoNumber);
@@ -42,23 +41,25 @@ public class Application {
         }
     }
 
-    private static void getLottoList(List<Lotto> lottoList, Lotto lotto) {
+    private static Lotto getLottoList() {
         while (true) {
             try {
-                lotto = makeLotto();
-                break;
+                return makeLotto();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        lottoList.add(lotto);
     }
 
     public static Lotto makeLotto() throws IllegalArgumentException {
-        List<Integer> numbers = new LottoNumbers().LottoNumbers();
+        List<Integer> numbers = getLottoRandom();
         PrintLottoNumbers(numbers);
         return new Lotto(numbers);
+    }
+
+    private static List<Integer> getLottoRandom() {
+        List<Integer> numbers = new LottoNumbers().LottoNumbers();
+        return numbers;
     }
 
     private static List<Integer> getSelectLottoNumbers() {

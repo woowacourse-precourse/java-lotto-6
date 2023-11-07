@@ -30,4 +30,12 @@ public class LottoResult {
             throw new IllegalArgumentException();
         }
     }
+
+    public List<Integer> getWinningNumber() {
+        return winningLotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber.getBonusNumber();
+    }
 }

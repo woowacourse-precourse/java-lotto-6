@@ -1,18 +1,20 @@
 package dto;
 
 import java.text.MessageFormat;
+import lotto.LottoConfig;
 
-public record LottoMoney(int money) {
-    public static final int TICKET_PRICE = 1000;
+public class LottoMoney {
+    private final int money;
 
-    public LottoMoney {
-        if (money % TICKET_PRICE != 0) {
-            String format = MessageFormat.format("[ERROR] {0}원 단위로 입력해주세요.", TICKET_PRICE);
+    public LottoMoney(int money) {
+        if (money % LottoConfig.PRICE != 0) {
+            String format = MessageFormat.format("[ERROR] {0}원 단위로 입력해주세요.", LottoConfig.PRICE);
             throw new IllegalArgumentException(format);
         }
+        this.money = money;
     }
 
     public int getAmount() {
-        return money / TICKET_PRICE;
+        return money / LottoConfig.PRICE;
     }
 }

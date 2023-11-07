@@ -1,15 +1,15 @@
 package lotto;
 
+import static lotto.LottoConfig.COUNT;
+import static lotto.LottoConfig.END_NUM;
+import static lotto.LottoConfig.START_NUM;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import dto.LottoMoney;
 import java.util.LinkedList;
 import java.util.List;
 
 public class LottoTickets {
-    public static final int START_NUM = 1;
-    public static final int END_NUM = 45;
-    public static final int COUNT = 6;
-
     private List<Lotto> tickets;
 
     public LottoTickets(LottoMoney money) {

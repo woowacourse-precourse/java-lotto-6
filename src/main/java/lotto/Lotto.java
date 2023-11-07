@@ -2,6 +2,7 @@ package lotto;
 
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -25,6 +26,10 @@ public class Lotto {
         return (int) numbers.stream()
                 .filter(lotto::isContains)
                 .count();
+    }
+
+    public int matchBonus(int bonus) {
+        return (int) Stream.of(numbers.contains(bonus)).count();
     }
 
     public boolean isContains(int lottoNumber) {

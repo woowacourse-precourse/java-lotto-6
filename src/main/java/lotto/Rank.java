@@ -20,16 +20,19 @@ public enum Rank {
         this.number = number;
         this.prizeAmount = prizeAmount;
         this.numberOfMatching = numberOfMatching;
+        this.isBonusNumberMatching = isBonusNumberMatching;
+        this.description = formatDescription();
+    }
+
+    private String formatDescription() {
+        String commaSeparatedPrizeAmount = new DecimalFormat("#,###").format(prizeAmount);
 
         String bonusMatchingDescription = "";
-        this.isBonusNumberMatching = isBonusNumberMatching;
         if (isBonusNumberMatching) {
             bonusMatchingDescription = ", 보너스 볼 일치";
         }
 
-        String commaSeparatedPrizeAmount = new DecimalFormat("#,###").format(prizeAmount);
-
-        this.description = String.format("%d개 일치%s (%s원)", numberOfMatching, bonusMatchingDescription, commaSeparatedPrizeAmount);
+        return String.format("%d개 일치%s (%s원)", numberOfMatching, bonusMatchingDescription, commaSeparatedPrizeAmount);
     }
 
     public static Rank of(int number) {

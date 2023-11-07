@@ -18,7 +18,7 @@ public enum LottoGameException {
     OVER_PURCHASE_LIMIT(String.format("인당 구매할 수 있는 최대 금액은 %d원 입니다.",
             GameConst.LOTTO_PURCHASE_LIMIT));
 
-    private String exceptionMessage;
+    private final String exceptionMessage;
 
     LottoGameException(String message) {
         this.exceptionMessage = message;

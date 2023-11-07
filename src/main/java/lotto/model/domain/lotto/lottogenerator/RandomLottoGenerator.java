@@ -7,7 +7,7 @@ import lotto.model.domain.lotto.Lotto;
 
 public class RandomLottoGenerator extends LottoGenerator<Lotto> {
 
-    public List<Integer> generateList() {
+    private List<Integer> generateList() {
         return Randoms.pickUniqueNumbersInRange(GameConst.LOTTO_RANGE_START
                 , GameConst.LOTTO_RANGE_END
                 , GameConst.LOTTO_SIZE);

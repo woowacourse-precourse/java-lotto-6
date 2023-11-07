@@ -7,9 +7,7 @@ import lotto.exception.LottoGameException;
 import lotto.model.domain.result.LottoCompareResult;
 
 public class Lotto {
-    private static final int LOTTO_SIZE = GameConst.LOTTO_SIZE;
 
-    //수정 금지
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,7 +24,7 @@ public class Lotto {
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
+        if (numbers.size() != GameConst.LOTTO_SIZE) {
             throw LottoGameException.WRONG_LOTTO_SIZE.makeException();
         }
     }
@@ -35,7 +33,7 @@ public class Lotto {
         int distinctNum = (int) numbers.stream()
                 .distinct()
                 .count();
-        if (distinctNum != LOTTO_SIZE) {
+        if (distinctNum != GameConst.LOTTO_SIZE) {
             throw LottoGameException.DUPLICATED_LOTTO_NUMBER.makeException();
         }
     }

@@ -31,7 +31,6 @@ class LottoControllerTest {
         LottoStore store = new LottoStore(
                 new FixedValueLottoGenerator(fixedLottoValue));
 
-
         LottoController controller = new LottoController(handler, store);
 
         @ParameterizedTest
@@ -39,7 +38,6 @@ class LottoControllerTest {
         @DisplayName("고정된 값 로또 생성 통합 테스트")
         public void 고정된_값_로또_생성_통합_테스트(String[] inputs, List<String> expectedOutputs, String[] extraOutput) {
             //given
-
             //when
             run(inputs);
             expectedOutputs.addAll(purchasedLottoPrint(List.of(fixedLottoValue)));
@@ -49,7 +47,6 @@ class LottoControllerTest {
             String output = output();
             expectedOutputs.forEach(expectedPrint ->
                     Assertions.assertThat(output).contains(expectedPrint));
-
         }
 
         static Stream<Arguments> resultArgs() {
@@ -79,7 +76,6 @@ class LottoControllerTest {
                     )
             );
         }
-
 
         @Override
         protected void runMain() {

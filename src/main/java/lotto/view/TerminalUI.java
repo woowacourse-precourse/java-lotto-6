@@ -15,9 +15,8 @@ import lotto.view.io.Reader;
 import lotto.view.io.Writer;
 
 public class TerminalUI {
-    private static Pattern answerNumbersPattern =
+    private static final Pattern answerNumbersPattern =
             Pattern.compile(GameConst.FORMAT_INPUT_ANSWERS);
-
     private static final DecimalFormat moneyFormat =
             new DecimalFormat(PrintConst.DECIMAL_FORMAT_MONEY);
 

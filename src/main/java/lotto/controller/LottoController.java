@@ -60,12 +60,12 @@ public class LottoController {
                 .map(answer::compareLotto)
                 .map(resultFactory::getLottoResult)
                 .forEach(lottoResults::addResult);
-        ui.printResult(lottoResults.getResults());
+        ui.printResult(lottoResults.getResultAndCounts());
         return lottoResults;
     }
 
     private void computeRevenue(Money money, LottoResults lottoResults) {
-        long prize = lottoResults.getResults()
+        long prize = lottoResults.getResultAndCounts()
                 .stream()
                 .mapToLong(LottoResultAndCount::calculateTotalPrize)
                 .sum();

@@ -7,7 +7,7 @@ import lotto.exception.LottoGameException;
 import lotto.model.domain.lotto.Lotto;
 
 public class SequenceListLottoGenerator extends LottoGenerator<Lotto> {
-    List<List<Integer>> numbersSequence;
+    private final List<List<Integer>> numbersSequence;
 
     public SequenceListLottoGenerator(List<List<Integer>> numbersSequence) {
         numbersSequence.forEach(this::validateNumbers);

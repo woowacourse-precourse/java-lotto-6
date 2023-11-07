@@ -23,7 +23,7 @@ public class LottoResults {
         map.put(result, map.get(result) + 1);
     }
 
-    public List<LottoResultAndCount> getResults() {
+    public List<LottoResultAndCount> getResultAndCounts() {
         return Collections.unmodifiableList(
                 map.entrySet()
                         .stream()

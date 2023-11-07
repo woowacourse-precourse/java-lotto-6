@@ -21,13 +21,23 @@ public class WinnerInput {
             for (String s : temp) {
                 winnerCode.add(parseInt(s));
             }
+            if (winnerCode.size()!=6){
+                throw new IllegalArgumentException();
+            }
             checkRange(winnerCode);
-        } catch (NumberFormatException e) {
+        }catch (NumberFormatException e) {
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
             getWinner();
         }
+
+        catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            System.out.println(ERROR_MESSAGE.WRONG_COUNTS);
+            getWinner();
+        }
         return winnerCode;
+
     }
 
     private static List<Integer> checkRange(List<Integer> winnerCode) {

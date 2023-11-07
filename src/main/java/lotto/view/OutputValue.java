@@ -6,7 +6,7 @@ public class OutputValue {
 
     private static final String PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
-    private static final String WIN_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String WINNING_LOTTO_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String WIN_STATISTICS_MESSAGE = "당첨 통계";
     private static final String LINE_BREAK = "---";
@@ -33,8 +33,8 @@ public class OutputValue {
         System.out.println();
     }
 
-    public static void winLottoNumberMessage() {
-        System.out.println(WIN_LOTTO_NUMBER_MESSAGE);
+    public static void winningLottoNumbersMessage() {
+        System.out.println(WINNING_LOTTO_NUMBERS_MESSAGE);
     }
 
     public static void bonusNumberMessage() {

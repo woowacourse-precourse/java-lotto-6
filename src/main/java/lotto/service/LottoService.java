@@ -26,8 +26,8 @@ public class LottoService {
     private static final int FIFTH_PLACE_PRIZE = 5000;
 
     private PurchaseLottos purchaseLottos;
+    private Lotto winningLottoNumbers;
     private Winner winners;
-    private Lotto winLotto;
     private int bonusNumber;
     private float totalPrize = 0;
 
@@ -50,22 +50,22 @@ public class LottoService {
         return purchaseLottos.getPurchaseLottos();
     }
 
-    public void setWinLotto(List<Integer> winLottoNumbers) {
-        winLotto = new Lotto(winLottoNumbers);
+    public void setWinningLottoNumbers(List<Integer> winningLottoNumbers) {
+        this.winningLottoNumbers = new Lotto(winningLottoNumbers);
     }
 
-    public void setBonusNumber(int bonusNumber) {
+//    public void setBonusNumber(int bonusNumber) {
+//
+//        bonusNumberDuplicateCheck(bonusNumber);
+//
+//        this.bonusNumber = bonusNumber;
+//    }
 
-        bonusNumberDuplicateCheck(bonusNumber);
-
-        this.bonusNumber = bonusNumber;
-    }
-
-    private void bonusNumberDuplicateCheck(int bonusNumber) {
-        if (winLotto.getLotto().contains(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
-        }
-    }
+//    private void bonusNumberDuplicateCheck(int bonusNumber) {
+//        if (winLotto.getLotto().contains(bonusNumber)) {
+//            throw new IllegalArgumentException(ErrorCode.DUPLICATE_NUMBER.getMessage());
+//        }
+//    }
 
 //    public void winStatistics() {
 //

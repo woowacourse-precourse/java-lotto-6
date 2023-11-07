@@ -84,6 +84,12 @@ public class LottoPrizeCalculator {
         return prizeDescriptionMap.get(prize);
     }
 
+    public int getTotalPrizeMoney() {
+        return prizeCountMap.entrySet().stream()
+                .mapToInt(entry -> entry.getKey() * entry.getValue())
+                .sum();
+    }
+
 
 
 }

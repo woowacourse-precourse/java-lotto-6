@@ -15,4 +15,6 @@ public class InputService {
         return Integer.parseInt(Console.readLine());
     }
 
+
+
 }

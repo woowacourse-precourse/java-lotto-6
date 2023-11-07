@@ -2,14 +2,11 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoBundle;
+import lotto.model.WinningNumber;
 import lotto.model.Purchase;
-import lotto.util.MakeRandomNumbers;
 import lotto.util.MakeStrToListInt;
 import lotto.view.InputView;
 import lotto.view.OutputView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class LottoController {
     private Integer lottoTicketNumber;
@@ -21,7 +18,9 @@ public class LottoController {
     public void lottoProgram(){
         buyLotto();
         LottoBundle lottoBundle = handleLottoBundle();
-        Lotto winningLotto = setWinningNumbers();
+        WinningNumber winningLotto = setWinningNumbers();
+        setBonusNumber(winningLotto);
+        System.out.println(winningLotto.getBonusNumber());
     }
 
     private void buyLotto(){
@@ -47,13 +46,25 @@ public class LottoController {
         return lottoBundle;
     }
 
-    private Lotto setWinningNumbers(){
+    private WinningNumber setWinningNumbers(){
         while(true){
             try{
-                String numbers = InputView.inputString(ViewMessage.InputWinningNumbers.getMessage());
-                return new Lotto(MakeStrToListInt.getStrToListInt(numbers));
+                String numbers = InputView.inputString("\n" + ViewMessage.InputWinningNumbers.getMessage());
+                return new WinningNumber(MakeStrToListInt.getStrToListInt(numbers));
             } catch(IllegalArgumentException error){
                 OutputView.errorView(ViewMessage.ErrorInvaildWinningNumbers.getMessage());
+            }
+        }
+    }
+
+    private void setBonusNumber(WinningNumber winningLotto){
+        while(true){
+            try{
+                String number = InputView.inputString("\n" + ViewMessage.InputBonusNumber.getMessage());
+                winningLotto.setBonusNumber(number);
+                break;
+            } catch(IllegalArgumentException error){
+                OutputView.errorView(ViewMessage.ErrorInvaildBonusNumber.getMessage());
             }
         }
     }

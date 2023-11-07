@@ -1,21 +1,22 @@
 package lotto.model;
 
+import lotto.util.CheckParameter;
+
 public class Purchase {
     private final Integer money;
 
     public Purchase(String inputPrice){
-        this.money = validate(inputPrice);
+        validate(inputPrice);
+        this.money = Integer.parseInt(inputPrice);
     }
 
-    private Integer validate(String inputPrice) {
-        try{
-            int validatePrice = Integer.parseInt(inputPrice);
+    private void validate(String inputPrice) {
+        if(!CheckParameter.checkIsNumber(inputPrice)){
+            throw new IllegalArgumentException();
+        }
 
-            if((validatePrice % 1000 != 0) || (validatePrice <= 0)){
-                throw new IllegalArgumentException();
-            }
-            return validatePrice;
-        } catch (NumberFormatException e){
+        int validatePrice = Integer.parseInt(inputPrice);
+        if((validatePrice % 1000 != 0) || (validatePrice <= 0)){
             throw new IllegalArgumentException();
         }
     }

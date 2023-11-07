@@ -12,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateLottoNumber(numbers);
         this.numbers = numbers;
     }
 
@@ -22,4 +23,11 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void validateLottoNumber(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
 }

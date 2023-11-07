@@ -22,7 +22,7 @@ public class Lotto {
     }
 
     private void validateDuplication(List<Integer> numbers) {
-        List<Integer> distictNumbers = numbers.stream().distinct().collect(Collectors.toList());
-        if(distictNumbers.size() != numbers.size()) throw new IllegalArgumentException();
+        List<Integer> districtNumbers = numbers.stream().distinct().collect(Collectors.toList());
+        if(districtNumbers.size() != numbers.size()) throw new IllegalArgumentException();
     }
 }

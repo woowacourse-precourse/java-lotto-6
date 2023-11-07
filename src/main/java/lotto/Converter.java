@@ -18,4 +18,12 @@ public class Converter {
             throw new IllegalArgumentException();
         }
     }
+
+    public static int stringToInteger(String input){
+        try{
+            return Integer.parseInt(input);
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
+    }
 }

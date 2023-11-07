@@ -51,12 +51,16 @@ public class GameController {
         while (restart) {
             try {
                 String luckeyNumber = inputView.enterLottoNumber();
-                System.out.println(luckeyNumber);
+                luckeyNumber = deleteWhiteSpace(luckeyNumber);
                 restart = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private String deleteWhiteSpace(String luckeyNumber) {
+        return luckeyNumber.replaceAll(" ", "");
     }
 
 }

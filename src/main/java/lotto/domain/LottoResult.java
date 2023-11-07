@@ -10,7 +10,7 @@ public class LottoResult {
         this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
 
-        valiate();
+        validate();
     }
 
     private LottoResult(List<Integer> winningNumber, String bonusNumber) {
@@ -21,7 +21,7 @@ public class LottoResult {
         return new LottoResult(winningNumber, bonusNumber);
     }
 
-    private void valiate() {
+    private void validate() {
         validateDuplicateBonusNumber();
     }
 

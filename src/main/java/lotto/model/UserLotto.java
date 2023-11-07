@@ -5,11 +5,16 @@ import java.util.List;
 import lotto.util.generator.NumberGenerator;
 
 public class UserLotto {
-    private List<Lotto> lottos = new ArrayList<>();
+    private List<Lotto> lottos;
 
     public UserLotto(int amount, NumberGenerator numberGenerator) {
+        lottos = new ArrayList<>();
         while (lottos.size() < amount) {
             lottos.add(new Lotto(numberGenerator));
         }
+    }
+
+    public List<Lotto> getLottos() {
+        return List.copyOf(lottos);
     }
 }

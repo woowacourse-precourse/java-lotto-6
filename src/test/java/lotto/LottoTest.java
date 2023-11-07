@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.util.generator.NumberGenerator;
+import lotto.util.generator.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -22,6 +25,14 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 임의의_6자리_숫자로_이루어진_로또를_발행한다() {
+        NumberGenerator numberGenerator = new RandomNumberGenerator();
+        Lotto lotto = new Lotto(numberGenerator);
+        System.out.println(lotto.getNumbers());
+        assertEquals(lotto.getNumbers().size(), 6);
     }
 
     @Test

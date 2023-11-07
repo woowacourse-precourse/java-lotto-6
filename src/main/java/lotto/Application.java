@@ -9,9 +9,29 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
     public static void main(String[] args) {
+
         int inputTry = readInputPrice();
         List<Lotto> lottoList = makeLottoNumber(inputTry);
         Lotto correctNumber = readInputCorrectNumber();
+        int bonusNumber = readBonusNumber(correctNumber);
+
+    }
+    private static int readBonusNumber(Lotto correctNumberList) {
+        int bonusNumber;
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String inputBonusNumber = readLine();
+                bonusNumber = Integer.parseInt(inputBonusNumber);
+                validateOverLap(correctNumberList.contains(bonusNumber), "보너스와 당첨번호가 중복됩니다.");
+                validateOverNumber45(bonusNumber);
+                System.out.println("보너스번호를 추가합니다.");
+                System.out.println(bonusNumber);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private static void validateOverLap(boolean contains, String s) {

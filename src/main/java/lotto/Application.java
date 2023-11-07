@@ -38,10 +38,35 @@ public class Application {
             winningNumbers = winningNumbersValidate(Console.readLine());
         } while (winningNumbers == null);
         System.out.println();
+
+        int bonusNumber = 0;
+        do {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            bonusNumber = bonusNumberValidate(Console.readLine(), winningNumbers);
+        } while (bonusNumber == 0);
+        System.out.println();
+
     }
 
+    private static int bonusNumberValidate(String input, Lotto lotto) {
+        int bonusNumber = 0;
+        try {
+            bonusNumber = isOnlyNumber(input);
+            checkRange(bonusNumber);
+            lotto.contains(bonusNumber);
+        } catch (IllegalArgumentException e) {
+            bonusNumber = 0;
+            System.out.println(e.getMessage());
+        }
+        return bonusNumber;
+    }
 
-    public static int checkMoneyValidate(String input) {
+    private static void checkRange(int number) {
+        if (number < 1 || number > 45)
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
+
+    private static int checkMoneyValidate(String input) {
         int money = 0;
         try {
             money = isOnlyNumber(input);
@@ -56,9 +81,9 @@ public class Application {
     private static int isOnlyNumber(String input) {
         int number = 0;
         try {
-            number = Integer.parseInt(input);
+            number = Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 숫자로 입력해 주세요. ");
         }
         return number;
     }
@@ -69,7 +94,7 @@ public class Application {
         }
     }
 
-    public static Lotto winningNumbersValidate(String input) {
+    private static Lotto winningNumbersValidate(String input) {
         Lotto lotto = null;
         try {
             lotto = new Lotto(checkInteger(input));

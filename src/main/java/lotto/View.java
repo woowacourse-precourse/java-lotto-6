@@ -5,10 +5,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class View {
-    private static final String LOTTO_PURCHASE_AMOUNT_INPUTMESSAGE = "구입금액을 입력해 주세요.";
-    private static final String LOTTO_WINNING_NUMBER_INPUTMESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String LOTTO_BONUS_NUMBER_INPUTMESSAGE = "보너스 번호를 입력해 주세요.";
-
     private List<Integer> userWinningRanks;
     private float profitSummary;
     private int lottoPurchaseNum;
@@ -23,6 +19,20 @@ public class View {
                 6개 일치 (2,000,000,000원) - %d개     
             """, userWinningRanks.get(0), userWinningRanks.get(1), userWinningRanks.get(2), userWinningRanks.get(3), userWinningRanks.get(4));
     private final String PROFIT_SUMMARY_OUTPUTMESSAGE = String.format("총 수익률은 %.1f%입니다.", profitSummary);
+
+    public enum InputMassage{
+        LOTTO_PURCHASE_AMOUNT_INPUTMESSAGE("구입금액을 입력해 주세요."),
+        LOTTO_WINNING_NUMBER_INPUTMESSAGE("당첨 번호를 입력해 주세요."),
+        LOTTO_BONUS_NUMBER_INPUTMESSAGE("보너스 번호를 입력해 주세요.");
+
+        final private String message;
+        public String getMessage() {
+            return message;
+        }
+        private InputMassage(String message){
+            this.message = message;
+        }
+    }
 
     public void checklottoPurchaseAmount(String lottoPurchaseAmount){
         try{ //int값인지 확인, int 범위 내 인지 확인
@@ -39,7 +49,7 @@ public class View {
     }
 
     public void lottoPurchaseAmountInput(){
-        System.out.println(LOTTO_PURCHASE_AMOUNT_INPUTMESSAGE);
+        System.out.println(InputMassage.LOTTO_PURCHASE_AMOUNT_INPUTMESSAGE);
         String lottoPurchaseAmount = readLine();
         checklottoPurchaseAmount(lottoPurchaseAmount);
         lottoPurchaseNum = Integer.parseInt(lottoPurchaseAmount);
@@ -62,7 +72,7 @@ public class View {
     }
 
     public List<Integer> winningNumberInput(){
-        System.out.println(LOTTO_WINNING_NUMBER_INPUTMESSAGE);
+        System.out.println(InputMassage.LOTTO_WINNING_NUMBER_INPUTMESSAGE);
         String winningNumber = readLine();
         checkWinningNumber(winningNumber);
         List<Integer> winNumberInt = new ArrayList<Integer>();
@@ -84,7 +94,7 @@ public class View {
     }
     
     public int bonusNumberInput(){
-        System.out.println(LOTTO_BONUS_NUMBER_INPUTMESSAGE);
+        System.out.println(InputMassage.LOTTO_BONUS_NUMBER_INPUTMESSAGE);
         String bounsNumber = readLine();
         checkbounsNumber(bounsNumber);
         return Integer.parseInt(bounsNumber);

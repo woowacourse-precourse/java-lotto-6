@@ -61,5 +61,32 @@ class LottosTest {
         }
     }
 
+    @Nested
+    @DisplayName("Lottos 동등성 테스트")
+    class LottosEqualityTest {
+        @Test
+        @DisplayName("동일한 Lottos 인스턴스 비교 - equals & hashCode")
+        void testEqualsAndHashCode() {
+            // 준비
+            List<Lotto> lottoList1 = Arrays.asList(
+                    new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                    new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
+            );
+            Lottos lottos1 = Lottos.from(lottoList1);
+
+            List<Lotto> lottoList2 = Arrays.asList(
+                    new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),
+                    new Lotto(Arrays.asList(7, 8, 9, 10, 11, 12))
+            );
+            Lottos lottos2 = Lottos.from(lottoList2);
+
+            // 실행
+            boolean equalsResult = lottos1.equals(lottos2);
+            boolean hashCodeResult = lottos1.hashCode() == lottos2.hashCode();
+
+            // 검증
+            Assertions.assertThat(equalsResult).isTrue();
+            Assertions.assertThat(hashCodeResult).isTrue();
+        }
     }
 }

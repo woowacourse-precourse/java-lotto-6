@@ -52,9 +52,6 @@ public class WinningNumbers extends Lotto {
         }
     }
 
-    /**
-     * WinningNumbers 객체 생성 후 setBonusNumber() 로 보너스 숫자를 설정 설정하기 전에 bonusNumber를 호출하는 것을 방지하기 위한 유효성 검사
-     */
     private void validateBonusNumberInitialized() {
         if (bonusNumber == null) {
             throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_NOT_SET.getMessage());

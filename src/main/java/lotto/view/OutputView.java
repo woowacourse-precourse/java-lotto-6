@@ -3,6 +3,8 @@ package lotto.view;
 import static lotto.constant.GameMessage.*;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -14,7 +16,8 @@ public class OutputView {
 		System.out.println(String.format(PRINT_LOTTO_AMOUNT, amount));
 
 		for(Lotto lotto : lotts) {
-			System.out.println(lotto.getLotto());
+			List<Integer> sortedNumbers = sortAscending(new ArrayList<>(lotto.getLotto()));
+			System.out.println(sortedNumbers);
 		}
 	}
 
@@ -25,6 +28,11 @@ public class OutputView {
 				System.out.println(String.format(PRINT_RESULT, prize.getMatchAmount(), convertWithDelimiter(prize.getPrize()), count));
 			}
 		}
+	}
+
+	private static List<Integer> sortAscending(List<Integer> numbers) {
+		Collections.sort(numbers);
+		return numbers;
 	}
 
 	private static String convertWithDelimiter(int number) {

@@ -1,7 +1,7 @@
 package lotto.constant;
 
 
-public enum LotteNumber {
+public enum LottoNumber {
 
 
     FIRST_RANGE(1)
@@ -11,7 +11,7 @@ public enum LotteNumber {
 
     private final int number;
 
-    LotteNumber(int number) {
+    LottoNumber(int number) {
         this.number = number;
     }
 

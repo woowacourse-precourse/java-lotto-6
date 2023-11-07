@@ -5,46 +5,54 @@ import lotto.global.common.ErrorMessage;
 import java.util.List;
 
 public class Validation {
+    private ErrorMessage errorMessage;
 
     public void oneWordAndOver(String input) {
         if (input == "") {
-            throw new IllegalArgumentException(ErrorMessage.ONE_WORD_AND_OVER.getMessage());
+            errorMessage = ErrorMessage.ONE_WORD_AND_OVER;
+            throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 
     public void multipleOfThousand(int price) {
         if (price <= 0 || price % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessage.MULTIPLE_OF_1000.getMessage());
+            errorMessage = ErrorMessage.MULTIPLE_OF_1000;
+            throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 
     public void hundredThousandOrUnder(int price) {
         if (price > 100000) {
-            throw new IllegalArgumentException(ErrorMessage.HUNDRED_THOUSAND_OR_UNDER.getMessage());
+            errorMessage = ErrorMessage.HUNDRED_THOUSAND_OR_UNDER;
+            throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 
     public void isInRangeOf1To45(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(ErrorMessage.RANGE_1_45.getMessage());
+            errorMessage = ErrorMessage.RANGE_1_45;
+            throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 
     public void isSixNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorMessage.SIX_NUMBERS.getMessage());
+            errorMessage = ErrorMessage.SIX_NUMBERS;
+            throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 
     public void hasDuplicateNumbers(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE.getMessage());
+            errorMessage = ErrorMessage.DUPLICATE;
+            throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 
     public void hasSameNumberInList(int number, List<Integer> numbers) {
         if (numbers.contains(number)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS.getMessage());
+            errorMessage = ErrorMessage.DUPLICATE_BONUS;
+            throw new IllegalArgumentException(errorMessage.getMessage());
         }
     }
 }

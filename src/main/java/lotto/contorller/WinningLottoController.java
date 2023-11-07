@@ -4,17 +4,21 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
+import lotto.enumeration.NoticeType;
 import lotto.enumeration.WinningType;
 import lotto.service.TicketsService;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class WinningLottoController {
     WinningLotto winningLotto;
     List<Lotto> tickets;
-    int amount;
     Result result;
+    BigDecimal profitRate;
+    int amount;
     private final TicketsService ticketsService = new TicketsService();
+
     public Lotto getLottoInput() {
         String lottoInput = Console.readLine();
         return ticketsService.stringToLotto(lottoInput);
@@ -35,13 +39,14 @@ public class WinningLottoController {
         amount = getAmountInput();
         issueWinningLotto();
     }
+
     public void issueWinningLotto() {
         tickets = ticketsService.issue(amount);
     }
 
     public void getResult() {
         result = ticketsService.compare(tickets, winningLotto);
-        for(WinningType winningType : WinningType.values()) {
+        for (WinningType winningType : WinningType.values()) {
             System.out.println(winningType.getMatchedCount() + " " +
                     result.getResult().get(winningType));
         }
@@ -51,11 +56,20 @@ public class WinningLottoController {
         init();
         getResult();
         getProfitRate();
+
     }
 
     public void getProfitRate() {
-        System.out.println("ProfitRate: " + ticketsService.calcProfitRate(amount, result));
+        profitRate = ticketsService.calcProfitRate(amount, result);
     }
 
+    private void printResult() {
+        ticketsService.printWinningStat(result);
+        printProfitRate();
+    }
+
+    private void printProfitRate() {
+       System.out.println(NoticeType.PROFIT_FRONT + String.valueOf(profitRate) + NoticeType.PROFIT_END);
+    }
 
 }

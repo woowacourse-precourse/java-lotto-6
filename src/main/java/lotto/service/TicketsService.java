@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
+import lotto.enumeration.NoticeType;
 import lotto.enumeration.WinningType;
 
 import java.math.BigDecimal;
@@ -89,5 +90,13 @@ public class TicketsService {
 
     private BigDecimal roundDouble(double value) {
         return new BigDecimal(value).setScale(1, RoundingMode.HALF_UP);
+    }
+
+    public void printWinningStat(Result result) {
+        for(WinningType winningType : WinningType.values()) {
+            System.out.println(winningType.getMatchedCount() + "개 일치 (" +
+                    winningType.getPrize() + "원) - " +
+                    result.getResult().get(winningType) + "개");
+        }
     }
 }

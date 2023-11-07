@@ -39,4 +39,11 @@ public class InputValidatorTest {
             InputValidator.validateDuplicateNumber("1,11,12,33,11,15");
         });
     }
+
+    @Test
+    void 보너스_번호가_일과_사십오사이의_수가_맞는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.validateBonusNumber("0");
+        });
+    }
 }

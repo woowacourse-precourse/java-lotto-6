@@ -16,5 +16,7 @@ public class Output {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+
+        System.out.println();
     }
 }

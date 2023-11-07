@@ -12,14 +12,14 @@ import strategy.QuickpickIssuanceStrategy;
 
 public class LottoGame {
     public void play() {
-        Balance balance = RetryExecutor.execute(this::createBalance, IllegalArgumentException.class);
+        Balance balance = RetryExecutor.execute(this::makeBalance, IllegalArgumentException.class);
 
         List<Lotto> lottos = purchaseLottosWithQuckpick(balance);
-        Output.printPurchasedLottoNumbers(lottos);
 
+        Lotto winningLotto = RetryExecutor.execute(this::makeWinningLotto, IllegalArgumentException.class);
     }
 
-    private Balance createBalance() {
+    private Balance makeBalance() {
         String userInput = Input.getPurchaseAmount();
         int purchaseAmount = Parser.parsePurchaseAmount(userInput);
         return Balance.create(purchaseAmount);
@@ -29,6 +29,16 @@ public class LottoGame {
         IssuanceStrategy issuanceStrategy = new QuickpickIssuanceStrategy();
         LottoMachine lottoMachine = LottoMachine.create(issuanceStrategy);
 
-        return lottoMachine.purchaseAll(balance);
+        List<Lotto> lottos = lottoMachine.purchaseAll(balance);
+        Output.printPurchasedLottoNumbers(lottos);
+
+        return lottos;
+    }
+
+    private Lotto makeWinningLotto() {
+        String userInput = Input.getWinningNumbers();
+        List<Integer> winningNumbers = Parser.parseWinningNumbers(userInput);
+
+        return Lotto.from(winningNumbers);
     }
 }

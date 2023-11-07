@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import java.util.List;
+
 public class Parser {
     private Parser() {
     }
@@ -8,6 +10,15 @@ public class Parser {
         int amount = tryParseInt(userInput);
         validatePositiveNumber(amount);
         return amount;
+    }
+
+    public static List<Integer> parseWinningNumbers(String userInput) {
+        List<String> splitUserInput = List.of(userInput.split(","));
+
+        return splitUserInput.stream()
+                .map(String::trim)
+                .map(Parser::tryParseInt)
+                .toList();
     }
 
     private static int tryParseInt(String userInput) throws IllegalArgumentException {

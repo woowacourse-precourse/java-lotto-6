@@ -1,7 +1,6 @@
 package lotto.constants;
 
 public enum ExceptionMessages {
-
     STRING_TO_INTEGER("입력 값은 양수만 허용됩니다."),
     DUPLICATION_LIST("입력 값들은 서로 중복되지 않아야 합니다."),
     INPUT_COUNT("입력 값의 개수는 %d개 여야 합니다."),

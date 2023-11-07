@@ -10,7 +10,6 @@ import static lotto.util.ErrorMessage.ERROR_LOTTO_SIZE;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -26,7 +25,6 @@ public class Lotto {
         }
         validateDuplicate(numbers);
         validateRangeOfNumbers(numbers);
-        sortedLotto(numbers);
     }
 
     // TODO: 추가 기능 구현
@@ -43,11 +41,5 @@ public class Lotto {
                 throw new IllegalArgumentException(ERROR_LOTTO_OUT_OF_RANGE);
             }
         }
-    }
-
-    private List<Integer> sortedLotto(List<Integer> numbers) {
-        return numbers.stream()
-                .sorted()
-                .collect(Collectors.toList());
     }
 }

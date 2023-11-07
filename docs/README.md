@@ -2,6 +2,12 @@
 
 ##
 
+#### 로또 게임의 의존 관계를 DI 해주는 역할 (ApplicationConfiguration)
+
+- [ ] 클래스별 의존 관계를 DI 하는 기능
+
+##
+
 #### 로또 게임 관리자 역할 (LottoGameController)
 
 - [x] 게임을 순서에 맞게 시작하는 기능

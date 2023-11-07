@@ -18,6 +18,10 @@ public class LottoVendor {
         validationDivide(Converter.stringToInt(purchaseAmount));
     }
 
+    public int getLottoAmount() {
+        return LOTTO_AMOUNT;
+    }
+
     public void validationDivide(int purchaseAmount) {
         if (purchaseAmount % LOTTO_AMOUNT > 0) {
             throw new IllegalArgumentException(CAN_NOT_DIVIDE);
@@ -42,4 +46,5 @@ public class LottoVendor {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT);
         return new Lotto(numbers);
     }
+
 }

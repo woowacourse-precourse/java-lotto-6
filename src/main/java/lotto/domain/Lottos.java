@@ -34,7 +34,7 @@ public class Lottos {
         EnumMap<Rank, Integer> rankResult = initializeRankResultWithDefaultValue();
         for (Lotto lotto : lottos) {
             Rank matchedRank = findMatchedRank(winningLotto, lotto);
-            if (hasValidRank(matchedRank)) {
+            if (isValidRank(matchedRank)) {
                 rankResult.put(matchedRank, rankResult.getOrDefault(matchedRank, 0) + 1);
             }
         }
@@ -51,14 +51,14 @@ public class Lottos {
         EnumMap<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
         int defaultValue = 0;
         for (Rank rank : Rank.values()) {
-            if (hasValidRank(rank)) {
+            if (isValidRank(rank)) {
                 rankResult.put(rank, defaultValue);
             }
         }
         return rankResult;
     }
 
-    private boolean hasValidRank(final Rank result) {
+    private boolean isValidRank(final Rank result) {
         return !result.isUnranked(result);
     }
 

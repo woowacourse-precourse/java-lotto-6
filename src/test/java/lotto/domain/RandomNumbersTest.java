@@ -6,13 +6,12 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class RandomNumberGeneratorTest {
+class RandomNumbersTest {
     @Test
     @DisplayName("만들어진 번호의 갯수는 6개이다.")
     void createdRandomNumbersHasSixNumber() {
-        RandomNumberGenerator randomNumbers = new RandomNumberGenerator();
+        RandomNumbers randomNumbers = new RandomNumbers();
 
         List<Integer> sortedNumbers = randomNumbers.createRandomNumbers();
         assertThat(sortedNumbers).hasSize(6);

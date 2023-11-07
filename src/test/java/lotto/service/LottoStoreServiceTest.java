@@ -14,7 +14,7 @@ class LottoStoreServiceTest {
     @Test
     void testObtainedCountOfLotto() {
         PurchaseAmount purchaseAmount = PurchaseAmount.from(5000);
-        LottoStoreService lottoStoreService = new LottoStoreService(new LottoGeneratorService());
+        LottoStoreService lottoStoreService = new LottoStoreService(new LottoFactoryService());
         List<Lotto> lottos = lottoStoreService.purchaseLotto(purchaseAmount);
         Assertions.assertThat(lottos.size()).isEqualTo(5);
     }

@@ -9,7 +9,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
-public class LottoGeneratorService {
+public class LottoFactoryService {
     public Lotto generateLotto() {
         List<Integer> numbers = generateUniqueNumbers();
         List<LottoNumber> lottoNumbers = mapToLottoNumbers(numbers);

@@ -1,8 +1,8 @@
 package lotto.config;
 
 import lotto.controller.LottoGameController;
-import lotto.service.LottoGeneratorService;
-import lotto.service.LottoRankCalculatorService;
+import lotto.service.LottoFactoryService;
+import lotto.service.LottoResultCalculatorService;
 import lotto.service.LottoStoreService;
 import lotto.view.InputReader;
 import lotto.view.InputView;
@@ -26,12 +26,12 @@ public class LottoGameConfig {
         return new MessageResolver();
     }
 
-    public LottoRankCalculatorService lottoRankCalculatorService() {
-        return new LottoRankCalculatorService();
+    public LottoResultCalculatorService lottoRankCalculatorService() {
+        return new LottoResultCalculatorService();
     }
 
-    public LottoGeneratorService lottoGeneratorService() {
-        return new LottoGeneratorService();
+    public LottoFactoryService lottoGeneratorService() {
+        return new LottoFactoryService();
     }
 
     public LottoStoreService lottoStoreService() {

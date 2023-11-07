@@ -12,7 +12,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("로또 등수 리스트 테스트")
-class LottoRankCalculatorServiceTest {
+class LottoResultCalculatorServiceTest {
 
 
     @DisplayName("로또 리스트를 전달해서 결과를 반환받는다")
@@ -25,8 +25,8 @@ class LottoRankCalculatorServiceTest {
         Lotto issuedLotto1 = createLotto(List.of(1, 2, 3, 4, 5, 6)); //1등
         List<Lotto> lottos = List.of(issuedLotto1);
 
-        LottoRankCalculatorService lottoRankCalculatorService = new LottoRankCalculatorService();
-        LottoResult result = lottoRankCalculatorService.calculateRanks(lottos, winningNumbers);
+        LottoResultCalculatorService lottoResultCalculatorService = new LottoResultCalculatorService();
+        LottoResult result = lottoResultCalculatorService.calculateRanks(lottos, winningNumbers);
         Assertions.assertThat(result.getCountByRank(LottoRank.FIRST)).isEqualTo(1);
     }
 

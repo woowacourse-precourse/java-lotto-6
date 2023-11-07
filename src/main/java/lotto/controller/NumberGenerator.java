@@ -45,22 +45,42 @@ public class NumberGenerator {
         return sortAscendingNumbers(lotto);
     }
 
-    public String InputCorrectLotto(){
+    public String[] InputCorrectLotto(){
         System.out.println("\n당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         
-        return input;
+        String[] numbers = input.split(",");
+        while(inputNumberIntegerVaildation(numbers)){
+            input = Console.readLine();
+            numbers = input.split(",");
+        }
+
+        return numbers;
     }
 
-    public ArrayList<Integer> conversionInputToInteger(String input){
+    public ArrayList<Integer> conversionInputToInteger(String[] input){
         ArrayList<Integer> correctNumbers = new ArrayList<>();
 
-        for(String st : input.split(",")){
+        for(String st : input){
             int value = Integer.parseInt(st);
             correctNumbers.add(value);
         }
 
         return correctNumbers;
+    }
+    
+    public boolean inputNumberIntegerVaildation(String[] input){
+        boolean end = false;
+        try{
+            for(String st : input){
+                Integer.parseInt(st);
+            }
+        }catch(IllegalArgumentException e){
+            end = true;
+            System.out.println(e + "\n[ERROR]당첨 번호는 숫자를 입력해야 합니다.");
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+        }
+        return end;
     }
 
     public List<Integer> sortAscendingNumbers(List<Integer> sortLottoNumbers){

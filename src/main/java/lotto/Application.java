@@ -15,8 +15,9 @@ public class Application {
             System.out.println(st);
         }
 
-        String num3 = numbergenerator.InputCorrectLotto();
+        String[] num3 = numbergenerator.InputCorrectLotto();
         final List<Integer> num4 = numbergenerator.conversionInputToInteger(num3);
+
         System.out.println(num4);
     }
 }

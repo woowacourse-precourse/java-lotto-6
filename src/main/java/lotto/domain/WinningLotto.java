@@ -15,8 +15,7 @@ public class WinningLotto {
 
     private void winningLottoValidate(List<Integer> winningLottoNumbers, int bonusNumber) {
         if (isOverlapBonusNumber(winningLottoNumbers,bonusNumber)) {
-            System.out.println("[ERROR] 6개의 당첨번호와 보너스 번호는 중복될수 없습니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 6개의 당첨번호와 보너스 번호는 중복될수 없습니다.");
         }
     }
     private boolean isOverlapBonusNumber(List<Integer> winningLottoNumbers, int bonusNumber){

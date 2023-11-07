@@ -12,9 +12,7 @@ public enum StringEnums {
     PENTA("5개 일치 (1,500,000원) - "),
     PENTA_WITH_BONUS("5개 일치, 보너스 볼 일치 (30,000,000원) - "),
     HEXA("6개 일치 (2,000,000,000원) - "),
-
     UNIT("개"),
-
     EARN_RATE_HEADER("총 수익률은 "),
     EARN_RATE_FOOTER("%입니다.");
 

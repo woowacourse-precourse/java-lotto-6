@@ -17,23 +17,18 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (Set.copyOf(numbers).size() != 6) {
-            throw new IllegalArgumentException(
-                    ErrorMessageEnums.TOO_MANY_NUMBERS.toString()
-            );
+            throw new IllegalArgumentException(ErrorMessageEnums.TOO_MANY_NUMBERS.toString());
         }
         numbers.forEach(this::checkRange);
     }
 
     private void checkRange(Integer i) {
         if (i > 45 || i < 1) {
-            throw new IllegalArgumentException(
-                    ErrorMessageEnums.OUT_OF_RANGE.toString());
+            throw new IllegalArgumentException(ErrorMessageEnums.OUT_OF_RANGE.toString());
         }
     }
 
-    // TODO: 추가 기능 구현
-
-    public Integer checkNumbers(List<Integer> bullseye) {
+    public Integer compareNumbers(List<Integer> bullseye) {
         Integer count = 0;
         for (Integer i : bullseye) {
             if (numbers.contains(i)) {

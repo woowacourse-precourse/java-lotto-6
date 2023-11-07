@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.WinningNumber;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class InputBonusNumberView {
@@ -13,21 +15,29 @@ public class InputBonusNumberView {
     private static final String ERROR_NOT_VALIDATE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final Pattern PATTERN = Pattern.compile("\\d+");
 
-    public Integer getBonusNumber() {
+    public Integer getBonusNumber(List<Integer> winningNumbers) {
         System.out.println(REQUEST_BONUS_NUMBER);
         String input = Console.readLine();
         System.out.println();
         try {
             validateNumeric(input);
+            int bonus = Integer.parseInt(input);
+            validateDuplicate(winningNumbers, bonus);
+            return bonus;
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE + ERROR_NOT_VALIDATE);
-            return getBonusNumber();
+            return getBonusNumber(winningNumbers);
         }
-        return Integer.parseInt(input);
     }
 
     private void validateNumeric(String input) {
         if (!PATTERN.matcher(input).matches()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateDuplicate(List<Integer> numbers, int number) {
+        if (numbers.contains(number)) {
             throw new IllegalArgumentException();
         }
     }

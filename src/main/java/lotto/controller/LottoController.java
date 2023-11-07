@@ -38,7 +38,7 @@ public class LottoController {
         InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
 
         List<Integer> winningNumbers = inputWinningNumberView.getWinningNumber();
-        Integer bonusNumber = inputBonusNumberView.getBonusNumber();
+        Integer bonusNumber = inputBonusNumberView.getBonusNumber(winningNumbers);
 
         return new WinningNumber(winningNumbers, bonusNumber);
     }

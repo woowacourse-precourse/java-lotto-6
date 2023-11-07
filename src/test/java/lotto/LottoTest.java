@@ -1,7 +1,7 @@
 package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static lotto.exception.ExceptionMessage.NOT_NUMBER_INPUT_MESSAGE;
+import static lotto.exception.ExceptionMessage.NOT_IN_RANGE_NUMBER_INPUT_MESSAGE;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,6 +33,6 @@ class LottoTest {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(47, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NOT_NUMBER_INPUT_MESSAGE.getMessage());
+                .hasMessageContaining(NOT_IN_RANGE_NUMBER_INPUT_MESSAGE.getMessage());
     }
 }

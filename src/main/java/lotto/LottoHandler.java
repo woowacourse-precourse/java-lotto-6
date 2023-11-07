@@ -150,7 +150,7 @@ public class LottoHandler {
                 .count();
     }
 
-    public Map<WinningKind, Integer> calculateResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+    private Map<WinningKind, Integer> calculateResult(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
         Map<WinningKind, Integer> winningResult = new HashMap<>();
         winningResultInitialize(winningResult);
 
@@ -163,8 +163,7 @@ public class LottoHandler {
         return winningResult;
     }
 
-    public void calculateWinning(
-            int winningNumberCount, boolean bonusMatch, Map<WinningKind, Integer> winningResult) {
+    public void calculateWinning(int winningNumberCount, boolean bonusMatch, Map<WinningKind, Integer> winningResult) {
         if (winningNumberCount == 3) {
             winningResult.put(WinningKind.FIFTH, winningResult.get(WinningKind.FIFTH) + 1);
             return;
@@ -186,7 +185,7 @@ public class LottoHandler {
         }
     }
 
-    public int calculateRevenue(Map<WinningKind, Integer> winningResult) {
+    private int calculateRevenue(Map<WinningKind, Integer> winningResult) {
 
         return 0;
     }

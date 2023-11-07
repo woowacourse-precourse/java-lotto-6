@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
@@ -8,7 +7,7 @@ import lotto.domain.LottoCount;
 import lotto.domain.Profit;
 import lotto.domain.PurchaseMoney;
 import lotto.domain.WinningDetails;
-import lotto.utils.GeneratedLottoNumber;
+import lotto.utils.LottosGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -39,7 +38,7 @@ public class LottoGame {
 
         LottoCount lottoCount = new LottoCount(purchaseMoney.getValue());
         outputLottoCount(lottoCount.getValue());
-        generateLottos(lottoCount.getValue());
+        lottos = LottosGenerator.getLottos(lottoCount.getValue());
         outputLottos();
         System.out.println();
     }
@@ -82,12 +81,5 @@ public class LottoGame {
 
     private static void outputLottos(){
         OutputView.showEachLotto(lottos);
-    }
-
-    private static void generateLottos(int lottoCount){
-        lottos = new ArrayList<>();
-        for (int i = 0; i < lottoCount; i++) {
-            lottos.add(new Lotto(GeneratedLottoNumber.getRandomNumber()));
-        }
     }
 }

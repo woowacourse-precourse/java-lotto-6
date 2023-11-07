@@ -10,12 +10,12 @@ public class LottoResult {
     private final Map<LottoRank, Integer> checkResult;
 
     public LottoResult() {
-        this.checkResult = getLottoResultMap();
+        this.checkResult = createLottoResultMap();
     }
 
-    private static Map<LottoRank, Integer> getLottoResultMap() {
+    private static Map<LottoRank, Integer> createLottoResultMap() {
         return Arrays.stream(LottoRank.values())
-            .collect(Collectors.toMap(rank -> rank, rank -> 0));
+            .collect(Collectors.toMap(rank -> rank, rank -> 0)); //TODO
     }
 
     public void increaseRankCount(final LottoRank rank) {
@@ -25,6 +25,7 @@ public class LottoResult {
     public String toOutputString() {
         final StringJoiner joiner = new StringJoiner("\n");
         Arrays.stream(LottoRank.values())
+            .filter(lottoRank -> lottoRank.getPrize() > 0)
             .forEach(lottoRank -> addRankOutputString(joiner, lottoRank));
         return joiner.toString();
     }

@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public enum LottoRank {
 
+    LESS_THREE_MATCH(0, 0, ""),
     THREE_MATCH(3, 5000, "3개 일치 (5,000원) - %d개"),
     FOUR_MATCH(4, 50000, "4개 일치 (50,000원) - %d개"),
     FIVE_MATCH(5, 1500000, "5개 일치 (1,500,000원) - %d개"),
@@ -30,7 +31,7 @@ public enum LottoRank {
         return Arrays.stream(LottoRank.values())
             .filter(lottoRank -> isTargetRank(lottoRank, matchCount, hasBonus))
             .findAny()
-            .orElseThrow(() -> new IllegalArgumentException("해당하는 점수가 없습니다."));
+            .orElse(LESS_THREE_MATCH);
     }
 
     public static LottoRank valueFrom(int matchCount) {

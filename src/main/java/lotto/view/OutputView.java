@@ -13,7 +13,6 @@ public class OutputView {
     private static final String DELIMITER = ", ";
     private static final String PREFIX = "[";
     private static final String SUFFIX = "]";
-    private static final String NUMBER_FORMAT_PATTERN = "###,###.0";
     private static final String TEMPLATE = """
              
                     당첨 통계
@@ -25,6 +24,9 @@ public class OutputView {
                     6개 일치 (2,000,000,000원) - %d개
                     총 수익률은 %s%%입니다.
             """.replaceAll("( ){2,}", "");
+    private static final String NUMBER_FORMAT_PATTERN = "###,###.0";
+    private static final double NO_PROFIT = 0.0;
+    private static final String ZERO_PROFIT = "0";
     private final StdWriter writer;
 
     public OutputView(StdWriter writer) {
@@ -43,11 +45,9 @@ public class OutputView {
     }
 
     private void printAllLottoTickets(List<LottoDto> lottoTickets) {
-        for (LottoDto lottoTicket : lottoTickets) {
-            List<Integer> lottoNumbers = lottoTicket.lottoNumbers();
-            String lottoTicketFormat = formatLottoNumbers(lottoNumbers);
-            writer.writeLine(lottoTicketFormat);
-        }
+        lottoTickets.stream()
+                .map(lottoTicket -> formatLottoNumbers(lottoTicket.lottoNumbers()))
+                .forEach(writer::writeLine);
         writer.write(Writer.NEW_LINE);
     }
 
@@ -57,22 +57,30 @@ public class OutputView {
                 .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX));
     }
 
-    public void printResult(DrawingResultDto result) {
+    public void printResult(DrawingResultDto drawingResult) {
         String message = String.format(
                 TEMPLATE,
-                result.fifthMatchCount(),
-                result.fourthMatchCount(),
-                result.thirdMatchCount(),
-                result.secondMatchCount(),
-                result.firstMatchCount(),
-                formatPrizeOfRate(result)
+                drawingResult.fifthMatchCount(),
+                drawingResult.fourthMatchCount(),
+                drawingResult.thirdMatchCount(),
+                drawingResult.secondMatchCount(),
+                drawingResult.firstMatchCount(),
+                getFormattedProfitRate(drawingResult)
         );
         writer.writeLine(message);
     }
 
-    private String formatPrizeOfRate(DrawingResultDto result) {
+    private String getFormattedProfitRate(DrawingResultDto drawingResult) {
+        double prizeOfRate = drawingResult.prizeOfRate();
+        if (prizeOfRate == NO_PROFIT) {
+            return ZERO_PROFIT;
+        }
+        return formatPrizeOfRate(drawingResult);
+    }
+
+    private String formatPrizeOfRate(DrawingResultDto drawingResult) {
         DecimalFormat df = new DecimalFormat(NUMBER_FORMAT_PATTERN);
-        return df.format(result.prizeOfRate());
+        return df.format(drawingResult.prizeOfRate());
     }
 }
 

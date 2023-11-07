@@ -5,6 +5,7 @@ import lotto.model.User;
 
 public class MainController {
     private static MainController intstance;
+    private static User user = new User();
     private MainController(){}
     public static MainController getIntstance(){
         if(intstance == null){
@@ -13,6 +14,11 @@ public class MainController {
         return intstance;
     }
 
+    public static void startLotto(){
+        user.getMoney();
+        user.getTicketCount();
+        user.getRandomLotto();
 
+    }
 
 }

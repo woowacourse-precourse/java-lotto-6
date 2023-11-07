@@ -8,19 +8,17 @@ import lotto.model.Lotto;
 import lotto.model.User;
 
 public class Application {
-    private MainController mainController;
+    private static MainController mainController;
     public static void main(String[] args) {
-        MainController.getIntstance().startLotto();
+        mainController = MainController.getIntstance();
+        try{
+            mainController.startLotto();
+        } catch (IllegalArgumentException e){
+            System.out.println(e);
+        }
     }
 
-    public static void startLotto(){
-        User user = new User();
 
-        user.getRandomLotto();
-
-        Lotto lotto = new Lotto(getLottoNumbers());
-
-    }
 
     public static List<Integer> getLottoNumbers(){
         System.out.println("당첨 번호를 입력해 주세요.");

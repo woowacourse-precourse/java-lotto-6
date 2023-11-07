@@ -28,4 +28,8 @@ public class Outputter {
     public void promptWiningTicketNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
+
+    public void promptStatistics(){
+        System.out.println("통계입니다.");
+    }
 }

@@ -46,4 +46,14 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    public int matchLotto(Lotto lotto) {
+        int cnt = 0;
+        for(int number : lotto.getNumbers()) {
+            if(this.numbers.contains(number)) {
+                cnt++;
+            }
+        }
+        return cnt;
+    }
 }

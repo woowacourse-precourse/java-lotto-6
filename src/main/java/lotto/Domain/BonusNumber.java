@@ -15,7 +15,7 @@ public class BonusNumber {
     }
 
     private void checkNumberRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             throw ExceptionMessage.INTPUT_NUMBER_LENGTH.throwexception();
         }
     }

@@ -1,13 +1,18 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
 class LottoTest {
+
+    final static int LOTTO_PURCHASE_COUNT = 5;
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -23,5 +28,14 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호를 저장할 때 정렬하는지 확인한다.")
+    @Test
+    void sortLottoNumberSave() {
+        List<Lotto> lottos = Lottos.generator(LOTTO_PURCHASE_COUNT);
+
+        lottos.forEach(lotto -> {
+            List<Integer> numbers = lotto.getNumbers();
+            assertThat(numbers).isSorted();
+        });
+    }
 }

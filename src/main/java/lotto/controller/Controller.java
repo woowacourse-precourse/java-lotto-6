@@ -1,8 +1,14 @@
 package lotto.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.InputAmount;
 import lotto.domain.InputMoney;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.MoneyValidator;
 import lotto.exception.MoneyException;
 import lotto.view.InputView;
@@ -11,6 +17,7 @@ public class Controller {
 	private MoneyValidator moneyValidator;
 	private InputMoney inputMoney;
 	private InputAmount inputAmount;
+	private Lottos lottos;
 
 	public Controller() {
 		this.moneyValidator = new MoneyValidator();
@@ -18,6 +25,7 @@ public class Controller {
 
 	public void run() {
 		setUpInputAmount(getUserInputAmount());
+		setUpLottos(inputAmount.getInputAmount());
 	}
 
 	private String getUserInputAmount() {
@@ -36,5 +44,15 @@ public class Controller {
 				getUserInputAmount();
 			}
 		}
+	}
+
+	private void setUpLottos(int numbers) {
+		lottos = new Lottos(createLottos(numbers));
+	}
+
+	private List<Lotto> createLottos(int numbers) {
+		return Stream.generate(Lotto::createLotto)
+			.limit(numbers)
+			.collect(Collectors.toList());
 	}
 }

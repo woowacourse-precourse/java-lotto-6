@@ -5,6 +5,7 @@ import static lotto.exception.ExceptionMessage.*;
 
 import java.util.List;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.LottoException;
 
 public class Lotto {
@@ -13,6 +14,11 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto createLotto() {
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        return new Lotto(randomNumbers);
     }
 
     private void validate(List<Integer> numbers) {

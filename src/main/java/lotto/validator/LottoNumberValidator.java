@@ -11,7 +11,7 @@ public class LottoNumberValidator {
     private static final int MIN_BONUS_NUMBER = 1;
     private static final int MAX_BONUS_NUMBER = 45;
 
-    void validate(String input) {
+    public void validate(String input) {
         List<String> tokenList = inputToList(input);
 
         areTokensNumeric(tokenList);

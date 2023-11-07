@@ -50,10 +50,21 @@ public class ValidatorTest {
 	}
 
 	@DisplayName("문자열을 받아 문자열을 숫자로 파싱하였을 때," +
-			" 숫자가 1~45의 범위 안에 있는지 검사하는 메서드 테스트")
-	@Test
-	void isInRangeTest() {
+			" 숫자가 1~45의 범위 안에 있는지 검사하는 메서드 테스트 - 통과")
+	@ParameterizedTest
+	@ValueSource(strings = {"1", "2", "3", "10", "20", "30", "40", "44", "45"})
+	void isInRangeTest1(String check) {
+		assertDoesNotThrow(() -> validator.isInRange(check));
+	}
 
+	@DisplayName("문자열을 받아 문자열을 숫자로 파싱하였을 때," +
+			" 숫자가 1~45의 범위 안에 있는지 검사하는 메서드 테스트 - 실패")
+	@ParameterizedTest
+	@ValueSource(strings = {"0", "46", "47"})
+	void isInRangeTest2(String check) {
+		assertThatThrownBy(() -> validator.isInRange(check))
+				.isInstanceOf(IllegalArgumentException.class)
+				.hasMessageContaining("[ERROR] 1에서 45까지의 범위에 있지 않습니다.");
 	}
 
 	@DisplayName("List<Intger>와 문자열을 받아 문자열을 숫자로 파싱하였을 때," +

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.Constant.PurchaseAmount;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 
@@ -15,11 +16,23 @@ public class LottoService {
     }
 
     public List<Lotto> buyLottos(int purchaseAmount) {
-        int numberOfLottos = purchaseAmount / 1000;
+        int lottoQuantity = getLottoQuantity(purchaseAmount);
+        return getLottos(lottoQuantity);
+    }
+
+    private static int getLottoQuantity(int purchaseAmount) {
+        return purchaseAmount / PurchaseAmount.UNIT.getAmount();
+    }
+
+    private List<Lotto> getLottos(int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < numberOfLottos; i++) {
+        getLotto(lottoQuantity, lottos);
+        return lottos;
+    }
+
+    private void getLotto(int lottoQuantity, List<Lotto> lottos) {
+        for (int i = 0; i < lottoQuantity; i++) {
             lottos.add(new Lotto(lottoNumberGenerator.generate()));
         }
-        return lottos;
     }
 }

@@ -3,8 +3,10 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Stream;
 import lotto.common.Constant;
+import lotto.util.LottoNumberValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -64,14 +66,13 @@ class LottoTest {
         Assertions.assertEquals(distinctNumbers.size(), numbers.size());
     }
 
-    @DisplayName("자동 로또 번호는 1 ~ 45 사이의 수 이어야한다.")
-    @ParameterizedTest
+    @DisplayName("자동 로또 번호의 경우, 1 ~ 45 사이의 수여야한다.")
+    @RepeatedTest(10)
     void createAutomaticLottoByInvalidNumber() {
         // Arrange
-        Lotto lotto = new Lotto();
+        List<Integer> numbers = new Lotto().getNumbers();
 
-        // Act
-
-        // Assert
+        // Act & Assert
+        numbers.forEach(num -> Assertions.assertTrue(LottoNumberValidator.validate(num)));
     }
 }

@@ -38,8 +38,7 @@ public class Application {
     }
 
     static double checkYield(int prize, int lotto_purchase){
-        double tmp = (double) prize / lotto_purchase / 10;
-        return Math.round((tmp*10)/10.0);
+        return (double) prize / lotto_purchase / 10;
     }
 
     static Map<LottoRank, Integer> rankingJudgement(List<Lotto> lottos, Lotto winning_numbers, int bonus_number){

@@ -74,15 +74,15 @@ public class LottoCheckerTest {
         MockedStatic<LottoRank> lottoRank = mockStatic(LottoRank.class);
         List<Lotto> mockLottos = Arrays.asList(mock(Lotto.class), mock(Lotto.class));
 
-        when(winningNumbers.compareWinningNumbers(anyList())).thenReturn(3L);
+        when(winningNumbers.compareWinningNumbers(anyList())).thenReturn(5L);
         when(bonusNumber.compareBonusNumber(anyList())).thenReturn(true);
         when(lottos.getLottos()).thenReturn(mockLottos);
-        lottoRank.when(() -> LottoRank.valueOf(3L, true)).thenReturn(LottoRank.FIFTH);
+        lottoRank.when(() -> LottoRank.valueOf(5L, true)).thenReturn(LottoRank.SECOND);
         //when
         List<LottoRank> result = lottoChecker.createLottoRanks(lottos);
 
         //then
-        assertThat(result.contains(LottoRank.FIFTH)).isTrue();
+        assertThat(result.contains(LottoRank.SECOND)).isTrue();
 
     }
 

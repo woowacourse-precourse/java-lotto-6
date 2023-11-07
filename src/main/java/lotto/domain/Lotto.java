@@ -20,7 +20,6 @@ public class Lotto {
                 count++;
             }
         }
-
         return count;
     }
 
@@ -30,7 +29,6 @@ public class Lotto {
         if (numbers.contains(correctNumber)) {
             count++;
         }
-
         return count;
     }
 

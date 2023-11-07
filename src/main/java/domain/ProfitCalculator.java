@@ -33,10 +33,12 @@ public class ProfitCalculator {
         StringBuilder message = new StringBuilder();
         for (WinningHistory history : WinningHistory.values()) {
             int count = winningHistories.get(history);
-            message.append(String.format("%d개 일치 (%,d원)", history.getMatchNumbers(), history.getPrizeMoney()));
-            if (history == WinningHistory.SECOND) {
-                message.append(" + 보너스 볼 일치");
+            if(history == WinningHistory.SECOND){
+                message.append(String.format("%d개 일치, 보너스 볼 일치 (%,d원)", history.getMatchNumbers(), history.getPrizeMoney()));
+                message.append(String.format(" - %d개%n", count));
+                continue;
             }
+            message.append(String.format("%d개 일치 (%,d원)", history.getMatchNumbers(), history.getPrizeMoney()));
             message.append(String.format(" - %d개%n", count));
         }
         return message.toString();

@@ -202,10 +202,12 @@ class lotto_result{
     private static final int SECOND_PRIZE = 7;
 
     public static void totalLottoCheck(List<List<Integer>> total, List<Integer> numbers, int bonus){
+        List<Integer> result = new ArrayList<>();
         for(List<Integer> lotto : total){
             int correction = eachLottoCheck(lotto, numbers, bonus);
-            result(correction);
+            result.add(correction);
         }
+        printResult(result);
     }
 
     public static int eachLottoCheck(List<Integer> lotto, List<Integer> numbers, int bonus){
@@ -240,9 +242,7 @@ class lotto_result{
         return totalCorrectionEach;
     }
 
-    public static void result(int correction){
-        List<Integer> result = new ArrayList<>();
-        result.add(correction);
+    public static void printResult(List<Integer> result){
         System.out.println("3개 일치 (5,000원) - " + Collections.frequency(result, 3) + "개");
         System.out.println("4개 일치 (50,000원) - " + Collections.frequency(result, 4) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + Collections.frequency(result, 5) + "개");

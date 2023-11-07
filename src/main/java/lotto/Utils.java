@@ -22,7 +22,7 @@ public class Utils {
 
     public static List<Integer> convertStringToListOfIntegers(String numbers) {
         return Arrays.stream(numbers.split(","))
-                .map(String::trim) // 공백 제거
+                .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

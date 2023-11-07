@@ -37,17 +37,17 @@ public class Lotto {
         }
 
         if (matchCount == 6) {
-            return 1; // 1등
+            return 1;
         } else if (matchCount == 5 && this.numbers.contains(bonusNumber)) {
-            return 2; // 2등
+            return 2;
         } else if (matchCount == 5) {
-            return 3; // 3등
+            return 3;
         } else if (matchCount == 4) {
-            return 4; // 4등
+            return 4;
         } else if (matchCount == 3) {
-            return 5; // 5등
+            return 5;
         } else {
-            return 0; // 당첨되지 않음
+            return 0;
         }
     }
 

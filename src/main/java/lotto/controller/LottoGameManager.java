@@ -48,11 +48,18 @@ public class LottoGameManager {
         for (Lotto userLotto : userLottos) {
             int prizeRank = userLotto.checkWinning(winningLotto, bonusNumber.getBonusNumber());
             if (prizeRank > 0) {
-                // 등수에 해당하는 인덱스 위치의 값을 증가
-                // 1등이면 인덱스 4, 2등이면 인덱스 3, 3등이면 인덱스 2, 4등이면 인덱스 1, 5등이면 인덱스 0
                 matchCounts.set(5 - prizeRank, matchCounts.get(5 - prizeRank) + 1);
             }
         }
+    }
+
+    private void printResult() {
+        System.out.println("당첨 내역");
+        System.out.println("3개 일치 (5,000원) - " + matchCounts.get(0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + matchCounts.get(1) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + matchCounts.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + matchCounts.get(3) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + matchCounts.get(4) + "개");
     }
 
     public void play() {
@@ -65,5 +72,6 @@ public class LottoGameManager {
         System.out.println("보너스 넘버를 입력하세요");
         this.bonusNumber = bonusNumber();
         checkResult();
+        printResult();
     }
 }

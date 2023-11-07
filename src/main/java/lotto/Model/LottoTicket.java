@@ -21,7 +21,7 @@ public class LottoTicket {
         return lottoTickets;
     }
 
-    private static Lotto generateSingleLottoTicket() {
+    public static Lotto generateSingleLottoTicket() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Lotto lottoTicket = new Lotto(numbers);
         return lottoTicket;

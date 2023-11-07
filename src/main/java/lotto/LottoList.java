@@ -12,10 +12,9 @@ public class LottoList {
     }
 
     public void printLottoList() {
-        for (int i = 0; i < lottoList.size(); i++) {
-            List<Integer> lotto = lottoList.get(i).getNumbers();
-            List<String> lottoNumbers = lotto.stream().map(x -> String.valueOf(x))
-                    .collect(Collectors.toList());
+        for (Lotto currentLotto : lottoList) {
+            List<String> lottoNumbers = currentLotto.getNumbers()
+                    .stream().map(x -> String.valueOf(x)).collect(Collectors.toList());
             System.out.println("[" + String.join(", ", lottoNumbers) + "]");
         }
     }
@@ -23,30 +22,37 @@ public class LottoList {
     public List<Integer> compareLotto(Lotto lotto) {
         List<Integer> compare_count = new ArrayList<>();
         List<Integer> lotto_number = lotto.getNumbers();
-        for (int i = 0; i < lottoList.size(); i++) {
-            List<Integer> lotto_list = lottoList.get(i).getNumbers();
-            int count = 0;
-            for (int j = 0; j < lotto_number.size(); j++) {
-                if (lotto_list.contains(lotto_number.get(j))) {
-                    count += 1;
-                }
-            }
+        for (Lotto currentLotto : lottoList) {
+            int count = countMatchNumbers(lotto_number, currentLotto);
             compare_count.add(count);
         }
         return compare_count;
     }
 
+    private int countMatchNumbers(List<Integer> lotto, Lotto currentLotto) {
+        int count = 0;
+        for (Integer number : lotto) {
+            if (currentLotto.getNumbers().contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public List<Boolean> compareBonusLotto(BonusLotto bonusLotto) {
         List<Boolean> compare_count = new ArrayList<>();
         int bonus = bonusLotto.getBonus();
-        for (int i = 0; i < lottoList.size(); i++) {
-            List<Integer> lotto_list = lottoList.get(i).getNumbers();
-            if (lotto_list.contains(bonus)) {
-                compare_count.add(true);
-                continue;
-            }
-            compare_count.add(false);
+        for (Lotto currentLotto : lottoList) {
+            Boolean isMatch = countMatchBonus(currentLotto, bonus);
+            compare_count.add(isMatch);
         }
         return compare_count;
+    }
+
+    private Boolean countMatchBonus(Lotto currentLotto, int bonus) {
+        if (currentLotto.getNumbers().contains(bonus)) {
+            return true;
+        }
+        return false;
     }
 }

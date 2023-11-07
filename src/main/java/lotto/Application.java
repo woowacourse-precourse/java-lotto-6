@@ -31,14 +31,12 @@ public class Application {
             String input = Console.readLine();
             try {
                 int input_money = Integer.parseInt(input);
-                try {
-                    Money money = new Money(input_money);
-                    return money;
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            } catch (IllegalArgumentException e) {
+                Money money = new Money(input_money);
+                return money;
+            } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 구입 금액은 정수로만 이루어져야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -51,14 +49,12 @@ public class Application {
                 List<String> input_lotto = List.of(input.split(","));
                 List<Integer> winning_lotto = input_lotto.stream().map(x -> Integer.parseInt(x))
                         .collect(Collectors.toList());
-                try {
-                    Lotto lotto = new Lotto(winning_lotto);
-                    return lotto;
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            } catch (IllegalArgumentException e) {
+                Lotto lotto = new Lotto(winning_lotto);
+                return lotto;
+            } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 당첨 로또는 정수여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -69,15 +65,13 @@ public class Application {
             String input = Console.readLine();
             try {
                 Integer bonus = Integer.parseInt(input);
-                try {
-                    BonusLotto bonusLotto = new BonusLotto(bonus);
-                    bonusLotto.validateDuplicate(lotto, bonus);
-                    return bonusLotto;
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                }
-            } catch (IllegalArgumentException e) {
+                BonusLotto bonusLotto = new BonusLotto(bonus);
+                bonusLotto.validateDuplicate(lotto, bonus);
+                return bonusLotto;
+            } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 보너스 로또는 정수여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
     }

@@ -1,5 +1,13 @@
 package lotto;
 
+import static lotto.message.Message.BONUS_NUMBER_REQUEST;
+import static lotto.message.Message.DIVIDING_LINE;
+import static lotto.message.Message.LINE_BREAK;
+import static lotto.message.Message.PAYMENT_COMPLETE;
+import static lotto.message.Message.PAYMENT_REQUEST;
+import static lotto.message.Message.WINNING_NUMBER_REQUEST;
+import static lotto.message.Message.WINNING_STATISTICS_RESULT;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,19 +19,19 @@ import lotto.view.OutputView;
 
 public class LottoGame {
     public void start() {
-        OutputView.print(Message.PAYMENT_REQUEST);
-        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(PAYMENT_REQUEST.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
 
         String money = InputView.read();
         validateNumber(money);
         validateMultiple(money);
         int payment = Integer.parseInt(money);
 
-        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(LINE_BREAK.getMessage());
         int countOfLotto = payment / 1000;
         OutputView.print(String.valueOf(countOfLotto));
-        OutputView.print(Message.PAYMENT_COMPLETE);
-        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(PAYMENT_COMPLETE.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
 
         List<Lotto> lottoTicket = new ArrayList<>();
         for (int count = 0; count < countOfLotto; count++) {
@@ -35,12 +43,12 @@ public class LottoGame {
         for (Lotto lotto : lottoTicket) {
             lotto.sort();
             OutputView.print(lotto.toString());
-            OutputView.print(Message.LINE_BREAK);
+            OutputView.print(LINE_BREAK.getMessage());
         }
 
-        OutputView.print(Message.LINE_BREAK);
-        OutputView.print(Message.WINNING_NUMBER_REQUEST);
-        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(LINE_BREAK.getMessage());
+        OutputView.print(WINNING_NUMBER_REQUEST.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
         String input = InputView.read();
         validateInputRequirement(input);
 
@@ -52,22 +60,22 @@ public class LottoGame {
         validateSize(winingNumbers);
         validateDuplicate(winingNumbers);
 
-        OutputView.print(Message.LINE_BREAK);
-        OutputView.print(Message.BONUS_NUMBER_REQUEST);
-        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(LINE_BREAK.getMessage());
+        OutputView.print(BONUS_NUMBER_REQUEST.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
         input = InputView.read();
         validateNumber(input);
         validateRangeOne(Integer.parseInt(input));
         validateBonusDuplication(Integer.parseInt(input), winingNumbers);
         int bonus = Integer.parseInt(input);
 
-        OutputView.print(Message.LINE_BREAK);
-        OutputView.print(Message.WINNING_STATISTICS_RESULT);
-        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(LINE_BREAK.getMessage());
+        OutputView.print(WINNING_STATISTICS_RESULT.getMessage());
+        OutputView.print(LINE_BREAK.getMessage());
         for (int i = 0; i < 3; i++) {
-            OutputView.print(Message.DIVIDING_LINE);
+            OutputView.print(DIVIDING_LINE.getMessage());
         }
-        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(LINE_BREAK.getMessage());
 
 
     }
@@ -129,21 +137,5 @@ public class LottoGame {
 
 
 class Message {
-    public static String PAYMENT_REQUEST = "구입금액을 입력해 주세요.";
-    public static String PAYMENT_COMPLETE = "개를 구매했습니다.";
-    public static String WINNING_NUMBER_REQUEST = "당첨 번호를 입력해 주세요.";
-    public static String BONUS_NUMBER_REQUEST = "보너스 번호를 입력해 주세요.";
-    public static String WINNING_STATISTICS_RESULT = "당첨 통계";
-    public static String DIVIDING_LINE = "-";
-    public static String MATCH = "일치";
-    public static String LEFT_PARENTHESIS = "(";
-    public static String RIGHT_PARENTHESIS = ")";
-    public static String WON = "원";
-    public static String COUNT = "개";
-    public static String COMMA = ",";
-    public static String SPACE = " ";
-    public static String TOTAL_RETURN = "총 수익률은";
-    public static String PERCENT_SIGN = "%";
-    public static String END_EXPLAINE = "입니다.";
-    public static String LINE_BREAK = "\n";
+
 }

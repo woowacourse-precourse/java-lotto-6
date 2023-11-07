@@ -9,6 +9,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottosTest {
 
     @Test
+    void 로또를_추가한다() {
+        Lottos lottos = new Lottos();
+        lottos.addLotto(List.of(1, 2, 3, 4, 5, 6));
+        lottos.addLotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertEquals(2, lottos.getLottos().size());
+    }
+
+    @Test
     void 로또_결과를_계산한다() {
         Lottos lottos = new Lottos();
         lottos.addLotto(List.of(1, 2, 3, 4, 5, 6));

@@ -24,6 +24,10 @@ public class Lotto {
                 .toList();
     }
 
+    public boolean isAleadyIn(int number) {
+        return numbers.contains(number);
+    }
+
     //@todo: refactoring
     public int judge(Lotto winningLotto, BonusNumber bonusNumber) {
         HashSet<Integer> judgementer = new HashSet<>();

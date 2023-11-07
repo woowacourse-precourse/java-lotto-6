@@ -25,7 +25,7 @@ public class Validator {
     }
 
     public static void checkWinningNumber(List<Integer> winningNumber) throws IllegalArgumentException{
-        checkWinningNumberSize(winningNumber);
+        checkLottoNumberSize(winningNumber);
         checkLottoNumberRange(winningNumber);
         checkLottoNumberDuplicate(winningNumber);
     }
@@ -36,8 +36,8 @@ public class Validator {
     }
 
 
-    private static void checkWinningNumberSize(List<Integer> winningNumber) throws IllegalArgumentException{
-        if(winningNumber.size() != 6){
+    private static void checkLottoNumberSize(List<Integer> lottoNumbers) throws IllegalArgumentException{
+        if(lottoNumbers.size() != 6){
             throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 6개가 아닙니다.");
         }
     }

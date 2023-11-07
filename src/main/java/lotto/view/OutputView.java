@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.text.NumberFormat;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
@@ -15,8 +17,7 @@ public class OutputView {
 
     public static void printTicketCount(int ticketCount) {
         System.out.println();
-        System.out.printf(GameMessage.PURCHASED_TICKET_COUNT_MESSAGE.getMessage(), ticketCount);
-        System.out.println();
+        printMessage(GameMessage.PURCHASED_TICKET_COUNT_MESSAGE, ticketCount);
     }
 
     public static void printUserLottos(List<Lotto> userLottos) {
@@ -26,25 +27,26 @@ public class OutputView {
     }
 
     public static void printRankCount(Map<Rank, Integer> rankCount) {
-        for (Rank rank : Rank.values()) {
-            if (rank == Rank.MATCH_5_BONUS) {
-                printMatchFiveAndBonusRank(rank, rankCount);
-                continue;
-            }
-            if (rank != Rank.MATCH_5_BONUS) {
-                printNonMatchFiveAndBonusRank(rank, rankCount);
-            }
+        Arrays.stream(Rank.values())
+                .sorted(Comparator.comparingInt(Rank::getCountOfMatch))
+                .forEach(rank -> printRank(rank, rankCount));
+    }
+
+    private static void printRank(Rank rank, Map<Rank, Integer> rankCount) {
+        if (rank == Rank.MATCH_5_BONUS) {
+            printMatchFiveAndBonusRank(rank, rankCount);
+            return;
         }
+        printNonMatchFiveAndBonusRank(rank, rankCount);
     }
 
     private static void printMatchFiveAndBonusRank(Rank rank, Map<Rank, Integer> rankCount) {
-        System.out.printf(GameMessage.RANK_MATCH_5_MESSAGE.getMessage(), rank.getPrizeMoney(),
+        printMessageWithOutLineBreak(GameMessage.RANK_MATCH_5_MESSAGE, rank.getPrizeMoney(),
                 rankCount.getOrDefault(rank, 0));
     }
 
     private static void printNonMatchFiveAndBonusRank(Rank rank, Map<Rank, Integer> rankCount) {
-        System.out.printf(GameMessage.RANK_NOT_MATCH_5_MESSAGE.getMessage(), rank.getCountOfMatch(),
-                rank.getPrizeMoney(),
+        printMessageWithOutLineBreak(GameMessage.RANK_NOT_MATCH_5_MESSAGE, rank.getCountOfMatch(), rank.getPrizeMoney(),
                 rankCount.getOrDefault(rank, 0));
     }
 
@@ -54,8 +56,17 @@ public class OutputView {
         System.out.println("---");
     }
 
-    public static void printRateOfReturn(double RateOfReturn) {
-        NumberFormat nf = Util.createNumberFormatWithFractionDigits(RateOfReturn);
-        System.out.println("총 수익률은 " + nf.format(RateOfReturn) + "%입니다.");
+    public static void printRateOfReturn(double rateOfReturn) {
+        NumberFormat nf = Util.createNumberFormatWithFractionDigits(rateOfReturn);
+        System.out.println("총 수익률은 " + nf.format(rateOfReturn) + "%입니다.");
+    }
+
+    public static void printMessage(GameMessage message, Object... args) {
+        System.out.printf(message.getMessage(), args);
+        System.out.println();
+    }
+
+    public static void printMessageWithOutLineBreak(GameMessage message, Object... args) {
+        System.out.printf(message.getMessage(), args);
     }
 }

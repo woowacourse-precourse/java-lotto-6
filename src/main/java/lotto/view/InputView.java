@@ -9,19 +9,21 @@ import lotto.utils.Util;
 
 public class InputView {
     public static int getMoneyInput() {
-        System.out.println(GameMessage.ENTER_PURCHASE_AMOUNT_MESSAGE.getMessage());
+        OutputView.printMessage(GameMessage.ENTER_PURCHASE_AMOUNT_MESSAGE);
         String input = Console.readLine();
         return convertToInt(input);
     }
 
     public static List<Integer> getWinningNumbersInput() {
-        System.out.println(GameMessage.ENTER_WINNING_NUMBERS_MESSAGE.getMessage());
+        System.out.println();
+        OutputView.printMessage(GameMessage.ENTER_WINNING_NUMBERS_MESSAGE);
         String winningNumbersInput = Console.readLine();
         return convertToIntegerList(winningNumbersInput);
     }
 
     public static int getBonusNumberInput() {
-        System.out.println(GameMessage.ENTER_BONUS_NUMBER_MESSAGE.getMessage());
+        System.out.println();
+        OutputView.printMessage(GameMessage.ENTER_BONUS_NUMBER_MESSAGE);
         String input = Console.readLine();
         return convertToInt(input);
     }

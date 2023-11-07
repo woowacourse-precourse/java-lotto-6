@@ -3,9 +3,12 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayNameGeneration;
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -18,7 +21,7 @@ class WinningNumbersTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 5);
 
         // when, then
-        assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+        assertThatThrownBy(() -> WinningNumbers.of(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -28,7 +31,7 @@ class WinningNumbersTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6, 7);
 
         // when, then
-        assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+        assertThatThrownBy(() -> WinningNumbers.of(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -39,7 +42,7 @@ class WinningNumbersTest {
 
         // when, then
         assertThatNoException()
-                .isThrownBy(() -> new WinningNumbers(winningNumbers));
+                .isThrownBy(() -> WinningNumbers.of(winningNumbers));
     }
 
     @Test
@@ -48,8 +51,34 @@ class WinningNumbersTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 46);
 
         // when, then
-        assertThatThrownBy(() -> new WinningNumbers(winningNumbers))
+        assertThatThrownBy(() -> WinningNumbers.of(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest(name = "당첨 번호: 1, 2, 3, 4, 5, 6  / 비교 번호 : {arguments}")
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void 당첨_번호에_입력한_값이_포함되어_있다면_true를_반환한다(int number) {
+        // given
+        WinningNumbers winningNumbers = WinningNumbers.of(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        boolean result = winningNumbers.hasDuplicate(number);
+
+        // then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    void 당첨_번호에_입력한_값이_포함되어_있지_않다면_false를_반환한다() {
+        // given
+        WinningNumbers winningNumbers = WinningNumbers.of(List.of(1, 2, 3, 4, 5, 6));
+        int number = 7;
+
+        // when
+        boolean result = winningNumbers.hasDuplicate(number);
+
+        // then
+        assertThat(result).isFalse();
     }
 
 }

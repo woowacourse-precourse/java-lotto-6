@@ -11,11 +11,19 @@ public class WinningNumbers {
 
     private final List<Integer> numbers;
 
-    public WinningNumbers(List<Integer> numbers) {
+    public static WinningNumbers of(List<Integer> numbers) {
+        return new WinningNumbers(numbers);
+    }
+
+    private WinningNumbers(List<Integer> numbers) {
         validateLength(numbers);
         validateRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
+    }
+
+    public boolean hasDuplicate(int number) {
+        return this.numbers.contains(number);
     }
 
     private void validateLength(List<Integer> numbers) {

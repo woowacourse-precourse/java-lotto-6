@@ -28,10 +28,11 @@
   - [ ] 문자열에 중복된 숫자가 포함되어 있으면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
   - [ ] 문자열에 숫자가 아닌 다른 값이 있다면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
   - [ ] 문자열의 숫자 범위가 1~45를 벗어난다면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
-  - [ ] 보너스 번호를 입력 받는다
-    - [ ] 보너스 번호가 당첨 번호에 포함되어 있다면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
-    - [ ] 보너스 번호가 숫자가 아니라면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
-    - [ ] 보너스 번호의 범위가 1~45를 벗어난다면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
+
+- [x] 보너스 번호를 입력 받는다 -> Console에서 0이상 정수 -> 숫자 변경해서 넘겨주기 (01도 1로 반환됨.)
+  - [ ] 보너스 번호가 당첨 번호에 포함되어 있다면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
+  - [ ] 보너스 번호가 숫자가 아니라면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다. -> console
+  - [ ] 보너스 번호의 범위가 1~45를 벗어난다면 IllegalArgumentException를 발생시키고 `[ERROR]`로 시작하는 에러 메세지를 출력하고 다시 입력 받는다.
 
 
 ## 도메인 분석

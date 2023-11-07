@@ -28,6 +28,15 @@ public class Console {
                 .toList();
     }
 
+    public int readBonusNumber() {
+        output.println("보너스 번호를 입력해 주세요.");
+        String value = input.read();
+        validateNull(value);
+        validateType(value);
+
+        return Integer.parseInt(value);
+    }
+
     private void validateNull(String value) {
         if (value == null) {
             throw new IllegalArgumentException();

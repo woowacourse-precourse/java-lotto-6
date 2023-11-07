@@ -9,7 +9,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constants.Error;
-import lotto.constants.Number;
+import lotto.constants.NumberRule;
 import lotto.domain.Lotto;
 import lotto.domain.Seller;
 import org.junit.jupiter.api.DisplayName;
@@ -18,7 +18,7 @@ import org.mockito.MockedStatic;
 
 public class SellerTest {
     private static final String ERROR_MESSAGE_HEADER = Error.ERROR_MESSAGE_HEADER.getMessage();
-    private static final int LOTTO_PRICE = Number.LOTTO_PRICE.getNumber();
+    private static final int LOTTO_PRICE = NumberRule.LOTTO_PRICE.getNumber();
 
     @DisplayName("입력한 구매 금액이 숫자가 아니면 예외가 발생한다.")
     @Test

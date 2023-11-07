@@ -3,16 +3,16 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.Number;
+import lotto.constants.NumberRule;
 import lotto.utils.StringChanger;
 import lotto.utils.Validator;
 
 public class Seller {
-    private static final int LOTTO_PRICE = Number.LOTTO_PRICE.getNumber();
-    private static final int MAX_AMOUNT = Number.MAX_AMOUNT.getNumber();
-    private static final int MIN_LOTTO_NUMBER = Number.MIN_LOTTO_NUMBER.getNumber();
-    private static final int MAX_LOTTO_NUMBER = Number.MAX_LOTTO_NUMBER.getNumber();
-    private static final int COUNT_OF_LOTTO_NUMBERS = Number.COUNT_OF_LOTTO_NUMBERS.getNumber();
+    private static final int LOTTO_PRICE = NumberRule.LOTTO_PRICE.getNumber();
+    private static final int MAX_AMOUNT = NumberRule.MAX_AMOUNT.getNumber();
+    private static final int MIN_LOTTO_NUMBER = NumberRule.MIN_LOTTO_NUMBER.getNumber();
+    private static final int MAX_LOTTO_NUMBER = NumberRule.MAX_LOTTO_NUMBER.getNumber();
+    private static final int COUNT_OF_LOTTO_NUMBERS = NumberRule.COUNT_OF_LOTTO_NUMBERS.getNumber();
     private static final int NOTHING = 0;
 
     private int amount = NOTHING;

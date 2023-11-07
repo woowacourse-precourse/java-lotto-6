@@ -3,13 +3,13 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import lotto.constants.Number;
+import lotto.constants.NumberRule;
 import lotto.utils.Validator;
 
 public class Lotto {
-    private static final int MIN_LOTTO_NUMBER = Number.MIN_LOTTO_NUMBER.getNumber();
-    private static final int MAX_LOTTO_NUMBER = Number.MAX_LOTTO_NUMBER.getNumber();
-    private static final int COUNT_OF_LOTTO_NUMBERS = Number.COUNT_OF_LOTTO_NUMBERS.getNumber();
+    private static final int MIN_LOTTO_NUMBER = NumberRule.MIN_LOTTO_NUMBER.getNumber();
+    private static final int MAX_LOTTO_NUMBER = NumberRule.MAX_LOTTO_NUMBER.getNumber();
+    private static final int COUNT_OF_LOTTO_NUMBERS = NumberRule.COUNT_OF_LOTTO_NUMBERS.getNumber();
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

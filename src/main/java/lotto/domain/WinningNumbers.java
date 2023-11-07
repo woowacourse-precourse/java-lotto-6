@@ -2,13 +2,13 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constants.Number;
+import lotto.constants.NumberRule;
 import lotto.utils.StringChanger;
 import lotto.utils.Validator;
 
 public class WinningNumbers {
-    private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
-    private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
+    private static final int LOTTO_NUMBER_START = NumberRule.MIN_LOTTO_NUMBER.getNumber();
+    private static final int LOTTO_NUMBER_END = NumberRule.MAX_LOTTO_NUMBER.getNumber();
     private static final int NOTHING = 0;
     private final Lotto firstRankLotto;
     private int bonusNumber = NOTHING;

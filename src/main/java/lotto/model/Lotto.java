@@ -37,6 +37,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    public int calculateSameNumberCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
     public List<Integer> getNumbers() {
         return numbers;
     }

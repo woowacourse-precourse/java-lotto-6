@@ -22,7 +22,7 @@ public class Amount {
 
     private void validateInput(String input){
         if(!Pattern.matches(AMOUNT_REGEXP,input)){
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_TYPE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT_TYPE.getMessage());
         }
     }
 

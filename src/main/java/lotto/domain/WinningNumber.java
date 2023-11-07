@@ -24,7 +24,7 @@ public class WinningNumber {
 
     private void validateInput(String input){
         if(!Pattern.matches(LOTTO_NUMBER_REGEXP,input)){
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_TYPE.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_WINNING_TYPE.getMessage());
         }
     }
 

@@ -17,6 +17,15 @@ public class InputValidator {
         }
     }
 
+    public static void validateBonusNumber(String input) {
+        try {
+            validateIsEmpty(input);
+            validateIsDigit(input);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+        }
+    }
+
     private static void validateIsDigit(String input) {
         if(!isDigit(input)) {
             throw new IllegalArgumentException("입력값은 정수이어야 합니다.");

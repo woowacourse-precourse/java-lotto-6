@@ -10,7 +10,7 @@ public class LottoResult {
         initializeResultMap(results);
         for(Lotto playerLotto : lottos){
             Integer countAboutLotto = getCountAboutLotto(lotto, playerLotto);
-            Boolean isMatchBonus = getIsMatchBonus(lotto, bonus);
+            Boolean isMatchBonus = getIsMatchBonus(playerLotto, bonus);
             LottoRanking ranking = LottoRanking.getRanking(countAboutLotto, isMatchBonus);
             results.put(ranking, results.get(ranking)+1);
         }
@@ -27,7 +27,7 @@ public class LottoResult {
         return winningLotto.countMatchedOtherLotto(playerLotto);
     }
 
-    private static Boolean getIsMatchBonus(Lotto winningLotto, Bonus bonus){
-        return winningLotto.isContainBonus(bonus);
+    private static Boolean getIsMatchBonus(Lotto playerLotto, Bonus bonus){
+        return playerLotto.isContainBonus(bonus);
     }
 }

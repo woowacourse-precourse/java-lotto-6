@@ -1,11 +1,20 @@
 package lotto.domain;
 
 import lotto.domain.Lotto;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -25,16 +34,48 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("로또_객체_내_번호_반환_테스트")
     void getNumbers() {
+        // given
+        List<Integer> numbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
+        List<Integer> getNumbers;
+        Lotto lotto = new Lotto(numbers);
+        // when
+        getNumbers = lotto.getNumbers();
+        // then
+        assertThat(getNumbers).isEqualTo(numbers);
     }
 
-    @Test
-    void countMatchedOtherLotto() {
+    @ParameterizedTest
+    @MethodSource("provideLottoNumbers")
+    @DisplayName("해당_객체와_다른_로또_객체_일치_번호_개수_세기_테스트")
+    void countMatchedOtherLotto(List<Integer> target, Integer answerCount) {
+        // given
+        Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        Lotto compTarget = new Lotto(target);
+        // when
+        Integer countMatched = lotto.countMatchedOtherLotto(compTarget);
+        // then
+        assertThat(countMatched).isEqualTo(answerCount);
     }
 
-    @Test
-    void isContainBonus() {
+    @ParameterizedTest
+    @ValueSource(ints = {4,5,6})
+    @DisplayName("해당_객체_번호와_보너스_번호_일치_여부_테스트")
+    void isContainBonus(Integer answer) {
+        // given
+        Lotto winningLotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        Lotto playerLotto = new Lotto(Arrays.asList(7,8,9,10,11,))
+        Bonus bonus = new Bonus(lotto.getNumbers(), )
+        // when
+        // then
     }
 
-    // 아래에 추가 테스트 작성 가능
+    private static Stream<Arguments> provideLottoNumbers(){
+        return Stream.of(
+                Arguments.of(Arrays.asList(1,2,3,4,5,6), 6),
+                Arguments.of(Arrays.asList(5,15,17,23,24,44),1),
+                Arguments.of(Arrays.asList(1,3,4,33,35,45),3)
+        );
+    }
 }

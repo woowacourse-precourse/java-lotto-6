@@ -42,9 +42,7 @@ public class Result {
     public List<String> fetchMatchResult() {
         List<Ranks> ranks = sortRanks();
         List<String> results = new ArrayList<>();
-        ranks.forEach(rank -> {
-            results.add(rank.getPresentPrize() + " - " + rankResult.get(rank) + "개");
-        });
+        ranks.forEach(rank -> results.add(rank.getPresentPrize() + " - " + rankResult.get(rank) + "개"));
         return results;
     }
 

@@ -18,9 +18,9 @@ public class LottoStore {
     private long lottoAmount;
     private List<Lotto> lottoPapers;
 
-    public void getMoney(final long moneyInput) throws IllegalArgumentException{
+    public void getMoney(final long moneyInput) {
+        validateChargedMoney(moneyInput);
         this.chargeMoney(moneyInput);
-        validateChargedMoney();
     }
 
 
@@ -28,11 +28,11 @@ public class LottoStore {
         this.chargedMoney = moneyInput;
     }
 
-    public void validateChargedMoney() {
-        if (this.chargedMoney < MIN_PRICE) {
+    public void validateChargedMoney(final long moneyInput) {
+        if (moneyInput < MIN_PRICE) {
             throw new IllegalArgumentException(ErrorMessage.LESS_THAN_THOUSAND.errorMessage);
         }
-        if (this.chargedMoney % LOTTO_PRICE != 0) {
+        if (moneyInput % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.DIVIDED_DISABLE.errorMessage);
         }
     }

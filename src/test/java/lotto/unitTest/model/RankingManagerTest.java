@@ -93,9 +93,9 @@ class RankingManagerTest {
 
     @ParameterizedTest
     @CsvSource(value = {
-            "7,8,9,10,11,12:1:-100.00",
-            "1,2,3,4,5,6:7:199999900.00",
-            "1,2,3,4,5,7:6:2999900.00"
+            "7,8,9,10,11,12:1:0.0",
+            "1,2,3,4,5,6:7:200000000.0",
+            "1,2,3,4,5,7:6:3000000.0"
     }, delimiter = ':')
     void 당첨로또의_수익률을_계산한다(String inputWinningNumbers, int bonusNumber, String earningsRate) {
         //given

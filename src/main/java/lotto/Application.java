@@ -9,25 +9,9 @@ import lotto.ui.PrintWinningResultUI;
 
 public class Application {
 
-    public static void main(String[] args) {
-
+    private static Purchase getPurchaseAmount() {
         GetPurchaseUI getPurchaseUI = new GetPurchaseUI();
-        PrintLottoUI printLottoUI = new PrintLottoUI();
-        GetWinningNumbersUI winningNumbersUI = new GetWinningNumbersUI();
-        PrintWinningResultUI winningResultUI = new PrintWinningResultUI();
-
         Purchase purchase;
-
-        int lottoCount;
-
-        List<Lotto> lottos = new ArrayList<>();
-
-        Lotto winningLotto;
-        int bonusNumber;
-
-        List<Integer> matchingResult;
-
-        double rateOfReturn;
 
         while (true) {
             try {
@@ -38,7 +22,16 @@ public class Application {
             }
         }
 
-        lottoCount = purchase.getPurchaseAmount() / 1000;
+        return purchase;
+    }
+
+    private static int getLottoCount(Purchase purchase) {
+        return purchase.getPurchaseAmount() / 1000;
+    }
+
+    private static List<Lotto> makeLottos(int lottoCount) {
+        PrintLottoUI printLottoUI = new PrintLottoUI();
+        List<Lotto> lottos = new ArrayList<>();
 
         printLottoUI.printLottoCount(lottoCount);
 
@@ -47,6 +40,12 @@ public class Application {
             lottos.add(makeLotto.makeLotto());
             printLottoUI.printLotto(lottos.get(i).getLotto());
         }
+
+        return lottos;
+    }
+
+    private static Lotto getWinningLotto(GetWinningNumbersUI winningNumbersUI) {
+        Lotto winningLotto;
 
         while (true) {
             try {
@@ -57,6 +56,12 @@ public class Application {
             }
         }
 
+        return winningLotto;
+    }
+
+    private static int getBonusNumber(GetWinningNumbersUI winningNumbersUI, Lotto winningLotto) {
+        int bonusNumber;
+
         while (true) {
             try {
                 bonusNumber = winningNumbersUI.getBonusNumbers(winningLotto);
@@ -66,13 +71,44 @@ public class Application {
             }
         }
 
-        Result result = new Result();
-        matchingResult = result.calculateResult(lottos, winningLotto, bonusNumber);
+        return bonusNumber;
+    }
+
+    private static List<Integer> getMatchingResult(Result result,
+                                                   List<Lotto> lottos,
+                                                   Lotto winningLotto,
+                                                   int bonusNumber) {
+        return result.calculateResult(lottos, winningLotto, bonusNumber);
+    }
+
+    private static double getRateOfReturn(Result result,
+                                          List<Integer> matchingResult,
+                                          Purchase purchase) {
+        return result.calculateRateOfReturn(matchingResult, purchase.getPurchaseAmount());
+    }
+
+    private static void printResult(List<Integer> matchingResult, double rateOfReturn) {
+        PrintWinningResultUI winningResultUI = new PrintWinningResultUI();
 
         winningResultUI.printWinningResultUI(matchingResult);
-
-        rateOfReturn = result.calculateRateOfReturn(matchingResult, purchase.getPurchaseAmount());
-
         winningResultUI.printRateOfReturn(rateOfReturn);
+    }
+
+
+    public static void main(String[] args) {
+
+        Purchase purchase = getPurchaseAmount();
+
+        int lottoCount = getLottoCount(purchase);
+        List<Lotto> lottos = makeLottos(lottoCount);
+
+        GetWinningNumbersUI winningNumbersUI = new GetWinningNumbersUI();
+        Lotto winningLotto = getWinningLotto(winningNumbersUI);
+        int bonusNumber = getBonusNumber(winningNumbersUI, winningLotto);
+
+        Result result = new Result();
+        List<Integer> matchingResult = getMatchingResult(result,lottos,winningLotto,bonusNumber);
+        double rateOfReturn = getRateOfReturn(result, matchingResult, purchase);
+        printResult(matchingResult, rateOfReturn);
     }
 }

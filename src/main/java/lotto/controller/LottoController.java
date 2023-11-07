@@ -23,16 +23,14 @@ public class LottoController {
         Lotto winningLotto = LottoParser.parse(winningNumbers);
         String bonusNumber = LottoView.requestInputBonusNumber();
         BonusNumber bonus = BonusNumberParser.parse(winningLotto, bonusNumber);
-
         LottoMatchNumberDTO lottoMatchNumberDTO = checkMatchingCount(randomLottos, bonus,winningLotto);
-
-        LottoResult lottoResult = createLottoResult(randomLottos, winningLotto, bonus,lottoMatchNumberDTO);
+        LottoResult lottoResult = createLottoResult(lottoMatchNumberDTO);
         LottoView.printResultMessages();
         FinalResult finalResult = createFinalResult(lottoResult);
         LottoView.printResultMessage(finalResult,Integer.parseInt(price));
     }
-    private static LottoResult createLottoResult(Lottos randomLottos, Lotto winningLotto, BonusNumber bonus,LottoMatchNumberDTO lottoMatchNumberDTO) {
-        return new LottoResult(randomLottos, winningLotto, bonus,lottoMatchNumberDTO);
+    private static LottoResult createLottoResult(LottoMatchNumberDTO lottoMatchNumberDTO) {
+        return new LottoResult(lottoMatchNumberDTO);
     }
     private static FinalResult createFinalResult(LottoResult lottoResult) {
         return new FinalResult(lottoResult);

@@ -57,7 +57,7 @@ public class StringClassTest {
     }
 
     @Nested
-    @DisplayName("asdf")
+    @DisplayName("문자열 CharAt 테스트")
     class CharAtTest {
         @Test
         @DisplayName("index 순서에 해당하는 character를 반환한다.")

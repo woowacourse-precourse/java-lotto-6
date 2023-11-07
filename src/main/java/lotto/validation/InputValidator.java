@@ -36,7 +36,7 @@ public class InputValidator {
   }
 
   private boolean isMatchNumbers(String[] inputNumbers) {
-    return !Arrays.stream(inputNumbers).allMatch(this::isMatchNumber);
+    return Arrays.stream(inputNumbers).allMatch(this::isMatchNumber);
   }
 
   private boolean isEmpty(String input) {

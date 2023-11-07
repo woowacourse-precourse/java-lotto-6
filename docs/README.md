@@ -6,7 +6,7 @@
 ##  구현할 기능 목록
 
 ### Enum 적용 
-Error 메시지, 등수별 상금,
+Error 메시지, 등수별 상금
 
 ### 입력
 - [ ] 구입할 금액을 입력
@@ -33,8 +33,8 @@ Error 메시지, 등수별 상금,
 
 ### 로또
 - [x] list에 6개의 숫자가 들어왔는지를 검증 - 예외처리 IllegalArgumentException
-- [ ] list에 1-45가 아닌 숫자 혹은 null이 들어있는지 검증 - 예외처리 IllegalArgumentException
-- [ ] 중복된 숫자가 list에 들어있는지 검증 - 예외처리 IllegalArgumentException
+- [x] list에 1-45가 아닌 숫자가 들어있는지 검증 - 예외처리 IllegalArgumentException
+- [x] 중복된 숫자가 list에 들어있는지 검증 - 예외처리 IllegalArgumentException
 
 ### 출력
 - [ ] 발행한 로또 수량 및 번호를 출력, 번호는 오름차순으로 정렬하여 보여준다.

@@ -3,12 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
-import camp.nextstep.edu.missionutils.Console;
-import lotto.Application;
 import lotto.validation.ErrorMessage;
 
 enum Index {
@@ -40,16 +35,11 @@ enum Index {
 
 
 public class Lotto {
-    private static List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers)throws IllegalArgumentException {
     	validate(numbers);
         this.numbers = numbers;
-    }
-    
-    public void returnNumbers() {
-    	System.out.println(this.numbers);
-    	//return numbers;
     }
     
     private void validate(List<Integer> numbers) {
@@ -83,7 +73,7 @@ public class Lotto {
     }
     
     public void printResult(List<Integer> result) {
-    	System.out.println("당첨 통계"
+    	System.out.println("\n당첨 통계"
     			+"\n---"
     			+ "\n3개 일치 (5,000원) - "+ result.get(0) + "개"
     			+ "\n4개 일치 (50,000원) - "+ result.get(1) + "개"

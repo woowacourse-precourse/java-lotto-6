@@ -17,14 +17,14 @@ public class LottoControllerFactory {
         OutputView outputView = new OutputView();
         RandomLottoNumberGenerator randomLottoNumberGenerator = new RandomLottoNumberGenerator();
         LottoService lottoService = new LottoService(randomLottoNumberGenerator);
-        LottoResultCalculator resultCalculator = new LottoResultCalculator();
+        LottoResultCalculator lottoResultCalculator = new LottoResultCalculator();
         ProfitCalculator profitCalculator = new ProfitCalculator();
 
         return new LottoController(
                 inputView,
                 outputView,
                 lottoService,
-                resultCalculator,
+                lottoResultCalculator,
                 profitCalculator
         );
     }

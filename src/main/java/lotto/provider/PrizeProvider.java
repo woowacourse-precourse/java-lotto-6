@@ -37,21 +37,11 @@ public class PrizeProvider {
     }
 
     private Winnings checkWinnings(int correctCnt, boolean isBonusCorrect) {
-        if (correctCnt == 6) {
-            return Winnings.FIRST;
-        }
-        if (correctCnt == 5 && isBonusCorrect) {
-            return Winnings.SECOND;
-        }
-        if (correctCnt == 5) {
-            return Winnings.THIRD;
-        }
-        if (correctCnt == 4) {
-            return Winnings.FOURTH;
-        }
-        if (correctCnt == 3) {
-            return Winnings.FIFTH;
-        }
+        if (correctCnt == 6) return Winnings.FIRST;
+        if (correctCnt == 5 && isBonusCorrect) return Winnings.SECOND;
+        if (correctCnt == 5) return Winnings.THIRD;
+        if (correctCnt == 4) return Winnings.FOURTH;
+        if (correctCnt == 3) return Winnings.FIFTH;
         return Winnings.NOTHING;
     }
 

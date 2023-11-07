@@ -46,6 +46,8 @@ public class ConsoleView implements View {
 
     @Override
     public void printScoreDetails(List rankings) {
+        out("당첨 통계");
+        out("---");
         out("3개 일치 (5,000원) - " + Ranking.getCount(rankings, Ranking.FIFTH) + "개");
         out("4개 일치 (50,000원) - " + Ranking.getCount(rankings, Ranking.FORTH) + "개");
         out("5개 일치 (1,500,000원) - " + Ranking.getCount(rankings, Ranking.THIRD) + "개");
@@ -55,7 +57,7 @@ public class ConsoleView implements View {
 
     @Override
     public void printTotalReturn(float totalReturn) {
-        out("총 수익률은 " + String.format("%.2f", totalReturn) +"%입니다.");
+        out("총 수익률은 " + String.format("%.1f", totalReturn) +"%입니다.");
     }
 
     @Override

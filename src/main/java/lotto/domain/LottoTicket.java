@@ -4,11 +4,11 @@ import java.util.List;
 
 import static lotto.domain.NumberConverter.convertNumberToLottoNumber;
 
-public class Lotto {
+public class LottoTicket {
     public static final int MAX_NUMBER_OF_NUMBERS = 6;
     private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
+    public LottoTicket(List<Integer> numbers) {
         validateNumbersSize(numbers);
         validateDuplicateNumbers(numbers);
         this.lottoNumbers = convertNumberToLottoNumber(numbers);

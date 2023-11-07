@@ -1,4 +1,4 @@
-package lotto.Io.input;
+package lotto.input;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 

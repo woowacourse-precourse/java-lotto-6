@@ -1,9 +1,9 @@
 package lotto.exception;
 
-public class WinningNumberDuplicationException extends RuntimeException {
+public class WinningNumberDuplicateException extends RuntimeException {
 private static final String MESSAGE = "[ERROR] 당첨 번호에 중복된 숫자가 있습니다.";
 
-    public WinningNumberDuplicationException() {
+    public WinningNumberDuplicateException() {
         super(MESSAGE);
     }
 }

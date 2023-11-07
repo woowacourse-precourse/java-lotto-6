@@ -8,15 +8,15 @@ import lotto.exception.InvalidPurchaseAmountException;
 import lotto.exception.LottoNumberRangeException;
 import lotto.exception.NotIntegerException;
 import lotto.exception.PurchaseAmountRangeException;
-import lotto.exception.WinningNumberDuplicationException;
+import lotto.exception.WinningNumberDuplicateException;
 import lotto.exception.WinningNumberSizeException;
 
 public class InputValidator {
     public static void validatePurchaseAmount(String input) {
         validateInteger(input);
         int purchaseAmount = Integer.parseInt(input);
-        validateDividedBy1000(purchaseAmount);
         validateAmountLimit(purchaseAmount);
+        validateDividedBy1000(purchaseAmount);
     }
 
     public static void validateWinningNumbersFormat(String input) {
@@ -80,7 +80,7 @@ public class InputValidator {
     }
     private static void validateDuplicateNumber(List<Integer> numbers) {
         if(numbers.size() != numbers.stream().distinct().count()) {
-            throw new WinningNumberDuplicationException();
+            throw new WinningNumberDuplicateException();
         }
     }
 

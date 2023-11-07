@@ -17,8 +17,24 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    void createMoney_나누어_떨어지지_않는다(){
-        assertThatThrownBy(() -> new LottoMoney("83290"))
+    @DisplayName("로또 번호가 중복되면 예외를 발생한다.")
+    @Test
+    void validateDuplicate(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 범위보다 작다면 예외를 발생한다.")
+    @Test
+    void validateRangeLow(){
+        assertThatThrownBy(() -> new Lotto(List.of(0,2,3,4,5,6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호가 범위보다 크다면 예외를 발생한다.")
+    @Test
+    void validateRangeHigh(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

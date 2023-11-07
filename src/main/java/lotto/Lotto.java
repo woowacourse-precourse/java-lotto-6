@@ -3,6 +3,7 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.enums.ErrorMessage;
+import lotto.enums.LottoConfig;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,7 +11,17 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
+        validateOutOfRange(numbers);
         this.numbers = numbers;
+    }
+
+    private void validateOutOfRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < LottoConfig.LOTTO_MINIMUM_NUMBER.getValue()
+                    || LottoConfig.LOTTO_MAXIMUM_NUMBER.getValue() < number) {
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_ERROR.getErrorMessage());
+            }
+        }
     }
 
     private void validateDuplicate(List<Integer> numbers) {

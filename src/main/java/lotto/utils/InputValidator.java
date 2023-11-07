@@ -68,7 +68,7 @@ public class InputValidator {
             int number = Integer.parseInt(String.valueOf(replaceNumberInput.charAt(i)));
             if (number < LottoConfig.LOTTO_MINIMUM_NUMBER.getValue()
                     || LottoConfig.LOTTO_MAXIMUM_NUMBER.getValue() < number) {
-                throw new IllegalArgumentException(ErrorMessage.JACKPOT_NUMBER_OUT_OF_RANGE_ERROR.getErrorMessage());
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE_ERROR.getErrorMessage());
             }
         }
     }

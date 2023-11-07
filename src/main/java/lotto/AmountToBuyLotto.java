@@ -17,8 +17,8 @@ public class AmountToBuyLotto {
         input = input.trim();
         validateNumberFormat(input);
         validateRange(input);
-        validateDivisibilityByThousand(input);
         isZero(input);
+        validateDivisibilityByThousand(input);
         this.amount = Integer.parseInt(input);
 
     }

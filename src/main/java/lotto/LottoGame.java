@@ -35,6 +35,10 @@ public class LottoGame {
             OutputView.print(Message.LINE_BREAK);
         }
 
+        OutputView.print(Message.LINE_BREAK);
+        OutputView.print(Message.WINNING_NUMBER_REQUEST);
+        OutputView.print(Message.LINE_BREAK);
+        String input = InputView.read();
 
     }
 
@@ -49,6 +53,12 @@ public class LottoGame {
                 .map(Integer::parseInt)
                 .anyMatch(number -> number % 1000 != 0)) {
             throw new IllegalArgumentException("[ERROR] 로또 한장이 1000원이므로 구매금액은 1000원 단위로 입력해야 합니다.");
+        }
+    }
+
+    public void validateInputRequirement(String input) {
+        if (!input.matches("^[0-9]+(,[0-9]+)*$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자와 쉼표(,)만 입력하세요");
         }
     }
 }

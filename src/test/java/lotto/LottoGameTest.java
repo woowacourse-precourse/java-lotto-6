@@ -21,4 +21,12 @@ public class LottoGameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 한장이 1000원이므로 구매금액은 1000원 단위로 입력해야 합니다.");
     }
+
+    @DisplayName("입력 값이 숫자와 쉼표로만 되어 있지 않으면 예외가 발생한다")
+    @Test
+    void createNotDigitComma() {
+        assertThatThrownBy(() -> new LottoGame().validateInputRequirement("1,2,,"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 숫자와 쉼표(,)만 입력하세요");
+    }
 }

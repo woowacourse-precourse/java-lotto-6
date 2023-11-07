@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import lotto.Converter;
 import lotto.constant.ExceptionMessage;
@@ -87,11 +88,12 @@ public class LottoController {
         }
     }
 
-    // TODO : 오름차순으로 받기 or 받은 것 오름차순으로 바꿔주기
     List<Integer> getWinningNumbers() throws IllegalArgumentException {
         OutputHandler.requireWinningNumbers();
         String winningNumbersInput = InputHandler.getInput();
         List<Integer> winningNumbers = Converter.winningNumbers(winningNumbersInput);
+        winningNumbers.sort(Comparator.naturalOrder());
+
         if (winningNumbers.size() != Number.LOTTO_NUM_COUNT.getNumber()) {
             OutputHandler.requireSixNumbers();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_SIX_NUMBERS.getMessage());

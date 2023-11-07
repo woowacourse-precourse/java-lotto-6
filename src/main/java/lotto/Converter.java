@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.constant.ExceptionMessage;
 import lotto.view.OutputHandler;
 
@@ -32,7 +33,7 @@ public class Converter {
             String[] numbers = numbersInput.split(",");
             List<Integer> winningNumbers = Arrays.stream(numbers)
                     .map(Integer::parseInt)
-                    .toList();
+                    .collect(Collectors.toList());
             return winningNumbers;
         } catch (NullPointerException e) {
             OutputHandler.requireNonemptyInput();

@@ -8,6 +8,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Application {
+    final static int LOTTO_PRICE = 1000;
+    final static int LOTTO_NUMBER_COUNT = 6;
+    final static int LOTTO_RANGE_START = 1;
+    final static int LOTTO_RANGE_END = 45;
+
     public static void main(String[] args) {
         int money = getInputMoney();
         int numberOfTicket = unsafeDivideBy1000(money);
@@ -45,18 +50,17 @@ public class Application {
     }
 
     private static void validateFirstPrize(List<String> numString) {
-        final int FIRST_PRIZE_NUMBER_COUNT = 6;
-        if (numString.size() != FIRST_PRIZE_NUMBER_COUNT) {
+        if (numString.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
-        for (int i = 0; i < FIRST_PRIZE_NUMBER_COUNT; ++i) {
+        for (int i = 0; i < LOTTO_NUMBER_COUNT; ++i) {
             int num = unsafeString2Int(numString.get(i));
             validateNumberRange(num);
         }
     }
 
     private static void validateNumberRange(int num) {
-        if (num < 1 || 45 < num) {
+        if (num < LOTTO_RANGE_START || LOTTO_RANGE_END < num) {
             throw new IllegalArgumentException();
         }
     }
@@ -95,7 +99,8 @@ public class Application {
     }
 
     public static Lotto makeLotto() {
-        List<Integer> num = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> num = Randoms.pickUniqueNumbersInRange(LOTTO_RANGE_START, LOTTO_RANGE_END,
+                LOTTO_NUMBER_COUNT);
         Collections.sort(num);
         return new Lotto(num);
     }
@@ -117,11 +122,11 @@ public class Application {
     }
 
     public static int unsafeDivideBy1000(int num) {
-        if (num % 1000 != 0) {
+        if (num % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();
         }
 
-        return num / 1000;
+        return num / LOTTO_PRICE;
     }
 
 }

@@ -57,6 +57,20 @@ public class LottoTest {
     }
 
     @Test
+    public void 문자로_로또생성시_불필요한_공백제거() {
+        // Given
+        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        String unrefinedNumbers = " 1, 2, 3  , 4, 5, 6 ";
+
+        // When
+        Lotto lotto = Lotto.create(unrefinedNumbers);
+
+        // Then
+        numbers.stream()
+                .forEach(number -> assertTrue(lotto.doesContain(number)));
+    }
+
+    @Test
     public void 로또에_값이_들어있는지() {
         // Given
         Lotto lotto = Lotto.create("1,2,3,4,5,6");

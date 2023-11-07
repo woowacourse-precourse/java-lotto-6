@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.test.Assertions;
 import camp.nextstep.edu.missionutils.test.NsTest;
 import lotto.Application;
 import lotto.system.ExceptionMessage;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -39,6 +40,7 @@ class BonusNumberVerifierTest extends NsTest {
 
         private final Verifier bonusNumberVerifier = new BonusNumberVerifier();
         @ParameterizedTest
+        @DisplayName("checkNumeric 메서드 테스트")
         @CsvSource(value = {"13f","183j33", "10k00", "k832", "0/1?"})
         void 숫자가아닌_보너스번호가_주어진경우(String input) {
             assertThatThrownBy(() -> bonusNumberVerifier.check(input))
@@ -46,6 +48,7 @@ class BonusNumberVerifierTest extends NsTest {
                     .hasMessageContaining(ExceptionMessage.IS_NOT_NUMERIC);
         }
         @ParameterizedTest
+        @DisplayName("checkTypeRange 메세드 테스트")
         @ValueSource(strings = {
                 "-9223372036854775809",
                 "9223372036854775808",
@@ -57,6 +60,7 @@ class BonusNumberVerifierTest extends NsTest {
                     .hasMessageContaining(ExceptionMessage.NUMBER_OUT_OF_TYPE_RANGE);
         }
         @ParameterizedTest
+        @DisplayName("checkRange 메서드 테스트")
         @MethodSource("parameterProvider")
         void 보너스번호가_1부터45사이의_숫자가_아닌경우(String input) {
             assertThatThrownBy(() -> bonusNumberVerifier.check(input))

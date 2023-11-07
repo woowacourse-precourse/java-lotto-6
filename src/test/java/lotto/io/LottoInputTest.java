@@ -65,4 +65,13 @@ class LottoInputTest {
 
         assertEquals(1, lottoInput.receiveBonus());
     }
+
+    @Test
+    void 보너스_번호_입력시_숫자가_아닐경우_예외를_던진다() {
+        LottoInput lottoInput = new LottoInput(() -> "a");
+
+        assertThatThrownBy(lottoInput::receiveBonus)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(IoException.ERROR.getMessage());
+    }
 }

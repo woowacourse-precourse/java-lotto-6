@@ -19,7 +19,7 @@ public enum LottoCount {
         this.price = price;
     }
 
-    public static String matchPriceFormatter(int count) {
+    public static String matchingPrice(int count) {
         String result = LOTTO_COUNT_START.price;
         if (count == LOTTO_COUNT_START_FOUR.count) {
             result = LOTTO_COUNT_START_FOUR.price;

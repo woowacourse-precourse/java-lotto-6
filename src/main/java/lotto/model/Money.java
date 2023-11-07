@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.config.ErrorMessage;
 import lotto.config.LottoConfig;
 import lotto.util.Validator;
 
@@ -23,7 +24,8 @@ public class Money {
     }
     private static void validatePurchaseAmount(int amount) {
         if (amount <= 0 || amount % LottoConfig.LOTTO_PRICE.getValue() != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT
+                    .getFormattedMessage(LottoConfig.LOTTO_PRICE.getValue()));
         }
     }
 

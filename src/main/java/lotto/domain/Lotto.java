@@ -49,6 +49,15 @@ public class Lotto {
         return lottos;
     }
 
+    public Rank checkResult(Winning winning, Bonus bonus) {
+        int matchCount = (int) numbers.stream()
+                .filter(winning.getNumbers()::contains)
+                .count();
+        boolean matchBonus = numbers.contains(bonus.getBonusNumber());
+
+        return Rank.getRank(matchCount, matchBonus);
+    }
+
     public String toSortedString() {
         Collections.sort(numbers);
         return numbers.toString();

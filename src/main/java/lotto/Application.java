@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.domain.Tickets;
 import lotto.domain.Winning;
 import lotto.view.View;
@@ -18,7 +19,12 @@ public class Application {
         Winning winning = getValidWinning();
 
         Bonus bonus = getValidBonus(winning);
-        // 로또 당첨 확인
+
+        List<Rank> results = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            results.add(lotto.checkResult(winning, bonus));
+        }
+
         // 당첨 결과와 수익률 출력
     }
 

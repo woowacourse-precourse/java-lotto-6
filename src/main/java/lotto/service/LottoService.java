@@ -4,60 +4,49 @@ import lotto.domain.Lotto;
 import lotto.utils.LottoRank;
 import lotto.domain.Lottos;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 public class LottoService {
-    private final Map<LottoRank, Integer> totalPrize;
+    private final TotalPrize totalPrize;
 
     public LottoService() {
-        this.totalPrize = generateTotalPrize();
-    }
-
-    private Map<LottoRank, Integer> generateTotalPrize(){
-        Map<LottoRank, Integer> totalPrize = new LinkedHashMap<>();
-        for(LottoRank result: LottoRank.values()){
-            totalPrize.put(result, 0);
-        }
-        return totalPrize;
+        this.totalPrize = new TotalPrize();
     }
 
     public void calculrateResult(Lottos lottos, Lotto winningLotto, int bonus) {
-        for(Lotto userLotto : lottos.getLottos()){
+        for (Lotto userLotto : lottos.getLottos()) {
             int matchedNumber = userLotto.getMatchedNumber(winningLotto);
-            if(matchedNumber < LottoRank.FIFTH.getMatchedNumber()) continue;
-            if(matchedNumber == LottoRank.FIRST.getMatchedNumber()){
-                totalPrize.put(LottoRank.FIRST, totalPrize.get(LottoRank.FIRST)+1);
+            if (matchedNumber < LottoRank.FIFTH.getMatchedNumber()) continue;
+            if (matchedNumber == LottoRank.FIRST.getMatchedNumber()) {
+                totalPrize.increasePrize(LottoRank.FIRST);
                 continue;
             }
-            if(matchedNumber == LottoRank.FOURTH.getMatchedNumber()){
-                totalPrize.put(LottoRank.FOURTH, totalPrize.get(LottoRank.FOURTH)+1);
+            if (matchedNumber == LottoRank.FOURTH.getMatchedNumber()) {
+                totalPrize.increasePrize(LottoRank.FOURTH);
                 continue;
             }
-            if(matchedNumber == LottoRank.FIFTH.getMatchedNumber()){
-                totalPrize.put(LottoRank.FIFTH, totalPrize.get(LottoRank.FIFTH)+1);
+            if (matchedNumber == LottoRank.FIFTH.getMatchedNumber()) {
+                totalPrize.increasePrize(LottoRank.FIFTH);
                 continue;
             }
             int unmatchedNumber = userLotto.getUnmatchedNumber(winningLotto);
-            if(unmatchedNumber == bonus) {
-                totalPrize.put(LottoRank.SECOND, totalPrize.get(LottoRank.SECOND)+1);
+            if (unmatchedNumber == bonus) {
+                totalPrize.increasePrize(LottoRank.SECOND);
                 continue;
             }
-            totalPrize.put(LottoRank.THIRD, totalPrize.get(LottoRank.THIRD)+1);
+            totalPrize.increasePrize(LottoRank.THIRD);
         }
     }
 
-    public String getFinalPrize(long money){
+    public String getFinalPrize(long money) {
         StringBuilder sb = new StringBuilder();
         int prize = 0;
-        for(LottoRank lottoResult:totalPrize.keySet()){
-            int count = totalPrize.get(lottoResult);
-            sb.append(lottoResult.getResult())
-                    .append(String.format("%d", count)+"개\n");
-            if(count>0) prize+= lottoResult.getPrize();
+        for (LottoRank rank : LottoRank.values()) {
+            int count = totalPrize.getPrizeCount(rank);
+            sb.append(rank.getResult())
+                    .append(String.format("%d", count) + "개\n");
+            if (count > 0) prize += rank.getPrize()*count;
         }
-        double rate = prize/(double)money*100;
-        sb.append("총 수익률은 "+String.format("%.1f",rate)+"%입니다.");
+        double rate = prize / (double) money * 100;
+        sb.append("총 수익률은 " + String.format("%.1f", rate) + "%입니다.");
         return sb.toString();
     }
 }

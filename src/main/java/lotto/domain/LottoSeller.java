@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.domain.lotto.Lottos;
 import lotto.util.LottoConstants;
 
 public class LottoSeller {

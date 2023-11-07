@@ -1,6 +1,8 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.domain.NumberGenerator;
+import lotto.domain.lotto.Lotto;
 
 public class LottoFactory {
     public static Lotto createLotto() {

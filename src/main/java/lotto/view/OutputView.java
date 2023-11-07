@@ -3,8 +3,8 @@ package lotto.view;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
-import lotto.domain.Prize;
-import lotto.domain.WinningDetails;
+import lotto.domain.prize.Prize;
+import lotto.domain.prize.WinningDetails;
 
 public class OutputView {
     private static final String LOTTO_AMOUNT_MESSAGE = "%d개를 구매했습니다.";

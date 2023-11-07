@@ -2,6 +2,8 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import lotto.domain.prize.Prize;
+import lotto.domain.prize.WinningDetails;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

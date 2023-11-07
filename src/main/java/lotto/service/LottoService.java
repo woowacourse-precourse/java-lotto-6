@@ -3,9 +3,9 @@ package lotto.service;
 import java.util.List;
 import lotto.domain.LottoManager;
 import lotto.domain.LottoSeller;
-import lotto.domain.Lottos;
+import lotto.domain.lotto.Lottos;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningDetails;
+import lotto.domain.prize.WinningDetails;
 
 public class LottoService {
     private final LottoManager lottoManager;

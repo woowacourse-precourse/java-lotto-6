@@ -23,6 +23,8 @@ public class LottoGame {
 
 		WinningRank.printResult(rankingList);
 
+		Profit.calculate(rankingList, usermoney);
+
 	}
 
 	private static void printLottocount(int lottoCount) {

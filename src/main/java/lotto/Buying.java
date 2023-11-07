@@ -1,19 +1,19 @@
 package lotto;
 
 public class Buying {
-    private Integer buyingPrice;
+    private Integer price;
 
     public Buying(String readLine) {
-        Integer buyingPrice = validate(readLine);
-        this.buyingPrice = buyingPrice;
+        Integer price = validate(readLine);
+        this.price = price;
     }
 
-    public Integer getBuyingPrice() {
-        return this.buyingPrice;
+    public Integer getPrice() {
+        return this.price;
     }
 
     public Integer getBuyingCount() {
-        return this.buyingPrice / 1000;
+        return this.price / 1000;
     }
 
     private Integer validate(String readLine) {

@@ -135,7 +135,7 @@ public class Game {
     }
 
     private double calculateRateOfReturn() {
-        double rateOfReturn = ((double) result.getWinningPrice() / buying.getBuyingPrice()) * 100;
+        double rateOfReturn = ((double) result.getWinningPrice() / buying.getPrice()) * 100;
         double refinedRateOfReturn = (double) Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
         return refinedRateOfReturn;
     }

@@ -1,16 +1,10 @@
 package lotto.domain;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 public class ExceptionHandler {
 
     private static final int ZERO = 0;
     private static final int SINGLE_LOTTO_TICKET_PRICE = 1000;
     private static final String NULL = "";
-    private static final int START_LOTTO_NUMBER = 1;
-    private static final int END_LOTTO_NUMBER = 45;
 
     private ExceptionMessage exceptionMessage;
 

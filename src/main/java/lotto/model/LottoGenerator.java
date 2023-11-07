@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGenerator {
 
@@ -14,6 +15,8 @@ public class LottoGenerator {
         Integer lottoCount = calculateLottoCount(lottoMoney);
 
         List<Lotto> lottoTickets = generateLottoTickets(lottoCount);
+
+        OutputView.showLottoTickets(lottoTickets);
         return new LottoBundle(lottoTickets);
     }
 

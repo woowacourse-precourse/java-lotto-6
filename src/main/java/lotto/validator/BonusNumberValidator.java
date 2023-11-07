@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import static lotto.validator.constants.ExceptionMessage.*;
+import static lotto.validator.constants.Pattern.NUMERIC;
 
 import lotto.model.constans.LottoSetting;
 
@@ -12,14 +13,9 @@ public class BonusNumberValidator implements Validator {
     }
 
     private void checkDigit(String bonusNumber) {
-        if (isNotDigit(bonusNumber)) {
+        if (!bonusNumber.matches(NUMERIC.pattern())) {
             throw new IllegalArgumentException(NOT_NUMERIC_ERROR.message());
         }
-    }
-
-    private boolean isNotDigit(String bonusNumber) {
-        return !bonusNumber.chars()
-                .allMatch(Character::isDigit);
     }
 
     private void checkValidRangeNumber(String bonusNumber) {

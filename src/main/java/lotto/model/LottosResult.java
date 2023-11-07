@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.security.Key;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;

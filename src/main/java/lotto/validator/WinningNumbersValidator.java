@@ -31,7 +31,7 @@ public class WinningNumbersValidator implements Validator {
     }
 
     private void isInvalidSizeWinningNumbers(List<Integer> winningNumbers) {
-        if(winningNumbers.size() != WINNING_NUMBER_SIZE.value()) {
+        if (winningNumbers.size() != WINNING_NUMBER_SIZE.value()) {
             throw new IllegalArgumentException(WINNING_NUMBERS_SIZE_ERROR.message());
         }
     }

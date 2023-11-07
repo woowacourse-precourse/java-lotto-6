@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import static lotto.validator.constants.Criteria.*;
+import static lotto.validator.constants.InputSetting.*;
 import static lotto.validator.constants.ExceptionMessage.*;
 import static lotto.validator.constants.Pattern.*;
 
@@ -20,14 +20,14 @@ public class PayAmountValidator implements Validator {
     }
 
     private void isInvalidDigits(String payAmount) {
-        if (payAmount.length() > MAX_NUMBER_DIGIT.criteria()) {
-            throw new IllegalArgumentException(PAY_AMOUNT_DIGIT_EROOR.message());
+        if (payAmount.length() > MAX_NUMBER_DIGIT.value()) {
+            throw new IllegalArgumentException(PAY_AMOUNT_DIGIT_ERROR.message());
         }
     }
 
     private void isInvalidRange(String payAmount) {
         long amount = Long.parseLong(payAmount);
-        if (amount > MAX_PAY_AMOUNT.criteria()) {
+        if (amount > MAX_PAY_AMOUNT.value()) {
             throw new IllegalArgumentException(PAY_AMOUNT_RANGE_ERROR.message());
         }
     }

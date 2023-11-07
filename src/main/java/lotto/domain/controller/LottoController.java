@@ -32,7 +32,8 @@ public class LottoController {
         WinningLotto winningLotto = getWinningLotto();
         lottoResultManager.calculateResult(winningLotto);
         OutputView.outputStatistics(
-                lottoService.getRateOfReturn(purchaseAmount, lottoResultManager), lottoResultManager);
+                lottoService.getRateOfReturn(
+                        purchaseAmount, lottoResultManager.getStatistics().getTotalWinningMoney()), lottoResultManager);
     }
 
     private WinningLotto getWinningLotto() {

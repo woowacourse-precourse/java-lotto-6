@@ -28,9 +28,8 @@ public class LottoService {
         );
     }
 
-    public double getRateOfReturn(long purchaseAmount, LottoResultManager lottoResultManager) {
-        return round(lottoResultManager.getStatistics().getTotalWinningMoney()
-                / (double) purchaseAmount * PERCENTAGE_VALUE * MULTIPLIER)
+    public double getRateOfReturn(long purchaseAmount, long totalWinningMoney) {
+        return round(totalWinningMoney / (double) purchaseAmount * PERCENTAGE_VALUE * MULTIPLIER)
                 / MULTIPLIER;
     }
 }

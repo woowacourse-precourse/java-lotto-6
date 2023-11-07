@@ -1,5 +1,9 @@
 package lotto.ui;
 
+import static lotto.enums.PrintMessage.REQUEST_AMOUNT;
+import static lotto.enums.PrintMessage.REQUEST_BONUS_NUMBER;
+import static lotto.enums.PrintMessage.REQUEST_WINNING_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Console;
 import lotto.validator.InputValidator;
 
@@ -11,17 +15,17 @@ public class InputView {
     }
 
     public String scanAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(REQUEST_AMOUNT.getMassage());
         return scanInput();
     }
 
     public String scanWinningLottoNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(REQUEST_WINNING_LOTTO_NUMBER.getMassage());
         return scanInput();
     }
 
     public String scanBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(REQUEST_BONUS_NUMBER.getMassage());
         return scanInput();
     }
 

@@ -1,0 +1,74 @@
+# 미션 - 로또 🔢🎯
+***
+## 주요 기능 요구 사항
+- [ ] 로또 발행
+    - 로또 번호의 숫자 범위: 1~45 
+    - 중복되지 않는 6개의 숫자 + 보너스 번호 1개
+    - 로또 1장의 가격: 1,000원
+- [ ] 로또 당첨 비교 / 판정
+    - 1등: 6개 번호 일치 / 2,000,000,000원
+    - 2등: 5개 번호 일치 + 보너스 번호 일치 /30,000,000원
+    - 3등: 5개 번호 일치 / 1,500,000원
+    - 4등: 4개 번호 일치 / 50,000원
+    - 5등: 3개 번호 일치 / 5,000원
+- [ ] 당첨 번호 입력
+- [ ] 당첨 내역, 수익률 출력
+- [ ] 잘못된 입력 감지 / 에러메시지 출력
+***
+## 기능 목록
+- [x] 로또: Lotto
+    - [x] 번호 저장
+    - [ ] 번호 보기: getNumbers
+- [ ] 결제: Payment
+    - [ ] 결제
+- [ ] 발행: Publish
+    - [ ] 번호 생성: makeNumber
+- [ ] 정렬: Sort
+    - [ ] 오름차순 정렬: sortAscending
+- [ ] 당첨 판정: Judgment
+    - [ ] 당첨 번호 판정: judgeWinningNumber
+    - [ ] 보너스 번호 판정: judgeBonusNumber
+    - [ ] 순위 판정: judgeRanking
+- [ ] 당첨 통계: Statistics
+    - [ ] 수치 계산: calculateNumeric
+- [ ] 잘못된 입력 확인: WrongChecker
+    - [ ] 구입 금액 문자 확인: checkAmountCharacter
+    - [ ] 구입 금액 단위 확인: checkAmountUnit
+    - [ ] 당첨 번호 범위 확인: checkWiningNumberRange
+    - [ ] 당첨 번호 문자 확인: checkWiningNumberCharacter
+    - [ ] 당첨 번호 갯수 확인: checkWiningNumberSize
+    - [ ] 당첨 번호 충복 확인: checkDoubleWiningNumber
+    - [ ] 보너스 번호 범위 확인: checkBonusNumberRange
+    - [ ] 보너스 번호 문자 확인: checkBonusNumberCharacter
+    - [ ] 보너스 번호 갯수 확인: checkBonusNumberSize
+    - [ ] 보너스 번호 충복 확인: checkDoubleBonusNumber
+- [ ] 입력: Input
+    - [ ] 구입금액 입력: enterAmount
+    - [ ] 당첨 번호 입력: enterWiningNumber
+    - [ ] 보너스 번호 입력: enterBonusNumber
+- [ ] 출력: Output
+    - [ ] 구입금액 입력 요청: requestAmount
+    - [ ] 구매 갯수 출력: printPurchaseCount
+    - [ ] 구매 로또 번호 출력: printLottoNumber
+    - [ ] 당첨 번호 입력 요청: requestWiningNumber
+    - [ ] 보너스 번호 입력 요청: requestBonusNumber
+    - [ ] 당첨 통계 시작 문구: printWiningStatisticsStart
+    - [ ] 당첨 갯수 출력: printWiningCount
+    - [ ] 수익률 출력: printReturnRate
+***
+## 예외 처리
+- [ ] 로또 구입 금액 입력 관련
+    - [ ] 로또 구입 금액이 1,000원 단위가 아닐 경우
+    - [ ] 로또 구입 금액 입력 값이 숫자가 아닌 다른 값이 입력 될 경우
+- [ ] 당첨 번호 입력 관련
+    - [ ] 당첨 번호 입력 값이 1~45 숫자 범위가 아닐 경우
+    - [ ] 당첨 번호 입력 값이 숫자가 아닌 다른 값이 입력 될 경우
+    - [ ] 당첨 번호 입력 값이 6개가 아닌 경우
+    - [ ] 당첨 번호 입력 값 중 중복된 값이 존재 할 경우
+- [ ] 보너스 번호 입력 관련
+  - [ ] 보너스 번호 입력 값이 1~45 숫자 범위가 아닐 경우
+  - [ ] 보너스 번호 입력 값이 숫자가 아닌 다른 값이 입력 될 경우
+  - [ ] 보너스 번호 입력 값이 당첨 번호 입력 값과 중복 된 숫자 일 경우
+  - [ ] 보너스 번호 입력 값이 1개가 아닌 경우
+***
+## 테스트 항목

@@ -41,7 +41,7 @@ public class Game {
         for (Grade grade : result.keySet()) {
             revenue += result.get(grade) * grade.getPrice();
         }
-        return (double) revenue / purchaseAmount;
+        return ((double) revenue / purchaseAmount)*100;
     }
 
     public void issuance(Integer purchaseAmount) {

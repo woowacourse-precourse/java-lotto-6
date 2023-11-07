@@ -24,4 +24,7 @@ public class PurchasePrice {
             throw new IllegalArgumentException("[ERROR] 입력은 1000원 단위로만 가능합니다");
         }
     }
+    public int getPrice() {
+        return price;
+    }
 }

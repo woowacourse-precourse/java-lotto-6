@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import static lotto.util.ExceptionEnum.DUPLICATED_NUMBERS;
 import static lotto.util.ExceptionEnum.INVALID_NUMBERS_SIZE;
 import static lotto.util.ExceptionEnum.NUMBER_OUT_OF_RANGE;
 
@@ -32,7 +33,7 @@ public class Lotto{
         Set<Integer>uniqueNumbers = new HashSet<>();
         for (int number : numbers){
             if(!uniqueNumbers.add(number)){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(DUPLICATED_NUMBERS.message());
             }
         }
     }

@@ -30,7 +30,7 @@ public class WinningTier {
         tempWinningCounts.forEach((rank, count) -> winningTier.merge(rank, count, Integer::sum));
     }
 
-    public HashMap<Integer, Integer> getWinningTier() {
+    public HashMap<Integer, Integer> toHashMap() {
         return this.winningTier;
     }
 }

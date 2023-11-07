@@ -19,11 +19,11 @@ public class LottoResult {
         }
     }
 
-    public List<Long> getCorrectWinningsCount() {
+    public List<Long> toLongList() {
         return correctWinningsCount;
     }
 
-    public List<Boolean> getCorrectBonuses() {
+    public List<Boolean> toBoolList() {
         return correctBonuses;
     }
 }

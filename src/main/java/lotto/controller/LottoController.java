@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.BonusNumber;
 import lotto.domain.UserAmount;
 import lotto.domain.WinningBundle;
-import lotto.dto.LottoPurchaseResultDto;
+import lotto.dto.PurchaseLottoDto;
 import lotto.dto.LottoResultDto;
 import lotto.dto.RevenueDto;
 import lotto.dto.WinningBundleDto;
@@ -23,9 +23,9 @@ public class LottoController {
     public void run() {
         UserAmount userAmount = InputView.getUserAmount();
         calculateIssueAbleCount(userAmount);
-        LottoPurchaseResultDto lottoPurchaseResultDto = purchaseLottosByAmount(userAmount);
+        PurchaseLottoDto purchaseLottoDto = purchaseLottosByAmount(userAmount);
         decideWinningBundleAndBonusNumber();
-        evaluateWinnings(lottoPurchaseResultDto);
+        evaluateWinnings(purchaseLottoDto);
         calculateRevenue(userAmount);
     }
 
@@ -41,14 +41,14 @@ public class LottoController {
         bonusNumber = InputView.getBonusNumber(winningBundleDto);
     }
 
-    private void evaluateWinnings(LottoPurchaseResultDto lottoPurchaseResult) {
+    private void evaluateWinnings(PurchaseLottoDto lottoPurchaseResult) {
         lottoResultDto = lottoService.evaluateWinnings(lottoPurchaseResult, winningBundle, bonusNumber);
         OutputView.printWinningStaticsInput();
         OutputView.printWinningStatics(lottoResultDto.getWinningStatistics());
     }
 
-    private LottoPurchaseResultDto purchaseLottosByAmount(UserAmount userAmount) {
-        LottoPurchaseResultDto lottoPurchaseResult = lottoService.purchaseLottos(userAmount);
+    private PurchaseLottoDto purchaseLottosByAmount(UserAmount userAmount) {
+        PurchaseLottoDto lottoPurchaseResult = lottoService.purchaseLottos(userAmount);
         OutputView.printLottosByAmount(lottoPurchaseResult);
         return lottoPurchaseResult;
     }

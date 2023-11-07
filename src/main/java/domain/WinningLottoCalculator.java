@@ -1,5 +1,6 @@
 package domain;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 
 public class WinningLottoCalculator {
@@ -59,4 +60,12 @@ public class WinningLottoCalculator {
 		this.totalPrizeMoney += lottoPrizeType.getPrizeMoney();
 	}
 
+	public double getRateOfReturn(PurchaseAmount purchaseAmount) {
+		return roundToTwoDecimalPlaces((this.totalPrizeMoney / purchaseAmount.getAmount()) * 100);
+	}
+
+	public double roundToTwoDecimalPlaces(double rateOfReturn) {
+		DecimalFormat decimalFormat = new DecimalFormat("#.#");
+		return Double.parseDouble(decimalFormat.format(rateOfReturn));
+	}
 }

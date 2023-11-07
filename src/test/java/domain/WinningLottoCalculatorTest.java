@@ -99,5 +99,44 @@ class WinningLottoCalculatorTest {
 		//then
 		Assertions.assertThat(winningLottoCalculator.getTotalPrizeMoney()).isEqualTo(excepted);
 	}
+
+	@DisplayName("수익률 계산")
+	@Test
+	public void calculateRateOfReturn() {
+		// given
+		double expected = 500.0;
+
+		PurchaseAmount purchaseAmount = new PurchaseAmount("3000");
+		WinningLotto winningLotto = getWinningLotto();
+
+		PurchaseLotto purchaseLotto = new PurchaseLotto();
+		purchaseLotto.getLottos().add(new Lotto("1,2,3,8,9,10"));
+		purchaseLotto.getLottos().add(new Lotto("1,2,3,8,9,10"));
+		purchaseLotto.getLottos().add(new Lotto("1,2,3,8,9,10"));
+
+		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
+		winningLottoCalculator.calculateLottoPrizeCount(purchaseLotto, winningLotto);
+
+		// when
+		double rateOfReturn = winningLottoCalculator.getRateOfReturn(purchaseAmount);
+
+		// then
+		Assertions.assertThat(rateOfReturn).isEqualTo(expected);
+	}
+
+	@DisplayName("소수 둘째 자리에서 반올림")
+	@Test
+	public void test() {
+		// given
+		double number = 3.17;
+		double excepted = 3.2;
+
+		// when
+		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
+		double roundedNumber = winningLottoCalculator.roundToTwoDecimalPlaces(number);
+
+		// then
+		Assertions.assertThat(roundedNumber).isEqualTo(excepted);
+	}
 }
 

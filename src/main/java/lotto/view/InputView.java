@@ -31,15 +31,10 @@ public class InputView {
     }
 
     public WinningCombinationDto inputWinningCombination() {
-        try {
-            WinningCombinationBuilder builder = WinningCombinationBuilder.builder();
-            inputWinningNumbers(builder);
-            inputBonusNumber(builder);
-            return builder.build();
-        } catch (IllegalArgumentException e) {
-            writer.writeLine(Writer.ERROR_PREFIX + e.getMessage());
-            return inputWinningCombination();
-        }
+        WinningCombinationBuilder builder = WinningCombinationBuilder.builder();
+        inputWinningNumbers(builder);
+        inputBonusNumber(builder);
+        return builder.build();
     }
 
     public WinningCombinationBuilder inputWinningNumbers(WinningCombinationBuilder builder) {

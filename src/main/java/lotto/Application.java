@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Application {
     public static void main(String[] args) {
@@ -25,9 +24,58 @@ public class Application {
         Integer bonus = getBonus(winningLotto);
 
         //당첨 통계
+        getStatistics(lottoList, winningLotto, bonus, purchase);
 
 
+    }
 
+    private static void getStatistics(List<Lotto> lottoList, Lotto winningLotto, Integer bonus, int purchase) {
+        int[] result = new int[7];
+        int bonusCount = 0;
+        for (Lotto lotto : lottoList) {
+            int count = 0;
+            for (Integer number : lotto.getNumbers()) {
+                if (winningLotto.getNumbers().contains(number)) {
+                    count++;
+                }
+            }
+            if (count == 5 && lotto.getNumbers().contains(bonus)) {
+                bonusCount++;
+            }
+            result[count]++;
+        }
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + result[3] + "개");
+        System.out.println("4개 일치 (50,000원) - " + result[4] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + result[5] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + bonusCount + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result[6] + "개");
+        System.out.println("총 수익률은 " + getProfit(result, purchase) + "%입니다.");
+    }
+
+    private static String getProfit(int[] result, int purchase) {
+        int total = 0;
+        for (int i = 3; i < result.length; i++) {
+            total += result[i] * getPrize(i);
+        }
+        return String.format("%.1f", (double) total / purchase * 100);
+    }
+
+    private static int getPrize(int i) {
+        switch (i) {
+            case 3:
+                return 5000;
+            case 4:
+                return 50000;
+            case 5:
+                return 1500000;
+            case 6:
+                return 2000000000;
+            default:
+                return 0;
+        }
     }
 
     private static int getBonus(Lotto winningLotto) {
@@ -41,6 +89,7 @@ public class Application {
                 }
             }
         } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 당첨 번호와 중복되는 숫자가 있습니다");
             bonusNumber = getBonus(winningLotto); // Recursive call to get valid input
         }
         return bonusNumber;
@@ -53,8 +102,11 @@ public class Application {
             list = new Lotto(Arrays.stream(Console.readLine().split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList()));
             if(!duplicate(list)){
                 throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다");
+            } else if (list.getNumbers().size() != 6){
+                throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
             }
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             list = getLottoNumber(); // Recursive call to get valid input
         }
         return list;
@@ -90,10 +142,8 @@ public class Application {
     }
 
     private static Boolean duplicate(Lotto numbers){
-        for ( Integer number : numbers.getNumbers()) {
-            if(numbers.getNumbers().contains(number)){
-                return Boolean.FALSE;
-            }
+        if(numbers.getNumbers().stream().distinct().count() != 6){
+            return Boolean.FALSE;
         }
         return Boolean.TRUE;
     }

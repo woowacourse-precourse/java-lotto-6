@@ -16,7 +16,7 @@ public class LottoNumberValidator {
     public static void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < START_INCLUSIVE || number > END_INCLUSIVE) {
-                throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE_EXCEPTION + number);
+                throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + NUMBER_OUT_OF_RANGE_EXCEPTION + number);
             }
         }
     }
@@ -24,9 +24,11 @@ public class LottoNumberValidator {
     public static void validateNumbersOrder(List<Integer> numbers) {
         for (int i = 0; i < numbers.size() - 1; i++) {
             if (numbers.get(i) > numbers.get(i + 1)) {
-                throw new IllegalArgumentException(INVALID_NUMBERS_ORDER_EXCEPTION
-                        + (i + 1) + NUMBER_INDICATION + numbers.get(i) + ", "
-                        + (i + 2) + NUMBER_INDICATION + numbers.get(i + 1));
+                throw new IllegalArgumentException(
+                        ERROR_MESSAGE_HEAD + INVALID_NUMBERS_ORDER_EXCEPTION
+                                + (i + 1) + NUMBER_INDICATION + numbers.get(i) + ", "
+                                + (i + 2) + NUMBER_INDICATION + numbers.get(i + 1)
+                );
             }
         }
     }
@@ -34,9 +36,11 @@ public class LottoNumberValidator {
     private static void matchTwoNumbers(List<Integer> numbers, int i) {
         for (int j = i + 1; j < numbers.size(); j++) {
             if (numbers.get(i) == numbers.get(j)) {
-                throw new IllegalArgumentException(DUPLICATE_NUMBER_EXCEPTION
-                        + (i + 1) + NUMBER_INDICATION + numbers.get(i) + ", "
-                        + (j + 1) + NUMBER_INDICATION + numbers.get(j));
+                throw new IllegalArgumentException(
+                        ERROR_MESSAGE_HEAD + DUPLICATE_NUMBER_EXCEPTION
+                                + (i + 1) + NUMBER_INDICATION + numbers.get(i) + ", "
+                                + (j + 1) + NUMBER_INDICATION + numbers.get(j)
+                );
             }
         }
     }

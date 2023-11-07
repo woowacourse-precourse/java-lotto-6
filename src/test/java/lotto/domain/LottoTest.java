@@ -58,11 +58,11 @@ class LottoTest {
     void createLottoByImproperNumbers() {
         assertThatThrownBy(() -> new Lotto(List.of(0, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NUMBER_OUT_OF_RANGE_EXCEPTION + 0);
+                .hasMessage(ERROR_MESSAGE_HEAD + NUMBER_OUT_OF_RANGE_EXCEPTION + 0);
 
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(NUMBER_OUT_OF_RANGE_EXCEPTION + 46);
+                .hasMessage(ERROR_MESSAGE_HEAD + NUMBER_OUT_OF_RANGE_EXCEPTION + 46);
     }
 
     @DisplayName("로또 번호가 오름차순으로 정렬되어 있지 않으면 예외가 발생한다.")
@@ -70,17 +70,17 @@ class LottoTest {
     void createLottoByImproperOrder() {
         assertThatThrownBy(() -> new Lotto(List.of(6, 1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NUMBERS_ORDER_EXCEPTION + 1 + NUMBER_INDICATION + 6 + ", "
-                        + 2 + NUMBER_INDICATION + 1);
+                .hasMessage(ERROR_MESSAGE_HEAD + INVALID_NUMBERS_ORDER_EXCEPTION
+                        + 1 + NUMBER_INDICATION + 6 + ", " + 2 + NUMBER_INDICATION + 1);
 
         assertThatThrownBy(() -> new Lotto(List.of(2, 3, 4, 5, 6, 1)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NUMBERS_ORDER_EXCEPTION + 5 + NUMBER_INDICATION + 6 + ", "
-                        + 6 + NUMBER_INDICATION + 1);
+                .hasMessage(ERROR_MESSAGE_HEAD + INVALID_NUMBERS_ORDER_EXCEPTION
+                        + 5 + NUMBER_INDICATION + 6 + ", " + 6 + NUMBER_INDICATION + 1);
 
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 5, 3, 6, 4)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_NUMBERS_ORDER_EXCEPTION + 3 + NUMBER_INDICATION + 5 + ", "
-                        + 4 + NUMBER_INDICATION + 3);
+                .hasMessage(ERROR_MESSAGE_HEAD + INVALID_NUMBERS_ORDER_EXCEPTION
+                        + 3 + NUMBER_INDICATION + 5 + ", " + 4 + NUMBER_INDICATION + 3);
     }
 }

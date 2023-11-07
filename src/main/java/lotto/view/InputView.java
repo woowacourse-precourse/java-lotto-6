@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
 
-    static final String INPUT_AMOUNT_IS_NOT_POSTIVE_NUMBER_ERROR = "양수를 입력해 주세요.";
-    static final String INPUT_AMOUNT_IS_NOT_NUMBER_ERROR = "문자가 아닌 숫자를 입력해 주세요.";
+    private static final String INPUT_AMOUNT_IS_NOT_POSTIVE_NUMBER_ERROR = "양수를 입력해 주세요.";
+    private static final String INPUT_AMOUNT_IS_NOT_NUMBER_ERROR = "문자가 아닌 숫자를 입력해 주세요.";
 
     public static int readLottoBuyAmount() {
         int buyAmount = StringToInteger(Console.readLine());

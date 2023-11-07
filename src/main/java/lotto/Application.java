@@ -1,10 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Application {
@@ -30,12 +28,8 @@ public class Application {
         Rank rank = new Rank();
         int[] ranking;
         ranking = rank.rankAndWinning(ticketNumber, allTickets, bonus, numbers);
-        rate(ranking, purchaseMoney);
-    }
 
-    public static void rate(int[] rank, int purchaseMoney) {
-        double prizeMoney = 5000 * rank[5] + 50000 * rank[4] + 1500000 * rank[3] + 30000000 * rank[2] + 2000000000 * rank[1];
-        double rateOfReturn = (prizeMoney / purchaseMoney) * 100;
-        System.out.printf("총 수익률은 %.1f%%입니다.%n", Math.round(rateOfReturn * 10) / 10.0);
+        Rate rate = new Rate();
+        rate.totalRevenue(ranking, purchaseMoney);
     }
 }

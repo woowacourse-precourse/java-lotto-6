@@ -6,6 +6,7 @@ import static lotto.domain.Result.FOUR_MATCH;
 import static lotto.domain.Result.SIX_MATCH;
 import static lotto.domain.Result.THREE_MATCH;
 
+import java.lang.ref.PhantomReference;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
@@ -17,6 +18,19 @@ import lotto.utils.Message;
 public class OutputView {
     private OutputView() {
     }
+
+    private static final String WON = "원";
+    private static final String COUNT_MATCHED = "개 일치 (";
+    private static final String CLOSE = ")";
+    private static final String COUNT_AND_BONUS_MATCHED = "개 일치, 보너스 볼 일치 (";
+    private static final String DASH = " - ";
+    private static final String QUANTITY = "개";
+    private static final String TOTAL_PROFIT_STRING = "총 수익률은 ";
+    private static final String RESULT_END_STRING = "입니다.";
+    private static final String DECIMAL_FORMAT_PATTERN = "#0.0%";
+    private static final double DECIMAL_FORMAT_PERCENTAGE = 100.0;
+    private static final int BONUS_MATCHED_SIZE = 5;
+    private static final int DIVIDE_PROFIT_PERCENTAGE = 100;
 
     public static void printBuyInputPrice() {
         System.out.println(Message.PRINT_USER_INPUT_BUY_PRICE.getMessage());
@@ -45,19 +59,19 @@ public class OutputView {
 
     private static void printWinningStatistics() {
         System.out.println();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(Message.PRINT_WINNING_STATISTICS.getMessage());
+        System.out.println(Message.PRINT_DASH.getMessage());
     }
 
     private static void printLottoMatched(Map<Result, Integer> score, Result[] printOrder, NumberFormat numberFormat) {
         for (Result result : printOrder) {
             int count = score.getOrDefault(result, 0);
-            String winningsFormatted = numberFormat.format(result.getWinnings()) + "원";
-            String message = result.getMatchCnt() + "개 일치 (" + winningsFormatted + ")";
-            if (result.getMatchCnt() == 5 && result.isBonus()) {
-                message = result.getMatchCnt() + "개 일치, 보너스 볼 일치 (" + winningsFormatted + ")";
+            String winningsFormatted = numberFormat.format(result.getWinnings()) + WON;
+            String message = result.getMatchCnt() + COUNT_MATCHED + winningsFormatted + ")";
+            if (result.getMatchCnt() == BONUS_MATCHED_SIZE && result.isBonus()) {
+                message = result.getMatchCnt() + COUNT_AND_BONUS_MATCHED + winningsFormatted + CLOSE;
             }
-            message += " - " + count + "개";
+            message += DASH + count + QUANTITY;
             System.out.println(message);
         }
     }
@@ -71,10 +85,10 @@ public class OutputView {
 
 
     public static void printProfit(int profit, int totalInvestment) {
-        double profitPercentage = (profit) / (double) totalInvestment * 100;
-        DecimalFormat profitDecimal = new DecimalFormat("#0.0%");
-        String formattedProfitPercentage = profitDecimal.format(profitPercentage / 100.0);
-        System.out.println("총 수익률은 " + formattedProfitPercentage + "입니다.");
+        double profitPercentage = (profit) / (double) totalInvestment * DIVIDE_PROFIT_PERCENTAGE;
+        DecimalFormat profitDecimal = new DecimalFormat(DECIMAL_FORMAT_PATTERN);
+        String formattedProfitPercentage = profitDecimal.format(profitPercentage / DECIMAL_FORMAT_PERCENTAGE);
+        System.out.println(TOTAL_PROFIT_STRING + formattedProfitPercentage + RESULT_END_STRING);
     }
 
     public static void errorCatch(IllegalArgumentException e) {

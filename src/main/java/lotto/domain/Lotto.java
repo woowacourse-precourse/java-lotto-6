@@ -9,6 +9,7 @@ public class Lotto {
     private final List<Integer> numbers;
     private static final int NUMBERS_SIZE_MIN = 1;
     private static final int NUMBERS_SIZE_MAX = 45;
+    private static final int NUMBERS_SIZE = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -22,7 +23,7 @@ public class Lotto {
     }
 
     private static void isValidLottoNumbersSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_SIX_SIZE.getMessage());
         }
     }

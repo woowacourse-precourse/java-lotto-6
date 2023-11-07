@@ -7,7 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.constants.messages.Error;
+import lotto.constant.constants.Config;
+import lotto.constant.messages.Error;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -29,14 +30,15 @@ public class Lotto {
     }
 
     private void validateNumberRange(List<Integer> numbers) {
-        List<Integer> a = numbers.stream().filter(h -> h < 1 || h > 45).toList();
-        if (!a.isEmpty()) {
-            throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+        for (Integer number : numbers) {
+            if (number < Config.LOTTO_MIN_NUMBER.getConfig() || number > Config.LOTTO_MAX_NUMBER.getConfig()) {
+                throw new IllegalArgumentException(Error.LOTTO_NUMBER_OUT_OF_RANGE.getMessage());
+            }
         }
     }
 
     private void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Config.LOTTO_SIZE.getConfig()) {
             throw new IllegalArgumentException(Error.LOTTO_NOT_SIX_NUMBER.getMessage());
         }
     }
@@ -44,31 +46,28 @@ public class Lotto {
     private void validateDuplicatedNumber(List<Integer> numbers) {
         final Set<Integer> set = new HashSet<>();
 
-        for (Integer yourInt : numbers) {
-            if (!set.add(yourInt)) {
+        for (Integer number : numbers) {
+            if (!set.add(number)) {
                 throw new IllegalArgumentException(Error.LOTTO_DUPLICATED_NUMBER.getMessage());
             }
         }
     }
 
-    public int match(Lotto lotto) {
-        int matchedNumber = 0;
-        for (int i = 0; i < 6; i++) {
-            if (this.numbers.get(i).equals(lotto.numbers.get(i))) {
-                matchedNumber++;
+    public int compare(Lotto lotto) {
+        int matched = 0;
+        for (Integer number : this.numbers) {
+            if (lotto.contains(number)) {
+                matched++;
             }
         }
-        return matchedNumber;
+        return matched;
     }
 
-    public void stamp(List<Integer> numbers) {
-        assert (numbers.isEmpty());
-        for (int i = 0; i < 6; i++) {
-            numbers.add(this.numbers.get(i));
-        }
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(this.numbers);
     }
 
-    public boolean contain(int number) {
+    public boolean contains(int number) {
         return numbers.contains(number);
     }
 
@@ -86,19 +85,11 @@ public class Lotto {
 
 
     public static Lotto toLotto(String number) {
-        if (number == null) {
-            throw new IllegalArgumentException();
-        }
         List<String> numbers = new ArrayList<>(Arrays.asList(number.split(",")));
-        System.err.println(numbers);
         validateToLotto(numbers);
 
-        try {
-            return new Lotto(numbers.stream()
-                    .map(Integer::valueOf)
-                    .collect(Collectors.toList()));
-        } catch (Exception e) {
-            throw new IllegalArgumentException();
-        }
+        return new Lotto(numbers.stream()
+                .map(Integer::valueOf)
+                .collect(Collectors.toList()));
     }
 }

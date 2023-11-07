@@ -23,9 +23,10 @@ public class Application {
         List<Lotto> lottos = new ArrayList<>();
         for (int i=0; i<number/1000 ; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            System.out.println(numbers);
-            lottos.add(new Lotto(numbers));
+            Lotto lotto = new Lotto(numbers);
+            lotto.sortNumbers();
+            System.out.println(lotto.getNumbers());
+            lottos.add(lotto);
         }
         System.out.println();
 
@@ -52,8 +53,13 @@ public class Application {
             LottoRank.getByCountAndBonus(lottoMatches,hasBonusNumber);
         }
 
+        double totalWinnings = 0;
         for(LottoRank rank : LottoRank.values()) {
             System.out.println(rank.getPrizeInfo()+rank.getAdditionalMatches()+"개");
+            totalWinnings += rank.getAdditionalMatches()*rank.getPrize();
         }
+
+        double profitRate = (totalWinnings/number)*100 ;
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 }

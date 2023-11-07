@@ -22,6 +22,7 @@ public class LottoController {
         setBonusNumber();
 
         calculateResult();
+        calculateRateOfReturn();
     }
 
     private void setTicketAmountAndCount() {
@@ -53,6 +54,7 @@ public class LottoController {
 
     private void calculateRateOfReturn() {
         double rateOfReturn = ticketAmount.calculateRateOfReturn(result);
+        OutputView.printRateOfReturn(rateOfReturn);
     }
 
 }

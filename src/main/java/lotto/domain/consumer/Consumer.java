@@ -1,7 +1,11 @@
 package lotto.domain.consumer;
 
 
-public record Consumer(Price price, Count count) {
+import lotto.domain.common.Lotto;
+
+import java.util.List;
+
+public record Consumer(Price price, List<Lotto> consumerLottos, Count count) {
 
     public Consumer {
 

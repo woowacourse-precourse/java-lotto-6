@@ -9,15 +9,19 @@ import java.util.Set;
 
 
 public class IOController {
+    private static HashSet<Integer> winNumberSet;
     public IOController() {
+
+        winNumberSet = new HashSet<>();
 
     }
 
     int inputPrice() {
         System.out.println(InstructionMessage.INPUT_PRICE.getMessageText());
         String inputStringPrice = Console.readLine();
-        return isAvailablePrice(inputStringPrice);
+        return isAvailableNumber(inputStringPrice);
     }
+    
 
     public List<Integer> inputWinNumber() {
         System.out.println(InstructionMessage.INPUT_NUMBER.getMessageText());
@@ -26,19 +30,21 @@ public class IOController {
         return isAvailableWinNumber(stringInputWinNumber);
     }
 
-    int isAvailablePrice(String inputStringPrice) {
-        int intPrice;
+    int isAvailableNumber(String inputStringPrice) {
+        int intNumber;
 
         try {
-            intPrice = Integer.parseInt(inputStringPrice);
+            intNumber = Integer.parseInt(inputStringPrice);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_FORMAT.getMessageText());
         }
+        if(intNumber < 46)
+            return intNumber;
 
-        if (intPrice % 1000 != 0) {
+        if (intNumber % 1000 != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_AMOUNT.getMessageText());
         }
-        return intPrice;
+        return intNumber;
     }
 
     private List<Integer> isAvailableWinNumber(String stringInputWinNumber) {
@@ -48,7 +54,7 @@ public class IOController {
         List<Integer> winNumberList = makeWinNumberList(stringInputWinNumber);
 
         isNotSix(winNumberList);
-        isDuplicatedNumber(winNumberList);
+        isDuplicatedNumberOfList(winNumberList);
 
         return winNumberList;
     }
@@ -58,12 +64,10 @@ public class IOController {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_NOT_SIX.getMessageText());
     }
 
-    private void isDuplicatedNumber(List<Integer> winNumberList) {
-        Set<Integer> checkNumer = new HashSet<>();
+    private void isDuplicatedNumberOfList(List<Integer> winNumberList) {
+
         for (Integer number : winNumberList) {
-            if (!checkNumer.add(number)) {
-                throw new IllegalArgumentException(ExceptionMessage.INPUT_DUPLICATED_NUMBER.getMessageText());
-            }
+            isDuplicatedNumber(number);
         }
     }
 
@@ -88,4 +92,24 @@ public class IOController {
 
     }
 
+    public int inputBonusNumber() {
+        System.out.println(InstructionMessage.INPUT_BONUS_NUMBER.getMessageText());
+        String inputStringBonusNumber = Console.readLine();
+        int bonusNumber= isAvailableNumber(inputStringBonusNumber);
+
+        isOutOfArrange(bonusNumber);
+        isDuplicatedNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    private void isDuplicatedNumber(int number) {
+        if (!winNumberSet.add(number)) {
+            throw new IllegalArgumentException(ExceptionMessage.INPUT_DUPLICATED_NUMBER.getMessageText());
+        }
+    }
+
+    private void isOutOfArrange(int number) {
+        if(number < 1 || number >45)
+            throw  new IllegalArgumentException(ExceptionMessage.INPUT_OUT_OF_ARRANGE.getMessageText());
+    }
 }

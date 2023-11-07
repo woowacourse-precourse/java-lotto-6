@@ -36,7 +36,7 @@ class PurchaseAmountTest {
         });
     }
 
-    @DisplayName("입력값이 숫자가 아닌 경우 예외가 발생한다.")
+    @DisplayName("구입금액이 정상적으로 할당되는지 확인한다.")
     @Test
     void 구입금액_정삭작동() {
         // given

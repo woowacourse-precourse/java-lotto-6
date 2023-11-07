@@ -19,7 +19,7 @@ public class LottoController {
     private final NumberGenerator numberGenerator;
     private final Calculator calculator;
 
-    public LottoController(NumberGenerator numberGenerator, Calculator calculator) {
+    public LottoController(final NumberGenerator numberGenerator, final Calculator calculator) {
         this.numberGenerator = numberGenerator;
         this.calculator = calculator;
     }

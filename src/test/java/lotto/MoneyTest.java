@@ -28,4 +28,11 @@ public class MoneyTest {
         assertThatThrownBy(() -> new Money(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 1,000원 이하라면 예외가 발생한다.")
+    @Test
+    void moneyIsBigger() {
+        assertThatThrownBy(() -> new Money("800"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

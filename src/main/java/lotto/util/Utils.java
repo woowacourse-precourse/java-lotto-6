@@ -27,6 +27,11 @@ public class Utils {
         return money;
     }
 
+    public static int rangeInputBonusNumber(int bonusNumber) {
+        Validation.verifyRangeInputBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
     public static List<Integer> convertToLottoIntegerList(String userInput) {
         Validation.verifyIntegerWinningLottoNumber(userInput);
         Validation.verifyRangeWinningLottoNumber(userInput);

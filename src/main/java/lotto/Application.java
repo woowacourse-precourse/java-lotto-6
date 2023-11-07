@@ -18,6 +18,7 @@ public class Application {
         WinningStatistics winningStatistics = new WinningStatistics(
                 lottoResult.getLottoResultNumber(),
                 lottoCount.getLotties(),
-                lottoResult.getBonusNumber());
+                lottoResult.getBonusNumber(),
+                display.getLottoPurchaseAmount());
     }
 }

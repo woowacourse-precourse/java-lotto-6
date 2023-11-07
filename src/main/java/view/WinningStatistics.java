@@ -22,8 +22,10 @@ public class WinningStatistics {
         return matchingCount;
     }
 
-    public WinningStatistics(Lotto resultNumbers, List<Lotto> lotties, int bonusNumber) {
+    public WinningStatistics(Lotto resultNumbers, List<Lotto> lotties, int bonusNumber, int lottoPurchaseAmount) {
         checkLotto(resultNumbers, lotties, bonusNumber);
+        setRateOfReturn(lottoPurchaseAmount);
+        result();
     }
 
     private void checkLotto(Lotto resultLotto, List<Lotto> lotties, int bonusNumber) {
@@ -33,7 +35,6 @@ public class WinningStatistics {
             ranking = ranking.value(matchingCount, checkBonusNumber(resultLotto, bonusNumber));
             saveTotalRanking(ranking);
         }
-        printTotalRanking();
     }
 
     private void setMatchingCount(Lotto resultLotto, Lotto userLotto) {
@@ -65,13 +66,27 @@ public class WinningStatistics {
         totalRanking.put(ranking, currentCount + 1);
     }
 
-    private void printTotalRanking() {
+    private void result() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
         for (Ranking ranking : ranking.values()) {
             if (ranking == Ranking.MISS) {
                 continue;
             }
             System.out.println(ranking.getWinningMessage() + totalRanking.get(ranking) + "개");
         }
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
 
+    }
+
+    private void setRateOfReturn(int lottoPurchaseAmount) {
+        rateOfReturn = 0;
+        for (Ranking ranking : ranking.values()) {
+            if (ranking == Ranking.MISS) {
+                continue;
+            }
+            rateOfReturn += ranking.getWinningAmount() * totalRanking.get(ranking);
+        }
+        rateOfReturn = rateOfReturn / lottoPurchaseAmount * 100;
     }
 }

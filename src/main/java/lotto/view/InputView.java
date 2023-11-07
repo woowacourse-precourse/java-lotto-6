@@ -23,7 +23,7 @@ public class InputView {
         } while (!lottoException.checkNumber(purchaseAmount) ||
                 !lottoException.purchaseAmountCheckMain(purchaseAmount));
         {
-            System.out.println(NEW_LINE);
+            System.out.print(NEW_LINE);
             return Integer.parseInt(purchaseAmount);
         }
     }

@@ -6,16 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    public List<Integer> numbers = new ArrayList<>();
-    public boolean bonus;
-    public int match;
+    private final List<Integer> numbers = new ArrayList<>();
+    private boolean bonus;
+    private int match;
     private int bonusNumber;
-    public int inputPrice;
-    public float totalProfit = 0;
-    public List<String> prizes = new ArrayList<>();
-    public List<Long> numbersOfPrizes = new ArrayList<>();
+    private int inputPrice;
+    private float totalProfit = 0;
+    private List<Long> numbersOfPrizes = new ArrayList<>();
+    private Customer customer;
 
-    public void setInputPrice() {
+    private void setInputPrice() {
         this.inputPrice = inputPrice();
     }
 
@@ -24,7 +24,7 @@ public class Game {
         while (true) {
             try {
                 String input = Console.readLine();
-                inputPrice = Integer.parseInt(input);;
+                inputPrice = Integer.parseInt(input);
                 break;
             } catch (NumberFormatException e) {
                 System.out.print("[ERROR] 금액은 숫자여야 합니다.");
@@ -33,7 +33,7 @@ public class Game {
         return inputPrice;
     }
 
-    public void inputLottoNumbers() {
+    private void inputLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] inputNumbers;
         inputNumbers = Console.readLine().split(",");
@@ -42,30 +42,14 @@ public class Game {
         }
     }
 
-    public void inputBonusNumber() {
+    private void inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         this.bonusNumber = Integer.parseInt(Console.readLine());
     }
 
-    public void compareNumbers(List<Integer> user, List<Integer> lotto) {
-        this.match = compareLotto(user, lotto);
-        this.bonus = compareBonus(user, this.bonusNumber);
-    }
+    private final List<String> prizes = new ArrayList<>();
 
-    public int compareLotto(List<Integer> user, List<Integer> lotto) {
-        int match = 0;
-        for (Integer userNumber : user) {
-            if (lotto.contains(userNumber)) {
-                match++;
-            }
-        }
-        return match;
-    }
-
-    public boolean compareBonus(List<Integer> user, int bonus) {
-        return user.contains(bonus);
-    }
-    public void setPrizes(int match, boolean bonus) {
+    private void setPrizes(int match, boolean bonus) {
         for (Prize prize : Prize.values()) {
             if (match == prize.getMatch() && ((bonus == prize.getBonus()) || prize.getBonus())) {
                 this.prizes.add(prize.getName());
@@ -73,52 +57,47 @@ public class Game {
         }
     }
 
-    public long countFirstPrize(List<String> prizes) {
-        long count = prizes.stream()
+    private long countFirstPrize(List<String> prizes) {
+        return prizes.stream()
                 .filter(name -> name.equals("FIRST"))
                 .count();
-        return count;
     }
 
-    public long countSecondPrize(List<String> prizes) {
-        long count = prizes.stream()
+    private long countSecondPrize(List<String> prizes) {
+        return prizes.stream()
                 .filter(name -> name.equals("SECOND"))
                 .count();
-        return count;
     }
 
-    public long countThirdPrize(List<String> prizes) {
-        long count = prizes.stream()
+    private long countThirdPrize(List<String> prizes) {
+        return prizes.stream()
                 .filter(name -> name.equals("THIRD"))
                 .count();
-        return count;
     }
 
     public long countFourthPrize(List<String> prizes) {
-        long count = prizes.stream()
+        return prizes.stream()
                 .filter(name -> name.equals("FOURTH"))
                 .count();
-        return count;
     }
 
-    public long countFifthPrize(List<String> prizes) {
-        long count = prizes.stream()
+    private long countFifthPrize(List<String> prizes) {
+        return prizes.stream()
                 .filter(name -> name.equals("FIFTH"))
                 .count();
-        return count;
     }
 
-    public List<Long> countPrizes() {
+    private List<Long> countPrizes() {
         List<Long> numbersOfPrizes = new ArrayList<>();
-        numbersOfPrizes.add(countFirstPrize(this.prizes));
-        numbersOfPrizes.add(countSecondPrize(this.prizes));
-        numbersOfPrizes.add(countThirdPrize(this.prizes));
-        numbersOfPrizes.add(countFourthPrize(this.prizes));
-        numbersOfPrizes.add(countFifthPrize(this.prizes));
+        numbersOfPrizes.add(countFirstPrize(prizes));
+        numbersOfPrizes.add(countSecondPrize(prizes));
+        numbersOfPrizes.add(countThirdPrize(prizes));
+        numbersOfPrizes.add(countFourthPrize(prizes));
+        numbersOfPrizes.add(countFifthPrize(prizes));
         return numbersOfPrizes;
     }
 
-    public float computeTotalProfit(int match, boolean bonus) {
+    private float computeTotalProfit(int match, boolean bonus) {
         float totalProfit = 0;
         for (Prize prize : Prize.values()) {
             if (match == prize.getMatch() && ((bonus == prize.getBonus()) || prize.getBonus())) {
@@ -128,39 +107,57 @@ public class Game {
         return totalProfit;
     }
 
-    public void setGame() {
+    private void setGame() {
         inputLottoNumbers();
         inputBonusNumber();
     }
 
     public void run() {
+        setCustomer();
+        setGame();
+        for (int i = 0; i < customer.amount; i++) {
+            Lotto lotto = new Lotto(this.numbers);
+            Comparator comparator = new Comparator(customer.tickets.get(i), lotto.getNumbers(),bonusNumber);
+            match = comparator.getMatch();
+            bonus = comparator.getBonus();
+            setPrizes(match, bonus);
+        }
+        numbersOfPrizes = countPrizes();
+        totalProfit = computeTotalProfit(match, bonus);
+
+        printOutput(customer);
+    }
+
+    private void setCustomer() {
         System.out.println("구입금액을 입력해 주세요.");
         setInputPrice();
-        Ticket ticket = new Ticket(this.inputPrice);
-        System.out.printf("\n%d개를 구매했습니다.\n", ticket.amount);
-        printTickets(ticket);
-        setGame();
-        for (int i = 0; i < ticket.amount; i++) {
-            Lotto lotto = new Lotto(this.numbers);
-            compareNumbers(ticket.tickets.get(i), lotto.getNumbers());
-            setPrizes(this.match, this.bonus);
-        }
-        this.numbersOfPrizes = countPrizes();
-        this.totalProfit = computeTotalProfit(this.match, this.bonus);
+        customer = new Customer(inputPrice);
+        printTickets(customer);
+    }
 
+    private void printOutput(Customer customer) {
         System.out.println("당첨 통계\n---");
-        System.out.printf("3개 일치 (5,000원) - %d개\n", this.numbersOfPrizes.get(4));
-        System.out.printf("4개 일치 (50,000원) - %d개\n", this.numbersOfPrizes.get(3));
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", this.numbersOfPrizes.get(2));
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", this.numbersOfPrizes.get(1));
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", this.numbersOfPrizes.get(0));
-        float profitRate = this.totalProfit / ticket.price * 100;
+        printPrizes();
+        printProfitRate(customer);
+    }
+
+    private void printPrizes() {
+        System.out.printf("3개 일치 (5,000원) - %d개\n", numbersOfPrizes.get(4));
+        System.out.printf("4개 일치 (50,000원) - %d개\n", numbersOfPrizes.get(3));
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", numbersOfPrizes.get(2));
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", numbersOfPrizes.get(1));
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", numbersOfPrizes.get(0));
+    }
+
+    private void printProfitRate(Customer customer) {
+        float profitRate = totalProfit / customer.inputPrice * 100;
         System.out.printf("총 수익률은 %.1f%%입니다.\n", profitRate);
     }
 
-    private static void printTickets(Ticket ticket) {
-        for (int i = 0; i < ticket.amount; i++) {
-            System.out.println(ticket.tickets.get(i));
+    private void printTickets(Customer customer) {
+        System.out.printf("\n%d개를 구매했습니다.\n", customer.amount);
+        for (int i = 0; i < customer.amount; i++) {
+            System.out.println(customer.tickets.get(i));
         }
     }
 }

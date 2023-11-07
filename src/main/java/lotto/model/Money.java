@@ -3,12 +3,20 @@ package lotto.model;
 import lotto.constant.ErrorMessage;
 
 public class Money {
-    int money;
+    private final int money;
 
     Money(int money) {
         divideByThousand(money);
         isOverThousand(money);
         this.money = money;
+    }
+
+    public static Money makeMoney(int money) {
+        return new Money(money);
+    }
+
+    public int getMoney() {
+        return money;
     }
 
     private void divideByThousand(int money) {

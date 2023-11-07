@@ -7,6 +7,9 @@ import java.util.Set;
 public class Lotto {
 
     private static final int LOTTO_SIZE = 6;
+    private static final int LOTTO_MAX = 45;
+    private static final int LOTTO_MIN = 1;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -26,6 +29,16 @@ public class Lotto {
         if(compareNumbers.size() != numbers.size()){
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
+    }
+
+    private void validateNumberRange(int number){
+        if(!(number <= LOTTO_MAX && number >= LOTTO_MIN)){
+            throw new IllegalArgumentException("[ERROR] 숫자 범위는 1~45까지 입니다.");
+        }
+    }
+
+    private void validateRange(List<Integer> numbers){
+        numbers.forEach(this::validateNumberRange);
     }
 
 }

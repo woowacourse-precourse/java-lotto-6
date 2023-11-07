@@ -53,7 +53,8 @@ public class OutputView {
 
   public void outputResult(LotteryResult lotteryResult, PurchaseMoney purchaseMoney) {
     StringBuilder sb = new StringBuilder();
-    sb.append(OutputMessage.STATISTICS_MESSAGE.message)
+    sb.append(SpecialSign.NEW_LINE.getSign())
+        .append(OutputMessage.STATISTICS_MESSAGE.message)
         .append(SpecialSign.NEW_LINE.getSign())
         .append(OutputMessage.DIVIDER_MESSAGE.message)
         .append(SpecialSign.NEW_LINE.getSign())

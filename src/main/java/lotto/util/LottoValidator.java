@@ -33,7 +33,9 @@ public class LottoValidator {
         }
     }
 
-    public static void validateWinningNumber(List<Integer> numbers) {
+    public static void validateWinningNumber(WinningNumber winningNumber) {
+        List<Integer> numbers = winningNumber.getNumbers();
+
         validateNumbersCount(numbers);
         validateNumbersRange(numbers);
         validateNumbersDuplication(numbers);

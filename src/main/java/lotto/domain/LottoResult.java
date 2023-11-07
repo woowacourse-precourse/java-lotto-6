@@ -11,7 +11,7 @@ public class LottoResult {
         this.results = results;
     }
 
-    public static LottoResult determineWinnings(final WinningLotto winningLotto, final Lottos lottos) {
+    public static LottoResult determineWinnings(final Lottos lottos, final WinningLotto winningLotto) {
         EnumMap<LottoRank, Integer> results = new EnumMap<>(LottoRank.class);
         for (Lotto lotto : lottos.getLottos()) {
             // 현재 로또가 몇등인지 구함

@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.MoneyManagement;
 import lotto.domain.Number;
@@ -24,26 +25,41 @@ public class LottoController {
     }
 
     public void start() {
-        int quantity = amount();
-        Lottos buyLottos = buyLotto(quantity);
+        MoneyManagement amount = initAmount();
+        showAmount(amount);
+        Lottos buyLottos = buyLotto(amount);
         outputView.showLottoList(buyLottos);
+
         WinningLotto winningLotto = initWinningLotto();
+        LottoResult lottoResult = LottoResult.determineWinnings(buyLottos, winningLotto);
+
+        double yield = getYield(amount, lottoResult);
+        outputView.showYield(yield);
     }
 
-    public int amount() {
-        MoneyManagement amount = getAmount();
+    public double getYield(MoneyManagement amount, LottoResult lottoResult) {
+        long profits = getTotal(lottoResult);
+        int balance = amount.getBalance();
+        return MoneyManagement.calculateYield(balance, profits);
+    }
+
+    public long getTotal(LottoResult lottoResult) {
+        return MoneyManagement.totalAmount(lottoResult);
+    }
+
+    public void showAmount(MoneyManagement amount) {
         int quantity = amount.getQuantity();
         outputView.showTickets(quantity);
-        return quantity;
     }
 
-    public MoneyManagement getAmount() {
+    public MoneyManagement initAmount() {
         outputView.askAmount();
         String purchaseAmount = inputView.read();
         return MoneyManagement.from(purchaseAmount);
     }
 
-    public Lottos buyLotto(final int quantity) {
+    public Lottos buyLotto(MoneyManagement amount) {
+        int quantity = amount.getQuantity();
         return Lottos.from(quantity);
     }
 

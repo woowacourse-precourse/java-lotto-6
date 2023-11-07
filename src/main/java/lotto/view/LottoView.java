@@ -3,9 +3,10 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lotto;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoView {
 
@@ -26,6 +27,14 @@ public class LottoView {
         System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
         lottos.forEach(lotto -> System.out.println(lotto));
+    }
+
+    public List<Integer> inputWinningNumber() {
+        String input = input("당첨 번호를 입력해 주세요.");
+        return Stream.of(input.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     private void validateIsNumber(String input) {

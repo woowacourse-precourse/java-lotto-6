@@ -11,11 +11,12 @@ public class WinningNumberValidator {
     private static final int MAXIMUM_WINNING_NUMBER = 45;
     private static final int WINNING_NUMBERS_COUNT = 6;
 
-    public static void validateWinningNumbers(String winningNumbers) {
+    public static List<Integer> validateWinningNumbers(String winningNumbers) {
         List<Integer> numbersList = parseToIntList(winningNumbers);
         validateNoDuplicates(numbersList);
         validateSixNumbers(numbersList);
         validateAllNumbersInRange(new LinkedHashSet<>(numbersList));
+        return numbersList;
     }
 
 

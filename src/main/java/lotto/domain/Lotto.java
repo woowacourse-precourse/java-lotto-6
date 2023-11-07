@@ -8,7 +8,6 @@ import lotto.utils.constants.ExceptionMessage;
 import lotto.utils.constants.LottoNumConstant;
 
 public class Lotto {
-
     private static final String COMMA = ",";
     private final List<Integer> numbers;
 
@@ -109,6 +108,10 @@ public class Lotto {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_LOTTO_NUM_DUPLICATED_BONUSNUM.getMessage());
         }
         return bonusNumber;
+    }
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }
 

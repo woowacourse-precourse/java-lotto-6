@@ -187,13 +187,10 @@ public class LottoGame {
         for(int index = 0; index < prizes.size(); index++){
             if(sameNumberCount == counts.get(index)){
                 amount = new BigInteger(quantity);
-                //System.out.println("current amount is "+amount);
                 prize = new BigInteger(prizes.get(index));
-                //System.out.println("current prize is "+ prize);
                 amount = amount.multiply(prize);
             }
         }
-        //System.out.println("return amount is "+amount);
         return amount;
     }
 
@@ -215,16 +212,13 @@ public class LottoGame {
 
     public String calculateProfitRate(){
         BigInteger result = sumAllPrize();
-        //System.out.println("합산액 "+result);
         BigInteger cost
                 = new BigInteger(String.valueOf(this.lottoQuantity * 1000));
-        //System.out.println("구입 금액 "+cost);
         String profitRate;
 
         if(result.toString().equals("0"))
             return "0";
         result = (result.multiply(new BigInteger("10000")).divide(cost));
-        //System.out.println("당첨 합산액 / 초기금 = "+ result);
         profitRate = roundProfitRateInSecondPlace(result);
         return profitRate;
     }
@@ -238,22 +232,13 @@ public class LottoGame {
     private String roundProfitRateInSecondPlace(BigInteger result){
         String profitRate = result.toString();
         int length = profitRate.length();
-
         String front = profitRate.substring(0, length-2);
-        //System.out.println("front "+front);
         String back = profitRate.substring(length-2, length);
-        //System.out.println("back "+back);
-
         double backNumber = Double.parseDouble(back);
-        //System.out.println("1 current backNumber "+backNumber);
         backNumber = backNumber/10.00;
-        //System.out.println("2 current backNumber "+backNumber);
         backNumber = Math.round(backNumber);
-        //System.out.println("3 current backNumber "+backNumber);
         back = String.valueOf(backNumber);
         back = back.substring(0,1);
-
-        //System.out.println("back "+back);
         return front+"."+back;
     }
 }

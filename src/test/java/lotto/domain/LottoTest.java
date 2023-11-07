@@ -65,7 +65,7 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 번호가 문자로 입력된 경우 예외가 발생한다.")
-    void 로또_문자가_입력() throws Exception{
+    void 로또_문자_입력() throws Exception{
         //given
         final String numbers = "a,b,c,d,e,f";
         //when,then
@@ -76,10 +76,34 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("로또 번호가 음수로 입력된 경우 예외가 발생한다.")
+    void 로또_음수_입력() throws Exception{
+        //given
+        final String numbers = "1,2,3,4,5,-6";
+        //when,then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .hasMessage(ExceptionMessages.LOTTO_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.getMessage());
+    }
+
+    @Test
     @DisplayName("로또 번호가 빈문자로 입력된 경우 예외가 발생한다.")
-    void 로또_빈문자가_입력() throws Exception{
+    void 로또_빈문자_입력() throws Exception{
         //given
         final String numbers = "";
+        //when,then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .hasMessage(ExceptionMessages.LOTTO_IS_EMPTY.getMessage());
+    }
+
+    @Test
+    @DisplayName("로또 번호가 널문자로 입력된 경우 예외가 발생한다.")
+    void 로또_널문자_입력() throws Exception{
+        //given
+        final String numbers = null;
         //when,then
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);

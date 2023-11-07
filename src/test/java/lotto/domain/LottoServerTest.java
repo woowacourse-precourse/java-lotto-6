@@ -89,6 +89,32 @@ class LottoServerTest extends NsTest {
                 List.of(1, 2, 3, 4, 5, 7)
         );
     }
+
+    @Test
+    void 보너스_번호의_비정상적인_입력에_대한_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("2000", "1,2,3,4,5,6", "a", "1", "46", "0", "7");
+                    assertThat(output()).contains(
+                            IoException.NOT_NUMBER.getMessage(),
+                            DomainException.BONUS_DUPLICATION.getMessage(),
+                            DomainException.BONUS_RANGE.getMessage(),
+                            "2개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "[1, 2, 3, 4, 5, 7]",
+                            "3개 일치 (5,000원) - 0개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 101,500,000.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7)
+        );
+    }
+
     @Override
     protected void runMain() {
         LottoServer lottoServer = new LottoServer(

@@ -34,6 +34,13 @@ public class InputTest {
         assertThatThrownBy(() -> InputValidator.validateInputPrice(input))
                 .isInstanceOf(HasSpaceException.class);
     }
+    @DisplayName("당첨숫자 입력이 공백일 시 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {" ","" })
+    void numbersInputHasSpace(String input){
+        assertThatThrownBy(() -> InputValidator.validateInputNumbers(input))
+                .isInstanceOf(NullInputException.class);
+    }
 
 
 

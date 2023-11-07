@@ -32,7 +32,7 @@ public class InputController {
     public Lotto getLottoNumberFromUser() {
         OutputView.askLottoNumbers();
         List<String> splitNumbers = validateLength(Console.readLine());
-        List<Integer> lottoNumbers = validateNumber(splitNumbers);
+        List<Integer> lottoNumbers = convertToIntList(splitNumbers);
 
         return new Lotto(lottoNumbers);
     }
@@ -48,19 +48,24 @@ public class InputController {
         return splitNumbersFromUser;
     }
 
-    public List<Integer> validateNumber(List<String> splitNumbers) {
+    public List<Integer> convertToIntList(List<String> splitNumbers) {
         List<Integer> numbers = new ArrayList<>();
 
         for (String splitNumber : splitNumbers) {
-            try {
-                int number = parseInt(splitNumber);
-                numbers.add(number);
-            } catch (NumberFormatException e) {
-                ErrorMessage.numberException();
-                throw new IllegalArgumentException();
-            }
+            int number = validateNumber(splitNumber);
+
+            numbers.add(number);
         }
 
         return numbers;
+    }
+
+    public int validateNumber(String splitNumber) {
+        try {
+            return parseInt(splitNumber);
+        } catch(NumberFormatException e) {
+            ErrorMessage.numberException();
+            throw new IllegalArgumentException();
+        }
     }
 }

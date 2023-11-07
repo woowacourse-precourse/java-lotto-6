@@ -35,6 +35,9 @@ public class Application {
         printPurchasedLottos();
         winningNumbers = getWinningNumbersWithInput();
         bonusNumber = getBonusNumberWithInput();
+
+        LottoJudger judger = new LottoJudger(winningNumbers, bonusNumber);
+        judger.judge(lottos);
     }
 
     private static int getPurchaseAmountWithInput() {

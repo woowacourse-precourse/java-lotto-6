@@ -235,4 +235,29 @@ class LottoServiceTest {
         assertThat(winningResult.get(SIXTH)).isEqualTo(0);
     }
 
+    @Test
+    @DisplayName("기능13 테스트 : 수익율을 정확하게 계산한다.")
+    void calculateAccurateProfitRate() {
+        // given
+        List<Lotto> lottoList = new ArrayList<>();
+
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        lottoList.add(new Lotto(List.of(4, 5, 6, 7, 8, 9)));
+        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
+        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
+        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
+        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
+        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
+        lottoList.add(new Lotto(List.of(6, 7, 8, 9, 10, 11)));
+
+        lottoService.makeWinningResult(lottoList, answer, bonusNumber);
+
+        // when
+        double result = lottoService.calculateProfitRate(7000);
+
+        // then
+        assertThat(result).isEqualTo(71.4);
+    }
 }

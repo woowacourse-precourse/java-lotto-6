@@ -2,7 +2,9 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import static lotto.utils.Constants.*;
+import static lotto.utils.Constants.MIN_NUMBER_IN_RANGE;
+import static lotto.utils.Constants.MAX_NUMBER_IN_RANGE;
+import static lotto.utils.Constants.CHECK_NUMBER_IN_RANGE;
 
 public class GenerateRandomNum {
 
@@ -12,7 +14,7 @@ public class GenerateRandomNum {
         return num;
     }
 
-    private static void checkNumberInRange(int num) {
+    public static void checkNumberInRange(int num) {
         if (num < MIN_NUMBER_IN_RANGE || num > MAX_NUMBER_IN_RANGE)
             throw new IllegalArgumentException(CHECK_NUMBER_IN_RANGE);
     }

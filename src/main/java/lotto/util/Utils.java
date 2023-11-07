@@ -12,25 +12,20 @@ public class Utils {
 
     private static final String COMMAS = ",";
 
-    public static long stringToLong(String string) {
-        Validation.verifyStringToLong(string);
-        return Long.parseLong(string);
-    }
-
-    public static int stringToInteger(String string) {
-        Validation.verifyStringToInteger(string);
-        return Integer.parseInt(string);
-
-    }
-
     public static long rangeInputMoney(long money) {
         Validation.verifyRangeInputMoney(money);
         return money;
     }
 
-    public static int rangeInputBonusNumber(int bonusNumber) {
-        Validation.verifyRangeInputBonusNumber(bonusNumber);
-        return bonusNumber;
+    public static long stringToLong(String string) {
+        Validation.verifyStringToLong(string);
+        return Long.parseLong(string);
+    }
+
+    public static List<Integer> sortAscendingRandomLottoList(List<Integer> list) {
+        List<Integer> orderedList = new ArrayList<>(list);
+        Collections.sort(orderedList);
+        return orderedList;
     }
 
     public static List<Integer> convertToLottoIntegerList(String userInput) {
@@ -41,14 +36,19 @@ public class Utils {
                 .collect(Collectors.toList());
     }
 
-    public static boolean isNumeric(String str) {
-        return str.matches("-?\\d+");
+    public static int rangeInputBonusNumber(int bonusNumber) {
+        Validation.verifyRangeInputBonusNumber(bonusNumber);
+        return bonusNumber;
     }
 
-    public static List<Integer> sortAscendingRandomLottoList(List<Integer> list) {
-        List<Integer> orderedList = new ArrayList<>(list);
-        Collections.sort(orderedList);
-        return orderedList;
+    public static int stringToInteger(String string) {
+        Validation.verifyStringToInteger(string);
+        return Integer.parseInt(string);
+
+    }
+
+    public static boolean isNumeric(String str) {
+        return str.matches("-?\\d+");
     }
 
 }

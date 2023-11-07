@@ -25,4 +25,30 @@ public class LottoResult {
 
         return resultMoney.get();
     }
+
+    public String getPrizeDescription(int prize) {
+        LottoPrize lottoPriceByPrize = LottoPrize.getLottoPrizeByPrize(prize);
+        long count = getCountOfPrizes(lottoPriceByPrize);
+
+        return buildPrizeDescription(lottoPriceByPrize, count);
+    }
+
+    private long getCountOfPrizes(LottoPrize lottoPriceByPrize) {
+        return lottoPrizes.stream()
+                .filter(lottoPriceByPrize::equals)
+                .count();
+    }
+
+    private String buildPrizeDescription(LottoPrize lottoPrizeByPrize, long count) {
+        StringBuilder prefix = new StringBuilder(lottoPrizeByPrize.getMatchesNumber() + "개 일치");
+        if (lottoPrizeByPrize == SECOND)
+            prefix.append(", 보너스 볼 일치");
+
+        return prefix.append(" ")
+                .append(lottoPrizeByPrize.getPrizeMoneyMessage())
+                .append(" - ")
+                .append(count)
+                .append("개")
+                .toString();
+    }
 }

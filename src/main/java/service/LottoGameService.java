@@ -1,7 +1,7 @@
 package service;
 
 import static utils.PrintUtils.errorPrint;
-import static utils.PrintUtils.print;
+import static utils.PrintUtils.println;
 import static utils.PrintUtils.printf;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -18,21 +18,21 @@ public class LottoGameService {
     public void runLottoGame(){
         purchaseLottoGame();
 
-        printf(LottoGameMessage.PURCHASED_COUNT.toString(), userLotto.getLottoCount());
-        List<Lotto> lottoList = lottoGame.getLottoList(userLotto.getLottoCount());
-        lottoList.stream()
-                .forEach(lotto -> print(lotto.getNumbers().toString()));
+        printGetLottoList();
 
         setInputLottoGame();
 
         setInputBonusLottoGame();
+
+        println(LottoGameMessage.WINNING_STATISTICS.toString());
+
     }
 
     private void purchaseLottoGame(){
         boolean isAmount = false;
 
         while(!isAmount){
-            print(LottoGameMessage.PURCHASE_AMOUNT.toString());
+            println(LottoGameMessage.PURCHASE_AMOUNT.toString());
             isAmount = isGetUserLotto(readInput());
         }
     }
@@ -47,11 +47,22 @@ public class LottoGameService {
         return true;
     }
 
+
+    private void printGetLottoList(){
+        int lottoCount = userLotto.getLottoCount();
+
+        printf(LottoGameMessage.PURCHASED_COUNT.toString(), lottoCount);
+        List<Lotto> lottoList = lottoGame.getLottoList(lottoCount);
+        lottoList.stream()
+                .forEach(lotto -> println(lotto.getNumbers().toString()));
+    }
+
+
     private void setInputLottoGame(){
         boolean isInputLotto = false;
 
         while(!isInputLotto){
-            print(LottoGameMessage.WINNING_NUMBER.toString());
+            println(LottoGameMessage.WINNING_NUMBER.toString());
             try{
                 userLotto.setInputLotto(readInput());
                 isInputLotto = true;
@@ -61,11 +72,12 @@ public class LottoGameService {
         }
     }
 
+
     private void setInputBonusLottoGame(){
         boolean isInputBonusLotto = false;
 
         while(!isInputBonusLotto){
-            print(LottoGameMessage.BONUS_NUMBER.toString());
+            println(LottoGameMessage.BONUS_NUMBER.toString());
             try{
                 userLotto.setInputBonusLotto(readInput());
                 isInputBonusLotto = true;

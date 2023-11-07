@@ -4,7 +4,7 @@ import constants.ErrorCodeConstant;
 
 public class PrintUtils {
 
-    public static void print(String message){
+    public static void println(String message){
         System.out.println(message);
     }
     public static void printf(String formatMessage, Object args){

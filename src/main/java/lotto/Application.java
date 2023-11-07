@@ -14,6 +14,7 @@ public class Application {
             System.out.println(balls.toString());
         }
 
-        System.out.println(buyLotto.inputNumbers().toString());
+        buyLotto.inputNumbers();
+        buyLotto.inputBonus();
     }
 }

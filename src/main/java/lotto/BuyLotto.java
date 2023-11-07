@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class BuyLotto {
+
+    private final PrizeDTO prizeDTO = new PrizeDTO();
+
     public int buy() {
         System.out.println("구입 금액을 입력 해 주세요.");
         String m = Console.readLine();
@@ -40,11 +43,11 @@ public class BuyLotto {
         return new Lotto(balls);
     }
 
-    public List<Integer> inputNumbers() {
+    public void inputNumbers() {
         System.out.println("당첨 번호를 입력 해 주세요");
         String input = Console.readLine();
         try {
-            return correctNumbers(input);
+            prizeDTO.setCorrectNumbers(correctNumbers(input));
         } catch (NumberFormatException e) {
             System.out.println("[ERROR] 올바르지 못한 숫자 형태 입니다.");
             inputNumbers();
@@ -52,7 +55,6 @@ public class BuyLotto {
             System.out.println(e.getMessage());
             inputNumbers();
         }
-        return null;
     }
 
     public List<Integer> correctNumbers(String input) {
@@ -82,6 +84,23 @@ public class BuyLotto {
     public void inputValidateSize(List<Integer> correctNumbers) {
         if (correctNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력 해 주세요.");
+        }
+    }
+
+    public void inputBonus() {
+        System.out.println("보너스 번호를 입력 해 주세요");
+        String bonus = Console.readLine();
+        try {
+            int bonusNumber = Integer.parseInt(bonus);
+            inputValidateRange(bonusNumber);
+            inputValidateDuplicate(prizeDTO.getCorrectNumbers(), bonusNumber);
+            prizeDTO.setBonusNumber(Integer.parseInt(bonus));
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 당첨 번호에는 숫자만 입력할 수 있습니다.");
+            inputBonus();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBonus();
         }
     }
 }

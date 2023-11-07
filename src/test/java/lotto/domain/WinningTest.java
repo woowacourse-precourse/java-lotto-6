@@ -59,5 +59,14 @@ class WinningTest {
         //Then
         assertThat(winning.getBonusNumber()).isEqualTo(7);
     }
-    
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복된다면 예외가 발생한다.")
+    @Test
+    void saveBonusNumberByDuplicate() {
+        Winning winning = new Winning();
+        winning.setNumbers(List.of(1,2,3,4,5,6));
+        assertThatThrownBy(() -> winning.setBonusNumber(1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+    }
 }

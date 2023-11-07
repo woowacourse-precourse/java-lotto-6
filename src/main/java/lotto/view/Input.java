@@ -7,8 +7,10 @@ public class Input {
 
     Output output;
     int inputAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
         int amount = Integer.parseInt(Console.readLine());
         validateAmount(amount);
+        System.out.printf("\n%d개를 구매했습니다.\n", (int)amount / 1000);
         return amount;
     }
 
@@ -19,6 +21,7 @@ public class Input {
     }
 
     List<Integer> inputNumbers() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> lotto;
         while (true) {
             try {
@@ -46,6 +49,11 @@ public class Input {
         if ((num <= 0) || (num > 45)) {
             throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
+    }
+
+    int inputBonus() {
+        System.out.println("\n보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
     }
 
 }

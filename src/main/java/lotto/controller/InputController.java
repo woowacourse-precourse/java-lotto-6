@@ -31,9 +31,12 @@ public class InputController {
 
     public Lotto getLottoNumberFromUser() {
         OutputView.askLottoNumbers();
-        List<String> splitNumbers = validateLength(Console.readLine());
-
-        return new Lotto(convertToIntList(splitNumbers));
+        try {
+            List<String> splitNumbers = validateLength(Console.readLine());
+            return new Lotto(convertToIntList(splitNumbers));
+        } catch (IllegalArgumentException e) {
+            return getLottoNumberFromUser();
+        }
     }
 
     public List<String> validateLength(String lottoNumbersFromUser) {

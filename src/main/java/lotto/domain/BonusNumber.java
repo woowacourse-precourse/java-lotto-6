@@ -5,11 +5,11 @@ import lotto.view.exception.LottoInputException;
 import lotto.view.message.LottoInputExceptionMessage;
 
 public class BonusNumber extends LottoNumber {
-    private BonusNumber(final long number) {
+    private BonusNumber(final int number) {
         super(number);
     }
 
-    public static BonusNumber of(final long bonusNumber, final List<LottoNumber> lottoNumbers) {
+    public static BonusNumber of(final int bonusNumber, final List<LottoNumber> lottoNumbers) {
         validate(bonusNumber);
         isNotDuplicatedWithWinningNumbers(LottoNumber.from(bonusNumber), lottoNumbers);
         return new BonusNumber(generateBonusNumber(lottoNumbers));
@@ -23,7 +23,7 @@ public class BonusNumber extends LottoNumber {
         }
     }
 
-    private static long generateBonusNumber(final List<LottoNumber> lottoNumbers) {
+    private static int generateBonusNumber(final List<LottoNumber> lottoNumbers) {
         return -1;
     }
 }

@@ -15,11 +15,11 @@ public class LottoService {
         return userMoney.getUserMoney() / LottoConstant.LOTTO_PRICE.getValue();
     }
 
-    public WinningLottoNumbers initWinningLottoNumbers(final List<Long> winningLottoNumbers) {
+    public WinningLottoNumbers initWinningLottoNumbers(final List<Integer> winningLottoNumbers) {
         return WinningLottoNumbers.from(winningLottoNumbers);
     }
 
-    public BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers, final long bonusNumber) {
+    public BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers, final int bonusNumber) {
         return BonusNumber.of(bonusNumber, winningLottoNumbers.getWinningLottoNumbers());
     }
 }

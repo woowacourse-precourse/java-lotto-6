@@ -16,11 +16,11 @@ public class InputView {
         return inputParser.parseUserMoney(readLine());
     }
 
-    public List<Long> getWinningLottoNumbers() {
+    public List<Integer> getWinningLottoNumbers() {
         return inputParser.parseWinningLottoNumbers(readLine());
     }
 
-    public long getBonusNumber() {
+    public int getBonusNumber() {
         return inputParser.parseBonusNumber(readLine());
     }
 

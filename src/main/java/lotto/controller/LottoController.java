@@ -51,7 +51,7 @@ public class LottoController {
 
     private WinningLottoNumbers initWinningLottoNumbers() {
         try {
-            List<Long> winningLottoNumbers = askToInsertWinningLottoNumbers();
+            List<Integer> winningLottoNumbers = askToInsertWinningLottoNumbers();
             return lottoService.initWinningLottoNumbers(winningLottoNumbers);
         } catch (LottoInputException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -59,14 +59,14 @@ public class LottoController {
         }
     }
 
-    private List<Long> askToInsertWinningLottoNumbers() {
+    private List<Integer> askToInsertWinningLottoNumbers() {
         outputView.askUserToInsertLottoWinningNumbers();
         return inputView.getWinningLottoNumbers();
     }
 
     private BonusNumber initBonusNumber(WinningLottoNumbers winningLottoNumbers) {
         try {
-            long bonusNumber = askToInsertBonusNumber();
+            int bonusNumber = askToInsertBonusNumber();
             return lottoService.initBonusNumber(winningLottoNumbers, bonusNumber);
         } catch (LottoInputException e) {
             outputView.printErrorMessage(e.getMessage());
@@ -74,7 +74,7 @@ public class LottoController {
         }
     }
 
-    private long askToInsertBonusNumber() {
+    private int askToInsertBonusNumber() {
         outputView.askUserToInsertBonusNumber();
         return inputView.getBonusNumber();
     }

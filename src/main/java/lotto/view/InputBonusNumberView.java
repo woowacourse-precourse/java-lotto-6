@@ -9,7 +9,7 @@ public class InputBonusNumberView {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final String BLANK = " ";
-    private static final String ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 중복되지 않은 숫자여야 합니다.";
     private static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final Pattern PATTERN = Pattern.compile("\\d+");
 

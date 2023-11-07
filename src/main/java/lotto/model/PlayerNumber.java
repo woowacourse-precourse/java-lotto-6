@@ -25,6 +25,14 @@ public class PlayerNumber {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getWinningNumber() {
+        return winningNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateWinningNumberSize(List<Integer> numbers) {
         if (numbers.size() != WINNING_NUMBER_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_SIZE.getMessage());

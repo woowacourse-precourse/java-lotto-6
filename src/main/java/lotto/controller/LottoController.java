@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.model.Coin;
 import lotto.model.LottoPaper;
+import lotto.model.LottoStats;
 import lotto.model.PlayerNumber;
 import lotto.service.LottoMachine;
 import lotto.view.InputView;
@@ -55,7 +56,8 @@ public class LottoController {
             outputView.printNewLine();
 
             PlayerNumber player = new PlayerNumber(winningNumber, bonusNumber);
-
+            LottoStats stats = machine.compareLotto(player);
+            outputView.printLottoStats(stats);
         } catch (IllegalArgumentException e) {
             outputView.printError(e);
             pickPlayerNumber();

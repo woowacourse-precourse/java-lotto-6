@@ -34,6 +34,12 @@ public class LottoGenerator {
         }
     }
 
+    private void validateUnit(long number, long unitNumber) {
+        if (number % unitNumber != ZERO) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private List<Lotto> generateLottos(long buyingCount) {
         List<Lotto> lottos = new ArrayList<>();
         while (lottos.size() != buyingCount) {

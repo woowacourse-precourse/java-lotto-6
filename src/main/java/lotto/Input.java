@@ -14,6 +14,10 @@ public class Input {
         return amount;
     }
 
+    public static String getLottoNumbers() {
+        return Console.readLine();
+    }
+
     private static boolean validAmount(int amount) {
         return (amount % 1000) == 0;
     }

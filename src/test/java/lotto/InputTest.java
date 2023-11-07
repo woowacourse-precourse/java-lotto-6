@@ -1,5 +1,7 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -25,7 +27,7 @@ public class InputTest {
         // then
         int expect = 8000;
         int actual = Input.getAmount();
-        Assertions.assertThat(expect).isEqualTo(actual);
+        assertThat(expect).isEqualTo(actual);
     }
 
     @Test
@@ -37,9 +39,24 @@ public class InputTest {
         System.setIn(inputStream);
 
         // then
-        Assertions.assertThatThrownBy(() -> {
+        assertThatThrownBy(() -> {
                     Input.getAmount();
                 })
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력 테스트")
+    public void inputLottoNumberRight(){
+        //given
+        String expect = "1,2,3,4,5,6";
+        InputStream inputStream = setConsole(expect);
+        System.setIn(inputStream);
+        //when
+
+        String actual = Input.getLottoNumbers();
+
+        //then
+        assertThat(expect).isEqualTo(actual);
     }
 }

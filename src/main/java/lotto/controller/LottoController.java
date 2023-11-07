@@ -14,35 +14,44 @@ import static lotto.view.outputStatistics.printStatistics;
 public class LottoController {
 
     public void start() {
-        Money money;
-        WinningLotto winningLotto;
-
-        try {
-            money = getLottoMoney();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            money = getLottoMoney();
-        }
+        Money money = validateLottoMoney();
 
         Lottos lottos = getLottos(money);
+        printLottoList(lottos);
 
-        try {
-            winningLotto = getWinningLotto();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            winningLotto = getWinningLotto();
-        }
+        WinningLotto winningLotto = validateWinningLotto();
 
         PrizeResult prizeResult = new PrizeResult();
         calcLottoResult(prizeResult, winningLotto, lottos);
-
-        printBuyLotto(money);
-        printLottoList(lottos);
 
         Rate rate = getRate(money, prizeResult);
         printStatistics(prizeResult, rate);
 
     }
+
+    private Money validateLottoMoney() {
+        Money money;
+        try {
+            money = getLottoMoney();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            money = getLottoMoney();
+        }
+        printBuyLotto(money);
+        return money;
+    }
+
+    private WinningLotto validateWinningLotto() {
+        WinningLotto winningLotto;
+        try {
+            winningLotto = getWinningLotto();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            winningLotto = getWinningLotto();
+        }
+        return winningLotto;
+    }
+
 
     private Money getLottoMoney() {
         InputBuyLottoView inputBuyLottoView = new InputBuyLottoView();

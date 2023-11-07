@@ -16,7 +16,7 @@ public class LottoReturnsCalculator {
 
     private long calculateTotalEarnings(Map<LottoRank, Integer> rankResults) {
         return rankResults.entrySet().stream()
-                .mapToLong(entry -> (long) entry.getKey().getReward() * entry.getValue())
+                .mapToLong(entry -> (long) entry.getKey().getWinningMoney() * entry.getValue())
                 .sum();
     }
 

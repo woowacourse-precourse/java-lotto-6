@@ -19,6 +19,10 @@ public class LottoWinningStatisticsOutput {
     private void printRankResult(LottoRank rank, Map<LottoRank, Integer> rankResult) {
         String bonusMatchString = (rank == LottoRank.SECOND) ? ", 보너스 볼 일치" : "";
         System.out.printf("%d개 일치%s (%s원) - %d개%n",
-                rank.getMatchCount(), bonusMatchString, String.format("%,d", rank.getReward()), rankResult.getOrDefault(rank, 0));
+                rank.getMatchCount(),
+                bonusMatchString,
+                String.format("%,d", rank.getWinningMoney()),
+                rankResult.getOrDefault(rank, 0)
+        );
     }
 }

@@ -8,33 +8,39 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
     public List<Integer> initLottoNumber(){
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Numbers.INIT_NUMBER_START.getNumber(),Numbers.INIT_NUMBER_END.getNumber(), Numbers.INIT_NUMBER_COUNT.getNumber());
-        List<Integer> lottoNum = new ArrayList<>(numbers);
-        Collections.sort(lottoNum);
-        return lottoNum;
+        int initNumber = Numbers.INIT_NUMBER_START.getNumber();
+        int endNumber = Numbers.INIT_NUMBER_END.getNumber();
+        int countNumber = Numbers.INIT_NUMBER_COUNT.getNumber();
+
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(initNumber,endNumber,countNumber);
+
+        return numbers;
     }
 
     public List<Integer> splitWinningNumber(String input){
         String [] splitString = input.split(",");
         List<Integer> winningNumber = new ArrayList<>();
+
         for(int i = 0 ; i <splitString.length; i++){
             winningNumber.add(Integer.parseInt(splitString[i]));
         }
+
         return winningNumber;
     }
 
     public List<Integer> calcWinningResult(Lotto winningNumber,List<Lotto> lottos){
         List<Integer> countWinNumbers = new ArrayList<>();
         int countNumber = 0;
+
         for(Lotto lotto : lottos){
             countNumber = countWinningNumber(winningNumber, lotto);
             countWinNumbers.add(countNumber);
         }
+
         return countWinNumbers;
     }
 
@@ -42,17 +48,20 @@ public class LottoService {
         List<Integer> winningNumber = winningLott.getNumbers();
         List<Integer> purchaseNumber = purchaseLotto.getNumbers();
         int count = 0;
+
         for(int i = 0; i < winningNumber.size(); i++){
             if(purchaseNumber.contains(winningNumber.get(i))){
                 count += 1;
             }
         }
+
         return count;
     }
 
     public int[] calcRanking(List<Integer> countWinningNum, Lotto winningNumber, Bonus bonus){
         int[] winingRanking = new int[5];
         int index;
+
         for(int i = 0; i < countWinningNum.size(); i++){
             if(countWinningNum.get(i) < 3){
                 continue;
@@ -60,6 +69,7 @@ public class LottoService {
             index = calcIndex(countWinningNum.get(i),winningNumber, bonus);
             winingRanking[index] += 1;
         }
+
         return winingRanking;
     }
 
@@ -75,27 +85,32 @@ public class LottoService {
                 winIndex = ranking.getIndex();
             }
         }
+
         return winIndex;
     }
 
     public String calcWinningRate(int[] winResult, PurchaseAmount purchaseAmount){
         int sumPrize = 0;
         double rate;
+
         for(int i = 0; i < winResult.length; i++){
             sumPrize = sumPrize + (getPrize(i) * winResult[i]);
         }
 
         rate = ((double)sumPrize / (double) purchaseAmount.getAmount()) * 100;
+
         return String.format("%.1f", rate);
     }
 
     public int getPrize(int index){
         int prize = 0;
+
         for(Ranking ranking : Ranking.values()){
             if(index == ranking.getIndex()){
                 prize =  ranking.getPrize();
             }
         }
+
         return prize;
     }
 }

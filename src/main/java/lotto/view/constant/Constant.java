@@ -13,9 +13,8 @@ public enum Constant {
     FRONT_BRACKETS("["),
     REAR_BRACKETS("]"),
     COMMAS(","),
-    RESULT_HEAD(System.lineSeparator() + "당첨 통계" + "---------"),
+    STATISTICS_HEADER(System.lineSeparator() + "당첨 통계" + "---------"),
     BUYING_COUNT("%d개를 구매했습니다."),
-    WIN_STATISTICS_HEADER("당첨 통계\n---"),
     STATISTICS("%d개 일치%s(%d원)- %d개" + System.lineSeparator()),
     TAKE_BONUS(", 보너스 볼 일치"),
     PROFIT("총 수익률은 %.2f입니다.");

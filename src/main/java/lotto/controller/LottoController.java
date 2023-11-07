@@ -13,6 +13,7 @@ import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
+import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.PurchaseAmountDto;
 import lotto.domain.dto.WinningLottoDto;
 import lotto.service.LottoMachine;
@@ -94,6 +95,10 @@ public class LottoController {
 
     public void profitRate(final Lottos lottos, final DrawingResults drawingResults) {
         ProfitRate profitRate = lottoMachine.calculateProfitRate(lottos, drawingResults);
-        outputView.printProfitRate(profitRateDto);
+        outputView.printProfitRate(mapToProfitRate(profitRate));
+    }
+
+    private ProfitRateDto mapToProfitRate(final ProfitRate profitRate) {
+        return new ProfitRateDto(profitRate.getProfitRate());
     }
 }

@@ -20,9 +20,9 @@ public class WinningNumber {
     }
 
     private void inputWinningNumbers() {
-        List<String> winningNumbersInput;
+        String winningNumbersInput;
         while (true) {
-            winningNumbersInput = Arrays.asList(inputUtil.inputWinningNumber().split(","));
+            winningNumbersInput = inputUtil.inputWinningNumber();
             try {
                 validator.checkLottoNumber(winningNumbersInput);
                 break;
@@ -30,9 +30,9 @@ public class WinningNumber {
 
             }
         }
-
+        List<String> winningNumbersTemp = Arrays.asList(winningNumbersInput.split(","));
         for (int i = 0; i < 6; i++) {
-            winningNumbers.add(Integer.parseInt(winningNumbersInput.get(i)));
+            winningNumbers.add(Integer.parseInt(winningNumbersTemp.get(i)));
         }
     }
 

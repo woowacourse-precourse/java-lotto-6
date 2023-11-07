@@ -2,6 +2,7 @@ package lotto.validator;
 
 import lotto.domain.Constants;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +11,9 @@ public class WinningNumberValidator {
 
     Constants constants = new Constants();
 
-    public void checkLottoNumber(List<String> lotto) {
+    public void checkLottoNumber(String lottoInput) {
+        checkLottoNumberValid(lottoInput);
+        List<String> lotto = Arrays.asList(lottoInput.split(","));
         checkLottoNumberIsNumber(lotto);
         checkLottoInRange(lotto);
         checkLottoDuplicate(lotto);
@@ -20,6 +23,17 @@ public class WinningNumberValidator {
         // 숫자인지 validate하는 함수
 
         checkBonusDuplicate(lotto, Integer.parseInt(bonusNumber));
+    }
+
+    public void checkLottoNumberValid(String lotto) {
+        if(!lotto.contains(",")) {
+            System.out.printf(constants.LOTTO_NUMBER_NOT_VALID_ERROR);
+            throw new IllegalArgumentException();
+        }
+        if(Arrays.asList(lotto.split(",")).size() != constants.LOTTO_NUMBER) {
+            System.out.printf(constants.LOTTO_NUMBER_NOT_SIX_ERROR);
+            throw new IllegalArgumentException();
+        }
     }
 
     public void checkLottoNumberIsNumber(List<String> lotto) {
@@ -35,7 +49,6 @@ public class WinningNumberValidator {
         }
     }
 
-    // 로또 번호가 중복이 없는지 확인
     public void checkLottoDuplicate(List<String> lotto) {
         Set<String> lottoWithoutDuplicate = new HashSet<>(lotto);
         if (lotto.size() != lottoWithoutDuplicate.size()) {
@@ -55,7 +68,6 @@ public class WinningNumberValidator {
         }
     }
 
-    // 보너스넘버가 중복이 아닌지 확인
     public void checkBonusDuplicate(List<Integer> lotto, int bonusNumber) {
         for (int i = 0; i < constants.LOTTO_NUMBER; i++) {
             if(lotto.get(i) == bonusNumber) {

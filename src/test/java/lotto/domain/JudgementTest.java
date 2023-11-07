@@ -15,10 +15,11 @@ public class JudgementTest {
         lottos.addLottos(new Lotto(List.of(1,2,3,4,5,6)));
         lottos.addLottos(new Lotto(List.of(1,2,3,4,5,7)));
         lottos.addLottos(new Lotto(List.of(3,4,5,6,7,8)));
+        Judgement judgement = new Judgement();
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
         WinningLotto winningLotto = new WinningLotto(winningNumbers);
         winningLotto.addBonusNumber("7");
-        Judgement.checkLottoNumber(lottos,winningLotto);
+        judgement.checkLottoNumber(lottos,winningLotto);
         Assertions.assertEquals(lottos.getWinningCounts(), List.of(7,6,5));
     }
 
@@ -29,11 +30,12 @@ public class JudgementTest {
         lottos.addLottos(new Lotto(List.of(1,2,3,4,5,6)));
         lottos.addLottos(new Lotto(List.of(1,2,3,4,5,7)));
         lottos.addLottos(new Lotto(List.of(3,4,5,6,7,8)));
+        Judgement judgement = new Judgement();
         List<Integer> winningNumbers = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
         WinningLotto winningLotto = new WinningLotto(winningNumbers);
         winningLotto.addBonusNumber("7");
-        Judgement.checkLottoNumber(lottos,winningLotto);
-        List<Integer> rank = Judgement.judgeAllLottoRank(lottos);
+        judgement.checkLottoNumber(lottos,winningLotto);
+        List<Integer> rank = judgement.judgeAllLottoRank(lottos);
         Assertions.assertEquals(rank, List.of(0,0,1,1,1));
     }
 
@@ -41,8 +43,9 @@ public class JudgementTest {
     @Test
     void checkcalculateEarningRate(){
         List<Integer> rank = List.of(0,2,0,0,0);
+        Judgement judgement = new Judgement();
         Money money = new Money("5000");
-        float earningRate = Judgement.calculateEarningRate(rank, money);
+        float earningRate = judgement.calculateEarningRate(rank, money);
         Assertions.assertEquals(earningRate, 2000.0);
     }
 }

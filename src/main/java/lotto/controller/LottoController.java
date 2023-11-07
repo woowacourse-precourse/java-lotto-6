@@ -1,6 +1,7 @@
 package lotto.controller;
 
-import static lotto.parser.Parser.parseWinningNumbers;
+import static lotto.domain.WinningNumbers.addBonusNumber;
+import static lotto.domain.WinningNumbers.createWinningNumbers;
 import static lotto.view.InputView.requestBonusNumber;
 import static lotto.view.InputView.requestLotteryNumber;
 import static lotto.view.InputView.requestPurchaseAmount;
@@ -12,9 +13,6 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningNumbers;
-import lotto.validator.InputValidator;
-import lotto.view.InputView;
 
 public class LottoController {
 
@@ -25,7 +23,8 @@ public class LottoController {
     public static void prosess (){
         start();
         createLottoNumber();
-        inputWinningNumber();
+        inputWinningNumbers();
+        inputBonusNumber();
     }
 
     public static void start() {
@@ -41,7 +40,6 @@ public class LottoController {
             lotto.add(createLotto());
         }
         return lotto;
-
     }
 
     private static Lotto createLotto() {
@@ -53,12 +51,17 @@ public class LottoController {
     }
 
 
-    public static void inputWinningNumber() {
+    public static void inputWinningNumbers() {
         String input = requestLotteryNumber();
-        InputValidator.validateEmpty(input);
-        InputValidator.validateInputFormat(input);
+        createWinningNumbers(input);
 
-        WinningNumbers.createWinningNumber(input);
     }
+
+    public static void inputBonusNumber(){
+        String input = requestBonusNumber();
+        addBonusNumber(input);
+    }
+
+
 
 }

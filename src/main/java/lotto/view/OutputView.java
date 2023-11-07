@@ -21,7 +21,6 @@ public class OutputView {
 
     public static void responseLottoNumber(List<Integer> lotto){
             System.out.println(lotto);
-
     }
 
 

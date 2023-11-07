@@ -9,13 +9,16 @@ public class Discriminator {
     private List<Integer> correctNumbers;
     private int bonus;
 
-    public Discriminator(int bonus) {
-        this.bonus = bonus;
+    public Discriminator() {
         this.info = new Info();
     }
 
     public void setCorrectNumbers(List<Integer> correctNumbers) {
         this.correctNumbers = correctNumbers;
+    }
+
+    public void setBonus(int bonus) {
+        this.bonus = bonus;
     }
 
     public void discriminate(List<Integer> lotto) {

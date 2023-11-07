@@ -1,6 +1,5 @@
 package lotto.model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -116,6 +115,43 @@ class LottoResultAnalyzerTest {
                         lottoNumberArgumentFirst,
                         10,
                         PrizeCategory.FIVE_MATCH_NO_BONUS
+                )
+        );
+    }
+
+    @DisplayName("당첨 금액 총액 계산 확인")
+    @ParameterizedTest(name = "{1} 일 때 {2}원")
+    @MethodSource("totalWinningPrize")
+    public void 당첨_금액_계산(EnumMap<PrizeCategory, Integer> matchResult, String Status, long expectedTotalPrize) {
+        // given
+        LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
+
+        // when
+        long actualTotalPrize = lottoResultAnalyzer.calculateTotalWinningPrize(matchResult);
+
+        // then
+        assertEquals(expectedTotalPrize, actualTotalPrize);
+    }
+
+    static Stream<Arguments> totalWinningPrize() {
+        EnumMap<PrizeCategory, Integer> matchResultFirstCase = new EnumMap<>(PrizeCategory.class);
+        matchResultFirstCase.put(PrizeCategory.THREE_MATCH, 5);
+        matchResultFirstCase.put(PrizeCategory.FIVE_MATCH_WITH_BONUS, 2);
+
+        EnumMap<PrizeCategory, Integer> matchResultSecondCase = new EnumMap<>(PrizeCategory.class);
+        matchResultSecondCase.put(PrizeCategory.FOUR_MATCH, 2);
+        matchResultSecondCase.put(PrizeCategory.SIX_MATCH, 2);
+
+        return Stream.of(
+                Arguments.of(
+                        matchResultFirstCase,
+                        "5등: 5개, 2등: 2개",
+                        60025000L
+                ),
+                Arguments.of(
+                        matchResultSecondCase,
+                        "4등: 2개, 1등: 2개",
+                        4000100000L
                 )
         );
     }

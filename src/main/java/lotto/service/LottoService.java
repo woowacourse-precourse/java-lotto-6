@@ -1,7 +1,6 @@
 package lotto.service;
 
 import static lotto.model.Lotto.LOTTO_PRICE;
-import static lotto.model.Lotto.NUMBER_OUT_OF_RANGE;
 import static lotto.model.LottoPrize.PRIZE_2;
 import static lotto.model.LottoStatistic.RATE;
 import static lotto.model.PurchaseAmount.INVALID_PURCHASE_AMOUNT;
@@ -11,7 +10,6 @@ import java.util.stream.Stream;
 
 import lotto.exception.InputCallback;
 import lotto.exception.InputExceptionTemplate;
-import lotto.exception.InputVoidCallback;
 import lotto.model.Lotto;
 import lotto.model.LottoPrize;
 import lotto.model.LottoPrizeCount;
@@ -19,7 +17,7 @@ import lotto.model.LottoStatistic;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.WinningNumbers;
-import lotto.model.result.LottoMatchResult;
+import lotto.model.LottoMatchResult;
 
 public class LottoService {
 
@@ -47,7 +45,7 @@ public class LottoService {
     }
 
     public Lotto askWinningNumbers(InputCallback<Lotto> callback) {
-        return inputByExceptionTemplate(callback, NUMBER_OUT_OF_RANGE);
+        return inputByExceptionTemplate(callback);
     }
 
     public WinningNumbers createWinningNumbers(Lotto lotto, InputCallback<Integer> callback) {
@@ -106,13 +104,5 @@ public class LottoService {
 
     private <T> T inputByExceptionTemplate(InputCallback<T> callback, String message) {
         return inputExceptionTemplate.run(callback, message);
-    }
-
-    private void inputByExceptionTemplate(InputVoidCallback callback) {
-        inputExceptionTemplate.run(callback);
-    }
-
-    private void inputByExceptionTemplate(InputVoidCallback callback, String message) {
-        inputExceptionTemplate.run(callback, message);
     }
 }

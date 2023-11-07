@@ -3,8 +3,6 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import lotto.model.result.LottoMatchResult;
-
 public enum LottoPrize {
 
     NO_PRIZE(0, false, 0),

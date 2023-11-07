@@ -12,17 +12,6 @@ public class InputExceptionTemplate {
         return executeWithCallback(callback, message);
     }
 
-    public void run(final InputVoidCallback callback) {
-        run(callback, null);
-    }
-
-    public void run(final InputVoidCallback callback, final String message) {
-        executeWithCallback(() -> {
-            callback.execute();
-            return null;
-        }, message);
-    }
-
     private <T> T executeWithCallback(InputCallback<T> execution, String message) {
         while (true) {
             try {

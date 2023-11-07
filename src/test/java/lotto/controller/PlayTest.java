@@ -1,4 +1,4 @@
-package lotto.Controller;
+package lotto.controller;
 
 import lotto.model.Lotto;
 import org.assertj.core.api.Assertions;

@@ -1,6 +1,5 @@
 package lotto.controller.result;
 
-import lotto.controller.result.Rank;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.WinningNumber;
@@ -14,20 +13,24 @@ import static lotto.controller.result.Rank.getRank;
 
 public class winningController {
 
-    public static HashMap<Rank, Integer> createResult(List<Lotto> lottery, WinningNumber winningNumbers, BonusNumber bonus) {
+    public static HashMap<Rank, Integer> createResultRotate(List<Lotto> lottery, WinningNumber winningNumbers, BonusNumber bonus) {
         HashMap<Rank, Integer> result = new HashMap<>();
         for (Lotto lotto : lottery) {
             int resultCount = compareLottoAndWinningNumber(lotto.getLotto(), winningNumbers.getWinningNumbers());
-            Rank resultRank = findRank(resultCount);
+            Rank resultRank = findRank(resultCount, lotto, bonus);
             if (resultRank == null) {
                 continue;
-            }
-            if (resultRank.getCorrectNum() == 5) {
-                resultRank = checkIfSecondOrThird(lotto, bonus.getBonusNumber());
             }
             result.put(resultRank, result.getOrDefault(resultRank, 0)+1);
         }
         return result;
+    }
+
+    public static Rank findRank(int resultCount, Lotto lotto, BonusNumber bonus) {
+        if (resultCount == 5) {
+            return checkIfSecondOrThird(lotto, bonus.getBonusNumber());
+        }
+        return getRank(resultCount);
     }
 
     public static int compareLottoAndWinningNumber(List<Integer> lotto, List<Integer> winning) {
@@ -42,18 +45,11 @@ public class winningController {
         return uniqueLotto.contains(bonus);
     }
 
-    public static Rank findRank(int resultCount) {
-        Rank rank = getRank(resultCount);
-        if (rank != null) {
-            return rank;
-        }
-        return null;
-    }
-
     public static Rank checkIfSecondOrThird(Lotto lotto, int bonus) {
         if (compareLottoAndBonus(lotto.getLotto(), bonus)) {
             return Rank.SECOND;
         }
         return Rank.THIRD;
     }
+
 }

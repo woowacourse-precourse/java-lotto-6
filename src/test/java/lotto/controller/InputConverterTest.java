@@ -1,4 +1,4 @@
-package lotto.Controller;
+package lotto.controller;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.controller.input.InputConverter.*;
-import static lotto.exception.WinningCheck.checkCommaCount;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputConverterTest {

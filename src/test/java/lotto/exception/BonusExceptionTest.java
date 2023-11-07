@@ -1,4 +1,4 @@
-package lotto.Exception;
+package lotto.exception;
 
 import lotto.model.BonusNumber;
 import org.assertj.core.api.Assertions;

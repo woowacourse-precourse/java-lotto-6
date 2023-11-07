@@ -1,7 +1,5 @@
-package lotto.View;
+package lotto.model;
 
-import lotto.model.Price;
-import lotto.model.WinningNumber;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

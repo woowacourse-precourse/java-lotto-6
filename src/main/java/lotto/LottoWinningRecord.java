@@ -93,7 +93,7 @@ public class LottoWinningRecord {
     public void printTotalProfitRate(int totalPrize, int purchaseAmount) {
         double totalProfitRate = ((double) totalPrize / purchaseAmount) * 100;
         double roundedProfitRate = Math.round(totalProfitRate * 100.0) / 100.0;
-        System.out.println("총 수익률은 " + roundedProfitRate + "% 입니다.");
+        System.out.println("총 수익률은 " + roundedProfitRate + "%입니다.");
     }
 
 }

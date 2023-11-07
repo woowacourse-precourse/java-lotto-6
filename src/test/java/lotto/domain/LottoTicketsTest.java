@@ -2,9 +2,12 @@ package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,5 +32,19 @@ class LottoTicketsTest {
         assertThat(rankByLotto).containsEntry(lotto1, Rank.ONE);
         assertThat(rankByLotto).containsEntry(lotto2, Rank.TWO);
         assertThat(rankByLotto).containsEntry(lotto3, Rank.THREE);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5})
+    @DisplayName("로또의 개수를 구한다.")
+    void getSize(int number) {
+        List<Lotto> lottos = IntStream.range(0, number)
+                .mapToObj(i -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .toList();
+        LottoTickets lottoTickets = new LottoTickets(lottos);
+
+        int size = lottoTickets.getSize();
+
+        assertThat(size).isEqualTo(number);
     }
 }

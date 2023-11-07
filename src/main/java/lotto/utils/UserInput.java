@@ -35,9 +35,7 @@ public class UserInput {
 
         try{
             validateWinningNumbers(input);
-            this.winningNumbers = Arrays.stream(input.split(","))
-                    .map(Integer::parseInt)
-                    .toList();;
+            this.winningNumbers = convertNumbers(input);
         } catch (IllegalArgumentException e){
             inputWinningNumbers();
         }
@@ -67,6 +65,12 @@ public class UserInput {
         return bonusNumber;
     }
 
+    public List<Integer> convertNumbers(String input){
+        return Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .toList();
+    }
+
     private void validateLottoPrice(String input){
         validateNullOrEmpty(input);
         validateIsNumber(input);
@@ -76,8 +80,8 @@ public class UserInput {
     private void validateWinningNumbers(String input){
         validateNullOrEmpty(input);
         validateIsNumbers(input.split(","));
+        validateIsNumbersInRange(convertNumbers(input));
     }
-
 
     private void validateBonusNumber(String input){
         validateNullOrEmpty(input);

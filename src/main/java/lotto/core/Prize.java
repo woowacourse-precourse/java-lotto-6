@@ -21,9 +21,6 @@ public enum Prize {
         this.price = price;
     }
 
-    public String getMessage(){
-        return message;
-    }
     public String getPrizeResult(int count) {
         return message + count + "개";
     }

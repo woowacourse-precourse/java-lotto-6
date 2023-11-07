@@ -12,10 +12,10 @@ import static lotto.constValue.ConstNumber.*;
 import static lotto.core.Random.*;
 
 public class Lottery {
-    private UserInput userInput;
-    private List<Lotto> lottos;
+    private final UserInput userInput;
+    private final List<Lotto> lottos;
     private WinningNumber winningNumbers;
-    private HashMap<Prize, Integer> prizes;
+    private final HashMap<Prize, Integer> prizes;
     private int countOfLotto;
 
     public Lottery(){
@@ -25,25 +25,30 @@ public class Lottery {
         this.prizes = new HashMap<>();
     }
 
-    public void play(){
-        ready();
-        start();
-        end();
+    public void ready(){
+        getLottoPrice();
+        this.countOfLotto = userInput.getLottoPrice()/LOTTO_PRICE;
+        getRandomLottoNumbers();
+
+        getWinningNumbers();
+        initializePrizes();
     }
 
-    private void ready(){
+    private void getLottoPrice(){
         printPricePrompt();
         userInput.inputLottoPrice();
         printNewLine();
+    }
 
-        this.countOfLotto = userInput.getLottoPrice()/LOTTO_PRICE;
-
+    private void getRandomLottoNumbers(){
         printLottoCount(countOfLotto);
         for(int i=0;i<countOfLotto;i++){
             setLottos(getRandomNumbers());
         }
         printNewLine();
+    }
 
+    private void getWinningNumbers(){
         printWinningNumberPrompt();
         userInput.inputWinningNumbers();
         printNewLine();
@@ -56,13 +61,15 @@ public class Lottery {
                 userInput.getWinningNumbers(),
                 userInput.getBonusNumber()
         );
+    }
 
+    private void initializePrizes(){
         for(Prize prize:Prize.values()){
             prizes.put(prize,0);
         }
     }
 
-    private void start(){
+    public void start(){
         for(Lotto currentLotto:lottos){
             int countMatching = compareLotto(currentLotto);
             boolean hasBonus = hasBonusNumber(currentLotto);
@@ -77,9 +84,16 @@ public class Lottery {
         }
     }
 
-    private void end(){
+    public void end(){
         printTotalWinningResult();
 
+        double totalPrice = getTotalPrice();
+        String totalProfit = getTotalProfit(totalPrice);
+
+        printProfit(totalProfit);
+    }
+
+    private double getTotalPrice(){
         double totalPrice = 0;
 
         for(Prize prize:Prize.values()){
@@ -90,11 +104,13 @@ public class Lottery {
             }
         }
 
+        return totalPrice;
+    }
+
+    private String getTotalProfit(double totalPrice){
         double totalProfit = totalPrice / userInput.getLottoPrice() * 100;
         DecimalFormat df = new DecimalFormat("#.##");
-        String formattedProfitPercentage = df.format(totalProfit);
-
-        printProfit(formattedProfitPercentage);
+        return df.format(totalProfit);
     }
 
     private void setLottos(List<Integer> randomNumbers){

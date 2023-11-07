@@ -9,8 +9,6 @@ public class WinningNumber {
 
     public WinningNumber(List<Integer> newWinningNumbers, int newBonusNumber) {
         this.winningNumbers = new Lotto(newWinningNumbers);
-
-        validateIsNumberInRange(newBonusNumber); // 1~45 사이 검사
         this.bonusNumber = newBonusNumber;
     }
 

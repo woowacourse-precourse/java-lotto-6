@@ -4,9 +4,13 @@ import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.Rank;
+import lotto.domain.WinningLotto;
 
 public class LottoService {
 
@@ -27,5 +31,16 @@ public class LottoService {
         List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
         Collections.sort(numbers);
         return numbers;
+    }
+
+    public Map<Rank, Integer> generateLottoStatistics(WinningLotto winningLotto, ArrayList<Lotto> lottos) {
+        Map<Rank, Integer> map = new HashMap<>();
+
+        for (Lotto lotto : lottos) {
+            Rank rank = winningLotto.calculateRank(lotto);
+            map.put(rank, map.getOrDefault(rank, 0) + 1);
+        }
+
+        return map;
     }
 }

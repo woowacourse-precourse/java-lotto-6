@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.domain.Computer;
 import lotto.domain.LotteryMessageBuilder;
 import lotto.domain.lottery.*;
+import lotto.domain.validation.validator.Validator;
 import lotto.view.OutputView;
 import lotto.view.InputView;
 
@@ -12,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.domain.constants.LottoConstraint.LOTTO_PRICE;
-import static lotto.domain.validation.ExceptionMessage.EXCEPTION_MESSAGE_PREFIX;
-import static lotto.domain.validation.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
 public class LotteryGameController {
 
@@ -23,6 +22,7 @@ public class LotteryGameController {
     private final LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
     private final LotteryMessageBuilder lotteryMessageBuilder = new LotteryMessageBuilder();
     private final Computer computer = new Computer();
+    private final Validator validator = new Validator();
 
     private int lottoAmount;
     private final Lottos purchasedLotto = new Lottos();
@@ -47,13 +47,11 @@ public class LotteryGameController {
 
     private int amountOfLottos() {
         String input = inputView.returnInput();
-        try {
-            int purchaseAmount = Integer.parseInt(input);
-            return purchaseAmount;
-        } catch (NumberFormatException e) {
-            System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + NUMBER_FORMAT_EXCEPTION.getMessage());
+
+        while (validator.isPurchaseAmountInteger(input)) {
             return amountOfLottos();
         }
+        return Integer.parseInt(input);
     }
 
     private void returnLotteryResult(int purchaseAmount) {

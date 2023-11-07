@@ -9,10 +9,12 @@ import lotto.exception.ErrorMessagePrinter;
 import lotto.exception.LottoExceptionMessage;
 
 public class InputView {
+    private static final String SPLIT_DELIMITER = ",";
+
     public int inputPrice() {
         Integer validPrice = null;
 
-        while (!isValidInteger(validPrice)) {
+        while (isNotValid(validPrice)) {
             printNewLine();
             System.out.println(Message.INPUT_PRICE.getMessage());
             String inputPrice = Console.readLine().trim();
@@ -24,7 +26,7 @@ public class InputView {
     public List<Integer> inputWinningNumbers() {
         List<Integer> validWinningNumbers = null;
 
-        while (!isValidWinningNumbers(validWinningNumbers)) {
+        while (isNotValid(validWinningNumbers)) {
             printNewLine();
             System.out.println(Message.INPUT_WINNING_NUMBERS.getMessage());
             String inputWinningNumbers = Console.readLine();
@@ -37,7 +39,7 @@ public class InputView {
     public int inputBonusNumber() {
         Integer validBonusNumber = null;
 
-        while (!isValidInteger(validBonusNumber)) {
+        while (isNotValid(validBonusNumber)) {
             printNewLine();
             System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
             String inputBonusNumber = Console.readLine().trim();
@@ -48,13 +50,13 @@ public class InputView {
         return validBonusNumber;
     }
 
-    private boolean isValidInteger(Integer validInteger) {
-        return Objects.nonNull(validInteger);
+    private boolean isNotValid(Object object) {
+        return Objects.isNull(object);
     }
 
     private Integer parseValidPrice(String inputPrice) {
         try {
-            if (isNumber(inputPrice)) {
+            if (isPriceNumber(inputPrice)) {
                 return Integer.parseInt(inputPrice);
             }
         } catch (IllegalArgumentException e) {
@@ -63,7 +65,7 @@ public class InputView {
         return null;
     }
 
-    private boolean isNumber(String inputPrice) {
+    private boolean isPriceNumber(String inputPrice) {
         try {
             Integer.parseInt(inputPrice);
             return true;
@@ -72,30 +74,33 @@ public class InputView {
         }
     }
 
-    private boolean isValidWinningNumbers(List<Integer> validWinningNumbers) {
-        return Objects.nonNull(validWinningNumbers);
-    }
-
-
     private List<Integer> parseValidWinningNumbers(String inputWinningNumbers) {
         try {
-            return parseWinningNumbers(inputWinningNumbers);
+            if (isWinningNumbers(inputWinningNumbers)) {
+                return inputWinningNumbersToList(inputWinningNumbers);
+            }
+
         } catch (IllegalArgumentException e) {
             ErrorMessagePrinter.printError(e);
-            return null;
         }
+        return null;
     }
 
-    private List<Integer> parseWinningNumbers(String inputWinningNumbers) {
+    private boolean isWinningNumbers(String inputWinningNumbers) {
         try {
-            return Arrays.stream(inputWinningNumbers.split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .toList();
+            inputWinningNumbersToList(inputWinningNumbers);
+            return true;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LottoExceptionMessage.WINNING_NUMBERS_MUST_BE_NUMBERS.getMessage());
         }
 
+    }
+
+    private List<Integer> inputWinningNumbersToList(String inputWinningNumbers) {
+        return Arrays.stream(inputWinningNumbers.split(SPLIT_DELIMITER, -1))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .toList();
     }
 
     private Integer parseValidBonusNumber(String inputBonusNumber) {

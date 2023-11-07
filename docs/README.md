@@ -4,6 +4,8 @@
 
 ## 📂 기능 목록
 
+---
+
 ### 🔉 입출력 기능
 
 - [x] 사용자의 입력을 받는다.
@@ -11,33 +13,33 @@
     - [x] 로또 구입 금액을 입력 받는다. - LottoController#requestLottoPurchaseAmount()
     - [예외] 구입 금액은 1,000원으로 나누어 떨어져야 한다.
     - [예외] 입력 값은 모두 숫자로 이뤄져야 한다.
-    - [x] 당첨 번호를 입력 받는다.
+    - [x] 당첨 번호를 입력 받는다. - LottoController#requestWinningNumbers()
     - [예외] 당첨 번호의 개수는 정확히 6개이어야 한다.
     - [예외] 번호는 1이상 45이하의 수이어야 한다.
     - [예외] 입력 값은 숫자로 이루어져 있어야 한다.
     - [예외] 당첨 번호는 쉼표(,)를 기준으로 구분한다.
     - [예외] 쉼표 사이에 다른 문자는 들어 오면 안된다.
-    - [x] 보너스 번호를 입력 받는다.
+    - [x] 보너스 번호를 입력 받는다. - LottoController#requestBonusNumber()
     - [예외] 번호는 1이상 45이하의 수이어야 한다.
     - [예외] 당첨 번호 각각은 서로 중복될 수 없다.
     - [예외] 당첨 번호와 보너스 번호는 중복될 수 없다.
 - [x] 사용자에게 처리된 값을 출력한다.
-    - [x] 발행한 로또 수량 및 번호를 출력한다.
+    - [x] 발행한 로또 수량 및 번호를 출력한다. - LottoController#printOutRandomNumbers()
     - [예외] 로또 번호는 오름차순으로 정렬하여 보여준다.
-    - [x] 당첨 내역을 출력한다.
-    - [x] 수익률을 출력한다.
+    - [x] 당첨 내역과 수익률을 출력한다. - LottoController#printOutWinningResult()
     - [예외] 수익률은 소수점 둘째 자리에서 반올림한다.
 
 ### 💻 도메인 기능
 
-- [x] 생성된 로또 숫자와 당첨 숫자를 비교해, 같은 숫자가 몇 개인지 구한다.
-- [x] 같은 숫자 개수 만큼 해당하는 금액을 계산한다.
+- [x] 생성된 로또 숫자와 당첨 숫자를 비교해, 같은 숫자가 몇 개인지 구한다. - Judge#compareWinningNumbers()
+- [x] 같은 숫자 개수 만큼 해당하는 금액을 계산한다. - Judge#calculateEarnings()
+- [x] 같은 숫자 개수 만큼 해당하는 등수를 리턴한다. - Judge#calculateRank()
 
 ### 🔨 유틸리티 기능
 
-- [x] 구매 수량 만큼 로또 자동 숫자를 생성한다.
-- [x] 금액에 세 자리 마다 쉼표(,)를 넣어준다.
-- [x] 로또 구입 금액과 당첨 금액으로 수익률을 계산한다.
+- [x] 구매 수량 만큼 로또 자동 숫자를 생성한다. - RandomNumberGenerator#generateRandomNumbers()
+- [x] 금액에 세 자리 마다 쉼표(,)를 넣어준다. - ThousandSeparator#addThousandsSeparator()
+- [x] 로또 구입 금액과 당첨 금액으로 수익률을 계산한다. - EarningsCalculator#calculateEarningsRate()
 
 ## 🚀 기능 요구 사항
 

@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import static lotto.controller.UserInputMessage.*;
+import static lotto.message.UserInputMessage.*;
 import static lotto.util.RandomNumberGenerator.generateRandomNumbers;
 import static lotto.util.ThousandSeparator.addThousandsSeparator;
 import static lotto.util.WinningNumbersMaker.makeWinningNumbers;
@@ -23,7 +23,6 @@ import lotto.domain.LottoResult;
 
 public class LottoController {
     public static final int LOTTO_PRICE = 1000;
-    private static final LottoResult OUT_OF_RANK = null;
 
     int purchaseAmount;
     int totalEarnings;

@@ -18,4 +18,8 @@ public class RankContainer {
         rankContainer.put(rank, rankContainer.get(rank) + 1);
     }
 
+    public Integer getRankContainer(Rank rank) {
+        return rankContainer.get(rank);
+    }
+
 }

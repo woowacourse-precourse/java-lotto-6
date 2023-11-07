@@ -12,6 +12,7 @@ public class Constants {
         public static final String FROM = "부터 ";
         public static final String MUST_CHECK_RANGE = " 사이의 숫자여야 합니다.";
         public static final String BONUS_MUST_NOT_DUPLICATE = "로또 번호와 보너스 번호는 중복되지 않아야 합니다.";
+        public static final String BUSINESS_LOGIC = "내부 비즈니스 로직 에러";
     }
 
     public static final class Rule {

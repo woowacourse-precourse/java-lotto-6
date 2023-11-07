@@ -1,10 +1,7 @@
 package lotto;
 
-import lotto.controller.BonusController;
-import lotto.controller.LottoController;
-import lotto.controller.LottosController;
+import lotto.controller.*;
 import lotto.domain.*;
-import lotto.controller.MoneyController;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -22,6 +19,7 @@ public class GameManager {
     private final LottosController lottosController;
     private final LottoController lottoController;
     private final BonusController bonusController;
+    private final ResultController resultController;
 
 
     public GameManager(InputView inputView,
@@ -30,7 +28,8 @@ public class GameManager {
                        MoneyController moneyController,
                        LottosController lottosController,
                        LottoController lottoController,
-                       BonusController bonusController) {
+                       BonusController bonusController,
+                       ResultController resultController) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.numberGenerator = numberGenerator;
@@ -38,6 +37,7 @@ public class GameManager {
         this.lottosController = lottosController;
         this.lottoController = lottoController;
         this.bonusController = bonusController;
+        this.resultController = resultController;
     }
 
     public void play() {
@@ -45,6 +45,8 @@ public class GameManager {
         Lottos lottos = getLottos(money.getLottoCount());
         Lotto winningLotto = getWinningLotto();
         Bonus bonus = getBonus(winningLotto);
+        Result result = getResult(winningLotto, lottos, bonus);
+
     }
 
     private Money getMoney() {
@@ -93,6 +95,12 @@ public class GameManager {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private Result getResult(Lotto winningLotto, Lottos lottos, Bonus bonus) {
+        Result result = resultController.create(winningLotto, lottos, bonus);
+        outputView.println(result);
+        return result;
     }
 
 }

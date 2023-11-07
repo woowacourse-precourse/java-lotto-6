@@ -48,12 +48,12 @@ bonus(model) 생성
 Result(model) 생성하기 ,
 Rank(enum) 객체 활용
 
-- [ ] controller 에게 Lotto, bonus, lottos 를 넘겨 result model 생성
+- [X] controller 에게 Lotto, bonus, lottos 를 넘겨 result model 생성
 - [X] Result model 은 Map<Rank,Integer> 을 활용한 일급 컬렉션, key : 등수, value : 몇 개
 - [X] Lotto 끼리 비교를 통해 몇 개의 숫자가 겹치는 지 검증하여 Rank 반환
   - [X] 5개가 겹친다면 bonus 까지 확인
-- [ ] 총 수익 상금을 Money 로 전환해주는 비즈니스 로직
-- [ ] outputView 에게 Result model 을 전달하여 결과 출력
+- [X] 총 수익 상금을 알려주는 비즈니스 로직
+- [X] outputView 에게 Result model 을 전달하여 결과 출력
 ***
 ## 5. **수익률 출력하기**
 Rate(model) 생성하기

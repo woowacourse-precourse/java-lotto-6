@@ -1,29 +1,78 @@
 package lotto;
 
 import lotto.domain.*;
+import lotto.dto.AllLotteriesNumbersInfoDTO;
+import lotto.domain.MultipleNumbersInputVO;
+import lotto.domain.SingleNumberInputVO;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
-    private UserInput userInput = new UserInput();
+    private SingleNumberInputVO userNumber;
+    private MultipleNumbersInputVO userNumbers;
     private GenerateLotteries generateLotteries;
     private PurchasePrice purchasePrice;
     private Lotto lotto;
     private BonusLotto bonusLotto;
 
     public void startGame() {
-        String price = inputView.requestPurchasePrice();
-        purchasePrice = new PurchasePrice(userInput.convertToIntegerIfValid(price));
 
-        generateLotteries = new GenerateLotteries(purchasePrice.getPurchaseCount());
+        inputPurchasePriceHandler();
+
+        generateLotteries = new GenerateLotteries(purchasePrice.getTotalLottoTickets());
         outputView.printPurchasedLotteries(generateLotteries.getLotteries());
 
-        String numbers = inputView.requestWinningNumbers();
-        lotto = new Lotto(userInput.convertToIntegerListIfValid(numbers));
+        inputWinningNumbersHandler();
 
-        String bonusNumber = inputView.requestBonusNumber();
-        bonusLotto = new BonusLotto(userInput.convertToIntegerIfValid(bonusNumber), lotto);
+        inputBonusNumberHandler();
+
+        AllLotteriesNumbersInfoDTO allLotteriesInfo = new AllLotteriesNumbersInfoDTO(lotto, bonusLotto, generateLotteries);
+        LottoRank lottoRank = new LottoRank(allLotteriesInfo);
+
+
+        outputView.printWinningStatistics(lottoRank.getRank());
+        double profitPercentage = lottoRank.calculateProfitPercentage(purchasePrice);
+        outputView.printProfitPercentage(profitPercentage);
+    }
+
+    private void inputPurchasePriceHandler() {
+        while (true) {
+            try {
+                String price = inputView.requestPurchasePrice();
+                userNumber = new SingleNumberInputVO(price);
+                purchasePrice = new PurchasePrice(userNumber.getParsingNumber());
+                break;
+            } catch (IllegalArgumentException e) {
+                e.getMessage();
+            }
+        }
+    }
+
+    private void inputWinningNumbersHandler() {
+        while (true) {
+            try {
+                String winningNumbers = inputView.requestWinningNumbers();
+                userNumbers = new MultipleNumbersInputVO(winningNumbers);
+                lotto = new Lotto(userNumbers.getParsingNumbers());
+                break;
+            } catch (IllegalArgumentException e) {
+                e.getMessage();
+            }
+        }
+    }
+
+    private void inputBonusNumberHandler() {
+        while (true) {
+            try {
+                String bonusNumber = inputView.requestBonusNumber();
+                userNumber = new SingleNumberInputVO(bonusNumber);
+                bonusLotto = new BonusLotto(userNumber.getParsingNumber(), lotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                e.getMessage();
+            }
+        }
     }
 }

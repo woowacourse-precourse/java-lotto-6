@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 public class Lotto {
+    private static final int LOTTO_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -24,7 +25,7 @@ public class Lotto {
         removedOverlappingNumbers.addAll(numbers);
         removedOverlappingNumbers.addAll(other.getNumbers());
 
-        return removedOverlappingNumbers.size();
+        return LOTTO_SIZE * 2 - removedOverlappingNumbers.size();
     }
 
     public boolean isContainBonusNumber(int bonusNumber) {

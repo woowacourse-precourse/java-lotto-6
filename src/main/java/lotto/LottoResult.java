@@ -56,19 +56,19 @@ public class LottoResult {
     }
 
     private Rank getRank(int count, boolean check) {
-        if (count == Rank.THREE_MATCH.getCounted()) {
+        if (count == Rank.THREE_MATCH.getCounted() && !check) {
             return Rank.THREE_MATCH;
         }
-        if (count == Rank.FOUR_MATCH.getCounted()) {
+        if (count == Rank.FOUR_MATCH.getCounted() && !check) {
             return Rank.FOUR_MATCH;
         }
-        if (count == Rank.FIVE_MATCH_AND_BONUS.getCounted() && Rank.FIVE_MATCH_AND_BONUS.getChecked()) {
-            return Rank.FIVE_MATCH_AND_BONUS;
-        }
-        if (count == Rank.FIVE_MATCH.getCounted()) {
+        if (count == Rank.FIVE_MATCH.getCounted() && !check) {
             return Rank.FIVE_MATCH;
         }
-        if (count == Rank.SIX_MATCH.getCounted()) {
+        if (count == Rank.FIVE_MATCH_AND_BONUS.getCounted() && check) {
+            return Rank.FIVE_MATCH_AND_BONUS;
+        }
+        if (count == Rank.SIX_MATCH.getCounted() && !check) {
             return Rank.SIX_MATCH;
         }
         return null;

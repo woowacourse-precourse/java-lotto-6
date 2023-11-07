@@ -23,7 +23,7 @@ public class Result {
     public Ranking checkRanking() {
         List<Ranking> allRankingCase = Ranking.getAllRankingCase();
         for(Ranking ranking : allRankingCase) {
-            if((ranking.getMachedCount() == matchingNumber) && (ranking.getHasBonus().contains(isMatchedBonus))) {
+            if((ranking.getMatchedCount() == matchingNumber) && (ranking.getHasBonus().contains(isMatchedBonus))) {
                 return ranking;
             }
         }

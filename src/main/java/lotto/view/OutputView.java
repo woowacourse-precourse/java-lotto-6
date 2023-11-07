@@ -29,7 +29,7 @@ public class OutputView {
     public void printStatisticsResult(Map<Ranking, Integer> results) {
         List<Ranking> ordered = Ranking.getAllRankingCase();
         for(Ranking ranking : ordered) {
-            System.out.printf(ranking.getMessage(), ranking.getMachedCount(), transfer(ranking.getAmount()), results.get(ranking));
+            System.out.printf(ranking.getMessage(), ranking.getMatchedCount(), transfer(ranking.getAmount()), results.get(ranking));
         }
     }
 

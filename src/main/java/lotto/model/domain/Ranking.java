@@ -11,12 +11,12 @@ public enum Ranking {
     SIX(6, 2_000_000_000, List.of(true, false), "%d개 일치 (%s원) - %d개\n");
 
     private final int amount;
-    private final int machedCount;
+    private final int matchedCount;
     private final List<Boolean> hasBonus;
     private final String message;
 
-    Ranking(int machedCount, int amount, List<Boolean> hasBonus, String message) {
-        this.machedCount = machedCount;
+    Ranking(int matchedCount, int amount, List<Boolean> hasBonus, String message) {
+        this.matchedCount = matchedCount;
         this.amount = amount;
         this.hasBonus = hasBonus;
         this.message = message;
@@ -30,8 +30,8 @@ public enum Ranking {
         return amount;
     }
 
-    public int getMachedCount() {
-        return machedCount;
+    public int getMatchedCount() {
+        return matchedCount;
     }
 
     public List<Boolean> getHasBonus() {

@@ -45,9 +45,21 @@ public class LottoController {
 
         lotto = new Lotto(handleWinningNumbers()); // 당첨번호 입력, lotto 객체에 저장
         handleCompareWinningNumbers(userLottoTickets); // 당첨번호와 추첨번호 비교
+        handleBonusNumber(userLottoTickets);
 
     }
+    public void handleBonusNumber(List<LottoTicket> userLottoTickets) {
+        System.out.println(LottoMessage.REQUEST_BOUNS_NUMBERS.getMessage());
+        String input = userInput.input();
+        int bonusNumber = 0;
 
+        bonusNumber = userInput.getUserBonusNumber(userInputChecker, input);
+
+        for (LottoTicket lottoTicket : userLottoTickets) {
+            if (lottoTicket.getMatchCount() == 5) // 5개 일치하는 로또티켓은 보너스번호까지 확인 후 결과 저장
+                lottoTicket.setBonusNumberMatch(lotto.compareBonusNumber(lottoTicket, bonusNumber));
+        }
+    }
     public void handleCompareWinningNumbers(List<LottoTicket> userLottoTickets) {
         int matchCount = 0;
         for (LottoTicket lottoTicket : userLottoTickets) {

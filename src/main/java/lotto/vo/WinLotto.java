@@ -4,8 +4,8 @@ import java.util.List;
 import lotto.validator.WinLottoValidator;
 
 public class WinLotto {
-    private List<Integer> numbers;
-    private int bonusNum;
+    private final List<Integer> numbers;
+    private final int bonusNum;
 
     public WinLotto(List<Integer> numbers, int bonusNum) {
         validate(numbers, bonusNum);

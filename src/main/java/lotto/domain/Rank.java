@@ -12,7 +12,6 @@ public enum Rank {
 
     private final String outputMessage;
     private final Integer prizePrice;
-
     private final Integer matchCount;
     private final Boolean isMatchCountIncludeBonus;
 

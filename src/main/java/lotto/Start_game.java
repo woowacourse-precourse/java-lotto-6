@@ -15,7 +15,7 @@ public class Start_game {
     private int totalPrize = 0;
     
     public void run() {
-        money = input_function.get_money();
+        money = input_function.getMoney();
         game_count = calculation.get_game_count(money);
         Lotto lotto_number = new Lotto(input_function.get_lotto_number());
         bonus_number = input_function.get_bonus_number(lotto_number.get_lotto_numbers());

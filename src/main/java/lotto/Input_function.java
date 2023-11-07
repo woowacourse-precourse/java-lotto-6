@@ -7,20 +7,36 @@ import camp.nextstep.edu.missionutils.Console;
 public class Input_function {
     private static final int ArrayList = 0;
     public int num = 0; 
-    public int get_money() {
-
-        try {
-            System.out.println("구입금액을 입력해 주세요.");
-            String input_str = Console.readLine();
-            num = Integer.parseInt(input_str);
-
-            return num;
+    public int getMoney() {
+        boolean isValid = false;
+        int number = 0;
+        while(!isValid) {
+            try {
+                number = inputNumber();
+                isValid = true;
+            }
+            catch(IllegalArgumentException e) {
+                System.out.println(e.getMessage() + " 다시 입력해주세요.");
+            }
         }
-        catch(NumberFormatException nfe) {
-            throw new IllegalArgumentException("[ERROR]", nfe);
-        }
-
+        return number;
     }
+    public int inputNumber() {
+        int number = 0;
+        while(true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String input_str = Console.readLine();
+                number = Integer.parseInt(input_str);
+                //Console.close();
+                return number;
+            }
+            catch(NumberFormatException nfe) {
+                throw new IllegalArgumentException("[ERROR]", nfe);
+            }
+        }
+    }
+    
 
     public List<Integer> get_lotto_number() {
         try {

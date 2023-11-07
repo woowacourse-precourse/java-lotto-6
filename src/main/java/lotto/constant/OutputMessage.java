@@ -7,7 +7,7 @@ public enum OutputMessage {
     PURCHASE_COUNT_MESSAGE("개를 구매했습니다."),
     WIN_COUNT_MESSAGE("개"),
     EARNING_RATE_START_MESSAGE("총 수익률은 "),
-    EARNING_RATE_END_MESSAGE(" %입니다.");
+    EARNING_RATE_END_MESSAGE("%입니다.");
 
     private final String message;
 

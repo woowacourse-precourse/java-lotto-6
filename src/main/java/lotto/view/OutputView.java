@@ -41,7 +41,6 @@ public class OutputView {
                     .append(WIN_COUNT_MESSAGE.getMessage())
                     .append(NEW_LINE.getMessage());
         }
-
         stringBuilder.append(EARNING_RATE_START_MESSAGE.getMessage())
                 .append(String.format("%,.1f", lottoResult.getEarningRate(money)))
                 .append(EARNING_RATE_END_MESSAGE.getMessage());

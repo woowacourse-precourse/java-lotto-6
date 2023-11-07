@@ -51,4 +51,57 @@ class InputProcessorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(CustomErrorMessage.PRICE_VALID);
     }
+
+    @DisplayName("실패: 잘못된 양식에 대한 에러 처리 가능")
+    @Test
+    void test6() {
+        String input = "r,r,r,r,r";
+        assertThatCode(() -> InputProcessor.getWinningNumbers(input))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessage(CustomErrorMessage.NUMBER_FORMAT);
+    }
+
+    @DisplayName("실패: 공백과 같은 에러 처리 가능")
+    @Test
+    void test7() {
+        String input = "r,r ,  r,r ,r";
+        assertThatCode(() -> InputProcessor.getWinningNumbers(input))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessage(CustomErrorMessage.NUMBER_FORMAT);
+    }
+
+    @DisplayName("성공: 당첨 번호를 입력할 수 있다.")
+    @Test
+    void test8() {
+        String input = "1,2,3,4,5,6";
+        assertThatCode(() -> InputProcessor.getWinningNumbers(input))
+                .doesNotThrowAnyException();
+    }
+
+    @DisplayName("실패: 잘못된 입력에 대해서 에러를 출력할 수 있다.(공백)")
+    @Test
+    void test9() {
+        String input = "";
+        assertThatCode(() -> InputProcessor.getBonusNumber(input))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessage(CustomErrorMessage.NUMBER_FORMAT);
+    }
+
+    @DisplayName("실패: 잘못된 입력에 대해서 에러를 출력할 수 있다.(빈칸)")
+    @Test
+    void test10() {
+        String input = " ";
+        assertThatCode(() -> InputProcessor.getBonusNumber(input))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessage(CustomErrorMessage.NUMBER_FORMAT);
+    }
+
+    @DisplayName("실패: 잘못된 입력에 대해서 에러를 출력할 수 있다.(문자열)")
+    @Test
+    void test11() {
+        String input = " ㄴㅁㄻㄴㅁ";
+        assertThatCode(() -> InputProcessor.getBonusNumber(input))
+                .isInstanceOf(NumberFormatException.class)
+                .hasMessage(CustomErrorMessage.NUMBER_FORMAT);
+    }
 }

@@ -9,6 +9,8 @@ public enum ExceptionMessage {
     AMOUNT_NOT_POSITIVE("구입금액은 양수여야 합니다."),
     AMOUNT_NOT_DIVIDED_BY_PRICE("구입금액은 1000원 단위로 나누어떨어져야 합니다.");
 
+    private static final String MESSAGE_PREFIX = "[ERROR] ";
+
     private final String message;
 
     private ExceptionMessage(String message) {
@@ -16,6 +18,6 @@ public enum ExceptionMessage {
     }
 
     public String getMessage() {
-        return message;
+        return MESSAGE_PREFIX + message;
     }
 }

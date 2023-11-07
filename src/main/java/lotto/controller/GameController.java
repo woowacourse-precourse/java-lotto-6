@@ -30,7 +30,7 @@ public class GameController {
                 amount = new Amount(inputView.inputAmount());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -48,7 +48,7 @@ public class GameController {
                 winningLotto = new Lotto(winningNumbers);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -59,7 +59,7 @@ public class GameController {
                 bonusNumber = new BonusNumber(winningLotto, inputView.inputBonusNumber());
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }

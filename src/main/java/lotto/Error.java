@@ -6,7 +6,7 @@ public enum Error {
     DUPLICATE_NUMBERS("[ERROR] 로또 번호가 중복 됩니다.\n"),
     INPUT_EMPTY("[ERROR] 입력 값이 비었습니다.\n"),
     UNDIVIDED_PURCHASE_AMOUNT("[ERROR] 입력 금액은 1000으로 나누어져야 합니다.\n"),
-    NOT_INTEGER_PURCHASE_AMOUNT("[ERROR] 입력 값이 정수가 아닙니다.\n")
+    NOT_INTEGER_VALUE("[ERROR] 입력 값이 정수가 아닙니다.\n")
     ;
 
     private final String errMsg;

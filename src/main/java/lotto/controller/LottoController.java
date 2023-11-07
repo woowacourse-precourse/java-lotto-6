@@ -34,6 +34,7 @@ public class LottoController {
         bonusNumber=InputView.inputBonusNumber(Console.readLine(), winNumbers);
         checkLottos();
         OutputView.printStatistics(winLottoRanks);
+        OutputView.printReturnRate(calcReturnRate());
     }
 
     private int compare(Lotto lotto){
@@ -50,20 +51,30 @@ public class LottoController {
         for(Lotto lotto : lottos){
             int correctNumbersCount = compare(lotto);
             if(correctNumbersCount==6){
-                winLottoRanks.add(new Rank(1));
+                winLottoRanks.add(new Rank(1)); continue;
             }
             if(correctNumbersCount==5 && lotto.getNumbers().contains(bonusNumber)){
-                winLottoRanks.add(new Rank(2));
+                winLottoRanks.add(new Rank(2)); continue;
             }
             if (correctNumbersCount==5){
-                winLottoRanks.add(new Rank(3));
+                winLottoRanks.add(new Rank(3)); continue;
             }
             if (correctNumbersCount==4){
-                winLottoRanks.add(new Rank(4));
+                winLottoRanks.add(new Rank(4)); continue;
             }
             if (correctNumbersCount==3){
                 winLottoRanks.add(new Rank(5));
             }
         }
+    }
+
+    private float calcReturnRate(){
+        float answer = 0f;
+        for(Rank rank : winLottoRanks){
+            answer+=(float)rank.getPrize();
+        }
+        answer/=(float)lottos.size();
+        answer*=(float) 100;
+        return answer;
     }
 }

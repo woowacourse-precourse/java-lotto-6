@@ -52,4 +52,8 @@ public class OutputView {
         System.out.printf("%s%d개\n",Messages.WIN_SECOND_MESSAGE.getMessage(),rankStatistics[2]);
         System.out.printf("%s%d개\n",Messages.WIN_FIRST_MESSAGE.getMessage(),rankStatistics[1]);
     }
+
+    public static void printReturnRate(float money){
+        System.out.printf("총 수익률은 %.1f%%입니다.", money);
+    }
 }

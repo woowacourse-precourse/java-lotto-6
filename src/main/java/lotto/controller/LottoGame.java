@@ -14,13 +14,14 @@ public class LottoGame {
     public void run() {
         int purchaseAmount = InputView.getPurchaseAmount();
         List<Lotto> lottos = generateLottos(purchaseAmount);
+        OutputView.printLottoNumbers(lottos.size(), lottos);
+
         List<Integer> winningNumbers = InputView.getWinningNumbers();
         int bonusNumber = InputView.getBonusNumber(new HashSet<>(winningNumbers));
 
         WinningNumbers winningNumbersObject = new WinningNumbers(winningNumbers, bonusNumber);
         LottoResult lottoResult = LottoResultCalculator.calculateResult(lottos, winningNumbersObject);
 
-        OutputView.printLottoNumbers(lottos.size(), lottos);
         OutputView.printResult(lottoResult);
 
         double winningRate = lottoResult.calculateWinningRate(purchaseAmount);

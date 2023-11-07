@@ -2,7 +2,6 @@ package lotto.view;
 
 import lotto.message.Message;
 import lotto.model.Lotto;
-import lotto.model.Lottos;
 
 import java.util.List;
 
@@ -33,9 +32,8 @@ public class OutputView {
         System.out.printf(message.getMessage(), purchaseCost);
     }
 
-    public void printPurchaseLottos(Lottos lottos) {
-        List<Lotto> purchaseLottos = lottos.getLottos();
-        purchaseLottos.forEach(lotto -> printLottoNumber(lotto));
+    public void printPurchaseLottos(List<Lotto> lottos) {
+        lottos.forEach(lotto -> printLottoNumber(lotto));
     }
 
     private void printLottoNumber(Lotto lotto) {

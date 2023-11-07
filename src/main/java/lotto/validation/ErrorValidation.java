@@ -2,6 +2,8 @@ package lotto.validation;
 
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.Lotto;
+import lotto.readUserInput.PurchaseAmount;
 
 public class ErrorValidation {
 
@@ -18,20 +20,20 @@ public class ErrorValidation {
     }
 
     public static void isNumberInRange(int number) {
-        if (!((number >= 1) && (number <= 45))) {
+        if (!((number >= Lotto.MIN_NUMBER) && (number <= Lotto.MAX_NUMBER))) {
             throw new IllegalArgumentException();
         }
     }
 
     public static void isMoneyInRange(String userInput) {
         int money = Integer.parseInt(userInput);
-        if (!((money >= 1000) && (money <= 100000))) {
+        if (!((money >= PurchaseAmount.MIN_PURCHASE_LOTTO) && (money <= PurchaseAmount.MAX_PURCHASE_LOTTO))) {
             throw new IllegalArgumentException();
         }
     }
 
     public static void isDividedOneThousand(int money) {
-        if ((money % 1000) != 0) {
+        if ((money % PurchaseAmount.MIN_PURCHASE_LOTTO) != 0) {
             throw new IllegalArgumentException();
         }
     }

@@ -38,12 +38,12 @@ public class PurchasedLottoTickets {
     }
 
     public void setZero(Map<Reward, Integer> counts) {
-        counts.put(Reward.FIRST_PLACE, 0);
-        counts.put(Reward.SECOND_PLACE, 0);
-        counts.put(Reward.THIRD_PLACE, 0);
-        counts.put(Reward.FOURTH_PLACE, 0);
-        counts.put(Reward.FIFTH_PLACE, 0);
-        counts.put(Reward.LOSE, 0);
+        counts.put(Reward.FIRST_PLACE, CompareCount.INITIAL_ZERO_COUNT.getCount());
+        counts.put(Reward.SECOND_PLACE, CompareCount.INITIAL_ZERO_COUNT.getCount());
+        counts.put(Reward.THIRD_PLACE, CompareCount.INITIAL_ZERO_COUNT.getCount());
+        counts.put(Reward.FOURTH_PLACE, CompareCount.INITIAL_ZERO_COUNT.getCount());
+        counts.put(Reward.FIFTH_PLACE, CompareCount.INITIAL_ZERO_COUNT.getCount());
+        counts.put(Reward.LOSE, CompareCount.INITIAL_ZERO_COUNT.getCount());
     }
 
     public void textForTicketsPrint() {

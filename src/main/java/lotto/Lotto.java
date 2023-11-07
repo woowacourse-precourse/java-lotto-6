@@ -8,6 +8,9 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    public static final int MAX_NUMBER = 45;
+    public static final int MIN_NUMBER = 1;
+    public static final int LOTTO_NUMBER_COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,7 +19,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
     }

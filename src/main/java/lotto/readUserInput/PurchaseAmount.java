@@ -6,9 +6,11 @@ import lotto.validation.ErrorValidation;
 
 public class PurchaseAmount implements UserInput {
     private int lottoQuantity;
+    public static final int MIN_PURCHASE_LOTTO = 1000;
+    public static final int MAX_PURCHASE_LOTTO = 100000;
 
     public void read() {
-        lottoQuantity = singleTypeConversion(userInput()) / 1000;
+        lottoQuantity = singleTypeConversion(userInput()) / MIN_PURCHASE_LOTTO;
     }
 
     public String userInput() {

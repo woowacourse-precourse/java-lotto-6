@@ -45,7 +45,7 @@ public class LottoGame {
     private void printReturnRate(Lottos purchasedLottos) {
         long totalReward = lottoResult.getTotalReward();
         double returnRate = getReturnRate(purchasedLottos.count(), totalReward);
-        System.out.println("총 수익률은 " + String.format("%.1f%%", returnRate * 100) + "입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f%%", returnRate) + "입니다.");
     }
     private void printRewardStatistics(){
         String[] rewardNames = getRewardNamesAsArray();

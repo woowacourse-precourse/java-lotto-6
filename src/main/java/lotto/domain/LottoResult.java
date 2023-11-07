@@ -6,7 +6,6 @@ import java.util.List;
 import lotto.constants.LottoRank;
 
 public class LottoResult {
-
     private int totalReward = 0;
     int [] rewardMatch;
 

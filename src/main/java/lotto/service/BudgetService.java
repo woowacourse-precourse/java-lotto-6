@@ -3,14 +3,27 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Budget;
 import lotto.utils.ErrorMessage;
+import lotto.utils.ErrorMessageUtil;
 
 public class BudgetService {
 
     public Budget createBudget() {
-        String inputBudget = Console.readLine();
-        budgetIntegerValidation(inputBudget);
+        Budget budget=null;
+        boolean isCompleteToCreateBudget = false;
 
-        return new Budget(Integer.parseInt(inputBudget));
+        while(!isCompleteToCreateBudget){
+            try{
+                String inputBudget = Console.readLine();
+                budgetIntegerValidation(inputBudget);
+                budget = new Budget(Integer.parseInt(inputBudget));
+
+                isCompleteToCreateBudget=true;
+            } catch (IllegalArgumentException exception){
+                System.out.print(ErrorMessageUtil.getOutputErrorMessage(exception.getMessage()));
+            }
+        }
+
+        return budget;
     }
 
     private void budgetIntegerValidation(String inputBudget) {

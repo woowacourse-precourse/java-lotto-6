@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.WinningNumber;
 import lotto.domain.WinningNumbers;
 import lotto.utils.ErrorMessage;
+import lotto.utils.ErrorMessageUtil;
 
 public class WinningNumberService {
 
@@ -11,16 +12,41 @@ public class WinningNumberService {
     private final int MAX_WINNING_NUMBERS = 17;
 
     public WinningNumbers createWinningNumbers() {
-        String inputWinningNumbers = Console.readLine();
-        String[] splitWinningNumbers = splitInputWinningNumbers(inputWinningNumbers);
+        WinningNumbers winningNumbers = null;
+        boolean isCompleteToCreateWinningNumbers = false;
 
-        return WinningNumbers.createWinningNumbers(splitWinningNumbers);
+        while (!isCompleteToCreateWinningNumbers) {
+            try {
+                String inputWinningNumbers = Console.readLine();
+                String[] splitWinningNumbers = splitInputWinningNumbers(inputWinningNumbers);
+
+                winningNumbers = WinningNumbers.createWinningNumbers(splitWinningNumbers);
+                isCompleteToCreateWinningNumbers = true;
+            } catch (IllegalArgumentException exception) {
+                System.out.print(ErrorMessageUtil.getOutputErrorMessage(exception.getMessage()));
+            }
+        }
+
+        return winningNumbers;
     }
 
+    //todo: 보너스 넘버랑 중복되는지 확인해야
     public WinningNumber createBonusNumber() {
-        String inputBonusNumber = Console.readLine();
+        WinningNumber winningNumber = null;
+        boolean isCompleteToCreateWinningNumber = false;
 
-        return WinningNumber.createWinningNumber(inputBonusNumber);
+        while (!isCompleteToCreateWinningNumber) {
+            try {
+                String inputBonusNumber = Console.readLine();
+                winningNumber = WinningNumber.createWinningNumber(inputBonusNumber);
+
+                isCompleteToCreateWinningNumber = true;
+            } catch (IllegalArgumentException exception) {
+                System.out.print(ErrorMessageUtil.getOutputErrorMessage(exception.getMessage()));
+            }
+        }
+
+        return winningNumber;
     }
 
     private String[] splitInputWinningNumbers(String inputWinningNumbers) {

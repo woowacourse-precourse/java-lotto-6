@@ -8,7 +8,7 @@ public enum ErrorMessage {
     DUPLICATED_VALUES("로또 번호가 중복됩니다!"),
     NON_WINNING_NUMBER("당첨 번호는 1 이상 45 이하인 정수입니다!"),
     WINNING_NUMBER_SIZE("입력된 당첨 번호가 6개가 아닙니다!"),
-    WINNING_NUMBER_IS_TOO_LONG("당첨 번호 입력이 너무 많습니다!\n 입력된 당첨 번호와 형식을 다시 확인해주세요!");
+    WINNING_NUMBER_IS_TOO_LONG("당첨 번호 입력이 너무 많습니다!\n입력된 당첨 번호와 형식을 다시 확인해주세요!");
 
     private final String errorMessage;
     private final String PREFIX = "[ERROR] ";
@@ -18,8 +18,12 @@ public enum ErrorMessage {
     }
 
     public String getErrorMessage() {
+        return this.errorMessage;
+    }
+
+    public String getErrorMessageForOutput() {
         StringBuilder sb = new StringBuilder(PREFIX);
-        sb.append(errorMessage);
+        sb.append(errorMessage).append("\n");
         return sb.toString();
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.util.Constants.PURCHASE_PRICE_UNIT;
+import static lotto.util.ExceptionMessage.PURCHASE_INVALID_NUMBER;
 import static lotto.util.ExceptionMessage.PURCHASE_INVALID_TYPE;
 import static lotto.util.ExceptionMessage.PURCHASE_INVALID_UNIT;
 
@@ -10,7 +11,14 @@ public class Purchase {
 
     public Purchase(String priceInput) {
         this.price = validateIntegerInput(priceInput);
+        validatePriceIsNegative(price);
         this.ticketCount = validatePriceInThousandUnit(price);
+    }
+
+    private void validatePriceIsNegative(int price) {
+        if (price <= 0) {
+            throw new IllegalArgumentException(PURCHASE_INVALID_NUMBER.getMessage());
+        }
     }
 
     private int validateIntegerInput(String price) {

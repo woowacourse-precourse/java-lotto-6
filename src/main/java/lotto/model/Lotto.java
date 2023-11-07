@@ -1,6 +1,8 @@
 package lotto.model;
 
+import lotto.config.ErrorMessage;
 import lotto.config.LottoConfig;
+import lotto.util.Validator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +17,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LottoConfig.LOTTO_NUMBER_COUNT.getValue()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_SIZE_ERROR
+                    .getFormattedMessage(LottoConfig.LOTTO_NUMBER_COUNT.getValue()));
         }
+        Validator.validateUniqueNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {

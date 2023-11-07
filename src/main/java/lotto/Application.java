@@ -33,7 +33,7 @@ public class Application {
         int howManyLotto = money / THOUSAND.getNumber();
         System.out.println(OutputMessage.printBuyHowManyLottoMessage(howManyLotto));
         publishedLotto = LottoProcess.publishLotto(howManyLotto);
-        LottoProcess.printLotto(publishedLotto, howManyLotto);
+        LottoProcess.printLotto(publishedLotto);
 
         while (true) {
             try {

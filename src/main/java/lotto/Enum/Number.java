@@ -7,13 +7,10 @@ import java.util.Collections;
 import java.util.List;
 
 public enum Number {
-
     THOUSAND(1000),
-    ONE(1),
-    THREE(3),
-    SIX(6),
-    SEVEN(7),
-    FORTY_FIVE(45),
+    MIN_LOTTO_NUMBER(1),
+    LOTTO_SIZE(6),
+    MAX_LOTTO_NUMBER(45),
     WINNING_MONEY(0, 0, 0, 5000, 50000, 1500000, 2000000000, 30000000);
 
     private final List<Integer> winningMoney;

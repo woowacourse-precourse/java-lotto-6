@@ -4,8 +4,8 @@ import static lotto.Enum.ErrorMessage.DUPLICATED_ERROR;
 import static lotto.Enum.ErrorMessage.NOT_NUMBER_ERROR;
 import static lotto.Enum.ErrorMessage.NUMBER_NOT_IN_RANGE_ERROR;
 import static lotto.Enum.ErrorMessage.NUMBER_NOT_DIVIDE_BY_THOUSAND_ERROR;
-import static lotto.Enum.Number.FORTY_FIVE;
-import static lotto.Enum.Number.ONE;
+import static lotto.Enum.Number.MAX_LOTTO_NUMBER;
+import static lotto.Enum.Number.MIN_LOTTO_NUMBER;
 import static lotto.Enum.Number.THOUSAND;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class Exception {
         }
     }
 
-    private static void checkIfBonusNumberInLottoNumbers(List<Integer> numbers, int number) {
+    private static void checkIfBonusNumberDuplicatedWithLottoNumbers(List<Integer> numbers, int number) {
         if (numbers.contains(number)) {
             throw new IllegalArgumentException(DUPLICATED_ERROR.getMessage());
         }
@@ -54,11 +54,11 @@ public class Exception {
         checkIfNumber(input);
         int result = Integer.parseInt(input);
         checkIfNumberInRange(result);
-        checkIfBonusNumberInLottoNumbers(winningNumbers, result);
+        checkIfBonusNumberDuplicatedWithLottoNumbers(winningNumbers, result);
     }
 
     private static void checkIfNumberInRange(int number) {
-        if (number < ONE.getNumber() || number > FORTY_FIVE.getNumber()) {
+        if (number < MIN_LOTTO_NUMBER.getNumber() || number > MAX_LOTTO_NUMBER.getNumber()) {
             throw new IllegalArgumentException(NUMBER_NOT_IN_RANGE_ERROR.getMessage());
         }
     }

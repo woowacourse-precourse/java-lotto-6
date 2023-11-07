@@ -39,6 +39,10 @@ public enum OutputMessage {
         return message + " (" + commaNum + "원) - " + value + "개";
     }
 
+    public static String printTotalRateOfReturn(double totalRateOfReturn){
+        return TOTAL_RATE_OF_RETURN.getMessage() + totalRateOfReturn + "%입니다.";
+    }
+
     public String getCorrectMessageByIndex(int index) {
         if (index < 3 && index > matchMessages.size()) {
             throw new IndexOutOfBoundsException(INDEX_OUT_OF_RANGE_ERROR.getMessage());

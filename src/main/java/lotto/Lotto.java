@@ -3,9 +3,9 @@ package lotto;
 import static lotto.Enum.ErrorMessage.DUPLICATED_ERROR;
 import static lotto.Enum.ErrorMessage.LENGTH_ERROR;
 import static lotto.Enum.ErrorMessage.NUMBER_NOT_IN_RANGE_ERROR;
-import static lotto.Enum.Number.SIX;
-import static lotto.Enum.Number.FORTY_FIVE;
-import static lotto.Enum.Number.ONE;
+import static lotto.Enum.Number.LOTTO_SIZE;
+import static lotto.Enum.Number.MAX_LOTTO_NUMBER;
+import static lotto.Enum.Number.MIN_LOTTO_NUMBER;
 
 import java.util.List;
 
@@ -20,14 +20,14 @@ public class Lotto {
     }
 
     public static void validateLottoNumbersLength(List<Integer> numbers) {
-        if (numbers.size() != SIX.getNumber()) {
+        if (numbers.size() != LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(LENGTH_ERROR.getMessage());
         }
     }
 
     private void validateLottoNumbersInRange(List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < ONE.getNumber() || number > FORTY_FIVE.getNumber()) {
+            if (number < MIN_LOTTO_NUMBER.getNumber() || number > MAX_LOTTO_NUMBER.getNumber()) {
                 throw new IllegalArgumentException(NUMBER_NOT_IN_RANGE_ERROR.getMessage());
             }
         }

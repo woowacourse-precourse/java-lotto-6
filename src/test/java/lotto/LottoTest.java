@@ -2,7 +2,6 @@ package lotto;
 
 import lotto.domain.ExceptionMessage;
 import lotto.domain.Lotto;
-import lotto.domain.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -56,10 +55,10 @@ class LottoTest {
 
         @Test
         @DisplayName("숫자 형식이 아닌 값 입력 시, 에러 처리")
-        void testValidateNumericInput() {
+        void testValidateNumberInput() {
             String input = "a,2,3,4,e,6";
 
-            assertThatThrownBy(() -> new PurchaseAmount(input))
+            assertThatThrownBy(() -> new Lotto(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(ExceptionMessage.INVALID_NUMBER.getMessage());
         }

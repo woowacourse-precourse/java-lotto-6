@@ -37,7 +37,7 @@ public class ExceptionHandler {
     }
 
     public void checkNonNegativeAmount(int input) {
-        if(input <= ZERO)
+        if(input < ZERO)
             exceptionMessage.INPUT_NEGATIVE_AMOUNT.throwException();
     }
 

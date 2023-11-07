@@ -2,7 +2,7 @@ package lotto;
 
 public class ValidateBonusBall {
 
-    public void isInRange(int bonusBall) {
+    public static void isInRange(int bonusBall) {
         if (bonusBall < 1) {
             throw new IllegalArgumentException("[ERROR] 1보다 작은 숫자는 입력 할 수 없습니다.");
         }

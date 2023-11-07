@@ -4,6 +4,8 @@ import static lotto.error.ErrorMessage.NEGATIVE_PRICE;
 import static lotto.error.ErrorMessage.NOT_DIGIT_PRICE;
 import static lotto.error.ErrorMessage.NOT_THOUSAND_UNIT_PRICE;
 
+import java.util.Objects;
+
 public class PurchasePrice {
 
     private static final int THOUSAND_UNIT = 1_000;
@@ -44,4 +46,21 @@ public class PurchasePrice {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        PurchasePrice that = (PurchasePrice) o;
+        return price == that.price;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(price);
+    }
+    
 }

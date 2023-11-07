@@ -18,9 +18,9 @@ public class UI {
 		showComputerLottos(numberOfLottoTickets);
 		inputNumbers();
 		inputBonusNumber(userNumbers);
-		showWinningStatistics(computerLottos,userNumbers,bonusNumber);
+		showWinningStatistics(computerLottos, userNumbers, bonusNumber);
+		showProfitRates(numberOfLottoTickets, profit);
 	}
-
 
 	private void inputMoney() {
 		try {
@@ -75,6 +75,17 @@ public class UI {
 		System.out.println("당첨 통계");
 		System.out.println("---");
 		List<Integer> winningResult =
-				lottoService.getWinningResult(computerLottos,userNumbers,bonusNumber);
+				lottoService.getWinningResult(computerLottos, userNumbers, bonusNumber);
+		System.out.println("3개 일치 (5,000원) - " + winningResult.get(5) + "개");
+		System.out.println("4개 일치 (50,000원) - " + winningResult.get(4) + "개");
+		System.out.println("5개 일치 (1,500,000원) - " + winningResult.get(3) + "개");
+		System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult.get(2) + "개");
+		System.out.println("6개 일치 (2,000,000,000원) - " + winningResult.get(1) + "개");
+		this.profit = (5_000L * winningResult.get(5)) + (50_000L * winningResult.get(4)) +
+				(1_500_000L * winningResult.get(3)) + (30_000_000L * winningResult.get(2)) +
+				(2_000_000_000L * winningResult.get(1));
+	}
+
+	private void showProfitRates(long numberOfLottoTickets, long profit) {
 	}
 }

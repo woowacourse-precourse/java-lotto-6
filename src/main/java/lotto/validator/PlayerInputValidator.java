@@ -15,7 +15,7 @@ public class PlayerInputValidator {
         return countNumber;
     }
 
-    private static int validateNumber(String count) {
+    public static int validateNumber(String count) {
         try {
             return Integer.parseInt(count);
         } catch (NumberFormatException e) {

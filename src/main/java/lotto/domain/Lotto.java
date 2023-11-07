@@ -26,6 +26,4 @@ public class Lotto {
     public List<Integer> getNumbers(){
         return sort();
     }
-
-    // TODO: 추가 기능 구현
 }

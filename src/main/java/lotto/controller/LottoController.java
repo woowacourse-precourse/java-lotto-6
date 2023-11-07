@@ -24,7 +24,6 @@ public class LottoController {
         Lotto win = getWinningLotto();
         int bonus = getBonusLotto();
 
-
     }
 
     public User getMoney(){

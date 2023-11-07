@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -10,10 +11,16 @@ public class Application {
     public static void main(String[] args) {
         int inputTry = readInputPrice();
         List<Lotto> lottoList = makeLottoNumber(inputTry);
-        List<Integer> correctNumberList= readInputCorrectNumber();
+        Lotto correctNumber = readInputCorrectNumber();
     }
 
-    private static List<Integer> readInputCorrectNumber() {
+    private static void validateOverLap(boolean contains, String s) {
+        if (contains) {
+            throw new IllegalArgumentException(s);
+        }
+    }
+
+    private static Lotto readInputCorrectNumber() {
         List<Integer> correctNumberList = new ArrayList<>();
         while (true) {
             try {
@@ -25,7 +32,7 @@ public class Application {
                     correctNumberList.add(correctNum);
                 }
                 validateListSizeIs6(correctNumberList.size(), 6, "[ERROR] 6개의 당첨번호를 입력해주세요");
-                return correctNumberList;
+                return new Lotto(correctNumberList);
             } catch (IllegalArgumentException e) {
                 e.printStackTrace();
             }
@@ -33,22 +40,19 @@ public class Application {
     }
 
     private static void validateListSizeIs6(int size, int i, String s) {
-        if ((size) != i) {
-            throw new IllegalArgumentException(s);
-        }
+        validateOverLap((size) != i, s);
     }
 
     private static void validateOverNumber45(int correctNum) {
-        if (correctNum > 45) {
-            throw new IllegalArgumentException("[ERROR] 45이하의 숫자를 선택해주세요");
-        }
+        validateOverLap(correctNum > 45, "[ERROR] 45이하의 숫자를 선택해주세요");
     }
 
     private static List<Lotto> makeLottoNumber(int inputTry) {
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i < inputTry; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
+            List<Integer> orderedList = new ArrayList<>(numbers);
+            Collections.sort(orderedList);
             Lotto lotto = new Lotto(numbers);
             lottoList.add(lotto);
         }

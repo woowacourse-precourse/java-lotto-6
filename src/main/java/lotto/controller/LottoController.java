@@ -4,6 +4,8 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Arrays;
+
 
 public class LottoController {
 
@@ -17,6 +19,7 @@ public class LottoController {
         printBuyResult(lottos, count);
         WinningNumbers winningNumbers = makeWinningNumbers();
         LottoResult lottoResult = winningNumbers.checkLottos(lottos);
+        Arrays.stream(Rank.values()).forEach(rank->outputView.printLottosResult(rank, lottoResult.getResult(rank)));
 
     }
 

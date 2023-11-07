@@ -9,6 +9,7 @@ import lotto.domain.Ranking;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class LottoService {
     public static final String PURCHASE_X_COUNT = "개를 구매했습니다.";
@@ -35,9 +36,11 @@ public class LottoService {
     }
 
     public List<Integer> generateLottoCombination() {
-        List<Integer> list = pickUniqueNumbersInRange(1, 45, 6);
-        list.sort(null);
-        return list;
+        List<Integer> result = pickUniqueNumbersInRange(1, 45, 6);
+        result = result.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        return result;
     }
 
     public Ranking calculateRanking(Lotto target, Lotto answer, int bonusNumber) {

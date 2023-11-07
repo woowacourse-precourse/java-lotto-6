@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -27,6 +29,10 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("로또는 6개의 숫자로 이루어져야 합니다.");
+        }
+        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
+        if (uniqueNumbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException("로또 숫자에 중복된 숫자가 있습니다.");
         }
         for (int number : numbers) {
             if (number < MIN_NUMBER || number > MAX_NUMBER) {

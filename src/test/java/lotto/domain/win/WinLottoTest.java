@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 public class WinLottoTest {
     @Test
-    @DisplayName("동일한 로또 번호 개수를 잘 찾아내는지 확인")
+    @DisplayName("동일한 로또 번호 개수를 잘 찾아내는지 확인한다.")
     void checkIsEqualAndBonus() {
         LottoCount lottoCount = new LottoCount(1000);
         UserLotto userLotto = new UserLotto(lottoCount);

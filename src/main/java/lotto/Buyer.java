@@ -19,7 +19,7 @@ public class Buyer {
     }
 
     public void setLottoCollection(List<Integer> lotto){
-        Collections.sort(lotto);
+        //Collections.sort(lotto);
         lottoCollection.add(lotto);
     }
 

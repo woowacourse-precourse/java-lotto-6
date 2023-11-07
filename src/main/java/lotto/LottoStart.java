@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import userViews.InputViews;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,8 +52,19 @@ public class LottoStart {
     }
 
     public static int firstInputProgress() {
-        String inputHowMuchBuy = Console.readLine();
-        return Integer.parseInt(inputHowMuchBuy);
+
+        while (true) {
+            try {
+                String inputHowMuchBuy = Console.readLine();
+                int num = Integer.parseInt(inputHowMuchBuy);
+                if (num < 1000) {
+                    throw new IllegalArgumentException();
+                }
+                return num;
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 구입금액을 입력해 주세요. (정수만 입력하거나 1000원 이상의 금액을 입력하셔야합니다.)");
+            }
+        }
     }
 
     private static void secondGameProgress() {

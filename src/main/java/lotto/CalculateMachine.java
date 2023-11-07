@@ -65,7 +65,7 @@ public class CalculateMachine {
             totalPrize += lottoResult[i] * prize[i];
         }
 
-        double profitPercentage = Math.round(((double) (totalPrize - invest) / invest) * 100.0) / 100.0;
+        double profitPercentage =Math.round(((double) totalPrize / invest) * 100 * 100) / 100.0;
 
         return Math.max(0,profitPercentage);
     }

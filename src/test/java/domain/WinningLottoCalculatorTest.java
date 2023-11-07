@@ -78,7 +78,7 @@ class WinningLottoCalculatorTest {
 
 		// when
 		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
-		winningLottoCalculator.getLottoPrizeCount(purchaseLotto, winningLotto);
+		winningLottoCalculator.calculateLottoPrizeCount(purchaseLotto, winningLotto);
 
 		// then
 		Assertions.assertThat(winningLottoCalculator.getLottoPrizes()).isEqualTo(result);

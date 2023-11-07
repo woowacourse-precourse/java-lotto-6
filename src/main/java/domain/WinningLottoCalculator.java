@@ -36,7 +36,7 @@ public class WinningLottoCalculator {
 				.contains(winningLotto.getBonusNumber().getBonusNumber());
 	}
 
-	public void getLottoPrizeCount(PurchaseLotto purchaseLotto, WinningLotto winningLotto) {
+	public void calculateLottoPrizeCount(PurchaseLotto purchaseLotto, WinningLotto winningLotto) {
 		for (Lotto lotto : purchaseLotto.getLottos()) {
 			long matchCount = getMatchCount(lotto, winningLotto);
 			boolean bonusNumberMatchLotto = isBonusNumberMatchLotto(lotto, winningLotto);

@@ -65,6 +65,10 @@ public class Application {
 	}
 	
 	private int isContains(ArrayList<Integer> lst, int find) {
+		if (!lst.contains(find)) {
+			lst.add(find);
+			return 0;
+		}
 		return -1;
 	}
 	

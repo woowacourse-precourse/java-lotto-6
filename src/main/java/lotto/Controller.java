@@ -10,7 +10,7 @@ public class Controller {
     static final String TEXT_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     static final String TEXT_OUTPUT_COUNT = "%d개를 구매했습니다.\n";
 
-    public static int inputPurchaseCount() throws IllegalArgumentException{
+    public static int inputPurchaseCount() throws IllegalArgumentException {
         System.out.println(TEXT_INPUT_AMOUNT);
         String input = Console.readLine();
         int amount = InputValidator.validatePurchaseCount(input);
@@ -18,7 +18,7 @@ public class Controller {
         return amount;
     }
 
-    public static List<Integer> inputWinningNumbers() throws IllegalArgumentException{
+    public static List<Integer> inputWinningNumbers() throws IllegalArgumentException {
         System.out.println(TEXT_INPUT_WINNING_NUMBERS);
         String input = Console.readLine();
         List<Integer> winningNumbers = InputValidator.validateWinningNumbers(input);
@@ -26,14 +26,13 @@ public class Controller {
         return winningNumbers;
     }
 
-    public static int inputBonusNumber() throws IllegalArgumentException{
+    public static int inputBonusNumber() throws IllegalArgumentException {
         System.out.println(TEXT_INPUT_BONUS_NUMBER);
         String input = Console.readLine();
         int bonusNumber = InputValidator.validateBonusNumber(input);
         System.out.println();
         return bonusNumber;
     }
-
 
 
     public static void printGeneratedLotto(List<Lotto> generatedLotto) {

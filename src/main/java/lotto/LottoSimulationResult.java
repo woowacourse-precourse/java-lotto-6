@@ -11,7 +11,7 @@ public class LottoSimulationResult {
     public LottoSimulationResult() {
         this.resultCount = new HashMap<>();
 
-        for (LottoMatchResult result: LottoMatchResult.values()) {
+        for (LottoMatchResult result : LottoMatchResult.values()) {
             resultCount.put(result, 0);
         }
     }

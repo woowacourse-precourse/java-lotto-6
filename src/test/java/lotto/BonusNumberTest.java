@@ -35,4 +35,12 @@ public class BonusNumberTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호의 범위가 1 ~ 45가 아니면 예외가 발생한다.")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "46", "-1"})
+    void createBonusNumberByInvalidRange(String bonus) {
+        assertThatThrownBy(() ->  new User(lotto, bonus))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

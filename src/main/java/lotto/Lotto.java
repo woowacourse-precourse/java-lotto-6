@@ -63,7 +63,7 @@ public class Lotto {
 
         for (List<Integer> lottoNumbers : purchasedLottoNumbers) {
             int matchingNumbers = countMatchingNumbers(lottoNumbers, winningNumbers);
-            if(matchingNumbers == 5 && winningNumbers.contains(bonusNum)) {
+            if(matchingNumbers == 5 && lottoNumbers.contains(bonusNum)) {
                 matchingNumbers = 7;
             }
             updateMatchArr(matchArr, matchingNumbers);

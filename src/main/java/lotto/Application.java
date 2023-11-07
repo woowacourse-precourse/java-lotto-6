@@ -163,5 +163,15 @@ public class Application {
 
         // 수익률 추출
         double earningRate = (firstPrice*2000000000 + secondPrice*30000000 + thirdPrice*1500000 + fourthPrice*50000 + fifthPrice*5000)/money*100;
+
+        // 당첨 통계 출력
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + fifthPrice + "개");
+        System.out.println("4개 일치 (50,000원) - " + fourthPrice + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + thirdPrice + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + secondPrice + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + firstPrice + "개");
+        System.out.print("총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.");
     }
 }

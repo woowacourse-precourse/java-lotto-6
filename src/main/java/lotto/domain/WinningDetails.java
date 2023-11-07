@@ -31,4 +31,8 @@ public enum WinningDetails {
         }
         return null;
     }
+
+    public int getPrizeMoney() {
+        return this.prizeMoney;
+    }
 }

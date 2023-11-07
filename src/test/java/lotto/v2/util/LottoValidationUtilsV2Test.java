@@ -74,7 +74,7 @@ class LottoValidationUtilsV2Test {
     @DisplayName("보너스 번호가 유효하고 당첨 번호와 중복되지 않을 때 예외를 던지지 않는다")
     void should_NotThrowException_When_BonusNumberIsValid() {
         // given
-        int bonusNumber = 7; 
+        int bonusNumber = 7;
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
         // when & then

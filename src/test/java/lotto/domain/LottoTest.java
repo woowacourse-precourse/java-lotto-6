@@ -40,5 +40,21 @@ public class LottoTest {
                 .hasMessageContaining(LOTTO_NUMBER_DUPLICATION);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideNumbers")
+    void countMatchedWinningLotto_메소드는_당첨번호와_일치하는_개수를_반환한다(String winningNumbers, List<Integer> lottoNumbers, int expect) {
+        WinningNumbers testWinningNumbers = new WinningNumbers(winningNumbers);
+        Lotto testLotto = new Lotto(lottoNumbers);
+
+        assertEquals(testLotto.countMatchedWinningLotto(testWinningNumbers), expect);
+    }
+
+    private static Stream<Arguments> provideNumbers() {
+        return Stream.of(
+                Arguments.of("1,2,3,4,5,6", List.of(1,2,3,4,5,6), 6),
+                Arguments.of("1,2,3,4,5,7", List.of(1,2,3,4,5,6), 5),
+                Arguments.of("1,2,3,4,5,6", List.of(7,8,9,10,11,12), 0)
+        );
+    }
 
 }

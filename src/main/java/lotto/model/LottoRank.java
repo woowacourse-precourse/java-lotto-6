@@ -33,7 +33,6 @@ public enum LottoRank {
 
         return Arrays.stream(LottoRank.values()).filter(rank -> rank.matchCount == matchCount).findAny()
                 .orElseThrow(NoSuchElementException::new);
-
     }
 
 

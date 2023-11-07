@@ -20,15 +20,14 @@ public class LottoCheckerTest {
 
     @Test
     void createEnumResult_EqualResult_Success() {
-        LottoChecker lottoChecker = new LottoChecker();
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-
         Lottos lottos = new Lottos(lottoList);
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 8);
         int bonusNumber = 7;
+        LottoChecker lottoChecker = new LottoChecker(winningNumbers, bonusNumber);
 
-        LottoRankInfo lottoRankInfo = lottoChecker.createResult(lottos, winningNumbers, bonusNumber);
+        LottoRankInfo lottoRankInfo = lottoChecker.createResult(lottos);
         Map<LottoRank, Integer> lottoRank = lottoRankInfo.getLottoRankInfo();
         assertThat(lottoRank.get(LottoRank.THIRD)).isEqualTo(1);
         assertThat(lottoRank.size()).isEqualTo(6);

@@ -8,13 +8,25 @@ import java.util.Map;
 
 public class LottoChecker {
 
-    public LottoRankInfo createResult(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
-        List<LottoRank> lottoRanks = createLottoRanks(lottos, winningNumbers, bonusNumber);
+    private List<LottoRank> lottoRanks;
+
+    private List<Integer> winningNumbers;
+
+    private int bonusNumber;
+
+    public LottoChecker(List<Integer> winningNumbers, int bonusNumber) {
+        this.lottoRanks = new ArrayList<>();
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
+    }
+
+
+    public LottoRankInfo createResult(Lottos lottos) {
+        lottoRanks = createLottoRanks(lottos);
         return LottoRankInfo.from(lottoRanks);
     }
 
-    public List<LottoRank> createLottoRanks(Lottos lottos, List<Integer> winningNumbers, int bonusNumber) {
-        List<LottoRank> lottoRanks = new ArrayList<>();
+    public List<LottoRank> createLottoRanks(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             long matchCount = lotto.compareLottoNumbers(winningNumbers);
             boolean bonus = lotto.compareBonusNumber(bonusNumber);

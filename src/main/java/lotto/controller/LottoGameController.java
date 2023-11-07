@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.model.Game;
+import lotto.model.LottoChecker;
 import lotto.model.LottoRank;
 import lotto.model.LottoRankInfo;
 import lotto.model.Lottos;

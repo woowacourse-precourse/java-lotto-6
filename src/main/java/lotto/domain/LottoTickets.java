@@ -1,9 +1,12 @@
 package lotto.domain;
 
 import lotto.enums.ErrorMessages;
+import lotto.enums.Rank;
 import lotto.utils.LottoNumbersGenerator;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 public class LottoTickets {
@@ -32,5 +35,15 @@ public class LottoTickets {
         return IntStream.range(0, numberOfTickets)
                 .mapToObj(i -> Lotto.valueOf(LottoNumbersGenerator.generate()))
                 .toList();
+    }
+
+    public Map<Rank, Integer> calculateWinningResult(WinningLotto winningLotto) {
+        Map<Rank, Integer> winningResult = new EnumMap<>(Rank.class);
+        for (Lotto lotto : lottoTickets) {
+            Rank rank = winningLotto.match(lotto);
+            if (rank == null) continue;
+            winningResult.put(rank, winningResult.getOrDefault(rank, 0) + 1);
+        }
+        return winningResult;
     }
 }

@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoGameException;
+
 public class WinningNumbers {
     private final WinningNumber winningNumber;
     private final BonusNumber bonusNumber;
@@ -12,7 +15,7 @@ public class WinningNumbers {
 
     private void validate(WinningNumber winningNumber, BonusNumber bonusNumber) {
         if (hasDuplicateNumber(winningNumber, bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new LottoGameException(ErrorMessage.DUPLICATE_INPUT);
         }
     }
 

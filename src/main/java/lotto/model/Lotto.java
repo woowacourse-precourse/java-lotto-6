@@ -19,4 +19,18 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        for (int i = 0; i < numbers.size(); i++) {
+            builder.append(numbers.get(i));
+            if (i < numbers.size() - 1) {
+                builder.append(", ");
+            }
+        }
+        builder.append("]");
+        return builder.toString();
+    }
 }

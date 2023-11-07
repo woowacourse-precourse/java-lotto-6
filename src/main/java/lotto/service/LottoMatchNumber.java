@@ -14,7 +14,6 @@ public class LottoMatchNumber {
 
     public List<Match> lottoMatch(List<Lotto> purchasedLottoes, Lotto winningNumber, BonusNumber bonusNumber) {
         getResult(purchasedLottoes, winningNumber, bonusNumber);
-        Collections.sort(matches);
         return matches;
     }
 

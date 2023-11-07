@@ -151,3 +151,8 @@
 - BonusNumber 테스트 구현
 ######      comment
     BonusNumber에 관한 테스트가 구현되었습니다.
+
+#### - 2023/11/08
+- PurchaseLotto 테스트 구현
+######      comment
+    로또 발행 테스트 구현이 완료되었습니다.

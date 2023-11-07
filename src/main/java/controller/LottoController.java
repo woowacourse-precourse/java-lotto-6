@@ -20,13 +20,18 @@ public class LottoController {
         int price = AskPrice();
         User user = new User(price, lottoService.makeLottoList(price));
         WinningNumber winning_numbers = new WinningNumber(AskWinningNumbers(),AskBonus());
-
+        for(Lotto lotto: user.getLottoList()){
+            lottoService.awardLotto(lottoService.calculateRanking(lotto, winning_numbers),user);
+        }
+        user.giveMoney();
 
     }
+
     public int AskPrice(){
         inputView.printAskPrice();
         return inputPrice();
     }
+
     public int inputPrice(){
         String my_price = Console.readLine();
         try{
@@ -40,7 +45,6 @@ public class LottoController {
         }
         return Integer.parseInt(my_price);
     }
-
 
     public List<Integer> AskWinningNumbers(){
         List<Integer> winningNumberList = new ArrayList<>();

@@ -8,22 +8,6 @@ import model.WinningNumber;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-enum RewardMoney{
-    FIFTH(5000),
-    FOURTH(50000),
-    THIRD(1500000),
-    SECOND(30000000),
-    FIRST(2000000000);
-    private int money;
-
-    RewardMoney( int money) {
-        this.money = money;
-    }
-
-    public int getMoney() {
-        return money;
-    }
-}
 
 public class LottoService {
     public List<Integer> makeWinningNumber(String number){
@@ -78,28 +62,22 @@ public class LottoService {
         return lottoResult;
     }
 
-    public int awardLotto(Map<String, Integer> lottoResult, User user){
+    public void awardLotto(Map<String, Integer> lottoResult, User user){
         if (lottoResult.get("count") == 3){
             user.checkRanking("fifth");
-        }else if(lottoResult.get("count") == 4){
+        }
+        if(lottoResult.get("count") == 4){
             user.checkRanking("fourth");
-        }else if(lottoResult.get("count") == 5){
+        }
+        if(lottoResult.get("count") == 5){
             user.checkRanking("third");
-        }else if(lottoResult.get("count") == 5 && lottoResult.get("bonus") == 1){
+        }
+        if(lottoResult.get("count") == 5 && lottoResult.get("bonus") == 1){
             user.checkRanking("second");
-        }else if(lottoResult.get("count") == 6){
+        }
+        if(lottoResult.get("count") == 6){
             user.checkRanking("first");
         }
-        return 0;
     }
 
-    public int calculateReward(User user){
-        int reward = 0;
-        reward = user.getFifth() * RewardMoney.FIFTH.getMoney()+
-                user.getFourth() * RewardMoney.FOURTH.getMoney()+
-                user.getThird() * RewardMoney.THIRD.getMoney()+
-                user.getSecond() * RewardMoney.SECOND.getMoney()+
-                user.getFirst() * RewardMoney.FIRST.getMoney();
-        return reward;
-    }
 }

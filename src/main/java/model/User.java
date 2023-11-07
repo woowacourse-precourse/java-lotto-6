@@ -1,10 +1,13 @@
 package model;
 
+import service.LottoEnum;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private int price = 0;
+    private int money = 0;
     private List<Lotto> lottoList = new ArrayList<>();
     private int fifth = 0;
     private int fourth = 0;
@@ -17,22 +20,32 @@ public class User {
         this.lottoList = lottos;
     }
 
-    public void addLotto(Lotto lotto){
-        lottoList.add(lotto);
-    }
-
     public void checkRanking(String ranking){
         if(ranking.equals("fifth")){
             this.fifth++;
-        }else if(ranking.equals("fourth")){
+        }
+        if(ranking.equals("fourth")){
             this.fourth++;
-        }else if(ranking.equals("third")){
+        }
+        if(ranking.equals("third")){
             this.third++;
-        }else if(ranking.equals("second")){
+        }
+        if(ranking.equals("second")){
             this.second++;
-        }else if(ranking.equals("first")){
+        }
+        if(ranking.equals("first")){
             this.first++;
         }
+    }
+    public void giveMoney(){
+        this.money = this.fifth * LottoEnum.FIFTH.getMoney()+
+                this.fourth * LottoEnum.FOURTH.getMoney()+
+                this.third * LottoEnum.THIRD.getMoney()+
+                this.second * LottoEnum.SECOND.getMoney()+
+                this.first * LottoEnum.FIRST.getMoney();
+    }
+    public List<Lotto> getLottoList() {
+        return lottoList;
     }
 
     public int getFifth() {

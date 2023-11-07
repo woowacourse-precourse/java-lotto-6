@@ -1,7 +1,10 @@
 package lotto.domain.lotto;
 
+import lotto.domain.result.Result;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -42,9 +45,27 @@ public class Lotto {
         }
     }
 
-    public long compare(Lotto lotto) {
+    public Result compare(Lotto lotto, int bonus) {
+        long count = findAccordCount(lotto);
+
+        boolean isContainsBonus = isContainsBonus(bonus);
+
+        return new Result(count, isContainsBonus);
+    }
+
+    private long findAccordCount(Lotto lotto) {
         return lotto.numbers.stream()
                 .filter(this.numbers::contains)
                 .count();
+    }
+
+    public boolean isContainsBonus(int bonus) {
+        return this.numbers.contains(bonus);
+    }
+
+    public String printNumber() {
+        return "[" + numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", ")) + "]";
     }
 }

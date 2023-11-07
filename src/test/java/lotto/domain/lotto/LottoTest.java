@@ -1,6 +1,6 @@
-package lotto;
+package lotto.domain.lotto;
 
-import lotto.domain.lotto.Lotto;
+import lotto.domain.result.Result;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +54,9 @@ class LottoTest {
         Lotto first = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto second = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        assertEquals(6, first.compare(second));
+        Result result = first.compare(second, 0);
+
+        assertEquals(6, result.count());
     }
 
     @DisplayName("로또는 일치하는 값의 갯수를 출력해줄 수 있어야 한다. 1개 일치")
@@ -63,7 +65,9 @@ class LottoTest {
         Lotto first = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto second = new Lotto(List.of(6, 7, 8, 9, 10, 11));
 
-        assertEquals(1, first.compare(second));
+        Result result = first.compare(second, 0);
+
+        assertEquals(1, result.count());
     }
 
     @DisplayName("로또는 일치하는 값의 갯수를 출력해줄 수 있어야 한다. 일치하지_않음")
@@ -72,6 +76,8 @@ class LottoTest {
         Lotto first = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto second = new Lotto(List.of(7, 8, 9, 10, 11, 12));
 
-        assertEquals(0, first.compare(second));
+        Result result = first.compare(second, 0);
+
+        assertEquals(0, result.count());
     }
 }

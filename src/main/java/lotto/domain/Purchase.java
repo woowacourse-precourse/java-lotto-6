@@ -5,14 +5,14 @@ import camp.nextstep.edu.missionutils.Console;
 public class Purchase {
     private static final int LOTTO_PRICE = 1000;
 
-    public static int inputMoney() {
+    public static int inputMoney() throws IllegalArgumentException {
         System.out.println("구입금액을 입력해 주세요.");
         int purchaseQuantity;
         try {
             purchaseQuantity = Integer.parseInt(Console.readLine());
             checkInputMoney(purchaseQuantity);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERRER] 금액은 숫자만 입력 가능합니다.")
+            throw new IllegalArgumentException("[ERROR] 로또 구입금액은 숫자만 입력 가능합니다.");
         }
 
         return purchaseQuantity;

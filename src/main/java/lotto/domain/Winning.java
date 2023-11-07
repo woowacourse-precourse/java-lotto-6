@@ -15,6 +15,10 @@ public class Winning {
         this.bonusNumber = bonusNumber;
     }
 
+    public List<Integer> getWinningNumbers() {
+        return winningNumbers;
+    }
+
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         validateWinningNumberSize(winningNumbers);
         validateWinningNumbersRange(winningNumbers);

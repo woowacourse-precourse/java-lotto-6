@@ -30,5 +30,19 @@ public class LottoController {
 
     private void showPurchasedLotto() {
         outputView.showPurchasedLotto(lottoService.findAllLotto());
+        enterWinning();
+    }
+
+    private void enterWinning() {
+        String winning = inputView.enterWinning();
+        String bonus = inputView.enterBonus();
+
+        try {
+            lottoService.issueWinning(winning, bonus);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            enterWinning();
+            return;
+        }
     }
 }

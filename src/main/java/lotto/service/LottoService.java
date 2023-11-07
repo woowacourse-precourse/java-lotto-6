@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
+import lotto.domain.Winning;
 import lotto.repository.LottoRepository;
 import lotto.repository.WinningRepository;
 
@@ -29,6 +30,16 @@ public class LottoService {
 
     public List<Lotto> findAllLotto() {
         return lottoRepository.findAll();
+    }
+
+    public void issueWinning(String winningNumber, String bonusNumber) throws IllegalArgumentException {
+        List<Integer> validatedWinning = validation.validateWinning(winningNumber);
+        Integer validatedBonus = validation.validateBonus(bonusNumber, validatedWinning);
+        Winning winning = new Winning(validatedWinning, validatedBonus);
+        winningRepository.save(winning);
+
+        System.out.println("validatedWinning = " + validatedWinning);
+        System.out.println("validatedBonus = " + validatedBonus);
     }
 
 

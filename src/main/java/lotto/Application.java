@@ -100,34 +100,55 @@ public class Application {
         return -1;
     }
     public static void main(String[] args) {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 10, 6);
-        Collections.sort(numbers);
-        System.out.println(numbers);
-
-        List<Integer> players = Randoms.pickUniqueNumbersInRange(1, 10, 6);
-        Collections.sort(players);
-        System.out.println(players);
         
-        Lotto lotto = new Lotto(numbers);
-        int count = lotto.run(players);
-        System.out.println(count);
+        // int count = lotto.run(players);
 
+        System.out.println("구입금액을 입력해 주세요.");
         int tickets;
         do {
             tickets = getTickets();
         } while(tickets < 0);
 
+        List<Lotto> lottos = new ArrayList<Lotto>();
+        System.out.printf("\n%d개를 구매했습니다.\n", tickets);
+        for (int i = 0; i < tickets; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
+            System.out.println(numbers.toString());
+
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+        }
+
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         List<Integer> playerNumbers;
         do{
             playerNumbers = inputPlayerNumbers();
         } while(playerNumbers.isEmpty());
         
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         Integer playerBonusNumber;
         do {
             playerBonusNumber = inputPlayerBonusNumber();
         } while(playerBonusNumber < 0);
 
+        int[] result = {0, 0, 0, 0, 0};
+        for (Lotto l : lottos) {
+            int count = l.run(playerNumbers);
+            
+            if (count == 5) {
+                result[count - 3 + l.runBonus(playerBonusNumber)] ++;
+            }
+            else if (count == 6) {
+                result[count - 2] ++;
+            }
+            else {
+                result[count - 3] ++;
+            }
+        }
+
         
+
 
     }
 }

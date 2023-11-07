@@ -64,27 +64,30 @@ public class LottoShop {
             }
         }
     }
-    private int inputBonusNum(){
-        while (true) {
-            try {
-                System.out.println();
-                System.out.println(INPUTBONUS);
-                int bonusNum = Integer.parseInt(readLine());
-                if (bonusNum < 1 || bonusNum > 45)
-                    throw new IllegalArgumentException(NOTINARRANGEERROR.toString());
-                return bonusNum;
-            }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+    private int inputBonusNum() {
+        System.out.println();
+        System.out.println(INPUTBONUS);
+        int bonusNum = Integer.parseInt(readLine());
+        return bonusNum;
+
     }
 
     public WinnerLotto pickWinnerLotto() {
+        WinnerLotto winnerLotto;
+        Lotto lotto;
         while(true){
             try{
-                Lotto lotto = inputLottoNum();
+                lotto = inputLottoNum();
+                break;
+            }catch(IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        while(true){
+            try{
                 int bonusNum = inputBonusNum();
-                return new WinnerLotto(lotto,bonusNum);
+                winnerLotto = new WinnerLotto(lotto,bonusNum);
+                return winnerLotto;
             }catch(IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

@@ -1,19 +1,22 @@
 package lotto.domain;
 
+import static lotto.domain.LottoRank.FIFTH_RANK;
+import static lotto.domain.LottoRank.NO_LUCK;
 import static lotto.exception.ErrorMessage.BONUS_NUMBER_IS_ALREADY_IN_LOTTO_NUMBERS;
 import static lotto.exception.ErrorMessage.BONUS_NUMBER_IS_OUT_OF_RANGE;
 import static lotto.constraint.LottoConstraint.LOTTO_MINIMUM_BOUND;
 import static lotto.constraint.LottoConstraint.LOTTO_MAXIMUM_BOUND;
+import static lotto.domain.LottoRank.SECOND_RANK;
+import static lotto.domain.LottoRank.THIRD_RANK;
 
 import java.util.function.Predicate;
 import lotto.exception.Exception;
 
 public class WinningLottoNumber {
-
-    private final Lotto winLottoNumber;
+    private static Lotto winLottoNumber;
     private final int bonusNumber;
 
-    private WinningLottoNumber(Lotto winLottoNumber, int bonusNumber) {
+    public WinningLottoNumber(Lotto winLottoNumber, int bonusNumber) {
         this.winLottoNumber = winLottoNumber;
         validate(winLottoNumber, bonusNumber);
         this.bonusNumber = bonusNumber;
@@ -44,7 +47,21 @@ public class WinningLottoNumber {
         return bonusNumber >= LOTTO_MINIMUM_BOUND.getValue() && bonusNumber <= LOTTO_MAXIMUM_BOUND.getValue();
     }
 
-    public int calculateRank(Lotto otherLotto) {
+    public static LottoRank calculateLottoPrize(Lotto otherLotto) {
+        int matchNumbers = matchWithLotto(otherLotto);
+
+        if (matchNumbers < FIFTH_RANK.getMatchNumbers()) {
+            return NO_LUCK;
+        }
+
+        if (matchNumbers == THIRD_RANK.getMatchNumbers() && matchWithBonus(otherLotto)) {
+            return SECOND_RANK;
+        }
+
+        return LottoRank.getLottoRank(matchNumbers);
+    }
+
+    private static int matchWithLotto(Lotto otherLotto) {
         int matchNumbers = winLottoNumber.getNumbers()
                 .stream()
                 .filter(number -> otherLotto.getNumbers()
@@ -53,16 +70,10 @@ public class WinningLottoNumber {
                 .toList()
                 .size();
 
-        if (matchNumbers == 5) {
-
-        }
+        return matchNumbers;
     }
 
-    private int matchWithLotto(Lotto otherLotto) {
-
-    }
-
-    private int matchWithBonus(Lotto otherLotto) {
-
+    private boolean matchWithBonus(Lotto otherLotto) {
+        return otherLotto.containsBonusNumber(bonusNumber);
     }
 }

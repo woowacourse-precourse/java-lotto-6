@@ -2,6 +2,7 @@ package lotto.model;
 
 import static lotto.util.Constant.LOTTO_PER_PRICE;
 import static lotto.util.ErrorMessage.ERROR_MINIMUM_PRICE;
+import static lotto.util.ErrorMessage.ERROR_NOT_DIVIDE_LOTTO_PRICE;
 import static lotto.util.ErrorMessage.ERROR_NUMERIC_TYPE;
 
 import java.util.regex.Pattern;
@@ -20,6 +21,12 @@ public class LottoPurchase {
     public static void validateMinimunPrice(int totalPrice) {
         if (totalPrice < LOTTO_PER_PRICE) {
             throw new IllegalArgumentException(ERROR_MINIMUM_PRICE);
+        }
+    }
+
+    public static void validateDivideLottoPrice(int totalPrice) {
+        if ((totalPrice % LOTTO_PER_PRICE) != 0) {
+            throw new IllegalArgumentException(ERROR_NOT_DIVIDE_LOTTO_PRICE);
         }
     }
 

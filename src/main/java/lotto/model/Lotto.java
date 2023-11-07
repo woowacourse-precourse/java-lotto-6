@@ -55,4 +55,8 @@ public class Lotto {
 
         return messageBuilder.toString();
     }
+
+    public boolean isNumberContain(int number) {
+        return numbers.contains(number);
+    }
 }

@@ -2,7 +2,7 @@ package lotto.utility;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.message.LottoErrorMessage;
+import lotto.message.LottoBonusErrorMessage;
 
 public class ListTypeChanger {
     public static List<Integer> changeListType(String input) {
@@ -21,7 +21,7 @@ public class ListTypeChanger {
         try {
             return Integer.parseInt(input.trim());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(LottoErrorMessage.NOT_NUMBER_ERROR.getMessage());
+            throw new IllegalArgumentException(LottoBonusErrorMessage.NOT_NUMBER_ERROR.getMessage());
         }
     }
 

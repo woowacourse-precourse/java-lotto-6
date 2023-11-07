@@ -1,6 +1,6 @@
 package lotto.message;
 
-public enum LottoErrorMessage {
+public enum LottoBonusErrorMessage {
     WRONG_SIZE_ERROR("[ERROR] 총 6개의 숫자를 입력해야 합니다."),
     NOT_NUMBER_ERROR("[ERROR] 숫자만 입력해야 합니다."),
     DUPLICATE_ERROR("[ERROR] 번호를 중복해서 입력할 수 없습니다."),
@@ -9,7 +9,7 @@ public enum LottoErrorMessage {
 
     private final String message;
 
-    LottoErrorMessage(String message) {
+    LottoBonusErrorMessage(String message) {
         this.message = message;
     }
 

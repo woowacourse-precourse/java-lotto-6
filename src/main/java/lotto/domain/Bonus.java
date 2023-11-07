@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.message.LottoErrorMessage;
+import lotto.message.LottoBonusErrorMessage;
 
 public class Bonus {
     private int number;
@@ -16,7 +16,7 @@ public class Bonus {
 
     private void validateRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(LottoErrorMessage.OUT_RANGE_ERROR.getMessage());
+            throw new IllegalArgumentException(LottoBonusErrorMessage.OUT_RANGE_ERROR.getMessage());
         }
     }
 }

@@ -28,10 +28,7 @@ class LottoServiceTest {
     @DisplayName("로또 결과 통계를 반환한다.")
     @Test
     void getLottoResult() {
-        long payment = Constants.LOTTO_PRICE;
-        lottoService.getLottoReceipt(payment);
-        lottoService.drawLottoWithoutBonusNumber(TestConstant.NORMAL_NUMBERS);
-        lottoService.drawBonusNumber(45);
+        givenPurchaseOneAndWinningFirstRank();
 
         LottoResultDto lottoResultDto = lottoService.getLottoResult();
         int firstRankCount = lottoResultDto.result().get(Rank.SIX_MATCH);
@@ -41,5 +38,12 @@ class LottoServiceTest {
         assertThat(firstRankCount).isEqualTo(1);
         assertThat(secondRankCount).isEqualTo(0);
         assertThat(profitRate).isEqualTo(200000000.0);
+    }
+
+    void givenPurchaseOneAndWinningFirstRank() {
+        long payment = Constants.LOTTO_PRICE;
+        lottoService.getLottoReceipt(payment);
+        lottoService.drawLottoWithoutBonusNumber(TestConstant.NORMAL_NUMBERS);
+        lottoService.drawBonusNumber(45);
     }
 }

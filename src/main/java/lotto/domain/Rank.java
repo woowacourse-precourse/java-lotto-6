@@ -29,7 +29,7 @@ public enum Rank {
                     .filter(rank -> !isDecidedByBonusNumber(rank.matchedCount))
                     .collect(Collectors.toUnmodifiableMap(Rank::getMatchedNumberCount, Function.identity()));
     
-    public static Rank findByMatchedCountAndBonusNumberMatched(int matchedCount, boolean bonusNumberMatched) {
+    public static Rank decideByMatchedCountAndBonusNumberMatched(int matchedCount, boolean bonusNumberMatched) {
         if (isDecidedByBonusNumber(matchedCount)) {
             return decideByBonusNumberMatched(bonusNumberMatched);
         }

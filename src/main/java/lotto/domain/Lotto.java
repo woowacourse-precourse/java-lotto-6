@@ -71,7 +71,7 @@ public class Lotto {
         return Collections.unmodifiableList(modifiableNumbers);
     }
 
-    public int countMatchedNumber(Lotto lotto) {
+    protected int countMatchedNumber(Lotto lotto) {
         int matchedCount = 0;
 
         for (Integer comparedNumber : lotto.numbers) {

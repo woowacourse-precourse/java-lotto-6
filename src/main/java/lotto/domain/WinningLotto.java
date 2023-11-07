@@ -40,14 +40,11 @@ public class WinningLotto {
         }
     }
 
-    public Rank calculateRank(Lotto comparedLotto) {
-        if(!isInitializedBonusNumber()) {
-            throw new IllegalStateException(ErrorMessage.BONUS_NUMBER_NOT_INITIALIZED.getMessage());
-        }
+    public int countMatchedNumber(Lotto comparedLotto) {
+        return lotto.countMatchedNumber(comparedLotto);
+    }
 
-        int matchedCount = lotto.countMatchedNumber(comparedLotto);
-        boolean bonusNumberMatched = comparedLotto.containNumber(bonusNumber);
-
-        return Rank.findByMatchedCountAndBonusNumberMatched(matchedCount, bonusNumberMatched);
+    public boolean isMatchedBonusNumber(Lotto comparedLotto) {
+        return comparedLotto.containNumber(bonusNumber);
     }
 }

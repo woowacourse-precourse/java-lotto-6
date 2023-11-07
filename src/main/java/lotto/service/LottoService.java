@@ -68,11 +68,18 @@ public class LottoService {
         LottoResult lottoResult = new LottoResult();
 
         purchasedLottos.forEach(lotto -> {
-                    Rank rank = winningLotto.calculateRank(lotto);
+                    Rank rank = calculateRank(lotto);
                     lottoResult.increaseLottoRankCount(rank);
                 }
         );
 
         return lottoResult;
+    }
+
+    private Rank calculateRank(Lotto lotto) {
+        int matchedCount = winningLotto.countMatchedNumber(lotto);
+        boolean bonusNumberMatched = winningLotto.isMatchedBonusNumber(lotto);
+
+        return Rank.decideByMatchedCountAndBonusNumberMatched(matchedCount, bonusNumberMatched);
     }
 }

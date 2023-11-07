@@ -8,7 +8,7 @@ class RankTest {
     @DisplayName("일치한 번호와 보너스볼 매치 여부를 통해 당첨 결과를 결정한다. - 6개 일치")
     @Test
     void findByMatchedCountAndBonusNumberMatchedWhenSixMatched() {
-        Rank sixMatched = Rank.findByMatchedCountAndBonusNumberMatched(6, false);
+        Rank sixMatched = Rank.decideByMatchedCountAndBonusNumberMatched(6, false);
 
         Assertions.assertThat(sixMatched).isEqualTo(Rank.SIX_MATCH);
     }
@@ -17,7 +17,7 @@ class RankTest {
     @Test
     void findByMatchedCountAndBonusNumberMatchedWhenFiveAndBonusNumberMatched() {
 
-        Rank fiveAndBonusNumberMatched = Rank.findByMatchedCountAndBonusNumberMatched(5, true);
+        Rank fiveAndBonusNumberMatched = Rank.decideByMatchedCountAndBonusNumberMatched(5, true);
 
         Assertions.assertThat(fiveAndBonusNumberMatched).isEqualTo(Rank.FIVE_AND_BONUS_MATCH);
     }
@@ -25,8 +25,58 @@ class RankTest {
     @DisplayName("일치한 번호와 보너스볼 매치 여부를 통해 당첨 결과를 결정한다. - 5개, 보너스볼 불일치")
     @Test
     void findByMatchedCountAndBonusNumberMatchedWhenFiveMatched() {
-        Rank fiveMatched = Rank.findByMatchedCountAndBonusNumberMatched(5, false);
+        Rank fiveMatched = Rank.decideByMatchedCountAndBonusNumberMatched(5, false);
 
         Assertions.assertThat(fiveMatched).isEqualTo(Rank.FIVE_MATCH);
+    }
+
+    @DisplayName("일치한 번호와 보너스볼 매치 여부를 통해 당첨 결과를 결정한다. - 4개 일치")
+    @Test
+    void findByMatchedCountAndBonusNumberMatchedWhenFourMatched() {
+        Rank fourMatched = Rank.decideByMatchedCountAndBonusNumberMatched(4, false);
+        Rank fourAndBonusNumberMatched = Rank.decideByMatchedCountAndBonusNumberMatched(4, true);
+
+        Assertions.assertThat(fourMatched).isEqualTo(Rank.FOUR_MATCH);
+        Assertions.assertThat(fourAndBonusNumberMatched).isEqualTo(Rank.FOUR_MATCH);
+    }
+
+    @DisplayName("일치한 번호와 보너스볼 매치 여부를 통해 당첨 결과를 결정한다. - 3개 일치")
+    @Test
+    void findByMatchedCountAndBonusNumberMatchedWhenThreeMatched() {
+        Rank threeMatched = Rank.decideByMatchedCountAndBonusNumberMatched(3, false);
+        Rank threeAndBonusNumberMatched = Rank.decideByMatchedCountAndBonusNumberMatched(3, true);
+
+        Assertions.assertThat(threeMatched).isEqualTo(Rank.THREE_MATCH);
+        Assertions.assertThat(threeAndBonusNumberMatched).isEqualTo(Rank.THREE_MATCH);
+    }
+
+    @DisplayName("일치한 번호와 보너스볼 매치 여부를 통해 당첨 결과를 결정한다. - 2개 일치")
+    @Test
+    void findByMatchedCountAndBonusNumberMatchedWhenTwoMatched() {
+        Rank twoMatched = Rank.decideByMatchedCountAndBonusNumberMatched(2, false);
+        Rank twoAndBonusNumberMatched = Rank.decideByMatchedCountAndBonusNumberMatched(2, true);
+
+        Assertions.assertThat(twoMatched).isEqualTo(Rank.TWO_MATCH);
+        Assertions.assertThat(twoAndBonusNumberMatched).isEqualTo(Rank.TWO_MATCH);
+    }
+
+    @DisplayName("일치한 번호와 보너스볼 매치 여부를 통해 당첨 결과를 결정한다. - 1개 일치")
+    @Test
+    void findByMatchedCountAndBonusNumberMatchedWhenOneMatched() {
+        Rank oneMatched = Rank.decideByMatchedCountAndBonusNumberMatched(1, false);
+        Rank oneAndBonusNumberMatched = Rank.decideByMatchedCountAndBonusNumberMatched(1, true);
+
+        Assertions.assertThat(oneMatched).isEqualTo(Rank.ONE_MATCH);
+        Assertions.assertThat(oneAndBonusNumberMatched).isEqualTo(Rank.ONE_MATCH);
+    }
+
+    @DisplayName("일치한 번호와 보너스볼 매치 여부를 통해 당첨 결과를 결정한다. - 0개 일치")
+    @Test
+    void findByMatchedCountAndBonusNumberMatchedWhenZeroMatched() {
+        Rank zeroMatched = Rank.decideByMatchedCountAndBonusNumberMatched(0, false);
+        Rank zeroAndBonusNumberMatched = Rank.decideByMatchedCountAndBonusNumberMatched(0, true);
+
+        Assertions.assertThat(zeroMatched).isEqualTo(Rank.ZERO_MATCH);
+        Assertions.assertThat(zeroAndBonusNumberMatched).isEqualTo(Rank.ZERO_MATCH);
     }
 }

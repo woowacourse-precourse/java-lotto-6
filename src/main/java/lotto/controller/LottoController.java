@@ -34,7 +34,8 @@ public class LottoController {
 
     private void buyLotto() {
         buyAmount = createBuyAmount();
-        List<Lotto> lottoNumbers = lottoGenerator.generateLottos(buyAmount.getAbleToBuyCount());
+        int lottoCount = buyAmount.getAbleToBuyCount();
+        List<Lotto> lottoNumbers = lottoGenerator.generateLottos(lottoCount);
         lottos = new Lottos(lottoNumbers);
         OutputView.displayAllLottos(lottos.toLottosDTO());
     }
@@ -72,44 +73,41 @@ public class LottoController {
     }
 
     private BuyAmount createBuyAmount() {
-        while (true) {
-            try {
-                return new BuyAmount(InputView.getBuyAmountFromInput());
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
+        try {
+            return new BuyAmount(InputView.getBuyAmountFromInput());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return createBuyAmount();
         }
     }
 
     private WinningNumber createWinningNumber() {
-        while (true) {
-            try {
-                return new WinningNumber(InputView.getWinningNumberFromInput());
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
+        try {
+            return new WinningNumber(InputView.getWinningNumberFromInput());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return createWinningNumber();
         }
     }
 
     private BonusNumber createBonusNumber() {
-        while (true) {
-            try {
-                return new BonusNumber(InputView.getBonusNumberFromInput());
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-            }
+        try {
+            return new BonusNumber(InputView.getBonusNumberFromInput());
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            return createBonusNumber();
         }
     }
 
     private WinningNumbers createWinningNumbers(WinningNumber winningNumber,
                                                 BonusNumber bonusNumber) {
-        while (true) {
-            try {
-                return new WinningNumbers(winningNumber, bonusNumber);
-            } catch (IllegalArgumentException exception) {
-                System.out.println(exception.getMessage());
-                bonusNumber = createBonusNumber();
-            }
+        try {
+            return new WinningNumbers(winningNumber, bonusNumber);
+        } catch (IllegalArgumentException exception) {
+            System.out.println(exception.getMessage());
+            bonusNumber = createBonusNumber();
+            return createWinningNumbers(winningNumber, bonusNumber);
         }
+
     }
 }

@@ -20,10 +20,10 @@ public class OutputView {
 
     public static void displayLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            List<Integer> sortedLottoNumbers = lotto.getNumbers().stream()
+            List<Integer> singleGameLottoNumbers = lotto.getNumbers().stream()
                     .sorted()
                     .collect(Collectors.toList());
-            System.out.println(sortedLottoNumbers);
+            System.out.println(singleGameLottoNumbers);
         }
     }
 

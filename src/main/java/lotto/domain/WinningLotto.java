@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.view.InputView;
+import lotto.controller.InputController;
 
 public class WinningLotto {
     private Lotto winningLotto;
@@ -19,7 +19,7 @@ public class WinningLotto {
 
     private void inputWinningNumbers() {
         System.out.println();
-        winningLotto = new Lotto(InputView.inputLotto());
+        winningLotto = new Lotto(InputController.inputWinningNumbersUntilSuccess());
     }
 
 }

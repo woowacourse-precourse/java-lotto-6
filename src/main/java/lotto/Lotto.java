@@ -46,4 +46,12 @@ public class Lotto {
     private boolean hasDuplicatedNumber(List<Integer> numbers) {
         return numbers.size() != new HashSet<Integer>(numbers).size();
     }
+
+    public List<Integer> getLottoNumbers() {
+        return List.copyOf(numbers);
+    }
+
+    public boolean contain(int number) {
+        return numbers.contains(number);
+    }
 }

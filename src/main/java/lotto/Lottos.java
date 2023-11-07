@@ -17,4 +17,8 @@ public class Lottos {
     private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
+
+    public void calcuateResult(Buyer buyer) {
+        lottos.forEach(lotto -> buyer.countMatchNumber(lotto));
+    }
 }

@@ -37,9 +37,6 @@ public class LottoStatisticsDomain {
     }
 
     private boolean isAdditionNumber(List<Integer> oneLotto) {
-        if (oneLotto.contains(winningLottoNumber.get(LOTTO_WINNING_NUMBER_RANGE - 1))) {
-            return true;
-        }
-        return false;
+        return oneLotto.contains(winningLottoNumber.get(LOTTO_WINNING_NUMBER_RANGE - 1));
     }
 }

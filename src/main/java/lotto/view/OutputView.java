@@ -22,16 +22,13 @@ public class OutputView {
     public void prizeResult(Map<Prize, Integer> result) {
         System.out.println("당첨 통계\n" + "---");
 
-        this.prizeWinCount(Prize.FIFTH, result.get(Prize.FIFTH));
-        this.prizeWinCount(Prize.FOURTH, result.get(Prize.FOURTH));
-        this.prizeWinCount(Prize.THIRD, result.get(Prize.THIRD));
-        this.prizeWinCount(SECOND, result.get(SECOND));
-        this.prizeWinCount(Prize.FIRST, result.get(Prize.FIRST));
+        prizeWinCount(Prize.FIFTH, result.get(Prize.FIFTH));
+        prizeWinCount(Prize.FOURTH, result.get(Prize.FOURTH));
+        prizeWinCount(Prize.THIRD, result.get(Prize.THIRD));
+        prizeWinCount(SECOND, result.get(SECOND));
+        prizeWinCount(Prize.FIRST, result.get(Prize.FIRST));
     }
 
-    public void profitRate(final String profitRate) {
-        System.out.println(LottoGameMessage.PROFIT_RATE.message + profitRate + LottoGameMessage.PERCENT.message);
-    }
 
     public void prizeWinCount(Prize prize, int count) {
         System.out.println(prizeInfo(prize) + LottoGameMessage.DASH.message
@@ -45,7 +42,11 @@ public class OutputView {
         return prize.matches + "개 일치 " + "(" + prize.price + ")";
     }
 
-    public void exceptionMessage(final IllegalArgumentException illegalArgumentException) {
-        System.out.println(illegalArgumentException.getMessage());
+    public void profitRate(final String profitRate) {
+        System.out.println(LottoGameMessage.PROFIT_RATE.message + profitRate + LottoGameMessage.PERCENT.message);
+    }
+
+    public void exceptionMessage(final IllegalArgumentException e) {
+        System.out.println(e.getMessage());
     }
 }

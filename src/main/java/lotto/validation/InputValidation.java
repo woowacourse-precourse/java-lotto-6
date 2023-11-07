@@ -43,6 +43,9 @@ public class InputValidation {
         if (!checkDuplicateNumber(winningNumbers)) {
             throw exception;
         }
+        if (!checkWinningNumberCount(winningNumbers)) {
+            throw exception;
+        }
     }
 
     public void validateBonusNumber(List<Integer> winningNumbers, String bonusNumber) {
@@ -54,6 +57,15 @@ public class InputValidation {
         if (!checkLimitLottoNumber(bonusNumber)) {
             throw exception;
         }
+    }
+
+    private boolean checkWinningNumberCount(String winningNumbers) {
+        String[] numbers = winningNumbers.split(LottoConstants.DIVISION_STANDARD);
+
+        if (numbers.length != LottoConstants.LOTTO_NUMBER_COUNT) {
+            return false;
+        }
+        return true;
     }
 
     private boolean checkDuplicateWithWinningNumber(List<Integer> winningNumbers, String bonusNumber) {

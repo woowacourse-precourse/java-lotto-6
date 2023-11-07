@@ -17,7 +17,7 @@ public class Writer {
     private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
     private static final String WINNING_RESULT = "당첨 통계";
     private static final String LINE = "---";
-
+    private static final String NEW_LINE = "\n";
 
     public static void purchaseAmount() {
         System.out.println(PURCHASE_AMOUNT);
@@ -42,7 +42,7 @@ public class Writer {
     public static void result(Map<Grade, Integer> result) {
         System.out.println(WINNING_RESULT);
         System.out.println(LINE);
-        StringJoiner stringJoiner = new StringJoiner("\n");
+        StringJoiner stringJoiner = new StringJoiner(NEW_LINE);
         for (Grade grade : result.keySet()) {
             if (grade.equals(Grade.NONE)) {
                 continue;

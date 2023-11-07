@@ -17,6 +17,7 @@ public class LottoGame {
         List<Integer> winningNumbers = getValidWinningNumbers();
         System.out.println();
         int bonusNumber = getValidBonusNumber(winningNumbers);
+        System.out.println();
         showWinningStats(lottos, winningNumbers, bonusNumber);
     }
 

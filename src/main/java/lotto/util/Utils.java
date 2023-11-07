@@ -9,4 +9,9 @@ public class Utils {
         return Long.parseLong(string);
     }
 
+    public static long rangeInputMoney(long money){
+        Validation.verifyRangeInputMoney(money);
+        return money;
+    }
+
 }

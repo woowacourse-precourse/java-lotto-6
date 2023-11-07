@@ -52,7 +52,7 @@ public class LottoController {
         PurchasedLotto purchasedLotto = new PurchasedLotto();
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> randomNumbers = lottoService.createRandomNumbers();
+            List<Integer> randomNumbers = lottoService.generateRandomLottoNumbers();
             purchasedLotto.addLotto(new Lotto(randomNumbers));
         }
 
@@ -66,7 +66,7 @@ public class LottoController {
             Long userMoney = inputView.purchaseLotto();
 
             try {
-                Long lottoCount = lottoService.purchaseLottoWithValidPrice(userMoney);
+                Long lottoCount = lottoService.calculateNumberOfLotto(userMoney);
                 outputView.purchaseLottoCountMessage(lottoCount);
 
                 return lottoCount;

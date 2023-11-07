@@ -30,7 +30,7 @@ class LottoResultServiceTest {
         LottoService lottoService = new LottoService();
         PurchasedLotto purchasedLotto = new PurchasedLotto();
 
-        List<Integer> randomNumbers = lottoService.createRandomNumbers();
+        List<Integer> randomNumbers = lottoService.generateRandomLottoNumbers();
         purchasedLotto.addLotto(new Lotto(randomNumbers));
 
         // when

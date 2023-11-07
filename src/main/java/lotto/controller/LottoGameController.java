@@ -3,12 +3,11 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.dto.PurchaseHistoryDto;
 import lotto.model.domain.LottoWinNumber;
-import lotto.model.domain.Player;
+import lotto.controller.dto.MoneyLottosDto;
 import lotto.model.domain.RankingBoard;
 import lotto.model.service.LottoHeadQuarter;
 import lotto.model.service.LottoStore;
 import lotto.model.domain.vo.BonusNumber;
-import lotto.model.domain.vo.Lottos;
 import lotto.model.domain.vo.Money;
 import lotto.model.service.RandomNumberGenerateStrategy;
 import lotto.model.domain.vo.WinNumber;
@@ -28,26 +27,27 @@ public class LottoGameController {
     }
 
     public void run() {
-        Player player = buyLotto();
+        MoneyLottosDto moneyLottosDto = buyLotto();
         WinNumber winNumber = setWinNumber();
         BonusNumber bonusNumber = setBonusNumber();
-        playLottoGame(player, winNumber, bonusNumber);
+        playLottoGame(moneyLottosDto, winNumber, bonusNumber);
     }
 
-    private Player buyLotto() {
-        Player player = null;
+    private MoneyLottosDto buyLotto() {
+        MoneyLottosDto moneyLottosDto = null;
         try {
             outputView.printPurchaseInput();
             Money money = new Money(input());
-            player = lottoStore.sellLotto(money);
-            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getLottos().getEA(), player.getLottos().getHistory());
+            moneyLottosDto = lottoStore.sellLotto(money);
+            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(
+                    moneyLottosDto.getLottos().getEA(), moneyLottosDto.getLottos().getHistory());
             outputView.printPurchaseHistory(dto);
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
-            player = buyLotto();
+            moneyLottosDto = buyLotto();
         }
         outputView.printLineSeparator();
-        return player;
+        return moneyLottosDto;
     }
 
     private WinNumber setWinNumber() {
@@ -76,11 +76,11 @@ public class LottoGameController {
         return bonusNumber;
     }
 
-    private void playLottoGame(Player player, WinNumber winNumber, BonusNumber bonusNumber) {
+    private void playLottoGame(MoneyLottosDto moneyLottosDto, WinNumber winNumber, BonusNumber bonusNumber) {
         try {
             LottoHeadQuarter lottoHeadQuarter = new LottoHeadQuarter();
             LottoWinNumber lottoWinNumber = lottoHeadQuarter.pickNumber(winNumber, bonusNumber);
-            RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, player.getLottos());
+            RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, moneyLottosDto.getLottos());
 
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());

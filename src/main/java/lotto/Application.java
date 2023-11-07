@@ -14,7 +14,7 @@ public class Application {
         makeManyLottos(Wallet, lotto_num);
 
         Lotto winning_lotto = integ_input_winning();
-
+        Integer bonus_num  = integ_input_bonus(winning_lotto);
 
     }
     private static int integ_input_money(){                // input 통합 부분, 재귀함수 처리
@@ -37,7 +37,7 @@ public class Application {
         try{
             return Integer.parseInt(str);
         }catch (NumberFormatException e){
-            System.out.print("[ERROR] 로또 구입 금액은 정수여야 합니다.\n\n");
+            System.out.print("[ERROR] 입력 값은 정수여야 합니다.\n\n");
             throw new IllegalArgumentException();
         }
     }
@@ -90,4 +90,30 @@ public class Application {
             throw new IllegalArgumentException();
         }
     }
+
+    private static Integer integ_input_bonus(Lotto lotto){       // 당첨 복권 입력
+        String input = input_bonus();
+        try {
+            int bonus = String_to_Int(input);
+            Lotto.range_check(bonus);
+            duplicate_check(lotto, bonus);
+            return bonus;
+        }catch(IllegalArgumentException e){
+            return integ_input_bonus(lotto);
+        }
+    }
+    private static String input_bonus(){       // 당첨 복권 입력
+        System.out.print("\n보너스 번호를 입력해 주세요.\n");
+        String input = Console.readLine();
+        return input;
+    }
+    private static void duplicate_check(Lotto lotto, int bonus){
+        List<Integer> numbers = lotto.getNumbers();
+        if (numbers.contains(bonus)){
+            System.out.print("[ERROR] 보너스 번호는 로또 번호와 중복이 되어선 안됩니다.\n");
+            throw new IllegalArgumentException();
+        }
+    }
+
+
 }

@@ -26,7 +26,7 @@ public class Lotto {
             range_check(num);
         }
     }
-    private void range_check(int num){
+    public static void range_check(int num){
         if (num < 1 || num > 45){
             System.out.print("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
             throw new IllegalArgumentException();
@@ -39,5 +39,9 @@ public class Lotto {
             System.out.print("[ERROR] 로또 번호에 중복 값이 없어야 합니다.\n");
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

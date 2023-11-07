@@ -3,6 +3,7 @@ package lotto.Controller;
 import lotto.Domain.Bonus;
 import lotto.Domain.Lotties;
 import lotto.Domain.Lotto;
+import lotto.Domain.LottoResult;
 import lotto.Domain.Money;
 import lotto.View.InputView;
 import lotto.View.OutputView;
@@ -31,6 +32,10 @@ public class LottoController {
 
         Lotto lotto = getLotto();
         Bonus bonus = getBonus();
+
+        LottoResult lottoResult = new LottoResult();
+        lottoResult.calculateLottoResult(lotties, lotto, bonus);
+        showResult(lottoResult);
     }
 
     private Money getMoney() {
@@ -49,6 +54,10 @@ public class LottoController {
 
     private void showLotties(Lotties lotties) {
         outputView.showLotties(lotties);
+    }
+
+    private void showResult(LottoResult lottoResult) {
+        outputView.showLottoResult(lottoResult);
     }
 
     private Lotto getLotto() {

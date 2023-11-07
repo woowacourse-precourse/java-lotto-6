@@ -1,13 +1,14 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+
 import lotto.validator.BonusNumberValidator;
 import lotto.validator.LottoNumberValidator;
 import lotto.validator.PurchaseAmountValidator;
 
 public class InputView {
 
-    private OutputView outputView;
+    private final OutputView outputView;
 
     public InputView() {
         this.outputView = new OutputView();

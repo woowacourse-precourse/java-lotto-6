@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.constant.IntConstants;
+import lotto.constant.StringConstants;
 import lotto.message.ExceptionMessage;
 
 import java.util.Arrays;
@@ -8,9 +9,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
-    private static final String BLANK = " ";
-    private static final String EMPTY = "";
-    private static final String SEPARATOR = ",";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -39,7 +37,10 @@ public class Lotto {
     }
 
     private List<String> splitBySeparator(String numbers) {
-        return Arrays.stream(numbers.replace(BLANK, EMPTY).split(SEPARATOR)).toList();
+        String BLANK = StringConstants.BLANK.getValue();
+        String EMPTY = StringConstants.EMPTY.getValue();
+        String LOTTO_SEPARATOR = StringConstants.LOTTO_SEPARATOR.getValue();
+        return Arrays.stream(numbers.replace(BLANK, EMPTY).split(LOTTO_SEPARATOR)).toList();
     }
 
     private void validate(List<Integer> numbers) {

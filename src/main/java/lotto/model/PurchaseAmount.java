@@ -1,11 +1,10 @@
 package lotto.model;
 
 import lotto.constant.IntConstants;
+import lotto.constant.StringConstants;
 import lotto.message.ExceptionMessage;
 
 public class PurchaseAmount {
-    private static final String NUMBER_SEPARATOR = ",";
-    private static final String EMPTY = "";
     private final int price;
 
     public PurchaseAmount(String price) {
@@ -46,6 +45,8 @@ public class PurchaseAmount {
     }
 
     private String removeSeparator(String price) {
+        String NUMBER_SEPARATOR = StringConstants.NUMBER_SEPARATOR.getValue();
+        String EMPTY = StringConstants.EMPTY.getValue();
         return price.replace(NUMBER_SEPARATOR, EMPTY);
     }
 

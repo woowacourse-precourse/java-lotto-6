@@ -1,7 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.controller.LottoController;
 import lotto.logic.LottoLogic;
+import lotto.model.Lotto;
 import lotto.view.ConsoleView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +14,7 @@ public class LogicTest extends NsTest {
 
     @Override
     protected void runMain() {
-        new LottoLogic(new ConsoleView()).run();
+        new LottoLogic(new ConsoleView(), new LottoController()).run();
     }
 
     @Test

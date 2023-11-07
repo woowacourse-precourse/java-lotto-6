@@ -1,6 +1,7 @@
 package lotto.logic;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.controller.LottoController;
 import lotto.model.Lotto;
 import lotto.view.View;
 
@@ -9,15 +10,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LottoLogic implements Logic {
-    private static final int COST = 1000;
-    private View view;
+    private final View view;
+    private final LottoController controller;
     private boolean running = true;
-    private List<Lotto> lotteries;
     private List<Integer> winningNumber;
     private int bonusNumber;
 
-    public LottoLogic(View view) {
+    public LottoLogic(View view, LottoController lottoController) {
         this.view = view;
+        this.controller = lottoController;
     }
 
     @Override
@@ -30,10 +31,10 @@ public class LottoLogic implements Logic {
     @Override
     public void run() {
         int payment = getPurchaseAmount();
-        generateLotto(payment);
+        controller.generateLotto(payment);
+        view.printAllLottery(controller.getLotteries());
         getWinningNumber();
         getBonusNumber();
-
     }
 
     private void getBonusNumber() {
@@ -83,15 +84,6 @@ public class LottoLogic implements Logic {
             throw new IllegalArgumentException("지불 금액은 1000원 단위여야 합니다.");
         }
         return payment;
-    }
-
-    private void generateLotto(int payment) {
-        lotteries = new ArrayList<>();
-        int count = payment / COST;
-        for (int i = 0; i < count; i++) {
-            lotteries.add(new Lotto(Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, NUMBER_COUNT)));
-        }
-        view.printAllLottery(lotteries);
     }
 
     private int getPurchaseAmount() {

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import java.util.Optional;
 import lotto.constant.LottoConstant;
 
 public class Lotto {
@@ -39,7 +40,7 @@ public class Lotto {
                     "숫자는 %d에서 %d사이여야합니다."
                     , LottoConstant.MIN_NUMBER
                     , LottoConstant.MAX_NUMBER
-                )
+            )
             );
         }
     }
@@ -51,9 +52,23 @@ public class Lotto {
     }
 
     public List<Integer> getSortedNumbers() {
-        return this.numbers
+        return sortNumbers(this.numbers);
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        return numbers
                 .stream()
                 .sorted()
                 .toList();
+    }
+
+    public Optional<LottoPlace> calculateLottoPlace(WinnigLotto winnigLotto) {
+        LottoStatus judgeStatus = LottoStatus.createEmptyStatus();
+
+        for (Integer number : numbers) {
+            NumberStatus numberStatus = winnigLotto.judgeNumber(number);
+            judgeStatus.update(numberStatus);
+        }
+        return LottoPlace.judgeLottoPlace(judgeStatus);
     }
 }

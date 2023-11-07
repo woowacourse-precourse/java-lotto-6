@@ -22,19 +22,13 @@ class LottoResultTest {
     void 당첨_결과_1등_2등_3등() {
         LottoResult lottoResult = new LottoResult(1000);
         List<Lotto> lottos = Arrays.asList(
-                new Lotto(List.of(6, 2, 8, 3, 4, 5)),  
+                new Lotto(List.of(6, 2, 8, 3, 4, 5)),
                 new Lotto(List.of(7, 2, 3, 4, 5, 6)),
                 new Lotto(List.of(9, 2, 3, 4, 5, 6))
         );
 
         lottoResult.calculateWinningResult(WINNING_LOTTO, lottos);
-
-        assertEquals(1, lottoResult.getPrizeResult().get(LottoPrize.FIRST));
-        assertEquals(1, lottoResult.getPrizeResult().get(LottoPrize.SECOND));
-        assertEquals(1, lottoResult.getPrizeResult().get(LottoPrize.THIRD));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.FOURTH));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.FIFTH));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.ETC));
+        assertEqualsResult(lottoResult, 1, 1, 1, 0, 0, 0);
     }
 
     @Test
@@ -47,13 +41,7 @@ class LottoResultTest {
         );
 
         lottoResult.calculateWinningResult(WINNING_LOTTO, lottos);
-
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.FIRST));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.SECOND));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.THIRD));
-        assertEquals(1, lottoResult.getPrizeResult().get(LottoPrize.FOURTH));
-        assertEquals(1, lottoResult.getPrizeResult().get(LottoPrize.FIFTH));
-        assertEquals(1, lottoResult.getPrizeResult().get(LottoPrize.ETC));
+        assertEqualsResult(lottoResult, 0, 0, 0, 1, 1, 1);
     }
 
     @Test
@@ -65,12 +53,17 @@ class LottoResultTest {
         );
 
         lottoResult.calculateWinningResult(WINNING_LOTTO, lottos);
+        assertEqualsResult(lottoResult, 0, 0, 2, 0, 0, 0);
+    }
 
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.FIRST));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.SECOND));
-        assertEquals(2, lottoResult.getPrizeResult().get(LottoPrize.THIRD));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.FOURTH));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.FIFTH));
-        assertEquals(0, lottoResult.getPrizeResult().get(LottoPrize.ETC));
+    void assertEqualsResult(
+            LottoResult lottoResult, int first, int second, int third, int fourth, int fifth, int etc
+    ) {
+        assertEquals(first, lottoResult.getPrizeResult().get(LottoPrize.FIRST));
+        assertEquals(second, lottoResult.getPrizeResult().get(LottoPrize.SECOND));
+        assertEquals(third, lottoResult.getPrizeResult().get(LottoPrize.THIRD));
+        assertEquals(fourth, lottoResult.getPrizeResult().get(LottoPrize.FOURTH));
+        assertEquals(fifth, lottoResult.getPrizeResult().get(LottoPrize.FIFTH));
+        assertEquals(etc, lottoResult.getPrizeResult().get(LottoPrize.ETC));
     }
 }

@@ -3,6 +3,8 @@ package lotto.service;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Cunsumer;
 import lotto.domain.Lotto;
+import lotto.domain.PrizeLotto;
+import lotto.exception.NotRangeException;
 import lotto.utils.RandomUtils;
 import lotto.view.LottoPrint;
 
@@ -17,6 +19,10 @@ public class LottoService {
     RandomUtils randomUtils = new RandomUtils();
     LottoPrint lottoPrint = new LottoPrint();
     Cunsumer consumer;
+    PrizeLotto prizeLotto;
+    List<Integer> primaryNumber;
+
+
     public void purchaseLotto(){
         int money = inputMoney();
         int quantity = money / amount;
@@ -49,6 +55,46 @@ public class LottoService {
             money = inputMoney();
         }
         return money;
+    }
+
+    public void inputPrimaryNumber() {
+        String[] input = Console.readLine().split(",");
+        primaryNumber = new ArrayList<>();
+        try{
+            for(String s : input){
+                int num = Integer.parseInt(s);
+
+                if(num < 1 || num > 45) throw new NotRangeException();
+                primaryNumber.add(num);
+            }
+            if(primaryNumber.size() != 6){
+                System.out.println("[ERROR] 6개의 숫자를 입력해주세요.");
+                inputPrimaryNumber();
+            }
+        }catch (NumberFormatException e){
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+            inputPrimaryNumber();
+        }catch (NotRangeException e){
+            System.out.println("[ERROR] 범위 내의 숫자를 입력해주세요.");
+            inputPrimaryNumber();
+        }
+    }
+
+    public void inputBonusNumber() {
+        String input = Console.readLine();
+        try{
+            int num = Integer.parseInt(input);
+
+            if(num < 1 || num > 45) throw new NotRangeException();
+            primaryNumber.add(num);
+        }catch (NumberFormatException e){
+            System.out.println("[ERROR] 숫자를 입력해주세요.");
+            inputBonusNumber();
+        }catch (NotRangeException e){
+            System.out.println("[ERROR] 범위 내의 숫자를 입력해주세요.");
+            inputBonusNumber();
+        }
+        prizeLotto = new PrizeLotto(primaryNumber);
     }
 
 }

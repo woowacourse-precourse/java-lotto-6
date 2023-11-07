@@ -11,9 +11,16 @@ public class LottoGame {
     private final int purchaseAmount;
 
     public LottoGame(int purchaseAmount, BuyingLotto buyingLotto) {
+        validatePurchaseAmount(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
         this.buyingLotto = buyingLotto;
         this.lottos = generateLottos();
+    }
+
+    private void validatePurchaseAmount(int amount) {
+        if (amount <= 0 || amount % 1000 != 0) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private List<Lotto> generateLottos() {

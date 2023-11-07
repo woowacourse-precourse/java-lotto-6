@@ -11,6 +11,7 @@ public class MainController {
 
     public void run() {
         LottoTickets lottoTickets = purchaseLottoTickets();
+        view.printLottoTickets(lottoTickets.printTickets());
         Console.close();
     }
 

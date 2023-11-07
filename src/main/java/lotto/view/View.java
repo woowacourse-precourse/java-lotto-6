@@ -16,4 +16,8 @@ public class View {
     public void printOrderedLottoCount(int ticketCount) {
         printMessage(ticketCount + "개를 구매했습니다.");
     }
+
+    public void printLottoTickets(String tickets){
+        printMessage(tickets);
+    }
 }

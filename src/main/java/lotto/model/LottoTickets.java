@@ -40,6 +40,16 @@ public class LottoTickets {
         return new LottoResults(firstPlace, secondPlace, thirdPlace, forthPlace, fifthPlace);
     }
 
+    public String printTickets(){
+        StringBuilder ticketContents = new StringBuilder();
+
+        for (Lotto ticket : tickets) {
+            ticketContents.append(ticket.getTicketContent()).append("\n");
+        }
+
+        return ticketContents.toString();
+    }
+
     @Override
     public boolean equals(Object obj) {
         LottoTickets input = (LottoTickets) obj;

@@ -37,4 +37,10 @@ public class Lotto {
     public boolean isHitBonusNumber(BonusNumber bonusNumber) {
         return numbers.contains(bonusNumber.getNumber());
     }
+
+    public String getTicketContent() {
+        return String.format("[%d, %d, %d, %d, %d, %d]",
+                numbers.get(0), numbers.get(1), numbers.get(2),
+                numbers.get(3), numbers.get(4), numbers.get(5));
+    }
 }

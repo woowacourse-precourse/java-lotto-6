@@ -10,9 +10,11 @@ public class WinningNumValidator {
     private static final String DUPLICATE_ERROR_MESSAGE = "중복된 숫자를 적으면 안 됩니다.";
     private static final String SIZE_OVER_MESSAGE = "6개의 번호를 입력해 주세요.";
     private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해 주세요.";
+    private static final String IS_DIVISION_COMMA_MESSAGE = "숫자는 쉼표(,) 단위로 나눠주세요";
 
     public WinningNumValidator(String input){
         isNull(input);
+        isDivisionComma(input);
         for(String number : input.split(",")) {
             isNumError(number);
         }
@@ -27,6 +29,14 @@ public class WinningNumValidator {
     public void isNull(String number){
         if (number.equals("")) {
             throw new IllegalArgumentException(ERROR + NOT_BLANK_ERROR_MESSAGE);
+        }
+    }
+
+    public void isDivisionComma(String number) {
+        for (char c : number.toCharArray()) {
+            if (!(Character.isLetterOrDigit(c) || c == ',')) {
+                throw new IllegalArgumentException(ERROR + IS_DIVISION_COMMA_MESSAGE);
+            }
         }
     }
 

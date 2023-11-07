@@ -3,10 +3,6 @@ package lotto.domain;
 import java.util.*;
 
 public class Lotto {
-    private static final String WRONG_SIZE_EXCEPTION_MESSAGE = "로또 번호는 6개의 정수여야 합니다.";
-    private static final String NOT_INTEGER_EXCEPTION_MESSAGE = "로또 번호는 정수여야 합니다.";
-    private static final String OUT_OF_RANGE_EXCEPTION_MESSAGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
-    private static final String DUPLICATE_NUMBERS_EXCEPTION_MESSAGE = "로또 번호는 서로 다른 수여야 합니다.";
     private static final int LOTTO_RANGE_BEGIN_NUMBER = 1;
     private static final int LOTTO_RANGE_END_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
@@ -25,11 +21,11 @@ public class Lotto {
 
     private void validate(final List<Integer> numbers) {
         if (!isSixNumbers(numbers)) {
-            throw new IllegalArgumentException(WRONG_SIZE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_WRONG_SIZE.getMessage());
         } else if (!isInLottoRange(numbers)) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_OUT_OF_RANGE.getMessage());
         } else if (hasDuplicateNumbers(numbers)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBERS_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATE_NUMBERS.getMessage());
         }
     }
 
@@ -59,7 +55,7 @@ public class Lotto {
             try {
                 numbersConverted.add(Integer.parseInt(number.strip()));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(NOT_INTEGER_EXCEPTION_MESSAGE);
+                throw new IllegalArgumentException(ExceptionMessage.LOTTO_NOT_INTEGER.getMessage());
             }
         }
         return numbersConverted;

@@ -5,70 +5,51 @@ import constants.NumberType;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) {
-        validateLotto(numbers);
-        this.numbers = numbers;
+    public Lotto(List<LottoNumber> lottoNumbers) {
+        validateLotto(lottoNumbers);
+        this.lottoNumbers = lottoNumbers;
     }
 
     public String getGeneratedLottoString() {
-        return numbers.toString();
+        return lottoNumbers.stream()
+                .map(LottoNumber::getNumber)
+                .toList().toString();
     }
 
     public boolean hasNumber(int number) {
-        return numbers.stream()
-                .mapToInt(Integer::intValue)
-                .filter(member -> member == number)
-                .findAny()
-                .isPresent();
+        return lottoNumbers.stream()
+                .map(LottoNumber::getNumber)
+                .anyMatch(member -> member == number);
     }
 
-    private void validateLotto(List<Integer> numbers) {
-        validateLength(numbers);
-        validateDuplicateMember(numbers);
-        validateAllNumberInRange(numbers);
+    private void validateLotto(List<LottoNumber> lottoNumbers) {
+        validateLength(lottoNumbers);
+        validateDuplicateMember(lottoNumbers);
     }
 
-    private void validateLength(List<Integer> numbers) {
-        if (checkLength(numbers)) {
+    private void validateLength(List<LottoNumber> lottoNumbers) {
+        if (checkLength(lottoNumbers)) {
             throw new IllegalArgumentException(
                     String.format(ErrorMessage.LOTTO_LENGTH_ERROR.getMessage(),
                             NumberType.LOTTO_LENGTH.getValue()));
         }
     }
 
-    private boolean checkLength(List<Integer> numbers) {
-        return numbers.size() != NumberType.LOTTO_LENGTH.getValue();
+    private boolean checkLength(List<LottoNumber> lottoNumbers) {
+        return lottoNumbers.size() != NumberType.LOTTO_LENGTH.getValue();
     }
 
-    private void validateDuplicateMember(List<Integer> numbers) {
-        if (checkHasDuplicateMember(numbers)) {
+    private void validateDuplicateMember(List<LottoNumber> lottoNumbers) {
+        if (checkHasDuplicateMember(lottoNumbers)) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_HAS_DUPLICATE_NUMBER_ERROR.getMessage());
         }
     }
 
-    private boolean checkHasDuplicateMember(List<Integer> numbers) {
-        return numbers.stream()
+    private boolean checkHasDuplicateMember(List<LottoNumber> lottoNumbers) {
+        return lottoNumbers.stream()
                 .distinct()
-                .count() != numbers.size();
-    }
-
-    private void validateAllNumberInRange(List<Integer> numbers) {
-        if (!checkAllNumberInRange(numbers)) {
-            throw new IllegalArgumentException(String.format(ErrorMessage.LOTTO_NOT_IN_RANGE_ERROR.getMessage(),
-                    NumberType.MIN_LOTTO_NUMBER.getValue(), NumberType.MAX_LOTTO_NUMBER.getValue()));
-        }
-    }
-
-    private boolean checkAllNumberInRange(List<Integer> numbers) {
-        return numbers.stream()
-                .mapToInt(Integer::intValue)
-                .filter(num -> checkNumberInRange(num))
-                .count() == numbers.size();
-    }
-
-    private boolean checkNumberInRange(int number) {
-        return number >= NumberType.MIN_LOTTO_NUMBER.getValue() && number <= NumberType.MAX_LOTTO_NUMBER.getValue();
+                .count() != lottoNumbers.size();
     }
 }

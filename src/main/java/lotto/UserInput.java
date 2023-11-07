@@ -24,7 +24,9 @@ public class UserInput {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 purchaseAmount = Integer.parseInt(Console.readLine());
+
                 validatePurchaseAmount(purchaseAmount);
+
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
@@ -32,6 +34,7 @@ public class UserInput {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
+
         return purchaseAmount;
     }
 
@@ -59,10 +62,11 @@ public class UserInput {
                 winningNumbersInput = Console.readLine();
 
                 //Array보다는  Collections 사용! - 1주차 피드백
-
                 //변수 이름에 자료형&자료구조 사용하지 마! - 2주차 피드백
                 List<String> splittedWinningNumbersInput = Arrays.asList(winningNumbersInput.split(","));
+
                 validateWinningNumbers(splittedWinningNumbersInput);
+
                 hasDuplicates(splittedWinningNumbersInput);
 
                 //나중에 for-each 문 개별 함수화 리팩토링!
@@ -72,8 +76,6 @@ public class UserInput {
                 }
 
                 break;
-
-                //중복 체크
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해 주세요.");
             } catch (IllegalArgumentException e) {
@@ -95,11 +97,13 @@ public class UserInput {
 
     private void hasDuplicates(List<String> splittedWinningNumbersInput) {
         Set<String> set = new HashSet<>();
+
         for (var number : splittedWinningNumbersInput) {
             if (!set.add(number)) {
                 throw new IllegalArgumentException("서로 다른 당첨 번호들을 입력해 주세요.");
             }
         }
+
         return;
     }
 
@@ -136,6 +140,7 @@ public class UserInput {
 
 
     private void validateBonusNumber(int bonusNumber) {
+
         if (!((bonusNumber >= 1) && (bonusNumber <= 45))) {
             throw new IllegalArgumentException("1부터 45 사이의 숫자를 하나 입력해 주세요.");
         }

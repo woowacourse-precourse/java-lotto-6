@@ -17,7 +17,7 @@ public class ProfitRate {
         return new ProfitRate(calculateRateOfProfit(result, buyAmount));
     }
 
-    public static Double calculateRateOfProfit(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
+    private static Double calculateRateOfProfit(final Map<LottoRank, Integer> result, final BuyAmount buyAmount) {
         double reward = result.keySet()
                 .stream()
                 .mapToDouble(lottoRank -> getEachRankReward(result, lottoRank))

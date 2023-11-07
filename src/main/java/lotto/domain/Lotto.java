@@ -1,6 +1,8 @@
 package lotto.domain;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,8 +33,8 @@ public class Lotto {
         return lotto;
     }
 
-    public void checkDuplicate(List<Integer> lotto) {
+    public static void checkDuplicate(List<Integer> lotto) {
         Set<Integer> validLotto = new HashSet<>(lotto);
-        if (validLotto.size() != lotto.size()) throw new IllegalArgumentException();
+        if (validLotto.size() != lotto.size()) throw new IllegalArgumentException(CHECK_DUPLICATE_NUMBER);
     }
 }

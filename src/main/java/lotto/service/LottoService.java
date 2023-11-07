@@ -18,7 +18,8 @@ import java.util.HashSet;
 
 public class LottoService {
     private static final int TWO_LOTTO_CIPHERS = 12;
-    private static final int TEMPORARY_MULTIPLICATION_FOR_ROUND = 10;
+    private static final double TEMPORARY_MULTIPLICATION_FOR_ROUND = 10.0;
+    public static final double PERCENT_UNIT = 100.0;
     private final LottoRepository lottoRepository = new LottoRepository();
     private int paidMoney;
 
@@ -86,7 +87,7 @@ public class LottoService {
 
     private double calculateBenefitRate(Map<Ranking, Integer> rankingCount) {
         int totalPrizeBenefit = getTotalPrizeBenefit(rankingCount);
-        double benefitRate = (double) totalPrizeBenefit / paidMoney;
+        double benefitRate = totalPrizeBenefit * PERCENT_UNIT / paidMoney;
         return roundOffSecondDecimalPlace(benefitRate);
     }
 
@@ -99,7 +100,7 @@ public class LottoService {
     }
 
     private double roundOffSecondDecimalPlace(double benefitRate) {
-        return (double) Math.round(benefitRate * TEMPORARY_MULTIPLICATION_FOR_ROUND)
+        return Math.round(benefitRate * TEMPORARY_MULTIPLICATION_FOR_ROUND)
                 / TEMPORARY_MULTIPLICATION_FOR_ROUND;
     }
 }

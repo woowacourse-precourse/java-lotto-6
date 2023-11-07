@@ -69,5 +69,4 @@ public class LottoServiceTest {
 
         assertThat(lottoResult).isEqualTo(result);
     }
-
 }

@@ -6,6 +6,7 @@ import lotto.exception.ExceptionMessage;
 public class UserMoney {
     private static final int UNIT_VALUE = 1000;
     private static final int NO_REMAIN = 0;
+    public static final int TO_PERCENTAGE = 100;
     private final int userMoneyValue;
 
     public static UserMoney from(int userMoneyValue) {
@@ -22,14 +23,14 @@ public class UserMoney {
     }
 
     public float calculateTotalReturn(int calculateReturn) {
-        if (calculateReturn == 0) {
-            return 0;
+        if (calculateReturn == NO_REMAIN) {
+            return NO_REMAIN;
         }
-        return (float) calculateReturn / userMoneyValue * 100;
+        return (float) calculateReturn / userMoneyValue * TO_PERCENTAGE;
     }
 
     private void validateMoney(int userMoneyValue) {
-        if (!isDividedByUnit(userMoneyValue)) { // NOT_UNIT 네이밍 다시 생각하기
+        if (!isDividedByUnit(userMoneyValue)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_UNIT.getErrorDescription());
         }
     }

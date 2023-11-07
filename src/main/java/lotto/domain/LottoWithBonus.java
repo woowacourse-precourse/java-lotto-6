@@ -17,7 +17,6 @@ public class LottoWithBonus {
     }
 
     private void validate(Lotto lotto, Bonus bonus) {
-        // 중복된 숫자가 존재하는지 확인한다
         if (lotto.getLotto()
                 .stream()
                 .filter(lottoNumber -> lottoNumber == bonus.getBonusNumber())
@@ -28,12 +27,11 @@ public class LottoWithBonus {
     }
 
     public int findSameNumberCount(Lotto generatedRandomLotto) {
-        // 같은 숫자가 있는지만 확인하면 된다
         int sameLottoNumberCount = userLotto.findSameNumberCountInLotto(generatedRandomLotto);
         return sameLottoNumberCount;
     }
 
     public boolean isBonusInLotto(Lotto generatedRandomLotto) {
-        return userBonus.hasSameNumberInLotto(generatedRandomLotto);
+        return userBonus.hasSameNumberInGeneratedLotto(generatedRandomLotto);
     }
 }

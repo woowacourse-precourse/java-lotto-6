@@ -20,19 +20,19 @@ public class CompareWinningNumbers {
         return winningNumberCount;
     }
 
-    public String checkThisTicketRank() {
+    public Reward checkThisTicketRank() {
         int count = winningCount();
         if (count == 6) {
-            return "1st";
+            return Reward.FIRST_PLACE;
         } else if (count == 5) {
             CompareBonusNumber compareBonusNumber = new CompareBonusNumber(lotto);
             return compareBonusNumber.isThereBonus();
         } else if (count == 4) {
-            return "4th";
+            return Reward.FOURTH_PLACE;
         } else if (count == 3) {
-            return "5th";
+            return Reward.FIFTH_PLACE;
         }
-        return "lose";
+        return Reward.LOSE;
     }
 
 

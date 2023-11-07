@@ -29,7 +29,7 @@ class PurchasedLottoTicketsTest {
         winningNumbers.read();
 
         PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
-        Integer count = purchasedLottoTickets.eachRankCount().get("lose");
+        Integer count = purchasedLottoTickets.eachRankCount().get(Reward.LOSE);
 
         Assertions.assertThat(count).isLessThan(101);
 

@@ -1,13 +1,10 @@
 package lotto.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.util.Arrays;
 import lotto.Lotto;
 import lotto.readUserInput.BonusNumbers;
-import lotto.readUserInput.WinningNumbers;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +18,7 @@ class CompareBonusNumberTest {
     @BeforeEach
     void beforeSetUp() {
         BonusNumbers.number = 0;
-        lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        lotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         compareBonusNumber = new CompareBonusNumber(lotto);
         bonusNumbers = new BonusNumbers();
         Console.close();
@@ -37,7 +34,7 @@ class CompareBonusNumberTest {
         String inputNumber = "1";
         System.setIn(new ByteArrayInputStream(inputNumber.getBytes()));
         bonusNumbers.read();
-        Assertions.assertThat(compareBonusNumber.isThereBonus()).isEqualTo("2nd");
+        Assertions.assertThat(compareBonusNumber.isThereBonus()).isEqualTo(Reward.SECOND_PLACE);
     }
 
     @Test
@@ -45,6 +42,6 @@ class CompareBonusNumberTest {
         String inputNumber = "10";
         System.setIn(new ByteArrayInputStream(inputNumber.getBytes()));
         bonusNumbers.read();
-        Assertions.assertThat(compareBonusNumber.isThereBonus()).isEqualTo("3rd");
+        Assertions.assertThat(compareBonusNumber.isThereBonus()).isEqualTo(Reward.THIRD_PLACE);
     }
 }

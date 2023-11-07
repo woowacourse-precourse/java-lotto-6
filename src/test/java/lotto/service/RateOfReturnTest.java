@@ -31,11 +31,11 @@ class RateOfReturnTest {
         PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets(purchaseAmount);
 
         double benefit = 0;
-        benefit += purchasedLottoTickets.eachRankCount().get("1st") * 2000000000;
-        benefit += purchasedLottoTickets.eachRankCount().get("2nd") * 30000000;
-        benefit += purchasedLottoTickets.eachRankCount().get("3rd") * 1500000;
-        benefit += purchasedLottoTickets.eachRankCount().get("4th") * 50000;
-        benefit += purchasedLottoTickets.eachRankCount().get("5th") * 5000;
+        benefit += purchasedLottoTickets.eachRankCount().get(Reward.FIRST_PLACE) * Reward.FIRST_PLACE.getReward();
+        benefit += purchasedLottoTickets.eachRankCount().get(Reward.SECOND_PLACE) * Reward.SECOND_PLACE.getReward();
+        benefit += purchasedLottoTickets.eachRankCount().get(Reward.THIRD_PLACE) * Reward.THIRD_PLACE.getReward();
+        benefit += purchasedLottoTickets.eachRankCount().get(Reward.FOURTH_PLACE) * Reward.FOURTH_PLACE.getReward();
+        benefit += purchasedLottoTickets.eachRankCount().get(Reward.FIFTH_PLACE) * Reward.FIFTH_PLACE.getReward();
 
         double result = benefit / (purchasedLottoTickets.allTicketCount() * 1000) * 100;
 

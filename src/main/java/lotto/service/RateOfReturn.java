@@ -3,7 +3,7 @@ package lotto.service;
 import java.util.Map;
 
 public class RateOfReturn {
-    private Map<String, Integer> ticketResult;
+    private Map<Reward, Integer> ticketResult;
     private PurchasedLottoTickets purchasedLottoTickets;
 
 
@@ -18,11 +18,11 @@ public class RateOfReturn {
 
     public String calculate() {
         double benefit = 0;
-        benefit += ticketResult.get("1st") * 2000000000;
-        benefit += ticketResult.get("2nd") * 30000000;
-        benefit += ticketResult.get("3rd") * 1500000;
-        benefit += ticketResult.get("4th") * 50000;
-        benefit += ticketResult.get("5th") * 5000;
+        benefit += ticketResult.get(Reward.FIRST_PLACE) * Reward.FIRST_PLACE.getReward();
+        benefit += ticketResult.get(Reward.SECOND_PLACE) * Reward.SECOND_PLACE.getReward();
+        benefit += ticketResult.get(Reward.THIRD_PLACE) * Reward.THIRD_PLACE.getReward();
+        benefit += ticketResult.get(Reward.FOURTH_PLACE) * Reward.FOURTH_PLACE.getReward();
+        benefit += ticketResult.get(Reward.FIFTH_PLACE) * Reward.FIFTH_PLACE.getReward();
 
         double result = benefit / (purchasedLottoTickets.allTicketCount() * 1000) * 100;
 

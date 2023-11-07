@@ -82,9 +82,8 @@
         - [x] 보너스 여부와 당첨 갯수를 통해 결과를 도출하는 기능
 
     - [ ] LottoBuyer 클래스
-        - [ ] Payment, LottoTickets 을 가진다.
-        - [ ] 당첨 결과를 구한다.
-        - [ ] 수익률을 구한다.
+        - [x] Payment, LottoTickets 을 가진다.
+        - [x] 해당 구매자의 수익률을 구한다.
 
     - [ ] InputParser 인터페이스
         - [ ] 입력을 필요한 형태로 파싱하는 기능(추상메서드)

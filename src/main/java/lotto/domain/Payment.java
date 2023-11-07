@@ -19,6 +19,10 @@ public class Payment {
         return money / MIN_PAYMENT.get();
     }
 
+    public int get() {
+        return money;
+    }
+
     private void validate(int money) {
         if (isLessThan1000(money)) {
             throwException(PAYMENT_LESS_THAN_1000.get());

@@ -39,6 +39,7 @@ public class OutputViewer {
         }
         if (rank == Rank.SECOND) {
             System.out.printf("%d개 일치, 보너스 볼 일치 (%s) - %d개\n", matchedCount, amount, rankCount);
+            return;
         }
         System.out.printf("%d개 일치 (%s) - %d개\n", matchedCount, amount, rankCount);
     }

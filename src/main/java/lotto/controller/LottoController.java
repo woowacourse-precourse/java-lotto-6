@@ -1,6 +1,12 @@
 package lotto.controller;
 
-import lotto.model.*;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumbers;
+import lotto.domain.Price;
+import lotto.service.LottoResult;
+import lotto.service.LottoType;
+import lotto.service.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -68,8 +74,8 @@ public class LottoController {
 
     private int inputBonusNumber() {
         try {
-            return LottoValidator.validateBonus(winningLotto,
-                    Integer.parseInt(inputView.InputBonusNumber()));
+            BonusNumber bonusNumber = new BonusNumber(inputView.InputBonusNumber());
+            return LottoValidator.validateBonus(winningLotto, bonusNumber.getBonusNumber());
 
         } catch (IllegalArgumentException e) {
             outputView.printExceptionMessage(e.getMessage());

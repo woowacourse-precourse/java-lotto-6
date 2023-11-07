@@ -1,5 +1,6 @@
-package lotto.domain;
+package lotto;
 
+import lotto.domain.WinningNumber;
 import lotto.view.ExceptionMessage;
 
 import java.util.*;

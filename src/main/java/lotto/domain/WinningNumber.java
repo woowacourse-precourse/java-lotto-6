@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.Lotto;
 import lotto.view.ExceptionMessage;
 
 import java.util.HashSet;

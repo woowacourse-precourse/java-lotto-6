@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.Lotto;
+
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;

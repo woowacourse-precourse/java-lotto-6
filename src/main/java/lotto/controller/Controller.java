@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.InputAmount;
 import lotto.domain.InputMoney;
 import lotto.domain.Lotto;
+import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 import lotto.domain.MoneyValidator;
 import lotto.exception.LottoException;
@@ -20,6 +21,7 @@ public class Controller {
 	private InputMoney inputMoney;
 	private InputAmount inputAmount;
 	private Lottos lottos;
+	private LottoWinningNumbers lottoWinningNumbers;
 
 	public Controller() {
 		this.moneyValidator = new MoneyValidator();
@@ -30,6 +32,8 @@ public class Controller {
 		setUpLottos(inputAmount.getInputAmount());
 		System.out.println();
 		OutputView.printLottos(inputAmount.getInputAmount(), lottos.getLotts());
+		System.out.println();
+		setUpLottoWinningNumbers(getWinningNumbers());
 	}
 
 	private String getUserInputAmount() {
@@ -65,5 +69,14 @@ public class Controller {
 				createLottos(numbers);
 			}
 		}
+	}
+
+	private String getWinningNumbers() {
+		InputView.askWinningNumbers();
+		return Console.readLine();
+	}
+
+	private void setUpLottoWinningNumbers(String input) {
+		lottoWinningNumbers = new LottoWinningNumbers(input);
 	}
 }

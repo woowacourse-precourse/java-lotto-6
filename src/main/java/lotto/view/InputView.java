@@ -6,4 +6,7 @@ public class InputView {
 	public static void askInputAmount() {
 		System.out.println(INPUT_ASK_MONEY);
 	}
+	public static void askWinningNumbers() {
+		System.out.println(INPUT_WINNING_NUMBERS);
+	}
 }

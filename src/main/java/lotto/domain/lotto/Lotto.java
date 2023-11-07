@@ -1,10 +1,11 @@
 package lotto.domain.lotto;
 
 import static lotto.util.ExceptionEnum.INVALID_NUMBERS_SIZE;
-import static lotto.util.ExceptionEnum.INVALID_NUMBER_RANGE;
 import static lotto.util.ExceptionEnum.NUMBER_OUT_OF_RANGE;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto{
 
@@ -17,12 +18,22 @@ public class Lotto{
 
     private void validate(List<Integer> numbers){
         throwIfInvalidNumbersSize(numbers);
+        throwIfDuplicatedNumbers(numbers);
         throwIfNumbersOutOfRange(numbers);
     }
 
     private void throwIfInvalidNumbersSize(List<Integer> numbers){
         if (numbers.size() != 6){
             throw new IllegalArgumentException(INVALID_NUMBERS_SIZE.message());
+        }
+    }
+
+    private void throwIfDuplicatedNumbers(List<Integer> numbers){
+        Set<Integer>uniqueNumbers = new HashSet<>();
+        for (int number : numbers){
+            if(!uniqueNumbers.add(number)){
+                throw new IllegalArgumentException();
+            }
         }
     }
 

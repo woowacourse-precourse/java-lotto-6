@@ -16,8 +16,9 @@
 - [x] 당첨 번호 입력 
   - [x] "당첨 번호를 입력해 주세요." - InputView#inputWinningNumbers()
     - 쉼표로 구분
-    - [ ] 1~45 사이의 중복되지 않는 로또 당첨 번호 - Lotto#validate()
-    - [ ] 6개의 당첨 번호 - Lotto#validate()
+    - [x] 1~45 사이의 로또 당첨 번호 - Lotto#validate()
+    - [ ] 중복되지 않는 로또 당첨 번호 - Lotto#validate()
+    - [x] 6개의 당첨 번호 - Lotto#validate()
   - [ ] "보너스 번호를 입력해 주세요." - InputView#inputBonusNumber()
     - 1~45 사이의 보너스 번호 1개 - Bonus#validate()
 - [ ] 당첨 판단 - Lottos#determineWinnings()

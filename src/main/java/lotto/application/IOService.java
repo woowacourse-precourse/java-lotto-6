@@ -87,17 +87,16 @@ public class IOService {
         System.out.println("총 수익률은 " + profit + "%입니다.");
     }
 
-    public static String scanPurchaseAmount() {
-//        boolean success = true;
-//        String purchaseAmount;
-//        do {
-//            purchaseAmount = Console.readLine();
-//
-//            success = validatePurchaseAmount(purchaseAmount);
-//        } while (!success);
-//
-//        return Integer.parseInt(purchaseAmount);
-        return Console.readLine();
+    public static int scanPurchaseAmount() {
+        boolean success = true;
+        String purchaseAmount;
+        do {
+            purchaseAmount = Console.readLine();
+
+            success = LottoService.validatePurchaseAmount(purchaseAmount);
+        } while (!success);
+
+        return Integer.parseInt(purchaseAmount);
     }
 
     public static WinningNumber scanWinningNumber(){

@@ -18,22 +18,15 @@ public class LottoService {
     public void sellLottos() {
         boolean success = true;
         int amount, cnt;
-        String purchaseAmount;
 
         IOService.printBeforePurchaseLottoMessage();
-        do {
-            purchaseAmount = IOService.scanPurchaseAmount();
-
-            success = validatePurchaseAmount(purchaseAmount);
-        } while (!success);
-
-        amount = Integer.parseInt(purchaseAmount);
+        amount = IOService.scanPurchaseAmount();
         cnt = amount / 1000;
         List<Lotto> lottos = generateLottos(cnt);
         userService.updateUser(lottos, cnt);
     }
 
-    public boolean validatePurchaseAmount(String purchaseAmount) {
+    public static boolean validatePurchaseAmount(String purchaseAmount) {
         try {
             validateLong(purchaseAmount);
             validateMinimum(purchaseAmount);
@@ -45,7 +38,7 @@ public class LottoService {
         return true;
     }
 
-    private void validateLong(String number) {
+    private static void validateLong(String number) {
         try {
             Long.parseLong(number);
         } catch (NumberFormatException e) {
@@ -54,14 +47,14 @@ public class LottoService {
         }
     }
 
-    private void validateMinimum(String number) {
+    private static  void validateMinimum(String number) {
         if (Long.parseLong(number) < 1000) {
             IOService.printErrorAmountMinimum();
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateUnit(String number) {
+    private static void validateUnit(String number) {
         if (!number.endsWith("000")) {
             IOService.printErrorAmountUnit();
             throw new IllegalArgumentException();
@@ -87,7 +80,7 @@ public class LottoService {
         IOService.printResult(user);
     }
 
-    public List<Lotto> generateLottos(int cnt) {
+    private List<Lotto> generateLottos(int cnt) {
         List<Lotto> lottos = new ArrayList<>(cnt);
 
         for (int i = 0; i < cnt; ++i) {
@@ -97,7 +90,7 @@ public class LottoService {
         return lottos;
     }
 
-    public void checkLottos() {
+    private void checkLottos() {
         User user = userService.getUser();
 
         List<Lotto> lottos = user.getLottos();
@@ -162,6 +155,4 @@ public class LottoService {
 
         user.setTotalPrize(totalPrize);
     }
-
-
 }

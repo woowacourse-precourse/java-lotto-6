@@ -22,7 +22,7 @@ public class InputBonus {
     }
 
     private int generateBonus() {
-        int result = 0;
+        int result;
         while (true) {
             try {
                 String input = Console.readLine();
@@ -36,7 +36,7 @@ public class InputBonus {
     }
 
     private int validateBonus(String input, List<Integer> winningNumbers) {
-        int result = 0;
+        int result;
         try {
             result = Integer.parseInt(input);
             if (result < MIN_RANGE || result > MAX_RANGE)

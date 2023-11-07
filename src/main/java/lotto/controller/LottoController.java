@@ -31,10 +31,6 @@ public class LottoController {
     private void startLotto() {
         int inputMoney = inputView.getPurchaseAmount();
 
-//        if (inputMoney > 45 || inputMoney < 1) {
-//            throw new IllegalArgumentException(INVALID_MONEY_FORMAT);
-//        }
-
         buyLottoList(inputMoney);
 
         List<Integer> inputNumbers = inputView.getInputNumbers();

@@ -19,4 +19,8 @@ public class PurchaseLottos {
     public int getPurchaseCount() {
         return purchasePrice.getCount();
     }
+
+    public LottoResult calculateLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        return lottos.getLottoResult(winningNumbers, bonusNumber);
+    }
 }

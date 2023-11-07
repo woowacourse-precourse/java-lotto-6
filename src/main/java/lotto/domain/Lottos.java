@@ -32,6 +32,15 @@ public class Lottos {
         return lottos.stream().map(Lotto::getNumbers).collect(Collectors.joining("\n"));
     }
 
+    public LottoResult getLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        LottoResult lottoResult = new LottoResult();
+        lottos.forEach(lotto -> {
+            LottoResultStatus lottoResultStatus = lotto.getLottoResultStatus(winningNumbers, bonusNumber);
+            lottoResult.add(lottoResultStatus);
+        });
+        return lottoResult;
+    }
+
     private void addLotto(LottoNumbersGenerator generator) {
         lottos.add(new Lotto(generator.getSortedLottoNumbers()));
     }

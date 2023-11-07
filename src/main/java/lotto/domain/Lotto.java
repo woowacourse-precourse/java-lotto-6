@@ -16,6 +16,20 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public LottoResultStatus getLottoResultStatus(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        List<Integer> winning = winningNumbers.getWinningNumbers();
+        int matchCount = (int) numbers.stream().filter(winning::contains).count();
+
+        if (matchCount == 5 && isBonusMatch(bonusNumber)) {
+            return LottoResultStatus.from(7);
+        }
+        return LottoResultStatus.from(matchCount);
+    }
+
+    private boolean isBonusMatch(BonusNumber bonusNumber) {
+        return numbers.contains(bonusNumber.getBonusNumber());
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -28,6 +42,4 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
-
 }

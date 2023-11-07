@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import lotto.exception.LottoExceptionMessage;
@@ -18,6 +19,10 @@ public class WinningNumbers {
         } catch (IllegalArgumentException e) {
             return null;
         }
+    }
+
+    public List<Integer> getWinningNumbers() {
+        return Collections.unmodifiableList(winningNumbers);
     }
 
     private void validate(List<Integer> winningNumbers) {
@@ -41,4 +46,5 @@ public class WinningNumbers {
                     LottoExceptionMessage.WINNING_NUMBERS_MUST_BETWEEN_START_AND_END_INCLUSIVE.getMessage());
         }
     }
+
 }

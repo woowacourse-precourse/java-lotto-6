@@ -22,6 +22,10 @@ public class BonusNumber {
         return null;
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validate(int bonusNumber) {
         if (bonusNumber < START_INCLUSIVE || bonusNumber > END_INCLUSIVE) {
             throw new IllegalArgumentException();

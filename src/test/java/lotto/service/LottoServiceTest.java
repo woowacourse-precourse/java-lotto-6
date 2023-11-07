@@ -3,9 +3,7 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
-import lotto.domain.WinningPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +13,7 @@ class LottoServiceTest {
     void createLottosByLottoPurchaseAmount() {
         final int lottoPurchaseAmount = 5000;
         Lotto winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         List<Lotto> lottos = lottoService.createLottos(lottoPurchaseAmount);
 
         final int expectedLottosSize = 5;
@@ -26,7 +24,7 @@ class LottoServiceTest {
     @Test
     void oneWinningNumbers() {
         Lotto winningNumbers = new Lotto(List.of(11,22,33,42,43,45));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         Lotto lotto = new Lotto(List.of(12,25,36,37,38,45));
         int winningCount = lottoService.checkLotto(lotto);
         final int expectedWinningCount = 1;
@@ -37,7 +35,7 @@ class LottoServiceTest {
     @Test
     void threeWinningNumbers() {
         Lotto winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         Lotto lotto = new Lotto(List.of(1,2,3,7,8,9));
         int winningCount = lottoService.checkLotto(lotto);
         final int expectedWinningCount = 3;
@@ -48,7 +46,7 @@ class LottoServiceTest {
     @Test
     void fourWinningNumbers() {
         Lotto winningNumbers = new Lotto(List.of(1,5,12,31,34,45));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         Lotto lotto = new Lotto(List.of(1,12,31,32,36,45));
         int winningCount = lottoService.checkLotto(lotto);
         final int expectedWinningCount = 4;
@@ -59,7 +57,7 @@ class LottoServiceTest {
     @Test
     void fiveWinningNumbers() {
         Lotto winningNumbers = new Lotto(List.of(1,3,12,21,22,45));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         Lotto lotto = new Lotto(List.of(1,3,11,21,22,45));
         int winningCount = lottoService.checkLotto(lotto);
         final int expectedWinningCount = 5;
@@ -70,7 +68,7 @@ class LottoServiceTest {
     @Test
     void allWinningNumbers() {
         Lotto winningNumbers = new Lotto(List.of(1,17,20,21,30,42));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         Lotto lotto = new Lotto(List.of(1,17,20,21,30,42));
         int winningCount = lottoService.checkLotto(lotto);
         final int expectedWinningCount = 6;
@@ -81,7 +79,7 @@ class LottoServiceTest {
     @Test
     void notSameAllWinningNumbers() {
         Lotto winningNumbers = new Lotto(List.of(1,17,20,21,30,42));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         Lotto lotto = new Lotto(List.of(2,22,32,34,41,45));
         int winningCount = lottoService.checkLotto(lotto);
         final int expectedWinningCount = 0;
@@ -92,9 +90,10 @@ class LottoServiceTest {
     @Test
     void containBonusNumber() {
         Lotto winningNumbers = new Lotto(List.of(1,17,20,21,30,42));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         Lotto lotto = new Lotto(List.of(2,7,22,34,41,45));
-        boolean isContainNumber = lottoService.checkBonusNumber(lotto);
+        int bonusNumber = 7;
+        boolean isContainNumber = lottoService.checkBonusNumber(lotto, bonusNumber);
         assertThat(isContainNumber).isTrue();
     }
 
@@ -102,9 +101,10 @@ class LottoServiceTest {
     @Test
     void notContainBonusNumber() {
         Lotto winningNumbers = new Lotto(List.of(1,17,20,21,30,42));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        LottoService lottoService = new LottoService(winningNumbers);
         Lotto lotto = new Lotto(List.of(2,9,22,34,41,45));
-        boolean isContainNumber = lottoService.checkBonusNumber(lotto);
+        int bonusNumber = 7;
+        boolean isContainNumber = lottoService.checkBonusNumber(lotto, bonusNumber);
         assertThat(isContainNumber).isFalse();
     }
 
@@ -113,7 +113,8 @@ class LottoServiceTest {
     void getReturnOnLotto() {
         int lottoPurchaseAmount = 8000;
         Lotto winningNumbers = new Lotto(List.of(1,2,3,4,5,6));
-        LottoService lottoService = new LottoService(winningNumbers, 7);
+        int bonusNumber = 7;
+        LottoService lottoService = new LottoService(winningNumbers);
         List<Lotto> lottos = List.of(
                 new Lotto(List.of(8,21,23,41,42,43)),
                 new Lotto(List.of(3,5,11,16,32,38)),
@@ -124,7 +125,7 @@ class LottoServiceTest {
                 new Lotto(List.of(2,13,22,32,38,45)),
                 new Lotto(List.of(1,3,5,14,22,45))
         );
-        double returnOnLotto = lottoService.getReturnOnLotto(lottos, lottoPurchaseAmount);
+        double returnOnLotto = lottoService.getReturnOnLotto(lottos, lottoPurchaseAmount, bonusNumber);
 
         double expected = 62.5;
         assertThat(returnOnLotto).isEqualTo(expected);

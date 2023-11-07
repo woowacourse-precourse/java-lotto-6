@@ -12,11 +12,9 @@ import lotto.domain.WinningPrize;
 
 public class LottoService {
     private final Lotto winningNumbers;
-    private final int bonusNumber;
 
-    public LottoService(Lotto winningNumbers, int bonusNumber) {
+    public LottoService(Lotto winningNumbers) {
         this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
     }
 
     public List<Lotto> createLottos(int lottoPurchaseAmount) {
@@ -26,18 +24,18 @@ public class LottoService {
                 .collect(Collectors.toList());
     }
 
-    public double getReturnOnLotto(List<Lotto> lottos, int lottoPurchaseAmount) {
-        Map<WinningPrize, Integer> winningPrizes = getWinningPrizes(lottos);
+    public double getReturnOnLotto(List<Lotto> lottos, int lottoPurchaseAmount, int bonusNumber) {
+        Map<WinningPrize, Integer> winningPrizes = getWinningPrizes(lottos, bonusNumber);
         int winningPrizeAmount = sumWinningPrizeAmount(winningPrizes);
         double returnOnLotto = calculateReturnOnLotto(winningPrizeAmount, lottoPurchaseAmount);
         return roundSecondPoint(returnOnLotto);
     }
 
-    public Map<WinningPrize, Integer> getWinningPrizes(List<Lotto> lottos) {
+    public Map<WinningPrize, Integer> getWinningPrizes(List<Lotto> lottos, int bonusNumber) {
         return lottos.stream()
                 .map(lotto -> {
                     int winningNumbersCount = checkLotto(lotto);
-                    boolean existBonusNumber = checkBonusNumber(lotto);
+                    boolean existBonusNumber = checkBonusNumber(lotto, bonusNumber);
                     return WinningPrize.valueOf(winningNumbersCount, existBonusNumber);
                 })
                 .collect(
@@ -63,7 +61,7 @@ public class LottoService {
         return winningNumbers.compareNumbers(lotto);
     }
 
-    public boolean checkBonusNumber(Lotto lotto) {
+    public boolean checkBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.compareNumber(bonusNumber);
     }
 

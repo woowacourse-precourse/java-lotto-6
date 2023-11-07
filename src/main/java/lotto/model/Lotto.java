@@ -1,6 +1,8 @@
-package lotto;
+package lotto.model;
 
 import java.util.List;
+
+import static lotto.utils.Constants.LOTTO_DRAW_NUMBER_COUNT;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,10 +13,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_DRAW_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return this.numbers;
+    }
+
 }

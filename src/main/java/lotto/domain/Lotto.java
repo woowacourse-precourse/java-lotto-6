@@ -3,9 +3,12 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import lotto.utils.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int NUMBERS_SIZE_MIN = 1;
+    private static final int NUMBERS_SIZE_MAX = 45;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -14,16 +17,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         numbers.forEach(number -> {
-            if(number < 1 || number > 45) {
-                throw new IllegalArgumentException();
+            if(number < NUMBERS_SIZE_MIN || number > NUMBERS_SIZE_MAX) {
+                throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE_RANGE_ERROR.getMessage());
             }
         });
-
         if( new HashSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_DUPLICATE.getMessage());
         }
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_SIX_SIZE.getMessage());
         }
     }
 

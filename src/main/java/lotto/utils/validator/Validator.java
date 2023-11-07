@@ -5,6 +5,7 @@ import static lotto.utils.constants.LottoConstants.LOTTO_NUMBER_LENGTH;
 import static lotto.utils.constants.LottoConstants.LOTTO_TICKET_PRICE;
 import static lotto.utils.constants.LottoConstants.MAX_LOTTO_NUMBER;
 import static lotto.utils.constants.LottoConstants.MIN_LOTTO_NUMBER;
+import static lotto.utils.constants.LottoConstants.ZERO;
 
 import java.util.HashSet;
 import java.util.List;
@@ -73,6 +74,12 @@ public class Validator {
     public static void validatePrice(int inputPrice) {
         if (isInvalidPrice(inputPrice)) {
             throw LottoException.from(ErrorMessage.INVALID_INPUT_PRICE);
+        }
+    }
+
+    public static void validateZero(int number) {
+        if (number == ZERO) {
+            throw LottoException.from(ErrorMessage.ZERO);
         }
     }
 

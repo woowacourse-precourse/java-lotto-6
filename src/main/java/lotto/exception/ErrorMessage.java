@@ -8,7 +8,7 @@ public enum ErrorMessage {
     INVALID_INPUT("숫자만 입력 가능합니다."),
     INVALID_INPUT_FORMAT("숫자와 쉼표(,)만 입력 가능합니다."),
     INVALID_INPUT_PRICE("로또 1장의 가격은 1,000원 입니다. 1,000원 단위의 숫자를 입력해주세요"),
-    INVALID_PURCHASE_PRICE("구매 가격은 0이 될 수 없습니다.");
+    ZERO("0은 허용되지 않습니다.");
 
     private final String message;
 

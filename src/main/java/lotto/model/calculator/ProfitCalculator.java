@@ -33,7 +33,7 @@ public class ProfitCalculator {
 
     public static float calculateProfitPercentage(int totalProfit, int purchasePrice) {
         if (purchasePrice == 0) {
-            throw LottoException.from(ErrorMessage.INVALID_PURCHASE_PRICE);
+            throw LottoException.from(ErrorMessage.ZERO);
         }
         return (float) totalProfit / purchasePrice * 100;
     }

@@ -8,6 +8,7 @@ import static lotto.utils.validator.Validator.validateNumber;
 import static lotto.utils.validator.Validator.validateNumberRange;
 import static lotto.utils.validator.Validator.validatePrice;
 import static lotto.utils.validator.Validator.validateUniqueValue;
+import static lotto.utils.validator.Validator.validateZero;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +48,7 @@ public class Parser {
 
         int parsInt = Integer.parseInt(input);
 
+        validateZero(parsInt);
         validatePrice(parsInt);
         return parsInt;
     }

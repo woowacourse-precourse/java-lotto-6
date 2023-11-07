@@ -49,7 +49,7 @@ public class IntegerValidator {
             return false;
         }
 
-        for (Integer index = 0; index <= value1.length(); index++) {
+        for (Integer index = 0; index < value1.length(); index++) {
             if(value1.charAt(index) > value2.charAt(index)){
                 return true;
             }

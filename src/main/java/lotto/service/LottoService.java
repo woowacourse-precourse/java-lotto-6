@@ -5,7 +5,9 @@ import static java.util.Collections.sort;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import lotto.Lotto;
+import lotto.domain.LottoRank;
 import lotto.domain.LottoWinningBonusNumber;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.PurchasedLottoNumbers;
@@ -13,12 +15,14 @@ import lotto.domain.User;
 import lotto.domain.dto.InputBonusNumber;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
+import lotto.domain.dto.LottoResultDTO;
 import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
     private static PurchasedLottoNumbers purchasedLottoNumbers;
     private static LottoWinningNumbers lottoWinningNumbers;
     private static LottoWinningBonusNumber lottoWinningBonusNumber;
+    private static ResultService resultService;
 
     public static void inputMoneyAndIssueLotto(InputMoney inputMoney) {
         User user = new User(inputMoney.getMoney());
@@ -38,14 +42,20 @@ public class LottoService {
         return purchasedLotto;
     }
 
+    public static LottoResultDTO compareLotto() {
+        resultService = new ResultService(lottoWinningNumbers, lottoWinningBonusNumber);
+        Map<LottoRank, Integer> lottoResult = resultService.lottoGuess(purchasedLottoNumbers);
+        return new LottoResultDTO(lottoResult);
+    }
+
     public static void inputWinningLotto(InputWinningNumbers inputWinningNumbers) {
         lottoWinningNumbers = new LottoWinningNumbers(inputWinningNumbers.getInputWinningNumbers());
     }
 
     public static void inputBonusLotto(InputBonusNumber inputBonusNumber) {
-        lottoWinningBonusNumber = new LottoWinningBonusNumber(inputBonusNumber.getInputBonusNumber(), lottoWinningNumbers.getWinningNumbers());
+        lottoWinningBonusNumber = new LottoWinningBonusNumber(inputBonusNumber.getInputBonusNumber(),
+                lottoWinningNumbers.getWinningNumbers());
     }
-
 
 
     public static PurchasedLottoDTO purchasedLottoToDTO() {

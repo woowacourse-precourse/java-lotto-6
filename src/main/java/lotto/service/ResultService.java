@@ -19,7 +19,7 @@ public class ResultService {
         this.lottoWinningBonusNumber = lottoWinningBonusNumber;
     }
 
-    public void lottoGuess(PurchasedLottoNumbers purchasedLottoNumbers) {
+    public Map<LottoRank, Integer> lottoGuess(PurchasedLottoNumbers purchasedLottoNumbers) {
         List<Lotto> purchasedLotto = purchasedLottoNumbers.getPurchasedLotto();
         Map<LottoRank, Integer> lottoResult = new HashMap<>();
         for (Lotto lotto : purchasedLotto) {
@@ -27,6 +27,7 @@ public class ResultService {
             LottoRank lottoRank = compareLottoWinning(purchasedNumbers);
             lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, 0) + 1);
         }
+        return lottoResult;
     }
 
     private LottoRank compareLottoWinning(List<Integer> purchasedNumbers) {

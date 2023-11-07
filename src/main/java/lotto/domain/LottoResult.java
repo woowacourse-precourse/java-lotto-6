@@ -40,4 +40,22 @@ public class LottoResult {
     public int getTotalWinningMoney() {
         return totalWinningMoney;
     }
+
+    void addMatchingCount(int matchCount, boolean isBonusNumberMatching) {
+        if (matchCount == 3) {
+            threeMatchCount++;
+        }
+        else if (matchCount == 4) {
+            fourMatchCount++;
+        }
+        else if (matchCount == 5 && !isBonusNumberMatching) {
+            fiveMatchCount++;
+        }
+        else if (matchCount == 5 && isBonusNumberMatching) {
+            fiveMatchWithBonusCount++;
+        }
+        else if(matchCount == 6){
+            sixMatchCount++;
+        }
+    }
 }

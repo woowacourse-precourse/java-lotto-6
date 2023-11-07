@@ -43,10 +43,7 @@ public class WinningNumberController {
     }
 
     private boolean validateBonusNumber(String input) {
-        if (isInRange(input) && isNotDuplicated(input)) {
-            return false;
-        }
-        return true;
+        return !isInRange(input) || !isNotDuplicated(input);
     }
 
     private boolean isInRange(String input) {

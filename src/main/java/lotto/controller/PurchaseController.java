@@ -30,7 +30,7 @@ public class PurchaseController {
     private int amountOfLottos() {
         String input = inputView.returnInput();
 
-        while (!validator.isInputInteger(input)) {
+        if (!validator.isInputInteger(input)) {
             System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + NUMBER_FORMAT_EXCEPTION.getMessage());
             return amountOfLottos();
         }

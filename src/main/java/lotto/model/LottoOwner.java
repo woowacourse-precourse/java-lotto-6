@@ -28,11 +28,12 @@ public class LottoOwner {
         return new LottosInfo(lottosText);
     }
 
-    public void matchLottosWithWinningLotto(WinningLotto winningLotto) {
+    public boolean matchLottosWithWinningLotto(WinningLotto winningLotto) {
         lottos.forEach(lotto -> {
             LottoRanking lottoRanking = winningLotto.calculateLottoRanking(lotto);
             lottoResults.addLottoResult(lottoRanking);
         });
+        return true;
     }
 
     public WinningStatistics getWinningStatistics() {

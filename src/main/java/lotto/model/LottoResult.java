@@ -22,14 +22,14 @@ public class LottoResult {
         }
     }
 
+    public WinningStatistics getWinnerStatistics() {
+        return new WinningStatistics(lottoResults);
+    }
+
     public long calculatePrizeSum() {
         return lottoResults.keySet().stream()
                 .map(lottoRanking -> lottoRanking.getPrize() * lottoResults.get(lottoRanking))
                 .mapToLong(Long::longValue)
                 .sum();
-    }
-
-    public WinningStatistics getWinnerStatistics() {
-        return new WinningStatistics(lottoResults);
     }
 }

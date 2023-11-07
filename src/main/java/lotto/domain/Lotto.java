@@ -1,7 +1,16 @@
 package lotto.domain;
 
+import static lotto.configuration.IntegerConstants.MAX_NUMBER_COUNT_OF_LOTTO;
+import static lotto.configuration.IntegerConstants.MAX_NUMBER_RANGE;
+import static lotto.configuration.IntegerConstants.MIN_NUMBER_RANGE;
+import static lotto.configuration.StringConstants.SEPERATE_STANDARD;
+
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
+import lotto.util.IntegerListUtil;
+import lotto.util.StringUtil;
+import lotto.validation.IntegerListValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -11,14 +20,23 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto createRandom() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+    public static Lotto create(String input) {
+        input=StringUtil.deleteAllSpaces(input);
+        List<Integer> numbers = IntegerListUtil.parseListseperatedBy(
+                input, SEPERATE_STANDARD.getValue());
+        return new Lotto(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+    public static Lotto createRandomSorted() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                1, 45, 6);
+        Collections.sort(numbers);
+
+        return new Lotto(numbers);
+    }
+
+    public boolean doesContain(int number) {
+        return numbers.contains(number);
     }
 
 

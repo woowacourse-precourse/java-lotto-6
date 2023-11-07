@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class LottoManager {
+    private static final String LINE_BREAK = "\n";
     private final Token token;
     private List<Lotto> lottos;
     private AnswerLotto answerLotto;
@@ -54,6 +55,6 @@ public class LottoManager {
     public String toString() {
         return lottos.stream()
                 .map(Objects::toString)
-                .collect(Collectors.joining("\n"));
+                .collect(Collectors.joining(LINE_BREAK));
     }
 }

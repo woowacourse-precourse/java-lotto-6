@@ -5,30 +5,29 @@ import java.util.List;
 
 public class LottoStatistics {
     private final List<Integer> rankCounter;
-    private long winningMoney;
-    private double rateOfReturn;
+    private final long winningMoney;
+    private final double rateOfReturn;
 
     public LottoStatistics(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus, Amount amount) {
-        rankCounter = new ArrayList<>();
-        winningMoney = 0;
-
-        for (int i = 0; i < 6; i++) {
-            rankCounter.add(0);
-        }
-
-        makeResult(lottosPurchased, winningLotto, lottoBonus);
+        rankCounter = getRankCounter(lottosPurchased, winningLotto, lottoBonus);
+        winningMoney = getWinningMoney();
         rateOfReturn = getRateOfReturn(amount);
     }
 
-    private void makeResult(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus) {
+    private List<Integer> getRankCounter(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus) {
+        List<Integer> rankCounter = new ArrayList<>();
         int numberOfLottosPurchased = lottosPurchased.getNumberOfLottos();
+
+        for (int rank = 0; rank < 6; rank++) {
+            rankCounter.add(0);
+        }
 
         for (int i = 0; i < numberOfLottosPurchased; i++) {
             int rank = getRank(lottosPurchased.getLotto(i), winningLotto, lottoBonus);
 
             rankCounter.set(rank, rankCounter.get(rank) + 1);
-            winningMoney += getMoney(rank);
         }
+        return rankCounter;
     }
 
     private int getRank(Lotto lotto, Lotto winningLotto, LottoBonus lottoBonus) {
@@ -62,6 +61,15 @@ public class LottoStatistics {
             return 5000;
         }
         return 0;
+    }
+
+    private long getWinningMoney() {
+        long winningMoney = 0;
+
+        for (int rank = 1; rank < 6; rank++) {
+            winningMoney += (long) getMoney(rank) * rankCounter.get(rank);
+        }
+        return winningMoney;
     }
 
     private double getRateOfReturn(Amount amount) {

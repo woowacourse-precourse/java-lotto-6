@@ -1,7 +1,8 @@
 package lotto.domain;
 
+import static lotto.domain.policy.LottoSizePolicy.LOTTO_SIZE;
+
 import java.util.List;
-import lotto.domain.exception.ExceptionFormat;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -13,7 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getSize()) {
             throw new IllegalArgumentException();
         }
     }
@@ -23,7 +24,7 @@ public class Lotto {
         for (int i = 0; i < numbers.size(); i++) {
             for (int j = i + 1; j < numbers.size(); j++) {
                 if (numbers.get(i) == numbers.get(j)) {
-                    throw new IllegalArgumentException(ExceptionFormat.formatException("로또 번호에 중복된 숫자가 있으면 안 됩니다."));
+                    throw new IllegalArgumentException();
                 }
             }
         }

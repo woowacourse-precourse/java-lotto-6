@@ -1,4 +1,4 @@
-package lotto.domain.purchase.issue;
+package lotto.domain.policy;
 
 public enum LottoSizePolicy {
     LOTTO_SIZE(6);

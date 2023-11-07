@@ -9,7 +9,8 @@ public class LotteryIssueService {
     public Lottos issueLottoAmountOf(Integer lottoTicketCount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoTicketCount; i++) {
-            lottos.add(LottoIssuer.issueLotto());
+            Lotto lotto = LottoIssuer.issueLotto();
+            lottos.add(lotto);
         }
         return new Lottos(lottos);
     }

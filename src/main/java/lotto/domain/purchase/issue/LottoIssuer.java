@@ -1,8 +1,8 @@
 package lotto.domain.purchase.issue;
 
-import static lotto.domain.purchase.issue.LottoNumberRangePolicy.END_RANGE;
-import static lotto.domain.purchase.issue.LottoNumberRangePolicy.START_RANGE;
-import static lotto.domain.purchase.issue.LottoSizePolicy.LOTTO_SIZE;
+import static lotto.domain.policy.LottoNumberRangePolicy.END_RANGE;
+import static lotto.domain.policy.LottoNumberRangePolicy.START_RANGE;
+import static lotto.domain.policy.LottoSizePolicy.LOTTO_SIZE;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -14,14 +14,13 @@ public final class LottoIssuer {
         Lotto lotto = null;
         boolean sucess = false;
         while (!sucess) {
+            List<Integer> radomNumbers = Randoms.pickUniqueNumbersInRange(START_RANGE.getRange(),
+                    END_RANGE.getRange(),
+                    LOTTO_SIZE.getSize());
             try {
-                List<Integer> radomNumbers = Randoms.pickUniqueNumbersInRange(START_RANGE.getRange(),
-                        END_RANGE.getRange(),
-                        LOTTO_SIZE.getSize());
                 lotto = new Lotto(radomNumbers);
                 sucess = true;
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+            } catch (Exception ignored) {
             }
         }
         return lotto;

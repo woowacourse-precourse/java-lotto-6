@@ -1,4 +1,4 @@
-package lotto.domain.purchase.issue;
+package lotto.domain.policy;
 
 public enum LottoNumberRangePolicy {
     START_RANGE(1),

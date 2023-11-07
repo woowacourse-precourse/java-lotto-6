@@ -1,7 +1,8 @@
 package lotto.domain.purchase;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Lottos;
+import lotto.domain.io.InputView;
+import lotto.domain.io.OutputView;
 import lotto.domain.purchase.issue.LotteryIssueService;
 import lotto.domain.purchase.lottocount.LotteryCountService;
 
@@ -9,15 +10,23 @@ public class LotteryPurchaseController {
     private final LotteryCountService lotteryCountService = new LotteryCountService();
     private final LotteryIssueService lotteryIssueService = new LotteryIssueService();
 
-    public Integer getLottoTicketCount() {
-        // 티켓 개수 구하기
-        String cashInput = Console.readLine();
-        return lotteryCountService.getLottoTicketCount(cashInput);
+    public Lottos purchaseLottoTickets() {
+        Integer ticketCount = getTicketCount();
+
+        return getLottos(ticketCount);
     }
 
-    public Lottos purchase(Integer lottoTicketCount) {
+    private Lottos getLottos(Integer ticketCount) {
+        Lottos lottos = lotteryIssueService.issueLottoAmountOf(ticketCount);
+        String lottosStatus = lottos.toString();
+        OutputView.printLottos(lottosStatus);
+        return lottos;
+    }
 
-        // 개수만큼 티켓 발행
-        return lotteryIssueService.issueLottoAmountOf(lottoTicketCount);
+    private Integer getTicketCount() {
+        InputView.getCash();
+        Integer ticketCount = lotteryCountService.getLottoTicketCount();
+        OutputView.printLottoAmount(ticketCount);
+        return ticketCount;
     }
 }

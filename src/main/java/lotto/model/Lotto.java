@@ -5,9 +5,9 @@ import lotto.view.ErrorConstants;
 import java.util.List;
 
 public class Lotto {
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int LOTTO_NUMBERS_SIZE = 6;
+    protected static final int MAX_LOTTO_NUMBER = 45;
+    protected static final int MIN_LOTTO_NUMBER = 1;
+    protected static final int LOTTO_NUMBERS_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -35,6 +35,10 @@ public class Lotto {
     private boolean hasDuplicatedNumber(List<Integer> numbers) {
         int sizeOfDistinctNumbers = (int) numbers.stream().distinct().count();
         return sizeOfDistinctNumbers != LOTTO_NUMBERS_SIZE;
+    }
+
+    public boolean contain(Integer number) {
+        return numbers.contains(number);
     }
 
     @Override

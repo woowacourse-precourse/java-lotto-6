@@ -30,12 +30,9 @@ public class Lottos {
     }
 
     public List<WinningInfo> getWinnningInfos(WinningLotto winningLotto) {
-        return toLottoDTOs()
-                .stream()
+        return lottos.stream()
                 .map(winningLotto::compare)
                 .toList();
-
     }
-
 
 }

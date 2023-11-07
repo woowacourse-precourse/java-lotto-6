@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import lotto.model.WinningInfo;
+import lotto.model.WinningLotto;
 
 public class Lotto {
     public static final int PRICE = 1000;
@@ -61,5 +64,14 @@ public class Lotto {
         return LottoDTO.of(sortedNumbers);
     }
 
+    public long countMatchedNumbers(Lotto winningNumber) {
+        return numbers.stream()
+                .filter(winningNumber.numbers::contains)
+                .count();
+    }
+
+    public boolean isBonusMatch(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 
 }

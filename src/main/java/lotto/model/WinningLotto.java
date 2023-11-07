@@ -18,24 +18,12 @@ public class WinningLotto {
         return new WinningLotto(winningNumber, bonusNumber);
     }
 
-    public WinningInfo compare(LottoDTO lottoDTO) {
-        List<Integer> lottoNumbers = lottoDTO.numbers();
-        List<Integer> winningNumbers = winningNumber.toLottoDTO().numbers();
-
-        long matchedCount = countMatchedNumbers(lottoNumbers, winningNumbers);
-        boolean isBonusMatched = isBonusNumberMatched(lottoNumbers);
+    public WinningInfo compare(Lotto lotto) {
+        long matchedCount = lotto.countMatchedNumbers(winningNumber);
+        boolean isBonusMatched = lotto.isBonusMatch(bonusNumber);
 
         return WinningInfo.of((int) matchedCount, isBonusMatched);
     }
 
-    private static long countMatchedNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
-        return lottoNumbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-    }
-
-    private boolean isBonusNumberMatched(List<Integer> lottoNumbers) {
-        return lottoNumbers.contains(bonusNumber);
-    }
 
 }

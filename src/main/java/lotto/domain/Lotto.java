@@ -10,8 +10,11 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
-        LottoValidator lottoValidator = new LottoValidator();
-        lottoValidator.validate(numbers);
+        LottoValidator.validate(numbers);
     }
 }

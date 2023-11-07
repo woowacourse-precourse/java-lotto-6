@@ -27,7 +27,7 @@ class LottoControllerTest {
         when(mockInputReader.readWinNumbers()).thenReturn(List.of(1, 2, 3, 4, 5, 6));
         when(mockInputReader.readBonusNumber(anyList())).thenReturn(7);
 
-        LottoController controller = new LottoController(mockInputReader, mockOutputWriter);
+        LottoController controller = LottoController.of(mockInputReader, mockOutputWriter);
 
         // Act
         controller.handle();

@@ -30,14 +30,14 @@ class MultiLottoGeneratorTest {
     @Test
     void 로또를_여러개_생성하여_반환한다() {
         //Arrange
-        int lottoCount = 10;
-        MultiLottoGenerator generator = MultiLottoGenerator.of(new SingleLottoGenerator(), lottoCount);
+        int lottoSize = 10;
+        MultiLottoGenerator generator = MultiLottoGenerator.of(new SingleLottoGenerator(), lottoSize);
 
         //Act
         List<Lotto> lottos = generator.generate();
 
         //Assert
-        assertThat(lottos).hasSize(lottoCount);
+        assertThat(lottos).hasSize(lottoSize);
 
         for (Lotto lotto : lottos) {
             assertThat(lotto.getNumbers()).hasSize(LOTTO_NUMBER_COUNT)

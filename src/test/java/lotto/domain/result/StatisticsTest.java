@@ -4,6 +4,7 @@ import static lotto.domain.result.Grade.FIFTH;
 import static lotto.domain.result.Grade.FIRST;
 import static lotto.domain.result.Grade.THIRD;
 import static lotto.domain.result.Grade.values;
+import static lotto.io.write.OutputMessage.LOTTO_STATISTICS_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
@@ -73,7 +74,7 @@ class StatisticsTest {
 
         //Assert
         assertThat(outputStreamCaptor.toString())
-                .contains(String.format("%s - %d개%n", FIRST.getDescription(), 1))
-                .contains(String.format("%s - %d개%n", THIRD.getDescription(), 1));
+                .contains(String.format(LOTTO_STATISTICS_MESSAGE.getMessage(), FIRST.getDescription(), 1))
+                .contains(String.format(LOTTO_STATISTICS_MESSAGE.getMessage(), THIRD.getDescription(), 1));
     }
 }

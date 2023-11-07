@@ -12,7 +12,7 @@ public class Application {
         LottoOutputWriter writer = LottoOutputWriter.of(new OutputWriter());
         LottoInputReader reader = LottoInputReader.of(new InputReader(), writer, new LottoValidator());
 
-        LottoController controller = new LottoController(reader, writer);
+        LottoController controller = LottoController.of(reader, writer);
         controller.handle();
     }
 }

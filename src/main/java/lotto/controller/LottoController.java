@@ -16,7 +16,11 @@ public class LottoController {
     private final LottoInputReader reader;
     private final LottoOutputWriter writer;
 
-    public LottoController(LottoInputReader reader, LottoOutputWriter writer) {
+    public static LottoController of(LottoInputReader reader, LottoOutputWriter writer) {
+        return new LottoController(reader, writer);
+    }
+
+    private LottoController(LottoInputReader reader, LottoOutputWriter writer) {
         this.reader = reader;
         this.writer = writer;
     }

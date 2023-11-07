@@ -3,18 +3,23 @@ package controller;
 import camp.nextstep.edu.missionutils.Console;
 import model.Lotto;
 import model.User;
+import service.LottoService;
 import validate.Validator;
 import view.InputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoController {
     InputView inputView = new InputView();
     Validator validator = new Validator();
+    LottoService lottoService = new LottoService();
 
     public void startLotto(){
         int price = AskPrice();
-        Lotto winning_numbers = new Lotto();
-        User user = new User(price);
 
+        User user = new User(price);
+        Lotto winning_numbers = new Lotto();
 
 
     }
@@ -32,6 +37,14 @@ public class LottoController {
             return AskPrice();
         }
         return my_price;
+    }
+
+    public List<Integer> AskWinningNumbers(){
+        List<Integer> winningNumberList = new ArrayList<>();
+
+        inputView.printWinningNumbers();
+        Console.readLine()
+
     }
 
     public

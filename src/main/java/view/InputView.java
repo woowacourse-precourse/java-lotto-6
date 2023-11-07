@@ -1,12 +1,10 @@
 package view;
 
-import controller.LottoController;
-
 public class InputView {
     public void printAskPrice(){
         System.out.printf("구입금액을 입력해 주세요.");
     }
-    public void printAskLottoNumbers(){
+    public void printWinningNumbers(){
         System.out.printf("당첨 번호를 입력해 주세요.");
     }
     public void printAskBonusNumber(){

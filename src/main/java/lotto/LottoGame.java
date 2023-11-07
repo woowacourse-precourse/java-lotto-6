@@ -16,10 +16,9 @@ public class LottoGame {
         Lottos randomLottos = Lottos.create(ticketCount);
 
         //request lotto numbers
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String userLottoNumbers = Console.readLine();
+        String userNumbers = InputView.requestNumbers();
 
-        List<Integer> numbers = Arrays.stream(userLottoNumbers.split(","))
+        List<Integer> numbers = Arrays.stream(userNumbers.split(","))
                 .map(Integer::parseInt)
                 .toList();
 

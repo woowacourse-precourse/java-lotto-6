@@ -8,4 +8,10 @@ public class InputView {
 
         return Console.readLine();
     }
+
+    public static String requestNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+
+        return Console.readLine();
+    }
 }

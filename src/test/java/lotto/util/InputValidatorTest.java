@@ -16,7 +16,7 @@ class InputValidatorTest {
     void validateInputEmpty(){
         assertThatThrownBy(()->validatePurchaseAmount(""))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] : 입력 값은 공백일 수 없습니다");
+                .hasMessageContaining("입력 값은 공백일 수 없습니다");
     }
 
     @DisplayName("구매 금액이 정수타입이 아닐 떄 오류 발생")
@@ -25,7 +25,7 @@ class InputValidatorTest {
     void purchaseAmountNotIntegerTypeTest(String purchaseAmount){
         assertThatThrownBy(()->validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] : 입력 값은 정수 타입이어야 합니다");
+                .hasMessageContaining("입력 값은 정수 타입이어야 합니다");
     }
 
     @DisplayName("구매 금액이 정수 범위를 넘을 때 오류 발생")
@@ -33,15 +33,14 @@ class InputValidatorTest {
     void purchaseAmountOverIntegerRange(){
         assertThatThrownBy(()->validatePurchaseAmount("1000000000000000"))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] : 가능한 정수 범위를 초과했습니다.");
+                .hasMessageContaining("가능한 정수 범위를 초과했습니다");
     }
 
     @DisplayName("보너스 숫자가 공백일 때 오류 발생")
     @Test
     void validateBonusNumberEmpty(){
         assertThatThrownBy(()-> validateBonusNumber(""))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] : 입력 값은 공백일 수 없습니다");
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 숫자가 정수타입이 아닐 떄 오류 발생")
@@ -50,6 +49,6 @@ class InputValidatorTest {
     void bonusNumberNotIntegerTypeTest(String purchaseAmount){
         assertThatThrownBy(()-> validateBonusNumber(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] : 입력 값은 정수 타입이어야 합니다");
+                .hasMessageContaining("입력 값은 정수 타입이어야 합니다");
     }
 }

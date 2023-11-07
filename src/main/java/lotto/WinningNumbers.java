@@ -1,25 +1,32 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.ErrorMessage.*;
 
 public class WinningNumbers {
     private final List<Integer> numbers;
     private final int bonusNumber;
 
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
-        validate(numbers);
+        validate(numbers, bonusNumber);
         this.numbers = numbers;
         this.bonusNumber = bonusNumber;
+
+        Collections.sort(this.numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers, int bonusNumber) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호가 6개가 아닙니다.");
+            throw new IllegalArgumentException(INVALID_NUMBERS_SIZE.getMessage());
         }
         else if (numbers.stream().distinct().count() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호 중 중복이 있습니다.");
+            throw new IllegalArgumentException(NUMBERS_DUPLICATE.getMessage());
+        }
+        else if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_DUPLICATE.getMessage());
         }
     }
 

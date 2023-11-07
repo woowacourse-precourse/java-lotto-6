@@ -14,11 +14,10 @@ public class UserBuyingExceptionTest {
                 userBuyingException.validPrice(pay));
         assertEquals("[ERROR] 구매는 1,000원 단위로 가능합니다", exception.getMessage());
     }
-
     @Test
     void 숫자가_아닌_값을_입력한_경우() {
         String input = "NonNumeric";
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
+        NumberFormatException exception = assertThrows(NumberFormatException.class, () ->
                 userBuyingException.validIsNumber(input));
         assertEquals("[ERROR] 숫자를 입력하세요", exception.getMessage());
     }

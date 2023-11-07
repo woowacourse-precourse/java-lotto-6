@@ -8,6 +8,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -45,7 +46,7 @@ class ApplicationTest extends NsTest {
                 List.of(1, 3, 5, 14, 22, 45)
         );
     }
-
+    
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
@@ -53,7 +54,74 @@ class ApplicationTest extends NsTest {
             assertThat(output()).contains(ERROR_MESSAGE);
         });
     }
-
+    @Test
+    void 천원단위_예외_테스트() {
+    	assertSimpleTest(() -> {
+            runException("1220");
+            assertThat(output()).contains("[ERROR] 구입 금액은 1,000원 단위로 입력해야합니다.");
+        });
+    }
+    @Test
+    void 당첨번호_입력_예외_테스트() {
+    	assertSimpleTest(() -> {
+    		runException("8000","a,b,c,d");
+    		assertThat(output()).contains("[ERROR] 숫자를 입력해 주세요.");
+    	});
+    }
+    @Test
+    void 보너스번호_입력_예외_테스트1() {
+    	assertSimpleTest(() -> {
+    		runException("8000","1,2,3,4,5,6","a");
+    		assertThat(output()).contains("[ERROR] 숫자를 입력해 주세요.");
+    	});
+    }
+    @Test
+    void 보너스번호_입력_예외_테스트2() {
+    	assertSimpleTest(() -> {
+    		runException("8000","1,2,3,4,5,6","1");
+    		assertThat(output()).contains("[ERROR] 당첨 번호와 다른 숫자를 입력해주세요.");
+    	});
+    }
+    @Test
+    void 보너스번호_입력_예외_테스트3() {
+    	assertSimpleTest(() -> {
+    		runException("8000","1,2,3,4,5,6","50");
+    		assertThat(output()).contains("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    	});
+    }
+    @Test
+    void 추가기능_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("8000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "8개를 구매했습니다.",
+                            "[1, 2, 3, 4, 5, 6]",
+                            "[1, 2, 3, 4, 5, 7]",
+                            "[1, 2, 3, 4, 5, 8]",
+                            "[1, 2, 3, 4, 8, 9]",
+                            "[1, 2, 3, 8, 9, 10]",
+                            "[4, 5, 6, 11, 12, 13]",
+                            "[13, 14, 16, 38, 42, 45]",
+                            "[10, 11, 30, 40, 42, 43]",
+                            "3개 일치 (5,000원) - 2개",
+                            "4개 일치 (50,000원) - 1개",
+                            "5개 일치 (1,500,000원) - 1개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                            "6개 일치 (2,000,000,000원) - 1개",
+                            "총 수익률은 25394500.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(1, 2, 3, 4, 5, 7),
+                List.of(1, 2, 3, 4, 5, 8),
+                List.of(1, 2, 3, 4, 8, 9),
+                List.of(1, 2, 3, 8, 9, 10),
+                List.of(4, 5, 6, 11, 12, 13),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(10, 11, 30, 40, 42, 43)
+        );
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

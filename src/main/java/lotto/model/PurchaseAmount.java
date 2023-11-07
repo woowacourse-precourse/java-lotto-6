@@ -1,10 +1,10 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.util.LottoConstants;
+import lotto.util.LottoRules;
 
 public class PurchaseAmount {
-    int pricePerLotto = LottoConstants.PRICE_PER_LOTTO.getValue();
+    int pricePerLotto = LottoRules.PRICE_PER_LOTTO.getValue();
     int purchaseCount;
 
     public PurchaseAmount() {
@@ -70,6 +70,6 @@ public class PurchaseAmount {
     }
 
     public int calculateLottoCount(int inputPrice) {
-        return (inputPrice % pricePerLotto);
+        return (inputPrice / pricePerLotto);
     }
 }

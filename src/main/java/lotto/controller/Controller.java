@@ -6,14 +6,15 @@ import lotto.view.InputView;
 public class Controller {
 
     public void lottoGame() {
-        buyLotto();
+        buyLottos();
 //        putWinningNumber();
 //        checkWinningList()
 //        calculateRate();
     }
 
-    public void buyLotto() {
+    public void buyLottos() {
         InputView.requestPurchaseAmount();
         Lottos lottos = new Lottos();
+        lottos.howManyLottos();
     }
 }

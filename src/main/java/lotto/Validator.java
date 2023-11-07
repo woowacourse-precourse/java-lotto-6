@@ -1,7 +1,8 @@
 package lotto;
 
 public class Validator {
-    void isInteger(String input) {
+
+    static void isInteger(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -9,14 +10,14 @@ public class Validator {
         }
     }
 
-    void isInRange(int input) {
+    static void isInRange(int input) {
         if (input >= 1 & input <= 45) {
             return;
         }
         throw new IllegalArgumentException("[ERROR]");
     }
 
-    void isMultipleOfThousand(int input) {
+    static void isMultipleOfThousand(int input) {
         if ((input % 1000) == 0) {
             return;
         }

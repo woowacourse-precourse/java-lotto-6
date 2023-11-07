@@ -8,6 +8,11 @@ public class LottoGame {
 
     public void start() {
         lottoService.createLottoCount();
+        play();
+    }
+
+    private void play() {
+        lottoService.play();
     }
 
 }

@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Arrays;
 
 public enum Rank {
-    MATCH_3(3, 5000, 1),
+    MATCH_3(3, 5000, 0),
     MATCH_4(4, 50_000, 0),
     MATCH_5(5, 1_500_000, 0),
     MATCH_5_BONUS(5, 30_000_000, 0, true),

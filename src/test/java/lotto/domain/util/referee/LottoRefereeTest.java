@@ -14,7 +14,8 @@ class LottoRefereeTest {
     private static final List<Integer> WINNING_NUMBERS = Arrays.asList(1, 2, 3, 4, 5, 6);
     private static final Integer BONUS_NUMBER = 7;
     private static final WinningLotto WINNING_LOTTO = new WinningLotto(WINNING_NUMBERS, BONUS_NUMBER);
-
+    private ILottoReferee iLottoReferee;
+    
     @ParameterizedTest
     @CsvSource({
             "1,2,3,4,5,6,FIRST",
@@ -31,7 +32,7 @@ class LottoRefereeTest {
         Lotto lotto = new Lotto(lottoNumbers);
 
         //when
-        ScoreConfig result = LottoReferee.determineRank(lotto, WINNING_LOTTO);
+        ScoreConfig result = iLottoReferee.determineRank(lotto, WINNING_LOTTO);
         //then
         assertThat(result).isEqualTo(ScoreConfig.valueOf(expectedRank));
     }

@@ -1,8 +1,8 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.exception.InputView.InputBonusNotNumericException;
-import lotto.exception.InputView.InputLottoNotNumericException;
+import lotto.exception.InputView.InputBonusNotPositiveIntegerException;
+import lotto.exception.InputView.InputLottoNotPositiveIntegerException;
 import lotto.exception.InputView.InputLottoSeparateRegexException;
 import lotto.exception.InputView.InputPriceNotPositiveIntegerException;
 
@@ -56,7 +56,7 @@ public class InputView {
         String[] split = line.split(SEPARATOR_REGEX);
         for (String s : split) {
             if (!s.matches(POSITIVE_INTEGER_REGEX)) {
-                throw new InputLottoNotNumericException(); //
+                throw new InputLottoNotPositiveIntegerException(); //
             }
         }
     }
@@ -73,7 +73,7 @@ public class InputView {
     // 로또 당첨 보너스 번호 입력값 검증
     private void validateInputBonus(String line) {
         if (!line.matches(POSITIVE_INTEGER_REGEX)) {
-            throw new InputBonusNotNumericException();
+            throw new InputBonusNotPositiveIntegerException();
         }
     }
 }

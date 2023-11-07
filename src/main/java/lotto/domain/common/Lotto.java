@@ -1,7 +1,7 @@
 package lotto.domain.common;
 
 
-import lotto.exception.InputView.InputLottoNotNumericException;
+import lotto.exception.InputView.InputLottoNotPositiveIntegerException;
 import lotto.exception.Lotto.LottoDuplicationException;
 import lotto.exception.Lotto.LottoNotInRangeException;
 import lotto.exception.Lotto.LottoNotSizeSixException;
@@ -21,7 +21,6 @@ public record Lotto(List<Integer> numbers) {
 
     public Lotto {
         validateLottoSize(numbers);
-        validateLottoNumeric(numbers);
         validateLottoRange(numbers);
         validateLottoDuplication(numbers);
     }
@@ -29,12 +28,6 @@ public record Lotto(List<Integer> numbers) {
     private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new LottoNotSizeSixException();
-        }
-    }
-
-    private void validateLottoNumeric(List<Integer> numbers) {
-        if (!numbers.stream().map(i -> String.valueOf(i)).allMatch(s -> s.matches(NUMERIC_REGEX))) {
-            throw new InputLottoNotNumericException();
         }
     }
 

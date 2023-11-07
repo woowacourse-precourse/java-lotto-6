@@ -1,15 +1,24 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionMessage;
+import lotto.constant.LottoConstant;
+
 public class BonusNumber {
 
     private final Integer value;
 
     public BonusNumber(Integer value) {
+        validateNumberRange(value);
         this.value = value;
     }
 
     public Integer toValue() {
         return value;
     }
-    // 1~ 45 사이의 범위의 숫자인지 validate
+
+    public void validateNumberRange(Integer value) {
+        if (value > LottoConstant.MAX_LOTTO_NUMBER_RANGE || value < LottoConstant.MIN_LOTTO_NUMBER_RANGE) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_RANGE.toMessage());
+        }
+    }
 }

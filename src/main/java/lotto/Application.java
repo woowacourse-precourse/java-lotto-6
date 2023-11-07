@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 import view.Input;
 import view.Output;
 
@@ -11,6 +12,8 @@ public class Application {
         Output.printIssuedLotto(lotteries.getLotteries());
         Lotto winningNumbers = inputWinningNumbers();
         int bonusNumber = inputBonusNumber(winningNumbers);
+        Map<WinningRanking, Integer> winningStatistics = lotteries.getWinningStatistics(winningNumbers, bonusNumber);
+        Output.printWinningStatistics(winningStatistics);
     }
 
     private static int inputBonusNumber(Lotto winningNumbers) {

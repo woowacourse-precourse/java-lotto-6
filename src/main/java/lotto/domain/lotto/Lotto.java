@@ -8,6 +8,7 @@ import java.util.Set;
  * Lotto 의 개념 객체를 나타내는 클래스입니다.
  */
 public class Lotto {
+        public static final int LOTTO_NUMBER_SIZE = 6;
         /**
          * 로또를 구성하는 숫자입니다.
          */
@@ -16,7 +17,7 @@ public class Lotto {
         /**
          * Lotto 의 생성자 함수로 숫자 리스트를 입력받고, 유효성 검사를 실시합니다.
          * 유효성 검사를 통과 후 numbers 필드를 초기화 합니다.
-         * @param numbers
+         * @param numbers 로또 볼 번호
          */
         public Lotto(List<Integer> numbers) {
                 validate(numbers);
@@ -30,7 +31,7 @@ public class Lotto {
          * @throws IllegalArgumentException : 숫자 리스트의 길이가 6이 아닌 경우
          */
         private void validate(List<Integer> numbers) {
-                if (numbers.size() != 6) {
+                if (numbers.size() != LOTTO_NUMBER_SIZE) {
                         throw new IllegalArgumentException("로또는 6가지의 서로 다른 수여야 합니다.");
                 }
         }
@@ -42,7 +43,7 @@ public class Lotto {
          */
         private void validateDuplicateNumber(List<Integer> numbers) {
                 Set<Integer> numberSet = new HashSet<>(numbers);
-                if (numberSet.size() != 6) {
+                if (numberSet.size() != LOTTO_NUMBER_SIZE) {
                         throw new IllegalArgumentException("로또는 중복된 숫자를 포함할 수 없습니다.");
                 }
         }

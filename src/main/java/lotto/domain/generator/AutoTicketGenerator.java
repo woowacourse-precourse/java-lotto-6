@@ -12,6 +12,10 @@ import lotto.util.RandomNumber;
  * TicketGenerator 를 구현한 개념 객체를 나타내는 클래스입니다.
  */
 public class AutoTicketGenerator implements TicketGenerator {
+        public static final int LOTTO_RANGE_START = 1;
+        public static final int LOTTO_RANGE_END = 45;
+        public static final int LOTTO_NUMBER_SIZE = 6;
+
         /**
          * 자동으로 무작위 숫자를 생성 후 반환하는 유틸 클래스입니다.
          */
@@ -19,6 +23,7 @@ public class AutoTicketGenerator implements TicketGenerator {
 
         /**
          * AutoTicketGenerator 의 생성자 함수로 유틸 클래스를 주입 받습니다.
+         *
          * @param randomNumber 무작위 숫자 생성 유틸 클래스
          */
         public AutoTicketGenerator(RandomNumber randomNumber) {
@@ -44,10 +49,14 @@ public class AutoTicketGenerator implements TicketGenerator {
 
         /**
          * 무작위 숫자로 구성된 로또 객체를 반환합니다.
+         *
          * @return 로또
          */
         private Lotto generateLotto() {
-                List<Integer> balls = randomNumber.pickUniqueNumberRange(1, 45, 6);
+                List<Integer> balls = randomNumber.pickUniqueNumberRange(LOTTO_RANGE_START,
+                        LOTTO_RANGE_END,
+                        LOTTO_NUMBER_SIZE);
+
                 Logger.info(balls.toString());
                 return new Lotto(balls);
         }

@@ -25,8 +25,9 @@
 
 - [x] 로또 구입 금액을 입력받는다 -UserInput#inputLottoBuyPrice()
 - [x] 로또 구입 금액이 유효한지 확인 -BuyPrice#buyPriceValidate()
-- [] 로또 구입 금액에 맞는 로또 발행 -LottoService#lottoPublish()
+- [x] 로또 구입 금액에 맞는 로또 발행 -LottoService#lottoPublish()
 - [] 당첨 번호와 보너스 번호를 입력받는다 -UserInput#inputLottoIndexAndBunus()
-  - [] 상수로 관리 
+- [] enum 클래스 사용
+  - [] 등수와 상금 상수 선언
 - [] 만들어 진 로또 객체들과 당첨 번호 비교 -LottoService#compareLottoIndex()
 - [] 수익률을 계산 -LottoService#calculateProfit

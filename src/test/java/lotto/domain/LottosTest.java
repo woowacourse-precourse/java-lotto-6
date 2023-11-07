@@ -2,8 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.constant.WinningGrade;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -45,7 +43,7 @@ class LottosTest {
     @Nested
     class Compare {
 
-        @DisplayName("우승자가 있는 경우 적합한 값을 반환하는가")
+        @DisplayName("당첨 로또가 하나 있는 경우 적합한 값을 반환하는가")
         @Test
         void hasWinningLotto() {
             // given
@@ -54,13 +52,13 @@ class LottosTest {
             final Lottos lottos = new Lottos(List.of(new Lotto(numbers)));
 
             // when
-            final List<WinningGrade> winningGrades = lottos.compare(winningNumber);
+            final WinningDetails result = lottos.compare(winningNumber);
 
             // then
-            assertThat(winningGrades).isNotEmpty();
+            assertThat(result.numOfValues()).isOne();
         }
 
-        @DisplayName("우승자가 없는 경우 빈 리스트를 반환하는가")
+        @DisplayName("당첨 로또가 없는 경우 빈 리스트를 반환하는가")
         @Test
         void noWinningLotto() {
             // given
@@ -68,10 +66,10 @@ class LottosTest {
             final Lottos lottos = new Lottos(List.of(new Lotto(List.of(11, 12, 13, 14, 15, 16))));
 
             // when
-            final List<WinningGrade> winningGrades = lottos.compare(winningNumber);
+            final WinningDetails winningDetails = lottos.compare(winningNumber);
 
             // then
-            assertThat(winningGrades).isEmpty();
+            assertThat(winningDetails.numOfValues()).isZero();
         }
     }
 

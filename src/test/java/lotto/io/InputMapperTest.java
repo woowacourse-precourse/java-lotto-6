@@ -1,13 +1,13 @@
 package lotto.io;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import lotto.constant.WinningGrade;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningDetails;
 import lotto.domain.WinningNumbers;
 
 import org.junit.jupiter.api.DisplayName;
@@ -45,9 +45,10 @@ class InputMapperTest {
         final WinningNumbers result = inputMapper.toWinningNumbers(input);
 
         // then
-        final List<WinningGrade> winningGrades =
+        final WinningDetails winningDetails =
                 result.compare(new Lottos(List.of(new Lotto(numbers))));
-        assertThat(winningGrades).contains(WinningGrade.FIRST_GRADE);
+        assertThat(winningDetails.toWinningResult().numOfWinningGrade(WinningGrade.FIRST_GRADE))
+                .isOne();
     }
 
     @DisplayName("보너스 번호 도메인으로 변환 요청시 객체를 반환한다.")

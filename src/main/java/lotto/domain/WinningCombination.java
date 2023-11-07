@@ -1,10 +1,7 @@
 package lotto.domain;
 
 import lotto.constant.ProgressMessage;
-import lotto.constant.WinningGrade;
 
-import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -28,43 +25,30 @@ public final class WinningCombination {
     }
 
     public WinningResult calculateWinningLottos(final Lottos lottos) {
-        final List<WinningGrade> winningGrades = winningNumbers.compare(lottos);
-        final List<WinningGrade> result = checkSecondWinning(lottos, winningGrades);
+        final WinningDetails winningDetails = winningNumbers.compare(lottos);
+        final WinningDetails result = checkSecondWinning(lottos, winningDetails);
 
-        return mapToWinningResult(result);
+        return result.toWinningResult();
     }
 
-    private List<WinningGrade> checkSecondWinning(
-            final Lottos lottos, final List<WinningGrade> winningGrades) {
-        return IntStream.range(START_INDEX, winningGrades.size())
-                .mapToObj(
-                        index ->
-                                checkBonusNumber(
-                                        lottos.getByIndex(index), winningGrades.get(index)))
-                .toList();
+    private WinningDetails checkSecondWinning(
+            final Lottos lottos, final WinningDetails winningDetails) {
+        return IntStream.range(START_INDEX, winningDetails.numOfValues())
+                .mapToObj(index -> convertIfSecondWinning(lottos, winningDetails, index))
+                .collect(Collectors.collectingAndThen(Collectors.toList(), WinningDetails::new));
     }
 
-    private WinningGrade checkBonusNumber(final Lotto lotto, final WinningGrade winningGrade) {
-        if (winningGrade.isPossibleSecondWinner()) {
-            return bonusNumber.checkSecondWinning(lotto);
+    private WinningDetail convertIfSecondWinning(
+            final Lottos lottos, final WinningDetails winningDetails, final int index) {
+        final WinningDetail winningDetail = winningDetails.getByIndex(index);
+        return checkBonusNumber(lottos.getByWinningDetail(winningDetail), winningDetail);
+    }
+
+    private WinningDetail checkBonusNumber(final Lotto lotto, final WinningDetail winningDetail) {
+        if (winningDetail.isPossibleSecondWinner()) {
+            return new WinningDetail(
+                    bonusNumber.checkSecondWinning(lotto), winningDetail.toIndex());
         }
-        return winningGrade;
-    }
-
-    private WinningResult mapToWinningResult(final List<WinningGrade> winningGrades) {
-        return winningGrades.stream()
-                .distinct()
-                .collect(
-                        Collectors.collectingAndThen(
-                                Collectors.toMap(
-                                        Function.identity(),
-                                        winningGrade -> numOfValues(winningGrade, winningGrades)),
-                                WinningResult::new));
-    }
-
-    private Integer numOfValues(
-            final WinningGrade winningGrade, final List<WinningGrade> winningGrades) {
-        final long count = winningGrades.stream().filter(winningGrade::hasEqualValue).count();
-        return Long.valueOf(count).intValue();
+        return winningDetail;
     }
 }

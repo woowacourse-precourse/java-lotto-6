@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.constant.WinningGrade;
-
 import java.util.List;
 
 public final class WinningNumbers {
@@ -12,7 +10,7 @@ public final class WinningNumbers {
         this.lotto = new Lotto(numbers);
     }
 
-    public List<WinningGrade> compare(final Lottos lottos) {
+    public WinningDetails compare(final Lottos lottos) {
         return lottos.compare(lotto);
     }
 

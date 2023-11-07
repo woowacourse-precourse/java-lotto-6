@@ -21,16 +21,16 @@ class WinningNumbersTest {
         final WinningNumbers winningNumbers = new WinningNumbers(numbers);
 
         // when
-        final List<WinningGrade> result =
+        final WinningDetails result =
                 winningNumbers.compare(new Lottos(List.of(new Lotto(numbers))));
 
         // then
-        assertThat(result).contains(WinningGrade.FIRST_GRADE);
+        assertThat(result.toWinningResult().numOfWinningGrade(WinningGrade.FIRST_GRADE)).isOne();
     }
 
     @DisplayName("보너스 번호를 갖고 있는지 확인 요청시")
     @Nested
-    class contains {
+    class Contains {
 
         @DisplayName("값을 가지고 있으면 true를 반환한다.")
         @Test

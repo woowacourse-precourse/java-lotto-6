@@ -7,6 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoControl {
+    public LottoControl() {
+        LottoModel.setLottoPrice(LottoControl.inputLottoPrice());
+        LottoModel.setBoughtLottos(LottoModel.getLottoPrice());
+
+        LottoView.printLottoAmount(LottoModel.getLottoPrice());
+        LottoView.printGeneratedLottos(LottoModel.getBoughtLottos());
+
+        LottoModel.setWinningLotto(LottoControl.inputWinningNumbers());
+        LottoModel.setBonusNumber(LottoControl.inputBonusNumber(LottoModel.getWinningLotto()));
+
+        LottoModel.checkLottoRank();
+        LottoView.printRankInfo(LottoModel.getLottoRank());
+        LottoView.printProfitRate(LottoModel.calcProfitPercentage());
+    }
+
     public static int inputLottoPrice() {
         LottoView.signalInputLottoPrice();
         String boughtLottoPrice = Console.readLine();

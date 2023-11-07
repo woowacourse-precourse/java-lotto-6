@@ -36,26 +36,47 @@ enum wonInfo {
 }
 
 public class LottoModel {
-    private final int LOTTOPRICE;
-    private final Lotto WINNINGLOTTO;
-    private final List<Lotto> BOUGHTLOTTOS;
-    private final int BONUSNUMBER;
-    private final int[] LOTTORANK = new int[5];
+    private static int lottoPrice;
+    private static Lotto winningLotto;
+    private static List<Lotto> boughtLottos;
+    private static int bonusNumber;
+    private static final int[] lottoRank = new int[5];
     private static int profit = 0;
 
-    public LottoModel() {
-        LOTTOPRICE = LottoControl.inputLottoPrice();
-        BOUGHTLOTTOS = generateLottos(LOTTOPRICE);
+    public static void setLottoPrice(int price) {
+        lottoPrice = price;
+    }
 
-        LottoView.printLottoAmount(LOTTOPRICE);
-        LottoView.printGeneratedLottos(BOUGHTLOTTOS);
+    public static int getLottoPrice() {
+        return lottoPrice;
+    }
 
-        WINNINGLOTTO = LottoControl.inputWinningNumbers();
-        BONUSNUMBER = LottoControl.inputBonusNumber(WINNINGLOTTO);
+    public static void setWinningLotto(Lotto lotto) {
+        winningLotto = lotto;
+    }
 
-        checkLottoRank();
-        LottoView.printRankInfo(LOTTORANK);
-        LottoView.printProfitRate(calcProfitPercentage());
+    public static Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public static void setBoughtLottos(int price) {
+        boughtLottos = generateLottos(price);
+    }
+
+    public static List<Lotto> getBoughtLottos() {
+        return boughtLottos;
+    }
+
+    public static void setBonusNumber(int number) {
+        bonusNumber = number;
+    }
+
+    public static int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public static int[] getLottoRank() {
+        return lottoRank;
     }
 
     public static List<Lotto> generateLottos(int lottoPrice) {
@@ -70,42 +91,42 @@ public class LottoModel {
         return generatedLottos;
     }
 
-    private void checkLottoRank() {
-        for (Lotto boughtLotto : BOUGHTLOTTOS) {
+    public static void checkLottoRank() {
+        for (Lotto boughtLotto : boughtLottos) {
             calcProfit(checkWonNumber(boughtLotto), boughtLotto);
         }
     }
 
-    public int checkWonNumber(Lotto boughtLotto) {
+    public static int checkWonNumber(Lotto boughtLotto) {
         int wonNumber = 0;
         for (int number : boughtLotto.getNumbers()) {
-            if (WINNINGLOTTO.getNumbers().contains(number)) {
+            if (winningLotto.getNumbers().contains(number)) {
                 wonNumber++;
             }
         }
         return wonNumber;
     }
 
-    private void calcProfit(int wonNumber, Lotto boughtLotto) {
+    private static void calcProfit(int wonNumber, Lotto boughtLotto) {
         if (checkBonusNumber(boughtLotto) && wonNumber == 5) {
-            LOTTORANK[3]++;
+            lottoRank[3]++;
             profit += wonInfo.getPrize(3);
             return;
         }
         for (int i = 0; i < 5; i++) {
             if (wonNumber == wonInfo.getMatchingNumbers(i)) {
-                LOTTORANK[i]++;
+                lottoRank[i]++;
                 profit += wonInfo.getPrize(i);
             }
         }
     }
 
-    private boolean checkBonusNumber(Lotto boughtLotto) {
-        return boughtLotto.getNumbers().contains(BONUSNUMBER);
+    private static boolean checkBonusNumber(Lotto boughtLotto) {
+        return boughtLotto.getNumbers().contains(bonusNumber);
     }
 
-    private double calcProfitPercentage() {
-        return Math.round((double) profit / (double) LOTTOPRICE * 1000) / 10.0;
+    public static double calcProfitPercentage() {
+        return Math.round((double) profit / (double) lottoPrice * 1000) / 10.0;
     }
 }
 

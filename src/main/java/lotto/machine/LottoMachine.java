@@ -25,6 +25,7 @@ public class LottoMachine {
         setPurchaseAmount(viewController.inputPurchaseAmount());
         // 랜덤 로또 발행
         lottoController.createRandomLottos(getPurchaseAmount()/ Prize.UNIT.getPrize());
+        lottoController.createRandomLottos(getPurchaseAmount() / Prize.UNIT.getPrize());
         // 발행된 로또 출력
         viewController.printRandomLottos(lottoController.getRandomLottos());
         // 당첨 번호 입력

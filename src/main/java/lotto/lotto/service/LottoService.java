@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface LottoService {
     void createLottos(int count);
+
     List<LottoDto> getLottos();
+
     List<Integer> generateNumbers();
 }

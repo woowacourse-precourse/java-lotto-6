@@ -47,7 +47,16 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    void 예외_테스트() {
+    void 예외_테스트_잘못된_구입금액_단위() {
+        assertSimpleTest(() -> {
+                run("14001");
+                assertThat(output()).contains(ERROR_MESSAGE);
+            }
+        );
+    }
+
+    @Test
+    void 예외_테스트_숫자가_아닌_구입금액() {
         assertSimpleTest(() -> {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);

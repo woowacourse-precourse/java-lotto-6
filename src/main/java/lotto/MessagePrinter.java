@@ -13,8 +13,9 @@ public class MessagePrinter {
     public static final String WINNING_STATISTICS_INFO = "\n당첨 통계";
     public static final String CONTOUR = "---";
     public static final String NEW_LINE = "\n";
-    public static final String printSecondRankResult = "%d개 일치 (%s원) - %d개\n";
-    public static final String printOtherRankResult = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    public static final String PRINT_SECOND_RANK_RESULT_FORMAT = "%d개 일치 (%s원) - %d개\n";
+    public static final String PRINT_OTHER_RANK_RESULT_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
+    public static final String PRINT_RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     public static void askPurchaseAmount() {
         System.out.println(INPUT_FOR_PURCHASE_AMOUNT);
@@ -52,9 +53,15 @@ public class MessagePrinter {
 
     private static void getRankMessage(Rank rank, Integer count) {
         if (rank != Rank.SECOND) {
-            System.out.printf(printSecondRankResult, rank.getNumberOfMatch(), formatCurrency(rank.getWinnings()), count);
+            System.out.printf(PRINT_SECOND_RANK_RESULT_FORMAT, rank.getNumberOfMatch(),
+                    formatCurrency(rank.getWinnings()), count);
             return;
         }
-        System.out.printf(printOtherRankResult, rank.getNumberOfMatch(), formatCurrency(rank.getWinnings()), count);
+        System.out.printf(PRINT_OTHER_RANK_RESULT_FORMAT, rank.getNumberOfMatch(),
+                formatCurrency(rank.getWinnings()), count);
+    }
+
+    public static void printRateOfReturn(float rateOfReturn) {
+        System.out.printf(PRINT_RATE_OF_RETURN_FORMAT, rateOfReturn);
     }
 }

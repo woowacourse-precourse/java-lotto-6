@@ -11,9 +11,11 @@ import java.util.Map;
 public class UserLotto {
     private static final int RANK_FIRST_PLACE = 0;
     private static final int RANK_LAST_PLACE = 5;
+    private static final int ONE_HUNDRED_FOR_PERCENTAGE = 100;
 
     private List<Lotto> userLottos;
     private Map<Rank, Integer> result = new LinkedHashMap<>();
+    private int revenue = 0;
 
     public UserLotto(int lottoCount) {
         createLotto(lottoCount);
@@ -50,7 +52,12 @@ public class UserLotto {
             Rank rank = lotto.getRankResult(winningLotto);
             Integer count = result.get(rank);
             result.put(rank, count + 1);
+            revenue += rank.getWinnings();
         }
         result.remove(Rank.NOTHING);
+    }
+
+    public float getRateOfReturn(int purchaseAmount) {
+        return (float) revenue / purchaseAmount * ONE_HUNDRED_FOR_PERCENTAGE;
     }
 }

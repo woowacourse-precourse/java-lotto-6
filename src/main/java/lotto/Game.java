@@ -27,5 +27,7 @@ public class Game {
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
         Map<Rank, Integer> rankResult = userLotto.checkWinning(winningLotto);
         printWinningStatistics(rankResult);
+        float rateOfReturn = userLotto.getRateOfReturn(purchaseAmount);
+        printRateOfReturn(rateOfReturn);
     }
 }

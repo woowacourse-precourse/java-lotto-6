@@ -1,7 +1,9 @@
 package lotto.utils.validator;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.utils.message.WinningInformationExceptionMessage;
 
 public class WinningNumberValidator {
@@ -21,6 +23,7 @@ public class WinningNumberValidator {
         List<String> winningNumbers = Arrays.asList(input.split(","));
         validateEachNumberIsNumeric(winningNumbers);
         validateEachNumberIsInRange(winningNumbers);
+        validateDuplicate(winningNumbers);
     }
 
     private static void validateBlank(String target) {
@@ -75,4 +78,10 @@ public class WinningNumberValidator {
         }
     }
 
+    private static void validateDuplicate(List<String> target) {
+        Set<String> unique = new HashSet<>(target);
+        if (unique.size() != target.size()) {
+            throw new IllegalArgumentException(WinningInformationExceptionMessage.DUPLICATE_EXISTS.getError());
+        }
+    }
 }

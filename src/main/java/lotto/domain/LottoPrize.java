@@ -1,4 +1,38 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum LottoPrize {
+    FIFTH(3, 5_000),
+    FOURTH(4, 50_000),
+    THIRD(5, 1_500_000),
+    SECOND(5, 30_000_000),
+    FIRST(6, 2_000_000_000),
+    ETC(0, 0);
+
+    private final int prizeRank;
+    private final int prizeMoney;
+
+    LottoPrize(int matchCount, int prizeMoney) {
+        this.prizeRank = matchCount;
+        this.prizeMoney = prizeMoney;
+    }
+
+    public int getPrizeRank() {
+        return prizeRank;
+    }
+
+    public int getPrizeMoney() {
+        return prizeMoney;
+    }
+
+    public static LottoPrize valueOf(int matchCount, boolean matchBonus) {
+        if (matchCount == 5 && matchBonus) {
+            return SECOND;
+        }
+        return Arrays.stream(values())
+                .filter(it -> it.prizeRank == matchCount)
+                .findFirst()
+                .orElse(ETC);
+    }
 }

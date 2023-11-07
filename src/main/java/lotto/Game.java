@@ -77,7 +77,7 @@ public class Game {
     private void inputLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String inputNumbers = Console.readLine();
-        if(inputNumbers.charAt(inputNumbers.length()-1)==','){
+        if (inputNumbers.charAt(inputNumbers.length() - 1) == ',') {
             throw new IllegalArgumentException();
         }
         this.numbers = Arrays.stream(inputNumbers.split(","))

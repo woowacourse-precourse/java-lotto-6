@@ -124,6 +124,35 @@ public class GameServiceTest extends NsTest{
         System.out.println(gameResult.getPrize());
     }
 
+    @DisplayName("수익률 계산")
+    @Test
+    public void getYieldRateTest() {
+
+        winningInfo.saveWinningNumbers(List.of(1,2,3,4,5,6));
+
+        winningInfo.saveBonusNumber(7);
+
+        GameResult gameResult = new GameResult(winningInfo);
+
+        buyer.saveNumbers(List.of(1,2,3,10,15,16));
+        buyer.saveNumbers(List.of(9,2,3,10,15,16));
+        buyer.saveNumbers(List.of(8,2,3,10,15,16));
+        buyer.saveNumbers(List.of(11,2,3,10,15,16));
+        buyer.saveNumbers(List.of(17,2,3,10,15,16));
+        buyer.saveNumbers(List.of(17,22,3,10,15,16));
+        buyer.saveNumbers(List.of(17,23,3,10,15,16));
+        buyer.saveNumbers(List.of(17,24,3,10,15,16));
+
+        List<Lotto> lottos = buyer.getLottos();
+
+        gameResult.matchPurchasedLottos(lottos);
+
+        System.out.println(gameResult.getPrize());
+
+        System.out.println(gameResult.getPrizeMoney());
+        System.out.println("수익률 : "+(double) gameResult.getPrizeMoney()/8000 * 100+"%");
+    }
+
     @Override
     protected void runMain() {
 

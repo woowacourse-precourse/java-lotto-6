@@ -17,6 +17,7 @@ public class Game {
 
             printPurchaseHistory();
             printWinningInfo();
+            printYieldRate();
 
         }catch (Exception e){
 
@@ -78,5 +79,10 @@ public class Game {
     private void printWinningInfo() {
 
         System.out.println(gameController.getWinningInfo());
+    }
+
+    private void printYieldRate() {
+
+        System.out.println(gameController.getYieldRate());
     }
 }

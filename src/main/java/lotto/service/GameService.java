@@ -23,6 +23,7 @@ public class GameService {
     private final String REGEXP_PATTERN_NO_NUMBER = "^[\\d]*$";
     private final Buyer buyer = new Buyer();
     private final WinningInfo winningInfo = new WinningInfo();
+    private final GameResult gameResult = new GameResult(winningInfo);
 
     public void purchaseLotto(String input) {
 
@@ -83,7 +84,7 @@ public class GameService {
 
     public GameResultDTO getGameResult() {
 
-        GameResult gameResult = new GameResult(winningInfo);
+        //GameResult gameResult = new GameResult(winningInfo);
 
         List<Lotto> lottos = buyer.getLottos();
 
@@ -92,6 +93,15 @@ public class GameService {
         GameResultDTO gameResultDTO = new GameResultDTO(gameResult.getPrize());
 
         return gameResultDTO;
+    }
+
+    public double getYieldRate() {
+
+        long prizeMoney = gameResult.getPrizeMoney();
+
+        int amount = buyer.getAmount();
+
+        return (double) prizeMoney/(amount * 1000) * 100;
     }
 
     private List<Integer> createNumbers() {

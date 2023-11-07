@@ -62,4 +62,15 @@ public class GameController {
 
         return result.toString();
     }
+
+    public String getYieldRate() {
+
+        StringBuilder result = new StringBuilder();
+
+        double yieldRate = gameService.getYieldRate();
+
+        result.append("총 수익률은 ").append(yieldRate).append("%입니다.");
+
+        return result.toString();
+    }
 }

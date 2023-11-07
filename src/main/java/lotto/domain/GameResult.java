@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.constant.PrizeMoney;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +12,8 @@ public class GameResult {
     private final Map<String, Integer> prize;
     private int matchNumbers;
     private boolean matchBonus;
+
+    private long prizeMoney;
 
     public GameResult(WinningInfo winningInfo) {
 
@@ -40,6 +44,8 @@ public class GameResult {
             }
             makeGameResult();
         }
+
+        calculatePrizeMoney();
     }
 
     private void compareNumbers(int num) {
@@ -91,6 +97,26 @@ public class GameResult {
         matchNumbers = 0;
         matchBonus = false;
 
+    }
+
+    private void calculatePrizeMoney() {
+
+        long firstPrize = Long.parseLong(PrizeMoney.FIRST.replaceAll("\\,", ""));
+        long secondPrize = Long.parseLong(PrizeMoney.SECOND.replaceAll("\\,", ""));
+        long thirdPrize = Long.parseLong(PrizeMoney.THIRD.replaceAll("\\,", ""));
+        long forthPrize = Long.parseLong(PrizeMoney.FORTH.replaceAll("\\,", ""));
+        long fifthPrize = Long.parseLong(PrizeMoney.FIFTH.replaceAll("\\,", ""));
+
+        prizeMoney = firstPrize * prize.get("1등") +
+                     secondPrize * prize.get("2등") +
+                     thirdPrize * prize.get("3등") +
+                     forthPrize * prize.get("4등") +
+                     fifthPrize * prize.get("5등");
+    }
+
+    public long getPrizeMoney() {
+
+        return prizeMoney;
     }
 
     public Map<String, Integer> getPrize() {

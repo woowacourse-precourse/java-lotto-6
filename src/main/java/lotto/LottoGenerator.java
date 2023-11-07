@@ -16,7 +16,7 @@ public class LottoGenerator {
         List<Lotto> purchasedLottos = new ArrayList<>();
         for (int i = 0; i < numberOfLottos; i++) {
             Lotto lotto = generateSingleLotto();
-            List<Integer> sortedNumbers =getSortedLottoNumbers(lotto);
+            List<Integer> sortedNumbers = getSortedLottoNumbers(lotto);
             System.out.println(sortedNumbers);
             purchasedLottos.add(lotto);
         }
@@ -24,7 +24,10 @@ public class LottoGenerator {
     }
 
     private Lotto generateSingleLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTO_NUMBER,
+                MAX_LOTTO_NUMBER,
+                LOTTO_NUMBER_COUNT);
         Lotto lotto = new Lotto(numbers);
         return lotto;
     }

@@ -26,7 +26,7 @@ public class LottoResult {
                 this.getCount(WinningCriteria.THIRD_PLACE) * 1_500_000 +
                 this.getCount(WinningCriteria.SECOND_PLACE) * 30_000_000 +
                 this.getCount(WinningCriteria.FIRST_PLACE) * 2_000_000_000;
-        double totalReturn = ((double) totalPrice /(double) userPurchaseAmount) * 100.0;
+        double totalReturn = ((double) totalPrice / userPurchaseAmount) * 100.0;
         return Math.round(totalReturn * 10.0) / 10.0;
     }
 

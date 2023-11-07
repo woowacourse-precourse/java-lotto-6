@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.Constant.Constant;
 import lotto.Domain.Bonus;
 import lotto.Domain.Money;
-import lotto.Parser.Parser;
+import lotto.Util.Parser;
 
 public class InputView {
 

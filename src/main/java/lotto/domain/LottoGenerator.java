@@ -19,8 +19,21 @@ public class LottoGenerator {
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             pickLotto.add(lotto);
+            printLotto(lotto);
         }
 
         return pickLotto;
+    }
+
+    public static void printLotto(Lotto lotto) {
+        System.out.print("[");
+        List<Integer> numbers = lotto.getNumbers();
+        for (int i = 0; i < numbers.size(); i++) {
+            System.out.print(numbers.get(i));
+            if (i < numbers.size() - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
     }
 }

@@ -29,7 +29,7 @@ public class UserInput {
             String cost = Console.readLine();
             CostValidator costValidator = new CostValidator();
             costValidator.validateCost(cost);
-            amount = costValidator.cost / 1000;
+            amount = costValidator.cost / Constants.COST_UNIT;
         } catch (IllegalArgumentException illegalArgumentException) {
             setAmount();
         }

@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.message.ErrorMessage.LOTTO_RANGE;
 import static lotto.message.ErrorMessage.LOTTO_SIZE;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -31,8 +32,9 @@ public class Lotto {
     }
 
     private List<Integer> ascendingNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     public List<Integer> getNumbers() {

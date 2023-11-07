@@ -1,7 +1,9 @@
 package lotto.domain;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Lotto {
@@ -14,7 +16,19 @@ public class Lotto {
     }
 
     private void validate(List<Integer> lotto) {
+        isLengthSix(lotto);
+        isDistinct(lotto);
+    }
+
+    private void isLengthSix(List<Integer> lotto) {
         if (lotto.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void isDistinct(List<Integer> lotto) {
+        Set<Integer> tempLotto = new HashSet<>(lotto);
+        if (lotto.size() != tempLotto.size()) {
             throw new IllegalArgumentException();
         }
     }

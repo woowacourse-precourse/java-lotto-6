@@ -12,17 +12,17 @@ public class Money {
     }
 
     private void validate(int money) {
-        overThousand(money);
-        divideByThousand(money);
+        isOverThousand(money);
+        canDivideByThousand(money);
     }
 
-    private void overThousand(int money) throws IllegalArgumentException {
+    private void isOverThousand(int money) throws IllegalArgumentException {
         if (money < THOUSAND) {
             throw new IllegalArgumentException(UNDER_THOUSAND);
         }
     }
 
-    private void divideByThousand(int money) throws IllegalArgumentException {
+    private void canDivideByThousand(int money) throws IllegalArgumentException {
         if (money % THOUSAND != ZERO) {
             throw new IllegalArgumentException(CANNOT_DIVIDE_BY_THOUSAND);
         }

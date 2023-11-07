@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
-
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
@@ -16,7 +15,6 @@ public class Lottos {
         List<Lotto> generatedLottos = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
-            // List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Lotto lottoNumbers = generateLottoNumbers();
             generatedLottos.add(lottoNumbers);
         }

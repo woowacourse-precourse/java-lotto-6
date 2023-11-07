@@ -32,7 +32,6 @@ public class LottoResult {
     * 로또 당첨 통계 계산
     * */
     private int[] countMatchNumbers(Lottos purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
-
         int[] rewardMatch = new int[LottoRank.values().length];
 
         for(Lotto lotto : purchasedLottos.getLottos()) {

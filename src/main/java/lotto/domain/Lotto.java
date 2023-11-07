@@ -1,7 +1,11 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessages.DUPLICATES;
+
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,6 +18,11 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
+        }
+
+        Set<Integer> distinctNumbers = new HashSet<>(numbers);
+        if (distinctNumbers.size() != 6) {
+            throw new IllegalArgumentException(DUPLICATES.getErrorMessage());
         }
     }
 

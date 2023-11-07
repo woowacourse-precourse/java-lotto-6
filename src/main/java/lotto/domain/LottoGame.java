@@ -6,7 +6,6 @@ import static lotto.domain.LottoProfit.getReturnRate;
 import static lotto.domain.Lottos.generateLottos;
 
 import java.util.List;
-import lotto.constants.LottoRank;
 
 public class LottoGame {
     LottoResult lottoResult;
@@ -22,21 +21,22 @@ public class LottoGame {
         long lottoCount = lottoResult.lottoNumbersPurchased(userLottoPrice);
         printLottoCountPurchased(lottoCount);
 
-        // 로또(들) 생성
         Lottos purchasedLottos = generateLottos(lottoCount);
 
-        // 당첨,보너스 번호 입력
+        processWinningNumbers(purchasedLottos);
+        printResults(purchasedLottos);
+    }
+
+    private void processWinningNumbers(Lottos purchasedLottos) {
         List<Integer> winningNumbers = inputChecker.readWinningNumbers();
         Integer bonusNumber = inputChecker.readBonusNumber();
+        purchasedLottos.printLottos();
+        lottoResult.calculateRewardStatistics(purchasedLottos, winningNumbers, bonusNumber);
+    }
 
-        purchasedLottos.printLottos(); // 로또 번호 모두 출력
-
-        // 결과 통계 계산
-        lottoResult.calculateRewardStatistics(purchasedLottos,winningNumbers,bonusNumber);
-
-        // 수익률 출력
-        printReturnRate(purchasedLottos);
+    private void printResults(Lottos purchasedLottos) {
         printRewardStatistics();
+        printReturnRate(purchasedLottos);
     }
 
     private void printLottoCountPurchased(long lottoCount) {
@@ -48,8 +48,8 @@ public class LottoGame {
         System.out.println("총 수익률은 " + String.format("%.1f%%", returnRate * 100) + "입니다.");
     }
     private void printRewardStatistics(){
-        String[] rewardNames = getRewardNamesAsArray();//lottoResult.getRewardNames();
-        int[] reward = getRewardsAsArray(); //lottoResult.getReward();
+        String[] rewardNames = getRewardNamesAsArray();
+        int[] reward = getRewardsAsArray();
         int [] rewardMatch = lottoResult.getRewardMatch();
 
         for (int i = 0; i < rewardMatch.length; i++) {

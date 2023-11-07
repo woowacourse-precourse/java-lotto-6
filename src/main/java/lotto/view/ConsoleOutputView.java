@@ -39,7 +39,7 @@ public class ConsoleOutputView implements Output {
 
     @Override
     public void printError(String errorMessage) {
-        System.out.println(ERROR_PREFIX + errorMessage);
+        System.out.println(ERROR_PREFIX.getMessage() + errorMessage);
     }
 
 

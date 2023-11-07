@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.exception.LottoException;
 
@@ -17,6 +18,19 @@ public class ResultLotto {
         this.bonusNum = bonusNum;
     }
 
+    private List<Integer> matchLottoBundle(List<Lotto> lottoBundle) {
+        List<Integer> winningCount = new ArrayList<>(List.of(0, 0, 0, 0, 0));
+        int ranking;
+        for (Lotto lotto : lottoBundle) {
+            ranking = matchLotto(lotto);
+            if (ranking < 0) {
+                continue;
+            }
+            winningCount.set(ranking, winningCount.get(ranking) + 1);
+        }
+        return winningCount;
+    }
+
     private int matchLotto(Lotto lotto) {
         int matchCount = 0;
         for (int number : winningNumbers) {
@@ -24,7 +38,20 @@ public class ResultLotto {
                 matchCount++;
             }
         }
-        return matchCount;
+        return matchRanking(matchCount, lotto);
+    }
+
+    private int matchRanking(int matchCount, Lotto lotto) {
+        if (matchCount == 6) {
+            return 0;
+        }
+        if (matchCount == 5 && lotto.isContainNum(bonusNum)) {
+            return 1;
+        }
+        if (matchCount <= 5 && matchCount >= 3) {
+            return 7 - matchCount;
+        }
+        return -1;
     }
 
     private void validateRange(int bonusNum) {

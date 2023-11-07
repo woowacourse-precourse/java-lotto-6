@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
@@ -15,9 +16,17 @@ public class InputHandler {
 
     public static List<Integer> winningNumberInput(){
         System.out.println("당첨번호를 입력해 주세요.");
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 
-        return numbers;
+        String input = Console.readLine();
+        String[] winningStringNumbers = input.split(",");
+
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for(int i=0;i<6;i++){
+            winningNumbers.add(Integer.parseInt(winningStringNumbers[i]));
+        }
+
+        return winningNumbers;
     }
 
     public static int bonusNumberInput(){

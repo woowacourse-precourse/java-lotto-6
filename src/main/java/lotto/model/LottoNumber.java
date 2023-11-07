@@ -1,11 +1,17 @@
 package lotto.model;
 
 public class LottoNumber {
-    // Fields, Constructor
+    // Fields, Constructors
     private final int number;
 
     public LottoNumber(String string) {
-        int number = validate(string);
+        int number = parseToNumber(string);
+        validate(number);
+        this.number = number;
+    }
+
+    public LottoNumber(int number) {
+        validate(number);
         this.number = number;
     }
 
@@ -17,8 +23,7 @@ public class LottoNumber {
 
 
     // Internal Implements
-    private int validate(String string) {
-        int number = parseToNumber(string);
+    private int validate(int number) {
         validateRange(number);
 
         return number;

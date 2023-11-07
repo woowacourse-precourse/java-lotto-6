@@ -29,7 +29,7 @@ class WinningLottoTest {
             int bonusNumber = 7;
 
             // when
-            WinningLotto result = WinningLotto.of(lotto, bonusNumber);
+            WinningLotto result = WinningLotto.createWinningLotto(lotto, bonusNumber);
 
             // then
             assertThat(result).hasFieldOrPropertyWithValue("winningNumbers", lotto);
@@ -44,7 +44,7 @@ class WinningLottoTest {
             int bonusNumber = 6;
 
             // when
-            assertThatThrownBy(() -> WinningLotto.of(lotto, bonusNumber))
+            assertThatThrownBy(() -> WinningLotto.createWinningLotto(lotto, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(BONUS_NUMBER_DUPLICATED_WINNING_NUMBERS.toString());
         }
@@ -57,7 +57,7 @@ class WinningLottoTest {
             int bonusNumber = 57;
 
             // when
-            assertThatThrownBy(() -> WinningLotto.of(lotto, bonusNumber))
+            assertThatThrownBy(() -> WinningLotto.createWinningLotto(lotto, bonusNumber))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(NOT_IN_RANGE_LOTTO_NUMBER.toString());
         }
@@ -69,8 +69,8 @@ class WinningLottoTest {
     void calculateLottoRanking(int bonusNumber, List<Integer> givenNumbers, LottoRanking expected) {
         // given
         Lotto winningNumbers = createLotto();
-        WinningLotto winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
-        Lotto userlotto = Lotto.from(givenNumbers);
+        WinningLotto winningLotto = WinningLotto.createWinningLotto(winningNumbers, bonusNumber);
+        Lotto userlotto = Lotto.createLottoWithNumbers(givenNumbers);
 
         // when
         LottoRanking result = winningLotto.calculateLottoRanking(userlotto);
@@ -90,6 +90,6 @@ class WinningLottoTest {
     }
 
     private Lotto createLotto() {
-        return Lotto.from(List.of(1, 2, 3, 4, 5, 6));
+        return Lotto.createLottoWithNumbers(List.of(1, 2, 3, 4, 5, 6));
     }
 }

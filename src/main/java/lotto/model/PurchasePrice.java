@@ -16,7 +16,7 @@ public class PurchasePrice {
         this.amount = amount;
     }
 
-    public static PurchasePrice from(long amount) {
+    public static PurchasePrice createPurchase(long amount) {
         return new PurchasePrice(amount);
     }
 

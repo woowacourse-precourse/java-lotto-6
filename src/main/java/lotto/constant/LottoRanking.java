@@ -21,17 +21,18 @@ public enum LottoRanking {
 
     public static LottoRanking convertLottoIntoLottoRanking(int count, boolean isBonusNumberCorrect) {
         return Arrays.stream(LottoRanking.values())
-                .filter(lottoRanking -> {
-                            if (count == 5 && isBonusNumberCorrect) {
-                                return lottoRanking.equals(SECOND);
-                            } else if (count == 5) {
-                                return lottoRanking.equals(THIRD);
-                            }
-                            return lottoRanking.getSameCount() == count;
-                        }
-                )
+                .filter(lottoRanking -> isSatisfiedCondition(count, isBonusNumberCorrect, lottoRanking))
                 .findFirst()
                 .orElse(null);
+    }
+
+    private static boolean isSatisfiedCondition(int count, boolean isBonusNumberCorrect, LottoRanking lottoRanking) {
+        if (count == 5 && isBonusNumberCorrect) {
+            return lottoRanking.equals(SECOND);
+        } else if (count == 5) {
+            return lottoRanking.equals(THIRD);
+        }
+        return lottoRanking.getSameCount() == count;
     }
 
     public static Map<LottoRanking, Integer> convertValuesIntoCounters() {

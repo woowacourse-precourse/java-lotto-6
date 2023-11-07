@@ -24,7 +24,7 @@ class PurchasePriceTest {
             long expected = 1000L;
 
             // when
-            PurchasePrice result = PurchasePrice.from(expected);
+            PurchasePrice result = PurchasePrice.createPurchase(expected);
 
             // then
             assertThat(result).hasFieldOrPropertyWithValue("amount", expected);
@@ -37,7 +37,7 @@ class PurchasePriceTest {
             long money = 0L;
 
             // when // then
-            assertThatThrownBy(() -> PurchasePrice.from(money))
+            assertThatThrownBy(() -> PurchasePrice.createPurchase(money))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(MONEY_LESS_THAN_ZERO.toString());
         }
@@ -49,7 +49,7 @@ class PurchasePriceTest {
             long money = 999L;
 
             // when // then
-            assertThatThrownBy(() -> PurchasePrice.from(money))
+            assertThatThrownBy(() -> PurchasePrice.createPurchase(money))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(MONEY_WITH_REMAINDER.toString());
         }
@@ -61,7 +61,7 @@ class PurchasePriceTest {
         // given
         long money = 2000L;
         long lottoPrice = 1000L;
-        PurchasePrice purchasePrice = PurchasePrice.from(money);
+        PurchasePrice purchasePrice = PurchasePrice.createPurchase(money);
         long expected = money / lottoPrice;
 
         // when
@@ -77,7 +77,7 @@ class PurchasePriceTest {
     void calculateRateOfReturn(long prizeSum, double expected) {
         //given
         long givenAmount = 10000L;
-        PurchasePrice purchasePrice = PurchasePrice.from(givenAmount);
+        PurchasePrice purchasePrice = PurchasePrice.createPurchase(givenAmount);
 
         //when
         double result = purchasePrice.calculateRateOfReturn(prizeSum);

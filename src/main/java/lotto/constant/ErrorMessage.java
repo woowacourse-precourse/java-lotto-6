@@ -17,8 +17,7 @@ public enum ErrorMessage {
     ),
     BONUS_NUMBER_DUPLICATED_WINNING_NUMBERS("보너스 번호가 당첨 번호들과 중복되었습니다."),
     OWNER_ALREADY_MATCH_WITH_WINNING_LOTTO("당첨결과를 중복으로 매기려 합니다."),
-    NOT_MATCHING_WITH_WINNING_LOTTO("당첨결과를 보지 않았습니다.")
-    ;
+    NOT_MATCHING_WITH_WINNING_LOTTO("당첨결과를 보지 않았습니다.");
 
     private final String message;
 

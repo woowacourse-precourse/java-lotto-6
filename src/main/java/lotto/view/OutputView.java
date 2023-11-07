@@ -31,7 +31,7 @@ public class OutputView {
         printSpace();
     }
 
-    public void printWinnerStatistics() {
+    public void printStartMatchingWinningLotto() {
         printSpace();
         printOutputText(WINNING_STATISTICS);
     }

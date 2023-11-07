@@ -16,7 +16,7 @@ public class LottoGameManager {
         this.winningLotto = winningLotto;
     }
 
-    public static LottoGameManager of(LottoOwner lottoOwner, WinningLotto winningLotto) {
+    public static LottoGameManager createGameManager(LottoOwner lottoOwner, WinningLotto winningLotto) {
         return new LottoGameManager(lottoOwner, winningLotto);
     }
 
@@ -28,7 +28,7 @@ public class LottoGameManager {
     }
 
     public WinningStatistics getWinningStatistics() {
-        if(!isEnd) {
+        if (!isEnd) {
             throw new IllegalStateException(NOT_MATCHING_WITH_WINNING_LOTTO.toString());
         }
         return lottoOwner.getWinningStatistics();

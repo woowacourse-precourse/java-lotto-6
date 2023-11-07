@@ -12,7 +12,7 @@ public class LottoResult {
         this.lottoResults = lottoResults;
     }
 
-    public static LottoResult from(Map<LottoRanking, Integer> lottoResults) {
+    public static LottoResult createLottoResult(Map<LottoRanking, Integer> lottoResults) {
         return new LottoResult(lottoResults);
     }
 
@@ -26,7 +26,7 @@ public class LottoResult {
         return new WinningStatistics(lottoResults);
     }
 
-    public long calculatePrizeSum() {
+    public long calculateWinningPrizeSum() {
         return lottoResults.keySet().stream()
                 .map(lottoRanking -> lottoRanking.getPrize() * lottoResults.get(lottoRanking))
                 .mapToLong(Long::longValue)

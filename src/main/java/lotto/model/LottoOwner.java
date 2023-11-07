@@ -17,7 +17,9 @@ public class LottoOwner {
         this.lottoResults = lottoResults;
     }
 
-    public static LottoOwner of(PurchasePrice purchasePrice, List<Lotto> lottos, LottoResult lottoResults) {
+    public static LottoOwner createLottoOwner(
+            PurchasePrice purchasePrice, List<Lotto> lottos, LottoResult lottoResults
+    ) {
         return new LottoOwner(purchasePrice, lottos, lottoResults);
     }
 
@@ -41,6 +43,6 @@ public class LottoOwner {
     }
 
     public RateOfReturn convertResultToRateOfReturn() {
-        return new RateOfReturn(purchasePrice.calculateRateOfReturn(lottoResults.calculatePrizeSum()));
+        return new RateOfReturn(purchasePrice.calculateRateOfReturn(lottoResults.calculateWinningPrizeSum()));
     }
 }

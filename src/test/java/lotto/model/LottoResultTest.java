@@ -23,7 +23,7 @@ class LottoResultTest {
         Map<LottoRanking, Integer> expected = createMap(0, 0, 0, 0, 0);
 
         // when
-        LottoResult result = LottoResult.from(expected);
+        LottoResult result = LottoResult.createLottoResult(expected);
 
         // then
         assertThat(result).hasFieldOrPropertyWithValue("lottoResults", expected);
@@ -34,7 +34,7 @@ class LottoResultTest {
     void addLottoResult() {
         // given
         Map<LottoRanking, Integer> expected = createMap(0, 0, 0, 0, 0);
-        LottoResult lottoResult = LottoResult.from(expected);
+        LottoResult lottoResult = LottoResult.createLottoResult(expected);
         expected.put(FIRST, expected.get(FIRST) + 1);
 
         // when
@@ -49,7 +49,7 @@ class LottoResultTest {
     void getWinnerStatistics() {
         // given
         Map<LottoRanking, Integer> given = createMap(0, 0, 0, 0, 0);
-        LottoResult lottoResult = LottoResult.from(given);
+        LottoResult lottoResult = LottoResult.createLottoResult(given);
         WinningStatistics expected = new WinningStatistics(given);
 
         // when
@@ -68,11 +68,11 @@ class LottoResultTest {
         int third = 3;
         int fourth = 4;
         int fifth = 5;
-        LottoResult lottoResult = LottoResult.from(createMap(first, second, third, fourth, fifth));
+        LottoResult lottoResult = LottoResult.createLottoResult(createMap(first, second, third, fourth, fifth));
         long expected = FIRST.getPrize() * first + SECOND.getPrize() * second + THIRD.getPrize() * third
                 + FOURTH.getPrize() * fourth + FIFTH.getPrize() * fifth;
         // when
-        long result = lottoResult.calculatePrizeSum();
+        long result = lottoResult.calculateWinningPrizeSum();
 
         // then
         assertThat(result).isEqualTo(expected);

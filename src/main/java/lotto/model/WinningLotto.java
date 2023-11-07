@@ -18,7 +18,7 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public static WinningLotto of(Lotto winningNumbers, int bonusNumber) {
+    public static WinningLotto createWinningLotto(Lotto winningNumbers, int bonusNumber) {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 

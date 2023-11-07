@@ -25,5 +25,9 @@ public class LottoAmountValidator {
         }
     }
 
-    
+    private void validateNatural(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NATURAL_NUMBER_ERROR);
+        }
+    }
 }

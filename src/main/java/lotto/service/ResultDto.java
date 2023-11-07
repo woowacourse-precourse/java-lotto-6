@@ -8,10 +8,14 @@ public class ResultDto {
 
     private final Map<LottoCriteria, Long> result;
     private final float returnRate;
-    
-    public ResultDto(LottoResult lottoResult) {
+
+    private ResultDto(LottoResult lottoResult) {
         this.result = lottoResult.getRankingResult();
         this.returnRate = lottoResult.getReturnRate();
+    }
+
+    public static ResultDto from(LottoResult lottoResult) {
+        return new ResultDto(lottoResult);
     }
 
     public final Map<LottoCriteria, Long> getResult() {

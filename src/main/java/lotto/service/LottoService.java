@@ -35,7 +35,7 @@ public class LottoService {
 
     public ResultDto getResult() {
         LottoResult lottoResult = new LottoResult(winningLotto, customer.getIssuedLottos());
-        ResultDto resultDto = new ResultDto(lottoResult);
+        ResultDto resultDto = ResultDto.from(lottoResult);
         return resultDto;
     }
 }

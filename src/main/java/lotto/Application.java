@@ -9,9 +9,11 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        LottoService lottoService = new LottoService(new LottoMachine(), new RandomNumberGenerator());
-        
-        LottoController lottoController = new LottoController(new InputView(), new OutputView(), lottoService);
+        LottoService lottoService =
+                new LottoService(new LottoMachine(), new RandomNumberGenerator());
+        LottoController lottoController =
+                new LottoController(new InputView(), new OutputView(), lottoService);
+
         lottoController.run();
     }
 }

@@ -11,6 +11,10 @@ public enum LottoPrize {
     FIFTH(3, false, 5_000),
     LOSING(0, false, 0);
 
+    private static final String MATCH_MESSAGE = "개 일치" ;
+    private static final String MATCH_BONUS_MESSAGE = ", 보너스 볼 일치";
+    private static final String PREFIX_BRACKET = " (";
+    private static final String POST_BRACKET = "원)";
     private final int matchCount;
     private final boolean hasBonus;
     private final int prizeMoney;
@@ -29,7 +33,7 @@ public enum LottoPrize {
         long count = getSameMatchCount(matchCount);
 
         if (count > 1) {
-            return getLottoPrizeWithoutBonus(matchCount, isBonus);
+            return getLottoPrizeWithBonus(matchCount, isBonus);
         }
 
         return getLottoPrizeWithoutBonus(matchCount);
@@ -50,7 +54,7 @@ public enum LottoPrize {
         return count;
     }
 
-    private static LottoPrize getLottoPrizeWithoutBonus(int matchCount, boolean isBonus) {
+    private static LottoPrize getLottoPrizeWithBonus(int matchCount, boolean isBonus) {
         return Arrays.stream(values())
                 .filter(lottoPrize -> lottoPrize.matchCount == matchCount)
                 .filter(lottoPrize -> lottoPrize.hasBonus == isBonus)
@@ -64,11 +68,11 @@ public enum LottoPrize {
                 .format(prizeMoney);
 
         if (!hasBonus) {
-            return matchCount + "개 일치 "
-                    + "(" + prizeMoneyWithDelimiter + "원)";
+            return matchCount + MATCH_MESSAGE
+                    + PREFIX_BRACKET + prizeMoneyWithDelimiter + POST_BRACKET;
         }
 
-        return matchCount + "개 일치, " + "보너스 볼 일치 "
-                + "(" + prizeMoneyWithDelimiter + "원)";
+        return matchCount + MATCH_MESSAGE + MATCH_BONUS_MESSAGE
+                + PREFIX_BRACKET + prizeMoneyWithDelimiter + POST_BRACKET;
     }
 }

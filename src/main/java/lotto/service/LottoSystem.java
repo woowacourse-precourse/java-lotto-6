@@ -1,6 +1,9 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.WinningResult;
+import lotto.model.Lotto;
+import lotto.model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +59,7 @@ public class LottoSystem {
         return false;
     }
 
-    public void giveWinningAccountToPlayer(WinningResult winningResult,Player player){
+    public void giveWinningAccountToPlayer(WinningResult winningResult, Player player){
         player.receiveWinningAccount(winningResult.getWinningPrice());
     }
 

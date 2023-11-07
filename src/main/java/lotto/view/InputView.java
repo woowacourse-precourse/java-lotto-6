@@ -13,7 +13,7 @@ public class InputView {
     public static Integer inputBuyMoney(){
         System.out.println(INPUT_LOTTO_BUY);
         String buyMoney = Console.readLine();
-        return converToInt(buyMoney);
+        return convertToInt(buyMoney);
     }
 
     public static List<Integer> inputLottoWinning(){
@@ -26,7 +26,7 @@ public class InputView {
     public static int inputLottoBonus(){
         System.out.println(INPUT_LOTTO_BONUS);
         String bonusString = Console.readLine();
-        return converToInt(bonusString);
+        return convertToInt(bonusString);
     }
 
     public static List<Integer> generateNumberList(String winningString){
@@ -34,12 +34,12 @@ public class InputView {
         List<Integer> winning = new ArrayList<>();
 
         for (int i = 0; i < result.length; i++) {
-            winning.add(converToInt(result[i]));
+            winning.add(convertToInt(result[i]));
         }
         return winning;
     }
 
-    private static int converToInt(String numString){
+    private static int convertToInt(String numString){
         try{
             return Integer.parseInt(numString);
         } catch (NumberFormatException e){

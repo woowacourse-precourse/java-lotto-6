@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class LottoSetTest {
-    @DisplayName("로또 set 생 테스트")
+    @DisplayName("로또 set 생성 테스트")
     @Test
     void generateLottoSetTest() {
         int quantity = 6;

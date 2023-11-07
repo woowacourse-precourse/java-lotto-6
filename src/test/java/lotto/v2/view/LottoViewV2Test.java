@@ -7,4 +7,17 @@ import org.mockito.MockitoAnnotations;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-함.
+class LottoViewV2Test {
+
+    @Mock
+    private Console console;
+
+    private LottoViewV2 lottoViewV2;
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        lottoViewV2 = new LottoViewV2(console);
+    }
+
+}

@@ -3,6 +3,7 @@ package lotto.util;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import lotto.ExceptionMessages;
 import lotto.model.number.LottoNumber;
 
 public class Validator {
@@ -11,7 +12,7 @@ public class Validator {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(String.valueOf(amount));
         if (!matcher.matches()) {
-            throw new IllegalArgumentException("[ERROR] 0이상의 정수를 입력해주세요.");
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_PURCHASE_AMOUNT_MESSAGE);
         }
     }
 
@@ -25,10 +26,10 @@ public class Validator {
      */
     public static void validateLottoNumbers(List<LottoNumber> numbers) {
         if (isLotteryNumberSizeValid(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_LOTTO_SIZE_MESSAGE);
         }
         if (isLottoNumberDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessages.DUPLICATE_LOTTO_MESSAGE);
         }
         numbers.forEach(number -> validateLottoNumber(number.getNumber()));
     }
@@ -42,7 +43,7 @@ public class Validator {
      */
     public static void validateLottoNumber(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessages.OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE);
         }
     }
 
@@ -54,7 +55,7 @@ public class Validator {
      */
     public static void validateMatchCount(int matchCount) {
         if (matchCount < 3 || matchCount > 6) {
-            throw new IllegalArgumentException("[ERROR] 3 미만, 6 초과의 숫자는 Prize가 될 수 없습니다.");
+            throw new IllegalArgumentException(ExceptionMessages.INVALID_MATCH_COUNT_MESSAGE);
         }
     }
 

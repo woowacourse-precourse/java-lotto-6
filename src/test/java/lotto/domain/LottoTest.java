@@ -16,7 +16,7 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.valueOf(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class).hasMessageContaining(ErrorMessages.OVER_MAX_SIZE_MESSAGE.getMessage());
     }
 
@@ -24,7 +24,7 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.valueOf(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.DUPLICATE_NUMBER_MESSAGE.getMessage());
     }
@@ -35,16 +35,16 @@ class LottoTest {
     @BeforeEach
     @Test
     void createLotto() {
-        lotto = new Lotto(List.of(1,2,3,4,5,6));
+        lotto = Lotto.valueOf(List.of(1,2,3,4,5,6));
     }
 
     @DisplayName("로또 번호의 숫자 범위에 1~45 이외의 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByInvalidRangeNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 6)))
+        assertThatThrownBy(() -> Lotto.valueOf(List.of(0, 2, 3, 4, 5, 6)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_NUMBER_RANGE_MESSAGE.getMessage());
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+        assertThatThrownBy(() -> Lotto.valueOf(List.of(1, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.INVALID_NUMBER_RANGE_MESSAGE.getMessage());
     }
@@ -53,7 +53,6 @@ class LottoTest {
     @Test
     void getLottoToString() {
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
-        assertThat(lotto.toHash()).contains("lotto.domain.Lotto@");
     }
 
     @DisplayName("로또 객체 가져오기")
@@ -67,7 +66,7 @@ class LottoTest {
     @DisplayName("다른 로또번호와 비교 로직 테스트")
     @Test
     public void countMatchedNumbersLogicTest() {
-        Lotto otherLotto = new Lotto("1,2,3,4,5,6");
+        Lotto otherLotto = Lotto.valueOf("1,2,3,4,5,6");
         int count = lotto.getLottoNumbers().stream()
                 .filter(otherLotto::contains)
                 .map(lottoNumber -> 1)
@@ -79,7 +78,7 @@ class LottoTest {
     @DisplayName("다른 로또번호와 구현 테스트")
     @Test
     public void countMatchedNumbers() {
-        Lotto winningLotto = new Lotto("1,2,3,4,5,6");
+        Lotto winningLotto = Lotto.valueOf("1,2,3,4,5,6");
         int count = lotto.countMatchedNumbers(winningLotto);
         assertThat(count).isEqualTo(6);
     }

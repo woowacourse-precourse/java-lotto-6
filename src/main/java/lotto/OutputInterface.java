@@ -19,15 +19,17 @@ public class OutputInterface {
 
     private NumberFormat numberFormat;
     private Output out;
+    private ReceiptRenderer receiptRenderer;
 
-    OutputInterface(Output out, NumberFormat numberFormat) {
+    OutputInterface(Output out, NumberFormat numberFormat, ReceiptRenderer receiptRenderer) {
         this.numberFormat = numberFormat;
         this.out = out;
+        this.receiptRenderer = receiptRenderer;
     }
 
     public void printReceipt(LotteryReceiptDto receipt) {
         out.println(QUANTITY_OUTPUT_TEXT_FORMAT.format(Long.toString(receipt.quantity())));
-        out.println(renderReceipt(receipt));
+        out.println(receiptRenderer.render(receipt));
     }
 
     public void printResults(List<LotteryResultDto> results, double earningRate) {
@@ -36,24 +38,6 @@ public class OutputInterface {
         out.println(renderLotteryResults(results));
         out.println(LOTTERY_EARNING_RATE_RESULT_TEXT.format(String.format("%.1f", earningRate)));
 
-    }
-
-    private String renderReceipt(LotteryReceiptDto receipt) {
-        StringBuilder builder = new StringBuilder();
-        for (LotteryDto lottery : receipt.lotteries()) {
-            builder.append(renderPurchasedLottery(lottery));
-        }
-        return builder.toString();
-    }
-
-    private String renderPurchasedLottery(LotteryDto lottery) {
-        String[] arguments = lottery.numbers()
-                .stream()
-                .sorted()
-                .map(number -> Integer.toString(number))
-                .toArray(String[]::new);
-
-        return LOTTO_NUMBERS_TEXT_FORMAT.format(arguments) + "\n";
     }
 
     private String renderLotteryResults(List<LotteryResultDto> results) {

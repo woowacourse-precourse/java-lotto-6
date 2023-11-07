@@ -1,65 +1,101 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
-import lotto.domain.PickLotto;
+import lotto.domain.Lottos;
 import lotto.domain.Player;
+import lotto.domain.WinningLotto;
+import lotto.validation.Validation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class LottoService {
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
-    private List<Lotto> lottos = new ArrayList<>();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final Lottos lottos;
+    private final Validation validation;
+    private Player player;
 
-    public Player createPlayer(){
-        int quantity = Integer.parseInt(inputView.enterMoney());
-        Player player = new Player(quantity);
-        return player;
+    public LottoService(InputView inputView, OutputView outputView, Validation validation, Lottos lottos) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.validation = validation;
+        this.lottos = lottos;
     }
 
-    public void createLotto(){
-        int quantity = createPlayer().getQuantity();
-
-        for(int i = 0 ; i<quantity; i++){
-            lottos.add(new Lotto(new PickLotto().getNumbers()));
+    public void createPlayer() {
+        try {
+            String quantity = inputView.enterMoney();
+            player = new Player(quantity);
+            createLotto(player);
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+            createPlayer();
         }
     }
 
-    public void printLottos(){
-        for(int i = 0 ; i< lottos.size(); i++){
-            List<Integer> list = lottos.get(i).getNumbers();
-            Collections.sort(list);
-            outputView.printLottos(list);
+    private void createLotto(Player player) {
+        for (int i = 0; i < player.getQuantity(); i++) {
+            lottos.pickLottos();
+        }
+        printCount(player);
+        printLottos(lottos);
+    }
+
+    private void printCount(Player player) {
+        outputView.printCount(player.getQuantity());
+    }
+
+    private void printLottos(Lottos lottos) {
+        for (int i = 0; i < lottos.getLotto().size(); i++) {
+            List<Integer> sortNum = new ArrayList<>(lottos.getLotto().get(i).getNumbers());
+            Collections.sort(sortNum);
+            outputView.printLottos(sortNum);
         }
     }
 
-    public String [] winningLotto(){
-        String [] lotto = inputView.enterWinningLotto().split(",");
-        return lotto;
-    }
+    public void createWinningLotto() {
+        try {
+            String[] lotto = inputView.enterWinningLotto().trim().split(",");
+            List<Integer> lottos = new ArrayList<>();
 
-    public int bonusNum(){
-        int bonusNum = Integer.parseInt(inputView.enterBonus());
-        return bonusNum;
-    }
-
-    public void correctCheck(){
-        String [] winningLotto = winningLotto();
-
-        for(int i = 0 ; i < lottos.size(); i++) {
-            int cnt = 0;
-            for (int k = 0; k < winningLotto.length; k++) {
-                if (lottos.get(i).getNumbers().contains(winningLotto[k]))
-                    cnt++;
+            for (String num : lotto) {
+                int winngNum = validation.checkWinningNum(num);
+                lottos.add(winngNum);
             }
-            outputView.printCount(cnt);
+
+            validation.totalWinngLottoCheck(lottos);
+
+            int bonusNum = createBonusNum(lottos);
+
+            createStatistic(new WinningLotto(lottos, bonusNum));
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+            createWinningLotto();
         }
     }
 
+    private int createBonusNum(List<Integer> lottos) {
+        try {
+            int bonusNum = validation.checkBonusNum(inputView.enterBonus());
+            validation.totalBonusNumCheck(lottos, bonusNum);
+            return bonusNum;
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+            return createBonusNum(lottos);
+        }
+    }
 
+    private void createStatistic(WinningLotto winningLotto) {
+        winningLotto.accordCheck(lottos, player);
+        accordStatistic(winningLotto);
+    }
+
+    private void accordStatistic(WinningLotto winningLotto) {
+        outputView.printResult(winningLotto);
+    }
+
+    public void totalPercent() {
+        outputView.printTotal(player);
+    }
 }
-

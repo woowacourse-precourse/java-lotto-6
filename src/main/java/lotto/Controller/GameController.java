@@ -4,10 +4,7 @@ import lotto.Lotto;
 import lotto.View.*;
 import lotto.Model.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class GameController {
 
@@ -17,10 +14,9 @@ public class GameController {
         output.printLotto(lottoTickets);
         List<Integer> winningNumbers = this.readWinningNumbers();
         int bonusNumber = this.readBonusNumber();
-
-        //Result result = lottoService.calculateResult(lottoTickets, winningNumbers, bonusNumber);
-
-        //Console.printResults(result);
+        Map<String, Integer> result = Result.calculateResults(lottoTickets, winningNumbers, bonusNumber);
+        double prifitRate = Result.resultsToProfitRate(result);
+        output.printResults(result, prifitRate);
     }
     private int readPurchaseAmount(){
         while (true) {

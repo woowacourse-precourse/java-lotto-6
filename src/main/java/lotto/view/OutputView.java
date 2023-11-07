@@ -12,10 +12,10 @@ public class OutputView {
     }
 
     public static void printBuyLottos(int count, String result) {
-        System.out.println();
         System.out.printf(NOTIFY_BUY_COUNT.getMessage(), count);
         System.out.println();
         System.out.println(result);
+        System.out.println();
     }
 
     public static void printErrorMessage(String message) {

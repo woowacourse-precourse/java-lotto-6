@@ -90,8 +90,4 @@ public class InputView {
     private BonusNumber convertInputToBonusNumber(String bonusNumber) {
         return new BonusNumber(bonusNumber);
     }
-
-    private void validateBonusNumber(String bonusNumber) {
-        inputValidator.validateBonusNumber(bonusNumber);
-    }
 }

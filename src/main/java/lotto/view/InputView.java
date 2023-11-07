@@ -17,4 +17,9 @@ public class InputView {
         List<String> winnerNumbers = StringUtils.splitString(winnerNumberInput);
         return StringUtils.convertToIntegerList(winnerNumbers);
     }
+
+    public int readBonusNumber() {
+        String bonusNumber = Console.readLine();
+        return StringUtils.stringToInt(bonusNumber);
+    }
 }

@@ -16,7 +16,7 @@ public class WinningNumber {
         int match = 0;
         boolean bonus = false;
         for (int i = 0; i < 6; i++) {
-            if (lottoNumbers.get(i) == numbers.get(i)) {
+            if (checkNumber(lottoNumbers.get(i))) {
                 match += 1;
             }
             if (lottoNumbers.get(i) == bonusNumber) {
@@ -24,6 +24,15 @@ public class WinningNumber {
             }
         }
         return LottoRank.whichRank(match, bonus);
+    }
+
+    public boolean checkNumber(int lottoNumber) {
+        for (int number : numbers) {
+            if (lottoNumber == number) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Integer> getNumbers() {

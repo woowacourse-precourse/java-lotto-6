@@ -41,15 +41,23 @@ public class UI {
     }
 
     private static void printLotto(Lotto lotto) {
+        List newNumbers = obtainSortedNumbers(lotto);
+        printLottoByArrayFormat(newNumbers);
+    }
+
+    private static List obtainSortedNumbers(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         List unmodifiableNumbers = Collections.unmodifiableList(numbers);
         List newNumbers = new ArrayList(unmodifiableNumbers);
         Collections.sort(newNumbers);
         newNumbers.sort(Comparator.naturalOrder());
+        return newNumbers;
+    }
 
+    private static void printLottoByArrayFormat(List numbers) {
         System.out.print("[");
         for (int i = 0; i < Lotto.SIZE; i++) {
-            System.out.print(newNumbers.get(i));
+            System.out.print(numbers.get(i));
             if (i < Lotto.SIZE - 1) {
                 System.out.print(", ");
             }

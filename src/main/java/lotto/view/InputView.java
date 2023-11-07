@@ -1,9 +1,5 @@
 package lotto.view;
 
-import lotto.Lotto;
-
-import java.util.List;
-import java.util.Scanner;
 import java.util.Scanner;
 
 public class InputView {

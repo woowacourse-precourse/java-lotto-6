@@ -1,9 +1,9 @@
 package lotto.domain;
 
 import static lotto.utils.constants.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
-import static lotto.utils.constants.ErrorMessageConstants.NUMBER_FORMAT_ERROR_MESSAGE;
 import static lotto.utils.constants.ErrorMessageConstants.NUMBER_RANGE_ERROR_MESSAGE;
 import static lotto.utils.constants.ErrorMessageConstants.NUMBER_UNIT_ERROR_MESSAGE;
+import static lotto.utils.constants.ErrorMessageConstants.PURCHASE_AMOUNT_FORMAT_ERROR_MESSAGE;
 import static lotto.utils.constants.LottoConstants.LOTTO_TICKET_PRICE;
 import static lotto.utils.constants.LottoConstants.MAXIMUM_PURCHASE_AMOUNT;
 import static lotto.utils.constants.LottoConstants.MINIMUM_PURCHASE_AMOUNT;
@@ -20,7 +20,7 @@ public class PurchaseAmountCalculator {
         try {
             return Integer.parseInt(inputValue);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + NUMBER_FORMAT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + PURCHASE_AMOUNT_FORMAT_ERROR_MESSAGE);
         }
     }
 

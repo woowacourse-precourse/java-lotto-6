@@ -1,9 +1,9 @@
 package lotto.utils;
 
+import static lotto.utils.Converter.stringToInt;
 import static lotto.utils.constants.ErrorMessageConstants.COMMA_POSITION_ERROR_MESSAGE;
 import static lotto.utils.constants.ErrorMessageConstants.ERROR_MESSAGE_HEAD;
-import static lotto.utils.constants.ErrorMessageConstants.NUMBER_FORMAT_ERROR_MESSAGE;
-import static lotto.utils.Converter.stringToInt;
+import static lotto.utils.constants.ErrorMessageConstants.WINNING_NUMBER_FORMAT_ERROR_MESSAGE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,7 @@ public class WinningNumbersValidator {
         try {
             stringToInt(numbers);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + NUMBER_FORMAT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + WINNING_NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 
@@ -41,7 +41,7 @@ public class WinningNumbersValidator {
         try {
             Integer.parseInt(inputBonusNumber);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD+NUMBER_FORMAT_ERROR_MESSAGE);
+            throw new IllegalArgumentException(ERROR_MESSAGE_HEAD + WINNING_NUMBER_FORMAT_ERROR_MESSAGE);
         }
     }
 

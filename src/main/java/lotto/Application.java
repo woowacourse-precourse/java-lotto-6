@@ -13,5 +13,6 @@ public class Application {
         new NonAskRequest(new FrontController(), Command.BUY_LOTTO).process();
         new NonAskRequest(new FrontController(), Command.OUTPUT_USER_LOTTO).process();
         new MultiAskRequest(new FrontController(), Command.INPUT_BONUS_NUMBER, Command.INPUT_WINNING_NUMBERS).process();
+        new NonAskRequest(new FrontController(), Command.OUTPUT_WINNING_RESULT).process();
     }
 }

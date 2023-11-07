@@ -11,4 +11,8 @@ public class WinningLottoRepository {
     public void save(WinningLotto winningLotto) {
         winningLottoDB.put(ID, winningLotto);
     }
+
+    public WinningLotto find() {
+        return winningLottoDB.get(ID);
+    }
 }

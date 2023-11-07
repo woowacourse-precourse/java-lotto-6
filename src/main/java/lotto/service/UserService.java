@@ -29,4 +29,12 @@ public class UserService {
         User user = userRepository.find();
         return user.getLottos();
     }
+
+    public User findUser() {
+        return userRepository.find();
+    }
+
+    public double calculateRateOfReturn(Money totalProfit) {
+        return userRepository.find().calculateRateOfReturn(totalProfit);
+    }
 }

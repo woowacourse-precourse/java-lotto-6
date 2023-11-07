@@ -24,4 +24,40 @@ public class Lotto {
                 .map(Object::toString)
                 .collect(Collectors.joining(", ", "[", "]"));
     }
+
+    public int matchCount(Lotto lotto) {
+        return (int) lotto.numbers.stream()
+                .filter(numbers::contains)
+                .count();
+    }
+
+    public boolean includes(int bonus) {
+        return this.numbers.contains(bonus);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        Lotto lotto = (Lotto) o;
+
+        if(numbers != null) {
+            return numbers.equals(lotto.numbers);
+        }
+        return lotto.numbers == null;
+    }
+
+    @Override
+    public int hashCode() {
+        if(numbers != null) {
+            numbers.hashCode();
+        }
+
+        return 0;
+    }
 }

@@ -2,7 +2,6 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
-import javax.sound.midi.Soundbank;
 import lotto.util.StringHandler;
 
 public class InputView {

@@ -43,6 +43,7 @@ public class LottoTicket {
     }
 
     public void displayTickets() {
+        System.out.println();
         System.out.println(quantity + "개를 구매했습니다.");
         for (List<Integer> ticket : tickets) {
             Collections.sort(ticket);

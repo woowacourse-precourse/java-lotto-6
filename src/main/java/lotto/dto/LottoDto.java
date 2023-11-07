@@ -19,7 +19,7 @@ public class LottoDto {
         }
 
         public static Information from(Lottos lottos) {
-            return new Information(lottos.getLottos());
+            return new Information(lottos.lottos());
         }
 
         public List<Lotto> getLottos() {

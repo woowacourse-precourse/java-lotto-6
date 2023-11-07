@@ -26,7 +26,12 @@ public class LottoHandler {
 
     public void run() {
         Payment payment = getPayment();
-        Lottos lottos = generateLottos(payment);
+        Lottos lottos = lottoManager.createLottos(payment);
+
+        LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
+
+        writer.write(lottos.size() + LottoGuideMessage.BOUGHT_LOG.getMessage());
+        writer.write(lottoViewResolver.parseLottosDetail(lottoInformation));
 
         WinningLotto winningLotto = generateWinningLotto();
         LottoResult lottoResult = lottoManager.calculateResult(lottos, winningLotto);

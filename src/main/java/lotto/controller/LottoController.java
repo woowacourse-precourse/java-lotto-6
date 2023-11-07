@@ -15,7 +15,17 @@ public class LottoController {
 
     private static EnumMap<Prize, Integer> prizeMap = new EnumMap<Prize, Integer>(Prize.class);
 
-    public PurchaseAmount payMoney() {
+    public void run() {
+        PurchaseAmount purchaseAmount = payMoney();
+        List<Lotto> issuedLottoList = issueLottoList(purchaseAmount);
+        WinningLotto winningLotto = selectWinningLottoNumbers();
+        compareWithWinningNum(issuedLottoList, winningLotto);
+        LottoResult();
+        calculate(purchaseAmount);
+
+    }
+
+    private PurchaseAmount payMoney() {
         int money = 0;
         try {
             money = InputView.inputPurchaseAmount();
@@ -26,7 +36,7 @@ public class LottoController {
         }
     }
 
-    public WinningLotto selectWinningLottoNumbers() {
+    private WinningLotto selectWinningLottoNumbers() {
         try {
             List<Integer> winningSixNumbers = InputView.inputWinnerNumbers();
             int winningBonusNumbers = InputView.inputBonusNumbers();
@@ -37,7 +47,7 @@ public class LottoController {
         }
     }
 
-    public List<Lotto> issueLottoList(PurchaseAmount purchaseAmount) {
+    private List<Lotto> issueLottoList(PurchaseAmount purchaseAmount) {
         List<Lotto> lottoList = new ArrayList<>();
         int lottoCount = purchaseAmount.getLottoCount();
         OutputView.outputLottoCount(lottoCount);
@@ -49,7 +59,7 @@ public class LottoController {
         return lottoList;
     }
 
-    public void compareWithWinningNum(List<Lotto> lottoList, WinningLotto winningLotto) {
+    private void compareWithWinningNum(List<Lotto> lottoList, WinningLotto winningLotto) {
         boolean isEqualWithBonus = false;
         initalizeEnumMap();
         for (int i=0; i<lottoList.size(); i++) {
@@ -72,11 +82,11 @@ public class LottoController {
         }
     }
 
-    public void LottoResult() {
+    private void LottoResult() {
         OutputView.outputWinningInfo(prizeMap);
     }
 
-    public void calculate(PurchaseAmount purchaseAmount) {
+    private void calculate(PurchaseAmount purchaseAmount) {
         int totalRevenue = 0;
         for (Prize prize : prizeMap.keySet()) {
             int winningCnt = prizeMap.get(prize);

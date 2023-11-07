@@ -255,9 +255,45 @@ class LottoServiceTest {
         lottoService.makeWinningResult(lottoList, answer, bonusNumber);
 
         // when
-        double result = lottoService.calculateProfitRate(7000);
+        double result = lottoService.calculateProfitRate();
 
         // then
         assertThat(result).isEqualTo(71.4);
+    }
+
+    @Test
+    @DisplayName("기능35 테스트 : winningResultMap에 담긴 결과를 원하는 형식으로 출력문을 만들어 반환한다.")
+    void makeWinningResultOutputStatementCorrectly() {
+        // given
+        int numberPurchase = 1000;
+        List<Lotto> lottoList = lottoService.generateLottoList(numberPurchase);
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        // when
+        String result = lottoService.makeWinningResultOutputStatement(lottoList, answer, bonusNumber);
+        int count = StringUtils.countOccurrences(result, "일치");
+
+        // then
+        assertThat(result).containsSubsequence(LottoService.WINNING_STATISTICS, "---", "총 수익률은", "%입니다.");
+        assertThat(count).isEqualTo(5 + 1);
+    }
+
+    @Test
+    @DisplayName("기능35 테스트 : 로또를 하나도 구매하지 않았을 때도 결과를 제대로 반환한다.")
+    void makeWinningResultOutputStatementCorrectlyWhenPurchaceZeroAmountLotto() {
+        // given
+        int numberPurchase = 0;
+        List<Lotto> lottoList = lottoService.generateLottoList(numberPurchase);
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+
+        // when
+        String result = lottoService.makeWinningResultOutputStatement(lottoList, answer, bonusNumber);
+        int count = StringUtils.countOccurrences(result, "일치");
+
+        // then
+        assertThat(result).containsSubsequence(LottoService.WINNING_STATISTICS, "---", "총 수익률은", "%입니다.");
+        assertThat(count).isEqualTo(5 + 1);
     }
 }

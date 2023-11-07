@@ -11,6 +11,7 @@ import java.util.List;
 public class OutputView {
 
     public void printResult(Integer lottoNum){
+        System.out.println();
         System.out.println(MessageFormat.format(Constant.LOTTO_AMOUNT, lottoNum));
     }
 
@@ -29,6 +30,11 @@ public class OutputView {
             }
             System.out.println(MessageFormat.format(Constant.WINNING_STATISTICS, w[i].getMatch(), w[i].getReward(), rankNum[i]));
         }
+    }
+    public void printResultTxt(){
+        System.out.println();
+        System.out.println(Constant.WINNING_STATISTICS_TXT);
+        System.out.println(Constant.LINE);
     }
 
     public void printRate(String num){

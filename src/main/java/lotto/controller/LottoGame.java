@@ -29,6 +29,7 @@ public class LottoGame {
         getWinningNumbers();
         getBonusNumber();
         calcWinning();
+        outputView.printResultTxt();
         outputView.printStatistics(result);
         printWinningStatistics();
     }

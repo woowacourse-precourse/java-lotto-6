@@ -12,11 +12,13 @@ public class InputView {
     }
 
     public String inputWinningNumber(){
+        System.out.println();
         System.out.println(Constant.GET_WINNING_NUMBER_TXT);
         return Console.readLine();
     }
 
     public String inputBonusNumber(){
+        System.out.println();
         System.out.println(Constant.GET_BONUS_NUMBER_TXT);
         return Console.readLine();
     }

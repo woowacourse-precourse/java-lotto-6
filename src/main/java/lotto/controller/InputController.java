@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Money;
+import lotto.model.WinningLotto;
 import lotto.view.Input;
 import lotto.view.Output;
 
@@ -27,12 +28,14 @@ public class InputController {
         }
     }
 
-    public static BonusNumber getBonusNumber() {
+    public static BonusNumber getBonusNumber(Lotto winningLotto) {
         try {
-            return new BonusNumber(Input.inputBonusNumberGuide());
+            BonusNumber bonusNumber = new BonusNumber(Input.inputBonusNumberGuide());
+            new WinningLotto(winningLotto, bonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             Output.print(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningLotto);
         }
     }
 }

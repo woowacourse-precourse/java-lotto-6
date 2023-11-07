@@ -1,12 +1,11 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.utils.Constants;
+
 import java.util.List;
 
 public class LotteryMachine {
-    private static final int MINIMUM = 1;
-    private static final int MAXIMUM = 45;
-    private static final int DRAW_COUNT = 6;
 
     private static LotteryMachine lotteryMachine;
 
@@ -21,6 +20,6 @@ public class LotteryMachine {
     }
 
     public List<Integer> draw(){
-        return Randoms.pickUniqueNumbersInRange(MINIMUM, MAXIMUM, DRAW_COUNT);
+        return Randoms.pickUniqueNumbersInRange(Constants.MINIMUM, Constants.MAXIMUM, Constants.DRAW_COUNT);
     }
 }

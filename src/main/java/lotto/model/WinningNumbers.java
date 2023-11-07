@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.utils.Constants;
 import lotto.utils.LottoExceptions;
 
 import java.util.*;
@@ -8,6 +9,8 @@ public class WinningNumbers{
 
     private final List<Integer> numbers;
     private int bonusNumber;
+
+    private static final int NON_EXSISTENCE_INDICATOR = -1;
 
     public WinningNumbers(String[] numbers) {
         List<Integer> validateNumbers = validateNumbers(numbers);
@@ -28,7 +31,7 @@ public class WinningNumbers{
 
     private void isInRange(List<Integer> numbers){
         numbers.forEach(num ->{
-            if (num > 45 || num < 1){
+            if (num > Constants.MAXIMUM || num < Constants.MINIMUM){
                 throw new IllegalArgumentException(LottoExceptions.NotInRangeError.getErrorMessage());
             }
         });
@@ -41,7 +44,7 @@ public class WinningNumbers{
         if (filteredNumbers.size() < numbers.length){
             throw new IllegalArgumentException(LottoExceptions.InputTypeError.getErrorMessage());
         }
-        if (filteredNumbers.size() < 6){
+        if (filteredNumbers.size() < Constants.DRAW_COUNT){
             throw new IllegalArgumentException(LottoExceptions.InvalidCountError.getErrorMessage());
         }
         List<Integer> finalNumbers = filteredNumbers.stream().map(num -> Integer.parseInt(num.trim())).toList();
@@ -69,7 +72,7 @@ public class WinningNumbers{
     public int compare(Lotto lotto){
         int matchCount = 0;
         for (int winningNum : numbers){
-            if (lotto.match(winningNum) > -1){
+            if (lotto.match(winningNum) > NON_EXSISTENCE_INDICATOR){
                 matchCount++;
             }
         }
@@ -77,7 +80,7 @@ public class WinningNumbers{
     }
 
     public boolean matchesBonus(Lotto lotto) {
-        if (lotto.match(bonusNumber) != -1){
+        if (lotto.match(bonusNumber) > NON_EXSISTENCE_INDICATOR){
             return true;
         }
         return false;

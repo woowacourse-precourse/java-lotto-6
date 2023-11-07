@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.User;
+import lotto.utils.Constants;
 import lotto.utils.Prizes;
 
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.HashMap;
 public class OutputView {
 
     public void printLotto(User user){
-        System.out.println((user.getPayed() / 1000) + "개를 구매했습니다.");
+        System.out.println((user.getPayed() / Constants.CURRENCY_UNITS) + "개를 구매했습니다.");
         for (Lotto lotto : user.getLottos()){
             System.out.println(lotto.printLotto());
         }

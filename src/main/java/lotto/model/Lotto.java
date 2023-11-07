@@ -1,9 +1,12 @@
 package lotto.model;
 
+import lotto.utils.LottoExceptions;
+
 import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
+    static private final int DRAW_COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -12,8 +15,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+        if (numbers.size() != DRAW_COUNT) {
+            throw new IllegalArgumentException(LottoExceptions.InvalidCountError.getErrorMessage());
         }
     }
 

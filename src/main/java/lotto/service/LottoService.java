@@ -4,6 +4,7 @@ import lotto.model.LotteryMachine;
 import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.model.WinningNumbers;
+import lotto.utils.Constants;
 import lotto.utils.LottoExceptions;
 import lotto.utils.Prizes;
 
@@ -19,7 +20,7 @@ public class LottoService {
 
     public void buyLotto(){
         List<Lotto> lottoDrawn = new ArrayList<>();
-        for (int i = 0; i < (user.getPayed() / 1000); i++){
+        for (int i = 0; i < (user.getPayed() / Constants.CURRENCY_UNITS); i++){
             Lotto lotto = new Lotto(lotteryMachine.draw());
             lottoDrawn.add(lotto);
         }
@@ -31,7 +32,7 @@ public class LottoService {
             throw new IllegalArgumentException(LottoExceptions.InputTypeError.getErrorMessage());
         }
         int payed = Integer.parseInt(money);
-        if (payed == 0 || payed % 1000 != 0){
+        if (payed == 0 || payed % Constants.CURRENCY_UNITS != 0){
             throw new IllegalArgumentException(LottoExceptions.CurrencyUnitError.getErrorMessage());
         }
         user.setPayed(payed);
@@ -55,11 +56,11 @@ public class LottoService {
     }
 
     public double calculatePercentage(HashMap<Prizes, Integer> matches){
-        int firstPrize = matches.getOrDefault(Prizes.First, 0) * 2000000000;
-        int secondPrize = matches.getOrDefault(Prizes.Second, 0) * 30000000;
-        int thirdPrize = matches.getOrDefault(Prizes.Third, 0) * 1500000;
-        int fourthPrize = matches.getOrDefault(Prizes.Fourth, 0) * 50000;
-        int fifthPrize = matches.getOrDefault(Prizes.Fifth, 0) * 5000;
+        int firstPrize = matches.getOrDefault(Prizes.First, 0) * Constants.FIRST_PRIZE;
+        int secondPrize = matches.getOrDefault(Prizes.Second, 0) * Constants.SECOND_PRIZE;
+        int thirdPrize = matches.getOrDefault(Prizes.Third, 0) * Constants.THIRD_PRIZE;
+        int fourthPrize = matches.getOrDefault(Prizes.Fourth, 0) * Constants.FOURTH_PRIZE;
+        int fifthPrize = matches.getOrDefault(Prizes.Fifth, 0) * Constants.FIFTH_PRIZE;
         return ((double)(firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize) / user.getPayed());
     }
 

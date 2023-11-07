@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static lotto.enums.Constants.LOTTO_NUMBER_COUNT;
 import static lotto.enums.ExceptionMessage.CONTAIN_DUPLICATE_DIGITS_EXCEPTION;

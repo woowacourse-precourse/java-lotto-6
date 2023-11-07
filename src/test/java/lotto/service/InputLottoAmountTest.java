@@ -66,4 +66,5 @@ class InputLottoAmountTest {
             InputLottoAmount.checkTicket(amount);
         }).doesNotThrowAnyException();
     }
+    
 }

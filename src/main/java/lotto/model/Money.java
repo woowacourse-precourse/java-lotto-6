@@ -13,7 +13,7 @@ public class Money {
         this.money = money;
     }
 
-    public int getNumberOfLottoPurchased() {
+    public int getNumberOfLotto() {
         return money / LottoConstants.LOTTO_PRICE_UNIT;
     }
 

@@ -24,8 +24,8 @@ public class ResultDetails {
                 .forEach((rank, count) -> resultDetails.put(rank, count.intValue()));
     }
 
-    public double calculateProfitRate(final int purchaseAmount) {
-        return (double) Rank.calculateTotalReward(resultDetails) / purchaseAmount * PERCENTAGE_FACTOR;
+    public double calculateProfitRate(final Money purchaseAmount) {
+        return (double) Rank.calculateTotalReward(resultDetails) / purchaseAmount.getMoney() * PERCENTAGE_FACTOR;
     }
 
     public int getWinnerCountByRank(final Rank rank) {

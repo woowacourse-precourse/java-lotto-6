@@ -23,19 +23,18 @@ public class LottoController {
     }
 
     public void play() {
-        Money money = generateValidMoney();
-        int numberOfLottoPurchased = money.getNumberOfLottoPurchased();
+        Money purchaseAmount = generateValidMoney();
 
-        LottoTicket lottoTicket = LottoTicket.create(numberOfLottoPurchased);
+        LottoTicket lottoTicket = LottoTicket.create(purchaseAmount);
 
-        outputView.printNumberOfLotto(numberOfLottoPurchased);
+        outputView.printNumberOfLotto(purchaseAmount.getNumberOfLotto());
         outputView.printLottoTicket(lottoTicket);
 
         resultDetails.updateResultDetails(lottoTicket, createValidWinningNumbers());
 
         outputView.printWinningStatisticsHeader();
         outputView.printWinningStatistics(resultDetails);
-        outputView.printProfitRate(resultDetails.calculateProfitRate(money.getMoney()));
+        outputView.printProfitRate(resultDetails.calculateProfitRate(purchaseAmount));
     }
 
     private Money generateValidMoney() {
@@ -44,7 +43,7 @@ public class LottoController {
                 outputView.printPurchaseAmountMessage();
                 return new Money(inputView.inputNumber());
             } catch (final IllegalArgumentException illegalArgumentException) {
-                outputView.printExceptionMessage(illegalArgumentException.getMessage());
+                outputView.printExceptionMessage(illegalArgumentException);
             }
         }
     }
@@ -57,7 +56,7 @@ public class LottoController {
                 BonusNumber bonusNumber = new BonusNumber(inputView.inputNumber());
                 return new WinningNumbers(winningNumbersData, bonusNumber);
             } catch (final IllegalArgumentException illegalArgumentException) {
-                outputView.printExceptionMessage(illegalArgumentException.getMessage());
+                outputView.printExceptionMessage(illegalArgumentException);
             }
         }
     }
@@ -69,7 +68,7 @@ public class LottoController {
                 List<Integer> winningNumbers = inputView.inputWinningNumbers();
                 return new WinningNumbersData(winningNumbers);
             } catch (final IllegalArgumentException illegalArgumentException) {
-                outputView.printExceptionMessage(illegalArgumentException.getMessage());
+                outputView.printExceptionMessage(illegalArgumentException);
             }
         }
     }

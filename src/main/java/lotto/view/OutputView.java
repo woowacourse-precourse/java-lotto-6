@@ -49,9 +49,9 @@ public class OutputView {
                 .forEach(rank -> System.out.printf(rank.getMessage(), resultDetails.getWinnerCountByRank(rank)));
     }
 
-    public void printExceptionMessage(final String exceptionMessage) {
-        System.out.println(exceptionMessage);
-    }
+    public void printExceptionMessage(final Exception exception) {
+        printEmptyLine();
+        System.out.println(exception.getMessage());    }
 
     public void printProfitRate(final double profitRate) {
         System.out.printf(PROFIT_RATE_MESSAGE, profitRate);

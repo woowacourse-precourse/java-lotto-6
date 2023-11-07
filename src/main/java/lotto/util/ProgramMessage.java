@@ -8,7 +8,7 @@ public enum ProgramMessage {
     WIN_RESULT_GUIDE_MESSAGE("\n당첨 통계\n---"),
     WIN_RESULT_WITHOUT_BONUS("%d개 일치 (%s원) - %d개\n"),
     WIN_RESULT_WITH_BONUS("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
-    PROFIT_RATE_MESSAGE("총 수익률은 %s%%입니다.");
+    PROFIT_RATE_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     String message;
 

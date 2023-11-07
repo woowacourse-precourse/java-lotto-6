@@ -81,7 +81,7 @@ public class Application {
 
         float yieldRate = ((float) totalPrize / purchaseAmount) * 100;
 
-        System.out.println(String.format("총 수익률은 %.1f입니다.", yieldRate));
+        System.out.println(String.format("총 수익률은 %.1f", yieldRate) + "%입니다.");
     }
 
     public static int getTotalPrize(final List<Integer> lottoMatchCounts) {

@@ -17,9 +17,23 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if (!validateDuplicate(numbers)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     // TODO: 추가 기능 구현
+    private boolean validateDuplicate(List<Integer> numbers) {
+        int inputLottoNumbersSize = numbers.size();
+        int distinctInputLottoNumbersSize = numbers
+                .stream()
+                .distinct()
+                .toList().size();
+
+        return inputLottoNumbersSize == distinctInputLottoNumbersSize;
+    }
+
     public int compareWithUserNumbers(final List<Integer> userNumbers, final int bonusNumber) {
         int matchCount = compareLottoWithUserNumbers(userNumbers);
 
@@ -64,7 +78,7 @@ public class Lotto {
     }
 
     public void printLottoNumbers() {
-        String joinLottoNumbers = String.join(",",
+        String joinLottoNumbers = String.join(", ",
                 this.numbers
                         .stream()
                         .map(num -> Integer.toString(num))

@@ -59,4 +59,8 @@ public class OutputView {
         System.out.print(String.format("%.1f", profit));
         System.out.println("%입니다.");
     }
+
+    public void printExceptionMessage(IllegalArgumentException exception) {
+        System.out.println(exception.getMessage());
+    }
 }

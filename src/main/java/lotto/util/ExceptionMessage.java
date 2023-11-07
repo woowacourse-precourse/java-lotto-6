@@ -7,10 +7,11 @@ public enum ExceptionMessage {
     INVALID_RANGE("로또의 숫자 범위는 1부터 45까지 입니다."),
     DUPLICATED("로또에 중복값이 존재합니다.");
 
+    public static final String BASE_MESSAGE = "[ERROR] %s";
     private String message;
 
     ExceptionMessage(String message) {
-        this.message = message;
+        this.message = String.format(BASE_MESSAGE, message);
     }
 
     public String getMessage() {

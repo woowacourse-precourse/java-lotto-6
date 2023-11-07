@@ -24,12 +24,30 @@ public class LottoController {
         outputView.printIssueCount(money);
         outputView.printPlayerLottos(playerLottos);
 
-        lotto = new Lotto(inputView.inputLottoNumbers());
-        bonus = new Bonus(inputView.inputBonusNumber());
+        createLotto();
+        createBonus();
 
         winningResult = new WinningResult(lotto, bonus, playerLottos);
 
         outputView.printWinningResult(winningResult);
         outputView.printProfit(money, winningResult.getTotalRevenue());
+    }
+
+    private void createBonus() {
+        try {
+            bonus = new Bonus(inputView.inputBonusNumber());
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            createBonus();
+        }
+    }
+
+    private void createLotto() {
+        try {
+            lotto = new Lotto(inputView.inputLottoNumbers());
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception);
+            createLotto();
+        }
     }
 }

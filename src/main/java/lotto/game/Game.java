@@ -20,6 +20,7 @@ public class Game {
 
     private int getUserPurchasePrice() {
         try {
+            Output.printPurchasePrice();
             final int count = Store.convertPriceToCount(Input.getPurchasePrice());
             Output.printPurchaseCount(count);
             return count;
@@ -32,7 +33,7 @@ public class Game {
     private Customer makeLottoResult() {
         try {
             final Lotto winningLotto = getUserLotto();
-            final int bonusBall = Input.getBonusNumber();
+            final int bonusBall = getBonusBall();
             return new Customer(winningLotto, bonusBall);
         } catch (IllegalArgumentException e) {
             Output.printErrorMessage(e.getMessage());
@@ -40,8 +41,19 @@ public class Game {
         }
     }
 
+    private int getBonusBall() {
+        try {
+            Output.printBonusNumberInput();
+            return Input.getBonusNumber();
+        } catch (IllegalArgumentException e) {
+            Output.printErrorMessage(e.getMessage());
+            return getBonusBall();
+        }
+    }
+
     private Lotto getUserLotto() {
         try {
+            Output.printUserNumberInput();
             final List<Integer> userLottoNumber = Input.getUserNumbers();
             return new Lotto(userLottoNumber);
         } catch (IllegalArgumentException e) {

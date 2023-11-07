@@ -15,14 +15,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Input {
-    private static final String PURCHASE_PRICE_INPUT = "구입금액을 입력해 주세요.";
-    private static final String USER_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
-    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     private static final String COMMA_SEPARATOR = ",";
     private static final int ZERO = 0;
 
     public static int getPurchasePrice() {
-        System.out.println(PURCHASE_PRICE_INPUT);
         String userInput = Console.readLine();
         return validPurchasePrice(userInput);
     }
@@ -44,19 +40,22 @@ public class Input {
     }
 
     private static void checkNaturalNumber(int price) {
-        if (price <= ZERO) {
+        if (isSmallerOrSameThan(price, ZERO)) {
             throw new IllegalArgumentException(INVALID_NATURAL_NUMBER_ERROR.getMessage());
         }
     }
 
     private static void checkPurchaseAmount(int price) {
-        if (price % LOTTO_PRICE_UNIT.getValue() != ZERO) {
+        if (!isDividedBy(price, LOTTO_PRICE_UNIT)) {
             throw new IllegalArgumentException(INVALID_PRICE_UNIT_ERROR.getMessage());
         }
     }
 
+    private static boolean isDividedBy(int number, int pivot) {
+        return number % pivot == ZERO;
+    }
+
     public static List<Integer> getUserNumbers() {
-        System.out.println(USER_NUMBER_INPUT);
         String userInput = Console.readLine();
         List<Integer> userNumbers = parseIntegers(userInput);
         validUserNumbers(userNumbers);
@@ -88,15 +87,29 @@ public class Input {
     }
 
     private static void checkInRange(int number) {
-        //  함스로 묶기
-        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+        if (isOutOfRange(number)) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_ERROR.getMessage());
         }
     }
 
+    private static boolean isOutOfRange(int number) {
+        return isSmallerThan(number, LOTTO_MIN_NUMBER) || isBiggerThan(number, LOTTO_MAX_NUMBER);
+    }
+
+    private static boolean isBiggerThan(int number, int pivot) {
+        return number > pivot;
+    }
+
+    private static boolean isSmallerThan(int number, int pivot) {
+        return number < pivot;
+    }
+
+    private static boolean isSmallerOrSameThan(int number, int pivot) {
+        return number <= pivot;
+    }
+
+
     public static int getBonusNumber() {
-        System.out.println();
-        System.out.println(BONUS_NUMBER_INPUT);
         String userInput = Console.readLine();
         return validBonusNumber(userInput);
     }

@@ -8,7 +8,10 @@ import lotto.domain.LottoRank;
 import lotto.domain.Score;
 
 public class Output {
+    private static final String PURCHASE_PRICE_INPUT = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_COUNT_COMMAND = "개를 구매했습니다.";
+    private static final String USER_NUMBER_INPUT = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT = "보너스 번호를 입력해 주세요.";
     private static final String OPEN_BRACKET = "[";
     private static final String CLOSE_BRACKET = "]";
     private static final String COMMA_DELIMITER = ", ";
@@ -24,8 +27,16 @@ public class Output {
     private static final int DEFAULT_SCORE = 0;
     private static final String ERROR_PREFIX = "[ERROR] ";
 
+    public static void printPurchasePrice() {
+        System.out.println(PURCHASE_PRICE_INPUT);
+    }
+
     public static void printPurchaseCount(int count) {
         System.out.println(NEXT_LINE + count + PURCHASE_COUNT_COMMAND);
+    }
+
+    public static void printUserNumberInput() {
+        System.out.println(USER_NUMBER_INPUT);
     }
 
     public static void printLottoBundle(LottoBundle lottoBundle) {
@@ -67,6 +78,11 @@ public class Output {
                 lottoRank.getOrDefault(LottoRank.SECOND_PRIZE, DEFAULT_SCORE)));
         System.out.println(
                 String.format(LOTTO_RESULT_FIRST_PRIZE, lottoRank.getOrDefault(LottoRank.FIRST_PRIZE, DEFAULT_SCORE)));
+    }
+
+    public static void printBonusNumberInput() {
+        System.out.println();
+        System.out.println(BONUS_NUMBER_INPUT);
     }
 
     public static void printErrorMessage(String errorMessage) {

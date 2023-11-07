@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -49,5 +50,21 @@ class LottosTest {
         // then
         assertThat(lottosAmount)
                 .isEqualTo(3);
+    }
+
+    
+    @DisplayName("[SUCCESS]당첨 번호와 보너스 번호로 각 로또의 등수를 계산한다.")
+    @Test
+    void checkCalculatedLottoResult() {
+        // given
+        Lottos lottos = new Lottos(lotto);
+
+        // when
+        WinningNumber winningNumber = new WinningNumber(List.of(43, 21, 23, 1, 2, 3));
+        BonusNumber bonusNumber = new BonusNumber(winningNumber, 10);
+
+        // then
+        assertThat(lottos.calculateLottoResult(winningNumber, bonusNumber))
+                .isEqualTo(Arrays.asList(LottoRank.FIFTH,LottoRank.FAIL,LottoRank.FAIL));
     }
 }

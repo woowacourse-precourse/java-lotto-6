@@ -17,27 +17,56 @@ import static lotto.constants.Lotto.*;
 
 public class LottoGame {
 
+    private int purchasePrice;
     private List<Lotto> lotteries = new ArrayList<>();
+    private Jackpot jackpot;
     private LottoResult result;
-    private final int purchasePrice;
-    private final Jackpot jackpot;
     private final InputConverter inputConverter = new InputConverter();
+    private Lotto lotto;
+    private int bonusNumber;
 
     public LottoGame() {
-        purchasePrice = inputConverter.toPurchasePrice(InputView.purchasePrice());
+        buyLotto();
 
-        int ticketQuantity = purchasePrice / COST.getValue();
+        int ticketQuantity = calculateTicketQuantity();
         generateLotteries(ticketQuantity);
         OutputView.purchaseQuantity(ticketQuantity);
         OutputView.lotteries(lotteries);
 
-        Lotto lotto = inputConverter.toLotto(InputView.lottoNumber());
-        int bonusNumber = Integer.parseInt(InputView.bonusNumber());
+        createJackpotLotto();
+        createJackpotBonusNumber();
         jackpot = new Jackpot(lotto, bonusNumber);
     }
 
+    private void createJackpotBonusNumber() {
+        try {
+            bonusNumber = Integer.parseInt(InputView.bonusNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createJackpotBonusNumber();
+        }
+    }
+
+    private void createJackpotLotto() {
+        try {
+            lotto = inputConverter.toLotto(InputView.lottoNumber());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            createJackpotLotto();
+        }
+    }
+
+    private void buyLotto() {
+        try {
+            purchasePrice = inputConverter.toPurchasePrice(InputView.purchasePrice());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            buyLotto();
+        }
+
+    }
+
     public void start() {
-        int quantity = calculateTicketQuantity();
         generateResult();
         OutputView.lottoResult(result);
         OutputView.profitRate(ProfitRateCalculator.execute(result, purchasePrice));

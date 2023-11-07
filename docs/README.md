@@ -14,6 +14,7 @@
 <view 패키지>
 - 출력 클래스 (static)
 - 입력 클래스 (static)
+- 출력용 enum 
 
 <controller 패키지>
 - 게임 컨트롤러 클래스

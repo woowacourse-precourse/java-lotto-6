@@ -1,6 +1,10 @@
 package view;
 
+import java.util.List;
+import lotto.Lotto;
 import message.InputMessage;
+import message.OutputMessage;
+import message.Symbol;
 
 public class OutputView {
 
@@ -10,5 +14,16 @@ public class OutputView {
 
     public static void printErrorMessage(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public static void printPurchasedLotteryNumbers(List<Lotto> lotteries) {
+        System.out.println();
+        StringBuilder message = new StringBuilder();
+        message.append(lotteries.size()).append(OutputMessage.PURCHASE_FINISHED_MESSAGE.getMessage())
+                .append(Symbol.NEXT_LINE.getSymbol());
+        for (Lotto lottery : lotteries) {
+            message.append(lottery.toString()).append(Symbol.NEXT_LINE.getSymbol());
+        }
+        System.out.println(message);
     }
 }

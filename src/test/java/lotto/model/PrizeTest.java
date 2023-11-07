@@ -43,4 +43,11 @@ public class PrizeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 1~45사이의 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void correctRangeOfBonusNumber() {
+        assertThatThrownBy(() -> new PrizeNumberValidator(List.of(1, 2, 3, 4, 5, 6), 99))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    
 }

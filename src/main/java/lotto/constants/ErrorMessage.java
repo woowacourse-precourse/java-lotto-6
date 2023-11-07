@@ -12,7 +12,9 @@ public enum ErrorMessage {
     LOTTO_NUMBER_NOT_UNIQUE("[ERROR] 중복된 숫자는 불가능합니다."),
     LOTTO_NUMBER_NOT_ASCENDING("[ERROR] 오름차순으로 정렬되어야 합니다."),
 
-    WINNING_NUMBER_WRONG_SEPARATOR("[ERROR] 쉼표(,)를 기준으로 구분합니다.");
+    WINNING_NUMBER_WRONG_SEPARATOR("[ERROR] 쉼표(,)를 기준으로 구분합니다."),
+
+    BONUS_NUMBER_NOT_DIGIT("[ERROR] 숫자를 입력해 주세요.");
 
     private String message;
 

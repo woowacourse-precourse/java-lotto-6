@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
@@ -21,6 +22,19 @@ public class LottoGameController {
     public void run() {
         purchaseLotto();
         Lotto winningNumbers = setWinningNumbers();
+        BonusNumber bonusNumber = setBonusNumber(winningNumbers);
+    }
+
+    private BonusNumber setBonusNumber(Lotto winningNumbers) {
+        try {
+            outputView.printInputBonusNumber();
+            String inputBonusNumber = inputView.inputBonusNumber();
+            return new BonusNumber(inputBonusNumber, winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return setBonusNumber(winningNumbers);
     }
 
     private Lotto setWinningNumbers() {

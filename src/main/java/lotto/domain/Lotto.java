@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.constants.ErrorMessage;
 
@@ -58,6 +59,10 @@ public class Lotto {
             }
         }
         return true;
+    }
+
+    public List<Integer> getNumbers() {
+        return new ArrayList<>(numbers);
     }
 
     @Override

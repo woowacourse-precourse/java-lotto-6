@@ -20,7 +20,7 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
     @MethodSource("provideNotSixDigitsLottos")
     void createLottoByOverSize(List<Integer> numbers) {
-        assertThatThrownBy(() -> Lotto.validate(numbers))
+        assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_IS_NOT_SIX_DIGITS.getMessage());
     }
@@ -29,7 +29,7 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @MethodSource("provideDuplicatedLottos")
     void createLottoByDuplicatedNumber(List<Integer> numbers) {
-        assertThatThrownBy(() -> Lotto.validate(numbers))
+        assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_IS_DUPLICATED.getMessage());
     }
@@ -37,7 +37,7 @@ class LottoTest {
     @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
     @Test
     void createLottoByNumberNotInCorrectRange() {
-        assertThatThrownBy(() -> Lotto.validate(List.of(0, -6, -14, 60, 97, 100)))
+        assertThatThrownBy(() -> new Lotto(List.of(0, 2, 3, 4, 5, 46)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(LOTTO_NUMBER_IS_NOT_IN_RANGE.getMessage());
     }

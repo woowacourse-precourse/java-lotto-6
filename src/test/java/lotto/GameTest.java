@@ -66,7 +66,7 @@ public class GameTest {
         assertArrayEquals(new int[]{5, 1}, result2);
 
         // 테스트 케이스 3: 3개 일치
-        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 7, 8, 9));
+        Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10));
         int[] result3 = game.checkOneLotto(lotto3, winningNumbers, bonusNumber);
         assertArrayEquals(new int[]{3, 0}, result3);
 

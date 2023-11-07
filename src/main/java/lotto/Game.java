@@ -24,7 +24,7 @@ public class Game {
     public int[] checkOneLotto(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
         int winningNumberMatchCount = 0;
         int bonusNumberMatchCount = 0;
-        int[] result = {winningNumberMatchCount, bonusNumberMatchCount};
+        int[] result = new int[2];
 
         List<Integer> lottoNumbers = lotto.getNumbers();
 
@@ -34,6 +34,9 @@ public class Game {
             if (lottoNumbers.get(index) == bonusNumber)
                 bonusNumberMatchCount++;
         }
+        result[0] = winningNumberMatchCount;
+        result[1] = bonusNumberMatchCount;
+
         return result;
     }
 

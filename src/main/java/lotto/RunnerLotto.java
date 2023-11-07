@@ -19,7 +19,7 @@ public class RunnerLotto {
         LottoInit lottoInit = ReceiveInitial();
         List<Lotto> allOfLottoPapers = makeAllLottoPaper(lottoInit.numberOfLotto);
         WinningNumberSet winningNumberSets = makeWinningNumber();
-        PrintResultSet resultSets = calculateResult(winningNumberSets, allOfLottoPapers);
+        PrinterResultSet resultSets = calculateResult(winningNumberSets, allOfLottoPapers);
         printResult(resultSets, lottoInit);
     }
 
@@ -40,7 +40,7 @@ public class RunnerLotto {
     private static LottoInit ReceiveInitial() {
         LottoInit lottoInit = null;
         try {
-            System.out.println("구입금액을 입력해 주세요");
+            System.out.println("구입금액을 입력해 주세요.");
             int purchaseAmount = Integer.parseInt(Console.readLine());
             int numberOfLotto = purchaseAmount / 1000;
             lottoInit = new LottoInit(purchaseAmount, numberOfLotto);
@@ -72,29 +72,29 @@ public class RunnerLotto {
         return new WinningNumberSet(winningNumbers, bonusNumber);
     }
 
-    public static PrintResultSet calculateResult(WinningNumberSet winningNumberSets, List<Lotto> allOfLottoPapers) {
-        PrintResultSet printResultSet = new PrintResultSet();
+    public static PrinterResultSet calculateResult(WinningNumberSet winningNumberSets, List<Lotto> allOfLottoPapers) {
+        PrinterResultSet printerResultSet = new PrinterResultSet();
 
         for (int checkLottoNum = 0; checkLottoNum < allOfLottoPapers.size(); checkLottoNum++) {
             Lotto lotto = allOfLottoPapers.get(checkLottoNum);
             Score score = lotto.compareWinningNumbers(winningNumberSets);
-            printResultSet.checkMatchThree(score.getCountMatch());
-            printResultSet.checkMatchFour(score.getCountMatch());
-            printResultSet.checkMatchFive(score);
-            printResultSet.checkMatchFivePlus(score);
-            printResultSet.checkMatchSix(score.getCountMatch());
+            printerResultSet.checkMatchThree(score.getCountMatch());
+            printerResultSet.checkMatchFour(score.getCountMatch());
+            printerResultSet.checkMatchFive(score);
+            printerResultSet.checkMatchFivePlus(score);
+            printerResultSet.checkMatchSix(score.getCountMatch());
         }
-        return printResultSet;
+        return printerResultSet;
     }
 
-    public static void printResult(PrintResultSet printResultSet, LottoInit lottoInit) {
-        double earningRate = (double) printResultSet.getProfitSum() * 100 / lottoInit.purchaseAmount;
+    public static void printResult(PrinterResultSet printerResultSet, LottoInit lottoInit) {
+        double earningRate = (double) printerResultSet.getProfitSum() * 100 / lottoInit.purchaseAmount;
         System.out.println("\n당첨 통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + printResultSet.getPrintThree() + "개");
-        System.out.println("4개 일치 (50,000원) - " + printResultSet.getPrintFour() + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + printResultSet.getPrintFive() + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + printResultSet.getPrintFivePlusBonus() + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + printResultSet.getPrintSix() + "개");
+        System.out.println("3개 일치 (5,000원) - " + printerResultSet.getPrintThree() + "개");
+        System.out.println("4개 일치 (50,000원) - " + printerResultSet.getPrintFour() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + printerResultSet.getPrintFive() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + printerResultSet.getPrintFivePlusBonus() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + printerResultSet.getPrintSix() + "개");
         System.out.print("총 수익률은 ");
         System.out.print(String.format("%.1f", earningRate));
         System.out.print("%입니다.");

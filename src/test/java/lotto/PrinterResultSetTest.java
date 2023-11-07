@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PrintResultSetTest {
+class PrinterResultSetTest {
     @DisplayName("일치하는 개수에 따라 동일한 print숫자 변수 값이 +1 업데이트 되어야 한다.")
     @Test
     void checkUpdatePrintNumber() {
@@ -13,7 +13,7 @@ class PrintResultSetTest {
         int expectedPrintThree = 1;
         int expectedPrintFive = 1;
         int expectedPrintFivePlus = 1;
-        PrintResultSet testResultSet = new PrintResultSet();
+        PrinterResultSet testResultSet = new PrinterResultSet();
         Score testCountMatchFive = new Score(5, false);
         Score testCountMatchFivePlus = new Score(5, true);
 

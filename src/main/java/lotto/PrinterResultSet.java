@@ -1,6 +1,6 @@
 package lotto;
 
-final class PrintResultSet {
+final class PrinterResultSet {
     private int printThree;
     private int printFour;
     private int printFive;
@@ -8,7 +8,7 @@ final class PrintResultSet {
     private int printSix;
     private int profitSum;
 
-    public PrintResultSet() {
+    public PrinterResultSet() {
         this.printThree = 0;
         this.printFour = 0;
         this.printFive = 0;

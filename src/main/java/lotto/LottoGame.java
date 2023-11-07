@@ -16,5 +16,8 @@ public class LottoGame {
         int bonusNumber = InputHandler.getUserInputBonus();
 
         Bonus bonus = new Bonus(bonusNumber, lotto);
+
+        LottoWinningRecord lottoWinningRecord = new LottoWinningRecord(lottoNumbers, bonusNumber);
+        lottoWinningRecord.calculateAndPrintStatistics(lottoTicket.getTickets(), amount);
     }
 }

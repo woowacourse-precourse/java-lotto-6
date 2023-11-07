@@ -10,6 +10,10 @@ public class UserMoney {
         this.money = money;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
     public static UserMoney createMoney(int money) {
         try {
             validate(money);

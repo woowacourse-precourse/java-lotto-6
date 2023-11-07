@@ -12,13 +12,14 @@ public class LottoTicketPurchase {
     public int getPurchaseAmount() {
         while (true) {
             String purchaseAmountString = receivePurchaseAmountString();
-            try {
-                return validateAndConverter(purchaseAmountString);
-            } catch (IllegalArgumentException error) {
+            final String REGEX = "[0-9]+";
+
+            if (purchaseAmountString.matches(REGEX)) {
+                return converter.stringToInteger(purchaseAmountString);
+            }
                 System.out.println(NOT_NUMBER);
             }
         }
-    }
 
     private String receivePurchaseAmountString() {
         printPurchaseAmountRequestMessage();
@@ -28,12 +29,6 @@ public class LottoTicketPurchase {
     private void printPurchaseAmountRequestMessage() {
         System.out.println(PURCHASE_AMOUNT_REQUEST_MESSAGE);
     }
-
-    private int validateAndConverter(String purchaseAmountString) {
-        try {
-            return converter.stringToInteger(purchaseAmountString);
-        } catch (NumberFormatException error) {
-            throw new IllegalArgumentException();
-        }
-    }
 }
+
+

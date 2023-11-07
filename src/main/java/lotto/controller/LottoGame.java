@@ -1,7 +1,6 @@
 package lotto.controller;
 
 
-import lotto.domain.Calculator;
 import lotto.domain.Evaluator;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
@@ -13,30 +12,49 @@ import lotto.view.ConsoleInput;
 import lotto.view.ConsoleOutput;
 
 public class LottoGame {
+
+    private static final Integer LOTTO_PRICE = 1000;
     private static final Integer MAXIMUM_LOTTO_NUMBER = 45;
     private static final Integer MINIMUM_LOTTO_NUMBER = 1;
 
-    public static void run() {
-        Money amount = getLottoAmount();
-        Integer numberOfLotto = Calculator.getNumberOfLotto(amount.getMoney());
 
-        LottoTicket lottoTicket = LottoFactory.makeNewLottoTicket(numberOfLotto);
+    public static void run() {
+
+        Money purchaseAmount = getLottoAmountFromUser();
+
+        LottoTicket lottoTicket = generateLottoTickets(purchaseAmount);
         ConsoleOutput.printLottoTickets(lottoTicket);
 
-        Lotto winningLotto = getLotto();
-        Integer bonusNumber = getLottoBonusNumber();
 
-        Evaluator evaluator = new Evaluator(winningLotto, bonusNumber);
-        evaluator.judgeLottoTicket(lottoTicket);
-        Prize result = evaluator.getResult();
+        Lotto winningLotto = getLottoNumbersFromUser();
+        Integer bonusNumber = getLottoBonusNumberFromUser();
 
+        Prize result = calculateLottoPrizes(lottoTicket, winningLotto, bonusNumber);
         ConsoleOutput.printLottoPrizeResult(result);
-        Double earningRate = Calculator.getEarningRate(amount.getMoney(), result.getTotalPrizeAmount());
 
+
+        Double earningRate = ((double) result.getTotalPrizeAmount() / purchaseAmount.getMoney());
         ConsoleOutput.printLottoPrizeRateResult(earningRate);
     }
 
-    private static Money getLottoAmount() {
+
+    private static LottoTicket generateLottoTickets(Money purchaseAmount) {
+
+        Integer numberOfLotto = purchaseAmount.getMoney() / LOTTO_PRICE;
+        LottoTicket lottoTicket = LottoFactory.makeNewLottoTicket(numberOfLotto);
+
+        return lottoTicket;
+    }
+
+    private static Prize calculateLottoPrizes(LottoTicket lottoTicket, Lotto winningLotto, Integer bonusNumber) {
+
+        Evaluator evaluator = new Evaluator(winningLotto, bonusNumber);
+        evaluator.judgeLottoTicket(lottoTicket);
+
+        return evaluator.getResult();
+    }
+
+    private static Money getLottoAmountFromUser() {
         while (true) {
             try {
                 ConsoleOutput.askLottoAmount();
@@ -49,7 +67,7 @@ public class LottoGame {
         }
     }
 
-    private static Lotto getLotto() {
+    private static Lotto getLottoNumbersFromUser() {
         while (true) {
             try {
                 ConsoleOutput.askWinningLottoNumbers();
@@ -61,7 +79,7 @@ public class LottoGame {
         }
     }
 
-    private static Integer getLottoBonusNumber() {
+    private static Integer getLottoBonusNumberFromUser() {
         while (true) {
             try {
                 ConsoleOutput.askLottoBonusNumber();

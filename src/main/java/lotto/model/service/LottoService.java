@@ -22,7 +22,7 @@ public class LottoService {
     }
 
     public List<Integer> pickLottoNumbers() {
-        List<Integer> pickUniqueNumbersInRange = pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> pickUniqueNumbersInRange = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(pickUniqueNumbersInRange);
 
         return pickUniqueNumbersInRange;

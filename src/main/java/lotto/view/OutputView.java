@@ -11,11 +11,11 @@ public class OutputView {
     }
 
     public void printLottoHistory(String history) {
-        System.out.print(history);
+        System.out.println(history);
     }
 
     public void printWinningStatistics(String lottoResult) {
-        System.out.println(WINNING_STATISTICS + lottoResult);
+        System.out.print(WINNING_STATISTICS + lottoResult);
     }
 
     public void printRateOfReturn(String rate) {

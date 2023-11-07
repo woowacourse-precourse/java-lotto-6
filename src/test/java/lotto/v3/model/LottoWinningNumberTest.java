@@ -39,4 +39,12 @@ class LottoWinningNumberTest {
                 .hasMessageContaining("[ERROR] 당첨 번호를 입력해야 합니다.");
     }
 
+    @Test
+    @DisplayName("당첨 번호가 6개가 아니면 예외를 발생시킨다")
+    void throwExceptionIfNumbersSizeIsNotSix() {
+        assertThatThrownBy(() -> new LottoWinningNumber(Arrays.asList(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 6개여야 합니다.");
+    }
+
 }

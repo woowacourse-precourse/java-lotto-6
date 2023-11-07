@@ -7,6 +7,9 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoProfitService {
+    private static final double PERCENTAGE = 100.0;
+    private static final double ROUNDING_FACTOR = 10.0;
+
     private static final LottoProfitService instance = new LottoProfitService();
 
     private LottoProfitService() {}
@@ -19,8 +22,8 @@ public class LottoProfitService {
         int purchaseAmount = calculatePurchaseAmount(lottoCount);
         long totalWinningAmount = calculateWinningAmount(winningRankingCountMap);
 
-        double profit = (double) (totalWinningAmount) / purchaseAmount * 100.0;
-        return Math.round(profit * 10.0) / 10.0;
+        double profit = (double) (totalWinningAmount) / purchaseAmount * PERCENTAGE;
+        return Math.round(profit * ROUNDING_FACTOR) / ROUNDING_FACTOR;
     }
 
     private int calculatePurchaseAmount(int lottoCount) {

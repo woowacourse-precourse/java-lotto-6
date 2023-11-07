@@ -10,7 +10,6 @@ import static lotto.util.ErrorMessage.INVALID_SIZE;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public class Lotto {

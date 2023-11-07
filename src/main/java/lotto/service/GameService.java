@@ -2,11 +2,11 @@ package lotto.service;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.BonusNumber;
 import lotto.domain.LotteryOffice;
 import lotto.domain.LottoStore;
-import lotto.domain.YieldCalculator;
 import lotto.domain.Rankings;
+import lotto.domain.WinningNumbers;
+import lotto.domain.YieldCalculator;
 import lotto.domain.lotto.Lotto;
 
 public class GameService {
@@ -28,11 +28,11 @@ public class GameService {
         return new GameService(lottoStore.getIssuedLotto(), userPurchaseAmount);
     }
 
-    public void storeUserInput(Lotto winningTicket, BonusNumber bonusNumber) {
-        this.lotteryOffice = new LotteryOffice(issuedLotto, winningTicket, bonusNumber);
+    public void storeUserInput(WinningNumbers winningNumbers) {
+        this.lotteryOffice = new LotteryOffice(issuedLotto, winningNumbers);
     }
 
-    public Map<Rankings,Integer> getStatistics() {
+    public Map<Rankings, Integer> getStatistics() {
         return lotteryOffice.getWinningsAndCounts();
     }
 
@@ -41,7 +41,6 @@ public class GameService {
                 lotteryOffice.getWinningsAndCounts(), userPurchaseAmount);
         return yieldCalculator.getYield();
     }
-
 
     public List<Lotto> getIssuedLotto() {
         return issuedLotto;

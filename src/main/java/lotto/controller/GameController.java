@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.BonusNumber;
 import lotto.domain.Rankings;
+import lotto.domain.WinningNumbers;
 import lotto.domain.lotto.Lotto;
 import lotto.service.GameService;
 import lotto.view.InputView;
@@ -35,8 +35,8 @@ public class GameController {
 
     private void receiveUserNumbers() {
         Lotto winningTicket = getWinningTicket();
-        BonusNumber bonusNumber = askBonusNumber(winningTicket);
-        gameService.storeUserInput(winningTicket, bonusNumber);
+        WinningNumbers winningNumbers = askBonusNumber(winningTicket);
+        gameService.storeUserInput(winningNumbers);
     }
 
     private void decideOutcome() {
@@ -56,10 +56,11 @@ public class GameController {
         }
     }
 
-    private BonusNumber askBonusNumber(Lotto winningTicket) {
+    //    private BonusNumber askBonusNumber(Lotto winningTicket) {
+    private WinningNumbers askBonusNumber(Lotto winningTicket) {
         try {
             int userInputBonusNumber = inputView.readBonusNumber();
-            return new BonusNumber(userInputBonusNumber, winningTicket);
+            return new WinningNumbers(winningTicket, userInputBonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askBonusNumber(winningTicket);

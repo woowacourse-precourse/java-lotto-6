@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.domain.Rankings.decideRankings;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -13,13 +11,11 @@ public class LotteryOffice {
     private static final int INITIALIZING_NUM = 0;
     private static final int INCREMENT = 1;
     private final List<Lotto> issuedLotto;
-    private final Lotto winningTicket;
-    private final BonusNumber bonusNumber;
+    private final WinningNumbers winningNumbers;
 
-    public LotteryOffice(List<Lotto> issuedLotto, Lotto winningTicket, BonusNumber bonusNumber) {
+    public LotteryOffice(List<Lotto> issuedLotto, WinningNumbers winningNumbers) {
         this.issuedLotto = issuedLotto;
-        this.winningTicket = winningTicket;
-        this.bonusNumber = bonusNumber;
+        this.winningNumbers = winningNumbers;
     }
 
     public Map<Rankings, Integer> getWinningsAndCounts() {
@@ -30,13 +26,13 @@ public class LotteryOffice {
     private List<Rankings> determineWinning() {
         List<Rankings> winningResult = new ArrayList<>();
         for (Lotto lotto : issuedLotto) {
-            winningResult.add(decideRankings(lotto, winningTicket, bonusNumber));
+            winningResult.add(winningNumbers.assignRankings(lotto));
         }
         return winningResult;
     }
 
-    private Map<Rankings,Integer> getFinalResult(List<Rankings> winningResult) {
-        Map<Rankings,Integer> finalResult = initializeResult();
+    private Map<Rankings, Integer> getFinalResult(List<Rankings> winningResult) {
+        Map<Rankings, Integer> finalResult = initializeResult();
         for (Rankings rankings : winningResult) {
             finalResult.put(rankings, finalResult.get(rankings) + INCREMENT);
         }
@@ -44,8 +40,8 @@ public class LotteryOffice {
         return finalResult;
     }
 
-    private Map<Rankings,Integer> initializeResult() {
-        Map<Rankings,Integer> result = new LinkedHashMap<>();
+    private Map<Rankings, Integer> initializeResult() {
+        Map<Rankings, Integer> result = new LinkedHashMap<>();
         for (Rankings rankings : Rankings.values()) {
             result.put(rankings, INITIALIZING_NUM);
         }

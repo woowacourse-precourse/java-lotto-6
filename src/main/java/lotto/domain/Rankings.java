@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.function.Predicate;
-import lotto.domain.lotto.Lotto;
 
 public enum Rankings {
 
@@ -28,17 +27,7 @@ public enum Rankings {
         this.message = message;
     }
 
-    public static Rankings decideRankings(Lotto lotto, Lotto winningTicket, BonusNumber bonusNumber) {
-        int matchCount = lotto.countMatches(winningTicket);
-        boolean hasBonusNumber = false;
-
-        if (matchCount == FIVE_MATCHES) {
-            hasBonusNumber = lotto.contains(bonusNumber.getBonusNumber());
-        }
-        return setRankings(matchCount, hasBonusNumber);
-    }
-
-    private static Rankings setRankings(int matchCount, boolean hasBonusNumber) {
+    public static Rankings setRankings(int matchCount, boolean hasBonusNumber) {
         Predicate<Rankings> equalCount = rankings -> rankings.matchCount == matchCount;
         Predicate<Rankings> equalBonusStatus = rankings -> rankings.hasBonusNumber == hasBonusNumber;
 

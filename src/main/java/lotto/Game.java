@@ -15,8 +15,8 @@ public class Game {
         List<Lotto> issuedLottos = issueLottos(issueCnt);
         Display.showIssuedLottos(issuedLottos);
         Lotto winningNumbers = Display.readWinningNumbers();
-        int bonusNumber = Display.readBonusNumber();
-        Map<Rank, Integer> resultRanks = assignEachRank(winningNumbers, bonusNumber, issuedLottos);
+        Bonus bonus = Display.readBonusNumber(winningNumbers);
+        Map<Rank, Integer> resultRanks = assignEachRank(winningNumbers, bonus, issuedLottos);
         Display.showRanks(resultRanks);
 //        Display.showStatistics(getRevenueRate(price, resultRanks));
     }
@@ -29,14 +29,14 @@ public class Game {
         return Math.round((double) totalRevenue / price * 100) / 100.0;
     }
 
-    private Map<Rank, Integer> assignEachRank(Lotto winningNumbers, int bonusNumber, List<Lotto> issuedLottos) {
+    private Map<Rank, Integer> assignEachRank(Lotto winningNumbers, Bonus bonus, List<Lotto> issuedLottos) {
         Map<Rank, Integer> results = new HashMap<>();
         for(Lotto lotto : issuedLottos) {
             int matchCnt = winningNumbers.matchLotto(lotto);
             if(matchCnt == 6) {
                 results.put(Rank.first, results.getOrDefault(Rank.first, 0) + 1);
             }
-            if(matchCnt == 5 && lotto.getNumbers().contains(bonusNumber)) {
+            if(matchCnt == 5 && lotto.getNumbers().contains(bonus.getNumber())) {
                 results.put(Rank.second, results.getOrDefault(Rank.second, 0) + 1);
                 continue;
             }

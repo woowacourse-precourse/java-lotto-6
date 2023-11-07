@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -34,18 +35,32 @@ public class Display {
         }
     }
 
-    static int readBonusNumber() {
+    static Bonus readBonusNumber(Lotto winningNumbers) {
         System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber;
         try {
-            return Integer.parseInt(readLine());
+            bonusNumber = Integer.parseInt(readLine());
         } catch (Exception e) {
             throw new IllegalArgumentException();
         }
+        return new Bonus(bonusNumber, winningNumbers);
     }
 
     public static void showIssuedLottos(List<Lotto> issuedLottos) {
         for(Lotto lotto : issuedLottos) {
             System.out.println(lotto);
         }
+    }
+
+
+    public static void showRanks(Map<Rank, Integer> resultRanks) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+
+        System.out.println("3개 일치 (5,000원) - " + resultRanks.getOrDefault(Rank.fifth, 0) + "개");
+        System.out.println("4개 일치 (50,000원) - " + resultRanks.getOrDefault(Rank.fourth, 0) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + resultRanks.getOrDefault(Rank.third, 0) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + resultRanks.getOrDefault(Rank.second, 0) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + resultRanks.getOrDefault(Rank.first, 0) + "개");
     }
 }

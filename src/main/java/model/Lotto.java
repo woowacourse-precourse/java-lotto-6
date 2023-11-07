@@ -5,10 +5,11 @@ import lotto.Utils;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Lotto {
 
-    private static final int LOTTO_NUMBER_SIZE = 6;
+    protected static final int LOTTO_NUMBER_SIZE = 6;
     protected static final int MIN_LOTTO_NUMBER = 1;
     protected static final int MAX_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
@@ -77,6 +78,10 @@ public class Lotto {
         if (comparativeGroup.size() != winningNumber.size()) {
             throw new IllegalArgumentException();
         }
+    }
+
+    boolean contains(int number){
+        return (numbers.contains(number));
     }
 
     List<Integer> getNumbers() {

@@ -1,14 +1,13 @@
 package lotto.controller;
 
-import lotto.dto.request.BonusNumberInputDto;
+import lotto.dto.request.BonusNumberDto;
 import lotto.dto.request.PurchaseAmountDto;
 import lotto.dto.request.WinningNumbersDto;
-import lotto.dto.request.WinningNumbersInputDto;
 import lotto.dto.response.LottoResultsDto;
 import lotto.dto.response.LottoTicketsDto;
-import lotto.model.LottoMachine;
 import lotto.model.LottoService;
 import lotto.util.NumberGenerator;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -29,35 +28,64 @@ public class LottoController {
     }
 
     public void run() {
+        LottoTicketsDto lottoTicketsDto = purchaseLottoTickets();
+        outputView.printTicketPurchasedCount(lottoTicketsDto);
+
+        WinningNumbersDto winningNumbersDto = getWinningNumbersFromView();
+        BonusNumberDto bonusNumberDto = getBonusNumberFromView(winningNumbersDto);
+
+        LottoResultsDto lottoResultsDto = getLottoResults(lottoTicketsDto, winningNumbersDto, bonusNumberDto);
+        printResultAndProfitRate(lottoResultsDto);
+    }
+
+    private LottoTicketsDto purchaseLottoTickets() {
         try {
-            PurchaseAmountDto purchaseAmountDto = createMoney();
-            LottoMachine lottoMachine = lottoService.createLottoMachine(numberGenerator, purchaseAmountDto);
-            LottoTicketsDto lottoTicketsDto = lottoMachine.createLottoTickets();
-            outputView.printTicketPurchasedCount(lottoTicketsDto);
-
-            outputView.printEnterWinningNumbers();
-            WinningNumbersInputDto winningNumbersInputDto = inputView.readWinningNumbers();
-
-            outputView.printEnterBonusNumber();
-            BonusNumberInputDto bonusNumberInputDto = inputView.readBonusNumber();
-
-            WinningNumbersDto winningNumbersDto = createWinningNumbersDto(winningNumbersInputDto, bonusNumberInputDto);
-            LottoResultsDto results = lottoService.calculateResults(lottoTicketsDto, winningNumbersDto);
-            outputView.printMatchResult(results);
-            outputView.printTotalProfitRate(results);
+            outputView.printEnterPurchaseAmount();
+            PurchaseAmountDto purchaseAmountDto = inputView.readPurchaseAmount();
+            return lottoService.purchaseLottos(numberGenerator, purchaseAmountDto);
         } catch (IllegalArgumentException e) {
-            run();
+            outputView.printExceptionMessage(e);
+            return purchaseLottoTickets();
         }
     }
 
-    private PurchaseAmountDto createMoney() {
-        outputView.printEnterPurchaseAmount();
-        PurchaseAmountDto purchaseAmount = inputView.readPurchaseAmount();
-        return purchaseAmount;
+    private WinningNumbersDto getWinningNumbersFromView() {
+        try {
+            outputView.printEnterWinningNumbers();
+            WinningNumbersDto winningNumbersDto = inputView.readWinningNumbers();
+            Validator.validateWinningNumbers(winningNumbersDto);
+            return winningNumbersDto;
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return getWinningNumbersFromView();
+        }
     }
 
-    private WinningNumbersDto createWinningNumbersDto(WinningNumbersInputDto winningNumbersInputDto,
-                                                      BonusNumberInputDto bonusNumberInputDto) {
-        return WinningNumbersDto.of(winningNumbersInputDto.getNumbers(), bonusNumberInputDto.getBonus());
+    private BonusNumberDto getBonusNumberFromView(WinningNumbersDto winningNumbersDto) {
+        try {
+            outputView.printEnterBonusNumber();
+            BonusNumberDto bonusNumberDto = inputView.readBonusNumber();
+            Validator.validateBonusNumber(winningNumbersDto, bonusNumberDto);
+            return bonusNumberDto;
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return getBonusNumberFromView(winningNumbersDto);
+        }
+    }
+
+    private LottoResultsDto getLottoResults(LottoTicketsDto lottoTicketsDto,
+                                            WinningNumbersDto winningNumbersDto,
+                                            BonusNumberDto bonusNumberDto) {
+        try {
+            return lottoService.calculateResults(lottoTicketsDto, winningNumbersDto, bonusNumberDto);
+        } catch (IllegalArgumentException e) {
+            outputView.printExceptionMessage(e);
+            return getLottoResults(lottoTicketsDto, winningNumbersDto, bonusNumberDto);
+        }
+    }
+
+    private void printResultAndProfitRate(LottoResultsDto lottoResultsDto) {
+        outputView.printMatchResult(lottoResultsDto);
+        outputView.printTotalProfitRate(lottoResultsDto);
     }
 }

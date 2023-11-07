@@ -14,6 +14,7 @@ public class Application {
     public static void main(String[] args) 
     {
     	run();
+
     }
     private static void run()
     {
@@ -97,10 +98,12 @@ public class Application {
     	int amount = 0;
     	try{
     		amount = Integer.parseInt(Console.readLine());
-    	}catch (NumberFormatException e) {
+    	}catch (NumberFormatException | NullPointerException e) {
 			System.out.println(p.ErrMsgNotPurchase);
-			throw new IllegalArgumentException();
-		}
+			
+		}catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     	return amount;
     }
     private static Lotto winningNum()

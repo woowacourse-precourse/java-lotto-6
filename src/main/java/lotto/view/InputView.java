@@ -1,6 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Buyer;
+import lotto.domain.Lotto;
+
+import java.util.List;
 
 import static lotto.utils.Constants.BUY_LOTTERY_INPUT;
 import static lotto.utils.Constants.TICKETS_COUNT_OUTPUT;
@@ -13,7 +17,8 @@ public class InputView {
             String payment = Console.readLine();
             int paymentNumber = checkPaymentIsNumber(payment);
             int cnt = checkTruncatedTo1000(paymentNumber);
-            printTicketCnt(cnt);
+            Buyer buyer = new Buyer(paymentNumber, cnt);
+            printTickets(buyer);
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         } catch (IllegalArgumentException e) {
@@ -21,13 +26,29 @@ public class InputView {
         }
     }
 
-    public static void printTicketCnt(int cnt) {
+    public static void printTickets(Buyer buyer) {
+        printTicketCnt(buyer);
+        printLotto(buyer);
+    }
+
+    public static void printTicketCnt(Buyer buyer) {
         System.out.println();
-        System.out.printf(TICKETS_COUNT_OUTPUT, cnt);
+        System.out.printf(TICKETS_COUNT_OUTPUT, buyer.getTicketCnt());
+    }
+
+    public static void printTicketCntForTest(int payment) {
+        System.out.println();
+        System.out.printf(TICKETS_COUNT_OUTPUT, payment / 1000);
+    }
+
+    public static void printLotto(Buyer buyer) {
+        for (Lotto numbers :buyer.getLotto()){
+            System.out.println(numbers.getNumbers());
+        }
     }
 
     public static int checkTruncatedTo1000(int payment) {
-        if(payment % 1000 != 0) throw new IllegalArgumentException("[ERROR] 1,000원 단위 이상으로만 입력하세요.");
+        if (payment % 1000 != 0) throw new IllegalArgumentException("[ERROR] 1,000원 단위 이상으로만 입력하세요.");
         return payment / 1000;
     }
 

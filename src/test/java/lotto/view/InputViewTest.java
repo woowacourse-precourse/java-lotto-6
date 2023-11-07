@@ -31,7 +31,7 @@ class InputViewTest {
     public void getTickets() {
         int payment = 3000;  // 예상되는 입력값
 
-        inputView.printTicketCnt(payment);  // 메서드 실행
+        inputView.printTicketCntForTest(payment);  // 메서드 실행
 
         String expectedOutput = "\n3개를 구매했습니다.\n";
         assertEquals(expectedOutput, outputStream.toString());

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +25,10 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public static List<Integer> randomLottery() {
         List<Integer> lotto = Stream.generate(() -> pickNumber())
                 .distinct()
@@ -36,5 +41,14 @@ public class Lotto {
     public static void checkDuplicate(List<Integer> lotto) {
         Set<Integer> validLotto = new HashSet<>(lotto);
         if (validLotto.size() != lotto.size()) throw new IllegalArgumentException(CHECK_DUPLICATE_NUMBER);
+    }
+
+    public static List<Lotto> getLotto(int cnt) {
+        List<Lotto> lottery = new ArrayList<>();
+        for (int i = 0; i < cnt; i++) {
+            Lotto lotto = new Lotto(Lotto.randomLottery());
+            lottery.add(lotto);
+        }
+        return lottery;
     }
 }

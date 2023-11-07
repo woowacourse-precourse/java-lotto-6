@@ -113,4 +113,12 @@ class LottoTest {
         List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
         Lotto.checkDuplicate(nums);
     }
+
+    @Test
+    @DisplayName("getLotto 메서드 테스트 - 원하는 개수만큼 Lotto객체 생성")
+    public void getLotto() {
+        int cnt = 8;
+        List<Lotto> lotto = Lotto.getLotto(cnt);
+        assertThat(lotto.size()).isEqualTo(cnt);
+    }
 }

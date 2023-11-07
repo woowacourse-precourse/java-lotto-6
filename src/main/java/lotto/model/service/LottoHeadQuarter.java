@@ -1,10 +1,7 @@
 package lotto.model.service;
 
-import java.util.List;
 import lotto.controller.dto.NumberDto;
 import lotto.model.vo.BonusNumber;
-import lotto.model.vo.Lotto;
-import lotto.model.vo.Lottos;
 import lotto.model.vo.WinNumber;
 
 public class LottoHeadQuarter {

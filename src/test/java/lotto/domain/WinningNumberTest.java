@@ -1,13 +1,13 @@
-package lotto;
+package lotto.domain;
 
-import lotto.domain.Lotto;
-import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.List;
 
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_NUMBER_CONTAIN_EXCEPTION;
+import static lotto.constant.ExceptionMessage.INVALID_BONUS_NUMBER_RANGE_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinningNumberTest {
@@ -21,7 +21,7 @@ public class WinningNumberTest {
         // when, then
         assertThatThrownBy(() -> new WinningNumber(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("보너스 번호는 1~45 사이의 숫자가 입력 되어야 합니다.");
+                .hasMessageContaining(INVALID_BONUS_NUMBER_RANGE_EXCEPTION.getMessage());
     }
 
     @DisplayName("보너스 번호가 로또 번호와 중복 된다면 예외가 발생한다.")
@@ -34,6 +34,6 @@ public class WinningNumberTest {
         // when, then
         assertThatThrownBy(() -> new WinningNumber(lotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("보너스 번호는 로또 번호와 중복 될 수 없습니다.");
+                .hasMessageContaining(INVALID_BONUS_NUMBER_CONTAIN_EXCEPTION.getMessage());
     }
 }

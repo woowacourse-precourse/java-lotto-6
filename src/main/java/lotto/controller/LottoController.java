@@ -1,7 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.MatchResult;
 import lotto.model.MyLottoNumbers;
 import lotto.model.PurchasePrice;
 import lotto.model.UniqueRandomNumbers;
@@ -13,11 +15,13 @@ public class LottoController {
     private PurchasePrice purchasePrice;
     private Lottos lottos;
     private MyLottoNumbers myLottoNumbers;
+    private MatchResult matchResult = new MatchResult();
 
     public void start() {
         setPurchasePrice();
         makeSeveralLottos();
         makeMyLottoNumbers();
+        compareLottos();
     }
 
     private void setPurchasePrice() {
@@ -39,8 +43,27 @@ public class LottoController {
     private void makeMyLottoNumbers() {
         myLottoNumbers = new MyLottoNumbers(InputView.inputMyLottoNumbers());
         myLottoNumbers.setBonusNumber(InputView.inputBonusNumber());
-        System.out.println(myLottoNumbers.getMyNumbers());
-        System.out.println(myLottoNumbers.getBonusNumber());
+        //System.out.println(myLottoNumbers.getMyNumbers());
+        //System.out.println(myLottoNumbers.getBonusNumber());
     }
 
+    private void compareLottos() {
+        for (Lotto lotto : lottos.get()) {
+            countingMatch(lotto.getSortedNumbers());
+        }
+        OutputView.printMatchResult(matchResult);
+    }
+
+    private void countingMatch(List<Integer> lottoNumbers) {
+        int count = 0 ,bonus = 0;
+        for (int myNumber : myLottoNumbers.getMyNumbers()) {
+            if (lottoNumbers.contains(myNumber)) {
+                count++;
+            }
+        }
+        if (lottoNumbers.contains(myLottoNumbers.getBonusNumber())) {
+            bonus++;
+        }
+        matchResult.setMatchCountByRank(count,bonus);
+    }
 }

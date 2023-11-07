@@ -3,6 +3,7 @@ package lotto;
 import lotto.domain.LottoPurchaseAmount;
 import lotto.domain.LottoTickets;
 import lotto.ui.InputUI;
+import lotto.ui.ResultUI;
 import lotto.util.LottoGenerator;
 
 /**
@@ -13,23 +14,27 @@ import lotto.util.LottoGenerator;
 public class LottoStore {
 
     private final InputUI inputUI;
+    private final ResultUI resultUI;
 
-    public LottoStore(InputUI inputUI) {
+    public LottoStore(InputUI inputUI, ResultUI resultUI) {
         this.inputUI = inputUI;
+        this.resultUI = resultUI;
     }
 
     public LottoTickets buyLotto() {
-        LottoPurchaseAmount lottoPurchaseAmount = LottoPurchaseAmount.valueOf(inputUI.getAmount());
-        return getLotto(lottoPurchaseAmount);
+        try {
+            return getLottos(LottoPurchaseAmount.valueOf(inputUI.getAmount()));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
 
+            return buyLotto();
+        }
     }
 
-    private LottoTickets getLotto(LottoPurchaseAmount lottoPurchaseAmount) {
-        return getLottosWithManualNumbers(lottoPurchaseAmount);
-    }
-
-    private LottoTickets getLottosWithManualNumbers(LottoPurchaseAmount lottoPurchaseAmount) {
+    private LottoTickets getLottos(LottoPurchaseAmount lottoPurchaseAmount) {
         LottoTickets purchasedLottos = LottoGenerator.buyLottos(lottoPurchaseAmount);
+        resultUI.printBoughtLottos(purchasedLottos);
+
         return purchasedLottos;
     }
 }

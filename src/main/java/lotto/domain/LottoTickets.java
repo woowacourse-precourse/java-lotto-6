@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * @author 민경수
@@ -21,5 +24,25 @@ public class LottoTickets {
 
     public int size() {
         return lottoTickets.size();
+    }
+
+    public void labelNumbers(Consumer<List<Integer>> consumer) {
+        for (Lotto lottoTicket : lottoTickets) {
+            consumer.accept(lottoTicket.getNumbers());
+        }
+    }
+
+    public List<LottoPrize> getLottoPrizes(WinningLotto winningLotto) {
+        List<LottoPrize> lottoPrizes = new ArrayList<>();
+
+        for (Lotto boughtLottoTicket : lottoTickets) {
+            lottoPrizes.add(LottoPrize.findByMatchingCountAndBonusBall(boughtLottoTicket, winningLotto));
+        }
+
+        return lottoPrizes;
+    }
+
+    public BigDecimal totalPurchasedAmount() {
+        return BigDecimal.valueOf(Lotto.PRICE * size());
     }
 }

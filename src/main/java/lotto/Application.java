@@ -1,15 +1,12 @@
 package lotto;
 
-import lotto.domain.LottoTickets;
-import lotto.ui.InputUI;
+import lotto.manager.LottoGameManager;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        InputUI inputUI = new InputUI();
-        LottoStore lottoStore = new LottoStore(inputUI);
-
-        LottoTickets lottoTickets = lottoStore.buyLotto();
+        LottoGameManager lottoGameManager = new LottoGameManager();
+        lottoGameManager.start();
     }
 
 }

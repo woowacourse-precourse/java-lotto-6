@@ -14,21 +14,20 @@ public class LottoPurchaseAmount {
     }
 
     public static LottoPurchaseAmount valueOf(int amount) {
-        // TODO 검증
         validateMinimumAmount(amount);
         validatePurchaseUnit(amount);
         return new LottoPurchaseAmount(amount);
     }
 
     private static void validateMinimumAmount(int amount) {
-        if (amount <= Lotto.PRICE) {
-            throw new IllegalArgumentException(Lotto.PRICE + "원보다 작은 금액은 입력하실 수 없습니다.");
+        if (amount < Lotto.PRICE) {
+            throw new IllegalArgumentException("[ERROR] " + Lotto.PRICE + "원보다 작은 금액은 입력하실 수 없습니다. 입력한 금액 : " + amount);
         }
     }
 
     private static void validatePurchaseUnit(int amount) {
         if (amount % Lotto.PRICE != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 " + Lotto.PRICE + "원 단위로 입력해주세요. 입력한 금액 : " + amount);
+            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 " + Lotto.PRICE + "원 단위로 입력해주세요. 입력한 금액 : " + amount);
         }
     }
 

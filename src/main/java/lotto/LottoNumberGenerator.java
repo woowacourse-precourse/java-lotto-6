@@ -3,6 +3,8 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.dto.LottoNumberDTO;
 
+import static lotto.CommonUnits.*;
+
 public class LottoNumberGenerator {
     private static LottoNumberGenerator lottoNumberGenerator;
 
@@ -16,7 +18,7 @@ public class LottoNumberGenerator {
     }
 
     public LottoNumberDTO generate() {
-        return new LottoNumberDTO(
-                Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new LottoNumberDTO(Randoms.pickUniqueNumbersInRange(
+                MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBERS_OF_LOTTO));
     }
 }

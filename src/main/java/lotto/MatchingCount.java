@@ -27,9 +27,15 @@ public enum MatchingCount {
     }
 
     public static MatchingCount findByMatchCount (int count, boolean hasBonus){
+        if(count == 5){
+            return Arrays.stream(MatchingCount.values())
+                    .filter( MatchingCount -> MatchingCount.matchCount == count)
+                    .filter( MatchingCount -> MatchingCount.bonusNumber == hasBonus)
+                    .findAny()
+                    .orElse(null);
+        }
         return Arrays.stream(MatchingCount.values())
                 .filter( MatchingCount -> MatchingCount.matchCount == count)
-                .filter( MatchingCount -> MatchingCount.bonusNumber == hasBonus)
                 .findAny()
                 .orElse(null);
    }

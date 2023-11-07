@@ -24,9 +24,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+
+    protected boolean isCorrectRange(int bonusNumber) {
+        return bonusNumber >= 1 && bonusNumber <= 45;
+    }
     protected boolean isCorrectRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number > 45 || number < 1) {
+            if (!isCorrectRange(number)) {
                 return false;
             }
         }

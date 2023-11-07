@@ -17,4 +17,11 @@ public class LottoManager {
     public void createWinningLotto(List<Integer> numbers, int bonusNumber) {
         winningLotto = WinningLotto.of(numbers, bonusNumber);
     }
+
+    public void awardPrize(Lotto lotto) {
+        int matchedCount = winningLotto.countMatchingNumbers(lotto);
+        boolean isMatchedBonusNumber = winningLotto.isMatchBonusNumber(lotto);
+        Prize prize = Prize.determineRank(matchedCount, isMatchedBonusNumber);
+        winningDetails.increasePrizeAmount(prize);
+    }
 }

@@ -31,15 +31,15 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (isSizeDifferent(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또는" +  LottoConfig.LOTTO_NUMBERS_SIZE + "여야합니다.");
         }
 
         if (hasDuplicates(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 중복된 값이 있습니다.");
         }
 
         if (isNotInRange(numbers)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호 범위가 아닙니다.");
         }
     }
 

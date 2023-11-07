@@ -28,7 +28,7 @@ public class InputProcessor {
 
     private void validateNotNull(String input) {
         if (input == null) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 입력한 게 null입니다.");
         }
     }
 
@@ -36,7 +36,7 @@ public class InputProcessor {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닙니다.");
         }
     }
 

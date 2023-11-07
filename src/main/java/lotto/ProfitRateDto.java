@@ -7,7 +7,7 @@ public class ProfitRateDto {
         this.profitRate = profitRate;
     }
 
-    public ProfitRateDto from(double profitRate) {
+    public static ProfitRateDto from(double profitRate) {
         return new ProfitRateDto(profitRate);
     }
 

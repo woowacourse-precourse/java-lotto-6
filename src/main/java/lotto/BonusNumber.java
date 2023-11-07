@@ -17,7 +17,7 @@ public class BonusNumber {
 
     private void validate(final Integer number) {
         if (isNotInRange(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 범위에 벗어납니다.");
         }
     }
 

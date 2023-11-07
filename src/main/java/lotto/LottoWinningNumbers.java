@@ -21,7 +21,7 @@ public class LottoWinningNumbers {
 
     private void validate(final Lotto winningNumbers, final BonusNumber bonusNumber) {
         if (hasDuplicates(winningNumbers, bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스번호가 중복된 값을 가집니다.");
         }
     }
 

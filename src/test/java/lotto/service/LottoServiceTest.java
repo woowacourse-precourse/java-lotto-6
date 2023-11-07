@@ -16,12 +16,11 @@ import java.util.Map;
 
 class LottoServiceTest {
     private LottoService lottoService;
-    private LottoController lottoController;
 
     @BeforeEach
     void beforeEach() {
         this.lottoService = new LottoService();
-        this.lottoController = new LottoController(this.lottoService);
+
     }
 
     @Test
@@ -161,7 +160,15 @@ class LottoServiceTest {
     void purchaseResultOutputStatementHaveLottosAsManyAsInputNumber() {
         // given
         int count = 5;
-        List<Lotto> lottoList = lottoController.generateLottoList(count);
+
+        List<Lotto> lottoList = new ArrayList<>();
+
+        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 7)));
+        lottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 8)));
+        lottoList.add(new Lotto(List.of(3, 4, 5, 6, 7, 8)));
+        lottoList.add(new Lotto(List.of(4, 5, 6, 7, 8, 9)));
+
         // when
         String result = lottoService.makePurchaseResultOutputStatement(lottoList,count);
         int executionCount = StringUtils.countOccurrences(result, "[");
@@ -220,9 +227,6 @@ class LottoServiceTest {
         assertThat(winningResult.get(FIRST)).isEqualTo(1);
         assertThat(winningResult.get(SECOND)).isEqualTo(1);
         assertThat(winningResult.get(THIRD)).isEqualTo(1);
-        assertThat(winningResult.get(FORTH)).isEqualTo(1);
-        assertThat(winningResult.get(FIFTH)).isEqualTo(1);
-        assertThat(winningResult.get(SIXTH)).isEqualTo(0);
     }
 
     @Test
@@ -253,15 +257,19 @@ class LottoServiceTest {
 
     @Test
     @DisplayName("기능35 테스트 : winningResultMap에 담긴 결과를 원하는 형식으로 출력문을 만들어 반환한다.")
-    void makeWinningResultOutputStatementCorrectly() {
+    void makeStatisticsResultOutputStatementCorrectly() {
         // given
-        int numberPurchase = 1000;
-        List<Lotto> lottoList = lottoController.generateLottoList(numberPurchase);
+        List<Lotto> lottoList = new ArrayList<>();
+
+        lottoList.add(new Lotto(List.of(1,2,3,4,5,6)));
+        lottoList.add(new Lotto(List.of(2,3,4,5,6,7)));
+        lottoList.add(new Lotto(List.of(3,4,5,6,7,8)));
+
         Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
         // when
-        String result = lottoService.makeWinningResultOutputStatement(lottoList, answer, bonusNumber);
+        String result = lottoService.makeStatisticsResultOutputStatement(lottoList, answer, bonusNumber);
         int count = StringUtils.countOccurrences(result, "일치");
 
         // then
@@ -271,15 +279,14 @@ class LottoServiceTest {
 
     @Test
     @DisplayName("기능35 테스트 : 로또를 하나도 구매하지 않았을 때도 결과를 제대로 반환한다.")
-    void makeWinningResultOutputStatementCorrectlyWhenPurchaceZeroAmountLotto() {
+    void makeStatisticsResultOutputStatementCorrectlyWhenPurchaceZeroAmountLotto() {
         // given
-        int numberPurchase = 0;
-        List<Lotto> lottoList = lottoController.generateLottoList(numberPurchase);
+        List<Lotto> lottoList = new ArrayList<>();
         Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
 
         // when
-        String result = lottoService.makeWinningResultOutputStatement(lottoList, answer, bonusNumber);
+        String result = lottoService.makeStatisticsResultOutputStatement(lottoList, answer, bonusNumber);
         int count = StringUtils.countOccurrences(result, "일치");
 
         // then

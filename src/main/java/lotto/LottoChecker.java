@@ -32,15 +32,17 @@ public class LottoChecker {
                 hit++;
             }
         }
+
         if (hit == LottoConfig.LOTTO_SIZE) {
             return LottoPrize.FIRST;
-        } else if (hit == LottoConfig.LOTTO_SIZE - 1 && answerNumberSet.contains(bonusNumber)) {
-            return LottoPrize.SECOND;
-        } else if (hit == LottoConfig.LOTTO_SIZE - 1) {
-            return LottoPrize.THIRD;
-        } else {
-            return LottoPrize.NONE;
         }
+        if (hit == LottoConfig.LOTTO_SIZE - 1 && answerNumberSet.contains(bonusNumber)) {
+            return LottoPrize.SECOND;
+        }
+        if (hit == LottoConfig.LOTTO_SIZE - 1) {
+            return LottoPrize.THIRD;
+        }
+        return LottoPrize.NONE;
     }
 
     private HashSet<Integer> parseLottoNumberSet(String lottoNumberInput) {

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.util.enumerator.LottoRank;
 
 public class OutputView {
@@ -29,17 +30,17 @@ public class OutputView {
                 .collect(Collectors.joining(DIGIT_COMMA_WITH_BLANK));
     }
 
-    public void outputLottoResults(List<LottoRank> rankResults) {
+    public void outputLottoResults(LottoResult result) {
         System.out.printf(Message.OUTPUT_LOTTO_RESULTS.message);
 
         for (int i = LottoRank.values().length - 1; i >= 0; i--) {
             LottoRank rank = LottoRank.values()[i];
-            printRankCount(rankResults, rank);
+            printRankCount(result, rank);
         }
     }
 
-    private static void printRankCount(List<LottoRank> rankResults, LottoRank rank) {
-        int count = Collections.frequency(rankResults, rank);
+    private void printRankCount(LottoResult result, LottoRank rank) {
+        int count = Collections.frequency(result.getRankResults(), rank);
         System.out.printf(rank.getContent()
                 + Message.OUTPUT_LOTTO_RESULT_COUNT.message, count);
     }

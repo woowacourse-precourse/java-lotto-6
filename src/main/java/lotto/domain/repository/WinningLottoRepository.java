@@ -20,14 +20,14 @@ public class WinningLottoRepository {
     }
 
     public static WinningNumber findWinningNumbers() {
-        return findByIndex(DEFAULT).getWinning();
+        return findWiningLotto().getWinning();
     }
 
     public static BonusNumber findBonusNumber() {
-        return findByIndex(DEFAULT).getBonus();
+        return findWiningLotto().getBonus();
     }
 
-    private static WinningLotto findByIndex(int index) {
-        return winningLotties.get(index);
+    public static WinningLotto findWiningLotto() {
+        return winningLotties.get(DEFAULT);
     }
 }

@@ -9,8 +9,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class IssueLottoController implements Controllable {
-    private static final int LOTTO_UNIT = 1000;
-
     private final InputView inputView;
     private final OutputView outputView;
 

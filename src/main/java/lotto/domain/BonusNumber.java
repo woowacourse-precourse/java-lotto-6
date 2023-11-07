@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 import lotto.util.ExceptionMessage;
 import lotto.util.Util;
 import lotto.util.enumerator.LottoNumberRange;
@@ -23,16 +22,16 @@ public class BonusNumber {
         }
     }
 
-    public LottoRank compareWithLottoNumber(List<Integer> lottoNumbers) {
-        if (isMatchWithLottoNumbers(lottoNumbers)) {
+    public LottoRank compareWithLottoNumber(Lotto lotto) {
+        if (isMatchWithLottoNumbers(lotto)) {
             return LottoRank.SECOND;
         }
         return LottoRank.THIRD;
     }
 
-    private boolean isMatchWithLottoNumbers(List<Integer> numbers) {
+    private boolean isMatchWithLottoNumbers(Lotto lotto) {
         int bonus = this.number;
-        for (int number : numbers) {
+        for (int number : lotto.getNumbers()) {
             if (Util.isEqual(number, bonus)) {
                 return true;
             }

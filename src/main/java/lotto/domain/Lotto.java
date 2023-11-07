@@ -8,14 +8,25 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumbersCount(numbers);
+        validateDuplicateNumbers(numbers);
         this.numbers = numbers;
         sortNumbersAscending();
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateNumbersCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 6이 아닙니다.");
+        }
+    }
+
+    private void validateDuplicateNumbers(List<Integer> numbers) {
+        long distinctCount = numbers.stream()
+                .distinct()
+                .count();
+
+        if (distinctCount != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
     }
 

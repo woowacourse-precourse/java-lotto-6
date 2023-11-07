@@ -30,9 +30,12 @@ public enum LottoResult {
         return sizeToLottoResult.getOrDefault(size, NONE);
     }
 
-    public static int calculateRate(Map<LottoResult, Integer> map, LottoResult lottoResult) {
-        int rate = map.get(lottoResult) * lottoResult.getGrade();
-        return rate;
+    public static void calculateGradeWithCount(Map<LottoResult, Integer> map) {
+        System.out.println(LottoResult.FIFTH.getMessage() + map.getOrDefault(LottoResult.FIFTH, 0) + "개");
+        System.out.println(LottoResult.FOURTH.getMessage() + map.getOrDefault(LottoResult.FOURTH, 0) + "개");
+        System.out.println(LottoResult.THIRD.getMessage() + map.getOrDefault(LottoResult.THIRD, 0) + "개");
+        System.out.println(LottoResult.SECOND.getMessage() + map.getOrDefault(LottoResult.SECOND, 0) + "개");
+        System.out.println(LottoResult.FIRST.getMessage() + map.getOrDefault(LottoResult.FIRST, 0) + "개");
     }
 
     public int getGrade() {

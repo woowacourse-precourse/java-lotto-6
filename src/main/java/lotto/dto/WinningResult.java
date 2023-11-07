@@ -7,6 +7,7 @@ import lotto.constants.WinningType;
 
 public class WinningResult {
     private final Map<WinningType, Integer> winningMap;
+    private int totalPrize;
 
     public WinningResult() {
         winningMap = new TreeMap<>(Map.of(
@@ -17,6 +18,7 @@ public class WinningResult {
                 WinningType.FIVE_BONUS, 0,
                 WinningType.SIX, 0
         ));
+        totalPrize = 0;
     }
 
     public void updateResult(int matchedCount, boolean isBonus) {
@@ -25,8 +27,6 @@ public class WinningResult {
     }
 
     public int getTotalPrize() {
-        int totalPrize = 0;
-
         for (WinningType winningType : winningMap.keySet()) {
             int amount = winningMap.get(winningType);
             totalPrize += winningType.calculateProfit(amount);

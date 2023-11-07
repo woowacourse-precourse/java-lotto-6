@@ -2,10 +2,11 @@ package lotto.dto;
 
 import static lotto.constants.ErrorCode.INVALID_PURCHASE_AMOUNT;
 import static lotto.constants.ErrorCode.NOT_DIVIDED;
-import static lotto.constants.ErrorCode.NOT_INTEGER;
 import static lotto.constants.LottoRule.MAX_PRICE;
 import static lotto.constants.LottoRule.MIN_PRICE;
 import static lotto.constants.LottoRule.UNIT_PRICE;
+
+import lotto.validator.Validator;
 
 public class PurchaseAmount {
     private int paidMoney;
@@ -26,7 +27,7 @@ public class PurchaseAmount {
     }
 
     private void validatePurchaseAmount(String input) {
-        isInteger(input);
+        Validator.validateIsInteger(input);
         int paidMoney = convertToInt(input);
         validateDividedBy(paidMoney);
         validateRange(paidMoney);
@@ -34,14 +35,6 @@ public class PurchaseAmount {
 
     private int convertToInt(String input) {
         return Integer.parseInt(input);
-    }
-
-    private void isInteger(String input) {
-        try {
-            convertToInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER.getMessage());
-        }
     }
 
     private void validateDividedBy(int paidMoney) {

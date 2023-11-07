@@ -12,20 +12,18 @@ import lotto.dto.WinningResult;
 
 public class LottoService {
     private final NumberGenerator generator;
-    private PurchaseAmount purchaseAmount;
+    //    private PurchaseAmount purchaseAmount;
     private List<Lotto> purchasedTickets;
-    private WinningResult winningResult;
 
     public LottoService(NumberGenerator generator) {
         this.generator = generator;
         purchasedTickets = new ArrayList<>();
     }
 
-    public List<Lotto> buyMultipleLotto(String money) {
+    public List<Lotto> buyMultipleLotto(PurchaseAmount paidMoney) {
         List<Lotto> lottoTickets = new ArrayList<>();
-        purchaseAmount = PurchaseAmount.from(money);
 
-        IntStream.range(0, purchaseAmount.getQuantity())
+        IntStream.range(0, paidMoney.getQuantity())
                 .forEach(idx -> lottoTickets.add(buySingleLotto()));
 
         this.purchasedTickets = lottoTickets;
@@ -48,8 +46,6 @@ public class LottoService {
             boolean isBonus = isBonus(purchasedTicket, winningLotto);
             winningResult.updateResult(matchedCount, isBonus);
         });
-
-        this.winningResult = winningResult;
         return winningResult;
     }
 
@@ -62,7 +58,7 @@ public class LottoService {
         return purchasedTicket.hasCertainNumber(bonusNumber);
     }
 
-    public double calculateProfit() {
+    public double calculateProfit(PurchaseAmount purchaseAmount, WinningResult winningResult) {
         int totalPrize = winningResult.getTotalPrize();
         return (double) totalPrize / (double) purchaseAmount.getPaidMoney() * 100;
     }

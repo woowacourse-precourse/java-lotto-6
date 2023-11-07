@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
+import lotto.dto.PurchaseAmount;
 import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
 import lotto.service.LottoService;
@@ -22,20 +23,21 @@ public class LottoController {
     }
 
     public void play() {
-        buyLotto();
+        PurchaseAmount purchaseAmount = buyLotto();
         WinningLotto winningLotto = getWinningLotto();
-        getLottoResult(winningLotto);
-        getProfitRate();
+        WinningResult winningResult = getLottoResult(winningLotto);
+        getProfitRate(purchaseAmount, winningResult);
     }
 
-    private void buyLotto() {
+    private PurchaseAmount buyLotto() {
         try {
-            String money = inputView.printAskPurchase();
-            List<Lotto> lottoTickets = lottoService.buyMultipleLotto(money);
+            PurchaseAmount paidMoney = PurchaseAmount.from(inputView.printAskPurchase());
+            List<Lotto> lottoTickets = lottoService.buyMultipleLotto(paidMoney);
             outputView.printLottoTickets(lottoTickets);
+            return paidMoney;
         } catch (IllegalArgumentException e) {
             outputView.printErrorCode(e.getMessage());
-            buyLotto();
+            return buyLotto();
         }
     }
 
@@ -50,13 +52,14 @@ public class LottoController {
         }
     }
 
-    private void getLottoResult(WinningLotto winningLotto) {
-        WinningResult lottoResult = lottoService.getLottoResult(winningLotto);
-        outputView.printWinningResult(lottoResult);
+    private WinningResult getLottoResult(WinningLotto winningLotto) {
+        WinningResult winningResult = lottoService.getLottoResult(winningLotto);
+        outputView.printWinningResult(winningResult);
+        return winningResult;
     }
 
-    private void getProfitRate() {
-        double profitRate = lottoService.calculateProfit();
+    private void getProfitRate(PurchaseAmount purchaseAmount, WinningResult winningResult) {
+        double profitRate = lottoService.calculateProfit(purchaseAmount, winningResult);
         outputView.printProfitRate(profitRate);
     }
 }

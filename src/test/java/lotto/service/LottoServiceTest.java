@@ -6,6 +6,7 @@ import java.util.List;
 import lotto.constants.WinningType;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
+import lotto.dto.PurchaseAmount;
 import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
 import org.junit.jupiter.api.DisplayName;
@@ -21,7 +22,7 @@ class LottoServiceTest {
         String money = "2000";
 
         //when
-        List<Lotto> lottos = lottoService.buyMultipleLotto(money);
+        List<Lotto> lottos = lottoService.buyMultipleLotto(PurchaseAmount.from("2000"));
 
         //then
         assertThat(lottos.size()).isEqualTo(2);
@@ -32,7 +33,7 @@ class LottoServiceTest {
     public void checkWinningResult() {
         //given
         lottoService = new LottoService(new TestNumberGenerator(List.of(1, 2, 3, 4, 5, 6)));
-        lottoService.buyMultipleLotto("1000");
+        lottoService.buyMultipleLotto(PurchaseAmount.from("1000"));
         WinningLotto winningLotto = lottoService.getWinningLotto(getWinning("1,2,3,6,7,8"), getBonus("10"));
 
         //when

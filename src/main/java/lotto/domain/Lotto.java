@@ -6,11 +6,10 @@ import static lotto.constants.LottoRule.LOTTO_MAX_SIZE;
 import static lotto.constants.Message.SEPARATOR_REGEX;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import lotto.constants.ErrorCode;
+import lotto.validator.Validator;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -28,13 +27,12 @@ public class Lotto {
     }
 
     private List<Integer> splitToList(String number) {
-        try {
-            return Arrays.stream(number.split(SEPARATOR_REGEX.getMessage()))
-                    .map((num -> Integer.parseInt(num.trim())))
-                    .toList();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorCode.NOT_INTEGER.getMessage());
-        }
+        List<String> splitNumbers = List.of(number.split(SEPARATOR_REGEX.getMessage()));
+        splitNumbers.forEach(Validator::validateIsInteger);
+
+        return splitNumbers.stream()
+                .map((num -> Integer.parseInt(num.trim())))
+                .toList();
     }
 
     private void validate(List<Integer> numbers) {

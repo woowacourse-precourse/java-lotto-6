@@ -4,6 +4,8 @@ import static lotto.constants.Message.ASK_BONUS_NUMBER;
 import static lotto.constants.Message.ASK_PURCHASE;
 import static lotto.constants.Message.ASK_WINNING_NUMBER;
 
+import lotto.validator.Validator;
+
 public class InputView {
     private final InputDevice consoleInputDevice;
 
@@ -14,7 +16,9 @@ public class InputView {
 
     public String printAskPurchase() {
         System.out.println(ASK_PURCHASE.getMessage());
-        return consoleInputDevice.getInput();
+        String input = consoleInputDevice.getInput();
+        Validator.validateIsInteger(input);
+        return input;
     }
 
     public String askWinningNumbers() {

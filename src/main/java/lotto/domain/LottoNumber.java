@@ -1,11 +1,11 @@
 package lotto.domain;
 
 import static lotto.constants.ErrorCode.INVALID_LOTTO_RANGE;
-import static lotto.constants.ErrorCode.NOT_INTEGER;
 import static lotto.constants.LottoRule.MAX_LOTTO_NUM;
 import static lotto.constants.LottoRule.MIN_LOTTO_NUM;
 
 import java.util.Objects;
+import lotto.validator.Validator;
 
 public class LottoNumber {
     private int number;
@@ -20,16 +20,8 @@ public class LottoNumber {
     }
 
     private void validateLottoNumber(String input) {
-        isInteger(input);
+        Validator.validateIsInteger(input);
         validateNumberRange(input);
-    }
-
-    private void isInteger(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER.getMessage());
-        }
     }
 
     private void validateNumberRange(String input) {

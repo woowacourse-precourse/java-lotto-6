@@ -38,4 +38,8 @@ public class Lotto {
     public String toString() {
         return "" + numbers;
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

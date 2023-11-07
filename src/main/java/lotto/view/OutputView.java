@@ -11,7 +11,7 @@ public class OutputView {
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] ";
 
     public static void printLottoCount(int count) {
-        System.out.printf("%d개를 구매했습니다.", count);
+        System.out.printf("%d개를 구매했습니다." + NEW_LINE, count);
     }
 
     public static void printLottoCollection(List<Lotto> lottoCollection) {

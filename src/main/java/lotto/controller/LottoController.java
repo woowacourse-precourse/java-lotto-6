@@ -2,7 +2,6 @@ package lotto.controller;
 
 import static lotto.util.RetryUtil.read;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
@@ -13,7 +12,6 @@ import lotto.domain.NumberGenerator;
 import lotto.domain.Profit;
 import lotto.domain.Purchase;
 import lotto.dto.WinningNumbersDto;
-import lotto.util.RetryUtil;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -25,7 +23,7 @@ public class LottoController {
     }
 
     public void run() {
-        Purchase purchase = getPurchase();
+        Purchase purchase = read(this::getPurchase);
         LottoCount lottoCount = getLottoCount(purchase);
         OutputView.printLottoCount(lottoCount.getCount());
 
@@ -48,18 +46,22 @@ public class LottoController {
     }
 
     private LottoCollection getLottoCollection(LottoCount lottoCount) {
-        LottoCollectionGenerator lottoCollectionGenerator = new LottoCollectionGenerator(lottoCount.getCount(), numberGenerator);
+        LottoCollectionGenerator lottoCollectionGenerator = new LottoCollectionGenerator(lottoCount.getCount(),
+                numberGenerator);
         return LottoCollection.from(lottoCollectionGenerator.generate());
     }
 
     private List<MatchingCase> getMatchingResult(LottoCollection lottoCollection) {
-        WinningNumbersDto winningNumbersDto = read(InputView::inputWinningNumbers);
-        Lotto winningLotto = new Lotto(winningNumbersDto.getWinningNumbers());
-        int bonusNumber = read(InputView::inputBonusNumber);
+        Lotto winningLotto = read(this::getWinningtLotto);
+        int bonusNumber = read(InputView::inputBonusNumber, winningLotto.getNumbers());
         MatchingCase.INIT.initMathcingCase();
         lottoCollection.setResultGroup(winningLotto, bonusNumber);
         return MatchingCase.INIT.getValues();
-        // 네이밍 , 호출 상수 개선 필요
+    }
+
+    private Lotto getWinningtLotto() {
+        WinningNumbersDto winningNumbersDto = read(InputView::inputWinningNumbers);
+        return new Lotto(winningNumbersDto.getWinningNumbers());
     }
 
     private Profit getProfit(Purchase purchase) {

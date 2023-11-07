@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -28,5 +29,18 @@ class LottoTest {
     void createLottoByUnderSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호와 보너스 번호와 로또 번호를 비교하여 알맞은 로또 등수를 반환한다.")
+    @Test
+    void returnCorrectRank() {
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(lottoNumbers);
+
+        List<Integer> winningNumbers = List.of(1, 2, 3, 20, 30, 40);
+        int bonusNumber = 44;
+
+        LottoRank rank = lotto.match(winningNumbers, bonusNumber);
+        assertThat(rank).isEqualTo(LottoRank.FIFTH);
     }
 }

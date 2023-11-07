@@ -10,6 +10,8 @@ public enum WinningGrade {
     SECOND_GRADE(5, true, 30_000_000),
     FIRST_GRADE(6, false, 2_000_000_000);
 
+    private static final int BONUS_MATCH_COUNT = 5;
+
     private final int matchedCount;
     private final boolean matchedBonusNumber;
     private final int winningPrice;
@@ -29,8 +31,8 @@ public enum WinningGrade {
             final boolean matchedBonusNumber
     ) {
         return Arrays.stream(WinningGrade.values())
-                .filter(type -> type.getMatchedCount() == matchedCount)
-                .filter(type -> type.isMatchedBonusNumber() == matchedBonusNumber)
+                .filter(type -> comparisonMatchCount(matchedCount, type))
+                .filter(type -> comparisonBonusMatched(matchedCount, matchedBonusNumber, type))
                 .findAny()
                 .orElse(NONE_GRADE);
     }
@@ -45,6 +47,17 @@ public enum WinningGrade {
 
     public int getWinningPrice() {
         return winningPrice;
+    }
+
+    private static boolean comparisonBonusMatched(int matchedCount, boolean matchedBonusNumber, WinningGrade type) {
+        if (matchedCount == BONUS_MATCH_COUNT) {
+            return type.isMatchedBonusNumber() == matchedBonusNumber;
+        }
+        return true;
+    }
+
+    private static boolean comparisonMatchCount(int matchedCount, WinningGrade type) {
+        return type.getMatchedCount() == matchedCount;
     }
     
 }

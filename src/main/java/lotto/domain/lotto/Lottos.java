@@ -1,6 +1,7 @@
 package lotto.domain.lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.WinningResult;
 import lotto.domain.lotteryresult.LotteryResult;
 import lotto.domain.lotto.Lotto;
@@ -19,6 +20,10 @@ public class Lottos{
 
     public int getSize(){
         return lottos.size();
+    }
+
+    public List<Lotto> getLottos(){
+        return lottos;
     }
 
 }

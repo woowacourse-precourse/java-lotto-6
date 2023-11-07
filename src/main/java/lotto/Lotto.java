@@ -113,4 +113,10 @@ public class Lotto {
         winningCount.add(countSixMatches(lottoNumbersCollection,winningNumbersExecptBonus));
         return winningCount;
     }
+
+    List<Integer> combineWinningNumbersAndBonusNumber(List<Integer> winningNumbers, int BonusNumber){
+        List<Integer> winningNumbersWithBonus = winningNumbers;
+        winningNumbersWithBonus.add(BonusNumber);
+        return winningNumbersWithBonus;
+    }
 }

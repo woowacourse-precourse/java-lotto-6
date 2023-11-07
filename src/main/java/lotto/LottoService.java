@@ -50,4 +50,10 @@ public class LottoService {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_NOT_DIVIDE_BY_1000.getMessage());
         }
     }
+
+    private void isNumberOverLimit(String input) {
+        if (Integer.parseInt(input) > LIMIT_NUMBER) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_OVER_LIMIT.getMessage());
+        }
+    }
 }

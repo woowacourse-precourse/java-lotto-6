@@ -111,7 +111,7 @@
         try {
             return Integer.parseInt(input());
         } catch (NumberFormatException exception) {
-        		LottoGamePrinter.println(LOTTO_PURCHASE_AMOUNT_INVALID_ERROR.getMessage());
+            LottoGamePrinter.println(LOTTO_PURCHASE_AMOUNT_INVALID_ERROR.getMessage());
             return inputToInteger();
         }
         ```

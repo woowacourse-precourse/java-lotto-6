@@ -1,7 +1,8 @@
 package lotto.domain;
 
-import static java.util.Collections.sort;
+import static lotto.utils.ErrorMessage.IS_LOTTO_DUPLICATED;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -13,14 +14,22 @@ public class Lotto extends LottoNumber {
     }
     public Lotto(List<Integer> numbers) {
         super();
-        numbers.forEach(Lotto::new);
-        sort(numbers);
-        validate(numbers);
-        this.numbers = numbers;
+        List<Integer> numbersCopy = new ArrayList<>(numbers);
+        numbersCopy.forEach(Lotto::new);
+        numbersCopy.sort(Comparator.naturalOrder());
+        validate(numbersCopy);
+        this.numbers = numbersCopy;
     }
 
     private void validate(List<Integer> numbers) {
         isLottoSizeValid(numbers,LOTTO_SIZE);
+        isLottoDuplicated(numbers);
+    }
+
+    private void isLottoDuplicated(List<Integer> numbers) {
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException(IS_LOTTO_DUPLICATED.getMessage());
+        }
     }
 
     public int countMatchingNumbers(Lotto otherLotto) {

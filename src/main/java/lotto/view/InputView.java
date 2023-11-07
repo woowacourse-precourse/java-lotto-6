@@ -2,6 +2,7 @@ package lotto.view;
 
 import static java.lang.Integer.parseInt;
 import static lotto.utils.ErrorMessage.IS_LOTTO_NUMBER_DIGIT;
+import static lotto.utils.ErrorMessage.IS_PAYMENT_DIGIT;
 import static lotto.utils.Message.*;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -20,7 +21,9 @@ public class InputView {
             try {
                 Payment payment = new Payment(parseInt(Console.readLine()));
                 return payment;
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                System.out.println(IS_PAYMENT_DIGIT.getMessage());
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

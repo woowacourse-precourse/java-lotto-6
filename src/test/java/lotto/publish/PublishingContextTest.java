@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.function.IntFunction;
 import lotto.Either;
+import lotto.Input.IssuedNumber;
 import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

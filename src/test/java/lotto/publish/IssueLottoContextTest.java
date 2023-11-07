@@ -1,8 +1,8 @@
 package lotto.publish;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
+import lotto.Input.IssuedNumber;
 import lotto.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +20,7 @@ class IssueLottoContextTest {
         IssueLottoCommand.of(issuedNumber));
 
     // then
-    assertThat(issuedLottoEvent.getIssuedNumber().getValue()).isEqualTo(3);
+    assertThat(issuedLottoEvent.getIssuedNumber()).isEqualTo(3);
     assertThat(issuedLottoEvent.getLottos().get(0).getNumbers()).isSorted();
     assertThat(issuedLottoEvent.getLottos().stream().map(Lotto::size)
         .allMatch(size -> size == 6)).isTrue();

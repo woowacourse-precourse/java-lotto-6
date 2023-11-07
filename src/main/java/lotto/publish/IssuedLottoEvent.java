@@ -5,20 +5,18 @@ import lotto.Lotto;
 
 public class IssuedLottoEvent {
 
-  private final IssuedNumber issuedNumber;
   private final List<Lotto> lottos;
 
-  private IssuedLottoEvent(IssuedNumber issuedNumber, List<Lotto> lottos) {
-    this.issuedNumber = issuedNumber;
+  private IssuedLottoEvent(List<Lotto> lottos) {
     this.lottos = lottos;
   }
 
-  public static IssuedLottoEvent of(IssuedNumber issuedNumber, List<Lotto> lottos) {
-    return new IssuedLottoEvent(issuedNumber, lottos);
+  public static IssuedLottoEvent of(List<Lotto> lottos) {
+    return new IssuedLottoEvent(lottos);
   }
 
-  public IssuedNumber getIssuedNumber() {
-    return issuedNumber;
+  public int getIssuedNumber() {
+    return lottos.size();
   }
 
   public List<Lotto> getLottos() {

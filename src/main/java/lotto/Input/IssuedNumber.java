@@ -1,4 +1,4 @@
-package lotto.publish;
+package lotto.Input;
 
 import lotto.Either;
 

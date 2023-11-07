@@ -17,7 +17,7 @@ public class IssueLottoContext {
     if (publish.isLeft()) {
       throw new IllegalArgumentException(publish.getLeft());
     }
-    return IssuedLottoEvent.of(command.getIssuedNumber(), publish.getRight());
+    return IssuedLottoEvent.of(publish.getRight());
   }
 
   private static IntFunction<List<Integer>> getIntFunction() {

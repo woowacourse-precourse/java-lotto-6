@@ -1,5 +1,7 @@
 package lotto.publish;
 
+import lotto.Input.IssuedNumber;
+
 public class IssueLottoCommand {
 
   private final IssuedNumber issuedNumber;

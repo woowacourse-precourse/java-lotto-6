@@ -1,12 +1,17 @@
 package lotto.Model;
 
+import static lotto.View.OutputView.PrintCountLotto.printCountLotto;
+
 public class CountLotto {
 
-    private final int PURCHASE_UNIT = 1000;
+    public static final int PURCHASE_UNIT = 1000;
+
     private final int countLotto;
 
     public CountLotto(int amount) {
-        countLotto = caluculateAmount(amount);
+        this.countLotto = caluculateAmount(amount);
+
+        printCountLotto(getCountLotto());
     }
 
     private int caluculateAmount(int amount) {
@@ -14,7 +19,7 @@ public class CountLotto {
     }
 
     public int getCountLotto() {
-        return countLotto;
+        return this.countLotto;
     }
 
 }

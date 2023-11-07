@@ -16,10 +16,11 @@ public enum Result {
 
     Result(int matchingNumbers, long prize) {
         this.matchingNumbers = matchingNumbers;
-        this.prize =  prize;
+        this.prize = prize;
     }
 
     public static Result from(int matchingNumbers, boolean bonus) {
+        if (bonus && (matchingNumbers == 5)) return SECOND_PRIZE;
         if (!bonus && (matchingNumbers == 5)) return THIRD_PRIZE;
 
         return Arrays.stream(values())

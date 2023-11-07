@@ -1,16 +1,19 @@
 package lotto;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 
 public class Application {
 	public static 
 	Prints p = new Prints();
 	public static final int lotLength = 6;
+	private static Boolean[] check = new Boolean[46];
     public static void main(String[] args) 
     {
     	run();
@@ -23,14 +26,25 @@ public class Application {
     	int amount = buyLot/1000;
     	Lotto[] buyLotsNumbers = new Lotto[amount];
     	System.out.println(amount + p.buyingAmt);
-    	for(int i =0; i < amount; i++) buyLotsNumbers[i] = new Lotto();
+    	for(int i =0; i < amount; i++) 
+    	{
+    		buyLotsNumbers[i] = new Lotto(makeLot());
+    	}
+    	
+    	System.out.println();
     	for(int i =0; i < amount; i++) buyLotsNumbers[i].printNumbers();
+    	System.out.println();
     	winningNumMsg();
     	Lotto winning = winningNum();
     	int bonusNum = inputBonusNum();
     	printLots(buyLotsNumbers, winning, bonusNum, buyLot);
     }
     
+    private static List<Integer> makeLot()
+    {
+    	List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    	return numbers;
+    }
     private static void printLots(Lotto[] lots, Lotto winN, int bonus, int buyLot)
     {
     	Map<price, Integer> m = setResult();
@@ -56,7 +70,7 @@ public class Application {
     }
     
   
-    private static  Map<price, Integer> setResult() 
+    private static Map<price, Integer> setResult() 
     {
         Map<price, Integer> result = new LinkedHashMap<>();
 
@@ -100,9 +114,10 @@ public class Application {
     		amount = Integer.parseInt(Console.readLine());
     	}catch (NumberFormatException | NullPointerException e) {
 			System.out.println(p.ErrMsgNotPurchase);
-			
+			return buyAmount();
 		}catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
+            return buyAmount();
         }
     	return amount;
     }
@@ -113,7 +128,11 @@ public class Application {
     	List<Integer> nums = new ArrayList<Integer>();
     	for(int i = 0; i < num.length; i++)
     	{
+    		try {
     		nums.add(Integer.parseInt(num[i]));
+    		}catch (IllegalArgumentException e) {
+				return winningNum();
+			}
     	}
     	Lotto lot = new Lotto(nums);
     	return lot;

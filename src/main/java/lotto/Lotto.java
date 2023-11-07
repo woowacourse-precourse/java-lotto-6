@@ -12,10 +12,7 @@ public class Lotto
     private Boolean[] check = new Boolean[46];
     Prints p = new Prints();
     
-    public Lotto()
-    {
-    	this.numbers = makeLot();
-    }
+    
     public Lotto(List<Integer> numbers) 
     {
         validate(numbers);
@@ -26,26 +23,6 @@ public class Lotto
     public int getLotsNum(int i)
     {
     	return numbers.get(i);
-    }
-    
-    private List<Integer> makeLot()
-    {
-    	List<Integer> numbers = new ArrayList<Integer>();
-    	
-    	for(int i = 1; i < check.length; i++) check[i] = false;
-
-    	for(int i = 0; i < 6;)
-    	{
-    		int num = Randoms.pickNumberInRange(1, 45);
-    		if(!check[num])
-    		{
-    			numbers.add(num);
-        		check[num] = true;
-        		i++;
-    		}
-    	}
-    	numbers.sort(Comparator.naturalOrder());
-    	return numbers;
     }
     
     public void printNumbers()

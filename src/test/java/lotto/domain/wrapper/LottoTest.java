@@ -9,6 +9,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
 
+    @DisplayName("로또 번호에 숫자로 변환될 수 없는 타입이 들어가면 예외가 발생한다.")
+    @ParameterizedTest(name = "[{index}] input {0} " )
+    @ValueSource(strings = {"1,2,3,4,5,육", "1,2,3,4,5,^", "1,2,3,4,5, ", "1,2,3,4,5,@"})
+    void createLottoByInconvertibleType(String inputValue) {
+        assertThatThrownBy(() -> Lotto.from(inputValue))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INCONVERTIBLE_TYPE.getException().getMessage());
+    }
+
     @DisplayName("로또 번호의 개수가 6개 보다 적거나 많다면 예외가 발생한다.")
     @ParameterizedTest(name = "[{index}] input {0} " )
     @ValueSource(strings = {"1,2,3,4,5,6,7,8,9", "1,2,3,4,5,6,7", "1,2,3,4,5", "1,2,3"})

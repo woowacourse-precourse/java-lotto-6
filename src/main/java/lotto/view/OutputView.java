@@ -5,8 +5,7 @@ import lotto.domain.WinningResult;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 public class OutputView {
 
@@ -26,6 +25,10 @@ public class OutputView {
             String message = String.format("%s - %d개", winningResult.getMessage(), count);
             System.out.println(message);
         }
+    }
+
+    public void printCalculateProfit(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "% 입니다.");
     }
 
 }

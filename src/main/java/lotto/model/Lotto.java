@@ -16,4 +16,13 @@ public class Lotto {
     public List<LottoNumber> getLottoNumbers() {
         return numbers;
     }
+
+    @Override
+    public String toString() {
+        String str = "";
+        for (LottoNumber number : numbers) {
+            str += number + " ";
+        }
+        return str;
+    }
 }

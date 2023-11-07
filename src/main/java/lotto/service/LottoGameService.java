@@ -1,4 +1,4 @@
-package lotto;
+package lotto.service;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.LottoNumbersGenerator;
+import lotto.LottoRank;
+import lotto.model.Lotto;
 
 public class LottoGameService {
 

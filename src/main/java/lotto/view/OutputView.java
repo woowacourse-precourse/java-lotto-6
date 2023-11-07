@@ -1,8 +1,9 @@
-package lotto;
+package lotto.view;
 
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import lotto.LottoRank;
 
 public class OutputView {
     private static final String PURCHASE_QUANTITY_MESSAGE = "개를 구매했습니다.";

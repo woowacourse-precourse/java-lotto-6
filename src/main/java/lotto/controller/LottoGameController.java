@@ -1,6 +1,9 @@
-package lotto;
+package lotto.controller;
 
 import java.util.List;
+import lotto.service.LottoGameService;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoGameController {
 

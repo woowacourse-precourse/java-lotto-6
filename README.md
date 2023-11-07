@@ -75,6 +75,15 @@
 ## 구현 기능 목록
 - 입력 및 출력 메세지 Enum
 - 금액 Enum
+- Lotto 도메인
+  - entity
+  - Lotto entity 의 Repository 구현
+  - Lotto Service 인터페이스 작성 및 구현체 구현
+  - Lotto Service는 Repository를 통하여 Lottos를 조회 및 생성
+  - LottoDto 작성
+  - LottoDto는 컨트롤러-서비스 및 서비스-레파지토리 계층간 데이터 전달 시 사용
+  - 구매금액에 따른 랜덤 로또 발행 기능 추가
+  - 오름차 순으로 중복없는 랜덤 숫자 6개 생성 기능 추가
 - Validator 
   - 구매 금액 입력의 포맷과 범위 예외 처리
   - 당첨 번호의 개수 유효성
@@ -86,4 +95,5 @@
   - LottoMachine은 뷰 컨트롤러에게 명령을 내림
   - 컨트롤러는 입출력 서비스에게 명령을 전달
   - 구매금액 입력 기능 추가
+
   

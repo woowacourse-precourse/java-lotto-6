@@ -13,9 +13,7 @@ import org.junit.jupiter.api.Test;
 class MainControllerTest {
     private final OutputStream outputStream = new ByteArrayOutputStream();
     private MainController mainController;
-
-    private
-
+    
     @BeforeEach
     void setUp() {
         System.setOut(new PrintStream(outputStream));

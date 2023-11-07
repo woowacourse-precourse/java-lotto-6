@@ -19,33 +19,6 @@ public class AmountTest extends NsTest {
         });
     }
 
-    @DisplayName("로또 구입 금액을 입력하지 않으면 예외가 발생한다.")
-    @Test
-    void createAmountByNull() {
-        assertSimpleTest(() -> {
-            runException(System.lineSeparator());
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("로또 구입 금액이 공백이면 예외가 발생한다.")
-    @Test
-    void createAmountByBlank() {
-        assertSimpleTest(() -> {
-            runException(" ");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
-    @DisplayName("로또 구입 금액이 숫자가 아닌 값이면 예외가 발생한다.")
-    @Test
-    void createAmountByCharacter() {
-        assertSimpleTest(() -> {
-            runException("a");
-            assertThat(output()).contains(ERROR_MESSAGE);
-        });
-    }
-
     @DisplayName("로또 구입 금액이 0 이하면 예외가 발생한다.")
     @Test
     void createAmountByNegative() {

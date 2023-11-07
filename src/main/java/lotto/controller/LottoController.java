@@ -11,13 +11,9 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 public class LottoController {
-    private final Input input;
-    private final Output output;
     private final RandomNumberGenerator randomNumberGenerator;
 
-    public LottoController(Input input, Output output, RandomNumberGenerator randomNumberGenerator) {
-        this.input = input;
-        this.output = output;
+    public LottoController(RandomNumberGenerator randomNumberGenerator) {
         this.randomNumberGenerator = randomNumberGenerator;
     }
 
@@ -31,9 +27,9 @@ public class LottoController {
     private LottoCount setLottoCount() {
         while (true) {
             try {
-                return new LottoCount(input.money());
+                return new LottoCount(Input.money());
             } catch (IllegalArgumentException e) {
-                output.message(e.getMessage());
+                Output.message(e.getMessage());
             }
         }
     }
@@ -41,22 +37,22 @@ public class LottoController {
     private UserLotto setUserLotto(LottoCount lottoCount) {
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(randomNumberGenerator);
-        output.userLotto(userLotto);
+        Output.userLotto(userLotto);
         return userLotto;
     }
 
     private Lotto setLotto() {
         while (true) {
             try {
-                return new Lotto(input.winLottoNumbers());
+                return new Lotto(Input.winLottoNumbers());
             } catch (IllegalArgumentException e) {
-                output.message(e.getMessage());
+                Output.message(e.getMessage());
             }
         }
     }
 
     private Bonus setBonus() {
-        return new Bonus(input.bonusNumber());
+        return new Bonus(Input.bonusNumber());
     }
 
     private WinLotto setWinLotto() {
@@ -66,7 +62,7 @@ public class LottoController {
                 Bonus bonus = setBonus();
                 return new WinLotto(lotto, bonus);
             } catch (IllegalArgumentException e) {
-                output.message(e.getMessage());
+                Output.message(e.getMessage());
             }
         }
     }
@@ -75,7 +71,7 @@ public class LottoController {
         LottoMachine lottoMachine = new LottoMachine();
         lottoMachine.compare(userLotto, winLotto);
 
-        output.lottoResult(lottoMachine);
-        output.rateOfReturn(lottoMachine.calculateRate(userLotto));
+        Output.lottoResult(lottoMachine);
+        Output.rateOfReturn(lottoMachine.calculateRate(userLotto));
     }
 }

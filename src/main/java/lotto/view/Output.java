@@ -6,7 +6,7 @@ import lotto.domain.result.LottoResult;
 import lotto.domain.user.UserLotto;
 
 public class Output {
-    public void userLotto(UserLotto userLotto) {
+    public static void userLotto(UserLotto userLotto) {
         System.out.println();
         System.out.println(userLotto.getLottos().size() + "개를 구매했습니다.");
         for (int i = 0; i < userLotto.getLottos().size(); i++) {
@@ -14,7 +14,7 @@ public class Output {
         }
     }
 
-    public void lottoResult(LottoMachine lottoMachine) {
+    public static void lottoResult(LottoMachine lottoMachine) {
         System.out.println();
         System.out.println("당첨통계");
         System.out.println("---");
@@ -30,11 +30,11 @@ public class Output {
                 + lottoMachine.getWinStatus().get(new LottoResult(GameStatus.SIX_EQUAL)) + "개");
     }
 
-    public void rateOfReturn(double rate) {
+    public static void rateOfReturn(double rate) {
         System.out.printf("총 수익률은 %.1f%%입니다.", rate);
     }
 
-    public void message(String message) {
+    public static void message(String message) {
         System.out.println(message);
     }
 }

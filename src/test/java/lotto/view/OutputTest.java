@@ -19,10 +19,9 @@ public class OutputTest extends NsTest {
         LottoCount lottoCount = new LottoCount(2000);
         UserLotto userLotto = new UserLotto(lottoCount);
         userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
-        Output output = new Output();
 
         //when
-        output.userLotto(userLotto);
+        Output.userLotto(userLotto);
 
         //then
         assertThat(output()).contains("2개를 구매했습니다.", "[1, 3, 5, 7, 9, 11]");
@@ -33,9 +32,8 @@ public class OutputTest extends NsTest {
     void checkLottoResultOutput() {
         //given
         LottoMachine lottoMachine = new LottoMachine();
-        Output output = new Output();
         //when
-        output.lottoResult(lottoMachine);
+        Output.lottoResult(lottoMachine);
 
         //then
         assertThat(output()).contains("0개", "3개 일치 (5,000원) - ",
@@ -47,10 +45,8 @@ public class OutputTest extends NsTest {
     @DisplayName("수익률을 올바르게 출력하는지 확인한다.")
     @Test
     void checkRateOfReturnOutput() {
-        //given
-        Output output = new Output();
         //when
-        output.rateOfReturn(67.51);
+        Output.rateOfReturn(67.51);
         //then
         assertThat(output()).isEqualTo("총 수익률은 67.5%입니다.");
     }

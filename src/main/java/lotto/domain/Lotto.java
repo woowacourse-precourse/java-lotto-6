@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -10,13 +11,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        Collections.sort(numbers);
-        validate(numbers);
-        this.numbers = Collections.unmodifiableList(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        validate(sortedNumbers);
+        this.numbers = Collections.unmodifiableList(sortedNumbers);
     }
 
     private void validate(List<Integer> numbers) {
-        //
         if (numbers.size() != LottoConfig.MAX_BALLS) {
             throw Errors.INVALID_SIZE.getLottoException();
         }

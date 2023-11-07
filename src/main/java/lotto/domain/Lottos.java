@@ -1,14 +1,14 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
     private final List<Lotto> packOfLotteryTickets;
 
     private Lottos(List<Lotto> packOfLotteryTickets) {
-        this.packOfLotteryTickets = packOfLotteryTickets;
-//        this.packOfLotteryTickets = Collections.unmodifiableList(packOfLotteryTickets);
+        this.packOfLotteryTickets = Collections.unmodifiableList(packOfLotteryTickets);
     }
 
     public static Lottos of(final Quantity totalLotteries, final LottoGenerator generator) {

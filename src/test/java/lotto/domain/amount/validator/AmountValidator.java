@@ -34,7 +34,7 @@ public class AmountValidator {
     }
 
     private boolean isAbove(final int amount) {
-        return amount >= Constant.ALLOWED_MIN_AMOUNT_VALUE;
+        return amount >= Constant.ALLOWED_MINIMUM_AMOUNT_VALUE;
     }
 
     private void validateAmountIsDivisible(final int amount) {
@@ -44,6 +44,6 @@ public class AmountValidator {
     }
 
     private boolean isDivisible(final int amount) {
-        return amount % Constant.ALLOWED_MIN_AMOUNT_VALUE == Constant.ZERO_VALUE;
+        return amount % Constant.ALLOWED_MINIMUM_AMOUNT_VALUE == Constant.ZERO_VALUE;
     }
 }

@@ -46,6 +46,6 @@ class AmountTest {
     @DisplayName("생성자 정상 작동 테스트")
     void constructorTest(final int amount) {
         final Amount purchaseAmount = new Amount(amount);
-        assertThat(purchaseAmount.getAmount()).isEqualTo(amount);
+        assertThat(purchaseAmount.amount()).isEqualTo(amount);
     }
 }

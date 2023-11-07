@@ -1,17 +1,15 @@
 package lotto.domain.amount;
 
+import lotto.constant.Constant;
 import lotto.domain.amount.validator.AmountValidator;
 
-public class Amount {
+public record Amount(int amount) {
 
-    private final int amount;
-
-    public Amount(final int amount) {
+    public Amount {
         AmountValidator.validateAmount(amount);
-        this.amount = amount;
     }
 
-    public int getAmount() {
-        return this.amount;
+    public int getDividedAmount() {
+        return this.amount / Constant.ALLOWED_MINIMUM_AMOUNT_VALUE;
     }
 }

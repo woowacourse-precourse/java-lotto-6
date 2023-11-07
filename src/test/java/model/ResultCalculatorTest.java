@@ -76,4 +76,24 @@ class ResultCalculatorTest {
         assertThat(resultCalculator.hitNumberCounter(purchasedLottoNumbers, winningLottoNumbers))
                 .isEqualTo(0);
     }
+
+    @DisplayName("보너스 번호가 포함되어있으면 true를 리턴한다.")
+    @Test
+    void calculateIsBonusIncludedWithIncludedBonusNumber() {
+        ResultCalculator resultCalculator = new ResultCalculator();
+        List<Integer> purchasedLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 1;
+        assertThat(resultCalculator.isBonusNumberIncluded(purchasedLottoNumbers, bonusNumber))
+                .isTrue();
+    }
+
+    @DisplayName("보너스 번호가 포함되어있지 않으면 false를 리턴한다.")
+    @Test
+    void calculateIsBonusIncludedWithNotIncludedBonusNumber() {
+        ResultCalculator resultCalculator = new ResultCalculator();
+        List<Integer> purchasedLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+        assertThat(resultCalculator.isBonusNumberIncluded(purchasedLottoNumbers, bonusNumber))
+                .isFalse();
+    }
 }

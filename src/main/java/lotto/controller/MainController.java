@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Buyer;
+import lotto.domain.LottoStatistics;
 import lotto.domain.Lottos;
 import lotto.domain.NumberChecker;
 import lotto.view.OutputView;
@@ -19,5 +20,10 @@ public class MainController {
         OutputView.printMessage(lottoTicket);
 
         NumberChecker numberChecker = lottoController.createNumberChecker();
+
+        LottoStatistics lottoResult = numberChecker.getLottoResult(lottoTicket);
+
+        OutputView.printMessage(lottoResult.generateLottoStatisticsForm());
+
     }
 }

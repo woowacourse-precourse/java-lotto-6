@@ -13,4 +13,7 @@ public class NumberChecker {
         return new NumberChecker(winningLotto, bonus);
     }
 
+    public LottoStatistics getLottoResult(Lottos lottoTicket) {
+        return LottoStatistics.from(lottoTicket, winningLotto, bonus);
+    }
 }

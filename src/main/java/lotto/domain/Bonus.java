@@ -46,4 +46,8 @@ public class Bonus {
             throw LottoException.of(BONUS_LOTTO_DUPLICATE);
         }
     }
+
+    public Integer getBonusNumber() {
+        return bonusNumber;
+    }
 }

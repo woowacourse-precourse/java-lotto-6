@@ -30,7 +30,7 @@ public enum PrintingMessage {
         return String.format(message, number);
     }
 
-    public String getWithFormat(int sameCount, long prizeProfit, int prizeCount) {
+    public String getResultWithFormat(int sameCount, long prizeProfit, int prizeCount) {
         DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT.get());
         String formattedPrizeProfit = decimalFormat.format(prizeProfit);
         String bonusMessage = LottoConstant.SPACE.get();

@@ -104,7 +104,7 @@ public class GameController {
             if (prize == Prize.NO_PRIZE) {
                 continue;
             }
-            outputView.printMessage(PrintingMessage.PRIZE_MESSAGE.getWithFormat(
+            outputView.printMessage(PrintingMessage.PRIZE_MESSAGE.getResultWithFormat(
                     prize.getSameCount(),
                     prize.getPrizeProfit(),
                     prizeReception.getPrizeCount(prize)

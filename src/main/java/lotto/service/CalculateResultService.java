@@ -47,8 +47,8 @@ public class CalculateResultService {
                 .collect(toList());
     }
     private static LotteryResultDto convertToLotteryResultDto(LotteryResult result){
-        String rankingName = result.ranking().name();
-        int rankingMatches = result.ranking().matches;
+        String rankingName = result.ranking().getName();
+        int rankingMatches = result.ranking().getMatches();
         int rankingAmount = result.ranking().getAmount();
         int counts = result.counts();
         return new LotteryResultDto(rankingName, rankingMatches, rankingAmount, counts);

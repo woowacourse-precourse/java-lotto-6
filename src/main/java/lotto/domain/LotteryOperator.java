@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,9 +11,12 @@ public class LotteryOperator {
 
     private Map<LotteryRound, WinningLottery> history;
 
-    public LotteryOperator() {
-        this.round = new LotteryRound(1);
+    private Collection<? extends LotteryRanking> rankings;
+
+    public LotteryOperator(LotteryRound round, Collection<? extends LotteryRanking> rankings ) {
+        this.round = round;
         this.history = new HashMap<>();
+        this.rankings = rankings;
     }
 
     public void draw(List<Integer> winningNumbers, int bonusNumber) {
@@ -26,7 +30,7 @@ public class LotteryOperator {
         }
         return history.values()
                 .stream()
-                .map(winningLottery -> winningLottery.getResultFrom(lottery))
+                .map(winningLottery -> winningLottery.getResultFrom(lottery, rankings))
                 .findFirst().get();
     }
 

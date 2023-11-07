@@ -1,10 +1,10 @@
 package lotto.domain;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
+import lotto.CustomLotteryRanking;
 
 
 public class LotteryResults {
@@ -55,7 +55,7 @@ public class LotteryResults {
 
     private Map<LotteryRanking, Integer> createEmptyLotteryRankingMap() {
         Map<LotteryRanking, Integer> result = new TreeMap<>();
-        for (LotteryRanking ranking : LotteryRanking.values()) {
+        for (LotteryRanking ranking : CustomLotteryRanking.values()) {
             result.put(ranking, 0);
         }
         return result;

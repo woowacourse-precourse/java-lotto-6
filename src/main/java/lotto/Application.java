@@ -2,9 +2,11 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.text.NumberFormat;
+import java.util.Arrays;
 import lotto.domain.LotteryOperator;
 import lotto.domain.LotteryResultsCalculator;
 import lotto.domain.LotteryRetailer;
+import lotto.domain.LotteryRound;
 import lotto.domain.LottoRandom;
 import lotto.service.ApplyWinningLotteryService;
 import lotto.service.CalculateResultService;
@@ -16,7 +18,7 @@ public class Application {
 
         String username = "user0";
         LottoRandom random = new MissionLottoRandom();
-        LotteryOperator operator = new LotteryOperator();
+        LotteryOperator operator = new LotteryOperator(new LotteryRound(1), Arrays.asList(CustomLotteryRanking.values()));
         LotteryRetailer retailer = new LotteryRetailer(random);
         UserService userService = new UserService();
         userService.register(username);

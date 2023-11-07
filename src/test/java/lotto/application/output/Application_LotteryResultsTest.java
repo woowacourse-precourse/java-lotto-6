@@ -6,10 +6,9 @@ import static lotto.resource.TextResourceProvider.LOTTERY_RANKING_RESULT_FORMAT;
 import static lotto.resource.TextResourceProvider.LOTTERY_RANKING_RESULT_SECOND_HEADER_FORMAT;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
 import java.util.List;
 import lotto.MyApplicationTest;
-import lotto.domain.LotteryRanking;
+import lotto.CustomLotteryRanking;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,7 @@ public class Application_LotteryResultsTest extends MyApplicationTest {
 
         assertThat(outputs())
                 .filteredOn(LOTTERY_RANKING_RESULT_FORMAT::matches)
-                .hasSize(LotteryRanking.values().length - 1);
+                .hasSize(CustomLotteryRanking.values().length - 1);
     }
 
     @Test
@@ -31,7 +30,7 @@ public class Application_LotteryResultsTest extends MyApplicationTest {
 
         assertThat(outputs())
                 .filteredOn(LOTTERY_RANKING_RESULT_FORMAT::matches)
-                .hasSize(LotteryRanking.values().length - 1)
+                .hasSize(CustomLotteryRanking.values().length - 1)
                 .allMatch(line -> matchesRankingResultHeaderFormat(line));
     }
 

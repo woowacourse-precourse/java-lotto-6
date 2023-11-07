@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collection;
 import java.util.List;
 
 public class WinningLottery {
@@ -16,10 +17,16 @@ public class WinningLottery {
                 new BonusNumber(bonusNumber));
     }
 
-    public LotteryResults getResultFrom(PurchasedLottery lottery) {
+    public LotteryResults getResultFrom(PurchasedLottery lottery, Collection<? extends LotteryRanking> rankings) {
         int counts = lotto.matches(lottery.getNumbers());
         boolean isBonusNumberMatch = bonusNumber.matches(lottery.getNumbers());
-        LotteryRanking ranking = LotteryRanking.getRanking(counts, isBonusNumberMatch);
+        LotteryRanking ranking = getRanking(rankings, counts, isBonusNumberMatch);
         return new LotteryResults(ranking, 1);
     }
+    public LotteryRanking getRanking(Collection<? extends LotteryRanking> rankings, int counts, boolean isBonusNumberMatch) {
+        return rankings.stream()
+                .filter(ranking -> ranking.matches(counts, isBonusNumberMatch))
+                .findFirst().get();
+    }
+
 }

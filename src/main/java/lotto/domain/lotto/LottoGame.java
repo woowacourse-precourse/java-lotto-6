@@ -5,8 +5,6 @@ import lotto.domain.GameResult;
 import lotto.domain.Money;
 import lotto.domain.Rank;
 import lotto.domain.lotto.converter.LottoMessageConverter;
-import lotto.global.constant.message.ErrorMessage;
-import lotto.global.exception.LottoIllegalArgumentException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -66,18 +64,12 @@ public class LottoGame {
         try {
             int number = inputView.readBonusNumber();
             LottoNumber bonusNumber = new LottoNumber(number);
+            winningLotto.checkDuplicationWithBonusNumber(bonusNumber);
 
-            validateBonusNumberDuplication(winningLotto, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException error) {
             outputView.printErrorMessage(error);
             return createBonusNumber(winningLotto);
-        }
-    }
-
-    private void validateBonusNumberDuplication(Lotto winningLotto, LottoNumber bonusNumber) {
-        if (winningLotto.containsNumber(bonusNumber)) {
-            throw new LottoIllegalArgumentException(ErrorMessage.BONUS_NUMBER_DUPLICATION_ERROR);
         }
     }
 

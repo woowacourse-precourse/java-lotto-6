@@ -9,8 +9,8 @@ public class Utils {
     private Utils() {
     }
 
-    public static List<Integer> getSortedList(List<Integer> inputList) {
-        return inputList.stream()
+    public static List<Integer> getSortedList(List<Integer> input) {
+        return input.stream()
                 .sorted()
                 .toList();
     }
@@ -19,8 +19,8 @@ public class Utils {
         return new ArrayList<>(Arrays.asList(input.split(",")));
     }
 
-    public static ArrayList<Integer> stringToInteger(ArrayList<String> inputList) {
-        return inputList.stream()
+    public static ArrayList<Integer> stringToInteger(ArrayList<String> input) {
+        return input.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toCollection(ArrayList::new));
     }

@@ -14,7 +14,15 @@ import lotto.View.InputView;
 import lotto.View.OutputView;
 
 public class GameController {
-    GameRule gameRule = new GameRule();
+    GameRule gameRule;
+    InputView inputView;
+    OutputView outputView;
+
+    public GameController() {
+        gameRule = new GameRule();
+        inputView = new InputView();
+        outputView = new OutputView();
+    }
 
     public void runGame() {
         Cpu cpu = getUserValidMoney();
@@ -22,14 +30,11 @@ public class GameController {
         int money = tickets * IntConstants.UNIT_BILL.getValue();
 
         printTicketsAndLotto(cpu, tickets);
-
         Lotto playerLottoNumbers = getUserValidLottoNumber();
-
         Player playerLotto = getUserValidBonusNumber(playerLottoNumbers);
 
         List<Integer> gameResult = gameRule.calculateResult(cpu, playerLotto);
         String totalProfit = gameRule.calculateProfit(money, gameResult);
-
         printAllResult(gameResult, totalProfit);
     }
 
@@ -37,7 +42,7 @@ public class GameController {
         while (true) {
             try {
                 printInsertMoney();
-                int money = InputView.insertMoney();
+                int money = inputView.insertMoney();
                 return new Cpu(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -49,7 +54,7 @@ public class GameController {
         while (true) {
             try {
                 printInsertLottoNumbers();
-                List<Integer> playerLottoNumbers = InputView.insertLottoNumbers();
+                List<Integer> playerLottoNumbers = inputView.insertLottoNumbers();
                 return new Lotto(playerLottoNumbers);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -61,7 +66,7 @@ public class GameController {
         while (true) {
             try {
                 printInsertBonusNumber();
-                int playerBonusNumber = InputView.insertBonusNumber();
+                int playerBonusNumber = inputView.insertBonusNumber();
                 return new Player(playerLotto, playerBonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -70,15 +75,15 @@ public class GameController {
     }
 
     private void printAllResult(List<Integer> gameResult, String totalProfit) {
-        OutputView.printResultMessage();
-        OutputView.printContourLine();
-        OutputView.printLottoResult(gameResult);
-        OutputView.printTotalProfit(totalProfit);
+        outputView.printResultMessage();
+        outputView.printContourLine();
+        outputView.printLottoResult(gameResult);
+        outputView.printTotalProfit(totalProfit);
     }
 
     private void printTicketsAndLotto(Cpu cpu, int tickets) {
-        OutputView.printBuyTickets(tickets);
-        OutputView.printLottoNumbers(cpu, tickets);
+        outputView.printBuyTickets(tickets);
+        outputView.printLottoNumbers(cpu, tickets);
     }
 }
 

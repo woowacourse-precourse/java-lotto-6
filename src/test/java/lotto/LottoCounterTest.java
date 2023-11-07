@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Model.LottoCounter;
+import lotto.Utils.LottoResultCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class LottoCounterTest {
         List<Integer> list1 = new ArrayList<>(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> list2 = new ArrayList<>(List.of(1, 2, 3, 7, 8, 9));
 
-        int result = LottoCounter.countElement(list1, list2);
+        int result = LottoResultCalculator.countElement(list1, list2);
 
         assertThat(result).isEqualTo(3);
     }

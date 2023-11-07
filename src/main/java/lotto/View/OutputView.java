@@ -9,16 +9,12 @@ import lotto.Model.Lotto;
 
 public class OutputView {
 
-    private OutputView() {
-
-    }
-
-    public static void printBuyTickets(int tickets) {
+    public void printBuyTickets(int tickets) {
         String resultString = String.format(OutputConstants.TOTAL_LOTTO_TICKETS.getMessage(), tickets);
         System.out.println(resultString);
     }
 
-    public static void printLottoNumbers(Cpu cpuLottos, int tickets) {
+    public void printLottoNumbers(Cpu cpuLottos, int tickets) {
         List<Lotto> LottoNumbers = cpuLottos.getSixLottoNumbers();
 
         for (int index = 0; index < tickets; index++) {
@@ -28,15 +24,15 @@ public class OutputView {
         }
     }
 
-    public static void printResultMessage() {
+    public void printResultMessage() {
         System.out.println(OutputConstants.LOTTO_RESULT.getMessage());
     }
 
-    public static void printContourLine() {
+    public void printContourLine() {
         System.out.println(OutputConstants.CONTOUR.getMessage());
     }
 
-    public static void printLottoResult(List<Integer> lottoResult) {
+    public void printLottoResult(List<Integer> lottoResult) {
         OutputConstants[] stringArray = OutputConstants.values();
         for (int index = 0; index < lottoResult.size(); index++) {
             OutputConstants outputConstants = stringArray[index];
@@ -45,7 +41,7 @@ public class OutputView {
         }
     }
 
-    public static void printTotalProfit(String profit) {
+    public void printTotalProfit(String profit) {
         String resultString = String.format(OutputConstants.TOTAL_LOTTO_PROFIT.getMessage(), profit);
         System.out.println(resultString);
     }

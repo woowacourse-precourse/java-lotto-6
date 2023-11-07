@@ -7,8 +7,6 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Test;
 
 class MyApplicationTest extends NsTest {
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
 
     @Test
     void 예외_테스트_중복된_당첨번호() {
@@ -41,7 +39,7 @@ class MyApplicationTest extends NsTest {
             assertThat(output()).contains("[ERROR] 반드시 숫자로만 입력해야 합니다.");
         });
     }
-    
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

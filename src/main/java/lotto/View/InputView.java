@@ -16,11 +16,7 @@ public class InputView {
         System.out.println(InputConstants.ENTER_MONEY.getMessage());
     }
 
-    private InputView() {
-
-    }
-
-    public static int insertMoney() {
+    public int insertMoney() {
         String money = Console.readLine();
         validateMoney(money);
         return Integer.parseInt(money);
@@ -30,7 +26,7 @@ public class InputView {
         System.out.println(InputConstants.ENTER_LOTTO_NUMBERS.getMessage());
     }
 
-    public static ArrayList<Integer> insertLottoNumbers() {
+    public ArrayList<Integer> insertLottoNumbers() {
         String input = Console.readLine();
         validateLottoNumber(input);
         ArrayList<String> inputList = splitWithComma(input);
@@ -42,30 +38,30 @@ public class InputView {
         System.out.println(InputConstants.ENTER_BONUS_NUMBER.getMessage());
     }
 
-    public static int insertBonusNumber() {
+    public int insertBonusNumber() {
         String bonusNumber = Console.readLine();
         validateBonusNumber(bonusNumber);
         return Integer.parseInt(bonusNumber);
     }
 
-    private static void validateNumber(ArrayList<String> inputList) {
+    private void validateNumber(ArrayList<String> inputList) {
         for (String s : inputList) {
             checkInputDigit(s);
         }
     }
 
-    private static void validateMoney(String input) {
+    private void validateMoney(String input) {
         checkInputEmpty(input);
         checkInputBlank(input);
         checkInputDigit(input);
     }
 
-    private static void validateLottoNumber(String input) {
+    private void validateLottoNumber(String input) {
         checkInputEmpty(input);
         checkInputBlank(input);
     }
 
-    private static void validateBonusNumber(String input) {
+    private void validateBonusNumber(String input) {
         checkInputEmpty(input);
         checkInputBlank(input);
         checkInputDigit(input);

@@ -7,6 +7,7 @@ import lotto.Input.InputType;
 
 public class LottoGame {
     private static final int FIRST = 0;
+    private static final int LOTTO_PRICE = 1000;
     private Input lottoInput = new Input();
     private List<Lotto> purchasedLotto;
 
@@ -28,7 +29,7 @@ public class LottoGame {
 
     public void buyLotto(Integer purchaseAmount){
         Print.printPurchase(purchaseAmount);
-        for (int i = 0; i < purchaseAmount / 1000; i++){
+        for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++){
             List<Integer> makedNumbers = Utils.makeRandomNumbers(1, 45, 6);
             Collections.sort(makedNumbers);
             purchasedLotto.add(new Lotto(makedNumbers));

@@ -6,6 +6,7 @@ import lotto.Messages.ErrorMessage;
 import lotto.Messages.MainMessage;
 
 public class Input {
+    private static final int LOTTO_PRICE = 1000;
     public static enum InputType{
         PURCHASE_AMOUNT, WINNING_NUMBERS, BONUS_NUMBER;
     }
@@ -54,7 +55,7 @@ public class Input {
             Print.printMessage(ErrorMessage.NON_NUMERIC_STR.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_STR.getMessage());
         }
-        if (Integer.parseInt(inputStr) % 1000 != 0){
+        if (Integer.parseInt(inputStr) % LOTTO_PRICE != 0){
             Print.printMessage(ErrorMessage.NOT_DIVIED_1000.getMessage());
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVIED_1000.getMessage());
         }

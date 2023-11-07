@@ -6,12 +6,12 @@ public class Application {
     public static void main(String[] args) {
 
         LottoMachine lottoMachine = new LottoMachine();
-        lottoMachine.insertMoneyView();
-        List<Lotto> lottoBundle = lottoMachine.lottoBundleView();
+        lottoMachine.lottoMachineInput();
+        List<Lotto> lottoBundle = lottoMachine.lottoMachineOutput();
 
-        LottoResultChecker lottoResultChecker = new LottoResultChecker();
-        lottoResultChecker.startLottoResultCheckerView(lottoBundle);
-        lottoResultChecker.showLottoResultView();
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(lottoBundle);
+        lottoResultChecker.lottoResultCheckerInput();
+        lottoResultChecker.lottoResultCheckerOutput();
 
     }
 

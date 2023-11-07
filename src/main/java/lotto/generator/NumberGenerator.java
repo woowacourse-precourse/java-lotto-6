@@ -1,15 +1,17 @@
 package lotto.generator;
 
 
+import static lotto.globar.GlobalConstants.LOTTO_END_RANGE;
+import static lotto.globar.GlobalConstants.LOTTO_STARTING_RANGE;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.globar.GlobalConstants;
 
 public class NumberGenerator {
-    private static final int STARTING_RANGE = 1;
-    private static final int END_RANGE = 45;
-    public static List<Integer> generateAllNumbers() {
-        return IntStream.rangeClosed(STARTING_RANGE, END_RANGE)
+    public static List<Integer> generateAllLottoNumbers() {
+        return IntStream.rangeClosed(LOTTO_STARTING_RANGE, LOTTO_END_RANGE)
                 .boxed()
                 .collect(Collectors.toList());
     }

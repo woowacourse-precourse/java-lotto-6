@@ -21,15 +21,15 @@ public class LottoView {
     private static final String PROFIT_RATE = "총 수익률은 ";
     private static final String PERCENT = "%입니다.";
 
-    public static void printPurchasePrompt() {
+    public void printPurchasePrompt() {
         System.out.println(PURCHASE_PRICE);
     }
 
-    public static void printPurchaseCount(int purchaseCount) {
+    public void printPurchaseCount(int purchaseCount) {
         System.out.println(purchaseCount + PURCHASE_COUNT);
     }
 
-    public static void printLottoNumbers(List<Lotto> lottoBundle) {
+    public void printLottoNumbers(List<Lotto> lottoBundle) {
         lottoBundle.stream()
                 .map(Lotto::getNumbers)
                 .map(numbers -> "[" + numbers.stream()
@@ -38,15 +38,15 @@ public class LottoView {
                 .forEach(System.out::println);
     }
 
-    public static void printWinningPrompt() {
+    public void printWinningPrompt() {
         System.out.println(WINNING_NUMBER);
     }
 
-    public static void printBonusPrompt() {
+    public void printBonusPrompt() {
         System.out.println(BONUS_NUMBER);
     }
 
-    public static void printWinningResult(LottoResult lottoResult) {
+    public void printWinningResult(LottoResult lottoResult) {
         System.out.println(WINNING_RESULT);
         System.out.println("---");
         System.out.println(THREE_MATCH + lottoResult.getThreeMatchCount() + QUANTITY);
@@ -56,7 +56,7 @@ public class LottoView {
         System.out.println(SIX_MATCH + lottoResult.getSixMatchCount() + QUANTITY);
     }
 
-    public static void printProfitRate(double profitRate) {
+    public void printProfitRate(double profitRate) {
         System.out.println(PROFIT_RATE + profitRate + PERCENT);
     }
 }

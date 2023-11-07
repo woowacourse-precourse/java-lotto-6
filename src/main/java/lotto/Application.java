@@ -5,7 +5,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
     final static int LOTTO_PRICE = 1000;
@@ -17,13 +19,31 @@ public class Application {
         int money = getInputMoney();
         int numberOfTicket = unsafeDivideBy1000(money);
 
-        List<Lotto> lotto = makeLottos(numberOfTicket);
-        printLotto(lotto);
+        List<Lotto> lottos = makeLottos(numberOfTicket);
+        printLotto(lottos);
 
-        Lotto firstPrize = getInputFirstPrizeLotto();
+        Lotto prizeNumbers = getInputFirstPrizeLotto();
         int bonusNumber = getInputBonusNumber();
 
+        var result = calculateLottoPrize(prizeNumbers, bonusNumber, lottos);
 
+    }
+
+    public static Map<PRIZE_TYPE, Integer> calculateLottoPrize(Lotto prizeNumbers, int bonusNumber,
+                                                               List<Lotto> lottos) {
+        var result = new HashMap<PRIZE_TYPE, Integer>();
+
+        for (PRIZE_TYPE prizeType : PRIZE_TYPE.values()) {
+            result.put(prizeType, 0);
+        }
+
+        for (Lotto lotto : lottos) {
+            var lottoResult = lotto.calculatePrize(prizeNumbers, bonusNumber);
+            int value = result.get(lottoResult);
+            result.put(lottoResult, value + 1);
+        }
+
+        return result;
     }
 
     public static int getInputBonusNumber() {
@@ -38,8 +58,7 @@ public class Application {
     public static Lotto getInputFirstPrizeLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
-        List<String> numString = Arrays.stream(input.split(","))
-                .toList();
+        List<String> numString = Arrays.stream(input.split(",")).toList();
         List<Integer> num = new ArrayList<>();
 
         for (String s : numString) {
@@ -102,8 +121,8 @@ public class Application {
     }
 
     public static Lotto makeLotto() {
-        List<Integer> num = Randoms.pickUniqueNumbersInRange(LOTTO_RANGE_START, LOTTO_RANGE_END,
-                LOTTO_NUMBER_COUNT);
+        List<Integer> num = Randoms
+                .pickUniqueNumbersInRange(LOTTO_RANGE_START, LOTTO_RANGE_END, LOTTO_NUMBER_COUNT);
         Collections.sort(num);
         return new Lotto(num);
     }

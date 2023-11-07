@@ -1,6 +1,7 @@
 package lotto.domain;
 
 
+import static lotto.constants.constants.INITIAL_COUNT;
 import static lotto.constants.constants.LOTTO_COST;
 
 import lotto.validation.CostValidator;
@@ -24,6 +25,6 @@ public class Cost {
     }
 
     public void resetCount() {
-        this.count = 0;
+        this.count = INITIAL_COUNT;
     }
 }

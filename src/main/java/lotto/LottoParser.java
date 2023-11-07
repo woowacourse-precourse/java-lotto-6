@@ -25,7 +25,7 @@ public class LottoParser {
 
     private static <R> R parse(final String inputValue, Function<List<Integer>, R> changeLotto) {
         try {
-            List<Integer> numbers = Arrays.stream(inputValue.split(NUMBER_SEPARATOR))
+            List<Integer> numbers = Arrays.stream(inputValue.split(NUMBER_SEPARATOR, -1))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());

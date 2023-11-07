@@ -13,6 +13,22 @@ public class LottoNumscompare {
         put(5, 0);
     }};
 
+    private enum Rank{
+        FIRST_PLACE("2000000000"),
+        SECOND_PLACE("30000000"),
+        THIRD_PLACE("1500000"),
+        FOURTH_PLACE("50000"),
+        FIFTH_PLACE("5000");
+
+        final private String winningAmount;
+        public Long getWinningAmount() {
+            return Long.parseLong(winningAmount);
+        }
+        private Rank(String winningAmount){
+            this.winningAmount = winningAmount;
+        }
+    }
+
     public Map<Integer, Integer> getUserWinningRanks(){
         return new HashMap<Integer, Integer>(userWinningRanks);
     }
@@ -46,5 +62,15 @@ public class LottoNumscompare {
             }
         }
         userWinningRanks.put(8-sameNum, userWinningRanks.get(8-sameNum)+1);
+    }
+}
+
+    public double calculateProfitSummary(int lottoPurchaseNum){
+        double winningAmount = Rank.FIRST_PLACE.getWinningAmount()*userWinningRanks.get(1)
+                +Rank.SECOND_PLACE.getWinningAmount()*userWinningRanks.get(2)
+                +Rank.THIRD_PLACE.getWinningAmount()*userWinningRanks.get(3)
+                +Rank.FOURTH_PLACE.getWinningAmount()*userWinningRanks.get(4)
+                +Rank.FIFTH_PLACE.getWinningAmount()*userWinningRanks.get(5);
+        return Math.round(winningAmount/(lottoPurchaseNum*1000)*100*10)/10.0;
     }
 }

@@ -1,5 +1,6 @@
 package lotto.service;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.LottoWinningRank;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBonusNumber;
@@ -8,7 +9,6 @@ import lotto.domain.LottoWinningNumber;
 import lotto.dto.LottoNumbers;
 import lotto.dto.LottoWinningResult;
 import lotto.repository.LottoRepository;
-import lotto.util.RandomNumberUtil;
 import lotto.util.ReturnRateCountUtil;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < createCount; i++) {
-            List<Integer> numbers = RandomNumberUtil.generateAndSortUniqueNumbersInRange(
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                     LOTTO_START_NUMBER,
                     LOTTO_END_NUMBER,
                     LOTTO_NUMBER_COUNT

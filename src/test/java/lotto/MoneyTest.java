@@ -21,4 +21,11 @@ public class MoneyTest {
         assertThatThrownBy(() -> new Money("3001"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구입 금액이 빈칸이면 예외가 발생한다.")
+    @Test
+    void moneyIsEmpty() {
+        assertThatThrownBy(() -> new Money(""))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

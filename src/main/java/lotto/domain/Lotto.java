@@ -21,11 +21,11 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public boolean isDuplicateNumber(List<Integer> numbers) {
         return numbers.size() != Util.distinctListSize(numbers);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

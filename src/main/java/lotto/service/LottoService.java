@@ -17,6 +17,7 @@ public class LottoService {
             InputView.inputPrise();
             return new Buyer(lottoPayment());
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return purchaseLotto();
         }
     }
@@ -38,6 +39,7 @@ public class LottoService {
             List<Integer> integers = LottoUtils.stringToList(InputUtil.inputStringWithTrim());
             return new Lotto(integers).getNumbers();
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return inputWinningLotto();
         }
     }
@@ -47,6 +49,7 @@ public class LottoService {
             InputView.inputBonusNumber();
             return new WinningLotto(numbers, InputUtil.inputStringWithTrim());
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return inputBonusNumberAndGenerateWinningLotto(numbers);
         }
     }

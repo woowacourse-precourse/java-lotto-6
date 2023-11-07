@@ -3,7 +3,6 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.utils.LottoUtils;
-import lotto.validation.Validation;
 import lotto.view.OutputView;
 
 public class Buyer {

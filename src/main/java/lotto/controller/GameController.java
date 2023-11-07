@@ -37,7 +37,10 @@ public class GameController {
         try {
             Cash cash = depositCash();
             Lottos lottos = purchaseLotto(cash);
-            WinnerLotto winnerLotto = getWinnerLotto();
+            List<Integer> winnerNumbers = getWinnerNumbers();
+            Integer bonusNumber = getBonusNumber();
+            RequestWinnerLotto requestWinnerLotto = RequestWinnerLotto.of(winnerNumbers, bonusNumber);
+            WinnerLotto winnerLotto = WinnerLotto.create(requestWinnerLotto.winnerNumbers(), requestWinnerLotto.bonusNumber());
             compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
         } catch (IllegalStateException e) {
             outputView.printErrorMessage(e);

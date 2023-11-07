@@ -32,7 +32,7 @@ public class WinnerLotto {
     }
 
     public static WinnerLotto create(final List<Integer> winnerNumbers,
-                                     final Integer bonusNumber) {
+                                     final Integer bonusNumber) throws IllegalArgumentException {
         return new WinnerLotto(winnerNumbers,
                                bonusNumber);
     }

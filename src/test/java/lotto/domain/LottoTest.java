@@ -100,7 +100,8 @@ class LottoTest {
         return Stream.of(
                 Arguments.arguments(List.of(1, 2, 3, 4, 5, 49)),
                 Arguments.arguments(List.of(1, 2, 3, 4, 5, 100)),
-                Arguments.arguments(List.of(1, 2, 3, 4, 5, 50))
+                Arguments.arguments(List.of(1, 2, 3, 4, 5, 50)),
+                Arguments.arguments(List.of(-1, 2, 3, 4, 5, 50))
         );
     }
     static Stream<Arguments> numbersOverSizeDummy() {

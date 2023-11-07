@@ -1,9 +1,14 @@
 package lotto.validator;
 
+import lotto.parser.Parser;
+
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static lotto.constant.LottoConstant.RANGE_END_NUMBER;
+import static lotto.constant.LottoConstant.RANGE_START_NUMBER;
 import static lotto.exception.InputViewExceptionMessage.*;
+import static lotto.exception.WinnerExceptionMessage.WRONG_BONUS_NUMBER_RANGE;
 import static lotto.util.CharacterUnits.COMMA;
 import static lotto.util.PatternUnits.PATTERN_FOR_FINDING_SPECIAL_SIGN;
 
@@ -16,14 +21,21 @@ public class InputValidator {
 
     public static void validateNumber(final String input) {
         for (char token : input.toCharArray()) {
-            isNumberToken(token);
+            if (isNotNumberToken(token)) {
+                throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+            }
         }
     }
 
-    private static void isNumberToken(final Character token) {
-        if (!(Character.isDigit(token))) {
-            throw new IllegalArgumentException(NOT_NUMBER.getMessage());
+    public static void validateRangeNumber(final String number) {
+        Integer parsedNumber = Parser.parseInt(number);
+        if (!(RANGE_START_NUMBER.getSetting() <= parsedNumber && RANGE_END_NUMBER.getSetting() <= 45)) {
+            throw new IllegalArgumentException(WRONG_BONUS_NUMBER_RANGE.getMessage());
         }
+    }
+
+    private static Boolean isNotNumberToken(final Character token) {
+        return !(Character.isDigit(token));
     }
 
     public static void validateBlank(final String input) {
@@ -39,8 +51,9 @@ public class InputValidator {
         validateNumbers(numbers);
     }
 
-    private static void validateNumbers(final List<String> numbers) {
+    public static void validateNumbers(final List<String> numbers) {
         for (String number : numbers) {
+            validateRangeNumber(number);
             validateNumber(number);
         }
     }

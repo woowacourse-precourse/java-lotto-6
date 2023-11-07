@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import lotto.domain.Cash;
+import lotto.dto.RequestCash;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -11,6 +13,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -59,6 +62,7 @@ class ApplicationTest extends NsTest {
         });
     }
 
+
     @Test
     @DisplayName("공백을 입력한 경우 예외 발생")
     void inputBlankExceptionTest() {
@@ -70,7 +74,7 @@ class ApplicationTest extends NsTest {
 
     @DisplayName("1000원 보다 작은 값을 압력한 경우 에외 발생")
     @ParameterizedTest
-    @ValueSource(strings = {"100", "200", "300", "400", "999"})
+    @ValueSource(strings = {"100", "200", "300", "999", "-1000"})
     void inputAmountSmallThanUnitExceptionTest(String amountSmallThanUnit) {
         assertSimpleTest(() -> {
             runException(amountSmallThanUnit);
@@ -78,7 +82,7 @@ class ApplicationTest extends NsTest {
         });
     }
 
-    @DisplayName("1000원 으로 나누어 떨어지지 않는 값을 압력한 경우 에외 발생")
+    @DisplayName("1000원 으로 나누어 떨어지지 않는 값을 압력한 경우 예외 발생")
     @ParameterizedTest
     @ValueSource(strings = {"1001", "2002", "3003", "4004", "9999"})
     void inputNotDivisibleByUnitExceptionTest(String notDivisibleByUnit) {
@@ -89,8 +93,31 @@ class ApplicationTest extends NsTest {
     }
 
 
+    // test when user entered the wrong numbers of winning lotto
+    @DisplayName("입력한 당첨 로또 번호에 숫자 이외의 값을 입력한 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,ㄹ,5", "1,2,3,4, ,5", "1,2,3,4,a,5", "1,2,3,4,%,5"})
+    void inputWinnerNumbersIncludeNotNumberExceptionTest(String wrongWinnerNumbers) {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", wrongWinnerNumbers);
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
 
+    @DisplayName("입력한 당첨 로또 번호에 1~45 범위를 벗어난 숫자 이외의 값을 입력한 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,0,5", "1,2,3,4,100,5", "1,2,3,4,-12,5", "1,2,3,4,50,5"})
+    void inputWinnerNumbersIncludeOverRangedNumberExceptionTest(String wrongWinnerNumbers) {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", wrongWinnerNumbers, "45");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
 
+    }
 
     @Override
     public void runMain() {

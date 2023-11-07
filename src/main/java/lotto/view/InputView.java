@@ -36,6 +36,7 @@ public class InputView {
             final String requestWinnerNumbers = getInput();
             InputValidator.validateCommaAtEdge(requestWinnerNumbers);
             final List<String> numberDummy = Parser.parseNumberDummy(requestWinnerNumbers);
+            InputValidator.validateNumbers(numberDummy);
             InputValidator.validateInputNumbersFormat(numberDummy);
             return Parser.parseNumbers(numberDummy);
         } catch (Exception e) {

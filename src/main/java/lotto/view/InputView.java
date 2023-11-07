@@ -1,2 +1,16 @@
-package lotto.view;public class InputView {
+package lotto.view;
+
+public class InputView {
+
+    public void inputAmountView() {
+        System.out.println("구입금액을 입력해 주세요.");
+    }
+
+    public void inputWinningNumberView() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
+
+    public void inputWinningBonusNumberView() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+    }
 }

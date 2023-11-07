@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.Lotto;
 import lotto.domain.MatchResult;
-import lotto.domain.constant.NumberConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,16 +12,16 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.domain.constant.NumberConstant.*;
-import static lotto.domain.constant.StringConstant.*;
 import static lotto.service.ComputeService.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class ComputeServiceTest {
-    @DisplayName("사용자 입력 받아서 금액을 로또 티켓 수로 변환")
+    // computeLottoTicketNum
+    @DisplayName("사용자가 입력한 금액을 로또 티켓 수로 변환")
     @Test
     void computeLottoTicketNumFromExpense() {
         // GIVEN
-        System.setIn(new ByteArrayInputStream(TEST_COMPUTE_EXPENSE.getBytes()));
+        System.setIn(new ByteArrayInputStream("1000".getBytes()));
 
         // WHEN, THEN
         assertThat(computeLottoTicketNum()).isEqualTo(1);
@@ -33,9 +32,9 @@ class ComputeServiceTest {
     void computeResultFromLottoAndBonusNum() {
         // GIVEN
         List<Lotto> randomLottos = new ArrayList<>();
-        randomLottos.add(Lotto.create(List.of(1, 2, 3, 4, 5, 6)));
-        randomLottos.add(Lotto.create(List.of(1, 2, 3, 4, 5, 7)));
-        randomLottos.add(Lotto.create(List.of(11, 12, 13, 14, 15, 16)));
+        randomLottos.add(Lotto.create(List.of(1, 2, 3, 4, 5, 6)));      // SIX
+        randomLottos.add(Lotto.create(List.of(1, 2, 3, 4, 5, 7)));      // BONUS
+        randomLottos.add(Lotto.create(List.of(11, 12, 13, 14, 15, 16)));// NONE
 
         Lotto winningLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
 
@@ -66,6 +65,6 @@ class ComputeServiceTest {
         double margin = computeMargin(result, lottoTicketNum);
 
         // THEN
-        assertThat(margin).isEqualTo((double) totalPrize /  (lottoTicketNum * LOTTO_PRICE) * PERCENT_MULTIPLIER);
+        assertThat(margin).isEqualTo((double) totalPrize / (lottoTicketNum * LOTTO_PRICE) * PERCENT_MULTIPLIER);
     }
 }

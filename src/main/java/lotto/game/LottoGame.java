@@ -33,9 +33,9 @@ public class LottoGame implements InteractionRepeatable {
     }
 
     private List<PlayerLotto> receiveIssuedLottos() {
-        List<PlayerLotto> buyLottos = lottoStore.make(randoms);
-        lottoGameView.announcePurchaseLottos(buyLottos);
-        return buyLottos;
+        List<PlayerLotto> receivedLottos = lottoStore.issue(randoms);
+        lottoGameView.announcePurchaseLottos(receivedLottos);
+        return receivedLottos;
     }
 
     private WinningLotto getWinningLotto() {
@@ -45,10 +45,10 @@ public class LottoGame implements InteractionRepeatable {
                         lottoGameView.askBonusNumber()));
     }
 
-    private void announceResult(List<PlayerLotto> buyLottos, WinningLotto winningLotto) {
+    private void announceResult(List<PlayerLotto> receivedLottos, WinningLotto winningLotto) {
         lottoGameView.announceWinningStatistics(
                 lottoStore.getPurchaseAmount(),
-                winningLotto.matchNumbers(buyLottos));
+                winningLotto.matchNumbers(receivedLottos));
     }
 
 }

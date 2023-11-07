@@ -3,9 +3,10 @@ package lotto.domain;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoCompare {
-    private final EnumMap<WinningGrade, Integer> winningMap = new EnumMap<>(WinningGrade.class);
+    private final Map<WinningGrade, Integer> winningMap = new EnumMap<>(WinningGrade.class);
 
     public LottoCompare() {
         init();
@@ -21,6 +22,7 @@ public class LottoCompare {
         lottos.forEach(lotto -> compareLottoToWinning(lotto.getNumbers(), winningNumbers));
     }
 
+    public Map<WinningGrade, Integer> getWinningResult() {
     private void compareLottoToWinning(List<Integer> lotto, WinningNumbers winningNumbers) {
         int matchCount = getMatchCount(lotto, winningNumbers);
         boolean bonusIncluded = hasBonusNumber(lotto, winningNumbers);

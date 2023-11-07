@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.domain.*;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoService {
     private WinningNumbers winningNumbers;
@@ -27,6 +28,7 @@ public class LottoService {
         LottoCompare lottoCompare = new LottoCompare();
         lottoCompare.compareAllLottoToWinning(findLottos(), winningNumbers);
     public EnumMap<WinningGrade, Integer> getWinningResult() {
+    public Map<WinningGrade, Integer> getWinningResult() {
         return lottoCompare.getWinningResult();
     }
 

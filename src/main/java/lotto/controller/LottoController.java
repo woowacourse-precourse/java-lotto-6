@@ -7,6 +7,7 @@ import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.Map;
 public class LottoController {
     private final OutputView outputView = new OutputView();
     private final InputView inputView = new InputView();
@@ -37,6 +38,7 @@ public class LottoController {
     private void compare() {
         outputView.printWinningResultMessage();
         lottoService.compareAllLotto();
+    private Map<WinningGrade, Integer> getWinningResult() {
     private double getCalculatedLottoYield() {
         return lottoService.calculateLottoYield();
     }

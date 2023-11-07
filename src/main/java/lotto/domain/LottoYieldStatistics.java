@@ -1,10 +1,10 @@
 package lotto.domain;
 
-import java.util.EnumMap;
+import java.util.Map;
 
 public class LottoYieldStatistics {
 
-    public double calculate(Money moneySpent, EnumMap<WinningGrade, Integer> winningNumbers) {
+    public double calculate(Money moneySpent, Map<WinningGrade, Integer> winningNumbers) {
         int totalPrizeMoney = WinningGrade.getWinningAmount(winningNumbers);
         int moneySpentOnLotto = moneySpent.getValue();
         return calculateLottoYield(totalPrizeMoney, moneySpentOnLotto);

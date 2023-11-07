@@ -30,4 +30,12 @@ public class ConsolePrinter {
         String showMessage = messageTemplate.getMessageWithLotto(lotto);
         System.out.print(showMessage);
     }
+
+    public static void showTotalReturn(Double totalReturn) {
+        validateNull(totalReturn);
+
+        PrintMessages messageTemplate = PrintMessages.TOTAL_RETURN;
+        String showMessage = messageTemplate.getMessageWithTotalReturn(totalReturn);
+        System.out.print(showMessage);
+    }
 }

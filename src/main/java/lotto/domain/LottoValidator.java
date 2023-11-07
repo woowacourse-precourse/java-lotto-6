@@ -14,7 +14,7 @@ public class LottoValidator {
 
     public static void validateDuplicateNumber(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != NumberConstraints.LOTTO_PER_NUMBER.value()) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.OVER_LOTTO_SIZE.getMessage());
         }
     }
 

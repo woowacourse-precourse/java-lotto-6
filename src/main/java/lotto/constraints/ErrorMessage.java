@@ -4,6 +4,8 @@ public enum ErrorMessage {
 
     DUPLICATE_NUMBER("[ERROR] 중복된 숫자가 존재합니다."),
 
+    OVER_LOTTO_SIZE("[ERROR] 로또 번호는 6개만 입력 가능합니다."),
+
     INVALID_INPUT("[ERROR] 숫자만 입력 가능합니다."),
     INVALID_MONEY("[ERROR] 1000원 이상의 금액을 입력해주세요."),
     NOT_MULTIPLE_PER_PRICE("[ERROR] 1000원 단위로 입력해주세요."),

@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.domain.Lotto;
+import lotto.domain.Rank;
 import lotto.domain.WinningLotto;
 
 import java.util.ArrayList;

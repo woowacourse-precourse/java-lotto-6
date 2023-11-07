@@ -1,8 +1,12 @@
 package lotto;
 
+import lotto.controller.LottoController;
+import lotto.validate.Check;
+import lotto.view.InputView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -42,6 +46,17 @@ class LottoTest {
     @Test
     void createLottoByOverNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 로또 번호와 중복시 예외가 발생한다.")
+    @Test
+    void createBonusByDuplicatedNumber() {
+
+        List<Integer> winningNumber = Arrays.asList(1, 23, 29, 31, 38, 45);
+        List<Integer> bonusNumber = List.of(1);
+
+        assertThatThrownBy(() -> Check.numberDuplicate(winningNumber,bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

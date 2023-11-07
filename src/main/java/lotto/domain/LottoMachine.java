@@ -1,11 +1,14 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import lotto.Controller;
 
 import java.util.List;
 
 public class LottoMachine {
+    private List<Lotto> lottoTickets = new ArrayList<>();
+
     public int getLottoCount(int userMoney) {
         if (userMoney % Lotto.PRICE != 0) {
             Controller.lottoPurchaseAmountException();
@@ -16,5 +19,9 @@ public class LottoMachine {
 
     public List<Integer> getRandomNumbers() {
         return Randoms.pickUniqueNumbersInRange(Lotto.MIN_VALUE, Lotto.MAX_VALUE, Lotto.NUMBER_OF_MEMBERS);
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 }

@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    private List<Lotto> lottoTickets = new ArrayList<>();
     Input input = new Input();
     Output output = new Output();
     LottoChecker lottoChecker = new LottoChecker();
@@ -37,26 +36,22 @@ public class Controller {
 
     public void giveLottoResult(Lotto winningNumber, int bonusNumber) {
         List<Integer> result = lottoChecker.lottoResult(lottoChecker
-                .compareLottoTickets(lottoTickets, winningNumber, bonusNumber));
+                .compareLottoTickets(lottoMachine.getLottoTickets(), winningNumber, bonusNumber));
         output.notifyWinningDetails(result);
 
-        float profitRate = calculator.rateOFProfit(result, lottoTickets.size());
+        float profitRate = calculator.rateOFProfit(result, lottoMachine.getLottoTickets().size());
         output.notifyProfitRate(profitRate);
     }
 
     public void purchaseLotto(int count) {
         for (int i = 0; i < count; i++) {
             Lotto lotto = new Lotto(lottoMachine.getRandomNumbers());
-            lottoTickets.add(lotto);
+            lottoMachine.getLottoTickets().add(lotto);
         }
 
         for (int i = 0; i < count; i++) {
-            output.notifyLottoNumbers(lottoTickets.get(i).getNumbers());
+            output.notifyLottoNumbers(lottoMachine.getLottoTickets().get(i).getNumbers());
         }
-    }
-
-    public List<Lotto> getLottoTickets() {
-        return lottoTickets;
     }
 
     public void checkLotto(List<Integer> winningNumber) {

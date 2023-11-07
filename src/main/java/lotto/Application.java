@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.DrawingLotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 
 import java.text.NumberFormat;
 import java.util.*;

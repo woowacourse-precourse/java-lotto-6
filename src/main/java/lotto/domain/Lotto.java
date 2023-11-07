@@ -35,4 +35,17 @@ public class Lotto {
         return numbers;
     }
 
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public int matchCount(Lotto winningLotto) {
+        int count = 0;
+        for (int number : numbers) {
+            if (winningLotto.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

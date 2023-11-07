@@ -8,7 +8,6 @@ import static lotto.constant.ConstantString.SEPARATOR;
 import static lotto.exception.ExceptionMessage.DIFFERENT_FORMAT_EXCEPTION_MESSAGE;
 import static lotto.exception.ExceptionMessage.MAX_PRICE_MESSAGE;
 import static lotto.exception.ExceptionMessage.NOT_NUMBER_EXCEPTION_MESSAGE;
-import static lotto.exception.ExceptionMessage.NOT_NUMBER_INPUT_MESSAGE;
 import static lotto.exception.ExceptionMessage.NULL_POINTER_EXCEPTION_MESSAGE;
 
 import java.util.Arrays;
@@ -67,7 +66,7 @@ public class InputValidator {
                     try {
                         Integer.parseInt(element);
                     } catch (NumberFormatException e) {
-                        throw new LottoApplicationException(NOT_NUMBER_INPUT_MESSAGE);
+                        throw new LottoApplicationException(NOT_NUMBER_EXCEPTION_MESSAGE);
                     }
                 }
         );

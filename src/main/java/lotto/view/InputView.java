@@ -25,15 +25,9 @@ public class InputView {
         return Arrays.stream(inputNumbers).toList();
     }
 
-    public int inputBonusNumber() {
-        InvalidInput invalidInput = new InvalidInput();
-        String bonus;
+    public String inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
 
-        do {
-            System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-            bonus = readLine();
-        } while (invalidInput.notIntegerValueException(bonus));
-
-        return Integer.parseInt(bonus);
+        return readLine();
     }
 }

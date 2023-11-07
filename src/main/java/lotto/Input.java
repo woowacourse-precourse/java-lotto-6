@@ -1,6 +1,5 @@
 package lotto;
 
-import static java.util.Collections.emptyList;
 
 import java.util.List;
 import lotto.domain.Cost;
@@ -25,35 +24,33 @@ public class Input {
             return cost();
         }
     }
+
     public Lotto winningNumberWithoutBonus() {
-        List<Integer> winningNumbers;
-
-        do{
-            winningNumbers = stringConverter.convertToIntegerList(inputView.inputWinningNumbers());
-        }while (winningNumbers.equals(emptyList()));
-
-        return makeWinningLotto(winningNumbers);
+        try {
+            List<Integer> winningNumbers = stringConverter.convertToIntegerList(inputView.inputWinningNumbers());
+            return makeWinningLotto(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            return winningNumberWithoutBonus();
+        }
     }
 
     private Lotto makeWinningLotto(List<Integer> winningNumbers) {
-        Lotto lotto;
         try {
-            lotto = new Lotto(winningNumbers);
+            return new Lotto(winningNumbers);
         } catch (IllegalArgumentException e) {
-            lotto = winningNumberWithoutBonus();
+            return winningNumberWithoutBonus();
         }
-        return lotto;
     }
 
 
     public WinningLotto bonusNumber(Lotto winningLottoWithoutBonus) {
-        WinningLotto winningLotto;
         try {
-            int bonusNumber = inputView.inputBonusNumber();
-            winningLotto = new WinningLotto(winningLottoWithoutBonus, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            winningLotto = bonusNumber(winningLottoWithoutBonus);
+            int bonusNumber = stringConverter.covertToInteger(inputView.inputBonusNumber());
+            return new WinningLotto(winningLottoWithoutBonus, bonusNumber);
         }
-        return winningLotto;
+        catch (IllegalArgumentException e) {
+            return bonusNumber(winningLottoWithoutBonus);
+        }
     }
+
 }

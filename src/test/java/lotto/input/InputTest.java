@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static lotto.exception.ExceptionMessage.DIFFERENT_FORMAT_EXCEPTION_MESSAGE;
 import static lotto.exception.ExceptionMessage.MAX_PRICE_MESSAGE;
 import static lotto.exception.ExceptionMessage.NOT_NUMBER_EXCEPTION_MESSAGE;
-import static lotto.exception.ExceptionMessage.NOT_NUMBER_INPUT_MESSAGE;
 import static lotto.exception.ExceptionMessage.NULL_POINTER_EXCEPTION_MESSAGE;
 
 import org.junit.jupiter.api.DisplayName;
@@ -92,7 +91,7 @@ public class InputTest {
     public void 당첨번호_숫자_외_입력_테스트(List<String> input) {
         assertThatThrownBy(() -> inputValidator.validateLuckyNumberIsNumber(input))
                 .isInstanceOf(LottoApplicationException.class)
-                .hasMessageContaining(NOT_NUMBER_INPUT_MESSAGE.getMessage());
+                .hasMessageContaining(NOT_NUMBER_EXCEPTION_MESSAGE.getMessage());
     }
 
     static Stream<Arguments> notNumberLuckyNumberData(){

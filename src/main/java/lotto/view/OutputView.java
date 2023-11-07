@@ -37,9 +37,13 @@ public class OutputView {
         EnumMap<LottoRank, Integer> lottoResultBoard = lottoResult.lottoResultBoard();
         printEachLottoRankMessage(lottoResultBoard);
     }
+    public static void printStatisticMessage(Statistic statistic){
+        double yieldRatio = statistic.yieldRatio();
+        printMessage(OutputViewMessage.STATISTIC.getFormattedMessage(yieldRatio));
+    }
     private static void printEachLottoRankMessage(EnumMap<LottoRank, Integer> lottoResultBoard) {
         LottoRank[] ranks = LottoRank.values();
-        for (int i = 0; i < ranks.length - 1; i++) {
+        for (int i = ranks.length-2; i >=0; i--) {
 
             LottoRank lottoRank = ranks[i];
             int resultCount = lottoResultBoard.getOrDefault(lottoRank, 0);
@@ -51,7 +55,8 @@ public class OutputView {
 
     private static String formatRankMessage(LottoRank lottoRank, int resultCount) {
         int matchCount = lottoRank.getMatchCount();
-        String bonus = lottoRank.isMatchBonus() ? ", 보너스 볼 일치 " : " ";
+        String bonus =
+                (lottoRank.isMatchBonus() ? OutputViewMessage.BONUS : OutputViewMessage.NONE).getMessage();
         String formattedRankPrize =
                 String.format("%,d", LottoPrize.determinePrizeAmountByRank(lottoRank));
 

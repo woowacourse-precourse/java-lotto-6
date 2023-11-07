@@ -3,12 +3,13 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.model.constans.WinningRank;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class ClientTest {
-    private static final LottosResult lottosResult = LottosResult.create();
+    private static LottosResult lottosResult = LottosResult.create();
 
     @BeforeEach
     void setUp() {
@@ -33,5 +34,10 @@ public class ClientTest {
         double rateOfReturn = client.calculateRateOfReturn(lottosResult);
 
         assertThat(rateOfReturn).isEqualTo(38.5);
+    }
+
+    @AfterEach
+    void tearDown() {
+        lottosResult = LottosResult.create();
     }
 }

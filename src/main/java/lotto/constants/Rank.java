@@ -10,13 +10,13 @@ public enum Rank {
     SIX_MATCH(1, 6, 2_000_000_000L, "2,000,000,000원"),
     NO_RANK(0, 0, 0L, "");
 
-    private final int rank;
+    private final int number;
     private final int matchCount;
     private final long winnings;
     private final String amountMessage;
 
-    Rank(int rank, int matchCount, long winnings, String amountMessage) {
-        this.rank = rank;
+    Rank(int number, int matchCount, long winnings, String amountMessage) {
+        this.number = number;
         this.matchCount = matchCount;
         this.winnings = winnings;
         this.amountMessage = amountMessage;
@@ -29,8 +29,8 @@ public enum Rank {
                 .orElse(NO_RANK);
     }
 
-    public int getRank() {
-        return rank;
+    public int getNumber() {
+        return number;
     }
 
     public int getMatchCount() {

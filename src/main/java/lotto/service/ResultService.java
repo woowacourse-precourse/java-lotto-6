@@ -39,12 +39,12 @@ public class ResultService {
 
     public void deterMineScore(Lotto lotto) {
         Rank rank = scoreDeterminer.getRankBy(lotto);
-        recordCountBy(rank.getRank());
+        recordCountBy(rank.getNumber());
         addUpTo(rank.getWinnings());
     }
 
     public int getCountOf(Rank rank) {
-        int rankNumber = rank.getRank();
+        int rankNumber = rank.getNumber();
         if (rankCounts.containsKey(rankNumber)) {
             return rankCounts.get(rankNumber);
         }

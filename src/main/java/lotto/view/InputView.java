@@ -40,12 +40,6 @@ public class InputView {
         List<Integer> winningNumber = convertWinningNumber(inputValue);
         validateWinningNumber(winningNumber);
         return winningNumber;
-
-        // refactor 통해 삭제 예정
-//        return Stream.of(input.split(","))
-//                .map(Integer::parseInt)
-//                .peek(num -> validateNumeric(num.toString()))
-//                .collect(Collectors.toList());
     }
 
     public Integer getBonusNumber() {

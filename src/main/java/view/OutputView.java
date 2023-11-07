@@ -2,6 +2,7 @@ package view;
 
 import util.OutputMessage;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class OutputView {
@@ -11,6 +12,7 @@ public class OutputView {
     }
 
     public static void printLottoTickets(List<Integer> numbers) {
+        numbers.sort(Comparator.naturalOrder());
         System.out.println(numbers);
     }
 

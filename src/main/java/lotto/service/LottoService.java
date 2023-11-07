@@ -26,5 +26,16 @@ public class LottoService {
     public void compareAllLotto() {
         LottoCompare lottoCompare = new LottoCompare();
         lottoCompare.compareAllLottoToWinning(findLottos(), winningNumbers);
+    public EnumMap<WinningGrade, Integer> getWinningResult() {
+        return lottoCompare.getWinningResult();
+    }
+
+    public double calculateLottoYield() {
+        LottoYieldStatistics lottoYieldStatistics = new LottoYieldStatistics();
+        return lottoYieldStatistics.calculate(getPaidMoney(), getWinningResult());
+    }
+
+    private Money getPaidMoney() {
+        return lottoBuyer.getPaidMoney();
     }
 }

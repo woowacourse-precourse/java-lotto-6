@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.EnumMap;
+import java.util.Map;
 
 public enum WinningGrade {
     FIRST(1, 6, 2_000_000_000, false),
@@ -42,4 +44,16 @@ public enum WinningGrade {
         }
         return THIRD;
     }
+
+    public static int getWinningAmount(EnumMap<WinningGrade, Integer> winningGradeMap) {
+        return winningGradeMap.entrySet()
+                .stream()
+                .mapToInt(WinningGrade::calculatePrizeMoney)
+                .sum();
+    }
+
+    private static int calculatePrizeMoney(Map.Entry<WinningGrade, Integer> grade) {
+        return grade.getKey().prizeMoney * grade.getValue();
+    }
+
 }

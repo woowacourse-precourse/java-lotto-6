@@ -37,5 +37,7 @@ public class LottoController {
     private void compare() {
         outputView.printWinningResultMessage();
         lottoService.compareAllLotto();
+    private double getCalculatedLottoYield() {
+        return lottoService.calculateLottoYield();
     }
 }

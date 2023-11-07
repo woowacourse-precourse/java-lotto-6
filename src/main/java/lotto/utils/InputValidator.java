@@ -87,17 +87,8 @@ public class InputValidator {
     }
 
     public static void checkBonusNumberInput(String bonusNumberInput) {
-        checkBonusNumberSize(bonusNumberInput);
+        checkNumeric(bonusNumberInput);
         // TODO : 중복된 숫자를 입력했을 경우
     }
 
-    private static void checkBonusNumberSize(String bonusNumberInput) {
-        if (bonusNumberInput.length() == 0) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_SIZE_ERROR.getErrorMessage());
-        }
-        String[] bonusNumbers = bonusNumberInput.split(",");
-        if (bonusNumbers.length != BONUS_MAXIMUM_SIZE) {
-            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_SIZE_ERROR.getErrorMessage());
-        }
-    }
 }

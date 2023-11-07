@@ -104,8 +104,31 @@ public class Application {
 	}
 	
 	private void winningNumber() {
+		String str = Console.readLine();
+		String[] parts = str.split(",");
+		try {
+			lenCheck(parts, 6);
+			valueCheck(parts);
+			isDuplicated(parts);
+			validWinningNum = true;
+		}
+		catch(IllegalArgumentException e) {
+			System.out.println("[ERROR] 당첨 번호는 1~45 사이의 중복 없는 6개의 정수여야 합니다.");
+		}
+	}
+	
+	private void lenCheck(String[]s, int n) {
 		
 	}
+	
+	private void valueCheck(String[]s) {
+		
+	}
+	
+	private void isDuplicated(String[]s) {
+		
+	}
+
 	
 	private void bonusNumber() {
 		

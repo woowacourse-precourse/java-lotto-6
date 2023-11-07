@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.LotteryMachine;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.LottoPurchase;
@@ -32,6 +33,8 @@ public class LottoController {
         outputView.printTickets(lottoTickets);
         
         Number number = getNumbers();
+        
+        LotteryMachine.drawLotto(lottoTickets, number);
     }
     
     private LottoPurchase inputAmount() {

@@ -66,11 +66,11 @@
   - 에러 메세지도 숫자 중간에 공백이 들어갔다고 알려주도록 한다.
 - [x] 겹치는 validate 함수들 정리한다.
 - [x] Process 메서드를 분리한다.
-    - [x] askCost
-    - [x] askWinningNums
-    - [x] askBonus
-    - [x] generateLottos
-    - [x] StaisticsResult class
+    - askCost
+    - askWinningNums
+    - askBonus
+    - generateLottos
+    - StaisticsResult class
 - [x] string을 enum으로 관리한다.
 - [x] 상수로 변경한다.
 - [x] 통계를 enum으로 관리한다.
@@ -85,15 +85,15 @@
 - [x]  이름을 통해 의도를 드러냈는가
 - [x]  리턴 값, 함수 이름, 파라미터 이름에 의도가 드러났는가(무엇을 하는지 파악할 수 있는가)
 - [x]  변수 이름에 자료형을 사용하지 않았는가
-      - [x] Calculate class
-      - [x] ValidateInput class
-      - [x] Exceptable class
-      - [x] Constants enum class
+      -  Calculate class
+      -  ValidateInput class
+      -  Exceptable class
+      -  Constants enum class
 - [x]  기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항 항목 잘 지켰는가
 - [x]  README.md
-     - [x]  해당 프로젝트가 어떤 프로젝트인지, 어떤 기능을 담고 있는지 나타냈는가
-     - [x]  클래스 설계와 구현, 함수(메서드) 설계와 구현과 같이 너무 상세하게 작성하지 않았는가
-     - [x]  예외적인 상황도 기능 목록에 정리했는가
+     - 해당 프로젝트가 어떤 프로젝트인지, 어떤 기능을 담고 있는지 나타냈는가
+     - 클래스 설계와 구현, 함수(메서드) 설계와 구현과 같이 너무 상세하게 작성하지 않았는가
+     - 예외적인 상황도 기능 목록에 정리했는가
 - [x]  값을 하드 코딩하지 않았는가 - 상수를 만들고 이름을 부여해 변수의 역할이 무엇인지 의도를 드러내자
 - [x]  구현 순서를 잘 지켰는가(상수 - 인스턴스 변수 - 생성자 - 메서드)
 - [x]  함수가 한 가지 기능만 담당하게 했는가

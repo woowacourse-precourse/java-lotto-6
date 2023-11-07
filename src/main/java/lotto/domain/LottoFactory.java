@@ -8,7 +8,7 @@ import java.util.List;
 
 public class LottoFactory {
     public static Lotto generateLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+        List<Integer> randomNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1,45,6));
         randomNumbers.sort(Comparator.naturalOrder());
         return new Lotto(randomNumbers);
     }

@@ -1,12 +1,7 @@
 package lotto.domain;
 
 
-import lotto.exception.DuplicateInputException;
-import lotto.exception.InvalidInputException;
-
 import java.util.List;
-
-import static lotto.utils.constants.WinningLottoConstants.*;
 
 public class WinningLotto {
     private final List<Integer> winningNumbers;
@@ -17,16 +12,16 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public Integer countNumbers(Lotto lotto) {
-        Integer matchingNumbers = 0;
+    public Integer countCorrectNumbers(Lotto lotto) {
+        Integer matchingNumber = 0;
 
         for (Integer numbers : lotto.getNumbers()) {
             if (winningNumbers.contains(numbers)) {
-                matchingNumbers ++;
+                matchingNumber ++;
             }
         }
 
-        return matchingNumbers;
+        return matchingNumber;
     }
 
     public Boolean isCorrectBonusNumber(Lotto lotto) {

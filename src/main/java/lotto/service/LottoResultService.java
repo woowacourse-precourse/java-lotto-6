@@ -15,7 +15,7 @@ public class LottoResultService {
         List<LottoResult> lottoResults = new ArrayList<>();
 
         for (Lotto lotto : purchasedLotto.getLottos()) {
-            Integer correctNumbers = winningLotto.countNumbers(lotto);
+            Integer correctNumbers = winningLotto.countCorrectNumbers(lotto);
             Boolean isCorrectBonusNumber = winningLotto.isCorrectBonusNumber(lotto);
 
             lottoResults.add(new LottoResult(correctNumbers, isCorrectBonusNumber));

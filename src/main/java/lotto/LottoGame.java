@@ -48,4 +48,31 @@ public class LottoGame {
                             .map(String::valueOf)
                             .collect(Collectors.joining(", ")) + "]";
     }
+
+    private static List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] winningNumberStrings = Console.readLine().split(",");
+        return parseNumbers(winningNumberStrings);
+    }
+
+    private static int inputBonusNumbers(List<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        int bonusNumber = Integer.parseInt(Console.readLine().trim());
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 중복됩니다.");
+        }
+        return bonusNumber;
+    }
+
+    private static List<Integer> parseNumbers(String[] numberStrings) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String numberString : numberStrings) {
+            int number = Integer.parseInt(numberString.trim());
+            if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            numbers.add(number);
+        }
+        return numbers;
+    }
 }

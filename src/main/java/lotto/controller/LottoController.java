@@ -8,6 +8,7 @@ import lotto.view.InputView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.validate.Check.numberCount;
 import static lotto.view.InputView.inputBonusNumber;
 import static lotto.view.InputView.inputWinningNumber;
 
@@ -60,5 +61,21 @@ public class LottoController {
             System.out.println(e.getMessage());
             return setBonusNumber(winningNumbers);
         }
+    }
+
+    public static Winning getWinning(List<Lotto> lotto, List<Integer> winningNumbers, int bonusNumber) {
+        Winning winning = new Winning();
+        lotto.forEach(value -> {
+            int matchCount = numberCount(winningNumbers, value);
+            boolean isSecond = isMatchBonusNumber(bonusNumber, value);
+            winning.setWinningTickets(matchCount, isSecond);
+        });
+        return winning;
+    }
+
+    private static boolean isMatchBonusNumber(int bonusNumber, Lotto lotto) {
+        return lotto.getNumbers().stream()
+                .mapToInt(Integer::intValue)
+                .anyMatch(number -> number == bonusNumber);
     }
 }

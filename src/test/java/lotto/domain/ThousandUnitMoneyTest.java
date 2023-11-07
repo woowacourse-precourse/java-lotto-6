@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class MoneyTest {
+public class ThousandUnitMoneyTest {
 
     @Test
     public void 금액_객체생성_정상문자값() {
@@ -15,7 +15,7 @@ public class MoneyTest {
         String input = "5000";
 
         // When
-        Money money = Money.create(input);
+        ThousandUnitMoney money = ThousandUnitMoney.create(input);
 
         // Then
         assertTrue(money.isSameAmount(5000));
@@ -27,7 +27,7 @@ public class MoneyTest {
         int input = 5000;
 
         // When
-        Money money = Money.create(input);
+        ThousandUnitMoney money = ThousandUnitMoney.create(input);
 
         // Then
         assertTrue(money.isSameAmount(5000));
@@ -39,7 +39,7 @@ public class MoneyTest {
         String input = " 1000 ";
 
         // When
-        Money money = Money.create(input);
+        ThousandUnitMoney money = ThousandUnitMoney.create(input);
 
         // Then
         assertTrue(money.isSameAmount(1000));
@@ -51,7 +51,7 @@ public class MoneyTest {
         String input = "k";
 
         // When && Then
-        assertThatThrownBy(() -> Money.create(input))
+        assertThatThrownBy(() -> ThousandUnitMoney.create(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1 이상 2,147,483,647 이하의 정수 값이 필요합니다.");
     }
@@ -62,7 +62,7 @@ public class MoneyTest {
         String input = "2200000000";
 
         // When && Then
-        assertThatThrownBy(() -> Money.create(input))
+        assertThatThrownBy(() -> ThousandUnitMoney.create(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1 이상 2,147,483,647 이하의 정수 값이 필요합니다.");
     }
@@ -73,7 +73,7 @@ public class MoneyTest {
         String input = "1234";
 
         // When && Then
-        assertThatThrownBy(() -> Money.create(input))
+        assertThatThrownBy(() -> ThousandUnitMoney.create(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("1000의 배수인 숫자가 필요합니다.");
     }
@@ -81,7 +81,7 @@ public class MoneyTest {
     @Test
     public void 금액_값이동일하면_true() {
         // Given
-        Money money1 = Money.create(1000);
+        ThousandUnitMoney money1 = ThousandUnitMoney.create(1000);
 
         // When
         boolean result = money1.isSameAmount(1000);
@@ -93,7 +93,7 @@ public class MoneyTest {
     @Test
     public void 금액_값이다르면_false() {
         // Given
-        Money money1 = Money.create(1000);
+        ThousandUnitMoney money1 = ThousandUnitMoney.create(1000);
 
         // When
         boolean result = money1.isSameAmount(2000);
@@ -105,11 +105,11 @@ public class MoneyTest {
     @Test
     public void 금액_더하기는_새로운Money객체_반환() {
         // Given
-        Money money1 = Money.create(1000);
-        Money money2 = Money.create(2000);
+        ThousandUnitMoney money1 = ThousandUnitMoney.create(1000);
+        ThousandUnitMoney money2 = ThousandUnitMoney.create(2000);
 
         // When
-        Money result = money1.plus(money2);
+        ThousandUnitMoney result = money1.plus(money2);
 
         // Then
         assertThat(result).isNotSameAs(money1);
@@ -120,7 +120,7 @@ public class MoneyTest {
     @Test
     public void 금액_천단위_구분자_문자형식으로_변환() {
         // Given
-        Money money1 = Money.create(1000);
+        ThousandUnitMoney money1 = ThousandUnitMoney.create(1000);
 
         // When
         String result = money1.toString();

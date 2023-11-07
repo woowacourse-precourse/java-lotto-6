@@ -1,32 +1,30 @@
 package lotto.domain;
 
 import static lotto.configuration.IntegerConstants.COST_OF_LOTTO;
-import static lotto.messages.ErrorMessages.INVALID_MULTIPLE_OF_1000_MESSAGE;
 
-import lotto.util.ExceptionUtil;
 import lotto.util.IntegerUtil;
 import lotto.util.StringUtil;
 import lotto.validation.IntegerValidator;
 
-public class Money {
+public class ThousandUnitMoney {
 
     int amount;
 
-    private Money(int amount) {
+    private ThousandUnitMoney(int amount) {
         IntegerValidator.validateMultipleOf(amount,COST_OF_LOTTO.getValue());
         this.amount = amount;
     }
 
-    public static Money create(int input) {
-        return new Money(input);
+    public static ThousandUnitMoney create(int input) {
+        return new ThousandUnitMoney(input);
     }
 
-    public static Money create(String input) {
-        return new Money(IntegerUtil.trimAndParseInt(input));
+    public static ThousandUnitMoney create(String input) {
+        return new ThousandUnitMoney(IntegerUtil.trimAndParseInt(input));
     }
 
-    public Money plus(Money money) {
-        return new Money(this.amount + money.amount);
+    public ThousandUnitMoney plus(ThousandUnitMoney money) {
+        return new ThousandUnitMoney(this.amount + money.amount);
     }
 
     public boolean isSameAmount(int amount) {

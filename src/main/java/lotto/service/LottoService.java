@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoData;
 import lotto.domain.User;
@@ -16,8 +17,8 @@ public class LottoService {
         this.numberGenerator = numberGenerator;
     }
 
-    public LottoData setWinningNumbers(List<Integer> winningNumbers,int bonusNumber) {
-        return new LottoData(winningNumbers, bonusNumber);
+    public LottoData setWinningNumbers(Lotto winningNumbers,BonusNumber bonusNumber) {
+        return new LottoData(winningNumbers,bonusNumber);
     }
 
     public void buyLottoAll(User user) {

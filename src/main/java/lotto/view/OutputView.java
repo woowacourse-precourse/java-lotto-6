@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.ResultMessage;
 import lotto.service.LottosDTO;
 import lotto.service.ResultDTO;
 
@@ -16,7 +17,9 @@ public class OutputView {
     }
 
     public void printStatistic(List<Integer> fifthToFirst) {
-        // Enum을 활용한 반복으로 출력하기
+        for(ResultMessage resultMessage : ResultMessage.values()) {
+            System.out.printf(resultMessage.getMessage() + System.lineSeparator(), fifthToFirst.get(resultMessage.ordinal()));
+        }
     }
 
     public void printProfitRate(double profitRate) {

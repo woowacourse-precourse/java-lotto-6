@@ -1,5 +1,9 @@
 package lotto;
 
+/**
+ * 사용자의 로또가 어떤 상태를 얻을 수 있을지에 대한 열거형입니다.
+ * 각각 몇개를 맞추었는지, 가격과 보너스 번호를 맞추었는지에 대한 정보가 담겨 있습니다.
+ */
 public enum LottoResult {
     
     ZeroMatches(0, 0, "0", false),
@@ -23,6 +27,12 @@ public enum LottoResult {
         this.matchBonus = matchBonus;
     }
 
+    /**
+     * LottoResult 열거형을 return 합니다.
+     * @param matchCount
+     * @param bonusMatch
+     * @return 얼마나 맞았는지에 따라 각각 열거형을 return 합니다.
+     */
     public static LottoResult getResult(int matchCount, boolean bonusMatch) {
         if (matchCount == 0) {
             return ZeroMatches;

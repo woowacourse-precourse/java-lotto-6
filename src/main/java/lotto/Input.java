@@ -41,7 +41,7 @@ public class Input {
      * @return 입력값의 유효값 결과를 return
      */
     private static void priceAmountVaildation(int priceAmount) {
-        if (priceAmount != 0 || priceAmount % 1000 == 0) {
+        if (priceAmount == 0 || priceAmount % 1000 != 0) {
             System.out.print("[ERROR] 입력값은 1000원 단위여야 합니다.");
             throw new IllegalArgumentException();
         }
@@ -77,19 +77,28 @@ public class Input {
         return bonusNumber;
     }
 
+    /**
+     * 로또 번호가 범위 안에 있는지 검사합니다.
+     * @param number
+     */
     public static void numberInRangeCheck(int number) {
-        if (0 >= number && number >= 45) {
+        if (0 >= number || number >= 46) {
             System.out.println("[ERROR] 1부터 45까지의 숫자를 입력해주시요.");
             throw new IllegalArgumentException();
         }
 
     }
 
+    /**
+     * 보너스 번호가 중복되엇는지 테스트 합니다.
+     * @param winningNumbers
+     * @param bonusNumber
+     */
     public static void bonusNumberDuplicateCheck(Lotto winningNumbers, int bonusNumber) {
         for (Integer num : winningNumbers.getWinningNumbers()) {
             if (num == bonusNumber) {
                 System.out.println("[ERROR] 보너스 번호는 당첨번호와 중복 될 수 없습니다.");
-                throw new IllegalArgumentException();
+                throw new IllegalStateException();
             }
         }
     }

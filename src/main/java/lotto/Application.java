@@ -3,8 +3,10 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Randoms;
 
+/**
+ * 프로그램이 시작하는 Main 입니다.
+ */
 public class Application {
     public static void main(String[] args) {
         List<List<Integer>> userNumbers = new ArrayList<>();
@@ -30,8 +32,8 @@ public class Application {
             matchResults.add(LottoResult.getResult(matchCount, matchBonus));
         }
 
-        Output.resultPrint(matchResults, priceAmount);
-
+        Output.resultPrint(matchResults);
+        Output.calculateLottoEarnings(matchResults, priceAmount);
         
     }
 }

@@ -108,6 +108,7 @@ class winning_number{
             checkIntOrNot(number);
             splitedWinNumber.add(changeAsInt(number));
         }
+        Lotto lotto = new Lotto(splitedWinNumber);
         return splitedWinNumber;
     }
 
@@ -122,6 +123,7 @@ class winning_number{
     public static int changeAsInt(String strNumber){
         return Integer.parseInt(strNumber);
     }
+
 }
 
 public class Application {

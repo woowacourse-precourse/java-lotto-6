@@ -12,6 +12,7 @@ public class LottoController {
     public void run() {
         Lottos lottos = issue();
         DrawnNumbers drawnNumbers = draw();
+        conclude(lottos, drawnNumbers);
     }
 
     private Lottos issue() {
@@ -24,6 +25,10 @@ public class LottoController {
     private DrawnNumbers draw() {
         DrawnNumbersDto dto = DrawnNumbersDto.of(requestWinningNumbers(), requestBonusNumber());
         return DrawnNumbers.from(dto);
+    }
+
+    private void conclude(Lottos lottos, DrawnNumbers drawnNumbers) {
+        View.printLottoResult();
     }
 
     private int getCountFrom(int cost) {

@@ -3,6 +3,7 @@ package lotto.view;
 import static lotto.view.constants.MessageType.BONUS_NUMBER_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.COST_REQUEST_MESSAGE;
 import static lotto.view.constants.MessageType.LOTTO_COUNT_MESSAGE;
+import static lotto.view.constants.MessageType.LOTTO_RESULT_MESSAGE;
 import static lotto.view.constants.MessageType.WINNING_NUMBERS_REQUEST_MESSAGE;
 import static lotto.view.constants.SymbolType.INPUT_SEPARATOR;
 import static lotto.view.constants.SymbolType.OUTPUT_SEPARATOR;
@@ -36,6 +37,11 @@ public final class View {
     public static String requestBonusNumber() {
         printlnMessage(BONUS_NUMBER_REQUEST_MESSAGE);
         return Validator.validateBonusNumber(enterMessage());
+    }
+
+    public static void printLottoResult() {
+        printlnMessage(LOTTO_RESULT_MESSAGE);
+        
     }
 
     private static void printLottosCount(int count) {
@@ -77,7 +83,6 @@ public final class View {
     private static String enterMessage() {
         return Validator.validate(Console.readLine());
     }
-
 
     private static class Validator {
         private static String validate(String message) {

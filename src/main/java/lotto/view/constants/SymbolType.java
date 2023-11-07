@@ -4,7 +4,8 @@ public enum SymbolType {
     OUTPUT_SEPARATOR(", "),
     INPUT_SEPARATOR(","),
     PREFIX("["),
-    POSTFIX("]");
+    POSTFIX("]"),
+    NEWLINE("\n");
 
     private final String symbol;
 

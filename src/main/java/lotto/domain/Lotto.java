@@ -24,6 +24,7 @@ public class Lotto {
         }
     }
 
+
     private void validateDuplicateNumber(List<Integer> numbers) {
         Set<Integer> set = new HashSet<>(numbers);
         if (set.size() != numbers.size()) {
@@ -41,7 +42,11 @@ public class Lotto {
         return count;
     }
 
-    public boolean containsBonusNumber(Integer bonusNumber){
+    public boolean containsBonusNumber(Integer bonusNumber) {
         return numbers.contains(bonusNumber);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

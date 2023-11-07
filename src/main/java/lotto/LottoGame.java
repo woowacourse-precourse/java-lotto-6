@@ -15,9 +15,9 @@ public class LottoGame {
     private static final int THREE_RANK = 1500000;
     private static final int TWO_RANK = 30000000;
     private static final int ONE_RANK = 2000000000;
+    private final List<Integer> lottoAmountByRank;
     private Input lottoInput = new Input();
     private List<Lotto> purchasedLotto;
-    private final List<Integer> lottoAmountByRank;
     private int[] winningCount;
     public LottoGame() {
         purchasedLotto = new ArrayList<>();
@@ -35,6 +35,7 @@ public class LottoGame {
         winningNumber = lottoInput.input(InputType.WINNING_NUMBERS);
         bonusNumber = lottoInput.input(InputType.BONUS_NUMBER);
         calcWinningCount(winningNumber, bonusNumber.get(FIRST));
+        calcWinningStatistics(purchaseAmount.get(FIRST));
     }
 
     public void buyLotto(Integer purchaseAmount){
@@ -51,5 +52,14 @@ public class LottoGame {
         for (Lotto lotto : purchasedLotto){
             winningCount[lotto.calcMatchNumber(winningNumber, bonusNumber)]++;
         }
+    }
+
+    public void calcWinningStatistics(Integer purchaseAmount){
+        Integer winningAmount = ZERO;
+
+        for (int i = 3; i <= 7; i++){
+            winningAmount += lottoAmountByRank.get(i) * winningCount[i];
+        }
+        Print.printWinningStatistics(winningAmount.floatValue() / purchaseAmount.floatValue(), winningCount);
     }
 }

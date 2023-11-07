@@ -8,25 +8,9 @@ import lotto.dto.output.LottoDto;
 import lotto.dto.output.LottosDto;
 import lotto.io.output.StdWriter;
 import lotto.io.output.Writer;
+import lotto.util.ViewConstants;
 
 public class OutputView {
-    private static final String DELIMITER = ", ";
-    private static final String PREFIX = "[";
-    private static final String SUFFIX = "]";
-    private static final String TEMPLATE = """
-             
-                    당첨 통계
-                    ---
-                    3개 일치 (5,000원) - %d개
-                    4개 일치 (50,000원) - %d개
-                    5개 일치 (1,500,000원) - %d개
-                    5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
-                    6개 일치 (2,000,000,000원) - %d개
-                    총 수익률은 %s%%입니다.
-            """.replaceAll("( ){2,}", "");
-    private static final String NUMBER_FORMAT_PATTERN = "###,###.0";
-    private static final double ZERO_PROFIT_RATE = 0.0;
-    private static final String ZERO_PROFIT_RATE_STRING = "0.0";
     private final StdWriter writer;
 
     public OutputView(StdWriter writer) {
@@ -54,12 +38,12 @@ public class OutputView {
     private String formatLottoNumbers(List<Integer> lottoNumbers) {
         return lottoNumbers.stream()
                 .map(String::valueOf)
-                .collect(Collectors.joining(DELIMITER, PREFIX, SUFFIX));
+                .collect(Collectors.joining(ViewConstants.DELIMITER, ViewConstants.PREFIX, ViewConstants.SUFFIX));
     }
 
     public void printResult(DrawingResultDto drawingResult) {
         String message = String.format(
-                TEMPLATE,
+                ViewConstants.TEMPLATE,
                 drawingResult.fifthMatchCount(),
                 drawingResult.fourthMatchCount(),
                 drawingResult.thirdMatchCount(),
@@ -71,14 +55,14 @@ public class OutputView {
     }
 
     private String getFormattedProfitOfRate(DrawingResultDto drawingResult) {
-        if (drawingResult.prizeOfRate() == ZERO_PROFIT_RATE) {
-            return ZERO_PROFIT_RATE_STRING;
+        if (drawingResult.prizeOfRate() == ViewConstants.ZERO_PROFIT_RATE) {
+            return ViewConstants.ZERO_PROFIT_RATE_STRING;
         }
         return formatPrizeOfRate(drawingResult);
     }
 
     private String formatPrizeOfRate(DrawingResultDto drawingResult) {
-        DecimalFormat df = new DecimalFormat(NUMBER_FORMAT_PATTERN);
+        DecimalFormat df = new DecimalFormat(ViewConstants.NUMBER_FORMAT_PATTERN);
         return df.format(drawingResult.prizeOfRate());
     }
 }

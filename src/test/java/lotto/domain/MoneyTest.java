@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class MoneyTest {
 
-    @DisplayName("유효한 돈 객체는 생성한다.")
+    @DisplayName("값이 유효하면 객체를 생성한다.")
     @Test
     void should_CreateMoney_When_Valid() {
         Money money = new Money(100000);

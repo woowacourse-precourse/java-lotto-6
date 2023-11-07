@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class QuantityTest {
 
-    @DisplayName("유효한 갯수 객체는 생성한다.")
+    @DisplayName("값이 유효하면 객체를 생성한다.")
     @Test
     void should_CreateQuantity_When_Valid() {
         Quantity quantity = Quantity.of(new Money(1000), 1000);

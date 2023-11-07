@@ -33,4 +33,9 @@ public class OutputView {
     private static void printNewEmptyLine() {
         System.out.println();
     }
+
+    public static void printExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
+        printNewEmptyLine();
+    }
 }

@@ -1,5 +1,8 @@
 package lotto.validation;
 
+import static lotto.constant.ErrorMessage.INVALID_IS_NOT_INPUT;
+import static lotto.constant.ErrorMessage.INVALID_NUMBER;
+import static lotto.constant.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 import static lotto.constant.Message.LOTTO_PRICE;
 
 public class LottoMachineValidation {
@@ -12,7 +15,7 @@ public class LottoMachineValidation {
 
     private void validate_isInputValue(String input){
         if(input == null || input.isBlank()){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_IS_NOT_INPUT);
         }
     }
 
@@ -21,17 +24,17 @@ public class LottoMachineValidation {
         try {
             num = Integer.parseInt(input);
         }catch (NumberFormatException numberFormatException){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_NUMBER);
         }
 
-        if(num < 0){
+        if(num < 1){
             throw new IllegalArgumentException();
         }
     }
 
     private void validate_isExactlyDividedByPrice(int input){
         if(input % LOTTO_PRICE != 0){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
     }
 

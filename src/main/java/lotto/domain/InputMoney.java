@@ -18,7 +18,7 @@ public class InputMoney {
 	}
 
 	private int validateMoney(String input) {
-		NumberValidator.validateNumber(input);
+		NumberValidator.validateIntType(input);
 		int inputMoney = Integer.parseInt(input);
 
 		NumberValidator.validatePositive(inputMoney);
@@ -27,12 +27,12 @@ public class InputMoney {
 	}
 
 	public void validateUnit(int input) {
-		if (!isRuleUnit(input)) {
+		if (isNotRuleUnit(input)) {
 			throw new MoneyException(MONEY_UNIT_ERROR.getMessage());
 		}
 	}
 
-	private boolean isRuleUnit(int input) {
-		return input % MONEY_UNIT == 0;
+	private boolean isNotRuleUnit(int input) {
+		return !(input % MONEY_UNIT == 0);
 	}
 }

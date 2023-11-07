@@ -12,11 +12,18 @@ import lotto.validation.NumberValidator;
 
 public class NumberValidatorTest {
 
+	@ParameterizedTest
+	@ValueSource(strings = {"-1", "0", "1"})
+	void 입력값이_int형인지_확인한다(String input) {
+		assertThatCode(() -> NumberValidator.validateIntType(input))
+			.doesNotThrowAnyException();
+	}
+
 	@Test
-	void 입력값이_숫자가_아니면_예외를_던진다() {
+	void 입력값이_int형이_아니면_예외를_던진다() {
 		String notNumber = "abc";
 
-		assertThatThrownBy(() -> NumberValidator.validateNumber(notNumber))
+		assertThatThrownBy(() -> NumberValidator.validateIntType(notNumber))
 			.isExactlyInstanceOf(MoneyException.class)
 			.hasMessage(INVALID_NUMBER.getMessage());
 	}

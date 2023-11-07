@@ -5,8 +5,8 @@ import static lotto.exception.ExceptionMessage.*;
 import lotto.exception.MoneyException;
 
 public class NumberValidator {
-	public static void validateNumber(String input) {
-		if (isNotNumeric(input)) {
+	public static void validateIntType(String input) {
+		if (isIntType(input)) {
 			throw new MoneyException(INVALID_NUMBER.getMessage());
 		}
 	}
@@ -17,8 +17,8 @@ public class NumberValidator {
 		}
 	}
 
-	private static boolean isNotNumeric(String input) {
-		return !input.matches("[0-9]+");
+	private static boolean isIntType(String input) {
+		return !input.matches("-?\\d+");
 	}
 
 	private static boolean isPositive(int input) {

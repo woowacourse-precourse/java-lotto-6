@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.constance.GameConst;
 import lotto.model.domain.lotto.Lotto;
 
-public class RandomLottoGenerator extends LottoGenerator {
+public class RandomLottoGenerator extends LottoGenerator<Lotto> {
 
     public List<Integer> generateList() {
         return Randoms.pickUniqueNumbersInRange(GameConst.LOTTO_RANGE_START

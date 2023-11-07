@@ -5,6 +5,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoAmount;
 import lotto.model.RandomNumbers;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,7 +31,7 @@ public class LottoController {
         for (int i = 0; i < amount; i++) {
             lottos.add((Lotto) randomNumbers.getRandomNumbers());
         }
-
+        OutputView.IssuedLottoNumbers(amount, lottos);
         return lottos;
     }
 

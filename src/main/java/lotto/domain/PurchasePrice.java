@@ -1,11 +1,9 @@
 package lotto.domain;
 
+import lotto.constants.LottoRule;
 import lotto.exception.NotThousandUnitException;
 
 public class PurchasePrice {
-
-    private static final Integer UNIT = 1000;
-    private static final Integer NOT_REMAIN = 0;
 
     private final Integer lottoPurchasePrice;
 
@@ -25,10 +23,10 @@ public class PurchasePrice {
     }
 
     private boolean isNotThousandUnit(Integer purchasePrice) {
-        return purchasePrice % UNIT != NOT_REMAIN;
+        return purchasePrice % LottoRule.MONEY_UNIT != LottoRule.NOT_REMAIN;
     }
 
     public Integer getLottosAmount() {
-        return lottoPurchasePrice / UNIT;
+        return lottoPurchasePrice / LottoRule.MONEY_UNIT;
     }
 }

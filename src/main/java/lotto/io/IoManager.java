@@ -28,7 +28,7 @@ public class IoManager {
 
     public Lotto inputLotto() {
         return read(() -> {
-            outputView.printWinningNumbers();
+            outputView.printWinningNumbersMessage();
             String lotto = inputView.inputLotto();
             return inputMapper.toLotto(lotto);
         });
@@ -36,7 +36,7 @@ public class IoManager {
 
     public BonusNumber inputBonusNumber(Lotto lotto) {
         return read(() -> {
-            outputView.printBonusNumber();
+            outputView.printBonusNumberMessage();
             String bonusNUmber = inputView.inputBonusNumber();
             return inputMapper.toBonusNumber(bonusNUmber, lotto);
         });

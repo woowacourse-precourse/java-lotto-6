@@ -16,6 +16,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    //Set에 담은 후 Lotto의 숫자 개수(6)만큼 빼면 교집합 -> 로또 숫자 갯수 - 교집합 = 당첨 등수
+    public int compareToPlayerLotto(WinningLotto playerLotto) {
+        Set<Integer> winningNumber = new HashSet<>(playerLotto.numbers().getNumbers());
+        winningNumber.addAll(numbers);
+        int count = winningNumber.size() - LottoNumbers.LOTTO_SIZE.getNumber();
+        return LottoNumbers.LOTTO_SIZE.getNumber() - count;
+    }
 
     private void validateNumberSize(List<Integer> numbers) {
         if (numbers.size() != LottoNumbers.LOTTO_SIZE.getNumber()) {

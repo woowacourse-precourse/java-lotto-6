@@ -59,14 +59,6 @@ Validation
 Output
 1. Server Text를 출력
 
-ErrorText
-1. Enum class로 정의
-- errorCode 및 errorText
-
-ServiceText
-1. Enum class로 정의
-- serviceCode 및 serviceText
-
 예외 처리 및 단위 테스트 구상
 
 단위 테스트 목록
@@ -82,3 +74,61 @@ LottoControler
 
 
 추후 단위 테스트 구상 구체화 및 예외 처리 구체화 필요
+
+-----------------
+2회차 
+ErrorText 와 ServiceText는 따로 정할 필요 없음. -> 기능 제거
+
+Enum 클래스를 활용해 로또 당첨 내역 산출하기
+EnumMap을 이용해 로또 당첨 리스트를 구현한다.
+
+각각 인터페이스를 이용하여 추상화하고 테스트 코드를 작성한다.
+
+처음 모델링에 경우 각 클래스에 부담되는 책임이 너무 많아 이부분을 고려한다.
+아키텍처 수준에서의 MVC 패턴을 채택한다.
+또한 각 클래스별 책임을 괄호에 적었다.
+
+Application(컨트롤러 생성)
+
+LottoController
+- view(input,output) 와 model 중계
+
+view
+- Input(동작에 필요한 입력)
+- Output(결과를 나타내는 출력)
+- ViewValidation(입력 값 검증)
+
+model
+- LottoMaker (로또 리스트 생성)
+- Lotto(로또 정의)
+- LottoValidation(로또 유효성 검증)
+- LottoMakerValidation(로또 리스트 유효성 검증)
+- LottoRank(로또 등수 산출)
+- LottoResult(로또 리스트의 결과 산출)
+
+리팩토링 과정에서  각각 입력에 대한 인터페이스를 정의하여
+추상화 목표.
+
+input 예외 리스트
+1. 돈
+- 1000원 단위인지 검증
+- null인지 검증
+- 문자가 들어왔는지 검증
+2. 당첨 번호 및 서비스 번호 검증
+- 수의 범위가 1~45까지인가?
+- 중복 검증
+
+model 예외 리스트
+1. 로또
+- 수의 범위가 1~45까지인가?
+- null인지 검증
+- 문자가 들어왔는지 검증
+- 중복 검증
+2. 로또 리스트
+- 개수 검증(돈과 개수)
+
+
+
+
+
+

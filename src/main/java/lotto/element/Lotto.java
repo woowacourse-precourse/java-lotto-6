@@ -1,5 +1,6 @@
 package lotto.element;
 
+import java.sql.Array;
 import java.util.*;
 
 public class Lotto {
@@ -18,8 +19,22 @@ public class Lotto {
     }
 
     int countMatch(Lotto other) {
-        List<Integer> otherNumbers = new List<>(other.getLottoNumbers());
+        List<Integer> otherNumbers = new ArrayList<>(other.getLottoNumbers());
         otherNumbers.retainAll(numbers);
         return otherNumbers.size();
+    }
+
+    List<Integer> getLottoNumbers() {
+        return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return "["+numbers.get(0)+", "+
+                numbers.get(1)+", "+
+                numbers.get(2)+", "+
+                numbers.get(3)+", "+
+                numbers.get(4)+", "+
+                numbers.get(5)+"]";
     }
 }

@@ -29,6 +29,13 @@ public class InputHandler {
     private void validatePurchaseAmount(String userInput) {
         validatePositiveInteger(userInput);
         validateThousandUnits(userInput);
+        validateProperPurchaseAmount(userInput);
+    }
+
+    private void validatePositiveInteger(String userInput) {
+        if (!isPositiveInteger(userInput)) {
+            throw new IllegalArgumentException(Error.POSITIVE_INTEGER.getMessage());
+        }
     }
 
     private void validateThousandUnits(String userInput) {
@@ -38,10 +45,15 @@ public class InputHandler {
         }
     }
 
-    private void validatePositiveInteger(String userInput) {
-        if (!isPositiveInteger(userInput)) {
-            throw new IllegalArgumentException(Error.POSITIVE_INTEGER.getMessage());
+    private void validateProperPurchaseAmount(String userInput) {
+        int purchaseAmount = Integer.parseInt(userInput);
+        if (!isProperAmount(purchaseAmount)) {
+            throw new IllegalArgumentException(Error.MAX_PURCHASE_LIMIT.getMessage());
         }
+    }
+
+    private static boolean isProperAmount(int purchaseAmount) {
+        return purchaseAmount <= 100_000;
     }
 
     private boolean isPositiveInteger(String str) {

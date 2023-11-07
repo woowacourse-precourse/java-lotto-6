@@ -107,4 +107,9 @@ package lotto.control;public class Lottogame {
         }
         return number;
     }
+
+    private String readLineWithMessage(String message) {
+        System.out.println(message);
+        return Console.readLine();
+    }
 }

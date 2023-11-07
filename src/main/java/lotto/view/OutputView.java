@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,12 @@ public class OutputView {
         //포맷 패턴: "총 수익률은 {rateOfReturn}%입니다."
         //예시 출력: "총 수익률은 62.5%입니다."
         String rateOfReturnFormat = LottoGuideMessage.RATE_OF_RETURN_FORMAT.getMessage();
-        return String.format(rateOfReturnFormat, rateOfReturn.value());
+        String returnOfRate = formatRate(rateOfReturn.value());
+        return String.format(rateOfReturnFormat, returnOfRate);
+    }
+
+    private String formatRate(BigDecimal rateOfReturn) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###.0");
+        return decimalFormat.format(rateOfReturn);
     }
 }

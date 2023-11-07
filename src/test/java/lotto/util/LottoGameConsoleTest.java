@@ -169,7 +169,7 @@ class LottoGameConsoleTest extends ConsoleTest {
             setStdin(input);
 
             // when
-            ThrowingCallable target = () -> LottoGameConsole.readTargetLotto();
+            ThrowingCallable target = () -> LottoGameConsole.readBonusNumber();
 
             // then
             assertThatIllegalArgumentException().isThrownBy(target);

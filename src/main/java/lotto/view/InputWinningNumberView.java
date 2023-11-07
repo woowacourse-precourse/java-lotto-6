@@ -1,11 +1,9 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.*;
 import java.util.regex.Pattern;
 
-public class InputWinningNumberView {
+public class InputWinningNumberView extends InputView {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
@@ -17,7 +15,7 @@ public class InputWinningNumberView {
 
     public List<Integer> getWinningNumber() {
         System.out.println(REQUEST_WINNING_NUMBER);
-        String input = Console.readLine();
+        String input = inputValue();
         System.out.println();
         List<String> inputValue = parseWinningNumber(input);
         List<Integer> winningNumber = convertWinningNumber(inputValue);

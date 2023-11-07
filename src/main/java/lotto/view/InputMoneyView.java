@@ -1,10 +1,8 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.regex.Pattern;
 
-public class InputMoneyView {
+public class InputMoneyView extends InputView {
     private static final int MIN_VALUE = 1;
     private static final int ZERO = 0;
     private static final int THOUSAND = 1000;
@@ -14,7 +12,7 @@ public class InputMoneyView {
 
     public String getInputMoney() {
         System.out.println(REQUEST_INPUT_MONEY);
-        String input = Console.readLine();
+        String input = inputValue();
         System.out.println();
         try {
             validate(input);

@@ -1,11 +1,9 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class InputBonusNumberView {
+public class InputBonusNumberView extends InputView {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
     private static final String BLANK = " ";
@@ -15,7 +13,7 @@ public class InputBonusNumberView {
 
     public Integer getBonusNumber(List<Integer> winningNumbers) {
         System.out.println(REQUEST_BONUS_NUMBER);
-        String input = Console.readLine();
+        String input = inputValue();
         System.out.println();
         try {
             validate(input);

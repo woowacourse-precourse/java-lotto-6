@@ -12,7 +12,7 @@ import lotto.utils.GeneratedLottoNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class GameController {
+public class LottoGame {
 
     private static List<Lotto> lottos;
     private static PurchaseMoney purchaseMoney;

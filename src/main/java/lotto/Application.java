@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.controller.GameController;
+import lotto.controller.LottoGame;
 
 public class Application {
     public static void main(String[] args) {
-        GameController.start();
+        LottoGame.start();
     }
 }

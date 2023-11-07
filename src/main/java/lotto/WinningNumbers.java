@@ -7,14 +7,6 @@ public record WinningNumbers(Lotto numbers, int bonusNumber) {
         validate(numbers, bonusNumber);
     }
 
-    public Lotto getLottoNumbers() {
-        return numbers;
-    }
-
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
     private void validate(Lotto numbers, int bonusNumber) {
         validate(numbers);
         validate(bonusNumber);

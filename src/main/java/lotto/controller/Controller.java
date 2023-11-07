@@ -2,8 +2,10 @@ package lotto.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoMachine;
+import lotto.domain.Rank;
 import lotto.domain.ResultMaker;
 import lotto.domain.SelectedLotto;
 import lotto.util.LottoValidator;
@@ -22,7 +24,9 @@ public class Controller {
 
     public void run() {
         buyLotto();
-        outputView.printLottos(lottoBundle.getBundle());
+        showYourLotto();
+        checkLotto();
+        showYourResult();
     }
 
     private void buyLotto() {
@@ -37,8 +41,18 @@ public class Controller {
         }
     }
 
+    private void showYourLotto() {
+        outputView.printLottos(lottoBundle.getBundle());
+    }
+
+    private void showYourResult() {
+        Map<Rank, Integer> lottoResult = resultMaker.giveResult();
+        outputView.printResult(lottoResult);
+    }
+
     private void checkLotto() {
         resultMaker = new ResultMaker(lottoBundle, selectWinningLotto());
+        resultMaker.updateResult();
     }
 
     private SelectedLotto selectWinningLotto() {
@@ -48,10 +62,11 @@ public class Controller {
     }
 
     private String selectNumbers() {
-        String nums = inputView.readSelectedNumbers();
-        List<String> splitted = makeSplittedNumbers(nums);
+        String nums = "";
         while (true) {
             try {
+                nums = inputView.readSelectedNumbers();
+                List<String> splitted = makeSplittedNumbers(nums);
                 validator.lottoNumbers(splitted);
                 break;
             } catch (IllegalArgumentException e) {
@@ -62,9 +77,10 @@ public class Controller {
     }
 
     private String chooseBonus(List<String> splitted) {
-        String bonus = inputView.readSelectedBonus();
+        String bonus = "";
         while (true) {
             try {
+                bonus = inputView.readSelectedBonus();
                 validator.bonusNumber(bonus, splitted);
                 break;
             } catch (IllegalArgumentException e) {

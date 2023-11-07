@@ -10,7 +10,7 @@ public class LottoUtils {
     private static final int START = 1;
     private static final int END = 45;
     private static final int LENGTH = 6;
-    private static final int THRID_OR_SECOND = 5;
+    private static final int THIRD_OR_SECOND = 5;
     private static final String DELIMITER = ",";
     private static final int LOTTO_PRISE = 1000;
     public static List<Integer> generateRandomLottoNumbers() {
@@ -40,7 +40,7 @@ public class LottoUtils {
     }
 
     public static boolean matchBonus(int cnt, Lotto lotto, int bonusNumber) {
-        if (cnt != THRID_OR_SECOND) return false;
+        if (cnt != THIRD_OR_SECOND) return false;
         return lotto.getNumbers().contains(bonusNumber);
     }
 

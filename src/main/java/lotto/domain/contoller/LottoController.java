@@ -37,5 +37,6 @@ public class LottoController {
     private void lottoPublish() {
         List<Lotto> lottos = lottoPublishService.getPublishedLottoNumbers();
         outputView.printPublishCount(lottos.size());
+        outputView.printPublishedLottoNumbers(lottoPublishService.getPublishedLottoNumbers());
     }
 }

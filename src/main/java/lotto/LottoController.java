@@ -15,6 +15,11 @@ public class LottoController {
     private int money;
     private Lotto winningLotto;
 
+    private static final int START_RANGE = 1;
+    private static final int END_RANGE = 45;
+    private static final int LOTTO_NUMBER_DIGITS = 6;
+
+
     public LottoController() {
     }
 
@@ -68,7 +73,7 @@ public class LottoController {
     }
 
     public List<Integer> makeLottoNumbers() {
-        return pickUniqueNumbersInRange(1, 45, 6);
+        return pickUniqueNumbersInRange(START_RANGE, END_RANGE, LOTTO_NUMBER_DIGITS);
     }
 
     private double calculateRateOfReturn(Map<Integer, Integer> winningRanks, int buyMoney) {

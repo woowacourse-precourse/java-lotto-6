@@ -19,4 +19,8 @@ public enum Rank {
         this.winningMoney = winningMoney;
         this.message = message;
     }
+
+    public boolean matchCount(int countOfMatch) {
+        return this.countOfMatch == countOfMatch;
+    }
 }

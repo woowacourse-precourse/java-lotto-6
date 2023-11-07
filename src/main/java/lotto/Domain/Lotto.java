@@ -1,6 +1,8 @@
 package lotto.Domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import lotto.Constant.Constant;
 
 public class Lotto {
@@ -12,11 +14,21 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateLength(numbers);
+        validateDuplicate(numbers);
+    }
+
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != Constant.LOTTO_NUMBER_AMOUNT) {
             String errorMessage = Constant.ERROR_PREFIX + "6개의 번호를 입력하지 않으셨습니다.";
             throw new IllegalArgumentException(errorMessage);
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplicate(List<Integer> numbers) {
+        Set<Integer> set = new HashSet<>(numbers);
+        if (set.size() != Constant.LOTTO_NUMBER_AMOUNT) {
+            throw new IllegalArgumentException("중복된 숫자가 존재합니다.");
+        }
+    }
 }

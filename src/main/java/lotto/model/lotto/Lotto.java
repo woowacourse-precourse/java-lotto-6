@@ -3,6 +3,7 @@ package lotto.model.lotto;
 
 import lotto.util.Log;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,7 +15,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         checkDuplicates(numbers);
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortNumbers(numbers);
     }
 
     private void validate(List<Integer> numbers) {
@@ -33,5 +34,10 @@ public class Lotto {
             log.error("중복된 숫자가 있습니다.");
             throw new IllegalArgumentException();
         }
+    }
+
+    private List<Integer> sortNumbers(List<Integer> numbers) {
+        Collections.sort(numbers);
+        return numbers;
     }
 }

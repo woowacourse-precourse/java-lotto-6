@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.LottoPurchaseInfo;
 import lotto.view.InputView;
 
 public class Game {
@@ -14,7 +15,9 @@ public class Game {
     public void play() {
 
         int purchaseAmount = InputView.inputPurchaseAmount();
-        int lottoNum = purchaseAmount / 1000;
+        int purchaseLottoNum = purchaseAmount / 1000;
+
+        LottoPurchaseInfo lottoPurchaseInfo = new LottoPurchaseInfo(purchaseAmount, purchaseLottoNum);
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] winningNum = readLine().split(",");
 

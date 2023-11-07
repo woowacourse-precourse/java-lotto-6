@@ -1,8 +1,6 @@
 package lotto.domain;
 
 import static lotto.domain.Lotto.generateLottoNumbers;
-
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +32,6 @@ public class Lottos {
             System.out.println(lotto.getNumbers());
         }
     }
-
     public List<Lotto> getLottos() {
         return lottos;
     }

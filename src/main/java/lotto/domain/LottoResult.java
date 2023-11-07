@@ -3,12 +3,11 @@ package lotto.domain;
 import static lotto.domain.LottoProfit.getReturnRate;
 
 import java.util.List;
+import lotto.constants.LottoRank;
 
 public class LottoResult {
 
     private int totalReward = 0;
-    String[] rewardNames = {"3개", "4개", "5개", "5개 일치, 보너스 볼", "6개"};
-    int[] reward = {5000,50000,1500000,30000000,2000000000};
     int [] rewardMatch;
 
     public long lottoNumbersPurchased(long userLottoPrice) {
@@ -24,7 +23,7 @@ public class LottoResult {
         this.totalReward = 0;
 
         for (int i = 0; i < rewardMatch.length; i++) {
-            int prize = reward[i] * rewardMatch[i];
+            int prize = LottoRank.values()[i].getReward() * rewardMatch[i];
             totalReward += prize;
         }
     }
@@ -34,7 +33,7 @@ public class LottoResult {
     * */
     private int[] countMatchNumbers(Lottos purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
 
-        int[] rewardMatch = new int[5];
+        int[] rewardMatch = new int[LottoRank.values().length];
 
         for(Lotto lotto : purchasedLottos.getLottos()) {
             int matchCount = countMatchingNumbers(lotto,winningNumbers);
@@ -60,14 +59,6 @@ public class LottoResult {
 
     public int getTotalReward() {
         return totalReward;
-    }
-    public String[] getRewardNames() {
-        return rewardNames;
-    }
-
-
-    public int[] getReward() {
-        return reward;
     }
 
     public int[] getRewardMatch() {

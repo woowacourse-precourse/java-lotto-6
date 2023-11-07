@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.model.vo.Lotto;
+import lotto.model.vo.Lottos;
 import lotto.model.vo.Money;
 
 public class LottoStore {
@@ -20,7 +21,7 @@ public class LottoStore {
         return new LottoStore(numberGenerateStrategy);
     }
 
-    public List<Lotto> sellLotto(Money money) {
+    public Lottos sellLotto(Money money) {
         money.validateDivideBy1000();
         int quantity = calculatePurchaseQuantity(money.getMoney());
         return createLottos(quantity);
@@ -30,13 +31,13 @@ public class LottoStore {
         return money / LOTTO_PRICE;
     }
 
-    private List<Lotto> createLottos(int quantity) {
+    private Lottos createLottos(int quantity) {
         List<Lotto> lottos = new ArrayList<>();
         while (quantity > ZERO_COUNT_VALUE) {
             lottos.add(createLotto());
             quantity--;
         }
-        return lottos;
+        return Lottos.of(lottos);
     }
 
     private Lotto createLotto() {

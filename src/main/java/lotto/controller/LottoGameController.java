@@ -5,8 +5,8 @@ import lotto.controller.dto.PurchaseHistoryDto;
 import lotto.model.LottoHeadQuarter;
 import lotto.model.LottoStore;
 import lotto.model.vo.BonusNumber;
+import lotto.model.vo.Lottos;
 import lotto.model.vo.Money;
-import lotto.model.Player;
 import lotto.model.RandomNumberGenerateStrategy;
 import lotto.model.vo.WinNumber;
 import lotto.view.ErrorView;
@@ -16,37 +16,38 @@ public class LottoGameController {
 
     private OutputView outputView;
     private ErrorView errorView;
+    private LottoStore lottoStore;
 
     public LottoGameController(OutputView outputView, ErrorView errorView) {
         this.outputView = outputView;
         this.errorView = errorView;
+        this.lottoStore = LottoStore.of(new RandomNumberGenerateStrategy());
     }
 
     public void run() {
-        Player player = buyLotto();
+        Lottos lottos = buyLotto();
         WinNumber winNumber = setWinNumber();
         BonusNumber bonusNumber = setBonusNumber();
         playLottoGame(winNumber, bonusNumber);
     }
 
-    private Player buyLotto() {
-        Player player = null;
+    private Lottos buyLotto() {
+        Lottos lottos = null;
         try {
             // 구입 금액 입력
             outputView.printPurchaseInput();
             Money money = new Money(input());
-            player = Player.of(money);
             // 로또 구매
-            player.buyLotto(LottoStore.of(new RandomNumberGenerateStrategy()));
+            lottos = lottoStore.sellLotto(money);
             // 로또 번호 반환 및 출력
-            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(player.getEA(), player.getHistory());
+            PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(lottos.getEA(), lottos.getHistory());
             outputView.printPurchaseHistory(dto);
         } catch (IllegalArgumentException e) {
             errorView.printErrorMessage(e.getMessage());
-            buyLotto();
+            lottos = buyLotto();
         }
         outputView.printLineSeparator();
-        return player;
+        return lottos;
     }
 
     private WinNumber setWinNumber() {

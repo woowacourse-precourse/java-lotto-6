@@ -20,11 +20,8 @@ public class LottoProcess {
         return new LottoResult(counted, checked);
     }
 
-    public List<Lotto> buyLotto(PurchaseMoney purchaseMoney) {
-        int lottoQuantity = purchaseMoney.getLottoQuantity();
+    public List<Lotto> buyLotto(PurchaseMoney purchaseMoney, int lottoQuantity) {
         List<Lotto> lottos = new ArrayList<>();
-
-        OutputView.printLottoQuantity(lottoQuantity);
 
         for (int i = 0; i < lottoQuantity; i++) {
             Lotto lotto = new Lotto(NumberGenerator.generate());

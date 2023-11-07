@@ -4,7 +4,7 @@
   - [x] "구입 금액을 입력해주세요." - InputView#inputPurchasePrice()
     - 로또 1장의 가격 = 1000원
     - [x] 입력 값이 숫자 형식이 아닌 경우 예외 처리
-  - [x] 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리 - Price#validate()
+  - [x] 구입 금액은 1,000원 단위로 입력 받으며 1,000원으로 나누어 떨어지지 않는 경우 예외 처리 - Amount#validate()
 - [ ] 로또 발행 
   - [ ] 입력받은 금액만큼 로또 발행 - LottoPublisher#publishLottosByAmount()
     - [ ] 발행 가능한 로또 개수 계산 - LottoPublisher#countLottoTicketsAvailableForPurchase()
@@ -35,7 +35,7 @@
     5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\
     6개 일치 (2,000,000,000원) - 0개"
 - [ ] 수익률 계산 - Calculator#calculateROI()
-  - [ ] 상금 계산 - Calculator#calculateLotteryPrize()
+  - [ ] 상금 계산 - WinningResult#getLotteryPrize()
   - 소수점 둘째 자리에서 반올림
 - [ ] 수익률 출력 - OutputView#printEarningRate()
   - [ ] "총 수익률은 00.0%입니다." 

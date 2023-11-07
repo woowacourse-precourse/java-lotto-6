@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class PriceTest{
+class AmountTest{
 
     @DisplayName("구입 금액이 1000원 단위가 아니면 예외 처리한다.")
     @ParameterizedTest

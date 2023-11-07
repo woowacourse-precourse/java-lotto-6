@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.lotteryresult;
 
 public class Bonus{
 
@@ -10,6 +10,10 @@ public class Bonus{
     }
 
     private void validate(int bonusNumber){
+    }
+
+    public int getBonusNumber(){
+        return bonusNumber;
     }
 
 }

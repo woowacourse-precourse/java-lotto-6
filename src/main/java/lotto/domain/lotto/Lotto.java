@@ -1,6 +1,7 @@
-package lotto.domain;
+package lotto.domain.lotto;
 
 import java.util.List;
+import lotto.domain.RandomNumberGenerator;
 
 public class Lotto{
     private final List<Integer> numbers;
@@ -20,11 +21,7 @@ public class Lotto{
         }
     }
 
-    public void determineWinnings(Lotto winningNumbers){
-
-    }
-
-    public int countSameNumber(Lotto winningNumbers){
+    public int countWinningNumbers(List<Integer> winningNumbers){
         return -1;
     }
 

@@ -2,8 +2,8 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.Lottos;
 import lotto.domain.Price;
 import lotto.view.InputView;
 

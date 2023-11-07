@@ -31,16 +31,22 @@ public class OutputView {
     public static void printWinningResult(LottoResult lottoResult){
         System.out.println("당청통계");
         System.out.print("---");
-//        TODO.당첨 결과 출력
+        printRanks(lottoResult);
+    }
+
+    private static void printRanks(LottoResult lottoResult) {
         Rank[] ranks = Rank.values();
         for (int i = ranks.length - 1; i >= 0; i--) {
-            Rank rank = ranks[i];
-            int count = lottoResult.getResult().get(rank);
-            int winningMoney = rank.getWinningMoney();
-            String messageFormat = rank.getMessageFormat();
-            System.out.printf(messageFormat, rank.getCountOfMatch(), winningMoney, count);
-            System.out.println();
+            printRank(lottoResult, ranks[i]);
         }
+    }
+
+    private static void printRank(LottoResult lottoResult, Rank rank) {
+        int count = lottoResult.getResult().get(rank);
+        int winningMoney = rank.getWinningMoney();
+        String messageFormat = rank.getMessageFormat();
+        System.out.printf(messageFormat, rank.getCountOfMatch(), winningMoney, count);
+        System.out.println();
     }
 
     public static void printProfitRate(LottoResult lottoResult, int amount){

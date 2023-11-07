@@ -16,11 +16,15 @@ public class LottoResult {
 
     public void calculate(List<Lotto> lottoList, List<Integer> winningNumbers, int bonusNumber) {
         for (Lotto lotto : lottoList) {
-            int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
-            boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
-            Rank rank = Rank.valueOf(matchCount, matchBonus);
-            result.put(rank, result.get(rank) + 1);
+            calculateRank(lotto, winningNumbers, bonusNumber);
         }
+    }
+
+    private void calculateRank(Lotto lotto, List<Integer> winningNumbers, int bonusNumber) {
+        int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers);
+        boolean matchBonus = lotto.getNumbers().contains(bonusNumber);
+        Rank rank = Rank.valueOf(matchCount, matchBonus);
+        result.put(rank, result.get(rank) + 1);
     }
 
     private int getMatchCount(List<Integer> lotto, List<Integer> winningNumbers) {

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,6 +40,8 @@ class ApplicationTest extends NsTest {
         }
         public int getNum(){return num;}
     }
+
+    public static final List<Integer> criteria = Arrays.asList(4,5,9,8,1,2);
 
     @Test
     void 기능_테스트() {
@@ -128,8 +131,7 @@ class ApplicationTest extends NsTest {
     @Test
     void 당첨숫자_정수리스트화_테스트(){
         String test = "4,5,9,8,1,2";
-        List<Integer> expected = Arrays.asList(4,5,9,8,1,2);
-        Assertions.assertEquals(expected,winning_number.splitInput(test));
+        Assertions.assertEquals(criteria,winning_number.splitInput(test));
     }
 
     @Test
@@ -158,9 +160,16 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 보너스숫자_중복확인_테스트(){
-        List<Integer> criteria = Arrays.asList(4,5,9,8,1,2);
         Assertions.assertThrows(IllegalArgumentException.class,
                 () -> bonus_number.circulationForCheck(criteria, Num.FIVE.getNum()));
+    }
+
+    @Test
+    void 보너스숫자_당첨숫자_결합_테스트(){
+        List<Integer> winNumbers = new ArrayList<>(Arrays.asList(4,5,9,8,1));
+        String bonus = "2";
+        bonus_number.addBonus(winNumbers, bonus);
+        Assertions.assertEquals(criteria, winNumbers);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class TotalStatCalculator {
 
     public Map<String, Integer> getTotalLottoStats() {
         Map<String, Integer> totalStats = new HashMap<>();
-        List<RankingMessage> rankingMessages = Arrays.stream(RankingMessage.values()).toList();
+        List<RankingMessage> rankingMessages = getRankingMessages();
 
         for (RankingMessage rankingMessage : rankingMessages) {
             String message = rankingMessage.toString();
@@ -29,6 +29,10 @@ public class TotalStatCalculator {
         }
 
         return totalStats;
+    }
+
+    private List<RankingMessage> getRankingMessages() {
+        return Arrays.stream(RankingMessage.values()).toList();
     }
 
     private int getRankCount(String message) {

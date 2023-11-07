@@ -30,7 +30,7 @@ class WinningNumbersTest {
     }
 
     @Test
-    @DisplayName("추첨 숫자와 비교하여 같은 숫자를 알맞게 반환해야 한다.")
+    @DisplayName("보너스 숫자와 비교하여 같은 숫자를 알맞게 반환해야 한다.")
     public void calculateBonusNumberTest() {
         //given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);

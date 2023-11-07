@@ -13,4 +13,5 @@ public class LottoValues {
 
     public static final String RANKING_SPLIT_PARAMETER = "개";
     public static final String INPUT_SPLIT_PARAMETER = ",";
+    public static final String REWARD_SPLIT_PARAMETER = ",";
 }

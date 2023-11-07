@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.util.ErrorMessage;
 import lotto.util.InputMessage;
+import lotto.util.LottoValues;
 
 public class InputController {
 
@@ -50,7 +51,7 @@ public class InputController {
     }
 
     private static List<Integer> splitToParameter(String input) throws NumberFormatException{
-        return Arrays.stream(input.split(","))
+        return Arrays.stream(input.split(LottoValues.INPUT_SPLIT_PARAMETER))
                 .map(String::trim)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());

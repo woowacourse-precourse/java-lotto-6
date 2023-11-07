@@ -31,7 +31,7 @@ public class OutputController {
         System.out.println();
         System.out.println(OutputMessage.TOTAL_STATISTICS_TITLE);
         System.out.println(OutputMessage.TOTAL_PARAMETER);
-        for (String message : getMessages(winningStatistics,false)) {
+        for (String message : getMessages(winningStatistics, false)) {
             System.out.println(String.format(OutputMessage.TOTAL_STATISTICS_MESSAGE.toString(), message,
                     winningStatistics.get(message)));
         }
@@ -39,8 +39,9 @@ public class OutputController {
     }
 
     public static List<String> getMessages(Map<String, Integer> winningStatistics, boolean isReverse) {
-        if(isReverse)
+        if (isReverse) {
             return winningStatistics.keySet().stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        }
         return winningStatistics.keySet().stream().sorted().collect(Collectors.toList());
     }
 }

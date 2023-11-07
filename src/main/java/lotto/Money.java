@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.exception.ExceptionMessage;
+
 public record Money(int amount) {
     private static final int MINIMAL_UNIT = 1_000;
 
@@ -14,13 +16,13 @@ public record Money(int amount) {
 
     private void validateUnit(int amount) {
         if (amount % MINIMAL_UNIT != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.UNIT_ERROR.getMessage());
         }
     }
 
     private void validateNotZero(int amount) {
         if (amount == 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.ZERO_VALUE.getMessage());
         }
     }
 

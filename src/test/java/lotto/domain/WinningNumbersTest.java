@@ -1,13 +1,34 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
 import lotto.LottoFixture;
 import lotto.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class WinningNumbersTest {
+    @DisplayName("보너스 번호가 1~45가 아닐 경우 예외를 반환한다.")
+    @Test
+    void createWinningNumberWithBonusNumberOutOfRange() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonus = 46;
+        assertThatThrownBy(() -> new WinningNumbers(lotto, bonus))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호가 로또 번호와 중복될 경우 예외를 반환한다.")
+    @Test
+    void createWinningNumberWithDuplicatedBonusNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonus = 1;
+        assertThatThrownBy(() -> new WinningNumbers(lotto, bonus))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     private void assertLottoRank(Lotto lotto, Rank expected) {
         WinningNumbers winningNumbers = LottoFixture.standard();
         assertEquals(winningNumbers.rank(lotto), expected);

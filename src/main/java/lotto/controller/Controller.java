@@ -37,7 +37,7 @@ public class Controller {
         EnumMap<Rank, Integer> result = lottoResultService.rank(lottos);
 
         printStats(result);
-        printRateOfReturn(money.perUnit(), result);
+        printRateOfReturn(money.amount(), result);
     }
 
     private Money readAmount() {
@@ -54,7 +54,7 @@ public class Controller {
             int amount = inputView.readAmount();
             return new Money(amount);
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage("구입 금액은 1000원 단위의 숫자여야 합니다.");
+            outputView.printErrorMessage(e.getMessage());
         }
         return null;
     }
@@ -78,7 +78,7 @@ public class Controller {
         try {
             return inputView.readWinningLottoNumbers();
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            outputView.printErrorMessage(e.getMessage());
         }
         return Collections.emptyList();
     }
@@ -96,7 +96,7 @@ public class Controller {
         try {
             return inputView.readBonus();
         } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+            outputView.printErrorMessage(e.getMessage());
         }
         return 0;
     }

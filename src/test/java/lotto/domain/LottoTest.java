@@ -26,6 +26,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 1~45가 아니면 예외가 발생한다.")
+    @Test
+    void createLottoByOutOfRangeNumbers() {
+        assertThatThrownBy(() -> new Lotto(List.of(44, 45, 46, 47, 48, 49)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @Nested
     @DisplayName("당첨 기준에 맞게 등수를 구한다.")
     class RankWithWinningLotto {

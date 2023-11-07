@@ -12,11 +12,11 @@ public class LottoGameResult {
     public void calculateLottoRanks(List<Lotto> lottos, Winning winning) {
         lottoRanks = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            lottoRanks.add(calculateLottoResult(lotto, winning));
+            lottoRanks.add(calculateLottoRank(lotto, winning));
         }
     }
 
-    public LottoRankEnum calculateLottoResult(Lotto lotto, Winning winning) {
+    public LottoRankEnum calculateLottoRank(Lotto lotto, Winning winning) {
         int sameCount = Comparer.compareLottoToWinning(lotto, winning);
         boolean containsBonus = Comparer.containsBonus(lotto, winning);
 

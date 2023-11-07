@@ -20,6 +20,6 @@ class LottoGameResultTest {
         int bonusNumber = 1;
         Winning winning = new Winning(winningNumbers, bonusNumber);
 
-        assertThat(lottoGameResult.calculateLottoResult(lotto, winning)).isEqualTo(LottoRankEnum.FIFTH);
+        assertThat(lottoGameResult.calculateLottoRank(lotto, winning)).isEqualTo(LottoRankEnum.FIFTH);
     }
 }

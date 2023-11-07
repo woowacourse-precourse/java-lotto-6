@@ -10,6 +10,7 @@ public class Output {
     private static final String BONUS_NUMBER_FORMAT = ", 보너스 볼 일치";
     private static final String REWARD_FORMAT = " (%,d원)";
     private static final String ACTUAL_MATCH_COUNT_FORMAT = " - %d개";
+    private static final String LOTTO_RATE_FORMAT = "총 수익률은 %.1f%%입니다.";
 
     private Output() {}
 
@@ -38,5 +39,9 @@ public class Output {
             stringBuilder.append(String.format(ACTUAL_MATCH_COUNT_FORMAT, actualMatchCount));
             System.out.println(stringBuilder.toString());
         }
+    }
+
+    public static void printLottoRate(double lottoRate) {
+        System.out.println(String.format(LOTTO_RATE_FORMAT, lottoRate));
     }
 }

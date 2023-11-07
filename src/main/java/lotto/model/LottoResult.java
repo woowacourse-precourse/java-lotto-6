@@ -21,6 +21,14 @@ public class LottoResult {
         return new LottoResult(rank);
     }
 
+    public double getRate(Money money) {
+        long sumPrize = 0;
+        for (Rank rank : getLottoResult().keySet()) {
+            sumPrize += rank.getReward() * lottoResult.get(rank);
+        }
+        return ((double)sumPrize / 1000) / money.getTicket() * 100;
+    }
+
     public EnumMap<Rank, Integer> getLottoResult() {
         return lottoResult;
     }

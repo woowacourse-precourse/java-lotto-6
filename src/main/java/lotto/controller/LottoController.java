@@ -25,6 +25,8 @@ public class LottoController {
         LottoResult lottoResult = LottoResult.calculateLottoResult(winningLotto, lottoTickets);
         LottoResultDto lottoResultDto = LottoResultDtoMapper.from(lottoResult);
         Output.printLottoResult(lottoResultDto);
+
+        Output.printLottoRate(lottoResult.getRate(money));
     }
 
     private LottoTickets getLottoTickets(Money money) {

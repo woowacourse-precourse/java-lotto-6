@@ -11,15 +11,15 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     private void validate(List<Integer> numbers) {
         try {
             Validate.sixHitLottoNumberValidate(numbers);
         } catch (IllegalArgumentException e){
             throw new IllegalArgumentException();
         }
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

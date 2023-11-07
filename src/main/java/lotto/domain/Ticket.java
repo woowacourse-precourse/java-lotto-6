@@ -7,14 +7,6 @@ import java.util.List;
 public class Ticket {
     private ArrayList<ArrayList<Integer>> lottoTicket = new ArrayList<>();
 
-    public void setLottoTicket(int buyTicketCount) {
-        this.lottoTicket = lottoTicket(buyTicketCount);
-    }
-
-    public ArrayList<ArrayList<Integer>> getLottoTicket() {
-        return lottoTicket;
-    }
-
     private ArrayList<ArrayList<Integer>> lottoTicket(int buyTicketCount) {
         for (int i = 0; i < buyTicketCount; i++) {
             lottoTicket.add(new ArrayList<>(autoLottoNumber()));
@@ -24,5 +16,13 @@ public class Ticket {
 
     private List<Integer> autoLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public void setLottoTicket(int buyTicketCount) {
+        this.lottoTicket = lottoTicket(buyTicketCount);
+    }
+
+    public ArrayList<ArrayList<Integer>> getLottoTicket() {
+        return lottoTicket;
     }
 }

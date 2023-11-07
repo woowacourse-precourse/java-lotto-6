@@ -28,7 +28,7 @@ public class Application {
         boolean valid_input = false;
         while (!valid_input) {
             try {
-                System.out.println("당첨 번호를 입력해 주세요.");
+                System.out.println(Messages.WIN_NUMBER_PROMPT.getMessage());
                 String[] string_numbers = Console.readLine().split(",");
                 win_numbers = Arrays.stream(string_numbers)
                         .map(Integer::parseInt)

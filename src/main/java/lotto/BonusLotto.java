@@ -11,7 +11,7 @@ public class BonusLotto {
 
         while(!isValidInput) {
             try {
-                System.out.println("보너스 번호를 입력해 주세요.");
+                System.out.println(Messages.BONUS_NUMBER_PROMPT.getMessage());
                 bonus_lotto = Integer.parseInt(Console.readLine());
 
                 Validation validation = new Validation();

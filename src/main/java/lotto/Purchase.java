@@ -10,7 +10,7 @@ public class Purchase {
 
         while (!valid_input) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
+                System.out.println(Messages.PURCHASE_PROMPT.getMessage());
                 String inputString = Console.readLine();
                 validation.isAllNumber(inputString);
                 purchase_amount = Integer.parseInt(inputString);

@@ -18,6 +18,7 @@ public class LottoController {
         lottoService.buyLotto();
         outputView.printLotto(lottoService.getUser());
         lottoService.setWinningNumbers(inputView.getWinningNumbers());
+        lottoService.setBonusNumber(inputView.getBonusNumber());
         HashMap<Prizes, Integer> matches = lottoService.getNumberMatches();
         double earnedPerPayed = lottoService.calculatePercentage(matches);
         outputView.printPrizes(matches, earnedPerPayed);

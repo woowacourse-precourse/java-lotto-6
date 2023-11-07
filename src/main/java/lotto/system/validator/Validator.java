@@ -2,7 +2,6 @@ package lotto.system.validator;
 
 import java.util.List;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 
 public class Validator {
     private static final Pattern ARABIC_NUMBER_PATTERN = Pattern.compile("^[0-9]*$");
@@ -47,7 +46,7 @@ public class Validator {
 
     public void validateNumberInRange(String input) {
         int number = Integer.parseInt(input);
-        if (number < MIN_LOTTO_NUMBER && number > MAX_LOTTO_NUMBER) {
+        if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ExceptionMessage.NUMBER_OUT_OF_RANGE.message);
         }
     }

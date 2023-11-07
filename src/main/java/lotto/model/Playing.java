@@ -66,6 +66,18 @@ public class Playing {
         }
     }
 
+    public static String getRateOfReturn(Integer inputAmount){
+        List<Integer> amount = new ArrayList<>(Arrays.asList(5000,50000,1500000,30000000,2000000000));
+        int totalAmount = 0;
+        for (int i = 0; i < 5; i++) {
+            totalAmount += (amount.get(i) * winningStatistics.get(i));
+        }
+        double res = (totalAmount / inputAmount) * 100;
+        String rateOfReturn = String.format("%.1f", res);
+
+        return rateOfReturn;
+    }
+
 
 
 }

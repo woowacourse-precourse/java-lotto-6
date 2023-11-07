@@ -51,4 +51,8 @@ public class OutputView {
             System.out.println("6개 일치 (2,000,000,000원) - " + value + "개");
         }
     }
+
+    public static void printRateOfReturnMessage(String rateOfReturn){
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+    }
 }

@@ -11,13 +11,15 @@ import java.util.List;
 
 public class GameService {
 
+    static int inputAmount;
     static int lottoCnt;
     private static Playing playing = new Playing();
     private static List<Integer> winningNumbers = new ArrayList<>();
 
     public static void startGame() {
         OutputView.printPurchaseAmountMessage();
-        lottoCnt = InputValidator.checkPurchaseAmountInput(Integer.parseInt(Console.readLine()));
+        inputAmount = Integer.parseInt(Console.readLine());
+        lottoCnt = InputValidator.checkPurchaseAmountInput(inputAmount);
         System.out.println();
         OutputView.printLottoCntMessage(lottoCnt);
     }
@@ -40,6 +42,8 @@ public class GameService {
         playing.getWinningStatistics(playing.lottos);
         OutputView.printWinningStatisticsMessage(playing.winningStatistics);
 
+        String rateOfReturn = playing.getRateOfReturn(inputAmount);
+        OutputView.printRateOfReturnMessage(rateOfReturn);
     }
 
 

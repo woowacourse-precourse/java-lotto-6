@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.PurchasePrice;
 import lotto.service.LottoService;
+import lotto.service.PriceService;
 import lotto.view.InputValue;
 import lotto.view.OutputValue;
 
@@ -10,6 +12,7 @@ import java.util.List;
 public class LottoController {
 
     private LottoService lottoService = new LottoService();
+    private PriceService priceService = new PriceService();
 
     private int lottoCount;
 
@@ -32,9 +35,16 @@ public class LottoController {
     private void purchasePriceInputLogic() {
 
         OutputValue.purchaseMessage();
-        lottoCount = InputValue.getPurchasePrice() / 1000;
 
-        OutputValue.changeLine();
+        try {
+            priceService.setPurchasePrice(InputValue.getPurchasePrice());
+            OutputValue.changeLine();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            OutputValue.changeLine();
+            purchasePriceInputLogic();
+        }
+
     }
 
     private void purchaseLottoNumberOutputLogic() {

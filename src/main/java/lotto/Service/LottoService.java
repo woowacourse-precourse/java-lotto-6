@@ -64,27 +64,21 @@ public class LottoService {
     }
 
     private void calculateScore(Lotto ticket, int bonus, CountScoreResponseDTO dto, int overlappingNumber) {
-        if (overlappingNumber == 3) {
+        if (overlappingNumber == 3)
             dto.plusFifthPlace();
-        } else if (overlappingNumber == 4) {
+        if (overlappingNumber == 4)
             dto.plusFourthPlace();
-        } else if (overlappingNumber == 5) {
-            checkBonus(ticket, bonus, dto);
-        } else if (overlappingNumber == 6) {
-            dto.plusFirstPlace();
-        }
-    }
-
-    private void checkBonus(Lotto ticket, int bonus, CountScoreResponseDTO dto) {
-        if (!containsBonus(ticket, bonus)) {
+        if (overlappingNumber == 5 && !containsBonus(ticket, bonus))
             dto.plusThirdPlace();
-        } else if (containsBonus(ticket, bonus)) {
+        if (overlappingNumber == 5 && containsBonus(ticket, bonus))
             dto.plusSecondPlace();
-        }
+        if (overlappingNumber == 6)
+            dto.plusFirstPlace();
     }
 
     private boolean containsBonus(Lotto ticket, int bonus) {
-        return ticket.getNumbers().contains(bonus);
+        return ticket.getNumbers()
+                .contains(bonus);
     }
 
     private double calculateRateOfReturn(int lottoCount, CountScoreResponseDTO countScoreResponseDTO) {

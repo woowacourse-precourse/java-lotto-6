@@ -19,6 +19,7 @@
 | OutputView           | 입력에 대한 결과를 출력하는 UI를 관리하는 클래스                |
 | Game                 | 전체 게임의 흐름을 관리하는 컨트롤러 클래스                    |
 | Validator            | 데이터 검증 로직을 제공하는 유틸 클래스                      |
+| ErrorMessage         | 예외 메시지를 저장하는 Enum 클래스                       |
 | LottoGameException   | 로또 게임 전체의 예외를 관리하는 클래스                      |
 | LottoNumberGenerator | 로또 숫자를 생성하는 유틸 클래스                          |
 | LottoConstants       | 로또 관련 상수를 관리하는 유틸 클래스                       |
@@ -95,3 +96,7 @@
 
 - [X] 범위 내의 랜덤한 6개의 로또 번호를 생성한다.
 - [X] 로또 관련 상수를 제공한다.
+
+### Exception
+
+- [ ] 각 에러 원인에 대한 적절한 메시지를 제공한다.

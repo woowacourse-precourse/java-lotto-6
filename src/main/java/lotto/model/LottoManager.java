@@ -42,9 +42,8 @@ public class LottoManager {
                 WinningInfo.FIVE_AND_BONUS_MATCH, WinningInfo.SIX_MATCH);
 
         double winningAmount = winningInfos.stream()
-                .mapToDouble(winningInfo -> winningInfo.price * lottoResult.getCount(winningInfo))
+                .mapToDouble(winningInfo -> lottoResult.getWinningAmount(winningInfo))
                 .sum();
-
 
         return winningAmount / purchaseAmount;
     }

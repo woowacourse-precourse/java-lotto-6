@@ -34,4 +34,8 @@ public class LottoResult {
         return resultCount.getOrDefault(winningInfo,0);
     }
 
+    public int getWinningAmount(WinningInfo winningInfo){
+        return  winningInfo.price * getCount(winningInfo);
+    }
+
 }

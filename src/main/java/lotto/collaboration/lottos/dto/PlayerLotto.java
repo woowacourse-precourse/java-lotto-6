@@ -1,5 +1,9 @@
 package lotto.collaboration.lottos.dto;
 
+import static lotto.collaboration.lottos.dto.enums.PlayerLottoMessage.EXCEPTION_IS_NULL;
+import static lotto.collaboration.lottos.dto.enums.PlayerLottoMessage.EXCEPTION_NOT_SIX;
+import static lotto.collaboration.lottos.dto.enums.PlayerLottoMessage.EXCEPTION_OUT_OF_RANGE;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
@@ -22,19 +26,19 @@ public class PlayerLotto {
 
     private static void occurExceptionIfIsNull(Lotto lotto) {
         if (lotto == null) {
-            throw new IllegalArgumentException("초기화 되지 않은 로또 객체.");
+            throw new IllegalArgumentException(EXCEPTION_IS_NULL.get());
         }
     }
 
     private static void occurExceptionIfNotSix(Lotto lotto) {
         if (lotto.stream().count() != 6) {
-            throw new IllegalArgumentException("번호는 총 6개여야 합니다.");
+            throw new IllegalArgumentException(EXCEPTION_NOT_SIX.get());
         }
     }
 
     private static void occurExceptionIfOutOfRange(Lotto lotto) {
         if (lotto.stream().anyMatch(number -> number < 1 || 45 < number)) {
-            throw new IllegalArgumentException("번호는 1부터 45까지의 숫자 중에서 선택할 수 있습니다.");
+            throw new IllegalArgumentException(EXCEPTION_OUT_OF_RANGE.get());
         }
     }
 

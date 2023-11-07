@@ -27,7 +27,7 @@ public class LottoService {
         this.inputExceptionTemplate = inputExceptionTemplate;
     }
 
-    public PurchaseAmount askPurchaseAmount(InputCallback<Integer> callback) {
+    public PurchaseAmount askPurchaseAmount(final InputCallback<Integer> callback) {
         return inputByExceptionTemplate(
                 () -> {
                     int amount = inputByExceptionTemplate(callback, INVALID_PURCHASE_AMOUNT);
@@ -37,18 +37,18 @@ public class LottoService {
         );
     }
 
-    public Lottos buyLottos(PurchaseAmount amount) {
+    public Lottos buyLottos(final PurchaseAmount amount) {
         int lottoCount = amount.toInt() / LOTTO_PRICE;
         return Lottos.from(Stream.generate(Lotto::create)
                 .limit(lottoCount)
                 .toList());
     }
 
-    public Lotto askWinningNumbers(InputCallback<Lotto> callback) {
+    public Lotto askWinningNumbers(final InputCallback<Lotto> callback) {
         return inputByExceptionTemplate(callback);
     }
 
-    public WinningNumbers createWinningNumbers(Lotto lotto, InputCallback<Integer> callback) {
+    public WinningNumbers createWinningNumbers(final Lotto lotto, final InputCallback<Integer> callback) {
         return inputByExceptionTemplate(
                 () -> {
                     int bonusNumber = inputByExceptionTemplate(callback);
@@ -59,16 +59,16 @@ public class LottoService {
     }
 
     public LottoStatistic createStatisticOf(
-            PurchaseAmount purchaseAmount,
-            Lottos lottos,
-            WinningNumbers winningNumbers
+            final PurchaseAmount purchaseAmount,
+            final Lottos lottos,
+            final WinningNumbers winningNumbers
     ) {
         LottoPrizeCount prizeCount = countPrizesOf(lottos, winningNumbers);
         double earningRate = computeEarningRateOf(purchaseAmount, prizeCount);
         return LottoStatistic.of(prizeCount, earningRate);
     }
 
-    private LottoPrizeCount countPrizesOf(Lottos lottos, WinningNumbers winningNumbers) {
+    private LottoPrizeCount countPrizesOf(final Lottos lottos, final WinningNumbers winningNumbers) {
         LottoPrizeCount prizeCount = LottoPrizeCount.create();
         lottos.stream()
                 .map(lotto -> match(lotto, winningNumbers))
@@ -76,11 +76,11 @@ public class LottoService {
         return prizeCount;
     }
 
-    private double computeEarningRateOf(PurchaseAmount purchaseAmount, LottoPrizeCount prizeCount) {
+    private double computeEarningRateOf(final PurchaseAmount purchaseAmount, LottoPrizeCount prizeCount) {
         return sumPrizeMoneyFrom(prizeCount) / purchaseAmount.toInt() * RATE;
     }
 
-    private LottoPrize match(Lotto lotto, WinningNumbers winningNumbers) {
+    private LottoPrize match(final Lotto lotto, final WinningNumbers winningNumbers) {
         int matchCount = (int) lotto.stream().filter(winningNumbers::contains).count();
         boolean hasBonus = isSameMatchCountOfPrize2(matchCount)
                 && lotto.stream()
@@ -88,7 +88,7 @@ public class LottoService {
         return LottoPrize.from(new LottoMatchResult(matchCount, hasBonus));
     }
 
-    private double sumPrizeMoneyFrom(LottoPrizeCount prizeCount) {
+    private double sumPrizeMoneyFrom(final LottoPrizeCount prizeCount) {
         return LottoPrize.stream()
                 .mapToDouble(prize -> (double) prizeCount.getCountOf(prize) * prize.getAmount())
                 .sum();
@@ -98,11 +98,11 @@ public class LottoService {
         return matchCount == PRIZE_2.getMatchCount();
     }
 
-    private <T> T inputByExceptionTemplate(InputCallback<T> callback) {
+    private <T> T inputByExceptionTemplate(final InputCallback<T> callback) {
         return inputExceptionTemplate.run(callback);
     }
 
-    private <T> T inputByExceptionTemplate(InputCallback<T> callback, String message) {
+    private <T> T inputByExceptionTemplate(final InputCallback<T> callback, final String message) {
         return inputExceptionTemplate.run(callback, message);
     }
 }

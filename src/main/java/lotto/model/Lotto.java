@@ -31,7 +31,7 @@ public class Lotto {
         return new Lotto(numbers);
     }
 
-    public void validate(final List<Integer> numbers) {
+    private void validate(final List<Integer> numbers) {
         validateCount(numbers);
         validateInRange(numbers);
         validateNotDuplicated(numbers);

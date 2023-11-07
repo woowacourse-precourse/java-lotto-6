@@ -15,7 +15,7 @@ public class OutputView {
     private static final String PRIZE_2_RESULT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
     private static final String EARNING_RATE = "총 수익률은 %.1f%%입니다.";
 
-    public void printLottos(Lottos lottos) {
+    public void printLottos(final Lottos lottos) {
         System.out.printf(PURCHASE_RESULT, lottos.size());
         lottos.stream().forEach(System.out::println);
     }

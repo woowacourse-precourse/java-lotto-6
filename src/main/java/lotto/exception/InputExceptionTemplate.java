@@ -12,7 +12,7 @@ public class InputExceptionTemplate {
         return executeWithCallback(callback, message);
     }
 
-    private <T> T executeWithCallback(InputCallback<T> execution, String message) {
+    private <T> T executeWithCallback(final InputCallback<T> execution, final String message) {
         while (true) {
             try {
                 return execution.execute();
@@ -22,7 +22,7 @@ public class InputExceptionTemplate {
         }
     }
 
-    private String pickMessage(Exception exception, String message) {
+    private String pickMessage(final Exception exception, final String message) {
         if (message == null) {
             return exception.getMessage();
         }

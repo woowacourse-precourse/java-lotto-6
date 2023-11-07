@@ -7,19 +7,19 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
-    private Lottos(List<Lotto> lottos) {
+    private Lottos(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    private Lottos(Lotto... lottos) {
+    private Lottos(final Lotto... lottos) {
         this.lottos = List.of(lottos);
     }
 
-    public static Lottos from(List<Lotto> lottos) {
+    public static Lottos from(final List<Lotto> lottos) {
         return new Lottos(lottos);
     }
 
-    public static Lottos of(Lotto... lottos) {
+    public static Lottos of(final Lotto... lottos) {
         return new Lottos(lottos);
     }
 

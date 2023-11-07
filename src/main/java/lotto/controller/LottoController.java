@@ -38,7 +38,7 @@ public class LottoController {
         return lottoService.buyLottos(amount);
     }
 
-    private void printLottos(Lottos lottos) {
+    private void printLottos(final Lottos lottos) {
         outputView.printLottos(lottos);
     }
 
@@ -47,11 +47,14 @@ public class LottoController {
         return lottoService.createWinningNumbers(numbers, inputView::askBonusNumber);
     }
 
-    private LottoStatistic createStatisticOf(PurchaseAmount amount, Lottos lottos, WinningNumbers winningNumbers) {
+    private LottoStatistic createStatisticOf(
+            final PurchaseAmount amount,
+            final Lottos lottos,
+            final WinningNumbers winningNumbers) {
         return lottoService.createStatisticOf(amount, lottos, winningNumbers);
     }
 
-    private void printStatistic(LottoStatistic statistic) {
+    private void printStatistic(final LottoStatistic statistic) {
         outputView.printStatistic(statistic);
     }
 }

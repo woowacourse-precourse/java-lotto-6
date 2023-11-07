@@ -1,32 +1,18 @@
 package lotto.Controller;
 
-import camp.nextstep.edu.missionutils.*;
-import java.util.List;
-import lotto.*;
-//import lotto.Domain.Budget;
-//import lotto.Domain.Ticket;
 import lotto.Domain.*;
-//import lotto.Domain.Lotto_Number;
-import lotto.View.InputView;
-import lotto.View.OutputView;
-
+import lotto.View.*;
 
 
 public class Game{
 	
-	//private Lotto lotto;
 	
 	public void run() {
 		start();
 	}
-
-	
-	
-
 	
 	
 	public static void start() {
-		double a = 1.14;
 		Tickets tickets;
 		//자본금입력//
 		OutputView.Print_Budget_Message();
@@ -34,8 +20,6 @@ public class Game{
 		//구매수량 출력//
 		OutputView.Print_Purchase_Message(budget.get_Count());
 		//티켓 출력//
-		//Ticket ticket = new Ticket();
-		//System.out.println(ticket.getNumber());
 		tickets = new Tickets(budget.get_Count());
 		
 		//로또번호입력//
@@ -48,12 +32,12 @@ public class Game{
 		//총 통계//
 		Roe roe = new Roe(tickets.get_Wins(),tickets.get_Purchase_Number());
 		OutputView.Print_Stats_Message();
-		OutputView.Print_RankFive_Message(1);
-		OutputView.Print_RankFour_Message(1);
-		OutputView.Print_RankThree_Message(1);
-		OutputView.Print_RankTwo_Message(1);
-		OutputView.Print_RankOne_Message(1);
-		OutputView.Print_Roe_Message(a);
+		OutputView.Print_RankFive_Message(roe.get_Win_Count(Roe.Ranking.RankFive.Index()));
+		OutputView.Print_RankFour_Message(roe.get_Win_Count(Roe.Ranking.RankFour.Index()));
+		OutputView.Print_RankThree_Message(roe.get_Win_Count(Roe.Ranking.RankThree.Index()));
+		OutputView.Print_RankTwo_Message(roe.get_Win_Count(Roe.Ranking.RankTwo.Index()));
+		OutputView.Print_RankOne_Message(roe.get_Win_Count(Roe.Ranking.RankOne.Index()));
+		OutputView.Print_Roe_Message(roe.get_Roe());
 	}
 }
 

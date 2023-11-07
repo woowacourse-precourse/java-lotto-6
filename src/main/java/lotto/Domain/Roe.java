@@ -12,7 +12,7 @@ public class Roe{
 		;
 	
 	private final String correctnumber;
-	private final Integer prizecash;
+	private final double prizecash;
 	private final Integer index;
 	
 	Ranking(String correctnumber, Integer prizecash, Integer index) {
@@ -24,15 +24,15 @@ public class Roe{
 	public String CorrectNumber() {
 		return correctnumber;
 		}
-	public Integer PrizeCash() {
+	public double PrizeCash() {
 		return prizecash;
 		}
 	public Integer Index() {
 		return index;
 	}
 	}
-	int[] win_count = new int[7];
-	int cash;
+	int[] win_count = new int[8];
+	double cash;
 	String roe;
 	
 	public Roe(List<Integer> Ticket_result, Integer Purchase_Number) {
@@ -46,9 +46,14 @@ public class Roe{
 					+win_count[Ranking.RankFour.Index()]*Ranking.RankFour.PrizeCash()
 					+win_count[Ranking.RankFive.Index()]*Ranking.RankFive.PrizeCash()
 					;
-		this.roe = String.format("%.3f", this.cash/Purchase_Number/1000);
+		this.roe = String.format("%.1f", this.cash/Purchase_Number/1000);
 	}
 	
-	
+	public Integer get_Win_Count(Integer index) {
+		return win_count[index];
+	}
+	public String get_Roe() {
+		return roe;
+	}
 }
 

@@ -13,7 +13,7 @@ public class OutputView{
 		RankThree_Message("5개 일치 (1,500,000원) - %d개\n"),
 		RankTwo_Message("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n"),
 		RankOne_Message("6개 일치 (2,000,000,000원) - %d\n개"),
-		Roe_Result_Message("총 수익률은 %g%입니다.\n"),;
+		Roe_Result_Message("총 수익률은 %s%%입니다.\n"),;
 
 		private final String label;
 
@@ -56,7 +56,7 @@ public class OutputView{
 	public static void Print_RankOne_Message(Integer Match) {
 		System.out.printf(Message.RankOne_Message.label(),Match);
 	}
-	public static void Print_Roe_Message(Double Roe) {
+	public static void Print_Roe_Message(String Roe) {
 		System.out.printf(Message.Roe_Result_Message.label(),Roe);
 	}
 }

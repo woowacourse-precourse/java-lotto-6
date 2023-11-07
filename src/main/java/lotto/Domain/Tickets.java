@@ -39,5 +39,4 @@ public class Tickets{
 	public Integer get_Purchase_Number(){
 		return Purchase_Number;
 	}
-	}
 }

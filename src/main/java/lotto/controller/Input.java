@@ -9,7 +9,7 @@ import lotto.view.View;
 
 public class Input {
 
-    public static int inputMoneyForBuyLotto() {
+    public static int moneyForBuyLotto() {
         View.moneyForBuyLotto();
         var input = Console.readLine();
         View.println();
@@ -18,7 +18,7 @@ public class Input {
     }
 
 
-    public static Lotto inputPrizeNumber() {
+    public static Lotto prizeNumber() {
         final String SEPARATION_PATTERN = ",";
         View.inputPrizeNumber();
         String input = Console.readLine();
@@ -34,7 +34,7 @@ public class Input {
         return new Lotto(numbers);
     }
 
-    public static int inputBonusNumber() {
+    public static int bonusNumber() {
         View.inputBonusNumber();
         String str = Console.readLine();
         int num = Tool.unsafeString2Int(str);

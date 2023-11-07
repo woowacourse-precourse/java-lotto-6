@@ -5,7 +5,7 @@ import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
 import lotto.model.domain.lotto.Lotto;
 
-public class FixedValueLottoGenerator extends LottoGenerator {
+public class FixedValueLottoGenerator extends LottoGenerator<Lotto> {
 
     private final List<Integer> numbers;
 
@@ -20,10 +20,14 @@ public class FixedValueLottoGenerator extends LottoGenerator {
     }
 
     private void validateDuplication(List<Integer> numbers) {
-        if (numbers.size() != numbers.stream()
-                .distinct().count()) {
+        if (isDuplicated(numbers)) {
             throw LottoGameException.DUPLICATED_LOTTO_NUMBER.makeException();
         }
+    }
+
+    private boolean isDuplicated(List<Integer> numbers) {
+        return numbers.size() != numbers.stream()
+                .distinct().count();
     }
 
     private void validateNumbersSize(List<Integer> numbers) {

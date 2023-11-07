@@ -9,7 +9,7 @@ class LottoGameExceptionTest {
 
     @ParameterizedTest
     @EnumSource(value = LottoGameException.class)
-    public void ExceptionMessageTest(LottoGameException lottoGameException) {
+    public void Exception이_정상적으로_반환된다(LottoGameException lottoGameException) {
         Assertions.assertThatIllegalArgumentException()
                 .isThrownBy(() -> {
                     throw lottoGameException.makeException();

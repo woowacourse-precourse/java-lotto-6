@@ -6,21 +6,33 @@ import lotto.constance.GameConst;
 import lotto.exception.LottoGameException;
 import lotto.model.domain.lotto.Lotto;
 
-public class SequenceListLottoGenerator extends LottoGenerator {
+public class SequenceListLottoGenerator extends LottoGenerator<Lotto> {
     List<List<Integer>> numbersSequence;
 
     public SequenceListLottoGenerator(List<List<Integer>> numbersSequence) {
-        numbersSequence.stream()
-                .forEach(this::valdateNumbers);
+        numbersSequence.forEach(this::validateNumbers);
         this.numbersSequence = new LinkedList<>(numbersSequence);
     }
 
-    private void valdateNumbers(List<Integer> numbers) {
+    private void validateNumbers(List<Integer> numbers) {
+        validateNumbersSize(numbers);
+        validateDuplicated(numbers);
+    }
+
+    private void validateDuplicated(List<Integer> numbers) {
+        if (isDuplicated(numbers)) {
+            throw LottoGameException.DUPLICATED_LOTTO_NUMBER.makeException();
+        }
+    }
+
+    private boolean isDuplicated(List<Integer> numbers) {
+        int distinctCount = (int) numbers.stream().distinct().count();
+        return distinctCount != GameConst.LOTTO_SIZE;
+    }
+
+    private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != GameConst.LOTTO_SIZE) {
             throw LottoGameException.WRONG_LOTTO_SIZE.makeException();
-        }
-        if (numbers.stream().distinct().count() != GameConst.LOTTO_SIZE) {
-            throw LottoGameException.DUPLICATED_LOTTO_NUMBER.makeException();
         }
     }
 

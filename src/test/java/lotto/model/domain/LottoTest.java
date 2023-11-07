@@ -33,7 +33,7 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("wrongRangeList")
     @DisplayName("범위에 벗어나는 값이 포함되어 있으면 예외가 발생한다.")
-    void wrongRangeNumber(List<Integer> numbers) {
+    void 범위에_벗어나는_값이_포함되어_있으면_예외가_발생한다(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }

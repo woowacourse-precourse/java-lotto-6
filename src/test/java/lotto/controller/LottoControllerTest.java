@@ -13,7 +13,6 @@ import lotto.model.LottoStore;
 import lotto.model.domain.lotto.lottogenerator.FixedValueLottoGenerator;
 import lotto.model.domain.lotto.lottogenerator.SequenceListLottoGenerator;
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,10 +22,6 @@ import org.junit.jupiter.params.provider.MethodSource;
 class LottoControllerTest {
 
     static ExceptionHandler handler = new RetryExceptionHandler();
-
-    @BeforeEach
-    public void setting() {
-    }
 
     @Nested
     @DisplayName("고정된 값의 로또만 생성하는 Generator로 통합 테스트")

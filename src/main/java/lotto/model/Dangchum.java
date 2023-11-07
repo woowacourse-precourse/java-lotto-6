@@ -7,7 +7,6 @@ public class Dangchum {
 
     public void saveDangchum(Dangchum dangchums, String[] splitUserInput) {
         for (String userInput : splitUserInput) {
-            dangchums.
         }
     }
 }

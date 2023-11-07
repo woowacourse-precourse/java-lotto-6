@@ -12,10 +12,10 @@ public class InputView {
     InputValidator inputValidator = new InputValidator();
 
     public int userInputMoney() {
-        OutputView.printLottoStartMessage();
         boolean validInput = false;
         String userInput = "";
         while (!validInput) {
+            OutputView.printLottoStartMessage();
             userInput = Console.readLine();
             if (inputValidator.isValidInputMoney(userInput)) {
                 validInput = true;
@@ -25,12 +25,44 @@ public class InputView {
     }
 
     public List<Integer> userInputDangchum() {
-        OutputView.printInputDangchumMessage();
         boolean validInput = false;
         String[] splitUserInput = {};
         List<Integer> inputDangchum = new ArrayList<>();
 
+        while (!validInput || splitUserInput.length != Constant.DANGCHUM_NUM_CNT) {
+            OutputView.printInputDangchumMessage();
+            String userInput = Console.readLine();
+            splitUserInput = userInput.split(",");
+            if (inputValidator.isValidInteger(splitUserInput)) {
+                validInput = true;
+            }
+            if (splitUserInput.length > Constant.DANGCHUM_NUM_CNT) {
+                System.out.println("[ERROR] 당첨 번호는 6개 여야 합니다.");
+                continue;
+            }
+            // 6개 이상 들어왔을 때, 오류를 catch로 잡아서 에러 메세지 보여줘야하나??
+            try {
+                inputValidator.isNotDuplicated(splitUserInput);
+            } catch (IllegalArgumentException e) {
+                OutputView.printDuplicateErrorMessage();
+                validInput = false;
+            } catch (IllegalStateException e) {
+                OutputView.printMessage(e.getMessage());
+                validInput = false;
+            }
+
+        }
+        inputDangchum = string2ListInt(splitUserInput);
+        return inputDangchum;
+    }
+
+    public int userInputBonus(List<Integer> dangchum) {
+        boolean validInput = false;
+        int inputBonus = 0;
+        String[] splitUserInput = {};
+
         while (!validInput) {
+            OutputView.printInputBonusMessage();
             String userInput = Console.readLine();
             splitUserInput = userInput.split(",");
             if (inputValidator.isValidInteger(splitUserInput)) {
@@ -38,18 +70,23 @@ public class InputView {
             }
             try {
                 inputValidator.isNotDuplicated(splitUserInput);
-            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException e) {
+                OutputView.printMessage(e.getMessage());
+                validInput = false;
+            }
+            if (!checkBonus(dangchum, Integer.parseInt(splitUserInput[0]))) {
+                System.out.println("[ERROR] 보너스가 당첨에 포함되었습니다.");
                 validInput = false;
             }
         }
-        inputDangchum = string2ListInt(splitUserInput);
-        return inputDangchum;
+        return Integer.parseInt(splitUserInput[0]);
     }
 
-    public int userInputBonus(List<Integer> inputDangchum) {
-        OutputView.printInputBonusMessage();
-        boolean validInput = false;
-
+    public boolean checkBonus(List<Integer> dangchum, int SplitUserInput0) {
+        if (dangchum.contains(SplitUserInput0)) {
+            return false;
+        }
+        return true;
     }
 
     public List<Integer> string2ListInt(String[] splitUserInput) {

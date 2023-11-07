@@ -11,10 +11,10 @@ public class InputValidator {
             if (inputMoney % 1000 != 0) {
                 throw new IllegalArgumentException(Message.INPUT_INSERT_MONEY_THOUSAND_ERROR_MESSAGE);
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             System.out.println(Message.INPUT_NOT_NUMBER_MESSAGE);
             return false;
-        } catch(IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return false;
         }
@@ -39,6 +39,9 @@ public class InputValidator {
             int iNum = Integer.parseInt(sNum);
             if (inputDangchum.contains(iNum)) {
                 throw new IllegalArgumentException(Message.DUPLICATE_MESSAGE);
+            }
+            if (iNum < Constant.LOTTO_MIN_NUM || iNum > Constant.LOTTO_MAX_NUM) {
+                throw new IllegalStateException(Message.INPUT_LOTTO_NUM_ERROR_MESSAGE);
             }
             inputDangchum.add(iNum);
         }

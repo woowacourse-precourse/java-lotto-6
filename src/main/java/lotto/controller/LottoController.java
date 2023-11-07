@@ -11,6 +11,19 @@ public class LottoController {
         LottoTicket lottoTicket = createLottoTicket(money);
         printLottoList(lottoTicket);
         WinningLotto winningLotto = createWinningLottoTicket();
+        setBonusNumber(winningLotto);
+    }
+
+    private void setBonusNumber(WinningLotto winningLotto) {
+        while (true) {
+            try {
+                Output.getMessageOfInputBonusNumber();
+                winningLotto.setBonusNumber(Input.getBonusNumber());
+                break;
+            } catch (IllegalArgumentException e) {
+                Output.getErrorMessage(e);
+            }
+        }
     }
 
     private WinningLotto createWinningLottoTicket() {

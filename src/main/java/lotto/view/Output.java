@@ -28,4 +28,8 @@ public class Output {
     public static void getMessageOfInputWinningNumber() {
         System.out.println(MESSAGE_WINNING_NUMBER);
     }
+
+    public static void getMessageOfInputBonusNumber() {
+        System.out.println(MESSAGE_BONUS_NUMBER);
+    }
 }

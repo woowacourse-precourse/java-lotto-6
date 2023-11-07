@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 public class LottoNumberMakerTest {
 
-    @Test
     @DisplayName("getLottoNumbers 값 중복 검증 테스트")
+    @Test
     void validateGetLottoNumbersByNotDuplicated() {
 
         List<Integer> numbers = getLottoNumbers();
@@ -24,8 +24,8 @@ public class LottoNumberMakerTest {
         assertThat(notDuplicateNumbers.size()).isEqualTo(numbers.size());
     }
 
-    @Test
     @DisplayName("getLottoNumbers 값 정렬 검증 테스트")
+    @Test
     void validateGetLottoNumbersBySorted() {
 
         List<Integer> numbers = getLottoNumbers();

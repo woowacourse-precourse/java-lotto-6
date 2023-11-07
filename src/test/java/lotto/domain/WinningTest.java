@@ -48,4 +48,16 @@ class WinningTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호는 중복될 수 없습니다.");
     }
+
+    @DisplayName("보너스 번호를 저장한다.")
+    @Test
+    void saveBonusNumber() {
+        //Given
+        Winning winning = new Winning();
+        //When
+        winning.setBonusNumber(7);
+        //Then
+        assertThat(winning.getBonusNumber()).isEqualTo(7);
+    }
+    
 }

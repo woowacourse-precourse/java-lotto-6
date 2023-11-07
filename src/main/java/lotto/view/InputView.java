@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
 import lotto.exception.Validator;
 import lotto.util.Parser;
@@ -9,49 +10,55 @@ import java.util.List;
 
 public class InputView {
     public static int readPurChaseLottoAmount() {
-        String amount = "";
+        System.out.println("구입금액을 입력해 주세요.");
+
         try {
-            System.out.println("구입금액을 입력해 주세요.");
-            amount = Console.readLine();
+            String amount = Console.readLine();
             Validator.validatePurChaseAmount(amount);
+            System.out.println();
+            return Integer.parseInt(amount) / 1000;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readPurChaseLottoAmount();
         }
-        System.out.println();
-        return Integer.parseInt(amount) / 1000;
     }
 
-    public static List<Integer> readWinningNumber() {
-        String winningNum = "";
+    public static Lotto readWinningNumber() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String winningNum = Console.readLine();
+
         try {
-            System.out.println("당첨 번호를 입력해 주세요.");
-            winningNum = Console.readLine();
             Validator.validateWinningNumber(winningNum);
             System.out.println();
+            return new Lotto(Parser.parseWinningNumber(winningNum, ","));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readWinningNumber();
         }
-        return Parser.parseWinningNumber(winningNum, ",");
     }
 
     public static WinningLotto readWinningLotto() {
-        List<Integer> winningNumbers = readWinningNumber();
+        Lotto winningNumbers = readWinningNumber();
+        int bonusNumber = readBonusNumber(winningNumbers);
 
-        return new WinningLotto(winningNumbers, readBonusNumber(winningNumbers));
+        try {
+            return new WinningLotto(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            e.getMessage();
+            return readWinningLotto();
+        }
     }
 
-    public static int readBonusNumber(List<Integer> winningNumbers) {
-        String bonusNumber = "";
+    public static int readBonusNumber(Lotto winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String bonusNumber = Console.readLine();
+
         try {
-            System.out.println("보너스 번호를 입력해 주세요.");
-            bonusNumber = Console.readLine();
-            Validator.validateBonusNumber(bonusNumber, winningNumbers);
+            Validator.validateBonusNumber(bonusNumber, winningNumbers.getNumbers());
+            return Integer.parseInt(bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return readBonusNumber(winningNumbers);
         }
-        return Integer.parseInt(bonusNumber);
     }
 }

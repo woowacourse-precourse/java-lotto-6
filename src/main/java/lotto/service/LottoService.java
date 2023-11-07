@@ -38,5 +38,6 @@ public class LottoService {
     }
 
     public void setWinningNumbers(String[] winningNumbers) {
+        winningNumbers = new WinningNumbers(winningNumbers);
     }
 }

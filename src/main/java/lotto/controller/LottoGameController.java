@@ -20,5 +20,7 @@ public class LottoGameController {
         Printer.printLottoCount(lottoCount);
         Lottos lottos = lottoGameService.generateLottos(lottoCount);
         PrintHandler.printLottos(lottos);
+
+        Printer.printLineBreak();
     }
 }

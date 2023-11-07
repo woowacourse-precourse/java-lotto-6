@@ -11,9 +11,9 @@ import lotto.domain.Lotto;
 import lotto.domain.Payment;
 
 public class LottoMachine {
-    private int lottoTicketNumber;
-    private Payment payment;
-    private List<Lotto> lottos = new ArrayList<>();
+    private final int lottoTicketNumber;
+    private final Payment payment;
+    private final List<Lotto> lottos = new ArrayList<>();
 
     public LottoMachine(Payment payment) {
         this.payment = payment;

@@ -4,7 +4,7 @@ import static lotto.utils.ErrorMessage.IS_LOWER_THAN_PRICE;
 import static lotto.utils.ErrorMessage.IS_NOT_DIVIDED_INTO;
 
 public class Payment {
-    private int payment;
+    private final int payment;
     private static final int LOTTO_PRICE = 1000;
 
     public Payment(int payment) {

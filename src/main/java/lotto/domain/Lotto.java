@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         List<Integer> numbersCopy = new ArrayList<>(numbers);

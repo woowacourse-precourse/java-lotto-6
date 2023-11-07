@@ -17,8 +17,8 @@ public class Result {
     private static int fiveHit = 0;
     private static int fiveHitPlusBonusHit = 0;
     private static int sixHit = 0;
-    private Payment payment;
-    private List<Lotto> lottos;
+    private final Payment payment;
+    private final List<Lotto> lottos;
 
     public Result(LottoMachine lottoMachine) {
         this.lottos = lottoMachine.getLottos();

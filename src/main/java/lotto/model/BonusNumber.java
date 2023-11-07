@@ -22,4 +22,6 @@ public class BonusNumber {
         if (number < 1 || number >= 45)
             throw new IllegalArgumentException(OUT_OF_BOUND);
     }
+
+    public boolean isEqual(int number) { return bonusNumber == number; }
 }

@@ -1,9 +1,6 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private List<Integer> numbers = new ArrayList<>();
@@ -24,6 +21,7 @@ public class Lotto {
         for (String number: commaSeparatedNumbers)
             shiftedNumbers.add(Integer.parseInt(number));
         validate(shiftedNumbers);
+        Collections.sort(shiftedNumbers);
         this.numbers = shiftedNumbers;
     }
 
@@ -59,6 +57,25 @@ public class Lotto {
                 countNumberMatching++;
         }
         return countNumberMatching;
+    }
+
+    public boolean isBonus(BonusNumber bonusNumber) {
+        for (int number: numbers) {
+            if (bonusNumber.isEqual(number))
+                return true;
+        }
+        return false;
+    }
+
+    public Ranking checkRanking(Lotto winningNumbers, BonusNumber bonusNumber) {
+        int countTotalMatches = this.countMatch(winningNumbers);
+        boolean bonusNumberCheck = this.isBonus(bonusNumber);
+        if (bonusNumberCheck) countTotalMatches++;
+
+        if (countTotalMatches == 5 && bonusNumberCheck) {
+            return Ranking.SECOND;
+        }
+        return Ranking.getRanking(countTotalMatches, false);
     }
 
     @Override

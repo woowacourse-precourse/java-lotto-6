@@ -68,6 +68,7 @@ public class Lotto {
 			WinningRank rank = WinningRank.findByMatchingNumbers(matching);
 			rankingList.add(rank);
 		}
+
 		return rankingList;
 	}
 
@@ -79,6 +80,29 @@ public class Lotto {
 			}
 		}
 		return matching;
+	}
+
+	public static void printRankAndWinningMoney(List<WinningRank> rankingList) {
+
+		int[] countByRank = new int[WinningRank.values().length];
+		WinningRank[] ranks = WinningRank.values();
+
+		for (WinningRank rank : rankingList) {
+			countByRank[rank.ordinal()]++;
+		}
+
+		System.out.println("당첨 통계");
+		System.out.println("---");
+
+		for (int i = ranks.length - 1; i >= 0; i--) { // 역순 출력
+			WinningRank rank = ranks[i];
+			int count = countByRank[rank.ordinal()];
+
+			if (rank != WinningRank.NONE) {
+				String message = rank.getMessage();
+				System.out.println(message + count + "개");
+			}
+		}
 	}
 
 }

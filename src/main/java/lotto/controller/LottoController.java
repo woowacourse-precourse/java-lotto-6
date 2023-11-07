@@ -1,31 +1,29 @@
 package lotto.controller;
 
-import lotto.model.RandomLottoGenerator;
-import lotto.model.WinningNumbers;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
 
-import org.assertj.core.util.Arrays;
-
-import lotto.message.PrintMessage;
 import lotto.model.BonusNumber;
+import lotto.model.WinningLotto;
 import lotto.model.Lotto;
+import lotto.model.LottoGenerator;
+import lotto.model.Lottos;
+import lotto.model.Money;
+import lotto.model.Rating;
+import lotto.model.WinningNumbers;
 
 import lotto.view.InputView;
 import lotto.view.OutputView;
-import lotto.model.Lotto;
 
 public class LottoController {
 	
 	private final InputView inputView;
 	private final OutputView outputView;
 	private final int LOTTO_PRICE = 1000;
-	
-	private int lottoAmount; // purchaseAmount/1000;
-	private int purchaseAmount;
+	private List<Lotto> lotto;
+	private List<Lotto> lottos;
+	private int amount;
 	
 	public LottoController(InputView inputView, OutputView outputView) {
 		this.inputView = inputView;
@@ -33,38 +31,44 @@ public class LottoController {
 	}
 	
 	public void run() {
-		purchaseLotto();
+		lotto = getLottos();
+		getWinningLotto(lotto, amount);
 	}
 	
-	public void purchaseLotto() { //로또 발행
-		lottoAmount = (purchaseAmount = getPurchaseAmount())/LOTTO_PRICE;
-		System.out.println();
-		outputView.printLottoAmount(lottoAmount);
-		
-		RandomLottoGenerator randomLotto = new RandomLottoGenerator();
-		while(lottoAmount-- > 0) {
-			Lotto lotto = new Lotto(randomLotto.lottoNumber());
-			System.out.println(lotto.getnumbers());
-		}
+	public List<Lotto> getLottos(){
+		Lottos lottos = new Lottos(getLottoAmount());
+		return lottos.getLottos();
+	}
+	
+	private int getLottoAmount() { // 발행 수 
+		int money = getPurchaseAmount(); //입력한 금액
+		amount = money/LOTTO_PRICE;
+		return amount;
 	}
 
 	private int getPurchaseAmount() { //금액 입력 안내
-		outputView.printPurchaseAmount();
-		String Amount = inputView.getPurchaseAmount();
-		return Integer.parseInt(Amount);
+		outputView.printMoney();
+		String inputMoney = inputView.purchaseAmount();
+		Money money = new Money(inputMoney);
+		return money.getMoney();
 	}
 	
-	public void getWinningNumber() { //당첨 번호 입력
+	private void getWinningLotto(List<Lotto> lotto, int amount) { // 당첨번호 + 보너스 번호
+		WinningLotto winningLotto = new WinningLotto(getWinningNumber(), getBonusNumber());
+		System.out.println(winningLotto);
+		
+	}
+	
+	public Lotto getWinningNumber() { //당첨 번호 입력
 		outputView.printWinningNumbers();
-		WinningNumbers winningNumbers =  new WinningNumbers(inputView.getWinningNumbers());
-		winningNumbers.getWinningNumbers();
+		WinningNumbers winningNumbers =  new WinningNumbers(inputView.winningNumbers());
+		Lotto winningLottoNumbers = new Lotto(winningNumbers.getWinningNumbers());
+		return winningLottoNumbers;
 	}
 	
-	public void getBonusNumber() { //보너스 번호 입력
+	public int getBonusNumber() { //보너스 번호 입력
 		outputView.printBonusNumber();
-		BonusNumber bonusNumber = new BonusNumber(inputView.getBonusNumber());
-		bonusNumber.getBonusNumber();
+		BonusNumber bonusNumber = new BonusNumber(inputView.bonusNumber());
+		return bonusNumber.getBonusNumber();
 	}
-	
-	
 }

@@ -200,7 +200,7 @@
     - [x] LottoFinalResult - EnumMap <Enum, 개수>
     - [x] LottoResult, 0 으로 모두 초기화해야 한다 
     - [x] 결과에 따라서 개수를 한 개씩 추가해야 한다
-  - LottoResult가 추가되었을때 수익을 확인한다
+  - LottoResult가 추가될 때 수익을 확인한다
     - [x] LottoResult가 추가되면 해당 인스턴스의 개수 + 1 이 되어야 한다
     - [x] 최종적으로 반환하는 수익을 확인한다
     - [x] 수익률을 계산한다 

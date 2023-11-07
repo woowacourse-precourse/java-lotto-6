@@ -28,7 +28,7 @@ public class LottoWithBonusTest {
             assertThatThrownBy(
                     () -> LottoWithBonus.of(lotto, Bonus.of(2, lotto)))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining("중복된 숫자를");
+                    .hasMessageContaining("로또 번호와 중복된 보너스 번호");
         }
     }
 

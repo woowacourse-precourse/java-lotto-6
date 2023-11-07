@@ -1,7 +1,10 @@
 package lotto.model;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import lotto.enums.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,7 +20,17 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBERS_COUNT_ERROR.getMessage());
+        }
+
+        Set<Integer> uniqueNumbers = new HashSet<>();
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ErrorMessage.EXCEED_LOTTO_RANGE_ERROR.getMessage());
+            }
+            if (!uniqueNumbers.add(number)) {
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER_ERROR.getMessage());
+            }
         }
     }
 
@@ -33,6 +46,4 @@ public class Lotto {
         result.append("]");
         return result.toString();
     }
-
-    // TODO: 추가 기능 구현
 }

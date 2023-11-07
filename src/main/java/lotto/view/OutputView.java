@@ -38,5 +38,4 @@ public class OutputView {
     public static void printLottoNumbers(List<List<Integer>> lottoNumbers) {
         lottoNumbers.stream().forEach(lottoNumber -> System.out.println(lottoNumber));
     }
-
 }

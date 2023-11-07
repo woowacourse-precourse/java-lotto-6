@@ -30,9 +30,9 @@ public class LottoMachine {
 
         view.printLine();
         view.print(ViewMessage.ASK_BONUS_NUMBER.getMessage());
-        bonusNumber = inputController.readInputByInteger();
         do {
             try {
+                bonusNumber = inputController.readInputByInteger();
                 lottoController.validateBonusNumber(bonusNumber);
                 containsCheckBonusNumber(bonusNumber, winningLotto);
             } catch (IllegalArgumentException e) {

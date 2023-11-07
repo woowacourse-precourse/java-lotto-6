@@ -20,9 +20,9 @@ public class PurchaseMachine {
         int money;
 
         view.print(ViewMessage.ASK_PURCHASE_AMOUNT.getMessage());
-        money = inputController.readInputByInteger();
         do {
             try {
+                money = inputController.readInputByInteger();
                 purchaseQuantity = lottoController.getPurchaseQuantity(money);
             } catch (NumberFormatException e) {
                 view.print(ErrorMessage.NOT_A_NUMBER.getErrorMessage());

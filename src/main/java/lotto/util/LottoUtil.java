@@ -1,6 +1,6 @@
 package lotto.util;
 
-import static lotto.Constants.DEMICAL_PLACE;
+import static lotto.Constants.DECIMAL_PLACES;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
@@ -58,7 +58,7 @@ public class LottoUtil {
      */
     public static double calculateProfitPercentage(double totalPrizeAmount, int purchaseAmount) {
         BigDecimal roundedValue = BigDecimal.valueOf((totalPrizeAmount / purchaseAmount) * 100.0)
-                .setScale(DEMICAL_PLACE, RoundingMode.HALF_UP);
+                .setScale(DECIMAL_PLACES, RoundingMode.HALF_UP);
         return roundedValue.doubleValue();
     }
 }

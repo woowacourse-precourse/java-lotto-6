@@ -1,15 +1,19 @@
 package lotto.util;
 
+import static lotto.Constants.MAX_LOTTO_SIZE;
+import static lotto.Constants.MAX_PRIZE_SIZE;
+import static lotto.Constants.MIN_PRIZE_SIZE;
+import static lotto.Constants.PURCHASE_AMOUNT_REGEX;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import lotto.ExceptionMessages;
+import lotto.exception.ExceptionMessages;
 import lotto.model.number.LottoNumber;
 
 public class Validator {
     public static void validatePurchaseAmount(int amount) {
-        String regex = "^[1-9]\\d*000$";
-        Pattern pattern = Pattern.compile(regex);
+        Pattern pattern = Pattern.compile(PURCHASE_AMOUNT_REGEX);
         Matcher matcher = pattern.matcher(String.valueOf(amount));
         if (!matcher.matches()) {
             throw new IllegalArgumentException(ExceptionMessages.INVALID_PURCHASE_AMOUNT_MESSAGE);
@@ -42,7 +46,7 @@ public class Validator {
      * @throws IllegalArgumentException
      */
     public static void validateLottoNumber(int number) {
-        if (number < 1 || number > 45) {
+        if (number < LottoNumber.ONE.getNumber() || number > LottoNumber.FORTY_FIVE.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessages.OUT_OF_RANGE_LOTTO_NUMBER_MESSAGE);
         }
     }
@@ -54,7 +58,7 @@ public class Validator {
      * @throws IllegalArgumentException
      */
     public static void validateMatchCount(int matchCount) {
-        if (matchCount < 3 || matchCount > 6) {
+        if (matchCount < MIN_PRIZE_SIZE || matchCount > MAX_PRIZE_SIZE) {
             throw new IllegalArgumentException(ExceptionMessages.INVALID_MATCH_COUNT_MESSAGE);
         }
     }
@@ -66,7 +70,7 @@ public class Validator {
      * @return boolean
      */
     private static boolean isLotteryNumberSizeValid(List<LottoNumber> numbers) {
-        return numbers.size() != 6;
+        return numbers.size() != MAX_LOTTO_SIZE;
     }
 
     /**

@@ -1,7 +1,9 @@
 package lotto.view.input;
 
+import static lotto.Constants.PURCHASE_AMOUNT_INPUT_MESSAGE;
+
 public class PurchaseInputView {
     public void printInputMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PURCHASE_AMOUNT_INPUT_MESSAGE);
     }
 }

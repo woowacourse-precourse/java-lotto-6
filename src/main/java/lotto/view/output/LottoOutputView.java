@@ -1,16 +1,19 @@
 package lotto.view.output;
 
+import static lotto.Constants.STATISTICS_HEADER;
+import static lotto.Constants.TOTAL_YIELD_HEADER;
+import static lotto.Constants.TOTAL_YIELD_TAIL;
+
 public class LottoOutputView {
     public void printLotto(String lotto) {
-        System.out.print(lotto);
+        System.out.println(lotto);
     }
 
     public void printStatistics() {
-        System.out.println("당첨 통계");
-        System.out.println("---------");
+        System.out.println(STATISTICS_HEADER);
     }
 
     public void printTotalYield(double yield) {
-        System.out.println("총 수익률은 " + yield + "%입니다.");
+        System.out.println(TOTAL_YIELD_HEADER + yield + TOTAL_YIELD_TAIL);
     }
 }

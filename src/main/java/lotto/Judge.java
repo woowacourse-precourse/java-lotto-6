@@ -1,16 +1,22 @@
 package lotto;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Player;
-import lotto.domain.Result;
+import lotto.domain.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public class Judge {
 
-    public Result calculateWinning(Player player, Lottos lottos){
+    public Result calculateResult(Player player, Lottos lottos){
+        Result result = calculateWinning(player,lottos);
+        String earningRate = calculateEarningRate(result, lottos.getLottos().size());
+        result.setEarningRate(earningRate);
+        return result;
+    }
+
+    private Result calculateWinning(Player player, Lottos lottos){
+
         Result result = new Result();
         Lotto winningNumber = player.getWinningNumber();
 
@@ -20,16 +26,16 @@ public class Judge {
             if(matchingNumber == 5){
                 bonus = checkBonus(player.getBonusNumber(),lotto);
             }
-            addReward(result, matchingNumber, bonus);
+            result.addResult(findReward(matchingNumber, bonus));
         }
 
         return result;
     }
 
-    public String calculateEarningRate(Result result, int number){
-        long reward = calculateTotalResult(result);
-        int buyPrice = number * 1000;
-        float earningRate = ((float) reward /buyPrice) * 100;
+    private String calculateEarningRate(Result result, int lottoCount){
+        long totalPrize = calculateTotalPrize(result);
+        int buyPrice = lottoCount * 1000;
+        float earningRate = ((float) totalPrize /buyPrice) * 100;
 
         return String.format("%.1f", earningRate);
     }
@@ -48,23 +54,24 @@ public class Judge {
         return lotto.getNumbers().contains(bonus);
     }
 
-    private void addReward(Result result, int matchingNumber, boolean bonus){
-        if(matchingNumber == 3)
-            result.addThree();
-        else if(matchingNumber == 4)
-            result.addFour();
-        else if(matchingNumber == 5 && !bonus)
-            result.addFive();
-        else if(matchingNumber == 5)
-            result.addFivenBonus();
-        else if(matchingNumber == 6)
-            result.addSix();
+    private Reward findReward(int matchingNumber, boolean bonus){
+        Reward reward = Reward.FAIL;
+        reward = reward.getReward(matchingNumber,bonus);
+        return reward;
     }
 
-    private long calculateTotalResult(Result result){
-        return 5000L *result.getThree() + 50000L *result.getFour() + 1500000L *result.getFive() + 30000000L *result.getFiveNBonus() + result.getSix();
+    private long calculateTotalPrize(Result result){
+        long totalPrize = 0;
+        Map<Reward, Integer> finalResult =  result.getResult();
+        for(Map.Entry<Reward, Integer> entry : finalResult.entrySet()){
+            Reward reward = entry.getKey();
+            int count = entry.getValue();
+            if(count !=0){
+                totalPrize += (long) reward.getPrize() *count;
+            }
+
+        }
+        return totalPrize;
     }
-
-
 
 }

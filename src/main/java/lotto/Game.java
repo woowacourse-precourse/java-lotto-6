@@ -23,11 +23,9 @@ public class Game {
         output.showLottoNumbers(lottos);
 
         Player player = new Player(getWinningNumbers(),getBonusNumber(),quantity);
-        Result result = judge.calculateWinning(player,lottos);
-        output.showStatistic(result);
+        Result result = judge.calculateResult(player,lottos);
 
-        result.setEarningRate(judge.calculateEarningRate(result,quantity));
-        output.showEarningLate(result.getEarningRate());
+        output.showResult(result);
     }
 
     private int getLottoQuantity(){

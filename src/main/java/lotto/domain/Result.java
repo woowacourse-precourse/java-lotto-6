@@ -1,54 +1,36 @@
 package lotto.domain;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
+
 public class Result {
-    private int three;
-    private int four;
-    private int five;
-    private int fiveNBonus;
-    private int six;
+    private Map<Reward,Integer> result;
     private String earningRate;
 
-    public void addThree(){
-        this.three++;
-    }
-    public void addFour(){
-        this.four++;
-    }
-
-    public void addFive(){
-        this.five++;
-    }
-    public void addFivenBonus(){
-        this.fiveNBonus++;
-    }
-    public void addSix(){
-        this.six++;
+    public Result() {
+        result = new HashMap<>();
+        result.put(Reward.FAIL, 0);
+        result.put(Reward.FIRST, 0);
+        result.put(Reward.SECOND, 0);
+        result.put(Reward.THIRD, 0);
+        result.put(Reward.FOURTH, 0);
+        result.put(Reward.FIFTH, 0);
     }
 
-    public int getThree() {
-        return this.three;
+    public void addResult(Reward reward) {
+        result.put(reward, result.get(reward) + 1);
     }
 
-    public int getFour() {
-        return this.four;
+    public Map<Reward, Integer> getResult() {
+        return result;
     }
 
-    public int getFive() {
-        return this.five;
+    public String getEarningRate() {
+        return earningRate;
     }
 
-    public int getFiveNBonus() {
-        return this.fiveNBonus;
-    }
-
-    public int getSix() {
-        return this.six;
-    }
-    public String getEarningRate(){
-        return this.earningRate;
-    }
-
-    public void setEarningRate(String earningRate){
+    public void setEarningRate(String earningRate) {
         this.earningRate = earningRate;
     }
 

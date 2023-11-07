@@ -91,6 +91,6 @@ public class LottoTest {
         lotto.setBonusNumber(bonus);
 
         // then
-        assertThat(lotto.getBonusNumber).isEqualTo(bonus);
+        assertThat(lotto.getBonusNumber()).isEqualTo(bonus);
     }
 }

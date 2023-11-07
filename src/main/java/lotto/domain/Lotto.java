@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.Constants;
 import lotto.exception.LottoException;
 
 import java.util.List;
@@ -22,7 +23,9 @@ public class Lotto {
     public List<Integer> getNumbers(){
         return numbers;
     }
-
+    public int getBonusNumber() {
+        return numbers.get(Constants.BONUS_INDEX);
+    }
 }
 
 

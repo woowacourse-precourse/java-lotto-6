@@ -53,8 +53,7 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     public List<Integer> getNumbers() {
-        List<Integer> numbers = new ArrayList<>(this.numbers);
-        return numbers;
+        return new ArrayList<>(this.numbers);
     }
 
     public int compareLotto(Lotto firstPrizeLotto) {

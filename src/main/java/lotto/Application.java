@@ -8,7 +8,6 @@ public class Application {
         // TODO: 프로그램 구현
         UnifiedController unifiedController = new UnifiedController();
         unifiedController.promptData(SystemMessage.ASK_MONEY);
-        unifiedController.createAndStoreLottoTickets();
         unifiedController.displayLottoTicketsInfo();
         unifiedController.promptData(SystemMessage.ASK_WINNING_NUMBERS);
         unifiedController.promptData(SystemMessage.ASK_BONUS);

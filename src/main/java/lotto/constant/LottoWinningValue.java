@@ -1,7 +1,5 @@
 package lotto.constant;
 
-import lotto.domain.LottoWinning;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;

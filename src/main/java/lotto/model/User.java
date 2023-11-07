@@ -1,17 +1,12 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.ErrorMessage;
-import lotto.constant.LottoValue;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Price;
-import lotto.domain.UserLottos;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class User {
@@ -58,7 +53,7 @@ public class User {
 
     // 보너스 번호 중복 검사
     private void validateDuplicate(Lotto winningNums, LottoNumber bonusNum) {
-        if(winningNums.getNumbers().stream().anyMatch(e -> e.getNumber() == bonusNum.getNumber())) {
+        if (winningNums.getNumbers().stream().anyMatch(e -> e.getNumber() == bonusNum.getNumber())) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUM.getMessage());
         }
     }

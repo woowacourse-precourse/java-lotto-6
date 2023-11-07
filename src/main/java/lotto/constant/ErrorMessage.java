@@ -1,7 +1,6 @@
 package lotto.constant;
 
 import java.text.DecimalFormat;
-import java.util.Arrays;
 
 public enum ErrorMessage {
     BLANK_VALUE("값을 입력해 주세요."),

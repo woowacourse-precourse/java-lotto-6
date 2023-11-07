@@ -96,4 +96,9 @@ public class Global {
         double rankCount = (double) rankStatistics.get(rank);
         return rankMoney * rankCount;
     }
+
+    public void printRateOfReturn(double rateOfReturn) {
+        double rateRounds = Math.round(rateOfReturn * 10D) / 10D;
+        System.out.println("총 수익률은 " + rateRounds + "%입니다.");
+    }
 }

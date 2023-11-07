@@ -46,6 +46,7 @@ public class Application {
 
     private static void getRateOfReturn(Global global, int lottoPurchaseMoney) {
         double rateOfReturn = global.calculateRateOfReturn(lottoPurchaseMoney);
+        global.printRateOfReturn(rateOfReturn);
     }
 
     private static List<Integer> convertStringToIntegerList(String input) {

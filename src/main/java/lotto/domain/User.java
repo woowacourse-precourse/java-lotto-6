@@ -28,7 +28,8 @@ public class User {
         return ((double)totalWinningAmount/PURCHASE_AMOUNT)*100;
     }
 
-
-
-
+    @Override
+    public String toString() {
+        return lottos.toString();
+    }
 }

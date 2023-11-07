@@ -119,4 +119,25 @@ class WinningStatusTest {
         assertThat(winningStatus.countOfPlace(2)).isEqualTo(secondPlace);
         assertThat(winningStatus.countOfPlace(1)).isEqualTo(firstPlace + 1);
     }
+
+    @Test
+    @DisplayName("일치하는 숫자가 3개 미만이라면 당첨 수가 증가하지 않는다.")
+    void failToPrize() {
+        // given
+        Integer firstPlace = winningStatus.countOfPlace(1);
+        Integer secondPlace = winningStatus.countOfPlace(2);
+        Integer thirdPlace = winningStatus.countOfPlace(3);
+        Integer fourthPlace = winningStatus.countOfPlace(4);
+        Integer fifthPlace = winningStatus.countOfPlace(5);
+
+        // when
+        winningStatus.winning(2, 0);
+
+        // then
+        assertThat(winningStatus.countOfPlace(5)).isEqualTo(fifthPlace);
+        assertThat(winningStatus.countOfPlace(4)).isEqualTo(fourthPlace);
+        assertThat(winningStatus.countOfPlace(3)).isEqualTo(thirdPlace);
+        assertThat(winningStatus.countOfPlace(2)).isEqualTo(secondPlace);
+        assertThat(winningStatus.countOfPlace(1)).isEqualTo(firstPlace);
+    }
 }

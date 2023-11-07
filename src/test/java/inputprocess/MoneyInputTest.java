@@ -33,7 +33,7 @@ public class MoneyInputTest {
 
     @DisplayName("문자열이 정수인지 확인하기 위한 메소드")
     @Test
-    public static boolean isInteger(String strValue) {
+    public boolean isInteger(String strValue) {
         try {
             Integer.parseInt(strValue);
             return true;

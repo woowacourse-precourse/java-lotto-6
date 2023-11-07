@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static lotto.Constants.COMMA;
 import static lotto.Constants.LOTTO_PRICE;
+import static lotto.util.parser.Parser.parseStringToInt;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
@@ -48,7 +49,7 @@ public class LottoController {
     private int getPurchaseAmount() {
         purchaseInputView.printInputMoney();
         try {
-            int amount = Integer.parseInt(Console.readLine());
+            int amount = parseStringToInt(Console.readLine());
             Validator.validatePurchaseAmount(amount);
             return amount;
         } catch (Exception e) {
@@ -123,7 +124,7 @@ public class LottoController {
     private LottoNumber getBonusNumber() {
         lottoInputView.printInputBonusNumber();
         try {
-            int bonusNumber = Integer.parseInt(Console.readLine());
+            int bonusNumber = parseStringToInt(Console.readLine());
             return LottoNumber.of(bonusNumber);
         } catch (Exception e) {
             ExceptionPrinter.printExceptionMessage(e);

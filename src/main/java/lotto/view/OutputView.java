@@ -3,13 +3,19 @@ package lotto.view;
 import lotto.constant.ErrorMessage;
 import lotto.constant.GeneralMessage;
 
+import static lotto.constant.GeneralMessage.NOTIFY_BUY_COUNT;
+
 public class OutputView {
-    public static void printGeneralMessage(GeneralMessage generalMessage) {
-        System.out.println(generalMessage.getMessage());
+    public static void printGeneralMessage(GeneralMessage generalMessage, Object... args) {
+        System.out.printf(generalMessage.getMessage(), args);
+        System.out.println();
     }
 
-    public static void printGeneralMessage(GeneralMessage generalMessage, Object... args) {
-        System.out.printf(generalMessage.getMessage() + "%n", args);
+    public static void printBuyLottos(int count, String result) {
+        System.out.println();
+        System.out.printf(NOTIFY_BUY_COUNT.getMessage(), count);
+        System.out.println();
+        System.out.println(result);
     }
 
     public static void printErrorMessage(String message) {

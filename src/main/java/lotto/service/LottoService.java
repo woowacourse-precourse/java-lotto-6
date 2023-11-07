@@ -59,6 +59,14 @@ public class LottoService {
         return Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
     }
 
+    public void checkLottoRanking(Customer customer, WinningNumber winningNumber) {
+        HashMap<Ranking,Integer> result = customer.getLottoResult();
+        for(Lotto lotto : customer.getPurchaseLotteries()) {
+            Ranking ranking = lottoRanking(winningNumber,lotto);
+            result.put(ranking,result.getOrDefault(ranking,0) + 1);
+        }
+    }
+
     private Ranking lottoRanking(WinningNumber winningNumber, Lotto lotto){
         int count = countLottoNumber(winningNumber,lotto);
         boolean bonusCount = checkBonusNumberInLotto(winningNumber, lotto);

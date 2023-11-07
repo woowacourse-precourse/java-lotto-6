@@ -1,22 +1,18 @@
 package lotto.message;
 
 public enum ErrorMessage {
-    ASK_CAR_NAMES("경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)"),
-    ASK_ROUND_COUNT("시도할 회수는 몇회인가요?"),
-    EXECUTION_RESULT_TITLE("실행 결과"),
-    WINNER("최종 우승자 : "),
-
-    NAME_LENGTH_ERROR("자동차 이름은 5자 이하까지만 가능합니다.");
+    NON_INTEGER_INPUT("정수가 아닌 잘못된 형태의 입력입니다."),
+    UNAFFORDABLE_PRICE("지불 금액은 1000원 단위이어야 합니다."),
 
 
     private String message;
+    private String prefix = "[ERROR] ";
 
     ErrorMessage(String s) {
         this.message = s;
     }
 
     public String getMessage() {
-        return message;
-
+        return prefix + message;
     }
 }

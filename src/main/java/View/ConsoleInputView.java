@@ -1,12 +1,14 @@
 package View;
 
 import camp.nextstep.edu.missionutils.Console;
+import utils.Validator;
 
 public class ConsoleInputView implements InputView {
 
     @Override
     public String inputPuchasePrice() {
         String userInput = Console.readLine();
+        Validator.validateNumericValue(userInput);
         validateUnderThousand(userInput);
         validateMulitpleOfThousand(userInput);
         return userInput;
@@ -21,6 +23,8 @@ public class ConsoleInputView implements InputView {
     @Override
     public String inputBonusNumber() {
         String userInput = Console.readLine();
+        Validator.validateIsEmpty(userInput);
+        Validator.validateNumericValue(userInput);
         return userInput;
     }
 

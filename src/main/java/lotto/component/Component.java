@@ -4,13 +4,30 @@ public interface Component {
 
     void render();
 
-    default boolean execute() {
+    default ComponentRenderResult execute() {
         try {
+
             this.render();
-            return true;
+            return ComponentRenderResult.createSuccess();
         } catch (IllegalArgumentException illegalArgumentException) {
-            System.out.println("[ERROR]" + illegalArgumentException.getMessage());
-            return false;
+            return ComponentRenderResult.createFail(illegalArgumentException.getMessage());
         }
+    }
+
+
+    record ComponentRenderResult(boolean isComplete, String errorMessage) {
+
+        public static ComponentRenderResult createSuccess() {
+            return new ComponentRenderResult(true, "");
+        }
+
+        public static ComponentRenderResult createFail(String message) {
+            return new ComponentRenderResult(false, message);
+        }
+
+        public boolean isContinue() {
+            return !isComplete;
+        }
+
     }
 }

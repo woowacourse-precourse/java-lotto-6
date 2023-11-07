@@ -2,7 +2,6 @@ package lotto.ui;
 
 import static java.util.stream.Collectors.joining;
 
-import java.math.BigDecimal;
 import lotto.state.PurchasedLottoState;
 import lotto.state.WinningStatisticsState;
 
@@ -27,6 +26,11 @@ public final class OutputView extends ConsoleWriter {
                 %s
                 """, winningStatisticsState.toResult());
         this.newLine();
-        this.printf("총 수익률은 %s%%입니다.", BigDecimal.valueOf(winningStatisticsState.profit()));
+        this.printf("총 수익률은 %s입니다.", winningStatisticsState.getProfitResult());
+    }
+
+    public void printError(String message) {
+        this.printf("[ERROR] %s", message);
+        this.newLine();
     }
 }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.domin;
 
 import java.util.List;
 

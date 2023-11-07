@@ -32,4 +32,8 @@ public enum Score {
         return this.matchCount == matchCount && this.containBonusNumber == containBonusNumber;
     }
 
+    public long getPrize() {
+        return prize;
+    }
+
 }

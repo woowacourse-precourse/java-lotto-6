@@ -30,4 +30,8 @@ public class Money {
         return money <= 0;
     }
 
+    public int getMoney() {
+        return money;
+    }
+
 }

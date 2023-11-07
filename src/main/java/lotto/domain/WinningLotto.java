@@ -45,5 +45,5 @@ public class WinningLotto {
         boolean containBonusNumber = lotto.isContainNumber(bonusNumber);
         return Score.of(matchCount, containBonusNumber);
     }
-    
+
 }

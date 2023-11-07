@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -24,4 +25,17 @@ public class GameResult {
     public Map<Score, Integer> getLottoResults() {
         return lottoResults;
     }
+
+    public double calculateRateOfReturn(Money money) {
+        int purchaseMoney = money.getMoney();
+        Long totalPrize = getTotalPrize();
+        return (double) totalPrize / purchaseMoney * 100;
+    }
+
+    private Long getTotalPrize() {
+        return Arrays.stream(Score.values())
+                .mapToLong(score -> score.getPrize() * lottoResults.getOrDefault(score, 0))
+                .sum();
+    }
+
 }

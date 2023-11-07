@@ -17,16 +17,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != this.MAX_COUNT) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_COUNT.getValue());
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_OVER_SIZE.getValue());
         }
 
         if (Set.copyOf(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_DUPLICATE.getValue());
+            throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_DUPLICATED.getValue());
         }
 
         for (Integer i : numbers) {
             if (i < MIN_NUMBER || i > MAX_NUMBER) {
-                throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_NUMBER_OUT_OF_RANGE.getValue());
+                throw new IllegalArgumentException(ErrorCode.LOTTO_NUMBER_OUT_OF_RANGE.getValue());
             }
         }
     }

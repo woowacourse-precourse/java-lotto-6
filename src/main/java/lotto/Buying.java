@@ -3,9 +3,8 @@ package lotto;
 public class Buying {
     private Integer price;
 
-    public Buying(String readLine) {
-        Integer price = validate(readLine);
-        this.price = price;
+    public Buying() {
+        this.price = 0;
     }
 
     public Integer getPrice() {
@@ -14,6 +13,11 @@ public class Buying {
 
     public Integer getBuyingCount() {
         return this.price / 1000;
+    }
+
+    public void save(String readLine) {
+        Integer price = validate(readLine);
+        this.price = price;
     }
 
     private Integer validate(String readLine) {

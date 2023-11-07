@@ -18,6 +18,7 @@ public class Game {
     private Result result;
 
     public Game() {
+        this.buying = new Buying();
         this.lottos = new ArrayList<>();
         this.winning = new Winning();
         this.bonus = new Bonus();
@@ -39,7 +40,7 @@ public class Game {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String readLine = Console.readLine();
-                buying = new Buying(readLine);
+                buying.save(readLine);
                 isNotEnded = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

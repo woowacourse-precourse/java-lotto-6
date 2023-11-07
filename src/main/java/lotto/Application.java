@@ -122,8 +122,25 @@ public class Application {
 			throw new IllegalArgumentException();
 	}
 	
-	private void valueCheck(String[]s) {
-		
+	private void valueCheck(String []s) throws IllegalArgumentException {
+		boolean isError = false;
+		int num = 0;
+		for (int i=0; i<s.length && isError == false &&num != -1; i++) {
+			num = makeInteger(s[i]);
+			isError = isRange(num);
+		}
+		if (isError == true)
+			throw new IllegalArgumentException();
+		if (num == -1)
+			throw new IllegalArgumentException();
+	}
+	
+	private int makeInteger(String s) {
+		return -1;
+	}
+	
+	private boolean isRange(int n) {
+		return true;
 	}
 	
 	private void isDuplicated(String[]s) {

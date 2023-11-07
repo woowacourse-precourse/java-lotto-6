@@ -9,7 +9,13 @@ public class Validator {
     }
 
     //숫자가 아닌 경우
-
+    public static void isDigit(String number){
+        try{
+            Integer.parseInt(number);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("숫자가 아닙니다.");
+        }
+    }
 
     //숫자가 아닌 경우-리스트 버전
     //1 ~ 45 범위를 초과하는 경우

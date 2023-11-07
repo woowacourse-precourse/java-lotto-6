@@ -9,4 +9,9 @@ public class InputView {
     public static String inputMoney() {
         return Console.readLine();
     }
+
+
+    public static String inputLottoNumbers() {
+        return Console.readLine();
+    }
 }

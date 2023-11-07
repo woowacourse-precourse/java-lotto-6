@@ -6,12 +6,9 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.utility.Validation.vaildatePurchaseAmount;
 
 public class InputView {
-    private OutputView outputView;
-    public InputView(){
-        outputView = new OutputView();
-    }
+    private InputView(){}; //생성자로 인스턴스 생성 막기
 
-    public void readUserLottoPurchaseAmount() {
+    public static void readUserLottoPurchaseAmount() {
         boolean isValidInput = false;
 
         System.out.println(Messages.INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage());

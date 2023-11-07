@@ -36,7 +36,7 @@ public class LottoBuyController implements Controller {
     private Long getBuyLottoPrice(Map<String, ? super DTO.Input> inputDto,
                                   Map<String, ? super DTO.Output> outputDto) {
 
-        inputDto.put(ParameterConfig.BUY_PRICE, service.getBuyLottoInputDTO());
+        inputDto.put(ParameterConfig.BUY_PRICE, new BuyLottoDTO.Input());
         outputView.view(outputDto);
         inputView.read(inputDto);
         return ((BuyLottoDTO.Input) inputDto.get(ParameterConfig.BUY_PRICE)).getBuyPrice();

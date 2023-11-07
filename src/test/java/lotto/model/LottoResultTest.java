@@ -9,6 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottoResultTest {
+    private static final int DEFAULT_COUNT = 0;
 
     private LottoResult lottoResult;
     private WinningLotto winningLotto;
@@ -33,11 +34,11 @@ class LottoResultTest {
     @DisplayName("당첨 결과 확인")
     void checkResult() {
         Map<Rank, Integer> result = lottoResult.checkResult(winningLotto);
-        assertThat(result.get(Rank.FIRST)).isEqualTo(0);
-        assertThat(result.get(Rank.SECOND)).isEqualTo(1);
-        assertThat(result.get(Rank.THIRD)).isEqualTo(2);
-        assertThat(result.get(Rank.FOURTH)).isEqualTo(1);
-        assertThat(result.get(Rank.FIFTH)).isEqualTo(1);
+        assertThat(result.getOrDefault(Rank.FIRST, DEFAULT_COUNT)).isEqualTo(0);
+        assertThat(result.getOrDefault(Rank.SECOND, DEFAULT_COUNT)).isEqualTo(1);
+        assertThat(result.getOrDefault(Rank.THIRD, DEFAULT_COUNT)).isEqualTo(2);
+        assertThat(result.getOrDefault(Rank.FOURTH, DEFAULT_COUNT)).isEqualTo(1);
+        assertThat(result.getOrDefault(Rank.FIFTH, DEFAULT_COUNT)).isEqualTo(1);
     }
 
     @Test

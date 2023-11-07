@@ -23,7 +23,7 @@ public class LottoNumber {
         List<Lotto> lottoTickets = new ArrayList<>();
 
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumber = lottoRandomNumber();
+            List<Integer> lottoNumber = new ArrayList<>(lottoRandomNumber());
             Collections.sort(lottoNumber);
 
             OutputView.lottoNumberOutputMessage(lottoNumber);

@@ -7,6 +7,7 @@ import java.util.List;
 
 import static lotto.config.ErrorMessage.LOTTO_NEED_SIX_NUMBER_ERROR;
 import static lotto.config.ErrorMessage.LOTTO_OVER_SIX_NUMBER_ERROR;
+import static lotto.config.LottoConfig.LOTTO_COUNT;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -20,11 +21,11 @@ public class Lotto {
 
         LottoValidation lottoValidation = new LottoValidation();
 
-        if (numbers.size() > 6) {
+        if (numbers.size() > LOTTO_COUNT.getValue()) {
             ErrorThrower.throwIllegalArgumentException(LOTTO_OVER_SIX_NUMBER_ERROR.getMessage());
         }
 
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_COUNT.getValue()) {
             ErrorThrower.throwIllegalArgumentException(LOTTO_NEED_SIX_NUMBER_ERROR.getMessage());
         }
 

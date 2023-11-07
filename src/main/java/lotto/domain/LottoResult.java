@@ -8,10 +8,9 @@ import java.util.stream.Collectors;
 
 import static lotto.config.LottoConfig.LOTTO_ALL_MATCH;
 import static lotto.config.LottoConfig.LOTTO_ALL_MATCH_PRIZE;
-import static lotto.config.LottoConfig.LOTTO_BONUS_MATCH;
 import static lotto.config.LottoConfig.LOTTO_BONUS_MATCH_PRIZE;
-import static lotto.config.LottoConfig.LOTTO_FIVE_MATCH;
 import static lotto.config.LottoConfig.LOTTO_FIVE_MATCH_PRIZE;
+import static lotto.config.LottoConfig.LOTTO_FIVE_OR_BONUS_MATCH;
 import static lotto.config.LottoConfig.LOTTO_FOUR_MATCH;
 import static lotto.config.LottoConfig.LOTTO_FOUR_MATCH_PRIZE;
 import static lotto.config.LottoConfig.LOTTO_PRICE;
@@ -49,22 +48,18 @@ public class LottoResult {
 
     private void lottoMatchCompare(List<Integer> lottoNumber) {
 
-        List<Integer> matchNumber = lottoNumber.stream().filter(o -> winnerNumber.stream()
-                .anyMatch(Predicate.isEqual(o))).collect(Collectors.toList());
+        int matchNumber = lottoMatchNumber(lottoNumber);
 
-        if (matchNumber.size() == LOTTO_THREE_MATCH.getValue()) {
+        if (matchNumber == LOTTO_THREE_MATCH.getValue()) {
             lottoPrize.addThreeMatch();
         }
-        if (matchNumber.size() == LOTTO_FOUR_MATCH.getValue()) {
+        if (matchNumber == LOTTO_FOUR_MATCH.getValue()) {
             lottoPrize.addFourMatch();
         }
-        if (matchNumber.size() == LOTTO_FIVE_MATCH.getValue()) {
+        if (matchNumber == LOTTO_FIVE_OR_BONUS_MATCH.getValue()) {
             lottoBonusMatch(lottoNumber);
         }
-        if (matchNumber.size() == LOTTO_BONUS_MATCH.getValue()) {
-            lottoBonusMatch(lottoNumber);
-        }
-        if (matchNumber.size() == LOTTO_ALL_MATCH.getValue()) {
+        if (matchNumber == LOTTO_ALL_MATCH.getValue()) {
             lottoPrize.addAllMatch();
         }
     }
@@ -80,6 +75,11 @@ public class LottoResult {
             lottoPrize.addFiveMatch();
         }
 
+    }
+
+    private int lottoMatchNumber(List<Integer> lottoNumber) {
+        return lottoNumber.stream().filter(o -> winnerNumber.stream()
+                .anyMatch(Predicate.isEqual(o))).collect(Collectors.toList()).size();
     }
 
     private Double lottoProfit() {
@@ -102,9 +102,9 @@ public class LottoResult {
                 , LOTTO_THREE_MATCH_PRIZE.getValue(), lottoPrize.getThreeMatch());
         OutputView.lottoWinningResultOutputMessage(LOTTO_FOUR_MATCH.getValue()
                 , LOTTO_FOUR_MATCH_PRIZE.getValue(), lottoPrize.getFourMatch());
-        OutputView.lottoWinningResultOutputMessage(LOTTO_FIVE_MATCH.getValue()
+        OutputView.lottoWinningResultOutputMessage(LOTTO_FIVE_OR_BONUS_MATCH.getValue()
                 , LOTTO_FIVE_MATCH_PRIZE.getValue(), lottoPrize.getFiveMatch());
-        OutputView.lottoWinningResultBonusOutputMessage(LOTTO_BONUS_MATCH.getValue()
+        OutputView.lottoWinningResultBonusOutputMessage(LOTTO_FIVE_OR_BONUS_MATCH.getValue()
                 , LOTTO_BONUS_MATCH_PRIZE.getValue(), lottoPrize.getBonusMatch());
         OutputView.lottoWinningResultOutputMessage(LOTTO_ALL_MATCH.getValue()
                 , LOTTO_ALL_MATCH_PRIZE.getValue(), lottoPrize.getAllMatch());

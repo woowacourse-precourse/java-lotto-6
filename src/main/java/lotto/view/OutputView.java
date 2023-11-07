@@ -1,8 +1,10 @@
 package lotto.view;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.StringJoiner;
 import lotto.constant.Message;
+import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.LottoResultStatus;
 import lotto.domain.PurchaseLottos;
@@ -13,11 +15,12 @@ public class OutputView {
 
     public void printPurchaseLottos(PurchaseLottos purchaseLottos) {
         printNewLine();
-        System.out.println(purchaseLottos.getPurchaseCount() + Message.PURCHASE_COUNT.getMessage());
-        System.out.println(purchaseLottos.getPurchaseLottos());
+        System.out.printf(Message.PURCHASE_COUNT.getMessage(), purchaseLottos.getPurchaseCount());
+        System.out.println(createSortedPurchaseLottos(purchaseLottos));
     }
 
     public void printLottoResult(LottoResult lottoResult) {
+        printNewLine();
         System.out.println(Message.WINNING_STATISTICS.getMessage());
         System.out.println(Message.SEPARATE_LINE.getMessage());
 
@@ -28,6 +31,14 @@ public class OutputView {
     public void printRateOfReturn(LottoResult lottoResult, PurchasePrice purchasePrice) {
         String roundRateOfReturn = lottoResult.roundRateOfReturn(purchasePrice);
         System.out.printf(Message.TOTAL_RATE_OF_RETURN.getMessage(), roundRateOfReturn);
+    }
+
+    private String createSortedPurchaseLottos(PurchaseLottos purchaseLottos) {
+        List<Lotto> lottos = purchaseLottos.getPurchaseLottos();
+        StringJoiner result = new StringJoiner(DELIMITER);
+        lottos.forEach(lotto -> result.add(lotto.getSortedNumbers()));
+
+        return result.toString();
     }
 
     private void printNewLine() {

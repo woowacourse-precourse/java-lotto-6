@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.List;
 import lotto.util.LottoNumbersGenerator;
 
 public class PurchaseLottos {
@@ -12,7 +13,7 @@ public class PurchaseLottos {
         this.lottos = Lottos.of(count, generator);
     }
 
-    public String getPurchaseLottos() {
+    public List<Lotto> getPurchaseLottos() {
         return lottos.getEachLotto();
     }
 

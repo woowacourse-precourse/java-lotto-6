@@ -15,6 +15,7 @@ public class InputView {
         PurchasePrice purchasePrice = null;
 
         while (isNotValidPurchasePrice(purchasePrice)) {
+            printNewLine();
             System.out.println(Message.INPUT_PRICE.getMessage());
             String inputPrice = Console.readLine().trim();
             Integer validPrice = parseValidPrice(inputPrice);
@@ -28,6 +29,7 @@ public class InputView {
         WinningNumbers winningNumbers = null;
 
         while (!isValidWinningNumbers(winningNumbers)) {
+            printNewLine();
             System.out.println(Message.INPUT_WINNING_NUMBERS.getMessage());
             String inputWinningNumbers = Console.readLine();
             winningNumbers = createWinningNumbers(inputWinningNumbers);
@@ -40,6 +42,7 @@ public class InputView {
         BonusNumber bonusNumber = null;
 
         while (!isValidBonusNumber(bonusNumber)) {
+            printNewLine();
             System.out.println(Message.INPUT_BONUS_NUMBER.getMessage());
             String inputBonusNumber = Console.readLine().trim();
 
@@ -147,5 +150,9 @@ public class InputView {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(LottoExceptionMessage.BONUS_NUMBER_MUST_BE_NUMBER.getMessage());
         }
+    }
+
+    private void printNewLine() {
+        System.out.println();
     }
 }

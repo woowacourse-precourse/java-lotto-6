@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.exception.LottoExceptionMessage;
 import lotto.util.LottoNumbersGenerator;
 
@@ -28,8 +27,8 @@ public class Lottos {
         return lottos.size();
     }
 
-    public String getEachLotto() {
-        return lottos.stream().map(Lotto::getNumbers).collect(Collectors.joining("\n"));
+    public List<Lotto> getEachLotto() {
+        return lottos.stream().toList();
     }
 
     public LottoResult getLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
@@ -42,6 +41,6 @@ public class Lottos {
     }
 
     private void addLotto(LottoNumbersGenerator generator) {
-        lottos.add(new Lotto(generator.getSortedLottoNumbers()));
+        lottos.add(new Lotto(generator.generateLottoNumbers()));
     }
 }

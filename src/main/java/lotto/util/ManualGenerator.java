@@ -1,10 +1,11 @@
 package lotto.util;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class ManualGenerator extends LottoNumbersGenerator {
     @Override
-    protected void generateLottoNumbers() {
-        numbers = Arrays.asList(6, 5, 3, 2, 4, 1);
+    public List<Integer> generateLottoNumbers() {
+        return Arrays.asList(6, 5, 3, 2, 4, 1);
     }
 }

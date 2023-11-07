@@ -13,6 +13,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("플레이어 로또들 객체에 대해")
 class PlayerLottosFormatterTest {
 
+    static Stream<List<Numbers>> lottosResources() {
+        Numbers numbers1 = new Numbers(List.of(1, 2, 3, 4, 5, 6));
+        Numbers numbers2 = new Numbers(List.of(7, 8, 9, 10, 11, 12));
+        return Stream.of(List.of(numbers1, numbers2));
+    }
+
     @ParameterizedTest
     @MethodSource("lottosResources")
     @DisplayName("로또 생성 결과에 따라 출력 형태를 얻는다.")
@@ -32,11 +38,5 @@ class PlayerLottosFormatterTest {
                         """
         );
 
-    }
-
-    static Stream<List<Numbers>> lottosResources() {
-        Numbers numbers1 = new Numbers(List.of(1, 2, 3, 4, 5, 6));
-        Numbers numbers2 = new Numbers(List.of(7, 8, 9, 10, 11, 12));
-        return Stream.of(List.of(numbers1, numbers2));
     }
 }

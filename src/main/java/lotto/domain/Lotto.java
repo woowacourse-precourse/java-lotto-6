@@ -3,6 +3,7 @@ package lotto.domain;
 import static java.util.Collections.sort;
 
 import java.util.List;
+import lotto.util.InputValidator;
 
 public class Lotto {
     public static final int LOTTO_PRICE_UNIT = 1000;
@@ -33,9 +34,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBERS_COUNT) {
-            throw new IllegalArgumentException();
-        }
+        InputValidator.validateLottoNumbers(numbers);
     }
 
 }

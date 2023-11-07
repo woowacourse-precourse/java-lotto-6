@@ -1,7 +1,6 @@
 package lotto.view;
 
-import lotto.Lotto;
-import lotto.values.ExceptionMessage;
+import lotto.vo.Lotto;
 import lotto.values.WinningResult;
 
 import java.util.ArrayList;

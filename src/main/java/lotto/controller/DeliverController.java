@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Lotto;
+import lotto.vo.Lotto;
 import lotto.service.DeliverService;
 import lotto.view.Output;
 
@@ -16,8 +16,7 @@ public class DeliverController {
 
     private void deliverLottoPackage(int num){
         DeliverService deliverService = new DeliverService();
-        deliverService.generateLotto(num);
-        lottoPackage = deliverService.getLottoPackage();
+        lottoPackage = deliverService.generateLotto(num);
     }
 
     public List<Lotto> getLottoPackage() {

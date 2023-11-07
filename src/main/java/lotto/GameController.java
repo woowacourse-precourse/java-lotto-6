@@ -11,7 +11,7 @@ public class GameController {
     private Printer printer;
     private Discriminator discriminator;
     private LottoNumberGenerator lottoNumberGenerator;
-    private int money;
+    private Money money;
 
     public GameController(Inputter inputter, Printer printer, Discriminator discriminator,
             LottoNumberGenerator lottoNumberGenerator) {
@@ -27,18 +27,18 @@ public class GameController {
     }
 
     private void doGame() {
-        printer.countOfLotto(money / CommonUnits.MONEY_UNIT);
+        printer.countOfLotto(money.getMoney() / CommonUnits.MONEY_UNIT);
         printer.allLotto(pocket.getLottos().stream().map(it -> new LottoNumberDTO(it.getNumbers()))
                 .collect(Collectors.toList()));
         discriminator.setCorrectNumbers(new Lotto(inputter.lottoNumbers().getLotto()));
         discriminator.setBonus(inputter.bonus());
         pocket.getLottos().stream().forEach(it -> discriminator.discriminate(it.getNumbers()));
         printer.statistic(discriminator.getStatistic());
-        printer.profitRate(discriminator.getProfitRate(money));
+        printer.profitRate(discriminator.getProfitRate(money.getMoney()));
     }
 
     private void init() {
-        money = getPurchase();
+        money = new Money(getPurchase());
         pocket = new Pocket(getLottos());
     }
 
@@ -59,7 +59,7 @@ public class GameController {
 
     private List<Lotto> getLottos() {
         List<Lotto> lottos = new ArrayList<>();
-        int count = money / CommonUnits.MONEY_UNIT;
+        int count = money.getMoney() / CommonUnits.MONEY_UNIT;
 
         for (int i = 0 ; i < count ; i++) {
             lottos.add(new Lotto(lottoNumberGenerator.generate().getLotto()));

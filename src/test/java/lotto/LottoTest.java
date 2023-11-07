@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -61,6 +62,36 @@ class LottoTest {
                 .hasMessage(ERRORUI.MultipleOfThousandError());
     }
 
+    @DisplayName("로또 번호를 랜덤으로 추가하는지 테스트한다.")
+    @Test
+    void generateLotto_shouldGenerate6UniqueNumbers() {
+        // Arrange
+        LottoPublisher lottoPublisher = new LottoPublisher(1000);
+        int count = 1; // 1장의 로또만 생성
+
+        // Act
+        List<List<Integer>> lottos = LottoPublisher.LottoSixNumber(count);
+
+        // Assert
+        assertEquals(count, lottos.size());
+        List<Integer> generatedLotto = lottos.get(0);
+        assertEquals(6, generatedLotto.size());
+    }
+
+    @DisplayName("구매한 티켓의 장수가 나오는지 테스트한다.")
+    @Test
+    void generateLottoTicketsBasedOnPurchaseAmount() {
+        // Arrange
+        int purchaseAmount = 5000; // 5000원의 구매 금액
+
+        LottoPublisher lottoPublisher = new LottoPublisher(purchaseAmount);
+
+        int NumberOfLotto = LottoPublisher.getPublish_num();
+
+        int expectedTicketCount = purchaseAmount / LottoPublisher.Lotto_price;
+
+        assertEquals(expectedTicketCount, NumberOfLotto);
+    }
 
     // 아래에 추가 테스트 작성 가능
 

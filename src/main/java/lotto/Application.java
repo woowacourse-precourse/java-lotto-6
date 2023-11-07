@@ -135,8 +135,14 @@ public class Application {
 			throw new IllegalArgumentException();
 	}
 	
-	private int makeInteger(String s) {
-		return -1;
+	private int makeInteger(String v) {
+		try {
+			int n = Integer.parseInt(v);
+			return n;
+		}
+		catch (NumberFormatException e) {
+			return -1;
+        }
 	}
 	
 	private boolean isRange(int n) {

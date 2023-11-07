@@ -9,17 +9,11 @@ import java.util.List;
 public class LottoWinningBonusNumber {
     private final int winningBonusNumber;
 
-    public LottoWinningBonusNumber(String winningBonusNumber, List<Integer> winningNumbers) {
-        validateOnlyPositiveNumberBonus(winningBonusNumber);
-        int bonusNumber = convertToInteger(winningBonusNumber);
-        validateBonusNumberRange(bonusNumber);
+    public LottoWinningBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         validateWinningBonusNumberAlreadyExists(bonusNumber, winningNumbers);
         this.winningBonusNumber = bonusNumber;
     }
 
-    private int convertToInteger(String winningBonusNumberString) {
-        return Integer.parseInt(winningBonusNumberString);
-    }
 
     public int getWinningBonusNumber() {
         return winningBonusNumber;

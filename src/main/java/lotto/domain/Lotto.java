@@ -56,6 +56,9 @@ public class Lotto {
                 .sorted()
                 .collect(Collectors.toList());
     }
+    public boolean isContain(int number) {
+        return numbers.contains(number);
+    }
     @Override
     public String toString() {
         return numbers.toString();

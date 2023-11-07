@@ -1,17 +1,19 @@
 package lotto.view;
 
 import lotto.domain.WinningGrade;
+import lotto.message.ProcessMessage;
+
 import java.util.List;
 import java.util.Map;
 
 public class OutputView {
     public void printInputMoneyToBuyLottoMessage() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(ProcessMessage.INPUT_MONEY_TO_BUY_LOTTO);
     }
 
     public void printBoughtLottoCount(int numberOfLottoBought) {
         printNewLine();
-        System.out.printf(String.format("%d개를 구매했습니다.", numberOfLottoBought));
+        System.out.printf(ProcessMessage.LOTTO_COUNT.toString(), numberOfLottoBought);
     }
 
     public void printLottos(List<List<Integer>> lottoNumbers) {
@@ -21,35 +23,35 @@ public class OutputView {
 
     public void printInputWinningNumbersMessage() {
         printNewLine();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(ProcessMessage.INPUT_WINNING_NUMBERS);
     }
 
     public void printInputBonusNumberMessage() {
         printNewLine();
-        System.out.println("보너스 번호를 입력해 주세요.");
-    }
-
-    public void printNewLine() {
-        System.out.println();
+        System.out.println(ProcessMessage.INPUT_BONUS_NUMBER);
     }
 
     public void printWinningResultMessage() {
         printNewLine();
-        System.out.println("당첨 통계");
-        System.out.println("---");
+        System.out.println(ProcessMessage.WINNING_STATISTICS);
+        System.out.println(ProcessMessage.LINE);
     }
 
     public void printWinningResult(Map<WinningGrade, Integer> winningResult) {
         winningResult.entrySet().stream()
                 .filter(result -> result.getKey() != WinningGrade.DEFAULT)
-                .forEach(result -> System.out.println(result.getKey().toString() + result.getValue() + "개"));
+                .forEach(result -> System.out.println(result.getKey().toString() + result.getValue()));
     }
 
     public void printLottoYield(double v) {
-        System.out.printf("총 수익률은 %.1f%%입니다.", v);
+        System.out.printf(ProcessMessage.TOTAL_YIELD.toString(), v);
     }
 
     public void printExceptionMessage(Exception exception) {
         System.out.println(exception.getMessage());
+    }
+
+    public void printNewLine() {
+        System.out.println();
     }
 }

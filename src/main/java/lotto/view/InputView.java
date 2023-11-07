@@ -88,7 +88,7 @@ public class InputView {
     }
 
     private void validateLottoNumbers(String inputLottoNumbers) {
-        String[] lottoNumbers = inputLottoNumbers.split(INPUT_LOTTO_NUMBER_SPLITTER);
+        List<String> lottoNumbers = List.of(inputLottoNumbers.split(INPUT_LOTTO_NUMBER_SPLITTER));
         Set<Integer> numbers = new HashSet<>();
         for (String lottoNumber : lottoNumbers) {
             validateNumber(lottoNumber);

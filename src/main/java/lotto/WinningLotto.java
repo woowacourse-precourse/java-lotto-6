@@ -6,11 +6,16 @@ public class WinningLotto {
     private final List<Integer> numbers;
     private final int bonus;
 
-    public WinningLotto(List<Integer> numbers, int bonus) {
-        validate(numbers);
-        validateBonus(numbers, bonus);
+    private WinningLotto(List<Integer> numbers, int bonus) {
         this.numbers = numbers;
         this.bonus = bonus;
+    }
+
+    public WinningLotto of(List<Integer> numbers, int bonus) {
+        validate(numbers);
+        validateBonus(numbers, bonus);
+
+        return new WinningLotto(numbers, bonus);
     }
 
     private void validate(List<Integer> numbers) {

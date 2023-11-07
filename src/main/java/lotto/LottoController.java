@@ -9,7 +9,7 @@ public class LottoController {
     private final Output output = new Output();
 
     public void run() {
-        LottoCost lottoCost = createLottoCost();
+        LottoCost lottoCost = inputValueToLottoCost();
         int lottoTicket = lottoCost.getNumberOfLotto();
         output.printNumberOfPurchase(lottoTicket);
 
@@ -31,7 +31,7 @@ public class LottoController {
         }
     }
 
-    private LottoCost createLottoCost() {
+    private LottoCost inputValueToLottoCost() {
         LottoCost lottoCost = null;
         boolean loop = true;
 

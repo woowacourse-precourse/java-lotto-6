@@ -60,10 +60,9 @@ public class LottoService {
         Integer totalProfit = winningStatistic.getTotalProfit();
         Integer lottoAmount = amount.toValue();
 
-        Double dividedResult = (double) totalProfit / lottoAmount;
+        double dividedResult = (double) totalProfit / lottoAmount;
+        double roundedResult = Math.round(dividedResult * 10000.0) / 10000.0 * 100.0;
 
-        // 소수점 2자리에서 반올림
-        Double roundedResult = Math.round(dividedResult * 100.0) / 100.0;
-        return roundedResult.toString();
+        return Double.toString(roundedResult);
     }
 }

@@ -22,4 +22,8 @@ public class PurchasedLottos {
                 .collect(Collectors.toList());
         return new PurchasedLottos(lottos);
     }
+
+    public int purchasedLottosCount() {
+        return purchasedLottos.size();
+    }
 }

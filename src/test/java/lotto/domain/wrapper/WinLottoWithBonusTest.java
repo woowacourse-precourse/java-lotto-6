@@ -8,8 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static lotto.handler.ErrorHandler.DUPLICATE_NUMBER;
-import static lotto.handler.ErrorHandler.INCONVERTIBLE_TYPE;
+import static lotto.handler.ErrorHandler.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class WinLottoWithBonusTest {
@@ -30,6 +29,14 @@ public class WinLottoWithBonusTest {
         );
     }
 
+    private static Stream<Arguments> generateInvalidRangeNumber() {
+        return Stream.of(
+                Arguments.of(List.of(1, 10, 20, 30, 40, 45), "56"),
+                Arguments.of(List.of(1, 3, 5, 6, 10, 11), "-1"),
+                Arguments.of(List.of(1, 3, 5, 6, 25, 36), "0")
+        );
+    }
+
     @DisplayName("보너스 번호에 숫자로 변환될 수 없는 타입이 들어가면 예외가 발생한다.")
     @ParameterizedTest(name = "[{index}] input {1} " )
     @MethodSource("generateIncovertibleNumber")
@@ -46,5 +53,14 @@ public class WinLottoWithBonusTest {
         assertThatThrownBy(() -> WinLottoWithBonus.create(winningLotto, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATE_NUMBER.getException().getMessage());
+    }
+
+    @DisplayName("보너스 번호가 1 ~ 45 사이의 범위가 아니라면 예외가 발생한다")
+    @ParameterizedTest(name = "[{index}] input {0} {1} " )
+    @MethodSource("generateInvalidRangeNumber")
+    void createWinLottoWithBonusByInvalidRange(List<Integer> winningLotto, String bonusNumber) {
+        assertThatThrownBy(() -> WinLottoWithBonus.create(winningLotto, bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_RANGE.getException().getMessage());
     }
 }

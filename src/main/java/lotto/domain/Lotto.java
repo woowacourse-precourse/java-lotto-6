@@ -22,10 +22,21 @@ public class Lotto {
             Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT);
         } else if (duplication) {
             Error.errorMessage(ErrorType.DUPLICATION);
+        } else if (!isInRange(numbers)) {
+            Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT);
         }
     }
 
-    private void validate(int bonusNumber){
+    private boolean isInRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < 1 || number > 45) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void validate(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             Error.errorMessage(ErrorType.INVALID_LOTTO_INPUT);
         } else if (numbers.contains(bonusNumber)) {

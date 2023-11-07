@@ -174,3 +174,52 @@
 ---
 
 ### OutputView
+
+
+---
+## constant
+
+---
+### Message
+
+화면에 표시할 메시지들
+
+---
+#### 필드
+- `PURCHASE_MESSAGE`
+  - "구입금액을 입력해 주세요.";
+- `WINNING_NUMBERS_MESSAGE`
+  - "당첨 번호를 입력해 주세요.";
+- `BONUS_NUMBER_MESSAGE`
+  - "보너스 번호를 입력해 주세요.";
+
+- `ERROR_TEMPLATE`
+  - "[ERROR] %s%s\n"
+    - [ERROR]와 함께 어떤 단계에서 어떤 에러가 발생했는지 알려주는 메시지
+- `ERROR_MSG_NOT_A_NUMBER`
+  - "(은)는 숫자여야 합니다.";
+- `ERROR_MSG_NOT_IN_THOUSANDS`
+  - "(은)는 1000원 단위여야 합니다.";
+- `ERROR_MSG_OUT_OF_RANGE`
+  - "(은)는 1부터 45 사이의 수여야 합니다.";
+- `ERROR_MSG_LENGTH_NOT_MATCH`
+  - "(은)는 6자리여야 합니다.";
+- `ERROR_MSG_DUPLICATED_NUMBER`
+  - "(은)는 중복될 수 없습니다.";
+
+- `RESULT_MESSAGE`
+  - 당첨 통계를 알려주는 메시지
+
+- `INTEREST_RATE_MESSAGE`
+  - 가공된 총 수익률을 받아서 알려주는 메시지
+
+#### Condition
+- `MIN_LOTTO_MONEY` : 0
+- `MAX_LOTTO_MONEY` : `Long.MAX_VALUE`
+
+- `LOTTO_MONEY_COUNT` : 1
+- `WINNING_NUMBERS_COUNT` : 6
+- `BONUS_NUMBER_COUNT` : 1
+
+- `MIN_DRAW_NUMBER` : 1
+- `MAX_DRAW_NUMBER` : 45

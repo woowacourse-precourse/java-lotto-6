@@ -65,4 +65,8 @@ public class Lottoes {
     public LottoResult getResult() {
         return result;
     }
+
+    public double getProfit(int ticketCount) {
+        return result.getProfit(ticketCount);
+    }
 }

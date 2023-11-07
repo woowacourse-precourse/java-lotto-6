@@ -21,9 +21,9 @@ public class LottoService {
 
 
     public double getProfit() {
-        return lottoes.getResult()
-                .getProfit(lottoCounter.getTicketCount());
+        return lottoes.getProfit(lottoCounter.getTicketCount());
     }
+    
     public Lottoes getLottoes() {
         return lottoes;
     }

@@ -62,24 +62,24 @@ public class Lotto {
         return numbers;
     }
 
-    public Result getResult(WinningLotto winningLotto) {
+    public Score getResult(WinningLotto winningLotto) {
         int count = getSameNumberCount(winningLotto.getNumbers());
         if (count == 6) {
-            return Result.FIRST;
+            return Score.FIRST;
         }
         if (count == 5) {
             if (numbers.contains(winningLotto.getBonusNumber())) {
-                return Result.SECOND;
+                return Score.SECOND;
             }
-            return Result.THIRD;
+            return Score.THIRD;
         }
         if (count == 4) {
-            return Result.FOURTH;
+            return Score.FOURTH;
         }
         if (count == 3) {
-            return Result.FIFTH;
+            return Score.FIFTH;
         }
-        return Result.NONE;
+        return Score.NONE;
     }
 
 }

@@ -5,8 +5,8 @@ import camp.nextstep.edu.missionutils.Console;
 import static java.lang.Integer.parseInt;
 
 enum ERROR_MESSAGE {
-    WRONG_FORMAT("[ERROR] 1~45의 자연수를 입력해야합니다. 다시 입력하세요");
-
+    WRONG_FORMAT("[ERROR] 1~45의 자연수를 입력해야합니다. 다시 입력하세요"),
+    WRONG_COUNTS("[ERROR] 6개의 자연수를 입력해야합니다. 다시 입력하세요");
     private ERROR_MESSAGE() {
 
     }

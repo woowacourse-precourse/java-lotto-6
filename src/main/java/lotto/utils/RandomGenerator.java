@@ -38,10 +38,8 @@ public class RandomGenerator {
     }
 
     private static void validateNumbers(List<Integer> randoms) {
-        for(int random : randoms) {
-            if (!LottoNumbers.contains(random)) {
-                throw new IllegalStateException();
-            }
+        if (!randoms.stream().allMatch(LottoNumbers::contains)) {
+            throw new IllegalStateException();
         }
     }
 }

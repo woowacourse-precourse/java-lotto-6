@@ -1,30 +1,41 @@
-package service;
+package model;
 
-import model.MyLotto;
+import java.util.ArrayList;
+import java.util.List;
 import util.NumberGenerator;
 import view.InputView;
 import view.OutputView;
 
-public class InputService {
+public class LottoService {
 
     NumberGenerator numberGenerator = new NumberGenerator();
     OutputView outputView = new OutputView();
     InputView inputView = new InputView();
-    MyLotto myLotto = new MyLotto();
+    ArrayList<List<Integer>> myLottoNumber = new ArrayList<>();
+
 
     private int lottoCost;
     private int lottoPaper;
+
     public void getLottoCost(){
         outputView.printRequirelottoCost();
         lottoCost = inputView.getLottoCostData();
-        myLotto.buyLotto(lottoCost);
-        lottoPaper = myLotto.getLottoPaper();
-        outputView.printNewLine();
-        outputView.printPublishedLotto(lottoPaper);
+    }
+
+    public void buyLotto(){
+        lottoPaper = lottoCost/1000;
     }
 
     public void createLottoNumber(){
-        myLotto.createMyLottoNumber(lottoPaper);
-        outputView.printMyLottoNumber(myLotto.getMyLottoNumber());
+        outputView.printNewLine();
+        outputView.printPublishedLotto(lottoPaper);
+        createMyLottoNumber();
+        outputView.printMyLottoNumber(myLottoNumber);
+    }
+
+    public void createMyLottoNumber(){
+        for(int i = 0; i<lottoPaper; i++){
+            myLottoNumber.add(numberGenerator.generate());
+        }
     }
 }

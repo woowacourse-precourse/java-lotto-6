@@ -1,4 +1,4 @@
-package lotto.dto;
+package lotto.domain;
 
 import static lotto.constants.Message.NEW_LINE;
 
@@ -6,16 +6,18 @@ import java.util.Map;
 import java.util.TreeMap;
 import lotto.constants.WinningType;
 
-public record WinningResult(Map<WinningType, Integer> winningMap) {
+public class WinningResult {
+    private final Map<WinningType, Integer> winningMap;
+
     public WinningResult() {
-        this(new TreeMap<>(Map.of(
+        winningMap = new TreeMap<>(Map.of(
                 WinningType.NONE, 0,
                 WinningType.THREE, 0,
                 WinningType.FOUR, 0,
                 WinningType.FIVE, 0,
                 WinningType.FIVE_BONUS, 0,
                 WinningType.SIX, 0
-        )));
+        ));
     }
 
     public void updateResult(int matchedCount, boolean isBonus) {

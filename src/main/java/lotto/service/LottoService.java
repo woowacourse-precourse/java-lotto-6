@@ -7,8 +7,8 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
-import lotto.dto.WinningLotto;
-import lotto.dto.WinningResult;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningResult;
 
 public class LottoService {
     private final NumberGenerator generator;

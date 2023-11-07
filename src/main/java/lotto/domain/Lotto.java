@@ -32,7 +32,7 @@ public class Lotto {
     private List<Integer> splitToList(String number) {
         try {
             return Arrays.stream(number.split(SEPARATOR_REGEX.getMessage()))
-                    .map(Integer::parseInt)
+                    .map((num -> Integer.parseInt(num.trim())))
                     .toList();
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorCode.NOT_INTEGER.getMessage());

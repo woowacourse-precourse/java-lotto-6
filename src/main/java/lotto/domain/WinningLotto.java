@@ -1,9 +1,6 @@
-package lotto.dto;
+package lotto.domain;
 
 import static lotto.constants.ErrorCode.DUPLICATED_LOTTO_NUMBER;
-
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
 
 public class WinningLotto {
     private final Lotto winning;

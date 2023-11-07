@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constants.ErrorCode.INVALID_LOTTO_NUMBER;
+import static lotto.constants.ErrorCode.INVALID_LOTTO_RANGE;
 import static lotto.constants.ErrorCode.NOT_INTEGER;
 import static lotto.constants.LottoRule.MAX_LOTTO_NUM;
 import static lotto.constants.LottoRule.MIN_LOTTO_NUM;
@@ -35,7 +35,7 @@ public class LottoNumber {
     private void validateNumberRange(String input) {
         int converted = Integer.parseInt(input);
         if (converted < MIN_LOTTO_NUM.getValue() || converted > MAX_LOTTO_NUM.getValue()) {
-            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER.getMessage());
+            throw new IllegalArgumentException(INVALID_LOTTO_RANGE.getMessage());
         }
     }
 

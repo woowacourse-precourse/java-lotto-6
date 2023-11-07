@@ -7,7 +7,7 @@ import static lotto.constants.Message.WINNING_HEADER;
 import java.util.List;
 import lotto.constants.Message;
 import lotto.domain.Lotto;
-import lotto.dto.WinningResult;
+import lotto.domain.WinningResult;
 
 public class OutputView {
     private final OutputDevice outputDevice;

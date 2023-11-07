@@ -3,10 +3,8 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.List;
-import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class WinningServiceTest {

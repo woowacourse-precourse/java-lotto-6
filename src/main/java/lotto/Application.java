@@ -5,18 +5,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Application {
 
     private static final int WIN_LOTTO_SIZE = 6;
     private static final int LOTTO_RESULT_SIZE = 8;
 
+    private static int purchaseAmount;
+
     private static Lotto winLotto;
 
     private static int winBonusLottoNumber;
-
-    private static int rateOfReturn;
 
     private static List<Integer> correctCount = new ArrayList<>();
     private static List<Integer> totalWinResult = new ArrayList<>();
@@ -56,7 +58,7 @@ public class Application {
     private static int inputPurchaseAmount() {
         String userPurchaseAmount = Console.readLine();
         isOnlyNumber(userPurchaseAmount);
-        int purchaseAmount = Integer.parseInt(userPurchaseAmount);
+        purchaseAmount = Integer.parseInt(userPurchaseAmount);
 
         while (purchaseAmount % 1000 != 0) {
             purchaseAmount = isValidPurchaseAmount(purchaseAmount);
@@ -80,9 +82,16 @@ public class Application {
     private static void isOnlyNumber(String userPurchaseAmount) {
         try {
             Integer.parseInt(userPurchaseAmount);
+            char isValidNumber;
+            for (int i = 0; i < userPurchaseAmount.length(); i++) {
+                isValidNumber = userPurchaseAmount.charAt(i);
+                if ((int) isValidNumber < 48 || (int) isValidNumber > 57) {
+                    throw new IllegalArgumentException();
+                }
+            }
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR]");
-            throw new IllegalArgumentException("[ERROR]");
+            Console.readLine();
         }
     }
 
@@ -93,7 +102,6 @@ public class Application {
     private static Lotto inputLottoNumbers() {
         List<Integer> lottoNumbers = new ArrayList<>(List.of());
         lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//        lottoNumbers.sort(null);
         Lotto myLotto = new Lotto(lottoNumbers);
         return myLotto;
     }
@@ -128,8 +136,22 @@ public class Application {
             winLotto.add(Integer.parseInt(winLottoLetter.get(i)));
         }
 
+        isValidLottoNumbers(winLotto);
+
         Lotto winLottoNumber = new Lotto(winLotto);
         return winLottoNumber;
+    }
+
+    private static void isValidLottoNumbers(List<Integer> winLotto) {
+        try {
+            Set<Integer> validwinLotto = new HashSet<>(winLotto);
+            if (validwinLotto.size() != winLotto.size()) {
+                throw new IllegalArgumentException();
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            throw new IllegalArgumentException();
+        }
     }
 
     private static int inputBonusLottoNumber() {
@@ -195,7 +217,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
-        int purchaseAmount = inputPurchaseAmount();
+        purchaseAmount = inputPurchaseAmount();
 
         System.out.println();
         int purchaseNumber = purchaseAmount / 1000;

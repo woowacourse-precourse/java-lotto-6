@@ -3,19 +3,51 @@ package lotto.util;
 import java.text.DecimalFormat;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.io.OutputHandler;
 
 public class Calculator {
+    private static final int UNIT = 1000;
     private final List<Lotto> lottos;
 
     public Calculator(List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public String printLottoResult(Lotto winningLotto, int bonusNumber) {
+    public void printResult(Lotto winningLotto, int bonusNumber) {
+        OutputHandler.printLottoResult(getLottoResult(winningLotto, bonusNumber));
+        OutputHandler.printLottoProfit(getLottoProfit(winningLotto, bonusNumber));
+    }
+
+    public String getLottoResult(Lotto winningLotto, int bonusNumber) {
         String result = getResults(winningLotto, bonusNumber);
         return result;
     }
-    
+
+    public String getLottoProfit(Lotto winningLotto, int bonusNumber) {
+        double profit = calculateProfitPercentage(winningLotto, bonusNumber);
+
+        return formatProfitPercentage(profit);
+    }
+
+    public double calculateProfitPercentage(Lotto winningLotto, int bonusNumber) {
+        int lottoReturn = 0;
+        Winning[] winnings = Winning.values();
+        for (int i = 0; i < winnings.length; i++) {
+            Winning winning = winnings[winnings.length - i - 1];
+            int winningCount = countWinningLotto(winning, winningLotto, bonusNumber);
+            lottoReturn += winningCount * winning.prize();
+        }
+        int amount = lottos.size() * UNIT;
+
+        return (lottoReturn / amount) * 1000;
+    }
+
+    public String formatProfitPercentage(double profit) {
+        double profitPercent = profit * 100.0;
+        DecimalFormat decimalFormat = new DecimalFormat("0.0%");
+        return decimalFormat.format(profitPercent);
+    }
+
     private String getResults(Lotto winningLotto, int bonusNumber) {
         String result = "";
         Winning[] winnings = Winning.values();
@@ -26,11 +58,16 @@ public class Calculator {
         return result;
     }
 
+    private String formatNumberWithPercent(double number) {
+        DecimalFormat decimalFormat = new DecimalFormat("0.0%");
+        return decimalFormat.format(number * 100.0);
+    }
+
     public String getResult(Winning winning, Lotto winningLotto, Integer bonusNumber) {
         int sameNumberCount = winning.count();
         String prize = formatNumberWithCommas(winning.prize());
 
-        int count = countSameNumber(winning, winningLotto, bonusNumber);
+        int count = countWinningLotto(winning, winningLotto, bonusNumber);
         if (winning == Winning.SECOND) {
             return sameNumberCount + "개 일치, 보너스 볼 일치 (" + prize + "원) - " + count + "개";
         }
@@ -42,7 +79,7 @@ public class Calculator {
         return decimalFormat.format(number);
     }
 
-    public int countSameNumber(Winning winning, Lotto winningLotto, int bonusNumber) {
+    public int countWinningLotto(Winning winning, Lotto winningLotto, int bonusNumber) {
         int lottoCount = 0;
 
         for (Lotto lotto : lottos) {

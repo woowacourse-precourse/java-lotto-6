@@ -27,7 +27,6 @@ public class Application {
         bonusNumber = BonusNumberGenerator.generateBonusNumber();
 
         Calculator calculator = new Calculator(lottos);
-        String lottoResult = calculator.printLottoResult(winningNumbers, bonusNumber);
-        OutputHandler.printLottoResult(lottoResult);
+        calculator.printResult(winningNumbers, bonusNumber);
     }
 }

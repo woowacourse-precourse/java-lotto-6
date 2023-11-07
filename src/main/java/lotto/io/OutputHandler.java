@@ -22,4 +22,8 @@ public class OutputHandler {
     public static void printLottoResult(String result) {
         System.out.println("\n" + "당첨 통계\n" + "---\n" + result);
     }
+
+    public static void printLottoProfit(String result) {
+        System.out.println("총 수익률은 " + result + "입니다.");
+    }
 }

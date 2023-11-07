@@ -9,7 +9,7 @@ public class LottoGame {
     public void run() {
         Integer purchaseAmount = InputView.inputPurchaseAmount();
         createLottos(purchaseAmount);
-
+        printLottoNumbers();
     }
 
     private void createLottos(Integer purchaseAmount) {
@@ -18,6 +18,11 @@ public class LottoGame {
             Lotto lotto = new Lotto(LottoNumberGenerator.run());
             lottos.add(lotto);
         }
+    }
+
+    private void printLottoNumbers() {
+        lottos.stream()
+                .forEach(lotto -> lotto.printNumbers());
     }
 
 }

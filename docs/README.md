@@ -43,8 +43,10 @@
 ### `enum` ErrorType
 
 나올 수 있는 에러 상태와 검증 로직을 가지는 상수 
+
 ---
 #### 상수
+
 - NOT_A_NUMBER
   - Msg : "(은)는 숫자여야 합니다."
   - test(String input)
@@ -74,7 +76,7 @@
     - 6자리면 `false`를 반환한다.
     
 - DUPLICATED_NUMBER
-  - Msg : "(은)는 중복된 수 입니다."
+  - Msg : "(은)는 중복될 수 없습니다."
   - test(String input)
     - input을 `,`로 나눠 각 문자열을 숫자로 변환한다.
     - 숫자가 중복되면 `true`를 하나도 중복이 없으면 `false`를 반환한다.
@@ -95,9 +97,55 @@
   - 에러 메시지를 반환한다.
 - `public boolean isError(String input)`
   - `Predicate<String>`의 `test(String s)`를 사용해 각 상수에 저장된 람다식에 넣고 결과를 반환한다.
-### `enum` Procedure
 
 ---
+
+### `enum` Procedure
+
+로또 게임의 단계와 나올 수 있는 에러들을 가지는 상수
+
+---
+
+#### 상수
+
+- `PURCHASE_LOTTO`
+  - domain : 구입금액
+  - `List<ErrorType>`
+    - `NOT_A_NUMBER`
+    - `NOT_IN_THOUSANDS`
+
+- `DRAW_WINNING_NUMBERS`
+  - domain : 당첨 번호
+  - `List<ErrorType>`
+    - `LENGTH_NOT_MATCH`
+    - `NOT_A_NUMBER`
+    - `OUT_OF_RANGE`
+    - `DUPLICATED_NUMBER`
+    
+- `DRAW_BONUS_NUMBER`
+  - domain : 보너스 번호
+  - `List<ErrorType>`
+    - `NOT_A_NUMBER`
+    - `OUT_OF_RANGE`
+
+
+#### 필드
+
+- `private String domain`
+  - 에러 메시지에 출력할 단계에 사용되는 이름
+- `private List<ErrorType> possibleErrors`
+  - 해당 단계에서 나올 수 있는 에러들 리스트
+
+
+#### 메소드
+- `public void checkPossibleError(String input)`
+  - input값을 넣었을 때 해당 단계에서 오류가 발생하는지 확인하는 메소드
+  - possibleErrors에서 ErrorType 하나마다 `isError`인터페이스의 `test(String s)` 메소드를 실행한다.
+  - 만약 하나라도 에러가 발생한다면 에러메시지와 함께 `IllegalArgumentException`을 발생시킨다.
+
+
+---
+
 
 ## view
 

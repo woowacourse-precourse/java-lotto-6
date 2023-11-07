@@ -1,14 +1,15 @@
-package lotto;
+package lotto.view;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 import lotto.constant.ErrorMessage;
 
 public class InputView {
-	int getPrice() {
+	public int getPrice() {
 		int price;
 		while (true) {
 			try {
@@ -42,7 +43,7 @@ public class InputView {
 		}
 	}
 
-	String getLottoNumber() {
+	public String getLottoNumber() {
 		String input;
 		while (true) {
 			System.out.println("당첨 번호를 입력해 주세요.");
@@ -107,7 +108,7 @@ public class InputView {
 		}
 	}
 
-	int getBonusNumber(Lotto winningLotto) {
+	public int getBonusNumber(Lotto winningLotto) {
 		int bonusNumber;
 		while (true) {
 			try {

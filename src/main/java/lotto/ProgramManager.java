@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import lotto.constant.Constant;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class ProgramManager {
 	InputView inputView;

@@ -2,11 +2,10 @@ package lotto.model;
 
 import static lotto.common.Constant.MAX_RANGE;
 import static lotto.common.Constant.MIN_RANGE;
-import static lotto.common.ExceptionMessage.NUMBER_NOT_IN_RANGE_ERROR;
 
 import java.util.Objects;
 import lotto.util.validator.BlankValidator;
-import lotto.util.validator.NumericValidator;
+import lotto.util.validator.IntegerValidator;
 
 public class MainNumber {
     private final int mainNumber;
@@ -22,18 +21,12 @@ public class MainNumber {
 
     private void validate(String mainNumber) {
         BlankValidator.validate(mainNumber);
-        NumericValidator.validateInteger(mainNumber);
-        validateRange(mainNumber);
+        IntegerValidator.validateInteger(mainNumber);
+        IntegerValidator.validateRange(mainNumber, MIN_RANGE, MAX_RANGE);
     }
 
-    private void validateRange(String mainNumber) {
-        if (!isBetweenRange(Integer.parseInt(mainNumber))) {
-            throw new IllegalArgumentException(NUMBER_NOT_IN_RANGE_ERROR);
-        }
-    }
-
-    private boolean isBetweenRange(int mainNumber) {
-        return (MIN_RANGE <= mainNumber) && (mainNumber <= MAX_RANGE);
+    public boolean isNumberEqual(int number) {
+        return mainNumber == number;
     }
 
     @Override

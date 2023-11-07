@@ -1,9 +1,8 @@
 package lotto.view;
 
 import java.util.List;
-import lotto.resolver.ExceptionResolver;
 
-public class InputView {
+public class InputView implements InputViewable {
 
     private static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
@@ -12,16 +11,16 @@ public class InputView {
 
     public int inputBuyingPrice() {
         System.out.println(INPUT_MONEY_MESSAGE);
-        return ExceptionResolver.resolveInput(InputNumberReader::readNumber);
+        return InputNumberReader.readNumber();
     }
 
     public List<Integer> inputLottoNumbers() {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
-        return ExceptionResolver.resolveInputWithParameter(InputNumberReader::readNumbers, DELIMITER);
+        return InputNumberReader.readNumbers(DELIMITER);
     }
 
     public int inputBonusNumber() {
         System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
-        return ExceptionResolver.resolveInput(InputNumberReader::readNumber);
+        return InputNumberReader.readNumber();
     }
 }

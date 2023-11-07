@@ -7,16 +7,16 @@ import lotto.dto.WinningResults;
 import lotto.generator.RandomLottoNumberGenerator;
 import lotto.generator.WinningResultMessageGenerator;
 import lotto.resolver.ExceptionResolver;
-import lotto.view.InputView;
+import lotto.view.InputViewable;
 import lotto.view.OutputView;
 
 public class LottoGame {
 
-    private final InputView inputView;
+    private final InputViewable inputView;
     private final OutputView outputView;
     private final LottoMachine lottoMachine;
 
-    public LottoGame(final InputView inputView, final OutputView outputView, final LottoMachine lottoMachine) {
+    public LottoGame(final InputViewable inputView, final OutputView outputView, final LottoMachine lottoMachine) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoMachine = lottoMachine;

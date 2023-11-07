@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-public class Comparator {
+public class LottoService {
     int numOfFirstPlace = 0;
     int numOfSecondPlace = 0;
     int numOfThirdPlace = 0;

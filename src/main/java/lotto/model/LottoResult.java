@@ -59,14 +59,15 @@ public class LottoResult {
     public String toString() {
         StringBuilder winningResult = new StringBuilder();
         for (LottoPrize prize : LottoPrize.values()) {
-            if (prize != LottoPrize.ETC) {
-                winningResult.append(prize.getPrizeRank() + "개 일치");
-                if (prize == LottoPrize.SECOND) {
-                    winningResult.append(", 보너스 볼 일치");
-                }
-                winningResult.append(" " + prize + " - ")
-                        .append(prizeResult.get(prize) + "개\n");
+            if (prize == LottoPrize.ETC) {
+                continue;
             }
+            winningResult.append(prize.getPrizeRank() + "개 일치");
+            if (prize == LottoPrize.SECOND) {
+                winningResult.append(", 보너스 볼 일치");
+            }
+            winningResult.append(" " + prize + " - ")
+                    .append(prizeResult.get(prize) + "개\n");
         }
         return winningResult + getYieldRate();
     }

@@ -28,10 +28,9 @@ public class LottoStoreTest {
 
         //when
         long money = 0;
-        lottoStore.chargeMoney(money);
 
         //then
-        assertThatThrownBy(() -> lottoStore.validateChargedMoney())
+        assertThatThrownBy(() -> lottoStore.validateChargedMoney(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.LESS_THAN_THOUSAND.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -45,10 +44,9 @@ public class LottoStoreTest {
 
         //when
         long money = 10001;
-        lottoStore.chargeMoney(money);
 
         //then
-        assertThatThrownBy(() -> lottoStore.validateChargedMoney())
+        assertThatThrownBy(() -> lottoStore.validateChargedMoney(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.DIVIDED_DISABLE.errorMessage)
                 .hasMessageContaining(ERROR_PHRASES);
@@ -62,8 +60,7 @@ public class LottoStoreTest {
 
         //when
         long money = 13000;
-        lottoStore.chargeMoney(money);
-        lottoStore.validateChargedMoney();
+        lottoStore.getMoney(money);
 
         //then
         assertThat(lottoStore.getChargedMoney()).isEqualTo(money);
@@ -77,8 +74,7 @@ public class LottoStoreTest {
 
         //when
         long money = 13000;
-        lottoStore.chargeMoney(money);
-        lottoStore.validateChargedMoney();
+        lottoStore.getMoney(money);
 
         long chargedMoney = lottoStore.getChargedMoney();
 

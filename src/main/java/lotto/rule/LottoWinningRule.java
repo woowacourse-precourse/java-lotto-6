@@ -1,4 +1,4 @@
-package lotto.common.config;
+package lotto.rule;
 
 import java.util.Arrays;
 

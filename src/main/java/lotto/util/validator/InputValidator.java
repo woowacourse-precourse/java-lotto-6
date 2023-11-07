@@ -1,7 +1,7 @@
-package lotto.validator;
+package lotto.util.validator;
 
 import java.util.regex.Pattern;
-import lotto.common.exception.ErrorMessage;
+import lotto.util.exception.ErrorMessage;
 
 public class InputValidator {
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");

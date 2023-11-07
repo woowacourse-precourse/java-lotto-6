@@ -2,7 +2,7 @@ package lotto.model;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.common.config.LottoGameRule;
+import lotto.rule.LottoGameRule;
 
 public class LottoCreator {
 

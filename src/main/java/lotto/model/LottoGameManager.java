@@ -2,10 +2,10 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.common.config.LottoGameRule;
-import lotto.common.config.UserRule;
-import lotto.validator.LottoCostValidator;
-import lotto.validator.LottoNumbersValidator;
+import lotto.rule.LottoGameRule;
+import lotto.rule.UserRule;
+import lotto.util.validator.LottoCostValidator;
+import lotto.util.validator.LottoNumbersValidator;
 
 public class LottoGameManager {
     private int bonusNumber;

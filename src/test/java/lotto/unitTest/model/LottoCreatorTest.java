@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.common.config.UserRule;
+import lotto.rule.UserRule;
 import lotto.model.Lotto;
 import lotto.model.LottoCreator;
 import org.junit.jupiter.api.Test;

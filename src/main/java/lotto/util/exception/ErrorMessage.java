@@ -1,4 +1,4 @@
-package lotto.common.exception;
+package lotto.util.exception;
 
 public enum ErrorMessage {
     BLANK_INPUT("[ERROR] 공백이 아닌 문자를 입력해주세요."),

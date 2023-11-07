@@ -12,7 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.IO.Input;
-import lotto.common.config.LottoWinningRule;
+import lotto.rule.LottoWinningRule;
 import lotto.model.RankingManager;
 import lotto.view.View;
 import org.junit.jupiter.api.AfterEach;

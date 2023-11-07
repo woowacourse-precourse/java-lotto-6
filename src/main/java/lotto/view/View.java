@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import lotto.IO.Input;
 import lotto.IO.Output;
-import lotto.common.config.LottoWinningRule;
-import lotto.validator.InputValidator;
+import lotto.rule.LottoWinningRule;
+import lotto.util.validator.InputValidator;
 
 public class View {
     private final Input input;

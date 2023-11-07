@@ -3,13 +3,14 @@ package lotto.model;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import lotto.common.config.LottoGameRule;
-import lotto.common.config.LottoWinningRule;
+import lotto.rule.LottoGameRule;
+import lotto.rule.LottoWinningRule;
 
 public class RankingManager {
     private final LottoBucket lottoBucket;
     private final Lotto winningLotto;
     private final int bonusNumber;
+    private static final int PLUS_WINNING_COUNT = 1;
 
     private final Map<LottoWinningRule, Integer> winningDetails = new LinkedHashMap<>() {{
         put(LottoWinningRule.RANK_FIVE, LottoGameRule.INITIAL_WINNING_NUMBER.getConstant());
@@ -51,7 +52,7 @@ public class RankingManager {
         LottoWinningRule lottoWinningRule = LottoWinningRule.getRank(winningLotto.countMatchOtherLotto(randomLotto),
                 randomLotto.contains(bonusNumber));
         if (winningDetails.containsKey(lottoWinningRule)) {
-            winningDetails.put(lottoWinningRule, winningDetails.get(lottoWinningRule) + 1);
+            winningDetails.put(lottoWinningRule, winningDetails.get(lottoWinningRule) + PLUS_WINNING_COUNT);
         }
     }
 }

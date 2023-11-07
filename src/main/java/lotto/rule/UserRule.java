@@ -1,4 +1,4 @@
-package lotto.common.config;
+package lotto.rule;
 
 public enum UserRule {
     WINING_NUMBERS_SEPARATOR(",");

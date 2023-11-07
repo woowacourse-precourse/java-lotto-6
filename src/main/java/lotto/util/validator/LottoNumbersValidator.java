@@ -1,9 +1,9 @@
-package lotto.validator;
+package lotto.util.validator;
 
 import java.util.List;
 import java.util.Set;
-import lotto.common.config.LottoGameRule;
-import lotto.common.exception.ErrorMessage;
+import lotto.rule.LottoGameRule;
+import lotto.util.exception.ErrorMessage;
 import lotto.model.Lotto;
 
 public class LottoNumbersValidator {

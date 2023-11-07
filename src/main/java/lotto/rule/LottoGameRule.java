@@ -1,4 +1,4 @@
-package lotto.common.config;
+package lotto.rule;
 
 public enum LottoGameRule {
     LOTTO_NUMBERS_SIZE(6),

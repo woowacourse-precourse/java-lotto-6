@@ -1,7 +1,7 @@
-package lotto.validator;
+package lotto.util.validator;
 
-import lotto.common.config.LottoGameRule;
-import lotto.common.exception.ErrorMessage;
+import lotto.rule.LottoGameRule;
+import lotto.util.exception.ErrorMessage;
 
 public class LottoCostValidator {
     public static void validateLottoCostUnit(int lottoCost) {

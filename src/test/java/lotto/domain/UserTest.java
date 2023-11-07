@@ -29,4 +29,17 @@ public class UserTest {
         // then
         assertThat(user.getLottos().size()).isEqualTo(buyingPrice / Constants.LOTTO_PRICE);
     }
+
+    @DisplayName("로또 우승 상금 테스트")
+    @Test
+    public void winningPriceTest() {
+        // given
+        User user = new User(1000);
+        int earnMoneyByLotto = 3000;
+        // when
+        user.addWinningPrice(earnMoneyByLotto);
+        // then
+        assertThat(user.getWinningPrice()).isEqualTo(earnMoneyByLotto);
+
+    }
 }

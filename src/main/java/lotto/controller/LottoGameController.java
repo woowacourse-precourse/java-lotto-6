@@ -16,7 +16,6 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     private Game game;
-    private Lottos lottos;
     private LottoRankInfo lottoRankInfo;
     private List<Integer> winningNumbers;
     private int bonusNumber = 0;
@@ -28,7 +27,6 @@ public class LottoGameController {
 
 
     public void start() {
-        game = new Game();
         getBuyAmount();
         createLottos();
         getWinningNumbers();
@@ -57,8 +55,7 @@ public class LottoGameController {
 
 
     private void createLottos() {
-        lottos = game.createLottos(buyAmount);
-        OutputView.printCreatedLottos(lottos);
+        OutputView.printCreatedLottos(game.createLottos(buyAmount));
     }
 
     private void getWinningNumbers() {

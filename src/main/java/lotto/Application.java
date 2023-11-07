@@ -21,5 +21,13 @@ public class Application {
             }
         }
         System.out.println();
+
+        // 구입 로또 갯수 출력
+        double lottoTicket = money / 1000;
+        double lottoTicketComparison = money / 1000;
+        if (lottoTicket != Math.round(lottoTicketComparison)) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위로 입력해주세요.");
+        }
+        System.out.println(Math.round(lottoTicket) + "개를 구매했습니다.");
     }
 }

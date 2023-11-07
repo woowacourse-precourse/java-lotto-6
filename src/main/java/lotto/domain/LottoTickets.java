@@ -5,11 +5,11 @@ import java.util.List;
 
 public record LottoTickets(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
 
-    public RankResult getRankResult(WinningTicket winningTicket) {
+    public RankResult getRankResult(WinningLotto winningLotto) {
         RankResult rankResult = new RankResult();
 
         lottos.stream()
-                .map(winningTicket::match)
+                .map(winningLotto::match)
                 .forEach(rankResult::add);
 
         return rankResult;

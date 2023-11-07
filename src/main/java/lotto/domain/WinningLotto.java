@@ -2,10 +2,10 @@ package lotto.domain;
 
 import static lotto.common.exception.ExceptionMessages.DUPLICATE_WINNING_NUMBER;
 
-public record WinningTicket(Lotto winningLotto, LottoNumber bonusNumber) {
+public record WinningLotto(Lotto lotto, LottoNumber bonusNumber) {
 
-    public WinningTicket {
-        validate(winningLotto, bonusNumber);
+    public WinningLotto {
+        validate(lotto, bonusNumber);
     }
 
     private void validate(Lotto winningLotto, LottoNumber bonusNumber) {
@@ -22,7 +22,7 @@ public record WinningTicket(Lotto winningLotto, LottoNumber bonusNumber) {
 
     private int getMatchCount(Lotto lotto) {
         return (int) lotto.getNumbers().stream()
-                .filter(winningLotto::has)
+                .filter(this.lotto::has)
                 .count();
     }
 

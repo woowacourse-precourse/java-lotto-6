@@ -15,10 +15,10 @@ class LottoTicketsTest {
     @DisplayName("당첨 결과를 구할 수 있다.")
     @ParameterizedTest
     @MethodSource
-    void getRankResult(List<Lotto> tickets, WinningTicket winningTicket, Integer[] expected) {
+    void getRankResult(List<Lotto> tickets, WinningLotto winningLotto, Integer[] expected) {
         LottoTickets lottoTickets = new LottoTickets(tickets, new PurchaseAmount(1000));
 
-        RankResult rankResult = lottoTickets.getRankResult(winningTicket);
+        RankResult rankResult = lottoTickets.getRankResult(winningLotto);
         assertThat(rankResult.values()).containsExactly(expected);
     }
 
@@ -44,8 +44,8 @@ class LottoTicketsTest {
         );
     }
 
-    private static WinningTicket createWinningTicket(int bonus, Integer... nums) {
-        return new WinningTicket(createLotto(nums), new LottoNumber(bonus));
+    private static WinningLotto createWinningTicket(int bonus, Integer... nums) {
+        return new WinningLotto(createLotto(nums), new LottoNumber(bonus));
     }
 
     private static Lotto createLotto(Integer... nums) {

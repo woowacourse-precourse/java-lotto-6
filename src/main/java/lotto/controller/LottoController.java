@@ -5,7 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoTickets;
 import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningTicket;
+import lotto.domain.WinningLotto;
 import lotto.domain.service.LottoService;
 import lotto.dto.WinningResult;
 import lotto.view.InputView;
@@ -27,8 +27,8 @@ public class LottoController {
         LottoTickets lottoTickets = lottoService.purchase(purchaseAmount);
         outputView.printPurchasedLottos(lottoTickets.lottos());
 
-        WinningTicket winningTicket = exceptionHandleAndRetry(this::getWinningTicket);
-        WinningResult winningResult = lottoService.getWinningResult(lottoTickets, winningTicket);
+        WinningLotto winningLotto = exceptionHandleAndRetry(this::getWinningLotto);
+        WinningResult winningResult = lottoService.getWinningResult(lottoTickets, winningLotto);
         outputView.printWinningResult(winningResult);
     }
 
@@ -36,10 +36,10 @@ public class LottoController {
         return new PurchaseAmount(inputView.inputPurchaseAmount());
     }
 
-    private WinningTicket getWinningTicket() {
-        Lotto winningLotto = exceptionHandleAndRetry(this::getLotto);
+    private WinningLotto getWinningLotto() {
+        Lotto lotto = exceptionHandleAndRetry(this::getLotto);
         LottoNumber bonusNumber = exceptionHandleAndRetry(this::getLottoNumber);
-        return new WinningTicket(winningLotto, bonusNumber);
+        return new WinningLotto(lotto, bonusNumber);
     }
 
     private Lotto getLotto() {

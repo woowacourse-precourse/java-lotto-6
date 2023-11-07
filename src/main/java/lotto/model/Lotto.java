@@ -1,12 +1,13 @@
 package lotto.model;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    protected static final int MAX_LOTTO_NUMBER = 45;
-    protected static final int MIN_LOTTO_NUMBER = 1;
-    protected static final int LOTTO_NUMBER_SIZE = 6;
+    protected static final Integer MAX_LOTTO_NUMBER = 45;
+    protected static final Integer MIN_LOTTO_NUMBER = 1;
+    protected static final Integer LOTTO_NUMBER_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -17,10 +18,11 @@ public class Lotto {
 
     public Lotto(String winningNumbers) {
         List<Integer> numbers = new ArrayList<>();
-        String[] parserNumber = winningNumbers.split(",");
 
+        validateConvertBeforeNumbers(winningNumbers);
+        String[] parserNumber = winningNumbers.split(",");
         for (String currentNumber : parserNumber) {
-            numbers.add(Integer.parseInt(currentNumber));
+            numbers.add(convertStringToInteger(currentNumber));
         }
         validate(numbers);
         this.numbers = numbers;
@@ -33,7 +35,24 @@ public class Lotto {
         validateLengthOfNumber(numbers);
     }
 
+    private void validateConvertBeforeNumbers(String winningNumbers) {
+        validateNotNullNumber(winningNumbers);
+        validateNonNumericNumbers(winningNumbers);
+    }
+
+    private void validateNonNumericNumbers(String bonusNumber) {
+        if (!bonusNumber.matches("^[0-9,]*")) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호에 숫자가 아닌 값이 들어왔습니다.");
+        }
+    }
+
     private void validateNotNullNumber(List<Integer> numbers) {
+        if (numbers == null) {
+            throw new IllegalArgumentException("[ERROR] " + LOTTO_NUMBER_SIZE + "개의 로또번호를 입력해주세요");
+        }
+    }
+
+    private void validateNotNullNumber(String numbers) {
         if (numbers == null) {
             throw new IllegalArgumentException("[ERROR] " + LOTTO_NUMBER_SIZE + "개의 로또번호를 입력해주세요");
         }
@@ -54,14 +73,26 @@ public class Lotto {
     }
 
     private void validateOutOfRangeNumber(List<Integer> numbers) {
-      if (numbers.stream()
+        if (numbers.stream()
                 .anyMatch(num -> num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)) {
-          throw new IllegalArgumentException("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다 범위 "
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
                   + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
-      }
+        }
     }
 
     protected boolean isInputNumberContainLottoNumbers(Integer inputNumber) {
         return (numbers.contains(inputNumber));
+    }
+
+    protected Integer convertStringToInteger(String numbers) {
+        Integer convertnumbers;
+
+        try {
+            convertnumbers = Integer.parseInt(numbers);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+                    + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
+        }
+        return convertnumbers;
     }
 }

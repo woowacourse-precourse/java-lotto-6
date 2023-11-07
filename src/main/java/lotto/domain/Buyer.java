@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.util.Validation;
 
 public class Buyer {
-    private static final int PURCHASE_AMOUNT_UNIT = 1000;
 
     private final Map<Rank, Integer> resultRank = new HashMap<>();
     private final List<Lotto> purchasedLotto = new ArrayList<>();
@@ -19,7 +17,6 @@ public class Buyer {
     }
 
     public static Buyer from(int purchaseAmount) {
-        Validation.validateDivisibleNumber(purchaseAmount, PURCHASE_AMOUNT_UNIT);
         return new Buyer(purchaseAmount);
     }
 

@@ -15,6 +15,7 @@ public class GameController {
     private static final int LOTTO_FISRT_NUMBER = 1;
     private static final int LOTTO_LAST_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
+    private static final int PURCHASE_AMOUNT_UNIT = 1000;
 
     private Buyer buyer;
 
@@ -39,11 +40,16 @@ public class GameController {
     }
 
     private int getInputPurchaseAmount() {
-        InputMessage.inputPurchaseAmount();
-        String input = Console.readLine();
-        Validation.validateInputIsNumber(input);
-
-        return Util.stringToInt(input);
+        try {
+            InputMessage.inputPurchaseAmount();
+            String input = Console.readLine();
+            Validation.validateInputIsNumber(input);
+            int purchaseAmount = Util.stringToInt(input);
+            Validation.validateDivisibleNumber(purchaseAmount, PURCHASE_AMOUNT_UNIT);
+            return purchaseAmount;
+        } catch (IllegalArgumentException e) {
+            return getInputPurchaseAmount();
+        }
     }
 
     private void showPurchasedLotteries(List<Lotto> lotteries) {
@@ -52,23 +58,31 @@ public class GameController {
     }
 
     private List<Integer> getInputWinningNumbers() {
-        InputMessage.inputWinningNumbers();
-        List<Integer> winningNumbers = Util.splitInputNumbers(Console.readLine());
-        Validation.validateListSize(winningNumbers, LOTTO_SIZE);
-        Validation.validateListNumbersInRange(winningNumbers, LOTTO_FISRT_NUMBER, LOTTO_LAST_NUMBER);
-        Validation.validateListDuplication(winningNumbers);
-
-        return winningNumbers;
+        try {
+            InputMessage.inputWinningNumbers();
+            List<Integer> winningNumbers = Util.splitInputNumbers(Console.readLine());
+            Validation.validateListSize(winningNumbers, LOTTO_SIZE);
+            Validation.validateListNumbersInRange(winningNumbers, LOTTO_FISRT_NUMBER, LOTTO_LAST_NUMBER);
+            Validation.validateListDuplication(winningNumbers);
+            return winningNumbers;
+        } catch (IllegalArgumentException e) {
+            return getInputWinningNumbers();
+        }
     }
 
     private int getInputBonusNumbers(List<Integer> winningNumbers) {
-        InputMessage.inputBonusNumber();
-        String input = Console.readLine();
-        Validation.validateInputIsNumber(input);
+        try {
+            InputMessage.inputBonusNumber();
+            String input = Console.readLine();
+            Validation.validateInputIsNumber(input);
 
-        int bonusNumber = Util.stringToInt(input);
-        Validation.validateNumberInList(winningNumbers, bonusNumber);
+            int bonusNumber = Util.stringToInt(input);
+            Validation.validateNumberInRange(bonusNumber, LOTTO_FISRT_NUMBER, LOTTO_LAST_NUMBER);
+            Validation.validateNumberInList(winningNumbers, bonusNumber);
 
-        return bonusNumber;
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            return getInputBonusNumbers(winningNumbers);
+        }
     }
 }

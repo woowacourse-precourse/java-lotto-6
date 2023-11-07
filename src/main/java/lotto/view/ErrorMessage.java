@@ -25,6 +25,6 @@ public class ErrorMessage {
     }
 
     public static void numberNotInRangeError(int minNumber, int maxNumber) {
-        System.out.printf("[ERROR] 숫자가 %d와 %d사이에 존재하지 않습니다.\n", minNumber, maxNumber);
+        System.out.printf("[ERROR] 숫자가 %d과 %d 사이에 존재하지 않습니다.\n", minNumber, maxNumber);
     }
 }

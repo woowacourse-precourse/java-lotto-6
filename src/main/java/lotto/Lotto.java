@@ -10,21 +10,25 @@ public class Lotto {
     static final int LAST_LOTTERY_INDEX = 5;
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        checkRedundantNumbers(numbers);
-        checkNumbersInRange(numbers);
-        this.numbers = numbers;
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException {
+        try{
+            validate(numbers);
+            checkRedundantNumbers(numbers);
+            checkNumbersInRange(numbers);
+            this.numbers = numbers;
+        } catch(IllegalArgumentException e){
+            throw new IllegalArgumentException();
+        }
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != 6) {
             System.out.println("[ERROR] 로또 번호는 총 6자리를 입력해야 합니다.");
             throw new IllegalArgumentException();
         }
     }
 
-    private void checkRedundantNumbers(List<Integer> numbers){
+    private void checkRedundantNumbers(List<Integer> numbers) throws IllegalArgumentException{
         Set<Integer> makeNumbersToSet = new HashSet<>(numbers);
         numbers = new ArrayList<>(makeNumbersToSet);
 
@@ -34,7 +38,7 @@ public class Lotto {
         }
     }
 
-    private void checkNumbersInRange(List<Integer> numbers){
+    private void checkNumbersInRange(List<Integer> numbers) throws IllegalArgumentException{
         for(int number : numbers){
             if(number < 1 || number > 45){
                 System.out.println("[ERROR] 1 ~ 45 사이의 숫자만 입력해야 합니다.");

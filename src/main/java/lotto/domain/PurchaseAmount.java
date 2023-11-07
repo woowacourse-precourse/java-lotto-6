@@ -18,8 +18,8 @@ public class PurchaseAmount {
     }
 
     private void validateAmount(int amount) {
-        if (amount < 1) {
-            throw new IllegalArgumentException("구입 금액은 1원 이상이어야 합니다.");
+        if (amount < 1000) {
+            throw new IllegalArgumentException("구입 금액은 1000원 이상이어야 합니다.");
         }
     }
 

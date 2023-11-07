@@ -25,5 +25,14 @@ public class Application {
             Collections.sort(numbers);
             System.out.println(numbers);
         }
+        System.out.println();
+
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String[] winningNumbers = Console.readLine().split(",");
+        System.out.println();
+
+        System.out.println("보너스 번호를 입력해 주세요.");
+        Integer bonus = Integer.parseInt(Console.readLine());
+        System.out.println();
     }
 }

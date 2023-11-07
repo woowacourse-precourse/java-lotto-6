@@ -2,7 +2,6 @@ package lotto.model;
 
 import static lotto.util.Constants.CONFIG_NUMBERS_SIZE;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +11,7 @@ import lotto.exception.ErrorType;
 
 public class Lotto {
 
-    private List<Number> numbers;
+    private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -29,7 +28,7 @@ public class Lotto {
         return numbers.stream()
             .map(Number::new)
             .sorted()
-            .toList();
+            .collect(Collectors.toList());
     }
 
     private void validate(List<Integer> numbers) {
@@ -48,5 +47,22 @@ public class Lotto {
         if (checkDuplicate.size() != CONFIG_NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorType.DUPLICATED_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Lotto lotto = (Lotto) o;
+        return Objects.equals(numbers, lotto.numbers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numbers);
     }
 }

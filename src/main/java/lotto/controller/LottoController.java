@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
+import lotto.exception.ErrorType;
 import lotto.model.Bonus;
 import lotto.model.LotteryMachine;
 import lotto.model.LotteryResult;
@@ -30,8 +31,9 @@ public class LottoController {
   }
 
   public void start() {
-    PurchaseMoney purchaseMoney = initPurchaseMoney(inputView.inputPurchaseMoneyOfLotto());
+    PurchaseMoney purchaseMoney = initPurchaseMoney();
     PersonLotto personLotto = initPersonLotto(generate, purchaseMoney);
+
     WinningLotto winningLotto = initWinningNumbers();
     Bonus bonus = initBonusNumber(winningLotto);
     LotteryMachine lotteryMachine = initLotteryMachine(personLotto, winningLotto);
@@ -42,7 +44,7 @@ public class LottoController {
   private void result(LotteryMachine lotteryMachine, Bonus bonus, PurchaseMoney purchaseMoney) {
     Map<WinningMoney, Integer> result = lotteryMachine.drawingLotto(bonus);
     LotteryResult lotteryResult = new LotteryResult(result);
-    outputView.outputResult(lotteryResult, purchaseMoney);
+    outputView.outputStatistics(lotteryResult, purchaseMoney);
   }
 
   private LotteryMachine initLotteryMachine(PersonLotto personLotto, WinningLotto winningLotto) {
@@ -56,46 +58,49 @@ public class LottoController {
     return personLotto;
   }
 
-  private PurchaseMoney initPurchaseMoney(int inputMoney) {
-    PurchaseMoney readValue;
+  private PurchaseMoney initPurchaseMoney() {
+    PurchaseMoney purchaseMoney;
+
     while (true) {
       try {
-        readValue = new PurchaseMoney(inputMoney);
+        int inputMoney = inputView.inputPurchaseMoneyOfLotto();
+        purchaseMoney = new PurchaseMoney(inputMoney);
         break;
-      } catch (Exception ex) {
-        ex.printStackTrace();
+      } catch (IllegalArgumentException ex) {
+        outputView.outputErrorMessage(ex);
       }
     }
-    return readValue;
+    return purchaseMoney;
   }
 
   private WinningLotto initWinningNumbers() {
-    WinningLotto readValue;
+    WinningLotto winningLotto;
+
     while (true) {
       try {
-        List<Integer> readNumbers = inputView.inputWinningNumbers();
-        readValue = new WinningLotto(new Lotto(readNumbers));
+        List<Integer> input = inputView.inputWinningNumbers();
+        Lotto lotto = new Lotto(input);
+        winningLotto = new WinningLotto(lotto);
         break;
-      } catch (Exception ex) {
-        ex.printStackTrace();
-        Console.close();
+      } catch (IllegalArgumentException ex) {
+        outputView.outputErrorMessage(ex);
       }
     }
-    return readValue;
+    System.out.println();
+    return winningLotto;
   }
 
   private Bonus initBonusNumber(WinningLotto winningLotto) {
-    System.out.println();
-    Bonus readValue;
+    Bonus bonus;
+
     while (true) {
       try {
-        int readBonus = inputView.inputBonusNumber();
-        readValue = new Bonus(new Number(readBonus), winningLotto);
+        bonus = new Bonus(new Number(inputView.inputBonusNumber()), winningLotto);
         break;
-      } catch (Exception ex) {
-        ex.printStackTrace();
+      } catch (IllegalArgumentException ex) {
+        outputView.outputErrorMessage(ex);
       }
     }
-    return readValue;
+    return bonus;
   }
 }

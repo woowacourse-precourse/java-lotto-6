@@ -40,6 +40,10 @@ public class OutputView {
     }
   }
 
+  public void outputErrorMessage(IllegalArgumentException ex) {
+    System.out.println(ex.getMessage());
+    System.out.println();
+  }
   public void outputPurchase(PurchaseMoney purchaseMoney, PersonLotto personLotto) {
     StringBuilder sb = new StringBuilder();
     sb.append(SpecialSign.NEW_LINE.getSign())
@@ -50,7 +54,7 @@ public class OutputView {
     System.out.println(sb);
   }
 
-  public void outputResult(LotteryResult lotteryResult, PurchaseMoney purchaseMoney) {
+  public void outputStatistics(LotteryResult lotteryResult, PurchaseMoney purchaseMoney) {
     StringBuilder sb = new StringBuilder();
     sb.append(SpecialSign.NEW_LINE.getSign())
         .append(OutputMessage.STATISTICS_MESSAGE.message)

@@ -1,12 +1,16 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 import lotto.util.NumbersGenerator;
 import lotto.util.TestFixNumbersGenerator;
 import lotto.util.TestRandomNumbersGenerator;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LotteryResultTest {
@@ -19,10 +23,12 @@ class LotteryResultTest {
   }
 
   @Test
-  void test() {
+  @DisplayName("수익률을 항상 0보다 크거나 같다.")
+  void testCheckProfitPercentage() {
     int money = 4000;
     PurchaseMoney purchasedMoney = new PurchaseMoney(money);
     PersonLotto personLotto = new PersonLotto(numbersGenerator, purchasedMoney);
+
     Lotto lotto = new Lotto(new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6)));
     WinningLotto winningLotto = new WinningLotto(lotto);
     LotteryMachine lotteryMachine = new LotteryMachine(personLotto, winningLotto);
@@ -33,7 +39,9 @@ class LotteryResultTest {
     Map<WinningMoney, Integer> store = lotteryMachine.drawingLotto(bonus);
 
     LotteryResult lotteryResult = new LotteryResult(store);
-    //String profitPercentage = lotteryResult.getProfitPercentage(purchasedMoney);
-    //System.out.println(profitPercentage);
+    String profitPercentage = lotteryResult.getProfitPercentage(purchasedMoney);
+
+
+    assertThat(profitPercentage).isGreaterThanOrEqualTo("0");
   }
 }

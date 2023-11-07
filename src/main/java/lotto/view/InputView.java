@@ -4,15 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.ErrorType;
 import lotto.util.InputConverter;
 import lotto.validation.InputValidator;
 
 public class InputView {
 
   private final InputValidator inputValidator;
-  private final InputConverter inputConverter;
 
-  // private ConsoleReader consoleReader = ConsoleReader.getInstance();
+  private final InputConverter inputConverter;
 
   public InputView(InputValidator inputValidator, InputConverter inputConverter) {
     this.inputValidator = inputValidator;
@@ -36,7 +36,6 @@ public class InputView {
     String input = Console.readLine();
     input = inputConverter.translate(input);
     validatePurchaseMoney(input);
-
     return inputConverter.inputToNumber(input);
   }
 
@@ -45,10 +44,10 @@ public class InputView {
     String input = Console.readLine();
     String[] inputNumbers = inputConverter.inputToSplit(input);
     validateWinningNumbers(input, inputNumbers);
-
     return Arrays.stream(inputNumbers)
         .map(Integer::parseInt)
         .collect(Collectors.toList());
+
   }
 
   public int inputBonusNumber() {
@@ -60,20 +59,25 @@ public class InputView {
   }
 
   private void validatePurchaseMoney(String input) {
-    inputValidator.validateInputEmpty(input);
-    inputValidator.validateInputBlank(input);
-    inputValidator.validateInputNumeric(input);
+    inputValidator.validateEmpty(input);
+    inputValidator.validateBlank(input);
+    inputValidator.validateNumeric(input);
   }
 
   private void validateWinningNumbers(String input, String[] inputNumbers) {
-    inputValidator.validateInputEmpty(input);
-    inputValidator.validateInputBlank(input);
-    inputValidator.validateMatchNumbers(inputNumbers);
+    inputValidator.validateEmpty(input);
+    inputValidator.validateBlank(input);
+
+    for (String x : inputNumbers) {
+      inputValidator.validateEmpty(x);
+      inputValidator.validateBlank(x);
+      inputValidator.validateNumeric(x);
+    }
   }
 
   private void validateBonusNumber(String input) {
-    inputValidator.validateInputEmpty(input);
-    inputValidator.validateInputBlank(input);
-    inputValidator.validateInputNumeric(input);
+    inputValidator.validateEmpty(input);
+    inputValidator.validateBlank(input);
+    inputValidator.validateNumeric(input);
   }
 }

@@ -6,7 +6,7 @@ import static lotto.util.Constants.MIN_NUMBER_RANGE;
 import java.util.Objects;
 import lotto.exception.ErrorType;
 
-public class Number implements Comparable<Number> {
+public class Number implements Comparable<Number>{
 
   private int number;
 
@@ -29,10 +29,6 @@ public class Number implements Comparable<Number> {
     return number;
   }
 
-  @Override
-  public int compareTo(Number o) {
-    return this.number - o.number;
-  }
 
   @Override
   public boolean equals(Object o) {
@@ -49,5 +45,10 @@ public class Number implements Comparable<Number> {
   @Override
   public int hashCode() {
     return Objects.hash(number);
+  }
+
+  @Override
+  public int compareTo(Number o) {
+    return this.number - o.number;
   }
 }

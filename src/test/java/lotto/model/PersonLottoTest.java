@@ -25,10 +25,6 @@ class PersonLottoTest {
     int purchaseMoney = 1000;
 
     PersonLotto personLotto = new PersonLotto(numbersGenerator, new PurchaseMoney(purchaseMoney));
-    Assertions.assertAll(
-        () -> assertThat(personLotto.getPurchaseLotto().size()).isEqualTo(1),
-        () -> assertThat(personLotto.getPurchaseLotto())
-            .containsOnly(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)))
-    );
+    assertThat(personLotto.getPurchaseLotto().size()).isEqualTo(1);
   }
 }

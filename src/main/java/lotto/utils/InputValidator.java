@@ -1,21 +1,25 @@
 package lotto.utils;
 
+import static lotto.constant.ExceptionMessage.INVALID_BLANK_EXCEPTION;
+import static lotto.constant.ExceptionMessage.INVALID_NUMBER_EXCEPTION;
+import static lotto.constant.Global.DIGIT_REGEX;
+
 import java.util.Arrays;
 
 public class InputValidator {
     public static void validateInputMoney(String money) {
         if (isNotDigit(money)) {
-            throw new IllegalArgumentException("숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_EXCEPTION.getMessage());
         }
     }
 
     public static void validateInputWinningNumber(String[] inputWinningNumber) {
         if (isBlankWinningNumber(inputWinningNumber)) {
-            throw new IllegalArgumentException("공백은 입력될 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_BLANK_EXCEPTION.getMessage());
         }
 
         if (checkDigitWinningNumber(inputWinningNumber)) {
-            throw new IllegalArgumentException("1~45 사이의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_EXCEPTION.getMessage());
         }
     }
 
@@ -31,11 +35,11 @@ public class InputValidator {
 
     public static void validateBonusNumber(String bonusNumber) {
         if (isBlankBonusNumber(bonusNumber)) {
-            throw new IllegalArgumentException("공백은 입력될 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_BLANK_EXCEPTION.getMessage());
         }
 
         if (isNotDigit(bonusNumber)) {
-            throw new IllegalArgumentException("1~45 사이의 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(INVALID_NUMBER_EXCEPTION.getMessage());
         }
     }
 
@@ -44,6 +48,6 @@ public class InputValidator {
     }
 
     private static boolean isNotDigit(String input) {
-        return !input.matches("^[0-9]+$");
+        return !input.matches(DIGIT_REGEX.getValue());
     }
 }

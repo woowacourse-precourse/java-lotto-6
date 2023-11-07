@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static lotto.constant.LottoConstant.RANGE_END;
+import static lotto.constant.LottoConstant.RANGE_START;
+
 public class Validator {
     public static boolean checkIsNotNumber(String pay) {
         try {
@@ -46,7 +49,7 @@ public class Validator {
 
     public static boolean checkRangeLotto(List<Integer> _lotto) {
         _lotto = _lotto.stream().filter(_number -> {
-            if(checkRangeNumber(_number, 1, 45)) return true;
+            if(checkRangeNumber(_number, RANGE_START.getNumber(), RANGE_END.getNumber())) return true;
             else { return false; }
         }).toList();
 

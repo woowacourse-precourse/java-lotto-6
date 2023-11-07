@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 
+import static lotto.constant.LottoConstant.LOTTO_SIZE;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -11,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException();
         }
     }

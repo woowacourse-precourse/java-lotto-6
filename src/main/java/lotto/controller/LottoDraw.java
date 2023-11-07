@@ -10,7 +10,7 @@ import lotto.view.constant.ErrorMessage;
 import java.util.List;
 
 import static java.lang.Integer.parseInt;
-import static lotto.constant.LottoConstant.LOTTO_PRICE;
+import static lotto.constant.LottoConstant.*;
 import static lotto.view.constant.ConstantMessage.*;
 
 public class LottoDraw {
@@ -84,7 +84,7 @@ public class LottoDraw {
     private boolean issueLotto() {
         boolean flag = false;
         // 로또 발행
-        numOfLotto = customer.getMoney() / LOTTO_PRICE.getLottoConstant();
+        numOfLotto = customer.getMoney() / LOTTO_PRICE.getNumber();
         OutputView.printBuyLotto(BUY_LOTTO, numOfLotto);
         for(int i = 0; i < numOfLotto ; i++) {
             customer.buyLotto();
@@ -139,7 +139,7 @@ public class LottoDraw {
         }
 
         // check 1 ~ 45
-        if (!Validator.checkRangeNumber(parseInt(_input), 1, 45)) {
+        if (!Validator.checkRangeNumber(parseInt(_input), RANGE_START.getNumber(), RANGE_END.getNumber())) {
             OutputView.printError(ErrorMessage.LOTTO_OUT_OF_RANGE.getMessage());
             return true;
         }

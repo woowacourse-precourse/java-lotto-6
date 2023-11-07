@@ -30,7 +30,7 @@ public class Customer {
     }
 
     public void buyLotto() {
-        lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+        lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(RANGE_START.getNumber(), RANGE_END.getNumber(), LOTTO_SIZE.getNumber())));
     }
     public Lotto getLastLotto() {
         return lottos.get(lottos.size()-1);
@@ -52,11 +52,11 @@ public class Customer {
     public void calcRateOfReturn() {
 
         // 수익금 / 구입 금액 * 100
-        rateOfReturn = ((winningLottos.get(0) * THREE_WINNINGS.getLottoConstant())
-                + (winningLottos.get(1) * FOUR_WINNINGS.getLottoConstant())
-                + (winningLottos.get(2) * FIVE_WINNINGS.getLottoConstant())
-                + (winningLottos.get(3) * SIX_WINNINGS.getLottoConstant())
-                + (winningLottos.get(4) * FIVE_BONUS_WINNINGS.getLottoConstant())
+        rateOfReturn = ((winningLottos.get(0) * THREE_WINNINGS.getNumber())
+                + (winningLottos.get(1) * FOUR_WINNINGS.getNumber())
+                + (winningLottos.get(2) * FIVE_WINNINGS.getNumber())
+                + (winningLottos.get(3) * SIX_WINNINGS.getNumber())
+                + (winningLottos.get(4) * FIVE_BONUS_WINNINGS.getNumber())
         ) / (double)money * 100;
 
         rateOfReturn = Math.round((rateOfReturn * 10)) / 10.0;

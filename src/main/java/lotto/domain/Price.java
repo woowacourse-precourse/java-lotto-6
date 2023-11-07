@@ -19,4 +19,10 @@ public class Price {
             throw new IllegalArgumentException("금액이 0원입니다.");
         }
     }
+
+    private void validatePriceUnit(int purchaseAmount){
+        if(purchaseAmount % A_TICKET_PRICE != ZERO){
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위만 가능합니다.");
+        }
+    }
 }

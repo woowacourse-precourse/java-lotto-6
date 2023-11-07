@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,13 +41,20 @@ public class Controller {
         InputValidator.isNotPositiveNumber(inputPurchasePrice);
     }
 
-    private void getPurchaseLotteriesInformation() {
+    private void getPurchaseLotteriesInformation(int lottoQuantity) {
+        for (int i = 0; i < lottoQuantity; i++) {
+            buyer.addPurchaseLotto(new Lotto(generateLottoNumbers()));
+        }
         showLottoQuantity();
         showPurchaseLotteries(buyer.getPurchaseLotteries());
     }
 
+    private List<Integer> generateLottoNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
     private void showLottoQuantity() {
-        OutputView.showLottoQuantity(buyer.getPurchasePrice() / 1000);
+        OutputView.showLottoQuantity(buyer.getLottoQuantity());
 
     }
 

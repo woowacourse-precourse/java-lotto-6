@@ -31,6 +31,12 @@ public class OutputView {
             long count = ranks.stream().filter(r -> r == rank).count();
             int matchingNumbers = rank.getMatchingNumbers();
 
+            if (rank.name().equals("SECOND")) {
+                String prizeAmountFormatted = NumberFormat.getIntegerInstance().format(rank.getPrizeAmount());
+                System.out.println(matchingNumbers + "개 일치, 보너스 볼 일치 (" + prizeAmountFormatted + "원) - " + count + "개");
+                continue;
+            }
+
             if (!rank.name().equals("NONE")) {
                 String prizeAmountFormatted = NumberFormat.getIntegerInstance().format(rank.getPrizeAmount());
                 System.out.println(matchingNumbers + "개 일치 (" + prizeAmountFormatted + "원) - " + count + "개");

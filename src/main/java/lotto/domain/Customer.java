@@ -2,6 +2,8 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static lotto.constant.CustomerConst.*;
+
 public class Customer {
 
     private int money;
@@ -18,7 +20,7 @@ public class Customer {
         try {
             Integer.parseInt(money);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("숫자를 입력해주세요");
+            throw new IllegalArgumentException(IS_NOT_NUMBER);
         }
 
         return Integer.parseInt(money);
@@ -26,14 +28,14 @@ public class Customer {
 
     private void validateDigit(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("1000 단위로 입력해주세요");
+            throw new IllegalArgumentException(INDIVISIBLE);
         }
 
     }
 
     private void validateRange(int money) {
         if (money <= 0) {
-            throw new IllegalArgumentException("양수를 입력해주세요");
+            throw new IllegalArgumentException(IS_NOT_POSITIVE);
         }
 
     }

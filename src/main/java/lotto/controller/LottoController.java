@@ -12,6 +12,8 @@ import lotto.util.Converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.constant.LottoConst.WRONG_NUMBER;
+
 public class LottoController {
 
     private static final LottoService lottoService = new LottoService();
@@ -48,7 +50,7 @@ public class LottoController {
             String bonusNumber = Console.readLine();
             winningLotto = new WinningLotto(integers, bonusNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 잘못된 입력입니다.");
+            System.out.println(WRONG_NUMBER);
             setWinningNumbers();
         }
         return winningLotto;
@@ -62,7 +64,7 @@ public class LottoController {
             customer = new Customer();
             controllerOutputManager.BUY_PRINT(customer.getCount());
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 잘못된 입력입니다.");
+            System.out.println(WRONG_NUMBER);
             BuyLotto();
         }
         return customer.getCount();

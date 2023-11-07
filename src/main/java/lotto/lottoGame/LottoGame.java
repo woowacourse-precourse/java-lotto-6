@@ -24,18 +24,35 @@ public class LottoGame {
     }
 
     private Customer initCustomer() {
-        String inputPurchaseValue = InputView.inputPrice();
-        return new Customer(inputPurchaseValue);
+        Customer customer = null;
+
+        while (customer == null) {
+            try {
+                String inputPurchaseValue = InputView.inputPrice();
+                customer = new Customer(inputPurchaseValue);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return customer;
     }
 
     private WinningLotto initWinningLotto() {
-        String inputWinningNumbers = InputView.inputWinningLottoNumber();
-        Lotto winningNumbers = lottoInputGenerator.inputNumbersToLotto(inputWinningNumbers);
+        WinningLotto winningLotto = null;
 
-        String inputBonusNumber = InputView.inputWinningBonusNumber();
-        int validatedBonusNumber = lottoInputGenerator.inputBonusToValidatedValue(inputBonusNumber);
+        while (winningLotto == null) {
+            try {
+                String inputWinningNumbers = InputView.inputWinningLottoNumber();
+                Lotto winningNumbers = lottoInputGenerator.inputNumbersToLotto(inputWinningNumbers);
 
-        return new WinningLotto(winningNumbers, validatedBonusNumber);
+                String inputBonusNumber = InputView.inputWinningBonusNumber();
+                int validatedBonusNumber = lottoInputGenerator.inputBonusToValidatedValue(inputBonusNumber);
+                winningLotto = new WinningLotto(winningNumbers, validatedBonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return winningLotto;
     }
 
     public void run() {

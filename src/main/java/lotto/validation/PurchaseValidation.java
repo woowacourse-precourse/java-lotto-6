@@ -7,7 +7,6 @@ public class PurchaseValidation {
 
     public static void validatePriceFormat(String purchaseValue) {
         if (!Pattern.matches(PRICE_PATTERN, purchaseValue)) {
-            System.out.println("[ERROR] 자연수 형태의 값을 입력해주세요.");
             throw new IllegalArgumentException("[ERROR] 자연수 형태의 값을 입력해주세요.");
         }
     }

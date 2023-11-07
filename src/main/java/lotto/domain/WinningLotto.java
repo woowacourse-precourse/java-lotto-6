@@ -30,7 +30,8 @@ public class WinningLotto {
     }
 
     public int lottoNumbersMatch(Lotto lottoNumbers) {
-        int matchCount = winningNumbers.getNumbers().stream().filter(it -> lottoNumbers.getNumbers().contains(it))
+        int matchCount = winningNumbers.getNumbers().stream()
+                .filter(it -> lottoNumbers.getNumbers().contains(it))
                 .collect(Collectors.toList()).size();
         if (matchCount < MINIMUM_WINNING_COUNT) {
             return OUT;

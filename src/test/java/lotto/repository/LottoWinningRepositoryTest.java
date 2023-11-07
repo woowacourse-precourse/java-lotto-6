@@ -14,15 +14,12 @@ class LottoWinningRepositoryTest {
     void saveWinningLotto(){
         LottoWinningRepository lottoWinningRepository = new LottoWinningRepository();
 
-        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
-
-        LottoWinning lottoWinning = new LottoWinning(lotto, bonusNumber);
-
-        lottoWinningRepository.save(lottoWinning);
+        lottoWinningRepository.saveWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        lottoWinningRepository.saveBonusNumber(7);
 
         LottoWinning savingLotto = lottoWinningRepository.getLottoWinning();
 
-        assertEquals(lottoWinning, savingLotto);
+        assertEquals(List.of(1, 2, 3, 4, 5, 6), savingLotto.getNumbers());
+        assertEquals(7, savingLotto.getBonusNumber());
     }
 }

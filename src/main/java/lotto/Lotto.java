@@ -1,5 +1,8 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -7,7 +10,23 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = InputMatchedNumbers();
+    }
+
+    public List<Integer> InputMatchedNumbers() {
+        String[] a = Console.readLine().split(",");
+        List<Integer> b = new ArrayList<>();
+
+        for (String str : a) {
+            b.add(Integer.parseInt(str));
+        }
+
+        b.add(bonusNumber());
+        return b;
+    }
+
+    public int bonusNumber () {
+        return Integer.parseInt(Console.readLine());
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,5 +35,4 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
 }

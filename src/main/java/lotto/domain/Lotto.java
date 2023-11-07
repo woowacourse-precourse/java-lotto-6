@@ -39,5 +39,9 @@ public class Lotto {
         return numbers.contains(number);
     }
 
+    private void validate(List<Integer> numbers) {
+        IntegerListValidator.validateDuplicated(numbers);
+
+    }
 
 }

@@ -28,15 +28,20 @@ public class Application {
         WinningNumber winningNumber = new WinningNumber(inputGuide.inputWinningNum()); //당첨번호 입력
         int bonusNum = inputGuide.inputBonusNum(); // 사용자 보너스 번호 입력
 
-        compareWin(winningNumber, bonusNum);
+        RateOfReturn ROR = new RateOfReturn(compareWin(winningNumber, bonusNum),totalPayment);
 
     }
 
-    private static void compareWin(WinningNumber winningNumber, int bonusNum) {
+    private static int[][] compareWin(WinningNumber winningNumber, int bonusNum) {
+        int[][] totalMatch = new int[lottoList.size()][2];
+        int i = 0;
         for(Lotto lotto : lottoList){
             int winningMatch = checkWinning(lotto.getNumbers(),winningNumber.getWinningNumber());
             int bonusMatch = checkBonous(lotto.getNumbers(),bonusNum);
+            totalMatch[i][0] = winningMatch + bonusMatch;
+            totalMatch[i][1] = bonusMatch;
         }
+        return totalMatch;
     }
 
 
@@ -55,7 +60,8 @@ public class Application {
     }
 
     private static int checkBonous(List<Integer> lotto, int bonusNum) {
-
+        if(lotto.contains(bonusNum)) return 1;
+        return 0;
     }
 
 
@@ -72,6 +78,4 @@ public class Application {
         }
     }
 
-    private static double getRoR(List<Lotto> lottoList, WinningNumber winningNumber, int bonusNum) { //로또 번호
-    }
 }

@@ -8,10 +8,12 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.IssuedLottos;
 import lotto.domain.Lotto;
+import lotto.domain.Profit;
 import lotto.domain.PurchaseNumber;
 import lotto.domain.Rank;
 import lotto.utility.validation.WinningNumberChecker;
 import lotto.utility.vo.BonusNumberRequest;
+import lotto.utility.vo.ProfitResponse;
 import lotto.utility.vo.PurchaseAmountRequest;
 import lotto.utility.vo.WinningNumberRequest;
 import lotto.utility.vo.WinningResponse;
@@ -32,7 +34,7 @@ public class LottoService {
         return new IssuedLottos(lottoTickets);
     }
 
-    public WinningResponse determineWinning(
+    public List<Rank> determineWinning(
         IssuedLottos issuedLottos,
         BonusNumberRequest bonusNumberRequest,
         WinningNumberRequest winningNumberRequest) {
@@ -40,8 +42,11 @@ public class LottoService {
         BonusNumber bonusNumber = bonusNumberRequest.convertToValidBonusNumber();
         WinningNumberChecker.validate(winningLotto, bonusNumber);
 
-        List<Rank> ranks = issuedLottos.determineRanks(winningLotto, bonusNumber);
+        return issuedLottos.determineRanks(winningLotto, bonusNumber);
+    }
 
-        return new WinningResponse(ranks);
+    public ProfitResponse createProfit(List<Rank> ranks) {
+        Profit profit = new Profit(ranks);
+        return profit.convertResponse();
     }
 }

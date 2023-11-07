@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static java.util.Collections.sort;
-import static lotto.utils.ErrorMessage.IS_INVALID_LOTTO_SIZE;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto extends LottoNumber {
@@ -21,6 +21,22 @@ public class Lotto extends LottoNumber {
 
     private void validate(List<Integer> numbers) {
         isLottoSizeValid(numbers,LOTTO_SIZE);
+    }
+
+    public int countMatchingNumbers(Lotto otherLotto) {
+        int count = 0;
+
+        for (Integer number : numbers) {
+            if (otherLotto.containsNumber(number)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
     }
 
     @Override

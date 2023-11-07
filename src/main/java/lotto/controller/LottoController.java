@@ -4,6 +4,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Payment;
 import lotto.service.LottoBuyer;
+import lotto.service.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -23,8 +24,8 @@ public class LottoController {
         outputView.printLottoNumbers(lottoBuyer.getLottos());
         Lotto winningNumbers = inputView.inputWinningNumbers();
         BonusNumber bonusNumber = inputView.inputBonusNumber();
-        lottoBuyer.setInputs(winningNumbers,bonusNumber);
-
+        Result result = new Result(lottoBuyer);
+        result.calculateResult(winningNumbers,bonusNumber);
     }
 
 

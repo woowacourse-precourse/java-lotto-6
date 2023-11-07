@@ -1,4 +1,4 @@
-package lotto;
+package lotto.winning;
 
 import static lotto.Messages.COUNT_UNIT;
 import static lotto.Messages.DIVIDER_LINE;
@@ -18,8 +18,7 @@ import static lotto.winning.Prize.THIRD;
 import static lotto.winning.Tally.COUNT;
 
 import java.util.HashMap;
-import lotto.winning.Prize;
-import lotto.winning.Tally;
+import lotto.Showable;
 
 public class ResultBoard implements Showable<HashMap<Prize, HashMap<Tally, Integer>>, Double> {
 

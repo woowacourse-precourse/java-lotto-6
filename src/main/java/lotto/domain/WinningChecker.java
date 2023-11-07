@@ -17,12 +17,11 @@ public class WinningChecker {
     public WinningChecker(WinningNumber w, BonusNumber b, List<Lotto> lottoPackage){
         winningResult = new WinningResult();
         for(Lotto lotto: lottoPackage){
-            CorrectNumber place = w.compareLotto(lotto);
-            if(place==SECOND_PLACE || place==THIRD_PLACE) place = b.compareLotto(lotto);
+            CorrectNumber place = w.selectPlace(lotto);
+            if(place==SECOND_PLACE || place==THIRD_PLACE) place = b.selectPlace(lotto);
             if(place!=null) winningResult.win(place);
         }
     }
-
     public WinningResult getWinningResult(){
         return winningResult;
     }

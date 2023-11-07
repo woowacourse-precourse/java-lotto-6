@@ -51,7 +51,7 @@ public class Output {
 
     public void printLotto(List<Lotto> lottoPackage) {
         for (Lotto lotto : lottoPackage) {
-            System.out.println(lotto.getNumbers());
+            System.out.println(lotto.getNumbersForPrint());
         }
         System.out.println();
     }

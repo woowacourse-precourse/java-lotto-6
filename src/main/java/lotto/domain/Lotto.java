@@ -16,7 +16,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortLottoNumbers(numbers);
     }
 
     public List<Integer> getNumbers() {
@@ -60,6 +60,12 @@ public class Lotto {
     private boolean isInRange(List<Integer> numbers) {
         return numbers.stream()
                 .allMatch(number -> number >= LOTTO_MINIMUM_BOUND.getValue() && number <= LOTTO_MAXIMUM_BOUND.getValue());
+    }
+
+    private List<Integer> sortLottoNumbers(List<Integer> numbers){
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     public boolean containsBonusNumber(int bonusNumber){

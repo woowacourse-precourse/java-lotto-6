@@ -58,4 +58,11 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 로또 번호의 범위가 1부터 45사이가 아니면 예외가 발생한다.")
+    @Test
+    void createBonusLottoByOverRange() {
+        assertThatThrownBy(() -> new LuckeyLotto(List.of(1, 2, 3, 4, 5, 6), "50"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

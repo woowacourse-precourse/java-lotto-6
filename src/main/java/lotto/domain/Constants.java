@@ -23,5 +23,6 @@ public class Constants {
 
     public static final String BONUS_NUMBER_NOT_NUMBER_ERROR = "[ERROR] 보너스 번호는 숫자만 입력하세요.\n";
     public static final String BONUS_NUMBER_DUPLICATED_ERROR = "[ERROR] 보너스 숫자는 로또 번호 중복이 될 수 없습니다.\n";
+    public static final String BONUS_NUMBER_RANGE_ERROR = "[ERROR] 보너스 번호는 1부터 45까지만 입력하세요.\n";
 
 }

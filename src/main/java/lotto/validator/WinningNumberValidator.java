@@ -21,7 +21,7 @@ public class WinningNumberValidator {
 
     public void checkBonusNumber(List<Integer> lotto, String bonusNumber) {
         checkBonusNumberIsNumber(bonusNumber);
-
+        checkBonusNumberInRange(Integer.parseInt(bonusNumber));
         checkBonusDuplicate(lotto, Integer.parseInt(bonusNumber));
     }
 
@@ -76,6 +76,14 @@ public class WinningNumberValidator {
             System.out.printf(constants.BONUS_NUMBER_NOT_NUMBER_ERROR);
             throw new IllegalArgumentException();
         }
+    }
+
+    public void checkBonusNumberInRange(int bonusNumber) {
+        if(bonusNumber >= constants.LOTTO_NUMBER_MIN && bonusNumber <= constants.LOTTO_NUMBER_MAX) {
+            return;
+        }
+        System.out.printf(constants.BONUS_NUMBER_RANGE_ERROR);
+        throw new IllegalArgumentException();
     }
 
     public void checkBonusDuplicate(List<Integer> lotto, int bonusNumber) {

@@ -1,14 +1,37 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.utils.LottoSystemUtils.lottoCount;
-import static lotto.utils.LottoSystemUtils.moneyUnit;
+import static lotto.utils.LottoSystemUtils.*;
 
 public class LottoSystem {
     private int purchaseMoney;
-    private List<Lotto> lottos;
+    private List<Lotto> purchaseLottos;
     private Lotto winningLotto;
+
+    public LottoSystem(String money) {
+        validateMoney(money);
+
+        this.purchaseMoney = stringToInteger(money);
+        this.purchaseLottos = createLottos(this.purchaseMoney / moneyUnit);
+    }
+
+    private static List<Lotto> createLottos(int lottoCnt) {
+        List<Lotto> lottos = new ArrayList<>();
+
+        while (lottoCnt --> 1) {
+            lottos.add(new Lotto(createRandomNumbers()));
+        }
+
+        return lottos;
+    }
+
+    private static List<Integer> createRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(lottoNumberMinArrange, lottoNumberMaxArrange, lottoCount);
+    }
 
     private boolean validateWinningLotto(String lotto) {
         if (isWrongLottoUnit(lotto)) return false;
@@ -56,6 +79,10 @@ public class LottoSystem {
         if (money % moneyUnit != 0) return true;
 
         return false;
+    }
+
+    private static Integer stringToInteger(String num) {
+        return Integer.parseInt(num);
     }
 
 }

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static lotto.util.message.ErrorMessages.BONUS_NUMBER_DUPLICATION_EXCEPTION;
 import static lotto.util.message.ErrorMessages.WINNING_NUMBERS_DUPLICATION_EXCEPTION;
 import static lotto.util.message.ErrorMessages.WINNING_NUMBERS_RANGE_EXCEPTION;
 
@@ -23,6 +24,7 @@ public class WinningNumbers {
         validateNumberRange(bonusNumber);
 
         validateDuplication(numbers);
+        validateDuplication(numbers, bonusNumber);
     }
 
     private void validateNumbersRange(List<Integer> numbers) {
@@ -51,5 +53,15 @@ public class WinningNumbers {
 
     private long findDistinctCount(List<Integer> numbers) {
         return numbers.stream().distinct().count();
+    }
+
+    private void validateDuplication(List<Integer> numbers, Integer bonusNumber) {
+        if (isDuplicated(numbers, bonusNumber)) {
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_EXCEPTION);
+        }
+    }
+
+    private boolean isDuplicated(List<Integer> numbers, Integer number) {
+        return numbers.contains(number);
     }
 }

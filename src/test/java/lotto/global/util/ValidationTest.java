@@ -76,4 +76,12 @@ class ValidationTest {
                 .hasMessageContaining("[ERROR] 6개의 숫자만 입력해 주세요.");
     }
 
+    @DisplayName("입력된 숫자에 중복값이 있으면 예외가 발생한다.")
+    @Test
+    void inputDuplicateNumbers() {
+        assertThatThrownBy(() -> validation.hasDuplicateNumbers(Arrays.asList(1, 2, 3, 4, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 중복이 없어야 합니다.");
+    }
+
 }

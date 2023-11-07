@@ -35,4 +35,10 @@ public class Validation {
             throw new IllegalArgumentException(ErrorMessage.SIX_NUMBERS.getMessage());
         }
     }
+
+    public void hasDuplicateNumbers(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE.getMessage());
+        }
+    }
 }

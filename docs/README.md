@@ -8,7 +8,6 @@ money(model) 생성
 - [X] money 모델에게 생성자로 숫자를 넘겨 money 생성 
 - [X] 검증 : money 모델은 비즈니스 로직만 검증 수행
   - [X] 로또 금액에 맞는 금액 ex) 1000으로 나누어 떨어짐
-- [ ] outputView 에게 Money model 을 전달하여 결과 출력
 ***
 ## 2. **랜덤 로또들 생성하기**
 lottos(model) 생성

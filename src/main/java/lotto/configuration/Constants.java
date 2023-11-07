@@ -13,4 +13,9 @@ public class Constants {
         public static final int PRICE = 1000;
     }
 
+
+    public static final class Message {
+        public static final String NEED_PURCHASE_MONEY = "구입금액을 입력해 주세요.";
+    }
+
 }

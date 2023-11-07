@@ -1,7 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import common.Convert;
+import lotto.common.Convert;
 import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;

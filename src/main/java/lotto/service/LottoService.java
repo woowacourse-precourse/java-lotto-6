@@ -1,7 +1,7 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import common.Convert;
+import lotto.common.Convert;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

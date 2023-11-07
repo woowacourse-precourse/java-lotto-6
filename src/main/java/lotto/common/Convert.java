@@ -1,4 +1,4 @@
-package common;
+package lotto.common;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Convert {
-    private static final String NON_INTEGER_INPUT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해야 합니다";
+    private static final String NON_INTEGER_INPUT_ERROR_MESSAGE = "[ERROR] 숫자를 입력해야 합니다(공백 미포함)";
 
     public static int stringToInteger(String src) {
         try {

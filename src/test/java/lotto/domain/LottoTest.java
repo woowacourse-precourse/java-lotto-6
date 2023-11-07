@@ -14,23 +14,14 @@ class LottoTest {
     private static final String SIZE_ERROR_MESSAGE = "[ERROR] 번호의 개수는 6개입니다.";
     private static final String OUT_OF_RANGE_NUMBER_ERROR_MESSAGE = "[ERROR] 번호는 1~45 사이의 숫자여야합니다.";
     @Test
-    @DisplayName("크기초과_로또_Test")
+    @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     void 크기초과_로또_Test() throws Exception {
         //given
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.add(6);
-        list.add(7);
-
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 6, 7);
         //when
         //then
-        assertThatThrownBy(() -> new Lotto(list))
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
-
         Throwable exception = assertThrows(RuntimeException.class, () -> {
             new Lotto(list);
         });
@@ -38,16 +29,10 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("중복번호_로또_Test")
+    @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     void 중복번호_로또_Test() throws Exception {
         //given
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.add(1);
+        List<Integer> list = List.of(1, 2, 3, 4, 5, 1);
 
         //when
         //then
@@ -61,16 +46,10 @@ class LottoTest {
     }
 
     @Test
-    @DisplayName("범위초과_로또_Test")
+    @DisplayName("보너스 번호가 범위가 초과되면 예외가 발생한다")
     void 범위초과_로또_Test() throws Exception {
         //given
-        List<Integer> list = new ArrayList<>();
-        list.add(0);
-        list.add(2);
-        list.add(3);
-        list.add(4);
-        list.add(5);
-        list.add(6);
+        List<Integer> list = List.of(0, 2, 3, 4, 5, 6);
 
         //when
         //then

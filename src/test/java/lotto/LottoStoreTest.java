@@ -21,7 +21,7 @@ public class LottoStoreTest {
 
     @Test
     public void testCalculateTotalWinning() {
-        List<Integer> counts = Arrays.asList(0, 0, 0, 1, 1);
+        List<Integer> counts = Arrays.asList(7, 0, 0, 0, 1, 1);
         lottoStore.setTotalWinningMoney(counts);
         BigDecimal compared = new BigDecimal(2030000000);
         assertEquals(compared, lottoStore.getTotalWinningMoney());

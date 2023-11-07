@@ -3,6 +3,7 @@ package lotto.domain;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoValue;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,8 +18,7 @@ public class Lotto {
         validateSize(numbers);
         validateDuplicate(numbers);
 
-        Collections.sort(numbers);
-        this.numbers = changeIntToLottoNumber(numbers);
+        this.numbers = changeIntToLottoNumber(numbers.stream().sorted().collect(Collectors.toList()));
     }
 
     public List<LottoNumber> getNumbers() {

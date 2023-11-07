@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import lotto.exception.ErrorPrinter;
 import lotto.exception.LottoExceptionMessage;
 
 public class BonusNumber {
@@ -20,6 +21,7 @@ public class BonusNumber {
         try {
             return new BonusNumber(bonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
+            ErrorPrinter.printError(e);
             return null;
         }
     }
@@ -30,7 +32,6 @@ public class BonusNumber {
 
     private void validate(int bonusNumber) {
         if (bonusNumber < START_INCLUSIVE || bonusNumber > END_INCLUSIVE) {
-            System.out.println(LottoExceptionMessage.BONUS_NUMBER_MUST_BETWEEN_START_AND_END_INCLUSIVE.getMessage());
             throw new IllegalArgumentException(
                     LottoExceptionMessage.BONUS_NUMBER_MUST_BETWEEN_START_AND_END_INCLUSIVE.getMessage());
         }
@@ -41,7 +42,6 @@ public class BonusNumber {
         HashSet<Integer> set = new HashSet<>(winning);
         set.add(bonusNumber);
         if (set.size() != 7) {
-            System.out.println(LottoExceptionMessage.BONUS_NUMBER_MUST_NOT_DUPLICATE.getMessage());
             throw new IllegalArgumentException(LottoExceptionMessage.BONUS_NUMBER_MUST_NOT_DUPLICATE.getMessage());
         }
     }

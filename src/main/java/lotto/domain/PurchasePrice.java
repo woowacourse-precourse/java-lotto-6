@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
+import lotto.exception.ErrorPrinter;
 import lotto.exception.LottoExceptionMessage;
 
 public class PurchasePrice {
@@ -33,7 +34,7 @@ public class PurchasePrice {
         try {
             return new PurchasePrice(price);
         } catch (IllegalArgumentException e) {
-            System.out.println(LottoExceptionMessage.PURCHASE_PRICE_MUST_BE_POSITIVE_MULTIPLE.getMessage());
+            ErrorPrinter.printError(e);
         }
         return null;
     }

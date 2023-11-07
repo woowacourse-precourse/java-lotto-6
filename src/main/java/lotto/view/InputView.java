@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import lotto.constant.Message;
+import lotto.exception.ErrorPrinter;
 import lotto.exception.LottoExceptionMessage;
 
 public class InputView {
@@ -57,7 +58,7 @@ public class InputView {
                 return Integer.parseInt(inputPrice);
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(LottoExceptionMessage.PURCHASE_PRICE_MUST_BE_NUMBER.getMessage());
+            ErrorPrinter.printError(e);
         }
         return null;
     }
@@ -80,7 +81,7 @@ public class InputView {
         try {
             return parseWinningNumbers(inputWinningNumbers);
         } catch (IllegalArgumentException e) {
-            System.out.println(LottoExceptionMessage.WINNING_NUMBERS_MUST_BE_NUMBERS.getMessage());
+            ErrorPrinter.printError(e);
             return null;
         }
     }
@@ -103,7 +104,7 @@ public class InputView {
                 return Integer.parseInt(inputBonusNumber);
             }
         } catch (IllegalArgumentException e) {
-            System.out.println(LottoExceptionMessage.BONUS_NUMBER_MUST_BE_NUMBER.getMessage());
+            ErrorPrinter.printError(e);
         }
         return null;
     }

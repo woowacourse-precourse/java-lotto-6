@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import lotto.exception.LottoExceptionMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -36,14 +37,14 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUMBERS_MUST_BE_SIX_DIGITS.getMessage());
         }
     }
 
     private void isDuplicate(List<Integer> numbers) {
         HashSet<Integer> set = new HashSet<>(numbers);
         if (set.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(LottoExceptionMessage.LOTTO_NUMBERS_MUST_BE_SIX_DIGITS.getMessage());
         }
     }
 }

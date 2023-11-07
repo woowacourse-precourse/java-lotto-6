@@ -28,4 +28,7 @@ public class Price {
         }
     }
 
+    public int getPrice(){
+        return price;
+    }
 }

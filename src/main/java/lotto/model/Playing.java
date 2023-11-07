@@ -29,4 +29,25 @@ public class Playing {
 
         return winningNumbers;
     }
+
+    public static Integer inputBonusNumber(){
+        Integer bonus = Integer.parseInt(Console.readLine());
+        return bonus;
+    }
+
+    public static void compareLottosAndWinningNumbers(List<Integer> winningNumbers, Integer bonus){
+        for ( Lotto lotto : lottos) {
+            List<Integer> lottoNumbers = lotto.getNumbers();
+            for (Integer number : lottoNumbers){
+                if (winningNumbers.contains(number)){
+                    lotto.updateCorrectLottoCnt();
+                }
+                if (bonus == number){
+                    lotto.updateBonus();
+                }
+            }
+        }
+    }
+
+
 }

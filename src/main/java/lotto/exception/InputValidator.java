@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lotto;
 import lotto.model.Playing;
 
 import java.sql.Array;
@@ -28,12 +30,11 @@ public class InputValidator {
             try{
                 winningNumbers = Playing.inputWinningNumbers();
                 if (!checkValidWinningNumbersRange(winningNumbers)) {
-                    System.out.println("pass");
                     throw new IllegalArgumentException();
                 }
                 break;
             } catch(IllegalArgumentException e){
-                System.out.println("[ERROR] 입력된 번호가 범위를 벗어났습니다. 다시 입력해주세요.");
+                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
 
@@ -42,10 +43,28 @@ public class InputValidator {
 
     public static boolean checkValidWinningNumbersRange(List<Integer> winningNumbers){
         for (Integer winningNumber : winningNumbers) {
-            if (winningNumber < 0 || winningNumber > 45){
+            if (winningNumber < 1 || winningNumber > 45){
                 return false;
             }
         }
         return true;
+    }
+
+    public static Integer checkValidBonusNumberInput(List<Integer> winningNumbers){
+        Integer bonus = 0;
+        while(true) {
+
+        try{
+            bonus = Playing.inputBonusNumber();
+            if(winningNumbers.contains(bonus)){
+                throw new IllegalArgumentException();
+            }
+            break;
+        } catch(IllegalArgumentException e){
+            System.out.println("[ERROR] 보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+        }
+        }
+
+        return bonus;
     }
 }

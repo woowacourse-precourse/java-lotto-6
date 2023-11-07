@@ -3,9 +3,9 @@ package domain;
 import exception.ImpossibleAmountException;
 
 public class Amount {
-    private final int amount;
+    private final long amount;
 
-    public Amount(int amount) {
+    public Amount(long amount) {
         validateAmount(amount);
         this.amount = amount;
     }
@@ -18,13 +18,13 @@ public class Amount {
         return new Amount(0);
     }
 
-    private void validateAmount(int amount) {
+    private void validateAmount(long amount) {
         if (amount < 0) {
             throw new ImpossibleAmountException();
         }
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 
@@ -36,7 +36,7 @@ public class Amount {
         return this.amount == 0;
     }
 
-    public int calculateQuotientByUnitAmount(Amount unitAmount) {
+    public long calculateQuotientByUnitAmount(Amount unitAmount) {
         return this.amount / unitAmount.amount;
     }
 

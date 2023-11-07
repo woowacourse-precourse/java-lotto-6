@@ -5,8 +5,8 @@ import lotto.domain.WinningNumber;
 
 public class LottoController {
 
-    public static  void createBuyLottoTickets(long purchaseAmount){
-        LottoTickets.createBuyLottoTickets(purchaseAmount);
+    public static  void buyLottoTickets(long purchaseAmount){
+        LottoTickets.buyLottoTickets(purchaseAmount);
     }
 
     public static  void putWinningNums(String winningNums){

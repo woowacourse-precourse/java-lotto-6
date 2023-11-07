@@ -16,15 +16,16 @@ public class LottoController {
     private static int bonusNumber;
 
     List<Lotto> lottos = new ArrayList<>();
-    List<LottoResult> lottoResults = new ArrayList<>();
+//    List<LottoResult> lottoResults = new ArrayList<>();
 
     public void start() {
         getLottoAmount();
         getLottos();
-//        getWinningLotto();
-        System.out.println(getWinningLotto().getNumbers());
-//        getBonusNumber();
-        System.out.println(getBonusNumber());
+        getWinningLotto();
+        getBonusNumber();
+//        System.out.println(getBonusNumber());
+
+        getLottoResults(winningLotto.getNumbers(), lottos, bonusNumber);
     }
 
     //amount 값만큼 랜덤 로또 생성, lottos에 저장
@@ -68,7 +69,7 @@ public class LottoController {
     //알맞은 enum 선택하고 LottoResult의 해쉬 맵에 넣기 -> 출력
     //수익률 출력 -> 당첨금/로또 구입금
     //해쉬 맵 format의 lottoOfMatching * integer 해서 수익금 구하기
-    private HashMap<LottoResultFormat, Integer> getLottoResults(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber) {
+    private void getLottoResults(List<Integer> winningNumbers, List<Lotto> lottos, int bonusNumber) {
         LottoResult lottoResult = new LottoResult();
 
         for (Lotto lotto : lottos) {
@@ -79,15 +80,19 @@ public class LottoController {
             lottoResult.addHashMap(matchCount, isMatchBonus(lotto, bonusNumber));
 
         }
-        return lottoResult.getLottoResultHashMap();
+        //출력
+
+        calculateReturnOnLotto(lottoResult.getLottoResultHashMap());
+//        return lottoResult.getLottoResultHashMap();
     }
 
     private boolean isMatchBonus(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-//    private int calculateReturnOnLotto(){
-//
-//    }
+    private void calculateReturnOnLotto(HashMap<LottoResultFormat, Integer> lottoResults){
+
+//        출력
+    }
 
 }

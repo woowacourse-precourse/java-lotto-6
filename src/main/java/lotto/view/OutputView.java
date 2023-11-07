@@ -2,7 +2,9 @@ package lotto.view;
 
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
+import lotto.model.LottoResultFormat;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class OutputView {
@@ -15,14 +17,18 @@ public class OutputView {
     }
 
     //당첨 내역 출력
-    public static void LottoResults(List<LottoResult> lottoResults) {
+    public static void LottoResults(HashMap<LottoResultFormat, Integer> lottoResults) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for(LottoResult lottoResult : lottoResults){
-            
+        for(LottoResultFormat key : lottoResults.keySet()){
+            if(key == LottoResultFormat.FIVE_BONUS){
+                System.out.println(key.getLottoOfMatching() +"개 일치, 보너스 볼 일치 ("+key.getWinningAmount()+"원) - "+lottoResults.getOrDefault(key, 0)+"개");
+            }
+            System.out.println(key.getLottoOfMatching() +"개 일치 ("+key.getWinningAmount()+"원) - "+lottoResults.getOrDefault(key, 0)+"개");
         }
     }
 
     //총 수익률 출력
+
 }

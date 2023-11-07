@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class MoneyTest {
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
 
     @ParameterizedTest
     @ValueSource(longs = {-1L, 0L, 999L})
@@ -19,7 +19,7 @@ public class MoneyTest {
     void isAmountLessThenZero_Then_ExceptionOccurs(final long amount) {
         assertThatThrownBy(() -> Money.of(amount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX);
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class MoneyTest {
     void isMoneyNotDividedBy1000_Then_ExceptionOccurs() {
         assertThatThrownBy(() -> Money.of(1001L))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX);
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @ParameterizedTest

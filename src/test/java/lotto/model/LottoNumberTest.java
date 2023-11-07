@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoNumberTest {
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
 
     @ParameterizedTest
     @ValueSource(ints = {0, 46})
@@ -19,7 +19,7 @@ public class LottoNumberTest {
     void givenOutOfRangeNumber_Then_ExceptionOccurs(final int number) {
         assertThatThrownBy(() -> LottoNumber.of(number))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX);
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @ParameterizedTest

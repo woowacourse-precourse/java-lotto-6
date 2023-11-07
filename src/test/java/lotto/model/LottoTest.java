@@ -14,14 +14,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_MESSAGE = "[ERROR] ";
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX);
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
@@ -29,7 +29,7 @@ class LottoTest {
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_PREFIX);
+                .hasMessageContaining(ERROR_MESSAGE);
     }
 
     @DisplayName("로또 번호가 포함되어 있는지 판별한다.")

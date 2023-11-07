@@ -45,7 +45,7 @@ class LottoTest {
         Lotto userLottoNumbers = new Lotto(List.of(1, 2, 7, 8, 9, 10));
         Lotto answerLottoNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
-        int result = userLottoNumbers.compareToWinningNumbers(answerLottoNumbers);
+        int result = userLottoNumbers.compareToLottoNumbers(answerLottoNumbers);
 
         assertThat(result).isEqualTo(2);
     }

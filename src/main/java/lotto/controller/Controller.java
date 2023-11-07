@@ -8,6 +8,7 @@ import lotto.domain.Lotties;
 import lotto.domain.Lotto;
 import lotto.domain.LottoFactory;
 import lotto.domain.Result;
+import lotto.domain.Score;
 import lotto.domain.UserPrice;
 import lotto.domain.WinningNumber;
 import lotto.view.InputView;
@@ -18,12 +19,7 @@ public class Controller {
 
 
     public void run() {
-        Map<Result, Integer> score = new HashMap<>();
-        int totalProfit = 0;
-        int totalInvestment = 0;
-
-        OutputView.printBuyInputPrice();
-        UserPrice userPrice = new UserPrice(InputView.inputUserPrice());
+        UserPrice userPrice =inputUserPrice();
         Lotties lotties = userPrice.buy(LOTTO_PRICE);
 
         OutputView.printBuyLottoCount(lotties.size());
@@ -31,18 +27,18 @@ public class Controller {
 
         WinningNumber winningNumber = inputWinningNumber();
 
+        Score score = new Score(winningNumber, lotties);
+        int totalProfit = score.getTotalProfit();
 
-
-        for (Result result : score.keySet()) {
-            totalProfit += result.getWinnings() * score.get(result);
-        }
-
-        double profitPercentage = (totalProfit) / (double) totalInvestment * 100;
-        DecimalFormat profitDecimal = new DecimalFormat("#0.0%");
-        String formattedProfitPercentage = profitDecimal.format(profitPercentage / 100.0);
-        OutputView.printScore(score);
-        OutputView.printProfit(formattedProfitPercentage);
+        OutputView.printScore(score.getScore());
+        OutputView.printProfit(totalProfit, userPrice.getPrice());
     }
+
+    private static UserPrice inputUserPrice() {
+        OutputView.printBuyInputPrice();
+        return new UserPrice(InputView.inputUserPrice());
+    }
+
 
     public WinningNumber inputWinningNumber() {
         OutputView.printEnterWinningNumber();
@@ -53,7 +49,6 @@ public class Controller {
 
         return new WinningNumber(new Lotto(numbers), bonusNumber);
     }
-
 
 
 }

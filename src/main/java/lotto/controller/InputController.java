@@ -55,7 +55,16 @@ public class InputController {
     public static Integer bonusInput() {
         viewer.printArgs("");
         viewer.printArgs("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        String bonus = Console.readLine();
+        validation(bonus);
+        return Integer.parseInt(bonus);
+    }
+
+    private static void validation(String num) throws NumberFormatException {
+        int bonusNumber = Integer.parseInt(num);
+        if (bonusNumber >= 46) {
+            throw new NumberFormatException("[ERROR] 46 이하의 숫자를 입력하세요.");
+        }
     }
 
     public Integer getMoney() {

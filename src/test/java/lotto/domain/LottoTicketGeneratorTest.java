@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 class LottoTicketGeneratorTest {
     @DisplayName("로또 용지가 금액에 맞춰 정확히 나오는지 테스트한다.")
     @Test
-    void NumberOfTicketTest1() {
+    void insertMoneyTest1() {
         LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator();
         lottoTicketGenerator.insertMoney(10000);
         int result = lottoTicketGenerator.ticketCount;
@@ -18,7 +18,7 @@ class LottoTicketGeneratorTest {
     }
 
     @Test
-    void NumberOfTicketTest2() {
+    void insertMoneyTest2() {
         LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator();
         lottoTicketGenerator.insertMoney(15000);
         int result = lottoTicketGenerator.ticketCount;
@@ -54,6 +54,21 @@ class LottoTicketGeneratorTest {
         for (Integer lottoNumber : result) {
             assertThat(lottoNumber).isBetween(1, 45);
         }
+    }
+
+    @Test
+    void createLottoTicketsTest() {
+        LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator();
+        lottoTicketGenerator.insertMoney(10000);
+        List<LottoTicket> lottoTickets = lottoTicketGenerator.createLottoTickets();
+
+        for (LottoTicket lottoTicket : lottoTickets) {
+            List<Integer> result = lottoTicket.lottoNumber;
+            for (Integer lottoNumber : result) {
+                assertThat(lottoNumber).isBetween(1, 45);
+            }
+        }
+
     }
 
 }

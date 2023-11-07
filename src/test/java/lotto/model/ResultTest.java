@@ -32,4 +32,18 @@ public class ResultTest {
         //then
         assertThat(lottoResult.getPrize()).isEqualTo(1);
     }
+
+    @DisplayName("5개의 숫자가 일치하고 보너스 번호가 일치하는 경우 2등이다.")
+    @Test
+    public void 이등인_경우() {
+        //given
+        Lotto lotto = new Lotto(List.of(new Integer[]{34, 45, 1, 26, 8, 3}));
+        LottoDto lottoDto = LottoDto.create(lotto);
+
+        //when
+        Result lottoResult = Result.calculate(lottoDto, winningNumber, bonusNumber);
+
+        //then
+        assertThat(lottoResult.getPrize()).isEqualTo(2);
+    }
 }

@@ -124,6 +124,24 @@ class winning_number{
         return Integer.parseInt(strNumber);
     }
 
+    public static List<Integer> exceptionRepeatWinNumber(){
+        List<Integer> repeatOrNot = new ArrayList<>();
+        while(repeatOrNot.isEmpty()){
+            repeatOrNot = readLine(repeatOrNot);
+        }
+        return repeatOrNot;
+    }
+
+    public static List<Integer> readLine(List<Integer> repeat){
+        try{
+            System.out.println("\n당첨 번호를 입력해 주세요.");
+            String winningNumber = Console.readLine();
+            repeat = winning_number.splitInput(winningNumber);
+        }catch (IllegalArgumentException e) {
+            System.out.println(Error.ERROR.getError());
+        }
+        return repeat;
+    }
 }
 
 public class Application {
@@ -134,9 +152,8 @@ public class Application {
         System.out.println("\n" + repeatTime + "개를 구매했습니다.");
         List<List<Integer>> totalLotto = random_lotto.print_lotto(repeatTime);
 
-        System.out.println("\n당첨 번호를 입력해 주세요.");
-        String winningNumber = Console.readLine();
-        List<Integer> realWinNumber = winning_number.splitInput(winningNumber);
+        List<Integer> winningNumber = winning_number.exceptionRepeatWinNumber();
+
 
         System.out.println("\n보너스 번호를 입력해 주세요.");
         String bonusNumber = Console.readLine();

@@ -6,11 +6,9 @@ import exception.ErrorCode;
 
 public class LottoPurchase {
 
-    public int inputLottoPurchase() {
+    public int inputLottoPurchase(String userPurchase) {
         while (true) {
             try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String userPurchase = Console.readLine();
                 return isDivisibleBy1000(validateNumber(userPurchase));
             } catch (CustomException customException) {
                 System.out.println(customException.getMessage());
@@ -18,7 +16,12 @@ public class LottoPurchase {
         }
     }
 
-    public int validateNumber(String userPurchase) {
+    public String inputLottoString(){
+        System.out.println("구입금액을 입력해 주세요.");
+        return Console.readLine();
+    }
+
+    private int validateNumber(String userPurchase) {
         try {
             return Integer.parseInt(userPurchase);
         } catch (NumberFormatException numberFormatException) {
@@ -26,7 +29,7 @@ public class LottoPurchase {
         }
     }
 
-    public int isDivisibleBy1000(int number) {
+    private int isDivisibleBy1000(int number) {
         if (number % 1000 != 0) {
             throw new CustomException(ErrorCode.DIVISIBILITYERROR);
         }

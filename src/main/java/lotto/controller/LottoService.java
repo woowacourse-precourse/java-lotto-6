@@ -3,16 +3,15 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.LottoNumberGenerator;
 import lotto.model.LottoTicketMoney;
+import lotto.view.ConsoleView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
     private LottoTicketMoney lottoTicketMoney;
     private Lotto winningNumbers;
-
-    private static final String TICKET_NUMBER_STATEMENT = "개를 구매했습니다.";
 
     public void issueLottoTicket() {
         lottoTicketMoney = UserInput.inputPrice();
@@ -22,11 +21,8 @@ public class LottoService {
     }
 
     public void printLottos() {
-        System.out.printf(("%d" + TICKET_NUMBER_STATEMENT),
-                lottoTicketMoney.calculateTicketNumber());
-        for (Lotto lotto: lottos) {
-            System.out.println(lotto);
-        }
+        ConsoleView.printTicketCount(lottoTicketMoney.calculateTicketNumber());
+        ConsoleView.printLottoNumbers(lottos);
     }
 
     public void inputWinningNumbers() {

@@ -4,7 +4,7 @@ import lotto.model.Lotto;
 
 import java.util.List;
 
-public class LottoView {
+public class ConsoleView {
     public static void printLottoNumbers(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);

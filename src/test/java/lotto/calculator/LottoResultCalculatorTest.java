@@ -1,4 +1,4 @@
-package lotto;
+package lotto.calculator;
 
 import lotto.domain.Lotto;
 import lotto.domain.winningnumber.WinningNumbers;

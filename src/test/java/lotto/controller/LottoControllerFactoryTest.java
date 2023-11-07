@@ -1,4 +1,4 @@
-package lotto;
+package lotto.controller;
 
 import lotto.factory.LottoControllerFactory;
 import org.junit.jupiter.api.DisplayName;

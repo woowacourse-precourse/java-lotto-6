@@ -1,5 +1,6 @@
-package lotto;
+package lotto.domain;
 
+import lotto.constant.TestConstant;
 import lotto.domain.winningnumber.WinningNumbers;
 import lotto.domain.winningnumber.WinningNumbersFactory;
 import org.junit.jupiter.api.DisplayName;

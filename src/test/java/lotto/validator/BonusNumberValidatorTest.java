@@ -1,6 +1,6 @@
 package lotto.validator;
 
-import lotto.TestConstant;
+import lotto.constant.TestConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

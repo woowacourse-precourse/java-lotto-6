@@ -1,4 +1,4 @@
-package lotto;
+package lotto.calculator;
 
 import java.text.DecimalFormat;
 import java.util.Map;

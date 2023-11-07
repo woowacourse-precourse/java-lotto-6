@@ -1,6 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import java.util.Arrays;
+import lotto.constant.TestConstant;
 import lotto.domain.Lotto;
 import lotto.domain.winningnumber.WinningNumbers;
 import lotto.domain.winningnumber.WinningNumbersFactory;

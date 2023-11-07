@@ -8,14 +8,14 @@ public class RandomLottoNumber {
     private List<Integer> numbers;
 
     public RandomLottoNumber() {
-        getRandomNumber();
+        initRandomNumber();
     }
 
     public List<Integer> getNumbers() {
         return numbers;
     }
 
-    public void getRandomNumber() {
+    public void initRandomNumber() {
         this.numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 

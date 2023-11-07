@@ -52,4 +52,14 @@ class OutputViewTest {
 
         outputView.printResult(prizes, prizeCount);
     }
+
+    @Test
+    @DisplayName("수익률 안내")
+    void printRateOfReturn() {
+        double value1 = 34.46757;
+        double value2 = 200000.51;
+
+        outputView.printRateOfReturn(value1);
+        outputView.printRateOfReturn(value2);
+    }
 }

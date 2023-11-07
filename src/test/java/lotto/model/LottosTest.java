@@ -66,7 +66,7 @@ class LottosTest {
     class LottosEqualityTest {
         @Test
         @DisplayName("동일한 Lottos 인스턴스 비교 - equals & hashCode")
-        void testEqualsAndHashCode() {
+        void testLottosEquality() {
             // 준비
             List<Lotto> lottoList1 = Arrays.asList(
                     new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)),

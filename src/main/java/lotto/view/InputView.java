@@ -52,13 +52,20 @@ public class InputView {
     }
 
     private static void inputSplitWinningNumbers(String input, List<Integer> numbers) {
-        for (String s : input.split(",")) {
-            try {
-                int num = Integer.parseInt(s);
-                numbers.add(num);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ErrorMessage.USER_INSERT_WINNING_NUMBER_ONLY_NUMBER.getMessage());
+        String[] numberStrings = input.split(",");
+        try {
+            if (numberStrings.length != 6) {
+                throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_SIZE_ERROR.getMessage());
             }
+            for (String s : numberStrings) {
+                int winningNumber = Integer.parseInt(s);
+                if (winningNumber < 1 || winningNumber > 45) {
+                    throw new IllegalArgumentException(ErrorMessage.USER_INSERT_WINNING_NUMBER_IN_RANGE.getMessage());
+                }
+                numbers.add(winningNumber);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_WINNING_NUMBER_ONLY_NUMBER.getMessage());
         }
     }
 

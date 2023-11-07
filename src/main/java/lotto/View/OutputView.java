@@ -21,6 +21,6 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(statistics);
-        System.out.printf("총 수익률은 %.1f%%입니다.", statistics.calculateTotalWinningRate());
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", statistics.calculateTotalWinningRate());
     }
 }

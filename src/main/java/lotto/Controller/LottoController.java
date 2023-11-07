@@ -20,13 +20,12 @@ public class LottoController {
     public static void main(String[] args) {
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> lottos = generateLottos(purchaseAmount);
-        printLottos(lottos);
 
         List<Integer> winningNumbers = getWinningNumbers();
         int bonusNumber = getBonusNumber();
         validateBonus(winningNumbers, bonusNumber);
 
-
+        printLottos(lottos);
         printWinningStatistics(lottos, winningNumbers, bonusNumber);
     }
 

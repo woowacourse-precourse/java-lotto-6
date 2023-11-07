@@ -16,4 +16,8 @@ public class Purchase {
             throw new IllegalArgumentException(ErrorConstants.ILLEGAL_MONEY_ERROR);
         }
     }
+
+    public Integer getNumberOfPurchases() {
+        return money / 1000;
+    }
 }

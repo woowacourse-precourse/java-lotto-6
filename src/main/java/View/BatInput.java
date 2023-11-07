@@ -15,7 +15,7 @@ enum ERROR_MESSAGE {
     }
 }
 
-public class batInput {
+public class BatInput {
     private static int price;
 
 
@@ -27,7 +27,7 @@ public class batInput {
         } catch (NumberFormatException e) {
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
-            return getPrice();
+            getPrice();
         }
         return price;
     }
@@ -40,7 +40,7 @@ public class batInput {
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             System.out.println(ERROR_MESSAGE.WRONG_FORMAT);
-            return getPrice();
+            getPrice();
         }
         return 0;
     }

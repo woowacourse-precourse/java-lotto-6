@@ -25,26 +25,26 @@ public class LottoResult {
         return winningLotto.checkContainBonusNumber(bonusNumber);
     }
 
-    public Map<LottoPrizeStatus, Integer> mappingPrizeResult(List<Lotto> issuedLottos) {
-        Map<LottoPrizeStatus, Integer> prizeResult = getPrizeResult();
+    public Map<LottoPrize, Integer> mappingPrizeResult(List<Lotto> issuedLottos) {
+        Map<LottoPrize, Integer> prizeResult = getPrizeResult();
         calculatePrizeResult(prizeResult, issuedLottos);
         return prizeResult;
     }
 
-    private void calculatePrizeResult(Map<LottoPrizeStatus, Integer> prizeResult, List<Lotto> issuedLottos) {
+    private void calculatePrizeResult(Map<LottoPrize, Integer> prizeResult, List<Lotto> issuedLottos) {
         for (Lotto issuedLotto : issuedLottos) {
             int matchCount = winningLotto.calculateMatchCount(issuedLotto);
             boolean isContainBonusNumber = issuedLotto.checkContainBonusNumber(bonusNumber);
-            LottoPrizeStatus status = LottoPrizeStatus.getSatisfiedConditionsStatus(matchCount, isContainBonusNumber);
+            LottoPrize status = LottoPrize.getSatisfiedConditionsStatus(matchCount, isContainBonusNumber);
             if (status != null) {
                 prizeResult.put(status, prizeResult.get(status) + ADD_COUNT);
             }
         }
     }
 
-    private Map<LottoPrizeStatus, Integer> getPrizeResult() {
-        final Map<LottoPrizeStatus, Integer> resultMap = new HashMap<>();
-        Arrays.stream(LottoPrizeStatus.values())
+    private Map<LottoPrize, Integer> getPrizeResult() {
+        final Map<LottoPrize, Integer> resultMap = new HashMap<>();
+        Arrays.stream(LottoPrize.values())
                 .forEach((status) -> resultMap.put(status, 0));
         return resultMap;
     }

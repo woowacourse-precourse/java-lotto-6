@@ -1,9 +1,5 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import lotto.util.ErrorMessages;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +13,7 @@ public class Lottos {
     }
 
     public ResultStatics calculateResult(LottoResult lottoResult) {
-        Map<LottoPrizeStatus, Integer> prizeResult = lottoResult.mappingPrizeResult(issuedLottos);
+        Map<LottoPrize, Integer> prizeResult = lottoResult.mappingPrizeResult(issuedLottos);
         int phrasedMoney = calculatePhrasedMoney();
         return new ResultStatics(prizeResult, phrasedMoney);
     }

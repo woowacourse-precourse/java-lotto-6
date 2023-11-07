@@ -4,12 +4,12 @@ import java.util.Collections;
 import java.util.Map;
 
 public class ResultStatics {
-    private final Map<LottoPrizeStatus, Integer> prizeResult;
+    private final Map<LottoPrize, Integer> prizeResult;
     private final int phrasedMoney;
     private final double earningRate;
     private final long totalEarning;
 
-    public ResultStatics(Map<LottoPrizeStatus, Integer> prizeResult, int phrasedMoney) {
+    public ResultStatics(Map<LottoPrize, Integer> prizeResult, int phrasedMoney) {
         this.prizeResult = Collections.unmodifiableMap(prizeResult);
         this.phrasedMoney = phrasedMoney;
         this.totalEarning = calculateTotalEarning();
@@ -22,14 +22,14 @@ public class ResultStatics {
 
     public long calculateTotalEarning() {
         long totalEarning = 0;
-        for (LottoPrizeStatus prizeStatus : prizeResult.keySet()) {
+        for (LottoPrize prizeStatus : prizeResult.keySet()) {
             int prizeCount = prizeResult.get(prizeStatus).intValue();
             totalEarning += prizeStatus.getPrizeMoney() * prizeCount;
         }
         return totalEarning;
     }
 
-    public Map<LottoPrizeStatus, Integer> getPrizeResult() {
+    public Map<LottoPrize, Integer> getPrizeResult() {
         return prizeResult;
     }
 

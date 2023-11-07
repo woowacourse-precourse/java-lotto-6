@@ -1,12 +1,10 @@
 package lotto.ui;
 
 import java.text.DecimalFormat;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoPrizeStatus;
+import lotto.domain.LottoPrize;
 import lotto.domain.Lottos;
 import lotto.domain.ResultStatics;
 
@@ -42,7 +40,7 @@ public class OutputView {
     }
 
     public void showResultStatistics(ResultStatics resultStatics) {
-        Map<LottoPrizeStatus, Integer> resultMap = resultStatics.getPrizeResult();
+        Map<LottoPrize, Integer> resultMap = resultStatics.getPrizeResult();
         double earningRate = resultStatics.getEarningRate();
         System.out.println("당첨 통계\n---");
         DecimalFormat df = new DecimalFormat("#,###.0");
@@ -52,13 +50,13 @@ public class OutputView {
                 .append("%입니다."));
     }
 
-    private void showMatchResult(Map<LottoPrizeStatus, Integer> resultMap) {
+    private void showMatchResult(Map<LottoPrize, Integer> resultMap) {
         DecimalFormat df = new DecimalFormat("#,###");
         resultMap.keySet()
                 .stream()
                 .sorted()
                 .forEach(status -> {
-                    System.out.printf("%s (%s원) - %d개\n", status.getMatchInformation(),
+                    System.out.printf("%s (%s원) - %d개\n", status.getPrizeStatement(),
                             df.format(status.getPrizeMoney()), resultMap.get(status));
                 });
     }

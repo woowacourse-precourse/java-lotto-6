@@ -45,7 +45,7 @@ class ResultStaticsTest {
         statics = lottos.calculateResult(lottoResult);
 
         Assertions.assertThat(statics.getTotalEarning())
-                .isEqualTo(LottoPrizeStatus.FIVE_SAME_AND_CONTAIN_BONUS.getPrizeMoney());
+                .isEqualTo(LottoPrize.SECOND_PRIZE.getPrizeMoney());
     }
 
     @DisplayName("5개가 일치하고 보너스 번호가 포함되지 않는다면, 3등 금액을 수령한다.")
@@ -60,6 +60,6 @@ class ResultStaticsTest {
         lottos = new Lottos(lottoList);
         statics = lottos.calculateResult(lottoResult);
         Assertions.assertThat(statics.getTotalEarning())
-                .isEqualTo(LottoPrizeStatus.FIVE_SAME.getPrizeMoney());
+                .isEqualTo(LottoPrize.THIRD_PRIZE.getPrizeMoney());
     }
 }

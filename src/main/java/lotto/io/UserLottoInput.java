@@ -12,11 +12,14 @@ public class UserLottoInput implements LottoInput {
     private final String DELIMITER = ",";
 
     @Override
-    public long getMoneyAmount() {
+    public int getMoneyAmount() {
         String input = Console.readLine();
         validateNumericString(input);
-        return Long.parseLong(input);
+        int amount = Integer.parseInt(input);
+        validateRange(amount);
+        return amount;
     }
+
 
     @Override
     public WinningNumbers getWinningNumbers() {
@@ -26,7 +29,8 @@ public class UserLottoInput implements LottoInput {
         return new WinningNumbers(lotto, bonusBall);
     }
 
-    private Lotto getLotto() {
+    @Override
+    public Lotto getLotto() {
         List<LottoBall> winningLottoBalls = getNumbers()
                 .stream()
                 .map(LottoBall::getInstance)
@@ -47,7 +51,8 @@ public class UserLottoInput implements LottoInput {
                 .toList();
     }
 
-    private LottoBall getBall() {
+    @Override
+    public LottoBall getBall() {
         String input = Console.readLine();
         validateNumericString(input);
         int number = Integer.parseInt(input);
@@ -59,6 +64,12 @@ public class UserLottoInput implements LottoInput {
             if (!Character.isDigit(c)) {
                 throw new InvalidMoneyInput();
             }
+        }
+    }
+
+    private void validateRange(int amount) {
+        if (amount <= 0) {
+            throw new InvalidMoneyInput();
         }
     }
 }

@@ -32,7 +32,7 @@ public class InputParser {
     }
 
     public String parseBonusNumber(String bonusNumber) {
-        bonusNumberValidator.validate();
+        bonusNumberValidator.validate(bonusNumber);
         return bonusNumber;
     }
 

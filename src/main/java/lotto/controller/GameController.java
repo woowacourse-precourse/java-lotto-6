@@ -1,60 +1,51 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.constant.ConfigurationNumbers;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.LottoList;
 import lotto.domain.Pay;
+import lotto.domain.WinningNumber;
+import lotto.util.Generator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    Pay pay;
-    LottoList userLottos;
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-
+    private InputView inputView = new InputView();
+    private OutputView outputView = new OutputView();
+    private Pay pay;
+    private List<Lotto> userLottos;
+    private WinningNumber winningNumber;
+    private BonusNumber bonusNumber;
 
     public void run() {
-        initGame();
-        startGame();
+        buyLotto();
+        generateWinningNumber();
     }
 
-    public void initGame() {
-        outputView.printPaymentRequest();
-        pay = new Pay(inputView.enterCost());
-        userLottos = new LottoList(generateUserLottos());
-        printUserLottos((userLottos.getLottos()));
+    private void buyLotto() {
+        pay = new Pay(inputView.requestPayment());
+        userLottos = generateLottos();
+        printLottos(userLottos);
     }
 
-    // TODO: 클래스 분리해보기!
-    public void startGame() {
-
-    }
-
-    private List<Lotto> generateUserLottos() {
+    private List<Lotto> generateLottos() {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < pay.getLottoAmounts(); i++) {
-            Lotto lotto = new Lotto(generateRandomNumbers());
-            lottos.add(lotto);
+            lottos.add(new Lotto(Generator.generateRandomNumbers()));
         }
         return lottos;
     }
 
-    private List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(
-                ConfigurationNumbers.MIN_NUMBER.getNumber(),
-                ConfigurationNumbers.MAX_NUMBER.getNumber(),
-                ConfigurationNumbers.LOTTO_LENGTH.getNumber()
-        );
-    }
-
-    private void printUserLottos(List<Lotto> lottoList) {
-        outputView.printAmmountLotto(lottoList.size());
-        for (Lotto lotto : lottoList) {
+    private void printLottos(List<Lotto> lottos) {
+        outputView.printAmmountLotto(lottos.size());
+        for (Lotto lotto : lottos) {
             outputView.printLottoNumbers(lotto.getNumbers());
         }
+    }
+
+    private void generateWinningNumber() {
+        winningNumber = new WinningNumber(inputView.requestWinningNumber());
+        bonusNumber = new BonusNumber(inputView.requestBonusNumber());
     }
 }

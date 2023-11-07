@@ -1,8 +1,8 @@
 package lotto;
 
 import lotto.controller.LottoController;
-import lotto.strategy.NumberGenerationStrategy;
-import lotto.strategy.RandomNumberStrategy;
+import lotto.domain.generator.strategy.NumberGenerationStrategy;
+import lotto.domain.generator.strategy.RandomNumberStrategy;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
 import lotto.view.Input;

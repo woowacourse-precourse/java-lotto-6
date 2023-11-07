@@ -1,6 +1,6 @@
 package lotto.view;
 
-import static lotto.domain.PrintMessages.*;
+import static lotto.view.PrintMessages.*;
 import static lotto.util.Constants.*;
 
 import java.util.Arrays;

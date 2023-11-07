@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.Optional;
+import lotto.view.PrintMessages;
 
 public enum LottoRank {
 

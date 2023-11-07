@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.view;
 
 import lotto.view.Input;
 import lotto.view.Output;

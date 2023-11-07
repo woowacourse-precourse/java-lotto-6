@@ -1,4 +1,4 @@
-package lotto.strategy;
+package lotto.domain.generator.strategy;
 
 import java.util.List;
 public interface NumberGenerationStrategy {

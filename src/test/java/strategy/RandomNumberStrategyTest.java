@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 import lotto.domain.LottoConfig;
-import lotto.strategy.RandomNumberStrategy;
+import lotto.domain.generator.strategy.RandomNumberStrategy;
 import org.junit.jupiter.api.Test;
 
 public class RandomNumberStrategyTest {

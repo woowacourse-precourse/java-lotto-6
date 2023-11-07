@@ -4,7 +4,7 @@ import static lotto.domain.LottoConfig.*;
 
 import java.util.List;
 import lotto.domain.model.Lotto;
-import lotto.strategy.NumberGenerationStrategy;
+import lotto.domain.generator.strategy.NumberGenerationStrategy;
 
 public class LottoGenerator {
 

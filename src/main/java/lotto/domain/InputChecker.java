@@ -1,5 +1,13 @@
 package lotto.domain;
 
+import static lotto.constants.ErrorMessages.DUPLICATES;
+import static lotto.constants.ErrorMessages.LOTTO_NUMBERS;
+import static lotto.constants.ErrorMessages.THOUSANDS;
+import static lotto.constants.ErrorMessages.WRONG_FORMAT;
+import static lotto.constants.PromptMessages.BONUS_NUMBER;
+import static lotto.constants.PromptMessages.PURCHASE_AMOUNT;
+import static lotto.constants.PromptMessages.WINNING_NUMBERS;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -9,17 +17,22 @@ import java.util.stream.Collectors;
 
 public class InputChecker {
     static int readLottoPrice() {
-        System.out.println("구입금액을 입력해 주세요.");
-        int price = Integer.parseInt(Console.readLine());
-
-        if(price % 1000 !=0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해주세요.");
+        while (true) {
+            System.out.println(PURCHASE_AMOUNT.getPromptMessage());
+            try {
+                int price = Integer.parseInt(Console.readLine());
+                if (price % 1000 != 0) {
+                    throw new IllegalArgumentException(THOUSANDS.getErrorMessage());
+                }
+                return price;
+            } catch (NumberFormatException e) {
+                System.out.println(WRONG_FORMAT.getErrorMessage());
+            }
         }
-        return price;
     }
 
     public List<Integer> readWinningNumbers() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(WINNING_NUMBERS.getPromptMessage());
         String input = Console.readLine();
 
         validateLottoNumbers(input);
@@ -34,31 +47,47 @@ public class InputChecker {
     }
 
     private static void validateLottoNumbers(String input) {
-
         String[] numberStrings = input.split(",");
         Set<Integer> distinctNumbers = new HashSet<>();
 
         for (String numberString : numberStrings) {
-            if (!numberString.matches("\\d+")) {
-                throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능 합니다.");
-            }
+            checkIfNumeric(numberString);
 
             int number = Integer.parseInt(numberString);
+            validateLottoRange(number);
+            validateNoDuplicates(distinctNumbers, number);
+        }
+    }
 
-            if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 당첨 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
-            }
+    private static void checkIfNumeric(String numberString) {
+        if (!numberString.matches("\\d+")) {
+            throw new IllegalArgumentException(WRONG_FORMAT.getErrorMessage());
+        }
+    }
 
-            if (!distinctNumbers.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 번호는 입력할 수 없습니다.");
-            }
+    private static void validateLottoRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(LOTTO_NUMBERS.getErrorMessage());
+        }
+    }
+
+    private static void validateNoDuplicates(Set<Integer> distinctNumbers, int number) {
+        if (!distinctNumbers.add(number)) {
+            throw new IllegalArgumentException(DUPLICATES.getErrorMessage());
         }
     }
 
     static Integer readBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        Integer bonusNumber = Integer.parseInt(Console.readLine());
-        return bonusNumber;
+        Integer bonusNumber;
+        while (true){
+            try{
+                System.out.println(BONUS_NUMBER.getPromptMessage());
+                bonusNumber = Integer.parseInt(Console.readLine());
+                return bonusNumber;
+            }catch (NumberFormatException e) {
+                System.out.println(WRONG_FORMAT.getErrorMessage());
+            }
+        }
     }
 
 }

@@ -1,18 +1,18 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Deposit;
 
 public class DepositInput {
-    public static int deposit() {
-        final int amount = Integer.parseInt(Console.readLine());;
+
+    public static Deposit deposit() {
         try {
-            if (amount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 1000원 단위로 나누어지는 금액을 입금해주세요.");
-            }
+            final int amount = Integer.parseInt(Console.readLine());;
+            return new Deposit(amount);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println("[ERROR]" + e.getMessage());
+            System.out.println("다시 입력해주세요.");
             return deposit();
         }
-        return amount;
     }
 }

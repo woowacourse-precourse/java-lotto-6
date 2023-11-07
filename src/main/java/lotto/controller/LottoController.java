@@ -31,11 +31,13 @@ public class LottoController {
     public void startLottoGame() {
         int purchaseAmount = getPurchaseAmount();
         showLottoTicketNumbers(purchaseAmount);
-        getWinningNumbersFromUser();
+        List<Integer> winningNumbers = getWinningNumbersFromUser();
     }
 
-    private void getWinningNumbersFromUser() {
+    private List<Integer> getWinningNumbersFromUser() {
         outputView.askWinningNumbers();
+        List<Integer> winningNumbers = inputView.getWinningNumbersFromUser();
+        return winningNumbers;
     }
 
     private void showLottoTicketNumbers(int purchaseAmount) {

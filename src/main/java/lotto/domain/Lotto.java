@@ -2,39 +2,39 @@ package lotto.domain;
 
 import lotto.enums.ErrorMessages;
 import lotto.enums.LottoEnum;
+import lotto.utils.StringUtil;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Lotto {
-    private static final String SEPARATOR = ",";
-
     private final List<LottoNumber> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    private Lotto(List<LottoNumber> lottoNumbers) {
+        validateSize(lottoNumbers);
+        validateDuplicate(lottoNumbers);
+        this.numbers = lottoNumbers;
+    }
+
+    public static Lotto valueOf(List<Integer> numbers) {
         List<LottoNumber> lottoNumbers = numbers.stream()
                 .sorted()
-                .map(LottoNumber::new)
-                .collect(Collectors.toList());
-        validate(lottoNumbers);
-        this.numbers = lottoNumbers;
-    }
-
-    public Lotto(String stringNumbers) {
-        List<LottoNumber> lottoNumbers = Arrays.stream(stringNumbers.split(SEPARATOR))
-                .sorted()
-                .map(LottoNumber::new)
+                .map(LottoNumber::valueOf)
                 .toList();
-        validate(lottoNumbers);
-        this.numbers = lottoNumbers;
+        return new Lotto(lottoNumbers);
     }
 
-    private void validate(List<LottoNumber> lottoNumbers) {
+    public static Lotto valueOf(String stringNumbers) {
+        return Lotto.valueOf(StringUtil.stringToList(stringNumbers));
+    }
+
+    private void validateSize(List<LottoNumber> lottoNumbers) {
         if (lottoNumbers.size() != LottoEnum.SELECTED_NUMBERS_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.OVER_MAX_SIZE_MESSAGE.getMessage());
         }
-        if (lottoNumbers.stream().mapToInt(LottoNumber::getNumber).distinct().count() != LottoEnum.SELECTED_NUMBERS_SIZE.getValue()) {
+    }
+
+    private void validateDuplicate(List<LottoNumber> lottoNumbers) {
+        if (lottoNumbers.stream().map(LottoNumber::getNumber).distinct().count() != LottoEnum.SELECTED_NUMBERS_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorMessages.DUPLICATE_NUMBER_MESSAGE.getMessage());
         }
     }
@@ -57,9 +57,5 @@ public class Lotto {
     @Override
     public String toString() {
         return numbers.stream().map(LottoNumber::getNumber).toList().toString();
-    }
-
-    public String toHash() {
-        return super.toString();
     }
 }

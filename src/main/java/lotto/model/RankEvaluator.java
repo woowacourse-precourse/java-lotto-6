@@ -11,12 +11,12 @@ public class RankEvaluator {
         this.prizeNumbers = prizeNumbers;
     }
 
-    public WinningRank getRank(Iterator<Integer> lottoIterator) {
+    public WinningRank getRank(Iterator<Integer> lottoNumbers) {
         int matchedNumberCount = 0;
         boolean bonusNumberMatched = false;
 
-        while (lottoIterator.hasNext()) {
-            int lottoNumber = lottoIterator.next();
+        while (lottoNumbers.hasNext()) {
+            int lottoNumber = lottoNumbers.next();
             if (prizeNumbers.isMatched(lottoNumber)) {
                 matchedNumberCount++;
             }

@@ -7,11 +7,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import lotto.utils.GameConstants;
+import lotto.utils.WinningRank;
 
 public class LottoManager {
     private ArrayList<Lotto> lottos;
     private WinningStatistics statistics;
-    private PrizeNumbers prizeNumbers;
+    RankEvaluator rankEvaluator;
 
 
     public LottoManager() {
@@ -33,17 +34,29 @@ public class LottoManager {
     }
 
     public void setPrizeNumbers(Set<Integer> winningNumbers, int bonusNumber) {
-
-        this.prizeNumbers = new PrizeNumbers(winningNumbers, bonusNumber);
+        PrizeNumbers prizeNumbers = new PrizeNumbers(winningNumbers, bonusNumber);
+        rankEvaluator = new RankEvaluator(prizeNumbers);
     }
 
     public Iterator<Lotto> getLottoListIterator() {
         return lottos.iterator();
     }
+//
+//    public String getStatistics() {
+//        Iterator<Lotto> lottoIterator = lottos.iterator();
+//        statistics.calculateStatistics(prizeNumbers, lottoIterator);
+//        return statistics.toString();
+//    }
 
-    public String getStatistics() {
-        Iterator<Lotto> lottoIterator = lottos.iterator();
-        statistics.calculateStatistics(prizeNumbers, lottoIterator);
+    public String calculateStatistics() {
+        for (Lotto lotto : lottos) {
+            Iterator<Integer> lottoNumbers = lotto.getIterator();
+            WinningRank rank = rankEvaluator.getRank(lottoNumbers);
+            statistics.updateStatistics(rank);
+        }
+        statistics.calculateProfitRate();
+
         return statistics.toString();
     }
+
 }

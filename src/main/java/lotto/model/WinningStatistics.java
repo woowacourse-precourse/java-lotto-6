@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.text.DecimalFormat;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import lotto.utils.WinningRank;
 
@@ -20,30 +19,34 @@ public class WinningStatistics {
         this.purchaseAmount = purchaseAmount;
     }
 
-    public void calculateStatistics(PrizeNumbers prizeNumbers, Iterator<Lotto> lottoIterator) {
-        RankEvaluator rankEvaluator = new RankEvaluator(prizeNumbers);
-        while (lottoIterator.hasNext()) {
-            Lotto lotto = lottoIterator.next();
-            WinningRank winningRank = rankEvaluator.getRank(lotto.getIterator());
-            updateWinningCount(winningRank);
-            calculateTotalAmount(winningRank.getWinningAmount());
-        }
-        calculateProfitRate();
+    public void updateStatistics(WinningRank rank) {
+        updateWinningCount(rank);
+        calculateTotalAmount(rank.getWinningAmount());
     }
+
+//    public void calculateStatistics(PrizeNumbers prizeNumbers, Iterator<Lotto> lottoIterator) {
+//        RankEvaluator rankEvaluator = new RankEvaluator(prizeNumbers);
+//        while (lottoIterator.hasNext()) {
+//            Lotto lotto = lottoIterator.next();
+//            WinningRank winningRank = rankEvaluator.getRank(lotto.getIterator());
+//            updateWinningCount(winningRank);
+//            calculateTotalAmount(winningRank.getWinningAmount());
+//        }
+//        calculateProfitRate();
+//    }
 
     private void updateWinningCount(WinningRank winningRank) {
         int updatedWinningCount = winningRecords.get(winningRank) + 1;
         winningRecords.put(winningRank, updatedWinningCount);
     }
 
-    private void calculateProfitRate() {
+    public void calculateProfitRate() {
         profitRate = ((double) totalWinningAmount) / purchaseAmount * 100;
     }
 
     private void calculateTotalAmount(int additionalAmount) {
         this.totalWinningAmount += additionalAmount;
     }
-
 
     @Override
     public String toString() {

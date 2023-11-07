@@ -9,9 +9,7 @@ public class LottoTicketGenerator {
     List<LottoTicket> lottoTickets;
     int numberOfTicket;
 
-    public LottoTicketGenerator(int amount) {
-        getNumberOfTicket(amount);
-        returnLottoTickets();
+    public LottoTicketGenerator() {
     }
 
     public LottoTicket createLottoTicket() {

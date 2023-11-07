@@ -29,37 +29,37 @@ public class InputController {
     }
 
     public WinningNumbers settingWinningNumbers() {
-        Lotto winningLotto = settingMainNumbers();
+        Lotto mainNumbers = settingMainNumbers();
 
-        WinningNumbers winningNumbers = getBonusNumber(winningLotto);
+        WinningNumbers winningNumbers = getBonusNumber(mainNumbers);
 
         return winningNumbers;
     }
 
     private Lotto settingMainNumbers() {
-        Lotto winningLotto = null;
-        while (winningLotto == null) {
-            winningLotto = tryGetMainNumbers(winningLotto);
+        Lotto mainNumbers = null;
+        while (mainNumbers == null) {
+            mainNumbers = tryGetMainNumbers(mainNumbers);
         }
-        return winningLotto;
+        return mainNumbers;
     }
 
-    private Lotto tryGetMainNumbers(Lotto winningLotto) {
+    private Lotto tryGetMainNumbers(Lotto mainNumbers) {
         try {
             String inputWinningNumbers = InputView.getWinningNumbers();
             inputWinningNumbers = Converter.deleteSpace(inputWinningNumbers);
             WinningNumbersValidator.validateMainNumbers(inputWinningNumbers);
-            winningLotto = Converter.stringToLotto(inputWinningNumbers);
+            mainNumbers = Converter.stringToLotto(inputWinningNumbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
-        return winningLotto;
+        return mainNumbers;
     }
 
-    private WinningNumbers getBonusNumber(Lotto winningLotto) {
+    private WinningNumbers getBonusNumber(Lotto mainNumbers) {
         WinningNumbers winningNumbers = null;
         while (winningNumbers == null) {
-            winningNumbers = tryGetBonusNumber(winningLotto, winningNumbers);
+            winningNumbers = tryGetBonusNumber(mainNumbers, winningNumbers);
         }
         return winningNumbers;
     }

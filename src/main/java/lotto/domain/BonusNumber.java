@@ -3,14 +3,15 @@ package lotto.domain;
 import java.util.List;
 
 public class BonusNumber {
-    private static final int LOTTO_RANGE_BEGIN_NUMBER = 1;
-    private static final int LOTTO_RANGE_END_NUMBER = 45;
-
     private final int number;
 
     public BonusNumber(Lotto winningLotto, String number) {
         this.number = convertToInteger(number.strip());
         validate(winningLotto.getNumbers(), this.number);
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     private int convertToInteger(final String number) {
@@ -22,15 +23,15 @@ public class BonusNumber {
     }
 
     private void validate(final List<Integer> numbers, final int number) {
-        if (!isInLottoRange(number)) {
+        if (!isInRange(number)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_OUT_OF_RANGE.getMessage());
         } else if (isContainedInNumbers(numbers, number)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATE_NUMBERS.getMessage());
         }
     }
 
-    private boolean isInLottoRange(final int number) {
-        return (number >= LOTTO_RANGE_BEGIN_NUMBER) && (number <= LOTTO_RANGE_END_NUMBER);
+    private boolean isInRange(final int number) {
+        return (number >= LottoInfo.RANGE_BEGIN.getNumber()) && (number <= LottoInfo.RANGE_END.getNumber());
     }
 
     private boolean isContainedInNumbers(final List<Integer> numbers, final int number) {

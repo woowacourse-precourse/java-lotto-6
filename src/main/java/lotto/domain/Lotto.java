@@ -3,10 +3,6 @@ package lotto.domain;
 import java.util.*;
 
 public class Lotto {
-    private static final int LOTTO_RANGE_BEGIN_NUMBER = 1;
-    private static final int LOTTO_RANGE_END_NUMBER = 45;
-    private static final int LOTTO_SIZE = 6;
-
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -22,7 +18,7 @@ public class Lotto {
     private void validate(final List<Integer> numbers) {
         if (!isSixNumbers(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_WRONG_SIZE.getMessage());
-        } else if (!isInLottoRange(numbers)) {
+        } else if (!isInRange(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_OUT_OF_RANGE.getMessage());
         } else if (hasDuplicateNumbers(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.LOTTO_DUPLICATE_NUMBERS.getMessage());
@@ -30,16 +26,20 @@ public class Lotto {
     }
 
     private boolean isSixNumbers(final List<Integer> numbers) {
-        return numbers.size() == LOTTO_SIZE;
+        return numbers.size() == LottoInfo.SIZE.getNumber();
     }
 
-    private boolean isInLottoRange(final List<Integer> numbers) {
+    private boolean isInRange(final List<Integer> numbers) {
         for (int number : numbers) {
-            if (number < LOTTO_RANGE_BEGIN_NUMBER || number > LOTTO_RANGE_END_NUMBER) {
+            if (!isInRangeForEach(number)) {
                 return false;
             }
         }
         return true;
+    }
+
+    private boolean isInRangeForEach(final int number) {
+        return (number >= LottoInfo.RANGE_BEGIN.getNumber()) && (number <= LottoInfo.RANGE_END.getNumber());
     }
 
     private boolean hasDuplicateNumbers(final List<Integer> numbers) {

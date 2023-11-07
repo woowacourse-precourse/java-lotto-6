@@ -15,7 +15,6 @@ public class LottoService {
 
     public List<Lotto> buyLotto(int input) {
         lottos = new Lottos();
-        Validator.checkMoney(input);
         int lottoCount = input / 1000;
         for (int i = 0; i < lottoCount; i++) {
             getLottoNumbers();
@@ -32,4 +31,5 @@ public class LottoService {
     public void setPlayer(List<Integer> winningNumbers, int bonusNumber) {
         player = new Player(winningNumbers, bonusNumber);
     }
+
 }

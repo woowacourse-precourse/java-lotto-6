@@ -14,7 +14,10 @@ public class Parser {
         if (!input.matches("^[0-9]+$")) {
             throw new IllegalArgumentException(ErrorType.INVALID_NUMBER_INPUT.getText());
         }
-        return Integer.parseInt(input);
+
+        int convertMoney = Integer.parseInt(input);
+        Validator.checkMoney(convertMoney);
+        return convertMoney;
     }
 
     public static List<Integer> convertWinningNumberInput(String input) {

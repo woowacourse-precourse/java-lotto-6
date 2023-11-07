@@ -1,6 +1,10 @@
 package lotto.model.calculator;
 
+import static lotto.util.ExceptionMessage.INVALID_AMOUNT_OF_INVESTMENT;
+import static lotto.util.ExceptionMessage.INVALID_RATE_OF_RESULT;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class WinningCalculatorTest {
@@ -56,5 +61,60 @@ class WinningCalculatorTest {
                 Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 1, 1),
                 Arguments.of(Arrays.asList(1, 2, 3, 4, 5, 6), 45, 0)
         );
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1000, 5000, 500",
+            "8000, 5000, 62.5"
+    })
+    @DisplayName("당첨금 / 투자 금액을 소수점 둘째 자리에서 반올림하여 반환한다.")
+    void returnRateOfReturn(Integer amountOfInvestment, Long totalPrizeMoney, Double expectedRateOfReturn) {
+        // given
+        // when & then
+        assertThat(winningCalculator.calculateRateOfReturn(amountOfInvestment, totalPrizeMoney)).isEqualTo(
+                expectedRateOfReturn);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1000, 0, 0",
+            "1000, 2000000000, 200000000"
+    })
+    @DisplayName("수익률이 0% 이상 2000000%이하라면 어떠한 Exception도 감지되지 않는다.")
+    void supportedRateOfResult(Integer amountOfInvestment, Long totalPrizeMoney, Double expectedRateOfReturn) {
+        // given
+        // when & then
+        assertThatNoException().isThrownBy(() -> winningCalculator.calculateRateOfReturn(amountOfInvestment, totalPrizeMoney));
+        assertThat(winningCalculator.calculateRateOfReturn(amountOfInvestment, totalPrizeMoney)).isEqualTo(
+                expectedRateOfReturn);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "1000, -2000",
+            "1000, 4000000000"
+    })
+    @DisplayName("수익률이 0% 미만 2000000% 초과라면 IllegalArgumentException을 반환한다.")
+    void notSupportedRateOfResult(Integer amountOfInvestment, Long totalPrizeMoney) {
+        // given
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> winningCalculator.calculateRateOfReturn(amountOfInvestment, totalPrizeMoney))
+                .withMessage(INVALID_RATE_OF_RESULT.getMessage());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 0",
+            "0, 5000"
+    })
+    @DisplayName("투자 금액이 0원이면 IllegalArgumentException을 반환한다.")
+    void divideByZeroTest(Integer amountOfInvestment, Long totalPrizeMoney) {
+        // given
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> winningCalculator.calculateRateOfReturn(amountOfInvestment, totalPrizeMoney))
+                .withMessage(INVALID_AMOUNT_OF_INVESTMENT.getMessage());
     }
 }

@@ -1,8 +1,11 @@
 package lotto.domain;
 
+import lotto.domain.dto.output.DrawLottoDto;
+
+import java.util.EnumMap;
 import java.util.Map;
 
-import static lotto.domain.DrawResult.getResult;
+import static lotto.domain.DrawResult.*;
 import static lotto.domain.LottoStore.LOTTO_PRICE;
 
 public class DrawMachine {
@@ -34,5 +37,30 @@ public class DrawMachine {
             prizeAmount += drawResult.getPrizeAmount() * count;
         }
         return prizeAmount;
+    }
+
+    private Map<DrawResult, Integer> createStatistic() {
+        Map<DrawResult, Integer> statistic = new EnumMap<>(DrawResult.class);
+        for (DrawResult drawResult : values()) {
+            statistic.put(drawResult, 0);
+        }
+        return statistic;
+    }
+
+    public DrawLottoDto drawAllTicket(Lottos lottos) {
+        Map<DrawResult, Integer> statistic = createStatistic();
+        for (Lotto lottoTicket : lottos.getLottoTickets()) {
+            DrawResult drawResult = draw(lottoTicket);
+            Integer count = statistic.get(drawResult);
+            statistic.replace(drawResult, count + 1);
+        }
+        return new DrawLottoDto(
+                statistic.get(FIRST),
+                statistic.get(SECOND),
+                statistic.get(THIRD),
+                statistic.get(FOURTH),
+                statistic.get(FIFTH),
+                getRateOfReturn(statistic, lottos.getSize())
+        );
     }
 }

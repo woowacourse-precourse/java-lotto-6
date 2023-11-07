@@ -22,4 +22,12 @@ public class Lottos {
                 .toList();
         return new LottosDto(lottoNumbers, lottoTickets.size());
     }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
+    }
+
+    public int getSize() {
+        return lottoTickets.size();
+    }
 }

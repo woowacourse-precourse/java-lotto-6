@@ -7,9 +7,15 @@ public class InputHandler {
     public Integer readCost(String input) {
         try {
             Integer cost = Integer.parseInt(input);
+            isItNaturalNumber(cost);
             return divideByThousand(cost);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자만을 입력해야 합니다.", e);
+        }
+    }
+    private void isItNaturalNumber(Integer cost) {
+        if(cost == 0 || cost < 0) {
+            throw new IllegalArgumentException("[ERROR] 1000 단위의 자연수를 입력해야 합니다.");
         }
     }
     
@@ -64,7 +70,7 @@ public class InputHandler {
     private void isItDuplicated(Set<Integer> winningNumbers) {
         Set<Integer> set = new HashSet<>(winningNumbers);
         if(set.size() < Constants.LOTTONUMBER) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하습니다.");
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하였습니다.");
         }
     }
     
@@ -75,7 +81,7 @@ public class InputHandler {
     
     private void isNumberOutOfRange(Integer bonusNumber) {
         if(bonusNumber < Constants.MIN || bonusNumber > Constants.MAX){
-            throw new IllegalArgumentException(" 입력[ERROR] 1~45 사이의 숫자를해야 합니다.");
+            throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를해야 합니다.");
         }
 
     }

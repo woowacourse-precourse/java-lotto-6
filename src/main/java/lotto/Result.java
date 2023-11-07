@@ -16,6 +16,7 @@ public class Result {
     public Long getProfit() {
         return this.profit;
     }
+    public List<Score> getScores() { return this.scores; }
 
     public void makeScores(List<Integer> winningNumbers, Integer bonusNumber,List<Lotto> lottos) {
         lottos.forEach(lotto -> scores
@@ -23,15 +24,22 @@ public class Result {
     }
 
     private Score makeScore(List<Integer> winningNumbers, Integer bonusNumber, List<Integer> numbers) {
-        int point = calculatePoint(winningNumbers, numbers);
+        int point = calculatePoint(winningNumbers, bonusNumber, numbers);
         return decideScore(point, bonusNumber,numbers);
     }
     
-    private int calculatePoint(List<Integer> winningNumbers, List<Integer> numbers) {
-        Set<Integer> setWinning = new HashSet<>(winningNumbers);
-        Set<Integer> setNumbers = new HashSet<>(numbers);
-        setWinning.retainAll(setNumbers);
-        return Constants.LOTTONUMBER - setWinning.size();
+    private int calculatePoint(List<Integer> winningNumbers, Integer bonusNumber, List<Integer> numbers) {
+        Set<Integer> setOfWinning = new HashSet<>(winningNumbers);
+        Set<Integer> setOfNumbers = new HashSet<>(numbers);
+        setOfWinning.retainAll(setOfNumbers);
+        return ifBonusIncluded(bonusNumber, numbers, setOfWinning);
+    }
+    
+    private int ifBonusIncluded(Integer bonusNumber, List<Integer> numbers, Set<Integer> setOfWinning) {
+        if(numbers.contains(bonusNumber)) {
+            return setOfWinning.size() + 1;
+        }
+        return setOfWinning.size();
     }
     
     private Score decideScore(int point, Integer bonusNumber, List<Integer> numbers) {

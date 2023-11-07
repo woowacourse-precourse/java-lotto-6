@@ -79,7 +79,7 @@ class InputHandlerTest {
         assertThatThrownBy(() -> {
             inputHandler.readWinningNumber(input);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE + " 중복된 숫자를 입력하습니다.");
+                .hasMessageContaining(ERROR_MESSAGE + " 중복된 숫자를 입력하였습니다.");
     }
 
     @Test

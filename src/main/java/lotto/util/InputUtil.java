@@ -19,7 +19,7 @@ public class InputUtil {
 
     //로또 금액 입력 메소드
     public int inputMoney() {
-        System.out.println("입력하세요");
+        System.out.println("구입금액을 입력해 주세요.");
         String moneyInput = "";
         do {
             moneyInput = Console.readLine();
@@ -39,6 +39,7 @@ public class InputUtil {
 
     //로또 당첨번호 입력 메소드
     public List<Integer> inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumbersInput = "";
         do {
             winningNumbersInput = Console.readLine();
@@ -57,12 +58,13 @@ public class InputUtil {
     }
 
     //로또 보너스 당첨번호 입력 메소드
-    public LottoNumber inputBonusNumber() {
+    public int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumberInput = "";
         do {
             bonusNumberInput = Console.readLine();
         } while (!validateBonusNumber(bonusNumberInput));
-        return new LottoNumber(Integer.parseInt(bonusNumberInput));
+        return Integer.parseInt(bonusNumberInput);
     }
 
     private boolean validateBonusNumber(String moneyInput) {

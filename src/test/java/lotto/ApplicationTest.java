@@ -10,20 +10,32 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void testValidateInputValid() {
+    void validateInputTest() {
+        assertEquals(1, Application.validateInput(1000));
         assertEquals(10, Application.validateInput(10000));
+        assertThrows(IllegalArgumentException.class, () -> Application.validateInput(1050));
+        assertThrows(IllegalArgumentException.class, () -> Application.validateInput(-1000));
     }
 
     @Test
-    void testValidateInputInvalid() {
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> Application.validateInput(1050));
-        assertEquals("로또는 1000원 단위로 적어야합니다.", exception.getMessage());
+    void generateLottoNumbersTest() {
+        assertEquals(5, Application.generateLottoNumbers(5).size());
+        assertTrue(Application.generateLottoNumbers(1).get(0).size() == 6);
     }
+
+    @Test
+    void compareLottoNumbersListTest() {
+        List<Integer> lotto = Arrays.asList(1, 2, 3, 4, 5, 6);
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        assertEquals(6, Application.compareLottoNumbersList(lotto, winningNumbers, 7));
+    }
+
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(

@@ -5,18 +5,16 @@ import java.util.Arrays;
 public class LottoWinningNumberInput {
     private int[] winningNumbers;
 
-    public LottoWinningNumberInput(int[] winningNumbers) {
-        this.winningNumbers = winningNumbers;
+    public LottoWinningNumberInput(String[] winningNumbers) {
+        setWinningNumbers(winningNumbers);
     }
 
-    public int[] setWinningNumbers(String[] winningNumbersInput) {
+    private void setWinningNumbers(String[] winningNumbersInput) {
         this.winningNumbers = Arrays.stream(winningNumbersInput)
                 .map(String::trim)
                 .mapToInt(Integer::parseInt)
                 .toArray();
         Arrays.sort(this.winningNumbers);
-
-        return this.winningNumbers;
     }
 
     public int[] getWinningNumbers() {

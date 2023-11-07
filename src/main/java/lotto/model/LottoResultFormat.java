@@ -6,7 +6,7 @@ public enum LottoResultFormat {
     FIVE(5, "1,500,000"),
     FIVE_BONUS(5, "30,000,000"),
     SIX(6, "2,000,000,000"),
-    ERROR(0,"error");
+    FAIL(0,"0");
 
     private final int lottoOfMatching;
     private final String winningAmount;

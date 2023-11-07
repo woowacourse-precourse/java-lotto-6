@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static lotto.constant.LottoConsts.REQUIRED_COUNT;
 
@@ -21,5 +22,11 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .sorted()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
 }

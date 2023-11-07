@@ -30,31 +30,30 @@ public class GameController {
         printer.countOfLotto(money.getMoney() / CommonUnits.MONEY_UNIT);
         printer.allLotto(pocket.getLottos().stream().map(it -> new LottoNumberDTO(it.getNumbers()))
                 .collect(Collectors.toList()));
-        discriminator.setCorrectNumbers(new Lotto(inputter.lottoNumbers().getLotto()));
-        discriminator.setBonus(new Bonus(inputter.bonus()));
+        discriminator.setCorrectNumbers(getCorrectNumbers());
+        discriminator.setBonus(getBonus());
         pocket.getLottos().stream().forEach(it -> discriminator.discriminate(it.getNumbers()));
         printer.statistic(discriminator.getStatistic());
         printer.profitRate(discriminator.getProfitRate(money.getMoney()));
     }
 
     private void init() {
-        money = new Money(getPurchase());
+        money = getPurchase();
         pocket = new Pocket(getLottos());
     }
 
-    private int getPurchase() {
+    private Money getPurchase() {
         boolean flag = true;
-        int purchase = 0;
+        Money purchase;
         while (flag) {
             try {
-                purchase = inputter.purchase();
-                flag = false;
+                purchase = new Money(inputter.purchase());
+                return purchase;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        return purchase;
+        return null;
     }
 
     private List<Lotto> getLottos() {
@@ -66,5 +65,33 @@ public class GameController {
         }
 
         return lottos;
+    }
+
+    private Lotto getCorrectNumbers() {
+        boolean flag = true;
+        Lotto lotto;
+        while (flag) {
+            try {
+                lotto = new Lotto(inputter.lottoNumbers().getLotto());
+                return lotto;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return null;
+    }
+
+    private Bonus getBonus() {
+        boolean flag = true;
+        Bonus bonus;
+        while (flag) {
+            try {
+                bonus = new Bonus(inputter.bonus());
+                return bonus;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return null;
     }
 }

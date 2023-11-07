@@ -21,7 +21,7 @@ public class LottoResultCheckService {
         return results;
     }
 
-    private Result getCommonResult(Lotto lotto, WinningNumber winningNumber, Bonus bonus) {
+    Result getCommonResult(Lotto lotto, WinningNumber winningNumber, Bonus bonus) {
         boolean isMatchedBonusNumber = lotto.containBonusNumber(bonus.getNumber());
         int resultSize = lotto.removeNonCommonNumber(winningNumber.getNumbers());
         return new Result(resultSize, isMatchedBonusNumber);

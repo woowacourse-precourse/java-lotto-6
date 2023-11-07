@@ -24,7 +24,7 @@ public class LottoController {
         outputView.printLottoNumbers(lottoList);
 
         List<Integer> winningNumbers = inputView.inputWinningNumbers();
-        int bonusNumber = inputView.inputBonusNumber();
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
 
         Referee referee = new Referee(winningNumbers, bonusNumber);
         refereeService.calculateLottoResult(referee, lottoList);

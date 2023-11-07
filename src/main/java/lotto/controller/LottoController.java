@@ -13,32 +13,37 @@ import lotto.model.WinningLotto;
 import lotto.model.WinningMoney;
 import lotto.util.RandomNumbersGenerator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoController {
 
   private final InputView inputView;
+  private final OutputView outputView;
 
-  public LottoController(InputView inputView) {
+  public LottoController(InputView inputView, OutputView outputView) {
     this.inputView = inputView;
+    this.outputView = outputView;
   }
 
   public void start() {
-    PurchaseMoney purchaseMoney = readPurchaseMoney();
+    PurchaseMoney purchaseMoney = initPurchaseMoney();
     RandomNumbersGenerator generate = new RandomNumbersGenerator();
     PersonLotto personLotto = new PersonLotto(generate, purchaseMoney);
+    outputView.outputPurchase(purchaseMoney, personLotto);
 
-    WinningLotto winningLotto = readWinningNumbers();
+    WinningLotto winningLotto = initWinningNumbers();
 
-    Bonus bonus = readBonusNumber(winningLotto);
+    Bonus bonus = initBonusNumber(winningLotto);
 
     LotteryMachine lotteryMachine = new LotteryMachine(personLotto, winningLotto);
     Map<WinningMoney, Integer> result = lotteryMachine.drawingLotto(bonus);
 
     LotteryResult lotteryResult = new LotteryResult(result);
     lotteryResult.getProfitPercentage(purchaseMoney);
+    outputView.outputResult(lotteryResult, purchaseMoney);
   }
 
-  private PurchaseMoney readPurchaseMoney() {
+  private PurchaseMoney initPurchaseMoney() {
     PurchaseMoney readValue;
     while (true) {
       try {
@@ -52,7 +57,7 @@ public class LottoController {
     return readValue;
   }
 
-  private WinningLotto readWinningNumbers() {
+  private WinningLotto initWinningNumbers() {
     WinningLotto readValue;
     while (true) {
       try {
@@ -60,12 +65,13 @@ public class LottoController {
         readValue = new WinningLotto(new Lotto(readNumbers));
         break;
       } catch (Exception ex) {
+        ex.printStackTrace();
       }
     }
     return readValue;
   }
 
-  private Bonus readBonusNumber(WinningLotto winningLotto) {
+  private Bonus initBonusNumber(WinningLotto winningLotto) {
     Bonus readValue;
     while (true) {
       try {
@@ -73,7 +79,7 @@ public class LottoController {
         readValue = new Bonus(new Number(readBonus), winningLotto);
         break;
       } catch (Exception ex) {
-        readBonusNumber(winningLotto);
+        ex.printStackTrace();
       }
     }
     return readValue;

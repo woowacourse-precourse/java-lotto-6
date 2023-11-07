@@ -16,7 +16,6 @@ public class LotteryResult {
 
   public String getProfitPercentage(PurchaseMoney purchaseMoney) {
     double profitPercentage = (double) calculateProfit() / purchaseMoney.getPurchaseMoney();
-    System.out.println(profitPercentage);
 
     return new DecimalFormat(DECIMAL_FORMAT).format(profitPercentage);
   }
@@ -31,7 +30,6 @@ public class LotteryResult {
       sum += calculateMatches(key);
     }
 
-    System.out.println(sum);
     return sum;
   }
 

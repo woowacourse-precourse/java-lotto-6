@@ -1,7 +1,5 @@
 package domain;
 
-import java.text.DecimalFormat;
-
 public class UserLottos {
     private final Lottos lottos = new Lottos();
     private final int amount;

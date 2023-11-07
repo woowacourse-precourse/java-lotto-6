@@ -1,6 +1,7 @@
 package lotto.util;
 
 public class Validator {
+    private static final int NATURAL_NUMBER_START = 1;
     private Validator() {
     }
 
@@ -16,6 +17,13 @@ public class Validator {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             ErrorMessage.printNotNumericNumberErrorMessage();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateInputIsNatural(int input) {
+        if (input < NATURAL_NUMBER_START) {
+            ErrorMessage.printNotNaturalNumberErrorMessage();
             throw new IllegalArgumentException();
         }
     }

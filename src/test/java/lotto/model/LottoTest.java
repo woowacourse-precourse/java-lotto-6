@@ -40,8 +40,40 @@ class LottoTest extends NsTest {
         ).isEqualTo(6);
     }
 
-    @Override
-    protected void runMain() {
-        Application.main(new String[]{});}
+    @DisplayName("보너스 번호 체크 테스트")
+    @Test
+    void testBonusChecking() {
+        // given
+        BonusNumber bonusNumber = new BonusNumber("43");
+        Lotto lotto = new Lotto("1,2,3,4,5,43");
 
+        // when, then
+        assertThat(lotto.isBonus(bonusNumber)).isTrue();
+    }
+
+    @DisplayName("로또 당첨 등수 체크")
+    @Test
+    void checkRankingTest() {
+        // given
+        Lotto targetTicket = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto winningNumbersFourMatches = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        Lotto winningNumbersFiveMatches = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        BonusNumber bonusNumberMatch = new BonusNumber("6");
+        BonusNumber bonusNumberNotMatch = new BonusNumber("9");
+
+        // when
+        Ranking rankingFirst = targetTicket.checkRanking(winningNumbersFiveMatches, bonusNumberMatch);
+        Ranking rankingSecond = targetTicket.checkRanking(winningNumbersFiveMatches, bonusNumberNotMatch);
+        Ranking rankingThird = targetTicket.checkRanking(winningNumbersFourMatches, bonusNumberMatch);
+        Ranking rankingFourth = targetTicket.checkRanking(winningNumbersFourMatches, bonusNumberNotMatch);
+
+        // then
+        assertThat(rankingFirst == Ranking.FIRST).isTrue();
+        assertThat(rankingSecond == Ranking.SECOND).isTrue();
+        assertThat(rankingThird == Ranking.THIRD).isTrue();
+        assertThat(rankingFourth == Ranking.FOURTH).isTrue();
+    }
+
+    @Override
+    protected void runMain() {Application.main(new String[]{});}
 }

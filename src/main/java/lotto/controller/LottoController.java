@@ -17,26 +17,21 @@ public class LottoController {
 
     public void startProgram() {
         Lottos lottos = purchaseLottos();
+        printLottoNumbers(lottos);
         FinalWinningNumber finalWinningNumber = setFinalWinningNumber();
-        printResult(lottos, finalWinningNumber);
+        printLottoResult(lottos, finalWinningNumber);
     }
 
     private Lottos purchaseLottos() {
-        Lottos lottos = initLottos();
-        printAllLottoNumbers(lottos);
-        return lottos;
-    }
-
-    private Lottos initLottos() {
         try {
             return new Lottos(inputView.inputPurchaseAmount());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return initLottos();
+            return purchaseLottos();
         }
     }
 
-    private void printAllLottoNumbers(Lottos lottos) {
+    private void printLottoNumbers(Lottos lottos) {
         outputView.outputPurchaseNumber(lottos.getNumberOfLottos());
         for (List<Integer> lotto : lottos.getAllLottoNumbers()) {
             outputView.outputLottoNumber(LottoService.sort(lotto));
@@ -65,12 +60,20 @@ public class LottoController {
         }
     }
 
-    private void printResult(Lottos lottos, FinalWinningNumber finalWinningNumber) {
+    private void printLottoResult(Lottos lottos, FinalWinningNumber finalWinningNumber) {
+        printWinningStatistics(lottos, finalWinningNumber);
+        printTotalRateOfReturn(lottos);
+    }
+
+    private void printWinningStatistics(Lottos lottos, FinalWinningNumber finalWinningNumber) {
         outputView.outputWinningStatistics();
         HashMap<LottoRank, Integer> rankCount = lottos.getLottosResult(finalWinningNumber);
         for(LottoRank rank : rankCount.keySet()) {
             outputView.outputRankResult(rank.getRankContent(), rankCount.get(rank));
         }
+    }
+
+    private void printTotalRateOfReturn(Lottos lottos) {
         outputView.outputTotalRateOfReturn(lottos.calculateTotalRateOfReturn());
     }
 }

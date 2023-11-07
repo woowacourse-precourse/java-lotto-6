@@ -8,20 +8,23 @@ import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_POSITIVE;
 import static lotto.exception.ErrorCode.PURCHASE_AMOUNT_NOT_PRICE_UNIT;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.exception.PurchaseException;
 
-public class LottoFactory {
+public class LottoShop {
 
-    public List<Lotto> generateLottos(final int purchaseAmount) {
+    private final int ZERO = 0;
+
+    public List<Lotto> purchaseLottos(final int purchaseAmount) {
         final int purchasedCount = getPurchasedCount(purchaseAmount);
+        return generateLottos(purchasedCount);
+    }
 
-        final List<Lotto> lottos = new ArrayList<>();
-        for (int count = 0; count < purchasedCount; count++) {
-            lottos.add(new Lotto(generateNumbers()));
-        }
-        return lottos;
+    private List<Lotto> generateLottos(int purchasedCount) {
+        return IntStream.range(ZERO, purchasedCount)
+            .mapToObj(i -> new Lotto(generateNumbers()))
+            .toList();
     }
 
     private List<Integer> generateNumbers() {
@@ -40,13 +43,13 @@ public class LottoFactory {
     }
 
     private void validatePurchaseAmountPositive(final int purchaseAmount) {
-        if (purchaseAmount <= 0) {
+        if (purchaseAmount <= ZERO) {
             throw new PurchaseException(PURCHASE_AMOUNT_NOT_POSITIVE);
         }
     }
 
     private void validatePurchaseAmountUnit(final int purchaseAmount) {
-        if (purchaseAmount % LOTTO_PRICE != 0) {
+        if (purchaseAmount % LOTTO_PRICE != ZERO) {
             throw new PurchaseException(PURCHASE_AMOUNT_NOT_PRICE_UNIT);
         }
     }

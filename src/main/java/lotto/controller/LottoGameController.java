@@ -3,6 +3,9 @@ package lotto.controller;
 import static lotto.view.InputView.inputLottoBonusNumber;
 import static lotto.view.InputView.inputLottoPurchaseAmount;
 import static lotto.view.InputView.inputLottoWinningNumbers;
+import static lotto.view.OutputView.printEarningRate;
+import static lotto.view.OutputView.printLottoResult;
+import static lotto.view.OutputView.printLottos;
 
 import java.util.List;
 import lotto.exception.BonusNumberException;
@@ -10,24 +13,38 @@ import lotto.exception.LottoException;
 import lotto.exception.PurchaseException;
 import lotto.model.Lotto;
 import lotto.model.LottoChecker;
-import lotto.model.LottoFactory;
 import lotto.model.LottoResult;
-import lotto.view.OutputView;
+import lotto.model.LottoShop;
 
 public class LottoGameController {
 
-    private final LottoFactory lottoFactory = new LottoFactory();
+    private final LottoShop lottoShop = new LottoShop();
 
     public void run() {
-        List<Lotto> lottos = getLottos();
-        OutputView.printLottos(lottos);
+        final List<Lotto> lottos = getLottos();
+        printLottos(lottos);
 
-        LottoChecker lottoChecker = getLottoChecker();
+        final LottoResult lottoResult = getLottoResult(lottos);
+        printLottoResult(lottoResult);
 
-        LottoResult lottoResult = lottoChecker.checkLottos(lottos);
-        OutputView.printLottoResult(lottoResult);
+        final double earningsRate = lottoResult.getEarningsRate();
+        printEarningRate(earningsRate);
+    }
 
-        calculateEarningRate(lottoResult);
+    private List<Lotto> getLottos() {
+        int purchaseAmount = inputLottoPurchaseAmount();
+        while (true) {
+            try {
+                return lottoShop.purchaseLottos(purchaseAmount);
+            } catch (LottoException | PurchaseException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private LottoResult getLottoResult(List<Lotto> lottos) {
+        final LottoChecker lottoChecker = getLottoChecker();
+        return lottoChecker.checkLottos(lottos);
     }
 
     private LottoChecker getLottoChecker() {
@@ -45,22 +62,6 @@ public class LottoGameController {
                 System.out.println(e.getMessage());
             }
         }
-    }
-
-    private List<Lotto> getLottos() {
-        int purchaseAmount = inputLottoPurchaseAmount();
-        while (true) {
-            try {
-                return lottoFactory.generateLottos(purchaseAmount);
-            } catch (LottoException | PurchaseException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private void calculateEarningRate(LottoResult lottoResult) {
-        double earningsRate = lottoResult.getEarningsRate();
-        OutputView.printEarningRate(earningsRate);
     }
 
 }

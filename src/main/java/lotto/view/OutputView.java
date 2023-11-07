@@ -20,7 +20,7 @@ public class OutputView {
     }
 
     public void printWinningResult(Map<LottoRankInfo, Integer> winningResult, List<LottoRankInfo> rankInfos) {
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
 
         for (LottoRankInfo rankInfo : rankInfos) {

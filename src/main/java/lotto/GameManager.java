@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 public class GameManager {
 
-    private static final String COMMA = ",";
+    private static final String COMMA_DELIMITER = ",";
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -49,7 +49,7 @@ public class GameManager {
     private void generateLottoWinningNumbers() {
         try {
             String inputString = inputView.readWinningNumbers();
-            List<String> splitInputString = Arrays.asList(inputString.split(COMMA));
+            List<String> splitInputString = Arrays.asList(inputString.split(COMMA_DELIMITER));
             List<Integer> winningNumbers = parseToIntegerList(splitInputString);
 
             lottoWinningNumbers = new LottoWinningNumbers(winningNumbers);

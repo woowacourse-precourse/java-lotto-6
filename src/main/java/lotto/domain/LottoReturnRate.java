@@ -4,9 +4,9 @@ public class LottoReturnRate {
 
     private static final double DEFAULT_RETURN_COUNT = 0.0;
     private static final int MINIMUM_TOTAL_MONEY = 0;
-    private static final int ONE_HUNDRED_PERCENTAGE_MAKER = 0;
+    private static final int ONE_HUNDRED_PERCENTAGE_MAKER = 100;
 
-    private double purchaseAmount;
+    private final double purchaseAmount;
     private double returnRate;
 
     public LottoReturnRate(int purchaseAmount) {

@@ -91,7 +91,7 @@ public class LottoService {
         int totalWinningAmount = countTotalWinningAmount(lottoWinningRanks);
         int lottoBuyPrice = LottoBuyPrice.countTotalLottoPrice(lottoWinningRanks.size());
 
-        return Math.round(ReturnRateCountUtil.countReturnRate(totalWinningAmount, lottoBuyPrice));
+        return ReturnRateCountUtil.countReturnRate(totalWinningAmount, lottoBuyPrice);
     }
 
     private int countTotalWinningAmount(List<LottoWinningRank> lottoWinningRanks) {

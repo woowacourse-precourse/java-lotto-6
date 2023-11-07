@@ -24,15 +24,14 @@ public class Controller {
 
         OutputView.printBuyInputPrice();
         UserPrice userPrice = new UserPrice(InputView.inputUserPrice());
-        int lottoCnt = userPrice.buyCount(LOTTO_PRICE);
-        Lotties boughtLotties = userPrice.buy(lottoCnt);
+        Lotties lotties = userPrice.buy(LOTTO_PRICE);
 
-        OutputView.printBuyLottoCount(lottoCnt);
-        OutputView.printLotties(boughtLotties.getLottiesNumbers());
+        OutputView.printBuyLottoCount(lotties.size());
+        OutputView.printLotties(lotties.getLottiesNumbers());
 
         WinningNumber winningNumber = part3();
 
-        for (Lotto lotto : boughtLotties.getLotties()) {
+        for (Lotto lotto : lotties.getLotties()) {
             Result result = findResult(lotto, winningNumber);
             int resultCnt = score.getOrDefault(result, 0);
             score.put(result, resultCnt + 1);

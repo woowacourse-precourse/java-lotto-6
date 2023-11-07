@@ -7,20 +7,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Computer {
-    Lotto sixLottoNumbers;
-    int bonusNumber;
+    private Lotto sixLottoNumber;
+    private int bonusNumber;
 
     public Computer() {
         Output.printLottoNumbersMessage();
-        sixLottoNumbers = inputSixLottoNumber();
-        Output.printLottoNumbers(sixLottoNumbers.getSixLottoNumbers());
+        sixLottoNumber = inputSixLottoNumber();
+        Output.printLottoNumbers(sixLottoNumber.getSixLottoNumbers());
 
         Output.printBonusNumberMessage();
         bonusNumber = inputBonusNumber();
         Output.printBonusNumber(bonusNumber);
     }
 
-    public Lotto inputSixLottoNumber() {
+    public List<Integer> getSixLottoNumber(){
+        return sixLottoNumber.getSixLottoNumbers();
+    }
+
+    public int getBonusNumber(){
+        return bonusNumber;
+    }
+
+    private Lotto inputSixLottoNumber() {
         while (true) {
             try {
                 List<String> sixLottoNumber = new ArrayList<>(List.of(Console.readLine().split(",")));
@@ -53,7 +61,7 @@ public class Computer {
         }
     }
 
-    public int inputBonusNumber() {
+    private int inputBonusNumber() {
         while (true) {
             try {
                 String input = Console.readLine();
@@ -82,7 +90,7 @@ public class Computer {
     }
 
     private void validateDuplicateBonusNumber(int bonusNumber) {
-        if (sixLottoNumbers.getSixLottoNumbers().contains(bonusNumber)) {
+        if (sixLottoNumber.getSixLottoNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 입력한 6개의 로또 당첨 번호와 중복됩니다. 다시 입력해주세요.");
         }
     }

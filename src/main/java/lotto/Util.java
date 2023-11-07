@@ -25,26 +25,23 @@ public class Util {
 
     public static List<Integer> winningNumberCalculate(String line) {
         String[] temp = line.split(",");
-
         List<Integer> re = new ArrayList<>();
-
         for(String a: temp) {
             re.add(Integer.parseInt(a));
         }
         sort(re);
-
         return re;
     }
 
-    public static Integer winningNumberCalculate(List<Integer> winningNumbers, String line) {
+    public static List<Integer> winningNumberCalculate(List<Integer> winningNumbers, String line) {
+        List<Integer> bonus = new ArrayList<>();
         try {
             int temp = Integer.parseInt(line);
             if(winningNumbers.contains(temp)) throw new IllegalArgumentException(error2);
+            bonus.add(temp);
+            return bonus;
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException();
         }
-
-
-        return 1;
     }
 }

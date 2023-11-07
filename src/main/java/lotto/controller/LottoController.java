@@ -26,7 +26,7 @@ public class LottoController {
             List<LottoResult> results = lottoService.returnLottoResult(userLotto, lottos);
             returnGameResult(results, purchasePrice);
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e.getMessage());
         }
     }
 

@@ -70,4 +70,8 @@ public class OutputView {
     public static void printEarningRate(double earningRate) {
         System.out.printf(EARNING_RATE_MESSAGE.getMessage(), earningRate);
     }
+
+    public static void printErrorMessage(String message) {
+        System.out.println("[ERROR] " + message);
+    }
 }

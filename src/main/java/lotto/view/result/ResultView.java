@@ -1,14 +1,14 @@
-package lotto.view;
+package lotto.view.result;
 
 import lotto.domain.LottoTickets;
 import lotto.view.printer.Printer;
 
-public class OutputView {
+public class ResultView {
 
     private final Printer printer;
-    private final PrintFormatter formatter;
+    private final ResultViewFormatter formatter;
 
-    public OutputView(Printer printer, PrintFormatter formatter) {
+    public ResultView(Printer printer, ResultViewFormatter formatter) {
         this.printer = printer;
         this.formatter = formatter;
     }

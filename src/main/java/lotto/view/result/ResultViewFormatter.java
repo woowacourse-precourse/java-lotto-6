@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.result;
 
 import java.util.Arrays;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.view.constant.CharacterSymbol;
 
-public class PrintFormatter {
+public class ResultViewFormatter {
 
     private static final String LOTTO_PURCHASE_QUANTITY_FORMAT = "%d개를 구매했습니다.";
 

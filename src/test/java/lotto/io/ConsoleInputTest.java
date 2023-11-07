@@ -1,6 +1,7 @@
 package lotto.io;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import lotto.ConsoleTestSuper;
@@ -57,6 +58,28 @@ class ConsoleInputTest extends ConsoleTestSuper {
     }
 
     @Test
+    void 이상한구분자가주어지는_consoleNumbers_실패테스트() {
+        String testNumberString = "4?2?9";
+
+        String input = enterInput(testNumberString);
+        setIn(input);
+
+        assertThatThrownBy(() -> new ConsoleInput().numbers("?"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 숫자가아닌문자가주어지는_consoleNumbers_실패테스트() {
+        String testNumberString = "4,2,9,실패하세요";
+
+        String input = enterInput(testNumberString);
+        setIn(input);
+
+        assertThatThrownBy(() -> new ConsoleInput().numbers(","))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 기본_consoleStrings_테스트() {
         String testString = "안녕하세요 세상아";
         String[] expectedStrings = {"안", "녕", "하", "세", "요", " ", "세", "상", "아"};
@@ -80,6 +103,18 @@ class ConsoleInputTest extends ConsoleTestSuper {
 
         assertThat(actualStringList).containsExactly(expectedStrings);
 
+    }
+
+    @Test
+    void 이상한구분자가주어지는_consoleStrings_실패테스트() {
+        String testString = "안녕하세요,세상아";
+        String[] expectedStrings = {"안녕하세요", "세상아"};
+
+        String input = enterInput(testString);
+        setIn(input);
+
+        assertThatThrownBy(() -> new ConsoleInput().strings("?"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
 }

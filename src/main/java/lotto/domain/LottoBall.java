@@ -13,14 +13,6 @@ public class LottoBall {
         this.number = number;
     }
 
-    public boolean equals(LottoBall ball) {
-        return this.number == ball.getNumber();
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
     private void validateNumberRange(int number) {
         validateNumberLowerRange(number);
         validateNumberUpperRange(number);
@@ -36,5 +28,24 @@ public class LottoBall {
         if (number > MAX_RANGE) {
             throw new ArgumentRangeOutOfBoundsException();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+
+        LottoBall lottoBall = (LottoBall) o;
+
+        return number == lottoBall.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return number;
     }
 }

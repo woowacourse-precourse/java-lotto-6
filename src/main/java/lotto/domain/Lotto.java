@@ -32,7 +32,6 @@ public class Lotto {
 
     private void validateDuplicateNumber(List<LottoBall> numbers) {
         final long distinctCount = numbers.stream()
-                .mapToInt(LottoBall::getNumber)
                 .distinct()
                 .count();
 

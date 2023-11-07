@@ -31,7 +31,7 @@ public class LottoController {
         this.seller = LottoSeller.create();
     }
 
-    public void inputMoney() {
+    public LottoController inputMoney() {
         while (true) {
             try {
                 outputView.printMoneyInputMessage();
@@ -43,17 +43,19 @@ public class LottoController {
             }
         }
         outputView.printEmptyLine();
+        return this;
     }
 
-    public void buyLottos() {
+    public LottoController buyLottos() {
         int money = user.pay();
         LottoPaper lottoPaper = seller.sellLottos(money);
         user.setLottoPaper(lottoPaper);
         outputView.printBuyMessage(lottoPaper.size());
         outputView.print(lottoPaper.toString());
+        return this;
     }
 
-    public void inputWinNumbers() {
+    public LottoController inputWinNumbers() {
         while (true) {
             try {
                 outputView.printWinNumbersInputMessage();
@@ -65,9 +67,10 @@ public class LottoController {
                 outputView.print(e.getMessage());
             }
         }
+        return this;
     }
 
-    public void inputBonusNumber() {
+    public LottoController inputBonusNumber() {
         while (true) {
             try {
                 outputView.printBonusNumberInputMessage();
@@ -79,9 +82,10 @@ public class LottoController {
             }
         }
         outputView.printEmptyLine();
+        return this;
     }
 
-    public void getWinStatistics() {
+    public LottoController getWinStatistics() {
         outputView.printStatisticsMessage();
         winCounter = new WinCounter();
         for (MatchCountDto counting : matchCounter.getMatchCounts(user.getLottoPaper())) {
@@ -94,10 +98,12 @@ public class LottoController {
             }
         }
         outputView.print(winCounter.toString());
+        return this;
     }
 
-    public void getRateOfReturn() {
+    public LottoController getRateOfReturn() {
         String rateOfReturn = winCounter.getRateOfReturn(user.getPayed());
         outputView.print(Message.RATE_OF_RETURN_START.get() + rateOfReturn + Message.RATE_OF_RETURN_END.get());
+        return this;
     }
 }

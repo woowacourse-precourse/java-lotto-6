@@ -12,11 +12,12 @@ public class Application {
         OutputStream outputStream = new ConsoleOutputStream();
         LottoController lottoController = new LottoController(inputStream, outputStream);
 
-        lottoController.inputMoney();
-        lottoController.buyLottos();
-        lottoController.inputWinNumbers();
-        lottoController.inputBonusNumber();
-        lottoController.getWinStatistics();
-        lottoController.getRateOfReturn();
+        lottoController
+                .inputMoney()
+                .buyLottos()
+                .inputWinNumbers()
+                .inputBonusNumber()
+                .getWinStatistics()
+                .getRateOfReturn();
     }
 }

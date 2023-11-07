@@ -5,7 +5,6 @@ import lotto.model.LotteryResult;
 import lotto.model.PersonLotto;
 import lotto.model.PurchaseMoney;
 import lotto.model.WinningMoney;
-import lotto.util.Constants;
 import lotto.util.SpecialSign;
 
 public class OutputView {
@@ -31,14 +30,15 @@ public class OutputView {
 
         public static String statisticsMessage(OutputMessage outputMessage, Map<WinningMoney, Integer> store,
                                                WinningMoney winningMoney) {
-            return String.format(outputMessage.message, resultCount(store, winningMoney));
+            return String.format(outputMessage.message, resultCount(store, winningMoney))
+                    + SpecialSign.NEW_LINE.getSign();
         }
 
         private static int resultCount(Map<WinningMoney, Integer> store, WinningMoney winningMoney) {
             int count = 0;
-          if (store.containsKey(winningMoney)) {
-            return store.get(winningMoney);
-          }
+            if (store.containsKey(winningMoney)) {
+                return store.get(winningMoney);
+            }
             return count;
         }
     }
@@ -61,10 +61,8 @@ public class OutputView {
     public void outputStatistics(LotteryResult lotteryResult, PurchaseMoney purchaseMoney) {
         StringBuilder sb = new StringBuilder();
         sb.append(SpecialSign.NEW_LINE.getSign())
-                .append(OutputMessage.STATISTICS_MESSAGE.message)
-                .append(SpecialSign.NEW_LINE.getSign())
-                .append(OutputMessage.DIVIDER_MESSAGE.message)
-                .append(SpecialSign.NEW_LINE.getSign())
+                .append(OutputMessage.STATISTICS_MESSAGE.message).append(SpecialSign.NEW_LINE.getSign())
+                .append(OutputMessage.DIVIDER_MESSAGE.message).append(SpecialSign.NEW_LINE.getSign())
                 .append(winningLottoResult(lotteryResult.getStore(), lotteryResult, purchaseMoney));
         System.out.print(sb);
     }
@@ -72,21 +70,11 @@ public class OutputView {
     private String winningLottoResult(Map<WinningMoney, Integer> store, LotteryResult lotteryResult,
                                       PurchaseMoney purchaseMoney) {
         StringBuilder sb = new StringBuilder();
-        return sb
-                .append(OutputMessage.statisticsMessage(OutputMessage.THREE_MATCH_MESSAGE, store,
-                        WinningMoney.THREE_MATCH))
-                .append(SpecialSign.NEW_LINE.getSign())
-                .append(OutputMessage.statisticsMessage(OutputMessage.FOUR_MATCH_MESSAGE, store,
-                        WinningMoney.FOUR_MATCH))
-                .append(SpecialSign.NEW_LINE.getSign())
-                .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_MATCH_MESSAGE, store,
-                        WinningMoney.FIVE_MATCH))
-                .append(SpecialSign.NEW_LINE.getSign())
-                .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_AND_BONUS_MATCH_MESSAGE, store,
-                        WinningMoney.FIVE_MATCH_BONUS))
-                .append(SpecialSign.NEW_LINE.getSign())
+        return sb.append(OutputMessage.statisticsMessage(OutputMessage.THREE_MATCH_MESSAGE, store, WinningMoney.THREE_MATCH))
+                .append(OutputMessage.statisticsMessage(OutputMessage.FOUR_MATCH_MESSAGE, store, WinningMoney.FOUR_MATCH))
+                .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_MATCH_MESSAGE, store, WinningMoney.FIVE_MATCH))
+                .append(OutputMessage.statisticsMessage(OutputMessage.FIVE_AND_BONUS_MATCH_MESSAGE, store, WinningMoney.FIVE_MATCH_BONUS))
                 .append(OutputMessage.statisticsMessage(OutputMessage.SIX_MATCH_MESSAGE, store, WinningMoney.SIX_MATCH))
-                .append(SpecialSign.NEW_LINE.getSign())
                 .append(OutputMessage.PROFIT_PERCENTAGE_MESSAGE.message)
                 .append(lotteryResult.getProfitPercentage(purchaseMoney))
                 .append(SpecialSign.PERCENTAGE_MESSAGE.getSign())
@@ -95,23 +83,6 @@ public class OutputView {
     }
 
     private String purchaseLottoResult(PersonLotto personLotto) {
-        StringBuilder sb = new StringBuilder();
-        personLotto.getPurchaseLotto().forEach(lotto -> {
-            StringBuilder sub = new StringBuilder();
-            sub.append(SpecialSign.LEFT_BRACKET.getSign());
-
-            for (int number : lotto.getNumbers()) {
-                sub.append(number)
-                        .append(SpecialSign.SEPARATOR.getSign())
-                        .append(SpecialSign.BLANK.getSign());
-            }
-
-            sub.delete(sub.length() - Constants.REMOVE_INDEX, sub.length());
-            sub.append(SpecialSign.RIGHT_BRACKET.getSign())
-                    .append(SpecialSign.NEW_LINE.getSign());
-
-            sb.append(sub);
-        });
-        return sb.toString();
+        return personLotto.getElements();
     }
 }

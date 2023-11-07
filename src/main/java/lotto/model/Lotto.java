@@ -8,6 +8,8 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lotto.exception.ErrorType;
+import lotto.util.Constants;
+import lotto.util.SpecialSign;
 
 public class Lotto {
 
@@ -64,5 +66,20 @@ public class Lotto {
     @Override
     public int hashCode() {
         return Objects.hash(numbers);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(SpecialSign.LEFT_BRACKET.getSign());
+
+        for (Number number : numbers) {
+            sb.append(number)
+                    .append(SpecialSign.SEPARATOR.getSign())
+                    .append(SpecialSign.BLANK.getSign());
+        }
+        sb.delete(sb.length() - Constants.REMOVE_INDEX, sb.length());
+        sb.append(SpecialSign.RIGHT_BRACKET);
+        return sb.toString();
     }
 }

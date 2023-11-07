@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.util.NumbersGenerator;
+import lotto.util.SpecialSign;
 
 public class PersonLotto {
 
@@ -12,6 +13,15 @@ public class PersonLotto {
 
     public PersonLotto(NumbersGenerator numbersGenerator, PurchaseMoney purchaseMoney) {
         this.purchaseLotto = createLotto(numbersGenerator, purchaseMoney);
+    }
+
+    public String getElements() {
+        StringBuilder sb = new StringBuilder();
+        for (Lotto lotto : purchaseLotto) {
+            sb.append(lotto.getNumbers().toString())
+                    .append(SpecialSign.NEW_LINE.getSign());
+        }
+        return sb.toString();
     }
 
     public List<Lotto> getPurchaseLotto() {

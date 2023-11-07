@@ -1,8 +1,11 @@
 package lotto.service;
 
-import java.util.EnumMap;
+import static lotto.model.LottoRule.LOTTO_PRICE;
+
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import lotto.dto.LottosCalculateResult;
 import lotto.exception.NonVariableException;
 import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
@@ -15,7 +18,7 @@ public class LottoWalletService {
     private LottoWallet lottoWallet = null;
     private LottoWinningNumbers winningNumbers = null;
     private LottoBonusNumber bonusNumber = null;
-    private Map<LottoRank, Integer> ranks = new EnumMap<>(LottoRank.class);
+    private Map<LottoRank, Integer> ranks;
 
     /**
      * 사용자의 로또 지갑을 저장한다.
@@ -34,12 +37,34 @@ public class LottoWalletService {
     /**
      * 당첨 통계를 반환한다.
      */
-    public void winningStatistics() {
+    public LottosCalculateResult winningStatistics() {
         readyCheck();
         initializeRanks();
 
         runAllCompare();
+        double rateOfReturn = rateOfReturnCalculation(ranks);
+
+        return new LottosCalculateResult(ranks, rateOfReturn); // 받아온 정보 담아서 반환
     }
+
+    private double rateOfReturnCalculation(Map<LottoRank, Integer> result) {
+        int count = 0;
+        int revenue = 0;
+        for (Entry<LottoRank, Integer> entry :
+                result.entrySet()) {
+            count += entry.getValue(); // 구매한 수량만큼 추가
+            if (entry.getKey() == LottoRank.RANK_NO) {
+                continue; // 0등은 끝
+            }
+            LottoRank rank = entry.getKey();
+            revenue += rank.getPrice() * entry.getValue(); // 가격 가져와서 더하기
+        }
+
+        double roi = ((double) revenue / (count * LOTTO_PRICE)) * 100.0;
+
+        return Math.round(roi * 10) / 10.0;
+    }
+
 
     /**
      * 지갑의 로또로 등수를 확인한다.
@@ -94,10 +119,7 @@ public class LottoWalletService {
      * 랭킹 기록을 초기화한다.
      */
     private void initializeRanks() {
-        // 모든 수를 0으로 초기화
-        for (LottoRank category : LottoRank.values()) {
-            ranks.put(category, 0);
-        }
+        this.ranks = LottoRank.createRankMap();
     }
 
     /**

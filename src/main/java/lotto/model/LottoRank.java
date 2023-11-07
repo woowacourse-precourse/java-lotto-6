@@ -1,5 +1,8 @@
 package lotto.model;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 public enum LottoRank {
     /**
      * 로또 당첨 순위: 1등
@@ -62,5 +65,22 @@ public enum LottoRank {
         }
 
         return RANK_NO;
+    }
+
+    /**
+     * 새로운 순위 표 만들기
+     *
+     * @return Map<LottoRank, Integer> ranks = new LinkedHashMap<>();
+     */
+    public static Map<LottoRank, Integer> createRankMap() {
+        Map<LottoRank, Integer> ranks = new LinkedHashMap<>();
+        ranks.put(RANK_NO, 0);
+        ranks.put(RANK_5TH, 0);
+        ranks.put(RANK_4TH, 0);
+        ranks.put(RANK_3RD, 0);
+        ranks.put(RANK_2ND, 0);
+        ranks.put(RANK_1ST, 0);
+
+        return ranks;
     }
 }

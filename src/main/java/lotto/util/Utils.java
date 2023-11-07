@@ -1,5 +1,6 @@
 package lotto.util;
 
+import java.text.DecimalFormat;
 import lotto.exception.NonNumberException;
 
 public class Utils {
@@ -9,5 +10,11 @@ public class Utils {
         } catch (Exception e) {
             throw new NonNumberException();
         }
+    }
+
+    public static String conversionWon(int money) {
+        DecimalFormat format = new DecimalFormat("###,###");
+
+        return format.format(money);
     }
 }

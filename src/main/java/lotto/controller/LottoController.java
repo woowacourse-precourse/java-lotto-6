@@ -7,8 +7,10 @@ import static lotto.view.LottoOutputView.printBonusNumber;
 import static lotto.view.LottoOutputView.printPurchaseAmount;
 import static lotto.view.LottoOutputView.printPurchaseLotto;
 import static lotto.view.LottoOutputView.printWinningNumber;
+import static lotto.view.LottoOutputView.printWinningStatistics;
 
 import java.util.List;
+import lotto.dto.LottosCalculateResult;
 import lotto.model.Lotto;
 import lotto.model.LottoBonusNumber;
 import lotto.model.LottoWallet;
@@ -41,7 +43,9 @@ public class LottoController {
      * 로또 당첨 통계 가져오기
      */
     private void getWinningStatistics() {
-        lottoWalletService.winningStatistics();
+        LottosCalculateResult result = lottoWalletService.winningStatistics(); // 서비스에 로또 통계 요청
+
+        printWinningStatistics(result); // 서비스로부터 받은 결과 출력
     }
 
     /**

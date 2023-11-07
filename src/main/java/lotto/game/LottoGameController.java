@@ -21,6 +21,23 @@ public class LottoGameController {
         this.writer = writer;
     }
 
+
+
+
+    private LottoNumber inputBonusNumber(WinningNumber winningNumber) {
+        display(BONUS_NUMBER_INPUT_MESSAGE);
+        while (true) {
+            try {
+                String input = reader.read();
+                LottoNumber lottoNumber = LottoNumber.newInstance(input);
+                winningNumber.hasNumber(lottoNumber);
+                return lottoNumber;
+            } catch (IllegalArgumentException e) {
+                writer.write(e.getMessage());
+            }
+        }
+    }
+
     private WinningNumber inputWinningNumber() {
         display(WINNING_NUMBER_INPUT_MESSAGE);
         while (true) {

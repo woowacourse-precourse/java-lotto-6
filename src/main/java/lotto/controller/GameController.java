@@ -24,7 +24,7 @@ public class GameController {
     }
 
     public void start() {
-        inputLottoCount();
+        setLottoCount();
         playerService.buy(lottoCount);
         outputController.printLottoPapers(player.getLottoPapers(), lottoCount);
 
@@ -32,26 +32,17 @@ public class GameController {
         outputController.printWinningStatistics(customerPrice);
     }
 
-    private void inputLottoCount() {
+    private void setLottoCount() {
         while(true){
             try{
-                lottoCount = getLottoCount();
+                customerPrice = InputController.inputPrice();
+                lottoCount = parseLottoCount(customerPrice);
                 break;
             }catch(IllegalArgumentException e){
                 System.out.println(ErrorMessage.ERROR_INPUT_PRICE_MESSAGE);
                 System.out.println();
             }
         }
-    }
-
-    private int getLottoCount() throws IllegalArgumentException{
-        try {
-            customerPrice = InputController.inputPrice();
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
-
-        return parseLottoCount(customerPrice);
     }
 
     private int parseLottoCount(int customerPrice) throws IllegalArgumentException{

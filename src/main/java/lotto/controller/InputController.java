@@ -8,10 +8,17 @@ import lotto.util.InputMessage;
 
 public class InputController {
 
-    public static int inputPrice() throws NumberFormatException{
-        System.out.println(InputMessage.INPUT_PRICE_MESSAGE);
+    public static int inputPrice() throws IllegalArgumentException{
+        int customerPrice;
 
-        return Integer.parseInt(Console.readLine());
+        System.out.println(InputMessage.INPUT_PRICE_MESSAGE);
+        try {
+            customerPrice = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
+
+        return customerPrice;
     }
 
     public static List<Integer> inputWinningNumber() throws NumberFormatException{

@@ -1,5 +1,8 @@
 package lotto.provider;
 
+import static lotto.domain.Customer.*;
+import static lotto.domain.LottoMachine.*;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +18,7 @@ public class LottoInputProvider {
 		try {
 			return Integer.parseInt(Console.readLine());
 		} catch (NumberFormatException e) {
+			System.out.println(ErrorType.INVALID_PURCHASE_ERROR.getErrorMessage());
 			throw new IllegalArgumentException(ErrorType.INVALID_PURCHASE_ERROR.getErrorMessage());
 		}
 	}
@@ -28,6 +32,7 @@ public class LottoInputProvider {
 				.map(num -> Integer.parseInt(num))
 				.collect(Collectors.toList());
 		} catch (NumberFormatException e) {
+			System.out.println(ErrorType.INVALID_LOTTO_NUMBER.getErrorMessage());
 			throw new IllegalArgumentException(ErrorType.INVALID_LOTTO_NUMBER.getErrorMessage());
 		}
 
@@ -40,7 +45,9 @@ public class LottoInputProvider {
 		try {
 			return Integer.parseInt(Console.readLine());
 		} catch (NumberFormatException e) {
+			System.out.println(ErrorType.INVALID_BONUS_NUMBER.getErrorMessage());
 			throw new IllegalArgumentException(ErrorType.INVALID_BONUS_NUMBER.getErrorMessage());
 		}
 	}
+
 }

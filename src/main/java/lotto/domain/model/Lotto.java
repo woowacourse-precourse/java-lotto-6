@@ -1,9 +1,11 @@
-package lotto.domain;
+package lotto.domain.model;
+
+import static lotto.utils.LottoEnum.LOTTO_COUNT;
+import static lotto.utils.LottoEnum.LOTTO_END_NUMBER;
+import static lotto.utils.LottoEnum.LOTTO_START_NUMBER;
 
 import java.util.List;
-import lotto.exception.lottonumbersexception.InsufficientNumbersCountException;
-import lotto.exception.lottonumbersexception.NonDuplicateNumbersException;
-import lotto.exception.lottonumbersexception.OutOfNumbersRangeException;
+import lotto.exception.lottonumbersexception.NumbersErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,18 +16,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new InsufficientNumbersCountException();
+        if (numbers.size() != LOTTO_COUNT.getValue()) {
+            throw NumbersErrorMessage.INSUFFICIENT_NUMBERS_COUNT.getException();
         }
-        if (numbers.stream().distinct().count() != 6) {
-            throw new NonDuplicateNumbersException();
+        if (numbers.stream().distinct().count() != LOTTO_COUNT.getValue()) {
+            throw NumbersErrorMessage.DUPLICATE_LOTTO_NUMBER.getException();
         }
-        if (numbers.stream().anyMatch(num -> num < 1 || num > 45)) {
-            throw new OutOfNumbersRangeException();
+        if (numbers.stream()
+                .anyMatch(num -> num < LOTTO_START_NUMBER.getValue() || num > LOTTO_END_NUMBER.getValue())) {
+            throw NumbersErrorMessage.OUT_OF_NUMBERS_RANGE.getException();
         }
     }
 
-    // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
     }

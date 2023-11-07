@@ -61,7 +61,7 @@
     - set
     - match
 
-- Reader [ ]
+- Reader [ x ]
     - read
 
 - Viewer [ ]

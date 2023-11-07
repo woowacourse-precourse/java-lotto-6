@@ -25,6 +25,13 @@ public class LottoMachine {
 
         DrawingResults drawingResults = new DrawingResults();
 
+        calculateDrawingResults(winningLotto, bonusNumber, lottosContents, drawingResults);
+
+        return drawingResults;
+    }
+
+    private void calculateDrawingResults(WinningLotto winningLotto, BonusNumber bonusNumber, List<Lotto> lottosContents,
+                                         DrawingResults drawingResults) {
         for (Lotto lotto : lottosContents) {
             int matchedWinningLottoCount = lotto.matchWinningLottoCount(winningLotto);
             boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
@@ -32,8 +39,6 @@ public class LottoMachine {
             Rank calculateResult = Rank.calculate(matchedWinningLottoCount, hasBonusNumber);
             drawingResults.count(calculateResult);
         }
-
-        return drawingResults;
     }
 
     public ProfitRate calculateProfitRate(final Lottos lottos, final DrawingResults drawingResult) {

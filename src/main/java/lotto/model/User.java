@@ -4,14 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class User {
-
     int payed;
     List<Lotto> lottos;
-
-    public User(int payed, List<Lotto> lottos) {
-        this.payed = payed;
-        this.lottos = lottos;
-    }
 
     public int getPayed() {
         return payed;

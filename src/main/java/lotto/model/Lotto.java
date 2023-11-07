@@ -1,9 +1,6 @@
 package lotto.model;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -28,13 +25,7 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
-    @Override
-    public String toString() {
-        String lottoPaper = "[";
-        for (int number : numbers){
-            lottoPaper = lottoPaper + ", " + number;
-        }
-        lottoPaper += "]";
-        return lottoPaper;
+    public String printLotto() {
+       return Arrays.toString(numbers.toArray());
     }
 }

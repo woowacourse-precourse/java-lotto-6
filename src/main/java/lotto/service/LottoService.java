@@ -11,8 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class LottoService {
-    private LotteryMachine lotteryMachine = LotteryMachine.getInstance();
-    private User user;
+    private final LotteryMachine lotteryMachine = LotteryMachine.getInstance();
+    private final User user = new User();
     private WinningNumbers winningNumbers;
 
 

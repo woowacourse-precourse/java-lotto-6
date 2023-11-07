@@ -34,7 +34,7 @@ public class WinningNumbers{
 
     private List<Integer> validateNumbers(String[] numbers){
         List<String> filteredNumbers = Arrays.stream(numbers)
-                .filter(num -> num.matches("[0-9]+"))
+                .filter(num -> num.matches("[0-9 ]+"))
                 .toList();
         if (filteredNumbers.size() < numbers.length){
             throw new IllegalArgumentException("숫자만 입력해주세요.");
@@ -42,17 +42,17 @@ public class WinningNumbers{
         if (filteredNumbers.size() < 6){
             throw new IllegalArgumentException("6개의 숫자를 입력해주세요.");
         }
-        List<Integer> finalNumbers = filteredNumbers.stream().map(Integer::parseInt).toList();
+        List<Integer> finalNumbers = filteredNumbers.stream().map(num -> Integer.parseInt(num.trim())).toList();
         isInRange(finalNumbers);
         checkDuplicate(finalNumbers);
         return finalNumbers;
     }
 
     private int validateBonus(String bonusNumber){
-        if (!bonusNumber.matches("[0-9]+")){
+        if (!bonusNumber.matches("[0-9 ]+")){
             throw new IllegalArgumentException("only numbers");
         }
-        int bonus = Integer.parseInt(bonusNumber);
+        int bonus = Integer.parseInt(bonusNumber.trim());
         if (bonus > 45 || bonus < 1) {
             throw new IllegalArgumentException("숫자는 1과 45사이의 수여야 합니다.");
         }

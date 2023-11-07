@@ -9,9 +9,9 @@ import java.util.HashMap;
 
 public class LottoController {
 
-    private InputView inputView;
-    private OutputView outputView;
-    private LottoService lottoService;
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+    private final LottoService lottoService = new LottoService();
 
     public void playLotto(){
         lottoService.setMoney(inputView.getMoney());

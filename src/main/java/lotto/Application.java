@@ -13,6 +13,6 @@ public class Application {
         Lotto winningLotto = lottoService.drawLotto();
         int bonusNumber = lottoService.drawBonus(winningLotto);
 
-        lottoService.award(winningLotto, bonusNumber, lottoList, times);
+        lottoService.award(winningLotto, bonusNumber, lottoList);
     }
 }

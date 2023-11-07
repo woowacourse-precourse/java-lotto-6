@@ -10,9 +10,9 @@ import static lotto.ErrorCode.*;
 
 public class LottoService {
 
-    public void award(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int times) {
+    public void award(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList) {
         int[] countOfPrize = new int[7];
-        float returnRatio = calculateResult(winningLotto, bonusNumber, lottoList, countOfPrize, times);
+        float returnRatio = calculateResult(winningLotto, bonusNumber, lottoList, countOfPrize);
 
         LottoRank[] ranks = LottoRank.values();
         System.out.println("당첨 통계");
@@ -24,14 +24,14 @@ public class LottoService {
         System.out.printf("총 수익률은 %.1f%%입니다.\n", 100.0 * returnRatio);
     }
 
-    public float calculateResult(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int[] countOfPrize, int times) {
+    public float calculateResult(Lotto winningLotto, int bonusNumber, List<Lotto> lottoList, int[] countOfPrize) {
         int totalReward = 0;
         for (Lotto lotto : lottoList) {
             LottoRank rank = lotto.getRank(winningLotto, bonusNumber);
             countOfPrize[rank.prize]++;
             totalReward += rank.reward;
         }
-        return (float) totalReward / (times * 1000);
+        return (float) totalReward / (lottoList.size() * 1000);
     }
 
     public int purchaseLotto() {

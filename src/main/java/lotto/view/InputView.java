@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.global.SingletonRegistry;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,11 +11,12 @@ import static lotto.global.ErrorMessage.*;
 
 public class InputView {
     private InputView(){}
-    private static class InputViewHolder{
-        private static final InputView inputView = new InputView();
-    }
     public static InputView getInstance(){
-        return InputViewHolder.inputView;
+        String key = "InputView";
+        if(SingletonRegistry.getInstance(key)==null){
+            SingletonRegistry.register(key,new InputView());
+        }
+        return (InputView) SingletonRegistry.getInstance(key);
     }
 
     public int inputPayment(){

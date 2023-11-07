@@ -1,13 +1,17 @@
 package lotto.view;
 
+import lotto.global.SingletonRegistry;
+
 public class OutputView {
     private OutputView(){}
-    private static class OutputViewHolder{
-        private static final OutputView outputView = new OutputView();
-    }
     public static OutputView getInstance(){
-        return OutputViewHolder.outputView;
+        String key = "outputView";
+        if(SingletonRegistry.getInstance(key)==null){
+            SingletonRegistry.register(key,new OutputView());
+        }
+        return (OutputView) SingletonRegistry.getInstance(key);
     }
+
 
     public void outputPayment(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -25,6 +29,6 @@ public class OutputView {
     public void outputResult(){
         System.out.println("당첨 통계");
         System.out.println("---");
-        // TODO: 2023-11-07 일치 내역, 수익률 
+        // TODO: 2023-11-07 일치 내역, 수익률
     }
 }

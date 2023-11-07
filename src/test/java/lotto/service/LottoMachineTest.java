@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import lotto.Money;
-import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,9 +17,9 @@ public class LottoMachineTest {
         LottoMachine lottoMachine = new LottoMachine();
 
         //when
-        List<Lotto> lottos = lottoMachine.makeLottosWith(fiveThousand);
+        List<List<Integer>> lottoNumbers = lottoMachine.generateLotto(fiveThousand);
 
         //then
-        assertThat(lottos).hasSize(5);
+        assertThat(lottoNumbers).hasSize(5);
     }
 }

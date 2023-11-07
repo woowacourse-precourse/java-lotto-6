@@ -12,7 +12,11 @@ public class LottoMachineService {
         this.lottoMachine = lottoMachine;
     }
 
-    public List<Lotto> getLottosWith(Money money) {
-        return lottoMachine.makeLottosWith(money);
+    public List<List<Integer>> generateLotto(Money money) {
+        return lottoMachine.generateLotto(money);
+    }
+
+    public List<Lotto> getLottos() {
+        return lottoMachine.getLottos();
     }
 }

@@ -1,16 +1,12 @@
 package lotto.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.mock;
 
 import java.util.EnumMap;
 import java.util.List;
 import lotto.LottoFixture;
-import lotto.Money;
 import lotto.Rank;
 import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
 import lotto.domain.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

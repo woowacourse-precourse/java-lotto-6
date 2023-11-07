@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.text.DecimalFormat;
+import java.util.Collections;
+import java.util.List;
 
 public class OutputView {
     private static final String ENTER_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
@@ -12,8 +14,12 @@ public class OutputView {
         System.out.println(ENTER_AMOUNT_MESSAGE);
     }
 
-    public void printNumberOfLottoPurchases(int numberOfPurchases) {
-        System.out.println(numberOfPurchases + PURCHASE_MESSAGE);
+    public void printLottoPurchases(List<List<Integer>> lottoNumbers) {
+        System.out.println(lottoNumbers.size() + PURCHASE_MESSAGE);
+        for (List<Integer> lottoNumber : lottoNumbers) {
+            Collections.sort(lottoNumber);
+            lottoNumber.forEach(System.out::println);
+        }
     }
 
     public void printEnterWinningNumbersMessage() {
@@ -30,7 +36,7 @@ public class OutputView {
 
     public void printStats(String description, int amount, int number) {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        System.out.println(description + " (" + decimalFormat.format(amount) + "원) - " + number + "다");
+        System.out.println(description + " (" + decimalFormat.format(amount) + "원) - " + number + "개");
     }
 
     public void printRateOfReturn(double rateOfReturn) {

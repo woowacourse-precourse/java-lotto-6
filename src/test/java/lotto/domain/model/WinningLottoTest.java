@@ -1,7 +1,6 @@
 package lotto.domain.model;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.not;
 
 import java.util.List;
 import lotto.exception.lottonumbersexception.LottoNumbersInputException;

@@ -1,10 +1,9 @@
 package lotto.domain.model;
 
 import static lotto.exception.lottoamountexception.AmountErrorMessage.BELOW_MINIMUM_AMOUNT;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.exception.lottoamountexception.AmountErrorMessage;
 import lotto.exception.lottoamountexception.LottoAmountInputException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;

@@ -15,6 +15,14 @@ public class Application {
 
         Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber();
+
+        WinningResult result = new WinningResult();
+        for (Lotto lotto : lottos) {
+            int matchCount = lotto.matchNumbers(winningLotto);
+            boolean matchBonus = lotto.contains(bonusNumber);
+            result.addWinningTicket(matchCount, matchBonus);
+        }
+        result.printResult();
     }
 
     private static List<Lotto> buyLottos() {

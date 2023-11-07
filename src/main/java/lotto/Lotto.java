@@ -33,4 +33,18 @@ public class Lotto {
         return numbers;
     }
 
+    public int matchNumbers(Lotto other) {
+        int count = 0;
+        for (int number : numbers) {
+            if (other.contains(number)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
 }

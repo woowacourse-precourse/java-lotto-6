@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,6 +24,23 @@ public class TicketService {
     {
         double winningAmount = getWinningAmount(ticket, winningNumbers, bonusNumber);
         return Math.round(winningAmount / ticket.getPurchaseAmount() * 100 * 10) / 10.0;
+    }
+
+    public static EnumMap<Prize, Integer> getStatistics(
+            Ticket ticket,
+            List<Integer> winningNumbers,
+            int bonusNumber)
+    {
+        EnumMap<Prize, Integer> statistics = new EnumMap<>(Prize.class);
+        for (Prize prize : Prize.values()) {
+            statistics.put(prize, 0);
+        }
+        ticket.getLottos()
+                .forEach(lotto -> {
+                    Prize prize = LottoService.getResult(lotto, winningNumbers, bonusNumber);
+                    statistics.put(prize, statistics.get(prize) + 1);
+                });
+        return statistics;
     }
 
     private static double getWinningAmount(

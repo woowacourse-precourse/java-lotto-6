@@ -21,6 +21,7 @@ public class OutputView {
         System.out.println(BUY_PRICE_MESSAGE);
     }
     public static void printBuyAmount(int buyAmount){
+        System.out.println();
         System.out.println(buyAmount + BUY_AMOUNT_MESSAGE);
     }
 
@@ -32,14 +33,17 @@ public class OutputView {
     }
 
     public static void printRequireMessage() {
+        System.out.println();
         System.out.println(REQUIRE_WINNING_NUM_MESSAGE);
     }
 
     public static void printRequireBonusMessage() {
+        System.out.println();
         System.out.println(REQUIRE_BONUS_NUM_MESSAGE);
     }
 
     public static void printLottoResult(Map<Rank, Integer> lottoResult) {
+        System.out.println();
         System.out.println(LOTTO_RESULT_MESSAGE);
         System.out.printf(FIFTH_MESSAGE, lottoResult.get(Rank.Fifth));
         System.out.printf(FOURTH_MESSAGE, lottoResult.get(Rank.Fourth));

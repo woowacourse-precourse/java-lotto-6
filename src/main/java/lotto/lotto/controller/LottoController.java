@@ -12,4 +12,8 @@ public class LottoController {
     public LottoController(LottoService lottoService) {
         this.lottoService = lottoService;
     }
+
+    public void createRandomLottos(int count) {
+        lottoService.createLottos(count);
+    }
 }

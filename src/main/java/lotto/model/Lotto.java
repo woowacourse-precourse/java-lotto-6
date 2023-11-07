@@ -6,12 +6,12 @@ import lotto.validator.Validator;
 
 public class Lotto {
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        sortedNumbers.sort((a, b) -> a - b);
+        sortedNumbers.sort(Integer::compareTo);
         this.numbers = sortedNumbers;
     }
 

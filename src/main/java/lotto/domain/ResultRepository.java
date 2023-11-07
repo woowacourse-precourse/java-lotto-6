@@ -21,4 +21,8 @@ public class ResultRepository {
         return board.get(rank);
     }
 
+    public Map<Rank,Integer> getBoard(){
+        return board;
+    }
+
 }

@@ -14,8 +14,14 @@ public class Computer {
 
     public Rank checkWinning(Lotto lotto) {
         Comparator comparator = new Comparator();
+        boolean bonus=false;
         int count = comparator.compare(lotto.getNumbers(), lucky);
-        boolean bonus = checkBonus(lotto.getNumbers());
+        if(count==5){
+            bonus = checkBonus(lotto.getNumbers());
+        }
+        if(count<3){
+            count=0;
+        }
         return Rank.valueOfCount(count, bonus);
     }
 

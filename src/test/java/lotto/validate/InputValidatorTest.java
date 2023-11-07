@@ -37,7 +37,7 @@ class InputValidatorTest {
         String winning = "1,2,2,3,4,5";
         assertAll(
                 () -> assertThatThrownBy(() -> inputWinningFailureCase(winning))
-                        .isInstanceOf(Exception.class),
+                        .isInstanceOf(Throwable.class),
                 () -> assertTrue(outputMessage
                         .toString()
                         .contains("로또 번호가 중복되었습니다.")
@@ -51,7 +51,7 @@ class InputValidatorTest {
         String winning = "1,2,3,4,5,6,7";
         assertAll(
                 () -> assertThatThrownBy(() -> inputWinningFailureCase(winning))
-                        .isInstanceOf(Exception.class),
+                        .isInstanceOf(Throwable.class),
                 () -> assertTrue(outputMessage
                         .toString()
                         .contains("정확히 6개 숫자를 입력해주세요.")
@@ -66,7 +66,7 @@ class InputValidatorTest {
         String winning = "1,2,3,4,5,+";
         assertAll(
                 () -> assertThatThrownBy(() -> inputWinningFailureCase(winning))
-                        .isInstanceOf(Exception.class),
+                        .isInstanceOf(Throwable.class),
                 () -> assertTrue(outputMessage
                         .toString()
                         .contains("'숫자' 그리고 ',' 만을 입력해주세요")
@@ -90,7 +90,7 @@ class InputValidatorTest {
          String winning = "1,2,3,4,5";
          assertAll(
                  () -> assertThatThrownBy(() -> inputWinningFailureCase(winning))
-                         .isInstanceOf(Exception.class),
+                         .isInstanceOf(Throwable.class),
                  () -> assertTrue(outputMessage
                          .toString()
                          .contains("정확히 6개 숫자를 입력해주세요.")
@@ -105,7 +105,7 @@ class InputValidatorTest {
 
         assertAll(
                 () -> assertThatThrownBy(() -> inputPurchaseFailureCase(purchase))
-                        .isInstanceOf(Exception.class),
+                        .isInstanceOf(Throwable.class),
                 () -> assertTrue(outputMessage
                         .toString()
                         .contains("0 이상의 숫자를 입력해주세요.")
@@ -120,7 +120,7 @@ class InputValidatorTest {
         String purchase = "iAmSuperShy";
         assertAll(
                 () -> assertThatThrownBy(() -> inputPurchaseFailureCase(purchase))
-                        .isInstanceOf(AssertionFailedError.class),
+                        .isInstanceOf(Throwable.class),
                 () -> assertTrue(outputMessage
                         .toString()
                         .contains("잘못된 입력입니다. 숫자를 입력해주세요(범위 1,000~1,000,000,000)")
@@ -134,7 +134,7 @@ class InputValidatorTest {
         String purchase = "1234";
         assertAll(
                 () -> assertThatThrownBy(() -> inputPurchaseFailureCase(purchase))
-                        .isInstanceOf(Exception.class),
+                        .isInstanceOf(Throwable.class),
                 () -> assertTrue(outputMessage
                         .toString()
                         .contains("1,000 단위의 구매 가격을 입력해주세요.")

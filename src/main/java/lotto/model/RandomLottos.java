@@ -27,9 +27,11 @@ public class RandomLottos {
     }
     private Lotto generateLotto(){
         List<Integer> lottoNumbers = new ArrayList<>();
-        for(int i=0; i<NUMBERSPERLOTTO; i++){
+        while(lottoNumbers.size() < NUMBERSPERLOTTO){
             Integer randomInt = Randoms.pickNumberInRange(LOTTONUMBERSTART, LOTTONUMBEREND);
-            lottoNumbers.add(randomInt);
+            if(!lottoNumbers.contains(randomInt)){
+                lottoNumbers.add(randomInt);
+            }
         }
         lottoNumbers.sort(Comparator.naturalOrder());
         Lotto lotto = new Lotto(lottoNumbers);

@@ -31,6 +31,72 @@ class InputValidatorTest {
     void restoresStreams() {
         System.setOut(System.out); // 원상복귀
     }
+    @Test
+    @DisplayName("중복되는 당첨 번호들 입력 시 에러 메세지를 출력한다.")
+    void duplicateWinningNumbersTest() {
+        String winning = "1,2,2,3,4,5";
+        assertAll(
+                () -> assertThatThrownBy(() -> inputWinningFailureCase(winning))
+                        .isInstanceOf(Exception.class),
+                () -> assertTrue(outputMessage
+                        .toString()
+                        .contains("로또 번호가 중복되었습니다.")
+                )
+        );
+    }
+
+    @Test
+    @DisplayName("6개 이상의 숫자를 입력 받았을 시 에러 메세지를 출력한다.")
+    void outOfRangeWinningTest() {
+        String winning = "1,2,3,4,5,6,7";
+        assertAll(
+                () -> assertThatThrownBy(() -> inputWinningFailureCase(winning))
+                        .isInstanceOf(Exception.class),
+                () -> assertTrue(outputMessage
+                        .toString()
+                        .contains("정확히 6개 숫자를 입력해주세요.")
+                )
+        );
+     }
+
+
+    @Test
+    @DisplayName("숫자가 아닌 값이 당첨번호로 들어간다.")
+    void InvalidWinningFormatTest() throws Exception{
+        String winning = "1,2,3,4,5,+";
+        assertAll(
+                () -> assertThatThrownBy(() -> inputWinningFailureCase(winning))
+                        .isInstanceOf(Exception.class),
+                () -> assertTrue(outputMessage
+                        .toString()
+                        .contains("'숫자' 그리고 ',' 만을 입력해주세요")
+                )
+        );
+    }
+
+    @Test
+    @DisplayName(",로 끝나는 지만 6개의 숫자를 모두 채웠을 때도 정상 작동한다.")
+    void exceptFormatCaseTest() throws Exception{
+        //given
+        String input = "1,2,3,4,5,6,";
+        //when
+        inputValidator.validateWinningInput(input);
+     }
+
+     @Test
+     @DisplayName("당첨 번호가 6보다 작은 값이 입력 될시")
+     void lessNumberOfElementTest() throws Exception{
+         //given
+         String winning = "1,2,3,4,5";
+         assertAll(
+                 () -> assertThatThrownBy(() -> inputWinningFailureCase(winning))
+                         .isInstanceOf(Exception.class),
+                 () -> assertTrue(outputMessage
+                         .toString()
+                         .contains("정확히 6개 숫자를 입력해주세요.")
+                 )
+         );
+      }
 
     @Test
     @DisplayName("구매 금액이 음수가 입력될시")
@@ -54,7 +120,7 @@ class InputValidatorTest {
         String purchase = "iAmSuperShy";
         assertAll(
                 () -> assertThatThrownBy(() -> inputPurchaseFailureCase(purchase))
-                        .isInstanceOf(Exception.class),
+                        .isInstanceOf(AssertionFailedError.class),
                 () -> assertTrue(outputMessage
                         .toString()
                         .contains("잘못된 입력입니다. 숫자를 입력해주세요(범위 1,000~1,000,000,000)")
@@ -62,7 +128,6 @@ class InputValidatorTest {
         );
 
     }
-
     @Test
     @DisplayName("1000으로 나누어 지지 않는 경우")
     void dividableInputFormatTest() {
@@ -72,10 +137,14 @@ class InputValidatorTest {
                         .isInstanceOf(Exception.class),
                 () -> assertTrue(outputMessage
                         .toString()
-                        .contains("잘못된 입력입니다. 숫자를 입력해주세요(범위 1,000~1,000,000,000)")
+                        .contains("1,000 단위의 구매 가격을 입력해주세요.")
                 )
         );
 
+    }
+
+    private void inputWinningFailureCase(String winning) {
+        assertTimeoutPreemptively(Duration.ofMillis(10000), () -> inputValidator.validateWinningInput(winning));
     }
 
     private void inputPurchaseFailureCase(String purchase){

@@ -18,6 +18,14 @@ public enum Ranking {
         this.prize = prize;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
+    public String getCriteria() {
+        return criteria;
+    }
+
     public static Ranking of(int matchCount, boolean matchBonus) {
         if (matchCount == 6) {
             return FIRST;

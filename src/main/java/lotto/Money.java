@@ -12,7 +12,7 @@ public class Money {
         this.money = money;
     }
 
-    public int getLottoCount() {
+    public int getLottoPurchaseCount() {
         return money / NumberType.LOTTO_PRICE.getValue();
     }
 

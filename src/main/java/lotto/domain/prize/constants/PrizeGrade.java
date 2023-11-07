@@ -15,8 +15,8 @@ public enum PrizeGrade {
             always -> true,
             2_000_000_000
     ),
-    HIT_FIVE_AND_BONUS(FIVE
-            , keep -> keep,
+    HIT_FIVE_AND_BONUS(FIVE,
+            keep -> keep,
             30_000_000
     ),
     HIT_FIVE(FIVE,

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -46,6 +47,7 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("구매 금액이 숫자가 아닐 때 예외를 발생한다")
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {

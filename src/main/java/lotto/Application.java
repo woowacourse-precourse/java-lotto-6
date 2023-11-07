@@ -2,8 +2,6 @@ package lotto;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static java.lang.Math.round;
-import static lotto.Get.GetPurchaseNumber;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -38,25 +36,9 @@ public class Application {
         }
 
 
-
-        // 출력 메시지 열거형
-        enum Message {
-            GetPurchasePrice("구입금액을 입력해 주세요."), PrintPurchaseCount("개를 구매했습니다."), GetWinningNumber("당첨 번호를 입력해 주세요."), GetBonusNumber("보너스 번호를 입력해 주세요."), WinningStatus("당첨 통계"), Bar("---");
-            private final String value;
-
-            Message(String value) {
-                this.value = value;
-            }
-
-            public String getValue() {
-                return value;
-            }
-        }
-
         // 입력 1. 로또 구입 금액 1000원 단위로 입력 받기
-
-        System.out.println(Message.GetPurchasePrice.getValue());
-        int purchasePrice = GetPurchaseNumber();
+        Print.message(0);
+        int purchasePrice = Get.purchaseNumber();
 
         /* *********입력기능1 입력받고 예외처리 할떄 pp값 받은걸 while밖에서 사용 못함, 반복 언제까지 해야할지 판단 문제
         while (true) {
@@ -91,7 +73,7 @@ public class Application {
 
 
         // 출력 2. 발행한 로또 수량 및 번호 출력
-        System.out.println(lottoCount  + Message.PrintPurchaseCount.getValue());
+        Print.message(1);
         for(Lotto l:lottos) {
             List<Integer> lottoElement = new ArrayList<Integer>(l.getter());
             lottoElement.sort(Comparator.naturalOrder());
@@ -101,7 +83,7 @@ public class Application {
 
 
         // 입력 2. 쉼표 기준으로 구분해서 당첨 번호 입력 받기
-        System.out.println(Message.GetWinningNumber.getValue());
+        Print.message(2);
         String[] tempStr = readLine().split(",");
         List<Integer> winningNumber = strArrTointList(tempStr);
 
@@ -117,7 +99,7 @@ public class Application {
 
 
         //입력 3. 보너스 번호 입력 받기
-        System.out.println(Message.GetBonusNumber.getValue());
+        Print.message(3);
         int bonusNumber = Integer.parseInt(readLine());
 
 
@@ -144,12 +126,11 @@ public class Application {
             correctCount = 0;
         }
 
-        correctCounts.sort(Comparator.naturalOrder());
-
         // 출력 1. 당첨 내역 출력
         int totalReward = 0;
 
-        System.out.println(Message.WinningStatus.getValue() + "\n" + Message.Bar.getValue());
+        Print.message(4);
+        Print.message(5);
 
         for(LottoResult lr:LottoResult.values()){
             System.out.println(lr.getValue() + Collections.frequency(correctCounts, lr.getCorrectNumber()) + "개");
@@ -160,8 +141,8 @@ public class Application {
 
         // 게임 4. 비교 결과에 따른 총 수익률 구하기
         float earningRate = ((float) totalReward / purchasePrice) * 100;
-        System.out.println(earningRate);
-        System.out.println("총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.");
+        Print.roundEarningRate(earningRate);
+
 
 
 

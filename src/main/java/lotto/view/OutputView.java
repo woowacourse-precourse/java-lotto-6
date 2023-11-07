@@ -1,5 +1,7 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -44,39 +46,25 @@ public class OutputView {
                 .collect(Collectors.toList());
     }
     public static void printWinningStatistic(PrizeResult prizeResult) {
-        Map<Ranking, Integer> winningResultMap = prizeResult.getPrizeResult();
+        Map<Ranking, Integer> winningResultMap = prizeResult.newPrizeResult();
         StringBuilder stringBuilder = new StringBuilder();
+        Arrays.stream(Ranking.values())
+                .sorted(Ranking.sortByPrizeDescending())
+                .forEach(ranking -> generateResultContent(ranking, winningResultMap.getOrDefault(ranking, 0), stringBuilder));
 
-        resultIntro(stringBuilder);
-
-        for (Map.Entry<Ranking, Integer> entry : winningResultMap.entrySet()) {
-            Ranking ranking = entry.getKey();
-            int count = entry.getValue();
-            generateResultContent(ranking, count, stringBuilder);
-        }
         System.out.println(stringBuilder);
     }
 
+
     private static void generateResultContent(Ranking ranking, int count, StringBuilder stringBuilder) {
-        String countSentence = String.format("%d개 일치", ranking.getCount());
-        stringBuilder.append(countSentence);
-
-        if (ranking.getHasBonusBall()) {
-            stringBuilder.append(", 보너스 볼 일치");
-        }
-
-        String str = String.format("(%d원)- %d개%s", ranking.getPrize(), count, LINE_SEPARATOR);
-        stringBuilder.append(str);
-    }
-
-    private static void resultIntro(StringBuilder stringBuilder) {
-        stringBuilder.append("당첨 통계")
-                .append(LINE_SEPARATOR)
-                .append("---------")
-                .append(LINE_SEPARATOR);
+        String resultContent = ranking.formatPrizeInfo(count) + " - " + count + "개";
+        stringBuilder.append(resultContent).append(System.lineSeparator());
     }
     public static void printProfit(double profit) {
-        String sentence = String.format("총 수익률은 %.2f입니다.", profit);
+        String sentence = String.format("총 수익률은 %.1f%%입니다.", profit * 100);
         System.out.println(sentence);
+    }
+    public static void printException(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 }

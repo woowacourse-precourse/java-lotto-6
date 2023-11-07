@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.List;
 
 public enum Ranking {
     FIRST(2000000000, 6, false),
@@ -23,33 +22,25 @@ public enum Ranking {
 
     public static Ranking findRanking(int count, boolean hasBonusNumber) {
         return Arrays.stream(Ranking.values())
-                .filter(ranking -> ranking.count == count)
-                .filter(ranking -> ranking.hasBonusNumber == hasBonusNumber)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("No matching ranking found."));
+                .filter(ranking -> ranking.count == count && ranking.hasBonusNumber == hasBonusNumber)
+                .findAny()
+                .orElse(null);
     }
-    public static List<Ranking> sortByPrize() {
-        return Arrays.stream(Ranking.values())
-                .sorted(Comparator.comparingInt(a -> a.prize))
-                .toList();
-    }
-    public long calculate(Integer count) {
-        return (long) prize * count;
-    }
-
     public long multiple(Integer count) {
         return (long) prize * count;
     }
 
-    public int getCount() {
-        return count;
+    public String formatPrizeInfo(int count) {
+        if (this.equals(Ranking.SECOND)) {
+            return String.format("%d개 일치, 보너스 볼 일치 (%s원)", this.count, formatPrize(this.prize));
+        }
+        return String.format("%d개 일치 (%s원)", this.count, formatPrize(this.prize));
     }
 
-    public int getPrize() {
-        return prize;
+    public String  formatPrize(int prize) {
+        return String.format("%,d", prize);
     }
-
-    public boolean getHasBonusBall() {
-        return hasBonusNumber;
+    public static Comparator<Ranking> sortByPrizeDescending() {
+        return Comparator.comparingInt((Ranking ranking) -> ranking.prize).reversed();
     }
 }

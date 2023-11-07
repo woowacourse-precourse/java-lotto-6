@@ -5,8 +5,8 @@ import java.util.List;
 public class Ticket {
 
     private final Lotto lotto;
-    public Ticket(List<Integer> numbers) {
-        lotto = new Lotto(numbers);
+    public Ticket(Lotto lotto) {
+        this.lotto = lotto;
     }
 
     public List<Integer> getNumbers() {

@@ -10,5 +10,6 @@ public class Application {
         LottoDraw lottoDraw = new LottoDraw(input.purchasePrice());
         lottoDraw.configureLottoNumbers();
         lottoDraw.printPurchaseHistory();
+        input.winningNumbers();
     }
 }

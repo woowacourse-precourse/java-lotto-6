@@ -35,7 +35,7 @@ public class OutputView {
     public void printWinningStatistics(Map<Integer, Integer> winningCnt, RateOfReturn rateOfReturn) {
         System.out.println(WINNING_STATISTICS);
 
-        for (int i = HIGHEST_RANK; i <= LOWEST_RANK; i++) {
+        for (int i = LOWEST_RANK; i >= HIGHEST_RANK; i--) {
             String winnings = LottoWinningValue.valueOfRank(i).getWinningsPhrase();
             int cnt = winningCnt.getOrDefault(i, 0);
 

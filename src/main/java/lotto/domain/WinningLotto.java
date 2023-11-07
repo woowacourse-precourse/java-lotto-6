@@ -4,26 +4,26 @@ public class WinningLotto {
     private final Lotto winningNumbers;
     private final Number bonusNumber;
 
-    public WinningLotto(Lotto inputLottoNumbers, Number inputBonusNumber) {
+    public WinningLotto(final Lotto inputLottoNumbers, final Number inputBonusNumber) {
         validateDuplicated(inputLottoNumbers, inputBonusNumber);
         this.winningNumbers = inputLottoNumbers;
         this.bonusNumber = inputBonusNumber;
     }
 
-    private void validateDuplicated(Lotto lotto, Number bonusNumber) {
+    private void validateDuplicated(final Lotto lotto, final Number bonusNumber) {
         boolean contains = lotto.contains(bonusNumber);
         if (contains) {
             throw new IllegalArgumentException("보너스 번호가 당첨 번호와 겹칩니다!");
         }
     }
 
-    public LottoRank match(Lotto lottoNumbers) {
+    public LottoRank match(final Lotto lottoNumbers) {
         int count = countMatch(lottoNumbers);
         boolean bonusMatch = lottoNumbers.contains(bonusNumber);
         return LottoRank.of(count, bonusMatch);
     }
 
-    private int countMatch(Lotto lottoNumbers) {
+    private int countMatch(final Lotto lottoNumbers) {
         return (int) winningNumbers.getNumbers()
                 .stream()
                 .filter(lottoNumbers::contains)

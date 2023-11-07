@@ -13,7 +13,7 @@ public class Lotto {
     private static final int START_NUM = 1;
     private final List<Number> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validateSize(numbers);
         validate(numbers);
         this.numbers = numbers
@@ -22,7 +22,7 @@ public class Lotto {
                 .toList();
     }
 
-    private void validateSize(List<Integer> numbers) {
+    private void validateSize(final List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
@@ -32,7 +32,7 @@ public class Lotto {
         return Randoms.pickUniqueNumbersInRange(START_NUM, LOTTO_MAX_NUM, LOTTO_SIZE);
     }
 
-    private static List<Integer> sortNumber(List<Integer> numbers) {
+    private static List<Integer> sortNumber(final List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();
@@ -55,20 +55,20 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
-    private static void validate(List<Integer> list) {
+    private static void validate(final List<Integer> list) {
         validRange(list);
         validDuplicated(list);
     }
 
 
-    private static void validRange(List<Integer> list) {
+    private static void validRange(final List<Integer> list) {
         boolean overRange = list.stream().anyMatch(num -> num > LOTTO_MAX_NUM);
         if (overRange) {
             throw new IllegalArgumentException("로또 번호의 범위는 45입니다!");
         }
     }
 
-    private static void validDuplicated(List<Integer> list) {
+    private static void validDuplicated(final List<Integer> list) {
         long uniqueCount = list.stream().distinct().count();
         if (uniqueCount < list.size()) {
             throw new IllegalArgumentException("중복된 숫자가 있습니다!");

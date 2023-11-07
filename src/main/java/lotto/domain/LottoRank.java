@@ -20,20 +20,20 @@ public enum LottoRank {
     private final int count;
     private final boolean hasBonus;
 
-    LottoRank(long amount, int count, boolean hasBonus) {
+    LottoRank(final long amount, final int count, final boolean hasBonus) {
         this.amount = amount;
         this.count = count;
         this.hasBonus = hasBonus;
     }
 
-    public static LottoRank of(int count, final boolean hasBonus) {
+    public static LottoRank of(final int count, final boolean hasBonus) {
         if (count == FIVE) {
             return whenCountFive(hasBonus);
         }
         return determineRank(count);
     }
 
-    private static LottoRank determineRank(int count) {
+    private static LottoRank determineRank(final int count) {
         // count 값에 따라 LottoRank의 Count가 같은 등수를 return
         for (LottoRank rank : values()) {
             if (rank.getCount() == count && !rank.hasBonus) {
@@ -44,7 +44,7 @@ public enum LottoRank {
         return NONE;
     }
 
-    private static LottoRank whenCountFive(boolean hasBonus) {
+    private static LottoRank whenCountFive(final boolean hasBonus) {
         if (hasBonus) {
             return SECOND;
         }

@@ -7,11 +7,11 @@ public class LottoResult {
     private static final int INIT_NUM = 1;
     private final Map<LottoRank, Integer> results;
 
-    public LottoResult(Map<LottoRank, Integer> results) {
+    public LottoResult(final Map<LottoRank, Integer> results) {
         this.results = results;
     }
 
-    public static LottoResult determineWinnings(WinningLotto winningLotto, Lottos lottos) {
+    public static LottoResult determineWinnings(final WinningLotto winningLotto, final Lottos lottos) {
         EnumMap<LottoRank, Integer> results = new EnumMap<>(LottoRank.class);
         for (Lotto lotto : lottos.getLottos()) {
             // 현재 로또가 몇등인지 구함
@@ -21,7 +21,7 @@ public class LottoResult {
         return new LottoResult(results);
     }
 
-    public int getCount(LottoRank rank) {
+    public int getCount(final LottoRank rank) {
         return results.getOrDefault(rank, 0);
     }
 

@@ -49,7 +49,7 @@ public class MoneyManagement {
         }
     }
 
-    public static long totalAmount(LottoResult lottoResult) {
+    public static long totalAmount(final LottoResult lottoResult) {
         return lottoResult.getResults().entrySet()
                 .stream()
                 .mapToLong(entry -> entry.getKey().getAmount() * entry.getValue())
@@ -64,7 +64,7 @@ public class MoneyManagement {
         return balance;
     }
 
-    public static double calculateYield(int purchaseAmount, long totalAmount) {
+    public static double calculateYield(final int purchaseAmount, final long totalAmount) {
         double value = (double) totalAmount / (double) purchaseAmount * PERCENT;
         return Math.round(value);
     }

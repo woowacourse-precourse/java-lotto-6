@@ -3,7 +3,11 @@ package lotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -66,9 +70,19 @@ public class LottoServiceTest {
 
 	@DisplayName("컴퓨터 로또, 사용자 로또, 보너스 숫자를 받아" +
 			"몇 등에 몇 개 당첨되었는지 구하는 메서드 테스트")
-	@Test
-	void getWinningResultTest() {
+	@ParameterizedTest
+	@CsvSource({"1,2,3,4,5,6,7,1", "1,2,3,4,5,7,6,2", "1,2,3,4,5,8,9,3",
+			"1,2,3,4,8,9,10,4", "1,2,3,8,9,10,11,5"})
+	void getWinningResultTest(int first, int second, int third, int fourth,
+							  int fifth, int sixth, int bonus, int rank) {
+		Lotto computer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+		List<Lotto> computers = new ArrayList<>();
+		computers.add(computer);
 
+		Lotto user = new Lotto(List.of(first, second, third, fourth, fifth, sixth));
+		List<Integer> result = lottoService.getWinningResult(computers, user, bonus);
+
+		assertEquals(1, result.get(rank));
 	}
 
 	@DisplayName("내가 산 로또의 개수와 당첨금액을 받아 수익률을 구하는 메서드 테스트")

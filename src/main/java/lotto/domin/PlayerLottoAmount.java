@@ -13,6 +13,9 @@ public class PlayerLottoAmount {
         validateAmount(amountNm);
         this.amount = amountNm;
     }
+    public static int getAmount() {
+        return amount;
+    }
 
 
     public void validateAmount(int amountNm) {

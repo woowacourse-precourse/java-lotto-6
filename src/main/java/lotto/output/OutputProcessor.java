@@ -15,7 +15,8 @@ public class OutputProcessor {
     private static final String DEFAULT_SEPARATOR = ", ";
     private static final String LEFT_BRACKET = "[";
     private static final String RIGHT_BRACKET = "]";
-    private static final String WINNING_INFORMATION_PROMPT = "%d개 일치 (%s원) - %d개";
+    private static final String WINNING_INFORMATION_PROMPT = "%d개 일치%s (%s원) - %d개";
+    private static final String SECOND_PLACE_ADDITIONAL_MESSAGE = ", 보너스 볼 일치";
     private static final String WINNING_INFORMATION_HEADER_PROMPT = "당첨 통계\n---";
     private static final String AMOUNT_PATTERN = "#,###";
     private static final String PROFITABILITY_PATTERN = "#,##0.0";
@@ -78,7 +79,7 @@ public class OutputProcessor {
 
     private void outputWinningDetails(Map<Rank, Integer> winningCounts) {
         Arrays.stream(Rank.values())
-                .sorted(Comparator.comparingInt(Rank::getPlace))
+                .sorted(Comparator.comparingInt(Rank::getPrize))
                 .filter(rank -> rank != Rank.LOSER)
                 .forEach(rank -> outputWinningDetail(rank, winningCounts));
     }
@@ -89,9 +90,14 @@ public class OutputProcessor {
     }
 
     private void outputWinningDetail(Rank rank, Map<Rank, Integer> winningCounts) {
+        String additionalMessage = "";
+        if (rank == Rank.SECOND) {
+            additionalMessage = SECOND_PLACE_ADDITIONAL_MESSAGE;
+        }
         String formattedPrompt = String.format(
                 WINNING_INFORMATION_PROMPT,
                 rank.getMatchingNumberCount(),
+                additionalMessage,
                 formatIntegerToAmount(rank.getPrize()),
                 winningCounts.get(rank)
         );

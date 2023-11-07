@@ -1,12 +1,12 @@
-package lotto.service;
+package lotto.util;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static lotto.service.LottoService.formatPercentage;
+import static lotto.util.MathUtil.formatPercentage;
 import static org.junit.jupiter.api.Assertions.*;
 
-class LottoServiceTest {
+class MathUtilTest {
     @Test
     void testFormatPercentage() {
         // given

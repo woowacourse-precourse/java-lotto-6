@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-07T22:12:08.840Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="qMHj0Z_LWsY43cpf0jtc" version="22.0.8" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-07T22:33:04.863Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="rLu6gJt2KaVu31Fj3xx2" version="22.0.8" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2113" dy="1746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2722" dy="2020" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -63,7 +63,7 @@
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-126" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;fontSize=12;startSize=8;endSize=8;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-18" target="S85b0i-1O2o0kIJ1ZnP2-125">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="KO2VrwFwqGaNlMHXGD8G-18" value="Winning&lt;br&gt;Policy&lt;br&gt;WooWaCourse" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+        <mxCell id="KO2VrwFwqGaNlMHXGD8G-18" value="Winning&lt;br&gt;Policy" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="750" y="570" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="KO2VrwFwqGaNlMHXGD8G-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="KO2VrwFwqGaNlMHXGD8G-11" target="KO2VrwFwqGaNlMHXGD8G-18" edge="1">
@@ -229,14 +229,8 @@
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="S85b0i-1O2o0kIJ1ZnP2-11" target="S85b0i-1O2o0kIJ1ZnP2-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="S85b0i-1O2o0kIJ1ZnP2-11" target="S85b0i-1O2o0kIJ1ZnP2-14">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-11" value="Lottery&lt;br&gt;Rate&lt;br&gt;Service" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1060" y="370" width="140" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-14" value="Rate&lt;br&gt;Policy" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1220" y="470" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-18" value="로또 당첨 통계 계산" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="83" y="760" width="120" height="60" as="geometry" />
@@ -284,7 +278,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-77" value="User" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="530" y="330" width="120" height="60" as="geometry" />
+          <mxGeometry x="530" y="-170" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-80" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt; 금액에 대한 검증&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="-370" y="-20" width="140" height="60" as="geometry" />
@@ -337,23 +331,17 @@
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-99" value="**템플릿 메서드 &lt;br&gt;패턴 / 전략패턴을 &lt;br&gt;고려해볼것&lt;br&gt;=&amp;gt; 오버엔지니어링이라 판단" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="710" y="290" width="180" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-101" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;이익률 계산 정책&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="1241" y="530" width="150" height="70" as="geometry" />
-        </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-102" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;계산 정책에 따른 이익률 계산&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1030" y="549" width="240" height="70" as="geometry" />
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-103" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;이익률 처리&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1020" y="300" width="110" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-104" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;등수 별 상금 배정&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-104" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;전체 상금 계산&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="920" y="515" width="160" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-105" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt; 우아한테크코스 당첨 알고리즘&lt;/pre&gt;&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;:: 함수형 인터페이스&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-105" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;당첨 알고리즘&lt;/pre&gt;&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;:: 함수형 인터페이스&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="530" y="570" width="210" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-106" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;당첨 정책&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="670" y="490" width="100" height="70" as="geometry" />
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-107" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt;로또 당첨 판단&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="697" y="370" width="130" height="70" as="geometry" />
@@ -388,7 +376,7 @@
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-124" value="(순투자 수익 / 투자비용) x 100" style="text;whiteSpace=wrap;fontSize=16;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1025" y="600" width="250" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-125" value="Winning&lt;br&gt;Policy&lt;br&gt;WooWaCourse&lt;br&gt;Context&lt;br&gt;&amp;lt;&amp;lt;E&amp;gt;&amp;gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="S85b0i-1O2o0kIJ1ZnP2-125" value="Winning&lt;br&gt;Policy&lt;br&gt;Condition&lt;br&gt;&amp;lt;&amp;lt;E&amp;gt;&amp;gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="827" y="690" width="130" height="80" as="geometry" />
         </mxCell>
         <mxCell id="S85b0i-1O2o0kIJ1ZnP2-127" value="&lt;pre style=&quot;background-color:#212121;color:#eeffff;font-family:&#39;Courier New&#39;,monospace;font-size:10.5pt;&quot;&gt; 우아한테크코스 당첨 조건&lt;/pre&gt;" style="text;whiteSpace=wrap;html=1;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">

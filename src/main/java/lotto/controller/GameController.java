@@ -24,7 +24,7 @@ public class GameController {
     public void start(){
         lottoCount = getLottoCount();
         playerService.buy(lottoCount);
-        outputController.printLottoPapers(player.getLottoPapers());
+        outputController.printLottoPapers(player.getLottoPapers(),lottoCount);
 
         playerService.check(winningNumberGenerator.generate());
         outputController.printWinningStatistics(customerPrice);

@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Arrays;
 import java.util.List;
 import lotto.util.LottoValues;
 
@@ -51,5 +52,10 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
 
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(numbers.toArray());
     }
 }

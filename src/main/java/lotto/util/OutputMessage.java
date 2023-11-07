@@ -1,6 +1,7 @@
 package lotto.util;
 
 public enum OutputMessage {
+    LOTTO_PRINT_TITLE("%s개를 구매했습니다."),
     TOTAL_STATISTICS_TITLE("당첨 통계"),
     TOTAL_STATISTICS_MESSAGE("%s - %d개"),
     TOTAL_PARAMETER("---"),

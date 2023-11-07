@@ -1,10 +1,11 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -173,6 +174,64 @@ class UserInputManagerTest {
 		} catch (InvocationTargetException e) {
 			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
 				.hasMessage("[ERROR] 서로 다른 숫자를 입력하세요.");
+		}
+	}
+
+	@DisplayName("1 이상 45 이하의 숫자를 당첨 번호와 중복되지 않게 입력")
+	@Test
+	public void checkBonusNumberIsValidTestWithValidValue() throws Throwable {
+		String testMethodName = "checkBonusNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, ArrayList.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "29", new ArrayList<>(Arrays.asList(2, 5, 11, 17, 19, 23)));
+		} catch (InvocationTargetException e) {
+			System.out.println(e.getMessage());
+			throw e.getCause();
+		}
+	}
+
+	@DisplayName("숫자가 아닌 값을 입력하면 예외가 발생한다.")
+	@Test
+	public void checkBonusNumberIsValidTestWithBlankInput() throws NoSuchMethodException, IllegalAccessException {
+		String testMethodName = "checkBonusNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, ArrayList.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "", new ArrayList<>(Arrays.asList(2, 5, 11, 17, 19, 23)));
+		} catch (InvocationTargetException e) {
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class).hasMessage("[ERROR] 숫자를 입력하세요.");
+		}
+	}
+
+	@DisplayName("1 이상 45 이하의 수가 아닌 수를 입력하면 예외가 발생한다.")
+	@Test
+	public void checkBonusNumberIsValidTestWithNumberNotInRange() throws NoSuchMethodException, IllegalAccessException {
+		String testMethodName = "checkBonusNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, ArrayList.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "47", new ArrayList<>(Arrays.asList(2, 5, 11, 17, 19, 23)));
+		} catch (InvocationTargetException e) {
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER + " 이상 " + MAX_LOTTO_NUMBER + " 이하의 숫자를 입력하세요.");
+		}
+	}
+
+	@Test
+	public void checkBonusNumberIsValidTestWithDuplicatedNumber() throws NoSuchMethodException, IllegalAccessException {
+		String testMethodName = "checkBonusNumberIsValid";
+		Method testMethod = testClass.getDeclaredMethod(testMethodName, String.class, ArrayList.class);
+		testMethod.setAccessible(true);
+
+		try {
+			testMethod.invoke(testClass, "2", new ArrayList<>(Arrays.asList(2, 5, 11, 17, 19, 23)));
+		} catch (InvocationTargetException e) {
+			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
+				.hasMessage("[ERROR] 당첨 번호와 번호가 중복되었습니다.");
 		}
 	}
 }

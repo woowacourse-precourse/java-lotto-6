@@ -77,4 +77,34 @@ public class UserInputManager {
 
 		return winningNumber;
 	}
+
+	public static int inputBonusNumber(ArrayList<Integer> winningNumber) {
+		System.out.println("보너스 번호를 입력해 주세요.");
+		String userInput = Console.readLine();
+		return checkBonusNumberIsValid(userInput, winningNumber);
+	}
+
+	private static int checkBonusNumberIsValid(String userInput, ArrayList<Integer> winningNumber) {
+		int bonusNumber;
+
+		try {
+			bonusNumber = Integer.parseInt(userInput);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요.");
+		}
+
+		if (MIN_LOTTO_NUMBER > bonusNumber || MAX_LOTTO_NUMBER < bonusNumber) {
+			throw new IllegalArgumentException(
+				"[ERROR] " + MIN_LOTTO_NUMBER + " 이상 " + MAX_LOTTO_NUMBER + " 이하의 숫자를 입력하세요.");
+		}
+
+		for (int number : winningNumber) {
+			if (bonusNumber == number) {
+				throw new IllegalArgumentException("[ERROR] 당첨 번호와 번호가 중복되었습니다.");
+			}
+		}
+
+		return bonusNumber;
+	}
+
 }

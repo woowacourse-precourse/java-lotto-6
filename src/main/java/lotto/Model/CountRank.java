@@ -16,13 +16,14 @@ public class CountRank {
         }
         return countList;
     }
-    private static int countCorrect(List splitList, List correctLotto, String bonus){
+
+    private static int countCorrect(List splitList, List correctLotto, String bonus) {
         int count = 0;
-        for(int i = 0; i < correctLotto.size(); i++){
-            if (splitList.contains(correctLotto.get(i).toString())){
+        for (int i = 0; i < correctLotto.size(); i++) {
+            if (splitList.contains(correctLotto.get(i).toString())) {
                 count++;
             }
-            if (count == 5 && splitList.contains(bonus)){
+            if (count == 5 && splitList.contains(bonus)) {
                 count = count + 2;
             }
         }

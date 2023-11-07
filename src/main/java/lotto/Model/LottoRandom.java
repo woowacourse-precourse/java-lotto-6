@@ -1,7 +1,6 @@
 package lotto.Model;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import org.assertj.core.util.Arrays;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +11,7 @@ public class LottoRandom {
         List<Integer> numbers = new ArrayList<>();
         List<Integer> sliceList;
         String[] list = new String[count];
-        for(int i = 0; i < count; i++){
+        for (int i = 0; i < count; i++) {
             numbers.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             sliceList = numbers.subList(6 * i, 6 * (i + 1));
             Collections.sort(sliceList);

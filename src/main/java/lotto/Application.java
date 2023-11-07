@@ -3,13 +3,12 @@ package lotto;
 import lotto.Controller.Controller;
 
 
-
 public class Application {
     public static void main(String[] args) {
-        try{
+        try {
             Controller controller = new Controller();
             controller.LottoStart();
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }

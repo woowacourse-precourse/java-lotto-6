@@ -1,10 +1,7 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.View.View;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -21,11 +18,11 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 총 6개로 이루어져 있습니다.");
         }
-        for(int i = 0; i < numbers.size(); i++){
-            if (numbers.get(i) < 1 || numbers.get(i) > 45){
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) < 1 || numbers.get(i) > 45) {
                 throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
-            if (numbers.size() != numbers.stream().distinct().count()){
+            if (numbers.size() != numbers.stream().distinct().count()) {
                 throw new IllegalArgumentException("로또 번호는 중복이 불가능 합니다.");
             }
         }

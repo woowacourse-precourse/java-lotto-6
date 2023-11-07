@@ -8,7 +8,8 @@ public enum RankOfLotto {
     FIFTH("3개 일치 (5,000원) - ");
 
     public String printRank;
-    RankOfLotto(String printRank){
+
+    RankOfLotto(String printRank) {
         this.printRank = printRank;
     }
 }

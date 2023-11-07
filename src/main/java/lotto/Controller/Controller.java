@@ -13,7 +13,8 @@ import static lotto.View.View.lottoResult;
 public class Controller {
     View view = new View();
     LottoRandom rand = new LottoRandom();
-    public void LottoStart(){
+
+    public void LottoStart() {
 
         int myMoney = view.buyMoney();
         int count = view.buyLotto(myMoney);
@@ -26,12 +27,12 @@ public class Controller {
 
     }
 
-    private List<Integer> correctLotto(){
+    private List<Integer> correctLotto() {
         List correctLotto = view.correctNum();
-        try{
+        try {
             new Lotto(correctLotto);
             return correctLotto;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
         return correctLotto();

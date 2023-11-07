@@ -5,7 +5,6 @@ import lotto.service.LottoStoreCounter;
 import lotto.service.LottoStoreMachine;
 import lotto.view.PurchasedLottoesView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class LottoPurchaseController {
@@ -17,8 +16,7 @@ public class LottoPurchaseController {
         purchasedLottoesView.printNumberOfIssues(numberOfIssues);
 
         LottoStoreMachine lottoStoreMachine = new LottoStoreMachine();
-        List<Lotto> purchasedLotto = new ArrayList<>();
-        purchasedLotto.addAll(lottoStoreMachine.saleLotto(numberOfIssues));
+        List<Lotto> purchasedLotto = lottoStoreMachine.saleLotto(numberOfIssues);
         purchasedLottoesView.printPurchasedLottoes(purchasedLotto);
 
         return purchasedLotto;

@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Parser {
-    public static int stringToInt(String str) {
+    public static int stringToInt(String str) throws IllegalArgumentException{
         try {
             return Integer.parseInt(str);
         }catch (NumberFormatException e){
@@ -13,7 +13,7 @@ public class Parser {
         }
     }
 
-    public static List<Integer> stringToList(String str) {
+    public static List<Integer> stringToList(String str) throws IllegalArgumentException {
         try {
             return Stream.of(str.split("")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
         }catch (NumberFormatException e){

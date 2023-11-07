@@ -16,26 +16,26 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validate(List<Integer> numbers) throws IllegalArgumentException{
         validateNumberBoundary(numbers);
         validateSize(numbers);
         validateDuplication(numbers);
     }
 
-    private void validateNumberBoundary(List<Integer> winningNumbers) {
+    private void validateNumberBoundary (List<Integer> winningNumbers) throws IllegalArgumentException {
         for(int num : winningNumbers) {
             if(num<1 || num>45)
                 throw new IllegalArgumentException();
         }
     }
 
-    private void validateSize(List<Integer> winningNumbers) {
+    private void validateSize(List<Integer> winningNumbers) throws IllegalArgumentException{
         if (winningNumbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateDuplication(List<Integer> winningNumbers) {
+    private void validateDuplication(List<Integer> winningNumbers) throws IllegalArgumentException{
         int setSize = Set.copyOf(winningNumbers).size();
         if(setSize != 6)
             throw new IllegalArgumentException();

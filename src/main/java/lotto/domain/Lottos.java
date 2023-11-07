@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class LottoGenerator {
+public class Lottos {
+    List<Lotto> lottos;
+
 
     public List<Lotto> generateLottos(int count) {
-        List<Lotto> lottos = new ArrayList<>();
+        lottos = new ArrayList<>();
         for(int i =0; i<count; i++){
             List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Collections.sort(lottoNumbers);
@@ -19,4 +21,7 @@ public class LottoGenerator {
         return lottos;
     }
 
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
+    }
 }

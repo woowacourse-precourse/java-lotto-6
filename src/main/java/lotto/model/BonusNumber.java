@@ -16,17 +16,20 @@ public class BonusNumber {
         this.bonusNumber = inputNumber;
     }
 
+    public static void validateDuplicate(List<Integer> winningNumbers, int number) {
+        if (winningNumbers.contains(number)) {
+            throw new IllegalArgumentException(ERROR_BONUS_DUPLICATE);
+        }
+    }
+
     private void validateRangeofBonusNumber(int number) {
         if (number < LOTTO_MIN_RANGE || number > LOTTO_MAX_RANGE) {
             throw new IllegalArgumentException(ERROR_BONUS_OUT_OF_RANGE);
         }
     }
 
-    public void validateDuplicate(List<Integer> winningNumbers, int number) {
-        if (winningNumbers.contains(number)) {
-            throw new IllegalArgumentException(ERROR_BONUS_DUPLICATE);
-        }
+    public int getBonusNumber() {
+        return bonusNumber;
     }
-
 
 }

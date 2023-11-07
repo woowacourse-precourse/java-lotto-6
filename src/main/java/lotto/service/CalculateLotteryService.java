@@ -5,5 +5,5 @@ import lotto.dto.WinningStatisticDTO;
 
 public interface CalculateLotteryService {
     public WinningStatisticDTO countMatchesNumber();
-    public MoneyDTO calculateReturnRates(WinningStatisticDTO winningStatisticDTO);
+    public MoneyDTO calculateReturnRates(MoneyDTO moneyDTO, WinningStatisticDTO winningStatisticDTO);
 }

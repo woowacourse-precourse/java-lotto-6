@@ -6,12 +6,16 @@ import java.util.Map;
 import lotto.dto.MatchCounterDTO;
 import lotto.dto.MoneyDTO;
 import lotto.dto.WinningStatisticDTO;
+import lotto.enums.Constant;
 import lotto.model.Lotto;
+import lotto.model.Money;
 import lotto.model.WinningLotto;
 import lotto.repository.LottoRepository;
 import lotto.repository.WinningLottoRepository;
+import lotto.utils.Converter;
 
 public class CalculateLotteryServiceImpl implements CalculateLotteryService {
+    private static final Integer ZERO = 0;
     private static final Integer ONE = 1;
     private static final Integer THREE = 3;
     private static final Integer FOUR = 4;
@@ -48,8 +52,25 @@ public class CalculateLotteryServiceImpl implements CalculateLotteryService {
     }
 
     @Override
-    public MoneyDTO calculateReturnRates(WinningStatisticDTO winningStatisticDTO) {
-        return null;
+    public MoneyDTO calculateReturnRates(MoneyDTO moneyDTO, WinningStatisticDTO winningStatisticDTO) {
+        Integer earn = getEarn(winningStatisticDTO);
+
+        Float returnRates = Converter.integerToFloat(earn) / Converter.integerToFloat(moneyDTO.getAmount()) * Constant.NUMBER_USED_TO_MAKE_PERCENTAGE.getContentToFloat();
+        Integer offsetNumber = Constant.NUMBER_USED_TO_ROUND_FIRST_DIGIT.getContentToInteger();
+        returnRates = Math.round(returnRates * offsetNumber) / Converter.integerToFloat(offsetNumber);
+
+        return new MoneyDTO(moneyDTO.getAmount(), returnRates);
+    }
+
+    private Integer getEarn(WinningStatisticDTO winningStatisticDTO) {
+        Integer earn = ZERO;
+        earn += 5000 * winningStatisticDTO.getMatched3(); // 숫자 상수화 하기
+        earn += 50000 * winningStatisticDTO.getMatched4();
+        earn += 1500000 * winningStatisticDTO.getMatched5();
+        earn += 30000000 * winningStatisticDTO.getMatched5AndBonusNumber();
+        earn += 2000000000 * winningStatisticDTO.getMatched5AndBonusNumber(); // Long으로 바꾸기
+
+        return earn;
     }
 
     private List<Lotto> getEntireLotto() {

@@ -1,13 +1,13 @@
-package lotto.dto;
+package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-public class MultipleNumbersInputDTO {
+public class MultipleNumbersInputVO {
     private List<Integer> numbers;
 
-    public MultipleNumbersInputDTO(String numbers) {
+    public MultipleNumbersInputVO(String numbers) {
         this.numbers = convertToIntegerListIfValid(numbers);
     }
 

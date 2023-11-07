@@ -38,14 +38,13 @@ public class LottoGame {
     private void initiatePurchaseAmount() {
         try {
             ConsolePrinter.printPurchaseAmountMessage();
-
             String str = ConsoleScanner.scanPurchaseAmount();
             Integer parsed = StringParser.parsePurchaseAmount(str);
             LottoValidator.validatePurchaseAmount(parsed);
             this.purchaseAmount = parsed;
 
             ConsolePrinter.printEmptyLine();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             ConsolePrinter.printErrorMessage(e.getMessage());
 
             initiatePurchaseAmount();
@@ -75,7 +74,7 @@ public class LottoGame {
             this.winningNumber = parsed;
 
             ConsolePrinter.printEmptyLine();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             ConsolePrinter.printErrorMessage(e.getMessage());
 
             initiateWinningNumber();
@@ -92,7 +91,7 @@ public class LottoGame {
             this.bonus = parsed;
 
             ConsolePrinter.printEmptyLine();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             ConsolePrinter.printErrorMessage(e.getMessage());
 
             initiateBonus();

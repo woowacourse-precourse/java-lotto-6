@@ -10,7 +10,6 @@ public class LottoGame {
 
     public void start() {
         lottoService.createLottoCount();
-        player = new Player(lottoService.getPayment());
         play();
     }
 
@@ -18,6 +17,7 @@ public class LottoGame {
         lottoService.play();
         lottoService.createWinningNumbers();
         lottoService.createBonusNumber();
+        player = new Player(lottoService.getPayment(), lottoService.getWinningNumbers(), lottoService.getBonusNumber());
     }
 
 }

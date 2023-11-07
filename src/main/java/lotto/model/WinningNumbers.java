@@ -7,8 +7,6 @@ import lotto.util.Validator;
 
 public class WinningNumbers {
 
-    //일반번호와 보너스번호는 다른 역할을 하므로 분리하고 새로운 클래스를 파서 거기에 적용
-    //WinningNumbers 객체는 당첨 번호를 관리하므로, 당첨 여부를 판단하는 것까지 책임질 수 있습니다.
     private final Lotto winningNumbers;
     private final int bonusNumber;
 

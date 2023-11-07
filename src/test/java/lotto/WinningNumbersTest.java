@@ -75,12 +75,14 @@ public class WinningNumbersTest {
         Assertions.assertEquals(0, prizeResults.get(Prize.FOURTH).intValue());
         Assertions.assertEquals(0, prizeResults.get(Prize.FIFTH).intValue());
     }
-    private WinningNumbers getWinningNumbers(){
+
+    private WinningNumbers getWinningNumbers() {
         Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;
         return new WinningNumbers(winningLotto, bonusNumber);
     }
-    private List<Lotto> getPurchasedLottos(){
+
+    private List<Lotto> getPurchasedLottos() {
         Lotto firstPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등
         Lotto secondPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 (보너스 번호 일치)
         Lotto thirdPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등

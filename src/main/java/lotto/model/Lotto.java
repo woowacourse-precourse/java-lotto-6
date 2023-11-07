@@ -7,7 +7,6 @@ import lotto.util.Validator;
 
 public class Lotto {
 
-    //numbers만 받고 추가번호는 받지 않는다 - 단일책임원칙
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {

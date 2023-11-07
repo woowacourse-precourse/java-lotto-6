@@ -26,6 +26,10 @@ public class LottoPurchase {
         if (buyPrice % IntegerConstants.LOTTO_PRICE != 0) {
             throw new InvalidNumberException();
         }
+
+        if (buyPrice < 0) {
+            throw new InvalidNumberException();
+        }
     }
 
     public List<Lotto> getPurchasedLottos() {

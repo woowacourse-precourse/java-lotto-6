@@ -41,5 +41,4 @@ public class InputValidator {
   private boolean isMatchNumber(String input) {
     return !ONLY_NUMBER_PATTERN.matcher(input).matches();
   }
-
 }

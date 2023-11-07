@@ -64,7 +64,6 @@ public class LottoController {
         break;
       } catch (Exception ex) {
         ex.printStackTrace();
-        Console.close();
       }
     }
     return readValue;

@@ -9,4 +9,8 @@ public class InputConverter {
   public String[] inputToSplit(String input) {
     return input.split(SpecialSign.SEPARATOR.getSign());
   }
+
+  public String translate(String input) {
+    return input.replaceAll("[^0-9]", "");
+  }
 }

@@ -46,4 +46,8 @@ public class LottoService {
         return lottoResult.getLottoResultDto();
     }
 
+    public double getProfitRate() {
+        return lottoResult.caculateProfitRate();
+    }
+
 }

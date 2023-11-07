@@ -20,6 +20,7 @@ public class LottoController {
         initWinningNumbers();
         lottoService.compareNumbers();
         OutputView.displayResult(lottoService.getLottoResultDto());
+        OutputView.displayProfitRate(lottoService.getProfitRate());
     }
 
     private void initWinningNumbers() {

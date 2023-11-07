@@ -37,12 +37,15 @@ public class OutputView {
                 LottoStatus.SECOND.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.SECOND) + "개");
         System.out.println(
                 LottoStatus.FIRST.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.FIRST) + "개");
-//        System.out.println("총 수익률은 " + lottoResult.caculateProfitRate() + "%입니다.");
     }
 
     public static void printEmptyLine() {
         System.out.println();
     }
 
+
+    public static void displayProfitRate(double profitRate) {
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+    }
 
 }

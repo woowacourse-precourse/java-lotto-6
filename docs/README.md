@@ -67,8 +67,8 @@
 
 ### 3) Controller 로직
 - [x] 입력받은 로또 구입 금액을 로또 발행 도메인 로직으로 넘긴다. `purchaseLotteries()`
-  - [x] 금액을 long 타입 정수로 변환한다. `makeLong()`
-  - 👿 금액을 long 타입 정수로 변환할 수 없으면 예외처리
+  - [x] 금액을 int 타입 정수로 변환한다. `makeInt()`
+  - 👿 금액을 int 타입 정수로 변환할 수 없으면 예외처리
 - [x] 자동 발행한 모든 로또 번호를 사용자에게 보여준다. `provideLotteriesDetails()`
 - [x] 입력받은 당첨 번호를 당첨 번호 생성 도메인 로직으로 넘긴다. `setUPWinningMain()`
   - [x] 각 번호를 int 타입 정수로 변환한다. `makeIntegerList()`

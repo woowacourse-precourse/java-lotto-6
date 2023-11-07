@@ -3,19 +3,13 @@ package lotto.controller;
 import lotto.controller.action.LottoAction;
 import lotto.controller.action.WinningAction;
 import lotto.domain.constant.Rank;
-import lotto.domain.model.Bonus;
 import lotto.domain.model.Lotto;
 import lotto.domain.service.LottoService;
-import lotto.ui.input.InputView;
 import lotto.ui.output.OutputView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static lotto.controller.constant.ErrorConst.INPUT_NOT_INT;
-import static lotto.controller.constant.ErrorConst.INPUT_NOT_LONG;
 import static lotto.ui.constant.MessageConst.PURCHASE_REQUEST;
 import static lotto.ui.constant.MessageConst.WINNING_BONUS_REQUEST;
 import static lotto.ui.constant.MessageConst.WINNING_DETAILS_NOTICE;

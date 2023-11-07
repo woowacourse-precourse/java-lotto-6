@@ -4,7 +4,7 @@ import lotto.domain.service.LottoService;
 import lotto.ui.input.InputView;
 import lotto.ui.output.OutputView;
 
-import static lotto.controller.util.Conversion.makeLong;
+import static lotto.controller.util.Conversion.makeInt;
 
 public class LottoAction {
 
@@ -18,7 +18,7 @@ public class LottoAction {
 
     public boolean run(String input, LottoService service) {
         try {
-            long price = makeLong(input); //검증 필요
+            int price = makeInt(input); //검증 필요
             service.buyLotteries(price); //검증 필요
             return false;
         } catch (IllegalArgumentException e) {

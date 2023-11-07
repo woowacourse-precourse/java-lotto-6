@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public static void printAmountNotice(long amount) {
+    public static void printAmountNotice(int amount) {
         System.out.println(amount + AMOUNT_NOTICE);
     }
 

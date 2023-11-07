@@ -7,7 +7,6 @@ import lotto.domain.WinningLotto;
 import lotto.validation.RuntimeValidation;
 
 public class LottoController {
-
     private UserLotto userLotto;
     private WinningLotto winningLotto;
     private BonusNumber bonusNumber;

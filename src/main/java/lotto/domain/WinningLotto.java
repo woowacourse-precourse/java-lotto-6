@@ -4,10 +4,10 @@ import lotto.controller.InputController;
 
 public class WinningLotto {
     private Lotto winningLotto;
+
     public WinningLotto() {
         inputWinningNumbers();
     }
-
 
     public int grade(Lotto lotto) {
         return winningLotto.compareWithAnotherLotto(lotto);
@@ -21,5 +21,4 @@ public class WinningLotto {
         System.out.println();
         winningLotto = new Lotto(InputController.inputWinningNumbersUntilSuccess());
     }
-
 }

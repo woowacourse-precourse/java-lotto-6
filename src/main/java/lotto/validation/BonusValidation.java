@@ -4,7 +4,6 @@ import lotto.system.Constants;
 import lotto.system.ErrorMessage;
 
 public class BonusValidation implements Validation {
-
     @Override
     public void check(String input) {
         checkNumberOutOfRange(input);

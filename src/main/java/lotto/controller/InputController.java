@@ -4,7 +4,6 @@ import java.util.List;
 import lotto.view.InputView;
 
 public class InputController {
-
     private static final InputView inputView = new InputView();
 
     public static int inputAmountUntilSuccess() {
@@ -36,5 +35,4 @@ public class InputController {
             }
         }
     }
-
 }

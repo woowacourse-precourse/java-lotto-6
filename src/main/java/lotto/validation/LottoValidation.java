@@ -5,7 +5,6 @@ import lotto.system.Constants;
 import lotto.system.ErrorMessage;
 
 public class LottoValidation implements Validation {
-
     @Override
     public void check(String input) {
         checkEachNumbersOutOfRange(input);

@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 public class Utils {
-
     public static String formatIntegerListToString(List<Integer> target) {
         return target.toString()
                 .replaceAll("[\\[\\] ]", "");
@@ -19,5 +18,4 @@ public class Utils {
         String rounded = String.format("%." + precision + "f", value);
         return formatter.format(Float.parseFloat(rounded));
     }
-
 }

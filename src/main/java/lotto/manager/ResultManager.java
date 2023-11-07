@@ -10,7 +10,6 @@ import lotto.domain.UserLotto;
 import lotto.domain.WinningLotto;
 
 public class ResultManager {
-
     public List<ResultLotto> match(WinningLotto winningLotto, UserLotto userLotto, BonusNumber bonusNumber) {
         List<ResultLotto> resultLotto = new ArrayList<>();
         for (int i = 0; i < userLotto.size(); i++) {
@@ -29,5 +28,4 @@ public class ResultManager {
                 .filter(i -> userLotto.get(i).contains(bonusNumber.getBonusNumber()))
                 .forEach(i -> resultLotto.set(i, ResultLotto.FIVE_BONUS));
     }
-
 }

@@ -6,7 +6,6 @@ import lotto.system.Constants;
 import lotto.util.Utils;
 
 public class YieldManager {
-
     public static float makeYield(List<ResultLotto> prize) {
         float beforeMoney = prize.size() * Constants.MONEY_UNIT.getConstants(); // 8000
         float totalMoney = 0;

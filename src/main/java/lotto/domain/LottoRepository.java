@@ -21,5 +21,4 @@ public class LottoRepository {
     public void printAllLottoInfo() {
         lottoRepository.forEach(Lotto::printLottoInfo);
     }
-
 }

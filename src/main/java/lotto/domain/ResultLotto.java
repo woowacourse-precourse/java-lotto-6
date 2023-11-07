@@ -1,7 +1,6 @@
 package lotto.domain;
 
 public enum ResultLotto {
-
     ZERO(0),
     ONE(0),
     TWO(0),
@@ -17,11 +16,11 @@ public enum ResultLotto {
         this.result = result;
     }
 
-    public long getResult() {
-        return result;
-    }
-
     public static ResultLotto getOrdinal(int ordinal) {
         return ResultLotto.values()[ordinal];
+    }
+
+    public long getResult() {
+        return result;
     }
 }

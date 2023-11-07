@@ -16,5 +16,4 @@ public enum Constants {
     public int getConstants() {
         return constants;
     }
-
 }

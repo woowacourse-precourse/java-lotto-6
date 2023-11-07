@@ -17,11 +17,13 @@ public class AmountValidation implements Validation {
             throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC);
         }
     }
+
     private void checkDivisibleByOneThousand(String input) {
         if (Long.parseLong(input) % Constants.MONEY_UNIT.getConstants() != 0) {
             throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE);
         }
     }
+
     private void checkOutOfRange(String input) {
         try {
             Long.parseLong(input);
@@ -35,6 +37,7 @@ public class AmountValidation implements Validation {
             throw new IllegalArgumentException(ErrorMessage.NOT_POSITIVE);
         }
     }
+
     private boolean checkIsNotNumeric(String input) {
         return !input.matches("^\\d+$");
     }

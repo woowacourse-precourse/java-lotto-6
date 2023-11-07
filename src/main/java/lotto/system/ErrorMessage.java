@@ -1,7 +1,6 @@
 package lotto.system;
 
 public class ErrorMessage {
-
     public static final String NOT_DIVISIBLE =
             "[ERROR] 금액이 " + Constants.MONEY_UNIT.getConstants() + "으로 떨어지지 않는 값을 입력했습니다.";
     public static final String NOT_NUMERIC = "[ERROR] 숫자가 아닌 값을 입력 했습니다.";
@@ -20,6 +19,5 @@ public class ErrorMessage {
 
     private ErrorMessage() {
     }
-
 
 }

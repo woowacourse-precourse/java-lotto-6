@@ -37,5 +37,4 @@ public class Lotto {
         String Lotto = Utils.formatIntegerListToString(numbers);
         new LottoValidation().check(Lotto);
     }
-
 }

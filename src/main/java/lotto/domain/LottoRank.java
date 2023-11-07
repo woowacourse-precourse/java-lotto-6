@@ -29,4 +29,10 @@ public enum LottoRank {
         }
         return NONE;
     }
+    public int getMatchCount() {
+        return this.matchCount;
+    }
+    public boolean isMatchBonus(){
+        return this.matchBonus;
+    }
 }

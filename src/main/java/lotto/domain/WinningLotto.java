@@ -16,4 +16,5 @@ public class WinningLotto {
     public List<Integer> getWinningNumbers() {
         return List.copyOf(winningNumbers);
     }
+
 }

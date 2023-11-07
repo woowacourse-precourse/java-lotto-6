@@ -2,6 +2,8 @@ package lotto.validator;
 
 import lotto.domain.WinningLotto;
 
+import java.util.List;
+
 public class BonusValidator {
 
     private static final int BONUS_MIN_NUMBER = 1;
@@ -10,10 +12,10 @@ public class BonusValidator {
     public static void validate(int number) {
         validateRange(number);
     }
-
     private static void validateRange(int number) {
         if (number < BONUS_MIN_NUMBER || number > BONUS_MAX_NUMBER){
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1 ~ 45 사이여야 합니다.");
         }
     }
+
 }

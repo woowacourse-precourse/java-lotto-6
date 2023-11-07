@@ -13,6 +13,8 @@ import java.util.List;
 public class LottoController {
 
     private Amount amount;
+    private WinningLotto winningLotto;
+    private BonusLotto bonusLotto;
 
     public void run() {
         getLottoMoney();
@@ -39,12 +41,12 @@ public class LottoController {
     private void winningLotto() {
         OutputView.printWinningNumbers();
         List<Integer> winningNumbers = InputView.readWinningNumbers();
-        WinningLotto winningLotto = new WinningLotto(winningNumbers);
+        winningLotto = new WinningLotto(winningNumbers);
     }
 
     private void bonusLotto() {
         OutputView.printBonusNumber();
         int bonusNumber = InputView.readBonusNumber();
-        BonusLotto bonusLotto = new BonusLotto(bonusNumber);
+        bonusLotto = new BonusLotto(bonusNumber);
     }
 }

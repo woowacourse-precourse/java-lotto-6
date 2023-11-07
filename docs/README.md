@@ -1,8 +1,10 @@
 
 ## 구현할 기능 정의
-- 입력받은 값에 대해 1000으로 나누고 안될시에 예외 발생
-    - `IllegalArgumentException` : 파라미터 잘못
-    - `IllegalStateException` : 부적절한 메소드가 호출되었을때
+
+- 구입금액 입력받기
+  - 입력받은 값에 대해 1000으로 나누고 안될시에 예외 발생
+    -  `IllegalArgumentException` : 파라미터 잘못
+    -  `IllegalStateException` : 부적절한 메소드가 호출되었을때
 - 받은 돈만큼 로또를 발행한다.
     - 이때 중복된 숫자 없이 `IllegalArgumentException`
     - 오름차순으로 정렬 (1,2,3)

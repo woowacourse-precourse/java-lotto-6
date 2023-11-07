@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Dto.MyLottosDto;
+import lotto.constant.constants.Prize;
 
 public class Lottos {
     private final List<Lotto> Lottos = new ArrayList<>();
@@ -16,33 +17,36 @@ public class Lottos {
     }
 
 
-    public int match(Lotto a, int matchedNumber) {
-        int res = 0;
+    public int calculateMatched(Lotto winningLotto, Integer bonusNumber, Prize prize) {
+
+        if (prize.equals(Prize.FIVE_AND_BONUS_MATCHED)) {
+            return calculateBonusMatched(winningLotto, bonusNumber, prize);
+        }
+
+        int matched = 0;
         for (Lotto lotto : Lottos) {
-            if (a.match(lotto) == matchedNumber) {
-                res++;
+            if (winningLotto.compare(lotto) == prize.getMatched()) {
+                matched++;
             }
         }
-        return res;
+        return matched;
     }
 
-    public int match(Lotto a, int matchedNumber, int bonusNumber) {
-        int res = 0;
+    private int calculateBonusMatched(Lotto winningLotto, Integer bonusNumber, Prize prize) {
+        int matched = 0;
         for (Lotto lotto : Lottos) {
-            if (a.match(lotto) == matchedNumber && lotto.contain(bonusNumber)) {
-                res++;
+            if (winningLotto.compare(lotto) == prize.getMatched() && lotto.contains(bonusNumber)) {
+                matched++;
             }
         }
-        return res;
+        return matched;
     }
 
 
     public MyLottosDto toDto() {
         List<List<Integer>> result = new ArrayList<>();
         for (Lotto lotto : Lottos) {
-            List<Integer> tmp = new ArrayList<>();
-            lotto.stamp(tmp);
-            result.add(tmp);
+            result.add(lotto.getNumbers());
         }
         return new MyLottosDto(result);
     }

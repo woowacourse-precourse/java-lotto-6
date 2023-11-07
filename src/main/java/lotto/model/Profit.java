@@ -11,12 +11,15 @@ public class Profit {
     private final static int THIRD_PRIZE = 1500000;
     private final static int SECOND_PRIZE = 30000000;
     private final static int FIRST_PRIZE = 2000000000;
+    private final static int PERCENTAGE = 100;
+
+
     private float profit;
 
     public float calculateProfitRate(float buyAmount, Map<LottoRank, Integer> lottoRankInfo) {
         float winningPrice = calculateWinningPrice(lottoRankInfo);
 
-        return (winningPrice / buyAmount) * 100;
+        return (winningPrice / buyAmount) * PERCENTAGE;
     }
 
 

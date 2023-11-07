@@ -11,7 +11,7 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     private Game game;
-    private int buyAmount = 0;
+    private int buyAmount;
 
     public LottoGameController(Game game) {
         this.game = game;

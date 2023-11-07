@@ -33,7 +33,7 @@ public class OutputView {
     public void outputLottoResults(LottoResult result) {
         System.out.printf(Message.OUTPUT_LOTTO_RESULTS.message);
 
-        for (int i = LottoRank.values().length - 1; i >= 0; i--) {
+        for (int i = LottoRank.values().length - 2; i >= 0; i--) {
             LottoRank rank = LottoRank.values()[i];
             printRankCount(result, rank);
         }

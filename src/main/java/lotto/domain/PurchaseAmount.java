@@ -1,8 +1,11 @@
 package lotto.domain;
 
 import lotto.util.ExceptionMessage;
+import lotto.util.enumerator.LottoNumberRange;
 
 public class PurchaseAmount {
+    private static final int LOTTO_UNIT = 1000;
+
     private final int amount;
 
     public PurchaseAmount(int amount) {
@@ -16,37 +19,25 @@ public class PurchaseAmount {
     }
 
     private void validatePurchaseLottoRange(int amount) {
-        if (amount < Range.MIN_PURCHASE_LOTTO.value) {
+        if (amount < LottoNumberRange.MIN_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_MIN_RANGE.getMessage());
         }
-        if (amount > Range.MAX_PURCHASE_LOTTO.value) {
+        if (amount > LottoNumberRange.MAX_LOTTO_NUMBER.getValue()) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_MAX_RANGE.getMessage());
         }
     }
 
     private void validatePurchaseLottoUnit(int amount) {
-        if (amount % Range.LOTTO_UNIT.value != 0) {
+        if (amount % LOTTO_UNIT != 0) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_UNIT.getMessage());
         }
     }
 
     public int calculateLottoCount() {
-        return this.amount / Range.LOTTO_UNIT.value;
+        return this.amount / LOTTO_UNIT;
     }
 
     public int getAmount() {
-        return getAmount();
-    }
-
-    private enum Range {
-        LOTTO_UNIT(1000),
-        MIN_PURCHASE_LOTTO(1000),
-        MAX_PURCHASE_LOTTO(2147483000);
-
-        private final int value;
-
-        Range(int value) {
-            this.value = value;
-        }
+        return amount;
     }
 }

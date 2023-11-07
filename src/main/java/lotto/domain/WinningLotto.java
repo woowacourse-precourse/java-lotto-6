@@ -7,10 +7,7 @@ import lotto.util.Util;
 import lotto.util.enumerator.LottoRank;
 
 public class WinningLotto {
-    private static final int MATCH_THREE = 3;
-    private static final int MATCH_FOUR = 4;
     private static final int MATCH_FIVE = 5;
-    private static final int MATCH_SIX = 6;
 
     private final WinningNumber winning;
     private final BonusNumber bonus;
@@ -35,19 +32,10 @@ public class WinningLotto {
     }
 
     private LottoRank compareLottoRank(int match, Lotto lotto) {
-        if (Util.isEqual(match, MATCH_THREE)) {
-            return LottoRank.FIFTH;
-        }
-        if (Util.isEqual(match, MATCH_FOUR)) {
-            return LottoRank.FOURTH;
-        }
         if (Util.isEqual(match, MATCH_FIVE)) {
             return compareWithBonusNumber(lotto);
         }
-        if (Util.isEqual(match, MATCH_SIX)) {
-            return LottoRank.FIRST;
-        }
-        return LottoRank.NONE;
+        return LottoRank.findLottoRankByMatch(match);
     }
 
     private int compareWithOneLotto(Lotto lotto) {

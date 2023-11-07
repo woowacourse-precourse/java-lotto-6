@@ -5,6 +5,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.repository.LottoRepository;
+import lotto.domain.repository.PurchaseAmountRepository;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -20,8 +21,11 @@ public class IssueLottoController implements Controllable {
     @Override
     public void process() {
         PurchaseAmount purchaseAmount = inputPurchaseAmount();
+        PurchaseAmountRepository.add(purchaseAmount);
+
         int count = purchaseAmount.calculateLottoCount();
         issueLotto(count);
+
         outputView.outputLottoNumbers(LottoRepository.lotties());
     }
 

@@ -7,7 +7,6 @@ import lotto.domain.WinningNumber;
 import lotto.domain.repository.WinningLottoRepository;
 import lotto.util.ExceptionMessage;
 import lotto.util.Util;
-import lotto.util.validator.LottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

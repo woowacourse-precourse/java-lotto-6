@@ -5,7 +5,7 @@
 ### 입력 기능
 - [x] 로또 구입 금액을 사용자로부터 입력 받는다. - enterLottoPurchaseAmount()
 - [x] 당첨 번호를 사용자로부터 입력 받는다. - enterWinningNumbers()
-- [ ] 보너스 번호를 사용자로부터 입력 받는다. - enterBonusNumber()
+- [x] 보너스 번호를 사용자로부터 입력 받는다. - enterBonusNumber()
 
 ---
 
@@ -40,8 +40,11 @@
  - [x] 구입금액에 따른 로또 번호를 랜덤으로 생성하는 함수 - generateRandomLottoNumbers()
 
 ### LottoWinningNumber - 로또 당첨 번호 관리 역할
- - [x] 로또 당첨 번호는 숫자와 콤마 형식을 체크하는 함수 - validateNumberAndCommaFormat();
- - [x] 문자열을 로또 형식으로 변환하는 함수 - convertStringToLottoFormat();
+ - [x] 로또 당첨 번호는 숫자와 콤마 형식을 체크하는 함수 - validateNumberAndCommaFormat()
+ - [x] 당첨 번호 문자열을 로또 형식으로 변환하는 함수 - convertStringToLottoFormat()
 
-### lottoBonusNumber - 로또 보너스 번호 관리 역할
- - [ ] 당첨 번호는 중복되지 않는 6개의 숫자와 추가로 1개의 보너스 번호를 선택한다. - validateWinningNumbersAndBonusNumber()
+### LottoBonusNumber - 로또 보너스 번호 관리 역할
+ - [x] 보너스 번호 빈값 체크 - validateBonusNumberNullCheck()
+ - [x] 보너스 번호 1~45 범위 내의 숫자만 가능한지 체크 - validateBonusNumberRange()
+ - [x] 로또 숫자 6개와 추가로 1개의 보너스 번호 중복 체크를 한다. - validateWinningNumbersAndBonusNumber()
+ - [x] 보너스 번호 문자열을 숫자로 변경하는 함수 - convertStringToIntegerFormat()

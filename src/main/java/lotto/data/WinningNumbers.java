@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import lotto.message.ErrorMessage;
-import lotto.message.LottoResult;
+import lotto.message.LottoPrize;
 
 public class WinningNumbers extends Lotto {
     private final int bonusNumber;
@@ -16,11 +16,11 @@ public class WinningNumbers extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
-    public HashMap<LottoResult, BigDecimal> getResultWith(List<Lotto> lottos) {
-        HashMap<LottoResult, BigDecimal> result = initResult();
+    public HashMap<LottoPrize, BigDecimal> getResultWith(List<Lotto> lottos) {
+        HashMap<LottoPrize, BigDecimal> result = initResult();
         for (Lotto lotto : lottos) {
             int matchCount = lotto.getMatchCountWith(getNumbers());
-            LottoResult lottoResult = LottoResult.of(matchCount, lotto.contains(bonusNumber));
+            LottoPrize lottoResult = LottoPrize.of(matchCount, getNumbers().contains(bonusNumber));
             BigDecimal count = result.get(lottoResult).add(BigDecimal.ONE);
             result.put(lottoResult, count);
         }
@@ -33,14 +33,14 @@ public class WinningNumbers extends Lotto {
         }
     }
 
-    private HashMap<LottoResult, BigDecimal> initResult() {
-        HashMap<LottoResult, BigDecimal> result = new HashMap<>();
-        result.put(LottoResult.FIRST, BigDecimal.ZERO);
-        result.put(LottoResult.SECOND, BigDecimal.ZERO);
-        result.put(LottoResult.THIRD, BigDecimal.ZERO);
-        result.put(LottoResult.FOURTH, BigDecimal.ZERO);
-        result.put(LottoResult.FIFTH, BigDecimal.ZERO);
-        result.put(LottoResult.NONE, BigDecimal.ZERO);
+    private HashMap<LottoPrize, BigDecimal> initResult() {
+        HashMap<LottoPrize, BigDecimal> result = new HashMap<>();
+        result.put(LottoPrize.FIRST, BigDecimal.ZERO);
+        result.put(LottoPrize.SECOND, BigDecimal.ZERO);
+        result.put(LottoPrize.THIRD, BigDecimal.ZERO);
+        result.put(LottoPrize.FOURTH, BigDecimal.ZERO);
+        result.put(LottoPrize.FIFTH, BigDecimal.ZERO);
+        result.put(LottoPrize.NONE, BigDecimal.ZERO);
         return result;
     }
 

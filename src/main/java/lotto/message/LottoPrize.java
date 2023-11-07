@@ -1,6 +1,6 @@
 package lotto.message;
 
-public enum LottoResult {
+public enum LottoPrize {
     FIRST(2_000_000_000, "6개 일치 (2,000,000,000원)"),
     SECOND(30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
     THIRD(1_500_000, "5개 일치 (1,500,000원)"),
@@ -10,12 +10,12 @@ public enum LottoResult {
     private final int prize;
     private final String message;
 
-    LottoResult(int prize, String message) {
+    LottoPrize(int prize, String message) {
         this.prize = prize;
         this.message = message;
     }
 
-    public static LottoResult of(int matchCount, boolean isBonusNumberMatched) {
+    public static LottoPrize of(int matchCount, boolean isBonusNumberMatched) {
         if (matchCount == 6) {
             return FIRST;
         }

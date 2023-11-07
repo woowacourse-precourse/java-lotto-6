@@ -29,7 +29,7 @@ public enum LottoRanking {
         return prizeMoney;
     }
 
-    public int count() {
+    public int getCount() {
         return count;
     }
 }

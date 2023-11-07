@@ -1,18 +1,16 @@
 package lotto.enums;
 
+import java.text.DecimalFormat;
+
 public enum ErrorMessages {
-    OVER_MAX_SIZE_MESSAGE("로또 번호의 개수가 %s개가 넘어가면 안됩니다".formatted(LottoEnum.SELECTED_NUMBERS_SIZE.getValue())),
+    OVER_MAX_SIZE_MESSAGE("로또 번호의 개수가 %s개여야 합니다.".formatted(LottoEnum.SELECTED_NUMBERS_SIZE.getValue())),
     DUPLICATE_NUMBER_MESSAGE("로또 발행시 중복되지 않는 %d개의 숫자가 있어야 합니다.".formatted(LottoEnum.SELECTED_NUMBERS_SIZE.getValue())),
     INVALID_NUMBER_RANGE_MESSAGE("로또 번호의 숫자 범위는 %s~%s 입니다.".formatted(LottoEnum.MIN_LOTTO_NUMBER.getValue(), LottoEnum.MAX_LOTTO_NUMBER.getValue())),
 
     NON_NUMERIC_INPUT_MESSAGE("숫자형이 아닌 문자를 입력하였습니다."),
     NON_POSITIVE_INPUT_MESSAGE("양수인 값만 입력해주세요."),
-    NON_THOUSAND_INPUT_MESSAGE("1,000원 단위의 수를 입력해주세요."),
-    WINNING_NUMBERS_INCLUDE_BONUS_MESSAGE("당첨 번호에 보너스 번호가 포함되어 있습니다. 다른 수를 적어주세요."),
-
-    TICKETS_WAS_NOT_CREATED("어떠한 LottoTicket 도 없습니다. LottoTicket 생성해주세요. LottoPurchase 의 generateLottoTickets (로또 생성) 후 호출 될 수 있습니다."),
-    RESULT_WAS_NOT_CREATED("어떠한 WinningResult 도 없습니다. WinningResult 를 생성해주세요.")
-    ;
+    NON_PURCHASE_RULE_INPUT_MESSAGE(String.format("%s원 단위의 수를 입력해주세요.", new DecimalFormat("###,###").format(LottoEnum.PURCHASE_RULE.getValue()))),
+    WINNING_NUMBERS_INCLUDE_BONUS_MESSAGE("당첨 번호에 보너스 번호가 포함되어 있습니다. 다른 수를 적어주세요.");
 
     private final String message;
 

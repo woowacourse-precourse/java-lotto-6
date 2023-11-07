@@ -36,6 +36,8 @@
 
 # 중점사항
 
+- 클래스(객체)를 분리하는 연습
+- 도메인 로직에 대한 단위 테스트를 작성하는 연습
 - First-Class Collection, ENUM, record 타입 사용하여 구현 예정
 - 예외처리를 위한 LottoException 구현 예정
 - 로또의 설정 정보를 담고있는 LottoConfig 구현 예정

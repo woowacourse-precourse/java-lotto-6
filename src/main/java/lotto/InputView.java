@@ -43,4 +43,10 @@ public class InputView {
         }
     }
 
+    void validPositive(int price){
+        if(price <= 0){
+            throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 1000원 이상 입력해야 합니다.");
+        }
+    }
+
 }

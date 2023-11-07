@@ -22,4 +22,17 @@ public class User {
     public List<Lotto> getLottoList() {
         return lottoTickets.getLotto();
     }
+
+    public void compareWinningLotto(WinningLotto winningLotto) {
+        for (Lotto lotto : lottoTickets.getLotto()) {
+            int countCorrectNumber = (int) winningLotto.getWinningLotto().stream()
+                    .filter(number -> lotto.isContain(number))
+                    .count();
+
+            boolean checkBonus = (countCorrectNumber == 5) && lotto.isContain(winningLotto.getBonusNumber());
+
+            WinningResult.countLottoResult(countCorrectNumber, checkBonus);
+
+        }
+    }
 }

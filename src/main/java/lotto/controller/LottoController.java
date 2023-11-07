@@ -4,7 +4,9 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoController {
@@ -31,4 +33,17 @@ public class LottoController {
             return selectWinningLottoNumbers();
         }
     }
+
+    public List<Lotto> issueLottoList(PurchaseAmount purchaseAmount) {
+        List<Lotto> lottoList = new ArrayList<>();
+        int lottoCount = purchaseAmount.getLottoCount();
+        OutputView.outputLottoCount(lottoCount);
+        for (int i=0; i<lottoCount; i++) {
+            Lotto lotto = new Lotto();
+            OutputView.outputIssuedLotto(lotto);
+            lottoList.add(lotto);
+        }
+        return lottoList;
+    }
+
 }

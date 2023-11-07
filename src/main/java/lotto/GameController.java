@@ -16,26 +16,20 @@ import java.util.Map;
 import java.util.Set;
 
 public class GameController {
-    private final int TICKET_PRICE = 1000;
-    private static final String commonErrorMessage = ErrorMessage.COMMON_MESSAGE.getMessage();
+    private static final int TICKET_PRICE = 1000;
+    private LottoTicket lottoTicket;
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoTicket lottoTicket;
-    private int bonusNumber;
-    private int ticketCount;
-    private List<Integer> winningNumbers;
 
     public GameController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.lottoTicket = new LottoTicket();
-        this.winningNumbers = new ArrayList<>();
     }
 
     public void play() {
         int amount = initGame();
-        setWinningNumbers();
-        setBonusNumber();
+        List<Integer> winningNumbers = setWinningNumbers();
+        int bonusNumber = setBonusNumber(winningNumbers);
         LottoResultAnalyze lottoResultAnalyze = new LottoResultAnalyze();
         Map<String, Integer> lottoResult = lottoResultAnalyze.calculateResult(lottoTicket, winningNumbers, bonusNumber);
         double profit = calculateProfit(amount, lottoResult);
@@ -55,7 +49,7 @@ public class GameController {
         return amount;
     }
 
-    private void setLottoTicket() {
+    private void setLottoTicket(int ticketCount) {
         lottoTicket = LottoMachine.createLottoTicket(ticketCount);
     }
 
@@ -64,19 +58,21 @@ public class GameController {
         outputView.displayLottoTicket(OutputMessage.DISPLAY_TICKET_COUNT, ticketCount, lottoTicket);
     }
 
-    private void setWinningNumbers() {
-        boolean valid = false;
+    private List<Integer> setWinningNumbers() {
+        boolean isValid = false;
+        List<Integer> winningNumbers = new ArrayList<>();
         outputView.displayMessage(OutputMessage.GET_WINNING_NUMBERS);
 
-        while (!valid) {
+        while (!isValid) {
             winningNumbers = inputView.getWinningNumbers();
             try {
                 validateDuplicate(winningNumbers);
-                valid = true;
+                isValid = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+        return winningNumbers;
     }
 
     private void validateDuplicate(List<Integer> winningNumbers) throws IllegalArgumentException {
@@ -86,27 +82,30 @@ public class GameController {
         }
     }
 
-    private void setBonusNumber() {
-        boolean valid = false;
+    private int setBonusNumber(List<Integer> winningNumbers) {
+        boolean isValid = false;
+        int bonusNumber = 0;
         outputView.displayMessage(OutputMessage.GET_BONUS_NUMBER);
-        while (!valid) {
+        while (!isValid) {
             try {
                 bonusNumber = inputView.getBonusNumber();
-                validateContains(bonusNumber);
-                valid = true;
+                validateContains(bonusNumber, winningNumbers);
+                isValid = true;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+        return bonusNumber;
     }
 
-    private void validateContains(int bonusNumber) throws IllegalArgumentException {
+    private void validateContains(int bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(createErrorMessage(ErrorMessage.NUMBER_DUPLICATE_ERROR));
         }
     }
 
     private String createErrorMessage(ErrorMessage errorMessage) {
+        String commonErrorMessage = ErrorMessage.COMMON_MESSAGE.getMessage();
         return errorMessage.getMessage() + " " + commonErrorMessage;
     }
 

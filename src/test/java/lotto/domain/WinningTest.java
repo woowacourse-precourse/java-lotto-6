@@ -160,4 +160,18 @@ class WinningTest {
         //Then
         assertThat(totalPrize.get(prize)).isEqualTo(1);
     }
+
+    @DisplayName("수익률을 계산한다.")
+    @Test
+    void calcRevenueRate() {
+        //Given
+        int purchaseAmount = 3000;
+        Map<Prize, Integer> totalPrize = Prize.initTotalPrizeMap();
+        totalPrize.put(Prize.FOUR_MATCH, 1);
+        //When
+        double revenueRate = winning.calcRevenueRate(totalPrize, purchaseAmount);
+        //Then
+        assertThat(revenueRate).isEqualTo(1666.7);
+    }
+
 }

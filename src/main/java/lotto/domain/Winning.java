@@ -30,6 +30,14 @@ public class Winning extends LottoRule {
         return totalPrize;
     }
 
+    public double calcRevenueRate(Map<Prize, Integer> totalPrize, int purchaseAmount) {
+        List<Prize> prizes = getPrizesWithValueGreaterThanOne(totalPrize);
+        int totalPrizeAmount = getTotalPrizeAmount(prizes);
+
+        double revenueRate = (double) totalPrizeAmount / purchaseAmount * 100;
+        return Math.round(revenueRate * 10) / 10.0;
+    }
+
     public void validateBonus(int bonusNumber) {
         if (isDuplicateBonusNumber(bonusNumber)) {
             ExceptionMessage.BONUS_NUMBER_DUPLICATE.throwException();
@@ -91,7 +99,22 @@ public class Winning extends LottoRule {
         return null;
     }
 
-    
+    private List<Prize> getPrizesWithValueGreaterThanOne(Map<Prize, Integer> totalPrize) {
+        return totalPrize.entrySet().stream()
+                .filter(entry -> entry.getValue() >= 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+    }
+
+    private int getTotalPrizeAmount(List<Prize> prizes){
+        int prizeAmount = 0;
+
+        for (Prize prize : prizes){
+            prizeAmount += prize.getPrice();
+        }
+        return prizeAmount;
+    }
+
     private boolean isDuplicateBonusNumber(int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             return true;

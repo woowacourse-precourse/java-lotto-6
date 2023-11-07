@@ -1,9 +1,10 @@
 package lotto.domain;
 
+import static lotto.util.Const.*;
 import static lotto.util.ValidateMessage.*;
 
 public class LottoAmount {
-    private static final int MIN_AMOUNT = 1000;
+
 
     private final int amount;
 

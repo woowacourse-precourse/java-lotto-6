@@ -10,6 +10,9 @@ import lotto.view.valid.WinningNumberValidation;
 
 public class GameConfig {
 
+    private GameConfig() {
+    }
+
     public static GameManager buildGameManager() {
         MessagePrinter messagePrinter = messagePrinter();
         MessageReceiver messageReceiver = messageReceiver();

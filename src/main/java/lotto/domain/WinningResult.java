@@ -11,6 +11,13 @@ public final class WinningResult {
     private int rank4;
     private int rank5;
 
+    private WinningResult() {
+    }
+
+    public static WinningResult create() {
+        return new WinningResult();
+    }
+
     public void winRank(final int correctAmount, final boolean bonusCorrect) {
         winRank1(correctAmount);
         winRank2(correctAmount, bonusCorrect);

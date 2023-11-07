@@ -12,11 +12,11 @@ class WinningResultTest {
     @Test
     void winRank() {
         // given
-        WinningResult winningResult1 = new WinningResult();
-        WinningResult winningResult2 = new WinningResult();
-        WinningResult winningResult3 = new WinningResult();
-        WinningResult winningResult4 = new WinningResult();
-        WinningResult winningResult5 = new WinningResult();
+        WinningResult winningResult1 = WinningResult.create();
+        WinningResult winningResult2 = WinningResult.create();
+        WinningResult winningResult3 = WinningResult.create();
+        WinningResult winningResult4 = WinningResult.create();
+        WinningResult winningResult5 = WinningResult.create();
 
         // when
         winningResult1.winRank(6, false);
@@ -38,7 +38,7 @@ class WinningResultTest {
     void calculateEarningsRate() {
         // given
         LottoGame lottoGame = LottoGame.createLottoGame(10000);
-        WinningResult winningResult = new WinningResult();
+        WinningResult winningResult = WinningResult.create();
         winningResult.winRank(6, false);
 
         // when

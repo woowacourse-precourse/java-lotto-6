@@ -11,7 +11,7 @@ public final class LottoGame {
     private final List<Lotto> lottos;
     private final int buyingAmount;
 
-    public LottoGame(final List<Lotto> lottos, final int buyingAmount) {
+    private LottoGame(final List<Lotto> lottos, final int buyingAmount) {
         this.lottos = lottos;
         this.buyingAmount = buyingAmount;
     }
@@ -33,7 +33,7 @@ public final class LottoGame {
     }
 
     public WinningResult calculateWinning(final WinningLotto winningLotto) {
-        WinningResult winningResult = new WinningResult();
+        WinningResult winningResult = WinningResult.create();
         for (Lotto lotto : lottos) {
             int correctAmount = lotto.calculateCorrectAmount(winningLotto);
             boolean bonusCorrect = lotto.calculateBonusCorrect(winningLotto);

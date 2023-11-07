@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class InputParser {
     //순수하게 입력 값을 파싱
-    public List<String> parseInput(String input) {
+    public static List<String> parseInput(String input) {
         return Arrays.stream(input.split(",", -1))
                 .map(String::trim)
                 .collect(Collectors.toList());

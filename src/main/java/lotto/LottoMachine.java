@@ -49,17 +49,7 @@ public class LottoMachine {
     }
 
     private List<Integer> generateLottoNumbers() {
-        List<Integer> numbers;
-
-        try {
-            numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Exception.validateLottoNumbers(numbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return generateLottoNumbers();
-        }
-
-        return numbers;
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_LENGTH);
     }
 
 }

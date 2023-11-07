@@ -28,6 +28,22 @@ public class OutputView {
         System.out.printf(PURCHASE_NUMBER_OUTPUT_MESSAGE, ticketAmount);
     }
 
+    public static void printLottoNumbers(int ticketAmount, LottoTickets lottoTickets) {
+        printPurchaseInputMessage(ticketAmount);
+        lottoTickets.getLottoTickets()
+                .forEach(lotto -> printMessage(createLottoTicket(lotto)));
+    }
+
+    private static String createLottoTicket(Lotto lotto) {
+        StringBuilder lottoNumbers = new StringBuilder(OPEN_BRACKET);
+        lotto.getNumbers()
+                .forEach(number -> lottoNumbers.append(number)
+                        .append(COMMA));
+        lottoNumbers.delete(lottoNumbers.length() - 2, lottoNumbers.length());
+        lottoNumbers.append(CLOSE_BRACKET);
+        return lottoNumbers.toString();
+    }
+
     private static void printMessage(String message) {
         System.out.println(message);
     }

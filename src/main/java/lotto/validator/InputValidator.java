@@ -29,7 +29,7 @@ public class InputValidator {
     }
 
     public static boolean isValidNumberRange(int input) {
-        if ( input < LOTTO_NUMBER_START_INCLUSIVE.getValue() &&
+        if ( input < LOTTO_NUMBER_START_INCLUSIVE.getValue() ||
                 input > LOTTO_NUMBER_END_INCLUSIVE.getValue() ) {
             return false;
         }
@@ -39,7 +39,7 @@ public class InputValidator {
 
     public static boolean isValidNumberRange(List<Integer> input) {
         for (Integer element : input) {
-            if (element < LOTTO_NUMBER_START_INCLUSIVE.getValue() &&
+            if (element < LOTTO_NUMBER_START_INCLUSIVE.getValue() ||
                     element > LOTTO_NUMBER_END_INCLUSIVE.getValue()) {
                 return false;
             }

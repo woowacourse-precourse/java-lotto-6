@@ -6,7 +6,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import static lotto.controller.InputConverter.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -32,7 +34,7 @@ public class InputConverterTest {
         winningNumbers.add(5);
         winningNumbers.add(6);
 
-        List<Integer> returnWinningNumbers = convertWinningNumber(inputWinningNumber);
+        List<Integer> returnWinningNumbers = convertWinningNum(inputWinningNumber);
 
         Assertions.assertThat(winningNumbers).isEqualTo(returnWinningNumbers);
     }
@@ -68,6 +70,24 @@ public class InputConverterTest {
     void checkDigitBonusTest() {
         String inputNBonusNumbers = "a";
         assertThatThrownBy(() -> convertDigit(inputNBonusNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("',' 테스트")
+    @Test
+    void checkCommaTest() {
+        String input1 = ",1,2,3,4,5,6,";
+        String input2 = "1,2,3,4,5,6,";
+        String input3 = ",,1,2,3,4,5,6";
+        String input4 = "1,2,3,4,5,6,,";
+
+        assertThatThrownBy(() -> checkCommaCountStand(input1))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> checkCommaCountStand(input2))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> checkCommaCountStand(input3))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> checkCommaCountStand(input4))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

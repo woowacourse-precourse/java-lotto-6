@@ -14,12 +14,11 @@ public class Print {
 
     public static void printLottoRotate(List<Lotto> lottery) {
         for (Lotto lotto : lottery) {
+            System.out.println();
             printLottoNumber(sortLottery(lotto));
         }
-        System.out.println();
     }
     public static void printBoughtLottoCount(int lottoCount) {
-        System.out.println();
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 

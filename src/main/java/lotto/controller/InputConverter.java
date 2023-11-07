@@ -1,16 +1,22 @@
 package lotto.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static lotto.view.ErrorMessage.muchComma;
 import static lotto.view.ErrorMessage.notDigitExceptionMessage;
 
 public class InputConverter {
 
-    public static List<Integer> convertWinningNumber(String inputWinningNumber) {
+    private static final char standard = ',';
+    private static final int standCount = 5;
+
+    public static List<Integer> convertWinningNum(String inputWinningNum) throws IllegalArgumentException{
         List<Integer> winningNumbers = new ArrayList<>();
-        StringTokenizer st = new StringTokenizer(inputWinningNumber, ",");
+        checkCommaCountStand(inputWinningNum);
+        StringTokenizer st = new StringTokenizer(inputWinningNum, ",");
         while(st.hasMoreTokens()) {
             String nextNumber = st.nextToken();
             winningNumbers.add(convertDigit(nextNumber));
@@ -25,6 +31,18 @@ public class InputConverter {
             notDigitExceptionMessage();
             throw e;
         }
+    }
+
+    public static void checkCommaCountStand(String winningNum) throws IllegalArgumentException {
+        Long countComma = countStand(winningNum);
+        if (countComma != standCount) {
+            muchComma();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static Long countStand(String input) {
+        return input.chars().filter(c -> c == standard).count();
     }
 
 }

@@ -27,4 +27,8 @@ public class ErrorMessage {
     public static void duplicatedWinningNumbers() {
         System.out.println(error + " 당첨 번호들은 중복되면 안 됩니다.");
     }
+
+    public static void muchComma() {
+        System.out.println(error + " 반점은 숫자마다 하나씩 넣어주세요.");
+    }
 }

@@ -67,7 +67,7 @@ public class Play {
             messageAboutUserLottoNumber();
             String tmpWinningNumbers = inputWinningNumbers();
             try {
-                winningNumbers = checkWinningNumberException(convertWinningNumber(tmpWinningNumbers));
+                winningNumbers = checkWinningNumberException(convertWinningNum(tmpWinningNumbers));
                 break;
             } catch (IllegalArgumentException e) {
                 //notDigitExceptionMessage();

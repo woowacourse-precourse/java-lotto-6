@@ -8,14 +8,15 @@ public class Prize {
     private static int bonusCounts;
     private static int luckyCounts;
     private static int totalProfit;
-    private static final int[] finalResult = new int[5];
     private static List<Integer> separatedLotto = new ArrayList<Integer>();
+    private static final int[] finalResult = new int[5];
+    private static final int LOOP_INITIALIZATION = 0;
 
     static void separateNumbers() {
         for (int i = 0; i < Issue.lottoGroup.size(); i++) {
             separatedLotto = Issue.lottoGroup.get(i);
-            luckyCounts = 0;
-            bonusCounts = 0;
+            luckyCounts = LOOP_INITIALIZATION;
+            bonusCounts = LOOP_INITIALIZATION;
 
             checkNumbers();
             winPrize();

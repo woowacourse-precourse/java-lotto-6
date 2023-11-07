@@ -61,7 +61,7 @@ public class Pick {
     }
 
     private static void raiseInvalidNumbersException() {
-        if (luckyNumber.size() != 6) {
+        if (luckyNumber.size() != Issue.NUMBER_OF_LOTTO) {
             throw new IllegalArgumentException();
         }
     }
@@ -73,7 +73,7 @@ public class Pick {
     }
 
     private static void raiseNumberRangeException() {
-        if (bonusNumber > 45 || bonusNumber < 1) {
+        if (bonusNumber > Issue.MAXIMUM_OF_NUMBER || bonusNumber < Issue.MINIMUM_OF_NUMBER) {
             throw new IllegalArgumentException();
         }
     }

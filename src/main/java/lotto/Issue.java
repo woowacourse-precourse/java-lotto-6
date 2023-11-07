@@ -9,7 +9,12 @@ import java.util.List;
 public class Issue {
     public static int initialCash;
     public static List<List<Integer>> lottoGroup = new ArrayList<>();
+    public static final int MINIMUM_OF_NUMBER = 1;
+    public static final int MAXIMUM_OF_NUMBER = 45;
+    public static final int NUMBER_OF_LOTTO = 6;
+
     private static int lottoQuantity;
+    private static final int UNIT_OF_CASH = 1000;
 
     static void inputCash() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -24,12 +29,12 @@ public class Issue {
             }
         }
 
-        lottoQuantity = initialCash / 1000;
+        lottoQuantity = initialCash / UNIT_OF_CASH;
         System.out.println();
     }
 
     private static List<Integer> getNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_OF_NUMBER, MAXIMUM_OF_NUMBER, NUMBER_OF_LOTTO);
     }
 
     static void makeSortedLotto() {
@@ -58,7 +63,7 @@ public class Issue {
     }
 
     private static void raiseUnitException() {
-        if (initialCash % 1000 != 0) {
+        if (initialCash % UNIT_OF_CASH != 0) {
             throw new IllegalArgumentException();
         }
     }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -31,8 +32,10 @@ public class Controller {
         }
         totalInvestment = userPrice;
         double profitPercentage = (totalProfit) / (double) totalInvestment * 100;
+        DecimalFormat profitDecimal = new DecimalFormat("#0.0%");
+        String formattedProfitPercentage = profitDecimal.format(profitPercentage / 100.0);
         OutputView.printScore(score);
-        OutputView.printProfit(profitPercentage);
+        OutputView.printProfit(formattedProfitPercentage);
 
     }
 

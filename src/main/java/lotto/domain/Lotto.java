@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -7,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -18,6 +20,10 @@ public class Lotto {
         if (numbers.stream().distinct().count() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public void printLotto() {
+        System.out.println(numbers);
     }
 
     public int match(List<Integer> WinningNumbers) {

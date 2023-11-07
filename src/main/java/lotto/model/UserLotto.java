@@ -1,25 +1,20 @@
 package lotto.model;
 
-import static lotto.config.LottoConfig.LOTTO_VALUE_SIZE;
-import static lotto.config.LottoConfig.LOTTO_VALUE_MIN;
-import static lotto.config.LottoConfig.LOTTO_VALUE_MAX;
-import static lotto.config.LottoConfig.LOOP_INITIAL_VALUE;
-import static lotto.config.LottoConfig.ONE;
-
+import static lotto.config.LottoConfig.*;
 import java.util.List;
 import java.util.ArrayList;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class UserLotto {
-    private List<List<Integer>> userNumbers = new ArrayList<>();
+    private final List<List<Integer>> userLottoNumbers = new ArrayList<>();
 
     public UserLotto(int lottoQuantity) {
         autoSelectLotto(lottoQuantity);
     }
 
     private void autoSelectLotto(int lottoQuantity) {
-        while (lottoQuantity > LOOP_INITIAL_VALUE.getValue()) {
-            userNumbers.add(randomPickNumber());
+        while (lottoQuantity > ZERO.getValue()) {
+            userLottoNumbers.add(randomPickNumber());
             lottoQuantity--;
         }
     }
@@ -37,17 +32,17 @@ public class UserLotto {
     }
 
     private boolean isDuplicate(List<Integer> randomNumbers) {
-        List<Integer> distinctNumbers = randomNumbers.stream()
+        List<Integer> distinctRandomNumbers = randomNumbers.stream()
                 .distinct()
                 .toList();
 
-        if (distinctNumbers.size() != randomNumbers.size()) {
+        if (distinctRandomNumbers.size() != randomNumbers.size()) {
             return true;
         }
         return false;
     }
 
-    public List<List<Integer>> getUserNumbers() {
-        return new ArrayList<>(userNumbers);
+    public List<List<Integer>> getUserLottoNumbers() {
+        return new ArrayList<>(userLottoNumbers);
     }
 }

@@ -1,20 +1,19 @@
 package lotto.model;
 
-import lotto.config.WinningResultConfig;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import lotto.config.WinningResultConfig;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 class WinningResultTest {
     @DisplayName("model_Winning_result_개수에_따라_값_추가")
     @Test
     public void model_WinningResult_addResult() {
-        List<List<Integer>> userNumbers = Arrays.asList(
+        List<List<Integer>> userLottoNumbers = Arrays.asList(
                 Arrays.asList(3, 6, 8, 26, 44, 34),//2
                 Arrays.asList(1, 2, 3, 4, 29, 30),//4
                 Arrays.asList(1, 2, 3, 4, 5, 8),//5
@@ -22,12 +21,14 @@ class WinningResultTest {
                 Arrays.asList(1, 2, 3, 4, 5, 6)//6
         );
         int bonusNumber = 7;
-        List<Long> equalCounts = Arrays.asList(2L ,4L ,5L, 5L, 6L);
+        List<Integer> equalCounts = Arrays.asList(2 ,4 ,5, 5, 6);
+        List<String> bonus = Arrays.asList("","","","보너스 볼", "");
         List<Result> results = new ArrayList<>();
 
-        for (List<Integer> userNumber : userNumbers) {
-            Result result = new Result(userNumber, equalCounts.get(userNumbers.indexOf(userNumber)));
-            result.updateBonus(bonusNumber);
+        for (List<Integer> userNumbers : userLottoNumbers) {
+            Result result = new Result(userNumbers,
+                    equalCounts.get(userLottoNumbers.indexOf(userNumbers)),
+                    bonus.get(userLottoNumbers.indexOf(userNumbers)));
             results.add(result);
         }
 

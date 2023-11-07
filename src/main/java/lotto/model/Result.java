@@ -3,30 +3,27 @@ package lotto.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static lotto.Message.ErrorMessage.OBJECT_IS_NULL;
+
 public class Result {
     private final List<Integer> userNumbers;
-    private final Long equalCount;
-    private String bonus = "";
+    private final int equalCount;
+    private final String bonus;
 
-    public Result(List<Integer> userNumbers, Long equalCount) {
+    public Result(List<Integer> userNumbers, int equalCount, String bonus) {
+        if (userNumbers == null) {
+            throw new NullPointerException(OBJECT_IS_NULL.getMessage());
+        }
         this.userNumbers = userNumbers;
         this.equalCount = equalCount;
-    }
-
-    public void updateBonus(int bonusNumber) {
-        for (Integer userNumber : userNumbers) {
-            if (userNumber == bonusNumber) {
-                this.bonus = "보너스 볼";
-                break;
-            }
-        }
+        this.bonus = bonus;
     }
 
     public List<Integer> getUserNumbers() {
         return new ArrayList<>(userNumbers);
     }
 
-    public Long getEqualCount() {
+    public int getEqualCount() {
         return equalCount;
     }
 

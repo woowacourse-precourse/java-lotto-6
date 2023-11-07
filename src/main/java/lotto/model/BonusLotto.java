@@ -1,18 +1,19 @@
 package lotto.model;
 
-import static lotto.Message.ErrorMessage.LOTTO_RANGE_ERROR_MESSAGE;
-import static lotto.Message.ErrorMessage.BONUS_LOTTO_IS_DUPLICATE;
+import static lotto.Message.ErrorMessage.*;
 import static lotto.config.LottoConfig.*;
-
 import java.util.List;
 
 public class BonusLotto {
     private final int bonusNumber;
 
-    public BonusLotto(int bonusNumber, List<Integer> numbers) {
-        rangeValidate(bonusNumber);
-        isDuplicate(bonusNumber, numbers);
-        this.bonusNumber = bonusNumber;
+    public BonusLotto(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers == null) {
+            throw new NullPointerException(OBJECT_IS_NULL.getMessage());
+        }
+            rangeValidate(bonusNumber);
+            isDuplicate(bonusNumber, winningNumbers);
+            this.bonusNumber = bonusNumber;
     }
 
     private void rangeValidate(int bonusNumber) {
@@ -21,10 +22,10 @@ public class BonusLotto {
         }
     }
 
-    private void isDuplicate(int bonusNumber, List<Integer> numbers) {
-        if (numbers.stream()
+    private void isDuplicate(int bonusNumber, List<Integer> winningNumbers) {
+        if (winningNumbers.stream()
                 .anyMatch(n -> n.equals(bonusNumber))) {
-            throw new IllegalArgumentException(BONUS_LOTTO_IS_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(BONUS_NUMBER_IS_DUPLICATE.getMessage());
         }
     }
 

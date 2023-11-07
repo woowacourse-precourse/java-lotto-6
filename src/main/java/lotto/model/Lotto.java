@@ -1,31 +1,32 @@
 package lotto.model;
 
-import static lotto.config.LottoConfig.LOTTO_VALUE_MIN;
-import static lotto.config.LottoConfig.LOTTO_VALUE_MAX;
-import static lotto.config.LottoConfig.LOTTO_VALUE_SIZE;
-import static lotto.Message.ErrorMessage.LOTTO_RANGE_ERROR_MESSAGE;
-import static lotto.Message.ErrorMessage.LOTTO_SIZE_ERROR_MESSAGE;
-import static lotto.Message.ErrorMessage.LOTTO_IS_DUPLICATE;
-
+import static lotto.config.LottoConfig.*;
+import static lotto.Message.ErrorMessage.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Integer> winningNumbers;
 
-    public Lotto(String numbers) {
-        List<Integer> convertNumbers = convertFormat(numbers);
+    public Lotto(String winningNumbers) {
+        List<Integer> convertNumbers = convertFormat(winningNumbers);
         rangeValidate(convertNumbers);
         sizeValidate(convertNumbers);
         isDuplicate(convertNumbers);
 
-        this.numbers = convertNumbers;
+        this.winningNumbers = convertNumbers;
     }
-    private List<Integer> convertFormat(String numbers) {
+    private List<Integer> convertFormat(String numbers) throws NumberFormatException{
         return Arrays.stream(numbers.split(","))
-                .map(Integer::valueOf)
+                .map(value -> {
+                    try {
+                        return Integer.parseInt(value);
+                    } catch (NumberFormatException e) {
+                        throw new NumberFormatException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());
+                    }
+                })
                 .collect(Collectors.toList());
     }
 
@@ -49,11 +50,11 @@ public class Lotto {
                 .toList();
 
         if (distinctNumbers.size() != convertNumbers.size()) {
-            throw new IllegalArgumentException(LOTTO_IS_DUPLICATE.getMessage());
+            throw new IllegalArgumentException(LOTTO_NUMBER_IS_DUPLICATE.getMessage());
         }
     }
 
-    public List<Integer> getNumbers() {
-        return new ArrayList<>(numbers);
+    public List<Integer> getWinningNumbers() {
+        return new ArrayList<>(winningNumbers);
     }
 }

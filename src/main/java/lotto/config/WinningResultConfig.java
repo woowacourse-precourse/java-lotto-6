@@ -11,27 +11,27 @@ public enum WinningResultConfig {
     FIVE_AND_BONUS("5,보너스 볼", 30000000),
     SIX("6", 2000000000);
 
-    private String resultStatus;
-    private int revenueStatus;
-
-    private static final Map<String, WinningResultConfig> BY_LABEL =
-            Stream.of(values()).collect(Collectors.toMap(WinningResultConfig::getResultStatus, e -> e));
+    private final String resultStatus;
+    private final int revenueStatus;
 
     WinningResultConfig(String resultStatus, int revenueStatus) {
         this.resultStatus = resultStatus;
         this.revenueStatus = revenueStatus;
     }
 
-    public static WinningResultConfig valueOfLabel(String resultStatus) {
-        return BY_LABEL.get(resultStatus);
+    private static final Map<String, WinningResultConfig> byEqual =
+            Stream.of(values()).collect(Collectors.toMap(WinningResultConfig::getResultStatus, e -> e));
+
+    public static WinningResultConfig objectOfEqual(String equal) {
+        return byEqual.get(equal);
     }
 
-    public static WinningResultConfig compareResult(Long equalCount, String bonus) {
+    public static WinningResultConfig findWinningResultConfig(int equalCount, String bonus) {
         if (bonus.contains(FIVE_AND_BONUS.getResultStatus().split(",")[1])
-                &&  Long.toString(equalCount).equals(FIVE.getResultStatus())) {
+                &&  Integer.toString(equalCount).equals(FIVE.getResultStatus())) {
             return WinningResultConfig.FIVE_AND_BONUS;
         }
-        return valueOfLabel(Long.toString(equalCount));
+        return objectOfEqual(Long.toString(equalCount));
 
     }
 

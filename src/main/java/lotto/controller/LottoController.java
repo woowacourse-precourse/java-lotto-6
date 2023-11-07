@@ -1,26 +1,25 @@
 package lotto.controller;
 
+import static lotto.Message.ErrorMessage.VALUE_IS_NOT_CONVERT_INTEGER;
 import lotto.config.WinningResultConfig;
 import lotto.model.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.service.LottoService;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import static lotto.Message.ErrorMessage.VALUE_IS_NOT_CONVERT_INTEGER;
 
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private Amount amount;
+    private PurchaseAmount purchaseAmount;
     private UserLotto userLotto;
     private Lotto lotto;
     private BonusLotto bonusLotto;
     private LottoService lottoService;
     private Map<WinningResultConfig, Integer> lottoResults;
-    private Revenue revenue;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -28,63 +27,96 @@ public class LottoController {
     }
 
     public void run() {
-        try {
             runInputPurchaseAmount();
             runPrintLottoQuantity();
             runPrintUserLottoNumbers();
             runInputWinningNumbers();
             runInputBonusNumber();
-            runPrintWinningResult();
-            runPrintTotalRevenue();
-        } catch (NumberFormatException e) {
-            throw new NumberFormatException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());
-        }
+            runFindWinningResult();
+            runFindTotalRevenue();
     }
 
     private void runInputPurchaseAmount() {
-        outputView.printPurchaseAmountMessage();
-        amount = new Amount(Integer.parseInt(inputView.input()));
+        try {
+            outputView.printPurchaseAmountMessage();
+            purchaseAmount = new PurchaseAmount(Integer.parseInt(inputView.input()));
+        } catch (NumberFormatException e) {
+            outputView.printException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());
+            runInputPurchaseAmount();
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+            runInputPurchaseAmount();
+        }
     }
 
     private void runPrintLottoQuantity() {
-        outputView.printNumberOfPurchase(amount.getLottoQuantity());
+        outputView.printQuantityOfPurchase(purchaseAmount.getLottoQuantity());
     }
 
     private void runPrintUserLottoNumbers() {
-        userLotto = new UserLotto(amount.getLottoQuantity());
-        outputView.printUserNumberOfLotto(userLotto.getUserNumbers());
+        userLotto = new UserLotto(purchaseAmount.getLottoQuantity());
+        outputView.printUserLottoNumber(userLotto.getUserLottoNumbers());
+
     }
 
     private void runInputWinningNumbers() {
-        outputView.printWinningNumbersMessage();
-        lotto = new Lotto(inputView.input());
+        try {
+            outputView.printWinningNumberMessage();
+            lotto = new Lotto(inputView.input());
+        } catch (NumberFormatException e) {
+            outputView.printException(e.getMessage());
+            runInputWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+            runInputWinningNumbers();
+        }
     }
 
     private void runInputBonusNumber() {
-        outputView.printBonusNumberMessage();
-        bonusLotto = new BonusLotto(Integer.parseInt(inputView.input()), lotto.getNumbers());
+        try {
+            outputView.printBonusNumberMessage();
+            bonusLotto = new BonusLotto(Integer.parseInt(inputView.input()), lotto.getWinningNumbers());
+        } catch (NumberFormatException e) {
+            outputView.printException(VALUE_IS_NOT_CONVERT_INTEGER.getMessage());
+            runInputBonusNumber();
+        } catch (IllegalArgumentException e) {
+            outputView.printException(e.getMessage());
+            runInputBonusNumber();
+        } catch (NullPointerException e) {
+            outputView.printException(e.getMessage());
+            runInputBonusNumber();
+        }
     }
 
-    private void runPrintWinningResult() {
+    private void runFindWinningResult() {
         outputView.printWinningResultMessage();
         outputView.printLineSymbol();
 
-        lottoService = new LottoService(userLotto.getUserNumbers(), lotto.getNumbers(), bonusLotto.getBonusNumber());
-        lottoResults = lottoService.findWinningResult();
+        try {
+            lottoService = new LottoService(userLotto.getUserLottoNumbers(), lotto.getWinningNumbers(), bonusLotto.getBonusNumber());
+            lottoResults = lottoService.findWinningResult();
 
-        for (Map.Entry<WinningResultConfig, Integer> lottoResult : lottoResults.entrySet()) {
-            outputView.printWinningResult(lottoResult.getKey(),lottoResult.getValue());
+            for (Map.Entry<WinningResultConfig, Integer> lottoResult : lottoResults.entrySet()) {
+                outputView.printWinningResult(lottoResult.getKey(),lottoResult.getValue());
+            }
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        } catch (NullPointerException e) {
+            throw new NullPointerException(e.getMessage());
         }
     }
 
-    private void runPrintTotalRevenue() {
+    private void runFindTotalRevenue() {
+        try {
+            List<List<Integer>> winningResultSources = new ArrayList<>();
 
-        List<Integer> rawRevenue = new ArrayList<>();
+            for (Map.Entry<WinningResultConfig, Integer> entry : lottoResults.entrySet()) {
+                winningResultSources.add(Arrays.asList(entry.getKey().getRevenueStatus(), entry.getValue()));
+            }
 
-        for (Map.Entry<WinningResultConfig, Integer> entry : lottoResults.entrySet()) {
-            rawRevenue.add(entry.getKey().getRevenueStatus(), entry.getValue());
+            outputView.printTotalRevenue(new Revenue(winningResultSources, purchaseAmount.getPurchaseAmount()).getRevenue());
+        } catch (NullPointerException e) {
+            throw new NullPointerException(e.getMessage());
         }
-
-        outputView.printTotalRevenue(new Revenue(rawRevenue, amount.getAmount()).getRevenue());
     }
 }

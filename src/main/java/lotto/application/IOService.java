@@ -33,9 +33,7 @@ public class IOService {
         System.out.println(BEFORE_PURCHASE_LOTTO_MESSAGE);
     }
 
-    public void printLottos(User user) {
-        List<Lotto> lottos = user.getLottos();
-
+    public void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
             System.out.println(lotto);
         }

@@ -74,7 +74,7 @@ public class LottoService {
         User user = userService.getUser();
 
         ioService.printLottoCount(user.getLottoCnt());
-        ioService.printLottos(user);
+        ioService.printLottos(user.getLottos());
     }
 
     public void requestWinningNumber() {

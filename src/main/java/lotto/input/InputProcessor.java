@@ -14,20 +14,20 @@ import static lotto.input.InputValidator.*;
  *  4. private methods -> static 여부 결정하기
  * */
 public class InputProcessor {
-    private final InputProvider inputProvider;
+    private final InputReader inputReader;
 
-    public InputProcessor(InputProvider inputProvider) {
-        this.inputProvider = inputProvider;
+    public InputProcessor(InputReader inputReader) {
+        this.inputReader = inputReader;
     }
 
     public Integer getUserPurchaseMoney() {
-        String input = inputProvider.read();
+        String input = inputReader.read();
         validatePurchaseMoneyInput(input);
         return Integer.parseInt(input);
     }
 
     public List<Integer> getWinningNumbers() {
-        String input = inputProvider.read();
+        String input = inputReader.read();
         validateWinningNumberInput(input);
         return parseWinningNumberInputToList(input);
     }

@@ -1,5 +1,5 @@
 package lotto.input;
 
-public interface InputProvider {
+public interface InputReader {
     String read();
 }

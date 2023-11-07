@@ -32,10 +32,10 @@ public class LottoController {
         outputView.printBuyLottoMessage(purchaseCount);
         lottoAutomaticCompletion();
     }
-    
-    public void lottoAutomaticCompletion(){
-        while(lottoes.size() != purchaseCount) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+
+    public void lottoAutomaticCompletion() {
+        while (lottoes.size() != purchaseCount) {
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             lottoes.add(lotto);

@@ -14,18 +14,17 @@ import lotto.domain.Admin;
 
 
 public class AdminLottoService {
-    Set<Integer> winningNumber = new HashSet<Integer>();
+    List<Integer> winningNumber;
 
-    public ArrayList<Integer> initWinningNumber(String[] winningNumbers) {
+    public List<Integer> initWinningNumber(String[] winningNumbers) {
+        winningNumber = new ArrayList<Integer>();
         NumberValidator.validateInputWinningNumber(winningNumbers);
         for (int i = 0; i < winningNumbers.length; i++) {
             int parseWinningNumber = Integer.parseInt(winningNumbers[i]);
+            NumberValidator.validateNumberRange(parseWinningNumber);
             winningNumber.add(parseWinningNumber);
         }
-        NumberValidator.validateWinnerNumberSize(winningNumber);
-        ArrayList<Integer> winnerNumbers = winningNumber.stream()
-                .collect(Collectors.toCollection(ArrayList::new));
-        return winnerNumbers;
+        return winningNumber;
     }
 
     public String[] splitWinningNumbers(String winningNumberStr) {
@@ -37,8 +36,7 @@ public class AdminLottoService {
     public int parseIntBonusNumber(String bonusNumberStr) {
         int bonusNumber = Integer.parseInt(bonusNumberStr);
         NumberValidator.validateNumberRange(bonusNumber);
-        winningNumber.add(bonusNumber);
-        NumberValidator.validateWinnerNumberSizeContainsBonusNumber(winningNumber);
+        NumberValidator.validateBonusNumberContainsWinningNumber(winningNumber, bonusNumber);
         return bonusNumber;
     }
 
@@ -52,7 +50,5 @@ public class AdminLottoService {
                 .filter(userNumber -> winnerNumber.contains(userNumber))
                 .collect(Collectors.toList());
         lottoCorrectStat.findCorrectName(correctLottoNumbers, userNumbers, bonusNumber);
-        if(lottoCorrectStat.getMatchingCount()!=null)
-            lottoCorrectStat.addCorrectStat();
     }
 }

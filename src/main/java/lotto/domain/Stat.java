@@ -7,7 +7,7 @@ import java.util.Map;
 import lotto.config.Config;
 
 enum CorrectCount {
-    THREE(3), FOUR(4), FIVE(5), BONUS(7), SIX(6);
+    NOT(0), ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), BONUS(7), SIX(6);
 
     private int correctCount;
 
@@ -50,10 +50,6 @@ public class Stat {
         for (CorrectCount count : CorrectCount.values()) {
             lottoCorrectStat.put(count.name(), Config.CORRECT_COUNT_INIT_VALUE);
         }
-        lottoCorrectStat.put("BONUS", Config.CORRECT_COUNT_INIT_VALUE);
-    }
-    public int getReward() {
-        return reward;
     }
 
     public CorrectCount getMatchingCount() {
@@ -66,7 +62,7 @@ public class Stat {
 
     public void findCorrectName(List<Integer> correctLottoNumbers, List<Integer> userNumbers, int bonusNumber) {
         int correctLottoCount = correctLottoNumbers.size();
-        if (correctLottoCount == 6) {
+        if (correctLottoCount == 5) {
             if(userNumbers.contains(bonusNumber)){
                 addBonusStat(userNumbers, bonusNumber);
                 return;
@@ -76,6 +72,7 @@ public class Stat {
             if (count.getCorrectCount() == correctLottoCount) {
                 matchingCount = count;
                 addRewardToTotalReward(count);
+                addCorrectStat();
                 break;
             }
         }
@@ -104,5 +101,10 @@ public class Stat {
         Reward bonusReward = Reward.BONUS;
         lottoCorrectStat.put(matchCountName, 1);
         reward += bonusReward.getReward();
+    }
+
+    public double calculateProfit(int purchaseAmount){
+        double profit = ((double)reward/(double)purchaseAmount)*100;
+        return profit;
     }
 }

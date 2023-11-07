@@ -17,7 +17,7 @@ public class UserLottoService {
         return purchaseAmount / Config.LOTTO_PRICE;
     }
 
-    public User setUser(int createLottoNumbers){
-        return new User(createLottoNumbers);
+    public User setUser(int createLottoNumbers, int purchaseAmount){
+        return new User(createLottoNumbers, purchaseAmount);
     }
 }

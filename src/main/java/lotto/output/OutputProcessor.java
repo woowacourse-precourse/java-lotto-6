@@ -1,8 +1,8 @@
 package lotto.output;
 
-import lotto.Lotto;
-import lotto.Rank;
-import lotto.WinningInformation;
+import lotto.domain.Lotto;
+import lotto.domain.Rank;
+import lotto.domain.WinningInformation;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -11,18 +11,19 @@ import java.util.List;
 import java.util.Map;
 
 public class OutputProcessor {
-    public static final String NUMBER_OF_BOUGHT_PROMPT = "%d개를 구매했습니다.";
-    public static final String DEFAULT_SEPARATOR = ", ";
-    public static final String LEFT_BRACKET = "[";
-    public static final String RIGHT_BRACKET = "]";
-    public static final String WINNING_INFORMATION_PROMPT = "%d개 일치 (%s원) - %d개";
-    public static final String WINNING_INFORMATION_HEADER_PROMPT = "당첨통계\n---";
-    public static final String AMOUNT_PATTERN = "#,###";
-    public static final String PROFITABILITY_PATTERN = "#,##0.00";
-    public static final String PURCHASE_MONEY_INPUT_PROMPT = "구입금액을 입력해 주세요.";
-    public static final String WINNING_NUMBER_INPUT_PROMPT = "당첨 번호를 입력해 주세요.";
-    public static final String BONUS_NUMBER_INPUT_PROMPT = "보너스 번호를 입력해 주세요.";
-    public static final String PROFITABILITY_PROMPT = "총 수익률은 %s원입니다.";
+    private static final String NUMBER_OF_BOUGHT_PROMPT = "%d개를 구매했습니다.";
+    private static final String DEFAULT_SEPARATOR = ", ";
+    private static final String LEFT_BRACKET = "[";
+    private static final String RIGHT_BRACKET = "]";
+    private static final String WINNING_INFORMATION_PROMPT = "%d개 일치 (%s원) - %d개";
+    private static final String WINNING_INFORMATION_HEADER_PROMPT = "당첨통계\n---";
+    private static final String AMOUNT_PATTERN = "#,###";
+    private static final String PROFITABILITY_PATTERN = "#,##0.00";
+    private static final String PURCHASE_MONEY_INPUT_PROMPT = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBER_INPUT_PROMPT = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_INPUT_PROMPT = "보너스 번호를 입력해 주세요.";
+    private static final String PROFITABILITY_PROMPT = "총 수익률은 %s원입니다.";
+    private static final String NEW_LINE = "\n";
     private final OutputSender outputSender;
 
     public OutputProcessor(OutputSender outputSender) {
@@ -56,7 +57,7 @@ public class OutputProcessor {
 
     public void outputWinningInformation(WinningInformation winningInformation) {
         outputSender.send(WINNING_INFORMATION_HEADER_PROMPT);
-        outputWinningDetails(winningInformation.getWinningCount());
+        outputWinningDetails(winningInformation.getWinningCounts());
         outputProfitability(winningInformation.getProfitability());
     }
 
@@ -64,6 +65,14 @@ public class OutputProcessor {
         DecimalFormat amountFormat = new DecimalFormat(PROFITABILITY_PATTERN);
         String formattedProfitability = amountFormat.format(profitability);
         outputSender.send(String.format(PROFITABILITY_PROMPT, formattedProfitability));
+    }
+
+    public void outputError(String errorMessage) {
+        outputSender.send("[ERROR] " + errorMessage);
+    }
+
+    public void outputNewLine() {
+        outputSender.send(NEW_LINE);
     }
 
     private void outputWinningDetails(Map<Rank, Integer> winningCounts) {

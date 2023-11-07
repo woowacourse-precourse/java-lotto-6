@@ -22,4 +22,21 @@ public class LottoNumber {
             throw new IllegalArgumentException(OUT_OF_LOTTO_VALUE_RANGE);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoNumber that = (LottoNumber) o;
+        return LottoNumber == that.LottoNumber;
+    }
+
+    @Override
+    public int hashCode() {
+        return LottoNumber;
+    }
 }

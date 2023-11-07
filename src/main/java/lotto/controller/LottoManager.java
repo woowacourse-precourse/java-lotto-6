@@ -7,6 +7,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoManager {
+    private int lottoCount;
     public LottoManager(){}
 
     public void startLottoService(){
@@ -15,23 +16,22 @@ public class LottoManager {
 
     }
 
-    private int purchaseLotto(){
+    private void purchaseLotto(){
         String purchaseAmount;
 
         purchaseAmount = inputPurchaseAmount();
         LottoChanger lottoChanger = new LottoChanger(Integer.parseInt(purchaseAmount));
-        OutputView.printLottoCount(lottoChanger.getLottoCount());
-
-        return lottoChanger.getLottoCount();
+        lottoCount = lottoChanger.getLottoCount();
+        OutputView.printLottoCount(lottoCount);
     }
 
-    private String inputPurchaseAmount(){
+    private String inputPurchaseAmount() {
         String purchaseAmount;
 
-        try{
+        try {
             purchaseAmount = InputView.readUserLottoPurchaseAmount();
             Validation.vaildatePurchaseAmount(purchaseAmount);
-        }catch (IllegalArgumentException | IllegalStateException e){
+        } catch (IllegalArgumentException | IllegalStateException e) {
             ExceptionView.printExceptionMessage(e.getMessage());
             purchaseAmount = inputPurchaseAmount();
         }

@@ -6,8 +6,8 @@ import java.util.List;
 public class Customer {
     private List<Lotto> lottos;
 
-    public void setLotto(List<Lotto> lottoPapers) {
-        this.lottos = lottoPapers;
+    public void setLotto(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     public void insertMoney(final LottoStore lottoStore, final long money) {

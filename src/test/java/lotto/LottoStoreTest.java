@@ -130,7 +130,7 @@ public class LottoStoreTest {
         lottoStore.generateAllLottos();
 
         //then
-        List<Lotto> lottoPapers = lottoStore.showLottoPapers();
+        List<Lotto> lottoPapers = lottoStore.getLottos();
         assertThat(lottoPapers.size()).isEqualTo(lottoStore.getLottoAmount());
     }
 }

@@ -12,6 +12,7 @@ import lotto.constant.LottoRank;
 
 class LottosTest {
     private List<Lotto> lottos;
+
     @BeforeEach
     void beforeEach() {
         Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));

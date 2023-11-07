@@ -51,36 +51,22 @@ public class UserIOTest {
         assertEquals(userIO.getNumbers(), List.of(1, 3, 5, 7, 9, 11));
     }
 
-    @DisplayName("getNumbersTest에 대해 더 많은 입력값")
-    @Test
-    void getNumbersTest2() {
-        ByteArrayInputStream in = new ByteArrayInputStream("1,3,5,7,9,11,13\n1,3,5,7,9,11".getBytes());
-        System.setIn(in);
-        assertEquals(userIO.getNumbers(), List.of(1, 3, 5, 7, 9, 11));
-    }
 
     @DisplayName("getNumbersTest에 대해 숫자가 아닌 입력값")
     @Test
     void getNumbersTest3() {
-        ByteArrayInputStream in = new ByteArrayInputStream("1,3,5,7,9,11,13\n1,3,5,7,9,11".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("1,3,5,7,9,11,se\n1,3,5,7,9,11".getBytes());
         System.setIn(in);
         assertEquals(userIO.getNumbers(), List.of(1, 3, 5, 7, 9, 11));
     }
 
-    @DisplayName("getNumbersTest에 대해 로또번호가 아닌 숫자 입력값")
-    @Test
-    void getNumbersTest4() {
-        ByteArrayInputStream in = new ByteArrayInputStream("1,3,5,7,9,51\n1,3,5,7,9,11".getBytes());
-        System.setIn(in);
-        assertEquals(userIO.getNumbers(), List.of(1, 3, 5, 7, 9, 11));
-    }
 
     @DisplayName("getBonusNumber에 대한 올바른 입력값")
     @Test
     void getBonusNumberTest1() {
         ByteArrayInputStream in = new ByteArrayInputStream("34".getBytes());
         System.setIn(in);
-        assertEquals(34, userIO.getBonusNumber());
+        assertEquals(34, userIO.getBonusNumber(new Lotto(List.of(1, 3, 5, 7, 9, 11))));
     }
 
     @DisplayName("getBonusNumber에 대해 숫자가 아닌 입력값")
@@ -88,7 +74,7 @@ public class UserIOTest {
     void getBonusNumberTest2() {
         ByteArrayInputStream in = new ByteArrayInputStream("3fe\n34".getBytes());
         System.setIn(in);
-        assertEquals(34, userIO.getBonusNumber());
+        assertEquals(34, userIO.getBonusNumber(new Lotto(List.of(1, 3, 5, 7, 9, 11))));
     }
 
     @DisplayName("getBonusNumber에 대해 로또번호가 아닌 입력값")
@@ -96,6 +82,14 @@ public class UserIOTest {
     void getBonusNumberTest3() {
         ByteArrayInputStream in = new ByteArrayInputStream("334\n34".getBytes());
         System.setIn(in);
-        assertEquals(34, userIO.getBonusNumber());
+        assertEquals(34, userIO.getBonusNumber(new Lotto(List.of(1, 3, 5, 7, 9, 11))));
+    }
+
+    @DisplayName("getBonusNumber에 대해 당첨번호와 중복되는 입력값")
+    @Test
+    void getBonusNumberTest4() {
+        ByteArrayInputStream in = new ByteArrayInputStream("1\n34".getBytes());
+        System.setIn(in);
+        assertEquals(34, userIO.getBonusNumber(new Lotto(List.of(1, 3, 5, 7, 9, 11))));
     }
 }

@@ -26,7 +26,6 @@ public class LottoController {
         customer.showLottos();
 
         Lotto winningLotto = InputController.inputWinningNumber();
-        printMessage(Message.INPUT_BONUS_NUMBER.getMessage());
         int bonusNumber = inputBonusNumberFlow(winningLotto);
 
         printMessage(Message.RESULT_MESSAGE.getMessage());
@@ -38,8 +37,9 @@ public class LottoController {
 
         View.printLottoRank(lottoRank);
         View.printMessage(
-                "총 수익률은 "+
-                winnings.calculateRateOfReturn().toString()+"%입니다.");
+                Message.RATE_OF_RETURN_PREFIX.getMessage()
+                        + winnings.calculateRateOfReturn()
+                        + Message.RATE_OF_RETURN_SUFFIX.getMessage());
     }
 
     private Customer buyLottoAndPrintFlow(){

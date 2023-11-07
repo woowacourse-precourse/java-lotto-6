@@ -33,10 +33,12 @@ public class Lotto {
     }
 
     private void validateRange(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            if(numbers.get(i) < MIN_RANGE && numbers.get(i) > MAX_RANGE) {
-                throw new InvalidRangeLottoNumberException();
-            }
+        numbers.forEach(this::validateRange);
+    }
+
+    private void validateRange(Integer number) {
+        if (!(MIN_RANGE <= number && number <= MAX_RANGE)) {
+            throw new InvalidRangeLottoNumberException();
         }
     }
 

@@ -1,7 +1,6 @@
 package lotto.Domain;
 
 import java.util.Arrays;
-import java.util.List;
 import lotto.Domain.Validator.WinningLottoValidator;
 
 public class WinningLotto {
@@ -20,9 +19,9 @@ public class WinningLotto {
 
     public Rank getRankOf(Lotto lotto) {
         int hitCount = count(lotto);
-        boolean isHitBonus = lotto.hasNumber(bonusNumber.getBounusNum());
+        boolean isHitBonus = lotto.hasNumber(bonusNumber.getBonusNum());
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.hit(hitCount,isHitBonus))
+                .filter(rank -> rank.hit(hitCount, isHitBonus))
                 .findFirst()
                 .orElse(Rank.NOTHING);
     }

@@ -16,6 +16,7 @@ public class User {
         this.lottos = lottos;
 
     }
+
     private void validate(int money, List<Lotto> lottos) {
         UserValidator.doValidate(money, lottos);
     }

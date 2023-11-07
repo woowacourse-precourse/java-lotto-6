@@ -28,9 +28,10 @@ public class OutputView {
         return INSTANCE;
     }
 
-    public void showNewLine(){
+    public void showNewLine() {
         System.out.println();
     }
+
     public void showBuyLotto(List<Lotto> buyLotto) {
         System.out.println(String.format(BUY_LOTTO_MESSAGE_FORMAT, buyLotto.size()));
         for (Lotto lotto : buyLotto) {
@@ -55,8 +56,9 @@ public class OutputView {
         StringJoiner stringJoiner = new StringJoiner(LINE);
         Arrays.stream(Rank.values())
                 .sorted(Comparator.reverseOrder())
-                .filter(rank -> rank!=Rank.NOTHING)
-                .forEach(rank -> stringJoiner.add(rank.toString() + DASH + String.format(WINNING_NUM_FORMAT,winningResult.result().getOrDefault(rank,0))));
+                .filter(rank -> rank != Rank.NOTHING)
+                .forEach(rank -> stringJoiner.add(rank.toString() + DASH + String.format(WINNING_NUM_FORMAT,
+                        winningResult.result().getOrDefault(rank, 0))));
         return stringJoiner.toString();
     }
 

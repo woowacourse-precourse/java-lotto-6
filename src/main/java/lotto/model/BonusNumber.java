@@ -24,6 +24,6 @@ public class BonusNumber {
         }
     }
     private boolean isNotValidRangeNumber(int bonusNumber) {
-        return bonusNumber < Constant.LOTTO_NUMBER_MIN || bonusNumber > Constant.LOTTO_NUMBER_MIN;
+        return bonusNumber < Constant.LOTTO_NUMBER_MIN || bonusNumber > Constant.LOTTO_NUMBER_MAX;
     }
 }

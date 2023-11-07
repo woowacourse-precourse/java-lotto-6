@@ -62,6 +62,10 @@ public class LottoService {
         return totalWinningAmount;
     }
 
+    public String calculateTotalProfitRate(int lottoAmount, int totalWinningAMount) {
+        return String.format("%.1f",((double) totalWinningAMount / (double) lottoAmount) * 100);
+    }
+
     public List<Integer> sortNumbersByAsc(List<Integer> integerList) {
         Collections.sort(integerList);
         return integerList;

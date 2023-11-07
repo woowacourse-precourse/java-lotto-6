@@ -3,7 +3,7 @@ package lotto.data;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
-import lotto.data.Lotto;
+import lotto.message.ErrorMessage;
 import lotto.message.LottoResult;
 
 public class WinningNumbers extends Lotto {
@@ -12,8 +12,10 @@ public class WinningNumbers extends Lotto {
     public WinningNumbers(List<Integer> numbers, int bonusNumber) {
         super(numbers);
         validateLottoNum(bonusNumber);
+        validateContains(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
+
     public HashMap<LottoResult, BigDecimal> getResultWith(List<Lotto> lottos) {
         HashMap<LottoResult, BigDecimal> result = initResult();
         for (Lotto lotto : lottos) {
@@ -23,6 +25,12 @@ public class WinningNumbers extends Lotto {
             result.put(lottoResult, count);
         }
         return result;
+    }
+
+    private void validateContains(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBERS_CONTAINS_BONUS_NUMBER.getMessage());
+        }
     }
 
     private HashMap<LottoResult, BigDecimal> initResult() {

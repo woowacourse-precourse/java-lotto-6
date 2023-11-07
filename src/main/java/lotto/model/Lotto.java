@@ -15,6 +15,17 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public Lotto(String winningNumbers) {
+        List<Integer> numbers = new ArrayList<>();
+        String[] parserNumber = winningNumbers.split(",");
+
+        for (String currentNumber : parserNumber) {
+            numbers.add(Integer.parseInt(currentNumber));
+        }
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateNotNullNumber(numbers);
         validateOutOfRangeNumber(numbers);

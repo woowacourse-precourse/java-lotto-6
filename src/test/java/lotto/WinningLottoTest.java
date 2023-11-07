@@ -16,37 +16,37 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class WinningLottoTest {
     @DisplayName("보너스 번호에 범위(1 ~ 45) 밖의 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(ints = {0, 46})
-    void createWinningLottoByBonusNumberOverRange(Integer bonusNumber) {
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), bonusNumber))
+    @ValueSource(strings = {"0", "46"})
+    void createWinningLottoByBonusNumberOverRange(String bonusNumber) {
+        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호가 로또번호에 포함되어져있으면 예외가 발생한다.")
     @Test
     void createWinningLottoByLottoNumbersContainBonusNumber() {
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), 1))
+        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", "1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스 번호가 null인 경우 예외가 발생한다.")
     @ParameterizedTest
     @NullSource
-    void createWinningLottoByNullOrEmptyBonusNumber(Integer bonusNumber) {
-        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 6), bonusNumber))
+    void createWinningLottoByNullOrEmptyBonusNumber(String bonusNumber) {
+        assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("보너스번호가 정상적으로 들어온 경우.")
     @ParameterizedTest
-    @ValueSource(ints = {1, 45})
-    void createLottoByNormal(int bonusNumber) throws NoSuchFieldException, IllegalAccessException {
-        Lotto winningLotto = new WinningLotto(List.of(2, 3, 4, 5, 6, 7), bonusNumber);
+    @ValueSource(strings = {"1", "45"})
+    void createLottoByNormal(String bonusNumber) throws NoSuchFieldException, IllegalAccessException {
+        Lotto winningLotto = new WinningLotto("2,3,4,5,6,7", bonusNumber);
 
         Field privateField = WinningLotto.class.getDeclaredField("bonusNumber");
         privateField.setAccessible(true);
         Integer lottoPrivateBonusNumbers = (Integer) privateField.get(winningLotto);
 
-        assertEquals(lottoPrivateBonusNumbers, bonusNumber);
+        assertEquals(lottoPrivateBonusNumbers, Integer.valueOf(bonusNumber));
     }
 }

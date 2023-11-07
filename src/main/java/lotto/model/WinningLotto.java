@@ -1,14 +1,15 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WinningLotto extends Lotto{
     private final Integer bonusNumber;
 
-    public WinningLotto(List<Integer> numbers, Integer bonusNumber) {
-        super(numbers);
-        validateBonusNumber(bonusNumber);
-        this.bonusNumber = bonusNumber;
+    public WinningLotto(String lottoNumbers, String bonusNumber) {
+        super(lottoNumbers);
+        validateBonusNumber(Integer.valueOf(bonusNumber));
+        this.bonusNumber = Integer.valueOf(bonusNumber);
     }
 
     private void validateBonusNumber(Integer bonusNumber) {

@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,6 +23,11 @@ public class Lotto {
             }
         }
 
+        Set<Integer> duplicateNumber = new HashSet<>(numbers);
+        if(duplicateNumber.size() != numbers.size()){
+            throw new IllegalArgumentException("[ERROR] 중복되지 않는 숫자를 입력하세요.");
+        }
+        
         System.out.println(numbers);
     }
 }

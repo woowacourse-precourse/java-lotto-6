@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class Purchase {
 
@@ -46,6 +43,7 @@ public class Purchase {
             System.out.println(newLottoNumber);
             lottoCount--;
             lottoNumbers.add(newLottoNumber);
+
         }
 
         return lottoNumbers;

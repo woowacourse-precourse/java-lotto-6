@@ -13,4 +13,12 @@ public class ExceptionHandler {
     }
 
     public void checkTypePriceUnit(String str) {}
+
+    public void checkNumberBoundary(int number) {
+        if(number < 1 || number > 46) {
+            throw new IllegalArgumentException(
+                    ExceptionSentence.BOUNDARY_ERROR.getMessage()
+            );
+        }
+    }
 }

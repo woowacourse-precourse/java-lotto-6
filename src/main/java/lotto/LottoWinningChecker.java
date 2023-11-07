@@ -2,25 +2,24 @@ package lotto;
 
 public class LottoWinningChecker {
     private final Lotto winningLotto;
-    private final LottoNumber bonusNumber;
+    private final BonusNumber bonusNumber;
+    private final LottoResultManager lottoResultManager = new LottoResultManager();
 
-    LottoWinningChecker(Lotto winningLotto, Integer bonusNumber) {
+    LottoWinningChecker(Lotto winningLotto, BonusNumber bonusNumber) {
         this.winningLotto = winningLotto;
-        this.bonusNumber = new LottoNumber(bonusNumber);
-
-        validateDuplicateBonusNumber(winningLotto);
-    }
-
-    private void validateDuplicateBonusNumber(Lotto winningLotto) {
-        if (winningLotto.containLottoNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-        }
+        this.bonusNumber = bonusNumber;
     }
 
     public LottoResult check(Lotto lotto) {
         int matchCount = winningLotto.compareLottoNumber(lotto);
-        boolean containBonusNumber = lotto.containLottoNumber(bonusNumber);
+        boolean containBonusNumber = lotto.containLottoNumber(bonusNumber.getLottoNumber());
 
-        return LottoRule.of(matchCount, containBonusNumber);
+        LottoResult lottoResult = LottoRule.of(matchCount, containBonusNumber);
+        lottoResultManager.add(lottoResult);
+        return lottoResult;
+    }
+
+    public LottoResultManager getLottoResultManager(){
+        return this.lottoResultManager;
     }
 }

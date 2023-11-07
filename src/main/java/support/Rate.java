@@ -1,4 +1,4 @@
-package controller.support;
+package support;
 
 public enum Rate {
     FIRST(6,false,2000000000),
@@ -33,7 +33,7 @@ public enum Rate {
             return FOURTH;
         }
         if (correct == 3) {
-            return THIRD;
+            return FIFTH;
         }
         return MISS;
 

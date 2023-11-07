@@ -14,6 +14,14 @@ public record LottoNumbers(
         this.numbers = makeUnmodifiable(numbers);
     }
 
+    public static LottoNumbers from(final List<Integer> numbers) {
+        return new LottoNumbers(
+                numbers.stream()
+                        .map(LottoNumber::new)
+                        .toList()
+        );
+    }
+
     private void validate(final List<LottoNumber> numbers) {
         validateSize(numbers);
         validateDuplicated(numbers);

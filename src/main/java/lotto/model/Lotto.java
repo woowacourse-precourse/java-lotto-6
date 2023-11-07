@@ -13,6 +13,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_OF_LOTTO_NUMBERS.getMessage());
@@ -37,7 +41,7 @@ public class Lotto {
     }
 
     private boolean hasDuplicate(List<Integer> numbers) {
-        Set<Integer> checkNumbers = new HashSet<Integer>(numbers);
+        Set<Integer> checkNumbers = new HashSet<>(numbers);
         return checkNumbers.size() != numbers.size();
     }
 }

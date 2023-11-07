@@ -3,6 +3,8 @@ package lotto.controller;
 import lotto.exception.LottoNumberException;
 import lotto.view.InputView;
 
+import java.util.List;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoDraw {
@@ -14,10 +16,11 @@ public class LottoDraw {
         this.inputView = inputView;
     }
 
-    private boolean isCorrectAmount(String[] winningNumbers) {
+    private boolean isCorrectNumber(List<String> inputs) {
         try {
-            lottoNumberException.checkSixInputs(winningNumbers);   //6개 입력
-            lottoNumberException.checkSixNumbers(winningNumbers);  //6개 숫자
+            lottoNumberException.checkSixInputs(inputs);   //6개 입력
+            lottoNumberException.checkSixNumbers(inputs);  //6개 숫자
+            lottoNumberException.checkDuplicate(inputs);   //중복 검사
         } catch (IllegalArgumentException exception) {
             inputView.showInputErrorMessage(exception.getMessage());
             return false;
@@ -27,14 +30,15 @@ public class LottoDraw {
     }
 
     public void drawLotto () {
-        String[] winningNumbers;
+        List<String> inputs;
+        List<Integer> winningNumbers;
 
         while (true) {
             inputView.showWinningNumbersInputForm();
-            winningNumbers = readLine().split(",");
+            inputs = List.of(readLine().split(","));
             inputView.endInput();
 
-            if (isCorrectAmount(winningNumbers)) {
+            if (isCorrectNumber(inputs)) {
                 break;
             }
         }

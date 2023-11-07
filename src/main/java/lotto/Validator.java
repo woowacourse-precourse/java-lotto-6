@@ -58,6 +58,18 @@ public class Validator {
         return num;
     }
 
+    public int validateBonusNumber(String bonusNumberInput, Set winningNumbers) {
+
+        validateNumberFormat(bonusNumberInput);
+        int bonusNumber = Integer.parseInt(bonusNumberInput);
+        validateNumberScope(bonusNumber);
+
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(prefix + "당첨 번호와 겹치는 번호입니다.");
+        }
+        return bonusNumber;
+    }
+
     private static void validateNumberScope(int num) {
         if (num < 1 || num > 45) {
             throw new IllegalArgumentException(prefix + "1~45 사이의 값이 아닙니다.");

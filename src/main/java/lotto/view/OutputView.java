@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.config.Prize;
 import lotto.domain.lotto.Lotto;
 import lotto.dto.response.PrizeResponse;
+import lotto.util.OutputUtil;
 import lotto.view.constant.PrizeMessage;
 
 import java.text.DecimalFormat;
@@ -23,8 +24,8 @@ public class OutputView {
         System.out.printf("%d개를 구매했습니다.%n", purchaseLottoCount);
     }
 
-    protected static void printPurchasedLottoList(List<Lotto> lottos) {
-        lottos.forEach(lotto -> System.out.println());
+    protected static void printWinningLottos(List<Lotto> winningLottos) {
+        winningLottos.forEach(lotto -> System.out.println(OutputUtil.lottoFormat(lotto)));
     }
 
     protected static void printReadLottoNumberMessage() {

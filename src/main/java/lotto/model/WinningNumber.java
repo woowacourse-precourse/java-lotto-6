@@ -7,16 +7,16 @@ import java.util.List;
 
 public class WinningNumber {
 
-    private List<Integer> winningNumbers;
+    private final Lotto winningNumbers;
     private int bonusNumber;
 
     public WinningNumber(String numbers) {
         List<String> splitNumbers = deleteBlankAndSplit(numbers);
         validateWinningNumbers(splitNumbers);
-        this.winningNumbers = splitNumbers.stream().map(Integer::parseInt).toList();
+        this.winningNumbers = new Lotto(splitNumbers.stream().map(Integer::parseInt).toList());
     }
 
-    public List<Integer> getWinningNumbers() {
+    public Lotto getWinningNumbers() {
         return winningNumbers;
     }
 
@@ -35,26 +35,12 @@ public class WinningNumber {
 
     private void validateWinningNumbers(List<String> numbers) {
 
-        if (!isSizeSix(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.ONLY_SIZE_IS_SIX);
-        }
-
         if (areEmptyOrBlank(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
         }
 
         if (!areAllDigits(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
-        }
-
-        if (isDuplicated(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_DUPLICATE);
-        }
-
-        List<Integer> toIntList = numbers.stream().map(Integer::parseInt).toList();
-
-        if (isZeroOrMinus(toIntList)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_MINUS_OR_ZERO);
         }
     }
 
@@ -76,10 +62,6 @@ public class WinningNumber {
         }
     }
 
-    private boolean isSizeSix(List<String> numbers) {
-        return numbers.size() == 6;
-    }
-
     public boolean areAllDigits(List<String> numbers) {
         return numbers.stream().allMatch(this::isDigit);
     }
@@ -96,17 +78,10 @@ public class WinningNumber {
         return bonus.isEmpty() || bonus.isBlank();
     }
 
-    private boolean isDuplicated(List<String> numbers) {
-        return numbers.stream().distinct().count() != numbers.size();
-    }
-
     private boolean isDuplicatedWinningNumber(String bonus) {
         int number = Integer.parseInt(bonus);
-        return winningNumbers.stream().anyMatch(winningNumber -> winningNumber == number);
-    }
-
-    private boolean isZeroOrMinus(List<Integer> numbers) {
-        return numbers.stream().anyMatch(number -> number <= 0);
+        return winningNumbers.getNumbers().stream()
+                .anyMatch(winningNumber -> winningNumber == number);
     }
 
     private boolean isZeroOrMinus(String bonus) {

@@ -31,7 +31,7 @@ public class LottoList {
 
     private int findNumberIncludedList(Lotto lotto, WinningNumber winningNumber) {
         return (int) lotto.getNumbers().stream()
-                .filter(winningNumber.getWinningNumbers()::contains)
+                .filter(winningNumber.getWinningNumbers().getNumbers()::contains)
                 .count();
     }
 

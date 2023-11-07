@@ -2,7 +2,9 @@ package lotto.view;
 
 import java.util.Collections;
 import java.util.List;
+import lotto.Utils;
 import lotto.domain.ResultLotto;
+import lotto.system.Constants;
 import lotto.system.LottoMessage;
 
 public class OutputView {
@@ -36,6 +38,7 @@ public class OutputView {
     }
 
     public static void printYield(float yield) {
-        printMessage("총 수익률은 " + yield + "%입니다.");
+        String floatFormatted = Utils.makeFloatFormatted(yield, Constants.YIELD_PRECISION.getConstants());
+        printMessage("총 수익률은 " + floatFormatted + "%입니다.");
     }
 }

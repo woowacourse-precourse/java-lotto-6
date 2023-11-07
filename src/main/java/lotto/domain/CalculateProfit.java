@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CaculateProfit {
+public class CalculateProfit {
 
 
     private final int lottoPurchaseCnt;
@@ -18,9 +18,11 @@ public class CaculateProfit {
 
     private final List<Integer> totalProfit;
 
+    private final double rateOfReturn;
 
 
-    public CaculateProfit(int lottoPurchaseCnt ,List<Integer> lottoResult, List<Boolean> bonusCheck) {
+
+    public CalculateProfit(int lottoPurchaseCnt ,List<Integer> lottoResult, List<Boolean> bonusCheck) {
         this.lottoPurchaseCnt = lottoPurchaseCnt;
         this.lottoResult = lottoResult;
         this.bonusCheck = bonusCheck;
@@ -28,6 +30,8 @@ public class CaculateProfit {
         this.cntProfit = calculateCntProfit();
         this.bonusProfit = calculateBonusProfit();
         this.totalProfit = calculateTotalProfit();
+
+        this.rateOfReturn = calculateRateOfReturn();
     }
 
     private List<Integer> calculateCntProfit() {
@@ -82,5 +86,15 @@ public class CaculateProfit {
         }
 
         return totalProfit;
+    }
+
+    private double calculateRateOfReturn() {
+        long sum = 0;
+
+        for (int n : lottoResult) {
+            sum += n;
+        }
+
+        return (double) sum / lottoPurchaseCnt;
     }
 }

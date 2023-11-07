@@ -7,11 +7,10 @@ import static lotto.util.ErrorMessage.ERROR_LOTTO_DUPLICATE;
 import static lotto.util.ErrorMessage.ERROR_LOTTO_OUT_OF_RANGE;
 import static lotto.util.ErrorMessage.ERROR_LOTTO_SIZE;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,16 +20,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static List<Integer> generateLotto() {
-        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANGE, LOTTO_MAX_RANGE, LOTTO_NUMBERS_COUNT));
-    }
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_COUNT) {
             throw new IllegalArgumentException(ERROR_LOTTO_SIZE);
         }
         validateDuplicate(numbers);
         validateRangeOfNumbers(numbers);
+        sortedLotto(numbers);
     }
 
     // TODO: 추가 기능 구현
@@ -47,5 +43,11 @@ public class Lotto {
                 throw new IllegalArgumentException(ERROR_LOTTO_OUT_OF_RANGE);
             }
         }
+    }
+
+    private List<Integer> sortedLotto(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

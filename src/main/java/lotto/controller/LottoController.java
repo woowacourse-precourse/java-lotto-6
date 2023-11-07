@@ -68,6 +68,7 @@ public class LottoController {
             result.put(rank, result.get(rank)+1);
         }
         printResult(result);
+        printEarningRate(result, amount);
     }
 
     private void printResult(Map<Rank, Integer> result){

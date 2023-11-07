@@ -1,13 +1,13 @@
-package lotto.ui;
+package lotto.message;
 
-public enum OutputForm {
+public enum InquireForm {
     ASK_PURCHASE_AMOUNT("구입금액을 입력해 주세요.\n"),
     ASK_WINNER_NUMBERS("당첨 번호를 입력해 주세요.\n"),
     ASK_BONUS_NUMBER("보너스 번호를 입력해 주세요.\n");
 
     private final String text;
 
-    private OutputForm(String text) {
+    private InquireForm(String text) {
         this.text = text;
     }
 

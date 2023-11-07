@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Money;
 import lotto.domain.dto.LottoPrizeDto;
 
@@ -24,8 +25,8 @@ public class LottoView {
         outputView.printPublishedLottos(lottoCount, lottos);
     }
 
-    public List<Integer> getWinningNumbers() {
-        List<Integer> winningNumbers;
+    public List<LottoNumber> getWinningNumbers() {
+        List<LottoNumber> winningNumbers;
         do {
             winningNumbers = inputView.getWinningNumbers();
         } while (winningNumbers.isEmpty());
@@ -33,11 +34,11 @@ public class LottoView {
         return winningNumbers;
     }
 
-    public int getBonusNumber() {
-        int bonusNumber;
+    public LottoNumber getBonusNumber() {
+        LottoNumber bonusNumber;
         do {
             bonusNumber = inputView.getBonusNumber();
-        } while (bonusNumber == 0);
+        } while (bonusNumber == null);
 
         return bonusNumber;
     }

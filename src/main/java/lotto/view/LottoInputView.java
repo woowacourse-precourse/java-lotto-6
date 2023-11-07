@@ -1,14 +1,12 @@
 package lotto.view;
 
-import static lotto.util.RandomLottoNumberGenerator.LOTTO_LOWER_BOUND;
-import static lotto.util.RandomLottoNumberGenerator.LOTTO_UPPER_BOUND;
 import static lotto.view.LottoView.ERROR;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.domain.Money;
 
 public class LottoInputView {
@@ -32,14 +30,14 @@ public class LottoInputView {
         }
     }
 
-    public List<Integer> getWinningNumbers() {
+    public List<LottoNumber> getWinningNumbers() {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
         String userInput = Console.readLine();
         String[] splittedUserInput = userInput.split(COMMA);
         try {
-            validateWinningNumbersInput(splittedUserInput);
             return Arrays.stream(splittedUserInput)
                     .map(Integer::parseInt)
+                    .map(LottoNumber::new)
                     .toList();
         } catch (NumberFormatException nfe) {
             System.out.println(ERROR + INPUT_SHOULD_NOT_CHARACTER);
@@ -50,41 +48,20 @@ public class LottoInputView {
         }
     }
 
-    public int getBonusNumber() {
+    public LottoNumber getBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
         String userInput = Console.readLine();
 
         try {
             int parsedInput = Integer.parseInt(userInput);
-            validateBonusInput(parsedInput);
-            return parsedInput;
+            return new LottoNumber(parsedInput);
         } catch (NumberFormatException nfe) {
             System.out.println(ERROR + INPUT_SHOULD_NOT_CHARACTER);
-            return 0;
+            return null;
         } catch (IllegalArgumentException ie) {
             System.out.println(ERROR + ie.getMessage());
-            return 0;
+            return null;
         }
-    }
-
-    private void validateBonusInput(int input) {
-        if (isNotValidLottoNumber(input)) {
-            throw new IllegalArgumentException(Lotto.LOTTO_NUMBER_BOUNDARY_ERROR);
-        }
-    }
-
-    private void validateWinningNumbersInput(String[] splittedUserInput) {
-        boolean isValidNumbers = Arrays.stream(splittedUserInput)
-                .map(Integer::parseInt)
-                .noneMatch(this::isNotValidLottoNumber);
-
-        if (!isValidNumbers) {
-            throw new IllegalArgumentException(Lotto.LOTTO_NUMBER_BOUNDARY_ERROR);
-        }
-    }
-
-    private boolean isNotValidLottoNumber(int input) {
-        return input < LOTTO_LOWER_BOUND || LOTTO_UPPER_BOUND < input;
     }
 
 }

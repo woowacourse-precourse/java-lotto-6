@@ -5,6 +5,7 @@ import lotto.constant.PrizeCondition;
 import lotto.constant.PrizeMoney;
 import lotto.domain.Lotto;
 import lotto.domain.LottoList;
+import lotto.domain.LottoNumber;
 import lotto.domain.dto.LottoPrizeDto;
 import lotto.domain.dto.LottoPurchaseDto;
 
@@ -14,8 +15,8 @@ public class LottoService {
 
     public LottoPrizeDto totalWinnings(LottoPurchaseDto lottoPurchaseDto) {
         LottoList lottoList = lottoPurchaseDto.getLottoList();
-        List<Integer> winningNumbers = lottoPurchaseDto.getWinningNumbers();
-        int bonusNumber = lottoPurchaseDto.getBonusNumber();
+        List<LottoNumber> winningNumbers = lottoPurchaseDto.getWinningNumbers();
+        LottoNumber bonusNumber = lottoPurchaseDto.getBonusNumber();
 
         return checkLottoWinnings(lottoList, winningNumbers, bonusNumber);
     }
@@ -32,7 +33,8 @@ public class LottoService {
         return Math.round(THOUSAND * totalPrizeMoney / (double) cost) / TEN_POINT_ZERO;
     }
 
-    private LottoPrizeDto checkLottoWinnings(LottoList lottoList, List<Integer> winningNumbers, int bonusNumber) {
+    private LottoPrizeDto checkLottoWinnings(LottoList lottoList, List<LottoNumber> winningNumbers,
+                                             LottoNumber bonusNumber) {
         LottoPrizeDto lottoPrizeDto = new LottoPrizeDto();
         for (Lotto lotto : lottoList.getLottos()) {
             if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.FIRST) {
@@ -54,15 +56,16 @@ public class LottoService {
         return lottoPrizeDto;
     }
 
-    private PrizeCondition compareOneLotto(Lotto randomLotto, List<Integer> winningNumbers, int bonusNumber) {
+    private PrizeCondition compareOneLotto(Lotto randomLotto, List<LottoNumber> winningNumbers,
+                                           LottoNumber bonusNumber) {
         int matchCount = 0;
         boolean bonusMatch = false;
-        for (Integer number : winningNumbers) {
-            if (randomLotto.contains(number)) {
+        for (LottoNumber lottoNumber : winningNumbers) {
+            if (randomLotto.contains(lottoNumber.getNumber())) {
                 matchCount++;
             }
         }
-        if (randomLotto.contains(bonusNumber)) {
+        if (randomLotto.contains(bonusNumber.getNumber())) {
             bonusMatch = true;
         }
         return PrizeCondition.findPrize(matchCount, bonusMatch);

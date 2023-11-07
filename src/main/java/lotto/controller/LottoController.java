@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoList;
+import lotto.domain.LottoNumber;
 import lotto.domain.Money;
 import lotto.domain.dto.LottoPurchaseDto;
 import lotto.service.LottoService;
@@ -18,8 +19,8 @@ public class LottoController {
         Money money = lottoView.getLottoPurchasingCost();
         LottoList lottoList = LottoList.generateRandomLottoSetSizeWith(money.getLottoCount());
         printPublishedLottos(money.getLottoCount(), lottoList.getLottos());
-        List<Integer> winningNumbers = lottoView.getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
+        List<LottoNumber> winningNumbers = lottoView.getWinningNumbers();
+        LottoNumber bonusNumber = getBonusNumber(winningNumbers);
 
         LottoPurchaseDto lottoPurchaseDto = LottoPurchaseDto.Of(lottoList, winningNumbers, bonusNumber);
 
@@ -44,19 +45,19 @@ public class LottoController {
         return lottoService.calculateRateOfReturn(lottoPurchaseDto);
     }
 
-    private boolean winningNumbersContainsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+    private boolean winningNumbersContainsBonusNumber(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
         return winningNumbers.contains(bonusNumber);
     }
 
-    private int getBonusNumber(List<Integer> winningNumbers) {
-        int bonusNumber;
+    private LottoNumber getBonusNumber(List<LottoNumber> winningNumbers) {
+        LottoNumber bonusNumber;
         do {
             bonusNumber = lottoView.getBonusNumber();
             if (winningNumbersContainsBonusNumber(winningNumbers, bonusNumber)) {
                 System.out.println(LottoView.ERROR + BONUS_NUMBER_DUPLICATED_ERROR);
-                bonusNumber = 0;
+                bonusNumber = null;
             }
-        } while(bonusNumber == 0);
+        } while (bonusNumber == null);
 
         return bonusNumber;
     }

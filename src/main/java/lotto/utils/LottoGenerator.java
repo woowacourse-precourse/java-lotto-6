@@ -8,10 +8,14 @@ public class LottoGenerator {
     }
 
     public static List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(
+        List<Integer> generatedLotto = Randoms.pickUniqueNumbersInRange(
             NumberConstants.NUMBER_LEAST_VALUE.getValue(),
             NumberConstants.NUMBER_MOST_VALUE.getValue(),
             NumberConstants.NUMBER_COUNT.getValue()
         );
+
+        return generatedLotto.stream()
+            .sorted()
+            .toList();
     }
 }

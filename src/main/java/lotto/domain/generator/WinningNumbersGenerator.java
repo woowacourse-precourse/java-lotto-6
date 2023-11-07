@@ -1,14 +1,15 @@
-package lotto.domain;
+package lotto.domain.generator;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 import lotto.io.InputHandler;
-import lotto.io.OutputHandler;
 import lotto.validation.LottoNumberValidator;
 
-public class WinningNumbersGenerator {
-    public static Lotto generateWinningNumbers() {
+public class WinningNumbersGenerator implements Generator<List<String>, Lotto> {
+    @Override
+    public Lotto generate() {
         while (true) {
             String inputWithComma = InputHandler.askWinningNumbers();
 
@@ -19,7 +20,8 @@ public class WinningNumbersGenerator {
         }
     }
 
-    public static boolean validate(List<String> input) {
+    @Override
+    public boolean validate(List<String> input) {
         LottoNumberValidator validator = new LottoNumberValidator();
         try {
             for (String str : input) {
@@ -34,13 +36,9 @@ public class WinningNumbersGenerator {
         return true;
     }
 
-    private static List<Integer> convertToIntegers(List<String> input) {
+    private List<Integer> convertToIntegers(List<String> input) {
         return input.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
-    }
-
-    private static void handleError(String message) {
-        OutputHandler.printErrorMessage(message);
     }
 }

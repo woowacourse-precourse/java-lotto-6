@@ -1,11 +1,11 @@
-package lotto.domain;
+package lotto.domain.generator;
 
 import lotto.io.InputHandler;
-import lotto.io.OutputHandler;
 import lotto.validation.LottoNumberValidator;
 
-public class BonusNumberGenerator {
-    public static int generateBonusNumber() {
+public class BonusNumberGenerator implements Generator<String, Integer> {
+    @Override
+    public Integer generate() {
         while (true) {
             String input = InputHandler.askBonusNumber();
 
@@ -15,7 +15,8 @@ public class BonusNumberGenerator {
         }
     }
 
-    public static boolean validate(String input) {
+    @Override
+    public boolean validate(String input) {
         LottoNumberValidator validator = new LottoNumberValidator();
         try {
             validator.validate(input);
@@ -24,9 +25,5 @@ public class BonusNumberGenerator {
             return false;
         }
         return true;
-    }
-
-    private static void handleError(String message) {
-        OutputHandler.printErrorMessage(message);
     }
 }

@@ -1,13 +1,13 @@
-package lotto.domain;
+package lotto.domain.generator;
 
 import lotto.io.InputHandler;
-import lotto.io.OutputHandler;
 import lotto.validation.LottoAmountValidator;
 
-public class LottoAmountGenerator {
+public class LottoAmountGenerator implements Generator<String, Integer> {
     private final static int UNIT = 1000;
 
-    public static int generateLottoAmount() {
+    @Override
+    public Integer generate() {
         while (true) {
             String input = InputHandler.askAmount();
 
@@ -18,7 +18,8 @@ public class LottoAmountGenerator {
         }
     }
 
-    public static boolean validate(String input) {
+    @Override
+    public boolean validate(String input) {
         LottoAmountValidator validator = new LottoAmountValidator();
         try {
             validator.validate(input);
@@ -28,12 +29,8 @@ public class LottoAmountGenerator {
         }
         return true;
     }
-
-    private static void handleError(String message) {
-        OutputHandler.printErrorMessage(message);
-    }
-
-    public static int calculateAmount(int number) {
+    
+    public int calculateAmount(int number) {
         return number / UNIT;
     }
 }

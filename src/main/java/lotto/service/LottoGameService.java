@@ -2,9 +2,11 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.LottoException;
+import lotto.LottoRank;
 import lotto.domain.Lotto;
-import lotto.model.LottoResultModel;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.*;
 
 public class LottoGameService {
@@ -38,7 +40,6 @@ public class LottoGameService {
         try {
             isDigit(inputPurchaseAmount);
             isThousandUnits(inputPurchaseAmount);
-
             return true;
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -46,64 +47,38 @@ public class LottoGameService {
         }
     }
 
-    public LottoResultModel lottoWinningResultCalculation(List<Lotto> lotto , List<Integer> winningNumber, int bonusNumber){
+    public List<LottoRank> lottoWinningResult(List<Lotto> lotto , List<Integer> winningNumber, int bonusNumber){
+        List<LottoRank> lottoRanks = new ArrayList<>();
 
-        int totalWinningAmount = 0;
-        String totalReturnRate;
         int lottoQuantity = lotto.size();
-        double totalLottoPurchase = 1000 * lottoQuantity;
-
-        int threeMatches = 0;
-        int fourMatches = 0;
-        int fiveMatches = 0;
-        int fiveBonusMatches = 0;
-        int sixMatches = 0;
 
         for (int quantity = 0 ; quantity < lottoQuantity ; quantity ++){
-
-            int winningAmount = lottoWinningAmount(lotto.get(quantity).getNumbers(), winningNumber, bonusNumber);
-            totalWinningAmount += winningAmount;
-
-            if(winningAmount == 5000){
-                threeMatches++;
-            }
-
-            if(winningAmount == 50000){
-                fourMatches++;
-            }
-
-            if(winningAmount == 1500000){
-                fiveMatches++;
-            }
-
-            if(winningAmount == 30000000){
-                fiveBonusMatches++;
-            }
-
-            if(winningAmount == 200000000){
-                sixMatches++;
-            }
-
+            LottoRank lottoRank = getLottoRank(lotto.get(quantity).getNumbers(), winningNumber, bonusNumber);
+            lottoRanks.add(lottoRank);
         }
-        totalReturnRate = String.valueOf((totalWinningAmount/totalLottoPurchase)*100);
+        return lottoRanks;
+    }
 
-        LottoResultModel lottoResultModel = new LottoResultModel(
-                totalReturnRate,
-                String.valueOf(threeMatches),
-                String.valueOf(fourMatches),
-                String.valueOf(fiveMatches),
-                String.valueOf(fiveBonusMatches),
-                String.valueOf(sixMatches)
-        );
+    public BigDecimal totalReturnRateCalculation (List<LottoRank> lottoRanks){
+        BigDecimal totalLottoPurchase = BigDecimal.ZERO;
+        BigDecimal totalWinningAmount = BigDecimal.ZERO;
+        BigDecimal totalReturnRate;
 
-        return lottoResultModel;
+        for (LottoRank lottoRank : lottoRanks){
+            totalLottoPurchase = totalLottoPurchase.add(BigDecimal.valueOf(1000)) ;
+            totalWinningAmount = totalWinningAmount.add(BigDecimal.valueOf(Double.valueOf(lottoRank.getWinningMoney())));
+        }
+
+        totalReturnRate = totalWinningAmount.divide(totalLottoPurchase,1, RoundingMode.HALF_UP);
+        totalReturnRate = totalReturnRate.multiply(BigDecimal.valueOf(100));
+
+        return totalReturnRate;
     }
 
     public boolean inputWinningNumberValidation(String inputWinningNumber){
         try {
             String[] inputWinningNumberSplit = inputWinningNumberSplit(inputWinningNumber);
             isWinningNumberDigit(inputWinningNumberSplit);
-
             return true;
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -115,11 +90,8 @@ public class LottoGameService {
         try {
             isDigit(inputBonusNumber);
             int bonusNumber = Integer.parseInt(inputBonusNumber);
-
             isRange(bonusNumber,1,45);
-
             isDuplicationNumber(winningNumber,bonusNumber);
-
             return true;
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -139,30 +111,25 @@ public class LottoGameService {
         return true;
     }
 
-    private int lottoWinningAmount(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
+    private LottoRank getLottoRank(List<Integer> lotto ,List<Integer> winningNumber, int bonusNumber){
         int matchCount = 0;
+        boolean matchBonusNumber = false;
+
         for(int i = 0 ; i < winningNumber.size() ; i++){
             if(lotto.contains(winningNumber.get(i))){
                 matchCount++;
             }
         }
 
-        if(matchCount == 3){
-            return 5000;
-        }
-        if(matchCount == 4){
-            return 50000;
-        }
         if(matchCount == 5){
             if(lotto.contains(bonusNumber)){
-                return 30000000;
+                matchBonusNumber = true;
             }
-            return 1500000;
         }
-        if(matchCount == 6){
-            return 200000000;
-        }
-        return 0;
+
+        LottoRank lottoRank = LottoRank.getLottoRank(matchCount,matchBonusNumber);
+
+        return lottoRank;
     }
 
     private boolean isDigit(String input){
@@ -177,7 +144,6 @@ public class LottoGameService {
     private boolean isThousandUnits(String inputPurchaseAmount){
         int purchaseAmount = Integer.parseInt(inputPurchaseAmount);
         int lottoPurchaseAmountRemain = purchaseAmount % 1000;
-
         if(lottoPurchaseAmountRemain != 0){
            throw new IllegalArgumentException(LottoException.INPUT_NOT_THOUSAND_UNITS.getMessage());
         }
@@ -194,7 +160,6 @@ public class LottoGameService {
 
     private boolean isWinningNumberDigit(String[] inputWinningNumberSplit){
         try {
-
             for (int i = 0 ; i < inputWinningNumberSplit.length ; i++){
                 isDigit(inputWinningNumberSplit[i]);
             }
@@ -205,7 +170,6 @@ public class LottoGameService {
     }
 
     private boolean isRange(int inputBonusNumber,int start , int end){
-
         if(inputBonusNumber < start || inputBonusNumber > end){
             throw new IllegalArgumentException(LottoException.INPUT_NOT_RANGE.getMessage());
         }

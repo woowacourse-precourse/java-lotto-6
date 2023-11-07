@@ -8,7 +8,13 @@ public class InputValidator {
     public static void checkLottoPayAmountInput(String lottoPayAmount) {
         checkNumeric(lottoPayAmount);
         checkLessAmount(lottoPayAmount);
-        // TODO : 1000원 단위 체크
+        checkLessAmountUnit(lottoPayAmount);
+    }
+
+    private static void checkLessAmountUnit(String lottoPayAmount) {
+        if (Integer.parseInt(lottoPayAmount) % LESS_AMOUNT != 0) {
+            throw new IllegalArgumentException(ErrorMessage.LESS_AMOUNT_UNIT_ERROR.getErrorMessage());
+        }
     }
 
     private static void checkLessAmount(String lottoPayAmount) {

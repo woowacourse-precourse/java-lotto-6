@@ -29,13 +29,16 @@ public class LottoValidator {
     }
 
     protected static void validateInteger(final String purchaseAmount) {
-        boolean condition = purchaseAmount.matches(Regexp.ONLY_NUMBER);
-        throwException(condition, INVALID_NUMBER);
+        boolean condition1 = purchaseAmount.matches(Regexp.ONLY_NUMBER);
+        throwException(condition1, INVALID_NUMBER);
+
+        boolean condition2 = Integer.parseInt(purchaseAmount) > 0;
+        throwException(condition2, INVALID_NUMBER_OVER_ONE);
     }
 
     protected static void validatePurchaseAmountUnit(final int purchaseAmount) {
         boolean condition = purchaseAmount % LOTTO_PRICE == 0;
-        throwException(condition, INVALID_NUMBER_OVER_ONE);
+        throwException(condition, INVALID_PURCHASE_AMOUNT_UNIT);
     }
 
     protected static void validateLottoNumberCount(final int lottoNumberCount) {

@@ -2,6 +2,7 @@ package lotto.view;
 
 public class ErrorMessage {
 
+    private final static String INPUT_MONEY_EMPTY_ERROR = "[ERROR] 구입 금액을 입력해주세요.";
     private final static String INPUT_MONEY_AMOUNT_ERROR = "[ERROR] 구입 금액은 최소 1000원 이상, 1000원 단위의 금액입니다.";
     private final static String STRING_TO_LONG_ERROR = "[ERROR] 구입 금액 입력 값은 숫자로만 이루어져 있어야 합니다.";
     private final static String LOTTO_NUMBER_RANGE_ERROR = "[ERROR] 로또 번호는 1 부터 45 까지의 숫자로 이루어져 있어야 합니다.";
@@ -11,6 +12,9 @@ public class ErrorMessage {
     private final static String INPUT_BONUS_NUMBER_ERROR = "[ERROR] 보너스 번호는 1 부터 45 까지의 숫자여야만 합니다.";
     private final static String STRING_TO_INTEGER_ERROR = "[ERROR] 보너스 번호는 숫자로만 이루어져 있어야 합니다.";
 
+    public static void verificationViewEmptyInputMoney() {
+        System.out.println(INPUT_MONEY_EMPTY_ERROR);
+    }
     public static void verificationViewRangeInputMoney() {
         System.out.println(INPUT_MONEY_AMOUNT_ERROR);
     }

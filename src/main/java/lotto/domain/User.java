@@ -28,7 +28,7 @@ public class User { //사용자가 뽑은 로또 리스트들
         }
     }
 
-    public int getNumberOfLotto(int money){
+    public int getNumberOfLotto(){
         return money / CRITERIA;
     }
 }

@@ -9,4 +9,12 @@ public class Utils {
         return Arrays.stream(input.split(","))
                 .collect(Collectors.toList());
     }
+
+    public static List<String> convertIntegerToString(List<Integer> input) {
+        List<String> result = input.stream()
+                .map(Object::toString)
+                .collect(Collectors.toList());
+
+        return result;
+    }
 }

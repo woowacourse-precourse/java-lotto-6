@@ -11,6 +11,7 @@ import lotto.domain.Rank;
 import lotto.view.InputHandler;
 import lotto.view.OutputHandler;
 
+// TODO : service 나누기
 public class LottoController {
 
     long paymentPrice;
@@ -53,13 +54,13 @@ public class LottoController {
     long getTicketCount(long paymentPrice) throws IllegalArgumentException {
         if (paymentPrice < 0) {
             OutputHandler.requirePositiveInteger();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER);
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER.getMessage());
         }
-        if (paymentPrice % Number.LOTTO_PRICE != 0) {
+        if (paymentPrice % Number.LOTTO_PRICE.getNumber() != 0) {
             OutputHandler.requireMultipleOfLottoPrice();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE);
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE.getMessage());
         }
-        return paymentPrice / Number.LOTTO_PRICE;
+        return paymentPrice / Number.LOTTO_PRICE.getNumber();
     }
 
     List<Lotto> issueLottos(long ticketCount) {
@@ -88,12 +89,12 @@ public class LottoController {
         String winningNumbersInput = InputHandler.getInput();
         if (winningNumbersInput.isEmpty()) {
             OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT);
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
         }
         List<Integer> winningNumbers = Converter.winningNumbers(winningNumbersInput);
-        if (winningNumbers.size() != Number.LOTTO_NUM_COUNT) {
+        if (winningNumbers.size() != Number.LOTTO_NUM_COUNT.getNumber()) {
             OutputHandler.requireSixNumbers();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_SIX_NUMBERS);
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_SIX_NUMBERS.getMessage());
         }
         OutputHandler.printEmptyLine();
         return winningNumbers;
@@ -112,7 +113,7 @@ public class LottoController {
         String bonusNumberInput = InputHandler.getInput();
         if (bonusNumberInput.isEmpty()) {
             OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT);
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
         }
         int bonusNumber = Converter.bonusNumbers(bonusNumberInput);
         OutputHandler.printEmptyLine();
@@ -149,9 +150,11 @@ public class LottoController {
     }
 
     void showRateOfReturn(Rank rank, Long paymentPrice) {
-        int winningPrice = rank.getRank(1) * Number.RANK1_PRICE + rank.getRank(2) * Number.RANK2_PRICE
-                + rank.getRank(3) * Number.RANK3_PRICE + rank.getRank(4) * Number.RANK4_PRICE
-                + rank.getRank(5) * Number.RANK5_PRICE;
+        int winningPrice = rank.getRank(1) * Number.RANK1_PRICE.getNumber()
+                + rank.getRank(2) * Number.RANK2_PRICE.getNumber()
+                + rank.getRank(3) * Number.RANK3_PRICE.getNumber()
+                + rank.getRank(4) * Number.RANK4_PRICE.getNumber()
+                + rank.getRank(5) * Number.RANK5_PRICE.getNumber();
         double rateOfReturn = (double) winningPrice / paymentPrice;
         OutputHandler.printRateOfReturn(rateOfReturn);
     }

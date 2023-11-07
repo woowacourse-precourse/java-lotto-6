@@ -12,7 +12,7 @@ public class Converter {
             return Long.parseLong(paymentPrice);
         } catch (NumberFormatException e) {
             OutputHandler.requireInteger();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER);
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER.getMessage());
         }
     }
 
@@ -25,7 +25,7 @@ public class Converter {
             return winningNumbers;
         } catch (Exception e) {
             OutputHandler.requireFiveCommas();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_FIVE_COMMAS);
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_FIVE_COMMAS.getMessage());
         }
     }
 
@@ -34,7 +34,7 @@ public class Converter {
             return Integer.parseInt(numberInput);
         } catch (Exception e) {
             OutputHandler.requireRightRangeNumber();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER);
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
         }
     }
 }

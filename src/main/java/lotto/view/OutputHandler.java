@@ -8,11 +8,11 @@ import lotto.constant.SystemMessage;
 public class OutputHandler {
 
     public static void requirePaymentPrice() {
-        System.out.println(SystemMessage.REQUIRE_PAYMENT_PRICE);
+        System.out.println(SystemMessage.REQUIRE_PAYMENT_PRICE.getSystemMessage());
     }
 
     public static void sayTicketCount(long ticketCount) {
-        System.out.println(ticketCount + SystemMessage.SAY_TICKET_COUNT_FORMAT);
+        System.out.println(ticketCount + SystemMessage.SAY_TICKET_COUNT_FORMAT.getSystemMessage());
     }
 
     public static void printEmptyLine() {
@@ -24,11 +24,11 @@ public class OutputHandler {
     }
 
     public static void requireWinningNumbers() {
-        System.out.println(SystemMessage.REQUIRE_WINNING_NUMBERS);
+        System.out.println(SystemMessage.REQUIRE_WINNING_NUMBERS.getSystemMessage());
     }
 
     public static void requireBonusNumber() {
-        System.out.println(SystemMessage.REQUIRE_BONUS_NUMBER);
+        System.out.println(SystemMessage.REQUIRE_BONUS_NUMBER.getSystemMessage());
     }
 
     public static void showWinningDetails(int rank1, int rank2, int rank3, int rank4, int rank5) {
@@ -46,30 +46,30 @@ public class OutputHandler {
     }
 
     public static void requireInteger() {
-        System.out.println(ExceptionMessage.REQUIRE_INTEGER);
+        System.out.println(ExceptionMessage.REQUIRE_INTEGER.getMessage());
     }
 
     public static void requirePositiveInteger() {
-        System.out.println(ExceptionMessage.REQUIRE_POSITIVE_INTEGER);
+        System.out.println(ExceptionMessage.REQUIRE_POSITIVE_INTEGER.getMessage());
     }
 
     public static void requireNonemptyInput() {
-        System.out.println(ExceptionMessage.REQUIRE_NONEMPTY_INPUT);
+        System.out.println(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
     }
 
     public static void requireMultipleOfLottoPrice() {
-        System.out.println(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE);
+        System.out.println(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE.getMessage());
     }
 
     public static void requireSixNumbers() {
-        System.out.println(ExceptionMessage.REQUIRE_SIX_NUMBERS);
+        System.out.println(ExceptionMessage.REQUIRE_SIX_NUMBERS.getMessage());
     }
 
     public static void requireFiveCommas() {
-        System.out.println(ExceptionMessage.REQUIRE_FIVE_COMMAS);
+        System.out.println(ExceptionMessage.REQUIRE_FIVE_COMMAS.getMessage());
     }
 
     public static void requireRightRangeNumber() {
-        System.out.println(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER);
+        System.out.println(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
     }
 }

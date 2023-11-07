@@ -1,4 +1,4 @@
-package lotto;
+package lotto.vaildator;
 
 public class InputValidator extends Validator {
 
@@ -23,6 +23,5 @@ public class InputValidator extends Validator {
             throwException("구입금액은 1,000원으로 나누어 떨어져야 합니다.", null);
         }
     }
-
 
 }

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.vaildator;
 
 public class Validator {
     protected static void throwException(String message, Throwable e) {

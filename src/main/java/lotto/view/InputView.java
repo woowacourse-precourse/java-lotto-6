@@ -1,10 +1,14 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.vaildator.InputValidator;
+import lotto.validator.InputValidator;
+import lotto.validator.LottoValidator;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.validator.LottoValidator.parseValidInt;
+
 
 public class InputView {
 
@@ -20,11 +24,12 @@ public class InputView {
         String[] numberStrings = winNumber.split(",");
         List<Integer> winNumbers = new ArrayList<>();
         for (String numberString : numberStrings) {
-            int number = Integer.parseInt(numberString.trim());
+            int number = parseValidInt(numberString.trim());
             winNumbers.add(number);
         }
         return winNumbers;
     }
+
 
     public int inputBonusNumber(){
         System.out.println("\n보너스 번호를 입력해 주세요.");

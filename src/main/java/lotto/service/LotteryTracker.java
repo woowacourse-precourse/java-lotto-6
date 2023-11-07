@@ -50,6 +50,7 @@ public class LotteryTracker {
     public double calculateTotalRevenue() {
         int size = WinningAmount.size();
         int totalRevenue =0;
+        // 총 수익 += 등수당 로또 개수 * 등수당 상금
         for(int rank=size; rank>0;rank--){
             totalRevenue += numberBy(rank) * prizeBy(rank);
         }

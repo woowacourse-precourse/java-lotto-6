@@ -25,4 +25,16 @@ public class LottoGameResult {
     public void setLottoResult(RankConfig rank){
         lottoResult.put(rank, lottoResult.getOrDefault(rank, COUNT_ZERO) + COUNT_ONE);
     }
+
+    public HashMap<RankConfig, Integer> getLottoResult(){
+        return lottoResult;
+    }
+
+    public long getPrizeSum(){
+        long sum = SUM_ZERO;
+        for(RankConfig rank : lottoResult.keySet()){
+            sum += rank.getPrizeAmount() * lottoResult.get(rank);
+        }
+        return sum;
+    }
 }

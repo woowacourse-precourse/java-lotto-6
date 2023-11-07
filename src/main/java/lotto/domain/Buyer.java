@@ -32,5 +32,9 @@ public class Buyer {
         return lottoNumbers;
     }
 
+    public double getYield(long prizeSum){
+        double originYield = (prizeSum / (double) purchaseAmount) * PERCENT;
+        return Math.round(originYield * ROUND_CONSTANT_INT_TEN) / ROUND_CONSTANT_DOUBLE_TEN;
+    }
 
 }

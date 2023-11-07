@@ -6,10 +6,11 @@ public class BonusNumberValidator {
     private static final int MINIMUM_NUMBER = 1;
     private static final int MAXIMUM_NUMBER = 45;
 
-    public static void validateBonusNumber(String bonusNumberStr, List<Integer> winningNumbers) {
+    public static int validateBonusNumber(String bonusNumberStr, List<Integer> winningNumbers) {
         int bonusNumber = parseToInt(bonusNumberStr);
         validateNumberInRange(bonusNumber);
         validateNotInWinningNumbers(bonusNumber, winningNumbers);
+        return bonusNumber;
     }
 
     private static int parseToInt(String numberStr) {

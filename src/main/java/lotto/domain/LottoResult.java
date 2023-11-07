@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.*;
 
 public class LottoResult {
+    private final static int ZERO = 0;
     private final static int ONE = 1;
 
     private final Map<LottoRank, Integer> lottoResult = new EnumMap<>(LottoRank.class);
@@ -14,29 +15,25 @@ public class LottoResult {
 
     private void initLottoResult() {
         List<LottoRank> ranks = Arrays.stream(LottoRank.values()).toList();
-        for (LottoRank rank : ranks) {
-            lottoResult.put(rank, 0);
-        }
+        ranks.stream()
+                .forEach(rank -> lottoResult.put(rank, ZERO));
     }
 
     private void updateLottoResult(List<LottoRank> lottoRanks) {
-        for (LottoRank rank : lottoRanks) {
-            int count = lottoResult.get(rank) + ONE;
-            lottoResult.put(rank, count);
-        }
+        lottoRanks.stream()
+                .forEach(rank -> lottoResult.put(rank, lottoResult.get(rank) + ONE));
     }
 
-    public int calculateLottoReward() {
-
+    public int getLottoRewardSum() {
         return lottoResult.entrySet().stream()
                 .filter(entry -> entry.getKey() != LottoRank.FAIL)
                 .map(entry -> LottoRank.calculateReward(entry.getKey(), entry.getValue()))
                 .mapToInt(Integer::intValue).sum();
     }
 
-    public List<Map.Entry<LottoRank, Integer>> getSortedLottoResult(){
+    public List<Map.Entry<LottoRank, Integer>> getSortedLottoResult() {
         return lottoResult.entrySet().stream()
-                .filter(entry -> entry.getKey()!=LottoRank.FAIL)
+                .filter(entry -> entry.getKey() != LottoRank.FAIL)
                 .sorted(Comparator.comparingInt(entry -> entry.getKey().getReward()))
                 .toList();
     }

@@ -1,6 +1,15 @@
 package lotto;
 
-import static lotto.Constant.*;
+import static lotto.Constant.ALL_CORRECT;
+import static lotto.Constant.FIFTH;
+import static lotto.Constant.FIRST;
+import static lotto.Constant.FORTH;
+import static lotto.Constant.LONG_ZERO;
+import static lotto.Constant.PERCENTAGE;
+import static lotto.Constant.SECOND;
+import static lotto.Constant.THIRD;
+import static lotto.Constant.THOUSAND;
+import static lotto.Constant.ZERO;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -46,7 +55,7 @@ public class Board {
         }
         int principal = THOUSAND * count;
         double profitRate = ((double) profit / principal) * PERCENTAGE;
-        BigDecimal roundedProfitRate = BigDecimal.valueOf(profitRate).setScale(SECOND, RoundingMode.HALF_UP);
+        BigDecimal roundedProfitRate = BigDecimal.valueOf(profitRate).setScale(2, RoundingMode.HALF_UP);
         return String.format("%.1f", roundedProfitRate);
     }
 
@@ -68,22 +77,26 @@ public class Board {
     }
 
     private void staticsCalculating(long matchCount, boolean isBonus) {
-        matchWithBonus(matchCount, isBonus);
+        matchWithBonus(matchCount, isBonus, ZERO);
     }
 
-    private void matchWithBonus(long matchCount, boolean isBonus) {
-        long amount;
+    private void matchWithBonus(long matchCount, boolean isBonus, int index) {
         if (matchCount == FIFTH) {
-            int index = transFifthPointWithBonus(matchCount, isBonus);
-            amount = gainStatics.get(index);
-            gainStatics.put(index, ++amount);
+            index = transFifthPointWithBonus(matchCount, isBonus);
+            increaseStatics(index);
         }
         if (THIRD <= matchCount && matchCount < ALL_CORRECT) {
-            int index = transAnotherPoint(matchCount);
-            amount = gainStatics.get(index);
-            gainStatics.put(index, ++amount);
+            index = transAnotherPoint(matchCount);
+            increaseStatics(index);
         }
-        throw new IllegalStateException("transAnotherPoint : 번호 일치 파라미터 문제");
+        if (index == ALL_CORRECT) {
+            throw new IllegalStateException("transAnotherPoint : 번호 일치 파라미터 문제");
+        }
+    }
+
+    private void increaseStatics(int index) {
+        long amount = gainStatics.get(index);
+        gainStatics.put(index, ++amount);
     }
 
     private long getMatchCount(int i) {

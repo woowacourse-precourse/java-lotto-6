@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import static lotto.model.validator.InputValidator.lottoMakesSixNumbers;
+import static lotto.model.validator.InputValidator.lottoMustBeUniqueNumber;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         lottoMakesSixNumbers(numbers);
+        lottoMustBeUniqueNumber(numbers);
         List<Integer> ticket = new ArrayList<>(numbers);
         ticket.sort(Comparator.naturalOrder());
         this.numbers = ticket;

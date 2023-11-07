@@ -4,8 +4,7 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static lotto.model.validator.ExceptionHandler.illegalArgument;
-import static lotto.model.validator.ExceptionMessage.LOTTO_INCLUDE_6_NUMBERS;
-import static lotto.model.validator.ExceptionMessage.PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_1000;
+import static lotto.model.validator.ExceptionMessage.*;
 
 public class InputValidator {
     private static final Pattern MULTIPLE_1000 = Pattern.compile("[1-9]+0{3}");
@@ -17,7 +16,14 @@ public class InputValidator {
 
     public static void lottoMakesSixNumbers(List<Integer> lottoNumbers) {
         if (lottoNumbers.size() != 6) {
-            illegalArgument(LOTTO_INCLUDE_6_NUMBERS.getMessage());
+            illegalArgument(LOTTO_INCLUDES_6_NUMBERS.getMessage());
+        }
+    }
+
+    public static void lottoMustBeUniqueNumber(List<Integer> inputNumbers) {
+        long inputNumberCount = inputNumbers.stream().distinct().count();
+        if (inputNumbers.size() != inputNumberCount) {
+            illegalArgument(LOTTO_INCLUDES_UNIQUE_NUMBERS.getMessage());
         }
     }
 }

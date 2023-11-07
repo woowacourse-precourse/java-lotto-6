@@ -6,7 +6,6 @@ import domain.Rank;
 import domain.WinningNumber;
 import utility.Utility;
 import validator.Validator;
-import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -15,12 +14,14 @@ import java.util.Map;
 
 public class Service {
     final static int THOUSAND = 1000;
+    final static int PERCENT = 100;
     Validator validator = new Validator();
 
     public int getMoneyByUserInput(String input) {
         validator.checkIsNumber(input);
         int money = Integer.parseInt(input);
         validator.checkMinMoney(money);
+        validator.checkMaxMoney(money);
         validator.checkDividedByThousand(money);
         return money;
     }
@@ -39,7 +40,7 @@ public class Service {
         return numbers;
     }
 
-    public int calculateLottoAmount(int money) {
+    public int calculateNumberOfLottoTicket(int money) {
         return money / THOUSAND;
     }
 
@@ -89,7 +90,7 @@ public class Service {
     }
 
     public float calculateRateOfReturn(LinkedHashMap<Rank,Integer>  lottoResult, int money) {
-        return (float)calculateSumOfPrizeMoney(lottoResult) / money;
+        return (float)calculateSumOfPrizeMoney(lottoResult) / money * PERCENT;
     }
     private long calculateSumOfPrizeMoney(LinkedHashMap<Rank,Integer> lottoResult){
         long sum = 0;

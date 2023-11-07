@@ -4,7 +4,9 @@ import lotto.model.Lotto;
 import lotto.view.OutputManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
     private final int WINNING_NUMBER_SCORE = 10;
@@ -21,7 +23,7 @@ public class LottoController {
         return lottos;
     }
 
-    public void readLotto(OutputManager outputManager, Lotto lotto) {
+    public void sendLotto(OutputManager outputManager, Lotto lotto) {
         outputManager.printLotto(lotto.getLottoNumbers());
     }
 
@@ -30,15 +32,15 @@ public class LottoController {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> createStatistic(List<Lotto> lottos) {
-        List<Integer> lottoScores = new ArrayList<>();
+    public Map<Integer, Integer> createStatistic(List<Lotto> lottos) {
+        Map<Integer, Integer> statistic = new HashMap<>();
         for (Lotto lotto : lottos) {
             //번호 일치 여부에 따라 점수 지급
             int score = compareWithWinningNumbers(lotto.getLottoNumbers()) +
                     compareWithBonusNumbers(lotto.getLottoNumbers());
-            lottoScores.add(score);
+            statistic.put(score, statistic.getOrDefault(score, 0) + 1);
         }
-        return lottoScores;
+        return statistic;
     }
 
     public int compareWithWinningNumbers(List<Integer> numbers) {
@@ -55,5 +57,9 @@ public class LottoController {
         if (numbers.contains(bonusNumber))
             return BONUS_NUMBER_SCORE;
         return ZERO_SCORE;
+    }
+
+    public void sendStatistic(OutputManager outputManager, Map<Integer, Integer> statistic) {
+        outputManager.printStatistic(statistic);
     }
 }

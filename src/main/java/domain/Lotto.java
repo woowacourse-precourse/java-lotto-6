@@ -8,11 +8,11 @@ import java.util.List;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private final List<Integer> numbers = new ArrayList<>();
 
     public Lotto(List<Integer> numbers) {
         LottoValidator.checkLottoValidation(numbers);
-        this.numbers = numbers;
+        this.numbers.addAll(numbers);
     }
 
     public List<Integer> getNumbers() {

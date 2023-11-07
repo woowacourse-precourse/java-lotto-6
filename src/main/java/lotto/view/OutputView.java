@@ -17,16 +17,20 @@ public class OutputView {
         System.out.println(e);
     }
 
-    public void statistics(HashMap result) {
+    public void statistics(HashMap<Integer, Integer> result) {
         System.out.println("\n당첨통계\n---");
-        System.out.println("3개 일치 (5,000원) - " + result.get(4) + "개");
-        System.out.println("4개 일치 (50,000원) - " + result.get(3) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + result.get(2) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(1) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " + result.get(0) + "개");
+        printPrizeCount("3개 일치 (5,000원)", result.get(4));
+        printPrizeCount("4개 일치 (50,000원)", result.get(3));
+        printPrizeCount("5개 일치 (1,500,000원)", result.get(2));
+        printPrizeCount("5개 일치, 보너스 볼 일치 (30,000,000원)", result.get(1));
+        printPrizeCount("6개 일치 (2,000,000,000원)", result.get(0));
     }
 
     public void profit(double profit) {
-        System.out.println("총 수익률은 " + profit + "%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", profit);
+    }
+
+    private void printPrizeCount(String prize, int count) {
+        System.out.println(prize + " - " + count + "개");
     }
 }

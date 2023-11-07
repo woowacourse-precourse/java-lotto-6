@@ -1,29 +1,26 @@
 package lotto.model;
 
 public class Purchase {
+    private static final int PURCHASING_UNIT = 1000;
 
-    private int PURCHASING_UINT = 1000;
+    private final int purchasingAmount;
 
-    private final String purchasingAmount;
     public Purchase(String purchasingAmount) {
-        this.purchasingAmount = purchasingAmount;
-        validateNum(this.purchasingAmount);
-        validateUnit(this.purchasingAmount);
+        this.purchasingAmount = validateAndParseAmount(purchasingAmount);
     }
 
-    public void validateNum(String purchasingAmount) {
-        if (!purchasingAmount.matches("^[0-9]*$")) {
+    private int validateAndParseAmount(String input) {
+        if (!input.matches("^[0-9]*$")) {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능합니다.");
         }
-    }
-
-    public void validateUnit(String purchasingAmount) {
-        if (Integer.parseInt(purchasingAmount) % PURCHASING_UINT != 0) {
-            throw new IllegalArgumentException("[ERROR] " + PURCHASING_UINT + "원 단위로 입력 가능합니다.");
+        int amount = Integer.parseInt(input);
+        if (amount % PURCHASING_UNIT != 0) {
+            throw new IllegalArgumentException("[ERROR] " + PURCHASING_UNIT + "원 단위로 입력 가능합니다.");
         }
+        return amount;
     }
 
     public int pieces() {
-        return Integer.parseInt(purchasingAmount) / PURCHASING_UINT;
+        return purchasingAmount / PURCHASING_UNIT;
     }
 }

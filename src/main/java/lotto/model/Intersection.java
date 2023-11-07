@@ -1,28 +1,26 @@
 package lotto.model;
 
-import org.w3c.dom.CDATASection;
-
 import java.util.*;
 
 public class Intersection {
 
-    public List<Integer> winNum(List<Integer> winNum, List<Set> lottoNum) {
-        List<Integer> intersectionCount = new ArrayList<>();
-        for (Set<Integer> lottos : lottoNum) {
-            Set<Integer> intersection = new HashSet<>(lottos);
-            intersection.retainAll(winNum);
-            intersectionCount.add(intersection.size());
+    public List<Integer> countMatchingNumbers(List<Integer> winningNumbers, List<Set> userLottoNumbers) {
+        List<Integer> matchingCounts = new ArrayList<>();
+        for (Set<Integer> userNumbers : userLottoNumbers) {
+            Set<Integer> intersection = new HashSet<>(userNumbers);
+            intersection.retainAll(winningNumbers);
+            matchingCounts.add(intersection.size());
         }
-        return intersectionCount;
+        return matchingCounts;
     }
 
-    public List bonusNum(int bonusNum, List<Set> lottoNum) {
+    public List checkBonusNumber(int bonusNum, List<Set> lottoNum) {
         List<Integer> intersectionBonus = new ArrayList<>();
-        for (Set intersectionCheck : lottoNum){
-            if (intersectionCheck.contains(bonusNum)){
+        for (Set intersectionCheck : lottoNum) {
+            if (intersectionCheck.contains(bonusNum)) {
                 intersectionBonus.add(1);
             }
-            if (!intersectionCheck.contains(bonusNum)){
+            if (!intersectionCheck.contains(bonusNum)) {
                 intersectionBonus.add(0);
             }
         }

@@ -9,32 +9,17 @@ public class LottoResult {
         this.result = result;
     }
 
-    enum PrizeMoney {
-        FIRST(2000000000){
-            int fare(){
-                return result.get(0) * money;
-            }
-        },SECOND(30000000){
-            int fare(){
-                return result.get(1) * money;
-            }
-        },THIRD(1500000){
-            int fare(){
-                return result.get(2) * money;
-            }
-        },FOURTH(50000){
-            int fare(){
-                return result.get(3) * money;
-            }
-        },FIFTH(5000){
-            int fare(){
-                return result.get(4) * money;
-            }
-        };
-        abstract int fare();
-        protected final int money;
-        PrizeMoney(int moneyOne){
-            money = moneyOne;
+    public enum PrizeMoney {
+        FIFTH(5000), FOURTH(50000), THIRD(1500000), SECOND(30000000), FIRST(2000000000);
+
+        private final int money;
+
+        PrizeMoney(int money) {
+            this.money = money;
+        }
+
+        public int calculateFare(int count) {
+            return count * money;
         }
     }
 
@@ -67,10 +52,10 @@ public class LottoResult {
         return result;
     }
 
-    public static double profit(int purchase) {
+    public static double calculateProfit(int purchase) {
         double allMoney = 0;
         for (PrizeMoney p : PrizeMoney.values()) {
-            allMoney+=p.fare();
+            allMoney += p.calculateFare(result.get(4 - p.ordinal()));
         }
         return allMoney / (purchase * 10);
     }

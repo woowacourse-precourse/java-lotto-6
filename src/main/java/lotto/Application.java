@@ -50,7 +50,7 @@ public class Application {
     public static void winLottoNum(List<Integer> numbers) {
         try {
             winNum = numbers;
-            Lotto lotto = new Lotto(numbers);
+            new Lotto(numbers);
         } catch (IllegalArgumentException e) {
             outputView.errorMessage(e.getMessage());
             winNum = convertNum(inputView.winNum());
@@ -61,7 +61,7 @@ public class Application {
     public static void bonusNum(List<Integer> numbers, int bonusNumber) {
         try {
             bonusNum = bonusNumber;
-            Bonus bonus = new Bonus(numbers, bonusNumber);
+            new Bonus(numbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.errorMessage(e.getMessage());
             bonusNum = Integer.parseInt(inputView.bonusNum());
@@ -76,10 +76,10 @@ public class Application {
     }
 
     public static void intersectionNum() {
-        List<Integer> intersectionCheck  = intersection.bonusNum(bonusNum, lottoNum);
-        List<Integer> intersectionCount = intersection.winNum(winNum, lottoNum);
+        List<Integer> intersectionCheck  = intersection.checkBonusNumber(bonusNum, lottoNum);
+        List<Integer> intersectionCount = intersection.countMatchingNumbers(winNum, lottoNum);
         initialize();
-        LottoResult lottoResult = new LottoResult(result);
+        new LottoResult(result);
         for (int i = 0; i<intersectionCount.size(); i++) {
            result = LottoResult.statistics(intersectionCount.get(i), intersectionCheck.get(i));
         }
@@ -93,6 +93,6 @@ public class Application {
         bonusNum(winNum, Integer.parseInt(inputView.bonusNum()));
         intersectionNum();
         outputView.statistics(result);
-        outputView.profit(LottoResult.profit(purchasePieces));
+        outputView.profit(LottoResult.calculateProfit(purchasePieces));
     }
 }

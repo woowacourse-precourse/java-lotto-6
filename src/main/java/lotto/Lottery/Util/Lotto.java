@@ -1,4 +1,4 @@
-package lotto.Lottery.Service;
+package lotto.Lottery.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +50,17 @@ public class Lotto {
         return true;
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
+
+    public int evaluateWinnings(List<Integer> ticket){
+        int winningCount = 0;
+
+        for(int lottoNumber : ticket){
+            if(numbers.contains(lottoNumber))
+                winningCount += 1;
+        }
+
+        return winningCount;
     }
+
+
 }

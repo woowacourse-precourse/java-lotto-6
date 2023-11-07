@@ -2,37 +2,34 @@ package lotto.Lottery.Service;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Lottery.Util.BonusChecker;
-import lotto.Lottery.Util.CostChecker;
-import lotto.Lottery.Util.LottoChecker;
+import lotto.Lottery.Enum.LottoWinnings;
+import lotto.Lottery.Util.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
 
-    CostChecker costChecker = new CostChecker();
+    private CostChecker costChecker = new CostChecker();
+    private LottoChecker lottoChecker = new LottoChecker();
+    private BonusChecker bonusChecker = new BonusChecker();
+    private ResultUtil resultUtil = new ResultUtil();
 
-    private int userMoney;
     final static int LOTTO_PRICE = 1000;
 
-    // Getter
-    public int getUserMoney() {
-        return userMoney;
-    }
+    // 유저 구입 금액 정보
+    private int userMoney;
 
-    /**
-     * 해당 부분은 사용자의 입력 부분과 관련이 있으며 사용자의 입력 정보(Long type)를 받고 검사한다.
-     * 검사가 되는 부분은 총 4가지이다.
-     * 1. Long 타입 값을 벗어난 경우 Java에서 자체적으로 IllegalArgumentException을 던져준다.
-     * 2. 사용자의 입력을 받았을 때 숫자값이 아닌 경우 Java의 오류를 IllegalArgumentException으로 변환하여 던진다.
-     * 3. 사용자 정의: 로또 금액인 1000원 단위를 벗어난 경우 IllegalArgumentException을 던져준다.
-     * 4. 사용자 정의: 로또 금액이 양수가 아닌 경우 IllegalArgumentException을 던져준다.
-     *
-     * 실제 구현에서는 오류가 뜨더라도 예외 메세지를 던지고 반복을 해야한다.
-     * 따라서 Impl 부분에서는 해당 조건이 만족되어 true를 반환할 때까지 무한하게 반복한다.
-     */
+    // 티켓 별 정보
+    List<List<Integer>> LottoTickets = new ArrayList<>();
+    int lottoTicket;
 
+    // 당첨 결과 정보
+    private Lotto lotto;
+    private int bonusNumber;
+
+    // 1번 파트 부분
     public boolean getUserCostInput(){
         try{
             System.out.println("구입금액을 입력해 주세요.");
@@ -52,22 +49,19 @@ public class LottoService {
         while(getUserCostInput() == false);
     }
 
-    /**
-     * 유저 input에 맞는 로또 생성! 여기서는 앞에서 검사를 제대로 했다면 오류가 날 가능성이 없음!
-     * 기능 1. 로또 생성 앞에서 받아온 유저 Input값을 통해서 로또 생성
-     * 기능 2. 로또 생성 프린트
-     */
-
-    // 티켓 별 정보
-    List<List<Integer>> LottoTickets = new ArrayList<>();
-    int lottoTicket;
-
+    // 2번 파트 부분
     public void generateLotto(){ // 로또 생성!
         // user의 로또 티켓 개수
         this.lottoTicket = (int)(this.userMoney/LOTTO_PRICE);
 
         for(int i = 0; i < lottoTicket; i++){
-            LottoTickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> ticket = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            try{
+                Collections.sort(ticket);
+            } catch(UnsupportedOperationException e){
+                // 아무 작업도 하지 않음.
+            }
+            LottoTickets.add(ticket);
         }
     }
 
@@ -78,27 +72,7 @@ public class LottoService {
         System.out.println();
     }
 
-    /**
-     * 로또 당첨 번호 입력
-     * 예외 정리(당첨 번호)
-     * 1. 숫자 개수가 6개가 아닌 경우
-     * 2. 값이 1-45 사이의 번호가 아닌 경우
-     * 3. 번호가 겹치는 게 있는 경우
-     * 4. 숫자가 아닌 값이 나오는 경우
-     *
-     * 예외 정리(보너스 번호)
-     * 1. 입력 값이 숫자가 아닌 경우
-     * 2. 입력 값이 1-45 사이의 번호가 아닌 경우
-     * 3. 입력값이 이미 당첨 번호에 포함되는 경우
-     *
-     */
-
-    private LottoChecker lottoChecker = new LottoChecker();
-    private BonusChecker bonusChecker = new BonusChecker();
-
-    private Lotto lotto;
-    private int bonusNumber;
-
+    // 3번 기능
     public boolean generateWinners(){
         try{
             System.out.println("당첨 번호를 입력해 주세요.");
@@ -106,7 +80,6 @@ public class LottoService {
             this.lotto = new Lotto(lottoNumbers);
             System.out.println();
             return true;
-
         } catch(IllegalArgumentException e) {
             System.out.println("[ERROR] 유효하지 않은 입력값입니다. 다시 입력해주세요. ex) 1,2,3,4,5,6");
             System.out.println();
@@ -141,5 +114,28 @@ public class LottoService {
     public void generateBonusNumberImpl(){
         while(generateBonusNumber() == false);
     }
+
+    // 4번 기능 관련
+    public void writeAllResult(){
+        // 1등부터 5등까지 모두 0으로 초기화
+        List<Integer> WinnerRecord = resultUtil.initWinnerRecord();
+
+        Double winnerPrice = (double)resultUtil.updateAllResult(this.lotto, this.bonusNumber,
+                this.LottoTickets, WinnerRecord, 0);
+
+        Double rateOfReturn = 100 * winnerPrice/(double)userMoney;
+        rateOfReturn = Math.round(rateOfReturn * 100.0)/ 100.0;
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + WinnerRecord.get(4) + "개");
+        System.out.println("4개 일치 (50,000원) - " + WinnerRecord.get(3) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + WinnerRecord.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + WinnerRecord.get(1) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + WinnerRecord.get(0) + "개");
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+    }
+
+
 
 }

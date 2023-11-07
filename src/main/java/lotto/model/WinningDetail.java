@@ -37,4 +37,16 @@ public class WinningDetail {
     public Map<Ranking, Integer> getWinningCount() {
         return Collections.unmodifiableMap(winningCount);
     }
+
+    public long totalProfit() {
+        long profit = 0L;
+        for (Ranking ranking : winningCount.keySet()) {
+            profit += calculateProfit(ranking, winningCount.get(ranking));
+        }
+        return profit;
+    }
+
+    private long calculateProfit(Ranking ranking, int amount) {
+        return Long.valueOf(amount) * ranking.getWinningAmount();
+    }
 }

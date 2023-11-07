@@ -7,32 +7,37 @@ import java.util.Map;
 
 public class WinningResult {
     private static final int INITIAL_NUMBER = 0;
+    private static final int COUNT_NUMBER = 1;
     private final Map<Rank, Integer> winningResult;
 
-    public WinningResult(LottoTickets lottoTickets, WinningLotto winningLotto) {
+    private WinningResult(LottoTickets lottoTickets, WinningLotto winningLotto) {
         winningResult = new EnumMap<>(Rank.class);
+        calculateWinningResult(lottoTickets, winningLotto);
+    }
 
-        for (Lotto lotto : lottoTickets.getLottoTickets()) {
-            Rank rank = winningLotto.match(lotto);
-            if (rank == null) continue;
-            winningResult.put(rank, winningResult.getOrDefault(rank, 0) + 1);
-        }
+    public static WinningResult compare (LottoTickets lottoTickets, WinningLotto winningLotto) {
+        return new WinningResult(lottoTickets, winningLotto);
     }
 
     public int getCount(Rank rank) {
-        if (winningResult.get(rank) == null) {
-            return INITIAL_NUMBER;
-        }
-        return winningResult.get(rank);
+        return winningResult.getOrDefault(rank, INITIAL_NUMBER);
     }
 
     public int calculateTotalAmount() {
         return winningResult.keySet().stream()
                 .map(rank -> getCount(rank) * rank.getWinningAmount())
-                .reduce(0, (a, c) -> a + c);
+                .reduce(INITIAL_NUMBER, Integer::sum);
     }
 
     public Map<Rank, Integer> getWinningResult() {
         return this.winningResult;
+    }
+
+    private void calculateWinningResult(LottoTickets lottoTickets, WinningLotto winningLotto) {
+        for (Lotto lotto : lottoTickets.getLottoTickets()) {
+            Rank rank = winningLotto.match(lotto);
+            if (rank == null) continue;
+            winningResult.put(rank, winningResult.getOrDefault(rank, INITIAL_NUMBER) + COUNT_NUMBER);
+        }
     }
 }

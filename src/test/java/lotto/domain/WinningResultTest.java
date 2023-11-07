@@ -20,7 +20,13 @@ class WinningResultTest {
     @Test
     void initWinningResult() {
         assertRandomUniqueNumbersInRangeTest(() -> {
-            winningResult = new WinningResult(new LottoTickets(5), new WinningLotto(new Lotto("1,2,3,4,5,6"), new LottoNumber("7")));
+            Lotto lotto = Lotto.valueOf(List.of(1,2,3,4,5,6));
+            LottoNumber lottoNumber = LottoNumber.valueOf("7");
+            WinningLotto winningLotto= WinningLotto.of(lotto, lottoNumber);
+
+            LottoTickets tickets = LottoTickets.createdBy(5);
+
+            winningResult = WinningResult.compare(tickets, winningLotto);
         }, List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 7), List.of(1, 2, 3, 4, 5, 8), List.of(1, 2, 3, 4, 8, 7), List.of(1, 2, 3, 14, 15, 18));
     }
 

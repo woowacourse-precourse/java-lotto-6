@@ -1,9 +1,6 @@
 package lotto.view;
 
-import lotto.domain.Lotto;
 import lotto.domain.LottosPurchased;
-
-import java.util.List;
 
 public class OutputView {
     private enum PrintMessage {

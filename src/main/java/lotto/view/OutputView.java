@@ -25,8 +25,8 @@ public class OutputView {
                     총 수익률은 %s%%입니다.
             """.replaceAll("( ){2,}", "");
     private static final String NUMBER_FORMAT_PATTERN = "###,###.0";
-    private static final double NO_PROFIT = 0.0;
-    private static final String ZERO_PROFIT = "0";
+    private static final double ZERO_PROFIT_RATE = 0.0;
+    private static final String ZERO_PROFIT_RATE_STRING = "0.0";
     private final StdWriter writer;
 
     public OutputView(StdWriter writer) {
@@ -65,15 +65,14 @@ public class OutputView {
                 drawingResult.thirdMatchCount(),
                 drawingResult.secondMatchCount(),
                 drawingResult.firstMatchCount(),
-                getFormattedProfitRate(drawingResult)
+                getFormattedProfitOfRate(drawingResult)
         );
         writer.writeLine(message);
     }
 
-    private String getFormattedProfitRate(DrawingResultDto drawingResult) {
-        double prizeOfRate = drawingResult.prizeOfRate();
-        if (prizeOfRate == NO_PROFIT) {
-            return ZERO_PROFIT;
+    private String getFormattedProfitOfRate(DrawingResultDto drawingResult) {
+        if (drawingResult.prizeOfRate() == ZERO_PROFIT_RATE) {
+            return ZERO_PROFIT_RATE_STRING;
         }
         return formatPrizeOfRate(drawingResult);
     }

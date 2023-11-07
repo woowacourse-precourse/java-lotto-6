@@ -1,0 +1,26 @@
+package lotto.domain;
+
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
+import static lotto.domain.Constant.*;
+
+public class LottoBuilder {
+    public LottoTicket createLotto(Money money) {
+        List<Lotto> lottoList = new ArrayList<>();
+        int lottoCount = money.getLottoCount();
+        for (int i = 0; i < lottoCount; i++) {
+            lottoList.add(new Lotto(createRandomNumber()));
+        }
+        return new LottoTicket(lottoList);
+    }
+
+    private List<Integer> createRandomNumber() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBER_COUNT);
+        numbers.sort(Comparator.naturalOrder());
+        return numbers;
+    }
+}

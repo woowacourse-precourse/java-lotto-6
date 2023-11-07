@@ -17,7 +17,14 @@ public class MainController extends RepeatModule {
     }
 
     public void start() {
+        buy();
+    }
+
+    private void buy() {
         Token token = repeat(inputView::readToken);
         lottoManager = new LottoManager(token);
+
+        lottoManager.ticket();
+        outputView.printTicketingLottos(lottoManager.ticketedCount(), lottoManager.toString());
     }
 }

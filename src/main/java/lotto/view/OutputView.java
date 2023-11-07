@@ -10,9 +10,10 @@ public class OutputView {
     private static final String PRINT_WINNING_STATS = "당첨 통계\n---";
     private static final String PREFIX_PRINT_EARNING_RATE = "총 수익률은 ";
     private static final String POSTFIX_PRINT_EARNING_RATE = "입니다.";
+    public static final String LINE_BREAK = "\n";
 
     public void printTicketingLottos(int count, String lottos) {
-        System.out.println(count + PRINT_LOTTOS_COUNT);
+        System.out.println(LINE_BREAK + count + PRINT_LOTTOS_COUNT);
         System.out.println(lottos);
     }
 

@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.Lotto;
 import lotto.domain.LottoRankInfo;
+import lotto.domain.LottoReturnRate;
 import lotto.domain.LottoTickets;
 
 import java.text.NumberFormat;
@@ -32,5 +33,9 @@ public class OutputView {
             System.out.print(" (" + formattedPrizeMoney + "원) - ");
             System.out.println(winningResult.get(rankInfo) + "개");
         }
+    }
+
+    public void printReturnRate(LottoReturnRate lottoReturnRate) {
+        System.out.println("총 수익률은 " + String.format("%.1f", lottoReturnRate.getReturnRate()) + "%입니다.");
     }
 }

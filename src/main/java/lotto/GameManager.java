@@ -17,6 +17,7 @@ public class GameManager {
     private LottoTickets lottoTickets;
     private LottoWinningNumbers lottoWinningNumbers;
     private LottoBonusNumber bonusNumber;
+    private LottoReturnRate lottoReturnRate;
 
     public GameManager(InputView inputView, OutputView outputView, LottoResultCalculator resultCalculator) {
         this.inputView = inputView;
@@ -28,12 +29,14 @@ public class GameManager {
         publishLottoTickets();
         generateLottoWinningNumbers();
         announceLottoResult();
+        announceLottoReturnRate();
     }
 
     private void publishLottoTickets() {
         try {
             int purchaseAmount = Integer.parseInt(inputView.readPurchaseAmount());
             lottoTickets = new LottoTickets(purchaseAmount);
+            lottoReturnRate = new LottoReturnRate(purchaseAmount);
             outputView.printPurchasedLottoTickets(lottoTickets);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -89,5 +92,11 @@ public class GameManager {
         List<LottoRankInfo> rankInfos = LottoRankInfo.getRankInfoByList();
         outputView.printWinningResult(winningResult, rankInfos);
 
+    }
+
+    private void announceLottoReturnRate() {
+        long totalPrizeMoney = resultCalculator.calculateTotalPrizeMoney();
+        lottoReturnRate.calculateReturnRate(totalPrizeMoney);
+        outputView.printReturnRate(lottoReturnRate);
     }
 }

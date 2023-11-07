@@ -40,4 +40,28 @@ public class WinningNumberTest {
         winningNumber = new WinningNumber(List.of(45, 1, 12, 36, 5, 9));
         Assertions.assertThat(winningNumber).isNotNull();
     }
+
+    // 당첨 번호 범위 관련 테스트
+
+    @DisplayName("당첨 번호가 1 ~ 45 사이의 숫자가 아니면 예외가 발생한다.")
+    @Test
+    void createWinningNumberByOutOfRange() {
+        assertThatThrownBy(() -> new WinningNumber(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.OUT_OF_RANGE_NUMBER_EXCEPTION.getMessage());
+
+        assertThatThrownBy(() -> new WinningNumber(List.of(0, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ExceptionMessage.OUT_OF_RANGE_NUMBER_EXCEPTION.getMessage());
+    }
+
+    @DisplayName("당첨 번호가 1 ~ 45 사이의 숫자이면 당첨 번호가 생성된다.")
+    @Test
+    void createWinningNumberByInRange() {
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6));
+        Assertions.assertThat(winningNumber).isNotNull();
+
+        winningNumber = new WinningNumber(List.of(45, 44, 43, 42, 41, 40));
+        Assertions.assertThat(winningNumber).isNotNull();
+    }
 }

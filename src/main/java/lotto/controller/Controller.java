@@ -29,6 +29,9 @@ public class Controller {
         view.output(INPUT_BONUS);
         int bonus = getBonus(winningLotto);
 
+        Statistics statistics = Statistics.calculate(lottos, winningLotto, bonus);
+        view.output(statistics.toString());
+
     }
 
     private Buyer getCost() {

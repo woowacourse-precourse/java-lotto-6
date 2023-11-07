@@ -2,15 +2,57 @@ package lotto;
 
 import lotto.constant.Constant;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static lotto.UserInput.*;
 import static lotto.common.Common.strToInt;
 
 public class Winning {
-    List<Integer> listVal;
+    List<Integer> listNumber;
+    List<Integer> listPrize;
+    HashMap<Integer, Integer> map;
     int bonus;
+
+    private int getIndex(int[] counts, List<Integer> list){
+        int idx = -1;
+
+        if (counts[0] <= 5) idx = counts[0] - 3;
+        if (counts[0] == 5 && counts[1] == 1)
+            idx = list.size() - 2;
+        if (counts[0] == 6) idx = list.size() - 1;
+        return idx;
+    }
+
+    public void calc(List<Lotto> listLotto){
+        List<Integer> listPrize = this.listPrize;
+
+        for (Lotto lotto : listLotto){
+            int[] counts = lotto.countWin(this.listNumber, this.bonus);
+            int idx = getIndex(counts, listPrize);
+            if (idx >= 0) {
+                int key = listPrize.get(idx);
+                this.map.put(key, this.map.get(key) + 1);
+            }
+        }
+    }
+
+    private List<Integer> getListPrize(HashMap<Integer, Integer> map){
+        Set<Integer> set = map.keySet();
+        List<Integer> keyList = new ArrayList<>(set);
+
+        Collections.sort(keyList);
+        return keyList;
+    }
+
+    private HashMap<Integer, Integer> initMap(){
+        return new HashMap<Integer,Integer>(){{//초기값 지정
+            put(5000, 0);
+            put(50000, 0);
+            put(1500000, 0);
+            put(30000000, 0);
+            put(2000000000, 0);
+        }};
+    }
 
     private void validBonus(List<Integer>listNum, int bonus){
         validNum(bonus);
@@ -20,6 +62,13 @@ public class Winning {
                     Constant.error + Constant.existNumber
             );
         }
+    }
+
+    private int getBonus(List<Integer> listNumber){
+        int bonus = strToInt(inputBonus());
+
+        validBonus(listNumber, bonus);
+        return bonus;
     }
 
     private void validNum(int num){
@@ -38,19 +87,23 @@ public class Winning {
         }
     }
 
-    public Winning(){
+    private List<Integer> getListNumber(){
         String[] arrWinning = inputNumbers().split(",");
-        List<Integer> listNum = new ArrayList<>();
+        List<Integer> listNumber = new ArrayList<>();
 
         validArray(arrWinning);
         for (String s : arrWinning) {
             int num = strToInt(s);
             validNum(num);
-            listNum.add(num);
+            listNumber.add(num);
         }
-        int bonus = strToInt(inputBonus());
-        validBonus(listNum, bonus);
-        this.listVal = listNum;
-        this.bonus = bonus;
+        return listNumber;
+    }
+
+    public Winning(){
+        this.listNumber = getListNumber();
+        this.bonus = getBonus(this.listNumber);
+        this.map = initMap();
+        this.listPrize = getListPrize(map);
     }
 }

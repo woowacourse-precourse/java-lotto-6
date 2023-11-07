@@ -1,13 +1,61 @@
 package lotto;
 
-import lotto.constant.Constant;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DecimalFormat;
+import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class Game {
+    Money money;
+    List<Lotto> listLotto;
+
+    private float getRate(HashMap<Integer,Integer> map){
+        int money = this.money.val;
+        float rate = 0;
+
+        for (int key : map.keySet()){
+            int value = map.get(key);
+            rate += (key * value);
+        }
+        if (rate == 0) return 0;
+        rate = (rate - money) / money;
+        return (rate * 100);
+    }
+
+    private void printRate(HashMap<Integer,Integer> map){
+        float rate = getRate(map);
+
+        if (rate == 0){
+            System.out.printf("총 수익률은 %.0f%%입니다.", rate);
+            return;
+        }
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", rate);
+    }
+
+    private void printItem(Winning winning, int key){
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        int count = winning.listPrize.indexOf(key) + 3;
+
+        if (key == 30000000){
+            System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n",
+                    count - 1,
+                    formatter.format(key),
+                    winning.map.get(key));
+            return;
+        }
+        if (key > 30000000) count -= 1;
+        System.out.printf("%d개 일치 (%s원) - %d개\n",
+                count,
+                formatter.format(key),
+                winning.map.get(key));
+    }
+
+    private void viewResult(Winning winning){
+        System.out.print("\n당첨 통계\n---\n");
+        for (int key : winning.listPrize) printItem(winning, key);
+        printRate(winning.map);
+    }
+
 
     private void printListLotto(List<Lotto> listLotto){
         System.out.printf("\n%d개를 구매했습니다.\n", listLotto.size());
@@ -29,10 +77,12 @@ public class Game {
     }
 
     public void run(){
-        Money money = new Money();
-        List<Lotto> listLotto = getListLotto(money.val);
+        this.money = new Money();
+        this.listLotto = getListLotto(money.val);
 
-        printListLotto(listLotto);
+        printListLotto(this.listLotto);
         Winning winning = new Winning();
+        winning.calc(this.listLotto);
+        viewResult(winning);
     }
 }

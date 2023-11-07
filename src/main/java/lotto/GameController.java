@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import lotto.dto.LottoNumberDTO;
 
 public class GameController {
     private Pocket pocket;
@@ -17,6 +19,16 @@ public class GameController {
         this.printer = printer;
         this.discriminator = discriminator;
         this.lottoNumberGenerator = lottoNumberGenerator;
+    }
+
+    private void doGame() {
+        printer.countOfLotto(money / CommonUnits.MONEY_UNIT);
+        printer.allLotto(pocket.getLottos().stream().map(LottoNumberDTO::new)
+                .collect(Collectors.toList()));
+        discriminator.setCorrectNumbers(inputter.lottoNumbers().getLotto());
+        pocket.getLottos().stream().forEach(it -> discriminator.discriminate(it));
+        printer.statistic(discriminator.getStatistic());
+        printer.profitRate(discriminator.getProfitRate(money));
     }
 
     private void initGame() {

@@ -78,17 +78,17 @@ public class Application {
 
         ///
         List<Integer> winRecordBoard = new ArrayList<>();
-        Integer firstPlace = Integer.valueOf(0);
-        Integer secondPlace = Integer.valueOf(0);
-        Integer thirdPlace = Integer.valueOf(0);
-        Integer fourthPlace = Integer.valueOf(0);
-        Integer fifthPlace = Integer.valueOf(0);
+        Integer firstPlaceCount = Integer.valueOf(0);
+        Integer secondPlaceCount = Integer.valueOf(0);
+        Integer thirdPlaceCount = Integer.valueOf(0);
+        Integer fourthPlaceCount = Integer.valueOf(0);
+        Integer fifthPlaceCount = Integer.valueOf(0);
 
-        winRecordBoard.set(1, firstPlace);
-        winRecordBoard.set(2, secondPlace);
-        winRecordBoard.set(3, thirdPlace);
-        winRecordBoard.set(4, fourthPlace);
-        winRecordBoard.set(5, fifthPlace);
+        winRecordBoard.set(1, firstPlaceCount);
+        winRecordBoard.set(2, secondPlaceCount);
+        winRecordBoard.set(3, thirdPlaceCount);
+        winRecordBoard.set(4, fourthPlaceCount);
+        winRecordBoard.set(5, fifthPlaceCount);
 
         ///
 
@@ -101,21 +101,21 @@ public class Application {
             boolean matchedBonusNumber = (boolean) result.get(1);
 
             if (mainMatchNumber == 3) {
-                winRecordBoard.set(5, ++fifthPlace);
+                winRecordBoard.set(5, ++fifthPlaceCount);
             }
             if (mainMatchNumber == 4) {
-                winRecordBoard.set(4, ++fourthPlace);
+                winRecordBoard.set(4, ++fourthPlaceCount);
             }
             if (mainMatchNumber == 5 && !matchedBonusNumber) {
-                winRecordBoard.set(3, ++thirdPlace);
+                winRecordBoard.set(3, ++thirdPlaceCount);
             }
 
             if (mainMatchNumber == 5 && matchedBonusNumber) {
-                winRecordBoard.set(2, ++secondPlace);
+                winRecordBoard.set(2, ++secondPlaceCount);
             }
 
             if (mainMatchNumber == 6) {
-                winRecordBoard.set(1, ++firstPlace);
+                winRecordBoard.set(1, ++firstPlaceCount);
             }
 
         }

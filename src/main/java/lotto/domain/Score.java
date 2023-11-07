@@ -6,8 +6,18 @@ import java.util.Map;
 
 public class Score {
     private final Map<Result, Integer> score;
+    private final int totalProfit;
     public Score(WinningNumber winningNumber , Lotties lotties) {
         this.score = calculate(winningNumber,lotties);
+        this.totalProfit = profit(score);
+    }
+
+    private static int profit(Map<Result, Integer> score){
+        int totalProfit = 0;
+        for (Result result : score.keySet()) {
+            totalProfit += result.getWinnings() * score.get(result);
+        }
+        return totalProfit;
     }
 
     public static Map<Result,Integer> calculate(WinningNumber winningNumber, Lotties lotties) {
@@ -31,5 +41,9 @@ public class Score {
         }
         boolean isBonusMatched = numbers.contains(bonusNumber);
         return Result.find(matchCount, isBonusMatched);
+    }
+
+    public int getTotalProfit() {
+        return totalProfit;
     }
 }

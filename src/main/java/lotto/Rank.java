@@ -30,4 +30,9 @@ public enum Rank {
     public String getPrizeMoney() {
         return prizeMoney;
     }
+
+    public static boolean isFiveMatchBonusRank(Rank rank) {
+        return rank.getNumberOfMatch() == Rank.FIVE_MATCH_BONUS.getNumberOfMatch()
+                && rank.getBonus() == Rank.FIVE_MATCH_BONUS.getBonus();
+    }
 }

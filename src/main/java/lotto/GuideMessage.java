@@ -63,18 +63,13 @@ public class GuideMessage{
         System.out.println(DASH+DASH+DASH);
         for (Rank rank : Rank.values()) {
             Integer numberOfWinner = lottoResultWinners.getNumberOfWinner(rank);
-            if(isFiveMatchBonusRank(rank)){
+            if(Rank.isFiveMatchBonusRank(rank)){
                 printFiveMatchBonusResult(rank, numberOfWinner);
                 continue;
             }
             printLottoMatchResult(rank, numberOfWinner);
         }
         System.out.printf(GROSS_RETURN,earningRate);
-    }
-
-    private static boolean isFiveMatchBonusRank(Rank rank) {
-        return rank.getNumberOfMatch() == Rank.FIVE_MATCH_BONUS.getNumberOfMatch()
-                && rank.getBonus() == Rank.FIVE_MATCH_BONUS.getBonus();
     }
 
     private static void printFiveMatchBonusResult(Rank rank, Integer numberOfWinner){

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.IntFunction;
 import java.util.stream.IntStream;
 import lotto.Either;
-import lotto.Input.IssuedNumber;
+import lotto.Input.amount.IssuedNumber;
 import lotto.Lotto;
 
 public class IssuingContext {

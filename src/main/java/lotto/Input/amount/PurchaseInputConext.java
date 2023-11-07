@@ -1,6 +1,7 @@
-package lotto.Input;
+package lotto.Input.amount;
 
 import lotto.Either;
+import lotto.Input.amount.IssuedNumber;
 
 public class PurchaseInputConext {
 

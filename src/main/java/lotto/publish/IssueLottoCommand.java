@@ -1,6 +1,6 @@
 package lotto.publish;
 
-import lotto.Input.IssuedNumber;
+import lotto.Input.amount.IssuedNumber;
 
 public class IssueLottoCommand {
 

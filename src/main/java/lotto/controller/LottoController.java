@@ -27,9 +27,9 @@ public class LottoController {
 
         outputView.printLottos(userLottos, LottoShop.countLottoTicket(purchaseAmount));
 
-        Map<Rank, Integer> lottosRanks = getLottosRanks(winningNumbers, userLottos);
+        Map<Rank, Integer> ranksOfLottos = getRankOfLottos(winningNumbers, userLottos);
 
-        printResult(lottosRanks, purchaseAmount);
+        printResult(ranksOfLottos, purchaseAmount);
     }
 
     private List<Integer> getWinningLottoNumbers() {
@@ -83,7 +83,7 @@ public class LottoController {
         outputView.printRateOfReturn(LottoShop.countLottoTicket(purchaseAmount), LottosResult.calculateTotalPrize(lottosRanks));
     }
 
-    private Map<Rank, Integer> getLottosRanks(List<Integer> winningNumbers, List<Lotto> lottos) {
+    private Map<Rank, Integer> getRankOfLottos(List<Integer> winningNumbers, List<Lotto> lottos) {
         LottoManager lottoManager = generateLottoManager(winningNumbers, getBonusNumber());
         return lottoManager.calculateLottosRanks(lottos);
 

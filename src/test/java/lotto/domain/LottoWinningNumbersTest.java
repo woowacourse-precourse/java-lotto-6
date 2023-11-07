@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
+import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -49,6 +50,18 @@ public class LottoWinningNumbersTest {
 
         assertThat(bonusNumber.getNumber()).isEqualTo(number);
         assertThat(winningNumbersInfo.getWinningNumber()).isEqualTo(winningNumbers);
+    }
+
+    @Test
+    @DisplayName("당첨번호에 보너스번호와 중복된 번호가있으면 재입력을 한다.")
+    void createBonusNumberDuplicateWithWinningNumbers() {
+        consoleInput("1,2,3,4,5,6", "5" , "7");
+        LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
+        BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
+
+        int number = 7;
+
+        assertThat(bonusNumber.getNumber()).isEqualTo(number);
     }
 
     private void consoleInput(final String... args) {

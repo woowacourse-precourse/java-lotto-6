@@ -44,6 +44,7 @@ public class InputView {
             System.out.println(error.getMessage());
             inputWinningNumber();
         }
+        System.out.println();
     }
 
     public void inputBonusNumber() {
@@ -57,6 +58,7 @@ public class InputView {
             System.out.println(error.getMessage());
             inputBonusNumber();
         }
+        System.out.println();
     }
 
     private List<Integer> stringListToIntList(List<String> before) {

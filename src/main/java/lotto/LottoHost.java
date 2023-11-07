@@ -21,11 +21,6 @@ public class LottoHost {
 		return instance;
 	}
 
-	private LottoHost(Lotto winningNumberLotto, int bonusNumber) {
-		this.winningNumberLotto = winningNumberLotto;
-		this.bonusNumber = bonusNumber;
-	}
-
 	List<Integer> makeRandomLottoNumber() {
 		return Randoms.pickUniqueNumbersInRange(1, 45, 6);
 	}
@@ -49,7 +44,6 @@ public class LottoHost {
 				cnt += 11;
 			}
 		}
-
 		return cnt;
 	}
 
@@ -70,10 +64,6 @@ public class LottoHost {
 			return 0;
 		}
 		return 5;
-	}
-
-	Lotto getWinningNumberLotto() {
-		return this.winningNumberLotto;
 	}
 
 	void setWinningNumberLotto(Lotto winningNumberLotto) {

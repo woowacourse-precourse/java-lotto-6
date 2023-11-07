@@ -34,7 +34,6 @@ public class Lotto {
 
     @Override
     public String toString() {
-        // 출력 형식 구현
         List<String> convertList = new ArrayList<>();
         for(Integer i : numbers) {
             convertList.add(i.toString());
@@ -50,5 +49,4 @@ public class Lotto {
         return numbers;
     }
 
-    // TODO: 추가 기능 구현
 }

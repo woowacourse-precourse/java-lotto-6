@@ -1,6 +1,7 @@
-package domain;
+package service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import model.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;

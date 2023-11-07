@@ -1,6 +1,4 @@
-package domain;
-
-import domain.enums.LottoRank;
+package model;
 
 public class WinningLotto {
     private final Lotto winningNumbers;

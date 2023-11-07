@@ -1,6 +1,8 @@
-package domain;
+package model;
 
-import domain.enums.LottoRank;
+import model.Lotto;
+import model.WinningLotto;
+import model.LottoRank;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;

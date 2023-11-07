@@ -29,16 +29,15 @@ public class LottoService {
 	}
 
 	private List<Lotto> createLottos(int numbers) {
-		while(true) {
-			try {
-				return Stream.generate(Lotto::createLotto)
-					.limit(numbers)
-					.collect(Collectors.toList());
-			} catch(LottoException e) {
-				System.out.println(e.getMessage());
-				createLottos(numbers);
-			}
+		try {
+			return Stream.generate(Lotto::createLotto)
+				.limit(numbers)
+				.collect(Collectors.toList());
+		} catch(LottoException e) {
+			System.out.println(e.getMessage());
+			createLotto(numbers);
 		}
+		return null;
 	}
 
 	private String getWinningNumbers() {
@@ -52,6 +51,11 @@ public class LottoService {
 	}
 
 	private void setUpLottoWinningNumbers(String numbers, String bonus) {
-		lottoWinningNumbers = new LottoWinningNumbers(numbers, bonus);
+		try {
+			lottoWinningNumbers = new LottoWinningNumbers(numbers, bonus);
+		} catch(LottoException e) {
+			System.out.println(e.getMessage());
+			setWinningLotto();
+		}
 	}
 }

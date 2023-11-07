@@ -24,15 +24,12 @@ public class LottoAmountService {
 	}
 
 	private void setUpInputAmount(String input) {
-		while (true) {
-			try {
-				inputMoney = new InputMoney(input);
-				inputAmount = new InputAmount(inputMoney.getInputMoney());
-				break;
-			} catch(IllegalArgumentException e) {
-				System.out.println(e.getMessage());
-				getUserInputAmount();
-			}
+		try {
+			inputMoney = new InputMoney(input);
+			inputAmount = new InputAmount(inputMoney.getInputMoney());
+		} catch(IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			setLottoAmount();
 		}
 	}
 }

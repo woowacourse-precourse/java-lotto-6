@@ -6,9 +6,9 @@ import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
 public class LottoWinningProcess {
+    private static final String ERROR_PREFIX = "[ERROR] ";
+
     public LottoResult run(List<Lotto> lottos, WinningLotto winningLotto) {
-        //WinningLotto winningLotto = setUpWinningLotto();
-        //WinningLotto winningLotto = setUpWinningLotto(winningNumbers);
         List<Integer> counted = new ArrayList<>();
         List<Boolean> checked = new ArrayList<>();
 
@@ -41,14 +41,41 @@ public class LottoWinningProcess {
         return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
     }
 
+    public PurchaseMoney one() {
+        try {
+            return setUpPurchaseMoney();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+        }
+        return one();
+    }
+
     public WinningLotto setUpWinningLotto(Lotto winningNumbers) {
         //return new WinningLotto(setUpWinningNumbers(), setUpBonusNumber());
-        return new WinningLotto(winningNumbers,setUpBonusNumber());
+        return new WinningLotto(winningNumbers, setUpBonusNumber());
+    }
+
+    public WinningLotto three(Lotto winningNumber) {
+        try {
+            return setUpWinningLotto(winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+        }
+        return three(winningNumber);
     }
 
     public Lotto setUpWinningNumbers() {
         String winningNumbers = InputView.inputWinningNumbers();
         return new Lotto(Converter.convertWinningNumber(winningNumbers));
+    }
+
+    public Lotto two() {
+        try {
+            return setUpWinningNumbers();
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+        }
+        return two();
     }
 
     public int setUpBonusNumber() {

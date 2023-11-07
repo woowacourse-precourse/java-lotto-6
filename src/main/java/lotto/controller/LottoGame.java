@@ -15,6 +15,8 @@ import java.util.Map;
 
 public class LottoGame {
 
+    private final static int LOTTO_PRICE = 1000;
+
     private final InputSystem inputSystem = new InputSystem();
     private final PrintSystem printSystem = new PrintSystem();
     private final ValidateSystem validateSystem = new ValidateSystem();
@@ -56,9 +58,9 @@ public class LottoGame {
         validateSystem.validatePaymentAccount(paymentAccount);
 
         player.savePaymentAccount(paymentAccount);
-        printSystem.printResultNumOfLotto(paymentAccount/1000);
+        printSystem.printResultNumOfLotto(paymentAccount/LOTTO_PRICE);
 
-        return paymentAccount/1000;
+        return paymentAccount/LOTTO_PRICE;
     }
 
     private void saveGeneratedLottosAndPrint(int lottoCount){

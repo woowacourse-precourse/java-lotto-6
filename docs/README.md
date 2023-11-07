@@ -18,23 +18,31 @@
 
     ✏️ 기능7. 정답 조합에 포함되는 숫자의 개수를 반환한다. ➡ countMatchingNumber()
 
+    ✏️ 기능33. 로또가 가지고 있는 숫자 조합을 String으로 반환한다. ➡ getNumbers()
+
 <br>
 
 📕 service.LottoService :
 
-    ✏️ 기능8. 지정된 갯수만큼 로또를 발행하고 List 형태로 반환한다. ➡ generateLottoList() 
-    
-            ✏️ 기능9. 기능10 에서 생성된 숫자 조합으로 로또를 발행한다. ➡ issuingLotto() 
+    ✏️ 기능34. 로또 구매 결과에 대한 출력문을 작성한다. ➡ makePurchaseResultOutputStatement()
+
+        ✏️ 기능8. 지정된 갯수만큼 로또를 발행하고 List 형태로 반환한다. ➡ generateLottoList() 
         
+            ✏️ 기능9. 기능10 에서 생성된 숫자 조합으로 로또를 발행한다. ➡ generateLotto() 
+            
                 ✏️ 기능10. 로또를 발행하기 위한 6자리 숫자 조합을 생성한다. ➡ generateLottoCombination()
 
-    ✏️ 기능11. 로또 당첨 결과를 Map 형태로 반환한다. ➡ generateLottoWinningResult() 
+    ✏️ 기능35. 로또 당첨 결과에 대한 출력문을 작성한다. ➡ makeWinningResultOuputStatement()
+
+        ✏️ 기능11. 로또 당첨 결과를 Map 형태로 반환한다. ➡ makeWinningResult() 
+
+            ✏️ 기능36. 로또 결과 반환을 위한 Map을 초기화한다. ➡ ininWinningResult()
     
-        ✏️ 기능12. 로또 한 조합의 등수를 계산한다. ➡ calculateRanking()
+            ✏️ 기능12. 로또 한 조합의 등수를 계산한다. ➡ calculateRanking()
 
-    ✏️ 기능13. 수익률을 계산한다. ➡ calculteProfitRate()
+        ✏️ 기능13. 수익률을 계산한다. ➡ calculteProfitRate()
 
-        ✏️ 기능14. 수익률을 소수점 둘째 자리에서 반올림한다. ➡ roundToDecimalPlace(int location 2)
+            ✏️ 기능14. 수익률을 소수점 둘째 자리에서 반올림한다. ➡ roundToDecimalPlace(int location 2)
 
 <br>
 
@@ -50,7 +58,7 @@
         
         ✏️ 기능19. 검증을 통과하면 로또 구매 개수를 반환한다 ➡ 기본 메서드 사용
 
-    ✏️ 기능20. 로또 구매 개수만큼 로또를 구매하고 로또 구매 결과를 보여준다. ➡ showLottoIssuanceResult() 
+    ✏️ 기능20. 로또 구매 개수만큼 로또를 구매하고 로또 구매 결과를 보여준다. ➡ showPurchaseResult() 
 
     ✏️ 기능21. 로또 당첨 번호를 입력받는다. ➡ registerWinningLottoCombination() 
 

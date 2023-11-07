@@ -23,4 +23,8 @@ public class Player {
     public double calculateRateOfRevenue() {
         return (double) totalWinningAccount / (double) paymentAccount * PERCENT;
     }
+
+    public int getTotalWinningAccount() {
+        return totalWinningAccount;
+    }
 }

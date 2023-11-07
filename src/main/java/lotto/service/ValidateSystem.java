@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 public class ValidateSystem {
+
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
@@ -15,10 +16,13 @@ public class ValidateSystem {
     private static final String ERROR_MESSAGE_NUMBER_RANGE = "1~45사이의 숫자만 입력해주세요.";
     private static final String ERROR_MESSAGE_BONUS_NUMBER = "당첨번호와 중복됩니다.";
 
+
     public void validatePaymentAccount(int paymentAccount){
+
         if (paymentAccount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE_PREFIX + ERROR_MESSAGE_PAYMENT_ACCOUNT);
         }
+
     }
 
     public void validateWinningNumbers(List<Integer> winningNumbers){
@@ -41,9 +45,11 @@ public class ValidateSystem {
     }
 
     public void validateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
+
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ERROR_MESSAGE_PREFIX + ERROR_MESSAGE_BONUS_NUMBER);
         }
+
     }
 
 }

@@ -53,6 +53,10 @@ public class PrintSystem {
         System.out.println(PRINT_5_MATCH_AND_BONUS_MATCH_RESULT_MESSAGE + results.get(WinningResultType.WINNING_RESULT_5_MATCH_AND_BONUS_MATCH) + COUNT_UNIT);
         System.out.println(PRINT_6_MATCH_RESULT_MESSAGE + results.get(WinningResultType.WINNING_RESULT_6_MATCH) + COUNT_UNIT);
 
+        if(Double.isNaN(rateRevenue)){
+            rateRevenue = 0;
+        }
+
         System.out.println(PRINT_TOTAL_RATE_OF_REVENUE_FRONT + String.format("%.1f", rateRevenue) + PERCENT_UNIT + PRINT_TOTAL_RATE_OF_REVENUE_BACK);
     }
 

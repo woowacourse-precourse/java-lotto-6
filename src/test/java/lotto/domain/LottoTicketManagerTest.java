@@ -58,5 +58,24 @@ class LottoTicketManagerTest {
         );
     }
 
+    @ParameterizedTest
+    @MethodSource("bonusData")
+    @DisplayName("보너스 번호와 일치하는 로또 참,거짓 반환 테스트")
+    public void 보너스_번호_일치_확인(Lotto input, boolean expected) {
+        lottoTicketManager.getLuckyNumber(new Lotto(List.of(1, 3, 5, 7, 8, 11)));
+        lottoTicketManager.getBonusNumber(2);
+        Assertions.assertThat(lottoTicketManager.correctBonusNumber(input)).isEqualTo(expected);
+    }
 
+    static Stream<Arguments> bonusData() {
+        return Stream.of(
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), true),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 7)), true),
+                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 10, 11)), true),
+                Arguments.of(new Lotto(List.of(12, 27, 32, 4, 5, 6)), false),
+                Arguments.of(new Lotto(List.of(12, 32, 43, 24, 5, 6)), false),
+                Arguments.of(new Lotto(List.of(18, 21, 43, 24, 15, 2)), true),
+                Arguments.of(new Lotto(List.of(11, 12, 13, 14, 15, 16)), false)
+        );
+    }
 }

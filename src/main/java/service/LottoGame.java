@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static util.Validator.validateTicketPurchaseAmount;
+
 public class LottoGame {
     static final int TICKET_PRICE = 1000;
     static final int MIN_LOTTO_NUMBER = 1;
@@ -57,13 +59,5 @@ public class LottoGame {
         validateTicketPurchaseAmount(input);
 
         return Integer.parseInt(input);
-    }
-
-    private static void validateTicketPurchaseAmount(String input) {
-        if (!input.matches("\\d+")) {
-            throw new NumberFormatException("[ERROR] 잘못된 값을 입력했습니다.");
-        } else if (Integer.parseInt(input) % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해야 합니다.");
-        }
     }
 }

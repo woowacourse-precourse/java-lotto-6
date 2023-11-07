@@ -58,6 +58,9 @@ public enum WinningGrade {
 
     @Override
     public String toString() {
+        if (this == SECOND) {
+            return matchCount + "개 일치, 보너스 볼 일치 (" + convertToCommaPattern(prizeMoney) + "원) - ";
+        }
         return matchCount + "개 일치 (" + convertToCommaPattern(prizeMoney) + "원) - ";
     }
 

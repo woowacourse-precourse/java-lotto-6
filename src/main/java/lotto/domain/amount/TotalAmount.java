@@ -1,6 +1,6 @@
 package lotto.domain.amount;
 
-import lotto.domain.enums.LottoPrize;
+import lotto.domain.lotto.LottoPrize;
 
 public class TotalAmount extends Amount {
 
@@ -10,6 +10,10 @@ public class TotalAmount extends Amount {
 
     public static TotalAmount initial() {
         return new TotalAmount(0);
+    }
+
+    public static TotalAmount from(int amount) {
+        return new TotalAmount(amount);
     }
 
     public TotalAmount addLottoPrize(LottoPrize lottoPrize) {

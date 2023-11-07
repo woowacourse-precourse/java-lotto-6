@@ -8,13 +8,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class PurchaseAmountTest {
-    private final int INITIAL_PURCHASE_AMOUNT = 3000;
+
+    private final int INIT_PURCHASE_AMOUNT = 3000;
 
     private PurchaseAmount purchaseAmount;
 
     @BeforeEach
     void setup() {
-        purchaseAmount = PurchaseAmount.from(INITIAL_PURCHASE_AMOUNT);
+        purchaseAmount = PurchaseAmount.from(INIT_PURCHASE_AMOUNT);
     }
 
     @DisplayName("금액이 1000원으로 나누어 떨어지지 않는다면 예외를 발생한다.")
@@ -35,6 +36,7 @@ class PurchaseAmountTest {
     @Test
     void purchaseLottoDecreasesAmount() {
         purchaseAmount = purchaseAmount.subtractLottoCost();
-        assertThat(purchaseAmount.getAmount()).isEqualTo(INITIAL_PURCHASE_AMOUNT - LOTTO_COST_CRITERION);
+        assertThat(purchaseAmount).isEqualTo(
+            PurchaseAmount.from(INIT_PURCHASE_AMOUNT - LOTTO_COST_CRITERION));
     }
 }

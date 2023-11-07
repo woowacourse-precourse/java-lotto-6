@@ -22,14 +22,14 @@ class WinningLottoTest {
     @BeforeEach
     void setup() {
         winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        bonusNumber = new BonusNumber(7);
+        bonusNumber = BonusNumber.from(7);
         winningLotto = WinningLotto.of(winningNumbers, bonusNumber);
     }
 
     @DisplayName("당첨 번호와 보너스 번호가 중복된다면 예외를 발생한다.")
     @Test
     void createWinningLottoByDuplicatedBonusNumber() {
-        BonusNumber duplicatedBonusBonusNumber = new BonusNumber(6);
+        BonusNumber duplicatedBonusBonusNumber = BonusNumber.from(6);
         assertThatThrownBy(() -> WinningLotto.of(winningNumbers, duplicatedBonusBonusNumber))
             .isInstanceOf(IllegalArgumentException.class);
     }

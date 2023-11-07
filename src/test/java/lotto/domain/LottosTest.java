@@ -31,10 +31,10 @@ class LottosTest {
 
         TotalAmount totalPrize = lottos.accumulatePrize(winningLotto);
 
-        long expectedPrizeForOneLotto = LottoPrize.findLottoPrize(3, false).getPrizeAmount();
-        long expectedTotalPrize = expectedPrizeForOneLotto * lottos.count();
+        int expectedPrizeForOneLotto = LottoPrize.findLottoPrize(3, false).getPrizeAmount();
+        int expectedTotalPrize = expectedPrizeForOneLotto * lottos.count();
 
-        assertThat(totalPrize.getAmount()).isEqualTo(expectedTotalPrize);
+        assertThat(totalPrize).isEqualTo(TotalAmount.from(expectedTotalPrize));
     }
 
 }

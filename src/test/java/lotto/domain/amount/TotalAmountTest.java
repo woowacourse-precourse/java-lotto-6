@@ -2,7 +2,7 @@ package lotto.domain.amount;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.domain.enums.LottoPrize;
+import lotto.domain.lotto.LottoPrize;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 @DisplayName("TotalAmount 클래스")
 class TotalAmountTest {
 
+    private static final int INIT_TOTAL_AMOUNT_CRITERION = 0;
     private TotalAmount totalAmount;
 
     @BeforeEach
@@ -20,7 +21,7 @@ class TotalAmountTest {
     @DisplayName("총 금액의 초기 값은 0이다.")
     @Test
     void initialTotalAmountIsZero() {
-        assertEquals(0, totalAmount.getAmount());
+        assertEquals(TotalAmount.from(INIT_TOTAL_AMOUNT_CRITERION), totalAmount);
     }
 
     @DisplayName("로또 당첨금은 총 금액에 누적된다.")
@@ -30,6 +31,6 @@ class TotalAmountTest {
         totalAmount = totalAmount.addLottoPrize(LottoPrize.FOURTH);
 
         int expectedTotal = LottoPrize.FIFTH.getPrizeAmount() + LottoPrize.FOURTH.getPrizeAmount();
-        assertEquals(expectedTotal, totalAmount.getAmount()); // getAmount() 메서드를 통한 값 확인
+        assertEquals(totalAmount, TotalAmount.from(expectedTotal));
     }
 }

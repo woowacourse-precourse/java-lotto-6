@@ -18,28 +18,28 @@ public class InputView {
     }
 
     public String readPurchaseAmount() {
-        String input = Console.readLine();
+        String purchaseAmount = Console.readLine();
         try {
-            validate(input);
+            validate(purchaseAmount);
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
             return readPurchaseAmount();
         }
-        return input;
+        return purchaseAmount;
     }
 
-    private void validate(String input) {
-        if (isNotNaturalNumber(input) || isNotThousandUnit(input)) {
+    private void validate(String purchaseAmount) {
+        if (isNotNaturalNumber(purchaseAmount) || isNotThousandUnit(purchaseAmount)) {
             throw new IllegalArgumentException(Message.INVALID_PURCHASE_AMOUNT.getMessage());
         }
     }
 
-    private boolean isNotNaturalNumber(String input) {
-        return !input.matches(NATURAL_NUMBER_REGEX);
+    private boolean isNotNaturalNumber(String purchaseAmount) {
+        return !purchaseAmount.matches(NATURAL_NUMBER_REGEX);
     }
 
-    private boolean isNotThousandUnit(String input) {
-        return Integer.parseInt(input) % LOTTO_TICKET_PRICE != 0;
+    private boolean isNotThousandUnit(String purchaseAmount) {
+        return Integer.parseInt(purchaseAmount) % LOTTO_TICKET_PRICE != 0;
     }
 
     enum Message {

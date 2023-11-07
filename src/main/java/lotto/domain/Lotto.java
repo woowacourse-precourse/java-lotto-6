@@ -3,14 +3,17 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.domain.constant.ExceptionMessage.INVALID_RANGE_LOTTO_NUMBER;
+import static lotto.domain.constant.ExceptionMessage.*;
 import static lotto.domain.constant.RangeConstant.*;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        List<Integer> unmodifiableNumbers = Collections.unmodifiableList(numbers);
+        Collections.sort(numbers);
+        List<Integer> unmodifiableNumbers = Collections
+                .unmodifiableList(numbers);
+
         validate(unmodifiableNumbers);
 
         this.numbers = unmodifiableNumbers;
@@ -35,7 +38,7 @@ public class Lotto {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != SIZE_NUM.getNumber()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INPUT_LOTTO_SIZE.getErrorMessage());
         }
     }
 
@@ -43,7 +46,7 @@ public class Lotto {
         long count = numbers.stream().distinct().count();
 
         if (numbers.size() != count) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATE_LOTTO_NUMBER.getErrorMessage());
         }
     }
 

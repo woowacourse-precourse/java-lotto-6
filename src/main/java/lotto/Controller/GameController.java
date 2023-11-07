@@ -27,35 +27,39 @@ public class GameController {
         while (true) {
             try {
                 String winningNumberString = input.readWinningNumbers();
-                String[] winningNumberStringArray = winningNumberString.split(",");
                 List<Integer> winningNumbers = new ArrayList<>();
                 Set<Integer> uniqueNumbers = new HashSet<>();
-                int trigger = 1;
-                for (String number : winningNumberStringArray) {
-                    int num = Integer.parseInt(number);
-                    if (uniqueNumbers.contains(num)) {
-                        error.duplicate_winningNumber();
-                        trigger=0;
-                        continue;
-                    }
-                    if (num < 1 || num > 45) {
-                        error.not_valid_winningNumber();
-                        trigger=0;
-                        continue;
-                    }
-                    winningNumbers.add(num);
-                    uniqueNumbers.add(num);
-                }
-                if ( winningNumbers.size() == 6) {
+                int trigger = validateWinningNumbers(winningNumberString, winningNumbers, uniqueNumbers);
+
+                if (winningNumbers.size() == 6) {
                     return winningNumbers;
                 }
-                if (trigger == 1){
+                if (trigger == 1) {
                     error.not_valid_winningNumber();
                 }
             } catch (NumberFormatException e) {
                 error.NAN();
             }
         }
+    }
+
+    private int validateWinningNumbers(String winningNumberString, List<Integer> winningNumbers, Set<Integer> uniqueNumbers) {
+        int trigger = 1;
+        String[] winningNumberStringArray = winningNumberString.split(",");
+        for (String number : winningNumberStringArray) {
+            int num = Integer.parseInt(number);
+            if (uniqueNumbers.contains(num)) {
+                error.duplicate_winningNumber();
+                trigger = 0;
+            } else if (num < 1 || num > 45) {
+                error.not_valid_winningNumber();
+                trigger = 0;
+            } else {
+                winningNumbers.add(num);
+                uniqueNumbers.add(num);
+            }
+        }
+        return trigger;
     }
 
     private int readPurchaseAmount(){

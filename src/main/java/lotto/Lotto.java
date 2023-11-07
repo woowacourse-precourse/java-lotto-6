@@ -1,20 +1,28 @@
 package lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
+
+    private static final int LOTTO_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSize(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+    private void validateSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
+    private void validateDuplication(List<Integer> numbers) {
+        List<Integer> distictNumbers = numbers.stream().distinct().collect(Collectors.toList());
+        if(distictNumbers.size() != numbers.size()) throw new IllegalArgumentException();
+    }
 }

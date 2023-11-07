@@ -1,5 +1,7 @@
 package lotto.service;
 
+import lotto.constants.Prize;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
@@ -35,5 +37,57 @@ public class LottoServiceTest {
         List<Integer> testList = Arrays.asList(3, 2, 1, 4, 6, 5);
         List<Integer> expectedResult = Arrays.asList(1, 2, 3, 4, 5, 6);
         assertThat(lottoService.sortNumbersByAsc(testList)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 추첨 결과 테스트 - 0~2개 번호 일치 데이터 - 성공")
+    @Test
+    void calculateWinningResultFailTest() {
+        Lottos testLottos = new Lottos();
+        testLottos.addLotto(new Lotto(Arrays.asList(1, 2, 10, 11, 12, 13)));
+        testLottos.addLotto(new Lotto(Arrays.asList(1, 10, 11, 12, 13, 14)));
+        testLottos.addLotto(new Lotto(Arrays.asList(10, 11, 12, 13, 14, 15)));
+        Lotto answerLotto = new Lotto(Arrays.asList(1, 2, 3, 41, 42, 43));
+        BonusNumber bonusNumber = new BonusNumber(45);
+        List<Integer> expectedResult = Arrays.asList(1, 1, 1, 0, 0, 0, 0, 0);
+
+        assertThat(lottoService.calculateWinningResult(testLottos, answerLotto, bonusNumber)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 추첨 결과 테스트 - 3~4개 번호 일치 데이터 - 성공")
+    @Test
+    void calculateWinningResult4th5thTest() {
+        Lottos testLottos = new Lottos();
+        testLottos.addLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 10, 11)));
+        testLottos.addLotto(new Lotto(Arrays.asList(1, 2, 3, 10, 11, 12)));
+        Lotto answerLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 42, 43));
+        BonusNumber bonusNumber = new BonusNumber(45);
+        List<Integer> expectedResult = Arrays.asList(0, 0, 0, 1, 1, 0, 0, 0);
+
+        assertThat(lottoService.calculateWinningResult(testLottos, answerLotto, bonusNumber)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 추첨 결과 테스트 - 5개/5개+보너스 번호 일치 데이터 - 성공")
+    @Test
+    void calculateWinning2nd3rdResultTest() {
+        Lottos testLottos = new Lottos();
+        testLottos.addLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 11)));
+        testLottos.addLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 45)));
+        Lotto answerLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 43));
+        BonusNumber bonusNumber = new BonusNumber(45);
+        List<Integer> expectedResult = Arrays.asList(0, 0, 0, 0, 0, 1, 0, 1);
+
+        assertThat(lottoService.calculateWinningResult(testLottos, answerLotto, bonusNumber)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 추첨 결과 테스트 - 6개 번호 일치 데이터 - 성공")
+    @Test
+    void calculateWinning1stResultTest() {
+        Lottos testLottos = new Lottos();
+        testLottos.addLotto(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 43)));
+        Lotto answerLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 43));
+        BonusNumber bonusNumber = new BonusNumber(45);
+        List<Integer> expectedResult = Arrays.asList(0, 0, 0, 0, 0, 0, 1, 0);
+
+        assertThat(lottoService.calculateWinningResult(testLottos, answerLotto, bonusNumber)).isEqualTo(expectedResult);
     }
 }

@@ -23,7 +23,7 @@ public class LottoController {
         LottoTicket lottoTicket = createLottosTicket();
         LottoGame lottoGame = initializeLottoGame();
         Map<WinningRank, Integer> rankResult = lottoGame.calculateRanking(lottoTicket);
-        BigDecimal resultRate = lottoGame.calculateRewardRate(lottoTicket);
+        BigDecimal resultRate = lottoGame.calculateResultRate(lottoTicket);
         outputView.printGameResult(rankResult, resultRate);
     }
 
@@ -40,7 +40,7 @@ public class LottoController {
 
     private LottoGame initializeLottoGame() {
         Lotto lotto = inputLottoNumbers();
-        BonusNumber bonusNumber = getBonusNumber(lotto);
+        BonusNumber bonusNumber = getCleanBonusNumber(lotto);
 
         return LottoGame.by(lotto, bonusNumber);
     }
@@ -54,14 +54,14 @@ public class LottoController {
         }
     }
 
-    private BonusNumber getBonusNumber(Lotto lotto) {
+    private BonusNumber getCleanBonusNumber(Lotto lotto) {
         try {
             BonusNumber bonusNumber = new BonusNumber(inputView.inputBonusNumber());
             lotto.containsBonus(bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException exception) {
             inputView.printExceptionMessage(exception);
-            return getBonusNumber(lotto);
+            return getCleanBonusNumber(lotto);
         }
     }
 }

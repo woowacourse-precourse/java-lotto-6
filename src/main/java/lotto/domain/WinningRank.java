@@ -26,7 +26,7 @@ public enum WinningRank {
         return Arrays.stream(WinningRank.values())
                 .filter(rank -> rank.match == match)
                 .filter(rank -> rank.hasBonusNumber == hasBonusNumber)
-                .findAny()
+                .findFirst()
                 .orElse(NONE);
     }
 

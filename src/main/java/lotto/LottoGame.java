@@ -150,7 +150,7 @@ public class LottoGame {
         int totalPrize = stats.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
                 .sum();
-        int totalSpent = numberOfLottos * 1000; // Total amount spent
+        int totalSpent = numberOfLottos * 1000;
 
         double totalProfit = (totalPrize - totalSpent) * 100.0 / totalSpent;
         return 100.0 + totalProfit;

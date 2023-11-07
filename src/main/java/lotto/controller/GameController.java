@@ -75,5 +75,6 @@ public class GameController {
         lottoStatistics = new LottoStatistics(lottosPurchased, winningLotto, lottoBonus, amount);
 
         outputView.printRankCounts(lottoStatistics.getRankCounter());
+        outputView.printWinningRate(lottoStatistics.getWinningRate());
     }
 }

@@ -4,8 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lotto.exception.CustomIllegalArgumentException;
 import lotto.exception.ErrorCode;
-import lotto.exception.LottoGameException;
 
 public class InputView {
     public static int readPurchaseAmount() {
@@ -27,7 +27,7 @@ public class InputView {
         try {
             return Integer.parseInt(inputPurchaseAmount);
         } catch (NumberFormatException exception) {
-            throw new LottoGameException(ErrorCode.NON_INT_PURCHASE_AMOUNT);
+            throw new CustomIllegalArgumentException(ErrorCode.INPUT_NON_INT_PURCHASE_AMOUNT);
         }
     }
 
@@ -37,7 +37,7 @@ public class InputView {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException exception) {
-            throw new LottoGameException(ErrorCode.NON_INT_MAIN_WINNING_NUMBERS);
+            throw new CustomIllegalArgumentException(ErrorCode.INPUT_NON_INT_MAIN_WINNING_NUMBERS);
         }
     }
 
@@ -45,7 +45,7 @@ public class InputView {
         try {
             return Integer.parseInt(inputBonusNumber);
         } catch (NumberFormatException exception) {
-            throw new LottoGameException(ErrorCode.NON_INT_BONUS_NUMBER);
+            throw new CustomIllegalArgumentException(ErrorCode.INPUT_NON_INT_BONUS_NUMBER);
         }
     }
 }

@@ -28,11 +28,11 @@ public class WinningResult {
         List<Lotto> purchasedLottos = lottos.getLottos();
         for (Lotto lotto : purchasedLottos) {
             WinningStandard ranking = WinningStandard.checkMatchNumbers(lotto, winningLotto);
-            addResult(ranking, ADD_COUNT);
+            addResult(ranking);
         }
     }
 
-    private void addResult(WinningStandard standard, int count) {
-        winningResult.put(standard, winningResult.get(standard) + count);
+    private void addResult(WinningStandard standard) {
+        winningResult.put(standard, winningResult.get(standard) + ADD_COUNT);
     }
 }

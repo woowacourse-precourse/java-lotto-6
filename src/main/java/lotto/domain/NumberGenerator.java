@@ -8,7 +8,7 @@ import java.util.List;
 
 public class NumberGenerator {
     // TODO: 랜덤 숫자를 생성하고 중복 여부 확인하는 클래스
-    public List<Integer> createRandomNumbers() {
+    public List<Integer> publish() {
         return Randoms.pickUniqueNumbersInRange(
                 RANDOM_RANGE_MIN_NUMBER.getValue(),
                 RANDOM_RANGE_MAX_NUMBER.getValue(),

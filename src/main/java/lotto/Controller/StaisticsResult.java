@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import static lotto.Constants.COUNT_MIN;
 import static lotto.MatchNums.*;
 
 import java.util.HashMap;
@@ -8,7 +9,6 @@ import lotto.Model.Lotto;
 import lotto.View.OutputView;
 
 public class StaisticsResult {
-    private static final int COUNT_MIN = 3;
     private HashMap<Integer, Integer> countMap = new HashMap<>();
 
     public StaisticsResult(){
@@ -26,7 +26,7 @@ public class StaisticsResult {
                 continue;
             }
             int cnt = calculate.getMatchCount(nums.getNumbers(), winningNums);
-            if (cnt >= COUNT_MIN){
+            if (cnt >= COUNT_MIN.getNum()){
                 countMap.put(cnt, countMap.get(cnt)+1);
             }
         }

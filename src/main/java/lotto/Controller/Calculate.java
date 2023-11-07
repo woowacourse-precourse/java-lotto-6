@@ -1,14 +1,15 @@
 package lotto.Controller;
 
+import static lotto.Constants.DIVIDED;
 import static lotto.MatchNums.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import lotto.Constants;
 
 public class Calculate {
     private static final double POINT = 10.0;
-    private static final int DIVIDED = 1000;
 
     public int getMatchCount(List<Integer> generatedNums, List<Integer> inputNums){
         return (int)generatedNums.stream().filter(o -> inputNums.stream().anyMatch(Predicate.isEqual(o))).count();
@@ -46,6 +47,6 @@ public class Calculate {
     }
 
     public int getLottoCount(int cost){
-        return cost/DIVIDED;
+        return cost/DIVIDED.getNum();
     }
 }

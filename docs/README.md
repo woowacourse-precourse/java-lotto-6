@@ -67,6 +67,8 @@
 - [ ]  변수 이름에 자료형을 사용하지 않았는가
       - [x] Calculate class
       - [x] ValidateInput class
+      - [x] Exceptable class
+      - [x] Constants enum class
 - [ ]  기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항 항목 잘 지켰는가
 - [ ]  [README.md](http://README.md)
      - [ ]  해당 프로젝트가 어떤 프로젝트인지, 어떤 기능을 담고 있는지 나타냈는가

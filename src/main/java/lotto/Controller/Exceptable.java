@@ -1,15 +1,15 @@
 package lotto.Controller;
 
 import static java.lang.Integer.parseInt;
+import static lotto.Constants.*;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class Exceptable {
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
-    private static final int COUNT = 6;
+
+
     public void validateSpace(String input){
         if (input.length() != input.replace(" ", "").length()){
             throw new IllegalArgumentException("[ERROR] 숫자 중간에 공백이 입력되었습니다. 다시 입력해주세요.");
@@ -44,7 +44,7 @@ public class Exceptable {
     }
 
     public void validate1to45(int num){
-        if (num < START_INCLUSIVE || num > END_INCLUSIVE){
+        if (num < START_INCLUSIVE.getNum() || num > END_INCLUSIVE.getNum()){
             throw new IllegalArgumentException("[ERROR] 로또 번호의 숫자 범위는 1~45사이 입니다. 다시 입력해주세요.");
         }
     }
@@ -63,7 +63,7 @@ public class Exceptable {
     }
 
     public void validate6Nums(List<Integer> numbers){
-        if (numbers.size() != COUNT) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT.getNum()) {
             throw new IllegalArgumentException("[ERROR] 6개의 숫자가 아닙니다. 다시 입력해주세요.");
         }
     }

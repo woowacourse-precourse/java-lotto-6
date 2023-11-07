@@ -1,0 +1,61 @@
+package lotto.domain;
+
+import java.util.HashSet;
+import java.util.List;
+import lotto.exception.lotto.LottoNumberDuplicatedException;
+import lotto.exception.lotto.LottoNumberSizeException;
+
+public class Lotto {
+
+    public static final int REQUIRED_LOTTO_NUMBER_SIZE = 6;
+
+    private final List<LottoNumber> numbers;
+
+    public Lotto(List<LottoNumber> numbers) {
+        validate(numbers);
+        this.numbers = numbers;
+    }
+
+    public static Lotto from(List<Integer> numbers) {
+        return new Lotto(mapToLottoNumber(numbers));
+    }
+
+    private static List<LottoNumber> mapToLottoNumber(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::getInstance)
+                .sorted()
+                .toList();
+    }
+
+    private void validate(List<LottoNumber> numbers) {
+        validateSize(numbers);
+        validateDuplication(numbers);
+    }
+
+    private void validateSize(List<LottoNumber> numbers) {
+        if (numbers.size() != REQUIRED_LOTTO_NUMBER_SIZE) {
+            throw new LottoNumberSizeException(numbers);
+        }
+    }
+
+    private void validateDuplication(List<LottoNumber> numbers) {
+        if (new HashSet<>(numbers).size() != numbers.size()) {
+            throw new LottoNumberDuplicatedException(numbers);
+        }
+    }
+
+    public boolean contains(LottoNumber number) {
+        return numbers.contains(number);
+    }
+
+    public int countMatchedNumber(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
+    public String toString() {
+        return numbers.toString();
+    }
+
+}

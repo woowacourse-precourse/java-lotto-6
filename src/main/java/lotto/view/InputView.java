@@ -1,11 +1,27 @@
 package lotto.view;
 
+import lotto.utility.enums.Messages;
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static lotto.utility.enums.Messages.*;
+import static lotto.utility.Validation.vaildatePurchaseAmount;
 
 public class InputView {
-    public void readUserLottoPurchaseAmount(){
-        System.out.println(INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE);
-        readLine();
+    private OutputView outputView;
+    public InputView(){
+        outputView = new OutputView();
+    }
+
+    public void readUserLottoPurchaseAmount() {
+        boolean isValidInput = false;
+
+        System.out.println(Messages.INPUT_LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage());
+        do{
+            try {
+                vaildatePurchaseAmount(readLine());
+                isValidInput = true;
+            }catch (IllegalArgumentException | IllegalStateException e){
+                ExceptionView.printExceptionMessage(e.getMessage());
+            }
+        }while (!isValidInput);
     }
 }

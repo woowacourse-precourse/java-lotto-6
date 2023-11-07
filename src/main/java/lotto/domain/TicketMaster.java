@@ -3,16 +3,16 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
-import static lotto.domain.Lotto.LOTTO_MIN_NUMBER;
-import static lotto.domain.Lotto.LOTTO_MAX_NUMBER;
-import static lotto.domain.Lotto.LOTTO_SIZE;
-
 public class TicketMaster {
     Lotto winningNum;
     int bonusNum;
 
     public Lotto makeTicket() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE);
+        List<Integer> numbers =
+                Randoms.pickUniqueNumbersInRange(
+                        LottoRole.LOTTO_MIN_NUMBER.getNumber(),
+                        LottoRole.LOTTO_MAX_NUMBER.getNumber(),
+                        LottoRole.LOTTO_SIZE.getNumber());
         return new Lotto(numbers);
     }
 

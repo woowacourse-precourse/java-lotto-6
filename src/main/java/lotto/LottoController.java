@@ -1,22 +1,17 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Customer;
-import lotto.domain.Lotto;
-import lotto.domain.TicketMaster;
+import lotto.domain.*;
 import lotto.view.InputMaker;
 import lotto.view.OutputMaker;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static lotto.domain.Lotto.LOTTO_PRICE;
 
 public class LottoController {
-    static TicketMaster ticketMaster;
-    static InputMaker inputMaker;
-    static OutputMaker outputMaker;
-    static Customer cs;
+    private TicketMaster ticketMaster;
+    private InputMaker inputMaker;
+    private OutputMaker outputMaker;
+    private Customer cs;
+    private Analyst analyst;
 
     LottoController() {
         this.ticketMaster = new TicketMaster();
@@ -25,16 +20,24 @@ public class LottoController {
     }
 
     public void insertCoin() {
-        System.out.println("구입금액을 입력해 주세요.");
-        int coin = inputMaker.inputNum(Console.readLine());
-        this.cs = new Customer(coin);
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            String inputText = Console.readLine();
+            int coin = inputMaker.inputNum(inputText);
+            inputMaker.inputCoinValidate(coin);
+            this.cs = new Customer(coin);
+        } catch (IllegalArgumentException e) {
+            System.err.println("[ERROR] 유효한 숫자를 입력해주세요.");
+        }
     }
 
     public void buyLotto() {
+        int lottoSize = cs.getWallet();
+        System.out.println(lottoSize/1000+"개를 구매했습니다.");
         while(cs.getWallet()!=0) {
             Lotto newLotto = ticketMaster.makeTicket();
             System.out.println(outputMaker.printLotto(newLotto));
-            cs.pay(LOTTO_PRICE);
+            cs.pay(LottoRole.LOTTO_PRICE.getNumber());
             cs.addCustomerLotto(newLotto);
         }
     }
@@ -51,15 +54,14 @@ public class LottoController {
     }
 
     public void resultLotto() {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        List<Integer> result = new ArrayList<>();
         int ticketSize = cs.getHasTicket();
+        this.analyst = new Analyst(ticketSize);
         for (int i = 0; i < ticketSize; i++) {
-            result.add(ticketMaster.checkLotto(cs.getCustomerLotto(i)));
+            Lotto thisLotto = cs.getCustomerLotto(i);
+            int winningCount = ticketMaster.checkLotto(thisLotto);
+            boolean bonusCount = ticketMaster.checkLottoBonus(thisLotto);
+            analyst.addLottoResult(winningCount,bonusCount);
         }
-        for (int i = 0; i < ticketSize; i++) {
-            System.out.println(result.get(i));
-        }
+        System.out.println(outputMaker.printResult(analyst.revenueLotto()));
     }
 }

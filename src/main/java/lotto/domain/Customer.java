@@ -9,7 +9,6 @@ public class Customer {
     private int hasTicket;
 
     public Customer(int coin) {
-        validateCoin(coin);
         this.wallet = coin;
         this.customerLotto = new ArrayList<>();
         this.hasTicket = 0;
@@ -22,12 +21,6 @@ public class Customer {
 
     public void pay(int price) {
         this.wallet -= price;
-    }
-
-    private void validateCoin(int coin) {
-        if (coin % 1000 != 0) {
-            throw new IllegalArgumentException("구입금액은 1000단위만 허용합니다.");
-        }
     }
 
     public int getWallet() {

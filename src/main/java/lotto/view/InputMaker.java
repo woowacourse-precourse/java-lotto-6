@@ -7,10 +7,16 @@ public class InputMaker {
 
     public int inputNum(String userInput) {
         try {
-            int coin = Integer.parseInt(userInput);
-            return coin;
-        } catch (Exception e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            return Integer.parseInt(userInput.trim());
+        } catch (NumberFormatException e) {
+            System.err.println("[ERROR] 유효하지 않은 숫자입니다.");
+            return -1;
+        }
+    }
+
+    public void inputCoinValidate(int coin) {
+        if (coin % 1000 != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000단위만 허용합니다.");
         }
     }
 
@@ -18,7 +24,7 @@ public class InputMaker {
         List<Integer> result = new ArrayList<>();
         String[] inputNumber = userInput.split(",");
         for (int i = 0; i < inputNumber.length; i++) {
-            result.add(inputNum(inputNumber[i]));
+            result.add(inputNum(inputNumber[i].trim()));
         }
         return result;
     }

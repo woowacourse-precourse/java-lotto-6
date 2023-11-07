@@ -10,7 +10,7 @@ import java.util.List;
 
 class OutputMakerTest {
 
-    @DisplayName("로또 출력 서식에 맞춰 출력한다.")
+    @DisplayName("로또 출력 서식")
     @Test
     void 로또결과출력_TEST() {
         OutputMaker om = new OutputMaker();

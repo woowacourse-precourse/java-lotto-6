@@ -8,12 +8,22 @@ public enum LottoRank {
     RANK5(5000);
 
     private final int prize;
+    private int count;
 
     LottoRank(int prize) {
         this.prize = prize;
+        this.count = 0;
+    }
+
+    public void increaseCount() {
+        count++;
     }
 
     public int getPrize() {
         return prize;
+    }
+
+    public int getCount() {
+        return count;
     }
 }

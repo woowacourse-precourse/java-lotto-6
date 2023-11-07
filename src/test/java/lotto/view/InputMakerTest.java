@@ -23,8 +23,9 @@ class InputMakerTest {
     void inputNum_TEST() {
         assertThat(inputMaker.inputNum("123"))
                 .isEqualTo(123);
-        assertThatThrownBy(()->inputMaker.inputNum("q"))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(()->inputMaker.inputNum("123q"))
+                .isInstanceOf(Exception.class)
+                .hasMessageContaining("[ERROR]");
     }
 
     @DisplayName(",로 입력을 구분하여 숫자로 받는 기능")

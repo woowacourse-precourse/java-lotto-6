@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class LottoResult {
@@ -15,11 +16,9 @@ public class LottoResult {
     }
 
     private double calEarnings() {
-        double earnings = 0;
-        for (Rank rank : Rank.values()) {
-            earnings += (rankResult.get(rank) * rank.getPrize());
-        }
-        return earnings;
+        return Arrays.stream(Rank.values())
+                .mapToInt(rank -> rankResult.get(rank) * rank.getPrize())
+                .sum();
     }
 
     public double calEarningRate(int cost) {

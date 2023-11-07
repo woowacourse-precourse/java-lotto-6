@@ -29,10 +29,10 @@ public class OutputView {
 
     public void showLottoStatistics(Lottos lottos, User user, Money money) {
         LottoResult lottoResult = new LottoResult(lottos, user);
-        for (Rank rank : Rank.values()) {
-            System.out.println(getLottoStatistics(lottoResult, rank));
-        }
         System.out.println(STAT_MESSAGE);
+        Arrays.stream(Rank.values())
+                .filter(rank -> !rank.equals(Rank.ECT))
+                .forEach(rank -> System.out.println(getLottoStatistics(lottoResult, rank)));
         printEarningRate(lottoResult.calEarningRate(money.getMoney()));
     }
 
@@ -50,9 +50,7 @@ public class OutputView {
     }
 
     private void printLottos(Lottos lottos) {
-        for (Lotto lotto: lottos.getLottos()) {
-            System.out.println(lotto.getNumbers());
-        }
+        lottos.getLottos().forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
     private void printLine() {

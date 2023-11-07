@@ -13,4 +13,20 @@ public record WinningTicket(Lotto winningLotto, LottoNumber bonusNumber) {
             throw new IllegalArgumentException(DUPLICATE_WINNING_NUMBER.getMessage());
         }
     }
+
+    public MatchResult match(Lotto lotto) {
+        int matchCount = getMatchCount(lotto);
+        boolean hasBonus = getHasBonus(lotto);
+        return new MatchResult(matchCount, hasBonus);
+    }
+
+    private int getMatchCount(Lotto lotto) {
+        return (int) lotto.getNumbers().stream()
+                .filter(winningLotto::has)
+                .count();
+    }
+
+    private boolean getHasBonus(Lotto lotto) {
+        return lotto.has(bonusNumber);
+    }
 }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 import org.assertj.core.api.Assertions;
@@ -37,8 +38,41 @@ class WinningTicketTest {
 
         WinningTicket winningTicket = new WinningTicket(winningLotto, bonusNumber);
 
-
-        assertThat(winningTicket.winningLotto()).isEqualTo(new Lotto(List.of(1,2,3,4,5,6)));
+        assertThat(winningTicket.winningLotto()).isEqualTo(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         assertThat(winningTicket.bonusNumber()).isEqualTo(new LottoNumber(7));
+    }
+
+    @DisplayName("로또의 번호가 몇 개 일치하는지 알 수 있다.")
+    @ParameterizedTest
+    @MethodSource
+    void match(WinningTicket winningTicket, Lotto lotto, MatchResult expected) {
+        MatchResult actual = winningTicket.match(lotto);
+
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> match() {
+        return Stream.of(
+                Arguments.of(
+                        createWinningTicket(7, 1, 2, 3, 4, 5, 6),
+                        new Lotto(List.of(6, 5, 4, 3, 2, 1)),
+                        new MatchResult(6, false)),
+                Arguments.of(
+                        createWinningTicket(7, 1, 2, 3, 4, 5, 6),
+                        new Lotto(List.of(1, 2, 3, 4, 5, 45)),
+                        new MatchResult(5, false)),
+                Arguments.of(
+                        createWinningTicket(7, 1, 2, 3, 4, 5, 6),
+                        new Lotto(List.of(7, 8, 9, 10, 11, 12)),
+                        new MatchResult(0, true))
+        );
+    }
+
+    private static WinningTicket createWinningTicket(int bonus, Integer... nums) {
+        return new WinningTicket(createLotto(nums), new LottoNumber(bonus));
+    }
+
+    private static Lotto createLotto(Integer... nums) {
+        return new Lotto(Arrays.asList(nums));
     }
 }

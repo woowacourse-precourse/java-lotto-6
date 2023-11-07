@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
@@ -15,28 +14,28 @@ class RankTest {
     @DisplayName("당첨 번호와 로또로 등수를 계산할 수 있다")
     @ParameterizedTest
     @MethodSource
-    void getRankByLottoAndWinningNumber(Lotto lotto, WinningTicket winningTicket, Rank expected) {
+    void getRankByLottoAndWinningNumber(int matchCount, boolean hasBonus, Rank expected) {
 
-        Rank actual = Rank.of(lotto, winningTicket);
+        Rank actual = Rank.of(new MatchResult(matchCount, hasBonus));
 
         assertThat(actual).isEqualTo(expected);
     }
 
     public static Stream<Arguments> getRankByLottoAndWinningNumber() {
         return Stream.of(
-                Arguments.of(createLotto(1, 2, 3, 4, 5, 6), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.FIRST),
-                Arguments.of(createLotto(1, 2, 3, 4, 5, 7), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.SECOND),
-                Arguments.of(createLotto(1, 2, 3, 4, 5, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.THIRD),
-                Arguments.of(createLotto(1, 2, 3, 4, 7, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.FOURTH),
-                Arguments.of(createLotto(1, 2, 3, 4, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.FOURTH),
-                Arguments.of(createLotto(1, 2, 3, 7, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.FIFTH),
-                Arguments.of(createLotto(1, 2, 3, 43, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.FIFTH),
-                Arguments.of(createLotto(1, 2, 42, 43, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.NONE),
-                Arguments.of(createLotto(1, 2, 7, 43, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.NONE),
-                Arguments.of(createLotto(1, 41, 42, 43, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.NONE),
-                Arguments.of(createLotto(1, 7, 42, 43, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.NONE),
-                Arguments.of(createLotto(40, 41, 42, 43, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.NONE),
-                Arguments.of(createLotto(7, 41, 42, 43, 44, 45), createWinningNumber(7, 1, 2, 3, 4, 5, 6), Rank.NONE)
+                Arguments.of(6, false, Rank.FIRST),
+                Arguments.of(5, true, Rank.SECOND),
+                Arguments.of(5, false, Rank.THIRD),
+                Arguments.of(4, true, Rank.FOURTH),
+                Arguments.of(4, false, Rank.FOURTH),
+                Arguments.of(3, true, Rank.FIFTH),
+                Arguments.of(3, false, Rank.FIFTH),
+                Arguments.of(2, true, Rank.NONE),
+                Arguments.of(2, false, Rank.NONE),
+                Arguments.of(1, true, Rank.NONE),
+                Arguments.of(1, false, Rank.NONE),
+                Arguments.of(0, true, Rank.NONE),
+                Arguments.of(0, false, Rank.NONE)
         );
     }
 
@@ -57,14 +56,6 @@ class RankTest {
                 Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH), 5000L + 5000L),
                 Arguments.of(createRankToCount(Rank.FIFTH, Rank.FIFTH, Rank.FIRST), 2_000_000_000L + 5000L + 5000L)
         );
-    }
-
-    private static Lotto createLotto(Integer... nums) {
-        return new Lotto(Arrays.asList(nums));
-    }
-
-    private static WinningTicket createWinningNumber(int bonusNumber, Integer... nums) {
-        return new WinningTicket(createLotto(nums), new LottoNumber(bonusNumber));
     }
 
     private static EnumMap<Rank, Integer> createRankToCount(Rank... ranks) {

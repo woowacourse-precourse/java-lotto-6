@@ -9,7 +9,6 @@ import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
@@ -61,23 +60,6 @@ class LottoTest {
         return Stream.of(
                 List.of(1, 2, 3, 4, 5, 6),
                 List.of(40, 41, 42, 43, 44, 45)
-        );
-    }
-
-    @DisplayName("두 로또의 번호가 몇 개 일치하는지 알 수 있다.")
-    @ParameterizedTest
-    @MethodSource
-    void match(Lotto lotto1, Lotto lotto2, int expected) {
-        int actual = lotto1.match(lotto2);
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    private static Stream<Arguments> match() {
-        return Stream.of(
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(6, 5, 4, 3, 2, 1)), 6),
-                Arguments.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(1, 2, 3, 4, 5, 45)), 5),
-                Arguments.of(new Lotto(List.of(6, 5, 4, 3, 2, 1)), new Lotto(List.of(7, 8, 9, 10, 11, 12)), 0)
         );
     }
 }

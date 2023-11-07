@@ -43,19 +43,8 @@ public class Lotto {
         }
     }
 
-    public int match(Lotto lotto) {
-        int matchCount = 0;
-        for (LottoNumber number : lotto.numbers) {
-            if (numbers.contains(number)) {
-                matchCount++;
-            }
-        }
-        return matchCount;
-    }
-
     public boolean has(LottoNumber bonusNumber) {
-        return numbers.stream()
-                .anyMatch(number -> number.equals(bonusNumber));
+        return numbers.contains(bonusNumber);
     }
 
     public List<LottoNumber> getNumbers() {

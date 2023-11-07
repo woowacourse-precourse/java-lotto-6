@@ -11,7 +11,8 @@ public record LottoTickets(List<Lotto> lottos, PurchaseAmount purchaseAmount) {
         EnumMap<Rank, Integer> rankResult = initRankResult();
 
         lottos.stream()
-                .map(lotto -> Rank.of(lotto, winningTicket))
+                .map(winningTicket::match)
+                .map(Rank::of)
                 .filter(rank -> rank != Rank.NONE)
                 .forEach(rank -> rankResult.put(rank, rankResult.get(rank) + 1));
 

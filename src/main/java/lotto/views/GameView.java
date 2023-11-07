@@ -8,12 +8,12 @@ public class GameView {
         outputView = new OutputView();
     }
 
-    public String purchaseAmountView(){
+    public int purchaseAmountView(){
         outputView.printGetPurchaseAmount();
         while(true){
             try{
                 String input = inputView.readPurchaseAmount();
-                return input;
+                return Integer.parseInt(input);
             } catch (IllegalArgumentException e){
                 System.out.println(e.getMessage());
             }

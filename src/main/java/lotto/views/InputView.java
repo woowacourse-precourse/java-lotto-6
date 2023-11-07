@@ -12,12 +12,11 @@ public class InputView {
     }
 
     private void validatePurchaseAmount(String input){
-        if(utils.isInteger(input)){
-            throw new IllegalArgumentException(
-                    utils.createErrorMessage(
-                            Constant.ERROR_MESSAGE
-                    )
-            );
+        if(!utils.isInteger(input)){
+            throw new IllegalArgumentException(utils.createErrorMessage(Constant.ERROR_MESSAGE_INVALID_NUMBER));
+        }
+        if(Integer.parseInt(input) % Constant.LOTTO_PRICE != 0){
+            throw new IllegalArgumentException(utils.createErrorMessage(Constant.ERROR_MESSAGE_INVALID_UNIT));
         }
     }
 }

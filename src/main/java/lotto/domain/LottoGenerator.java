@@ -2,12 +2,17 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoGenerator {
 
     private List<Lotto> lottoes = new ArrayList<>();
+
+    private static List<Integer> pickSixRandomNumbersByAscendingOrder() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_NUMBER_START, Lotto.LOTTO_NUMBER_END,
+                Lotto.LOTTO_NUMBER_COUNT);
+        return numbers;
+    }
 
     public List<Lotto> generateLottoes(Amount amount) {
         int count = amount.getAmount() / Lotto.PRICE;
@@ -16,12 +21,6 @@ public class LottoGenerator {
             lottoes.add(new Lotto(numbers));
         }
         return lottoes;
-    }
-
-    private static List<Integer> pickSixRandomNumbersByAscendingOrder() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(Lotto.LOTTO_NUMBER_START, Lotto.LOTTO_NUMBER_END, Lotto.LOTTO_NUMBER_COUNT);
-        Collections.sort(numbers);
-        return numbers;
     }
 
 }

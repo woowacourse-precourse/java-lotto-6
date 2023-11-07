@@ -30,6 +30,10 @@ public class Lotto {
         System.out.println("]");
     }
 
+    public List<Integer> getNumber() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplication(numbers);

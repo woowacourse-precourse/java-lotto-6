@@ -18,6 +18,14 @@ public class WinningNumber {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumber() {
+        return numbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateWinningNumber(List<Integer> numbers) {
         validateDuplication(numbers);
         validateNumberRange(numbers);

@@ -13,4 +13,8 @@ public class LottoMachine {
     public void setWinningNumberToCalculator(WinningNumber winningNumber) {
         lottoCalculator.setWinningNumber(winningNumber);
     }
+
+    public List<Rank> calculateRank(List<Lotto> createdLotto) {
+        return lottoCalculator.getLottoRanks(createdLotto);
+    }
 }

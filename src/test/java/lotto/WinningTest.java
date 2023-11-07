@@ -10,7 +10,7 @@ import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueN
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class WinningTest extends NsTest {
-
+    private static final String ERROR_MESSAGE = "[ERROR]";
     @Test
     @DisplayName("당첨 테스트")
     void 당첨_테스트() {
@@ -59,7 +59,7 @@ public class WinningTest extends NsTest {
                             "5개 일치 (1,500,000원) - 0개",
                             "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
                             "6개 일치 (2,000,000,000원) - 10개",
-                            "총 수익률은 200000000.0%입니다."
+                            "총 수익률은 200,000,000.0%입니다."
                     );
                 },
 
@@ -75,7 +75,6 @@ public class WinningTest extends NsTest {
                 List.of(1, 2, 3, 4, 5, 6)
         );
     }
-
     @Override
     protected void runMain() {
         Application.main(new String[]{});

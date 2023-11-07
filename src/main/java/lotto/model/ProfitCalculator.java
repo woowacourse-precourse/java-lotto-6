@@ -16,17 +16,17 @@ public class ProfitCalculator {
         this.matchCounts = matchCounts;
     }
 
-    public double calculateProfit() {
+    public BigDecimal calculateProfit() {
         int totalPrize = 0;
         for (int i = 0; i < matchCounts.size(); i++) {
             totalPrize += matchCounts.get(i) * prizeMoneyList.get(i);
         }
 
-        double profitRate = (double)totalPrize / lottoPrice * 100;
+        BigDecimal profitRate = new BigDecimal(totalPrize)
+                .divide(new BigDecimal(lottoPrice), 2, RoundingMode.HALF_EVEN)
+                .multiply(new BigDecimal(100));
 
-        profitRate = Math.round(profitRate * 100.0) / 100.0;
-
-        return profitRate;
+        return profitRate.setScale(2, RoundingMode.HALF_EVEN);
     }
 
 }

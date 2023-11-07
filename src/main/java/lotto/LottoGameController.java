@@ -19,6 +19,15 @@ public class LottoGameController {
         int purchased = lottoPurchaser.purchase();
         OutputView outputView = appConfig.outputView();
         outputView.printPurchasedLottoSize(purchased);
+
+        NumberGenerator numberGenerator = appConfig.numberGenerator();
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < purchased; i++) {
+            Lotto lotto = numberGenerator.generate();
+            lottos.add(lotto);
+            OutputView.printPurchasedLottos(LottoDto.from(lotto));
+        }
+
     }
 
     public Money getMoney() {

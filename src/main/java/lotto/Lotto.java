@@ -59,4 +59,9 @@ public class Lotto {
     public int size() {
         return numbers.size();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .toList();
+    }
 }

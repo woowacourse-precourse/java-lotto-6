@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.model.LottoType;
+import lotto.service.LottoType;
 
 import java.util.List;
 

@@ -13,6 +13,10 @@ public class OutputView {
     private static final String DEFAULT_WINNING_RESULT_OUTPUT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String TOTAL_RETURN_OUTPUT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
+    public void errorMessageOutput(String errorMessage) {
+        System.out.println(errorMessage);
+    }
+
     public void purchaseAmountOuput(int lottoCount) {
         String purchaseAmount = String.format(PURCHASE_AMOUNT_OUTPUT_MESSAGE, lottoCount);
         System.out.println(purchaseAmount);

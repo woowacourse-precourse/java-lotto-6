@@ -3,6 +3,7 @@ package lotto;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Payment;
+import lotto.model.WinningNumber;
 import lotto.service.CreateLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -32,6 +33,16 @@ public class Application {
 
         List<Lotto> lottos = createLotto.createLottos(ticket);
         outputView.printLottoList(ticket, lottos);
+
+        while (true){
+            try {
+                List<Integer> winning = inputView.getWinningInput();
+                WinningNumber winningNumber = new WinningNumber(winning);
+                System.out.println(winning);
+                break;
+            }catch (Exception e){
+            }
+        }
 
     }
 }

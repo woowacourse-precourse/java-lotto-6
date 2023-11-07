@@ -1,13 +1,16 @@
 package lotto.controller;
 
 import lotto.model.LottoAmount;
+import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final InputView inputView;
+    private final OutputView outputView;
     private LottoAmount lottoAmount;
-    private OutputView outputView;
+
+    private Lottos lottos;
 
     public LottoController() {
         inputView = new InputView();
@@ -17,6 +20,7 @@ public class LottoController {
     public void start() {
         int lottoTicketCount = inputLottoAmount();
         outputView.printlottoTicketCount(lottoTicketCount);
+        lottos = new Lottos(lottoTicketCount);
     }
 
     public int inputLottoAmount() {

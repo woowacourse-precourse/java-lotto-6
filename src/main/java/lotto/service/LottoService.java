@@ -1,9 +1,6 @@
 package lotto.service;
 
-import lotto.domain.Numbers;
-import lotto.domain.PlayerLottoNumbers;
-import lotto.domain.PurchasePrice;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
 import lotto.domain.statistics.LottoStatistics;
 import lotto.domain.statistics.TotalRate;
 import lotto.formatter.GameResultFormatter;
@@ -30,8 +27,8 @@ public class LottoService {
         return new PlayerLottosFormatter(playerLottoNumbers.getLottoValues());
     }
 
-    public void saveWinningLotto(WinningLotto winningLotto) {
-        this.winningLotto = winningLotto;
+    public void saveWinningLotto(Lotto lotto, BonusNumber bonusNumber) {
+        this.winningLotto = WinningLotto.of(lotto, bonusNumber);
     }
 
     public void calculateWinningStatistics() {

@@ -3,7 +3,6 @@ package lotto.controller;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchasePrice;
-import lotto.domain.WinningLotto;
 import lotto.io.IoManager;
 import lotto.io.OutputView;
 import lotto.service.LottoService;
@@ -35,9 +34,7 @@ public class LottoController {
     private void inputWinningLotto() {
         Lotto lotto = ioManager.inputLotto();
         BonusNumber bonusNumber = ioManager.inputBonusNumber(lotto);
-
-        WinningLotto winningLotto = WinningLotto.of(lotto, bonusNumber);
-        lottoService.saveWinningLotto(winningLotto);
+        lottoService.saveWinningLotto(lotto, bonusNumber);
     }
 
     private void resultLottoStatistics() {

@@ -18,17 +18,12 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public int getMatchCount() {
-        return matchCount;
-    }
-
-    public int getPrize() {
-        return prize;
-    }
-
     public static Rank valueOf(int matchCount, boolean hasBonusNumber) {
         if (matchCount == SECOND.matchCount && hasBonusNumber) {
             return SECOND;
+        }
+        if (matchCount == THIRD.matchCount) {
+            return THIRD;
         }
         for (Rank rank : values()) {
             if (matchCount == rank.matchCount) {
@@ -44,5 +39,13 @@ public enum Rank {
             totalPrize += rank.getPrize() * resultCount.get(rank);
         }
         return totalPrize;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }

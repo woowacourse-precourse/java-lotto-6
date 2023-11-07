@@ -21,6 +21,8 @@ public class GameServiceTest extends NsTest{
     private static int NUMBER_START_RANGE = 1;
     private static int NUMBER_END_RANGE = 45;
 
+    private static int MAX_COUNT = 6;
+
     private final Buyer buyer = new Buyer();
     private final WinningInfo winningInfo = new WinningInfo();
     @DisplayName("구매 금액 입력이 제대로 이루어졌는지 확인")
@@ -62,17 +64,7 @@ public class GameServiceTest extends NsTest{
 
     private List<Integer> createNumbers() {
 
-        List<Integer> numbers = new ArrayList<>();
-
-        while (numbers.size() < 6) {
-
-            int number = Randoms.pickNumberInRange
-                    (NUMBER_START_RANGE, NUMBER_END_RANGE);
-
-            if (!numbers.contains(number)) {
-                numbers.add(number);
-            }
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(NUMBER_START_RANGE, NUMBER_END_RANGE, MAX_COUNT);
 
         return numbers;
     }

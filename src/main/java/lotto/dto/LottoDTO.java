@@ -21,8 +21,6 @@ public class LottoDTO {
 
         //Collections.sort(numbers);
 
-
-
         firstNumber = numbers.get(0);
         secondNumber = numbers.get(1);
         thirdNumber = numbers.get(2);

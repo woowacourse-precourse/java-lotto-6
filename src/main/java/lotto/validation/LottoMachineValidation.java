@@ -12,4 +12,17 @@ public class LottoMachineValidation {
         }
     }
 
+    private void validate_isPositiveNum(String input){
+        int num;
+        try {
+            num = Integer.parseInt(input);
+        }catch (NumberFormatException numberFormatException){
+            throw new IllegalArgumentException();
+        }
+
+        if(num < 0){
+            throw new IllegalArgumentException();
+        }
+    }
+
 }

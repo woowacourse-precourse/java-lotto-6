@@ -26,10 +26,10 @@ public final class LottoResultOutputView implements OutputView {
 
     private void viewAllLottoRank(LottoResultDTO dto) {
         Map<LottoRankInfo, Integer> ranks = dto.getRanks();
-        ranks.keySet().forEach(key -> System.out.println(getEachRank(key, key.getHitCount())));
+        ranks.forEach((key, value) -> System.out.println(getEachRank(key, value)));
     }
 
-    private String getEachRank(LottoRankInfo rank, int count) {
+    private String getEachRank(LottoRankInfo rank, Integer count) {
         return String.format("%s (%s원) - %d개",
                 rank.getDescription(), convertToMoneyUnit(rank.getRewardPrice()), count);
     }

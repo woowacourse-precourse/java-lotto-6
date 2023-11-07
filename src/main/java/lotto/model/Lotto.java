@@ -14,7 +14,13 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException();
+        }
+        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    // TODO: 추가 기능 구현
+
 }

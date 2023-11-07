@@ -7,7 +7,7 @@ import static lotto.Util.Util.convertStringToInteger;
 
 public class BonusNumber {
 
-    private Integer number;
+    private final int number;
 
     private BonusNumber(String number) {
         this.number = generateBonusNumber(number);
@@ -17,11 +17,11 @@ public class BonusNumber {
         return new BonusNumber(number);
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    private Integer generateBonusNumber(String inputBonusNumber) {
+    private int generateBonusNumber(String inputBonusNumber) {
         hasBlank(inputBonusNumber);
         isInteger(inputBonusNumber);
         Integer bonusNumber = convertStringToInteger(inputBonusNumber);

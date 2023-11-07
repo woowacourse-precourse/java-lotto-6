@@ -1,5 +1,6 @@
 package lotto.Controller;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.DiContainer.DiContainer;
 import lotto.Domain.LottoGroup;
 import lotto.Domain.Money;
@@ -27,6 +28,7 @@ public class LottoController {
 
         outputView.printLottoResult(lottoResultHandlerModel.getLottoResult());
         outputView.printProfitRate(lottoResultHandlerModel.findProfitRate());
+        Console.close();
     }
 
     protected Money getMoney() {

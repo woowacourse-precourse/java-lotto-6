@@ -8,6 +8,7 @@ import static lotto.Message.OutputViewMessage.WINNING_STATS;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import lotto.Domain.LottoGroup;
 import lotto.Domain.LottoResult.LottoResult;
@@ -45,7 +46,7 @@ public class OutputViewImpl implements OutputView {
         List<Prize> allPrize = lottoResult.findAllPrize();
         Collections.reverse(allPrize);
         for (Prize prize : allPrize) {
-            if (prize.getAward() == Prize.SECOND_PRIZE.getAward()) {
+            if (Objects.equals(prize.getAward(), Prize.SECOND_PRIZE.getAward())) {
                 resultWithBonus(prize);
                 continue;
             }

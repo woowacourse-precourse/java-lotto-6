@@ -6,20 +6,18 @@ import static lotto.Dictionary.LottoDictionary.LOTTO_NUMBER_SIZE;
 import static lotto.Dictionary.LottoDictionary.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 public class LottoGroup {
 
-    private final List<Lotto> lottoGroup;
+    private final List<Lotto> lottos;
 
     private LottoGroup(Money money) {
-        this.lottoGroup = new LinkedList<>();
+        this.lottos = new LinkedList<>();
         int lottoCount = findLottoCount(money);
         for (int i = 0; i < lottoCount; i++) {
-            this.lottoGroup.add(Lotto.from(generateLottoNumbers()));
+            this.lottos.add(Lotto.from(generateLottoNumbers()));
         }
     }
 
@@ -39,10 +37,10 @@ public class LottoGroup {
     }
 
     public Integer findLottoNumbersSize() {
-        return lottoGroup.size();
+        return lottos.size();
     }
 
     public Lotto findLottoByIndex(Integer index) {
-        return lottoGroup.get(index);
+        return lottos.get(index);
     }
 }

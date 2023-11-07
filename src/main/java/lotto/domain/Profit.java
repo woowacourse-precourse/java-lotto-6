@@ -20,7 +20,7 @@ public class Profit {
         }
         return totalPrizes;
     }
-    private static double calculateProfitRate(int totalPrizes, int money) {
+    static double calculateProfitRate(int totalPrizes, int money) {
         if (money == 0) {
             return 0.0;
         }

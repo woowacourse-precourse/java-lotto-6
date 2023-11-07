@@ -14,7 +14,7 @@ public class Input {
         return numbers;
     }
 
-    public static List<Integer> inputLottoMessage() {
+    public static void inputLottoMessage() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
         while (true) {
             numbers = inputLottoNumber();
@@ -25,7 +25,6 @@ public class Input {
                 System.out.println(e.getMessage());
             }
         }
-        return numbers;
     }
 
     private static List<Integer> inputLottoNumber() {
@@ -39,7 +38,7 @@ public class Input {
                 number_list.add(number);
             }
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 당첨 번호는 숫자로 입력해주세요.");
+            System.out.println("[ERROR] 당첨 번호는 숫자로 입력해 주세요.");
         }
         return number_list;
     }
@@ -67,7 +66,7 @@ public class Input {
             bonusNumber = Integer.parseInt(input);
             BonusNumber bonus = new BonusNumber(bonusNumber, numbers);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력해주세요");
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 한 개의 숫자로 입력해 주세요");
         } catch (IllegalArgumentException e) {
             throw e;
         }
@@ -78,12 +77,12 @@ public class Input {
         return money;
     }
 
-    public static int inputMoneyMessage() {
+    public static void inputMoneyMessage() {
         System.out.println("구입금액을 입력해 주세요.");
-        return inputMoney();
+        inputMoney();
     }
 
-    private static int inputMoney() {
+    private static void inputMoney() {
         money = 0;
         boolean validInput = false;
 
@@ -94,17 +93,16 @@ public class Input {
                 checkMoneyDivided(money);
                 validInput = true;
             } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 구입 금액은 숫자로 입력해야합니다.");
+                System.out.println("[ERROR] 구입 금액은 숫자로 입력해야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return money;
     }
 
     private static void checkMoneyDivided(int money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야합니다.");
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원 단위로 입력해야 합니다.");
         }
     }
 }

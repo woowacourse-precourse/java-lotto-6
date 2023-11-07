@@ -7,5 +7,4 @@ public class Application {
         RunGame runGame = new RunGame();
         runGame.lottoGame();
     }
-
 }

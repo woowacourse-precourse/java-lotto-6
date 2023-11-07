@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class RunGame {
-    public static void lottoGame() {
+    public void lottoGame() {
         Input.inputMoneyMessage();
 
         IssuedLotto issuedLotto = new IssuedLotto();

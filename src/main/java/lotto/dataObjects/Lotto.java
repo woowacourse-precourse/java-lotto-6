@@ -8,9 +8,16 @@ public class Lotto {
 	private final List<Integer> numbers;
 
 	public Lotto(List<Integer> numbers) {
+		validate(numbers);
 		validateDupliCate(numbers);
 		validateSizeOfCollection(numbers);
 		this.numbers = numbers;
+	}
+
+	private void validate(List<Integer> numbers) {
+		if (numbers.size() != 6) {
+			ErrorOperation.COLLECTION_SIZE_ERROR.apply();
+		}
 	}
 
 	private void validateDupliCate(List<Integer> numbers) {

@@ -28,8 +28,13 @@ public class LottoShop {
         List<Lotto> lottoList = buyLotto(lottoAmount);
         println();
 
-        WinningLotto winningLotto = drawWinningNumbers();
+        List<Integer> winningNumbers = drawWinningNumbers();
         println();
+
+        int bonusNumber = drawBonusNumber();
+        println();
+
+        WinningLotto winningLotto = drawWinningLotto(winningNumbers, bonusNumber);
 
         WinningStatistics winningStatistics = makeWinningStatistics(lottoAmount, lottoList, winningLotto);
         printLottoStatistics(winningStatistics);
@@ -45,16 +50,18 @@ public class LottoShop {
         printLottoList(lottoList);
         return lottoList;
     }
-
-    private WinningLotto drawWinningNumbers() {
-        println(INPUT_WINNING_NUMBERS_COMMENT);
-        List<Integer> winningNumbers = inputWinningNumbers();
-        println();
-
-        println(INPUT_BONUS_NUMBER_COMMENT);
-        int bonusNumber = inputBonusNumber();
-
+    private WinningLotto drawWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private List<Integer> drawWinningNumbers() {
+        println(INPUT_WINNING_NUMBERS_COMMENT);
+        return inputWinningNumbers();
+    }
+
+    private int drawBonusNumber() {
+        println(INPUT_BONUS_NUMBER_COMMENT);
+        return inputBonusNumber();
     }
 
     private WinningStatistics makeWinningStatistics(LottoAmount lottoAmount, List<Lotto> lottoList, WinningLotto winningLotto) {

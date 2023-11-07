@@ -1,7 +1,6 @@
 package lotto;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -21,6 +20,15 @@ public class Lotto {
     // TODO: 추가 기능 구현
     public List<Integer> getNumbers() {
         return numbers;
+    }
+    public int matchNumber(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::isContains)
+                .count();
+    }
+
+    public boolean isContains(int lottoNumber) {
+        return numbers.contains(lottoNumber);
     }
 
 }

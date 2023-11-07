@@ -26,6 +26,9 @@
 - [x] 총 우승상금을 계산한다.
 - [x] 구입한 각각의 로또의 해당 등수가 몇 번 있는지 확인한다.
 
-
+# StringHandler
+- [x] 리스트를 delimiter 구분자로 사용 한 String으로 변환한다
+- [x] delimiter로 구분 된 String을 List로 변환한다
+- [x] String 을 Int로 변환한다 
 ### 아직 고민중인 부분 
 - [ ] 수익률을 게산한다.

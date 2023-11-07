@@ -84,16 +84,35 @@ public class LottoController {
         System.out.println();
         System.out.println("보너스 번호를 입력해 주세요.");
 
+        int bonusNumber;
+
+        while(true){
+            try{
+                bonusNumber = inputBonusNumber();
+                checkRedundantNumber(winningNumber, bonusNumber);
+
+                break;
+            } catch(IllegalArgumentException e){
+                System.out.println("[ERROR] 보너스 번호는 당첨번호와 다른 1 ~ 45 사이의 숫자를 입력해야 합니다.");
+            }
+        }
+
+        return bonusNumber;
+    }
+
+    private int inputBonusNumber() throws IllegalArgumentException{
         int bonusNumber = Integer.parseInt(Console.readLine());
 
         if(bonusNumber < MIN_LOTTERY_NUM || bonusNumber > MAX_LOTTERY_NUM){
             throw new IllegalArgumentException();
         }
 
+        return bonusNumber;
+    }
+
+    private void checkRedundantNumber(Lotto winningNumber, int bonusNumber) throws IllegalArgumentException{
         if(winningNumber.getNumbers().contains(bonusNumber)){
             throw new IllegalArgumentException();
         }
-
-        return bonusNumber;
     }
 }

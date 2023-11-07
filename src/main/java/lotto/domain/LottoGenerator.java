@@ -13,8 +13,13 @@ import java.util.List;
 public class LottoGenerator {
 
     public static int calculateNumOfLotto(int purchasePrice) throws IllegalArgumentException {
-        Validator.validateDivisibility(purchasePrice);
+        validatePurchasePrice(purchasePrice);
         return purchasePrice / DomainConfiguration.PRICE_OF_LOTTO;
+    }
+
+    private static void validatePurchasePrice(int purchasePrice) {
+        Validator.validateDivisibility(purchasePrice);
+        Validator.validateSign(purchasePrice);
     }
 
     /**

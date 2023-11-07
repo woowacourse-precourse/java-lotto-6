@@ -13,6 +13,7 @@ import lotto.config.RankType;
 import lotto.domain.Referee;
 import lotto.domain.Win;
 import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.WinningLottoValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.view.message.RankMessage;
@@ -34,20 +35,17 @@ public class GameController {
     }
 
     private static int readPurchaseAmount() {
-        String purchaseAmount;
+        OutputView.printMessage(INPUT_PURCHASE_AMOUNT.getMessage());
 
         while (true) {
             try {
-                OutputView.printMessage(INPUT_PURCHASE_AMOUNT.getMessage());
-                purchaseAmount = InputView.read();
+                String purchaseAmount = InputView.read();
                 PurchaseAmountValidator.validate(purchaseAmount);
-                break;
+                return parseInt(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 OutputView.printMessage(e.getMessage());
             }
         }
-
-        return parseInt(purchaseAmount);
     }
 
     private void printLottoAmountAndLottos(LottoController lottoController) {
@@ -57,7 +55,16 @@ public class GameController {
 
     private static String readWinningLotto() {
         OutputView.printMessage(INPUT_WINNING_LOTTO.getMessage());
-        return InputView.read();
+
+        while (true) {
+            try {
+                String winningLotto = InputView.read();
+                WinningLottoValidator.validate(winningLotto);
+                return winningLotto;
+            } catch (IllegalArgumentException e) {
+                OutputView.printMessage(e.getMessage());
+            }
+        }
     }
 
     private static int readBonus() {

@@ -11,12 +11,12 @@ public class Win {
         return winningLotto;
     }
 
-    public void setWinningLotto(String winningNumbers) {
-        this.winningLotto = new Lotto(StringtoList(winningNumbers));
+    public void setWinningLotto(String winningLotto) {
+        this.winningLotto = new Lotto(stringToList(winningLotto));
     }
 
-    private List<Integer> StringtoList(String winningNumbers) {
-        return Arrays.stream(winningNumbers.split(","))
+    public List<Integer> stringToList(String winningLotto) {
+        return Arrays.stream(winningLotto.split(","))
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();

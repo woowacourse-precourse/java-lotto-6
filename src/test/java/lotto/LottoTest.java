@@ -31,10 +31,11 @@ class LottoTest {
     void 구입금액이_1000원으로_나누어떨어지지_않으면_예외를_발생시킨다() {
         int invalidAmount = 1500;
 
-        assertThatThrownBy(() -> Application.makeTicket(invalidAmount) )
+        assertThatThrownBy(() -> Application.makeTicket(invalidAmount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
     @Test
     void 구입금액에_해당하는_로또를_발행한다() {
         int amount = 5000;

@@ -107,13 +107,15 @@ public class Application {
     }
 
 
-    private static void winStatistics(List<Lotto> lottoList, List<Integer> winNumbers, int bonusNumber, int totalPrice) {
+    private static void winStatistics(List<Lotto> lottoList, List<Integer> winNumbers, int bonusNumber,
+                                      int totalPrice) {
         int[] matchCounts = new int[LottoRank.values().length];
         long totalPrize = calculatePrize(lottoList, winNumbers, bonusNumber, matchCounts);
         printResult(matchCounts, totalPrize, totalPrice);
     }
 
-    private static long calculatePrize(List<Lotto> lottoList, List<Integer> winNumbers, int bonusNumber, int[] matchCounts) {
+    private static long calculatePrize(List<Lotto> lottoList, List<Integer> winNumbers, int bonusNumber,
+                                       int[] matchCounts) {
         long totalPrize = 0;
         for (Lotto lotto : lottoList) {
             int matchCount = lotto.countMatchingNumbers(winNumbers);

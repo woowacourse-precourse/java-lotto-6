@@ -1,9 +1,13 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,6 +15,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 class InputViewTest {
 
     InputView inputView = new InputView();
+
+    @BeforeEach
+    void before() {
+        System.setIn(System.in);
+    }
+
+    @AfterEach
+    void after() {
+        System.setIn(System.in);
+    }
 
     @Test
     @DisplayName("로또 구입 금액을 입력받는다.")

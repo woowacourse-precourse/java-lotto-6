@@ -1,6 +1,9 @@
-package lotto.domain;
+package lotto.domain.model;
 
-import lotto.exception.lottonumbersexception.OutOfNumbersRangeException;
+import static lotto.utils.LottoEnum.LOTTO_END_NUMBER;
+import static lotto.utils.LottoEnum.LOTTO_START_NUMBER;
+
+import lotto.exception.lottonumbersexception.NumbersErrorMessage;
 
 public class BonusNumber {
     private final int number;
@@ -11,8 +14,8 @@ public class BonusNumber {
     }
 
     private void validate(int number) {
-        if (number < 1 || number > 45) {
-            throw new OutOfNumbersRangeException();
+        if (number < LOTTO_START_NUMBER.getValue() || number > LOTTO_END_NUMBER.getValue()) {
+            throw NumbersErrorMessage.OUT_OF_NUMBERS_RANGE.getException();
         }
     }
 

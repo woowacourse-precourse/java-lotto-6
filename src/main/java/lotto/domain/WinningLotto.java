@@ -34,4 +34,12 @@ public class WinningLotto {
             throw new IllegalArgumentException(ErrorMessage.EXIST_DUPLICATE_NUMBER);
         }
     }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

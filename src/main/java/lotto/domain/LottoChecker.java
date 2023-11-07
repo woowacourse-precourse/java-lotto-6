@@ -33,6 +33,9 @@ public class LottoChecker {
 
     public void insertLottos(final List<Lotto> lottoPapers) {
         this.lottos = lottoPapers;
+        this.saveLottosResult();
+        this.calculateTotalPrize();
+        this.calculateProfitRate();
     }
 
     public void saveLottosResult() {
@@ -65,19 +68,19 @@ public class LottoChecker {
     }
 
     public Prize getPrize(final long matches, boolean isContainBonus) {
-        if (matches == 6L) {
+        if (matches == 6) {
             return Prize.FIRST;
         }
-        if (matches == 5L && isContainBonus) {
+        if (matches == 5 && isContainBonus) {
             return Prize.SECOND;
         }
-        if (matches == 5L) {
+        if (matches == 5) {
             return Prize.THIRD;
         }
-        if (matches == 4L) {
+        if (matches == 4) {
             return Prize.FOURTH;
         }
-        if (matches == 3L) {
+        if (matches == 3) {
             return Prize.FIFTH;
         }
         return Prize.NONE;

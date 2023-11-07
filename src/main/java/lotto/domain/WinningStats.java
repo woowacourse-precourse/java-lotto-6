@@ -41,4 +41,10 @@ public class WinningStats {
     public Stream<WinningStat> stream() {
         return winningCountByRank.stream();
     }
+
+    public long getProfit() {
+        return this.stream()
+                .map(WinningStat::getProfit)
+                .reduce(SystemConstant.NOTHING.getValueToLong(), Long::sum);
+    }
 }

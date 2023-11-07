@@ -55,16 +55,10 @@ public class Money {
     }
 
     public double getProfitMargin(WinningStats winningStats) {
-        return getProfitMarginNumerator(getProfit(winningStats)) / SystemConstant.DIV_FACTOR.getValue();
+        return getProfitMarginNumerator(winningStats.getProfit()) / SystemConstant.DIV_FACTOR.getValue();
     }
 
     private double getProfitMarginNumerator(long profit) {
         return (((double) profit / value) * SystemConstant.MULT_FACTOR.getValue());
-    }
-
-    private long getProfit(WinningStats winningStats) {
-        return winningStats.stream()
-                .map(WinningStat::getProfit)
-                .reduce(SystemConstant.NOTHING.getValueToLong(), Long::sum);
     }
 }

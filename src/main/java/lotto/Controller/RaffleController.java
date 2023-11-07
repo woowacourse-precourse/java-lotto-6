@@ -2,19 +2,15 @@ package lotto.Controller;
 
 import lotto.Model.Service.RaffleService;
 import lotto.View.LottoInput;
-import lotto.View.LottoOutput;
 
 public class RaffleController {
 
     private final RaffleService raffleService;
     private final LottoInput lottoInput;
-    private final LottoOutput lottoOutput;
 
-    public RaffleController(RaffleService raffleService, LottoInput lottoInput,
-            LottoOutput lottoOutput) {
+    public RaffleController(RaffleService raffleService, LottoInput lottoInput) {
         this.raffleService = raffleService;
         this.lottoInput = lottoInput;
-        this.lottoOutput = lottoOutput;
     }
 
     public void setRaffle() {

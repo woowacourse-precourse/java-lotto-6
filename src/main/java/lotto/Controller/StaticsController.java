@@ -1,8 +1,6 @@
 package lotto.Controller;
 
-import lotto.Model.Domain.Statics;
 import lotto.Model.Service.StaticsService;
-import lotto.View.LottoInput;
 import lotto.View.LottoOutput;
 
 public class StaticsController {

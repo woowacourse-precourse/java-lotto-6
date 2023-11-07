@@ -25,12 +25,13 @@ public class LottoProcessor {
     private final RaffleUtil raffleUtil = new RaffleUtil();
     private final RaffleService raffleService = new RaffleService(raffleUtil);
     private final RaffleController raffleController = new RaffleController(raffleService,
-            lottoInput, lottoOutput);
+            lottoInput);
 
     private final StaticsUtil staticsUtil = new StaticsUtil();
     private final StaticsService staticsService = new StaticsService(staticsUtil, lottoService,
             raffleService);
-    private final StaticsController staticsController = new StaticsController(staticsService, lottoOutput);
+    private final StaticsController staticsController = new StaticsController(staticsService,
+            lottoOutput);
 
     public LottoController getLottoController() {
         return lottoController;

@@ -16,8 +16,8 @@ public final class InputValidator {
         }
     }
 
-    public static void validateLottoPrice(int lottoPrice) {
-        if (lottoPrice %  LottoController.lottoPrice != 0) {
+    public static void validateLottoPrice(int inputPrice, int lottoPrice) {
+        if (inputPrice % lottoPrice != 0) {
             throw new IllegalArgumentException("[ERROR] 구매금액은 1000단위로 입력해야 합니다.");
         }
     }

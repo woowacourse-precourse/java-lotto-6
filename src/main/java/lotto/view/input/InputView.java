@@ -1,5 +1,6 @@
 package lotto.view.input;
 
+import lotto.controller.LottoController;
 import lotto.util.StringParser;
 import java.util.List;
 
@@ -17,7 +18,7 @@ public final class InputView {
                 String purchaseAmount = lottoInputView.inputPurchaseAmount();
 
                 int purchasePrice = InputValidator.validateNumericFormat(purchaseAmount);
-                InputValidator.validateLottoPrice(purchasePrice);
+                InputValidator.validateLottoPrice(purchasePrice, LottoController.lottoPrice);
                 InputValidator.validateNonNegativeNumber(purchasePrice);
 
                 return purchasePrice;

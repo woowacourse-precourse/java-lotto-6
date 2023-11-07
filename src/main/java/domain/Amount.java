@@ -10,6 +10,14 @@ public class Amount {
         this.amount = amount;
     }
 
+    public static Amount plusAmount(Amount firstAmount, Amount secondAmount) {
+        return new Amount(firstAmount.amount + secondAmount.amount);
+    }
+
+    public static Amount createZeroAmount() {
+        return new Amount(0);
+    }
+
     private void validateAmount(int amount) {
         if (amount < 0) {
             throw new ImpossibleAmountException();
@@ -30,6 +38,10 @@ public class Amount {
 
     public int calculateQuotientByUnitAmount(Amount unitAmount) {
         return this.amount / unitAmount.amount;
+    }
+
+    public Amount calculateMultiplyAmount(int value) {
+        return new Amount(this.amount * value);
     }
 
     public double calculatePercentByUnitAmount(Amount unitAmount) {

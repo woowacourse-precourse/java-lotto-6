@@ -18,4 +18,8 @@ public class Constant {
     public static final int LOTTO_NONE_PRIZE = 0;
     public static final int LOTTO_NONE_COUNT = 0;
     public static final String LOTTO_FORMAT = "[%d, %d, %d, %d, %d, %d]";
+    public static final String ERROR_MESSAGE = "[ERROR]";
+    public static final String BLANK = " ";
+    public static final String VIEW_PURCHASE = "몇 개를 구매하시겠습니까?";
+    public static final String ERROR_MESSAGE_INVALID_NUMBER = "정수만 입력할 수 있습니다.";
 }

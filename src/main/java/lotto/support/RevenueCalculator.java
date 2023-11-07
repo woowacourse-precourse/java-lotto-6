@@ -15,14 +15,14 @@ public class RevenueCalculator {
 
     }
 
-    public void cal() {
+    public void calculate() {
         Long firstMoney = result.size() * 1000L;
         Long sum = 0L;
         for (Rate now : result) {
             sum += now.getPrize();
             count.put(now.getRank(), count.getOrDefault(now.getRank(), 0) + 1);
         }
-        this.revenue = (double) sum / firstMoney;
+        this.revenue = (double) sum / firstMoney*100;
     }
 
     public HashMap<String, Integer> getCount() {

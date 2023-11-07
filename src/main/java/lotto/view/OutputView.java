@@ -1,7 +1,5 @@
 package lotto.view;
 
-import static lotto.constant.message.OutputMessage.BONUS_RESULT;
-import static lotto.constant.message.OutputMessage.PRIZE_RESULT;
 import static lotto.constant.message.OutputMessage.PROFIT_RATE;
 import static lotto.constant.message.OutputMessage.PURCHASE_COUNT_RESULT;
 
@@ -23,18 +21,12 @@ public class OutputView {
         }
     }
 
-    public void printPrizeResult(Map<Prize, Integer> result) {
-        result.entrySet().stream()
-                .filter(entry -> entry.getKey() != Prize.NONE)
-                .forEach(entry -> printPrizeEntry(entry.getKey(), entry.getValue()));
-    }
-
-    private void printPrizeEntry(Prize prize, int count) {
-        String message = String.format(PRIZE_RESULT, prize.getMatch(), prize.getPanel(), count);
-        if (prize == Prize.SECOND) {
-            message = String.format(BONUS_RESULT, prize.getPanel(), count);
+    public void printPrizeResult(Map<Prize, Integer> res) {
+        for (Map.Entry<Prize, Integer> pair : res.entrySet()) {
+            if (pair.getKey() != Prize.NONE) {
+                System.out.println(Prize.prizeResult(pair.getKey()) + pair.getValue() + "개");
+            }
         }
-        System.out.println(message);
     }
 
     public void printProfitRate(String profitRate) {

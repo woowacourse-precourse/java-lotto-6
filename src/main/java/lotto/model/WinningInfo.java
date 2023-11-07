@@ -45,4 +45,7 @@ public class WinningInfo {
     public int getfirstrank(){
         return firstrank;
     }
+    public int getTotalAmount(){
+        return totalamount;
+    }
 }

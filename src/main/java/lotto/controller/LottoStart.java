@@ -20,9 +20,9 @@ public class LottoStart {
         
         int bonusNumber = numbergenerator.InputBonusNumber(lotto.getLotto());
         
-        for(List<Integer> st : num2){
-            int correctCount = judgment.correctCount(st , lotto.getLotto());
-            setWinningInfo(correctCount);
+        for(List<Integer> i : num2){
+            int correctCount = judgment.correctCount(i , lotto.getLotto());
+            setWinningInfo(i, correctCount, bonusNumber);
         }
     }
 
@@ -46,7 +46,7 @@ public class LottoStart {
         }
     }
 
-    private void setWinningInfo(int correctCount){
+    private void setWinningInfo(List<Integer> lottonumbers, int correctCount, int bonusNumber){
         if (correctCount == 3){
             winninginfo.setFifthRank();
         }
@@ -54,7 +54,12 @@ public class LottoStart {
             winninginfo.setfourthrank();
         }
         else if (correctCount == 5){
-            winninginfo.setthirdrank();
+            if(judgment.correctBonus(lottonumbers, bonusNumber)){
+                winninginfo.setsecondrank();
+            }
+            else if (!judgment.correctBonus(lottonumbers, bonusNumber)){
+                winninginfo.setthirdrank();
+            }
         }
         else if (correctCount == 6){
             winninginfo.setfirstrank();

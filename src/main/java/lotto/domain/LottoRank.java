@@ -1,12 +1,12 @@
 package lotto.domain;
 
 public enum LottoRank {
-    FIRST(6, 2000000000, false),
-    SECOND(5, 30000000, true),
-    THIRD(5, 1500000, false),
-    FOURTH(4, 50000, false),
+    LOSE(0, 0, false),
     FIFTH(3, 5000, false),
-    LOSE(0, 0, false);
+    FOURTH(4, 50000, false),
+    THIRD(5, 1500000, false),
+    SECOND(5, 30000000, true),
+    FIRST(6, 2000000000, false);
 
     private final int match;
     private final int prize;
@@ -36,5 +36,13 @@ public enum LottoRank {
             return FIRST;
         }
         return LOSE;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
+
+    public int getMatch() {
+        return match;
     }
 }

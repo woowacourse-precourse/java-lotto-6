@@ -1,11 +1,7 @@
 package lotto.domain;
 
-import java.math.BigDecimal;
-import java.util.HashMap;
 import java.util.List;
-import lotto.domain.Lotto;
-import lotto.message.LottoResult;
-import lotto.utils.LottoUtil;
+import lotto.data.Lotto;
 
 public class LottoNumbersInfo {
 

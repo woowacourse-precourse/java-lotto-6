@@ -3,7 +3,7 @@ package lotto.message;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.data.Lotto;
 
 public enum OutputMessage {
     ASK_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),

@@ -1,8 +1,9 @@
-package lotto.domain;
+package lotto.data;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
+import lotto.data.Lotto;
 import lotto.message.LottoResult;
 
 public class WinningNumbers extends Lotto {

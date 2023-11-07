@@ -1,12 +1,10 @@
 package lotto.utils;
 
-import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_NOT_IN_RANGE;
-
 import camp.nextstep.edu.missionutils.Randoms;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.data.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.message.ErrorMessage;
 

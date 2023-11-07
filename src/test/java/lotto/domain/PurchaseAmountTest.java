@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.NullSource;
@@ -8,10 +9,11 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class PurchaseAmountTest {
+class PurchaseAmountTest {
+    @DisplayName("입력값이 null이면 예외가 발생한다.")
     @ParameterizedTest
     @NullSource
-    public void 입력값이_null인_경우_예외테스트(String input) {
+    void createPurchaseAmountByNullString(String input) {
         //given
         final String nullString = input;
 
@@ -22,9 +24,10 @@ public class PurchaseAmountTest {
         assertThat(exception.getMessage()).isEqualTo(PurchaseAmount.PURCHASE_AMOUNT_NOT_NUMBER_EXCEPTION);
     }
 
+    @DisplayName("입력값이 비어있으면 예외가 발생한다.")
     @ParameterizedTest
     @EmptySource
-    public void 입력값이_비어있는_경우_예외테스트(String input) {
+    void createPurchaseAmountByEmptyString(String input) {
         //given
         final String emptyString = input;
 
@@ -35,9 +38,10 @@ public class PurchaseAmountTest {
         assertThat(exception.getMessage()).isEqualTo(PurchaseAmount.PURCHASE_AMOUNT_NOT_NUMBER_EXCEPTION);
     }
 
+    @DisplayName("입력값이 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"a", "+", "-", "1a", "1+", "1-", "a1"})
-    public void 입력값이_숫자가_아닌_경우_예외테스트(String input) {
+    void createPurchaseAmountByNotNumber(String input) {
         //given
         final String notNumberString = input;
 
@@ -48,9 +52,10 @@ public class PurchaseAmountTest {
         assertThat(exception.getMessage()).isEqualTo(PurchaseAmount.PURCHASE_AMOUNT_NOT_NUMBER_EXCEPTION);
     }
 
+    @DisplayName("입력값이 양수가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-1000"})
-    public void 금액이_양수가_아닌_경우_예외테스트(String input) {
+    void createPurchaseAmountByNotPositiveNumber(String input) {
         //given
         final String notPositiveNumber = input;
 
@@ -61,9 +66,10 @@ public class PurchaseAmountTest {
         assertThat(exception.getMessage()).isEqualTo(PurchaseAmount.PURCHASE_AMOUNT_NOT_POSITIVE_EXCEPTION);
     }
 
+    @DisplayName("입력값이 로또 가격으로 나누어 떨어지지 않으면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "100", "500", "999", "1001"})
-    public void 금액이_로또_가격으로_나누어_떨어지지_않는_경우_예외테스트(String input) {
+    void createPurchaseAmountByNotDivisible(String input) {
         //given
         final String notDivisibleNumber = input;
 

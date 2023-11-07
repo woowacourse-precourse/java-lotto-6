@@ -3,6 +3,8 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.LottoWinningRanking;
+import lotto.dto.LottoWinningRakingCountMapDto;
+import lotto.dto.LottosDto;
 import lotto.vo.LottoWinningNumbers;
 import lotto.exception.LottoException;
 import lotto.exception.LottoStoreException;
@@ -35,19 +37,25 @@ public class LottoController {
     }
 
     public void run() {
-        Lottos userLottos = processLottoPurchaseTransaction();
-
-        displayUserLottoPurchaseCount(userLottos);
-        displayUserLottos(userLottos);
+        final Lottos userLottos = processLottoPurchaseTransaction();
+        displayUserLottosInformation(userLottos);
 
         Lotto winningLotto = processLottoWinningNumbersPickTransaction();
         LottoWinningBonusNumber lottoWinningBonusNumber = processLottoWinningBonusNumberTransaction(winningLotto);
 
-        EnumMap<LottoWinningRanking, Integer> winningRankingCountMap = processWinningRankingCalculationTransaction(userLottos, winningLotto, lottoWinningBonusNumber);
+        final EnumMap<LottoWinningRanking, Integer> winningRankingCountMap =
+                processWinningRankingCalculationTransaction(userLottos, winningLotto, lottoWinningBonusNumber);
         displayWinningRankingCount(winningRankingCountMap);
 
-        double profit = processUserProfitCalculationTransaction(userLottos, winningRankingCountMap);
+        final double profit = processUserProfitCalculationTransaction(userLottos, winningRankingCountMap);
         displayProfit(profit);
+    }
+
+    private void displayUserLottosInformation(Lottos userLottos) {
+        LottosDto lottosDto = convertLottosDto(userLottos);
+
+        displayUserLottoPurchaseCount(lottosDto);
+        displayUserLottos(lottosDto);
     }
 
     private int getUserPurchaseAmount() {
@@ -56,12 +64,16 @@ public class LottoController {
         return Integer.parseInt(userPurchaseAmount);
     }
 
-    private void displayUserLottoPurchaseCount(Lottos lottos) {
-        outputView.responsePurchaseCount(lottos.getSize());
+    private LottosDto convertLottosDto(Lottos userLottos) {
+        return new LottosDto(userLottos);
     }
 
-    private void displayUserLottos(Lottos lottos) {
-        outputView.responseUserNumbersSet(lottos);
+    private void displayUserLottoPurchaseCount(LottosDto userLottosDto) {
+        outputView.responsePurchaseCount(userLottosDto.getLottoGroup().size());
+    }
+
+    private void displayUserLottos(LottosDto userLottosDto) {
+        outputView.responseUserNumbersSet(userLottosDto);
     }
 
     private Lotto processLottoWinningNumbersPickTransaction() {
@@ -100,6 +112,10 @@ public class LottoController {
         return lottoWinningNumbersPickService.pickBonusNumber(input);
     }
 
+    private LottoWinningRakingCountMapDto convertWinningRankingCountMapDto(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
+        return new LottoWinningRakingCountMapDto(winningRankingCountMap);
+    }
+
     private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, LottoWinningBonusNumber lottoWinningBonusNumber) {
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningLotto, lottoWinningBonusNumber);
         return lottoWinningRankingService.countWinningRankings(userLottos, lottoWinningNumbers);
@@ -107,10 +123,10 @@ public class LottoController {
 
     private void displayWinningRankingCount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         outputView.responseWinningStatisticsHeader();
-        outputView.responseWinningStatisticsBody(winningRankingCountMap);
+        outputView.responseWinningStatisticsBody(convertWinningRankingCountMapDto(winningRankingCountMap));
     }
 
-    private void displayProfit(double profit) {
+    private void displayProfit(final double profit) {
         outputView.responseProfit(profit);
     }
 

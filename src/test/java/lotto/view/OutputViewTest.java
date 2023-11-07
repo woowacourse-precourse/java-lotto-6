@@ -3,6 +3,8 @@ package lotto.view;
 import lotto.domain.Lotto;
 import lotto.domain.LottoWinningRanking;
 import lotto.domain.Lottos;
+import lotto.dto.LottoWinningRakingCountMapDto;
+import lotto.dto.LottosDto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -52,7 +54,7 @@ public class OutputViewTest {
         Lotto lotto = new Lotto(lottoNumbers);
         Lottos lottos = new Lottos(List.of(lotto));
 
-        outputView.responseUserNumbersSet(lottos);
+        outputView.responseUserNumbersSet(new LottosDto(lottos));
 
         Assertions.assertThat(outContent.toString()).isEqualTo("[" + num1 + ", " + num2 + ", " + num3 + ", " + num4 + ", " + num5 + ", " + num6 + "]\n");
     }
@@ -66,7 +68,7 @@ public class OutputViewTest {
         List<Lotto> lottoSet = Arrays.asList(new Lotto(lottoNumbers1), new Lotto(lottoNumbers2), new Lotto(lottoNumbers3));
         Lottos lottos = new Lottos(lottoSet);
 
-        outputView.responseUserNumbersSet(lottos);
+        outputView.responseUserNumbersSet(new LottosDto(lottos));
 
         Assertions.assertThat(outContent.toString()).isEqualTo(
                 """
@@ -94,7 +96,7 @@ public class OutputViewTest {
         rankingCountMap.put(LottoWinningRanking.SECOND, 0);
         rankingCountMap.put(LottoWinningRanking.FIRST, 0);
 
-        outputView.responseWinningStatisticsBody(rankingCountMap);
+        outputView.responseWinningStatisticsBody(new LottoWinningRakingCountMapDto(rankingCountMap));
 
         String expectedOutput =
                 """

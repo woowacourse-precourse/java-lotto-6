@@ -1,11 +1,11 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
-import lotto.domain.Lottos;
 import lotto.domain.LottoWinningRanking;
+import lotto.dto.LottoWinningRakingCountMapDto;
+import lotto.dto.LottosDto;
 
 import java.util.ArrayList;
-import java.util.EnumMap;
 import java.util.List;
 
 public class OutputView {
@@ -26,8 +26,8 @@ public class OutputView {
         display(OutputMessage.RESPONSE_PURCHASE_COUNT, count);
     }
 
-    public void responseUserNumbersSet(final Lottos lottos) {
-        for (Lotto lotto : lottos.lottoGroup()) {
+    public void responseUserNumbersSet(final LottosDto lottosDto) {
+        for (Lotto lotto : lottosDto.getLottoGroup()) {
             display(OutputMessage.RESPONSE_USER_NUMBERS_SET, lotto.toString());
         }
     }
@@ -36,15 +36,14 @@ public class OutputView {
         display(OutputMessage.RESPONSE_WINNING_STATISTICS_HEADER);
     }
 
-    public void responseWinningStatisticsBody(final EnumMap<LottoWinningRanking, Integer> rankingCountMap) {
+    public void responseWinningStatisticsBody(final LottoWinningRakingCountMapDto rankingCountMapDto) {
         List<Integer> rankingCountList = new ArrayList<>();
-        for (LottoWinningRanking ranking : LottoWinningRanking.values()) {
-            if (ranking == LottoWinningRanking.NONE) {
-                continue;
-            }
-            Integer count = rankingCountMap.getOrDefault(ranking, 0);
+
+        for (LottoWinningRanking ranking : rankingCountMapDto.getWinningRankingCountMap().keySet()) {
+            Integer count = rankingCountMapDto.getWinningRankingCountMap().getOrDefault(ranking, 0);
             rankingCountList.add(count);
         }
+
         display(OutputMessage.RESPONSE_WINNING_STATISTICS_BODY, rankingCountList.toArray());
     }
 

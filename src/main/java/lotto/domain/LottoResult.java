@@ -17,5 +17,9 @@ public class LottoResult {
         return result.getOrDefault(rank, 0);
     }
     public double calculateEarningsRate(int purchaseAmount) {
+        double totalPrize = result.entrySet().stream()
+                .mapToDouble(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+        return totalPrize / purchaseAmount;
     }
 }

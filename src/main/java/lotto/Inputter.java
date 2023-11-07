@@ -10,6 +10,7 @@ public class Inputter {
     private static final int MONEY_UNIT = 1000;
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int NUMBERS_OF_LOTTO = 6;
     private static Inputter inputter;
 
     private Inputter() {}
@@ -31,9 +32,9 @@ public class Inputter {
     }
 
     public List<Integer> lottoNumbers() {
-        return Arrays.stream(Console.readLine().split(","))
+        return isDup(Arrays.stream(Console.readLine().split(","))
                 .mapToInt(this::parseInt).map(this::validateLottoNumber)
-                .boxed().collect(Collectors.toList());
+                .boxed().collect(Collectors.toList()));
     }
 
     private void validatePurchase(int won) {
@@ -56,5 +57,12 @@ public class Inputter {
                     "부터 " + MAX_LOTTO_NUMBER + " 사이의 숫자여야 합니다.");
         }
         return number;
+    }
+
+    private List<Integer> isDup(List<Integer> numbers) {
+        if (numbers.stream().collect(Collectors.toSet()).size() < NUMBERS_OF_LOTTO) {
+            throw new IllegalArgumentException("[ERROR] 올바른 숫자를 입력해주세요.");
+        }
+        return numbers;
     }
 }

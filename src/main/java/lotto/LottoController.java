@@ -239,8 +239,8 @@ public class LottoController {
 
         for (int key : allLotto.keySet()) {
             List<Integer> randomLottoNumber = allLotto.get(key).getLotto();
-            countWinningInLotto = compareWinningAndLottoNumber(randomLottoNumber, winningNumber.getWinningNumber());
-            countBonusInLotto = compareBonusAndLottoNumber(randomLottoNumber, bonusNumber.getBonusNumber());
+            countWinningInLotto = compareLottoToWinningNumber(randomLottoNumber, winningNumber.getWinningNumber());
+            countBonusInLotto = compareLottoToBonusNumber(randomLottoNumber, bonusNumber.getBonusNumber());
 
             countSameNumbers.put(key, List.of(countWinningInLotto, countBonusInLotto));
         }
@@ -248,10 +248,10 @@ public class LottoController {
         return countSameNumbers;
     }
 
-    private int compareWinningAndLottoNumber(List<Integer> randomLottoNumber, List<Integer> winningNumber) {
+    private int compareLottoToWinningNumber(List<Integer> lottoNumber, List<Integer> winningNumber) {
         int countSameNumber = 0;
 
-        for (int number : randomLottoNumber) {
+        for (int number : lottoNumber) {
             if (winningNumber.contains(number)) {
                 countSameNumber++;
             }
@@ -260,10 +260,10 @@ public class LottoController {
         return countSameNumber;
     }
 
-    private int compareBonusAndLottoNumber(List<Integer> randomLottoNumber, int bonusNumber) {
+    private int compareLottoToBonusNumber(List<Integer> lottoNumber, int bonusNumber) {
         int countSameNumber = 0;
 
-        for (int number : randomLottoNumber) {
+        for (int number : lottoNumber) {
             if (number == bonusNumber) {
                 countSameNumber++;
             }

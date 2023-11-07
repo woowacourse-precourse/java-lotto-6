@@ -18,5 +18,8 @@ public class LottoRepository {
     public List<Lotto> findAll(){
         return lottoList;
     }
+    public int size(){
+        return lottoList.size();
+    }
 
 }

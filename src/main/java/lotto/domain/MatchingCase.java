@@ -4,7 +4,7 @@ public enum MatchingCase {
     THREE_MATCHING(3, 5000),
     FOUR_MATCHING(4, 50000),
     FIVE_MATCHING(5, 1500000),
-    FIVE_MATCHING_WITH_BONUS(6, 30000000),
+    FIVE_MATCHING_WITH_BONUS(5, 30000000),
     SIX_MATCHING(6, 2000000000);
 
     private int matchingValue;

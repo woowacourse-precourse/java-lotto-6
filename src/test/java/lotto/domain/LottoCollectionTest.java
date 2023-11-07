@@ -3,13 +3,10 @@ package lotto.domain;
 import static lotto.constant.testConstant.BONUS_NUMBER_45;
 import static lotto.constant.testConstant.LOTTO_1_TO_5_WITH_45;
 import static lotto.constant.testConstant.LOTTO_1_TO_6;
-import static lotto.constant.testConstant.LOTTO_4_TO_9;
 import static lotto.constant.testConstant.LOTTO_7_TO_12;
 import static lotto.domain.MatchingCase.FIVE_MATCHING;
 import static lotto.domain.MatchingCase.FIVE_MATCHING_WITH_BONUS;
-import static lotto.domain.MatchingCase.FOUR_MATCHING;
 import static lotto.domain.MatchingCase.SIX_MATCHING;
-import static lotto.domain.MatchingCase.THREE_MATCHING;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
@@ -37,17 +34,17 @@ public class LottoCollectionTest {
     @DisplayName("getResultGroup은 각 로또별 비교 결과를 받아서 리스트로 담는다")
     @Test
     void check_getResultGroup() {
-        LottoCollection lottoCollection = LottoCollection.from(List.of(LOTTO_1_TO_6, LOTTO_7_TO_12));
-        Lotto winningLotto = new Lotto(List.of(1, 2, 7, 41, 42, 43));
-        int bonusNumber = 8;
+        LottoCollection lottoCollection = LottoCollection.from(List.of(LOTTO_1_TO_6, LOTTO_1_TO_5_WITH_45));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 45;
         List<LottoResult> resultGroup = lottoCollection.getResultGroup(winningLotto, bonusNumber);
-        assertThat(resultGroup).containsExactly(LottoResult.of(2, false)
-                , LottoResult.of(1, true));
+        assertThat(resultGroup).containsExactly(LottoResult.of(6, false)
+                , LottoResult.of(5, true));
     }
 
     public static Stream<Arguments> lottoResult() {
         return Stream.of(
-                Arguments.of(List.of(LOTTO_1_TO_6, LOTTO_7_TO_12), FIVE_MATCHING, 1),
+                Arguments.of(List.of(LOTTO_1_TO_6, LOTTO_7_TO_12), SIX_MATCHING, 1),
                 Arguments.of(List.of(LOTTO_1_TO_5_WITH_45, LOTTO_7_TO_12), FIVE_MATCHING_WITH_BONUS, 1)
         );
     }
@@ -57,7 +54,7 @@ public class LottoCollectionTest {
     @MethodSource("lottoResult")
     void check_setResultGroup(List<Lotto> lottos, MatchingCase matchingCase, int winningCount) {
         LottoCollection lottoCollection = LottoCollection.from(lottos);
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         lottoCollection.setResultGroup(winningLotto, BONUS_NUMBER_45);
         assertThat(matchingCase.getWinningCount()).isEqualTo(winningCount);
     }

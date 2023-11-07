@@ -8,7 +8,7 @@
 
 1. LottoMoney
 
-- [ ] LottoMoney 객체 생성
+- [x] LottoMoney 객체 생성
 - validate()
   - [ ] 로또 구매 금액이 숫자인지 확인
   - [ ] 로또 구매 금액이 1,000단위인지 확인

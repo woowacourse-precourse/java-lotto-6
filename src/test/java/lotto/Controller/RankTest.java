@@ -1,11 +1,11 @@
 package lotto.Controller;
 
-import lotto.controller.Rank;
+import lotto.controller.result.Rank;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static lotto.controller.Rank.getRank;
+import static lotto.controller.result.Rank.getRank;
 
 public class RankTest {
     @DisplayName("맞는 숫자에 따라 맞는 상금을 반환")

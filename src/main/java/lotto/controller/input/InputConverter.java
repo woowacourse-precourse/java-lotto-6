@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.input;
 
 import java.util.ArrayList;
 import java.util.List;

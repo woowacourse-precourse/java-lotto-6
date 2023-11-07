@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.result;
 
 public enum Rank {
     FIFTH(5, 3, 5000, "3개 일치 (5,000원) - "),

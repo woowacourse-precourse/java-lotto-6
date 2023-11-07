@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.controller.RandNumber.*;
+import static lotto.controller.lotto.RandNumber.*;
 
 public class RandNumberTest {
     @DisplayName("랜덤 넘버 6개 뽑기")

@@ -1,13 +1,13 @@
 package lotto.view;
 
-import lotto.controller.Rank;
+import lotto.controller.result.Rank;
 import lotto.model.Lotto;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static lotto.controller.lotteryController.sortLottery;
+import static lotto.controller.lotto.lotteryController.sortLottery;
 
 public class Print {
 

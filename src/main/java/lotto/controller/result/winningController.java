@@ -1,5 +1,6 @@
-package lotto.controller;
+package lotto.controller.result;
 
+import lotto.controller.result.Rank;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 
@@ -8,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.controller.Rank.getRank;
+import static lotto.controller.result.Rank.getRank;
 
 public class winningController {
 

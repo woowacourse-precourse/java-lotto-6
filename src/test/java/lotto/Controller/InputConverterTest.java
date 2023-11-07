@@ -1,16 +1,13 @@
 package lotto.Controller;
 
-import lotto.model.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.StringTokenizer;
 
-import static lotto.controller.InputConverter.*;
+import static lotto.controller.input.InputConverter.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class InputConverterTest {

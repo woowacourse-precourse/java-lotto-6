@@ -8,11 +8,10 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.controller.Play.*;
-import static lotto.controller.Statistic.calLottoCount;
-import static lotto.controller.lotteryController.makeLottery;
-import static lotto.controller.winningController.compareLottoAndBonus;
-import static lotto.controller.winningController.compareLottoAndWinningNumber;
+import static lotto.controller.result.WinningRate.calLottoCount;
+import static lotto.controller.lotto.lotteryController.makeLottery;
+import static lotto.controller.result.winningController.compareLottoAndBonus;
+import static lotto.controller.result.winningController.compareLottoAndWinningNumber;
 
 public class PlayTest {
     @DisplayName("로또 한 장의 금액에 따라서 로또의 수를 반환한다.")

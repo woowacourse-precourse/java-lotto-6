@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.controller.lotto;
 
 import lotto.model.Lotto;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static lotto.controller.RandNumber.makeUniqueNumber;
+import static lotto.controller.lotto.RandNumber.makeUniqueNumber;
 
 public class lotteryController {
 

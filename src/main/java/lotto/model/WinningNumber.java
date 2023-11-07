@@ -14,13 +14,6 @@ public class WinningNumber extends Number{
         this.winningNumbers = winningNumbers;
     }
 
-    public static void checkDuplicate(List<Integer> numbers) throws IllegalArgumentException{
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (numbers.size() != uniqueNumbers.size()) {
-            throw new IllegalArgumentException();
-        }
-    }
-
     public static void checkNumberLength(List<Integer> numbers) throws IllegalArgumentException {
         if (numbers.size() != size) {
             throw new IllegalArgumentException();

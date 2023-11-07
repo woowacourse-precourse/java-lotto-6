@@ -1,6 +1,8 @@
 package lotto;
 
 import lotto.controller.Calculation;
+import lotto.controller.LottoMaker;
+import lotto.controller.lottoMakerByRandom;
 import lotto.controller.profitMarginCalculation;
 import lotto.repository.LottoRepository;
 import lotto.repository.Repository;
@@ -24,7 +26,10 @@ public class AppConfig {
     public Calculation getCalculation(){
         return new profitMarginCalculation();
     }
+    public LottoMaker getLottoMaker(){
+        return new lottoMakerByRandom();
+    }
     public LottoService getLottoService(){
-        return new LottoService(getOutput(), getInput(), getRepository(), getCalculation());
+        return new LottoService(getOutput(), getInput(), getRepository(), getCalculation(), getLottoMaker());
     }
 }

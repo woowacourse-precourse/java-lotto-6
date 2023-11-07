@@ -25,7 +25,7 @@ public class InputValidate {
             String[] temp = getLottoByString(lottoNum);
             for(String num : temp){
                 try {
-                    answerLotto.add(validateIsDigit(num));
+                    answerLotto.add(isLottoNumber(validateIsDigit(num)));
                 }catch (IllegalArgumentException e){
                     System.out.println("[ERROR] 로또 번호 형식이 맞지 않습니다.");
                     return new ArrayList<>();
@@ -48,13 +48,15 @@ public class InputValidate {
     }
     private int validateCount(String amount) throws IllegalArgumentException{
         int money = validateIsDigit(amount);
-            if(money % 1000 != 0){
-                throw new IllegalArgumentException();
-            }
-        return money;
+        if(money % 1000 != 0){
+            throw new IllegalArgumentException();
+        }
+        return money/1000;
     }
     private int validateIsDigit(String inputValue) throws IllegalArgumentException{
-        int value = Integer.parseInt(inputValue);
+        return Integer.parseInt(inputValue);
+    }
+    private int isLottoNumber(int value){
         if(value <= 0 || value > 45)
             throw new IllegalArgumentException();
         return value;

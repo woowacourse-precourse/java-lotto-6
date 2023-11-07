@@ -11,33 +11,24 @@ public class WinningResultTest {
 
     @Test
     void WinningResult_5등_2명_4등_1명_인경우() {
-        List<Integer> drawResult = List.of(3, 3, 4, 1, 2);
-        WinningResult winningResult = new WinningResult(drawResult);
+        List<Integer> matchResult = List.of(3, 3, 4, 1, 2);
+        WinningResult winningResult = new WinningResult();
         Map<String, Long> rank = new HashMap<>();
 
         rank.put("5th", Long.valueOf(2));
         rank.put("4th", Long.valueOf(1));
 
+        winningResult.calculate(matchResult);
         Assertions.assertThat(winningResult.getWinningResult()).isEqualTo(rank);
     }
 
     @Test
     void WinningResult_당첨이_하나도_안된_경우() {
-        List<Integer> drawResult = List.of(1, 1, 2, 1, 2);
-        WinningResult winningResult = new WinningResult(drawResult);
+        List<Integer> matchResult = List.of(1, 1, 2, 1, 2);
+        WinningResult winningResult = new WinningResult();
 
+        winningResult.calculate(matchResult);
         Assertions.assertThat(winningResult.getWinningResult()).isEmpty();
-    }
-
-    @Test
-    void getWinningResult_내부의_winningResult가_불변_인지_검사() {
-        List<Integer> drawResult = List.of(3, 3, 4, 1, 2);
-        WinningResult winningResult = new WinningResult(drawResult);
-
-        Map<String, Long> result = winningResult.getWinningResult();
-        result.put("5th", Long.valueOf(3));
-
-        Assertions.assertThat(winningResult.getWinningResult().get("5th")).isEqualTo(2);
     }
 
     @Test

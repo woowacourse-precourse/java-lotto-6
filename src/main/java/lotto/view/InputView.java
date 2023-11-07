@@ -13,10 +13,21 @@ public class InputView {
 
 
     public String ask(Supplier<String> input) {
-        return Stream.generate(input)
-                .filter(String::isBlank)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(ErrorMessages.NO_CONTENT.value()));
+        while (true) {
+            String result = input.get();
+            try {
+                validateBlank(result);
+                return result;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBlank(String input) throws IllegalArgumentException{
+        if (input.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessages.NO_CONTENT.value());
+        }
     }
 
     public Supplier<String> budget() {

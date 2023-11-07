@@ -1,8 +1,9 @@
 package lotto.domain;
 
+
 public class UserPrice {
 
-    private int price;
+    private final int price;
 
     public UserPrice(int price) {
         this.price = price;
@@ -15,5 +16,9 @@ public class UserPrice {
     public Lotties buy(int lottoPrice){
         int lottoCnt = price / lottoPrice;
         return LottoFactory.generateLotties(lottoCnt);
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

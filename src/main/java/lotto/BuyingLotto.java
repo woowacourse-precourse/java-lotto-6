@@ -22,7 +22,7 @@ public class BuyingLotto {
 
     static int fifthPlace = 0; // 3개
 
-
+    static int profit;
 
     static void gettingInput() {
         System.out.println("구입 금액을 입력해 주세요.");
@@ -99,6 +99,21 @@ public class BuyingLotto {
 
         // 교집합 개수 반환
         return winningSet.size();
+    }
+
+    static void calculateProfit() {
+        profit = 2000000000*firstPlace + 30000000*secondPlace + 1500000*thirdPlace + 50000*fourthPlace + 5000*fifthPlace;
+    }
+    static void printResult() {
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println(String.format("3개 일치 (5,000원) - %d개", fifthPlace));
+        System.out.println(String.format("4개 일치 (50,000원) - %d개", fourthPlace));
+        System.out.println(String.format("5개 일치 (1,500,000원) - %d개", thirdPlace));
+        System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", secondPlace));
+        System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", firstPlace));
+        System.out.println(String.format("총 수익률은 %s%%입니다.", String.format("%.1f", ((double)profit/money) * 100)));
     }
 
     static public int getMoney() {

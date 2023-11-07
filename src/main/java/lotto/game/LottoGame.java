@@ -35,5 +35,13 @@ public class LottoGame {
         return new Lotto(randomNumberGenerator.generateRandomNumbers());
     }
 
+    public String getIssuedLottosMessage() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(String.format(BUY_LOTTO, issuedLottos.size()));
+        for (Lotto issuedLotto : issuedLottos) {
+            stringBuilder.append(issuedLotto.showNumbers());
+        }
+        return stringBuilder.toString();
+    }
 
 }

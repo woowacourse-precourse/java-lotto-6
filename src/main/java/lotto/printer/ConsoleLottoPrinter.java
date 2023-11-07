@@ -39,7 +39,7 @@ public class ConsoleLottoPrinter implements LottoPrinter {
 
 	@Override
 	public void askBonusNumber() {
-
+		System.out.println(PrintMessage.ASK_BONUS_NUMBER);
 	}
 
 	@Override

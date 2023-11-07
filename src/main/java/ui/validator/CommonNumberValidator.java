@@ -9,6 +9,9 @@ public class CommonNumberValidator {
     }
 
     public static void verify(List<Integer> numbers) {
+        if (numbers.size() != LottoConfig.COUNT) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호 개수가 다릅니다.");
+        }
         numbers.forEach(number -> {
             if (number < LottoConfig.START_NUM || number > LottoConfig.END_NUM) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호로 적합하지 않은 숫자입니다.");

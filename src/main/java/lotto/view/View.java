@@ -2,6 +2,8 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import static lotto.view.constants.OutputMessage.*;
+
 public class View {
 
     private void printMessage(String outputMessage){
@@ -9,12 +11,12 @@ public class View {
     }
 
     public String askPurchasingAmount(){
-        printMessage("구입금액을 입력해 주세요.");
+        printMessage(ASK_PURCHASING_AMOUNT.getMessage());
         return Console.readLine();
     }
 
     public void printOrderedLottoCount(int ticketCount) {
-        printMessage(ticketCount + "개를 구매했습니다.");
+        printMessage(ticketCount + COUNT_BUYING_TICKETS.getMessage());
     }
 
     public void printLottoTickets(String tickets){
@@ -22,25 +24,20 @@ public class View {
     }
 
     public String askWinningNumbers(){
-        printMessage("당첨 번호를 입력해 주세요.");
+        printMessage(ASK_WINNING_NUMBERS.getMessage());
         return Console.readLine();
     }
 
     public String askBonusNumber(){
-        printMessage("보너스 번호를 입력해 주세요.");
+        printMessage(ASK_BONUS_NUMBER.getMessage());
         return Console.readLine();
     }
 
     public void printStatistics(String result){
-        String statistics = """
-                당첨 통계
-                ---
-                """ + result;
-
-        printMessage(statistics);
+        printMessage(STATISTICS.getMessage() + result);
     }
 
     public void printProfit(double profit) {
-        printMessage("총 수익률은 " + profit + "%입니다.");
+        printMessage(PROFIT_START.getMessage() + profit + PROFIT_END.getMessage());
     }
 }

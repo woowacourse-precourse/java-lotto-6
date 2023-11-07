@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.constants.LottoConstants.LENGTH;
 
 import java.util.List;
-import lotto.exception.BonusNumberDuplicationException;
 import lotto.exception.LottoNumbersDuplicationException;
 import lotto.exception.WrongLottoLengthException;
 
@@ -16,7 +15,6 @@ public class WinningLotto {
     private WinningLotto(List<Integer> winningLottoNumbers, Integer bonusNumber) {
 
         checkDuplication(winningLottoNumbers);
-        checkDuplicationFrom(winningLottoNumbers, bonusNumber);
         checkLength(winningLottoNumbers);
         winningLotto = winningLottoNumbers.stream()
             .map(LottoNumber::valueOf)
@@ -51,11 +49,7 @@ public class WinningLotto {
         }
     }
 
-    private void checkDuplicationFrom(List<Integer> winningLotto, Integer bonusNumber) {
-        if (winningLotto.contains(bonusNumber)) {
-            throw new BonusNumberDuplicationException();
-        }
-    }
+
 
     private void checkLength(List<Integer> lottoNumbers) {
         if (lottoNumbers.size() != LENGTH) {

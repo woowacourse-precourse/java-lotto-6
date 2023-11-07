@@ -12,6 +12,10 @@ import java.util.List;
 
 public class InputView {
 
+    private static String getInput() {
+        return Console.readLine();
+    }
+
     public static int inputLottoPurchaseAmount() {
         System.out.println(INPUT_AMOUNT.getProgressMessage());
         String amount = getInput();
@@ -32,6 +36,21 @@ public class InputView {
         return Integer.parseInt(bonus);
     }
 
+    public static List<Integer> inputWinningLottoNumber() {
+        System.out.println(INPUT_WINNING_LOTTO_NUMBER.getProgressMessage());
+        List<String> input = Arrays.stream(getInput().split(","))
+                .toList();
+
+        if(validateNotLotto(input)){
+            return inputWinningLottoNumber();
+        }
+
+        List<Integer> winningLotto = new ArrayList<>();
+        input.forEach(lottoNumber -> winningLotto.add(Integer.parseInt(lottoNumber)));
+
+        return winningLotto;
+    }
+
     private static boolean validateNotNumber(String input){
         try {
             Integer.parseInt(input);
@@ -42,30 +61,14 @@ public class InputView {
         return false;
     }
 
-    public static List<Integer> inputWinningLottoNumber() {
-        System.out.println(INPUT_WINNING_LOTTO_NUMBER.getProgressMessage());
-        return validateIsLotto();
-    }
-
-    private static List<Integer> validateIsLotto(){
-        while(true) {
-            List<Integer> winningNumbers = new ArrayList<>();
-            try {
-                List<String> input = Arrays.stream(getInput().split(","))
-                        .toList();
-                input.forEach(winningnumber -> {
-                    winningNumbers.add(Integer.parseInt(winningnumber));
-                });
-                return winningNumbers;
-            } catch (IllegalArgumentException e) {
-                System.out.println(ONLY_CAN_NUMBER.getErrorMessage());
-            }
+    private static boolean validateNotLotto(List<String> winningLotto){
+        try {
+            winningLotto.forEach(Integer::parseInt);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ONLY_CAN_NUMBER.getErrorMessage());
+            return true;
         }
-    }
-
-
-    private static String getInput() {
-        return Console.readLine();
+        return false;
     }
 
 }

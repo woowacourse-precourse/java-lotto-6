@@ -39,7 +39,7 @@ public class User {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
         }
         if (!money.matches("^[1-9][0-9]*$")) {
-            throw new IllegalArgumentException("[ERROR] 금액은 0으로 시작할 수 없습니다.  (ex) 5000");
+            throw new IllegalArgumentException("[ERROR] 금액은 0으로 시작할 수 없습니다. (ex)5000");
         }
         if (Integer.parseInt(money) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 로또는 1장당 1000원입니다. 1000원 단위로 구매를 진행해주세요.");

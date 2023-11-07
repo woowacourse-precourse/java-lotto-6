@@ -89,7 +89,7 @@ public class LottoMakingController {
         }
     }
 
-    public Integer[] changeStringToIntegers(String input) throws NumberFormatException {
+    public Integer[] changeStringToIntegers(String input) {
         try {
             String[] n = input.split(",");
             Integer[] numbers = new Integer[n.length];
@@ -99,28 +99,6 @@ public class LottoMakingController {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
         }
-    }
-
-    public void createBonusNumber() {
-        while (true) {
-            try {
-                String input = view.inputBonusNumber();
-                validateIsNumber(input);
-                int bonusNumber = Integer.parseInt(input);
-                validateBoundaryNumber(bonusNumber);
-                this.bonusNumber = bonusNumber;
-                break;
-            } catch (NumberFormatException e) {
-                view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
-            } catch (IllegalArgumentException e) {
-                view.outputError(e.getMessage());
-            }
-        }
-    }
-
-    private void validateBoundaryNumber(int input) {
-        if (input < LOTTO_START || input > LOTTO_END)
-            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_1_TO_45_MESSAGE.getValue());
     }
 
     private void validateBoundaryNumbers(ArrayList<Integer> input) {
@@ -136,6 +114,32 @@ public class LottoMakingController {
         for (Integer i : input)
             if (Collections.frequency(input, i) > 1)
                 throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_OVERLAP_MESSAGE.getValue());
+    }
+
+    public void createBonusNumber() {
+        while (true) {
+            try {
+                String input = view.inputBonusNumber();
+                validateIsNumber(input);
+                int bonusNumber = Integer.parseInt(input);
+                validateBoundaryNumber(bonusNumber);
+                validateOverlapBonusNumber(winningNumbers, bonusNumber);
+                this.bonusNumber = bonusNumber;
+                break;
+            } catch (IllegalArgumentException e) {
+                view.outputError(e.getMessage());
+            }
+        }
+    }
+
+    private void validateBoundaryNumber(int input) {
+        if (input < LOTTO_START || input > LOTTO_END)
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_1_TO_45_MESSAGE.getValue());
+    }
+
+    private void validateOverlapBonusNumber(Lotto winningNumbers, int bonusNumber) {
+        if(winningNumbers.getNumbers().contains(bonusNumber))
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_OVERLAP_MESSAGE.getValue());
     }
 
 }

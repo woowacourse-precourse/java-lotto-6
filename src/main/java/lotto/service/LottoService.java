@@ -7,7 +7,7 @@ import lotto.domain.WinningLottoNumbers;
 
 public class LottoService {
     public UserMoney initUserMoney(final String userMoney) {
-        return UserMoney.of(userMoney);
+        return UserMoney.from(userMoney);
     }
 
     public WinningLottoNumbers initWinningLottoNumbers(final List<String> winningLottoNumbers) {
@@ -15,6 +15,6 @@ public class LottoService {
     }
 
     public BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers, final String bonusNumber) {
-        return BonusNumber.from(winningLottoNumbers.getWinningLottoNumbers(), Long.parseLong(bonusNumber));
+        return BonusNumber.of(winningLottoNumbers.getWinningLottoNumbers(), Long.parseLong(bonusNumber));
     }
 }

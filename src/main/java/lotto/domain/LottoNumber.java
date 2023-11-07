@@ -12,7 +12,7 @@ public class LottoNumber {
         this.number = number;
     }
 
-    public static LottoNumber of(final long number) {
+    public static LottoNumber from(final long number) {
         validate(number);
         return new LottoNumber(number);
     }

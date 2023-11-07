@@ -51,7 +51,7 @@ public class WinningLottoNumbers {
     private static List<LottoNumber> generateWinningLottoNumbers(final List<String> numbers) {
         return numbers.stream()
                 .map(Long::valueOf)
-                .map(LottoNumber::of)
+                .map(LottoNumber::from)
                 .toList();
     }
 

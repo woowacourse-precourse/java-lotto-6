@@ -7,7 +7,7 @@ public class UserMoney {
         this.userMoney = userMoney;
     }
 
-    public static UserMoney of(String userMoney) {
+    public static UserMoney from(String userMoney) {
         return new UserMoney(Long.parseLong(userMoney));
     }
 

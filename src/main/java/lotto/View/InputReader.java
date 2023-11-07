@@ -11,6 +11,7 @@ public class InputReader {
 
     private static final String INPUT_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String INPUT_LOTTO_NUMBERS_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String LOTTO_NUMBER_DELIMITER = ",";
 
     public Money inputMoney() {
@@ -41,5 +42,10 @@ public class InputReader {
         }
 
         return numbers;
+    }
+
+    public LottoNumber inputBonusNumber() {
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
+        return new LottoNumber(Console.readLine());
     }
 }

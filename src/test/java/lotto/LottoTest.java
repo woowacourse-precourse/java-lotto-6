@@ -41,7 +41,7 @@ class LottoTest {
     @DisplayName("구입 금액만큼 로또를 생성한다.")
     @Test
     void createLottoByAmount() {
-        assertThat(lottoService.makeLottoList(7).size()).isEqualTo(7);
+        assertThat(lottoService.makeLottoList(7000).size()).isEqualTo(7);
     }
     @DisplayName("구입 금액이 1000원 단위가 아니면 예외가 발생한다.")
     @Test

@@ -12,7 +12,7 @@ public class LottoService {
 
     public List<Lotto> makeLottoList(int amount) {
         List<Lotto> lottos = new ArrayList<>();
-        for(int i=0; i<amount; i++) {
+        for(int i=0; i<amount/1000; i++) {
             Lotto lotto = new Lotto(generateLotto());
             lottos.add(lotto);
         }

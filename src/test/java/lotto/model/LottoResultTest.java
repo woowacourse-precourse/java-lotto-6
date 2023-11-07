@@ -16,12 +16,12 @@ class LottoResultTest {
     void statistics() {
         LottoResult.initialize();
         for (int i = 3; i < 8; i++) {
-            testResult.put(i,1);
+            testResult.put(i, 1);
         }
         for (int i = 3; i < 8; i++) {
-            LottoResult.statistics(i,false);
+            LottoResult.statistics(i, false);
         }
-        result = LottoResult.statistics(5,true);
+        result = LottoResult.statistics(5, true);
         assertThat(result).isEqualTo(testResult);
     }
 
@@ -29,7 +29,7 @@ class LottoResultTest {
     @Test
     void calculateProfit() {
         LottoResult.initialize();
-        LottoResult.statistics(5,true);
+        LottoResult.statistics(5, true);
         double profit = LottoResult.calculateProfit(2);
         assertThat(profit).isEqualTo(1500000);
     }

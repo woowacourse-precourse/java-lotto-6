@@ -33,8 +33,8 @@ public class LottoResult {
     }
 
     public static void initialize() {
-        for (int i = FIFTH_NUMBER_OF_SAME; i < NUMBER_OF_WINNING_CASE+FIFTH_NUMBER_OF_SAME; i++) {
-            result.put(i,0);
+        for (int i = FIFTH_NUMBER_OF_SAME; i < NUMBER_OF_WINNING_CASE + FIFTH_NUMBER_OF_SAME; i++) {
+            result.put(i, 0);
         }
     }
 
@@ -42,29 +42,29 @@ public class LottoResult {
         if (sameCount == FIFTH_NUMBER_OF_SAME) {
             int num = result.get(FIFTH_NUMBER_OF_SAME);
             num++;
-            result.put(FIFTH_NUMBER_OF_SAME,num);
+            result.put(FIFTH_NUMBER_OF_SAME, num);
         }
         if (sameCount == FORUTH_NUMBER_OF_SAME) {
             int num = result.get(FORUTH_NUMBER_OF_SAME);
             num++;
-            result.put(FORUTH_NUMBER_OF_SAME,num);
+            result.put(FORUTH_NUMBER_OF_SAME, num);
         }
         if (sameCount == THIRD_NUMBER_OF_SAME) {
-            if (bonusCheck){
+            if (bonusCheck) {
                 int num = result.get(SECOND_NUMBER_OF_SAME + 1);
                 num++;
-                result.put(SECOND_NUMBER_OF_SAME + 1,num);
+                result.put(SECOND_NUMBER_OF_SAME + 1, num);
             }
-            if (!bonusCheck){
+            if (!bonusCheck) {
                 int num = result.get(THIRD_NUMBER_OF_SAME);
                 num++;
-                result.put(THIRD_NUMBER_OF_SAME,num);
+                result.put(THIRD_NUMBER_OF_SAME, num);
             }
         }
         if (sameCount == FIRST_NUMBER_OF_SAME) {
             int num = result.get(FIRST_NUMBER_OF_SAME + 1);
             num++;
-            result.put(FIRST_NUMBER_OF_SAME + 1,num);
+            result.put(FIRST_NUMBER_OF_SAME + 1, num);
         }
         return result;
     }

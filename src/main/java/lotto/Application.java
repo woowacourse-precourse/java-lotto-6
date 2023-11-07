@@ -40,9 +40,9 @@ public class Application {
     public static List<Integer> convertNum(String numbers) {
         String[] wordNum = numbers.split(",");
         List<Integer> convertedNum = new ArrayList<>();
-            for (String beforeNum : wordNum) {
-                convertedNum.add(Integer.parseInt(beforeNum));
-            }
+        for (String beforeNum : wordNum) {
+            convertedNum.add(Integer.parseInt(beforeNum));
+        }
         return convertedNum;
     }
 
@@ -69,11 +69,11 @@ public class Application {
     }
 
     public static void intersectionNum() {
-        List<Boolean> bonusNumContainCheck  = intersection.checkBonusNumber(bonusNum, lottoNum);
+        List<Boolean> bonusNumContainCheck = intersection.checkBonusNumber(bonusNum, lottoNum);
         List<Integer> intersectionCount = intersection.countMatchingNumbers(winNum, lottoNum);
         LottoResult.initialize();
-        for (int i = 0; i<intersectionCount.size(); i++) {
-           result = LottoResult.statistics(intersectionCount.get(i), bonusNumContainCheck.get(i));
+        for (int i = 0; i < intersectionCount.size(); i++) {
+            result = LottoResult.statistics(intersectionCount.get(i), bonusNumContainCheck.get(i));
         }
     }
 

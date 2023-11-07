@@ -15,10 +15,10 @@ public class LottoNumber implements Comparable<LottoNumber> {
         this.number = (int) number;
     }
 
-    private void validate(long nubmer) {
+    private void validate(long number) {
         ExceptionMessageGenerator exceptionMessageGenerator = ExceptionMessageGenerator.INSTANCE;
 
-        if (isOutOfRange(nubmer)) {
+        if (isOutOfRange(number)) {
             throw new IllegalArgumentException(exceptionMessageGenerator.makeMessage(OUT_OF_RANGE_MESSAGE));
         }
     }

@@ -70,16 +70,14 @@
 
 #### 로또 번호를 담고 있는 DTO (LottoDto)
 
-- [ ] DTO로 생성하는 기능
-- [ ] getter
+- [x] DTO로 생성하는 기능
 
 ##
 
 #### 구매 로또를 담고 있는 DTO (PurchaseLottoDto)
 
-- [ ] DTO로 생성하는 기능
-- [ ] 개수를 반환하는 기능
-- [ ] getter
+- [x] DTO로 생성하는 기능
+- [x] 개수를 반환하는 기능
 
 ##
 

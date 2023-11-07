@@ -99,7 +99,7 @@ public class LottoController {
             String inputBonusNumber = input.bonusNumber();
             try {
                 int bonusNumber = toNumber(inputBonusNumber);
-                hasSameNumberBetweenWinningAndBonusNumber(winningNumber.getWinningNumber(), bonusNumber);
+                checkBonusNumberInWinningNumber(winningNumber.getWinningNumber(), bonusNumber);
                 lottoBonus = new BonusNumber(bonusNumber);
                 loop = false;
             } catch (IllegalArgumentException e) {
@@ -110,7 +110,7 @@ public class LottoController {
         return lottoBonus;
     }
 
-    private void hasSameNumberBetweenWinningAndBonusNumber(List<Integer> winingNumber, int bonusNumber) {
+    private void checkBonusNumberInWinningNumber(List<Integer> winingNumber, int bonusNumber) {
         if (winingNumber.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_BONUS_NUMBER_DUPLICATE.getMessage());
         }

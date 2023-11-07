@@ -25,6 +25,10 @@ public class PurchaseLottoDto {
         return String.valueOf(totalPurchaseLotto);
     }
 
+    public int size() {
+        return totalPurchaseLotto.size();
+    }
+
     public List<LottoDto> getTotalPurchaseLotto() {
         return totalPurchaseLotto;
     }

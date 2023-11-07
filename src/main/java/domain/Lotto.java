@@ -66,4 +66,8 @@ public class Lotto {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

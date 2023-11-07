@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.constant.Errors;
 
 public class Bonus {
-
     private final int bonusNumber;
 
     public Bonus(int bonusNumber) {

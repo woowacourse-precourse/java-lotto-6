@@ -13,8 +13,8 @@ public class AmountValidator {
      * 5. 1,000원 단위로 나누어 떨어지지 않는 경우 예외 처리한다.
      */
     public static boolean isVerifyAmount(String purchasedAmount){
-        isBlankAmount(purchasedAmount);
-        isOnlyNumber(purchasedAmount);
+        CommonValidator.isBlank(purchasedAmount);
+        CommonValidator.isOnlyNumber(purchasedAmount);
 
         int amount = Integer.parseInt(purchasedAmount);
         isMinNumber(amount);
@@ -22,20 +22,6 @@ public class AmountValidator {
         isThousandAmount(amount);
 
         return true;
-    }
-
-    private static void isBlankAmount(String purchasedAmount){
-        if(purchasedAmount.isBlank()){
-            throw new IllegalArgumentException(ErrorCodeConstant.STRING_BLANK_ERROR);
-        }
-    }
-
-    private static void isOnlyNumber(String purchasedAmount){
-        final String NUMBER_REGEX = "[0-9]+";
-
-        if(!purchasedAmount.matches(NUMBER_REGEX)) {
-            throw new IllegalArgumentException(ErrorCodeConstant.NUMBER_VALIDATION_ERROR);
-        }
     }
 
     private static void isNotMaxNumber(int amount){

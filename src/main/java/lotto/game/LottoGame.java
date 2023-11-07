@@ -1,9 +1,12 @@
 package lotto.game;
 
+import java.util.List;
 import lotto.domain.AutomaticLottoStorage;
 import lotto.domain.LottoStorage;
+import lotto.domain.WinningLotto;
 import lotto.util.LottoGameInputer;
 import lotto.util.LottoGamePrinter;
+import lotto.util.LottoProfitCalculator;
 
 public class LottoGame {
 
@@ -13,6 +16,7 @@ public class LottoGame {
     public void start () {
         inputLottoPurchaseAmount();
         printAutomaticLottoResults();
+        createLottoStorageWithWinningNumbers();
 
     }
 
@@ -29,17 +33,8 @@ public class LottoGame {
     }
 
     // 당첨 번호 입력
-    public void inputWinningLotto() {
-
+    public List<Integer> inputWinningLottoNumbers() {
+        LottoGamePrinter.println("당첨 번호를 입력해 주세요.");
+        return LottoGameInputer.convertCommaSeparatedValuesToList();
     }
-
-    // 보너스 번호 입력
-    public void inputBonusNumber() {
-
-    }
-
-    // 당첨 통계
-
-    // 수익률 출력
-
 }

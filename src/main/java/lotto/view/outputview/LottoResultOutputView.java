@@ -39,7 +39,7 @@ public final class LottoResultOutputView implements OutputView {
     }
 
     private void viewReturnRatio(LottoResultDTO dto) {
-        String text = String.format("총 수익률은 %s 입니다.", dto.getReturnRatio());
+        String text = String.format("총 수익률은 %s입니다.", dto.getReturnRatio());
         System.out.println(text);
     }
 }

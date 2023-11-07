@@ -61,8 +61,10 @@ public class ProfitCalculator {
 
     private void calculate(int matchNumbers, boolean isMatchBonusNumber){
         WinningHistory rankType = WinningHistory.calculateRank(matchNumbers, isMatchBonusNumber);
-        winningHistory.put(rankType, winningHistory.get(rankType) + 1);
-        AddTotalPrizeMoney(rankType.getPrizeMoney());
+        if(rankType != null){
+            winningHistory.put(rankType, winningHistory.get(rankType) + 1);
+            AddTotalPrizeMoney(rankType.getPrizeMoney());
+        }
     }
 
     private void AddTotalPrizeMoney(int prizeMoney){

@@ -6,6 +6,7 @@ import lotto.domain.User;
 import lotto.domain.WinLotto;
 import lotto.service.LottoService;
 import lotto.util.Message;
+import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -36,8 +37,20 @@ public class LottoController {
     }
 
     private int getPurchaseAmount() {
-        outputView.printMessage(Message.GET_PURCHASE_AMOUNT);
-        int purchaseAmount = inputView.getPurchaseAmount();
+        int purchaseAmount;
+
+        while (true) {
+            outputView.printMessage(Message.GET_PURCHASE_AMOUNT);
+            String input = inputView.getPurchaseAmount();
+
+            try {
+                Validator.validateLottoPurchaseAmount(input);
+                purchaseAmount = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                outputView.printExceptionMessage(e.getMessage());
+            }
+        }
 
         return lottoService.getNumberOfLottoPapers(purchaseAmount);
     }

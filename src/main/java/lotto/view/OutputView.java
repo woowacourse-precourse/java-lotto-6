@@ -19,13 +19,18 @@ public class OutputView {
         println(message.getMessage());
     }
 
+    public void printExceptionMessage(String exceptionMessage) {
+        println(exceptionMessage);
+    }
+
     public void printPurchaseNotice(int purchaseNumber) {
         String purchaseNoticeFormat = String.format(Constant.PURCHASE_NOTICE, purchaseNumber);
 
         println(purchaseNoticeFormat);
     }
+
     public void printUserLottos(List<Lotto> lottos) {
-        for (Lotto lotto: lottos){
+        for (Lotto lotto : lottos) {
             println(lotto.getLottoNumbers().toString());
         }
     }

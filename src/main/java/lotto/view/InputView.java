@@ -12,10 +12,8 @@ public class InputView {
         private static final InputView INSTANCE = new InputView();
     }
 
-    public int getPurchaseAmount() {
-        String input = readLine();
-
-        return Integer.parseInt(input);
+    public String getPurchaseAmount() {
+        return readLine();
     }
 
     public String getLottoResult() {

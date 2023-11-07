@@ -15,6 +15,8 @@
     - [x] 로또 당첨 번호 중복 유효성 검사 - Lotto#numberDuplecateVaildation
 - [x] 보너스 번호 입력 - NumberGeneartor#InputBonusNumber()
     - [x] 보너스 번호 정수 유효성 검사 - NumberGeneratorVaildation#bonueNumberIntegerVaildation()
+    - [x] 보너스 번호 중복 유효성 검사 - NumberGeneratorVaildation#bonusNumDuplicateVaildation()
+    - [x] 보너스 번호 범위 유효성 검사 - NumberGeneratorVaildation#bonusNumRangeVaildation()
 - [ ] 생성된 수와 구매자 수 6개를 비교할 수 있어야 한다. - Referee#compare()
     - [ ] 몇 개의 숫자가 같은지 알 수 있다. - Judgment#correctCount()
         - [ ] 6개 번호 일치 (1등 / 2,000,000,000원)

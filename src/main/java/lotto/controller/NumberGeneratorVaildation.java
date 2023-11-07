@@ -46,16 +46,42 @@ public class NumberGeneratorVaildation {
         return end;
     }
 
-    public boolean bonueNumberIntegerVaildation(String bonusNum){
-        boolean end = false;
-        try{
-            int bonusNumber = Integer.parseInt(bonusNum);
-        }catch(IllegalArgumentException e){
-            end = true;
-            System.out.println("\n[ERROR]보너스 번호는 숫자를 입력해 주세요.");
-            System.out.println("\n보너스 번호를 입력해 주세요.");
+    public void bonusNumberVaildation(String bonusNum, List<Integer> correctNumbers){
+        if(bonueNumberIntegerVaildation(bonusNum)){
+            throw new IllegalArgumentException("\n보너스 번호는 숫자를 입력해 주세요.");
         }
+        else if(bonusNumDuplicateVaildation(bonusNum, correctNumbers)){
+            throw new IllegalArgumentException("\n중복되지 않은 번호를 입력해 주세요.");
+        }
+        else if(bonusNumRangeVaildation(bonusNum)){
+            throw new IllegalArgumentException("\n1부터 45사이의 번호를 입력해 주세요.");
+        }
+    }
 
-        return end;
+    private boolean bonueNumberIntegerVaildation(String bonusNum){
+        try{
+             Integer.parseInt(bonusNum);
+        }catch(IllegalArgumentException e){
+            return true;
+        }
+        return false;
+    }
+
+    private boolean bonusNumDuplicateVaildation(String bonusNum, List<Integer> correctNumbers){
+        int bonusNumer = Integer.parseInt(bonusNum);
+        for(int i : correctNumbers){
+            if(i == bonusNumer){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean bonusNumRangeVaildation(String bonusNum){
+        int bonusNumber = Integer.parseInt(bonusNum);
+        if(bonusNumber > 45 || bonusNumber <1){
+            return true;
+        }
+        return false;
     }
 }

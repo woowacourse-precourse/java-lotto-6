@@ -73,9 +73,16 @@ public class NumberGenerator {
 
     public int InputBonusNumber(List<Integer> correctNumber){
         System.out.println("\n보너스 번호를 입력해 주세요.");
-        String bonusNum = Console.readLine();
-        while(numbergeneratorvaildation.bonueNumberIntegerVaildation(bonusNum)){
-            bonusNum = Console.readLine();
+        String bonusNum = "";
+        boolean end = true;
+        while(end){
+            try{
+                bonusNum = Console.readLine();
+                numbergeneratorvaildation.bonusNumberVaildation(bonusNum, correctNumber);
+                end = false;
+            }catch(Exception e){
+                System.out.println(e);
+            }
         }
         return Integer.parseInt(bonusNum);
     }

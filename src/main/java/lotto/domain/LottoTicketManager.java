@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import static lotto.constant.ConstantInteger.ADD;
 import static lotto.constant.ConstantInteger.LOTTO_MAX_NUMBER;
 import static lotto.constant.ConstantInteger.LOTTO_MIN_NUMBER;
+import static lotto.constant.ConstantInteger.PERCENT;
+import static lotto.constant.ConstantInteger.ZERO;
 import static lotto.exception.ExceptionMessage.DUPLICATED_BONUS_NUMBER_MESSAGE;
 import static lotto.exception.ExceptionMessage.NOT_IN_RANGE_NUMBER_INPUT_MESSAGE;
 
@@ -15,7 +18,7 @@ public class LottoTicketManager {
     private List<Lotto> lottoTickets;
     private Lotto luckyNumbers;
     private Integer bonusNumber;
-    private Map<Rank, Integer> resultMap;
+    private Map<Rank, Integer> finalResult;
 
     public LottoTicketManager(){
         initMap();
@@ -65,9 +68,9 @@ public class LottoTicketManager {
     }
 
     private void initMap() {
-        resultMap = new HashMap<>();
+        finalResult = new HashMap<>();
         for (Rank rank : Rank.values()) {
-            resultMap.put(rank, 0);
+            finalResult.put(rank, ZERO);
         }
     }
 
@@ -76,9 +79,9 @@ public class LottoTicketManager {
             int correctLuckyNumber = correctLuckyNumber(lotto);
             boolean correctBonusNumber = correctBonusNumber(lotto);
             Rank ranking = Rank.matching(correctLuckyNumber, correctBonusNumber);
-            resultMap.put(ranking, resultMap.getOrDefault(ranking, 0) + 1);
+            finalResult.put(ranking, finalResult.getOrDefault(ranking, ZERO) + ADD);
         }
-        return resultMap;
+        return finalResult;
     }
 
     public Integer correctLuckyNumber(Lotto lotto) {
@@ -90,5 +93,14 @@ public class LottoTicketManager {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
+    public double calculateRevenue() {
+        return  getTotalPrize()/(double)price * PERCENT ;
+    }
+
+    public Long getTotalPrize() {
+        return finalResult.entrySet().stream()
+                .mapToLong(rank -> rank.getKey().getPrize() * rank.getValue())
+                .sum();
+    }
 
 }

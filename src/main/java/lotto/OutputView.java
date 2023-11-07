@@ -24,13 +24,15 @@ public class OutputView {
 
     public static void printPrizeStats(TreeMap<PrizeGrade, Integer> gradeDist) {
         System.out.println(RESULT_HEADLINE_MESSAGE);
+        gradeDist.remove(PrizeGrade.NO_PRIZE);
         for (PrizeGrade prizeGrade : gradeDist.descendingKeySet()) {
             System.out.printf(PRIZE_FREQ_MESSAGE, prizeGrade.getMatchCount(), withCommaFormat(prizeGrade.getPrizeMoney()), prizeGrade.getAdditionalMessage(), gradeDist.get(prizeGrade));
         }
     }
 
     private static String withCommaFormat(int number) {
-        return new DecimalFormat(COMMA_FORMAT).format(number);
+        DecimalFormat commaFormat = new DecimalFormat(COMMA_FORMAT);
+        return commaFormat.format(number);
     }
 
     public static void printProfitRate(double profitRate) {

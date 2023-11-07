@@ -1,12 +1,10 @@
 package lotto.controller;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Bank;
-import lotto.domain.Lotto;
 import lotto.domain.Player;
-import lotto.domain.Prize;
+import lotto.domain.enums.Prize;
 import lotto.dto.response.LottosInfoDto;
 import lotto.domain.LottoShop;
 import lotto.service.LottoService;

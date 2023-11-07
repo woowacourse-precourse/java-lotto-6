@@ -9,6 +9,7 @@ public class ConsoleOutput {
     public static void displayUserInputPrompt() {
         System.out.println(PURCHASE_PROMPT);
     }
+
     public static void printNewLine() {
         System.out.println();
     }

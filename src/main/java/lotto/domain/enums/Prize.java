@@ -1,7 +1,6 @@
-package lotto.domain;
+package lotto.domain.enums;
 
 import java.util.Arrays;
-import lotto.domain.Message;
 
 public enum Prize {
     FIRST(6, 2000000000, Message.FIRST),

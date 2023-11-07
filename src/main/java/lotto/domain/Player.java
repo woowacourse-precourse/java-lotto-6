@@ -7,7 +7,7 @@ import lotto.dto.response.LottosInfoDto;
 public class Player {
     private final int money;
     private final LottoShop lottoShop;
-    private Lottos lottos;  // 추가된 필드
+    private Lottos lottos;
 
     public Player(String input, LottoShop lottoShop) {
         this.money = Integer.parseInt(input);

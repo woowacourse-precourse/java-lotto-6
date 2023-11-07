@@ -6,6 +6,7 @@ public class InputView {
     public String getUserPurchaseAmount() {
         return readLine();
     }
+
     public String getWinningNumber() {
         return readLine();
     }

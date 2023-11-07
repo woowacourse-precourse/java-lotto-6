@@ -64,7 +64,7 @@ public class InputValidator {
     public static void validateExtraWinningNumber(String extraWinningNumber, List<Integer> winningNumbers) {
         int extraWinningNumberInteger = Integer.parseInt(extraWinningNumber);
 
-        hasDuplicateBonusNumber(extraWinningNumberInteger,winningNumbers);
+        hasDuplicateBonusNumber(extraWinningNumberInteger, winningNumbers);
     }
 
     public static void hasDuplicateBonusNumber(int extraWinningNumber, List<Integer> winningNumbers) {

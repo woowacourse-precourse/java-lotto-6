@@ -2,11 +2,12 @@ package lotto.view;
 
 import java.util.List;
 import java.util.Map;
-import lotto.domain.Prize;
+import lotto.domain.enums.Prize;
 
 public class OutputView {
     private static final String WINNING_STATISTICS_FORMAT = "%s %d개";
     private static final String EARNING_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
+
     public void displayticket(int ticket) {
         System.out.println(ticket + "개를 구매했습니다.");
     }
@@ -24,10 +25,9 @@ public class OutputView {
             System.out.printf(WINNING_STATISTICS_FORMAT,
                     prize.getMessage().getMessage(),
                     prizeCountMap.getOrDefault(prize, 0));
-            System.out.println();
+            ConsoleOutput.printNewLine();
         }
     }
-
 
 
     public void displayEarningRate(double earningRate) {

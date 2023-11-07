@@ -41,6 +41,10 @@ public class Lotto {
         return Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, COUNT);
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

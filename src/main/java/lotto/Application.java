@@ -16,7 +16,7 @@ public class Application {
     public static void main(String[] args) {
         // 구매를 위해 돈을 지불한다.
         System.out.println("구입금액을 입력해 주세요.");
-        BigDecimal pay = new BigDecimal(readLine().trim());
+        BigDecimal pay = stringToBigDecimal(readLine().trim());
         validatePayedMoney(pay);
 
         // 로또를 구매한다.
@@ -57,7 +57,7 @@ public class Application {
         BigDecimal prize = BigDecimal.ZERO;
         for (Result result : Result.values()) {
             int matchCount = Collections.frequency(results, result);
-            System.out.println(result.getDescription() + "(" + result.getPrizeMoney() + ")" + " - " +
+            System.out.println(result.getDescription() + " (" + result.getPrize() + ")" + " - " +
                     matchCount  + "개");
 
             prize = prize.add(result.getPrizeMoney().multiply(BigDecimal.valueOf(matchCount)));
@@ -92,12 +92,23 @@ public class Application {
         }
     }
 
+    private static BigDecimal stringToBigDecimal(String str) {
+        BigDecimal bigDecimal = null;
+        try {
+            return new BigDecimal(str);
+        } catch (NumberFormatException e) {
+            System.out.println("[ERROR] 로또 번호는 숫자만 입력가능합니다.\n");
+            stringToBigDecimal(readLine());
+        }
+        return bigDecimal;
+    }
+
     private static List<RandomLotto> drawLotto(int count) {
         List<RandomLotto> randomLottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
             List<Integer> randomLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(randomLotto); // 숫자들을 오름차순으로 정렬
+//            Collections.sort(randomLotto); // 숫자들을 오름차순으로 정렬
             randomLottos.add(new RandomLotto(randomLotto));
         }
 
@@ -112,8 +123,8 @@ public class Application {
 
 
     private static BigDecimal calculateProfitPercentage(BigDecimal prizeMoney, BigDecimal pay) {
-        BigDecimal percentage = (prizeMoney.subtract(pay)).divide(pay);
-        return percentage.setScale(2, RoundingMode.HALF_UP);
+        BigDecimal percentage = BigDecimal.valueOf(100).subtract((pay.subtract(prizeMoney)).divide(pay).multiply(BigDecimal.valueOf(100)));
+        return percentage.setScale(1, RoundingMode.HALF_UP);
     }
     private static void validatePayedMoney(BigDecimal pay) {
         if (!pay.remainder(BigDecimal.valueOf(1000)).equals(BigDecimal.ZERO)) {

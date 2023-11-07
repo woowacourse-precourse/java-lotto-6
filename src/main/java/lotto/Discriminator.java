@@ -27,6 +27,6 @@ public class Discriminator {
     }
 
     public StatisticDTO getStatistic() {
-        return new StatisticDTO(info.getStatistics());
+        return new StatisticDTO(info.getStatistic());
     }
 }

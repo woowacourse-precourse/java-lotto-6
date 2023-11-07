@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,8 +19,14 @@ public class OutputView {
         System.out.printf(Message.OUTPUT_COMPLETE_BUY_LOTTO.message, lotties.size());
         for (Lotto lotto : lotties) {
             List<Integer> numbers = lotto.getNumbers();
-            System.out.printf(Message.OUTPUT_LOTTO_NUMBERS.message, formatter(numbers));
+            System.out.printf(Message.OUTPUT_LOTTO_NUMBERS.message, joinFormatter(numbers));
         }
+    }
+
+    private String joinFormatter(List<Integer> numbers) {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(DIGIT_COMMA_WITH_BLANK));
     }
 
     public void outputLottoResults(List<LottoRank> rankResults) {
@@ -39,13 +46,13 @@ public class OutputView {
     }
 
     public void outputProfitRate(double profitRate) {
-        System.out.printf(Message.OUTPUT_PROFIT_RATE_BY_PERCENT.message, profitRate);
+        String formattedRate = thousandFormatter(profitRate);
+        System.out.printf(Message.OUTPUT_PROFIT_RATE_BY_PERCENT.message, formattedRate);
     }
 
-    private String formatter(List<Integer> numbers) {
-        return numbers.stream()
-                .map(String::valueOf)
-                .collect(Collectors.joining(DIGIT_COMMA_WITH_BLANK));
+    private String thousandFormatter(double profitRate) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+        return decimalFormat.format(profitRate);
     }
 
     private enum Message {

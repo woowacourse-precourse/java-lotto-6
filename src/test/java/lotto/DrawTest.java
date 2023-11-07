@@ -73,7 +73,7 @@ public class DrawTest extends Draw{
     void 로또_자동_발행_테스트() {
 
         //given
-        int lottoNum = 14;
+        int lottoNum = 14000;
 
         //when
         List<Lotto> lottos = issueLottos(lottoNum);

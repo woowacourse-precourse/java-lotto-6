@@ -102,7 +102,7 @@ public class Draw {
 
         List<Lotto> lottos = new ArrayList<>();
 
-        for (int i = 0; i < num; i++) {
+        for (int i = 0; i < num / 1000; i++) {
             List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottos.add(new Lotto(pickedNumbers));
         }

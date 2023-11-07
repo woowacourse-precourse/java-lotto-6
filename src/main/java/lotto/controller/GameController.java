@@ -65,6 +65,7 @@ public class GameController {
     private int getBonusNumber(List<Integer> winnerNumber) {
         int bonusNumber = inputView.getBonusNumber(CONSTANT_INITIAL_VALUE.getConstant(), winnerNumber);
         outputView.printNewLine();
+
         return bonusNumber;
     }
 

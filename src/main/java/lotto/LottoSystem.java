@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -16,18 +15,22 @@ public class LottoSystem {
     private static final int PRICE_4 = 3000000;
     private static final int PRICE_5 = 2000000000;
     private static final int PERCENT = 100;
-
+    private final LottoUI lottoUI;
+    public LottoSystem(){
+        this.lottoUI = new LottoUI();
+    }
     public void start() throws IllegalArgumentException {
-        System.out.println("구입금액을 입력해 주세요.");
-        int lottoTicket = buyLottoTicket(Console.readLine());
+        lottoUI.userPrint(LottoUI.PrintMessage.INPUT_MONEY.getMessage());
+        int lottoTicket = buyLottoTicket(lottoUI.userInput());
         ArrayList<Lotto> buyLottoNumbers = buyLotto(lottoTicket);
         buyLottoNumbersPrint(buyLottoNumbers);
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-        List<Integer> winningNumber = getWinningNumbers(Console.readLine());
+        lottoUI.userPrint(LottoUI.PrintMessage.INPUT_WIN_NUMBER.getMessage());
+        List<Integer> winningNumber = getWinningNumbers(lottoUI.userInput());
 
-        System.out.println("보너스 번호를 입력해 주세요.");
-        int bonusNumber = getBonusNumber(Console.readLine());
+        lottoUI.userPrint(LottoUI.PrintMessage.INPUT_BONUS_NUMBER.getMessage());
+        int bonusNumber = getBonusNumber(lottoUI.userInput());
+        bonusNumberOverlap(winningNumber, bonusNumber);
         int[] winLotto = lottoWinCheck(buyLottoNumbers, winningNumber, bonusNumber);
         winnerLottoNumbersPrint(lottoTicket, winLotto);
     }
@@ -69,7 +72,6 @@ public class LottoSystem {
     public List<Integer> getWinningNumbers(String winNumbers){
         List<Integer> winningNumbers = new ArrayList<>();
         String[] getWinNumber = winNumbers.split(",");
-
         if(getWinNumber.length != 6){
             throw new IllegalArgumentException(Message.Error.INVALID_WIN_NUMBER.getMessage());
         }
@@ -97,6 +99,15 @@ public class LottoSystem {
             return Integer.parseInt(bonusNumber);
         }catch(NumberFormatException e){
             throw new IllegalArgumentException(Message.Error.INVALID_INPUT.getMessage());
+        }
+    }
+
+    public void bonusNumberOverlap(List<Integer> winningNumbers, int bonusNumber){
+        HashSet<Integer> overlapCheck = new HashSet<>(winningNumbers);
+        int before = overlapCheck.size();
+        overlapCheck.add(bonusNumber);
+        if (before == overlapCheck.size()){
+            throw new IllegalArgumentException(Message.Error.OVERLAP_INPUT.getMessage());
         }
     }
 
@@ -138,14 +149,7 @@ public class LottoSystem {
 
     public void winnerLottoNumbersPrint(int lottoTicket, int[] winLotto){
         double rateOfReturn = winningTotalMoney(winLotto)/(lottoTicket*PRICE_0)*PERCENT;
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        System.out.println(String.format("3개 일치 (5,000원) - %d개", winLotto[0]));
-        System.out.println(String.format("4개 일치 (50,000원) - %d개", winLotto[1]));
-        System.out.println(String.format("5개 일치 (1,500,000원) - %d개", winLotto[2]));
-        System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", winLotto[3]));
-        System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", winLotto[4]));
-        System.out.println(String.format("총 수익률은 %.1f",  rateOfReturn)+"%입니다.");
+        lottoUI.winnerLottoNumberPrint(winLotto, rateOfReturn);
     }
 
     public double winningTotalMoney(int[] winLotto){

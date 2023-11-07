@@ -11,6 +11,8 @@ public enum Introduction {
     NOT_BONUS_PRIZE_LIST("%d개 일치 (%s) - %d개"),
     BONUS_PRIZE_LIST("%d개 일치, 보너스 볼 일치 (%s) - %d개"),
 
+    RATE_OF_RETURN("총 수익률은 %s입니다."),
+
     SEPARATOR("---"),
     DELIMITER(",");
 

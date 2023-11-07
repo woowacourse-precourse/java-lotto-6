@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import static common.enumtype.ErrorCode.BONUS_NUMBER_ALREADY_REGISTERED;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_CONTAIN_BONUS_NUMBER;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_DUPLICATED;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
@@ -28,18 +27,19 @@ class WinningNumbersTest {
     @BeforeEach
     void setUp() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        winningNumbers = new WinningNumbers(numbers);
-        winningNumbers.addBonus(new WinningNumber(7));
+        int bonusNumber = 7;
+        winningNumbers = new WinningNumbers(numbers, bonusNumber);
     }
 
     @Test
     void 당첨_번호_6개_미만_예외() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+        int bonusNumber = 45;
 
         // when
         // then
-        assertThatThrownBy(() -> new WinningNumbers(numbers))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNING_NUMBERS_INVALID_SIZE.getMessage());
     }
@@ -48,10 +48,11 @@ class WinningNumbersTest {
     void 당첨_번호_6개_초과_예외() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6, 7);
+        int bonusNumber = 45;
 
         // when
         // then
-        assertThatThrownBy(() -> new WinningNumbers(numbers))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNING_NUMBERS_INVALID_SIZE.getMessage());
     }
@@ -60,10 +61,11 @@ class WinningNumbersTest {
     void 중복된_당첨_번호_에외() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 5);
+        int bonusNumber = 45;
 
         // when
         // then
-        assertThatThrownBy(() -> new WinningNumbers(numbers))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNING_NUMBERS_DUPLICATED.getMessage());
     }
@@ -72,41 +74,24 @@ class WinningNumbersTest {
     void 당첨_번호_생성() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 45;
 
         // when
-        WinningNumbers result = new WinningNumbers(numbers);
+        WinningNumbers result = new WinningNumbers(numbers, bonusNumber);
 
         // then
         assertThat(result).isNotNull();
     }
 
     @Test
-    void 보너스_번호가_등록된_상태에서_등록_예외() {
-        // given
-        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        WinningNumbers winningNumbers = new WinningNumbers(numbers);
-
-        WinningNumber winningNumber = new WinningNumber(7);
-        winningNumbers.addBonus(winningNumber);
-
-        // when
-        // then
-        assertThatThrownBy(() -> winningNumbers.addBonus(winningNumber))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessage(BONUS_NUMBER_ALREADY_REGISTERED.getMessage());
-    }
-
-    @Test
     void 당첨_번호와_중복되는_보너스_번호_예외() {
         // given
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
-        WinningNumbers winningNumbers = new WinningNumbers(numbers);
-
-        WinningNumber winningNumber = new WinningNumber(1);
+        int bonusNumber = 1;
 
         // when
         // then
-        assertThatThrownBy(() -> winningNumbers.addBonus(winningNumber))
+        assertThatThrownBy(() -> new WinningNumbers(numbers, bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNING_NUMBERS_CONTAIN_BONUS_NUMBER.getMessage());
     }

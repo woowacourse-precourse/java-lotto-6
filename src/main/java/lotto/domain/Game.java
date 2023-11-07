@@ -24,17 +24,9 @@ public class Game {
     public Game(LottoNumberStrategy strategy) {
         strategy = settingStrategy(strategy);
         this.amount = createAmount();
-        this.lottoes = createLottoes(strategy, amount.getNumberOfLotto());
+        this.lottoes = createLottoes(strategy, amount.getLottoQuantity());
         printLottoes();
-        this.winningNumbers = createWinningNumbers();
-        addBonusNumber();
-    }
-
-    private void printLottoes() {
-        List<LottoNumbers> lottoNumbers = lottoes.stream()
-                .map(lotto -> new LottoNumbers(lotto.getLottoNumbers()))
-                .toList();
-        printLottoNumbers(lottoNumbers);
+        this.winningNumbers = createNumbers();
     }
 
     private LottoNumberStrategy settingStrategy(LottoNumberStrategy strategy) {
@@ -42,6 +34,21 @@ public class Game {
             return new RandomNumberStrategy();
         }
         return strategy;
+    }
+
+    private LottoPurchaseAmount createAmount() {
+        try {
+            return createAmountFromUser();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return createAmount();
+        }
+    }
+
+    private LottoPurchaseAmount createAmountFromUser() {
+        String input = inputLottoPurchaseAmount();
+        int amount = parseInt(input);
+        return new LottoPurchaseAmount(amount);
     }
 
     private List<Lotto> createLottoes(LottoNumberStrategy strategy, int number) {
@@ -60,30 +67,20 @@ public class Game {
         }
     }
 
-    private void addBonusNumber() {
-        try {
-            winningNumbers.addBonus(createBonusNumber());
-        } catch (IllegalStateException e) {
-            System.out.println(e.getMessage());
-        }
+    private void printLottoes() {
+        List<LottoNumbers> lottoNumbers = lottoes.stream()
+                .map(lotto -> new LottoNumbers(lotto.getLottoNumbers()))
+                .toList();
+        printLottoNumbers(lottoNumbers);
     }
 
-    private WinningNumber createBonusNumber() {
-        try {
-            return createBonusNumberFromUser();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return createBonusNumber();
-        }
+    private WinningNumbers createNumbers() {
+        List<Integer> winningNumbers = createWinningNumbers();
+        int bonusNumber = createBonusNumber();
+        return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
-    private WinningNumber createBonusNumberFromUser() {
-        String input = inputBonusNumber();
-        int bonusNumber = parseInt(input);
-        return new WinningNumber(bonusNumber);
-    }
-
-    private WinningNumbers createWinningNumbers() {
+    private List<Integer> createWinningNumbers() {
         try {
             return createWinningNumbersFromUser();
         } catch (IllegalArgumentException e) {
@@ -92,27 +89,25 @@ public class Game {
         }
     }
 
-    private WinningNumbers createWinningNumbersFromUser() {
+    private List<Integer> createWinningNumbersFromUser() {
         List<String> numbers = inputWinningNumbers();
-        List<Integer> winningNumbers = numbers.stream()
+        return numbers.stream()
                 .map(this::parseInt)
                 .toList();
-        return new WinningNumbers(winningNumbers);
     }
 
-    private LottoPurchaseAmount createAmount() {
+    private int createBonusNumber() {
         try {
-            return createAmountFromUser();
+            return createBonusNumberFromUser();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return createAmount();
+            return createBonusNumber();
         }
     }
 
-    private LottoPurchaseAmount createAmountFromUser() {
-        String input = inputLottoPurchaseAmount();
-        int amount = parseInt(input);
-        return new LottoPurchaseAmount(amount);
+    private int createBonusNumberFromUser() {
+        String input = inputBonusNumber();
+        return parseInt(input);
     }
 
     private int parseInt(String input) {

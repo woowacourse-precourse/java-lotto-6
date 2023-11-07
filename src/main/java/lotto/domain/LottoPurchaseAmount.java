@@ -17,7 +17,7 @@ public class LottoPurchaseAmount {
         this.amount = amount;
     }
 
-    public int getNumberOfLotto() {
+    public int getLottoQuantity() {
         return amount / UNIT_AMOUNT;
     }
 

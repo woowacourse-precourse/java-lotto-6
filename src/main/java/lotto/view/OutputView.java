@@ -29,7 +29,7 @@ public class OutputView {
                 .collect(Collectors.joining(", ","[","]"));
         System.out.println(result);
     }
-    public static void displayResults(List<LottoResult> results) {
+    public static void printWinningStatics(List<LottoResult> results) {
         System.out.println("당첨 통계");
         System.out.println("---");
         Map<LottoResult, Integer> resultCounts = new HashMap<>();

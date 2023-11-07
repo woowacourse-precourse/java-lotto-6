@@ -6,22 +6,22 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class WinningCountsTest {
+class WinningRankCountsTest {
 
-    private WinningCounts winningCounts;
+    private WinningRankCounts winningRankCounts;
 
     @BeforeEach
     void setUp() {
-        winningCounts = new WinningCounts();
+        winningRankCounts = new WinningRankCounts();
     }
 
     @DisplayName("1등의 count가 증가한다.")
     @Test
     void incrementCount() {
         //when
-        winningCounts.incrementCount(WinningRank.FIRST);
+        winningRankCounts.incrementCount(WinningRank.FIRST);
         //then
-        assertThat(winningCounts.getCount(WinningRank.FIRST)).isEqualTo(1);
+        assertThat(winningRankCounts.getCount(WinningRank.FIRST)).isEqualTo(1);
     }
 
 }

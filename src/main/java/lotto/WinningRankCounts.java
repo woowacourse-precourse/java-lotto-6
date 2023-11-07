@@ -3,10 +3,10 @@ package lotto;
 import java.util.Arrays;
 import java.util.EnumMap;
 
-public class WinningCounts {
+public class WinningRankCounts {
     private final EnumMap<WinningRank, Integer> counts;
 
-    public WinningCounts() {
+    public WinningRankCounts() {
         counts = new EnumMap<>(WinningRank.class);
         Arrays.stream(WinningRank.values())
                 .forEach(winningRank -> counts.put(winningRank, 0));

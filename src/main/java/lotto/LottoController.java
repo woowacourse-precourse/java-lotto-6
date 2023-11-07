@@ -26,10 +26,10 @@ public class LottoController {
         outputView.printIssuedLottoTickets(LottoTicketsDto.from(issuedLottoTickets));
 
         LottoWinningNumbers lottoWinningNumbers = createLottoWinningNumbers();
-        WinningCounts winningCounts = issuedLottoTickets.calculateWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
-        outputView.printWinningCounts(WinningCountsDto.from(winningCounts));
+        WinningRankCounts winningRankCounts = issuedLottoTickets.calculateWinningRanks(new WinningRankCalculator(), lottoWinningNumbers);
+        outputView.printWinningCounts(WinningRankCountsDto.from(winningRankCounts));
 
-        WinningStatistics winningStatistics = new WinningStatistics(winningCounts, paidAmount);
+        WinningStatistics winningStatistics = new WinningStatistics(winningRankCounts, paidAmount);
         outputView.printProfitRate(ProfitRateDto.from(winningStatistics.calculateProfitRate()));
     }
 

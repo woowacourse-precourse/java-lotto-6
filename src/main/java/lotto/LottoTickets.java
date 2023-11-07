@@ -12,8 +12,8 @@ public class LottoTickets {
 
     }
 
-    public WinningCounts calculateWinningRanks(WinningRankCalculator calculator, LottoWinningNumbers lottoWinningNumbers) {
-        WinningCounts counts = new WinningCounts();
+    public WinningRankCounts calculateWinningRanks(WinningRankCalculator calculator, LottoWinningNumbers lottoWinningNumbers) {
+        WinningRankCounts counts = new WinningRankCounts();
 
         lottos.stream()
                 .map(lotto -> calculator.determineWinningRank(lotto, lottoWinningNumbers))

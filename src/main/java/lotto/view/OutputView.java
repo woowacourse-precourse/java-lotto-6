@@ -2,7 +2,7 @@ package lotto.view;
 
 import lotto.LottoTicketsDto;
 import lotto.ProfitRateDto;
-import lotto.WinningCountsDto;
+import lotto.WinningRankCountsDto;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,22 +30,22 @@ public class OutputView {
         print(issued.toString());
     }
 
-    public void printWinningCounts(final List<WinningCountsDto> winningCountsDtos) {
+    public void printWinningCounts(final List<WinningRankCountsDto> winningRankCountsDtos) {
         StringBuilder line = new StringBuilder(START_WINNING_COUNT_MESSAGE);
-        line.append(winningCountsDtos.stream()
-                .map(winningCountsDto ->
+        line.append(winningRankCountsDtos.stream()
+                .map(winningRankCountsDto ->
                     String.format(WINNING_COUNTS_FORMAT,
-                            winningCountsDto.getCountOfMatchingNumbers(),
-                            getBonusMessage(winningCountsDto),
-                            winningCountsDto.getPrize(),
-                            winningCountsDto.getWinningCount()))
+                            winningRankCountsDto.getCountOfMatchingNumbers(),
+                            getBonusMessage(winningRankCountsDto),
+                            winningRankCountsDto.getPrize(),
+                            winningRankCountsDto.getWinningCount()))
                 .collect(Collectors.joining()));
         print(line.toString());
     }
 
-    private String getBonusMessage(WinningCountsDto winningCountsDto) {
+    private String getBonusMessage(WinningRankCountsDto winningRankCountsDto) {
         String bonusMessage = EMPTY;
-        if (winningCountsDto.isRequiresBonus()) {
+        if (winningRankCountsDto.isRequiresBonus()) {
             bonusMessage = BONUS_NUMBER_REQUIRED;
         }
         return bonusMessage;

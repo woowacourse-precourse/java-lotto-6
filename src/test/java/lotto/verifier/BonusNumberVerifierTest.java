@@ -6,9 +6,16 @@ import lotto.Application;
 import lotto.system.ExceptionMessage;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 
 import java.math.BigInteger;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -28,12 +35,14 @@ class BonusNumberVerifierTest extends NsTest {
     }
 
     @Nested
+    @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     class ExceptionTest {
 
         private final Verifier bonusNumberVerifier = new BonusNumberVerifier();
-        @Test
-        void 숫자가아닌_보너스번호가_주어진경우() {
-            assertThatThrownBy(() -> bonusNumberVerifier.check("13k"))
+        @ParameterizedTest
+        @CsvSource(value = {"13f","183j33", "10k00", "k832", "0/1?"})
+        void 숫자가아닌_보너스번호가_주어진경우(String input) {
+            assertThatThrownBy(() -> bonusNumberVerifier.check(input))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.IS_NOT_NUMERIC);
         }
@@ -44,11 +53,21 @@ class BonusNumberVerifierTest extends NsTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.NUMBER_OUT_OF_TYPE_RANGE);
         }
-        @Test
-        void 보너스번호가_1부터45사이의_숫자가_아닌경우() {
+        @ParameterizedTest
+        @MethodSource("parameterProvider")
+        void 보너스번호가_1부터45사이의_숫자가_아닌경우(String input) {
             assertThatThrownBy(() -> bonusNumberVerifier.check("48"))
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining(ExceptionMessage.NUMBER_EACH_OUT_OF_RANGE);
+        }
+
+        private Stream<Arguments> parameterProvider() {
+            return Stream.of(
+                    Arguments.of( "72"),
+                    Arguments.of("4823"),
+                    Arguments.of("-24")
+
+            );
         }
     }
 

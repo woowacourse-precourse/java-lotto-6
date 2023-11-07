@@ -22,8 +22,8 @@ public class LottoReporter {
     }
 
     public static void rateOfReturn(double totalReward, int money) {
-        double result = Math.max(totalReward - money, 0);
-        result = (result / money) * 100;
+        double result = 0;
+        result = (totalReward / money) * 100;
         result = Math.round(result*10)/10.0;
         System.out.println("총 수익률은 " + result + "%입니다.");
     }

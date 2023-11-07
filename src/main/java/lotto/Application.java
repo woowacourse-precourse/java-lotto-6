@@ -9,8 +9,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         Buyer buyer = new Buyer();
-//        int money = buyer.getLottoPurchaseAmount();
-//        int bonusNumber = buyer.getBonusNumber(lottoNumbers);
+
         List<List<Integer>> lottoNumbers = buyer.generateLottoNumbers();
         for (List<Integer> lottoNumber : lottoNumbers) {
             System.out.println(lottoNumber);
@@ -50,26 +49,9 @@ public class Application {
             }
         }
 
-//        System.out.println("당첨 통계");
-//        System.out.println("---");
-//        System.out.println("3개 일치 (5,000원) - " + fifthPlaceCount + "개");
-//        System.out.println("4개 일치 (50,000원) - " + fourthPlaceCount + "개");
-//        System.out.println("5개 일치 (1,500,000원) - " + thirdPlaceCount + "개");
-//        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + secondPlaceCount + "개");
-//        System.out.println("6개 일치 (2,000,000,000원) - " + firstPlaceCount + "개");
-//        System.out.println("총");
-
         LottoReporter.lottoReport(firstPlaceCount, secondPlaceCount, thirdPlaceCount, fourthPlaceCount, fifthPlaceCount);
         LottoReporter.rateOfReturn(totalReward, lottoNumbers.size()*1000);
-        // 수익률 = (투자금 - 투자금)/ 투자금
-//        당첨 통계
-//        ---
-//        3개 일치 (5,000원) - 1개
-//        4개 일치 (50,000원) - 0개
-//        5개 일치 (1,500,000원) - 0개
-//        5개 일치, 보너스 볼 일치 (30,000,000원) - 0개
-//        6개 일치 (2,000,000,000원) - 0개
-//        총 수익률은 62.5%입니다.
+
     }
 
 }

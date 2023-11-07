@@ -1,6 +1,12 @@
 package lotto;
 
 public class validator {
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        return strNum.matches("-?\\d+(\\.\\d+)?");
+    }
     public static boolean validatePurchaseAmount(int money) {
         return money % 1000 == 0;
     }

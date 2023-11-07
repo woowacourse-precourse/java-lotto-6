@@ -21,7 +21,7 @@ public enum MatchNums {
         return num;
     }
 
-    public int getCost(){
-        return cost;
+    public int calculateCost(int count){
+        return count*cost;
     }
 }

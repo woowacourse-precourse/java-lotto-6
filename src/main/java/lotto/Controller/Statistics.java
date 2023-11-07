@@ -3,8 +3,10 @@ package lotto.Controller;
 import static lotto.Constants.COUNT_MIN;
 import static lotto.MatchNums.*;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import lotto.MatchNums;
 import lotto.Model.Lotto;
 import lotto.View.OutputView;
 
@@ -12,11 +14,7 @@ public class Statistics {
     private HashMap<Integer, Integer> countMap = new HashMap<>();
 
     public Statistics(){
-        countMap.put(THREE.getNum(), 0);
-        countMap.put(FOUR.getNum(), 0);
-        countMap.put(FIVE.getNum(), 0);
-        countMap.put(FIVE_AND_BONUS.getNum(), 0);
-        countMap.put(SIX.getNum(), 0);
+        Arrays.stream(MatchNums.values()).forEach(o->countMap.put(o.getNum(), 0));
     }
 
     public void updateResult(Calculate calculate, List<Lotto> lottos, List<Integer> winningNums, int bonus){

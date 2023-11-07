@@ -3,9 +3,11 @@ package lotto.Controller;
 import static lotto.Constants.DIVIDED;
 import static lotto.MatchNums.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import lotto.MatchNums;
 
 public class Calculate {
     private static final double POINT = 10.0;
@@ -28,20 +30,7 @@ public class Calculate {
     }
 
     public int getProfitCost(Map<Integer, Integer> matchMap){
-        int profit = 0;
-        for (Map.Entry<Integer, Integer> items: matchMap.entrySet()) {
-            if (items.getKey() == THREE.getNum()) {
-                profit += (THREE.getCost() * items.getValue());
-            } else if (items.getKey() == FOUR.getNum()) {
-                profit += (FOUR.getCost() * items.getValue());
-            } else if (items.getKey() == FIVE.getNum()) {
-                profit += (FIVE.getCost() * items.getValue());
-            } else if (items.getKey()== FIVE_AND_BONUS.getNum()) {
-                profit += (FIVE_AND_BONUS.getCost() * items.getValue());
-            } else if (items.getKey() == SIX.getNum()){
-                profit += (SIX.getCost() * items.getValue());
-            }
-        }
+        int profit = Arrays.stream(MatchNums.values()).map(o -> o.calculateCost(matchMap.get(o.getNum()))).reduce(0, Integer::sum);
         return profit;
     }
 

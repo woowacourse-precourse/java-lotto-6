@@ -4,55 +4,36 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoGameMessage;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class InputView {
     private static final String DELIMITER = ",";
 
     public long validateCustomerMoneyInput(final String moneyInput) {
-        if (moneyInput.isEmpty()) {
-            throw new NumberFormatException(ErrorMessage.EMPTY.errorMessage);
+        try {
+            return Long.parseLong(moneyInput);
+        } catch (Exception e) {
+            throw new NumberFormatException(ErrorMessage.NOT_DIGIT_MONEY.errorMessage);
         }
-
-        moneyInput.chars().forEach(o -> {
-            if (!Character.isDigit(o)) {
-                throw new NumberFormatException(ErrorMessage.NOT_DIGIT_MONEY.errorMessage);
-            }
-        });
-
-        return Long.parseLong(moneyInput);
     }
 
-    public String[] validateWinningNumberInput(final String winningNumberInput) {
-        if (winningNumberInput.isEmpty()) {
-            throw new NumberFormatException(ErrorMessage.EMPTY.errorMessage);
+    public List<Integer> validateWinningNumberInput(final String winningNumberInput) {
+        try {
+            return Arrays.stream(winningNumberInput.split(DELIMITER))
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (Exception e) {
+            throw new NumberFormatException(ErrorMessage.NOT_DIGIT_WINNING_NUM.errorMessage);
         }
-        if (!winningNumberInput.contains(",")) {
-            throw new NumberFormatException(ErrorMessage.DELIMITER.errorMessage);
-        }
-
-        return validateEachWinningNumberInput(winningNumberInput);
-    }
-
-    public String[] validateEachWinningNumberInput(final String winningNumberInput) {
-        String[] splitByDelimiter = winningNumberInput.split(DELIMITER);
-
-        for (String eachWinningNumber : splitByDelimiter) {
-            if (eachWinningNumber.chars().anyMatch(c -> !Character.isDigit((char) c))) {
-                throw new NumberFormatException(ErrorMessage.NOT_DIGIT_WINNING_NUM.errorMessage);
-            }
-        }
-
-        return splitByDelimiter;
     }
 
     public int validateBonusNumberInput(final String bonusNumberInput) {
-        if (bonusNumberInput.isEmpty()) {
-            throw new NumberFormatException(ErrorMessage.EMPTY.errorMessage);
-        }
-        if (bonusNumberInput.chars().anyMatch(c -> !Character.isDigit((char) c))) {
+        try {
+            return Integer.parseInt(bonusNumberInput);
+        } catch (Exception e) {
             throw new NumberFormatException(ErrorMessage.NOT_DIGIT_BONUS_NUM.errorMessage);
         }
-
-        return Integer.parseInt(bonusNumberInput);
     }
 
     public String requestLottoMoneyToBuy() {

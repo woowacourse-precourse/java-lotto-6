@@ -21,10 +21,10 @@ public class InputValidator {
 
     public static void checkWinningNumbers(String input) {
         Set<String> winningNumbers = new HashSet<>(Arrays.asList(input.split(",")));
-        if (winningNumbers.size() != 6) {
+
+        if (input.split(",").length != 6 || winningNumbers.size() != 6) {
             throw new IllegalArgumentException(Error.PLEASE_ENTER_A_UNDUPLICATED_NUMBER_OF_6);
         }
-
         Iterator<String> iterator = winningNumbers.iterator();
         while (iterator.hasNext()) {
             String next = iterator.next();

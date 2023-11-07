@@ -272,6 +272,7 @@ public class Lotto {
 - [ ] LottoTickets
 - [ ] WinningLotto
 - [ ] WinningNumber
+- [ ] WinningMoney (enum)
 
       
 ### view 

@@ -21,5 +21,7 @@ public class LottoController {
         for (Lotto lotto : lottos.getLottoList()) {
             OutputView.showPurchasedLotto(lotto.getLottoNumbers());
         }
+
+        OutputView.askLottoNumbers();
     }
 }

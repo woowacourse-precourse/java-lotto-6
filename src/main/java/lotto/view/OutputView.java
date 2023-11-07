@@ -14,4 +14,8 @@ public class OutputView {
     public static void showPurchasedLotto(List<Integer> numbers) {
         System.out.println(numbers);
     }
+
+    public static void askLottoNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+    }
 }

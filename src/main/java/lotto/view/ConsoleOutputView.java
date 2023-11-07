@@ -8,8 +8,6 @@ import lotto.controller.dto.LottoResponse;
 
 public class ConsoleOutputView implements OutputView {
 
-    private static final int ONE_HUNDRED = 100;
-
     @Override
     public void printMoneyRequestMessage() {
         System.out.println("구입금액을 입력해 주세요.");
@@ -49,8 +47,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printTotalProfit(final long totalPrize, final long money) {
-        double totalProfit = ((double) totalPrize / money * ONE_HUNDRED);
+    public void printTotalProfit(final double totalProfit) {
         System.out.println("총 수익률은 " + String.format("%.1f", totalProfit) + "%" + "입니다.");
     }
 

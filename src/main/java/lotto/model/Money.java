@@ -7,6 +7,7 @@ import lotto.exception.InvalidMoneyException;
 public class Money {
 
     private static final int LOTTO_PRICE = 1_000;
+    private static final int PERCENTAGE = 100;
     private static final int ZERO = 0;
 
     private final long lottoMoney;
@@ -60,12 +61,17 @@ public class Money {
         return money % LOTTO_PRICE == ZERO;
     }
 
+
     public long calculateTicketCount() {
         return lottoMoney / LOTTO_PRICE;
     }
 
     public long getLottoMoney() {
         return lottoMoney;
+    }
+
+    public double calculateProfit(long totalProfit) {
+        return ((double) totalProfit / lottoMoney) * PERCENTAGE;
     }
 
     @Override

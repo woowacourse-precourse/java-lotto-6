@@ -29,7 +29,7 @@ public class Controller {
         WinningNumbers winningNumbers = getWinningNumbers();
         LottoPrizeCalculator lottoPrizeCalculator = getLottoPrizeCalculator(lottos, winningNumbers);
         showWinningStatistics(lottoPrizeCalculator);
-        showTotalProfit(lottoPrizeCalculator, money.getLottoMoney());
+        showTotalProfit(lottoPrizeCalculator, money);
     }
 
     private void showPurchasedLottos(final Lottos lottos) {
@@ -94,8 +94,9 @@ public class Controller {
         outputView.printWinningStatistics(winningStatistics);
     }
 
-    private void showTotalProfit(final LottoPrizeCalculator lottoPrizeCalculator, final long money) {
+    private void showTotalProfit(final LottoPrizeCalculator lottoPrizeCalculator, final Money money) {
         long totalPrize = lottoPrizeCalculator.calculateTotalPrize();
-        outputView.printTotalProfit(totalPrize, money);
+        outputView.printTotalProfit(money.calculateProfit(totalPrize));
+
     }
 }

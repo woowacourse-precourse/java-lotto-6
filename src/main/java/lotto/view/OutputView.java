@@ -16,7 +16,7 @@ public interface OutputView {
 
     void printWinningStatistics(Map<String, Long> winningStatistics);
 
-    void printTotalProfit(long totalPrize, long money);
+    void printTotalProfit(double totalProfit);
 
     void printErrorMessage(String message);
 }

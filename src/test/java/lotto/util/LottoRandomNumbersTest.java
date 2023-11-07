@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("로또 랜덤 숫자를 생성하는 객체에 대해")
 class LottoRandomNumbersTest {
@@ -20,7 +19,7 @@ class LottoRandomNumbersTest {
 
         //then
         for (int number : randomNumbers) {
-            assertTrue(number >= 1 && number <= 45);
+            assertThat(number).isBetween(1, 45);
         }
     }
 

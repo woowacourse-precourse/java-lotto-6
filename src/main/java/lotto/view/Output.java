@@ -1,7 +1,7 @@
 package lotto.view;
 
 import lotto.vo.Lotto;
-import lotto.values.WinningResult;
+import lotto.values.WinningMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +38,8 @@ public class Output {
 
     public void printWinning(ArrayList<Integer> winningResult) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < WinningResult.values().length; i++) {
-            sb.append(String.format(WinningResult.values()[i].getMessage(), winningResult.get(i)));
+        for (int i = 0; i < WinningMessage.values().length; i++) {
+            sb.append(String.format(WinningMessage.values()[i].getMessage(), winningResult.get(i)));
         }
         System.out.println(sb);
     }

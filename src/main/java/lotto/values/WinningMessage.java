@@ -1,6 +1,6 @@
 package lotto.values;
 
-public enum WinningResult {
+public enum WinningMessage {
     WINNING_FIFTH_MESSAGE("3개 일치 (5,000원) - %d개\n"),
     WINNING_FOURTH_MESSAGE("4개 일치 (50,000원) - %d개\n"),
     WINNING_THIRD_MESSAGE("5개 일치 (1,500,000원) - %d개\n"),
@@ -9,7 +9,7 @@ public enum WinningResult {
 
     private final String message;
 
-    WinningResult(String message) {
+    WinningMessage(String message) {
         this.message = message;
     }
 

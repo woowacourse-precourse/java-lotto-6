@@ -20,15 +20,15 @@ public class LottoController {
     }
 
     public void startLotto() {
-        int money = inputHandler.getMoney();
-
-        List<Lotto> lottos = lottoService.purchaseLotto(money);
+        int purchaseMoney = inputHandler.getPurchaseMoney();
+        List<Lotto> lottos = lottoService.purchaseLotto(purchaseMoney);
         outputView.printLottos(lottos);
 
         WinningNumber winningNumber = getWinningNumber();
 
         LottoResult lottoResult = lottoService.findWinningLottos(lottos, winningNumber);
-        outputView.printLottoResult(lottoResult, money);
+        outputView.printLottoRanks(lottoResult);
+        outputView.printEarningRate(lottoResult.getTotalReward(), purchaseMoney);
     }
 
     private WinningNumber getWinningNumber() {

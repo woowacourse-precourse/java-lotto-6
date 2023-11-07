@@ -22,7 +22,7 @@ public class InputHandler {
         this.inputValidator = inputValidator;
     }
 
-    public int getMoney() {
+    public int getPurchaseMoney() {
         return processInput(() -> {
             int moneyAmount = inputParser.parseMoney(inputView.getMoney());
             inputValidator.validateMoney(moneyAmount);

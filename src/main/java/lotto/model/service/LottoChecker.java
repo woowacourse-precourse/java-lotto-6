@@ -1,5 +1,6 @@
 package lotto.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
@@ -9,13 +10,16 @@ import lotto.model.dto.WinningNumber;
 public class LottoChecker {
 
     public LottoResult findWinningLottos(List<Lotto> lottos, WinningNumber winningNumber) {
-        LottoResult lottoResult = new LottoResult();
+        List<LottoRank> resultRanks = new ArrayList<>();
+        int totalReward = 0;
 
         for (Lotto lotto : lottos) {
-            lottoResult.addResult(checkLotto(lotto, winningNumber));
+            LottoRank rank = checkLotto(lotto, winningNumber);
+            resultRanks.add(rank);
+            totalReward += rank.getReward();
         }
 
-        return lottoResult;
+        return new LottoResult(resultRanks, totalReward);
     }
 
     private LottoRank checkLotto(Lotto lotto, WinningNumber winningNumber) {

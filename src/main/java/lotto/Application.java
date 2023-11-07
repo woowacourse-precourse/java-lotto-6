@@ -13,15 +13,16 @@ import lotto.view.output.OutputView;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-
         LottoGenerator lottoGenerator = new LottoGenerator();
         LottoChecker lottoChecker = new LottoChecker();
         LottoService lottoService = new LottoService(lottoGenerator, lottoChecker);
 
         InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+
         InputParser inputParser = new InputParser();
         InputValidator inputValidator = new InputValidator();
-        OutputView outputView = new OutputView();
+
         InputHandler inputHandler = new InputHandler(inputView, outputView,
                 inputParser, inputValidator);
 

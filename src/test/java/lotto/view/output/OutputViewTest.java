@@ -1,5 +1,9 @@
 package lotto.view.output;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.List;
 import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
 import lotto.model.dto.LottoResult;
@@ -9,14 +13,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.List;
-
 class OutputViewTest {
     private PrintStream standardOut;
     private OutputStream captor;
+    private OutputView outputView = new OutputView();
 
     @BeforeEach
     protected final void init() {
@@ -39,7 +39,6 @@ class OutputViewTest {
     @DisplayName("로또 출력 형식 테스트")
     public void printLottoTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        OutputView outputView = new OutputView();
 
         outputView.printLottos(List.of(lotto));
 
@@ -51,14 +50,9 @@ class OutputViewTest {
     @Test
     @DisplayName("로또 결과 출력 형식 테스트")
     public void printLottoResultTest() {
-        LottoResult lottoResult = new LottoResult();
-        lottoResult.addResult(LottoRank.FIRST_PLACE);
-        lottoResult.addResult(LottoRank.FIRST_PLACE);
-        lottoResult.addResult(LottoRank.SECOND_PLACE);
-
-        OutputView outputView = new OutputView();
-
-        outputView.printLottoResult(lottoResult, 5000);
+        LottoResult lottoResult = new LottoResult(
+                List.of(LottoRank.FIRST_PLACE, LottoRank.FIRST_PLACE, LottoRank.SECOND_PLACE), 0);
+        outputView.printLottoRanks(lottoResult);
 
         Assertions.assertThat(output())
                 .contains("당첨 통계",
@@ -67,25 +61,16 @@ class OutputViewTest {
                         "4개 일치 (50,000원) - 0개",
                         "5개 일치 (1,500,000원) - 0개",
                         "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
-                        "6개 일치 (2,000,000,000원) - 2개",
-                        "총 수익률은 80,600,000.0%입니다."
+                        "6개 일치 (2,000,000,000원) - 2개"
                 );
     }
 
     @Test
     @DisplayName("로또 결과 출력 형식 테스트2")
     public void printLottoResultTest2() {
-        LottoResult lottoResult = new LottoResult();
-        lottoResult.addResult(LottoRank.FIRST_PLACE);
-        lottoResult.addResult(LottoRank.SECOND_PLACE);
-        lottoResult.addResult(LottoRank.THIRD_PLACE);
-        lottoResult.addResult(LottoRank.FOURTH_PLACE);
-        lottoResult.addResult(LottoRank.FIFTH_PLACE);
-        lottoResult.addResult(LottoRank.NO_LUCK);
+        LottoResult lottoResult = new LottoResult(List.of(LottoRank.values()), 0);
 
-        OutputView outputView = new OutputView();
-
-        outputView.printLottoResult(lottoResult, 6000);
+        outputView.printLottoRanks(lottoResult);
 
         Assertions.assertThat(output())
                 .contains("당첨 통계",
@@ -94,48 +79,53 @@ class OutputViewTest {
                         "4개 일치 (50,000원) - 1개",
                         "5개 일치 (1,500,000원) - 1개",
                         "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
-                        "6개 일치 (2,000,000,000원) - 1개",
-                        "총 수익률은 33,859,250.0%입니다."
+                        "6개 일치 (2,000,000,000원) - 1개"
                 );
     }
 
     @Test
     @DisplayName("수익률 출력 포맷 정수")
     public void earningRateFormatInteger() {
-        OutputView outputView = new OutputView();
-        String format = outputView.calculateEarningRateAndFormat(1000, 14000000);
+        outputView.printEarningRate(14000000, 1000);
 
-        Assertions.assertThat(format)
-                .isEqualTo("1,400,000.0");
+        Assertions.assertThat(output())
+                .isEqualTo("총 수익률은 1,400,000.0%입니다.");
     }
 
     @Test
     @DisplayName("수익률 출력 포맷 실수")
     public void earningRateFormatDecimal() {
-        OutputView outputView = new OutputView();
-        String format = outputView.calculateEarningRateAndFormat(67000, 14000000);
+        outputView.printEarningRate(14000000, 67000);
 
-        Assertions.assertThat(format)
-                .isEqualTo("20,895.5");
+        Assertions.assertThat(output())
+                .isEqualTo("총 수익률은 20,895.5%입니다.");
     }
 
     @Test
     @DisplayName("수익률 출력 포맷 실수 반올림 X")
     public void earningRateFormatDecimalHalfUp_X() {
-        OutputView outputView = new OutputView();
-        String format = outputView.calculateEarningRateAndFormat(68000, 14000000);
+        outputView.printEarningRate(14000000, 68000);
 
-        Assertions.assertThat(format)
-                .isEqualTo("20,588.2");
+        Assertions.assertThat(output())
+                .isEqualTo("총 수익률은 20,588.2%입니다.");
     }
 
     @Test
     @DisplayName("수익률 출력 포맷 실수 반올림 O")
     public void earningRateFormatDecimalHalfUp_O() {
-        OutputView outputView = new OutputView();
-        String format = outputView.calculateEarningRateAndFormat(66000, 14000000);
+        outputView.printEarningRate(14000000, 66000);
 
-        Assertions.assertThat(format)
-                .isEqualTo("21,212.1");
+        Assertions.assertThat(output())
+                .isEqualTo("총 수익률은 21,212.1%입니다.");
     }
+
+    @Test
+    @DisplayName("수익률 출력 0.0%")
+    public void earningRateFormatZero() {
+        outputView.printEarningRate(0, 8000);
+
+        Assertions.assertThat(output())
+                .isEqualTo("총 수익률은 0.0%입니다.");
+    }
+
 }

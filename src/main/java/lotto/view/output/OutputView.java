@@ -1,14 +1,13 @@
 package lotto.view.output;
 
-import lotto.model.domain.Lotto;
-import lotto.model.domain.LottoRank;
-import lotto.model.dto.LottoResult;
-
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoRank;
+import lotto.model.dto.LottoResult;
 
 public class OutputView {
 
@@ -39,7 +38,7 @@ public class OutputView {
         System.out.println(output);
     }
 
-    public void printLottoResult(LottoResult lottoResult, int money) {
+    public void printLottoRanks(LottoResult lottoResult) {
         System.out.printf(PRINT_TOTAL_RESULT);
         List<LottoRank> lottoRanks = lottoResult.getLottoRanks();
 
@@ -48,8 +47,6 @@ public class OutputView {
                 printRank(lottoRanks, rank);
             }
         }
-
-        printEarningRate(lottoRanks, money);
     }
 
     private void printRank(List<LottoRank> lottoRanks, LottoRank rank) {
@@ -69,22 +66,25 @@ public class OutputView {
                 Collections.frequency(lottoRanks, rank));
     }
 
-    private void printEarningRate(List<LottoRank> lottoRanks, Integer purchaseMoney) {
-        double totalReward = 0;
-        for (LottoRank rank : lottoRanks) {
-            totalReward += rank.getReward();
-        }
-
+    public void printEarningRate(int totalReward, int purchaseMoney) {
         System.out.printf(LOTTO_EARNING_RATE_FORMAT,
-                calculateEarningRateAndFormat(purchaseMoney, totalReward));
+                calculateEarningRateAndFormat(totalReward, purchaseMoney));
     }
 
-    public String calculateEarningRateAndFormat(Integer purchaseMoney, double totalReward) {
-        DecimalFormat decimalFormatter = new DecimalFormat("#,###.0");
+    private String calculateEarningRateAndFormat(int totalReward, int purchaseMoney) {
+        double earningRate = (double) totalReward / purchaseMoney * 100;
+
+        String pattern = "#,###.0";
+
+        if ((int) earningRate == 0) {
+            pattern = "0.0";
+        }
+
+        DecimalFormat decimalFormatter = new DecimalFormat(pattern);
         decimalFormatter.setRoundingMode(RoundingMode.HALF_UP);
         decimalFormatter.setMaximumFractionDigits(1);
 
-        return decimalFormatter.format(totalReward / purchaseMoney * 100);
+        return decimalFormatter.format(earningRate);
     }
 
     public void printError(String message) {

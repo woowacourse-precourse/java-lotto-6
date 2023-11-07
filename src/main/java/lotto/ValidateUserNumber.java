@@ -11,16 +11,13 @@ public class ValidateUserNumber {
 
     public static void isInRange(List<Integer> numbers) {
         if (check(numbers)) {
-            return;
+            throw new IllegalArgumentException("[ERROR] 숫자는 1부터 45까지 입력 가능합니다.");
         }
-        throw new IllegalArgumentException("[ERROR] 숫자는 1부터 45까지 입력 가능합니다.");
     }
 
     private static boolean check(List<Integer> numbers) {
         return numbers.stream()
-                .filter(number -> number > 45 || number < 1)
-                .findFirst()
-                .isEmpty();
+                .anyMatch(number -> number > 45 || number < 1);
     }
 
     public static void isDuplicate(List<Integer> numbers) {

@@ -1,13 +1,10 @@
 package view;
 
-import enums.Constants;
 import enums.ExceptionMessage;
 import enums.Message;
 import java.util.List;
-import lotto.Lotto;
 
 public class OutputView {
-    private int size = Integer.parseInt(Constants.LOTTO_NUMBER_SIZE.getConst());
 
     public void printRequirelottoCost(){
         System.out.println(Message.REQUIRE_PURCHASE_MONEY.getMessage());
@@ -17,16 +14,39 @@ public class OutputView {
         System.out.printf("%d%s\n", lottoPaper, Message.PUBLISHED_LOTTO.getMessage());
     }
 
-    public void printNewLine(){
-        System.out.print(Message.NEW_LINE.getMessage());
-    }
-
     public void printMyLottoNumber(List<Integer> myLottoNumber){
         System.out.println(myLottoNumber);
     }
 
-    public void printIlligalLottoCostMessage(){
-        System.out.println(ExceptionMessage.ILLIGAL_ARGUMENT_ERROR_MESSAGE.getMessage());
+    public void printRequireWinningNumber(){
+        printNewLine();
+        System.out.println(Message.REQUIRE_WINNING_NUMBER.getMessage());
     }
 
+    public void printRequireBonusNumber(){
+        printNewLine();
+        System.out.println(Message.REQUIRE_BONUS_NUMBER.getMessage());
+    }
+
+    public void printMatchResult(){
+        printNewLine();
+        System.out.println(Message.WINNING_STATISTICS.getMessage());
+        printSplitLine();
+    }
+
+    public void printNewLine(){
+        System.out.print(Message.NEW_LINE.getMessage());
+    }
+
+    public void printSplitLine(){
+        System.out.println(Message.SPLIT_LINE.getMessage());
+    }
+
+    public void printIlligalLottoCostMessage(){
+        System.out.println(ExceptionMessage.ILLIGAL_COST_ERROR_MESSAGE.getMessage());
+    }
+
+    public void printIlligalWinningNumberMessage(){
+        System.out.println(ExceptionMessage.ILLIGAL_WINNING_NUM_MESSAGE.getMessage());
+    }
 }

@@ -16,11 +16,10 @@ class RankingsTest {
     @MethodSource("provideExampleLotto")
     void getRankingsPerMathCount(
             Lotto exampleLotto,
-            Lotto winningTicket,
-            BonusNumber bonusNumber,
+            WinningNumbers winningNumbers,
             Rankings expected) {
 
-        Rankings actual = Rankings.decideRankings(exampleLotto, winningTicket, bonusNumber);
+        Rankings actual = winningNumbers.assignRankings(exampleLotto);
 
         assertThat(actual).isEqualTo(expected);
     }
@@ -29,28 +28,23 @@ class RankingsTest {
         return Stream.of(
                 Arguments.of(
                         new Lotto(List.of(1,2,3,4,5,6)),
-                        new Lotto(List.of(1,2,3,4,5,6)),
-                        new BonusNumber(7, new Lotto(List.of(1,2,3,4,5,6))),
+                        new WinningNumbers(new Lotto(List.of(1,2,3,4,5,6)), 7),
                         Rankings.FIRST_PLACE),
                 Arguments.of(
                         new Lotto(List.of(1,2,3,4,5,7)),
-                        new Lotto(List.of(1,2,3,4,5,6)),
-                        new BonusNumber(7, new Lotto(List.of(1,2,3,4,5,6))),
+                        new WinningNumbers(new Lotto(List.of(1,2,3,4,5,6)), 7),
                         Rankings.SECOND_PLACE),
                 Arguments.of(
                         new Lotto(List.of(1,2,3,4,5,8)),
-                        new Lotto(List.of(1,2,3,4,5,6)),
-                        new BonusNumber(7, new Lotto(List.of(1,2,3,4,8,9))),
+                        new WinningNumbers(new Lotto(List.of(1,2,3,4,5,6)), 7),
                         Rankings.THIRD_PLACE),
                 Arguments.of(
                         new Lotto(List.of(1,2,3,4,8,9)),
-                        new Lotto(List.of(1,2,3,4,5,6)),
-                        new BonusNumber(7, new Lotto(List.of(1,2,3,4,8,9))),
+                        new WinningNumbers(new Lotto(List.of(1,2,3,4,5,6)), 7),
                         Rankings.FOURTH_PLACE),
                 Arguments.of(
                         new Lotto(List.of(1,2,3,8,9,10)),
-                        new Lotto(List.of(1,2,3,4,5,6)),
-                        new BonusNumber(7, new Lotto(List.of(1,2,3,8,9,10))),
+                        new WinningNumbers(new Lotto(List.of(1,2,3,4,5,6)), 7),
                         Rankings.FIFTH_PLACE)
         );
     }

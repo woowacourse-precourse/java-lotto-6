@@ -18,11 +18,10 @@ class LotteryOfficeTest {
     @MethodSource("provideWinningsAndCount")
     void createWinningResult(
             List<Lotto> issuedLotto,
-            Lotto winningTicket,
-            BonusNumber bonusNumber,
+            WinningNumbers winningNumbers,
             Map<Rankings,Integer> expected) {
 
-        LotteryOffice lotteryOffice = new LotteryOffice(issuedLotto, winningTicket, bonusNumber);
+        LotteryOffice lotteryOffice = new LotteryOffice(issuedLotto, winningNumbers);
 
         assertThat(lotteryOffice.getWinningsAndCounts()).isEqualTo(expected);
     }
@@ -35,8 +34,7 @@ class LotteryOfficeTest {
                                 new Lotto(List.of(1,2,3,4,5,8)),
                                 new Lotto(List.of(1,2,3,4,7,8)),
                                 new Lotto(List.of(1,2,3,7,8,9))),
-                        new Lotto(List.of(1,2,3,4,5,6)),
-                        new BonusNumber(7, new Lotto(List.of(1,2,3,4,5,6))),
+                        new WinningNumbers(new Lotto(List.of(1,2,3,4,5,6)),7),
                         Map.of(
                                 Rankings.FIRST_PLACE, 1,
                                 Rankings.SECOND_PLACE,1,

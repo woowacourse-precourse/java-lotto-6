@@ -20,8 +20,8 @@ public class LottoGame {
         Bonus bonus = createBonusNumber(winningLotto);
 
         Result result = new Result();
-        Rate rate = new Rate(result);
         result.makeWinningResultWith(randomLottos, winningLotto, bonus);
+        Rate rate = new Rate(result);
 
         OutputView.printWinningResult(result);
         OutputView.printWinningRate(rate.calculateWinningRate(price));

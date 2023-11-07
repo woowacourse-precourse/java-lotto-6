@@ -8,7 +8,7 @@ import lotto.domain.Lotto;
 
 public class ConsolePrinter {
     private static void validateNull(Object... targets) {
-        for(Object target : targets) {
+        for (Object target : targets) {
             Objects.requireNonNull(target);
         }
     }

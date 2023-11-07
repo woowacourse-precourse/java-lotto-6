@@ -8,6 +8,7 @@ public class User {
     private final Lotto userLotto;
 
     public User(Lotto userLotto, String bonusInput) {
+        userLotto.validateBonusNumber(bonusInput);
         this.bonus = StringConvertor.stringToInt(bonusInput);
         this.userLotto = userLotto;
     }

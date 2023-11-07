@@ -2,7 +2,6 @@ package lotto.util;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,11 +38,11 @@ class CensorTest {
         String inputSpace = " ";
 
         assertThrows(IllegalArgumentException.class,
-                () -> Censor.validatePurchaseAmount(inputNull));
+                () -> Censor.validateBasicInput(inputNull));
         assertThrows(IllegalArgumentException.class,
-                () -> Censor.validatePurchaseAmount(inputEnter));
+                () -> Censor.validateBasicInput(inputEnter));
         assertThrows(IllegalArgumentException.class,
-                () -> Censor.validatePurchaseAmount(inputSpace));
+                () -> Censor.validateBasicInput(inputSpace));
     }
 
     @DisplayName("입력 값이 정수가 아니라면, 예외가 발생한다.")
@@ -52,7 +51,7 @@ class CensorTest {
         String input = "팔천원";
 
         assertThrows(IllegalArgumentException.class,
-                () -> Censor.validatePurchaseAmount(input));
+                () -> Censor.validateBasicInput(input));
     }
 
     @DisplayName("당첨 번호 입력에 쉼표(,)만 입력할 경우, 예외가 발생한다.")
@@ -118,5 +117,5 @@ class CensorTest {
         assertThrows(IllegalArgumentException.class,
                 () -> Censor.validateWinningNumbersInput(inputSpace));
     }
-    
+
 }

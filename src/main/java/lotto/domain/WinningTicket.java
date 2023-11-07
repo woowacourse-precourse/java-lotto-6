@@ -4,7 +4,7 @@ public class WinningTicket {
 
     private Lotto numbers;
 
-    public Lotto getNumbers() {
+    public Lotto getLotto() {
         return numbers;
     }
 

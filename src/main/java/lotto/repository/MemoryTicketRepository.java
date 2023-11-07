@@ -34,6 +34,11 @@ public class MemoryTicketRepository implements TicketRepository {
     }
 
     @Override
+    public WinningTicket findNumbers() {
+        return winningTicket;
+    }
+
+    @Override
     public BonusNumber announcementBonus(BonusNumber bonusNumber) {
         this.bonusNumber = bonusNumber;
         return bonusNumber;

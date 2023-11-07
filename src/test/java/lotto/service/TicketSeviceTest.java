@@ -58,7 +58,7 @@ class TicketSeviceTest {
         String validInput = "1,2,3,4,5,6";
         List<Integer> validNumbers = List.of(1, 2, 3, 4, 5, 6);
         WinningTicket winningTicket = ticketService.announcementNumber(validInput);
-        assertEquals(validNumbers.toString(), winningTicket.getNumbers().toString());
+        assertEquals(validNumbers.toString(), winningTicket.getLotto().toString());
     }
 
     @DisplayName("당첨 번호 입력이 유효하지 않으면 예외가 발생한다.")

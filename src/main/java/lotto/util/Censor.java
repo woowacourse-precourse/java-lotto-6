@@ -10,11 +10,13 @@ import static lotto.util.content.ErrorMessage.INPUT_SPACE_ERROR;
 import static lotto.util.content.ErrorMessage.INPUT_UNIT_ERROR;
 import static lotto.util.content.ErrorMessage.LOTTO_RANGE_ERROR;
 import static lotto.util.content.ErrorMessage.LOTTO_SIZE_ERROR;
+import static lotto.util.content.ErrorMessage.UNIQUE_BONUS_ERROR;
 import static lotto.util.content.ErrorMessage.UNIQUE_NUMBER_ERROR;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.Lotto;
 
 public class Censor {
 
@@ -42,7 +44,13 @@ public class Censor {
         }
     }
 
-    public static String validatePurchaseAmount(String input) {
+    public static void validateUniqueBonusNumber(Integer input, Lotto numbers) {
+        if (numbers.getNumbers().contains(input)) {
+            throw new IllegalArgumentException(UNIQUE_BONUS_ERROR.getContent());
+        }
+    }
+
+    public static String validateBasicInput(String input) {
         validateCommonInput(input);
         validateNumericInput(input);
         return input;
@@ -52,13 +60,6 @@ public class Censor {
         validateCommonInput(input);
         validateCommaInput(input);
         validateNumericInput(input.replaceAll(",", ""));
-        return input;
-    }
-
-    public static String validateWinningBonusNumbersInput(String input) {
-        validateCommonInput(input);
-        validateNumericInput(input);
-        // TODO: 티켓 번호 숫자에 입력된 숫자와 보너스 번호에 입력된 숫자가 중복인지 검증하는 메소드 구현 (중복 처리)
         return input;
     }
 

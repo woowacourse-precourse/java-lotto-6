@@ -13,6 +13,8 @@ public interface TicketRepository {
 
     WinningTicket announcement(WinningTicket winningTicket);
 
+    WinningTicket findNumbers();
+
     BonusNumber announcementBonus(BonusNumber bonusNumber);
 
 }

@@ -51,4 +51,8 @@ public class Lotto {
             throw new CustomIllegalArgumentException(ErrorCode.LOTTO_NUMBERS_OUT_OF_RANGE);
         }
     }
+
+    public boolean hasBonusNumber(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

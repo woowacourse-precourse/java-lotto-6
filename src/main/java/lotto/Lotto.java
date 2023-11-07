@@ -29,10 +29,28 @@ public class Lotto {
         }
     }
 
+    public boolean numberCheck(int target){
+        if (numbers.contains(target)){
+            return true;
+        }
+        return false;
+    }
+
     public List<Integer> getNumbers(){
         return numbers;
     }
 }
 
 enum LottoRank{
+    FIRST("2,000,000,000"), SECOND("30,000,000"), 
+    THIRD("1,500,000"), FOURTH("50,000"), FIFTH("5,000")
+    
+    final private String prize;
+    LottoRank(String prize) {
+		this.prize = prize;
+	}
+	
+	String getPrize() {
+		return prize;
+	}
 }

@@ -51,5 +51,6 @@ public class UserLotto {
             Integer count = result.get(rank);
             result.put(rank, count + 1);
         }
+        result.remove(Rank.NOTHING);
     }
 }

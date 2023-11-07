@@ -11,7 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Validate {
+public class Validation {
 
     public static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE.getNumber()) {

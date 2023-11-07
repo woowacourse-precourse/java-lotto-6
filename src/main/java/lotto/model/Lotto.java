@@ -1,8 +1,8 @@
 package lotto.model;
 
-import static lotto.util.Validate.validateDuplication;
-import static lotto.util.Validate.validateRange;
-import static lotto.util.Validate.validateSize;
+import static lotto.util.Validation.validateDuplication;
+import static lotto.util.Validation.validateRange;
+import static lotto.util.Validation.validateSize;
 
 import java.util.ArrayList;
 import java.util.Collections;

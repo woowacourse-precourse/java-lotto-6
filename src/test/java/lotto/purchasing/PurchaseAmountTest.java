@@ -56,13 +56,13 @@ class PurchaseAmountTest {
         String mockInput = "eight thousand\n8000";
         System.setIn(new ByteArrayInputStream(mockInput.getBytes()));
 
-        String input = null;
+        Integer input = null;
         try {
             input = purchaseAmount.ask();
         } catch (NoSuchElementException ignored) {
         }
 
         assertThat(outputStream.toString()).contains("[ERROR]");
-        assertThat(input).isEqualTo("8000");
+        assertThat(input).isEqualTo(8000);
     }
 }

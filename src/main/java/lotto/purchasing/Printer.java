@@ -20,7 +20,7 @@ public class Printer {
 
         int issueAmount = generator.calculateIssueAmount();
         List<Lotto> lottos =
-                generator.issue(issueAmount, MINIMUM.getNumber(), MAXIMUM.getNumber(), SIZE.getNumber());
+                generator.issue(MINIMUM.getNumber(), MAXIMUM.getNumber(), SIZE.getNumber());
 
         StringBuilder lottoList = new StringBuilder();
         lottos.forEach(lotto -> lottoList.append(lotto.getNumbers()).append("\n"));

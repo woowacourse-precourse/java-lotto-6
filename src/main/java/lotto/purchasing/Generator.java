@@ -9,15 +9,16 @@ import java.util.List;
 import lotto.Lotto;
 
 public class Generator {
-    private final PurchaseAmount purchaseAmount;
+    private final Integer totalPurchaseAmount;
     private final List<Lotto> lottos;
 
-    public Generator(PurchaseAmount purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
+    public Generator(Integer totalPurchaseAmount) {
+        this.totalPurchaseAmount = totalPurchaseAmount;
         this.lottos = new ArrayList<>();
     }
 
-    public List<Lotto> issue(int issueAmount, int minNumber, int maxNumber, int size) {
+    public List<Lotto> issue(int minNumber, int maxNumber, int size) {
+        int issueAmount = calculateIssueAmount();
 
         for (int currentCount = 0; currentCount < issueAmount; currentCount++) {
             List<Integer> randomNumbers = generate(minNumber, maxNumber, size);
@@ -33,6 +34,6 @@ public class Generator {
     }
 
     public int calculateIssueAmount() {
-        return Integer.parseInt(purchaseAmount.ask()) / PURCHASE_UNIT.getNumber();
+        return totalPurchaseAmount / PURCHASE_UNIT.getNumber();
     }
 }

@@ -5,13 +5,12 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 import java.util.function.Predicate;
 import lotto.Askable;
 
-public class PurchaseAmount implements Askable<String> {
-    String input;
-
+public class PurchaseAmount implements Askable<Integer> {
     @Override
-    public String ask() {
+    public Integer ask() {
         System.out.println(INPUT_PURCHASE_AMOUNT);
 
+        String input;
         do {
             input = readLine();
             input = stripCommas(input);
@@ -20,7 +19,7 @@ public class PurchaseAmount implements Askable<String> {
 
         System.out.println();
 
-        return input;
+        return Integer.parseInt(input);
     }
 
     private boolean validate(String input) {
@@ -53,9 +52,5 @@ public class PurchaseAmount implements Askable<String> {
 
     private String stripCommas(String input) {
         return input.replaceAll(",", "");
-    }
-
-    public String getInput() {
-        return input;
     }
 }

@@ -21,9 +21,8 @@ public class SequenceManager {
     PrizeRankChecker prizeRankChecker;
     Analyst analyst;
     ResultBoard resultBoard;
-    public SequenceManager(PurchaseAmount purchaseAmount) {
-        this.purchaseAmount = purchaseAmount;
-        this.printer = new Printer(new Generator(purchaseAmount));
+    public SequenceManager() {
+        this.purchaseAmount = new PurchaseAmount();
         this.winningNumbers = new WinningNumbers();
         this.bonusNumber = new BonusNumber();
         this.prizeRankChecker = new PrizeRankChecker();
@@ -32,6 +31,9 @@ public class SequenceManager {
     }
 
     public void proceed() {
+        Integer totalPurchaseAmount = purchaseAmount.ask();
+
+        printer = new Printer(new Generator(totalPurchaseAmount));
         List<Lotto> lottos = printer.print();
 
         HashMap<Prize, HashMap<Tally, Integer>> updatedPrizes =
@@ -39,9 +41,9 @@ public class SequenceManager {
                         prizeRankChecker.computeMatchedNumberCounts(lottos, winningNumbers.ask()),
                         prizeRankChecker.computeMatchedNumberCounts(lottos, List.of(bonusNumber.ask())));
 
-        double returnRatio = analyst.calculateReturnRatio(updatedPrizes, Integer.parseInt(purchaseAmount.getInput()));
-
         Console.close();
+
+        double returnRatio = analyst.calculateReturnRatio(updatedPrizes, totalPurchaseAmount);
 
         resultBoard.show(updatedPrizes, returnRatio);
     }

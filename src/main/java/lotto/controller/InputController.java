@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lotto;
 import lotto.model.LottoFromUser;
 import lotto.model.LottoPurchasingAmount;
+import lotto.utils.ErrorMessage;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
@@ -31,13 +32,24 @@ public class InputController {
     public Lotto getLottoNumberFromUser() {
         OutputView.askLottoNumbers();
         List<Integer> lottoNumbers = new ArrayList<>();
-        List<String> splitInputFromUser = Arrays.asList(Console.readLine().split(","));
+        List<String> splitNumbers = validateLength(Console.readLine());
 
-        for (String number : splitInputFromUser) {
+        for (String number : splitNumbers) {
             System.out.println(number);
             lottoNumbers.add(parseInt(number));
         }
 
         return new Lotto(lottoNumbers);
+    }
+
+    public List<String> validateLength(String lottoNumbersFromUser) {
+        List<String> splitNumbersFromUser = Arrays.asList(lottoNumbersFromUser.split(","));
+
+        if (splitNumbersFromUser.size() != 6) {
+            ErrorMessage.lottoNumberLengthException();
+            throw new IllegalArgumentException();
+        }
+
+        return splitNumbersFromUser;
     }
 }

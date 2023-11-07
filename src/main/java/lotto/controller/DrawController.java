@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import lotto.model.BonusNumber;
 import lotto.model.IssueLotto;
@@ -25,47 +26,42 @@ public class DrawController {
         this.issueLotto = new IssueLotto();
         this.bonusNumber = new BonusNumber();
         this.matchLotto = new MatchLotto();
-        this.lottoResult = new LottoResult(0);
+        this.lottoResult = new LottoResult();
         this.yield = new Yield();
     }
 
     public void draw() {
         inputPurchaseAmount();
-
         issueLotto.issue(purchaseLotto.getNumberOfPurchases());
-
         List<Integer> winningNumbers = inputWinningNumber().getNumbers();
-
         inputBonusNumber(winningNumbers);
 
-        matchLotto.matchLotto(winningNumbers,
-                bonusNumber.getBonusNumber(), issueLotto.getLottoPurchaseHistory());
-        lottoResult.checkResult(matchLotto.getWinningMatchResult(), matchLotto.getBonusMatchResult());
+        matchLotto.matchLotto(winningNumbers, bonusNumber.getBonusNumber(), issueLotto.getLottoPurchaseHistory());
+        lottoResult.checkResult(matchLotto.getMatchResult());
 
-        checkRank();
-
-        yield.calculateYield(lottoResult.getTotalPrizeMoney(), purchaseLotto.getPurchaseAmount());
-        System.out.println("총 수익률은 " + yield.getYield() + "%입니다.");
-    }
-
-    private void checkRank() {
         System.out.println("당첨 통계");
         System.out.println("---");
-        System.out.println(String.format(LottoRankings.FIRST.getMessage(),
-                formatWinningAmount(LottoRankings.FIRST.getWinningAmount()),
-                lottoResult.getFirst()));
-        System.out.println(String.format(LottoRankings.SECOND.getMessage(),
-                formatWinningAmount(LottoRankings.SECOND.getWinningAmount()),
-                lottoResult.getSecond()));
-        System.out.println(String.format(LottoRankings.THIRD.getMessage(),
-                formatWinningAmount(LottoRankings.THIRD.getWinningAmount()),
-                lottoResult.getThird()));
-        System.out.println(String.format(LottoRankings.FOURTH.getMessage(),
-                formatWinningAmount(LottoRankings.FOURTH.getWinningAmount()),
-                lottoResult.getFourth()));
-        System.out.println(String.format(LottoRankings.FIFTH.getMessage(),
-                formatWinningAmount(LottoRankings.FIFTH.getWinningAmount()),
-                lottoResult.getFifth()));
+        for (LottoRankings rank : LottoRankings.values()) {
+            Integer count = lottoResult.getLottoResult().get(rank);
+            if (count != null) {
+                System.out.println(String.format(rank.getMessage(),
+                        formatWinningAmount(rank.getWinningAmount()),
+                        lottoResult.getLottoResult().get(rank)));
+                continue;
+            }
+            System.out.println(String.format(rank.getMessage(), formatWinningAmount(rank.getWinningAmount()), 0));
+        }
+
+        checkYield();
+    }
+
+    private void checkYield() {
+        int totalPrizeMoney = 0;
+        for (LottoRankings rank : lottoResult.getLottoResult().keySet()) {
+            totalPrizeMoney += rank.getWinningAmount() * lottoResult.getLottoResult().get(rank);
+        }
+        yield.calculateYield(totalPrizeMoney, purchaseLotto.getPurchaseAmount());
+        System.out.println("총 수익률은 " + yield.getYield() + "%입니다.");
     }
 
     private void inputBonusNumber(List<Integer> winningNumbers) {

@@ -19,16 +19,7 @@ public class Lotto {
         }
     }
 
-    public List<Lotto> makeLottoes(int purchaseCount){
-        List<Lotto> lottoes = new ArrayList<>();
-
-        while(lottoes.size() != purchaseCount){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            Lotto lotto = new Lotto(numbers);
-            lottoes.add(lotto);
-        }
-
-        return lottoes;
+    public List<Integer> getNumbers(){
+        return numbers;
     }
 }

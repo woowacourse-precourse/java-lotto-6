@@ -36,7 +36,7 @@ public class Output {
             }
         }
         System.out.println("총 금액 : " + total_price);
-        double final_price = Math.round(((double)total_price/(double)input_price)*100.0)/100.0;
+        double final_price = Math.round(((double)total_price/(double)input_price)*1000.0)/1000.0;
         System.out.println("총 수익률은 " + final_price * 100.0 +"%입니다.");
 
     }

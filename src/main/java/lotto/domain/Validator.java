@@ -11,6 +11,9 @@ public class Validator {
     public void validatePositiveInteger(int lottoPurchaseCost) {
     }
 
+    public void validateAmountInThousands(int lottoPurchaseCost) {
+    }
+
 
 
 

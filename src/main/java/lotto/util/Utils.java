@@ -2,7 +2,9 @@ package lotto.util;
 
 import lotto.verification.Validation;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +24,7 @@ public class Utils {
 
     }
 
-    public static long rangeInputMoney(long money){
+    public static long rangeInputMoney(long money) {
         Validation.verifyRangeInputMoney(money);
         return money;
     }
@@ -42,6 +44,12 @@ public class Utils {
 
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+");
+    }
+
+    public static List<Integer> sortAscendingRandomLottoList(List<Integer> list) {
+        List<Integer> orderedList = new ArrayList<>(list);
+        Collections.sort(orderedList);
+        return orderedList;
     }
 
 }

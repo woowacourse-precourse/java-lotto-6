@@ -1,7 +1,10 @@
 package lotto.model;
 
+import static lotto.util.exception.ErrorMessage.WINNER_NUMBER_CONTAINS_BONUS;
+
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.util.exception.LottoException;
 
 public class LottoBonusPair {
     private final Lotto winnerNumbers;
@@ -17,8 +20,8 @@ public class LottoBonusPair {
         return new LottoBonusPair(winnerNumbers, bonusNumber);
     }
 
-    public List<Integer> getResults(PublishedLottos publishedLottos) {
-        return publishedLottos.getPublishedLottos()
+    public List<Integer> getResults(PublishedLotto publishedLotto) {
+        return publishedLotto.getPublishedLottos()
                 .stream()
                 .map(this::checkRank)
                 .collect(Collectors.toList());
@@ -38,7 +41,7 @@ public class LottoBonusPair {
 
     private void validate(Lotto winnerNumbers, Integer bonusNumber) {
         if (winnerNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw LottoException.of(WINNER_NUMBER_CONTAINS_BONUS);
         }
     }
 }

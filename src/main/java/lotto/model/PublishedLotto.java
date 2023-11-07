@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class PublishedLottos {
+public class PublishedLotto {
     private final List<Lotto> publishedLottos;
 
-    PublishedLottos(Integer money) {
+    PublishedLotto(Integer money) {
         publishedLottos = new ArrayList<>();
         publishLottos(money);
     }
 
-    public static PublishedLottos getInstance(Integer money) {
-        return new PublishedLottos(money);
+    public static PublishedLotto getInstance(Integer money) {
+        return new PublishedLotto(money);
     }
 
     public Integer getCount() {

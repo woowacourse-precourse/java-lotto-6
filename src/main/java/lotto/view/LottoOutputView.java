@@ -24,7 +24,6 @@ public class LottoOutputView implements View {
                 .map(reward -> reward.getMessage(rankCount.getOrDefault(reward.getRank(), 0)))
                 .collect(Collectors.joining("\n"));
         print.append(result);
-        print.append("\n");
         System.out.println(print);
     }
 

@@ -1,6 +1,6 @@
 package lotto.service;
 
-import lotto.model.PublishedLottos;
+import lotto.model.PublishedLotto;
 import lotto.view.LottoOutputView;
 import lotto.view.View;
 
@@ -11,9 +11,9 @@ public class PublishLottoService implements Service {
         this.lottoOutputView = (LottoOutputView) lottoOutputView;
     }
 
-    public PublishedLottos getPublishedLottos(Integer money) {
-        PublishedLottos publishedLottos = PublishedLottos.getInstance(money);
-        lottoOutputView.printPublishedLotto(publishedLottos.getCount(), publishedLottos.toString());
-        return publishedLottos;
+    public PublishedLotto getPublishedLotto(Integer money) {
+        PublishedLotto publishedLotto = PublishedLotto.getInstance(money);
+        lottoOutputView.printPublishedLotto(publishedLotto.getCount(), publishedLotto.toString());
+        return publishedLotto;
     }
 }

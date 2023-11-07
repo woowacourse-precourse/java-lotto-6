@@ -2,7 +2,7 @@ package lotto.controller;
 
 import lotto.model.Lotto;
 import lotto.model.LottoBonusPair;
-import lotto.model.PublishedLottos;
+import lotto.model.PublishedLotto;
 import lotto.service.CalculateProfitService;
 import lotto.service.ConfirmWinningService;
 import lotto.service.InputService;
@@ -26,11 +26,11 @@ public class LottoController implements Controller {
     public void programStart() {
         Integer money = getMoneyInput();
 
-        PublishedLottos publishedLottos = getPublishedLottos(money);
+        PublishedLotto publishedLotto = getPublishedLotto(money);
 
         LottoBonusPair winnerNumberPair = getWinnerNumberPair();
 
-        Long totalReward = getTotalReward(publishedLottos, winnerNumberPair);
+        Long totalReward = getTotalReward(publishedLotto, winnerNumberPair);
 
         calculateProfit(money, totalReward);
     }
@@ -39,8 +39,8 @@ public class LottoController implements Controller {
         return inputService.getInputMoney();
     }
 
-    private PublishedLottos getPublishedLottos(Integer money) {
-        return publishLottoService.getPublishedLottos(money);
+    private PublishedLotto getPublishedLotto(Integer money) {
+        return publishLottoService.getPublishedLotto(money);
     }
 
     private LottoBonusPair getWinnerNumberPair() {
@@ -48,8 +48,8 @@ public class LottoController implements Controller {
         return inputService.getLottoBonusPair(winnerNumber);
     }
 
-    private Long getTotalReward(PublishedLottos publishedLottos, LottoBonusPair winnerNumberPair) {
-        confirmWinningService.confirmWinning(publishedLottos, winnerNumberPair);
+    private Long getTotalReward(PublishedLotto publishedLotto, LottoBonusPair winnerNumberPair) {
+        confirmWinningService.confirmWinning(publishedLotto, winnerNumberPair);
         return confirmWinningService.getTotalReward();
     }
 

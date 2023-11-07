@@ -7,9 +7,11 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.List;
 
+import static lotto.util.LottoNumber.LOTTO_SAME_NUMBER_FIVE_WITH_BONUS_KEY;
 import static lotto.util.ProgramMessage.*;
 
 public class OutputView {
+    private static final String PROFIT_RATE_FORMAT = "#.##";
     public void printMoneyInputGuideMessage() {
         System.out.println(MONEY_INPUT_GUIDE_MESSAGE.getMessage());
     }
@@ -46,7 +48,7 @@ public class OutputView {
     }
 
     private String returnWinResultByRankValue(int key) {
-        if(key == 7){
+        if(key == LOTTO_SAME_NUMBER_FIVE_WITH_BONUS_KEY.getValue()){
             return WIN_RESULT_WITH_BONUS.getMessage();
         }
         return WIN_RESULT_WITHOUT_BONUS.getMessage();
@@ -60,7 +62,7 @@ public class OutputView {
     }
 
     public void printProfit(double profit) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        DecimalFormat decimalFormat = new DecimalFormat(PROFIT_RATE_FORMAT);
         System.out.printf(PROFIT_MESSAGE.getMessage(), decimalFormat.format(profit));
     }
 }

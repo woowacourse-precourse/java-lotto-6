@@ -1,10 +1,11 @@
 package lotto.validator;
 
+import static lotto.util.LottoNumber.PURCHASE_MIN_PRICE;
+
 public class PurchasePriceValidator {
-    private final int THOUSAND = 1000;
 
     private boolean isUnderMinPrice(int price) {
-        return price < THOUSAND;
+        return price < PURCHASE_MIN_PRICE.getValue();
     }
 
     public void checkOverMinPrice(int price) {
@@ -14,7 +15,7 @@ public class PurchasePriceValidator {
     }
 
     private boolean isRemainderNotZero(int price) {
-        return price % THOUSAND != 0;
+        return price % PURCHASE_MIN_PRICE.getValue() != 0;
     }
 
     public void checkRemainderZero(int price) {

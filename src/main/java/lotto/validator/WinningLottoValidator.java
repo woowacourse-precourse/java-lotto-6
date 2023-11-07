@@ -2,9 +2,12 @@ package lotto.validator;
 
 import lotto.domain.Lotto;
 
+import static lotto.util.LottoNumber.END_LOTTO_NUMBER;
+import static lotto.util.LottoNumber.START_LOTTO_NUMBER;
+
 public class WinningLottoValidator {
     private boolean isNotInRange(int bonusNum) {
-        return bonusNum < 1 || bonusNum > 45;
+        return bonusNum < START_LOTTO_NUMBER.getValue() || bonusNum > END_LOTTO_NUMBER.getValue();
     }
 
     public void checkRange(int bonusNum) {

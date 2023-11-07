@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static lotto.util.LottoNumber.*;
+
 public class LottoValidator {
     private boolean isNotSizeSix(List<Integer> numbers) {
-        return numbers.size() != 6;
+        return numbers.size() != LOTTO_SIZE.getValue();
     }
 
     public void checkSize(List<Integer> numbers) {
@@ -18,7 +20,7 @@ public class LottoValidator {
 
     private boolean isNotInRange(List<Integer> numbers) {
         Optional<Integer> notRangeNum = numbers.stream()
-                .filter(number -> 1 > number || number > 45)
+                .filter(number -> START_LOTTO_NUMBER.getValue() > number || number > END_LOTTO_NUMBER.getValue())
                 .findAny();
 
         if (notRangeNum.isPresent()) {

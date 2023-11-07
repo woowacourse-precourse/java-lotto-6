@@ -1,6 +1,7 @@
 package lotto.validator;
 
 public class InputValidator {
+    private static final String numbersInputRegex = "([0-9]+,)+[0-9]+";
     private boolean isNotInteger(String number) {
         try {
             Integer.parseInt(number);
@@ -27,8 +28,6 @@ public class InputValidator {
     }
 
     private boolean hasNotOnlyNumberAndDelimiterComma(String numbers) {
-        String numbersInputRegex = "([0-9]+,)+[0-9]+";
-
         return !numbers.matches(numbersInputRegex);
     }
 

@@ -3,6 +3,7 @@ package lotto.model;
 import static lotto.exception.LottoException.DUPLICATED_LOTTO_NUMBER;
 import static lotto.exception.LottoException.LESS_THAN_MINIMUM_LOTTO_NUMBER;
 import static lotto.exception.LottoException.MORE_THAN_MAXIMUM_LOTTO_NUMBER;
+import static lotto.exception.LottoException.NOT_VALID_LOTTO_NUMBERS_SIZE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,10 +15,11 @@ import java.util.stream.Collectors;
 public class Lotto {
     private static final int MINIMUM_LOTTO_NUMBER = 1;
     private static final int MAXIMUM_LOTTO_NUMBER = 45;
+    private static final int LOTTO_NUMBERS_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLottoNumbersSize(numbers);
         validateLottoNumberRange(numbers);
         validateDuplicatedLottoNumber(numbers);
         this.numbers = sortAscendingOrder(numbers);
@@ -38,9 +40,9 @@ public class Lotto {
                 .count();
     }
 
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+    private void validateLottoNumbersSize(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
+            NOT_VALID_LOTTO_NUMBERS_SIZE.throwException();
         }
     }
 

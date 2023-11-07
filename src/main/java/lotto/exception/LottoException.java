@@ -1,6 +1,7 @@
 package lotto.exception;
 
 public enum LottoException {
+    NOT_VALID_LOTTO_NUMBERS_SIZE("로또 번호는 6개의 숫자여야 합니다."),
     LESS_THAN_MINIMUM_LOTTO_NUMBER("로또 번호는 최소 1 이상의 숫자여야 합니다."),
     MORE_THAN_MAXIMUM_LOTTO_NUMBER("로또 번호는 최대 45 이하의 숫자여야 합니다."),
     DUPLICATED_LOTTO_NUMBER("로또 번호는 중복되지 않는 숫자여야 합니다."),

@@ -60,7 +60,7 @@ public class LottoGameService {
         return getWinningLottoByBonusNumber(winningLottoNumbers);
     }
 
-    public void printWinningResult(final WinningLotto winningLotto, Lottos lottos) {
+    public void printWinningResult(final WinningLotto winningLotto, final Lottos lottos) {
         outputView.printWinningStatistics();
         LottoRankResult result = calculateWinningResult(winningLotto, lottos);
         printWinningCountsByRank(result);

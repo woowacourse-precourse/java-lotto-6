@@ -46,6 +46,10 @@ public class LottoGame {
         List<Integer> winingNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+
+        validateRange(winingNumbers);
+        validateSize(winingNumbers);
+        validateDuplicate(winingNumbers);
     }
 
     public void validateNumber(String input) {
@@ -79,6 +83,14 @@ public class LottoGame {
     public void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 숫자 6개를 입력하지 않았습나다.");
+        }
+    }
+
+    public void validateDuplicate(List<Integer> numbers) {
+        if (numbers.stream()
+                .distinct()
+                .count() != numbers.size()) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 존재합니다.");
         }
     }
 }

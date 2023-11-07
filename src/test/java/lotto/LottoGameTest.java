@@ -47,4 +47,12 @@ public class LottoGameTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 숫자 6개를 입력하지 않았습나다.");
     }
+
+    @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void createLottoByDuplicatedNumber() {
+        assertThatThrownBy(() -> new LottoGame().validateDuplicate(new ArrayList<>(List.of(1, 2, 2, 3, 4, 5))))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 중복된 숫자가 존재합니다.");
+    }
 }

@@ -38,11 +38,11 @@ public class LottoService {
         for (int i = 0; i < player.getQuantity(); i++) {
             lottos.pickLottos();
         }
-        printCount(player);
+        printQuantity(player);
         printLottos(lottos);
     }
 
-    private void printCount(Player player) {
+    private void printQuantity(Player player) {
         outputView.printCount(player.getQuantity());
     }
 
@@ -58,16 +58,13 @@ public class LottoService {
         try {
             String[] lotto = inputView.enterWinningLotto().trim().split(",");
             List<Integer> lottos = new ArrayList<>();
-
             for (String num : lotto) {
-                int winngNum = validation.checkWinningNum(num);
-                lottos.add(winngNum);
+                int winningNum = validation.checkWinningNum(num);
+                lottos.add(winningNum);
             }
-
             validation.totalWinngLottoCheck(lottos);
 
             int bonusNum = createBonusNum(lottos);
-
             createStatistic(new WinningLotto(lottos, bonusNum));
         } catch (IllegalArgumentException e) {
             outputView.printException(e.getMessage());
@@ -87,7 +84,7 @@ public class LottoService {
     }
 
     private void createStatistic(WinningLotto winningLotto) {
-        winningLotto.accordCheck(lottos, player);
+        winningLotto.calculatePrize(lottos, player);
         accordStatistic(winningLotto);
     }
 

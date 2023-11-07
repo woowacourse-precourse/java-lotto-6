@@ -18,8 +18,8 @@ public class Process {
     }
 
 
-    public void drawLotto(Exceptable exceptable){
-        ValidateInput validateInput = new ValidateInput(exceptable);
+    public void drawLotto(){
+        ValidateInput validateInput = new ValidateInput();
         int cost = askCost(validateInput, 0);
         int count = new Calculate().getLottoCount(cost);
         outputView.printNumberPurchase(count);

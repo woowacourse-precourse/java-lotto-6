@@ -13,8 +13,7 @@ public class ValidateInputTest {
     private ValidateInput validateInput;
     @BeforeEach
     void setUp(){
-        Exceptable exceptable = new Exceptable();
-        validateInput = new ValidateInput(exceptable);
+        validateInput = new ValidateInput();
     }
     @Test
     void 보너스_숫자의_갯수가_1개인지_확인(){

@@ -6,16 +6,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ValidateInput {
+public class ValidateInput extends Exceptable{
     private static final String SEPERATE = ",";
-    private Exceptable exceptable;
-    public ValidateInput(Exceptable exceptable){
-        this.exceptable = exceptable;
-    }
+
+
     public int validateCost(String input){
         int cost = changeInt(canNumber(input));
-        exceptable.validateDivided(cost);
-        exceptable.validateZeroLess(cost);
+        validateDivided(cost);
+        validateZeroLess(cost);
         return cost;
     }
 
@@ -26,16 +24,16 @@ public class ValidateInput {
 
     public int validateBonus(String input, List<Integer> winningNums){
         int bonus = changeInt(canNumber(input));
-        exceptable.validateDuplicateBonus(bonus, winningNums);
-        exceptable.validate1to45(bonus);
+        validateDuplicateBonus(bonus, winningNums);
+        validate1to45(bonus);
         return bonus;
     }
 
     public String canNumber(String input) {
-        exceptable.validateSpace(input);
-        exceptable.validateOverOne(input);
-        exceptable.validatePoint(input);
-        exceptable.validateNumber(input);
+        validateSpace(input);
+        validateOverOne(input);
+        validatePoint(input);
+        validateNumber(input);
         return input;
     }
 

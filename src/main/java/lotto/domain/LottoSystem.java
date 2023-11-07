@@ -83,4 +83,13 @@ public class LottoSystem {
     private boolean isNumberMatch(Integer number1, Integer number2) {
         return Objects.equals(number1, number2);
     }
+
+    public double calculateProfitRate(List<Prize> prizes) {
+        int purchaseAmount = player.getPurchaseAmount();
+        int totalProfit = 0;
+        for (Prize prize : prizes) {
+            totalProfit += prize.getPrize();
+        }
+        return ((double) totalProfit / purchaseAmount) * 100;
+    }
 }

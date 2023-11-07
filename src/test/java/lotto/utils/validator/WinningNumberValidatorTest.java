@@ -13,7 +13,7 @@ class WinningNumberValidatorTest {
     @DisplayName("[Exception] 공백 입력 시 예외가 발생한다.")
     void blank(String wrongInput) {
         Assertions.assertThatThrownBy(() -> WinningNumberValidator.validate(wrongInput))
-                .hasMessage(WinningInformationExceptionMessage.BLANK_WINNING_NUMBER.getError());
+                .hasMessage(WinningInformationExceptionMessage.BLANK.getError());
     }
 
     @ParameterizedTest
@@ -21,7 +21,7 @@ class WinningNumberValidatorTest {
     @DisplayName("[Exception] 최대 길이 20을 초과할 시 예외가 발생한다.")
     void maxLength(String wrongInput) {
         Assertions.assertThatThrownBy(() -> WinningNumberValidator.validate(wrongInput))
-                .hasMessage(WinningInformationExceptionMessage.EXCEED_LENGTH.getError());
+                .hasMessage(WinningInformationExceptionMessage.EXCEED_WINNING_NUMBER_LENGTH.getError());
     }
 
     @ParameterizedTest

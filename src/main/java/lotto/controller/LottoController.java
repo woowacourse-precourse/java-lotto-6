@@ -20,6 +20,8 @@ public class LottoController {
 
         Lottos lottos = new Lottos(getLottos(lotto.getNumberOfLotto()));
         printLottos(lottos);
+
+        Lotto win =
     }
 
     public User getMoney(){
@@ -32,5 +34,12 @@ public class LottoController {
     public List<Lotto> getLottos(int numOfLotto){
         LottoGenerator lottoMaker = new LottoGenerator();
         return lottoMaker.FullLottoMaker(numOfLotto);
+    }
+
+    public Lotto getWinningLotto(){
+        InputWinningNumbersView winningNumber = new InputWinningNumbersView();
+        List<Integer> win = winningNumber.getValue();
+
+        return new Lotto(win);
     }
 }

@@ -11,25 +11,29 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         try {
-            int buyMoney = inputBuyMoney();
-            List<Lotto> lottoList = new ArrayList<>();
-
-            createLottos(buyMoney, lottoList);
-            printLottos(lottoList);
-
-            List<Integer> correctNumbers = inputCorrectNumbers();
-            Integer bonusNumber = inputBonusNumber(correctNumbers);
-
-            Map<Position, Integer> winCheckMap = new LinkedHashMap<>();
-            initWinCheckMap(winCheckMap);
-            winCheck(lottoList, correctNumbers, bonusNumber, winCheckMap);
-
-            printLottoResult(buyMoney, winCheckMap);
+            mainProcess();
         } catch (NumberFormatException ex) {
             System.out.println("[ERROR] 입력은 숫자로 입력되어야 합니다.");
         } catch (IllegalArgumentException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    private static void mainProcess() {
+        int buyMoney = inputBuyMoney();
+        List<Lotto> lottoList = new ArrayList<>();
+
+        createLottos(buyMoney, lottoList);
+        printLottos(lottoList);
+
+        List<Integer> correctNumbers = inputCorrectNumbers();
+        Integer bonusNumber = inputBonusNumber(correctNumbers);
+
+        Map<Position, Integer> winCheckMap = new LinkedHashMap<>();
+        initWinCheckMap(winCheckMap);
+        winCheck(lottoList, correctNumbers, bonusNumber, winCheckMap);
+
+        printLottoResult(buyMoney, winCheckMap);
     }
 
 

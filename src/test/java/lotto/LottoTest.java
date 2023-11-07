@@ -42,6 +42,5 @@ class LottoTest {
 
         lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Assertions.assertThat(lotto.checkLotto(List.of(1, 2, 13, 12, 10, 11), 7)).isNull();
-
     }
 }

@@ -6,32 +6,26 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        Exception.validateLottoNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        Exception.validateLottoNumbers(numbers);
-    }
-
-    public String lottoFormat() {
+    public String lottoPrintFormat() {
         StringBuilder result = new StringBuilder();
-
         for (Integer number : numbers) {
             if (!result.isEmpty()) {
                 result.append(", ");
             }
             result.append(number);
         }
-
         return "[" + result.toString() + "]";
     }
 
     public Integer compareWithWinNumbers(List<Integer> winNumbers, Integer bonusNumber) {
         int label = 0;
 
-        for (Integer n : numbers) {
-            if (winNumbers.contains(n)) {
+        for (Integer winNumber : winNumbers) {
+            if (numbers.contains(winNumber)) {
                 label++;
             }
         }

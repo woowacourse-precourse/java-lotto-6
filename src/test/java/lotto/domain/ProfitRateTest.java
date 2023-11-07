@@ -22,8 +22,8 @@ public class ProfitRateTest {
     void calculateProfitRate() {
         String expectedProfitRate = "22142.86";
 
-        winResult.increaseWinResultValue(WinnerRank.FOUR.getValue());
-        winResult.increaseWinResultValue(WinnerRank.FIVE_WITHOUT_BOUNUS.getValue());
+        winResult.increaseWinResultValue(WinnerRank.FOUR.getRankKey());
+        winResult.increaseWinResultValue(WinnerRank.FIVE_WITHOUT_BOUNUS.getRankKey());
 
         assertThat(profitRate.calculateProfitRate(purchasePrice, winResult)).isEqualTo(expectedProfitRate);
     }

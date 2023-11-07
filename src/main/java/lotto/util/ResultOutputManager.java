@@ -26,7 +26,7 @@ public class ResultOutputManager {
     }
 
     public void print() {
-        revenueCalculator.cal();
+        revenueCalculator.calculate();
         HashMap<String, Integer> count = revenueCalculator.getCount();
         double revenue = revenueCalculator.getRevenue();
 

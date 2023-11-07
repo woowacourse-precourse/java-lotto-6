@@ -18,10 +18,6 @@ public class Lotto {
         return this.numbers;
     }
 
-    private void sort(List<Integer> numbers) {
-        Collections.sort(numbers);
-    }
-
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
         validateAllRange(numbers, MIN_NUMBER, MAX_NUMBER);
@@ -47,6 +43,10 @@ public class Lotto {
                 .anyMatch(number -> set.contains(number))) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void sort(List<Integer> numbers) {
+        Collections.sort(numbers);
     }
 
     public int countMatches(Lotto lotto) {

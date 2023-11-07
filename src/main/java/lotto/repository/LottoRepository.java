@@ -1,26 +1,49 @@
 package lotto.repository;
 
-import lotto.domain.Ticket;
-import lotto.domain.ticket.Bonus;
-import lotto.domain.ticket.Lotto;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumber;
 
 import java.util.List;
 
+import static camp.nextstep.edu.missionutils.Randoms.*;
+
 public class LottoRepository {
 
-    private Ticket winningNumbers;  // 당첨 로또
-    private List<Ticket> myTickets; // 사용자의 로또
-    
+    private static final int LOTTO_PRICE = 1000;
 
-    // 사용자의 로또를 저장한다
-    public void buyTicket(List<Integer> numbers, int number) {
-        myTickets.add(new Ticket(new Lotto(numbers),new Bonus(number)));
+    private WinningNumber winningNumber;  // 당첨 로또
+    private List<Lotto> myTickets; // 사용자의 로또
+    private int purchaseAmount;
+
+    public LottoRepository() {
+        this.purchaseAmount = 0;
+    }
+
+    /**
+     * 구입 금액만큼 로또를 발행한다.
+     *
+     * @param amount 구입금액
+     * @return count 구입한 수량
+     */
+    public int buyTicket(int amount) {
+        purchaseAmount += amount;
+        int count = amount / LOTTO_PRICE;
+        for (int i = 0; i < count; i++) {
+            buyOneTicket();
+        }
+        return count;
+    }
+
+    private void buyOneTicket() {
+        myTickets.add(new Lotto(pickUniqueNumbersInRange(1, 45, 6)));
     }
 
     // 당첨 로또를 저장한다
     public void drawLotto(List<Integer> numbers, int number) {
-        winningNumbers = new Ticket(new Lotto(numbers), new Bonus(number));
+        winningNumber = new WinningNumber(new Lotto(numbers), number);
     }
 
-
+    public List<Lotto> getMyTickets() {
+        return myTickets;
+    }
 }

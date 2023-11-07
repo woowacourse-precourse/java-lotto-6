@@ -1,6 +1,6 @@
 package lotto.view;
 
-import lotto.domain.Ticket;
+import lotto.domain.Lotto;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public class Output {
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String LINE = "---";
-    private static final String NEWLINE = "\n";
+    private static final String LINEBREAK = "\n";
     private static final String RESULT_START_PREFIX = "[";
     private static final String RESULT_END_PREFIX = "]";
     private static final String DELIMITER = ",";
@@ -37,16 +37,16 @@ public class Output {
         System.out.println(String.format(BUYING_MESSAGE, count));
     }
 
-    public void printLottoTickets(List<Ticket> tickets) {
-        for (Ticket ticket : tickets) {
+    public void printLottoTickets(List<Lotto> tickets) {
+        for (Lotto ticket : tickets) {
             System.out.println(TicketResult(ticket));
         }
     }
 
-    public String TicketResult(Ticket ticket) {
+    public String TicketResult(Lotto ticket) {
         StringBuilder sb = new StringBuilder();
         sb.append(RESULT_START_PREFIX);
-        for (int lottoNumber : ticket.getLotto()) {
+        for (int lottoNumber : ticket.getNumbers()) {
             sb.append(lottoNumber).append(DELIMITER);
         }
         sb.deleteCharAt(sb.length() - 1);
@@ -64,9 +64,13 @@ public class Output {
     }
 
     public void printWinningStatistics() {
-        System.out.println(WINNING_STATISTICS_MESSAGE + NEWLINE + LINE);
+        System.out.println(WINNING_STATISTICS_MESSAGE + LINEBREAK + LINE);
         // 당첨 통계 결과 (나중에 구현)
         // 수익률 출력 (나중에 구현)
+    }
+
+    public void printLineBreak() {
+        System.out.print(LINEBREAK);
     }
 
 }

@@ -22,11 +22,11 @@ public class PurchaseAmount {
         if(isNull(amount)) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NULL_INPUT.getMessage());
         }
-        if(!isDigit(amount)) {
-            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_DIGIT.getMessage());
-        }
         if(!isInRange(amount)) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_ZERO.getMessage());
+        }
+        if(!isDigit(amount)) {
+            throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_NOT_DIGIT.getMessage());
         }
         if(!isCorrectUnit(amount)) {
             throw new IllegalArgumentException(ErrorMessage.PURCHASE_AMOUNT_WRONG_UNIT_INPUT.getMessage());

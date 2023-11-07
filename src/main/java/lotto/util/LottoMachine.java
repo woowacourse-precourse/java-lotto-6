@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoMachine {
-    public static int getLottoTicketNumber(int money) {
+    public static int setLottoTicketNumber(int money) {
         return money / 1000;
     }
 
@@ -19,8 +19,7 @@ public class LottoMachine {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < ticketCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            List<Integer> sortedNumbers = new ArrayList<>(numbers);
-            Collections.sort(sortedNumbers);
+            Collections.sort(new ArrayList<>(numbers));
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }

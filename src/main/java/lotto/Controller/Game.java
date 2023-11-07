@@ -48,6 +48,7 @@ public class Game {
 				String payInput = InputView.getPayInput();
 				return new Money(payInput);
 			}catch(IllegalArgumentException e){
+				System.out.println("I'm here");
 				System.out.println(e.getMessage());
 			}
 		}

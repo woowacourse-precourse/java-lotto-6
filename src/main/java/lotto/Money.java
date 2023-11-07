@@ -5,10 +5,11 @@ import lotto.Constant.LottoInfo;
 import lotto.Enum.ErrorMessage;
 
 public class Money {
-	private final int money;
+	private int money;
 
 	public Money(String input){
-		this.money = validateAndParse(input);
+		validate(input);
+		this.money = Integer.parseInt(input);
 	}
 
 	public int calculateAffordableLottoCount(){
@@ -19,10 +20,15 @@ public class Money {
 		return money;
 	}
 
-	private int validateAndParse(String input) {
-		int pay = parseInputToInteger(input);
+	private int validate(String input) {
+		if(!input.matches("\\d+")){
+			System.out.println("Hey1");
+			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
+		}
+		int pay = Integer.parseInt(input);
 
 		if (!isPositiveInteger(pay)) {
+			System.out.println("Hey2");
 			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
 		}
 
@@ -35,14 +41,6 @@ public class Money {
 		}
 
 		return pay;
-	}
-
-	private int parseInputToInteger(String input) {
-		try {
-			return Integer.parseInt(input);
-		} catch (NumberFormatException e) {
-			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
-		}
 	}
 
 	private boolean isPositiveInteger(int value) {

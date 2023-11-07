@@ -9,6 +9,7 @@ import lotto.domain.service.LottoCreateService;
 import lotto.domain.service.LottoScoreUpdateService;
 import lotto.domain.service.OrderCreateService;
 import lotto.domain.service.StatisticsUpdateService;
+import lotto.domain.util.generator.LottoNumberGenerator;
 import lotto.domain.util.referee.LottoReferee;
 import lotto.domain.view.inputer.Inputer;
 import lotto.domain.view.printer.LottoPrinter;
@@ -21,7 +22,7 @@ public class LottoController {
     private final StatisticsUpdateService statisticsUpdateService;
 
     public LottoController() {
-        this.lottoCreateService = new LottoCreateService();
+        this.lottoCreateService = new LottoCreateService(new LottoNumberGenerator());
         this.lottoScoreUpdateService = new LottoScoreUpdateService(new LottoReferee());
         this.orderCreateService = new OrderCreateService();
         this.statisticsUpdateService = new StatisticsUpdateService();

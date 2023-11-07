@@ -7,6 +7,7 @@ import java.util.List;
 import lotto.domain.entity.Order;
 import lotto.domain.entity.lotto.Lotto;
 import lotto.domain.entity.lotto.WinningLotto;
+import lotto.domain.util.generator.LottoNumberGenerator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class LottoCreateServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        lottoCreateService = new LottoCreateService();
+        lottoCreateService = new LottoCreateService(new LottoNumberGenerator());
     }
 
     @DisplayName("5개 구매한만큼 로또 생성")

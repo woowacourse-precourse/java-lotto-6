@@ -5,9 +5,15 @@ import java.util.List;
 import lotto.domain.entity.Order;
 import lotto.domain.entity.lotto.Lotto;
 import lotto.domain.entity.lotto.WinningLotto;
-import lotto.domain.util.generator.LottoNumberGenerator;
+import lotto.domain.util.generator.ILottoNumberGenerator;
 
 public class LottoCreateService {
+    private ILottoNumberGenerator iLottoNumberGenerator;
+
+    public LottoCreateService(ILottoNumberGenerator iLottoNumberGenerator) {
+        this.iLottoNumberGenerator = iLottoNumberGenerator;
+    }
+
     /**
      * 구매 금액을 통해 구매할 수 있는 개수만큼 로또 발행(번호는 랜덤)
      *
@@ -18,7 +24,7 @@ public class LottoCreateService {
         int purchasedLottoNumber = order.getNumberOfPurchaseLotto();
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchasedLottoNumber; i++) {
-            List<Integer> numbers = LottoNumberGenerator.createRandom();
+            List<Integer> numbers = iLottoNumberGenerator.createRandom();
             lottos.add(new Lotto(numbers));
         }
         return lottos;

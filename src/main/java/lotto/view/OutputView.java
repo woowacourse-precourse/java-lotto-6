@@ -27,16 +27,11 @@ public class OutputView {
         printEmptyLine();
         System.out.println(WINNING_STATISTICS);
         System.out.println("---");
-        System.out.println(
-                LottoStatus.FIFTH.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.FIFTH) + "개");
-        System.out.println(
-                LottoStatus.FOURTH.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.FOURTH) + "개");
-        System.out.println(
-                LottoStatus.THIRD.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.THIRD) + "개");
-        System.out.println(
-                LottoStatus.SECOND.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.SECOND) + "개");
-        System.out.println(
-                LottoStatus.FIRST.getStatusMessage() + " - " + lottoStatusCounts.get(LottoStatus.FIRST) + "개");
+        for (LottoStatus status : LottoStatus.values()) {
+            if (status != LottoStatus.SIXTH) {
+                System.out.println(status.getStatusMessage() + " - " + lottoStatusCounts.get(status) + "개");
+            }
+        }
     }
 
     public static void printEmptyLine() {

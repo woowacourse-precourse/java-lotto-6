@@ -6,12 +6,14 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Pay;
 import lotto.util.Generator;
+import lotto.view.ErrorView;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
     private InputView inputView = new InputView();
     private OutputView outputView = new OutputView();
+    private ErrorView errorView = new ErrorView();
     private Pay pay;
     private List<Lotto> userLottos;
     private Lotto winningNumber;
@@ -23,9 +25,15 @@ public class GameController {
     }
 
     private void buyLotto() {
-        pay = new Pay(inputView.requestPayment());
-        userLottos = generateLottos();
-        printLottos(userLottos);
+        try {
+            pay = new Pay(inputView.requestPayment());
+            userLottos = generateLottos();
+            printLottos(userLottos);
+        } catch (IllegalArgumentException exception) {
+            errorView.printErrorMessage(exception.getMessage());
+            buyLotto();
+        }
+
     }
 
     private List<Lotto> generateLottos() {

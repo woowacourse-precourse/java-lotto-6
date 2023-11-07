@@ -28,6 +28,6 @@ class LottoTicketGeneratorTest {
 
         assertThat(lottoTickets)
                 .doesNotContainNull()
-                .allMatch(lotto -> lotto.getNumbers().size() == Lotto.NUMBER_COUNT);
+                .allMatch(lotto -> lotto.getNumbers().size() == LottoTicketGenerator.NUMBER_COUNT);
     }
 }

@@ -11,7 +11,7 @@ public class LottoResult {
         this.rankResult = lottos.saveRankResult(user);
     }
 
-    public int getResult(Rank rank) {
+    public int findResult(Rank rank) {
         return rankResult.get(rank);
     }
 

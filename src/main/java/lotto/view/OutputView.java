@@ -46,10 +46,10 @@ public class OutputView {
     private String getLottoStatistics(LottoResult lottoResult, Rank rank) {
         if (rank == Rank.FIVE_BONUS) {
             return String.format(STAT_RESULT_BONUS, rank.getMatchingNumber(),
-                    MONEY_FORMAT.format(rank.getPrize()), lottoResult.getResult(rank));
+                    MONEY_FORMAT.format(rank.getPrize()), lottoResult.findResult(rank));
         }
         return String.format(STAT_RESULT, rank.getMatchingNumber(),
-                MONEY_FORMAT.format(rank.getPrize()), lottoResult.getResult(rank));
+                MONEY_FORMAT.format(rank.getPrize()), lottoResult.findResult(rank));
     }
 
 }

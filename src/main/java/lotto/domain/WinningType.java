@@ -23,11 +23,11 @@ public enum WinningType {
             2000000000,
             (winningCount, hasBonusNumber) -> winningCount.equals(6));
 
-    private final Integer rank;
-    private final Integer price;
+    private final int rank;
+    private final int price;
     private final BiPredicate<Integer, Boolean> standard;
 
-    WinningType(final Integer rank, final Integer price, final BiPredicate<Integer, Boolean> standard) {
+    WinningType(final int rank, final int price, final BiPredicate<Integer, Boolean> standard) {
         this.rank = rank;
         this.price = price;
         this.standard = standard;
@@ -35,8 +35,8 @@ public enum WinningType {
 
     public static WinningType findWinningType(final int winningCount, final boolean hasBonusNumber) {
         return Arrays.stream(WinningType.values())
-                .filter(winning -> standard.test(winningCount, hasBonusNumber))
+                .filter(winning -> winning.standard.test(winningCount, hasBonusNumber))
                 .findFirst()
-                .get();
+                .orElse(NONE);
     }
 }

@@ -12,4 +12,12 @@ public class InputView {
                 .replaceAll(ONLY_NUMBER, "");
         return Integer.parseInt(strPrice);
     }
+
+    public String inputLotto() {
+        return Console.readLine();
+    }
+
+    public String inputBonus() {
+        return Console.readLine();
+    }
 }

@@ -2,13 +2,16 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import lotto.domain.PrizeLotto;
 import lotto.util.GameUtil;
 import lotto.view.View;
 import lotto.util.Validator;
 import lotto.domain.Lotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Game {
@@ -19,6 +22,7 @@ public class Game {
 
     private int money;
     private List<Lotto> purchasedLotto;
+    private PrizeLotto prizeLotto;
 
 
     public Game(){
@@ -29,9 +33,9 @@ public class Game {
     public void play(){
         getMoney();
 
-        view.print_PurchasedLottoNumbers(money/LOTTO_PRICE);
         purchaseLotto(money/LOTTO_PRICE);
-        view.print_purchasedLotto(purchasedLotto);
+
+        getPrizeLotto();
 
     }
 
@@ -55,6 +59,7 @@ public class Game {
     }
 
     private void purchaseLotto(int purchaseNumber){
+        view.print_PurchasedLottoNumbers(purchaseNumber);
 
         List<Lotto> createdLotto= new ArrayList<>();
 
@@ -63,6 +68,45 @@ public class Game {
         }
 
         purchasedLotto = createdLotto;
+
+        view.print_purchasedLotto(purchasedLotto);
+    }
+
+    private void getPrizeLotto(){
+        List<Integer> inputWinLotto = getIntegerWinLotto(inputWinLotto());
+
+        Lotto winLotto = new Lotto(inputWinLotto);
+
+        int bonusNum = getBonusNum();
+
+    }
+
+    private List<Integer> getIntegerWinLotto(String input){
+        List<String> winLotto = GameUtil.converseStringToStringList(input);
+
+        return GameUtil.converseStringListToIntegerList(winLotto);
+    }
+
+    private String inputWinLotto(){
+        view.request_InputWinLottoNumbers();
+
+        return check_ValidationInputWinLotto(Console.readLine());
+    }
+
+    private String check_ValidationInputWinLotto(String input){
+        try{
+            validator.check_InputWinLotto(input);
+            return input;
+        }catch(IllegalArgumentException e){
+            view.print_Exception(e.getMessage());
+            return inputWinLotto();
+        }
+    }
+
+    private int getBonusNum(){
+        view.request_InputBonusNumbers();
+
+        return 7;
     }
 
 }

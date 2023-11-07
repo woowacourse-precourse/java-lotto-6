@@ -7,7 +7,8 @@ import java.util.List;
 
 public class OutputView {
     private static final String SHOW_LOTTO_CNT_MESSAGE = "%d개를 구매했습니다.\n";
-    private static final String SHOW_RATE_OF_RETURN_MESSAGE = "총 수익률은 %.2f%%입니다.\n";
+    private static final String SHOW_RATE_OF_RETURN_MESSAGE = "총 수익률은 %s입니다.\n";
+    private static final String SHOW_WINNING_STATISTICS = "당첨 통계\n---";
 
     private OutputView() {
     }
@@ -23,13 +24,15 @@ public class OutputView {
     }
 
     public static void showLottoWinningDetails(List<Integer> winningDetail) {
+        System.out.println(SHOW_WINNING_STATISTICS);
         Rank[] ranks = Rank.values();
         for (int i = 0; i < winningDetail.size(); i++) {
-            System.out.println(ranks[i] + " - " + winningDetail.get(i));
+            System.out.println(ranks[i].getDesc() + " - " + winningDetail.get(i));
         }
     }
 
-    public static void showRateOfReturn(double rateOfReturn) {
+    public static void showRateOfReturn(String rateOfReturn) {
+        System.out.println(SHOW_WINNING_STATISTICS);
         System.out.printf(SHOW_RATE_OF_RETURN_MESSAGE,rateOfReturn);
     }
 }

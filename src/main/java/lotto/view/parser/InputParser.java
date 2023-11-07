@@ -19,22 +19,22 @@ public class InputParser {
         bonusNumberValidator = new BonusNumberValidator();
     }
 
-    public String parseUserMoney(String userMoney) {
+    public Long parseUserMoney(String userMoney) {
         userMoney = removeBlank(userMoney);
         userMoneyInputValidator.validate(userMoney);
-        return userMoney;
+        return parseToLong(userMoney);
     }
 
-    public List<String> parseWinningLottoNumbers(String winningLottoNumbers) {
+    public List<Long> parseWinningLottoNumbers(String winningLottoNumbers) {
         winningLottoNumbersInputValidator.validate(winningLottoNumbers);
         winningLottoNumbers = removeBlankInEachSeperatedItems(winningLottoNumbers);
-        return mapToStringList(winningLottoNumbers);
+        return parseToLongList(winningLottoNumbers);
     }
 
-    public String parseBonusNumber(String bonusNumber) {
+    public Long parseBonusNumber(String bonusNumber) {
         bonusNumber = removeBlank(bonusNumber);
         bonusNumberValidator.validate(bonusNumber);
-        return bonusNumber;
+        return parseToLong(bonusNumber);
     }
 
     private String removeBlank(String userInput) {
@@ -51,9 +51,14 @@ public class InputParser {
                 .collect(Collectors.joining(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER));
     }
 
-    private List<String> mapToStringList(String userInput) {
+    private Long parseToLong(String userInput) {
+        return Long.parseLong(userInput);
+    }
+
+    private List<Long> parseToLongList(String userInput) {
         String[] numbers = splitItemsWithDelimiter(userInput);
         return Arrays.stream(numbers)
+                .map(Long::parseLong)
                 .toList();
     }
 

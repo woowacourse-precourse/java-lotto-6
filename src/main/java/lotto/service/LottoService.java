@@ -6,15 +6,15 @@ import lotto.domain.UserMoney;
 import lotto.domain.WinningLottoNumbers;
 
 public class LottoService {
-    public UserMoney initUserMoney(final String userMoney) {
+    public UserMoney initUserMoney(final long userMoney) {
         return UserMoney.from(userMoney);
     }
 
-    public WinningLottoNumbers initWinningLottoNumbers(final List<String> winningLottoNumbers) {
+    public WinningLottoNumbers initWinningLottoNumbers(final List<Long> winningLottoNumbers) {
         return WinningLottoNumbers.from(winningLottoNumbers);
     }
 
-    public BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers, final String bonusNumber) {
-        return BonusNumber.of(winningLottoNumbers.getWinningLottoNumbers(), Long.parseLong(bonusNumber));
+    public BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers, final long bonusNumber) {
+        return BonusNumber.of(winningLottoNumbers.getWinningLottoNumbers(), bonusNumber);
     }
 }

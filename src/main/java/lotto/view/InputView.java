@@ -12,15 +12,15 @@ public class InputView {
         inputParser = new InputParser();
     }
 
-    public String getUserMoney() {
+    public long getUserMoney() {
         return inputParser.parseUserMoney(readLine());
     }
 
-    public List<String> getWinningLottoNumbers() {
+    public List<Long> getWinningLottoNumbers() {
         return inputParser.parseWinningLottoNumbers(readLine());
     }
 
-    public String getBonusNumber() {
+    public long getBonusNumber() {
         return inputParser.parseBonusNumber(readLine());
     }
 

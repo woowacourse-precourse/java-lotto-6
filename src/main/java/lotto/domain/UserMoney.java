@@ -1,17 +1,17 @@
 package lotto.domain;
 
 public class UserMoney {
-    private final Long userMoney;
+    private final long userMoney;
 
-    private UserMoney(Long userMoney) {
+    private UserMoney(long userMoney) {
         this.userMoney = userMoney;
     }
 
-    public static UserMoney from(String userMoney) {
-        return new UserMoney(Long.parseLong(userMoney));
+    public static UserMoney from(final long userMoney) {
+        return new UserMoney(userMoney);
     }
 
-    public Long getUserMoney() {
+    public long getUserMoney() {
         return this.userMoney;
     }
 }

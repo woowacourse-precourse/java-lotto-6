@@ -28,7 +28,7 @@ public class LottoController {
         endGame();
     }
 
-    private String inputUserMoney() {
+    private long inputUserMoney() {
         try {
             return askToInsertUserMoney();
         } catch (LottoInputException e) {
@@ -37,12 +37,12 @@ public class LottoController {
         }
     }
 
-    private String askToInsertUserMoney() {
+    private long askToInsertUserMoney() {
         outputView.askToInsertUserMoney();
         return inputView.getUserMoney();
     }
 
-    private List<String> inputWinningLottoNumbers() {
+    private List<Long> inputWinningLottoNumbers() {
         try {
             return askToInsertWinningLottoNumbers();
         } catch (LottoInputException e) {
@@ -51,12 +51,12 @@ public class LottoController {
         }
     }
 
-    private List<String> askToInsertWinningLottoNumbers() {
+    private List<Long> askToInsertWinningLottoNumbers() {
         outputView.askUserToInsertLottoWinningNumbers();
         return inputView.getWinningLottoNumbers();
     }
 
-    private String inputBonusNumber() {
+    private long inputBonusNumber() {
         try {
             return askToInsertBonusNumber();
         } catch (LottoInputException e) {
@@ -65,7 +65,7 @@ public class LottoController {
         }
     }
 
-    private String askToInsertBonusNumber() {
+    private long askToInsertBonusNumber() {
         outputView.askUserToInsertBonusNumber();
         return inputView.getBonusNumber();
     }

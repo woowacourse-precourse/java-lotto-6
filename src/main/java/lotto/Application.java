@@ -5,11 +5,13 @@ import camp.nextstep.edu.missionutils.*;
 import java.util.*;
 
 public class Application {
-    public static final int LOTTO_PRICE = 1000;
-    public static final int LOTTO_MIN = 1;
-    public static final int LOTTO_MAX = 45;
-    public static final int LOTTO_COUNT = 6;
-    public static final int RANKING = 5;
+    private static final int LOTTO_PRICE = 1000;
+    private static final int LOTTO_MIN = 1;
+    private static final int LOTTO_MAX = 45;
+    private static final int LOTTO_COUNT = 6;
+    private static final int RANKING = 5;
+
+    private static final Rank[] ranks = Rank.values();
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현
@@ -146,7 +148,7 @@ public class Application {
             }
         }
 
-        Rank[] ranks = Rank.values();
+
 
         for (int i = RANKING - 1; i >= 0; i--)  {
             Rank rank = ranks[i];

@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
@@ -23,6 +25,7 @@ public class LottoGame {
     private void getLottoNumbers(int count) {
         while (count-- > 0) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
             Lotto lotto = new Lotto(numbers);
             print.printLottoNumbers(lotto);
         }

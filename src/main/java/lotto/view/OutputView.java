@@ -23,5 +23,23 @@ public class OutputView {
         dto.getLotto().forEach(System.out::println);
     }
 
+    public static void printLottoResult(LottoResultDto dto) {
+        System.out.printf(OUTPUT_STATISTICS_WINNING);
+        System.out.println(OUTPUT_STATISTICS_WINNING_DIVIDER);
+
+        dto.getResult().forEach(OutputView::printLottoResultByRank);
+    }
+
+    private static void printLottoResultByRank(LottoRank rank, Integer count) {
+        System.out.printf(getFormat(rank), rank.getMatchCount(), rank.getPrizeAmount(), count);
+    }
+
+    private static String getFormat(LottoRank rank) {
+        if (rank.isContainBonusRank()) {
+            return OUTPUT_BONUS_LOTTO_RESULT_FORMAT;
+        }
+        return OUTPUT_LOTTO_RESULT_FORMAT;
+    }
+
 
 }

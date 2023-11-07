@@ -24,4 +24,8 @@ public class OutputView {
         ResultRepository resultRepository = new ResultRepository();
         resultRepository.toString();
     }
+
+    public void printRateOfReturn(Double rateOfReturn) {
+        System.out.printf("총 수익률은 %.1f%입니다.", rateOfReturn);
+    }
 }

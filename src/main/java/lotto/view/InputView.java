@@ -18,8 +18,8 @@ public class InputView {
         printMessage(USER_MONEY_INPUT_MSG);
 
         String money = Console.readLine();
-        InputValidator.validateLottoPurchaseAmount(money);
-        InputValidator.validatePurchaseAmount(Long.parseLong(money));
+        InputValidator.validateAmountFormatAndLimit(money);
+        InputValidator.validateAmountUnitAndMinimum(Long.parseLong(money));
         return Long.parseLong(money);
     }
 

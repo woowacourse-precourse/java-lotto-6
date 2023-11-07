@@ -3,7 +3,7 @@ package lotto;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.assertj.core.api.Assertions.assertThat;
-
+import java.util.List;
 
 public class LottoCheckerTest {
     @Test
@@ -61,5 +61,23 @@ public class LottoCheckerTest {
             new LottoChecker(input, bonus);
         });
         assertThat(e.getMessage()).isEqualTo("[ERROR] 각각의 당첨 번호는 1~45 사이여야 합니다.");
+    }
+
+    @Test
+    public void 로또들을_인자로_check호출시_올바른_등수를_반환한다() {
+        Lotto first = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto second = new Lotto(List.of(1, 2, 3, 4, 5, 7));
+        Lotto third = new Lotto(List.of(1, 2, 3, 4, 5, 8));
+        Lotto fourth = new Lotto(List.of(1, 2, 3, 4, 7, 8));
+        Lotto fifth = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+        Lotto none = new Lotto(List.of(1, 2, 7, 8, 9, 10));
+
+        String answer = "1,2,3,4,5,6";
+        String bonus = "7";
+
+        LottoChecker lottoChecker = new LottoChecker(answer, bonus);
+        List<LottoPrize> lottoPrizes = lottoChecker.check(List.of(first, second,  third, fourth, fifth, none));
+
+        assertThat(lottoPrizes).containsExactly(LottoPrize.FIRST, LottoPrize.SECOND, LottoPrize.THIRD, LottoPrize.FOURTH, LottoPrize.FIFTH, LottoPrize.NONE);
     }
 }

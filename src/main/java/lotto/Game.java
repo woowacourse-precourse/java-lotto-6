@@ -8,9 +8,31 @@ import java.util.List;
 public class Game {
     private final List<Integer> numbers = new ArrayList<>();
     private int bonusNumber;
-    private float totalProfit = 0;
-    private List<Long> numbersOfPrizes = new ArrayList<>();
 
+    public void run() {
+        Customer customer = setCustomer();
+        setGame();
+        Result result = new Result();
+        Lotto lotto = new Lotto(this.numbers);
+        customer.tickets.forEach(ticket -> {
+            Comparator comparator = new Comparator(ticket, lotto.getNumbers(), bonusNumber);
+            int match = comparator.getMatch();
+            boolean bonus = comparator.getBonus();
+            result.addToPrizes(match, bonus);
+            result.computeTotalProfit(match, bonus);
+        });
+        List<Long> numbersOfPrizes = result.countPrizes();
+        float totalProfit = result.getTotalProfit();
+        Print.prizes(numbersOfPrizes);
+        Print.profitRate(customer.inputPrice, totalProfit);
+    }
+
+    private Customer setCustomer() {
+        System.out.println("구입금액을 입력해 주세요.");
+        Customer customer = new Customer(inputPrice());
+        Print.tickets(customer);
+        return customer;
+    }
 
     private int inputPrice() {
         int inputPrice;
@@ -26,6 +48,11 @@ public class Game {
         return inputPrice;
     }
 
+    private void setGame() {
+        inputLottoNumbers();
+        inputBonusNumber();
+    }
+
     private void inputLottoNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] inputNumbers;
@@ -38,35 +65,5 @@ public class Game {
     private void inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         this.bonusNumber = Integer.parseInt(Console.readLine());
-    }
-
-    private void setGame() {
-        inputLottoNumbers();
-        inputBonusNumber();
-    }
-
-    public void run() {
-        Customer customer = setCustomer();
-        setGame();
-        Result result = new Result();
-        Lotto lotto = new Lotto(this.numbers);
-        customer.tickets.forEach(ticket -> {
-            Comparator comparator = new Comparator(ticket, lotto.getNumbers(), bonusNumber);
-            int match = comparator.getMatch();
-            boolean bonus = comparator.getBonus();
-            result.addToPrizes(match, bonus);
-            result.computeTotalProfit(match, bonus);
-        });
-        numbersOfPrizes = result.countPrizes();
-        totalProfit = result.getTotalProfit();
-        Print.prizes(numbersOfPrizes);
-        Print.profitRate(customer.inputPrice, totalProfit);
-    }
-
-    private Customer setCustomer() {
-        System.out.println("구입금액을 입력해 주세요.");
-        Customer customer = new Customer(inputPrice());
-        Print.tickets(customer);
-        return customer;
     }
 }

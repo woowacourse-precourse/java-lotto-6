@@ -29,7 +29,7 @@ public class LottoService {
         handleUserMoney();
 
         myLottos = lottoGenerator.generateMyTickets();
-//        outputView.showMyTickets(myLottos.toDto());
+        outputView.showMyTickets(myLottos.toDto());
 
         handleWinnerNumber();
         handleBonusNumber();

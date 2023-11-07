@@ -28,6 +28,7 @@ public class ResultService {
 
     private Result mappingResult(List<Ranks> ranks) {
         Map<Ranks, Integer> rankResult = new HashMap<>();
+        initMatches(rankResult);
         setMatches(rankResult, ranks);
         return new Result(rankResult);
     }

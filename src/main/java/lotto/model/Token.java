@@ -31,8 +31,8 @@ public class Token {
         return amount % UNIT_AMOUNT != ZERO;
     }
 
-    public boolean canTicket(int count) {
-        return this.count > count;
+    public boolean canTicket(int ticketedCount) {
+        return this.count > ticketedCount;
     }
 
     public int amount() {

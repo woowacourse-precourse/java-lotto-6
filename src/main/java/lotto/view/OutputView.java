@@ -1,11 +1,20 @@
 package lotto.view;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lottos;
+import lotto.domain.Ranking;
+import lotto.domain.WinningStatistics;
 
 public class OutputView {
 
     private static final String NUMBER_OF_LOTTO_PURCHASED_MESSAGE = "%d개를 구매했습니다.";
+    private static final String STATISTICS_FOREWORD_MESSAGE = "당첨통계";
+    private static final String DOUBLE_DASH = "--";
+    private static final String STATISTICS_WITH_BONUS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개";
+    private static final String STATISTICS_MESSAGE = "%d개 일치 (%,d원) - %d개";
 
     private OutputView() {
     }
@@ -30,7 +39,37 @@ public class OutputView {
         printNewEmptyLine();
     }
 
-    private static void printNewEmptyLine() {
+    public static void printWinningStatistics(WinningStatistics winningStatistics) {
+        printWinningStatisticsMessage();
+
+        Map<Ranking, Integer> statistics = winningStatistics.getStatistics();
+
+        List<Ranking> rankings = new ArrayList<>(List.of(Ranking.values()));
+        rankings.remove(Ranking.NOTHING);
+        Collections.reverse(rankings);
+
+        for (Ranking ranking : rankings) {
+            printWinningStatistics(ranking, statistics.get(ranking));
+        }
+    }
+
+    private static void printWinningStatistics(Ranking ranking, int count) {
+        if (ranking.equals(Ranking.SECOND)) {
+            printWithFormat(STATISTICS_WITH_BONUS_MESSAGE, ranking.getMatchNumberCount(),
+                ranking.getPrizeMoney(), count);
+            return;
+        }
+        printWithFormat(STATISTICS_MESSAGE, ranking.getMatchNumberCount(),
+            ranking.getPrizeMoney(), count);
+    }
+
+    private static void printWinningStatisticsMessage() {
+        printNewEmptyLine();
+        System.out.println(STATISTICS_FOREWORD_MESSAGE);
+        System.out.println(DOUBLE_DASH);
+    }
+
+    public static void printNewEmptyLine() {
         System.out.println();
     }
 

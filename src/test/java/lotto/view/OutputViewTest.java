@@ -3,7 +3,10 @@ package lotto.view;
 import lotto.config.WinningPrize;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,10 +49,12 @@ public class OutputViewTest {
                 .contains("5개 일치, 보너스 볼 일치 (30,000,000원) - 3개");
     }
 
-    @Test
-    public void printProfitResult() {
-        OutputView.printProfitResult(73.2F);
+    @DisplayName("수익률이 소숫점 둘째 자리에서 반올림이 제대로 되는지 확인")
+    @ParameterizedTest
+    @CsvSource(value = {"72.24F,72.2", "32.68F,32.7", "42,42.0"})
+    public void printProfitResult(float input, String answer) {
+        OutputView.printProfitResult(input);
         assertThat(console.toString())
-                .contains("총 수익률은 73.2%입니다.");
+                .contains(String.format("총 수익률은 %s%%입니다.", answer));
     }
 }

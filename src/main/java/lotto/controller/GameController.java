@@ -10,30 +10,40 @@ import lotto.view.OutputView;
 
 public class GameController {
 
+    private static int bonusNumber;
+    private static List<Lotto> lottoNumber;
+    private static Lotto winningNumbers;
+    private static int purchaseAmount;
+
+
     public static int play() {
         OutputView.printGameStartMessage();
-        int purchaseAmount = InputView.inputPurchaseAmount();
+        purchaseAmount = InputView.inputPurchaseAmount();
         return lottoPurchaseNum(purchaseAmount);
     }
 
     private static int lottoPurchaseNum(int purchaseAmount) {
-        List<Lotto> lottoNum = LottoService.generateLottoNumbers(purchaseAmount);
+        lottoNumber = LottoService.generateLottoNumbers(purchaseAmount);
         OutputView.printLottoPurchaseAmount(purchaseAmount);
-        OutputView.printLottoNumber(lottoNum);
+        OutputView.printLottoNumber(lottoNumber);
         lottoInputWinningNum();
         return purchaseAmount;
     }
 
     public static void lottoInputWinningNum() {
-        Lotto winningNumbers = InputView.inputWinningNum();
-        lottoPrintBonusNumber(winningNumbers);
+        winningNumbers = InputView.inputWinningNum();
+        lottoPrintBonusNumber();
     }
 
-    public static int lottoPrintBonusNumber(Lotto winningNumbers) {
+    public static void lottoPrintBonusNumber() {
         OutputView.printLottoBonusNumber();
-        int bonusNumber = InputView.inputBonusNum(winningNumbers);
+        bonusNumber = InputView.inputBonusNum(winningNumbers);
         OutputView.printLottoWinningStatistics();
-        return bonusNumber;
+        lottoWinningCalculator();
+    }
+
+    public static void lottoWinningCalculator() {
+        LottoWinningCalculator.calculatorLotto(lottoNumber, winningNumbers, bonusNumber, purchaseAmount);
     }
 }
 

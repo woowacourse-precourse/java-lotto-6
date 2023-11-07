@@ -45,7 +45,7 @@ public class LottoGameController {
                 purchasePrice = new PurchasePrice(userNumber.getParsingNumber());
                 break;
             } catch (IllegalArgumentException e) {
-                e.getMessage();
+                outputView.printErrorMessage(e);
             }
         }
     }
@@ -58,7 +58,7 @@ public class LottoGameController {
                 lotto = new Lotto(userNumbers.getParsingNumbers());
                 break;
             } catch (IllegalArgumentException e) {
-                e.getMessage();
+                outputView.printErrorMessage(e);
             }
         }
     }
@@ -71,7 +71,7 @@ public class LottoGameController {
                 bonusLotto = new BonusLotto(userNumber.getParsingNumber(), lotto);
                 break;
             } catch (IllegalArgumentException e) {
-                e.getMessage();
+                outputView.printErrorMessage(e);
             }
         }
     }

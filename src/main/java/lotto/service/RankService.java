@@ -40,8 +40,7 @@ public class RankService {
             return bonusWin;
         }
 
-        for (int i = 0; i < Config.RANK_LOTTO; i++) {
-            LottoRank rank = LottoRank.values()[i];
+        for (LottoRank rank : LottoRank.values()) {
             if (matchingCount == rank.getMatchingNumbers()) {
                 return rank;
             }

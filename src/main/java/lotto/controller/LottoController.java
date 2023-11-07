@@ -66,7 +66,7 @@ public class LottoController {
 
     private RandomLottos getRandomLottos(LottoAmountofMoney lottoAmountofMoney) {
         RandomLottos randomLottos = new RandomLottos(lottoAmountofMoney);
-        displayOutput.outputRandomLottos(randomLottos);
+        displayOutput.outputRandomLottos(randomLottos, lottoAmountofMoney);
         return randomLottos;
     }
 

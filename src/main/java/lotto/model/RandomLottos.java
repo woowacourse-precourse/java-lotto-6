@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -27,13 +29,15 @@ public class RandomLottos {
     }
 
     private Lotto generateLotto() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        while (lottoNumbers.size() < NUMBERSPERLOTTO) {
-            Integer randomInt = Randoms.pickNumberInRange(LOTTONUMBERSTART, LOTTONUMBEREND);
-            if (!lottoNumbers.contains(randomInt)) {
-                lottoNumbers.add(randomInt);
-            }
-        }
+//        while (lottoNumbers.size() < NUMBERSPERLOTTO) {
+//            Integer randomInt = Randoms.pickNumberInRange(LOTTONUMBERSTART, LOTTONUMBEREND);
+//            if (!lottoNumbers.contains(randomInt)) {
+//                lottoNumbers.add(randomInt);
+//            }
+//        }
+        List<Integer> numbers = pickUniqueNumbersInRange(LOTTONUMBERSTART, LOTTONUMBEREND, 6);
+        List<Integer> lottoNumbers = new ArrayList<>(numbers);
+        System.out.println(lottoNumbers.toString());
         lottoNumbers.sort(Comparator.naturalOrder());
         Lotto lotto = new Lotto(lottoNumbers);
         return lotto;

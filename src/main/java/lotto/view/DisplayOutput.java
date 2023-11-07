@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.HashMap;
 import java.util.List;
 import lotto.model.Lotto;
+import lotto.model.LottoAmountofMoney;
 import lotto.model.RandomLottos;
 
 public class DisplayOutput {
@@ -23,7 +24,8 @@ public class DisplayOutput {
         System.out.println(OUTPUTBONUSNUMBER);
     }
 
-    public void outputRandomLottos(RandomLottos randomLottos) {
+    public void outputRandomLottos(RandomLottos randomLottos, LottoAmountofMoney lottoAmountofMoney) {
+        System.out.printf("%d개를 구매했습니다.\n", lottoAmountofMoney.getLottoAmountofMoney()/1000);
         int randomLottoNumbers = randomLottos.getRandomLottos().size();
         List<Lotto> randomLotto = randomLottos.getRandomLottos();
         for (int i = 0; i < randomLottoNumbers; i++) {

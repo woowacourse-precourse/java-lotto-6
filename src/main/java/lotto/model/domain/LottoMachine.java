@@ -18,14 +18,13 @@ public class LottoMachine {
         issueTickets(lottoTicket);
     }
 
-    public void issueTickets(int ticketCount) {
+    private void issueTickets(int ticketCount) {
         int init = 1;
-        while(init <= ticketCount) {
+        while(init++ <= ticketCount) {
             List<Integer> numbers =
                 new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBERS_SIZE));
             Collections.sort(numbers);
             issuedLotto.add(new Lotto(numbers));
-            init++;
         }
     }
 

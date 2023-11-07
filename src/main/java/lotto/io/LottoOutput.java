@@ -57,7 +57,7 @@ public final class LottoOutput implements OutputPort{
         PURCHASE_NUM(NEW_LINE.value + "%d개를 구매했습니다." + NEW_LINE.value),
         INPUT_WINNING_NUMBER("당첨 번호를 입력해 주세요."),
         INPUT_BONUS_NUMBER(NEW_LINE.value + "보너스 번호를 입력해 주세요."),
-        STATISTICS_PREFIX(NEW_LINE.value + "당첨 통계" + NEW_LINE.value + "---" + NEW_LINE.value),
+        STATISTICS_PREFIX(NEW_LINE.value + "당첨 통계" + NEW_LINE.value + "---"),
         REWARD_RATE("총 수익률은 %,.1f%%입니다."),
         ;
 

@@ -1,23 +1,24 @@
 package lotto;
 
 import java.util.function.Supplier;
+import util.InputValueValidation;
 import view.InputView;
 import java.util.function.Consumer;
 
 public class InputValueController {
     InputView inputView = new InputView();
-    InputValidate inputValidate = new InputValidate();
+    InputValueValidation inputValueValidation = new InputValueValidation();
 
     public void inputPurchaseAmount() {
-        inputWithValidation(inputView::purchaseAmount, inputValidate::validatePurchaseAmount);
+        inputWithValidation(inputView::purchaseAmount, inputValueValidation::validatePurchaseAmount);
     }
 
     public void inputPrizeNumber() {
-        inputWithValidation(inputView::prizeNumber, inputValidate::validatePrizeNumber);
+        inputWithValidation(inputView::prizeNumber, inputValueValidation::validatePrizeNumber);
     }
 
     public void inputBonusNumber() {
-        inputWithValidation(inputView::bonusNumber, inputValidate::validateBonusNumber);
+        inputWithValidation(inputView::bonusNumber, inputValueValidation::validateBonusNumber);
     }
 
     private void inputWithValidation(Supplier<String> inputSupplier, Consumer<String> validationFunction) {

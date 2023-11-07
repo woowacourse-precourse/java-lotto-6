@@ -25,7 +25,8 @@ public class LogicController {
         // 보너스 번호 입력
         inputValueController.inputBonusNumber();
         // 당첨 결과 계산
-        prizeStatisticsController.calculatePrizeDescribeLogic(lottoBundle, prizeNumber.getPrizeNumber(), bonusNumber.getBonusNumber());
+        prizeStatisticsController.calculatePrizeDescribeLogic(lottoBundle, prizeNumber.getPrizeNumber(),
+                bonusNumber.getBonusNumber());
         // 총수익률 계산
         earningRateController.calculateEarningRateLogic(purchaseAmount.getPurchaseAmount());
     }

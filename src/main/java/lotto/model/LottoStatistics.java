@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.Set;
 
@@ -32,12 +32,12 @@ public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 �
         }
     }
 
-    private final int DEFAULT_VALUE = 0;
-    private final HashMap<PrizeInformation, Integer> lottoStatistics;
+    public static final int DEFAULT_VALUE = 0;
+    private final LinkedHashMap<PrizeInformation, Integer> lottoStatistics;
     public final PrizeInformation[] winningInformation = PrizeInformation.values();
 
     public LottoStatistics() {
-        this.lottoStatistics = new HashMap<>();
+        this.lottoStatistics = new LinkedHashMap<>();
 
         for (PrizeInformation rank : winningInformation) {
             lottoStatistics.put(rank, DEFAULT_VALUE);
@@ -50,7 +50,7 @@ public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 �
         }
     }
 
-    public HashMap<PrizeInformation, Integer> getStatistics() {
+    public LinkedHashMap<PrizeInformation, Integer> getStatistics() {
         return lottoStatistics;
     }
 
@@ -60,7 +60,7 @@ public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 �
         int winningAmount = sumWinningAmount();
 
         double profit;
-        profit = winningAmount / purchaseAmount * percentageCoefficient;
+        profit = (double) winningAmount / purchaseAmount * percentageCoefficient;
 
         return profit;
     }
@@ -69,7 +69,7 @@ public class LottoStatistics { //각 등수별 당첨된 횟수 기록, 당첨 �
         int sum = DEFAULT_VALUE;
         Set<Entry<PrizeInformation, Integer>> ranks = lottoStatistics.entrySet();
         for (Entry<PrizeInformation, Integer> singleRank : ranks) {
-            int prizeAmount = singleRank.getKey().prizeAmount;
+            int prizeAmount = singleRank.getKey().getPrizeAmount();
             int winningCount = singleRank.getValue();
             sum += prizeAmount * winningCount;
         }

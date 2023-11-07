@@ -11,7 +11,7 @@ public class LottoResult {
     private CompareLotto compareLotto = new CompareLotto();
     private Map<Prize, Integer> lottoResult = new EnumMap<>(Prize.class);
 
-    public void setMap(){
+    private void setMap(){
         for (Prize prize : Prize.values()) {
             lottoResult.put(prize, 0);
         }

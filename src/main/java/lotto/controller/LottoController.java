@@ -27,24 +27,24 @@ public class LottoController {
         printResult(lottoResult, totalRate);
     }
 
-    public Money setMoney(){
+    private Money setMoney(){
         OutputView.inputBuyMessage();
         return inputController.inputMoney();
     }
 
-    public List<Integer> setWinningNum(){
+    private List<Integer> setWinningNum(){
         OutputView.printBlank();
         OutputView.inputWinningNumMessage();
         return inputController.inputWinningNum();
     }
 
-    public BonusNum setBonusNum(){
+    private BonusNum setBonusNum(){
         OutputView.printBlank();
         OutputView.inputBonusNumMessage();
         return inputController.inputBonusNum();
     }
 
-    public void printResult(LottoResult lottoResult, double totalReward){
+    private void printResult(LottoResult lottoResult, double totalReward){
         OutputView.printBlank();
         OutputView.printResultBar();
         OutputView.printResult(lottoResult.getLottoResult());

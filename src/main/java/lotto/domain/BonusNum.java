@@ -13,7 +13,7 @@ public class BonusNum {
         this.bonusNum = Integer.parseInt(number);
     }
 
-    public void validate(String number, List<Integer> winningNum){
+    private void validate(String number, List<Integer> winningNum){
         BonusNumValidator bonusNumValidator = new BonusNumValidator(number, winningNum);
     }
 

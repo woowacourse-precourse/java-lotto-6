@@ -2,6 +2,8 @@ package lotto.domain;
 
 import lotto.Validator;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.Message.NOT_COMPOSED_OF_UNIQUE_NUMBERS;
@@ -37,6 +39,10 @@ public class Lotto {
         if(unique_number < numbers.size()){
             throw new IllegalArgumentException(NOT_COMPOSED_OF_UNIQUE_NUMBERS);
         }
+    }
+
+    public List<Integer> getLottoNumbers(){
+        return Collections.unmodifiableList(numbers);
     }
 
 }

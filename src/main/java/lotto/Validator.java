@@ -26,7 +26,7 @@ public class Validator {
         if(amount <= 0) throw new IllegalArgumentException(NOT_VALID_MONEY);
     }
 
-    public static List<Integer> validateSplittedInputLengthIsSix(String input){
+    public static List<Integer> validateSplittedInput(String input){
         List<Integer> WinnerNumber = new ArrayList<>();
 
         String[] splittedInputs = input.split(",");

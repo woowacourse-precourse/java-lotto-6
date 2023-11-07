@@ -9,16 +9,14 @@ import java.util.stream.Stream;
 
 public class LottoViewV2 {
 
-    private Console console;
-
-    public LottoViewV2(Console console) {
-        this.console = console;
-    }
-
     public int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
+        return parseMoney(Console.readLine());
+    }
+
+    private int parseMoney(String input) {
         try {
-            return Integer.parseInt(Console.readLine());
+            return Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액으로 숫자를 입력해야 합니다.");
         }

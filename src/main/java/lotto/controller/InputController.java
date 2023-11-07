@@ -7,7 +7,9 @@ import lotto.util.Validator;
 import lotto.view.InputView;
 
 public class InputController {
-    public TicketAmount setTicketAmount() {
+    private InputController() {
+    }
+    public static TicketAmount setTicketAmount() {
         try {
             String input = InputView.inputMoney();
             validateInput(input);
@@ -17,7 +19,7 @@ public class InputController {
         }
     }
 
-    public WinningNumber setWinningNumber() {
+    public static WinningNumber setWinningNumber() {
         try {
             String input = InputView.inputLottoNumbers();
             validateWinningNumberInput(input);
@@ -27,7 +29,7 @@ public class InputController {
         }
     }
 
-    public BonusNumber setBonusNumber(WinningNumber winningNumber) {
+    public static BonusNumber setBonusNumber(WinningNumber winningNumber) {
         try {
             String input = InputView.inputBonusNumber();
             validateInput(input);
@@ -37,12 +39,12 @@ public class InputController {
         }
     }
 
-    private void validateInput(String input) {
+    private static void validateInput(String input) {
         Validator.validateInputNotEmpty(input);
         Validator.validateIsParsableToInt(input);
     }
 
-    private void validateWinningNumberInput(String input) {
+    private static void validateWinningNumberInput(String input) {
         Validator.validateInputNotEmpty(input);
         Validator.validateInputWithSeparator(input);
     }

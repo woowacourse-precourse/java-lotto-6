@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,13 +14,14 @@ public class GenerateLotto {
 	
 	public List<Integer> numbers(){
 		
-		List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO);
+		List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO));
 		sort(numbers);
 		
 		return numbers;	
 	}
 	
 	private void sort(List<Integer> numbers) {
+		
 		Collections.sort(numbers);
 	}
 }

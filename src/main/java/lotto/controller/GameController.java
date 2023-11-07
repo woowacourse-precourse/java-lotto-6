@@ -4,65 +4,65 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.WinningStatistics;
-import lotto.view.Input;
-import lotto.view.Output;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class GameController {
 	
-	Input input = new Input();
-	Output output = new Output();
-	PurchaseLottos purchaseLottos = new PurchaseLottos();
+	InputView input = new InputView();
+	OutputView output = new OutputView();
+	PurchaseLottos generatePurchaseLottos = new PurchaseLottos();
+	Lottos purchasedLottos = new Lottos();
 	
 	public void start() {
-		Lottos purchasedLottos = new Lottos();
-		int money = purchase(purchasedLottos);
+		int money = purchase();
+		output.lottos(purchasedLottos);
 		
-		Lotto winningLotto = enterWinningLotto();
-		BonusNumber bonusNumber = enterBonusNumber(winningLotto);
+		Lotto winningLotto = getWinningLotto();
 		
-		printWinningStatistics(purchasedLottos, winningLotto, bonusNumber, money);
+		WinningStatistics winningStatistics = getWinningStatistics(winningLotto, getBonusNumber(winningLotto));
+		output.statistics(winningStatistics.getWinnings(), winningStatistics.getTotalProfitRate(money));
 	}
 	
-	private int purchase(Lottos lottos) {
-		int money = enterMoney();
-		purchaseLottos.generated(lottos, money);
+	private int purchase() {
+		int money = getMoney();
+		generatePurchaseLottos.generated(purchasedLottos, money);
 		return money;
 	}
 
-	private int enterMoney() {
+	private int getMoney() {
 		try {
 			return input.numberOfPurchasedLotto();
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
-			return enterMoney();
+			return getMoney();
 		}
 	}
 	
-	private Lotto enterWinningLotto() {
+	private Lotto getWinningLotto() {
 		try {
 			return new Lotto(input.winningNumber());
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
-			return enterWinningLotto();
+			return getWinningLotto();
 		}
 	}
 
-	private BonusNumber enterBonusNumber(Lotto winningLotto) {
+	private BonusNumber getBonusNumber(Lotto winningLotto) {
 		try {
 			return new BonusNumber(input.bonusNumber(), winningLotto);
 		} catch (IllegalArgumentException exception) {
 			System.out.println(exception.getMessage());
-			return enterBonusNumber(winningLotto);
+			return getBonusNumber(winningLotto);
 		}
 	}
 	
-	private void printWinningStatistics(Lottos purchasedLottos, Lotto winningLotto, BonusNumber bonusNumber, int money) {
+	private WinningStatistics getWinningStatistics(Lotto winningLotto, BonusNumber bonusNumber) {
 		WinningStatistics winningStatistics = new WinningStatistics();
 		
 		for(Lotto purchasedLotto : purchasedLottos.getLottos()) {
 			winningStatistics.addWinning(purchasedLotto, winningLotto, bonusNumber);
 		}
-		
-		output.statistics(winningStatistics.getWinnings(), winningStatistics.getTotalProfitRate(money));
+		return winningStatistics;
 	}
 }

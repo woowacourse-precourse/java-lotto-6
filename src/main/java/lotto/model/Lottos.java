@@ -3,9 +3,12 @@ package lotto.model;
 import lotto.util.RandomGenerator;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
+import static lotto.global.ErrorMessage.DUPLICATE_NUMBER;
 import static lotto.model.LottoInfo.LOTTO_PRICE;
 import static lotto.model.LottoInfo.NUMBER_COUNT;
 
@@ -31,10 +34,21 @@ public class Lottos {
     }
 
     public void setGoal(List<Integer> goal){
+        validGoal(goal);
         this.goal = goal;
     }
+    private void validGoal(List<Integer> goal){
+        Set<Integer> set = new HashSet<>(goal);
+        if(set.size()!=NUMBER_COUNT)
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.toString());
+    }
     public void setBonus(int bonus){
+        validBonus(bonus);
         this.bonus = bonus;
+    }
+    private void validBonus(int bonus){
+        if(goal.contains(bonus))
+            throw new IllegalArgumentException(DUPLICATE_NUMBER.toString());
     }
     @Override
     public String toString() {

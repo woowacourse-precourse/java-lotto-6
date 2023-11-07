@@ -7,6 +7,7 @@ import lotto.model.GenerateLottoNumbers;
 import lotto.model.LottoWinNumbers;
 import lotto.model.MatchedNumbers;
 import lotto.model.PurchasePrice;
+import lotto.model.ReturnPercentage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,9 +17,9 @@ public class LottoControl {
     LottoWinNumbers lottoWinNumbers;
     BonusNumber bonusNumber;
     MatchedNumbers matchedNumbers;
+    ReturnPercentage returnPercentage = new ReturnPercentage();
     private int PIECE_OF_LOTTO;
     private ArrayList<List<String>> ALL_LOTTOS;
-    private ArrayList<String> WIN_NUMBERS;
     private String BONUS_NUMBER;
     private boolean[] BONUS_FLAG;
 
@@ -38,7 +39,7 @@ public class LottoControl {
         mappingMatchedLottos();
         fiveWithBonusFinder(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
         OutputView.printLottoStates(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
-        OutputView.printTotalReturn(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST(),String.valueOf(PIECE_OF_LOTTO * 1000));
+        getTotalReturnPercentage();
 
 
 
@@ -58,6 +59,12 @@ public class LottoControl {
             }
         }
     }
+    private void getTotalReturnPercentage() {
+        float percentage = returnPercentage.getReturnPercentage(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST(),
+                String.valueOf(PIECE_OF_LOTTO));
+        OutputView.printTotalReturn(percentage);
+    }
+
     private void numberMatching(){
         matchedNumbers = new MatchedNumbers(generateLottoNumbers.getAllLottos(),lottoWinNumbers.getLottoWinNumbers());
     }

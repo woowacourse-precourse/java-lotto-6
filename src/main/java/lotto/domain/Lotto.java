@@ -19,6 +19,12 @@ public class Lotto {
                 .anyMatch(lottoBall -> lottoBall.equals(number));
     }
 
+    public int getMatchedCount(Lotto lotto) {
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
+    }
+
     private void validate(List<LottoBall> numbers) {
         validateLength(numbers);
         validateDuplicateNumber(numbers);

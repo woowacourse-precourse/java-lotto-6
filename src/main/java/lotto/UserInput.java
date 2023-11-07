@@ -31,4 +31,8 @@ public class UserInput {
         return lottoNumbers;
     }
 
+    public int bonusBall() {
+        String input = Console.readLine();
+        return typeChanger.from(input);
+    }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Lottoes {
     private final int number_of_lottoes;
-    public static List<Lotto> lottoes;
+    public static List<Lotto> lottoes = new ArrayList<>();
 
     public Lottoes(int numberOfLottoes) {
         this.number_of_lottoes = numberOfLottoes;
@@ -21,11 +21,15 @@ public class Lottoes {
     }
 
     public void createLottoes(){
-        for(int i = 0; i < number_of_lottoes; i++) {
+        for(int i = 1; i <= number_of_lottoes; i++) {
             List<Integer> picked_numbers = pickLottoNumbers();
-            Lotto lotto = new Lotto(picked_numbers);
-
-            lottoes.add(lotto);
+            try {
+                Lotto lotto = new Lotto(picked_numbers);
+                lottoes.add(lotto);
+            } catch (IllegalArgumentException e){
+                System.out.println("[Error] " + e.getMessage() + " " + i + "번 로또를 재발행합니다.");
+                i--;
+            }
         }
     }
 

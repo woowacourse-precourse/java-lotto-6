@@ -89,6 +89,10 @@
 
 - [x] generateLottos()를 통해 로또 객체 생성 확인
 
+#### WinningStandard
+
+- [x] 당첨 번호 순위 계산 맞는지 확인
+
 ### 로또 당첨 기준과 금액
 
 ```

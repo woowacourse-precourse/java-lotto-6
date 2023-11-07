@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.dto.StatisticDTO;
 
 public class Discriminator {
     private Info info;
@@ -23,5 +24,9 @@ public class Discriminator {
         }
 
         info.addStatistic(GradeUtil.gradeMapper(cnt, lotto.contains(bonus)));
+    }
+
+    public StatisticDTO getStatistic() {
+        return new StatisticDTO(info.getStatistics());
     }
 }

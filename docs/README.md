@@ -23,6 +23,8 @@
 - 로또 금액 (LottoMoney)
   - [x] 로또 금액은 1000 미만일 수 없다. (validate)
   - [x] 로또 금액에 맞는 로또 구매 갯수 반환 (getLottoCount)
+- 로또 생성기 (LottoFactory)
+  - [x] 로또를 생성 (createLotto) 
 - 로또 리스트
   - [ ] 로또 리스트와 당첨 로또를 비교한다.
 - 로또 결과

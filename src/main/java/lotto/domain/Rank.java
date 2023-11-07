@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.Arrays;
-import java.util.List;
 
 public enum Rank {
     FIRST(2_000_000_000) { public boolean apply(int countOfMatch, boolean matchBonus) {return countOfMatch == 6;}},

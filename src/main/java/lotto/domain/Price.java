@@ -13,13 +13,13 @@ public class Price {
 
     private void validatePurchasePriceType(String purchasePrice) {
         if (!Pattern.matches("[0-9]+", purchasePrice)) {
-            throw new IllegalArgumentException("로또 금액은 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] 로또 금액은 숫자만 입력 가능합니다.");
         }
     }
 
     private void validatePurchasePriceRange(Integer purchasePrice) {
         if (purchasePrice % 1_000 != 0) {
-            throw new IllegalArgumentException("로또는 1000원 단위로만 구매할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] 로또는 1000원 단위로만 구매할 수 있습니다.");
         }
     }
 

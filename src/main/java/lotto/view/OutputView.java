@@ -37,11 +37,9 @@ public class OutputView {
     private static String makeResultsToString(List<LottoResult> userResults) {
         StringBuilder stringBuilder = new StringBuilder();
         DecimalFormat decFormat = new DecimalFormat(DECIMAL_FORMAT);
+        List<LottoResult> lottoResults = LottoResult.getLottoResultWithoutDefault();
 
-        for (LottoResult lottoResultFormat : LottoResult.values()) {
-            if (lottoResultFormat.equals(LottoResult.DEFAULT)) {
-                continue;
-            }
+        for (LottoResult lottoResultFormat : lottoResults) {
             stringBuilder.append(lottoResultFormat.getRule()).append(" (")
                     .append(decFormat.format(lottoResultFormat.getPrize())).append("원) - ")
                     .append(findEqualResultCount(userResults, lottoResultFormat)).append("개\n");

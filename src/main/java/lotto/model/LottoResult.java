@@ -37,6 +37,12 @@ public enum LottoResult {
         return findCorrectLottoResult(equalLottoCnt, equalBonusCnt);
     }
 
+    public static List<LottoResult> getLottoResultWithoutDefault() {
+        return Arrays.stream(LottoResult.values())
+                .filter(result -> result != LottoResult.DEFAULT)
+                .toList();
+    }
+
     private static int countEqualBonus(List<Integer> LottoNums, int bonus) {
         return (int) LottoNums.stream()
                 .filter(userLottoNum -> userLottoNum.equals(bonus))
@@ -51,7 +57,7 @@ public enum LottoResult {
 
     private static LottoResult findCorrectLottoResult(int equalLottoCnt, int equalBonusCnt) {
         LottoResult findLottoResult = null;
-        List<LottoResult> lottoResults = getLottoResultExceptDefault();
+        List<LottoResult> lottoResults = getLottoResultWithoutDefault();
         for (LottoResult lottoResult : lottoResults) {
             if (lottoResult.winningCnt != equalLottoCnt) {
                 continue;
@@ -62,12 +68,6 @@ public enum LottoResult {
             findLottoResult = lottoResult;
         }
         return findLottoResult;
-    }
-
-    private static List<LottoResult> getLottoResultExceptDefault() {
-        return Arrays.stream(LottoResult.values())
-                .filter(result -> result != LottoResult.DEFAULT)
-                .toList();
     }
 
     private static boolean checkSecondGrade(int equalBonusCnt, LottoResult lottoResult) {

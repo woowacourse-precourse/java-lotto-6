@@ -13,7 +13,7 @@ import java.util.*;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private Map<WinningResult, Integer> countOfWinningResult = new HashMap<>();
+    private Map<WinningResult, Integer> countOfWinningResult = new LinkedHashMap<>();
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -93,8 +93,9 @@ public class LottoController {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            Lotto lotto = new Lotto(numbers);
+            List<Integer> sortedNumbers = new ArrayList<>(numbers);
+            sortedNumbers.sort(Comparator.naturalOrder());
+            Lotto lotto = new Lotto(sortedNumbers);
             lottos.add(lotto);
         }
         return lottos;

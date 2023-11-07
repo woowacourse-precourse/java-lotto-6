@@ -59,7 +59,8 @@ public class WinningResultTest {
         // when
         WinningResult winningResult = new WinningResult();
         winningResult.addResult(Rank.THIRD);
+        double actualYield = winningResult.calculateYield(totalPurchaseAmount);
         // then
-        assertThat(winningResult.calculateYield(totalPurchaseAmount)).isEqualTo(expectedYield);
+        assertThat(actualYield).isEqualTo(expectedYield);
     }
 }

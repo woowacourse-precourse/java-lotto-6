@@ -57,11 +57,13 @@ public class LottoController {
     }
 
     private void infoLottoWinner() {
+        int rewardIndex = 0;
         String bonusMessage = "";
         boolean bonusState = false;
         for (int matchNumber = START_WINNER_NUMBER; matchNumber <= END_WINNER_NUMBER; matchNumber++) {
             bonusMessage = isBonusMessage(matchNumber, bonusMessage, bonusState);
             matchNumber = isBonusMatchNumber(matchNumber, bonusState);
+            outputView.printLottoResult(matchNumber, rewardIndex, bonusMessage, lottoWinners[matchNumber - 3]);
         }
     }
 

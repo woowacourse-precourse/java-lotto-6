@@ -11,6 +11,9 @@ public class OutputView {
 
     private static final String STATISTIC_FORMAT = "%.1f";
     private static final String DECIMAL_FORMAT = "###,###";
+    private static final String SPLIT_SENTENCE = ", ";
+    private static final String PREFIX_SENTENCE = "[";
+    private static final String SUFFIX_SENTENCE = "]";
 
     private OutputView() {
     }
@@ -31,23 +34,22 @@ public class OutputView {
     private static String changeLottoToString(List<Integer> numbers) {
         return numbers.stream()
                 .map(Object::toString)
-                .collect(Collectors.joining(", ", "[", "]"));
+                .collect(Collectors.joining(SPLIT_SENTENCE, PREFIX_SENTENCE, SUFFIX_SENTENCE));
     }
 
     private static String makeResultsToString(List<LottoResult> userResults) {
         StringBuilder stringBuilder = new StringBuilder();
         DecimalFormat decFormat = new DecimalFormat(DECIMAL_FORMAT);
-        List<LottoResult> lottoResults = LottoResult.getLottoResultWithoutDefault();
 
-        for (LottoResult lottoResultFormat : lottoResults) {
+        for (LottoResult lottoResultFormat : LottoResult.getLottoResultWithoutDefault()) {
             stringBuilder.append(lottoResultFormat.getRule()).append(" (")
                     .append(decFormat.format(lottoResultFormat.getPrize())).append("원) - ")
-                    .append(findEqualResultCount(userResults, lottoResultFormat)).append("개\n");
+                    .append(countEqualResult(userResults, lottoResultFormat)).append("개\n");
         }
         return stringBuilder.toString();
     }
 
-    private static long findEqualResultCount(List<LottoResult> results, LottoResult lottoResult) {
+    private static long countEqualResult(List<LottoResult> results, LottoResult lottoResult) {
         return results.stream()
                 .filter(Objects::nonNull)
                 .filter(res -> res.equals(lottoResult)).count();

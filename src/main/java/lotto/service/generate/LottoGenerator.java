@@ -9,26 +9,29 @@ import lotto.dto.generate.GetGeneratedLottosDto;
 
 public class LottoGenerator implements Generator{
     private static final int ZERO = 0;
+    private static final int ONE = 1;
+    private static final int FORTY_FIVE = 45;
+    private static final int SIX = 6;
 
     @Override
-    public GetGeneratedLottosDto generateLottos(GetLottoCountDto getLottoCountDto) {
+    public GetGeneratedLottosDto generateLottos(final GetLottoCountDto getLottoCountDto) {
         return new GetGeneratedLottosDto(
                 generateLottosIteration(getLottoCountDto, new ArrayList<>())
         );
     }
 
-    private static List<Lotto> generateLottosIteration(GetLottoCountDto getLottoCountDto, List<Lotto> lottos) {
+    private static List<Lotto> generateLottosIteration(final GetLottoCountDto getLottoCountDto, final List<Lotto> lottos) {
         for(int count = ZERO; count < getLottoCountDto.getCount(); count++){
             addLottoInLottos(lottos);
         }
         return lottos;
     }
 
-    private static void addLottoInLottos(List<Lotto> lottos) {
+    private static void addLottoInLottos(final List<Lotto> lottos) {
         lottos.add(new Lotto(getLottoNumbers()));
     }
 
     private static List<Integer> getLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(ONE, FORTY_FIVE, SIX);
     }
 }

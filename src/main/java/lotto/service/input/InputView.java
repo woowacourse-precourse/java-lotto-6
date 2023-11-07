@@ -29,11 +29,10 @@ public class InputView implements Input{
             System.out.println(e.getMessage());
             return getWinningNumber();
         }
-
     }
 
     @Override
-    public GetBonusNumberDto getBonusNumber(GetWinningNumberDto getWinningNumberDto) {
+    public GetBonusNumberDto getBonusNumber(final GetWinningNumberDto getWinningNumberDto) {
         try {
             Printer.askBonusNumber();
             return new GetBonusNumberDto(Validator.checkBonusNumber(getWinningNumberDto, getBonusNumberReadline()));

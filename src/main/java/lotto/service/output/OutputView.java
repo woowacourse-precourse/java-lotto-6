@@ -13,12 +13,12 @@ public class OutputView implements Output{
     private static final int ZERO = 0;
     private static final int ONE = 1;
     @Override
-    public void printLottoNumbers(GetGeneratedLottosDto getGeneratedLottosDto) {
+    public void printLottoNumbers(final GetGeneratedLottosDto getGeneratedLottosDto) {
         printLottoNumbers(new GetLottosDto(getGeneratedLottosDto.getLottos()).getLottos());
     }
 
     @Override
-    public void printLottoResult(GetLottoResultDto getLottoResultDto) {
+    public void printLottoResult(final GetLottoResultDto getLottoResultDto) {
         printTitle();
         printHitStatus(getLottoResultDto);
     }
@@ -28,7 +28,7 @@ public class OutputView implements Output{
         Printer.printLine();
     }
 
-    private static void printHitStatus(GetLottoResultDto getLottoResultDto) {
+    private static void printHitStatus(final GetLottoResultDto getLottoResultDto) {
         Printer.printThreeHit(getLottoResultDto.threeHit());
         Printer.printFourHit(getLottoResultDto.fourHit());
         Printer.printFiveHit(getLottoResultDto.fiveHit());
@@ -37,57 +37,56 @@ public class OutputView implements Output{
     }
 
     @Override
-    public void printRate(GetReturnRateDto getReturnRateDto) {
+    public void printRate(final GetReturnRateDto getReturnRateDto) {
         Printer.printRate(getReturnRateDto.lottoReturnRate());
     }
 
-    private static void printLottoNumbers(List<Lotto> lottos) {
+    private static void printLottoNumbers(final List<Lotto> lottos) {
         Printer.printCount(lottos.size());
         printLottoNumbersIteration(lottos);
         Printer.changeLine();
     }
 
-    private static void printLottoNumbersIteration(List<Lotto> lottos) {
+    private static void printLottoNumbersIteration(final List<Lotto> lottos) {
         for (Lotto lotto : lottos){
             printOneLineNumbers(lotto);
         }
     }
 
-    private static void printOneLineNumbers(Lotto lotto) {
+    private static void printOneLineNumbers(final Lotto lotto) {
         Printer.printOpen();
         printNumbersIteration(lotto);
         Printer.printClose();
     }
 
-    private static void printNumbersIteration(Lotto lotto) {
+    private static void printNumbersIteration(final Lotto lotto) {
         printNumbersIterationAfterSort(sortBeforeIteration(lotto));
     }
 
-    private static void printNumbersIterationAfterSort(Integer[] sortedLotto) {
+    private static void printNumbersIterationAfterSort(final Integer[] sortedLotto) {
         for(int count = ZERO; count < sortedLotto.length; count++){
             Printer.printLottoNumber(sortedLotto[count]);
             checkLastNumber(sortedLotto, count);
         }
     }
 
-    private static Integer[] sortBeforeIteration(Lotto lotto) {
+    private static Integer[] sortBeforeIteration(final Lotto lotto) {
         Integer[] array = lotto.lotto().toArray(new Integer[0]);
         Arrays.sort(array);
         return array;
     }
 
-    private static void checkLastNumber(Integer[] sortedLotto, int count) {
+    private static void checkLastNumber(final Integer[] sortedLotto, final int count) {
         if(isNotLastNumber(sortedLotto, count)){
             Printer.printComma();
         }
     }
 
-    private static boolean isNotLastNumber(Integer[] sortedLotto, int count) {
+    private static boolean isNotLastNumber(final Integer[] sortedLotto, final int count) {
         return count != lastIndex(sortedLotto);
     }
 
-    private static int lastIndex(Integer[] sortedLotto) {
-        return
-                sortedLotto.length- ONE;
+    private static int lastIndex(final Integer[] sortedLotto) {
+        return sortedLotto.length- ONE;
     }
 }

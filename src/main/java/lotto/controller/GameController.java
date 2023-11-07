@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.dto.InputMoney;
+import lotto.domain.dto.InputWinningNumbers;
 import lotto.domain.dto.PurchasedLottoDTO;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -11,6 +12,7 @@ public class GameController {
         inputMoney();
         PurchasedLottoDTO purchasedLottoDTO = LottoService.purchasedLottoToDTO();
         OutputView.printPurchasedLotto(purchasedLottoDTO);
+        inputWinningNumbers();
     }
 
     private static void inputMoney(){
@@ -20,6 +22,16 @@ public class GameController {
         } catch (IllegalArgumentException e){
             OutputView.printErrorMessage(e);
             inputMoney();
+        }
+    }
+
+    private static void inputWinningNumbers(){
+        try{
+            InputWinningNumbers inputWinningNumbers = InputView.inputWinningNumbers();
+            LottoService.inputWinningLotto(inputWinningNumbers);
+        }catch (IllegalArgumentException e){
+            OutputView.printErrorMessage(e);
+            inputWinningNumbers();
         }
     }
 }

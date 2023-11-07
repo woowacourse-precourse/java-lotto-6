@@ -6,9 +6,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.Lotto;
+import lotto.domain.LottoWinningNumbers;
 import lotto.domain.PurchasedLottoNumbers;
 import lotto.domain.User;
 import lotto.domain.dto.InputMoney;
+import lotto.domain.dto.InputWinningNumbers;
 import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
@@ -30,6 +32,10 @@ public class LottoService {
         }
         purchasedLottoNumbers = new PurchasedLottoNumbers(purchasedLotto);
         return purchasedLotto;
+    }
+
+    public static void inputWinningLotto(InputWinningNumbers inputWinningNumbers){
+        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(inputWinningNumbers.getInputWinningNumbers());
     }
 
     public static PurchasedLottoDTO purchasedLottoToDTO() {

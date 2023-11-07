@@ -45,4 +45,11 @@ class LottoTest {
         assertThatThrownBy(() -> new LottoAmount("1001"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("숫자가 1~45 사이의 값이 아닌 경우")
+    @Test
+    void validateNumberRangeTest() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 56)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

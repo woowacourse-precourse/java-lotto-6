@@ -1,4 +1,4 @@
-package lotto.domain.prize;
+package lotto.constant;
 
 public interface PrizeConstant {
     static final Integer FIRST_PRIZE=2_000_000_000;

@@ -1,5 +1,6 @@
 package lotto.domain.lotto;
 
+import lotto.constant.LottoConstant;
 import lotto.exception.LottoException;
 import lotto.exception.LottoExceptionMessage;
 

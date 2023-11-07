@@ -1,5 +1,6 @@
 package lotto.domain.payment;
 
+import lotto.constant.PaymentConstant;
 import lotto.exception.PaymentException;
 import lotto.exception.PaymentExceptionMessage;
 

@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.lotto.LottoConstant;
+import lotto.constant.LottoConstant;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoDraw;
 import lotto.exception.LottoException;

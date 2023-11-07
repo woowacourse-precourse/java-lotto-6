@@ -1,6 +1,6 @@
 package lotto.exception;
 
-import lotto.domain.constant.ParserConstant;
+import lotto.constant.ParserConstant;
 
 public enum ParserExceptionMessage implements ParserConstant {
     NOT_NUMBER("숫자를 입력해주세요"),

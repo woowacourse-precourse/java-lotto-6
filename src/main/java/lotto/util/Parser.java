@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.domain.constant.ParserConstant;
+import lotto.constant.ParserConstant;
 import lotto.exception.ParserException;
 import lotto.exception.ParserExceptionMessage;
 

@@ -1,6 +1,6 @@
 package lotto.domain.lotto;
 
-import lotto.domain.prize.PrizeConstant;
+import lotto.constant.PrizeConstant;
 
 public enum LottoPrize implements PrizeConstant {
     FIRST_PRIZE(LottoRank.FIRST,PrizeConstant.FIRST_PRIZE),

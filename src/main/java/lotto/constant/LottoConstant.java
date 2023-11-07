@@ -1,4 +1,4 @@
-package lotto.domain.lotto;
+package lotto.constant;
 
 public interface LottoConstant {
     static final Integer PICK_COUNT = 6;

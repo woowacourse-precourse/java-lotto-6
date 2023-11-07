@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.prize.PrizeConstant;
+import lotto.constant.PrizeConstant;
 import lotto.domain.lotto.LottoRank;
 import lotto.domain.prize.Prize;
 import org.junit.jupiter.api.Assertions;

@@ -1,4 +1,4 @@
-package lotto.domain.constant;
+package lotto.constant;
 
 public interface ParserConstant {
     static String DELIMITER =",";

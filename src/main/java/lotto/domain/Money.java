@@ -1,14 +1,17 @@
 package lotto.domain;
 
+import lotto.verification.Validation;
+
 public class Money {
 
-    private final Long money;
+    private final long money;
 
-    public Money(Long money) {
+    public Money(long money) {
+        Validation.verifyRangeInputMoney(money);
         this.money = money;
     }
 
-    public Long getMoney() {
+    public long getMoney() {
         return this.money;
     }
 }

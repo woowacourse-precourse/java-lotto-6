@@ -78,7 +78,7 @@ public class InputValidator {
 
     private static void validateDuplicateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if(winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException(Error.BONUS_NUMBER_DUPLICATION_ERROR.getMessage());
+            throw new IllegalArgumentException(Error.BONUS_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 }

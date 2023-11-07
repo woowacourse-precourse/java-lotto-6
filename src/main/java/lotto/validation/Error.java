@@ -1,7 +1,7 @@
 package lotto.validation;
 
 public enum Error {
-    BONUS_NUMBER_DUPLICATION_ERROR("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
+    BONUS_NUMBER_DUPLICATE_ERROR("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다."),
     Input_FORMAT_ERROR("[ERROR] 로또 구입 금액은 1000원 이상이어야 합니다."),
     INVALID_PURCHASE_AMOUNT_ERROR("[ERROR] 로또 구입 금액은 1000원 단위로 입력해야 합니다."),
     LOTTO_COUNT_ERROR("[ERROR] 로또 번호는 6개여야 합니다."),

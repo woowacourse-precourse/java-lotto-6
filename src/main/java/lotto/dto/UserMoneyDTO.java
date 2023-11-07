@@ -1,4 +1,4 @@
-package lotto.dto.input;
+package lotto.dto;
 
 import lotto.domain.UserMoney;
 import lotto.util.Parser;

@@ -1,7 +1,7 @@
 package lotto.controller.register;
 
 import lotto.domain.UserMoney;
-import lotto.dto.input.UserMoneyDTO;
+import lotto.dto.UserMoneyDTO;
 import lotto.repository.LottoRepository;
 import lotto.service.LottoService;
 import lotto.view.LottoScreen;

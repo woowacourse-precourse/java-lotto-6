@@ -2,7 +2,7 @@ package lotto.controller.register;
 
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import lotto.dto.input.UserBonusDTO;
+import lotto.dto.UserBonusDTO;
 import lotto.exception.ExceptionMessage;
 import lotto.view.LottoScreen;
 

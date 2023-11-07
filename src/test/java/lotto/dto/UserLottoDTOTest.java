@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import lotto.domain.Lotto;
-import lotto.dto.input.UserLottoDTO;
 import lotto.util.Parser;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;

@@ -1,7 +1,7 @@
 package lotto.controller.register;
 
 import lotto.domain.Lotto;
-import lotto.dto.input.UserLottoDTO;
+import lotto.dto.UserLottoDTO;
 import lotto.view.LottoScreen;
 
 public class RegisterLottoController extends RegisterAbstractController<Lotto> {

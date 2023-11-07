@@ -3,7 +3,6 @@ package lotto.dto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.domain.UserMoney;
-import lotto.dto.input.UserMoneyDTO;
 import lotto.util.Parser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;

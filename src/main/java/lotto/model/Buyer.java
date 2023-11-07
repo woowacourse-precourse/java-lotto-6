@@ -15,8 +15,16 @@ public class Buyer {
         this.budget = budget;
     }
 
-    private void countLottoNum() {
-        this.lottoCount = this.budget / Rule.LOTTO_PRICE.value();
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public int getLottoCount() {
+        return lottoCount;
+    }
+
+    public void setLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     private void validateBudget(int budget) throws IllegalArgumentException {
@@ -29,12 +37,7 @@ public class Buyer {
         }
     }
 
-    private void buyLottos() {
-        DrawMachine drawMachine = new DrawMachine();
-
-        countLottoNum();
-        for (int i = 0; i < this.lottoCount; i++) {
-            this.lottos.add(new Lotto(drawMachine.pickLottoNumbers()));
-        }
+    public void countLottoNum() {
+        this.lottoCount = this.budget / Rule.LOTTO_PRICE.value();
     }
 }

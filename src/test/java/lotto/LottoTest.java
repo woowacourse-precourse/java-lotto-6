@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
 
@@ -52,6 +54,23 @@ class LottoTest {
         Lotto userLotto = new Lotto("1,2,3,4,5,6");
 
         assertThat(lotto.countMatchingNumber(userLotto)).isEqualTo(6);
+    }
+
+
+    @DisplayName("로또 번호에 보너스 번호가 존재하면 true를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2, 3, 4, 5, 6})
+    void testBonusNumberIsContain(int bonus) {
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
+        assertThat(lotto.isContain(bonus)).isTrue();
+    }
+
+    @DisplayName("로또 번호에 보너스 번호가 존재하지 않으면 false를 반환한다.")
+    @ParameterizedTest
+    @ValueSource(ints = {11, 12, 13, 14, 15, 16})
+    void testBonusNumberIsNotContain(int bonus) {
+        Lotto lotto = new Lotto("1,2,3,4,5,6");
+        assertThat(lotto.isContain(bonus)).isFalse();
     }
 
 }

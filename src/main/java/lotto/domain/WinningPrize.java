@@ -21,20 +21,20 @@ public enum WinningPrize {
         this.winningPrizeAmount = winningPrizeAmount;
     }
 
-    public static WinningPrize valueOf(int winningNumbersCount, boolean isBonus) {
+    public static WinningPrize valueOf(int winningNumbersCount, boolean existBonusNumber) {
         if (winningNumbersCount < MIN_WINNING_COUNT) {
             return EMPTY_PRIZE;
         }
         WinningPrize winningPrize = WinningPrize.valueOf(winningNumbersCount);
-        if (isThirdPrize(isBonus, winningPrize)) {
+        if (isThirdPrize(existBonusNumber, winningPrize)) {
             return THIRD_PRIZE;
         }
 
         return winningPrize;
     }
 
-    private static boolean isThirdPrize(boolean isBonus, WinningPrize winningPrize) {
-        return winningPrize == SECOND_PRIZE && !isBonus;
+    private static boolean isThirdPrize(boolean existBonusNumber, WinningPrize winningPrize) {
+        return winningPrize == SECOND_PRIZE && !existBonusNumber;
     }
 
     private static WinningPrize valueOf(int winningNumbersCount) {

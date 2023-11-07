@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum Result {
 
     THREE_MATCH(5000,3,false),
@@ -18,6 +20,20 @@ public enum Result {
         this.matchCnt = matchCnt;
         this.bonus = bonus;
     }
+
+    public static Result find(int matchCount, boolean isBonusMatched) {
+        if(matchCount == 5 && isBonusMatched) {
+            return Result.FIVE_AND_BONUS_MATCH;
+        }
+        if(matchCount == 5) {
+            return Result.FIVE_MATCH;
+        }
+        return Arrays.stream(values())
+                .filter(result -> result.matchCnt == matchCount)
+                .findAny()
+                .orElse(Result.NOTHING);
+    }
+
 
     public int getWinnings() {
         return winnings;

@@ -22,14 +22,14 @@ public class Input {
     }
 
     public static int inputMoneyGuide() {
-        Output.printGuide(INPUT_MONEY_GUIDE);
+        Output.print(INPUT_MONEY_GUIDE);
         String inputMoney = input();
         validateNumeric(inputMoney);
         return Integer.parseInt(inputMoney);
     }
 
     public static List<Integer> inputWinningNumbersGuide() {
-        Output.printGuide(INPUT_WINNING_LOTTO_GUIDE);
+        Output.print(INPUT_WINNING_LOTTO_GUIDE);
         String winningLotto = input();
         validateWinningLottoNumeric(winningLotto);
         return Arrays.stream(winningLotto.split(SEPARATOR))
@@ -38,7 +38,7 @@ public class Input {
     }
 
     public static int inputBonusNumberGuide() {
-        Output.printGuide(INPUT_BONUS_NUMBER_GUIDE);
+        Output.print(INPUT_BONUS_NUMBER_GUIDE);
         String inputBonusNumber = input();
         validateNumeric(inputBonusNumber);
         return Integer.parseInt(inputBonusNumber);

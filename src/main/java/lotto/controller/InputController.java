@@ -4,6 +4,7 @@ import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.view.Input;
+import lotto.view.Output;
 
 public class InputController {
     private InputController() {}
@@ -12,7 +13,7 @@ public class InputController {
         try {
             return new Money(Input.inputMoneyGuide());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            Output.print(e.getMessage());
             return getMoney();
         }
     }
@@ -21,7 +22,7 @@ public class InputController {
         try {
             return new Lotto(Input.inputWinningNumbersGuide());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            Output.print(e.getMessage());
             return getWinningNumbers();
         }
     }
@@ -30,7 +31,7 @@ public class InputController {
         try {
             return new BonusNumber(Input.inputBonusNumberGuide());
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            Output.print(e.getMessage());
             return getBonusNumber();
         }
     }

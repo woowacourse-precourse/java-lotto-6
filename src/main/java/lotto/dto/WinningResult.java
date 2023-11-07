@@ -2,7 +2,6 @@ package lotto.dto;
 
 import java.util.Map;
 import java.util.function.IntBinaryOperator;
-import lotto.domain.Amount;
 import lotto.enums.Prize;
 
 public record WinningResult(Map<Prize, Integer> prizes) {

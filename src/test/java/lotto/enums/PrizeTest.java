@@ -1,8 +1,6 @@
 package lotto.enums;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyBoolean;
 
 import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;

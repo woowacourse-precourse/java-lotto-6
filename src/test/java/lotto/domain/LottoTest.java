@@ -32,7 +32,7 @@ class LottoTest {
                         lottoNumberFixture(29), Prize.FIFTH),
                 Arguments.of(lottoFixture(List.of(1, 2, 3, 4, 5, 6)), lottoFixture(List.of(1, 2, 7, 8, 9, 10)),
                         lottoNumberFixture(15), Prize.NONE)
-                );
+        );
     }
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")

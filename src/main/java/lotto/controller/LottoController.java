@@ -20,12 +20,27 @@ public class LottoController {
     public void run() {
         Payment payment = inputView.inputPayment();
         LottoBuyer lottoBuyer = new LottoBuyer(payment);
-        lottoBuyer.generateLotto();
-        outputView.printLottoNumbers(lottoBuyer.getLottos());
+        printLottoNumbers(lottoBuyer);
+
         Lotto winningNumbers = inputView.inputWinningNumbers();
         BonusNumber bonusNumber = inputView.inputBonusNumber(winningNumbers);
+        Result result = calculateResult(lottoBuyer,winningNumbers,bonusNumber);
+
+        printResult(result);
+    }
+
+    private void printLottoNumbers(LottoBuyer lottoBuyer){
+        lottoBuyer.generateLotto();
+        outputView.printLottoNumbers(lottoBuyer.getLottos());
+    }
+
+    private Result calculateResult(LottoBuyer lottoBuyer, Lotto winningNumbers, BonusNumber bonusNumber) {
         Result result = new Result(lottoBuyer);
         result.calculateResult(winningNumbers,bonusNumber);
+        return result;
+    }
+
+    private void printResult(Result result) {
         outputView.printWinningResult(result);
         double winningRate = result.calculateWinningRate();
         outputView.printWinningRate(winningRate);

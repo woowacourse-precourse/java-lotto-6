@@ -49,6 +49,20 @@ class CashTest {
         );
     }
 
+    @DisplayName("잘못된 지출 초기 설정값이 입력되는 경우 예외 발생")
+    @ParameterizedTest()
+    @ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
+    void createCashWrongInitSpendAmount(int wrongInitAmount) {
+        assertThrows(IllegalStateException.class,
+                () -> {
+                    Cash.create(
+                            1000,
+                            wrongInitAmount
+                    );
+                }
+        );
+    }
+
 
     @DisplayName("생성 성공 테스트")
     @ParameterizedTest()

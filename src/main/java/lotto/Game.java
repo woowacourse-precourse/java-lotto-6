@@ -53,7 +53,7 @@ public class Game {
                 return new Lotto(this.numbers);
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자 형식으로 입력해주세요");
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 1~45 사이의 중복되지 않는 숫자 6개를 입력해주세요.");
             }
         }
@@ -83,7 +83,20 @@ public class Game {
     }
 
     private void inputBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        this.bonusNumber = Integer.parseInt(Console.readLine());
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                int bonusNumber = Integer.parseInt(Console.readLine());
+                if (numbers.contains(bonusNumber) || (bonusNumber < 1 || bonusNumber > 45)) {
+                    throw new IllegalArgumentException();
+                }
+                this.bonusNumber = bonusNumber;
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자 형식으로 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println("[ERROR] 당첨 번호와 중복되지 않는 1~45 사이의 숫자 1개를 입력해주세요.");
+            }
+        }
     }
 }

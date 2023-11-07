@@ -32,18 +32,13 @@ public class Controller {
 
         //로또 구매 갯수 구하기 -> service
         int ticketCount = inputTotalPrice();
-        System.out.println("Controller.start");
         OutputView.responseLottoCount(ticketCount);
-        System.out.println("오나");
 
         //로또 갯수당 랜덤 넘버 이용해서 로또 번호 출력 -> outputview
         lottoList = makeLottoList(ticketCount);
-        System.out.println("여기?");
-
 
         //로또 당첨 번호 입력
-        Lotto lotto = new Lotto(InputView.requestLottoWinningNumber());
-        List<Integer> winningNumber = lotto.getLottoNumbers();
+        List<Integer> winningNumber = inputLottoWinningNumber();
 
         //로또 보너스 번호 입력
         int bonusNumber = InputView.requestLottoBonusNumber();
@@ -67,10 +62,15 @@ public class Controller {
         //당첨 내역 출력 -> outputview
         responseResult(result);
 
-
         //수익률 구하기 -> service, 수익률 출력 -> outputview
         responseEarningRate(result, ticketCount);
 
+    }
+
+    private static List<Integer> inputLottoWinningNumber() {
+        Lotto lotto = new Lotto(InputView.requestLottoWinningNumber());
+        List<Integer> winningNumber = lotto.getLottoNumbers();
+        return winningNumber;
     }
 
     private void responseEarningRate(Map<Rank, Integer> result, int ticketCount) {

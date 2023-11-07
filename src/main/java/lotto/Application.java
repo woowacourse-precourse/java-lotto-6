@@ -1,6 +1,10 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Application {
     private final User user;
@@ -11,27 +15,31 @@ public class Application {
         this.lottoGame = lottoGame;
     }
 
-    private void run() {
+    public void run() {
         int severalLottos;
 
         System.out.println("구입금액을 입력해 주세요.");
-        severalLottos = user.inputAmount();
+        int allLottoPay = Integer.parseInt(Console.readLine());
+        severalLottos = user.inputAmount(allLottoPay);
 
         System.out.println(severalLottos + "개를 구매했습니다.");
         List<Lotto> lottos = user.saveLottos();
         lottoGame.printLottos(lottos);
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        lottoGame.inputLottoNumbers();
+        List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        lottoGame.inputLottoNumbers(winningNumbers);
         System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        lottoGame.inputBonusNumber();
+        int bonusNumber = Integer.parseInt(Console.readLine());
         System.out.println();
 
         System.out.println("당첨 통계\n---");
-        lottoGame.checkPrizeNumber(lottos);
-
+        lottoGame.checkPrizeNumber(lottos, bonusNumber);
     }
 
     public static void main(String[] args) {

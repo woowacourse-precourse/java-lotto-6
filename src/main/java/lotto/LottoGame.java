@@ -2,24 +2,19 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class LottoGame {
     private List<Integer> winningLottoNumbers;
     private int bonusNumber;
 
-    public void inputLottoNumbers() {
+    public void inputLottoNumbers(List<Integer> winningNumbers) {
         try {
-            winningLottoNumbers = Arrays.stream(Console.readLine().split(","))
-                    .map(String::trim)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
+            winningLottoNumbers = winningNumbers;
             validateWinningNumberSize();
             validateNumberRange();
             validateDuplicateWinningNumber();
@@ -28,17 +23,14 @@ public class LottoGame {
         }
     }
 
-    public void inputBonusNumber() {
-        bonusNumber = Integer.parseInt(Console.readLine());
-    }
-
     public void printLottos(List<Lotto> lottos) {
         for (Lotto lo : lottos) {
             System.out.println(lo.getNumbers());
         }
     }
 
-    public void checkPrizeNumber(List<Lotto> lottos) {
+    public void checkPrizeNumber(List<Lotto> lottos, int bonusNumber) {
+        this.bonusNumber = bonusNumber;
         int totalMoney = lottos.size() * Price.LOTTO.getLottoPrice();
         HashMap<Prize, Integer> map = new HashMap<>();
 

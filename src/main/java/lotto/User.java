@@ -10,8 +10,7 @@ public class User {
     private static final int LOTTO_PRICE = Price.LOTTO.getLottoPrice();
     private int haveSeveralLotto = 0;
 
-    public int inputAmount() {
-        int allLottoPay = Integer.parseInt(Console.readLine());
+    public int inputAmount(int allLottoPay) {
         if (allLottoPay % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("로또 구입 금액이 맞지 않습니다.");
         }

@@ -68,7 +68,7 @@ public class IOHandler {
         });
     }
 
-    public void printWinningHistory(HashMap<LottoRank, Integer> winningHistory) {
+    public void printWinningHistory(Map<LottoRank, Integer> winningHistory) {
         System.out.println("당첨 통계");
         System.out.println("--_");
         System.out.printf("3개 일치 (5,000원) - %d개\n", winningHistory.get(LottoRank.FIFTH));

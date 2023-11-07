@@ -1,7 +1,9 @@
 package lotto;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoGame {
 
@@ -28,5 +30,17 @@ public class LottoGame {
         }
 
         return winningHistory;
+    }
+
+    public double calculateProfitRateFromWinningHistory(int purchaseAmount, Map<LottoRank, Integer> winningHistory) {
+        double profit = 0;
+        for (LottoRank key : winningHistory.keySet()) {
+            profit += winningHistory.get(key) * key.getPrizeMoney();
+        }
+
+        double profitRate = (profit / purchaseAmount) * 100;
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+        return Double.parseDouble(decimalFormat.format(profitRate));
     }
 }

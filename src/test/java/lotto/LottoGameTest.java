@@ -3,8 +3,11 @@ package lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import static lotto.LottoRank.FIFTH;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoGameTest {
@@ -29,5 +32,13 @@ public class LottoGameTest {
         int bonusNumber = 8;
 
         assertThat(lottoGame.getWinningHistory(lottos, winningNumbers, bonusNumber).get(LottoRank.THIRD)).isEqualTo(1);
+    }
+
+    @DisplayName("당첨 내역에서 수익률을 계산한다.")
+    @Test
+    void calculateProfitRateFromWinningHistory() {
+        int purchaseAmount = 8000;
+        Map<LottoRank, Integer> winningHistory = Map.of(FIFTH, 1);
+        assertThat(lottoGame.calculateProfitRateFromWinningHistory(purchaseAmount, winningHistory)).isEqualTo(62.5);
     }
 }

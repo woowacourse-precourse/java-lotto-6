@@ -9,13 +9,15 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningNumbersValidator extends Validator {
+
     @Override
-    public void validate(String input) {
+    public List<Integer> validate(String input) {
         validateNumber(input, WINNING_NUMBERS_PATTERN);
         List<Integer> numbers = Arrays.stream(input.split(DELIMITER))
                 .map(Integer::parseInt).toList();
         validateRange(numbers);
         validateDuplication(numbers);
+        return numbers;
     }
 
     public static WinningNumbersValidator createValidator() {

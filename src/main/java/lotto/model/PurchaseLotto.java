@@ -1,42 +1,18 @@
 package lotto.model;
 
-import java.util.regex.Pattern;
-import lotto.util.ErrorMessage;
+import static lotto.util.Constant.*;
+
+import lotto.util.validator.PurchaseAmountValidator;
 
 public class PurchaseLotto {
 
-    private static final Pattern moneyPattern = Pattern.compile("^[0-9]*$");
-    private static final int AMOUNT_UNIT = 1000;
-    private static final int MINIMUM_AMOUNT = 1000;
-    private static final int LOTTO_PRICE = 1000;
     private int purchaseAmount;
     private int numberOfPurchases;
 
     public void purchase(String input) {
-        validateNumber(input);
-        int money = Integer.parseInt(input);
-        validateMinimumAmount(money);
-        validateAmountUnit(money);
-        this.purchaseAmount = money;
-        this.numberOfPurchases = money / LOTTO_PRICE;
-    }
-
-    private static void validateAmountUnit(int money) {
-        if (money % AMOUNT_UNIT > 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_AMOUNT_UNIT.getMessage());
-        }
-    }
-
-    private static void validateMinimumAmount(int money) {
-        if (money < MINIMUM_AMOUNT) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_MINIMUM_AMOUNT.getMessage());
-        }
-    }
-
-    private static void validateNumber(String money) {
-        if (!moneyPattern.matcher(money).matches()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMERIC.getMessage());
-        }
+        int amount = PurchaseAmountValidator.createValidator().validate(input);
+        this.purchaseAmount = amount;
+        this.numberOfPurchases = amount / LOTTO_PRICE;
     }
 
     public int getPurchaseAmount() {

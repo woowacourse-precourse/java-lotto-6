@@ -5,7 +5,7 @@ import static lotto.util.ErrorMessage.*;
 
 import java.util.regex.Pattern;
 
-public abstract class Validator {
+public abstract class Validator<T> {
 
     public void validateNumber(String input, String regex) {
         Pattern pattern = Pattern.compile(regex);
@@ -20,5 +20,5 @@ public abstract class Validator {
         }
     }
 
-    public abstract void validate(String input);
+    public abstract T validate(String input);
 }

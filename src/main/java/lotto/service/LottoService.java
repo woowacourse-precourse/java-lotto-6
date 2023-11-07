@@ -110,4 +110,35 @@ public class LottoService {
             winners.increase5thPlace();
         }
     }
+
+    public List<Integer> getWinStatistics() {
+        List<Integer> placeCounts = new ArrayList<>();
+        placeCounts.add(getFirstPlaceCount());
+        placeCounts.add(getSecondPlaceCount());
+        placeCounts.add(getThirdPlaceCount());
+        placeCounts.add(getFourthPlaceCount());
+        placeCounts.add(getFifthPlaceCount());
+
+        return placeCounts;
+    }
+
+    private int getFirstPlaceCount() {
+        return winners.get1stPlace();
+    }
+
+    private int getSecondPlaceCount() {
+        return winners.get2ndPlace();
+    }
+
+    private int getThirdPlaceCount() {
+        return winners.get3rdPlace();
+    }
+
+    private int getFourthPlaceCount() {
+        return winners.get4thPlace();
+    }
+
+    private int getFifthPlaceCount() {
+        return winners.get5thPlace();
+    }
 }

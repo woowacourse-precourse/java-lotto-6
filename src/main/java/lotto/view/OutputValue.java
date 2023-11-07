@@ -10,6 +10,11 @@ public class OutputValue {
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String WIN_STATISTICS_MESSAGE = "당첨 통계";
     private static final String LINE_BREAK = "---";
+    private static final String FIFTH_PLACE_MESSAGE = "3개 일치 (5,000원) - %d개";
+    private static final String FOURTH_PLACE_MESSAGE = "4개 일치 (50,000원) - %d개";
+    private static final String THIRD_PLACE_MESSAGE = "5개 일치 (1,500,000원) - %d개";
+    private static final String SECOND_PLACE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개";
+    private static final String FIRST_PLACE_MESSAGE = "6개 일치 (2,000,000,000원) - %d개";
 
     public static void purchaseMessage() {
         System.out.println(PURCHASE_PRICE_MESSAGE);
@@ -38,5 +43,25 @@ public class OutputValue {
     public static void winStatisticsMessage() {
         System.out.println(WIN_STATISTICS_MESSAGE);
         System.out.println(LINE_BREAK);
+    }
+
+    public static void firstPlaceMessage(int count) {
+        System.out.println(String.format(FIRST_PLACE_MESSAGE, count));
+    }
+
+    public static void secondPlaceMessage(int count) {
+        System.out.println(String.format(SECOND_PLACE_MESSAGE, count));
+    }
+
+    public static void thirdPlaceMessage(int count) {
+        System.out.println(String.format(THIRD_PLACE_MESSAGE, count));
+    }
+
+    public static void fourthPlaceMessage(int count) {
+        System.out.println(String.format(FOURTH_PLACE_MESSAGE, count));
+    }
+
+    public static void fifthPlaceMessage(int count) {
+        System.out.println(String.format(FIFTH_PLACE_MESSAGE, count));
     }
 }

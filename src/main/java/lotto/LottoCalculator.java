@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.model.Lottos;
+import lotto.model.WinningGrade;
 import lotto.model.WinningLotto;
 
 public class LottoCalculator {

@@ -2,8 +2,6 @@ package lotto.model;
 
 import static lotto.error.ErrorMessage.NOT_UNIQUE_BONUS_NUMBER;
 
-import lotto.WinningGrade;
-
 public class WinningLotto {
 
     private final Lotto winningNumbers;

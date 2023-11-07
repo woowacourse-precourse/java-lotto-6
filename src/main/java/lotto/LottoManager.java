@@ -7,6 +7,7 @@ import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.PurchasePrice;
+import lotto.model.WinningGrade;
 import lotto.model.WinningLotto;
 
 public class LottoManager {

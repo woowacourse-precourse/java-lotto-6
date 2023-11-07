@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.Arrays;
 
@@ -27,7 +27,7 @@ public enum WinningGrade {
     }
 
     public static WinningGrade getWinningType(
-            final int matchedCount, 
+            final int matchedCount,
             final boolean matchedBonusNumber
     ) {
         return Arrays.stream(WinningGrade.values())
@@ -59,5 +59,5 @@ public enum WinningGrade {
     private static boolean comparisonMatchCount(int matchedCount, WinningGrade type) {
         return type.getMatchedCount() == matchedCount;
     }
-    
+
 }

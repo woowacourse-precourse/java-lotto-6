@@ -1,16 +1,16 @@
 package lotto.io;
 
-import static lotto.WinningGrade.NONE_GRADE;
+import static lotto.model.WinningGrade.NONE_GRADE;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.WinningGrade;
 import lotto.io.processor.InputProcessor;
 import lotto.io.processor.OutputProcessor;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.PurchasePrice;
+import lotto.model.WinningGrade;
 
 public class ConsoleManager {
 

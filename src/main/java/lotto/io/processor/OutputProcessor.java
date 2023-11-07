@@ -1,7 +1,7 @@
 package lotto.io.processor;
 
 import java.util.List;
-import lotto.WinningGrade;
+import lotto.model.WinningGrade;
 
 public class OutputProcessor {
 

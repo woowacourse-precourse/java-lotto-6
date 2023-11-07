@@ -5,14 +5,14 @@ import static lotto.utils.Constants.MAX_NUMBER;
 import static lotto.utils.Constants.MIN_NUMBER;
 import static lotto.utils.Constants.WINNING_NUMBER_DUPLICATE_ERROR;
 import static lotto.utils.Constants.WINNING_NUMBER_ERROR;
-import static lotto.utils.Constants.WINNING_NUMBER_PATTERN;
 import static lotto.utils.Constants.WINNING_NUMBER_RANGE_ERROR;
 import static lotto.utils.Constants.WINNING_NUMBER_STRING_ERROR;
-import static lotto.utils.Constants.WINNING_NUMBER_STRING_PATTERN;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import lotto.utils.Patterns;
 
 public class WinningNumberValidator {
     String winningNumber;
@@ -32,7 +32,7 @@ public class WinningNumberValidator {
     }
 
     private void isCorrectPattern() {
-        Matcher matcher = WINNING_NUMBER_STRING_PATTERN.matcher(winningNumber);
+        Matcher matcher = Pattern.compile(Patterns.WINNING_NUMBER_STRING_PATTERN.getPattern()).matcher(winningNumber);
         if (!matcher.find()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + WINNING_NUMBER_STRING_ERROR);
         }
@@ -40,7 +40,8 @@ public class WinningNumberValidator {
 
     private void isNumber() {
         numbers.stream()
-                .filter(numbers -> !WINNING_NUMBER_PATTERN.matcher(numbers).find())
+                .filter(numbers -> !Pattern.compile(Patterns.WINNING_NUMBER_PATTERN.getPattern())
+                        .matcher(String.valueOf(numbers)).find())
                 .findAny()
                 .ifPresent(s -> {
                     throw new IllegalArgumentException(ERROR_MESSAGE + WINNING_NUMBER_ERROR);

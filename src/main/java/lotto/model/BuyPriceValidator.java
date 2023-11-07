@@ -1,11 +1,12 @@
 package lotto.model;
 
-import static lotto.utils.Constants.BUY_PRICE_PATTERN;
 import static lotto.utils.Constants.BUY_PRICE_PATTERN_ERROR;
 import static lotto.utils.Constants.BUY_PRICE_UNIT_ERROR;
 import static lotto.utils.Constants.ERROR_MESSAGE;
 
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import lotto.utils.Patterns;
 import lotto.view.InputView;
 
 public class BuyPriceValidator {
@@ -22,7 +23,7 @@ public class BuyPriceValidator {
     }
 
     public void isNumber() {
-        Matcher matcher = BUY_PRICE_PATTERN.matcher(buyPrice);
+        Matcher matcher = Pattern.compile(Patterns.BUY_PRICE_PATTERN.getPattern()).matcher(buyPrice);
         if (!matcher.find()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + BUY_PRICE_PATTERN_ERROR);
         }

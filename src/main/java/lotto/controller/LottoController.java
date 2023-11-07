@@ -21,15 +21,20 @@ public class LottoController {
     public static void playLottoGame(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         for(Lotto lotto : lottos){
             List<Integer> numbers = lotto.getLottoNumbers();
-            int cnt = 0;
             int bonus = 0;
-            for(int winNum : winningNumbers){
-                if(numbers.contains(winNum))
-                    cnt++;
-            }
+            int cnt = hasWinNumbers(winningNumbers, numbers);
             if(numbers.contains(bonusNumber))
                 bonus++;
             result.recordResult(cnt, bonus);
         }
+    }
+
+    public static int hasWinNumbers(List<Integer> winningNumbers, List<Integer> numbers){
+        int cnt = 0;
+        for(int winNum : winningNumbers){
+            if(numbers.contains(winNum))
+                cnt++;
+        }
+        return cnt;
     }
 }

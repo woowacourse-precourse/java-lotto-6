@@ -1,8 +1,12 @@
 package lotto.controller;
 
+import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
+import lotto.model.LottoStorage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.List;
 
 public class Game {
 
@@ -18,6 +22,8 @@ public class Game {
     private void init() {
         int purchasePrice = inputView.inputPurchasePrice();
         LottoGenerator.generateLotto(purchasePrice);
+        List<Lotto> purchaseLotto = LottoStorage.getLotto();
+        outputView.printPurchaseLotto(purchaseLotto);
 
         inputView.inputWinningNumber();
         inputView.inputBonusNumber();

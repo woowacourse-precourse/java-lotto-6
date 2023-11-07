@@ -11,4 +11,8 @@ public class LottoStorage {
         lottoStorage.add(lotto);
     }
 
+    public static List<Lotto> getLotto() {
+        return lottoStorage;
+    }
+
 }

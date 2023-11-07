@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.view.InputView;
+import lotto.controller.InputController;
 
 public class BonusNumber {
     private int bonusNumber;
@@ -15,6 +15,6 @@ public class BonusNumber {
 
     private int inputBonusNumber() {
         System.out.println();
-        return InputView.inputBonusNumbers();
+        return InputController.inputBonusNumberUntilSuccess();
     }
 }

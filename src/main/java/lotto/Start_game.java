@@ -26,5 +26,6 @@ public class Start_game {
         display_function.displayScore(scoreBoard);
 
         totalPrize = calculation.getAllPrize(scoreBoard);
+        display_function.displayEarningRate(totalPrize, money);
     }
 }

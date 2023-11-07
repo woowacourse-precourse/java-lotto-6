@@ -33,4 +33,12 @@ public class Display_function {
             System.out.println(user_lotto_number.toString());
         }
     }
+
+    public void displayEarningRate(int prize, int money) {
+        if(prize ==0) {
+            System.out.println("수익률은 -100%입니다.");
+        }
+        System.out.printf("수익률은 %.2f \\%입니다.",(prize-money)/money*100);
+    }
+
 }

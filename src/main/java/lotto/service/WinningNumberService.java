@@ -44,7 +44,8 @@ public class WinningNumberService {
 
     private int checkBonusNumber(List<Integer> userNums, int matchCount) {
         if (matchCount == FIVE_COUNT.getPrizeCount() && userNums.contains(lottoWinningNumber.getBonusNum())) {
-            return matchCount * 10;
+            int NONCE = 10;
+            return matchCount * NONCE;
         }
 
         return matchCount;

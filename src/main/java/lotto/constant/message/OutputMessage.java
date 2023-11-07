@@ -5,7 +5,11 @@ public enum OutputMessage {
     RESULT_START("\n당첨 통계\n---"),
     RESULT_LOTTO("%d개 일치 (%s원) - %d개\n"),
     RESULT_BONUS("5개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
-    PROFIT_RATE("총 수익률은 %.1f%%입니다.");
+    PROFIT_RATE("총 수익률은 %.1f%%입니다."),
+    DELIMITER(", "),
+    PREFIX("["),
+    SUFFIX("]");
+
 
     private final String message;
 

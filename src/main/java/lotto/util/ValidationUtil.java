@@ -46,8 +46,8 @@ public class ValidationUtil {
         while (true) {
             try {
                 List<String> LottoWinningNumber = Arrays.asList(input.split(",", -1));
-                validateCount(LottoWinningNumber);
                 validateBlank(LottoWinningNumber);
+                validateCount(LottoWinningNumber);
                 validateDuplicate(LottoWinningNumber);
                 return validateLottoRange(LottoWinningNumber);
             } catch (IllegalArgumentException e) {
@@ -89,6 +89,19 @@ public class ValidationUtil {
         if (inputNums.stream().distinct().count() != MAX_COUNT.getNumber()) {
             throwExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
         }
+        List<Integer> numbers = StringToInteger(inputNums);
+        if (numbers.stream().distinct().count() != MAX_COUNT.getNumber()) {
+            throwExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
+        }
+    }
+
+    private List<Integer> StringToInteger(List<String> inputs) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String input : inputs) {
+            int number = Integer.parseInt(input);
+            numbers.add(number);
+        }
+        return numbers;
     }
 
     private List<Integer> validateLottoRange(List<String> inputNums) throws IllegalArgumentException {
@@ -115,7 +128,7 @@ public class ValidationUtil {
 
     private void isExistedNumber(int bonus, List<Integer> lotto) throws IllegalArgumentException {
         if (lotto.contains(bonus)) {
-            throw new IllegalArgumentException(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
+            throwExceptionMessage(ExceptionMessage.NUMBER_DUPLICATE.getMessage());
         }
     }
 
@@ -124,7 +137,8 @@ public class ValidationUtil {
     }
 
     private String reInput() {
-        System.out.println("다시 입력해주세요.");
+        String reInputMessage = "다시 입력해주세요.";
+        System.out.println(reInputMessage);
         return inputUtil.getInput();
     }
 }

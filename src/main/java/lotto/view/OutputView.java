@@ -36,7 +36,7 @@ public class OutputView {
     }
 
     private String listToString(List<Integer> list) {
-        StringJoiner joiner = new StringJoiner(", ", "[", "]");
+        StringJoiner joiner = new StringJoiner(DELIMITER.getMessage(), PREFIX.getMessage(), SUFFIX.getMessage());
         for (int number : list) {
             joiner.add(Integer.toString(number));
         }

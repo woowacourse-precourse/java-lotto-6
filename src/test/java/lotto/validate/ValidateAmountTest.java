@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validate;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class AmountTest {
+public class ValidateAmountTest {
 
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 5000, 10000, 20000, 50000})

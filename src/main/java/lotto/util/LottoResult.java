@@ -11,10 +11,9 @@ import java.util.Map;
 public class LottoResult {
 
     private CompareLotto compareLotto = new CompareLotto();
-    private Map<Prize, Integer> lottoResult = new EnumMap<Prize, Integer>(Prize.class);
+    private Map<Prize, Integer> lottoResult = new EnumMap<>(Prize.class);
 
     public void setMap(){
-        lottoResult = new EnumMap<Prize, Integer>(Prize.class);
         for (Prize prize : Prize.values()) {
             lottoResult.put(prize, 0);
         }

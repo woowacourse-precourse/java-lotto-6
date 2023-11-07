@@ -1,10 +1,15 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
 
@@ -33,9 +38,36 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(-1, 46, 3, 4, 5, 6))).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @ParameterizedTest
+    @DisplayName("문자열에서 로또로 형변환이 문제 없이 잘 되는지 확인")
+    @ValueSource(strings = {"1,2,3,4,5,6", "45,44,43,42,41,40", "1,45,2,44,3,43"})
+    void Given_StringNumber_When_ChangedToLotto_Then_ValueIsSame(String input) {
+        // given
+        // when
+        Lotto lotto = Lotto.toLotto(input);
+        int ret = 0;
+        for (Integer x : new ArrayList<>(Arrays.asList(input.split(","))).stream()
+                .map(Integer::valueOf)
+                .toList()) {
+            if (lotto.contains(x)) {
+                ret++;
+            }
+        }
+        // then
+        assertThat(ret).isEqualTo(6);
+    }
+
 
     @Test
-    void compare() {
+    @DisplayName("두 로또의 수의 비교가 제대로 이루어지는지 확인")
+    void Given_TwoSameLotto_When_Compare_Then_MatchedNumberIsSix() {
+        //Given
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        // When
+        int matchedNumber = lotto1.compare(lotto2);
+        // Then
+        assertThat(matchedNumber).isEqualTo(6);
     }
 
     @Test

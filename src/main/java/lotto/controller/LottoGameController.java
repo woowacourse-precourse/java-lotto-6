@@ -1,19 +1,19 @@
 package lotto.controller;
 
 import lotto.domain.LottoTicket;
-import lotto.service.LottoPurchaseService;
-import lotto.service.LottoWinningNumberService;
+import lotto.service.PurchaseService;
+import lotto.service.WinningNumberService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoController {
-    private final LottoPurchaseService lottoPurchaseService;
-    private final LottoWinningNumberService lottoWinningNumberService;
+public class LottoGameController {
+    private final PurchaseService purchaseService;
+    private final WinningNumberService winningNumberService;
     private LottoTicket lottoTicket;
 
-    public LottoController() {
-        lottoPurchaseService = new LottoPurchaseService();
-        lottoWinningNumberService = new LottoWinningNumberService();
+    public LottoGameController() {
+        purchaseService = new PurchaseService();
+        winningNumberService = new WinningNumberService();
     }
 
     public void runLottoGame() {
@@ -25,21 +25,20 @@ public class LottoController {
     private void buyLottoTicket() {
         OutputView.printRequestPurchaseAmount();
 
-        String input = InputView.readLine();
-        lottoTicket = lottoPurchaseService.buyLottoTicket(input);
+        String PurchaseAmount = InputView.readLine();
+        lottoTicket = purchaseService.buyLottoTicket(PurchaseAmount);
 
         OutputView.printPurchaseResult(lottoTicket);
     }
 
     private void setWinningNumbers() {
-
-        // 당첨 번호 입력
         OutputView.printRequestWinningNumber();
-        InputView.readLine();
-
-        // 보너스 번호 입력
+        String winningNumbers = InputView.readLine();
+        winningNumberService.setWinningNumbers(winningNumbers);
+        // 보너스 번호
         OutputView.printRequestBonusNumber();
-        InputView.readLine();
+        String bonusNumber = InputView.readLine();
+        winningNumberService.setBonusNumbers(bonusNumber);
     }
 
     private void printResults() {

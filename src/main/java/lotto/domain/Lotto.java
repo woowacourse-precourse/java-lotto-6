@@ -13,7 +13,7 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-    
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
@@ -22,6 +22,7 @@ public class Lotto {
                 .allMatch(number -> number >= 1 && number <= 45)) {
             throw new IllegalArgumentException();
         }
+        // TODO: 로또 번호 검증 추가 구현
     }
 
     // TODO: 추가 기능 구현

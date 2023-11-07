@@ -7,13 +7,13 @@ import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
 
-public class LottoPurchaseService {
+public class PurchaseService {
     private static final int LOTTO_PRICE = 1000;
     private static final int MIN_LOTTO_NUMBER = 1;
     private static final int MAX_LOTTO_NUMBER = 45;
     private static final int NUMBER_PER_LOTTO = 6;
 
-    public LottoPurchaseService() {
+    public PurchaseService() {
     }
 
     public LottoTicket buyLottoTicket(String purchaseAmount) {

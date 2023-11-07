@@ -30,25 +30,22 @@ public class Lotto {
 
     public static List<Lotto> createLottoList(int price) {
         price /= 1000;
-
         List<Lotto> LottoList = new ArrayList<>();
         while (price> 0) {
             LottoList.add(createLotto());
             price--;
         }
-
         return LottoList;
     }
 
     public static Lotto createLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(LottoMinNumber, LottoMaxNumber, LottoPcs);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(lottoMinNumber, lottoMaxNumber, lottoPcs);
         Collections.sort(randomNumbers);
         return new Lotto(randomNumbers);
     }
 
     public static String[] validateInputWinningNumberInRange(String winningNumber){
         String[] numberStrings = winningNumber.split(",");
-
         for (String eachNumberStr : numberStrings) {
             int eachNumber=Integer.parseInt(eachNumberStr);
             if(eachNumber<1||eachNumber>45){
@@ -58,13 +55,29 @@ public class Lotto {
         return numberStrings;
     }
 
-    public static void validateInputWinningNumberDuplication(String[] winningNumbers){
+    public static String[] validateInputWinningNumberDuplication(String[] winningNumbers){
         Set<String> uniqueNumbers = new HashSet<>();
         for (String eachNumber : winningNumbers) {
             if (!uniqueNumbers.add(eachNumber)) {
                 throw Exceptions.exceptionWinningNumberDuplication();
             }
         }
+        return winningNumbers;
     }
 
+    public static void validateInputBonusNumberInRange(String inputBonusNumber){
+        int bonusNumber=Integer.parseInt(inputBonusNumber);
+        if(bonusNumber<1||bonusNumber>45){
+            throw Exceptions.exceptionBonusNumberNotInRange();
+        }
+
+    }
+
+    public static void validateInputBonusNumberDuplication(String inputBonusNumber,String[] winningNumbers){
+        for (String eachNumber : winningNumbers) {
+            if (eachNumber.equals(inputBonusNumber)) {
+                throw Exceptions.exceptionBonusNumberDuplication();
+            }
+        }
+    }
 }

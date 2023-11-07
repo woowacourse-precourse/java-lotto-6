@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import static lotto.model.Lotto.*;
-import static lotto.model.Lotto.validateInputWinningNumberInRange;
+import static lotto.model.LottoConstantsNumber.*;
 import static lotto.view.LottoView.*;
 
 import java.util.*;
@@ -10,6 +10,9 @@ import lotto.model.*;
 import lotto.exception.*;
 public class LottoController {
 
+    static String[] strTotalWinningNumbers;
+    static ArrayList<Integer> totalWinningNumbers=new ArrayList<>();;
+    static int bonusNumber;
     public int processInputPurchaseAmount() {
         int price;
 
@@ -39,13 +42,39 @@ public class LottoController {
             inputWinningNumber= inputWinningNumber();
             try {
                 // 입력 당첨 번호가 유효하면 종료
-                String[] numberStrings=validateInputWinningNumberInRange(inputWinningNumber);
-                validateInputWinningNumberDuplication(numberStrings);
+                String[] winningNumberStr=validateInputWinningNumberInRange(inputWinningNumber);
+                strTotalWinningNumbers=validateInputWinningNumberDuplication(winningNumberStr);
                 break; //
             } catch (IllegalArgumentException e) {
                 // 예외 메시지 출력
                 System.out.println(e.getMessage());
             }
+        }
+        defineTotalWinningNumber();
+    }
+
+    public void processInputBonusNumber(){
+
+        // validate 후 totalWinningNumbers에 문자열(숫자)를 정수형(숫자로) 바꿀 것
+        String inputBonusNumber;
+        while (true) {
+            inputBonusNumber= inputBonusNumber();
+            try {
+                // 입력 보너스 번호가 유효하면 종료
+                validateInputBonusNumberInRange(inputBonusNumber);
+                validateInputBonusNumberDuplication(inputBonusNumber,strTotalWinningNumbers);
+                break; //
+            } catch (IllegalArgumentException e) {
+                // 예외 메시지 출력
+                System.out.println(e.getMessage());
+            }
+        }
+        bonusNumber=Integer.parseInt(inputBonusNumber);
+    }
+
+    public void defineTotalWinningNumber(){
+        for (String eachNumber : strTotalWinningNumbers) {
+            totalWinningNumbers.add(Integer.parseInt(eachNumber));
         }
     }
 

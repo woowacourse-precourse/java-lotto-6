@@ -17,5 +17,13 @@ public class Exceptions {
         return new IllegalArgumentException("[ERROR] 서로 다른 숫자를 입력하세요.");
     }
 
+    public static IllegalArgumentException exceptionBonusNumberNotInRange() {
+        return new IllegalArgumentException("[ERROR] 1~45의 숫자를 입력하세요.");
+    }
+
+    public static IllegalArgumentException exceptionBonusNumberDuplication() {
+        return new IllegalArgumentException("[ERROR] 당첨 번호와 다른 숫자를 입력하세요.");
+    }
+
 
 }

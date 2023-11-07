@@ -1,7 +1,8 @@
 package lotto.model;
 
 public class LottoConstantsNumber {
-    static final int LottoMinNumber=1;
-    static final int LottoMaxNumber=45;
-    static final int LottoPcs=6;
+    static final int lottoMinNumber=1;
+    static final int lottoMaxNumber=45;
+    static final int lottoPcs=6;
+
 }

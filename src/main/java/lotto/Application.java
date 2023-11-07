@@ -10,5 +10,6 @@ public class Application {
         int price = lottoController.processInputPurchaseAmount();
         lottoController.processCreateLotto(price);
         lottoController.processInputWinningNumber();
+        lottoController.processInputBonusNumber();
     }
 }

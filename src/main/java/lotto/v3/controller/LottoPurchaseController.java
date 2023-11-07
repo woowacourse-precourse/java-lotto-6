@@ -2,9 +2,10 @@ package lotto.v3.controller;
 
 import lotto.v3.view.LottoPurchaseView;
 
+import static lotto.v3.model.LottoConstants.LOTTO_PRICE;
+
 public class LottoPurchaseController {
 
-    private static final int LOTTO_PRICE = 1000; // 로또 1장의 가격
     private final LottoPurchaseView lottoPurchaseView;
 
     public LottoPurchaseController(LottoPurchaseView lottoPurchaseView) {
@@ -12,8 +13,8 @@ public class LottoPurchaseController {
     }
 
     private void validatePurchaseAmount(int amount) {
-        if (amount <= 0 || amount % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
+        if (amount <= 0 || amount % LOTTO_PRICE.getValue() != 0) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 " + LOTTO_PRICE.getValue() + "원 단위로 입력해야 합니다.");
         }
     }
 

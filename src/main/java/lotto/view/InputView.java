@@ -34,8 +34,8 @@ public class InputView {
     public int inputPurchaseMoneyOfLotto() {
         System.out.println(InputMessage.PURCHASE_MONEY.message);
         String input = Console.readLine();
-        input = inputConverter.translate(input);
         validatePurchaseMoney(input);
+        input = inputConverter.translate(input);
         return inputConverter.inputToNumber(input);
     }
 

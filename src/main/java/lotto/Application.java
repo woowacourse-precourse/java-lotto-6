@@ -44,21 +44,37 @@ public class Application {
 	}
 
 	public static Lotto inputUserLotto() { // 당첨 로또 입력
+		System.out.println("당첨 번호를 입력해 주세요.");
 		List<Integer> number = new ArrayList<Integer>();
 
 		for (String num : Console.readLine().split(","))
 			number.add(Integer.parseInt(num));
 
 		countSize(number);
+		validate(number);
 		Lotto lotto = new Lotto(number);
 
 		return lotto;
+	}
+
+	public static List<Integer> validate(List<Integer> lottoNum) throws IllegalArgumentException {
+		// 로또 번호 유효성 검사
+		for (int temp : lottoNum)
+			if (temp > 45)
+				throw new IllegalArgumentException();
+		
+		return lottoNum;
 	}
 
 	public static void countSize(List<Integer> calculateSize) {
 		// 로또 사이즈 검사
 		if (calculateSize.size() > 6)
 			throw new IllegalArgumentException();
+	}
+
+	public static int bonusInput() { // 보너스 번호 입력
+		System.out.println("보너스 번호를 입력해 주세요.");
+		return Integer.parseInt(Console.readLine());
 	}
 
 	public static void printResult(List<Integer> lottoNum) {

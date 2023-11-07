@@ -39,4 +39,28 @@ class MoneyTest {
         Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("1500"))
                 .isInstanceOf(IllegalTypeFormatException.class);
     }
+
+    @DisplayName("금액 입력 시 0원이 입력되면 IllegalArgumentException 예외가 발생한다")
+    @Test
+    void createMoneyByWrongInputZero() {
+        ValidateServiceImpl validateService = new ValidateServiceImpl();
+        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("금액 입력 시 음수가 입력되면 IllegalArgumentException 예외가 발생한다")
+    @Test
+    void createMoneyByWrongInputNegative() {
+        ValidateServiceImpl validateService = new ValidateServiceImpl();
+        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("-1000"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("금액 입력 시 실수가 입력되면 IllegalArgumentException 예외가 발생한다")
+    @Test
+    void createMoneyByWrongInputActualNumber() {
+        ValidateServiceImpl validateService = new ValidateServiceImpl();
+        Assertions.assertThatThrownBy(() -> validateService.checkCorrectMoney("1000.5"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

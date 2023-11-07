@@ -1,13 +1,24 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Validator;
+import lotto.constants.ErrorMessage;
 
 public class InputHandler {
     // TODO : 사용자의 입력에 대한 처리
 
-    public void askPayment() {
-        System.out.println("구입금액을 입력해 주세요.");
-        Console.readLine();
+    public static User askPayment() {
+        String input = "";
+        do {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                input = Console.readLine();
+                Validator.validatePayment(input);
+                return new User(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(ErrorMessage.NUMBER_FORMAT.getMessage());
+            }
+        } while (true);
     }
 
     public void askWinningNumbers() {

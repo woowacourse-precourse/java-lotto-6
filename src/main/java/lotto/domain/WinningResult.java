@@ -13,6 +13,7 @@ public class WinningResult {
     private double profitRate;
 
     public WinningResult(List<LottoRank> ranks, int money) {
+        initializeWinningResult();
         putMatchCount(ranks);
         calculateProfitRate(money);
     }
@@ -27,6 +28,15 @@ public class WinningResult {
                 .sum();
 
         this.profitRate = (profit / money) * PERCENT.getNumber();
+    }
+
+    private void initializeWinningResult() {
+        winningResult.put(LottoRank.FIRST, 0);
+        winningResult.put(LottoRank.SECOND, 0);
+        winningResult.put(LottoRank.THIRD, 0);
+        winningResult.put(LottoRank.FOURTH, 0);
+        winningResult.put(LottoRank.FIFTH, 0);
+        winningResult.put(LottoRank.DEFAULT, 0);
     }
 
     public Map<LottoRank, Integer> getWinningResult() {

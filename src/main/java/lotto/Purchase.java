@@ -28,14 +28,15 @@ public class Purchase {
     }
 
     public List<List<Integer>> printLotto(int lottoCount){
-        List<Integer> lottoNumber = null;
+
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         while (lottoCount > 0){
-            lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(lottoNumber);
-            System.out.println(lottoNumber);
+            List<Integer> lottoNumber = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> newLottoNumber = new ArrayList<>(lottoNumber);
+            Collections.sort(newLottoNumber);
+            System.out.println(newLottoNumber);
             lottoCount--;
-            lottoNumbers.add(lottoNumber);
+            lottoNumbers.add(newLottoNumber);
         }
 
         return lottoNumbers;

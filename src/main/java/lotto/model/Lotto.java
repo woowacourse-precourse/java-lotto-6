@@ -19,7 +19,36 @@ public class Lotto {
         validateLottoDuplicate(numbers);
         validateLottoNumberOverMax(numbers);
         this.lottoNumbers = numbers;
+        lottoNumbersSorted();
     }
+
+    public List<Integer> getLotto() {
+        return Collections.unmodifiableList(lottoNumbers);
+    }
+
+    private boolean isInvalidLottoNumber(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number -> number > LOTTO_NUMBER_OVER_MAX);
+    }
+
+    public int matchLottoCount(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .mapToInt(number -> (int) lottoNumbers.stream()
+                        .filter(lotto -> lotto == number)
+                        .count())
+                .sum();
+    }
+
+    public boolean isBonusMatch(int bonusNumber) {
+        return lottoNumbers.contains(bonusNumber);
+    }
+
+    private void lottoNumbersSorted() {
+        this.lottoNumbers.stream()
+                .sorted()
+                .toList();
+    }
+
 
     private void validateLottoSizeCheck(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE_MAX_LENGTH) {
@@ -38,26 +67,5 @@ public class Lotto {
         if (isInvalidLottoNumber(numbers)) {
             throw new UserInputException(ErrorMsg.ERROR_LOTTO_NUMBER_OVER_MAX.getMsg());
         }
-    }
-
-    private boolean isInvalidLottoNumber(List<Integer> numbers) {
-        return numbers.stream()
-                .anyMatch(number -> number > LOTTO_NUMBER_OVER_MAX);
-    }
-
-    public List<Integer> getLotto() {
-        return Collections.unmodifiableList(lottoNumbers);
-    }
-
-    public int matchLottoCount(List<Integer> numbers) {
-        return (int) numbers.stream()
-                .mapToInt(number -> (int) lottoNumbers.stream()
-                        .filter(lotto -> lotto == number)
-                        .count())
-                .sum();
-    }
-
-    public boolean isBonusMatch(int bonusNumber) {
-        return lottoNumbers.contains(bonusNumber);
     }
 }

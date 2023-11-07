@@ -20,7 +20,7 @@ public class ViewTest {
         PrintStream printStream = new PrintStream(byteArrayOutputStream);
         System.setOut(printStream);
 
-        view.lottoTicketNumbers(lottoTicket());
+        view.lottoTicketInformation(lottoTicket());
         System.out.flush();
         String actualPrint = byteArrayOutputStream.toString();
 

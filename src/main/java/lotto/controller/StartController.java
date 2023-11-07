@@ -16,7 +16,7 @@ import lotto.domain.Ticket;
 import lotto.view.View;
 
 public class StartController {
-    Map<String, Integer> matchRecords = new HashMap<String, Integer>() {{
+    Map<String, Integer> rankRecord = new HashMap<String, Integer>() {{
         put(Rank.FIRST_RANK.getRank(), 0);
         put(Rank.SECOND_RANK.getRank(), 0);
         put(Rank.THIRD_RANK.getRank(), 0);
@@ -39,63 +39,63 @@ public class StartController {
 
     private void buyLotto() {
         view.buyPriceMessage();
-        buyPrice();
+        money();
         ticketInformation();
     }
 
     private void chooseHitLottoNumber() {
-        view.sixHitLottoNumberMessage();
-        sixHitNumber();
-        view.bonusHitNumberMessage();
-        bonusHitNumber();
+        view.lottoNumberMessage();
+        lottoNumber();
+        view.bonusNumberMessage();
+        bonusNumber();
     }
 
-    public void resultLotto() {
+    private void resultLotto() {
         view.prizeStatsMessage();
         compareTicketsAndLotto(ticket.getLottoTicket(), lotto.getNumbers(), bonus.getNumber());
-        view.outputPrizeStats(matchRecords);
-        view.outputProfitRate(Utils.percentage(buy.getBuyPrice(), calculateTotalProfitPrice()));
+        view.prizeStats(rankRecord);
+        view.profitRate(Utils.percentage(buy.getMoney(), calculateTotalProfit()));
     }
 
-    private void buyPrice() {
+    private void money() {
         try {
             buy = new Buy(view.inputConsole());
             System.out.println();
         } catch (IllegalArgumentException e) {
-            buyPrice();
+            money();
         }
     }
 
     private void ticketInformation() {
         view.buyTicketCountMessage(buy.getBuyTicketCount());
         ticket.setLottoTicket(buy.getBuyTicketCount());
-        view.lottoTicketNumbers(ticket.getLottoTicket());
+        view.lottoTicketInformation(ticket.getLottoTicket());
     }
 
-    private void sixHitNumber() {
+    private void lottoNumber() {
         try {
-            lotto = new Lotto(view.inputSixHitNumber());
+            lotto = new Lotto(view.inputLottoNumber());
             System.out.println();
         } catch (IllegalArgumentException e) {
-            sixHitNumber();
+            lottoNumber();
         }
     }
 
-    private void bonusHitNumber() {
+    private void bonusNumber() {
         try {
-            bonus = new Bonus(view.inputBonusHitNumber());
+            bonus = new Bonus(view.inputBonusNumber());
             Validate.compareLottoAndBonusNumberValidate(lotto.getNumbers(), bonus.getNumber());
             System.out.println();
         } catch (IllegalArgumentException e) {
-            bonusHitNumber();
+            bonusNumber();
         }
     }
 
     private void compareTicketsAndLotto(ArrayList<ArrayList<Integer>> ticketsNumbers, List<Integer> lottoNumbers, int bonusNumber) {
         ticketsNumbers.forEach(ticketNumbers -> {
-            int numberMatchCount = ticketNumberAndLottoNumberMatchCount(ticketNumbers, lottoNumbers);
-            int ticketBonusNumber = useBonusNumber(ticketNumbers);
-            rankResult(numberMatchCount, ticketBonusNumber, bonusNumber);
+            int matchCount = ticketNumberAndLottoNumberMatchCount(ticketNumbers, lottoNumbers);
+            int remainNumberOrZero = remainNumberOrZero(ticketNumbers);
+            decideRank(matchCount, remainNumberOrZero, bonusNumber);
         });
     }
 
@@ -104,44 +104,44 @@ public class StartController {
         return LottoDefaultRule.PICK_HIT_NUMBER_TOTAL.getRule() - ticketNumbers.size();
     }
 
-    private int useBonusNumber(List<Integer> ticketNumbers) {
+    private int remainNumberOrZero(List<Integer> ticketNumbers) {
         if (ticketNumbers.size() == 1) {
             return ticketNumbers.get(0);
         }
         return 0;
     }
 
-    private boolean rankResult(int numberMatchCount, int ticketNumberOnlyOne, int bonusNumber) {
-        if (numberMatchCount == LottoRankRule.FIRST_RANK_MATCH_COUNT.getRank()) {
-            matchRecords.put(Rank.FIRST_RANK.getRank(), matchRecords.get(Rank.FIRST_RANK.getRank()) + 1);
+    private boolean decideRank(int matchCount, int remainNumberOrZero, int bonusNumber) {
+        if (matchCount == LottoRankRule.FIRST_RANK_MATCH_COUNT.getRank()) {
+            rankRecord.put(Rank.FIRST_RANK.getRank(), rankRecord.get(Rank.FIRST_RANK.getRank()) + 1);
             return true;
-        } if (numberMatchCount == LottoRankRule.SECOND_RANK_MATCH_COUNT.getRank()) {
-            isMatchTicketAndBonus(ticketNumberOnlyOne, bonusNumber);
+        } if (matchCount == LottoRankRule.SECOND_RANK_MATCH_COUNT.getRank()) {
+            decideRankSecondOrThird(remainNumberOrZero, bonusNumber);
             return true;
-        } if (numberMatchCount == LottoRankRule.FOURTH_RANK_MATCH_COUNT.getRank()) {
-            matchRecords.put(Rank.FOURTH_RANK.getRank(), matchRecords.get(Rank.FOURTH_RANK.getRank()) + 1);
+        } if (matchCount == LottoRankRule.FOURTH_RANK_MATCH_COUNT.getRank()) {
+            rankRecord.put(Rank.FOURTH_RANK.getRank(), rankRecord.get(Rank.FOURTH_RANK.getRank()) + 1);
             return true;
-        } if (numberMatchCount == LottoRankRule.FIFTH_RANK_MATCH_COUNT.getRank()) {
-            matchRecords.put(Rank.FIFTH_RANK.getRank(), matchRecords.get(Rank.FIFTH_RANK.getRank()) + 1);
+        } if (matchCount == LottoRankRule.FIFTH_RANK_MATCH_COUNT.getRank()) {
+            rankRecord.put(Rank.FIFTH_RANK.getRank(), rankRecord.get(Rank.FIFTH_RANK.getRank()) + 1);
             return true;
         }
         return true;
     }
 
-    private boolean isMatchTicketAndBonus(int ticketNumber, int bonusNumber) { // 번호가 5개 일치할 경우 진입
+    private boolean decideRankSecondOrThird(int ticketNumber, int bonusNumber) {
         if (ticketNumber == bonusNumber) {
-            matchRecords.put(Rank.SECOND_RANK.getRank(), matchRecords.get(Rank.SECOND_RANK.getRank()) + 1);
+            rankRecord.put(Rank.SECOND_RANK.getRank(), rankRecord.get(Rank.SECOND_RANK.getRank()) + 1);
             return true;
         }
-        matchRecords.put(Rank.THIRD_RANK.getRank(), matchRecords.get(Rank.THIRD_RANK.getRank()) + 1);
+        rankRecord.put(Rank.THIRD_RANK.getRank(), rankRecord.get(Rank.THIRD_RANK.getRank()) + 1);
         return true;
     }
 
-    private int calculateTotalProfitPrice() {
-        return LottoRankRule.FIRST_RANK_PRICE.getRank() * matchRecords.get(Rank.FIRST_RANK.getRank())
-                + LottoRankRule.SECOND_RANK_PRICE.getRank() * matchRecords.get(Rank.SECOND_RANK.getRank())
-                + LottoRankRule.THIRD_RANK_PRICE.getRank() * matchRecords.get(Rank.THIRD_RANK.getRank())
-                + LottoRankRule.FOURTH_RANK_PRICE.getRank() * matchRecords.get(Rank.FOURTH_RANK.getRank())
-                + LottoRankRule.FIFTH_RANK_PRICE.getRank() * matchRecords.get(Rank.FIFTH_RANK.getRank());
+    private int calculateTotalProfit() {
+        return LottoRankRule.FIRST_RANK_PRICE.getRank() * rankRecord.get(Rank.FIRST_RANK.getRank())
+                + LottoRankRule.SECOND_RANK_PRICE.getRank() * rankRecord.get(Rank.SECOND_RANK.getRank())
+                + LottoRankRule.THIRD_RANK_PRICE.getRank() * rankRecord.get(Rank.THIRD_RANK.getRank())
+                + LottoRankRule.FOURTH_RANK_PRICE.getRank() * rankRecord.get(Rank.FOURTH_RANK.getRank())
+                + LottoRankRule.FIFTH_RANK_PRICE.getRank() * rankRecord.get(Rank.FIFTH_RANK.getRank());
     }
 }

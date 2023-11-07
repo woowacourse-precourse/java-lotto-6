@@ -4,12 +4,12 @@ import lotto.common.constants.LottoDefaultRule;
 import lotto.common.validate.Validate;
 
 public class Buy {
-    private final int buyPrice;
+    private final int money;
     private final int buyTicketCount;
 
     public Buy(String price) {
-        this.buyPrice = validate(price);
-        this.buyTicketCount = buyPrice / LottoDefaultRule.ONE_LOTTO_TICKET_PRICE.getRule();
+        this.money = validate(price);
+        this.buyTicketCount = money / LottoDefaultRule.ONE_LOTTO_TICKET_PRICE.getRule();
     }
 
     private int validate(String inputPrice) {
@@ -21,8 +21,8 @@ public class Buy {
         }
     }
 
-    public int getBuyPrice() {
-        return buyPrice;
+    public int getMoney() {
+        return money;
     }
 
     public int getBuyTicketCount() {

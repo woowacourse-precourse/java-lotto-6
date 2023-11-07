@@ -1,7 +1,6 @@
 package lotto;
 
 public enum PrizeMoney {
-    NONE(0),
     FIFTH(5000),
     FOURTH(50000),
     THIRD(1500000),

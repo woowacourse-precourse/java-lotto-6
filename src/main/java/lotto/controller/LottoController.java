@@ -27,7 +27,7 @@ public class LottoController {
         long money = inputPurchaseAmount();
         HashMap<String, Long> scoreBored = produceStatisticsLottoScore(money);
         OutputView.outputViewStatistics(scoreBored);
-        OutputView.outputViewTotalReturn(getTotalReturn(scoreBored),money);
+        OutputView.outputViewTotalReturn(getTotalReturn(scoreBored), money);
     }
 
     private Long inputPurchaseAmount() {
@@ -47,14 +47,18 @@ public class LottoController {
         for (int i = 0; i < money / ONE_THOUSAND; i++) {
             OutputView.lottoNumbersResult(myLotto.get(i));
         }
-
         return myLotto;
     }
 
     private List<Integer> inputWinningLottoNumber() {
         OutputView.inputViewWinningNumber();
-        Lotto lotto = new Lotto(lottoService.convertToLottoIntegerList(InputView.input()));
-        return lotto.getLotto();
+        while (true) {
+            try {
+                Lotto lotto = new Lotto(getInputWinningNumber());
+                return lotto.getLotto();
+            } catch (IllegalArgumentException e) {
+            }
+        }
     }
 
     private Integer inputBonusNumber() {
@@ -72,7 +76,7 @@ public class LottoController {
 
     private Long getTotalReturn(HashMap<String, Long> scoreBoard) {
         long totalScore = 0L;
-        for(long score : scoreBoard.values()) {
+        for (long score : scoreBoard.values()) {
             totalScore += score;
         }
 
@@ -86,6 +90,7 @@ public class LottoController {
     }
 
     private List<Integer> getInputWinningNumber() {
-        String userInput = InputView.input();
+        String userInput = InputView.input().trim();
+        return Utils.convertToLottoIntegerList(userInput);
     }
 }

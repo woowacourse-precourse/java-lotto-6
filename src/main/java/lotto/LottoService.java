@@ -3,9 +3,10 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LottoTicketCounter {
+public class LottoService {
     private List<Lotto> lottos = new ArrayList<>();
     private LottoTicketMoney lottoTicketMoney;
+    private Lotto winningNumbers;
 
     private static final String TICKET_NUMBER_STATEMENT = "개를 구매했습니다.";
 
@@ -22,5 +23,9 @@ public class LottoTicketCounter {
         for (Lotto lotto: lottos) {
             System.out.println(lotto);
         }
+    }
+
+    public void inputWinningNumbers() {
+        winningNumbers = UserInput.inputWinningLotto();
     }
 }

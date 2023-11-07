@@ -9,7 +9,8 @@ public enum ErrorMessage {
     // 당첨 번호, 보너스 번호
     OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     OUT_OF_COUNT("당첨 번호는 6개를 입력하셔야 합니다."),
-    DUPLICATED_NUMBER("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
+    DUPLICATED_WINNING("당첨 번호는 서로 다른 숫자여야 합니다."),
+    DUPLICATED_WINNING_WITH_BONUS("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.");
 
     private String message;
 

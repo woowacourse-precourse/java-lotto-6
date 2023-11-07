@@ -26,6 +26,7 @@ public class WinningNumber {
     private static void validate(List<String> numbers) {
         validateIsIntegerNumber(numbers);
         validateIsSixNumbers(numbers);
+        validateIsDistinctNumbers(numbers);
         validateIsNumberInRange(numbers);
     }
 
@@ -42,6 +43,12 @@ public class WinningNumber {
     private static void validateIsSixNumbers(List<String> numbers) {
         if(numbers.size() != UnitNumber.WINNING_COUNT.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.OUT_OF_COUNT.getMessage());
+        }
+    }
+
+    private static void validateIsDistinctNumbers(List<String> numbers) {
+        if(numbers.stream().distinct().toList().size() != UnitNumber.WINNING_COUNT.getNumber()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNING.getMessage());
         }
     }
 

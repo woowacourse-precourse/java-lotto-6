@@ -39,7 +39,7 @@ public class BonusNumber {
     private static void validateIsUniqueNumber(String number) {
         boolean isDuplicated = winningNumber.contains(Integer.parseInt(number));
         if(isDuplicated) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_WINNING_WITH_BONUS.getMessage());
         }
     }
 

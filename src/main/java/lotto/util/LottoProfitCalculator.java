@@ -14,7 +14,7 @@ public class LottoProfitCalculator {
                 .reduce(new BigDecimal(0), BigDecimal::add);
 
 
-        BigDecimal roi = sum.multiply(new BigDecimal(100)).divide(new BigDecimal(totalPrice), 2, RoundingMode.HALF_UP);
+        BigDecimal roi = sum.multiply(new BigDecimal(100)).divide(new BigDecimal(totalPrice), 1, RoundingMode.HALF_UP);
         return roi.stripTrailingZeros();
     }
 }

@@ -24,6 +24,10 @@ public class PurchasingService {
         return buyer;
     }
 
+    public int getBuyerPurchaseQuantity() {
+        return buyerPurchaseQuantity;
+    }
+
     private int checkAmount(String value) {
         validateEmpty(value);
         validateOnlyNumber(value);
@@ -72,9 +76,5 @@ public class PurchasingService {
 
     private void giveLottoToBuyer(int amount) {
         buyer = new Buyer(amount, buyerPurchaseQuantity, buyerLottoTickets);
-    }
-
-    public int getBuyerPurchaseQuantity() {
-        return buyerPurchaseQuantity;
     }
 }

@@ -1,6 +1,8 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import lotto.model.User;
 import lotto.service.LottoService;
@@ -21,7 +23,7 @@ public class LottoController {
     public void run() {
         User user = initInputUser();
         List<Integer> winningNumbers = getInputWinningNumbers();
-        int bonusNum = getInputBonusNumber();
+        int bonusNum = getInputBonusNumber(winningNumbers);
 
         processingRank(user, winningNumbers, bonusNum);
     }
@@ -37,46 +39,64 @@ public class LottoController {
 
 
     public int getInputMoney() {
-        while (true) {
+        int count = 0;
+        boolean checkException = true;
+
+        while (checkException) {
             PrintView.inputMoneyView();
             String inputMoney = Console.readLine();
             try {
-                return lottoService.initMoneyToCount(inputMoney);
+                count = lottoService.initMoneyToCount(inputMoney);
+                checkException = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+
+        return count;
     }
 
     public List<Integer> getInputWinningNumbers() {
-        while (true) {
+        List<Integer> numbers = new ArrayList<>();
+        boolean checkException = true;
+
+        while (checkException) {
             PrintView.inputWinningNumbersView();
             String inputWinningNumbers = Console.readLine();
             try {
-                return lottoService.initWinningNumbers(inputWinningNumbers);
+                numbers = lottoService.initWinningNumbers(inputWinningNumbers);
+                checkException = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+
+        return numbers;
     }
 
-    public int getInputBonusNumber() {
-        while (true) {
+    public int getInputBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber = 0;
+        boolean checkException = true;
+
+        while (checkException) {
             PrintView.inputBonusNumberView();
             String inputBonusNumber = Console.readLine();
             try {
-                return lottoService.initBonusNumber(inputBonusNumber);
+                bonusNumber = lottoService.initBonusNumber(winningNumbers, inputBonusNumber);
+                checkException =false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+
+        return bonusNumber;
     }
 
     public void processingRank(User user, List<Integer> winningNumbers, int bonusNum) {
         rankService = new RankService(user, winningNumbers, bonusNum);
 
         int[] winningCount = rankService.calculateLottoRanks();
-        double result = rankService.rateOfReturn();
+        BigDecimal result = rankService.rateOfReturn();
         PrintView.printWinningResult(winningCount, result);
     }
 

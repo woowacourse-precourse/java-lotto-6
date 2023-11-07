@@ -7,7 +7,13 @@ import lotto.validator.LottoMoneyValidator;
 public class InputView {
     public static Integer getLottoMoney() {
         String lottoMoneyInput = Console.readLine();
-        LottoMoneyValidator.validate(lottoMoneyInput);
+        try {
+            LottoMoneyValidator.validate(lottoMoneyInput);
+        } catch (IllegalArgumentException e) {
+            return getLottoMoney();
+        }
+
         return InputConverter.convertLottoMoney(lottoMoneyInput);
     }
+
 }

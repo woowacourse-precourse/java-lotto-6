@@ -9,6 +9,11 @@ public class LottoMoneyValidator {
     }
 
     private static void isNumeric(String lottoMoneyInput) {
+        try {
+            Integer.parseInt(lottoMoneyInput);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private static void isThousands(String lottoMoneyInput) {
@@ -18,6 +23,6 @@ public class LottoMoneyValidator {
     }
 
     private static void isTooBig(String lottoMoneyInput) {
-        
+
     }
 }

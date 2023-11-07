@@ -13,10 +13,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class PaymentInputManagerTest {
     private PaymentInputManager paymentInputManager;
     private ConsoleAdapter consoleAdapter;
+
     @BeforeEach
     void setUp() {
         consoleAdapter = new ConsoleAdapter() {
             private String input;
+
             public void setInput(String input) {
                 this.input = input;
             }
@@ -25,13 +27,8 @@ class PaymentInputManagerTest {
             public String readLine() {
                 return this.input;
             }
-
-            @Override
-            public void close() {
-                super.close();
-            }
         };
-        paymentInputManager=new PaymentInputManager();
+        paymentInputManager = PaymentInputManager.getInstance();
         paymentInputManager.setConsoleAdapter(consoleAdapter);
     }
 
@@ -39,7 +36,7 @@ class PaymentInputManagerTest {
     void testValidInput() {
         consoleAdapter.setInput("3000");
         Integer result = paymentInputManager.input();
-        assertThat(result).isEqualTo(3);
+        assertThat(result).isEqualTo(3000);
     }
 
     @Test

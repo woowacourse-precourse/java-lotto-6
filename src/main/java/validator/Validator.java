@@ -45,7 +45,7 @@ public class Validator {
         }
     }
 
-    public void checkCount(List<String> numbers) throws IllegalArgumentException {
+    public void checkInputCount(List<String> numbers) throws IllegalArgumentException {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ERROR_MESSAGE + "입력 갯수가 잘못되었습니다.");
         }

@@ -47,7 +47,7 @@ public class Service {
     public List<Integer> getWinNumbersByUserInput(String input) {
         validator.checkStartOrEndWithComma(input);
         List<String> splitNumbers = Utility.splitByComma(input);
-        validator.checkCount(splitNumbers);
+        validator.checkInputCount(splitNumbers);
         return generateWinNumbers(splitNumbers);
     }
 

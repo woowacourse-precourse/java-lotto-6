@@ -57,7 +57,7 @@ public class Winning {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(noEmptyReadLine);
         if (!matcher.matches()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자와 쉼표(,) 이외에 입력될 수 없습니다.");
         }
     }
 
@@ -68,7 +68,7 @@ public class Winning {
     private void checkDuplication(List<Integer> numbers) {
         Set<Integer> noDuplicationNumbers = new HashSet<>(numbers);
         if (numbers.size() != noDuplicationNumbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복되지 않는 숫자여야 합니다.");
         }
     }
 
@@ -84,20 +84,20 @@ public class Winning {
         try {
             result = Integer.parseInt(readLine);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력되어야 합니다.");
         }
         return result;
     }
 
-    private void checkBoundary(Integer bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException();
+    private void checkBoundary(Integer number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1~45 범위 내에 해당해야 합니다.");
         }
     }
 
     private void checkExist(Integer bonusNumber) {
         if (this.numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복되어서는 안 됩니다.");
         }
     }
 }

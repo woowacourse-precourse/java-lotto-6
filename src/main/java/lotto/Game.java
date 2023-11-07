@@ -32,9 +32,17 @@ public class Game {
     }
 
     private void saveBuyingPrice() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String readLine = Console.readLine();
-        buying = new Buying(readLine);
+        Boolean isNotEnded = true;
+        while (isNotEnded) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String readLine = Console.readLine();
+                buying = new Buying(readLine);
+                isNotEnded = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void giveLotto() {
@@ -57,15 +65,31 @@ public class Game {
     }
 
     private void saveWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
-        String readLine = Console.readLine();
-        winning.saveNumbers(readLine);
+        Boolean isNotEnded = true;
+        while (isNotEnded) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String readLine = Console.readLine();
+                winning.saveNumbers(readLine);
+                isNotEnded = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void saveBonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
-        String readLine = Console.readLine();
-        winning.saveBonusNumber(readLine);
+        Boolean isNotEnded = true;
+        while (isNotEnded) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String readLine = Console.readLine();
+                winning.saveBonusNumber(readLine);
+                isNotEnded = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void informWinning() {

@@ -31,19 +31,19 @@ public class Buying {
 
     private void checkDigit(String readLine) {
         if (readLine.length() > 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 6자리 이하여야 합니다.");
         }
     }
 
     private void checkMaxPrice(Integer price) {
         if (price > 100000) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 100000원 이하여야 합니다.");
         }
     }
 
     private void checkRest(Integer price) {
         if (price % 1000 != 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 1000원으로 나누어 떨어져야 합니다.");
         }
     }
 
@@ -51,7 +51,7 @@ public class Buying {
         try {
             return Integer.parseInt(refinedReadLine);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자만 입력되어야 합니다.");
         }
     }
 }

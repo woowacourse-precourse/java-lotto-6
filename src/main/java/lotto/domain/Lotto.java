@@ -2,9 +2,7 @@ package lotto.domain;
 
 import lotto.constant.Errors;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,7 +13,9 @@ public class Lotto {
         validateRange(numbers);
         validateDuplication(numbers);
 
-        this.numbers = numbers;
+        List<Integer> lottoNum = new ArrayList<>(numbers);
+        Collections.sort(lottoNum);
+        this.numbers = lottoNum;
     }
 
     public List<Integer> getNumbers(){

@@ -1,28 +1,33 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.util.Validator;
 
 public class LottoResult {
     private final Lotto winningLotto;
     private final BonusNumber bonusNumber;
 
-    private LottoResult(List<Integer> winningNumbers, int bonusNumber) {
-        validate(winningNumbers, bonusNumber);
+    private LottoResult(Lotto winningLotto, BonusNumber bonusNumber) {
+        this.winningLotto = winningLotto;
+        this.bonusNumber = bonusNumber;
 
-        this.winningLotto = new Lotto(winningNumbers);
-        this.bonusNumber = new BonusNumber(bonusNumber);
+        valiate();
     }
 
-    private LottoResult(List<Integer> winningNumbers, String bonusNumber) {
-        this(winningNumbers, Validator.validateNumeric(bonusNumber));
+    private LottoResult(List<Integer> winningNumber, String bonusNumber) {
+        this(new Lotto(winningNumber), new BonusNumber(bonusNumber));
     }
 
     public static LottoResult create(List<Integer> winningNumber, String bonusNumber) {
         return new LottoResult(winningNumber, bonusNumber);
     }
 
-    private void validate(List<Integer> winningNumbers, int bonusNumber) {
-        Validator.validateContainsBonusNumber(winningNumbers, bonusNumber);
+    private void valiate() {
+        validateDuplicateBonusNumber();
+    }
+
+    private void validateDuplicateBonusNumber() {
+        if (winningLotto.isContainsNumber(bonusNumber.getBonusNumber())) {
+            throw new IllegalArgumentException();
+        }
     }
 }

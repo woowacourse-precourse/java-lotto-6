@@ -1,8 +1,5 @@
 package lotto.model;
 
-import static lotto.model.Lotto.LOTTO_MAX_NUMBER;
-import static lotto.model.Lotto.LOTTO_MIN_NUMBER;
-
 import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -36,7 +33,7 @@ class InputTest {
                     new WinningLotto(new Lotto(nums), bonus);
                 })
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 양의 정수만 입력해주세요.");
+                .hasMessageContaining(Input.INPUT_POSITIVE_ERROR);
     }
 
     @Test
@@ -50,7 +47,7 @@ class InputTest {
                     new WinningLotto(new Lotto(nums), bonus);
                 })
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 숫자는 " + LOTTO_MIN_NUMBER + "이상" + LOTTO_MAX_NUMBER + "이하인 값만 입력하세요");
+                .hasMessageContaining(Input.LOTTO_RANGE_ERROR);
     }
 
     @Test
@@ -64,7 +61,7 @@ class InputTest {
                     new WinningLotto(new Lotto(nums), bonus);
                 })
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 보너스 숫자는 당첨 번호에 포함되지 않은 숫자를 선택해야 합니다.");
+                .hasMessageContaining(Input.BONUS_DUPLICATE_ERROR);
     }
 
 }

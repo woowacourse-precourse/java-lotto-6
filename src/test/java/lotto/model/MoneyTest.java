@@ -1,7 +1,5 @@
 package lotto.model;
 
-import static lotto.model.Money.CURRENT_UNIT;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,11 +15,11 @@ class MoneyTest {
 
         Assertions.assertThatThrownBy(() -> new Money(inputNon))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 양의 정수만 입력하세요.");
+                .hasMessageContaining(Money.INPUT_POSITIVE_ERROR);
 
         Assertions.assertThatThrownBy(() -> new Money(inputSpace))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 양의 정수만 입력하세요.");
+                .hasMessageContaining(Money.INPUT_POSITIVE_ERROR);
     }
 
     @Test
@@ -31,7 +29,7 @@ class MoneyTest {
 
         Assertions.assertThatThrownBy(() -> new Money(inputString))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 양의 정수만 입력하세요.");
+                .hasMessageContaining(Money.INPUT_POSITIVE_ERROR);
     }
 
     @Test
@@ -41,7 +39,7 @@ class MoneyTest {
 
         Assertions.assertThatThrownBy(() -> new Money(inputDouble))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 양의 정수만 입력하세요.");
+                .hasMessageContaining(Money.INPUT_POSITIVE_ERROR);
     }
 
     @Test
@@ -56,7 +54,7 @@ class MoneyTest {
 
         Assertions.assertThatThrownBy(() -> new Money(wrongInput))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("[ERROR] 금액은 " + CURRENT_UNIT + "으로 나누어 떨어져야 합니다.");
+                .hasMessageContaining(Money.MONEY_UNIT_ERROR);
     }
 
 }

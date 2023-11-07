@@ -1,11 +1,14 @@
 package lotto.domain;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.*;
 
 public class LottoOffice {
 
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_SIZE = 6;
     private static final int COUNT_ZERO = 0;
     private static final int COUNT_ONE = 1;
     private static final int LEAST_WINNING_COUNT = 3;
@@ -28,6 +31,13 @@ public class LottoOffice {
             saveResult(rightNumber, rightBonus);
         }
         return result;
+    }
+
+    public static Lotto generateLotto() {
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER, LOTTO_SIZE));
+        Collections.sort(numbers);
+        return new Lotto(numbers);
     }
 
     public double getYield(int purchaseAmount) {

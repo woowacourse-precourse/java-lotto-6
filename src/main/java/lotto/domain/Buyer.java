@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Buyer {
@@ -19,15 +16,8 @@ public class Buyer {
 
     private void purchaseLotto() {
         for (int i = 0; i < purchaseAmount / LOTTO_PRICE; i++) {
-            generateLotto();
+            lottoList.add(LottoOffice.generateLotto());
         }
-    }
-
-    private void generateLotto() {
-        List<Integer> numbers = new ArrayList<>(
-                Randoms.pickUniqueNumbersInRange(1, 45, 6));
-        Collections.sort(numbers);
-        lottoList.add(new Lotto(numbers));
     }
 
     public List<Lotto> getLottoList() {

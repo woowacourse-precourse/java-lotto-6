@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.view.View;
 import lotto.view.constant.Message;
 
@@ -27,7 +28,7 @@ public class Controller {
         }
 
         view.output(INPUT_MATCH);
-        Lotto matchLotto = getMatchLotto();
+        WinningLotto winningLotto = getMatchLotto();
 
     }
 
@@ -50,10 +51,10 @@ public class Controller {
         return lottos;
     }
 
-    private Lotto getMatchLotto() {
+    private WinningLotto getMatchLotto() {
         try {
             List<Integer> matches = view.inputMatch();
-            return new Lotto(matches);
+            return new WinningLotto(matches);
         } catch (IllegalArgumentException e) {
             view.output(e.getMessage());
             return getMatchLotto();

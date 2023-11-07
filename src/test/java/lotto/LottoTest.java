@@ -3,6 +3,7 @@ package lotto;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import lotto.model.Lotto;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +15,26 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class LottoTest {
+class    LottoTest {
+    static Integer lottoNumberSize;
+    static Integer minLottoNumber;
+    static Integer maxLottoNumber;
+
+    @BeforeAll
+    public static void getConstantValue() throws NoSuchFieldException, IllegalAccessException {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        Field privateLottoNumberSize = Lotto.class.getDeclaredField("LOTTO_NUMBER_SIZE");
+        Field privateMinLottoNumber = Lotto.class.getDeclaredField("MIN_LOTTO_NUMBER");
+        Field privateMaxLottoNumber = Lotto.class.getDeclaredField("MAX_LOTTO_NUMBER");
+        privateMinLottoNumber.setAccessible(true);
+        privateMaxLottoNumber.setAccessible(true);
+        privateLottoNumberSize.setAccessible(true);
+        lottoNumberSize = (Integer) privateLottoNumberSize.get(lotto);
+        minLottoNumber = (Integer) privateMinLottoNumber.get(lotto);
+        maxLottoNumber = (Integer) privateMaxLottoNumber.get(lotto);
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -32,16 +52,18 @@ class LottoTest {
     @DisplayName("로또 번호가 비어있거나 null값이 들어오면 예외가 발생한다.")
     @ParameterizedTest
     @NullAndEmptySource
-    void createLottoByNullOrEmpty(List<Integer> numbers) {
+    void createLottoByNullOrEmpty(List<Integer> numbers) throws NoSuchFieldException, IllegalAccessException {
         assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] " + lottoNumberSize + "개의 로또번호를 입력해주세요");
     }
 
     @DisplayName("로또 번호의 개수가 6개보다 부족하면 예외가 발생한다.")
     @Test
-    void createLottoByUnderSize() {
+    void createLottoByUnderSize() throws NoSuchFieldException, IllegalAccessException {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] " + lottoNumberSize + "개의 로또번호를 입력해주세요");
     }
 
     @DisplayName("로또 번호에 범위(1 ~ 45) 밖의 숫자가 있으면 예외가 발생한다.")
@@ -56,10 +78,12 @@ class LottoTest {
         }
 
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다 범위 "
+                        + minLottoNumber + "~" + maxLottoNumber);
     }
 
-    @DisplayName("로또번호가 정상적으로 들어온 경우")
+    @DisplayName("로또번호가 정상적으로 들어온 경우.")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,4,5,6", "1,2,3,43,44,45"})
     void createLottoByNormal(String numbers) throws NoSuchFieldException, IllegalAccessException {

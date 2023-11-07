@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Application {
 
@@ -102,5 +104,16 @@ public class Application {
     public static void printLottos(List<Lotto> lottos) {
         lottos.stream()
                 .forEach((lotto -> System.out.println(lotto)));
+    }
+
+    public void checkDelimiter(String input) {
+        String regex = "[^0-9,]";
+
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            throw new IllegalArgumentException("입력 값은 숫자와 쉼표만 올 수 있습니다.");
+        }
     }
 }

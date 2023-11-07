@@ -47,7 +47,7 @@ public class LottoSalesManager {
         }
     }
 
-    public int judgeLottosRank(int matchedNumberCount, boolean bonusIsMatched) {
+    public static int judgeLottosRank(int matchedNumberCount, boolean bonusIsMatched) {
         if (matchedNumberCount == 3) {
             return 5;
         }

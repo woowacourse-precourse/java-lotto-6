@@ -25,7 +25,6 @@ public class Application {
             int matchedCount = lotto.compareWithTheCorrectAnswer(answerNumbers);
             boolean bonusNumberIsMatched = lotto.compareWithBonusNumber(bonusNumber);
             if(matchedCount == 5){
-                if()
             }
         }
 

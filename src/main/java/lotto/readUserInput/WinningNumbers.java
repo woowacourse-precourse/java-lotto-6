@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.validation.ErrorMessage;
 import lotto.validation.ErrorValidation;
 
 public class WinningNumbers implements UserInput {
@@ -19,7 +20,7 @@ public class WinningNumbers implements UserInput {
         try {
             ErrorValidation.isInputContainComma(readWinningNumbers);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 로또 번호는 공백 없이 6개의 숫자 사이에 콤마를 넣어야 합니다.");
+            System.out.println(ErrorMessage.ERROR_WINNING_CONTAINS_COMMA.getMessage());
             readWinningNumbers = userInput();
         }
         return readWinningNumbers;
@@ -40,7 +41,7 @@ public class WinningNumbers implements UserInput {
             try {
                 ErrorValidation.isNumberInRange(singleNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                System.out.println(ErrorMessage.ERROR_WINNING_IN_RANGE.getMessage());
                 numbers.clear();
                 readInputNumber = separateUserInput(userInput());
             }

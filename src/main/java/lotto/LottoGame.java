@@ -3,9 +3,11 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 public class LottoGame {
     public void execute() {
@@ -14,6 +16,8 @@ public class LottoGame {
         int purchaseLottoCount = getPurchaseLottoCount(purchaseMoney);
 
         List<Lotto> purchaseLottos = getPurchaseLotto(purchaseLottoCount);
+
+        Lotto winningLotto = getWinningLotto();
     }
 
     private int purchase() {
@@ -49,6 +53,22 @@ public class LottoGame {
         }
 
         return purchaseLottos;
+    }
+
+    private Lotto getWinningLotto() {
+        while (true) {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            try {
+                String[] inputArr = Console.readLine().split(",");
+                List<Integer> winningNumbers = Arrays.stream(inputArr).mapToInt(value -> Integer.parseInt(value))
+                        .sorted().boxed().collect(Collectors.toList());
+                return new Lotto(winningNumbers);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private void validatePurchaseMoney(int purchaseMoney) {

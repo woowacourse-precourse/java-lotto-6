@@ -6,10 +6,7 @@ import lotto.model.LottoResult;
 import lotto.model.ProfitRate;
 import lotto.model.LottoBundle;
 
-import java.text.DecimalFormat;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import static lotto.view.OutputFormatter.*;
 import static lotto.view.message.GameMessage.*;
 
 public class OutputView {
@@ -44,53 +41,30 @@ public class OutputView {
         printMessage(DIVISION_LINE.getMessage());
     }
 
+    public static void printErrorMessage(String message) {
+        printMessage(message);
+    }
+
     public static void printLottoResult(LottoResult lottoResult) {
         StringBuilder sb = new StringBuilder();
         for (RankCategory rankCategory : RankCategory.values()) {
+            int count = lottoResult.getResults().getOrDefault(rankCategory, 0);
             if (rankCategory == RankCategory.NONE) {
                 continue;
             }
-            int count = lottoResult.getResults().getOrDefault(rankCategory, 0);
             if (rankCategory.isBonusStatus()) {
-                sb.append(rankCategory.getMatchingNumbers())
-                        .append("개 일치, 보너스 볼 일치 (")
-                        .append(formatPrize(rankCategory.getPrize()))
-                        .append("원) - ")
-                        .append(count)
-                        .append("개\n");
+                formatSecondCategory(sb, rankCategory, count);
                 continue;
             }
-            sb.append(rankCategory.getMatchingNumbers())
-                    .append("개 일치 (")
-                    .append(formatPrize(rankCategory.getPrize()))
-                    .append("원) - ")
-                    .append(count)
-                    .append("개\n");
+            formatRankCategory(sb, rankCategory, count);
         }
         printMessage(sb.toString().trim());
     }
 
     public static void printProfitRate(ProfitRate profitRate) {
         StringBuilder sb = new StringBuilder();
-        sb.append("총 수익률은 ")
-                .append(String.format("%.1f", profitRate.getRate()))
-                .append("%입니다.");
+        formatProfitRate(profitRate, sb);
         printMessage(sb.toString());
-    }
-
-    public static void printErrorMessage(String message) {
-        printMessage(message);
-    }
-
-    private static String formatPrize(int prize) {
-        DecimalFormat df = new DecimalFormat("###,###");
-        return df.format(prize);
-    }
-
-    private static String formatLottoNumbers(List<Integer> numbers) {
-        return numbers.stream()
-                .map(Object::toString)
-                .collect(Collectors.joining(", ", "[", "]"));
     }
 
     private static void printMessage() {

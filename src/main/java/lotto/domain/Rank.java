@@ -14,6 +14,18 @@ public enum Rank {
     private String reply;
     private int money;
 
+    public int getShot() {
+        return shot;
+    }
+
+    public String getReply() {
+        return reply;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
     Rank(int shot, String reply, int money) {
         this.shot = shot;
         this.reply = reply;

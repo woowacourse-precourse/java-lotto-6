@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class LottosRandomsTest {
+class LottoStoreRandomsTest {
 
     public static final int START_INCLUSIVE = 1;
     public static final int END_INCLUSIVE = 45;

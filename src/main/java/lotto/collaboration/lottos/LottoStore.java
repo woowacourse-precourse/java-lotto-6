@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.Randoms;
 
-public class Lottos {
+public class LottoStore {
 
     public static final int MIN_PURCHASE_AMOUNT = 1_000;
     public static final int MAX_PURCHASE_AMOUNT = 100_000;

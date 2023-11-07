@@ -1,7 +1,7 @@
 package lotto.game;
 
 import java.util.List;
-import lotto.collaboration.lottos.Lottos;
+import lotto.collaboration.lottos.LottoStore;
 import lotto.collaboration.lottos.WinningLotto;
 import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.InteractionRepeatable;
@@ -12,12 +12,12 @@ public class LottoGame implements InteractionRepeatable {
 
     private final LottoGameView lottoGameView;
     private final Randoms randoms;
-    private final Lottos lottos;
+    private final LottoStore lottoStore;
 
-    public LottoGame(final LottoGameView lottoGameView, final Randoms randoms, final Lottos lottos) {
+    public LottoGame(final LottoGameView lottoGameView, final Randoms randoms, final LottoStore lottoStore) {
         this.lottoGameView = lottoGameView;
         this.randoms = randoms;
-        this.lottos = lottos;
+        this.lottoStore = lottoStore;
     }
 
     public void run() {
@@ -28,12 +28,12 @@ public class LottoGame implements InteractionRepeatable {
     private void payOfPurchaseAmount() {
         runInteraction(() -> {
             int purchaseAmount = lottoGameView.askPurchaseAmount();
-            lottos.purchase(purchaseAmount);
+            lottoStore.purchase(purchaseAmount);
         });
     }
 
     private List<PlayerLotto> receiveIssuedLottos() {
-        List<PlayerLotto> buyLottos = lottos.make(randoms);
+        List<PlayerLotto> buyLottos = lottoStore.make(randoms);
         lottoGameView.announcePurchaseLottos(buyLottos);
         return buyLottos;
     }
@@ -47,7 +47,7 @@ public class LottoGame implements InteractionRepeatable {
 
     private void announceResult(List<PlayerLotto> buyLottos, WinningLotto winningLotto) {
         lottoGameView.announceWinningStatistics(
-                lottos.getPurchaseAmount(),
+                lottoStore.getPurchaseAmount(),
                 winningLotto.matchNumbers(buyLottos));
     }
 

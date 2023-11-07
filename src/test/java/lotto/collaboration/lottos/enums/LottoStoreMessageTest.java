@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-class LottosMessageTest {
+class LottoStoreMessageTest {
 
     @Test
     void get으로_메시지얻을수있다() {

@@ -2,7 +2,7 @@ package lotto;
 
 import static lotto.enums.ApplicationMessage.EXCEPTION_APPLICATION;
 
-import lotto.collaboration.lottos.Lottos;
+import lotto.collaboration.lottos.LottoStore;
 import lotto.game.LottoGame;
 import lotto.game.views.LottoGameView;
 import lotto.game.views.LottosView;
@@ -38,7 +38,7 @@ public class Application {
                         new WinningLottoView(input, output)
                 ),
                 new LottosRandoms(),
-                new Lottos()
+                new LottoStore()
         );
     }
 

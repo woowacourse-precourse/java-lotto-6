@@ -46,6 +46,14 @@ public class WinLottoWithBonusTest {
         );
     }
 
+    private static Stream<Arguments> generateWinningLotto() {
+        return Stream.of(
+                Arguments.of(WinLottoWithBonus.create(List.of(1, 10, 20, 30, 40, 45), "7"), List.of(1, 10, 20, 30, 40, 45)),
+                Arguments.of(WinLottoWithBonus.create(List.of(1, 3, 5, 6, 10, 11), "20"), List.of(1, 3, 5, 6, 10, 11)),
+                Arguments.of(WinLottoWithBonus.create(List.of(1, 3, 5, 6, 25, 36), "9"), List.of(1, 3, 5, 6, 25, 36))
+        );
+    }
+
     @DisplayName("보너스 번호에 숫자로 변환될 수 없는 타입이 들어가면 예외가 발생한다.")
     @ParameterizedTest(name = "[{index}] input {1} " )
     @MethodSource("generateIncovertibleNumber")
@@ -78,5 +86,12 @@ public class WinLottoWithBonusTest {
     @MethodSource("generateBonusNumber")
     void createBonusNumber(WinLottoWithBonus winLottoWithBonus, int bonusNumber) {
         assertThat(winLottoWithBonus.getBonusNumber()).isEqualTo(bonusNumber);
+    }
+
+    @DisplayName("당첨 번호가 정상적으로 반환된다.")
+    @ParameterizedTest(name = "[{index}] input {0} " )
+    @MethodSource("generateWinningLotto")
+    void createWinningLotto(WinLottoWithBonus winLottoWithBonus, List<Integer> winningLotto) {
+        assertThat(winLottoWithBonus.getWinningLotto()).isEqualTo(winningLotto);
     }
 }

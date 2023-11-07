@@ -6,5 +6,6 @@ public class GameController {
     public static void startLottoGame(){
         GameService.startGame();
         GameService.playGame();
+        GameService.endGame();
     }
 }

@@ -13,6 +13,7 @@ public class GameService {
 
     static int lottoCnt;
     private static Playing playing = new Playing();
+    private static List<Integer> winningNumbers = new ArrayList<>();
 
     public static void startGame() {
         OutputView.printPurchaseAmountMessage();
@@ -26,12 +27,19 @@ public class GameService {
         OutputView.printLottosMessage(playing.lottos);
 
         OutputView.printWinningNumbersMessage();
-        List<Integer> winningNumbers = InputValidator.checkWinningNumbersInput();
+        winningNumbers = InputValidator.checkWinningNumbersInput();
 
         OutputView.printBonusNumberMessage();
         Integer bonus = InputValidator.checkValidBonusNumberInput(winningNumbers);
 
         playing.compareLottosAndWinningNumbers(winningNumbers, bonus);
+    }
+
+    public static void endGame(){
+        OutputView.printGameResultMessage();
+        playing.getWinningStatistics(playing.lottos);
+        OutputView.printWinningStatisticsMessage(playing.winningStatistics);
+
     }
 
 

@@ -19,7 +19,7 @@ public enum Ranking {
         this.reward = point;
     }
 
-    public Ranking getPoint(int[] score) {
+    public static Ranking getRank(int[] score) {
         return Arrays.stream(Ranking.values())
                 .filter(rank -> rank.equals(score))
                 .findFirst()

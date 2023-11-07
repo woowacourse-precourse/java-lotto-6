@@ -17,7 +17,7 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    public int[] getScore(final List<Integer> winningNumbers, final int bonusNumber) {
+    public Ranking getScore(final List<Integer> winningNumbers, final int bonusNumber) {
         int[] score = new int[2];
         for (int winningNumber : winningNumbers) {
             if (numbers.contains(winningNumber)) {
@@ -27,7 +27,7 @@ public class Lotto {
         if (score[0] == 5 && numbers.contains(bonusNumber)) {
             score[1]++;
         }
-        return score;
+        return Ranking.getRank(score);
     }
 
     private boolean invalidRange(List<Integer> numbers) {

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 class MatchTest extends NsTest {
 
     @Test
-    void 로또_라운드별_결과값_구하기() {
+    void 로또_총수익률_구하기() {
         InputLottoNumber inputLottoNumber = new InputLottoNumber("1,2,3,4,5,6");
         InputBonusNumber inputBonusNumber = new InputBonusNumber("7");
         List<MatchResult> matchResults = new ArrayList<MatchResult>();

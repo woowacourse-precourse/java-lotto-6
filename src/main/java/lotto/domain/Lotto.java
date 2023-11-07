@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.LottoExceptionMessage;
+import lotto.utils.LottoExceptionMessage;
 
 public class Lotto {
     private static final int REQUIRED_COUNT = 6;
@@ -53,4 +53,14 @@ public class Lotto {
     public boolean isContains(LottoNumber target) {
         return this.lottoNumbers.contains(target);
     }
+
+    public List<LottoNumber> getLottoNumbers() {
+        return lottoNumbers;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(lottoNumbers);
+    }
+    
 }

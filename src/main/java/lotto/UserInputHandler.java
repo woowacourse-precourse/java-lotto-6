@@ -36,8 +36,8 @@ public class UserInputHandler {
             try {
                 String winning = Console.readLine();
                 ArrayList<String> winningNum = new ArrayList(Arrays.asList(winning.split(",")));
-                ArrayList<Integer> intNumList = removeEmptySpace(winningNum);
-                checkWinningNumbersValidity(intNumList);
+                checkWinningNumbersValidity(winningNum);
+                ArrayList<Integer> intNumList = removeEmptySpaceWithParseInt(winningNum);
 
                 return intNumList;
 
@@ -50,7 +50,7 @@ public class UserInputHandler {
 
     }
 
-    public static ArrayList<Integer> removeEmptySpace(ArrayList<String> winningNum) {
+    public static ArrayList<Integer> removeEmptySpaceWithParseInt(ArrayList<String> winningNum) {
         ArrayList<Integer> intNumList = new ArrayList();
         for (int i = 0; i < winningNum.size(); i++) {
             String winningNumber = winningNum.get(i).replace(" ", "");

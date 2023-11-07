@@ -6,4 +6,6 @@ public interface OutputView {
   void printNotBonusPrize(Integer prize, Integer count);
 
   void printBonusPrize(Integer prize, Integer count);
+
+  void printRateOfReturn(Double rateOfReturn);
 }

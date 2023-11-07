@@ -27,7 +27,6 @@ public class WinningCalculator {
     }
 
     public Double calculateRateOfReturn(Integer amountOfInvestment, Long totalPrizeMoney) {
-        System.out.println("MAXIMUM_RATE_OF_RESULT = " + MAXIMUM_RATE_OF_RESULT);
         checkAmountOfInvestment(amountOfInvestment);
 
         Double rateOfReturn = (totalPrizeMoney.doubleValue() / amountOfInvestment.doubleValue()) * 100;
@@ -61,6 +60,6 @@ public class WinningCalculator {
     }
 
     private Double roundRateOfReturn(Double rateOfReturn) {
-        return Math.round(rateOfReturn * 100.0) / 100.0;
+        return Math.round(rateOfReturn * 10.0) / 10.0;
     }
 }

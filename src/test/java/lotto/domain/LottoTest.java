@@ -42,7 +42,7 @@ class LottoTest {
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 7, 8, 9);
         int winningBonus = 10;
 
-        Lotto ticket = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        Lotto ticket = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         ticket.evaluateWinning(winningNumbers, winningBonus, winnings);
 
         assertThat(winnings).anySatisfy(winning -> {

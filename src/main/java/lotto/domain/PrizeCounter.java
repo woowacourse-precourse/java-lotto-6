@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,6 @@ public class PrizeCounter {
     }
 
     public Map<String, Integer> getCounter() {
-        return counter;
+        return Collections.unmodifiableMap(counter);
     }
 }

@@ -8,6 +8,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import lotto.PrizeMoney;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.MainNumbers;
@@ -15,6 +16,7 @@ import lotto.domain.Prize;
 import lotto.domain.PrizeCounter;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoTicket;
+import lotto.dto.StatisticsResult;
 
 public class LottoService {
 
@@ -58,8 +60,20 @@ public class LottoService {
         return numbers;
     }
 
+    public StatisticsResult getPrizeResult() {
+        PrizeCounter prizeCounter = countPrize();
+        int prizeMoney = prizeMoney(prizeCounter);
+        int payment = lottos.size() * 1000;
 
-    public PrizeCounter countPrize() {
+        return new StatisticsResult(prizeCounter.getCounter(), prizeMoney, payment);
+    }
+
+    private int prizeMoney(PrizeCounter prizeCounter) {
+        return prizeCounter.getCounter().entrySet().stream()
+                .mapToInt(entry -> PrizeMoney.valueOf(entry.getKey()).value() * entry.getValue()).sum();
+    }
+
+    private PrizeCounter countPrize() {
         PrizeCounter prizeCounter = new PrizeCounter();
         lottos.stream()
                 .map(this::findPrize)

@@ -63,4 +63,15 @@ public class UserAmountTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 구입 금액이 0원이 아닌 값을 입력해야 합니다.");
     }
+
+    @Test
+    void 로또_구입_금액이_음수_라면_IllegalArgumentException_예외처리() {
+        //given
+        String userAmountInput = "-5000";
+
+        //when & then
+        Assertions.assertThatThrownBy(() -> UserAmount.from(userAmountInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 구입 금액이 음수가 아닌 값을 입력해야 합니다.");
+    }
 }

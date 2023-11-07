@@ -28,6 +28,8 @@ public class Application {
         final List<Lotto> newLottos = LottoManager.createLottos(money);
         OutputView.printLottoSize(newLottos);
         newLottos.forEach(System.out::println);
+
+        //당첨 로또 생성
         createWinningLotto(newLottos);
     }
 
@@ -40,11 +42,13 @@ public class Application {
         inputView.printWinningBonusNumberMessage();
         final int bonusNumber = lottoController.inputWinningLottoBonusNumber(winningNumbers);
 
+        //당첨 로또 생성
         final WinningLotto newWinningLotto = new WinningLotto(winningNumbers, bonusNumber);
         result(newLottos, newWinningLotto);
     }
 
     private static void result(final List<Lotto> newLottos, final WinningLotto newWinningLotto) {
+        //결과 출력
         LottoManager lottoManager = new LottoManager(newLottos, newWinningLotto);
         final List<Lotto> lottos = lottoManager.getLottos();
         final WinningLotto winningLotto = lottoManager.getWinningLotto();

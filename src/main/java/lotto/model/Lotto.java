@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.List;
+import lotto.service.Validator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -10,12 +11,13 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public static Lotto createLotto(List<Integer> numbers) {
+        return new Lotto(numbers);
+    }
+
     private void validate(List<Integer> numbers) {
-        try {
-
-        } catch (IllegalArgumentException e) {
-
-        }
+        Validator.validateInputLength(numbers);
+        Validator.duplicateInputLottoNumbers(numbers);
     }
 
 

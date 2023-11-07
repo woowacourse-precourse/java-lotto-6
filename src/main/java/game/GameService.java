@@ -18,7 +18,7 @@ public class GameService {
         getLottoByPrice(lottos);
 
         WinningNumber winningNumber = getWinningNumber();
-
+        printWinningResult(lottos, winningNumber, price);
 
     }
 
@@ -99,6 +99,7 @@ public class GameService {
     }
 
     public int getBonusNumber(List<Integer> winningNumbers) {
+        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusInput = Console.readLine();
         validateBonus(bonusInput, winningNumbers);
         return Integer.parseInt(bonusInput);
@@ -116,6 +117,52 @@ public class GameService {
         if (winningNumbers.contains(Integer.parseInt(bonus))) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public void printWinningResult(List<Lotto> lottos, WinningNumber winningNumber, int price) {
+        int[] lottoResult = new int[lottos.size()];
+        int[] bonus = new int[lottos.size()];
+        int index = 0;
+
+        for (Lotto lotto : lottos) {
+            for (int number : lotto.getLotto()) {
+                if (winningNumber.getLotto().contains(number)) {
+                    lottoResult[index]++;
+                }
+                if (winningNumber.getBonus() == number) {
+                    bonus[index]++;
+                }
+            }
+            System.out.println(lottoResult[index] + "   " + bonus[index]);
+            index++;
+        }
+
+        int[] winningResult = new int[5];
+        for (int i = 0; i < lottos.size(); i++) {
+            if (lottoResult[i] == 5 && bonus[i] == 1) {
+                winningResult[3]++;
+                continue;
+            }
+            if (lottoResult[i] == 6) {
+                winningResult[4]++;
+                continue;
+            }
+            if (lottoResult[i] == 3 || lottoResult[i] == 4 || lottoResult[i] == 5) {
+                winningResult[lottoResult[i] - 3]++;
+            }
+        }
+
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + winningResult[0] + "개");
+        System.out.println("4개 일치 (50,000원) - " + winningResult[1] + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + winningResult[2] + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningResult[3] + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + winningResult[4] + "개");
+
+        double rateOfReturn = (5000 * winningResult[0] + 50000 * winningResult[1] + 1_500_000 * winningResult[2]
+                + 30_000_000 * winningResult[3] + 2_000_000_000 * winningResult[4]) * 100.0 / price;
+        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
     }
 
 }

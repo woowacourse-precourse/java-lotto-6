@@ -11,14 +11,14 @@ public enum WinningType {
     private final int index;
     private final int matchingCount;
     private final boolean bonusMatching;
-    private final long price;
+    private final long prize;
 
-    WinningType(String name, int index, int matchingCount, boolean bonusMatching, long price) {
+    WinningType(String name, int index, int matchingCount, boolean bonusMatching, long prize) {
         this.name = name;
         this.index = index;
         this.matchingCount = matchingCount;
         this.bonusMatching = bonusMatching;
-        this.price = price;
+        this.prize = prize;
     }
 
     public int getIndex() {
@@ -37,7 +37,7 @@ public enum WinningType {
         return bonusMatching;
     }
 
-    public long getPrice() {
-        return price;
+    public long getPrize() {
+        return prize;
     }
 }

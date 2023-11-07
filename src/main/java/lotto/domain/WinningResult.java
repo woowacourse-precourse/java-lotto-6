@@ -1,12 +1,11 @@
 package lotto.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class WinningResult {
     private List<Integer> winningCount = new ArrayList<>();
-    private Long totalPrice = 0L;
+    private Long totalPrize = 0L;
     private Integer lottoCount = 0;
 
     public WinningResult() {
@@ -23,7 +22,7 @@ public class WinningResult {
             if (isMatched(type, matchingCount, bonusMatching)) {
                 int index = type.getIndex();
                 winningCount.set(index, 1);
-                totalPrice += type.getPrice();
+                totalPrize += type.getPrize();
                 break;
             }
         }
@@ -53,7 +52,7 @@ public class WinningResult {
             int currCount = this.winningCount.get(index);
             int added = winningResult.winningCount.get(index);
             this.winningCount.set(index, currCount + added);
-            totalPrice += type.getPrice() * added;
+            totalPrize += type.getPrize() * added;
         }
         this.lottoCount += winningResult.lottoCount;
     }
@@ -67,8 +66,8 @@ public class WinningResult {
         return winningCount.get(index);
     }
 
-    public long getTotalPrice() {
-        return totalPrice;
+    public long getTotalPrize() {
+        return totalPrize;
     }
 
     public int getLottoCount() {

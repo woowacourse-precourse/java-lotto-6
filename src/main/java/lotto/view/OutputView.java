@@ -50,7 +50,7 @@ public class OutputView {
     }
 
     private void printEarningRate(WinningResult winningResult) {
-        long earnings = winningResult.getTotalPrice();
+        long earnings = winningResult.getTotalPrize();
         long paid = (long) winningResult.getLottoCount()
                 * LottoSetting.PRICE.getValue();
         double earningRate = (double) earnings / paid * 100;
@@ -68,7 +68,7 @@ public class OutputView {
     private void printWinningType(WinningType type, WinningResult winningResult) {
         int matchingCount = type.getMatchingCount();
         int winningCount = winningResult.getWinningCountOfType(type);
-        String money = getDecimalFormetString(type.getPrice());
+        String money = getDecimalFormetString(type.getPrize());
         String output = String.format("%d개 일치", matchingCount);
         if (type.getBonusMatching()) {
             output += ", 보너스 볼 일치";

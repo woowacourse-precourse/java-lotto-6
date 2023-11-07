@@ -50,7 +50,7 @@ public class InputView {
             System.out.println(USER_INPUT_MESSAGE);
             userInput = Console.readLine();
             winningNumber = convertWinningNumber(userInput);
-        } while (false);
+        } while (!lottoException.numberLengthCheckMain(winningNumber));
         return new WinningLotto(new Lotto(winningNumber), 1);
     }
 

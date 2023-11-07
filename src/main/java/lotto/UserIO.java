@@ -38,17 +38,25 @@ public class UserIO {
         }
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(Lotto lotto) {
         while (true) {
             try {
                 String input = iOBonusNumbers();
                 isNumeric(input);
                 int bonusNumber = Integer.parseInt(input);
                 isLottoNumber(bonusNumber);
+                isDuplicate(bonusNumber, lotto);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
+        }
+    }
+
+    private void isDuplicate(int number, Lotto lotto) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        if (lottoNumbers.contains(number)) {
+            throw new IllegalArgumentException();
         }
     }
 

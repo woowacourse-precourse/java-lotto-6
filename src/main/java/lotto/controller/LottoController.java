@@ -92,8 +92,8 @@ public class LottoController {
         return new DrawingResultDto(drawingResult.getResults());
     }
 
-    public void profitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {
-        ProfitRateDto profitRateDto = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
+    public void profitRate(final Lottos lottos, final DrawingResults drawingResults) {
+        ProfitRateDto profitRateDto = lottoMachine.calculateProfitRate(lottos, drawingResults);
         outputView.printProfitRate(profitRateDto);
     }
 }

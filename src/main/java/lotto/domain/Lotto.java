@@ -20,7 +20,6 @@ public class Lotto {
         }
     }
 
-    // TODO: toString
     public String toString() {
         List<String> numbersForPrint = new ArrayList<>();
         for (int i : numbers) {

@@ -13,7 +13,7 @@ public enum ExceptionMessage {
     LOTTO_DUPLICATE_NUMBER_EXCEPTION(HEADER.getMessage() + "중복된 숫자는 입력될 수 없습니다"),
     LOTTO_WRONG_RANGE_EXCEPTION(HEADER.getMessage() + "1~45 사이의 숫자만 입력 가능합니다.");
 
-    private String message;
+    private final String message;
 
     ExceptionMessage(String message) {
         this.message = message;

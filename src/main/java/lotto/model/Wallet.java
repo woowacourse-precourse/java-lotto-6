@@ -2,7 +2,7 @@ package lotto.model;
 
 public class Wallet {
     private static final int MAXIMUM_PURCHASE_AMOUNT =  1000000000;
-    private static final int DIVISION_AMOUNT = 1000;
+    private static final int LOTTO_PRICE = 1000;
 
     private int money;
 
@@ -16,6 +16,14 @@ public class Wallet {
         validateNonNumericMoney(money);
         validateNotDivisionMoney(money);
         validateOutOfRangeMoney(money);
+    }
+
+    public boolean canBuyLotto() {
+        return money - LOTTO_PRICE >= 0;
+    }
+
+    public void buyLotto() {
+        money -= LOTTO_PRICE;
     }
 
     private void validateNonNumericMoney(String money) {
@@ -43,7 +51,7 @@ public class Wallet {
     private void validateNotDivisionMoney(String money) {
         int convertMoney = convertStringToInt(money);
 
-        if (convertMoney == 0 || convertMoney % DIVISION_AMOUNT != 0) {
+        if (convertMoney == 0 || convertMoney % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
                     + MAXIMUM_PURCHASE_AMOUNT + "원.");
         }

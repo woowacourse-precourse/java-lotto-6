@@ -268,6 +268,7 @@ public class Lotto {
 
 - StringTokenizer를 통해 ' , ' 을 구분자로 입력받아, List<Intege> lotto_answer 에 저장
 - int bonus_number에 보너스 번호 저장
+  - Bonus Number에 대해, answer.contains를 통해 중복되지 않는 것을 뽑아야 함!
 - static 변수로 만드는 것이 좋을까??? ~~[ 고민해봐야할것같음 ]~~
 
 ### 4) 구매한 로또에 대한 출력

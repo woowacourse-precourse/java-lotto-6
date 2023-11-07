@@ -13,7 +13,7 @@ public class InputCostTest {
     @DisplayName("로또를 사기위한 금액 입력 시, 문자열이 들어가있으면 예외가 발생한다.")
     @Test
     void validateInputCostIsNumException() {
-        assertThatThrownBy(() -> validateInputCostIsNum("1000z"))
+        assertThatThrownBy(() -> validateInputIsNum("1000z"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

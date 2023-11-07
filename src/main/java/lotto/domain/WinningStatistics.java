@@ -3,11 +3,11 @@ package lotto.domain;
 import static lotto.domain.Ranking.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class WinningStatistics {
-    Map<Ranking, Integer> winningStatus = new HashMap<>();
-    Ranking ranking;
+    Map<Ranking, Integer> winningStatus = new LinkedHashMap<>();
 
     public WinningStatistics() {
         winningStatus.put(THREE_MATCHES, 0);
@@ -17,10 +17,11 @@ public class WinningStatistics {
         winningStatus.put(SIX_MATCHES, 0);
     }
 
-    public void incrementWinningStatus(int matchCount) {
-        winningStatus.computeIfPresent(
-                Ranking.findByMatchCount(matchCount),
-                (ranking, count) -> count + 1
-        );
+    public Map<Ranking, Integer> getWinningStatus() {
+        return winningStatus;
+    }
+
+    public void incrementWinningStatus(Ranking ranking) {
+        winningStatus.replace(ranking, winningStatus.get(ranking) + 1);
     }
 }

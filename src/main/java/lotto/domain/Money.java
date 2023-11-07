@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.regex.Pattern;
+import lotto.domain.constant.LottoConstant;
 
 public class Money {
     private static final Pattern NUMBER_PATTERN = Pattern.compile("^-?\\d+$");
@@ -8,7 +9,6 @@ public class Money {
     private static final String MINIMUM_AMOUNT_MSG = "최소 금액은 1,000원 입니다.";
     private static final String THOUSAND_UNIT_ONLY_MSG = "금액은 1,000원 단위로 입력해 주세요.";
     private static final String MAX_AMOUNT_MSG = "최대 2,147,483,000원 까지 구매 가능합니다.";
-    private static final int MINIMUM_AMOUNT = 1000;
     private int amount;
 
     private Money(final int amount) {
@@ -24,6 +24,10 @@ public class Money {
         return this.amount / price;
     }
 
+    public float calculateLottoProfitRate(final long prize) {
+        return (float) prize / this.amount * 100;
+    }
+
     private static void validate(final String amount) {
         isNumeric(amount);
         isOverThousand(amount);
@@ -37,13 +41,13 @@ public class Money {
     }
 
     private static void isOverThousand(final String amount) {
-        if ((parseNumeric(amount) < MINIMUM_AMOUNT)) {
+        if ((parseNumeric(amount) < LottoConstant.PRICE.getValue())) {
             throw new IllegalArgumentException(MINIMUM_AMOUNT_MSG);
         }
     }
 
     private static void isDivisibleByThousand(final String amount) {
-        if ((parseNumeric(amount) % MINIMUM_AMOUNT != 0)) {
+        if ((parseNumeric(amount) % LottoConstant.PRICE.getValue() != 0)) {
             throw new IllegalArgumentException(THOUSAND_UNIT_ONLY_MSG);
         }
     }

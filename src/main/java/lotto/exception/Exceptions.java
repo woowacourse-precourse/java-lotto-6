@@ -17,6 +17,10 @@ public class Exceptions {
         return new IllegalArgumentException("[ERROR] 로또에 중복된 숫자가 존재합니다.");
     }
 
+    public static IllegalArgumentException exceptionLottoNumberNotInRange() {
+        return new IllegalArgumentException("[ERROR] 1~45의 숫자를 입력하세요.");
+    }
+
     public static IllegalArgumentException exceptionWinningNumberNotInRange() {
         return new IllegalArgumentException("[ERROR] 1~45의 숫자를 입력하세요.");
     }

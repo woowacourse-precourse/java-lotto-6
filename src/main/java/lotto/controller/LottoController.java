@@ -10,12 +10,13 @@ import lotto.model.*;
 import lotto.exception.*;
 public class LottoController {
 
-    static String[] strTotalWinningNumbers;
-    public static ArrayList<Integer> totalWinningNumbers=new ArrayList<>();;
+
+    public static String[] strTotalWinningNumbers;
+    public static ArrayList<Integer> totalWinningNumbers=new ArrayList<>();
     public static List<Lotto> lottoList;
     public static int bonusNumber;
     public static int[] rankCounts;
-    public int processInputPurchaseAmount() {
+    public static int processInputPurchaseAmount() {
         int price;
             while (true) {
                 try {
@@ -31,20 +32,20 @@ public class LottoController {
             return price;
     }
 
-    public void processCreateLotto(int price){
+    public static void processCreateLotto(int price){
         // 구매한 개수 및 로또번호 리스트 출력
         lottoList = createLottoList(price);
         printPurchaseResult(lottoList);
     }
 
-    public void processInputWinningNumber(){
+    public static void processInputWinningNumber(){
         String inputWinningNumber;
         while (true) {
             inputWinningNumber= inputWinningNumber();
             try {
                 // 입력 당첨 번호가 유효하면 종료
                 String[] winningNumberStr=validateInputWinningNumberInRange(inputWinningNumber);
-                //validateInputWinningNumberSize(winningNumberStr);
+                validateInputWinningNumberSize(winningNumberStr);
                 strTotalWinningNumbers=validateInputWinningNumberDuplication(winningNumberStr);
                 break; //
             } catch (IllegalArgumentException e) {
@@ -55,7 +56,7 @@ public class LottoController {
         defineTotalWinningNumber();
     }
 
-    public void processInputBonusNumber(){
+    public static void processInputBonusNumber(){
         // validate 후 totalWinningNumbers에 문자열(숫자)를 정수형(숫자로) 바꿀 것
         String inputBonusNumber;
         while (true) {
@@ -73,13 +74,13 @@ public class LottoController {
         bonusNumber=Integer.parseInt(inputBonusNumber);
     }
 
-    public void defineTotalWinningNumber(){
+    public static void defineTotalWinningNumber(){
         for (String eachNumber : strTotalWinningNumbers) {
             totalWinningNumbers.add(Integer.parseInt(eachNumber));
         }
     }
 
-    public void processCheckWinningNumbers(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+    public static void processCheckWinningNumbers(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
         rankCounts = new int[WinningRank.values().length];
 
         for (Lotto lotto : lottos) {
@@ -88,28 +89,29 @@ public class LottoController {
 
             WinningRank rank = WinningRank.calculateRank(matchingCount, hasBonusNumber);
 
+
             rankCounts[rank.ordinal()]++;
         }
 
         printWinningResults(rankCounts);
     }
 
-    private int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {
+    public static int countMatchingNumbers(Lotto lotto, List<Integer> winningNumbers) {
         return (int) lotto.getNumbers().stream()
                 .filter(winningNumbers::contains)
                 .count();
     }
 
-    private boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
+    public static boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    public double calculateRate(int purchaseAmount, int totalPrizeAmount) {
+    public static double calculateRate(int purchaseAmount, int totalPrizeAmount) {
         double rate = ((double) totalPrizeAmount / (double)purchaseAmount) * 100;
         return (double) Math.round(rate * 100) /100;
     }
 
-    public void calculateTotalRate() {
+    public static void calculateTotalRate() {
         int totalPrizeAmount = 0;
         for (WinningRank rank : WinningRank.values()) {
             if (rank != WinningRank.NONE) {

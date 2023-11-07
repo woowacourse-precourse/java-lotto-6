@@ -13,12 +13,30 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateLottoSize(numbers);
+        validateLottoDuplication(numbers);
+        validateLottoInRange(numbers);
         this.numbers = numbers;
     }
     
     private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw Exceptions.exceptionLottoSize();
+        }
+    }
+
+    private void validateLottoDuplication(List<Integer> numbers) {
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if (numberSet.size() < numbers.size()) {
+            // 중복된 숫자가 존재
+            throw Exceptions.exceptionLottoDuplication();
+        }
+    }
+
+    public static void validateLottoInRange(List<Integer> numbers){
+        for(int number : numbers){
+            if(number<1||number>45){
+                throw Exceptions.exceptionBonusNumberNotInRange();
+            }
         }
     }
 
@@ -63,6 +81,8 @@ public class Lotto {
         return new Lotto(randomNumbers);
     }
 
+
+
     public static String[] validateInputWinningNumberInRange(String winningNumber){
         String[] numberStrings = winningNumber.split(",");
         for (String eachNumberStr : numberStrings) {
@@ -96,7 +116,6 @@ public class Lotto {
         if(bonusNumber<1||bonusNumber>45){
             throw Exceptions.exceptionBonusNumberNotInRange();
         }
-
     }
 
     public static void validateInputBonusNumberDuplication(String inputBonusNumber,String[] winningNumbers){

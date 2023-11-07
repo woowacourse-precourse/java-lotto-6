@@ -4,6 +4,21 @@ import java.math.BigDecimal;
 
 public class AmountValidator {
     private static final BigDecimal MOD = new BigDecimal(1000);
+    private static String MONEY_REGEX = "^[1-9][0-9]*|0$";
+    private static String IMPROPER_MONEY_MESSAGE = "금액을 올바르게 입력하세요.";
+    private static String EMPTY_INPUT_MESSAGE = "입력값이 없습니다.";
+
+    public static void validateMoney(String inputMoney) {
+        if (!inputMoney.matches(MONEY_REGEX)) {
+            throw new IllegalArgumentException(IMPROPER_MONEY_MESSAGE);
+        }
+    }
+
+    public static void validateEmptyString(String inputNumber) {
+        if (inputNumber == null || inputNumber.trim().isEmpty()) {
+            throw new IllegalArgumentException(EMPTY_INPUT_MESSAGE);
+        }
+    }
 
     public static void validateAmount(BigDecimal money) {
         AmountValidator.validateZero(money);

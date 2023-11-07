@@ -23,6 +23,15 @@ public class GameController {
 		List<List<Integer>> totalTickets = lotto.createLottoTickets(tickets);
 		printer.printLottoTickets(tickets, totalTickets);
 		
+		printer.printDirection("\n당첨 번호를 입력해 주세요.\n");
+		List<Integer> winnersNumbersByUser = input.getWinnersNumbers();
+		
+		printer.printDirection("\n보너스 번호를 입력해 주세요.\n");
+		int bonusNumberByUser = input.getBonusNumber(winnersNumbersByUser);
+		
+		//테스트
+		//System.out.println("당첨번호는" + winnersNumbersByUser);
+		//System.out.println("보너스 넘버는" + bonusNumberByUser);
 		
 		
 		

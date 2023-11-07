@@ -5,6 +5,10 @@ import java.util.stream.Stream;
 
 public class Lotto {
 
+    private static final String INVALID_COUNT = "로또 번호는 6개를 입력해야 합니다.";
+    private static final String NUMBER_OUT_OF_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    private static final String DUPLICATED_NUMBER = "로또 번호는 중복될 수 없습니다.";
+
     private static final int NUMBERS_COUNT = 6;
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
@@ -20,21 +24,21 @@ public class Lotto {
 
     protected void validateCount(final List<Integer> numbers) {
         if (numbers.size() != NUMBERS_COUNT) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_COUNT);
         }
     }
 
     protected void validateInRange(final List<Integer> numbers) {
         boolean outOfRange = numbers.stream().anyMatch(this::isOutOfRange);
         if (outOfRange) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_OUT_OF_RANGE);
         }
     }
 
     protected void validateNotDuplicated(final List<Integer> numbers) {
         boolean hasDuplicates = numbers.stream().distinct().count() != numbers.size();
         if (hasDuplicates) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(DUPLICATED_NUMBER);
         }
     }
 

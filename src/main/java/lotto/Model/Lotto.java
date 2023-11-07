@@ -6,13 +6,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private static final int LOTTO_NUMBER_COUNT = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final String ERROR_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호를 6개 입력해 주세요.";
-    private static final String ERROR_LOTTO_NUMBER_DUPLICATE = "[ERROR] 로또 번호는 중복될수 없습니다.";
-    private static final String ERROR_LOTTO_NUMBER_RANGE = "[ERROR] 로또 번호는 1~45의 숫자만 가능합니다.";
+    public static final int MIN_LOTTO_NUMBER = 1;
+    public static final int MAX_LOTTO_NUMBER = 45;
+    public static final String ERROR_LOTTO_NUMBER_COUNT = "[ERROR] 번호를 6개 입력해 주세요.";
+    public static final String ERROR_LOTTO_NUMBER_DUPLICATE = "[ERROR] 번호는 중복될수 없습니다.";
+    public static final String ERROR_LOTTO_NUMBER_RANGE = "[ERROR] 번호는 1~45의 숫자만 가능합니다.";
 
+    private static final int LOTTO_NUMBER_COUNT = 6;
 
     private final List<Integer> numbers;
 

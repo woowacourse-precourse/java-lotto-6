@@ -1,6 +1,10 @@
 package lotto.util;
 
+import static lotto.Constants.DEMICAL_PLACE;
+
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -50,9 +54,11 @@ public class LottoUtil {
     }
 
     /**
-     * Description: 수익률을 계산해 반환한다.
+     * Description: 수익률을 소수점 둘째 자리에서 반올림해 계산해 반환한다.
      */
     public static double calculateProfitPercentage(double totalPrizeAmount, int purchaseAmount) {
-        return (totalPrizeAmount / purchaseAmount) * 100.0;
+        BigDecimal roundedValue = BigDecimal.valueOf((totalPrizeAmount / purchaseAmount) * 100.0)
+                .setScale(DEMICAL_PLACE, RoundingMode.HALF_UP);
+        return roundedValue.doubleValue();
     }
 }

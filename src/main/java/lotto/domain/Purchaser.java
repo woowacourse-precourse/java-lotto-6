@@ -7,12 +7,13 @@ public class Purchaser {
     int purchaseAmount;
 
     public Purchaser(String purchaseAmount) {
-        this.purchaseAmount = validate(purchaseAmount);
+        validate(purchaseAmount);
+        this.purchaseAmount = Integer.parseInt(purchaseAmount);
     }
 
-    private int validate(String purchaseAmount) {
+    private void validate(String purchaseAmount) {
         validateNumber(purchaseAmount);
-        return validateDivisibilityByLottoPrice(purchaseAmount);
+        validateDivisibilityByLottoPrice(purchaseAmount);
     }
 
     private void validateNumber(String purchaseAmount) {
@@ -23,15 +24,14 @@ public class Purchaser {
         }
     }
 
-    private int validateDivisibilityByLottoPrice(String purchaseAmount) {
+    private void validateDivisibilityByLottoPrice(String purchaseAmount) {
         int purchaseResult = Integer.parseInt(purchaseAmount);
         if(purchaseResult % LottoRule.LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_INVALID_AMOUNT.getMessage());
         }
-        return purchaseResult / LottoRule.LOTTO_PRICE.getNumber();
     }
 
-    public int getNumberOfLottos() {
-        return purchaseAmount / LottoRule.LOTTO_PRICE.getNumber();
+    public int getPurchaseAmount() {
+        return purchaseAmount;
     }
 }

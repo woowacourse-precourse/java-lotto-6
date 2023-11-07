@@ -7,18 +7,18 @@ import lotto.service.LottoService;
 import java.util.*;
 
 public class Lottos {
-    int numberOfLottos;
+    int numberOfLotto;
     List<Lotto> lottos = new ArrayList<>();
     HashMap<LottoRank, Integer> rankCount;
 
-    public Lottos(int numberOfLottos) {
-        this.numberOfLottos = numberOfLottos;
+    public Lottos(int purchaseAmount) {
+        this.numberOfLotto = purchaseAmount / LottoRule.LOTTO_PRICE.getNumber();
         initEachLotto();
         initRankCount();
     }
 
     private void initEachLotto() {
-        for(int i = 0; i < numberOfLottos; i++) {
+        for(int i = 0; i < numberOfLotto; i++) {
             lottos.add(new Lotto(LottoService.generateRandomLottoNumber()));
         }
     }
@@ -31,7 +31,7 @@ public class Lottos {
     }
 
     public int getNumberOfLottos() {
-        return numberOfLottos;
+        return numberOfLotto;
     }
 
     public List<List<Integer>> getAllLottoNumbers() {
@@ -56,6 +56,6 @@ public class Lottos {
         for(LottoRank lottoRank : rankCount.keySet()) {
             totalSum += lottoRank.getValue() * rankCount.get(lottoRank);
         }
-        return totalSum / (numberOfLottos * LottoRule.LOTTO_PRICE.getNumber()) * 100;
+        return totalSum / (numberOfLotto * LottoRule.LOTTO_PRICE.getNumber()) * 100;
     }
 }

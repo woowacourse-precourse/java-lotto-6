@@ -26,7 +26,7 @@ public class LottoController {
 
     private Lottos purchaseLottos() {
         Purchaser purchaser = payMoney();
-        return new Lottos(purchaser.getNumberOfLottos());
+        return new Lottos(purchaser.getPurchaseAmount());
     }
 
     private Purchaser payMoney() {

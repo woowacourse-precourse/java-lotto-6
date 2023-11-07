@@ -13,9 +13,7 @@ public class PurchaseAmount {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    public void inputAmount(){
-        String input_amount = readLine();
-
+    private void validate(String input_amount){
         try {
             amount = Integer.parseInt(input_amount);
         } catch (NumberFormatException e) {
@@ -25,5 +23,9 @@ public class PurchaseAmount {
         if(amount < 0 || amount % 1000 != 0){
             throw new IllegalArgumentException("구입금액은 1000원 단위의 자연수로 입력해야 합니다.");
         }
+    }
+    public void inputAmount(){
+        String input_amount = readLine();
+        validate(input_amount);
     }
 }

@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import static lotto.constant.ExceptionMessage.INVALID_BLANK_EXCEPTION;
+import static lotto.constant.ExceptionMessage.INVALID_INPUT_NUMBER_EXCEPTION;
 import static lotto.constant.ExceptionMessage.INVALID_NUMBER_EXCEPTION;
 import static lotto.constant.Global.DIGIT_REGEX;
 
@@ -19,7 +20,7 @@ public class InputValidator {
         }
 
         if (checkDigitWinningNumber(inputWinningNumber)) {
-            throw new IllegalArgumentException(INVALID_NUMBER_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(INVALID_INPUT_NUMBER_EXCEPTION.getMessage());
         }
     }
 

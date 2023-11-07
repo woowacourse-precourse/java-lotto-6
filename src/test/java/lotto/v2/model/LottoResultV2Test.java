@@ -1,6 +1,6 @@
 package lotto.v2.model;
 
-import lotto.v2.util.LottoRank;
+import lotto.v2.util.LottoRankV2;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class LottoResultV2Test {
     @DisplayName("생성자는 모든 로또 순위를 0으로 초기화해야 한다.")
     void constructorShouldInitializeAllRanksWithZeroCount() {
         LottoResultV2 result = new LottoResultV2();
-        for (LottoRank rank : LottoRank.values()) {
+        for (LottoRankV2 rank : LottoRankV2.values()) {
             assertThat(result.getWinningResult()).containsEntry(rank, 0);
         }
     }
@@ -38,7 +38,7 @@ class LottoResultV2Test {
         result.updateMatchCount(purchasedLotto, winningLotto, 10);
 
         // then
-        assertThat(result.getWinningResult()).containsEntry(LottoRank.valueOf(matchCount, bonusMatch), 1);
+        assertThat(result.getWinningResult()).containsEntry(LottoRankV2.valueOf(matchCount, bonusMatch), 1);
     }
 
     //TODO : updateMatchCount Test Code 작성

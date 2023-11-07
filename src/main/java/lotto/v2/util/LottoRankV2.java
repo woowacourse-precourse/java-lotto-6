@@ -1,6 +1,6 @@
 package lotto.v2.util;
 
-public enum LottoRank {
+public enum LottoRankV2 {
 
     FIRST(6, 2_000_000_000L, false),
     SECOND(5, 30_000_000L, true), // 보너스 번호 일치 가정
@@ -12,7 +12,7 @@ public enum LottoRank {
     private final long prizeMoney;
     private final boolean bonusMatch;
 
-    LottoRank(int matchCount, long prizeMoney, boolean bonusMatch) {
+    LottoRankV2(int matchCount, long prizeMoney, boolean bonusMatch) {
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
         this.bonusMatch = bonusMatch;
@@ -30,7 +30,7 @@ public enum LottoRank {
         return bonusMatch;
     }
 
-    public static LottoRank valueOf(int matchCount, boolean bonusMatch) {
+    public static LottoRankV2 valueOf(int matchCount, boolean bonusMatch) {
         if (matchCount < FIFTH.matchCount) {
             throw new IllegalArgumentException("[ERROR] 일치하는 로또 순위가 없습니다.");
         }
@@ -39,7 +39,7 @@ public enum LottoRank {
             return SECOND;
         }
 
-        for (LottoRank rank : values()) {
+        for (LottoRankV2 rank : values()) {
             if (rank.matchCount == matchCount && !rank.bonusMatch) {
                 return rank;
             }

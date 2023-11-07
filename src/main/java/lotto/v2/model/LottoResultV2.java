@@ -1,21 +1,21 @@
 package lotto.v2.model;
 
-import lotto.v2.util.LottoRank;
+import lotto.v2.util.LottoRankV2;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoResultV2 {
-    private Map<LottoRank, Integer> matchCounts = new HashMap<>();
+    private Map<LottoRankV2, Integer> matchCounts = new HashMap<>();
 
     public LottoResultV2() {
-        for (LottoRank rank : LottoRank.values()) {
+        for (LottoRankV2 rank : LottoRankV2.values()) {
             matchCounts.put(rank, 0);
         }
     }
 
-    public Map<LottoRank, Integer> getWinningResult() {
+    public Map<LottoRankV2, Integer> getWinningResult() {
         return matchCounts;
     }
 
@@ -24,14 +24,14 @@ public class LottoResultV2 {
         boolean bonusMatch = purchasedLotto.containsNumber(bonusNumber);
 
         try {
-            LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
+            LottoRankV2 rank = LottoRankV2.valueOf(matchCount, bonusMatch);
             incrementMatchCount(rank);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 잘못된 입력입니다. 다시 시도해주세요.");
         }
     }
 
-    private void incrementMatchCount(LottoRank rank) {
+    private void incrementMatchCount(LottoRankV2 rank) {
         matchCounts.put(rank, matchCounts.getOrDefault(rank, 0) + 1);
     }
 
@@ -42,12 +42,12 @@ public class LottoResultV2 {
     }
 
     public void printStatistics() {
-        for (Map.Entry<LottoRank, Integer> entry : matchCounts.entrySet()) {
+        for (Map.Entry<LottoRankV2, Integer> entry : matchCounts.entrySet()) {
             printStatisticForRank(entry);
         }
     }
 
-    private void printStatisticForRank(Map.Entry<LottoRank, Integer> entry) {
+    private void printStatisticForRank(Map.Entry<LottoRankV2, Integer> entry) {
         if (entry.getValue() > 0) {
             String matchString = getMatchString(entry.getKey());
             String prizeMoney = formatPrizeMoney(entry.getKey().getPrizeMoney());
@@ -59,7 +59,7 @@ public class LottoResultV2 {
         }
     }
 
-    private String getMatchString(LottoRank rank) {
+    private String getMatchString(LottoRankV2 rank) {
         if (rank.isBonusMatch()) {
             return ", 보너스 볼 일치";
         }
@@ -72,7 +72,7 @@ public class LottoResultV2 {
 
     private long calculateTotalPrize() {
         long totalPrize = 0L;
-        for (Map.Entry<LottoRank, Integer> entry : matchCounts.entrySet()) {
+        for (Map.Entry<LottoRankV2, Integer> entry : matchCounts.entrySet()) {
             totalPrize += entry.getValue() * entry.getKey().getPrizeMoney();
         }
         return totalPrize;

@@ -20,10 +20,10 @@ public class WinningResult {
         return winningResult.getOrDefault(rank, INITIAL_NUMBER);
     }
 
-    public int calculateTotalAmount() {
+    public long calculateTotalAmount() {
         return winningResult.keySet().stream()
                 .map(rank -> getCount(rank) * rank.getWinningAmount())
-                .reduce(INITIAL_NUMBER, Integer::sum);
+                .reduce(0L, Long::sum);
     }
 
     public Map<Rank, Integer> getWinningResult() {

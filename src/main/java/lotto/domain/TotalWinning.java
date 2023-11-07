@@ -1,7 +1,7 @@
 package lotto.domain;
 
 public class TotalWinning {
-    private final int totalAmount;
+    private final long totalAmount;
     private final double totalReturn;
 
     private TotalWinning(LottoPurchase lottoPurchase, WinningResult winningResult) {
@@ -13,7 +13,7 @@ public class TotalWinning {
         return new TotalWinning(lottoPurchase, winningResult);
     }
 
-    public int getTotalAmount() {
+    public long getTotalAmount() {
         return totalAmount;
     }
 

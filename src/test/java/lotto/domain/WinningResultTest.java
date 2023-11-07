@@ -57,7 +57,7 @@ class WinningResultTest {
     @DisplayName("총 당첨 금액 계산하기 테스트")
     @Test
     void calculateTotalAmountLogicTest() {
-        int totalAmount = 0;
+        long totalAmount = 0;
         for (Rank rank : winningResult.getWinningResult().keySet()) {
             totalAmount += winningResult.getCount(rank) * rank.getWinningAmount();
         }
@@ -71,10 +71,10 @@ class WinningResultTest {
                                 + Rank.FIFTH.getWinningAmount()
                 );
 
-        int totalAmount2 = winningResult.getWinningResult().keySet()
+        long totalAmount2 = winningResult.getWinningResult().keySet()
                 .stream()
                 .map(rank -> winningResult.getCount(rank) * rank.getWinningAmount())
-                .reduce(0, (a, c) -> a + c);
+                .reduce(0L, (a, c) -> a + c);
 
         assertThat(totalAmount2)
                 .isEqualTo(

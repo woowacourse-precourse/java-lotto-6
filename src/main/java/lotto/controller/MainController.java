@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.AnswerLotto;
 import lotto.model.LottoManager;
 import lotto.model.Token;
 import lotto.util.RepeatModule;
@@ -18,6 +19,7 @@ public class MainController extends RepeatModule {
 
     public void start() {
         buy();
+        setWinningLotto();
     }
 
     private void buy() {
@@ -26,5 +28,10 @@ public class MainController extends RepeatModule {
 
         lottoManager.ticket();
         outputView.printTicketingLottos(lottoManager.ticketedCount(), lottoManager.toString());
+    }
+
+    private void setWinningLotto() {
+        AnswerLotto answerLotto = repeat(inputView::readAnswerLotto);
+        lottoManager.registerAnswerLotto(answerLotto);
     }
 }

@@ -14,7 +14,7 @@
   - 숫자가 아닌 경우 예외 발생 (IllegalArgumentException)
 
 
-- [ ] 로또 구입 금액 입력 받기
+- [X] 로또 구입 금액 입력 받기
   - 1,000원으로 나누어 떨어지지 않는 경우 예외 발생 (IllegalArgumentException)
   - 0원 이하의 금액인 경우 예외 발생 (IllegalArgumentException)
   - 숫자가 아닌 경우 예외 발생 (IllegalArgumentException)

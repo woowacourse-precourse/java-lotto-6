@@ -7,7 +7,10 @@ import lotto.view.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        GameController gameController = new GameController();
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
+        GameService gameService = new GameService();
+        GameController gameController = new GameController(inputView, outputView, gameService);
         gameController.run();
     }
 }

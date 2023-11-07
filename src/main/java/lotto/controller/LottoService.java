@@ -1,6 +1,10 @@
 package lotto.controller;
 
-import lotto.model.*;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
+import lotto.model.LottoNumberGenerator;
+import lotto.model.LottoTicketMoney;
+import lotto.model.Ranking;
 import lotto.view.ConsoleView;
 
 import java.util.ArrayList;
@@ -38,5 +42,12 @@ public class LottoService {
             ticketRankings.add(lotto.checkRanking(winningNumbers, bonusNumber));
         }
         return ticketRankings;
+    }
+
+    public void start() {
+        issueLottoTicket();
+        printLottos();
+        inputWinningNumbers();
+        inputBonusNumber();
     }
 }

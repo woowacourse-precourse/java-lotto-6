@@ -33,15 +33,20 @@ public class UserInput {
     }
 
     public static BonusNumber inputBonusNumber(Lotto winningNumbers) {
-        BonusNumber bonusNumber = validateBonusNumber(readLine());
-        validateDoubledWinningNumbers(bonusNumber, winningNumbers);
-        return bonusNumber;
+        ConsoleView.printBonusNumberExplanation();
+        String bonusNumberCommand = readLine();
+        BonusNumber bonusNumber;
+        while (true) {
+            try {
+                bonusNumber = new BonusNumber(bonusNumberCommand);
+                validateDoubledWinningNumbers(bonusNumber, winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException illegalArgumentException) {
+                ConsoleView.printErrorMessage(illegalArgumentException.getMessage());
+            }
+        }
     }
 
-    private static BonusNumber validateBonusNumber(String inputCommand) {
-        ConsoleView.printBonusNumberExplanation();
-        return new BonusNumber(inputCommand);
-    }
 
     private static void validateDoubledWinningNumbers(BonusNumber bonusNumber, Lotto winningNumbers) {
         if (winningNumbers.isBonus(bonusNumber))

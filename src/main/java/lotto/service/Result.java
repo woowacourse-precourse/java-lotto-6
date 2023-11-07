@@ -34,6 +34,7 @@ public class Result {
     }
 
     private void countResult(List<Integer> winningResults, List<Boolean> bonusResults) {
+        resetCount();
         for (int i = 0; i < winningResults.size(); i++) {
             int result = winningResults.get(i);
             if (result == 3) {
@@ -52,6 +53,14 @@ public class Result {
                 sixHit++;
             }
         }
+    }
+
+    private void resetCount() {
+        threeHit = 0;
+        fourHit = 0;
+        fiveHit = 0;
+        fiveHitPlusBonusHit = 0;
+        sixHit = 0;
     }
 
     public double calculateWinningRate() {

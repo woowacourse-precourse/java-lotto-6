@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
-import userViews.InputViews;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,49 +9,68 @@ import java.util.stream.Collectors;
 
 public class LottoStart {
 
-    private static final String HOW_MUCH_BUY_MESSAGE = "구입금액을 입력해 주세요.";
-    private static final String HOW_MANY_BUY_MESSAGE = "개를 구매했습니다.";
-    private static final String MAKE_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    private static final String MAKE_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    private static final String WINNING_STATISTICS = "당첨 통계";
-    private static final String BOARDER_LINE = "---";
-
     private static Buyer buyer;
     private static LottoWinningNumber lottoWinningNumber;
     private static CalculateMachine calculateMachine;
     private static PrintWinningResult printWinningResult;
 
+    //게임 실행 메서드
     public static void run() {
 
-        firstGameProgress();
-        secondGameProgress();
-        GameResult();
+        first_GameProgress();
+
+        second_GameProgress();
+
+        last_GameProgress();
 
     }
 
 
-    public static void firstGameProgress() {
-        System.out.println(LottoStart.HOW_MUCH_BUY_MESSAGE);
-        int money = firstInputProgress();
-        int num = money / 1000;
+    public static void first_GameProgress() {
+
+        System.out.println(Messages.lottoStartMessages.HOW_MUCH_BUY_MESSAGE.getMessage());
+
+        int money = first_InputProgress();
+        int numberOfLotto = first_CalculateMoneyToNum(money);
+
         System.out.println();
-        System.out.println(num+LottoStart.HOW_MANY_BUY_MESSAGE);
+        System.out.println(numberOfLotto + Messages.lottoStartMessages.HOW_MANY_BUY_MESSAGE.getMessage());
 
-        buyer = new Buyer(money);
-
-        for (int i = 0; i < num; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(numbers);
-            buyer.setLottoCollection(lotto.getLottoSixNum());
-        }
-
-        for(int i=0; i < num; i++){
-            System.out.println(buyer.getLottoCollection(i));
-        }
+        buyer = first_CreateBuyer(money);
+        first_MakeLotto(buyer, numberOfLotto);
+        first_PrintMadeLotto(buyer);
+        System.out.println();
     }
 
-    public static int firstInputProgress() {
+    private static void second_GameProgress() {
+        System.out.println(Messages.lottoStartMessages.MAKE_WINNING_NUMBER.getMessage());
+        List<Integer> inputWinningNumbers = second_InputWinningNumber();
 
+        System.out.println(Messages.lottoStartMessages.MAKE_BONUS_NUMBER.getMessage());
+        int inputBonusNumbers = second_InputBonusNumber();
+
+        second_CreateLottoWinningNumber(inputWinningNumbers, inputBonusNumbers);
+    }
+
+    private static void last_GameProgress() {
+
+        System.out.println(Messages.lottoStartMessages.WINNING_STATISTICS.getMessage());
+        System.out.println(Messages.lottoStartMessages.BOARDER_LINE.getMessage());
+        System.out.println();
+
+        calculateMachine = last_CreateCalculateMachine();
+
+        int[] lottoCalculateResult = calculateMachine.lottoResult();
+        printWinningResult = new PrintWinningResult(lottoCalculateResult);
+        printWinningResult.printLottoResult();
+
+        double lottoProfitResult = calculateMachine.profitResult(buyer.getMoney(), lottoCalculateResult);
+        printWinningResult.printProfitResult(lottoProfitResult);
+
+    }
+
+    //로또 구입 결과 출력 까지
+    public static int first_InputProgress() {
         while (true) {
             try {
                 String inputHowMuchBuy = Console.readLine();
@@ -67,17 +85,31 @@ public class LottoStart {
         }
     }
 
-    private static void secondGameProgress() {
-        System.out.println(LottoStart.MAKE_WINNING_NUMBER);
-        List<Integer> inputWinningNumbers = secondInputProgress();
-
-        System.out.println(LottoStart.MAKE_BONUS_NUMBER);
-        int inputBonusNumbers = secondInputProgress2();
-
-        lottoWinningNumber = new LottoWinningNumber(inputWinningNumbers, inputBonusNumbers);
+    private static int first_CalculateMoneyToNum(int money) {
+        return money / 1000;
     }
 
-    public static List<Integer> secondInputProgress() {
+    private static Buyer first_CreateBuyer(int money) {
+        return new Buyer(money);
+    }
+
+    private static void first_MakeLotto(Buyer buyer, int numberOfLotto) {
+        for (int i = 0; i < numberOfLotto; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Lotto lotto = new Lotto(numbers);
+            buyer.setLottoCollection(lotto.getLottoSixNum());
+        }
+    }
+
+    private static void first_PrintMadeLotto(Buyer buyer) {
+        int numberOfTickets = first_CalculateMoneyToNum(buyer.getMoney());
+        for (int i = 0; i < numberOfTickets; i++) {
+            System.out.println(buyer.getLottoCollection(i));
+        }
+    }
+
+    //당첨 번호와 보너스 번호 입력 까지
+    public static List<Integer> second_InputWinningNumber() {
         String inputWinningNumbers = Console.readLine();
 
         List<Integer> winningNumbers = Arrays.stream(inputWinningNumbers.split(","))
@@ -89,26 +121,18 @@ public class LottoStart {
         return winningNumbers;
     }
 
-    public static int secondInputProgress2() {
+    public static int second_InputBonusNumber() {
         String inputBonusNumbers = Console.readLine();
         return Integer.parseInt(inputBonusNumbers);
     }
 
-    private static void GameResult() {
-
-        System.out.println(LottoStart.WINNING_STATISTICS);
-        System.out.println(LottoStart.BOARDER_LINE);
-
-        calculateMachine = new CalculateMachine(buyer.getAllLottoCollection(), lottoWinningNumber.getWinningNumbers(), lottoWinningNumber.getBonusNumber());
-
-        int[] lottoCalculateResult = calculateMachine.lottoResult();
-        printWinningResult = new PrintWinningResult(lottoCalculateResult);
-        printWinningResult.printLottoResult();
-
-        double lottoProfitResult = calculateMachine.profitResult(buyer.getMoney(), lottoCalculateResult);
-        printWinningResult.printProfitResult(lottoProfitResult);
-
+    private static void second_CreateLottoWinningNumber(List<Integer> winningNumbers, int bonusNumber) {
+        lottoWinningNumber = new LottoWinningNumber(winningNumbers, bonusNumber);
     }
 
+    //로또 당첨 결과 출력 까지
+    private static CalculateMachine last_CreateCalculateMachine() {
+        return new CalculateMachine(buyer.getAllLottoCollection(), lottoWinningNumber.getWinningNumbers(), lottoWinningNumber.getBonusNumber());
+    }
 
 }

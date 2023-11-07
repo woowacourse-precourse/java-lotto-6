@@ -46,7 +46,7 @@ public class PurchasedLottoTickets {
 
     public void textForTicketsPrint() {
         for (Lotto lotto : tickets) {
-            lotto.textForLottoPrint();
+            System.out.println(lotto.sortLottoNumbers());
         }
     }
 }

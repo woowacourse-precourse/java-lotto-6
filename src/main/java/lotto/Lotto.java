@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -32,7 +33,9 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    public void textForLottoPrint() {
-        System.out.println(numbers);
+    public List<Integer> sortLottoNumbers() {
+        List<Integer> sortedLottoNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedLottoNumbers);
+        return sortedLottoNumbers;
     }
 }

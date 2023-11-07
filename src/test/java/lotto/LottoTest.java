@@ -1,14 +1,24 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.service.LottoService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
+    private LottoService lottoService;
+
+    @BeforeEach
+    void setUp() {
+        lottoService = new LottoService();
+    }
+
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
@@ -19,10 +29,41 @@ class LottoTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    // 아래에 추가 테스트 작성 가능
+    @DisplayName("구입 금액이 1000원으로 나누어떨어지지 않는 경우 예외 처리")
+    @Test
+    void purchaseAmountNotDivisibleBy1000Exception() {
+        int purchaseAmount = 7777;
+        assertThatThrownBy(() -> lottoService.validatePurchaseAmount(purchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액에 따라 로또 티켓 수를 계산")
+    @Test
+    void calculateNumberOfLottoTicketsToBuy() {
+        int purchaseAmount = 8000;
+        int expectedTicketCount = 8;
+        int actualTicketCount = lottoService.calculateNumberOfLottoTicketsToBuy(purchaseAmount);
+        assertEquals(expectedTicketCount, actualTicketCount);
+    }
+
+    @DisplayName("로또 티켓 개수에 따라 정확한 티켓 목록 생성")
+    @Test
+    void generateLottoTickets() {
+        int numberOfTickets = 3;
+        List<Lotto> lottoTickets = lottoService.generateLottoTickets(numberOfTickets);
+        assertEquals(numberOfTickets, lottoTickets.size());
+    }
+
+    @DisplayName("구입 금액에 따라 로또 티켓 목록 생성")
+    @Test
+    void buyLottoTickets() {
+        int purchaseAmount = 5000;
+        int expectedTicketCount = 5;
+        List<Lotto> lottoTickets = lottoService.buyLottoTickets(purchaseAmount);
+        assertEquals(expectedTicketCount, lottoTickets.size());
+    }
 }

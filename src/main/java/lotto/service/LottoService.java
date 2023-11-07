@@ -1,11 +1,13 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
+import lotto.domain.Lottos;
+import lotto.dto.MoneyRequest;
 
 public class LottoService {
-    private Lotto lotto;
+    private Lottos lottos;
 
-    public void createLotto(LottoMoneyRequest request) {
-        this.lotto = new Lotto(request.getMoney());
+    public void createLottos(MoneyRequest request) {
+        int count = request.getMoney()/1000;
+        this.lottos = new Lottos(count);
     }
 }

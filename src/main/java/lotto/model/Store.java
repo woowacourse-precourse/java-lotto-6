@@ -14,12 +14,12 @@ public class Store {
         lottoCount = countLotto(money);
     }
 
-    public static int countLotto(Money money) {
+    public int countLotto(Money money) {
         int realMoney = Integer.parseInt(money.getMoney());
         return realMoney / 1000;
     }
 
-    public static List<Integer> makeLotto() {
+    public List<Integer> makeLotto() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 
@@ -29,5 +29,13 @@ public class Store {
                 .collect(Collectors.toList());
 
         return new LottoTickets(lottos);
+    }
+
+    public LottoTickets getLottoTickets() {
+        return lottoTickets;
+    }
+
+    public int getLottoCount() {
+        return lottoCount;
     }
 }

@@ -1,10 +1,7 @@
-package lotto;
+package lotto.message;
 
 public class OutputMessage {
-    public final static String AMOUNT = "구입금액을 입력해 주세요.";
     public final static String TICKET_BUY_SUCCESS = "%d개를 구매했습니다.\n";
-    public final static String WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
-    public final static String BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     public final static String PRIZE_RESULT = "당첨 통계";
     public final static String PRIZE_RESULT_DELIMITER = "---";
     public final static String FIRST_PRIZE = "6개 일치 (2,000,000,000원) - %d개\n";

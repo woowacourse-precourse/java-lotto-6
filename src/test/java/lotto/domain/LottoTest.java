@@ -1,10 +1,9 @@
 package lotto.domain;
 
-import lotto.ErrorMessage;
+import lotto.message.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;

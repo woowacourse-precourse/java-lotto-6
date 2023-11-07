@@ -1,6 +1,7 @@
 package lotto.view;
 
-import lotto.OutputMessage;
+import lotto.message.InputMessage;
+import lotto.message.OutputMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class OutputView {
     public void getAmount() {
-        System.out.println(OutputMessage.AMOUNT);
+        System.out.println(InputMessage.PURCHASE_AMOUNT);
     }
 
     public void ticketResult(int count, List<Lotto> lottoTickets){
@@ -23,14 +24,14 @@ public class OutputView {
     }
 
     public void getWinningNumbers() {
-        System.out.println(OutputMessage.WINNING_NUMBERS);
+        System.out.println(InputMessage.WINNING_NUMBERS);
     }
 
     public void getBonusNumber() {
-        System.out.println(OutputMessage.BONUS_NUMBER);
+        System.out.println(InputMessage.BONUS_NUMBER);
     }
 
-    public void printPrizeResult(EnumMap<Prize, Integer> prizeResults, double earnRate) {
+    public void prizeResult(EnumMap<Prize, Integer> prizeResults, double earnRate) {
         System.out.println(OutputMessage.PRIZE_RESULT);
         System.out.println(OutputMessage.PRIZE_RESULT_DELIMITER);
         System.out.printf(OutputMessage.FIFTH_PRIZE, prizeResults.getOrDefault(Prize.FIFTH, 0));

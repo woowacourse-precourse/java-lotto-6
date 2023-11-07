@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.ErrorMessage;
+import lotto.message.ErrorMessage;
 
 public class TicketVendingMachine {
     private static final int TICKET_PRICE = 1000;

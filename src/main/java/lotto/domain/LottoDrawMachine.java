@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.ErrorMessage;
+import lotto.message.ErrorMessage;
 
 public class LottoDrawMachine {
     private static final int MIN_NUMBER = 1;

@@ -1,4 +1,4 @@
-package lotto;
+package lotto.message;
 
 public enum ErrorMessage {
     LOTTO_SIZE("[ERROR] 로또는 6개의 숫자로 구성되어야 합니다."),

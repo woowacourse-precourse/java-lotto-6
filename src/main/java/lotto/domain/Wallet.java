@@ -22,23 +22,25 @@ public class Wallet {
 
     public void addBalance(int money) {
         validateNumber(money);
-        this.balance = money;
+        balance = money;
     }
 
     public void buyAllLotto() {
 
-        while (this.balance > 0) {
+        int nowBalance = balance;
+
+        while (nowBalance > 0) {
             List<Integer> numbers = getLottoNumbers();
 
             buyLotto(numbers);
 
-            this.balance -= MIN_AMOUNT_OF_LOTTO;
+            nowBalance -= MIN_AMOUNT_OF_LOTTO;
         }
     }
 
     public void buyLotto(List<Integer> numbers) {
         Lotto lotto = new Lotto(numbers);
-        this.lottos.add(lotto);
+        lottos.add(lotto);
     }
 
 

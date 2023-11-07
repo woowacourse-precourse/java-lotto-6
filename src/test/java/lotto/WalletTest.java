@@ -62,7 +62,7 @@ public class WalletTest {
 
         wallet.buyAllLotto();
 
-        assertThat(wallet.getBalance()).isEqualTo(0);
+        assertThat(wallet.getBalance()).isEqualTo(10_000);
         assertThat(wallet.getLottos().size()).isEqualTo(10);
     }
 

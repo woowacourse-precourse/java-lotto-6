@@ -3,7 +3,10 @@ package lotto;
 import static lotto.constant.GuideMessage.*;
 
 import java.util.List;
+import java.util.Map;
+import lotto.constant.LottoResult;
 import lotto.domain.Lotto;
+import lotto.domain.LottoStatistics;
 import lotto.domain.Wallet;
 import lotto.domain.WinnerNumbers;
 
@@ -93,5 +96,18 @@ public class LottoController {
         }
 
         return bonusNumber;
+    }
+
+    void showTotalLottoResult() {
+
+        LottoStatistics lottoStatistics = new LottoStatistics();
+        List<Lotto> lottos = wallet.getLottos();
+        int balance = wallet.getBalance();
+
+        Map<LottoResult, Integer> lottoResult = lottoStatistics.calculateLottoResults(lottos, winnerNumbers);
+        double rateOfReturn = lottoStatistics.calculateLottoRateOfReturn(balance);
+
+        view.printLottoResult(lottoResult, rateOfReturn);
+
     }
 }

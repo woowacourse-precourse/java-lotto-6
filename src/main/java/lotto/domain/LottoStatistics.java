@@ -34,7 +34,7 @@ public class LottoStatistics {
     }
 
     public double calculateLottoRateOfReturn(int baseBalance) {
-        return getTotalAmount() / (double) baseBalance;
+        return getTotalAmount() / (double) baseBalance * 100;
     }
 
     private long getTotalAmount() {

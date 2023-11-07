@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
@@ -55,6 +57,9 @@ public class Lotto {
         if (MagicNumbers.CHECK_NUMBER_FOURTYFIVE.getMagicNumbers() < bonusNumber) {
             throw new IllegalArgumentException();
         }
+        if (numbers.contains(bonusNumber)){
+            throw new IllegalStateException();
+        }
         //익셉셔널쪽으로 날리기
     }
 
@@ -69,9 +74,9 @@ public class Lotto {
     }
 
     //리팩토링 필요
-    public Set<Integer> pickRandoms() {
-        Set<Integer> pickRandomnumbers = new HashSet<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-        pickRandomnumbers.stream().sorted(); // reversed 사용시 반대로 정렬됨
+    public List<Integer> pickRandoms() {
+        List<Integer> pickRandomnumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        Collections.sort(pickRandomnumbers); // reversed 사용시 반대로 정렬됨
         // 스트림 사용법 확인
         return pickRandomnumbers;
     }

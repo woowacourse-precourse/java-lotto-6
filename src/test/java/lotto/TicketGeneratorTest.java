@@ -12,12 +12,9 @@ public class TicketGeneratorTest {
     public void testGenerateLottoTicket() {
         NumberGenerator numberGenerator = new NumberGenerator();
         TicketGenerator ticketGenerator = TicketGenerator.create(numberGenerator);
-        List<List<Integer>> lottoTicket = ticketGenerator.generateLottoTicket(8000);
+        List<Lotto> lottoTickets = ticketGenerator.generateLottoTicket(8000);
 
-        assertNotNull(lottoTicket);
-        assertEquals(8, lottoTicket.size());
-        for (List<Integer> numberInTicket : lottoTicket) {
-            assertEquals(6, numberInTicket.size());
-        }
+        assertNotNull(lottoTickets);
+        assertEquals(8, lottoTickets.size());
     }
 }

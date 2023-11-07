@@ -18,6 +18,10 @@ public class Lotto {
         }
     }
 
+    public boolean isAlreadyExistNumber(int number) {
+        return numbers.contains(number);
+    }
+
     @Override
     public String toString() {
         String lottoPrintFormat = numbers.stream()

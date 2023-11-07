@@ -33,9 +33,8 @@ public class LottoHandler {
         int bonusNumber = getBonusNumber(winningNumbers);
         WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
         LottoRankings winningRankings = lottoManager.createWinningRankings(lottos, winningLotto);
-
-        showResult(winningRankings);
-        showProfit(payment, winningRankings);
+        double profitPercentage = lottoManager.calculateProfitPercentage(payment, winningRankings);
+        showResult(winningRankings, profitPercentage);
     }
 
     private void showPaidLottos(Lottos lottos) {
@@ -43,14 +42,9 @@ public class LottoHandler {
         writer.write(lottoViewResolver.parseLottosDetail(LottoDto.Information.from(lottos)));
     }
 
-    private void showProfit(Payment payment, LottoRankings winningRankings) {
-        long totalPrize = winningRankings.calculateTotalPrize();
-        double profitPercentage = payment.calculateProfitPercentage(totalPrize);
-        writer.write(lottoViewResolver.parseProfit(profitPercentage));
-    }
-
-    private void showResult(LottoRankings winningRankings) {
+    private void showResult(LottoRankings winningRankings, double profitPercentage) {
         writer.write(lottoViewResolver.parseLottoResult(LottoDto.Result.from(winningRankings)));
+        writer.write(lottoViewResolver.parseProfit(profitPercentage));
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {

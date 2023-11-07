@@ -1,4 +1,4 @@
 package lotto.util;
 
-public class InputMessage {
+public enum InputMessage {
 }

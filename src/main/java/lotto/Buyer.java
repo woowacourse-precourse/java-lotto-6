@@ -23,7 +23,7 @@ public class Buyer {
         }
     }
 
-    public void drawNumber() {
+    public void drawWinningNumbers() {
     }
 
     public Object getLotto() {

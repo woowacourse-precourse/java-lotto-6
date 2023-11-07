@@ -7,7 +7,7 @@ public class Application {
 
         buyer.buyLotto();
 
-        buyer.drawNumber();
+        buyer.drawWinningNumbersAndBonusNumber();
 
         LottoResultChecker lottoResultChecker = new LottoResultChecker();
 

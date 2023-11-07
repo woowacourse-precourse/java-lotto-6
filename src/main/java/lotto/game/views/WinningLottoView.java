@@ -1,6 +1,16 @@
 package lotto.game.views;
 
-import java.text.DecimalFormat;
+import static lotto.game.views.enums.WinningLottoViewMessage.ANNOUNCE_WINNING_STATISTICS;
+import static lotto.game.views.enums.WinningLottoViewMessage.ASK_BONUS_NUMBER;
+import static lotto.game.views.enums.WinningLottoViewMessage.ASK_WINNING_NUMBERS;
+import static lotto.game.views.enums.WinningLottoViewMessage.COUNT_OF_NUMBERS;
+import static lotto.game.views.enums.WinningLottoViewMessage.DELIMITER_NUMBERS;
+import static lotto.game.views.enums.WinningLottoViewMessage.EXCEPTION_DUPLICATED;
+import static lotto.game.views.enums.WinningLottoViewMessage.EXCEPTION_NOT_SIX;
+import static lotto.game.views.enums.WinningLottoViewMessage.EXCEPTION_OUT_OF_RANGE;
+import static lotto.game.views.enums.WinningLottoViewMessage.MAX_NUMBER_RANGE;
+import static lotto.game.views.enums.WinningLottoViewMessage.MIN_NUMBER_RANGE;
+
 import java.util.List;
 import java.util.Map;
 import lotto.collaboration.enums.Prize;
@@ -8,6 +18,7 @@ import lotto.collaboration.lottos.dto.PlayerLotto;
 import lotto.game.io.Input;
 import lotto.game.io.InteractionRepeatable;
 import lotto.game.io.Output;
+import lotto.game.views.enums.WinningLottoViewMessage;
 
 public class WinningLottoView implements InteractionRepeatable {
 
@@ -21,9 +32,8 @@ public class WinningLottoView implements InteractionRepeatable {
 
     public List<Integer> askWinningNumbers() {
         return supplyInteraction(() -> {
-            output.println();
-            output.println("당첨 번호를 입력해 주세요");
-            List<Integer> winningNumbers = input.numbers(",");
+            output.println(ASK_WINNING_NUMBERS.get());
+            List<Integer> winningNumbers = input.numbers(DELIMITER_NUMBERS.get());
             validate(winningNumbers);
             return winningNumbers;
         });
@@ -36,27 +46,26 @@ public class WinningLottoView implements InteractionRepeatable {
     }
 
     private void occurExceptionIfOutOfRange(int bonusNumber) {
-        if (bonusNumber < 1 || 45 < bonusNumber) {
-            throw new IllegalArgumentException("번호는 1부터 45까지의 숫자 중에서 선택할 수 있습니다.");
+        if (bonusNumber < MIN_NUMBER_RANGE || MAX_NUMBER_RANGE < bonusNumber) {
+            throw new IllegalArgumentException(EXCEPTION_OUT_OF_RANGE.get());
         }
     }
 
     private void occurExceptionIfNotSix(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("당첨 번호는 여섯자리 숫자입니다.");
+        if (winningNumbers.size() != COUNT_OF_NUMBERS) {
+            throw new IllegalArgumentException(EXCEPTION_NOT_SIX.get());
         }
     }
 
     private void occurExceptionIfDuplicated(List<Integer> winningNumbers) {
         if (winningNumbers.size() != winningNumbers.stream().distinct().count()) {
-            throw new IllegalArgumentException("당첨 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException(EXCEPTION_DUPLICATED.get());
         }
     }
 
     public int askBonusNumber() {
         return supplyInteraction(() -> {
-            output.println();
-            output.println("보너스 번호를 입력해 주세요.");
+            output.println(ASK_BONUS_NUMBER.get());
             int bonusNumber = input.number();
             occurExceptionIfOutOfRange(bonusNumber);
             return bonusNumber;
@@ -64,22 +73,18 @@ public class WinningLottoView implements InteractionRepeatable {
     }
 
     public void announceWinningStatistics(final int purchaseAmount, final Map<Prize, List<PlayerLotto>> prizeListMap) {
-        output.println();
-        output.println("당첨 통계");
-        output.println("---");
+        output.println(ANNOUNCE_WINNING_STATISTICS.get());
         long totalPrizeMoney = 0L;
-        for (Prize prize : Prize.values()) {
+        for (Prize prize : Prize.valuesByRank()) {
             if (prize == Prize.LOST) {
                 continue;
             }
             List<PlayerLotto> prizeLottos = prizeListMap.getOrDefault(prize, List.of());
-            output.println(prize.message() + " - " + prizeLottos.size() + "개");
+            output.println(prize.makeCountOfPrizeLottos(prizeLottos.size()));
             totalPrizeMoney += prize.money() * prizeLottos.size();
         }
 
-        // TODO : 변환 및 포맷팅 리팩토링 필요
-        double result = (double) Math.round(((double) totalPrizeMoney / purchaseAmount) * 1_000) / 10;
-        output.println("총 수익률은 " + new DecimalFormat("#,###.0").format(result) + "%입니다.");
+        output.println(WinningLottoViewMessage.calculationProfit(totalPrizeMoney, purchaseAmount));
     }
 
 }

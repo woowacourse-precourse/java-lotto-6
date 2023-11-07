@@ -3,7 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.constant.OutputMessage;
 import lotto.constant.ResultMessage;
-import lotto.service.ResultDTO;
+import lotto.service.dto.ResultDTO;
 
 public class OutputView {
     private void printNumberOfLotto(int numberOfLottos) {

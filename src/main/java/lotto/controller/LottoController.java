@@ -1,13 +1,12 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
 import lotto.service.LottoAnalyzeService;
-import lotto.service.LottosDTO;
-import lotto.service.ResultDTO;
+import lotto.service.dto.LottosDTO;
+import lotto.service.dto.ResultDTO;
 import lotto.service.LottoIssueService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

@@ -9,6 +9,7 @@ import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.ProfitRateCalculator;
 import lotto.domain.WinningLotto;
+import lotto.service.dto.ResultDTO;
 
 public class LottoAnalyzeService {
     private LottoScanner lottoScanner = new LottoScanner();

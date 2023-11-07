@@ -7,6 +7,7 @@ public enum ExceptionMessage {
     NOT_LOTTO_TOTAL_NUMBER("로또는 6개의 숫자를 뽑아야합니다."),
     NOT_WORK_LOTTO_GENERATOR("로또 발행기가 작동하지 않습니다. 다시 발행하겠습니다."),
     ONLY_ONE_FOR_BONUS_NUMBER("보너스 번호는 하나만 입력할 수 있습니다."),
+    BONUS_NUMBER_IN_WINNING_NUMBER("당첨 번호와 보너스 번호가 동일할 수 없습니다."),
     NOT_CORRECT_FORM("입력 양식에 맞지 않습니다."),
     NOT_NULL("입력값이 없습니다."),
     DUPLICATE_NUMBER("중복된 수를 뽑을 수 없습니다."),

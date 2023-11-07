@@ -7,7 +7,7 @@ import static lotto.exception.ErrorMessage.INVALID_PAYMENT_RANGE;
 
 public class Payment {
     private final static int PRICE_PER_LOTTO = 1000;
-    private final static int PERCENT = 100;
+    private final static int PERCENT_MAKER = 100;
 
     private final int pay;
 
@@ -34,11 +34,11 @@ public class Payment {
     }
 
     public String getReturnRate(int reward) {
-        double result = (double) reward / pay * PERCENT;
+        double result = (double) reward / pay * PERCENT_MAKER;
         return formatReturnRate(result);
     }
 
-    private String formatReturnRate(Double reward){
+    private String formatReturnRate(Double reward) {
         DecimalFormat formatter = new DecimalFormat("###,###.##");
         return formatter.format(reward);
     }

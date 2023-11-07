@@ -1,6 +1,10 @@
 package lotto.ui;
 
+import static lotto.constants.Message.BONUS_NUMBER;
 import static lotto.constants.Message.PURCHASE_LOTTO;
+import static lotto.constants.Message.PURCHASE_MONEY;
+import static lotto.constants.Message.WINNING_NUMBER;
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -39,7 +43,7 @@ class OutputTest {
 
     @DisplayName("구매한 로또 개수 출력")
     @Test
-    void printCount(){
+    void printCount() {
         // given
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -48,12 +52,55 @@ class OutputTest {
         Integer lottoCount = 8;
         Output.printCount(lottoCount);
 
+        // then
+        assertThat(out.toString())
+                .contains(lottoCount + PURCHASE_LOTTO.getMessage());
+    }
+
+    @DisplayName("금액 입력할 때, 출력")
+    @Test
+    void printPurchase() {
+        // given
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        // when
+        Output.printPurchase();
 
         // then
         assertThat(out.toString())
-                .contains(lottoCount+PURCHASE_LOTTO.getMessage());
+                .contains(PURCHASE_MONEY.getMessage());
     }
 
+    @DisplayName("당첨 번호 입력할 때, 출력")
+    @Test
+    void printWinningNumber() {
+        // given
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        // when
+        Output.printWinningNumber();
+
+        // then
+        assertThat(out.toString())
+                .contains(WINNING_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스 번호 입력할 때, 출력")
+    @Test
+    void printBonusNumber() {
+        // given
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        // when
+        Output.printBonusNumber();
+
+        // then
+        assertThat(out.toString())
+                .contains(BONUS_NUMBER.getMessage());
+    }
 
 
     @DisplayName("로또 번호를 오름차순으로 정렬하여 구매한 로또 전체 출력")

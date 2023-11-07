@@ -44,5 +44,4 @@ public class LottosTest {
         //then
         Assertions.assertEquals(1, amount);
     }
-
 }

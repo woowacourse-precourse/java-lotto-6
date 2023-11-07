@@ -12,7 +12,7 @@ public class WinningNumbers {
     private int bonusNumber;
 
     public WinningNumbers(List<Integer> winningNumbers) {
-        validateWinningNumber(winningNumbers);
+        validateWinningNumbers(winningNumbers);
         this.winningNumbers = sorted(winningNumbers);
     }
 
@@ -20,7 +20,7 @@ public class WinningNumbers {
         return numbers.stream().sorted().toList();
     }
 
-    private void validateWinningNumber(List<Integer> winningNumbers) {
+    private void validateWinningNumbers(List<Integer> winningNumbers) {
         validateSize(winningNumbers);
         validateDuplicate(winningNumbers);
         winningNumbers.forEach(this::validateRange);

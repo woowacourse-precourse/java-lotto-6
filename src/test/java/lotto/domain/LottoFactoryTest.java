@@ -27,5 +27,12 @@ class LottoFactoryTest {
         assertThat(lottos.size()).isEqualTo(count);
     }
 
+    @DisplayName("로또 리스트 가 요청한 개수 만큼 생성 되는지 검증 하기")
+    @Test
+    public void testGenerateLotties(){
+        int count = 3;
+        Lotties lotties = LottoFactory.generateLotties(count);
+        assertThat(lotties.size()).isEqualTo(count);
+    }
 
 }

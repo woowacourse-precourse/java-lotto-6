@@ -6,6 +6,7 @@ import lotto.domain.view.InputView;
 import lotto.domain.view.OutputView;
 import lotto.service.LottoBonusService;
 import lotto.service.LottoInputDrawNumberService;
+import lotto.service.LottoNumberCompareService;
 import lotto.service.LottoPublishService;
 
 public class LottoController {
@@ -14,6 +15,8 @@ public class LottoController {
     LottoPublishService lottoPublishService = LottoPublishService.getInstance();
     LottoInputDrawNumberService lottoInputDrawNumberService = LottoInputDrawNumberService.getInstance();
     LottoBonusService lottoBonusService = LottoBonusService.getInstance();
+
+    private LottoNumberCompareService lottoNumberCompareService = LottoNumberCompareService.getInstance();
 
     public LottoController() {
         this.inputView = new InputView();
@@ -25,6 +28,23 @@ public class LottoController {
         this.lottoPublish();
         this.saveDrawNumbers();
         this.saveBonusNumbers();
+        this.processDrawResult();
+        this.printResult();
+    }
+
+    private void printResult() {
+        outputView.printResultMessage();
+        outputView.printRewardResult(lottoNumberCompareService.getMatchResult());
+        outputView.printEarnings(lottoNumberCompareService.getEarnings());
+    }
+
+    private void processDrawResult() {
+        lottoNumberCompareService.inputNumber(lottoPublishService.getPublishedLottoNumbers(),
+                lottoInputDrawNumberService.getLottoDrawNumber(), lottoBonusService.getLottoBonusNumber(),
+                lottoPublishService.getLottoPrice());
+
+        lottoNumberCompareService.initMatchResult();
+        lottoNumberCompareService.calcResult();
     }
 
     private void saveBonusNumbers() {

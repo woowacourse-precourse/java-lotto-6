@@ -5,12 +5,21 @@ import java.util.List;
 public class CompareNumber {
 
     public int compareWinnerNum(List<Integer> userWin, List<Integer> randomWin) {
-        int count = 0;
+        int sameCount = 0;
         for (Integer number : userWin){
             if(randomWin.contains(number)){
-                count++;
+                sameCount++;
             }
         }
-        return count;
+        return sameCount;
     }
+
+    public boolean compareBonusNum(int bonusNumber, List<Integer> randomWin) {
+        int bonusCount = 0;
+        if(randomWin.contains(bonusNumber)){
+            return true;
+        }
+        return false;
+    }
+
 }

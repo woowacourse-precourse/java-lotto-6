@@ -35,20 +35,20 @@ public class LottoView {
         outputView.printRateOfReturn(rateOfReturn);
     }
 
-    public List<LottoNumber> getWinningNumbers() {
-        List<LottoNumber> winningNumbers;
+    public Lotto getWinningNumbers() {
+        Lotto winningNumbers;
         do {
             winningNumbers = inputView.getWinningNumbers();
-        } while (winningNumbers.isEmpty());
+        } while (winningNumbers == null);
 
         return winningNumbers;
     }
 
-    public LottoNumber getBonusNumberWithDuplicationCheck(List<LottoNumber> winningNumbers) {
+    public LottoNumber getBonusNumberWithDuplicationCheck(Lotto winningLotto) {
         LottoNumber bonusNumber;
         do {
             bonusNumber = getBonusNumber();
-            if (winningNumbersContainsBonusNumber(winningNumbers, bonusNumber)) {
+            if (winningNumbersContainsBonusNumber(winningLotto, bonusNumber)) {
                 System.out.println(LottoView.ERROR + BONUS_NUMBER_DUPLICATED_ERROR);
                 bonusNumber = null;
             }
@@ -57,8 +57,8 @@ public class LottoView {
         return bonusNumber;
     }
 
-    private boolean winningNumbersContainsBonusNumber(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
-        return winningNumbers.contains(bonusNumber);
+    private boolean winningNumbersContainsBonusNumber(Lotto winningLotto, LottoNumber bonusNumber) {
+        return winningLotto.contains(bonusNumber.getNumber());
     }
 
     private LottoNumber getBonusNumber() {

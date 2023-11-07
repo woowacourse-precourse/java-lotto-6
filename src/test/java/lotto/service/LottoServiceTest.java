@@ -49,16 +49,11 @@ class LottoServiceTest {
         lottos.add(new Lotto(Arrays.asList(12, 11, 43, 42, 41, 40)));
 
         LottoList lottoList = new LottoList(lottos);
-        List<LottoNumber> winningNumbers = new ArrayList<>(Arrays.asList(
-                new LottoNumber(1),
-                new LottoNumber(2),
-                new LottoNumber(3),
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6)));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
         LottoNumber bonusNumber = new LottoNumber(10);
 
-        LottoPrizeDto dto = lottoService.totalWinnings(LottoPurchaseDto.Of(lottoList, winningNumbers, bonusNumber));
+        LottoPrizeDto dto = lottoService.totalWinnings(LottoPurchaseDto.Of(lottoList, winningLotto, bonusNumber));
 
         assertThat(dto.getFirst()).isEqualTo(2);
         assertThat(dto.getSecond()).isEqualTo(3);
@@ -82,16 +77,11 @@ class LottoServiceTest {
 
         LottoList lottoList = new LottoList(lottos);
 
-        List<LottoNumber> winningNumbers = List.of(
-                new LottoNumber(1),
-                new LottoNumber(2),
-                new LottoNumber(3),
-                new LottoNumber(4),
-                new LottoNumber(5),
-                new LottoNumber(6));
+        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
         LottoNumber bonusNumber = new LottoNumber(7);
 
-        LottoPurchaseDto dto = LottoPurchaseDto.Of(lottoList, winningNumbers, bonusNumber);
+        LottoPurchaseDto dto = LottoPurchaseDto.Of(lottoList, winningLotto, bonusNumber);
         assertThat(lottoService.calculateRateOfReturn(dto)).isEqualTo(62.5d);
     }
 

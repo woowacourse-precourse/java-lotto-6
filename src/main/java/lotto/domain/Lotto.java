@@ -23,6 +23,10 @@ public class Lotto {
         return new Lotto(RandomLottoNumberGenerator.generate());
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public void printItself() {
         System.out.println(numbers.stream().sorted().toList());
     }

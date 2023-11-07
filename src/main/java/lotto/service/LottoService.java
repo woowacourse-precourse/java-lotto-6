@@ -15,10 +15,10 @@ public class LottoService {
 
     public LottoPrizeDto totalWinnings(LottoPurchaseDto lottoPurchaseDto) {
         LottoList lottoList = lottoPurchaseDto.getLottoList();
-        List<LottoNumber> winningNumbers = lottoPurchaseDto.getWinningNumbers();
+        Lotto winningLotto = lottoPurchaseDto.getWinningLotto();
         LottoNumber bonusNumber = lottoPurchaseDto.getBonusNumber();
 
-        return checkLottoWinnings(lottoList, winningNumbers, bonusNumber);
+        return checkLottoWinnings(lottoList, winningLotto, bonusNumber);
     }
 
     public double calculateRateOfReturn(LottoPurchaseDto lottoPurchaseDto) {
@@ -33,35 +33,35 @@ public class LottoService {
         return Math.round(THOUSAND * totalPrizeMoney / (double) cost) / TEN_POINT_ZERO;
     }
 
-    private LottoPrizeDto checkLottoWinnings(LottoList lottoList, List<LottoNumber> winningNumbers,
+    private LottoPrizeDto checkLottoWinnings(LottoList lottoList, Lotto winningLotto,
                                              LottoNumber bonusNumber) {
         LottoPrizeDto lottoPrizeDto = new LottoPrizeDto();
         for (Lotto lotto : lottoList.getLottos()) {
-            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.FIRST) {
+            if (compareOneLotto(lotto, winningLotto, bonusNumber) == PrizeCondition.FIRST) {
                 lottoPrizeDto.countFirst();
             }
-            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.SECOND) {
+            if (compareOneLotto(lotto, winningLotto, bonusNumber) == PrizeCondition.SECOND) {
                 lottoPrizeDto.countSecond();
             }
-            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.THIRD) {
+            if (compareOneLotto(lotto, winningLotto, bonusNumber) == PrizeCondition.THIRD) {
                 lottoPrizeDto.countThird();
             }
-            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.FOURTH) {
+            if (compareOneLotto(lotto, winningLotto, bonusNumber) == PrizeCondition.FOURTH) {
                 lottoPrizeDto.countFourth();
             }
-            if (compareOneLotto(lotto, winningNumbers, bonusNumber) == PrizeCondition.FIFTH) {
+            if (compareOneLotto(lotto, winningLotto, bonusNumber) == PrizeCondition.FIFTH) {
                 lottoPrizeDto.countFifth();
             }
         }
         return lottoPrizeDto;
     }
 
-    private PrizeCondition compareOneLotto(Lotto randomLotto, List<LottoNumber> winningNumbers,
+    private PrizeCondition compareOneLotto(Lotto randomLotto, Lotto winningLotto,
                                            LottoNumber bonusNumber) {
         int matchCount = 0;
         boolean bonusMatch = false;
-        for (LottoNumber lottoNumber : winningNumbers) {
-            if (randomLotto.contains(lottoNumber.getNumber())) {
+        for (Integer lottoNumber : winningLotto.getNumbers()) {
+            if (randomLotto.contains(lottoNumber)) {
                 matchCount++;
             }
         }

@@ -1,23 +1,23 @@
 package lotto.domain.dto;
 
-import java.util.List;
+import lotto.domain.Lotto;
 import lotto.domain.LottoList;
 import lotto.domain.LottoNumber;
 import lotto.domain.Money;
 
 public class LottoPurchaseDto {
     private final LottoList lottoList;
-    private final List<LottoNumber> winningNumbers;
+    private final Lotto winningLotto;
     private final LottoNumber bonusNumber;
 
-    private LottoPurchaseDto(LottoList lottoList, List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
+    private LottoPurchaseDto(LottoList lottoList, Lotto winningLotto, LottoNumber bonusNumber) {
         this.lottoList = lottoList;
-        this.winningNumbers = winningNumbers;
+        this.winningLotto = winningLotto;
         this.bonusNumber = bonusNumber;
     }
 
-    public static LottoPurchaseDto Of(LottoList lottoList, List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
-        return new LottoPurchaseDto(lottoList, winningNumbers, bonusNumber);
+    public static LottoPurchaseDto Of(LottoList lottoList, Lotto winningLotto, LottoNumber bonusNumber) {
+        return new LottoPurchaseDto(lottoList, winningLotto, bonusNumber);
     }
 
     public int getCost() {
@@ -28,8 +28,8 @@ public class LottoPurchaseDto {
         return lottoList;
     }
 
-    public List<LottoNumber> getWinningNumbers() {
-        return winningNumbers;
+    public Lotto getWinningLotto() {
+        return winningLotto;
     }
 
     public LottoNumber getBonusNumber() {

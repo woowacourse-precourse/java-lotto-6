@@ -17,10 +17,10 @@ public class LottoController {
         Money money = lottoView.getLottoPurchasingCost();
         LottoList lottoList = LottoList.generateRandomLottoSetSizeWith(money.getLottoCount());
         printPublishedLottos(money.getLottoCount(), lottoList.getLottos());
-        List<LottoNumber> winningNumbers = lottoView.getWinningNumbers();
-        LottoNumber bonusNumber = lottoView.getBonusNumberWithDuplicationCheck(winningNumbers);
+        Lotto winningLotto = lottoView.getWinningNumbers();
+        LottoNumber bonusNumber = lottoView.getBonusNumberWithDuplicationCheck(winningLotto);
 
-        LottoPurchaseDto lottoPurchaseDto = LottoPurchaseDto.Of(lottoList, winningNumbers, bonusNumber);
+        LottoPurchaseDto lottoPurchaseDto = LottoPurchaseDto.Of(lottoList, winningLotto, bonusNumber);
 
         printStatistics(lottoPurchaseDto);
         calculateRateOfReturn(lottoPurchaseDto);

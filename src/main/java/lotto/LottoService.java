@@ -3,7 +3,6 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoService {
@@ -26,9 +25,7 @@ public class LottoService {
     public List<Lotto> provideLotto(int lottoCnt) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < lottoCnt; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
-            lottos.add(new Lotto(numbers));
+            lottos.add(new Lotto(new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6))));
         }
         return lottos;
     }

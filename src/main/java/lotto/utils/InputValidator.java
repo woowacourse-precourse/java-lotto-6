@@ -4,6 +4,8 @@ import lotto.enums.ErrorMessage;
 
 public class InputValidator {
     private static final int LESS_AMOUNT = 1000;
+    private static final int JACKPOT_MINIMUM_NUMBER = 1;
+    private static final int JACKPOT_MAXIMUM_NUMBER = 45;
 
     public static void checkLottoPayAmountInput(String lottoPayAmount) {
         checkNumeric(lottoPayAmount);
@@ -37,9 +39,19 @@ public class InputValidator {
         checkJackpotNumberNumeric(jackpotNumberInput);
         checkJackpotNumberSize(jackpotNumberInput);
         checkEndsWithComma(jackpotNumberInput);
-        // TODO : 1~45 이외의 숫자를 입력했을 경우
+        checkNumberOfRange(jackpotNumberInput);
         // TODO : 중복된 숫자를 입력했을 경우
 
+    }
+
+    private static void checkNumberOfRange(String jackpotNumberInput) {
+        String replaceNumberInput = jackpotNumberInput.replace(",", "");
+        for (int i = 0; i < replaceNumberInput.length(); i++) {
+            int number = Integer.parseInt(String.valueOf(replaceNumberInput.charAt(i)));
+            if (number < JACKPOT_MINIMUM_NUMBER || JACKPOT_MAXIMUM_NUMBER < number) {
+                throw new IllegalArgumentException(ErrorMessage.JACKPOT_NUMBER_OUT_OF_RANGE_ERROR.getErrorMessage());
+            }
+        }
     }
 
     private static void checkEndsWithComma(String jackpotNumberInput) {

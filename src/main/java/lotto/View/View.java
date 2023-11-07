@@ -1,8 +1,10 @@
 package lotto.View;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.LottoRanking;
 import lotto.domain.Lotto;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class View {
@@ -18,5 +20,17 @@ public class View {
         for(Lotto lotto : userLottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    public String getWinnerNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String userInput = Console.readLine();
+        return userInput;
+    }
+
+    public Integer getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String userInput = Console.readLine();
+        return Integer.parseInt(userInput);
     }
 }

@@ -34,25 +34,22 @@ public class Application {
         return num;
     }
 
+
     public static Lotto getInputFirstPrizeLotto() {
-        Lotto lotto;
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<String> numString = Arrays.stream(input.split(","))
                 .toList();
         List<Integer> num = new ArrayList<>();
 
-        validateFirstPrize(numString);
-
-        for (int i = 0; i < LOTTO_NUMBER_COUNT; ++i) {
-            int n = unsafeString2Int(numString.get(i));
+        for (String s : numString) {
+            int n = unsafeString2Int(s);
             if (num.contains(n)) {
                 throw new IllegalArgumentException();
             }
             num.add(n);
         }
-        lotto = new Lotto(num);
-        return lotto;
+        return new Lotto(num);
     }
 
     private static void validateFirstPrize(List<String> numString) {

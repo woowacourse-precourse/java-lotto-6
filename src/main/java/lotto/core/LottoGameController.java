@@ -6,6 +6,7 @@ import lotto.preprocessor.BonusNumPreprocessor;
 import lotto.preprocessor.PurchasePreprocessor;
 import lotto.preprocessor.WinningNumsPreprocessor;
 import lotto.util.LottoConst;
+import lotto.util.Rank;
 
 public class LottoGameController {
 
@@ -26,6 +27,7 @@ public class LottoGameController {
         purchaseLotto();
         drawWinningNumbers();
         drawBonusNumber();
+        reportWinningResult();
     }
 
     public void purchaseLotto() {
@@ -49,5 +51,10 @@ public class LottoGameController {
     public void drawBonusNumber() {
         Integer bonusNum = bonusNumPreprocessor.process("보너스 번호를 입력해주세요.");
         lottoGame.setBonusNumber(bonusNum);
+    }
+
+    private void reportWinningResult() {
+        List<Rank> winningResults = lottoGame.findWinningResults();
+        System.out.println("winningResults = " + winningResults);
     }
 }

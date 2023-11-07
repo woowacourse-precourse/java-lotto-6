@@ -45,6 +45,14 @@ public class Lotto {
         }
     }
 
+    public int compare(Lotto lotto) {
+        return (int) numbers.stream().filter(num -> lotto.contains(num)).count();
+    }
+
+    public boolean contains(int num) {
+        return numbers.contains(num);
+    }
+
     @Override
     public String toString() {
         String res = "[";

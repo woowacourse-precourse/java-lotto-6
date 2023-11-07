@@ -206,9 +206,16 @@
   - 가공된 총 수익률을 받아서 알려주는 메시지
 
 #### Condition
+
+검증에 사용되는 조건들
+
+---
+
+#### 필드
+
 - `MIN_LOTTO_MONEY` : 0
 - `MAX_LOTTO_MONEY` : `Long.MAX_VALUE`
-
+- `THOUSAND` : 1000
 - `LOTTO_MONEY_COUNT` : 1
 - `WINNING_NUMBERS_COUNT` : 6
 - `BONUS_NUMBER_COUNT` : 1

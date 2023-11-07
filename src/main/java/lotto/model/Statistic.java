@@ -45,7 +45,7 @@ public class Statistic {
         }
 
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.getMatchedCount() == matchedCount && !rank.isContainBonusNumber())
+                .filter(rank -> rank.getMatchedCount() == matchedCount && !rank.isRequireContainBonusNumber())
                 .findFirst()
                 .orElse(NON_RANK);
     }

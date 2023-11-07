@@ -3,16 +3,16 @@ package lotto;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
-import lotto.service.LottoNumberGenerator;
+import lotto.service.NumberGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LottoNumberGeneratorTest {
+public class NumberGeneratorTest {
 
     @Test
     public void testGenerateLottoNumbers() {
-        LottoNumberGenerator numberGenerator = new LottoNumberGenerator();
+        NumberGenerator numberGenerator = new NumberGenerator();
         List<Integer> lottoNumbers = numberGenerator.generateLottoNumber();
 
         assertNotNull(lottoNumbers);

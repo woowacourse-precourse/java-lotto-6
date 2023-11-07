@@ -1,17 +1,17 @@
 package lotto;
 
 import java.util.List;
-import lotto.service.LottoNumberGenerator;
-import lotto.service.LottoTicketGenerator;
+import lotto.service.NumberGenerator;
+import lotto.service.TicketGenerator;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-public class LottoTicketGeneratorTest {
+public class TicketGeneratorTest {
 
     @Test
     public void testGenerateLottoTicket() {
-        LottoNumberGenerator numberGenerator = new LottoNumberGenerator();
-        LottoTicketGenerator ticketGenerator = LottoTicketGenerator.create(numberGenerator);
+        NumberGenerator numberGenerator = new NumberGenerator();
+        TicketGenerator ticketGenerator = TicketGenerator.create(numberGenerator);
         List<List<Integer>> lottoTicket = ticketGenerator.generateLottoTicket(8000);
 
         assertNotNull(lottoTicket);

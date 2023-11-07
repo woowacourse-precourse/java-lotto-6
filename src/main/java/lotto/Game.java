@@ -35,17 +35,7 @@ public class Game {
     }
 
     private void saveBuyingPrice() {
-        Boolean isNotEnded = true;
-        while (isNotEnded) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String readLine = Console.readLine();
-                buyingPrice.save(readLine);
-                isNotEnded = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        saveValue("구입금액을 입력해 주세요.", buyingPrice);
     }
 
     private void giveLotto() {
@@ -68,31 +58,11 @@ public class Game {
     }
 
     private void saveWinningNumber() {
-        Boolean isNotEnded = true;
-        while (isNotEnded) {
-            try {
-                System.out.println("당첨 번호를 입력해 주세요.");
-                String readLine = Console.readLine();
-                winning.save(readLine);
-                isNotEnded = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        saveValue("당첨 번호를 입력해 주세요.", winning);
     }
 
     private void saveBonusNumber() {
-        Boolean isNotEnded = true;
-        while (isNotEnded) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                String readLine = Console.readLine();
-                bonus.save(readLine, winning.getNumbers());
-                isNotEnded = false;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        saveValue("보너스 번호를 입력해 주세요.", bonus);
     }
 
     private void informWinning() {
@@ -107,9 +77,7 @@ public class Game {
     private void printWinning(ResultCase resultCase) {
         int matchLotto = countMatchLotto(resultCase);
         result.changeResult(resultCase, matchLotto);
-        System.out.print(resultCase.getInform());
-        System.out.print(matchLotto);
-        System.out.println("개");
+        System.out.println(resultCase.getInform() + matchLotto + "개");
     }
 
     private int countMatchLotto(ResultCase resultCase) {
@@ -141,5 +109,19 @@ public class Game {
         double rateOfReturn = ((double) result.getWinningPrice() / buyingPrice.getPrice()) * 100;
         double refinedRateOfReturn = (double) Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
         return refinedRateOfReturn;
+    }
+
+    private void saveValue(String informComment, Input input) {
+        Boolean isNotEnded = true;
+        while (isNotEnded) {
+            try {
+                System.out.println(informComment);
+                String readLine = Console.readLine();
+                input.save(readLine);
+                isNotEnded = false;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

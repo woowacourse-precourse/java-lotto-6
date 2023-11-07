@@ -33,4 +33,16 @@ public class Domain {
     public List<Integer> getCorrectNumberCount() {
         return correctNumberCount;
     }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setLottoWinningNumber(List<Integer> lottoWinningNumber) {
+        this.lottoWinningNumber = lottoWinningNumber;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
+    }
 }

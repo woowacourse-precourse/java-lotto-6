@@ -46,18 +46,6 @@ public class Service {
         }
     }
 
-    public void setPrice(int price) {
-        DOMAIN.price = price;
-    }
-
-    public void setLottoWinningNumber(List<Integer> lottoWinningNumber) {
-        DOMAIN.lottoWinningNumber = lottoWinningNumber;
-    }
-
-    public void setBonusNumber(int bonusNumber) {
-        DOMAIN.bonusNumber = bonusNumber;
-    }
-
     public List<Integer> makeLotto(String lottoNumber) {
         return Arrays.stream(lottoNumber.split(","))
                 .map(Integer::parseInt)

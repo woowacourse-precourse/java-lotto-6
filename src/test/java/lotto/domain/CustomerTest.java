@@ -17,11 +17,11 @@ class CustomerTest {
         Customer customer=new Customer("10000");
 
         //when
-        customer.pay(5000);
+        customer.pay();
         List<Lotto>  lottos=customer.getLottos();
 
         //then
-        Assertions.assertThat(lottos.size()).isEqualTo(5);
+        Assertions.assertThat(lottos.size()).isEqualTo(10);
     }
 
 }

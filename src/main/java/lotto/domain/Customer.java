@@ -12,9 +12,8 @@ public class Customer {
         this.money=Integer.parseInt(money);
     }
 
-    public void pay(int money){
+    public void pay(){
         IssuingMachine issuingMachine=IssuingMachine.turnOn(money);
-        this.money-=money;
         lottos=issuingMachine.issueLotto();
     }
 

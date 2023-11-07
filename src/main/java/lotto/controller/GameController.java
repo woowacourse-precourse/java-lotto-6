@@ -5,7 +5,6 @@ import java.util.List;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Pay;
-import lotto.domain.WinningNumber;
 import lotto.util.Generator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,7 +14,7 @@ public class GameController {
     private OutputView outputView = new OutputView();
     private Pay pay;
     private List<Lotto> userLottos;
-    private WinningNumber winningNumber;
+    private Lotto winningNumber;
     private BonusNumber bonusNumber;
 
     public void run() {
@@ -45,7 +44,7 @@ public class GameController {
     }
 
     private void generateWinningNumber() {
-        winningNumber = new WinningNumber(inputView.requestWinningNumber());
+        winningNumber = new Lotto(inputView.requestWinningNumber());
         bonusNumber = new BonusNumber(inputView.requestBonusNumber());
     }
 }

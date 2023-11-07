@@ -19,6 +19,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         isUnvalidLength(numbers);
         isDuplicated(numbers);
+        isOutOfRange(numbers);
     }
 
     private void isUnvalidLength(List<Integer> numbers) {
@@ -31,6 +32,15 @@ public class Lotto {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numbers.size() != numberSet.size()) {
             throw new IllegalArgumentException(ExceptionMessage.IS_DUPLICATED.getMessage());
+        }
+    }
+
+    private void isOutOfRange(List<Integer> numbers) {
+        for (int num : numbers) {
+            if (num < ConfigurationNumbers.MIN_NUMBER.getNumber()
+                    || num > ConfigurationNumbers.MAX_NUMBER.getNumber()) {
+                throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE.getMessage());
+            }
         }
     }
 

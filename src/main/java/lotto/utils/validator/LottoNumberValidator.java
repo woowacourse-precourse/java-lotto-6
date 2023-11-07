@@ -17,8 +17,8 @@ public class LottoNumberValidator {
         }
     }
 
-    public static void validateOutOfRange(List<Integer> winningNumber) {
-        for (int number : winningNumber) {
+    public static void validateOutOfRange(List<Integer> lottoNumbers) {
+        for (int number : lottoNumbers) {
             if (isOutOfRange(number)) {
                 throw new IllegalArgumentException(OUT_OF_RANGE_ERROR_MESSAGE);
             }

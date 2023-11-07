@@ -8,10 +8,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public record Lotto(List<Integer> numbers) {
+public class Lotto {
     public static final int LOTTO_MIN_NUMBER = 1;
     public static final int LOTTO_MAX_NUMBER = 45;
     public static final int LOTTO_SIZE = 6;
+
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -20,6 +22,10 @@ public record Lotto(List<Integer> numbers) {
 
     public LottoResult calculateResult(WinningLotto winningLotto) {
         return LottoResult.compareLottoNums(numbers, winningLotto);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
     private void validate(List<Integer> numbers) {

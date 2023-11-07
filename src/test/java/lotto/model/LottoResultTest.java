@@ -15,7 +15,7 @@ class LottoResultTest {
     @BeforeEach
     void before() {
         Lotto lotto = new Lotto(new Input("1,2,3,4,5,6").ofNums());
-        int bonus = new Input("7").ofBonus(lotto.numbers());
+        int bonus = new Input("7").ofBonus(lotto.getNumbers());
         winningLotto = new WinningLotto(lotto, bonus);
     }
 

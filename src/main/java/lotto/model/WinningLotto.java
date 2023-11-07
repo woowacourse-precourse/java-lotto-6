@@ -16,6 +16,6 @@ public class WinningLotto {
     }
 
     public List<Integer> getLottoNums() {
-        return lotto.numbers();
+        return lotto.getNumbers();
     }
 }

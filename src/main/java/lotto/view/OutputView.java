@@ -20,7 +20,7 @@ public class OutputView {
 
     public static void printUserLottos(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        lottos.forEach(lotto -> System.out.println(changeLottoToString(lotto.numbers())));
+        lottos.forEach(lotto -> System.out.println(changeLottoToString(lotto.getNumbers())));
         System.out.println();
     }
 

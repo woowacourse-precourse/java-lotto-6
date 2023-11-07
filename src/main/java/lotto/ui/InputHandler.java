@@ -18,26 +18,33 @@ public class InputHandler {
     public int getValidPurchaseAmount() throws IllegalArgumentException {
         outputHandler.printMessage(Inquire.PURCHASE_AMOUNT);
         String userInput = getUserInput();
-        return validatePurchaseAmount(userInput);
+        validatePurchaseAmount(userInput);
+        return Integer.parseInt(userInput);
     }
 
     private String getUserInput() {
         return Console.readLine();
     }
 
-    private int validatePurchaseAmount(String userInput) {
-        if (!isPositiveInteger(userInput)) {
-            throw new IllegalArgumentException(Error.POSITIVE_INTEGER.getMessage());
-        }
+    private void validatePurchaseAmount(String userInput) {
+        validatePositiveInteger(userInput);
+        validateThousandUnits(userInput);
+    }
 
+    private void validateThousandUnits(String userInput) {
         int purchaseAmount = Integer.parseInt(userInput);
         if (!isThousandUnits(purchaseAmount)) {
             throw new IllegalArgumentException(Error.THOUSAND_UNITS.getMessage());
         }
-        return purchaseAmount;
     }
 
-    public boolean isPositiveInteger(String str) {
+    private void validatePositiveInteger(String userInput) {
+        if (!isPositiveInteger(userInput)) {
+            throw new IllegalArgumentException(Error.POSITIVE_INTEGER.getMessage());
+        }
+    }
+
+    private boolean isPositiveInteger(String str) {
         Pattern pattern = Pattern.compile("^[1-9]\\d*$");
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
@@ -57,5 +64,4 @@ public class InputHandler {
         outputHandler.printMessage(Inquire.BONUS_NUMBER);
         return Integer.parseInt(getUserInput());
     }
-
 }

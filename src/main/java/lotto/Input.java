@@ -34,6 +34,15 @@ public class Input {
         }
     }
 
+    public WinningLotto bonusNumber(Lotto winningLottoWithoutBonus) {
+        try {
+            int bonusNumber = stringConverter.covertToInteger(inputView.inputBonusNumber());
+            return new WinningLotto(winningLottoWithoutBonus, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            return bonusNumber(winningLottoWithoutBonus);
+        }
+    }
+
     private Lotto makeWinningLotto(List<Integer> winningNumbers) {
         try {
             return new Lotto(winningNumbers);
@@ -41,16 +50,4 @@ public class Input {
             return winningNumberWithoutBonus();
         }
     }
-
-
-    public WinningLotto bonusNumber(Lotto winningLottoWithoutBonus) {
-        try {
-            int bonusNumber = stringConverter.covertToInteger(inputView.inputBonusNumber());
-            return new WinningLotto(winningLottoWithoutBonus, bonusNumber);
-        }
-        catch (IllegalArgumentException e) {
-            return bonusNumber(winningLottoWithoutBonus);
-        }
-    }
-
 }

@@ -23,4 +23,8 @@ public class OutputView {
         System.out.println(String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개", counts.get(3)));
         System.out.println(String.format("6개 일치 (2,000,000,000원) - %d개", counts.get(4)));
     }
+
+    void printProfitRate(float profitRate){
+        System.out.println(String.format("총 수익률은 %.1f% 입니다.",profitRate));
+    }
 }

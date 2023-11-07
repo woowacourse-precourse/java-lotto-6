@@ -3,6 +3,10 @@ package lotto;
 import lotto.Util.ErrorMessage;
 
 import java.util.List;
+import java.util.Collections;
+import java.util.stream.Collectors;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Lotto {
     public static final int LOTTO_SIZE=6;
@@ -12,12 +16,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        numbers=sorted(numbers);
+//        Collections.sort(numbers);
+        numbers = sorted(numbers);
         this.numbers = numbers;
     }
 
     private void validate(List<Integer> numbers) {
-
         validateNumberSize(numbers);
         validateNumberRange(numbers);
         validateNumber_NotEqual(numbers);
@@ -29,6 +33,16 @@ public class Lotto {
         }
     }
 
+    /*private void validateNumberRange(List<Integer> numbers) {
+        numbers.forEach(this::validateRange);
+    }
+
+    private void validateRange(Integer number) {
+        if (!(MIN_LOTTO_RANGE <= number && number <= MAX_LOTTO_RANGE)) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_RANGE_ERROR_MESSAGE);
+        }
+    }*/
+
     private void validateNumberRange(List<Integer> numbers) {
         for (Integer number : numbers) {
             if (number < MIN_LOTTO_RANGE || number > MAX_LOTTO_RANGE) {
@@ -36,6 +50,13 @@ public class Lotto {
             }
         }
     }
+
+   /* private void validateNumber_NotEqual(List<Integer> numbers) {
+        Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
+        if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
+            throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR_MESSAGE);
+        }
+    }*/
 
 
     private void validateNumber_NotEqual(List<Integer> numbers) {
@@ -51,11 +72,15 @@ public class Lotto {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR_MESSAGE);
         }
     }
+
     public List<Integer> sorted(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .toList();
     }
-
-    // TODO: 추가 기능 구현
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }
+

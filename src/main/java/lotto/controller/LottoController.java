@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.LottoDrawMachine;
 import lotto.model.LottoPaper;
 import lotto.model.LottoPurchaseManager;
 import lotto.model.dto.PurchaseResult;
@@ -34,5 +35,16 @@ public class LottoController {
         outputView.printPurchasedLottoPaper(purchasedLottoPapers);
 
         return new PurchaseResult(purchaseAmount, purchasedLottoPapers);
+    }
+
+    public LottoDrawMachine createDrawMachineProcess() {
+        // 당첨 번호 입력
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+
+        // 보너스 번호 입력
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
+
+        // lottoDrawMachine 에 저장
+        return new LottoDrawMachine(winningNumbers, bonusNumber);
     }
 }

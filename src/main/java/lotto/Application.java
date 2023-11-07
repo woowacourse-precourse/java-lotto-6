@@ -12,9 +12,14 @@ public class Application {
 
         Input input = new Input();
         Output output = new Output();
+
         LottoPlay lottoPlay = new LottoPlay();
 
+
         lottoPlay.play(input,output);
-        System.out.println(Message.WINNING_STATISTICS.getContent());
+
+
+
+        // TODO: 프로그램 구현
     }
 }

@@ -2,7 +2,7 @@ package lotto.validator;
 
 public class MoneyValidation {
 
-    final String condition = "[0~9]+";              //정규식 사용
+    final String condition = "^[0-9]+$";              //정규식 사용
     final String numberError = "[ERROR] 숫자를 입력하십시오.";
     final String moneyError = "[ERROR] 1000에 나누어 떨어지는 수를 입력해주세요.";
 

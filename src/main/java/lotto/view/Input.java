@@ -17,12 +17,12 @@ public class Input {
         return input;
     }
 
-    public String inputWinNumber(){
+    public List<String> inputWinNumber(){
         String input = Console.readLine();
         checkWinValidator(input);
         InputData inputData = new InputData();
         lottolist = inputData.lottoMake(input);
-        return input;
+        return lottolist;
     }
     public String inputBonusNumber(){
         String input = Console.readLine();

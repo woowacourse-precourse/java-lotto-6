@@ -1,26 +1,38 @@
 package lotto.controller;
 
+import lotto.Domain.Lotto;
+import lotto.InputData;
+import lotto.service.RandomNumber;
 import lotto.view.Input;
 import lotto.view.Output;
+
+import java.util.List;
 
 public class LottoPlay {
 
     public void play(Input input, Output output){
+
         makeLottoInput(input,output);
         makeWinInput(input, output);
 
-
     }
 
-    private void makeLottoInput(Input input, Output output){
-        input.readMoney();
+    private List<Lotto> makeLottoInput(Input input, Output output){
+        RandomNumber randomNumber = new RandomNumber();
+
+        output.howManyLotto();
+        List<Lotto> lottolists = randomNumber.lottoList();
         output.printLine();
-        // 몇개를 구매했는지 출력
-        // 랜덤값 복권 발행
+        return lottolists;
     }
+    //
 
+    //
     private void makeWinInput(Input input, Output output){
-        input.inputWinNumber();
+        InputData inputData = new InputData();
+        output.printWinNumber();
+        Lotto lottoWin = new Lotto(inputData.lottoList(input.inputWinNumber()));
+
         output.printLine();
         input.inputBonusNumber();
         output.printLine();

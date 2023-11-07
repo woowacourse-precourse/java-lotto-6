@@ -2,12 +2,13 @@ package lotto.domain.model;
 
 import java.util.List;
 
-import static lotto.domain.constant.ErrorConst.LOTTO_HAS_DUPLICATE;
 import static lotto.domain.constant.ErrorConst.LOTTO_COUNT_NOT_SIX;
+import static lotto.domain.constant.ErrorConst.LOTTO_HAS_DUPLICATE;
 import static lotto.domain.constant.ErrorConst.LOTTO_OUT_OF_RANGE;
 import static lotto.domain.constant.LottoConst.COUNT;
 import static lotto.domain.constant.LottoConst.HIGHEST_NUMBER;
 import static lotto.domain.constant.LottoConst.LOWEST_NUMBER;
+import static lotto.domain.validation.Validator.checkCondition;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,31 +23,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateNumbersRange(numbers);
-        validateNumbersCount(numbers);
-        validateNumbersUnique(numbers);
+        checkCondition(numbers.stream().anyMatch(
+                        number -> number < LOWEST_NUMBER
+                                || number > HIGHEST_NUMBER),
+                LOTTO_OUT_OF_RANGE);
+        checkCondition(numbers.size() != COUNT,
+                LOTTO_COUNT_NOT_SIX);
+        checkCondition(numbers.stream().distinct().count() != COUNT,
+                LOTTO_HAS_DUPLICATE);
     }
 
-    private void validateNumbersRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(
-                number -> number < LOWEST_NUMBER
-                        || number > HIGHEST_NUMBER
-        )) {
-            throw new IllegalArgumentException(LOTTO_OUT_OF_RANGE);
-        }
-    }
-
-    private void validateNumbersCount(List<Integer> numbers) {
-        if (numbers.size() != COUNT) {
-            throw new IllegalArgumentException(LOTTO_COUNT_NOT_SIX);
-        }
-    }
-
-    private void validateNumbersUnique(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != COUNT) {
-            throw new IllegalArgumentException(LOTTO_HAS_DUPLICATE);
-        }
-    }
-
-    // TODO: 추가 기능 구현
 }

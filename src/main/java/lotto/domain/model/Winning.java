@@ -3,6 +3,7 @@ package lotto.domain.model;
 import java.util.List;
 
 import static lotto.domain.constant.ErrorConst.WINNING_HAS_DUPLICATE;
+import static lotto.domain.validation.Validator.checkCondition;
 
 public class Winning {
 
@@ -30,8 +31,8 @@ public class Winning {
 
         int sameCount = Math.toIntExact(
                 lottoNumbers.stream()
-                            .filter(winningMainNumbers::contains)
-                            .count()
+                        .filter(winningMainNumbers::contains)
+                        .count()
         );
         boolean existBonus = lottoNumbers.contains(winningBonusNumber);
 
@@ -42,10 +43,8 @@ public class Winning {
         List<Integer> winningMainNumbers = main.getNumbers();
         int winningBonusNumber = bonus.getNumber();
 
-        if (winningMainNumbers.stream().anyMatch(
-                number -> number == winningBonusNumber
-        )) {
-            throw new IllegalArgumentException(WINNING_HAS_DUPLICATE);
-        }
+        checkCondition(winningMainNumbers.stream().anyMatch(
+                        number -> number == winningBonusNumber),
+                WINNING_HAS_DUPLICATE);
     }
 }

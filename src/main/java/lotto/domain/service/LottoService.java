@@ -1,14 +1,13 @@
 package lotto.domain.service;
 
-import lotto.domain.model.CorrectResult;
 import lotto.domain.constant.Rank;
 import lotto.domain.model.Bonus;
+import lotto.domain.model.CorrectResult;
 import lotto.domain.model.Lotto;
 import lotto.domain.model.Winning;
 import lotto.domain.util.NumberGenerator;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,7 @@ import static lotto.domain.constant.Rank.FIRST;
 import static lotto.domain.constant.Rank.FORTH;
 import static lotto.domain.constant.Rank.SECOND;
 import static lotto.domain.constant.Rank.THIRD;
+import static lotto.domain.validation.Validator.checkCondition;
 
 public class LottoService {
 
@@ -98,23 +98,11 @@ public class LottoService {
         return null;
     }
 
-    //TODO: validateMoreThanThousand 등을 인터페이스, 람다식 등을 이용해 변경
-    //      그러면 하위 메서드를 계속 정의할 필요가 없을듯
     private static void validate(int price) {
-        validateMoreThanThousand(price);
-        validateMultipleOfThousand(price);
-    }
-
-    private static void validateMultipleOfThousand(int price) {
-        if (price % PRICE != 0) {
-            throw new IllegalArgumentException(PRICE_NOT_DIVIDED_BY_THOUSAND);
-        }
-    }
-
-    private static void validateMoreThanThousand(int price) {
-        if (price < PRICE) {
-            throw new IllegalArgumentException(PRICE_LESS_THAN_THOUSAND);
-        }
+        checkCondition(price < PRICE,
+                PRICE_LESS_THAN_THOUSAND);
+        checkCondition(price % PRICE != 0,
+                PRICE_NOT_DIVIDED_BY_THOUSAND);
     }
 
 }

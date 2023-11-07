@@ -31,7 +31,7 @@ public class LottoGame {
 
 
     public static List<Integer> getRandomNumbers(){
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(START_NUMBER,END_NUMBER,COUNT_NUMBER);
+        List<Integer> randomNumbers = new ArrayList<> (Randoms.pickUniqueNumbersInRange(START_NUMBER,END_NUMBER,COUNT_NUMBER));
         Collections.sort(randomNumbers);
         return randomNumbers;
     }

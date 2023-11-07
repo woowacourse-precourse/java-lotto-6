@@ -15,7 +15,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto() {
-        numbers = makeLottoNumbers();
+        this.numbers = makeLottoNumbers();
     }
 
     public Lotto(List<Integer> numbers) {
@@ -82,8 +82,8 @@ public class Lotto {
 
     @Override
     public String toString() {
-        Collections.sort(numbers);
-        return numbers.toString();
+        Collections.sort(this.numbers);
+        return this.numbers.toString();
     }
 
     private List<Integer> makeLottoNumbers() {
@@ -92,11 +92,11 @@ public class Lotto {
     }
 
     public boolean isValid() {
-        return numbers != null;
+        return this.numbers != null;
     }
 
     public boolean contain(int bonusNumber) {
-        return numbers.contains(bonusNumber);
+        return this.numbers.contains(bonusNumber);
     }
 
     public int equalNumbersCount(Lotto winningNumber) {

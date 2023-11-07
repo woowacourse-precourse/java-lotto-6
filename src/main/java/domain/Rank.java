@@ -18,7 +18,7 @@ public class Rank {
     public Map<Integer, Integer> count() {
         Map<Integer, Integer> rankCount = new HashMap<>();
         for (int rankNumber = FIRST.get(); rankNumber <= FIFTH.get(); rankNumber++) {
-            rankCount.put(rankNumber, Collections.frequency(rank, rankNumber));
+            rankCount.put(rankNumber, Collections.frequency(this.rank, rankNumber));
         }
         return rankCount;
     }

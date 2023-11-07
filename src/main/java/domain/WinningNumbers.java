@@ -11,11 +11,11 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public List<Integer> lottoEqualCount(Lottos lottos) {
+    public List<Integer> equalNumbersCount(Lottos lottos) {
         return lottos.equalNumbersCount(this.lotto);
     }
 
-    public List<Boolean> bonusNumberEqual(Lottos lottos) {
-        return lottos.equalBonusNumber(this.bonusNumber);
+    public List<Boolean> isEqualBonusNumber(Lottos lottos) {
+        return lottos.isEqualBonusNumber(this.bonusNumber);
     }
 }

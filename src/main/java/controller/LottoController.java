@@ -18,7 +18,7 @@ public class LottoController {
         Amount amount = buyLotto();
         Lottos lottos = createLottos(amount);
         WinningNumbers winningNumbers = createWinningNumbers();
-        Rank rank = CompareLottoServcie.rank(amount, lottos, winningNumbers);
+        Rank rank = CompareLottoServcie.calculateRank(amount, lottos, winningNumbers);
         OuputView.lottosResult(amount, rank);
     }
 

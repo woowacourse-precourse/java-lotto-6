@@ -39,12 +39,12 @@ public class OuputView {
 
         System.out.println(RESULT_START.get());
         System.out.println(BAR.get());
-        showNumberByRank(rankCount, price, rankNumber);
+        showCountOfRank(rankCount, price, rankNumber);
         showRateOfReturn(rankCount, price, rankNumber, amount);
     }
 
-    private static void showNumberByRank(Map<Integer, Integer> rankCount, List<Integer> price,
-                                         List<Integer> rankNumber) {
+    private static void showCountOfRank(Map<Integer, Integer> rankCount, List<Integer> price,
+                                        List<Integer> rankNumber) {
 
         List<Integer> equalNumber = EnumToList.equalNumberAccordRankToList();
 

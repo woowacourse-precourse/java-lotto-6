@@ -9,9 +9,9 @@ public class Lottos {
     private final List<Lotto> lottos;
 
     public Lottos(Amount amount) {
-        lottos = new ArrayList<>();
+        this.lottos = new ArrayList<>();
         for (int i = 0; i < amount.getAmount(); i++) {
-            lottos.add(MakeObjectService.lotto());
+            this.lottos.add(MakeObjectService.lotto());
         }
     }
 
@@ -19,7 +19,7 @@ public class Lottos {
     public String toString() {
         StringBuilder message = new StringBuilder();
 
-        for (Lotto lotto : lottos) {
+        for (Lotto lotto : this.lottos) {
             message.append(lotto);
             message.append("\n");
         }
@@ -36,10 +36,10 @@ public class Lottos {
         return equalCount;
     }
 
-    public List<Boolean> equalBonusNumber(BonusNumber bonusNumber) {
+    public List<Boolean> isEqualBonusNumber(BonusNumber bonusNumber) {
         List<Boolean> isEqual = new ArrayList<>();
         for (Lotto lotto : this.lottos) {
-            isEqual.add(bonusNumber.isEqualBonusNumber(lotto));
+            isEqual.add(bonusNumber.isEqual(lotto));
         }
         return isEqual;
     }

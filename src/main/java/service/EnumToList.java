@@ -2,7 +2,7 @@ package service;
 
 import java.util.ArrayList;
 import java.util.List;
-import util.EqualNumberAccordRank;
+import util.CountEqualAccordRank;
 import util.LottoRankNumber;
 import util.LottoWinningPrice;
 
@@ -11,7 +11,7 @@ public class EnumToList {
     public static List<Integer> equalNumberAccordRankToList() {
         List<Integer> enumTolist = new ArrayList<>();
 
-        for (EqualNumberAccordRank value : EqualNumberAccordRank.values()) {
+        for (CountEqualAccordRank value : CountEqualAccordRank.values()) {
             enumTolist.add(value.get());
         }
         return enumTolist;

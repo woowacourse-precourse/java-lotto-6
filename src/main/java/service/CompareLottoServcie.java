@@ -1,9 +1,9 @@
 package service;
 
-import static util.EqualNumberAccordRank.FIFTH_EQUAL_NUMBER;
-import static util.EqualNumberAccordRank.FIRST_EQUAL_NUMBER;
-import static util.EqualNumberAccordRank.FORTH_EQUAL_NUMBER;
-import static util.EqualNumberAccordRank.THIRD_EQUAL_NUMBER;
+import static util.CountEqualAccordRank.FIFTH_EQUAL_COUNT;
+import static util.CountEqualAccordRank.FIRST_EQUAL_COUNT;
+import static util.CountEqualAccordRank.FOURTH_EQUAL_COUNT;
+import static util.CountEqualAccordRank.THIRD_EQUAL_COUNT;
 import static util.LottoRankNumber.FIFTH;
 import static util.LottoRankNumber.FIRST;
 import static util.LottoRankNumber.FOURTH;
@@ -19,44 +19,44 @@ import java.util.List;
 
 public class CompareLottoServcie {
 
-    public static Rank rank(Amount amount, Lottos lottos, WinningNumbers winningNumbers) {
-        List<Integer> countLottoNumberEqual = winningNumbers.lottoEqualCount(lottos);
-        List<Boolean> isBonusNumberEqual = winningNumbers.bonusNumberEqual(lottos);
+    public static Rank calculateRank(Amount amount, Lottos lottos, WinningNumbers winningNumbers) {
+        List<Integer> equalNumbersCount = winningNumbers.equalNumbersCount(lottos);
+        List<Boolean> isEqualBonusNumber = winningNumbers.isEqualBonusNumber(lottos);
 
         List<Integer> lottoRank = new ArrayList<>();
         for (int i = 0; amount.isLargerThen(i); i++) {
-            if (isBonusNumberEqual.get(i)) {
-                lottoRank.add(haveBonusNumberRank(countLottoNumberEqual.get(i)));
+            if (isEqualBonusNumber.get(i)) {
+                lottoRank.add(haveBonusNumberRank(equalNumbersCount.get(i)));
                 continue;
             }
-            lottoRank.add(noHaveBonusNumberRank(countLottoNumberEqual.get(i)));
+            lottoRank.add(noHaveBonusNumberRank(equalNumbersCount.get(i)));
         }
 
         return MakeObjectService.rank(lottoRank);
     }
 
-    private static int haveBonusNumberRank(int countEqual) {
-        if (countEqual < FIFTH_EQUAL_NUMBER.get() - 1) {
-            return rankCalculator(countEqual);
+    private static int haveBonusNumberRank(int equalCount) {
+        if (equalCount < FIFTH_EQUAL_COUNT.get() - 1) {
+            return rankCalculator(equalCount);
         }
-        return rankCalculator(countEqual) - 1;
+        return rankCalculator(equalCount) - 1;
     }
 
-    private static int noHaveBonusNumberRank(int countEqual) {
-        return rankCalculator(countEqual);
+    private static int noHaveBonusNumberRank(int equalCount) {
+        return rankCalculator(equalCount);
     }
 
-    private static int rankCalculator(int countEqual) {
-        if (countEqual == FIFTH_EQUAL_NUMBER.get()) {
+    private static int rankCalculator(int equalCount) {
+        if (equalCount == FIFTH_EQUAL_COUNT.get()) {
             return FIFTH.get();
         }
-        if (countEqual == FORTH_EQUAL_NUMBER.get()) {
+        if (equalCount == FOURTH_EQUAL_COUNT.get()) {
             return FOURTH.get();
         }
-        if (countEqual == THIRD_EQUAL_NUMBER.get()) {
+        if (equalCount == THIRD_EQUAL_COUNT.get()) {
             return THIRD.get();
         }
-        if (countEqual == FIRST_EQUAL_NUMBER.get()) {
+        if (equalCount == FIRST_EQUAL_COUNT.get()) {
             return FIRST.get();
         }
         return OTHER.get();

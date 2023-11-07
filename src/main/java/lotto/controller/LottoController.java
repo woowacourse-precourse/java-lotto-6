@@ -4,8 +4,6 @@ import lotto.model.*;
 import lotto.validation.ValidationUtils;
 import lotto.view.LottoView;
 
-import java.util.List;
-
 public class LottoController {
     private LottoView lottoView;
     private ValidationUtils validationUtils;
@@ -18,43 +16,52 @@ public class LottoController {
     }
 
     public void startLotto() {
-        int money = lottoView.inputMoney(); // 나중에 문자열로 바꿔서 검증유틸에서 모두 처리하도록?
-        boolean isValid = validationUtils.validateUserAmount(money);
+        String userInput = lottoView.inputUserAmount();
+        boolean isValid = validationUtils.validateUserAmount(userInput);
 
         while(!isValid) {
-            money = lottoView.inputMoney();
-            isValid = validationUtils.validateUserAmount(money);
+            userInput = lottoView.inputUserAmount();
+            isValid = validationUtils.validateUserAmount(userInput);
         }
 
-        UserAmount userAmount = new UserAmount(money);
+        UserAmount userAmount = new UserAmount(userInput);
+
+
+
+
         Lottos lottos = lottoNumberCreator.createLottoNumbers(userAmount.getNumberOfLotto());
         lottoView.printLottoNumbers(lottos);
 
-        // 당첨 번호 입력 받기
-        String userInput1 = lottoView.inputWinningNumber();
-        isValid = validationUtils.validateWinningNumber(userInput1);
+
+
+
+        userInput = lottoView.inputWinningNumber();
+        isValid = validationUtils.validateWinningNumber(userInput);
+
         while(!isValid) {
-            userInput1 = lottoView.inputWinningNumber();
-            isValid = validationUtils.validateWinningNumber(userInput1);
+            userInput = lottoView.inputWinningNumber();
+            isValid = validationUtils.validateWinningNumber(userInput);
         }
 
-        WinningNumber winningNumber = new WinningNumber(lottoNumberCreator.stringToList(userInput1));
+        WinningNumber winningNumber = new WinningNumber(lottoNumberCreator.stringToList(userInput));
 
-        // 보너스 번호 입력 받기
+
+
+
         String bonusNumber = lottoView.inputBonusNumber();
-        isValid = validationUtils.validateBonusNumber(bonusNumber);
+        isValid = validationUtils.validateBonusNumber(winningNumber, bonusNumber);
+
         while(!isValid) {
             bonusNumber = lottoView.inputBonusNumber();
-            isValid = validationUtils.validateBonusNumber(bonusNumber);
-
+            isValid = validationUtils.validateBonusNumber(winningNumber, bonusNumber);
         }
 
+        winningNumber.addBonusNumber(bonusNumber);
 
 
-        // 구입 로또와 당첨번호 비교해서 결과 담는 클래스 생성
-        // 결과를 뷰로 넘겨서 일치여부 출력하고 수익률 출력하고 종료
 
 
+        LottoResult lottoResult = new LottoResult(lottos, winningNumber, userAmount);
+        lottoView.printWinningStatistics(lottoResult);
     }
-
 }

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -8,6 +10,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+        numbers.sort(Comparator.naturalOrder());
     }
 
     private void validate(List<Integer> numbers) {
@@ -16,7 +19,7 @@ public class Lotto {
         }
     }
 
-    public String getNumbers() {
-        return numbers.toString();
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

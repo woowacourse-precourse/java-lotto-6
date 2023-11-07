@@ -4,27 +4,27 @@ import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
-    List<Lotto> lottos;
-    public Lottos(List<Lotto> lottos) {
-        this.lottos = lottos;
+    List<Lotto> bundleLotto;
+    public Lottos(List<Lotto> bundleLotto) {
+        this.bundleLotto = bundleLotto;
     }
 
-    public List<Lotto> getLottos() {
-        return Collections.unmodifiableList(lottos);
+    public List<Lotto> getBundleLotto() {
+        return Collections.unmodifiableList(bundleLotto);
     }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
 
-        lottos.stream()
-                .map(s -> s.getNumbers() + "\n")
+        bundleLotto.stream()
+                .map(s -> s.getNumbers().toString() + "\n")
                 .forEach(stringBuilder::append);
 
         return stringBuilder.toString();
     }
 
     public int getSize() {
-        return lottos.size();
+        return bundleLotto.size();
     }
 
 

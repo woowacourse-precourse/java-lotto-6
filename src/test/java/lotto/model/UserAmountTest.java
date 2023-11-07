@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test;
 public class UserAmountTest {
 
     @Test
-    public void 유저_입력_금액_생성_테스트() {
+    public void 유저_입력금액_생성_테스트() {
         //given
-        UserAmount userAmount1 = new UserAmount(4000);
-        UserAmount userAmount2 = new UserAmount(54000);
-        UserAmount userAmount3 = new UserAmount(37000);
+        UserAmount userAmount1 = new UserAmount("4000");
+        UserAmount userAmount2 = new UserAmount("54000");
+        UserAmount userAmount3 = new UserAmount("37000");
 
         //when
         int numberOfLotto1 = userAmount1.getNumberOfLotto();

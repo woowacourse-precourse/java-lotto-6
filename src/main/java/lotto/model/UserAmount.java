@@ -2,14 +2,17 @@ package lotto.model;
 
 public class UserAmount {
     private int userAmount;
+    private static final int PRICE_A_LOTTO = 1000;
 
-    public UserAmount(int money) {
-        userAmount = money;
+    public UserAmount(String money) {
+        userAmount = Integer.parseInt(money);
     }
 
     public int getNumberOfLotto() {
-        return userAmount / 1000;
+        return userAmount / PRICE_A_LOTTO;
     }
 
-
+    public int getAmount() {
+        return userAmount;
+    }
 }

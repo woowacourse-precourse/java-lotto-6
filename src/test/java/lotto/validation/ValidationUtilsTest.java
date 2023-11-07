@@ -9,9 +9,9 @@ public class ValidationUtilsTest {
     public void 유저_입력_금액_검증_테스트() {
         //given
         ValidationUtils validationUtils = new ValidationUtils();
-        int input1 = 500;
-        int input2 = 7000;
-        int input3 = 13400;
+        String input1 = "500";
+        String input2 = "7000";
+        String input3 = "13400";
 
         //when
         boolean isValid1 = validationUtils.validateUserAmount(input1);

@@ -4,6 +4,7 @@ import Output.Output;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class BuyLotto {
@@ -13,7 +14,6 @@ public class BuyLotto {
     public void buyAllLotto(int money) {
         for (int i = 0; i < money; i++) {
             Lotto paper = new Lotto(pickNumber());
-            paper.lottoascending();
             lotto.add(paper);
         }
         output.lottoAllPaperPrint(lotto);
@@ -21,7 +21,9 @@ public class BuyLotto {
 
     public List<Integer> pickNumber() {
         List<Integer> paper = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return paper;
+        List<Integer> ascending_paper = new ArrayList<>(paper);
+        Collections.sort(ascending_paper);
+        return ascending_paper;
     }
 
     public boolean checkSameNumber(List<Integer> paper, int number) {

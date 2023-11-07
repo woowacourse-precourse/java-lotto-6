@@ -17,10 +17,6 @@ public class Result {
         this.totalReward = getTotalReward();
     }
 
-    public List<Integer> getStatistics() {
-        return statistics;
-    }
-
     public double getProfitability(int quantity) {
         return (double)totalReward / (quantity * PERCENT);
     }

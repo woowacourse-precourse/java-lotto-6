@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.exception.ExceptionMessage.DUPLICATE_BONUSE_NUMBER;
-
 import lotto.exception.InvalidInput;
 
 

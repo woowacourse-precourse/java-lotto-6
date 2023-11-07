@@ -10,8 +10,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.view.OutputView;
-
 public class MyLotto {
     private static final int START = 0;
     private static final int INIT = 0;
@@ -24,29 +22,17 @@ public class MyLotto {
                 .mapToObj(q -> generateMyLotto())
                 .toList();
     }
-    public void printGenerateLottoResult() {
-        OutputView outputView = new OutputView();
-        outputView.printLotto(quantity, getMyLottoNumbers());
+    public List<Integer> getStatistics(WinningLotto winningLotto) {
+        return calculateStatistics(winningLotto);
     }
 
-    public void checkResult(WinningLotto winningLotto) {
-        OutputView outputView = new OutputView();
-        Result result = new Result(getStatistics(winningLotto));
-
-        List<Integer> statistics = result.getStatistics();
-        double profitability = result.getProfitability(quantity);
-
-        outputView.printStatistics(statistics);
-        outputView.printProfitability(profitability);
-    }
-
-    private List<List<Integer>> getMyLottoNumbers() {
+    public List<List<Integer>> getMyLottoNumbers() {
         return myLottos.stream()
                 .map(Lotto::getSortedNumbers)
                 .toList();
     }
 
-    private List<Integer> getStatistics(WinningLotto winningLotto) {
+    private List<Integer> calculateStatistics(WinningLotto winningLotto) {
         List<Integer> statistics = new ArrayList<>(nCopies(MAX_SCORE.getValue() + 1, INIT));
 
         for (Lotto myLotto : myLottos) {

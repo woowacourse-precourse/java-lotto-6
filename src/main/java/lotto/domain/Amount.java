@@ -9,33 +9,37 @@ public class Amount {
     private static final String ONLY_NUMBER_REGEX = "[0-9]+";
     private int amount;
 
-    public Amount(String inputString) {
-        setAmount(validate(inputString));
+    public Amount(String amount) {
+        setAmount(validate(amount));
+    }
+
+    public int getAmount() {
+        return this.amount;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
     }
 
-    private int validate(String inputString) {
-        validateIsBlank(inputString);
-        validateNumberFormat(inputString);
+    private int validate(String amount) {
+        validateIsBlank(amount);
+        validateNumberFormat(amount);
 
-        int amountNumber = Utils.stringToInt(inputString);
+        int amountNumber = Utils.stringToInt(amount);
 
         validateCipher(amountNumber);
 
         return amountNumber;
     }
 
-    private void validateIsBlank(String inputString) {
-        if (inputString == null || inputString.isBlank()) {
+    private void validateIsBlank(String amount) {
+        if (amount == null || amount.isBlank()) {
             throw new BlankException();
         }
     }
 
-    private void validateNumberFormat(String inputString) {
-        if (!inputString.matches(ONLY_NUMBER_REGEX)) {
+    private void validateNumberFormat(String amount) {
+        if (!amount.matches(ONLY_NUMBER_REGEX)) {
             throw new NumberFormatException();
         }
     }

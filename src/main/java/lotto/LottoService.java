@@ -15,10 +15,10 @@ public class LottoService {
 	final int countOfLotto = 6;
 
 	public long getNumberOfLottoTickets(String cost) throws IllegalArgumentException {
-		validator.isComposedOfNumbers(cost);
+		validator.checkComposedOfNumbers(cost);
 
 		long money = Long.parseLong(cost);
-		validator.isMultiplesOfThousand(money);
+		validator.checkMultiplesOfThousand(money);
 
 		return money / 1000;
 	}
@@ -52,8 +52,8 @@ public class LottoService {
 		String[] numbers = inputNumbers.split(",");
 		for (int i = 0; i < numbers.length; i++) {
 			String check = numbers[i].strip();
-			validator.isComposedOfNumbers(check);
-			validator.isInRange(check);
+			validator.checkComposedOfNumbers(check);
+			validator.checkInRange(check);
 			userNumbers.add(Integer.parseInt(check));
 		}
 		Lotto user = new Lotto(userNumbers);
@@ -63,9 +63,9 @@ public class LottoService {
 	public int checkBonusNumber(Lotto user, String inputBonusNumber)
 			throws IllegalArgumentException {
 		List<Integer> userNumbers = user.getNumbers();
-		validator.isComposedOfNumbers(inputBonusNumber);
-		validator.isInRange(inputBonusNumber);
-		validator.containNumber(userNumbers, inputBonusNumber);
+		validator.checkComposedOfNumbers(inputBonusNumber);
+		validator.checkInRange(inputBonusNumber);
+		validator.checkContainNumber(userNumbers, inputBonusNumber);
 		return Integer.parseInt(inputBonusNumber);
 	}
 

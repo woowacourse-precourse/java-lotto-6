@@ -2,7 +2,6 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.dto.LottoNumberDTO;
 
 public class GameController {
     private Pocket pocket;

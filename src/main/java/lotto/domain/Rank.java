@@ -2,7 +2,8 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.Optional;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum Rank {
     NONE(0, false, 0L),
@@ -15,14 +16,14 @@ public enum Rank {
     private final int matchCount;
     private final boolean hasBonus;
     private final long prize;
-    private static final Rank[] scoreCache = new Rank[20];
+    private static final Map<Integer, Rank> scoreCache = new HashMap<>();
 
     static {
         Arrays.stream(Rank.values())
                 .forEach(rank -> {
                     int score = getScore(rank.matchCount, rank.hasBonus);
-                    scoreCache[score] = rank;
-                    scoreCache[score + 1] = rank;
+                    scoreCache.put(score, rank);
+                    scoreCache.put(score + 1, rank);
                 });
     }
 
@@ -48,7 +49,7 @@ public enum Rank {
 
     private static Rank of(int matchCount, boolean hasBonusNumber) {
         int score = getScore(matchCount, hasBonusNumber);
-        return Optional.ofNullable(scoreCache[score]).orElse(NONE);
+        return scoreCache.getOrDefault(score, NONE);
     }
 
     public static long getTotalPrize(EnumMap<Rank, Integer> rankResult) {

@@ -10,16 +10,16 @@ import java.util.List;
 public class RandomNumberGenerator implements LottoNumberGenerator {
 
     @Override
-    public LottoNumbers generateLottoNumbers(final int count) {
-        final List<Integer> numbers = generateRandomNumbers(count);
+    public LottoNumbers generateLottoNumbers() {
+        final List<Integer> numbers = generateRandomNumbers(LottoConsts.LOTTO_NUMBERS_SIZE.getValue());
         final List<LottoNumber> lottoNumbers = convertToLottoNumbers(numbers);
 
         return new LottoNumbers(lottoNumbers);
     }
 
-    private List<Integer> generateRandomNumbers(final int count) {
+    private List<Integer> generateRandomNumbers(final int size) {
         return Randoms
-                .pickUniqueNumbersInRange(LottoConsts.LOTTO_NUMBER_MIN.getValue(), LottoConsts.LOTTO_NUMBER_MAX.getValue(), count);
+                .pickUniqueNumbersInRange(LottoConsts.LOTTO_NUMBER_MIN.getValue(), LottoConsts.LOTTO_NUMBER_MAX.getValue(), size);
     }
 
     private List<LottoNumber> convertToLottoNumbers(final List<Integer> numbers) {

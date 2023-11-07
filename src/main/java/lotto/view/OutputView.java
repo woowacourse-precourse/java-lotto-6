@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import lotto.Lotto;
 //constant의 값들을 가져오기 위해 import
 import static lotto.constants.InputMessages.*;
@@ -34,7 +35,7 @@ public class OutputView {
         System.out.println(GET_BONUS_NUMBER_MESSAGE);
     }
 
-    public static void printWinningStatistics(int[] winningStatistics, double yield) {
+    public static void printWinningStatistics(HashMap<String, Integer> finalScore, int lottoCount) {
         System.out.println();
         System.out.println(WIN_STATS_MESSAGE);
         System.out.println(LINE_MESSAGE);

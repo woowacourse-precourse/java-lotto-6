@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
+import lotto.domain.Bank;
 import lotto.domain.Player;
 import lotto.dto.response.LottosInfoDto;
 import lotto.domain.LottoShop;
@@ -10,11 +11,13 @@ import lotto.view.ConsoleOutput;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+
 public class LottoController {
     private final InputView inputView;
     private final LottoShop lottoShop;
     private final OutputView outputView;
     private final LottoService lottoService;
+    private Bank bank;
 
     public LottoController(InputView inputView, LottoShop lottoShop, OutputView outputView, LottoService lottoService) {
         this.inputView = inputView;
@@ -25,10 +28,10 @@ public class LottoController {
 
     public void run() {
         String input = getUserInput();
-        Player player = setPlayerVariableValue(input);
-        List<Integer> winningNumbers = getwinningNumbers();
-        List<Integer> winningNumbersAddExtraWinningNumber = getExtraWinningNumber(winningNumbers);
-        calculateWinningStatistics(player,winningNumbersAddExtraWinningNumber);
+        createLottos(input);
+        List<Integer> winningNumbers = getWinningNumbers();
+        getExtraWinningNumber(winningNumbers);
+        calculateWinningStatistics();
     }
 
     private String getUserInput() {
@@ -53,11 +56,10 @@ public class LottoController {
         }
     }
 
-    private Player setPlayerVariableValue(String input) {
+    private void createLottos(String input) {
         Player player = new Player(input, lottoShop);
         LottosInfoDto lottosInfoDto = player.buyLottos();
         printLottosNumberAndTicket(lottosInfoDto);
-        return player;
     }
 
     private void printLottosNumberAndTicket(LottosInfoDto lottosInfoDto) {
@@ -66,7 +68,15 @@ public class LottoController {
         outputView.displayLottosNumber(lottosInfoDto.lottosNumbers());
     }
 
-    private List<Integer> getwinningNumbers() {
+    private List<Integer> getWinningNumbers() {
+        bank = new Bank();
+        String input = getWinningNumberInput();
+        List<Integer> winningNumbers = convertStringToWinningNumbers(input);
+        setWinningNumbersInBank(winningNumbers);
+        return winningNumbers;
+    }
+
+    private String getWinningNumberInput() {
         String input;
         while (true) {
             ConsoleOutput.printNewLine();
@@ -76,8 +86,15 @@ public class LottoController {
                 break;
             }
         }
-        List<Integer> winningNumbers = lottoService.convertStringToList(input);
-        return winningNumbers;
+        return input;
+    }
+
+    private List<Integer> convertStringToWinningNumbers(String input) {
+        return lottoService.convertStringToList(input);
+    }
+
+    private void setWinningNumbersInBank(List<Integer> winningNumbers) {
+        bank.setWinningNumbers(winningNumbers);
     }
 
     private boolean validateWinningNumber(String input) {
@@ -91,7 +108,12 @@ public class LottoController {
         }
     }
 
-    public List<Integer> getExtraWinningNumber(List<Integer> winningNumbers) {
+    public void getExtraWinningNumber(List<Integer> winningNumbers) {
+        String input = getExtraWinningNumberInput(winningNumbers);
+        setExtraWinningNumberInBank(input);
+    }
+
+    private String getExtraWinningNumberInput(List<Integer> winningNumbers) {
         String input;
         while (true) {
             ConsoleOutput.printNewLine();
@@ -101,7 +123,11 @@ public class LottoController {
                 break;
             }
         }
-        return addExtraWinningNumberInWinningNumbers(input, winningNumbers);
+        return input;
+    }
+
+    private void setExtraWinningNumberInBank(String input) {
+        bank.setExtraWinningNumber(Integer.parseInt(input));
     }
 
     private boolean validateExtraWinningNumber(String input, List<Integer> winningNumbers) {
@@ -114,17 +140,8 @@ public class LottoController {
         }
     }
 
-    private List<Integer> addExtraWinningNumberInWinningNumbers(String extraWinningNumber,
-                                                                List<Integer> winningNumber) {
-        int extraWinningNumberInteger = Integer.parseInt(extraWinningNumber);
-        winningNumber.add(extraWinningNumberInteger);
-        return winningNumber;
-    }
-
-    private void calculateWinningStatistics(Player player, List<Integer> winningNumber) {
+    private void calculateWinningStatistics() {
         ConsoleOutput.printNewLine();
         ConsoleOutput.displayWinningStatistics();
-
-        player.compareWinningAndLottoNumbers(winningNumber);
     }
 }

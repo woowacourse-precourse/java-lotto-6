@@ -7,28 +7,29 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public final class OutputFormatter {
+    private static final String PURCHASE_MESSAGE_FORMAT = "%d개를 구매했습니다.";
+    private static final String LOTTO_STATISTICS_MESSAGE = "당첨 통계\n---\n";
     private static final String FIVE_MATCH_WITH_BONUS_MESSAGE_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String MATCH_MESSAGE_FORMAT = "%d개 일치 (%s원) - %d개";
-    private static final String TOTAL_EARNINGS_MESSAGE = "총 수익률은 ";
+    private static final String TOTAL_EARNINGS_MESSAGE = "총 수익률은 %s입니다.";
     private static final String EARNINGS_RATE_FORMAT = "%,.1f%%";
-    private static final String EARNINGS_SUFFIX_MESSAGE = "입니다.";
-    private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
-    private static final String LOTTO_STATISTICS_MESSAGE = "당첨 통계";
     private static final String LEFT_SQUARE_BRACKET = "[";
     private static final String RIGHT_SQUARE_BRACKET = "]";
     private static final String NEW_LINE = "\n";
     private static final String SPACE = " ";
     private static final String COMMA = ",";
-    private static final String DASH = "-";
 
     private OutputFormatter() {
     }
 
     public static String makePurchaseLottos(List<LottoDto> lottoDto) {
-        String result = lottoDto.stream()
+        String purchasedLottosCount =  String.format(PURCHASE_MESSAGE_FORMAT, lottoDto.size());
+
+        String purchasedLottos = lottoDto.stream()
                 .map(OutputFormatter::makeLottoDtoFormat)
                 .collect(Collectors.joining(NEW_LINE));
-        return lottoDto.size() + PURCHASE_MESSAGE + NEW_LINE + result;
+
+        return purchasedLottosCount + NEW_LINE + purchasedLottos;
     }
 
     private static String makeLottoDtoFormat(LottoDto lottoDto) {
@@ -40,24 +41,17 @@ public final class OutputFormatter {
         return result;
     }
 
-    public static String makeTotalEarningsRate(double totalEarningsRate) {
-        String formattedEarningsRate = String.format(EARNINGS_RATE_FORMAT, totalEarningsRate);
-        return TOTAL_EARNINGS_MESSAGE + formattedEarningsRate + EARNINGS_SUFFIX_MESSAGE;
-    }
-
-    public static String makeLottoResult(List<LottoResult> results) {
-        String result = LOTTO_STATISTICS_MESSAGE + NEW_LINE + DASH + DASH + DASH;
-
+    public static String makeLottoResult(List<LottoResult> LottoResults) {
         String resultLines = Arrays.stream(LottoResult.values())
-                .map(r -> makeLottoResultLine(results, r))
+                .map(LottoResult -> makeLottoResultLine(LottoResults, LottoResult))
                 .collect(Collectors.joining(NEW_LINE));
 
-        return result + NEW_LINE + resultLines;
+        return LOTTO_STATISTICS_MESSAGE + resultLines;
     }
 
-    private static String makeLottoResultLine(List<LottoResult> results, LottoResult lottoResult) {
-        Long count = results.stream()
-                .filter(r -> r == lottoResult)
+    private static String makeLottoResultLine(List<LottoResult> LottoResults, LottoResult lottoResult) {
+        Long count = LottoResults.stream()
+                .filter(result -> result == lottoResult)
                 .count();
 
         if (lottoResult == LottoResult.FIVE_MATCH_WITH_BONUS) {
@@ -79,6 +73,11 @@ public final class OutputFormatter {
                 lottoResult.getMatchingNumbers(),
                 lottoResult.getPrizeAmount(),
                 count);
+    }
+
+    public static String makeTotalEarningsRate(double totalEarningsRate) {
+        String formattedEarningsRate = String.format(EARNINGS_RATE_FORMAT, totalEarningsRate);
+        return String.format(TOTAL_EARNINGS_MESSAGE, formattedEarningsRate);
     }
 
 }

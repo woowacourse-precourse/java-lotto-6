@@ -1,8 +1,11 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Application {
@@ -12,15 +15,25 @@ public class Application {
     static Committee committee = Committee.getInstance();
 
     public static void main(String[] args) {
-        inputView = InputView.getInstance();
-        outputView = OutputView.getInstance();
-        validator = Validator.getInstance();
 
         int price = setPrice();
 
-        List<Integer> winningNumbers= committee.setWinningNum();
-        int count = price/1000;
+        int count = price / 1000;
 
+        List<Integer>[] issueNumbers = setIssueNumbers(count);
+        outputView.printWinningNum(issueNumbers, count);
+
+
+    }
+
+    private static List<Integer>[] setIssueNumbers(int count) {
+        List<Integer>[] issueNumbers = new ArrayList[count];
+        for (int i = 0; i < count; i++) {
+            List<Integer> list = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(list);
+            issueNumbers[i] = list;
+        }
+        return issueNumbers;
     }
 
     static int setPrice() {

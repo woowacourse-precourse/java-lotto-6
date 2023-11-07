@@ -6,6 +6,8 @@ import lotto.constant.errorMessage.amount.IllegalStateAmountException;
 public class AmountValidator {
 
     private static final AmountValidator AMOUNT_VALIDATOR = new AmountValidator();
+    private static final int ALLOWED_MIN_AMOUNT_VALUE = 1000;
+    private static final int ZERO_VALUE = 0;
 
     private AmountValidator() {
     }
@@ -13,7 +15,7 @@ public class AmountValidator {
     public static void validateAmount(final int amount) {
         AMOUNT_VALIDATOR.validateAmountIsPositive(amount);
         AMOUNT_VALIDATOR.validateAmountIsDivisible(amount);
-        // 1000 보다 큰 수 와야함
+        // 1000 보다 큰 수 와야
     }
 
     private void validateAmountIsPositive(final int amount) {
@@ -23,7 +25,7 @@ public class AmountValidator {
     }
 
     private boolean isPositive(final int amount) {
-        return amount > 0;
+        return amount > ZERO_VALUE;
     }
 
     private void validateAmountIsDivisible(final int amount) {
@@ -33,6 +35,6 @@ public class AmountValidator {
     }
 
     private boolean isDivisible(final int amount) {
-        return amount % 1000 == 0;
+        return amount % ALLOWED_MIN_AMOUNT_VALUE == ZERO_VALUE;
     }
 }

@@ -46,7 +46,7 @@ class LottoTest {
     @DisplayName("값이 유효할 경우 객체가 정상 생성된다.")
     @Test
     void createLottoByNormalValue() {
-        Lotto lotto = new Lotto(List.of(1,2,7,33,35,41));
+        Lotto lotto = new Lotto(List.of(1, 2, 7, 33, 35, 41));
 
         assertThat(lotto).isNotNull();
     }
@@ -54,8 +54,8 @@ class LottoTest {
     @DisplayName("동일한 번호의 숫자를 계산하여 출력하는지 확인한다.")
     @Test
     void printSameNumber() {
-        Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
-        Lotto lotto2 = new Lotto(List.of(1,2,3,8,9,10));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 8, 9, 10));
 
         int sameNumber = lotto1.compareTo(lotto2);
         assertThat(sameNumber).isEqualTo(3);
@@ -64,7 +64,7 @@ class LottoTest {
     @DisplayName("로또 번호와 보너스 번호가 동일하면 true를 반환한다.")
     @Test
     void checkCompareByBonusNumber() {
-        Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 6;
         boolean answer = lotto1.isCompareByBonusNumber(bonusNumber);
 
@@ -74,7 +74,7 @@ class LottoTest {
     @DisplayName("로또 객체가 불변한지 확인한다. 반환한 객체를 수정하려 할 경우 예외가 발생한다.")
     @Test
     void checkLottoIsImmutable() {
-        Lotto lotto1 = new Lotto(List.of(1,2,3,4,5,6));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> lottoNumbers = lotto1.getNumbers();
 
         assertThatThrownBy(() -> lottoNumbers.add(8))

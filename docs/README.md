@@ -123,7 +123,7 @@
 3. RandomUtility
 
 - generateRandomLottoNumbers()
-  - [ ] 1부터 45사이의 서로 다른 6가지 난수 생성
+  - [x] 1부터 45사이의 서로 다른 6가지 난수 생성
   - sortRandomLottoNumbers()
     - [ ] 생성된 난수 오름차순 정렬
 

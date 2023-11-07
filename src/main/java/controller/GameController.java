@@ -9,11 +9,13 @@ public class GameController {
 
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
+    RandomUtility randomUtility = new RandomUtility();
     boolean restart = true;
 
     public void startGame() {
         saveLottoMoney();
         outputView.printLottoTicketMessage(lottoMoney);
+        randomUtility.generateRandomLottoNumbers();
     }
 
     private void saveLottoMoney() {

@@ -27,38 +27,38 @@ public class InputController {
         }
     }
 
-    public List<Integer> getWinningNumber() {
-        String input = view.getWinningNumbers();
+    public List<Integer> getWinningNumbers() {
+        String inputNumbers = view.getWinningNumbers();
         try {
-            return parseToWinningNumbers(input).stream()
-                    .map((o) -> parseNumber(o))
-                    .toList();
+            return parseNumbers(inputNumbers);
         } catch (IllegalArgumentException e) {
             view.printError(e.getMessage());
-            return getWinningNumber();
+            return getWinningNumbers();
         }
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumber(List<Integer> winningNumbers) {
         String input = view.getBonusNumber();
         try {
-            return parseNumber(input);
+            int bonusNumber = parseNumber(input);
+            isWinningNumber(bonusNumber);
+            isDuplicated(winningNumbers, bonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             view.printError(e.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningNumbers);
         }
     }
 
-    private List<String> parseToWinningNumbers(String input) {
-        List<String> numbers = Arrays.asList(input.split(","));
+    private List<Integer> parseNumbers(String input) {
+        List<Integer> numbers = Arrays.asList(input.split(",")).stream()
+                .map((o) -> parseNumber(o))
+                .map((o) -> isWinningNumber(o))
+                .toList();
         if (numbers.size() != Logic.NUMBER_COUNT) {
             throw new IllegalArgumentException("당첨번호는 6개여야 합니다.");
         }
-        for (int idx = 0; idx < numbers.size(); idx++) {
-            if (numbers.lastIndexOf(idx) != idx) {
-                throw new IllegalArgumentException("당첨번호는 중복될 수 없습니다.");
-            }
-        }
+        isDuplicated(numbers);
         return numbers;
     }
 
@@ -70,20 +70,35 @@ public class InputController {
         return payment;
     }
 
+    private int isWinningNumber(int number) {
+        if (number <= 0 || number > 45) {
+            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+        }
+        return number;
+    }
+
     private int parseNumber(String inputNumber) {
-        int number = 0;
+        int number;
         try {
             number = Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("입력은 숫자만으로 이루어져야 합니다.");
         }
-        return validateNumber(number);
+        return number;
     }
 
-    private int validateNumber(int number) {
-        if (number <= 0 || number > 45) {
-            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+    private void isDuplicated(List<Integer> numbers) {
+        for (int idx = 0; idx < numbers.size(); idx++) {
+            int number = numbers.get(idx);
+            if (numbers.lastIndexOf(number) != idx) {
+                throw new IllegalArgumentException("당첨번호는 중복될 수 없습니다.");
+            }
         }
-        return number;
+    }
+
+    private void isDuplicated(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("이미 존재하는 번호 입니다.");
+        }
     }
 }

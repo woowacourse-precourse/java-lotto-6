@@ -18,6 +18,9 @@ public class LottoMoneyValidator {
     }
 
     private static void isThousands(String lottoMoneyInput) {
+        if (Integer.parseInt(lottoMoneyInput) % 1000 != 0) {
+            throw new IllegalArgumentException(ErrorMessages.NOT_THOUSAND.getMessage());
+        }
     }
 
     private static void isOverThousands(String lottoMoneyInput) {

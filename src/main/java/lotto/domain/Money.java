@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class Money {
 
     private static final String ERROR_MESSAGE_HEADER = "[ERROR] ";
@@ -9,6 +12,7 @@ public class Money {
     private static final long LOTTO_PRICE = 1000;
     private static final int ONE_HUNDRED_PERCENT = 100;
     private static final long ZERO = 0;
+    private static final int SCALE_CRITERION = 1;
 
     private long money;
 
@@ -32,7 +36,9 @@ public class Money {
     }
 
     public double calculateRateOfReturn(Money totalWinningPrize) {
-        return (totalWinningPrize.money / (double) this.money) * ONE_HUNDRED_PERCENT;
+        double rateOfReturn = (totalWinningPrize.money / (double) this.money) * ONE_HUNDRED_PERCENT;
+        BigDecimal halfUpRateOfReturn = new BigDecimal(Double.toString(rateOfReturn));
+        return halfUpRateOfReturn.setScale(SCALE_CRITERION, RoundingMode.HALF_UP).doubleValue();
     }
 
     private void validateMinimumPurchaseMoney(long money) {

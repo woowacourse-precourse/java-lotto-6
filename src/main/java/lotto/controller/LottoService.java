@@ -45,7 +45,7 @@ public class LottoService {
         outputView.askWinningLotto();
         while (true) {
             try {
-                lottoComputer.config(Lotto.toLotto(inputView.readWinningLotto()));
+                lottoComputer.config(Lotto.toLotto(inputView.read()));
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -58,7 +58,7 @@ public class LottoService {
         while (true) {
             try {
 
-                lottoComputer.config(inputView.readBonusNumber());
+                lottoComputer.config(inputView.read());
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());
@@ -70,7 +70,7 @@ public class LottoService {
         outputView.askMoney();
         while (true) {
             try {
-                lottoGenerator.configMoney(inputView.readMoney());
+                lottoGenerator.configMoney(inputView.read());
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.printErrorMessage(e.getMessage());

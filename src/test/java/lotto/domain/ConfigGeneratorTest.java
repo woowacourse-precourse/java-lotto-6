@@ -3,7 +3,7 @@ package lotto.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class LottoGeneratorTest {
+class ConfigGeneratorTest {
 
     @Test
     @DisplayName("금액 검증 확인")

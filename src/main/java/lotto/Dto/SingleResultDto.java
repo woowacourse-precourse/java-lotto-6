@@ -3,17 +3,17 @@ package lotto.Dto;
 public class SingleResultDto {
 
     // 3개 당첨
-    // 3개를 match했고 상금이 prize인 로또를 won개 만큼 당첨 됨
-    int match;
+    // 3개를 matched했고 상금이 prize인 로또를 won개 만큼 당첨 됨
+    int matched;
     int prize;
     int won;
 
     public int getMatch() {
-        return match;
+        return matched;
     }
 
-    public void setMatch(int match) {
-        this.match = match;
+    public void setMatched(int matched) {
+        this.matched = matched;
     }
 
 

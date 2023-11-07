@@ -7,9 +7,8 @@ public enum Prize {
     THREE_MATCHED(List.of(3, 5000)),
     FOUR_MATCHED(List.of(4, 50000)),
     FIVE_MATCHED(List.of(5, 1500000)),
-
-    SIX_MATCHED(List.of(6, 2000000000)),
-    FIVE_AND_BONUS_MATCHED(List.of(7, 30000000));
+    FIVE_AND_BONUS_MATCHED(List.of(5, 30000000)),
+    SIX_MATCHED(List.of(6, 2000000000));
 
     private final List<Integer> result;
 
@@ -17,12 +16,12 @@ public enum Prize {
         this.result = result;
     }
 
-    public Integer getCode() {
+
+    public Integer getMatched() {
         return this.result.get(0);
     }
 
     public Integer getPrize() {
         return this.result.get(1);
     }
-
 }

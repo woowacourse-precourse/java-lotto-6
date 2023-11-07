@@ -53,8 +53,8 @@ public class InputValidator {
         }
     }
 
-    private static void checkNumberOfRange(String jackpotNumberInput) {
-        String replaceNumberInput = jackpotNumberInput.replace(",", "");
+    private static void checkNumberOfRange(String numberInput) {
+        String replaceNumberInput = numberInput.replace(",", "");
         for (int i = 0; i < replaceNumberInput.length(); i++) {
             int number = Integer.parseInt(String.valueOf(replaceNumberInput.charAt(i)));
             if (number < JACKPOT_MINIMUM_NUMBER || JACKPOT_MAXIMUM_NUMBER < number) {
@@ -96,7 +96,7 @@ public class InputValidator {
     public static void checkBonusNumberInput(String bonusNumberInput) {
         checkNoInput(bonusNumberInput);
         checkNumeric(bonusNumberInput);
-        // TODO : 1~45 이외의 범위의 숫자을 입력했을 경우.
+        checkNumberOfRange(bonusNumberInput);
         // TODO : 중복된 숫자를 입력했을 경우
     }
 

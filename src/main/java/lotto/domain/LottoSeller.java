@@ -14,6 +14,7 @@ import lotto.utils.Util;
 public class LottoPurchaseManager {
     private final BigDecimal lottoPrice;
 public class LottoSeller {
+    public final BigDecimal lottoPrice = BigDecimal.valueOf(1000);
 
     public LottoPurchaseManager(BigDecimal lottoPrice) {
         this.lottoPrice = lottoPrice;

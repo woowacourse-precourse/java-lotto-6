@@ -86,20 +86,9 @@ public class Game {
         printProfit(totalMoneySum, purchase.getMoney());
     }
 
-
-    private List<ComPareNumber> generateCompareNumbers(List<Integer> numbers, int bonusNumber) {
-        return allRandomNumbers.stream()
-                .map(randomNumbers -> createAndCalculateCompareNumber(numbers, randomNumbers,
-                        bonusNumber))
-                .collect(Collectors.toList());
-    }
-
-
-    private ComPareNumber createAndCalculateCompareNumber(List<Integer> numbers,
-            List<Integer> randomNumbers, int bonusNumber) {
-        ComPareNumber compareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
-        compareNumber.calculateResults();
-        return compareNumber;
+    private List<ComPareNumber> generateCompareNumbers(List<Integer> winningNumbers,
+            int bonusNumber) {
+        return ComPareNumber.generateCompareNumbers(winningNumbers, bonusNumber, allRandomNumbers);
     }
 
 

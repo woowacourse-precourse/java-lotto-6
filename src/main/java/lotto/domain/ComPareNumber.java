@@ -5,6 +5,7 @@ import static lotto.constant.WinPriceMessage.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ComPareNumber {
     private List<Integer> numbers;
@@ -22,15 +23,14 @@ public class ComPareNumber {
     }
 
 
-    public void calculateResults() {
-        long count = findWinNumber(this.numbers, this.randomNumbers, this.bonusNumber);
+    public ComPareNumber calculateResults() {
+        long count = findWinNumber(this.numbers, this.randomNumbers);
         winPrice(count, this.numbers, this.bonusNumber);
-
+        return this;
     }
 
 
-    private long findWinNumber(List<Integer> numbers, List<Integer> randomNumbers,
-            int bonusNumber) {
+    private long findWinNumber(List<Integer> numbers, List<Integer> randomNumbers) {
         return numbers.stream()
                 .filter(randomNumbers::contains)
                 .count();
@@ -90,6 +90,12 @@ public class ComPareNumber {
 
     public List<Integer> getWinCount() {
         return winCount;
+    }
+
+    public static List<ComPareNumber> generateCompareNumbers(List<Integer> numbers, int bonusNumber, List<List<Integer>> allRandomNumbers) {
+        return allRandomNumbers.stream()
+                .map(randomNumbers -> new ComPareNumber(numbers, randomNumbers, bonusNumber).calculateResults())
+                .collect(Collectors.toList());
     }
 
 

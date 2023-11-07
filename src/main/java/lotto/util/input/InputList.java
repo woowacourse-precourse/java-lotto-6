@@ -1,7 +1,10 @@
 package lotto.util.input;
 
+import static lotto.util.exception.ErrorMessage.BLANK_ELEMENT;
+
 import java.util.Arrays;
 import java.util.List;
+import lotto.util.exception.LottoException;
 
 public abstract class InputList<T> implements InputValidator {
     protected final List<T> list;
@@ -16,7 +19,7 @@ public abstract class InputList<T> implements InputValidator {
     private void checkBlank(List<String> stringList) {
         for (String element:stringList) {
             if (element.isBlank()) {
-                throw new IllegalArgumentException();
+                throw LottoException.of(BLANK_ELEMENT);
             }
         }
     }

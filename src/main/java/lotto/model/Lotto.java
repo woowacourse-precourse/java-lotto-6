@@ -1,13 +1,12 @@
 package lotto.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import static lotto.util.exception.ErrorMessage.HAS_DUPLICATE_NUMBER;
+import static lotto.util.exception.ErrorMessage.NOT_SIX_NUMBERS;
+
 import java.util.HashSet;
 import java.util.List;
-import java.util.PriorityQueue;
 import java.util.Set;
-import java.util.stream.Collectors;
+import lotto.util.exception.LottoException;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -41,11 +40,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (notSixNumbers(numbers)) {
-            throw new IllegalArgumentException();
+            throw LottoException.of(NOT_SIX_NUMBERS);
         }
 
         if (hasDuplicateNumber(numbers)) {
-            throw new IllegalArgumentException();
+            throw LottoException.of(HAS_DUPLICATE_NUMBER);
         }
     }
 

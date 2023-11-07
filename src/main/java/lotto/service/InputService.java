@@ -23,7 +23,7 @@ public class InputService implements Service {
 
     public Lotto getInputWinnerNumbers() {
         lottoInputView.requestWinnerNumbers();
-        return getValidNumbers().sendInputData();
+        return getValidNumbers();
     }
 
     public LottoBonusPair getLottoBonusPair(Lotto winnerNumber) {
@@ -37,22 +37,26 @@ public class InputService implements Service {
             String input = Console.readLine();
             inputMoney = InputMoney.getInstance(input);
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getValidMoney();
         }
 
         return inputMoney;
     }
 
-    private InputWinnerNumbers getValidNumbers() {
+    private Lotto getValidNumbers() {
         InputWinnerNumbers inputWinnerNumbers;
+        Lotto winnerNumbers;
         try {
             String input = Console.readLine();
             inputWinnerNumbers = InputWinnerNumbers.getInstance(input);
+            winnerNumbers = inputWinnerNumbers.sendInputData();
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getValidNumbers();
         }
 
-        return inputWinnerNumbers;
+        return winnerNumbers;
     }
 
     private LottoBonusPair getValidInputBonusNumber(Lotto winnerNumber) {
@@ -63,6 +67,7 @@ public class InputService implements Service {
             inputBonusNumber = InputBonusNumber.getInstance(input);
             lottoBonusPair = LottoBonusPair.getInstance(winnerNumber, inputBonusNumber.sendInputData());
         } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
             return getValidInputBonusNumber(winnerNumber);
         }
 

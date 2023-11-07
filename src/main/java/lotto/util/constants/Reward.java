@@ -1,6 +1,9 @@
 package lotto.util.constants;
 
+import static lotto.util.exception.ErrorMessage.INVALID_RANK;
+
 import java.util.Objects;
+import lotto.util.exception.LottoException;
 
 public enum Reward {
     FIFTH(5, 5_000L, "3개 일치 (5,000원) - %d개"),
@@ -24,7 +27,7 @@ public enum Reward {
                 return reward.getReward();
             }
         }
-        throw new IllegalArgumentException();
+        throw LottoException.of(INVALID_RANK);
     }
 
     public Integer getRank() {

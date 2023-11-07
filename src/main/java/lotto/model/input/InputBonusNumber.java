@@ -1,5 +1,8 @@
 package lotto.model.input;
 
+import static lotto.util.exception.ErrorMessage.INVALID_LOTTO_NUMBER;
+
+import lotto.util.exception.LottoException;
 import lotto.util.input.InputNumber;
 
 public class InputBonusNumber extends InputNumber {
@@ -13,7 +16,7 @@ public class InputBonusNumber extends InputNumber {
 
     public void validate() {
         if (notLottoNumber()) {
-            throw new IllegalArgumentException();
+            throw LottoException.of(INVALID_LOTTO_NUMBER);
         }
     }
 

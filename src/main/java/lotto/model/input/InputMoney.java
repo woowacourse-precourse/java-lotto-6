@@ -1,5 +1,9 @@
 package lotto.model.input;
 
+import static lotto.util.exception.ErrorMessage.NEGATIVE_NUMBER;
+import static lotto.util.exception.ErrorMessage.NOT_DIVISIBLE_BY_UNIT;
+
+import lotto.util.exception.LottoException;
 import lotto.util.input.InputNumber;
 
 public class InputMoney extends InputNumber {
@@ -18,11 +22,11 @@ public class InputMoney extends InputNumber {
 
     public void validate() {
         if (isNegative()) {
-            throw new IllegalArgumentException();
+            throw LottoException.of(NEGATIVE_NUMBER);
         }
 
         if (notDivisibleByUnit()) {
-            throw new IllegalArgumentException();
+            throw LottoException.of(NOT_DIVISIBLE_BY_UNIT);
         }
     }
 

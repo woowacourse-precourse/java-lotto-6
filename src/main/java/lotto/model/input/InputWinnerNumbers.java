@@ -1,8 +1,12 @@
 package lotto.model.input;
 
+import static lotto.util.exception.ErrorMessage.INVALID_LOTTO_NUMBER;
+import static lotto.util.exception.ErrorMessage.NOT_INTEGER;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
+import lotto.util.exception.LottoException;
 import lotto.util.input.InputList;
 
 public class InputWinnerNumbers extends InputList<Integer> {
@@ -16,7 +20,7 @@ public class InputWinnerNumbers extends InputList<Integer> {
 
     public void validate() {
         if (notLottoNumbers()) {
-            throw new IllegalArgumentException();
+            throw LottoException.of(INVALID_LOTTO_NUMBER);
         }
     }
 
@@ -36,7 +40,7 @@ public class InputWinnerNumbers extends InputList<Integer> {
         try {
             number = Integer.parseInt(element);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw LottoException.of(NOT_INTEGER);
         }
         return number;
     }

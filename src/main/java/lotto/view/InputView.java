@@ -27,10 +27,9 @@ public class InputView {
         return Integer.parseInt(inputAmount);
     }
 
-    public static List<Integer> inputWinningNumbers(String inputNumbers){
+    public static List<Integer> inputWinningNumbers(){
         System.out.println(INPUT_WINNING_NUMBERS);
-        return convertToList(inputNumbers);
-//        return  convertToList(Console.readLine());
+        return  convertToList(Console.readLine());
 
     }
 

@@ -3,12 +3,8 @@ package lotto.view;
 import static lotto.constant.LottoResult.*;
 import static lotto.constant.message.OutputMessage.*;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
-import java.util.stream.Collectors;
-import lotto.constant.LottoResult;
 import lotto.constant.message.OutputMessage;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResultCount;
@@ -53,7 +49,7 @@ public class OutputView {
         System.out.printf(PROFIT_RATE.getMessage(), rate);
     }
 
-    public void winningResultOutput(LottoResultCount lottoResultCount) {
+    private void winningResultOutput(LottoResultCount lottoResultCount) {
         printWinningResult(THREE_COUNT.getPrizeCount(), THREE_COUNT.getPrizeMoney(), lottoResultCount.getThreeCount());
         printWinningResult(FOUR_COUNT.getPrizeCount(), FOUR_COUNT.getPrizeMoney(), lottoResultCount.getFourCount());
         printWinningResult(FIVE_COUNT.getPrizeCount(), FIVE_COUNT.getPrizeMoney(), lottoResultCount.getFiveCount());
@@ -62,7 +58,7 @@ public class OutputView {
         printWinningResult(SIX_COUNT.getPrizeCount(), SIX_COUNT.getPrizeMoney(), lottoResultCount.getSixCount());
     }
 
-    public void printWinningResult(int number, int price, int matchCount) {
+    private void printWinningResult(int number, int price, int matchCount) {
         String priceWithComma = String.format("%,d", price);
         if (number == FIVE_COUNT_WITH_BONUS.getPrizeCount()) {
             System.out.printf(RESULT_BONUS.getMessage(), priceWithComma, matchCount);

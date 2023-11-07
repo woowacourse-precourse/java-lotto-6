@@ -1,6 +1,5 @@
 package lotto.view;
 
-import lotto.constant.message.InputMessage;
 import lotto.util.InputUtil;
 
 public class InputView {

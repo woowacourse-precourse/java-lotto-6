@@ -4,14 +4,11 @@ import static lotto.constant.LottoResult.*;
 
 import java.util.List;
 import java.util.function.Predicate;
-import lotto.constant.message.InputMessage;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
 import lotto.domain.LottoResultCount;
 import lotto.domain.LottoWinningNumber;
 import lotto.util.ValidationUtil;
-import lotto.view.InputView;
-import lotto.view.OutputView;
 
 public class WinningNumberService {
     private final LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();

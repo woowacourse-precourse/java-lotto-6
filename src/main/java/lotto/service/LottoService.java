@@ -59,7 +59,15 @@ public class LottoService {
         return Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
     }
 
-
+    private Ranking lottoRanking(WinningNumber winningNumber, Lotto lotto){
+        int count = countLottoNumber(winningNumber,lotto);
+        boolean bonusCount = checkBonusNumberInLotto(winningNumber, lotto);
+        Ranking ranking = Ranking.values()[count]; // 열거형 check
+        if(ranking == Ranking.FIVE && bonusCount){
+            return Ranking.FIVE_BONUS;
+        }
+        return ranking;
+    }
 
     private int countLottoNumber(WinningNumber winningNumber, Lotto lotto){
         return checkSameNumber(winningNumber.getWinningNumbers(),lotto.getNumbers());

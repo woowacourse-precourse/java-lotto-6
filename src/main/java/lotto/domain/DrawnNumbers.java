@@ -24,6 +24,19 @@ public class DrawnNumbers {
         return new DrawnNumbers(drawnNumbersDto.getWinningNumbers(), drawnNumbersDto.getBonusNumber());
     }
 
+    public LottoResultDto compare(Lotto lotto) {
+        List<Integer> numbers = lotto.getNumbers();
+        int winningCount = countWinningNumbers(numbers);
+        boolean hasBonusNumber = numbers.contains(bonusNumber);
+        return LottoResultDto.of(winningCount, hasBonusNumber);
+    }
+
+    private int countWinningNumbers(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
     private void validateWinningNumbers(List<Integer> winningNumbers) {
         validateInvalidRange(winningNumbers);
         validateDuplication(winningNumbers);

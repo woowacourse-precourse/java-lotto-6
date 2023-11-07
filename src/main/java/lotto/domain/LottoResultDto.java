@@ -9,6 +9,10 @@ public class LottoResultDto {
         this.hasBonusNumber = hasBonusNumber;
     }
 
+    public static LottoResultDto of(int winningCount, boolean hasBonusNumber) {
+        return new LottoResultDto(winningCount, hasBonusNumber);
+    }
+
     public int getWinningCount() {
         return this.winningCount;
     }

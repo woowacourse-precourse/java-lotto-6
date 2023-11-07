@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import lotto.util.CheckValidation;
-import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;

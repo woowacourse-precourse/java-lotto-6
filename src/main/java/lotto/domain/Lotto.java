@@ -2,9 +2,10 @@ package lotto.domain;
 
 import static lotto.domain.exception.LottoException.DUPLICATED_BONUS_NUMBER;
 import static lotto.domain.exception.LottoException.DUPLICATED_LOTTO_NUMBER;
-import static lotto.util.Constants.LOTTO_NUMBERS_SIZE;
 import static lotto.domain.exception.LottoException.INVALID_LOTTO_SIZE;
+import static lotto.util.Constants.LOTTO_NUMBERS_SIZE;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,7 +57,7 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return this.numbers;
+        return Collections.unmodifiableList(numbers);
     }
 
     @Override

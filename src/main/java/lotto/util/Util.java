@@ -1,7 +1,6 @@
 package lotto.util;
 
 import java.util.List;
-import java.util.Objects;
 
 public class Util {
     public static int distinctListSize(List<?> temp) {
@@ -10,4 +9,7 @@ public class Util {
                 .count();
     }
 
+    public static double round(double number, int unit, int position) {
+        return Math.round(number * unit) / Math.pow(10, position);
+    }
 }

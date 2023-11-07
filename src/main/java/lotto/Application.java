@@ -36,7 +36,11 @@ public class Application {
 	}
 	
 	private void isCorrectMoney(int n) throws IllegalArgumentException {
-		
+		if (n % 1000 == 0 && n >= 1000) {
+			vaildMoney = true;
+			return;
+		}
+		throw new IllegalArgumentException();
 	}
 	
 	private void run() {

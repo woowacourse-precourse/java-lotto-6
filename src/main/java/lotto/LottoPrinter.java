@@ -5,6 +5,8 @@ import java.util.List;
 
 public class LottoPrinter {
     static final int INITIALIZE = 0;
+    static final int DIGIT_FOR_ROUND_UP = 1000;
+    static final double DIGIT_FOR_PRINT = 10.0;
 
     public void printLotteryList(List<Lotto> totalLottery) {
         System.out.println();
@@ -54,6 +56,6 @@ public class LottoPrinter {
 
         double rateOfReturn = revenue / userMoney;
 
-        return Math.round(rateOfReturn * 10) / 10.0;
+        return Math.round(rateOfReturn * DIGIT_FOR_ROUND_UP) / DIGIT_FOR_PRINT;
     }
 }

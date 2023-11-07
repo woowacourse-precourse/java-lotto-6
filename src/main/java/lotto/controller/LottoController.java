@@ -11,7 +11,7 @@ public class LottoController {
     public void run() {
         try{
             start();
-        } catch (IllegalArgumentException e){
+        } catch (Exception e){
             System.out.println("[ERROR] "+e.getMessage());
         }
     }
@@ -20,6 +20,8 @@ public class LottoController {
         List<Lotto> lottoNumList = generateLottoNumbers(amount);
         OutputView.requestWinningNumbers();
         List<Integer> winning = InputView.getWinningNumber();
+        OutputView.requestBonusNumber();
+        int bonus = InputView.getBonusNumber(winning);
     }
 
     public int getAmount(){

@@ -22,4 +22,13 @@ public class InputView {
         System.out.println();
         return winningNumbers;
     }
+
+    public static int getBonusNumber(List<Integer> winningNumbers) {
+        String bonus = Console.readLine();
+        int bonusNumber = Integer.parseInt(bonus);
+        ValidationView.checkBonusNumber(bonus, winningNumbers);
+        ValidationView.checkInRangeNumber(bonus);
+        System.out.println();
+        return bonusNumber;
+    }
 }

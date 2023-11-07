@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public final class WinningResult {
+public class WinningResult {
     private final Map<Integer, String> rankTable;
-    private final Map<String, Long> winningResult;
+    private Map<String, Long> winningResult;
 
     public WinningResult(List<Integer> drawResult) {
         this.rankTable = new HashMap<>();
@@ -17,15 +17,17 @@ public final class WinningResult {
         this.rankTable.put(Rule.THIRD_RANK.value(), "3rd");
         this.rankTable.put(Rule.FOURTH_RANK.value(), "4th");
         this.rankTable.put(Rule.FIFTH_RANK.value(), "5th");
-
-        winningResult = drawResult.stream()
-                .filter(number -> number >= Rule.MINIMUM_NUMBER_TO_WIN.value())
-                .map(rankTable::get)
-                .collect(Collectors.groupingBy(Function.identity(),  Collectors.counting()));
     }
 
     public Map<String, Long> getWinningResult() {
         return new HashMap<>(winningResult);
+    }
+
+    public void calculate(List<Integer> drawResult) {
+        winningResult = drawResult.stream()
+                .filter(number -> number >= Rule.MINIMUM_NUMBER_TO_WIN.value())
+                .map(rankTable::get)
+                .collect(Collectors.groupingBy(Function.identity(),  Collectors.counting()));
     }
 
     public static int determineRankByBonus(int rank, boolean isBonusHit) {

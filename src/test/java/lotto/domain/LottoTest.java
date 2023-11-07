@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import lotto.game.Rank;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -23,5 +24,25 @@ public class LottoTest {
 
         // then
         assertThat(numbers).isEqualTo(answer);
+    }
+
+    @Test
+    @DisplayName("일치 숫자에 따라 순위를 반환합니다.")
+    void rankTest(){
+        // given
+        Integer[][] numbers = new Integer[][]{ {1,2,3,4,5,6}, {1,2,3,4,5,7}, {1,2,3,4,5,8},{1,2,3,4,7,8} };
+        List<Integer> winNumbers = Arrays.asList(new Integer[]{1,2,3,4,5,6});
+        WinNumber winNumber = new WinNumber(winNumbers, 7);
+
+        Rank[] result = new Rank[4];
+        Rank[] answer = {Rank.FIRST, Rank.SECOND, Rank.THIRD, Rank.FOURTH};
+
+        // when
+        for(int i = 0 ; i<numbers.length; i++){
+            result[i] = new Lotto(Arrays.asList(numbers[i])).getRank(winNumber);
+        }
+
+        // then
+        assertThat(result).isEqualTo(answer);
     }
 }

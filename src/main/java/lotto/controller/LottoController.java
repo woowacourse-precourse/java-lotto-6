@@ -1,7 +1,7 @@
 package lotto.controller;
 
-import lotto.controller.action.LottoAction;
-import lotto.controller.action.WinningAction;
+import lotto.controller.handler.LottoHandler;
+import lotto.controller.handler.WinningHandler;
 import lotto.domain.constant.Rank;
 import lotto.domain.model.Lotto;
 import lotto.domain.service.LottoService;
@@ -19,11 +19,11 @@ public class LottoController {
 
     private final LottoService service = new LottoService();
 
-    private final LottoAction lottoAction = new LottoAction();
-    private final WinningAction winningAction = new WinningAction();
+    private final LottoHandler lottoHandler = new LottoHandler();
+    private final WinningHandler winningHandler = new WinningHandler();
 
     public void purchaseLotteries() {
-        lottoAction.process(PURCHASE_REQUEST, service);
+        lottoHandler.process(PURCHASE_REQUEST, service);
     }
 
     public void provideLotteriesDetails() {
@@ -36,8 +36,8 @@ public class LottoController {
     }
 
     public void setUpWinning() {
-        winningAction.processWinningMain(WINNING_MAIN_REQUEST);
-        winningAction.processWinningComplete(WINNING_BONUS_REQUEST, service);
+        winningHandler.processWinningOngoing(WINNING_MAIN_REQUEST);
+        winningHandler.processWinningComplete(WINNING_BONUS_REQUEST, service);
     }
 
     public void provideWinningDetails() {

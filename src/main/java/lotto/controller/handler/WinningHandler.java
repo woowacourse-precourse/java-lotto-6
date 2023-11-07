@@ -1,4 +1,4 @@
-package lotto.controller.action;
+package lotto.controller.handler;
 
 import lotto.domain.model.Bonus;
 import lotto.domain.model.Lotto;
@@ -11,17 +11,17 @@ import java.util.List;
 import static lotto.controller.util.Conversion.makeInt;
 import static lotto.controller.util.Conversion.makeIntegerList;
 
-public class WinningAction {
+public class WinningHandler {
 
     private Lotto main;
     private Bonus bonus;
 
-    public void processWinningMain(String message) {
+    public void processWinningOngoing(String message) {
         String input;
         do {
             OutputView.printMessage(message);
             input = InputView.input();
-        } while (runMain(input));
+        } while (hasExceptionWinningOngoing(input));
     }
 
     public void processWinningComplete(String message, LottoService service) {
@@ -29,10 +29,10 @@ public class WinningAction {
         do {
             OutputView.printMessage(message);
             input = InputView.input();
-        } while (runComplete(input, service));
+        } while (hasExceptionWinningComplete(input, service));
     }
 
-    public boolean runMain(String input) {
+    private boolean hasExceptionWinningOngoing(String input) {
         try {
             List<Integer> winningMain = makeIntegerList(input);
             main =  new Lotto(winningMain);
@@ -43,7 +43,7 @@ public class WinningAction {
         }
     }
 
-    public boolean runComplete(String input, LottoService service) {
+    private boolean hasExceptionWinningComplete(String input, LottoService service) {
         try {
             int winningBonus = makeInt(input);
             bonus = new Bonus(winningBonus);

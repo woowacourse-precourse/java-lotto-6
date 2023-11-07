@@ -1,4 +1,4 @@
-package lotto.controller.action;
+package lotto.controller.handler;
 
 import lotto.domain.service.LottoService;
 import lotto.ui.input.InputView;
@@ -6,20 +6,20 @@ import lotto.ui.output.OutputView;
 
 import static lotto.controller.util.Conversion.makeInt;
 
-public class LottoAction {
+public class LottoHandler {
 
     public void process(String message, LottoService service) {
         String input;
         do {
             OutputView.printMessage(message);
             input = InputView.input();
-        } while (run(input, service));
+        } while (hasException(input, service));
     }
 
-    public boolean run(String input, LottoService service) {
+    private boolean hasException(String input, LottoService service) {
         try {
-            int price = makeInt(input); //검증 필요
-            service.buyLotteries(price); //검증 필요
+            int price = makeInt(input);
+            service.buyLotteries(price);
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

@@ -24,7 +24,7 @@ public class StringUtil {
                 .toList();
     }
 
-    public static String doubleToString(double rateOfReturn) {
-        return "총 수익률은 " + rateOfReturn + "%입니다.";
+    public static String formatRateOfReturn(double rateOfReturn) {
+        return "총 수익률은 " + String.format("%.1f", rateOfReturn) + "%입니다.";
     }
 }

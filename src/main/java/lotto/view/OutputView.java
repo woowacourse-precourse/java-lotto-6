@@ -9,7 +9,6 @@ import java.util.Map;
 
 public class OutputView {
 
-    public static final double ROUNDING_PRECISION = 100.0;
     private final Map<Rank, String> rankPrinter;
 
     public OutputView() {
@@ -50,12 +49,11 @@ public class OutputView {
     }
 
     public void printRateOfReturn(double rateOfReturn) {
-        rateOfReturn = Math.round(rateOfReturn * ROUNDING_PRECISION) / ROUNDING_PRECISION;
-
-        System.out.println(StringUtil.doubleToString(rateOfReturn));
+        System.out.println(StringUtil.formatRateOfReturn(rateOfReturn));
     }
 
     public void printNumberOfPurchases(int purchaseCount) {
-        System.out.println("\n" + purchaseCount + "개를 구매했습니다.");
+        System.out.println();
+        System.out.println(purchaseCount + "개를 구매했습니다.");
     }
 }

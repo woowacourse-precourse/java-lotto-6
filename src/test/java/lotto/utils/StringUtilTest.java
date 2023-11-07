@@ -43,7 +43,7 @@ class StringUtilTest {
         double rateOfReturn = 62.5;
 
         // when
-        String printReturnValue = StringUtil.doubleToString(rateOfReturn);
+        String printReturnValue = StringUtil.formatRateOfReturn(rateOfReturn);
 
         // then
         assertThat(printReturnValue).isEqualTo("총 수익률은 62.5%입니다.");

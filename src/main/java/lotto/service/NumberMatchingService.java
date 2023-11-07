@@ -1,11 +1,11 @@
 package lotto.service;
 
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.LottoPrize;
+import lotto.model.WinningNumbers;
 
-import java.util.EnumMap;
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
+import java.util.*;
 
 public class NumberMatchingService {
 
@@ -40,5 +40,18 @@ public class NumberMatchingService {
             return LottoPrize.FIVE_AND_BONUS_MATCH;
         }
         return LottoPrize.valueOf(matchCount);
+    }
+
+    public EnumMap<LottoPrize, Integer> calculateWinCounts(List<Lotto> lottoNumberList, WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        List<List<Integer>> lottoNumbersList = convertToNumberList(lottoNumberList);
+        return calculateResults(lottoNumbersList, winningNumbers.getWinningNumbers(), bonusNumber.getBonusNumber());
+    }
+
+    private List<List<Integer>> convertToNumberList(List<Lotto> lottos) {
+        List<List<Integer>> lottoNumbersList = new ArrayList<>();
+        for (Lotto lotto : lottos) {
+            lottoNumbersList.add(lotto.getNumbers());
+        }
+        return lottoNumbersList;
     }
 }

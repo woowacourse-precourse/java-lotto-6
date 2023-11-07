@@ -7,27 +7,34 @@ import lotto.service.EarningRateService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
 public class Controller {
-    LottoService lottoService;
-
+    private final LottoService lottoService;
+    private final NumberMatchingService numberMatchingService;
+    private final EarningRateService earningRateService;
+    private List<Lotto> lottos;
+    private WinningNumbers winningNumbers;
+    private BonusNumber bonusNumber;
+    private EnumMap<LottoPrize, Integer> winCount;
     private static final String ERROR = "[ERROR] ";
 
     public Controller() {
         this.lottoService = new LottoService();
+        this.numberMatchingService = new NumberMatchingService();
+        this.earningRateService = new EarningRateService();
     }
 
     public void run() {
         lottoTicketSetting();
         showTicketCount();
         lottoNumberSetting();
-        WinningNumbers winningNumbers = winningNumberSetting();
-        BonusNumber bonusNumber = bonusNumberSetting(winningNumbers);
+        winningNumberSetting();
+        bonusNumberSetting();
         showSystemMessage();
-        showWinningResults(winningNumbers, bonusNumber);
+        showWinningResults();
+        showEarningRate();
     }
 
     private void lottoTicketSetting() {
@@ -47,27 +54,28 @@ public class Controller {
     }
 
     private void lottoNumberSetting() {
-        List<Lotto> lottoNumbers = lottoService.generateLottoNumbers();
-        lottoService.storeLottoNumbers(lottoNumbers);
-        OutputView.displayLottoNumbers(lottoNumbers);
+        this.lottos = lottoService.generateLottoNumbers();
+        OutputView.displayLottoNumbers(lottos);
     }
 
-    private WinningNumbers winningNumberSetting() {
+    private void winningNumberSetting() {
         while (true) {
             try {
                 String[] winningNumbersInput = InputView.inputWinningNumber();
-                return new WinningNumbers(winningNumbersInput);
+                this.winningNumbers = new WinningNumbers(winningNumbersInput);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR + e.getMessage());
             }
         }
     }
 
-    private BonusNumber bonusNumberSetting(WinningNumbers winningNumbers) {
+    private void bonusNumberSetting() {
         while (true) {
             try {
                 String bonusNumberInput = InputView.inputBonusNumber();
-                return new BonusNumber(bonusNumberInput, winningNumbers);
+                this.bonusNumber = new BonusNumber(bonusNumberInput, winningNumbers);
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(ERROR + e.getMessage());
             }
@@ -78,28 +86,13 @@ public class Controller {
         OutputView.displaySystemMessage();
     }
 
-    private void showWinningResults(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
-        NumberMatchingService numberMatchingService = new NumberMatchingService();
-        List<Lotto> purchasedLottos = lottoService.purchaseLottoTickets();
-
-        List<List<Integer>> lottoNumbersList = new ArrayList<>();
-        for (Lotto lotto : purchasedLottos) {
-            lottoNumbersList.add(lotto.getNumbers());
-        }
-
-        EnumMap<LottoPrize, Integer> winCount = numberMatchingService.calculateResults(
-                lottoNumbersList,
-                winningNumbers.getWinningNumbers(),
-                bonusNumber.getBonusNumber()
-        );
-
+    private void showWinningResults() {
+        this.winCount = numberMatchingService.calculateWinCounts(this.lottos, winningNumbers, bonusNumber);
         OutputView.displayLottoResult(winCount);
+    }
 
-        EarningRateService earningRateService = new EarningRateService();
-        double earningsRate = earningRateService.calculateEarningsRate(
-                winCount,
-                lottoService.getTicketCount()
-        );
+    private void showEarningRate() {
+        double earningsRate = earningRateService.calculateEarningsRate(winCount, lottoService.getTicketCount());
         OutputView.displayEarningsRate(earningsRate);
     }
 }

@@ -6,12 +6,12 @@ public class PurchaseAmount {
     private final int purchaseAmount;
 
     public PurchaseAmount(int purchaseAmount) {
-        validateIsDivideByLottoPrice();
+        validateIsDivideByLottoPrice(purchaseAmount);
         this.purchaseAmount = purchaseAmount;
     }
 
-    private void validateIsDivideByLottoPrice() {
-        if (purchaseAmount % LottoConstant.LOTTO_PRICE.value() == 0) {
+    private void validateIsDivideByLottoPrice(int purchaseAmount) {
+        if (purchaseAmount % LottoConstant.LOTTO_PRICE.value() != 0) {
             throw new IllegalArgumentException();
         }
     }

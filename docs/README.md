@@ -67,9 +67,9 @@
 ## 당첨 확인 기능
 - [x] `LottoUtil::getMatchingNumberCount` 메서드
   - 정답과 일치하는 번호의 개수를 반환한다.
-- [x] `LottoController::calculateLottoRank` 메서드
+- [x] `LottoJudgement::calculateLottoRanking` 메서드
   - 정답 로또, 검사 로또를 인수로 받아 등수를 반환한다.
-- [x] `LottoController::calculateLottoResult` 메서드
+- [x] `LottoJudgement::calculateLottoRanking` 메서드
   - 정답 로또, 검사 로또 리스트를 인수로 받아 순위 통계를 반환한다.
 
 ## 당첨 내역 출력 기능
@@ -77,7 +77,7 @@
   - 당첨 내역 정보를 인수로 받아 출력한다.
 
 ## 수익률 출력 기능
-- [x] `LottoController::calculateTotalPrize` 메서드
+- [x] `LottoJudgement::calculateTotalPrize` 메서드
   - 당첨 결과를 인수로 받아 총 상금을 반환한다.
 - [x] `LottoOutputView::printProfit` 메서드
   - 구입 금액, 당첨 금액을 인수로 받아 수익률을 출력한다.

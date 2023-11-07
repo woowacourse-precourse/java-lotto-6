@@ -30,4 +30,22 @@ public enum Result {
     public Integer getMatchCount() {
         return matchCount;
     }
+
+    public static Result getResult(Integer matchCount, boolean isBonusNumber) {
+        if (matchCount == 5 && isBonusNumber == Boolean.TRUE) {
+            return Result.FIVE_MATCH_AND_PLUS;
+        }
+
+        if (matchCount == 5 && isBonusNumber == Boolean.FALSE) {
+            return Result.FIVE_MATCH;
+        }
+
+        for (Result result : Result.values()) {
+            if (result.getMatchCount() == matchCount) {
+                return result;
+            }
+        }
+
+        return null;
+    }
 }

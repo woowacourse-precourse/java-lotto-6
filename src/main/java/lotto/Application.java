@@ -45,8 +45,18 @@ public class Application {
             throw new RuntimeException("[ERROR] 로또번호 확인 중 에러가 발생했습니다.");
         }
 
+
+        List<Result> results = new ArrayList<>();
+
+        for (int i = 0; i < lottoResults.size(); i++) {
+            Result result = Result.getResult(lottoResults.get(i), bonusNumberResults.get(i));
+            results.add(result); // nullable
+        }
+
+
         for (Result result : Result.values()) {
-            System.out.println(result);
+            System.out.println(result.getDescription() + "(" + result.getPrizeMoney() + ")" + " - " +
+                    Collections.frequency(results, result) + "개");
         }
     }
 

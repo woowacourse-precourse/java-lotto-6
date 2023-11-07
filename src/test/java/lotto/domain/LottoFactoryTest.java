@@ -67,6 +67,19 @@ public class LottoFactoryTest {
         Set<Integer> uniqueNumbers = new HashSet<>(ticket.getNumbers());
         assertThat(uniqueNumbers).hasSameSizeAs(ticket.getNumbers());
     }
+
+    @DisplayName("각 로또 티켓의 길이는 6이어야 한다")
+    @Test
+    void testLottoLengthisSix() {
+        // given
+        LottoFactory lottoFactory = new LottoFactory(SINGLE_TICKET);
+
+        // when
+        Lotto ticket = lottoFactory.getTickets().get(0);
+
+        // then
+        assertThat(ticket.getNumbers().size()).isEqualTo(6);
+    }
 }
 
 

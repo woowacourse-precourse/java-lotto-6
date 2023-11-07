@@ -46,6 +46,10 @@ public class LottoService {
         return new Lotto(pickUniqueNumbersInRange(START_NUMBER, END_NUMBER, LOTTO_NUMBER_COUNT));
     }
 
+    public List<Lotto> getPurchaseLottos() {
+        return purchaseLottos.getPurchaseLottos();
+    }
+
     public void setWinLotto(List<Integer> winLottoNumbers) {
         winLotto = new Lotto(winLottoNumbers);
     }

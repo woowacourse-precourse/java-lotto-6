@@ -18,4 +18,8 @@ public class PurchaseLottos {
             throw new IllegalArgumentException(ErrorCode.NOT_FOUND_PURCHASE_LOTTO.getMessage());
         }
     }
+
+    public List<Lotto> getPurchaseLottos() {
+        return purchaseLottos;
+    }
 }

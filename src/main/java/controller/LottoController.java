@@ -12,6 +12,8 @@ import domain.LottoResult;
 
 import java.util.List;
 
+import util.LottoResultMessage;
+
 import view.InputView;
 import view.OutputView;
 
@@ -33,10 +35,17 @@ public class LottoController {
         initWinningNumber();
         initBonusNumber();
         calculateLottoResult();
+        showLottoResult();
     }
 
-    private void showResult() {
-
+    private void showLottoResult() {
+        OutputView.printEmptyLine();
+        OutputView.printResultMessage();
+        for(LottoResultMessage resultMessage : LottoResultMessage.values()) {
+            String msg = resultMessage.getMessageOFRank();
+            int rank = resultMessage.getRank();
+            OutputView.printEachLottoResult(msg,lottoResult.getCountOfRank(rank));
+        }
     }
 
     private void calculateLottoResult() {

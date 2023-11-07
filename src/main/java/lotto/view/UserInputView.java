@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoController;
 import lotto.domain.LottoTickets;
+import lotto.domain.WinningNumber;
 
 public class UserInputView {
 
@@ -18,6 +19,7 @@ public class UserInputView {
 
     public static void winningNumbers(){
         try{
+            WinningNumber.getWinningNum(Console.readLine());
 
         }catch (IllegalAccessError e){
             System.out.println(e.getMessage());

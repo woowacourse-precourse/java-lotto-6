@@ -6,10 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoTickets {
-    List<Lotto> lottoTickets = new ArrayList<>();
+    List<Lotto> lottoTickets;
 
     private LottoTickets(List<Lotto> lottoTickets) {
         this.lottoTickets = lottoTickets;
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 
     public static LottoTickets createBuyLottoTickets(long purchaseAmount) throws IllegalArgumentException{

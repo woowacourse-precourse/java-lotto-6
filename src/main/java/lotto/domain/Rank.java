@@ -4,26 +4,28 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum Rank {
-    NONE_PRIZE(0, 0, false),
-    FIFTH_PRIZE(5_000, 3, false),
-    FOURTH_PRIZE(50_000, 4, false),
-    THIRD_PRIZE(1_500_000, 5, false),
-    SECOND_PRIZE(30_000_000, 5, true),
-    FIRST_PRIZE(2_000_000_000, 6, false);
+    NONE_PRIZE(0, 0),
+    FIFTH_PRIZE(5_000, 3),
+    FOURTH_PRIZE(50_000, 4),
+    THIRD_PRIZE(1_500_000, 5),
+    SECOND_PRIZE(30_000_000, 5),
+    FIRST_PRIZE(2_000_000_000, 6);
 
+    private static final int SECOND_MATCH_COUNT = 5;
     private final int prize;
     private final int matchCount;
-    private final boolean hasBonus;
 
-    Rank(final int prize, final int matchCount, boolean hasBonus) {
+    Rank(final int prize, final int matchCount) {
         this.prize = prize;
         this.matchCount = matchCount;
-        this.hasBonus = hasBonus;
     }
 
     public static Rank createRank(final int matchCount, final boolean hasBonus) {
+        if (matchCount == SECOND_MATCH_COUNT && hasBonus) {
+            return SECOND_PRIZE;
+        }
         return Arrays.stream(Rank.values())
-                .filter(rank -> rank.countMatch(matchCount) && rank.hasBonus(hasBonus))
+                .filter(rank -> rank.countMatch(matchCount))
                 .findFirst()
                 .orElse(NONE_PRIZE);
     }
@@ -36,10 +38,6 @@ public enum Rank {
 
     private boolean countMatch(final int matchCount) {
         return this.matchCount == matchCount;
-    }
-
-    private boolean hasBonus(final boolean hasBonus) {
-        return this.hasBonus == hasBonus;
     }
 
     public int getPrize() {

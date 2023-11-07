@@ -27,7 +27,6 @@ public class LottoController {
     public void run() {
         PurchaseAmount purchaseAmount = getValidPurchaseAmount();
         Lottos lottos = issueLottos(new LottoNumberGenerator(), purchaseAmount.calculateLottoCount());
-        printLottosIssued(lottos);
 
         MainNumbers mainNumbers = getValidMainNumbers();
         BonusNumber bonusNumber = getValidBonusNumbers();
@@ -44,13 +43,12 @@ public class LottoController {
     }
 
     private Lottos issueLottos(NumberGenerator numberGenerator, int lottoCount) {
-        return Stream.generate(() -> Lotto.issue(numberGenerator.generate()))
+        Lottos lottos = Stream.generate(() -> Lotto.issue(numberGenerator.generate()))
                 .limit(lottoCount)
                 .collect(collectingAndThen(toList(), Lottos::assemble));
-    }
-
-    private void printLottosIssued(Lottos lottos) {
         outputView.printLottosIssued(DtoModelMapper.LottosToDto(lottos));
+
+        return lottos;
     }
 
     private MainNumbers getValidMainNumbers() {

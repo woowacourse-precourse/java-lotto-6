@@ -5,11 +5,12 @@ import camp.nextstep.edu.missionutils.Console;
 public class Purchase {
   public int purchaseAmount() {
     System.out.println("로또 구입 금액을 입력하세요.");
-    System.out.println(lotto_purchase() + "개를 구매했습니다.");
-    return lotto_purchase();
+    int numberOfTickets = lotto_purchase();
+    System.out.println(numberOfTickets + "개를 구매했습니다.");
+    return numberOfTickets;
   }
 
-  private int lotto_purchase() {
+  public int lotto_purchase() {
 
     int purchaseAmount = Integer.parseInt(Console.readLine());
     exception_divide(purchaseAmount);

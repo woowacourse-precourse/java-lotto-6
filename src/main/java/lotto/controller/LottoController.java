@@ -17,15 +17,19 @@ import lotto.domain.Rank;
 public class LottoController {
 
 	public void start() {
-		int buyAmount = inputPurchaseAmout();
-		int lottoCount = buyCount(buyAmount);
-		List<List<Integer>> LottoTickets = buyLotto(lottoCount);
-		List<Integer> winningNumber = inputWinningNumber();
-		int bonusNumber = inputBonusNumber();
-		List<Rank> lottoRanks = correct(winningNumber, bonusNumber, LottoTickets);
-		int totalPrice = profitability(lottoRanks);
-		double profit = revenue(totalPrice, buyAmount);
-		totalRateOfReturn(lottoRanks, profit);
+		try {
+			int buyAmount = inputPurchaseAmout();
+			int lottoCount = buyCount(buyAmount);
+			List<List<Integer>> LottoTickets = buyLotto(lottoCount);
+			List<Integer> winningNumber = inputWinningNumber();
+			int bonusNumber = inputBonusNumber();
+			List<Rank> lottoRanks = correct(winningNumber, bonusNumber, LottoTickets);
+			int totalPrice = profitability(lottoRanks);
+			double profit = revenue(totalPrice, buyAmount);
+			totalRateOfReturn(lottoRanks, profit);
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 
 }

@@ -74,3 +74,11 @@
     - 사용자가 입력하는 값은 `camp.nextstep.edu.missionutils.Console`의 `readLine()`을 활용한다.
 
 #### +)제공된 LOTTO클래스 사용
+
+
+
+
+
+----------------------------
+
+로또 구입 금액입력 -> 

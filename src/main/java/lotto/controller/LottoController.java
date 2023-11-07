@@ -12,6 +12,11 @@ public class LottoController {
 
     public void start(){
         String s = view.inputBuyingMoney();
-        validate.inputBuyingMoneyValidate(s);
+        try {
+            validate.inputBuyingMoneyValidate(s);
+        }catch (IllegalArgumentException e){
+            view.exceptionMessage();
+            start();
+        }
     }
 }

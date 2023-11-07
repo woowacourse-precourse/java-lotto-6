@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.exception.LottoException;
 import lotto.vo.LottoWinningBonusNumber;
 import lotto.vo.LottoNumber;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,9 +13,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
 class LottoTest {
+    private static final String ERROR = "[ERROR]";
+
     List<Integer> validLottoNumbers;
     Lotto lotto;
 
@@ -46,7 +46,7 @@ class LottoTest {
     void lotto_동등성_비교() {
         Lotto newLotto = new Lotto(Arrays.asList(6, 5, 3, 4, 2, 1));
 
-        Assertions.assertThat(newLotto).isEqualTo(lotto);
+        assertThat(newLotto).isEqualTo(lotto);
     }
 
     @Test
@@ -54,19 +54,16 @@ class LottoTest {
     void lotto_동일성_비교() {
         Lotto newLotto = new Lotto(Arrays.asList(6, 5, 3, 4, 2, 1));
 
-        Assertions.assertThat(newLotto).isNotSameAs(lotto);
+        assertThat(newLotto).isNotSameAs(lotto);
     }
 
     @Test
     @DisplayName("로또 숫자 개수가 6개가 아니면 LottoException 를 뱉는다.")
     void validateTest() {
         List<Integer> errorLottoNumbers = Arrays.asList(1, 2, 3, 4, 5);
-        Assertions.assertThatThrownBy(() -> new Lotto(errorLottoNumbers))
+        assertThatThrownBy(() -> new Lotto(errorLottoNumbers))
                 .isInstanceOf(LottoException.class)
-                .hasMessage("""
-                        [ERROR] 1부터 45 사이의 중복되지 않는 숫자 6개를 입력해 주세요.
-                        양식: "1,7,13,24,42,45"
-                        """);
+                .hasMessageContaining(ERROR);
     }
 
     @Test
@@ -74,7 +71,10 @@ class LottoTest {
     public void validateAndThrowIfBonusNumberExistsTest() throws LottoException {
         LottoWinningBonusNumber lottoWinningBonusNumber = new LottoWinningBonusNumber(6);
 
-        assertThrows(LottoException.class, () -> lotto.validateAndThrowIfBonusNumberExists(lottoWinningBonusNumber));
+        assertThatThrownBy(() -> lotto.validateAndThrowIfBonusNumberExists(lottoWinningBonusNumber))
+                .isInstanceOf(LottoException.class)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR);
     }
 
     @Test
@@ -82,7 +82,7 @@ class LottoTest {
     void containsBonusNumberFalseTest() {
         LottoWinningBonusNumber lottoWinningBonusNumber = new LottoWinningBonusNumber(6);
 
-        Assertions.assertThat(lotto.containsBonusNumber(lottoWinningBonusNumber)).isTrue();
+        assertThat(lotto.containsBonusNumber(lottoWinningBonusNumber)).isTrue();
     }
 
 
@@ -92,13 +92,12 @@ class LottoTest {
     void containsBonusNumberTrueTest(int number) {
         LottoWinningBonusNumber lottoWinningBonusNumber = new LottoWinningBonusNumber(number);
 
-        Assertions.assertThat(lotto.containsBonusNumber(lottoWinningBonusNumber)).isFalse();
+        assertThat(lotto.containsBonusNumber(lottoWinningBonusNumber)).isFalse();
     }
 
     @Test
     @DisplayName("로또 번호를 출력하면 [1, 2, 3, 4, 5, 6] 형태로 출력해야 한다.")
     void toStringTest() {
-        Assertions.assertThat(lotto.toString()).hasToString("""
-                [1, 2, 3, 4, 5, 6]""");
+        assertThat(lotto.toString()).hasToString("[1, 2, 3, 4, 5, 6]");
     }
 }

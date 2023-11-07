@@ -15,9 +15,10 @@ import static org.assertj.core.api.Assertions.*;
 
 public class LottoPurchaseServiceTest {
     private LottoPurchaseService lottoPurchaseService;
-    private final String ERROR = "ERROR";
+    private static final String ERROR = "[ERROR]";
+
     @BeforeEach
-    void setUp() {
+    void beforeEach() {
         lottoPurchaseService = LottoPurchaseService.getInstance();
     }
 

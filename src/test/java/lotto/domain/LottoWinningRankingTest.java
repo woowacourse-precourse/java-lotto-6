@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
-
 class LottoWinningRankingTest {
 
     LottoWinningRanking none = LottoWinningRanking.NONE;

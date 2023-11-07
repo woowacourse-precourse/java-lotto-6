@@ -10,7 +10,7 @@ public class Application {
     public static void main(String[] args) {
         // String howMuch = readLine();
         int payment = 0;
-        payment = paymentException(payment);
+        payment = paymentInput(payment);
 
         payment /= 1000;
         Lotto[] lotto = new Lotto[payment];
@@ -34,7 +34,7 @@ public class Application {
         Lotto winNumber = new Lotto(emptynum);
 
         int bonusNum = 0;
-        bonusNum = bonusnumException(bonusNum, winNumber);
+        bonusNum = bonusnumInput(bonusNum, winNumber);
 
         int[] matching = new int[8];
         for (int i = 0; i < payment; i++) {
@@ -48,18 +48,22 @@ public class Application {
 
     }
 
-    static public int paymentException(int payment){
+    static public int paymentInput(int payment){ //x
         System.out.println("구입금액을 입력해 주세요.");
-        while (true) {
-            try {
-                payment = Integer.parseInt(readLine());
-                if (payment % 1000 != 0 || payment <= 0) throw new IllegalArgumentException();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 1000으로 나누어떨어져야하고 양수여야 합니다.");
-            }
-        }
+        while (payment == 0)
+            payment = paymentException(payment);
         return payment;
+    }
+
+    static public int paymentException(int payment){ //x
+        try {
+            payment = Integer.parseInt(readLine());
+            if (payment % 1000 != 0 || payment <= 0) throw new IllegalArgumentException();
+            return payment;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 1000으로 나누어떨어져야하고 양수여야 합니다.");
+            return 0;
+        }
     }
 
     static public List<Integer> creatRandomnumber() {
@@ -68,20 +72,18 @@ public class Application {
 
         return numbers;
     }
-
     static public List<Integer> sortNumber(List<Integer> num){
-
-        for(int i = 0;i<6;i++) {
-            for (int j = i + 1; j < 6; j++) {
-                if (num.get(i) > num.get(j)) {
-                    int temp = num.get(i); // 첫 번째 원소를 임시 변수에 저장
-                    num.set(i, num.get(j)); // 두 번째 원소를 첫 번째 원소로 복사
-                    num.set(j, temp); // 임시 변수의 값을 두 번째 원소로 복사
-
-                }
-            }
-        }
+        for(int i = 0;i<6;i++)
+            for (int j = i + 1; j < 6; j++)
+                swapNum(num,i,j);
         return num;
+    }
+    static public void swapNum(List<Integer> num, int index1, int index2){
+        if (num.get(index1) > num.get(index2)) {
+            int temp = num.get(index1); // 첫 번째 원소를 임시 변수에 저장
+            num.set(index1, num.get(index2)); // 두 번째 원소를 첫 번째 원소로 복사
+            num.set(index2, temp); // 임시 변수의 값을 두 번째 원소로 복사
+        }
     }
 
     static public List<Integer> tokenSeparation(String string) {
@@ -132,18 +134,22 @@ public class Application {
         return returnCount;
     }
 
-    static public int bonusnumException(int bonusNum, Lotto winNumber){
+    static public int bonusnumInput(int bonusNum, Lotto winNumber){
         System.out.println("보너스 번호를 입력해 주세요.");
         while(bonusNum == 0) {
-            try {
-                bonusNum = changeToInteger(readLine());
-                if (winNumber.returnNumbers().contains(bonusNum)) throw new IllegalArgumentException();
-            } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 당첨번호 중복");
-                bonusNum = 0;
-            }
+            bonusNum = bonusnumException(bonusNum, winNumber);
         }
         return bonusNum;
+    }
+    static public int bonusnumException(int bonusNum, Lotto winNumber){
+        try {
+            bonusNum = changeToInteger(readLine());
+            if (winNumber.returnNumbers().contains(bonusNum)) throw new IllegalArgumentException();
+            return bonusNum;
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 당첨번호 중복");
+           return 0;
+        }
     }
 
     public static void finishPrint(int[] match, int payment) {

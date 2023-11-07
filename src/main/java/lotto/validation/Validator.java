@@ -1,6 +1,6 @@
 package lotto.validation;
 
-public interface InputValidator {
+public interface Validator<TInput> {
     default boolean isNumeric(String input) {
         return input.matches("\\d+");
     }
@@ -9,5 +9,5 @@ public interface InputValidator {
         return input > 0;
     }
 
-    void validate(String input);
+    void validate(TInput input);
 }

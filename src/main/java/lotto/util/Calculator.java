@@ -99,13 +99,13 @@ public class Calculator {
     }
 
     public boolean hasBonusNumber(Lotto lotto, int bonusNumber) {
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = lotto.numbers();
         return numbers.contains(bonusNumber);
     }
 
     public int compareLotto(Lotto lotto, Lotto winningLotto) {
         int count = 0;
-        List<Integer> numbers = lotto.getNumbers();
+        List<Integer> numbers = lotto.numbers();
         for (Integer number : numbers) {
             if (compareWinningNumbers(number, winningLotto)) {
                 count++;
@@ -115,7 +115,7 @@ public class Calculator {
     }
 
     public boolean compareWinningNumbers(int number, Lotto winningLotto) {
-        List<Integer> winningNumbers = winningLotto.getNumbers();
+        List<Integer> winningNumbers = winningLotto.numbers();
         return winningNumbers.contains(number);
     }
 }

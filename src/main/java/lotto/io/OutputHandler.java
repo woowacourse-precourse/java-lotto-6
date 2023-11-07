@@ -16,7 +16,7 @@ public class OutputHandler {
 
     public static void printLottos(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> numbers = lotto.numbers();
             List<Integer> sortedNumbers = new ArrayList<>(numbers);
             sortedNumbers.sort(Comparator.naturalOrder());
             System.out.println(sortedNumbers);

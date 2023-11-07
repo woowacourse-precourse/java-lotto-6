@@ -96,5 +96,15 @@ public class Application {
         for (int i = 0; i < lottoNumber.length; i++) {
             intLottoNumber[i] = Integer.parseInt(lottoNumber[i]);
         }
+
+        // 보너스 번호 입력
+        System.out.println("보너스 번호를 입력해 주세요.");
+        String lottoBonusNumber = Console.readLine();
+        for (int b = 0; b < 6; b++) {
+            if (Integer.parseInt(lottoNumber[b]) == Integer.parseInt(lottoBonusNumber)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 겹칠 수 없습니다.");
+            }
+        }
+        System.out.println();
     }
 }

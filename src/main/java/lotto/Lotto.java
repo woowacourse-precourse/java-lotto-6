@@ -10,18 +10,18 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = InputMatchedNumbers();
+        this.numbers = InputNumbers();
     }
-//todo: 변수 수정
-    public List<Integer> InputMatchedNumbers() {
-        String[] a = Console.readLine().split(",");
-        List<Integer> b = new ArrayList<>();
 
-        for (String str : a) {
-            b.add(Integer.parseInt(str));
+    private List<Integer> InputNumbers() {
+        String[] input = Console.readLine().split(",");
+        List<Integer> inputNumbers = new ArrayList<>();
+
+        for (String str : input) {
+            inputNumbers.add(Integer.parseInt(str));
         }
 
-        return b;
+        return inputNumbers;
     }
 
     public int bonusNumber() {

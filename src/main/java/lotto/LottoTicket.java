@@ -12,12 +12,12 @@ public class LottoTicket {
     private final int tickets;
     private final List<List<Integer>> ticketNumbers;
 
-    public LottoTicket(List<List<Integer>> ticketNumbers) {
+    public LottoTicket() {
         this.tickets = purchaseTicket();
         this.ticketNumbers = purchaseTicketNumbers();
     }
 
-    public List<List<Integer>> purchaseTicketNumbers() {
+    private List<List<Integer>> purchaseTicketNumbers() {
         int ticket = purchaseTicket();
         List<List<Integer>> purchaseTicketNumbers = new ArrayList<>();
 
@@ -28,7 +28,7 @@ public class LottoTicket {
         return purchaseTicketNumbers;
     }
 
-    public List<Integer> setTicketNumbers () {
+    private List<Integer> setTicketNumbers () {
         List<Integer> ticketNumbers = new ArrayList<>();
 
         for(int i = 0; i < 6; i++){
@@ -40,7 +40,7 @@ public class LottoTicket {
         return ticketNumbers;
     }
 
-    public void validateDistinction (List<Integer> ticketNumbers, int randomNumber) {
+    private void validateDistinction (List<Integer> ticketNumbers, int randomNumber) {
 
         if (!ticketNumbers.contains(randomNumber)) {
             ticketNumbers.add(randomNumber);
@@ -48,7 +48,7 @@ public class LottoTicket {
 
     }
 
-    public int purchaseTicket() {
+    private int purchaseTicket() {
         int money = Integer.parseInt(Console.readLine());
         return calculate(money);
     }
@@ -58,8 +58,8 @@ public class LottoTicket {
         calculationValidation(money);
         return money/ticketCost;
     }
-//todo: private으로 fix
-    public void calculationValidation(int money) {
+
+    private void calculationValidation(int money) {
         if (money%1000 != 0){
             throw new IllegalArgumentException();
         }

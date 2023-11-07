@@ -10,6 +10,7 @@ public class PurchaseController {
     public PurchaseAmount runPurchaseAmount(){
         return processPurchaseAmount();
     }
+
     public PurchaseAmount processPurchaseAmount(){
         String purchaseNum;
         PurchaseAmount amount;
@@ -26,6 +27,7 @@ public class PurchaseController {
 
         return amount;
     }
+
     public String getPurchaseAmount(){
         String purchaseNum;
 
@@ -34,5 +36,4 @@ public class PurchaseController {
 
         return purchaseNum;
     }
-
 }

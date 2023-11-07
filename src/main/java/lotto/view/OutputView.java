@@ -23,7 +23,7 @@ public class OutputView {
         System.out.printf(RATE_OF_RETURN_MESSAGE, rateOfReturn);
     }
 
-    public static void displayExceptionMessage(String exceptionMessage) {
-        System.out.println(exceptionMessage);
+    public static void displayExceptionMessage(Exception exception) {
+        System.out.println(exception.getMessage());
     }
 }

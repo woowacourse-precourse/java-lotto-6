@@ -16,7 +16,7 @@ public class TicketSeller implements Seller {
 
         /**
          * TicketSeller 의 생성자 함수로 티켓 생성기를 주입 받습니다.
-         * @param generator
+         * @param generator 생성기
          */
         public TicketSeller(TicketGenerator generator) {
                 this.generator = generator;

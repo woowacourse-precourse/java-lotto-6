@@ -35,4 +35,12 @@ public enum Ranking {
     private boolean isSameMatchNumberCount(long matchNumberCount) {
         return this.matchNumberCount == matchNumberCount;
     }
+
+    public long getPrizeMoney() {
+        return prizeMoney.getMoney();
+    }
+
+    public int getMatchNumberCount() {
+        return matchNumberCount;
+    }
 }

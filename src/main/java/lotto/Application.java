@@ -29,7 +29,7 @@ public class Application {
         InputConverter converter = new InputConverter(validator);
         InputInterface in = new InputInterface(Console::readLine, System.out::println, converter);
         NumberFormat numberFormat = NumberFormat.getIntegerInstance();
-        OutputInterface out = new OutputInterface(numberFormat);
+        OutputInterface out = new OutputInterface(System.out::println, numberFormat);
 
         Controller controller = new Controller(in, out, username, purchaseLotteryService,
                 applyWinningLotteryService, calculateResultService);

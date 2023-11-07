@@ -18,21 +18,23 @@ import lotto.service.dto.LotteryResultDto;
 public class OutputInterface {
 
     private NumberFormat numberFormat;
+    private Output out;
 
-    OutputInterface(NumberFormat numberFormat) {
+    OutputInterface(Output out, NumberFormat numberFormat) {
         this.numberFormat = numberFormat;
+        this.out = out;
     }
 
     public void printReceipt(LotteryReceiptDto receipt) {
-        System.out.println(QUANTITY_OUTPUT_TEXT_FORMAT.format(Long.toString(receipt.quantity())));
-        System.out.println(renderReceipt(receipt));
+        out.println(QUANTITY_OUTPUT_TEXT_FORMAT.format(Long.toString(receipt.quantity())));
+        out.println(renderReceipt(receipt));
     }
 
     public void printResults(List<LotteryResultDto> results, double earningRate) {
-        System.out.println(OUTPUT_LOTTERY_RESULT_TEXT);
-        System.out.println(OUTPUT_LOTTERY_RESULT_HEADER_LINE_TEXT);
-        System.out.println(renderLotteryResults(results));
-        System.out.println(LOTTERY_EARNING_RATE_RESULT_TEXT.format(String.format("%.1f", earningRate)));
+        out.println(OUTPUT_LOTTERY_RESULT_TEXT);
+        out.println(OUTPUT_LOTTERY_RESULT_HEADER_LINE_TEXT);
+        out.println(renderLotteryResults(results));
+        out.println(LOTTERY_EARNING_RATE_RESULT_TEXT.format(String.format("%.1f", earningRate)));
 
     }
 

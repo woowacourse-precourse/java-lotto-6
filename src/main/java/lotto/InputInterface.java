@@ -1,20 +1,11 @@
 package lotto;
 
-import static java.util.stream.Collectors.toList;
-import static lotto.resource.TextResourceProvider.BONUS_NUMBER_CANNOT_CONVERT_TO_INTEGER_TEXT;
 import static lotto.resource.TextResourceProvider.ERROR_TEXT_FORMAT;
 import static lotto.resource.TextResourceProvider.INPUT_BONUS_NUMBER_TEXT;
-import static lotto.resource.TextResourceProvider.INPUT_DELIMITER;
 import static lotto.resource.TextResourceProvider.INPUT_PURCHASE_AMOUNT_TEXT;
 import static lotto.resource.TextResourceProvider.INPUT_WINNING_NUMBERS_TEXT;
-import static lotto.resource.TextResourceProvider.PURCHASE_AMOUNT_CANNOT_CONVERT_TO_LONG_TEXT;
-import static lotto.resource.TextResourceProvider.WINNING_NUMBERS_MUST_BE_SEPARATED_BY_SIX_INTEGER_WITH_DELIMITER_TEXT;
 
-import java.util.Arrays;
 import java.util.List;
-import lotto.exception.InvalidBonusNumberException;
-import lotto.exception.InvalidPurchasedAmountException;
-import lotto.exception.InvalidWinningNumbersException;
 
 public class InputInterface {
 

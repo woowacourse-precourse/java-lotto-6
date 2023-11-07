@@ -11,9 +11,9 @@ public record LottoDto(List<Integer> lottoRandomNumbers, Lotto lotto) {
             int bonus) {
         int count = lotto.matchLottoCount(lottoWinnerNumbers);
         int bonusCount = isContainsCount(bonus);
-        Map<Integer, Integer> countMap = new HashMap<>();
-        countMap.put(count, bonusCount);
-        return countMap;
+        Map<Integer, Integer> countPair = new HashMap<>();
+        countPair.put(count, bonusCount);
+        return countPair;
     }
 
     public int isContainsCount(int bonus) {

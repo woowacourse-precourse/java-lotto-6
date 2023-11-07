@@ -46,7 +46,7 @@ public class Winning {
     }
 
     private HashMap<Integer, Integer> initMap(){
-        return new HashMap<Integer,Integer>(){{//초기값 지정
+        return new HashMap<>(){{//초기값 지정
             put(5000, 0);
             put(50000, 0);
             put(1500000, 0);
@@ -74,7 +74,7 @@ public class Winning {
     private void validNum(int num){
         if (num < 1 || num > 45) {
             throw new IllegalArgumentException(
-                    Constant.error + Constant.rangeOver
+                    Constant.error + Constant.invaildNumber
             );
         }
     }
@@ -82,7 +82,7 @@ public class Winning {
     private void validArray(String[] array){
         if (array.length != 6) {
             throw new IllegalArgumentException(
-                    Constant.error + Constant.lengthOver
+                    Constant.error + Constant.invaildLength
             );
         }
     }

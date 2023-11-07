@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.constant.Constant;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,9 +17,34 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validLength(numbers);
+        validNumber(numbers);
+        checkDuplication(numbers);
+    }
+
+    private void validLength(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++){
+            int n = numbers.indexOf(i);
+            if (n < 1 || n > 45) throw new IllegalArgumentException(
+                    Constant.error + Constant.invaildLength);
+        }
+    }
+
+    private void validNumber(List<Integer> numbers) {
         if (numbers.size() != 6){
             throw new IllegalArgumentException(Constant.error
-                    + Constant.lengthOver);
+                    + Constant.invaildLength);
+        }
+    }
+
+    private void checkDuplication(List<Integer> numbers) {
+        List<Integer> l = new ArrayList<>();
+
+        for (int i = 0; i < numbers.size(); i++){
+            int n = numbers.indexOf(i);
+            if (l.contains(n)) throw new IllegalArgumentException(
+                    Constant.error + Constant.Deduplication);
+            l.add(n);
         }
     }
 

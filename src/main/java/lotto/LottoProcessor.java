@@ -1,15 +1,34 @@
 package lotto;
 
 import lotto.Controller.LottoController;
+import lotto.Controller.RaffleController;
 import lotto.Model.Service.LottoService;
+import lotto.Model.Service.RaffleService;
 import lotto.Model.Util.LottoUtil;
+import lotto.Model.Util.RaffleUtil;
+import lotto.View.LottoInput;
+import lotto.View.LottoOutput;
 
 public class LottoProcessor {
+
+    private final LottoInput lottoInput = new LottoInput();
+    private final LottoOutput lottoOutput = new LottoOutput();
+
     private final LottoUtil lottoUtil = new LottoUtil();
     private final LottoService lottoService = new LottoService(lottoUtil);
-    private final LottoController lottoController = new LottoController(lottoService);
+    private final LottoController lottoController = new LottoController(lottoService,
+            lottoInput, lottoOutput);
+
+    private final RaffleUtil raffleUtil = new RaffleUtil();
+    private final RaffleService raffleService = new RaffleService(raffleUtil);
+    private final RaffleController raffleController = new RaffleController(raffleService,
+            lottoInput, lottoOutput);
 
     public LottoController getLottoController() {
         return lottoController;
+    }
+
+    public RaffleController getRaffleController() {
+        return raffleController;
     }
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.WinningRank.*;
+
 public class LottoResult {
 
 	private final int matchCount;
@@ -20,9 +22,11 @@ public class LottoResult {
 		return matchBonusNumber;
 	}
 
+	public WinningRank getWinningRank() {
+		return winningRank;
+	}
+
 	private WinningRank rank(int matchCount, boolean matchBonusNumber) {
-		if (matchCount == 0)
-			return WinningRank.FAIL;
 		if (matchCount == 3)
 			return WinningRank.FIFTH;
 		if (matchCount == 4)
@@ -33,5 +37,6 @@ public class LottoResult {
 			return WinningRank.SECOND;
 		if (matchCount == 6)
 			return WinningRank.FIRST;
+		return FAIL;
 	}
 }

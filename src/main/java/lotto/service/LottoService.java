@@ -1,6 +1,9 @@
 package lotto.service;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -24,7 +27,13 @@ public class LottoService {
 			.collect(Collectors.toList());
 	}
 
-	public LottoResult resultLotto(Lotto lotto, Lotto winningNumbers, int bonusNumber) {
+	public List<LottoResult> checkWinning(List<Lotto> lottos, Lotto winningNumbers, int bonusNumber) {
+		return lottos.stream()
+			.map(lotto -> createLottoResult(lotto, winningNumbers, bonusNumber))
+			.collect(Collectors.toList());
+	}
+
+	private LottoResult createLottoResult(Lotto lotto, Lotto winningNumbers, int bonusNumber) {
 		return new LottoResult(compareLottoNumbers(lotto, winningNumbers),
 			containsBonusNumber(lotto, bonusNumber));
 	}

@@ -9,13 +9,13 @@ public class WinningStat {
 
     private Integer count;
 
-    private WinningStat(int rank) {
-        count = SystemConstant.NOTHING.getValue();
-        lottoRankConstant = LottoRankConstant.findByRank(rank);
+    private WinningStat(LottoRankConstant lottoRankConstant, Integer count) {
+        this.lottoRankConstant = lottoRankConstant;
+        this.count = count;
     }
 
     public static WinningStat create(int rank) {
-        return new WinningStat(rank);
+        return new WinningStat(LottoRankConstant.findByRank(rank), SystemConstant.NOTHING.getValue());
     }
 
     public void adder() {

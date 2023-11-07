@@ -1,4 +1,4 @@
-package lotto.exception;
+package lotto.domain.enums;
 
 import static java.lang.String.format;
 import static lotto.domain.constants.NumberConstant.MAXIMUM_LOTTO_NUMBER;

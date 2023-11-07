@@ -15,7 +15,7 @@ import static lotto.domain.enums.WinningPrize.CORRECT_SIX_NUMBERS_PRICE;
 import static lotto.domain.enums.WinningPrize.CORRECT_THREE_NUMBERS_PRICE;
 import static lotto.domain.enums.WinningPrize.CORRECT_TWO_NUMBERS_PRICE;
 import static lotto.domain.enums.WinningPrize.CORRECT_ZERO_NUMBER_PRICE;
-import static lotto.exception.ExceptionMessage.SYSTEM_ERROR;
+import static lotto.domain.enums.ExceptionMessage.SYSTEM_ERROR;
 
 import java.util.Arrays;
 import java.util.function.UnaryOperator;

@@ -5,8 +5,8 @@ import static lotto.domain.constants.NumberConstant.LOTTO_PRICE_UNIT;
 import static lotto.domain.constants.NumberConstant.PERCENTAGE_100;
 import static lotto.domain.constants.NumberConstant.SCALE_SIZE;
 import static lotto.domain.constants.NumberConstant.ZERO;
-import static lotto.exception.ExceptionMessage.MINIMUM_PAYMENT_ERROR;
-import static lotto.exception.ExceptionMessage.PURCHASE_AMOUNT_ERROR;
+import static lotto.domain.enums.ExceptionMessage.MINIMUM_PAYMENT_ERROR;
+import static lotto.domain.enums.ExceptionMessage.PURCHASE_AMOUNT_ERROR;
 import static lotto.utils.Converter.convertToInt;
 
 import java.math.BigDecimal;

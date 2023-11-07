@@ -1,6 +1,6 @@
 package lotto.domain.enums;
 
-import static lotto.exception.ExceptionMessage.SYSTEM_ERROR;
+import static lotto.domain.enums.ExceptionMessage.SYSTEM_ERROR;
 
 import java.util.Arrays;
 import lotto.exception.LottoGameException;

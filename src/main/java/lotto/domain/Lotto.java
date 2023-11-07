@@ -10,9 +10,9 @@ import static lotto.domain.constants.NumberConstant.VALIDATE_LOTTO_SIZE;
 import static lotto.domain.constants.NumberConstant.ZERO;
 import static lotto.domain.constants.SeparatorConstant.LOTTO_NUMBERS_SEPARATOR;
 import static lotto.domain.enums.ConsoleMessage.LOTTO_PRINT_FORMAT;
-import static lotto.exception.ExceptionMessage.DUPLICATE_NUMBER_ERROR;
-import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
-import static lotto.exception.ExceptionMessage.WINNING_NUMBERS_SIZE_ERROR;
+import static lotto.domain.enums.ExceptionMessage.DUPLICATE_NUMBER_ERROR;
+import static lotto.domain.enums.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
+import static lotto.domain.enums.ExceptionMessage.WINNING_NUMBERS_SIZE_ERROR;
 
 import java.util.List;
 import lotto.exception.LottoGameException;

@@ -1,5 +1,7 @@
 package lotto.exception;
 
+import lotto.domain.enums.ExceptionMessage;
+
 public class LottoGameException extends IllegalArgumentException {
 
     private LottoGameException(final ExceptionMessage exceptionMessage) {

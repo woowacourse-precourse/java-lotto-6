@@ -27,7 +27,7 @@ public class InputView {
     }
 
     public List<Integer> inputWinningNumber() {
-        String input = input("당첨 번호를 입력해 주세요.");
+        String input = input("\n당첨 번호를 입력해 주세요.");
         return parseAndValidateNumbers(input);
     }
 

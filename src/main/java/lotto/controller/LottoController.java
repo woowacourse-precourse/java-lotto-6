@@ -19,46 +19,16 @@ public class LottoController {
     }
 
     public void play() {
-        int purchaseAmount = inputPurchaseAmount();
+        int purchaseAmount = lottoView.inputPurchaseAmount();
         List<Lotto> lottos = lottoService.buyLotto(purchaseAmount);
         lottoView.printLottos(lottos);
 
-        Lotto winningLotto = new Lotto(inputWinningNumbers());
-        int bonusNumber = inputBonusNumber();
+        Lotto winningLotto = new Lotto(lottoView.inputWinningNumber());
+        int bonusNumber = lottoView.inputBonusNumber();
 
         Map<Rank, Long> results = lottoService.calculateResults(winningLotto, lottos, bonusNumber);
         double profit = lottoService.calculateProfit(lottos, results);
 
         lottoView.printResult(results, profit);
-    }
-
-    private int inputPurchaseAmount() {
-        while (true) {
-            try {
-                return lottoView.inputPurchaseAmount();
-            } catch (IllegalArgumentException e) {
-                lottoView.printError(e.getMessage());
-            }
-        }
-    }
-
-    private List<Integer> inputWinningNumbers() {
-        while (true) {
-            try {
-                return lottoView.inputWinningNumber();
-            } catch (IllegalArgumentException e) {
-                lottoView.printError(e.getMessage());
-            }
-        }
-    }
-
-    private int inputBonusNumber() {
-        while (true) {
-            try {
-                return lottoView.inputBonusNumber();
-            } catch (IllegalArgumentException e) {
-                lottoView.printError(e.getMessage());
-            }
-        }
     }
 }

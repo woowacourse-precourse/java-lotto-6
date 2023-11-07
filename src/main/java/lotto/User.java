@@ -13,7 +13,7 @@ public class User {
     public int inputAmount() {
         int allLottoPay = Integer.parseInt(Console.readLine());
         if (allLottoPay % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("력로또 구입 금액이 맞지 않습니다.");
+            throw new IllegalArgumentException("로또 구입 금액이 맞지 않습니다.");
         }
 
         haveSeveralLotto = allLottoPay / LOTTO_PRICE;

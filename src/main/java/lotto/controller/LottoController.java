@@ -3,11 +3,13 @@ package lotto.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.domain.BonusNumber;
 import lotto.domain.BuyAmount;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResults;
 import lotto.domain.LottoResultsDTO;
 import lotto.domain.Lottos;
+import lotto.domain.WinningNumber;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -37,8 +39,8 @@ public class LottoController {
     }
 
     private void drawLotto() {
-        List<Integer> winningNumber = InputView.getWinningNumberFromInput();
-        int bonusNumber = InputView.getBonusNumberFromInput();
+        WinningNumber winningNumber = new WinningNumber(InputView.getWinningNumberFromInput());
+        BonusNumber bonusNumber = new BonusNumber(InputView.getBonusNumberFromInput());
         winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
     }
 

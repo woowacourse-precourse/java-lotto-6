@@ -28,6 +28,10 @@ public class WinningNumber {
         return count;
     }
 
+    public boolean contains(int number) {
+        return winningNumber.contains(number);
+    }
+
     private void validateLottoLength(List<Integer> winningNumber) {
         if (winningNumber.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(LOTTO_LENGTH_ERROR_MESSAGE);

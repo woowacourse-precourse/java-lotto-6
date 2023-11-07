@@ -24,7 +24,12 @@ public class LottoNumber {
         return new LottoNumber(number);
     }
 
-
+    public boolean isSame(Integer number) {
+        if (this.number == number) {
+            return true;
+        }
+        return false;
+    }
 
     @Override
     public boolean equals(Object o) {

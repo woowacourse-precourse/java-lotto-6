@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.model.Lottos;
 import lotto.util.LottoConstants;
+import lotto.view.viewArgument.LottoPrizeMoney;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -48,8 +49,10 @@ public class OutputView {
         System.out.printf(DIVISION_LINE);
     }
 
-    public void printWinningDetail(String correctCount, int prizeMoney, int winningCount) {
+    public void printWinningDetail(String correctCount, int winningCount) {
         DecimalFormat df = new DecimalFormat(LottoConstants.MONEY_FORMAT);
+        LottoPrizeMoney lottoPrizeMoney = LottoPrizeMoney.valueOfCorrectCount(correctCount);
+        int prizeMoney = lottoPrizeMoney.getPrizeMoney();
 
         if (correctCount.equals(COUNT_WITH_BONUS)) {
             System.out.printf(CORRECTING_COUNT_WITH_BONUS, correctCount, df.format(prizeMoney), winningCount);

@@ -27,11 +27,11 @@ public class LottoController {
     }
 
     public void startLotto() {
-        OutputView.writeBuyLottoPrice();
+        OutputView.askBuyLottoPrice();
         String price = InputView.buyLottoPrice();
 
         int money = LottoValidator.divideMoney(price);
-        int lottoTicketCount = LottoMachine.getLottoTicketNumber(money);
+        int lottoTicketCount = LottoMachine.setLottoTicketNumber(money);
 
         clientLottoData = new ClientLottoData(money, lottoTicketCount);
     }
@@ -47,7 +47,7 @@ public class LottoController {
     }
 
     public void setWinningNumber() {
-        OutputView.writeWinningNumber();
+        OutputView.askWriteWinningNumber();
         String winningNumber = InputView.winningNumber();
         // todo 검증기 돌려야함
         List<Integer> winningNumbers = LottoTypeConverter.toList(winningNumber);
@@ -55,10 +55,9 @@ public class LottoController {
     }
 
     public void setBonusNumber() {
-        OutputView.writeBonusNumber();
+        OutputView.askWriteBonusNumber();
         // todo 입력값 검증
-        int bonusNumber = LottoValidator.checkBonusNumber(InputView.bonusNumber());
-        winningLottoNumber.bonusNumber = bonusNumber;
+        winningLottoNumber.bonusNumber = LottoValidator.checkBonusNumber(InputView.bonusNumber());
     }
 
     public void setMatchNumber() {

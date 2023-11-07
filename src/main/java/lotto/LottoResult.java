@@ -27,4 +27,12 @@ public class LottoResult {
         }
         return resultStrings;
     }
+
+    public long getTotalPrizeAmount() {
+        long totalAmount = 0;
+        for (LottoPrize prize : LottoPrize.values()) {
+            totalAmount += prize.getPrizeAmount() * results.get(prize);
+        }
+        return totalAmount;
+    }
 }

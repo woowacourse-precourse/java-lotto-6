@@ -21,7 +21,7 @@ public class ExceptionHandlerTest {
     @DisplayName("bonusNumber 검증 테스트")
     @Test
     public void inputBonusNumber() {
-        int number = 10;
+        int number = 100;
 
         assertThatThrownBy(() -> exceptionHandler.checkNumberBoundary(number))
                 .isInstanceOf(IllegalArgumentException.class);

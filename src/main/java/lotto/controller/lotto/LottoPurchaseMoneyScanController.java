@@ -10,10 +10,15 @@ public class LottoPurchaseMoneyScanController {
 	InputController inputController = new InputController();
 	LottoPurchaseMoneyValidator lottoPurchaseMoneyValidator = new LottoPurchaseMoneyValidator();
 	public void scanLottoPurchaseMoney(LottoPurchaseMoney lottoPurchaseMoney) {
-		messageOutputController.printScanningLottoPurchaseMoneyMessage();
-		String scannedPurchaseMoneyString = inputController.scanLottoPurchaseMoneyString();
-		lottoPurchaseMoneyValidator.checkValidatioOfLottoPurchaseMoney(scannedPurchaseMoneyString);
-		Integer scannedPurchaseMoney = Integer.parseInt(scannedPurchaseMoneyString);
-		lottoPurchaseMoney.setLottoPurchaseMoney(scannedPurchaseMoney);
+		try{
+			messageOutputController.printScanningLottoPurchaseMoneyMessage();
+			String scannedPurchaseMoneyString = inputController.scanLottoPurchaseMoneyString();
+			lottoPurchaseMoneyValidator.checkValidatioOfLottoPurchaseMoney(scannedPurchaseMoneyString);
+			Integer scannedPurchaseMoney = Integer.parseInt(scannedPurchaseMoneyString);
+			lottoPurchaseMoney.setLottoPurchaseMoney(scannedPurchaseMoney);
+		}
+		catch(IllegalArgumentException illegalArgumentException){
+			scanLottoPurchaseMoney(lottoPurchaseMoney);
+		}
 	}
 }

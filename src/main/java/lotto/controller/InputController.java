@@ -13,6 +13,7 @@ import java.util.List;
 
 public class InputController {
 
+    private static final String NUMBER_SEPARATOR = ",";
     private final Converter<String, Integer> converter;
 
     public InputController(Converter<String, Integer> converter) {
@@ -57,7 +58,7 @@ public class InputController {
     }
 
     private Lotto readWinningNumbers(InputView inputView) {
-        List<Integer> numbers = Arrays.stream(inputView.readWinningNumbers().split(","))
+        List<Integer> numbers = Arrays.stream(inputView.readWinningNumbers().split(NUMBER_SEPARATOR))
                 .map(converter::convert)
                 .toList();
         return new Lotto(numbers);

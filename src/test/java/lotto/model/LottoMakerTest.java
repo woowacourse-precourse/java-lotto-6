@@ -3,8 +3,10 @@ package lotto.model;
 import lotto.constant.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoMakerTest {
@@ -43,6 +45,14 @@ class LottoMakerTest {
         assertThatThrownBy(() -> new LottoMaker(value))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.INVALID_MONEY.getMessage());
+    }
+
+    @ParameterizedTest
+    @DisplayName("로또 구매 수량 확인")
+    @CsvSource(value = {"8000,8", "5000,5", "14000,14"})
+    void 로또_구매_수량(String value, int expected){
+        LottoMaker maker = new LottoMaker(value);
+        assertThat(maker.calculateAmount()).isEqualTo(expected);
     }
 
 }

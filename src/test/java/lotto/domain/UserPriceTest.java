@@ -17,5 +17,13 @@ class UserPriceTest {
         assertThat(userPrice.getPrice()).isEqualTo(price);
     }
 
+    @DisplayName(" 구매 금액은 로또 금액 보다 작을 수 없다.")
+    @Test
+    void userPriceUnderFlow(){
+        assertThatThrownBy(
+                () -> new UserPrice(LOTTO_PRICE - 1)
+        ).isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

@@ -17,8 +17,13 @@ public class Application {
 
         //3.당첨 번호와 보너스 번호를 입력받는다.
         List<Integer> Win_lotto_list = Base_Func.Input_Win_Lotto_List();
-        int Win_lotto_bonus_number = Base_Func.Input_Win_Lotto_Bonus_number();
+        int bonus_number = Base_Func.Input_Win_Lotto_Bonus_number();
 
+        //4. 구매한 로또 당첨 여부를 확인.
+        //index 0,1,2는 사용하지 않고, 7은 2등 당첨을 3,4,5,6은 일치 갯수를 저장 한다.
+        int[] Jackpot_list = Make_Jackpot_List(Buy_lotto, Win_lotto_list, bonus_number);
+        for(int i=0; i<purchase_num; i++)
+            System.out.println(i+"개: "+Jackpot_list[i]);
     }
 
     public static ArrayList<Lotto> Make_Buy_Lotto_List(int purchase_num) {
@@ -30,5 +35,16 @@ public class Application {
         }
         return Buy_lotto;
     }
+
+    public static int[] Make_Jackpot_List(ArrayList<Lotto> Buy_lotto, List<Integer> Win_lotto_list, int bonus_number) {
+        int[] Jackpot_list = {0, 0, 0, 0, 0, 0, 0, 0};
+        for (Lotto buy_lotto : Buy_lotto) {
+            int jp = buy_lotto.Lotto_Jackpot_Return(Win_lotto_list, bonus_number);
+            Jackpot_list[jp] += 1;
+        }
+
+        return Jackpot_list;
+    }
+
 
 }

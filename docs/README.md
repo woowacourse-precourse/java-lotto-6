@@ -19,14 +19,17 @@
 ## 📮클래스와 Method📮
 - Base_Func 이름의 클래스를 만든다. Base_Func 클래스에는 Application.java에서 사용할 기본 입력,출력 함수 들의 모임이다.
   1. Input_Purchase_Price() -> 로또 구입 금액을 입력 받아 정수로 변환후 리턴.
-  2. Purchase_Lotto_Number(int price) -> 로또 구입 금액이 1000으로 나눠 떨어지는지 확인하고 구매할 로또 갯수 리턴.
+  2. Purchase_Lotto_Number() -> 로또 구입 금액이 1000으로 나눠 떨어지는지 확인하고 구매할 로또 갯수 리턴.
   3. Print_Purchased_Lotto_list(ArrayList<Lotto> Buy_lotto) -> 구매한 모든 로또의 번호 6개를 출력
   4. Input_Win_Lotto_List() -> 당첨 로또번호 입력 받아 List<Integer> 타입으로 리턴
   5. Input_Win_Lotto_Bonus_number() 
 
 - Application.java 클래스
   1. main()
-  2. Make_Buy_Lotto_List(int purchase_num) -> 기능 2번 구현
+  2. Make_Buy_Lotto_List() -> 기능 2번 구현
+  3. Make_Jackpot_List() -> 구매한 로또를 for문을 돌면서 로또 일치 하는 갯수를 저장하는 List를 생성해 리턴.
 
 - Lotto.java 클래스
   1. Get_numbers()
+  2. Lotto_Jackpot_Return() -> 구매한 로또 1개에 대해서 당첨 여부를 확인. 최종 리턴 값은 일치 하는 갯수 이며, 5개일치+보너스 일치의 경우 7을 리턴.
+  3. Lotto_Bonus_Checkout() 

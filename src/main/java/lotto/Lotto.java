@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import org.mockito.internal.matchers.Find;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,4 +22,29 @@ public class Lotto {
         return this.numbers;
     }
 
+    public int Lotto_Jackpot_Return(List<Integer> Win_lotto_list, int Win_lotto_bonus_number) {
+        int cnt = 0;
+        for (int i = 0; i < 6; i++) {
+            int tmp = numbers.get(i);
+            for (int t = 0; t < 6; t++) {
+                if (tmp == Win_lotto_list.get(t)) {
+                    cnt++;
+                    break;
+                }
+            }
+        }
+        return Lotto_Bonus_Checkout(cnt, Win_lotto_bonus_number);
+    }
+
+    public int Lotto_Bonus_Checkout(int cnt, int Win_lotto_bonus_number) {
+        if (cnt == 5) {
+            boolean bonus_correction = false;
+            for (int i = 0; i < 6; i++) {
+                if (numbers.get(i) == Win_lotto_bonus_number) {
+                    return 7;
+                }
+            }
+        }
+        return cnt;
+    }
 }

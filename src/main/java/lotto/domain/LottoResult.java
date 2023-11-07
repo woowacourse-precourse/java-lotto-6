@@ -25,12 +25,12 @@ public class LottoResult {
 
     private List<WinningStatistics> createSortedStatistics() {
         List<WinningStatistics> winningStatistics = new ArrayList<>(statistics.keySet());
-        removeMiss(winningStatistics);
+        removeMissFromStatistics(winningStatistics);
         winningStatistics.sort(Collections.reverseOrder());
         return winningStatistics;
     }
 
-    private void removeMiss(List<WinningStatistics> winningStatistics) {
+    private void removeMissFromStatistics(List<WinningStatistics> winningStatistics) {
         winningStatistics.remove(WinningStatistics.MISS);
     }
 

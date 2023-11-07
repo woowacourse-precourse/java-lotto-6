@@ -1,16 +1,16 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.validation.InputValidation;
+import lotto.validation.NumericInputValidation;
 
 public class InputValue {
     PrintUtil printUtil = new PrintUtil();
-    InputValidation inputValidation = new InputValidation();
+    NumericInputValidation numericInputValidation = new NumericInputValidation();
 
     public String getPurchaseAmountInput() {
         try {
             String userInput = Console.readLine();
-            inputValidation.validateInputIsNull(userInput);
+            numericInputValidation.validateInputIsNull(userInput);
             return userInput;
         } catch (NullPointerException nullPointerException) {
             System.out.println(nullPointerException.getMessage());
@@ -22,7 +22,7 @@ public class InputValue {
     public String getWinnerNumbersInput() {
         try {
             String userInput = Console.readLine();
-            inputValidation.validateInputIsNull(userInput);
+            numericInputValidation.validateInputIsNull(userInput);
             return userInput;
         } catch (NullPointerException nullPointerException) {
             System.out.println(nullPointerException.getMessage());
@@ -34,7 +34,7 @@ public class InputValue {
     public String getBonusNumberInput() {
         try {
             String userInput = Console.readLine();
-            inputValidation.validateInputIsNull(userInput);
+            numericInputValidation.validateInputIsNull(userInput);
             return userInput;
         } catch (NullPointerException nullPointerException) {
             System.out.println(nullPointerException.getMessage());

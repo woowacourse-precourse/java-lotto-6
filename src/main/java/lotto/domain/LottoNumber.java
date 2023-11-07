@@ -2,7 +2,10 @@ package lotto.domain;
 
 import lotto.service.InputValue;
 import lotto.service.PrintUtil;
-import lotto.validation.InputValidation;
+import lotto.validation.BonusNumberValidation;
+import lotto.validation.NumericInputValidation;
+import lotto.validation.PurchaseAmountValidation;
+import lotto.validation.WinningNumbersValidation;
 
 import java.util.List;
 
@@ -12,12 +15,14 @@ public class LottoNumber {
 
     PrintUtil printUtil = new PrintUtil();
 
-    InputValidation inputValidation = new InputValidation();
-
+    NumericInputValidation numericInputValidation = new NumericInputValidation();
+    PurchaseAmountValidation purchaseAmountValidation = new PurchaseAmountValidation();
+    WinningNumbersValidation winningNumbersValidation = new WinningNumbersValidation();
+    BonusNumberValidation bonusNumberValidation = new BonusNumberValidation();
     public int inputPurchaseAmount() {
         printUtil.printPurchaseAmountInput();
         try {
-            int userInputNumber = inputValidation.validatePurchaseAmount(inputValue.getPurchaseAmountInput());
+            int userInputNumber = purchaseAmountValidation.validatePurchaseAmount(inputValue.getPurchaseAmountInput());
             return userInputNumber;
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
@@ -28,7 +33,7 @@ public class LottoNumber {
     public Lotto inputWinnerNumbers() {
         printUtil.printWinnerNumbersInput();
         try {
-            List<Integer> winnerNumbers = inputValidation.validateWinnerNumbers(inputValue.getWinnerNumbersInput());
+            List<Integer> winnerNumbers = winningNumbersValidation.validateWinnerNumbers(inputValue.getWinnerNumbersInput());
             Lotto lotto = new Lotto(winnerNumbers);
             return lotto;
         } catch (IllegalArgumentException illegalArgumentException) {
@@ -40,8 +45,8 @@ public class LottoNumber {
     public int inputBonusNumber(Lotto lotto) {
         printUtil.printBonusNumberInput();
         try {
-            int bonusNumber = inputValidation.validateBonusNumber(inputValue.getBonusNumberInput());
-            inputValidation.validateDuplicateBonusNumber(lotto, bonusNumber);
+            int bonusNumber = bonusNumberValidation.validateBonusNumber(inputValue.getBonusNumberInput());
+            bonusNumberValidation.validateDuplicateBonusNumber(lotto, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException illegalArgumentException) {
             System.out.println(illegalArgumentException.getMessage());
@@ -49,3 +54,4 @@ public class LottoNumber {
         }
     }
 }
+//커밋, 기능목록 정리

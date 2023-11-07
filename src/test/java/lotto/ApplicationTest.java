@@ -1,6 +1,8 @@
 package lotto;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
+    @DisplayName("입력과 출력 테스트")
     @Test
     void 기능_테스트() {
         assertRandomUniqueNumbersInRangeTest(
@@ -54,6 +57,18 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 구입가격_예외_테스트(){
+        assertSimpleTest(() -> {
+            runException("1234");
+            assertThat(output()).contains((ERROR_MESSAGE));
+        });
+    }
+    @Test
+    void 당첨번호_예외_테스트(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,56,67)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
     @Override
     public void runMain() {
         Application.main(new String[]{});

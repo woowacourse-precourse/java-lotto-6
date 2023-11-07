@@ -45,11 +45,10 @@ public class Lotto {
         return set.size() != numbers.size();
     }
 
-    public boolean containsBonus(int bonusNumber) {
-        if (contains(bonusNumber)) {
+    public void containsBonus(BonusNumber bonusNumber) {
+        if (contains(bonusNumber.getBonusNumber())) {
             throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getMessage());
         }
-        return numbers.contains(bonusNumber);
     }
 
     public boolean contains(int bonusNumber) {

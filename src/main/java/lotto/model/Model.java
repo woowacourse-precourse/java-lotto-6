@@ -1,7 +1,8 @@
 package lotto.model;
 
-import static lotto.domain.ProfitCalculator.calculateProfitPercentage;
-import static lotto.domain.ProfitCalculator.calculateProfitPrice;
+import static lotto.model.calculator.MatchCalculator.calculateMatches;
+import static lotto.model.calculator.ProfitCalculator.calculateProfitPercentage;
+import static lotto.model.calculator.ProfitCalculator.calculateProfitPrice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,21 +29,12 @@ public class Model {
         return lottos;
     }
 
-    public MatchResult matchResult(PurchaseResult purchaseResult, WinningResult winningResult) {
+    public MatchResult calculateMatch(PurchaseResult purchaseResult, WinningResult winningResult) {
         List<Lotto> lottos = purchaseResult.getLottos();
-        List<Integer> winningNumbers = winningResult.getWinningNumbers();
-        int bonusNumber = winningResult.getBonusNumber();
-
-        MatchResult matchResult = new MatchResult();
-        for (Lotto lotto : lottos) {
-            int count = lotto.countMatches(winningNumbers);
-            boolean bonusMatched = lotto.isBonusMatched(bonusNumber);
-            matchResult = matchResult.updateMatchResult(count, bonusMatched);
-        }
-        return matchResult;
+        return calculateMatches(lottos, winningResult);
     }
 
-    public CalculateResult calculateResult(MatchResult matchResult, PurchaseResult purchaseResult) {
+    public CalculateResult calculateProfit(MatchResult matchResult, PurchaseResult purchaseResult) {
         int totalProfit = calculateProfitPrice(matchResult);
         int purchasePrice = purchaseResult.getPurchase().getPurchasePrice();
         float profitMargin = calculateProfitPercentage(totalProfit, purchasePrice);

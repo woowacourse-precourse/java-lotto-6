@@ -1,12 +1,9 @@
 package lotto.preprocessor;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.util.ExceptionHandler;
-import lotto.util.LottoConst;
-
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
+import lotto.util.ExceptionHandler;
+import lotto.util.LottoConst;
 
 public class WinningNumsPreprocessor extends Preprocessor<List<Integer>> {
 
@@ -43,7 +40,7 @@ public class WinningNumsPreprocessor extends Preprocessor<List<Integer>> {
 
     private boolean isEverythingNumber(String userInput) {
         try {
-            Arrays.stream(userInput.trim().split(",")).mapToInt(Integer::parseInt);
+            convert(userInput);
         } catch (NumberFormatException e) {
             ExceptionHandler.handleException("당첨 번호로 숫자를 입력해주세요.");
             return ExceptionHandler.EXCEPTION_OCCURED;

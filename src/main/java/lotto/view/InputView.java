@@ -30,6 +30,8 @@ public class InputView {
                 return convertInputToInteger(inputMoney);
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 초과하는 금액 입리");
             }
         }
     }

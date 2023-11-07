@@ -1,4 +1,4 @@
-package domain;
+package lotto.domain;
 
 public class UserLottos {
     private final Lottos lottos = new Lottos();

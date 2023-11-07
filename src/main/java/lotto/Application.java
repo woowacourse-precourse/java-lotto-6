@@ -55,7 +55,17 @@ public class Application {
 	}
 	
 	private void makeNumbers() {
+		ArrayList<Integer> lst = new ArrayList<>(6);
 		
+		for (int i=0; i<6; i++) {
+			int value = Randoms.pickNumberInRange(1,45);
+			i += isContains(lst, value);
+		}
+		lotto.add(lst);
+	}
+	
+	private int isContains(ArrayList<Integer> lst, int find) {
+		return -1;
 	}
 	
 	private void printNumbers() {

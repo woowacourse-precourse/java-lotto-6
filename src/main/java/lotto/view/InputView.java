@@ -19,11 +19,16 @@ public class InputView {
     }
 
     public static int inputUserPrice() {
-        try {
-            String input = userInput();
-            return userInputParsedInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.USER_INSERT_ONLY_NUMBER.getMessage());
+        try{
+            try {
+                String input = userInput();
+                return userInputParsedInt(input);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ErrorMessage.USER_INSERT_ONLY_NUMBER.getMessage());
+            }
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return inputUserPrice();
         }
     }
 

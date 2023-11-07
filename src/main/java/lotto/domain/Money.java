@@ -32,4 +32,12 @@ public class Money {
             throw new IllegalArgumentException(MONEY_UNDER_MINIMUM);
         }
     }
+
+    public int getBuyLottoQuantity() {
+        return money / LOTTO_PRICE;
+    }
+
+    public int getMoney() {
+        return money;
+    }
 }

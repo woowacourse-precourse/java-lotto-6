@@ -1,6 +1,7 @@
 package lotto.game;
 
 import java.util.List;
+import java.util.function.Supplier;
 import lotto.collaboration.lottos.Lottos;
 import lotto.collaboration.lottos.WinningLotto;
 import lotto.collaboration.lottos.dto.PlayerLotto;
@@ -10,6 +11,7 @@ import lotto.game.io.views.LottoGameView;
 
 public class LottoGame {
 
+    public static final String ERROR_HEADER_MESSAGE = "[ERROR] ";
     private final LottoGameView lottoGameView;
     private final Randoms randoms;
     private final Output output; // TODO : while-true 제거할 때 함께 제거할 것
@@ -32,14 +34,29 @@ public class LottoGame {
     }
 
     private void payOfPurchaseAmount(Lottos lottos) {
-        // TODO : 리팩토링 필요
+        runAnswer(() -> {
+            int purchaseAmount = lottoGameView.askPurchaseAmount();
+            lottos.purchase(purchaseAmount);
+        });
+    }
+
+    private void runAnswer(Runnable runnable) {
         while (true) {
             try {
-                int purchaseAmount = lottoGameView.askPurchaseAmount();
-                lottos.purchase(purchaseAmount);
+                runnable.run();
                 break;
             } catch (IllegalArgumentException e) {
-                output.println("[ERROR] " + e.getMessage());
+                output.println(ERROR_HEADER_MESSAGE + e.getMessage());
+            }
+        }
+    }
+
+    private <T> T supplyAnswer(Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                output.println(ERROR_HEADER_MESSAGE + e.getMessage());
             }
         }
     }
@@ -51,20 +68,10 @@ public class LottoGame {
     }
 
     private WinningLotto getWinningLotto() {
-        // TODO : winningNumbers와 bonusNumber는 아무리 봐도 하나의 타입이다.. 두 행동을 하나로 묶는 리팩토링을 수행하면 좋겠다.
-        // TODO : 위쪽 while-true문과 마찬가지로 리팩토링 필요
-        WinningLotto winningLotto;
-        while (true) {
-            try {
-                List<Integer> winningNumbers = lottoGameView.askWinningNumbers();
-                int bonusNumber = lottoGameView.askBonusNumber();
-                winningLotto = new WinningLotto(winningNumbers, bonusNumber);
-                break;
-            } catch (IllegalArgumentException e) {
-                output.println("[ERROR] " + e.getMessage());
-            }
-        }
-        return winningLotto;
+        return supplyAnswer(() ->
+                new WinningLotto(
+                        lottoGameView.askWinningNumbers(),
+                        lottoGameView.askBonusNumber()));
     }
 
     private void announceResult(Lottos lottos, List<PlayerLotto> buyLottos, WinningLotto winningLotto) {

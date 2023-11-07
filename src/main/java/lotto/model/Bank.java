@@ -1,20 +1,29 @@
 package lotto.model;
 
+import static lotto.constant.LottoConstant.FIFTH_PLACE;
+import static lotto.constant.LottoConstant.FIRST_PLACE;
+import static lotto.constant.LottoConstant.FOURTH_PLACE;
+import static lotto.constant.LottoConstant.NO_PRIZE;
+import static lotto.constant.LottoConstant.SECOND_PLACE;
+import static lotto.constant.LottoConstant.THIRD_PLACE;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import lotto.constant.LottoConstant;
 import lotto.constant.NumberConstant;
 
 public class Bank {
+    private final int rankRange = 5;
+    private final double rateRange = 10.0;
+
     public List<Integer> getRanks(List<Lotto> lottos, List<Integer> userNumbers, int bonusNumber){
         int[] ranks = new int[5];
         for (Lotto lotto : lottos){
             List<Integer> lottoNumbers = lotto.getNumbers();
             int index = getRankIndex(lottoNumbers, userNumbers, bonusNumber);
-            if (index != LottoConstant.NO_PRIZE_INDEX.getValue()){
+            if (index != NO_PRIZE.getValue()){
                 ranks[index]++;
             }
         }
@@ -23,7 +32,7 @@ public class Bank {
 
     public double getFormatProfitRate(int money, int profit){
         double profitRate = getProfitRate(money, profit);
-        return Math.round(profitRate * 10) / 10.0;
+        return Math.round(profitRate * rateRange) / rateRange;
     }
     private int getRankIndex(List<Integer> lottoNumbers, List<Integer> userNumbers, int bonusNumber){
         int rightCount = getRightCount(lottoNumbers, userNumbers);
@@ -36,21 +45,21 @@ public class Bank {
     }
 
     private int getRank(int count, boolean bonus){
-        if (count == 3){
-            return LottoConstant.FIFTH_PLACE_INDEX.getValue();
+        if (count == FIFTH_PLACE.getValue()){
+            return FIFTH_PLACE.getIndex();
         }
-        if (count == 4){
-            return LottoConstant.FOURTH_PLACE_INDEX.getValue();
+        if (count == FOURTH_PLACE.getValue()){
+            return FOURTH_PLACE.getIndex();
         }
-        if (count == 5){
+        if (count == THIRD_PLACE.getValue()){
             if (bonus)
-                return LottoConstant.SECOND_PLACE_INDEX.getValue();
-            return LottoConstant.THIRD_PLACE_INDEX.getValue();
+                return SECOND_PLACE.getIndex();
+            return THIRD_PLACE.getIndex();
         }
-        if (count == 6){
-            return LottoConstant.FIRST_PLACE_INDEX.getValue();
+        if (count == FIRST_PLACE.getValue()){
+            return FIRST_PLACE.getIndex();
         }
-        return LottoConstant.NO_PRIZE_INDEX.getValue();
+        return NO_PRIZE.getIndex();
     }
 
     private int getRightCount(List<Integer> lottoNumbers, List<Integer> userNumbers){

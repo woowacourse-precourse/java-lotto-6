@@ -69,8 +69,9 @@ public class LottoGameService {
             totalWinningAmount = totalWinningAmount.add(BigDecimal.valueOf(Double.valueOf(lottoRank.getWinningMoney())));
         }
 
-        totalReturnRate = totalWinningAmount.divide(totalLottoPurchase,1, RoundingMode.HALF_UP);
+        totalReturnRate = totalWinningAmount.divide(totalLottoPurchase);
         totalReturnRate = totalReturnRate.multiply(BigDecimal.valueOf(100));
+        totalReturnRate = totalReturnRate.setScale(1, RoundingMode.HALF_UP);
 
         return totalReturnRate;
     }

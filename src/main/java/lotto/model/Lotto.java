@@ -7,10 +7,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
-    private final List<Number> numbers;
+    private List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -21,19 +22,18 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers.stream()
             .map(Number::getNumber)
+            .collect(Collectors.toList());
+    }
+
+    private List<Number> toNumber(List<Integer> numbers) {
+        return numbers.stream()
+            .map(Number::new)
             .toList();
     }
 
     private void validate(List<Integer> numbers) {
         validateOverSize(numbers);
         validateDuplicatedNumber(numbers);
-    }
-
-    // TODO: 추가 기능 구현
-    private List<Number> toNumber(List<Integer> numbers) {
-        return numbers.stream()
-            .map(Number::new)
-            .toList();
     }
 
     private void validateOverSize(List<Integer> numbers) {

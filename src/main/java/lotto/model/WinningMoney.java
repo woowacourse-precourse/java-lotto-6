@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.Arrays;
+
 public enum WinningMoney {
   NON_MATCH(0, false, 0),
   THREE_MATCH(3, false, 5000),
@@ -8,13 +10,21 @@ public enum WinningMoney {
   FIVE_MATCH_BONUS(5,true, 30000000),
   SIX_MATCH(6, false, 2000000000);
 
-  private int correctCount;
+  private int matchCount;
   private boolean hasBonus;
   private int price;
 
-  WinningMoney(int correctCount, boolean hasBonus, int price) {
-    this.correctCount = correctCount;
+  WinningMoney(int matchCount, boolean hasBonus, int price) {
+    this.matchCount =matchCount;
     this.hasBonus = hasBonus;
     this.price = price;
+  }
+
+  public static WinningMoney from(int matchCount, boolean hasBonus) {
+    return Arrays.stream(WinningMoney.values())
+            .filter(count -> count.matchCount == matchCount)
+            .filter(bonus -> bonus.hasBonus == hasBonus)
+            .findAny()
+            .orElse(NON_MATCH);
   }
 }

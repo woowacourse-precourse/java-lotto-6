@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 import lotto.util.NumbersGenerator;
@@ -15,7 +16,7 @@ public class PersonLotto {
   }
 
   public List<Lotto> getPurchaseLotto() {
-    return purchaseLotto;
+    return purchaseLotto.stream().toList();
   }
 
   private List<Lotto> createLotto(NumbersGenerator numbersGenerator, PurchaseMoney purchaseMoney) {

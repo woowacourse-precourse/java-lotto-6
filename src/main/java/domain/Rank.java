@@ -22,4 +22,9 @@ public class Rank {
         }
         return rankCount;
     }
+
+    @Override
+    public String toString() {
+        return rank.toString();
+    }
 }

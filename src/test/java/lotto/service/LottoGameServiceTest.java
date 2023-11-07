@@ -1,5 +1,6 @@
 package lotto.service;
 
+import lotto.LottoRank;
 import lotto.domain.Lotto;
 
 import lotto.model.LottoResultModel;
@@ -7,10 +8,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -60,6 +61,7 @@ class LottoGameServiceTest {
     }
 
     @Test
+    @DisplayName("당첨번호를 검증한다.")
     void inputWinningNumberValidation_정상케이스() {
         String input = "1,2,3,4,5,6";
         boolean result = lottoGameService.inputWinningNumberValidation(input);
@@ -67,6 +69,7 @@ class LottoGameServiceTest {
     }
 
     @Test
+    @DisplayName("당첨번호를 검증한다.")
     void inputWinningNumberValidation_예외케이스() {
         String input = "1,이,34,오,6";
         boolean result = lottoGameService.inputWinningNumberValidation(input);
@@ -100,7 +103,8 @@ class LottoGameServiceTest {
     }
 
     @Test
-    void lottoWinningResultCalculation() {
+    @DisplayName("구매한 로또의 결과를 반환한다.")
+    void lottoWinningResult() {
         List<Lotto> lottos = new ArrayList<>();
         Lotto lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
         lottos.add(lotto);
@@ -108,15 +112,21 @@ class LottoGameServiceTest {
         List<Integer> winningNumber = new ArrayList<>(Arrays.asList(4,5,6,7,8,9));
 
         int bonusNumber = 10;
-        LottoResultModel result = lottoGameService.lottoWinningResultCalculation(lottos, winningNumber, bonusNumber);
+        List<LottoRank> lottoRanks = lottoGameService.lottoWinningResult(lottos, winningNumber, bonusNumber);
 
+        assertThat(lottoRanks).hasSize(1);
+        assertThat(lottoRanks.get(0).getRank()).isEqualTo(5);
+        assertThat(lottoRanks.get(0).getMatchCount()).contains(3L);
+        assertThat(lottoRanks.get(0).getWinningMoney()).isEqualTo("5000");
+    }
 
-        assertThat(result.getTotalReturnRate()).isEqualTo("500.0");
-        assertThat(result.getThreeMatch()).isEqualTo("1");
-        assertThat(result.getFourMatch()).isEqualTo("0");
-        assertThat(result.getFourMatch()).isEqualTo("0");
-        assertThat(result.getFiveBonusMatch()).isEqualTo("0");
-        assertThat(result.getSixMatch()).isEqualTo("0");
+    @Test
+    @DisplayName("로또의 결과로 총 수익률을 계산한다.")
+    void totalReturnRateCalculation() {
+        List<LottoRank> lottoRanks = new ArrayList<>();
+        lottoRanks.add(LottoRank.FIRST);
+        BigDecimal totalReturnRate = lottoGameService.totalReturnRateCalculation(lottoRanks);
+        assertThat(totalReturnRate).isEqualTo("200000000.0");
     }
 
     //    @Test

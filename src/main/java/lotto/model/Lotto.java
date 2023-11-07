@@ -20,7 +20,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != LottoRule.LOTTO_NUMBER_SIZE.value) {
+        if (numbers != null && numbers.size() != LottoRule.LOTTO_NUMBER_SIZE.value) {
             throw new IllegalArgumentException(LottoErrorMessage.INVALID_LOTTO_NUMBERS_SIZE.getValue(numbers));
         }
     }
@@ -47,6 +47,4 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
-
-    // TODO: 추가 기능 구현
 }

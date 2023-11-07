@@ -4,9 +4,17 @@ import static common.enumtype.ErrorCode.BONUS_NUMBER_ALREADY_REGISTERED;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_CONTAIN_BONUS_NUMBER;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_DUPLICATED;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
+import static common.enumtype.ResultType.FIFTH_PLACE;
+import static common.enumtype.ResultType.FIRST_PLACE;
+import static common.enumtype.ResultType.FOURTH_PLACE;
+import static common.enumtype.ResultType.NOT_WIN;
+import static common.enumtype.ResultType.SECOND_PLACE;
+import static common.enumtype.ResultType.THIRD_PLACE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import common.enumtype.ResultType;
+import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +29,7 @@ class WinningNumbersTest {
     void setUp() {
         List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         winningNumbers = new WinningNumbers(numbers);
+        winningNumbers.addBonus(new WinningNumber(7));
     }
 
     @Test
@@ -103,86 +112,86 @@ class WinningNumbersTest {
     }
 
     @Test
-    void 로또_번호_당첨_번호_비교_0개_매칭() {
-        // given
-        List<Integer> lottoNumbers = List.of(7, 8, 9, 10, 11, 12);
-
-        // when
-        int result = winningNumbers.matchingResult(lottoNumbers);
-
-        // then
-        assertThat(result).isEqualTo(0);
-    }
-
-    @Test
-    void 로또_번호_당첨_번호_비교_1개_매칭() {
+    void 로또_번호_미당첨() {
         // given
         List<Integer> lottoNumbers = List.of(6, 7, 8, 9, 10, 11);
 
         // when
-        int result = winningNumbers.matchingResult(lottoNumbers);
+        ResultType result = winningNumbers.matchingResult(lottoNumbers);
 
         // then
-        assertThat(result).isEqualTo(1);
+        assertThat(result).isEqualTo(NOT_WIN);
     }
 
     @Test
-    void 로또_번호_당첨_번호_비교_2개_매칭() {
+    void 로또_번호_5등_당첨() {
         // given
-        List<Integer> lottoNumbers = List.of(5, 6, 7, 8, 9, 10);
+        List<List<Integer>> lottoNumbers = List.of(
+                List.of(1, 2, 3, 20, 30, 40),
+                List.of(5, 6, 7, 20, 30, 40)
+        );
 
         // when
-        int result = winningNumbers.matchingResult(lottoNumbers);
+        List<ResultType> results = new ArrayList<>();
+        lottoNumbers.forEach(numbers -> results.add(winningNumbers.matchingResult(numbers)));
 
         // then
-        assertThat(result).isEqualTo(2);
+        results.forEach(result -> assertThat(result).isEqualTo(FIFTH_PLACE));
     }
 
     @Test
-    void 로또_번호_당첨_번호_비교_3개_매칭() {
+    void 로또_번호_4등_당첨() {
         // given
-        List<Integer> lottoNumbers = List.of(4, 5, 6, 7, 8, 9);
+        List<List<Integer>> lottoNumbers = List.of(
+                List.of(1, 2, 3, 4, 30, 40),
+                List.of(4, 5, 6, 7, 30, 40)
+        );
 
         // when
-        int result = winningNumbers.matchingResult(lottoNumbers);
+        List<ResultType> results = new ArrayList<>();
+        lottoNumbers.forEach(numbers -> results.add(winningNumbers.matchingResult(numbers)));
 
         // then
-        assertThat(result).isEqualTo(3);
+        results.forEach(result -> assertThat(result).isEqualTo(FOURTH_PLACE));
     }
 
     @Test
-    void 로또_번호_당첨_번호_비교_4개_매칭() {
+    void 로또_번호_3등_당첨() {
         // given
-        List<Integer> lottoNumbers = List.of(3, 4, 5, 6, 7, 8);
+        List<List<Integer>> lottoNumbers = List.of(
+                List.of(1, 2, 3, 4, 5, 40),
+                List.of(3, 4, 5, 6, 7, 40)
+        );
 
         // when
-        int result = winningNumbers.matchingResult(lottoNumbers);
+        List<ResultType> results = new ArrayList<>();
+        lottoNumbers.forEach(numbers -> results.add(winningNumbers.matchingResult(numbers)));
 
         // then
-        assertThat(result).isEqualTo(4);
+        results.forEach(result -> assertThat(result).isEqualTo(THIRD_PLACE));
     }
 
     @Test
-    void 로또_번호_당첨_번호_비교_5개_매칭() {
+    void 로또_번호_2등_당첨() {
         // given
-        List<Integer> lottoNumbers = List.of(2, 3, 4, 5, 6, 7);
+        List<Integer> lottoNumbers = List.of(2, 3, 4, 5, 6, 7, 40);
 
         // when
-        int result = winningNumbers.matchingResult(lottoNumbers);
+        ResultType result = winningNumbers.matchingResult(lottoNumbers);
 
         // then
-        assertThat(result).isEqualTo(5);
+        assertThat(result).isEqualTo(SECOND_PLACE);
     }
 
     @Test
-    void 로또_번호_당첨_번호_비교_6개_매칭() {
+    void 로또_번호_1등_당첨() {
         // given
-        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6, 40);
 
         // when
-        int result = winningNumbers.matchingResult(lottoNumbers);
+        ResultType result = winningNumbers.matchingResult(lottoNumbers);
 
         // then
-        assertThat(result).isEqualTo(6);
+        assertThat(result).isEqualTo(FIRST_PLACE);
     }
 }

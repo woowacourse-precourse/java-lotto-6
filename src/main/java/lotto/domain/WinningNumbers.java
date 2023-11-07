@@ -6,6 +6,7 @@ import static common.enumtype.ErrorCode.WINNING_NUMBERS_DUPLICATED;
 import static common.enumtype.ErrorCode.WINNING_NUMBERS_INVALID_SIZE;
 import static java.util.stream.Collectors.toList;
 
+import common.enumtype.ResultType;
 import common.exception.InvalidArgumentException;
 import common.exception.InvalidStatementException;
 import java.util.HashSet;
@@ -29,7 +30,18 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    public int matchingResult(List<Integer> numbers) {
+    public ResultType matchingResult(List<Integer> numbers) {
+        int matchingCount = getMatchingCount(numbers);
+        boolean isBonusMatching = isBonusMatching(numbers);
+        return ResultType.valueOf(matchingCount, isBonusMatching);
+    }
+
+    private boolean isBonusMatching(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number -> bonusNumber.equalsTo(number));
+    }
+
+    private int getMatchingCount(List<Integer> numbers) {
         return (int) numbers.stream()
                 .filter(this::isMatchingNumber)
                 .count();

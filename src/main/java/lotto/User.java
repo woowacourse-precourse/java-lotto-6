@@ -95,29 +95,6 @@ class User {
         return bonusNum;
     }
 
-    public List<Integer> getLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
-    }
-
-    public List<Lotto> getLottoAsMuchAsVolume(int volume) {
-        List<Lotto> allLotto = new ArrayList<>();
-        for (int i = 0; i < volume; i++) {
-            List<Integer> lottoNumbers = new ArrayList<>(getLottoNumbers());
-            Collections.sort(lottoNumbers);
-            Lotto lotto = new Lotto(lottoNumbers);
-            allLotto.add(lotto);
-        }
-        System.out.println(volume+"개를 구매했습니다.");
-        return allLotto;
-    }
-
-    public void getAllLottoAsConsole(List<Lotto> allLotto){
-        for(Lotto lotto : allLotto){
-            System.out.println(lotto.getNumbers().toString());
-        }
-    }
-
     public void validateBonusNumber(Lotto winningLotto, int bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 이미 당첨 숫자에 있는 번호는 보너스 번호가 될수 없습니다.");

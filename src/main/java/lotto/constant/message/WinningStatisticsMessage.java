@@ -7,7 +7,7 @@ public class WinningStatisticsMessage {
     public static final String BONUS_NUMBER_CORRECT = "보너스 볼 일치";
     public static final String WINNING_AMOUNT = "(%s원)";
     public static final String WINNING_COUNT = "- %d개";
-    public static final String TOTAL_PROFIT_RESULT = "총 수익률은 %f입니다.";
+    public static final String TOTAL_PROFIT_RESULT = "총 수익률은 %.1f%%입니다.";
 
 
 }

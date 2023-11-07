@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +54,35 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @DisplayName("1000원 이하의 금액은 입력 받을 수 없다.")
+    @Test
+    void createAmountByUnderThousand() {
+        assertThatThrownBy(() -> new Amount("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1000원 단위가 아닌 금액은 입력 받을 수 없다.")
+    @Test
+    void createNotThousandsAmount() {
+        assertThatThrownBy(() -> new Amount("1212"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("숫자가 아닌 금액은 입력 받을 수 없다.")
+    @Test
+    void createByNotNumber() {
+        assertThatThrownBy(() -> new Amount("a"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1000원 단위로 금액을 입력 받는다.")
+    @Test
+    void createAmount(){
+        Amount amount = new Amount("2000");
+
+        assertThat(amount.getMoney()).isEqualTo(2000);
     }
 
     @Override

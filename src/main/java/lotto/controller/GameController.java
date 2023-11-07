@@ -13,10 +13,8 @@ public class GameController {
 
     public void run() {
 
-        LottoGenerator lottoGenerator = new LottoGenerator();
-
         int lottoQuantity = purchaseLottoQuantity();
-        List<Lotto> lottoTickets = lottoGenerator.createLottoTickets(lottoQuantity);
+        List<Lotto> lottoTickets = LottoGenerator.createLottoTickets(lottoQuantity);
 
         LottoBuyer lottoBuyer = new LottoBuyer(lottoTickets);
 

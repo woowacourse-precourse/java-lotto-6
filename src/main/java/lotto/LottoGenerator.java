@@ -7,7 +7,7 @@ import lotto.domain.Lotto;
 
 public class LottoGenerator {
 
-    public List<Lotto> createLottoTickets(int lottoQuantity) {
+    public static List<Lotto> createLottoTickets(int lottoQuantity) {
         List<Lotto> lottoList = new ArrayList<>();
         for (int i = 0; i< lottoQuantity; i++) {
             List<Integer> lottoNumbers = generateLottoNumbers();
@@ -17,7 +17,7 @@ public class LottoGenerator {
         return lottoList;
     }
 
-    private List<Integer> generateLottoNumbers() {
+    private static List<Integer> generateLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

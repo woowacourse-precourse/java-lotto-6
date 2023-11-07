@@ -31,8 +31,8 @@ public class LottoView {
 
     public void outputStatisticsResult(List<Integer> matches, double rate) {
         System.out.println();
-        System.out.println(String.format(Message.OUTPUT_WIN_COUNT.getValue(), matches.get(0), matches.get(1), matches.get(2), matches.get(3), matches.get(5)));
-        System.out.println(String.format(Message.OUTPUT_STATISTICS.getValue(), 22.5));
+        System.out.println(String.format(Message.OUTPUT_WIN_COUNT.getValue(), matches.get(0), matches.get(1), matches.get(2), matches.get(3), matches.get(4)));
+        System.out.println(String.format(Message.OUTPUT_STATISTICS.getValue(), rate));
     }
 
     public void outputError(String errorMsg) {

@@ -14,9 +14,11 @@ public class LottoGame {
 
     public void start() {
         gameSetting.createLottoCount();
-        ArrayList<Lotto> lottos = gameSetting.createLottos();
-        Lotto winningNumber = gameSetting.createWinningNumbers();
-        int bonusNumber = gameSetting.createBonusNumber();
+        gameSetting.createLottos();
+        gameSetting.createWinningNumbers();
+        gameSetting.createBonusNumber();
+        Player player = new Player(gameSetting.getLottos(), gameSetting.getWinningNumbers(), gameSetting.getBonusNumber(), gameSetting.getPayment());
+        gameResult.CountWinningNumber(player);
     }
 
 }

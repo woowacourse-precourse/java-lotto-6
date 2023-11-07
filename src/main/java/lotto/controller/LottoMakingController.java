@@ -2,11 +2,9 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
-import lotto.domain.Player;
 import lotto.view.ErrorMessage;
 import lotto.view.LottoView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,27 +14,49 @@ public class LottoMakingController {
     private final int MONEY_UNIT = 1000;
     private final int LOTTO_START = 1;
     private final int LOTTO_END = 45;
-    private int money;
+    private int payment;
     private int lottoCount;
+
+    private ArrayList<Lotto> lottos;
+    private Lotto winningNumbers;
+    private int bonusNumber;
+
+    public ArrayList<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public Lotto getWinningNumbers() {
+        return winningNumbers;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
+    public int getPayment() {
+        return payment;
+    }
 
     public void createLottoCount() {
         while (true) {
             try {
                 String input = view.inputMoney();
                 validateIsNumber(input);
-                money = Integer.parseInt(input);
-                validateMoneyUnit(money);
+                payment = Integer.parseInt(input);
+                validateMoneyUnit(payment);
                 break;
-            } catch (NumberFormatException e) {
-                view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
             } catch (IllegalArgumentException e) {
                 view.outputError(e.getMessage());
             }
         }
     }
 
-    private void validateIsNumber(String number) throws NumberFormatException {
-        Integer.parseInt(number);
+    private void validateIsNumber(String number) {
+        try {
+            Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
+        }
     }
 
     private void validateMoneyUnit(int money) {
@@ -45,49 +65,51 @@ public class LottoMakingController {
         lottoCount = money / MONEY_UNIT;
     }
 
-    public ArrayList<Lotto> createLottos() {
+    public void createLottos() {
         ArrayList<Lotto> lottos = new ArrayList<Lotto>();
         for (int i = 0; i < lottoCount; i++)
             lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
         view.outputLottos(lottos, lottos.size());
-        return lottos;
+        this.lottos = lottos;
     }
 
-    public Lotto createWinningNumbers() {
+    public void createWinningNumbers() {
         while (true) {
             try {
                 String input = view.inputWinningNumber();
-                ArrayList<Integer> inputNumbers = new ArrayList<Integer>(Arrays.asList(changeStringToInteger(input)));
+                ArrayList<Integer> inputNumbers = new ArrayList<Integer>(Arrays.asList(changeStringToIntegers(input)));
                 validateBoundaryNumbers(inputNumbers);
                 validateOverlapNumber(inputNumbers);
                 Lotto winningNumber = new Lotto(inputNumbers);
-                return winningNumber;
-            } catch (NumberFormatException e) {
-                view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
+                this.winningNumbers = winningNumber;
+                break;
             } catch (IllegalArgumentException e) {
                 view.outputError(e.getMessage());
-            } catch (Exception e) {
-
             }
         }
     }
 
-    public Integer[] changeStringToInteger(String input) throws NumberFormatException {
-        String[] n = input.split(",");
-        Integer[] numbers = new Integer[n.length];
-        for (int i = 0; i < numbers.length; i++)
-            numbers[i] = Integer.parseInt(n[i]);
-        return numbers;
+    public Integer[] changeStringToIntegers(String input) throws NumberFormatException {
+        try {
+            String[] n = input.split(",");
+            Integer[] numbers = new Integer[n.length];
+            for (int i = 0; i < numbers.length; i++)
+                numbers[i] = Integer.parseInt(n[i]);
+            return numbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
+        }
     }
 
-    public int createBonusNumber() {
+    public void createBonusNumber() {
         while (true) {
             try {
                 String input = view.inputBonusNumber();
                 validateIsNumber(input);
                 int bonusNumber = Integer.parseInt(input);
                 validateBoundaryNumber(bonusNumber);
-                return bonusNumber;
+                this.bonusNumber = bonusNumber;
+                break;
             } catch (NumberFormatException e) {
                 view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
             } catch (IllegalArgumentException e) {
@@ -111,8 +133,8 @@ public class LottoMakingController {
     }
 
     private void validateOverlapNumber(ArrayList<Integer> input) {
-        for(Integer i : input)
-            if(Collections.frequency(input, i) > 1)
+        for (Integer i : input)
+            if (Collections.frequency(input, i) > 1)
                 throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_OVERLAP_MESSAGE.getValue());
     }
 

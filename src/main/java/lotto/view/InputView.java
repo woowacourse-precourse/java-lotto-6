@@ -15,12 +15,18 @@ public class InputView {
     }
 
     protected Integer readPurchaseAmount() {
-        return parseInt(Console.readLine());
+        String input = Console.readLine();
+        InputValidator.validatePurchaseAmount(input);
+        return parseInt(input);
     }
 
     protected List<Integer> readLottoNumbers() {
         String input = Console.readLine();
         InputValidator.validateLottoNumberInput(input);
         return InputUtil.convertToList(input);
+    }
+
+    protected Integer readBonusNumber() {
+        Console.readLine();
     }
 }

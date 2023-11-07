@@ -48,4 +48,8 @@ public class MessageManager {
     public static String getBonusNumberInOneToFortyFiveMessage() {
         return exceptionMessages.getString("bonusNumberInOneToFortyFive.message");
     }
+
+    public static String getDuplicateBonusNumberAndWinningNumberMessage() {
+        return exceptionMessages.getString("duplicateBonusNumberAndWinningNumber.message");
+    }
 }

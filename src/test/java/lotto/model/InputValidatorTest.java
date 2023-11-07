@@ -3,8 +3,7 @@ package lotto.model;
 import lotto.model.InputValidator;
 import org.junit.jupiter.api.Test;
 
-import static lotto.model.InputValidator.validateDivisibleByThousand;
-import static lotto.model.InputValidator.validateNonInteger;
+import static lotto.model.InputValidator.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class InputValidatorTest {
@@ -44,6 +43,13 @@ public class InputValidatorTest {
     void 보너스_번호가_일과_사십오사이의_수가_맞는지_테스트() {
         assertThrows(IllegalArgumentException.class, () -> {
             InputValidator.validateBonusNumberInOneToFortyFive("0");
+        });
+    }
+
+    @Test
+    void 보너스_번호와_당첨번호가_중복이_되는지_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.validateDuplicateBonusNumberAndWinningNumber("1,2,3,4,5,6", "6");
         });
     }
 }

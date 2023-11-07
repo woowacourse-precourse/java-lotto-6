@@ -1,13 +1,27 @@
 package lotto.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
+import static lotto.model.Utilities.inputIntegerParsing;
 import static lotto.model.Utilities.inputNumberSet;
 import static lotto.views.MessageManager.*;
 
 public class InputValidator {
     private static String COMMA_SEPARATOR = ",";
     private static int WINNING_NUMBER_COUNT = 6;
+
+    public static void validatePurchaseAmount(String inputAmount) {
+        validateNonInteger(inputAmount);
+        validateDivisibleByThousand(inputIntegerParsing(inputAmount));
+    }
+
+    public static void validateWinningNumber(String inputWinningNumber) {
+        validateContainsCommaSeparator(inputWinningNumber);
+        validateDuplicateNumber(inputWinningNumber);
+        validateWinningNumberInOneToFortyFive(inputWinningNumber);
+    }
+
 
     public static void validateNonInteger(String input) {
         try {
@@ -18,7 +32,7 @@ public class InputValidator {
     }
 
     public static void validateDivisibleByThousand(int input) {
-        if ( input % 1000 != 0) {
+        if (input % 1000 != 0) {
             throw new IllegalArgumentException(getValidateDivisibleByThousandMessage());
         }
     }
@@ -35,7 +49,7 @@ public class InputValidator {
 
     public static void validateDuplicateNumber(String input) {
         Set<String> inputNumber = inputNumberSet(input);
-        if (inputNumber.size()!=WINNING_NUMBER_COUNT) {
+        if (inputNumber.size() != WINNING_NUMBER_COUNT) {
             throw new IllegalArgumentException(getDuplicateNumberMessage());
         }
     }
@@ -43,15 +57,17 @@ public class InputValidator {
     public static void validateWinningNumberInOneToFortyFive(String input) {
         Set<String> inputNumber = inputNumberSet(input);
         for (String element : inputNumber) {
-            validateNumberInOneToFortyFive (element);
+            validateNumberInOneToFortyFive(element);
         }
     }
-    private static void validateNumberInOneToFortyFive (String input) {
+
+    private static void validateNumberInOneToFortyFive(String input) {
         int number = Integer.parseInt(input);
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(getWinningNumberInOneToFortyFiveMessage());
         }
     }
+
     public static void validateBonusNumberInOneToFortyFive(String input) {
         String regex = "^[1-9]|[1-3][0-9]|4[0-5]$";
         if (!input.matches(regex)) {
@@ -59,4 +75,12 @@ public class InputValidator {
         }
     }
 
+    public static void validateDuplicateBonusNumberAndWinningNumber(String winningNumbers, String bonusNumber) {
+        Set<String> winningNumberSet = inputNumberSet(winningNumbers);
+        winningNumberSet.add(bonusNumber);
+        if(winningNumberSet.size()==WINNING_NUMBER_COUNT) {
+            throw new IllegalArgumentException(getDuplicateBonusNumberAndWinningNumberMessage());
+        }
+    }
 }
+

@@ -9,7 +9,7 @@ public class LottoMachine {
     private static final int LOTTO_GAME_START_NUMBER = 1;
     private static final int LOTTO_GAME_END_NUMBER = 45;
     private static final int LOTTO_GAME_NUMBER_SIZE = 6;
-    private final List<Integer> randomNumbers;
+    private List<Integer> randomNumbers;
 
     public LottoMachine() {
         this.randomNumbers = sortRandomNumbers(generateRandomNumbers());

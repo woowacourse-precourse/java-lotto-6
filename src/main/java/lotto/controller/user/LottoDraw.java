@@ -17,11 +17,11 @@ public class LottoDraw {
         this.inputView = inputView;
     }
 
-    private boolean isCorrectNumber(String input) {
+    private boolean isCorrectLottoNumbers(String input) {
         ExceptionHandler exceptionHandler = new ExceptionHandler();
 
         try {
-            exceptionHandler.handleLottoNumberException(input);
+            exceptionHandler.handleLottoNumbersException(input);
         } catch (IllegalArgumentException exception) {
             inputView.showInputErrorMessage(exception.getMessage());
             return false;
@@ -39,7 +39,7 @@ public class LottoDraw {
             input = readLine();
             inputView.endInput();
 
-            if (isCorrectNumber(input)) {
+            if (isCorrectLottoNumbers(input)) {
                 break;
             }
         }

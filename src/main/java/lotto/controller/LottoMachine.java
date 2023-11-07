@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.controller.machine.NumberGenerator;
+import lotto.controller.user.BonusDraw;
 import lotto.controller.user.LottoDraw;
 import lotto.controller.user.LottoPurchase;
 import lotto.domain.Lotto;
@@ -32,11 +33,18 @@ public class LottoMachine {
         lottoDraw.draw();
     }
 
+    private void drawBounsNumber(InputView inputView) {
+        BonusDraw bonusDraw = new BonusDraw(inputView);
+        bonusDraw.draw();
+    }
+
     public void start() {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
         purchase(inputView, outputView);
+
         draw(inputView);
+        drawBounsNumber(inputView);
     }
 }

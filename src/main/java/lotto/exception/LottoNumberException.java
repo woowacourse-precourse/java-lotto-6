@@ -7,12 +7,20 @@ public class LottoNumberException {
     private static final String BLANK = "빈 값은 입력할 수 없습니다.";
     private static final String END_WITH_NUMBER = "6개의 숫자를 입력해 주세요.";
     private static final String INSUFFICIENT_LOTTO_NUMBER = "당첨 번호 6개를 모두 입력해 주세요.";
-    private static final String NOT_NUMBER = "로또 번호는 1~45사이의 숫자만 가능 합니다.";
+    private static final String NOT_LOTTO_NUMBER = "로또 번호는 1~45사이의 숫자만 가능 합니다.";
     private static final String DUPLICATE_NUMBER = "당첨 번호는 중복 되지 않아야 합니다.";
 
     public void checkBlank(String input) {
         if (input.isEmpty()) {
             throw new IllegalArgumentException(BLANK);
+        }
+    }
+
+    public void checkLottoNumber(String input) {
+        int number = Integer.parseInt(input);
+
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(NOT_LOTTO_NUMBER);
         }
     }
 
@@ -31,21 +39,17 @@ public class LottoNumberException {
         }
     }
 
-    private boolean isNumber(String number) {
+    public void checkInteger(String number) {
         for (int index = 0; index < number.length(); index++) {
             if (number.charAt(index) < '0' || number.charAt(index) > '9') {
-                return false;
+                throw new IllegalArgumentException(NOT_LOTTO_NUMBER);
             }
         }
-
-        return true;
     }
 
     public void checkSixNumbers(List<String> inputs) {
         for (String input : inputs) {
-            if (!isNumber(input.trim())) {
-                throw new IllegalArgumentException(NOT_NUMBER);
-            }
+            checkInteger(input.trim());
         }
     }
 

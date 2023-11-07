@@ -8,6 +8,20 @@ import java.util.Collections;
 import java.util.List;
 
 public class Application {
+    enum Prize {
+        THREE(5000), FOUR(50000), FIVE(1500000), FIVEBONUS(30000000), SIX(2000000000);
+        final private int prizeMoney;
+        Prize(int prizeMoney) {
+            this.prizeMoney = prizeMoney;
+        }
+
+        public int getPrizeMoney() {
+            return prizeMoney;
+        }
+
+
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
@@ -17,12 +31,13 @@ public class Application {
         final int pickLottoCount = 6;
 
         int money;
-        List<Lotto> purchasedLotto = new ArrayList<>();
+        List<Lotto> purchasedLottos = new ArrayList<>();
         List<Integer> inputLottoNumber = new ArrayList<>();
         Lotto winLotto = null;
         int bonusLotto;
-
-
+        int[] counts = new int[5];
+        int sumMoney = 0;
+        float returnRate = 0.0f;
 
         System.out.println("구입금액을 입력해 주세요.");
         money = Integer.parseInt(Console.readLine());
@@ -34,11 +49,11 @@ public class Application {
         System.out.println("\n" + (money / unit) + "개를 구매했습니다.");
         for(int i=0; i<money/unit; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startLottoNumber, endLottoNumber, pickLottoCount);
-            purchasedLotto.add(new Lotto(numbers));
+            purchasedLottos.add(new Lotto(numbers));
         }
-        for(int i=0; i<purchasedLotto.size(); i++) {
-            Collections.sort(purchasedLotto.get(i).getNumbers());
-            System.out.println(purchasedLotto.get(i).getNumbers());
+        for(int i=0; i<purchasedLottos.size(); i++) {
+            Collections.sort(purchasedLottos.get(i).getNumbers());
+            System.out.println(purchasedLottos.get(i).getNumbers());
         }
 
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -54,17 +69,13 @@ public class Application {
         bonusLotto = Integer.parseInt(Console.readLine());
         validateRange(bonusLotto, startLottoNumber, endLottoNumber);
 
-
-
-
-
-
-
-
-
-
-
-
+        for(int i=0; i<purchasedLottos.size(); i++) {
+            int count = countMatchNumber(purchasedLottos.get(i), winLotto, bonusLotto);
+            int index = getCountsIndex(count);
+            if(index == -1) continue;
+            sumMoney += prizeMoney(index);
+            counts[index]++;
+        }
     }
 
     public static void validateRange(int number, int startLottoNumber, int endLottoNumber) {
@@ -74,5 +85,39 @@ public class Application {
         }
     }
 
+    public static int countMatchNumber(Lotto purchasedLotto, Lotto winLotto, int bonusLotto) {
+        int count = 0;
 
+        for(int i=0; i<purchasedLotto.getNumbers().size(); i++) {
+            if(winLotto.getNumbers().contains(purchasedLotto.getNumbers().get(i))) {
+                count++;
+            }
+            if(bonusLotto == purchasedLotto.getNumbers().get(i)) {
+                count += 10;
+            }
+        }
+
+        return count;
+    }
+
+    public static int getCountsIndex(int count) {
+        if(count == 15) return 3;
+        if(count%10 == 3) return 0;
+        if(count%10 == 4) return 1;
+        if(count%10 == 5) return 2;
+        if(count%10 == 6) return 4;
+        return -1;
+    }
+
+    public static int prizeMoney(int index) {
+        Prize prize = null;
+
+        if(index == 0) prize = Prize.THREE;
+        if(index == 1) prize = Prize.FOUR;
+        if(index == 2) prize = Prize.FIVE;
+        if(index == 3) prize = Prize.FIVEBONUS;
+        if(index == 4) prize = Prize.SIX;
+
+        return prize.getPrizeMoney();
+    }
 }

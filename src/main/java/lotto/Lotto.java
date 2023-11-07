@@ -15,4 +15,9 @@ public class Lotto {
             throw new IllegalArgumentException();
         } // 사이즈 확인
     }
+
+	@Override
+	public String toString() {
+		return numbers.toString();
+	}
 }

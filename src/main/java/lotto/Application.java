@@ -8,17 +8,20 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Application {
 	public static void main(String[] args) {
 		List<Integer> lottoNum = getLotto();
-		int countLotto = countLotto();
+		int countLotto = countLotto(inputMoney());
 	}
 
-	public static int countLotto() { // 구매한 횟수 계산
-		int money = 0;
-
-		money = Integer.parseInt(Console.readLine());
-
+	public static int inputMoney() {
+		System.out.println("구입금액을 입력해 주세요.");
+		return Integer.parseInt(Console.readLine());
+	}
+	
+	public static int countLotto(int money) { // 구매한 횟수 계산
 		if (money % 1000 != 0)
 			throw new IllegalArgumentException();
 
+		System.out.println();
+		System.out.println(money / 1000 + "개를 구매했습니다.");
 		return money / 1000;
 	}
 
@@ -89,4 +92,5 @@ public class Application {
 		System.out.println("6개 일치 (2,000,000,000원) - " + num + "개");
 		System.out.println("총 수익률은 " + percentage + "%입니다.");
 	}
+	
 }

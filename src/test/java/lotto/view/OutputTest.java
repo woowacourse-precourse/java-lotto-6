@@ -3,6 +3,7 @@ package lotto.view;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import java.util.List;
 import lotto.MockNumberGenerator;
 import lotto.domain.LottoMachine;
 import lotto.domain.user.LottoCount;
@@ -17,8 +18,7 @@ public class OutputTest extends NsTest {
         //given
         LottoCount lottoCount = new LottoCount(2000);
         UserLotto userLotto = new UserLotto(lottoCount);
-        MockNumberGenerator mockNumberGenerator = new MockNumberGenerator();
-        userLotto.create(mockNumberGenerator);
+        userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
         Output output = new Output();
 
         //when

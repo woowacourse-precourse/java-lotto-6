@@ -15,10 +15,9 @@ public class UserLottoTest {
         //given
         LottoCount lottoCount = new LottoCount(3000);
         UserLotto userLotto = new UserLotto(lottoCount);
-        MockNumberGenerator mockNumberGenerator = new MockNumberGenerator();
 
         //when
-        userLotto.create(mockNumberGenerator);
+        userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
 
         //then
         Lotto lotto = new Lotto(List.of(1, 3, 5, 7, 9, 11));

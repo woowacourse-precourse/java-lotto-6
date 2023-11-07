@@ -25,7 +25,7 @@ public class LottoMachineTest {
     void checkCompareSystem(List<Integer> numbers, int number, GameStatus gameStatus, int equalNumber) {
         LottoCount lottoCount = new LottoCount(INPUT_MONEY);
         UserLotto userLotto = new UserLotto(lottoCount);
-        userLotto.create(new MockNumberGenerator());
+        userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
 
         Lotto lotto = new Lotto(numbers);
         Bonus bonus = new Bonus(number);
@@ -50,7 +50,7 @@ public class LottoMachineTest {
     void checkCalculateRate() {
         LottoCount lottoCount = new LottoCount(INPUT_MONEY);
         UserLotto userLotto = new UserLotto(lottoCount);
-        userLotto.create(new MockNumberGenerator());
+        userLotto.create(new MockNumberGenerator(List.of(1, 3, 5, 7, 9, 11)));
 
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Bonus bonus = new Bonus(7);

@@ -18,7 +18,7 @@ public class Validator {
 
     public static void validateInputIsNumeric(String input) {
         if (!isNumeric(input)) {
-            throw new IllegalArgumentException("숫자를 입력해 주세요.");
+            throw new IllegalArgumentException("숫자만 입력해 주세요.");
         }
     }
 
@@ -58,5 +58,11 @@ public class Validator {
 
     public static boolean isLottoNumberOutOfBounds(int lottoNumber) {
         return lottoNumber < START_INCLUSIVE || lottoNumber > END_INCLUSIVE;
+    }
+
+    public static void validateWinningNumbersIsNumeric(String[] winningNumbers) {
+        for (String winningNumber : winningNumbers) {
+            validateInputIsNumeric(winningNumber);
+        }
     }
 }

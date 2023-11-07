@@ -4,9 +4,11 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import validator.Validator;
 
 public class Utils {
     public static List<Integer> convertToIntegerList(String[] input) {
+        Validator.validateWinningNumbersIsNumeric(input);
         return Arrays.stream(input)
                      .map(Integer::parseInt)
                      .collect(Collectors.toList());

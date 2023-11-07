@@ -1,19 +1,26 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class  MatchLotto{
+public class MatchLotto {
 
-    private final List<Integer> winningMatchResult = new ArrayList<>();
-    private final List<Boolean> bonusMatchResult = new ArrayList<>();
-
+    private final List<LottoRankings> matchResult = new ArrayList<>();
 
     public void matchLotto(List<Integer> winningNumbers, int bonusNumber, List<Lotto> lottoPurchaseHistory) {
         for (Lotto lotto : lottoPurchaseHistory) {
-            winningMatchResult.add(matchWinningNumber(winningNumbers, lotto));
-            bonusMatchResult.add(matchBonusNumber(lotto.getNumbers(), bonusNumber));
+            int match = matchWinningNumber(winningNumbers, lotto);
+            boolean bonus = matchBonusNumber(lotto.getNumbers(), bonusNumber);
+            matchResult.add(findRank(match, bonus));
         }
+    }
+
+    private static LottoRankings findRank(int match, boolean bonus) {
+        return Arrays.stream(LottoRankings.values())
+                .filter(rank -> rank.getMatch() == match)
+                .filter(rank -> rank.getBonus().contains(bonus))
+                .findAny().orElse(LottoRankings.NONE);
     }
 
     private static boolean matchBonusNumber(List<Integer> numbers, int bonusNumber) {
@@ -30,11 +37,7 @@ public class  MatchLotto{
         return match;
     }
 
-    public List<Integer> getWinningMatchResult() {
-        return winningMatchResult;
-    }
-
-    public List<Boolean> getBonusMatchResult() {
-        return bonusMatchResult;
+    public List<LottoRankings> getMatchResult() {
+        return matchResult;
     }
 }

@@ -1,6 +1,7 @@
 package lotto.model;
 
 
+import static lotto.model.LottoRankings.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.util.ArrayList;
@@ -22,7 +23,6 @@ class MatchLottoTest {
 
         matchLotto.matchLotto(winningNumbers, bonusNumber, purchaseHistory);
 
-        assertThat(matchLotto.getWinningMatchResult()).isEqualTo(List.of(6, 5, 5, 4));
-        assertThat(matchLotto.getBonusMatchResult()).isEqualTo(List.of(false, true, false, true));
+        assertThat(matchLotto.getMatchResult()).isEqualTo(List.of(FIRST, SECOND, THIRD, FOURTH));
     }
 }

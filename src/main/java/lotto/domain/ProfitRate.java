@@ -23,7 +23,7 @@ public class ProfitRate {
     private double sumWinMoney(WinResult winResult) {
         double moneyPrize = 0;
         for (WinnerRank winnerRank : WinnerRank.values()) {
-            int key = winnerRank.getValue();
+            int key = winnerRank.getRankKey();
             moneyPrize += winResult.getWinResultValue(key) * winnerRank.getPrizeMoney();
         }
         return moneyPrize;

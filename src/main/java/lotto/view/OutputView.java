@@ -36,17 +36,17 @@ public class OutputView {
 
     public void printWinResult(WinResult winResult) {
         for(WinnerRank winnerRank : WinnerRank.values()){
-            int key = winnerRank.getValue();
+            int key = winnerRank.getRankKey();
 
-            System.out.printf(returnWinResultByRankValue(key),
+            System.out.printf(returnWinResultByRankKey(key),
                     winnerRank.getSameNumberCount(),
                     formatNumberWithCommas(winnerRank.getPrizeMoney()),
                     winResult.getWinResultValue(key));
         }
     }
 
-    private String returnWinResultByRankValue(int key) {
-        if(key == LOTTO_SAME_NUMBER_FIVE_WITH_BONUS_KEY.getValue()){
+    private String returnWinResultByRankKey(int rankKey) {
+        if(rankKey == LOTTO_SAME_NUMBER_FIVE_WITH_BONUS_KEY.getValue()){
             return WIN_RESULT_WITH_BONUS.getMessage();
         }
         return WIN_RESULT_WITHOUT_BONUS.getMessage();

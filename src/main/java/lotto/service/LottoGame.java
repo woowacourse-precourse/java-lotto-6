@@ -19,16 +19,27 @@ public class LottoGame {
         outputView.printLottoAmount(lottoAmount);
 
         List<Lotto> lottos = generateUserLottos(lottoAmount);
-        WinningLotto winningLotto = inputWinLotto();
 
+        WinningLotto winningLotto = generateWinningLotto();
+
+        provideResult(lottos, winningLotto, purchasePrice);
+    }
+
+    private WinningLotto generateWinningLotto() {
+        WinningLotto winningLotto = inputWinLotto();
         inputBonusNumber(winningLotto);
 
+        return winningLotto;
+    }
+
+    private void provideResult(List<Lotto> lottos, WinningLotto winningLotto, PurchasePrice purchasePrice) {
         WinResult winResult = lottoWinResultService.getWinResult(lottos, winningLotto);
         double profitRate = lottoWinResultService.calculateProfitRate(purchasePrice);
 
         printWinResult(winResult);
         printProfitRate(profitRate);
     }
+
 
     private PurchasePrice inputPurchasePrice() {
         outputView.printMoneyInputGuideMessage();

@@ -36,12 +36,7 @@ public class InputView {
             inputValidator.checkBlank(winnigLotto);
             inputValidator.checkOnlyNumberAndDelimiterCommaContain(winnigLotto);
 
-            String[] numbers = winnigLotto.split(",");
-            List<Integer> winningNumbers = Arrays.stream(numbers)
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-
-            winLotto = new Lotto(winningNumbers);
+            winLotto = new Lotto(parseWinLottoInputAndToList());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -49,6 +44,15 @@ public class InputView {
         }
 
         return winLotto;
+    }
+
+    private List<Integer> parseWinLottoInputAndToList() {
+        String[] numbers = winnigLotto.split(",");
+        List<Integer> winningNumbers = Arrays.stream(numbers)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return winningNumbers;
     }
 
     public int inputBonusNumber() {

@@ -9,8 +9,8 @@ public class LottoWinResultService {
 
     public WinResult getWinResult(List<Lotto> lottos, WinningLotto winningLotto) {
         for (Lotto userLotto : lottos) {
-            int rankValue = winningLotto.matchSameNumberNum(userLotto);
-            changeWinResultByRankValue(winningLotto, userLotto, rankValue);
+            int sameNumberCount = winningLotto.matchSameNumberCount(userLotto);
+            changeWinResultBySameNumberCount(winningLotto, userLotto, sameNumberCount);
         }
 
         return winResult;
@@ -21,31 +21,31 @@ public class LottoWinResultService {
         return profitRate;
     }
 
-    private void changeWinResultByRankValue(WinningLotto winningLotto, Lotto userLotto, int rankValue) {
-        if (winResult.isOverTwo(rankValue)) {
-            rankValue = checkSameNumberCountFiveAndContainBonusNumber(winningLotto, userLotto, rankValue);
-            increaseWinResultValueByRankValue(rankValue);
+    private void changeWinResultBySameNumberCount(WinningLotto winningLotto, Lotto userLotto, int sameNumberCount) {
+        if (winResult.isOverTwo(sameNumberCount)) {
+            int rankKey = checkSameNumberCountFiveAndContainBonusNumber(winningLotto, userLotto, sameNumberCount);
+            increaseWinResultValueByRankKey(rankKey);
         }
     }
 
-    private int checkSameNumberCountFiveAndContainBonusNumber(WinningLotto winningLotto, Lotto userLotto, int rankValue) {
-        if (winResult.isFiveSame(rankValue)) {
-            return changeRankValueByBonusNum(winningLotto, userLotto);
+    private int checkSameNumberCountFiveAndContainBonusNumber(WinningLotto winningLotto, Lotto userLotto, int rankKey) {
+        if (winResult.isFiveSame(rankKey)) {
+            return changeRankKeyByBonusNum(winningLotto, userLotto);
         }
-        return rankValue;
+        return rankKey;
     }
 
-    private int changeRankValueByBonusNum(WinningLotto winningLotto, Lotto userLotto) {
-        int rankValue = 5;
+    private int changeRankKeyByBonusNum(WinningLotto winningLotto, Lotto userLotto) {
+        int rankKey = 5;
 
         if (winningLotto.isBonusNumContain(userLotto)) {
-            rankValue = 7;
+            rankKey = 7;
         }
 
-        return rankValue;
+        return rankKey;
     }
 
-    private void increaseWinResultValueByRankValue(int rankValue) {
-        winResult.increaseWinResultValue(rankValue);
+    private void increaseWinResultValueByRankKey(int rankKey) {
+        winResult.increaseWinResultValue(rankKey);
     }
 }

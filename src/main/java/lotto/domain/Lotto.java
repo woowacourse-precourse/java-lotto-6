@@ -24,12 +24,12 @@ public class Lotto {
         return numbers;
     }
 
-    public int matchSameNumberNum(Lotto lotto) {
-        int sameNumberNum = (int) numbers.stream()
+    public int matchSameNumberCount(Lotto lotto) {
+        int sameNumberCount = (int) numbers.stream()
                 .filter(number -> lotto.hasSameNumber(number))
                 .count();
 
-        return sameNumberNum;
+        return sameNumberCount;
     }
 
     public boolean hasSameNumber(int number) {

@@ -1,6 +1,8 @@
 package lotto.model;
 
+import lotto.constant.LottoRank;
 import lotto.model.Lotto;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,5 +33,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 0, 5, 4)))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("내 로또 번호와 당첨 번호를 비교해서 LottoRank를 반환한다.")
+    @Test
+    void compareMyLottoWithWinningNumber() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumber winningNumber = new WinningNumber(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        LottoRank lottoRank = lotto.getRank(winningNumber);
+
+        Assertions.assertThat(lottoRank).isEqualTo(LottoRank.RANK_ONE);
     }
 }

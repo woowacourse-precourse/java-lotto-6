@@ -158,10 +158,10 @@ public class Application {
             }
         }
 
-        // 게임 4.
-
-        double earningRate = totalReward / purchasePrice;
-        System.out.println("총 수익률은 " + round(earningRate * 100) / 100.0 + "%입니다.");
+        // 게임 4. 비교 결과에 따른 총 수익률 구하기
+        float earningRate = ((float) totalReward / purchasePrice) * 100;
+        System.out.println(earningRate);
+        System.out.println("총 수익률은 " + String.format("%.1f", earningRate) + "%입니다.");
 
 
 

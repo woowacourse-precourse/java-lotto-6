@@ -1,8 +1,7 @@
 package lotto.core;
 
-import lotto.util.ExceptionHandler;
-
 import java.util.List;
+import lotto.util.ExceptionHandler;
 
 public class Lotto {
     private final List<Integer> numbers;

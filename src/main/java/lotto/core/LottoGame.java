@@ -1,10 +1,9 @@
 package lotto.core;
 
+import java.util.*;
 import lotto.util.LottoConst;
 import lotto.util.RandomNumGenerator;
 import lotto.util.Rank;
-
-import java.util.*;
 
 public class LottoGame {
 

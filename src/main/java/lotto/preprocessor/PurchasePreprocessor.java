@@ -1,6 +1,5 @@
 package lotto.preprocessor;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.util.ExceptionHandler;
 import lotto.util.LottoConst;
 
@@ -17,7 +16,6 @@ public class PurchasePreprocessor extends Preprocessor<Integer> {
     public Integer convert(String userInput) {
         return Integer.parseInt(userInput);
     }
-
 
     private static boolean isNumber(String userInput) {
         try {

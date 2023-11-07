@@ -2,10 +2,6 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-
 import lotto.core.Lotto;
 import lotto.core.LottoGame;
 import lotto.util.LottoConst;

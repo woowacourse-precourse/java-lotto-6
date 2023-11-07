@@ -1,9 +1,8 @@
 package lotto.preprocessor;
 
+import java.util.List;
 import lotto.util.ExceptionHandler;
 import lotto.util.LottoConst;
-
-import java.util.List;
 
 public class BonusNumPreprocessor extends Preprocessor<Integer> {
 

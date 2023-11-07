@@ -1,9 +1,7 @@
 package lotto.core;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-
 import lotto.preprocessor.BonusNumPreprocessor;
 import lotto.preprocessor.PurchasePreprocessor;
 import lotto.preprocessor.WinningNumsPreprocessor;
@@ -67,7 +65,7 @@ public class LottoGameController {
         List<Rank> winningResults = lottoGame.findWinningResults();
         for (Rank winningResult : winningResults) {
             earning += winningResult.getPrizeMoney();
-            rankCounts.set(winningResult.ordinal(), rankCounts.get(0)+1);
+            rankCounts.set(winningResult.ordinal(), rankCounts.get(0) + 1);
         }
     }
 
@@ -84,6 +82,6 @@ public class LottoGameController {
     private void reportEarningsRate() {
         System.out.println(earning);
         System.out.println(amount);
-        System.out.println("총 수익률은 " + String.format("%.1f", (double)earning/amount*100) + "%입니다.");
+        System.out.println("총 수익률은 " + String.format("%.1f", (double) earning / amount * 100) + "%입니다.");
     }
 }

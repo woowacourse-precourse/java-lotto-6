@@ -2,7 +2,6 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.*;
 
-import lotto.core.LottoGameController;
 import lotto.preprocessor.BonusNumPreprocessor;
 import lotto.preprocessor.PurchasePreprocessor;
 import lotto.preprocessor.WinningNumsPreprocessor;
@@ -69,7 +68,7 @@ class LottoGameControllerTest {
     @Test
     void isInvalidBonusNumsTest() {
         // init
-        bonusNumPreprocessor.setWinningNumbers(List.of(1,2,3,4,5,6));
+        bonusNumPreprocessor.setWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
 
         // 중복 테스트
         assertThat(bonusNumPreprocessor.isInvalid("1")).isTrue();

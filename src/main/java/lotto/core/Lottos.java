@@ -1,8 +1,5 @@
 package lotto.core;
 
-import lotto.util.LottoConst;
-import lotto.util.Rank;
-
 import java.util.ArrayList;
 import java.util.List;
 

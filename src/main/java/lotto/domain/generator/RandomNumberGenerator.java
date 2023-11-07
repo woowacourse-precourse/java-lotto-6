@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.List;
 
-import static lotto.domain.lotto.LottoCondition.*;
-
 public class RandomNumberGenerator implements NumberGenerator {
 
     private RandomNumberGenerator() {
@@ -20,7 +18,7 @@ public class RandomNumberGenerator implements NumberGenerator {
     }
 
     @Override
-    public List<Integer> generateNumbers(int count) {
-        return Randoms.pickUniqueNumbersInRange(START_NUMBER.getValue(), END_NUMBER.getValue(), count);
+    public List<Integer> generateNumbers(int start, int end, int count) {
+        return Randoms.pickUniqueNumbersInRange(start, end, count);
     }
 }

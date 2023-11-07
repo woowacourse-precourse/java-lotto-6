@@ -4,10 +4,11 @@ import lotto.domain.generator.NumberGenerator;
 import lotto.domain.Ranking;
 import lotto.domain.lotto.AnswerLotto;
 import lotto.domain.lotto.Lotto;
-import lotto.domain.lotto.LottoCondition;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.domain.lotto.LottoCondition.*;
 
 public class Lottos {
 
@@ -21,7 +22,7 @@ public class Lottos {
 
     private void generateLottos(int lottoAmount) {
         while (lottos.size() < lottoAmount) {
-            lottos.add(new Lotto(numberGenerator.generateNumbers(LottoCondition.COUNT.getValue())));
+            lottos.add(new Lotto(numberGenerator.generateNumbers(START_NUMBER.getValue(), END_NUMBER.getValue(), COUNT.getValue())));
         }
     }
 

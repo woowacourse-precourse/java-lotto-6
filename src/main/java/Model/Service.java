@@ -40,7 +40,7 @@ public class Service {
     }
 
     public void compareNumbers() {
-        for (var e : Domain.getInstance().getMyLotto()) {
+        for (var e : DOMAIN.getMyLotto()) {
             DOMAIN.getCorrectNumberCount()
                     .add(numberFrequencyCount(e.getNumbers()));
         }

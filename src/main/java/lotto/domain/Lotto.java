@@ -8,6 +8,7 @@ import static lotto.configuration.StringConstants.SEPERATE_STANDARD;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.util.IntegerListUtil;
 import lotto.util.StringUtil;
 import lotto.validation.IntegerListValidator;
@@ -46,4 +47,10 @@ public class Lotto {
                 numbers, MIN_NUMBER_RANGE.getValue(), MAX_NUMBER_RANGE.getValue());
     }
 
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ", "[", "]"));
+    }
 }

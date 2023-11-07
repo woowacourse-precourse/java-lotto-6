@@ -22,16 +22,22 @@ public class UI {
     }
 
 
-    public static void displayLottoTicketsHistory(List<Lotto> LottoTickets) {
-        displayFormatMessage(Instructions.MESSAGE_OF_PURCHASE_COUNT, LottoTickets.size());
-        for (Lotto lotto : LottoTickets) {
+    public static void displayLottoTicketsHistory(List<Lotto> lottoTickets) {
+        displayFormatMessage(Instructions.MESSAGE_OF_PURCHASE_COUNT, lottoTickets.size());
+        for (Lotto lotto : lottoTickets) {
             System.out.println(lotto.getLottoNumbers());
         }
     }
 
     public static String InputWinningNumbers() {
         displayMessage(Instructions.MESSAGE_OF_ENTERING_WINNING_NUMBERS);
-        String WinningNumbers = Console.readLine();
-        return WinningNumbers;
+        String winningNumbers = Console.readLine();
+        return winningNumbers;
+    }
+
+    public static String InputBonusNumber() {
+        displayMessage(Instructions.MESSAGE_OF_ENTERING_BONUS_NUMBERS);
+        String bonusNumber = Console.readLine();
+        return bonusNumber;
     }
 }

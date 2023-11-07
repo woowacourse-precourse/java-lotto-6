@@ -24,5 +24,4 @@ public class InputView {
 
         return Util.readInput();
     }
-
 }

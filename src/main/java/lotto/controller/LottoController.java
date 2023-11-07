@@ -13,13 +13,14 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private final InputController inputController;
+
     public LottoController() {
         inputController = new InputController();
         playLottoGame();
     }
 
     private void playLottoGame() {
-        LottoPublisher lottoPublisher =  inputController.getPurchasePrice();
+        LottoPublisher lottoPublisher = inputController.getPurchasePrice();
         printLottoInformation(lottoPublisher);
 
         WinningNumber winningNumber = inputController.getWinningNumber();
@@ -27,7 +28,8 @@ public class LottoController {
 
         Lotto winningLotto = winningNumber.createWinningLotto();
         RankDeterminer lottoResult = new RankDeterminer(winningLotto, bonusNumber);
-        WinningResult winningResult = new WinningResult(lottoResult.determineAllRank(lottoPublisher.getUserLottos()), lottoPublisher.getMoney());
+        WinningResult winningResult = new WinningResult(lottoResult.determineAllRank(lottoPublisher.getUserLottos()),
+                lottoPublisher.getMoney());
 
         printWinningInformation(winningResult);
     }
@@ -61,8 +63,4 @@ public class LottoController {
         }
         OutputView.printWinningResult(winningResult, rank);
     }
-
-
-
-
 }

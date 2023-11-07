@@ -17,7 +17,8 @@ public class Util {
     }
 
     public static List<Integer> generateRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getNumber(), MAXIMUM_LOTTO_NUMBER.getNumber(), LOTTO_NUMBER_LENGTH.getNumber());
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER.getNumber(), MAXIMUM_LOTTO_NUMBER.getNumber(),
+                LOTTO_NUMBER_LENGTH.getNumber());
     }
 
     public static List<Integer> sortListAscending(List<Integer> result) {
@@ -32,5 +33,4 @@ public class Util {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-
 }

@@ -1,21 +1,23 @@
 package controller;
 
 import model.LottoNumber;
-import service.InputService;
+import model.LottoService;
 
 public class LottoController {
 
-    InputService inputService = new InputService();
+    LottoService lottoService = new LottoService();
     public LottoNumber winningNumber = new LottoNumber();
 
+    private int lottoCost;
 
     public LottoController(){
         startLotto();
     }
 
     public void startLotto(){
-        inputService.getLottoCost();
-        inputService.createLottoNumber();
+        lottoService.getLottoCost();
+        lottoService.buyLotto();
+        lottoService.createLottoNumber();
     }
 
 }

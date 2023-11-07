@@ -50,7 +50,7 @@ public class LottoProduceServiceImpl implements LottoProduceService {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(startNumber.getValue(), endNumber.getValue(),
                 lottoNumbers.getValue());
         List<Integer> sortedLotto = sortService.sortLottoAsc(numbers);
-        ioAdapter.printLotto(sortedLotto);
+        ioAdapter.printMessage(sortedLotto.toString());
         return sortedLotto;
     }
 }

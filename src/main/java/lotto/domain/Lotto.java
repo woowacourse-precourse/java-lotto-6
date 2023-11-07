@@ -42,7 +42,8 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         IntegerListValidator.validateDuplicated(numbers);
         IntegerListValidator.validateSize(numbers, MAX_NUMBER_COUNT_OF_LOTTO.getValue());
-
+        IntegerListValidator.validateEachIntegerInRange(
+                numbers, MIN_NUMBER_RANGE.getValue(), MAX_NUMBER_RANGE.getValue());
     }
 
 }

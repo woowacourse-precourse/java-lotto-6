@@ -24,5 +24,8 @@ public class IntegerListValidator {
         }
     }
 
-
+    public static void validateEachIntegerInRange(List<Integer> numbers, int min, int max) {
+        numbers.stream()
+                .forEach(number -> IntegerValidator.validateInRange(number, min, max));
+    }
 }

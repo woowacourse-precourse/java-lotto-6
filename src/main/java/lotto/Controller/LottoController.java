@@ -22,12 +22,19 @@ import lotto.domain.LottoResult;
 
 public class LottoController {
     public static final int LOTTO_PRICE = 1000;
+    private static final LottoResult OUT_OF_RANK = null;
 
     int purchaseAmount;
     int totalEarnings;
     Lotto lottoWinningNumbers;
     LottoBonus lottoBonusNumber;
-    List<Lotto> lottoRandomNumbers = new ArrayList<>();
+    List<Lotto> lottoRandomNumbers;
+    LottoRankCount lottoRankCount;
+
+    {
+        lottoRandomNumbers = new ArrayList<>();
+        lottoRankCount = new LottoRankCount();
+    }
 
 
     public LottoController() {
@@ -99,6 +106,25 @@ public class LottoController {
         } catch (Exception error) {
             System.out.println(error.getMessage());
             requestBonusNumber();
+        }
+    }
+
+    public void calculateEarnings() {
+        for (Lotto randomNumbers : lottoRandomNumbers) {
+            LottoResult lottoResult = findRank(randomNumbers);
+            if (lottoResult != OUT_OF_RANK) {
+                totalEarnings += lottoResult.getLottoWinningAmount();
+            }
+        }
+    }
+
+    public void calculateRank() {
+        for (Lotto randomNumbers : lottoRandomNumbers) {
+            LottoResult lottoResult = findRank(randomNumbers);
+            if (lottoResult != OUT_OF_RANK) {
+                int currentRank = lottoResult.getRank();
+                lottoRankCount.incrementCount(currentRank);
+            }
         }
     }
 

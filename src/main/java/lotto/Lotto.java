@@ -16,6 +16,10 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+
+        if(numbers.size() != numbers.stream().distinct().count()){
+            throw new IllegalArgumentException();
+        }
     }
 
     List<Integer> sort(List<Integer> numbers) {
@@ -27,4 +31,5 @@ public class Lotto {
     public List<Integer> convertType() {
         return numbers;
     }
+
 }

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 
@@ -26,6 +27,14 @@ class LottoWinningNumberTest {
     @DisplayName("당첨 번호가 null이면 예외를 발생시킨다")
     void throwExceptionIfNumbersIsNull() {
         assertThatThrownBy(() -> new LottoWinningNumber(null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호를 입력해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("당첨 번호가 비어있으면 예외를 발생시킨다")
+    void throwExceptionIfNumbersIsEmpty() {
+        assertThatThrownBy(() -> new LottoWinningNumber(Collections.emptyList()))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 당첨 번호를 입력해야 합니다.");
     }

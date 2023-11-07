@@ -1,6 +1,8 @@
 package lotto.model.lottoGenerator;
 
 
+import lotto.model.lottoResultChecker.Lotto;
+
 import java.util.ArrayList;
 import java.util.List;
 

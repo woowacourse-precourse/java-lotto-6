@@ -1,6 +1,6 @@
 package lotto.view.outputView;
 
-import lotto.model.lottoGenerator.Lotto;
+import lotto.model.lottoResultChecker.Lotto;
 
 import java.util.List;
 

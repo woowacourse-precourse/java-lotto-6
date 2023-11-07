@@ -5,7 +5,7 @@ import lotto.controller.inputController.LottoWinningNumberController;
 import lotto.controller.outputController.LottoPrintController;
 import lotto.controller.outputController.LottoReturnsController;
 import lotto.controller.outputController.LottoWinningStatisticsController;
-import lotto.model.lottoGenerator.Lotto;
+import lotto.model.lottoResultChecker.Lotto;
 import lotto.model.lottoGenerator.LottoTicketCreator;
 import lotto.model.lottoResultChecker.LottoMatchingData;
 import lotto.model.lottoResultChecker.LottoRank;

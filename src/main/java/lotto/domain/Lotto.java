@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.LottoException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -19,11 +21,11 @@ public class Lotto {
         long removeDuplicationNumbersSize = numbers.stream().distinct().count();
 
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호 6자리를 입력하세요.");
+            throw new IllegalArgumentException(LottoException.LOTTO_NUMBER_NOT_SIX_DIGITS.getMessage());
         }
 
         if(removeDuplicationNumbersSize != numbers.size()){
-            throw new IllegalArgumentException("로또 번호에 중복이 있습니다.");
+            throw new IllegalArgumentException(LottoException.LOTTO_NUMBER_DUPLICATION.getMessage());
         }
     }
 

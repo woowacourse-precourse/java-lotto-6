@@ -48,7 +48,7 @@ public class ResultLottoTest {
         List<Integer> winning = resultLotto.calculateResult(lottoBundle);
 
         //then
-        Assertions.assertThat(winning.get(0)).isEqualTo(1);
+        Assertions.assertThat(winning.get(4)).isEqualTo(1);
 
     }
 

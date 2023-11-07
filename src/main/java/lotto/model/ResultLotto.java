@@ -60,13 +60,13 @@ public class ResultLotto {
 
     private int matchRanking(int matchCount, Lotto lotto) {
         if (matchCount == 6) {
-            return 0;
+            return 4;
         }
         if (matchCount == 5 && lotto.isContainNum(bonusNum)) {
-            return 1;
+            return 3;
         }
         if (matchCount <= 5 && matchCount >= 3) {
-            return 7 - matchCount;
+            return matchCount - 3;
         }
         return -1;
     }

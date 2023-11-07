@@ -25,7 +25,6 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
     public void printLottoNumbers() {
         System.out.println(this.numbers);
     }
@@ -40,7 +39,8 @@ public class Lotto {
         return matchedNumberCount;
     }
 
-    public boolean compareWithBonusNumber(int bonus){
+    public boolean compareWithBonusNumber(int bonus) {
         return this.numbers.contains(bonus);
     }
+
 }

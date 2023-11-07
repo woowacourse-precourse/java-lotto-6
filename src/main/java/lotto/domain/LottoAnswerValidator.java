@@ -10,13 +10,13 @@ public class LottoAnswerValidator {
     public static List<Integer> checkIsValidLottoNumbers(String userInput) {
         //숫자인지 확인
         List<Integer> numbers;
-        numbers = convertStringToNumber(userInput);
+        numbers = convertStringToNumbers(userInput);
         checkIsCorrectNumber(numbers);
         checkLengthIsSix(numbers);
         return numbers;
     }
 
-    public static List<Integer> convertStringToNumber(String userInput) {
+    public static List<Integer> convertStringToNumbers(String userInput) {
         List<Integer> numbers = new ArrayList<>();
 
         String[] splitedUserInput = userInput.split(",");
@@ -58,5 +58,11 @@ public class LottoAnswerValidator {
         if (number < 1 || number > 45) {
             throw new IllegalArgumentException(ErrorMessages.FALL_OUTSIDE_THE_RIGHT_RANGE.getMessage());
         }
+    }
+
+    public static int convertStringToNumber(String unParsedNumber) {
+        int bonusNumber = convertToNumber(unParsedNumber);
+        checkIsOnSide(bonusNumber);
+        return bonusNumber;
     }
 }

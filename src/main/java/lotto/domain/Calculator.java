@@ -5,6 +5,8 @@ import java.util.List;
 public class Calculator {
     private static final Long lottoPrice = 1000L;
     public static void calculateTheRateOfReturn(List<Integer> ranks, int amount){
+        System.out.println("당첨 통계");
+        System.out.println("---");
         Long prizeMoney = calculateTotalPrizeMoney(ranks);
         Rank[] Ranks = Rank.values();
         for(int i = ranks.size() - 1; i >=0 ; i--){

@@ -17,34 +17,49 @@ public class LottoSalesManager {
 
     private void checkIsValid(String unParsedAmount) {
         int parsedAmount = 0;
-        try{
+        try {
             parsedAmount = Integer.parseInt(unParsedAmount);
-            //TODO error구체화
-        }catch (Exception e){
+            //TODO error 구체화
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             throw new IllegalArgumentException(ErrorMessages.CAN_NOT_CONVERT_TO_NUMBER.getMessage());
         }
-        if(parsedAmount % 1000 != 0){
+        if (parsedAmount % 1000 != 0) {
             throw new IllegalArgumentException(ErrorMessages.NOT_A_MULTIPLE_OF_1000.getMessage());
         }
     }
 
-    public List<Lotto> makeLottos(){
-      List<Lotto> lottos = new ArrayList<>();
-      for(int i = 0; i < amount/1000; i++){
-          lottos.add(new Lotto(makeRandomNumbers()));
-      }
-      return lottos;
+    public List<Lotto> makeLottos() {
+        List<Lotto> lottos = new ArrayList<>();
+        for (int i = 0; i < amount / 1000; i++) {
+            lottos.add(new Lotto(makeRandomNumbers()));
+        }
+        return lottos;
     }
 
     private List<Integer> makeRandomNumbers() {
-        while(true){
+        while (true) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             Set<Integer> numbersWithDuplicatesRemove = new HashSet<>(numbers);
-            if(numbersWithDuplicatesRemove.size() == 6){
+            if (numbersWithDuplicatesRemove.size() == 6) {
                 return numbers;
             }
         }
     }
 
+    public int judgeLottosRank(int matchedNumberCount, boolean bonusIsMatched) {
+        if (matchedNumberCount == 3) {
+            return 5;
+        }
+        if (matchedNumberCount == 4) {
+            return 4;
+        }
+        if (matchedNumberCount == 5 && !bonusIsMatched) {
+            return 3;
+        }
+        if (matchedNumberCount == 5 && bonusIsMatched) {
+            return 2;
+        }
+        return 1;
+    }
 }

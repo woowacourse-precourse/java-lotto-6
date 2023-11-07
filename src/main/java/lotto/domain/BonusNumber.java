@@ -8,4 +8,8 @@ public class BonusNumber {
         this.BounsNumber = BonusNumber;
 
     }
+
+    private void validate(int BonusNumber) {
+        return;
+    }
 }

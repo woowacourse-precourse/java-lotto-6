@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
@@ -27,15 +27,31 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호의 개수가 6개보다 작으면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    //TODO 비슷한 테스트케이스, List값만 바꿔도 될 수 있도록 공부해서 수정
+    @DisplayName("로또 번호가 1부터 45 사이가 아니면 예외가 발생한다.")
+    @Test
+    void createExceedRangeNumber() {
+        /**
+         * List.of(1,2,3,4,5,0)
+         * List.of(1,2,3,4,5,100)
+         */
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호에 숫자가 아닌 문자가 포함되어 있으면 예외가 발생한다.")
     @Test
     void createLottoByContainLetter() {
@@ -45,27 +61,16 @@ class LottoTest {
          * List.of(1,2,3,4,5,0.1)
          * List.of(1,2,3,4,5,*)
          */
+        //TODO 테스트 수정
         assertThatThrownBy(() -> new Lotto(List.of())).isInstanceOf(
             IllegalArgumentException.class);
     }
 
-    @DisplayName("로또 번호가 1~45 사이의 값이 아니면 예외가 발생한다. ")
-    @Test
-    void createLottoByInvalidNumber() {
-        /**
-         * List.of(1,2,3,4,5,55)
-         * List.of(1,2,3,4,5,0)
-         * List.of(1,2,3,4,5,100)
-         */
-
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
-            .isInstanceOf(IllegalArgumentException.class);
-    }
 
     @DisplayName("로또 번호에 Empty 값이 있으면 예외가 발생한다. ")
-    @Test
+    @Test()
     void createLottoByEmptyValue() {
-        //이 경우, 애초에 공백 문자가 들어갈 수 없는 구조라 예외 발생이 어려움. 기능명세서 수정.
+        //TODO 이 경우, 애초에 공백 문자가 들어갈 수 없는 구조라 예외 발생이 어려움. 기능명세서 수정.
         String input = "1,2,3,4,,6";
         List<Integer> lottoNumbers = Arrays.stream(input.split(","))
             .map(String::trim)
@@ -76,5 +81,4 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(lottoNumbers))
             .isInstanceOf(IllegalArgumentException.class);
     }
-
 }

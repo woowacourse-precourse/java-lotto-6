@@ -20,71 +20,79 @@ public class ExceptionTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"-1","-1000000"})
-    void 음수인_금액_입력_테스트(String negativeNumber){
+    @ValueSource(strings = {"-1", "-1000000"})
+    void 음수인_금액_입력_테스트(String negativeNumber) {
 
-        assertThatThrownBy(() -> inputValidator.amountValidator(negativeNumber)).isInstanceOf(IllegalArgumentException.class);
-
-    }
-    @ParameterizedTest
-    @ValueSource(strings = {"notNumber","<>","-="})
-    void 숫자가_아닌_금액_입력_테스트(String notNumber){
-
-        assertThatThrownBy(() -> inputValidator.amountValidator(notNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputValidator.amountValidator(negativeNumber)).isInstanceOf(
+                IllegalArgumentException.class);
 
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"1,2,3,4,5,5","10,9,45,1,45"})
-    void 중복된_로또_번호_입력_테스트(String overlapNumber){
+    @ValueSource(strings = {"notNumber", "<>", "-="})
+    void 숫자가_아닌_금액_입력_테스트(String notNumber) {
 
-        assertThatThrownBy(() -> inputValidator.lottoValidator(overlapNumber)).isInstanceOf(IllegalArgumentException.class);
-
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"100,2,3,4,5,6","10,9,45,1,0"})
-    void 범위를_벗어난_로또_번호_입력_테스트(String overRangeNumber){
-
-        assertThatThrownBy(() -> inputValidator.lottoValidator(overRangeNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputValidator.amountValidator(notNumber)).isInstanceOf(
+                IllegalArgumentException.class);
 
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"notNumber,2,3,4,5,6","10,9,45,1,-=","1,2,3,,4,5"})
-    void 숫자가_아닌_로또_번호_입력_테스트(String notNumber){
+    @ValueSource(strings = {"1,2,3,4,5,5", "10,9,45,1,45"})
+    void 중복된_로또_번호_입력_테스트(String overlapNumber) {
+
+        assertThatThrownBy(() -> inputValidator.lottoValidator(overlapNumber)).isInstanceOf(
+                IllegalArgumentException.class);
+
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"100,2,3,4,5,6", "10,9,45,1,0"})
+    void 범위를_벗어난_로또_번호_입력_테스트(String overRangeNumber) {
+
+        assertThatThrownBy(() -> inputValidator.lottoValidator(overRangeNumber)).isInstanceOf(
+                IllegalArgumentException.class);
+
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"notNumber,2,3,4,5,6", "10,9,45,1,-=", "1,2,3,,4,5"})
+    void 숫자가_아닌_로또_번호_입력_테스트(String notNumber) {
 
         assertThatThrownBy(() -> inputValidator.lottoValidator(notNumber)).isInstanceOf(IllegalArgumentException.class);
 
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"notNumber","-=",""})
-    void 숫자가_아닌_보너스_번호_입력_테스트(String notNumber){
+    @ValueSource(strings = {"notNumber", "-=", ""})
+    void 숫자가_아닌_보너스_번호_입력_테스트(String notNumber) {
 
-        List<Integer> lottoNumbers = List.of(5,10,15,20,25,30);
+        List<Integer> lottoNumbers = List.of(5, 10, 15, 20, 25, 30);
 
-        assertThatThrownBy(() -> inputValidator.bonusValidator(lottoNumbers, notNumber)).isInstanceOf(IllegalArgumentException.class);
-
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = {"46","0"})
-    void 범위를_벗어난_보너스_번호_입력_테스트(String notNumber){
-
-        List<Integer> lottoNumbers = List.of(5,10,15,20,25,30);
-
-        assertThatThrownBy(() -> inputValidator.bonusValidator(lottoNumbers, notNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputValidator.bonusValidator(lottoNumbers, notNumber)).isInstanceOf(
+                IllegalArgumentException.class);
 
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"10","30"})
-    void 중복된_보너스_번호_입력_테스트(String notNumber){
+    @ValueSource(strings = {"46", "0"})
+    void 범위를_벗어난_보너스_번호_입력_테스트(String notNumber) {
 
-        List<Integer> lottoNumbers = List.of(5,10,15,20,25,30);
+        List<Integer> lottoNumbers = List.of(5, 10, 15, 20, 25, 30);
 
-        assertThatThrownBy(() -> inputValidator.bonusValidator(lottoNumbers, notNumber)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> inputValidator.bonusValidator(lottoNumbers, notNumber)).isInstanceOf(
+                IllegalArgumentException.class);
+
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"10", "30"})
+    void 중복된_보너스_번호_입력_테스트(String notNumber) {
+
+        List<Integer> lottoNumbers = List.of(5, 10, 15, 20, 25, 30);
+
+        assertThatThrownBy(() -> inputValidator.bonusValidator(lottoNumbers, notNumber)).isInstanceOf(
+                IllegalArgumentException.class);
 
     }
 

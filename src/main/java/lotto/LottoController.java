@@ -70,12 +70,14 @@ public class LottoController {
     private void result() {
         printStats();
         printDash();
-        int match = 3;
+        int match = 3; // 3개 맞은 것부터 출력
         for (OutputLine outputLine : OutputLine.values()) {
             if (match == 6) {
-                System.out.printf(outputLine.getCorrect(), Collections.frequency(matchingLotto, 7));
+                System.out.printf(outputLine.getCorrect(), Collections.frequency(matchingLotto, 10));
+                match++;
                 continue;
             }
+            if (match > 6){ match = 6; }
             System.out.printf(outputLine.getCorrect(), Collections.frequency(matchingLotto, match++));
         }
     }

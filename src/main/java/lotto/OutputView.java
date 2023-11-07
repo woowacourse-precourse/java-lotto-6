@@ -25,9 +25,14 @@ public class OutputView {
             System.out.println(myLotto);
         }
     }
-    public static void printNumbers() { System.out.println(inputNumbers); }
 
-    public static void printBonus() { System.out.println(inputBonus); }
+    public static void printNumbers() {
+        System.out.println(inputNumbers);
+    }
+
+    public static void printBonus() {
+        System.out.println(inputBonus);
+    }
 
     public static void printStats() {
         System.out.println(stats);
@@ -38,6 +43,10 @@ public class OutputView {
     }
 
     public static void printResult(float rate) {
+        if (rate % 1 == 0){
+            System.out.printf(result, String.format("%.0f", rate));
+            return;
+        }
         System.out.printf(result, String.format("%.1f", rate));
     }
 

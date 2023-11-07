@@ -8,7 +8,7 @@ public class InputValidator {
     public static int amountValidator(String amount) {
 
         int validAmount = validNumber(amount);
-
+        validUnit(validAmount);
         negativeNumber(validAmount);
 
         return validAmount;
@@ -41,6 +41,13 @@ public class InputValidator {
 
         return bonusNumber;
 
+    }
+
+    private static void validUnit(int amount){
+        if(amount % 1000 != 0){
+            System.out.println("[ERROR] 금액은 천원 단위로 해야 합니다.");
+            throw new IllegalArgumentException();
+        }
     }
 
     private static void validLen(List<Integer> numbers) {

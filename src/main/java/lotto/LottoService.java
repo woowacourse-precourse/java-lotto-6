@@ -61,7 +61,7 @@ public class LottoService {
 
     // 로또를 구매하는데 사용한 금액만으로 수익률을 계산한다
     public float rateReturn() {
-        return (float) myPrizeMoney / (numberOfPurchase()*10);
+        return (float) myPrizeMoney / (numberOfPurchase() * 10);
     }
 
     // 로또 하나를 비교하는 함수
@@ -72,9 +72,9 @@ public class LottoService {
             matchCount += compareOnce(lotto.getNumbers(), lottoNumber);
         }
 
-        if (matchCount == 4 && compareOnce(myLotto, bonus.getBonus()) == 1) {
+        if (matchCount == 5 && compareOnce(myLotto, bonus.getBonus()) == 1) {
             myPrizeMoney += PRIZE_MONEY[7];
-            return 7;
+            return 10;
         }
 
         myPrizeMoney += PRIZE_MONEY[matchCount];

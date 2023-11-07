@@ -1,18 +1,7 @@
 package lotto.domain;
 
-import static lotto.message.LottoMessage.FIFTH_PLACE;
-import static lotto.message.LottoMessage.FIRST_PLACE;
-import static lotto.message.LottoMessage.FOURTH_PLACE;
-import static lotto.message.LottoMessage.SECOND_PLACE;
-import static lotto.message.LottoMessage.THIRD_PLACE;
-import static lotto.utils.ValueUnit.FIFTH_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.FIRST_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.FOURTH_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.LAST_PLACE_WINNING_AMOUNT;
 import static lotto.utils.ValueUnit.ONE;
 import static lotto.utils.ValueUnit.PERCENT_CALCULATION;
-import static lotto.utils.ValueUnit.SECOND_PLACE_WINNING_AMOUNT;
-import static lotto.utils.ValueUnit.THIRD_PLACE_WINNING_AMOUNT;
 import static lotto.utils.ValueUnit.ZERO;
 
 import java.math.BigDecimal;
@@ -21,28 +10,25 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.utils.StringUnit;
 import lotto.utils.ValueUnit;
+import lotto.vo.Place;
 import lotto.vo.Result;
+import lotto.vo.Reward;
 
 public final class Statistics {
 
     private final List<Result> results;
     private final List<Integer> ranks;
+    private final Reward reward;
+
+    private final Place place;
 
     public Statistics(List<Result> results) {
         this.results = results;
         this.ranks = getRank();
+        this.reward = new Reward();
+        this.place = new Place();
     }
 
-    private List<Integer> makeWinningAmounts() {
-        Integer lastPlaceWinningAmount = LAST_PLACE_WINNING_AMOUNT.getValue();
-        Integer fifthPlaceWinningAmount = FIFTH_PLACE_WINNING_AMOUNT.getValue();
-        Integer fourthPlaceWinningAmount = FOURTH_PLACE_WINNING_AMOUNT.getValue();
-        Integer thirdPlaceWinningAmount = THIRD_PLACE_WINNING_AMOUNT.getValue();
-        Integer secondPlaceWinningAmount = SECOND_PLACE_WINNING_AMOUNT.getValue();
-        Integer firstPlaceWinningAmount = FIRST_PLACE_WINNING_AMOUNT.getValue();
-        return Arrays.asList(lastPlaceWinningAmount, fifthPlaceWinningAmount, fourthPlaceWinningAmount,
-                thirdPlaceWinningAmount, secondPlaceWinningAmount, firstPlaceWinningAmount);
-    }
 
     public List<String> rankStatistics() {
         List<String> printResult = new ArrayList<>();
@@ -57,7 +43,7 @@ public final class Statistics {
     }
 
     public BigDecimal calcRateOfReturn(int money) {
-        List<Integer> rewards = makeWinningAmounts();
+        List<Integer> rewards = reward.getPrize();
         ValueUnit fifthPlace = ValueUnit.FIFTH_PLACE;
         ValueUnit firstPlace = ValueUnit.FIRST_PLACE;
         int totalReturn = ZERO.getValue();
@@ -67,10 +53,8 @@ public final class Statistics {
         return BigDecimal.valueOf(((double) totalReturn / money) * PERCENT_CALCULATION.getValue());
     }
 
-    private String getPlaceMessage(int place) {
-        List<String> placeMessages = Arrays.asList("", FIFTH_PLACE.getMessage(), FOURTH_PLACE.getMessage(),
-                THIRD_PLACE.getMessage(), SECOND_PLACE.getMessage(), FIRST_PLACE.getMessage());
-        return placeMessages.get(place);
+    private String getPlaceMessage(int index) {
+        return place.getMessage(index);
     }
 
     private List<Integer> getRank() {

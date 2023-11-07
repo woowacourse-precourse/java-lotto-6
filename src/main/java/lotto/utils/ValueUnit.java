@@ -16,7 +16,7 @@ public enum ValueUnit {
     MINUS_ONE(1),
     MINUS_TWO(2),
     NO_WIN(0),
-    FIFTH_PLACE(0),
+    FIFTH_PLACE(1),
     FIRST_PLACE(6),
     LAST_PLACE_WINNING_AMOUNT(0),
     FIFTH_PLACE_WINNING_AMOUNT(5000),

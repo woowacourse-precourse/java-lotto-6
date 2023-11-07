@@ -21,6 +21,20 @@ public class ProfitCalculator {
         }
     }
 
+    private enum Rank {
+        FIRST(6), SECOND(2), THIRD(5), FOURTH(4), FIFTH(3);
+
+        private final int rank;
+
+        Rank(int rank) {
+            this.rank = rank;
+        }
+
+        public int getRank() {
+            return rank;
+        }
+    }
+
     public Double calculateProfitRate(Map<Integer, Integer> winningStatistics, String buying) {
         Double prizeAmount = calculatePrizeAmount(winningStatistics);
         Double buyingAmount = Double.parseDouble(buying);
@@ -29,11 +43,11 @@ public class ProfitCalculator {
 
     private Double calculatePrizeAmount(Map<Integer, Integer> winningStatistics) {
         Double prizeAmount = 0.0;
-        prizeAmount += winningStatistics.get(6) * Prize.FIRST.getPrize();
-        prizeAmount += winningStatistics.get(2) * Prize.SECOND.getPrize();
-        prizeAmount += winningStatistics.get(5) * Prize.THIRD.getPrize();
-        prizeAmount += winningStatistics.get(4) * Prize.FOURTH.getPrize();
-        prizeAmount += winningStatistics.get(3) * Prize.FIFTH.getPrize();
+        prizeAmount += winningStatistics.get(Rank.FIRST.getRank()) * Prize.FIRST.getPrize();
+        prizeAmount += winningStatistics.get(Rank.SECOND.getRank()) * Prize.SECOND.getPrize();
+        prizeAmount += winningStatistics.get(Rank.THIRD.getRank()) * Prize.THIRD.getPrize();
+        prizeAmount += winningStatistics.get(Rank.FOURTH.getRank()) * Prize.FOURTH.getPrize();
+        prizeAmount += winningStatistics.get(Rank.FIFTH.getRank()) * Prize.FIFTH.getPrize();
 
         return prizeAmount;
     }

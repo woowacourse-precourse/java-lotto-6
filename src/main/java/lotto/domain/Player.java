@@ -30,11 +30,11 @@ public class Player {
     }
 
     public void setLottoAmount() {
-        Prints.print_input_amount_message();
+        Prints.INPUT_AMOUNT_MESSAGE.show();
         try {
             this.lottoAmount = new LottoAmount(Utils.parseIntValidate(Console.readLine()));
         } catch (IllegalArgumentException e) {
-            System.out.println(String.format("[ERROR] %s", e.getMessage()));
+            Prints.SHOW_ERROR_MSG.showFormat(e.getMessage());
             setLottoAmount();
         }
 
@@ -44,7 +44,7 @@ public class Player {
         try {
             this.lottoCount = new LottoCount(lottoAmount.getLottoAmount());
         } catch (IllegalArgumentException e) {
-            System.out.println(String.format("[ERROR] %s", e.getMessage()));
+            Prints.SHOW_ERROR_MSG.showFormat(e.getMessage());
             setLottoAmount();
             setLottoCount();
         }
@@ -58,7 +58,7 @@ public class Player {
     }
 
     public void showLottoCount() {
-        Prints.print_lottoCount(lottoCount.getLottoCount());
+        Prints.SHOW_LOTTOCOUNT.showFormat(lottoCount.getLottoCount());
     }
 
     public List<Lotto> getLottos() {

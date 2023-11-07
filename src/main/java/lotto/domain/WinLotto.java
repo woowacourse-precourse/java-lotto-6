@@ -16,19 +16,19 @@ public class WinLotto {
 
     public void createLotto() {
         try {
-            Prints.print_input_winLotto();
+            Prints.INPUT_WINLOTTO.show();
             lotto = new Lotto(inputWinNumber());
             lotto.lottoByDuplicateNumber();
             lotto.lottoByRange();
         } catch (IllegalArgumentException e) {
-            System.out.println(String.format("[ERROR] %s", e.getMessage()));
+            Prints.SHOW_ERROR_MSG.showFormat(e.getMessage());
             createLotto();
         }
 
     }
 
     public void createBonusNumber() {
-        Prints.print_input_bonusnumber();
+        Prints.INPUT_BONUSNUMBER.show();
         bounsNumber = new BounsNumber(inputBonusNumber());
         bounsNumber.bonusnumNyRange();
         lotto.numberByContains(bounsNumber.getBounsNumber());

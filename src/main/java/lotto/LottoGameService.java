@@ -17,7 +17,7 @@ public class LottoGameService {
 
         player.createWinLotto();
 
-        Prints.print_game_result();
+        Prints.SHOW_GAME_RESULT.show();
         Results results = new Results(player.getLottos(), player.getWinLotto());
         results.calculate();
         results.showResult();

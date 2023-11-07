@@ -39,12 +39,12 @@ public class LottoSystem {
         return player.getPurchasedLottoCount();
     }
 
-    public List<Prize> getWinningResult() {
+    private List<Prize> getWinningPrizes() {
         List<Prize> prizes = new ArrayList<>();
         for (int i = 0; i < getPurchasedLottoCount(); i++) {
             Lotto winningLotto = winningLottos.get(i);
-            int totalMatchingNumberCount = getMatchingNumberCount(winningLotto) + getMatchingBonusNumberCount(winningLotto);
-            getPrize(totalMatchingNumberCount, hasBonusNumber(winningLotto)).ifPresent(prizes::add);
+            int matchingNumberCount = getMatchingNumberCount(winningLotto);
+            prizes.add(getWinningPrize(matchingNumberCount, hasBonusNumber(winningLotto)));
         }
         return prizes;
     }

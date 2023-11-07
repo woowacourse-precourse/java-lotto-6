@@ -93,3 +93,20 @@
         - #getBonusLotto
     - 당첨 통계 출력 요청
         - #showWinningResult
+
+> Util
+
+- message
+    - Digit (enum)
+        - 매직 넘버 저장
+    - Error(enum)
+        - 에러 메시지 저장
+    - Guide (enum)
+        - 게임 진행 안내 메시지 저장
+- Conversion
+    - string -> int 변환 기능
+    - string -> list 변환 기능
+- RandomNumber
+    - 랜덤 숫자 생성기
+- Validation
+    - 공통된 유효성 검사 모아 놓음

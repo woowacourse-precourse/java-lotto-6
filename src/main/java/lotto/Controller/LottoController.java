@@ -47,7 +47,7 @@ public class LottoController {
         requestWinningNumbers();
         requestBonusNumber();
 
-        calculateEarnings();
+
     }
 
     public void requestLottoPurchaseAmount() {
@@ -65,8 +65,7 @@ public class LottoController {
 
     public void printOutRandomNumbers() {
         int lottoTicket = purchaseAmount / LOTTO_PRICE;
-        System.out.printf(LOTTO_TICKETS_PURCHASED_MESSAGE, lottoTicket);
-        System.out.println();
+        System.out.printf(LOTTO_TICKETS_PURCHASED_MESSAGE+"\n", lottoTicket);
         generateLottoRandomNumbers(lottoTicket);
         for (Lotto randomNumber : lottoRandomNumbers) {
             System.out.println(randomNumber);
@@ -109,6 +108,19 @@ public class LottoController {
         }
     }
 
+    public void printOutWinningResult() {
+        System.out.println(LOTTO_RESULTS_MESSAGE);
+        System.out.println(DIVIDER);
+        calculateResult();
+
+        String earningsRate = calculateEarningsRate(totalEarnings, purchaseAmount);
+    }
+
+    public void calculateResult() {
+        calculateEarnings();
+        calculateRank();
+    }
+
     public void calculateEarnings() {
         for (Lotto randomNumbers : lottoRandomNumbers) {
             LottoResult lottoResult = findRank(randomNumbers);
@@ -135,10 +147,5 @@ public class LottoController {
     }
 
 
-    public void printOutWinningResult() {
-        System.out.println(LOTTO_RESULTS_MESSAGE);
-        System.out.println(DIVIDER);
-        String earningsRate = calculateEarningsRate(totalEarnings, purchaseAmount);
 
-    }
 }

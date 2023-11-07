@@ -9,6 +9,13 @@ public class WinningLotto {
     }
 
 
+    public int grade(Lotto lotto) {
+        return winningLotto.compareWithAnotherLotto(lotto);
+    }
+
+    public boolean contains(int number) {
+        return winningLotto.contains(number);
+    }
 
     private void inputWinningNumbers() {
         System.out.println();

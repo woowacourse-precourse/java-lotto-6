@@ -2,14 +2,12 @@ package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.List;
-
 public class WinningLotto {
 
     private final Lotto lotto;
 
     public WinningLotto() {
-       this.lotto = new Lotto(createWinningLottoNumber());
+        lotto = this.createWinningLottoNumber();
     }
 
     public Lotto getLotto() {
@@ -17,15 +15,8 @@ public class WinningLotto {
     }
 
 
-    private List<Integer> createWinningLottoNumber(){
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    private Lotto createWinningLottoNumber() {
+        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
     }
-
-
-
-
-
-
-
 
 }

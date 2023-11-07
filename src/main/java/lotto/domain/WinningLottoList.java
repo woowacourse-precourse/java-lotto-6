@@ -6,34 +6,33 @@ import java.util.List;
 
 public class WinningLottoList {
 
-    private int listSize;
-    private final List<WinningLotto> winningLottos = new ArrayList<>();
+    private final List<WinningLotto> winningLottos;
 
     public WinningLottoList(int size) {
-        this.listSize = size;
+        this.winningLottos = this.generateLotterys(size);
     }
 
 
     public void printWinningLottoList(){
-        createLotteryList();
-
         for(WinningLotto data : winningLottos){
             Collections.sort(data.getLotto().getNumbers());
             System.out.println(data.getLotto().getNumbers());
         }
     }
 
-    private void createLotteryList(){
-        while(listSize>0){
-            addLottery();
-            listSize--;
+    private List<WinningLotto> generateLotterys(int size){
+        List<WinningLotto> winningLottos = new ArrayList<>();
+
+        while(size>0){
+            WinningLotto winningLotto = new WinningLotto();
+            winningLottos.add(winningLotto);
+            size--;
         }
+
+        return winningLottos;
+
     }
 
-
-    private void addLottery(){
-            winningLottos.add(new WinningLotto());
-    }
 
 
 }

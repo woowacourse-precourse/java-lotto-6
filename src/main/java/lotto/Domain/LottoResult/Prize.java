@@ -7,25 +7,25 @@ public enum Prize {
     FOURTH_PRIZE(0, 50000, 4),
     FIFTH_PRIZE(0, 5000, 3);
 
-    private Integer winningCount;
-    private final Integer award;
-    private final Integer numberCount;
+    private int winningCount;
+    private final int award;
+    private final int numberCount;
 
-    Prize(Integer winningCount, Integer award, Integer numberCount) {
+    Prize(int winningCount, int award, int numberCount) {
         this.winningCount = winningCount;
         this.award = award;
         this.numberCount = numberCount;
     }
 
-    public Integer getWinningCount() {
+    public int getWinningCount() {
         return winningCount;
     }
 
-    public Integer getAward() {
+    public int getAward() {
         return award;
     }
 
-    public Integer getNumberCount() {
+    public int getNumberCount() {
         return numberCount;
     }
 

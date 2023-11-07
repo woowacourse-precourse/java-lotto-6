@@ -10,11 +10,8 @@ import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
 import lotto.domain.WinningStatistics;
-import lotto.view.Input;
 
 public class GameManager {
-    Input input = new Input();
-
     public List<Lotto> createLotto(int purchaseAmount) {
         int purchaseQuantity = getPurchaseQuantity(purchaseAmount);
         List<Lotto> totalLotto = new ArrayList<>();
@@ -40,8 +37,9 @@ public class GameManager {
         }
     }
 
-    public void compareTotalLotto(List<Lotto> totalLotto, List<Integer> winningNumbers, int bonusNumber, WinningStatistics winningStatistics) {
-        for(Lotto lotto : totalLotto){
+    public void compareTotalLotto(List<Lotto> totalLotto, List<Integer> winningNumbers, int bonusNumber,
+                                  WinningStatistics winningStatistics) {
+        for (Lotto lotto : totalLotto) {
             compareLottoWithWinningNumbers(lotto, winningNumbers, bonusNumber, winningStatistics);
         }
     }
@@ -74,16 +72,17 @@ public class GameManager {
         return Ranking.FIVE_MATCHES;
     }
 
-    public double calculateProfitPercentage(int totalWinningAmount, int purchaseAmount){
+    public double calculateProfitPercentage(WinningStatistics winningStatistics, int purchaseAmount) {
+        int totalWinningAmount = calculateTotalWinningAmount(winningStatistics);
         double profit = ((double) totalWinningAmount / purchaseAmount) * 100;
         return Math.round(profit * 100.0) / 100.0;
     }
 
-    public int calculateTotalWinningAmount(WinningStatistics winningStatistics){
+    private int calculateTotalWinningAmount(WinningStatistics winningStatistics) {
         int totalWinningAmount = 0;
         Map<Ranking, Integer> winningResult = winningStatistics.getWinningStatus();
 
-        for(Ranking ranking : winningResult.keySet()){
+        for (Ranking ranking : winningResult.keySet()) {
             totalWinningAmount += ranking.getWinningAmount() * winningResult.get(ranking);
         }
 

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import lotto.converter.SortNumbersConverter;
 import lotto.validator.LottoNumbersValidator;
 
 public class Lotto {
@@ -13,17 +14,16 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = new ArrayList<>(getSortedNumbers(numbers));
+        this.numbers = new ArrayList<>(createSortedNumbers(numbers));
     }
 
     private void validate(List<Integer> numbers) {
         LottoNumbersValidator.validate(numbers);
     }
 
-    private List<Integer> getSortedNumbers(final List<Integer> numbers) {
-        return numbers.stream()
-                .sorted()
-                .toList();
+    private List<Integer> createSortedNumbers(final List<Integer> numbers) {
+        SortNumbersConverter converter = new SortNumbersConverter();
+        return converter.convert(numbers);
     }
 
     public int compare(final Lotto lotto) {

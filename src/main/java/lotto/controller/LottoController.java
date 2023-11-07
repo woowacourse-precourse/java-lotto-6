@@ -1,8 +1,12 @@
 package lotto.controller;
 
+import lotto.domain.BonusNum;
 import lotto.domain.Lotto;
+import lotto.domain.Money;
+import lotto.util.CalculateRate;
+import lotto.util.GenerateTicket;
 import lotto.util.MakeLotto;
-import lotto.util.LottoResult;
+import lotto.domain.LottoResult;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -11,43 +15,39 @@ public class LottoController {
 
     private InputController inputController = new InputController();
     private MakeLotto makeLotto = new MakeLotto();
-    private final int money;
-    private final int bonusNum;
 
     public LottoController(){
-        money = getMoney();
-        List<Lotto> lottoList = makeLotto.makeLottoList(getLottoTickets(money));
-        List<Integer> winningNum = getWinningNum();
-        bonusNum = getBonusNum();
-        LottoResult lottoResult = new LottoResult(lottoList, winningNum, bonusNum);
-        printResult(lottoResult);
+        Money money = setMoney();
+        int lottoTicket = GenerateTicket.getLottoTickets(money.getMoney());
+        List<Lotto> lottoList = makeLotto.makeLottoList(lottoTicket);
+        List<Integer> winningNum = setWinningNum();
+        BonusNum bonusNum = setBonusNum();
+        LottoResult lottoResult = new LottoResult(lottoList, winningNum, bonusNum.getBonusNum());
+        double totalRate = CalculateRate.getTotalRate(money.getMoney(), lottoResult.getTotalReward());
+        printResult(lottoResult, totalRate);
     }
 
-    public int getMoney(){
+    public Money setMoney(){
         OutputView.inputBuyMessage();
         return inputController.inputMoney();
     }
 
-    public int getLottoTickets(int money){
-        return money/1000;
-    }
-
-    public List<Integer> getWinningNum(){
+    public List<Integer> setWinningNum(){
         OutputView.printBlank();
         OutputView.inputWinningNumMessage();
         return inputController.inputWinningNum();
     }
 
-    public int getBonusNum(){
+    public BonusNum setBonusNum(){
         OutputView.printBlank();
         OutputView.inputBonusNumMessage();
         return inputController.inputBonusNum();
     }
 
-    public void printResult(LottoResult lottoResult){
+    public void printResult(LottoResult lottoResult, double totalReward){
         OutputView.printBlank();
         OutputView.printResultBar();
         OutputView.printResult(lottoResult.getLottoResult());
-        OutputView.printTotalRate(money, lottoResult.getTotalRate());
+        OutputView.printTotalRate(totalReward);
     }
 }

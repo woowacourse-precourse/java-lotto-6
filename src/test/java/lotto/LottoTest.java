@@ -24,4 +24,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 구매 금액이 1000원 단위가 아닐 경우 예외가 발생한다.")
+    @Test
+    void createLottoBy1000() {
+        assertThatThrownBy(() -> new PurchaseAmount(1500))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

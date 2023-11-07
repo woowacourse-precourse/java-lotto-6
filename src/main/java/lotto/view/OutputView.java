@@ -10,6 +10,7 @@ public class OutputView {
     private static final String DASH_LINE = "---";
     private static final String WINNING_STATS_FORMAT = "%s (%,d원) - %d개\n";
     private static final String TOTAL_RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final int PERCENTAGE_CONVERSION = 100;
 
     public void printPurchaseAmount(int purchaseAmount) {
         System.out.printf(PURCAHSE_AMOUNT_FORMAT, purchaseAmount);
@@ -36,6 +37,6 @@ public class OutputView {
     }
 
     public void printTotalRateOfReturn(double rateOfReturn) {
-        System.out.printf(TOTAL_RATE_OF_RETURN_FORMAT, rateOfReturn);
+        System.out.printf(TOTAL_RATE_OF_RETURN_FORMAT, rateOfReturn * PERCENTAGE_CONVERSION);
     }
 }

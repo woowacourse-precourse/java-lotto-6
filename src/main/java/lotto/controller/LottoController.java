@@ -3,7 +3,9 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lotto;
+import lotto.model.LottoModel;
 import lotto.model.LottoPrize;
+import lotto.view.LottoBuyView;
 import lotto.view.LottoInputView;
 
 import java.util.ArrayList;
@@ -13,26 +15,20 @@ import java.util.List;
 import static lotto.model.LottoPrize.getPrizeRankByMatch;
 
 public class LottoController {
-    private static final int LOTTO_PRICE = 1000;
     static LottoInputView lottoInputView = new LottoInputView();
+    LottoModel lottoModel = new LottoModel();
+    LottoBuyView lottoBuyView = new LottoBuyView();
 
     public void runLotto() {
         // 1. 구입 금액 입력
         int price = lottoInputView.purchasePriceInput();
+        lottoModel.setInputPrice(price);
+        lottoModel.calcPurchasedCount();
 
         // 2. 로또 구매
-        int count = price / LOTTO_PRICE;
-        List<Lotto> purchasedLotto = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Lotto lotto = new Lotto(numbers);
-            purchasedLotto.add(lotto);
-        }
-
-        System.out.printf("\n%d개를 구매했습니다.\n", count);
-        for (Lotto lotto : purchasedLotto) {
-            lotto.printLotto();
-        }
+        int count = lottoModel.getPurchasedCount();
+        List<Lotto> purchasedLotto = lottoModel.getPurchasedLotto(count);
+        lottoBuyView.printPurchaseLog(purchasedLotto, count);
 
         // 3. 당첨 번호 입력
         System.out.println("\n당첨 번호를 입력해 주세요.");
@@ -68,6 +64,9 @@ public class LottoController {
             bonus = Integer.parseInt(bonusInput);
             if (bonus <= 0 || bonus > 45) {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+            if (winNumbers.contains(bonus)) {
+                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
             }
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 올바르지 않은 로또 번호 형식입니다.");

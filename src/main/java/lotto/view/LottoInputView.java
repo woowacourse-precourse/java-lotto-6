@@ -3,9 +3,9 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.LottoErrorMessage;
 
-public class LottoInputView {
-    private static final int LOTTO_PRICE = 1000;
+import static lotto.model.LottoConfig.LOTTO_PRICE;
 
+public class LottoInputView {
     public int purchasePriceInput() {
         System.out.println("구입금액을 입력해 주세요.");
         int price = getPriceInput();
@@ -17,25 +17,23 @@ public class LottoInputView {
         int price = 0;
         while (!validInput) {
             String input = Console.readLine();
-            price = parsePriceInput(input);
-            if(isValidPrice(price)) {
-                validInput = true;
+            try {
+                price = parsePriceInput(input);
+            } catch (NumberFormatException e) {
+                LottoErrorMessage.INVALID_PURCHASE_INPUT.printMessage();
+                continue;
             }
+            validInput = isValidPrice(price);
         }
         return price;
     }
 
-    private int parsePriceInput(String input) {
-        try {
-            return Integer.parseInt(input);
-        }catch (NumberFormatException e) {
-            LottoErrorMessage.INVALID_PURCHASE_INPUT.printMessage();
-            return 0;
-        }
+    private int parsePriceInput(String input) throws NumberFormatException {
+        return Integer.parseInt(input);
     }
 
     private boolean isValidPrice(int price) {
-        if(price % LOTTO_PRICE != 0) {
+        if (price % LOTTO_PRICE != 0 || price <= 0) {
             LottoErrorMessage.INVALID_PURCHASE_AMOUNT.printMessage();
             return false;
         }

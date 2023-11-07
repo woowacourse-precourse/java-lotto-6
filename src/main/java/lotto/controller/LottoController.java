@@ -14,12 +14,13 @@ import lotto.view.OutputView;
 
 public class LottoController {
     Lottos lottos;
-    InputValidator inputValidator;
+    InputValidator inputValidator = new InputValidator();
 
     public void run() {
         Amount amount = getValidInput(() -> new Amount(InputView.requestAmount()));
         createLottos(amount);
         WinLotto winLotto = createWinLotto();
+        printResult(winLotto);
     }
 
     // IllegalArgumentException 발생 시 해당 메소드 반복
@@ -52,5 +53,11 @@ public class LottoController {
                 inputValidator.validateInput(InputParser.parseInput(InputView.requestWinningNumbers()))));
         return getValidInput(() -> new WinLotto(winNumbers,
                 getValidInput(() -> inputValidator.validateInput(InputView.requestBonusNumber()))));
+    }
+
+    // 최종 결과 출력
+    private void printResult(WinLotto winLotto) {
+        OutputView.printResult(lottos.calculateResult(winLotto),
+                lottos.calculateRateOfReturn(winLotto));
     }
 }

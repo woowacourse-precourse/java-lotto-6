@@ -9,5 +9,6 @@ public class Application {
         Input input = new Input();
         LottoDraw lottoDraw = new LottoDraw(input.purchasePrice());
         lottoDraw.configureLottoNumbers();
+        lottoDraw.printPurchaseHistory();
     }
 }

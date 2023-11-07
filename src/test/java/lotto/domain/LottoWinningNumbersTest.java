@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,12 +15,15 @@ public class LottoWinningNumbersTest {
 
     private LottoWinningNumbers lottoWinningNumbers;
     private BonusNumber bonusNumber;
-    private InputStream originalSystemIn;
 
     @BeforeEach
     void setUp() {
         lottoWinningNumbers = new LottoWinningNumbers();
-        originalSystemIn = System.in;
+    }
+
+    @AfterEach
+    void closeConsole() {
+        Console.close();
     }
 
     @Test
@@ -30,7 +35,6 @@ public class LottoWinningNumbersTest {
         List<Integer> winningNumbers = lottoWinningNumbers.inputWinningNumbers();
 
         assertThat(winningNumbers).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
-        System.setIn(originalSystemIn);
     }
 
     @Test

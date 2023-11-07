@@ -10,21 +10,19 @@ import lotto.domain.WinningTicket;
 
 public class MemoryTicketRepository implements TicketRepository {
 
-    private static Map<Integer, Ticket> memory = new HashMap<>();
+    private static List<Ticket> memory = new ArrayList<>();
     private static WinningTicket winningTicket;
     private static BonusNumber bonusNumber;
-    private static Integer sequence = 0;
 
     @Override
     public Ticket purchase(Ticket ticket) {
-        ticket.setId(++sequence);
-        memory.put(ticket.getId(), ticket);
+        memory.add(ticket);
         return ticket;
     }
 
     @Override
     public List<Ticket> findAll() {
-        return new ArrayList<>(memory.values());
+        return new ArrayList<>(memory);
     }
 
     @Override

@@ -5,8 +5,8 @@ import static lotto.util.constant.GameRule.MAX_LOTTO_RANGE;
 import static lotto.util.constant.GameRule.MIN_LOTTO_RANGE;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AutomaticGenerator {
 
@@ -15,8 +15,9 @@ public class AutomaticGenerator {
                 MIN_LOTTO_RANGE.getValue(),
                 MAX_LOTTO_RANGE.getValue(),
                 LOTTO_SIZE.getValue());
-        Collections.sort(numbers);
-        return numbers;
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
 }

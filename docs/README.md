@@ -1,7 +1,7 @@
 - Model
     - `Lotto` 클래스 기능 추가
         - [x] 주어지는 입력에 중복이 있으면 예외를 던지도록 코드 작성
-    - `PublishedLottos` 클래스
+    - `PublishedLotto` 클래스
       - 멤버 변수로 `List<Lotto>`를 가진다.
     - `InputMoney` 클래스
       - `InputNumber` 클래스를 상속받아서 구현한다.
@@ -13,34 +13,36 @@
       - [x] 입력 데이터를 Lotto 클래스로 변환해서 반환하는 메서드
     - `InputBonusNumber` 클래스
       - `InputNumber` 클래스를 상속받아서 구현한다.
-      - `Lotto` 객체를 주입받아서 사용해야 한다.
       - [x] 유효성 검사 메서드
       - [x] 입력 데이터를 정수형 변수로 반환하는 메서드
     - `LottoBonusPair` 클래스
       - 입력 받는 로또 번호와 보너스 번호를 갖는 클래스
       - [x] 유효성 검사 메서드
       - [x] 다른 로또 번호가 매개변수로 주어졌을 때, 당첨 등수를 반환하는 메서드
-    - `ProfitCalculator` 클래스
-        - 멤버 변수로 구입 금액과 총 당첨 금액을 가진다.
-        - [ ] 수익률을 계산해서 반환하는 기능
 - View
     - [x] `LottoInputView` 클래스
       - 입력을 받을 때 출력해야 하는 메시지를 출력한다.
-    - [ ] `LottoOutputView` 클래스
-        - [ ] 발행한 로또 수량 및 번호를 기록하는 기능
+    - [x] `LottoOutputView` 클래스
+        - [x] 발행한 로또 수량 및 번호를 기록하는 기능
             - 로또 번호는 오름차순으로 정렬하여 보여준다.
-        - [ ] 당첨 내역을 기록하는 기능
-        - [ ] 수익률을 기록하는 기능
-        - [ ] 기록된 문자열을 출력하는 기능
+        - [x] 당첨 내역을 출력하는 기능
+        - [x] 수익률을 출력하는 기능
 - Controller
     - `LottoController` 클래스
-      - 
+      - [x] Service들을 호출해서 로직 수행
 - Service
   - `InputService` 클래스
     - [x] 구입 금액을 입력받는 기능
     - [x] 당첨 번호를 입력받는 기능
     - [x] 보너스 번호를 입력받는 기능
     - 유효성을 검사한 후, 유효하지 않으면 [ERROR] 메시지를 출력한 뒤, 입력을 다시 받는다.
+  - `PublishLottoService` 클래스
+    - [x] 구입 금액을 받아서 로또를 발행하는 기능
+  - `ConfirmWinningService` 클래스
+    - [x] 발행된 로또와 당첨 번호를 비교하는 기능
+    - [x] 총 당첨금을 계산하는 기능
+  - `CalculateProfitService` 클래스
+    - [x] 수익률을 계산하는 기능
 - util
     - [x] `InputValidator` 인터페이스
     - `InputNumber` 추상 클래스

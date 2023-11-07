@@ -62,3 +62,5 @@
 
 ## `LottoInfo`
 - [x] Lotto 당첨정보를 가지고 있다.
+
+![image](https://github.com/speculatingwook/blog-full-of-desire/assets/105579811/4f5d8676-3a90-4645-a397-055e74490f1d)

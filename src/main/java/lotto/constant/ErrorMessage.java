@@ -1,9 +1,7 @@
 package lotto.constant;
 
 public enum ErrorMessage {
-    EMPTY("입력값이 없습니다."),
     NOT_DIGIT_MONEY("투입 금액은 숫자만 입력해주세요."),
-    DELIMITER("','로 구분해주시길 바랍니다."),
     NOT_DIGIT_WINNING_NUM("당첨 번호는 숫자여야 합니다."),
     NOT_DIGIT_BONUS_NUM("보너스 번호는 숫자여야 합니다."),
     LESS_THAN_THOUSAND("구입금액은 1000원 부터입니다."),

@@ -36,7 +36,7 @@ public class WinningLottoView {
 
     public static boolean isErrorOccurredInLotto(String input) {
         try {
-            validateNumbersInArray(input);
+            validateLottoNumbers(input);
             validateDuplicate(Convertor.convertStringToList(input), Constants.COUNT_NO_BONUS);
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -72,15 +72,25 @@ public class WinningLottoView {
         }
     }
 
-    public static void validateNumbersInArray(String input) throws IllegalArgumentException {
+    public static void validateLottoNumbers(String input) throws IllegalArgumentException {
         List<String> inputs = Convertor.convertStringToList(input);
 
+        validateLottoNumberSize(inputs);
+
+        for(String i : inputs) {
+            validateNoSpace(i);
+            validateLottoNumber(i);
+        }
+    }
+
+    public static void validateLottoNumberSize(List<String> inputs) throws IllegalArgumentException {
         if(inputs.size() != Constants.COUNT_NO_BONUS) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NOT_ENOUGH_LOTTO_NUMBER.getMessage());
         }
-
-        for(String i : inputs) {
-            validateLottoNumber(i);
+    }
+    public static void validateNoSpace(String input) throws IllegalArgumentException {
+        if(input.contains(Constants.SPACE)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NO_SPACE.getMessage());
         }
     }
 

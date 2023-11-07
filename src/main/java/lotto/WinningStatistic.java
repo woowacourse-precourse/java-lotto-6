@@ -24,4 +24,11 @@ public class WinningStatistic {
     public static WinningStatistic newInstance() {
         return new WinningStatistic();
     }
+
+    public void increaseCount(NumberOfLottoCorrect numberOfLottoCorrect) {
+        winningStatistics.put(numberOfLottoCorrect,
+            winningStatistics.get(numberOfLottoCorrect) + ONE);
+    }
+
+
 }

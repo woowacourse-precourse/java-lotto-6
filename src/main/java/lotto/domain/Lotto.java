@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static lotto.util.LottoNumberGenerator.generateRandomLottoNumber;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -11,6 +13,10 @@ public class Lotto {
         validate(numbers);
         numbers.sort(Comparator.naturalOrder());
         this.numbers = numbers;
+    }
+
+    public static Lotto generateRandomLotto() {
+        return new Lotto(generateRandomLottoNumber());
     }
 
     private void validate(List<Integer> numbers) {

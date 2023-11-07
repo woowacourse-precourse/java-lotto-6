@@ -6,6 +6,19 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputHandler {
+    public static Integer getUserInputAmount() {
+        System.out.println("구입금액을 입력해 주세요.");
+
+        String input = Console.readLine();
+        int number;
+        try {
+            number = Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("올바른 숫자 형식이 아닙니다.");
+        }
+        return number;
+    }
+
     public static List<Integer> getUserInputlotto() {
         System.out.println("당첨 번호를 입력해 주세요");
 

@@ -44,6 +44,21 @@ public class ViewTest extends NsTest {
         );
     }
 
+    @DisplayName("당첨번호와 중복된 보너스번호 입력시 예외 발생후 보너스번호 입력부터 재시작")
+    @Test
+    void inputWrongBonesNumberAndRestart() {
+        assertSimpleTest(
+                () -> {
+                    run("1000", "1,2,3,4,5,6", "6", "7");
+                    assertThat(output()).contains(
+                            BONUS_NUMBER.getMessage(),
+                            ERROR_MESSAGE,
+                            BONUS_NUMBER.getMessage()
+                    );
+                }
+        );
+    }
+
     @Override
     protected void runMain() {
         Application.main(new String[]{});

@@ -39,4 +39,10 @@ class LottoExceptionTest {
     void lottoRangeCheckTest() {
         Assertions.assertThat(lottoException.lottoRangeCheckMain(46)).isFalse();
     }
+
+    @Test
+    @DisplayName("보너스 번호가 로또 번호에 포함될경우 테스트")
+    void checkDuplicateBonusNoTest() {
+        Assertions.assertThat(lottoException.duplicateBonusNumberCheckMain(List.of(1, 2, 3, 4, 5, 6), 1)).isFalse();
+    }
 }

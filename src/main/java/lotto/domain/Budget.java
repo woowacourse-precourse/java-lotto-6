@@ -11,8 +11,8 @@ public class Budget {
         this.budget = budget;
     }
 
-    public boolean canBuyALotto(int sumPayment){
-        return this.budget>sumPayment;
+    public boolean canBuyALotto(int sumPayment) {
+        return this.budget > sumPayment;
     }
 
     private void budgetValidation(int budget) {
@@ -25,7 +25,7 @@ public class Budget {
         }
     }
 
-    public double getProfit(long rewardSum){
-        return rewardSum/(double)budget;
+    public double getProfit(long rewardSum) {
+        return (rewardSum / (double) budget) * 100;
     }
 }

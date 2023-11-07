@@ -23,6 +23,6 @@ public enum LottoResult {
     @Override
     public String toString() {
         NumberFormat numberFormat = NumberFormat.getInstance();
-        return "(" + numberFormat.format(price) + "원 )";
+        return "(" + numberFormat.format(price) + "원)";
     }
 }

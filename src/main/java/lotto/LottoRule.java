@@ -41,6 +41,6 @@ public enum LottoRule {
         if( isBonusBall ){
             format += ", 보너스 볼 일치";
         }
-        return String.format(format + " ", matchCount);
+        return String.format(format, matchCount);
     }
 }

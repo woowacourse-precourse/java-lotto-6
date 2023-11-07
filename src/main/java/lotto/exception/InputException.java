@@ -8,10 +8,10 @@ public enum InputException {
 
     InputException(String exceptionMessage) {
         this.exceptionMessage = exceptionMessage;
-        printExceptionMessage();
     }
 
     public String getExceptionMessage() {
+        printExceptionMessage();
         return this.exceptionMessage;
     }
 

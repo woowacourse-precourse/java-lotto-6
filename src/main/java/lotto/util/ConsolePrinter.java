@@ -4,9 +4,15 @@ import java.util.Objects;
 import lotto.constants.PrintMessages;
 
 public class ConsolePrinter {
-    public static void showMessage(PrintMessages message) {
-        Objects.requireNonNull(message, "message is null");
+    private static void nullCheck(Object target) {
+        Objects.requireNonNull(target);
+    }
 
-        System.out.println(message.getMessageWithoutNewLine());
+    public static void showMessage(PrintMessages message) {
+        nullCheck(message);
+
+        System.out.print(message.getMessage());
+    }
+
     }
 }

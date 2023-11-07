@@ -10,7 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 public class TestDefault {
-    private final String NEW_LINE = PrintMessages.NEW_LINE;
+    private final String NEW_LINE = System.lineSeparator();
     private final PrintStream originOutput = System.out;
     private OutputStream outputCaptor;
 

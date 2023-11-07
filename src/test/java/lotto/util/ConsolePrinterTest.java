@@ -1,7 +1,7 @@
 package lotto.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
 import static org.junit.jupiter.params.provider.EnumSource.Mode.INCLUDE;
 
 import lotto.TestDefault;
@@ -21,18 +21,20 @@ class ConsolePrinterTest extends TestDefault {
             "WINNING_STATICS_TOP_BANNER",
     })
     void testShowGeneralMessage(PrintMessages message) {
+        String excepted = message.getMessage();
+
         ConsolePrinter.showMessage(message);
 
         assertThat(getConsoleOuputMessage())
-                .isEqualTo(message.getMessage());
+                .isEqualTo(excepted);
     }
 
     @DisplayName("출력할 메시지가 null일 경우 예외 처리가 발생한다.")
     @ParameterizedTest
     @NullSource
     void testShowGeneralMessageNullCheck(PrintMessages message) {
-        assertThatThrownBy(() -> {
+        assertThatNullPointerException().isThrownBy(() -> {
             ConsolePrinter.showMessage(message);
-        }).isInstanceOf(NullPointerException.class);
+        });
     }
 }

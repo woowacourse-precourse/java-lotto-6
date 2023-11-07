@@ -11,7 +11,7 @@ public enum PrintMessages {
     private final String message;
 
     PrintMessages(String message) {
-        this.message = message;
+        this.message = String.join("", message, System.lineSeparator());
     }
 
     PrintMessages(String... messages) {
@@ -21,14 +21,15 @@ public enum PrintMessages {
                     .append(message)
                     .append(System.lineSeparator());
         }
+        messageBuilder.append(System.lineSeparator());
         this.message = messageBuilder.toString();
     }
 
-    public String getMessageWithoutNewLine() {
+    public String getMessage() {
         return message;
     }
 
-    public String getMessage() {
-        return String.join("", message, NEW_LINE);
+    public String getMessageWithNumber(Integer number) {
+        return String.format(message, number);
     }
 }

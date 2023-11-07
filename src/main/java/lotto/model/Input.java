@@ -37,14 +37,13 @@ public class Input {
         String input = Console.readLine();
         List<Integer> lottoNumbers = Arrays.stream(input.split(","))
                 .map(s -> Integer.parseInt(s)).collect(Collectors.toList());
+        Lotto lotto = null;
         try {
-            numberValidator.validateLottoNumberRange(lottoNumbers);
-            numberValidator.validateLength(lottoNumbers);
-            numberValidator.validateLottoDuplication(lottoNumbers);
+            lotto = new Lotto(lottoNumbers);
         } catch (IllegalArgumentException e) {
             inputLottoNumber();
         }
-        return new Lotto(lottoNumbers);
+        return lotto;
     }
 
     public int inputLottoBonusNumber() {

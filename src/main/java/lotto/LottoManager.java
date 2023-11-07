@@ -33,7 +33,7 @@ public class LottoManager {
         try {
             Integer.parseInt(input);
         } catch (Exception e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_AMOUNT_INVALID_MEASURE.getMessage());
+            throw new IllegalArgumentException(ErrorMessage.INPUT_AMOUNT_NOT_NUMERIC.getMessage());
         }
     }
 }

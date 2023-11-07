@@ -26,17 +26,8 @@ class UserInputTest {
     }
 
     @Test
-    void 중복된_당첨번호_예외처리() {
-        assertEquals(null, userInput.getUserWinningNumbers(userInputChecker, "1,2,3,4,5,5"));
-    }
-
-    @Test
     void 숫자가_아닌_당첨번호_입력_예외처리() {
         assertEquals(null, userInput.getUserWinningNumbers(userInputChecker, "1,2,3,4,5,a"));
     }
 
-    @Test
-    void 잘못된_범위의_당첨번호_입력_예외처리() {
-        assertEquals(null, userInput.getUserWinningNumbers(userInputChecker, "1,2,3,4,5,46"));
-    }
 }

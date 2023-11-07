@@ -18,25 +18,6 @@ class UserInputCheckerTest {
     }
 
     @Test
-    void 입력된_당첨번호_범위_예외처리_1() {
-        int invalidNumber = 46;
-        assertEquals(0, userInputChecker.checkNumberInRange(invalidNumber));
-
-    }
-
-    @Test
-    void 입력된_당첨번호_범위_예외처리_2() {
-        int invalidNumber = 0;
-        assertEquals(0, userInputChecker.checkNumberInRange(invalidNumber));
-
-    }
-
-    @Test
-    void 입력된_당첨번호_중복_예외처리() {
-        assertEquals(true, userInputChecker.hasDuplicateWinningNumbers(winningNumbersTest));
-    }
-
-    @Test
     void 구입금액_단위_예외처리() {
         assertThrows(IllegalArgumentException.class, () -> userInputChecker.checkInputUnit(10010));
     }

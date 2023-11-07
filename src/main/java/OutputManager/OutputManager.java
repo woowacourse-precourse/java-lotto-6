@@ -23,12 +23,12 @@ public class OutputManager {
         StringBuilder msgBuilder = new StringBuilder("");
         DecimalFormat formatter = new DecimalFormat("###,##0.0");
         Map<LottoResult, Integer> statistics = totalResult.getStatistics();
-        for (LottoResult result : LottoResult.values()) {
-            if (result == LottoResult.OTHER) {
+        for (LottoResultMsgFormat result : LottoResultMsgFormat.values()) {
+            if (result == LottoResultMsgFormat.OTHER) {
                 continue;
             }
             msgBuilder.append(result.getMsg());
-            msgBuilder.append(statistics.get(result));
+            msgBuilder.append(statistics.get(result.getResult()));
             msgBuilder.append("개\n");
         }
         msgBuilder.append("총 수익률은 ")

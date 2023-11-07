@@ -11,14 +11,14 @@ public class AutoLottoNumber {
     private static final Integer LOTTO_MIN_NUMBER = 1;
     private static final Integer LOTTO_MAX_NUMBER = 45;
 
-    public List<Integer> putOutNumber() {
+    public static List<Integer> putOutNumber() {
         List<Integer> autoNumber = new ArrayList<>();
         addNumber(autoNumber);
         sortNumber(autoNumber);
         return autoNumber;
     }
 
-    private void addNumber(List<Integer> numbers) {
+    private static void addNumber(List<Integer> numbers) {
         while (numbers.size() < LOTTO_NUMBER_SIZE) {
             int randomNumber = Randoms.pickNumberInRange(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
             if (!numbers.contains(randomNumber)) {
@@ -27,7 +27,7 @@ public class AutoLottoNumber {
         }
     }
 
-    private void sortNumber(List<Integer> numbers) {
+    private static void sortNumber(List<Integer> numbers) {
         numbers.sort(Comparator.naturalOrder());
     }
 }

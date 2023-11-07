@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -13,6 +14,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
+
 
 class StatisticsOfficeTest {
 
@@ -39,7 +41,7 @@ class StatisticsOfficeTest {
     @ParameterizedTest
     @MethodSource("rankStatusData")
     void convertToRank(List<Lotto> lottoTicket, Map<Rank, Integer> rankStatus) {
-        StatisticsOffice statisticsOffice = StatisticsOffice.registerWinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)),new LottoNumber(7));
+        StatisticsOffice statisticsOffice = StatisticsOffice.registerWinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(7));
         assertThat(statisticsOffice.convertToRank(lottoTicket)).isEqualTo(rankStatus);
     }
 
@@ -58,43 +60,43 @@ class StatisticsOfficeTest {
                                 new Lotto(List.of(1, 2, 3, 5, 7, 12)),
                                 new Lotto(List.of(1, 2, 3, 7, 8, 12)),
                                 new Lotto(List.of(1, 12, 17, 23, 28, 34))),
-                        Map.of(Rank.FIRST_PLACE, 1,
+                        new EnumMap<>(Map.of(Rank.FIRST_PLACE, 1,
                                 Rank.SECOND_PLACE, 1,
                                 Rank.THIRD_PLACE, 1,
                                 Rank.FOURTH_PLACE, 1,
                                 Rank.FIFTH_PLACE, 1,
-                                Rank.LAST_PLACE, 1)));
+                                Rank.LAST_PLACE, 1))));
     }
 
     static Stream<Arguments> profitData() {
         return Stream.of(
-                arguments(Map.of(Rank.FIRST_PLACE, 0,
+                arguments(new EnumMap<>(Map.of(Rank.FIRST_PLACE, 0,
                                 Rank.SECOND_PLACE, 0,
                                 Rank.THIRD_PLACE, 0,
                                 Rank.FOURTH_PLACE, 0,
                                 Rank.FIFTH_PLACE, 1,
-                                Rank.LAST_PLACE, 0)
+                                Rank.LAST_PLACE, 0))
                         , 8000, "62.5"),
-                arguments(Map.of(Rank.FIRST_PLACE, 0,
+                arguments(new EnumMap<>(Map.of(Rank.FIRST_PLACE, 0,
                                 Rank.SECOND_PLACE, 0,
                                 Rank.THIRD_PLACE, 0,
                                 Rank.FOURTH_PLACE, 1,
                                 Rank.FIFTH_PLACE, 0,
-                                Rank.LAST_PLACE, 0)
+                                Rank.LAST_PLACE, 0))
                         , 3000, "1666.7"),
-                arguments(Map.of(Rank.FIRST_PLACE, 0,
+                arguments(new EnumMap<>(Map.of(Rank.FIRST_PLACE, 0,
                                 Rank.SECOND_PLACE, 0,
                                 Rank.THIRD_PLACE, 0,
                                 Rank.FOURTH_PLACE, 0,
                                 Rank.FIFTH_PLACE, 1,
-                                Rank.LAST_PLACE, 0)
+                                Rank.LAST_PLACE, 0))
                         , 10000, "50.0"),
-                arguments(Map.of(Rank.FIRST_PLACE, 0,
+                arguments(new EnumMap<>(Map.of(Rank.FIRST_PLACE, 0,
                                 Rank.SECOND_PLACE, 0,
                                 Rank.THIRD_PLACE, 0,
                                 Rank.FOURTH_PLACE, 0,
                                 Rank.FIFTH_PLACE, 0,
-                                Rank.LAST_PLACE, 1)
+                                Rank.LAST_PLACE, 1))
                         , 10000, "0.0"));
     }
 

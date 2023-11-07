@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +15,8 @@ public class StatisticsOffice {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateDuplicate(Lotto winningLotto, LottoNumber bonusNumber){
-        if(winningLotto.hasNumber(bonusNumber)){
+    private void validateDuplicate(Lotto winningLotto, LottoNumber bonusNumber) {
+        if (winningLotto.hasNumber(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호 6개와 보너스 번호는 중복될 수 없습니다.");
         }
     }
@@ -27,7 +27,7 @@ public class StatisticsOffice {
 
 
     public Map<Rank, Integer> convertToRank(List<Lotto> lottoTicket) {
-        Map<Rank, Integer> winningStatus = new HashMap<>();
+        Map<Rank, Integer> winningStatus = new EnumMap<>(Rank.class);
         for (Lotto lotto : lottoTicket) {
             recordRank(winningStatus, lotto);
         }
@@ -40,12 +40,12 @@ public class StatisticsOffice {
         winningStatus.merge(rank, 1, Integer::sum);
     }
 
-    public static String calculateProfitRate(Map<Rank, Integer> winningStatus, int money){
+    public static String calculateProfitRate(Map<Rank, Integer> winningStatus, int money) {
         double profit = 0.0;
-        for (Rank rank : winningStatus.keySet()){
+        for (Rank rank : winningStatus.keySet()) {
             profit += rank.getReward() * winningStatus.get(rank);
         }
-        return String.format("%.1f", profit*100/money);
+        return String.format("%.1f", profit * 100 / money);
     }
 
 

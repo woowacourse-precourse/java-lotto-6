@@ -23,4 +23,13 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또의 반환된 리스트가 수정이 불가능인지 확인한다.")
+    @Test
+    void returnLottoListAsUnmodifiable(){
+        List<Integer> numbers = List.of(7, 8, 9, 10, 11, 12);
+        Lotto lotto = new Lotto(numbers);
+        List<Integer> retrievedNumbers = lotto.getNumbers();
+        assertThrows(UnsupportedOperationException.class, () -> retrievedNumbers.add(13));
+    }
+
 }

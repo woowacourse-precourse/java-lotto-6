@@ -127,4 +127,16 @@ public class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
     }
+
+    @Test
+    public void 리스트형식으로_로또_출력() {
+        // Given
+        Lotto lotto = Lotto.create("1,2,3,4,5,6");
+
+        // When
+        String result = lotto.toString();
+
+        // Then
+        assertThat(result).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }

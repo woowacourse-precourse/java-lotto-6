@@ -74,14 +74,14 @@ class LottoMachineTest {
     @Test
     public void 로또_구매_수량_검증_1() {
         Money inputMoney = new Money(5000);
-        List<Lotto> lottos = LottoMachine.buyLotto(inputMoney);
+        List<Lotto> lottos = LottoMachine.buyLottos(inputMoney);
         assertEquals(5, lottos.size());
     }
 
     @Test
     public void 로또_구매_수량_검증_2() {
         Money inputMoney = new Money(14000);
-        List<Lotto> lottos = LottoMachine.buyLotto(inputMoney);
+        List<Lotto> lottos = LottoMachine.buyLottos(inputMoney);
         assertEquals(14, lottos.size());
     }
 

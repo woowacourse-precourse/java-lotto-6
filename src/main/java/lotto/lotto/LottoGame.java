@@ -11,7 +11,7 @@ public class LottoGame {
     public void start() {
         //로또구매
         Money purchaseAmount = InputView.inputMoney();
-        List<Lotto> lottos = LottoMachine.buyLotto(purchaseAmount);
+        List<Lotto> lottos = LottoMachine.buyLottos(purchaseAmount);
         OutputView.printLottos(lottos);
 
         //결과

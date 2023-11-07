@@ -14,8 +14,8 @@ public class InputUtils {
 
     public static List<Integer> getNumbers() {
         try {
-            String numbersString = Console.readLine();
-            return Arrays.stream(numbersString.split(","))
+            String numbers = Console.readLine();
+            return Arrays.stream(numbers.split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
@@ -26,8 +26,8 @@ public class InputUtils {
 
     public static int getNumber() {
         try {
-            String numberString = Console.readLine();
-            return Integer.parseInt(numberString);
+            String number = Console.readLine();
+            return Integer.parseInt(number);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ERROR_INPUT_INT);
         }

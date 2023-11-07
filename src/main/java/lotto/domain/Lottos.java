@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
+
     private final List<Lotto> lottos;
 
     public Lottos(List<Lotto> lottos) {
@@ -30,7 +31,11 @@ public class Lottos {
 
     public void printLottos() {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            System.out.println(lotto.getNumbers());
         }
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

@@ -22,4 +22,8 @@ public class Lotto {
         List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lottoNumbers);
     }
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
 }

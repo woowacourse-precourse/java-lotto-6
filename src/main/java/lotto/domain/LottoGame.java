@@ -12,18 +12,30 @@ public class LottoGame {
 
     public LottoGame() {
         lottoResult = new LottoResult();
-        start();
+        inputChecker = new InputChecker();
     }
 
-    private void start() {
+    public void start() {
         long userLottoPrice = inputChecker.readLottoPrice();
         long lottoCount = lottoResult.lottoNumbersPurchased(userLottoPrice);
         System.out.println(lottoCount + "개를 구매했습니다.");
 
+        // 로또(들) 생성
         Lottos purchasedLottos = generateLottos(lottoCount);
 
+        purchasedLottos.printLottos(); // #
+
         List<Integer> winningNumbers = inputChecker.readWinningNumbers();
-        int bonusNumber = inputChecker.readBonusNumber();
+        System.out.println("winningNumbers = " + winningNumbers); // #
+
+        Integer bonusNumber = inputChecker.readBonusNumber();
+
+        System.out.println("bonusNumber = " + bonusNumber); // #
+
+        // 통계
+        lottoResult.printRewardStatistics(purchasedLottos,winningNumbers,bonusNumber);
+
+        // 수익률
 
 
     }

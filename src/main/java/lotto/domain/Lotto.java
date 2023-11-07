@@ -15,8 +15,12 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         lottoException.validateLottoNumbers(numbers);
-        }
+    }
+    public void setBonusNumber(int bonusNumber) {
+        lottoException.validateBonusNumber(numbers, bonusNumber);
     }
 
-    // TODO: 추가 기능 구현
 }
+
+
+

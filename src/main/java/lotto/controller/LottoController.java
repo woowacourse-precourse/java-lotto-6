@@ -96,6 +96,13 @@ public class LottoController {
             OutputHandler.requireSixNumbers();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_SIX_NUMBERS.getMessage());
         }
+        for (Integer winningNumber : winningNumbers) {
+            if (winningNumber < Number.LOTTO_MIN_NUM.getNumber()
+                    || winningNumber > Number.LOTTO_MAX_NUM.getNumber()) {
+                OutputHandler.requireRightRangeNumber();
+                throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
+            }
+        }
         OutputHandler.printEmptyLine();
         return winningNumbers;
     }
@@ -116,6 +123,11 @@ public class LottoController {
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
         }
         int bonusNumber = Converter.bonusNumbers(bonusNumberInput);
+        if (bonusNumber < Number.LOTTO_MIN_NUM.getNumber()
+                || bonusNumber > Number.LOTTO_MAX_NUM.getNumber()) {
+            OutputHandler.requireRightRangeNumber();
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
+        }
         OutputHandler.printEmptyLine();
         return bonusNumber;
     }

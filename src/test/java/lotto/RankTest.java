@@ -2,6 +2,7 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.*;
 
+import lotto.domain.Rank;
 import org.junit.jupiter.api.Test;
 
 public class RankTest {

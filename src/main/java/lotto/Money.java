@@ -8,26 +8,45 @@ public class Money {
 	private final int money;
 
 	public Money(String input){
-		validate(input);
-		this.money = Integer.parseInt(input);
+		this.money = validateAndParse(input);
 	}
 
-	private int validate(String input) {
-		if (!input.matches("\\d+")) {
+	private int validateAndParse(String input) {
+		int pay = parseInputToInteger(input);
+
+		if (!isPositiveInteger(pay)) {
 			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
 		}
 
-		int pay = Integer.parseInt(input);
-
-		if (pay % 1000 != 0) {
+		if (!isDivisibleBy1000(pay)) {
 			throw new IllegalArgumentException(ErrorMessage.NOT_DIVISIBLE_BY_1000.getMessage());
 		}
 
-		if (pay < 1000) {
+		if (isLessThan1000(pay)) {
 			throw new IllegalArgumentException(ErrorMessage.LESS_THAN_1000.getMessage());
 		}
 
 		return pay;
+	}
+
+	private int parseInputToInteger(String input) {
+		try {
+			return Integer.parseInt(input);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(ErrorMessage.NOT_NUMBER.getMessage());
+		}
+	}
+
+	private boolean isPositiveInteger(int value) {
+		return value > 0;
+	}
+
+	private boolean isDivisibleBy1000(int value) {
+		return value % 1000 == 0;
+	}
+
+	private boolean isLessThan1000(int value) {
+		return value < 1000;
 	}
 
 	public int calculateAffordableLottoCount(){

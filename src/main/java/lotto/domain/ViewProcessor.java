@@ -151,8 +151,19 @@ public class ViewProcessor {
     }
 
     public void makeWinningNums(List<String> parsedWinnings) {
-
-
+        winningNums = new ArrayList<>();
+        try {
+            for (String element : parsedWinnings) {
+                int winning = Integer.parseInt(element);
+                checkRangeWinning(winning);
+                checkExistWinning(winningNums, winning);
+                winningNums.add(winning);
+            }
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 정수여야 합니다.");
+        } catch (IllegalArgumentException e) {
+            throw e;
+        }
     }
 
     public String moneyEdit(Rewards reward) {

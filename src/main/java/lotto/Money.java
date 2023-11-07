@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.exception.InvalidPurchaseAmountException;
 import lotto.exception.LessThanLottoPriceException;
 
 public class Money {
@@ -9,6 +10,10 @@ public class Money {
     public Money(int num) {
         if (num < LOTTO_PRICE) {
             throw new LessThanLottoPriceException();
+        }
+
+        if (num % 1000 != 0) {
+            throw new InvalidPurchaseAmountException();
         }
         this.num = num;
     }

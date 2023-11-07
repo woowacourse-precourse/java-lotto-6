@@ -15,52 +15,14 @@ class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
     @Test
-    void validateInput_ValidInput() {
-        Application.validateInput(1000);
-        Application.validateInput(2000);
-        // 입력이 유효한 경우 예외가 발생하지 않아야 합니다.
+    void testValidateInputValid() {
+        assertEquals(10, Application.validateInput(10000));
     }
 
     @Test
-    void validateInput_InvalidInput() {
-        assertThrows(IllegalArgumentException.class, () -> Application.validateInput(1050));
-        assertThrows(IllegalArgumentException.class, () -> Application.validateInput(-1000));
-        // 입력이 유효하지 않은 경우 예외가 발생해야 합니다.
-    }
-
-    @Test
-    void isValidWinningNumbers_ValidNumbers() {
-        assertEquals(1, Application.isValidWinningNumbers("1"));
-        assertEquals(45, Application.isValidWinningNumbers("45"));
-        // 입력이 유효한 경우 해당 숫자가 반환되어야 합니다.
-    }
-
-    @Test
-    void isValidWinningNumbers_InvalidNumbers() {
-        assertThrows(IllegalArgumentException.class, () -> Application.isValidWinningNumbers("0"));
-        assertThrows(IllegalArgumentException.class, () -> Application.isValidWinningNumbers("46"));
-        assertThrows(IllegalArgumentException.class, () -> Application.isValidWinningNumbers("abc"));
-        // 입력이 유효하지 않은 경우 예외가 발생해야 합니다.
-    }
-
-    @Test
-    void isDuplicateNumber_NoDuplicate() {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        uniqueNumbers.add(1);
-        uniqueNumbers.add(2);
-
-        assertEquals(uniqueNumbers, Application.isDuplicateNumber(3, uniqueNumbers));
-        // 중복되지 않은 숫자를 추가하는 경우 집합에 추가되어야 합니다.
-    }
-
-    @Test
-    void isDuplicateNumber_WithDuplicate() {
-        Set<Integer> uniqueNumbers = new HashSet<>();
-        uniqueNumbers.add(1);
-        uniqueNumbers.add(2);
-
-        assertThrows(IllegalArgumentException.class, () -> Application.isDuplicateNumber(2, uniqueNumbers));
-        // 중복된 숫자를 추가하는 경우 예외가 발생해야 합니다.
+    void testValidateInputInvalid() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> Application.validateInput(1050));
+        assertEquals("로또는 1000원 단위로 적어야합니다.", exception.getMessage());
     }
     @Test
     void 기능_테스트() {

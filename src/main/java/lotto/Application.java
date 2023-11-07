@@ -14,12 +14,10 @@ public class Application {
             System.out.println(numbers);
         }
 
-        String[] winningNumber = setWinningNumber();
-        int bonusNumber = setBonusNumber(-1, winningNumber);
-
-
-        System.out.println("winningNumber " + winningNumber);
+        Lotto winningNumber = setWinningLotto();
+        int bonusNumber = getBonusNumber(winningNumber);
         System.out.println("bonusNumber " + bonusNumber);
+        System.out.println("winningNumber " + winningNumber.toString());
     }
     //금액 입력받기
     public static int setAmountOfLotto(int amountOfLotto){
@@ -44,71 +42,6 @@ public class Application {
         }
         return amountOfLotto / 1000;
     }
-    //당첨 번호 입력받기
-    public static String[] setWinningNumber() {
-        String[] winningNumber = null;
-        while (winningNumber == null) {
-            try {
-                System.out.print("당첨 번호를 입력하세요 (쉼표로 구분된 6개의 숫자): ");
-                winningNumber = validateWinningNumbers(Console.readLine());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                // 잘못된 입력에 대해 다시 입력을 요청
-            }
-        }
-        return winningNumber;
-    }
-    private static String[] validateWinningNumbers(String input) {
-        String[] numbers = input.split(",");
-        if (numbers.length != 6) {
-            throw new IllegalArgumentException("당첨 번호는 쉼표로 구분된 6개의 숫자여야 함");
-        }
-        Set<Integer> uniqueNumber = new HashSet<>();        
-        for (String number : numbers) {
-            int num = isValidWinningNumbers(number);
-            uniqueNumber = isDuplicateNumber(num, uniqueNumber);
-        }
-        return numbers;
-    }
-    //보너스 번호 입력받기
-    public static int setBonusNumber(int initialNum, String[] winningNumbers){
-        Set<Integer> uniqueNumber = new HashSet<>();
-        for(int i = 0; i < 6; i++){
-            uniqueNumber.add(Integer.parseInt(winningNumbers[i]));
-        }
-        while (initialNum == -1) {
-            try {
-                initialNum = isValidWinningNumbers(Console.readLine());
-                isDuplicateNumber(initialNum, uniqueNumber);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-                initialNum = -1;
-            }
-            
-        }
-        return initialNum;
-    }
-    //중복 검사
-    public static Set<Integer> isDuplicateNumber(int num, Set<Integer> uniqueNumber){
-        if(!uniqueNumber.add(num)){
-            throw new IllegalArgumentException("중복된 번호가 있습니다.");
-        }
-        return uniqueNumber;
-    }
-    //당첨번호 범위와 숫자인지 검사하기
-    static int isValidWinningNumbers(String number) {
-        int num = 0;
-        try {
-            num = Integer.parseInt(number.trim());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("모든 번호는 숫자여야 함");
-        }
-        if (num < 1 || num > 45) {
-            throw new IllegalArgumentException("로또 번호는 1부터 45 사이여야 함");
-        }
-        return num;
-    } 
-
     public static List<List<Integer>> generateLottoNumbers(int amount){
         List<List<Integer>> lottoNumbers = new ArrayList<>();
         for(int i = 0; i < amount ; i++){
@@ -118,6 +51,72 @@ public class Application {
         
         return lottoNumbers;
     }
+    
+    //당첨 번호 입력받기
+    public static Lotto setWinningLotto() {
+        List<Integer> winningNumbers = getWinningNumbers();
+        return new Lotto(winningNumbers);
+    }
+    private static List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                System.out.print("당첨 번호를 입력하세요 (쉼표로 구분된 6개의 숫자): \n");
+                List<Integer> winningNumbers = parseNumbers(Console.readLine());
+                new Lotto(winningNumbers); // 당첨 번호 유효성 검사
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage()); // Lotto 생성 시 발생하는 예외 메시지 출력
+            }
+        }
+    }
+    private static int getBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            try {
+                System.out.print("보너스 번호를 입력하세요 (1부터 45 사이의 숫자): ");
+                int bonusNumber = setBonusNumber(winningNumbers);
+                return bonusNumber;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private static List<Integer> parseNumbers(String input) {
+        String[] numberStrings = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String numberString : numberStrings) {
+            try {
+                int number = Integer.parseInt(numberString.trim());
+                numbers.add(number);
+                // isValidBonusNumber(number);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("[ERROR] : 올바른 숫자 형식이 아닙니다.");
+            }
+        }
+        return numbers;
+    }
+    //보너스 번호 입력받기
+    private static int setBonusNumber(Lotto winningNumbers) {
+        while (true) {
+            try {
+                System.out.print("보너스 번호를 입력하세요 (1부터 45 사이의 숫자): ");
+                int bonusNumber = Integer.parseInt(Console.readLine().trim());
+                isValidBonusNumber(bonusNumber);    
+                winningNumbers.contains(bonusNumber);
+                return bonusNumber;
+            } catch (NumberFormatException e) {
+                System.out.println("올바른 숫자 형식이 아닙니다. 다시 입력해주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private static void isValidBonusNumber(int bonusNumber){
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+        }
+}
+
+    
 
 
 }

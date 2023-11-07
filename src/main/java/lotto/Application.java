@@ -13,7 +13,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 public class Application {
     private static int getTickets(){
         try {
-            Integer N = Integer.parseInt(Console.readLine());
+            Integer N = Integer.parseInt(Console.readLine().replace(" ", ""));
             if (N % 1000 != 0) {
                 throw new IllegalStateException();
             }
@@ -76,13 +76,13 @@ public class Application {
             if (setNumbers.size() != numbers.size() + 1) {
                 throw new IllegalArgumentException();
             }
-            
+
             return false;
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] 번호가 중복되지 않도록 입력해주세요.");
             return true;
         }
-
+           
     }
 
     private static List<Integer> inputPlayerNumbers(){
@@ -94,6 +94,7 @@ public class Application {
         }
 
         for (String number : sNumbers) {
+            number = number.replace(" ", "");
             if (isLottoNumber(number)) {
                 numbers.add(Integer.parseInt(number));
             } else {
@@ -110,7 +111,7 @@ public class Application {
     }
 
     private static Integer inputPlayerBonusNumber(List<Integer> numbers){
-        String sNumber = Console.readLine();
+        String sNumber = Console.readLine().replace(" ", "");
 
         if (isLottoNumber(sNumber)) {
             Integer number = Integer.parseInt(sNumber);

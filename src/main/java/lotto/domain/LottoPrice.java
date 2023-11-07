@@ -5,9 +5,11 @@ public class LottoPrice {
 
     private static Long MAXIMUM_PRICE = 10000000L;
     private static int PRICE_PER_LOTTO = 1000;
+    private static int BUY_NOTHING = 0;
 
     public LottoPrice(String inputLottoPrice){
         Long dataTypeValidatePrice = dataTypeValidate(inputLottoPrice);
+        buyNothingValidate(dataTypeValidatePrice);
         int buyLimitValidatePrice = buyLimitValidate(dataTypeValidatePrice);
         divisionByThousand(buyLimitValidatePrice);
 
@@ -18,11 +20,21 @@ public class LottoPrice {
         lottoPrice = 0;
     }
 
+    public int getLottoPrice(){
+        return lottoPrice;
+    }
+
     private Long dataTypeValidate(String inputLottoPrice){
         try{
             return Long.parseLong(inputLottoPrice);
         }catch(NumberFormatException e){
             throw new IllegalArgumentException("[ERROR] 숫자 형식에 맞지 않습니다.");
+        }
+    }
+
+    private void buyNothingValidate(Long dataTypeValidatePrice){
+        if(dataTypeValidatePrice==BUY_NOTHING){
+            throw  new IllegalArgumentException("[ERROR] 살 수 없는 금액입니다.");
         }
     }
 

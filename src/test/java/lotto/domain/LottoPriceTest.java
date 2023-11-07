@@ -14,6 +14,14 @@ public class LottoPriceTest {
                 .hasMessage("[ERROR] 숫자 형식에 맞지 않습니다.");
     }
 
+    @DisplayName("입력 값이 0일 때 예외 처리")
+    @Test
+    void inputNothing(){
+        assertThatThrownBy(() -> new LottoPrice("0"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 살 수 없는 금액입니다.");
+    }
+
     @DisplayName("구입 가격이 천만원을 넘을 시 예외 처리")
     @Test
     void buyLottoPriceLimit(){

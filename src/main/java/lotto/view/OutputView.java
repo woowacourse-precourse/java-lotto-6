@@ -1,6 +1,7 @@
 package lotto.view;
 
 import static lotto.constant.ConstantString.DELIMITER;
+import static lotto.constant.ConstantString.FINAL_REVENUE_MESSAGE;
 import static lotto.constant.ConstantString.PURCHASE_COUNT_MESSAGE;
 import static lotto.constant.ConstantString.RESULT_MESSAGE;
 
@@ -43,16 +44,17 @@ public class OutputView {
         printResultMessage();
         result.forEach((rank,count) ->{
             String message = rank.getMessage();
-            if(!message.equals("")) System.out.println(String.format("%s%d개",message,count));
+            if (!message.equals("")) System.out.println(String.format("%s%d개", message, count));
         });
     }
 
-    private void printResultMessage(){
+    private void printResultMessage() {
         printWhiteSpace();
         System.out.println(RESULT_MESSAGE);
         System.out.println(DELIMITER);
     }
 
-
-
+    public void printRevenue(double revenue) {
+        System.out.printf(FINAL_REVENUE_MESSAGE, revenue);
+    }
 }

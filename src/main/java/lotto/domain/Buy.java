@@ -4,10 +4,11 @@ public class Buy {
     private final Integer money;
     private final Integer count;
 
-    public Buy(Integer money) {
-        validateMoney(money);
-        this.money = money;
-        this.count = findCount(money);
+    public Buy(String money) {
+        int parseMoney = Integer.parseInt(money);
+        validateMoney(parseMoney);
+        this.money = parseMoney;
+        this.count = findCount(parseMoney);
     }
 
     private void validateMoney(Integer money) {

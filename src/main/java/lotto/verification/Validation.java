@@ -4,7 +4,7 @@ import lotto.view.VerificationView;
 
 public class Validation {
 
-    public static void verifyRangeInputMoney(String myMoney) {
+    public static void verifyRangeInputMoney(long myMoney) {
         try {
             if (myMoney / 1000 < 1 || myMoney % 1000 != 0) {
                 throw new IllegalArgumentException();

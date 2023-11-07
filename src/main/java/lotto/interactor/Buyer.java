@@ -8,15 +8,21 @@ public class Buyer {
     private int money;
 
     public int pay() {
-        System.out.printf("구입금액을 입력해 주세요.");
+        System.out.println("구입금액을 입력해 주세요.");
         String moneyString = readLine();
         checkMoneyValid(moneyString);
-        this.money = Integer.parseInt(moneyString);
-        return this.money;
+        return Integer.parseInt(moneyString);
     }
 
     private void checkMoneyValid(String moneyString) {
         InputValidator.checkNumericFormat(moneyString);
         InputValidator.checkDivisibleByThousand(moneyString);
+    }
+
+    public int getTickets() {
+        int ticketNums = this.money/1000;
+        System.out.println();
+        System.out.println(ticketNums + "개를 구매했습니다.");
+        return ticketNums;
     }
 }

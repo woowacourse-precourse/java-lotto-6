@@ -45,7 +45,7 @@ class InputServiceTest extends NsTest {
             runException("999");
 
             // THEN
-            assertThat(output()).contains(ERROR_PREFIX, LOTTO_EXPENSE_VALUE_ERROR);
+            assertThat(output()).contains(ERROR_PREFIX, LOTTO_EXPENSE_NONDIVIDABLE_ERROR);
         });
     }
 

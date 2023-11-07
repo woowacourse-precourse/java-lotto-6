@@ -1,7 +1,10 @@
 package lotto.exception;
 
 import static lotto.domain.constant.StringConstant.LOTTO_BONUSNUM_DUPLICATE_ERROR;
+import static lotto.service.OutputService.printError;
 
 public class DuplicateBonusNumException extends IllegalArgumentException {
-    public DuplicateBonusNumException() { super(LOTTO_BONUSNUM_DUPLICATE_ERROR); }
+    public DuplicateBonusNumException() {
+        printError(LOTTO_BONUSNUM_DUPLICATE_ERROR);
+    }
 }

@@ -41,10 +41,12 @@ public class Validator {
 
 
     // InputService SERVICE
-    public static void validateExpenseValue(String input) {
-        for (int i = 1; i < 4; i++)
-            if (input.charAt(input.length() - i) != '0')
-                throw new InvalidExpenseValueException();
+    public static void validateExpenseValue(Long expense) {
+        if (expense < MIN_EXPENSE_VALUE)
+            throw new InvalidExpenseValueException();
+
+        if (expense % LOTTO_PRICE > ZERO)
+            throw new NonDividableExpenseValueException();
     }
 
 

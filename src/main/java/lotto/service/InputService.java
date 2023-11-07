@@ -15,11 +15,12 @@ public class InputService {
     public static long readExpense() {
         try {
             String input = readLine();
-
             validateNumberType(input);
-            validateExpenseValue(input);
 
-            return parseLong(input);
+            long expense = parseLong(input);
+            validateExpenseValue(expense);
+
+            return expense;
         } catch (IllegalArgumentException e) {
             return readExpense();
         }

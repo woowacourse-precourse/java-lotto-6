@@ -36,9 +36,10 @@ public class StringConstant {
     // ERROR
     public static final String ERROR_PREFIX = "[ERROR] ";
         // DYNAMIC
-    public static final String LOTTO_SIZE_ERROR = LOTTO_SIZE + " 개의 로또 숫자를 입력해주세요.";
+    public static final String LOTTO_SIZE_ERROR = LOTTO_SIZE + "개의 로또 숫자를 입력해주세요.";
     public static final String LOTTO_IN_RANGE_ERROR = LOTTO_NUMBER_START + "과" + LOTTO_NUMBER_END + " 사이의 숫자를 입력해주세요.";
-    public static final String LOTTO_EXPENSE_VALUE_ERROR = LOTTO_PRICE + "으로 나뉘는 구매 금액을 입력해주세요.";
+    public static final String LOTTO_EXPENSE_NONDIVIDABLE_ERROR = LOTTO_PRICE + "으로 나뉘는 구매 금액을 입력해주세요.";
+    public static final String LOTTO_EXPENSE_VALUE_ERROR = MIN_EXPENSE_VALUE + "이상의 구매 금액을 입력해주세요.";
         // STATIC
     public static final String LOTTO_DUPLICATE_ERROR = "서로 중복되지 않는 로또 숫자를 입력해주세요";
     public static final String LOTTO_NUM_TYPE_ERROR = "알맞은 숫자 타입을 입력해주세요.";

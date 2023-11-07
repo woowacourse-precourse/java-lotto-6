@@ -21,7 +21,7 @@ public class Application {
         int count = price / 1000;
 
         List<Integer>[] issueNumbers = setIssueNumbers(count);
-        outputView.printWinningNum(issueNumbers, count);
+        outputView.printIssueNumbers(issueNumbers, count);
 
 
     }

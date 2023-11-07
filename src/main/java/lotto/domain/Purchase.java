@@ -7,9 +7,13 @@ public class Purchase {
 
     public static int inputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
-        int purchaseQuantity = Integer.parseInt(Console.readLine());
-
-        checkInputMoney(purchaseQuantity);
+        int purchaseQuantity;
+        try {
+            purchaseQuantity = Integer.parseInt(Console.readLine());
+            checkInputMoney(purchaseQuantity);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERRER] 금액은 숫자만 입력 가능합니다.")
+        }
 
         return purchaseQuantity;
     }
@@ -24,11 +28,11 @@ public class Purchase {
         }
     }
 
-    private static int calculateQuantity(int purchaseQuantity){
+    private static int calculateQuantity(int purchaseQuantity) {
         return purchaseQuantity / LOTTO_PRICE;
     }
 
-    private static void printQuantity(int purchaseQuantity){
+    private static void printQuantity(int purchaseQuantity) {
         int confirmQuantity = calculateQuantity(purchaseQuantity);
         System.out.println(confirmQuantity + "개를 구매했습니다.");
     }

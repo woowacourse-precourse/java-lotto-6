@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import lotto.view.OutputView;
@@ -21,8 +22,9 @@ public class Lotto {
     // TODO: 추가 기능 구현
 
     public void printNaturalOrder() {
-        numbers.sort(Comparator.naturalOrder());
-        OutputView.printMessage(numbers.toString());
+        List<Integer> naturalOrderNumbers = new ArrayList<>(getNumbers());
+        naturalOrderNumbers.sort(Comparator.naturalOrder());
+        OutputView.printMessage(naturalOrderNumbers.toString());
     }
 
     public List<Integer> getNumbers() {

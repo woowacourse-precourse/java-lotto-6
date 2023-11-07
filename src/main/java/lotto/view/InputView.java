@@ -8,28 +8,28 @@ import java.util.List;
 
 public class InputView {
 
-    public static String inputMoney(){
+    public static String inputMoney() {
         return Console.readLine();
     }
 
-    public static List<Integer> inputWinningNum(){
+    public static List<Integer> inputWinningNum() {
         String input = Console.readLine();
-        try{
+        try {
             WinningNumValidator winningNumValidator = new WinningNumValidator(input);
-            return parseStirngToInt(input);
+            return parseStringToInt(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNum();
         }
     }
 
-    public static String inputBonusNum(){
+    public static String inputBonusNum() {
         return Console.readLine();
     }
 
-    public static List<Integer> parseStirngToInt(String input){
+    public static List<Integer> parseStringToInt(String input) {
         List<Integer> winningNumber = new ArrayList<>();
-        for(String number : input.split(",")){
+        for (String number : input.split(",")) {
             winningNumber.add(Integer.parseInt(number));
         }
         return winningNumber;

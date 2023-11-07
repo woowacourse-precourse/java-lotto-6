@@ -37,9 +37,9 @@ public class MakeLottoTest {
 
     @Test
     @DisplayName("수를 받고 그 수 만큼 로또를 만드는지 확인")
-    void makeLottoList(){
+    void makeLottoList() {
         int lottoTicket = 6;
         List<Lotto> list = new MakeLotto().makeLottoList(lottoTicket);
-        assertEquals(list.size(),6);
+        assertEquals(list.size(), 6);
     }
 }

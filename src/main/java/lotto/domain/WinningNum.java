@@ -17,7 +17,7 @@ public class WinningNum {
         WinningNumValidator validator = new WinningNumValidator(numbers);
     }
 
-    public List<Integer> getWinningNum(){
+    public List<Integer> getWinningNum() {
         return this.numbers;
     }
 }

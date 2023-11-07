@@ -16,7 +16,7 @@ public class Lotto {
         LottoValidator validator = new LottoValidator(numbers);
     }
 
-    public List<Integer> getLottoNumbers(){
+    public List<Integer> getLottoNumbers() {
         return numbers;
     }
 }

@@ -1,11 +1,12 @@
 package lotto.domain;
+
 import lotto.validator.MoneyValidator;
 
 public class Money {
 
     private String money;
 
-    public Money(String money){
+    public Money(String money) {
         validate(money);
         this.money = money;
     }
@@ -14,7 +15,7 @@ public class Money {
         MoneyValidator validator = new MoneyValidator(input);
     }
 
-    public int getMoney(){
+    public int getMoney() {
         return Integer.parseInt(money);
     }
 

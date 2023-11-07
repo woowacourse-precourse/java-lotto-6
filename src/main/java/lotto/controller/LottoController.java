@@ -16,7 +16,7 @@ public class LottoController {
     private InputController inputController = new InputController();
     private MakeLotto makeLotto = new MakeLotto();
 
-    public LottoController(){
+    public LottoController() {
         Money money = setMoney();
         int lottoTicket = GenerateTicket.getLottoTickets(money.getMoney());
         List<Lotto> lottoList = makeLotto.makeLottoList(lottoTicket);
@@ -27,24 +27,24 @@ public class LottoController {
         printResult(lottoResult, totalRate);
     }
 
-    private Money setMoney(){
+    private Money setMoney() {
         OutputView.inputBuyMessage();
         return inputController.inputMoney();
     }
 
-    private List<Integer> setWinningNum(){
+    private List<Integer> setWinningNum() {
         OutputView.printBlank();
         OutputView.inputWinningNumMessage();
         return inputController.inputWinningNum();
     }
 
-    private BonusNum setBonusNum(){
+    private BonusNum setBonusNum() {
         OutputView.printBlank();
         OutputView.inputBonusNumMessage();
         return inputController.inputBonusNum();
     }
 
-    private void printResult(LottoResult lottoResult, double totalReward){
+    private void printResult(LottoResult lottoResult, double totalReward) {
         OutputView.printBlank();
         OutputView.printResultBar();
         OutputView.printResult(lottoResult.getLottoResult());

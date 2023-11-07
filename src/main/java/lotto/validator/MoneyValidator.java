@@ -10,7 +10,7 @@ public class MoneyValidator {
     private static final String UNDER_1000_MESSAGE = "1,000 이상으로 입력해 주세요.";
     private static final String DIVISION_ERROR_MESSAGE = "1,000 단위로 입력해 주세요.";
 
-    public MoneyValidator(String input){
+    public MoneyValidator(String input) {
         isNull(input);
         isContainBlank(input);
         isNumError(input);
@@ -18,19 +18,19 @@ public class MoneyValidator {
         isDivision(input);
     }
 
-    public void isNull(String input){
-        if (input.equals("")){
+    public void isNull(String input) {
+        if (input.equals("")) {
             throw new IllegalArgumentException(ERROR + NULL_ERROR_MESSAGE);
         }
     }
 
     public void isContainBlank(String input) {
-        if (input.contains(" ")){
+        if (input.contains(" ")) {
             throw new IllegalArgumentException(ERROR + BLANK_ERROR_MESSAGE);
         }
     }
 
-    public void isNumError(String input){
+    public void isNumError(String input) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -38,14 +38,14 @@ public class MoneyValidator {
         }
     }
 
-    public void isUnder1000(String input){
-        if (Integer.parseInt(input)<BUY_MONEY){
+    public void isUnder1000(String input) {
+        if (Integer.parseInt(input) < BUY_MONEY) {
             throw new IllegalArgumentException(ERROR + UNDER_1000_MESSAGE);
         }
     }
 
-    public void isDivision(String input){
-        if (Integer.parseInt(input)%BUY_MONEY != 0){
+    public void isDivision(String input) {
+        if (Integer.parseInt(input) % BUY_MONEY != 0) {
             throw new IllegalArgumentException(ERROR + DIVISION_ERROR_MESSAGE);
         }
     }

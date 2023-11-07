@@ -14,32 +14,32 @@ public class InputController {
     private WinningNum winningNum;
     private BonusNum bonusNum;
 
-    public Money inputMoney(){
-        try{
+    public Money inputMoney() {
+        try {
             money = new Money(InputView.inputMoney());
             OutputView.printBlank();
             return money;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMoney();
         }
     }
 
-    public List<Integer> inputWinningNum(){
-        try{
+    public List<Integer> inputWinningNum() {
+        try {
             winningNum = new WinningNum(InputView.inputWinningNum());
             return winningNum.getWinningNum();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningNum();
         }
     }
 
-    public BonusNum inputBonusNum(){
+    public BonusNum inputBonusNum() {
         try {
             bonusNum = new BonusNum(InputView.inputBonusNum(), winningNum.getWinningNum());
             return bonusNum;
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBonusNum();
         }

@@ -19,37 +19,37 @@ public class BonusNumValidatorTest {
 
     @Test
     @DisplayName("보너스 숫자 미입력 시 예외 처리")
-    void isNull(){
+    void isNull() {
         String bonusNum = "";
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR+NULL_ERROR_MESSAGE);
+                .hasMessageContaining(ERROR + NULL_ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("보너스 숫자 숫자 외 입력 시 예외 처리")
-    void isNumber(){
+    void isNumber() {
         String bonusNum = "asd";
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR+NOT_NUMBER_ERROR_MESSAGE);
+                .hasMessageContaining(ERROR + NOT_NUMBER_ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("보너스 숫자의 범위가 1이상 45이하가 아닐 시 예외 처리")
-    void isRangeOver(){
+    void isRangeOver() {
         String bonusNum = "49";
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR+RANGE_OVER_MESSAGE);
+                .hasMessageContaining(ERROR + RANGE_OVER_MESSAGE);
     }
 
     @Test
     @DisplayName("보너스 숫자가 당첨 번호와 중복일 시 예외 처리")
-    void isDuplicate(){
+    void isDuplicate() {
         String bonusNum = "6";
         assertThatThrownBy(() -> bonusNumValidator = new BonusNumValidator(bonusNum, input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR+DUPLICATE_ERROR_MESSAGE);
+                .hasMessageContaining(ERROR + DUPLICATE_ERROR_MESSAGE);
     }
 }

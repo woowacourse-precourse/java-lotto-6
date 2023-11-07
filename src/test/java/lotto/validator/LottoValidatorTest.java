@@ -18,38 +18,38 @@ public class LottoValidatorTest {
 
     @Test
     @DisplayName("로또 숫자 중복이면 예외 처리")
-    void isDuplicate(){
+    void isDuplicate() {
         List<Integer> input = List.of(1, 3, 3, 4, 5, 6);
         assertThatThrownBy(() -> validator = new LottoValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR+DUPLICATE_ERROR_MESSAGE);
+                .hasMessageContaining(ERROR + DUPLICATE_ERROR_MESSAGE);
     }
 
     @Test
     @DisplayName("로또 숫자 갯수가 6개가 아니면 예외 처리")
-    void isSizeOver(){
+    void isSizeOver() {
         List<Integer> input = List.of(1, 3, 3, 4, 5, 6, 7);
         assertThatThrownBy(() -> validator = new LottoValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR+SIZE_OVER_MESSAGE);
+                .hasMessageContaining(ERROR + SIZE_OVER_MESSAGE);
     }
 
     @Test
     @DisplayName("로또 숫자가 1이상 45이하가 아닐 시 예외 처리")
-    void isRangeOver(){
+    void isRangeOver() {
         List<Integer> input = List.of(1, 86, 3, 4, 5, 6);
         assertThatThrownBy(() -> validator = new LottoValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR+RANGE_OVER_MESSAGE);
+                .hasMessageContaining(ERROR + RANGE_OVER_MESSAGE);
     }
 
     @Test
     @DisplayName("로또 숫자가 오름차순이 아니면 예외 처리")
-    void isSorted(){
+    void isSorted() {
         List<Integer> input = List.of(1, 4, 3, 2, 5, 6);
         assertThatThrownBy(() -> validator = new LottoValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR+NOT_SORT_MESSAGE);
+                .hasMessageContaining(ERROR + NOT_SORT_MESSAGE);
     }
 
 }

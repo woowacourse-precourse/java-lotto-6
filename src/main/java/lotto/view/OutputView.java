@@ -15,46 +15,46 @@ public class OutputView {
     private static final String LOTTO_RESULT_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String TOTAL_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    public static void inputBuyMessage(){
+    public static void inputBuyMessage() {
         System.out.println(INPUT_BUY_MESSAGE);
     }
 
-    public static void inputWinningNumMessage(){
+    public static void inputWinningNumMessage() {
         System.out.println(INPUT_WINNING_NUM_MESSAGE);
     }
 
-    public static void inputBonusNumMessage(){
+    public static void inputBonusNumMessage() {
         System.out.println(INPUT_BONUS_NUM_MESSAGE);
     }
 
-    public static void printBlank(){
+    public static void printBlank() {
         System.out.println();
     }
 
-    public static void ticketCountMessage(int ticketCount){
-        System.out.println(ticketCount+TICKET_COUNT_MESSAGE);
+    public static void ticketCountMessage(int ticketCount) {
+        System.out.println(ticketCount + TICKET_COUNT_MESSAGE);
     }
 
-    public static void printResultBar(){
+    public static void printResultBar() {
         System.out.println(LOTTO_RESULT_BAR_MESSAGE);
     }
 
-    public static void printResult(Map<Prize,Integer> lottoResult){
+    public static void printResult(Map<Prize, Integer> lottoResult) {
         lottoResult.entrySet().stream()
                 .filter(entry -> entry.getKey() != Prize.FAIL)
                 .forEach(entry -> System.out.println(getPrintResult(entry.getKey(), entry.getValue())));
     }
 
-    public static String getPrintResult(Prize prize, int count){
-        if (prize == Prize.SECOND_GRADE){
+    public static String getPrintResult(Prize prize, int count) {
+        if (prize == Prize.SECOND_GRADE) {
             return String.format(LOTTO_SECOND_RESULT_MESSAGE
                     , prize.getMatchCount()
-                    , String.format("%,d",prize.getReward())
+                    , String.format("%,d", prize.getReward())
                     , count);
         }
         return String.format(LOTTO_RESULT_MESSAGE
                 , prize.getMatchCount()
-                , String.format("%,d",prize.getReward())
+                , String.format("%,d", prize.getReward())
                 , count);
     }
 

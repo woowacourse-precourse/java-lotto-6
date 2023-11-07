@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import static lotto.config.LottoConfig.NUMBER_OF_NUMBERS;
+import static lotto.view.message.ErrorMessage.DUPLICATED_NUMBER;
+import static lotto.view.message.ErrorMessage.NOT_DEFAULT_LOTTO_SIZE;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -24,14 +26,14 @@ public class Lotto {
 
     private void isDefaultSize(List<Integer> numbers) {
         if (numbers.size() != NUMBER_OF_NUMBERS.getNumber()) {
-            throw new IllegalArgumentException("로또 번호의 개수가 6개가 아닙니다.");
+            throw new IllegalArgumentException(NOT_DEFAULT_LOTTO_SIZE.getErrorMessage());
         }
     }
 
     private void hasDuplicatedNumber(List<Integer> numbers) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
         if (numbersSet.size() != NUMBER_OF_NUMBERS.getNumber()) {
-            throw new IllegalArgumentException("로또 번호에 중복된 숫자가 있습니다.");
+            throw new IllegalArgumentException(DUPLICATED_NUMBER.getErrorMessage());
         }
     }
 

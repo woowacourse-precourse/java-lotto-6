@@ -79,5 +79,8 @@
 - 입력 문구에 대한 enum 처리.
 
 ### WinningStatistics
-- 당첨 통계 메시지를 key로 가지고 있는 map 형태의 필드
+- Ranking을 key로 가지고 있는 map 형태의 필드
 - key에 해당하는 value값을 1 증가시키는 메서드
+
+### Ranking
+- 당첨 문구 및 금액, 일치 횟수를 담고 있는 상수 enum

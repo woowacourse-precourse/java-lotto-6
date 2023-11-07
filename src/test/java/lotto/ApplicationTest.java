@@ -1,7 +1,6 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -12,7 +11,6 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.STRING;
 
 class ApplicationTest extends NsTest {
 
@@ -29,6 +27,17 @@ class ApplicationTest extends NsTest {
         public String getWord(){
             return word;
         }
+    }
+
+    enum Num{
+        ZERO(0), TOPRANGE(46), MINUS(-100);
+
+        private int num;
+
+        private Num(int num){
+            this.num = num;
+        }
+        public int getNum(){return num;}
     }
 
     @Test
@@ -93,19 +102,16 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 음수_초기입력예외(){
-        int test1 = 0;
-        int test2 = -100;
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> money_for_lotto.moneyIsOver0(test1));
+                () -> money_for_lotto.moneyIsOver0(Num.ZERO.getNum()));
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> money_for_lotto.moneyIsOver0(test2));
+                () -> money_for_lotto.moneyIsOver0(Num.MINUS.getNum()));
     }
 
     @Test
     void 천의_배수_입력확인(){
-        int test = 123;
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> money_for_lotto.multipleOfThousand(test));
+                () -> money_for_lotto.multipleOfThousand(Num.TOPRANGE.getNum()));
     }
 
     @Test
@@ -145,12 +151,10 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 보너스숫자_범위확인_테스트(){
-        int test1 = 0;
-        int test2 = 46;
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> bonus_number.checkBonusRange(test1));
+                () -> bonus_number.checkBonusRange(Num.ZERO.getNum()));
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> bonus_number.checkBonusRange(test2));
+                () -> bonus_number.checkBonusRange(Num.TOPRANGE.getNum()));
     }
 
     @Override

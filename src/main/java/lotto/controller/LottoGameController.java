@@ -1,94 +1,72 @@
 package lotto.controller;
 
 import lotto.model.LottoGameManager;
-import lotto.view.InputView;
-import lotto.view.OutputMessage;
-import lotto.view.OutputView;
+import lotto.model.RankingManager;
+import lotto.view.View;
 
 public class LottoGameController {
-    private final InputView inputView;
+    private final View view;
     private final LottoGameManager lottoGameManager;
 
-    public LottoGameController(InputView inputView, LottoGameManager lottoGameManager) {
-        this.inputView = inputView;
+    private RankingManager rankingManager;
+
+    public LottoGameController(View view, LottoGameManager lottoGameManager) {
+        this.view = view;
         this.lottoGameManager = lottoGameManager;
     }
 
     public void gameStart() {
-        buyLotto();
-        inputWiningNumbers();
-        inputBonusNumber();
+        requestLottoPurchase();
+        requestWiningNumbers();
+        requestBonusNumber();
+        responseGameResult();
     }
 
-    private void buyLotto() {
+    private void requestLottoPurchase() {
         while (true) {
             try {
-                printLottoCostRequest();
-                publishLotto();
-                printPublishedLotto();
+                lottoGameManager.createLottoBucket(view.inputLottoCost());
+                view.outputPublishedLotto(lottoGameManager.getPublishedLotto());
                 break;
             } catch (IllegalArgumentException e) {
-                printErrorMessage(e);
+                view.outputErrorMessage(e);
             }
         }
     }
 
-    private void printLottoCostRequest() {
-        OutputView.writeLine(OutputMessage.REQUEST_LOTTO_COST.message());
-    }
-
-    private void publishLotto() {
-        String userInputLottoCost = inputView.readLine();
-        lottoGameManager.createLottoBucket(userInputLottoCost);
-    }
-
-    private void printPublishedLotto() {
-        OutputView.writeLine(lottoGameManager.showPublishedLotto());
-    }
-
-    private void inputWiningNumbers() {
+    private void requestWiningNumbers() {
         while (true) {
             try {
-                printWinningNumbersRequest();
-                publishWinningLotto();
+                lottoGameManager.createWinningLotto(view.inputWinningNumbers());
                 break;
             } catch (IllegalArgumentException e) {
-                printErrorMessage(e);
+                view.outputErrorMessage(e);
             }
         }
-    }
-
-    private void printWinningNumbersRequest() {
-        OutputView.writeLine(OutputMessage.REQUEST_WINNING_NUMBERS.message());
-    }
-
-    private void publishWinningLotto() {
-        String userInputWinningNumbers = inputView.readLine();
-        lottoGameManager.createWinningLotto(userInputWinningNumbers);
-    }
-
-    private void inputBonusNumber() {
-        while (true) {
-            try {
-                printBonusNumberRequest();
-                requestBonusNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                printErrorMessage(e);
-            }
-        }
-    }
-
-    private void printBonusNumberRequest() {
-        OutputView.writeLine(OutputMessage.REQUEST_BONUS_NUMBER.message());
     }
 
     private void requestBonusNumber() {
-        String userInputBonusNumbers = inputView.readLine();
-        lottoGameManager.parsingBonusNumber(userInputBonusNumbers);
+        while (true) {
+            try {
+                lottoGameManager.parsingBonusNumber(view.inputBonusNumber());
+                break;
+            } catch (IllegalArgumentException e) {
+                view.outputErrorMessage(e);
+            }
+        }
     }
 
-    private void printErrorMessage(IllegalArgumentException e) {
-        OutputView.writeLine(e.getMessage());
+    public void responseGameResult() {
+        rankingManager = lottoGameManager.generateRankingManager();
+        responseWinningDetails();
+        responseEarningsRate();
+    }
+
+    private void responseWinningDetails() {
+        view.outputWinningDetails(rankingManager.getWinningDetails());
+    }
+
+    private void responseEarningsRate() {
+        view.outputEarningsRate(rankingManager.calculateEarningsRate());
     }
 }

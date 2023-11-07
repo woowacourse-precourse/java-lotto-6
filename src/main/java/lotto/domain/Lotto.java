@@ -23,7 +23,6 @@ public class Lotto {
     }
 
     public void printLotto() {
-        Collections.sort(numbers);
         System.out.println(numbers);
     }
 

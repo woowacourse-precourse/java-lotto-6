@@ -1,21 +1,15 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.Prize;
 
 public class LottoService {
     public static Lotto createLotto() {
-        List<Integer> numbers = new ArrayList<>();
-
-        while (numbers.size() < 6) {
-            int pickedNumber = Randoms.pickNumberInRange(1, 45);
-            if (!numbers.contains(pickedNumber)) {
-                numbers.add(pickedNumber);
-            }
-        }
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        sorted(numbers);
         return new Lotto(numbers);
     }
 
@@ -36,5 +30,11 @@ public class LottoService {
             return Prize.FIFTH;
         }
         return Prize.NONE;
+    }
+
+    private static List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

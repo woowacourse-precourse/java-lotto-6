@@ -3,10 +3,10 @@ package lotto.View;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.StringJoiner;
 import lotto.Domain.Lotto;
 import lotto.Domain.Rank;
+import lotto.Domain.WinningResult;
 
 public class OutputView {
     private final String BUY_LOTTO_MESSAGE_FORMAT = "%d개를 구매했습니다.";
@@ -38,7 +38,7 @@ public class OutputView {
         }
     }
 
-    public void showWinningResult(Map<Rank,Integer> winningResult) {
+    public void showWinningResult(WinningResult winningResult) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder
                 .append(WIN_RESULT_MESSAGE).append(LINE)
@@ -51,12 +51,12 @@ public class OutputView {
         System.out.println(String.format(REVENUE_MESSAGE_FORMAT, revenue));
     }
 
-    private String makeWinningResultMessage(Map<Rank, Integer> winningResult) {
+    private String makeWinningResultMessage(WinningResult winningResult) {
         StringJoiner stringJoiner = new StringJoiner(LINE);
         Arrays.stream(Rank.values())
                 .sorted(Comparator.reverseOrder())
                 .filter(rank -> rank!=Rank.NOTHING)
-                .forEach(rank -> stringJoiner.add(rank.toString() + DASH + String.format(WINNING_NUM_FORMAT,winningResult.getOrDefault(rank,0))));
+                .forEach(rank -> stringJoiner.add(rank.toString() + DASH + String.format(WINNING_NUM_FORMAT,winningResult.result().getOrDefault(rank,0))));
         return stringJoiner.toString();
     }
 

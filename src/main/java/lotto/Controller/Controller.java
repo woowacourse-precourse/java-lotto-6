@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.Domain.Lotto;
 import lotto.Domain.Rank;
+import lotto.Domain.WinningResult;
 import lotto.Service.LottoService;
 import lotto.Util.InputResolver;
 import lotto.View.InputView;
@@ -24,6 +25,7 @@ public class Controller {
         purchaseLottoProcess();
         createWinningLottoProcess();
         showWinningResultProcess();
+        showRevenueProcess();
     }
 
     private void purchaseLottoProcess() {
@@ -40,16 +42,18 @@ public class Controller {
             purchaseLottoProcess();
         }
     }
+
     private void createWinningLottoProcess() {
         try {
             List<Integer> winningNumbers = createWinningNumbersProcess();
             int bonusNumber = createBonusNumberProcess();
-            lottoService.createWinningLotto(winningNumbers,bonusNumber);
-        }catch (IllegalArgumentException e) {
+            lottoService.createWinningLotto(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             createWinningLottoProcess();
         }
     }
+
     private List<Integer> createWinningNumbersProcess() {
         List<Integer> winningNumbers;
         try {
@@ -62,22 +66,27 @@ public class Controller {
         }
         return winningNumbers;
     }
+
     private int createBonusNumberProcess() {
         int bonusNumber;
         try {
             String inputBonusNum = inputView.receiveBonusNumber();
             outputView.showNewLine();
             bonusNumber = InputResolver.toInteger(inputBonusNum);
-        }catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             bonusNumber = createBonusNumberProcess();
         }
         return bonusNumber;
     }
-    public void showWinningResultProcess() {
-        Map<Rank, Integer> winningResult = lottoService.createResult();
-        double revenue = lottoService.getRevenue(winningResult);
+
+    private void showWinningResultProcess() {
+        WinningResult winningResult = lottoService.createResult();
         outputView.showWinningResult(winningResult);
+    }
+
+    private void showRevenueProcess() {
+        double revenue = lottoService.getRevenue();
         outputView.showRevenue(revenue);
     }
 }

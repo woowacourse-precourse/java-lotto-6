@@ -12,11 +12,13 @@ import lotto.Domain.Lotto;
 import lotto.Domain.Rank;
 import lotto.Domain.User;
 import lotto.Domain.WinningLotto;
+import lotto.Domain.WinningResult;
 import lotto.Util.LottoNumGenerator;
 
 public class LottoService {
     private User user;
     private WinningLotto winningLotto;
+    private WinningResult winningResult;
 
     public List<Lotto> purchaseLotto(int money) {
         int count = countNumberOfPurchase(money);
@@ -31,29 +33,21 @@ public class LottoService {
         this.winningLotto = new WinningLotto(winningLotto, bonusNumber);
     }
 
-    public Map<Rank, Integer> createResult() {
+    public WinningResult createResult() {
         Map<Rank, Integer> result = new HashMap<>();
         for (Lotto lotto : user.getLottos()) {
             Rank rank = winningLotto.getRankOf(lotto);
             result.put(rank, result.getOrDefault(rank, 0) + 1);
         }
-        return result;
+        winningResult = new WinningResult(result);
+        return winningResult;
     }
 
-    public double getRevenue(Map<Rank, Integer> result) {
+    public double getRevenue() {
         double investMoney = user.getMoney();
-        double income = getIncome(result);
+        double income = winningResult.getIncome();
         return (income / investMoney) * PERCENT;
     }
-
-    private double getIncome(Map<Rank, Integer> result) {
-        double income = 0d;
-        for (Rank rank : result.keySet()) {
-            income += (rank.getPrizeMoney() * result.get(rank));
-        }
-        return income;
-    }
-
 
     private int countNumberOfPurchase(int money) {
         return money / LOTTO_PRICE_UNIT;

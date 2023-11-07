@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class PrizeManager {
         return indexes;
     }
 
-    
+
     // testcode
     protected List<Integer> getPrizes() {
         return prizes;

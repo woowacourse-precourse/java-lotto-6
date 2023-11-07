@@ -1,8 +1,8 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.LottoManager;
-import lotto.model.PrizeManager;
+import lotto.services.LottoManager;
+import lotto.services.PrizeManager;
 import lotto.utils.validation.ValidatorNumber;
 import lotto.view.InputView;
 import lotto.view.output.DisplayAnnounce;

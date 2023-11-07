@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 
 public class WalletTest {
 
-    @Test
     @DisplayName("로또 구입 금액은 1000원 단위가 아니면 예외가 발생한다.")
+    @Test
     void addBalance_multiplesOfThousand_exception() {
 
         Wallet wallet = new Wallet();
@@ -22,8 +22,8 @@ public class WalletTest {
 
     }
 
-    @Test
     @DisplayName("로또 구입 금액은 1,000 ~ 100,000 사이가 아니라면 예외가 발생한다.")
+    @Test
     void addBalance_range_exception() {
 
         Wallet wallet = new Wallet();
@@ -34,8 +34,8 @@ public class WalletTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
     @DisplayName("addBalance 값 검증 테스트")
+    @Test
     void validateAddBalance() {
 
         Wallet wallet = new Wallet();
@@ -47,8 +47,8 @@ public class WalletTest {
         assertThat(wallet.getBalance()).isEqualTo(testMoney);
     }
 
-    @Test
     @DisplayName("buyAllLotto 값 검증 테스트")
+    @Test
     void validateBuyAllLotto() {
 
         Wallet wallet = new Wallet();

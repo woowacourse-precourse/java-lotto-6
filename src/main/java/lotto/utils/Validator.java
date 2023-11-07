@@ -4,7 +4,7 @@ import java.util.List;
 import lotto.constants.Error;
 
 public class Validator {
-    private static final String ERROR_MESSAGE_HEADER = Error.ERROR_MESSAGE_HEADER.getMessage();
+    private static final String ERROR_MESSAGE_HEADER = Error.ERROR_HEADER.getMessage();
 
     private Validator() {
     }

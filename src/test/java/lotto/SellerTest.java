@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 public class SellerTest {
-    private static final String ERROR_MESSAGE_HEADER = Error.ERROR_MESSAGE_HEADER.getMessage();
+    private static final String ERROR_MESSAGE_HEADER = Error.ERROR_HEADER.getMessage();
     private static final int LOTTO_PRICE = NumberRule.LOTTO_PRICE.getNumber();
 
     @DisplayName("입력한 구매 금액이 숫자가 아니면 예외가 발생한다.")

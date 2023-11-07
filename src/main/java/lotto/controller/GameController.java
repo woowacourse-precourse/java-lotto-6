@@ -24,14 +24,19 @@ public class GameController {
     private List<Integer> finalMatchNumbers;
 
     public void play() {
-        getAmount();
-        printNumberOfLottoPurcased();
-        generateLottos(numberOfLottoPurchased);
-        getWinnerNumber();
-        getBonusNumber();
-        getPrize();
-        printPrize();
-
+        try {
+            getAmount();
+            printNumberOfLottoPurcased();
+            generateLottos(numberOfLottoPurchased);
+            getWinnerNumber();
+            getBonusNumber();
+            getPrize();
+            printPrize();
+        } catch (NumberFormatException exception) {
+            System.out.println("[ERROR]");
+        } catch (IllegalArgumentException exception) {
+            System.out.println("[ERROR] 잘못된 값을 입력하셨습니다.");
+        }
     }
 
     private void getAmount() {

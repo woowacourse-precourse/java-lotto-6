@@ -1,24 +1,19 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
 import lotto.configuration.ScoreBoard;
 import lotto.configuration.WinningLevel;
 import lotto.util.Utils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class LottoService {
 
     private static final Integer START_NUMBER = 1;
     private static final Integer LAST_NUMBER = 45;
     private static final Integer COUNT = 6;
-
-
 
     public List<List<Integer>> generateRandomLottoNumbers(Long length) {
 
@@ -63,7 +58,7 @@ public class LottoService {
     public HashMap<String, Long> getResultScoreBoard(List<List<Integer>> myLotto, List<Integer> winningLotto, Integer bonusNumber) {
         HashMap<String, Long> scoreBoard = generateResultScoreBoard();
         for (int i = 0; i < myLotto.size(); i++) {
-            WinningLevel winningLevel = calculateLottoScore(countMatchingWinningNumbers(winningLotto,myLotto.get(i)),countMatchingBonusNumbers(winningLotto,bonusNumber));
+            WinningLevel winningLevel = calculateLottoScore(countMatchingWinningNumbers(winningLotto, myLotto.get(i)), countMatchingBonusNumbers(winningLotto, bonusNumber));
             long value = scoreBoard.get(winningLevel.getRank()) + winningLevel.getReward();
             scoreBoard.put(winningLevel.getRank(), value);
         }

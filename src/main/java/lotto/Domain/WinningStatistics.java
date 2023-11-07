@@ -1,5 +1,6 @@
-package lotto;
+package lotto.Domain;
 
+import lotto.Domain.Lotto;
 import lotto.Domain.WinningRank;
 
 import java.util.List;

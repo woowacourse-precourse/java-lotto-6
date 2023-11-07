@@ -9,6 +9,7 @@ import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.WinningNumber;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoService {
 
@@ -35,6 +36,27 @@ public class LottoService {
         GenerateLotto generateLotto=new GenerateLotto();
         Lotto lotto = generateLotto.generateLotto();
         return lotto;
+    }
+
+    private List<LottoResult> getResult(Lottos lottos, WinningNumber winningNumber){
+        List<LottoResult> results=new ArrayList<>();
+
+        for(Lotto lotto:lottos.getLottos()){
+            int matchedCount=countMatchingNumbers(lotto,winningNumber.getWinningNumber());
+            boolean bonusNumberMatched=lotto.hasBonusNumber(winningNumber.getBonusNumber());
+            results.add(LottoResult.findRank(matchedCount,bonusNumberMatched));
+        }
+        return results;
+    }
+
+    private int countMatchingNumbers(Lotto lotto,Lotto winningNumbers){
+        int count=0;
+        for(int number: lotto.getLotto()){
+            if (winningNumbers.getLotto().contains(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 
 

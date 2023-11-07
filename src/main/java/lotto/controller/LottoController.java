@@ -87,6 +87,10 @@ public class LottoController {
             saveLottoNumbers(GenerateRandomNumber());
         }
     }
+    public String printPrizeNumbers() {
+        return "당첨 번호를 입력해 주세요.";
+    }
+
     public void run() {
         printLottoPrices();
         inputLottoPrices();

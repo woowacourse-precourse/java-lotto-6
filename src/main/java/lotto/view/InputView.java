@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.Lotto;
 
 public class InputView {
 
@@ -25,11 +26,12 @@ public class InputView {
         return Integer.parseInt(purchaseAmount);
     }
 
-    public List<Integer> askWinningNumbers() {
+    public Lotto askWinningNumbers() {
         System.out.printf(ASK_WINNING_NUMBERS);
-        String[] numbers = readLine().split(DELIMITER_COMMA);
-        validator.validateIntegerArray(numbers);
-        return Arrays.stream(numbers).map(Integer::parseInt).sorted().toList();
+        String[] splitNumbers = readLine().split(DELIMITER_COMMA);
+        validator.validateIntegerArray(splitNumbers);
+        List<Integer> numbers = Arrays.stream(splitNumbers).map(Integer::parseInt).sorted().toList();
+        return new Lotto(numbers);
     }
 
     public int askBonusNumber() {

@@ -5,7 +5,6 @@ import java.util.Arrays;
 import lotto.model.LottoPrize;
 import lotto.model.LottoStatistic;
 import lotto.model.Lottos;
-import lotto.model.PurchaseAmount;
 
 public class OutputView {
 
@@ -16,15 +15,15 @@ public class OutputView {
     private static final String PRIZE_2_RESULT = "%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n";
     private static final String EARNING_RATE = "총 수익률은 %.1f%%입니다.";
 
-    public void printPurchaseResult(Lottos lottos) {
+    public void printLottos(Lottos lottos) {
         System.out.printf(PURCHASE_RESULT, lottos.size());
         lottos.stream().forEach(System.out::println);
     }
 
-    public void printStatistic(final PurchaseAmount amount, final LottoStatistic statistic) {
+    public void printStatistic(final LottoStatistic statistic) {
         System.out.printf(STATISTIC);
         printPrizes(statistic);
-        printEarningRate(statistic, amount);
+        printEarningRate(statistic);
     }
 
     private void printPrizes(final LottoStatistic statistic) {
@@ -33,8 +32,8 @@ public class OutputView {
                 .forEach(prize -> printPrize(prize, statistic));
     }
 
-    private void printEarningRate(final LottoStatistic statistic, final PurchaseAmount amount) {
-        System.out.printf(EARNING_RATE, statistic.getEarningRate(amount));
+    private void printEarningRate(final LottoStatistic statistic) {
+        System.out.printf(EARNING_RATE, statistic.getEarningRate());
     }
 
     private void printPrize(final LottoPrize prize, final LottoStatistic statistic) {

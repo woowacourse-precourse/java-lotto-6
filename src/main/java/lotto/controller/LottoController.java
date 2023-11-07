@@ -4,9 +4,7 @@ import lotto.domain.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class LottoController {
 
@@ -21,10 +19,9 @@ public class LottoController {
         LottoTickets lottoTickets = lottoMachine.buy(money);
         output.showLottoTickets(lottoTickets);
 
-        WinningCondition winningCondition = makeWinningCondition();
-        Map<Lotto, Rank> rankByLotto = winningCondition.findRankByLotto(lottoTickets);
-        Map<Rank, Integer> winningResult = makeWinningResult(rankByLotto);
-        double totalReturn = winningCondition.calculateTotalReturn(money.getAmount(), winningResult);
+        LottoChecker lottoChecker = makeLottoChecker();
+        Map<Rank, Integer> winningResult = lottoChecker.checkWinningResult(lottoTickets);
+        double totalReturn = lottoChecker.calculateTotalReturn(money);
         output.showWinningStats(winningResult, totalReturn);
     }
 
@@ -37,14 +34,14 @@ public class LottoController {
         }
     }
 
-    private WinningCondition makeWinningCondition() {
+    private LottoChecker makeLottoChecker() {
         output.showWinningNumbersInputMessage();
         Lotto winningLotto = repeatMakeWinningLotto();
 
         output.showBonusNumberInputMessage();
         Bonus bonus = repeatMakeBonus();
 
-        return new WinningCondition(winningLotto, bonus);
+        return new LottoChecker(winningLotto, bonus);
     }
 
     private Lotto repeatMakeWinningLotto() {
@@ -65,16 +62,6 @@ public class LottoController {
         }
     }
 
-    private Map<Rank, Integer> makeWinningResult(Map<Lotto, Rank> rankByLotto) {
-        Map<Rank, Integer> winningResult = Arrays.stream(Rank.values())
-                .collect(Collectors.toMap(rank -> rank, rank -> 0));
-
-        for (Rank rank : rankByLotto.values()) {
-            winningResult.put(rank, winningResult.get(rank) + 1);
-        }
-
-        return winningResult;
-    }
 
     private int toInt(String number) {
         return Integer.parseInt(number);

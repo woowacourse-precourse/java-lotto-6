@@ -13,7 +13,7 @@ import static lotto.views.MessageManager.*;
 public class LottoStoreManager {
     private String inputAmount;
     private final double LOTTO_PRICE = 1000;
-    private int lottoTicketCount;
+    private static int lottoTicketCount;
 
     public LottoStoreManager() {
         initialize();
@@ -50,7 +50,7 @@ public class LottoStoreManager {
         lottoTicketCount = (int) divide(Double.parseDouble(inputAmount), LOTTO_PRICE);
     }
 
-    public LottoGenerator lottoMachine() {
+    public static LottoGenerator lottoMachine() {
         return new LottoGenerator(lottoTicketCount);
     }
 
@@ -61,4 +61,5 @@ public class LottoStoreManager {
             System.out.println(lottoTicket);
         }
     }
+
 }

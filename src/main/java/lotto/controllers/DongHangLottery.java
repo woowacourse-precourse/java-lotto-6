@@ -2,12 +2,11 @@ package lotto.controllers;
 
 import static lotto.controllers.InputProcessor.readLine;
 import static lotto.model.InputValidator.*;
-import static lotto.model.Utilities.inputIntegerParsing;
 import static lotto.views.MessageManager.*;
 
 public class DongHangLottery {
-    private String inputWinningNumber;
-    private String inputBonusNumber;
+    public static String inputWinningNumber;
+    public static String inputBonusNumber;
 
     public DongHangLottery() {
         winningNumberValidate();
@@ -18,6 +17,15 @@ public class DongHangLottery {
         getWinnersCountPromptMessage();
         getHyphenPromptPromptMessage();
     }
+
+    public static String getInputWinningNumber() {
+        return inputWinningNumber;
+    }
+
+    public static String getInputBonusNumber() {
+        return inputBonusNumber;
+    }
+
     public void winningNumberValidate() {
         int maxAttempts = 3;
         int attempts = 0;

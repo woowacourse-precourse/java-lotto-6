@@ -93,8 +93,8 @@
 - LottoRank : 로또 등수 정보를 가진다.
 - LottoTicketMaker : 로또를 발행한다.
 - Money : 금액의 값 객체
-- WinningNumbers : 당첨 번호와 보너스 번호를 가지고, 당첨내역을 생성한다.
 - RateOfReturn : 수익률 값 객체
+- WinningNumbers : 당첨 번호와 보너스 번호를 가지고, 당첨내역을 생성한다.
 
 ### Util
 

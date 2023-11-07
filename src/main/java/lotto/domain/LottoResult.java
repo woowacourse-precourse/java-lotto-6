@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 public class LottoResult {
+    private static final int INIT_NUM = 1;
     private final Map<LottoRank, Integer> results;
 
     public LottoResult(Map<LottoRank, Integer> results) {
@@ -15,7 +16,7 @@ public class LottoResult {
         for (Lotto lotto : lottos.getLottos()) {
             // 현재 로또가 몇등인지 구함
             LottoRank rank = winningLotto.match(lotto);
-            results.merge(rank, 1, Integer::sum);
+            results.merge(rank, INIT_NUM, Integer::sum);
         }
         return new LottoResult(results);
     }

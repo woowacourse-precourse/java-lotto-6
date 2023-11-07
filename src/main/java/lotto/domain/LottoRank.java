@@ -1,6 +1,7 @@
 package lotto.domain;
 
 public enum LottoRank {
+
     /*
         3개 일치 (5,000원) - 1개
         4개 일치 (50,000원) - 0개
@@ -14,6 +15,7 @@ public enum LottoRank {
     FOURTH(50000, 4, false),
     FIFTH(5000, 3, false),
     NONE(0, 0, false);
+    private static final int FIVE = 5;
     private final long amount;
     private final int count;
     private final boolean hasBonus;
@@ -25,7 +27,7 @@ public enum LottoRank {
     }
 
     public static LottoRank of(int count, final boolean hasBonus) {
-        if (count == 5) {
+        if (count == FIVE) {
             return whenCountFive(hasBonus);
         }
         return determineRank(count);

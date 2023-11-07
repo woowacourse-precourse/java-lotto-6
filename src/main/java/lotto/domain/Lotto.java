@@ -10,6 +10,7 @@ public class Lotto {
     private static final String DELIMITER_AND_SPACE = ", ";
     private static final String LIST_PREFIX = "[";
     private static final String LIST_SUFFIX = "]";
+    private static final int START_NUM = 1;
     private final List<Number> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -28,7 +29,7 @@ public class Lotto {
     }
 
     private static List<Integer> randomNumber() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(START_NUM, LOTTO_MAX_NUM, LOTTO_SIZE);
     }
 
     private static List<Integer> sortNumber(List<Integer> numbers) {

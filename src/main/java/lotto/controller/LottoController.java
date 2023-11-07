@@ -6,6 +6,7 @@ import static java.util.stream.Collectors.toList;
 import java.util.stream.Stream;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.MainNumbers;
 import lotto.model.PurchaseAmount;
 import lotto.util.generator.LottoNumberGenerator;
 import lotto.util.generator.NumberGenerator;
@@ -26,6 +27,8 @@ public class LottoController {
         PurchaseAmount purchaseAmount = getValidPurchaseAmount();
         Lottos lottos = issueLottos(new LottoNumberGenerator(), purchaseAmount.calculateLottoCount());
         printLottosIssued(lottos);
+
+        MainNumbers mainNumbers = getValidMainNumbers();
     }
 
     private PurchaseAmount getValidPurchaseAmount() {
@@ -46,5 +49,15 @@ public class LottoController {
 
     private void printLottosIssued(Lottos lottos) {
         outputView.printLottosIssued(DtoModelMapper.LottosToDto(lottos));
+    }
+
+    private MainNumbers getValidMainNumbers() {
+        while (true) {
+            try {
+                return DtoModelMapper.dtoToMainNumbers(inputView.readMainNumbers());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

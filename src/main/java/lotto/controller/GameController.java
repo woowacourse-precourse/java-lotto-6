@@ -20,7 +20,7 @@ public class GameController {
             try {
                 String money = UserView.startMessage();
                 Validator.validateMoney(money);
-                return calculateLottoCount(money);
+                return gameService.calculateLottoCount(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -72,11 +72,5 @@ public class GameController {
 
         String returnRate = gameService.calculateReturnRate(rankList, lottoCount);
         UserView.totalYieldMessage(returnRate);
-    }
-
-    // Lotto 구입 개수 계산
-    private int calculateLottoCount(String money) {
-        int lottoCount = Integer.parseInt(money);
-        return lottoCount / 1000;
     }
 }

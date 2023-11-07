@@ -11,6 +11,12 @@ import lotto.utils.Validator;
 
 public class GameService {
 
+    // Lotto 구입 개수 계산
+    public int calculateLottoCount(String money) {
+        int lottoCount = Integer.parseInt(money);
+        return lottoCount / 1000;
+    }
+
     // Lotto list 생성
     public List<Lotto> createLotto(int lottoCount) {
         List<Lotto> lottoList = new ArrayList<>();

@@ -9,22 +9,40 @@ import lotto.model.WinningNum;
 import lotto.view.Output;
 
 public class LottoGame {
-    public static void start() {
+    public static void play() {
         try {
-            Output.inputPaymentMsg();
-            int payment = InputController.setPayment();
-            Output.printNumOfLotto(payment);
-            Ticket ticket = new Ticket(LottoController.generateTicket(payment));
-            Output.printTicket(ticket);
-            Output.inputWinningNumMsg();
-            WinningNum winningiNum = new WinningNum(InputController.setWinningNum());
-            Output.inputBonusNumMsg();
-            int bonusNum = InputController.setBonusNum();
+            int payment = purchase();
+            Ticket ticket = issuanceTicket(payment);
+            WinningNum winningiNum = writeWinningNum();
+            int bonusNum = writeBonusNum();
             List<Result> result = LottoController.determine(ticket, winningiNum, bonusNum);
             double rateOfReturn = LottoController.calculateReturn(result, payment);
             Output.printResult(result, rateOfReturn);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    private static int purchase() {
+        Output.inputPaymentMsg();
+        int payment = InputController.setPayment();
+        Output.printNumOfLotto(payment);
+        return payment;
+    }
+
+    private static Ticket issuanceTicket(int payment) {
+        Ticket ticket = new Ticket(LottoController.generateTicket(payment));
+        Output.printTicket(ticket);
+        return ticket;
+    }
+
+    private static WinningNum writeWinningNum() {
+        Output.inputWinningNumMsg();
+        return new WinningNum(InputController.setWinningNum());
+    }
+
+    private static int writeBonusNum() {
+        Output.inputBonusNumMsg();
+        return InputController.setBonusNum();
     }
 }

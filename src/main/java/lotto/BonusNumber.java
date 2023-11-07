@@ -1,9 +1,9 @@
 package lotto;
 
-public class LottoBonus {
+public class BonusNumber {
     private final int bonusNumber;
 
-    public LottoBonus(int bonusNumber) {
+    public BonusNumber(int bonusNumber) {
         isNumberInRange(bonusNumber);
         this.bonusNumber = bonusNumber;
     }

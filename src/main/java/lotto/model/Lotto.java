@@ -20,7 +20,7 @@ public class Lotto {
         int matchCount = calculateMatchCount(winningLotto.getWinningNumber());
         boolean matchBonus = isMatchBonus(winningLotto.getBonusNumber());
 
-        return LottoRank.calculateRank(matchCount, matchBonus).orElse(LottoRank.MISS);
+        return LottoRank.calculateRank(matchCount, matchBonus);
     }
 
     private boolean isMatchBonus(BonusNumber bonusNumber) {

@@ -3,7 +3,6 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public enum LottoRank {
 
@@ -32,10 +31,10 @@ public enum LottoRank {
         return matchCount;
     }
 
-    public static Optional<LottoRank> calculateRank(int matchCount, boolean matchBonus) {
+    public static LottoRank calculateRank(int matchCount, boolean matchBonus) {
         return Arrays.stream(values())
                 .filter(rank -> rank.isMatch(rank, matchCount, matchBonus))
-                .findFirst();
+                .findFirst().orElse(MISS);
     }
 
     public boolean isMatchBonus() {

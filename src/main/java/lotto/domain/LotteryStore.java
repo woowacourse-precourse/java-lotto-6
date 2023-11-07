@@ -2,7 +2,6 @@ package lotto.domain;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.view.InputView;
@@ -15,7 +14,11 @@ public class LotteryStore {
 
     public void buyLotto() {
         OutputView.print("BUY_CASH");
-        int cash = Integer.parseInt(InputView.getInput("number"));
+        String x = InputView.getInput("number");
+        if (x == null) {
+            buyLotto();
+        }
+        int cash = Integer.parseInt(x);
         checkCash(cash);
         int buyCount = cash / 1000;
         OutputView.print_value_front("GET_LOTTO", String.valueOf(buyCount));
@@ -27,7 +30,8 @@ public class LotteryStore {
 
     public void checkCash(int cash) {
         if (cash % 1000 > 0) {
-            throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해 주세요.");
+            System.out.println("[ERROR] 1000원 단위로 입력해 주세요.");
+            buyLotto();
         }
     }
 
@@ -39,19 +43,24 @@ public class LotteryStore {
         }
         checkNumberSize(winningNumber.size());
     }
-    public void checkNumberSize(int size){
+
+    public void checkNumberSize(int size) {
         if (size != 6) {
-            throw new InputMismatchException("[ERROR] 당첨 번호는 6개의 숫자로 구성 되어야 합니다.");
+            System.out.println("[ERROR] 당첨 번호는 6개의 숫자로 구성 되어야 합니다.");
+            setWinningNumber();
         }
     }
 
     public int checkNumbers(String number) {
-        int returnNumber;
+        int returnNumber = 0;
         try {
             returnNumber = Integer.parseInt(number);
-            checkNumberRanges(returnNumber);
+            if (!checkNumberRanges(returnNumber)) {
+                setWinningNumber();
+            }
         } catch (NumberFormatException ex) {
-            throw new InputMismatchException("[ERROR] 당첨 번호에는 숫자만 들어갈 수 있습니다.");
+            System.out.println("[ERROR] 당첨 번호에는 숫자만 들어갈 수 있습니다.");
+            setWinningNumber();
         }
         return returnNumber;
     }
@@ -59,17 +68,22 @@ public class LotteryStore {
     public void setBonusNumber() {
         OutputView.print("LOTTO_BOUNS");
         int inputBonusNumber = Integer.parseInt(InputView.getInput("number"));
-        checkNumberRanges(inputBonusNumber);
+        if (!checkNumberRanges(inputBonusNumber)) {
+            setBonusNumber();
+        }
         bonusNumber = inputBonusNumber;
     }
 
-    public void checkNumberRanges(int number) {
+    public boolean checkNumberRanges(int number) {
         if (number < 0) {
-            throw new InputMismatchException("[ERROR] 당첨 번호에는 음수가 들어갈 수 없습니다.");
+            System.out.println("[ERROR] 당첨 번호에는 음수가 들어갈 수 없습니다.");
+            return false;
         }
         if (number > 45) {
-            throw new InputMismatchException("[ERROR] 당첨 번호의 최대값은 45입니다..");
+            System.out.println("[ERROR] 당첨 번호의 최대값은 45입니다.");
+            return false;
         }
+        return true;
     }
 
     public void checkNumber() {
@@ -90,7 +104,7 @@ public class LotteryStore {
             grossProfit = grossProfit + returnGrossProfit(i, winningNumber);
         }
         DecimalFormat df = new DecimalFormat("#.##");
-        double yield = (double) grossProfit / capital;
+        double yield = (double) grossProfit / capital * 100;
         OutputView.print_value_back("LOTTO_PROFIT", df.format(yield) + "%입니다.");
     }
 

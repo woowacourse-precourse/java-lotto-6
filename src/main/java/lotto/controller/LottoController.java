@@ -21,6 +21,26 @@ public class LottoController {
         }
     }
 
+    public int[] getTotalScore(List<Integer> winningNumber, int bonusNumber){
+        int[] totalScore = new int[5];
+        for (Lotto lottery : lotteries) {
+            int[] score = lottery.getScore(winningNumber, bonusNumber);
+            if (score[0] == 3) {
+                totalScore[0] ++;
+            }else if (score[0] == 4) {
+                totalScore[1] ++;
+            }else if (score[0] == 5 && score[1] == 0) {
+                totalScore[2] ++;
+            }else if (score[0] == 5 && score[1] == 1) {
+                totalScore[3] ++;
+            }else if (score[0] == 7) {
+                totalScore[4] ++;
+            }
+        }
+        return totalScore;
+    }
+
+
     public List<Lotto> getLotteries() {
         return lotteries;
     }

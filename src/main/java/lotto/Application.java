@@ -2,10 +2,12 @@ package lotto;
 
 import java.util.List;
 
+import lotto.controller.Judgment;
 import lotto.controller.NumberGenerator;
 
 public class Application {
     static Lotto lotto;
+    static Judgment judgment = new Judgment();
     public static void main(String[] args) {
         NumberGenerator numbergenerator = new NumberGenerator();
         final int num = numbergenerator.inputBuyCost();
@@ -31,5 +33,9 @@ public class Application {
         System.out.println(lotto.getLotto());
         System.out.println(numbergenerator.InputBonusNumber(lotto.getLotto()));
         
+        for(List<Integer> st : num2){
+            int num5 = judgment.correctCount(st , lotto.getLotto());
+            System.out.println(num5);
+        }
     }
 }

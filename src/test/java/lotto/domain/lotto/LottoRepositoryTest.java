@@ -19,8 +19,8 @@ class LottoRepositoryTest {
         Lottos lottos = new Lottos(List.of(lotto1, lotto2));
 
         // when
-        lottoRepository.saveUserLottos(lottos);
-        Lottos findLottos = lottoRepository.findUserLottos().get();
+        lottoRepository.saveBuyingLottos(lottos);
+        Lottos findLottos = lottoRepository.findBuyingLottos().get();
 
         // then
         assertThat(findLottos).isEqualTo(lottos);

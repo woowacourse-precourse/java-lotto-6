@@ -38,7 +38,7 @@ class LottoMachineTest {
 
         // when
         lottoMachine.buyLottos(stubLottoSupplier, price);
-        Lottos lottos = lottoRepository.findUserLottos().get();
+        Lottos lottos = lottoRepository.findBuyingLottos().get();
         List<LottoRewardCondition> results = lottos.createCompareResults(winningLotto);
 
         // then
@@ -89,12 +89,12 @@ class LottoMachineTest {
 
         // when
         WinningResults winningResults = lottoMachine.createWinningResults();
-        List<Integer> winningCounts = winningResults.calculateWinningCounts();
+        List<Integer> sortedRewardCounts = winningResults.getSortedRewardCounts();
         double actualProfitRatio = winningResults.getProfitRatio();
 
         // then
         assertAll(
-                () -> assertThat(winningCounts).containsExactly(0, 0, 0, 2, 0),
+                () -> assertThat(sortedRewardCounts).containsExactly(0, 0, 0, 2, 0),
                 () -> assertThat(actualProfitRatio).isEqualTo(expectedProfitRatio)
         );
     }

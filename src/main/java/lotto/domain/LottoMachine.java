@@ -21,13 +21,13 @@ public class LottoMachine {
 
     public void buyLottos(final Supplier<List<Integer>> randomLottoSupplier, final int price) {
         LottoMoney lottoMoney = LottoMoney.from(price);
-        Lottos userLotto = Lottos.createFrom(randomLottoSupplier, lottoMoney);
-        lottoRepository.saveUserLottos(userLotto);
+        Lottos buyingLottos = Lottos.createFrom(randomLottoSupplier, lottoMoney);
+        lottoRepository.saveBuyingLottos(buyingLottos);
     }
 
     public BuyingResults createBuyingResults() {
-        Lottos userLottos = findUserLottosObject();
-        return BuyingResults.createFrom(userLottos);
+        Lottos buyingLottos = findBuyingLottosObject();
+        return BuyingResults.createFrom(buyingLottos);
     }
 
     public void addWinningLotto(final List<Integer> winningNumbers, final int bonusNumber) {
@@ -36,14 +36,14 @@ public class LottoMachine {
     }
 
     public WinningResults createWinningResults() {
-        Lottos userLottos = findUserLottosObject();
+        Lottos buyingLottos = findBuyingLottosObject();
         WinningLotto winningLotto = findWinningLottoObject();
-        List<LottoRewardCondition> compareResults = userLottos.createCompareResults(winningLotto);
+        List<LottoRewardCondition> compareResults = buyingLottos.createCompareResults(winningLotto);
         return WinningResults.createFrom(compareResults);
     }
 
-    private Lottos findUserLottosObject() {
-        return lottoRepository.findUserLottos()
+    private Lottos findBuyingLottosObject() {
+        return lottoRepository.findBuyingLottos()
                 .orElseThrow(DomainExceptionMessage.NOT_FOUND_LOTTO::create);
     }
 

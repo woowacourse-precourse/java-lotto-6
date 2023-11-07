@@ -30,6 +30,7 @@ class WinningNumbersTest {
         WinningNumbers winningLotto = new WinningNumbers(winningNumbers, bonusNumber);
         Lotto purchaseLotto = new Lotto(List.of(4, 12, 13, 41, 1, 3));
 
+        assertThat(winningLotto.matchCount(purchaseLotto)).isEqualTo(5);
         assertThat(winningLotto.checkPrize(purchaseLotto)).isEqualTo(Prize.SECOND);
     }
 
@@ -41,6 +42,7 @@ class WinningNumbersTest {
         WinningNumbers winningLotto = new WinningNumbers(winningNumbers, bonusNumber);
         Lotto purchaseLotto = new Lotto(List.of(4, 12, 13, 41, 1, 9));
 
+        assertThat(winningLotto.matchCount(purchaseLotto)).isEqualTo(5);
         assertThat(winningLotto.checkPrize(purchaseLotto)).isEqualTo(Prize.THIRD);
     }
 }

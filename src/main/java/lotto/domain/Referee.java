@@ -39,4 +39,16 @@ public class Referee {
     public HashMap<Integer, Integer> getResult() {
         return result;
     }
+
+    public float getRateOfReturn(int purchaseAmount) {
+        return (makeTotalReturn() / purchaseAmount) * 100;
+    }
+
+    private float makeTotalReturn() {
+        float totalReturn = 0;
+        for (int i = 5; i > 0; i--) {
+            totalReturn += RankType.findByRank(i).getPrice() * result.get(i);
+        }
+        return totalReturn;
+    }
 }

@@ -9,7 +9,6 @@ import static lotto.view.message.SystemMessage.OUTPUT_RATE_OF_RETURN;
 import static lotto.view.message.SystemMessage.OUTPUT_RESULT;
 
 import java.util.HashMap;
-import lotto.config.RankType;
 import lotto.domain.Lotto;
 import lotto.domain.Referee;
 import lotto.domain.Win;
@@ -94,20 +93,7 @@ public class GameController {
     }
 
     private void printRateOfReturn(Referee referee, int purchaseAmount) {
-        HashMap<Integer, Integer> result = referee.getResult();
         OutputView.printMessage(
-                String.format(OUTPUT_RATE_OF_RETURN.getMessage(), makeRateOfReturn(result, purchaseAmount)));
-    }
-
-    private float makeRateOfReturn(HashMap<Integer, Integer> result, int purchaseAmount) {
-        return (makeTotalReturn(result) / purchaseAmount) * 100;
-    }
-
-    private float makeTotalReturn(HashMap<Integer, Integer> result) {
-        float totalReturn = 0;
-        for (int i = 5; i > 0; i--) {
-            totalReturn += RankType.findByRank(i).getPrice() * result.get(i);
-        }
-        return totalReturn;
+                String.format(OUTPUT_RATE_OF_RETURN.getMessage(), referee.getRateOfReturn(purchaseAmount)));
     }
 }

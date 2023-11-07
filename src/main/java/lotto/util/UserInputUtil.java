@@ -1,6 +1,7 @@
-package lotto;
+package lotto.util;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.ErrorMessage;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -44,7 +45,7 @@ public class UserInputUtil {
                 validateNumbers(winningNumbers);
                 return winningNumbers;
             } catch (IllegalArgumentException e) {
-                System.out.println("[Error]" + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -57,7 +58,7 @@ public class UserInputUtil {
                     .collect(Collectors.toList());
             return numbers;
         } catch (IllegalArgumentException e) {
-            System.out.println("[Error]" + e.getMessage());
+            System.out.println(e.getMessage());
         }
         return Collections.emptyList();
     }

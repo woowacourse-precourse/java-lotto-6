@@ -1,9 +1,12 @@
-package lotto;
+package lotto.view;
+
+import lotto.domain.Lotto;
+import lotto.domain.Prize;
 
 import java.util.List;
 import java.util.Map;
 
-public class DisplayUtil {
+public class DisplayView {
 
     // 결과를 출력하는 메소드
     public static void displayResults(Map<Prize, Integer> prizeResults) {

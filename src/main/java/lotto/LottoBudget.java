@@ -4,14 +4,14 @@ public class LottoBudget{
     
     private final int ONE_LOTTO_PRICE = 1000;
     private int lottoBudget;
-    private int ticketCount;
+    private int lottoCount;
     
     public LottoBudget(String inputBudgetText) throws IllegalArgumentException {
         validateBudgetText(inputBudgetText);
         int inputBudget = Integer.parseInt(inputBudgetText);
         validateBudget(inputBudget);
         this.lottoBudget = inputBudget;
-        this.ticketCount = lottoBudget / ONE_LOTTO_PRICE;
+        this.lottoCount = lottoBudget / ONE_LOTTO_PRICE;
     }
     
     private void validateBudgetText(String inputBudgetText) throws IllegalArgumentException{
@@ -36,7 +36,7 @@ public class LottoBudget{
         return ((number % divisor) == 0);
     }
     
-    public int getTicketCount() {
-        return this.ticketCount;
+    public int getLottoCount() {
+        return this.lottoCount;
     }
 }

@@ -20,7 +20,7 @@ public class InputView {
 
     public static int getBonusNumber() {
         String bonusNumber = Console.readLine();
-        return Integer.parseInt(bonusNumber);
+        return WinNumberValidate.validateBonusNumber(bonusNumber);
     }
 
 }

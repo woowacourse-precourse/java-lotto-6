@@ -29,6 +29,10 @@ public final class Utils {
         return false;
     }
 
+    public static String formatNumberWithCommas(long number) {
+        String formattedNumber = String.format("%,d", number);
+        return formattedNumber;
+    }
 
 
     public static int countSameElements(List<Integer> list1, List<Integer> list2) {
@@ -38,6 +42,7 @@ public final class Utils {
         }
         return count;
     }
+
     private static int countContainNum(List<Integer> list, int number) {
         if (list.contains(number)) {
             return 1;

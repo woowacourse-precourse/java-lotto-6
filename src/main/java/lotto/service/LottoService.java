@@ -27,10 +27,8 @@ public class LottoService {
     }
 
     private Lotto generateLotto() {
-        List<Integer> unsortedNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        List<Integer> sortNumbers = new ArrayList<>(unsortedNumbers);
-        Collections.sort(sortNumbers);
-        return new Lotto(sortNumbers);
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
     }
 
     private void validateMoney(int money) {

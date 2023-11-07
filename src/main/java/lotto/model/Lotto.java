@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,7 +17,6 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateSixDigits(numbers);
         validateDuplicate(numbers);
-        validateAscendingOrder(numbers);
         validateNumberInRange(numbers);
     }
 
@@ -30,14 +31,6 @@ public class Lotto {
                 .collect(Collectors.toSet());
         if (uniqueNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateAscendingOrder(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size() - 1; i++) {
-            if (numbers.get(i) >= numbers.get(i + 1)) {
-                throw new IllegalArgumentException();
-            }
         }
     }
 
@@ -86,7 +79,9 @@ public class Lotto {
 
     @Override
     public String toString() {
-        return numbers.toString();
+        List<Integer> numbersForString = new ArrayList<>(numbers);
+        Collections.sort(numbersForString);
+        return numbersForString.toString();
     }
 }
 

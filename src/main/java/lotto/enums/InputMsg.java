@@ -12,7 +12,7 @@ public enum InputMsg {
         this.message = message;
     }
 
-    public String getMessage() {
+    public String getMsg() {
         return message;
     }
 }

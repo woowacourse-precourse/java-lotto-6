@@ -27,7 +27,7 @@ public enum LottoMsg {
         return prizeMoney;
     }
 
-    public String getMessage() {
+    public String getMsg() {
         return message;
     }
 }

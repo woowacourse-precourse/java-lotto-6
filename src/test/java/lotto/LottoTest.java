@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoAmount;
+import lotto.service.Service;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -52,4 +53,13 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 56)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("당첨 번호가 이 숫자가 아닌 경우")
+    @Test
+    void validateNumbersTest() {
+        Service service = new Service();
+        assertThatThrownBy(() -> service.splitStringToIntegerList("1,a,2"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

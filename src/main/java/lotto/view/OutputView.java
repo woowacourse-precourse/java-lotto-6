@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.ResultRepository;
 
 import java.util.stream.Collectors;
 
@@ -15,5 +16,12 @@ public class OutputView {
                 .map(Object::toString)
                 .collect(Collectors.joining(","));
         System.out.println("[" + numbers + "]");
+    }
+
+    public void printWinningStatistics() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        ResultRepository resultRepository = new ResultRepository();
+        resultRepository.toString();
     }
 }

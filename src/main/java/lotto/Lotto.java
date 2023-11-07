@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,6 +15,11 @@ public class Lotto {
         validateNumbersRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
+    }
+
+    public void validateBonusNumber(Integer bonusNumber) {
+        validateSingleNumberRange(bonusNumber);
+        validateBonusNumberDuplicate(bonusNumber);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -35,6 +39,11 @@ public class Lotto {
         }
     }
 
+    private void validateBonusNumberDuplicate(Integer number) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(String.format("로또 번호 %d가 중복으로 포함되었습니다.", number));
+        }
+    }
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>();
         for (Integer n : numbers) {

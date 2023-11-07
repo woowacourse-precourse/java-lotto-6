@@ -41,9 +41,7 @@ public class InputManager {
     }
 
     private int validateBonus(String input, List<Integer> winningNumbers) {
-        if (!input.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
-        }
+        validatedNumber(input);
 
         int bonus = Integer.parseInt(input);
         if (winningNumbers.contains(bonus)) {
@@ -75,9 +73,7 @@ public class InputManager {
     }
 
     private int validateAmount(String input) {
-        if (!input.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
-        }
+        validatedNumber(input);
 
         int amount = Integer.parseInt(input);
 
@@ -89,5 +85,11 @@ public class InputManager {
         }
 
         return amount;
+    }
+
+    private static void validatedNumber(String input) {
+        if (!input.matches("^[0-9]+$")) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요.");
+        }
     }
 }

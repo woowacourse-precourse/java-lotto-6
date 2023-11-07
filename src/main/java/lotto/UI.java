@@ -83,7 +83,7 @@ public class UI {
         try {
             bonus = Integer.parseInt(line);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("정수를 입력하지 않았습니다.");
+            throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");
         }
         if (bonus <= 0) {
             throw new IllegalArgumentException("자연수를 입력하지 않았습니다.");

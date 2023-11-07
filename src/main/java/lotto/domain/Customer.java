@@ -11,6 +11,16 @@ public class Customer {
         this.lottos = lottos;
     }
 
+    public LottoResult getLottoResult(WinningNumbers winningNumbers, BonusNumber bonusNumber) {
+        List<LottoRank> lottoRanks = lottos.findLottoRanks(winningNumbers, bonusNumber);
+        return calculateLottoResult(lottoRanks);
+    }
+
+    private LottoResult calculateLottoResult(List<LottoRank> lottoRanks) {
+        LottoResult lottoResult = LottoResult.create();
+        lottoResult.addLottoRankCount(lottoRanks);
+        return lottoResult;
+    }
 
     public Money getMoney() {
         return money;

@@ -15,4 +15,9 @@ public class RankStatistics {
         rankStatistics.put(rank, rankCount + 1);
     }
 
+    public int getTotalPrize() {
+        return this.rankStatistics.keySet().stream()
+                .mapToInt(LottoRank::getPrize)
+                .sum();
+    }
 }

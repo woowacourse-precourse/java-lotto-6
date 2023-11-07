@@ -7,9 +7,12 @@ import lotto.Rank;
 import lotto.WinningResult;
 
 public class OutputView {
-    public void printUserLottoNumbers(List<Lotto> lottos) {
+    public void printPlayerLottoNumbers(List<Lotto> lottos) {
         System.out.println(lottos.size() + "개를 구매했습니다.");
-        lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
+        lottos.forEach(lotto -> {
+            List<Integer> numbers = lotto.getNumbers();
+            System.out.println(numbers);
+        });
     }
 
     public void printWinningResult(WinningResult winningResult) {

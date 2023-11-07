@@ -19,7 +19,7 @@ public class LottoController {
 
     public void run() {
         player.buy(inputView.askPurchaseAmount());
-        outputView.printUserLottoNumbers(player.getLottos());
+        outputView.printPlayerLottoNumbers(player.getLottos());
 
         WinningNumbers winningNumbers = inputView.askWinningNumbers();
 

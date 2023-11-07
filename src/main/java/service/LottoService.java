@@ -15,8 +15,7 @@ public class LottoService {
 
     public List<Lotto> buyLotto(int input) {
         lottos = new Lottos();
-        int lottoCount = input / 1000;
-        for (int i = 0; i < lottoCount; i++) {
+        for (int i = 0; i < input; i++) {
             getLottoNumbers();
         }
         return lottos.getLottoList();
@@ -36,4 +35,11 @@ public class LottoService {
         player = new Player(winningNumbers, bonusNumber);
     }
 
+    public List<Lotto> getLottos() {
+        return lottos.getLottoList();
+    }
+
+    public Lotto getWinnerNumbers() {
+        return player.getWinningLotto();
+    }
 }

@@ -6,6 +6,7 @@ import lotto.domain.LottoManager;
 import lotto.domain.MatchNumber;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
+import lotto.dto.AutoLottoDto;
 import lotto.utils.LottoCaclulator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -35,7 +36,7 @@ public class GameController {
 
     private void showBought() {
         OutputView.printEmpty();
-        OutputView.printAutoLottos(lottoManager.getAutoLottos(), lottoManager.getLottoCount());
+        OutputView.printAutoLottos(AutoLottoDto.fromEnity(lottoManager.getAutoLottos()), lottoManager.getLottoCount());
         OutputView.printEmpty();
     }
 

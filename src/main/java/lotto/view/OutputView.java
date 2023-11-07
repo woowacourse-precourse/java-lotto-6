@@ -3,8 +3,8 @@ package lotto.view;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.constants.OutputConstants;
-import lotto.domain.Lotto;
 import lotto.domain.MatchNumber;
+import lotto.dto.AutoLottoDto;
 
 public class OutputView {
     private final static String AUTO_BUY_MESSAGE = "%d개를 구매했습니다.\n";
@@ -17,13 +17,13 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public static void printAutoLottos(final List<Lotto> autoLottos, final int lottoCount) {
+    public static void printAutoLottos(final AutoLottoDto autoLottos, final int lottoCount) {
         System.out.printf(String.format(AUTO_BUY_MESSAGE, lottoCount));
         StringBuilder result;
-        for (Lotto lotto : autoLottos) {
+        for (List<Integer> lotto : autoLottos.getAutoLottoDto()) {
             result = new StringBuilder();
             result.append(OutputConstants.LOTTO_PRINT_PREFIX.getConstants());
-            result.append(lotto.getLotto().stream().map(String::valueOf)
+            result.append(lotto.stream().map(String::valueOf)
                     .collect(Collectors.joining(OutputConstants.JOIN_FORMAT.getConstants())));
             result.append(OutputConstants.LOTTO_PRINT_SUFFIX.getConstants());
             System.out.print(result);

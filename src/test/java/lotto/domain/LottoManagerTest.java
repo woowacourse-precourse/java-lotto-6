@@ -18,7 +18,7 @@ class LottoManagerTest {
         //when
         manager.buyAutoLottos(count);
         //then
-        assertThat(manager.getAutoLottos().size()).isEqualTo(result);
+        assertThat(manager.getAutoLottos().getLottos().size()).isEqualTo(result);
     }
 
     @Test

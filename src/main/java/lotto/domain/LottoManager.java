@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoManager {
-    private AutoLottos autoLottos = new AutoLottos();
+    private final AutoLottos autoLottos = new AutoLottos();
     private WinningLotto winningLotto;
     private Bonus bonus;
     private Generator generator;
@@ -23,8 +23,8 @@ public class LottoManager {
         autoLottos.createAutoLottos(lottoCount, generator);
     }
 
-    public List<Lotto> getAutoLottos() {
-        return autoLottos.getLottos();
+    public AutoLottos getAutoLottos() {
+        return autoLottos;
     }
 
     public int getLottoCount() {

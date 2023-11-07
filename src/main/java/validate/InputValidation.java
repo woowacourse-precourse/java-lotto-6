@@ -14,4 +14,10 @@ public class InputValidation {
             throw new IllegalArgumentException(ERROR_MESSAGE_ZERO_NOT_ALLOWED);
         }
     }
+
+    public static void validateLottoNumberCount(String[] list) {
+        if (list.length != 6) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_INVALID_LOTTO_NUMBER_COUNT);
+        }
+    }
 }

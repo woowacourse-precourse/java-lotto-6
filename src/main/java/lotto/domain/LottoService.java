@@ -5,11 +5,14 @@ import static lotto.view.OutputView.LOTTO_SIZE;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.WinnerPrice;
 
 public class LottoService {
-    public final static int FIVE = 5;
+    public static final int FIVE = 5;
+    public static final int RATE_RANGE_START = 3;
+    public static final int RATE_RANGE_END = 7;
 
-    public void compareValue(List<Lotto> lottos, User user) {
+    public Map<Integer, Integer> compareValue(List<Lotto> lottos, User user) {
         int equalCount;
         Map<Integer, Integer> result = new HashMap<>();
         for (int i = 0; i < lottos.size(); i++) {
@@ -21,6 +24,7 @@ public class LottoService {
             }
             result.put(equalCount, result.get(equalCount) + 1);
         }
+        return result;
     }
 
     private int compareLine(Lotto lotto, User user) {
@@ -44,5 +48,25 @@ public class LottoService {
             }
         }
         return equalCount;
+    }
+
+    public double getRate(Map<Integer, Integer> result, User user) {
+        int rate = 0;
+        WinnerPrice[] winnerPrices = WinnerPrice.values();
+        for (int i = 0; i < winnerPrices.length; i++) {
+            WinnerPrice winnerPrice = winnerPrices[i];
+            if (result.containsKey(winnerPrice.getEqualCount())) {
+                rate += winnerPrice.getPriceAmount();
+            }
+        }
+        long purchaseAmount = user.getPurchaseAmount();
+        double totalRate = getTotalRate(rate, purchaseAmount);
+        return totalRate;
+    }
+
+    private double getTotalRate(int rate, long purchaseAmount) {
+        long totalProfit = rate - purchaseAmount;
+        double totalProfitRate = (totalProfit / purchaseAmount) * 100.0;
+        return totalProfitRate;
     }
 }

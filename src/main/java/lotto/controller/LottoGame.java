@@ -4,7 +4,9 @@ import static lotto.domain.User.DIVIDE_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoService;
 import lotto.domain.User;
@@ -36,8 +38,12 @@ public class LottoGame {
     }
 
     private void winningResult() {
+        Map<Integer, Integer> result = new HashMap<>();
+        double rate;
         outputView.winningResult();
-        lottoService.compareValue(lottos, user);
+        result = lottoService.compareValue(lottos, user);
+        rate = lottoService.getRate(result, user);
+        System.out.println(rate);
     }
 
     private void bonusNumber() {

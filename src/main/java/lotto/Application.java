@@ -1,37 +1,19 @@
 package lotto;
 
+import lotto.controller.Controller;
+import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Application {
-    public static int numberOfLotto;
 
     public static void main(String[] args) {
-        startLotto();
-    }
+        InputView inputView = new InputView();
+        OutputView outputView = new OutputView();
 
-    public static void startLotto() {
-        buyLotto();
-        writeNumber();
-
+        Controller controller = new Controller(inputView, outputView);
+        controller.StartLotto();
 
     }
-
-    public static void buyLotto() {
-
-    }
-
-    public static void writeNumber() {
-        writeOriginNumber();
-        writeBonusNumber();
-    }
-
-    public static void writeOriginNumber() {
-
-    }
-
-    public static void writeBonusNumber() {
-
-    }
-
 
 }
 

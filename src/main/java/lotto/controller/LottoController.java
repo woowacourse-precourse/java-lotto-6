@@ -70,7 +70,7 @@ public class LottoController {
         winningBalls = inputWinningNumbers(); // 당첨볼
         bonusBall = inputBonusNumber(); // 보너스 볼
         Validator.validateWinningAndBonus(bonusBall, winningBalls);
-        CompareLottoValue.compareValueStart(winningBalls, LottoRepository.getLottoRepo()); // 로또볼과 당첨볼을 넘겨야 함
+        CompareLottoValue.compareValueStart(winningBalls, LottoRepository.getLottoRepo(), bonusBall); // 로또볼과 당첨볼을 넘겨야 함
     }
 
     public static void lottoRun(Integer lottoCounts){

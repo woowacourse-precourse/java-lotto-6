@@ -35,8 +35,8 @@ class BonusNumberTest {
     @DisplayName("보너스 번호는 1 ~ 45 내의 숫자가 아니면 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = {"-1", "0", "46"})
-    void shouldCreateBonusNumberWithNumberInRange1To45() {
-        assertThatThrownBy(() -> new BonusNumber("46"))
+    void shouldCreateBonusNumberWithNumberInRange1To45(String inputNumber) {
+        assertThatThrownBy(() -> new BonusNumber(inputNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }

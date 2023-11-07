@@ -23,7 +23,7 @@ public class InputView {
         return amount;
     }
 
-    public WinningNumber inputPrizeNumber(){
+    public WinningNumber inputWinningNumber(){
         WinningNumber winningNumber = null;
         while(winningNumber == null){
             try {

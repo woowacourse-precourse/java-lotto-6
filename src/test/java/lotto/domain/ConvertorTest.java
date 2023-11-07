@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class ConvertorTest {
-    Convertor convertor;
 
     @ParameterizedTest
     @DisplayName("1-45 사이의 숫자면 리스트 생성")

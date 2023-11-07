@@ -1,10 +1,18 @@
 package lotto;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+import camp.nextstep.edu.missionutils.Console;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -29,4 +37,18 @@ class LottoTest {
 		assertThatThrownBy(()-> new Lotto(List.of(1,2,3,4,5,46)))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
+	
+	@DisplayName("당첨 번호 일치 갯수에 따른 등수를 리턴한다.")
+	@Test
+	void matchRank() {
+		// given
+		final int matchCount = 5;
+		final boolean matchOfBonus = true;
+		final Ranking rank = Ranking.SECOND; 
+		
+		// then
+		 assertThat(Ranking.valueOf(matchCount, matchOfBonus)) // when
+         .isEqualTo(rank);
+	}
+	
 }

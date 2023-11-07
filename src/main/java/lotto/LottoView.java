@@ -89,7 +89,7 @@ public class LottoView {
 		System.out.println(message + matchNumber + "개");
 	}
 
-	public static void printMargin(double marginRate) {
+	public void printMargin(double marginRate) {
 		System.out.println("총 수익률은 " + String.format("%.1f", marginRate) + "%입니다.");
 	}
 }

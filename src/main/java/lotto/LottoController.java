@@ -32,6 +32,11 @@ public class LottoController {
 		}
 	}
 
+	public List<List<Integer>> setCreatedLottos(List<Integer> numbers) {
+		createdLottos.add(numbers);
+		return createdLottos;
+	}
+
 	private void getWinNumbers() {
 		String[] numbers = LottoView.getWinLotto();
 		winNumbers = setWinNumbers(numbers);
@@ -100,7 +105,7 @@ public class LottoController {
 			// 수익률(%) = 당첨금 / 구매비용 * 100
 			winPrice += rank.getPrice() * result.get(rank);
 		}
-		marginRate = (winPrice / purchasedMoney) * 100;
+		marginRate = (winPrice / purchasedMoney) * 100;			
 		LottoView.printMargin(marginRate);
 	}
 

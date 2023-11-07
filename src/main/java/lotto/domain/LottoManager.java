@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.ExceptionMessage;
 
 public class LottoManager {
 
@@ -47,10 +48,10 @@ public class LottoManager {
 
     private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         if (bonusNumber < MIN_NUMBER_RANGE || bonusNumber > MAX_NUMBER_RANGE) {
-            throw new IllegalArgumentException("숫자는 1과 45사이여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.OVER_NUMBER_RANGE.getMessage());
         }
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("로또 숫자와 보너스 숫자는 중복되면 안됩니다");
+            throw new IllegalArgumentException(ExceptionMessage.DUPLICATED_NUMBER.getMessage());
         }
     }
 }

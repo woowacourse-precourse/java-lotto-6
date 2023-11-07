@@ -1,8 +1,10 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionMessage;
+
 public class PurchaseAmount {
 
-    private static final int LIMIT_MONEY = 0;
+    private static final int MIN_MONEY = 0;
 
     private final int money;
 
@@ -16,8 +18,8 @@ public class PurchaseAmount {
     }
 
     private void validateMoneyRange(int money) {
-        if(money < LIMIT_MONEY) {
-            throw new IllegalArgumentException("돈은 음수이면 안됩니다");
+        if(money < MIN_MONEY) {
+            throw new IllegalArgumentException(ExceptionMessage.NEGATIVE_NUMBER.getMessage());
         }
     }
 

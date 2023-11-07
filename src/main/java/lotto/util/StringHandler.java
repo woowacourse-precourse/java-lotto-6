@@ -3,6 +3,7 @@ package lotto.util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.constant.ExceptionMessage;
 
 public class StringHandler {
     public static List<Integer> separatedWith(String input, String delimiter) {
@@ -25,7 +26,7 @@ public class StringHandler {
             int output = Integer.parseInt(input);
             return output;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("문자가 아닌 숫자를 입력해야합니다");
+            throw new IllegalArgumentException(ExceptionMessage.NON_NUMERIC.getMessage());
         }
     }
 }

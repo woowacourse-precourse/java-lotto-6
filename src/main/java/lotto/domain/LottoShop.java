@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.constant.ExceptionMessage;
 
 public class LottoShop {
 
@@ -32,7 +33,7 @@ public class LottoShop {
 
     public static void validateAmountDivisible(PurchaseAmount purchaseAmount) {
         if(!purchaseAmount.divisible(LOTTO_AMOUNT)) {
-            throw new IllegalArgumentException("구입금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException(ExceptionMessage.UNDIVISIBLE_AMOUNT.getMessage());
         }
     }
 }

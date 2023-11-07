@@ -1,14 +1,10 @@
 package lotto.domain.wrapper;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.util.List;
-
-import static lotto.handler.ErrorHandler.DUPLICATE_NUMBER;
-import static lotto.handler.ErrorHandler.INVALID_SIZE;
+import static lotto.handler.ErrorHandler.*;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -29,5 +25,14 @@ class LottoTest {
         assertThatThrownBy(() -> Lotto.from(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(DUPLICATE_NUMBER.getException().getMessage());
+    }
+
+    @DisplayName("로또 번호가 1 ~ 45 사이의 범위가 아니라면 예외가 발생한다.")
+    @ParameterizedTest(name = "[{index}] input {0} " )
+    @ValueSource(strings = {"1,2,3,4,5,56", "-1,2,3,4,5,6", "0,2,3,4,5,6"})
+    void createLottoByInvalidRange(String inputValue) {
+        assertThatThrownBy(() -> Lotto.from(inputValue))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_RANGE.getException().getMessage());
     }
 }

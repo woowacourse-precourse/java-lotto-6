@@ -1,7 +1,7 @@
 package lotto.model.service;
 
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 import java.util.List;
 import lotto.controller.dto.MoneyLottosDto;
 import lotto.model.domain.vo.Lotto;
@@ -42,8 +42,8 @@ public class LottoStore {
     }
 
     private Lotto createLotto() {
-        List<Integer> lottoNumber = createLottoNumber();
-        lottoNumber.sort(Comparator.naturalOrder());
+        List<Integer> lottoNumber = new ArrayList<>(createLottoNumber());
+        Collections.sort(lottoNumber);
         return Lotto.of(lottoNumber);
     }
 

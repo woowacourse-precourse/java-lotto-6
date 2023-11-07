@@ -14,9 +14,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OutputViewTest {
+    private final OutputView outputView = new OutputView();
     private PrintStream standardOut;
     private OutputStream captor;
-    private OutputView outputView = new OutputView();
 
     @BeforeEach
     protected final void init() {

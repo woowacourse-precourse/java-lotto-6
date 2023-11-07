@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class LottoSystem {
@@ -34,12 +35,13 @@ public class LottoSystem {
     public int buyLottoTicket(String money) throws IllegalArgumentException {
         try{
             int parseMoney = Integer.parseInt(money);
-            if (parseMoney % PRICE_0 != 0){
-                throw new IllegalArgumentException("구매 금액을 1000원 단위로 작성해주세요.");
+
+            if (parseMoney % PRICE_0 != 0 || parseMoney == 0){
+                throw new IllegalArgumentException(Message.Error.INVALID_MONEY_INPUT.getMessage());
             }
             return parseMoney/PRICE_0;
         }catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 입력받은 값이 잘못되었습니다.");
+            throw new IllegalArgumentException(Message.Error.INVALID_INPUT.getMessage());
         }
     }
 
@@ -67,18 +69,34 @@ public class LottoSystem {
     public List<Integer> getWinningNumbers(String winNumbers){
         List<Integer> winningNumbers = new ArrayList<>();
         String[] getWinNumber = winNumbers.split(",");
-        for (String number : getWinNumber){
-            Integer winNumber = Integer.parseInt(number);
-            winningNumbers.add(winNumber);
+
+        if(getWinNumber.length != 6){
+            throw new IllegalArgumentException(Message.Error.INVALID_WIN_NUMBER.getMessage());
         }
+        for (String number : getWinNumber){
+            try{
+                Integer winNumber = Integer.parseInt(number);
+                winningNumbers.add(winNumber);
+            }catch(NumberFormatException e){
+                throw new IllegalArgumentException(Message.Error.INVALID_INPUT.getMessage());
+            }
+        }
+        winningNumbersOverlap(winningNumbers);
         return winningNumbers;
+    }
+
+    public void winningNumbersOverlap(List<Integer> winningNumbers){
+        HashSet<Integer> overlapCheck = new HashSet<>(winningNumbers);
+        if (overlapCheck.size() != winningNumbers.size()){
+            throw new IllegalArgumentException(Message.Error.OVERLAP_INPUT.getMessage());
+        }
     }
 
     public int getBonusNumber(String bonusNumber){
         try{
             return Integer.parseInt(bonusNumber);
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException("입력받은 보너스의 값이 잘못되었습니다.");
+            throw new IllegalArgumentException(Message.Error.INVALID_INPUT.getMessage());
         }
     }
 

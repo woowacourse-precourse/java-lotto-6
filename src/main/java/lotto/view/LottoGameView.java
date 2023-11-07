@@ -14,7 +14,7 @@ public class LottoGameView implements GameView {
         try (FileInputStream file = new FileInputStream(messagePath)) {
             message.load(file);
         } catch (IOException e) {
-            throw new RuntimeException("메시지 로드 오류", e);
+            throw new RuntimeException("[ERROR] 메시지 로드 오류", e);
         }
     }
 

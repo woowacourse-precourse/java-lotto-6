@@ -1,13 +1,17 @@
 package view;
-import utility.UserInputException;
+
+import static constants.ConstantNumbersManager.NOTHING;
+import static constants.ConstantNumbersManager.VARIABLE_RESET;
+
 import camp.nextstep.edu.missionutils.Console;
+import utility.UserInputException;
 
 public class InputView {
     UserInputException userInputException = new UserInputException();
 
     public int lottoPriceInput() {
-        int input = 0;
-        while (input == 0) {
+        int input = VARIABLE_RESET;
+        while (input == NOTHING) {
             try {
                 input = Integer.parseInt(Console.readLine());
                 userInputException.lottoPriceValidate(input);
@@ -32,8 +36,8 @@ public class InputView {
     }
 
     public int bonusNumberInput() {
-        int input = 0;
-        while (input == 0){
+        int input = VARIABLE_RESET;
+        while (input == NOTHING) {
             try {
                 input = Integer.parseInt(Console.readLine());
                 userInputException.bonusNumberValidate(input);

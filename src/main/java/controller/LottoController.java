@@ -9,6 +9,7 @@ import view.OutputView;
 public class LottoController {
     private static final int REWARD_SIZE = 5;
     private static final int LOTTO_BONUS_NUMBER_INDEX = 5;
+    private static final int MINIMUM_LOTTO_NUMBER = 2;
 
     LuckeyLotto luckeyLotto;
     LottoMoney lottoMoney;
@@ -47,6 +48,8 @@ public class LottoController {
     private void increaseLottoWinnerCount(List<Integer> lottoNumbers, int lottoWinnerCount) {
         if (lottoWinnerCount == LOTTO_BONUS_NUMBER_INDEX && lottoNumbers.contains(luckeyLotto.getLuckeyBonusNumber())) {
             lottoWinners[lottoWinnerCount - 2]++;
+        } else if (lottoWinnerCount > MINIMUM_LOTTO_NUMBER) {
+            lottoWinners[lottoWinnerCount - 3]++;
         }
     }
 }

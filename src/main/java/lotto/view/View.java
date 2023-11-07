@@ -14,6 +14,14 @@ import lotto.common.utils.Utils;
 import lotto.common.validate.Validate;
 
 public class View {
+    Map<String, Integer> matchRecords = new HashMap<String, Integer>() {{
+        put(Rank.FIRST_RANK.getRank(), 0);
+        put(Rank.SECOND_RANK.getRank(), 0);
+        put(Rank.THIRD_RANK.getRank(), 0);
+        put(Rank.FOURTH_RANK.getRank(), 0);
+        put(Rank.FIFTH_RANK.getRank(), 0);
+    }};
+
     private final Validate validate;
     private final Utils utils;
 
@@ -51,22 +59,26 @@ public class View {
         System.out.println(GuideMessage.INPUT_HIT_NUMBER.getMessage());
     }
 
+    public List<Integer> inputSixHitNumber() {
+        List<String> inputSixNumber = utils.stringToStringList(inputConsole());
+        Validate.inputSixHitLottoNumberValidate(inputSixNumber);
+        return utils.stringListToIntegerList(inputSixNumber);
+    }
+
     public void bonusHitNumberMessage() {
         System.out.println(GuideMessage.INPUT_BONUS_HIT_NUMBER.getMessage());
+    }
+
+    public int inputBonusHitNumber() {
+        String inputBonusNumber = inputConsole();
+        Validate.inputBonusHitLottoNumberValidate(inputBonusNumber);
+        return Integer.parseInt(inputBonusNumber);
     }
 
     public void prizeStatsMessage() {
         System.out.println(GuideMessage.OUTPUT_PRIZE_STATS.getMessage());
         System.out.println(Symbol.DIVIDE_LINE.getSymbol());
     }
-
-    Map<String, Integer> matchRecords = new HashMap<String, Integer>() {{
-        put(Rank.FIRST_RANK.getRank(), 0);
-        put(Rank.SECOND_RANK.getRank(), 0);
-        put(Rank.THIRD_RANK.getRank(), 0);
-        put(Rank.FOURTH_RANK.getRank(), 0);
-        put(Rank.FIFTH_RANK.getRank(), 0);
-    }};
 
     public void compareTicketsAndLotto(ArrayList<ArrayList<Integer>> ticketsNumbers, List<Integer> lottoNumbers, int bonusNumber) {
         ticketsNumbers.forEach(ticketNumbers -> {

@@ -1,12 +1,5 @@
 package lotto.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import lotto.common.constants.LottoDefaultRule;
-import lotto.common.constants.LottoRankRule;
-import lotto.common.constants.Rank;
 import lotto.common.utils.Utils;
 import lotto.common.validate.Validate;
 import lotto.domain.Bonus;
@@ -17,9 +10,7 @@ import lotto.view.View;
 
 public class StartController {
 
-
     View view = new View();
-    Utils utils = new Utils();
 
     private Buy buy;
     private Ticket ticket = new Ticket();
@@ -50,16 +41,6 @@ public class StartController {
         profitRate();
     }
 
-    private void ticketInformation() {
-        view.buyTicketCountMessage(buy.getBuyTicketCount());
-        lottoTicket();
-    }
-
-    private void lottoTicket() {
-        ticket.setLottoTicket(buy.getBuyTicketCount());
-        view.lottoTicketNumbers(ticket.getLottoTicket());
-    }
-
     private void buyPrice() {
         try {
             buy = new Buy(view.inputConsole());
@@ -69,9 +50,14 @@ public class StartController {
         }
     }
 
+    private void ticketInformation() {
+        view.buyTicketCountMessage(buy.getBuyTicketCount());
+        lottoTicket();
+    }
+
     private void sixHitNumber() {
         try {
-            lotto = new Lotto(inputSixHitNumber());
+            lotto = new Lotto(view.inputSixHitNumber());
             System.out.println();
         } catch (IllegalArgumentException e) {
             sixHitNumber();
@@ -80,7 +66,7 @@ public class StartController {
 
     private void bonusHitNumber() {
         try {
-            bonus = new Bonus(inputBonusHitNumber());
+            bonus = new Bonus(view.inputBonusHitNumber());
             Validate.compareLottoAndBonusNumberValidate(lotto.getNumbers(), bonus.getNumber());
             System.out.println();
         } catch (IllegalArgumentException e) {
@@ -88,16 +74,9 @@ public class StartController {
         }
     }
 
-    private List<Integer> inputSixHitNumber() {
-        List<String> inputSixNumber = utils.stringToStringList(view.inputConsole());
-        Validate.inputSixHitLottoNumberValidate(inputSixNumber);
-        return utils.stringListToIntegerList(inputSixNumber);
-    }
-
-    private int inputBonusHitNumber() {
-        String inputBonusNumber = view.inputConsole();
-        Validate.inputBonusHitLottoNumberValidate(inputBonusNumber);
-        return Integer.parseInt(inputBonusNumber);
+    private void lottoTicket() {
+        ticket.setLottoTicket(buy.getBuyTicketCount());
+        view.lottoTicketNumbers(ticket.getLottoTicket());
     }
 
     // 당첨 내역 통계
@@ -113,8 +92,6 @@ public class StartController {
     }
 
     private void compareTicketAndLottoAndBonus() { // 당첨 통계 출력
-        // System.out.println(lotto.getNumbers());  // 이번주 당첨 번호
-        // System.out.println(ticket.getLottoTicket());  // 내가 산 자동형 로또
         view.compareTicketsAndLotto(ticket.getLottoTicket(), lotto.getNumbers(), bonus.getNumber());
     }
 }

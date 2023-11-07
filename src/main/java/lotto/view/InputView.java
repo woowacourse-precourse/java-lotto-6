@@ -24,7 +24,7 @@ public class InputView {
         String input = Console.readLine();
         System.out.println();
         try {
-            validateFormat(input);
+            validateNumeric(input);
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE + ERROR_NOT_NUMBER);
             input = getInputMoney();
@@ -73,29 +73,21 @@ public class InputView {
         return numbers;
     }
 
+    private void validateNumeric(String input) {
+        if (!PATTERN.matcher(input).matches()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private void validateWinningNumber(List<Integer> numbers) {
         for (int number : numbers) {
             validateRangeNumber(number);
         }
     }
 
-    private void validateNumeric(String input) {
-        try {
-            Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_NOT_NUMBER);
-        }
-    }
-
     private void validateRangeNumber(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_NOT_RANGE);
-        }
-    }
-
-    private void validateFormat(String input) {
-        if (!PATTERN.matcher(input).matches()) {
-            throw new IllegalArgumentException();
         }
     }
 }

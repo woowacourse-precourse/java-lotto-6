@@ -2,11 +2,13 @@ package lotto;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 class LottoWinningTest {
+    @DisplayName("당첨 숫자와 일치하는 숫자 및 보너스로 당첨 여부 및 상금을 확인한다.")
     @ParameterizedTest
     @CsvSource({
             "6, false, 2000000000",
@@ -20,10 +22,8 @@ class LottoWinningTest {
             "1, true, 0",
             "0, true, 0",
     })
-    void 로또_당첨(int match, boolean bonus, long expected) { //unittest
+    void matchLottoReward(int match, boolean bonus, long expected) {
         long actual = LottoWinning.getWinningPlace(match, bonus).getReward();
         assertEquals(expected, actual);
     }
-
-
 }

@@ -3,7 +3,6 @@ package lotto.view;
 import static lotto.constant.Constant.LOTTO_PURCHASE_MINIMUM_AMOUNT;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constant.Constant;
 import lotto.validation.LottoPurchaseAmountValidator;
 
 public class InputView {

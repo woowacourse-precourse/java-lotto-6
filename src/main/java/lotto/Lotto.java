@@ -4,9 +4,12 @@ import static lotto.constant.Constant.LOTTO_CNT;
 import static lotto.constant.Constant.LOTTO_MAX_VALUE;
 import static lotto.constant.Constant.LOTTO_MIN_VALUE;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -52,6 +55,16 @@ public class Lotto {
         return numbers.stream()
                 .allMatch(number -> number >= LOTTO_MIN_VALUE && number <= LOTTO_MAX_VALUE);
     }
+
+    public String getNumbersStringBySortedAsc() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+
+        return "[" + sortedNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ")) + "]";
+    }
+
 
     public static Lotto issueLotto(List<Integer> numbers) {
         return new Lotto(numbers);

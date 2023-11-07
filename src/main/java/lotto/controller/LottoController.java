@@ -22,11 +22,11 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = repeatReadForInvalid(this::getPurchaseAmount);
+        PurchaseAmount purchaseAmount = repeatReadForInvalid(this::createPurchaseAmount);
         List<Lotto> issuedLottos = lottoManager.issueLotto(purchaseAmount);
         OutputView.printIssuedLottoDetails(IssuedLottoDetails.createIssuedLottoDetails(issuedLottos));
 
-        WinningLotto winningLotto = getWinningLotto();
+        WinningLotto winningLotto = createWinningLotto();
         lottoManager.addRankToWinningDetails(issuedLottos, winningLotto);
         OutputView.printWinningDetails(lottoManager.getWinningDetailsToString());
 
@@ -34,24 +34,24 @@ public class LottoController {
         OutputView.printProfitRate(profitRate);
     }
 
-    private PurchaseAmount getPurchaseAmount() {
+    private PurchaseAmount createPurchaseAmount() {
         int purchaseAmount = Converter.convertToInt(InputView.readPurchaseAmount());
         return new PurchaseAmount(purchaseAmount);
     }
 
-    private WinningLotto getWinningLotto() {
-        WinningNumbers winningNumbers = repeatReadForInvalid(this::getWinningNumbers);
-        BonusNumber bonusNumber = repeatReadForInvalid(this::getBonusNumber);
+    private WinningLotto createWinningLotto() {
+        WinningNumbers winningNumbers = repeatReadForInvalid(this::createWinningNumbers);
+        BonusNumber bonusNumber = repeatReadForInvalid(this::createBonusNumber);
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private WinningNumbers getWinningNumbers() {
+    private WinningNumbers createWinningNumbers() {
         List<Integer> winningNumbers =
                 Converter.convertToIntegerList(InputView.readWinningNumbers());
         return new WinningNumbers(winningNumbers);
     }
 
-    private BonusNumber getBonusNumber() {
+    private BonusNumber createBonusNumber() {
         int bonusNumber = Converter.convertToInt(InputView.readBonusNumber());
         return new BonusNumber(bonusNumber);
     }

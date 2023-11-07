@@ -10,20 +10,20 @@ public class LottoResultChecker {
         this.winningLotto = winningLotto;
     }
 
-    public Result check(Lotto lotto) {
-        int matchingNumbers = Long.valueOf(
-                lotto.getNumbers().stream()
-                .filter(winningLotto.getNumbers()::contains)
-                .count()).intValue();
-
-        boolean bonus = lotto.getNumbers().contains(winningLotto.getBonus());
-
-        return Result.from(matchingNumbers, bonus);
-    }
-
     public List<Result> getResults(List<Lotto> lottos) {
         return lottos.stream()
                 .map(this::check)
                 .collect(Collectors.toList());
+    }
+
+    private Result check(Lotto lotto) {
+        int matchingNumbers = winningLotto.getNumbers().stream()
+                .filter(lotto::hasNumber)
+                .toList()
+                .size();
+
+        boolean bonus = lotto.hasNumber(winningLotto.getBonus());
+
+        return Result.from(matchingNumbers, bonus);
     }
 }

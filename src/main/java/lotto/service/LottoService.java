@@ -22,7 +22,8 @@ public class LottoService {
     public void publishLottos(int payAmount) {
         int lottoCount = calculateLottoCount(payAmount);
         for (int i = 0; i < lottoCount; i++) {
-            List<Integer> lottoNumbers = generateLottoNumbers();
+            List<Integer> lottoNumbers = RandomGenerator.getRandomNumber(MINIMUM_NUMBER, MAXIMUM_NUMBER,
+                    LOTTO_NUMBER_SIZE);
             lottos.add(new Lotto(lottoNumbers));
         }
 
@@ -31,16 +32,6 @@ public class LottoService {
 
     }
 
-    public List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = new ArrayList<>();
-        while (lottoNumbers.size() < LOTTO_NUMBER_SIZE) {
-            int randomNumber = RandomGenerator.getRandomNumber(MINIMUM_NUMBER, MAXIMUM_NUMBER);
-            if (!lottoNumbers.contains(randomNumber)) {
-                lottoNumbers.add(randomNumber);
-            }
-        }
-        return lottoNumbers;
-    }
 
     public int calculateLottoCount(int payAmount) {
         int lottoCount = payAmount / LOTTO_AMOUNT;

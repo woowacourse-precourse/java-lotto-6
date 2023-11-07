@@ -10,12 +10,12 @@ public class WinningTest {
     @DisplayName("Winning 열거형에서 상금을 올바르게 반환하는지 테스트")
     @Test
     void getWinningAmount() {
-        assertThat(Winning.NOT_WINNING.getWinningAmount()).isEqualTo(0);
-        assertThat(Winning.THIRD.getWinningAmount()).isEqualTo(5_000);
-        assertThat(Winning.FOURTH.getWinningAmount()).isEqualTo(50_000);
-        assertThat(Winning.FIFTH.getWinningAmount()).isEqualTo(1_500_000);
-        assertThat(Winning.FIFTH_BONUS.getWinningAmount()).isEqualTo(30_000_000);
-        assertThat(Winning.SIXTH.getWinningAmount()).isEqualTo(2_000_000_000);
+        assertThat(Winning.NOT_WINNING.getWinningAmount().amount()).isEqualTo(0);
+        assertThat(Winning.THIRD.getWinningAmount().amount()).isEqualTo(5_000);
+        assertThat(Winning.FOURTH.getWinningAmount().amount()).isEqualTo(50_000);
+        assertThat(Winning.FIFTH.getWinningAmount().amount()).isEqualTo(1_500_000);
+        assertThat(Winning.FIFTH_BONUS.getWinningAmount().amount()).isEqualTo(30_000_000);
+        assertThat(Winning.SIXTH.getWinningAmount().amount()).isEqualTo(2_000_000_000);
     }
 
     @DisplayName("Winning 열거형에서 일치하는 숫자 개수를 올바르게 반환하는지 테스트")

@@ -2,7 +2,7 @@ package lotto.domain.vo;
 
 import java.util.List;
 
-public class WinningNumbers {
+public final class WinningNumbers {
     private final List<Integer> numbers;
 
     private WinningNumbers(List<Integer> numbers) {
@@ -11,5 +11,9 @@ public class WinningNumbers {
 
     public static WinningNumbers from(List<Integer> numbers) {
         return new WinningNumbers(numbers);
+    }
+
+    public  boolean isContained(int number) {
+        return numbers.contains(number);
     }
 }

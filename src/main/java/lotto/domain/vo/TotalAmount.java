@@ -2,7 +2,7 @@ package lotto.domain.vo;
 
 import lotto.constant.LottoConstants;
 
-public class TotalAmount {
+public final class TotalAmount {
     private final int amount;
 
     private TotalAmount(int amount) {

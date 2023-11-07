@@ -1,6 +1,6 @@
 package lotto.domain.vo;
 
-public class TicketCount {
+public final class TicketCount {
     private final int count;
 
     private TicketCount(int count) {

@@ -4,6 +4,7 @@ import java.util.List;
 import lotto.config.InputConfiguration;
 import lotto.controller.IssueController;
 import lotto.domain.Purchase;
+import lotto.domain.vo.BonusNumber;
 import lotto.domain.vo.TotalAmount;
 import lotto.domain.vo.WinningNumbers;
 import lotto.util.handler.InputHandler;
@@ -24,5 +25,9 @@ public class Launcher {
         InputHandler<List<Integer>> winningNumbersInputHandler = InputConfiguration.createWinningNumbersInputHandler();
         List<Integer> winningNumbersList = winningNumbersInputHandler.processInput();
         WinningNumbers winningNumbers = WinningNumbers.from(winningNumbersList);
+
+        InputHandler<Integer> bonusNumberInputHandler = InputConfiguration.createBonusNumberInputHandler(winningNumbers);
+        int number = bonusNumberInputHandler.processInput();
+        BonusNumber bonusNumber = BonusNumber.from(number);
     }
 }

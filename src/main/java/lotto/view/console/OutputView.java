@@ -24,5 +24,6 @@ public class OutputView {
         System.out.println("\n" + resultDTO.getTicketCount() + "개를 구매했습니다.");
         resultDTO.getLottos()
                 .forEach(System.out::println);
+        System.out.println();
     }
 }

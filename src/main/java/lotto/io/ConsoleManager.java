@@ -5,11 +5,11 @@ import static lotto.WinningType.NONE;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.BonusNumber;
-import lotto.Lotto;
 import lotto.WinningType;
 import lotto.io.processor.InputProcessor;
 import lotto.io.processor.OutputProcessor;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.PurchasePrice;
 
 public class ConsoleManager {
@@ -65,14 +65,14 @@ public class ConsoleManager {
         }
     }
 
-    public BonusNumber inputBonusNumber(final Lotto numbers) {
+    public BonusNumber inputBonusNumber() {
         while (true) {
             try {
                 outputProcessor.outputBonusNumberHint();
 
                 String inputBonusNumber = inputProcessor.inputValue();
 
-                return new BonusNumber(inputBonusNumber, numbers);
+                return new BonusNumber(inputBonusNumber);
             } catch (IllegalArgumentException e) {
                 outputProcessor.outputErrorMessage(e);
             }

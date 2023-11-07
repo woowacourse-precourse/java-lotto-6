@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import lotto.model.Lottos;
+import lotto.model.WinningLotto;
 
 public class LottoCalculator {
 
@@ -12,8 +13,7 @@ public class LottoCalculator {
 
     public Map<WinningType, Integer> getMatchStatics(
             Lottos lottos,
-            Lotto winningLotto,
-            BonusNumber bonusNumber
+            WinningLotto winningLotto
     ) {
         Map<WinningType, Integer> statics = new EnumMap<>(WinningType.class);
 
@@ -21,8 +21,8 @@ public class LottoCalculator {
                 .forEach(type -> statics.put(type, 0));
 
         lottos.getLottos().forEach(lotto -> {
-            int matchingCount = lotto.getMatchingCount(winningLotto);
-            boolean matchedBonusNumber = lotto.getMatchingBonusNumber(bonusNumber.getNumber());
+            int matchingCount = lotto.getMatchingCount(winningLotto.getLotto());
+            boolean matchedBonusNumber = lotto.getMatchingBonusNumber(winningLotto.getBonusNumber().getNumber());
 
             WinningType winningType = WinningType.getWinningType(matchingCount, matchedBonusNumber);
 

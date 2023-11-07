@@ -2,9 +2,12 @@ package lotto;
 
 import java.util.Map;
 import lotto.io.ConsoleManager;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.PurchaseAmount;
 import lotto.model.PurchasePrice;
+import lotto.model.WinningLotto;
 
 public class LottoManager {
 
@@ -27,11 +30,11 @@ public class LottoManager {
         Lottos lottos = lottoBuyer.purchaseLottos(purchaseAmount);
         consoleManager.printLottos(lottos.getLottos());
 
-        Lotto winningLotto = consoleManager.inputWinningLottoNumbers();
+        Lotto winningNumbers = consoleManager.inputWinningLottoNumbers();
+        BonusNumber bonusNumber = consoleManager.inputBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
-        BonusNumber bonusNumber = consoleManager.inputBonusNumber(winningLotto);
-
-        Map<WinningType, Integer> statics = lottoCalculator.getMatchStatics(lottos, winningLotto, bonusNumber);
+        Map<WinningType, Integer> statics = lottoCalculator.getMatchStatics(lottos, winningLotto);
 
         consoleManager.printStatics(statics);
 

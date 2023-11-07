@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.List;
 import java.util.StringJoiner;
-import lotto.Lotto;
 
 public class Lottos {
 

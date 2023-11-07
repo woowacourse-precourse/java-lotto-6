@@ -5,7 +5,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.WinningLotto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,8 +26,10 @@ class LottoCalculatorTest {
     @DisplayName("구입 로또, 당첨 번호, 보너스 번호를 비교해서 당첨 통계를 구한다.")
     void getMatchStatics() {
         // Given
-        Lotto winningLotto = new Lotto(List.of(8, 21, 23, 41, 42, 43));
-        BonusNumber bonusNumber = new BonusNumber("11", winningLotto);
+        Lotto winningLottoNumbers = new Lotto(List.of(8, 21, 23, 41, 42, 43));
+        BonusNumber bonusNumber = new BonusNumber("11");
+        WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
+
         Lottos lottos = new Lottos(
                 List.of(
                         new Lotto(List.of(8, 21, 23, 41, 42, 43)),
@@ -33,7 +38,7 @@ class LottoCalculatorTest {
                         new Lotto(List.of(1, 8, 11, 31, 41, 42))));
 
         // When
-        Map<WinningType, Integer> result = lottoCalculator.getMatchStatics(lottos, winningLotto, bonusNumber);
+        Map<WinningType, Integer> result = lottoCalculator.getMatchStatics(lottos, winningLotto);
 
         // Then
         assertThat(result).containsKeys(WinningType.NONE, WinningType.FIRST);

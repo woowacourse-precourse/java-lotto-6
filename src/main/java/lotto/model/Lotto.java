@@ -1,4 +1,4 @@
-package lotto;
+package lotto.model;
 
 import static lotto.error.ErrorMessage.NOT_DIGIT_LOTTO_NUMBERS;
 import static lotto.error.ErrorMessage.NOT_IN_BOUND_LOTTO_NUMBERS;

@@ -1,21 +1,18 @@
-package lotto;
+package lotto.model;
 
 import static lotto.error.ErrorMessage.NOT_DIGIT_BONUS_NUMBER;
 import static lotto.error.ErrorMessage.NOT_IN_BOUND_BONUS_NUMBER;
-import static lotto.error.ErrorMessage.NOT_UNIQUE_BONUS_NUMBER;
 
 public class BonusNumber {
 
     private final int number;
 
     public BonusNumber(
-            final String inputBonusNumber,
-            final Lotto numbers
+            final String inputBonusNumber
     ) {
         int parsedNumber = parseNumber(inputBonusNumber);
 
         validateInBoundNumber(parsedNumber);
-        validateDuplicatedNumber(numbers, parsedNumber);
 
         this.number = parsedNumber;
     }
@@ -46,12 +43,4 @@ public class BonusNumber {
         }
     }
 
-    private void validateDuplicatedNumber(Lotto numbers, int bonusNumber) {
-        boolean duplicated = numbers.getNumbers()
-                .contains(bonusNumber);
-
-        if (duplicated) {
-            throw new IllegalArgumentException(NOT_UNIQUE_BONUS_NUMBER.getMessage());
-        }
-    }
 }

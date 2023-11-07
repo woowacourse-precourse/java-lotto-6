@@ -22,7 +22,7 @@ public class createObject {
             try {
                 return priceException(convertDigit(tmpPrice));
             } catch (IllegalArgumentException e) {
-                //notDigitExceptionMessage();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -34,7 +34,7 @@ public class createObject {
             try {
                 return winningException(convertWinningNum(tmpWinningNumbers), tmpWinningNumbers);
             } catch (IllegalArgumentException e) {
-                //notDigitExceptionMessage();
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -47,7 +47,7 @@ public class createObject {
             try {
                 return bonusException(numbers, convertDigit(tmpBonusNumber));
             } catch (IllegalArgumentException e) {
-                //System.out.println("[ERROR]");
+                System.out.println(e.getMessage());
             }
         }
     }

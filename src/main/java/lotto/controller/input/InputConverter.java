@@ -1,13 +1,14 @@
 package lotto.controller.input;
 
+import lotto.view.ErrorMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import static lotto.view.ErrorMessage.muchComma;
-import static lotto.view.ErrorMessage.notDigitExceptionMessage;
-
 public class InputConverter {
+
+    private static String errorMessage;
 
     public static List<Integer> convertWinningNum(String inputWinningNum) throws IllegalArgumentException{
         List<Integer> winningNumbers = new ArrayList<>();
@@ -23,8 +24,8 @@ public class InputConverter {
         try {
             return Integer.parseInt(inputNum);
         } catch (IllegalArgumentException e) {
-            notDigitExceptionMessage();
-            throw e;
+            errorMessage = ErrorMessage.notDigit.getErrorMessage();
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 

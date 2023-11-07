@@ -2,7 +2,6 @@ package lotto.exception;
 
 import java.util.List;
 
-import static lotto.view.ErrorMessage.muchComma;
 
 public class WinningCheck {
     private static final int size = 6;

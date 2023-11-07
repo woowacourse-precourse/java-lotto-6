@@ -64,7 +64,7 @@ public class InputValidator {
         if (numbers.size() == LottoValue.LOTTO_NUMBER_SIZE) {
             return true;
         }
-        sb.append(ErrorMessage.ERROR_SIX_LOTTO_NUMBER);
+        sb.append(ErrorMessage.ERROR_INPUT_SIX_LOTTO_NUMBER);
         return false;
     }
 

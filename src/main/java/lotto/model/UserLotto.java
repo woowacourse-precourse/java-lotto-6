@@ -10,7 +10,6 @@ public class UserLotto {
         myLotto = lotto;
     }
 
-
     public List<Lotto> getMyLotto() {
         return myLotto.stream()
                 .map(o -> new Lotto(o.getLotto()))

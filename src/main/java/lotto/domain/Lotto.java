@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static lotto.domain.GenerateRandomNum.pickNumber;
 import static lotto.utils.Constants.*;
@@ -21,12 +23,11 @@ public class Lotto {
     }
 
     public static List<Integer> randomLottery() {
-        List<Integer> lotto = new ArrayList<>();
-        while (lotto.size() <= LOTTO_SIZE) {
-            int num = pickNumber();
-            if (!isDuplicatedNum(lotto, num)) lotto.add(num);
-        }
-        Collections.sort(lotto);
+        List<Integer> lotto = Stream.generate(() -> pickNumber())
+                .distinct()
+                .limit(LOTTO_SIZE)
+                .sorted()
+                .collect(Collectors.toList());
         return lotto;
     }
 

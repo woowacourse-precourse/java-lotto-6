@@ -7,6 +7,7 @@ import java.util.List;
 
 import static lotto.domain.Lotto.randomLottery;
 import static lotto.utils.Constants.CHECK_NUMBER_SIZE;
+import static lotto.utils.Constants.LOTTO_SIZE;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -16,7 +17,7 @@ class LottoTest {
     @Test
     @DisplayName("Lotto 객체 생성 - 6자리가 맞을 경우")
     public void createLotto() {
-        List<Integer> nums = List.of(1,2,3,4,5,6);
+        List<Integer> nums = List.of(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(nums);
 
         assertThat(lotto).isNotNull();
@@ -42,7 +43,7 @@ class LottoTest {
     @Test
     @DisplayName("[ERROR] validate 함수 테스트 - 숫자가 6자리가 아닐 경우 IllegalArgumentException 발생")
     public void checkValidate() {
-        List<Integer> nums = List.of(1,2,3,4,5);
+        List<Integer> nums = List.of(1, 2, 3, 4, 5);
 
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> Lotto.validate(nums))
@@ -51,11 +52,18 @@ class LottoTest {
 
     @Test
     @DisplayName("randomLottery 메서드 테스트 - 리스트의 숫자가 1과 45사이의 범위에 있는지")
-    public void checkRandomLotteryInRange(){
+    public void checkRandomLotteryInRange() {
         List<Integer> randomLottery = randomLottery();
         for (int number : randomLottery) {
             assertThat(number).isBetween(1, 45);
         }
+    }
+
+    @Test
+    @DisplayName("randomLottery 메서드 테스트 - 리스트의 사이즈가 6개가 맞는지")
+    public void checkRandomLotterySize() {
+        List<Integer> randomLottery = randomLottery();
+        assertThat(randomLottery.size()).isEqualTo(LOTTO_SIZE);
     }
 
     @Test

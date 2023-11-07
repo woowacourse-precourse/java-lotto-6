@@ -21,7 +21,6 @@ public class InputHandler {
                 InputValidator.validateIsNumber(input);
                 int lottoPurchasePrice = InputUtil.parseInt(input);
 
-                // 이 코드 떄문에 테스트에서 입력 에러 발생함..
                 InputValidator.validateIsMultiplesOf1000(lottoPurchasePrice);
                 return lottoPurchasePrice;
             } catch (IllegalArgumentException e) {

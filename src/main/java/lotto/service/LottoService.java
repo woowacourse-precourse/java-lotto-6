@@ -9,7 +9,7 @@ import lotto.domain.LottoResult;
 import lotto.domain.Money;
 import lotto.domain.Profit;
 import lotto.domain.WinLotto;
-import lotto.util.NumberGenerator;
+import lotto.common.NumberGenerator;
 
 public class LottoService {
     private final NumberGenerator generator;

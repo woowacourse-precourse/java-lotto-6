@@ -2,21 +2,22 @@ package lotto.common;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.exception.money.InvalidNumberFormatException;
 
 public class CommonUtil {
 
-    public static final String COMMA = ",";
+    public static final String SPLIT_REGEX = ",";
 
     public static long convertToLong(String input) {
         try {
             return Long.parseLong(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 입력값이 아닙니다 숫자를 입력해주세요");
+            throw new InvalidNumberFormatException(input);
         }
     }
 
     public static List<Integer> convertToNumbers(String input) {
-        return Arrays.stream(input.split(COMMA))
+        return Arrays.stream(input.split(SPLIT_REGEX))
                 .map(String::trim)
                 .map(CommonUtil::convertToNumber)
                 .toList();
@@ -26,7 +27,7 @@ public class CommonUtil {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 올바른 입력값이 아닙니다 숫자를 입력해주세요");
+            throw new InvalidNumberFormatException(input);
         }
     }
 }

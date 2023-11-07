@@ -3,6 +3,8 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.exception.lotto.LottoNumberDuplicatedException;
+import lotto.exception.lotto.LottoNumberSizeException;
 
 public class Lotto {
     private final List<LottoNumber> numbers;
@@ -12,7 +14,7 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto from(List<Integer> numbers){
+    public static Lotto from(List<Integer> numbers) {
         return new Lotto(mapToLottoNumber(numbers));
     }
 
@@ -30,13 +32,13 @@ public class Lotto {
 
     private void validateSize(List<LottoNumber> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new LottoNumberSizeException(numbers);
         }
     }
 
     private void validateUniqueness(List<LottoNumber> numbers) {
         if (new HashSet<>(numbers).size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new LottoNumberDuplicatedException(numbers);
         }
     }
 

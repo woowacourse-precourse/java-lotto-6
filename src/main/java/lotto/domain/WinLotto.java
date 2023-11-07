@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.lotto.BonusDuplicatedException;
+
 public class WinLotto {
 
     private final Lotto numbers;
@@ -16,7 +18,7 @@ public class WinLotto {
 
     private void validateUniqueness(Lotto winLottoNumber, LottoNumber bonus) {
         if(winLottoNumber.contains(bonus)){
-            throw new IllegalArgumentException("[ERROR] 보너스볼은 로또 번호와 중복될 수 없습니다.");
+            throw new BonusDuplicatedException(winLottoNumber, bonus);
         }
     }
 

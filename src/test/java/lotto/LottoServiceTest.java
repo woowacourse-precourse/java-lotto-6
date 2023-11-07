@@ -6,7 +6,7 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Money;
 import lotto.service.LottoService;
-import lotto.util.RandomNumberGenerator;
+import lotto.common.RandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

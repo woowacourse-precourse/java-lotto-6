@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import lotto.exception.lotto.LottoNumberRangeException;
 
 public class LottoNumber implements Comparable<LottoNumber> {
 
@@ -18,7 +19,7 @@ public class LottoNumber implements Comparable<LottoNumber> {
 
     private void validate(int number) {
         if (number < MIN_LOTTO_NUM || number > MAX_LOTTO_NUM) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 45보다 크거나 1보다 작을수 없습니다.");
+            throw new LottoNumberRangeException(number);
         }
     }
 

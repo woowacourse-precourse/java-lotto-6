@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.money.MoneyRangeException;
+import lotto.exception.money.MoneyUnitException;
+
 public class Money {
 
     private static final long AMOUNT_PER_UNIT = 1000;
@@ -15,12 +18,12 @@ public class Money {
     }
 
     private void validate(long value) {
-        if (value < AMOUNT_PER_UNIT) {
-            throw new IllegalArgumentException(String.format("[ERROR] 금액의 최소단위는 1000원 이상이어야 합니다. %s ", value));
+        if (value < 1000) {
+            throw new MoneyRangeException(value);
         }
 
         if (value % AMOUNT_PER_UNIT != 0) {
-            throw new IllegalArgumentException(String.format("[ERROR] %s원은 1,000원으로 나누어 떨어지지 않는 금액입니다.", value));
+            throw new MoneyUnitException(value);
         }
     }
 

@@ -1,12 +1,12 @@
 package lotto.factory;
 
 import lotto.controller.LottoController;
-import lotto.io.InputManager;
-import lotto.io.InputMapper;
-import lotto.io.InputValidator;
-import lotto.io.InputView;
-import lotto.io.OutputFommatter;
-import lotto.io.OutputView;
+import lotto.io.input.InputManager;
+import lotto.io.input.InputMapper;
+import lotto.io.input.InputValidator;
+import lotto.io.input.InputView;
+import lotto.io.output.OutputFommatter;
+import lotto.io.output.OutputView;
 import lotto.service.LottoService;
 import lotto.utils.RandomNumberGenerator;
 

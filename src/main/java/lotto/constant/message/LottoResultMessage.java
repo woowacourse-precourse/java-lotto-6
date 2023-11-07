@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.constant.message;
 
 public enum LottoResultMessage {
     THREE_MATCH("3개 일치 (5,000원) - %s개"),

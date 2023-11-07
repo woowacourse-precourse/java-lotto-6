@@ -1,6 +1,6 @@
-package lotto.io;
+package lotto.io.output;
 
-import lotto.constant.ProcessMessage;
+import lotto.constant.message.ProcessMessage;
 import lotto.domain.Lottos;
 import lotto.domain.Ticket;
 import lotto.domain.WinningStatistic;

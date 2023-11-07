@@ -1,4 +1,4 @@
-package lotto.io;
+package lotto.io.input;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.PurchaseAmount;

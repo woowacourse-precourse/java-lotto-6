@@ -1,4 +1,4 @@
-package lotto.constant;
+package lotto.constant.message;
 
 public enum ProcessMessage {
     PURCHASE_AMOUNT_REQUSET("구입금액을 입력해 주세요."),

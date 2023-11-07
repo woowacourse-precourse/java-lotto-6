@@ -1,10 +1,10 @@
-package lotto.io;
+package lotto.io.output;
 
 import java.util.EnumMap;
 import lotto.constant.LottoConstant;
-import lotto.constant.LottoResultMessage;
+import lotto.constant.message.LottoResultMessage;
 import lotto.constant.LottoResultRule;
-import lotto.constant.ProcessMessage;
+import lotto.constant.message.ProcessMessage;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Ticket;

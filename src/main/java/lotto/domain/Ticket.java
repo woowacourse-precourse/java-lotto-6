@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.constant.ExceptionMessage;
+import lotto.constant.message.ExceptionMessage;
 
 public class Ticket {
 

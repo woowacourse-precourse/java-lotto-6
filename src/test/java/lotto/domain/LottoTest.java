@@ -34,6 +34,6 @@ class LottoTest {
     void 로또_번호_생성_성공_테스트() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         List<Integer> lottoNumbers = lotto.getNumbers();
-        Assertions.assertThat(lottoNumbers.size()).isEqualTo(6);
+        Assertions.assertThat(lottoNumbers).containsExactly(1, 2, 3, 4, 5, 6);
     }
 }

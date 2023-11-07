@@ -12,6 +12,10 @@ public class LottoPurchase {
 
     private int lottoPurchaseCount;
 
+    public LottoPurchase(String inputNumber) {
+        setLottoPurchaseCount(inputNumber);
+    }
+
     public static void validateInputTypeNumeric(String inputNumber) {
         if (!REGEX_NUMERIC.matcher(inputNumber).matches()) {
             throw new IllegalArgumentException(ERROR_NUMERIC_TYPE);
@@ -35,7 +39,10 @@ public class LottoPurchase {
     }
 
     private void setLottoPurchaseCount(String inputNumber) {
+        validateInputTypeNumeric(inputNumber);
         int totalPrice = Integer.parseInt(inputNumber);
+        validateMinimunPrice(totalPrice);
+        validateDivideLottoPrice(totalPrice);
         this.lottoPurchaseCount = getLottoPurchaseCount(totalPrice);
     }
 }

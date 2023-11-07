@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.validator.InputValidator;
+
 import java.util.List;
 
 import static lotto.utility.StringUtil.*;
@@ -13,8 +15,14 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (!InputValidator.isValidNumberCount(numbers))
             throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_COUNT.getMessage());
+
+        if (InputValidator.hasDuplicates(numbers))
+            throw new IllegalArgumentException(PRINT_ERR_WINNING_NUMBER_DUPLICATE.getMessage());
+
+        if (!InputValidator.isValidNumberRange(numbers)) {
+            throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_RANGE.getMessage());
         }
     }
 

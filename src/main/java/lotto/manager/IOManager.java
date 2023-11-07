@@ -22,8 +22,6 @@ public class IOManager {
         return ioManager;
     }
 
-    InputValidator inputValidator = new InputValidator();
-
     public void printPayAmountInputGuide() {
         System.out.println(ENTER_PAY_AMOUNT.getMessage());
     }
@@ -47,15 +45,15 @@ public class IOManager {
     public int readPayAmount() {
         String inputPayAmount = Console.readLine().replaceAll("\\s", "");
 
-        if (!inputValidator.isDigit(inputPayAmount)) {
+        if (InputValidator.isEmpty(inputPayAmount))
+            throw new IllegalArgumentException(PRINT_ERR_PAY_AMOUNT_IS_EMPTY.getMessage());
+        if (!InputValidator.isDigit(inputPayAmount))
             throw new IllegalArgumentException(PRINT_ERR_PAY_AMOUNT_NOT_DIGIT.getMessage());
-        }
 
         int payAmount = Integer.parseInt(inputPayAmount);
 
-        if ( !inputValidator.isMultipleOfUnit(payAmount) ) {
+        if ( !InputValidator.isMultipleOfUnit(payAmount) )
             throw new IllegalArgumentException(PRINT_ERR_PAY_AMOUNT_INVALID_UNIT_INTERVER.getMessage());
-        }
 
         return payAmount;
     }
@@ -64,39 +62,38 @@ public class IOManager {
         String[] inputWinningNumber = Console.readLine().replaceAll("\\s", "").split(",");
         List<Integer> winningNumber = new ArrayList<>();
 
-        if (!inputValidator.isDigit(inputWinningNumber))
-            throw new IllegalArgumentException(PRINT_ERR_NUMBER_NOT_DIGIT.getMessage());
-
-        for(String element: inputWinningNumber) {
-            winningNumber.add(Integer.parseInt(element));
-        }
-
-        if (!inputValidator.isValidNumberRange(winningNumber)) {
-            throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_RANGE.getMessage());
-        }
-
-        if (!inputValidator.isVailidWinningNumberCount(winningNumber)) {
-            throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_COUNT.getMessage());
-        }
-
-        if (!inputValidator.hasDuplicates(winningNumber)) {
-            throw new IllegalArgumentException(PRINT_ERR_WINNING_NUMBER_DUPLICATE.getMessage());
-        }
+        winningNumberCondition(inputWinningNumber, winningNumber);
 
         return winningNumber;
+    }
+
+    public void winningNumberCondition(String[] inputWinningNumber, List<Integer> winningNumber) {
+        if (!InputValidator.isDigit(inputWinningNumber))
+            throw new IllegalArgumentException(PRINT_ERR_NUMBER_NOT_DIGIT.getMessage());
+
+        for(String element: inputWinningNumber)
+            winningNumber.add(Integer.parseInt(element));
+
+        if (!InputValidator.isValidNumberRange(winningNumber))
+            throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_RANGE.getMessage());
+        if (!InputValidator.isValidNumberCount(winningNumber))
+            throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_COUNT.getMessage());
+        if (InputValidator.hasDuplicates(winningNumber)) {
+            throw new IllegalArgumentException(PRINT_ERR_WINNING_NUMBER_DUPLICATE.getMessage());
+        }
     }
 
     public int readWinningBonusNumber() {
         String inputBonusNumber = Console.readLine();
         int bonusNumber;
 
-        if (!inputValidator.isDigit(inputBonusNumber)) {
+        if (!InputValidator.isDigit(inputBonusNumber)) {
             throw new IllegalArgumentException(PRINT_ERR_NUMBER_NOT_DIGIT.getMessage());
         }
 
         bonusNumber = Integer.parseInt(inputBonusNumber);
 
-        if (!inputValidator.isValidNumberRange(bonusNumber)) {
+        if (!InputValidator.isValidNumberRange(bonusNumber)) {
             throw new IllegalArgumentException(PRINT_ERR_NUMBER_INVALID_RANGE.getMessage());
         }
 

@@ -14,17 +14,15 @@ public class PurchaseController {
 
     public void handle() {
         ioManager.printPayAmountInputGuide();
-        int payAmount = Integer.MIN_VALUE;
 
         try {
-            payAmount = ioManager.readPayAmount();
+            int payAmount = ioManager.readPayAmount();
+            statisticsManager.setPayAmount(payAmount);
+            publishManager.generateTickets(payAmount);
+            publishManager.printTicketCount();
         } catch (IllegalArgumentException e) {
             ioManager.printExceptionMessage(e.getMessage());
             appManager.handleInvalidInput(this.getClass().getName());
         }
-
-        statisticsManager.setPayAmount(payAmount);
-        publishManager.generateTickets(payAmount);
-        publishManager.printTicketCount();
     }
 }

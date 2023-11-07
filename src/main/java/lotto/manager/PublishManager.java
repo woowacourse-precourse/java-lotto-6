@@ -5,7 +5,7 @@ import lotto.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 import static lotto.utility.IntegerUtil.*;
-import static lotto.utility.StringUtil.PRINT_TICKET_COUNT;
+import static lotto.utility.StringUtil.*;
 
 public class PublishManager {
 

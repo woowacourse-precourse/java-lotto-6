@@ -1,6 +1,7 @@
 package lotto.manager;
 
 import lotto.Lotto;
+import lotto.WinningLotto;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,10 +15,10 @@ public class StatisticsManager {
     private static StatisticsManager statisticsManager;
     private final Map<Integer, Integer> countByMatchNumber;
     private final Map<Integer, Integer> priceByMatchNumber;
+    private WinningLotto winningLotto;
     private int payAmount;
     private List<Lotto> lottos;
     private List<Integer> winningNumber;
-    private int bonusNumber;
     private double profit;
 
     private StatisticsManager() {
@@ -54,13 +55,11 @@ public class StatisticsManager {
         int bonusCount = 0;
 
         for (int number : lotto.getNumbers()) {
-            if (winningNumber.contains(number)) {
+            if (winningLotto.getNumbers().contains(number))
                 matchCount++;
-            }
 
-            if (bonusNumber == number) {
+            if (winningLotto.getBonusNumber() == number)
                 bonusCount++;
-            }
         }
 
         countIntegrate(matchCount, bonusCount);
@@ -88,11 +87,9 @@ public class StatisticsManager {
             totalPrice += priceByMatchNumber.get(matchNumber) * countByMatchNumber.get(matchNumber);
         }
 
-        profit = (Math.round((totalPrice / (double) payAmount) * 10) / 10.0);
-    }
+        double oldProfit = ( totalPrice / (double) payAmount ) * 100;
 
-    public void printProfit() {
-        System.out.printf(PRINT_PROFIT.getMessage(), profit);
+        profit = (Math.round(oldProfit * 10) / 10.0);
     }
 
     public void printWinningStatistics() {
@@ -101,6 +98,10 @@ public class StatisticsManager {
         System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "5개 일치", "1,500,000", countByMatchNumber.get(5));
         System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "5개 일치, 보너스 볼 일치", "30,000,000", countByMatchNumber.get(51));
         System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "6개 일치", "2,000,000,000", countByMatchNumber.get(6));
+    }
+
+    public void printProfit() {
+        System.out.printf(PRINT_PROFIT.getMessage(), profit);
     }
 
     public void setPayAmount(int payAmount) {
@@ -116,6 +117,6 @@ public class StatisticsManager {
     }
 
     public void setBonusNumber(int bonusNumber) {
-        this.bonusNumber = bonusNumber;
+        winningLotto = new WinningLotto(this.winningNumber, bonusNumber);
     }
 }

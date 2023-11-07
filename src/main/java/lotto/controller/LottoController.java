@@ -5,6 +5,7 @@ import lotto.model.LottoAmount;
 import lotto.view.InputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoController {
@@ -21,10 +22,21 @@ public class LottoController {
     }
 
     //winning 입력 받아서 모델에서 validation 처리 -> Lotto에서
-    public void getWinningLotto(){
-        InputView.winningNumber();
-        Lotto lotto = new Lotto();
+//    public void getWinningLotto(){
+//
+//        Lotto lotto = new Lotto(InputView.winningNumber());
+//    }
+
+    private List<Integer> StringtoIntegerList(){
+        String strLotto = InputView.winningNumber();
+        List<String> strNumbers = Arrays.asList(strLotto.split(","));
+        List<Integer> numbers = new ArrayList<>();
+        for(String number : strNumbers){
+            numbers.add(Integer.parseInt(number));
+        }
+        return numbers;
     }
+
     //bonusNumber 입력 받아서 모델에서 validation 처리 -> bonusNum 모델 생성?
 
     //amount 값만큼 랜덤 로또 생성, lottos에 저장

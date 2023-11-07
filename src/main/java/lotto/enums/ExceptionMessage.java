@@ -2,6 +2,7 @@ package lotto.enums;
 
 public enum ExceptionMessage {
     CONTAIN_NON_DIGIT_EXCEPTION("[ERROR] 숫자만 입력할 수 있습니다."),
+    PURCHASE_AMOUNT_IS_ZERO_EXCEPTION("[ERROR] 0원은 입력할 수 없습니다."),
     NOT_DIVIDING_BY_LOTTO_PRICE_EXCEPTION("[ERROR] 금액은 1,000원 단위로 입력할 수 있습니다."),
     NOT_SIX_DIGITS_SEPARATED_BY_COMMAS_EXCEPTION("[ERROR] 쉼표(,)로 구분된 숫자 6개를 입력하세요."),
     INPUT_DUPLICATE_DIGIT_EXCEPTION("[ERROR] 중복된 숫자는 입력할 수 없습니다."),

@@ -47,7 +47,7 @@ public class LottoStatistics {
         return false;
     }
 
-    public void checkMatch(int count, boolean lottoHasBonusNumber) {
+    private void checkMatch(int count, boolean lottoHasBonusNumber) {
         if (count == LottoRank.THREE_MATCH.getMatchCount()) {
             threeNumbersMatch++;
         }

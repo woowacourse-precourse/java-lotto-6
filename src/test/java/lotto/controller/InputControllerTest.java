@@ -16,9 +16,8 @@ public class InputControllerTest {
 
     @BeforeEach
     void init() {
-        InputValidator inputValidator = new InputValidator();
         InputView inputView = new InputView();
-        inputController = new InputController(inputView, inputValidator);
+        inputController = new InputController(inputView);
     }
 
     @DisplayName("사용자 입력(String 타입)을 구입 금액 값(int)으로 변환하는 기능 테스트.")

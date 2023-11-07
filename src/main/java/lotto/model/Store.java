@@ -9,13 +9,14 @@ public class Store {
     private final LottoTickets lottoTickets;
     private final int lottoCount;
 
-    public Store(int money) {
+    public Store(Money money) {
         lottoTickets = makeLottoTickets();
         lottoCount = countLotto(money);
     }
 
-    public static int countLotto(int money) {
-        return money / 1000;
+    public static int countLotto(Money money) {
+        int realMoney = Integer.parseInt(money.getMoney());
+        return realMoney / 1000;
     }
 
     public static List<Integer> makeLotto() {

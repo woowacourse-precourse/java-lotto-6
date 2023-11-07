@@ -2,6 +2,7 @@ package lotto.domain;
 
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
+import lotto.util.LottoRank;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,7 +27,7 @@ public class User {
     }
 
 
-    public Long calculateWinningAmount(List<Integer> winningNumbers, int bonusNumber){
+    private Long calculateWinningAmount(List<Integer> winningNumbers, int bonusNumber){
         Long totalWinningAmount = 0L;
 
         for(Lotto lotto: lottos){
@@ -40,6 +41,16 @@ public class User {
         Long totalWinningAmount = calculateWinningAmount(winningNumbers, bonusNumber);
 
         return ((double)totalWinningAmount/PURCHASE_AMOUNT)*100;
+    }
+
+    public int[] getLottoResults(List<Integer> winningNumbers, int bonusNumber){
+        int[] results = new int[LottoRank.values().length];
+
+        for(Lotto lotto: lottos){
+            LottoRank lottoRank = lotto.getLottoRank(winningNumbers, bonusNumber);
+            results[lottoRank.getRank()]++;
+        }
+        return results;
     }
 
 

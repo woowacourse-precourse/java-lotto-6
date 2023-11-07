@@ -1,19 +1,22 @@
 package lotto.util;
 
 public enum LottoRank {
-    FIRST_PRIZE(1,2_000_000_000L),
-    SECOND_PRIZE(2,30_000_000L),
-    THIRD_PRIZE(3,1_500_000L),
-    FOURTH_PRIZE(4,50_000L),
-    FIFTH_PRIZE(5,5_000L),
-    NO_PRIZE(0,0L);
+    FIRST_PRIZE(1,2_000_000_000L,6),
+    SECOND_PRIZE(2,30_000_000L,5),
+    THIRD_PRIZE(3,1_500_000L,5),
+    FOURTH_PRIZE(4,50_000L,4),
+    FIFTH_PRIZE(5,5_000L,3),
+    NO_PRIZE(0,0L,0);
 
     private final int rank;
     private final Long winningAmount;
+    private final int matchCount;
 
-    LottoRank(int rank, Long winningAmount) {
+
+    LottoRank(int rank, Long winningAmount, int matchCount) {
         this.rank = rank;
         this.winningAmount = winningAmount;
+        this.matchCount = matchCount;
     }
 
     public static LottoRank calculateRank(int matchCount, boolean isBonusNumbersMatch){
@@ -42,4 +45,7 @@ public enum LottoRank {
         return winningAmount;
     }
 
+    public int getMatchCount() {
+        return matchCount;
+    }
 }

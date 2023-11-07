@@ -12,6 +12,7 @@ public class InputView {
     public static final String INPUT_AMOUNT_MESSAGE = "구입금액을 입력해 주세요.";
     public static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     public static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+
     public static int inputAmount(){
         System.out.println(INPUT_AMOUNT_MESSAGE);
         String amountStr ="";
@@ -28,6 +29,7 @@ public class InputView {
     }
 
     public static List<Integer> inputWinningNumbers(){
+        System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
         String numberStr = "";
         while(true){
             numberStr = Console.readLine();
@@ -43,6 +45,7 @@ public class InputView {
     }
 
     public static int inputBonusNumbers(){
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE);
         String numberStr = "";
         while(true){
             numberStr = Console.readLine();

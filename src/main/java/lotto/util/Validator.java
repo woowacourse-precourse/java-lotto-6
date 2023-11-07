@@ -2,12 +2,11 @@ package lotto.util;
 
 import java.util.Arrays;
 
+import static lotto.domain.LottoStore.*;
 import static lotto.util.ErrorMessage.*;
 
 public class Validator {
-    public static final int LOTTO_PRICE = 1000;
-    public static final int LOTTO_START_NUMBER = 1;
-    public static final int LOTTO_LAST_NUMBER = 45;
+
     public static void validateAmount(String amountInput){
         validateNumericInput(amountInput);
         validateLottoPurchaseAmount(amountInput);

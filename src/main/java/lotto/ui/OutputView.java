@@ -7,5 +7,9 @@ public class OutputView {
         System.out.println(lottoNumbers);
     }
 
+    public static void outputLottoResult(String lottoResult){
+        System.out.println(lottoResult);
+    }
+
 
 }

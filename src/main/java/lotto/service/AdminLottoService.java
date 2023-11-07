@@ -3,11 +3,15 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashSet;
-
-import lotto.domain.User;
-import lotto.util.Sort;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.domain.Stat;
+import lotto.domain.Lotto;
 import lotto.validator.NumberValidator;
 import lotto.domain.Admin;
+
+
+
 
 public class AdminLottoService {
     Set<Integer> winningNumber = new HashSet<Integer>();
@@ -19,7 +23,9 @@ public class AdminLottoService {
             winningNumber.add(parseWinningNumber);
         }
         NumberValidator.validateWinnerNumberSize(winningNumber);
-        return Sort.sortWinningNumber(winningNumber);
+        ArrayList<Integer> winnerNumbers = winningNumber.stream()
+                .collect(Collectors.toCollection(ArrayList::new));
+        return winnerNumbers;
     }
 
     public String[] splitWinningNumbers(String winningNumberStr) {
@@ -32,15 +38,21 @@ public class AdminLottoService {
         int bonusNumber = Integer.parseInt(bonusNumberStr);
         NumberValidator.validateNumberRange(bonusNumber);
         winningNumber.add(bonusNumber);
-        NumberValidator.validateWinnerNumberSize(winningNumber);
+        NumberValidator.validateWinnerNumberSizeContainsBonusNumber(winningNumber);
         return bonusNumber;
     }
 
-    public Admin setAdmin(ArrayList<Integer> winningNumbers, int bonusNumber) {
+    public Admin setAdmin(List<Integer> winningNumbers, int bonusNumber) {
         return new Admin(winningNumbers, bonusNumber);
     }
 
-    public void compareCorrectLottoNumbers() {
-
+    public void compareCorrectLottoNumbers(List<Lotto> userLottos, List<Integer> winnerNumber, int index, Stat lottoCorrectStat, int bonusNumber) {
+        List<Integer> userNumbers = userLottos.get(index).getNumbers();
+        List<Integer> correctLottoNumbers = userNumbers.stream()
+                .filter(userNumber -> winnerNumber.contains(userNumber))
+                .collect(Collectors.toList());
+        lottoCorrectStat.findCorrectName(correctLottoNumbers, userNumbers, bonusNumber);
+        if(lottoCorrectStat.getMatchingCount()!=null)
+            lottoCorrectStat.addCorrectStat();
     }
 }

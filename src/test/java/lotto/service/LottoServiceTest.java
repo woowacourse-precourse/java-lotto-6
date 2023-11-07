@@ -7,6 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,8 +45,8 @@ class LottoServiceTest {
         LottoService lottoService = new LottoService();
 
         //when
-        int result1 = lottoService.countMatchingWinningNumbers(winLotto1,myLotto1);
-        int result2 = lottoService.countMatchingWinningNumbers(winLotto2,myLotto2);
+        int result1 = lottoService.countMatchingWinningNumbers(winLotto1, myLotto1);
+        int result2 = lottoService.countMatchingWinningNumbers(winLotto2, myLotto2);
 
         //then
         org.assertj.core.api.Assertions.assertThat(result1).isEqualTo(6);
@@ -64,8 +65,8 @@ class LottoServiceTest {
         LottoService lottoService = new LottoService();
 
         //when
-        boolean result1 = lottoService.countMatchingBonusNumbers(winLotto1,bonusNumber);
-        boolean result2 = lottoService.countMatchingBonusNumbers(winLotto2,bonusNumber);
+        boolean result1 = lottoService.countMatchingBonusNumbers(winLotto1, bonusNumber);
+        boolean result2 = lottoService.countMatchingBonusNumbers(winLotto2, bonusNumber);
         //then
         org.assertj.core.api.Assertions.assertThat(result1).isEqualTo(true);
         org.assertj.core.api.Assertions.assertThat(result2).isEqualTo(false);
@@ -74,6 +75,32 @@ class LottoServiceTest {
 
     @Test
     void generateResultScoreBoard() {
+        //given
+        final String first = "1st";
+        final String second = "2nd";
+        final String third = "3rd";
+        final String fourth = "4th";
+        final String fifth = "5th";
+        final String sixth = "6th";
+        final String seventh = "7th";
+        final String eighth = "8th";
+        final long zero = 0L;
+        LottoService lottoService = new LottoService();
+
+        //when
+        HashMap<String, Long> scoreBoard = lottoService.generateResultScoreBoard();
+
+        //then
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsKey(first);
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsKey(second);
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsKey(third);
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsKey(fourth);
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsKey(fifth);
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsKey(sixth);
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsKey(seventh);
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsKey(eighth);
+        org.assertj.core.api.Assertions.assertThat(scoreBoard).containsValues(zero);
+
     }
 
     @Test

@@ -1,6 +1,6 @@
 package lotto.Controller;
 
-import static lotto.Constants.DIVIDED;
+import static lotto.Constants.LOTTO_PRICE;
 import static lotto.MatchNums.*;
 
 import java.util.Arrays;
@@ -34,6 +34,6 @@ public class Calculate {
     }
 
     public int getLottoCount(int cost){
-        return cost/DIVIDED.getNum();
+        return cost/ LOTTO_PRICE.getNum();
     }
 }

@@ -4,7 +4,7 @@ public enum Constants {
     START_INCLUSIVE(1),
     END_INCLUSIVE(45),
     LOTTO_NUMBER_COUNT(6),
-    DIVIDED(1000),
+    LOTTO_PRICE(1000),
     COUNT_MIN(3);
 
     private final int num;

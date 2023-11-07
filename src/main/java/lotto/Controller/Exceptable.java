@@ -70,7 +70,7 @@ public class Exceptable {
     }
 
     public boolean validateDivided(int cost){
-        if (cost%DIVIDED.getNum() > 0){
+        if (cost% LOTTO_PRICE.getNum() > 0){
             throw new IllegalArgumentException(VALIDATE_DIVIDED.getMessage());
         }
         return true;

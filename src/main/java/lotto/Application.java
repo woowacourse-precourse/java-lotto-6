@@ -5,6 +5,12 @@ public class Application {
         System.out.println(flag + "을 입력해 주세요.");
     }
 
+    public static void checkAllLotto(WinLotto winLotto, UserData userData){
+        for(int i = 0; i<userData.lottoCount;i++){
+            userData.checkLotto(winLotto, userData.userLotto.get(i));
+        }
+    }
+
     public static void main(String[] args) {
         printConsole("구입금액");
         UserData userData = new UserData();
@@ -18,7 +24,12 @@ public class Application {
         printConsole("당첨 번호");
         WinLotto winLotto = new WinLotto();
 
+        System.out.println();
+        printConsole("보너스 번호");
+        winLotto.setBonus();
 
+        checkAllLotto(winLotto, userData);
+        userData.printRanks();
 
     }
 }

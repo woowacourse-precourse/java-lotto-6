@@ -11,6 +11,7 @@ public class UserData {
     public int lottoCount;
     public List<Lotto> userLotto;
     public double returnRate;
+    public int[] userRanks = new int[6];
 
     public UserData(){
         inputMoney();
@@ -53,5 +54,43 @@ public class UserData {
         for(int i = 0;i<lottoCount;i++){
             userLotto.get(i).printLotto();
         }
+    }
+
+    public void checkLotto(WinLotto winLotto, Lotto userLotto){
+        int countExistNum, rank;
+        int flag = 0;
+
+        countExistNum = winLotto.winLotto.countExistNumber(userLotto);
+        if(countExistNum == 6){
+            flag = 1;
+        }
+
+        if (userLotto.isExistNumber(winLotto.bonus)){
+            countExistNum++;
+        }
+
+        rank = checkRank(countExistNum, flag);
+        if(rank != 0){
+            userRanks[rank-1]++;
+        }
+    }
+
+    public int checkRank(int count, int flag){
+        if(flag == 1) return 1;
+        if(flag == 0 && count == 5) return 2;
+        if(count == 5) return 3;
+        if(count == 4) return 4;
+        if(count == 3) return 5;
+        return 0;
+    }
+
+    public void printRanks(){
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.printf("3개 일치 (5,000원) - %d개\n", userRanks[4]);
+        System.out.printf("4개 일치 (50,000원) - %d개\n", userRanks[3]);
+        System.out.printf("5개 일치 (1,500,000원) - %d개\n", userRanks[2]);
+        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", userRanks[1]);
+        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", userRanks[0]);
     }
 }

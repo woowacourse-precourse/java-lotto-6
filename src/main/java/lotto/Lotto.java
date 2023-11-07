@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+
+import java.util.Collections;
 import java.util.List;
 
 public class Lotto {
@@ -22,5 +24,19 @@ public class Lotto {
 
     public void printLotto(){
         System.out.println(numbers);
+    }
+
+    public boolean isExistNumber(int number){
+        return numbers.contains(number);
+    }
+
+    public int countExistNumber(Lotto l){
+        int count = 0;
+        for(int i=0;i<5;i++){
+            if(numbers.contains(l.numbers.get(i))){
+                count++;
+            }
+        }
+        return count;
     }
 }

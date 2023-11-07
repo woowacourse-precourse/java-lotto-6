@@ -7,10 +7,10 @@
   - [x] Exception: 6개의 숫자를 입력받지 않는 경우
   - [x] Exception: 중복 되는 숫자가 있는 경우
   - [x] Exception: 숫자의 범위가 1 ~ 45가 아닌 경우
-- [ ] 보너스 번호 입력
-  - [ ] Exception: 숫자의 범위가 1 ~ 45가 아닌 경우
-  - [ ] Exception: 당첨 번호와 중복 되는 경우
-- [ ] 로또 번호 일치 확인
+- [x] 보너스 번호 입력
+  - [x] Exception: 숫자의 범위가 1 ~ 45가 아닌 경우
+  - [x] Exception: 당첨 번호와 중복 되는 경우
+- [x] 로또 번호 일치 확인
 - [ ] 수익률 계산
 
 
@@ -46,5 +46,5 @@
   - returnRate
     - calculateReturnRate(): 수익률 계산
   - lottoResult
-    - checkLottoNum(): 로또 번호 몇 개 맞추었는 지 확인
+    - checkLotto(): 로또 번호 몇 개 맞추었는 지 확인
     - checkRank(): 등수 확인

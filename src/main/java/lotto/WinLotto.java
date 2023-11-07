@@ -9,6 +9,9 @@ import java.util.Set;
 
 public class WinLotto {
     public Lotto winLotto;
+    public int bonus;
+
+    public List<Integer> WinLottoNumbers;
 
     public WinLotto(){
         setWinLotto();
@@ -41,15 +44,30 @@ public class WinLotto {
         }
 
         for(int i = 0; i<winNum.size(); i++){
-            if(winNum.get(i) > 45){
-                throw new IllegalArgumentException();
-            }
+            validRange(winNum.get(i));
         }
     }
 
     public void setWinLotto(){
-        winLotto = new Lotto(inputWinNum());
+        WinLottoNumbers = inputWinNum();
+        winLotto = new Lotto(WinLottoNumbers);
     }
 
+    public void setBonus(){
+        int inputBonus = Integer.parseInt(Console.readLine());
+        validRange(inputBonus);
+        validDuplicateBonus(inputBonus);
+        bonus = inputBonus;
+    }
 
+    public void validDuplicateBonus(int bonus){
+        if(WinLottoNumbers.contains(bonus)){
+            throw new IllegalArgumentException();
+        }
+    }
+    public void validRange(int num){
+        if(num > 45){
+            throw new IllegalArgumentException();
+        }
+    }
 }

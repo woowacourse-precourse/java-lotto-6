@@ -122,7 +122,7 @@ public class LottoWinnerSystem {
         return false;
     }
 
-    // 수익률 계산
+    // 당첨 금액 계산
     public static int calculateProfitMoney() {
         int profitMoney = (FIFTH_PRIZE_MONEY * fifth) + (FOURTH_PRIZE_MONEY * fourth) +
                 (THIRD_PRIZE_MONEY * third) + (SECOND_PRIZE_MONEY * second) + (FIRST_PRIZE_MONEY * first);

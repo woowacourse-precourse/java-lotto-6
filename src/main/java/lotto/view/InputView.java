@@ -27,7 +27,7 @@ public class InputView {
         do {
             System.out.println(PURCHASE_AMOUNT_MESSAGE);
             purchaseAmount = Console.readLine().trim();
-        } while (!lottoException.checkNumber(purchaseAmount) ||
+        } while (!lottoException.numberCheck(purchaseAmount) ||
                 !lottoException.purchaseAmountCheckMain(purchaseAmount));
         {
             System.out.print(NEW_LINE);
@@ -59,8 +59,12 @@ public class InputView {
         return Arrays.stream(splitInput)
                 .map(String::trim)
                 .distinct()
+                .filter(lottoException::numberCheck)
                 .map(Integer::parseInt)
+                .filter(lottoException::lottoRangeCheck)
                 .sorted()
                 .collect(Collectors.toList());
     }
+
+
 }

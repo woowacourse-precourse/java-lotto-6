@@ -14,6 +14,7 @@ public class WinningNumbersValidator {
         validateStartWithComma(input);
         validateEndWithComma(input);
     }
+
     private static void validateStartWithComma(String input) {
         if (input.charAt(0) == COMMA) {
             throw new IllegalArgumentException(NOT_START_WITH_COMMA.getMessage());
@@ -26,23 +27,22 @@ public class WinningNumbersValidator {
         }
     }
 
-    public static void validateBonusNumber(Lotto winningNumbers, int bonusNumber){
+    public static void validateBonusNumber(Lotto winningNumbers, int bonusNumber) {
         validateLottoNumberInRange(bonusNumber);
-        validateBonusNumberInWinningNumbers(winningNumbers,bonusNumber);
+        validateBonusNumberInWinningNumbers(winningNumbers, bonusNumber);
     }
 
     public static void validateBonusNumberInWinningNumbers(Lotto winningNumbers, int bonusNumber) {
-        if(winningNumbers.containsBonusNumber(bonusNumber))
+        if (winningNumbers.containsBonusNumber(bonusNumber))
             throw new IllegalArgumentException(EXIST_DUPLICATE.getMessage());
     }
 
-    private static void validateLottoNumberInRange(int lottoNumber) {
-        if(!isLottoNumberInRange(lottoNumber))
-            if(!isLottoNumberInRange(lottoNumber))
-                throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
+    public static void validateLottoNumberInRange(int lottoNumber) {
+        if (!isLottoNumberInRange(lottoNumber))
+            throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
     }
 
-    private static boolean isLottoNumberInRange(int lottoNumber) {
+    public static boolean isLottoNumberInRange(int lottoNumber) {
         return lottoNumber >= LOTTO_NUMBER_START_INCLUSIVE.value() && lottoNumber <= LOTTO_NUMBER_END_INCLUSIVE.value();
     }
 }

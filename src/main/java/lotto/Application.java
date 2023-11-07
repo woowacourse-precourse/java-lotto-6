@@ -10,4 +10,5 @@ public class Application {
         LottoGameController gameController = config.gameController();
         gameController.start();
     }
+
 }

@@ -3,10 +3,13 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.StringConstant;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static lotto.constant.NumberConstant.*;
+import static lotto.message.ErrorMessage.EXIST_DUPLICATE;
 import static lotto.message.ErrorMessage.INVALID_SIZE;
 
 public class Lotto {
@@ -14,6 +17,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateLottoSize(numbers);
+        validateDuplicate(numbers);
         this.numbers = numbers;
     }
 
@@ -34,6 +38,13 @@ public class Lotto {
                 .sorted()
                 .map(String::valueOf)
                 .collect(Collectors.joining(stringConstant.value()));
+    }
+
+    private void validateDuplicate(List<Integer> numbers){
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if(numberSet.size()!= LOTTO_SIZE.value()){
+            throw new IllegalArgumentException(EXIST_DUPLICATE.getMessage());
+        }
     }
 
     public boolean containsBonusNumber(int bonusNumber) {

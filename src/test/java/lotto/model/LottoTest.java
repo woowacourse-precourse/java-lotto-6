@@ -1,6 +1,5 @@
 package lotto.model;
 
-import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -39,9 +38,10 @@ class LottoTest {
 
     @DisplayName("중복 요소 존재하는지 체크")
     @Test
-    public void validateDuplicateTest(){
+    public void validateDuplicateTest() {
 
-        assertThatThrownBy(()->new Lotto(List.of(1,1,2,3,4,5))).isInstanceOf(IllegalArgumentException.class)
+        assertThatThrownBy(() -> new Lotto(List.of(1, 1, 2, 3, 4, 5))).isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(EXIST_DUPLICATE.getMessage());
     }
+
 }

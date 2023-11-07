@@ -40,5 +40,4 @@ class PurchaseCostTest {
         Assertions.assertThat(purchaseCost.calculateLottoCount()).isEqualTo(13);
     }
 
-
 }

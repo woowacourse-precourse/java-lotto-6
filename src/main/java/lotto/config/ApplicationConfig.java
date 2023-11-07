@@ -1,6 +1,6 @@
 package lotto.config;
 
-import lotto.Generator.LottoGenerator;
+import lotto.generator.LottoGenerator;
 import lotto.controller.LottoGameController;
 import lotto.view.InputView;
 import lotto.view.OutputView;

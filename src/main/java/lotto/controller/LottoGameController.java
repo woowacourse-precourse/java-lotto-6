@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import lotto.Generator.LottoGenerator;
+import lotto.generator.LottoGenerator;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.PurchaseCost;
@@ -41,6 +41,7 @@ public class LottoGameController {
         Lotto lottoWinningNumbers = inputLottoWinningNumbers();
         int bonusWinningNumber = inputBonusWinningNumber(lottoWinningNumbers);
 
+        printWinningStatistics();
     }
 
     private PurchaseCost inputLottoPurchaseCost() {
@@ -132,5 +133,8 @@ public class LottoGameController {
         return bonusWinningNumber;
     }
 
+    private void printWinningStatistics() {
+        output.printMessage(WINNING_STATISTICS);
+    }
 
 }

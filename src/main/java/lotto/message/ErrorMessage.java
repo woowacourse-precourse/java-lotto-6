@@ -10,8 +10,7 @@ public enum ErrorMessage implements Message {
     NOT_END_WITH_COMMA(",로 끝나면 안됩니다."),
     NOT_START_WITH_COMMA(",로 시작하면 안됩니다."),
     EXIST_DUPLICATE("중복 요소가 존재합니다."),
-    OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다.")
-    ;
+    OUT_OF_RANGE("로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     private final String message;
 
     ErrorMessage(String message) {
@@ -22,4 +21,5 @@ public enum ErrorMessage implements Message {
     public String getMessage() {
         return this.message;
     }
+
 }

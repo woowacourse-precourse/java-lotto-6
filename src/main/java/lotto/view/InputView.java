@@ -8,7 +8,7 @@ import static lotto.validator.WinningNumbersValidator.validateCommaAtStartOrEnd;
 
 public class InputView {
 
-    public String purchaseCost(){
+    public String purchaseCost() {
         String input = Console.readLine();
         validateBlank(input);
         validateNumber(input);
@@ -22,7 +22,7 @@ public class InputView {
         return input;
     }
 
-    public String bonusWinningNumbers(){
+    public String bonusWinningNumbers() {
         String input = Console.readLine();
         validateBlank(input);
         validateNumber(input);

@@ -5,7 +5,7 @@ import static lotto.constants.constants.SEPARATOR;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.exception.DataTypeRangeException;
 import lotto.validation.LottoNumberValidator;
 import lotto.view.Input;
@@ -19,12 +19,12 @@ public class WinningNumberService {
         this.input = new Input();
     }
 
-    public Lotto fetchValidatedWinningNumber() {
+    public WinningLotto fetchValidatedWinningNumber() {
         while (true) {
             try {
                 String readLine = input.getReadLine();
                 LottoNumberValidator.validateWinningNumberReadLine(readLine);
-                return new Lotto(validateParseNumbers(readLine));
+                return new WinningLotto(validateParseNumbers(readLine));
             } catch (IllegalArgumentException e) {
                 Output.printErrorMessage(e);
             }

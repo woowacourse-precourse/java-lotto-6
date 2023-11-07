@@ -27,10 +27,6 @@ public class InputValidation {
     }
 
     private static boolean containsNonNumericValue(List<String> values) {
-        System.out.println(values.size());
-        for (String value : values) {
-            System.out.println(value);
-        }
         return values.stream().anyMatch(value -> isNotNumeric(value) || hasLeadingZeros(value));
     }
 

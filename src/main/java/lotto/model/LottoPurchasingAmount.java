@@ -6,13 +6,13 @@ import static java.lang.Integer.parseInt;
 
 public class LottoPurchasingAmount {
     private static final int LOTTO_MINIMUM_PRICE = 1000;
-    private final int lottoAmount;
+    private final int money;
 
     public LottoPurchasingAmount(String moneyFromUserInput) {
         int moneyFromUser = validateNumber(moneyFromUserInput);
         validateMinimumPrice(moneyFromUser);
         validateDivisible(moneyFromUser);
-        this.lottoAmount = moneyFromUser / LOTTO_MINIMUM_PRICE;
+        this.money = moneyFromUser;
     }
 
     private int validateNumber(String money) {
@@ -39,6 +39,10 @@ public class LottoPurchasingAmount {
     }
 
     public int getLottoAmount() {
-        return lottoAmount;
+        return money / LOTTO_MINIMUM_PRICE;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }

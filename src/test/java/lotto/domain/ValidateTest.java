@@ -1,8 +1,8 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -59,5 +59,24 @@ public class ValidateTest {
         final String INPUT = "1,2,2,4,5,6";
 
         assertThat(validate.validateWinnerNumbers(INPUT)).contains(ERROR_NUMBER);
+    }
+
+    @DisplayName("메서드 정상 작동")
+    @Test
+    void validateWinnerNumbers_메서드_정상_작동() {
+        final String INPUT = "10,15, 21,29,30,42";
+        List<Integer> result = List.of(10,15,21,29,30,42);
+
+        assertThat(validate.validateWinnerNumbers(INPUT)).isEqualTo(result);
+    }
+
+    // BonusNumber
+    @Test
+    void validateBonusNumber_메서드_정상_작동() {
+        String input = "21";
+        List<Integer> list = List.of(1,4,10,15,25,40);
+        int result = 21;
+
+        assertThat(validate.validateBonusNumber(input, list)).isEqualTo(result);
     }
 }

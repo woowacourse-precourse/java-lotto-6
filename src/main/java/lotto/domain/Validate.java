@@ -106,7 +106,7 @@ public class Validate {
     public int validateBonusNumber(String input, List<Integer> list) {
         int result = MAKE_ERROR_NUMBER;
         try {
-            int number = Integer.parseInt(input);
+            int number = Integer.parseInt(input.trim());
 
             if (!list.contains(checkRangeOfNumber(number))) {
                 return number;

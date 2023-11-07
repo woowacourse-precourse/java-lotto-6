@@ -75,7 +75,7 @@ class WinningLottoTest {
         assertThatThrownBy(
                 () -> new WinningLotto(lotto, 46))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1에서 45 사이의 숫자만 입력할 수 있습니다.");
+                .hasMessage("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     }
 
 }

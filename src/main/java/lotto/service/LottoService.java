@@ -5,6 +5,8 @@ import lotto.model.Lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LottoService {
 
@@ -26,11 +28,14 @@ public class LottoService {
         return purchaseAmount / LOTTO_PRICE;
     }
 
-    private List<Lotto> generateLottoTickets(int numberOfTickets) {
-        List<Lotto> result = new ArrayList<>();
-        for (int i = 0; i < numberOfTickets; i++) {
-            result.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
-        }
-        return result;
+    public List<Lotto> generateLottoTickets(int numberOfTickets) {
+        return Stream.generate(() -> generateUniqueLottoTicket())
+                .limit(numberOfTickets)
+                .collect(Collectors.toList());
+    }
+
+    private Lotto generateUniqueLottoTicket() {
+        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(lottoNumbers);
     }
 }

@@ -70,6 +70,6 @@ public class Player {
     }
 
     public double getRateOfReturn() {
-        return (Utils.getRateOfReturn() / lottoAmount.getLottoAmount()) * 100;
+        return (Utils.getRateOfReturn() / (double) lottoAmount.getLottoAmount()) * 100;
     }
 }

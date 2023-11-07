@@ -23,6 +23,6 @@ public class Prints {
     }
 
     public static void print_lottoCount(int lottoCount) {
-        System.out.println(String.format("\n%d개 를 구매하였습니다.", lottoCount));
+        System.out.println(String.format("\n%d개를 구매했습니다.", lottoCount));
     }
 }

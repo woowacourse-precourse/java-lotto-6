@@ -1,5 +1,10 @@
 package lotto.model;
 
+import static lotto.view.ExceptionMessages.DUPLICATED_NUMBER;
+import static lotto.view.ExceptionMessages.NUMBER_SIZE;
+
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -12,9 +17,23 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자여야 합니다.");
+            throw new IllegalArgumentException(NUMBER_SIZE.getMessage());
+        }
+
+        if (hasDuplicates(numbers)) {
+            throw new IllegalArgumentException(DUPLICATED_NUMBER.getMessage());
         }
     }
 
-    // TODO: 추가 기능 구현
+    private boolean hasDuplicates(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .count() != numbers.size();
+    }
+
+    public String printSortedNumber() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        sortedNumbers.sort(Comparator.naturalOrder());
+        return sortedNumbers.toString();
+    }
 }

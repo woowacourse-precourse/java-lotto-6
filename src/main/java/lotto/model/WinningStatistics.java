@@ -30,12 +30,8 @@ public class WinningStatistics {
             int matchCount = calculateMatchCount(lotto, winningLotto);
             BonusStatus bonusStatus = getBonusStatus(matchCount, lotto, bonusNumber);
 
-            Optional<WinningPrize> winningPrizeOrNull = WinningPrize.getWinningPrize(matchCount, bonusStatus);
-            if (winningPrizeOrNull.isPresent()) {
-                WinningPrize winningPrize = winningPrizeOrNull.get();
-                winningResult.put(winningPrize, winningResult.get(winningPrize) + 1);
-                totalReward += winningPrize.getReward();
-            }
+            Optional<WinningPrize> winningPrizeOrNull = findWinningPrize(matchCount, bonusStatus);
+            UpdateWiningResultAndTotalReward(winningPrizeOrNull);
         }
     }
 
@@ -57,5 +53,17 @@ public class WinningStatistics {
             return BonusStatus.IS_IN_LOTTO;
         }
         return BonusStatus.IS_NOT_IN_LOTTO;
+    }
+
+    private Optional<WinningPrize> findWinningPrize(int matchCount, BonusStatus bonusStatus) {
+        return WinningPrize.getWinningPrize(matchCount, bonusStatus);
+    }
+
+    private void UpdateWiningResultAndTotalReward(Optional<WinningPrize> winningPrizeOrNull) {
+        if (winningPrizeOrNull.isPresent()) {
+            WinningPrize winningPrize = winningPrizeOrNull.get();
+            winningResult.put(winningPrize, winningResult.get(winningPrize) + 1);
+            totalReward += winningPrize.getReward();
+        }
     }
 }

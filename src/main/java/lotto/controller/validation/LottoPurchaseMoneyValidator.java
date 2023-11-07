@@ -1,11 +1,13 @@
 package lotto.controller.validation;
 
+import static lotto.domain.MoneyUnit.MONEY_UNIT;
+import static lotto.domain.MoneyUnit.WANTED_REMAINDER;
+
+import lotto.domain.MoneyUnit;
 import lotto.view.ErrorOutputView;
 
 public class LottoPurchaseMoneyValidator {
 	ErrorOutputView errorOutputView = new ErrorOutputView();
-	private static final Integer MONEY_UNIT = 1000;
-	private static final Integer WANTED_REMAINDER = 0;
 	public void checkValidatioOfLottoPurchaseMoney(String scannedPurchaseMoneyString) {
 		checkLottoPurchaseMoneyWithChar(scannedPurchaseMoneyString);
 	}
@@ -20,10 +22,9 @@ public class LottoPurchaseMoneyValidator {
 		}
 		checkLottoPurchaseMoneyUnit(scannedPurchaseMoneyString);
 	}
-
 	private void checkLottoPurchaseMoneyUnit(String scannedPurchaseMoneyString) {
-		Integer remainder = Integer.parseInt(scannedPurchaseMoneyString) % MONEY_UNIT;
-		if (remainder == WANTED_REMAINDER) {
+		Integer scannedPurchaseMoneyUnitDivideRemainder = Integer.parseInt(scannedPurchaseMoneyString) % MONEY_UNIT.getValue();
+		if (scannedPurchaseMoneyUnitDivideRemainder != WANTED_REMAINDER.getValue()) {
 			errorOutputView.printErrorOfLottoPurchaseMoneyUnit();
 			throw new IllegalArgumentException();
 		}

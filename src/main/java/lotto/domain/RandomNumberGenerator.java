@@ -1,11 +1,16 @@
 package lotto.domain;
 
+import static lotto.domain.constant.LottoConstant.LOTTO_NUMBERS_COUNT;
+import static lotto.domain.constant.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.domain.constant.LottoConstant.MIN_LOTTO_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.domain.constant.LottoConstant;
 
 public class RandomNumberGenerator implements NumberGenerator {
     @Override
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_NUMBERS_COUNT);
     }
 }

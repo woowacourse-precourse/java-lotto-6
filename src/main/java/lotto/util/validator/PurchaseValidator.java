@@ -1,5 +1,7 @@
 package lotto.util.validator;
 
+import static lotto.domain.constant.LottoConstant.LOTTO_PRICE;
+
 import lotto.domain.Purchase;
 
 public class PurchaseValidator implements Validator {
@@ -21,12 +23,12 @@ public class PurchaseValidator implements Validator {
 
     private void validateUnit(int value) {
         if (!isValidUnit(value)) {
-            throw new IllegalArgumentException("1000원 단위의 숫자로 입력해야 합니다.");
+            throw new IllegalArgumentException(LOTTO_PRICE + "원 단위의 숫자로 입력해야 합니다.");
         }
     }
 
     private boolean isValidUnit(int value) {
-        return value % 1000 == 0;
+        return value % LOTTO_PRICE == 0;
     }
 
     @Override

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.domain.constant.LottoConstant.LOTTO_PRICE;
+
 public class LottoCount {
     private final int count;
 
@@ -8,7 +10,7 @@ public class LottoCount {
     }
 
     public static LottoCount from(int purchase) {
-        int count = purchase / 1000;
+        int count = purchase / LOTTO_PRICE;
         return new LottoCount(count);
     }
 

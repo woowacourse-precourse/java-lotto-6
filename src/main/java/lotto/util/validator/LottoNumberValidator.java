@@ -1,16 +1,19 @@
 package lotto.util.validator;
 
+import static lotto.domain.constant.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.domain.constant.LottoConstant.MIN_LOTTO_NUMBER;
+
 import java.util.List;
 
 public class LottoNumberValidator {
     public static void validateRange(int winningNumber) {
         if (!isInRange(winningNumber)) {
-            throw new IllegalArgumentException("로또 숫자는 1~45 사이의 숫자여야합니다.");
+            throw new IllegalArgumentException("로또 숫자는 "+MIN_LOTTO_NUMBER+"~"+MAX_LOTTO_NUMBER+" 사이의 숫자여야합니다.");
         }
     }
 
     private static boolean isInRange(int winningNumber) {
-        return winningNumber >= 1 && winningNumber <= 45;
+        return winningNumber >= MIN_LOTTO_NUMBER && winningNumber <= MAX_LOTTO_NUMBER;
     }
 
     public static void validateDuplicates(int bonusNumber, List<Integer> winningNumbers) {

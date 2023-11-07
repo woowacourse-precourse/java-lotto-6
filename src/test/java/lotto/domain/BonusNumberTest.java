@@ -21,7 +21,7 @@ public class BonusNumberTest {
 
     @Test
     void matches_빈_배열을_입력_받으면_예외를_발생() {
-        BonusNumber number = new BonusNumber(0);
+        BonusNumber number = new BonusNumber(1);
 
         assertThatThrownBy(() ->
                 number.matches(Collections.emptyList())
@@ -31,7 +31,7 @@ public class BonusNumberTest {
 
     @Test
     void matches_null_값이면_예외를_발생() {
-        BonusNumber number = new BonusNumber(0);
+        BonusNumber number = new BonusNumber(1);
 
         assertThatThrownBy(() -> number.matches(null))
                 .isInstanceOf(IllegalArgumentException.class);

@@ -58,4 +58,17 @@ class MoneyTest {
 
     }
 
+    @DisplayName("getPrice 테스트")
+    @Nested
+    class getPrice {
+
+        @DisplayName("입력받은 금액을 반환한다.")
+        @ParameterizedTest
+        @ValueSource(ints = {1000,2000,3000})
+        void returnGivenNumber(int number) {
+            assertEquals(new Money(number).getPrice(), number);
+        }
+
+    }
+
 }

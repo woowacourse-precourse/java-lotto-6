@@ -12,7 +12,7 @@ public class Calculator {
 
     public Ranking calculateRanking(Lotto lotto, WinningNumbers winningNumbers) {
         List<Integer> winningMainNumbers = winningNumbers.getMainNumbers().getNumbers();
-        int winningBonusNumber = winningNumbers.getBonusNumber();
+        int winningBonusNumber = winningNumbers.getBonusNumber().getBonusNumber();
 
         int correctMainNumbersCount = compareMainNumbers(lotto, winningMainNumbers);
         boolean isNeedCheckBonusNumber = false;

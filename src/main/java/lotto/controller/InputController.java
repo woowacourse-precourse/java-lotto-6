@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmountCalculator;
 import lotto.domain.WinningNumbers;
@@ -30,9 +31,9 @@ public class InputController {
 
     public WinningNumbers settingWinningNumbers() {
         Lotto mainNumbers = settingMainNumbers();
+        BonusNumber bonusNumber = settingBonusNumber(mainNumbers);
 
-        WinningNumbers winningNumbers = getBonusNumber(mainNumbers);
-
+        WinningNumbers winningNumbers = new WinningNumbers(mainNumbers,bonusNumber);
         return winningNumbers;
     }
 
@@ -56,25 +57,27 @@ public class InputController {
         return mainNumbers;
     }
 
-    private WinningNumbers getBonusNumber(Lotto mainNumbers) {
-        WinningNumbers winningNumbers = null;
-        while (winningNumbers == null) {
-            winningNumbers = tryGetBonusNumber(mainNumbers, winningNumbers);
+    private BonusNumber settingBonusNumber(Lotto mainNumbers) {
+        BonusNumber bonusNumber = null;
+        while (bonusNumber == null) {
+            bonusNumber = tryGetBonusNumber(mainNumbers);
         }
-        return winningNumbers;
+        return bonusNumber;
     }
 
-    private WinningNumbers tryGetBonusNumber(Lotto winningLotto, WinningNumbers winningNumbers) {
+    private BonusNumber tryGetBonusNumber(Lotto mainNumbers) {
+        BonusNumber bonusNumber = null;
         try {
-            String inputBonusNumber = InputView.getBonusNumber();
-            inputBonusNumber = Converter.deleteSpace(inputBonusNumber);
-            WinningNumbersValidator.validateBonusNumber(inputBonusNumber);
-            int bonusNumber = Integer.parseInt(inputBonusNumber);
-            winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
+            String inputValue = InputView.getBonusNumber();
+            inputValue = Converter.deleteSpace(inputValue);
+            WinningNumbersValidator.validateBonusNumber(inputValue);
+
+            int inputBonusNumber = Integer.parseInt(inputValue);
+            bonusNumber = new BonusNumber(inputBonusNumber, mainNumbers);
         } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
         }
-        return winningNumbers;
+        return bonusNumber;
     }
 
 }

@@ -26,7 +26,7 @@ public class Lottos {
                 .map(lotto -> LottoRank.findLottoRank(
                         winningNumber.hitCount(lotto),
                         bonusNumber.isHitBonusNumber(lotto)
-                        ))
+                ))
                 .toList();
 
         return rank;

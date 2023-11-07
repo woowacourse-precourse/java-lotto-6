@@ -12,36 +12,34 @@ public class LottoMachine {
 
     public void insertMoneyView() {
 
+    public void lottoMachineInput() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
             insertMoney(Console.readLine());
             System.out.println();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            insertMoneyView();
+            lottoMachineInput();
         }
-
     }
 
-    public List<Lotto> lottoBundleView() {
-        printLottoBundle();
+    private void insertMoney(String input) {
+        Exception.validateMoney(input);
+        lottoCount = Integer.parseInt(input) / LOTTO_PRICE;
+    }
+
+    public List<Lotto> lottoMachineOutput() {
+        generateLottoBundle();
 
         System.out.println(lottoCount + "개를 구매했습니다.");
         for (Lotto lotto : lottoBundle) {
-            System.out.println(lotto.lottoFormat());
+            System.out.println(lotto.lottoPrintFormat());
         }
 
         return lottoBundle;
     }
 
-    private void insertMoney(String input) {
-        Exception.validateMoney(input);
-        lottoCount = Integer.parseInt(input) / 1000;
-    }
-
-    private void printLottoBundle() {
-        lottoBundle = new ArrayList<Lotto>();
-
+    private void generateLottoBundle() {
         for (int i = 0; i < lottoCount; i++) {
             Lotto processingLotto = new Lotto(generateLottoNumbers());
             lottoBundle.add(processingLotto);

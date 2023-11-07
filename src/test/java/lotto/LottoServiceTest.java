@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -54,19 +55,13 @@ public class LottoServiceTest {
 		}
 	}
 
-	private boolean isSortedInAscendingOrder(List<Integer> numbers) {
-		for (int i = 1; i < numbers.size(); i++) {
-			if (numbers.get(i - 1) > numbers.get(i)) {
-				return false;
-			}
-		}
-		return true;
-	}
-
 	@DisplayName("입력받은 번호로 사용자 로또 발급하는 메서드 테스트")
 	@Test
 	void issueUserLottoTest() {
+		String inputNumbers = "1,6,5,21,40,39";
+		Lotto userLotto = lottoService.issueUserLotto(inputNumbers);
 
+		assertThat(userLotto.getNumbers()).containsExactly(1, 6, 5, 21, 40, 39);
 	}
 
 	@DisplayName("컴퓨터 로또, 사용자 로또, 보너스 숫자를 받아" +
@@ -86,5 +81,14 @@ public class LottoServiceTest {
 	@Test
 	void getProfitRateTest2() {
 
+	}
+
+	private boolean isSortedInAscendingOrder(List<Integer> numbers) {
+		for (int i = 1; i < numbers.size(); i++) {
+			if (numbers.get(i - 1) > numbers.get(i)) {
+				return false;
+			}
+		}
+		return true;
 	}
 }

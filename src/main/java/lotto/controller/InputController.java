@@ -2,14 +2,15 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.Exception;
-import lotto.model.Lotto;
-import lotto.model.Model;
+import lotto.model.single.Lotto;
+import lotto.model.db.Model;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.Exception.*;
+import static lotto.util.Constant.InputClass.COMMA;
 
 public class InputController {
     private final Model model;
@@ -24,7 +25,7 @@ public class InputController {
     }
 
     public List<Integer> createWinningLottoList(String inputLottoNumber) {
-        return Arrays.stream(inputLottoNumber.split(",")).map(this::checkValidNumberFormat).collect(Collectors.toList());
+        return Arrays.stream(inputLottoNumber.split(COMMA)).map(this::checkValidNumberFormat).collect(Collectors.toList());
     }
 
     public void storeBonusNumber(int bonusNumber){
@@ -45,7 +46,7 @@ public class InputController {
 
     public int checkValidNumberFormat(String input) {
         try {
-            return isValidNumberFormat(input);
+            return isValidNumberFormatException(input);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return checkValidNumberFormat(Console.readLine());
@@ -54,7 +55,7 @@ public class InputController {
 
     public void checkRangeLottoNumber(List<Integer> integers){
         try{
-            integers.forEach(Exception::isValidLottoNumberRange);
+            integers.forEach(Exception::isValidLottoNumberRangeException);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             checkRangeLottoNumber(createWinningLottoList(Console.readLine()));
@@ -63,7 +64,7 @@ public class InputController {
 
     public void checkRangeLottoNumber(int number){
         try{
-            isValidLottoNumberRange(number);
+            isValidLottoNumberRangeException(number);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             checkRangeLottoNumber(checkValidNumberFormat(Console.readLine()));

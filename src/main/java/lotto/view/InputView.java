@@ -2,9 +2,11 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.controller.InputController;
-import lotto.model.Model;
+import lotto.model.db.Model;
 
 import java.util.List;
+
+import static lotto.util.Constant.InputClass.*;
 
 public class InputView {
     private final InputController inputController;
@@ -25,7 +27,7 @@ public class InputView {
 
     private void inputWinningNumberList() {
         System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(ASK_MESSAGE_WINNING_NUMBER_LIST);
         List<Integer> list;
         do{
             String inputLottoNumber = Console.readLine();
@@ -37,7 +39,7 @@ public class InputView {
 
     private Integer inputBonusNumber() {
         System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(ASK_MESSAGE_WINNING_BONUS_NUMBER_LIST);
         int bonusNumber = inputController.checkValidNumberFormat(Console.readLine());
         inputController.checkRangeLottoNumber(bonusNumber);
         return bonusNumber;
@@ -45,13 +47,13 @@ public class InputView {
 
     private void printBuyLottoList(int cash) {
         int lottoCount = inputController.cashToLottoCount(cash);
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.println(lottoCount + PRINT_BUYING_LOTTO_LIST);
         inputController.storeLottoTicket(lottoCount);
         inputController.showLottoTicket();
     }
 
     private int inputLottoPayCount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(ASK_MESSAGE_LOTTO_CASH);
         String input = Console.readLine();
         int number = inputController.checkValidNumberFormat(input);
         return inputController.checkNotThousandAndNegative(number);

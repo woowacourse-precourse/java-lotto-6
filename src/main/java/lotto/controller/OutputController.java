@@ -1,12 +1,14 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.Model;
-import lotto.model.Money;
+import lotto.model.single.Lotto;
+import lotto.model.db.Model;
+import lotto.model.single.Money;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Map;
+
+import static lotto.util.Constant.OutputClass.*;
 
 public class OutputController {
     private final Model model;
@@ -16,7 +18,7 @@ public class OutputController {
 
     public void printWinningLotto() {
         Arrays.stream(Money.values())
-                .forEach(value -> System.out.println(value.getPrint() + " - " + model.getWinningScore().get(value) + "개"));
+                .forEach(value -> System.out.println(value.getPrint() + PRINT_MESSAGE_WINNING_HYPHEN + model.getWinningScore().get(value) + PRINT_MESSAGE_WINNING_COUNT));
     }
 
     public void checkWinningLotto(){
@@ -36,7 +38,7 @@ public class OutputController {
 
     private void storeWinningLottoTicket(Lotto listOfBuyLotto, int count) {
         Map<Money, Integer> winningScoreList = model.getWinningScore();
-        if(count == 5 && listOfBuyLotto.getNumbers().contains(model.getBonusNumber())) count = 7;
+        if(count == Money.FIFTH.getNumber() && listOfBuyLotto.getNumbers().contains(model.getBonusNumber())) count = Money.FIFTH_BONUS.getNumber();
         Money money = Money.checkTicketScore(count);
         if (money != null) winningScoreList.put(money, winningScoreList.get(money) + 1);
     }
@@ -48,8 +50,8 @@ public class OutputController {
                 .mapToInt(money -> money.getPrice() * winningScoreList.get(money))
                 .sum();
         double answer = (double) proceeds / ticketCount * 100.00;
-        DecimalFormat decimalFormat = new DecimalFormat("###,##0.0");
+        DecimalFormat decimalFormat = new DecimalFormat(DECIMAL_FORMAT);
         String formattedNumber = decimalFormat.format(answer);
-        System.out.println("총 수익률은 " + formattedNumber + "%입니다.");
+        System.out.println(PRINT_MESSAGE_TOTAL_PROCEEDS + formattedNumber + PRINT_MESSAGE_TOTAL_PROCEEDS_PERCENTAGE);
     }
 }

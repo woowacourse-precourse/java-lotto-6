@@ -1,6 +1,8 @@
-package lotto.model;
+package lotto.model.single;
 
 import java.util.Arrays;
+
+import static lotto.util.Constant.ModelClass.BONUS_NUMBER_ENUM_COUNT;
 
 public enum Money {
     THIRD(5000, 3, "3개 일치 (5,000원)"),
@@ -9,7 +11,7 @@ public enum Money {
 
     FIFTH(1500000, 5, "5개 일치 (1,500,000원)"),
 
-    FIFTH_BONUS(30000000, 7, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+    FIFTH_BONUS(30000000, BONUS_NUMBER_ENUM_COUNT, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
 
     SIXTH(2000000000, 6, "6개 일치 (2,000,000,000원)");
 

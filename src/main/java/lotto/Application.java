@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.model.Model;
+import lotto.model.db.Model;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

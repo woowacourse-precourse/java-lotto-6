@@ -1,11 +1,12 @@
-package lotto.model;
+package lotto.model.single;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static lotto.Exception.isValidDuplicateNumber;
-import static lotto.Exception.isValidSixNumber;
+import static lotto.Exception.isValidDuplicateNumberException;
+import static lotto.Exception.isValidSixNumberException;
+import static lotto.util.Constant.ModelClass.LOTTO_NUMBERS_LENGTH;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -23,7 +24,7 @@ public class Lotto {
 
     private void checkIsSixNumber(List<Integer> numbers) {
         try{
-            isValidSixNumber(numbers.size());
+            isValidSixNumberException(numbers.size());
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -32,7 +33,7 @@ public class Lotto {
     public void checkDuplicateNumber(List<Integer> numbers) {
         try {
             Set<Integer> numSet = new HashSet<>(numbers);
-            isValidDuplicateNumber(numbers.size() == numSet.size());
+            isValidDuplicateNumberException(numbers.size() == numSet.size());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
@@ -40,7 +41,7 @@ public class Lotto {
 
     public boolean againInputList(){
         Set<Integer> numSet = new HashSet<>(numbers);
-        return numbers.size() != numSet.size() || numbers.size() != 6;
+        return numbers.size() != numSet.size() || numbers.size() != LOTTO_NUMBERS_LENGTH;
     }
 
     public List<Integer> getNumbers() {

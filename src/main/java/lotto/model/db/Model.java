@@ -1,9 +1,13 @@
-package lotto.model;
+package lotto.model.db;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.model.single.Lotto;
+import lotto.model.single.Money;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static lotto.util.Constant.ModelClass.INITIALIZED_NUMBER;
 
 public class Model {
     private final List<Lotto> listOfBuyLotto;
@@ -14,7 +18,7 @@ public class Model {
 
     public Model() {
         this.listOfBuyLotto = new ArrayList<>();
-        this.winningScore = Arrays.stream(Money.values()).collect(Collectors.toMap(score -> score, value -> 0));
+        this.winningScore = Arrays.stream(Money.values()).collect(Collectors.toMap(score -> score, value -> INITIALIZED_NUMBER));
     }
 
     public void storeBonusNumber(int bonusNumber) {

@@ -116,6 +116,7 @@ public class Draw {
             int matchCount = calculateMatchCount(winning, lotto);
             boolean bonus = hasBonus(lotto, matchCount, bonusNum);
             Rank rank = Rank.getRank(matchCount, bonus);
+            drawResult.put(rank, drawResult.get(rank) + 1);
         }
         return drawResult;
     }

@@ -50,7 +50,6 @@ public class OutputView {
     }
 
     public static void printReturnRate(String result) {
-        System.out.println(result);
+        System.out.println(String.format(RETURN_RATE_SENTENCE, result));
     }
-
 }

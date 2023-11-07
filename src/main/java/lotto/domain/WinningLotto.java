@@ -29,6 +29,7 @@ public final class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
+    // validation
     private static void validateWinningNumberRange(final List<Integer> winningNumbers) {
         for (int winningNumber : winningNumbers) {
             if (winningNumber < MIN_LOTTO_NUMBER || winningNumber > MAX_LOTTO_NUMBER) {

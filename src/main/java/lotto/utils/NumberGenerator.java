@@ -1,6 +1,6 @@
 package lotto.utils;
 
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public interface NumberGenerator {
 

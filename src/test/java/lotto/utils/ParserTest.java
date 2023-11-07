@@ -1,6 +1,8 @@
-package lotto;
+package lotto.utils;
 
 import java.util.List;
+import lotto.utils.CommaParser;
+import lotto.utils.Parser;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

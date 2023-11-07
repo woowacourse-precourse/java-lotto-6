@@ -1,9 +1,9 @@
 package lotto.fixtures;
 
 import java.util.List;
-import lotto.Lotto;
-import lotto.LottoNumber;
-import lotto.WinningLotto;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.WinningLotto;
 
 public class WinningLottoFixtures {
 

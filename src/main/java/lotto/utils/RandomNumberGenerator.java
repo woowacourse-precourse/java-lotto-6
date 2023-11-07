@@ -2,7 +2,7 @@ package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 import lotto.config.LottoGameRule;
 
 public class RandomNumberGenerator implements NumberGenerator {

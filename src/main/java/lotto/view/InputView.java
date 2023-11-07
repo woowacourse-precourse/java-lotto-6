@@ -1,10 +1,15 @@
-package lotto;
+package lotto.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.domain.Money;
 import lotto.config.AppConfig;
 import lotto.config.LottoGameMessage;
 import lotto.exception.NonNumericAmountException;
+import lotto.io.InputReceiver;
+import lotto.utils.Parser;
 import lotto.utils.Validator;
 
 public class InputView {

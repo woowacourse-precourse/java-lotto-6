@@ -1,7 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.domain.LottoNumber;
 import lotto.exception.DuplicateNumberException;
 import lotto.exception.LottoNumberOutOfRangeException;
 import lotto.fixtures.LottoFixtures;

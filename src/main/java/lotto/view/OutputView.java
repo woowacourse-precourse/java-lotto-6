@@ -1,4 +1,4 @@
-package lotto;
+package lotto.view;
 
 import java.text.NumberFormat;
 import java.util.Arrays;
@@ -7,7 +7,11 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import lotto.domain.dto.LottoDto;
+import lotto.domain.dto.LottoResultDto;
+import lotto.domain.Rank;
 import lotto.config.LottoGameMessage;
+import lotto.io.OutputWriter;
 
 public class OutputView {
 

@@ -1,13 +1,13 @@
 package lotto.config;
 
-import lotto.CommaParser;
-import lotto.ConsoleReceiver;
-import lotto.ConsoleWriter;
-import lotto.InputReceiver;
-import lotto.InputView;
-import lotto.OutputView;
-import lotto.OutputWriter;
-import lotto.Parser;
+import lotto.utils.CommaParser;
+import lotto.io.ConsoleReceiver;
+import lotto.io.ConsoleWriter;
+import lotto.io.InputReceiver;
+import lotto.view.InputView;
+import lotto.view.OutputView;
+import lotto.io.OutputWriter;
+import lotto.utils.Parser;
 import lotto.utils.NumberGenerator;
 import lotto.utils.ProfitRateCalculator;
 import lotto.utils.ProfitRateTwoDecimalRoundCalculator;

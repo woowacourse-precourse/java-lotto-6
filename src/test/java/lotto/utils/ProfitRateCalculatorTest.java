@@ -1,5 +1,9 @@
-package lotto;
+package lotto.utils;
 
+import lotto.domain.LottoResult;
+import lotto.domain.Money;
+import lotto.domain.Rank;
+import lotto.utils.LottoPurchaser;
 import lotto.utils.ProfitRateCalculator;
 import lotto.utils.ProfitRateTwoDecimalRoundCalculator;
 import org.assertj.core.api.Assertions;

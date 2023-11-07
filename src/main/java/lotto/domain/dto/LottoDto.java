@@ -1,7 +1,8 @@
-package lotto;
+package lotto.domain.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.Lotto;
 
 public record LottoDto(List<Integer> numbers) {
 

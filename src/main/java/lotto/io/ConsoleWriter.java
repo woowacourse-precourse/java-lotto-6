@@ -1,4 +1,4 @@
-package lotto;
+package lotto.io;
 
 public class ConsoleWriter implements OutputWriter {
     @Override

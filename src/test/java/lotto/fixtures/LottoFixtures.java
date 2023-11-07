@@ -1,7 +1,7 @@
 package lotto.fixtures;
 
 import java.util.List;
-import lotto.Lotto;
+import lotto.domain.Lotto;
 
 public class LottoFixtures {
 

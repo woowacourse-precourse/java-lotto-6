@@ -18,9 +18,9 @@ public class InputValidator {
                 result = new LottoManager(winningNumbersFromUser);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[Error] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
+                System.out.println("[ERROR] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
             } catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println("[Error] " + e.getMessage() + " 다시 입력해주세요.");
+                System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해주세요.");
             }
         }
         return result;
@@ -34,9 +34,9 @@ public class InputValidator {
                 validateLottoPurchaseAmount(purchaseAmount);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[Error] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
+                System.out.println("[ERROR] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
             } catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println("[Error] " + e.getMessage() + " 다시 입력해주세요.");
+                System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해주세요.");
             }
         }
         return purchaseAmount;
@@ -55,9 +55,9 @@ public class InputValidator {
                 addBonusNumberToWinningNumbers(winningNumbers, bonusNumber);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("[Error] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
+                System.out.println("[ERROR] 정수로 변환이 불가능합니다. 다시 입력해주세요.");
             } catch (IllegalStateException | IllegalArgumentException e) {
-                System.out.println("[Error] " + e.getMessage() + " 다시 입력해주세요.");
+                System.out.println("[ERROR] " + e.getMessage() + " 다시 입력해주세요.");
             }
         }
     }

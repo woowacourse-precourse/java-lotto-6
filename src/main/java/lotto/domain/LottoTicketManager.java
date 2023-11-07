@@ -8,7 +8,7 @@ import static lotto.constant.ConstantInteger.ZERO;
 import static lotto.exception.ExceptionMessage.DUPLICATED_BONUS_NUMBER_MESSAGE;
 import static lotto.exception.ExceptionMessage.NOT_IN_RANGE_NUMBER_INPUT_MESSAGE;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,7 +68,7 @@ public class LottoTicketManager {
     }
 
     private void initMap() {
-        finalResult = new HashMap<>();
+        finalResult = new LinkedHashMap<>();
         for (Rank rank : Rank.values()) {
             finalResult.put(rank, ZERO);
         }

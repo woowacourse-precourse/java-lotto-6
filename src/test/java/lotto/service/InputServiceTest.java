@@ -1,103 +1,123 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
+import lotto.Application;
 import org.junit.jupiter.api.*;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.List;
+import camp.nextstep.edu.missionutils.test.NsTest;
 
 import static lotto.domain.constant.StringConstant.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 
-class InputServiceTest {
-    private static InputStream original;
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+class InputServiceTest extends NsTest {
+    // for thread run
+    @Order(1)
+    @Test
+    void forThreadRun() {
+        assertSimpleTest(() -> {
+            // GIVEN, WHEN
+            runException();
 
-    @BeforeAll
-    void setUp() {
-        original = System.in;
+            // THEN
+            assertThat(output()).contains(EXPENSE_INPUT_FORM_MESSAGE);
+        });
     }
 
-    @AfterAll
-    void tearDown() {
-        System.setIn(original);
-    }
-
+    // readExpense()
     @DisplayName("숫자 타입이 아닌 금액 입력값에 대해 예외 발생")
     @Test
     void readExpenseOfNoneNumberType() {
-        // GIVEN
-        System.setIn(new ByteArrayInputStream(TEST_EXPENSE_TYPE.getBytes()));
+        assertSimpleTest(() -> {
+            // GIVEN, WHEN
+            runException("1000j");
 
-        // WHEN, THEN
-        assertThatThrownBy(InputService::readExpense)
-                .isInstanceOf(IllegalArgumentException.class);
+            // THEN
+            assertThat(output()).contains(ERROR_PREFIX, LOTTO_NUM_TYPE_ERROR);
+        });
     }
 
     @DisplayName("1000으로 나뉘어지지 않는 금액 입력값에 대해 예외 발생")
     @Test
     void readExpenseOfNoneDividableNumber() {
-        // GIVEN
-        ByteArrayInputStream in = new ByteArrayInputStream(TEST_EXPENSE_DIVIDE.getBytes());
-        System.setIn(in);
+        assertSimpleTest(() -> {
+            // GIVEN, WHEN
+            runException("999");
 
-        // WHEN, THEN
-        assertThatThrownBy(InputService::readExpense)
-                .isInstanceOf(IllegalArgumentException.class);
+            // THEN
+            assertThat(output()).contains(ERROR_PREFIX, LOTTO_EXPENSE_VALUE_ERROR);
+        });
     }
 
+
+    // readWinningLotto()
     @DisplayName("숫자 타입이 아닌 당첨 입력값에 대해 예외 발생")
     @Test
-    void readWinNumbersOfNoneNumberType() {
-        // GIVEN
-        ByteArrayInputStream in = new ByteArrayInputStream(TEST_WINNUMBERS_TYPE.getBytes());
-        System.setIn(in);
+    void readWinningLottoOfNoneNumberType() {
+        assertSimpleTest(() -> {
+            // GIVEN, WHEN
+            runException(
+                    "1000",
+                    "a, 2, 3, 4, 5, 6"
+                    );
 
-        // WHEN, THEN
-        assertThatThrownBy(InputService::readWinningNumbers)
-                .isInstanceOf(IllegalArgumentException.class);
+            // THEN
+            assertThat(output()).contains(ERROR_PREFIX, LOTTO_NUM_TYPE_ERROR);
+        });
     }
 
-    @DisplayName("당첨 입력값에 대해 정렬된 결과 반환")
-    @Test
-    void readWinNumberAndReturnSortedList() {
-        // GIVEN
-        ByteArrayInputStream in = new ByteArrayInputStream(TEST_WINNUMBERS_SORT.getBytes());
-        System.setIn(in);
 
-        // WHEN
-        List<Integer> winNumbers = InputService.readWinningNumbers();
-
-        // THEN
-        assertThat(winNumbers).isSorted();
-    }
-
+    // readBonusNum()
     @DisplayName("숫자 타입이 아닌 보너스 입력값에 대해 예외 발생")
     @Test
-    void readBonusNumberOfNoneNumberType() {
-        // GIVEN
-        Lotto winningLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
+    void readBonusNumOfNoneNumberType() {
+        assertSimpleTest(() -> {
+            // GIVEN, WHEN
+            runException(
+                    "1000",
+                    "1,2,3,4,5,6",
+                    "a"
+            );
 
-        ByteArrayInputStream in = new ByteArrayInputStream(TEST_BONUSNUMBER_TYPE.getBytes());
-        System.setIn(in);
-
-        // WHEN, THEN
-        assertThatThrownBy(() -> InputService.readBonusNumber(winningLotto))
-                .isInstanceOf(IllegalArgumentException.class);
+            // THEN
+            assertThat(output()).contains(ERROR_PREFIX, LOTTO_NUM_TYPE_ERROR);
+        });
     }
 
     @DisplayName("제한된 범위를 넘는 보너스 입력값에 대해 예외 발생")
     @Test
-    void readBonusNumberOfNotInRange() {
-        // GIVEN
-        Lotto winningLotto = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
+    void readBonusNumOfNotInRange() {
+        assertSimpleTest(() -> {
+            // GIVEN, WHEN
+            runException(
+                    "1000",
+                    "1,2,3,4,5,6",
+                    "46"
+            );
 
-        ByteArrayInputStream in = new ByteArrayInputStream(TEST_BONUSNUMBER_RANGE.getBytes());
-        System.setIn(in);
+            // THEN
+            assertThat(output()).contains(ERROR_PREFIX, LOTTO_IN_RANGE_ERROR);
+        });
+    }
 
-        // WHEN, THEN
-        assertThatThrownBy(() -> InputService.readBonusNumber(winningLotto))
-                .isInstanceOf(IllegalArgumentException.class);
+    @DisplayName("기존 로또 번호와 동일한 보너스 입력값에 대해 예외 발생")
+    @Test
+    void readBonusNumOfDuplicate() {
+        assertSimpleTest(() -> {
+            // GIVEN, WHEN
+            runException(
+                    "1000",
+                    "1,2,3,4,5,6",
+                    "1"
+            );
+
+            // THEN
+            assertThat(output()).contains(ERROR_PREFIX, LOTTO_BONUSNUM_DUPLICATE_ERROR);
+        });
+    }
+
+    @Override
+    public void runMain() {
+        Application.main(new String[]{});
     }
 }

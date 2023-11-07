@@ -22,4 +22,8 @@ public class OutputView {
         System.out.println("---");
         WinningResult.showResult();
     }
+
+    public static void printProfit(double profit) {
+        System.out.println("총 수익률은 " + (double) Math.round(profit * 10) / 10 + "%입니다.");
+    }
 }

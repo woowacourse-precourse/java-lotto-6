@@ -15,5 +15,10 @@ public class Controller {
 	public void gamePlay() {
 		service.goLottoGame();
 	}
+	
+	public void gameResult() {
+		service.countEachRank();
+		service.showResultStats();
+	}
 
 }

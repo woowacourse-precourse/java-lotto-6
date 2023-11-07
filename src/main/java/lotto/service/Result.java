@@ -20,9 +20,9 @@ public class Result {
     private Payment payment;
     private List<Lotto> lottos;
 
-    public Result(LottoBuyer lottoBuyer) {
-        this.lottos = lottoBuyer.getLottos();
-        this.payment = lottoBuyer.getPayment();
+    public Result(LottoMachine lottoMachine) {
+        this.lottos = lottoMachine.getLottos();
+        this.payment = lottoMachine.getPayment();
     }
 
     public void calculateResult(Lotto winningNumbers, BonusNumber bonusNumber) {

@@ -15,8 +15,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 class ResultTest {
-
-    LottoBuyer lottoBuyer = mock(LottoBuyer.class);
+    LottoMachine lottoMachine = mock(LottoMachine.class);
     List<Integer> lottoTestNumbers1 = Arrays.asList(1, 2, 3, 4, 5, 6);
     List<Integer> lottoTestNumbers2 = Arrays.asList(1, 2, 3, 4, 7, 8);
     List<Integer> winningTestNumbers = Arrays.asList(1, 2, 3, 7, 8, 9);
@@ -30,8 +29,8 @@ class ResultTest {
         Lotto lotto2 = new Lotto(lottoTestNumbers2);
 
         List<Lotto> lottos = Arrays.asList(lotto1, lotto2);
-        when(lottoBuyer.getLottos()).thenReturn(lottos);
-        when(lottoBuyer.getPayment()).thenReturn(new Payment(2000));
+        when(lottoMachine.getLottos()).thenReturn(lottos);
+        when(lottoMachine.getPayment()).thenReturn(new Payment(2000));
 
         winningNumbers = new Lotto(winningTestNumbers);
         bonusNumber = new BonusNumber(4,winningNumbers);
@@ -42,7 +41,7 @@ class ResultTest {
     class ResultCountTest {
         @Test
         void 로또와_일치하는_당첨_번호의_개수를_정확하게_세야한다() {
-            Result result = new Result(lottoBuyer);
+            Result result = new Result(lottoMachine);
             result.calculateResult(winningNumbers, bonusNumber);
             String expectedResult = "3개 일치 (5,000원) - 1개\n"
                     + "4개 일치 (50,000원) - 0개\n"
@@ -55,7 +54,7 @@ class ResultTest {
 
     @Test
     void 당첨률_계산_테스트() {
-        Result result = new Result(lottoBuyer);
+        Result result = new Result(lottoMachine);
         result.calculateResult(winningNumbers, bonusNumber);
         double winningRate = (double) 30005000 / 2000 * 100;
         assertEquals(Math.round(winningRate * 10.0) / 10.0, result.calculateWinningRate());

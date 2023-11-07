@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Payment;
-import lotto.service.LottoBuyer;
+import lotto.service.LottoMachine;
 import lotto.service.Result;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -19,23 +19,23 @@ public class LottoController {
 
     public void run() {
         Payment payment = inputView.inputPayment();
-        LottoBuyer lottoBuyer = new LottoBuyer(payment);
-        printLottoNumbers(lottoBuyer);
+        LottoMachine lottoMachine = new LottoMachine(payment);
+        printLottoNumbers(lottoMachine);
 
         Lotto winningNumbers = inputView.inputWinningNumbers();
         BonusNumber bonusNumber = inputView.inputBonusNumber(winningNumbers);
-        Result result = calculateResult(lottoBuyer,winningNumbers,bonusNumber);
+        Result result = calculateResult(lottoMachine,winningNumbers,bonusNumber);
 
         printResult(result);
     }
 
-    private void printLottoNumbers(LottoBuyer lottoBuyer){
-        lottoBuyer.generateLotto();
-        outputView.printLottoNumbers(lottoBuyer.getLottos());
+    private void printLottoNumbers(LottoMachine lottoMachine){
+        lottoMachine.generateLotto();
+        outputView.printLottoNumbers(lottoMachine.getLottos());
     }
 
-    private Result calculateResult(LottoBuyer lottoBuyer, Lotto winningNumbers, BonusNumber bonusNumber) {
-        Result result = new Result(lottoBuyer);
+    private Result calculateResult(LottoMachine lottoMachine, Lotto winningNumbers, BonusNumber bonusNumber) {
+        Result result = new Result(lottoMachine);
         result.calculateResult(winningNumbers,bonusNumber);
         return result;
     }

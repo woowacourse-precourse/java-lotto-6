@@ -4,6 +4,7 @@ import lotto.util.Constants;
 import lotto.util.Validator;
 
 public class TicketAmount {
+    private static final int PERCENT = 100;
     private final int amount;
 
     public TicketAmount(String money) {
@@ -17,6 +18,7 @@ public class TicketAmount {
     }
 
     private static void validateMoney(int money) {
+        Validator.validateInputIsNatural(money);
         Validator.validateNonDivisibility(money);
     }
 }

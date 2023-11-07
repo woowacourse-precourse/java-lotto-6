@@ -20,5 +20,7 @@ public class WinningNumbers {
                 .toList();
     }
 
-
+    public boolean isContain(LottoNumber number) {
+        return winningLotto.isContain(number);
+    }
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static lotto.model.LottoConstants.*;
+import static lotto.utils.LottoConstants.*;
 
 public class LottoStore {
 

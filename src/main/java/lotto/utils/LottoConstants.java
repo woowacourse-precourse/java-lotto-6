@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.utils;
 
 public class LottoConstants {
     public static final Integer LOTTO_PRICE = 1000;

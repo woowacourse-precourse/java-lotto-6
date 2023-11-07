@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 
-import static lotto.model.LottoConstants.LOTTO_PRICE;
+import static lotto.utils.LottoConstants.LOTTO_PRICE;
 
 public class WinStatistics {
 

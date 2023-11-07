@@ -21,9 +21,9 @@ public class LottoController {
     public void play() {
 
         int lottoAmount = inputView.getPurchaseAmount();
-        List<Lotto> userPurchasedLotto =lottoService.generateMultipleLotto(lottoAmount);
+        List<Lotto> userPurchasedLotto = lottoService.generateMultipleLotto(lottoAmount);
 
-
+        outputView.printPurchasedLotto(userPurchasedLotto);
 
     }
 

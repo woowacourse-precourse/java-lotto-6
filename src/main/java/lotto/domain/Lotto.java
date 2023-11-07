@@ -16,4 +16,12 @@ public class Lotto {
         }
     }
 
+    public void printLottoDetail(){
+        System.out.println(numbers.toString());
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
 }

@@ -5,31 +5,32 @@ import static lotto.exception.ErrorMessage.NOT_ENOUGH_MONEY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class MoneyTest {
+class TicketTest {
 
-    @DisplayName("투입한 금액이 1000원 단위면 돈이 생성된다.")
+    @DisplayName("투입한 금액이 1000원 단위면 티켓이 생성된다.")
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 5000, 1000000})
     void of(int input) {
         // given // when
-        Money money = Money.from(input);
+        Ticket ticket = Ticket.from(input);
 
         // then
-        assertThat(money)
-                .extracting("money")
-                .isEqualTo(input);
+        assertThat(ticket)
+                .extracting("count")
+                .isEqualTo(input / 1000);
     }
 
     @DisplayName("투입한 금액이 1000원 이상이어야 한다.")
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 300, 500, 999})
     void ofNotEnoughMoney(int input) {
-        assertThatThrownBy(() -> Money.from(input))
+        assertThatThrownBy(() -> Ticket.from(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_ENOUGH_MONEY.getMessage());
     }
@@ -41,23 +42,24 @@ class MoneyTest {
         int money = 5100;
 
         // when then
-        assertThatThrownBy(() -> Money.from(money))
+        assertThatThrownBy(() -> Ticket.from(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_UNIT.getMessage());
     }
 
-    @DisplayName("투입한 금액에 맞는 로또 수량을 계산할 수 있다.")
+    @DisplayName("티켓 수량만큼 로또를 살 수 있다.")
     @ParameterizedTest
     @ValueSource(ints = {1000, 2000, 5000, 1000000})
-    void calculateLottoCount(int input) {
+    void buyLottos(int input) {
         // given
-        Money money = Money.from(input);
+        Ticket ticket = Ticket.from(input);
 
         // when
-        int count = money.calculateLottoCount();
+        Lottos lottos = ticket.buyLottos(() -> List.of(1,2,3,4,5,6));
 
         // then
-        assertThat(count).isEqualTo(input / 1000);
-
+        assertThat(lottos.getLottoNumbers())
+                .hasSize(input / 1000)
+                .contains("[1, 2, 3, 4, 5, 6]");
     }
 }

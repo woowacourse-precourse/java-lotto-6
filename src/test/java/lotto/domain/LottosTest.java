@@ -12,31 +12,26 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class LottoFactoryTest {
-
-    @DisplayName("투입한 금액에 수량에 맞는 로또가 발행된다.")
-    @Test
-    void create() {
-        // given
-        Money money = Money.from(5000);
-
-        // when
-        LottoFactory lottoFactory = LottoFactory.of(new RandomNumberGenerator(), money);
-
-        // then
-        assertThat(lottoFactory.getLottoNumbers()).hasSize(money.calculateLottoCount());
-    }
+class LottosTest {
 
     @DisplayName("로또 결과 등수의 수량을 계산할 수 있다.")
     @ParameterizedTest
     @MethodSource("lottoDataProvider")
     void calculateResult(List<Integer> lotto, int bonusNumber, Rank targetRank, int targetCount) {
         // given
-        LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), Money.from(6000));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto5 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto6 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Lotto> givenLottos = List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6);
+
+        Lottos lottos = Lottos.from(givenLottos);
         AnswerLotto answerLotto = AnswerLotto.of(new Lotto(lotto), bonusNumber);
 
         // when
-        Result result = lottoFactory.calculateResult(answerLotto);
+        Result result = lottos.calculateResult(answerLotto);
 
         // then
         assertThat(result.getRankCount().values().stream().mapToLong(count -> count).sum()).isEqualTo(6);
@@ -59,10 +54,18 @@ class LottoFactoryTest {
     @Test
     void getLottoNumbers() {
         // given
-        LottoFactory lottoFactory = LottoFactory.of(() -> List.of(1, 2, 3, 4, 5, 6), Money.from(4000));
+        Lotto lotto1 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto3 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto4 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto5 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto lotto6 = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        List<Lotto> givenLottos = List.of(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6);
+
+        Lottos lottos = Lottos.from(givenLottos);
 
         // when
-        List<String> lottoNumbers = lottoFactory.getLottoNumbers();
+        List<String> lottoNumbers = lottos.getLottoNumbers();
 
         // then
         lottoNumbers.forEach(lotto -> assertThat(lotto).isEqualTo("[1, 2, 3, 4, 5, 6]"));

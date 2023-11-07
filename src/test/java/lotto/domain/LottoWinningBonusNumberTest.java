@@ -15,17 +15,13 @@ public class LottoWinningBonusNumberTest {
         String winningBonusNumberOverString = "46";
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
 
-        //when
-        int winningBonusNumberZero = convertToInteger(winningBonusNumberZeroString);
-        int winningBonusNumberOver = convertToInteger(winningBonusNumberOverString);
-
         //then
         assertThrows(IllegalArgumentException.class, () -> {
-            new LottoWinningBonusNumber(winningBonusNumberZero, winningNumbers);
+            new LottoWinningBonusNumber(winningBonusNumberZeroString, winningNumbers);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            new LottoWinningBonusNumber(winningBonusNumberOver, winningNumbers);
+            new LottoWinningBonusNumber(winningBonusNumberOverString, winningNumbers);
         });
 
     }
@@ -37,24 +33,10 @@ public class LottoWinningBonusNumberTest {
         String winningBonusNumberDuplicateString = "1";
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
 
-        //when
-        int winningBonusNumberDuplicate = convertToInteger(winningBonusNumberDuplicateString);
-
         //then
         assertThrows(IllegalArgumentException.class, () -> {
-            new LottoWinningBonusNumber(winningBonusNumberDuplicate, winningNumbers);
+            new LottoWinningBonusNumber(winningBonusNumberDuplicateString, winningNumbers);
         });
-    }
-
-
-    private int convertToInteger(String winningBonusNumberString) {
-        //todo: service에서 처리할 로직, 정수에 대한 입력이 아닐 경우 예외 처리
-        try {
-            int bonusNumber = Integer.parseInt(winningBonusNumberString);
-            return bonusNumber;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자로 입력되어야 합니다.");
-        }
     }
 
 }

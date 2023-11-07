@@ -5,14 +5,26 @@ import java.util.List;
 public class LottoWinningBonusNumber {
     private final int winningBonusNumber;
 
+    public LottoWinningBonusNumber(String winningBonusNumberString, List<Integer> winningNumbers) {
+        validateOnlyPositiveNumberBonus(winningBonusNumberString);
+        int winningBonusNumber = convertToInteger(winningBonusNumberString);
+        validateBonusNumberRange(winningBonusNumber);
+        validateWinningBonusNumberAlreadyExists(winningBonusNumber, winningNumbers);
+        this.winningBonusNumber = winningBonusNumber;
+    }
+
     public int getWinningBonusNumber() {
         return winningBonusNumber;
     }
 
-    public LottoWinningBonusNumber(int winningBonusNumber, List<Integer> winningNumbers) {
-        validateBonusNumberRange(winningBonusNumber);
-        validateWinningBonusNumberAlreadyExists(winningBonusNumber, winningNumbers);
-        this.winningBonusNumber = winningBonusNumber;
+    private void validateOnlyPositiveNumberBonus(String numbersString) {
+        if (!numbersString.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 구입 금액은 숫자로만 입력되어야 합니다.");
+        }
+    }
+
+    private int convertToInteger(String winningBonusNumberString) {
+        return Integer.parseInt(winningBonusNumberString);
     }
 
     private void validateBonusNumberRange(int winningBonusNumber) {

@@ -62,7 +62,7 @@ public class Lotto {
 
     private static void validateDuplication(List<Integer> numbers) {
         if (isDuplication(numbers)) {
-            throw new IllegalArgumentException(LOTTO_START_ERROR_MESSAGE + LOTTO_NUMBER_DUPLICATE_INVALID_MESSAGE);
+            throw new IllegalStateException(LOTTO_START_ERROR_MESSAGE + LOTTO_NUMBER_DUPLICATE_INVALID_MESSAGE);
         }
         ;
     }

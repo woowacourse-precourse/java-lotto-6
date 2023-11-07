@@ -12,6 +12,7 @@ public class ListConverter {
 
     public static List<String> splitStringByComma(String input) {
         return Arrays.stream(input.split(","))
+                .map(String::trim)
                 .toList();
     }
 }

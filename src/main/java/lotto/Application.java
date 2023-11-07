@@ -18,7 +18,6 @@ public class Application {
             lottoGame.play();
         } catch (RuntimeException runtimeException) {
             userOutput.print("[ERROR] " + runtimeException.getMessage());
-            throw runtimeException;
         }
     }
 }

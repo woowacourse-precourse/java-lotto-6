@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class LottoResult {
     public static final int SECOND_MATCHING_CORRECT_NUM = 5;
+    private static final double PERCENT = 100.0;
     private final List<Lotto> purchasedLottos;
     private final Lotto winningNumbers;
     private final int bonusNumber;
@@ -21,6 +22,14 @@ public class LottoResult {
         return purchasedLottos.stream()
                 .map(this::matchLotto)
                 .collect(Collectors.toList());
+    }
+
+    public double calculateReturnRatio(List<LottoPrize> prizes, int purchaseAmount) {
+        int totalPrize = prizes.stream()
+                .mapToInt(LottoPrize::getPrize)
+                .sum();
+
+        return ((double) totalPrize / purchaseAmount) * PERCENT;
     }
 
     public LottoPrize matchLotto(Lotto lotto) {

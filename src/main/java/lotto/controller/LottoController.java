@@ -15,6 +15,7 @@ public class LottoController {
     public void start() {
         InputPurchaseAmount();
         this.lottoList = generateLottoList();
+        printLottoList();
     }
 
     public void InputPurchaseAmount() {
@@ -44,6 +45,10 @@ public class LottoController {
         LottoGenerator lottoGenerator = new LottoGenerator();
         Lotto lotto = new Lotto(lottoGenerator.generateLotto());
         return lotto;
+    }
+
+    private void printLottoList() {
+        OutputView.printLottoList(lottoList);
     }
 
 }

@@ -14,6 +14,7 @@ public class LottoController {
         setTicketAmountAndCount();
         setLottoTickets();
         setWinningNumber();
+        setBonusNumber();
     }
 
     private void setTicketAmountAndCount() {
@@ -30,5 +31,9 @@ public class LottoController {
     private void setWinningNumber() {
         OutputView.printLottoInputMessage();
         winningNumber = InputController.setWinningNumber();
+    }
+
+    private void setBonusNumber() {
+        OutputView.printBonusNumberInputMessage();
     }
 }

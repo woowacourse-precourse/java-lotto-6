@@ -20,15 +20,14 @@ public class LottoController {
     }
 
     public void start(){
-        lottoMachine = createLottoMachine();
+        createLottoMachine();
         userOperation();
     }
 
-    private LottoMachine createLottoMachine(){
+    private void createLottoMachine(){
         int money = input.inputMoney();
         lottoMachine = new LottoMachine(money);
         output.printLottoMessage(lottoMachine.getLottos());
-        return lottoMachine;
     }
 
     private void userOperation(){

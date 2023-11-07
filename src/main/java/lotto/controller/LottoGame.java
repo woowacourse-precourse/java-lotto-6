@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGame {
+    private static final int END_OF_REPEAT = 0;
+
     private BuyingPrice buyingPrice;
     private final List<Lotto> lottos = new ArrayList<>();
     private final WinningNumber winning = new WinningNumber();
@@ -37,7 +39,7 @@ public class LottoGame {
 
     private void createLotto() {
         int tryCount = buyingPrice.getTryCount();
-        while (tryCount-- > 0) {
+        while (tryCount-- > END_OF_REPEAT) {
             List<Integer> numbers = LottoNumberGenerator.generate();
             lottos.add(new Lotto(numbers));
             OutputView.printEachLotto(numbers);

@@ -18,7 +18,7 @@ public class Human {
     }
 
     public boolean buyLotto() {
-        if (budget > 1000) {
+        if (budget >= 1000) {
             budget -= 1000;
             return true;
         }

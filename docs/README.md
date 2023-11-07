@@ -50,30 +50,30 @@
 
 - [X] 수익률을 출력한다.
 
-- [ ] 게임을 종료한다.
+- [X] 게임을 종료한다.
 
 ### ‼️ 예외 처리 요구사항
 
-- [ ] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시킨다.
-- [ ] 에러 출력 메시지는 "[ERROR]"로 시작한다.
-- [ ] 예외가 발생하면 다시 입력받는다.
+- [X] 사용자가 잘못된 값을 입력할 경우 IllegalArgumentException를 발생시킨다.
+- [X] 에러 출력 메시지는 "[ERROR]"로 시작한다.
+- [X] 예외가 발생하면 다시 입력받는다.
 
 ### 💻 프로그래밍 요구사항
 
-- [ ] 함수 길이가 15라인을 넘어가지 않도록 구현한다.
-- [ ] else 예약어를 쓰지 않는다.
-- [ ] switch/case도 허용하지 않는다.
-- [ ] Java Enum을 적용한다.
-- [ ] 도메인 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+- [X] 함수 길이가 15라인을 넘어가지 않도록 구현한다.
+- [X] else 예약어를 쓰지 않는다.
+- [X] switch/case도 허용하지 않는다.
+- [X] Java Enum을 적용한다.
+- [X] 도메인 로직에 단위 테스트를 구현한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
 
 라이브러리
 
-- [ ] 랜덤값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
-- [ ] 입력값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
+- [X] 랜덤값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.
+- [X] 입력값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.
 
 Lotto 클래스
 
-- [ ] 제공된 Lotto 클래스를 활용해 구현한다.
-- [ ] numbers의 접근 제어자인 private을 변경할 수 없다.
-- [ ] Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
-- [ ] Lotto의 패키지 변경은 가능하다.
+- [X] 제공된 Lotto 클래스를 활용해 구현한다.
+- [X] numbers의 접근 제어자인 private을 변경할 수 없다.
+- [X] Lotto에 필드(인스턴스 변수)를 추가할 수 없다.
+- [X] Lotto의 패키지 변경은 가능하다.

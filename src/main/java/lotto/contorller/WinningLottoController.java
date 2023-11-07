@@ -5,8 +5,8 @@ import lotto.domain.Lotto;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 import lotto.enumeration.NoticeType;
-import lotto.enumeration.WinningType;
 import lotto.service.TicketsService;
+import lotto.util.Validator;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,9 +27,14 @@ public class WinningLottoController {
 
     public int getAmountInput() {
         System.out.println("\n" + NoticeType.AMOUNT_INPUT.getMessage());
-        String amountInput = Console.readLine();
-        System.out.println();
-        return Integer.parseInt(amountInput);
+
+        while(true) {
+            String amountInput = Console.readLine();
+            if(Validator.validateAmount(amountInput)) {
+                System.out.println();
+                return Integer.parseInt(amountInput);
+            }
+        }
     }
 
     public int getBonusNumInput() {

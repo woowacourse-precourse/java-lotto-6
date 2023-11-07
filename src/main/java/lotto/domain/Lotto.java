@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.constant.LottoConstant.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoConstant.MIN_LOTTO_NUMBER;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -7,9 +11,6 @@ import java.util.Set;
 import lotto.exception.ExceptionMessage;
 
 public class Lotto {
-    private final static int SIZE_LOTTO_NUMBER = 6;
-    private final static int MIN_LOTTO_NUMBER = 1;
-    private final static int MAX_LOTTO_NUMBER = 45;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -31,12 +32,12 @@ public class Lotto {
         return this.numbers.contains(bonusNumber);
     }
 
-    public List<Integer> getNumbers(){
+    public List<Integer> getNumbers() {
         return this.numbers;
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != SIZE_LOTTO_NUMBER) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_SIZE_LOTTO_NUMBER.getDesc());
         }
     }

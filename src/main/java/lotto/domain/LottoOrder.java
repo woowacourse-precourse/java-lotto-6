@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.BASIC_LOTTO_PRICE;
+import static lotto.constant.LottoConstant.PERCENT;
+
 import java.util.List;
 import java.util.Map;
 import lotto.exception.ExceptionMessage;
 
 public class LottoOrder {
-    private final static int BASIC_LOTTO_PRICE = 1000;
-    private final static int PERCENT = 100;
     private final Long purchasePrice;
     private final PurchaseLotto purchaseLotto;
 

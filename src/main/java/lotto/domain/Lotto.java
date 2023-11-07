@@ -3,11 +3,19 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 import lotto.Validator.LottoValidator;
+import lotto.util.Parser;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
+        Collections.sort(numbers);
+        this.numbers = numbers;
+    }
+
+    public Lotto(String input) {
+        List<Integer> numbers = Parser.toIntegerList(input);
         validate(numbers);
         Collections.sort(numbers);
         this.numbers = numbers;

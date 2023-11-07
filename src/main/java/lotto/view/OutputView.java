@@ -24,6 +24,10 @@ public class OutputView {
         printMessage(MONEY_INPUT_MESSAGE);
     }
 
+    public static void printPurchaseInputMessage(int ticketAmount) {
+        System.out.printf(PURCHASE_NUMBER_OUTPUT_MESSAGE, ticketAmount);
+    }
+
     private static void printMessage(String message) {
         System.out.println(message);
     }

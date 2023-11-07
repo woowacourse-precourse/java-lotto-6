@@ -63,6 +63,7 @@ public class InputView {
     }
 
     public List<Integer> writeLuckyNumber() {
+        printWhiteSpace();
         print(LUCKY_NUMBER_INIT_MESSAGE);
         validateLuckyNumber();
         return convertLuckyNumberForm(this.validateLuckyNumbers);

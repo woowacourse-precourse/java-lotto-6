@@ -83,4 +83,8 @@ public class Lotto {
     public boolean isValid() {
         return numbers != null;
     }
+
+    public boolean contain(int bonusNumber) {
+        return numbers.contains(bonusNumber);
+    }
 }

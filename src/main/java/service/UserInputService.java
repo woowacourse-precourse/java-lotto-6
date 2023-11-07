@@ -5,6 +5,7 @@ import static util.ErrorMessage.ONLY_INPUT_NUMBER;
 import static util.LottoValidationValue.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
+import domain.BonusNumber;
 import domain.Lotto;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,5 +70,17 @@ public class UserInputService {
         return true;
     }
 
-
+    public static BonusNumber bonusNumber(Lotto lotto) {
+        while(true){
+            try {
+                int number = Integer.parseInt(input());
+                BonusNumber bonusNumber = MakeObjectService.bonusNumber(number, lotto);
+                if(bonusNumber.isValid()){
+                    return bonusNumber;
+                }
+            } catch (IllegalArgumentException e) {
+                System.out.println(ONLY_INPUT_NUMBER.get());
+            }
+        }
+    }
 }

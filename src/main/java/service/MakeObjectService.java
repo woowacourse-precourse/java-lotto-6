@@ -1,6 +1,7 @@
 package service;
 
 import domain.Amount;
+import domain.BonusNumber;
 import domain.Lotto;
 import domain.Lottos;
 import domain.WinningNumbers;
@@ -22,5 +23,9 @@ public class MakeObjectService {
 
     public static Lotto lotto(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public static BonusNumber bonusNumber(int number, Lotto lotto) {
+        return new BonusNumber(number, lotto);
     }
 }

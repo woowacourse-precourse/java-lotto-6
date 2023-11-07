@@ -44,4 +44,10 @@ public class LottoMachineTest {
     void lottoMachine_보너스번호_비교() {
         assertThat(lottoMachine.compareBonus(lottos.getLottos().get(0))).isEqualTo(true);
     }
+
+    @DisplayName("취득한 상금을 제대로 계산하는가?")
+    @Test
+    void lottoMachine_취득상금_계산() {
+        assertThat(lottoMachine.calcPrize()).isEqualTo(5000);
+    }
 }

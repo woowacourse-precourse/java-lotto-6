@@ -33,21 +33,17 @@ public class LottoMachine {
     }
 
     public float calcProfit(int money) {
-        float winningAmount = 0;
-        for(int prize : calcPrize()) {
-            winningAmount += prize;
-        }
+        float winningAmount = calcPrize();
         return (winningAmount / money) * 100;
     }
 
-    public List<Integer> calcPrize() {
-        return List.of(
-                Collections.frequency(lottoCompares, LottoCompare.FIFTH) * LottoCompare.FIFTH.getPrize(),
-                Collections.frequency(lottoCompares, LottoCompare.FOURTH) * LottoCompare.FOURTH.getPrize(),
-                Collections.frequency(lottoCompares, LottoCompare.THIRD) * LottoCompare.THIRD.getPrize(),
-                Collections.frequency(lottoCompares, LottoCompare.SECOND) * LottoCompare.SECOND.getPrize(),
-                Collections.frequency(lottoCompares, LottoCompare.FIRST) * LottoCompare.FIRST.getPrize()
-        );
+    public int calcPrize() {
+        int firstPrize = Collections.frequency(lottoCompares, LottoCompare.FIRST) * LottoCompare.FIRST.getPrize();
+        int secondPrize = Collections.frequency(lottoCompares, LottoCompare.SECOND) * LottoCompare.SECOND.getPrize();
+        int thirdPrize = Collections.frequency(lottoCompares, LottoCompare.THIRD) * LottoCompare.THIRD.getPrize();
+        int fourthPrize = Collections.frequency(lottoCompares, LottoCompare.FOURTH) * LottoCompare.FOURTH.getPrize();
+        int fifthPrize = Collections.frequency(lottoCompares, LottoCompare.FIFTH) * LottoCompare.FIFTH.getPrize();
+        return firstPrize + secondPrize + thirdPrize + fourthPrize + fifthPrize;
     }
 
     public int compareLotto(Lotto lotto) {

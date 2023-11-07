@@ -1,7 +1,10 @@
 package lotto.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
 
 public class WinningStatistics {
@@ -21,5 +24,19 @@ public class WinningStatistics {
             Integer previousSameNumberCount = statistics.get(ranking);
             statistics.put(ranking, ++previousSameNumberCount);
         }
+    }
+
+    public Map<Ranking, Integer> getStatistics() {
+        return Collections.unmodifiableMap(statistics);
+    }
+
+    public Money calculateTotalWinningPrize() {
+        List<Ranking> rankings;
+        rankings = new ArrayList<>(List.of(Ranking.values()));
+        long totalWinningPrize = 0;
+        for (Ranking ranking : rankings) {
+            totalWinningPrize += statistics.get(ranking) * ranking.getPrizeMoney();
+        }
+        return new Money(totalWinningPrize);
     }
 }

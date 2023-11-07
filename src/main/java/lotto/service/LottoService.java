@@ -59,4 +59,14 @@ public class LottoService {
         return Arrays.stream(input.split(",")).mapToInt(Integer::parseInt).toArray();
     }
 
+    private int countLottoNumber(WinningNumber winningNumber, Lotto lotto){
+        return checkSameNumber(winningNumber.getWinningNumbers(),lotto.getNumbers());
+    }
+
+    private int checkSameNumber(List<Integer> list1,List<Integer> list2) {
+        return (int) list2.stream()
+                .filter(list1::contains)
+                .count();
+    }
+
 }

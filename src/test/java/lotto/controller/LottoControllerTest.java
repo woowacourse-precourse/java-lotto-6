@@ -1,10 +1,10 @@
 package lotto.controller;
 
+import static lotto.utils.StringUtils.*;
 import static lotto.view.ErrorMessage.*;
 import static org.assertj.core.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.view.ErrorMessage;
 import org.junit.jupiter.api.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -72,5 +72,52 @@ class LottoControllerTest {
                 .hasMessage(RECEIVED_MONEY_NOT_MULTIPLE_OF_1000.getErrorMessage());
     }
 
+    @Test
+    @DisplayName("기능20 테스트 : 0원을 입력했을 때 로또를 하나 구매하고 그 결과를 반환한다.")
+    void purchaseOneLottoWhenInputMoneyIs0() {
+        // given
+        int totalPurchaseAmount = 0;
 
+        // when
+        lottoController.showPurchaseResult(totalPurchaseAmount);
+        String result = outputStreamCaptor.toString();
+        int count = countOccurrences(result, "[");
+
+        // then
+        assertThat(result).startsWith("0개를 구매했습니다.");
+        assertThat(count).isEqualTo(0);
+    }
+
+
+    @Test
+    @DisplayName("기능20 테스트 : 1000원을 입력했을 때 로또를 하나 구매하고 그 결과를 반환한다.")
+    void purchaseOneLottoWhenInputMoneyIs1000() {
+        // given
+        int totalPurchaseAmount = 1000;
+
+        // when
+        lottoController.showPurchaseResult(totalPurchaseAmount);
+        String result = outputStreamCaptor.toString();
+        int count = countOccurrences(result, "[");
+
+        // then
+        assertThat(result).startsWith("1개를 구매했습니다.");
+        assertThat(count).isEqualTo(1);
+    }
+
+    @Test
+    @DisplayName("기능20 테스트 : 5000원을 입력했을 때 로또 5개를 구매하고 그 결과를 반환한다.")
+    void purchaseFiveLottoWhenInputMoneyIs5000() {
+        // given
+        int totalPurchaseAmount = 5000;
+
+        // when
+        lottoController.showPurchaseResult(totalPurchaseAmount);
+        String result = outputStreamCaptor.toString();
+        int count = countOccurrences(result, "[");
+
+        // then
+        assertThat(result).startsWith("5개를 구매했습니다.");
+        assertThat(count).isEqualTo(5);
+    }
 }

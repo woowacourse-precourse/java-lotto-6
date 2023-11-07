@@ -11,9 +11,9 @@ class PlayerInputValidatorTest {
 
     @DisplayName("로또 입력값 오류 테스트")
     @ParameterizedTest
-    @ValueSource(strings = {"aaa", "-1000", "1500"})
+    @ValueSource(strings = {"aaa", "-1000", "1500", "1000j"})
     void lottoErrorInput(String input) {
-        assertThrows(IllegalArgumentException.class, () -> PlayerInputValidator.validate(input));
+        assertThrows(IllegalArgumentException.class, () -> PlayerInputValidator.validateNumber(input));
     }
 
     @DisplayName("로또 당첨 입력값 오류 테스트")

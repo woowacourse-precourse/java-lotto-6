@@ -26,7 +26,38 @@ public class Application {
         int bonusNumber = getInputBonusNumber();
 
         var result = calculateLottoPrize(prizeNumbers, bonusNumber, lottos);
+        var earningRate = calculateEarningRate(result, money);
+        printResultStatics(result, earningRate);
+    }
 
+    public static double calculateEarningRate(Map<PRIZE_TYPE, Integer> result, int inputMoney) {
+        double earn = 0.0;
+        Map<PRIZE_TYPE, Integer> code = Map.of(
+                PRIZE_TYPE.FIVETH, 5000,
+                PRIZE_TYPE.FOURTH, 50000,
+                PRIZE_TYPE.THIRD, 1500000,
+                PRIZE_TYPE.SECOND, 30000000,
+                PRIZE_TYPE.FIRST, 2000000000,
+                PRIZE_TYPE.NONE, 0
+        );
+
+        for (PRIZE_TYPE prizeType : result.keySet()) {
+            earn += (double) code.get(prizeType) *
+                    result.get(prizeType);
+        }
+
+        return earn / inputMoney;
+    }
+
+    public static void printResultStatics(Map<PRIZE_TYPE, Integer> result, double earningRate) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + result.get(PRIZE_TYPE.FIVETH) + "개");
+        System.out.println("4개 일치 (50,000원) - " + result.get(PRIZE_TYPE.FOURTH) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + result.get(PRIZE_TYPE.THIRD) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(PRIZE_TYPE.SECOND) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + result.get(PRIZE_TYPE.FIRST) + "개");
+        System.out.println("총 수익률은 " + String.format("%.2f", earningRate) + "%입니다.");
     }
 
     public static Map<PRIZE_TYPE, Integer> calculateLottoPrize(Lotto prizeNumbers, int bonusNumber,
@@ -46,11 +77,14 @@ public class Application {
         return result;
     }
 
+
     public static int getInputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
         String str = Console.readLine();
         int num = unsafeString2Int(str);
         validateNumberRange(num);
+        System.out.println();
+
         return num;
     }
 
@@ -59,24 +93,30 @@ public class Application {
         System.out.println("당첨 번호를 입력해 주세요.");
         String input = Console.readLine();
         List<String> numString = Arrays.stream(input.split(",")).toList();
-        List<Integer> num = new ArrayList<>();
+        List<Integer> numbers = new ArrayList<>();
 
         for (String s : numString) {
-            int n = unsafeString2Int(s);
-            if (num.contains(n)) {
-                throw new IllegalArgumentException();
-            }
-            num.add(n);
+            int value = unsafeString2Int(s);
+            uniqueAdd(numbers, value);
         }
-        return new Lotto(num);
+        validatePrizeNumbers(numbers);
+        System.out.println();
+        return new Lotto(numbers);
     }
 
-    private static void validateFirstPrize(List<String> numString) {
-        if (numString.size() != LOTTO_NUMBER_COUNT) {
+    private static void uniqueAdd(List<Integer> list, Integer value) {
+        if (list.contains(value)) {
+            return;
+        }
+        list.add(value);
+    }
+
+    private static void validatePrizeNumbers(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException();
         }
-        for (int i = 0; i < LOTTO_NUMBER_COUNT; ++i) {
-            int num = unsafeString2Int(numString.get(i));
+
+        for (int num : numbers) {
             validateNumberRange(num);
         }
     }
@@ -95,6 +135,8 @@ public class Application {
             var strLotto = list2String(item);
             System.out.println(strLotto);
         }
+        System.out.println();
+
     }
 
 
@@ -130,6 +172,8 @@ public class Application {
     public static int getInputMoney() {
         System.out.println("구입금액을 입력해 주세요.");
         var input = Console.readLine();
+        System.out.println();
+
         return unsafeString2Int(input);
     }
 

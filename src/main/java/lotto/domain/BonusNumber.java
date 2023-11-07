@@ -2,8 +2,6 @@ package lotto.domain;
 
 import static lotto.utils.ErrorMessage.IS_BONUS_NUMBER_DUPLICATED;
 
-import java.util.Collections;
-
 public class BonusNumber extends LottoSingleNumber {
     public BonusNumber(int bonusNumber, Lotto winningNumbers) {
         super(bonusNumber);

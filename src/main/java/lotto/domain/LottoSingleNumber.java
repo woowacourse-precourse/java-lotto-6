@@ -4,8 +4,6 @@ import static lotto.utils.ErrorMessage.IS_INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.utils.LottoConstants.NUMBER_MAX_SIZE;
 import static lotto.utils.LottoConstants.NUMBER_MIN_SIZE;
 
-import java.util.List;
-
 public class LottoSingleNumber {
     int lottoSingleNumber;
 

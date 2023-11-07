@@ -15,10 +15,6 @@ public class LottoMachine {
     private Payment payment;
     private List<Lotto> lottos = new ArrayList<>();
 
-    public LottoMachine(int lottoTicketNumber) {
-        this.lottoTicketNumber = lottoTicketNumber;
-    }
-
     public LottoMachine(Payment payment) {
         this.payment = payment;
         this.lottoTicketNumber = payment.getPayment() / payment.getLottoPrice();

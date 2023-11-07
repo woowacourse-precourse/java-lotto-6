@@ -4,9 +4,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatNoException;
 
 import lotto.dto.UserMoneyDTO;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class UserMoneyTest {
     private UserMoneyDTO userMoneyDTO;
 
@@ -15,7 +18,7 @@ public class UserMoneyTest {
     void 정해진_단위로_떨어지지_않는다면_예외(String inputMoney) {
         assertThatThrownBy(
                 () -> {
-                    UserMoneyDTO userMoneyDTO = new UserMoneyDTO(inputMoney);
+                    userMoneyDTO = new UserMoneyDTO(inputMoney);
                     userMoneyDTO.toUserMoney();
                 })
                 .isInstanceOf(IllegalArgumentException.class)
@@ -27,7 +30,7 @@ public class UserMoneyTest {
     void 정해진_단위로_떨어진다면_성공(String inputMoney) {
         assertThatNoException().isThrownBy(
                 () -> {
-                    UserMoneyDTO userMoneyDTO = new UserMoneyDTO(inputMoney);
+                    userMoneyDTO = new UserMoneyDTO(inputMoney);
                     userMoneyDTO.toUserMoney();
                 });
     }

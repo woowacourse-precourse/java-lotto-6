@@ -1,6 +1,7 @@
 package lotto.dto;
 
 import lotto.domain.Bonus;
+import lotto.domain.Lotto;
 import lotto.util.Parser;
 import lotto.util.validator.NumberValidator;
 
@@ -18,8 +19,8 @@ public class UserBonusDTO {
         NumberValidator.startsWithZero(inputBonus);
     }
 
-    public Bonus toBonus() {
-        return Bonus.from(Parser.inputToNumber(inputBonus));
+    public Bonus toBonus(Lotto lotto) {
+        return Bonus.from(Parser.inputToNumber(inputBonus), lotto);
     }
 
 }

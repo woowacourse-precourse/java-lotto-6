@@ -18,10 +18,7 @@ public class RegisterBonusController extends RegisterAbstractController<Bonus> {
     @Override
     Bonus doProcess() {
         UserBonusDTO userBonusDTO = lottoScreen.registerBonus();
-        Bonus userBonus = userBonusDTO.toBonus();
-        if (userBonus.hasSameNumberInLotto(userLotto)) {
-            throw new IllegalArgumentException(ExceptionMessage.SAME_NUMBER_WITH_LOTTO_NUMBER.getErrorDescription());
-        }
+        Bonus userBonus = userBonusDTO.toBonus(userLotto);
         return userBonus;
     }
 }

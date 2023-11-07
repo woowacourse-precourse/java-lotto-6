@@ -6,8 +6,7 @@ import lotto.constant.message.ErrorMessage;
 
 public class BonusNumberValidator {
 
-    private BonusNumberValidator() {
-    }
+    private BonusNumberValidator() {}
 
     public static int validate(String bonusNumberInput, String winningNumbersInput) {
         checkIfNumeric(bonusNumberInput.trim());

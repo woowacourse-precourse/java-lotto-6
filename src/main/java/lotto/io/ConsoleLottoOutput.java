@@ -1,8 +1,10 @@
 package lotto.io;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import lotto.domain.LottoReceipt;
 import lotto.domain.Rank;
 
@@ -12,11 +14,14 @@ public class ConsoleLottoOutput implements LottoOutput {
     private final String MESSAGE_ASKING_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
     private final String MESSAGE_ASKING_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private final String MESSAGE_RESULT = "당첨 통계\n---";
-    private final String FORMAT_PROFIT_PERCENTAGE = "총 수익률은 %.01f입니다.";
+
+    private final String FORMAT_PROFIT_PERCENTAGE = "총 수익률은 %.01f%%입니다.";
+    private final String FORMAT_RESULT = "%d개 일치 (%,d원) - %d개";
+    private final String FORMAT_RESULT_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%,lld원) - %d개";
 
     private final String BRACKET_OPEN = "[";
     private final String BRACKET_CLOSE = "]";
-    private final String OUTPUT_DELIMITER = ",";
+    private final String OUTPUT_DELIMITER = ", ";
 
 
     @Override
@@ -55,7 +60,15 @@ public class ConsoleLottoOutput implements LottoOutput {
     @Override
     public void printResults(Map<Rank, Integer> result) {
         System.out.println(MESSAGE_RESULT);
+        List<Rank> resultRanks = List.of(Rank.FIFTH, Rank.FOURTH, Rank.THIRD, Rank.SECOND, Rank.FIRST);
 
+        resultRanks.stream().map(rank -> {
+            StringBuilder stringBuilder = new StringBuilder(rank.getResultFormat());
+            stringBuilder.append("- ")
+                    .append(result.getOrDefault(rank, 0))
+                    .append("개");
+            return stringBuilder.toString();
+        }).forEach(System.out::println);
     }
 
     @Override

@@ -37,4 +37,23 @@ public enum Rank {
                 .orElse(NONE);
     }
 
+    public String getResultFormat() {
+        StringBuilder stringBuilder = new StringBuilder();
+        String formattedMoney = String.format("%,d", prizeMoney);
+        stringBuilder
+                .append(matchedCount)
+                .append("개 일치");
+
+        if (this == Rank.SECOND) {
+            stringBuilder.append(", 보너스 볼 일치");
+        }
+
+        stringBuilder
+                .append(" (")
+                .append(formattedMoney)
+                .append("원) ");
+
+        return stringBuilder.toString();
+    }
+
 }

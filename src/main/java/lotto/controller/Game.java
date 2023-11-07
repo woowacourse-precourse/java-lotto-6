@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.view.InputView;
 
 public class Game {
     public Game() {
@@ -11,18 +12,9 @@ public class Game {
     }
 
     public void play() {
-        System.out.println("구입금액을 입력해 주세요.");
-        double purchaseAmount = Double.parseDouble(readLine());
 
-        if (purchaseAmount % 1000 != 0) {
-            throw new IllegalArgumentException("1000원으로 나누어떨어지지 않습니다");
-        }
-
-        if (purchaseAmount < 1000) {
-            throw new IllegalArgumentException("구입금액은 1000원 보다 커야합니다.");
-        }
-        int lottoNum = (int) (Math.round(purchaseAmount / 1000));
-
+        int purchaseAmount = InputView.inputPurchaseAmount();
+        int lottoNum = purchaseAmount / 1000;
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] winningNum = readLine().split(",");
 

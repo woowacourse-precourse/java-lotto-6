@@ -20,6 +20,7 @@ public class MainController extends RepeatModule {
     public void start() {
         buy();
         setWinningLotto();
+        result();
     }
 
     private void buy() {
@@ -33,5 +34,9 @@ public class MainController extends RepeatModule {
     private void setWinningLotto() {
         AnswerLotto answerLotto = repeat(inputView::readAnswerLotto);
         lottoManager.registerAnswerLotto(answerLotto);
+    }
+
+    private void result() {
+        outputView.printScore(lottoManager.calScore());
     }
 }

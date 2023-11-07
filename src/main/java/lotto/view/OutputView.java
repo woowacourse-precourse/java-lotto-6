@@ -18,7 +18,7 @@ public class OutputView {
     }
 
     public void printScore(List<Score> scores) {
-        System.out.println(PRINT_WINNING_STATS);
+        System.out.println(LINE_BREAK + PRINT_WINNING_STATS);
         System.out.println(Score.stats(scores));
     }
 

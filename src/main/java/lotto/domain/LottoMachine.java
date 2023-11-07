@@ -16,7 +16,7 @@ public class LottoMachine {
         List<Lotto> playerLotto = new ArrayList<>();
         int publishCount = 1;
 
-        while (publishAllLotto(publishCount, gameCount)) {
+        while (!publishAllLotto(publishCount, gameCount)) {
             playerLotto.add(new Lotto(createLottoNumbers()));
 
             publishCount++;

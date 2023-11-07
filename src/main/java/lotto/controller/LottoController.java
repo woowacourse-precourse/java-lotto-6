@@ -32,7 +32,8 @@ public class LottoController {
     public void lottoGamePlay() {
 
         // 사용자가 구매 금액을 입력하고, 그 가격에 맞게 로또를 발행한다.
-        List<List<Integer>> lottoTickets = buyLottoTickets();
+        String buyLottoAmount = getBuyLottoAmount();
+        List<List<Integer>> lottoTickets = lottoTicketGenerator.createRandomLottoTickets(buyLottoAmount);
         consoleOutputView.outputBuyLottoTickets(lottoTickets);
 
         // 사용자가 당첨 번호와 보너스 번호를 입력하여 그 정보를 저장한다.
@@ -75,12 +76,12 @@ public class LottoController {
         }
     }
 
-    public List<List<Integer>> buyLottoTickets() {
+    private String getBuyLottoAmount() {
         while (true) {
             try {
                 String inputBuyLottoAmount = consoleInputView.inputBuyLottoAmount();
                 lottoService.buyLottoAmountValidate(inputBuyLottoAmount);
-                return lottoTicketGenerator.createRandomLottoTickets(inputBuyLottoAmount);
+                return inputBuyLottoAmount;
             } catch (IllegalArgumentException e) {
                 consoleOutputView.outputErrorMessage(e);
             }

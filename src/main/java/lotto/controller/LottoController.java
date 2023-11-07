@@ -7,6 +7,7 @@ import lotto.view.OutputView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -88,12 +89,17 @@ public class LottoController {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private void calculateReturnOnLotto(HashMap<LottoResultFormat, Integer> lottoResults) {
+    private void calculateReturnOnLotto(Map<LottoResultFormat, Integer> lottoResults) {
         int returnOfLotto = 0;
         for (LottoResultFormat key : lottoResults.keySet()) {
-            returnOfLotto += key.getLottoOfMatching() * Integer.parseInt(key.getWinningAmount());
+            returnOfLotto += key.getLottoOfMatching() * removeCommas(key.getWinningAmount());
         }
         OutputView.totalReturnOnLotto(returnOfLotto);
+    }
+
+    private int removeCommas(String winningAmount) {
+        String remove = winningAmount.replaceAll(",", "");
+        return Integer.parseInt(remove);
     }
 
 }

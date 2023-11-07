@@ -1,6 +1,6 @@
 package lotto.model;
 
-import java.util.HashMap;
+import java.util.*;
 
 import static lotto.model.LottoResultFormat.*;
 
@@ -13,6 +13,9 @@ public class LottoResult {
 
     public LottoResult(){
         this.lottoResultHashMap = new HashMap<>();
+        for (LottoResultFormat lottoResultFormat : LottoResultFormat.values()){
+            lottoResultHashMap.put(lottoResultFormat, 0);
+        }
     }
 
     public void addHashMap(int numberOfMatchLotto, boolean isBonusMatch) {
@@ -31,8 +34,23 @@ public class LottoResult {
         return FAIL;
     }
 
-    public HashMap<LottoResultFormat, Integer> getLottoResultHashMap() {
-        return lottoResultHashMap;
+    public Map<LottoResultFormat, Integer> getLottoResultHashMap() {
+        return getSortedHashMap();
+    }
+
+    public Map<LottoResultFormat, Integer> getSortedHashMap() {
+        List<Map.Entry<LottoResultFormat, Integer>> entryList = new ArrayList<>(lottoResultHashMap.entrySet());
+        Collections.sort(entryList, (entry1, entry2) -> {
+            int matching1 = entry1.getKey().getLottoOfMatching();
+            int matching2 = entry2.getKey().getLottoOfMatching();
+            return Integer.compare(matching1, matching2);
+        });
+
+        Map<LottoResultFormat, Integer> sortedHashMap = new LinkedHashMap<>();
+        for (Map.Entry<LottoResultFormat, Integer> entry : entryList) {
+            sortedHashMap.put(entry.getKey(), entry.getValue());
+        }
+        return sortedHashMap;
     }
 
 }

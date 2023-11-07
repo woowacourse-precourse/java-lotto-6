@@ -6,6 +6,7 @@ import lotto.model.LottoResultFormat;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     //발행된 로또 번호 출력
@@ -17,22 +18,23 @@ public class OutputView {
     }
 
     //당첨 내역 출력
-    public static void LottoResults(HashMap<LottoResultFormat, Integer> lottoResults) {
+    public static void LottoResults(Map<LottoResultFormat, Integer> lottoResults) {
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        for(LottoResultFormat key : lottoResults.keySet()){
-            if(key != LottoResultFormat.FAIL){
-                if(key == LottoResultFormat.FIVE_BONUS){
-                    System.out.println(key.getLottoOfMatching() +"개 일치, 보너스 볼 일치 ("+key.getWinningAmount()+"원) - "+lottoResults.getOrDefault(key, 0)+"개");
-                }
-                System.out.println(key.getLottoOfMatching() +"개 일치 ("+key.getWinningAmount()+"원) - "+lottoResults.getOrDefault(key, 0)+"개");
+        for (LottoResultFormat key : lottoResults.keySet()) {
+            if (key == LottoResultFormat.FIVE_BONUS && key != LottoResultFormat.FAIL) {
+                System.out.println(key.getLottoOfMatching() + "개 일치, 보너스 볼 일치 (" + key.getWinningAmount() + "원) - " + lottoResults.getOrDefault(key, 0) + "개");
+            }
+            if (key != LottoResultFormat.FIVE_BONUS && key != LottoResultFormat.FAIL) {
+                System.out.println(key.getLottoOfMatching() + "개 일치 (" + key.getWinningAmount() + "원) - " + lottoResults.getOrDefault(key, 0) + "개");
             }
         }
+
     }
 
     //총 수익률 출력
-    public static void totalReturnOnLotto(int returnOnLotto){
-        System.out.println("총 수익률은 "+returnOnLotto+"%입니다.");
+    public static void totalReturnOnLotto(int returnOnLotto) {
+        System.out.println("총 수익률은 " + returnOnLotto + "%입니다.");
     }
 }

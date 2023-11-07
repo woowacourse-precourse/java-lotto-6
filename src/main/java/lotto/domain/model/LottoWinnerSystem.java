@@ -15,14 +15,20 @@ public class LottoWinnerSystem {
     private final int WINNER_NUMBER_COUNT = 6;
     private final int BONUS_NUMBER_COUNT = 1;
 
-    private List<Integer> winNumbers;
-    private List<Integer> bonusNumber;
+    private final static int FIRST_PRIZE_MONEY = 2000000000;
+    private final static int SECOND_PRIZE_MONEY = 30000000;
+    private final static int THIRD_PRIZE_MONEY = 1500000;
+    private final static int FOURTH_PRIZE_MONEY = 50000;
+    private final static int FIFTH_PRIZE_MONEY = 5000;
 
     private static int first;
     private static int second;
     private static int third;
     private static int fourth;
     private static int fifth;
+
+    private List<Integer> winNumbers;
+    private List<Integer> bonusNumber;
 
     public LottoWinnerSystem() {
         this.first = 0;
@@ -32,13 +38,36 @@ public class LottoWinnerSystem {
         this.fifth = 0;
     }
 
-    public static int calculateProfitMoney() {
-        int profitMoney = 5000 * fifth + 50000 * fourth + 1500000 * third + 30000000 * second + 2000000000 * first;
-        return profitMoney;
+    // 당첨 번호가 유효한지 검사
+    public List<Integer> isValidWinNumber(String input) {
+        try {
+            InputValidator.isNull(input);
+            InputValidator.isEmptyOrBlank(input);
+            List<Integer> numbers = convertIntegerList(input);
+            isValidLength(numbers, WINNER_NUMBER_COUNT);
+            isDistinct(numbers);
+            isValidRange(numbers);
+            this.winNumbers = numbers;
+            return numbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
+        }
     }
 
-    public void printLottoResult() {
-        OutputView.printTotalResult(fifth, fourth, third, second, first);
+    // 보너스 번호가 유효한지 검사
+    public List<Integer> isValidBonusNumber(String input, List<Integer> winNumbers) {
+        try {
+            InputValidator.isNull(input);
+            InputValidator.isEmptyOrBlank(input);
+            List<Integer> numbers = convertIntegerList(input);
+            isValidLength(numbers, BONUS_NUMBER_COUNT);
+            isValidRange(numbers);
+            isContainWinNumbers(winNumbers, numbers);
+            this.bonusNumber = numbers;
+            return numbers;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
+        }
     }
 
     // 발행한 로또를 1개씩 비교
@@ -77,15 +106,7 @@ public class LottoWinnerSystem {
         third += 1;
     }
 
-    // 보너스 번호만 검사 (5개 일치할 때만 실행)
-    public boolean isContainBonusNumber(List<Integer> lottoNumber, List<Integer> bonusNumber) {
-        if (lottoNumber.contains(bonusNumber.get(0))) {
-            return true;
-        }
-        return false;
-    }
-
-    // 보너스 번호를 제외하여 비교
+    // 당첨 번호와 비교
     public int getMatchNumberCount(List<Integer> lottoNumber, List<Integer> winNumber) {
         int matchCount = 0;
         for (int i = 0; i < winNumber.size(); i++) {
@@ -96,44 +117,33 @@ public class LottoWinnerSystem {
         return matchCount;
     }
 
-    // 당첨 번호가 유효한지 검사
-    public List<Integer> isValidWinNumber(String input) {
-        try {
-            InputValidator.isNull(input);
-            InputValidator.isEmptyOrBlank(input);
-            List<Integer> numbers = convertIntegerList(input);
-            isValidLength(numbers, WINNER_NUMBER_COUNT);
-            isDistinct(numbers);
-            isValidRange(numbers);
-            this.winNumbers = numbers;
-            return numbers;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
+    // 보너스 번호만 검사 (5개 일치할 때만 실행)
+    public boolean isContainBonusNumber(List<Integer> lottoNumber, List<Integer> bonusNumber) {
+        if (lottoNumber.contains(bonusNumber.get(0))) {
+            return true;
         }
+        return false;
     }
 
-    // 보너스 번호가 유효한지 검사
-    public List<Integer> isValidBonusNumber(String input, List<Integer> winNumbers) {
-        try {
-            InputValidator.isNull(input);
-            InputValidator.isEmptyOrBlank(input);
-            List<Integer> numbers = convertIntegerList(input);
-            isValidLength(numbers, BONUS_NUMBER_COUNT);
-            isValidRange(numbers);
-            isContainWinNumbers(winNumbers, numbers);
-            this.bonusNumber = numbers;
-            return numbers;
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
-        }
+    // 수익률 계산
+    public static int calculateProfitMoney() {
+        int profitMoney = (FIFTH_PRIZE_MONEY * fifth) + (FOURTH_PRIZE_MONEY * fourth) +
+                (THIRD_PRIZE_MONEY * third) + (SECOND_PRIZE_MONEY * second) + (FIRST_PRIZE_MONEY * first);
+        return profitMoney;
     }
 
-    private List<Integer> convertIntegerList(String input) {
+    // 당첨 통계 출력
+    public void printLottoResult() {
+        OutputView.printTotalResult(fifth, fourth, third, second, first);
+    }
+
+
+    public List<Integer> convertIntegerList(String input) {
         List<Integer> numbers = Stream.of(input.split(",")).map(Integer::parseInt).collect(Collectors.toList());
         return numbers;
     }
 
-    private static void isValidLength(List<Integer> numbers, int numberCount) {
+    public static void isValidLength(List<Integer> numbers, int numberCount) {
         if (numbers.size() != numberCount) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LENGTH_INPUT.getErrorMessage());
         }
@@ -146,7 +156,7 @@ public class LottoWinnerSystem {
         }
     }
 
-    private static void isValidRange(List<Integer> numbers) {
+    public static void isValidRange(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.get(i) < 1 || numbers.get(i) > 45) {
                 throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_NUMBER.getErrorMessage());
@@ -154,7 +164,7 @@ public class LottoWinnerSystem {
         }
     }
 
-    private void isContainWinNumbers(List<Integer> winNumbers, List<Integer> numbers) {
+    public void isContainWinNumbers(List<Integer> winNumbers, List<Integer> numbers) {
         if (winNumbers.contains(numbers.get(0))) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_BONUS_NUMBER.getErrorMessage());
         }

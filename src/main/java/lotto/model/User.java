@@ -11,18 +11,6 @@ public class User {
         this.lottoTickets = lottoTickets;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public LottoTickets getLottoTickets() {
-        return lottoTickets;
-    }
-
-    public List<Lotto> getLottoList() {
-        return lottoTickets.getLotto();
-    }
-
     public void compareWinningLotto(WinningLotto winningLotto) {
         for (Lotto lotto : lottoTickets.getLotto()) {
             int countCorrectNumber = (int) winningLotto.getWinningLotto().stream()
@@ -39,5 +27,17 @@ public class User {
     public double calculateProfit(int money) {
         double totalPrice = (double) WinningResult.calculateTotalPrice();
         return totalPrice / money * 100;
+    }
+
+    public int getMoney() {
+        return count * 1000;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public List<Lotto> getLottoList() {
+        return lottoTickets.getLotto();
     }
 }

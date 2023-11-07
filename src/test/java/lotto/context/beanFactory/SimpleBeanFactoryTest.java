@@ -4,7 +4,6 @@ import lotto.context.beans.MockDependencyBean;
 import lotto.context.beans.MockBean;
 import lotto.context.exception.AlreadyExistBeanException;
 import lotto.context.exception.NoSuchBeanException;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -22,7 +21,7 @@ class SimpleBeanFactoryTest {
     private static final String MOCK_BEAN_NAME1 = "mockDependencyBean";
     private static final String MOCK_BEAN_NAME2 = "mockBean";
 
-    private final SimpleBeanFactory factory = new BeanFactoryProxy();
+    private final SimpleBeanFactory factory = new SimpleBeanFactoryProxy();
 
     @Test
     @DisplayName("getBeanCount() : 빈을 1개 등록했을 때 등록된 빈의 수는 1개가 나와야합니다.")

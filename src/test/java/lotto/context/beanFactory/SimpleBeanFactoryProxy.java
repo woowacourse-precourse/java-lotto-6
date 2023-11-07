@@ -4,9 +4,9 @@ import lotto.context.exception.BeanException;
 
 import java.util.function.Supplier;
 
-public class BeanFactoryProxy extends SimpleBeanFactory {
-    public BeanFactoryProxy() {
-        log("*** 테스트를 위한 빈 팩토리가 초기화되었습니다.\n*** 해당 객체는 프록시 객체로서, 실제 객체의 동작을 콘솔에 중계합니다.\n");
+public class SimpleBeanFactoryProxy extends SimpleBeanFactory {
+    public SimpleBeanFactoryProxy() {
+        log("*** 테스트를 위한 빈 팩토리가 초기화되었습니다. 해당 객체는 프록시 객체로서, 실제 객체의 동작을 콘솔에 중계합니다.\n");
     }
 
     @Override
@@ -67,7 +67,7 @@ public class BeanFactoryProxy extends SimpleBeanFactory {
 
 
     private void log(String message) {
-        System.out.println(message);
+        System.out.println("[" + this.getClass().getSimpleName() +"] " + message);
     }
 
     private void log() {

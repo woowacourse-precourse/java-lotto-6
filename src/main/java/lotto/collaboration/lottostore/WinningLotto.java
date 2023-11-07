@@ -1,12 +1,12 @@
-package lotto.collaboration.lottos;
+package lotto.collaboration.lottostore;
 
 import static java.util.stream.Collectors.groupingBy;
-import static lotto.collaboration.lottos.enums.WinningLottoMessage.EXCEPTION_DUPLICATED;
+import static lotto.collaboration.lottostore.enums.WinningLottoMessage.EXCEPTION_DUPLICATED;
 
 import java.util.List;
 import java.util.Map;
-import lotto.collaboration.enums.Prize;
-import lotto.collaboration.lottos.dto.PlayerLotto;
+import lotto.collaboration.lottostore.dto.PlayerLotto;
+import lotto.collaboration.lottostore.enums.Prize;
 
 public class WinningLotto {
 

@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.view.GameView;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +9,6 @@ import static org.assertj.core.api.Assertions.*;
 
 class ValidateServiceTest {
 
-    private GameView gameView = new GameView();
     private ValidateService validateService = new ValidateService();
 
     @Test
@@ -55,6 +53,37 @@ class ValidateServiceTest {
     @Test
     void 당첨_번호_중복_입력() {
         assertThatThrownBy(() -> validateService.createWinNumbers("1,2,3,5,9,9"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호_정상_입력() {
+        List<Integer> winNumbers = validateService.createWinNumbers("1,2,3,4,5,6");
+        int bonusNumber = validateService.validateBonusNumberInput(winNumbers, "7");
+        assertThat(bonusNumber).isEqualTo(7);
+    }
+
+    @Test
+    void 보너스_번호_문자_입력() {
+        List<Integer> winNumbers = validateService.createWinNumbers("1,2,3,4,5,6");
+        assertThatThrownBy(() ->  validateService.validateBonusNumberInput(winNumbers, "문자"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호_범위를_벗어나는_입력() {
+        List<Integer> winNumbers = validateService.createWinNumbers("1,2,3,4,5,6");
+        assertThatThrownBy(() ->  validateService.validateBonusNumberInput(winNumbers, "0"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() ->  validateService.validateBonusNumberInput(winNumbers, "46"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void 보너스_번호와_당첨_번호_중복() {
+        List<Integer> winNumbers = validateService.createWinNumbers("1,2,3,4,5,6");
+
+        assertThatThrownBy(() ->  validateService.validateBonusNumberInput(winNumbers, "1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

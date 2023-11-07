@@ -21,6 +21,7 @@ public class LottoGame {
     private int lottoCount;
     private List<Lotto> lotto = new ArrayList<>();
     private List<Integer> winNumbers;
+    private int bonusNumber;
 
     public LottoGame() {
         this.validateService = new ValidateService();
@@ -33,6 +34,7 @@ public class LottoGame {
         publishLotto();
         printLotto();
         winNumbersInput();
+        bonusNumberInput();
     }
 
     private void buyLottoInput() {
@@ -68,6 +70,20 @@ public class LottoGame {
             try {
                 String winNumbersInput = Console.readLine();
                 winNumbers = validateService.createWinNumbers(winNumbersInput);
+                correctInputFlag = true;
+            } catch (IllegalArgumentException e) {
+                gameView.errorMessageView(e.getMessage());
+                correctInputFlag = false;
+            }
+        } while (!correctInputFlag);
+    }
+
+    private void bonusNumberInput() {
+        boolean correctInputFlag;
+        do {
+            try {
+                String bonusNumberInput = Console.readLine();
+                bonusNumber = validateService.validateBonusNumberInput(winNumbers, bonusNumberInput);
                 correctInputFlag = true;
             } catch (IllegalArgumentException e) {
                 gameView.errorMessageView(e.getMessage());

@@ -35,13 +35,13 @@ public class Lotto {
         int noDuplicate = numbers.stream().distinct().toList().size();
 
         if (noDuplicate != numbers.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBER_DUPLICATE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.LOTTO_NUMBERS_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
     private void validateRange(int number) {
         if (number < MIN_RANGE || number > MAX_RANGE) {
-            throw new IllegalArgumentException(ExceptionMessage.NUMBER_RANGE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.NUMBERS_RANGE_EXCEPTION.getMessage());
         }
     }
 

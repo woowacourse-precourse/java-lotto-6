@@ -15,10 +15,10 @@ public class InputView {
         return StringUtil.parseInt(amount);
     }
 
-    public List<Integer> inputWinningNumber() {
+    public List<Integer> inputWinningNumbers() {
         System.out.println(INPUT_WINNING_NUMBER_MESSAGE);
-        String winningNumber = Console.readLine();
-        return StringUtil.parseComma(winningNumber);
+        String winningNumbers = Console.readLine();
+        return StringUtil.parseComma(winningNumbers);
     }
 
     public int inputBonusNumber() {

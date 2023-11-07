@@ -9,7 +9,6 @@ public class Lottos {
     private static final int TEN_THOUSAND = 1000;
 
     private final List<Lotto> lottos;
-
     private final NumbersGenerator numbersGenerator;
 
     public Lottos(int money, NumbersGenerator numbersGenerator) {

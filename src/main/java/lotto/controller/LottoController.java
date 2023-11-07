@@ -26,10 +26,12 @@ public class LottoController {
         Lottos lottos = buyLotto();
         WinningNumbers winningNumbers = decideWinningNumbers();
         decideBonusNumber(winningNumbers);
-        WinningResult winningResult = new WinningResult();
-        winningResult.calculateWinning(lottos, winningNumbers);
+
+        WinningResult winningResult = new WinningResult(lottos, winningNumbers);
+        winningResult.calculateWinning();
+
         outputView.printWinningStatics(winningResult);
-        outputView.printEarningRate(winningResult.calculateEarningRate(lottos));
+        outputView.printEarningRate(winningResult.calculateEarningRate());
 
     }
 
@@ -48,7 +50,7 @@ public class LottoController {
     private WinningNumbers decideWinningNumbers() {
         while (true) {
             try {
-                return new WinningNumbers(inputView.inputWinningNumber());
+                return new WinningNumbers(inputView.inputWinningNumbers());
             } catch (IllegalArgumentException e) {
                 exceptionView.printException(e.getMessage());
             }

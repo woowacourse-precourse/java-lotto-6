@@ -27,9 +27,8 @@ public class WinningNumbers {
     }
 
     private void validateSize(List<Integer> winningNumbers) {
-
         if (winningNumbers.size() != WINNING_NUMBERS_SIZE) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_SIZE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBERS_SIZE_EXCEPTION.getMessage());
         }
     }
 
@@ -37,13 +36,13 @@ public class WinningNumbers {
         int noDuplicate = numbers.stream().distinct().toList().size();
 
         if (noDuplicate != numbers.size()) {
-            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBERS_DUPLICATE_EXCEPTION.getMessage());
         }
     }
 
     private void validateRange(int number) {
         if (number < MIN_RANGE || number > MAX_RANGE) {
-            throw new IllegalArgumentException(ExceptionMessage.NUMBER_RANGE_EXCEPTION.getMessage());
+            throw new IllegalArgumentException(ExceptionMessage.NUMBERS_RANGE_EXCEPTION.getMessage());
         }
     }
 

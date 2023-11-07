@@ -9,19 +9,22 @@ public class WinningResult {
     private static final int INIT_NUMBER = 0;
 
     private final Map<Rank, Integer> winningResult;
+    private final Lottos lottos;
+    private final WinningNumbers winningNumbers;
 
-    public WinningResult() {
+    public WinningResult(Lottos lottos, WinningNumbers winningNumbers) {
         this.winningResult = new EnumMap<>(Rank.class);
+        this.lottos = lottos;
+        this.winningNumbers = winningNumbers;
 
         Arrays.stream(Rank.values())
                 .forEach(rank -> winningResult.put(rank, 0));
     }
 
-    public void calculateWinning(Lottos lottos, WinningNumbers winningNumbers) {
+    public void calculateWinning() {
         for (Lotto lotto : lottos.getLottos()) {
             Rank from = Rank.from(lotto.calculateMatchCount(winningNumbers.getWinningNumber()),
                     lotto.isContain(winningNumbers.getBonusNumber()));
-
             winningResult.put(from, winningResult.get(from) + 1);
         }
     }
@@ -30,7 +33,7 @@ public class WinningResult {
         return winningResult.get(rank);
     }
 
-    public float calculateEarningRate(Lottos lottos) {
+    public float calculateEarningRate() {
         int totalPrize = INIT_NUMBER;
 
         for (Rank rank : winningResult.keySet()) {

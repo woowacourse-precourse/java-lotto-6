@@ -20,12 +20,12 @@ public class WinningResultTest {
     @MethodSource("generate")
     void calculateWinningTest(List<Integer> numbers, int bonusNumber, Rank rank) {
         //given
-        Lottos lottos1 = new Lottos(1000, numbersGenerator);
+        Lottos lottos = new Lottos(1000, numbersGenerator);
         WinningNumbers winningNumbers = new WinningNumbers(numbers);
         winningNumbers.setBonusNumber(bonusNumber);
 
-        WinningResult winningResult = new WinningResult();
-        winningResult.calculateWinning(lottos1, winningNumbers);
+        WinningResult winningResult = new WinningResult(lottos, winningNumbers);
+        winningResult.calculateWinning();
 
         //when
         int firstCount = winningResult.getWinningCount(rank);
@@ -52,11 +52,11 @@ public class WinningResultTest {
         Lottos lottos = new Lottos(1000, numbersGenerator);
         WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
         winningNumbers.setBonusNumber(7);
-        WinningResult winningResult = new WinningResult();
-        winningResult.calculateWinning(lottos, winningNumbers);
+        WinningResult winningResult = new WinningResult(lottos, winningNumbers);
+        winningResult.calculateWinning();
 
         //when
-        float earningRate = winningResult.calculateEarningRate(lottos);
+        float earningRate = winningResult.calculateEarningRate();
 
         //then
         assertEquals(200000000, earningRate);

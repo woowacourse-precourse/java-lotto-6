@@ -12,7 +12,7 @@ public class OutputView {
     private static final String LINE_SEPARATE = "---";
     private static final String WINNING_STATICS_MESSAGE = "%d개 일치 (%s원) - %d개";
     private static final String SECOND_WINNING_STATICS_MESSAGE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
-    private static final String RATE_MESSAGE = "총 수익률은 %s%%입니다.";
+    private static final String EARNING_RATE_MESSAGE = "총 수익률은 %s%%입니다.";
 
     private final DecimalFormat integerDecFormat = new DecimalFormat("###,###");
     private final DecimalFormat floatDecFormat = new DecimalFormat("###,###.0");
@@ -30,6 +30,7 @@ public class OutputView {
     public void printWinningStatics(WinningResult winningResult) {
         System.out.println(LOTTO_WINNING_STATICS_MESSAGE);
         System.out.println(LINE_SEPARATE);
+
         for (Rank rank : Rank.values()) {
             System.out.println(formatWinningStaticsMessage(rank, winningResult));
         }
@@ -54,7 +55,7 @@ public class OutputView {
     }
 
     private String formatRate(float rate) {
-        return String.format(RATE_MESSAGE, toFloatFormat(rate));
+        return String.format(EARNING_RATE_MESSAGE, toFloatFormat(rate));
     }
 
     private String toFloatFormat(float rate) {

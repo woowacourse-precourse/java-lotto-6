@@ -1,19 +1,36 @@
 package lotto;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StartLottoTest {
     private static StartLotto test;
+    private static List<Lotto> testLottoList;
+    private static int testPurchasePrice;
+    private static Lotto testWinningNumbers;
+    private static int testBonusNumber;
 
     @DisplayName("테스트할 StartLotto 객체 먼저 생성")
     @BeforeEach
     void init() {
-        test = new StartLotto();
+        List<Lotto> testLottoList = new ArrayList<Lotto>();
+        testLottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        testLottoList.add(new Lotto(List.of(1, 3, 4, 6, 12, 20)));
+        testLottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 45)));
+        int testPurchasePrice = 3000;
+        Lotto testWinningNumbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int testBonusNumber = 45;
+        test = new StartLotto(testLottoList, testPurchasePrice, testWinningNumbers, testBonusNumber);
     }
 
     @DisplayName("구입 금액이 숫자 형식이 아니라면 예외가 발생한다.")
@@ -75,5 +92,22 @@ public class StartLottoTest {
             test.checkBonusNumber(input);
         }).isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("보너스 번호와 당첨 번호에는 서로 중복되는 숫자가 없습니다. 다시 입력해주세요.");
+    }
+
+    @DisplayName("각 로또 별 당첨 현황과 갯수 테스트")
+    @Test
+    void checkFillPriceHistoryMap() {
+        OutputStream out  = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+
+        test.fillPriceHistoryMap();
+        test.printPriceHistory();
+
+        assertThat((out.toString())).contains(
+                "3개 일치 (5,000원) - 0개",
+                "4개 일치 (50,000원) - 1개",
+                "5개 일치 (1,500,000원) - 0개",
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
+                "6개 일치 (2,000,000,000원) - 1개");
     }
 }

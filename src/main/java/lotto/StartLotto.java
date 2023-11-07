@@ -30,6 +30,23 @@ public class StartLotto {
     }
 
     /*
+     * 이 생성자는 오로지 테스트를 위해서만 사용된다.
+     */
+    public StartLotto(List<Lotto> testLottoList, int testPurchasePrice, Lotto testWinningNumbers, int testBonusNumber) {
+        this.lottoList = testLottoList;
+        this.purchasePrice = testPurchasePrice;
+        this.bonusNumber = testBonusNumber;
+        this.winningNumbers = testWinningNumbers;
+        this.priceHistory = new HashMap<>() {{
+            put("Fifth", 0);
+            put("Forth", 0);
+            put("Third", 0);
+            put("Second", 0);
+            put("First", 0);
+        }};
+    }
+
+    /*
      * String을 int로 변환한다. 이때, String이 Number Format이 아니면 Exception을 throw한다.
      */
     private int changeStringToInteger(String inputString) {

@@ -6,7 +6,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class LottoService {
     public Money putMoney() {
@@ -39,13 +38,14 @@ public class LottoService {
         return InputView.inputWinnerLotto();
     }
 
-    public void calculateLottoResults(Lottos userLottos, WinnerLotto winnerLotto) {
+    public Map<LottoRank, Integer> calculateLottoResults(Lottos userLottos, WinnerLotto winnerLotto) {
         Map<LottoRank, Integer> userLottoResultsRank = new LinkedHashMap<>();
         List<LottoRank> userLottoResults = getUserLottoResults(userLottos, winnerLotto);
         Arrays.stream(LottoRank.values())
                 .filter(userLottoResults::contains)
                 .forEach(rank -> userLottoResultsRank.put(rank, getWinningCount(rank, userLottoResults)));
         OutputView.outputAllRankMatchResults(userLottoResultsRank);
+        return userLottoResultsRank;
     }
 
     private List<LottoRank> getUserLottoResults(Lottos userLottos, WinnerLotto winnerLotto) {
@@ -59,6 +59,14 @@ public class LottoService {
         return Long.valueOf(userLottoResults.stream()
                 .filter(result -> rank.compareTo(result) == 0)
                 .count()).intValue();
+    }
+
+    public void calculateProfit(Map<LottoRank, Integer> userLottoResultsRank, Money userMoney) {
+        int money = userMoney.getMoney();
+        int totalProfit = userLottoResultsRank.entrySet().stream()
+                .mapToInt(matchResult -> matchResult.getKey().getWinnerMoney() * matchResult.getValue())
+                .sum();
+        OutputView.outputProfitCalculation(((double) totalProfit/money) * 100);
     }
 
 }

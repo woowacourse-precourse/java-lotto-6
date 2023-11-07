@@ -23,4 +23,6 @@ public class Money {
         return money / LOTTO_PRICE;
     }
 
+    public int getMoney() { return money; }
+
 }

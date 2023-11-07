@@ -7,7 +7,6 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -50,5 +49,9 @@ public class OutputView {
         }
         System.out.println(String.format(resultPrintFormat,
                 rank.getMatchLottoCount(), bonusFormant, new DecimalFormat("###,###").format(rank.getWinnerMoney()), winningCount));
+    }
+
+    public static void outputProfitCalculation(double profitPercentage) {
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", profitPercentage));
     }
 }

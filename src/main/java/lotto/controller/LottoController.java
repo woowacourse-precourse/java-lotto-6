@@ -1,10 +1,9 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.WinnerLotto;
+import lotto.domain.*;
 import lotto.service.LottoService;
+
+import java.util.Map;
 
 public class LottoController {
     private final LottoService lottoService;
@@ -13,6 +12,7 @@ public class LottoController {
         Money money = lottoService.putMoney();
         Lottos userLottos = lottoService.buyLottos(money);
         WinnerLotto winnerLotto = lottoService.putWinnerLotto();
-        lottoService.calculateLottoResults(userLottos, winnerLotto);
+        Map<LottoRank, Integer> userLottoResultsRank = lottoService.calculateLottoResults(userLottos, winnerLotto);
+        lottoService.calculateProfit(userLottoResultsRank, money);
     }
 }

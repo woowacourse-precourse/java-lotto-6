@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class WinnerLotto {
     private Lotto winnerLotto;
     private int bonusNumber;
@@ -34,7 +31,10 @@ public class WinnerLotto {
 
     public LottoRank matchWinnerLotto(Lotto lotto) {
         int matchLottoCount = this.winnerLotto.matchingLottoNumber(lotto);
-        boolean matchBonusResult = lotto.matchingBonusNumber(this.bonusNumber);
+        boolean matchBonusResult = false;
+        if(matchLottoCount == 5) {
+            matchBonusResult = lotto.matchingBonusNumber(this.bonusNumber);
+        }
         return LottoRank.valueOf(matchLottoCount, matchBonusResult);
     }
 }

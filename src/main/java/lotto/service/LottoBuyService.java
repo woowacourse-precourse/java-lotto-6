@@ -3,18 +3,21 @@ package lotto.service;
 import lotto.domain.LottoMachine;
 import lotto.domain.PurchasedLotto;
 import lotto.dto.BuyLottoDTO;
+import lotto.dto.DTO;
 
-public final class LottoPurchaseService {
+public final class LottoBuyService {
     private final LottoMachine lottoMachine;
-    private final Long buyPrice;
 
-    public LottoPurchaseService(LottoMachine lottoMachine, Long buyPrice) {
+    public LottoBuyService(LottoMachine lottoMachine) {
         this.lottoMachine = lottoMachine;
-        this.buyPrice = buyPrice;
     }
 
-    public BuyLottoDTO.Output getPurchasedLottoDTO() {
+    public BuyLottoDTO.Output getPurchasedLottoDTO(Long buyPrice) {
         PurchasedLotto purchasedLotto = lottoMachine.generateForPrice(buyPrice);
         return new BuyLottoDTO.Output(purchasedLotto);
+    }
+
+    public DTO.Input getBuyLottoInputDTO() {
+        return new BuyLottoDTO.Input();
     }
 }

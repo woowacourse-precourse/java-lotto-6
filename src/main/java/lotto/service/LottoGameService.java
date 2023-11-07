@@ -56,15 +56,15 @@ public class LottoGameService {
         }
     }
 
-    private boolean isStringContainNonDigit(String lottoPurchaseAmount) {
+    public boolean isStringContainNonDigit(String lottoPurchaseAmount) {
         return Pattern.compile(NON_DIGIT_REGEX.getRegex()).matcher(lottoPurchaseAmount).find();
     }
 
-    private boolean isInputZero(String lottoPurchaseAmount) {
+    public boolean isInputZero(String lottoPurchaseAmount) {
         return Integer.parseInt(lottoPurchaseAmount) == ZERO_VALUE.getNumber();
     }
 
-    private boolean isMultipleOfLottoPrice(String lottoPurchaseAmount) {
+    public boolean isMultipleOfLottoPrice(String lottoPurchaseAmount) {
         return Integer.parseInt(lottoPurchaseAmount) % LOTTO_PRICE.getNumber()
                 != ZERO_VALUE.getNumber();
     }
@@ -89,8 +89,8 @@ public class LottoGameService {
         }
     }
 
-    private boolean isLottoNumbersFormat(String lottoWinningNumbers) {
-        return !Pattern.compile(INPUT_WINNING_NUMBERS_REGEX.getRegex()).matcher(lottoWinningNumbers).matches();
+    public boolean isLottoNumbersFormat(String lottoNumbers) {
+        return !Pattern.compile(INPUT_WINNING_NUMBERS_REGEX.getRegex()).matcher(lottoNumbers).matches();
     }
 
     public void validateWinningNumbers(List<Integer> winningNumbers) {
@@ -102,12 +102,12 @@ public class LottoGameService {
         }
     }
 
-    private boolean isLottoNumbersWrongRange(List<Integer> winningNumbers) {
+    public boolean isLottoNumbersWrongRange(List<Integer> winningNumbers) {
         return winningNumbers.stream()
                 .anyMatch(number -> number < 1 || number > 45);
     }
 
-    private boolean isContainDuplicateDigits(List<Integer> winningNumbers) {
+    public boolean isContainDuplicateDigits(List<Integer> winningNumbers) {
         return winningNumbers.stream()
                 .distinct()
                 .count() != LOTTO_NUMBER_COUNT.getNumber();
@@ -125,15 +125,15 @@ public class LottoGameService {
         }
     }
 
-    private boolean isBonusNumberWrongRange(String bonusNumber) {
-        return Integer.parseInt(bonusNumber) < 1 || Integer.parseInt(bonusNumber) > 45;
-    }
-
-    private boolean isBonusNumberNonDigit(String bonusNumber) {
+    public boolean isBonusNumberNonDigit(String bonusNumber) {
         return Pattern.compile(NON_DIGIT_REGEX.getRegex()).matcher(bonusNumber).matches();
     }
 
-    private boolean isWinningNumbersContainBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
+    public boolean isBonusNumberWrongRange(String bonusNumber) {
+        return Integer.parseInt(bonusNumber) < 1 || Integer.parseInt(bonusNumber) > 45;
+    }
+
+    public boolean isWinningNumbersContainBonusNumber(String bonusNumber, List<Integer> winningNumbers) {
         return winningNumbers.contains(Integer.parseInt(bonusNumber));
     }
 

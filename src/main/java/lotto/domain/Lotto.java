@@ -11,22 +11,12 @@ public class Lotto {
     private static final String INVALID_NUMBER_COUNT = "[ERROR] 로또 숫자 개수에 맞도록 다시 입력해 주세요.";
     private static final String INVALID_NUMBER_RANGE = "[ERROR] 로또 숫자 범위에 맞도록 다시 입력해 주세요.";
     private static final String INVALID_DUPLICATION = "[ERROR] 로또 숫자는 중복될 수 없습니다. 다시 입력해 주세요.";
-    private static final String INVALID_DIVIDED = "[ERROR] 로또 구입 금액은 로또 금액으로 나누어 떨어지는 금액만 입력 가능합니다";
-    private static final int DEFAULT_PRICE = 1000;
 
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
-    }
-
-    public static int payableCount(int money) {
-        if (money % DEFAULT_PRICE != 0) {
-            throw new IllegalArgumentException(INVALID_DIVIDED);
-        }
-
-        return money / DEFAULT_PRICE;
     }
 
     private void validate(List<Integer> numbers) {

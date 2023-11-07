@@ -6,12 +6,15 @@ import lotto.domain.*;
 import java.util.List;
 
 public class LottoManager {
-    public Lottos createLottos(int money) {
 
-        int lottoCount = Lotto.payableCount(money);
+    private static final int DEFAULT_LOTTO_PRICE = 1000;
+
+    public Lottos createLottos(Payment payment) {
+
+        int affortableLottoCount = payment.countAffortable(DEFAULT_LOTTO_PRICE);
 
         return Lottos.createByCount(
-                lottoCount,
+                affortableLottoCount,
                 () -> Randoms.pickUniqueNumbersInRange(
                         Lotto.MIN_LOTTO_NUMBER, Lotto.MAX_LOTTO_NUMBER, Lotto.LOTTO_NUMBER_SIZE
                 )

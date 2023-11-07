@@ -54,7 +54,7 @@ public class LottoHandler {
     }
 
     private Lottos generateLottos(Payment payment) {
-        Lottos lottos = lottoManager.createLottos(payment.getPayment());
+        Lottos lottos = lottoManager.createLottos(payment);
 
         LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
 

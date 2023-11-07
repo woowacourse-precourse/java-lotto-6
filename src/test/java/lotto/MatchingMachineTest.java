@@ -30,7 +30,7 @@ class MatchingMachineTest {
         assertThat(count).isEqualTo(3);
     }
 
-    @DisplayName("보너스 숫자 체크 확인")
+    @DisplayName("보너스 숫자가 존재하는지 확인")
     @Test
     void checkBonusNumberTest(){
         boolean hasBonus1 = matchingMachine.checkBonusNumber(BASIC_LOTTO, 5);
@@ -39,7 +39,7 @@ class MatchingMachineTest {
         assertThat(hasBonus2).isEqualTo(false);
     }
 
-    @DisplayName("최종 결과를 열거형으로 받아오는지 확인")
+    @DisplayName("최종 결과를 열거형으로 가져온다.")
     @Test
     void countAllLottoNumberTest(){
         List<Lotto> lottos = new ArrayList<>();
@@ -54,7 +54,7 @@ class MatchingMachineTest {
         assertThat(list2.get(0)).isEqualTo(MatchingCount.FIVE_BONUS);
     }
 
-    @DisplayName("최종 결과별 개수를 옳게 추산하는지 확인")
+    @DisplayName("최종 결과별 개수를 map 형태로 반환한다.")
     @Test
     void getLottoResultMap(){
         MatchingCount[] matchingCounts = MatchingCount.values();

@@ -19,7 +19,7 @@ public class CalculatorTest {
         calculator = new Calculator();
     }
 
-    @DisplayName("이익을 올바르게 구하는지 테스트")
+    @DisplayName("총 이익을 구한다.")
     @Test
     void profitTest(){
         List<MatchingCount> matchingCounts = new ArrayList<>();
@@ -30,7 +30,7 @@ public class CalculatorTest {
         assertThat(profit).isEqualTo(50000 + 30000000 + 5000);
     }
 
-    @DisplayName("수익률을 올바르게 구하는지 테스트")
+    @DisplayName("수익률을 구한다.")
     @Test
     void profitPercentageTest(){
         double percentage1 = calculator.getProfitPercentage(12345000, 6);

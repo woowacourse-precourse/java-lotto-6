@@ -54,6 +54,6 @@ class UserTest {
                 .isInstanceOf(IllegalArgumentException.class);
         assertThatThrownBy(()->user.validateMoney(-1000))
                 .isInstanceOf(IllegalArgumentException.class);
-    
+
     }
 }

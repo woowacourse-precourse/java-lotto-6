@@ -43,7 +43,7 @@ public class WinningStatistics {
     }
 
     private static void PrintStatistics() {
-        LottoPublisher publishLotto = new LottoPublisher(); // 인스턴스 생성
+        LottoPublisher publishLotto = new LottoPublisher(LottoPublisher.getPublish_num()); // 인스턴스 생성
         List<List<Integer>> lottodemo = publishLotto.getLottoNumbers(); // 인스턴스 메서드 호출
         List<Integer> demo = lottos.get(0).getNumbers();
         List<WinningRank> winningRanks = new ArrayList<>();

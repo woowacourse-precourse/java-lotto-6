@@ -26,7 +26,7 @@ public class LottoResult {
         for (Rank rank : getLottoResult().keySet()) {
             sumPrize += rank.getReward() * lottoResult.get(rank);
         }
-        return ((double)sumPrize / 1000) / money.getTicket() * 100;
+        return ((double)sumPrize / 1000) / money.getLottoCount() * 100;
     }
 
     public EnumMap<Rank, Integer> getLottoResult() {

@@ -6,6 +6,7 @@ import lotto.dto.LottoTicketsDto;
 import lotto.model.Rank;
 
 public class Output {
+    private static final String LOTTO_COUNT_FORMAT = "%d개를 구매했습니다.";
     private static final String MATCH_COUNT_FORMAT = "%d개 일치";
     private static final String BONUS_NUMBER_FORMAT = ", 보너스 볼 일치";
     private static final String REWARD_FORMAT = " (%,d원)";
@@ -14,7 +15,8 @@ public class Output {
 
     private Output() {}
 
-    public static void printLottoTickets(LottoTicketsDto lottoTicketsDto) {
+    public static void printLottoTickets(LottoTicketsDto lottoTicketsDto, int lottoCount) {
+        System.out.println(String.format(LOTTO_COUNT_FORMAT, lottoCount));
         for (LottoDto lottoDto : lottoTicketsDto.getLottoTickets()) {
             System.out.println(lottoDto.getNumbers());
         }
@@ -26,18 +28,20 @@ public class Output {
         System.out.println("---");
 
         for (Rank rank : lottoResultDto.getLottoResult().keySet()) {
-            int matchCount = rank.getMatchCount();
-            long reward = rank.getReward();
-            int actualMatchCount = lottoResultDto.getLottoResult().get(rank);
+            if (rank != Rank.NO_MATCH) {
+                int matchCount = rank.getMatchCount();
+                long reward = rank.getReward();
+                int actualMatchCount = lottoResultDto.getLottoResult().get(rank);
 
-            StringBuilder stringBuilder = new StringBuilder();
-            stringBuilder.append(String.format(MATCH_COUNT_FORMAT, matchCount));
-            if (rank.hasBonusNumber()) {
-                stringBuilder.append(BONUS_NUMBER_FORMAT);
+                StringBuilder stringBuilder = new StringBuilder();
+                stringBuilder.append(String.format(MATCH_COUNT_FORMAT, matchCount));
+                if (rank.hasBonusNumber()) {
+                    stringBuilder.append(BONUS_NUMBER_FORMAT);
+                }
+                stringBuilder.append(String.format(REWARD_FORMAT, reward));
+                stringBuilder.append(String.format(ACTUAL_MATCH_COUNT_FORMAT, actualMatchCount));
+                System.out.println(stringBuilder.toString());
             }
-            stringBuilder.append(String.format(REWARD_FORMAT, reward));
-            stringBuilder.append(String.format(ACTUAL_MATCH_COUNT_FORMAT, actualMatchCount));
-            System.out.println(stringBuilder.toString());
         }
     }
 

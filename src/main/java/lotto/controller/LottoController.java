@@ -19,7 +19,7 @@ public class LottoController {
 
         LottoTickets lottoTickets = getLottoTickets(money);
         LottoTicketsDto lottoTicketsDto = LottoTicketsDtoMapper.from(lottoTickets);
-        Output.printLottoTickets(lottoTicketsDto);
+        Output.printLottoTickets(lottoTicketsDto, money.getLottoCount());
 
         WinningLotto winningLotto = getWinningLotto();
         LottoResult lottoResult = LottoResult.calculateLottoResult(winningLotto, lottoTickets);
@@ -30,8 +30,8 @@ public class LottoController {
     }
 
     private LottoTickets getLottoTickets(Money money) {
-        int ticket = money.getTicket();
-        return LottoTickets.generateRandomLottoTickets(new RandomLottoGenerator(), ticket);
+        int lottoCount = money.getLottoCount();
+        return LottoTickets.generateRandomLottoTickets(new RandomLottoGenerator(), lottoCount);
     }
 
     private WinningLotto getWinningLotto() {

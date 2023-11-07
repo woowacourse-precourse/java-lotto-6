@@ -2,12 +2,16 @@ package lotto.domain;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
+import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 
 public class LottoMachine {
 
     private static final String PURCHASE_AMOUNT_GUIDE = "구입금액을 입력해 주세요.";
     private static final int PURCHASE_UNIT = 1000;
+    private static final int START_NUMBER = 1;
+    private static final int END_NUMBER = 45;
+    private static final int COUNT_NUMBER = 6;
 
     private List<Lotto> lottos;
 
@@ -27,4 +31,15 @@ public class LottoMachine {
         return issueCount;
     }
 
+    public void generate() {
+        int purchaseAmount = readAmount();
+        int issueCount = amountToIssueCount(purchaseAmount);
+        for (int i = 0; i < issueCount; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
+                    START_NUMBER, END_NUMBER, COUNT_NUMBER
+            );
+            Lotto lotto = new Lotto(numbers);
+            lottos.add(lotto);
+        }
+    }
 }

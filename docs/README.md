@@ -1,7 +1,7 @@
 # 기능 목록
-- [ ] 로또를 발행한다. - Lotto#generate
-  - [ ] 구입금액을 입력받는다. (구입 금액에 따라, 1장당 1000원) - Lotto#readAmount
-  - [ ] 당첨번호+보너스번호 입력받기 - Lotto#readWinningNumber, Lotto#readBonusNumber
+- [ ] 로또를 발행한다. - LottoMachine#generate
+  - [ ] 구입금액을 입력받는다. (구입 금액에 따라, 1장당 1000원) - LottoMachine#readAmount
+  - [ ] 당첨번호+보너스번호 입력받기 - LottoMachine#readWinningNumber, LottoMachine#readBonusNumber
 
 - [ ] 로또 번호와 당첨 번호를 비교한다. - Operator#matchNumbers
 - [ ] 당첨내역 및 수익률을 출력한다. - Printer#displayWinningRecords, Printer#displayProfitRate

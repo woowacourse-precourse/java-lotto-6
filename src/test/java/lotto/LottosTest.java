@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import lotto.model.Lotto;
@@ -61,8 +62,8 @@ public class LottosTest extends NsTest {
         lottos = setUP();
         Lotto answerLotto = new Lotto(List.of(1, 2, 5, 17, 22, 45));
         int bonusNumber = 3;
-        LottosResult lottosResult = new LottosResult(List.of(LottoResult.FOUR_MATCHES,LottoResult.SIX_MATCHES));
-        assertThat(lottos.matchUp(answerLotto,bonusNumber)).isEqualTo(lottosResult);
+        List<LottoResult> target = new ArrayList<>(Arrays.asList(LottoResult.FOUR_MATCHES,LottoResult.SIX_MATCHES));
+        assertThat(lottos.matchUp(answerLotto,bonusNumber)).isEqualTo(target);
     }
 
     @Test
@@ -71,7 +72,8 @@ public class LottosTest extends NsTest {
         Lotto answerLotto = new Lotto(List.of(1, 2, 5, 17, 22, 45));
         int bonusNumber = 3;
 
-        LottosResult results= lottos.matchUp(answerLotto,bonusNumber);
+        List<LottoResult> lottoResults= lottos.matchUp(answerLotto,bonusNumber);
+        LottosResult results = new LottosResult(lottoResults);
         EnumMap<LottoResult, Integer> resultCounts = new EnumMap<>(LottoResult.class);
         resultCounts.put(LottoResult.FOUR_MATCHES,1);
         resultCounts.put(LottoResult.SIX_MATCHES,1);

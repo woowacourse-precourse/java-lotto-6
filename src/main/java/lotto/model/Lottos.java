@@ -7,9 +7,11 @@ import java.util.stream.IntStream;
 
 public class Lottos {
     public List<Lotto> lottos;
+
     public Lottos() {
 
     }
+
     public Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
@@ -22,17 +24,18 @@ public class Lottos {
         return this.lottos;
     }
 
-    public LottosResult matchUp(Lotto answerLotto, int bonusNumber) {
-        List<LottoResult> arr = new ArrayList<>();
-        for (Lotto lotto : lottos) {
-            int something =lotto.matchUp(answerLotto);
-            LottoResult re =LottoResult.matchUp(something,lotto,bonusNumber);
-            arr.add(re);
-        }
-        return new LottosResult(arr);
+    public List<LottoResult> matchUp(Lotto answerLotto, int bonusNumber) {
+        return lottos.stream()
+                .map(i -> getResult(i, answerLotto, bonusNumber))
+                .toList();
     }
 
     public List<Lotto> getLottosForMessage() {
         return lottos;
+    }
+
+    private LottoResult getResult(Lotto userLotto, Lotto answerLotto, Integer bonusNumber) {
+        int numberOfMatch = userLotto.matchUp(answerLotto);
+        return LottoResult.matchUp(numberOfMatch, userLotto, bonusNumber);
     }
 }

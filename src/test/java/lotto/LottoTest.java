@@ -78,8 +78,9 @@ class LottoTest {
         Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 10));
         Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Integer bonusNumber = 10;
-        int sameBallNumber = userLotto.matchUp(answerLotto);
-        assertThat(LottoResult.matchUp(sameBallNumber,userLotto,bonusNumber)).isEqualTo(LottoResult.FIVE_PLUS_BONUS);
+        Integer countOfBall = userLotto.matchUp(answerLotto);
+        LottoResult result= LottoResult.matchUp(countOfBall,userLotto,bonusNumber);
+        assertThat(result).isEqualTo(LottoResult.FIVE_PLUS_BONUS);
     }
 
 

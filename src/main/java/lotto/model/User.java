@@ -16,7 +16,7 @@ public class User {
     }
 
     public LottosResult matchUp(Lotto answer, int bonusNumber) {
-        LottosResult results = lottos.matchUp(answer,bonusNumber);
+        LottosResult results = new LottosResult(lottos.matchUp(answer,bonusNumber));
         results.countProfitable(money);
         return results;
     }

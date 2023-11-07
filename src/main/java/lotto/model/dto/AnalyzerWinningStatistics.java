@@ -8,7 +8,7 @@ public record AnalyzerWinningStatistics(List<WinningResult> winningResults, doub
     public static AnalyzerWinningStatistics ofSorted(List<WinningResult> unsortedWinningResults, double yield) {
         List<WinningResult> sortedWinningResults = new ArrayList<>(unsortedWinningResults);
         sortedWinningResults.sort(
-                Comparator.comparingLong((WinningResult wr) -> wr.winningRule().getPrizeAmount())
+                Comparator.comparingLong(WinningResult::getPrizeAmount)
         );
         return new AnalyzerWinningStatistics(sortedWinningResults, yield);
     }

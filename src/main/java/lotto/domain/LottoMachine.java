@@ -27,18 +27,12 @@ public class LottoMachine {
     public static void judgeGrade(LottoGame lottoGame, Player player) {
         Lotto winningNum = lottoGame.getWinningNum();
         Integer bonusNum = lottoGame.getBonusNum();
-
         List<Lotto> lottoTickets = player.getLottoTickets();
 
         List<Grade> grades = lottoTickets.stream().map(
                 ticket -> Grade.judge(winningNum.matchNumbers(ticket), ticket.matchBonusNum(bonusNum))
         ).toList();
 
-        grades.stream()
-                .filter(grade -> grade != Grade.NOTHING)
-                .forEach( grade -> {
-                    player.setState(grade);
-                    player.setAsset(grade);
-                });
+        player.updatePlayer(grades);
     }
 }

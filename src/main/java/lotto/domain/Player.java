@@ -32,4 +32,13 @@ public class Player {
     public void setState(Grade grade) {
         state.setGradeState(grade);
     }
+    public void updatePlayer(List<Grade> grades){
+        grades.stream()
+                .filter(grade -> grade != Grade.NOTHING)
+                .forEach( grade -> {
+                    this.setState(grade);
+                    this.setAsset(grade);
+                });
+
+    }
 }

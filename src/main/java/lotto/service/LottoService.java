@@ -50,6 +50,8 @@ public class LottoService {
     }
 
 
+
+
     public List<Integer> integerList(String input){
         return Arrays.stream(intArray(input)).boxed().collect(Collectors.toList());
     }

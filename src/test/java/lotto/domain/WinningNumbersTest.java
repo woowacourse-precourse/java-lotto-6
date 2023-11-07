@@ -7,7 +7,7 @@ import lotto.domain.dto.InputWinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoWinningNumbersTest {
+public class WinningNumbersTest {
 
     @Test
     @DisplayName("입력받은 당첨 번호에 정수가 아닌 입력이 있을 경우 예외가 발생한다.")

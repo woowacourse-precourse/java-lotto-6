@@ -5,21 +5,21 @@ import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoWinningBonusNumber;
-import lotto.domain.LottoWinningNumbers;
-import lotto.domain.PurchasedLottoNumbers;
+import lotto.domain.WinningBonusNumber;
+import lotto.domain.WinningNumbers;
+import lotto.domain.PurchasedLotto;
 
 public class ResultService {
 
-    private final LottoWinningNumbers lottoWinningNumbers;
-    private final LottoWinningBonusNumber lottoWinningBonusNumber;
+    private final WinningNumbers winningNumbers;
+    private final WinningBonusNumber winningBonusNumber;
 
-    public ResultService(LottoWinningNumbers lottoWinningNumbers, LottoWinningBonusNumber lottoWinningBonusNumber) {
-        this.lottoWinningNumbers = lottoWinningNumbers;
-        this.lottoWinningBonusNumber = lottoWinningBonusNumber;
+    public ResultService(WinningNumbers winningNumbers, WinningBonusNumber winningBonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.winningBonusNumber = winningBonusNumber;
     }
 
-    public Map<LottoRank, Integer> lottoGuess(PurchasedLottoNumbers purchasedLottoNumbers) {
+    public Map<LottoRank, Integer> lottoGuess(PurchasedLotto purchasedLottoNumbers) {
         List<Lotto> purchasedLotto = purchasedLottoNumbers.getPurchasedLotto();
         Map<LottoRank, Integer> lottoResult = new HashMap<>();
         for (Lotto lotto : purchasedLotto) {
@@ -31,14 +31,14 @@ public class ResultService {
     }
 
     private LottoRank compareLottoWinning(List<Integer> purchasedNumbers) {
-        List<Integer> winningNumbers = lottoWinningNumbers.getWinningNumbers();
+        List<Integer> winningNumbers = this.winningNumbers.getWinningNumbers();
         int count = 0;
         boolean bonusIsExists = false;
         for (int number : purchasedNumbers) {
             if (winningNumbers.contains(number)) {
                 count++;
             }
-            if (number == lottoWinningBonusNumber.getWinningBonusNumber()) {
+            if (number == winningBonusNumber.getWinningBonusNumber()) {
                 bonusIsExists = true;
             }
         }

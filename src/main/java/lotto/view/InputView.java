@@ -5,7 +5,7 @@ import static lotto.utils.GameMessage.INPUT_MONEY;
 import static lotto.utils.GameMessage.INPUT_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.dto.InputBonusNumber;
+import lotto.domain.dto.InputBonus;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
 
@@ -21,9 +21,9 @@ public class InputView {
         return new InputWinningNumbers(Console.readLine());
     }
 
-    public static InputBonusNumber inputBonusNumber() {
+    public static InputBonus inputBonusNumber() {
         System.out.println();
         System.out.println(INPUT_BONUS_NUMBER.getMessage());
-        return new InputBonusNumber(Console.readLine());
+        return new InputBonus(Console.readLine());
     }
 }

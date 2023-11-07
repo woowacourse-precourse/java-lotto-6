@@ -4,15 +4,15 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
-import lotto.domain.dto.InputBonusNumber;
+import lotto.domain.dto.InputBonus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class LottoWinningBonusNumberTest {
+public class WinningBonusNumberTest {
     @Test
     @DisplayName("입력받은 보너스 번호가 정수가 아닌 경우 예외가 발생한다.")
     public void 보너스_번호_정수_아님() throws Exception {
-        assertThatThrownBy(() -> new InputBonusNumber("a"))
+        assertThatThrownBy(() -> new InputBonus("a"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -25,11 +25,11 @@ public class LottoWinningBonusNumberTest {
 
         //then
         assertThrows(IllegalArgumentException.class, () -> {
-            new InputBonusNumber(winningBonusNumberZero);
+            new InputBonus(winningBonusNumberZero);
         });
 
         assertThrows(IllegalArgumentException.class, () -> {
-            new InputBonusNumber(winningBonusNumberOver);
+            new InputBonus(winningBonusNumberOver);
         });
 
     }
@@ -43,7 +43,7 @@ public class LottoWinningBonusNumberTest {
 
         //then
         assertThrows(IllegalArgumentException.class, () -> {
-            new LottoWinningBonusNumber(winningBonusNumberDuplicate, winningNumbers);
+            new WinningBonusNumber(winningBonusNumberDuplicate, winningNumbers);
         });
     }
 }

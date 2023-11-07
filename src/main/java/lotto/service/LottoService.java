@@ -9,22 +9,22 @@ import java.util.Map;
 import lotto.Lotto;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
-import lotto.domain.LottoWinningBonusNumber;
-import lotto.domain.LottoWinningNumbers;
-import lotto.domain.PurchasedLottoNumbers;
+import lotto.domain.WinningBonusNumber;
+import lotto.domain.WinningNumbers;
+import lotto.domain.PurchasedLotto;
 import lotto.domain.User;
-import lotto.domain.dto.InputBonusNumber;
+import lotto.domain.dto.InputBonus;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
 import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
-    public static PurchasedLottoNumbers inputMoneyAndIssueLotto(InputMoney inputMoney) {
+    public static PurchasedLotto inputMoneyAndIssueLotto(InputMoney inputMoney) {
         User user = new User(inputMoney.getMoney());
         return lottoGenerator(user.getAmount());
     }
 
-    public static PurchasedLottoNumbers lottoGenerator(int purchaseAmount) {
+    public static PurchasedLotto lottoGenerator(int purchaseAmount) {
         int pickCount = purchaseAmount / 1000;
         List<Lotto> purchasedLotto = new ArrayList<>();
         for (int i = 0; i < pickCount; i++) {
@@ -33,30 +33,30 @@ public class LottoService {
             Lotto lotto = new Lotto(purchasedOneLotto);
             purchasedLotto.add(lotto);
         }
-        PurchasedLottoNumbers purchasedLottoNumbers = new PurchasedLottoNumbers(purchasedLotto);
+        PurchasedLotto purchasedLottoNumbers = new PurchasedLotto(purchasedLotto);
         return purchasedLottoNumbers;
     }
 
-    public static LottoResult compareLotto(LottoWinningNumbers lottoWinningNumbers,
-                                           LottoWinningBonusNumber lottoWinningBonusNumber,
-                                           PurchasedLottoNumbers purchasedLottoNumbers) {
-        ResultService resultService = new ResultService(lottoWinningNumbers, lottoWinningBonusNumber);
-        Map<LottoRank, Integer> lottoResult = resultService.lottoGuess(purchasedLottoNumbers);
+    public static LottoResult compareLotto(WinningNumbers winningNumbers,
+                                           WinningBonusNumber winningBonusNumber,
+                                           PurchasedLotto purchasedLotto) {
+        ResultService resultService = new ResultService(winningNumbers, winningBonusNumber);
+        Map<LottoRank, Integer> lottoResult = resultService.lottoGuess(purchasedLotto);
         return new LottoResult(lottoResult);
     }
 
-    public static LottoWinningNumbers inputWinningLotto(InputWinningNumbers inputWinningNumbers) {
-        return new LottoWinningNumbers(inputWinningNumbers.getInputWinningNumbers());
+    public static WinningNumbers inputWinningLotto(InputWinningNumbers inputWinningNumbers) {
+        return new WinningNumbers(inputWinningNumbers.getInputWinningNumbers());
     }
 
-    public static LottoWinningBonusNumber inputBonusLotto(LottoWinningNumbers lottoWinningNumbers,
-                                                          InputBonusNumber inputBonusNumber) {
-        return new LottoWinningBonusNumber(inputBonusNumber.getInputBonusNumber(),
-                lottoWinningNumbers.getWinningNumbers());
+    public static WinningBonusNumber inputBonusLotto(WinningNumbers winningNumbers,
+                                                     InputBonus inputBonus) {
+        return new WinningBonusNumber(inputBonus.getInputBonusNumber(),
+                winningNumbers.getWinningNumbers());
     }
 
 
-    public static PurchasedLottoDTO purchasedLottoToDTO(PurchasedLottoNumbers purchasedLottoNumbers) {
+    public static PurchasedLottoDTO purchasedLottoToDTO(PurchasedLotto purchasedLottoNumbers) {
         int purchasedLottoCount = purchasedLottoNumbers.getPurchasedLotto().size();
         List<Lotto> purchasedLotto = new ArrayList<>();
         for (int i = 0; i < purchasedLottoCount; i++) {

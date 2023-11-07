@@ -4,10 +4,10 @@ import static lotto.validatior.InputWinningBonusNumberValidator.validateWinningB
 
 import java.util.List;
 
-public class LottoWinningBonusNumber {
+public class WinningBonusNumber {
     private final int winningBonusNumber;
 
-    public LottoWinningBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+    public WinningBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
         validateWinningBonusNumberAlreadyExists(bonusNumber, winningNumbers);
         this.winningBonusNumber = bonusNumber;
     }

@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
 import java.util.List;
 import lotto.Lotto;
-import lotto.domain.PurchasedLottoNumbers;
+import lotto.domain.PurchasedLotto;
 import lotto.domain.User;
 import lotto.domain.dto.PurchasedLottoDTO;
 import org.junit.jupiter.api.Assertions;
@@ -23,7 +23,7 @@ public class LottoServiceTest {
         User user = new User(10000);
 
         //when
-        PurchasedLottoNumbers purchasedLottoNumbers = lottoGenerator(user.getAmount());
+        PurchasedLotto purchasedLottoNumbers = lottoGenerator(user.getAmount());
         List<Lotto> purchasedLotto = purchasedLottoNumbers.getPurchasedLotto();
 
         //then
@@ -35,10 +35,10 @@ public class LottoServiceTest {
     @DisplayName("생성된 로또가 출력되는지 검사한다.")
     public void 로또_출력() throws Exception {
         //given
-        PurchasedLottoNumbers purchasedLottoNumbers = lottoGenerator(3000);
+        PurchasedLotto purchasedLotto = lottoGenerator(3000);
 
         //when
-        PurchasedLottoDTO purchasedLottoDTO = purchasedLottoToDTO(purchasedLottoNumbers);
+        PurchasedLottoDTO purchasedLottoDTO = purchasedLottoToDTO(purchasedLotto);
 
         String lottoDTO1 = Arrays.toString(purchasedLottoDTO.getPurchasedLotto().get(0).getNumbers().toArray());
         String lottoDTO2 = Arrays.toString(purchasedLottoDTO.getPurchasedLotto().get(1).getNumbers().toArray());
@@ -46,10 +46,10 @@ public class LottoServiceTest {
 
         //then
         Assertions.assertEquals(
-                Arrays.toString(purchasedLottoNumbers.getPurchasedLotto().get(0).getNumbers().toArray()), lottoDTO1);
+                Arrays.toString(purchasedLotto.getPurchasedLotto().get(0).getNumbers().toArray()), lottoDTO1);
         Assertions.assertEquals(
-                Arrays.toString(purchasedLottoNumbers.getPurchasedLotto().get(1).getNumbers().toArray()), lottoDTO2);
+                Arrays.toString(purchasedLotto.getPurchasedLotto().get(1).getNumbers().toArray()), lottoDTO2);
         Assertions.assertEquals(
-                Arrays.toString(purchasedLottoNumbers.getPurchasedLotto().get(2).getNumbers().toArray()), lottoDTO3);
+                Arrays.toString(purchasedLotto.getPurchasedLotto().get(2).getNumbers().toArray()), lottoDTO3);
     }
 }

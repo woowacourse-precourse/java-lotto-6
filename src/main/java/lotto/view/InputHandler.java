@@ -1,10 +1,8 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.constant.PrintMessages;
-import lotto.validators.InputValidator;
-
 import java.util.List;
+import camp.nextstep.edu.missionutils.Console;
+import lotto.validators.InputValidator;
 
 public class InputHandler {
     public static String purchasePrice() {

@@ -1,11 +1,9 @@
 package lotto.model;
 
-import lotto.constant.LottoRank;
+import static lotto.constant.LottoConfig.TOTAL_CHOICE_NUMBER;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static lotto.constant.LottoConfig.TOTAL_CHOICE_NUMBER;
+import lotto.constant.LottoRank;
 
 public class Lotto {
     private final List<Integer> numbers;

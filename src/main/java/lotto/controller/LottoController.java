@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.constant.LottoRank;
-import lotto.constant.PrintMessages;
 import lotto.model.LottoStore;
 import lotto.model.Lottos;
 import lotto.model.WinningNumber;

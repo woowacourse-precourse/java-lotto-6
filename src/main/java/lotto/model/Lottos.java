@@ -1,9 +1,8 @@
 package lotto.model;
 
-import lotto.constant.LottoRank;
-
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.LottoRank;
 
 public class Lottos {
     private final List<Lotto> lottos;

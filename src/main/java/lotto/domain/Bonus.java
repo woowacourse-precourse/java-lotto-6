@@ -9,4 +9,8 @@ public class Bonus {
         BonusNumberValidator.validateBonusNumber(number, winningLotto);
         this.number = number;
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

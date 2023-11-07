@@ -7,7 +7,6 @@ import lotto.model.Lotto;
 import lotto.model.Prize;
 
 public class OutputView {
-
     private static final String PRIZE_FORMAT = "%d개 일치 (%s) - %d개\n";
     private static final String PRIZE_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
 

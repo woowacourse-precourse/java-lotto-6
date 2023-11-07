@@ -1,12 +1,16 @@
 package lotto.controller;
 
-import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoPurchase;
+import lotto.domain.LottoResult;
 import lotto.domain.Money;
 import lotto.domain.WinningNumber;
+import lotto.domain.enums.LottoRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoController {
     private Money money;
@@ -15,6 +19,8 @@ public class LottoController {
 
     public void start() {
         initialize();
+        List<LottoRank> ranks = getRanks(lottos, winningNumber);
+        LottoResult lottoResult = new LottoResult(ranks);
     }
 
     private void initialize() {
@@ -82,5 +88,16 @@ public class LottoController {
             System.out.println(e.getMessage());
             return getWinningNumber(winningLotto, inputBonusNumber());
         }
+    }
+
+    private List<LottoRank> getRanks(List<Lotto> lottos, WinningNumber winningNumber) {
+        List<LottoRank> ranks = new ArrayList<>();
+
+        for (Lotto lotto : lottos) {
+            LottoRank rank = LottoRank.getResult(lotto, winningNumber);
+            ranks.add(rank);
+        }
+
+        return ranks;
     }
 }

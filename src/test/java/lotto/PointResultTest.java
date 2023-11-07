@@ -4,9 +4,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import constants.Grade;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class PointResultTest {
     @Test
@@ -38,6 +42,25 @@ class PointResultTest {
                         + Grade.FOURTH.getPrizeMoney();
 
         //When & Then
+        assertThat(result).isEqualTo(expectedResult);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"3.0, 8000","'3.0, 4.0', 15000"}, delimiter = ',')
+    @DisplayName("수익률을 계산한다.")
+    void calculateEarningRate(String inputPoints, int inputMoney) {
+        //Given
+        List<Double> points = Arrays.stream(inputPoints.split(","))
+                .map(Double::valueOf)
+                .collect(Collectors.toList());
+        PointResult pointResult = new PointResult(points);
+        Money money = new Money(inputMoney);
+
+        //When
+        double result = pointResult.calculateEarningRate(money);
+        double expectedResult = (double) pointResult.calculateTotalPrizeMoney() / money.getMoney() * 100;
+
+        //Then
         assertThat(result).isEqualTo(expectedResult);
     }
 }

@@ -2,7 +2,9 @@ package lotto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Domain {
@@ -22,10 +24,16 @@ public class Domain {
         return rank;
     }
 
-    public List<Rank> allRanking(List<Integer> winningNums,Integer bonus,List<Lotto> lottoes){
-        return lottoes.stream()
-                .map(lotto -> ranking(winningNums,bonus,lotto))
-                .collect(Collectors.toList());
+    public Map<Rank,Integer> allRanking(List<Integer> winningNums,Integer bonus,List<Lotto> lottoes){
+        Map<Rank,Integer> allRankingResult = new HashMap<>();
+        for(Rank rank:Rank.values()){
+            allRankingResult.put(rank,0);
+        }
+        for(Lotto lotto : lottoes){
+            Rank rankingResult = ranking(winningNums,bonus,lotto);
+            allRankingResult.replace(rankingResult,allRankingResult.get(rankingResult)+1);
+        }
+        return allRankingResult;
     }
 
     public int calculateProfit(List<Rank> rankingResults){

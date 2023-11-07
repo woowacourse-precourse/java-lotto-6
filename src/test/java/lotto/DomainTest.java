@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 class DomainTest {
     Domain domain;
@@ -34,11 +35,15 @@ class DomainTest {
         lottoes.add(new Lotto(Arrays.asList(1,2,3,4,5,7)));
         lottoes.add(new Lotto(Arrays.asList(1,2,3,4,5,6)));
         lottoes.add(new Lotto(Arrays.asList(7,8,10,1,2,3)));
+        lottoes.add(new Lotto(Arrays.asList(5,6,7,8,9,10)));
 
-        List<Rank> rankingResult = domain.allRanking(winningNums,bonus,lottoes);
+        Map<Rank,Integer> rankingResult = domain.allRanking(winningNums,bonus,lottoes);
 
-        Assertions.assertThat(rankingResult)
-                .contains(Rank.FIRST_PLACE,Rank.SECOND_PLACE,Rank.FIFTH_PLACE);
+        Assertions.assertThat(rankingResult).contains(
+                Assertions.entry(Rank.FIRST_PLACE,1)
+                ,Assertions.entry(Rank.SECOND_PLACE,1)
+                ,Assertions.entry(Rank.FIFTH_PLACE,1)
+                ,Assertions.entry(Rank.NOT_WIN,1));
     }
 
     @Test

@@ -3,8 +3,8 @@ package lotto.view;
 public enum ExceptionMessage {
 
     inputPurchaseAmountError("ERROR"),
-    inputWinningNumbersSizeError("Error"),
-    NumberFormatError("Error");
+    inputWinningNumbersSizeError("ERROR"),
+    NumberFormatError("ERROR");
 
 
     private String errorMessage;

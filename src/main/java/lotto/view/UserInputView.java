@@ -12,7 +12,7 @@ public class UserInputView {
             LottoController.buyLottoTickets(Long.parseLong(Console.readLine()));
 
         }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            exceptionTypeMessage(e);
             inputPurchaseAmount();
         }
     }
@@ -22,7 +22,7 @@ public class UserInputView {
             LottoController.putWinningNums(Console.readLine());
 
         }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
+            exceptionTypeMessage(e);
             inputWinningNums();
         }
     }
@@ -33,6 +33,16 @@ public class UserInputView {
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             inputBonusNum();
+        }
+    }
+
+    private static void exceptionTypeMessage(IllegalArgumentException e){
+        if(e instanceof NumberFormatException){
+            System.out.println(ExceptionMessage.NumberFormatError.getErrorMessage());
+            return;
+        }
+        if(e instanceof IllegalArgumentException){
+            System.out.println(e.getMessage());
         }
     }
 }

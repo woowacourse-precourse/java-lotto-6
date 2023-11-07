@@ -1,7 +1,7 @@
 package lotto.model;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +22,12 @@ public class Statistic {
 
     private static Map<LottoRank, Integer> makeResult(final List<Integer> matchedNumberCount,
                                                       final List<Boolean> includeBonusNumber) {
-        Map<LottoRank, Integer> playerRank = new HashMap<>();
-
         int lottoCount = matchedNumberCount.size();
-        for (int index = 0; index < lottoCount; index++) {
-            LottoRank rank = determineRank(matchedNumberCount.get(index), includeBonusNumber.get(index));
+
+        Map<LottoRank, Integer> playerRank = new EnumMap<>(LottoRank.class);
+
+        for (int count = 0; count < lottoCount; count++) {
+            LottoRank rank = determineRank(matchedNumberCount.get(count), includeBonusNumber.get(count));
             playerRank.put(rank, playerRank.getOrDefault(rank, DEFAULT_COUNT) + COUNT);
         }
 
@@ -39,7 +40,7 @@ public class Statistic {
         }
 
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.getMatchedCount() == matchedCount && rank.isIncludeBonus() == false)
+                .filter(rank -> rank.getMatchedCount() == matchedCount && !rank.isIncludeBonus())
                 .findFirst()
                 .orElse(LottoRank.NON_RANK);
     }

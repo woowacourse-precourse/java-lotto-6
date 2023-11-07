@@ -4,6 +4,8 @@
 1. 구입금액 입력
    - 1000원으로 나누어 구입 개수 계산
    - 1000원 단위가 아닐 경우 `IllegalArgumentException`를 발생시킨다.
+   - (Lotto)로또 번호에 중복 숫자가 있을 경우 `IllegalArgumentException`를 발생시킨다.
+   - (Lotto)번호가 1~45 사이가 아닐 경우 `IllegalArgumentException`를 발생시킨다.
 2. 당첨 번호 입력
    - 빈 문자가 있을 경우 삭제
    - `,`로 split하여 정수로 변환
@@ -12,7 +14,8 @@
 3. 보너스 번호 입력
    - 문자를 정수로 변환
       - 정수가 아닐 경우 `IllegalArgumentException`를 발생시킨다.
-
+   - 당첨 번호에 보너스 번호와 중복 숫자가 있을 경우 `IllegalArgumentException`를 발생시킨다.
+   - 번호가 1~45 사이가 아닐 경우 `IllegalArgumentException`를 발생시킨다.
 
 ## 출력
 1. 랜덤 로또 번호 출력
@@ -36,3 +39,6 @@
 ## 에러
 - `[ERROR] ` 의 템플릿을 사용할 수 있도록 에러 클래스 작성
 
+
+# 명시되지 않은 조건에 대해 추가 정의
+- 사용자가 잘못된 값을 입력할 경우, 그 부분에 대한 입력을 **한 번만** 다시 받는다.

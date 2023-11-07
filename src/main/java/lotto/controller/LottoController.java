@@ -31,6 +31,11 @@ public class LottoController {
     public void startLottoGame() {
         int purchaseAmount = getPurchaseAmount();
         showLottoTicketNumbers(purchaseAmount);
+        getWinningNumbersFromUser();
+    }
+
+    private void getWinningNumbersFromUser() {
+        outputView.askWinningNumbers();
     }
 
     private void showLottoTicketNumbers(int purchaseAmount) {

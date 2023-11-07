@@ -24,4 +24,9 @@ public class OutputView {
             System.out.println(joiner);
         }
     }
+
+    public void askWinningNumbers() {
+        System.out.println();
+        System.out.println(Messages.ASK_WINNING_NUMBERS_MESSAGE.getMessage());
+    }
 }

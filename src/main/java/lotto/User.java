@@ -68,4 +68,7 @@ public class User {
         }
     }
 
+    public static void printRateOfReturn(double rateOfReturn){
+        System.out.println(String.format(PRINT_RATE_OF_RETURN, rateOfReturn));
+    }
 }

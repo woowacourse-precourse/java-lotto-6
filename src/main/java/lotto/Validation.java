@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,6 +32,7 @@ public class Validation {
         validateNumberCount(splittedInput);
         List<Integer> numberInputs = validateIntegers(splittedInput);
         validateNumbersRange(numberInputs);
+        validateWinningNumberUnique(numberInputs);
         return numberInputs;
     }
 
@@ -65,6 +67,14 @@ public class Validation {
         }
     }
 
+    private static void validateWinningNumberUnique(List<Integer> numberInputs){
+        for (int input : numberInputs){
+            if (Collections.frequency(numberInputs, input) != 1){
+                throw new IllegalArgumentException(INPUT_WINNING_NUMBER_UNIQUE_EXCEPTION_MSG);
+            }
+        }
+    }
+
     private static void validateNumberRange(int input){
         if (input < 1 || input > 45){
             throw new IllegalArgumentException(INPUT_NUMBER_RANGE_EXCEPTION_MSG);
@@ -74,12 +84,12 @@ public class Validation {
     public static void validateBonusNumber(String input, List<Integer> winningNumber) throws IllegalArgumentException{
         int number = validateInteger(input);
         validateNumberRange(number);
-        validateUnique(number,winningNumber);
+        validateBonusNumberUnique(number, winningNumber);
     }
 
-    private static void validateUnique(int number, List<Integer> winningNumber){
+    private static void validateBonusNumberUnique(int number, List<Integer> winningNumber){
         if (winningNumber.contains(number)){
-            throw new IllegalArgumentException(INPUT_NUMBER_UNIQUE_EXCEPTION_MSG);
+            throw new IllegalArgumentException(INPUT_BONUS_NUMBER_UNIQUE_EXCEPTION_MSG);
         }
     }
 }

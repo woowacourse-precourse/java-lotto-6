@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Validator {
     private static final int NATURAL_NUMBER_START = 1;
+
     private Validator() {
     }
 
@@ -40,6 +41,13 @@ public class Validator {
     public static void validateUniqueLottoNumbers(List<Integer> numbers) {
         if (numbers.size() != numbers.stream().distinct().count()) {
             ErrorMessage.printDuplicateMessage();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateLottoCount(List<Integer> numbers) {
+        if (numbers.size() != Constants.LOTTO_SIZE) {
+            ErrorMessage.printSizeErrorMessage();
             throw new IllegalArgumentException();
         }
     }

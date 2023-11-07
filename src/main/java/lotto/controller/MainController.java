@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.model.BonusNumber;
 import lotto.model.LottoTickets;
 import lotto.model.OrderAmount;
 import lotto.model.WinningNumber;
@@ -14,6 +15,7 @@ public class MainController {
         LottoTickets lottoTickets = purchaseLottoTickets();
         view.printLottoTickets(lottoTickets.printTickets());
         WinningNumber winningNumber = new WinningNumber(view.askWinningNumbers());
+        BonusNumber bonusNumber = new BonusNumber(view.askBonusNumber());
         Console.close();
     }
 

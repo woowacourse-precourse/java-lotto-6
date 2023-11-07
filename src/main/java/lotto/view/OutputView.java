@@ -13,6 +13,7 @@ public class OutputView {
     public static void showResult(HashMap<Rank, Integer> result) {
         System.out.println("당첨 통계\n---");
         for (Rank rank : Rank.values()) {
+            if (rank == Rank.NONE) continue;
             System.out.println(rank.getMessage() + result.get(rank) + "개");
         }
     }

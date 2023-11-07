@@ -25,6 +25,14 @@ public final class LottoInputView {
         return convertToIntegerList(winningLottoNumbers);
     }
 
+    public static int inputBonusNumber() {
+        LottoOutputView.printBonusNumberMessage();
+        String bonusNumber = Console.readLine();
+        LottoInputValidator.validateNumeric(bonusNumber);
+
+        return Integer.parseInt(bonusNumber);
+    }
+
     private static List<Integer> convertToIntegerList(String target) {
         String[] split = target.split(",");
         return Arrays.stream(split)

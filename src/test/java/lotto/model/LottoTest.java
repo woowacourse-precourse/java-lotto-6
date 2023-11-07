@@ -43,7 +43,7 @@ class LottoTest {
 
     @Test
     @DisplayName("로또 번호를 비교했을 때 몇 개가 일치하는지 확인한다")
-    public void testMatchNumbers() {
+    void testMatchNumbers() {
         List<Integer> lottoNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(lottoNumbers);
 

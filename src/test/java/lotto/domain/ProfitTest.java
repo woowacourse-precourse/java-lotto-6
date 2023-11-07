@@ -20,7 +20,7 @@ public class ProfitTest {
     void check_31500000() {
         LottoResult lottoResult_1500000 = LottoResult.of(5, false);
         lottoResult_1500000.setResult();
-        LottoResult lottoResult_30000000 = LottoResult.of(6, true);
+        LottoResult lottoResult_30000000 = LottoResult.of(5, true);
         lottoResult_30000000.setResult();
         Profit profit = Profit.from(100000);
         assertThat(profit.getProfit()).isEqualTo(31500.0);

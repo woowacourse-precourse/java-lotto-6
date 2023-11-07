@@ -17,8 +17,7 @@ public class Profit {
         int sum = Arrays.stream(MatchingCase.values())
                 .mapToInt(matchingCase -> matchingCase.getPrize() * matchingCase.getWinningCount())
                 .sum();
-        double profit = (double) sum / purchase * 100;
-        return (double) Math.round(profit * 100) / 100;
+        return (double) sum / purchase * 100;
     }
 
     public double getProfit() {

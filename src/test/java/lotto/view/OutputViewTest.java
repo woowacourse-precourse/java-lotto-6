@@ -13,6 +13,8 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCollection;
 import lotto.domain.LottoCount;
+import lotto.domain.LottoResult;
+import lotto.domain.Profit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -57,4 +59,19 @@ public class OutputViewTest {
                         + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
                         + "6개 일치 (2,000,000,000원) - 1개\n");
     }
+
+    @Test
+    void check_profit() {
+        LottoResult lottoResult_1500000 = LottoResult.of(5, false);
+        lottoResult_1500000.setResult();
+        LottoResult lottoResult_30000000 = LottoResult.of(5, true);
+        lottoResult_30000000.setResult();
+        Profit profit = Profit.from(100000);
+
+        OutputView.printProfit(profit.getProfit());
+
+        assertThat(outputStream.toString())
+                .hasToString("총 수익률은 31500.0%입니다.");
+    }
+
 }

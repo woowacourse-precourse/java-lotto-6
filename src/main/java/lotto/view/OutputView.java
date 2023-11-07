@@ -38,4 +38,8 @@ public class OutputView {
             System.out.printf("%d개 일치, 보너스 볼 일치 (%s원) - %d개" + NEW_LINE, matchingValue, prize, winningCount);
         }
     }
+
+    public static void printProfit(double profit) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", profit);
+    }
 }

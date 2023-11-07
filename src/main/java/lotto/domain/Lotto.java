@@ -52,4 +52,8 @@ public class Lotto {
         return lotto.stream().anyMatch(bonusNumber::isEquals);
     }
 
+    @Override
+    public String toString() {
+        return lotto.toString();
+    }
 }

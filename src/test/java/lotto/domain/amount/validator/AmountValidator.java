@@ -14,8 +14,8 @@ public class AmountValidator {
 
     public static void validateAmount(final int amount) {
         AMOUNT_VALIDATOR.validateAmountIsPositive(amount);
+        AMOUNT_VALIDATOR.validateAmountIsAbove(amount);
         AMOUNT_VALIDATOR.validateAmountIsDivisible(amount);
-        // 1000 보다 큰 수 와야
     }
 
     private void validateAmountIsPositive(final int amount) {
@@ -26,6 +26,16 @@ public class AmountValidator {
 
     private boolean isPositive(final int amount) {
         return amount > ZERO_VALUE;
+    }
+
+    private void validateAmountIsAbove(final int amount) {
+        if (!isAbove(amount)) {
+            throw new IllegalStateAmountException(AmountExceptionStatus.AMOUNT_IS_NOT_ABOVE);
+        }
+    }
+
+    private boolean isAbove(final int amount) {
+        return amount >= ALLOWED_MIN_AMOUNT_VALUE;
     }
 
     private void validateAmountIsDivisible(final int amount) {

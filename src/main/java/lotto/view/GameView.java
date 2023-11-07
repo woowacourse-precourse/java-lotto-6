@@ -1,8 +1,8 @@
 package lotto.view;
 
-public class GameView {
+import static lotto.constant.Constant.ERROR_MESSAGE_FRONT;
 
-    private final String ERROR_MESSAGE_FRONT = "[ERROR] ";
+public class GameView {
 
     public void errorMessageView(String errorMessage) {
         System.out.println(ERROR_MESSAGE_FRONT + errorMessage);

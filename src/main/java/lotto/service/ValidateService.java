@@ -1,10 +1,9 @@
 package lotto.service;
 
+import static lotto.constant.Constant.LOTTO_PRICE_FOR_ONE;
+import static lotto.constant.ErrorMessage.*;
+
 public class ValidateService {
-
-    private final Integer LOTTO_PRICE_FOR_ONE = 1000;
-
-
     public int validateBuyLottoInput(String buyPriceInput) {
         int buyPrice = parseIntPrice(buyPriceInput);
         isMultipliesOf1000(buyPrice);
@@ -16,14 +15,14 @@ public class ValidateService {
         try {
             buyPrice = Integer.parseInt(buyPriceInput);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("로또 구입 금액은 정수여야 합니다.");
+            throw new IllegalArgumentException(ERROR_BUY_PRICE_IS_NOT_INTEGER);
         }
         return buyPrice;
     }
 
     private void isMultipliesOf1000(int buyPrice) {
         if (buyPrice % LOTTO_PRICE_FOR_ONE != 0) {
-            throw new IllegalArgumentException("로또 구입 금액은 1,000원 단위어야 합니다.");
+            throw new IllegalArgumentException(ERROR_BUY_PRICE_IS_NOT_MULTIPLE_Of_1000);
         }
     }
 }

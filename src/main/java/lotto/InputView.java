@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.config.LottoGameMessage;
 import lotto.config.LottoGameRule;
 import lotto.exception.InvalidSizeException;
 import lotto.exception.NonNumericAmountException;
@@ -15,17 +16,16 @@ public class InputView {
         this.receiver = receiver;
     }
 
-    private static int convertToInt(String money) {
-        try {
-            return Integer.parseInt(money);
-        } catch (NumberFormatException e) {
-            throw new NonNumericAmountException();
-        }
-    }
+    public Money getMoney() {
+        System.out.println(LottoGameMessage.INPUT_GET_MONEY.message());
 
-    public int getMoney() {
-        String money = receiver.readLine();
-        return convertToInt(money);
+        int money = inputMoney();
+        try {
+            return new Money(money);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getMoney();
+        }
     }
 
     public List<Integer> getWinningNumbers() {
@@ -44,6 +44,24 @@ public class InputView {
         }
 
         return list;
+    }
+
+    private int inputMoney() {
+        try {
+            String money = receiver.readLine();
+            return convertToInt(money);
+        } catch (NonNumericAmountException e) {
+            System.out.println(e.getMessage());
+            return inputMoney();
+        }
+    }
+
+    private int convertToInt(String money) {
+        try {
+            return Integer.parseInt(money);
+        } catch (NumberFormatException e) {
+            throw new NonNumericAmountException();
+        }
     }
 }
 

@@ -1,6 +1,6 @@
 package lotto.util;
 
-import lotto.support.CalRevenue;
+import lotto.support.RevenueCalculator;
 import lotto.support.Rate;
 
 import java.util.HashMap;
@@ -17,18 +17,18 @@ public class ResultOutputManager {
     private final String REVENUE = "총 수익률은 %.1f%%입니다.\n";
 
     private final List<Rate> result;
-    private final CalRevenue calRevenue;
+    private final RevenueCalculator revenueCalculator;
 
 
     public ResultOutputManager(List<Rate> result) {
         this.result = result;
-        this.calRevenue = new CalRevenue(result);
+        this.revenueCalculator = new RevenueCalculator(result);
     }
 
     public void print() {
-        calRevenue.cal();
-        HashMap<String, Integer> count = calRevenue.getCount();
-        double revenue = calRevenue.getRevenue();
+        revenueCalculator.cal();
+        HashMap<String, Integer> count = revenueCalculator.getCount();
+        double revenue = revenueCalculator.getRevenue();
 
         System.out.println(SUMMING_UP);
         System.out.println(LINE);

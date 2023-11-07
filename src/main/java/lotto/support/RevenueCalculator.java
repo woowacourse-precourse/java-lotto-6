@@ -3,14 +3,14 @@ package lotto.support;
 import java.util.HashMap;
 import java.util.List;
 
-public class CalRevenue {
+public class RevenueCalculator {
     private final List<Rate> result;
 
     private final HashMap<String, Integer> count = new HashMap<>();
 
     private double revenue;
 
-    public CalRevenue(List<Rate> result) {
+    public RevenueCalculator(List<Rate> result) {
         this.result = result;
 
     }

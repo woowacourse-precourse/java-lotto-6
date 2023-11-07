@@ -57,7 +57,7 @@ class InputServiceTest extends NsTest {
         assertSimpleTest(() -> {
             // GIVEN, WHEN
             runException(
-                    "1000",
+                    TEST_STANDARD_EXPENSE,
                     "a, 2, 3, 4, 5, 6"
                     );
 
@@ -74,8 +74,8 @@ class InputServiceTest extends NsTest {
         assertSimpleTest(() -> {
             // GIVEN, WHEN
             runException(
-                    "1000",
-                    "1,2,3,4,5,6",
+                    TEST_STANDARD_EXPENSE,
+                    TEST_STANDARD_WINNINGLOTTO,
                     "a"
             );
 
@@ -90,8 +90,8 @@ class InputServiceTest extends NsTest {
         assertSimpleTest(() -> {
             // GIVEN, WHEN
             runException(
-                    "1000",
-                    "1,2,3,4,5,6",
+                    TEST_STANDARD_EXPENSE,
+                    TEST_STANDARD_WINNINGLOTTO,
                     "46"
             );
 
@@ -106,7 +106,7 @@ class InputServiceTest extends NsTest {
         assertSimpleTest(() -> {
             // GIVEN, WHEN
             runException(
-                    "1000",
+                    TEST_STANDARD_EXPENSE,
                     "1,2,3,4,5,6",
                     "1"
             );

@@ -29,7 +29,7 @@ class LottoTest {
     @Test
     void checkNumbersTest() {
         Lotto l = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Integer result = l.checkNumbers(List.of(1, 2, 3, 4, 15, 16));
+        Integer result = l.compareNumbers(List.of(1, 2, 3, 4, 15, 16));
         assertThat(result).isEqualTo(4);
     }
 

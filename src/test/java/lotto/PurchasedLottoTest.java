@@ -31,7 +31,7 @@ public class PurchasedLottoTest {
         assertRandomUniqueNumbersInRangeTest(() -> {
                     PurchasedLotto purchasedLotto = new PurchasedLotto(1);
                     List<WinType> winTypes = purchasedLotto.checkLotto(List.of(1, 12, 13, 4, 15, 16), 6);
-                    assertThat(winTypes).contains(WinType.NONE);
+                    assertThat(winTypes).isEmpty();
                 },
                 List.of(1, 2, 3, 4, 5, 6));
     }

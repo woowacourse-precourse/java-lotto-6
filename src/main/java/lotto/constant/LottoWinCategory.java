@@ -40,6 +40,17 @@ public enum LottoWinCategory {
         return values;
     }
 
+    public static LottoWinCategory getWinningCategoryByCountAndBonus(int count, boolean bonus, List<LottoWinCategory> lottoWinningCategories) {
+        if (count == 5 && bonus) {
+            return SECOND_PRIZE;
+        }
+        return lottoWinningCategories.stream()
+                .filter(category -> category.isMatched(count))
+                .findFirst()
+                .orElse(LottoWinCategory.NO_PRIZE);
+    }
+
+
     public boolean isMatched(int count) {
         return this.count == count;
     }

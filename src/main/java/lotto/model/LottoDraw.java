@@ -26,12 +26,10 @@ public class LottoDraw {
 
     public LottoWinCategory getWinning(Lotto lotto) {
         List<Integer> lottoNumbers = lotto.getNumbers();
+        boolean hasBonus = lottoNumbers.contains(bonusNumber.getNumber());
         lottoNumbers.retainAll(winningNumbers.getNumbers());
 
-        return lottoWinCategory.stream()
-                .filter(category -> category.isMatched(lottoNumbers.size()))
-                .findFirst()
-                .orElse(LottoWinCategory.NO_PRIZE);
+        return LottoWinCategory.getWinningCategoryByCountAndBonus(lottoNumbers.size(), hasBonus, lottoWinCategory);
     }
 
     public Map<LottoWinCategory, Integer> getWinnings(LottoTicket lottoTicket) {

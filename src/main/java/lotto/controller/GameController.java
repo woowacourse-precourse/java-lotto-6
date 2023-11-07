@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.LottoGenerator;
+import lotto.domain.LottoSeller;
 import lotto.Validator.LottoValidator;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBuyer;
@@ -13,8 +13,8 @@ public class GameController {
 
     public void run() {
 
-        int lottoQuantity = purchaseLottoQuantity();
-        List<Lotto> lottoTickets = LottoGenerator.createLottoTickets(lottoQuantity);
+        int lottoQuantity = purchaseLottoQuantity(); // LottoManager가 담당
+        List<Lotto> lottoTickets = LottoSeller.createLottoTickets(lottoQuantity);
 
         LottoBuyer lottoBuyer = new LottoBuyer(lottoTickets);
 
@@ -41,10 +41,10 @@ public class GameController {
     private int purchaseLottoQuantity() {
         while (true) {
             try {
-                int purchaseAmount = InputView.requestLottoPurchaseAmount();// requestWinningLottoNumbers 처럼 내부로직에서 parseInt를 다루지 않을 것 인지에 대해 고민해봐야함.
+                int purchaseAmount = InputView.requestLottoPurchaseAmount();
                 LottoValidator.isValidPurchaseAmount(purchaseAmount);
 
-                return purchaseAmount / 1000;
+                return LottoSeller.exchangeTicketsForPurchaseAmount(purchaseAmount);
             } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] 구입 금액은 1000원 단위여야 합니다. 구입금액을 다시 입력해주세요.");
             }

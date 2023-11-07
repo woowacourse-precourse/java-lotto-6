@@ -29,7 +29,7 @@ public class Game {
     private LottoView lottoView = new LottoView();
     private BonusNumberView bonusNumberView = new BonusNumberView();
     private Purchase purchase;
-    private List<List<Integer>> AllRandomNumbers = new ArrayList<>();
+    private List<List<Integer>> allRandomNumbers = new ArrayList<>();
     private RandomNumber randomNumber = new RandomNumber();
     private RandomNumberView randomNumberView = new RandomNumberView();
     private List<Integer> numbers;
@@ -51,8 +51,8 @@ public class Game {
     }
 
     private void allRandomNumbers() {
-        AllRandomNumbers = randomNumber.generateAllRandomNumbers(ticket.getTicket());
-        randomNumberView.printAllRandomNumbers(AllRandomNumbers);
+        allRandomNumbers = randomNumber.generateAllRandomNumbers(ticket.getTicket());
+        randomNumberView.printAllRandomNumbers(allRandomNumbers);
     }
 
 
@@ -88,7 +88,7 @@ public class Game {
 
 
     private List<ComPareNumber> generateCompareNumbers(List<Integer> numbers, int bonusNumber) {
-        return AllRandomNumbers.stream()
+        return allRandomNumbers.stream()
                 .map(randomNumbers -> createAndCalculateCompareNumber(numbers, randomNumbers,
                         bonusNumber))
                 .collect(Collectors.toList());

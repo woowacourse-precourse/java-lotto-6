@@ -1,18 +1,19 @@
 package lotto.validator;
 
+import lotto.config.Config;
 import lotto.view.ErrorMessage;
 
 public class PurchaseValidator {
     public static void validateIntegerInput(String purchaseAmount) {
         try {
-            Integer.parseInt(purchaseAmount); // 입력값은 정수입니다.
+            Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_DIGIT); // 입력값은 정수가 아닙니다.
+            throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_DIGIT);
         }
     }
 
     public static void validateIsDivisible(int purchaseAmount) {
-        if(purchaseAmount%1000!=0){
+        if (purchaseAmount % Config.LOTTO_PRICE != Config.ZERO) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_IS_NOT_DIVIDE);
         }
     }

@@ -1,10 +1,11 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.ArrayList;
 import lotto.util.RandomChoice;;
 
 public class User {
-    List<Lotto> lotto;
+    List<Lotto> lotto = new ArrayList<Lotto>();
     private int purchaseAmount;
     
     public User(int purchaseAmount) {
@@ -19,6 +20,10 @@ public class User {
     
     public int getPurchaseAmount(){
         return purchaseAmount;
+    }
+
+    public List<Lotto> getLottoList(){
+        return lotto;
     }
 
 }

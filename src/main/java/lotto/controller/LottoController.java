@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import static lotto.domain.Lotto.createLotto;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoStore;
@@ -14,6 +15,7 @@ public class LottoController {
         respondLottoTicketsHistory(lottoStore.getUserLottoTickets());
         String InputWinningNumbers = requestInputWinningNumbers();
         Lotto winningLotto = createLotto(InputWinningNumbers);
+        int bonusNumber = winningLotto.createBonusNumber(requestBonusNumber());
     }
 
     public String lottoOrderRequest() {
@@ -33,5 +35,9 @@ public class LottoController {
 
     public String requestInputWinningNumbers() {
         return UI.InputWinningNumbers();
+    }
+
+    public String requestBonusNumber() {
+        return UI.InputBonusNumber();
     }
 }

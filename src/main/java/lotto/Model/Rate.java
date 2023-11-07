@@ -8,10 +8,10 @@ public class Rate {
     }
 
     public double calculateWinningRate(Price price) {
-        return price.divideWith(this.totalPrize);
+        return price.makeWinningRate(this.totalPrize);
     }
 
     private int calculate(Result result) {
-        return result.calculateTotalSum();
+        return result.calculateTotalWinningPrize();
     }
 }

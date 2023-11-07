@@ -8,6 +8,18 @@ public class LottoValidator {
 
     public static final int LOTTO_PRICE = 1000;
 
+    public void validateNumbersRange(List<Integer> numbers) {
+        for (int number : numbers) {
+            validateNumberRange(number);
+        }
+    }
+
+    private void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     public void validateDivideByLottoPrice(int amount) {
         if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException();

@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoSetting;
 import lotto.domain.WinningResult;
 import lotto.domain.WinningType;
 
@@ -45,7 +46,15 @@ public class OutputView {
         System.out.println("당첨 통계");
         System.out.println("---");
         printNumberOfWins(winningResult);
-        // todo: 수익률 출력
+        printEarningRate(winningResult);
+    }
+
+    private void printEarningRate(WinningResult winningResult) {
+        long earnings = winningResult.getTotalPrice();
+        long paid = (long) winningResult.getLottoCount()
+                * LottoSetting.PRICE.getValue();
+        double earningRate = (double) earnings / paid * 100;
+        System.out.println(String.format("총 수익률은 %.1f%%입니다.", earningRate));
     }
 
     private void printNumberOfWins(WinningResult winningResult) {

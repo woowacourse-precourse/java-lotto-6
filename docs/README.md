@@ -15,9 +15,9 @@
 - [x] 발행한 로또 수량 및 번호를 출력한다. - OutputView#printPurchasedLottos()
   - 로또 번호는 오름차순으로 정렬해 보여준다.
 - [x] 당첨 결과를 얻는다. - LottoService#getLottoResult()
-- [ ] 당첨 통계를 출력한다.
+- [x] 당첨 통계를 출력한다. - OutputView#printWinningResult()
   - [x] 당첨 내역을 출력한다. - OutputView#printNumberOfWins()
-  - [ ] 수익률을 출력한다.
+  - [x] 수익률을 출력한다. - OutputView#printEarningRate()
     - 수익률은 소수점 둘째 자리에서 반올림한다.
 - [ ] 예외 상황 시 에러 메시지를 출력해야 한다.
   - 에러 문구는 "[ERROR]"로 시작해야 한다.

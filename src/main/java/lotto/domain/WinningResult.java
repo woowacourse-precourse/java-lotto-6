@@ -71,4 +71,8 @@ public class WinningResult {
         return totalPrice;
     }
 
+    public int getLottoCount() {
+        return lottoCount;
+    }
+
 }

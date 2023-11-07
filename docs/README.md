@@ -35,6 +35,7 @@
 #### generateLottos
 - 구입 금액에 따른 로또 티켓들을 생성합니다.
 - 생성된 로또를 출력합니다.
+- 로또는 오름차순으로 정렬되어야 합니다.
 
 #### generateWinningCondition
 - 당첨 번호를 생성합니다.

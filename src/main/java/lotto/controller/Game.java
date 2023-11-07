@@ -26,16 +26,17 @@ public class Game {
     }
 
     private Cash getCash() {
-        int purchaseAmount;
+        return new Cash(getPurchaseAmount());
+    }
+
+    private int getPurchaseAmount() {
         while (true) {
             try {
-                purchaseAmount = InputView.getPurchaseAmount();
-                break;
+                return InputView.getPurchaseAmount();
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
-        return new Cash(purchaseAmount);
     }
 
     private List<Lotto> getLottos(Cash cash) {
@@ -45,35 +46,35 @@ public class Game {
     }
 
     private WinningNumbers getWinningNumbers() {
-        WinningNumber winningNumber = getWinningNumber();
-        BonusNumber bonusNumber = getBonusNumber();
-        return new WinningNumbers(winningNumber, bonusNumber);
+        return new WinningNumbers(getWinningNumber(), getBonusNumber());
     }
 
     private WinningNumber getWinningNumber() {
-        List<Integer> winningNumbers;
+        return new WinningNumber(getNumbers());
+    }
+
+    private List<Integer> getNumbers() {
         while (true) {
             try {
-                winningNumbers = InputView.getWinningNumbers();
-                break;
+                return InputView.getWinningNumbers();
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
-        return new WinningNumber(winningNumbers);
     }
 
     private BonusNumber getBonusNumber() {
-        int number;
+        return new BonusNumber(getNumber());
+    }
+
+    private int getNumber() {
         while (true) {
             try {
-                number = InputView.getBonusNumber();
-                break;
+                return InputView.getBonusNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
-        return new BonusNumber(number);
     }
 
     private List<Rank> getRanks(List<Lotto> lottos, WinningNumbers winningNumbers) {

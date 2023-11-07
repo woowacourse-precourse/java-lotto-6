@@ -4,8 +4,10 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 
+import static lotto.model.LottoConstants.LOTTO_PRICE;
+
 public class WinStatistics {
-    private static final Integer LOTTO_PRICE = 1000;
+
     private static final double PERCENTAGE_UNIT = 100.0;
 
     private final EnumMap<Ranking, Integer> statistics;

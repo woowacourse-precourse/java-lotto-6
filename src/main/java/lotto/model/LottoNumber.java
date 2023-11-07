@@ -4,9 +4,9 @@ import lotto.utils.ErrorMessage;
 
 import java.util.Objects;
 
+import static lotto.model.LottoConstants.*;
+
 public class LottoNumber {
-    private static final Integer NUMBER_MIN_RANGE = 1;
-    private static final Integer NUMBER_MAX_RANGE = 45;
     private static final String LOTTO_NUMBER_RANGE_ERROR = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 
     private final Integer number;
@@ -17,7 +17,7 @@ public class LottoNumber {
     }
 
     private static void validateNumberRange(int number) {
-        if (number < NUMBER_MIN_RANGE || number > NUMBER_MAX_RANGE) {
+        if (number < MIN_LOTTO_RANGE || number > MAX_LOTTO_RANGE) {
             throw new ErrorMessage(LOTTO_NUMBER_RANGE_ERROR);
         }
     }

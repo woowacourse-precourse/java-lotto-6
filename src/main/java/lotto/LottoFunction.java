@@ -7,14 +7,11 @@ import java.util.List;
 
 public class LottoFunction {
 
-    Validator validator = new Validator();
-
-    int divideThousand(String input) {
-        int quotient;
-        validator.isInteger(input);
-        quotient = Integer.parseInt(input) / 1000;
-        validator.isMultipleOfThousand(quotient);
-        return quotient;
+    Integer getQuantity(String input) {
+        Validator.isInteger(input);
+        Integer amount = Integer.parseInt(input);
+        Validator.isMultipleOfThousand(amount);
+        return (amount / 1000);
     }
 
     private List<Integer> generateLottoNumbers() {
@@ -36,9 +33,9 @@ public class LottoFunction {
         List<String> inputNumber = new ArrayList<>(List.of(input.split(",")));
 
         for (String splitInput : inputNumber) {
-            validator.isInteger(splitInput);
+            Validator.isInteger(splitInput);
             int number = Integer.parseInt(splitInput);
-            validator.isInRange(number);
+            Validator.isInRange(number);
             luckyNumber.add(number);
         }
 
@@ -47,5 +44,25 @@ public class LottoFunction {
         }
         return luckyNumber;
     }
+
+    Integer getBonusNumber(String input, HashSet<Integer> luckyNumbers) {
+
+        Validator.isInteger(input);
+        Integer bonusNumber = Integer.parseInt(input);
+
+        Validator.isInRange(bonusNumber);
+
+        if (luckyNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
+        return bonusNumber;
+    }
+
+    void getRank(List<Lotto> lottos, List<Integer> luckyNumbers, Integer bonusNumber) {
+        for (Lotto lotto : lottos) {
+
+        }
+    }
+
 
 }

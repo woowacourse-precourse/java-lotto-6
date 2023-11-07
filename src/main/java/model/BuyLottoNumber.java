@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
@@ -10,7 +12,9 @@ public class BuyLottoNumber {
 	private List<Integer> numbers;
 	
 	public BuyLottoNumber() {
-		this.numbers = getRandomNumberList();
+		List<Integer> numbers = new ArrayList<Integer>(getRandomNumberList());
+		numbers.sort(Comparator.naturalOrder());
+		this.numbers = numbers;
 	}
 	
 	public List<Integer> getNumbers() {

@@ -32,6 +32,9 @@ public class BuyLottoBonusDto {
 		this.lotto = lotto;
 		this.bonus = bonus;
 		this.buyLottoDto = buyLottoDto;
+		
+		WinStats();
+		getRate();
 	}
 
 	public BuyLottoDto getBuyLottoDto() {
@@ -76,17 +79,12 @@ public class BuyLottoBonusDto {
 			int matchNumber = 0;
 			for(int j = 0; j < numbers.size(); j++) {
 				matchNumber = overLap(numbers.get(j), matchNumber);
-				System.out.println(matchNumber);
 			}
 			boolean isBonus = bonusMatch(i);
-			
-			threeMatch(matchNumber);
-			fourMatch(matchNumber);
-			fiveMatch(matchNumber, isBonus);
-			sixMatch(matchNumber);
+			checkWinning(matchNumber, isBonus);
 		}
 	}
-
+	
 	private int overLap(int number, int matchNumber) {
 		for(int lottoNumber : lotto.getNumbers()) {
 			if(lottoNumber == number) {
@@ -94,6 +92,13 @@ public class BuyLottoBonusDto {
 			}
 		}
 		return matchNumber;
+	}
+
+	private void checkWinning(int matchNumber, boolean isBonus) {
+		threeMatch(matchNumber);
+		fourMatch(matchNumber);
+		fiveMatch(matchNumber, isBonus);
+		sixMatch(matchNumber);
 	}
 	
 	private boolean bonusMatch(int i) {
@@ -139,7 +144,7 @@ public class BuyLottoBonusDto {
 		}
 	}
 	
-	public void getRate() {
+	private void getRate() {
 		if(this.income == 0) {
 			this.rateOfProfit = 0;
 			return;

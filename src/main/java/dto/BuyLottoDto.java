@@ -13,11 +13,12 @@ public class BuyLottoDto {
 	private int page;
 	private List<BuyLottoNumber> numberList;
 	
-	public BuyLottoDto(int amount) throws IllegalArgumentException {
-		int page = checkRightAmount(amount);
+	public BuyLottoDto(String amountText) throws IllegalArgumentException {
+		int amount = changeBuyAmount(amountText);
+		checkRightAmount(amount);
 		
 		this.amount = amount;
-		this.page = page;
+		this.page = amount/LOTTO_PRICE;
 		this.numberList = numberList();
 	}
 
@@ -46,10 +47,8 @@ public class BuyLottoDto {
 	    return amountText;
 	}
 
-	public int checkRightAmount(int amount) {
+	private void checkRightAmount(int amount) {
 		InputException.checkRightAmount(amount, LOTTO_PRICE);
-		
-		return amount/LOTTO_PRICE;
 	}
 	
 	private List<BuyLottoNumber> numberList() {

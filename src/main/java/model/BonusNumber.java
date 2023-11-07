@@ -18,7 +18,7 @@ public class BonusNumber {
 		return bonusNumber;
 	}
 	
-	private int changeNumber(String bonusNumberText) {
+	public static int changeNumber(String bonusNumberText) {
 		InputException.checkNumber(bonusNumberText.trim());
 		int bonusNumber = Integer.valueOf(bonusNumberText);
 		

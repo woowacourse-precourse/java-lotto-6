@@ -29,7 +29,7 @@ public class InputException {
 
 	public static void checkNumberRange(List<Integer> numbers) {
 		for(int number : numbers) {
-			if(number < MIN && number > MAX) {
+			if(number < MIN || number > MAX) {
 				throw new IllegalArgumentException(Error.WRONG_NUMBER.getMessage());
 			}
 		}
@@ -43,8 +43,8 @@ public class InputException {
     	}
 	}
 
-	public static void checkNull(String numberText) {
-		if(numberText == null) {
+	public static void checkNull(String text) {
+		if(text == null) {
 			throw new IllegalArgumentException(Error.NULL_VALUE.getMessage());
 		}
 	}

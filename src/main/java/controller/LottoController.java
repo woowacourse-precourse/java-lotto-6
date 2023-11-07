@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import dto.BuyLottoBonusDto;
@@ -21,17 +19,14 @@ public class LottoController {
 		BonusNumber bonus = inputBonusNumber(InputView.getBonusNumberText(), lotto);
 		
 		BuyLottoBonusDto buyLottoBonusDto = new BuyLottoBonusDto(lotto, bonus, buyLottoDto);
-		buyLottoBonusDto.WinStats();
 		OutputView.showWinStats(buyLottoBonusDto);
-		buyLottoBonusDto.getRate();
 		OutputView.showRate(buyLottoBonusDto);
 	}
 
 	public static BuyLottoDto buyLotto(String buyAmountText) {
 		while(true) {
 			try {
-				int buyAmount = BuyLottoDto.changeBuyAmount(buyAmountText);
-				BuyLottoDto buyLottoDto = new BuyLottoDto(buyAmount);
+				BuyLottoDto buyLottoDto = new BuyLottoDto(buyAmountText);
 				showLottoList(buyLottoDto.getNumberList());
 				
 				return buyLottoDto;
@@ -44,10 +39,6 @@ public class LottoController {
 
 	private static void showLottoList(List<BuyLottoNumber> buyLottoNumberList) {
 		System.out.println();
-		for(BuyLottoNumber buyLottoNumber : buyLottoNumberList) {
-			List<Integer> numbers = new ArrayList<>(buyLottoNumber.getNumbers());
-			numbers.sort(Comparator.naturalOrder());
-		}
 		OutputView.showBuyLottoList(buyLottoNumberList);
 	}
 	
@@ -68,9 +59,7 @@ public class LottoController {
 	private static BonusNumber inputBonusNumber(String bonusNumberText, Lotto lotto) {
 		while(true) {
 			try {
-				BonusNumber bonus = new BonusNumber(bonusNumberText, lotto);
-					
-				return bonus;
+				return new BonusNumber(bonusNumberText, lotto);
 			} catch (IllegalArgumentException e) {
 				System.out.println(e);
 				bonusNumberText = InputView.getBonusNumberText();

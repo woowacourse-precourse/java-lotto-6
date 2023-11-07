@@ -1,5 +1,10 @@
 package lotto.controller;
+
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import lotto.model.Lotto;
 import lotto.model.LottoMachine;
 import lotto.model.LottoStatistics;
@@ -25,6 +30,10 @@ public class LottoController { //입력을 받아서 model에 전달, 간단한 
         int purchaseAmount = readAndValidatePurchaseAmount();
 
         ArrayList<Lotto> lottoTickets = generateLottoTickets(purchaseAmount);
+
+        readAndValidateWinningNumber();
+        readAndValidateBonusNumber();
+
     }
 
     private int readAndValidatePurchaseAmount() {
@@ -51,10 +60,48 @@ public class LottoController { //입력을 받아서 model에 전달, 간단한 
         return lottoTickets;
     }
 
+    private void readAndValidateWinningNumber() {
+        boolean vaildWinningNumber = false;
+        while (!vaildWinningNumber) {
+            try {
+                String winningNumberInput = LottoView.readWinningNumber();
+                validateLottoNumber(winningNumberInput);
+                List<String> winningNumber = Arrays.asList(winningNumberInput.split(","));
+                List<Integer> processedWinningNumber = winningNumber.stream()
+                        .map(Integer::parseInt).collect(Collectors.toList());
+                lottoMachine.setWinningNumbers(processedWinningNumber);
+                vaildWinningNumber = true;
+            } catch (IllegalArgumentException e) {
+                LottoView.displayErrorMessage(e);
+            }
+        }
+    }
+
+    private void readAndValidateBonusNumber() {
+        boolean vaildBonusNumber = false;
+        while (!vaildBonusNumber) {
+            try {
+                String bonusNumberInput = LottoView.readBonusNumber();
+                validateNumber(bonusNumberInput);
+                int bonusNumber = Integer.parseInt(bonusNumberInput);
+                lottoMachine.setBonusNumber(bonusNumber);
+                vaildBonusNumber = true;
+            } catch (IllegalArgumentException e) {
+                LottoView.displayErrorMessage(e);
+            }
+        }
+    }
+
     public void validateNumber(String input) {
         checkInputEmpty(input);
         checkForWhitespace(input);
         checkNumeric(input);
+    }
+
+    public void validateLottoNumber(String input) {
+        checkInputEmpty(input);
+        checkForWhitespace(input);
+        checkOtherCharacters(input);
     }
 
     private void checkInputEmpty(String input) {
@@ -72,6 +119,13 @@ public class LottoController { //입력을 받아서 model에 전달, 간단한 
     private void checkNumeric(String input) {
         if (!input.matches("\\d+")) {
             throw new IllegalArgumentException(ERROR_MESSAGE_NOT_ONLY_NUMBER);
+        }
+    }
+
+    private void checkOtherCharacters(String input) {
+        String checkString = input.replace(",", "");
+        if (checkString.isBlank()) {
+            throw new IllegalArgumentException(ERROR_MESSAGE_ONLY_COMMA);
         }
     }
 }

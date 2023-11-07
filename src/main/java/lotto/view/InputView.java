@@ -52,7 +52,7 @@ public class InputView {
             userInput = Console.readLine();
             winningNumber = convertWinningNumber(userInput);
         } while (!lottoException.numberLengthCheckMain(winningNumber));
-        return new WinningLotto(new Lotto(winningNumber), 1);
+        return new WinningLotto(new Lotto(winningNumber), bonusNumberInput(winningNumber));
     }
 
     public List<Integer> convertWinningNumber(String userInput) {
@@ -72,7 +72,9 @@ public class InputView {
         do {
             System.out.println(BONUS_NUMBER_MESSAGE);
             userInput = Console.readLine().trim();
-        } while (false);
+        } while (!lottoException.numberCheck(userInput)
+                || !lottoException.duplicateBonusNumberCheckMain(winningNumber, Integer.parseInt(userInput))
+                || !lottoException.lottoRangeCheckMain(Integer.parseInt(userInput)));
         return Integer.parseInt(userInput.trim());
     }
 }

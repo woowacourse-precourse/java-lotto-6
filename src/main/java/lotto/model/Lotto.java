@@ -7,7 +7,18 @@ public class Lotto {
     public static final int TICKET_PRICE = 1000;
 
     public Lotto(List<Integer> numbers) {
+        validate(numbers);
         this.numbers = numbers;
+    }
+
+    private void validate(List<Integer> numbers) {
+        if (numbers.size() != 6 || hasDuplicateNumbers(numbers)) {
+            throw new IllegalArgumentException("로또 번호는 6개의 서로 다른 숫자여야 합니다.");
+        }
+    }
+
+    private boolean hasDuplicateNumbers(List<Integer> numbers) {
+        return numbers.size() != numbers.stream().distinct().count();
     }
 
     public int calculateMatchingCount(List<Integer> winningNumbers) {
@@ -26,4 +37,3 @@ public class Lotto {
         return numbers;
     }
 }
-

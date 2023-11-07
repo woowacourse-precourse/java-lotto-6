@@ -21,9 +21,18 @@ public class Application {
         printLottoCount(lottoCount);
 
         ArrayList<Lotto> lottoList = makeLottoList(lottoCount);
-        for (Lotto lotto : lottoList) {
-            printLotto(lotto);
-        }
+        printLottoSet(lottoList);
+
+        System.out.println();
+
+        printGetWinNumberMessage();
+        Lotto winLotto = getWinNumber();
+
+        printGetBonusNumberMessage();
+        int bonus = getBonusNumber();
+
+        System.out.println();
+
 
 
     }

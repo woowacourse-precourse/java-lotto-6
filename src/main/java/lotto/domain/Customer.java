@@ -1,14 +1,13 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Customer {
-    private List<Lotto> lottoPapers;
+    private List<Lotto> lottos;
 
-    public void getLotto(List<Lotto> lottoPapers) {
-        this.lottoPapers = lottoPapers;
+    public void setLotto(List<Lotto> lottoPapers) {
+        this.lottos = lottoPapers;
     }
 
     public void insertMoney(final LottoStore lottoStore, final long money) {
@@ -16,10 +15,10 @@ public class Customer {
     }
 
     public void checkWinningNumber(LottoChecker lottoChecker) {
-        lottoChecker.insertLottos(this.lottoPapers);
+        lottoChecker.insertLottos(this.lottos);
     }
 
-    public List<Lotto> showLottoPapers() {
-        return Collections.unmodifiableList(this.lottoPapers);
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(this.lottos);
     }
 }

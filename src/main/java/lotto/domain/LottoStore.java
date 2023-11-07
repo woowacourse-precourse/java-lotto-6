@@ -17,7 +17,7 @@ public class LottoStore {
 
     private long chargedMoney;
     private long lottoAmount;
-    private List<Lotto> lottoPapers;
+    private List<Lotto> lottos;
 
     public void getMoney(final long moneyInput) {
         validateChargedMoney(moneyInput);
@@ -41,7 +41,7 @@ public class LottoStore {
     public void sellLottos(final Customer customer) {
         calculateLottoAmount();
         generateAllLottos();
-        customer.getLotto(this.lottoPapers);
+        customer.setLotto(this.lottos);
     }
 
     public void calculateLottoAmount() {
@@ -49,10 +49,10 @@ public class LottoStore {
     }
 
     public void generateAllLottos() {
-        this.lottoPapers = new ArrayList<>();
+        this.lottos = new ArrayList<>();
 
         LongStream.range(0, this.lottoAmount)
-                .forEach(i -> lottoPapers.add(generateLottoByNumbers(generateLottoNumbers())));
+                .forEach(i -> lottos.add(generateLottoByNumbers(generateLottoNumbers())));
     }
 
     public Lotto generateLottoByNumbers(List<Integer> numbers) {
@@ -76,7 +76,7 @@ public class LottoStore {
         return this.chargedMoney;
     }
 
-    public List<Lotto> showLottoPapers() {
-        return Collections.unmodifiableList(this.lottoPapers);
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(this.lottos);
     }
 }

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Base_Func {
@@ -20,7 +21,14 @@ public class Base_Func {
         if (price % 1000 != 0) {
             throw new IllegalStateException("[ERROR] 로또 금액이 1000으로 나누어 지지 않습니다.");
         }
-        return price/1000;
+        return price / 1000;
+    }
+
+    public static void Print_Purchased_Lotto_list(ArrayList<Lotto> Buy_lotto) {
+        System.out.println("\n" + Buy_lotto.size() + "개를 구매했습니다.");
+        for (Lotto buyLotto : Buy_lotto) {
+            System.out.println(buyLotto.Get_numbers());
+        }
     }
 
 

@@ -63,6 +63,17 @@ public class LottoWinningNumbersTest {
 
         assertThat(bonusNumber.getNumber()).isEqualTo(number);
     }
+    @Test
+    @DisplayName("잘못된 값을 입력시 재 입력한다.")
+    void createBonusNumberIncorrectValue() {
+        consoleInput("1,2,3,4,5,6", "tt" , "7");
+        LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
+        BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
+
+        int number = 7;
+
+        assertThat(bonusNumber.getNumber()).isEqualTo(number);
+    }
 
     private void consoleInput(final String... args) {
         final byte[] buffer = String.join("\n", args).getBytes();

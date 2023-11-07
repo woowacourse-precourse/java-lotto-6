@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.List;
 import lotto.dto.LottoNumberDTO;
+import lotto.dto.ProfitRateDTO;
 
 public class Printer {
     private static Printer printer;
@@ -24,5 +25,9 @@ public class Printer {
             System.out.println(lotto.getLotto());
         }
         System.out.println();
+    }
+
+    public void profitRate(ProfitRateDTO profitRateDTO) {
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRateDTO.getProfitRate());
     }
 }

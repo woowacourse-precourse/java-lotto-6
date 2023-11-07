@@ -22,6 +22,8 @@ public class WinStatesCounterTest {
         WinStatesCounter winStatesCounter = new WinStatesCounter(winningLottoNumbers, lotteries);
         List<WinStateInformationDTO> winStateInformationDTOs = winStatesCounter.getWinStateInformationDTOs();
 
+        System.out.println(winStateInformationDTOs);
+
         // then
         Assertions.assertThat(winStateInformationDTOs)
                 .isEqualTo(expectedWinStateInformationDTOs);
@@ -40,12 +42,11 @@ public class WinStatesCounterTest {
                                 new Lotto(List.of(1, 2, 13, 12, 11, 10))
                         ),
                         List.of(
-                                WinState.FIRST_PLACE.getWinStateInformation(1),
-                                WinState.SECOND_PLACE.getWinStateInformation(1),
-                                WinState.THIRD_PLACE.getWinStateInformation(1),
-                                WinState.FOURTH_PLACE.getWinStateInformation(1),
                                 WinState.FIFTH_PLACE.getWinStateInformation(1),
-                                WinState.NONE.getWinStateInformation(1)
+                                WinState.FOURTH_PLACE.getWinStateInformation(1),
+                                WinState.THIRD_PLACE.getWinStateInformation(1),
+                                WinState.SECOND_PLACE.getWinStateInformation(1),
+                                WinState.FIRST_PLACE.getWinStateInformation(1)
                         )
                 )
         );

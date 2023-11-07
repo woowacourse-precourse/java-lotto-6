@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.WinningLottoNumbers;
 import lotto.dto.LottoNumberMatchDTO;
@@ -26,16 +27,19 @@ public class WinStatesCounter {
                 .toList();
     }
 
-    private void addWinStateCount(WinState winState) {
+    private void addWinStateCount(Optional<WinState> winState) {
+        if (winState.isEmpty()) {
+            return;
+        }
         int currentCount = countPerWinStates.getOrDefault(winState, 0);
         int addedCount = currentCount + 1;
-        countPerWinStates.put(winState, addedCount);
+        countPerWinStates.put(winState.get(), addedCount);
     }
 
     public List<WinStateInformationDTO> getWinStateInformationDTOs() {
         return Arrays.stream(WinState.values())
                 .map(winState -> {
-                    int winningCount = countPerWinStates.get(winState);
+                    int winningCount = countPerWinStates.getOrDefault(winState, 0);
                     return winState.getWinStateInformation(winningCount);
                 })
                 .toList();

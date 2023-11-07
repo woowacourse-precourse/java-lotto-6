@@ -18,7 +18,9 @@ public class CommonValidatorImpl implements CommonValidator {
 	public int validatePrice(String lottoPrice) {
 		validateEmptyString(lottoPrice);
 		validateIsDigit(lottoPrice);
-		return validateRange(lottoPrice);
+		int parsePrice = validateRange(lottoPrice);
+		validateMinus(parsePrice);
+		return parsePrice;
 	}
 
 	@Override
@@ -33,12 +35,46 @@ public class CommonValidatorImpl implements CommonValidator {
 
 	@Override
 	public int validateBonusNumber(String bonusNumber) {
+		validateEmptyString(bonusNumber);
 		validateIsDigit(bonusNumber);
 		return validateLottoRange(bonusNumber);
 	}
 
-	private int validateLottoRange(String lottoNumber) {
-		int parseNumber = validateRange(lottoNumber);
+	private void validateEmptyString(String number) {
+		if (number.isEmpty()) {
+			ErrorOperation.EMPTY_ERROR.apply();
+		}
+	}
+
+	private void validateMinus(int number) {
+		if (number < 0) {
+			ErrorOperation.MINUS_ERROR.apply();
+		}
+	}
+
+	private void validateIsDigit(String number) {
+		int startIndex = 0;
+		if (containDash(number)) {
+			startIndex = 1;
+		}
+		for (int order = startIndex; order < number.length(); order++) {
+			char digit = parser.toCharacterParser(number, order);
+			if (!Character.isDigit(digit)) {
+				ErrorOperation.DIGIT_ERROR.apply();
+			}
+		}
+	}
+
+	private boolean containDash(String number) {
+		char firstWord = parser.toCharacterParser(number, 0);
+		if (number.length() > 1 && firstWord == '-') {
+			return true;
+		}
+		return false;
+	}
+
+	private int validateLottoRange(String number) {
+		int parseNumber = validateRange(number);
 		if (parseNumber < RelateToLotto.START.number()) {
 			ErrorOperation.UNDER_ERROR.apply();
 		}
@@ -48,25 +84,10 @@ public class CommonValidatorImpl implements CommonValidator {
 		return parseNumber;
 	}
 
-	private void validateEmptyString(String lottoPrice) {
-		if (lottoPrice.isEmpty()) {
-			ErrorOperation.EMPTY_ERROR.apply();
-		}
-	}
-
-	private void validateIsDigit(String lottoPrice) {
-		for (int order = 0; order < lottoPrice.length(); order++) {
-			char digit = parser.toCharacterParser(lottoPrice, order);
-			if (!Character.isDigit(digit)) {
-				ErrorOperation.DIGIT_ERROR.apply();
-			}
-		}
-	}
-
-	private int validateRange(String lottoPrice) {
+	private int validateRange(String number) {
 		int parsePrice = 0;
 		try {
-			parsePrice = parser.toIntPaser(lottoPrice);
+			parsePrice = parser.toIntPaser(number);
 		} catch (NumberFormatException e) {
 			ErrorOperation.RANGE_ERROR.apply();
 		}

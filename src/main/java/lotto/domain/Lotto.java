@@ -19,7 +19,6 @@ public class Lotto {
 
         validateSize(numbers);
         validateNumbersRange(numbers);
-        validateLottoSize(numbers);
         validateDuplicateNumber(numbers);
 
         sortAscendingLotto(numbers);
@@ -48,12 +47,6 @@ public class Lotto {
     private static void validateNumber(int number) {
         if (number > END_NUMBER || number < START_NUMBER) {
             throw new IllegalArgumentException(ErrorCode.INVALID_NUMBER_RANGE.getMessage());
-        }
-    }
-
-    private static void validateLottoSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_LOTTO_SIZE.getMessage());
         }
     }
 

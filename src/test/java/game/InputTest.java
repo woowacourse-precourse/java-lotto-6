@@ -37,10 +37,31 @@ public class InputTest {
         assertThrows(IllegalArgumentException.class, () -> inputValidator.checkWinningNumbers(numbers));
     }
 
-    @DisplayName("1~45 범위 내 숫자가 아닐 시 오류가 발생한다.")
+    @DisplayName("1~45 범위 내 숫자가 아닐 가 오류가 발생한다.")
     @Test
     void outOfRangeNumber(){
         numbers.add(46);
         assertThrows(IllegalArgumentException.class, () -> inputValidator.checkWinningNumbers(numbers));
+    }
+
+    @DisplayName("띄어쓰기가 포함되어 있을 시 오류가 발생한다.")
+    @Test
+    void numberForSpaces(){
+        String input = "1,2,3,4,5, 6";
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.checkInputValue(input));
+    }
+
+    @DisplayName("입력값이 비어있을 시 오류가 발생한다.")
+    @Test
+    void numberForEmpty(){
+        String input = "";
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.checkInputValue(input));
+    }
+
+    @DisplayName("숫자 외 입력 시 오류가 발생한다.")
+    @Test
+    void numericOnly(){
+        String input = "1,2,3,4,5,육";
+        assertThrows(IllegalArgumentException.class, () -> inputValidator.checkInputValue(input));
     }
 }

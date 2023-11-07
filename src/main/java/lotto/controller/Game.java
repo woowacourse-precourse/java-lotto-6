@@ -39,7 +39,7 @@ public class Game {
             try {
                 return InputView.getPurchaseAmount();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -63,7 +63,7 @@ public class Game {
             try {
                 return InputView.getWinningNumbers();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -77,7 +77,7 @@ public class Game {
             try {
                 return InputView.getBonusNumber();
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
     }

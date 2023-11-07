@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.Value;
 import java.util.ArrayList;
@@ -23,13 +22,10 @@ public class LottoSeller {
     }
 
     Lotto issueLotto() {
-        List<Integer> numbers = new ArrayList<>();
-        while (numbers.size() < Value.LOTTO_NUMBER_COUNT.get()) {
-            int picked = Randoms.pickNumberInRange(Value.START_NUMBER.get(), Value.END_NUMBER.get());
-            if (!numbers.contains(picked)) {
-                numbers.add(picked);
-            }
-        }
+        int start = Value.START_NUMBER.get();
+        int end = Value.END_NUMBER.get();
+        int count = Value.LOTTO_NUMBER_COUNT.get();
+        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(start, end, count));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }

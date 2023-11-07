@@ -5,6 +5,7 @@ import java.util.List;
 
 public class User {
     private int budget;
+    private int payed;
     private List<Lotto> lottos;
 
     private User(int budget) {
@@ -21,9 +22,9 @@ public class User {
 
     // 전체 예산을 지불
     public int pay() {
-        int money = budget;
-        this.budget = 0;
-        return money;
+        payed = budget;
+        budget = 0;
+        return payed;
     }
 
     public int getBudget() {
@@ -36,5 +37,9 @@ public class User {
 
     public void setLottos(List<Lotto> lottos) {
         this.lottos = lottos;
+    }
+
+    public int getPayed() {
+        return payed;
     }
 }

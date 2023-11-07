@@ -17,5 +17,6 @@ public class Application {
         lottoController.inputWinNumbers();
         lottoController.inputBonusNumber();
         lottoController.getWinStatistics();
+        lottoController.getRateOfReturn();
     }
 }

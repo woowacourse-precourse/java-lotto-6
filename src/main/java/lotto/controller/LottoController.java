@@ -1,9 +1,14 @@
 package lotto.controller;
 
-import lotto.domain.Lotto;
+import lotto.constant.Message;
+import lotto.constant.Value;
+import lotto.constant.WinType;
 import lotto.domain.LottoSeller;
-import lotto.domain.LottoResult;
+import lotto.domain.MatchCounter;
 import lotto.domain.User;
+import lotto.domain.WinCounter;
+import lotto.domain.Lotto;
+import lotto.dto.MatchCountDto;
 import lotto.io.InputStream;
 import lotto.io.OutputStream;
 import lotto.view.InputView;
@@ -16,7 +21,8 @@ public class LottoController {
     private final OutputView outputView;
     private final User user;
     private final LottoSeller seller;
-    private LottoResult lottoResult;
+    private MatchCounter matchCounter;
+    private WinCounter winCounter;
 
     public LottoController(InputStream inputStream, OutputStream outputStream) {
         this.inputView = new InputView(inputStream);
@@ -53,7 +59,7 @@ public class LottoController {
             try {
                 outputView.printWinNumbersInputMessage();
                 List<Integer> winNumbers = inputView.inputWinNumbers();
-                lottoResult = LottoResult.from(winNumbers);
+                matchCounter = MatchCounter.from(winNumbers);
                 outputView.printEmptyLine();
                 break;
             } catch (IllegalArgumentException e) {
@@ -67,7 +73,7 @@ public class LottoController {
             try {
                 outputView.printBonusNumberInputMessage();
                 int bonusNumber = inputView.inputBonusNumber();
-                this.lottoResult.setBonusNumber(bonusNumber);
+                this.matchCounter.setBonusNumber(bonusNumber);
                 break;
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
@@ -78,7 +84,21 @@ public class LottoController {
 
     public void getWinStatistics() {
         outputView.printStatisticsMessage();
-        String winStatistics = lottoResult.getWinStatistics(user.getLottos());
-        outputView.print(winStatistics);
+        winCounter = new WinCounter();
+        for (MatchCountDto counting : matchCounter.getMatchCounts(user.getLottos())) {
+            try {
+                WinType winType = WinType.get(counting.match(), counting.bonus());
+                int count = winCounter.getCount(winType);
+                winCounter.put(winType, count + Value.ONE.get());
+            } catch (IllegalArgumentException e) {
+                continue;
+            }
+        }
+        outputView.print(winCounter.toString());
+    }
+
+    public void getRateOfReturn() {
+        String rateOfReturn = winCounter.getRateOfReturn(user.getPayed());
+        outputView.print(Message.RATE_OF_RETURN_START.get() + rateOfReturn + Message.RATE_OF_RETURN_END.get());
     }
 }

@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.settings.ErrorMessage.INVALID_UNIT_FORMAT;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

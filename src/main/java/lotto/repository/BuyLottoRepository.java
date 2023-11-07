@@ -15,4 +15,8 @@ public class BuyLottoRepository {
     public List<Lotto> getLotto() {
         return lottos;
     }
+
+    public int size() {
+        return lottos.size();
+    }
 }

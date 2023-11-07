@@ -27,11 +27,11 @@ public class LottoService {
         return buyLottoRepo;
     }
 
-    private void extractNumbers(String lottoNumber) {
+    public void extractNumbers(String lottoNumber) {
         View.buyLottos(lottoNumber);
     }
 
-    private List<Integer> createRandomNumbers() {
+    public List<Integer> createRandomNumbers() {
         return pickUniqueNumbersInRange(
                 MIN_VALUE.getNumber(),
                 MAX_VALUE.getNumber(),

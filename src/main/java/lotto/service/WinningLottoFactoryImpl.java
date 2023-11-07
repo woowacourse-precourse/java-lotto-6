@@ -3,6 +3,7 @@ package lotto.service;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.utils.NumberParser.toInteger;
@@ -12,6 +13,7 @@ public class WinningLottoFactoryImpl implements WinningLottoFactory {
     @Override
     public Lotto winningLotto(String inputNumber){
         List<Integer> numbers = toList(inputNumber);
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 

@@ -1,20 +1,19 @@
 package lotto.domain;
 
 import static lotto.enums.Constants.*;
-import static lotto.enums.Prize.*;
 
 import java.util.HashMap;
+import lotto.enums.LottoRank;
 
 public class Profit {
 
     private final HashMap<Integer,Integer> rank;
-    private HashMap<Integer,Integer> rankMoney;
+    private final HashMap<Integer,Integer> rankMoney;
     private int totalProfitMoney;
 
     public Profit(HashMap<Integer,Integer> rank){
-        this.rank = new HashMap<>(rank);
-        this.rankMoney = new HashMap<>();
-        initRankMoney();
+        this.rank = rank;
+        this.rankMoney = initRankMoney();
     }
 
     public float getTotalEarningRate(int purchaseMoney){
@@ -22,12 +21,15 @@ public class Profit {
         return (float) totalProfitMoney/purchaseMoney*PROFIT_PERCENT.getValue();
     }
 
-    private void initRankMoney(){
-        rankMoney.put(FIRST_RANK.getRank(),FIRST_RANK.getMoney());
-        rankMoney.put(SECOND_RANK.getRank(), SECOND_RANK.getMoney());
-        rankMoney.put(THIRD_RANK.getRank(), THIRD_RANK.getMoney());
-        rankMoney.put(FOURTH_RANK.getRank(), FOURTH_RANK.getMoney());
-        rankMoney.put(FIFTH_RANK.getRank(), FIFTH_RANK.getMoney());
+    private HashMap<Integer,Integer> initRankMoney(){
+
+        HashMap<Integer,Integer> initialRankMoney = new HashMap<>();
+
+        for(LottoRank rank : LottoRank.values()) {
+            initialRankMoney.put(rank.getRank(), rank.getMoney());
+        }
+
+        return initialRankMoney;
     }
 
     private int setTotalWinningMoney(){

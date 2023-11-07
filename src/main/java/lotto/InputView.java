@@ -65,7 +65,7 @@ public class InputView {
                 lottoNumbers = validLottoNumber(inputLottoNumbers);
                 isValid = true;
             } catch (IllegalArgumentException e){
-                System.out.printf(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         return lottoNumbers;
@@ -101,6 +101,22 @@ public class InputView {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+    }
+
+    int inputBonusNumber(){
+        int bonusNumber = 0;
+        boolean isValid = false;
+        while (!isValid){
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String number = Console.readLine();
+                bonusNumber = validBonusNumber(number);
+                isValid = true;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 
 }

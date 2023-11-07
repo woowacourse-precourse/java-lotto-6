@@ -17,7 +17,8 @@ public class Validator {
     public static final Integer NUMBERS_MIN_DUPLICATE_COUNT = 2;
     public static final Integer BONUS_NUMBER_MIN_DUPLICATE_COUNT = 1;
 
-    public static boolean isInputEmpty(String userInput) {
+
+    public static boolean isEmpty_(String userInput) {
         try {
             if (userInput.isEmpty()) {
                 throw new IllegalArgumentException(ErrorMessages.IS_EMPTY.writeErrorMessageByCase());
@@ -42,7 +43,6 @@ public class Validator {
         return false;
     }
 
-
     public static boolean isNumberOnly(String userInput) {
         if (userInput.equals("")) {
             return false;
@@ -60,7 +60,7 @@ public class Validator {
         return false;
     }
 
-    public static boolean isPriceUnder1000(Integer inputBudget) {
+    public static boolean isUnder1000(Integer inputBudget) {
         try {
             if (inputBudget < LOTTERY_PRICE) {
                 throw new IllegalArgumentException(ErrorMessages.IS_UNDER_1000.writeErrorMessageByCase());
@@ -72,7 +72,7 @@ public class Validator {
         return false;
     }
 
-    public static boolean isPriceIndivisible(Integer inputBudget) {
+    public static boolean isIndivisible(Integer inputBudget) {
         try {
             if ((inputBudget % LOTTERY_PRICE) != 0) {
                 throw new IllegalArgumentException(ErrorMessages.IS_INDIVISIBLE_BY_1000.writeErrorMessageByCase());
@@ -84,7 +84,7 @@ public class Validator {
         return false;
     }
 
-    public static boolean isNumberOnValidRange(Integer winningNumber) {
+    public static boolean isOnValidRange(Integer winningNumber) {
         try {
             if (FIRST_LOTTERY_NUMBER > winningNumber || winningNumber > LAST_LOTTERY_NUMBER) {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_OUT_OF_RANGE.writeErrorMessageByCase());
@@ -122,7 +122,7 @@ public class Validator {
         return false;
     }
 
-    public static boolean isNumberCountOutOfRange(List<Integer> winningNumbers) {
+    public static boolean isCountOutOfRange(List<Integer> winningNumbers) {
         try {
             if (winningNumbers.size() != MAX_LOTTERY_COUNT) {
                 throw new IllegalArgumentException(ErrorMessages.IS_NUMBER_COUNT_OUT_OF_RANGE.writeErrorMessageByCase());
@@ -134,7 +134,7 @@ public class Validator {
         return false;
     }
 
-    public static boolean areUserInputsOnlyNumbers(String[] winningNumbers) {
+    public static boolean are_OnlyNumber_(String[] winningNumbers) {
         for (String winningNumber : winningNumbers) {
             if (Validator.isNumberOnly(winningNumber)) {
                 return true;
@@ -143,16 +143,16 @@ public class Validator {
         return false;
     }
 
-    public static boolean areUserInputNumbersOutOfRange(List<Integer> winningNumbers) {
+    public static boolean areOutOfRange(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
-            if (Validator.isNumberOnValidRange(winningNumber)) {
+            if (Validator.isOnValidRange(winningNumber)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean areUserInputNumberDuplicated(List<Integer> winningNumbers) {
+    public static boolean areDuplicated(List<Integer> winningNumbers) {
         for (Integer winningNumber : winningNumbers) {
             if (Validator.isWinningNumberDuplicate(winningNumber, winningNumbers)) {
                 return true;

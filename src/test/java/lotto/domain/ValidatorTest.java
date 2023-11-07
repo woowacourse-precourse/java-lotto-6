@@ -11,11 +11,9 @@ class ValidatorTest {
 
     @DisplayName("빈값 입력 시 예외 발생")
     @Test
-    void isInputEmpty() throws IllegalArgumentException {
-
+    void isEmpty() throws IllegalArgumentException {
         String userInput = "";
-
-        assertThat(Validator.isInputEmpty(userInput)).isTrue();
+        assertThat(Validator.isEmpty_(userInput)).isTrue();
     }
 
     @DisplayName("구분자 쉽표(,) 이외 문자 입력 시 예외 발생")
@@ -34,22 +32,22 @@ class ValidatorTest {
 
     @DisplayName("로또 구입 금액이 1,000원 미만일 경우 예외 발생")
     @Test
-    void isPriceUnder1000() {
+    void isUnder1000() {
         Integer inputBudget = 900;
-        assertThat(Validator.isPriceUnder1000(inputBudget)).isTrue();
+        assertThat(Validator.isUnder1000(inputBudget)).isTrue();
 
     }
 
     @Test
-    void isPriceIndivisible() {
+    void isIndivisible() {
         Integer inputBudget = 12001;
-        assertThat(Validator.isPriceIndivisible(inputBudget)).isTrue();
+        assertThat(Validator.isIndivisible(inputBudget)).isTrue();
     }
 
     @Test
-    void isNumberOnValidRange() {
+    void isOnValidRange() {
         Integer winningNumber = 46;
-        assertThat(Validator.isNumberOnValidRange(winningNumber)).isTrue();
+        assertThat(Validator.isOnValidRange(winningNumber)).isTrue();
     }
 
     @Test
@@ -67,8 +65,8 @@ class ValidatorTest {
     }
 
     @Test
-    void isNumberCountOutOfRange() {
+    void isCountOutOfRange() {
         List<Integer> winningNumbers = List.of(6, 12, 18, 24, 42);
-        assertThat(Validator.isNumberCountOutOfRange(winningNumbers)).isTrue();
+        assertThat(Validator.isCountOutOfRange(winningNumbers)).isTrue();
     }
 }

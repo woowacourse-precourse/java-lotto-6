@@ -13,16 +13,16 @@ class ControllerTest {
     @DisplayName("숫자 오름차순 정렬")
     @Test
     void sortNumbers() {
-        List<Integer> numberList = new ArrayList<>();
-        numberList.add(99);
-        numberList.add(1);
-        numberList.add(13);
-        numberList.add(76);
-        numberList.add(43);
-        numberList.add(4);
-        Controller.sortNumbers(numberList);
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(99);
+        numbers.add(1);
+        numbers.add(13);
+        numbers.add(76);
+        numbers.add(43);
+        numbers.add(4);
+        Controller.sortNumbers(numbers);
 
-        Assertions.assertThat(numberList).isEqualTo(List.of(1, 4, 13, 43, 76, 99));
+        Assertions.assertThat(numbers).isEqualTo(List.of(1, 4, 13, 43, 76, 99));
     }
 
     @DisplayName("당첨번호목록에서 로또번호 일치하는 숫자 세기")
@@ -37,12 +37,12 @@ class ControllerTest {
 
     @DisplayName("로또 발행 순서대로 당첨 등수 가기입(2,3등 보너스 번호 미반영)")
     @Test
-    void fillLotteryRankList() {
-        List<Rank> lotteryRankList = new ArrayList<>();
-        List<Integer> matchingCountList = List.of(3, 4, 3, 5, 6, 1);
-        Controller.fillLotteryRankList(lotteryRankList, matchingCountList);
+    void fillRanks() {
+        List<Rank> ranks = new ArrayList<>();
+        List<Integer> matchingCounts = List.of(3, 4, 3, 5, 6, 1);
+        Controller.fillRanks(ranks, matchingCounts);
 
-        Assertions.assertThat(lotteryRankList).isEqualTo(List.of(
+        Assertions.assertThat(ranks).isEqualTo(List.of(
                 Rank.FIFTH,
                 Rank.FOURTH,
                 Rank.FIFTH,
@@ -64,19 +64,19 @@ class ControllerTest {
     @Test
     void changeRankByBonusNumber() {
         boolean bonusFlag = true;
-        List<Rank> lotteryRanks = new ArrayList<>();
-        lotteryRanks.add(Rank.FIFTH);
-        lotteryRanks.add(Rank.THIRD);
-        lotteryRanks.add(Rank.FOURTH);
-        lotteryRanks.add(Rank.FIFTH);
-        lotteryRanks.add(Rank.FAIL);
-        lotteryRanks.add(Rank.FAIL);
+        List<Rank> ranks = new ArrayList<>();
+        ranks.add(Rank.FIFTH);
+        ranks.add(Rank.THIRD);
+        ranks.add(Rank.FOURTH);
+        ranks.add(Rank.FIFTH);
+        ranks.add(Rank.FAIL);
+        ranks.add(Rank.FAIL);
 
         int index = 1;
 
-        Controller.changeRankByBonusNumber(lotteryRanks, bonusFlag, index);
+        Controller.changeRankByBonusNumber(ranks, bonusFlag, index);
 
-        Assertions.assertThat(lotteryRanks).isEqualTo(List.of(
+        Assertions.assertThat(ranks).isEqualTo(List.of(
                 Rank.FIFTH, Rank.SECOND, Rank.FOURTH, Rank.FIFTH, Rank.FAIL, Rank.FAIL
         ));
     }

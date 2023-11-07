@@ -29,7 +29,6 @@ public class Lotto {
                 throw new IllegalArgumentException();
             }
         }
-
     }
 
     public static List<Integer> generateLotteryNumbers() {

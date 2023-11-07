@@ -30,17 +30,17 @@ public class Application {
         //로또 금액 검증
         while (true) {
             lottoBudgetInput = View.getUserInput();
-            if (Validator.isInputEmpty(lottoBudgetInput)) {
+            if (Validator.isEmpty_(lottoBudgetInput)) {
                 continue;
             }
             if (Validator.isNumberOnly(lottoBudgetInput)) {
                 continue;
             }
-            budget = Convertor.convertInputToInteger(lottoBudgetInput);
-            if (Validator.isPriceUnder1000(budget)) {
+            budget = Convertor.convert(lottoBudgetInput);
+            if (Validator.isUnder1000(budget)) {
                 continue;
             }
-            if (Validator.isPriceIndivisible(budget)) {
+            if (Validator.isIndivisible(budget)) {
                 continue;
             }
             break;
@@ -74,26 +74,26 @@ public class Application {
         //당첨 번호 검증
         while (true) {
             winningNumbersInput = View.getUserInput();
-            if (Validator.isInputEmpty(winningNumbersInput)) {
+            if (Validator.isEmpty_(winningNumbersInput)) {
                 continue;
             }
             if (Validator.isValidCharacter(winningNumbersInput)) {
                 continue;
             }
 
-            winningNumbersAfterSplit = Convertor.splitInput(winningNumbersInput);
-            if (Validator.areUserInputsOnlyNumbers(winningNumbersAfterSplit)) {
+            winningNumbersAfterSplit = Convertor.split(winningNumbersInput);
+            if (Validator.are_OnlyNumber_(winningNumbersAfterSplit)) {
                 continue;
             }
 
-            winningNumbersTemp = Convertor.convertToList(winningNumbersAfterSplit);
-            if (Validator.isNumberCountOutOfRange(winningNumbersTemp)) {
+            winningNumbersTemp = Convertor.convertGathering(winningNumbersAfterSplit);
+            if (Validator.isCountOutOfRange(winningNumbersTemp)) {
                 continue;
             }
-            if (Validator.areUserInputNumbersOutOfRange(winningNumbersTemp)) {
+            if (Validator.areOutOfRange(winningNumbersTemp)) {
                 continue;
             }
-            if (Validator.areUserInputNumberDuplicated(winningNumbersTemp)) {
+            if (Validator.areDuplicated(winningNumbersTemp)) {
                 continue;
             }
             break;
@@ -108,15 +108,15 @@ public class Application {
         //보너스 번호 검증
         while (true) {
             bonusNumberInput = View.getUserInput();
-            if (Validator.isInputEmpty(bonusNumberInput)) {
+            if (Validator.isEmpty_(bonusNumberInput)) {
                 continue;
             }
             if (Validator.isNumberOnly(bonusNumberInput)) {
                 continue;
             }
 
-            bonusNumberTemp = Convertor.convertInputToInteger(bonusNumberInput);
-            if (Validator.isNumberOnValidRange(bonusNumberTemp)) {
+            bonusNumberTemp = Convertor.convert(bonusNumberInput);
+            if (Validator.isOnValidRange(bonusNumberTemp)) {
                 continue;
             }
 
@@ -138,7 +138,7 @@ public class Application {
         List<Rank> lotteryRanks = gameStatistics.getLotteryRanks();
 
         Controller.fillMatchingCounts(lottos, winningNumbers, matchingCounts);
-        Controller.fillLotteryRankList(lotteryRanks, matchingCounts);
+        Controller.fillRanks(lotteryRanks, matchingCounts);
 
         Integer bonusNumber = gameData.getBonusNumber();
         for (int i = 0; i < lotteryRanks.size(); i++) {
@@ -153,7 +153,6 @@ public class Application {
                 Controller.changeRankByBonusNumber(lotteryRanks, bonusFlag, i);
             }
         }
-
 
         //당첨통계 출력
         View.printMessage(GAME_STATISTICS);

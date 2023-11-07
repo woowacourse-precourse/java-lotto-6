@@ -13,7 +13,7 @@ public class Calculator {
         Integer totalPrize = 0;
         for (Rank rank : Rank.values()) {
             int rankFrequency = Collections.frequency(ranks, rank);
-            totalPrize += rank.calculatePrizeByRank(rankFrequency);
+            totalPrize += rank.calculatePrize(rankFrequency);
         }
         return totalPrize;
     }

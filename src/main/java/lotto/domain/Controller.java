@@ -8,11 +8,9 @@ import java.util.List;
 
 public class Controller {
 
-
     public static void sortNumbers(List<Integer> numbers) {
         numbers.sort(Comparator.naturalOrder());
     }
-
 
     public static Integer countMatchingNumberBetween(List<Integer> winningNumbers, Integer lotteryNumber) {
         int matchingCount = 0;
@@ -24,7 +22,7 @@ public class Controller {
         return matchingCount;
     }
 
-    public static void fillLotteryRankList(List<Rank> lotteryRanks, List<Integer> matchingCounts) {
+    public static void fillRanks(List<Rank> lotteryRanks, List<Integer> matchingCounts) {
         for (Integer matchingNumberCount : matchingCounts) {
             if (matchingNumberCount.equals(6)) {
                 lotteryRanks.add(Rank.FIRST);

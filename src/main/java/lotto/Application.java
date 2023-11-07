@@ -3,11 +3,14 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.controller.MainController;
+import lotto.model.Lotto;
+import lotto.model.User;
 
 public class Application {
-//    private static final String ERROR_MESSAGE = "[ERROR]";
+    private MainController mainController;
     public static void main(String[] args) {
-        startLotto();
+        MainController.getIntstance().startLotto();
     }
 
     public static void startLotto(){
@@ -15,18 +18,18 @@ public class Application {
 
         user.getRandomLotto();
 
-
         Lotto lotto = new Lotto(getLottoNumbers());
 
     }
 
     public static List<Integer> getLottoNumbers(){
+        System.out.println("당첨 번호를 입력해 주세요.");
         while (true){
             try{
                 String[] StringLottoNumber = Console.readLine().split(",");
                 return convertValidatedLottoNumber(StringLottoNumber);
             }  catch (IllegalArgumentException e){
-                System.out.println(Message.ERROR_MESSAGE + " " + Message.INPUT_VALUE_OVERHEAD);
+
             }
         }
     }
@@ -35,6 +38,9 @@ public class Application {
         List<Integer> numbers = new ArrayList<>();
         for (String number: stringLottoNumber) {
             try{
+                if(numbers.equals("")){
+                    throw new IllegalArgumentException();
+                }
                 numbers.add(Integer.parseInt(number));
             } catch (Exception e){
                 e.printStackTrace();
@@ -43,8 +49,5 @@ public class Application {
         }
         return numbers;
     }
-
-
-
 
 }

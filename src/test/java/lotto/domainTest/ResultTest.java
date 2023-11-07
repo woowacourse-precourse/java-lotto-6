@@ -18,7 +18,7 @@ public class ResultTest {
     void lottoOrderedTest() {
         Result result = new Result(Rank.valueOf(5, false));
         Rank rank = Rank.valueOf(6, true);
-        result.getResults().add(rank);
+        result.add(rank);
 
         Assertions.assertThat(result.getResults()).contains(Rank.valueOf(6, true));
     }

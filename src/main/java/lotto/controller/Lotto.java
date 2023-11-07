@@ -34,8 +34,6 @@ public class Lotto {
         if(0 >= num && num > 45) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_RANGE.getValue());
         }
-
-        this.numbers.add(num);
     }
 
     public List<Integer> getNumbers() {

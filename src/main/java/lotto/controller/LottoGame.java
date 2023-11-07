@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.utils.ExceptionMessage;
 import lotto.utils.LottoUtil;
 import lotto.view.LottoView;
 
@@ -10,12 +11,14 @@ public class LottoGame {
     LottoUtil lottoUtil = new LottoUtil();
     Money money;
     Lotto lotto;
+    int bonusNumber;
 
     public void start() {
         printMessageAndInputMoney();
         List<List<Integer>> myLottos = getRandamLottos();
         printMessageAndInputWinningNumber();
         printMessageAndInputBonusNumber();
+        printStatistics();
     }
 
     public void printMessageAndInputMoney() {
@@ -41,9 +44,22 @@ public class LottoGame {
 
     public void printMessageAndInputBonusNumber() {
         lottoView.printBonusNumberMessage();
-        String bonusNumber = lottoUtil.getUserInput();
-        lotto.validate(bonusNumber);
-        lottoUtil.checkDuplicateNumbers(lotto.getNumbers());
+        String bonusNum = lottoUtil.getUserInput();
+        lotto.validate(bonusNum);
+        bonusNumber = Integer.parseInt(bonusNum);
+        duplicateBonusNumber(bonusNumber);
+    }
+
+    public void printStatistics() {
+        lottoView.printStatisticsMessage();
+    }
+
+    public void duplicateBonusNumber(int bonusNumber) {
+        lotto.getNumbers().forEach(num -> {
+            if(num == bonusNumber) {
+                throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATE.getValue());
+            }
+        });
     }
 
 }

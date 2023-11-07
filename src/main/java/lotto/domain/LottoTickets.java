@@ -14,7 +14,7 @@ public class LottoTickets {
         this.lottoTickets = generateRandomLottoTickets(numberOfTickets);
     }
 
-    public static LottoTickets createdBy(int numberOfTickets) {
+    public static LottoTickets createdByNumber(int numberOfTickets) {
         return new LottoTickets(numberOfTickets);
     }
 

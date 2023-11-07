@@ -22,7 +22,7 @@ public class LottoPurchase {
     }
 
     public LottoTickets generateLottoTickets() {
-        return LottoTickets.createdBy(getNumberOfTickets());
+        return LottoTickets.createdByNumber(getNumberOfTickets());
     }
 
     public int getAmount() {

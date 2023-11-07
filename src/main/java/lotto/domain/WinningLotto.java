@@ -20,7 +20,7 @@ public class WinningLotto {
     public Rank match(Lotto lotto) {
         int matchCount = lotto.countMatchedNumbers(winningLotto);
         boolean isContainBonus = lotto.contains(bonusNumber);
-        return Rank.valueOf(matchCount, isContainBonus);
+        return Rank.findRankByMatchAndBonus(matchCount, isContainBonus);
     }
 
     private void validate(Lotto winningLotto, LottoNumber bonusNumber) {

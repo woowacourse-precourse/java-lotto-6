@@ -1,7 +1,6 @@
 package lotto.enums;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 
 public enum Rank {
@@ -33,7 +32,7 @@ public enum Rank {
         return this.winningAmount;
     }
 
-    public static Rank match(int matchCount, boolean containBonus) {
+    public static Rank findRankByMatchAndBonus(int matchCount, boolean containBonus) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.matchCount == matchCount)
                 .filter(rank -> rank.containBonus == containBonus || !rank.containBonus)

@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.common.Announcement;
 import lotto.common.ErrorMessage;
 
 public class LottoManager {
@@ -12,7 +13,7 @@ public class LottoManager {
     }
 
     public void deposit() {
-        System.out.println("구입금액을 입력해 주세요.");
+        Announcement.INPUT_AMOUNT.speak();
         this.amount += getValidAmount();
     }
 
@@ -23,7 +24,7 @@ public class LottoManager {
                 validateNumericInput(input);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                ErrorMessage.printExceptionMessage(e);
             }
         }
     }

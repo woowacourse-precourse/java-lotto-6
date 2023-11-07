@@ -13,7 +13,8 @@ public class Message {
     // 구매금액 관련 예외 메시지
     public static final String NON_NUMERIC_EXCEPTION_MESSAGE = ERROR + "숫자만 입력해주세요. ";
     public static final String ZERO_EXCEPTION_MESSAGE = ERROR + "0보다 큰 숫자를 입력해주세요. ";
-    public static final String INDIVISIBLE_BY_UNIT_PRICE_EXCEPTION_MESSAGE = ERROR + "구입 단위에 맞는 금액을 입력해주세요. 구입 단위: ";
+    public static final String INDIVISIBLE_BY_UNIT_PRICE_EXCEPTION_MESSAGE =
+            ERROR + "구입 단위에 맞는 금액을 입력해주세요. 구입 단위: " + GameConstants.UNIT_PURCHASE_PRICE;
 
     // 당첨 번호 관련 예외 메시지
     public static final String INVALID_LOTTO_NUMBER_COUNT_EXCEPTION = ERROR + "올바른 수의 당첨 번호를 입력해주세요. ";

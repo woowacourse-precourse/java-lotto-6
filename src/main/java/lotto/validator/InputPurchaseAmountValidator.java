@@ -1,13 +1,21 @@
 package lotto.validator;
 
+import java.util.regex.Pattern;
 import lotto.util.ConverterUtil;
 
 public class InputPurchaseAmountValidator {
     private static final int MINIMUM_LOTTO_AMOUNT = 1000;
+    private static final long MAXIMUM_LOTTO_AMOUNT = Integer.MAX_VALUE;
+    private static final String LOTTO_PURCHASE_NUMBER_REGEX = "[0-9]+";
+
 
     public static void validatePurchaseAmount(String purchaseAmount) {
         if (isNotDigit(purchaseAmount)) {
-            System.out.println("[ERROR] 숫자를 입력해야합니다.");
+            System.out.println("[ERROR] 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException();
+        }
+        if (isOverMaximumAmount(purchaseAmount)) {
+            System.out.println("[ERROR] 2,147,483,647보다 작은 값을 입력해야 합니다.");
             throw new IllegalArgumentException();
         }
         if (isNotMultipleOf1000(purchaseAmount)) {
@@ -21,11 +29,10 @@ public class InputPurchaseAmountValidator {
     }
 
     private static boolean isNotDigit(String purchaseAmount) {
-        try {
-            int num = ConverterUtil.convertStringToInt(purchaseAmount);
-            return false;
-        } catch (NumberFormatException e) {
-            return true;
-        }
+        return !Pattern.compile(LOTTO_PURCHASE_NUMBER_REGEX).matcher(purchaseAmount).matches();
+    }
+
+    private static boolean isOverMaximumAmount(String purchaseAmount) {
+        return Long.parseLong(purchaseAmount) > MAXIMUM_LOTTO_AMOUNT;
     }
 }

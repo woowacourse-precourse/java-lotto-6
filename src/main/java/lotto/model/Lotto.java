@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -16,9 +17,9 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         validateNotNullNumber(numbers);
-        vaildateOutOfRangeNumber(numbers);
+        validateOutOfRangeNumber(numbers);
         validateDuplicatedNumber(numbers);
-        vaildateLengthOfNumber(numbers);
+        validateLengthOfNumber(numbers);
     }
 
     private void validateNotNullNumber(List<Integer> numbers) {
@@ -27,7 +28,7 @@ public class Lotto {
         }
     }
 
-    private void vaildateLengthOfNumber(List<Integer> numbers) {
+    private void validateLengthOfNumber(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] " + LOTTO_NUMBER_SIZE + "개의 로또번호를 입력해주세요");
         }
@@ -41,7 +42,7 @@ public class Lotto {
         }
     }
 
-    private void vaildateOutOfRangeNumber(List<Integer> numbers) {
+    private void validateOutOfRangeNumber(List<Integer> numbers) {
       if (numbers.stream()
                 .anyMatch(num -> num < MIN_LOTTO_NUMBER || num > MAX_LOTTO_NUMBER)) {
           throw new IllegalArgumentException("[ERROR] 로또 번호는 지정된 범위안의 숫자만 가질 수 있습니다 범위 "

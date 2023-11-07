@@ -33,9 +33,10 @@ public class AnswerLotto {
         if (bonusNumber == null) {
             throw new IllegalArgumentException("보너스 번호가 등록되어 있지 않습니다.");
         }
+
         return new MatchResult(
                 lotto.matchCount(otherLotto),
-                lotto.contains(bonusNumber.value())
+                otherLotto.contains(bonusNumber.value())
         );
     }
 }

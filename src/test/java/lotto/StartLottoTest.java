@@ -97,7 +97,7 @@ public class StartLottoTest {
     @DisplayName("각 로또 별 당첨 현황과 갯수 테스트")
     @Test
     void checkFillPriceHistoryMap() {
-        OutputStream out  = new ByteArrayOutputStream();
+        OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
         test.fillPriceHistoryMap();
@@ -109,5 +109,13 @@ public class StartLottoTest {
                 "5개 일치 (1,500,000원) - 0개",
                 "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개",
                 "6개 일치 (2,000,000,000원) - 1개");
+    }
+
+    @DisplayName("총 수익률 계산 테스트")
+    @Test
+    void checkCalcEarningRate() {
+        test.fillPriceHistoryMap();
+        double testEarningRate = test.calcEarningRate();
+        assertThat(testEarningRate).isEqualTo(6.76683333E7);
     }
 }

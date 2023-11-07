@@ -332,8 +332,7 @@ public class StartLotto {
         for (String price : new String[]{"Fifth", "Forth", "Third", "Second", "First"}) {
             priceSum += calcPrice(price);
         }
-        double earningRate = (priceSum / this.purchasePrice) * 100.0;
-        return roundSecondDigit(earningRate);
+        return roundSecondDigit((priceSum / this.purchasePrice) * 100);
     }
 
     private double calcPrice(String price) {
@@ -354,7 +353,7 @@ public class StartLotto {
     }
 
     private double roundSecondDigit(double value) {
-        return Math.round(value * 100.0) / 100.0;
+        return Math.round(value * 10.0) / 10.0;
     }
 
     private void printErrorMessage(Exception e) {

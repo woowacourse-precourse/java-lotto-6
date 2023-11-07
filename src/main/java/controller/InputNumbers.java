@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.Lotto;
+
+import static model.FixedValues.*;
 
 public class InputNumbers {
 
@@ -28,7 +29,7 @@ public class InputNumbers {
     public void convert_lotto_numbers(String selected) {
     	//String selected=Console.readLine();
 		List<Integer> numbers=convertToList(selected);
-		lotto=new Lotto(numbers);
+		lotto=CREATOR.lottoCreator(numbers);
     }
     
     private void warning(IllegalArgumentException e) {
@@ -131,7 +132,7 @@ public class InputNumbers {
     	try {
     		num=Integer.parseInt(str);
     	} catch(NumberFormatException e) {
-    		System.out.println("[ERROR] 번호는 정수인 숫자만 유효합니다(공백 불가)");
+    		//System.out.println("[ERROR] 번호는 정수인 숫자만 유효합니다(공백 불가)");
     		throw new IllegalArgumentException("[ERROR] 번호는 정수인 숫자만 유효합니다(공백 불가)");
     	}
     	return num;
@@ -139,7 +140,7 @@ public class InputNumbers {
     
     private void valueOutOfBoundary(int num) {
     	if(num<1||num>45) {
-    		System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    		//System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     		throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
     	}
     }

@@ -1,5 +1,7 @@
 package model;
 
+import creator.ObjectCreator;
+
 public class FixedValues {
 
 	public static final int UNIT_PRICE=Constants.UNIT_PRICE.getConstants();
@@ -36,4 +38,6 @@ public class FixedValues {
 	public static final String CORRES_FIVE=Announcement.CORRES_FIVE.getAnnouncement();
 	public static final String CORRES_BONUS=Announcement.CORRES_BONUS.getAnnouncement();
 	public static final String CORRES_ALL=Announcement.CORRES_ALL.getAnnouncement();
+	
+	public static final ObjectCreator CREATOR=new ObjectCreator();
 }

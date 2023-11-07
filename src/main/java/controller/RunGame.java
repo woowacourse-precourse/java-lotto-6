@@ -4,8 +4,6 @@ import model.Data;
 
 public class RunGame {
 	
-	private Data data;
-	
 	/*public RunGame() {
 		guidance();
 		new Statistics(lottery_list, bonus, lotto);

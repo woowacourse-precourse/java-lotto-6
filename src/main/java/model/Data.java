@@ -17,16 +17,16 @@ import static model.FixedValues.*;
 public class Data {
 
 	private Lotto lotto;
+	
 	private List<List<Integer>> lotto_list=new ArrayList<List<Integer>>();
 	private int bonus;
-	
 	private int lotto_count;
 	
 	public Lotto getLotto() {
 		return lotto;
 	}
 	public void setLotto(String input) {
-		this.lotto=new InputNumbers().select_numbers(input);
+		this.lotto=CREATOR.numbersCreator().select_numbers(input);
 	}
 	public List<List<Integer>> getLottoList(){
 		return lotto_list;
@@ -39,12 +39,12 @@ public class Data {
 		return bonus;
 	}
 	public void setBonus(String input) {
-		this.bonus=new InputNumbers().select_bonus(input);
+		this.bonus=CREATOR.numbersCreator().select_bonus(input);
 	}
 	public int getLottoCount() {
 		return lotto_count;
 	}
-	public void setLottoCount() {
-		this.lotto_count=new InputMoney().purchase_lotto()/UNIT_PRICE;
+	public void purchaseLotto() {
+		this.lotto_count=CREATOR.moneyCreator().purchase_lotto()/UNIT_PRICE;
 	}
 }

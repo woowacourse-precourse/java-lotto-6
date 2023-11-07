@@ -7,6 +7,8 @@ import static lotto.util.ErrorMessage.ERROR_LOTTO_DUPLICATE;
 import static lotto.util.ErrorMessage.ERROR_LOTTO_OUT_OF_RANGE;
 import static lotto.util.ErrorMessage.ERROR_LOTTO_SIZE;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +19,10 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
+    }
+
+    public static List<Integer> generateLotto() {
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_MIN_RANGE, LOTTO_MAX_RANGE, LOTTO_NUMBERS_COUNT));
     }
 
     private void validate(List<Integer> numbers) {

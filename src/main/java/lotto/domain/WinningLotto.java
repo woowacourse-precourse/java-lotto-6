@@ -10,7 +10,7 @@ public class WinningLotto extends Lotto {
     }
 
     public void validateBonus(int bonus) {
-        if (this.getNumbers().contains(bonus)) {
+        if (this.contains(bonus)) {
             throw new IllegalArgumentException(Exception.BONUS_DUPLICATED);
         }
     }

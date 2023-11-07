@@ -16,43 +16,24 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 
-class StatisticsOfficeTest {
-
-    @DisplayName("당첨 번호 추첨 시 로또 번호 6개와 로또 번호에 해당하는 보너스 번호 1개를 뽑는다.")
-    @Test
-    void registerWinningLotto() {
-        List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
-        Integer bonusNumber = Integer.valueOf(7);
-        assertThat(StatisticsOffice.registerWinningLotto(new Lotto(winningLotto), new LottoNumber(bonusNumber)))
-                .isInstanceOf(StatisticsOffice.class);
-    }
-
-    @DisplayName("당첨 로또 번호 6개와 보너스 번호가 중복될 시 예외가 발생한다.")
-    @Test
-    void validateDuplicate() {
-        List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
-        Integer bonusNumber = Integer.valueOf(3);
-        assertThatThrownBy(() -> StatisticsOffice.registerWinningLotto(new Lotto(winningLotto), new LottoNumber(bonusNumber)))
-                .isInstanceOf(IllegalArgumentException.class).hasMessageContaining("[ERROR]");
-    }
-
+class StatisticsTest {
 
     @DisplayName("로또 번호와 당첨 번호를 비교하여 당첨 내역을 알 수 있다.")
     @ParameterizedTest
-    @MethodSource("rankStatusData")
-    void convertToRank(List<Lotto> lottoTicket, Map<Rank, Integer> rankStatus) {
-        StatisticsOffice statisticsOffice = StatisticsOffice.registerWinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(7));
-        assertThat(statisticsOffice.convertToRank(lottoTicket)).isEqualTo(rankStatus);
+    @MethodSource("rankDetailsData")
+    void convertToRank(List<Lotto> lottoTicket, Map<Rank, Integer> rankDetails) {
+        WinningLotto winningLotto = new WinningLotto(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new LottoNumber(7));
+        assertThat(Statistics.calculateRank(winningLotto, lottoTicket)).isEqualTo(rankDetails);
     }
 
     @DisplayName("당첨 내역을 기반으로 수익률을 알 수 있다.")
     @ParameterizedTest
     @MethodSource("profitData")
-    void calculateProfitRate(Map<Rank, Integer> rankStatus, int money, String profitRate) {
-        assertThat(StatisticsOffice.calculateProfitRate(rankStatus, money)).isEqualTo(profitRate);
+    void calculateProfitRate(Map<Rank, Integer> rankDetails, int money, String profitRate) {
+        assertThat(Statistics.calculateProfitRate(rankDetails, money)).isEqualTo(profitRate);
     }
 
-    static Stream<Arguments> rankStatusData() {
+    static Stream<Arguments> rankDetailsData() {
         return Stream.of(
                 arguments(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)),
                                 new Lotto(List.of(1, 2, 3, 4, 5, 7)),

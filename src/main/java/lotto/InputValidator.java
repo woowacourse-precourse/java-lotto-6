@@ -13,7 +13,7 @@ public class InputValidator {
     private static final String ERROR_NEGATIVE = "0 이상의 수를 입력해야 합니다.";
     private static final String ERROR_CANNOT_BUY_LOTTO = "1,000원으로 나누어 떨어지는 수를 입력해야 합니다.";
     private static final String ERROR_LOTTO_SIZE = "로또 정답의 크기는 %d이어야 합니다.";
-    private static final String ERROR_DUPLICATE = "로또 정답은 중복되지 않은 6개의 값이어야 합니다.";
+    private static final String ERROR_DUPLICATE = "로또 정답은 중복되지 않은 값이어야 합니다.";
 
     static public int validateInteger(String input) throws IllegalArgumentException {
         try {

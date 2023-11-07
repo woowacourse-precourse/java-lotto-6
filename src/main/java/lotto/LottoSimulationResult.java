@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoSimulationResult {
+    private static final String TEXT_RETURN_FORMAT = "총 수익률은 %.2f%%입니다.";
     Map<LottoMatchResult, Integer> resultCount;
 
     public LottoSimulationResult() {
@@ -43,7 +44,7 @@ public class LottoSimulationResult {
 
             result.append(String.format("%s - %d개\n", matchResult, resultCount.get(matchResult)));
         }
-        result.append(String.format("총 수익률은 %.2f%%입니다.", calculateReturn() * 100));
+        result.append(String.format(TEXT_RETURN_FORMAT, calculateReturn() * 100));
 
         return result.toString();
     }

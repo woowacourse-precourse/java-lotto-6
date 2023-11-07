@@ -25,18 +25,11 @@ public class LottoController {
         List<Lotto> lottos = lottoService.purchaseLotto(purchaseMoney);
         outputView.printLottos(lottos);
 
-        WinningNumber winningNumber = getWinningNumber();
+        WinningNumber winningNumber = inputHandler.getWinningNumber();
 
         LottoResult lottoResult = lottoService.findWinningLottos(lottos, winningNumber);
         outputView.printLottoRanks(lottoResult);
         outputView.printEarningRate(lottoResult.getTotalReward(), purchaseMoney.getValue());
-    }
-
-    private WinningNumber getWinningNumber() {
-        List<Integer> drawNumbers = inputHandler.getDrawNumbers();
-        Integer bonusNumber = inputHandler.getBonusNumber(drawNumbers);
-
-        return new WinningNumber(drawNumbers, bonusNumber);
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 import lotto.controller.util.parser.InputParser;
 import lotto.controller.util.validator.InputValidator;
 import lotto.model.dto.PurchaseMoney;
+import lotto.model.dto.WinningNumber;
 import lotto.view.input.InputView;
 import lotto.view.output.OutputView;
 
@@ -31,7 +32,14 @@ public class InputHandler {
         });
     }
 
-    public List<Integer> getDrawNumbers() {
+    public WinningNumber getWinningNumber() {
+        List<Integer> drawNumbers = getDrawNumbers();
+        Integer bonusNumber = getBonusNumber(drawNumbers);
+
+        return new WinningNumber(drawNumbers, bonusNumber);
+    }
+
+    private List<Integer> getDrawNumbers() {
         return processInput(() -> {
             List<Integer> drawNumbers = inputParser.parseLottoNumbers(inputView.getWinningNumber());
             inputValidator.validateDrawNumbers(drawNumbers);
@@ -39,7 +47,7 @@ public class InputHandler {
         });
     }
 
-    public Integer getBonusNumber(List<Integer> drawNumbers) {
+    private Integer getBonusNumber(List<Integer> drawNumbers) {
         return processInput(() -> {
             Integer bonusNumber = inputParser.parseBonusNumber(inputView.getBonusNumber());
             inputValidator.validateBonusNumber(bonusNumber, drawNumbers);

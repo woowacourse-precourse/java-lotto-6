@@ -12,12 +12,23 @@ public class InputView {
 
     public static int getPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int amount = Integer.parseInt(Console.readLine());
+        String input = Console.readLine();
+        int amount = validateinput(input);
         if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해 주세요.");
         }
         return amount / LOTTO_PRICE;
     }
+
+    public static int validateinput(String input) {
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자로 된 금액을 입력해 주세요.");
+        }
+    }
+
+
     public static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String[] numbertmp = Console.readLine().split(",");

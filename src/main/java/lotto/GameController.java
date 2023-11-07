@@ -24,8 +24,9 @@ public class GameController {
         //System.out.println(bonusNumber);
 
         List<String> ticketNumbers = GameOutput.printBuyTickets( lottoGame , tickets );
-        int earnRatio = GameInput.earnMoney(numbers,ticketNumbers, bonusNumber)/moneys;
-        System.out.print("총 수익률은 %f입니다." , moneys);
+        float earnRatio = 100*GameInput.earnMoney(numbers,ticketNumbers, bonusNumber)/(float)moneys;
+        System.out.print(String.format("총 수익률은 %.1f%%입니다." , earnRatio));
+        //%% 두개 붙이면 % 출력됨
 
 
 

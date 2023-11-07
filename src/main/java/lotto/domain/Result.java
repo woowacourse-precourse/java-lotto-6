@@ -9,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import lotto.constants.Ranks;
 
 public class Result {
     private final Map<Ranks, Integer> rankResult;

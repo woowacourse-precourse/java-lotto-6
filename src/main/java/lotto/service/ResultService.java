@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.constants.Ranks;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.domain.Ranks;
 import lotto.domain.Result;
 import lotto.domain.WinningLotto;
 

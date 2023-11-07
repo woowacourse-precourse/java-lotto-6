@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.constants;
 
 public enum Ranks {
     ZERO_RANE(0, 0L, "0"),

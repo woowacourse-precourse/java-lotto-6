@@ -26,7 +26,7 @@ public class LottoService {
         return lottoNumbers;
     }
 
-    public Integer countMatchingWinningNumbers(List<Integer> winningLotto, List<Integer> myLotto) {
+    public int countMatchingWinningNumbers(List<Integer> winningLotto, List<Integer> myLotto) {
         int countValue = 0;
 
         for (int j = 0; j < COUNT; j++) {

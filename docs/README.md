@@ -269,7 +269,7 @@ public class Lotto {
   - toString
 
 - [LottoPack](../src/main/java/lotto/domain/LottoPack.java)
-  - calculateResult
+  - calculate
   - toString
 
 - [WinningNumber](../src/main/java/lotto/domain/WinningNumber.java)

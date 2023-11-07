@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.enums;
 
 public enum LottoNumberRules {
     EXACT_LOTTO_COUNTS(6),

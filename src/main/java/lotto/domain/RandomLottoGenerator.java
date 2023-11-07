@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.domain.LottoNumberRules.EXACT_LOTTO_COUNTS;
-import static lotto.domain.LottoNumberRules.MAX_LOTTO_NUMBER;
-import static lotto.domain.LottoNumberRules.MIN_LOTTO_NUMBER;
+import static lotto.domain.enums.LottoNumberRules.EXACT_LOTTO_COUNTS;
+import static lotto.domain.enums.LottoNumberRules.MAX_LOTTO_NUMBER;
+import static lotto.domain.enums.LottoNumberRules.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.stream.Collectors;

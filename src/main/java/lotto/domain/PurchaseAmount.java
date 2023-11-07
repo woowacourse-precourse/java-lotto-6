@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.domain.NumberConstant.MINIMUM_LOTTO_PRICE;
-import static lotto.domain.NumberConstant.NO_REMAINDER;
-import static lotto.domain.NumberConstant.ZERO_AMOUNT;
+import static lotto.domain.enums.NumberConstant.MINIMUM_LOTTO_PRICE;
+import static lotto.domain.enums.NumberConstant.NO_REMAINDER;
+import static lotto.domain.enums.NumberConstant.ZERO_AMOUNT;
 import static lotto.exception.ExceptionMessage.PURCHASE_AMOUNT_HAS_REMAINDER;
 
 public class PurchaseAmount {

@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.RankPrizeMessage.DEFAULT_RANK;
-import static lotto.domain.RankPrizeMessage.WITH_BONUS_RANK;
+import static lotto.domain.enums.RankPrizeMessage.DEFAULT_RANK;
+import static lotto.domain.enums.RankPrizeMessage.WITH_BONUS_RANK;
 
 import java.util.Arrays;
 

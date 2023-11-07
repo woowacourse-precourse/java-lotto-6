@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.enums;
 
 public enum NumberConstant {
     MINIMUM_LOTTO_PRICE(1000),

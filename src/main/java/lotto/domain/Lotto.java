@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.LottoNumberRules.EXACT_LOTTO_COUNTS;
+import static lotto.domain.enums.LottoNumberRules.EXACT_LOTTO_COUNTS;
 import static lotto.exception.ExceptionMessage.BONUS_NUMBER_ALREADY_CONTAINS_IN_WINNING_NUMBERS;
 import static lotto.exception.ExceptionMessage.LOTTO_COUNTS_INVALID;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBERS_DUPLICATED;

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.enums;
 
 public enum RankPrizeMessage {
     DEFAULT_RANK("%d개 일치 (%,d원) - %d개"),

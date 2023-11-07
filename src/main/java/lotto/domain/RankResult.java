@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.NumberConstant.FOR_PERCENT;
+import static lotto.domain.enums.NumberConstant.FOR_PERCENT;
 
 import java.util.Arrays;
 import java.util.Map;

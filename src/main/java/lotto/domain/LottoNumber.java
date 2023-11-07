@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import static lotto.domain.LottoNumberRules.MAX_LOTTO_NUMBER;
-import static lotto.domain.LottoNumberRules.MIN_LOTTO_NUMBER;
+import static lotto.domain.enums.LottoNumberRules.MAX_LOTTO_NUMBER;
+import static lotto.domain.enums.LottoNumberRules.MIN_LOTTO_NUMBER;
 import static lotto.exception.ExceptionMessage.LOTTO_NUMBER_OUT_OF_RANGE;
 
 import java.util.Objects;

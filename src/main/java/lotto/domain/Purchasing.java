@@ -8,14 +8,6 @@ public class Purchasing {
     LottoGenerator lottoGenerator = new LottoGenerator();
     int ticketQuantity = 0;
 
-    public List<Lotto> getPurchasedLottos() {
-        return purchasedLottos;
-    }
-
-    public int getPurchasedLottoQuantity() {
-        return ticketQuantity;
-    }
-
     public void purchaseLottos(int ticketQuantity) {
         this.ticketQuantity = ticketQuantity;
         purchasedLottos = new ArrayList<>();
@@ -24,4 +16,10 @@ public class Purchasing {
             purchasedLottos.add(generatedLotto);
         }
     }
+
+    public int getPurchasedLottoQuantity() {
+        return ticketQuantity;
+    }
+
+    public List<Lotto> getPurchasedLottos() {return purchasedLottos;}
 }

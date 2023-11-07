@@ -29,7 +29,12 @@ public class LottoController {
         int ticketQuantity = payment.getAvailableLottoTicketQuantity();
         purchasing.purchaseLottos(ticketQuantity);
     }
+
     private void getPurchasingResult() {
+        int purchasedLottoQuantity = purchasing.getPurchasedLottoQuantity();
+        List<Lotto> purchasedLottosResult = purchasing.getPurchasedLottos();
+        OutputView.printPurchaseLottoQuantity(purchasedLottoQuantity);
+        OutputView.printPurchasedLottos(purchasedLottosResult);
     }
 
     private void storeWiningLotto() {

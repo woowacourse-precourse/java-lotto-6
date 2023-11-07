@@ -20,7 +20,8 @@ public class PurchaseView {
 
     public static boolean isErrorOccurred(String input) {
         try {
-            validateAmount(input);
+            validateAmountIsNumber(input);
+            validateAmountUnit(input);
         } catch (Exception exception) {
             exception.printStackTrace();
             System.out.println(exception.getMessage());
@@ -30,11 +31,13 @@ public class PurchaseView {
         return true;
     }
 
-    public static void validateAmount(String input) throws IllegalArgumentException {
+    public static void validateAmountIsNumber(String input) throws IllegalArgumentException {
         if(!input.matches(R_NUMBER)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_MUST_BE_NUMBER.getMessage());
         }
+    }
 
+    public static void validateAmountUnit(String input) throws IllegalArgumentException {
         if(Integer.parseInt(input) % PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_AMOUNT_UNIT.getMessage());
         }

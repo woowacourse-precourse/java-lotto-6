@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 public class WinningLottoView {
-    private final static String R_RANGE = "^(?:4[0-5]|[1-3][0-9]|[1-9])$";
+    private final static String R_LOTTO_RANGE = "^(?:4[0-5]|[1-3][0-9]|[1-9])$";
     private final static int COUNT_NO_BONUS = 6;
     private final static int COUNT_WITH_BONUS = 7;
 
@@ -59,6 +59,8 @@ public class WinningLottoView {
             validateLottoNumber(input);
         } catch (Exception exception) {
             exception.printStackTrace();
+            System.out.println(exception.getMessage());
+            System.out.println();
             return false;
         }
         return true;
@@ -86,7 +88,7 @@ public class WinningLottoView {
     }
 
     public static void validateLottoNumber(String input) throws IllegalArgumentException {
-        if(!input.matches(R_RANGE)){
+        if(!input.matches(R_LOTTO_RANGE)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_LOTTO_NUMBER.getMessage());
         }
     }

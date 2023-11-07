@@ -40,14 +40,17 @@ public class WinningNumbers implements UserInput {
             int singleNumber = singleTypeConversion(readInputNumber[numbers.size()]);
             try {
                 ErrorValidation.isNumberInRange(singleNumber);
+                ErrorValidation.isAlreadyReadNumber(numbers, singleNumber);
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessage.ERROR_WINNING_IN_RANGE.getMessage());
+                System.out.println(ErrorMessage.ERROR_WINNING_IN_RANGE_NOT_DUPLICATION.getMessage());
                 numbers.clear();
                 readInputNumber = separateUserInput(userInput());
             }
             numbers.add(singleNumber);
         }
     }
+
+
 
 
 

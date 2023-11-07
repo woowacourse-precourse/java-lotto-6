@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constants.Condition.MONEY_UNIT;
 import static lotto.constants.ErrorMessage.INVALID_PURCHASE_AMOUNT;
 import static lotto.constants.ErrorMessage.NEGATIVE_INTEGER;
 
@@ -7,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PurchaseNumber {
-    private static final int MONEY_UNIT = 1000;
-
     private final Integer number;
 
     public PurchaseNumber(Integer purchasePrice) {

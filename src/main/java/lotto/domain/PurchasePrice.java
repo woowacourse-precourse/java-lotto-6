@@ -4,6 +4,8 @@ import lotto.util.message.ExceptionMessage;
 
 public class PurchasePrice {
 
+    private static final Double PERCENT = 100.0;
+
     private final Long money;
 
     public static PurchasePrice of(Long amount) {
@@ -21,7 +23,11 @@ public class PurchasePrice {
         }
     }
 
-    public int getPurchaseLottoAmount() {
+    public Integer getPurchaseLottoAmount() {
         return Math.toIntExact(this.money / Lotto.PRICE);
+    }
+
+    public Double calcYieldBy(long totalWinningPrize) {
+        return (double) (totalWinningPrize / this.money) * PERCENT;
     }
 }

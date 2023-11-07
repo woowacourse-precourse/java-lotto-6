@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.domain.RankInfo;
 import lotto.dto.LottoGameResult;
 import lotto.dto.PurchaseResult;
+import lotto.dto.YieldResult;
 import lotto.util.message.LottoRankingMessage;
 
 import java.util.Arrays;
@@ -26,11 +27,8 @@ public class OutputView {
     }
 
     public void printLottoGameResult(LottoGameResult lottoGameResult) {
-        System.out.println("당첨 통계");
-        System.out.println("---");
-
         Arrays.stream(RankInfo.values())
-                .filter(rankInfo -> rankInfo != RankInfo.NONE) // NONE인 경우 건너뛰기
+                .filter(rankInfo -> rankInfo != RankInfo.NONE)
                 .forEach(rankInfo -> {
                     int count = lottoGameResult.gameResult().getOrDefault(rankInfo, 0);
                     String lottoRankingMessage = LottoRankingMessage.findLottoRankingMessage(rankInfo, count);
@@ -38,10 +36,18 @@ public class OutputView {
                 });
     }
 
+    public void printYield(YieldResult yieldResult) {
+        System.out.println(Constants.SEPARATOR.message);
+        System.out.println(Constants.WINNING_STATS_HEADER.message);
+        System.out.printf(Constants.TOTAL_YIELD.message, yieldResult.yield());
+    }
 
     private enum Constants {
         INPUT_MONEY("%d개를 구매했습니다.%n"),
-        PICK_LOTTO_TICKET_NUMBER("당첨 번호를 입력해주세요.");
+        SEPARATOR("---"),
+        WINNING_STATS_HEADER("당첨 통계"),
+        TOTAL_YIELD("총 수익률은 %s %% 입니다.");
+
 
         private final String message;
 

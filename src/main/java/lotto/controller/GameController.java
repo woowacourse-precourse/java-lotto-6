@@ -24,8 +24,7 @@ public class GameController {
 
     public void gameStart() {
         PurchasePrice money = inputView.getMoney();
-        int purchaseLottoAmount = money.getPurchaseLottoAmount();
-        List<PurchaseResult> purchaseResults = lottoService.purchaseLottos(purchaseLottoAmount);
+        List<PurchaseResult> purchaseResults = lottoService.purchaseLottos(money);
         LottoTickets lottoTickets = LottoTickets.create(purchaseResults);
         outputView.printPurchaseResult(purchaseResults);
 
@@ -35,8 +34,9 @@ public class GameController {
 
         LottoGameResult lottoGameResult = lottoService.calcRank(lottoTickets.getTickets(), winningNumbers);
         outputView.printLottoGameResult(lottoGameResult);
-        YieldResult yieldResult = lottoService.calcYield(purchaseLottoAmount, lottoGameResult);
+        YieldResult yieldResult = lottoService.calcYield(money, lottoGameResult);
 
+        outputView.printYield(yieldResult);
     }
 
 }

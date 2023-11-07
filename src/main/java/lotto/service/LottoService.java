@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.PurchasePrice;
 import lotto.domain.RankInfo;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoGameResult;
@@ -24,7 +25,8 @@ public class LottoService {
     private LottoService() {
     }
 
-    public List<PurchaseResult> purchaseLottos(int purchaseLottoAmount) {
+    public List<PurchaseResult> purchaseLottos(PurchasePrice money) {
+        Integer purchaseLottoAmount = money.getPurchaseLottoAmount();
         return Stream.generate(() -> new PurchaseResult(RandomNumbersGenerator.generate()))
                 .limit(purchaseLottoAmount)
                 .collect(Collectors.toList());
@@ -41,14 +43,13 @@ public class LottoService {
         return new LottoGameResult(gameResult);
     }
 
-    public YieldResult calcYield(int purchaseLottoAmount, LottoGameResult lottoGameResult) {
-        long totalWinningPrize = 0L;
-        for (RankInfo rankInfo : lottoGameResult.gameResult().keySet()) {
-            Integer countOfWinners = lottoGameResult.gameResult().get(rankInfo);
-            totalWinningPrize += rankInfo.getPrizeMoney() * countOfWinners;
-        }
+    public YieldResult calcYield(PurchasePrice money, LottoGameResult lottoGameResult) {
+        HashMap<RankInfo, Integer> rankCounts = lottoGameResult.gameResult();
+        Long totalWinningPrize = rankCounts.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+        Double yieldOfGame = money.calcYieldBy(totalWinningPrize);
 
-        double yield = (double) totalWinningPrize / (purchaseLottoAmount * 1000) * 100;
-        return new YieldResult(yield);
+        return new YieldResult(yieldOfGame);
     }
 }

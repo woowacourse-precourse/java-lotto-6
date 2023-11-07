@@ -12,6 +12,9 @@ public class OutputView {
     private static final String OUTPUT_WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String OUTPUT_DIVIDING_LINE = "---";
 
+    public static void printSuccessMessage(String message, int numberOfMatch) {
+        System.out.println(message + numberOfMatch + "개");
+    }
 
     public void printPurchaseMoneyMessage() {
         System.out.println(OUTPUT_PURCHASE_MONEY_MESSAGE);
@@ -40,9 +43,6 @@ public class OutputView {
     public void printWinningStaticsMessage() {
         System.out.println(OUTPUT_WINNING_STATISTICS_MESSAGE);
         System.out.println(OUTPUT_DIVIDING_LINE);
-    }
-    public static void printSuccessMessage(String message, int numberOfMatch) {
-        System.out.println(message + numberOfMatch + "개");
     }
 
     public void printRevenueRate(double earningRate) {

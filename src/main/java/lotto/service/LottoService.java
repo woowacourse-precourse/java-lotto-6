@@ -4,7 +4,10 @@ import lotto.model.Lotto;
 import lotto.model.LottoGame;
 import lotto.model.Ranking;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static lotto.util.CalculateUtil.divideByThousands;
 import static lotto.util.GenerateLottoNumbersUtil.generateLottoNumber;
@@ -67,7 +70,7 @@ public class LottoService {
     private List<List<Integer>> generateLottoNumbers() {
         List<List<Integer>> purchaseLottoNumbers = new ArrayList<>();
         int lottoCount = lottoGame.getLottoCount();
-        for (int i = ZERO_VALUE; i < lottoCount; i ++) {
+        for (int i = ZERO_VALUE; i < lottoCount; i++) {
             List<Integer> lottoNumber = generateLottoNumber();
 
             purchaseLottoNumbers.add(lottoNumber);

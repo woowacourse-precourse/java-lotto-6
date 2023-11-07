@@ -5,7 +5,6 @@ import lotto.view.OutputView;
 public enum Ranking {
 
 
-
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - "), // 1등
     SECOND(5, 30_000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "), // 2등
     THIRD(5, 1_500_000, "5개 일치 (1,500,000원) - "), // 3등
@@ -13,18 +12,16 @@ public enum Ranking {
     FIFTH(3, 5_000, "3개 일치 (5,000원) - "), // 5등
     MISS(0, 0, "");
 
+    private static final int WINNING_MIN_COUNT = 3;
+    private static final String ERROR_MESSAGE = "[ERROR]";
+    private final int countOfMatch;
+    private final int winningAmount;
+    private final String message;
     Ranking(int countOfMatch, int winningAmount, String message) {
         this.countOfMatch = countOfMatch;
         this.winningAmount = winningAmount;
         this.message = message;
     }
-
-    private static final int WINNING_MIN_COUNT = 3;
-    private static final String ERROR_MESSAGE = "[ERROR]";
-
-    private final int countOfMatch;
-    private final int winningAmount;
-    private final String message;
 
     public static Ranking valueOf(int countOfMatch, boolean matchBonus) {
         if (countOfMatch < WINNING_MIN_COUNT) {

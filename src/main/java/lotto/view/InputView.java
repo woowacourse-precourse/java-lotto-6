@@ -1,7 +1,9 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.LottoConfig;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
@@ -16,6 +18,7 @@ public class InputView {
     private static final String PURCHASE_AMOUNT_MESSAGE = "구입 금액을 입력해 주세요.";
     private static final String PURCHASE_MESSAGE = "개를 구매했습니다.";
     private static final String USER_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String USER_INPUT_SEPARATOR = ",";
     private static final String NEW_LINE = "\n";
 
     public int purchaseAmountInput() {
@@ -42,7 +45,7 @@ public class InputView {
     public WinningLotto winningLottoInput() {
         List<Integer> winningNumber;
         String userInput;
-        
+
         do {
             System.out.println(USER_INPUT_MESSAGE);
             userInput = Console.readLine();
@@ -51,9 +54,13 @@ public class InputView {
         return new WinningLotto(new Lotto(winningNumber), 1);
     }
 
-    private List<Integer> convertWinningNumber(String userInput) {
-        return null;
+    public List<Integer> convertWinningNumber(String userInput) {
+        String[] splitInput = userInput.split(USER_INPUT_SEPARATOR);
+        return Arrays.stream(splitInput)
+                .map(String::trim)
+                .distinct()
+                .map(Integer::parseInt)
+                .sorted()
+                .collect(Collectors.toList());
     }
-
-
 }

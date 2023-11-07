@@ -6,8 +6,7 @@ public class PrizeProfit {
     private final double rate;
 
     public PrizeProfit(PrizeStats prizeStats, long buyingPrice) {
-        long prizeMoney = calculatePrizeMoney(prizeStats);
-        this.rate = calculateRate(prizeMoney, buyingPrice);
+        this.rate = calculateRate(calculatePrizeMoney(prizeStats), buyingPrice);
     }
 
     public double getRate() {

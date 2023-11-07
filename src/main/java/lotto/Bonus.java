@@ -15,17 +15,17 @@ public class Bonus {
     }
 
     private void validate(int number, List<Integer> numbers) {
-        validateAllRange(number, MIN_NUMBER, MAX_NUMBER);
-        validateNoDuplicates(number, numbers);
+        validateRange(number, MIN_NUMBER, MAX_NUMBER);
+        validateDuplicates(number, numbers);
     }
 
-    private void validateAllRange(int number, int minNumber, int maxNumber) {
+    private void validateRange(int number, int minNumber, int maxNumber) {
         if (!(number >= minNumber && number <= maxNumber)) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void validateNoDuplicates(int number, List<Integer> numbers) {
+    private void validateDuplicates(int number, List<Integer> numbers) {
         if (numbers.contains(number)) {
             throw new IllegalArgumentException();
         }

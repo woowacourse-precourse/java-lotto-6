@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -53,11 +54,18 @@ public class Application {
             results.add(result); // nullable
         }
 
-
+        BigDecimal prize = BigDecimal.ZERO;
         for (Result result : Result.values()) {
+            int matchCount = Collections.frequency(results, result);
             System.out.println(result.getDescription() + "(" + result.getPrizeMoney() + ")" + " - " +
-                    Collections.frequency(results, result) + "개");
+                    matchCount  + "개");
+
+            prize = prize.add(result.getPrizeMoney().multiply(BigDecimal.valueOf(matchCount)));
         }
+
+        BigDecimal profitRate = calculateProfitPercentage(prize, pay);
+        System.out.println("총 수익률은 "+ profitRate + "%입니다.");
+
     }
 
     private static void validateBonusNumber(Integer bonus, Lotto lotto) {
@@ -102,6 +110,11 @@ public class Application {
         }
     }
 
+
+    private static BigDecimal calculateProfitPercentage(BigDecimal prizeMoney, BigDecimal pay) {
+        BigDecimal percentage = (prizeMoney.subtract(pay)).divide(pay);
+        return percentage.setScale(2, RoundingMode.HALF_UP);
+    }
     private static void validatePayedMoney(BigDecimal pay) {
         if (!pay.remainder(BigDecimal.valueOf(1000)).equals(BigDecimal.ZERO)) {
             throw new IllegalArgumentException("[ERROR] 구입금액은 1000원 단위이어야 합니다.\n");

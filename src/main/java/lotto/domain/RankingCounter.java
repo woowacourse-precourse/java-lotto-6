@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class RankingCounter {
 
+    private static final int COUNTING = 1;
     private final Map<Ranking, Integer> rankingCounts;
 
     public RankingCounter() {
@@ -14,17 +15,20 @@ public class RankingCounter {
             rankingCounts.put(ranking, Unit.ZERO.getValue());
         }
     }
+
     public void changeCountWhenHasBonusNumber() {
         increaseCount(Ranking.SECOND);
         decreaseCount(Ranking.THIRD);
     }
 
     private void increaseCount(Ranking ranking) {
-        rankingCounts.put(ranking, rankingCounts.getOrDefault(ranking, 0) + 1);
+        rankingCounts.put(ranking, rankingCounts.getOrDefault(
+                ranking, Unit.ZERO.getValue()) + COUNTING);
     }
 
     private void decreaseCount(Ranking ranking) {
-        rankingCounts.put(ranking, rankingCounts.getOrDefault(ranking, 0) - 1);
+        rankingCounts.put(ranking, rankingCounts.getOrDefault(
+                ranking, Unit.ZERO.getValue()) - COUNTING);
 
     }
 

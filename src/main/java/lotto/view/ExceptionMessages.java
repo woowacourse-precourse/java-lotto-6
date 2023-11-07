@@ -31,6 +31,7 @@ public enum ExceptionMessages {
     }
 
     public void throwException() {
+        System.out.println(exceptionMessage);
         throw new IllegalArgumentException(exceptionMessage);
     }
 

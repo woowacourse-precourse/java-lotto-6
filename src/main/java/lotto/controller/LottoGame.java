@@ -38,8 +38,7 @@ public class LottoGame {
 
     private void matchLottos() {
         for (Lotto lotto : buyer.getLottos()) {
-            Rank rank = lottoService.getRankCode(lotto, winningLotto);
-            calcPrize(rank);
+            calcPrize(lottoService.getRankCode(lotto, winningLotto));
         }
     }
 

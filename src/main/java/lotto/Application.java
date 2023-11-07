@@ -4,13 +4,14 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Application {
     static final int Lotto_Price = 1000;
     public static void main(String[] args) {
         int lotto_purchase_amount;
         List<Lotto> lottos;
-        List<Integer> winning_numbers;
+        Lotto winning_numbers;
         int bonus_number;
         
         lotto_purchase_amount = inputLottoPurchase() / Lotto_Price ;
@@ -19,11 +20,35 @@ public class Application {
         winning_numbers = inputWinningNumbers();
     }
 
-    static List<Integer> inputWinningNumbers(){
-        List<Integer> winning_numbers = new ArrayList<Integer>();
-        String input_winning_numbers = inputMethod("당첨 번호를 입력해 주세요");
+    static Lotto inputWinningNumbers(){
+        Lotto winning_numbers;
+        String input_winning_numbers;
+        System.out.println("당첨 번호를 입력해 주세요");
+
+        while(true){
+            try {
+                input_winning_numbers = Console.readLine();
+                winning_numbers = new Lotto(stringToIntArray(input_winning_numbers));
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         return winning_numbers;
+    }
+
+    static List<Integer> stringToIntArray(String str){
+        List<Integer> list_integer;
+        String[] str_array = str.split(",");
+        try {
+            int[] int_array = Arrays.stream(str_array).mapToInt(Integer::parseInt).toArray();
+            list_integer = Arrays.stream(int_array).boxed().collect(Collectors.toList());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("[ERROR] 숫자가 아닌 값이 입력되었습니다.");
+        }
+
+        return list_integer;
     }
 
     static void printLottos(List<Lotto> lottos, int lotto_purchase_amount){
@@ -35,10 +60,12 @@ public class Application {
 
     static int inputLottoPurchase(){
         int lotto_purchase_amount;
-        String input_lotto_purchase = inputMethod("구입금액을 입력해 주세요");
+        String input_lotto_purchase;
+        System.out.println("구입금액을 입력해 주세요");
 
         while(true){
             try {
+                input_lotto_purchase = Console.readLine();
                 lotto_purchase_amount = stringToInt(input_lotto_purchase);
                 checkMultiple1000(lotto_purchase_amount);
                 break;
@@ -59,7 +86,6 @@ public class Application {
 
     static List<Integer> pickLottoNumbers(){
         List<Integer> lotto_numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(lotto_numbers);
         return lotto_numbers;
     }
 

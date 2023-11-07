@@ -15,7 +15,7 @@ class StatisticDtoTest {
     private StatisticDto statisticDto;
 
     @BeforeEach
-    void setUp() {
+    void init() {
         List<Integer> matchedNumberCount = List.of(3, 3, 4, 4, 5, 5, 6);
         List<Boolean> containBonusNumber = List.of(false, true, false, true, false, true, true);
         Statistic statistic = Statistic.from(matchedNumberCount, containBonusNumber);

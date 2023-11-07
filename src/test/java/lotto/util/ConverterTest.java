@@ -13,7 +13,7 @@ class ConverterTest {
 
     @DisplayName("입력받은 String을 DELIMITER로 구분하여 List<Integer> 형태로 변환한다.")
     @Test
-    public void convertStringToIntegerListByDelimiter_test() {
+    void convertStringToIntegerListByDelimiter_test() {
         // given
         String input = "1,2,3,4,5";
 
@@ -32,7 +32,7 @@ class ConverterTest {
 
     @DisplayName("입력받은 String에 문자가 포함되어 있는 경우 예외가 발생한다.")
     @Test
-    public void testConvertStringToIntegerListByDelimiterWithNonNumericInput() {
+    void testConvertStringToIntegerListByDelimiterWithNonNumericInput() {
         // when
         String input = "1,2,3,abc,5";
 

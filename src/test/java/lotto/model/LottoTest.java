@@ -20,7 +20,7 @@ class LottoTest {
     LottoNumberGenerator numberGenerator;
 
     @BeforeEach
-    void setNumberGenerator() {
+    void init() {
         numberGenerator = new LottoNumberGenerator() {
             @Override
             public List<Integer> pickNumbers() {

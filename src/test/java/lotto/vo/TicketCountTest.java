@@ -10,7 +10,7 @@ class TicketCountTest {
 
     @DisplayName("TicketCount는 필드 값을 포장해야 한다.")
     @Test
-    public void count_value_test() {
+    void count_value_test() {
         // given
         Integer count = 5;
 
@@ -24,7 +24,7 @@ class TicketCountTest {
 
     @DisplayName("두 TicketCount의 필드 값이 동일하면 두 레코드는 동일해야 한다.")
     @Test
-    public void count_equality_test() {
+    void count_equality_test() {
         // when
         TicketCount ticketCount1 = new TicketCount(1);
         TicketCount ticketCount2 = new TicketCount(1);

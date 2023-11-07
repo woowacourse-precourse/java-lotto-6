@@ -14,7 +14,7 @@ class BonusNumberTest {
 
     @DisplayName("유효한 값으로 BonusNumber를 생성할 경우 예외가 발생하지 않는다.")
     @Test
-    public void valid_bonusNumber_init_test() {
+    void valid_bonusNumber_init_test() {
         // when
         Integer validNumber = 10;
 
@@ -25,14 +25,14 @@ class BonusNumberTest {
     @DisplayName("로또 번호 범위가 아닌 번호로 BonusNumber를 생성할 경우 예외가 발생한다.")
     @ParameterizedTest
     @ValueSource(ints = {0, 46})
-    public void invalid_number_not_between_lotto_number_test(Integer invalidNumber) {
+    void invalid_number_not_between_lotto_number_test(Integer invalidNumber) {
         // then
         assertThrows(IllegalArgumentException.class, () -> new BonusNumber(invalidNumber));
     }
 
     @DisplayName("BonusNumber는 필드 값을 포장해야 한다.")
     @Test
-    public void number_value_test() {
+    void number_value_test() {
         // given
         Integer number = 5;
 
@@ -46,7 +46,7 @@ class BonusNumberTest {
 
     @DisplayName("두 BonusNumber의 필드 값이 동일하면 두 레코드는 동일해야 한다.")
     @Test
-    public void number_equality_test() {
+    void number_equality_test() {
         // when
         BonusNumber bonusNumber1 = new BonusNumber(1);
         BonusNumber bonusNumber2 = new BonusNumber(1);

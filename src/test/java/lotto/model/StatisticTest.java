@@ -27,5 +27,4 @@ class StatisticTest {
         assertEquals(1, rank.get(LottoRank.SECOND_RANK));
         assertEquals(1, rank.get(LottoRank.FIRST_RANK));
     }
-
 }

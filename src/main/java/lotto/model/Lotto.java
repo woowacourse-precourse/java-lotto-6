@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.Comparator;
 import java.util.List;
 import lotto.model.validator.LottoNumbersValidator;
 
@@ -18,8 +17,7 @@ public class Lotto {
     }
 
     public String showNumbers() {
-        numbers.sort(Comparator.naturalOrder());
-        return numbers.toString();
+        return numbers.stream().sorted().toList().toString();
     }
 
     public int countMatchOtherLotto(Lotto otherLotto) {

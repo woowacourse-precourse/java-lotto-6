@@ -25,6 +25,7 @@ public class LottoController {
         int bonus = InputView.getBonusNumber(winning);
         LottoResult lottoResult = getResult(lottoNumList, winning, bonus);
         OutputView.printWinningResult(lottoResult);
+        OutputView.printProfitRate(lottoResult, amount);
     }
 
     public int getAmount(){

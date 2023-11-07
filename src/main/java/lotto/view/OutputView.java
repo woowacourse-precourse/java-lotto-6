@@ -42,4 +42,9 @@ public class OutputView {
             System.out.println();
         }
     }
+
+    public static void printProfitRate(LottoResult lottoResult, int amount){
+        double profitRate = lottoResult.profitRate(amount);
+        System.out.printf("총 수익률은 %,.1f%%입니다.\n", profitRate);
+    }
 }

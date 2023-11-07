@@ -39,5 +39,22 @@ public class Customer {
         rankingCount.put(ranking, rankingCount.get(ranking) + 1);
     }
 
+    public String getMatchResult() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Ranking ranking : Ranking.values()) {
+            if (ranking == Ranking.NONE) {
+                continue;
+            }
+            stringBuilder.append(ranking.getMatchedCount()).append("개 일치");
+            if (ranking == Ranking.SECOND) {
+                stringBuilder.append(", 보너스 볼 일치");
+            }
+            stringBuilder.append(" (").append(ranking.getWinnings())
+                    .append(") - ").append(rankingCount.get(ranking)).append("개\n");
+
+        }
+        return stringBuilder.toString();
+    }
+
 
 }

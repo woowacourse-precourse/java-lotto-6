@@ -25,7 +25,7 @@ public enum Ranking {
             return SECOND;
         }
         for (Ranking ranking : values()) {
-            if (ranking.matchedCount == matchedCount && ranking.rank != 2) {
+            if (ranking.matchedCount == matchedCount && ranking.rank != SECOND.getRank()) {
                 return ranking;
             }
         }

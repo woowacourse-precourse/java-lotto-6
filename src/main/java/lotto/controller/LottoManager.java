@@ -24,7 +24,7 @@ public class LottoManager {
         WinLotto winLotto = issueWinLotto();
 
         customer.matchLotto(winLotto);
-        
+        OutPutView.printMatchResult(customer.getMatchResult());
     }
 
 

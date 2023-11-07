@@ -4,11 +4,11 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Purchase;
 
-public class LottoPurchaseResult {
+public class PurchaseResult {
     private final List<Lotto> lottos;
     private final Purchase purchase;
 
-    public LottoPurchaseResult(List<Lotto> lottos, Purchase purchase) {
+    public PurchaseResult(List<Lotto> lottos, Purchase purchase) {
         this.lottos = lottos;
         this.purchase = purchase;
     }

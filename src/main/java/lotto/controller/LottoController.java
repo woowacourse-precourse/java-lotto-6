@@ -20,6 +20,7 @@ public class LottoController {
         Integer bonusNumber = LottoService.inputBonusNumber(winningNumbers);
 
         Map<Integer, Integer> rank = LottoService.checkWinning(lottoList, winningNumbers, bonusNumber);
+        LottoView.printResult(rank);
 
     }
 }

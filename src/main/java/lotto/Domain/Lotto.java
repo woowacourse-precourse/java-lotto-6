@@ -15,6 +15,7 @@ public class Lotto {
     private List<Integer> validate(String inputNumbers) {
         List<Integer> validateNumbers = new ArrayList<>();
         lottoSizeValidate(inputNumbers);
+        isNumber(inputNumbers);
         return validateNumbers;
     }
 
@@ -24,6 +25,17 @@ public class Lotto {
         if (splitNumbers.length != Constant.LOTTO_LENGTH) {
             throw new IllegalArgumentException(
                     Constant.ERROR_PREFIX + Constant.USER_NUMBER_PREFIX + Constant.ERROR_NOT_COUNT_MESSAGE);
+        }
+    }
+
+    //숫자값인지 확인
+    private void isNumber(String inputNumbers) {
+        String[] splitNumbers = inputNumbers.split(",");
+        for (String splitNumber : splitNumbers) {
+            if (!splitNumber.matches(Constant.NUMBER_PATTERN)) {
+                throw new IllegalArgumentException(
+                        Constant.ERROR_PREFIX + Constant.USER_NUMBER_PREFIX + Constant.ERROR_NOT_NUMBER_MESSAGE);
+            }
         }
     }
 }

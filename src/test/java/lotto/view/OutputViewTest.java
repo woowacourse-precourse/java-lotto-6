@@ -26,4 +26,11 @@ public class OutputViewTest {
         List<String> testLottoResult = Arrays.asList("5", "4", "3", "1", "2");
         outputView.printLottoWinningResult(testLottoResult);
     }
+
+    @DisplayName("총 수익률 출력 테스트")
+    @Test
+    void printTotalProfitRateTest() {
+        String testProfitRate = "100.1";
+        outputView.printTotalProfitRate(testProfitRate);
+    }
 }

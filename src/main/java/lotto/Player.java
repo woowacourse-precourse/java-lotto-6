@@ -1,11 +1,12 @@
 package lotto;
 
+import static lotto.Constant.MINIMUM_LOTTO_PRICE_UNIT;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class Player {
-    private static final Integer MINIMUM_LOTTO_PRICE = 1000;
     private final List<Lotto> lottos;
     private int money;
 
@@ -16,8 +17,8 @@ public class Player {
 
     public void buy(int money) {
         this.money = money;
-        while (money >= MINIMUM_LOTTO_PRICE) {
-            money -= MINIMUM_LOTTO_PRICE;
+        while (money >= MINIMUM_LOTTO_PRICE_UNIT) {
+            money -= MINIMUM_LOTTO_PRICE_UNIT;
             Lotto lotto = LottoGenerator.generate();
             lottos.add(lotto);
         }

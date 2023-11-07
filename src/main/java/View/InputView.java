@@ -1,5 +1,7 @@
 package View;
 
+import static lotto.Constant.DELIMITER;
+import static lotto.Constant.MINIMUM_LOTTO_PRICE_UNIT;
 import static lotto.ErrorMessage.CONTAINS_WHITESPACE;
 import static lotto.ErrorMessage.ENDS_WITH_DELIMITER;
 import static lotto.ErrorMessage.INVALID_NUMBER_FORMAT;
@@ -72,7 +74,7 @@ public class InputView {
 
     public void validateNumbers(String numbers) {
         validateNotEndWithDelimiter(numbers);
-        List.of(numbers.split(",")).forEach(this::validateNumber);
+        List.of(numbers.split(DELIMITER)).forEach(this::validateNumber);
     }
 
     public void validateNumber(String number) {
@@ -110,13 +112,13 @@ public class InputView {
 
     private void validateInputIsMultipleOfThousand(String input) {
         int purchaseAmount = Integer.parseInt(input);
-        if (purchaseAmount % 1000 != 0) {
+        if (purchaseAmount % MINIMUM_LOTTO_PRICE_UNIT != 0) {
             throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT);
         }
     }
 
     private void validateNotEndWithDelimiter(String input) {
-        if (input.endsWith(",")) {
+        if (input.endsWith(DELIMITER)) {
             throw new IllegalArgumentException(ENDS_WITH_DELIMITER);
         }
     }

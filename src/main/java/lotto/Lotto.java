@@ -1,5 +1,8 @@
 package lotto;
 
+import static lotto.Constant.LOTTO_NUMBER_COUNT;
+import static lotto.Constant.MAXIMUM_LOTTO_NUMBER;
+import static lotto.Constant.MINIMUM_LOTTO_NUMBER;
 import static lotto.ErrorMessage.DUPLICATED_LOTTO_NUMBER;
 import static lotto.ErrorMessage.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.ErrorMessage.INVALID_LOTTO_SIZE;
@@ -21,13 +24,13 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE);
         }
     }
 
     private void validateRange(List<Integer> numbers) {
-        if (numbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+        if (numbers.stream().anyMatch(number -> number < MINIMUM_LOTTO_NUMBER || number > MAXIMUM_LOTTO_NUMBER)) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE);
         }
     }

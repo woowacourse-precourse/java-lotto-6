@@ -11,11 +11,24 @@ public class Amount {
         this.amount = amount;
     }
 
-    public int getAmount() {
-        return amount;
-    }
-
     protected void validate(int amount) {
         ValidationUtils.validateNotNull(amount);
+    }
+
+    @Override
+    public int hashCode() {
+        return Integer.hashCode(amount);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Amount amountObj = (Amount) obj;
+        return this.amount == amountObj.amount;
     }
 }

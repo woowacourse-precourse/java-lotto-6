@@ -25,11 +25,18 @@ public class InputValidatorTest {
     }
 
     @Test
-    public void testInputWithoutComma() {
+    public void 쉼표_구분자_아닌_경우_테스트() {
         String input = "1 15 16 18 25 45";
 
         assertThrows(IllegalArgumentException.class, () -> {
             InputValidator.validateContainsCommaSeparator(input);
+        });
+    }
+
+    @Test
+    void 당첨번호에_중복이_있는_경우_테스트() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            InputValidator.validateDuplicateNumber("1,1,2,3,4,5");
         });
     }
 }

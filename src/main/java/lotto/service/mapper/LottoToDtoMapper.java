@@ -1,9 +1,9 @@
 package lotto.service.mapper;
 
 import java.util.List;
-import lotto.controller.dto.output.LottoDto;
-import lotto.controller.dto.output.LottosBuyingResult;
-import lotto.controller.dto.output.LottosDrawingResult;
+import lotto.controller.dto.output.LottoOutput;
+import lotto.controller.dto.output.LottosBuyingOutput;
+import lotto.controller.dto.output.LottosDrawingOutput;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoDrawingData;
 import lotto.domain.lotto.LottoPrize;
@@ -26,33 +26,33 @@ public final class LottoToDtoMapper {
     /**
      * Lottos(Domain) -> LottosBuyingResult(Dto) 변환
      */
-    public static LottosBuyingResult mapFrom(final Lottos lottos) {
+    public static LottosBuyingOutput from(final Lottos lottos) {
         final LottosOpened lottosOpened = lottos.toOpened();
-        final List<LottoDto> lottoDtos = lottosOpened.getLottos()
+        final List<LottoOutput> lottoDtos = lottosOpened.getLottos()
                 .stream()
-                .map(LottoToDtoMapper::mapFrom)
+                .map(LottoToDtoMapper::from)
                 .toList();
 
-        return new LottosBuyingResult(lottoDtos, lottosOpened.size());
+        return new LottosBuyingOutput(lottoDtos, lottosOpened.size());
     }
 
     /**
      * LottoOpened -> LottoDto 변환
      */
-    private static LottoDto mapFrom(final LottoOpened lottoOpened) {
+    private static LottoOutput from(final LottoOpened lottoOpened) {
         final List<Integer> numbers = lottoOpened.getNumbers()
                 .stream()
                 .map(LottoNumber::getValue)
                 .toList();
 
-        return new LottoDto(numbers);
+        return new LottoOutput(numbers);
     }
 
     /**
      * LottosDrawData -> LottosDrawingResult
      */
-    public static LottosDrawingResult mapFrom(final LottoDrawingData data) {
-        return new LottosDrawingResult(
+    public static LottosDrawingOutput from(final LottoDrawingData data) {
+        return new LottosDrawingOutput(
                 data.get(LottoPrize.FIRST),
                 data.get(LottoPrize.SECOND),
                 data.get(LottoPrize.THIRD),
@@ -65,14 +65,14 @@ public final class LottoToDtoMapper {
     /**
      * Lotto(Domain) -> LottoDto 변환
      */
-    private static LottoDto mapFrom(final Lotto lotto) {
+    private static LottoOutput from(final Lotto lotto) {
         final List<Integer> numbers = lotto.toOpened()
                 .getNumbers()
                 .stream()
                 .map(LottoNumber::getValue)
                 .toList();
 
-        return new LottoDto(numbers);
+        return new LottoOutput(numbers);
     }
 
 }

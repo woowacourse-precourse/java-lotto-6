@@ -1,6 +1,6 @@
 package lotto.service.mapper;
 
-import lotto.controller.dto.input.BuyLottosDto;
+import lotto.controller.dto.input.BuyLottosInput;
 import lotto.domain.money.Money;
 import lotto.domain.money.Wallet;
 
@@ -12,7 +12,7 @@ public final class WalletFromDtoMapper {
     /**
      * BuyLottosDto -> Wallet(Domain) 변환
      */
-    public static Wallet mapFrom(final BuyLottosDto dto) {
+    public static Wallet from(final BuyLottosInput dto) {
         final Money money = Money.from(dto.getAmount());
         return new Wallet(money);
     }

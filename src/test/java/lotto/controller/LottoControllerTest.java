@@ -148,7 +148,7 @@ class LottoControllerTest {
 
     @Test
     @DisplayName("기능27 테스트 : 당첨 통계가 잘 출력된다.")
-    void showWinningResult() {
+    void showStatisticResultCorrectly() {
         // given
         int totalPurchaseCount = 5;
         List<Lotto> lottoList = lottoController.generateLottoList(totalPurchaseCount);
@@ -163,5 +163,18 @@ class LottoControllerTest {
         // then
         assertThat(result).containsSubsequence("당첨 통계", "---", "총 수익률은", "%입니다.");
         assertThat(count).isEqualTo(totalPurchaseCount);
+    }
+
+    @Test
+    @DisplayName("기능24 테스트 : 유저의 입력값을 보너스 숫자로 변환한다.")
+    void registerBonusNumberShouldTransformUserInputToBonusNumber() {
+        // given
+        System.setIn(createUserInput("1"));
+
+        // when
+        int result = lottoController.registerBonusNumber();
+
+        // then
+        assertThat(result).isEqualTo(1);
     }
 }

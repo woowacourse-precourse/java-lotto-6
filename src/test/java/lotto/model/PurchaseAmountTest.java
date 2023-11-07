@@ -24,7 +24,7 @@ public class PurchaseAmountTest {
         String inputValue = "";
         assertThatThrownBy(() -> new PurchaseAmount(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INPUT_EMPTY_STRING_MESSAGE.getMessage());
+                .hasMessageContaining(ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.getMessage());
     }
 
     @DisplayName("숫자를 입력하지 않으면 예외 발생")
@@ -33,7 +33,7 @@ public class PurchaseAmountTest {
         String inputValue = "1h";
         assertThatThrownBy(() -> new PurchaseAmount(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INPUT_ZERO_OR_LESS_MESSAGE.getMessage());
+                .hasMessageContaining(ExceptionMessage.INPUT_NOT_NUMBER_MESSAGE.getMessage());
     }
 
     @DisplayName("0보다 작은 숫자를 입력하면 예외 발생")
@@ -42,7 +42,7 @@ public class PurchaseAmountTest {
         String inputValue = "-1000";
         assertThatThrownBy(() -> new PurchaseAmount(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ExceptionMessage.INPUT_ZERO_OR_LESS_MESSAGE.getMessage());
+                .hasMessageContaining(ExceptionMessage.INPUT_LESS_THAN_ZERO_MESSAGE.getMessage());
     }
 
     @DisplayName("1000으로 나누어 떨어지지 않는 수를 입력하면 예외 발생")

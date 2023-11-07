@@ -55,10 +55,6 @@ public enum WinningResult {
         return this.matchCount == matchCount;
     }
 
-    public static double calculateProfitRate(long totalPrizeAmount, long totalPurchaseAmount) {
-        return (double) totalPrizeAmount / totalPurchaseAmount;
-    }
-
     public void printMessage(int matchCount) {
         if (this != FAILED) {
             OutputView.printSuccessMessage(winningDescription, matchCount);

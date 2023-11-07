@@ -1,6 +1,5 @@
 package lotto.Domain;
 
-
 import lotto.View.ExceptionMessages;
 
 public class LottoPurchaseAmount {

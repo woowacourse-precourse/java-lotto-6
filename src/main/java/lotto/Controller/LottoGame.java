@@ -22,8 +22,6 @@ public class LottoGame {
     private static BonusNumber bonusNumber;
     private static Lotto lotto;
     private static List<Lotto> lottoList;
-    private static List<Integer> winningLottoNumbers;
-    private static int winningBonusNumber;
     private static CompareResult compareResult;
 
     public void LottoGameRun() {
@@ -82,7 +80,6 @@ public class LottoGame {
         return new Lotto(lottoNumbers);
     }
 
-
     public CompareResult validateBonusNumber() {
         Lotto lotto = new Lotto(InputView.inputLottoNumbers());
         List<Integer> compareNumber = lotto.getLottoNumbers();
@@ -129,6 +126,5 @@ public class LottoGame {
         }
         return result;
     }
-
 }
 

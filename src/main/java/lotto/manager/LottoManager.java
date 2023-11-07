@@ -24,7 +24,7 @@ public class LottoManager {
     public void start(){
         int purchasePrice = lottoInput.lottoPurchaseInput();
         LottoResult lottoResult = new LottoResult(purchasePrice);
-        lottoService.makeLottoAsPurchaseAndAccumulate(lottoResult);
+        lottoResult = lottoService.makeLottoAsPurchaseAndAccumulate(lottoResult);
         lottoOutput.printAllRandomLotto(lottoResult.getLottos());
 
         WinningLotto winningLotto = lottoInput.winningLottoInput();

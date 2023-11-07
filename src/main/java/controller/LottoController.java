@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.AnswerLotto;
-import lotto.BonusNumber;
 import lotto.Lotto;
+import lotto.LottoNumber;
 import lotto.Money;
 import lotto.PointCalculator;
 import lotto.PointResult;
@@ -25,8 +25,7 @@ public class LottoController {
     private PointResult generatePointResult(int lottoPurchaseCount) {
         List<Lotto> lottos = generateLottoWithCount(lottoPurchaseCount);
         AnswerLotto answerLotto = generateAnswerLotto();
-        BonusNumber bonusNumber = generateBonusNumber(answerLotto);
-        List<Double> lottoPointResult = getLottoPointResult(lottos, answerLotto, bonusNumber);
+        List<Double> lottoPointResult = getLottoPointResult(lottos, answerLotto);
         return new PointResult(lottoPointResult);
     }
 
@@ -40,8 +39,9 @@ public class LottoController {
     }
 
     private Lotto generateLotto() {
-        List<Integer> randomLottoNumbers = RandomUtils.generateRandomLottoNumber().stream()
+        List<LottoNumber> randomLottoNumbers = RandomUtils.generateRandomLottoNumber().stream()
                 .sorted()
+                .map(LottoNumber::of)
                 .collect(Collectors.toList());
         Lotto lotto = new Lotto(randomLottoNumbers);
         System.out.println(lotto.getGeneratedLottoString());
@@ -55,19 +55,21 @@ public class LottoController {
 
     private AnswerLotto generateAnswerLotto() {
         OutputView.printAnswerLottoNumberInputMessage();
-        return new AnswerLotto(Parser.stringToIntegerList(InputView.inputAnswerLotto()));
+        List<LottoNumber> lottoNumbers = Parser.stringToLottoNumbers(InputView.inputAnswerLotto());
+        LottoNumber bonusNumber = createBonusNumber();
+        return new AnswerLotto(lottoNumbers, bonusNumber);
     }
 
-    private BonusNumber generateBonusNumber(AnswerLotto answerLotto) {
+    private LottoNumber createBonusNumber() {
         OutputView.printBonusNumberInputMessage();
-        return new BonusNumber(Integer.parseInt(InputView.inputNaturalNumber()), answerLotto);
+        return LottoNumber.of(Integer.parseInt(InputView.inputNaturalNumber()));
     }
 
-    private List<Double> getLottoPointResult(List<Lotto> lottos, AnswerLotto answerLotto, BonusNumber bonusNumber) {
+    private List<Double> getLottoPointResult(List<Lotto> lottos, AnswerLotto answerLotto) {
         PointCalculator pointCalculator = new PointCalculator();
         List<Double> lottoPointResult = new ArrayList<>();
         for (Lotto lotto : lottos) {
-            lottoPointResult.add(pointCalculator.calculateTotalPoint(lotto, answerLotto, bonusNumber));
+            lottoPointResult.add(pointCalculator.calculateTotalPoint(lotto, answerLotto));
         }
         return lottoPointResult;
     }

@@ -1,34 +1,24 @@
 package lotto.model;
 
-import static lotto.util.message.ErrorMessages.BONUS_NUMBER_DUPLICATION_EXCEPTION;
-import static lotto.util.message.ErrorMessages.BONUS_NUMBER_RANGE_EXCEPTION;
-
-import lotto.util.validator.NumberRangeValidator;
+import static lotto.util.message.ErrorMessages.BONUS_DUPLICATION_EXCEPTION;
 
 public class WinningNumbers {
     private final Lotto lotto;
-    private final Integer bonusNumber;
+    private final Bonus bonus;
 
-    public WinningNumbers(Lotto lotto, Integer bonusNumber) {
-        validate(lotto, bonusNumber);
+    public WinningNumbers(Lotto lotto, Bonus bonus) {
+        validate(lotto, bonus);
         this.lotto = lotto;
-        this.bonusNumber = bonusNumber;
+        this.bonus = bonus;
     }
 
-    private void validate(Lotto lotto, Integer bonusNumber) {
-        validateRange(bonusNumber);
-        validateDuplication(lotto, bonusNumber);
-    }
-
-    private void validateRange(Integer bonusNumber) {
-        if (NumberRangeValidator.isInvalidRange(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_RANGE_EXCEPTION);
+    private void validate(Lotto lotto, Bonus bonus) {
+        if (isDuplicated(lotto, bonus)) {
+            throw new IllegalArgumentException(BONUS_DUPLICATION_EXCEPTION);
         }
     }
 
-    private void validateDuplication(Lotto lotto, Integer bonusNumber) {
-        if (lotto.isContain(bonusNumber)) {
-            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_EXCEPTION);
-        }
+    private boolean isDuplicated(Lotto lotto, Bonus bonus) {
+        return lotto.isContain(bonus.getNumber());
     }
 }

@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.UserMoney;
 
@@ -35,11 +36,11 @@ public class UserIoManager {
         }
     }
 
-    public Integer readBonusNumber() {
+    public Bonus readBonusNumber() {
         while (true) {
             try {
                 outputView.printBonusNumberGuide();
-                return inputView.readBonusNumber();
+                return new Bonus(inputView.readBonusNumber());
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
             }

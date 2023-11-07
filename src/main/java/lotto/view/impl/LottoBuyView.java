@@ -1,6 +1,9 @@
 package lotto.view.impl;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.view.Inputable;
@@ -25,14 +28,30 @@ public class LottoBuyView extends View implements Inputable, Outputable{
     public void outputView(Object obj) {
         if (obj instanceof Lottos lottos){
             lottoCountView(lottos.getLottoCount());
-            return;
+            lottoNumberView(lottos);
         }
 
-        throw new IllegalArgumentException("asd");
     }
 
     private static void lottoCountView(Integer lottoCount) {
         printView(lottoCount + outputText);
+    }
+
+    private static void lottoNumberView(Lottos lottos) {
+        for (Lotto lotto : lottos) {
+            printView(buildLottoNumberView(lotto));
+        }
+    }
+
+    private static String buildLottoNumberView(Lotto lotto) {
+        List<String> strList = convertIntListToStringList(lotto);
+        return BEGIN_MARKER + String.join(DELIMITER, strList) + END_MARKER;
+    }
+
+    private static List<String> convertIntListToStringList(Lotto lotto){
+        return lotto.getNumbers().stream()
+                .map(Object::toString)
+                .collect(Collectors.toList());
     }
 
 }

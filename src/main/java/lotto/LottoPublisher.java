@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import lotto.lottoUI.LottoUI;
 
-public class PublishLotto {
+public class LottoPublisher {
     static final int Lotto_price = 1000;
     private static final int MIN = 1;
     private static final int MAX = 45;
@@ -20,7 +20,7 @@ public class PublishLotto {
         LottoUI.DisplayOfLottoNumber(publish_num);
         List<List<Integer>> lottoNumbers = LottoSixNumber(publish_num);
         printLottoNumbers(lottoNumbers);
-        SetLottoNumber.parseWinningNumbers(publish_num);
+        LottoNumberSetter.parseWinningNumbers(publish_num);
     }
 
     private static List<List<Integer>> LottoSixNumber(int count) {

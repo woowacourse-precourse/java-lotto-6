@@ -19,7 +19,7 @@ class LottoControllerTest {
     public void setUp() {
 
     }
-    
+
 
     @DisplayName("당첨 번호와 로또 번호 비교해서 일치하는 개수 세기")
     @ParameterizedTest

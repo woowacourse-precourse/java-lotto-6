@@ -11,12 +11,12 @@ public class SystemMessage {
     }
 
     public String getLottoNumbers() {
-        System.out.println(Constants.LOTTO_NUMBERS);
+        System.out.println("\n" + Constants.LOTTO_NUMBERS);
         return Console.readLine();
     }
 
     public String getBonusNumbers() {
-        System.out.println(Constants.BONUS_NUMBER);
+        System.out.println("\n" + Constants.BONUS_NUMBER);
         return Console.readLine();
     }
 }

@@ -8,7 +8,7 @@ import lotto.utils.Constants;
 
 public class LottoResult {
 
-    private static final int SCALE = 1;
+    private static final int SCALE = 2;
     private final Map<MatchCount, Integer> result;
 
     public LottoResult() {
@@ -27,15 +27,21 @@ public class LottoResult {
         return result.get(matchCount);
     }
 
-    public double calculateEarningsRate(final int purchaseAmount) {
+    public double calculateRoundedEarningsRate(final int purchaseAmount) {
         long totalEarnings = calculateTotalEarnings();
-        return roundEarningsRate((double) totalEarnings / purchaseAmount * Constants.HUNDRED);
+        double earningsRate = calculateEarningsRate(totalEarnings, purchaseAmount);
+        return roundEarningsRate(earningsRate);
     }
 
     private long calculateTotalEarnings() {
         return result.entrySet().stream()
             .mapToLong(entry -> entry.getKey().getReward() * entry.getValue())
             .sum();
+    }
+
+    private double calculateEarningsRate(final long totalEarnings, int purchaseAmount){
+        long totalInvestment = (long) purchaseAmount * Constants.LOTTO_PRICE;
+        return (double) totalEarnings / totalInvestment * Constants.HUNDRED;
     }
 
     private double roundEarningsRate(final double earningsRate) {

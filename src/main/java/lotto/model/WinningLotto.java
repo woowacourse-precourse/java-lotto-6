@@ -1,5 +1,6 @@
 package lotto.model;
 
+import java.util.List;
 import lotto.util.ErrorMessage;
 
 public class WinningLotto {
@@ -12,6 +13,21 @@ public class WinningLotto {
 
         validateBonusNumber(bonusNumber.getBonusNumber());
         this.bonusNumber = bonusNumber;
+    }
+
+    public int calculateMatchNumber(LottoPlayerNumber lottoPlayerNumber) {
+        List<Integer> numbers = lotto.getNumbers();
+
+        return (int) lottoPlayerNumber.getLottoPlayerNumber()
+                .stream()
+                .filter(numbers::contains)
+                .count();
+
+    }
+
+    public boolean hasBonusNumber(LottoPlayerNumber lottoPlayerNumber) {
+        return lottoPlayerNumber.getLottoPlayerNumber()
+                .contains(bonusNumber.getBonusNumber());
     }
 
     private void validateBonusNumber(int bonusNumber) {

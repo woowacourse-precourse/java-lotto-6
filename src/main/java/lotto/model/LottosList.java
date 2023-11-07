@@ -12,10 +12,9 @@ import java.util.List;
 
 public class LottosList {
     private List<Lotto> lottosList;
-
+    private List<Boolean> bonusCheck;
 
     public LottosList() {
-
     }
 
     public LottosList(List<Lotto> lottos) {
@@ -35,9 +34,12 @@ public class LottosList {
     }
 
     public void createLottos(int lottoNum) {
+        bonusCheck = new ArrayList<>();
+
         for (int i = 0; i < lottoNum; i++) {
             List<Integer> numbers = generateUniqueNumbers();
             lottosList.add(new Lotto(numbers));
+            bonusCheck.add(false);
         }
     }
 
@@ -50,5 +52,8 @@ public class LottosList {
         return Randoms.pickUniqueNumbersInRange(STRAT_INRANGE, END_INRANGE, NUMBERS_INLOTTO);
     }
 
+    public void checkBonus(int index) {
+        bonusCheck.set(index, true);
+    }
 
 }

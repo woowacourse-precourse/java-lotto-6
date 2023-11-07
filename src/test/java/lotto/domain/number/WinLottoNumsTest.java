@@ -2,21 +2,19 @@ package lotto.domain.number;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class WinLottoNumsTest {
-    private WinLottoNums winLottoNums;
+    private WinLottoNumbers winLottoNums;
 
     @BeforeEach
     void setUp() {
-        winLottoNums = new WinLottoNums(List.of(1, 2, 3, 4, 5, 6));
+        winLottoNums = new WinLottoNumbers(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @DisplayName("추첨번호중 특정 값과 특정 index가 같은지 확인")

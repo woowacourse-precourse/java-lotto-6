@@ -4,7 +4,7 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.number.BonusLottoNum;
 import lotto.domain.number.LottoTargetNumResults;
-import lotto.domain.number.WinLottoNums;
+import lotto.domain.number.WinLottoNumbers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,14 +25,14 @@ class StatisticTest {
     private Lotto lotto_7;
     private Lotto lotto_8;
     private LottoTargetNumResults lottoTargetNumResults;
-    private WinLottoNums winLottoNums;
+    private WinLottoNumbers winLottoNums;
     private BonusLottoNum bonusLottoNum;
 
     @BeforeEach
     void setUp() {
         lottoEnvelop = new LottoEnvelop();
 
-        winLottoNums = new WinLottoNums(List.of(1, 2, 3, 4, 5, 6));
+        winLottoNums = new WinLottoNumbers(List.of(1, 2, 3, 4, 5, 6));
         bonusLottoNum = new BonusLottoNum(7);
         lottoTargetNumResults = new LottoTargetNumResults(List.of(1, 2, 3, 4, 5, 6), 7);
 

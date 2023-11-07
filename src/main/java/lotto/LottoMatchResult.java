@@ -16,14 +16,18 @@ public class LottoMatchResult {
     }
 
     public static LottoMatchResult createLottoMatchResult(List<LottoRank> lottoRanks, Money spendMoney) {
+        Map<LottoRank, Integer> lottoRankCount = getLottoRankCount(lottoRanks);
+        double profitRate = getProfitRate(spendMoney, lottoRankCount);
+        return new LottoMatchResult(lottoRankCount, profitRate);
+    }
+
+    private static Map<LottoRank, Integer> getLottoRankCount(List<LottoRank> lottoRanks) {
         Map<LottoRank, Integer> lottoRankCount = Arrays.stream(LottoRank.values())
                 .collect(Collectors.toMap(lottoRank -> lottoRank, count -> 0));
         for (LottoRank lottoRank : lottoRanks) {
             lottoRankCount.put(lottoRank, lottoRankCount.get(lottoRank) + 1);
         }
-
-        double profitRate = getProfitRate(spendMoney, lottoRankCount);
-        return new LottoMatchResult(lottoRankCount, profitRate);
+        return lottoRankCount;
     }
 
     private static double getProfitRate(Money spendMoney, Map<LottoRank, Integer> collect) {

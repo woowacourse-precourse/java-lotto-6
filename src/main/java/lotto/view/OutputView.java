@@ -7,7 +7,17 @@ import lotto.model.Lotto;
 public class OutputView {
 
     private final static String PRINT_BUY_AMOUNT = "%d개를 구매했습니다.\n";
-    
+
+    public void printLottoBundle(List<Lotto> lottoBundle) {
+        int buyAmount = lottoBundle.size();
+        List<Integer> numbers;
+
+        printBuyAmount(buyAmount);
+        for (Lotto lotto : lottoBundle) {
+            numbers = lotto.getNumbers();
+            printLotto(numbers);
+        }
+    }
 
     private void printLotto(List<Integer> numbers) {
         String numbersLine = numbers.stream()

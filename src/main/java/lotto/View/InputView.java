@@ -19,12 +19,12 @@ public class InputView {
     }
 
     public Money inputMoney() {
-        System.out.println();
         System.out.println(Constant.INPUT_PRICE_MESSAGE);
         return new Money(Console.readLine());
     }
 
     public List<Integer> inputLotto() {
+        System.out.println();
         System.out.println(Constant.INPUT_LOTTO_NUMBERS_MESSAGE);
         return Parser.parseLottoNumbers(Console.readLine());
     }

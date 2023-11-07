@@ -27,7 +27,7 @@
     - [x] 로또 번호가 6개인지 확인
   - isWithinValidRange()
     - isCheckRange()
-      - [ ] 로또 번호가 1부터 45까지 숫자인지 확인
+      - [x] 로또 번호가 1부터 45까지 숫자인지 확인
   - isDifferentLottoNumber()
     - [ ] 로또 번호가 중복되지 않는 숫자인지 확인
 

@@ -19,11 +19,13 @@ public class InputView {
         int i;
 
         System.out.println(AMOUNT_INPUT_STRING);
+
         s = Console.readLine();
         InputValidator.verifyNumber(s);
         InputValidator.verifyThousand(s);
 
         i = Integer.parseInt(s);
+        
         return i;
     }
 

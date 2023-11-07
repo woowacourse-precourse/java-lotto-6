@@ -1,4 +1,4 @@
-package lotto.Constant;
+package lotto.constant;
 
 public enum ErrorMessage {
     ERROR("[ERROR] "),

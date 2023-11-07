@@ -1,4 +1,4 @@
-package lotto.Constant;
+package lotto.constant;
 
 public enum Rank {
     FAIL(0, 0, false),

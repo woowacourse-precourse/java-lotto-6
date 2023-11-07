@@ -18,8 +18,22 @@ public class OutputView {
         System.out.println(lottoNumbers.size() + PURCHASE_MESSAGE);
         for (List<Integer> lottoNumber : lottoNumbers) {
             Collections.sort(lottoNumber);
-            lottoNumber.forEach(System.out::println);
+            printLottoNumber(lottoNumber);
         }
+    }
+
+    private void printLottoNumber(List<Integer> lottoNumber) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+
+        List<String> strings = lottoNumber.stream()
+                .map(String::valueOf)
+                .toList();
+        String joined = String.join(", ", strings);
+        stringBuilder.append(joined);
+
+        stringBuilder.append("]");
+        System.out.println(stringBuilder);
     }
 
     public void printEnterWinningNumbersMessage() {

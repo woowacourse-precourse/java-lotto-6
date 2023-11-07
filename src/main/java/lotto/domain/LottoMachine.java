@@ -17,11 +17,20 @@ public class LottoMachine {
         for (int i = 0; i < numberOfLotto; i++) {
             pickAndSave();
         }
-        return lottoCandidates;
+        return deepCopy(lottoCandidates);
     }
+
     private void pickAndSave() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN, MAX, SIZE);
         lottoCandidates.add(numbers);
+    }
+
+    private List<List<Integer>> deepCopy(List<List<Integer>> lottoCandidates) {
+        List<List<Integer>> copied = new ArrayList<>();
+        for (List<Integer> lottoCandidate : lottoCandidates) {
+            copied.add(new ArrayList<>(lottoCandidate));
+        }
+        return copied;
     }
 
     public List<Lotto> getLottos() {

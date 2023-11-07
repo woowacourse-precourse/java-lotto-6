@@ -19,14 +19,14 @@ public class CostService {
             try {
                 String readLine = input.getReadLine();
                 CostValidator.validateCostReadLine(readLine);
-                return new Cost(validateParseInt(readLine));
+                return new Cost(validateParseNumber(readLine));
             } catch (IllegalArgumentException e) {
                 Output.printErrorMessage(e);
             }
         }
     }
 
-    private int validateParseInt(String readLine) {
+    private int validateParseNumber(String readLine) {
         try {
             return Integer.parseInt(readLine);
         } catch (NumberFormatException e) {

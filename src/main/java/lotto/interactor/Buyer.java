@@ -5,17 +5,21 @@ import lotto.interactor.validator.InputValidator;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Buyer {
-    private int money;
+    private final int money;
 
     public Buyer() {
         this.money = pay();
     }
 
     public int pay() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String moneyString = readLine();
-        checkMoneyValid(moneyString);
-        return Integer.parseInt(moneyString);
+        try {
+            System.out.println("구입금액을 입력해 주세요.");
+            String moneyString = readLine();
+            checkMoneyValid(moneyString);
+            return Integer.parseInt(moneyString);
+        } catch (IllegalArgumentException e) {
+            return pay();
+        }
     }
 
     private void checkMoneyValid(String moneyString) {
@@ -24,9 +28,6 @@ public class Buyer {
     }
 
     public int getTickets() {
-        int ticketNums = this.money/1000;
-        System.out.println();
-        System.out.println(ticketNums + "개를 구매했습니다.");
-        return ticketNums;
+        return this.money/1000;
     }
 }

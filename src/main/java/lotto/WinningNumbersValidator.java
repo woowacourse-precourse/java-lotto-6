@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WinningNumbersValidator {
     public static void validateWinningNumbers(List<Integer> winningNumbers) {
@@ -15,29 +17,41 @@ public class WinningNumbersValidator {
         try {
             return Integer.parseInt(trimmedNumberStr);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("잘못된 형식의 번호입니다.");
+            System.out.println("[ERROR] 잘못된 형식의 번호입니다.");
+            throw new IllegalArgumentException();
         }
     }
     public static void validateNotBlank(String input) {
         if (input.isEmpty()) {
-            throw new IllegalArgumentException("공백이 삽입되었습니다.");
+            System.out.println("[ERROR] 공백이 삽입되었습니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+    public static void validateUniqueNumbers(List<Integer> winningNumbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>(winningNumbers);
+        if (uniqueNumbers.size() != winningNumbers.size()) {
+            System.out.println("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException();
         }
     }
     public static void validateNumberCount(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("번호는 정확히 6개여야 합니다.");
+            System.out.println("[ERROR] 번호는 정확히 6개여야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     public static void validateRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException("번호는 1과 45 사이어야 합니다: " + number);
+            System.out.println("[ERROR] 번호는 1과 45 사이어야 합니다.");
+            throw new IllegalArgumentException();
         }
     }
 
     public static void validateBonusNumberNotInWinningNumbers(Lotto winningNumbers, int bonusNumber) {
         if (winningNumbers.isNumberInLotto(bonusNumber)) {
-            throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            System.out.println("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+            throw new IllegalArgumentException();
         }
     }
 }

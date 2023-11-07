@@ -24,7 +24,8 @@ public class LottoController {
 
     private Money getInputMoney() {
         InputView inputView = new InputView();
-        int money = inputView.getInputMoney();
+        String inputMoney = inputView.getInputMoney();
+        int money = Integer.parseInt(inputMoney);
         return new Money(money);
     }
 

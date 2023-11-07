@@ -9,4 +9,6 @@ public record RequestWinnerLotto(
     public static RequestWinnerLotto of(final List<Integer> winnerNumbers, final Integer bonusNumber) {
         return new RequestWinnerLotto(winnerNumbers, bonusNumber);
     }
+
+
 }

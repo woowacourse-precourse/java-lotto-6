@@ -34,15 +34,15 @@ public enum WinningPrize {
             return EMPTY_PRIZE;
         }
         WinningPrize winningPrize = WinningPrize.valueOf(winningNumbersCount);
-        if (isThirdPrize(existBonusNumber, winningPrize)) {
-            return THIRD_PRIZE;
+        if (isSecondPrize(existBonusNumber, winningPrize)) {
+            return SECOND_PRIZE;
         }
 
         return winningPrize;
     }
 
-    private static boolean isThirdPrize(boolean existBonusNumber, WinningPrize winningPrize) {
-        return winningPrize == SECOND_PRIZE && !existBonusNumber;
+    private static boolean isSecondPrize(boolean existBonusNumber, WinningPrize winningPrize) {
+        return winningPrize == THIRD_PRIZE && existBonusNumber;
     }
 
     private static WinningPrize valueOf(int winningNumbersCount) {

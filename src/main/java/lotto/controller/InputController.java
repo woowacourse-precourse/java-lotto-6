@@ -3,6 +3,7 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.LottoNumbers;
 import lotto.domain.Unit;
 import lotto.service.NumberValidator;
 import lotto.view.InputView;
@@ -14,9 +15,9 @@ public class InputController {
     private final NumberValidator numberValidator;
     private final InputView inputView;
 
-    public InputController() {
+    public InputController(InputView inputView) {
         numberValidator = new NumberValidator();
-        inputView = new InputView();
+        this.inputView = inputView;
     }
 
     public int inputPurchasePrice() {
@@ -41,7 +42,9 @@ public class InputController {
     }
 
     public List<Integer> inputLottoNumbers() {
-        List<String> winningNumber = Arrays.asList(Console.readLine().split(COMMA_DELIMITER));
+        String[] inputData = Console.readLine().split(COMMA_DELIMITER);
+        numberValidator.validateInputDataLengthIsSix(inputData);
+        List<String> winningNumber = Arrays.asList(inputData);
         return winningNumber.stream()
                 .map(Integer::parseInt)
                 .toList();

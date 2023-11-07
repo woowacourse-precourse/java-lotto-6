@@ -49,6 +49,11 @@ public class Lotto {
         return this.numbers.contains(bonus);
     }
 
+    public int countMatch(WinningLotto winningLotto) {
+        this.numbers.retainAll(winningLotto.getNumbers());
+        return this.numbers.size();
+    }
+
     @Override
     public String toString() {
         return numbers.toString();

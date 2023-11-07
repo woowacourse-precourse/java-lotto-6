@@ -23,5 +23,8 @@ public class LottoController {
         Map<Integer, Integer> rank = LottoService.checkWinning(lottoList, winningNumbers, bonusNumber);
         LottoView.printResult(rank);
 
+        Double rateOfReturn = LottoService.calculateReturnRate(numberOfLotto, rank);
+        LottoView.printRateOfReturn(rateOfReturn);
+
     }
 }

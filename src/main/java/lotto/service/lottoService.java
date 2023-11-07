@@ -158,4 +158,23 @@ public class LottoService {
     }
 
 
+    public static Double calculateReturnRate(Integer numberOfLotto, Map<Integer, Integer> rank) {
+        Double investmentAmount = Double.valueOf(numberOfLotto * 1000);
+        Double earnedAmount = Double.valueOf(calculateLotto(rank));
+
+        Double returnRate = earnedAmount / investmentAmount * 100;
+
+        return (double) Math.round(returnRate * 100) / 100;
+    }
+
+    private static Integer calculateLotto(Map<Integer, Integer> rank) {
+        Integer amount = 0;
+        amount += rank.getOrDefault(5, 0) * 5000;
+        amount += rank.getOrDefault(4, 0) * 50000;
+        amount += rank.getOrDefault(3, 0) * 1500000;
+        amount += rank.getOrDefault(2, 0) * 30000000;
+        amount += rank.getOrDefault(1, 0) * 200000000;
+
+        return amount;
+    }
 }

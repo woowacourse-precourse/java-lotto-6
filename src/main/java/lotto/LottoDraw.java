@@ -77,7 +77,6 @@ public class LottoDraw {
             result.append("\n");
             LottoRank lottoRank = LottoRank.values()[index];
             String message = DrawMessage.NO_BONUS_WINNING_RESULT_MESSAGE.getMessage();
-
             if (lottoRank.getBonus().equals(hasBonus)) {
                 message = DrawMessage.BONUS_WINNING_RESULT_MESSAGE.getMessage();
             }

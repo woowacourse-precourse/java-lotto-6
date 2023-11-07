@@ -11,8 +11,9 @@ import java.util.stream.Collectors;
 
 public class WinningNumbersValidation {
     NumericInputValidation numericInputValidation = new NumericInputValidation();
+
     public List<Integer> validateWinnerNumbers(String input) {
-        validateInputUseCorrectSeperator(input);
+        validateInputUseCorrectSeparator(input);
         validateWinnerNumbersNumeric(input);
         validateWinnerNumbersPositive(input);
         List<Integer> winnerNumbers = Arrays.stream(input.split(","))
@@ -24,7 +25,7 @@ public class WinningNumbersValidation {
         return winnerNumbers;
     }
 
-    public void validateInputUseCorrectSeperator(String input) {
+    public void validateInputUseCorrectSeparator(String input) {
         String deleteAllWords = input.replaceAll("[가-힣a-zA-Z0-9,-]", "");
         if (deleteAllWords.length() != 0) {
             throw new IllegalArgumentException(ErrorMessage
@@ -42,12 +43,13 @@ public class WinningNumbersValidation {
         String[] winnerNumbers = input.split(",");
 
         validateCheckRangeOfWinnerNumberInput(winnerNumbers);
-        for (String number : winnerNumbers) {
-            if (Integer.parseInt(number) < NumberUtil.MIN_NUMBER.getNumber()) {
-                throw new IllegalArgumentException(ErrorMessage
-                        .POSITIVE_LOTTO_NUMBER_CONSTRAINT_MESSAGE
-                        .getMessage());
-            }
+
+        if(Arrays.stream(winnerNumbers).anyMatch(number ->
+                Integer.parseInt(number) < NumberUtil.MIN_NUMBER.getNumber()))
+        {
+            throw new IllegalArgumentException(ErrorMessage
+                    .POSITIVE_LOTTO_NUMBER_CONSTRAINT_MESSAGE
+                    .getMessage());
         }
     }
 
@@ -64,13 +66,12 @@ public class WinningNumbersValidation {
     }
 
     public void validateWinnerNumbersOutOfRange(List<Integer> winnerNumbers) {
-        for (Integer number : winnerNumbers) {
-            if (number < NumberUtil.START_NUMBER.getNumber() ||
-                    number > NumberUtil.END_NUMBER.getNumber()) {
-                throw new IllegalArgumentException(ErrorMessage
-                        .WINNING_NUMBER_OUT_OF_RANGE_MESSAGE
-                        .getMessage());
-            }
+        if (winnerNumbers.stream().anyMatch(number ->
+                number < NumberUtil.START_NUMBER.getNumber() ||
+                        number > NumberUtil.END_NUMBER.getNumber())) {
+            throw new IllegalArgumentException(ErrorMessage
+                    .WINNING_NUMBER_OUT_OF_RANGE_MESSAGE
+                    .getMessage());
         }
     }
 

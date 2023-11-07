@@ -12,8 +12,8 @@ public class InputValue {
             String userInput = Console.readLine();
             numericInputValidation.validateInputIsNull(userInput);
             return userInput;
-        } catch (NullPointerException nullPointerException) {
-            System.out.println(nullPointerException.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             printUtil.printPurchaseAmountInput();
             return getPurchaseAmountInput();
         }
@@ -24,8 +24,8 @@ public class InputValue {
             String userInput = Console.readLine();
             numericInputValidation.validateInputIsNull(userInput);
             return userInput;
-        } catch (NullPointerException nullPointerException) {
-            System.out.println(nullPointerException.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             printUtil.printWinnerNumbersInput();
             return getWinnerNumbersInput();
         }
@@ -36,8 +36,8 @@ public class InputValue {
             String userInput = Console.readLine();
             numericInputValidation.validateInputIsNull(userInput);
             return userInput;
-        } catch (NullPointerException nullPointerException) {
-            System.out.println(nullPointerException.getMessage());
+        } catch (IllegalArgumentException illegalArgumentException) {
+            System.out.println(illegalArgumentException.getMessage());
             printUtil.printBonusNumberInput();
             return getBonusNumberInput();
         }

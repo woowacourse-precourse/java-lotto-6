@@ -9,10 +9,9 @@ import java.util.Set;
 
 public class LottoNumberValidation {
     public void validateDuplicateLottoNumbers(Lotto lotto) {
-        Set<Integer> numbers = new HashSet<>();
         List<Integer> lottoNumbers = lotto.getLottoNumbers();
 
-        numbers.addAll(lottoNumbers);
+        Set<Integer> numbers = new HashSet<>(lottoNumbers);
 
         if (lottoNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBER_CONSTRAINT_MESSAGE.getMessage());

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.constant.ErrorMessage;
+import lotto.constant.ValidationConstant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -18,15 +19,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != ValidationConstant.LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NOT_SIX.getMessage());
         }
     }
 
     private void validateNumberSize(List<Integer> numbers) {
         int validatedSize = Math.toIntExact(numbers.stream()
-                .filter(x -> x <= 45)
-                .filter(x -> x >= 1)
+                .filter(x -> x <= ValidationConstant.MAX_LOTTO_NUMBER.getNumber())
+                .filter(x -> x >= ValidationConstant.MIN_LOTTO_NUMBER.getNumber())
                 .count());
 
         if(validatedSize != numbers.size()) {

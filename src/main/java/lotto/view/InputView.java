@@ -3,6 +3,7 @@ package lotto.view;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
+import lotto.constant.Delimiter;
 import lotto.constant.ErrorMessage;
 import lotto.constant.InputMessage;
 
@@ -11,7 +12,8 @@ public class InputView {
         List<Integer> lottoNumbers;
         System.out.println(InputMessage.RECEIVE_LOTTO_NUMBER.getMessage());
         try {
-            lottoNumbers = stringListToIntList(Arrays.stream(Console.readLine().split(",")).toList());
+            lottoNumbers = stringListToIntList(
+                    Arrays.stream(Console.readLine().split(Delimiter.SEQUENCE.getValue())).toList());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputWinningLottoStandardNumber();

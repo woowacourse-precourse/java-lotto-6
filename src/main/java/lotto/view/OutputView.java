@@ -1,6 +1,7 @@
 package lotto.view;
 
 import java.util.List;
+import lotto.constant.Delimiter;
 import lotto.constant.OutputMessage;
 import lotto.constant.ResultMessage;
 import lotto.service.dto.ResultDTO;
@@ -12,7 +13,7 @@ public class OutputView {
 
     private void printLottoNumbers(List<List<Integer>> lottos) {
         lottos.forEach(x -> {
-                    System.out.println(String.join(",", x.toString()));
+                    System.out.println(String.join(Delimiter.SEQUENCE.getValue(), x.toString()));
                 });
     }
 

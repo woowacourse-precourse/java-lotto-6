@@ -3,14 +3,18 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.ValidationConstant;
 
 public class LottoMachine {
     private int howManyLotto(Money money) {
-        return money.getMoney() / ValidationConstants.STANDARD_UNIT;
+        return money.getMoney() / ValidationConstant.STANDARD_MONEY_UNIT.getNumber();
     }
 
     private Lotto issueLotto() {
-        return new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        return new Lotto(Randoms.pickUniqueNumbersInRange(
+                ValidationConstant.MIN_LOTTO_NUMBER.getNumber(),
+                ValidationConstant.MAX_LOTTO_NUMBER.getNumber(),
+                ValidationConstant.LOTTO_SIZE.getNumber()));
     }
 
     public Lottos issueLottos(Money money) {

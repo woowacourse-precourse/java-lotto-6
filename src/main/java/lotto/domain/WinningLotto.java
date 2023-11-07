@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.constant.ErrorMessage;
+import lotto.constant.ValidationConstant;
 
 public class WinningLotto {
     private final Lotto standardNumbers;
@@ -28,7 +29,8 @@ public class WinningLotto {
     }
 
     private void validateNumberSize(int specialNumber) throws IllegalArgumentException {
-        if(!(specialNumber >= 0 && specialNumber <= 45)) {
+        if(!(specialNumber >= ValidationConstant.MIN_LOTTO_NUMBER.getNumber()
+                && specialNumber <= ValidationConstant.MAX_LOTTO_NUMBER.getNumber())) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_NUMBER_RANGE.getMessage());
         }
     }

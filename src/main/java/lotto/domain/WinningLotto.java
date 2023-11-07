@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.ErrorMessage;
+import lotto.view.InputView;
 
 public class WinningLotto {
     private final Lotto standardNumbers;
@@ -28,13 +30,13 @@ public class WinningLotto {
 
     private void validateNumberSize(int specialNumber) throws IllegalArgumentException {
         if(!(specialNumber >= 0 && specialNumber <= 45)) {
-            throw new IllegalArgumentException("[ERROR]: 보너스 번호도 1부터 45사이여야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_NUMBER_NUMBER_RANGE.getMessage());
         }
     }
 
     private void validateUniqueness(int specialNumber, List<Integer> standardNumbers) throws IllegalArgumentException {
         if(standardNumbers.contains(specialNumber)) {
-            throw new IllegalArgumentException("[ERROR]: 보너스 번호와 앞서 입력하신 6자리 숫자와 달라야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INPUT_REDUNDANT.getMessage());
         }
     }
 }

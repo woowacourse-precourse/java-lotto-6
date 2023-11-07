@@ -7,11 +7,21 @@ import java.util.List;
 
 public class LottoBonusNumber {
 
+    private static final int LOTTO_NUMBERS_MINIMUM = 1;
+    private static final int LOTTO_NUMBERS_MAXIMUM = 45;
+
     private final int bonusNumber;
 
     public LottoBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        validateNumberRange(bonusNumber);
         validateDuplicateNumbers(bonusNumber, winningNumbers);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateNumberRange(int number) {
+        if (number < LOTTO_NUMBERS_MINIMUM || number > LOTTO_NUMBERS_MAXIMUM) {
+            ExceptionMessage.LOTTO_WRONG_NUMBER_RANGE.throwIllegalArgumentException();
+        }
     }
 
     private void validateDuplicateNumbers(int bonusNumber, List<Integer> numbers) {

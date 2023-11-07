@@ -1,7 +1,9 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import lotto.Lotto;
 import lotto.util.Constants;
 
@@ -10,8 +12,8 @@ public class LottoStatistics {
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private LottoService lottoService;
-    private long totalRevenue;
-    private final List<Integer> winsPerCategory;
+
+    private final Map<LottoRank, Long> winsPerCategory;
     private final double totalRate;
 
     public LottoStatistics(List<Lotto> userLottos, List<Integer> winningNumbers,
@@ -22,11 +24,11 @@ public class LottoStatistics {
         this.bonusNumber = bonusNumber;
 
         winsPerCategory = calculateWinsPerCategory();
-        totalRate = calculateRateOfReturn();
-        totalRevenue = 0;
+        long totalRevenue = calculateTotalRevenue();
+        totalRate = calculateRateOfReturn(totalRevenue);
     }
 
-    public List<Integer> getWinsPerCategory() {
+    public Map<LottoRank, Long> getWinsPerCategory() {
         return winsPerCategory;
     }
 
@@ -34,25 +36,20 @@ public class LottoStatistics {
         return totalRate;
     }
 
-    private List<Integer> calculateWinsPerCategory() {
-        int[] wins = new int[LottoRank.values().length];
-
-        for (Lotto lotto : userLottos) {
-            LottoRank rank = lottoService.checkWinning(lotto.getNumbers(), winningNumbers, bonusNumber);
-            totalRevenue += rank.getPrize();
-            wins[rank.ordinal()]++;
-        }
-
-        List<Integer> winsPerCategory = new ArrayList<>();
-        for (LottoRank rank : LottoRank.values()) {
-            winsPerCategory.add(wins[rank.ordinal()]);
-        }
-
-        return winsPerCategory;
+    private Map<LottoRank, Long> calculateWinsPerCategory() {
+        return userLottos.stream()
+                .map(lotto -> lottoService.checkWinning(lotto.getNumbers(), winningNumbers, bonusNumber))
+                .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
-    private double calculateRateOfReturn() {
+    private long calculateTotalRevenue() {
+        return winsPerCategory.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
+
+    private double calculateRateOfReturn(long totalRevenue) {
         double purchaseAmount = userLottos.size() * Constants.LOTTO_PRICE;
-        return totalRevenue / purchaseAmount;
+        return (double) totalRevenue / purchaseAmount;
     }
 }

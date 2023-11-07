@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import lotto.domain.LottoRank;
 import lotto.domain.LottoStatistics;
 import lotto.util.Constants;
 import org.junit.jupiter.api.BeforeEach;
@@ -33,8 +35,14 @@ class LottoStatisticsTest {
     @Test
     @DisplayName("각 등수별로 당첨 횟수를 계산한다.")
     void calculateWinsPerCategory() {
-        List<Integer> winsPerCategory = lottoStatistics.getWinsPerCategory();
-        assertThat(winsPerCategory).containsExactly(1, 1, 1, 1, 1, 0);
+        Map<LottoRank, Long> winsPerCategory = lottoStatistics.getWinsPerCategory();
+
+        assertThat(winsPerCategory.get(LottoRank.FIRST)).isEqualTo(1);
+        assertThat(winsPerCategory.get(LottoRank.SECOND)).isEqualTo(1);
+        assertThat(winsPerCategory.get(LottoRank.THIRD)).isEqualTo(1);
+        assertThat(winsPerCategory.get(LottoRank.FOURTH)).isEqualTo(1);
+        assertThat(winsPerCategory.get(LottoRank.FIFTH)).isEqualTo(1);
+        assertThat(winsPerCategory.getOrDefault(LottoRank.NONE, 0L)).isZero();
     }
 
     @Test

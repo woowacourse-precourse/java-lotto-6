@@ -30,10 +30,19 @@ public class Lotto {
         });
     }
 
-    public void contains(int num) {
+    public void numberByContains(int num) {
         if (numbers.contains(num)) {
             throw new IllegalArgumentException("이미 당첨번호에 포함된 숫자입니다.");
         }
+    }
+
+    public boolean contains(int num) {
+        return numbers.contains(num);
+    }
+
+    public int containsCount(WinLotto winLotto) {
+        return (int) numbers.stream().filter(e -> winLotto.contains(e)).count();
+
     }
 
     public void showLotto() {

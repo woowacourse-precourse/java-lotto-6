@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.Player;
+import lotto.domain.Results;
 import lotto.utils.Prints;
 
 public class LottoGameService {
@@ -17,5 +18,8 @@ public class LottoGameService {
         player.createWinLotto();
 
         Prints.print_game_result();
+        Results results = new Results(player.getLottos(), player.getWinLotto());
+        results.calculate();
+        results.showResult();
     }
 }

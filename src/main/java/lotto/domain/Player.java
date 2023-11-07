@@ -47,4 +47,12 @@ public class Player {
     public void showLottoCount() {
         Prints.print_lottoCount(lottoCount.getLottoCount());
     }
+
+    public List<Lotto> getLottos() {
+        return lottos;
+    }
+
+    public WinLotto getWinLotto() {
+        return winLotto;
+    }
 }

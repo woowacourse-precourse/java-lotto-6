@@ -10,6 +10,10 @@ public class WinLotto {
     private static Lotto lotto;
     private static BounsNumber bounsNumber;
 
+    public BounsNumber getBonusNumber() {
+        return bounsNumber;
+    }
+
     public void createLotto() {
         Prints.print_input_winLotto();
         lotto = new Lotto(inputWinNumber());
@@ -21,7 +25,7 @@ public class WinLotto {
         Prints.print_input_bonusnumber();
         bounsNumber = new BounsNumber(inputBonusNumber());
         bounsNumber.bonusnumNyRange();
-        lotto.contains(bounsNumber.getBounsNumber());
+        lotto.numberByContains(bounsNumber.getBounsNumber());
     }
 
     private List<Integer> inputWinNumber() {
@@ -36,5 +40,9 @@ public class WinLotto {
 
     private int inputBonusNumber() {
         return Integer.parseInt(Console.readLine());
+    }
+
+    public boolean contains(Integer number) {
+        return lotto.contains(number);
     }
 }

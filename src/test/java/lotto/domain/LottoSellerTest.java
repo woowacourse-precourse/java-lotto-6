@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.domain.lotto.Lottos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,5 +26,17 @@ class LottoSellerTest {
         int lottoAmount = lottoSeller.calculateNumberOfLottos(money);
 
         assertThat(lottoAmount).isEqualTo(expectedAmount);
+    }
+
+    @DisplayName("로또가 금액에 맞게 알맞은 수량으로 생성되는지 테스트")
+    @Test
+    void getLottosTest() {
+        int money = 2_000;
+        PurchaseAmount purchaseAmount = new PurchaseAmount(money);
+        int expectedAmount = 2;
+
+        Lottos lottos = lottoSeller.getLottos(purchaseAmount);
+
+        assertThat(lottos.getLottoAmount()).isEqualTo(expectedAmount);
     }
 }

@@ -28,4 +28,10 @@ public class LottoController {
         Collections.sort(numbers);
         return new Lotto(numbers);
     }
+
+//    public static void checkValuePresence(List<Integer> numbers, String winningNumbers) {
+//        boolean isContains = numbers.contains(winningNumbers);
+//        System.out.println(isContains);
+//    }
+
 }

@@ -1,5 +1,7 @@
 package lotto.view;
 
+import static lotto.model.LottoStatistics.*;
+
 import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -19,39 +21,6 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
     private static final String COUNT_PRIZE_FORMAT = "%s (%s원) - %d개";
     private static final String TOTAL_PROFIT_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
-    private enum Ranks {
-        FIFTH(5, "3개 일치"),
-        FOURTH(4, "4개 일치"),
-        THIRD(3, "5개 일치"),
-        SECOND(2, "5개 일치, 보너스 볼 일치"),
-        FIRST(1, "6개 일치");
-
-        private final int rank;
-        private final String rankMessage;
-
-        Ranks(int rank, String rankMessage) {
-            this.rank = rank;
-            this.rankMessage = rankMessage;
-        }
-        private int getRank() {
-            return rank;
-        }
-
-        private String getRankMessage() {
-            return rankMessage;
-        }
-
-        private static String getRankMessageByRank(int rank) {
-            for (Ranks ranking : values()) {
-                if(ranking.getRank() == rank) {
-                    return ranking.getRankMessage();
-                }
-            }
-            return null;
-        }
-    }
-
-
     public static String readPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_PROMPT);
         return Console.readLine();
@@ -67,25 +36,24 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
         return Console.readLine();
     }
 
-    public static void writeLottoTickets(Integer purchaseAmount, List<ArrayList<Integer>> lottoTickets) {
+    public static void printLottoTickets(Integer purchaseAmount, List<ArrayList<Integer>> lottoTickets) {
         System.out.println(String.format(LOTTO_PURCHASE_MESSAGE, purchaseAmount));
         lottoTickets.forEach(System.out::println);
     }
 
-    public static void writeLottoStatistics(ArrayList<HashMap<String, Integer>> lottoStatistics) {
+    public static void printLottoStatistics(HashMap<PrizeInformation, Integer> lottoStatistics) {
         System.out.println(LOTTO_STATISTICS_HEADER);
         System.out.println(SEPARATOR);
 
-        lottoStatistics.forEach(statisticsEntity -> {
-            int rank = statisticsEntity.get("rank");
-            String rankMessage = Ranks.getRankMessageByRank(rank);
-            String prizeAmount = DECIMAL_FORMAT.format(statisticsEntity.get("prizeAmount"));
-            int winningCount = statisticsEntity.get("winningCount");
+        lottoStatistics.forEach((key, value) -> {
+            String rankMessage = key.getRankMessage();
+            String prizeAmount = DECIMAL_FORMAT.format(key.getPrizeAmount());
+            int winningCount = value;
             System.out.println(String.format(COUNT_PRIZE_FORMAT, rankMessage, prizeAmount, winningCount));
         });
     }
 
-    public static void writeLottoProfit(double profit) {
+    public static void printLottoProfit(double profit) {
         System.out.println(String.format(TOTAL_PROFIT_MESSAGE, profit));
     }
 

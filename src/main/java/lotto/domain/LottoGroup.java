@@ -2,10 +2,10 @@ package lotto.domain;
 
 import java.util.List;
 
-public class lottoGroup {
+public class LottoGroup {
     private List<Lotto> lottoGroup;
 
-    public lottoGroup(List<Lotto> lottoGroup) {
+    public LottoGroup(List<Lotto> lottoGroup) {
         this.lottoGroup = lottoGroup;
     }
 

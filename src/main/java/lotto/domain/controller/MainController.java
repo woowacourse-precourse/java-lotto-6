@@ -28,5 +28,11 @@ public class MainController {
         return lottos;
     }
 
+    public void checkWinningResult() {
+        InputView inputView = new InputView();
+        Lotto winningNumber = inputView.inputWinningNumber();
+        int bonusNumber = inputView.inputBonusNumber();
+    }
+
 
 }

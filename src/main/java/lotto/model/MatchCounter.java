@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.dto.WinningStatisticDTO;
+import lotto.enums.ErrorMessage;
 
 public class MatchCounter {
     private static final Integer ONE = 1;
@@ -24,7 +25,7 @@ public class MatchCounter {
     }
 
     public void init() {
-        matchCounter.put(THREE_MATCHED, 0); // 문자열 상수화
+        matchCounter.put(THREE_MATCHED, 0);
         matchCounter.put(FOUR_MATCHED, 0);
         matchCounter.put(FIVE_MATCHED, 0);
         matchCounter.put(FIVE_AND_BONUS_MATCHED, 0);
@@ -48,7 +49,7 @@ public class MatchCounter {
             return SIX_MATCHED;
         }
 
-        throw new IllegalArgumentException(); // 에러문 추가
+        throw new IllegalArgumentException(ErrorMessage.ILLEGAL_COUNT_OF_NUMBER_MATCHES.getMessage()); // 에러문 추가
     }
 
     public void increaseCountByKey(String key) {

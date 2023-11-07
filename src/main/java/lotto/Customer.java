@@ -19,7 +19,7 @@ public class Customer {
     }
 
     private void validate(int inputPrice) {
-        if (inputPrice % TICKET_PRICE != 0) {
+        if (inputPrice % TICKET_PRICE != 0 || inputPrice < TICKET_PRICE) {
             throw new IllegalArgumentException();
         }
         this.inputPrice = inputPrice;

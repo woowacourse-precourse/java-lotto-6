@@ -44,4 +44,8 @@ public class LottoGameController {
     private WinningStatistics produceStatistics(WinningLotto winningLotto, Lottos issuedLottos) {
         return new WinningStatistics(winningLotto, issuedLottos);
     }
+
+    private void printWinningStatistics(WinningStatistics winningStatistics) {
+        OutputView.printWinningStatistics(winningStatistics);
+    }
 }

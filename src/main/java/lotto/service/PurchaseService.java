@@ -19,7 +19,7 @@ public class PurchaseService {
         return lottoPurchase;
     }
 
-    public void generateLotto(int amount) {
+    private void generateLotto(int amount) {
         List<Lotto> purchaseLotto = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             Lotto lotto = generateLottoNumber();
@@ -28,11 +28,8 @@ public class PurchaseService {
         lottoPurchase.getUserLotto(purchaseLotto);
     }
 
-    public Lotto generateLottoNumber() {
+    private Lotto generateLottoNumber() {
         List<Integer> lottoNumbers = numberUtil.getLottoNumbers();
-        lottoNumbers.sort(Comparator.naturalOrder());
         return new Lotto(lottoNumbers);
     }
-
-
 }

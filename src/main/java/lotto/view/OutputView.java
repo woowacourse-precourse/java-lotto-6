@@ -3,9 +3,11 @@ package lotto.view;
 import static lotto.constant.LottoResult.*;
 import static lotto.constant.message.OutputMessage.*;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 import lotto.constant.LottoResult;
 import lotto.constant.message.OutputMessage;
 import lotto.domain.Lotto;
@@ -30,7 +32,10 @@ public class OutputView {
     }
 
     private void printPurchaseLottoNumber(List<Integer> lotto) {
-        String formattedLotto = listToString(lotto);
+        List<Integer> sortedLotto = lotto.stream()
+                .sorted()
+                .toList();
+        String formattedLotto = listToString(sortedLotto);
         System.out.println(formattedLotto);
     }
 

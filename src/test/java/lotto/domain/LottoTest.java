@@ -86,4 +86,15 @@ public class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("정해진 개수의 숫자를 입력하세요.");
     }
+
+    @Test
+    public void 로또에_1이상_45이하가아닌_숫자가있다면_예외처리() {
+        // Given
+        String unrefinedNumbers = "1,2,3,4,5,46";
+
+        // When && Then
+        assertThatThrownBy(() -> Lotto.create(unrefinedNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
+    }
 }

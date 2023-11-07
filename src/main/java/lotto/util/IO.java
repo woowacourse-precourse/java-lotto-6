@@ -15,7 +15,7 @@ public class IO {
     public static Integer inputBudget() {
         String inputString= Console.readLine();
         int budget = Integer.parseInt(inputString);
-        return budget/1000;
+        return budget;
     }
     public static List<Integer> inputWinningNumber() {
         String inputString= Console.readLine();

@@ -4,6 +4,35 @@ import java.lang.reflect.Array;
 import java.util.List;
 
 public class LottoGameDto {
+
+    public static class CreateResponse{
+        private final Long lottoGameId;
+        private final Integer amount;
+
+        public CreateResponse(Long lottoGameId, Integer amount) {
+            this.lottoGameId = lottoGameId;
+            this.amount = amount;
+        }
+
+        public Long getLottoGameId() {
+            return lottoGameId;
+        }
+
+        public Integer getAmount() {
+            return amount;
+        }
+    }
+    public static class InitRequest{
+        private Long lottoGameId;
+
+        public InitRequest(Long lottoGameId) {
+            this.lottoGameId = lottoGameId;
+        }
+
+        public Long getLottoGameId() {
+            return lottoGameId;
+        }
+    }
     public static class Response{
         private final Long lottoGameId;
         private final List<List<Integer>> lottoNubers;

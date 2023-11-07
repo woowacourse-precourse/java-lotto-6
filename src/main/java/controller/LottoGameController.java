@@ -17,16 +17,17 @@ public class LottoGameController {
         this.lottoGameService = lottoGameService;
     }
 
-    public int createBudget() {
+    public  LottoGameDto.CreateResponse createBudget() {
         IO.printNoticeln(SystemMessage.AMOUNT_INPUT.getMessage());
 
-        Integer amount=IO.inputBudget();
-        IO.printNoticeln(amount+ SystemMessage.PURCHASE_NIO.getMessage());
-        return amount;
+        Integer budget=IO.inputBudget();
+        LottoGameDto.CreateResponse response = lottoGameService.createLottoGame(budget);
+        IO.printNoticeln(response.getAmount()+ SystemMessage.PURCHASE_NIO.getMessage());
+        return response;
     }
 
-    public LottoGameDto.Response createLottoGame(int amount) {
-        LottoGameDto.Response response = lottoGameService.initLottoGame(amount);
+    public LottoGameDto.Response createLottoGame( LottoGameDto.InitRequest request) {
+        LottoGameDto.Response response = lottoGameService.initLottoGame(request);
         for (List<Integer> lottoNumber : response.getLottoNubers()  ) {
             IO.printLotto(lottoNumber);
         }

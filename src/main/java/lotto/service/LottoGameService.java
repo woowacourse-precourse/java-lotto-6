@@ -16,14 +16,17 @@ public class LottoGameService {
         this.lottoGameRepository = lottoGameRepository;
     }
 
-    public LottoGameDto.Response initLottoGame(int amount) {
-        LottoGame saveLottoGame = new LottoGame();
-        List<List<Integer>> lottoNumbers = new ArrayList<>();
-        for (int i = 0; i < amount; i++) {
-            lottoNumbers.add(saveLottoGame.createLotto());
-        }
-        Long lottoGameId = lottoGameRepository.save(saveLottoGame);
-        return new LottoGameDto.Response(lottoGameId,lottoNumbers);
+    public LottoGameDto.CreateResponse createLottoGame(Integer budget) {
+        LottoGame saveLottoGame = new LottoGame(budget);
+        Long lottoGameId=lottoGameRepository.save(saveLottoGame);
+        return new LottoGameDto.CreateResponse(lottoGameId,saveLottoGame.getAmount());
+    }
+
+    public LottoGameDto.Response initLottoGame( LottoGameDto.InitRequest request) {
+        LottoGame lottoGame = lottoGameRepository.findById(request.getLottoGameId());
+        List<List<Integer>> lottoNumbers = lottoGame.createLotto();
+
+        return new LottoGameDto.Response(lottoGame.getId(), lottoNumbers);
     }
 
 

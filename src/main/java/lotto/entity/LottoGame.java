@@ -7,10 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGame {
+
+
     private Long id;
     private List<Lotto> lottos = new ArrayList<>();
-    List<Integer> winningNumbers;
-    Integer bonusNumber;
+    private List<Integer> winningNumbers;
+    private Integer bonusNumber;
+    private float rate;
+
+    private Integer budget;
+
+    private Integer amount;
+
+    public LottoGame(Integer budget) {
+        this.budget = budget;
+        this.amount=setAmount(budget);
+    }
+
+    private Integer setAmount(Integer budget) {
+        return budget/1000;
+    }
+
     public Long getId() {
         return id;
     }
@@ -23,6 +40,10 @@ public class LottoGame {
         lottos.add(lotto);
     }
 
+    public Integer getAmount() {
+        return amount;
+    }
+
     public LottoGameDto.Result doLottoGame() {
         int[] result = {0, 0, 0, 0, 0, 0, 0, 0};
         for (Lotto lotto : lottos) {
@@ -32,20 +53,26 @@ public class LottoGame {
             }
             result[score] += 1;
         }
+
         return new LottoGameDto.Result(result[3], result[4], result[5], result[7], result[6]);
     }
 
-    public List<Integer> createLotto() {
-        List<Integer> lottoNumber = new ArrayList<>();
-        while (lottoNumber.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!lottoNumber.contains(randomNumber)) {
-                lottoNumber.add(randomNumber);
+    public List<List<Integer>> createLotto() {
+        List<List<Integer>> lottoNumberList = new ArrayList<>();
+
+        for (int i = 0; i < amount; i++) {
+            List<Integer> lottoNumber = new ArrayList<>();
+            while (lottoNumber.size() < 6) {
+                int randomNumber = Randoms.pickNumberInRange(1, 45);
+                if (!lottoNumber.contains(randomNumber)) {
+                    lottoNumber.add(randomNumber);
+                }
             }
+            lottoNumberList.add(lottoNumber);
+            Lotto lotto = new Lotto(lottoNumber);
+            lottos.add(lotto);
         }
-        Lotto lotto = new Lotto(lottoNumber);
-        lottos.add(lotto);
-        return lottoNumber;
+        return lottoNumberList;
     }
 
     public void setWinningNumbers(List<Integer> winningNumbers,Integer bonusNumber) {

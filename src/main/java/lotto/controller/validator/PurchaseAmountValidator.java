@@ -12,8 +12,8 @@ public class PurchaseAmountValidator implements Validator {
     @Override
     public void validate(String purchaseAmount) throws IllegalArgumentException {
         isNumber(purchaseAmount);
-        isNotZero(purchaseAmount);
-        isDivisibleBy1000(purchaseAmount);
+        isNotZero();
+        isDivisibleBy1000();
     }
 
     private void isNumber(String input) {
@@ -24,13 +24,13 @@ public class PurchaseAmountValidator implements Validator {
         }
     }
 
-    private void isNotZero(String input) {
+    private void isNotZero() {
         if (purchaseAmount == 0) {
             throw new IllegalArgumentException(Message.ZERO_EXCEPTION_MESSAGE);
         }
     }
 
-    private void isDivisibleBy1000(String input) {
+    private void isDivisibleBy1000() {
         if (purchaseAmount % GameConstants.UNIT_PURCHASE_PRICE != 0) {
             throw new IllegalArgumentException(Message.INDIVISIBLE_BY_UNIT_PRICE_EXCEPTION_MESSAGE);
         }

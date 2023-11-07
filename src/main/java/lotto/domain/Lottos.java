@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.dto.LottoResult;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,10 +21,11 @@ public class Lottos {
         return new Lottos(lottoDummy);
     }
 
-    public List<Prize> compareWithWinnerLotto(final WinnerLotto winnerLotto) {
-        return lottos.stream()
+    public LottoResult compareWithWinnerLotto(final WinnerLotto winnerLotto) {
+        List<Prize> results = lottos.stream()
                 .map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(), winnerLotto.getBonusNumber()))
                 .collect(Collectors.toList());
+        return LottoResult.of(results);
     }
 
 

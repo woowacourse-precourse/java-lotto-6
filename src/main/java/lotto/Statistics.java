@@ -32,4 +32,8 @@ public class Statistics {
     private PrizeGrade determineGrade(Lotto lotto, Lotto winningLotto, Bonus bonus) {
         return PrizeGrade.of(lotto.countMatches(winningLotto), lotto.matchWithBonus(bonus));
     }
+
+    private void addFrequency(PrizeGrade prizeGrade) {
+        gradeDist.put(prizeGrade, Integer.valueOf(gradeDist.get(prizeGrade) + 1));
+    }
 }

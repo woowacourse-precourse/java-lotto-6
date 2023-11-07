@@ -65,7 +65,7 @@ public class InputValidatorTest {
 
     @DisplayName("로또 번호가 45보다 크면 예외가 발생한다.")
     @Test
-    void validateWinningNumbersBy() {
+    void validateWinningNumbersByAboveMaxLottoNumber() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 46);
 
         assertThatThrownBy(() -> validator.validateWinningNumbers(winningNumbers))
@@ -75,11 +75,42 @@ public class InputValidatorTest {
 
     @DisplayName("로또 번호가 1보다 작으면 예외가 발생한다.")
     @Test
-    void createLottoByUnderRangeNumber() {
+    void validateWinningNumbersByBelowMinLottoNumber() {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 0);
 
         assertThatThrownBy(() -> validator.validateWinningNumbers(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_LOTTO_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 45보다 크면 예외가 발생한다.")
+    @Test
+    void validateBonusNumberByAboveMaxLottoNumber() {
+        int bonusNumber = 46;
+
+        assertThatThrownBy(() -> validator.validateBonusNumber(bonusNumber, List.of()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_LOTTO_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 1보다 작으면 예외가 발생한다.")
+    @Test
+    void validateBonusNumberByBelowMinLottoNumber() {
+        int bonusNumber = 0;
+
+        assertThatThrownBy(() -> validator.validateBonusNumber(bonusNumber, List.of()))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_LOTTO_NUMBER.getMessage());
+    }
+
+    @DisplayName("보너스 번호가 당첨 번호와 중복되면 예외가 발생한다.")
+    @Test
+    void validateBonusNumberByDuplicatedBonusNumber() {
+        int bonusNumber = 6;
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        assertThatThrownBy(() -> validator.validateBonusNumber(bonusNumber, winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(DUPLICATED_BONUS_NUMBER.getMessage());
     }
 }

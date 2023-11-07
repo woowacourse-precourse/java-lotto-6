@@ -5,8 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 
-import static io.IOMessages.LOTTO_PURCHASE_AMOUNT_MESSAGE;
-import static io.IOMessages.WINNING_NUMBERS_MESSAGE;
+import static io.IOMessages.*;
 import static io.ValidationErrorMessages.NOT_INTEGER;
 
 public class IOHandler {
@@ -42,5 +41,20 @@ public class IOHandler {
         validator.validateWinningNumbers(winningNumbers);
 
         return winningNumbers;
+    }
+
+    public int inputBonusNumber(List<Integer> winningNumbers) {
+        int bonusNumber;
+        System.out.println(BONUS_NUMBER_MESSAGE.getMessage());
+
+        try {
+            bonusNumber = Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_INTEGER.getMessage());
+        }
+
+        validator.validateBonusNumber(bonusNumber, winningNumbers);
+
+        return bonusNumber;
     }
 }

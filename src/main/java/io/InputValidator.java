@@ -30,4 +30,13 @@ public class InputValidator {
             }
         }
     }
+
+    public void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        if (bonusNumber < MIN_LOTTO_NUMBER.getValue() || bonusNumber > MAX_LOTTO_NUMBER.getValue()) {
+            throw new IllegalArgumentException(BELOW_MIN_PURCHASE_AMOUNT.getMessage());
+        }
+        if (winningNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.getMessage());
+        }
+    }
 }

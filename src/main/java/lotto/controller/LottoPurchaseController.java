@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LottoPurchaseController {
     // 로또 구매를 중계할 클래스입니다.
-    public void purchaseLotto() {
+    public List<Lotto> purchaseLotto() {
         LottoStoreCounter lottoStoreCounter = new LottoStoreCounter();
         int numberOfIssues = lottoStoreCounter.counter();
         PurchasedLottoesView purchasedLottoesView = new PurchasedLottoesView();
@@ -18,6 +18,8 @@ public class LottoPurchaseController {
         LottoStoreMachine lottoStoreMachine = new LottoStoreMachine();
         List<Lotto> purchasedLotto = lottoStoreMachine.saleLotto(numberOfIssues);
         purchasedLottoesView.printPurchasedLottoes(purchasedLotto);
+
+        return purchasedLotto;
     }
 }
 

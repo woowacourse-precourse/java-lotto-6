@@ -2,19 +2,33 @@ package lotto.controller;
 
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.Match;
 import lotto.service.LottoBonusMachine;
+import lotto.service.LottoMatchNumber;
+import lotto.service.LottoTotalCount;
 import lotto.service.LottoWinningMachine;
+import lotto.view.WinningStatisticsView;
+
+import java.util.List;
+import java.util.Map;
+
 
 public class LottoWinningController {
     // 로또 당첨 통계를 중계할 클래스입니다.
-    public void winningLotto() {
+    public void winningLotto(List<Lotto> purchasedLotto) {
         LottoWinningMachine lottoWinningMachine = new LottoWinningMachine();
         Lotto winningNumber = lottoWinningMachine.lottoWinningNumber();
 
         LottoBonusMachine lottoBonusMachine = new LottoBonusMachine();
         BonusNumber bonus = lottoBonusMachine.lottoBonusNumber(winningNumber);
 
-        System.out.println("winningNumber = " + winningNumber.getNumbers());
-        System.out.println("bonus = " + bonus.getBonus());
+        LottoMatchNumber lottoMatchNumber = new LottoMatchNumber();
+        List<Match> matches = lottoMatchNumber.lottoMatch(purchasedLotto, winningNumber, bonus);
+
+        LottoTotalCount lottoTotalCount = new LottoTotalCount();
+        Map<Match, Integer> matchCount = lottoTotalCount.getTotalCount(matches);
+
+        WinningStatisticsView winningStatisticsView = new WinningStatisticsView();
+        winningStatisticsView.printWinningStatistics(matchCount);
     }
 }

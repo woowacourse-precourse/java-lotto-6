@@ -19,6 +19,11 @@ public class LottoSeller {
         printLottos();
     }
 
+    public void noticeStatistic() {
+        ranks = calculateRank();
+        printRank(ranks);
+    }
+
     private Money receiveMoneyFromPlayer() {
         while (true) {
             try {
@@ -43,5 +48,27 @@ public class LottoSeller {
 
     private List<Rank> calculateRank() {
         return lottoMachine.calculateRank(createdLotto);
+    }
+    
+    private void printRank(List<Rank> ranks) {
+        int first = 0, second = 0, third = 0, fourth = 0, fifth = 0;
+        for (Rank rank : ranks) {
+            if (rank == Rank.FIRST) {
+                first++;
+            }
+            if (rank == Rank.SECOND) {
+                second++;
+            }
+            if (rank == Rank.THIRD) {
+                third++;
+            }
+            if (rank == Rank.FOURTH) {
+                fourth++;
+            }
+            if (rank == Rank.FIFTH) {
+                fifth++;
+            }
+        }
+        outputView.printRank(first, second, third, fourth, fifth);
     }
 }

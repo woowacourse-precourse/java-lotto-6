@@ -14,10 +14,9 @@ public class Exceptions {
         }
     }
 
-    public void isInvalidNumberOfBonusNumber(String bonus) { // try catch vs if ?
+    public void isInvalidNumberOfBonusNumber(int bonus) { // try catch vs if ?
         try {
-            int bonusNumber = Integer.parseInt(bonus);
-            if (bonusNumber <= 1 || bonusNumber >= 45) {
+            if (bonus <= 1 || bonus >= 45) {
                 throw new IllegalArgumentException("[ERROR] 보너스 번호의 값은 1~45까지 입력 가능합니다.");
             }
         } catch (NumberFormatException e) {

@@ -49,9 +49,6 @@ public class LottoService {
         return sortLotto;
     }
 
-
-
-
     public List<Integer> integerList(String input){
         return Arrays.stream(intArray(input)).boxed().collect(Collectors.toList());
     }

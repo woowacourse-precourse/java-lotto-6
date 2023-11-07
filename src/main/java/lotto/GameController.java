@@ -34,6 +34,7 @@ public class GameController {
         printTicketCnt(ticketCnt);
 
         lottoList = makeLottoList(ticketCnt);
+        winningResult = validateNums();
 
 
     }
@@ -58,5 +59,15 @@ public class GameController {
         lotto = lottoNumbers.setLottoNumbers();
         System.out.println(lotto);
         return new Lotto(lotto);
+    }
+
+    public WinningLotto validateNums() {
+        Lotto lotto = new Lotto(InputView.getLottoNums());
+        List<Integer> winningLotto = lotto.getLottoNums();
+
+        int bonusNum = InputView.getBonusNum();
+        winningResult = new WinningLotto(new Lotto(winningLotto), bonusNum);
+
+        return winningResult;
     }
 }

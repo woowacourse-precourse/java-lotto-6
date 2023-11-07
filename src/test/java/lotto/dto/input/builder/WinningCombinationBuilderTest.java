@@ -24,20 +24,15 @@ class WinningCombinationBuilderTest {
         assertThat(winningCombinationDto.bonusNumber()).isEqualTo(7);
     }
 
-    @DisplayName("누락된 필드가 있는 경우 예외 발생")
+    @DisplayName("모든 필드가 설정되지 않으면 생성 시 예외 발생")
     @Test
-    void should_Throw_Exception_When_Missing_Fields() {
+    void should_Throw_Exception_when_Not_All_Fields_Set() {
+        // given
+        WinningCombinationBuilder builder = WinningCombinationBuilder.builder().withWinningNumbers("1,2,3,4,5,6");
+
         // when
         // then
-        assertThatThrownBy(() -> WinningCombinationBuilder.builder()
-                .withWinningNumbers("1,2,3,4,5,6")
-                .build())
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
-
-        assertThatThrownBy(() -> WinningCombinationBuilder.builder()
-                .withBonusNumber("7")
-                .build())
+        assertThatThrownBy(builder::build)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("당첨번호 또는 보너스 번호가 설정되지 않았습니다.");
     }

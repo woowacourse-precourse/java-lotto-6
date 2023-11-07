@@ -26,5 +26,12 @@ public class ResultLottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호가 로또 번호와 겹치면 오류가 발생한다.")
+    @Test
+    void checkBonusNumDuplicate() {
+        assertThatThrownBy(() -> new ResultLotto(List.of(1, 2, 3, 4, 5), 4))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package mytest;
 
+import lotto.service.BonusLotto;
 import lotto.service.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -19,15 +20,15 @@ public class LottoWinningNumberTest {
     @DisplayName("당첨번호 정상입력 테스트")
     void winningNumberTest(String winningNumber) {
         List<Integer> winningNumbers = new ArrayList<>();
-        List<Integer> bonusNumber = new ArrayList<>();
-        bonusNumber.add(18);
         for (String number : winningNumber.split(",")) {
             winningNumbers.add(Integer.parseInt(number));
         }
 
         assertDoesNotThrow(() -> {
             Lotto lotto = new Lotto(winningNumbers);
-            lotto.setBonusNumber(bonusNumber);
+            int bonus = 18;
+            lotto.isContainNumber(bonus);
+            BonusLotto bonusLotto = new BonusLotto(18);
         });
     }
     private static Stream<Arguments> winningNumber() {
@@ -68,13 +69,12 @@ public class LottoWinningNumberTest {
         for (String number : winningNumber.split(",")) {
             winningNumbers.add(Integer.parseInt(number));
         }
-        List<Integer> bonusNumber = new ArrayList<>();
-        bonusNumber.add(bonusInput);
-
 
         assertThrows(IllegalArgumentException.class, () -> {
             Lotto lotto = new Lotto(winningNumbers);
-            lotto.setBonusNumber(bonusNumber);
+            lotto.isContainNumber(bonusInput);
+
+            BonusLotto bonusLotto = new BonusLotto(bonusInput);
         });
     }
     private static Stream<Arguments> bonusNumberDuplicate() {
@@ -117,12 +117,11 @@ public class LottoWinningNumberTest {
         for (String number : winningNumber.split(",")) {
             winningNumbers.add(Integer.parseInt(number));
         }
-        List<Integer> bonusNumber = new ArrayList<>();
-        bonusNumber.add(bonusInput);
 
         assertThrows(IllegalArgumentException.class, () -> {
             Lotto lotto = new Lotto(winningNumbers);
-            lotto.setBonusNumber(bonusNumber);
+            lotto.isContainNumber(bonusInput);
+            BonusLotto bonusLotto = new BonusLotto(bonusInput);
         });
     }
     private static Stream<Arguments> bonusNumberRange() {

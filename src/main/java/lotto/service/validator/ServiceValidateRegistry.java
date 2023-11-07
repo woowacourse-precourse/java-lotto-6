@@ -25,12 +25,6 @@ public class ServiceValidateRegistry {
         }
     }
 
-    protected static void winningNumberSizeValidate(List<Integer> numbers) {
-        if (numbers.size() != 7) { // 로또 번호는 6개, 보너스 번호 1개로 총 7개
-            throw new IllegalArgumentException("로또 번호와 보너스 번호의 총 개수는 7개여야 합니다.");
-        }
-    }
-
     protected static void validateAmountIn1000s(final String userInput) {
         if (Integer.parseInt(userInput) % 1000 != 0) {
             throw new IllegalArgumentException(INPUT_MUST_BE_1000s.message);

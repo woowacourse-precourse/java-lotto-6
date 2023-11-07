@@ -11,9 +11,10 @@ public class Lotto {
         winningNumberValidate(numbers);
         this.numbers = numbers;
     }
-    public void setBonusNumber(List<Integer> bonusNumber) { //보너스를 추가했는데 예외 발생시 컨트롤러에서 재입력 처리해줘야함.
-        numbers.addAll(bonusNumber);
-        bonusNumberValidate(numbers);
+    public void isContainNumber(int bonusNumber) {
+        if(numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호와 당첨 번호가 중복됩니다.");
+        }
     }
 
     public List<Integer> getLottoNumbers() {

@@ -1,5 +1,6 @@
 package lotto.service.validator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.service.validator.ServiceValidateRegistry.*;
@@ -18,9 +19,10 @@ public class LottoValidator {
         checkRangeOfNumbers(userInput);
         checkSizeOfNumbers(userInput);
     }
-    public static void bonusNumberValidate (final List<Integer> userInput) {
-        checkDuplicateNumbers(userInput);
-        checkRangeOfNumbers(userInput);
+    public static void bonusNumberValidate (final int userInput) {
+        List<Integer> userInputList = new ArrayList<>();
+        userInputList.add(userInput);
+        checkRangeOfNumbers(userInputList);
     }
 
 }

@@ -1,6 +1,8 @@
 package lotto.domain;
 
+import static lotto.constant.ExceptionMessage.ERROR_DUPLICATE_NUMBERS;
 import static lotto.constant.ExceptionMessage.ERROR_LOTTO_NUMBER_RANGE;
+import static lotto.constant.ExceptionMessage.ERROR_NOT_NUMBERS_SIZE;
 import static lotto.constant.LottoConstant.LOTTO_END_NUMBER;
 import static lotto.constant.LottoConstant.LOTTO_START_NUMBER;
 
@@ -28,7 +30,7 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_NOT_NUMBERS_SIZE);
         }
     }
 
@@ -36,7 +38,7 @@ public class Lotto {
         Set<Integer> notDuplicateNumbers = new HashSet<>(numbers);
 
         if (notDuplicateNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ERROR_DUPLICATE_NUMBERS);
         }
     }
 

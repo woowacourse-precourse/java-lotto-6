@@ -30,7 +30,7 @@ public class LottoController {
 
                 exceptionOccurrenceStatus = false;
 
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 view.printMessage(e.getMessage());
                 exceptionOccurrenceStatus = true;
             }
@@ -64,11 +64,12 @@ public class LottoController {
                 view.printMessage(CRLF);
                 WinnerNumbers.validateNumbers(numbers);
 
-                inputBonusNumber(numbers);
+                int bonusNumber = inputBonusNumber(numbers);
+                winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
 
                 exceptionOccurrenceStatus = false;
 
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 view.printMessage(e.getMessage());
                 exceptionOccurrenceStatus = true;
             }
@@ -89,7 +90,7 @@ public class LottoController {
                 winnerNumbers = new WinnerNumbers(numbers, bonusNumber);
                 exceptionOccurrenceStatus = false;
 
-            } catch (Exception e) {
+            } catch (IllegalArgumentException e) {
                 view.printMessage(e.getMessage());
                 exceptionOccurrenceStatus = true;
             }

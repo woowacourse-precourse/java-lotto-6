@@ -1,9 +1,7 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.lotto.Lotto;
-import lotto.util.InputUtil;
-import lotto.view.validator.InputValidator;
+import lotto.dto.response.PrizeResponse;
 
 import java.util.List;
 
@@ -18,7 +16,7 @@ public class View {
         return InputView.readPurchaseAmount();
     }
 
-    public static void printWinningLottos(List<Lotto> winningLottos, int purchasedLottoCount) {
+    public static void printWinningLottosMessage(List<Lotto> winningLottos, int purchasedLottoCount) {
         OutputView.printLineBreak();
         OutputView.printPurchasedLottoCountMessage(purchasedLottoCount);
         OutputView.printWinningLottos(winningLottos);
@@ -34,5 +32,10 @@ public class View {
         OutputView.printLineBreak();
         OutputView.printReadBonusNumberMessage();
         return InputView.readBonusNumber();
+    }
+
+    public static void printWinningStatusMessage(List<PrizeResponse> prizeResponses, double profitRate) {
+        OutputView.printLineBreak();
+        OutputView.printWinningStatusMessage(prizeResponses, profitRate);
     }
 }

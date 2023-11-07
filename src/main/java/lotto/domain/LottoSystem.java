@@ -96,6 +96,7 @@ public class LottoSystem {
         for (PrizeResponse prizeResponse : prizeResponses) {
             totalProfit += prizeResponse.getPrizeMoney();
         }
-        return ((double) totalProfit / purchaseAmount) * 100;
+        double value = ((double) totalProfit / purchaseAmount) * 100;
+        return Math.round(value * 100.0) / 100.0;
     }
 }

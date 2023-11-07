@@ -26,8 +26,9 @@ public class LottoController {
     public void run() {
         int totalCost = getValidBuyingCost(inputView);
         List<List<Integer>> purchased = purchaseLotto(totalCost);
-
+        outputView.makeCompartment();
         Lotto winningNum = getValidWinningNum(inputView);
+        outputView.makeCompartment();
         int bonusNum = getValidBonusNum(inputView, winningNum);
         inputView.finishInput();
 

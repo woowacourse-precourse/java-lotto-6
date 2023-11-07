@@ -18,6 +18,9 @@ import java.util.Map;
 import lotto.constants.LottoRanks;
 
 public class OutputView {
+    public void makeCompartment() {
+        System.out.println();
+    }
     public void printQuantityAndAllLottoNumbers(int quantity, List<List<Integer>> manyLotto) {
         System.out.println(convertQuantityToString(quantity));
         printAllLottoNumber(manyLotto);

@@ -44,12 +44,12 @@ public class InputView {
     }
     private void validateBlankInput(String input) {
         if (input.isBlank()) {
-            throw new IllegalArgumentException(String.format(ERROR_FORMAT, BLANK_INPUT+input));
+            throw new IllegalArgumentException(String.format(ERROR_FORMAT+BLANK_INPUT));
         }
     }
     private void validateSpaceChar(String input) {
         if (input.contains(SPACE)) {
-            throw new IllegalArgumentException(String.format(ERROR_FORMAT, SPACE_INCLUDED+input));
+            throw new IllegalArgumentException(String.format(ERROR_FORMAT+SPACE_INCLUDED));
         }
     }
 

@@ -43,4 +43,8 @@ public class PurchaseAmount {
     public int getPurchaseAmount() {
         return purchaseAmount;
     }
+
+    public int getPurchaseQuantity() {
+        return purchaseAmount / LOTTO_PRICE;
+    }
 }

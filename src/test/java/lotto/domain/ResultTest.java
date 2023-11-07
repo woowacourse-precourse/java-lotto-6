@@ -35,4 +35,10 @@ class ResultTest {
     void 보너스_번호를_포함하더라도_여섯개_일치인_경우_그에_맞는_객체를_반환한다() {
         assertEquals(Result.SIX_MATCH, Result.of(6, true));
     }
+
+    @Test
+    void 보너스_번호를_포함하더라도_네개_일치인_경우_그에_맞는_객체를_반환한다() {
+        assertEquals(Result.FOUR_MATCH, Result.of(4, true));
+    }
+
 }

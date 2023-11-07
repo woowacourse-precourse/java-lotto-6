@@ -4,17 +4,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.controller.LottoController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LottosListTest {
 
-    private LottoController controller;
+    private LottosList lottosList = new LottosList();
 
     @BeforeEach
     public void setUp() {
+        lottosList = new LottosList();
 
     }
 
@@ -30,7 +30,6 @@ class LottosListTest {
     @DisplayName("입력 받은 구입 금액에 해당하는 로또 개수 생성")
     @Test
     public void createLottos() {
-        LottosList lottosList = new LottosList();
         lottosList.createLottos(5);
         assertThat(lottosList.getLottosList().size()).isEqualTo(5);
 

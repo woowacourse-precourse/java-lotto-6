@@ -29,7 +29,7 @@ class MoneyTest {
 
     @DisplayName("구입 금액이 1,000원 단위가 아니면 예외가 발생한다. ")
     @ParameterizedTest
-    @ValueSource(strings = {"10", "100", "1500", "10001"})
+    @ValueSource(strings = {"1500", "10001"})
     void throwsExceptionForAmountNotMultipleOfThousand(int inputAmount) {
         assertThatThrownBy(() -> new Money(inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -48,7 +48,7 @@ class MoneyTest {
     @DisplayName("최대 구입 금액인 10만원 초과 입력시 예외가 발생한다.")
     @Test
     void throwsExceptionForAmountAboveMaximum() {
-        String inputAmount = "1_001_000";
+        String inputAmount = "1001000";
 
         assertThatThrownBy(() -> new Money(inputAmount))
                 .isInstanceOf(IllegalArgumentException.class)

@@ -12,6 +12,10 @@ public class Price {
         this.price = price;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public int numOfLotto() {
         return price / ConstantOfLotto.PRICE_OF_LOTTO;
     }

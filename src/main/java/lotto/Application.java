@@ -2,7 +2,9 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
@@ -10,49 +12,54 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class Application {
 
     public enum Prize {
-        NO_PRIZE(0, 0, false),
-        THIRD_PRIZE(3, 5000, false),
-        FOURTH_PRIZE(4, 50000, false),
-        FIFTH_PRIZE(5, 1500000, false),
-        FIFTH_PRIZE_WITH_BONUS(5, 30000000, true),
-        SIXTH_PRIZE(6, 2000000000, false);
+        THIRD_PRIZE(3, 5000, false, "3개 일치 (5,000원)"),
+        FOURTH_PRIZE(4, 50000, false, "4개 일치 (50,000원)"),
+        FIFTH_PRIZE(5, 1500000, false, "5개 일치 (1,500,000원)"),
+        FIFTH_PRIZE_WITH_BONUS(5, 30000000, true, "5개 일치, 보너스 볼 일치 (30,000,000원)"),
+        SIXTH_PRIZE(6, 2000000000, false, "6개 일치 (2,000,000,000원)");
 
         private final int matNums;
-        private final int amountMoney;
+        private final int prizeMoney;
         private final boolean isBonus;
+        private final String resultFormat;
 
-        Prize(int matNums, int amountMoney, boolean isBonus) {
+        Prize(int matNums, int prizeMoney, boolean isBonus, String resultFormat) {
             this.matNums = matNums;
-            this.amountMoney = amountMoney;
+            this.prizeMoney = prizeMoney;
             this.isBonus = isBonus;
+            this.resultFormat = resultFormat;
         }
 
         public int getMatNums() {
             return matNums;
         }
 
-        public int getAmountMoney() {
-            return amountMoney;
+        public int getPrizeMoney() {
+            return prizeMoney;
         }
 
         public boolean isBonus() {
             return isBonus;
         }
+
+        public String getResultFormat() {
+            return resultFormat;
+        }
     }
 
 
-    public static int[] winLottoNum(int num) {
+    public static List<Integer> winLottoNum(int num) {
 
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] lottoNumsStr = readLine().split(",");
+        List<String> lottoNumsStr = List.of(readLine().split(","));
 
         //int형 배열 생성
-        int[] lottoNums = new int[lottoNumsStr.length];
-        for (int i = 0; i < lottoNumsStr.length; i++) {
-            lottoNums[i] = Integer.parseInt(lottoNumsStr[i]);
+        List<Integer> lottoNums = new ArrayList<>(6);
+        for (int i = 0; i < lottoNumsStr.size(); i++) {
+            lottoNums.add(Integer.parseInt(lottoNumsStr.get(i)));
         }
 
-        if (lottoNums.length != 6) {
+        if (lottoNums.size() != 6) {
             throw new IllegalArgumentException("[Error] 6개의 숫자를 입력하세요.");
         }
         return lottoNums;
@@ -60,12 +67,20 @@ public class Application {
 
     public static List<Integer> lottoNums(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
+//        List<Integer> numbers = List.of(1,2,3,4,5,7);
+        //오름차순 정렬
+        // List.of()로 생성된 리스트를 수정할 수 없으므로 새로운 ArrayList에 복사합니다.
+        List<Integer> sortedList = new ArrayList<>(numbers);
+
+        // 리스트를 오름차순으로 정렬합니다.
+        Collections.sort(sortedList);
+//        Collections.sort(numbers);
+        return sortedList;
     }
 
 
     public static int bonusNum() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+//        System.out.println("보너스 번호를 입력해 주세요.");
         String bonusStr = readLine();
         int bonus = Integer.parseInt(bonusStr);
 
@@ -73,7 +88,7 @@ public class Application {
     }
 
     //로또 번호 당첨 개수 확인 메서드
-    public static int cntLottoNums(List<Integer> lottoNums, int[] winNums) {
+    public static int cntLottoNums(List<Integer> lottoNums, List<Integer> winNums) {
         int cnt = 0;
         for (int num1 : lottoNums) {
             for (int num2 : winNums) {
@@ -96,21 +111,37 @@ public class Application {
     }
 
     // 결과 통계 확인 메서드
-    public static String checkResults(int[] results, boolean hasBonus){
-        System.out.println("당첨 통계");
-        System.out.println("---");
-        String totals = null;
+    public static String checkResults(List<Integer> results, List<Boolean> hasBonus) {
+//        System.out.println("당첨 통계");
+//        System.out.println("---");
+        StringBuilder resultBuilder = new StringBuilder();
+        DecimalFormat decimalFormat = new DecimalFormat("#,###");
+
 
         for (Prize prize : Prize.values()) {
+            int count = 0;
             int matNums = prize.getMatNums();
-            int prizeAmount = prize.getAmountMoney();
-            int count = results[matNums];
+            int prizeAmount = prize.getPrizeMoney();
+            boolean bonus = prize.isBonus();
+            String resultFormat = prize.getResultFormat();
 
-            if (count > 0) {
-                totals = matNums + "개 일치 (" + prizeAmount + "원) - " + count + "개";
+            // 숫자 포맷을 정의
+            String formattedNum = decimalFormat.format(prizeAmount);
+            if (results.contains(matNums)) {
+                count++;
             }
+
+            String result = resultFormat.replaceFirst("\\(0원\\)", "(" + formattedNum + "원)");
+
+            if (bonus) {
+                result = result.replaceFirst("보너스 볼 일치", "보너스 볼 일치");
+            }
+            result += " - " + count + "개";
+
+            resultBuilder.append(result).append("\n");
         }
-        return totals;
+
+        return resultBuilder.toString();
     }
 
     public static int inputMoney() {
@@ -119,7 +150,7 @@ public class Application {
 
         int lottoInput = Integer.parseInt(readLine());
         if(lottoInput % 1000 != 0) {
-            new IllegalArgumentException("[Error] 1,000원 단위로 입력하세요.");
+            new IllegalArgumentException("[Error]");
         }
         int num = lottoInput / 1000;
         System.out.println(num + "개를 구매했습니다.");
@@ -131,7 +162,7 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int num = inputMoney();
-        int[] winNums = winLottoNum(num);
+        List<Integer> winNums = winLottoNum(num);
         int bonus = bonusNum();
         List<Integer> results = new ArrayList<>();
         List<Boolean> bonusResults = new ArrayList<>();
@@ -141,15 +172,15 @@ public class Application {
             boolean hasBonusNum = matchingBonus(lottoNumbers, bonus);
             results.add(matchedNums);
             bonusResults.add(hasBonusNum);
-            System.out.println(matchedNums + "개 일치");
-            System.out.println(hasBonusNum + "보너스?");
+//            System.out.println(matchedNums + "개 일치");
+//            System.out.println(hasBonusNum + "보너스?");
             System.out.println(lottoNumbers.toString());
-            System.out.println("결과:" + checkResults(winNums, hasBonusNum));
         }
-        System.out.println("결과");
-        System.out.println(results.toString());
-        System.out.println(bonusResults.toString());
-
+//        System.out.println("결과");
+//        System.out.println(results.toString());
+//        System.out.println(bonusResults.toString());
+//        System.out.println(checkResults(results, bonusResults));
+        System.out.println(checkResults(results, bonusResults));
 
 
     }

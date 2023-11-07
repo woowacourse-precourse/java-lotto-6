@@ -7,8 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class WinningNumbersTest {
-
+public class PrizeNumbersTest {
     private PrizeNumbers prizeNumbers;
 
     int bonusNumber;

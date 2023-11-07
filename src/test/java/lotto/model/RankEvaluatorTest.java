@@ -3,6 +3,7 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import lotto.controller.handler.BonusNumberHandler;
 import lotto.controller.handler.WinningNumberHandler;
 import lotto.utils.WinningRank;
@@ -19,11 +20,12 @@ public class RankEvaluatorTest {
         String inputWinningNumbers = "1,2,3,4,5,6";
         WinningNumberHandler winningNumberHandler = new WinningNumberHandler(inputWinningNumbers);
         winningNumberHandler.handle();
+        Set<Integer> winningNumber = winningNumberHandler.getHandledResult();
 
         BonusNumberHandler bonusNumberHandler = new BonusNumberHandler("7");
         bonusNumberHandler.handle();
         int bonusNumber = bonusNumberHandler.getHandledResult();
-        PrizeNumbers prizeNumbers = new PrizeNumbers(winningNumberHandler.getHandledResult(), bonusNumber);
+        PrizeNumbers prizeNumbers = new PrizeNumbers(winningNumber, bonusNumber);
 
         rankEvaluator = new RankEvaluator(prizeNumbers);
     }

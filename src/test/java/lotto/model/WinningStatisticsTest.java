@@ -1,9 +1,7 @@
 package lotto.model;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import lotto.controller.handler.BonusNumberHandler;
@@ -16,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 class WinningStatisticsTest {
     private WinningStatistics winningStatistics;
-    private ArrayList<Lotto> lottos;
     private PrizeNumbers prizeNumbers;
     private int purchaseAmount;
     int expectedTotalWinningAmount;
@@ -34,25 +31,20 @@ class WinningStatisticsTest {
 
         WinningNumberHandler winningNumberHandler = new WinningNumberHandler("1,2,3,4,5,6");
         winningNumberHandler.handle();
-        Set<Integer> sequencedNumbers = winningNumberHandler.getHandledResult();
+        Set<Integer> winningNumbers = winningNumberHandler.getHandledResult();
 
         BonusNumberHandler bonusNumberHandler = new BonusNumberHandler("7");
         bonusNumberHandler.handle();
         int bonusNumber = bonusNumberHandler.getHandledResult();
-        prizeNumbers = new PrizeNumbers(sequencedNumbers, bonusNumber);
+        prizeNumbers = new PrizeNumbers(winningNumbers, bonusNumber);
 
-        lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 37)));
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 35, 37)));
-        lottos.add(new Lotto(List.of(1, 2, 3, 34, 35, 37)));
-        lottos.add(new Lotto(List.of(1, 2, 33, 34, 35, 37)));
+        for (WinningRank rank : WinningRank.values()) {
+            winningStatistics.updateStatistics(rank);
+        }
     }
 
     @Test
-    void testCalculateStatistics() {
-        winningStatistics.calculateStatistics(prizeNumbers, lottos.iterator());
+    void testUpdateStatisticsAndGetTotalWinningAmount() {
 
         Map<WinningRank, Integer> expectedWinningRecords = new HashMap<>();
         expectedWinningRecords.put(WinningRank.OUT_OF_RANK, 1);
@@ -64,11 +56,12 @@ class WinningStatisticsTest {
 
         Assertions.assertThat(winningStatistics.getWinningRecords()).isEqualTo(expectedWinningRecords);
         Assertions.assertThat(winningStatistics.getTotalWinningAmount()).isEqualTo(expectedTotalWinningAmount);
-        Assertions.assertThat(winningStatistics.getProfitRate()).isEqualTo(expectedProfitRate);
+
+
     }
 
     @Test
-    void testToString() {
+    void testToStringAndGetProfitRate() {
         String pattern = "#.##";
         DecimalFormat df = new DecimalFormat(pattern); // 소수점 둘째 자리까지 표시
         String formattedProfitRate = df.format(expectedProfitRate);
@@ -79,8 +72,9 @@ class WinningStatisticsTest {
                 + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
                 + "6개 일치 (2,000,000,000원) - 1개\n"
                 + "총 수익률은 " + formattedProfitRate + "%입니다. ";
-        winningStatistics.calculateStatistics(prizeNumbers, lottos.iterator());
 
+        winningStatistics.calculateProfitRate();
+        Assertions.assertThat(winningStatistics.getProfitRate()).isEqualTo(expectedProfitRate);
         Assertions.assertThat(winningStatistics.toString()).isEqualTo(expected);
     }
 }

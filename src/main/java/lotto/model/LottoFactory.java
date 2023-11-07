@@ -18,4 +18,8 @@ public class LottoFactory {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(numbers);
     }
+
+    public WinningLotto createWinningLotto(List<Integer> numbers, Integer bonusNumber) {
+        return WinningLotto.create(numbers, bonusNumber);
+    }
 }

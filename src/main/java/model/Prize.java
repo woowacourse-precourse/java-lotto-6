@@ -5,7 +5,7 @@ import java.util.Arrays;
 public enum Prize {
     ST1(6, false, 2_000_000_000),
     ND2(5, true, 30_000_000),
-    RD3(5, false, 1_500_500),
+    RD3(5, false, 1_500_000),
     TH4(4, false, 50_000),
     TH5(3, false, 5_000),
     NO(0, false, 0);
@@ -25,6 +25,10 @@ public enum Prize {
                 .filter(prize -> prize.winNumberCount == sameCount && prize.bonus == bonus)
                 .findFirst()
                 .orElse(Prize.NO);
+    }
+
+    public int getPrice(){
+        return price;
     }
 
 }

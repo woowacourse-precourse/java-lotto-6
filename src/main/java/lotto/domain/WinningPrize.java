@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 
 public enum WinningPrize {
-    FIRST_PRIZE(6, 2_000_000_000),
-    SECOND_PRIZE(5, 30_000_000),
-    THIRD_PRIZE(5, 1_500_000),
-    FOURTH_PRIZE(4, 50_000),
+    EMPTY_PRIZE(0, 0),
     FIFTH_PRIZE(3, 5_000),
-    EMPTY_PRIZE(0, 0);
+    FOURTH_PRIZE(4, 50_000),
+    THIRD_PRIZE(5, 1_500_000),
+    SECOND_PRIZE(5, 30_000_000),
+    FIRST_PRIZE(6, 2_000_000_000);
 
     private static final int MIN_WINNING_COUNT = 3;
 
@@ -23,6 +23,10 @@ public enum WinningPrize {
 
     public int getWinningPrizeAmount() {
         return winningPrizeAmount;
+    }
+
+    public int getWinningNumbersCount() {
+        return winningNumbersCount;
     }
 
     public static WinningPrize valueOf(int winningNumbersCount, boolean existBonusNumber) {

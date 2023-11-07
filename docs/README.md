@@ -59,6 +59,11 @@
 
 - 로또 번호가 저장되는 클래스
 - 생성자 호출 시에 로또 번호가 6개 존재하고 중복되지 않는지 검증합니다.
+- 만약 중복될 경우 `IllegalArgumentException`을 발생시킵니다.
+
+### PurchaseMoney
+
+- 로또 구입 금액을 저장하는 클래스입니다.
 
 ### WinningNumber
 

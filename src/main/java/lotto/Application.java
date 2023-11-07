@@ -17,21 +17,17 @@ public class Application {
         List<Integer> eachLottoNumber = null;
         List<List<Integer>> lottos = new ArrayList<>();
 
-        //구입 금액 입력
-//        System.out.println("구입금액을 입력해 주세요.");
 
+        //구입 금액 입력
         UserInput userInput = new UserInput();
         Process lottoCount = new Process();
 
-
-//
         purchaseAmount = userInput.getPurchaseAmount();
         purchaseCount = lottoCount.countLottos(purchaseAmount);
         System.out.println();
 
 
         System.out.printf("%d개를 구매했습니다.%n", purchaseCount); //
-
 
         //로또 개수만큼 로또 객체의 로또 번호 출력
         Process startProcess = new Process();
@@ -51,15 +47,10 @@ public class Application {
         //당첨 번호 입력
         List<Integer> winningNumbers = null;
 
-        System.out.println("당첨 번호를 입력해 주세요.");
-
         UserInput userInputWinningNumber = new UserInput();
 
-        while (UserInput.repeatWinningNumber) {
-            winningNumbers = userInputWinningNumber.getWinningNumbers();
-            userInputWinningNumber.sortWinningNumbers(winningNumbers);
-            userInputWinningNumber.hasDuplicates(winningNumbers);
-        }
+        winningNumbers = userInputWinningNumber.getWinningNumbers();
+        userInputWinningNumber.sortWinningNumbers(winningNumbers);
 
         System.out.println();
 

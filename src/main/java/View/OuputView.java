@@ -76,7 +76,7 @@ public class OuputView {
     }
 
     private static double calculateRateOfReturn(int revenue, Amount amount) {
-        double result = (double) revenue / (amount.getAmount() * LOTTO_PRICE.get());
+        double result = ((double)revenue / (amount.getAmount() * LOTTO_PRICE.get())) * 100;
         return Math.round(result * SECOND_DECIMAL.get()) / SECOND_DECIMAL.get();
     }
 }

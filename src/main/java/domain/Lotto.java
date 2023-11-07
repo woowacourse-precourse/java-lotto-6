@@ -8,6 +8,7 @@ import static util.LottoValidationValue.LOTTO_NUMBER_MAXIMUM;
 import static util.LottoValidationValue.LOTTO_NUMBER_MINIMUM;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -87,8 +88,8 @@ public class Lotto {
     }
 
     private List<Integer> makeLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM.get(), LOTTO_NUMBER_MAXIMUM.get(),
-                LOTTO_NUMBER_COUNT.get());
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MINIMUM.get(), LOTTO_NUMBER_MAXIMUM.get(),
+                LOTTO_NUMBER_COUNT.get()));
     }
 
     public boolean isValid() {

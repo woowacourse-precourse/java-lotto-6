@@ -3,6 +3,7 @@ package domain;
 import exception.InvalidLottoNumberRangeException;
 import exception.InvalidLottoSizeException;
 import exception.NumberDuplicateException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -17,8 +18,14 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
+        numbers = sorted(numbers);
         this.numbers = numbers;
+    }
+
+    private List<Integer> sorted(List<Integer> numbers) {
+        List<Integer> sortedList = new ArrayList<>(numbers);
+        Collections.sort(sortedList);
+        return sortedList;
     }
 
     private void validate(List<Integer> numbers) {

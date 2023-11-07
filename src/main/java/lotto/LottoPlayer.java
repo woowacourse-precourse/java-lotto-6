@@ -13,13 +13,19 @@ public class LottoPlayer {
     public void buyLottos(int number) {
         System.out.printf("%d개를 구매했습니다.\n", number);
         for (int i = 0; i < number; i++) {
-            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1,45,6)
+            Lotto lotto = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)
                     .stream()
                     .sorted(Comparator.naturalOrder())
                     .collect(Collectors.toList()));
             printLotto(lotto);
             lottos.add(lotto);
         }
+        System.out.println();
+    }
+
+    public void printRateOfProfit(int priceLotto) {
+        double rateOfProfit = (float) money / (lottos.size() * priceLotto) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.", rateOfProfit);
     }
 
     private void printLotto(Lotto lotto) {
@@ -29,7 +35,7 @@ public class LottoPlayer {
             sb.append(number);
             sb.append(", ");
         }
-        sb.replace(sb.length()-2, sb.length(), "]");
+        sb.replace(sb.length() - 2, sb.length(), "]");
         System.out.println(sb);
     }
 

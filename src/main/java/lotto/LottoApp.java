@@ -25,6 +25,7 @@ public class LottoApp {
         admin.checkLottos(player);
         admin.printPrize(player);
         admin.payPrizeMoney(player);
+        player.printRateOfProfit(PRICE_LOTTO);
     }
 
     private int getPurchaseMoney() {

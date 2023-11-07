@@ -254,4 +254,16 @@ class LottoControllerTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
     }
+
+    @Test
+    @DisplayName("기능38 테스트 : 당첨 번호 등록할 때 1~45 범위 밖에 있는 정수를 입력하면 예외가 발생한다.")
+    void registerWinningNumberShouldThrowIllegalArgumentExceptionWhenGivenWrongRangeValue() {
+        // given
+        System.setIn(createUserInput("1, 2, 3, 4, 5, 46"));
+
+        // when, then
+        assertThatThrownBy(() -> lottoController.registerWinningLottoCombination())
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
+    }
 }

@@ -14,5 +14,11 @@ public class Application {
         System.out.printf("\n%d개를 구매했습니다.\n", userData.lottoCount);
         userData.printUserLotto();
 
+        System.out.println();
+        printConsole("당첨 번호");
+        WinLotto winLotto = new WinLotto();
+
+
+
     }
 }

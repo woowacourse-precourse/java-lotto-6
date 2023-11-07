@@ -2,11 +2,11 @@
 - [x] 로또 구입 금액 입력
   - [x] Exception: 1000원 단위가 아닐 시
 - [x] 사용자 로또 설정 
-- [ ] 당점 번호 입력
-  - [ ] Exception: 쉼표로 구분되지 않는 경우
-  - [ ] Exception: 6개의 숫자를 입력받지 않는 경우
-  - [ ] Exception: 중복 되는 숫자가 있는 경우
-  - [ ] Exception: 숫자의 범위가 1 ~ 45가 아닌 경우
+- [x] 당점 번호 입력
+  - [x] Exception: 쉼표로 구분되지 않는 경우
+  - [x] Exception: 6개의 숫자를 입력받지 않는 경우
+  - [x] Exception: 중복 되는 숫자가 있는 경우
+  - [x] Exception: 숫자의 범위가 1 ~ 45가 아닌 경우
 - [ ] 보너스 번호 입력
   - [ ] Exception: 숫자의 범위가 1 ~ 45가 아닌 경우
   - [ ] Exception: 당첨 번호와 중복 되는 경우
@@ -31,6 +31,7 @@
   
 - (class) WinLotto
   - inputWinNum(): 당첨 번호 입력
+  - setWinLotto(): 당첨 로또 설정
   - inputBonus(): 보너스 번호 입력
   
 - (class) UserData

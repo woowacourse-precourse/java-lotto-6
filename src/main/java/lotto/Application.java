@@ -5,8 +5,8 @@ import lotto.view.InputView;
 public class Application {
     public static void main(String[] args) {
         InputView inputView = new InputView();
-        inputView.readPurchaseAmount();
-        inputView.readWinnerNumber();
-        inputView.readBonusNumber();
+        String purchaseAmount = inputView.readPurchaseAmount();
+        String winnerNumber = inputView.readWinnerNumber();
+        String BonusNumber = inputView.readBonusNumber();
     }
 }

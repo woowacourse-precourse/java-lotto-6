@@ -10,4 +10,10 @@ public class InputView {
         validInput(input);
         return Integer.parseInt(input);
     }
+
+    void validInput(String input){
+        int price = validIntType(input);
+        validUnit(price);
+        validPositive(price);
+    }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoDTO;
+import lotto.model.winningLotto.WinningLotto;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -27,6 +28,14 @@ public class Lottos {
         return lottos.stream()
                 .map(Lotto::toLottoDTO)
                 .toList();
+    }
+
+    public List<WinningInfo> getWinnningInfos(WinningLotto winningLotto) {
+        return toLottoDTOs()
+                .stream()
+                .map(winningLotto::compare)
+                .toList();
+
     }
 
 

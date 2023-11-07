@@ -30,11 +30,7 @@ public class LottoManager {
 
     public LottoResult calculateLottoResult() {
         lottoResult = LottoResult.of();
-        List<WinningInfo> winningInfos = lottos.toLottoDTOs()
-                .stream()
-                .map(lottoDTO -> winningLotto.compare(lottoDTO))
-                .toList();
-
+        List<WinningInfo> winningInfos = lottos.getWinnningInfos(winningLotto);
         winningInfos.forEach(lottoResult::addResult);
         return lottoResult;
     }

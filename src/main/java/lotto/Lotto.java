@@ -61,8 +61,9 @@ public class Lotto {
 		return bonus;
     }
     
-    public static int[] compare_num(List<Integer>[] lotto, int[] num, int bonus) { //로또확인 
+    public static int[] compare_num(List<Integer>[] lotto, int[] num) { //로또확인 
     	int[] result = new int[lotto.length];
+    	int[] boresult = new int[lotto.length];
     	for(int i=0; i<lotto.length; i++) {
     		for(int j=0; j<num.length; j++) {
     			if(lotto[i].contains(num[j])) {
@@ -74,5 +75,16 @@ public class Lotto {
 		return result;
     }
     
+    public static int[] compare_bonus(List<Integer>[] lotto, int bonus) {
+    	int[] boresult = new int[lotto.length];
+    	for(int i=0; i<lotto.length; i++) {
+    		for(int j=0; j<lotto.length; j++) {
+    			if(lotto[i].contains(bonus)) {
+    				boresult[i] = 1;
+    			}
+    		}
+    	}
+		return boresult;
+    }
     
 }

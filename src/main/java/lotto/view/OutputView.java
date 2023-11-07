@@ -25,12 +25,9 @@ public class OutputView {
     }
 
     public static void printWinningResult(Map<LottoRank, Integer> winningResult) {
-        for (LottoRank rank : LottoRank.values()) {
-            if (rank.equals(LottoRank.DEFAULT)) {
-                continue;
-            }
-            showRankResult(winningResult, rank);
-        }
+        winningResult.entrySet().stream()
+                .filter(entry -> !entry.getKey().equals(LottoRank.DEFAULT))
+                .forEach(entry -> showRankResult(winningResult, entry.getKey()));
     }
 
     private static void showRankResult(Map<LottoRank, Integer> winningResult, LottoRank rank) {

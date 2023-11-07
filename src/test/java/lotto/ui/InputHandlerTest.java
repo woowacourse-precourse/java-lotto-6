@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mockStatic;
 
 class InputHandlerTest {
@@ -20,7 +19,7 @@ class InputHandlerTest {
             OutputHandler outputHandler = new OutputHandler();
             InputHandler inputHandler = new InputHandler(outputHandler);
 
-            Assertions.assertThat(inputHandler.getValidPurchaseAmount())
+            Assertions.assertThat(inputHandler.getValidPurchaseAmountFromUser())
                     .isEqualTo(3000);
 
         }
@@ -35,7 +34,7 @@ class InputHandlerTest {
             OutputHandler outputHandler = new OutputHandler();
             InputHandler inputHandler = new InputHandler(outputHandler);
 
-            Assertions.assertThatThrownBy(inputHandler::getValidPurchaseAmount)
+            Assertions.assertThatThrownBy(inputHandler::getValidPurchaseAmountFromUser)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 양의 정수만 입력해야 합니다.");
 
@@ -51,7 +50,7 @@ class InputHandlerTest {
             OutputHandler outputHandler = new OutputHandler();
             InputHandler inputHandler = new InputHandler(outputHandler);
 
-            Assertions.assertThatThrownBy(inputHandler::getValidPurchaseAmount)
+            Assertions.assertThatThrownBy(inputHandler::getValidPurchaseAmountFromUser)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 1,000 단위로 입력해야 합니다.");
 
@@ -67,7 +66,7 @@ class InputHandlerTest {
             OutputHandler outputHandler = new OutputHandler();
             InputHandler inputHandler = new InputHandler(outputHandler);
 
-            Assertions.assertThatThrownBy(inputHandler::getValidPurchaseAmount)
+            Assertions.assertThatThrownBy(inputHandler::getValidPurchaseAmountFromUser)
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessageContaining("[ERROR] 10만원을 초과해서 구매할 수 없습니다.");
 

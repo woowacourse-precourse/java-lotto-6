@@ -20,13 +20,13 @@ public class LottoGame {
         List<Lotto> lottoBundle = buyLottoBundle(purchaseAmount);
         printPurchaseHistory(lottoBundle);
 
-        String userInput = inputHandler.getWinnerNumbers();
+        String userInput = inputHandler.getWinningNumbersFromUser();
         List<Integer> winnerNumbers = Arrays.stream(userInput.split(","))
                 .map(Integer::parseInt)
                 .sorted() // 오름차순으로 정렬
                 .toList(); // 리스트로 수집
 
-        int bonusNumber = inputHandler.getBonusNumber();
+        int bonusNumber = inputHandler.getBonusNumberFromUser();
         LottoService lottoService = new LottoService();
         lottoService.compareAll(lottoBundle, winnerNumbers, bonusNumber);
         long profit = lottoService.getProfit();
@@ -70,7 +70,7 @@ public class LottoGame {
 
     private int getPurchaseAmount() {
         try {
-            return inputHandler.getValidPurchaseAmount();
+            return inputHandler.getValidPurchaseAmountFromUser();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return getPurchaseAmount();

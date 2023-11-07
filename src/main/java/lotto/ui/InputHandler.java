@@ -15,7 +15,7 @@ public class InputHandler {
         this.outputHandler = outputHandler;
     }
 
-    public int getValidPurchaseAmount() throws IllegalArgumentException {
+    public int getValidPurchaseAmountFromUser() throws IllegalArgumentException {
         outputHandler.printMessage(Inquire.PURCHASE_AMOUNT);
         String userInput = getUserInput();
         validatePurchaseAmount(userInput);
@@ -67,12 +67,12 @@ public class InputHandler {
     }
 
 
-    public String getWinnerNumbers() {
+    public String getWinningNumbersFromUser() {
         outputHandler.printMessage(Inquire.WINNER_NUMBERS);
         return getUserInput();
     }
 
-    public int getBonusNumber() {
+    public int getBonusNumberFromUser() {
         outputHandler.printMessage(Inquire.BONUS_NUMBER);
         return Integer.parseInt(getUserInput());
     }

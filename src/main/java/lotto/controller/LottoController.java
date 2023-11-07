@@ -48,5 +48,6 @@ public class LottoController {
     protected void calculateResult() {
         OutputView.printWinningStatusMessage();
         result = lottoTickets.calculateLottoRank(winningNumber, bonusNumber);
+        OutputView.printLottoResultMessage(result);
     }
 }

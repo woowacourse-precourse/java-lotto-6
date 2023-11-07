@@ -19,7 +19,7 @@ public class UserInputView {
 
     public static void winningNumbers(){
         try{
-            WinningNumber.getWinningNum(Console.readLine());
+            LottoController.putWinningNums(Console.readLine());
 
         }catch (IllegalAccessError e){
             System.out.println(e.getMessage());

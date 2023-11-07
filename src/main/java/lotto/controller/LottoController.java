@@ -4,6 +4,7 @@ import static lotto.Constants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.model.Lottos;
+import lotto.util.LottoUtil;
 import lotto.util.Validator;
 import lotto.view.input.LottoInputView;
 import lotto.view.input.PurchaseInputView;
@@ -24,6 +25,7 @@ public class LottoController {
         int lottoCount = purchaseAmount / LOTTO_PRICE;
 
         printLottoCount(lottoCount);
+        generateLottos(lottoCount);
     }
 
     /**
@@ -46,6 +48,13 @@ public class LottoController {
      */
     private void printLottoCount(int lottoCount) {
         purchaseOutputView.printLottoCount(lottoCount);
+    }
+
+    /**
+     * Description: 구입한 로또들을 생성한다.
+     */
+    private void generateLottos(int lottoCount) {
+        purchasedLottos = new Lottos(LottoUtil.generateLottos(lottoCount));
     }
 }
 

@@ -1,13 +1,21 @@
 package lotto.controller;
 
 import lotto.Generator.LottoGenerator;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.PurchaseCost;
+import lotto.utils.LottoUtils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static lotto.constant.StringConstant.COMMA;
 import static lotto.message.GameMessage.ASK_FOR_PURCHASE_COST;
+import static lotto.message.GameMessage.ASK_FOR_WINNING_NUMBER;
 import static lotto.message.LottoMessage.LOTTO_COUNT;
+import static lotto.utils.LottoUtils.splitStringToList;
 
 public class LottoGameController {
 
@@ -29,6 +37,7 @@ public class LottoGameController {
 
         printPurchaseLottos(lottoCount, puchaseLottos);
 
+        Lotto lottoWinningNumbers = inputLottoWinningNumbers();
 //        inputWinningNumbers();
 //        inputBonusNumbers();
 //        printWinniㅍㅇㄴngStatistics();
@@ -63,22 +72,39 @@ public class LottoGameController {
     private void printPurchaseLottoCount(int lottoCount) {
         output.printLottoCount(LOTTO_COUNT, lottoCount);
     }
-//
-//
-//
-//    private List<Integer> inputWinningNumbers() {
-//        output.printMessage(ASK_FOR_WINNING_NUMBER);
-//        return null;
-//    }
-//
-//    private int inputBonusNumbers() {
-//        output.printMessage(ASK_FOR_BONUS_NUMBER);
-//        return 0;
-//    }
-//
-//    private void printWinningStatistics() {
-//        output.printMessage(WINNING_STATISTICS);
-//    }
+    private Lotto inputLottoWinningNumbers() {
+
+        while (true) {
+            try {
+                String numbers = inputWinningNumbers();
+                return createLottoWinningNumbers(numbers);
+            } catch (IllegalArgumentException e) {
+                output.printErrorMessage(e);
+            }
+        }
+
+    }
+
+    private String inputWinningNumbers() {
+        output.printMessage(ASK_FOR_WINNING_NUMBER);
+        return input.lottoWinningNumbers();
+    }
+
+    private Lotto createLottoWinningNumbers(String numbers) {
+        List<Integer> winningNumbers = convertToWinningNumbers(numbers);
+        return new Lotto(winningNumbers);
+    }
+
+    private List<Integer> convertToWinningNumbers(String input) {
+        List<String> numbers = splitStringToList(COMMA, input);
+        return convertToNumbers(numbers);
+    }
+
+    private List<Integer> convertToNumbers(List<String> numbers) {
+        return numbers.stream()
+                .map(LottoUtils::validateAndConvertStringToInteger)
+                .collect(Collectors.toList());
+    }
 
 
 }

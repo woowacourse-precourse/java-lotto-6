@@ -36,6 +36,9 @@ public class Lotto {
                     matchCount++;
                 }
             }
+            if (number == bonusNum) {
+                hitBonusNum = true;
+            }
         }
         if (matchCount == 5 && hitBonusNum) {
             return Result.FIVE_BONUS;

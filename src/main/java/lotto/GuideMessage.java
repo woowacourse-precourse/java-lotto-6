@@ -29,14 +29,14 @@ public class GuideMessage{
         System.out.println(GUIDE_MSG_INPUT_MONEY);
     }
 
-    public static void ofIssuedLottos(Lottos lottos, int issueNumber){
+    public static void ofIssuedLottos(Lottos lottos, Integer issueNumber){
         System.out.println(LINE_BREAK + issueNumber + GUIDE_MSG_NUMBER_OF_PURCHASED_LOTTO);
-        for (int index = 0; index < issueNumber; index++) {
+        for (Integer index = 0; index < issueNumber; index++) {
             ofOneLottoNumber(lottos, index);
         }
     }
 
-    public static void ofOneLottoNumber(Lottos lottos, int indexOfLotto){
+    public static void ofOneLottoNumber(Lottos lottos, Integer indexOfLotto){
         Lotto lotto = lottos.getLotto(indexOfLotto);
         System.out.println(LEFT_BRACE+joinCommaWithNumbers(lotto)+RIGHT_BRACE);
     }
@@ -44,7 +44,7 @@ public class GuideMessage{
     private static String joinCommaWithNumbers(Lotto lotto){
         String commaSplitNumbers = "";
         commaSplitNumbers += lotto.getNumber(FIRST_LOTTO_INDEX);
-        for (int index = 1; index < lotto.getSize() ; index++) {
+        for (Integer index = 1; index < lotto.getSize() ; index++) {
             commaSplitNumbers += COMMA+BLANK+lotto.getNumber(index);
         }
         return commaSplitNumbers;

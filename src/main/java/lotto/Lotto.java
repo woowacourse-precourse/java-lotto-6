@@ -16,15 +16,15 @@ public class Lotto {
         }
     }
 
-    public Integer getNumber(int index) {
+    public Integer getNumber(Integer index) {
         return numbers.get(index);
     }
 
-    public int getSize(){
+    public Integer getSize(){
         return numbers.size();
     }
 
-    public boolean contains(int number) {
+    public boolean contains(Integer number) {
         return numbers.contains(number);
     }
 

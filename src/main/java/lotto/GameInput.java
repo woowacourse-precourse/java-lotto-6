@@ -6,9 +6,9 @@ import java.util.List;
 
 public class GameInput {
 
-    private static final int INPUT_FAIL = -1;
+    private static final Integer INPUT_FAIL = null;
 
-    public static int insertMoney(){ // int -> Integer , INPUT FAIL == null
+    public static Integer insertMoney(){
         String money = Console.readLine();
         try{
             IntegerValidator.isZeroOrPositiveInteger(money);

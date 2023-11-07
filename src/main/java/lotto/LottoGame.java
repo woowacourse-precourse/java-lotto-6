@@ -6,13 +6,13 @@ public class LottoGame {
     }
 
     public void startProcess() {
-        int money = -1;
+        Integer money = -1;
         while (money < 0) {
             GuideMessage.ofInputMoney();
             money = GameInput.insertMoney();
         }
         Lottos lottos = Lottos.issueLottos(money);
-        int issueNumber = lottos.getSize();
+        Integer issueNumber = lottos.getSize();
         GuideMessage.ofIssuedLottos(lottos, issueNumber);
 
         GuideMessage.ofInputWinningNumber();
@@ -43,7 +43,7 @@ public class LottoGame {
 
     public LottoResultWinners findWinnerOfLotto(Lottos lottos, Lotto winningNumbers, Integer bonusNumber) {
         LottoResultWinners lottoResultWinners = new LottoResultWinners();
-        for (int lottoIndex = 0; lottoIndex < lottos.getSize(); lottoIndex++) {
+        for (Integer lottoIndex = 0; lottoIndex < lottos.getSize(); lottoIndex++) {
             Lotto lotto = lottos.getLotto(lottoIndex);
             LottoResult lottoResult = compareLottoToWinningNumbers(lotto,winningNumbers,bonusNumber);
             lottoResultWinners.add(lottoResult);
@@ -54,7 +54,7 @@ public class LottoGame {
     public LottoResult compareLottoToWinningNumbers(Lotto lotto,Lotto winningNumbers,Integer bonusNumber){
         Integer numberOfMatch = 0;
         Boolean bonus = false;
-        for (int numberIndex = 0; numberIndex < lotto.getSize(); numberIndex++) {
+        for (Integer numberIndex = 0; numberIndex < lotto.getSize(); numberIndex++) {
             if (lotto.contains(winningNumbers.getNumber(numberIndex))) {
                 numberOfMatch++;
             }

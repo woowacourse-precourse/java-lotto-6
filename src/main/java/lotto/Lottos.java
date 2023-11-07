@@ -17,10 +17,10 @@ public class Lottos {
     private Lottos(List<Lotto> lottos) {
         this.lottos = lottos;
     }
-    public static Lottos issueLottos(int money){
-        int issueCount = countNumberOfLottoIssue(money);
+    public static Lottos issueLottos(Integer money){
+        Integer issueCount = countNumberOfLottoIssue(money);
         List<Lotto> numberOfLotto = new ArrayList<Lotto>(issueCount);
-        for (int count = 0; count < issueCount; count++) {
+        for (Integer count = 0; count < issueCount; count++) {
             List<Integer> randomNumbers = new ArrayList<Integer>(Randoms.pickUniqueNumbersInRange(
                     LOTTO_MINIMAL_NUMBER, LOTTO_MAXIMUM_NUMBER,NUMBER_OF_UNIQUE_NUMBERS));
             Collections.sort(randomNumbers);
@@ -29,15 +29,15 @@ public class Lottos {
         return new Lottos(numberOfLotto);
     }
 
-    public static int countNumberOfLottoIssue(int money){
+    public static Integer countNumberOfLottoIssue(Integer money){
         return money / COST_OF_LOTTO;
     }
 
-    public Lotto getLotto(int index) {
+    public Lotto getLotto(Integer index) {
         return lottos.get(index);
     }
 
-    public int getSize(){
+    public Integer getSize(){
         return lottos.size();
     }
 

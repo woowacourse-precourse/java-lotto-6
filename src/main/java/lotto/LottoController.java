@@ -11,19 +11,23 @@ public class LottoController {
     static final int MIN_LOTTERY_NUM = 1;
     static final int MAX_LOTTERY_NUM = 45;
 
+
     LotteryService lotteryService = new LotteryService();
+    LottoPrinter lottoPrinter = new LottoPrinter();
+
     public void run(){
         try{
             int userMoney = getMoney();
             int lotteryCount = userMoney / LOTTERY_COST;
             List<Lotto> totalLottery = lotteryService.getTotalLottery(lotteryCount);
-            printLotteryList(totalLottery);
+            lottoPrinter.printLotteryList(totalLottery);
             Lotto winningNumber = getWinningNumber();
             int bonusNumber = getBonusNumber(winningNumber);
+            List<Ranking> winningInformation = lotteryService.compareLotteryWithWinningNumber(totalLottery, winningNumber, bonusNumber);
+            lottoPrinter.printWinningInformation(winningInformation, userMoney);
         } catch(IllegalArgumentException e){
             throw new IllegalArgumentException(e);
         }
-
     }
 
     private int getMoney() throws IllegalArgumentException{
@@ -40,13 +44,6 @@ public class LottoController {
         return money;
     }
 
-    private void printLotteryList(List<Lotto> totalLottery){
-        System.out.println();
-        System.out.println(totalLottery.size() + "개를 구매했습니다.");
-        for(Lotto lottery : totalLottery){
-            lottery.printLotteryNumber();
-        }
-    }
 
     private Lotto getWinningNumber() throws IllegalArgumentException{
         System.out.println();

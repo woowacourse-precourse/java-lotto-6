@@ -5,14 +5,22 @@ import java.util.HashMap;
 public class LottoStatistics {
     private final HashMap<LottoRank, Integer> rankCounter;
     private final long winningMoney;
-    private final double rateOfReturn;
+    private final double winningRate;
 
     public LottoStatistics(LottosPurchased lottosPurchased, Lotto winningLotto, LottoBonus lottoBonus, Amount amount) {
         rankCounter = new HashMap<>();
         initRankCounter();
         countRanks(lottosPurchased, winningLotto, lottoBonus);
         winningMoney = calculateWinningMoney();
-        rateOfReturn = calculateRateOfReturn(amount);
+        winningRate = calculateWinningRate(amount);
+    }
+
+    public HashMap<LottoRank, Integer> getRankCounter() {
+        return rankCounter;
+    }
+
+    public double getWinningRate() {
+        return winningRate;
     }
 
     public int getCountOf(LottoRank lottoRank) {
@@ -47,7 +55,7 @@ public class LottoStatistics {
         return winningMoney;
     }
 
-    private double calculateRateOfReturn(Amount amount) {
+    private double calculateWinningRate(Amount amount) {
         return 100.0 * winningMoney / amount.getAmount();
     }
 }

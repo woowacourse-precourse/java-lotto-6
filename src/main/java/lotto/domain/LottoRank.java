@@ -37,7 +37,7 @@ public enum LottoRank {
         return money;
     }
 
-    public String getMessageWith(int count) {
-        return prefixOfMessage + count + SUFFIX_OF_MESSAGE;
+    public String getMessageWith(int counts) {
+        return prefixOfMessage + counts + SUFFIX_OF_MESSAGE;
     }
 }

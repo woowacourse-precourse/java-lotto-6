@@ -39,8 +39,8 @@ public class GameController {
     private void purchaseLottos() {
         lottosPurchased = new LottosPurchased(amount.getAmount());
 
-        outputView.printNumberOfLottosPurchased(lottosPurchased);
-        outputView.printLottosPurchased(lottosPurchased);
+        outputView.printNumberOfLottosPurchased(lottosPurchased.getNumberOfLottos());
+        outputView.printLottosPurchased(lottosPurchased.getLottos());
         System.out.println();
     }
 
@@ -74,6 +74,6 @@ public class GameController {
     private void printLottoStatistics() {
         lottoStatistics = new LottoStatistics(lottosPurchased, winningLotto, lottoBonus, amount);
 
-        outputView.printStatistics(lottoStatistics);
+        outputView.printRankCounts(lottoStatistics.getRankCounter());
     }
 }

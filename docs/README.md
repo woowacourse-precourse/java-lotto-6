@@ -22,7 +22,7 @@
 
 **random**
 
-- [ ] 중복되지 않는 랜덤숫자를 반환한다. randomNumber = generateRandomNumber(list)
+- [X] 중복되지 않는 랜덤숫자를 반환한다. randomNumber = generateRandomNumber(list)
 
 ---
 

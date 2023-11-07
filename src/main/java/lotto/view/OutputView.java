@@ -6,16 +6,16 @@ import lotto.domain.LottoReturnRate;
 import lotto.domain.LottoTickets;
 
 import java.text.NumberFormat;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 public class OutputView {
 
     public void printPurchasedLottoTickets(LottoTickets lottoTickets) {
         System.out.println("\n" + lottoTickets.getLottoTickets().size() + "개를 구매했습니다.");
         for (Lotto lotto : lottoTickets.getLottoTickets()) {
-            System.out.println(lotto.getNumbers());
+            List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(sortedNumbers);
+            System.out.println(sortedNumbers);
         }
     }
 

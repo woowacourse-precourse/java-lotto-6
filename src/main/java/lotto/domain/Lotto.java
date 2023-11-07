@@ -11,7 +11,6 @@ public class Lotto {
         validateNumbersCount(numbers);
         validateDuplicateNumbers(numbers);
         this.numbers = numbers;
-        sortNumbersAscending();
     }
 
     private void validateNumbersCount(List<Integer> numbers) {
@@ -28,10 +27,6 @@ public class Lotto {
         if (distinctCount != numbers.size()) {
             throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
         }
-    }
-
-    private void sortNumbersAscending() {
-        Collections.sort(numbers);
     }
 
     public int countMatchingNumbers(List<Integer> winningNumbers) {

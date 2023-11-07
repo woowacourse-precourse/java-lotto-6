@@ -1,13 +1,11 @@
 package lotto.controller;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.generator.LottoGenerator;
-import lotto.view.InputMoneyView;
-import lotto.view.InputWinningNumberView;
-import lotto.view.OutputLottoCountView;
-import lotto.view.OutputLottosView;
+import lotto.view.*;
 
 import java.util.List;
 
@@ -19,6 +17,7 @@ public class LottoController {
         Lottos lottos = createLottos(money);
         printLottos(lottos);
         Lotto winningNumber = getNumber();
+        BonusNumber bonusNumber = getBonusNumber(winningNumber);
     }
 
     private Money getMoney() {
@@ -49,8 +48,10 @@ public class LottoController {
         return new Lotto(winningNumber);
     }
 
-    private void getBonusNumber() {
-
+    private BonusNumber getBonusNumber(Lotto winningNumber) {
+        InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
+        int bonusNumber = inputBonusNumberView.inputBonusNumber(winningNumber);
+        return new BonusNumber(bonusNumber, winningNumber);
     }
 
     private void calculateWin() {

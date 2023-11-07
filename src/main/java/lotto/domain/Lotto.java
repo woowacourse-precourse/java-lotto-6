@@ -58,4 +58,8 @@ public class Lotto {
     public String toString() {
         return lotto.toString();
     }
+
+    public List<Integer> getLottoNumber() {
+        return lotto;
+    }
 }

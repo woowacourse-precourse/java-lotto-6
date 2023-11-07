@@ -8,4 +8,5 @@ public class ErrorMessage {
     public static final String IS_NOT_DISTINCT = "[ERROR] 로또 번호는 중복될 수 없습니다.";
     public static final String IS_NOT_IN_RANGE = "[ERROR] 로또 번호는 1부터 45까지입니다.";
     public static final String IS_NOT_INPUT_FORMAT = "[ERROR] 입력 포맷을 지켜 입력하세요. (ex: 1,2,3,4,5,6)";
+    public static final String IS_NOT_BONUS_INPUT_FORMAT = "[ERROR] 1개의 숫자를 입력하세요.";
 }

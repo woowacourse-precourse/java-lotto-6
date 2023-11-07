@@ -16,6 +16,7 @@ public class LottoService {
 
         Analyst analyst = new Analyst(user.lottos, computer.getSixLottoNumber(), computer.getBonusNumber());
         analyst.calculate();
-        analyst.printLottoResult(user.getUserMoney());
+
+        Output.printLottoResult(analyst.lottoResult, user.money);
     }
 }

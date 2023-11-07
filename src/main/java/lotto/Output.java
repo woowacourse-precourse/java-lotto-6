@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
 
 class Output {
     private static final int PERCENTAGE_MULTIPLIER = 100;
@@ -25,14 +26,14 @@ class Output {
         System.out.println(String.format(NUMBER_OF_LOTTOS, numberOfLottoes));
     }
 
-    static void printLottoSixNumber(Lotto lotto) {
-        System.out.println(lotto.getSixLottoNumbers());
+    static void printLottoSixNumbers(List<Lotto> lottos) {
+        for (Lotto lotto : lottos) {
+            printLottoSixNumber(lotto);
+        }
     }
 
-    static void printLottoSixNumbers(List<Lotto> lottos){
-        for (Lotto lotto : lottos) {
-            Output.printLottoSixNumber(lotto);
-        }
+    private static void printLottoSixNumber(Lotto lotto) {
+        System.out.println(lotto.getSixLottoNumbers());
     }
 
     static void printLottoNumbersMessage() {
@@ -58,11 +59,24 @@ class Output {
         System.out.println(bonusNumber + "\n");
     }
 
-    static void printWinningStatistics() {
+    static void printLottoResult(Map<LottoMessage, Integer> lottoResult, int userMoney) {
+        printWinningStatistics();
+
+        int totalWinningAmount = 0;
+        for (Map.Entry<LottoMessage, Integer> entry : lottoResult.entrySet()) {
+            if (entry.getValue() > 0) {
+                totalWinningAmount += entry.getKey().winningAmount * entry.getValue();
+            }
+            System.out.println(entry.getKey().message + " - " + entry.getValue() + "개");
+        }
+        printReturn(totalWinningAmount, userMoney);
+    }
+
+    private static void printWinningStatistics() {
         System.out.println("당첨 통계\n---");
     }
 
-    static void printReturn(int totalWinningAmount, int userMoney) {
+    private static void printReturn(int totalWinningAmount, int userMoney) {
         float profitRate = ((float) totalWinningAmount / userMoney) * PERCENTAGE_MULTIPLIER;
         System.out.printf(TOTAL_PROFIT_RATE_MESSAGE, profitRate);
     }

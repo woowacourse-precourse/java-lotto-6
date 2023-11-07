@@ -6,13 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class LottoGame {
-    public void LottoStart() {
+    public void lottoStart() {
         Money money = inputMoney();
 
-        LottoNumbers lottoNumbers = new LottoNumbers();
-        LottoList lottoList = new LottoList(lottoNumbers.makeLottoList(money.getLottoCount()));
-        lottoList.printLottoCount();
-        lottoList.printLottoList();
+        LottoList lottoList = randomLotto(money.getLottoCount());
 
         Lotto input_lotto = inputLotto();
         List<Integer> compare_lotto = lottoList.compareLotto(input_lotto);
@@ -23,6 +20,14 @@ public class LottoGame {
         Result result = new Result(compare_lotto, compare_bonus_lotto);
         result.calculateRateOfReturn(money.getMoney());
         result.printResult();
+    }
+
+    private LottoList randomLotto(int lottoCount) {
+        LottoNumbers lottoNumbers = new LottoNumbers();
+        LottoList lottoList = new LottoList(lottoNumbers.makeLottoList(lottoCount));
+        lottoList.printLottoCount();
+        lottoList.printLottoList();
+        return lottoList;
     }
 
     public static Money inputMoney() {

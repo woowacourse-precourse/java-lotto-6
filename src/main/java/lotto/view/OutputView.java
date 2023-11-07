@@ -1,6 +1,8 @@
 package lotto.view;
 
 import java.util.List;
+import java.util.Map;
+import lotto.WinnerPrice;
 import lotto.domain.Lotto;
 
 public class OutputView {
@@ -44,5 +46,23 @@ public class OutputView {
     public void winningResult() {
         System.out.println("\n당첨 통계");
         System.out.println("---");
+    }
+
+    public void result(Map<Integer, Integer> result) {
+        WinnerPrice[] winnerPrices = WinnerPrice.values();
+        for (int i = winnerPrices.length-2; i >=0; i--) {
+            WinnerPrice winnerPrice = winnerPrices[i];
+            int index = winnerPrice.getEqualCount();
+            String price = winnerPrice.getPrintPrice();
+            if (result.get(index) == null) {
+                System.out.println(price + 0 +"개");
+                continue;
+            }
+            System.out.println(price + result.get(index)+"개");
+        }
+    }
+
+    public void rate(double rate) {
+        System.out.println("총 수익률은 " + rate + "%입니다.");
     }
 }

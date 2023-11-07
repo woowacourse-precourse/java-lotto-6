@@ -55,8 +55,9 @@ public class LottoService {
         WinnerPrice[] winnerPrices = WinnerPrice.values();
         for (int i = 0; i < winnerPrices.length; i++) {
             WinnerPrice winnerPrice = winnerPrices[i];
-            if (result.containsKey(winnerPrice.getEqualCount())) {
-                rate += winnerPrice.getPriceAmount();
+            int index = winnerPrice.getEqualCount();
+            if (result.containsKey(index)) {
+                rate += winnerPrice.getPriceAmount() * result.get(index);
             }
         }
         long purchaseAmount = user.getPurchaseAmount();
@@ -65,8 +66,7 @@ public class LottoService {
     }
 
     private double getTotalRate(int rate, long purchaseAmount) {
-        long totalProfit = rate - purchaseAmount;
-        double totalProfitRate = (totalProfit / purchaseAmount) * 100.0;
+        double totalProfitRate = ((double) rate / purchaseAmount) * 100.0;
         return totalProfitRate;
     }
 }

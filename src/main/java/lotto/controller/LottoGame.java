@@ -42,8 +42,9 @@ public class LottoGame {
         double rate;
         outputView.winningResult();
         result = lottoService.compareValue(lottos, user);
+        outputView.result(result);
         rate = lottoService.getRate(result, user);
-        System.out.println(rate);
+        outputView.rate(rate);
     }
 
     private void bonusNumber() {

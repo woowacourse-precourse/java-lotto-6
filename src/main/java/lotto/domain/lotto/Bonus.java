@@ -2,6 +2,8 @@ package lotto.domain.lotto;
 
 import static lotto.util.ExceptionEnum.NUMBER_OUT_OF_RANGE;
 
+import java.util.List;
+
 public class Bonus{
 
     private final int bonusNumber;
@@ -27,6 +29,10 @@ public class Bonus{
 
     public int getBonusNumber(){
         return bonusNumber;
+    }
+
+    public boolean hasDuplicatedNumberWithWinningNumbers(List<Integer> winningNumbers){
+        return winningNumbers.contains(bonusNumber);
     }
 
 }

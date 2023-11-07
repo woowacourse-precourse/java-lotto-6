@@ -15,10 +15,10 @@ public class LottoResultAnalyze {
         this.lottoResult = new HashMap<>();
     }
 
-    public Map<String, Integer> calculateResult(LottoTicket lottoTicket, List<Integer> winningNumbers, int bonusNumber) {
+    public Map<String, Integer> calculateResult(List<Lotto> lottoTicket, List<Integer> winningNumbers, int bonusNumber) {
         setLottoResult();
-        for (int i = 0; i < lottoTicket.getSize(); i++) {
-            Lotto lotto = lottoTicket.getLotto(i);
+        for (int i = 0; i < lottoTicket.size(); i++) {
+            Lotto lotto = lottoTicket.get(i);
             int matchingCount = lotto.calculateMatchingCount(winningNumbers);
             int bonusCount = lotto.calculateBonusCount(bonusNumber);
             lotto.updateLottoResult(lottoResult, matchingCount, bonusCount);

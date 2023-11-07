@@ -1,7 +1,7 @@
 package lotto.ui;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoTicket;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -15,7 +15,7 @@ public class OutputView {
         System.out.println(message.getMessage());
     }
 
-    public void displayLottoTicket(OutputMessage message, int ticketCount, LottoTicket lottoTicket) {
+    public void displayLottoTicket(OutputMessage message, int ticketCount, List<Lotto> lottoTicket) {
         System.out.println(ticketCount + message.getMessage());
         System.out.println(lottoTicket);
     }

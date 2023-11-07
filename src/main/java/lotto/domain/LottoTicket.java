@@ -21,12 +21,8 @@ public class LottoTicket {
         }
     }
 
-    public int getSize() {
-        return lottoTicket.size();
-    }
-
-    public Lotto getLotto(int index) {
-        return lottoTicket.get(index);
+    public List<Lotto> getLottoTicket() {
+        return lottoTicket;
     }
 
     @Override

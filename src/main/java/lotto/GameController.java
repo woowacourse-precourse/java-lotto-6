@@ -1,7 +1,7 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.LottoTicket;
 import lotto.service.LottoMachine;
 import lotto.service.LottoResultAnalyze;
 import lotto.ui.ErrorMessage;
@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class GameController {
     private static final int TICKET_PRICE = 1000;
-    private LottoTicket lottoTicket;
+    private List<Lotto> lottoTicket;
     private final InputView inputView;
     private final OutputView outputView;
 

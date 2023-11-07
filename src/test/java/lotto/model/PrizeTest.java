@@ -15,4 +15,11 @@ public class PrizeTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("6개 이하의 당첨번호가 입력되면 예외가 발생한다.")
+    @Test
+    void checkUnderSixNumbers() {
+        assertThatThrownBy(() -> new PrizeNumberValidator(List.of(1, 2, 3, 4, 5), 1))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

@@ -1,19 +1,16 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static lotto.GameConfig.*;
 
 public class WinningInformation {
     public static final int PERCENTAGE_MULTIPLIER = 100;
-    private final Map<Rank, Integer> winningCount;
+    private final Map<Rank, Integer> winningCounts;
     private final int lottoCount;
 
-    private WinningInformation(Map<Rank, Integer> winningCount, Integer lottoCount) {
-        this.winningCount = winningCount;
+    private WinningInformation(Map<Rank, Integer> winningCounts, Integer lottoCount) {
+        this.winningCounts = winningCounts;
         this.lottoCount = lottoCount;
     }
 
@@ -22,8 +19,8 @@ public class WinningInformation {
         return new WinningInformation(winningCount, ranks.size());
     }
 
-    public Map<Rank, Integer> getWinningCount() {
-        return Collections.unmodifiableMap(winningCount);
+    public Map<Rank, Integer> getWinningCounts() {
+        return Collections.unmodifiableMap(winningCounts);
     }
 
     public double getProfitability() {
@@ -39,19 +36,23 @@ public class WinningInformation {
 
     private float calculateProfit() {
         float profit = 0;
-        for (Rank rank : Rank.values()) {
-            profit += rank.getPrize() * winningCount.get(rank);
+        for (Rank rank : winningCounts.keySet()) {
+            profit += rank.getPrize() * winningCounts.get(rank);
         }
+
         return profit;
     }
 
     private static Map<Rank, Integer> convertRankListToMap(List<Rank> ranks) {
-        Map<Rank, Integer> winningCount = new HashMap<>();
+        Map<Rank, Integer> winningCounts = new HashMap<>();
 
-        ranks.forEach((rank) -> {
-            int currentWinningCount = winningCount.getOrDefault(rank, 0);
-            winningCount.put(rank, currentWinningCount + 1);
-        });
-        return winningCount;
+        for (Rank rankValue : Rank.values()) {
+            int currentRankCount = (int) ranks.stream()
+                    .filter(rank -> rank == rankValue)
+                    .count();
+            winningCounts.put(rankValue, currentRankCount);
+        }
+
+        return winningCounts;
     }
 }

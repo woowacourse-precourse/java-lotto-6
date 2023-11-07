@@ -6,17 +6,19 @@ import lotto.domain.Rank;
 
 
 public class ProfitCalculator {
-    public static long calcProfitRate(User user, Result result) {
+
+    public static double calcProfitRate(User user, Result result) {
         int totalProfit = calcTotalProfit(result);
-        long profitRate = totalProfit / (user.getAmount() * 1000) *100;
-        return profitRate;
+        double profitRate = totalProfit / (double)(user.getAmount() * 1000) ;
+
+        return (double) profitRate*100;
+
     }
-    private static Integer calcTotalProfit(Result result) {
+    private static int calcTotalProfit(Result result) {
         int totalProfit = 0;
         for (Rank rank: result.getResults()) {
             totalProfit += rank.getAwardMoney();
         }
         return totalProfit;
     }
-
 }

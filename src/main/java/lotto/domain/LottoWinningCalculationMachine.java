@@ -14,7 +14,12 @@ public class LottoWinningCalculationMachine {
     }
 
     public int calculateBonusNumber(Lotto oneLotto, WinningNumber winningNumber) {
-        return 0;
+        int correctNumber = 0;
+        int lottoBonusNumber = winningNumber.getBonusNumber();
+        if (oneLotto.contains(lottoBonusNumber)) {
+            correctNumber++;
+        }
+        return correctNumber;
     }
 
     public void calculateWinningRate(WinningStatistics winningStatistics) {

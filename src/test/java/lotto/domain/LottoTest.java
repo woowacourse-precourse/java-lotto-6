@@ -16,6 +16,14 @@ class LottoTest {
                 .hasMessage("[ERROR] 로또 번호의 길이는 6자리 입니다.");
     }
 
+    @DisplayName("로또 번호의 개수가 6개 이하라면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호의 길이는 6자리 입니다.");
+    }
+
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {

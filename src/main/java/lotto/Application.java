@@ -110,8 +110,7 @@ public class Application {
     }
 
     public static void 당첨_통계(List<Lotto> lottos, WinningLotto winningLotto) {
-        LottoResult lottoResult = new LottoResult(lottos.size() * 1000);
-        lottoResult.calculateWinningResult(winningLotto, lottos);
+        LottoResult lottoResult = new LottoResult(lottos.size() * 1000, winningLotto, lottos);
         System.out.println("당첨 통계");
         System.out.println("---");
         System.out.println(lottoResult);

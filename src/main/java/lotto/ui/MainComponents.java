@@ -1,11 +1,13 @@
 package lotto.ui;
 
 import java.util.List;
+import java.util.stream.Stream;
 import lotto.component.Component;
 import lotto.component.InitializeLottoStoreComponent;
 import lotto.component.PurchaseLottoComponent;
 import lotto.component.RegisterAnswerNumberComponent;
 import lotto.component.RegisterBonusNumberComponent;
+import lotto.component.WinningStatisticsComponent;
 import lotto.event.EventListener;
 
 public class MainComponents {
@@ -17,11 +19,17 @@ public class MainComponents {
                 new InitializeLottoStoreComponent(eventListener),
                 new PurchaseLottoComponent(inputView, outputView, eventListener),
                 new RegisterAnswerNumberComponent(inputView, eventListener),
-                new RegisterBonusNumberComponent(inputView, eventListener)
+                new RegisterBonusNumberComponent(inputView, eventListener),
+                new WinningStatisticsComponent(outputView, eventListener)
         );
     }
 
     public void renderAll() {
-        components.forEach(Component::render);
+        components.forEach(component -> {
+            Stream.generate(component::execute)
+                    .takeWhile(t -> t.equals(false))
+                    .forEach((ignore) -> {
+                    });
+        });
     }
 }

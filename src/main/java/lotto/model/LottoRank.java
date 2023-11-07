@@ -10,12 +10,12 @@ public enum LottoRank {
     NON_RANK(0, false, 0L);
 
     private final Integer matchedCount;
-    private final boolean includeBonus;
+    private final boolean containBonusNumber;
     private final Long prizeMoney;
 
-    LottoRank(final Integer matchedCount, final boolean includeBonus, final Long prizeMoney) {
+    LottoRank(final Integer matchedCount, final boolean containBonusNumber, final Long prizeMoney) {
         this.matchedCount = matchedCount;
-        this.includeBonus = includeBonus;
+        this.containBonusNumber = containBonusNumber;
         this.prizeMoney = prizeMoney;
     }
 
@@ -23,8 +23,8 @@ public enum LottoRank {
         return matchedCount;
     }
 
-    public boolean isIncludeBonus() {
-        return includeBonus;
+    public boolean isContainBonusNumber() {
+        return containBonusNumber;
     }
 
     public Long getPrizeMoney() {

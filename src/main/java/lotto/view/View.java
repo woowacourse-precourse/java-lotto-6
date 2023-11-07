@@ -52,11 +52,11 @@ public class View {
         outputView.printRequestInputBonusNumberMessage();
         while (true) {
             try {
-                String bonusNumber = inputView.inputBonusNumbers();
-                InputValidator.validateBonusNumber(bonusNumber);
-                Integer number = Integer.valueOf(bonusNumber);
-                validateBonusNumberContainsWinningNumber(winningNumbers, number);
-                return new BonusNumber(number);
+                String number = inputView.inputBonusNumbers();
+                InputValidator.validateBonusNumber(number);
+                Integer bonusNumber = Integer.valueOf(number);
+                validateBonusNumberContainsWinningNumber(winningNumbers, bonusNumber);
+                return new BonusNumber(bonusNumber);
             } catch (IllegalArgumentException e) {
                 outputView.printMessage(e.getMessage());
             }
@@ -67,8 +67,8 @@ public class View {
         outputView.printTicketCountMessage(count);
     }
 
-    public void showLotteriesNumber(final List<LottoDto> lotteries) {
-        outputView.printLotteriesNumber(lotteries);
+    public void showLotteriesNumber(final List<LottoDto> lotteriesDto) {
+        outputView.printLotteriesNumber(lotteriesDto);
     }
 
     public void showStatistics(final StatisticDto statisticDto) {

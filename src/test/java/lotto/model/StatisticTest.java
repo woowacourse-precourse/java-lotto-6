@@ -1,5 +1,10 @@
 package lotto.model;
 
+import static lotto.model.LottoRank.FIFTH_RANK;
+import static lotto.model.LottoRank.FIRST_RANK;
+import static lotto.model.LottoRank.FOURTH_RANK;
+import static lotto.model.LottoRank.SECOND_RANK;
+import static lotto.model.LottoRank.THIRD_RANK;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -21,10 +26,10 @@ class StatisticTest {
         Map<LottoRank, Integer> rank = statistic.getRank();
 
         // then
-        assertEquals(2, rank.get(LottoRank.FIFTH_RANK));
-        assertEquals(2, rank.get(LottoRank.FOURTH_RANK));
-        assertEquals(1, rank.get(LottoRank.THIRD_RANK));
-        assertEquals(1, rank.get(LottoRank.SECOND_RANK));
-        assertEquals(1, rank.get(LottoRank.FIRST_RANK));
+        assertEquals(2, rank.get(FIFTH_RANK));
+        assertEquals(2, rank.get(FOURTH_RANK));
+        assertEquals(1, rank.get(THIRD_RANK));
+        assertEquals(1, rank.get(SECOND_RANK));
+        assertEquals(1, rank.get(FIRST_RANK));
     }
 }

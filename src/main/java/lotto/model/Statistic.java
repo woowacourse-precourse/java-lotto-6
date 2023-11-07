@@ -23,13 +23,12 @@ public class Statistic {
     }
 
     private static Map<LottoRank, Integer> compileStatistic(final List<Integer> matchedNumberCount,
-                                                            final List<Boolean> includeBonusNumber) {
-        int lottoCount = matchedNumberCount.size();
-
+                                                            final List<Boolean> containBonusNumber) {
         Map<LottoRank, Integer> playerRank = new EnumMap<>(LottoRank.class);
+        Integer lottoCount = matchedNumberCount.size();
 
-        for (int count = 0; count < lottoCount; count++) {
-            LottoRank rank = determineRank(matchedNumberCount.get(count), includeBonusNumber.get(count));
+        for (int index = 0; index < lottoCount; index++) {
+            LottoRank rank = determineRank(matchedNumberCount.get(index), containBonusNumber.get(index));
             playerRank.put(rank, playerRank.getOrDefault(rank, DEFAULT_COUNT) + COUNT);
         }
 
@@ -42,7 +41,7 @@ public class Statistic {
         }
 
         return Arrays.stream(LottoRank.values())
-                .filter(rank -> rank.getMatchedCount() == matchedCount && !rank.isIncludeBonus())
+                .filter(rank -> rank.getMatchedCount() == matchedCount && !rank.isContainBonusNumber())
                 .findFirst()
                 .orElse(LottoRank.NON_RANK);
     }

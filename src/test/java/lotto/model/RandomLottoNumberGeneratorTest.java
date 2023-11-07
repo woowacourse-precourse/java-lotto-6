@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.model.LottoInfo.LOTTO_MAX_NUMBER;
+import static lotto.model.LottoInfo.LOTTO_MIN_NUMBER;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -20,10 +22,9 @@ class RandomLottoNumberGeneratorTest {
 
         // then
         Assertions.assertEquals(numbers.size(), 6);
-
-        Integer min = LottoInfo.LOTTO_MIN_NUMBER.getValue();
-        Integer max = LottoInfo.LOTTO_MAX_NUMBER.getValue();
-
+        
+        Integer min = LOTTO_MIN_NUMBER.getValue();
+        Integer max = LOTTO_MAX_NUMBER.getValue();
         for (int number : numbers) {
             assertTrue(number >= min && number <= max);
         }

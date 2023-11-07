@@ -90,5 +90,4 @@ class LotteriesTest {
         // then
         containBonusNumber.forEach(include -> assertTrue(include.booleanValue()));
     }
-
 }

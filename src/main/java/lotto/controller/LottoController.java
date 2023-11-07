@@ -19,7 +19,11 @@ public class LottoController {
             lotto.printLottoNumbers();
         }
 
+        OutputView.printNewLine();
         List<Integer> winningNumbers = InputView.inputWinningNumbers();
-        System.out.println(winningNumbers);
+
+        OutputView.printNewLine();
+        int bonusNumber = InputView.inputBonusNumber(winningNumbers);
+
     }
 }

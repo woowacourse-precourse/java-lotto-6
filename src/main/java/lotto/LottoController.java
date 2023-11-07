@@ -1,7 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Randoms;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -49,12 +47,10 @@ public class LottoController {
     }
 
     private double calculateEarningRate(List<Integer> results, int purchaseAmount) {
-        int totalEarning = 0;
-        int resultIdx = 0;
+        double totalEarning = 0;
         for (Result result : Result.values()) {
-            totalEarning =  results.get(resultIdx) * result.getEarnings();
-            resultIdx++;
+            totalEarning += results.get(result.ordinal()) * result.getEarnings();
         }
-        return (double) totalEarning / purchaseAmount;
+        return totalEarning / (double) purchaseAmount;
     }
 }

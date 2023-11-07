@@ -33,4 +33,9 @@ public class LottoPrizeManager {
     public long getTotalPrize() {
         return prizeResult.getTotalPrize();
     }
+
+    public double getRateOfReturn(int purchaseMoney) {
+        long totalPrize = prizeResult.getTotalPrize();
+        return (double) totalPrize / purchaseMoney * 100;
+    }
 }

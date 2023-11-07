@@ -10,4 +10,13 @@ public class Validator {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void validateIsParsableToInt(String input) {
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            ErrorMessage.printNotNumericNumberErrorMessage();
+            throw new IllegalArgumentException();
+        }
+    }
 }

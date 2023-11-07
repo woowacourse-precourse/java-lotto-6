@@ -21,5 +21,12 @@ public enum LottoRank {
         this.matcher = matcher;
     }
 
+    public static LottoRank of(int matchCount, boolean matchBonus) {
+        return Arrays.stream(LottoRank.values())
+                .filter(rank -> rank.matcher.test(matchCount, matchBonus))
+                .findAny()
+                .orElse(NOTHING);
+    }
+
 
 }

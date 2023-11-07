@@ -12,6 +12,7 @@ public class OutputView {
     private final static String PURCHASE_COUNT = "개를 구매했습니다.";
 
     public static void outputViewPurchaseCount(long count) {
+        System.out.println();
         System.out.println(count + PURCHASE_COUNT);
     }
 

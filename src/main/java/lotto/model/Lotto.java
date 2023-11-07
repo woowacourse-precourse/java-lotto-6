@@ -3,6 +3,7 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.view.InputView;
 
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -69,11 +70,14 @@ public class Lotto {
         System.out.println("당첨 통계\n" + "---");
         for (int i = LottoRank.values().length - 1; i >= 0; i--) {
             LottoRank rank = LottoRank.values()[i];
-            if(rank.getPrize()==1500000){
-                System.out.println(rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + rank.getPrize() + "원) - " + count[rank.ordinal()] + "개");
+            DecimalFormat decimalFormat = new DecimalFormat("#,###");
+            String formattedNumber = decimalFormat.format(rank.getPrize());
+            if(rank.getPrize()==30000000){
+                System.out.println(rank.getMatchCount() + "개 일치, 보너스 볼 일치 (" + formattedNumber + "원) - " + count[rank.ordinal()] + "개");
                 continue;
             }
-            System.out.println(rank.getMatchCount() + "개 일치 (" + rank.getPrize() + "원) - " + count[rank.ordinal()] + "개");
+            System.out.println(rank.getMatchCount() + "개 일치 (" + formattedNumber + "원) - " + count[rank.ordinal()] + "개");
         }
     }
+
 }

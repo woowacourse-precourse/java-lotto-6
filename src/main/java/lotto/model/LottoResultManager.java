@@ -12,15 +12,16 @@ public class LottoResultManager {
     private int winningAmount = 0;
     private Map<String, Integer> lottoResult = new HashMap<>();
 
-    public LottoResultManager(List<Lotto> lottos, LottoRankPolicy lottoJudgePolicy) {
+    public LottoResultManager(List<Lotto> lottos, LottoRankPolicy lottoRankPolicy) {
         this.lottos = lottos;
-        this.lottoRankPolicy = lottoJudgePolicy;
+        this.lottoRankPolicy = lottoRankPolicy;
         calculateLottoResults();
     }
 
     private void calculateLottoResults() {
+        //TODO 구조 개선 필요
         for (Lotto lotto : lottos) {
-            String lottoRank = lottoRankPolicy.getRank(lotto);
+            String lottoRank = lottoRankPolicy.calculateRank(lotto);
             winningAmount += LottoRank.valueOf(lottoRank).getPrizeAmount();
             lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, 0) + 1);
         }

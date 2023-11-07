@@ -5,8 +5,10 @@ import static lotto.model.LottoStatistics.*;
 import camp.nextstep.edu.missionutils.Console;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import lotto.model.Lotto;
 import lotto.util.ErrorMessage;
 
 public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨 번호, 보너스 번호 입력 요청, 당첨 통계 및 결과 메세지 출력, 에러 메세지 출력
@@ -42,12 +44,17 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
         return input;
     }
 
-    public static void printLottoTickets(Integer purchaseAmount, List<ArrayList<Integer>> lottoTickets) {
-        System.out.println(String.format(LOTTO_PURCHASE_MESSAGE, purchaseAmount));
-        lottoTickets.forEach(System.out::println);
+    public static void printLottoTickets(Integer purchaseNumber, ArrayList<Lotto> lottoTickets) {
+        System.out.println(String.format(LOTTO_PURCHASE_MESSAGE, purchaseNumber));
+        lottoTickets.forEach(lottoNumber -> {
+            List<Integer> numbers = new ArrayList<>(lottoNumber.getNumbers());
+            numbers.sort(Comparator.naturalOrder());
+            System.out.println(numbers);
+        });
+        System.out.println();
     }
 
-    public static void printLottoStatistics(HashMap<PrizeInformation, Integer> lottoStatistics) {
+    public static void printLottoStatistics(LinkedHashMap<PrizeInformation, Integer> lottoStatistics) {
         System.out.println(LOTTO_STATISTICS_HEADER);
         System.out.println(SEPARATOR);
 

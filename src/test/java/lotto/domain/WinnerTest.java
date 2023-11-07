@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.lang.reflect.Method;
@@ -23,7 +24,7 @@ class WinnerTest {
         winner.lottoWinningBonusNumber("5");
     }
 
-    @DisplayName("5개의 로또 당첨번호와 보너스 번호가 같을 경우")
+    @DisplayName("5개의 로또당첨번호와 보너스 번호가 같을 경우")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2", "3", "11", "16", "17"})
     public void 로또당첨번호_5개와_보너스번호_같을경우(String bonus) throws Exception {
@@ -38,6 +39,23 @@ class WinnerTest {
 
         //then 결과값 비교
         Assertions.assertThat(check).isTrue();
+    }
+
+    @DisplayName("5개가 아닌 로또당첨번호와 보너스번호가 같을 경우")
+    @ParameterizedTest
+    @CsvSource(value = {"1,4","2,3","3,2","11,1","16,0"}, delimiter = ',')
+    public void 로또당첨번호_5개아닌_보너스번호_같을경우(String bonus, int sameCount) throws Exception {
+        //given
+        winner.lottoWinningBonusNumber(bonus);
+        Lotto userLottoNumbers = new Lotto("1,2,3,11,16,17");
+
+        //when
+        Method method = winner.getClass().getDeclaredMethod("sameFiveNumbersAndBonus", Lotto.class, int.class);
+        method.setAccessible(true);
+        boolean check = (Boolean) method.invoke(winner, userLottoNumbers, sameCount);
+
+        //then 결과값 비교
+        Assertions.assertThat(check).isFalse();
     }
 
     @DisplayName("로또 당첨번호와 사용자의 로또 번호 중 동일한 개수 구하기")

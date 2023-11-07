@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.ErrorMessage.*;
+import static lotto.view.ErrorMessage.*;
 import static lotto.utils.CalculationUtils.hasDuplicates;
 import static lotto.utils.CalculationUtils.isNumberInRange;
 

@@ -11,9 +11,11 @@ public class NumbersInput {
     public static WinningNumbers getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String winningNumberInput = Console.readLine();
+        System.out.println();
         List<Integer> winningNumbers = IntegerParser.parseNumbers(winningNumberInput);
         System.out.println("보너스 번호를 입력해 주세요.");
         String bonusNumberInput = Console.readLine();
+        System.out.println();
         int bonusNumber = Integer.parseInt(bonusNumberInput);
 
         validateNumbers(winningNumbers);

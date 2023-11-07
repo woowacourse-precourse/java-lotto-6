@@ -15,6 +15,7 @@ public class PurchaseAmount {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
+            System.out.println();
         }
     }
 

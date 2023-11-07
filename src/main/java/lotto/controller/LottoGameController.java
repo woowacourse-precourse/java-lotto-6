@@ -48,4 +48,8 @@ public class LottoGameController {
     private void printWinningStatistics(WinningStatistics winningStatistics) {
         OutputView.printWinningStatistics(winningStatistics);
     }
+
+    private Money calculateTotalWinningPrize(WinningStatistics winningStatistics) {
+        return winningStatistics.calculateTotalWinningPrize();
+    }
 }

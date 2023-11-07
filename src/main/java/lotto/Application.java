@@ -6,11 +6,19 @@ import lotto.io.UserOutput;
 public class Application {
 
     public static void main(String[] args) {
+        UserInput userInput = new UserInput();
+        UserOutput userOutput = new UserOutput();
+
         LottoGame lottoGame = new LottoGame(
-                new UserInput(),
-                new UserOutput()
+                userInput,
+                userOutput
         );
 
-        lottoGame.play();
+        try {
+            lottoGame.play();
+        } catch (RuntimeException runtimeException) {
+            userOutput.print("[ERROR] " + runtimeException.getMessage());
+            throw runtimeException;
+        }
     }
 }

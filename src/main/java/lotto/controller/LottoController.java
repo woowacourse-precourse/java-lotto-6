@@ -13,6 +13,7 @@ import lotto.view.PurchaseView;
 import lotto.view.WinningStatisticsView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -85,7 +86,11 @@ public class LottoController {
 
     /* 로또 6자리 랜덤 숫자 생성 */
     private List<Integer> createLottoNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN_IN_LOTTO_NUMBER, MAX_IN_LOTTO_NUMBER, NUMBER_OF_WINNING_NUMBER);
+        List<Integer> lottoNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_IN_LOTTO_NUMBER, MAX_IN_LOTTO_NUMBER, NUMBER_OF_WINNING_NUMBER)
+        );
+        Collections.sort(lottoNumbers);
+        return lottoNumbers;
     }
 
     /* 로또 구매 개수 출력 */

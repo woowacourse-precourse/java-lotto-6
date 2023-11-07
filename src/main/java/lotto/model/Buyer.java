@@ -29,7 +29,6 @@ public class Buyer {
 
         for (Lotto lotto : lottoTickets) {
             List<Integer> numbers = lotto.getNumbers();
-            Collections.sort(numbers);
             lottoTicketNumbers.add(numbers);
         }
 

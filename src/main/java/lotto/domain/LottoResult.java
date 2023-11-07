@@ -30,6 +30,7 @@ public enum LottoResult {
 	public static void lottoCompare(List<LottoNumber> lottoList) {
 		List<LottoNumber> lottoCompare = lottoList;
 		int count = 0;
+		
 		for (LottoNumber lottoInstance : lottoCompare) {
 			List<Integer> computerNumber = lottoInstance.getComputerNumber();
 			count = playerNumberCompare(computerNumber);
@@ -43,10 +44,9 @@ public enum LottoResult {
 		
 	public static int playerNumberCompare(List<Integer> computerNumber) {
 		int count = 0;
-		for (int i = 0; i < Application.playerNumber.size(); i ++) {
-			
-			boolean t = computerNumber.contains(Application.playerNumber.get(i));
 		
+		for (int i = 0; i < Application.playerNumber.size(); i ++) {
+			boolean t = computerNumber.contains(Application.playerNumber.get(i));
 			if(t) {
 				count++;
 			}

@@ -7,8 +7,9 @@ public class LottoGame {
     private static final InputResolver inputResolver = new InputResolver();
     private static final LottoGenerator lottoGenerator = new LottoGenerator();
     private static List<Lotto> lottoList = new ArrayList<>();
-    WinningNumber winningNumber;
+    private static List<Integer> winningNumber = new ArrayList<>();
     public static void play() {
         lottoList = lottoGenerator.buyLotto(inputResolver.inputLottoBuy());
+        winningNumber = inputResolver.inputWinningNumber();
     }
 }

@@ -1,6 +1,7 @@
 package lotto.message;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.List;
 import lotto.data.Lotto;
@@ -37,7 +38,9 @@ public enum OutputMessage {
         sb.append(LottoPrize.THIRD.getMessage()).append(" - ").append(result.get(LottoPrize.THIRD)).append("개\n");
         sb.append(LottoPrize.SECOND.getMessage()).append(" - ").append(result.get(LottoPrize.SECOND)).append("개\n");
         sb.append(LottoPrize.FIRST.getMessage()).append(" - ").append(result.get(LottoPrize.FIRST)).append("개\n");
-        sb.append(String.format("총 수익률은 %.1f%%입니다.", lottoResult.getProfitPercent()));
+
+        BigDecimal profitPercent = lottoResult.getProfitPercent().setScale(1, RoundingMode.DOWN);
+        sb.append(String.format("총 수익률은 %s%%입니다.", profitPercent));
         System.out.println(sb);
     }
 }

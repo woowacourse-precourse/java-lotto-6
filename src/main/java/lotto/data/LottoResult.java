@@ -1,6 +1,7 @@
 package lotto.data;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.HashMap;
 import java.util.Map;
 import lotto.message.LottoPrize;
@@ -8,7 +9,7 @@ import lotto.message.LottoPrize;
 public class LottoResult {
     private final Map<LottoPrize, BigDecimal> lottoRank;
     private final BigDecimal totalPrize;
-    private final float profitPercent;
+    private final BigDecimal profitPercent;
 
     public LottoResult(Map<LottoPrize, BigDecimal> lottoRank, BigDecimal purchaseAmount) {
         this.lottoRank = lottoRank;
@@ -20,7 +21,7 @@ public class LottoResult {
         return new HashMap<>(lottoRank);
     }
 
-    public float getProfitPercent() {
+    public BigDecimal getProfitPercent() {
         return profitPercent;
     }
 
@@ -34,8 +35,8 @@ public class LottoResult {
         return totalPrize;
     }
 
-    private static float calculateProfitPercent(BigDecimal totalPrize, BigDecimal purchaseAmount) {
-        return totalPrize.divide(purchaseAmount).floatValue() * 100;
+    private static BigDecimal calculateProfitPercent(BigDecimal totalPrize, BigDecimal purchaseAmount) {
+        return totalPrize.multiply(BigDecimal.valueOf(100)).divide(purchaseAmount, 5, RoundingMode.DOWN);
     }
 
 }

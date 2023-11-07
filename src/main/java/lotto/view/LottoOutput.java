@@ -1,10 +1,15 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
+import lotto.global.constant.LottoRankAndPrize;
 
 import java.util.List;
+import java.util.Map;
 
 public class LottoOutput {
+
+    private final String INITIAL_LOTTO_STATIC_MESSAGE = "당첨 통계";
 
     private StringBuffer stringBuffer;
 
@@ -30,5 +35,16 @@ public class LottoOutput {
             stringBuffer.append("\n");
         }
         return stringBuffer.toString();
+    }
+
+    public String printLottoStatistics(Map<LottoRankAndPrize, Integer> totalRanks){
+        for (Map.Entry<LottoRankAndPrize, Integer> entry : totalRanks.entrySet()) {
+            LottoRankAndPrize rankAndPrize = entry.getKey();
+            int count = entry.getValue();
+        }
+    }
+
+    public String printFirstRank(LottoRankAndPrize lottoRankAndPrize){
+
     }
 }

@@ -18,6 +18,9 @@ public class LottoResult {
 
     public LottoResult(int lottoPurchasePrice) {
         this.totalRanks = new HashMap<>();
+        for(LottoRankAndPrize rankAndPrize : LottoRankAndPrize.values()) {
+            totalRanks.put(rankAndPrize, 0);
+        }
         this.lottoPurchasePrice = lottoPurchasePrice;
     }
 

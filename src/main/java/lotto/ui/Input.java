@@ -6,7 +6,7 @@ public class Input {
 
     private String input;
 
-    public int purchasePriceInput() {
+    public int purchasePrice() {
         boolean isValid = false;
 
         while (!isValid) {

@@ -1,23 +1,17 @@
 package lotto.constant;
 
 public enum LottoRank {
-    MONEY_FIRST_PLACE("FIRST", 2000000000, 0),
-    MONEY_SECOND_PLACE("SECOND", 30000000, 1),
-    MONEY_THIRD_PLACE("THIRD", 1500000, 2),
-    MONEY_FOURTH_PLACE("FOURTH", 50000, 3),
-    MONEY_FIFTH_PLACE("FIFTH", 5000, 4);
-    private final String place;
+    MONEY_FIRST_PLACE(2000000000, 0),
+    MONEY_SECOND_PLACE(30000000, 1),
+    MONEY_THIRD_PLACE(1500000, 2),
+    MONEY_FOURTH_PLACE(50000, 3),
+    MONEY_FIFTH_PLACE(5000, 4);
     private final Integer money;
     private Integer index;
 
-    LottoRank(String place, Integer money, Integer index) {
-        this.place = place;
+    LottoRank(Integer money, Integer index) {
         this.money = money;
         this.index = index;
-    }
-
-    public String getPlace() {
-        return place;
     }
 
     public int getMoney() {

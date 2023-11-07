@@ -55,4 +55,8 @@ public class OutputView {
     public static void printRevenueRate(String revenueRate) {
         System.out.printf(REVENUE_RATE_MESSAGE, revenueRate);
     }
+
+    public static void printErrorMessage(String e) {
+        System.out.println(e);
+    }
 }

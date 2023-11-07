@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
-import lotto.dto.LottoResut;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,18 +21,49 @@ public class LottoController {
     private final LottoService lottoService = LottoService.getInstance();
 
     public void run() {
-        OutputView.printBuyPrice();
-        int buyAmount = InputView.getBuyAmount();
+        int buyAmount = buyLottoTicket();
         OutputView.printBuyAmount(buyAmount);
         List<Lotto> userLottos = lottoService.getLottoNumbers(buyAmount);
         OutputView.printUserLottos(userLottos);
-        OutputView.printRequireMessage();
-        List<Integer> winningNumber = InputView.getWinningNumber();
-        OutputView.printRequireBonusMessage();
-        int bonusNumber = InputView.getBonusNumber(winningNumber);
+        List<Integer> winningNumber = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumber);
+
         Map<Rank, Integer> lottoResult = lottoService.calculateResult(userLottos, winningNumber, bonusNumber);
         OutputView.printLottoResult(lottoResult);
         String revenueRate = lottoService.calculateRevenueRate(buyAmount, lottoResult);
         OutputView.printRevenueRate(revenueRate);
+    }
+
+    private int getBonusNumber(List<Integer> winningNumber) {
+        while (true) {
+            try {
+                OutputView.printRequireBonusMessage();
+                return InputView.getBonusNumber(winningNumber);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getWinningNumbers() {
+        while (true) {
+            try {
+                OutputView.printRequireMessage();
+                return InputView.getWinningNumber();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
+    }
+
+    private int buyLottoTicket() {
+        while (true) {
+            try {
+                OutputView.printBuyPrice();
+                return InputView.getBuyAmount();
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 }

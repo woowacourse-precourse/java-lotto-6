@@ -58,6 +58,10 @@ public class InputManager {
             throw new IllegalArgumentException("[ERROR] 숫자와 구분자(,)만 입력 가능합니다.");
         }
 
+        if (input.chars().noneMatch(ch -> ch == ',')) {
+            throw new IllegalArgumentException("[ERROR] 숫자 6개를 구분자(,)로 구분해 입력하세요.");
+        }
+
         return Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
                 .toList();

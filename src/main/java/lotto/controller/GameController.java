@@ -11,17 +11,6 @@ import lotto.view.OutputView;
 
 public class GameController {
 
-//    while (true) {
-//        System.out.println("구입금액을 입력해 주세요.");
-//        String stringPurchaseAmount = Console.readLine();
-//
-//        try {
-//            return Integer.parseInt(stringPurchaseAmount);
-//        } catch (NumberFormatException e) {
-//            System.err.print("[ERROR] 올바른 입력이 아닙니다. ");
-//        }
-//    }
-
     public void run() {
 
         LottoGenerator lottoGenerator = new LottoGenerator();
@@ -37,14 +26,25 @@ public class GameController {
         List<Integer> winningLottoNumbers = requestWinningLottoNumbers();
         LottoManager lottoManager = new LottoManager(winningLottoNumbers);
 
-        
+        countMatchingCounts(lottoBuyer, lottoManager);
+
+
+    }
+
+    private void countMatchingCounts(LottoBuyer lottoBuyer, LottoManager lottoManager) {
+        lottoBuyer.getLottoTickets().forEach(ticket -> {
+            int count = (int) lottoManager.getWinningLottoNumbers().stream()
+                    .filter(ticket.getNumbers()::contains)
+                    .count();
+            lottoManager.addMatchingCount(count);
+        });
     }
 
     private int purchaseLottoQuantity() {
         while (true) {
             try {
                 String stringPurchaseAmount = InputView.requestLottoPurchaseAmount();
-                int purchaseAmount = Integer.parseInt(stringPurchaseAmount);
+                int purchaseAmount = Integer.parseInt(stringPurchaseAmount); // requestWinningLottoNumbers 처럼 내부로직에서 parseInt를 다루지 않을 것 인지에 대해 고민해봐야함.
                 LottoValidator.isValidPurchaseAmount(purchaseAmount);
 
                 return purchaseAmount / 1000;
@@ -63,6 +63,8 @@ public class GameController {
                 LottoValidator.isValidWinningLottoNumbers(winningLottoNumbers);
 
                 return winningLottoNumbers;
+            } catch (NumberFormatException e) {
+                System.err.println("[ERROR] 올바른 입력이 아닙니다. 구입금액을 다시 입력해주세요.");
             } catch (IllegalArgumentException e) {
                 System.err.println("[ERROR] 번호의 개수는 6개, 범위는 1~45 사이이며 중복된 숫자가 없어야 합니다. 당첨 번호를 다시 입력해주세요.");
             }

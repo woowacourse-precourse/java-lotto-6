@@ -7,7 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
-import lotto.domain.dto.LottoResult;
+import lotto.domain.statistics.LottoResult;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.LottoNumberGenerator;
 import lotto.domain.winningnumbers.WinningNumbers;

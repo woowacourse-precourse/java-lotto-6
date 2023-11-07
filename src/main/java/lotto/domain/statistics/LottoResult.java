@@ -1,4 +1,4 @@
-package lotto.domain.dto;
+package lotto.domain.statistics;
 
 public class LottoResult {
 

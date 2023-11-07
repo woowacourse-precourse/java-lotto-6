@@ -6,7 +6,8 @@ public enum LottoRankEnum {
     SECOND(5, true, 30000000),
     THIRD(5, false, 1500000),
     FOURTH(4, false, 50000),
-    FIFTH(3, false, 5000);
+    FIFTH(3, false, 5000),
+    NOTHING(0, false, 0);
 
 
     private final int sameCount;
@@ -19,4 +20,15 @@ public enum LottoRankEnum {
         this.prize = prize;
     }
 
+    public int getSameCount() {
+        return sameCount;
+    }
+
+    public boolean isContainsBonus() {
+        return containsBonus;
+    }
+
+    public int getPrize() {
+        return prize;
+    }
 }

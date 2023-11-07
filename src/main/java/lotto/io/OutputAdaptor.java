@@ -3,6 +3,7 @@ package lotto.io;
 import lotto.configure.DomainConfiguration;
 import lotto.domain.Lotto;
 import lotto.domain.Result;
+import lotto.util.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -59,5 +60,9 @@ public class OutputAdaptor {
         }
         sb.insert(0, asString.substring(0, i + WHERE_TO_SEPARATOR_IN_MONEY));
         return sb.toString();
+    }
+
+    public static void displayRateOfProfit(double rateOfProfit) {
+        Printer.print(RATE_OF_RETURN_PREFIX + Utils.round(rateOfProfit) + RATE_OF_RETURN_PREFIX + LINE_BRAKING);
     }
 }

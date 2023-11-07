@@ -11,8 +11,14 @@ import lotto.domain.WinningTicket;
 import lotto.dto.WinningResult;
 
 public class LottoService {
+    private final LottoShop lottoShop;
+
+    public LottoService(LottoShop lottoShop) {
+        this.lottoShop = lottoShop;
+    }
+
     public LottoTickets purchase(PurchaseAmount purchaseAmount) {
-        List<Lotto> lottoTickets = new LottoShop().purchase(purchaseAmount);
+        List<Lotto> lottoTickets = lottoShop.purchase(purchaseAmount);
         return new LottoTickets(lottoTickets, purchaseAmount);
     }
 

@@ -22,6 +22,7 @@ public class Buyer {
                 int price = InputProcessor.parsePrice(input);
                 InputProcessor.checkPriceValidation(price);
                 this.lottos = lottoMachine.inputPurchasePrice();
+                return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

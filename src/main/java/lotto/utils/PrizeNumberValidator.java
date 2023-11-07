@@ -9,42 +9,42 @@ public class PrizeNumberValidator {
     private final int bonusNumber;
 
     public PrizeNumberValidator(List<Integer> winNumber, int bonusNumber) {
-        validateSixNumbers(winNumber);
-        validateNumberRange(bonusNumber);
-        validateBonusNumber(winNumber, bonusNumber);
-        validateRange(winNumber);
-        validateDuplicatedNumber(winNumber);
+        validateDuplicatedWinningNumber(winNumber);
+        validateDuplicatedBonusNumber(winNumber, bonusNumber);
+        validateSixWinningNumbers(winNumber);
+        validateBonusNumberRange(bonusNumber);
+        validateWinningNumberRange(winNumber);
 
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateDuplicatedNumber(List<Integer> winNumber) {
+    private void validateDuplicatedWinningNumber(List<Integer> winNumber) {
         Set<Integer> duplicatedCheck = new HashSet<>(winNumber);
         if (duplicatedCheck.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_DUPLICATED_ERROR);
         }
     }
 
-    private void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+    private void validateDuplicatedBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_DUPLICATED_ERROR);
         }
     }
 
-    private void validateSixNumbers(List<Integer> winNumber) {
+    private void validateSixWinningNumbers(List<Integer> winNumber) {
 
         if (winNumber.size() != 6) {
             throw new IllegalArgumentException(ExceptionMessage.PRIZE_NUMBER_FORMAT_ERROR);
         }
     }
 
-    private void validateNumberRange(int bonusNumber) {
+    private void validateBonusNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_NUMBER_RANGE_ERROR);
         }
     }
 
-    private void validateRange(List<Integer> numbers) {
+    private void validateWinningNumberRange(List<Integer> numbers) {
         for(Integer number : numbers) {
             if(number < 1 || number > 45) {
                 throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_RANGE_ERROR);

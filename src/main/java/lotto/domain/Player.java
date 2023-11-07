@@ -24,10 +24,9 @@ public class Player {
                                 Randoms.pickUniqueNumbersInRange(START_NUM_RANGE, END_NUM_RANGE, LOTTO_NUM_COUNT))));
     }
 
-    public void showLottos() {
-        lottos.stream().forEach(e -> {
-            e.showLotto();
-        });
+    public void createWinLotto() {
+        winLotto.createLotto();
+        winLotto.createBonusNumber();
     }
 
     public void setLottoAmount() {
@@ -39,12 +38,10 @@ public class Player {
         this.lottoCount = new LottoCount(lottoAmount.getLottoAmount());
     }
 
-    public void resultCalculate(WinLotto winLotto) {
-    }
-
-    public void createWinLotto() {
-        winLotto.createLotto();
-        winLotto.createBonusNumber();
+    public void showLottos() {
+        lottos.stream().forEach(e -> {
+            e.showLotto();
+        });
     }
 
     public void showLottoCount() {

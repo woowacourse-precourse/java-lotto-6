@@ -21,13 +21,14 @@ public class OutputMaker {
     }
 
     public String visualizeWinningData(int[] winningData) {
-        StringBuilder WinningDataBuilder = new StringBuilder();
-        WinningDataBuilder.append("3개 일치 (5,000원) - ").append(winningData[0]).append("개\n");
-        WinningDataBuilder.append("4개 일치 (50,000원) - ").append(winningData[1]).append("개\n");
-        WinningDataBuilder.append("5개 일치 (1,500,000원) - ").append(winningData[2]).append("개\n");
-        WinningDataBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - ").append(winningData[3]).append("개\n");
-        WinningDataBuilder.append("6개 일치 (2,000,000,000원) - ").append(winningData[4]).append("개\n");
-        return WinningDataBuilder.toString();
+        String[] categories = {"3개 일치 (5,000원)", "4개 일치 (50,000원)", "5개 일치 (1,500,000원)",
+                "5개 일치, 보너스 볼 일치 (30,000,000원)", "6개 일치 (2,000,000,000원)"};
+
+        StringBuilder winningDataBuilder = new StringBuilder();
+        for (int i = 0; i < categories.length; i++) {
+            winningDataBuilder.append(categories[i]).append(" - ").append(winningData[i]).append("개\n");
+        }
+        return winningDataBuilder.toString();
     }
 
     public String makeProfitMessage(double profitRate) {

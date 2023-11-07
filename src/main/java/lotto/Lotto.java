@@ -22,7 +22,13 @@ public class Lotto {
         }
     }
     
-    public static List<Integer> drawLottoNumbers() {
+    private int getUserPay() {
+        System.out.println("구입금액을 입력해주세요.");
+        int purchaseAmount = Integer.parseInt(Console.readLine());
+        return purchaseAmount;
+    }
+    
+    private List<Integer> drawLottoNumbers() {
         HashSet<Integer> lottoNumbers = new HashSet<>();
         
         while(lottoNumbers.size() < 6) {

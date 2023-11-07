@@ -17,7 +17,7 @@ public class LottoStoreManager {
     private int lottoTicketCount;
 
     public LottoStoreManager() {
-        purchaseController();
+        initialize();
     }
 
     public void setInput(String inputAmount) {
@@ -28,7 +28,7 @@ public class LottoStoreManager {
         return lottoTicketCount;
     }
 
-    public void purchaseController() {
+    public void initialize() {
         setInput(InputProcessor.readLine());
 
         int maxAttempts = 3;

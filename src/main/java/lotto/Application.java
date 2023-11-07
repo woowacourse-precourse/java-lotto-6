@@ -13,7 +13,6 @@ public class Application {
         LottoStoreManager controller = new LottoStoreManager();
         LottoView view = new LottoView();
 
-        controller.purchaseController();
         System.out.println();
 
         controller.lottoMachine();

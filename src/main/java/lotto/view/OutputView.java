@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.constant.StringConstants;
+import lotto.model.BonusStatus;
 import lotto.model.Lotto;
 import lotto.model.WinningPrize;
 
@@ -14,7 +16,7 @@ public class OutputView {
     private static final String winningResultPrintFormat = "%d개 일치%s(%s원) - %d개\n";
     private static final String rateOfReturnPrintFormat = "총 수익률은 %.1f%%입니다.\n";
 
-    public static void showEmptyLine(){
+    public static void showEmptyLine() {
         System.out.println();
     }
 
@@ -39,13 +41,24 @@ public class OutputView {
         for (Map.Entry<WinningPrize, Integer> entry : winningResult.entrySet()) {
             WinningPrize winningPrize = entry.getKey();
             int count = entry.getValue();
-            String bonusFormat = " ";
-            if(winningPrize== WinningPrize.SECOND_PRIZE){
-                bonusFormat = bonusNumberMatch;
-            }
-            String reward = NumberFormat.getInstance().format(winningPrize.getReward());
-            System.out.printf(winningResultPrintFormat, winningPrize.getMatchCount(), bonusFormat, reward, count);
+
+            int matchCount = winningPrize.getMatchCount();
+            String bonusFormat = getBonusFormat(winningPrize.getBonusStatus());
+            String reward = getRewardWithSeparator(winningPrize.getReward());
+
+            System.out.printf(winningResultPrintFormat, matchCount, bonusFormat, reward, count);
         }
+    }
+
+    private static String getBonusFormat(BonusStatus bonusStatus) {
+        if (bonusStatus == BonusStatus.IS_IN_LOTTO) {
+            return bonusNumberMatch;
+        }
+        return StringConstants.EMPTY.getValue();
+    }
+
+    private static String getRewardWithSeparator(long reward) {
+        return NumberFormat.getInstance().format(reward);
     }
 
     private static void showRateOfReturn(double rateOfReturn) {

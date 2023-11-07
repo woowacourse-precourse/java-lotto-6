@@ -125,7 +125,7 @@ public class LottoModel {
         }
     }
 
-    private static boolean checkBonusNumber(Lotto boughtLotto, int bonusNumber) {
+    public static boolean checkBonusNumber(Lotto boughtLotto, int bonusNumber) {
         return boughtLotto.getNumbers().contains(bonusNumber);
     }
 

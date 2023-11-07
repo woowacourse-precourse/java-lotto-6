@@ -24,12 +24,12 @@ public class OutputView {
         printMessage(MONEY_INPUT_MESSAGE);
     }
 
-    public static void printPurchaseInputMessage(int ticketAmount) {
+    public static void printPurchaseAmountMessage(int ticketAmount) {
         System.out.printf(PURCHASE_NUMBER_OUTPUT_MESSAGE, ticketAmount);
     }
 
     public static void printLottoNumbers(int ticketAmount, LottoTickets lottoTickets) {
-        printPurchaseInputMessage(ticketAmount);
+        printPurchaseAmountMessage(ticketAmount);
         lottoTickets.getLottoTickets()
                 .forEach(lotto -> printMessage(createLottoTicket(lotto)));
     }

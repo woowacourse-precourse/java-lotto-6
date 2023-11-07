@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.exception.ExceptionMessages;
+import lotto.common.exception.ExceptionMessages;
 
 public record LottoNumber(int number) implements Comparable<LottoNumber> {
     public static final int MIN_NUMBER = 1;

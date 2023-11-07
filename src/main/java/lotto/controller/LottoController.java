@@ -6,7 +6,7 @@ import lotto.domain.LottoNumber;
 import lotto.domain.LottoTickets;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningTicket;
-import lotto.domain.dto.Result;
+import lotto.dto.Result;
 import lotto.domain.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;

@@ -7,7 +7,7 @@ import java.util.Map.Entry;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Rank;
-import lotto.domain.dto.Result;
+import lotto.dto.Result;
 
 public class OutputView {
     public static final String PURCHASED = "\n%d개를 구매했습니다.\n";

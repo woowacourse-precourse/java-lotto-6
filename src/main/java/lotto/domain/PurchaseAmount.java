@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.exception.ExceptionMessages;
+import lotto.common.exception.ExceptionMessages;
 
 public record PurchaseAmount(long amount) {
     public static final int unit = 1000;

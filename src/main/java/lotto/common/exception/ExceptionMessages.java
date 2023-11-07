@@ -1,4 +1,4 @@
-package lotto.domain.exception;
+package lotto.common.exception;
 
 public enum ExceptionMessages {
     INVALID_LOTTO_SIZE("6개의 숫자를 입력해주세요."),

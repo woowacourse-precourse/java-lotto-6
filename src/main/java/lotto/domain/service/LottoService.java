@@ -9,7 +9,7 @@ import lotto.domain.LottoTickets;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.WinningTicket;
-import lotto.domain.dto.Result;
+import lotto.dto.Result;
 
 public class LottoService {
     public LottoTickets purchase(PurchaseAmount purchaseAmount) {

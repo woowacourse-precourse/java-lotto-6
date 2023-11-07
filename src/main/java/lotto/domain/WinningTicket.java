@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.domain.exception.ExceptionMessages;
+import lotto.common.exception.ExceptionMessages;
 
 public record WinningTicket(Lotto winningLotto, LottoNumber bonusNumber) {
 

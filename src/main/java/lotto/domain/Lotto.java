@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
-import lotto.domain.exception.ExceptionMessages;
+import lotto.common.exception.ExceptionMessages;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;

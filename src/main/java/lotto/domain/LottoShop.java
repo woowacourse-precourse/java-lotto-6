@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.utils.RandomNumberGenerator;
+import lotto.common.utils.RandomNumberGenerator;
 
 public class LottoShop {
     private static final int LOTTO_PRICE = 1000;

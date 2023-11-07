@@ -34,7 +34,7 @@ public class Lotto {
     public static List<Integer> generateLottoNumbers() {
         return pickUniqueNumbersInRange(LOTTO_NUM_MIN, LOTTO_NUM_MAX, LOTTO_NUM_IN_A_TICKET);
     }
-    public static Integer generateOneLottoNumbers() {
+    public static Integer generateOneLottoNumber() {
         return pickUniqueNumbersInRange(LOTTO_NUM_MIN, LOTTO_NUM_MAX, 1).get(0);
     }
 

@@ -14,7 +14,7 @@ public class WinningNumber {
     }
 
     private void validateContainsBonusNumber(Lotto lottoNumber, int bonusNumber) {
-        if (lottoNumber.getSortLottoNumber().contains(bonusNumber)) {
+        if (lottoNumber.getSortedLottoNumber().contains(bonusNumber)) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER.getExceptionMessage());
         }
     }
@@ -27,11 +27,11 @@ public class WinningNumber {
     }
 
     public boolean containsBonusNumber(Lotto lotto) {
-        return lotto.bonusNumberContains(bonusNumber);
+        return lotto.hasBonusNumber(bonusNumber);
     }
 
     public int getMatchCount(Lotto lotto) {
-        return lotto.getMatchCount(winningNumbers);
+        return lotto.getMatchingNumberCount(winningNumbers);
     }
 
 }

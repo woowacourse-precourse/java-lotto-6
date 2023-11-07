@@ -12,7 +12,7 @@ import java.lang.Integer;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(List<Integer> numbers) throws IllegalArgumentException {
         validateLottoLength(numbers);
         validateDuplicationNumber(numbers);
         validateNumberRange(numbers);

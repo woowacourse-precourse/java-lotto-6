@@ -1,7 +1,6 @@
 package lotto.View;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class OutputView {
         System.out.println("\n"+count+"개를 구매했습니다.");
     }
     public static void PrintUserLottoTickets(List<Lotto> lottoList) {
-        lottoList.forEach(i -> System.out.println(i.getSortLottoNumber()));
+        lottoList.forEach(i -> System.out.println(i.getSortedLottoNumber()));
     }
 
     public static void printUserPrizeStats(LottoResult lottoResult) {

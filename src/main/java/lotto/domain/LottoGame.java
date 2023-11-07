@@ -31,8 +31,13 @@ public class LottoGame {
     }
 
 
-    public WinningNumber creatWinningNumber() {
-        return new WinningNumber(new Lotto(InputView.inputWinningNumbers()), InputView.inputBonusNumber());
+    public WinningNumber creatWinningNumber(){
+        try{
+            return new WinningNumber(new Lotto(InputView.inputWinningNumbers()), InputView.inputBonusNumber());
+        }catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return creatWinningNumber();
+        }
     }
 
     public void evaluateProfitAndPrintResults(Player player, WinningNumber winningNumber) {

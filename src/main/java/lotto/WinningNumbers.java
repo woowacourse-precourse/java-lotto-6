@@ -61,4 +61,10 @@ public class WinningNumbers {
         return numbers;
     }
 
+    private int inputToNumber(String inputBonus) {
+        int number = Integer.parseInt(inputBonus);
+        validateRange(number);
+        validateDuplicates(number);
+        return number;
+    }
 }

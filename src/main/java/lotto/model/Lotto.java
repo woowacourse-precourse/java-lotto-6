@@ -10,7 +10,7 @@ import lotto.enums.LottoNumber;
 
 public class Lotto {
 
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -23,17 +23,19 @@ public class Lotto {
         }
 
         Set<Integer> numberSet = new HashSet<>();
-        for (Integer number : numbers)
+        for (Integer number : numbers) {
             if (!numberSet.add(number)) {
                 throw new IllegalArgumentException("[ERROR] 숫자는 중복되지 않은 수여야 합니다.");
             }
+        }
     }
 
     // TODO: 추가 기능 구현
     // Lotto 생성
     public static Lotto generateLotto() {
-        List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(LottoNumber.MIN.getValue(),
-                LottoNumber.MAX.getValue(), LottoNumber.COUNT.getValue()));
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LottoNumber.MIN.getValue(),
+                        LottoNumber.MAX.getValue(), LottoNumber.COUNT.getValue()));
         Collections.sort(numbers);
         return new Lotto(numbers);
     }

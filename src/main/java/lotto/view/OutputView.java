@@ -7,6 +7,8 @@ import lotto.utils.StringUtil;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import static lotto.view.OutputMessage.*;
+
 public class OutputView {
 
     private final Map<Rank, String> rankPrinter;
@@ -17,22 +19,28 @@ public class OutputView {
     }
 
     private void initRankPrinter() {
-        rankPrinter.put(Rank.CORRECT_THREE, "3개 일치 (5,000원) - %d개");
-        rankPrinter.put(Rank.CORRECT_FOUR, "4개 일치 (50,000원) - %d개");
-        rankPrinter.put(Rank.CORRECT_FIVE, "5개 일치 (1,500,000원) - %d개");
-        rankPrinter.put(Rank.CORRECT_FIVE_BONUS, "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개");
-        rankPrinter.put(Rank.CORRECT_SIX, "6개 일치 (2,000,000,000원) - %d개");
+        rankPrinter.put(Rank.CORRECT_THREE, CORRECT_THREE.getMessage());
+        rankPrinter.put(Rank.CORRECT_FOUR, CORRECT_FOUR.getMessage());
+        rankPrinter.put(Rank.CORRECT_FIVE, CORRECT_FIVE.getMessage());
+        rankPrinter.put(Rank.CORRECT_FIVE_BONUS, CORRECT_FIVE_BONUS.getMessage());
+        rankPrinter.put(Rank.CORRECT_SIX, CORRECT_SIX.getMessage());
     }
 
     public void printLottoResult(WinningLottoStorage winningLottoStorage) {
-        System.out.println("\n당첨 통계");
-        System.out.println("---");
+        printWinningStatistics();
+
         for (Map.Entry<Rank, String> ranks : rankPrinter.entrySet()) {
             Rank rank = ranks.getKey();
             int numberOfItems = getLottoResultByRank(rank, winningLottoStorage);
 
             System.out.println(formatResultString(rank, numberOfItems));
         }
+    }
+
+    private void printWinningStatistics() {
+        System.out.println();
+        System.out.println(WINNING_STATISTICS.getMessage());
+        System.out.println(DIVIDING_LINE.getMessage());
     }
 
     private String formatResultString(Rank rank, int numberOfItems) {
@@ -54,6 +62,6 @@ public class OutputView {
 
     public void printNumberOfPurchases(int purchaseCount) {
         System.out.println();
-        System.out.println(purchaseCount + "개를 구매했습니다.");
+        System.out.println(purchaseCount + BUY_IT.getMessage());
     }
 }

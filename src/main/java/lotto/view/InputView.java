@@ -5,10 +5,13 @@ import lotto.utils.StringUtil;
 
 import java.util.List;
 
+import static lotto.view.InputMessage.*;
+
 public class InputView {
 
+
     public int insertPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(INSERT_PURCHASE_AMOUNT.getMessage());
 
         try {
             return StringUtil.stringToInt(Console.readLine().trim());
@@ -19,7 +22,8 @@ public class InputView {
     }
 
     public List<Integer> insertWinningNumber() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println();
+        System.out.println(INSERT_WINNING_NUMBER.getMessage());
 
         try {
             return StringUtil.StringToList(Console.readLine().trim());
@@ -30,7 +34,8 @@ public class InputView {
     }
 
     public int insertBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println();
+        System.out.println(INSERT_BONUS_NUMBER.getMessage());
 
         try {
             return StringUtil.stringToInt(Console.readLine().trim());

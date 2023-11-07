@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.dto.LottoMatchNumberDTO;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.parser.BonusNumberParser;
@@ -9,6 +10,8 @@ import lotto.model.Lottos;
 import lotto.parser.FinalResult;
 import lotto.parser.LottoParser;
 import lotto.view.LottoView;
+
+import static lotto.service.LottoService.checkMatchingCount;
 
 public class LottoController {
     public static void play() {
@@ -20,13 +23,16 @@ public class LottoController {
         Lotto winningLotto = LottoParser.parse(winningNumbers);
         String bonusNumber = LottoView.requestInputBonusNumber();
         BonusNumber bonus = BonusNumberParser.parse(winningLotto, bonusNumber);
-        LottoResult lottoResult = createLottoResult(randomLottos, winningLotto, bonus);
+
+        LottoMatchNumberDTO lottoMatchNumberDTO = checkMatchingCount(randomLottos, bonus,winningLotto);
+
+        LottoResult lottoResult = createLottoResult(randomLottos, winningLotto, bonus,lottoMatchNumberDTO);
         LottoView.printResultMessages();
         FinalResult finalResult = createFinalResult(lottoResult);
         LottoView.printResultMessage(finalResult,Integer.parseInt(price));
     }
-    private static LottoResult createLottoResult(Lottos randomLottos, Lotto winningLotto, BonusNumber bonus) {
-        return new LottoResult(randomLottos, winningLotto, bonus);
+    private static LottoResult createLottoResult(Lottos randomLottos, Lotto winningLotto, BonusNumber bonus,LottoMatchNumberDTO lottoMatchNumberDTO) {
+        return new LottoResult(randomLottos, winningLotto, bonus,lottoMatchNumberDTO);
     }
     private static FinalResult createFinalResult(LottoResult lottoResult) {
         return new FinalResult(lottoResult);

@@ -22,10 +22,14 @@ public class LottoInfoDTO {
         this.matchBonus = this.contain(bonusNumber.bonusNumber());
         return this.matchBonus;
     }
-    public boolean contain(Integer number) {
+    private boolean contain(Integer number) {
         return this.lotto.numbers().contains(number);
     }
-    public void countMatch(Lotto winningLotto) {
+    public Integer countMatch(Lotto winningLotto) {
         winningLotto.numbers().stream().filter(this::contain).forEach(number -> this.matchCount++);
+        return this.matchCount;
+    }
+    public void resetMatchCount(){
+        this.matchCount = 0;
     }
 }

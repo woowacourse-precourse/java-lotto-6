@@ -1,7 +1,8 @@
-package lotto.model;
+package lotto.service;
 
 
 import java.util.List;
+import lotto.model.Lotto;
 
 public class LottoFactory {
 

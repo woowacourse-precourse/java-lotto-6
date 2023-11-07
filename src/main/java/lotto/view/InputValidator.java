@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.view;
 
 import static lotto.exception.ExceptionMessage.EMPTY_INPUT;
 import static lotto.exception.ExceptionMessage.INVALID_DUPLICATE_NUMBER;

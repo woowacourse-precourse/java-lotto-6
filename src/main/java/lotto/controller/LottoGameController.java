@@ -1,9 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.model.InputValidator;
+import lotto.view.InputValidator;
 import lotto.model.Lotto;
-import lotto.model.LottoMachine;
+import lotto.service.LottoMachine;
 import lotto.model.LottoResult;
 import lotto.model.WinningLotto;
 import lotto.view.View;

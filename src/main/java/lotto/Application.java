@@ -1,10 +1,10 @@
 package lotto;
 
 import lotto.controller.LottoGameController;
-import lotto.model.InputValidator;
-import lotto.model.LottoFactory;
-import lotto.model.LottoMachine;
-import lotto.model.LottoNumberGenerator;
+import lotto.view.InputValidator;
+import lotto.service.LottoFactory;
+import lotto.service.LottoMachine;
+import lotto.service.LottoNumberGenerator;
 import lotto.model.LottoTickets;
 import lotto.view.View;
 

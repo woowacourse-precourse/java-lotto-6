@@ -1,6 +1,7 @@
-package lotto.model;
+package lotto.service;
 
 import java.util.stream.IntStream;
+import lotto.model.LottoTickets;
 
 public class LottoMachine {
 

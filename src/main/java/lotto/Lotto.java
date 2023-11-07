@@ -26,6 +26,8 @@ public class Lotto {
         }
     }
 
+    private static void validateRange(final List<Integer> numbers, final int MIN_LOTTO_NUMBER, final int MAX_LOTTO_NUMBER) {
+        if (numbers.stream().anyMatch(i -> i < MIN_LOTTO_NUMBER || i > MAX_LOTTO_NUMBER)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 " + MIN_LOTTO_NUMBER + "부터 " + MAX_LOTTO_NUMBER + " 사이의 숫자여야 합니다.");
         }
     }

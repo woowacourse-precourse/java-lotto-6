@@ -4,6 +4,7 @@ import static lotto.constant.LottoConfig.TOTAL_CHOICE_NUMBER;
 
 import java.util.List;
 import lotto.constant.LottoRank;
+import lotto.validators.LottoValidator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -16,18 +17,8 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != TOTAL_CHOICE_NUMBER.getValue()) {
             throw new IllegalArgumentException();
-        } else if (isDuplicatedNumbers(numbers)) {
-            throw new IllegalArgumentException();
         }
-    }
-
-    private boolean isDuplicatedNumbers(List<Integer> numbers) {
-        int distinctNumbersSize = numbers.stream()
-                .distinct()
-                .toList()
-                .size();
-
-        return numbers.size() != distinctNumbersSize;
+        LottoValidator.validateDuplicatedNumbers(numbers);
     }
 
     public LottoRank getRank(WinningNumber winningNumbers) {

@@ -1,4 +1,6 @@
-package lotto;
+package lotto.domain;
+
+import java.util.Arrays;
 
 public enum Prize {
     FAIL(0,0, false),
@@ -20,12 +22,10 @@ public enum Prize {
     }
 
     public static Prize getPrize(int compareCount, boolean isMatchBonus){
-        for (Prize prize : Prize.values()) {
-            if (prize.getMatchCount() == compareCount && prize.getMatchBonus() == isMatchBonus) {
-                return prize;
-            }
-        }
-        return Prize.FAIL;
+        return Arrays.stream(Prize.values())
+                .filter(prize -> prize.getMatchCount() == compareCount && prize.getMatchBonus() == isMatchBonus)
+                .findAny()
+                .orElse(Prize.FAIL);
     }
 
     public boolean getMatchBonus(){

@@ -38,7 +38,12 @@ public class InputView {
         System.out.println();
         List<String> inputValue = parseWinningNumber(input);
         List<Integer> winningNumber = convertWinningNumber(inputValue);
-        validateWinningNumber(winningNumber);
+        try {
+            validateWinningNumber(winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + ERROR_NOT_RANGE);
+            return getWinningNumber();
+        }
         return winningNumber;
     }
 
@@ -46,7 +51,12 @@ public class InputView {
         System.out.println(REQUEST_BONUS_NUMBER);
         String input = Console.readLine();
         System.out.println();
-        validateNumeric(input);
+        try {
+            validateNumeric(input);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_MESSAGE + ERROR_NOT_NUMBER);
+            return getBonusNumber();
+        }
         return Integer.parseInt(input);
     }
 

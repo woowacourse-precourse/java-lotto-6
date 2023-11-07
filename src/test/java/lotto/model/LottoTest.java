@@ -1,11 +1,14 @@
 package lotto.model;
 
+import static lotto.view.ErrorMessage.DUPLICATED_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -127,5 +130,27 @@ class LottoTest {
         boolean result = myLotto.compareBonus(bounsNumber);
         //then
         assertThat(result).isFalse();
+    }
+
+    @DisplayName("1등 로또 번호와 겹치는 보너스 번호 예외처리")
+    @ParameterizedTest
+    @MethodSource("provideLottoAndInteger")
+    void validate_1등_로또_번호(Lotto lotto, int bonusNumber) {
+        assertThatThrownBy(() -> lotto.validateBonusNumber(bonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATED_NUMBER.getMessage());
+
+    }
+
+    private static Stream<Arguments> provideLottoAndInteger() {
+        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        return Stream.of(
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 1),
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 2),
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 3),
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 4),
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 5),
+                Arguments.of(new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)), 6)
+        );
     }
 }

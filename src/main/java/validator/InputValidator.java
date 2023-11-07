@@ -1,6 +1,7 @@
 package validator;
 
 import java.util.Arrays;
+import java.util.List;
 import lotto.Unit;
 import message.ErrorMessage;
 import message.Symbol;
@@ -29,7 +30,7 @@ public class InputValidator {
         }
     }
 
-    public static void validateBonusNumberInput(String input) {
+    public static void validateBonusNumberInput(String input, List<Integer> winningNumbers) {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
@@ -38,6 +39,9 @@ public class InputValidator {
         int bonusNumber = Integer.parseInt(input);
         if (bonusNumber < Unit.LOTTERY_MINIMUM_NUMBER.getUnit() ||
                 Unit.LOTTERY_MAXIMUM_NUMBER.getUnit() < bonusNumber) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_INPUT_ERROR_MESSAGE.getMessage());
+        }
+        if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_INPUT_ERROR_MESSAGE.getMessage());
         }
     }

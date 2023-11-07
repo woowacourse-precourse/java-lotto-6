@@ -43,13 +43,13 @@ public class InputView {
         }
     }
 
-    public static int getBonusNumberInput() {
+    public static int getBonusNumberInput(List<Integer> winningNumbers) {
         while (true) {
             OutputView.printBonusNumberInputMessage();
             String input = Console.readLine();
             System.out.println();
             try {
-                InputValidator.validateBonusNumberInput(input);
+                InputValidator.validateBonusNumberInput(input, winningNumbers);
                 return Integer.parseInt(input);
             } catch (IllegalArgumentException e) {
                 OutputView.printErrorMessage(e.getMessage());

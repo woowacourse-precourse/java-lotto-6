@@ -10,6 +10,6 @@ public class Application {
         List<Lotto> lotteries = LottoGenerator.generateLotteries(purchaseAmount);
         OutputView.printPurchasedLotteryNumbers(lotteries);
         List<Integer> winningNumbers = InputView.getWinningNumbers();
-        int bonusNumber = InputView.getBonusNumberInput();
+        int bonusNumber = InputView.getBonusNumberInput(winningNumbers);
     }
 }

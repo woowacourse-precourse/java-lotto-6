@@ -8,9 +8,10 @@
 package model;
 
 public class LottoTicketSeller {
-    private final int paidMoney;
+    private int paidMoney;
     private final int lottoPrice = 1000;
 
+    public LottoTicketSeller(){}
     public LottoTicketSeller(int paidMoney){
         this.paidMoney = paidMoney;
     }

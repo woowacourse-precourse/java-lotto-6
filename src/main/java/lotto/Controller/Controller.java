@@ -32,5 +32,7 @@ public class Controller {
         Output.printInsertLottoNumbers();
         String playerInsert = Input.insertString();
         gameModel.initAnswerByStrings(playerInsert);
+
+        Output.printInsertBonusNumber();
     }
 }

@@ -37,4 +37,16 @@ public class LottoHostTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또의 번호는 서로 다른 숫자여야 합니다.");
     }
+
+    @ParameterizedTest
+    @ValueSource(strings= {"1,2,3,4,5,6,7,8","20,19,18,17", "5","11,12"})
+    public void 로또_번호의_크기가_6이아닌_경우에_대한_예외처리(String numbers) {
+        List<Integer> testLottoNumbers = Arrays.stream(numbers.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        LottoHost testLottoHost= new LottoHost();
+        Assertions.assertThatThrownBy(() -> testLottoHost.initAnswerLotto(testLottoNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

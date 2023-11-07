@@ -13,6 +13,7 @@ public class LottoHost {
 
     public void initAnswerLotto(List<Integer> numbers){
         validateLotto(numbers);
+        AnswerLotto = new Lotto(numbers);
     }
 
     public void validateLotto(List<Integer> numbers){

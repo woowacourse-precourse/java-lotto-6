@@ -1,5 +1,6 @@
 package lotto.View;
 
+import static lotto.View.OutputMessage.Enter_Bonus_Numbers;
 import static lotto.View.OutputMessage.Enter_Lotto_Numbers;
 import static lotto.View.OutputMessage.Enter_Purchase_Mount;
 
@@ -22,6 +23,11 @@ public class Output {
         System.out.println();
     }
     public static void printInsertLottoNumbers(){System.out.println(Enter_Lotto_Numbers.message);}
+
+    public static void printInsertBonusNumber(){
+        System.out.println();
+        System.out.println(Enter_Bonus_Numbers.message);}
+
     private static void printLotto(List<Integer> lotto) {
         List<Integer> sortedNumbers = lotto.stream()
                 .sorted()

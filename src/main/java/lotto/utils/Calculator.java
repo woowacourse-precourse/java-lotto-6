@@ -64,7 +64,7 @@ public class Calculator {
 
     public static double calculateEarningRate(int amount, List<Integer> ranks){
         int totalProfit = calculateTotalProfit(ranks);
-        double earningRate = (totalProfit / amount)*100;
+        double earningRate = ((double)totalProfit / (double)amount)*100;
         return earningRate;
     }
 

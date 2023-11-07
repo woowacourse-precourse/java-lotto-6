@@ -4,6 +4,9 @@ import lotto.model.Lotto;
 import lotto.model.User;
 import lotto.utils.Calculator;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
@@ -54,6 +57,13 @@ public class OutputView {
 
     private static void displayLotto(Lotto lotto){
         List<Integer> lottoNumbers = lotto.getNumbers();
-        System.out.println(lottoNumbers);
+        List<Integer> sortedList = sortListAscending(lottoNumbers);
+        System.out.println(sortedList);
+    }
+
+    private static List<Integer> sortListAscending(List<Integer> numbers){
+        List<Integer> sortedList = new ArrayList<>(numbers);
+        Collections.sort(sortedList);
+        return sortedList;
     }
 }

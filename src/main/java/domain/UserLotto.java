@@ -45,8 +45,20 @@ public class UserLotto {
         setBonusNumber(Integer.parseInt(inputBonusLotto));
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
     public int getLottoCount() {
         return lottoCount;
+    }
+
+    public List<Integer> getLottoNumbers() {
+        return lotto.getNumbers();
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
     }
 
     private void setLotto(Lotto lotto) {

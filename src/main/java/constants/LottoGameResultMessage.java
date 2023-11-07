@@ -18,8 +18,8 @@ public enum LottoGameResultMessage {
         this.messageReplace = messageReplace;
     }
 
-    public String replaceEnumToString(LottoGameResultMessage resultMessage, String winningCount){
-        return resultMessage.message.replace(resultMessage.messageReplace,winningCount);
+    public String replaceEnumToString(String winningCount){
+        return this.message.replace(this.messageReplace, winningCount);
     }
 
 

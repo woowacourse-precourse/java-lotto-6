@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Objects;
 import lotto.exception.ErrorMessagePrinter;
 import lotto.exception.LottoExceptionMessage;
 
@@ -11,23 +10,6 @@ public class PurchasePrice {
     private PurchasePrice(int price) {
         validate(price);
         this.price = price;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        PurchasePrice that = (PurchasePrice) o;
-        return price == that.price;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(price);
     }
 
     public static PurchasePrice from(int price) {

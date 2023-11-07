@@ -15,6 +15,7 @@ public class LottoResult {
     public LottoResult(List<LottoStatus> lottoResult) {
         this.lottoResult = lottoResult;
     }
+
     public LottoResultDto getLottoResultDto() {
         Map<LottoStatus, Integer> statusCounts = new HashMap<>();
 
@@ -26,7 +27,7 @@ public class LottoResult {
         return new LottoResultDto(statusCounts);
     }
 
-    public int statusCount(LottoStatus lottoStatus) {
+    private int statusCount(LottoStatus lottoStatus) {
         return (int) lottoResult.stream()
                 .filter(status -> status.equals(lottoStatus))
                 .count();

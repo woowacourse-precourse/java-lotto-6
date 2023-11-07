@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.dto.LottoNumberDTO;
 
 public class Printer {
     private static Printer printer;
@@ -18,9 +19,9 @@ public class Printer {
         System.out.println(numOfLotto + "개를 구매했습니다.");
     }
 
-    public void allLotto(List<List<Integer>> lottos) {
-        for (List<Integer> lotto : lottos) {
-            System.out.println(lotto);
+    public void allLotto(List<LottoNumberDTO> lottos) {
+        for (LottoNumberDTO lotto : lottos) {
+            System.out.println(lotto.getLotto());
         }
         System.out.println();
     }

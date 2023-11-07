@@ -12,7 +12,7 @@ public class LottoResultDisplay {
     public int fourSuccess;
     public int threeSuccess;
 
-    public LottoResultDisplay() {
+    public void outputLottoResultNotice() {
         System.out.println(WINNING_STATISTICS_NOTICE_MESSAGE);
     }
 

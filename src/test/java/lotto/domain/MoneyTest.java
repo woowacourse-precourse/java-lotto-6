@@ -7,7 +7,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.assertj.core.api.Assertions.*;
 
 class MoneyTest {
-
     @Test
     void validation_성공() {
         int amount = 30_000;

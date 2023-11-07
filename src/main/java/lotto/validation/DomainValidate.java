@@ -3,7 +3,9 @@ package lotto.validation;
 import lotto.config.ConstantNum;
 import lotto.config.ErrorMessage;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DomainValidate {
     private DomainValidate() {
@@ -30,6 +32,16 @@ public class DomainValidate {
     public static void validateNegativeMoney(int money) {
         if (money < 0) {
             throw new IllegalArgumentException(ErrorMessage.INPUT_NEGATIVE_NUMBER.getMessage());
+        }
+    }
+
+    public static void validateDuplicated(List<Integer> numbers) {
+        Set<Integer> result = new HashSet<>();
+        for (Integer number : numbers) {
+            result.add(number);
+        }
+        if (result.size() != numbers.size()) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
         }
     }
 }

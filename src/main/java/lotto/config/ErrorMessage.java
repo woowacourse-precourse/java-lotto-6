@@ -13,7 +13,8 @@ public enum ErrorMessage {
     NOT_ENOUGH_BONUS("[ERROR] 주어진 보너스 번호의 개수는 " +
             ConstantNum.LOTTO_BONUS_NUMBER_CNT.getNum() +
             "가 아닙니다."),
-    INPUT_NEGATIVE_NUMBER("[ERROR] 음수가 입력되었습니다.")
+    INPUT_NEGATIVE_NUMBER("[ERROR] 음수가 입력되었습니다."),
+    DUPLICATED_NUMBER("[ERROR] 수가 중복되었습니다.")
     ;
 
     private String message;

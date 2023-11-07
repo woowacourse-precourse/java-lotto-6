@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getLottoModel;
-
 import lotto.config.exception.ExceptionType;
 import lotto.config.exception.InputException;
 import lotto.config.output.MessageType;
@@ -34,9 +32,5 @@ public class Wallet {
 
     public double returnsPercent(double sumPrizeAmount){
         return Math.round((sumPrizeAmount / this.wallet) * 1000) / 10.0;
-    }
-
-    public void save() {
-        getLottoModel().saveWallet(this);
     }
 }

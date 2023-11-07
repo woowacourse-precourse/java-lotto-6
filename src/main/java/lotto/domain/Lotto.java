@@ -1,13 +1,11 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getLottoModel;
-
 import java.util.List;
-import lotto.domain.constant.LottoConstant;
 import lotto.config.exception.ExceptionType;
 import lotto.config.exception.InputException;
 import lotto.config.output.MessageType;
 import lotto.config.output.OutputMessage;
+import lotto.domain.constant.LottoConstant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -58,9 +56,5 @@ public class Lotto {
         return (int) ticket.stream()
                 .filter(this.numbers::contains)
                 .count();
-    }
-
-    public void save() {
-        getLottoModel().saveLotto(this);
     }
 }

@@ -1,13 +1,11 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getLottoModel;
-
 import java.util.List;
-import lotto.domain.constant.LottoConstant;
 import lotto.config.exception.ExceptionType;
 import lotto.config.exception.InputException;
 import lotto.config.output.MessageType;
 import lotto.config.output.OutputMessage;
+import lotto.domain.constant.LottoConstant;
 
 public class Bonus {
     private final int number;
@@ -45,9 +43,5 @@ public class Bonus {
         }
 
         return bonusCount;
-    }
-
-    public void save(){
-        getLottoModel().saveBonus(this);
     }
 }

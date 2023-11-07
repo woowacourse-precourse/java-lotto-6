@@ -18,28 +18,13 @@ public class AppConfig {
     }
 
     private AppConfig(){
-        getController();
+        getLottoModel();
         getLottoBuyer();
         getLottoDrawer();
+        getController();
         getPrizeAmount();
-        lottoProcess();
-    }
 
-    private void lottoProcess() {
-        inputProcess();
-        outputProcess();
-    }
-
-    private static void inputProcess() {
-        lottoBuyer.gernerateTicket();
-        lottoDrawer.inputLotto();
-        lottoDrawer.inputBonus();
-        lottoDrawer.inputWinRecord();
-    }
-
-    private static void outputProcess() {
-        lottoBuyer.printWinRecord();
-        lottoBuyer.printReturns();
+        LottoProcess.start(lottoBuyer, lottoDrawer);
     }
 
     public static LottoController getController() {

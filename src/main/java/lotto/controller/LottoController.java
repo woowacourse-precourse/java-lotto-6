@@ -12,45 +12,49 @@ import lotto.domain.WinRecord;
 import lotto.model.LottoModel;
 
 public class LottoController {
-    private LottoModel dataModel = getLottoModel();
+    private LottoModel lottoModel = getLottoModel();
 
     public void gernerateTicket(final int wallet) {
         Wallet wallets = new Wallet(wallet);
         Tickets tickets = new Tickets(wallets);
 
         tickets.generate();
-        tickets.save();
-        wallets.save();
+
+        lottoModel.saveTicktet(tickets);
+        lottoModel.saveWallet(wallets);
     }
 
     public void inputLotto(final List<Integer> numbers) {
         Lotto lotto = new Lotto(numbers);
-        lotto.save();
+
+        lottoModel.saveLotto(lotto);
     }
 
     public void inputBonus(final int number){
         Bonus bonus = new Bonus(number);
-        bonus.save();
+
+        lottoModel.saveBonus(bonus);
     }
 
     public void inputWinRecord() {
-        Tickets tickets = dataModel.findTickets();
-        Lotto lotto = dataModel.findLotto();
-        Bonus bonus = dataModel.findBonus();
+        Tickets tickets = lottoModel.findTickets();
+        Lotto lotto = lottoModel.findLotto();
+        Bonus bonus = lottoModel.findBonus();
 
         WinRecord winRecord = new WinRecord(lotto, bonus);
         winRecord.inputWinRecord(tickets);
-        winRecord.save();
+
+        lottoModel.saveWinRecord(winRecord);
     }
 
     public void printWinRecord() {
-        WinRecord winRecord = dataModel.findWinRecord();
+        WinRecord winRecord = lottoModel.findWinRecord();
         winRecord.print();
     }
 
     public void printReturns() {
-        WinRecord winRecord = dataModel.findWinRecord();
-        Wallet wallet = dataModel.findWallet();
+        WinRecord winRecord = lottoModel.findWinRecord();
+        Wallet wallet = lottoModel.findWallet();
 
         Returns returns = new Returns(wallet, winRecord);
         returns.calculate();

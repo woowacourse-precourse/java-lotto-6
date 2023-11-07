@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import static lotto.config.AppConfig.getLottoModel;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -44,10 +42,6 @@ public class WinRecord {
     private void createMessage(int match, long count) {
         MessageType messageType = MessageType.valueOf("MATCH_" + match + "_COUNT");
         OutputMessage.printf(messageType, count);
-    }
-
-    public void save() {
-        getLottoModel().saveWinRecord(this);
     }
 
     public double sumPrizeAmount(Map<Integer, PrizeAmount> prizeAmounts) {

@@ -28,20 +28,6 @@ public class LottoHandler {
         return lottoTicket;
     }
 
-    public int calculateLottoTicketCount(String receivedPurchasePrice) {
-        int purchasePrice;
-        try {
-            purchasePrice = Integer.parseInt(receivedPurchasePrice);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
-        }
-
-        if (purchasePrice % LOTTO_PRICE != 0) {
-            throw new IllegalArgumentException("[ERROR] " + LOTTO_PRICE + "원 단위로만 입력해 주세요.");
-        }
-        return purchasePrice / LOTTO_PRICE;
-    }
-
     public List<Lotto> issueLottoNumbers(int lottoTicket) {
         List<Lotto> lottos = new ArrayList<>();
 
@@ -51,16 +37,6 @@ public class LottoHandler {
 
         OutputHandler.printLottos(lottos);
         return lottos;
-    }
-
-    private Lotto pickNumbersOrderByAsc() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
-                LOTTO_START_NUMBER,
-                LOTTO_LAST_NUMBER,
-                LOTTO_NUMBER_COUNT
-        );
-        numbers.sort(Comparator.naturalOrder());
-        return new Lotto(numbers);
     }
 
     public Lotto winningLotto() {
@@ -76,20 +52,6 @@ public class LottoHandler {
             }
         }
         return winningLotto;
-    }
-
-    public Lotto receiveWinningLotto(String receivedWinningLotto) {
-        List<Integer> winningNumbers = new ArrayList<>();
-        String[] separatedWinningLotto = receivedWinningLotto.split(",");
-        try {
-            for (String winningLotto : separatedWinningLotto) {
-                winningNumbers.add(Integer.parseInt(winningLotto));
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력해 주세요.");
-        }
-        winningNumbers.sort(Comparator.naturalOrder());
-        return new Lotto(winningNumbers);
     }
 
     public int bonusNumber() {

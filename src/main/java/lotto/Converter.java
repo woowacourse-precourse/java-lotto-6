@@ -19,8 +19,8 @@ public class Converter {
             OutputHandler.requireNonemptyInput();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
         } catch (NumberFormatException e) {
-            OutputHandler.requireInteger();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_LONG.getMessage());
+            OutputHandler.requirePositiveLong();
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_LONG.getMessage());
         }
     }
 
@@ -39,8 +39,8 @@ public class Converter {
             OutputHandler.requireNonemptyInput();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
         } catch (NumberFormatException e) {
-            OutputHandler.requireInteger();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER.getMessage());
+            OutputHandler.requireRightRangeNumber();
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
         }
     }
 
@@ -55,8 +55,8 @@ public class Converter {
             OutputHandler.requireNonemptyInput();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
         } catch (NumberFormatException e) {
-            OutputHandler.requireInteger();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_INTEGER.getMessage());
+            OutputHandler.requirePositiveInteger();
+            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_POSITIVE_INTEGER.getMessage());
         }
     }
 }

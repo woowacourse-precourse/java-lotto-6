@@ -45,18 +45,18 @@ public class OutputHandler {
         System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn * 100);
     }
 
-    public static void requireInteger() {
-        System.out.println(ExceptionMessage.REQUIRE_INTEGER.getMessage());
+    public static void requireNonemptyInput() {
+        System.out.println(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
+    }
+
+    public static void requirePositiveLong() {
+        System.out.println(ExceptionMessage.REQUIRE_POSITIVE_LONG.getMessage());
     }
 
     public static void requirePositiveInteger() {
         System.out.println(ExceptionMessage.REQUIRE_POSITIVE_INTEGER.getMessage());
     }
-
-    public static void requireNonemptyInput() {
-        System.out.println(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
-    }
-
+    
     public static void requireMultipleOfLottoPrice() {
         System.out.println(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE.getMessage());
     }

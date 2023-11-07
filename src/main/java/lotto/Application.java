@@ -16,7 +16,7 @@ public class Application {
     public static void main(String[] args) {
         InputPort inputPort = new ConsoleInputAdapter();
         OutputPort outputPort = new ConsoleOutputAdapter();
-        LottoNumberGenerationService lottoNumberGenerationService = new LottoNumberGenerationService(new RandomLottoNumbersProvider());
+        LottoNumberGenerationService lottoNumberGenerationService = new LottoNumberGenerationService(new RandomLottoNumbersProvider(),outputPort);
         LottoPurchaseService lottoPurchaseService = new LottoPurchaseService();
         LottoResultCalculationService lottoResultCalculationService = new LottoResultCalculationService(outputPort);
         LottoWinningNumberService lottoWinningNumberService = new LottoWinningNumberService();

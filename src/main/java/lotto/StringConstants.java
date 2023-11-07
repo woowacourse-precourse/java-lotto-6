@@ -23,5 +23,6 @@ public class StringConstants {
     public static final String PRINT_MATCH_COUNT_5_BONUS = "5개 일치, 보너스 볼 일치 (30,000,000원) - ";
     public static final String PRINT_MATCH_COUNT_6 = "6개 일치 (2,000,000,000원) - ";
     public static final String PRINT_RETURN_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
+    public static final String PURCHASED_COUNT_MESSAGE = "개를 구매했습니다.";
 
 }

@@ -31,7 +31,7 @@ public class LottoMachine {
         return issueCount;
     }
 
-    public void generate(int issueCount) {
+    public List<Lotto> generate(int issueCount) {
         for (int i = 0; i < issueCount; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                     START_NUMBER, END_NUMBER, COUNT_NUMBER
@@ -39,5 +39,7 @@ public class LottoMachine {
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
         }
+        return lottos;
     }
+
 }

@@ -15,7 +15,7 @@ public class LottoResult {
     public LottoResult() {
         for (int i = 0; i <= MAX_MATCH_COUNT; i++) {
             matchCounts.put(i, 0);
-            secondPrizeWinners.put(5, 0); 
+            secondPrizeWinners.put(5, 0);
         }
     }
 
@@ -42,9 +42,10 @@ public class LottoResult {
 
     public void updateMatchCount(Lotto purchasedLotto, Lotto winningLotto, int bonusNumber) {
         int matchCount = purchasedLotto.matchCount(winningLotto);
-        incrementMatchCount(matchCount);
         if (matchCount == 5 && purchasedLotto.containsNumber(bonusNumber)) {
-            incrementMatchCount(MAX_MATCH_COUNT);
+            secondPrizeWinners.put(5, secondPrizeWinners.getOrDefault(5, 0) + 1); 
+        } else {
+            incrementMatchCount(matchCount);
         }
     }
 

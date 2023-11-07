@@ -17,9 +17,6 @@ public class Lottos {
     public Lottos(){
         lottos = new ArrayList<>();
     }
-    public void buyOneAllRandom(){
-        lottos.add(new Lotto(RandomGenerator.getAutoNumbers(6)));
-    }
     public void buyMultipleAllRandom(int payment){
         int count = payment / LOTTO_PRICE;
         IntStream.range(0,count)

@@ -40,4 +40,17 @@ class LottoTest {
 
         Assertions.assertThat(lotto.toString()).isEqualTo("[1,2,3,4,5,6]");
     }
+
+    @DisplayName("로또 번호에 특정 번호가 있으면 True를 반환한다.")
+    @Test
+    void returnTrueWhenLottoHasNumber() {
+        //given
+        Lotto lotto = new Lotto(List.of(1,2,3,4,5,6));
+
+        //when
+        int checkNumber = 6;
+
+        //then
+        Assertions.assertThat(lotto.hasNumber(checkNumber)).isTrue();
+    }
 }

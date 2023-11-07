@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.Input.InputNumber;
-import lotto.Input.InputNumberImpl;
+import lotto.io.InputNumber;
+import lotto.io.InputNumberImpl;
 import lotto.dataObjects.Bonus;
 import lotto.dataObjects.Lotto;
 import lotto.dataObjects.Money;
 import lotto.enumContainer.RelateToLotto;
+import lotto.io.PrintGenerator;
+import lotto.io.PrintOutputGenerator;
 
 public class LottoProcessImpl implements LottoProcess {
 
 	private final InputNumber inputNumber;
+	private PrintGenerator PrintGenerator;
 	private Money money;
 	private Lotto lotto;
 	private Bonus bonus;
@@ -60,7 +63,8 @@ public class LottoProcessImpl implements LottoProcess {
 		}
 	}
 
-	private List<List<Integer>> generateLotto() {
+	@Override
+	public List<List<Integer>> generateLotto() {
 		List<List<Integer>> bundleOfLotto = new ArrayList<>();
 		int perchaceCount = money.calculateAmount();
 		for (int count = 0; count < perchaceCount; count++) {

@@ -1,7 +1,5 @@
 package lotto.enumContainer;
 
-import lotto.Input.InputNumber;
-
 public enum ErrorOperation {
 
 	DIGIT_ERROR("[ERROR] 1이상의 숫자만 입력할 수 있습니다."),

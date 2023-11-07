@@ -1,10 +1,8 @@
 package lotto.domain;
 
-import static lotto.domain.InputChecker.readLottoPrice;
 import static lotto.domain.LottoProfit.getReturnRate;
 import static lotto.domain.Lottos.generateLottos;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 
 public class LottoGame {
@@ -19,7 +17,7 @@ public class LottoGame {
     public void start() {
         long userLottoPrice = inputChecker.readLottoPrice();
         long lottoCount = lottoResult.lottoNumbersPurchased(userLottoPrice);
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        printLottoCountPurchased(lottoCount);
 
         // 로또(들) 생성
         Lottos purchasedLottos = generateLottos(lottoCount);
@@ -51,6 +49,10 @@ public class LottoGame {
         for (int i = 0; i < rewardMatch.length; i++) {
             System.out.println(rewardNames[i] + " 일치 (" + String.format("%,d원", reward[i]) + ") - " + rewardMatch[i] + "개");
         }
+    }
+
+    private void printLottoCountPurchased(long lottoCount) {
+        System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
 }

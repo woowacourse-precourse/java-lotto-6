@@ -1,19 +1,19 @@
 package lotto.domain;
 
-import java.util.LinkedHashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
 
-    private final LinkedHashMap<LottoRanking, Integer> lottoRankingResult;
+    private final EnumMap<LottoRanking, Integer> lottoRankingResult;
 
-    private LottoResult(LinkedHashMap<LottoRanking, Integer> lottoRankingResult) {
+    private LottoResult(EnumMap<LottoRanking, Integer> lottoRankingResult) {
         this.lottoRankingResult = lottoRankingResult;
     }
 
     public static LottoResult createByRankings(List<LottoRanking> rankings) {
-        LinkedHashMap<LottoRanking, Integer> lottoRankingResult = new LinkedHashMap<>();
+        EnumMap<LottoRanking, Integer> lottoRankingResult = new EnumMap<>(LottoRanking.class);
 
         for (LottoRanking ranking : rankings) {
             Integer prevCount = lottoRankingResult.getOrDefault(ranking, 0);

@@ -12,7 +12,7 @@ import lotto.util.ErrorMessage;
 public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨 번호, 보너스 번호 입력 요청, 당첨 통계 및 결과 메세지 출력, 에러 메세지 출력
 
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,###");
-    private static final String PURCHASE_AMOUNT_PROMPT = "구입 금액을 입력해 주세요.";
+    private static final String PURCHASE_AMOUNT_PROMPT = "구입금액을 입력해 주세요.";
     private static final String LOTTO_PURCHASE_MESSAGE = "%d개를 구매했습니다.";
     private static final String LOTTO_NUMBER_PROMPT = "당첨 번호를 입력해 주세요";
     private static final String BONUS_NUMBER_PROMPT = "보너스 번호를 입력해 주세요";
@@ -23,17 +23,23 @@ public class LottoView { //게임 시작 메세지 출력, 구입 금액, 당첨
 
     public static String readPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_PROMPT);
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 
-    public static String readLottoNumber() {
+    public static String readWinningNumber() {
         System.out.println(LOTTO_NUMBER_PROMPT);
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 
     public static String readBonusNumber() {
         System.out.println(BONUS_NUMBER_PROMPT);
-        return Console.readLine();
+        String input = Console.readLine();
+        System.out.println();
+        return input;
     }
 
     public static void printLottoTickets(Integer purchaseAmount, List<ArrayList<Integer>> lottoTickets) {

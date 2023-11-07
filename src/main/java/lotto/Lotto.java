@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.validate.Validate;
@@ -15,7 +16,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         Validate validate = new Validate();
 
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoConstants.LOTTO_LENGTH) {
             throw new IllegalArgumentException();
         }
 
@@ -29,8 +30,13 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    // 로또 번호는 오름차순으로 정렬하여 출력
     public void print() {
-        System.out.println(numbers.toString());
+        List<Integer> sortedLotto = new ArrayList<>(numbers);
+
+        Collections.sort(sortedLotto);
+
+        System.out.println(sortedLotto.toString());
     }
 
     // 입력한 숫자가 로또에 들어 있는지 확인

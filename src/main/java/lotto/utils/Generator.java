@@ -7,16 +7,16 @@ import lotto.domain.Lotto;
 
 public class Generator {
 
-    public List<Lotto> generateLottos(int start, int end, int purchaseAmount) {
+    public static List<Lotto> generateLottos(int start, int end, int count, int purchaseAmount) {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < purchaseAmount; i++) {
-            lottos.add(generateLotto(start, end, purchaseAmount));
+            lottos.add(generateLotto(start, end, count));
         }
         return lottos;
     }
 
-    public Lotto generateLotto(int start, int end, int purchaseAmount) {
-        List<Integer> numbers = Generator.generateNumbers(start, end, purchaseAmount);
+    public static Lotto generateLotto(int start, int end, int count) {
+        List<Integer> numbers = Generator.generateNumbers(start, end, count);
         return new Lotto(numbers);
     }
 

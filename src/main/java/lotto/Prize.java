@@ -89,7 +89,7 @@ public class Prize {
 
     static void printProfitRate() {
         double initialProfitRate = (double) totalProfit / Issue.initialCash * 100;
-        DecimalFormat rateFormat = new DecimalFormat("###,###.0");
+        DecimalFormat rateFormat = new DecimalFormat("###,##0.0");
         String profitRate = rateFormat.format(initialProfitRate);
         System.out.println("총 수익률은 " + profitRate + "% 입니다.");
     }

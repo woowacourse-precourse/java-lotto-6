@@ -15,7 +15,7 @@ public class Prize {
         return Arrays.asList(PrizeRankConstants.values())
                 .stream()
                 .filter(rank -> prizeRankingCountMap.containsKey(rank))
-                .mapToInt(rank -> prizeRankingCountMap.get(rank))
+                .mapToInt(rank -> prizeRankingCountMap.get(rank) * rank.getEarnings())
                 .sum();
     }
 

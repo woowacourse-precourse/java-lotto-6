@@ -53,6 +53,10 @@ public enum PrizeRankConstants {
         return message;
     }
 
+    public Integer getEarnings() {
+        return earnings;
+    }
+
     public static PrizeRankConstants getRankConstant(Integer numberOfMatched, boolean isBonusMatched) {
         return Arrays.stream(PrizeRankConstants.values())
                 .filter(rank -> rank.isMatched.test(numberOfMatched, isBonusMatched))

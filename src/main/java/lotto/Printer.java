@@ -17,4 +17,11 @@ public class Printer {
     public void countOfLotto(int numOfLotto) {
         System.out.println(numOfLotto + "개를 구매했습니다.");
     }
+
+    public void allLotto(List<List<Integer>> lottos) {
+        for (List<Integer> lotto : lottos) {
+            System.out.println(lotto);
+        }
+        System.out.println();
+    }
 }

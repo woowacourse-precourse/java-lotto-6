@@ -29,18 +29,7 @@ public class InputView {
         }
     }
 
-
-    public RequestWinnerLotto requestWinnerLotto() throws IllegalStateException {
-        try {
-            final List<Integer> winnerNumbers = requestWinnerNumbers();
-            final Integer bonusNumber = requestBonusNumber();
-            return RequestWinnerLotto.of(winnerNumbers, bonusNumber);
-        } catch (IllegalStateException e) {
-            throw e;
-        }
-    }
-
-    private List<Integer> requestWinnerNumbers() throws IllegalStateException {
+    public List<Integer> requestWinnerNumbers() throws IllegalArgumentException, IllegalStateException  {
         try {
             System.out.println();
             System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());
@@ -48,28 +37,21 @@ public class InputView {
             final List<String> numberDummy = Parser.parseNumberDummy(requestWinnerNumbers);
             InputValidator.validateInputNumbersFormat(numberDummy);
             return Parser.parseNumbers(numberDummy);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return requestWinnerNumbers();
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             throw e;
         }
     }
 
-    private Integer requestBonusNumber() throws IllegalStateException {
+    public Integer requestBonusNumber() throws IllegalArgumentException, IllegalStateException {
         try {
             System.out.println();
             System.out.println(INPUT_BONUS_NUMBER.getMessage());
             final String requestBonusNumber = getInput();
             return Parser.parseInt(requestBonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return requestBonusNumber();
-        } catch (IllegalStateException e) {
+        } catch (Exception e) {
             throw e;
         }
     }
-
 
 
     private String getInput() throws IllegalStateException {

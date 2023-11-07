@@ -16,6 +16,8 @@ import lotto.util.NumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.List;
+
 public class GameController {
 
     private static final InputView inputView = new InputView();
@@ -35,7 +37,9 @@ public class GameController {
         try {
             Cash cash = depositCash();
             Lottos lottos = purchaseLotto(cash);
-            WinnerLotto winnerLotto = getWinnerLotto();
+            List<Integer> winnerNumbers = getWinnerNumbers();
+            Integer bonusNumber = getBonusNumber();
+            WinnerLotto winnerLotto = WinnerLotto.create(winnerNumbers, bonusNumber);
             compareLottosWithWinnerLotto(lottos, winnerLotto, cash);
         } catch (IllegalStateException e) {
             outputView.printErrorMessage(e);
@@ -69,17 +73,30 @@ public class GameController {
 
 
 
-    private WinnerLotto getWinnerLotto() throws IllegalStateException {
+    private List<Integer> getWinnerNumbers() throws IllegalStateException {
         try {
-            RequestWinnerLotto requestWinnerLotto = inputView.requestWinnerLotto();
-            WinnerLotto winnerLotto = WinnerLotto.create(
-                    requestWinnerLotto.winnerNumbers(),
-                    requestWinnerLotto.bonusNumber());
-            return winnerLotto;
-        } catch (IllegalStateException e) {
+            List<Integer> winnerNumbers = inputView.requestWinnerNumbers();
+            return winnerNumbers;
+        } catch (IllegalArgumentException e) {
+            return getWinnerNumbers();
+        }
+        catch (IllegalStateException e) {
             throw e;
         }
     }
+
+    private Integer getBonusNumber() throws IllegalStateException {
+        try {
+            Integer bonusNumber = inputView.requestBonusNumber();
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            return getBonusNumber();
+        }
+        catch (IllegalStateException e) {
+            throw e;
+        }
+    }
+
 
     private void compareLottosWithWinnerLotto(Lottos lottos, WinnerLotto winnerLotto, Cash cash) {
         RequestLottoResult requestLottoResult = lottos.compareWithWinnerLotto(winnerLotto);
@@ -87,8 +104,6 @@ public class GameController {
         lottoResult.getRoundedTotalBenefit(cash.getDepositAmount());
         outputView.printStaticResult(lottoResult, cash);
     }
-
-
 
 }
 

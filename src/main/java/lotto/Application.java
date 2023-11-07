@@ -14,5 +14,6 @@ public class Application {
         List<Lotto> lottos = lottoService.purchaseLotto();
         WinningLotto winningLotto = lottoService.createWinningLotto();
         WinningResult lottoResult = lottoService.getLottoResult(lottos, winningLotto);
+        lottoService.printWinningResult(lottoResult);
     }
 }

@@ -6,6 +6,8 @@ import java.util.List;
 
 public class WinningResult {
     private List<Integer> winningCount = new ArrayList<>();
+    private Long totalPrice = 0L;
+    private Integer lottoCount = 0;
 
     public WinningResult() {
         final int WINNING_TYPE_COUNT = LottoSetting.WINNING_TYPE_COUNT.getValue();
@@ -16,10 +18,12 @@ public class WinningResult {
 
     public WinningResult(int matchingCount, boolean bonusMatching) {
         this();
+        lottoCount = 1;
         for (WinningType type : WinningType.values()) {
             if (isMatched(type, matchingCount, bonusMatching)) {
                 int index = type.getIndex();
                 winningCount.set(index, 1);
+                totalPrice += type.getPrice();
                 break;
             }
         }
@@ -49,11 +53,22 @@ public class WinningResult {
             int currCount = this.winningCount.get(index);
             int added = winningResult.winningCount.get(index);
             this.winningCount.set(index, currCount + added);
+            totalPrice += type.getPrice() * added;
         }
+        this.lottoCount += winningResult.lottoCount;
     }
 
     public List<Integer> getWinningCount() {
         return winningCount;
+    }
+
+    public int getWinningCountOfType(WinningType type) {
+        int index = type.getIndex();
+        return winningCount.get(index);
+    }
+
+    public long getTotalPrice() {
+        return totalPrice;
     }
 
 }

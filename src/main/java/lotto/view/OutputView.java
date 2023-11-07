@@ -1,7 +1,10 @@
 package lotto.view;
 
 import lotto.domain.Lotto;
+import lotto.domain.WinningResult;
+import lotto.domain.WinningType;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Objects;
 
@@ -37,4 +40,37 @@ public class OutputView {
         sb.append("]");
         System.out.println(sb);
     }
+
+    public void printWinningResult(WinningResult winningResult) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        printNumberOfWins(winningResult);
+        // todo: 수익률 출력
+    }
+
+    private void printNumberOfWins(WinningResult winningResult) {
+        printWinningType(WinningType.valueOf("FIFTH"), winningResult);
+        printWinningType(WinningType.valueOf("FOURTH"), winningResult);
+        printWinningType(WinningType.valueOf("THIRD"), winningResult);
+        printWinningType(WinningType.valueOf("SECOND"), winningResult);
+        printWinningType(WinningType.valueOf("FIRST"), winningResult);
+    }
+
+    private void printWinningType(WinningType type, WinningResult winningResult) {
+        int matchingCount = type.getMatchingCount();
+        int winningCount = winningResult.getWinningCountOfType(type);
+        String money = getDecimalFormetString(type.getPrice());
+        String output = String.format("%d개 일치", matchingCount);
+        if (type.getBonusMatching()) {
+            output += ", 보너스 볼 일치";
+        }
+        output += String.format(" (%s원) - %d개", money, winningCount);
+        System.out.println(output);
+    }
+
+    private String getDecimalFormetString(long amount) {
+        DecimalFormat df = new DecimalFormat("###,###");
+        return df.format(amount);
+    }
+
 }

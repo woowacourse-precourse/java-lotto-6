@@ -9,6 +9,7 @@ import lotto.view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LottoService {
     InputView inputView;
@@ -89,5 +90,12 @@ public class LottoService {
         }
         boolean bonusMatching = lotto.hasNumber(winningLotto.getBonusNumber());
         return new WinningResult(matchingCount, bonusMatching);
+    }
+
+    public void printWinningResult(WinningResult winningResult) {
+        if (Objects.isNull(winningResult)) {
+            return;
+        }
+        outputView.printWinningResult(winningResult);
     }
 }

@@ -28,14 +28,16 @@ class LottoGameTest {
     @DisplayName("로또 발급 시 예외 발생하지 않는지 테스트")
     @Test
     void generatedLottoSizeTest() {
-        LottoGame lottoGame = new LottoGame(1);
+        LottoGame lottoGame = new LottoGame();
+        lottoGame.setNumOfLotto(1);
         lottoGame.makeLotto(new RandomNumGenerator(FIRST_NUM, LAST_NUM));
     }
 
     @DisplayName("로또 개수가 구매 개수와 같은지 테스트")
     @Test
     void generatedNumOfLottosTest() {
-        LottoGame lottoGame = new LottoGame(5);
+        LottoGame lottoGame = new LottoGame();
+        lottoGame.setNumOfLotto(5);
         assertThat(lottoGame.makeLottos().count()).isEqualTo(5);
     }
 }

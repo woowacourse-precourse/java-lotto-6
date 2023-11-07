@@ -2,6 +2,7 @@ package lotto.core;
 
 import lotto.util.LottoConst;
 import lotto.util.RandomNumGenerator;
+import lotto.util.Rank;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,11 +13,7 @@ public class LottoGame {
     private int numOfLotto;
     private Lottos lottos;
     private List<Integer> winningNumbers;
-
-    public LottoGame(int numOfPurchase) {
-        this.numOfLotto = numOfPurchase;
-        this.lottos = makeLottos();
-    }
+    private int bonusNumber;
 
     public Lottos issueLottos() {
         return this.lottos;
@@ -47,7 +44,16 @@ public class LottoGame {
         return num;
     }
 
+    public void setNumOfLotto(int numOfPurchase) {
+        this.numOfLotto = numOfPurchase;
+    }
+
+
     public void setWinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;
+    }
+
+    public void setBonusNumber(int bonusNumber) {
+        this.bonusNumber = bonusNumber;
     }
 }

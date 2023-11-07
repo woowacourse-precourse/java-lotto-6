@@ -14,6 +14,8 @@ public class Application {
         int bonusNumber = inputBonusNumber(winningNumbers);
         Map<WinningRanking, Integer> winningStatistics = lotteries.getWinningStatistics(winningNumbers, bonusNumber);
         Output.printWinningStatistics(winningStatistics);
+        String rateOfReturn = Output.getRateOfReturn(winningStatistics, purchaseAmount);
+        Output.printRateOfReturn(rateOfReturn);
     }
 
     private static int inputBonusNumber(Lotto winningNumbers) {

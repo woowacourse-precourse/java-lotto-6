@@ -21,6 +21,7 @@ public class WinningNumber {
         validateCommaAtBothEndsForInput(input);
         String[] numbers = input.split(COMMA);
         validateNumbersCount(numbers);
+        validateDuplicated(numbers);
         winningNumbers = Arrays.stream(numbers).map(LottoNumber::newInstance).toList();
     }
 
@@ -28,6 +29,14 @@ public class WinningNumber {
         return new WinningNumber(input);
     }
 
+
+
+    private void validateDuplicated(String[] numbers) {
+        int count = (int) Arrays.stream(numbers).distinct().count();
+        if (count != 6) {
+            throw new IllegalArgumentException(ERROR_NO_INPUT_DUPLICATED);
+        }
+    }
 
     private void validateCommaAtBothEndsForInput(String input) {
         if (startsWithComma(input) || endsWithComma(input)) {

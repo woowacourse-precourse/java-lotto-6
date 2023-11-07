@@ -12,11 +12,27 @@ public class Application {
         final String START = "구입금액을 입력해 주세요.";
         final String WIN_LOTTO_NUMBER = "당첨 번호를 입력해 주세요.";
         final String WIN_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-        System.out.println( START );
-        String price = Console.readLine();
 
+        boolean isContinue = false;
         User user = new User();
-        user.validateInputPrice( price );
+
+        String price = "";
+
+        while( !isContinue ) {
+
+            System.out.println( START );
+            price = Console.readLine();
+
+            try{
+
+                user.validateInputPrice( price );
+                isContinue = true;
+            } catch ( IllegalArgumentException e ) {
+
+                System.err.println("[ERROR] 로또 구입 금액 에러");
+            }
+        }
+
 
         int lottoNum = user.lottoNumber( price );
         final String BUY_LOTTO = "\n" + lottoNum + "개를 구매했습니다.";
@@ -26,16 +42,58 @@ public class Application {
         user.printUserLotto( userLotto );
 
         List<Integer> wonLottoNumber = new ArrayList<>();
-        System.out.println( "\n" + WIN_LOTTO_NUMBER );
-        String winNumber = Console.readLine();
-
         Lotto lotto = new Lotto();
-        lotto.validateLottoNumber( winNumber );
 
-        System.out.println( "\n" + WIN_BONUS_NUMBER );
-        String bonusNumber = Console.readLine();
+        isContinue = false;
+        while( !isContinue ){
+
+            System.out.println( "\n" + WIN_LOTTO_NUMBER );
+            String winNumber = Console.readLine();
+
+            try{
+
+                lotto.validateLottoNumber( winNumber );
+
+                List<String> inputLotto = List.of( winNumber.split(",", -1) );
+
+                for ( String lottoNumber : inputLotto ) {
+
+                    int number = Integer.parseInt( lottoNumber );
+
+                    wonLottoNumber.add(number);
+                }
+
+                isContinue = true;
+
+            } catch ( IllegalArgumentException e ) {
+
+                System.err.println( e.getMessage() );
+            }
 
 
 
+
+
+        }
+
+        isContinue = false;
+        while( !isContinue ) {
+
+            System.out.println( "\n" + WIN_BONUS_NUMBER );
+            String bonusNumber = Console.readLine();
+
+            try {
+
+                lotto.validateBonusNumber( bonusNumber, wonLottoNumber );
+                wonLottoNumber.add( Integer.parseInt( bonusNumber ));
+                isContinue = true;
+
+            } catch ( IllegalArgumentException e ) {
+
+                System.err.println( e.getMessage() );
+            }
+        }
+
+        //TODO 결과 출력
     }
 }

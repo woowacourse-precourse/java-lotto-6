@@ -21,14 +21,22 @@ public class Lotto {
         }
     }
 
+    public void validateBonusNumber( String number, List<Integer> lotto ) {
+
+        this.checkNameValid( number );
+        this.checkNumberRange( number );
+        this.checkIsEmpty( number );
+        this.checkIsDuplicateBonusWithLotto( number, lotto );
+    }
+
     public void validateLottoNumber ( String number ) {
         List<String> lotto = List.of( number.split(",", -1) );
 
-        this.checkNameValid( number );
         this.checkLottoNumberCount( lotto );
 
         for ( String lottoNumber : lotto ) {
 
+            this.checkNameValid( lottoNumber );
             this.checkNumberRange( lottoNumber );
             this.checkIsEmpty( lottoNumber );
         }
@@ -69,6 +77,16 @@ public class Lotto {
 
         if ( originSize != removeDuplicate ) {
             throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 존재할 수 없습니다.");
+        }
+    }
+
+    private void checkIsDuplicateBonusWithLotto( String bonus, List<Integer> lotto ) {
+
+        for ( Integer num : lotto ) {
+            if ( num.equals( Integer.parseInt( bonus ) ) ) {
+
+                throw new IllegalArgumentException("[ERROR] 중복되는 숫자가 존재할 수 없습니다.");
+            }
         }
     }
 

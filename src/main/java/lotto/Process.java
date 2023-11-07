@@ -69,7 +69,7 @@ public class Process {
         float rateOfReturn;
 
         for(WinningRankPrize rank : WinningRankPrize.values()){
-            totalPrizeAmount += Integer.parseInt(rank.getPrizeAmount()) * winRecordBoard.get(rank.getRank());
+            totalPrizeAmount += Integer.parseInt(rank.getPrizeAmount().replace(",", "")) * winRecordBoard.get(rank.getRank());
         }
 
         rateOfReturn = (totalPrizeAmount / purchaseAmount);

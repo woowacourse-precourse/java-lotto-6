@@ -13,4 +13,11 @@ public class PurchasedLottosTest {
         assertThat(PurchasedLottos.from(Money.from(5000)))
                 .isInstanceOf(PurchasedLottos.class);
     }
+
+    @DisplayName("구매 개수")
+    @Test
+    void sizeOfPurchasedLottos() {
+        assertThat(PurchasedLottos.from(Money.from(6000)).getSize())
+                .isEqualTo(6);
+    }
 }

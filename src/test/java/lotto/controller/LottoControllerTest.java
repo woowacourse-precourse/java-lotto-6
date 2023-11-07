@@ -2,6 +2,7 @@ package lotto.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -30,11 +31,6 @@ class LottoControllerTest {
         Lotto lotto3 = new Lotto(Arrays.asList(1, 2, 3, 8, 9, 10));
         List<Lotto> lottos = Arrays.asList(lotto1, lotto2, lotto3);
         FixedLottosGenerator fixedLottosGenerator = new FixedLottosGenerator(lottos);
-        String input = "30000\n" +
-                "1,2,3,4,5,6\n" +
-                "7\n";
-        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        System.setIn(inputStream);
         lottoController = new LottoController(fixedLottosGenerator);
     }
 
@@ -42,11 +38,17 @@ class LottoControllerTest {
     void tearDown() {
         System.setOut(originalOut);
         System.setIn(originalIn);
+        Console.close();
     }
 
     @DisplayName("기능테스트를한다.")
     @Test
     void testRun() {
+        String input = "30000\n" +
+                "1,2,3,4,5,6\n" +
+                "7\n";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
         String expectedOutput = "구입금액을 입력해 주세요.\n\n" +
                 "3개를 구매했습니다.\n" +
                 "[1, 2, 3, 4, 5, 6]\n" +

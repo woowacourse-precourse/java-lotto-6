@@ -1,7 +1,18 @@
 package lotto.domain.ranking;
 
-import static lotto.domain.constant.LottoConstant.*;
-import static lotto.domain.constant.RankingConstant.*;
+import static lotto.domain.constant.LottoConstant.LOTTO_NUMBERS_SIZE;
+import static lotto.domain.constant.RankingConstant.FIFTH_RANKING_NUMBER_OF_MATCHES;
+import static lotto.domain.constant.RankingConstant.FIFTH_RANKING_PRIZE;
+import static lotto.domain.constant.RankingConstant.FIRST_RANKING_NUMBER_OF_MATCHES;
+import static lotto.domain.constant.RankingConstant.FIRST_RANKING_PRIZE;
+import static lotto.domain.constant.RankingConstant.FOURTH_RANKING_NUMBER_OF_MATCHES;
+import static lotto.domain.constant.RankingConstant.FOURTH_RANKING_PRIZE;
+import static lotto.domain.constant.RankingConstant.SECOND_RANKING_NUMBER_OF_MATCHES;
+import static lotto.domain.constant.RankingConstant.SECOND_RANKING_PRIZE;
+import static lotto.domain.constant.RankingConstant.THIRD_RANKING_NUMBER_OF_MATCHES;
+import static lotto.domain.constant.RankingConstant.THIRD_RANKING_PRIZE;
+import static lotto.domain.constant.RankingConstant.UNRANKED_NUMBER_OF_MATCHES_LIMIT;
+import static lotto.domain.constant.RankingConstant.UNRANKED_PRIZE;
 
 import java.util.Arrays;
 import java.util.function.BiPredicate;

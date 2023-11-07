@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class Lotto {
@@ -11,7 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = Objects.requireNonNull(numbers);
     }
 
     public static Lotto copyOf(Lotto lotto) {
@@ -34,17 +35,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        validateNonNull(numbers);
         validateSize(numbers);
         validateUniqueNumbers(numbers);
         validateNumbersInRange(numbers);
     }
 
-    private static void validateNonNull(List<Integer> numbers) {
-        if (numbers == null) {
-            throw new IllegalArgumentException();
-        }
-    }
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {

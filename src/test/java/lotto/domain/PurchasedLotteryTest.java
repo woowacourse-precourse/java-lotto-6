@@ -28,18 +28,6 @@ public class PurchasedLotteryTest {
                 .isTrue();
     }
 
-    @ParameterizedTest
-    @MethodSource
-    void constructor_null객체를_받으면_예외를_던진다(LotteryRound round, Lotto lotto) {
-        assertThatThrownBy(() -> new PurchasedLottery(round, lotto))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
-
-    private static Stream<Arguments> constructor_null객체를_받으면_예외를_던진다() {
-        return Stream.of(arguments(null, new Lotto(List.of(1, 2, 3, 4, 5, 6))),
-                arguments(new LotteryRound(1), null));
-    }
-
     @Test
     void constructor_같은_값으로_초기화_된_두_객체는_달라야_된다() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

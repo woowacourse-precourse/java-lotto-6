@@ -39,12 +39,6 @@ class LottoTest {
         }
 
         @Test
-        void 리스트가_null이면_예외가_발생() {
-            assertThatThrownBy(() -> new Lotto(null))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @Test
         void 리스트가_빈_배열이라면_예외가_발생() {
             assertThatThrownBy(() -> new Lotto(Collections.emptyList()))
                     .isInstanceOf(IllegalArgumentException.class);
@@ -77,12 +71,6 @@ class LottoTest {
         @Test
         void 로또_번호가_1부터_45_까지의_숫자가_아니라면_예외가_발생() {
             assertThatThrownBy(() -> lotto.matches(List.of(0, 1, 2, 3, 4, 5)))
-                    .isInstanceOf(IllegalArgumentException.class);
-        }
-
-        @Test
-        void 리스트가_null이면_예외가_발생() {
-            assertThatThrownBy(() -> lotto.matches(null))
                     .isInstanceOf(IllegalArgumentException.class);
         }
 

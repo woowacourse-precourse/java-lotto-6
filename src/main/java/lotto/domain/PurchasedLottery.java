@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 public class PurchasedLottery {
     private final Lotto lotto;
@@ -11,8 +12,8 @@ public class PurchasedLottery {
     }
 
     public PurchasedLottery(LotteryRound round, Lotto lotto) {
-        this.round = round;
-        this.lotto = lotto;
+        this.round = Objects.requireNonNull(round);
+        this.lotto = Objects.requireNonNull(lotto);
     }
 
     public boolean isEqualRound(LotteryRound otherRound) {

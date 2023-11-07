@@ -12,6 +12,7 @@ import static lotto.domain.enums.ConsoleMessage.TOTAL_RETURN;
 import java.math.BigDecimal;
 import java.util.List;
 import lotto.domain.RankingResult;
+import lotto.exception.LottoGameException;
 
 public class OutputView {
 
@@ -52,7 +53,7 @@ public class OutputView {
         println(format(TOTAL_RETURN.getMessage(), profitability.toPlainString()));
     }
 
-    public static void printErrorMessage(final IllegalArgumentException exception) {
+    public static void printErrorMessage(final LottoGameException exception) {
         System.out.println(exception.getMessage());
     }
 

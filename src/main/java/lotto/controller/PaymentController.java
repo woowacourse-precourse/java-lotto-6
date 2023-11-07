@@ -4,6 +4,7 @@ import static lotto.view.OutputView.printEnterPurchaseAmount;
 import static lotto.view.OutputView.printErrorMessage;
 
 import lotto.domain.Payment;
+import lotto.exception.LottoGameException;
 import lotto.view.InputView;
 
 public class PaymentController {
@@ -17,7 +18,7 @@ public class PaymentController {
         try {
             final String payment = InputView.readLine();
             return Payment.from(payment);
-        } catch (IllegalArgumentException exception) {
+        } catch (LottoGameException exception) {
             printErrorMessage(exception);
             return repeatUntilReceivePayment();
         }

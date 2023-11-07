@@ -66,7 +66,7 @@ public class Lotto {
 
     private void validateDuplicate(final List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException(DUPLICATE_NUMBER_ERROR.getMessage());
+            throw LottoGameException.from(DUPLICATE_NUMBER_ERROR);
         }
     }
 

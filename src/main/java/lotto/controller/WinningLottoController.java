@@ -9,6 +9,7 @@ import static lotto.view.OutputView.printErrorMessage;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.WinningLotto;
+import lotto.exception.LottoGameException;
 import lotto.view.InputView;
 
 public class WinningLottoController {
@@ -17,7 +18,7 @@ public class WinningLottoController {
         try {
             final Lotto winningNumbers = receiveWinningNumbers();
             return receiveWinningLottoWithBonusNumber(winningNumbers);
-        } catch (IllegalArgumentException exception) {
+        } catch (LottoGameException exception) {
             printErrorMessage(exception);
             return receiveWinningLotto();
         }
@@ -32,7 +33,7 @@ public class WinningLottoController {
         try {
             final Integer bonusNumber = repeatUntilReceiveBonusNumber();
             return WinningLotto.of(winningNumbers, bonusNumber);
-        } catch (IllegalArgumentException exception) {
+        } catch (LottoGameException exception) {
             printErrorMessage(exception);
             return repeatUntilReceiveWinningLotto(winningNumbers);
         }
@@ -42,7 +43,7 @@ public class WinningLottoController {
         try {
             final String input = InputView.readLine();
             return convertToInt(input);
-        } catch (IllegalArgumentException exception) {
+        } catch (LottoGameException exception) {
             printErrorMessage(exception);
             return repeatUntilReceiveBonusNumber();
         }
@@ -58,7 +59,7 @@ public class WinningLottoController {
             final String input = InputView.readLine();
             final List<Integer> winningNumbers = splitBySeparator(input);
             return new Lotto(winningNumbers);
-        } catch (IllegalArgumentException exception) {
+        } catch (LottoGameException exception) {
             printErrorMessage(exception);
             return repeatUntilReceiveWinningNumbers();
         }

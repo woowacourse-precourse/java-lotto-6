@@ -52,7 +52,7 @@ class LottoStatisticsTest {
         @ParameterizedTest
         @MethodSource("provideLottoStatisticsAndResult")
         void checkPrize(LottoStatistics lottoStatistics, LottoRank lottoRank) {
-            assertEquals(lottoStatistics.calculateIncome(), LottoRank.NOTHING.getPrize());
+            assertEquals(lottoStatistics.calculateIncome(), lottoRank.getPrize());
         }
 
         private static Stream<Arguments> provideLottoStatisticsAndResult() {

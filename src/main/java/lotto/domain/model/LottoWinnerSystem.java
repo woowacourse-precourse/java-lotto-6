@@ -27,9 +27,6 @@ public class LottoWinnerSystem {
     private static int fourth;
     private static int fifth;
 
-    private List<Integer> winNumbers;
-    private List<Integer> bonusNumber;
-
     public LottoWinnerSystem() {
         this.first = 0;
         this.second = 0;
@@ -47,7 +44,6 @@ public class LottoWinnerSystem {
             isValidLength(numbers, WINNER_NUMBER_COUNT);
             isDistinct(numbers);
             isValidRange(numbers);
-            this.winNumbers = numbers;
             return numbers;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());
@@ -63,7 +59,6 @@ public class LottoWinnerSystem {
             isValidLength(numbers, BONUS_NUMBER_COUNT);
             isValidRange(numbers);
             isContainWinNumbers(winNumbers, numbers);
-            this.bonusNumber = numbers;
             return numbers;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_TYPE_INPUT.getErrorMessage());

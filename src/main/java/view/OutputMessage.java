@@ -14,7 +14,7 @@ public class OutputMessage {
     public static final String SPACE = " ";
 
     public static void moneyToNumberPrint(int number){
-        System.out.println(number + "" + TextType.PRICE_TO_NUMBER);
+        System.out.println(ENTER + number + "" + TextType.PRICE_TO_NUMBER.getText());
     }
 
 
@@ -30,4 +30,5 @@ public class OutputMessage {
         }
         System.out.println(lottoNumberBuilder);
     }
+
 }

@@ -12,7 +12,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != Constant.LOTTO_NUMBER_AMOUNT) {
             String errorMessage = Constant.ERROR_PREFIX + "6개의 번호를 입력하지 않으셨습니다.";
             throw new IllegalArgumentException(errorMessage);
         }

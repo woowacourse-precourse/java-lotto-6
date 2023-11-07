@@ -29,6 +29,8 @@ public class LottoScreen {
 
     private static final String DELIMITER = ", ";
 
+    private static final int SKIP_RESULT_AMOUNT = 3;
+
     private final Reader reader;
     private final Writer writer;
 
@@ -68,7 +70,7 @@ public class LottoScreen {
 
         lottoFinalResult.getFinalResultMap()
                 .entrySet()
-                .stream().skip(3)
+                .stream().skip(SKIP_RESULT_AMOUNT)
                 .forEach((set) -> {
                     writer.writeFormat(LOTTO_RESULT_FORMAT, set.getKey().getDescription(),
                             set.getKey().getWinningAmount(), set.getValue());
@@ -77,6 +79,7 @@ public class LottoScreen {
 
     public void displayRateOfReturn(float rateOfReturn) {
         writer.writeFormat(RESULT_FORMAT, RESULT_PREFIX, rateOfReturn, RESULT_SUFFIX);
+        reader.close();
     }
 
     private List<String> convertNumbers(List<Integer> numbers) {

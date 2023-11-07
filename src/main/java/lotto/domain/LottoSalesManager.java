@@ -19,8 +19,7 @@ public class LottoSalesManager {
         int parsedAmount = 0;
         try {
             parsedAmount = Integer.parseInt(unParsedAmount);
-            //TODO error 구체화
-        } catch (Exception e) {
+        } catch (NumberFormatException  e) {
             System.out.println(e.getMessage());
             throw new IllegalArgumentException(ErrorMessages.CAN_NOT_CONVERT_TO_NUMBER.getMessage());
         }

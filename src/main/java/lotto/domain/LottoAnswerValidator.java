@@ -30,8 +30,7 @@ public class LottoAnswerValidator {
         int number;
         try {
             number = Integer.parseInt(unParsedNumber);
-            //TODO 정확한 에러 캐치
-        } catch (Exception e) {
+        } catch (NumberFormatException  e) {
             throw new IllegalArgumentException(ErrorMessages.CAN_NOT_CONVERT_TO_NUMBER.getMessage());
         }
         return number;

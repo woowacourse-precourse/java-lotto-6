@@ -4,25 +4,25 @@ import java.util.List;
 
 public class Calculator {
     private static final Long lottoPrice = 1000L;
-    public static void calculateTheRateOfReturn(List<Integer> ranks, int amount){
+    public static void calculateTheRateOfReturn(int[] ranks, int amount){
         System.out.println("당첨 통계");
         System.out.println("---");
         Long prizeMoney = calculateTotalPrizeMoney(ranks);
         Rank[] Ranks = Rank.values();
-        for(int i = ranks.size() - 1; i >=0 ; i--){
-            System.out.println(Ranks[i].getMessage()+" - "+ranks.get(i)+"개");
+        for(int i = ranks.length - 1; i >=0 ; i--){
+            System.out.println(Ranks[i].getMessage()+" - "+ranks[i]+"개");
         }
         System.out.println("총 수익률은 "+ Math.round((double)prizeMoney/amount * 100 * 10)/(double)10+"%입니다.");
     }
 
 
-    private static Long calculateTotalPrizeMoney(List<Integer> ranks) {
+    private static Long calculateTotalPrizeMoney(int[] ranks) {
         Long prizeMoney = 0L;
-        prizeMoney+=(Rank.FIRST.getPrice() * ranks.get(0));
-        prizeMoney+=(Rank.SECOND.getPrice() * ranks.get(1));
-        prizeMoney+=(Rank.THIRD.getPrice() * ranks.get(2));
-        prizeMoney+=(Rank.FOURTH.getPrice() * ranks.get(3));
-        prizeMoney+=(Rank.FIFTH.getPrice() * ranks.get(4));
+        prizeMoney+=(Rank.FIRST.getPrice() * ranks[0]);
+        prizeMoney+=(Rank.SECOND.getPrice() * ranks[1]);
+        prizeMoney+=(Rank.THIRD.getPrice() * ranks[2]);
+        prizeMoney+=(Rank.FOURTH.getPrice() * ranks[3]);
+        prizeMoney+=(Rank.FIFTH.getPrice() * ranks[4]);
         return prizeMoney;
     }
 

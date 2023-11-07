@@ -17,14 +17,17 @@ class CalculatorTest {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outputStream));
 
-        Calculator.calculateTheRateOfReturn(List.of(0,0,0,0,1), 8000);
+        Calculator.calculateTheRateOfReturn(new int[]{0, 0, 0, 0, 1}, 8000);
         String result = outputStream.toString();
-        String expected = "3개 일치 (5,000원) - 1개" + System.lineSeparator()
-                + "4개 일치 (50,000원) - 0개"+System.lineSeparator()
-                + "5개 일치 (1,500,000원) - 0개" +System.lineSeparator()
-                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개"+System.lineSeparator()
-                + "6개 일치 (2,000,000,000원) - 0개"+System.lineSeparator()
-                + "총 수익률은 62.5%입니다."+System.lineSeparator();
+        String expected =
+                "당첨 통계" + System.lineSeparator()
+                + "---" + System.lineSeparator()
+                + "3개 일치 (5,000원) - 1개" + System.lineSeparator()
+                + "4개 일치 (50,000원) - 0개" + System.lineSeparator()
+                + "5개 일치 (1,500,000원) - 0개" + System.lineSeparator()
+                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개" + System.lineSeparator()
+                + "6개 일치 (2,000,000,000원) - 0개" + System.lineSeparator()
+                + "총 수익률은 62.5%입니다." + System.lineSeparator();
         assertThat(result).isEqualTo(expected);
 
         System.setOut(standardOut);

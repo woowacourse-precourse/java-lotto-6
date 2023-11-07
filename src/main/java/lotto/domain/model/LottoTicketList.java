@@ -18,5 +18,12 @@ public class LottoTicketList {
         return this.lottoTickets.size();
     }
 
-
+    @Override
+    public String toString() {
+        StringBuilder totalOut = new StringBuilder();
+        lottoTickets.forEach(element -> totalOut
+                .append(element.toString())
+                .append("\n"));
+        return totalOut.toString();
+    }
 }

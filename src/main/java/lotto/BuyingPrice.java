@@ -1,9 +1,9 @@
 package lotto;
 
-public class Buying extends Input {
+public class BuyingPrice extends Input {
     private Integer price;
 
-    public Buying() {
+    public BuyingPrice() {
         this.price = 0;
     }
 

@@ -11,14 +11,14 @@ import java.util.stream.Collectors;
 
 public class Game {
 
-    private Buying buying;
+    private BuyingPrice buyingPrice;
     private List<Lotto> lottos;
     private Winning winning;
     private Bonus bonus;
     private Result result;
 
     public Game() {
-        this.buying = new Buying();
+        this.buyingPrice = new BuyingPrice();
         this.lottos = new ArrayList<>();
         this.winning = new Winning();
         this.bonus = new Bonus();
@@ -40,7 +40,7 @@ public class Game {
             try {
                 System.out.println("구입금액을 입력해 주세요.");
                 String readLine = Console.readLine();
-                buying.save(readLine);
+                buyingPrice.save(readLine);
                 isNotEnded = false;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -49,7 +49,7 @@ public class Game {
     }
 
     private void giveLotto() {
-        int buyingCount = buying.getBuyingCount();
+        int buyingCount = buyingPrice.getBuyingCount();
         System.out.println(buyingCount + "개를 구매했습니다.");
         for (int i = 0; i < buyingCount; i++) {
             List<Integer> uniqueNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
@@ -138,7 +138,7 @@ public class Game {
     }
 
     private double calculateRateOfReturn() {
-        double rateOfReturn = ((double) result.getWinningPrice() / buying.getPrice()) * 100;
+        double rateOfReturn = ((double) result.getWinningPrice() / buyingPrice.getPrice()) * 100;
         double refinedRateOfReturn = (double) Math.round(rateOfReturn * Math.pow(10, 2)) / Math.pow(10, 2);
         return refinedRateOfReturn;
     }

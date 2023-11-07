@@ -1,10 +1,15 @@
 package lotto.utils.validator;
 
+import java.util.Arrays;
+import java.util.List;
 import lotto.utils.message.WinningInformationExceptionMessage;
 
 public class WinningNumberValidator {
 
     private static final int MAX_LENGTH = 20;
+    private static final int MIN_WINNING_NUMBER = 1;
+    private static final int MAX_WINNING_NUMBER = 45;
+    private static final int WINNING_NUMBER_COUNT = 6;
     private static final char COMMA = ',';
 
     public static void validate(String input) {
@@ -12,6 +17,9 @@ public class WinningNumberValidator {
         validateSize(input);
         validateFirstCharacterIsComma(input);
         validateLastCharacterIsComma(input);
+
+        List<String> winningNumbers = Arrays.asList(input.split(","));
+        validateEachNumberIsNumeric(winningNumbers);
     }
 
     private static void validateBlank(String target) {
@@ -35,6 +43,24 @@ public class WinningNumberValidator {
     private static void validateLastCharacterIsComma(String target) {
         if (target.charAt(target.length() - 1) == COMMA) {
             throw new IllegalArgumentException(WinningInformationExceptionMessage.LAST_CHARACTER_COMMA.getError());
+        }
+    }
+
+    private static void validateEachNumberIsNumeric(List<String> target) {
+        boolean isNotNumericExists = target.stream()
+                .anyMatch(WinningNumberValidator::isNotNumeric);
+
+        if (isNotNumericExists) {
+            throw new IllegalArgumentException(WinningInformationExceptionMessage.NOT_NUMERIC.getError());
+        }
+    }
+
+    private static boolean isNotNumeric(String target) {
+        try {
+            Integer.parseInt(target);
+            return false;
+        } catch (NumberFormatException e) {
+            return true;
         }
     }
 }

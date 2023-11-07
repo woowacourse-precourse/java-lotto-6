@@ -15,12 +15,9 @@ import lotto.view.OutputView;
 public class Controller {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
-    LottoValidator validator = new LottoValidator();
+    private final LottoValidator validator = new LottoValidator();
     private LottoBundle lottoBundle;
     private ResultMaker resultMaker;
-
-    public Controller() {
-    }
 
     public void run() {
         buyLotto();

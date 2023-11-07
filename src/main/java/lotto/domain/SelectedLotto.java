@@ -25,7 +25,6 @@ public class SelectedLotto {
         for (int i = 0; i < numbers.size(); i++) {
             numbers.set(i, numbers.get(i).trim());
         }
-
     }
 
     private List<Integer> convertNums() {
@@ -35,7 +34,6 @@ public class SelectedLotto {
             converting.add(converted);
         }
         return List.copyOf(converting);
-
     }
 
     List<Integer> getSelectedNumbers() {

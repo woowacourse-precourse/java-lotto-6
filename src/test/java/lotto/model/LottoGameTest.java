@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +23,13 @@ class LottoGameTest {
         assertEquals(1, lottoGame.issuanceLotto(1000).size());
         assertEquals(10, lottoGame.issuanceLotto(10000).size());
         assertEquals(100, lottoGame.issuanceLotto(100000).size());
+    }
+
+    @Test
+    @DisplayName("구입 금액 음수 검증 테스트")
+    void validateNegative() {
+        assertThatThrownBy(() -> lottoGame.validateNegative(-1000)).isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("[ERROR] 음수를 입력할 수 없습니다. 1,000원 단위로 입력해 주세요.");
     }
 
     @Test

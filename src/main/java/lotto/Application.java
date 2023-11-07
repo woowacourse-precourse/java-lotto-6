@@ -145,12 +145,11 @@ class winning_number{
 }
 
 class bonus_number{
-    public static List<Integer> addBonus(List<Integer> winNumbers, String bonus){
+    public static void addBonus(List<Integer> winNumbers, String bonus){
         int bonusNumber = intgerBonus(bonus);
         checkBonusRange(bonusNumber);
         circulationForCheck(winNumbers, bonusNumber);
         winNumbers.add(bonusNumber);
-        return winNumbers;
     }
 
     public static int intgerBonus(String bonus){
@@ -179,6 +178,23 @@ class bonus_number{
             throw new IllegalArgumentException("[ERROR] 당첨 숫자 외 번호를 입력");
         }
     }
+
+    public static List<Integer> exceptionRepeatBonus(List<Integer> winningNumber){
+        while(winningNumber.size() == 6){
+            readLine(winningNumber);
+        }
+        return winningNumber;
+    }
+
+    public static void readLine(List<Integer> winningNumber){
+        try{
+            System.out.println("\n보너스 번호를 입력해 주세요.");
+            String bonusNumber = Console.readLine();
+            bonus_number.addBonus(winningNumber, bonusNumber);
+        }catch (IllegalArgumentException e) {
+            System.out.println(Error.ERROR.getError());
+        }
+    }
 }
 
 public class Application {
@@ -191,9 +207,8 @@ public class Application {
 
         List<Integer> winningNumber = winning_number.exceptionRepeatWinNumber();
 
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        String bonusNumber = Console.readLine();
-        bonus_number.addBonus(winningNumber, bonusNumber);
+        List<Integer> winPlusBonus = bonus_number.exceptionRepeatBonus(winningNumber);
+
 
     }
 }

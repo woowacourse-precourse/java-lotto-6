@@ -11,6 +11,8 @@ public class Application {
         // TODO: 프로그램 구현
         boolean validInput = false;
         int buyMoney = 0;
+
+        //구입 금액 입력
         while (!validInput) {
             try {
                 System.out.println("구입 금액을 입력해 주세요.");
@@ -21,11 +23,18 @@ public class Application {
             }
         }
         System.out.println();
+        //금액을 바탕으로 로또 개수 몇개인지 구함
         int number = moneyToLottoNumber(buyMoney);
         System.out.println(number + "개를 구매했습니다.");
+
+        //로또 객체 생성후, 랜덤 값 할당
         List<Lotto> lottoList = new ArrayList<>();
         lottoToList(number, lottoList);
+
+        //로또 출력
         printLottoNumberList(lottoList);
+
+        //당첨 번호 입력
         validInput = false;
         String winNumbersString = null;
         List<Integer> winNumbersList = null;
@@ -41,25 +50,38 @@ public class Application {
             }
         }
 
+        //보너스 번호 입력
         System.out.println("보너스 번호를 입력해 주세요.");
         int bonusNumber = getInt();
+
+        //결과 객체 생성 및 초기화
         Result[] resultList = new Result[number];
         for (int i = 0; i < resultList.length; i++) {
             resultList[i] = new Result();
         }
 
+        //당첨번호와 내가 산 로또 번호 비교
         compareLotto(lottoList, winNumbersList, resultList);
         int targetValue = 5;
         List<Integer> indexOf5 = new ArrayList<>();
-        checkIf5NumIsSame(resultList, targetValue, indexOf5);
 
+        //5개가 일치할때는 보너스 볼이 일치하는지까지 확인
+        checkIf5NumIsSame(resultList, targetValue, indexOf5);
         checkBonusNumber(indexOf5, lottoList, bonusNumber, resultList);
 
+        //몇개가 일치하는지 확인
         int[] resultNumbers = new int[5];
         fillResult(resultNumbers, resultList);
+
+        //수익률 계산
         int benefit = calculateBenefit(resultNumbers);
         double benefitRatio = (double) benefit / buyMoney * 100;
 
+        //당첨 통계 출력
+        printStatus(resultNumbers, benefitRatio);
+    }
+
+    private static void printStatus(int[] resultNumbers, double benefitRatio) {
         System.out.println("당첨 통계");
         System.out.println("3개 일치 (5,000원) - " + resultNumbers[0] + "개");
         System.out.println("4개 일치 (50,000원) - " + resultNumbers[1] + "개");

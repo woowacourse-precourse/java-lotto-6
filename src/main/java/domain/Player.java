@@ -18,4 +18,12 @@ public class Player {
         Validator.checkLottoDuplicatedNumberInput(numbers);
         Validator.checkLottoBonusNumber(numbers, bonusNumber);
     }
+
+    public Lotto getWinningLotto() {
+        return winningLotto;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

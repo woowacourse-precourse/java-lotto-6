@@ -1,12 +1,18 @@
 package lotto.service;
 
-import lotto.domain.JackpotNumber;
-import lotto.domain.Lotto;
-import lotto.domain.Result;
-import lotto.domain.Rank;
+import lotto.domain.*;
 
 public class DecideAward {
-    public static Result userResult(Result result,Lotto lotto, JackpotNumber jackpotNumber) {
+    public static Result userResult(User user, JackpotNumber jackpotNumber) {
+        Result result = new Result();
+        for(Lotto lotto: user.getLottos()) {
+            lottoResult(result,lotto,jackpotNumber);
+        }
+        System.out.println(result);
+        return result;
+    }
+
+    private static Result lottoResult(Result result, Lotto lotto, JackpotNumber jackpotNumber) {
         result.add(Rank.valueOf(countMatch(lotto, jackpotNumber), matchBonusNumber(lotto, jackpotNumber)));
         return result;
     }

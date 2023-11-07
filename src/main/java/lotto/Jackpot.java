@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static lotto.WinningNumbersValidator.*;
 
 public class Jackpot {
     private Lotto winningNumbers;
@@ -11,22 +12,34 @@ public class Jackpot {
 
     public Jackpot() {
         this.winningNumbers = askForWinningNumbers();
-        askForBonusNumber();
+        this.bonusNumber = askForBonusNumber();
+        System.out.println(winningNumbers);
+        System.out.println(bonusNumber);
     }
 
     public Lotto askForWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] numbers = readLine().split(",");
-        List<Integer> arr = new ArrayList<>();
-        for (String number : numbers) {
-            arr.add(Integer.parseInt(number.trim()));
-        }
-
-        return new Lotto(arr);
+        String input = readLine();
+        List<Integer> winningNumbers = parseInputByComma(input);
+        validateWinningNumbers(winningNumbers);
+        return new Lotto(winningNumbers);
     }
 
-    public void askForBonusNumber() {
+    public int askForBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        bonusNumber = Integer.parseInt(readLine().trim());
+        String input = readLine();
+        int parsedBonusNumber = validateNumberAndReturnInt(input);
+        validateRange(parsedBonusNumber);
+        validateBonusNumberNotInWinningNumbers(winningNumbers,parsedBonusNumber);
+        return parsedBonusNumber;
+    }
+
+    private List<Integer> parseInputByComma(String input) {
+        String[] numbersArray = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String numberStr : numbersArray) {
+            numbers.add(validateNumberAndReturnInt(numberStr));
+        }
+        return numbers;
     }
 }

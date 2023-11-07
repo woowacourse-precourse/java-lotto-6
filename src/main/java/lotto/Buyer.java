@@ -7,6 +7,7 @@ import java.util.List;
 public class Buyer {
     private LottoMachine lottoMachine;
     private List<Lotto> lottos;
+    private WinningLotto winningLotto;
 
     public Buyer(LottoMachine lottoMachine) {
         this.lottoMachine = lottoMachine;
@@ -27,7 +28,35 @@ public class Buyer {
         }
     }
 
-    public void drawWinningNumbers() {
+    public void drawWinningNumbersAndBonusNumber() {
+        Lotto lotto = drawWinningNumbers();
+        this.winningLotto = drawBonusNumber(lotto);
+    }
+
+    private Lotto drawWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                List<Integer> winningNumbers = InputProcessor.getWinningNumbers(input);
+                return new Lotto(winningNumbers);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private WinningLotto drawBonusNumber(Lotto lotto) {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String input = Console.readLine();
+                Integer bonusNumber = InputProcessor.getBonusNumber(input);
+                return new WinningLotto(lotto, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public Object getLotto() {

@@ -15,6 +15,7 @@ public class LottoGame {
     static final int MIN_LOTTO_NUMBER = 1;
     static final int MAX_LOTTO_NUMBER = 45;
     static final int NUMBER_OF_LOTTO_NUMBERS = 6;
+    static final int NUMBER_OF_LOTTO_BONUS_NUMBER = 1;
 
     public void start() {
         int ticketPurchaseAmount = getTicketPurchaseAmount();
@@ -23,13 +24,30 @@ public class LottoGame {
 
         printGeneratedLottoNumbers(ticketQuantity, tickets);
         getWinningNumbers();
+        getBonusNumber();
     }
+
+    private static void getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        List<Integer> bonusNumber = new ArrayList<>();
+
+        try {
+            bonusNumber = Arrays.asList(Integer.parseInt(Console.readLine()));
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("[ERROR] 숫자를 입력해 주세요.");
+        }
+
+        Lotto bonusLotto = new Lotto(bonusNumber, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_BONUS_NUMBER);
+        System.out.println();
+    }
+
 
     private static void getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-
         List<Integer> winningNumbers = Arrays.stream(Console.readLine().split(",")).map(Integer::parseInt).toList();
         Lotto winningTicket = new Lotto(winningNumbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, NUMBER_OF_LOTTO_NUMBERS);
+        System.out.println();
     }
 
     private static void printGeneratedLottoNumbers(int ticketQuantity, List<Lotto> tickets) {

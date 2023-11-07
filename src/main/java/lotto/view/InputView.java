@@ -3,7 +3,6 @@ package lotto.view;
 import lotto.util.InputUtil;
 
 import java.util.List;
-import java.util.Objects;
 
 public enum InputView implements CustomView<Object>{
     INPUT_MONEY{

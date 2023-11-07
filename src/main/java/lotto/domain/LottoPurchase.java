@@ -6,12 +6,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoPurchase {
     private final int LottoPurchaseCnt;
-    private final List<List<Integer>> RandomNumbers;
+    private final List<List<Integer>> randomNumbers;
 
     public LottoPurchase(int LottoPurchaseCnt){
         validate(LottoPurchaseCnt);
         this.LottoPurchaseCnt = LottoPurchaseCnt;
-        this.RandomNumbers = generateRandomNumbers();
+        this.randomNumbers = generateRandomNumbers();
     }
 
     private void validate(int LottoPurchaseCnt) {
@@ -19,13 +19,13 @@ public class LottoPurchase {
     }
 
     private List<List<Integer>> generateRandomNumbers() {
-        List<List<Integer>> RandomNumbers = new ArrayList<>();
+        List<List<Integer>> randomNumbers = new ArrayList<>();
 
         for(int i = 0; i < this.LottoPurchaseCnt; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            RandomNumbers.add(numbers);
+            randomNumbers.add(numbers);
         }
-        return RandomNumbers;
+        return randomNumbers;
 
     }
 

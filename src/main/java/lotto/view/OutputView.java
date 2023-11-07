@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.model.Lotto;
@@ -10,11 +11,25 @@ public class OutputView {
     private final static String PRINT_REVENUE = "총 수익률은 %.1f%%입니다.\n";
     private final static String PRINT_WINNING = "당첨 통계";
     private final static String PRINT_LINE = "---";
+    private final static List<String> PRINT_WINNING_COUNT = Arrays.asList(
+            "3개 일치 (5,000원) - %d개\n",
+            "4개 일치 (50,000원) - %d개\n",
+            "5개 일치 (1,500,000원) - %d개\n",
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n",
+            "6개 일치 (2,000,000,000원) - %d개\n"
+    );
 
     public void printWinning(List<Integer> winning, int purchaseMoney) {
         System.out.println(PRINT_WINNING);
         System.out.println(PRINT_LINE);
+        printWinningCount(winning);
         printRevenue(winning.get(5), purchaseMoney);
+    }
+
+    private void printWinningCount(List<Integer> winning) {
+        for(int i = 0; i < 5; i++) {
+            System.out.printf(PRINT_WINNING_COUNT.get(i), winning.get(i));
+        }
     }
 
     private void printRevenue(int winningMoney, int purchaseMoney) {

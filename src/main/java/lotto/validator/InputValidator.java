@@ -8,25 +8,25 @@ import lotto.exception.input.NullInputException;
 public class InputValidator {
     private static final String SPACE = " ";
 
-    public static void validateInputPrice(String input){
+    public static void validateInputPrice(String input) {
         validateNull(input);
         validateHasNoSpace(input);
         validateInteger(input);
     }
 
-    public static void validateInputNumbers(String input){
+    public static void validateInputNumbers(String input) {
         validateNull(input);
         validateHasNoSpace(input);
         validateIntegerNumbers(input);
     }
 
-    public static void validateBonusNumber(String input){
+    public static void validateBonusNumber(String input) {
         validateNull(input);
         validateHasNoSpace(input);
         validateInteger(input);
     }
 
-    private static void validateIntegerNumbers(String input){
+    private static void validateIntegerNumbers(String input) {
         boolean allIntegers = allIntegers(input);
         if (!allIntegers) {
             throw new NotIntegerException();
@@ -51,7 +51,7 @@ public class InputValidator {
         }
     }
 
-    private static boolean allIntegers(String input){
+    private static boolean allIntegers(String input) {
         return Arrays.stream(input.split(","))
                 .allMatch(part -> {
                     try {

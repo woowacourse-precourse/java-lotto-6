@@ -64,7 +64,5 @@ public class LottoController {
         return winningLotto;
     }
 
-    private void validateWinning(int bonusNumber) {
 
-    }
 }

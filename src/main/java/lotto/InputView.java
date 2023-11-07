@@ -12,16 +12,14 @@ public class InputView {
     //    Input.buyLottoInput   |                                                               |                                                |
 
     public static Integer buyLottoInput() {
-        System.out.println("구입금액을 입력해 주세요");
-        Integer money = Integer.parseInt(Console.readLine());
+        try {
+            System.out.println("구입금액을 입력해 주세요");
+            Integer money = Integer.parseInt(Console.readLine());
 
-        return money;
-    }
-    public static Integer moneyValidate(Integer money){
-        if(money % 1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 천원 단위의 금액만 입력가능합니다.") ;
+            return money;
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException("[ERROR] 숫자를 입력해 주세요.");
         }
-        return (money / 1000);
     }
     // 당첨번호를 입력받기
 

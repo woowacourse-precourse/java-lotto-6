@@ -2,6 +2,7 @@ package lotto;
 
 import lotto.model.Lotto;
 import lotto.model.LottoManager;
+import lotto.service.InputValidator;
 import lotto.service.LottoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -15,10 +16,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class LottoTest {
     private LottoService lottoService;
+    private InputValidator inputValidator;
 
     @BeforeEach
     void setUp() {
         lottoService = new LottoService();
+        inputValidator = new InputValidator();
     }
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -39,7 +42,7 @@ class LottoTest {
     @Test
     void purchaseAmountNotDivisibleBy1000Exception() {
         int purchaseAmount = 7777;
-        assertThatThrownBy(() -> lottoService.validatePurchaseAmount(purchaseAmount))
+        assertThatThrownBy(() -> inputValidator.validatePurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -97,6 +100,15 @@ class LottoTest {
     @Test
     void validateWinningNumbersDuplicate() {
         assertThatThrownBy(() -> new LottoManager(List.of(22, 22, 31, 40, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호 입력이 1~45 범위가 아니라면 예외가 발생한다.")
+    @Test
+    void validateBonusNumbersInRange() {
+        LottoManager lottoManager = new LottoManager(List.of(1, 2, 3, 4, 5));
+        int outOfRangeBonusNumber = 46;
+        assertThatThrownBy(() -> lottoManager.addBonusNumber(outOfRangeBonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

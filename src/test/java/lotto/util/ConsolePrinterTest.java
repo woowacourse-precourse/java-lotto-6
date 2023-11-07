@@ -33,6 +33,6 @@ class ConsolePrinterTest extends TestDefault {
     void testShowGeneralMessageNullCheck(PrintMessages message) {
         assertThatThrownBy(() -> {
             ConsolePrinter.showMessage(message);
-        }).isInstanceOf(IllegalArgumentException.class);
+        }).isInstanceOf(NullPointerException.class);
     }
 }

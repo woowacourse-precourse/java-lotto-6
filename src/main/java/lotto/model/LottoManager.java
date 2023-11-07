@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.HashMap;
 import java.util.List;
 import lotto.model.lotto.Lotto;
 import lotto.model.lotto.LottoDTO;
@@ -9,6 +8,7 @@ import lotto.model.winningLotto.WinningLotto;
 public class LottoManager {
     private Lottos lottos;
     private WinningLotto winningLotto;
+    private LottoResult lottoResult;
 
 
     public void makeLottos(int numberOfLottos, LottoGenerator lottoGenerator) {
@@ -28,7 +28,6 @@ public class LottoManager {
 
 
     public LottoResult calculateLottoResult() {
-        LottoResult lottoResult = LottoResult.of();
         List<WinningInfo> winningInfos = lottos.toLottoDTOs()
                 .stream()
                 .map(lottoDTO -> winningLotto.compare(lottoDTO))
@@ -39,4 +38,16 @@ public class LottoManager {
     }
 
 
+    public double calculateRateOfReturn(int purchaseAmount) {
+        List<WinningInfo> winningInfos = List.of(WinningInfo.THREE_MATCH, WinningInfo.FOUR_MATCH,
+                WinningInfo.FIVE_MATCH,
+                WinningInfo.FIVE_AND_BONUS_MATCH, WinningInfo.SIX_MATCH);
+
+        double winningAmount = winningInfos.stream()
+                .mapToDouble(winningInfo -> winningInfo.price * lottoResult.getCount(winningInfo))
+                .sum();
+
+
+        return winningAmount / purchaseAmount;
+    }
 }

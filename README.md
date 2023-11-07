@@ -40,7 +40,7 @@
   - 5.3 당첨 통계 출력
 
 ## 클래스 다이어그램
-![Lotto.png](..%2F..%2FDesktop%2FLotto.png)
+![Lotto.png](docs/LottoClassDiagram.png)
 
 # 미션 - 로또
 

@@ -41,6 +41,9 @@ public class Application {
 
         printStatistics(hm);
 
+        double profitRate = (double) winPrice / amount.getAmount() * 100;
+        System.out.printf("총 수익률은 %.2f%%입니다.\n", profitRate);
+
     }
 
     private static List<Integer> parseLottoNumbers(String lottoNums) { //입력 -> List<Integer>

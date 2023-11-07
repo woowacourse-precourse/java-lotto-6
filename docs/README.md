@@ -6,7 +6,6 @@
   - [x] 로또 번호에 중복된 값이 있는지 검사한다. - Lotto#validateDuplication()
 - [x] 매개변수로 들어온 장수만큼 로또를 생성한다. - Lottos#createLottos()
 - [x] 1 ~ 45까지의 중복하지 않는 난수 6개를 `List<Integer>`로 생성한다. - NumberGenerator#generateRandomNumbers()
-
 - [x] 몇개의 번호가 담청되었는지 알 수 있다. - WinnigLotto#countMatchingNumbers()
 - [x] 보너스 번호와 일치하는 번호가 있는지 검사한다. - BonusNumber#isContains()
 - [x] 당첨 번호를 맞춘 개수에 맞게 등수를 정한다. - Prize#determineRank()

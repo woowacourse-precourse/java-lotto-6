@@ -2,10 +2,13 @@ package lotto.utils;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 public class RandomNumberGeneratorTest {
 
@@ -24,5 +27,14 @@ public class RandomNumberGeneratorTest {
                 .isSorted();
 
         assertThat(numbers).allMatch(number -> number >= startNumber && number <= endNumber);
+    }
+
+    @DisplayName("랜덤 번호 생성 성능 검사 - 처리속도 확인")
+    @Test
+    @Timeout(1)
+    void create_ShouldCompleteWithinAcceptableTime() {
+        assertThatCode(() -> {
+            List<Integer> numbers = RandomNumberGenerator.create();
+        }).doesNotThrowAnyException();
     }
 }

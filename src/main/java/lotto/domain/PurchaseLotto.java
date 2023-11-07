@@ -16,7 +16,7 @@ public class PurchaseLotto {
     }
 
     private void isAvailableNumber(int purchaseAmount) {
-        if (purchaseAmount < ZERO) {
+        if (purchaseAmount <= ZERO) {
             throw new IllegalArgumentException(ErrorMessages.PREFIX.getMessage() +
                     ErrorMessages.NEGATIVE_AMOUNT.getMessage() +
                     ErrorMessages.SUFFIX.getMessage());

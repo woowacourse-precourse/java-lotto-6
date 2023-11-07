@@ -1,8 +1,6 @@
 package lotto.service;
 
-import lotto.dto.LottoAndBonusNumberDTO;
-import lotto.model.Bonus;
-import lotto.model.Lotto;
+import lotto.dto.LottoAndBonusDTO;
 import lotto.model.WinningLotto;
 import lotto.repository.WinningLottoRepository;
 
@@ -14,11 +12,12 @@ public class SelectWinningLottoServiceImpl implements SelectWinningLottoService 
     }
 
     @Override
-    public void select(LottoAndBonusNumberDTO lottoAndBonusNumberDTO) {
-        Lotto lotto = new Lotto(lottoAndBonusNumberDTO.getLottoNumbers());
-        Bonus bonus = new Bonus(lottoAndBonusNumberDTO.getBonusNumber());
+    public void select(LottoAndBonusDTO lottoAndBonusDTO) {
 
-        WinningLotto winningLotto = new WinningLotto(lotto, bonus);
+        WinningLotto winningLotto = new WinningLotto(
+                lottoAndBonusDTO.getLotto(),
+                lottoAndBonusDTO.getBonus()
+        );
 
         winningLottoRepository.save(winningLotto);
     }

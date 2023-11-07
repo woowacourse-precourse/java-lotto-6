@@ -1,7 +1,7 @@
 package lotto.service;
 
-import lotto.dto.LottoAndBonusNumberDTO;
+import lotto.dto.LottoAndBonusDTO;
 
 public interface SelectWinningLottoService {
-    public void select(LottoAndBonusNumberDTO lottoAndBonusNumberDTO);
+    public void select(LottoAndBonusDTO lottoAndBonusDTO);
 }

@@ -17,9 +17,8 @@ public class LottoManager {
     private float yield;
 
     public void run() {
-        userLotto = new UserLotto();
-        winningLotto = new WinningLotto();
-        bonusNumber = new BonusNumber();
+
+        initialize();
 
         ResultManager resultManager = new ResultManager();
         YieldManager yieldManager = new YieldManager();
@@ -28,5 +27,11 @@ public class LottoManager {
 
         OutputView.printReward(result);
         OutputView.printYield(yield);
+    }
+
+    private void initialize() {
+        userLotto = new UserLotto();
+        winningLotto = new WinningLotto();
+        bonusNumber = new BonusNumber();
     }
 }

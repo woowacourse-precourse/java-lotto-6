@@ -1,6 +1,5 @@
 package lotto.controller;
 
-import lotto.domain.Computer;
 import lotto.domain.User;
 import lotto.domain.Winner;
 import lotto.view.InputView;

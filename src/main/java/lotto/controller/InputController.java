@@ -27,6 +27,7 @@ public class InputController {
     public void getWinnerNumbersFromUser() {
         Lotto lotto = getLottoNumberFromUser();
         System.out.println(lotto.getLottoNumbers());
+        int bonusNumber = getBonusNumberFromUser(lotto);
     }
 
     public Lotto getLottoNumberFromUser() {
@@ -84,5 +85,13 @@ public class InputController {
             ErrorMessage.lottoNumberRangeException();
             throw new IllegalArgumentException();
         }
+    }
+
+    public int getBonusNumberFromUser(Lotto lotto) {
+        OutputView.askBonusNumber();
+
+        int bonusNumber = parseInt(Console.readLine());
+
+        return bonusNumber;
     }
 }

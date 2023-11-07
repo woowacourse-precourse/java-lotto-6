@@ -1,7 +1,11 @@
 package lotto.Lottery.Service;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
 import lotto.Lottery.Util.CostChecker;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LottoService {
 
@@ -44,6 +48,32 @@ public class LottoService {
 
     public void UserCostInputImpl(){
         while(getUserCostInput() == false);
+    }
+
+    /**
+     * 유저 input에 맞는 로또 생성! 여기서는 앞에서 검사를 제대로 했다면 오류가 날 가능성이 없음!
+     * 기능 1. 로또 생성 앞에서 받아온 유저 Input값을 통해서 로또 생성
+     * 기능 2. 로또 생성 프린트
+     */
+
+    // 티켓 별 정보
+    List<List<Integer>> LottoTickets = new ArrayList<>();
+    int lottoTicket;
+
+    public void generateLotto(){ // 로또 생성!
+        // user의 로또 티켓 개수
+        this.lottoTicket = (int)(this.userMoney/LOTTO_PRICE);
+
+        for(int i = 0; i < lottoTicket; i++){
+            LottoTickets.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        }
+    }
+
+    public void printOutTickets(){
+        System.out.println(lottoTicket + "개를 구매했습니다.");
+        for(List<Integer> lotto :LottoTickets)
+            System.out.println(lotto);
+        System.out.println();
     }
 
 

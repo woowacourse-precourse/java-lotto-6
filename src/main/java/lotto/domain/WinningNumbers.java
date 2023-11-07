@@ -18,7 +18,7 @@ public class WinningNumbers {
     }
 
     public Rank compareLotto(Lotto userLotto) {
-        return Rank.of(checkCollectCount(userLotto), checkBonusNumber(userLotto));
+        return Rank.decideRank(checkCollectCount(userLotto), checkBonusNumber(userLotto));
     }
 
     private void validateBonusNumber(Lotto lotto, int bonusNumber) throws IllegalArgumentException{
@@ -45,14 +45,4 @@ public class WinningNumbers {
     private boolean checkBonusNumber(Lotto userLotto) {
         return userLotto.hasNumber(bonusNumber);
     }
-
-    private boolean checkBonusNumber(List<Integer> userNumber, int bonusNumber) {
-        return userNumber.contains(bonusNumber);
-    }
-
-    public int getBonusNumber(){
-        return bonusNumber;
-    }
-
-
 }

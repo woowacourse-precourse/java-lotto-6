@@ -20,7 +20,7 @@ public enum Rank {
         this.prize = prize;
     }
 
-    public static Rank of(int count, boolean isBonus) {
+    public static Rank decideRank(int count, boolean isBonus) {
         if (isBonus && count == 5) {
             return Rank.SECOND;
         }

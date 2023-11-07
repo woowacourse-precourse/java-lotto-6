@@ -9,6 +9,12 @@ public class LottoPurchase {
 
     private int lottoPurchaseCount;
 
+    public static void validateInputTypeNumeric(String inputNumber) {
+        if (!REGEX_NUMERIC.matcher(inputNumber).matches()) {
+            throw new IllegalArgumentException("ERROR_NUMERIC_TYPE");
+        }
+    }
+
     private int getLottoPurchaseCount(int totalPrice) {
         return totalPrice / LOTTO_PER_PRICE;
     }
@@ -16,11 +22,5 @@ public class LottoPurchase {
     private void setLottoPurchaseCount(String inputNumber) {
         int totalPrice = Integer.parseInt(inputNumber);
         this.lottoPurchaseCount = getLottoPurchaseCount(totalPrice);
-    }
-
-    private void validateInputTypeNumeric(String inputNumber) {
-        if (!REGEX_NUMERIC.matcher(inputNumber).matches()) {
-            throw new IllegalArgumentException("ERROR_NUMERIC_TYPE");
-        }
     }
 }

@@ -5,12 +5,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Inputter {
+import static lotto.CommonUnits.*;
 
-    private static final int MONEY_UNIT = 1000;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int NUMBERS_OF_LOTTO = 6;
+public class Inputter {
     private static Inputter inputter;
 
     private Inputter() {}

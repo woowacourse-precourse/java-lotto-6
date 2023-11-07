@@ -12,7 +12,6 @@ import static lotto.controller.input.InputHandler.*;
 import static lotto.exception.BonusException.bonusException;
 import static lotto.exception.PriceException.checkPriceException;
 import static lotto.exception.WinningException.winningException;
-import static lotto.exception.WinningException.winningNumberCommaException;
 import static lotto.view.Message.*;
 
 public class createObject {

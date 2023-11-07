@@ -1,8 +1,22 @@
-![header](https://capsule-render.vercel.app/api?type=wave&color=gradient&height=300&section=header&text=Hi%20there!&fontSize=60)
+[![header](https://capsule-render.vercel.app/api?type=rounded&color=auto&animation=blink&height=170&section=header&text=프리코스%203주차%20미션%20-로또🎰&fontSize=55&fontAlign=50&fontAlignY=50)](https://github.com/haruday97/java-lotto-6/tree/haruday97/docs)
 
 # 기능 명세
 
 ## 목차
+
+- [Flowchart](#Flowchart)
+- [기능 목록](#기능-목록)
+- [Gitgraph](#Gitgraph)
+- [프로젝트 구조](#프로젝트-구조)
+- [예외](#예외)
+- [소감](#소감)
+    - [캐싱](#캐싱)
+    - [방어적 복사](#방어적-복사)
+    - [아쉬운 점](#아쉬운-점)
+        - [try catch문의 활용](#try-catch문의-활용)
+        - [enum을 이용한 분기처리](#enum을-이용한-분기처리)
+    - [오버 엔지니어링에 대한 고찰](#오버-엔지니어링에-대한-고찰)
+        - [결론](#결론)
 
 ## Flowchart
 
@@ -44,11 +58,44 @@ graph
 ## Gitgraph
 
 ```mermaid
-   gitGraph
+%%{init: { 'logLevel': 'debug', 'theme': 'forest', 'gitGraph': {'rotateCommitLabel': false}} }%%
+gitGraph
     commit id: "666a090"
     branch haruday97
     commit id: "bcc0306"
-    commit id: "custom"
+    commit id: "2f4ee9a"
+    commit id: "a990c65"
+    commit id: "f5c0a2b"
+    commit id: "47f2005"
+    commit id: "60f9629"
+    commit id: "f219232" type: HIGHLIGHT tag: "기능구현 종료"
+    commit id: "b030c80"
+    commit id: "1958854"
+    commit id: "8d56055"
+    commit id: "70d8fc8"
+    commit id: "a328f12"
+    commit id: "c7bcb4a"
+    commit id: "96f5035"
+    commit id: "bb810bd"
+    commit id: "fa5828a"
+    commit id: "fabe601"
+    commit id: "130a86b"
+    commit id: "3dad2b9"
+    commit id: "ce76b7a" type: HIGHLIGHT tag: "유효성검증 기능 추가 종료"
+    commit id: "4662e67"
+    commit id: "b54cf48"
+    commit id: "84f3861"
+    commit id: "be8b098"
+    commit id: "7fb74b1" type: HIGHLIGHT tag: "방어적 복사 추가"
+    commit id: "923de01"
+    commit id: "ca43b99"
+    commit id: "5bcece4"
+    commit id: "3708fc1"
+    commit id: "d7043cb"
+    commit id: "b81806a"
+    commit id: "f1c0d62"
+    commit id: "4bf89d4"
+    commit id: "76d9529"
     checkout main
 ```
 
@@ -61,6 +108,8 @@ src
   │      └─lotto
   │          ├─config
   │          │   └─LottoConfig
+  │          ├─constants
+  │          │   └─Prize
   │          ├─controller
   │          │   └─LottoController
   │          ├─domain
@@ -70,7 +119,6 @@ src
   │          │   ├──LottoResult
   │          │   ├──Lottos
   │          │   ├──Money
-  │          │   ├──Prize
   │          │   ├──Quantity
   │          │   ├──RandomLottoGenerator
   │          │   └──WinningLotto
@@ -78,12 +126,23 @@ src
   │          │   ├──Errors
   │          │   ├──FormatException
   │          │   └──LottoException
-  │          └─view
-  │              ├──InputView
-  │              └──OutputView
+  │          ├─view
+  │          │   ├──InputView
+  │          │   └──OutputView
+  │          └─Application                
   └─test
-      └─java
-          └─lotto
+     └─java
+         └─lotto
+             ├─domain
+             │   ├──BonusNumberTest
+             │   ├──LottoResultTest
+             │   ├──LottosTest
+             │   ├──LottoTest
+             │   ├──MoneyTest
+             │   ├──QuantityTest
+             │   ├──SpecificLottoGenerator
+             │   └──WinningLottoTest
+             └─ApplicationTest
 ```
 
 ## 예외
@@ -116,7 +175,7 @@ src
 현재 코드의 구조는 로또를 생성하면서 랜덤 번호를 추출할 때 Randoms의 pickUniqueNumbersInRange메서드를 매번 호출한다.  
 pickUniqueNumbersInRange메서드의 내부에서 다시 최소값에서 최대값까지 반복문을 순환해 list를 만든다음 이를 섞고 0번째 인덱스부터 당첨번호의 갯수만큼의 크기의 list를 반환하는 것으로
 보인다.  
-이 방식으로는 성능적으로 많은 비용이 들것같다, 대신 시작과 동시에 1부터 45의 숫자를 캐싱한 다음, 범위 내의 숫자 중에서 랜덤한 숫자를 반환하는 식으로 캐싱을 할 수 있을것 같았다.  
+이 방식으로는 성능적으로 많은 비용이 예상된다, 대신 시작과 동시에 1부터 45의 숫자를 캐싱한 다음, 범위 내의 숫자 중에서 랜덤한 숫자를 반환하는 식으로 캐싱을 할 수 있을것 같았다.  
 그러나 `Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용한다.` 라는 제약조건이 있어 적용하지 못했다.
 
 ### 방어적 복사
@@ -196,7 +255,7 @@ List.of를 통해 생성된 리스트는 불변객체인데, 이를 정렬하려
     - 사본은 원본과 다른 객체를 참조하지만 객체 내부의 객체는 원본과 동일한 주소를 참조한다.
     - 비유하자면 금붕어를 A어항에서 B어항 옮기는거에 비유할 수 있겠다, 컬렉션을 복사하는 경우 유용하다.
 
-왜 방어적 복사라고 부르나? -> 추측컨대 데이터 무결성을 보호하기 위해 방어라는 워딩을 사용하지 않았나 싶다.
+왜 방어적 복사라고 부르나? -> 추측컨대 데이터 무결성을 보호한다는 의미로 방어라는 워딩을 사용하지 않았나 싶다.
 
 ### 아쉬운 점
 
@@ -294,9 +353,9 @@ List.of를 통해 생성된 리스트는 불변객체인데, 이를 정렬하려
     }
 ```
 
-이번 과제에서 가장 아쉽고 후회스러운 부분은 이 부분이 아닐까 싶다.
+이번 과제에서 가장 아쉽고 후회스러운 부분은 이 부분이 아닐까 싶은데 이를 개선하는법을 공부해봐야겠다.
 
-#### enum을 이용한 if문 처리
+#### enum을 이용한 분기처리
 
 enum을 이용해 if문을 없애지 못했다.  
 분기할 조건이 많아질수록 if문이 많아지므로 아래 같은 코드는 한계가 있다고 지난 회차 과제부터 느꼈다.
@@ -369,5 +428,5 @@ enum을 활용한다면 대충 아래같은 그림으로 예외를 처리할 수
 나는 `변경될 가능성이 높거나 예견된 부분`에 대해서만 고려하기로 결정했다.  
 주어진 과제의 요구사항을 읽고 판단했을 때 그나마 해당되는 부분은 뽑는 번호의 범위, 뽑는 공의 갯수 정도로만 국한했다.  
 설계는 확장성을 얻으면 가독성을 희생하며, 가독성을 얻으면 확장성을 희생하는 등가교환에서 결코 자유로워질 수 없다.  
-확장성을 고려한 설계를 지향하되 오버 엔지니어링에 대한 경계는 잊지 않길 다짐한다.  
-![footer](https://capsule-render.vercel.app/api?type=wave&color=gradient&height=300&section=footer&text=Thank%20you%20for%20reading!&fontSize=60)       
+확장성을 고려한 설계를 지향하되 오버 엔지니어링에 대해 경계하자.
+![footer](https://capsule-render.vercel.app/api?type=rounded&color=gradient&height=110&section=footer&text=Thank%20you%20for%20reading!&fontSize=60)       

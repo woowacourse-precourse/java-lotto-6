@@ -18,11 +18,11 @@ public class LottoGame {
     private Input lottoInput = new Input();
     private List<Lotto> purchasedLotto;
     private final List<Integer> lottoAmountByRank;
-    private Integer winningAmount;
+    private int[] winningCount;
     public LottoGame() {
         purchasedLotto = new ArrayList<>();
-        winningAmount = ZERO;
         lottoAmountByRank = Arrays.asList(ZERO, ZERO, ZERO, FIVE_RANK, FOUR_RANK, THREE_RANK, ONE_RANK, TWO_RANK);
+        winningCount = new int[7];
     }
 
     public void gameStart(){
@@ -34,7 +34,7 @@ public class LottoGame {
         buyLotto(purchaseAmount.get(FIRST));
         winningNumber = lottoInput.input(InputType.WINNING_NUMBERS);
         bonusNumber = lottoInput.input(InputType.BONUS_NUMBER);
-        calcWinningAmount(winningNumber, bonusNumber.get(FIRST));
+        calcWinningCount(winningNumber, bonusNumber.get(FIRST));
     }
 
     public void buyLotto(Integer purchaseAmount){
@@ -47,9 +47,9 @@ public class LottoGame {
         Print.printPurchasedLotto(purchasedLotto);
     }
 
-    public void calcWinningAmount(List<Integer> winningNumber, Integer bonusNumber){
+    public void calcWinningCount(List<Integer> winningNumber, Integer bonusNumber){
         for (Lotto lotto : purchasedLotto){
-            winningAmount += lottoAmountByRank.get(lotto.calcMatchNumber(winningNumber, bonusNumber));
+            winningCount[lotto.calcMatchNumber(winningNumber, bonusNumber)]++;
         }
     }
 }

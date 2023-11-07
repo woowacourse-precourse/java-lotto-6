@@ -21,33 +21,30 @@ public class GameController {
     }
 
     public void run() {
-
         money = inputView.getMoneyInput();
         lottoManager.buyAutoLottos(money.requestLottoCount());
-        OutputView.printEmpty();
         showBought();
 
-        OutputView.printEmpty();
         WinningLotto winningLotto = inputView.getWinningInput();
         OutputView.printEmpty();
-
         Bonus bonus = inputView.getBonusInput();
 
         lottoManager.createWinning(winningLotto, bonus);
-        OutputView.printEmpty();
         showResult();
-
     }
 
     private void showBought() {
+        OutputView.printEmpty();
         OutputView.printAutoLottos(lottoManager.getAutoLottos(), lottoManager.getLottoCount());
+        OutputView.printEmpty();
     }
 
     private void showResult() {
-        List<MatchNumber> matchs = lottoManager.judgeMatchNumberByLotto();
-        List<Integer> matchCount = lottoManager.totalMatchNumber(matchs);
-        OutputView.printResultCount(matchCount);
-        double rateOfReturn = LottoCaclulator.calculateRateOfReturn(matchCount, money.getMoney());
+        OutputView.printEmpty();
+        List<MatchNumber> resultLottoToMatch = lottoManager.judgeMatchNumberByLotto();
+        List<Integer> countPerMatchNumber = lottoManager.totalCountOfMatchNumber(resultLottoToMatch);
+        OutputView.printResultCount(countPerMatchNumber);
+        double rateOfReturn = LottoCaclulator.calculateRateOfReturn(countPerMatchNumber, money.getMoney());
         OutputView.printRateOfResult(rateOfReturn);
     }
 

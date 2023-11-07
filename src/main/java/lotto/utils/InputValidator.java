@@ -78,7 +78,8 @@ public class InputValidator {
 
     public static String validateInt(final String input) {
         if (!IsInPattern(input, NUMBER)) {
-            throw new NumberFormatException("[ERROR] 양의 정수만 입력해주세요");
+            throw new NumberFormatException(String.format("[ERROR] 양의 정수만 입력해주세요, 번호는 '%s'로 구분",
+                    InputConstants.WINNING_DELIMITER.getConstants()));
         }
         if (!IsBoundary(input)) {
             throw new IllegalArgumentException("[ERROR] 최소 1원 이상, 1억원 미만으로 입력해주세요");

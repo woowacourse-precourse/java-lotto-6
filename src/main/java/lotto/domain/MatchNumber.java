@@ -67,7 +67,6 @@ public enum MatchNumber {
                     .findFirst()
                     .orElse(NOTHING);
         }
-        List<MatchNumber> matchNumbers = List.of(FIRST, THIRD, FOURTH, FIFTH);
         return bonusNotMatchNumbers.stream()
                 .filter(match ->
                         match.matchNumber == count)

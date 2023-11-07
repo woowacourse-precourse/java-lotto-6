@@ -5,13 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class AutoLottos {
-    private List<Lotto> lottos = new ArrayList<>();
+    private final List<Lotto> lottos = new ArrayList<>();
 
     public AutoLottos() {
-    }
-
-    public static AutoLottos from() {
-        return new AutoLottos();
     }
 
     public void createAutoLottos(int lottoCount, Generator generator) {

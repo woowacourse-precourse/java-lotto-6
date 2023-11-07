@@ -34,10 +34,10 @@ public class Lotto {
     }
 
     private static boolean isBoundary(final List<Integer> numbers) {
-        return numbers.stream().allMatch(number -> IsRangeNumber(number));
+        return numbers.stream().allMatch(number -> isRangeNumber(number));
     }
 
-    private static boolean IsRangeNumber(final int number) {
+    private static boolean isRangeNumber(final int number) {
         return LottoConstants.MIN_NUMBER.getConstants() <= number && number <= LottoConstants.MAX_NUMBER.getConstants();
 
     }

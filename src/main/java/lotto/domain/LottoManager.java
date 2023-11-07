@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoManager {
-    private AutoLottos autoLottos;
+    private AutoLottos autoLottos = new AutoLottos();
     private WinningLotto winningLotto;
     private Bonus bonus;
     private Generator generator;
@@ -19,7 +19,6 @@ public class LottoManager {
     }
 
     public void buyAutoLottos(final int lottoCount) {
-        autoLottos = AutoLottos.from();
         this.lottoCount = lottoCount;
         autoLottos.createAutoLottos(lottoCount, generator);
     }
@@ -45,7 +44,7 @@ public class LottoManager {
         return bonus.getBonus();
     }
 
-    public List<Integer> totalMatchNumber(final List<MatchNumber> matchs) {
+    public List<Integer> totalCountOfMatchNumber(final List<MatchNumber> matchs) {
         List<Integer> count = new ArrayList<>();
         for (MatchNumber match : MatchNumber.getMembers()) {
             count.add(countMatchNumber(matchs, match));

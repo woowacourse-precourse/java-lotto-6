@@ -7,8 +7,8 @@ import lotto.domain.Lotto;
 import lotto.domain.MatchNumber;
 
 public class OutputView {
-    private final static String AUTO_BUY_MESSAGE = "%d개를 구매했습니다.";
-    private final static String WINNING_COUNT_MESSAGE = "당첨 통계\n---";
+    private final static String AUTO_BUY_MESSAGE = "%d개를 구매했습니다.\n";
+    private final static String WINNING_COUNT_MESSAGE = "당첨 통계\n---\n";
     private final static String RATEOFRESULT_START_MESSAGE = "총 수익률은 %.1f";
     private final static String RATEOFRESULT_END_MESSAGE = "%입니다.";
 
@@ -19,8 +19,6 @@ public class OutputView {
 
     public static void printAutoLottos(final List<Lotto> autoLottos, final int lottoCount) {
         System.out.printf(String.format(AUTO_BUY_MESSAGE, lottoCount));
-        printEmpty();
-
         StringBuilder result;
         for (Lotto lotto : autoLottos) {
             result = new StringBuilder();
@@ -35,8 +33,6 @@ public class OutputView {
 
     public static void printResultCount(final List<Integer> matchCount) {
         System.out.printf(String.format(WINNING_COUNT_MESSAGE));
-        printEmpty();
-
         StringBuilder result;
         for (int i = 0; i < MatchNumber.getMembers().size(); i++) {
             MatchNumber match = MatchNumber.getMembers().get(i);

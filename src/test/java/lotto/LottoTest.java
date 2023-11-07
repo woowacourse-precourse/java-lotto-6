@@ -1,6 +1,5 @@
 package lotto;
 
-import java.io.LineNumberInputStream;
 import java.util.Arrays;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
@@ -27,9 +26,17 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호가 1~45 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void createLottoByOverRange() {
+        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
+        assertThatThrownBy(() -> new Lotto(List.of(1, 21, 36, 42, 45, 58)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("로또 번호가 오름차순으로 정렬된다.")
     @Test
-    void sortLottoNumber() {
+    void createLottoByUnsorted() {
         List<Integer> lottoTest = Arrays.asList(1, 2, 3, 4, 5, 6);
         List<Integer> lottoNumber = Arrays.asList(6, 1, 3, 4, 5, 2);
         Lotto lotto = new Lotto(lottoNumber);

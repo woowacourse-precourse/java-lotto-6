@@ -8,8 +8,10 @@ public enum ValidateConstants {
     WINNER_NUMBER_SIZE_ERROR("[ERROR] 당첨 번호는 6개를 입력해주세요."),
     WINNER_NUMBER_RANGE_ERROR("[ERROR] 당첨 번호는 1 ~ 45 중에서 입력해주세요."),
     WINNER_NUMBER_DUPLICATION_ERROR("[ERROR] 당첨 번호는 1 ~ 45 중에서 입력해주세요."),
-    WINNER_MIN_NUMBER(1),
-    WINNER_MAX_NUMBER(45),
+    BONUS_NUMERIC_ERROR("[ERROR] 보너스 번호는 숫자만 입력해주세요."),
+    BONUS_NUMBER_RANGE_ERROR("[ERROR] 보너스 번호는 1 ~ 45 중에서 입력해주세요."),
+    LOTTO_MIN_NUMBER(1),
+    LOTTO_MAX_NUMBER(45),
     WINNER_NUMBER_SIZE(6);
 
     private final String message;

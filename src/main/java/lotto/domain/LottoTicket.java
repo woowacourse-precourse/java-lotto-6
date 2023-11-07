@@ -6,20 +6,21 @@ import java.util.List;
 import lotto.util.constants.DomainConstants;
 
 public class LottoTicket {
-    private final List<Lotto> lottoTicket;
+    private final List<Lotto> lottos;
 
     public LottoTicket() {
-        this.lottoTicket = new ArrayList<>();
+        this.lottos = new ArrayList<>();
     }
 
-    public void createLottoTicket(int lottoCount) {
-        addLotto(lottoCount);
+    public List<Lotto> getLottos() {
+        return new ArrayList<>(this.lottos);
     }
 
-    private void addLotto(int ticketCount) {
-        for (int i = 0; i < ticketCount; i++) {
+    public void addLotto(int amount) {
+        int lottoCount = calculateLottoTicket(amount);
+        for (int i = 0; i < lottoCount; i++) {
             List<Integer> lottoNumbers = generateRandomNumbers();
-            lottoTicket.add(generateLotto(lottoNumbers));
+            lottos.add(generateLotto(lottoNumbers));
         }
     }
 
@@ -34,7 +35,7 @@ public class LottoTicket {
         return Randoms.pickUniqueNumbersInRange(startNumber, endNumber, countNumber);
     }
 
-    public List<Lotto> getLottoTicket() {
-        return new ArrayList<>(this.lottoTicket);
+    private int calculateLottoTicket(int amount) {
+        return (amount / DomainConstants.LOTTO_PRICE.getConstants());
     }
 }

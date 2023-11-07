@@ -1,96 +1,110 @@
 package lotto.controller;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import lotto.util.constants.DomainConstants;
+import lotto.domain.Amount;
+import lotto.domain.BonusNumber;
+import lotto.domain.WinnerNumbers;
 import lotto.domain.LottoTicket;
-import lotto.domain.convertor.Convertor;
-import lotto.domain.convertor.TextConvertor;
-import lotto.domain.validator.AmountValidator;
-import lotto.domain.validator.Validator;
-import lotto.domain.validator.WinnerNumberValidator;
+
 import lotto.view.input.AmountView;
+import lotto.view.input.BonusNumberView;
 import lotto.view.input.Input;
 import lotto.view.input.WinnerNumberView;
 import lotto.view.output.LottoView;
 import lotto.view.output.Output;
 
 public class LottoController {
-
-    private final LottoTicket lottoTicket;
+    private LottoTicket lottoTicket;
+    private Amount amount;
+    private BonusNumber bonusNumber;
+    private WinnerNumbers winnerNumbers;
 
     public LottoController() {
-        this.lottoTicket = new LottoTicket();
     }
 
-    public void lottoMachine() {
-        buyLotto();
-        checkWinnerNumber();
-    }
-
-    public void buyLotto() {
-        String amountInput;
-        do {
-            amountInput = inputAmount();
-        } while (validateAmount(amountInput));
-        generateLottoTicket(convertAmount(amountInput));
+    public void run() {
+        manageAmount();
+        createLottoTicket();
         displayMyLotto();
+        manageWinnerNumber();
+        manageBonusNumber();
     }
 
-    public void checkWinnerNumber() {
-        String inputWinnerNumber;
-        List<String> winnerNumber;
-        do{
-            inputWinnerNumber = inputWinningNumbers();
-            winnerNumber = winnerNumberConvert(inputWinnerNumber);
-        } while(validateWinnerNumber(winnerNumber));
+    private void manageAmount() {
+        String input;
+        do {
+            input = inputAmount();
+        } while (attemptCreateAmount(input));
     }
 
-    public String inputWinningNumbers() {
+    private String inputAmount() {
+        Input amountView = new AmountView();
+        return amountView.getInput();
+    }
+
+    private boolean attemptCreateAmount(String inputAmount) {
+        try {
+            this.amount = new Amount(inputAmount);
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
+    }
+
+    private void createLottoTicket() {
+        this.lottoTicket = new LottoTicket();
+        this.lottoTicket.addLotto(amount.getAmount());
+    }
+
+    private void displayMyLotto() {
+        Output lottoView = new LottoView(this.lottoTicket.getLottos());
+        lottoView.println();
+        lottoView.getOutput();
+    }
+
+    private void manageWinnerNumber() {
+        String input;
+        do {
+            input = inputWinnerNumbers();
+        } while (attemptCreateWinnerNumber(input));
+    }
+
+    private String inputWinnerNumbers() {
         Input winnerNumberView = new WinnerNumberView();
         winnerNumberView.println();
         return winnerNumberView.getInput();
     }
 
-    public String inputAmount() {
-        Input amountView = new AmountView();
-        return amountView.getInput();
+    private boolean attemptCreateWinnerNumber(String inputWinnerNumber) {
+        try {
+            this.winnerNumbers = new WinnerNumbers(inputWinnerNumber);
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
     }
 
-    public boolean validateAmount(String amountInput) {
-        Validator<String> validator = new AmountValidator();
-        return validator.inputValidate(amountInput);
+    private void manageBonusNumber() {
+        String input;
+        do {
+            input = inputBonusNumbers();
+        } while (attemptCreateBonusNumber(input));
     }
 
-    public int convertAmount(String amountInput) {
-        Convertor<Integer> amountConvertor = new TextConvertor<>(Integer::parseInt);
-        return amountConvertor.convert(amountInput);
+    private String inputBonusNumbers() {
+        Input BonusNumberView = new BonusNumberView();
+        BonusNumberView.println();
+        return BonusNumberView.getInput();
     }
 
-    public void generateLottoTicket(int amount) {
-        int lottoCount = calculateLottoTicket(amount);
-        lottoTicket.createLottoTicket(lottoCount);
-    }
-
-    public void displayMyLotto() {
-        Output lottoView = new LottoView(lottoTicket.getLottoTicket());
-        lottoView.println();
-        lottoView.getOutput();
-    }
-
-    public List<String> winnerNumberConvert(String input) {
-        Convertor<List<String>> convertor = new TextConvertor<>(text -> Arrays.stream(text.split(","))
-                .collect(Collectors.toList()));
-        return convertor.convert(input);
-    }
-
-    public boolean validateWinnerNumber(List<String> winnerNumber) {
-        Validator<List<String>> validator = new WinnerNumberValidator();
-        return validator.inputValidate(winnerNumber);
-    }
-
-    private int calculateLottoTicket(int amount) {
-        return (amount / DomainConstants.LOTTO_PRICE.getConstants());
+    private boolean attemptCreateBonusNumber(String inputBonusNumber) {
+        try {
+            this.bonusNumber = new BonusNumber(inputBonusNumber);
+            return false;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return true;
+        }
     }
 }

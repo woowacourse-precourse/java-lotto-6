@@ -1,5 +1,5 @@
 package lotto.domain.convertor;
 
-public interface Convertor<T> {
-    T convert(String text);
+public interface Convertor<S, T> {
+    T convert(S value);
 }

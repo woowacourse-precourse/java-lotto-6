@@ -2,25 +2,18 @@ package lotto.domain.validator;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
+import java.util.Set;
 import lotto.util.constants.ValidateConstants;
 
 
 public class WinnerNumberValidator implements Validator<List<String>> {
     @Override
-    public boolean inputValidate(List<String> inputWinnerNumber) {
-        try {
-            validateNumeric(inputWinnerNumber);
-            validateRange(inputWinnerNumber);
-            validateDuplication(inputWinnerNumber);
-            validateSize(inputWinnerNumber);
-            return false;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return true;
-        }
+    public void validate(List<String> inputWinnerNumber) {
+        validateNumeric(inputWinnerNumber);
+        validateSize(inputWinnerNumber);
+        validateDuplication(inputWinnerNumber);
+        validateRange(inputWinnerNumber);
     }
 
     public void validateSize(List<String> winnerNumbers) {
@@ -31,25 +24,10 @@ public class WinnerNumberValidator implements Validator<List<String>> {
     }
 
     public void validateNumeric(List<String> winnerNumbers) {
-        Optional<String> invalidNumber = winnerNumbers.stream()
-                .filter(string -> !string.matches(ValidateConstants.NUMERIC_REGEX.getConstants()))
-                .findAny();
-
-        if (invalidNumber.isPresent()) {
+        boolean invalidNumeric = winnerNumbers.stream()
+                .anyMatch(string -> !string.matches(ValidateConstants.NUMERIC_REGEX.getConstants()));
+        if (invalidNumeric) {
             throw new IllegalArgumentException(ValidateConstants.WINNER_NUMBER_NUMERIC_ERROR.getConstants());
-        }
-    }
-
-    public void validateRange(List<String> winnerNumbers) {
-        int min = ValidateConstants.WINNER_MIN_NUMBER.getNumberConstants();
-        int max = ValidateConstants.WINNER_MAX_NUMBER.getNumberConstants();
-
-        Optional<String> invalidNumber = winnerNumbers.stream()
-                .filter(string -> (Integer.parseInt(string) < min || Integer.parseInt(string)>max))
-                .findAny();
-
-        if (invalidNumber.isPresent()) {
-            throw new IllegalArgumentException(ValidateConstants.WINNER_NUMBER_RANGE_ERROR.getConstants());
         }
     }
 
@@ -60,4 +38,14 @@ public class WinnerNumberValidator implements Validator<List<String>> {
         }
     }
 
+    public void validateRange(List<String> winnerNumbers) {
+        int min = ValidateConstants.LOTTO_MIN_NUMBER.getNumberConstants();
+        int max = ValidateConstants.LOTTO_MAX_NUMBER.getNumberConstants();
+
+        boolean isInvalidRange = winnerNumbers.stream()
+                .anyMatch(number -> Integer.parseInt(number) < min || Integer.parseInt(number) > max);
+        if (isInvalidRange) {
+            throw new IllegalArgumentException(ValidateConstants.WINNER_NUMBER_RANGE_ERROR.getConstants());
+        }
+    }
 }

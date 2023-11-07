@@ -28,7 +28,7 @@ public class LottoService {
     }
 
     public List<Integer> generateLottoNumbers() {
-        List<Integer> numbers = pickUniqueNumbersInRange(1, 45, 6);
+        ArrayList<Integer> numbers = new ArrayList<>(pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(numbers);
         return numbers;
     }

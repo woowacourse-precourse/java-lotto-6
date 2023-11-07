@@ -8,7 +8,7 @@ public class DomainValidate {
         }
     }
 
-    public static void validateDivideZeroDenominator(int denominator) {
+    public static void validateDivideByZero(int denominator) {
         if (denominator <= 0) {
             throw new IllegalArgumentException("[ERROR] 잘못된 크기입니다. 0으로 나눌 수 없습니다.");
         }

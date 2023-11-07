@@ -18,7 +18,7 @@ public record LottoNumber(int number) {
     }
 
 
-    private static void validateNumericString(String price) throws IllegalArgumentException {
+    private static void validateNumericString(String price) {
         if (!Pattern.compile("-?\\d+").matcher(price).matches()) {
             throw new IllegalArgumentException(LOTTO_NOT_NUMERIC);
         }

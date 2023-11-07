@@ -20,19 +20,19 @@ public class BuyPrice {
         return new BuyPrice(Integer.parseInt(price));
     }
 
-    private static void validateNumericString(String price) throws IllegalArgumentException {
+    private static void validateNumericString(String price) {
         if (!Pattern.compile("-?\\d+").matcher(price).matches()) {
             throw new IllegalArgumentException(PRICE_NOT_NUMERIC);
         }
     }
 
-    private static void validateNotNegative(int price) throws IllegalArgumentException {
+    private static void validateNotNegative(int price) {
         if (price < 0) {
             throw new IllegalArgumentException(PRICE_NEGATIVE);
         }
     }
 
-    private static void validateDividedBy(int price) throws IllegalArgumentException {
+    private static void validateDividedBy(int price) {
         if (price % PRICE_PER_LOTTO != 0) {
             throw new IllegalArgumentException(PRICE_NOT_DIVIDED);
         }

@@ -8,7 +8,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.view.constant.Exception.*;
+import static lotto.view.constant.Exception.COST_FORMAT;
+import static lotto.view.constant.Exception.LOTTO_FORMAT;
+import static lotto.view.constant.Exception.BONUS_FORMAT;
 
 public class View {
     private static final String SPLIT_SYMBOL = ",";

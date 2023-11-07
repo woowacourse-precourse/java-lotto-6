@@ -4,26 +4,24 @@ import lotto.Lotto;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Scanner;
 
 public class InputView {
-    private final Scanner scanner;
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public InputView() {
-        this.scanner = new Scanner(System.in);
+    public static int inputPurchaseAmount() {
+        System.out.println("구입 금액을 입력해주세요.");
+        return scanner.nextInt();
     }
 
-    // 구입 금액 입력 받는 로직 작성 필요
-    public int readPurchaseAmount() {
-
+    public static String inputWinningNumbers() {
+        System.out.println("당첨 번호를 입력해주세요.");
+        return scanner.next();
     }
 
-    // 당첨 번호 입력 받는 로직 작성 필요
-    public List<Lotto> readWinningNumbers() {
-
-    }
-
-    // 보너스 번호 입력 받는 로직 작성 필요
-    public Lotto readBonusNumber() {
-
+    public static int inputBonusNumber() {
+        System.out.println("보너스 번호를 입력해주세요.");
+        return scanner.nextInt();
     }
 }
+

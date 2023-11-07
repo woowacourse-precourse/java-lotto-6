@@ -5,7 +5,8 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 
 public class LottoBonusMachine {
-    private static final String inputTypeErrorMessage = "[ERROR] 로또 번호는 숫자여야 합니다.";
+    private static final String bonusNumberMessage = "\n보너스 번호를 입력해 주세요.";
+    private static final String errorMessageInputType = "[ERROR] 로또 번호는 숫자여야 합니다.";
 
     public BonusNumber lottoBonusNumber(Lotto lotto) {
         while (true) {
@@ -19,7 +20,7 @@ public class LottoBonusMachine {
     }
 
     private int bonusNumber() {
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(bonusNumberMessage);
         String input = Console.readLine();
 
         return validateType(input);
@@ -30,7 +31,7 @@ public class LottoBonusMachine {
             int bonus = Integer.parseInt(input);
             return bonus;
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(inputTypeErrorMessage);
+            throw new IllegalArgumentException(errorMessageInputType);
         }
     }
 }

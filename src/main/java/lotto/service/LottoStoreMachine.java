@@ -1,14 +1,15 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.Lotto;
 
 import java.util.*;
 
 public class LottoStoreMachine {
     // 로또 발행을 담당할 클래스입니다.
-    private List<List<Integer>> purchasedLotto = new ArrayList<>();
+    private List<Lotto> purchasedLotto = new ArrayList<>();
 
-    public List<List<Integer>> saleLotto(int numberOfIssues) {
+    public List<Lotto> saleLotto(int numberOfIssues) {
         issuanceOfLotto(numberOfIssues);
 
         return purchasedLotto;
@@ -16,7 +17,7 @@ public class LottoStoreMachine {
 
     private void issuanceOfLotto(int numberOfIssues) {
         for (int i = 0; i < numberOfIssues; i++) {
-            List<Integer> lotto = makeLottoNumbers();
+            Lotto lotto = new Lotto(makeLottoNumbers());
             purchasedLotto.add(lotto);
         }
     }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.Lotto;
 import lotto.service.LottoStoreCounter;
 import lotto.service.LottoStoreMachine;
 import lotto.view.PurchasedLottoesView;
@@ -15,7 +16,7 @@ public class LottoPurchaseController {
         purchasedLottoesView.printNumberOfIssues(numberOfIssues);
 
         LottoStoreMachine lottoStoreMachine = new LottoStoreMachine();
-        List<List<Integer>> purchasedLotto = lottoStoreMachine.saleLotto(numberOfIssues);
+        List<Lotto> purchasedLotto = lottoStoreMachine.saleLotto(numberOfIssues);
         purchasedLottoesView.printPurchasedLottoes(purchasedLotto);
     }
 }

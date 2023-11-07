@@ -8,6 +8,7 @@ import java.util.List;
 
 public class LottoWinningMachine {
     // 로또 당첨 번호를 처리하는 클래스입니다.
+    private static final String winningNumberMessage = "\n당첨 번호를 입력해 주세요.";
     private static final String inputTypeErrorMessage = "[ERROR] 로또 번호는 숫자여야 합니다.";
 
     public Lotto lottoWinningNumber() {
@@ -22,7 +23,7 @@ public class LottoWinningMachine {
     }
 
     private List<Integer> winningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(winningNumberMessage);
         String input = Console.readLine();
 
         return splitPlayer(input);

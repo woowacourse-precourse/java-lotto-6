@@ -14,12 +14,15 @@ class LottoGeneratorTest {
     @Test
     void generateNoException() {
         // given
+        int generationCount = 1000;
 
         // when
         ThrowingCallable target = () -> LottoGenerator.generate();
 
         // then
-        assertThatNoException().isThrownBy(target);
+        for (int i = 0; i < generationCount; i++) {
+            assertThatNoException().isThrownBy(target);
+        }
     }
 
     @DisplayName("로또 인스턴스를 생성할 수 있다.")

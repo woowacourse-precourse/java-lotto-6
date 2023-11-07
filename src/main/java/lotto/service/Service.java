@@ -3,7 +3,6 @@ package lotto.service;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.Buyer;
-import lotto.domain.GameNumbers;
 import lotto.domain.Lotto;
 import lotto.domain.Rank;
 import lotto.util.Util;
@@ -28,10 +27,10 @@ public class Service {
         }
     }
 
-    public static void resultLotteries(Buyer buyer, GameNumbers gameNumbers) {
+    public static void resultLotteries(Buyer buyer, List<Integer> winningNumbers, int bonusNumber) {
         Map<Rank, Integer> result = buyer.getResultRank();
         for (Lotto lotto : buyer.getPurchasedLotto()) {
-            Rank rank = decideRank(gameNumbers, lotto);
+            Rank rank = decideRank(winningNumbers, bonusNumber, lotto);
             if (rank != null) {
                 result.put(rank, result.getOrDefault(rank, ZERO) + ONE);
             }
@@ -61,16 +60,15 @@ public class Service {
         return new Lotto(numbers);
     }
 
-    private static Rank decideRank(GameNumbers gameNumbers, Lotto lotto) {
-        int countWinningNumbers = countWinningNumbersInLotto(gameNumbers, lotto);
-        boolean containBonusNumber = containBonusNumberInLotto(gameNumbers, lotto);
+    private static Rank decideRank(List<Integer> winningNumbers, int bonusNumber, Lotto lotto) {
+        int countWinningNumbers = countWinningNumbersInLotto(winningNumbers, lotto);
+        boolean containBonusNumber = containBonusNumberInLotto(bonusNumber, lotto);
 
         if (countWinningNumbers < EXCEPT_NO_RANK) {
             return null;
         }
 
         Rank rank = Rank.values()[countWinningNumbers - EXCEPT_NO_RANK];
-
         if (rank == Rank.THIRD && containBonusNumber) {
             return Rank.SECOND;
         }
@@ -78,11 +76,11 @@ public class Service {
         return rank;
     }
 
-    private static int countWinningNumbersInLotto(GameNumbers gamenumbers, Lotto lotto) {
-        return Util.countContainNumbers(gamenumbers.getWinningNumbers(), lotto.getNumbers());
+    private static int countWinningNumbersInLotto(List<Integer> winningNumbers, Lotto lotto) {
+        return Util.countContainNumbers(winningNumbers, lotto.getNumbers());
     }
 
-    private static boolean containBonusNumberInLotto(GameNumbers gameNumbers, Lotto lotto) {
-        return Util.checkContainNumber(lotto.getNumbers(), gameNumbers.getBonusNumber());
+    private static boolean containBonusNumberInLotto(int bonusNumber, Lotto lotto) {
+        return Util.checkContainNumber(lotto.getNumbers(), bonusNumber);
     }
 }

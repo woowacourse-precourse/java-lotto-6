@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.view.ErrorMessage;
+import lotto.util.Validation;
 
 public class Buyer {
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
@@ -19,7 +19,7 @@ public class Buyer {
     }
 
     public static Buyer from(int purchaseAmount) {
-        validatePurchaseAmount(purchaseAmount);
+        Validation.validateDivisibleNumber(purchaseAmount, PURCHASE_AMOUNT_UNIT);
         return new Buyer(purchaseAmount);
     }
 
@@ -45,12 +45,5 @@ public class Buyer {
         resultRank.put(Rank.THIRD, 0);
         resultRank.put(Rank.SECOND, 0);
         resultRank.put(Rank.FIRST, 0);
-    }
-
-    private static void validatePurchaseAmount(int purchaseAmount) {
-        if (purchaseAmount % PURCHASE_AMOUNT_UNIT != 0) {
-            ErrorMessage.divideNumberError(PURCHASE_AMOUNT_UNIT);
-            throw new IllegalArgumentException();
-        }
     }
 }

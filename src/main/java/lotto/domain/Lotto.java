@@ -1,36 +1,22 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import lotto.view.ErrorMessage;
+import lotto.util.Validation;
 
 public class Lotto {
+    private static final int LOTTO_FIRST_NUMBER = 1;
+    private static final int LOTTO_LAST_NUMBER = 45;
     private static final int LOTTO_LENGTH = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validateListSize(numbers);
-        validateListDuplication(numbers);
+        Validation.validateListNumbersInRange(numbers, LOTTO_FIRST_NUMBER, LOTTO_LAST_NUMBER);
+        Validation.validateListSize(numbers, LOTTO_LENGTH);
+        Validation.validateListDuplication(numbers);
         this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    private void validateListSize(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_LENGTH) {
-            ErrorMessage.listSizeError(LOTTO_LENGTH);
-            throw new IllegalArgumentException();
-        }
-    }
-
-    private void validateListDuplication(List<Integer> numbers) {
-        Set<Integer> set = new HashSet<>(numbers);
-        if (numbers.size() != set.size()) {
-            ErrorMessage.listDuplicationError();
-            throw new IllegalArgumentException();
-        }
     }
 }

@@ -45,7 +45,6 @@ public class ResultCalculator {
                     }
                     if (bonusNumber == number) {
                         includeBonusNumber = true;
-                        return true;
                     }
                     return false;
                 })
@@ -62,10 +61,10 @@ public class ResultCalculator {
         if (match == 5) {
             rank3++;
         }
-        if (match == 6 && includeBonusNumber) {
+        if (match == 5 && includeBonusNumber) {
             rank2++;
         }
-        if (match == 6 && !includeBonusNumber) {
+        if (match == 6) {
             rank1++;
         }
     }

@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -23,7 +24,8 @@ public class InputValidatorTest {
     private WinningNumValidator winningNumValidator;
 
     @Test
-    void 값_미전달_예외_처리_테스트(){
+    @DisplayName("구입 금액 값이 없을 시 예외 처리")
+    void isNull(){
         String input = "";
         assertThatThrownBy(() -> inputMoneyValidator = new MoneyValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -31,7 +33,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 공백_포함_예외_처리_테스트(){
+    @DisplayName("구입 금액 값에 공백이 있을 시 예외 처리")
+    void isHaveBlank(){
         String input = "ad sf";
         assertThatThrownBy(() -> inputMoneyValidator = new MoneyValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -39,7 +42,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 입력_값_숫자_판별_예외_처리_테스트(){
+    @DisplayName("구입 금액 값이 숫자가 아닐 시 예외 처리")
+    void isNumber(){
         String input = "adsf";
         assertThatThrownBy(() -> inputMoneyValidator = new MoneyValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -47,7 +51,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 입력_값_1000_미만_예외_처리_테스트(){
+    @DisplayName("구입 금액 값 1000 미만 예외 처리")
+    void isUnder1000(){
         String input = "999";
         assertThatThrownBy(() -> inputMoneyValidator = new MoneyValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -55,7 +60,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 입력_값_1000_배수_예외_처리_테스트(){
+    @DisplayName("구입 금액 값이 1000으로 안 나뉘어 지면 예외 처리")
+    void isDivision1000(){
         String input = "1001";
         assertThatThrownBy(() -> inputMoneyValidator = new MoneyValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -63,7 +69,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 당첨_번호_미입력_처리_테스트(){
+    @DisplayName("당첨 번호 미입력 시 예외 처리")
+    void isNull_Winning(){
         String input = "";
         assertThatThrownBy(() -> winningNumValidator = new WinningNumValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -71,7 +78,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 당첨_번호_숫자_외_입력_예외_처리_테스트(){
+    @DisplayName("당첨 번호에 문자 입력 시 예외 처리")
+    void isNumber_Winning(){
         String input = "1,2,3,a,5";
         assertThatThrownBy(() -> winningNumValidator = new WinningNumValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -79,7 +87,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 당첨_번호_Size_초과_예외_처리_테스트(){
+    @DisplayName("당첨 번호 갯수가 6개를 초과하면 예외 처리")
+    void isSizeOver_Winning(){
         List<Integer> input = List.of(1, 2, 3, 4, 5, 6, 7);
         assertThatThrownBy(() -> winningNumValidator = new WinningNumValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -87,7 +96,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 당첨_번호_Size_미달_예외_처리_테스트(){
+    @DisplayName("당첨 번호 갯수가 6개에 미달하면 예외 처리")
+    void isSizeUnder_Winning(){
         List<Integer> input = List.of(1, 2, 3, 4, 5);
         assertThatThrownBy(() -> winningNumValidator = new WinningNumValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -95,7 +105,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 당첨_번호_중복_예외_처리_테스트(){
+    @DisplayName("당첨 번호에 중복이 있을 시 예외 처리")
+    void isDuplicate_Winning(){
         List<Integer> input = List.of(1, 1, 3, 4, 5, 6);
         assertThatThrownBy(() -> winningNumValidator = new WinningNumValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -103,7 +114,8 @@ public class InputValidatorTest {
     }
 
     @Test
-    void 당첨_번호_범위_예외_처리_테스트(){
+    @DisplayName("당첨 번호가 1이상 45이하가 아닐 시 예외 처리")
+    void isRangeOver_Winning(){
         List<Integer> input = List.of(1, 49, 3, 4, 5, 6);
         assertThatThrownBy(() -> winningNumValidator = new WinningNumValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)

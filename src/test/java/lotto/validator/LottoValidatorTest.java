@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,7 +17,8 @@ public class LottoValidatorTest {
     private LottoValidator validator;
 
     @Test
-    void 로또_번호_중복_예외_처리_테스트(){
+    @DisplayName("로또 숫자 중복이면 예외 처리")
+    void isDuplicate(){
         List<Integer> input = List.of(1, 3, 3, 4, 5, 6);
         assertThatThrownBy(() -> validator = new LottoValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -24,7 +26,8 @@ public class LottoValidatorTest {
     }
 
     @Test
-    void 로또_번호_Size_예외_처리_테스트(){
+    @DisplayName("로또 숫자 갯수가 6개가 아니면 예외 처리")
+    void isSizeOver(){
         List<Integer> input = List.of(1, 3, 3, 4, 5, 6, 7);
         assertThatThrownBy(() -> validator = new LottoValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -32,7 +35,8 @@ public class LottoValidatorTest {
     }
 
     @Test
-    void 로또_번호_범위_예외_처리_테스트(){
+    @DisplayName("로또 숫자가 1이상 45이하가 아닐 시 예외 처리")
+    void isRangeOver(){
         List<Integer> input = List.of(1, 86, 3, 4, 5, 6);
         assertThatThrownBy(() -> validator = new LottoValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)
@@ -40,7 +44,8 @@ public class LottoValidatorTest {
     }
 
     @Test
-    void 로또_번호_정렬_예외_처리_테스트(){
+    @DisplayName("로또 숫자가 오름차순이 아니면 예외 처리")
+    void isSorted(){
         List<Integer> input = List.of(1, 4, 3, 2, 5, 6);
         assertThatThrownBy(() -> validator = new LottoValidator(input))
                 .isInstanceOf(IllegalArgumentException.class)

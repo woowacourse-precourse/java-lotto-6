@@ -29,7 +29,7 @@ public class LottoGame {
 
     private void processWinningNumbers(Lottos purchasedLottos) {
         List<Integer> winningNumbers = inputChecker.readWinningNumbers();
-        Integer bonusNumber = inputChecker.readBonusNumber();
+        Integer bonusNumber = inputChecker.readBonusNumber(winningNumbers);
         purchasedLottos.printLottos();
         lottoResult.calculateRewardStatistics(purchasedLottos, winningNumbers, bonusNumber);
     }

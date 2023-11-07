@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.constants.ErrorMessages.DUPLICATES;
+import static lotto.constants.ErrorMessages.INVALID_LOTTO_NUMBER_COUNT;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.HashSet;
@@ -17,7 +18,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getErrorMessage());
         }
 
         Set<Integer> distinctNumbers = new HashSet<>(numbers);

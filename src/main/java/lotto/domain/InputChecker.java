@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import static lotto.constants.ErrorMessages.DUPLICATES;
+import static lotto.constants.ErrorMessages.DUPLICATES_BONUS_NUMBERS;
+import static lotto.constants.ErrorMessages.INVALID_LOTTO_NUMBER_COUNT;
 import static lotto.constants.ErrorMessages.LOTTO_NUMBERS;
 import static lotto.constants.ErrorMessages.THOUSANDS;
 import static lotto.constants.ErrorMessages.WRONG_FORMAT;
@@ -32,22 +34,37 @@ public class InputChecker {
     }
 
     public List<Integer> readWinningNumbers() {
-        System.out.println(WINNING_NUMBERS.getPromptMessage());
-        String input = Console.readLine();
+        List<Integer> winningNumbers = null;
 
-        validateLottoNumbers(input);
-
-        String[] numberStrings = input.split(",");
-
-        List<Integer> winningNumbers = Arrays.stream(numberStrings)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
+        while (winningNumbers == null) {
+            try {
+                String input = getInput();
+                winningNumbers = processInput(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
         return winningNumbers;
     }
 
+    private String getInput() {
+        System.out.println(WINNING_NUMBERS.getPromptMessage());
+        return Console.readLine();
+    }
+
+    private List<Integer> processInput(String input) {
+        validateLottoNumbers(input);
+
+        String[] numberStrings = input.split(",");
+        return Arrays.stream(numberStrings)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+    }
+
     private static void validateLottoNumbers(String input) {
         String[] numberStrings = input.split(",");
+        if(numberStrings.length!=6) throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_COUNT.getErrorMessage());
         Set<Integer> distinctNumbers = new HashSet<>();
 
         for (String numberString : numberStrings) {
@@ -77,15 +94,17 @@ public class InputChecker {
         }
     }
 
-    static Integer readBonusNumber() {
+    static Integer readBonusNumber(List<Integer> winningNumbers) {
         Integer bonusNumber;
         while (true){
             try{
                 System.out.println(BONUS_NUMBER.getPromptMessage());
                 bonusNumber = Integer.parseInt(Console.readLine());
+                if(winningNumbers.contains(bonusNumber)) throw new IllegalArgumentException(
+                        DUPLICATES_BONUS_NUMBERS.getErrorMessage());
                 return bonusNumber;
             }catch (NumberFormatException e) {
-                System.out.println(WRONG_FORMAT.getErrorMessage());
+                throw new IllegalArgumentException(WRONG_FORMAT.getErrorMessage());
             }
         }
     }

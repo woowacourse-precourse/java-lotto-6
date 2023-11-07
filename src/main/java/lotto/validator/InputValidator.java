@@ -2,6 +2,7 @@ package lotto.validator;
 
 public class InputValidator {
     private static final String numbersInputRegex = "([0-9]+,)+[0-9]+";
+    private static final String BLANK = " ";
     private boolean isNotInteger(String number) {
         try {
             Integer.parseInt(number);
@@ -18,7 +19,7 @@ public class InputValidator {
     }
 
     private boolean hasBlank(String numbers) {
-        return numbers.contains(" ");
+        return numbers.contains(BLANK);
     }
 
     public void checkBlank(String numbers) {

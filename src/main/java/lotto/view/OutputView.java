@@ -19,7 +19,7 @@ public class OutputView {
 
     }
 
-    public static void showGameResult(List<Rank> results, LottoAmount lottoAmount) {
+    public static void printResult(List<Rank> results, LottoAmount lottoAmount) {
         System.out.println();
         System.out.println(STATISTIC_RESULT_MESSAGE);
         System.out.println(LINE_CHANGE_MESSAGE);

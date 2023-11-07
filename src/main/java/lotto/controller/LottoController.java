@@ -21,7 +21,7 @@ public class LottoController {
         WinningNumber winningNumber = getWinningLotto(inputWinningNumber());
         List<Rank> ranks = getRanks(lottoPlayer, winningNumber);
 
-        OutputView.showGameResult(ranks, lottoAmount);
+        OutputView.printResult(ranks, lottoAmount);
     }
 
     private LottoAmount inputAmount() {

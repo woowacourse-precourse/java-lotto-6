@@ -28,12 +28,12 @@ public class LottoGameResult {
         reward += lottoRank.getRewardMoney();
     }
 
-    public double calculateProfitRate(int originalMoney) {
-        BigDecimal original = new BigDecimal(originalMoney);
+    public double calculateProfitRate(int investAmount) {
+        BigDecimal invest = new BigDecimal(investAmount);
         BigDecimal rewardMoney = new BigDecimal(reward);
 
         return rewardMoney.multiply(new BigDecimal(100))
-                .divide(original, PROFIT_RATE_SCALE, RoundingMode.HALF_UP)
+                .divide(invest, PROFIT_RATE_SCALE, RoundingMode.HALF_UP)
                 .doubleValue();
     }
 

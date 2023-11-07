@@ -40,11 +40,11 @@ public class Lotto {
         return numbers;
     }
 
-    public boolean contains(int number) {
+    public boolean contains(Integer number) {
         return numbers.contains(number);
     }
 
-    public int equalsNumberCount(Lotto lotto) {
+    public int equalsCount(Lotto lotto) {
         int count = 0;
         for (Integer number : numbers) {
             if (lotto.contains(number)) {

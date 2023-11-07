@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class WinningNumber {
     private Lotto numbers;
-    private int bonus;
+    private Integer bonus;
 
     public Lotto getNumbers() {
         return numbers;
@@ -12,11 +12,11 @@ public class WinningNumber {
         this.numbers = numbers;
     }
 
-    public int getBonus() {
+    public Integer getBonus() {
         return bonus;
     }
 
-    public void setBonus(int bonus) {
+    public void setBonus(Integer bonus) {
         this.bonus = bonus;
     }
 }

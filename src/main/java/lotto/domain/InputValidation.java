@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
 import lotto.constant.ErrorMessage;
 import lotto.constant.LottoNumber;
 import lotto.ui.Input;

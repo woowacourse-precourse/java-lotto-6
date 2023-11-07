@@ -42,7 +42,7 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto winningNumber = new Lotto(List.of(1, 2, 3, 43, 44, 45));
 
-        assertThat(lotto.equalsNumberCount(winningNumber)).isEqualTo(expected);
+        assertThat(lotto.equalsCount(winningNumber)).isEqualTo(expected);
     }
 
     @ParameterizedTest

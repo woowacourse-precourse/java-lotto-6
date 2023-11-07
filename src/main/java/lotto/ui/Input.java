@@ -8,11 +8,11 @@ import lotto.domain.Lotto;
 
 public class Input {
     public static char DELIMITER = ',';
-    public static final String AMOUNT = "구입금액을 입력해 주세요.";
+    public static final String PURCHASE = "구입금액을 입력해 주세요.";
     public static final String WINNING_NUMBER = "\n당첨 번호를 입력해 주세요.";
     public static final String BONUS = "\n보너스 번호를 입력해 주세요.";
 
-    public static int readAmount(String input) {
+    public static int readPurchase(String input) {
         int amount = InputValidation.validateNumber(input);
         InputValidation.checkSufficient(amount);
         InputValidation.checkDivisible(amount);

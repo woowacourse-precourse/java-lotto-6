@@ -10,14 +10,14 @@ import lotto.ui.Output;
 public class Game {
     private final LottoMachine lottoMachine = new LottoMachine();
     private final WinningNumber winningNumber = new WinningNumber();
-    private int amount;
+    private final Amount amount = new Amount();
 
     private List<Lotto> createLotteries() {
         while (true) {
-            Output.printMessage(Input.AMOUNT);
+            Output.printMessage(Input.PURCHASE);
             try {
-                amount = Input.readAmount(Console.readLine());
-                return lottoMachine.issue(amount / LottoNumber.PRICE.getValue());
+                amount.setPurchase(Input.readPurchase(Console.readLine()));
+                return lottoMachine.issue(amount.getCount());
             } catch (IllegalArgumentException exception) {
                 Output.printMessage(exception.getMessage());
             }
@@ -55,7 +55,7 @@ public class Game {
 
         List<Rank> result = lottoMachine.draw(lotteries, winningNumber);
         Output.printResult(result);
-        double winnings = lottoMachine.combineWinnings(result);
-        Output.printEarnings(winnings / amount * LottoNumber.PERCENT.getValue());
+        amount.setWinnings(lottoMachine.combineWinnings(result));
+        Output.printEarnings(amount.getEarnings());
     }
 }

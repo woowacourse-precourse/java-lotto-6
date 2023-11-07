@@ -28,7 +28,7 @@ public class LottoMachine {
     public List<Rank> draw(List<Lotto> lotteries, WinningNumber winningNumber) {
         List<Rank> result = new ArrayList<>();
         for (Lotto lotto : lotteries) {
-            int count = lotto.equalsNumberCount(winningNumber.getNumbers());
+            int count = lotto.equalsCount(winningNumber.getNumbers());
             result.add(Rank.getRank(count, lotto.contains(winningNumber.getBonus())));
         }
         return result;

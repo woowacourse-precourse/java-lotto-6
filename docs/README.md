@@ -42,7 +42,7 @@
 
 ### 입력
 
-- [x] 로또 구매 금액 입력 받기 - Input#readAmount()
+- [x] 로또 구매 금액 입력 받기 - Input#readPurchase()
 - [x] 당첨 번호 입력 받기 - Input#readWinningNumber()
 - [x] 보너스 번호를 입력 받기 - Input#readBonus()
 

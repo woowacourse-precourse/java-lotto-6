@@ -17,6 +17,7 @@ public class GameController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     RandomUtility randomUtility = new RandomUtility();
+    LottoController lottoController;
 
     List<List<Integer>> lottoNumbers = new ArrayList<>();
     boolean restart = true;
@@ -28,6 +29,7 @@ public class GameController {
         saveRandomLottoNumbers(lottoMoney);
         saveLuckeyNumbers();
         saveBonusLottoNumber();
+        lottoController = new LottoController(lottoMoney, luckeyLotto);
     }
 
     private void saveLottoMoney() {

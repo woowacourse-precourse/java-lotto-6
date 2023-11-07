@@ -94,7 +94,7 @@
      - saveBonusLottoNumber()
        - [x] 보너스 로또 당첨 번호 입력받는 함수 호출
        - [x] 보너스 로또 객체(LuckeyLotto)선언 및 데이터 유효성 검사
-     - [ ] 본격적인 로또 검사 함수 호출
+     - [x] 본격적인 로또 검사 함수 호출
 
 2. LottoController
    - 로또 당첨자 및 수익률 확인 기능

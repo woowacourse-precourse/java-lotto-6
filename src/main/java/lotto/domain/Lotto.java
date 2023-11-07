@@ -41,7 +41,6 @@ public class Lotto {
 
     public List<LottoNumber> getNumbers() {
         return this.numbers.stream()
-                .map(lottoNumber -> new LottoNumber(lottoNumber.getNumber()))
                 .collect(Collectors.toUnmodifiableList());
     }
 

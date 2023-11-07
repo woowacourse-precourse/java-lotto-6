@@ -24,7 +24,7 @@ public class PurchaseAmountTest {
     void createPurchaseAmountFailTest(int purchaseAmount) {
         assertThatCode(() -> new PurchaseAmount(purchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(String.format("구입금액은 1,000원 단위만 가능합니다. 입력값 : %d", purchaseAmount));
+                .hasMessage(String.format("[ERROR] 구입금액은 1,000원 단위만 가능합니다. 입력값 : %d", purchaseAmount));
     }
 
     @DisplayName("구매 금액당 횟수를 반환한다.")

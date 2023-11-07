@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class LottoPurchaseCalculator {
 
-    public int calculateLottoCount(int lottoPrice, Money money) {
+    public static int calculateLottoCount(int lottoPrice, Money money) {
 
         int amount = money.getAmount();
         int zero = LottoConfig.ZERO.getValue();

@@ -3,7 +3,7 @@
     public class RevenueCalculator {
 
 
-        public double calculateRevenueRate(long totalEarnings, Money money) {
+        public static double calculateRevenueRate(long totalEarnings, Money money) {
             if(money.getAmount() == LottoConfig.ZERO.getValue()){
                 return LottoConfig.ZERO.getValue();
             }

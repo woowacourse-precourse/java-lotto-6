@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import lotto.utils.ErrorCode;
-import lotto.controller.LottoGenerator;
+import lotto.utils.LottoGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +33,11 @@ public class Lottos {
         return sb.toString();
     }
 
-    public List<Lotto> getLottos() {
-        return lottos;
-    }
-
     private void validateMoneyUnit(long money){
         if(money%1000!=0) throw new IllegalArgumentException(ErrorCode.INVALID_MONEY.getMessage());
+    }
+
+    public List<Lotto> getLottos() {
+        return lottos;
     }
 }

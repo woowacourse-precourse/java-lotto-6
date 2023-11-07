@@ -16,8 +16,9 @@ public class LottoGenerator {
 
 		while (uniqueLottos.size() < lottoCount) {
 			List<Integer> numbers = generateRandomNumbers();
-			numbers.sort(Integer::compareTo);
-			Lotto lotto = new Lotto(numbers);
+			List<Integer> sortedNumbers = new ArrayList<>(numbers);
+			sortedNumbers.sort(Integer::compareTo);
+			Lotto lotto = new Lotto(sortedNumbers);
 			uniqueLottos.add(lotto);
 		}
 

@@ -30,14 +30,14 @@ public class PurchaseController {
     private int amountOfLottos() {
         String input = inputView.returnInput();
 
-        while (validator.isPurchaseAmountInteger(input)) {
+        while (!validator.isInputInteger(input)) {
             return amountOfLottos();
         }
 
         try {
             validator.isPurchaseAmountPositive(input);
             validator.isPurchaseAmountDividedUp(input);
-        } catch (ArithmeticException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + NUMBER_FORMAT_EXCEPTION.getMessage());
             return amountOfLottos();
         }

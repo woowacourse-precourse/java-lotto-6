@@ -10,6 +10,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 public class Application {
 
 	static List<Lotto> lottos = new ArrayList<>();
+	static int bonus;
 	static private int seedMoney;
 
 	public static void main(String[] args) {
@@ -17,6 +18,7 @@ public class Application {
 		pickRandomNumber();
 		printStatus();
 		pickLottoNumber();
+		pickBonusNumber();
 	}
 
 	private static void inputSeedMoney() {
@@ -46,6 +48,11 @@ public class Application {
 		for (String lottoNumber : input.split(",")) {
 			newLottos.add(Integer.parseInt(lottoNumber));
 		}
+	}
+
+	public static void pickBonusNumber() {
+		System.out.println("보너스 번호를 입력해 주세요.");
+		bonus = Integer.parseInt(readLine());
 	}
 
 

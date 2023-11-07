@@ -13,15 +13,27 @@ public class InputView {
     }
 
     public static String inputNaturalNumber() {
-        String userInput = readLine();
-        validateNaturalNumberInput(userInput);
-        return userInput;
+        while (true) {
+            try {
+                String userInput = readLine();
+                validateNaturalNumberInput(userInput);
+                return userInput;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public static String inputAnswerLotto() {
-        String userInput = readLine();
-        validateAnswerLottoInput(userInput);
-        return userInput;
+        while (true) {
+            try {
+                String userInput = readLine();
+                validateAnswerLottoInput(userInput);
+                return userInput;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private static void validateAnswerLottoInput(String input) {

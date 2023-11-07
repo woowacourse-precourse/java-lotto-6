@@ -9,6 +9,7 @@ public enum ErrorMessage {
     BONUS_NUMBER_RANGE_ERROR("보너스 숫자는 %d~%d 범위 외의 숫자가 될 수 없습니다."),
     BONUS_NUMBER_IN_ANSWER_LOTTO_ERROR("당첨번호에 포함된 숫자는 보너스 번호가 될 수 없습니다."),
     BLANK_INPUT_ERROR("공백이 입력되었습니다."),
+    INVALID_ANSWER_LOTTO_INPUT_ERROR("당첨 번호의 입력은 숫자만 가능하며 '%s'로 구분됩니다."),
     INVALID_NUMBER_FORMAT_ERROR("숫자 형식으로 입력해주세요.");
 
 

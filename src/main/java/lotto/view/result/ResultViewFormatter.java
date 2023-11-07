@@ -1,7 +1,7 @@
 package lotto.view.result;
 
 import static lotto.view.constant.CharacterSymbol.BLANK;
-import static lotto.view.constant.CharacterSymbol.HYPEN;
+import static lotto.view.constant.CharacterSymbol.HYPHEN;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -51,7 +51,7 @@ public class ResultViewFormatter {
                 .append(BLANK.getLiteral())
                 .append("(%s원)".formatted("%,d".formatted(type.getAmount().intValue())))
                 .append(BLANK.getLiteral())
-                .append(HYPEN.getLiteral())
+                .append(HYPHEN.getLiteral())
                 .append(BLANK.getLiteral())
                 .append("%d개".formatted(countByType.getOrDefault(type, 0)))
                 .toString();

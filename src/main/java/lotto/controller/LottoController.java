@@ -13,25 +13,27 @@ public class LottoController {
         try{
             start();
         } catch (Exception e){
-            System.out.println("[ERROR] "+e.getMessage());
+            OutputView.printError(e.getMessage());
         }
     }
     public void start(){
         int amount = getAmount();
         List<Lotto> lottoNumList = generateLottoNumbers(amount);
         OutputView.requestWinningNumbers();
+
         List<Integer> winning = InputView.getWinningNumber();
         OutputView.requestBonusNumber();
+
         int bonus = InputView.getBonusNumber(winning);
         LottoResult lottoResult = getResult(lottoNumList, winning, bonus);
         OutputView.printWinningResult(lottoResult);
+
         OutputView.printProfitRate(lottoResult, amount);
     }
 
     public int getAmount(){
         OutputView.requestMoney();
         String money = InputView.getInputNumber();
-        System.out.println();
         return LottoCalculate.calcAmount(Integer.parseInt(money));
     }
     public List<Lotto> generateLottoNumbers(int amount){

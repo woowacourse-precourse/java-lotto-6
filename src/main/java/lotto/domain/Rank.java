@@ -8,10 +8,10 @@ public enum Rank {
     FIFTH(3, 5_000, false, "%d개 일치 (%,d원) - %d개"),
     MISS(0, 0, false, "");
 
-    private int countOfMatch;
-    private int winningMoney;
-    private boolean matchBonus;
-    private String messageFormat;
+    private final int countOfMatch;
+    private final int winningMoney;
+    private final boolean matchBonus;
+    private final String messageFormat;
 
     Rank(int countOfMatch, int winningMoney, boolean matchBonus, String messageFormat) {
         this.countOfMatch = countOfMatch;

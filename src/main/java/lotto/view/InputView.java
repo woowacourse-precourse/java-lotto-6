@@ -9,6 +9,7 @@ public class InputView {
     public static String getInputNumber(){
         String money = Console.readLine();
         ValidationView.isDivided(money);
+        ValidationView.isNumber(money);
         return money;
     }
 
@@ -19,7 +20,6 @@ public class InputView {
         ValidationView.checkNumberSize(winningNumbers);
         ValidationView.checkInRange(winningNumbers);
         ValidationView.checkDuplicateNumbers(winningNumbers);
-        System.out.println();
         return winningNumbers;
     }
 
@@ -28,7 +28,6 @@ public class InputView {
         int bonusNumber = Integer.parseInt(bonus);
         ValidationView.checkBonusNumber(bonus, winningNumbers);
         ValidationView.checkInRangeNumber(bonus);
-        System.out.println();
         return bonusNumber;
     }
 }

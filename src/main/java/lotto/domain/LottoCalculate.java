@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.view.ValidationView;
 
 public class LottoCalculate {
     private static final int LOTTO_PRICE = 1000;

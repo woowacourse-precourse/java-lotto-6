@@ -30,7 +30,7 @@ public class Controller {
     }
 
     private List<Lotto> buyLottos() {
-        LottoPurchaseAmount lottoPurchaseAmount = askLottoParchaseAmount();
+        LottoPurchaseAmount lottoPurchaseAmount = askLottoPurchaseAmount();
         Count lottoCount = lottoPurchaseAmount.getLottoCount();
         printLottoPurchaseCount(new LottoCountDTO(lottoCount.count()));
         List<Lotto> lottos = lottoIssuance(lottoCount);
@@ -38,7 +38,7 @@ public class Controller {
         return lottos;
     }
 
-    private LottoPurchaseAmount askLottoParchaseAmount() {
+    private LottoPurchaseAmount askLottoPurchaseAmount() {
         try {
             printInputLottoPurchaseAmount();
             return LottoPurchaseAmount.create(
@@ -46,7 +46,7 @@ public class Controller {
             );
         } catch (IllegalArgumentException e) {
             printErrorMessage(e.getMessage());
-            return askLottoParchaseAmount();
+            return askLottoPurchaseAmount();
         }
     }
 

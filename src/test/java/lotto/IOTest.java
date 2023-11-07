@@ -16,32 +16,32 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 public class IOTest {
     @DisplayName("올바른 금액 입력 태스트")
     @Test
-    void inputAmountCorrect(){
+    void inputAmountCorrect() {
         String amount = "8000";
         assertThat(InputView.intputAmount(amount)).isEqualTo(8);
     }
 
     @DisplayName("1000원 단위의 금액을 입력하지 않았을 경우 태스트")
     @Test
-    void inputAmountDevideException(){
+    void inputAmountDevideException() {
         String amount = "8500";
-        assertThatThrownBy(() ->InputView.intputAmount(amount))
+        assertThatThrownBy(() -> InputView.intputAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Messages.PRICE_DEVIDE_ERROR_MESSAGE.getMessage());
     }
 
     @DisplayName("정수 외의 입력이 있을 경우 태스트")
     @Test
-    void nonePureInputException(){
+    void nonePureInputException() {
         String amount = "8000j";
-        assertThatThrownBy(() ->InputView.intputAmount(amount))
+        assertThatThrownBy(() -> InputView.intputAmount(amount))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(Messages.PURE_INTEGER_ERROR_MESSAGE.getMessage());
     }
 
     @DisplayName("오름차순 출력 확인")
     @Test
-    void orderPrint(){
+    void orderPrint() {
         List<Integer> numbers = new ArrayList<>();
         numbers.add(40);
         numbers.add(22);
@@ -55,7 +55,7 @@ public class IOTest {
 
     @DisplayName("당첨 번호 입력시 정수리스트 생성 테스트")
     @Test
-    void inputWinNumberCorrect(){
+    void inputWinNumberCorrect() {
         assertThat(InputView.inputWinNumbers("1,2,3,4,5,6").toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 }

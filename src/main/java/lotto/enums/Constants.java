@@ -12,13 +12,15 @@ public enum Constants {
         this.number = number;
     }
 
-    Constants(String string){ this.string = string; }
+    Constants(String string) {
+        this.string = string;
+    }
 
-    public int getNumber(){
+    public int getNumber() {
         return number;
     }
 
-    public String getString(){
+    public String getString() {
         return string;
     }
 }

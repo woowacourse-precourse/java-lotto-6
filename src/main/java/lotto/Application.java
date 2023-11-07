@@ -13,10 +13,13 @@ import lotto.view.output.OutputView;
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoGenerator lottoGenerator = new LottoGenerator();
-        LottoChecker lottoChecker = new LottoChecker();
-        LottoService lottoService = new LottoService(lottoGenerator, lottoChecker);
+        LottoService lottoService = createLottoService();
 
+        LottoController lottoController = createController(lottoService);
+        lottoController.startLotto();
+    }
+
+    private static LottoController createController(LottoService lottoService) {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
 
@@ -26,7 +29,12 @@ public class Application {
         InputHandler inputHandler = new InputHandler(inputView, outputView,
                 inputParser, inputValidator);
 
-        LottoController lottoController = new LottoController(lottoService, inputHandler, outputView);
-        lottoController.startLotto();
+        return new LottoController(lottoService, inputHandler, outputView);
+    }
+
+    private static LottoService createLottoService() {
+        LottoGenerator lottoGenerator = new LottoGenerator();
+        LottoChecker lottoChecker = new LottoChecker();
+        return new LottoService(lottoGenerator, lottoChecker);
     }
 }

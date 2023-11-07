@@ -3,6 +3,7 @@ package lotto;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,7 +26,7 @@ public class Domain {
     }
 
     public Map<Rank,Integer> allRanking(List<Integer> winningNums,Integer bonus,List<Lotto> lottoes){
-        Map<Rank,Integer> allRankingResult = new HashMap<>();
+        Map<Rank,Integer> allRankingResult = new LinkedHashMap<>();
         for(Rank rank:Rank.values()){
             allRankingResult.put(rank,0);
         }

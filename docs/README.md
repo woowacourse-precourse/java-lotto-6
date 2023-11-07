@@ -72,13 +72,12 @@
 - 예외 문구에 대한 enum 처리.
   - [ERROR] 로 시작하는 에러 메시지 출력 (명확한 유형 처리)
 
-### OutputMessage
-- 출력 문구에 대한 enum 처리.
+### Message
+- 전반적인 메세지를 상수로 담고 있는 enum
 
 ### InputMessage
 - 입력 문구에 대한 enum 처리.
 
 ### WinningStatistics
-- 각 일치 횟수에 대한 횟수 필드 포함
-- Getter method 구현
-- 총 수익 반환에 대한 method 구현
+- 당첨 통계 메시지를 key로 가지고 있는 map 형태의 필드
+- key에 해당하는 value값을 1 증가시키는 메서드

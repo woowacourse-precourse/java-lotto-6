@@ -14,5 +14,7 @@ public class OutputView {
         System.out.printf("%d%s%n", amount, ISSUED_LOTTO_DESC);
     }
 
-
+    public static void printLotto(List<Integer> lotto) {
+        System.out.println(lotto);
+    }
 }

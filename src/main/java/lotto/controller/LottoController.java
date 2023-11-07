@@ -79,7 +79,11 @@ public class LottoController {
         List<Lotto> userLottos = user.getLottos();
 
         OutputView.printLottoStatusDescription(amount);
-
+        for (Lotto lotto : userLottos) {
+            List<Integer> row = lotto.getNumbers();
+            Collections.sort(row);
+            OutputView.printLotto(row);
+        }
 
     }
 

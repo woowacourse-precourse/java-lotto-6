@@ -11,7 +11,8 @@ public class Validator {
 
     public static void checkLottoSizeNumberInput(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ErrorType.INVALID_NUMBER_DIGITS.getText());
+            System.out.println(ErrorType.INVALID_NUMBER_DIGITS.getText());
+            throw new IllegalArgumentException();
         }
     }
 
@@ -20,21 +21,24 @@ public class Validator {
                 .distinct()
                 .count();
         if (count != numbers.size()) {
-            throw new IllegalArgumentException(ErrorType.INVALID_NUMBER_DUPLICATED.getText());
+            System.out.println(ErrorType.INVALID_NUMBER_DUPLICATED.getText());
+            throw new IllegalArgumentException();
         }
     }
 
     public static void checkLottoBonusNumber(List<Integer> numbers, int bonusNumber) {
         for (int number : numbers) {
             if (number == bonusNumber || number < MIN_NUMBER || number > MAX_NUMBER) {
-                throw new IllegalArgumentException(ErrorType.INVALID_BONUS_NUMBER_DUPLICATED.getText());
+                System.out.println(ErrorType.INVALID_BONUS_NUMBER_DUPLICATED.getText());
+                throw new IllegalArgumentException();
             }
         }
     }
 
     public static void checkMoney(int money) {
         if (money % 1000 != MIN_NUMBER || money <= MIN_NUMBER) {
-            throw new IllegalArgumentException(ErrorType.INVALID_PRICE_INPUT.getText());
+            System.out.println(ErrorType.INVALID_PRICE_INPUT.getText());
+            throw new IllegalArgumentException();
         }
     }
 }

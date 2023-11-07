@@ -33,9 +33,6 @@ public class Lotto {
         if (check.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException("");
         }
-
-        // 값 순서 정렬
-        Collections.sort(numbers);
     }
 
     public LottoMatchResult matchWinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
@@ -62,6 +59,7 @@ public class Lotto {
 
     public static Lotto generateRandomLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Collections.sort(numbers);
         return new Lotto(numbers);
     }
 

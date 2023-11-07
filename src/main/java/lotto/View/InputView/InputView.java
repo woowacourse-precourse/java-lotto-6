@@ -27,5 +27,11 @@ public class InputView {
         return GeneralInput.stringInput();
     }
 
+    /**
+     * 유저 입력에 대해 뷰에서 검증할 목록
+     * 값이 비어 있지 않은지
+     * ","러 구분 되어 있는지
+     */
+
 
 }

@@ -34,4 +34,15 @@ public class UserValidate {
         if(keySet.size() != MAX_INPUT_NUMBER)
             throw new IllegalArgumentException(CustomError.NUMBER_DUPLICATE.getError());
     }
+
+    public static void checkDuplicate(List<Integer> numbers, int n){
+        Map<Integer, Integer> map = new HashMap<>();
+        for(int number : numbers){
+            map.put(number, 1);
+        }
+        map.put(n, 1);
+        Set<Integer> keySet = map.keySet();
+        if(keySet.size() != MAX_CONTAIN_BONUS)
+            throw new IllegalArgumentException(CustomError.NUMBER_DUPLICATE.getError());
+    }
 }

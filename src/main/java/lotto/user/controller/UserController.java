@@ -46,15 +46,16 @@ public class UserController {
         return temp;
     }
 
-    public int lottoBonusNumberInput(){
+    public int lottoBonusNumberInput(List<Integer> numbers){
         UserView.inputLottoBonusNumber();
         String input = readLine();
         int temp = 0;
         try{
             temp = ConvertUtil.stringToInt(input);
+            UserValidate.checkDuplicate(numbers, temp);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            this.lottoBonusNumberInput();
+            this.lottoBonusNumberInput(numbers);
         }
         return temp;
     }

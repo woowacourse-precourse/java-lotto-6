@@ -1,5 +1,7 @@
 package lotto.lotto.controller;
 
+import java.util.List;
+
 import lotto.user.controller.UserController;
 
 public class LottoController {
@@ -13,7 +15,7 @@ public class LottoController {
     public void start(){
         UserController userController = UserController.getInstance();
         userController.purchaseInput();
-        userController.lottoNumberInput();
-        userController.lottoBonusNumberInput();
+        List<Integer> numbers = userController.lottoNumberInput();
+        userController.lottoBonusNumberInput(numbers);
     }
 }

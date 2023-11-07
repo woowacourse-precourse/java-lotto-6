@@ -13,7 +13,6 @@ public class WinningResult {
     public WinningResult(){
         result = new HashMap<>();
         for(CorrectNumber c : CorrectNumber.values()){
-            System.out.println(c);
             result.put(c, 0);
         }
     }

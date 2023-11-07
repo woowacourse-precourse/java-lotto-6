@@ -12,7 +12,6 @@ public class WinningNumber {
     private final List<Integer> numbers;
 
     public WinningNumber(String winningNumbers) {
-        System.out.println(winningNumbers);
         numbers = new ArrayList<>();
         checkException(winningNumbers);
     }
@@ -57,8 +56,6 @@ public class WinningNumber {
 
         numbers.add(tempNumber);
     }
-
-
 
     public boolean checkDuplication(int o){
         return numbers.contains(o);

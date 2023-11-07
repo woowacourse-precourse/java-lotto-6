@@ -13,7 +13,7 @@ public class Application {
         List<Lotto> lottos = buyLottos();
         printLottos(lottos);
 
-        List<Integer> winningNumbers = getWinningNumbers();
+        Lotto winningLotto = getWinningLotto();
         int bonusNumber = getBonusNumber();
     }
 
@@ -67,10 +67,16 @@ public class Application {
         }
     }
 
-    private static List<Integer> getWinningNumbers() {
+    private static Lotto getWinningLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String input = Console.readLine();
-        return parseNumbers(input);
+        try {
+            String input = Console.readLine();
+            List<Integer> winningNumbers = parseNumbers(input);
+            return new Lotto(winningNumbers);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getWinningLotto();
+        }
     }
 
     private static int getBonusNumber() {

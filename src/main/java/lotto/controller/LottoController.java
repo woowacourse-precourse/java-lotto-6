@@ -23,11 +23,11 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = repeat(this::getPurchaseAmount);
+        PurchaseAmount purchaseAmount = exceptionHandleAndRetry(this::getPurchaseAmount);
         LottoTickets lottoTickets = lottoService.purchase(purchaseAmount);
         outputView.printPurchasedLottos(lottoTickets.lottos());
 
-        WinningTicket winningTicket = repeat(this::getWinningTicket);
+        WinningTicket winningTicket = exceptionHandleAndRetry(this::getWinningTicket);
         WinningResult winningResult = lottoService.getWinningResult(lottoTickets, winningTicket);
         outputView.printWinningResult(winningResult);
     }
@@ -37,8 +37,8 @@ public class LottoController {
     }
 
     private WinningTicket getWinningTicket() {
-        Lotto winningLotto = repeat(this::getLotto);
-        LottoNumber bonusNumber = repeat(this::getLottoNumber);
+        Lotto winningLotto = exceptionHandleAndRetry(this::getLotto);
+        LottoNumber bonusNumber = exceptionHandleAndRetry(this::getLottoNumber);
         return new WinningTicket(winningLotto, bonusNumber);
     }
 
@@ -50,12 +50,12 @@ public class LottoController {
         return new LottoNumber(inputView.inputBonusNumber());
     }
 
-    private <T> T repeat(Supplier<T> supplier) {
+    private <T> T exceptionHandleAndRetry(Supplier<T> supplier) {
         try {
             return supplier.get();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return repeat(supplier);
+            return exceptionHandleAndRetry(supplier);
         }
     }
 }

@@ -1,6 +1,5 @@
 package lotto.service;
 
-import lotto.constants.Prize;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -10,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.constants.Prize.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottoServiceTest {
@@ -116,5 +116,32 @@ public class LottoServiceTest {
         List<String> expectedResult = Arrays.asList("0", "0", "0", "1", "0");
 
         assertThat(lottoService.calculateEachWinningTimes(testResult)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 당첨 금액 테스트 - 4th + 5th 당첨 케이스 - 성공")
+    @Test
+    void calculateProfit4th5thTest() {
+        List<Integer> testLottoResult = Arrays.asList(0, 0, 0, 1, 1, 0, 0, 0);
+        int expectedResult = FOURTH_PRIZE.getWinningAmount() + FIFTH_PRIZE.getWinningAmount();
+
+        assertThat(lottoService.calculateTotalWinningAmount(testLottoResult)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 당첨 금액 테스트 - 3th + 2th 당첨 케이스 - 성공")
+    @Test
+    void calculateProfit2nd3rdTest() {
+        List<Integer> testLottoResult = Arrays.asList(0, 0, 0, 0, 0, 1, 0, 1);
+        int expectedResult = SECOND_PRIZE.getWinningAmount() + THIRD_PRIZE.getWinningAmount();
+
+        assertThat(lottoService.calculateTotalWinningAmount(testLottoResult)).isEqualTo(expectedResult);
+    }
+
+    @DisplayName("로또 당첨 금액 테스트 - 1st 당첨 케이스 - 성공")
+    @Test
+    void calculateProfit1stTest() {
+        List<Integer> testLottoResult = Arrays.asList(0, 0, 0, 0, 0, 0, 1, 0);
+        int expectedResult = FIRST_PRIZE.getWinningAmount();
+
+        assertThat(lottoService.calculateTotalWinningAmount(testLottoResult)).isEqualTo(expectedResult);
     }
 }

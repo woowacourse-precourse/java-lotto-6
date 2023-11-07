@@ -8,6 +8,9 @@ import java.util.stream.Collectors;
 
 public class GameService {
     static final int ERROR = -1;
+    static final int OKAY = 100;
+
+    GameRepository gameRepository = new GameRepository();
 
     public int validCash(String rawInput) throws IllegalArgumentException {
         try {

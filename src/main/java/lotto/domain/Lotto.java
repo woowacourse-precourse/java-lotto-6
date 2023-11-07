@@ -5,15 +5,19 @@ import java.util.List;
 import java.util.Set;
 import lotto.exception.InvalidSizeLottoNumberException;
 import lotto.exception.DuplicateLottoNumberException;
+import java.util.stream.Collectors;
+
 
 
 public class Lotto {
     private static final int LOTTO_SIZE = 6;
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-
+        validate(numbers);
+        numbers = sorted(numbers);
+        this.numbers = numbers;
     }
     private void validate(List<Integer> numbers) {
         validateSize(numbers);
@@ -31,5 +35,11 @@ public class Lotto {
         if (nonDuplicateNumbers.size() != LOTTO_SIZE) {
             throw new DuplicateLottoNumberException();
         }
+    }
+
+    public List<Integer> sorted(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

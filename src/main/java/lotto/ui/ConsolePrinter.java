@@ -10,9 +10,8 @@ import static lotto.constant.ConsoleMessages.WINNING_NUMBER_MESSAGE;
 import static lotto.constant.ConsoleMessages.WINNING_STATS_MESSAGE;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.util.StringUtil;
 
 public class ConsolePrinter {
 
@@ -21,9 +20,7 @@ public class ConsolePrinter {
     }
 
     public static void printLottoNumbers(Lotto lotto) {
-        List<String> numbers = lotto.getNumbers().stream()
-                .map(Objects::toString)
-                .collect(Collectors.toList());
+        List<String> numbers = StringUtil.toStringList(lotto.getNumbers());
 
         System.out.println("[" + String.join(", ", numbers) + "]");
     }
@@ -44,12 +41,12 @@ public class ConsolePrinter {
         System.out.println(WINNING_STATS_MESSAGE);
     }
 
-    public static void printWinningAward(int rank, String award, int count) {
-        System.out.printf(WINNING_AWARD.toString(), rank, award, count);
+    public static void printWinningAward(int rank, int award, int count) {
+        System.out.printf(WINNING_AWARD.toString(), rank, StringUtil.toStringWithCommas(award), count);
     }
 
-    public static void printBonusAward(int rank, String award, int count) {
-        System.out.printf(WINNING_BONUS_AWARD.toString(), rank, award, count);
+    public static void printBonusAward(int rank, int award, int count) {
+        System.out.printf(WINNING_BONUS_AWARD.toString(), rank, StringUtil.toStringWithCommas(award), count);
     }
 
     public static void printTotalProfit(float profit) {

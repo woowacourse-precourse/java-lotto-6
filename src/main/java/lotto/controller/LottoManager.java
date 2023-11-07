@@ -1,19 +1,20 @@
 package lotto.controller;
 
+import lotto.domain.LottoChanger;
 import lotto.utility.Validation;
 import lotto.utility.enums.Standards;
 import lotto.view.ExceptionView;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class LottoManager {
     public LottoManager(){}
 
     public void startLottoService(){
         String purchaseAmount;
-        int lottoCount;
 
         purchaseAmount = purchaseLotto();
-        lottoCount = calculateLottoCount(purchaseAmount);
+        LottoChanger lottoChanger = new LottoChanger(Integer.parseInt(purchaseAmount));
     }
 
     private String purchaseLotto(){
@@ -28,9 +29,5 @@ public class LottoManager {
         }
 
         return purchaseAmount;
-    }
-
-    private int calculateLottoCount(String purchaseAmount){
-        return Integer.parseInt(purchaseAmount) / Standards.ONE_LOTTO_COST.getNumber();
     }
 }

@@ -19,8 +19,8 @@ public class WinningNumber {
 
     public WinningNumber(String numbers) {
         List<String> inputDividedByComma = validateDelimiterComma(numbers);
-        validateSixElements(inputDividedByComma);
         List<Integer> integerNumbers = validateWinningNumberIsNumeric(inputDividedByComma);
+        validateSixElements(inputDividedByComma);
         validateNumberBetweenInRange(integerNumbers);
         this.numbers = integerNumbers;
     }

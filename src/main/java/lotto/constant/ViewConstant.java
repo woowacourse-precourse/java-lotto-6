@@ -1,17 +1,17 @@
 package lotto.constant;
 
-public enum InputConstant {
+public enum ViewConstant {
     BLANK(" "),
     SEPERATOR(","),
     DASH("-");
 
     private final String value;
 
-    InputConstant(String value){
+    ViewConstant(String value) {
         this.value = value;
     }
 
-    public String getValue(){
+    public String getValue() {
         return this.value;
     }
 

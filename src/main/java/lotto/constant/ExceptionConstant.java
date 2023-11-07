@@ -13,11 +13,11 @@ public enum ExceptionConstant {
 
     private final String message;
 
-    ExceptionConstant(String message){
+    ExceptionConstant(String message) {
         this.message = message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return message;
     }
 

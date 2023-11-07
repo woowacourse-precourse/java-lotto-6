@@ -8,11 +8,11 @@ public enum MessageConstant {
 
     private final String message;
 
-    MessageConstant(String message){
+    MessageConstant(String message) {
         this.message = message;
     }
 
-    public String getMessage(){
+    public String getMessage() {
         return this.message;
     }
 }

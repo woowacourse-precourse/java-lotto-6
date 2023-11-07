@@ -9,34 +9,34 @@ import lotto.view.OutputView;
 
 public class LottoController {
     private LottoMachine lottoMachine;
-    private Bank bank;
-    private InputView input;
-    private OutputView output;
+    private final Bank bank;
+    private final InputView input;
+    private final OutputView output;
 
-    public LottoController(){
+    public LottoController() {
         bank = new Bank();
         input = new InputView();
         output = new OutputView();
     }
 
-    public void start(){
+    public void start() {
         createLottoMachine();
         userOperation();
     }
 
-    private void createLottoMachine(){
+    private void createLottoMachine() {
         int money = input.inputMoney();
         lottoMachine = new LottoMachine(money);
         output.printLottoMessage(lottoMachine.getLottos());
     }
 
-    private void userOperation(){
+    private void userOperation() {
         List<Integer> userNumbers = input.inputNumbers();
         int bonusNumber = input.inputBonus(userNumbers);
         makeResult(userNumbers, bonusNumber);
     }
 
-    private void makeResult(List<Integer> userNumbers, int bonusNumber){
+    private void makeResult(List<Integer> userNumbers, int bonusNumber) {
         List<Lotto> lottos = lottoMachine.getLottos();
         List<Integer> ranks = bank.getRanks(lottos, userNumbers, bonusNumber);
         int profit = bank.getProfit(ranks);

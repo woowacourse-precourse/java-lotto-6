@@ -7,21 +7,21 @@ import java.util.List;
 import lotto.constant.NumberConstant;
 
 public class LottoMachine {
-    private List<Lotto> lottos;
+    private final List<Lotto> lottos;
 
-    public LottoMachine(int money){
+    public LottoMachine(int money) {
         int count = getLottoCount(money);
         this.lottos = createLottos(count);
     }
 
-    public List<Lotto> getLottos(){
+    public List<Lotto> getLottos() {
         return lottos;
     }
 
     //로또 생성
-    private List<Lotto> createLottos(int count){
+    private List<Lotto> createLottos(int count) {
         List<Lotto> newLottos = new ArrayList<>();
-        for(int i = NumberConstant.DEFAULT_VALUE.getValue(); i < count; i++){
+        for (int i = NumberConstant.DEFAULT_VALUE.getValue(); i < count; i++) {
             List<Integer> numbers = sortNumbers(makeRandomNumbers());
             Lotto lotto = new Lotto(numbers);
             newLottos.add(lotto);
@@ -29,15 +29,16 @@ public class LottoMachine {
         return newLottos;
     }
 
-    public int getLottoCount(int money){
+    public int getLottoCount(int money) {
         return money / NumberConstant.LOTTO_PRICE.getValue();
     }
 
-    private List<Integer> makeRandomNumbers(){
-        return Randoms.pickUniqueNumbersInRange(NumberConstant.MIN_NUMBER.getValue(), NumberConstant.MAX_NUMBER.getValue(), NumberConstant.LOTTO_RANGE.getValue());
+    private List<Integer> makeRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(NumberConstant.MIN_NUMBER.getValue(),
+                NumberConstant.MAX_NUMBER.getValue(), NumberConstant.LOTTO_RANGE.getValue());
     }
 
-    private List<Integer> sortNumbers(List<Integer> numbers){
+    private List<Integer> sortNumbers(List<Integer> numbers) {
         Collections.sort(numbers);
         return numbers;
     }

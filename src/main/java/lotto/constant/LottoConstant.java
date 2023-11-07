@@ -12,15 +12,21 @@ public enum LottoConstant {
     private final int index;
     private final int prize;
 
-    LottoConstant(int value, int index, int prize){
+    LottoConstant(int value, int index, int prize) {
         this.value = value;
         this.index = index;
         this.prize = prize;
     }
 
-    public int getValue(){
+    public int getValue() {
         return this.value;
     }
-    public int getIndex() { return this.index; }
-    public int getPrize() { return this.prize; }
+
+    public int getIndex() {
+        return this.index;
+    }
+
+    public int getPrize() {
+        return this.prize;
+    }
 }

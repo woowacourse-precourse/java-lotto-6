@@ -9,40 +9,40 @@ import java.util.List;
 import lotto.constant.MessageConstant;
 
 public class InputView {
-    public int inputMoney(){
+    public int inputMoney() {
         System.out.println(MessageConstant.BUY_LOTTO_MESSAGE.getMessage());
 
-        while(true){
-            try{
+        while (true) {
+            try {
                 String input = Console.readLine();
                 return validMoney(input);
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public List<Integer> inputNumbers(){
+    public List<Integer> inputNumbers() {
         System.out.println();
         System.out.println(MessageConstant.LOTTO_NUMBER_MESSAGE.getMessage());
-        while(true){
-            try{
+        while (true) {
+            try {
                 String input = Console.readLine();
                 return validLotto(input);
-            } catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public int inputBonus(List<Integer> numbers){
+    public int inputBonus(List<Integer> numbers) {
         System.out.println();
         System.out.println(MessageConstant.BONUS_MESSAGE.getMessage());
-        while(true){
-            try{
+        while (true) {
+            try {
                 String input = Console.readLine();
                 return validBonus(input, numbers);
-            } catch(IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

@@ -14,11 +14,11 @@ public enum NumberConstant {
 
     private final int value;
 
-    NumberConstant(int value){
+    NumberConstant(int value) {
         this.value = value;
     }
 
-    public int getValue(){
+    public int getValue() {
         return value;
     }
 }

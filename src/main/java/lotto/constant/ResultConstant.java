@@ -10,11 +10,11 @@ public enum ResultConstant {
     PROFIT_RATE_MESSAGE("총 수익률은 %.1f%%입니다.");
     private final String message;
 
-    ResultConstant(String message){
+    ResultConstant(String message) {
         this.message = message;
     }
 
-    public String getMessage(double value){
+    public String getMessage(double value) {
         return this.message.formatted(value);
     }
 }

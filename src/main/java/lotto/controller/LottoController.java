@@ -10,8 +10,6 @@ import lotto.service.LottoService;
 import lotto.view.LottoView;
 
 public class LottoController {
-    private static final String BONUS_NUMBER_DUPLICATED_ERROR = "보너스 숫자는 당첨 번호와 중복될 수 없습니다";
-
     private final LottoService lottoService = new LottoService();
     private final LottoView lottoView = new LottoView();
 
@@ -20,7 +18,7 @@ public class LottoController {
         LottoList lottoList = LottoList.generateRandomLottoSetSizeWith(money.getLottoCount());
         printPublishedLottos(money.getLottoCount(), lottoList.getLottos());
         List<LottoNumber> winningNumbers = lottoView.getWinningNumbers();
-        LottoNumber bonusNumber = getBonusNumber(winningNumbers);
+        LottoNumber bonusNumber = lottoView.getBonusNumberWithDuplicationCheck(winningNumbers);
 
         LottoPurchaseDto lottoPurchaseDto = LottoPurchaseDto.Of(lottoList, winningNumbers, bonusNumber);
 
@@ -43,23 +41,6 @@ public class LottoController {
 
     private double calculateRateOfReturn(LottoPurchaseDto lottoPurchaseDto) {
         return lottoService.calculateRateOfReturn(lottoPurchaseDto);
-    }
-
-    private boolean winningNumbersContainsBonusNumber(List<LottoNumber> winningNumbers, LottoNumber bonusNumber) {
-        return winningNumbers.contains(bonusNumber);
-    }
-
-    private LottoNumber getBonusNumber(List<LottoNumber> winningNumbers) {
-        LottoNumber bonusNumber;
-        do {
-            bonusNumber = lottoView.getBonusNumber();
-            if (winningNumbersContainsBonusNumber(winningNumbers, bonusNumber)) {
-                System.out.println(LottoView.ERROR + BONUS_NUMBER_DUPLICATED_ERROR);
-                bonusNumber = null;
-            }
-        } while (bonusNumber == null);
-
-        return bonusNumber;
     }
 
 }

@@ -42,6 +42,15 @@ class LottoGameTest {
     }
 
     @Test
+    @DisplayName("구입 금액 검증 테스트")
+    void validate() {
+        assertThatThrownBy(() -> lottoGame.validate(1500)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1,000단위로 입력하세요");
+        assertThatThrownBy(() -> lottoGame.validate(-10000)).isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("[ERROR] 음수를 입력할 수 없습니다. 1,000원 단위로 입력해 주세요.");
+    }
+
+    @Test
     void calculationResult() {
     }
 
@@ -65,7 +74,4 @@ class LottoGameTest {
     void countMatch() {
     }
 
-    @Test
-    void validate() {
-    }
 }

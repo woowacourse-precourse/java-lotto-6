@@ -27,4 +27,4 @@
 	2. 뷰 : 화면 출력 관리
 	3. 컨트롤러: 모델과 뷰 호출 및 명령 전달
 	
- git commit -m “feat(Budget) : Basic twix for  input budget to controll of them”
+ git commit -m “feat(OutputView) : Console message feature added”

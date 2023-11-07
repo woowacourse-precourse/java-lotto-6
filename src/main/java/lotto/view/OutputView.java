@@ -1,16 +1,17 @@
 package lotto.view;
 
+import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
-import lotto.domain.Payment;
 
 import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private static final String PRINT_LOTTO_AMOUNT_SENTENCE = "개를 구매했습니다.";
     private static final String PRINT_RESULT_START_SENTENCE = "당첨 통계";
-    private static final String DEFAULT_WINNING_SENTENCE = "%d개 일치 (%d원) - %d개";
-    private static final String BONUS_WINNING_SENTENCE = "%d개 일치, 보너스 볼 일치 (%d원) - %d개";
+    private static final String DEFAULT_WINNING_SENTENCE = "%d개 일치 (%s원) - %d개";
+    private static final String BONUS_WINNING_SENTENCE = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String RETURN_RATE_SENTENCE = "총 수익률은 %s%%입니다.";
     private static final String EMPTY_LINE = "";
     private static final String DASH = "-";
@@ -44,9 +45,19 @@ public class OutputView {
     }
 
     private static void printRankCount(LottoResult result) {
-        //TODO: 당첨 내역 출력
+        List<Map.Entry<LottoRank, Integer>> sortedLottoResult = result.getSortedLottoResult();
+        for (Map.Entry<LottoRank, Integer> entry : sortedLottoResult) {
+            System.out.println(makeLottoResultSentence(entry));
+        }
+    }
 
+    private static String makeLottoResultSentence(Map.Entry<LottoRank, Integer> entry) {
+        LottoRank rank = entry.getKey();
 
+        if (rank.isBonusBall()) {
+            return String.format(BONUS_WINNING_SENTENCE, rank.getMatchCount(), rank.getFormattedReward(), entry.getValue());
+        }
+        return String.format(DEFAULT_WINNING_SENTENCE, rank.getMatchCount(), rank.getFormattedReward(), entry.getValue());
     }
 
     public static void printReturnRate(String result) {

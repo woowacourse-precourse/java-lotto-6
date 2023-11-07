@@ -3,10 +3,14 @@ package lotto;
 import java.util.List;
 
 public class WinningNumbers {
-    List<Lotto> winningLottoNumbers;
+    private final List<Lotto> winningLottoNumbers;
 
-    public WinningNumbers(List<Lotto> winningLottoNumbers) {
-        this.winningLottoNumbers = winningLottoNumbers;
+    public WinningNumbers(List<Integer> numbers) {
+        this.winningLottoNumbers = generate(numbers);
+    }
+
+    private List<Lotto> generate(List<Integer> numbers) {
+        return List.of(new Lotto(numbers));
     }
 
     public int compareWith(Lotto lotto) {

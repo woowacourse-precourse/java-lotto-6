@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.dto.RequestCash;
+import lotto.dto.RequestWinnerLotto;
 import lotto.util.NumberGenerator;
 import lotto.util.UniqueRandomNumbersGenerator;
 import lotto.view.InputView;
@@ -15,8 +16,7 @@ public class GameController {
     private static final OutputView outputView = new OutputView();
     private final NumberGenerator numberGenerator;
 
-    public GameController(
-            NumberGenerator numberGeneratorImp) {
+    public GameController(NumberGenerator numberGeneratorImp) {
         this.numberGenerator = numberGeneratorImp;
     }
 
@@ -28,7 +28,7 @@ public class GameController {
         try {
             Cash cash = depositCash();
             Lottos lottos = purchaseLotto(cash);
-            Prizes prizes = compareWinnerLotto(lottos);
+            WinnerLotto winnerLotto = getWinnerLotto();
             outputView.printStaticResult(prizes, cash);
         } catch (IllegalStateException e) {
             outputView.printErrorMessage(e);
@@ -39,13 +39,13 @@ public class GameController {
     private Cash depositCash() throws IllegalStateException {
         try {
             RequestCash requestCash = inputView.requestCash();
-            return Cash.create(
-                    requestCash.depositAmount(),
-                    requestCash.spendAmount());
+            return Cash.create(requestCash.depositAmount(),
+                               requestCash.spendAmount());
         } catch (IllegalStateException e) {
             throw e;
         }
     }
+
 
     private Lottos purchaseLotto(Cash cash) {
         LottoMachine lottoMachine = new LottoMachine(numberGenerator, cash);
@@ -54,23 +54,26 @@ public class GameController {
         return lottos;
     }
 
-    private Prizes compareWinnerLotto(Lottos lottos) throws IllegalStateException {
+
+    private WinnerLotto getWinnerLotto() throws IllegalStateException {
         try {
-            List<Integer> winnerNumbers = inputView.inputWinnerNumbers();
-            Integer bonusNumber = inputView.inputBonusNumber();
-            inputView.close();
-            WinnerLotto winnerLotto = new WinnerLotto(winnerNumbers, bonusNumber);
-            Prizes prizes = lottos.createPrizes(winnerLotto);
-            return prizes;
-        } catch (IllegalArgumentException e) {
-            outputView.printErrorMessage(e);
-            return compareWinnerLotto(lottos);
+            RequestWinnerLotto requestWinnerLotto = inputView.requestWinnerLotto();
+            WinnerLotto winnerLotto = WinnerLotto.create(
+                    requestWinnerLotto.winnerNumbers(),
+                    requestWinnerLotto.bonusNumber());
+            return winnerLotto;
         } catch (IllegalStateException e) {
             throw e;
         }
-
     }
 
 
 
+
 }
+
+
+
+
+
+

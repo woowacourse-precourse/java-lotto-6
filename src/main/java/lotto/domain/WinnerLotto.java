@@ -19,7 +19,8 @@ public class WinnerLotto {
     private final List<Integer> winnerNumbers;
     private final Integer bonusNumber;
 
-    public WinnerLotto(final List<Integer> winnerNumbers, final Integer bonusNumber) {
+    private WinnerLotto(final List<Integer> winnerNumbers,
+                       final Integer bonusNumber) {
         validateWinnerNumbersLength(winnerNumbers);
         validateEachWinnerNumberRange(winnerNumbers);
         validateDuplicatedNumber(winnerNumbers);
@@ -27,6 +28,12 @@ public class WinnerLotto {
         validateDuplicatedNumberBetweenWinnerNumbersAndBonusNumber(winnerNumbers, bonusNumber);
         this.winnerNumbers = winnerNumbers;
         this.bonusNumber = bonusNumber;
+    }
+
+    public static WinnerLotto create(final List<Integer> winnerNumbers,
+                                     final Integer bonusNumber) {
+        return new WinnerLotto(winnerNumbers,
+                               bonusNumber);
     }
 
     private void validateWinnerNumbersLength(final List<Integer> winnerNumbers) {

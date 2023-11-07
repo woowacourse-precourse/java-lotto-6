@@ -2,6 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.Field;
 import lotto.model.Wallet;
@@ -13,16 +15,16 @@ import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class WalletTest {
-    static Integer maximumPurchaseAmount;
+    static Integer lottoPrice;
 
     @BeforeAll
     public static void getConstantValue() throws NoSuchFieldException, IllegalAccessException {
         Wallet wallet = new Wallet("1000");
 
-        Field privatemaximumPurchaseAmount = Wallet.class.getDeclaredField("MAXIMUM_PURCHASE_AMOUNT");
-        privatemaximumPurchaseAmount.setAccessible(true);
+        Field privateLottoPrice = Wallet.class.getDeclaredField("LOTTO_PRICE");
+        privateLottoPrice.setAccessible(true);
 
-        maximumPurchaseAmount = (Integer) privatemaximumPurchaseAmount.get(wallet);
+        lottoPrice = (Integer) privateLottoPrice.get(wallet);
     }
 
     @DisplayName("구입 금액에 숫자가 아닌 값이 있으면 예외가 발생 한다.")
@@ -41,18 +43,18 @@ public class WalletTest {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + maximumPurchaseAmount + "원.");
+                        + lottoPrice + "원.");
     }
 
     @DisplayName("구입 금액이 최대금액을 넘는 경우 예외가 발생한다.")
     @Test
     void createWalletByNullMoney() {
-        int inputMoney = maximumPurchaseAmount + 1000;
+        int inputMoney = lottoPrice + 1000;
 
         assertThatThrownBy(() -> new Wallet(String.valueOf(inputMoney)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + maximumPurchaseAmount + "원.");
+                        + lottoPrice + "원.");
     }
 
     @DisplayName("구입 금액이 1000으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
@@ -62,7 +64,7 @@ public class WalletTest {
         assertThatThrownBy(() -> new Wallet(money))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[Error] 구입 금액에 값을 1000원 단위로 넣어주세요, 최대구입금액 "
-                        + maximumPurchaseAmount + "원.");
+                        + lottoPrice + "원.");
     }
 
     @DisplayName("구입 금액이 정상적으로 들어온 경우.")
@@ -76,5 +78,23 @@ public class WalletTest {
         int walletPrivateMoney = (int) privateMoney.get(wallet);
 
         assertEquals(walletPrivateMoney, Integer.parseInt(money));
+    }
+
+    @DisplayName("로또를 구입할 금액이 있으면 true를 반환한다")
+    @Test
+    void CanBuyLottoInGeneralCase() {
+        Wallet wallet = new Wallet("2000");
+
+        assertTrue(wallet.canBuyLotto());
+    }
+
+    @DisplayName("로또를 구입할 금액이 없으면 false를 반환한다")
+    @Test
+    void CanBuyLottoInFailedCase() {
+        Wallet wallet = new Wallet("1000");
+
+        wallet.buyLotto();
+
+        assertFalse(wallet.canBuyLotto());
     }
 }

@@ -8,7 +8,6 @@ import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class TotalWinningTest {
     private TotalWinning totalWinning;
@@ -18,7 +17,7 @@ class TotalWinningTest {
     void createTotalWinning() {
         assertRandomUniqueNumbersInRangeTest(() -> {
                     LottoPurchase lottoPurchase = LottoPurchase.valueOf(8000);
-                    LottoTickets lottoTickets = LottoTickets.createdBy(8);
+                    LottoTickets lottoTickets = LottoTickets.createdByNumber(8);
                     WinningLotto winningLotto = WinningLotto.of(Lotto.valueOf(List.of(1, 2, 3, 4, 5, 6)), LottoNumber.valueOf(7));
                     WinningResult winningResult = WinningResult.compare(lottoTickets, winningLotto);
                     totalWinning = TotalWinning.compare(lottoPurchase, winningResult);

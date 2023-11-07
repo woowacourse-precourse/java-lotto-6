@@ -24,7 +24,7 @@ class WinningResultTest {
             LottoNumber lottoNumber = LottoNumber.valueOf("7");
             WinningLotto winningLotto= WinningLotto.of(lotto, lottoNumber);
 
-            LottoTickets tickets = LottoTickets.createdBy(5);
+            LottoTickets tickets = LottoTickets.createdByNumber(5);
 
             winningResult = WinningResult.compare(tickets, winningLotto);
         }, List.of(1, 2, 3, 4, 5, 6), List.of(1, 2, 3, 4, 5, 7), List.of(1, 2, 3, 4, 5, 8), List.of(1, 2, 3, 4, 8, 7), List.of(1, 2, 3, 14, 15, 18));

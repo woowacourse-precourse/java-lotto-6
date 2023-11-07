@@ -21,7 +21,7 @@ class LottoTicketsTest {
     @BeforeEach
     @Test
     void createLottoTickets() {
-        lottoTickets = LottoTickets.createdBy(5);
+        lottoTickets = LottoTickets.createdByNumber(5);
     }
 
     @DisplayName("")
@@ -34,7 +34,7 @@ class LottoTicketsTest {
     @Test
     void NumbersOfLottoTickets() {
         assertRandomUniqueNumbersInRangeTest(() ->
-                        assertThat(LottoTickets.createdBy(5).getLottoTickets().stream().map(Lotto::toString))
+                        assertThat(LottoTickets.createdByNumber(5).getLottoTickets().stream().map(Lotto::toString))
                                 .contains("[1, 2, 3, 4, 5, 6]",
                                         "[4, 5, 6, 7, 8, 9]",
                                         "[3, 10, 23, 42, 43, 45]",
@@ -53,10 +53,10 @@ class LottoTicketsTest {
     @DisplayName("양수가 아닐 경우 예외가 발생해야함")
     @Test
     void createLottoTicketsByZero() {
-        assertThatThrownBy(() -> LottoTickets.createdBy(-1))
+        assertThatThrownBy(() -> LottoTickets.createdByNumber(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
-        assertThatThrownBy(() -> LottoTickets.createdBy(0))
+        assertThatThrownBy(() -> LottoTickets.createdByNumber(0))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ErrorMessages.NON_POSITIVE_INPUT_MESSAGE.getMessage());
     }

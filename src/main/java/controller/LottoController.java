@@ -12,24 +12,23 @@ import java.util.List;
 import view.InputBonusNumberView;
 import view.InputMoneyView;
 import view.InputWinningLottoView;
-import view.OutputLottoResultView;
 import view.OutputLottoTicketView;
 
 public class LottoController {
     public void run() {
         InputMoneyView inputMoneyView = new InputMoneyView();
-        Money money = inputMoneyView.getValue();
+        Money money = getValidMoney(inputMoneyView);
+
+        InputWinningLottoView inputWinningLottoView = new InputWinningLottoView();
+        InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
 
         LottoGenerator lottoGenerator = new LottoGenerator();
         LottoTicket lottoTicket = new LottoTicket(lottoGenerator.generateLottoTicket(money.getNumberOfLottoTicket()));
 
         OutputLottoTicketView.printLottoTicket(lottoTicket);
 
-        InputWinningLottoView inputWinningLottoView = new InputWinningLottoView();
-        InputBonusNumberView inputBonusNumberView = new InputBonusNumberView();
-
-        List<Integer> winningNumbers = inputWinningLottoView.getValue();
-        int bonusNumber = inputBonusNumberView.getValue();
+        List<Integer> winningNumbers = getValidWinningNumbers(inputWinningLottoView);
+        int bonusNumber = getValidBonusNumber(inputBonusNumberView);
 
         WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
 
@@ -39,5 +38,35 @@ public class LottoController {
         IncomeRate incomeRate = new IncomeRate(money, lottoResult);
 
         printLottoResult(lottoResult, incomeRate);
+    }
+
+    private Money getValidMoney(InputMoneyView inputMoneyView) {
+        while (true) {
+            try {
+                return new Money(inputMoneyView.getValue());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> getValidWinningNumbers(InputWinningLottoView inputWinningLottoView) {
+        while (true) {
+            try {
+                return inputWinningLottoView.getValue();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private int getValidBonusNumber(InputBonusNumberView inputBonusNumberView) {
+        while (true) {
+            try {
+                return inputBonusNumberView.getValue();
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 }

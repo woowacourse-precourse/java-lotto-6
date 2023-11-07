@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -178,5 +179,26 @@ public class DrawTest extends Draw{
 
         //then
         assertThat(result).isEqualTo(false);
+    }
+
+    @Test
+    void 로또_당첨_결과_확인() {
+
+        //given
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        int bonusNum = 7;
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 7, 8, 9)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
+        lottos.add(new Lotto(List.of(10, 11, 12, 13, 14, 15)));
+
+        //when
+        Map<Rank, Integer> result = draw(winning, bonusNum, lottos);
+
+        //then
+        assertThat(result.get(Rank.FIRST)).isEqualTo(0);
+        assertThat(result.get(Rank.SECOND)).isEqualTo(1);
+        assertThat(result.get(Rank.FIFTH)).isEqualTo(1);
+        assertThat(result.get(Rank.NO_RANK)).isEqualTo(1);
     }
 }

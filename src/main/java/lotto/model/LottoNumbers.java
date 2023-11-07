@@ -25,4 +25,8 @@ public class LottoNumbers {
         } while (lottoNumbers.size() < lottoPurchaseCount);
     }
 
+    public List<List<Integer>> getLottoNumbers() {
+        return lottoNumbers;
+    }
+
 }

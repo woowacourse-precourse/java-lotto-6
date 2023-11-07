@@ -43,5 +43,12 @@ public class PrizeNumberValidator {
             throw new IllegalArgumentException(ExceptionMessage.INPUT_NUMBER_RANGE_ERROR);
         }
     }
-    
+
+    private void validateRange(List<Integer> numbers) {
+        for(Integer number : numbers) {
+            if(number < 1 || number > 45) {
+                throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_RANGE_ERROR);
+            }
+        }
+    }
 }

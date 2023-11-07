@@ -39,10 +39,10 @@ public class LottoController {
     }
 
     private List<List<Integer>> buyLotto(long money) {
-        OutputView.OutputViewPurchaseCount(money / ONE_THOUSAND);
+        OutputView.outputViewPurchaseCount(money / ONE_THOUSAND);
         List<List<Integer>> myLotto = lottoService.generateRandomLottoNumbers(money / ONE_THOUSAND);
         for (int i = 0; i < money / ONE_THOUSAND; i++) {
-            OutputView.lottoNumbersResult(myLotto.get(i));
+            OutputView.lottoNumbersResult(Utils.convertListToFormattedString(myLotto.get(i)));
         }
         return myLotto;
     }

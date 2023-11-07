@@ -9,13 +9,9 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
-  private static lotto.view.InputView inputView;
-  private static lotto.controller.InputProcessor InputPresent;
   private static lotto.model.LottoGame LottoGame;
 
   public LottoController() {
-    inputView = new InputView();
-    InputPresent = new InputProcessor();
     LottoGame = new LottoGame();
   }
 
@@ -29,22 +25,21 @@ public class LottoController {
   }
 
   public static void run() {
-    int money = inputView.inputMoney();
-    int calculateLottoCount = InputPresent.calculateLottoCount(money);
+    int money = InputView.inputMoney();
+    int calculateLottoCount = InputProcessor.calculateLottoCount(money);
     OutputView.printLottoCountMessage(calculateLottoCount);
     List<List<Integer>> lottos = createLottos(calculateLottoCount);
     OutputView.printLottos(lottos);
-    String winningNumber = inputView.inputWinningNumber();
+    String winningNumber = InputView.inputWinningNumber();
     List<String> winningNumbers = InputProcessor.splitWinningNumbers(winningNumber);
     List<Integer> winningNumberSet = InputProcessor.convertToIntegerList(winningNumbers);
-    int bonusNumber = inputView.inputBonusNumber(winningNumberSet);
+    int bonusNumber = InputView.inputBonusNumber(winningNumberSet);
     List<Integer> rank = checkLottoResults(lottos, winningNumberSet, bonusNumber);
     printLottoResults(money, rank);
   }
 
   public static List<Integer> checkLottoResults(List<List<Integer>> lottos, List<Integer> winningNumberSet, int bonusNumber) {
-    List<Integer> rank = LottoGame.checkWinningStatus(lottos, winningNumberSet, bonusNumber);
-    return rank;
+    return LottoGame.checkWinningStatus(lottos, winningNumberSet, bonusNumber);
   }
 
   public static void printLottoResults(int money, List<Integer> rank) {

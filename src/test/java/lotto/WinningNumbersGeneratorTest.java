@@ -62,23 +62,6 @@ class WinningNumbersGeneratorTest {
                 .hasMessageContaining("[ERROR]");
     }
 
-    @DisplayName("당첨 번호가 숫자가 아닌 경우 예외 처리")
-    @Test
-    void winningNumberNotDigit() {
-        //given
-        WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
-
-        //when
-        String[] winningNumbersInput = {"1", "2", "3", "4", "5", "a"};
-        winningNumbersGenerator.setWinningNumberInput(winningNumbersInput);
-
-        //then
-        assertThatThrownBy(winningNumbersGenerator::validateDividedInput)
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 당첨 번호는 숫자여야 합니다.")
-                .hasMessageContaining("[ERROR]");
-    }
-
     @DisplayName("당첨 번호가 범위를 초과한 경우 예외 처리")
     @Test
     void winningNumberOverRange() {

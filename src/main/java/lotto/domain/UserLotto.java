@@ -5,11 +5,17 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class UserLotto {
+
     private final LottoRepository userLottoRepository = new LottoRepository();
     public UserLotto() {
         buyLotto();
         printAllLottoInfo();
     }
+
+    public int size() {
+        return userLottoRepository.size();
+    }
+
     public Lotto get(int index) {
         return userLottoRepository.get(index);
     }

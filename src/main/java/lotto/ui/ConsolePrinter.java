@@ -43,7 +43,11 @@ public class ConsolePrinter {
     }
 
     public static void printWinningReward(Rewards reward, int count) {
-        if (reward == Rewards.FIFTH) {
+        if (reward == Rewards.LOSE) {
+            return;
+        }
+
+        if (reward == Rewards.SECOND) {
             System.out.printf(WINNING_BONUS_REWARD.toString(), reward.getCount(),
                     StringUtil.toStringWithCommas(reward.getValue()), count);
             return;
@@ -53,7 +57,7 @@ public class ConsolePrinter {
                 StringUtil.toStringWithCommas(reward.getValue()), count);
     }
 
-    public static void printTotalReturnRate(double returnRate) {
+    public static void printTotalReturnRate(float returnRate) {
         System.out.printf(RETURN_RATE.toString(), returnRate);
     }
 

@@ -108,14 +108,14 @@ public class LottoGame {
         ConsolePrinter.printWinningStatsMessage();
 
         Map<Rewards, Integer> totalStats = lottos.getTotalStats(winningNumber, bonus);
-        for (Rewards reward : totalStats.keySet()) {
+        for (Rewards reward : Rewards.values()) {
             ConsolePrinter.printWinningReward(reward, totalStats.get(reward));
         }
     }
 
     private void showReturnRate() {
         Integer totalReward = lottos.getTotalReward(winningNumber, bonus);
-        Double returnRatio = NumberUtil.calculateReturnRatio((double) purchaseAmount, (double) totalReward);
+        Float returnRatio = NumberUtil.calculateReturnRatio((float) purchaseAmount, (float) totalReward);
         ConsolePrinter.printTotalReturnRate(returnRatio);
     }
 }

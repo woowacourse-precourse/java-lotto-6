@@ -6,9 +6,9 @@ public enum ConsoleMessages {
     WINNING_NUMBER_MESSAGE("당첨 번호를 입력해 주세요."),
     BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
     WINNING_STATS_MESSAGE("당첨 통계\n---"),
-    WINNING_REWARD("%d개 일치 (%s원) - %d개"),
-    WINNING_BONUS_REWARD("%d개 일치, 보너스 볼 일치 (%s원) - %d개"),
-    RETURN_RATE("총 수익률은 %.1f%입니다.");
+    WINNING_REWARD("%d개 일치 (%s원) - %d개\n"),
+    WINNING_BONUS_REWARD("%d개 일치, 보너스 볼 일치 (%s원) - %d개\n"),
+    RETURN_RATE("총 수익률은 %.1f%%입니다.");
 
     private String value;
 

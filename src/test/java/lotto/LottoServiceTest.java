@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LottoServiceTest {
 
@@ -39,13 +40,27 @@ public class LottoServiceTest {
 		long numberOfLottoTickets = 3L;
 		List<Lotto> lottos = lottoService.issueLottos(numberOfLottoTickets);
 
-		assertEquals(3,lottos.size());
+		assertEquals(3, lottos.size());
 	}
 
 	@DisplayName("로또 번호 오름차순 정렬 테스트")
 	@Test
 	void issueLottoTest2() {
+		long numberOfLottoTickets = 100L;
+		List<Lotto> lottos = lottoService.issueLottos(numberOfLottoTickets);
 
+		for (Lotto lotto : lottos) {
+			assertTrue(isSortedInAscendingOrder(lotto.getNumbers()));
+		}
+	}
+
+	private boolean isSortedInAscendingOrder(List<Integer> numbers) {
+		for (int i = 1; i < numbers.size(); i++) {
+			if (numbers.get(i - 1) > numbers.get(i)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@DisplayName("입력받은 번호로 사용자 로또 발급하는 메서드 테스트")

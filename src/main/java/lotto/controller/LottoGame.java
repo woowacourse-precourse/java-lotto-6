@@ -5,6 +5,7 @@ import lotto.model.Player;
 import lotto.service.InputSystem;
 import lotto.service.LottoSystem;
 import lotto.service.PrintSystem;
+import lotto.service.ValidateSystem;
 import lotto.type.WinningResultType;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class LottoGame {
 
     private final InputSystem inputSystem = new InputSystem();
     private final PrintSystem printSystem = new PrintSystem();
+    private final ValidateSystem validateSystem = new ValidateSystem();
 
     private Map<WinningResultType, Integer> winningResult = new HashMap<>();
     private List<Lotto> lottos = new ArrayList<>();
@@ -51,7 +53,8 @@ public class LottoGame {
         printSystem.printAskPaymentAccountMessage();
         int paymentAccount = inputSystem.inputPaymentAccount();
 
-        //TODO: 유효한 금액인지 확인
+        validateSystem.validatePaymentAccount(paymentAccount);
+
         player.savePaymentAccount(paymentAccount);
         printSystem.printResultNumOfLotto(paymentAccount/1000);
 
@@ -71,11 +74,11 @@ public class LottoGame {
 
         printSystem.printAskWinningNumbersMessage();
         List<Integer> winningNumbers = inputSystem.inputWinningNumbers();
-        //TODO: 유효한 로또번호인지 검사
+        validateSystem.validateWinningNumbers(winningNumbers);
 
         printSystem.printAskBonusNumberMessage();
         int bonusNumber = inputSystem.inputBonusNumber();
-        //TODO: 유요한 보너스번호인지 검사
+        validateSystem.validateBonusNumber(winningNumbers,bonusNumber);
 
         this.lottoSystem = new LottoSystem(winningNumbers, bonusNumber);
 

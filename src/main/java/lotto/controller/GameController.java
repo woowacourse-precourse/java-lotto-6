@@ -47,7 +47,7 @@ public class GameController {
     private void getAnswerNumbers() {
         outputView.showInputLottoNumberMessage();
         List<Integer> answerNumbers = inputController.getLottoNumber();
-        this.answer = new Lotto(answerNumbers);
+        this.answer = Lotto.newInstance(answerNumbers);
         outputView.showInputLottoBonusNumberMessage();
         this.bonusNumber = inputController.getBonusNumber();
     }

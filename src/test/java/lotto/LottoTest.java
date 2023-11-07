@@ -14,69 +14,69 @@ class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
     void createLottoByOverSize() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6, 7)))
+        assertThatThrownBy(() -> Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6, 7)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
+        assertThatThrownBy(() -> Lotto.newInstance(List.of(1, 2, 3, 4, 5, 5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 번호에 중복된 숫자의 범위가 아니면 예외가 발생한다. : under")
     @Test
     void createLottoByRangeOverNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 80)))
+        assertThatThrownBy(() -> Lotto.newInstance(List.of(1, 2, 3, 4, 5, 80)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("로또 번호에 중복된 숫자의 범위가 아니면 예외가 발생한다. : over")
     @Test
     void createLottoByRangeUnderNumber() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, -1)))
+        assertThatThrownBy(() -> Lotto.newInstance(List.of(1, 2, 3, 4, 5, -1)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 6")
     @Test
     void compareLottoWithGivenLottoSix() {
-        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6));
+        Lotto answerLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6));
         assertThat(answerLotto.matchUp(userLotto)).isEqualTo(6);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 5")
     @Test
     void compareLottoWithGivenLottoFive() {
-        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 7));
-        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 7));
+        Lotto answerLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6));
         assertThat(answerLotto.matchUp(userLotto)).isEqualTo(5);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 4")
     @Test
     void compareLottoWithGivenLottoFour() {
-        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 8, 7));
-        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 8, 7));
+        Lotto answerLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6));
         assertThat(answerLotto.matchUp(userLotto)).isEqualTo(4);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 3")
     @Test
     void compareLottoWithGivenLottoThree() {
-        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 7, 12, 9));
-        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto =  Lotto.newInstance(List.of(1, 2, 3, 7, 12, 9));
+        Lotto answerLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6));
         assertThat(answerLotto.matchUp(userLotto)).isEqualTo(3);
     }
     @DisplayName("로또 번호 끼리 비교를 한다. : 2")
     @Test
     void compareLottoWithGivenLottoUnder() {
-        Lotto userLotto =  new Lotto(List.of(1, 2, 7, 8, 9, 10));
-        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto =  Lotto.newInstance(List.of(1, 2, 7, 8, 9, 10));
+        Lotto answerLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6));
         assertThat(answerLotto.matchUp(userLotto)).isEqualTo(2);
     }
     @DisplayName("로또 번호랑 보너스 번호를 비교를 한다. : 5개 일치인 경우")
     @Test
     void compareLottoWithGivenLottoFiveBonus() {
-        Lotto userLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 10));
-        Lotto answerLotto =  new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto userLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 10));
+        Lotto answerLotto =  Lotto.newInstance(List.of(1, 2, 3, 4, 5, 6));
         Integer bonusNumber = 10;
         Integer countOfBall = userLotto.matchUp(answerLotto);
         LottoResult result= LottoResult.matchUp(countOfBall,userLotto,bonusNumber);

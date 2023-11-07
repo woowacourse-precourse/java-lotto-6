@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import lotto.Lotto;
+
 public class InputValidator {
 
     public static void validateBudget(String inputBudget) {
@@ -7,7 +9,7 @@ public class InputValidator {
         try {
             int budget = Integer.parseInt(inputBudget);
 
-            if (budget % 1000 != 0) {
+            if (budget % Lotto.PRICE != 0) {
                 throw new IllegalArgumentException("1000 원으로 나누어 떨어지지 않는 구입금액 입니다.");
             }
         } catch (NumberFormatException e) {

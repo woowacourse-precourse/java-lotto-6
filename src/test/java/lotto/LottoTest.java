@@ -35,72 +35,75 @@ class LottoTest {
 
     // 아래에 추가 테스트 작성 가능
     
-    @DisplayName("로또 객체의 numbers 인스터스 변수에 Randoms배열을 할당할 떄, 중복이 있는지.")
     @Test
+    @DisplayName("로또 객체의 numbers 인스턴스 변수에 Randoms 배열을 할당할 때 중복이 있는지 확인")
     void checkLottoNumbersUniqueSix() {
-    	List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-    	Lotto lotto = new Lotto(numbers);
-    	int uniqueCount = (int) numbers.stream().distinct().count();
-    	assertEquals(uniqueCount,lotto.getNumbers().size());
-    	
-    }
-    
-    @DisplayName("1000단위당 한개씩 있는 로또 객체 리스트 생성 메소드 테스트")
-    @Test
-    void shouldCreateOneLottoPerThousandUnits() {
-    	int testThousand = 6100;
-    	List<Lotto> lotto_list = LottoService.createObjectPerThousandUnits(testThousand);
-    	assertEquals(6, lotto_list.size(),"6100을 넣고, 1000단위이기 떄문에 list의 사이즈는 6이어야 합니다.");
+      List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+      Lotto lotto = new Lotto(numbers);
+      int uniqueCount = (int) numbers.stream().distinct().count();
+      assertEquals(uniqueCount, lotto.getNumbers().size());
     }
 
-    @DisplayName("로또 숫자들(원소들) 텍스트 출력 확인한다.")
     @Test
+    @DisplayName("1000단위당 한 개씩 있는 로또 객체 리스트 생성 메소드 테스트")
+    void shouldCreateOneLottoPerThousandUnits() {
+      int testThousand = 6100;
+      List<Lotto> lottos = LottoService.createObjectPerThousandUnits(testThousand);
+      assertEquals(6, lottos.size(), "6100을 넣고, 1000단위이기 때문에 list의 사이즈는 6이어야 합니다.");
+    }
+
+    @Test
+    @DisplayName("로또 숫자들(원소들) 텍스트 출력을 확인")
     void testPlayerLottoNumbersDisplayCorrectly() {
-    	List<Lotto> lotto_list = LottoService.createObjectPerThousandUnits(5000);
-    	OutputView.printPlayerLottos(lotto_list);
+      List<Lotto> lottos = LottoService.createObjectPerThousandUnits(5000);
+      OutputView.printPlayerLottos(lottos);
     }
-    
-    @DisplayName("등수에 따른 상금이 정상적으로 추출 되는지 확인한다")
+
     @Test
+    @DisplayName("등수에 따른 상금이 정상적으로 추출되는지 확인")
     void testGetTotalWinningAmountSuccess() {
-    	int topThreePrizesTotal = 2031500000; //1,2,3등 합친금액
-    	int bonusNumber = 7;
-    	List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
-    	List<Integer> numbersFirst = List.of(1,2,3,4,5,6);
-    	Lotto firstLotto = new Lotto(numbersFirst);
-    	List<Integer> numbersSecond = List.of(1,2,3,4,5,7);
-    	Lotto secondLotto = new Lotto(numbersSecond);
-    	List<Integer> numbersthird = List.of(1,2,3,4,5,10);
-    	Lotto thirdLotto = new Lotto(numbersthird);
-    	List<Lotto> playerLottos = List.of(firstLotto,secondLotto,thirdLotto);
-    	assertEquals(topThreePrizesTotal, LottoService.getTotalWinningAmount(playerLottos, winningNumbers, bonusNumber));
+      final int TOP_THREE_PRIZES_TOTAL = 2_031_500_000; // 1, 2, 3등 합친 금액
+      int bonusNumber = 7;
+      List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+      List<Integer> numbersFirst = List.of(1, 2, 3, 4, 5, 6);
+      Lotto firstLotto = new Lotto(numbersFirst);
+      List<Integer> numbersSecond = List.of(1, 2, 3, 4, 5, 7);
+      Lotto secondLotto = new Lotto(numbersSecond);
+      List<Integer> numbersThird = List.of(1, 2, 3, 4, 5, 10);
+      Lotto thirdLotto = new Lotto(numbersThird);
+      List<Lotto> playerLottos = List.of(firstLotto, secondLotto, thirdLotto);
+      assertEquals(TOP_THREE_PRIZES_TOTAL, 
+                   LottoService.getTotalWinningAmount(playerLottos, winningNumbers, bonusNumber));
     }
-    
-    @DisplayName("각 등수가 정확히 카운트 되는지 확인한다.")
+
     @Test
+    @DisplayName("각 등수가 정확히 카운트되는지 확인")
     void testGetTotalWinningCountSuccess() {
-    	int topThreePrizesTotal = 2031500000; //1,2,3등 합친금액
-    	int bonusNumber = 7;
-    	List<Integer> winningNumbers = List.of(1,2,3,4,5,6);
-    	List<Integer> numbersFirst = List.of(1,2,3,4,5,6);
-    	Lotto firstLotto = new Lotto(numbersFirst);
-    	List<Integer> numbersSecond = List.of(1,2,3,4,5,7);
-    	Lotto secondLotto = new Lotto(numbersSecond);
-    	List<Integer> numbersthird = List.of(1,2,3,4,5,10);
-    	Lotto thirdLotto = new Lotto(numbersthird);
-    	List<Integer> numbersthird2 = List.of(1,2,3,4,5,10);
-    	Lotto thirdLotto2 = new Lotto(numbersthird2);
-    	List<Lotto> playerLottos = List.of(firstLotto,secondLotto,thirdLotto,thirdLotto2);//1등 1개, 2등1개, 3등 2개
-    	assertEquals(1, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("FIRST"));
-    	assertEquals(1, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("SECOND"));
-    	assertEquals(2, LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber).get("THIRD"));
+      int bonusNumber = 7;
+      List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+      List<Integer> numbersFirst = List.of(1, 2, 3, 4, 5, 6);
+      Lotto firstLotto = new Lotto(numbersFirst);
+      List<Integer> numbersSecond = List.of(1, 2, 3, 4, 5, 7);
+      Lotto secondLotto = new Lotto(numbersSecond);
+      List<Integer> numbersThird = List.of(1, 2, 3, 4, 5, 10);
+      Lotto thirdLotto = new Lotto(numbersThird);
+      List<Integer> numbersThird2 = List.of(1, 2, 3, 4, 5, 10);
+      Lotto thirdLotto2 = new Lotto(numbersThird2);
+      List<Lotto> playerLottos = List.of(firstLotto, secondLotto, thirdLotto, thirdLotto2); // 1등 1개, 2등 1개, 3등 2개
+      
+      Map<String, Integer> winningCount = LottoService.getTotalWinningRankCount(playerLottos, winningNumbers, bonusNumber);
+      assertEquals(1, winningCount.get("FIRST"));
+      assertEquals(1, winningCount.get("SECOND"));
+      assertEquals(2, winningCount.get("THIRD"));
     }
-    
-    @DisplayName("수익률 계산이 정확한지 확인한다.")
+
     @Test
+    @DisplayName("수익률 계산이 정확한지 확인")
     void shouldCalculateCorrectReturnOnInvestment() {
-    	double answer = 62.5;
-    	List<Lotto> playerLotto = LottoService.createObjectPerThousandUnits(8000);
-    	assertEquals(62.5, LottoService.calculateReturnOnInvestment(5000, playerLotto));
+      final double EXPECTED_RETURN = 62.5;
+      List<Lotto> playerLottos = LottoService.createObjectPerThousandUnits(8000);
+      assertEquals(EXPECTED_RETURN, 
+                   LottoService.calculateReturnOnInvestment(5000, playerLottos));
     }
+
 }

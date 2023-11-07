@@ -1,11 +1,13 @@
 package lotto.domain.user;
 
 import lotto.config.Config;
+import lotto.constant.LottoRank;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
 import lotto.domain.num.LottoTargetNumResults;
 import lotto.utill.Utii;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class Statistic {
@@ -14,23 +16,24 @@ public class Statistic {
     private static final Integer TARGET_COUNT_FIVE = 5;
     private static final Integer TARGET_COUNT_FOUR = 4;
     private static final Integer TARGET_COUNT_THREE = 3;
-    private static final String LOTTO_WIN_FIRST_PLACE = LottoRank.MONEY_FIRST_PLACE.getPlace();
-    private static final String LOTTO_WIN_SECOND_PLACE = LottoRank.MONEY_SECOND_PLACE.getPlace();
-    private static final String LOTTO_WIN_THIRD_PLACE = LottoRank.MONEY_THIRD_PLACE.getPlace();
-    private static final String LOTTO_WIN_FOURTH_PLACE = LottoRank.MONEY_FOURTH_PLACE.getPlace();
-    private static final String LOTTO_WIN_FIFTH_PLACE = LottoRank.MONEY_FIFTH_PLACE.getPlace();
+    private static final Integer LOTTO_FIRST = LottoRank.MONEY_FIRST_PLACE.getIndex();
+    private static final Integer LOTTO_SECOND = LottoRank.MONEY_SECOND_PLACE.getIndex();
+    private static final Integer LOTTO_THIRD = LottoRank.MONEY_THIRD_PLACE.getIndex();
+    private static final Integer LOTTO_FOURTH = LottoRank.MONEY_FOURTH_PLACE.getIndex();
+    private static final Integer LOTTO_FIFTH = LottoRank.MONEY_FIFTH_PLACE.getIndex();
+    private static final Integer ADD_COUNT = 1;
+    private final List<LottoRank> lottoRanks = List.of(LottoRank.MONEY_FIRST_PLACE, LottoRank.MONEY_SECOND_PLACE,
+            LottoRank.MONEY_THIRD_PLACE, LottoRank.MONEY_FOURTH_PLACE, LottoRank.MONEY_FIFTH_PLACE);
+    List<Integer> countLottoPlaces;
     private LottoEnvelop lottoEnvelop;
     private Judgment judgment;
     private Integer totalWinMoney;
-
-    private List<LottoRank> lottoRanks;
 
     public Statistic(LottoEnvelop lottoEnvelop, LottoTargetNumResults lottoTargetNumResults) {
         this.lottoEnvelop = lottoEnvelop;
         this.judgment = Config.judgment(lottoTargetNumResults);
         this.totalWinMoney = 0;
-        this.lottoRanks = List.of(LottoRank.MONEY_FIRST_PLACE, LottoRank.MONEY_SECOND_PLACE,
-                LottoRank.MONEY_THIRD_PLACE, LottoRank.MONEY_FOURTH_PLACE, LottoRank.MONEY_FIFTH_PLACE);
+        this.countLottoPlaces = new LinkedList<>(List.of(0, 0, 0, 0, 0));
     }
 
     public StringBuilder show() {
@@ -39,11 +42,11 @@ public class Statistic {
         // TODO: 11/6/23 상수 정리
         execution();
 
-        resultString.append("3개 일치 (5,000원) - " + getCount(LOTTO_WIN_FIFTH_PLACE) + "개\n");
-        resultString.append("4개 일치 (50,000원) - " + getCount(LOTTO_WIN_FOURTH_PLACE) + "개\n");
-        resultString.append("5개 일치 (1,500,000원) - " + getCount(LOTTO_WIN_THIRD_PLACE) + "개\n");
-        resultString.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + getCount(LOTTO_WIN_SECOND_PLACE) + "개\n");
-        resultString.append("6개 일치 (2,000,000,000원) - " + getCount(LOTTO_WIN_FIRST_PLACE) + "개\n");
+        resultString.append("3개 일치 (5,000원) - " + getCount(LOTTO_FIFTH) + "개\n");
+        resultString.append("4개 일치 (50,000원) - " + getCount(LOTTO_FOURTH) + "개\n");
+        resultString.append("5개 일치 (1,500,000원) - " + getCount(LOTTO_THIRD) + "개\n");
+        resultString.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + getCount(LOTTO_SECOND) + "개\n");
+        resultString.append("6개 일치 (2,000,000,000원) - " + getCount(LOTTO_FIRST) + "개\n");
 
         return resultString;
     }
@@ -67,7 +70,7 @@ public class Statistic {
     private void calculateTotalWinMoney() {
 
         for (LottoRank lottoRank : lottoRanks) {
-            totalWinMoney = totalWinMoney + lottoRank.getWinMoney();
+            totalWinMoney = totalWinMoney + getWinMoneyPlace(lottoRank);
         }
     }
 
@@ -77,53 +80,52 @@ public class Statistic {
         return totalWinMoney;
     }
 
+    private Integer getWinMoneyPlace(LottoRank lottoRank) {
+        Integer moneyPlace = lottoRank.getMoney();
+        Integer indexPlace = lottoRank.getIndex();
+
+        return moneyPlace * getCount(indexPlace);
+    }
+
     private void isFirstPlace(Integer countSame) {
         if (isSameCount(countSame, TARGET_COUNT_SIX)) {
-            increaseCount(LOTTO_WIN_FIRST_PLACE);
+            increaseCount(LOTTO_FIRST);
         }
     }
 
     private void isSecondPlace(Integer countSame, Boolean isSameBonus) {
         if (isSameCount(countSame, TARGET_COUNT_FIVE) && isSameBonus) {
-            increaseCount(LOTTO_WIN_SECOND_PLACE);
+            increaseCount(LOTTO_SECOND);
         }
     }
 
     private void isThirdPlace(Integer countSame, Boolean isSameBonus) {
         if (isSameCount(countSame, TARGET_COUNT_FIVE) && !isSameBonus) {
-            increaseCount(LOTTO_WIN_THIRD_PLACE);
+            increaseCount(LOTTO_THIRD);
         }
     }
 
     private void isFourthPlace(Integer countSame) {
         if (isSameCount(countSame, TARGET_COUNT_FOUR)) {
-            increaseCount(LOTTO_WIN_FOURTH_PLACE);
+            increaseCount(LOTTO_FOURTH);
         }
     }
-
 
     private void isFifthPlace(Integer countSame) {
         if (isSameCount(countSame, TARGET_COUNT_THREE)) {
-            increaseCount(LOTTO_WIN_FIFTH_PLACE);
+            increaseCount(LOTTO_FIFTH);
         }
     }
 
-    private void increaseCount(String place) {
-        for (LottoRank lottoRank : lottoRanks) {
-            if (lottoRank.getPlace().equals(place)) {
-                lottoRank.increaseCount();
-            }
-        }
+    private void increaseCount(Integer index) {
+        Integer count = countLottoPlaces.get(index);
+        countLottoPlaces.set(index, count + ADD_COUNT);
     }
 
-    private Integer getCount(String place) {
-        for (LottoRank lottoRank : lottoRanks) {
-            if (lottoRank.getPlace().equals(place)) {
-                return lottoRank.getCount();
-            }
-        }
-        return 0;
+    private Integer getCount(Integer index) {
+        return countLottoPlaces.get(index);
     }
+
 
     private boolean isSameCount(Integer countSame, Integer targetCount) {
         return Utii.isSameInt(countSame, targetCount);

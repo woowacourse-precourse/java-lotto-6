@@ -74,6 +74,21 @@ public class LottoResultTest {
         assertEquals(expected, result.get(THIRD_PLACE));
     }
 
+    @DisplayName("번호가 5개와 보너스 1개가 일치할 경우")
+    @Test
+    public void correspondFiveBonusNumber() {
+        // given
+        Lotto issuedlotto = new Lotto(Arrays.asList(2, 3, 4, 5, 6, 7));
+        LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
+
+        // when
+        Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
+
+        // then
+        int expected = 1;
+        assertEquals(expected, result.get(THIRD_PLACE));
+    }
+
     @DisplayName("번호가 6개 일치할 경우")
     @Test
     public void correspondSixNumber() {

@@ -1,24 +1,24 @@
 package lotto.domain.lotto;
 
-public enum LottoCriteria {
-    FIRST_PLACE("1", 6, 2000000000),
-    SECOND_PLACE("2", 5, 30000000),
-    THIRD_PLACE("3", 5, 1500000),
-    FOURTH_PLACE("4", 4, 50000),
-    FIFTH_PLACE("5", 3, 5000);
+import java.util.Arrays;
+import java.util.List;
 
-    private final String place;
+public enum LottoCriteria {
+    FIRST_PLACE(6, 2000000000, false),
+    SECOND_PLACE(5, 30000000, true),
+    THIRD_PLACE(5, 1500000, false),
+    FOURTH_PLACE(4, 50000, false),
+    FIFTH_PLACE(3, 5000, false);
+
     private final int matchNumber;
     private final long amount;
 
-    LottoCriteria(final String place, final int matchNumber, final long amount) {
-        this.place = place;
+    private final boolean checkBonus;
+
+    LottoCriteria(final int matchNumber, final long amount, final boolean hasBonus) {
         this.matchNumber = matchNumber;
         this.amount = amount;
-    }
-
-    public final String getPlace() {
-        return place;
+        this.checkBonus = hasBonus;
     }
 
     public final int getMatchNumber() {
@@ -27,5 +27,13 @@ public enum LottoCriteria {
 
     public final long getAmount() {
         return amount;
+    }
+
+    public final boolean hasBonus() {
+        return checkBonus;
+    }
+
+    public static final List<LottoCriteria> getAllValues() {
+        return Arrays.asList(LottoCriteria.values());
     }
 }

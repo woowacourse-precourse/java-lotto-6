@@ -1,12 +1,9 @@
 package lotto.domain.lotto;
 
-import static lotto.domain.lotto.LottoCriteria.FIFTH_PLACE;
-import static lotto.domain.lotto.LottoCriteria.FIRST_PLACE;
-import static lotto.domain.lotto.LottoCriteria.FOURTH_PLACE;
-import static lotto.domain.lotto.LottoCriteria.SECOND_PLACE;
-import static lotto.domain.lotto.LottoCriteria.THIRD_PLACE;
+import static lotto.domain.lotto.LottoCriteria.getAllValues;
 import static lotto.domain.lotto.LottoRule.PERCENT;
 import static lotto.domain.lotto.LottoRule.PRICE;
+import static lotto.util.Utils.getRoundUpTwoDecimalPlace;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,38 +18,45 @@ public class LottoResult {
     public LottoResult(final WinningLotto winningLotto, final List<Lotto> issuedLotto) {
         this.winningLotto = winningLotto;
         this.issuedLotto = issuedLotto;
-        rankingResult = new HashMap<>();
-        rankingResult.put(FIRST_PLACE, 0L);
-        rankingResult.put(SECOND_PLACE, 0L);
-        rankingResult.put(THIRD_PLACE, 0L);
-        rankingResult.put(FOURTH_PLACE, 0L);
-        rankingResult.put(FIFTH_PLACE, 0L);
+        initRankingResult();
         saveResult();
     }
 
-    private void saveResult() {
-        issuedLotto.stream().forEach(lotto -> matchingCount(lotto));
+    private void initRankingResult() {
+        rankingResult = new HashMap<>();
+
+        getAllValues().stream()
+                .forEach(rank -> rankingResult.put(rank, 0L));
     }
 
-    public void matchingCount(Lotto lotto) {
-        Long count = lotto.getNumbers().stream()
+    private void saveResult() {
+        issuedLotto.stream().forEach(lotto -> matchingNumber(lotto));
+    }
+
+    public void matchingNumber(final Lotto lotto) {
+        Long count = getMatchingCount(lotto);
+
+        getAllValues().stream().forEach(rank -> incrementResult(count, rank, lotto));
+    }
+
+    private Long getMatchingCount(final Lotto lotto) {
+        return lotto.getNumbers().stream()
                 .filter(winningLotto.lotto().getNumbers()::contains)
                 .count();
-        if (count == FIFTH_PLACE.getMatchNumber()) {
-            rankingResult.merge(FIFTH_PLACE, 1L, Long::sum);
+    }
+
+    private void incrementResult(final Long count, final LottoCriteria rank, final Lotto lotto) {
+        if (matchRank(count, rank, lotto)) {
+            rankingResult.merge(rank, 1L, Long::sum);
         }
-        if (count == FOURTH_PLACE.getMatchNumber()) {
-            rankingResult.merge(FOURTH_PLACE, 1L, Long::sum);
+    }
+
+    private boolean matchRank(final Long count, final LottoCriteria rank, final Lotto lotto) {
+        if ((count == rank.getMatchNumber() && !rank.hasBonus()) ||
+                (count == rank.getMatchNumber() && rank.hasBonus() && isBonusContain(lotto))) {
+            return true;
         }
-        if (count == THIRD_PLACE.getMatchNumber() && !isBonusContain(lotto)) {
-            rankingResult.merge(THIRD_PLACE, 1L, Long::sum);
-        }
-        if (count == SECOND_PLACE.getMatchNumber() && isBonusContain(lotto)) {
-            rankingResult.merge(SECOND_PLACE, 1L, Long::sum);
-        }
-        if (count == FIRST_PLACE.getMatchNumber()) {
-            rankingResult.merge(FIRST_PLACE, 1L, Long::sum);
-        }
+        return false;
     }
 
     public boolean isBonusContain(Lotto lotto) {
@@ -60,14 +64,20 @@ public class LottoResult {
     }
 
     public float getReturnRate() {
-        Long totalAmount = rankingResult.get(FIFTH_PLACE) * FIFTH_PLACE.getAmount()
-                + rankingResult.get(FOURTH_PLACE) * FOURTH_PLACE.getAmount()
-                + rankingResult.get(THIRD_PLACE) * THIRD_PLACE.getAmount()
-                + rankingResult.get(SECOND_PLACE) * SECOND_PLACE.getAmount()
-                + rankingResult.get(FIRST_PLACE) * FIRST_PLACE.getAmount();
-        float returnRate = (float) totalAmount / (issuedLotto.size() * PRICE.getValue()) * PERCENT.getValue();
-        Math.round(returnRate);
-        return Math.round(returnRate * 100f) / 100f;
+        Long totalAmount = getTotalAmount();
+        float returnRate = (float) totalAmount / getInvestMoney() * PERCENT.getValue();
+
+        return getRoundUpTwoDecimalPlace(returnRate);
+    }
+
+    private Long getTotalAmount() {
+        return getAllValues().stream()
+                .map(rank -> rankingResult.get(rank) * rank.getAmount())
+                .reduce(0L, Long::sum);
+    }
+
+    private int getInvestMoney() {
+        return issuedLotto.size() * PRICE.getValue();
     }
 
     public Map<LottoCriteria, Long> getRankingResult() {

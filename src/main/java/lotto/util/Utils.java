@@ -17,4 +17,8 @@ public class Utils {
     private static List<Integer> arrayToSortedList(String[] numbers) {
         return Arrays.stream(numbers).map(string -> Integer.parseInt(string)).sorted().toList();
     }
+
+    public static final float getRoundUpTwoDecimalPlace(float returnRate) {
+        return Math.round(returnRate * 100f) / 100f;
+    }
 }

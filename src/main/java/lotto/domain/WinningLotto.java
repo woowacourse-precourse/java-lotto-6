@@ -8,7 +8,7 @@ import lotto.view.ErrorMessage;
 public class WinningLotto {
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
-    private static final int WINNING_LOTTO_SIZE = 6;
+    private static final int WINNING_LOTTO_SIZE = 7;
     private final Lotto winningLotto;
     private final int bonusNumber;
 

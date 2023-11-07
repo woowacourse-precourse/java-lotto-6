@@ -30,5 +30,11 @@ class LottoTest {
         Lotto lotto = new Lotto(List.of(40, 22, 9, 2, 17, 36));
         assertThat(lotto.getLottoNumbers()).isEqualTo(List.of(2, 9, 17, 22, 36, 40));
     }
-    
+
+    @DisplayName("로또 번호에 1~45이외의 숫자가 있으면 예외가 발생한다.")
+    @Test
+    void compareValidNumberForLotto() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

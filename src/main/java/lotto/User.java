@@ -1,11 +1,13 @@
 package lotto;
 
 import java.util.List;
+import java.util.Map;
+
 import camp.nextstep.edu.missionutils.Console;
 import static lotto.Constant.*;
 import static lotto.Validation.*;
 
-public class UI {
+public class User {
     public static int getMoney() {
         while (true) {
             try{
@@ -52,6 +54,9 @@ public class UI {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    public static void printResult(Map<Rank, Integer> result){
     }
 
 }

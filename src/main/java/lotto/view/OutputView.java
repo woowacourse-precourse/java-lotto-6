@@ -5,6 +5,9 @@ import static lotto.constant.OutputMessage.PROFIT;
 import static lotto.constant.OutputMessage.WIN_STATISTICS;
 import static lotto.constant.PurchaseMessage.BUY_RECEIPT;
 
+import java.util.List;
+import lotto.constant.WinPriceMessage;
+
 public class OutputView {
 
     public static void printReceipt(int ticket) {
@@ -34,7 +37,17 @@ public class OutputView {
         double profit = (double) moneySum / money;
         return Math.round(profit * 1000.0) / 1000.0;
     }
+
+    public static void printAllWinPrices(List<Integer> winCounts) {
+        for (WinPriceMessage winPrice : WinPriceMessage.values()) {
+            int index = winPrice.ordinal();
+            String message = formatWinPriceMessage(winPrice, winCounts.get(index));
+            System.out.println(message);
+        }
+    }
+
+    private static String formatWinPriceMessage(WinPriceMessage winPriceMessage, int winCount) {
+        return String.format("%s (%,d원) - %d개", winPriceMessage.getMessage(),
+                winPriceMessage.getPrize(), winCount);
+    }
 }
-
-
-

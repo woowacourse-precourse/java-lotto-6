@@ -20,7 +20,6 @@ import lotto.view.LottoView;
 import lotto.view.OutputView;
 import lotto.view.PurchaseView;
 import lotto.view.RandomNumberView;
-import lotto.view.WinPriceView;
 
 
 public class Game {
@@ -33,7 +32,6 @@ public class Game {
     private List<List<Integer>> AllRandomNumbers = new ArrayList<>();
     private RandomNumber randomNumber = new RandomNumber();
     private RandomNumberView randomNumberView = new RandomNumberView();
-    private WinPriceView winPriceView = new WinPriceView();
     private List<Integer> numbers;
     private int bonusNumber;
     private Ticket ticket;
@@ -130,20 +128,8 @@ public class Game {
     }
 
     private void printTotalResults(List<Integer> totalWinCount) {
-        winPriceView.printAllWinPrices(totalWinCount);
+        OutputView.printAllWinPrices(totalWinCount);
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-

@@ -27,9 +27,12 @@
 #### UI 기능
 
 - [x] 구입 금액을 입력받는다. - UI#inputMoney
+    - [x] 자연수가 아니라면 예외 발생
 - [x] 구매 내역을 보여준다. - UI#printPurchases
 - [x] 당첨 번호를 입력받는다. - UI#inputWinningNumbers
+    - [x] , 문자 사이사이에 숫자를 입력하지 않으면 예외 발생
 - [x] 보너스 번호를 입력받는다. - UI#inputBonusNumber
+    - [x] 자연수가 아니라면 예외 발생
 - [x] 당첨 통계를 보여준다. - UI#printWinningStats
     - [x] 당첨 번호 빈도를 보여준다. - UI#printWinningFrequency
     - [x] 수익률을 보여준다. - UI#printReturnRate

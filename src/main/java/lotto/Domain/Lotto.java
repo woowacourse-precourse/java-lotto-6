@@ -1,6 +1,7 @@
 package lotto.Domain;
 
 import java.util.List;
+import lotto.Constant.Constant;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,7 +13,8 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            String errorMessage = Constant.ERROR_PREFIX + "6개의 번호를 입력하지 않으셨습니다.";
+            throw new IllegalArgumentException(errorMessage);
         }
     }
 

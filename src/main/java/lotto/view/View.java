@@ -16,6 +16,9 @@ public class View {
         System.out.println(INPUT_BUYING_NUM_EXCEPTION_MESSAGE);
     }
 
+    public void outputExceptionMessage(){
+        System.out.println(OUTPUT_CORRECT_NUM_EXCEPTION_MESSAGE);
+    }
     public void BuyingLottoOutput(List<Lotto> lottoList){
         for (Lotto lotto : lottoList) {
             System.out.println(lotto);

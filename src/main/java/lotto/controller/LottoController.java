@@ -31,7 +31,8 @@ public class LottoController {
         try {
             CorrectNum correctNum = new CorrectNum(s);
         }catch (IllegalArgumentException e){
-
+            view.outputExceptionMessage();
+            middle(lottoList);
         }
     }
 

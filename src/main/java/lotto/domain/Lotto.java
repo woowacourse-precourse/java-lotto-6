@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.constants.ErrorMessage.DUPLICATED_LOTTO_NUMBER;
 import static lotto.constants.ErrorMessage.INVALID_LOTTO_SIZE;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -38,13 +39,15 @@ public class Lotto {
         }
     }
 
-    private void sortIncreasingOrder() {
-        Collections.sort(numbers);
+    private List<Integer> sortIncreasingOrder() {
+        List<Integer> mutableNumbers = new ArrayList<>(numbers);
+        Collections.sort(mutableNumbers);
+        return mutableNumbers;
     }
 
     public LottoResponse convertToResponse() {
-        sortIncreasingOrder();
-        return new LottoResponse(numbers);
+        List<Integer> sortedNumbers = sortIncreasingOrder();
+        return new LottoResponse(sortedNumbers);
     }
 
     public boolean contains(Integer number) {

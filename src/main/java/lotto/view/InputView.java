@@ -13,6 +13,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (Exception e) {
+            ExceptionOutputView.printInputIntegerError();
             throw new IllegalArgumentException();
         }
     }
@@ -27,6 +28,7 @@ public class InputView {
         try {
             return Integer.parseInt(Console.readLine());
         } catch (Exception e) {
+            ExceptionOutputView.printInputIntegerError();
             throw new IllegalArgumentException();
         }
     }

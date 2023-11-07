@@ -9,6 +9,7 @@ import java.util.StringTokenizer;
 import lotto.model.Lotties;
 import lotto.model.Lotto;
 import lotto.model.Rank;
+import lotto.view.ExceptionOutputView;
 
 public class LottoService {
     private static final int PRICE_PER_LOTTO = 1000;
@@ -33,6 +34,7 @@ public class LottoService {
 
     private void validateMoney(int money) {
         if (money % PRICE_PER_LOTTO != 0) {
+            ExceptionOutputView.printMoneyRangeError();
             throw new IllegalArgumentException();
         }
     }
@@ -42,6 +44,7 @@ public class LottoService {
         try {
             return convertToLotto(stringTokenizer);
         } catch (Exception e) {
+            ExceptionOutputView.printLottoStringFormatError();
             throw new IllegalArgumentException();
         }
     }
@@ -56,6 +59,7 @@ public class LottoService {
 
     public void validateBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
+            ExceptionOutputView.printBonusRangeError();
             throw new IllegalArgumentException();
         }
     }

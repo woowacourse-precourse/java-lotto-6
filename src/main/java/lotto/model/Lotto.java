@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.view.ExceptionOutputView;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -22,6 +23,7 @@ public class Lotto {
 
     private void validateSixDigits(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            ExceptionOutputView.printLottoSixDigitError();
             throw new IllegalArgumentException();
         }
     }
@@ -30,6 +32,7 @@ public class Lotto {
         Set<Integer> uniqueNumbers = numbers.stream()
                 .collect(Collectors.toSet());
         if (uniqueNumbers.size() != numbers.size()) {
+            ExceptionOutputView.printLottoDuplicateError();
             throw new IllegalArgumentException();
         }
     }
@@ -37,6 +40,7 @@ public class Lotto {
     private void validateNumberInRange(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
             if (numbers.get(i) > 45 || numbers.get(i) < 1) {
+                ExceptionOutputView.printLottoRangeError();
                 throw new IllegalArgumentException();
             }
         }

@@ -1,10 +1,10 @@
 package lotto;
-import camp.nextstep.edu.missionutils.Randoms; import java.util.ArrayList; import java.util.Collections;
+import camp.nextstep.edu.missionutils.Randoms; import java.util.ArrayList; import java.util.List; import java.util.Collections;
 
 public class LottoModel {
     private int lottoPrice;
     private Lotto winningLotto;
-    private ArrayList<Lotto> boughtLottos;
+    private List<Lotto> boughtLottos;
     private int bonusNumber;
     private int[] lottoRank = new int[5];
     private int profit = 0;
@@ -25,13 +25,13 @@ public class LottoModel {
         LottoView.printProfitRate(calcLottoProfit());
     }
 
-    private ArrayList<Lotto> generateLottos(int lottoPrice) {
-        ArrayList<Lotto> generatedLottos = new ArrayList<>();
+    private List<Lotto> generateLottos(int lottoPrice) {
+        List<Lotto> generatedLottos = new ArrayList<>();
 
         for(int i = 0; i < lottoPrice / 1000; i++) {
-            Lotto generatedLottoNumber = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
-            Collections.sort(generatedLottoNumber.getNumbers());
-            generatedLottos.add(generatedLottoNumber);
+            List<Integer> generatedNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            Collections.sort(generatedNumbers);
+            generatedLottos.add(new Lotto(generatedNumbers));
         }
 
         return generatedLottos;
@@ -74,7 +74,7 @@ public class LottoModel {
     }
 
     private double calcLottoProfit() {
-        return Math.round((double)profit / (double)lottoPrice * 100);
+        return Math.round((double)profit / (double)lottoPrice * 1000) / 10.0;
     }
 }
 

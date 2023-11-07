@@ -1,8 +1,8 @@
 package lotto;
 import camp.nextstep.edu.missionutils.Console;
-import org.mockito.internal.junit.StrictStubsRunnerTestListener;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Integer.parseInt;
 

@@ -6,6 +6,7 @@ import static lotto.domain.Lotto.LOTTO_NUMBER_FORMAT;
 import static lotto.domain.Lotto.LOTTO_PRICE;
 import static lotto.domain.Lotto.LOTTO_SIZE;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_FORMAT;
+import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_DUPLICATE_NUMBERS;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_NUMBERS_COUNT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_RANGE;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_MAXIMUM;
@@ -89,6 +90,10 @@ public class InputView {
 
     private void validateLottoNumbers(String inputLottoNumbers) {
         List<String> lottoNumbers = List.of(inputLottoNumbers.split(INPUT_LOTTO_NUMBER_SPLITTER));
+        if (lottoNumbers.size() != 6) {
+            throw new IllegalArgumentException(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
+        }
+
         Set<Integer> numbers = new HashSet<>();
         for (String lottoNumber : lottoNumbers) {
             validateNumber(lottoNumber);
@@ -98,7 +103,7 @@ public class InputView {
             numbers.add(number);
         }
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException(INVALID_INPUT_LOTTO_NUMBERS_COUNT);
+            throw new IllegalArgumentException(INVALID_INPUT_LOTTO_DUPLICATE_NUMBERS);
         }
     }
 

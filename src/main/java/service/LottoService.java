@@ -2,6 +2,7 @@ package service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import model.Lotto;
+import model.User;
 import model.WinningNumber;
 
 import java.util.*;
@@ -13,9 +14,6 @@ enum RewardMoney{
     THIRD(1500000),
     SECOND(30000000),
     FIRST(2000000000);
-
-
-
     private int money;
 
     RewardMoney( int money) {
@@ -80,18 +78,28 @@ public class LottoService {
         return lottoResult;
     }
 
-    public int calculateReward(Map<String, Integer> lottoResult){
+    public int awardLotto(Map<String, Integer> lottoResult, User user){
         if (lottoResult.get("count") == 3){
-            return RewardMoney.FIFTH.getMoney();
+            user.checkRanking("fifth");
         }else if(lottoResult.get("count") == 4){
-            return RewardMoney.FOURTH.getMoney();
+            user.checkRanking("fourth");
         }else if(lottoResult.get("count") == 5){
-            return RewardMoney.THIRD.getMoney();
+            user.checkRanking("third");
         }else if(lottoResult.get("count") == 5 && lottoResult.get("bonus") == 1){
-            return RewardMoney.SECOND.getMoney();
+            user.checkRanking("second");
         }else if(lottoResult.get("count") == 6){
-            return RewardMoney.FIRST.getMoney();
+            user.checkRanking("first");
         }
         return 0;
+    }
+
+    public int calculateReward(User user){
+        int reward = 0;
+        reward = user.getFifth() * RewardMoney.FIFTH.getMoney()+
+                user.getFourth() * RewardMoney.FOURTH.getMoney()+
+                user.getThird() * RewardMoney.THIRD.getMoney()+
+                user.getSecond() * RewardMoney.SECOND.getMoney()+
+                user.getFirst() * RewardMoney.FIRST.getMoney();
+        return reward;
     }
 }

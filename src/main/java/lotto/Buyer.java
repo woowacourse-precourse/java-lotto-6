@@ -6,11 +6,13 @@ import java.util.List;
 
 public class Buyer {
     private final LottoMachine lottoMachine;
+    private final LottoResultChecker lottoResultChecker;
     private List<Lotto> lottos;
     private WinningLotto winningLotto;
 
-    public Buyer(LottoMachine lottoMachine) {
+    public Buyer(LottoMachine lottoMachine, LottoResultChecker lottoResultChecker) {
         this.lottoMachine = lottoMachine;
+        this.lottoResultChecker = lottoResultChecker;
     }
 
     public void buyLotto() {
@@ -66,5 +68,11 @@ public class Buyer {
 
     public WinningLotto getDrawnNumbers() {
         return this.winningLotto;
+    }
+
+    public void aggregateLotto() {
+        lottoResultChecker.checkLotto(this.lottos, this.winningLotto);
+        lottoResultChecker.printTotalPrize();
+        lottoResultChecker.printProfit();
     }
 }

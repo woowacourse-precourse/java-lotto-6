@@ -14,9 +14,10 @@ class BuyerTest {
     @Test
     void test1() {
         LottoMachine lottoMachine = new LottoMachine();
-        Buyer buyer = new Buyer(lottoMachine);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker();
+        Buyer buyer = new Buyer(lottoMachine, lottoResultChecker);
         System.setIn(new ByteArrayInputStream("8000".getBytes()));
-        
+
         assertThatCode(buyer::buyLotto)
                 .doesNotThrowAnyException();
         Console.close();
@@ -26,7 +27,8 @@ class BuyerTest {
     @Test
     void test2() {
         LottoMachine lottoMachine = new LottoMachine();
-        Buyer buyer = new Buyer(lottoMachine);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker();
+        Buyer buyer = new Buyer(lottoMachine, lottoResultChecker);
         System.setIn(new ByteArrayInputStream("1,2,3,4,5,6\n7".getBytes()));
 
         assertThatCode(buyer::drawWinningNumbersAndBonusNumber)
@@ -38,7 +40,8 @@ class BuyerTest {
     @Test
     void test3() {
         LottoMachine lottoMachine = new LottoMachine();
-        Buyer buyer = new Buyer(lottoMachine);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker();
+        Buyer buyer = new Buyer(lottoMachine, lottoResultChecker);
 
         System.setIn(new ByteArrayInputStream("8000\n1,2,3,4,5,6\n7".getBytes()));
         assertThatCode(buyer::buyLotto)
@@ -54,7 +57,8 @@ class BuyerTest {
     @Test
     void test4() {
         LottoMachine lottoMachine = new LottoMachine();
-        Buyer buyer = new Buyer(lottoMachine);
+        LottoResultChecker lottoResultChecker = new LottoResultChecker();
+        Buyer buyer = new Buyer(lottoMachine, lottoResultChecker);
 
         System.setIn(new ByteArrayInputStream("8000\n1,2,3,4,5,6\n7".getBytes()));
         assertThatCode(buyer::buyLotto)

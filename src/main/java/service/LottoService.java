@@ -70,8 +70,7 @@ public class LottoService {
         }
         if(lottoResult.get("count") == 5 && lottoResult.get("bonus") == 1){
             user.checkRanking("second");
-        }
-        if(lottoResult.get("count") == 5){
+        }else if(lottoResult.get("count") == 5){
             user.checkRanking("third");
         }
         if(lottoResult.get("count") == 6){

@@ -39,21 +39,13 @@ public class LottoController {
     }
 
     private WinningLotto winningInput() {
-        while (true) {
-            try {
-                outputView.inputWinningNumbersMessage();
-                List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        outputView.inputWinningNumbersMessage();
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
 
-                outputView.inputBonusNumberMessage();
-                Integer bonusNumber = inputView.inputBonusNumber();
+        outputView.inputBonusNumberMessage();
+        Integer bonusNumber = inputView.inputBonusNumber();
 
-                return new WinningLotto(winningNumbers, new BonusNumber(bonusNumber));
-            } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
-            } catch (DuplicateInputException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return new WinningLotto(winningNumbers, new BonusNumber(bonusNumber));
     }
 
 

@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.DuplicateInputException;
+import lotto.exception.HasNotCommaException;
 import lotto.exception.InvalidInputException;
 
 import java.util.Arrays;
@@ -14,9 +15,11 @@ import static lotto.utils.constants.InputConstants.SPLIT_STANDARD;
 public class InputView {
 
     private final InputValidator inputValidator;
+    private final OutputView outputView;
 
     public InputView() {
         inputValidator = new InputValidator();
+        outputView = new OutputView();
     }
 
     public Integer purchaseLotto() {
@@ -44,12 +47,16 @@ public class InputView {
         while (true) {
             String inputWinningNumbers = getInput();
             try {
+                inputValidator.validateInputWinningNumbersHasComma(inputWinningNumbers);
                 List<Integer> winningNumbers = convertInputToList(inputWinningNumbers);
+
                 return winningNumbers;
             } catch (DuplicateInputException e) {
                 System.out.println(e.getMessage());
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
+            } catch (HasNotCommaException e) {
+                outputView.printExceptionMessage(e.getMessage());
             }
         }
     }
@@ -59,13 +66,12 @@ public class InputView {
     }
 
     private List<Integer> convertInputToList(String inputWinningNumbers) {
-        try {
-            return Arrays.stream(inputWinningNumbers.split(SPLIT_STANDARD))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new InvalidInputException(HAS_NOT_COMMA_MESSAGE);
-        }
+        List<Integer> convertWinningNumbers = Arrays.stream(inputWinningNumbers.split(SPLIT_STANDARD))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        inputValidator.validateConvertInputToList(convertWinningNumbers);
+
+        return convertWinningNumbers;
     }
 
     public Integer inputBonusNumber() {

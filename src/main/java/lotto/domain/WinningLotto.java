@@ -13,22 +13,22 @@ public class WinningLotto {
     private final BonusNumber bonusNumber;
 
     public WinningLotto(List<Integer> winningNumbers, BonusNumber bonusNumber) {
-        validate(winningNumbers);
+//        validate(winningNumbers);
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
     }
 
-    private void validate(List<Integer> userNumbers) {
-        if (userNumbers.size() != REQUIRED_NUMBER_COUNT) {
-            throw new InvalidInputException(SIZE_NOT_VALID_MESSAGE);
-        }
-        if (userNumbers.stream().distinct().count() != REQUIRED_NUMBER_COUNT) {
-            throw new DuplicateInputException();
-        }
-        if (userNumbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
-            throw new InvalidInputException(INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
-        }
-    }
+//    private void validate(List<Integer> userNumbers) {
+//        if (userNumbers.size() != REQUIRED_NUMBER_COUNT) {
+//            throw new InvalidInputException(SIZE_NOT_VALID_MESSAGE);
+//        }
+//        if (userNumbers.stream().distinct().count() != REQUIRED_NUMBER_COUNT) {
+//            throw new DuplicateInputException();
+//        }
+//        if (userNumbers.stream().anyMatch(number -> number < MIN_NUMBER || number > MAX_NUMBER)) {
+//            throw new InvalidInputException(INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
+//        }
+//    }
 
     public Integer countNumbers(Lotto lotto) {
         Integer matchingNumbers = 0;

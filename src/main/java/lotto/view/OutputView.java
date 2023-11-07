@@ -38,4 +38,8 @@ public class OutputView {
         System.out.println(FIRST_PRIZE_MONEY + reward.getOrDefault(LottoReward.FIRST, DEFAULT_VALUE) + COUNT_UNIT);
         System.out.println(EARN_RATE_MESSAGE + earnRate + PERCENTAGE_FORMAT);
     }
+
+    public void printExceptionMessage(String message) {
+        System.out.println(message);
+    }
 }

@@ -24,7 +24,7 @@ public class LottoService {
         }
     }
 
-    private boolean isZero(Integer inputMoney) {
+    private Boolean isZero(Integer inputMoney) {
         return inputMoney.equals(ZERO_AMOUNT);
     }
 

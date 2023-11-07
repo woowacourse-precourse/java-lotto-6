@@ -1,6 +1,7 @@
 package lotto.view;
 
 import lotto.config.Prize;
+import lotto.domain.lotto.Lotto;
 import lotto.dto.response.PrizeResponse;
 import lotto.view.constant.PrizeMessage;
 
@@ -18,8 +19,12 @@ public class OutputView {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
-    protected static void printPurchaseLottoCountMessage(int purchaseLottoCount) {
+    protected static void printPurchasedLottoCountMessage(int purchaseLottoCount) {
         System.out.printf("%d개를 구매했습니다.%n", purchaseLottoCount);
+    }
+
+    protected static void printPurchasedLottoList(List<Lotto> lottos) {
+        lottos.forEach(lotto -> System.out.println());
     }
 
     protected static void printReadLottoNumberMessage() {

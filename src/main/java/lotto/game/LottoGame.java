@@ -51,7 +51,11 @@ public class LottoGame {
         return winningStatistic;
     }
 
-
+    public YieldRate calculateYieldRate(AmountToBuyLotto amountToBuyLotto,
+        WinningStatistic winningStatistic) {
+        long totalAmount = winningStatistic.getTotalWinningAmount();
+        return YieldRate.newInstance(amountToBuyLotto, totalAmount);
+    }
 
     private void compareWinningNumberWithLottos(WinningNumber winningNumber,
         LottoNumber bonusNumber, WinningStatistic winningStatistic) {

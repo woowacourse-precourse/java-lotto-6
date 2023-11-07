@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class Lotto {
-    public static final Pattern lotto = Pattern.compile("[1-9]|[1-3][0-9]|4[0-5]");
+    private static final Pattern lotto = Pattern.compile("[1-9]|[1-3][0-9]|4[0-5]");
+    private static final int LOTTO_SIZE = 6;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -25,7 +27,7 @@ public class Lotto {
 
     private boolean validateSize(List<Integer> numbers){
         try {
-            if (numbers.size() != 6) {
+            if (numbers.size() != LOTTO_SIZE) {
                 throw new IllegalArgumentException();
             }
         }catch(IllegalArgumentException e){

@@ -15,17 +15,22 @@ public class InputConverter {
     }
 
     public List<Integer> convertToListOfInteger(String input) {
-        String[] inputNumbers = sort(input);
         List<Integer> numbers = new ArrayList<>();
-        for (String inputNumber : inputNumbers) {
-            numbers = List.of(convertToInteger(inputNumber));
-        }
-        return numbers;
-    }
 
-    private String[] sort(String input) {
-        return Arrays.stream(input.split(","))
-                .sorted()
-                .toArray(String[]::new);
+        String[] splitInput = input.split(",");
+        int[] convertedNums = new int[splitInput.length];
+
+        for (int i = 0; i < splitInput.length; i++) {
+            int digit = Integer.parseInt(splitInput[i]);
+            convertedNums[i] = digit;
+        }
+
+        Arrays.sort(convertedNums);
+
+        for (int num : convertedNums) {
+            numbers.add(num);
+        }
+
+        return numbers;
     }
 }

@@ -27,7 +27,8 @@ public record LottoNumbers(
     }
 
     private void validateDuplicated(final List<LottoNumber> numbers) {
-        Set<LottoNumber> lottoNumbers = Set.copyOf(numbers);
+        final Set<LottoNumber> lottoNumbers = Set.copyOf(numbers);
+
         if (lottoNumbers.size() != LottoConsts.LOTTO_NUMBERS_SIZE.getValue()) {
             throw new IllegalArgumentException(ErrorConsts.LOTTO_NUMBERS_DUPLICATED.getMessage());
         }

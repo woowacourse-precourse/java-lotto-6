@@ -2,6 +2,8 @@ package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.List;
 
@@ -69,6 +71,19 @@ class LottoTest {
         assertEquals(List.of(1, 2, 5, 9, 30, 45), sortedNumbers);
     }
 
+    @CsvSource({"6, true", "7, false"})
+    @DisplayName("로또 번호에 특정 번호의 포함 여부를 확인한다.")
+    @ParameterizedTest
+    void checkMyNumberInLottoNumbers(int number, boolean expectedResult) {
+        // given
+        Lotto lotto = Lotto.validate(List.of(1, 2, 3, 4, 5, 6));
+
+        // when
+        boolean result = lotto.containNumber(number);
+
+        // then
+        assertEquals(expectedResult, result);
+    }
 }
 
 

@@ -42,7 +42,7 @@ public class WinLottoTest {
     }
 
     @ParameterizedTest
-    @DisplayName("당첨 로또는 일반 로또와 비교하고 일치하는 갯수를 반환한다.")
+    @DisplayName("당첨 로또는 일반 로또와 비교하고 일치하는 등수를 반환한다.")
     @MethodSource("lottoNumbersAsCount")
     void countMatchedNumber(Lotto lotto, Rank expected) {
         assertThat(winLotto.calculateRank(lotto)).isEqualTo(expected);

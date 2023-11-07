@@ -10,4 +10,15 @@ public class View {
         this.inputView = inputView;
         this.outputView = outputView;
     }
+
+    public Amount getAmount() {
+        try {
+            outputView.printPurchaseGuideMessage();
+            String amountValue = inputView.inputAmount();
+            return new Amount(Integer.parseInt(amountValue));
+        } catch (IllegalArgumentException e) {
+            outputView.printErrorMessage(e.getMessage());
+            return getAmount();
+        }
+    }
 }

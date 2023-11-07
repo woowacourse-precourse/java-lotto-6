@@ -18,6 +18,14 @@ public class WinningLotto {
         this.bonusNumber = number;
     }
 
+    public boolean isEqualToWnningNumber(int number) {
+        return winningNumber.isContainNumber(number);
+    }
+
+    public boolean isEqualToBonusNumber(int number) {
+        return bonusNumber == number;
+    }
+
     private void checkBonusNumberValidation(int bonusNumber) {
         if(winningNumber.isContainNumber(bonusNumber)) {
             System.out.println(ErrorMessage.WINNING_NUMBER_AND_BONUS_NUMBER_ARE_SAME.getErrorMessage());

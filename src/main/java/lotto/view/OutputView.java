@@ -1,32 +1,24 @@
 package lotto.view;
 
-
-import static lotto.utils.GameMessage.IS;
-import static lotto.utils.GameMessage.PURCHASED;
-import static lotto.utils.GameMessage.RATE_OF_RETURN;
-import static lotto.utils.GameMessage.REQUEST_AMOUNT;
-import static lotto.utils.GameMessage.REQUEST_BONUS_NUMBER;
-import static lotto.utils.GameMessage.REQUEST_WIN_NUMBERS;
-import static lotto.utils.GameMessage.WINNING_STATISTICS;
-
 import java.text.DecimalFormat;
 import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.LottoGame;
+import lotto.utils.GameMessage;
 import lotto.utils.Match;
 
 public class OutputView {
 
     public void printRequestAmount() {
-        System.out.println(REQUEST_AMOUNT.getMessage());
+        System.out.println(GameMessage.REQUEST_AMOUNT.getMessage());
     }
 
     public void printRequestWinNumbers() {
-        System.out.println(REQUEST_WIN_NUMBERS.getMessage());
+        System.out.println(GameMessage.REQUEST_WIN_NUMBERS.getMessage());
     }
 
     public void printRequestBonusNumber() {
-        System.out.println(REQUEST_BONUS_NUMBER.getMessage());
+        System.out.println(GameMessage.REQUEST_BONUS_NUMBER.getMessage());
     }
 
     public void printLotto(Lotto lotto) {
@@ -34,7 +26,7 @@ public class OutputView {
     }
 
     public void printIssuanceLotto(List<Lotto> issuanceLotto) {
-        System.out.println(issuanceLotto.size() + PURCHASED.getMessage());
+        System.out.println(issuanceLotto.size() + GameMessage.PURCHASED.getMessage());
 
         for (Lotto lotto : issuanceLotto) {
             printLotto(lotto);
@@ -46,7 +38,7 @@ public class OutputView {
     }
 
     public void printResult(LottoGame lottoGame) {
-        System.out.println(WINNING_STATISTICS.getMessage());
+        System.out.println(GameMessage.WINNING_STATISTICS.getMessage());
         for (Match match : Match.values()) {
             System.out.println(
                     match.getMessage() + " (" + converterMoney(match.getPrize()) + ") - " + lottoGame.getMatchResults()
@@ -55,7 +47,7 @@ public class OutputView {
     }
 
     public void printRateOfReturn(Double rateOfReturn) {
-        System.out.println(RATE_OF_RETURN.getMessage() + rateOfReturn + IS.getMessage());
+        System.out.println(GameMessage.RATE_OF_RETURN.getMessage() + rateOfReturn + GameMessage.IS.getMessage());
     }
 
     public String converterMoney(int money) {

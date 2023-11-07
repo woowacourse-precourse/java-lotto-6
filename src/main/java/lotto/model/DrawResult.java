@@ -18,7 +18,7 @@ public record DrawResult(Lotto lotto, Integer bonusNumber) {
     }
 
     public void validateRange(int number) {
-        if (number > GameNumber.MIN_RANGE.getNumber() || number < GameNumber.MIN_RANGE.getNumber()) {
+        if (number > GameNumber.MAX_RANGE.getNumber() || number < GameNumber.MIN_RANGE.getNumber()) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_SIZE.getMessage());
         }
     }

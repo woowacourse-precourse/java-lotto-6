@@ -95,7 +95,7 @@ classDiagram
 		-validateMoney(number: int)
 	}
 	class Machine{
-		-numbers: List<int>
+		-numbers: Lotto
 		-bonus: int
 		Machine()
 		+setNumbers(numbers: List<int>, bonus: int)

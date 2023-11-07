@@ -29,7 +29,7 @@ public class LottoDrawMachine {
         }
     }
 
-    private void checkDuplicate(int number){
+    private void checkDuplicate(int number) {
         if (this.lottoNumber.getNumbers().contains(number)) {
             throw new IllegalArgumentException(ErrorMessage.DUPLICATE_WITH_LOTTO.getMessage());
         }

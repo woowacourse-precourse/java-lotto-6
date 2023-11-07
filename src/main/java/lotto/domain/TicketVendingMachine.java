@@ -5,10 +5,11 @@ import lotto.message.ErrorMessage;
 public class TicketVendingMachine {
     private static final int TICKET_PRICE = 1000;
 
-    private int sell;
+    private int sellAmount;
 
     public LottoTicket buyTicket(int amount){
         int count = calculateTicketCount(amount);
+        this.sellAmount+=amount;
         return new LottoTicket(count);
     }
 

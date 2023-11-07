@@ -27,19 +27,19 @@ public class InputView {
         return winningNumbers;
     }
 
-    public Integer bonusNumber(){
+    public Integer bonusNumber() {
         String input = Console.readLine();
         numberValidation(input);
         return Integer.parseInt(input);
     }
 
-    private void numberValidation(String input){
+    private void numberValidation(String input) {
         isNull(input);
         isNumeric(input);
     }
 
-    private void listValidation(List<String> input){
-        for(String s: input){
+    private void listValidation(List<String> input) {
+        for (String s : input) {
             isNumeric(s);
         }
     }
@@ -51,7 +51,8 @@ public class InputView {
             }
         }
     }
-    private void isNull(String str){
+
+    private void isNull(String str) {
         if (str == null || str.isEmpty()) {
             throw new IllegalArgumentException(ErrorMessage.NULL_STRING.getMessage());
         }

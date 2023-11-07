@@ -21,6 +21,7 @@ public class Lotto {
         Collections.sort(sortedNumbers);
         return Collections.unmodifiableList(sortedNumbers);
     }
+
     private void validate(List<Integer> numbers) {
         checkSize(numbers);
         checkDuplicate(numbers);

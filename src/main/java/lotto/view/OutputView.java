@@ -13,11 +13,12 @@ public class OutputView {
         System.out.println(InputMessage.PURCHASE_AMOUNT);
     }
 
-    public void ticketResult(int count, List<Lotto> lottoTickets){
+    public void ticketResult(int count, List<Lotto> lottoTickets) {
         System.out.printf(OutputMessage.TICKET_BUY_SUCCESS, count);
         printLottoNumber(lottoTickets);
     }
-    private void printLottoNumber(List<Lotto> lottoTickets){
+
+    private void printLottoNumber(List<Lotto> lottoTickets) {
         for (Lotto lotto : lottoTickets) {
             System.out.println(lotto.getNumbers().toString());
         }

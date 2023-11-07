@@ -7,12 +7,13 @@ import lotto.Lotto;
 
 public class LottosGenerator {
     private final int MINIMUM_LOTTOS_QUANTITY = 1;
+    int purchaseQuntity;
     LottoGenerator lottoGenerator = new LottoGenerator();
     public LottosGenerator(int purchaseQuntity) {
-        generateLottos(purchaseQuntity);
+        this.purchaseQuntity = purchaseQuntity;
     }
 
-    public List<Lotto> generateLottos(int purchaseQuntity) {
+    public List<Lotto> generateLottos() {
         return IntStream.range(MINIMUM_LOTTOS_QUANTITY, purchaseQuntity)
                 .mapToObj(i -> lottoGenerator.generateNumber())
                 .collect(Collectors.toList());

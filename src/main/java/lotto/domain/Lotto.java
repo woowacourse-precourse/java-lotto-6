@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import static lotto.enums.Constants.*;
-import static lotto.utils.NumberUtil.*;
+import static lotto.utils.LottoNumberUtil.*;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -67,9 +67,6 @@ public class Lotto {
     }
 
     private boolean isDuplicatedNumber(final String numbers){
-
-        Set<String> set = new HashSet<>(List.of(splitComma(numbers)));
-
-        return set.size() != splitComma(numbers).length;
+        return new HashSet<>(List.of(splitComma(numbers))).size() != splitComma(numbers).length;
     }
 }

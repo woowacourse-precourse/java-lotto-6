@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Application {
@@ -12,8 +13,8 @@ public class Application {
         int input = buyLotto();
         System.out.println();
         int number = input / 1000;
-        outputLottoNumber(number);
-        winningNumber();
+        Lotto[] lottos = outputLottoNumber(number);
+        String[] winning = winningNumber();
         bonusNumber();
     }
 
@@ -55,7 +56,7 @@ public class Application {
         }
     }
 
-    private static void outputLottoNumber(int number) {
+    private static Lotto[] outputLottoNumber(int number) {
         int i = 0;
         Lotto[] lottos = new Lotto[number];
 
@@ -69,17 +70,47 @@ public class Application {
             String str = lotto.length(lotto);
             System.out.println(str);
         }
+
+        return lottos;
     }
 
-    private static String winningNumber() {
+    private static String[] winningNumber() {
         System.out.println("당첨 번호를 입력해 주세요.");
         String str = Console.readLine();
 
-        if (!isDigit(str)) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
+        if (!checkExpression(str)) {
+            throw new IllegalArgumentException("쉼표(,) 기준으로 구분합니다. 쉼표(,)를 넣어주세요.");
+        } else if (!duplicateNumber(str)) {
+            throw new IllegalArgumentException("이미 숫자가 존재합니다.");
+        } else if (!checkLength(str)) {
+            throw new IllegalArgumentException("6개만 입력하세요");
         }
 
-        return str;
+        return str.split(",");
+    }
+
+    private static boolean checkExpression(String str) {
+        return str.contains(",");
+    }
+
+    private static boolean duplicateNumber(String str) {
+        boolean flag = true;
+        List<String> list = new LinkedList<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            String s = String.valueOf(str.charAt(i));
+            if (list.contains(s)) {
+                flag = false;
+            } else {
+                list.add(s);
+            }
+        }
+
+        return flag;
+    }
+
+    private static boolean checkLength(String str) {
+        return str.length() == 6;
     }
 
     private static int bonusNumber() {

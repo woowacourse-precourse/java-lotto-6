@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.util.List;
 import lotto.constants.OutputMessages;
+import lotto.domain.LottoResult;
 
 public class OutputView {
 
@@ -21,17 +22,17 @@ public class OutputView {
         System.out.println(OutputMessages.HORIZONTAL_RULE.getMessage());
     }
 
-    public void printMatchPrize() {
-        System.out.print(OutputMessages.TOTAL_REVENUE.getMessage());
-        System.out.printf(OutputMessages.THREE_MATCH_PRIZE.getMessage(), 0);
-        System.out.printf(OutputMessages.FOUR_MATCH_PRIZE.getMessage(), 0);
-        System.out.printf(OutputMessages.FIVE_MATCH_PRIZE.getMessage(), 0);
-        System.out.printf(OutputMessages.FIVE_BONUS_MATCH_PRIZE.getMessage(), 0);
-        System.out.printf(OutputMessages.SIX_MATCH_PRIZE.getMessage(), 0);
+    public void printMatchPrize(LottoResult lottoResult) {
+        System.out.printf(OutputMessages.THREE_MATCH_PRIZE.getMessage(), lottoResult.getCount(5));
+        System.out.printf(OutputMessages.FOUR_MATCH_PRIZE.getMessage(), lottoResult.getCount(4));
+        System.out.printf(OutputMessages.FIVE_MATCH_PRIZE.getMessage(), lottoResult.getCount(3));
+        System.out.printf(OutputMessages.FIVE_BONUS_MATCH_PRIZE.getMessage(),
+            lottoResult.getCount(2));
+        System.out.printf(OutputMessages.SIX_MATCH_PRIZE.getMessage(), lottoResult.getCount(1));
     }
 
-    public void printTotalRevenue() {
-        System.out.print(OutputMessages.TOTAL_REVENUE.getMessage());
+    public void printTotalRevenue(double totalRevenue) {
+        System.out.printf(OutputMessages.TOTAL_REVENUE.getMessage(), totalRevenue);
     }
 
 }

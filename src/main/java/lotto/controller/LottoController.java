@@ -3,8 +3,8 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.validation.InputValidation;
 import lotto.view.InputView;
@@ -15,17 +15,25 @@ public class LottoController {
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     InputValidation inputValidation = new InputValidation();
-    Lottos lottos = new Lottos();
 
     private static final int LOTTO_TICKET_PRIZE = 1000;
 
     public void lottoService() {
-        int numberOfLottoTickets = purchaseLottoTickets();
-        generateLottoTickets(numberOfLottoTickets);
-        showPurchasedLottoTickets();
+        int purchaseAmount = getPurchaseAmount();
+        int numberOfLottoTickets = purchaseLottoTickets(purchaseAmount);
+        Lottos generatedLottos = generateLottoTickets(numberOfLottoTickets);
+        showPurchasedLottoTickets(generatedLottos);
+
         Lotto winningNumbers = makeWinningNumbers();
         int bonsNumber = makeBonusNumber(winningNumbers);
-        List<Integer> matchResult = totalMatchResult(lottos,winningNumbers,bonsNumber);
+
+        List<Integer> matchResult = totalMatchResult(generatedLottos, winningNumbers, bonsNumber);
+        LottoResult lottoResult = calculateWinningCount(matchResult);
+        showMatchResult(lottoResult);
+
+        double totalRevenue = calculateTotalRevenue(calculateTotalPrize(lottoResult),
+            purchaseAmount);
+        showTotalRevenue(totalRevenue);
     }
 
     public int makeBonusNumber(Lotto winningNumbers) {
@@ -42,19 +50,17 @@ public class LottoController {
         inputValidation.validateBonusNumberInput(winningNumbers, inputBonusNumber);
     }
 
-
-    public String getPurchaseAmount() {
+    public int getPurchaseAmount() {
         String purchaseAmount = inputView.purchaseAmountInput();
         inputValidation.validatePurchaseAmountInput(purchaseAmount);
-        return purchaseAmount;
+        return Integer.parseInt(purchaseAmount);
     }
 
-    public int purchaseLottoTickets() {
-        String purchaseAmount = getPurchaseAmount();
+    public int purchaseLottoTickets(int purchaseAmount) {
         return calculateNumberOfLottoTickets(purchaseAmount);
     }
 
-    public void showPurchasedLottoTickets() {
+    public void showPurchasedLottoTickets(Lottos lottos) {
         List<Lotto> generatedLottos = lottos.getLottos();
         showNumberOfLottos(generatedLottos.size());
         for (Lotto lotto : generatedLottos) {
@@ -87,16 +93,18 @@ public class LottoController {
         return new Lotto(winningLottoNumbers);
     }
 
-    public void generateLottoTickets(int numberOfLottoTickets) {
+    public Lottos generateLottoTickets(int numberOfLottoTickets) {
+        Lottos lottos = new Lottos();
         for (int i = 0; i < numberOfLottoTickets; i++) {
             Lotto randomLotto = generateRandomLotto();
             randomLotto.sortNumbers();
             lottos.addLotto(randomLotto);
         }
+        return lottos;
     }
 
-    public int calculateNumberOfLottoTickets(String purchaseAmount) {
-        int parsedPurchaseAmount = Integer.parseInt(purchaseAmount);
+    public int calculateNumberOfLottoTickets(int purchaseAmount) {
+        int parsedPurchaseAmount = purchaseAmount;
         return parsedPurchaseAmount / LOTTO_TICKET_PRIZE;
     }
 
@@ -124,7 +132,7 @@ public class LottoController {
         return matchCount;
     }
 
-    private boolean isBonusNumberMatch(Lotto winningNumbers, Integer bonusNumber){
+    private boolean isBonusNumberMatch(Lotto winningNumbers, Integer bonusNumber) {
         return winningNumbers.getNumbers().contains(bonusNumber);
     }
 
@@ -149,12 +157,45 @@ public class LottoController {
         return 0;
     }
 
-    private List<Integer> totalMatchResult(Lottos lottos, Lotto winningNumbers, int bonusNumber){
+    private List<Integer> totalMatchResult(Lottos lottos, Lotto winningNumbers, int bonusNumber) {
         List<Integer> matchResult = new ArrayList<>();
-        for(Lotto eachLotto : lottos.getLottos()){
+        for (Lotto eachLotto : lottos.getLottos()) {
             matchResult.add(calculateMatchResult(eachLotto, winningNumbers, bonusNumber));
         }
-        System.out.println(matchResult);
         return matchResult;
     }
+
+    private LottoResult calculateWinningCount(List<Integer> matchResults) {
+        LottoResult lottoResult = new LottoResult();
+        for (int winningRanks : matchResults) {
+            lottoResult.incrementCount(winningRanks);
+        }
+        return lottoResult;
+    }
+
+    private void showMatchResult(LottoResult lottoResult) {
+        outputView.printWinningStatic();
+        outputView.printMatchPrize(lottoResult);
+    }
+
+    private long calculateTotalPrize(LottoResult lottoResult) {
+        long totalPrize = 0;
+        totalPrize += 5000L * lottoResult.getCount(5);
+        totalPrize += 50000L * lottoResult.getCount(4);
+        totalPrize += 1500000L * lottoResult.getCount(3);
+        totalPrize += 30000000L * lottoResult.getCount(2);
+        totalPrize += 2000000000L * lottoResult.getCount(1);
+        return totalPrize;
+    }
+
+    private double calculateTotalRevenue(Long totalPrize, int purchaseAmount) {
+        long tempPurchaseAmount = purchaseAmount;
+        double totalRevenue = (double) totalPrize / tempPurchaseAmount;
+        return totalRevenue;
+    }
+
+    private void showTotalRevenue(double totalRevenue) {
+        outputView.printTotalRevenue(totalRevenue);
+    }
+
 }

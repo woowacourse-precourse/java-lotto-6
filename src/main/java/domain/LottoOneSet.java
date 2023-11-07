@@ -2,8 +2,10 @@ package domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * packageName    : domain
@@ -32,11 +34,15 @@ public class LottoOneSet {
 
     private List<Integer> generateRandomNumbers(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_GAME_START_NUMBER, LOTTO_GAME_END_NUMBER, LOTTO_GAME_NUMBER_SIZE);
+        System.out.println(numbers);
         return numbers;
     }
 
     private List<Integer> sortRandomNumber(List<Integer> number){
-        Collections.sort(number);
-        return number;
+//        Collections.sort(number);
+//        return number; >> 이 내용 블로그에 정리하자!
+        List<Integer> sortedNumbers = new ArrayList<>(number);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 }

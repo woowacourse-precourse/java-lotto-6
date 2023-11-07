@@ -38,10 +38,14 @@ public class Lotto {
     }
 
     private void validateEachNumberNotOverlap(List<Integer> numbers) {
-        for (Integer number : numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            int number = numbers.get(i);
+            numbers.remove(i);
             if (numbers.contains(number)) {
+                numbers.add(i, number);
                 throw new IllegalArgumentException(CHECK_EACH_NUMBER_NOT_OVERLAP_REQUEST_MESSAGE);
             }
+            numbers.add(i, number);
         }
     }
 

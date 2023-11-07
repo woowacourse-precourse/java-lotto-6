@@ -112,9 +112,17 @@ public class LottoGame {
     }
 
     public void validate(int amount) {
+        validateUnit(amount);
+        validateUnit(amount);
+    }
+
+    public void validateUnit(int amount) {
         if (amount % UNIT.getNumber() != 0) {
             throw new IllegalArgumentException(UNIT_IS_INCORRECT.getMessage());
         }
+    }
+
+    public void validateNegative(int amount) {
         if (amount < 0) {
             throw new IllegalStateException(NEGATIVE_NUMBER.getMessage());
         }

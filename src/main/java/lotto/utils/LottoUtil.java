@@ -29,7 +29,7 @@ public class LottoUtil {
         if(deleteCommaNumber.matches(NUM_REG)) {
             return true;
         }
-        System.out.println();
+        System.out.println(ExceptionMessage.WINNING_NUMBER.getValue());
         return false;
     }
 }

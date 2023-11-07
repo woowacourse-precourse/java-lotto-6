@@ -1,10 +1,17 @@
 package lotto.model;
 
+import static lotto.view.ErrorMessage.DUPLICATED_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BonusTest {
@@ -49,5 +56,27 @@ public class BonusTest {
 
         //then
         assertThat(result).isEqualTo(expect);
+    }
+
+    @DisplayName("보너스 번호와 겹치는 1등 로또 번호 예외처리")
+    @ParameterizedTest
+    @MethodSource("provideBonusAndIntegerSet")
+    void validate_1등_로또_번호(Bonus bonus, Set<Integer> winningNumbers) {
+        assertThatThrownBy(() -> bonus.validateWinningNumbers(winningNumbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(DUPLICATED_NUMBER.getMessage());
+
+    }
+
+    private static Stream<Arguments> provideBonusAndIntegerSet() {
+        Set<Integer> winningNumbers = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        return Stream.of(
+                Arguments.of(new Bonus(1), winningNumbers),
+                Arguments.of(new Bonus(2), winningNumbers),
+                Arguments.of(new Bonus(3), winningNumbers),
+                Arguments.of(new Bonus(4), winningNumbers),
+                Arguments.of(new Bonus(5), winningNumbers),
+                Arguments.of(new Bonus(6), winningNumbers)
+        );
     }
 }

@@ -17,5 +17,7 @@ public class GameManager {
 
     public void play(){
         gameView.purchaseAmountView();
+        user.buyLotteries(machine);
+
     }
 }

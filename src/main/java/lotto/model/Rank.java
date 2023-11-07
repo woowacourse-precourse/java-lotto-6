@@ -1,41 +1,42 @@
 package lotto.model;
 
 public enum Rank {
-    FIRST(6, true, 2_000_000_000),
+    FIRST(6, false, 2_000_000_000),
     SECOND(5, true, 30_000_000),
     THIRD(5, false, 1_500_000),
     FOURTH(4, false, 50_000),
     FIFTH(3, false, 5_000),
-    NONE(0, false, 0);
+    MISS(0, false, 0);
 
-    private final int matchingNumbers;
-    private final boolean hasBonusNumber;
+    private final int matchCount;
+    private final boolean matchBonus;
     private final int prize;
 
-    Rank(int matchingNumbers, boolean hasBonusNumber, int prize) {
-        this.matchingNumbers = matchingNumbers;
-        this.hasBonusNumber = hasBonusNumber;
+
+    Rank(int matchCount, boolean matchBonus, int prize) {
+        this.matchCount = matchCount;
+        this.matchBonus = matchBonus;
         this.prize = prize;
     }
 
-    public int getMatchingNumbers() {
-        return matchingNumbers;
-    }
-
-    public boolean hasBonusNumber() {
-        return hasBonusNumber;
-    }
-
-    public int calculatePrize() {
-        return prize;
-    }
-
-    public static Rank calculateRank(int matchingNumbers, boolean hasBonusNumber) {
-        for (Rank rank : values()) {
-            if (rank.matchingNumbers == matchingNumbers && rank.hasBonusNumber == hasBonusNumber) {
-                return rank;
+    public static Rank getRankByMatchCount(int matchCount, boolean matchBonus) {
+        for (Rank type : Rank.values()) {
+            if (type.getMatchCount() == matchCount && type.getMatchBonus() == matchBonus) {
+                return type;
             }
         }
-        return NONE;
+        return MISS;
+    }
+
+    public int getMatchCount() {
+        return matchCount;
+    }
+
+    public boolean getMatchBonus() {
+        return matchBonus;
+    }
+
+    public int getPrize() {
+        return prize;
     }
 }

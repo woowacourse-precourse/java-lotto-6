@@ -1,31 +1,34 @@
 package lotto.model;
 
-import java.util.List;
+import lotto.utils.Validator;
 
 public class WinningNumbers {
-    private final List<Integer> winningNumbers;
-    private final int bonusNumber;
+    private final Lotto winningNumbers;
+    private final int bonus;
 
-    public WinningNumbers(List<Integer> winningNumbers, int bonusNumber) {
-        validate(winningNumbers, bonusNumber);
-        this.winningNumbers = winningNumbers;
-        this.bonusNumber = bonusNumber;
+    public WinningNumbers(Lotto winningLotto, int bonus) {
+        validateParameters(winningLotto, bonus);
+
+        this.winningNumbers = winningLotto;
+        this.bonus = bonus;
     }
 
-    private void validate(List<Integer> winningNumbers, int bonusNumber) {
-        if (winningNumbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개여야 합니다.");
+    private void validateParameters(Lotto winningLotto, int bonus) {
+        if (winningLotto.isContain(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력할 수 없습니다.");
         }
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호에 포함되면 안됩니다.");
-        }
+        Validator.validateLottoNumberRange(bonus);
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+    public Rank oneCompare(Lotto lotto) {
+        return Rank.getRankByMatchCount(lotto.matchCount(winningNumbers), lotto.isContain(bonus));
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    @Override
+    public String toString() {
+        return "WinningLottoNumbers{" +
+                "winningLotto=" + winningNumbers +
+                ", bonus=" + bonus +
+                '}';
     }
 }

@@ -1,43 +1,70 @@
 package lotto.controller;
 
+import Storage.LottoStorage;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.LottoBuying;
-import lotto.LottoGenerator;
-import lotto.WinningCalculator;
 import lotto.model.Lotto;
 import lotto.model.WinningNumbers;
-import lotto.view.ConsoleInput;
-import lotto.view.ConsoleOutput;
+import lotto.utils.ResultOutput;
+import lotto.utils.UserInput;
+import lotto.utils.Validator;
 
 public class LottoController {
-    public void run() {
-        ConsoleInput input = new ConsoleInput();
-        int purchaseAmount = input.getPurchaseAmount();
+    private int amount;
 
-        LottoBuying lottoBuying = new LottoBuying();
-        List<Lotto> lottos = lottoBuying.buyLottos(purchaseAmount);
+    public void startLottoController() {
+        LottoStorage purchaseLotto = initPurchaseLotto();
+        WinningNumbers winningLotto = new WinningNumbers(initWinningLotto(), initBonus());
+        WinningResult lottoResult = new WinningResult(winningLotto, purchaseLotto);
 
-        ConsoleOutput output = new ConsoleOutput();
-        output.displayPurchasedLottos(lottos);
-
-        WinningNumbers winningNumbers = input.getWinningNumbers();
-        WinningCalculator winningCalculator = new WinningCalculator();
-        List<Lotto> winningLottos = generateWinningLottos();
-        winningCalculator.calculateWinnings(lottos, winningLottos);
-
-        output.displayWinningStatistics(winningCalculator.getWinningStatistics());
-
-        double totalProfitRate = winningCalculator.calculateTotalProfitRate(purchaseAmount);
-        output.displayTotalProfitRate(totalProfitRate);
+        ResultOutput.printLottoResult(lottoResult);
+        getProfit(lottoResult);
     }
 
+    private void getProfit(WinningResult lottoResult) {
+        double profit = lottoResult.calculateProfitRate(amount);
+        ResultOutput.printProfit(profit);
+    }
 
-    private List<Lotto> generateWinningLottos() {
-        List<Lotto> winningLottos = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
-            winningLottos.add(new Lotto(LottoGenerator.generateRandomNumbers()));
+    private int initLottoQuantity() {
+        amount = Integer.parseInt(UserInput.readPurchaseAmount());
+
+        Validator.validateAmountRange(amount);
+        Validator.validateUnit(amount);
+        return amount / 1000;
+    }
+
+    private LottoStorage initPurchaseLotto() {
+        NumberGenerator generateRandomNumbers = new NumberGenerator();
+        List<Lotto> lottos = new ArrayList<>();
+
+        int quantity = initLottoQuantity();
+        for (int i = 0; i < quantity; i++) {
+            lottos.add(new Lotto(generateRandomNumbers.generate()));
         }
-        return winningLottos;
+        LottoStorage purchaseLottos = new LottoStorage(lottos);
+
+        ResultOutput.printPurchaseQuantityMessage(quantity);
+        ResultOutput.printPurchaseLotto(purchaseLottos.toString());
+        return purchaseLottos;
+    }
+
+    private Lotto initWinningLotto() {
+        String winning = UserInput.readWinningNumbers();
+        return new Lotto(transformInputNumbers(winning));
+    }
+
+    private List<Integer> transformInputNumbers(String winningNumbers) {
+        List<String> numbers = UserInput.splitNumbers(winningNumbers);
+
+        Validator.validateNonNumericNumbers(numbers);
+        return UserInput.convertToNumbers(numbers);
+    }
+
+    private int initBonus() {
+        int bonus = Integer.parseInt(UserInput.readBonusNumber());
+
+        Validator.validateLottoNumberRange(bonus);
+        return bonus;
     }
 }

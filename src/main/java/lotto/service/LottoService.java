@@ -54,8 +54,8 @@ public class LottoService {
         }
     }
 
-    private Long lottoPayment() {
-        return Long.parseLong(amountValidation(InputUtil.inputStringWithTrim()));
+    private int lottoPayment() {
+        return Integer.parseInt(amountValidation(InputUtil.inputStringWithTrim()));
     }
 
     private String amountValidation(String amount) {

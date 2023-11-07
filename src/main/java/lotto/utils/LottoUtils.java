@@ -31,7 +31,7 @@ public class LottoUtils {
                 .toList();
     }
 
-    public static long getLottoAmount(Long prise) {
+    public static int getLottoAmount(final int prise) {
         return prise / LOTTO_PRISE;
     }
 

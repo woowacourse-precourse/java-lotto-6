@@ -2,9 +2,9 @@ package lotto.domain;
 
 
 import java.util.Map;
-import lotto.domain.rule.PrizeAmount;
 import lotto.config.output.MessageType;
 import lotto.config.output.OutputMessage;
+import lotto.domain.rule.PrizeAmount;
 
 public class Returns {
     private String returns;

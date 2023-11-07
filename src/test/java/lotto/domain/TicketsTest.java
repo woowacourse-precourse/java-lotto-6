@@ -21,7 +21,7 @@ public class TicketsTest {
 
         // when
         tickets.generate();
-        tickets.save(lottoModel);
+        lottoModel.saveTicktet(tickets);
 
         // then
         assertThat(lottoModel.findTickets()).isEqualTo(tickets);

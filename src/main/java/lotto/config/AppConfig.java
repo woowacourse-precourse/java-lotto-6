@@ -18,50 +18,62 @@ public class AppConfig {
     }
 
     private AppConfig(){
-        getLottoModel();
-        getLottoBuyer();
-        getLottoDrawer();
-        getController();
-        getPrizeAmount();
+        setLottoModel();
+        setLottoBuyer();
+        setLottoDrawer();
+        setController(lottoModel);
+        setPrizeAmount();
 
         LottoProcess.start(lottoBuyer, lottoDrawer);
     }
 
-    public static LottoController getController() {
+    private static void setController(LottoModel lottoModel) {
         if (lottoController == null) {
-            lottoController = new LottoController();
+            lottoController = new LottoController(lottoModel);
         }
+    }
 
+    private static void setLottoBuyer() {
+        if (lottoBuyer == null) {
+            lottoBuyer = new LottoBuyer();
+        }
+    }
+
+    private static void setLottoDrawer() {
+        if (lottoDrawer == null) {
+            lottoDrawer = new LottoDrawer();
+        }
+    }
+
+    private static void setPrizeAmount() {
+        if (prizeAmount == null) {
+            prizeAmount = new PrizeAmount();
+        }
+    }
+
+    private static void setLottoModel() {
+        if (lottoModel == null) {
+            lottoModel = new LottoModel();
+        }
+    }
+
+    public static LottoController getController() {
         return lottoController;
     }
 
     public static LottoBuyer getLottoBuyer() {
-        if (lottoBuyer == null) {
-            lottoBuyer = new LottoBuyer();
-        }
-
         return lottoBuyer;
     }
 
     public static LottoDrawer getLottoDrawer() {
-        if (lottoDrawer == null) {
-            lottoDrawer = new LottoDrawer();
-        }
-
         return lottoDrawer;
     }
 
-    public static PrizeAmount getPrizeAmount(){
-        if(prizeAmount == null){
-            prizeAmount = new PrizeAmount();
-        }
+    public static PrizeAmount getPrizeAmount() {
         return prizeAmount;
     }
 
-    public static LottoModel getLottoModel(){
-        if(lottoModel == null){
-            lottoModel = new LottoModel();
-        }
+    public static LottoModel getLottoModel() {
         return lottoModel;
     }
 }

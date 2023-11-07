@@ -15,7 +15,6 @@ import lotto.domain.PrizeRankConstants;
 import lotto.view.constants.ConstantMessage;
 
 public class ConsoleOutput {
-    private static final String DELIMITER = ", ";
 
     public static void askLottoAmount() {
         printConstantMessage(REQUEST_INPUT_PRICE);
@@ -29,8 +28,10 @@ public class ConsoleOutput {
         printConstantMessage(REQUEST_INPUT_LOTTO_NUMBERS);
     }
 
+
     public static void printLottoTickets(LottoTicket lottoTicket) {
-        Integer numberOfLotto = lottoTicket.getNumberOfLottos();
+        Integer numberOfLotto = lottoTicket.getHowManyLotto();
+
         printLottoTickets(numberOfLotto, ALARM_HOW_MANY_BUY_LOTTO);
         for (Lotto lotto : lottoTicket.getLottos()) {
             printLottoNumbers(lotto);
@@ -39,13 +40,14 @@ public class ConsoleOutput {
 
     public static void printLottoPrizeResult(Prize result) {
         printConstantMessage(ALARM_THE_RESULT_STARTING_MESSAGE);
+
         for (PrizeRankConstants rank : PrizeRankConstants.values()) {
-            Integer numOfRank = 0;
+            Integer count = 0;
 
             if (result.contains(rank)) {
-                numOfRank = result.getCount(rank);
+                count = result.getCount(rank);
             }
-            printRankResultMessage(rank, numOfRank);
+            printRankResultMessage(rank, count);
         }
     }
 
@@ -53,9 +55,17 @@ public class ConsoleOutput {
         printLottoPrizeRateResultMessage(result);
     }
 
+    public static void printError(Exception e) {
+        printErrorMessage(e.getMessage());
+    }
+
+    private static void printErrorMessage(String error) {
+        System.out.println("[ERROR] " + error);
+    }
+
     private static void printLottoPrizeRateResultMessage(Double result) {
         DecimalFormat decimalFormat = new DecimalFormat("#,###.##%");
-        System.out.println("총 수익률은"+ decimalFormat.format(result) + "입니다.");
+        System.out.println("총 수익률은 " + decimalFormat.format(result) + "입니다.");
     }
 
     private static void printRankResultMessage(

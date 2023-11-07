@@ -13,7 +13,7 @@ public class LottoTicket {
         return lottos;
     }
 
-    public Integer getNumberOfLottos() {
+    public Integer getHowManyLotto() {
         return lottos.size();
     }
 }

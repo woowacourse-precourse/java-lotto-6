@@ -1,17 +1,16 @@
 package lotto.controller;
 
-import lotto.domain.Counter;
-import lotto.domain.Lotto;
-import lotto.domain.LottoGenerate;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
+import java.util.HashMap;
 import java.util.List;
-
+import java.util.Map;
 
 public class GameController {
 
-    public static void start(){
+    public static void start() {
         int userMoney = getUserMoney();
         int lottoAmount = calculateLottoAmount(userMoney);
         printLottoCount(lottoAmount);
@@ -19,7 +18,9 @@ public class GameController {
         printLottoList(lottoList);
         List<Integer> winNumbers = getWinNumbers();
         int bonusNumber = getBonusNumber();
-
+        Judge judge = new Judge();
+        List<LottoResult> results = judge.countMatchingNumbers(lottoList, winNumbers);
+        printWinningResults(judge, results, bonusNumber,lottoList);
     }
 
     private static int getUserMoney() {
@@ -40,6 +41,7 @@ public class GameController {
         LottoGenerate lottoGenerate = new LottoGenerate();
         return lottoGenerate.generateLottoNumbers(lottoAmount);
     }
+
     private static void printLottoList(List<Lotto> lottoList) {
         OutputView outputView = new OutputView();
         outputView.printLottoList(lottoList);
@@ -55,5 +57,16 @@ public class GameController {
         return inputView.inputBonusNumber();
     }
 
-}
+    private static void printWinningResults(Judge judge, List<LottoResult> results, int bonusNumber, List<Lotto> lottoList) {
+        Map<WinningResult, Integer> resultMap = new HashMap<>();
+        for (int i = 0; i < results.size(); i++) {
+            LottoResult result = results.get(i);
+            int count = result.getMatchingCount();
+            boolean bonusMatch = judge.isBonusMatch(lottoList, bonusNumber);
+            WinningResult winningResult = judge.determineWinningResult(count, bonusMatch);
+            resultMap.put(winningResult, resultMap.getOrDefault(winningResult, 0) + 1);
+        }
+        OutputView.printWinningResult(resultMap);
+    }
 
+}

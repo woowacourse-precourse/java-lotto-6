@@ -1,11 +1,14 @@
 package lotto.util;
 
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+import static org.assertj.core.api.Assertions.assertThatCode;
 
 import java.util.Arrays;
 import java.util.List;
-import org.junit.jupiter.api.Assertions;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class ExceptionTest {
 
@@ -16,149 +19,110 @@ class ExceptionTest {
         exception = new Exception();
     }
 
-    @Test
-    void 유저가_입력한_지불_금액이_올바른_입력인지_테스트() {
-        String inputAmount1 = "8000";
-        String inputAmount2 = "100000";
-        String inputAmount3 = "0";
-        String inputAmount4 = "80a0";
-        String inputAmount5 = " 8000";
-        String inputAmount6 = "80 00";
-
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkInvalidNumber(inputAmount1);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkInvalidNumber(inputAmount2);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkInvalidNumber(inputAmount3);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkInvalidNumber(inputAmount4);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkInvalidNumber(inputAmount5);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkInvalidNumber(inputAmount6);
-        });
+    @ParameterizedTest
+    @CsvSource({
+            "8000, true",
+            "100000, true",
+            "0, true",
+            "80a0, false",
+            "\\ 8000, false",
+            "80 00, false"
+    })
+    void 유저가_입력한_지불_금액이_숫자가_맞는지_테스트(String input, boolean result) {
+        if (result) {
+            assertThatCode(() -> exception.checkInvalidNumber(input))
+                    .doesNotThrowAnyException();
+        } else {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> exception.checkInvalidNumber(input));
+        }
     }
 
-    @Test
-    void 지불금액이_1000원_단위인지_테스트() {
-        int inputAmount1 = 8000;
-        int inputAmount2 = 111000;
-        int inputAmount3 = 1000;
-        int inputAmount4 = 2200;
-        int inputAmount5 = 1001;
-        int inputAmount6 = 1100;
-
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkUnitPaymentAmount(inputAmount1);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkUnitPaymentAmount(inputAmount2);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkUnitPaymentAmount(inputAmount3);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkUnitPaymentAmount(inputAmount4);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkUnitPaymentAmount(inputAmount5);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkUnitPaymentAmount(inputAmount6);
-        });
+    @ParameterizedTest
+    @CsvSource({
+            "8000, true",
+            "111000, true",
+            "1000, true",
+            "2200, false",
+            "1001, false",
+            "1100, false"
+    })
+    void 지불금액이_1000원_단위인지_테스트(int inputAmount, boolean result) {
+        if (result) {
+            assertThatCode(() -> exception.checkUnitPaymentAmount(inputAmount)).doesNotThrowAnyException();
+        } else {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> exception.checkUnitPaymentAmount(inputAmount));
+        }
     }
 
-    @Test
-    void 지불금액이_1000_아래인지_확인하는_테스트() {
-        int inputAmount1 = 1000;
-        int inputAmount2 = 2000;
-        int inputAmount3 = 1000000;
-        int inputAmount4 = 0;
-        int inputAmount5 = 900;
-        int inputAmount6 = -1000;
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkRangePaymentAmount(inputAmount1);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkRangePaymentAmount(inputAmount2);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            exception.checkRangePaymentAmount(inputAmount3);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkRangePaymentAmount(inputAmount4);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkRangePaymentAmount(inputAmount5);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            exception.checkRangePaymentAmount(inputAmount6);
-        });
+    @ParameterizedTest
+    @CsvSource({
+            "1000, true",
+            "2000, true",
+            "1000000, true",
+            "0, false",
+            "900, false",
+            "-1000, false"
+    })
+    void 지불금액이_1000_아래인지_확인하는_테스트(int inputAmount, boolean result) {
+        if (result) {
+            assertThatCode(() -> exception.checkRangePaymentAmount(inputAmount)).doesNotThrowAnyException();
+        } else {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> exception.checkRangePaymentAmount(inputAmount));
+        }
     }
 
-    @Test
-    void 입력한_당첨번호_마지막_글자_테스트() {
-        String input1 = "1,2,3,4,5,6";
-        String input2 = "1,2,3,4,5,6,";
-
-        Assertions.assertDoesNotThrow(() -> {
-            Exception.checkLastComma(input1);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkLastComma(input2);
-        });
+    @ParameterizedTest
+    @CsvSource({
+            "\'1,2,3,4,5,6\', true",
+            "\'1,2,22,33\', true",
+            "\'1,2,3,4,5,6,\', false",
+            "\'1,2,3,4,5,\', false"
+    })
+    void 입력한_당첨번호_마지막_글자_테스트(String input, boolean result) {
+        if (result) {
+            assertThatCode(() -> exception.checkLastComma(input)).doesNotThrowAnyException();
+        } else {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> exception.checkLastComma(input));
+        }
     }
 
-    @Test
-    void 로또번호_중복_테스트() {
-        List<Integer> numbers1 = Arrays.asList(1, 2, 3, 4, 5, 6);
-        List<Integer> numbers2 = Arrays.asList(1, 2, 2, 4, 5, 6);
-        List<Integer> numbers3 = Arrays.asList(1, 2, 3, 5, 5, 6);
+    @ParameterizedTest
+    @CsvSource({
+            "\'1,2,3,4,5,6\', true",
+            "\'1,2,2,4,5,6\', false",
+            "\'1,2,3,4,4,5\', false"
+    })
+    void 로또번호_중복_테스트(String input, boolean result) {
+        List<Integer> numbers = Arrays.stream(input.split(","))
+                .map(Integer::parseInt).collect(Collectors.toList());
+        if(result){
+            assertThatCode(() -> exception.checkDuplicationNumber(numbers)).doesNotThrowAnyException();
+        }else{
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> exception.checkDuplicationNumber(numbers));
+        }
 
-        Assertions.assertDoesNotThrow(() -> {
-            Exception.checkDuplicationNumber(numbers1);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkDuplicationNumber(numbers2);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkDuplicationNumber(numbers3);
-        });
     }
 
-    @Test
-    void 로또번호_범위_테스트() {
-        int number1 = 30;
-        int number2 = 45;
-        int number3 = 1;
-        int number4 = 46;
-        int number5 = 0;
-        int number6 = -1;
-
-
-        Assertions.assertDoesNotThrow(() -> {
-            Exception.checkRangeLottoNumber(number1);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            Exception.checkRangeLottoNumber(number2);
-        });
-        Assertions.assertDoesNotThrow(() -> {
-            Exception.checkRangeLottoNumber(number3);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkRangeLottoNumber(number4);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkRangeLottoNumber(number5);
-        });
-        Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            Exception.checkRangeLottoNumber(number6);
-        });
+    @ParameterizedTest
+    @CsvSource({
+            "30, true",
+            "45, true",
+            "1, true",
+            "46, false",
+            "0, false",
+            "-1, false"
+    })
+    void 로또번호_범위_테스트(int input, boolean result) {
+        if (result) {
+            assertThatCode(() -> exception.checkRangeLottoNumber(input)).doesNotThrowAnyException();
+        } else {
+            assertThatExceptionOfType(IllegalArgumentException.class)
+                    .isThrownBy(() -> exception.checkRangeLottoNumber(input));
+        }
     }
 }

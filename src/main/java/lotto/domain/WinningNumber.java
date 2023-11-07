@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoGameException;
 import lotto.util.LottoConstants;
 
 import java.util.List;
@@ -13,8 +15,14 @@ public class WinningNumber {
     }
 
     private void validate(List<Integer> numbers) {
-        if (checkNumbersCount(numbers) || hasDuplicates(numbers) || hasOutOfRangeNumbers(numbers)) {
-            throw new IllegalArgumentException();
+        if (checkNumbersCount(numbers)) {
+            throw new LottoGameException(ErrorMessage.INVALID_INTEGER_COUNT);
+        }
+        if (hasDuplicates(numbers)) {
+            throw new LottoGameException(ErrorMessage.DUPLICATE_INPUT);
+        }
+        if (hasOutOfRangeNumbers(numbers)) {
+            throw new LottoGameException(ErrorMessage.OUT_OF_RANGE);
         }
     }
 

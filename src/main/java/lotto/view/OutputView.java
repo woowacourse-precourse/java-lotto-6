@@ -9,9 +9,14 @@ public class OutputView {
     private static final String LOTTO_PURCHASE_QUANTITY = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS = "당첨 통계";
     private static final String SEPARATOR_LINE = "---";
+    private static final String NEW_LINE = "";
 
     public static void println(String message) {
         System.out.println(message);
+    }
+
+    public static void println() {
+        println(NEW_LINE);
     }
 
     public static void printLottoList(List<Lotto> lottos) {

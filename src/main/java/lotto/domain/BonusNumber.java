@@ -1,14 +1,13 @@
 package lotto.domain;
 
 
-import java.util.List;
+import lotto.constant.LottoConstant;
+
 
 import static lotto.exception.ErrorMessage.INVALID_BONUS_NUMBER_FORM;
 import static lotto.exception.ErrorMessage.INVALID_BONUS_NUMBER_VALUE;
 
 public class BonusNumber {
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
 
     private final int bonusNumber;
 
@@ -29,12 +28,12 @@ public class BonusNumber {
     }
 
     private void validateBonusNumberRange(int number) {
-        if (number < LOTTO_MIN_NUMBER || number > LOTTO_MAX_NUMBER) {
+        if (number < LottoConstant.MIN_NUMBER || number > LottoConstant.MAX_NUMBER) {
             throw new IllegalArgumentException(INVALID_BONUS_NUMBER_FORM.getMessage());
         }
     }
 
-    public boolean isHitBonusNumber(Lotto lotto){
+    public boolean isHitBonusNumber(Lotto lotto) {
         return lotto.isContainNumber(bonusNumber);
     }
 }

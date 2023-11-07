@@ -66,7 +66,7 @@ public class InputValidator {
         }
     }
     public void checkWinningNumberLong(List<Integer> strings){
-        if (strings.size() != Constants.MAX_LOTTO_PICK_NUMBER ){
+        if (strings.size() != Constants.SIX){
             throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요");
         }
     }

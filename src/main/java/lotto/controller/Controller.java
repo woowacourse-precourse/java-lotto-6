@@ -12,7 +12,7 @@ import lotto.view.OutputView;
 
 public class Controller {
     Customer customer;
-    LottoController lottoController =  new LottoController();
+    LottoController lottoController = new LottoController();
     InputView inputView = new InputView();
     InputValidator inputValidator = new InputValidator();
     OutputView outputView = new OutputView();
@@ -25,6 +25,9 @@ public class Controller {
         purchaseLotto();
         setWinningLotto();
         setBonusLotto();
+        gatherWinningAndBonusLotto();
+        compareLotto(customer, winningLotto);
+
     }
 
     private void purchaseLotto() {
@@ -33,39 +36,49 @@ public class Controller {
                 String lottoPrice = inputView.showInputMention();
                 int purchasedTicketPrice = inputValidator.checkAll(lottoPrice);
                 int purchasedTicketNumber = Utils.figureOutQuotient(purchasedTicketPrice, Constants.LOTTO_PRICE);
-                customer = new Customer(purchasedTicketPrice,purchasedTicketNumber);
+                customer = new Customer(purchasedTicketPrice, purchasedTicketNumber);
                 purchaseAllLotto(customer.getNumberOfLottoTicket());
-                outputView.showLottos(customer.getLottos(customer));
+                outputView.showLottos(customer.getLottos());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
-    private void purchaseAllLotto(int count){
+
+    private void purchaseAllLotto(int count) {
         for (int i = 0; i < count; i++) {
             customer.purchaseLotto(lottoController.GenerateLotto());
         }
     }
-    private void setWinningLotto(){
-        while (true){
+
+    private void setWinningLotto() {
+        while (true) {
             try {
                 winningNumbers = inputValidator.checkWinningNumber(inputView.generalWinningNumber());
                 break;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    private void setBonusLotto(){
-        while (true){
+    private void setBonusLotto() {
+        while (true) {
             try {
                 bonusNumber = inputValidator.checkBonusNumber(inputView.bonusWinningNumber());
                 break;
-            }catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
+
+    private void gatherWinningAndBonusLotto() {
+        winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+    }
+    private void compareLotto(Customer customer, WinningLotto winningLotto){
+        winningLotto.compareLottos(customer, winningLotto);
+    }
 }
+

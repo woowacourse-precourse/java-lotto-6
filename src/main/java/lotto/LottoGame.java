@@ -1,6 +1,9 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class LottoGame {
@@ -17,13 +20,17 @@ public class LottoGame {
         int numberOfLotto = payment / 1000;
         OutputView.print(String.valueOf(numberOfLotto));
         OutputView.print(Message.PAYMENT_COMPLETE);
+        OutputView.print(Message.LINE_BREAK);
 
+        List<Lotto> lottoPaper = new ArrayList<>();
 
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        Lotto attempt = new Lotto(numbers);
     }
 
     public void validateNumber(String input) {
         if (!input.matches("^[0-9]+$")) {
-            throw new IllegalArgumentException("[ERROR] 숫자만 입력하세요");
+            throw new IllegalArgumentException();
         }
     }
 

@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Buyer;
+import lotto.domain.Lotto;
 import lotto.domain.WinningNumbers;
 import lotto.validator.InputValidator;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class Controller {
     private Buyer buyer;
@@ -36,6 +38,22 @@ public class Controller {
         InputValidator.isNullOrIsEmpty(inputPurchasePrice);
         InputValidator.isNotDigit(inputPurchasePrice);
         InputValidator.isNotPositiveNumber(inputPurchasePrice);
+    }
+
+    private void getPurchaseLotteriesInformation() {
+        showLottoQuantity();
+        showPurchaseLotteries(buyer.getPurchaseLotteries());
+    }
+
+    private void showLottoQuantity() {
+        OutputView.showLottoQuantity(buyer.getPurchasePrice() / 1000);
+
+    }
+
+    private void showPurchaseLotteries(List<Lotto> purchaseLotteries) {
+        for (Lotto purchaseLotto : purchaseLotteries) {
+            OutputView.showPurchaseLotto(purchaseLotto.getNumbers());
+        }
     }
 
     private void getWinningNumbers() {

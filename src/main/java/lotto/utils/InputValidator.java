@@ -7,9 +7,9 @@ public class InputValidator {
     private static final int JACKPOT_MINIMUM_NUMBER = 1;
     private static final int JACKPOT_MAXIMUM_NUMBER = 45;
     private static final int JACKPOT_MAXIMUM_SIZE = 6;
-    private static final int BONUS_MAXIMUM_SIZE = 1;
 
     public static void checkLottoPayAmountInput(String lottoPayAmount) {
+        checkNoInput(lottoPayAmount);
         checkNumeric(lottoPayAmount);
         checkLessAmount(lottoPayAmount);
         checkLessAmountUnit(lottoPayAmount);
@@ -44,6 +44,12 @@ public class InputValidator {
         checkNumberOfRange(jackpotNumberInput);
         // TODO : 중복된 숫자를 입력했을 경우
 
+    }
+
+    private static void checkNoInput(String jackpotNumberInput) {
+        if (jackpotNumberInput.length() == 0) {
+            throw new IllegalArgumentException(ErrorMessage.NO_INPUT_ERROR.getErrorMessage());
+        }
     }
 
     private static void checkNumberOfRange(String jackpotNumberInput) {
@@ -87,7 +93,9 @@ public class InputValidator {
     }
 
     public static void checkBonusNumberInput(String bonusNumberInput) {
+        // TODO : 아무것도 입력하지 않았을 경우
         checkNumeric(bonusNumberInput);
+        // TODO : 1~45 이외의 범위의 숫자을 입력했을 경우.
         // TODO : 중복된 숫자를 입력했을 경우
     }
 

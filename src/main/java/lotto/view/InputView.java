@@ -15,7 +15,6 @@ public class InputView {
     private static final String ERROR_MESSAGE_ABOUT_WRONG_RANGED_LOTTO_NUMBERS = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final String ERROR_MESSAGE_ABOUT_BLANK_INPUT = "[ERROR] 입력값이 없습니다.";
     private static final String COMMA = ",";
-    private static final String ZERO = "0";
     public static int inputPurchaseAmount() {
         String input = "";
         try {

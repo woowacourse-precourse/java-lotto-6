@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.Prize;
 
 import java.util.EnumMap;
+import java.util.List;
 
 public class OutputView {
     private static final String BUY_LOTTO_COUNT_INFO = "%d개를 구매했습니다.%n";
@@ -17,13 +18,16 @@ public class OutputView {
     }
 
     public static void outputIssuedLotto(Lotto lotto) {
-        System.out.println(lotto);
+        System.out.println(lotto.toString());
     }
 
     public static void outputWinningInfo(EnumMap<Prize, Integer> prizeMap) {
         System.out.println(START_PRIZE_INFO);
         System.out.println(NEW_LINE);
         for (Prize prize : prizeMap.keySet()) {
+            if (prize == Prize.ZERO) {
+                continue;
+            }
             String message = outPutWinningInfo(prize);
             System.out.printf(message, prize.getEqualNumCount(), prize.convertWinningAmount(), prizeMap.get(prize));
         }

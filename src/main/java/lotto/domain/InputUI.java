@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.data.Rewards;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +112,21 @@ public class InputUI {
         } catch (IllegalArgumentException e) {
             throw e;
         }
+    }
+
+    public String moneyEdit(Rewards reward) {
+        int money = reward.money();
+        String beforeEdit = Integer.toString(money);
+        String reversedEdit = new StringBuilder(beforeEdit).reverse().toString();
+        StringBuilder formatted = new StringBuilder();
+        for (int i = 0; i < reversedEdit.length(); i++) {
+            if (i > 0 && i % 3 == 0) {
+                formatted.append(",");
+            }
+            formatted.append(reversedEdit.charAt(i));
+        }
+        String result = "(" + formatted.reverse().toString() + "원)";
+        return result;
     }
 
     public int getCost() {

@@ -2,25 +2,13 @@ package lotto.UI;
 
 import lotto.data.Lotto;
 import lotto.data.Rewards;
+import lotto.domain.InputUI;
 
 import java.util.*;
 
 public class UserView {
+    private final InputUI inputUI = new InputUI();
 
-    public String moneyEdit(Rewards reward) {
-        int money = reward.money();
-        String beforeEdit = Integer.toString(money);
-        String reversedEdit = new StringBuilder(beforeEdit).reverse().toString();
-        StringBuilder formatted = new StringBuilder();
-        for (int i = 0; i < reversedEdit.length(); i++) {
-            if (i > 0 && i % 3 == 0) {
-                formatted.append(",");
-            }
-            formatted.append(reversedEdit.charAt(i));
-        }
-        String result = "(" + formatted.reverse().toString() + "원)";
-        return result;
-    }
 
     public void purchaseLog(int num, List<Lotto> publishedLottos) {
         System.out.println();
@@ -28,7 +16,6 @@ public class UserView {
         for (Lotto lotto : publishedLottos) {
             System.out.println(lotto.getNumbers());
         }
-
     }
 
     public void rate(String winningRate) {
@@ -43,7 +30,7 @@ public class UserView {
         System.out.println("---");
 
         for (Rewards reward : rewards) {
-            System.out.printf("%s %s - %d개\n", reward.getNotifyMessege(), moneyEdit(reward)
+            System.out.printf("%s %s - %d개\n", reward.getNotifyMessege(), inputUI.moneyEdit(reward)
                     , resultAll.get(reward));
         }
     }

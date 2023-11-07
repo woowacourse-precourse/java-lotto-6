@@ -3,7 +3,6 @@ package lotto.domain;
 import lotto.exception.LottoPurchaseAmountException;
 
 public class LottoPurchaseAmount {
-    private static final int lottoPrice = 1000;
     private final String input;
 
     public LottoPurchaseAmount(String input) {
@@ -16,9 +15,7 @@ public class LottoPurchaseAmount {
         LottoPurchaseAmountException lottoPurchaseAmountException = new LottoPurchaseAmountException(input);
     }
 
-    public int getLottoCount(){
-        int count = Integer.parseInt(input);
-        int lottoCount = count / lottoPrice;
-        return lottoCount;
+    public int getCount() {
+        return Integer.parseInt(input);
     }
 }

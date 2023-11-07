@@ -27,4 +27,8 @@ public class Lotto {
         sameCount -= (int) allNumbers.distinct().count();
         return sameCount;
     }
+
+    public boolean containsBonusNumber(Integer bonusNumber) {
+        return this.numbers.contains(bonusNumber);
+    }
 }

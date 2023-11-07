@@ -26,6 +26,9 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        if (new HashSet<Integer>(numbers).size() != 6) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static List<Integer> generateLottoNumbers() {

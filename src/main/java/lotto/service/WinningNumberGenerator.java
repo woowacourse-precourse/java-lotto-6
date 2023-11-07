@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import lotto.controller.InputController;
 import lotto.domain.WinningNumbers;
+import lotto.exception.NumberValidator;
 import lotto.util.ErrorMessage;
 
 public class WinningNumberGenerator {
@@ -16,10 +17,9 @@ public class WinningNumberGenerator {
         while(true){
             try{
                 bonusNumber = inputBonusNumber();
-            }catch(IllegalArgumentException e){
-                continue;
-            }
-            break;
+                NumberValidator.validate(bonusNumber);
+                break;
+            }catch(IllegalArgumentException e){            }
         }
         return bonusNumber;
     }
@@ -29,10 +29,9 @@ public class WinningNumberGenerator {
         while(true){
             try{
                 winningNumbers = inputWinningNumber();
-            }catch(IllegalArgumentException e){
-                continue;
-            }
-            break;
+                NumberValidator.validate(winningNumbers);
+                break;
+            }catch(IllegalArgumentException e){}
         }
         return winningNumbers;
     }
@@ -43,7 +42,8 @@ public class WinningNumberGenerator {
         try {
             winningNumber = InputController.inputWinningNumber();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.valueOf(ErrorMessage.ERROR_INPUT_WINNING_NUMBER_MESSAGE));
+            System.out.println(ErrorMessage.ERROR_INPUT_NOT_NUMBER_MESSAGE);
+            throw new IllegalArgumentException();
         }
         return winningNumber;
     }
@@ -54,7 +54,8 @@ public class WinningNumberGenerator {
         try {
             bonusNumber = InputController.inputBonusNumber();
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(String.valueOf(ErrorMessage.ERROR_INPUT_BONUS_NUMBER_MESSAGE));
+            System.out.println(ErrorMessage.ERROR_INPUT_NOT_NUMBER_MESSAGE);
+            throw new IllegalArgumentException();
         }
         return bonusNumber;
     }

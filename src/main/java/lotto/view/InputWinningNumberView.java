@@ -2,6 +2,7 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 
+import java.nio.channels.FileLockInterruptionException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.regex.Pattern;
 public class InputWinningNumberView {
     private static final int MIN_NUMBER = 1;
     private static final int MAX_NUMBER = 45;
+    private static final String BLANK = " ";
     private static final String SEPARATOR = ",";
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String REQUEST_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
@@ -23,6 +25,7 @@ public class InputWinningNumberView {
         List<String> inputValue = parseWinningNumber(input);
         List<Integer> winningNumber = convertWinningNumber(inputValue);
         try {
+            validateBlank(input);
             validateWinningNumber(winningNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_MESSAGE + ERROR_NOT_RANGE);
@@ -53,6 +56,12 @@ public class InputWinningNumberView {
     private void validateRangeNumber(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_NOT_RANGE);
+        }
+    }
+
+    private void validateBlank(String input) {
+        if (input.contains(BLANK)) {
+            throw new IllegalArgumentException();
         }
     }
 }

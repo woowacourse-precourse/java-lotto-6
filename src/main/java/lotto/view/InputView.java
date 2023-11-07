@@ -18,6 +18,7 @@ public class InputView {
     }
 
     public static String inputLottoNum(){
+        System.out.println();
         System.out.println(INPUT_LOTTO_NUMBERS);
         String inputWinningNumber = Console.readLine();
 
@@ -27,6 +28,7 @@ public class InputView {
     }
 
     public static String inputBonusNum(){
+        System.out.println();
         System.out.println(INPUT_BONUS_NUMBER);
         String inputBonusNumber = Console.readLine();
 

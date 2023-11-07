@@ -38,7 +38,7 @@ public class OutputView {
         System.out.println(sb);
     }
 
-    public void printProfitability(float profitability){
+    public void printProfitability(double profitability){
         System.out.println(PROFITABILITY_MESSAGE + String.format("%.1f", profitability) + PERCENT);
     }
 }

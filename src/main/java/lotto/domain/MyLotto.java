@@ -35,7 +35,7 @@ public class MyLotto {
         Result result = new Result(getStatistics(winningLotto));
 
         List<Integer> statistics = result.getStatistics();
-        float profitability = result.getProfitability(quantity);
+        double profitability = result.getProfitability(quantity);
 
         outputView.printStatistics(statistics);
         outputView.printProfitability(profitability);

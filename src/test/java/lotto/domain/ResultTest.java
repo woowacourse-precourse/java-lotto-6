@@ -19,10 +19,10 @@ class ResultTest {
         Result result = new Result(statistics);
 
         //when
-        float profitability = result.getProfitability(quantity);
+        double profitability = result.getProfitability(quantity);
 
         //then
-        Assertions.assertThat(profitability).isEqualTo(62.5f);
+        Assertions.assertThat(profitability).isEqualTo(62.5);
     }
 
 }

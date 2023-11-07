@@ -17,8 +17,8 @@ public class Result {
         return statistics;
     }
 
-    public float getProfitability(int quantity) {
-        return (float)totalReward / (quantity * PERCENT);
+    public double getProfitability(int quantity) {
+        return (double)totalReward / (quantity * PERCENT);
     }
 
     private int getTotalReward() {

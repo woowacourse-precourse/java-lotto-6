@@ -1,5 +1,7 @@
 package lotto.service;
 
+import static lotto.constants.LottoConstants.LOTTO_SIZE_MAX_LENGTH;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,6 +17,7 @@ public class LottoService {
 
     public List<Integer> createWinningNumbers(String winningInputNumbers) {
         String[] winningNumberSplit = winningInputNumbers.split(",");
+        validateWinningNumberLength(winningNumberSplit.length);
         Set<Integer> winningNumbers = new HashSet<>();
         for (String winning : winningNumberSplit) {
             int winningParser = Integer.parseInt(winning);
@@ -57,6 +60,12 @@ public class LottoService {
     private void validateDuplicateWinningNumber(int originLength, int afterLength) {
         if (originLength != afterLength) {
             throw new UserInputException(ErrorMsg.ERROR_LOTTO_DUPLICATES_NUMBERS.getMsg());
+        }
+    }
+
+    private void validateWinningNumberLength(int lottoNumberLength) {
+        if (lottoNumberLength != LOTTO_SIZE_MAX_LENGTH) {
+            throw new UserInputException(ErrorMsg.ERROR_LOTTO_NUMBERS_SIZE_MAX.getMsg());
         }
     }
 }

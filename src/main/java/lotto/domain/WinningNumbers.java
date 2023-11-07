@@ -9,6 +9,7 @@ import lotto.domain.lotto.Lotto;
 
 public class WinningNumbers {
 
+    private static final int FIVE_MATCHES = 5;
     private final Lotto winningTicket;
     private final int bonusNumber;
 
@@ -29,7 +30,10 @@ public class WinningNumbers {
 
     public Rankings assignRankings(Lotto lotto) {
         int matchCount = winningTicket.countMatches(lotto);
-        boolean hasBonusNumber = lotto.contains(bonusNumber);
+        boolean hasBonusNumber = false;
+        if (matchCount == FIVE_MATCHES) {
+            hasBonusNumber = lotto.contains(bonusNumber);
+        }
 
         return Rankings.setRankings(matchCount, hasBonusNumber);
     }

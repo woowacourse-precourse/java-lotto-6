@@ -48,13 +48,13 @@ public class NumberGeneratorVaildation {
 
     public void bonusNumberVaildation(String bonusNum, List<Integer> correctNumbers){
         if(bonueNumberIntegerVaildation(bonusNum)){
-            throw new IllegalArgumentException("\n보너스 번호는 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException("\n[ERROR]보너스 번호는 숫자여야 합니다.");
         }
         else if(bonusNumDuplicateVaildation(bonusNum, correctNumbers)){
-            throw new IllegalArgumentException("\n중복되지 않은 번호를 입력해 주세요.");
+            throw new IllegalArgumentException("\n[ERROR]로또 번호는 중복되지 않아야 합니다.");
         }
         else if(bonusNumRangeVaildation(bonusNum)){
-            throw new IllegalArgumentException("\n1부터 45사이의 번호를 입력해 주세요.");
+            throw new IllegalArgumentException("\n[ERROR]로또 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
 

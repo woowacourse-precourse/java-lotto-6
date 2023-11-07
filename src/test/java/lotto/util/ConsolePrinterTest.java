@@ -8,6 +8,7 @@ import static org.junit.jupiter.params.provider.EnumSource.Mode.INCLUDE;
 import java.util.List;
 import lotto.TestDefault;
 import lotto.constants.DomainMessages;
+import lotto.constants.ErrorMessages;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -134,5 +135,37 @@ class ConsolePrinterTest extends TestDefault {
         assertThatNullPointerException().isThrownBy(() -> {
             ConsolePrinter.showTotalReturn(totalReturn);
         });
+    }
+
+    @DisplayName("에러 메시지가 정상적으로 출력된다.")
+    @ParameterizedTest
+    @EnumSource(ErrorMessages.class)
+    void testShowException(ErrorMessages message) {
+        String expectedMessage = message.getMessage();
+
+        ConsolePrinter.showException(message);
+
+        assertThat(getConsoleOuputMessage()).isEqualTo(expectedMessage);
+    }
+
+    @DisplayName("출력할 에러 메시지가 null일 경우 예외 처리가 발생한다.")
+    @ParameterizedTest
+    @NullSource
+    void testShowExceptionMessageNullExceptionCheck(ErrorMessages message) {
+        assertThatNullPointerException().isThrownBy(() -> {
+            ConsolePrinter.showException(message);
+        });
+    }
+
+    @DisplayName("에러 메시지 타이틀은 '[ERROR]' 이다.")
+    @ParameterizedTest
+    @EnumSource(ErrorMessages.class)
+    void testShowExceptionTitleCheck(ErrorMessages message) {
+        String expected = "[ERROR]";
+
+        ConsolePrinter.showException(message);
+        String actualed = getConsoleOuputMessage().substring(0, 7);
+
+        assertThat(actualed).isEqualTo(expected);
     }
 }

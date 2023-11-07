@@ -8,57 +8,6 @@ import lotto.ui.PrintLottoUI;
 import lotto.ui.PrintWinningResultUI;
 
 public class Application {
-    private static Purchase getPurchaseAmount(GetPurchaseUI getPurchaseUI) {
-
-        String input = getPurchaseUI.enterPurchaseAmountUI();
-
-        return new Purchase(input);
-    }
-
-    private static Lotto getWinningNumbers(GetWinningNumbersUI winningNumbersUI) {
-        String input = winningNumbersUI.enterWinningNumbersUI();
-        String[] inputNumbers = input.split(",");
-
-        List<Integer> numbers = new ArrayList<>();
-        int number;
-
-        for (String s : inputNumbers) {
-            try {
-                number = Integer.parseInt(s);
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException();
-            }
-
-            numbers.add(number);
-        }
-
-        return new Lotto(numbers);
-    }
-
-    private static Integer getBonusNumbers(GetWinningNumbersUI winningNumbersUI) {
-        String input = winningNumbersUI.enterBonusNumberUI();
-        int bonusNumber;
-
-        try {
-            bonusNumber = Integer.parseInt(input);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
-        }
-
-        if (bonusNumber >= 1 && bonusNumber <= 45) {
-            return bonusNumber;
-        }
-
-        throw new IllegalArgumentException();
-    }
-
-    private static void isValidBonusNumber(Lotto winningLotto, Integer bonusNumber) {
-        List<Integer> winningNumbers = winningLotto.getLotto();
-
-        if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
-        }
-    }
 
     public static void main(String[] args) {
 
@@ -82,7 +31,7 @@ public class Application {
 
         while (true) {
             try {
-                purchase = getPurchaseAmount(getPurchaseUI);
+                purchase = getPurchaseUI.getPurchaseAmount();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(Constants.ERROR_NOT_VALID_PURCHASE_AMOUNT);
@@ -101,7 +50,7 @@ public class Application {
 
         while (true) {
             try {
-                winningLotto = getWinningNumbers(winningNumbersUI);
+                winningLotto = winningNumbersUI.getWinningNumbers();
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(Constants.ERROR_NOT_VALID_LOTTO_NUMBERS);
@@ -110,17 +59,15 @@ public class Application {
 
         while (true) {
             try {
-                bonusNumber = getBonusNumbers(winningNumbersUI);
-                isValidBonusNumber(winningLotto, bonusNumber);
+                bonusNumber = winningNumbersUI.getBonusNumbers(winningLotto);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(Constants.ERROR_NOT_VALID_BONUS_NUMBER);
             }
         }
 
-
         Result result = new Result();
-        matchingResult = result.calculateResult(lottos,winningLotto, bonusNumber);
+        matchingResult = result.calculateResult(lottos, winningLotto, bonusNumber);
 
         winningResultUI.printWinningResultUI(matchingResult);
 

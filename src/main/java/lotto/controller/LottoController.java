@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
+import lotto.domain.compareSystem.LottoMachine;
 import lotto.domain.user.LottoCount;
 import lotto.domain.user.UserLotto;
 import lotto.domain.win.Bonus;
@@ -24,48 +24,35 @@ public class LottoController {
     public void play() {
         LottoCount lottoCount = setLottoCount();
         UserLotto userLotto = setUserLotto(lottoCount);
-        userLotto.create(randomNumberGenerator);
-
-        output.userLotto(userLotto);
-
         WinLotto winLotto = setWinLotto();
-        LottoMachine lottoMachine = new LottoMachine();
-        lottoMachine.compare(userLotto, winLotto);
-
-        output.lottoResult(lottoMachine);
-        output.rateOfReturn(lottoMachine.calculateRate(userLotto));
+        compareLotto(userLotto, winLotto);
     }
 
     private LottoCount setLottoCount() {
-        boolean isContinue = true;
-        while (isContinue) {
+        while (true) {
             try {
-                LottoCount lottoCount = new LottoCount(input.money());
-                isContinue = false;
-                return lottoCount;
+                return new LottoCount(input.money());
             } catch (IllegalArgumentException e) {
                 output.message(e.getMessage());
             }
         }
-        return null;
     }
 
     private UserLotto setUserLotto(LottoCount lottoCount) {
-        return new UserLotto(lottoCount);
+        UserLotto userLotto = new UserLotto(lottoCount);
+        userLotto.create(randomNumberGenerator);
+        output.userLotto(userLotto);
+        return userLotto;
     }
 
     private Lotto setLotto() {
-        boolean isContinue = true;
-        while (isContinue) {
+        while (true) {
             try {
-                Lotto lotto = new Lotto(input.winLottoNumbers());
-                isContinue = false;
-                return lotto;
+                return new Lotto(input.winLottoNumbers());
             } catch (IllegalArgumentException e) {
                 output.message(e.getMessage());
             }
         }
-        return null;
     }
 
     private Bonus setBonus() {
@@ -73,18 +60,22 @@ public class LottoController {
     }
 
     private WinLotto setWinLotto() {
-        boolean isContinue = true;
         Lotto lotto = setLotto();
-        while (isContinue) {
+        while (true) {
             try {
                 Bonus bonus = setBonus();
-                WinLotto winLotto = new WinLotto(lotto, bonus);
-                isContinue = false;
-                return winLotto;
+                return new WinLotto(lotto, bonus);
             } catch (IllegalArgumentException e) {
                 output.message(e.getMessage());
             }
         }
-        return null;
+    }
+
+    private void compareLotto(UserLotto userLotto, WinLotto winLotto) {
+        LottoMachine lottoMachine = new LottoMachine();
+        lottoMachine.compare(userLotto, winLotto);
+
+        output.lottoResult(lottoMachine);
+        output.rateOfReturn(lottoMachine.calculateRate(userLotto));
     }
 }

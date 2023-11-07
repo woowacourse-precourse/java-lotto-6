@@ -49,6 +49,37 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 숫자_비교_테스트() {
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winNumbers = List.of(2, 3, 5, 7, 8, 9);
+
+        int matchingCount = Application.countMatchNumbers(lottoNumbers, winNumbers);
+
+        assertThat(matchingCount).isEqualTo(3);
+    }
+
+    @Test
+    void 로또_생성_테스트() {
+        int numberOfTickets = 5;
+        List<Lotto> lottoTickets = Application.generateLottoTickets(numberOfTickets);
+
+        assertThat(lottoTickets).hasSize(numberOfTickets);
+        for (Lotto lotto : lottoTickets) {
+            assertThat(lotto.getNumbers()).hasSize(6);
+        }
+    }
+
+    @Test
+    void 순위_반환_테스트() {
+        assertThat(Application.getLottoRank(6, false)).isEqualTo(Application.LottoRank.FIRST);
+        assertThat(Application.getLottoRank(5, true)).isEqualTo(Application.LottoRank.SECOND);
+        assertThat(Application.getLottoRank(5, false)).isEqualTo(Application.LottoRank.THIRD);
+        assertThat(Application.getLottoRank(4, false)).isEqualTo(Application.LottoRank.FOURTH);
+        assertThat(Application.getLottoRank(3, false)).isEqualTo(Application.LottoRank.FIFTH);
+        assertThat(Application.getLottoRank(0, false)).isEqualTo(Application.LottoRank.NONE);
+    }
+
+    @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");

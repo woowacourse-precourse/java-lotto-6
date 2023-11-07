@@ -3,12 +3,18 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 
 public class Controller {
-    public int inputTryNum() {
+    public int inputMoney() {
         int tryNum;
-        String tryNumString = Console.readLine();
+        int money;
 
-        tryNum = Integer.parseInt(tryNumString);
+        String moneyString = Console.readLine();
 
+        money = Integer.parseInt(moneyString);
+
+        tryNum = money/1000;
+        
         return tryNum;
     }
+
+ 
 }

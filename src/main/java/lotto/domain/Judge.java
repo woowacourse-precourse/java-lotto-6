@@ -6,10 +6,10 @@ public class Judge {
     private Judge() {
     }
 
-    public static int compareWinningNumbers(Lotto lottoWinningNumbers, Lotto lottoRandomNumbers) {
+    public static int compareWinningNumbers(Lotto winnings, Lotto randoms) {
         int matchCount = 0;
-        List<Integer> winningNumbers = lottoWinningNumbers.getNumbers();
-        List<Integer> randomNumbers = lottoRandomNumbers.getNumbers();
+        List<Integer> winningNumbers = winnings.getNumbers();
+        List<Integer> randomNumbers = randoms.getNumbers();
 
         for (Integer number : winningNumbers) {
             if (randomNumbers.contains(number)) {

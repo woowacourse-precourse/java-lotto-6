@@ -17,6 +17,7 @@ public class Output {
     private static final String RESULT_END_PREFIX = "]";
     private static final String DELIMITER = ",";
     private static final String EMPTY = " ";
+    private static final String RESULT_RateOfReturns = "총 수익률은 %.1f%%입니다.";
 
 
     private static Output output;
@@ -66,14 +67,26 @@ public class Output {
         System.out.print(BONUS_NUMBER_MESSAGE + LINEBREAK);
     }
 
-    public void printWinningStatistics() {
-        System.out.println(WINNING_STATISTICS_MESSAGE + LINEBREAK + LINE);
-        // 당첨 통계 결과 (나중에 구현)
-        // 수익률 출력 (나중에 구현)
+    public void printWinningStatisticsMessage() {
+        System.out.print(WINNING_STATISTICS_MESSAGE + LINEBREAK + LINE + LINEBREAK);
+    }
+
+    public void printWinningStatistics(int[] result) {
+        for (PrizeResult ps : PrizeResult.values()) {
+            System.out.print(ps.getMessage(result[ps.ordinal() + 3]) + LINEBREAK);
+        }
+    }
+
+    public void printRateOfReturns(double rate) {
+        System.out.print(String.format(RESULT_RateOfReturns, rate) + LINEBREAK);
     }
 
     public void printLineBreak() {
         System.out.print(LINEBREAK);
+    }
+
+    public void printErrorMessage(String message) {
+        System.out.print(message + LINEBREAK);
     }
 
 }

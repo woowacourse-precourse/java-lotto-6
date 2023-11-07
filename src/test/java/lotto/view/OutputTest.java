@@ -81,6 +81,18 @@ class OutputTest {
 
     @Test
     void printWinningStatistics() {
+        //given
+        int[] result = {0, 0, 0, 3, 4, 5, 0, 5};
 
+        //when
+        output.printWinningStatistics(result);
+
+        //then
+        assertEquals("3개 일치 (5,000원) - 3개\n" +
+                        "4개 일치 (50,000원) - 4개\n" +
+                        "5개 일치 (1,500,000원) - 5개\n" +
+                        "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n" +
+                        "6개 일치 (2,000,000,000원) - 5개\n",
+                outputMessage.toString());
     }
 }

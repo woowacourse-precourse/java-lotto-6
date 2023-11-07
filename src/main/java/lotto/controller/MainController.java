@@ -1,9 +1,8 @@
 package lotto.controller;
 
-import static lotto.view.constants.ViewMessage.GET_WINNING_NUMBER;
-
 import lotto.domain.Buyer;
 import lotto.domain.Lottos;
+import lotto.domain.NumberChecker;
 import lotto.view.OutputView;
 
 public class MainController {
@@ -19,8 +18,6 @@ public class MainController {
 
         OutputView.printMessage(lottoTicket);
 
-        OutputView.printMessage(GET_WINNING_NUMBER);
-
-
+        NumberChecker numberChecker = lottoController.createNumberChecker();
     }
 }

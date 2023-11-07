@@ -17,6 +17,15 @@ public class PurchaseTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구매 금액이 0일 경우 예외 발생")
+    @Test
+    void createPurchaseAmountByZero() {
+        String testPurchaseAmount = "0";
+
+        assertThatThrownBy(() -> new Purchase(testPurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("구매 금액을 1000으로 나눈 숫자가 구매 횟수")
     @Test
     void creatPurchaseNumberByPurchaseAmount() {

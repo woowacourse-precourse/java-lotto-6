@@ -8,7 +8,6 @@ import lotto.Input.InputType;
 public class LottoGame {
     private static final int FIRST = 0;
     private Input lottoInput = new Input();
-    private List<Integer> purchaseAmount;
     private List<Lotto> purchasedLotto;
 
     public LottoGame() {
@@ -16,8 +15,15 @@ public class LottoGame {
     }
 
     public void gameStart(){
+        List<Integer> purchaseAmount;
+        List<Integer> winningNumber;
+        List<Integer> bonusNumber;
+
         purchaseAmount = lottoInput.input(InputType.PURCHASE_AMOUNT);
         buyLotto(purchaseAmount.get(FIRST));
+        winningNumber = lottoInput.input(InputType.WINNING_NUMBERS);
+        bonusNumber = lottoInput.input(InputType.BONUS_NUMBER);
+
     }
 
     public void buyLotto(Integer purchaseAmount){

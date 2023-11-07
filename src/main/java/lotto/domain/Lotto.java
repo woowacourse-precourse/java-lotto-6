@@ -5,6 +5,7 @@ import static common.ErrorCode.LOTTO_NUMBERS_INVALID_RANGE;
 import static common.ErrorCode.LOTTO_NUMBERS_INVALID_SIZE;
 
 import common.exception.InvalidArgumentException;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 

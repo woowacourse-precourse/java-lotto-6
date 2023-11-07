@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import static lotto.common.util.LottoUtil.ZERO;
+
 public class Rank {
-    private int five = 0;
-    private int four = 0;
-    private int three = 0;
-    private int two = 0;
-    private int one = 0;
+    private int five = ZERO.getNumber();
+    private int four = ZERO.getNumber();
+    private int three = ZERO.getNumber();
+    private int two = ZERO.getNumber();
+    private int one = ZERO.getNumber();
 
     public void five() {
         five++;

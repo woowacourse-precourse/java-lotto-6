@@ -1,9 +1,6 @@
 package lotto;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -30,7 +27,7 @@ public class Lotto {
 
     // 랜덤하게 로또 번호를 생성하고 오름차순 정렬하는 메서드
     public static Lotto generateLotto() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        List<Integer> lottoNumbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
         Collections.sort(lottoNumbers);
         return new Lotto(lottoNumbers);
     }

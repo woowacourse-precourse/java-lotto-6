@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.util.List;
 import lotto.model.UserMoney;
-import lotto.model.WinningNumbers;
 
 public class UserIoManager {
     private final InputView inputView;
@@ -25,13 +24,7 @@ public class UserIoManager {
         }
     }
 
-    public WinningNumbers readWinningNumbersWithBonusNumber() {
-        List<Integer> numbers = readWinningNumbers();
-        Integer bonusNumber = readBonusNumber();
-        return new WinningNumbers(numbers, bonusNumber);
-    }
-
-    private List<Integer> readWinningNumbers() {
+    public List<Integer> readWinningNumbers() {
         while (true) {
             try {
                 outputView.printWinningNumbersGuide();
@@ -42,7 +35,7 @@ public class UserIoManager {
         }
     }
 
-    private Integer readBonusNumber() {
+    public Integer readBonusNumber() {
         while (true) {
             try {
                 outputView.printBonusNumberGuide();

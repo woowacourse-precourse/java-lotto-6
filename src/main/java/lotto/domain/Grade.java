@@ -21,6 +21,10 @@ public enum Grade {
         return price;
     }
 
+    public Integer getAnswer() {
+        return answer;
+    }
+
     public static Grade from(Integer answer, Integer bonus) {
         if (answer == FIVE_AND_BONUS.answer && bonus == 1) {
             return FIVE_AND_BONUS;

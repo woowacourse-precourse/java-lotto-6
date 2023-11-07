@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.global.utils.ExceptionHandlingUtil;
 
 public class InputView {
 
@@ -40,36 +41,24 @@ public class InputView {
     }
 
     public static int getPurchaseMoney() {
-        while (true) {
-            System.out.println(BUY_LOTTO_MESSAGE);
-            try {
-                return getInt();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return ExceptionHandlingUtil.handleExceptionWithMessage(
+                message -> System.out.println(BUY_LOTTO_MESSAGE),
+                InputView::getInt
+        );
     }
 
     public static List<Integer> getWinningNumbersFromInput() {
-        while (true) {
-            System.out.println(WINNING_NUMBERS_MESSAGE);
-            try {
-                return getNumbers();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return ExceptionHandlingUtil.handleExceptionWithMessage(
+                message -> System.out.println(WINNING_NUMBERS_MESSAGE),
+                InputView::getNumbers
+        );
     }
 
     public static int getBonusNumber() {
-        while (true) {
-            System.out.println(BONUS_NUMBER_MESSAGE);
-            try {
-                return getInt();
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        return ExceptionHandlingUtil.handleExceptionWithMessage(
+                message -> System.out.println(BONUS_NUMBER_MESSAGE),
+                InputView::getInt
+        );
     }
 
 

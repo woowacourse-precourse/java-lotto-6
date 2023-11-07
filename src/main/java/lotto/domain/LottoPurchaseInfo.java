@@ -21,6 +21,10 @@ public class LottoPurchaseInfo {
         return this.purchaseLottoCount;
     }
 
+    public int getPurchaseAmount() {
+        return this.purchaseAmount;
+    }
+
     public List<Lotto> getLottos() {
         return this.lottos;
     }

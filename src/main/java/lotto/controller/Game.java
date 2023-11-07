@@ -47,7 +47,7 @@ public class Game {
 
         int countMatchedNum = 0;
         boolean isMatchedBonus = false;
-        
+
         for (Lotto lotto : lottoPurchaseInfo.getLottos()) {
             List<Integer> numbers = lotto.getNumbers();
             countMatchedNum = winningLotto.countMatchedNum(numbers);
@@ -59,6 +59,7 @@ public class Game {
     }
 
     void RegisterProfit() {
-
+        profit.setTotalProfit();
+        profit.setProfitRatio(lottoPurchaseInfo.getPurchaseAmount());
     }
 }

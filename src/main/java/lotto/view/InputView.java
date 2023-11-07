@@ -11,7 +11,11 @@ public class InputView {
 	}
 
 	public void printWinningRequest() {
-		System.out.println(WINNING_REQUEST.getValue());
+		System.out.println("\n" + WINNING_REQUEST.getValue());
+	}
+
+	public void printBonusRequest() {
+		System.out.println("\n" + BONUS_REQUEST.getValue());
 	}
 
 	public String getInput() {

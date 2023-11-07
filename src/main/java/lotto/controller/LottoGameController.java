@@ -12,10 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static lotto.constant.StringConstant.COMMA;
-import static lotto.message.GameMessage.ASK_FOR_PURCHASE_COST;
-import static lotto.message.GameMessage.ASK_FOR_WINNING_NUMBER;
+import static lotto.message.GameMessage.*;
 import static lotto.message.LottoMessage.LOTTO_COUNT;
+import static lotto.utils.LottoUtils.convertStringToInteger;
 import static lotto.utils.LottoUtils.splitStringToList;
+import static lotto.validator.WinningNumbersValidator.validateBonusNumber;
 
 public class LottoGameController {
 
@@ -38,9 +39,8 @@ public class LottoGameController {
         printPurchaseLottos(lottoCount, puchaseLottos);
 
         Lotto lottoWinningNumbers = inputLottoWinningNumbers();
-//        inputWinningNumbers();
-//        inputBonusNumbers();
-//        printWinniㅍㅇㄴngStatistics();
+        int bonusWinningNumber = inputBonusWinningNumber(lottoWinningNumbers);
+
     }
 
     private PurchaseCost inputLottoPurchaseCost() {
@@ -72,6 +72,7 @@ public class LottoGameController {
     private void printPurchaseLottoCount(int lottoCount) {
         output.printLottoCount(LOTTO_COUNT, lottoCount);
     }
+
     private Lotto inputLottoWinningNumbers() {
 
         while (true) {
@@ -104,6 +105,31 @@ public class LottoGameController {
         return numbers.stream()
                 .map(LottoUtils::validateAndConvertStringToInteger)
                 .collect(Collectors.toList());
+    }
+
+    private int inputBonusWinningNumber(Lotto lottoWinningNumbers) {
+
+        while (true) {
+            try {
+                String number = inputBonusNumber();
+                int bonusWinningNumber = convertAndValidateBonusNumber(lottoWinningNumbers, number);
+                return bonusWinningNumber;
+            } catch (IllegalArgumentException e) {
+                output.printErrorMessage(e);
+            }
+        }
+
+    }
+
+    private String inputBonusNumber() {
+        output.printMessage(ASK_FOR_BONUS_NUMBER);
+        return input.bonusWinningNumbers();
+    }
+
+    private int convertAndValidateBonusNumber(Lotto lottoWinningNumbers, String number) {
+        int bonusWinningNumber = convertStringToInteger(number);
+        validateBonusNumber(lottoWinningNumbers, bonusWinningNumber);
+        return bonusWinningNumber;
     }
 
 

@@ -21,4 +21,11 @@ public class InputView {
         validateCommaAtStartOrEnd(input);
         return input;
     }
+
+    public String bonusWinningNumbers(){
+        String input = Console.readLine();
+        validateBlank(input);
+        validateNumber(input);
+        return input;
+    }
 }

@@ -2,7 +2,9 @@ package lotto.controller;
 
 import lotto.domain.Lotto;
 import lotto.service.AmountCalculator;
+import lotto.service.LottoCalculator;
 import lotto.service.LottoMachine;
+import lotto.service.RateOfReturnCalculator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -18,6 +20,8 @@ public class GameController {
     private List<Integer> winnerNumbers;
     private Lotto winnerLottoNumber;
     private int bonusNumber;
+    private int prize = 0;
+    private List<Integer> finalMatchNumbers;
 
     public void play() {
         getAmount();
@@ -25,6 +29,8 @@ public class GameController {
         generateLottos(numberOfLottoPurchased);
         getWinnerNumber();
         getBonusNumber();
+        getPrize();
+        printPrize();
 
     }
 
@@ -62,5 +68,16 @@ public class GameController {
         String bonusNumberItem = InputView.BONUMS_NUMBER.getInput();
         bonusNumber = Integer.parseInt(bonusNumberItem);
         System.out.println();
+    }
+
+    private void getPrize() {
+        for (Lotto usernumber : lottos) {
+            prize += LottoCalculator.calculatePrize(usernumber.getNumbers(), winnerNumbers, bonusNumber);
+        }
+        finalMatchNumbers = LottoCalculator.getFinalMatchNumbers();
+    }
+
+    private void printPrize() {
+        OutputView.printStatics(finalMatchNumbers, RateOfReturnCalculator.calculateRateOfReturn(Integer.parseInt(amount), prize));
     }
 }

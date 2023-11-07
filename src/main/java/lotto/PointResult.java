@@ -23,6 +23,10 @@ public class PointResult {
                 .sum();
     }
 
+    public double calculateEarningRate(Money money) {
+        return (double) calculateTotalPrizeMoney() / money.getMoney() * 100;
+    }
+
     private void initPointResult(List<Double> pointResult) {
         for(Grade grade : Grade.getAllGrades()) {
             int frequency = Collections.frequency(pointResult, grade.getPoint());

@@ -16,13 +16,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    @Override
-    public String toString() {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return sortedNumbers.toString();
-    }
-
     public List<Integer> getNumbers() {
         List<Integer> result = List.of();
         for (Integer number : numbers) {
@@ -61,5 +54,12 @@ public class Lotto {
             }
             visited[num] = true;
         });
+    }
+
+    @Override
+    public String toString() {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers.toString();
     }
 }

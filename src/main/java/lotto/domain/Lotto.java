@@ -43,5 +43,19 @@ public class Lotto {
         return lotto;
     }
 
+    public int createBonusNumber(String inputNumber) {
+        int bonusNumber = ValidateUtil.toNumeric(inputNumber);
+        validateBonusNumber(bonusNumber);
+        return bonusNumber;
+    }
+
+    public void validateBonusNumber(int bonusNumber) {
+        ValidateUtil.isInRange(bonusNumber, Constant.LOTTO_MINIMUM_NUMBER.getValue(),
+                Constant.LOTTO_MAXIMUM_NUMBER.getValue());
+        if (ValidateUtil.isContain(bonusNumber, numbers)) {
+            throw new IllegalArgumentException();
+        }
+
+    }
 
 }

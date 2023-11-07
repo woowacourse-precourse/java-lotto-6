@@ -1,12 +1,11 @@
 package lotto.view;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.exception.WinnerNumberException;
 import lotto.util.StringToListConverter;
 
 import java.util.List;
 
-public class WinnerNumberInputView extends InputView {
+public class InputViewWinnerNumber extends InputView {
     private static final String WINNER_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private StringToListConverter stringToListConverter = new StringToListConverter();
 

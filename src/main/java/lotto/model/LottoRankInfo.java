@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoRankInfo {
-
     private final static int BASIC_SETTING_VALUE = 0;
     private final static int MAP_INCREASE_VALUE = 1;
     private Map<LottoRank, Integer> lottoRankInfo;

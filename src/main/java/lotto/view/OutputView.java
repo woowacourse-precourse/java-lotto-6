@@ -15,7 +15,6 @@ public class OutputView {
         System.out.println("\n" + count / 1000 + "개를 구매했습니다.");
     }
 
-
     public static void printCreatedLottos(Lottos lottos) {
         List<List<Integer>> numbers = lottos.getLottos().stream().map(Lotto::getNumbers).toList();
         numbers.forEach(number -> System.out.println(number));

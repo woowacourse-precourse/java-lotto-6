@@ -1,13 +1,10 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class InputView {
-    public static String  readBuyAmount() {
+    public static String readBuyAmount() {
         String input = Console.readLine();
         validateSpaceBuyAmount(input);
         validateNotIntegerBuyAmount(input);

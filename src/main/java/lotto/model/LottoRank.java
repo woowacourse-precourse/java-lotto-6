@@ -2,7 +2,6 @@ package lotto.model;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public enum LottoRank {
     NONE(0, 0),

@@ -1,15 +1,10 @@
 package lotto.controller;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import lotto.model.Game;
-import lotto.model.LottoChecker;
-import lotto.model.LottoRank;
 import lotto.model.LottoRankInfo;
-import lotto.model.Lottos;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

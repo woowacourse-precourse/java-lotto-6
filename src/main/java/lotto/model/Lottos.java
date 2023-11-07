@@ -1,14 +1,11 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Lottos {
-
-
     private final static int LOTTO_GENERATE_START_SIZE = 0;
     private final static int BUY_AMOUNT_DIVIDE_TO_COUNT = 1000;
 

@@ -17,10 +17,6 @@ public enum LottoRanking {
         this.correctNumberCount = correctNumberCount;
     }
 
-    public Long getTotalPrize(Integer count) {
-        return ((long) prize * count);
-    }
-
     public boolean isSameCorrectCount(int correctCount) {
         return correctNumberCount == correctCount;
     }

@@ -56,4 +56,8 @@ public class LottoViewResolver {
                 .append("%입니다.")
                 .toString();
     }
+
+    public String parsePaidLottoLog(int size) {
+        return size + LottoGuideMessage.BOUGHT_LOG.getMessage();
+    }
 }

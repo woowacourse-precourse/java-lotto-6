@@ -27,45 +27,30 @@ public class LottoHandler {
     public void run() {
         Payment payment = getPayment();
         Lottos lottos = lottoManager.createLottos(payment);
+        showPaidLottos(lottos);
 
-        LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber(winningNumbers);
+        WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
+        LottoRankings winningRankings = lottoManager.createWinningRankings(lottos, winningLotto);
 
-        writer.write(lottos.size() + LottoGuideMessage.BOUGHT_LOG.getMessage());
-        writer.write(lottoViewResolver.parseLottosDetail(lottoInformation));
-
-        WinningLotto winningLotto = generateWinningLotto();
-        LottoResult lottoResult = lottoManager.calculateResult(lottos, winningLotto);
-
-        showResult(lottoResult);
-        showProfit(payment, lottoResult);
+        showResult(winningRankings);
+        showProfit(payment, winningRankings);
     }
 
-    private void showProfit(Payment payment, LottoResult lottoResult) {
-        long totalPrize = lottoResult.calculateTotalPrize();
+    private void showPaidLottos(Lottos lottos) {
+        writer.write(lottoViewResolver.parsePaidLottoLog(lottos.size()));
+        writer.write(lottoViewResolver.parseLottosDetail(LottoDto.Information.from(lottos)));
+    }
+
+    private void showProfit(Payment payment, LottoRankings winningRankings) {
+        long totalPrize = winningRankings.calculateTotalPrize();
         double profitPercentage = payment.calculateProfitPercentage(totalPrize);
         writer.write(lottoViewResolver.parseProfit(profitPercentage));
     }
 
-    private void showResult(LottoResult lottoResult) {
-        LottoDto.Result result = LottoDto.Result.from(lottoResult);
-        writer.write(lottoViewResolver.parseLottoResult(result));
-    }
-
-    private WinningLotto generateWinningLotto() {
-        List<Integer> winningNumbers = getWinningNumbers();
-        int bonusNumber = getBonusNumber(winningNumbers);
-        WinningLotto winningLotto = lottoManager.createWinningLotto(winningNumbers, bonusNumber);
-        return winningLotto;
-    }
-
-    private Lottos generateLottos(Payment payment) {
-        Lottos lottos = lottoManager.createLottos(payment);
-
-        LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
-
-        writer.write(lottos.size() + LottoGuideMessage.BOUGHT_LOG.getMessage());
-        writer.write(lottoViewResolver.parseLottosDetail(lottoInformation));
-        return lottos;
+    private void showResult(LottoRankings winningRankings) {
+        writer.write(lottoViewResolver.parseLottoResult(LottoDto.Result.from(winningRankings)));
     }
 
     private int getBonusNumber(List<Integer> winningNumbers) {

@@ -8,12 +8,12 @@ public record Lottos(List<Lotto> lottos) {
         return lottos.size();
     }
 
-    public LottoRankings calculateRankings(WinningLotto winningLotto) {
-        List<LottoRanking> rankings = lottos.stream()
+    public List<LottoRanking> calculateRankings(WinningLotto winningLotto) {
+        return lottos.stream()
                 .map(winningLotto::calculateRanking)
                 .toList();
 
-        return new LottoRankings(rankings);
+//        return new LottoRankings(rankings);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package lotto.manager;
 
-import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.*;
 
 import java.util.ArrayList;
@@ -21,12 +20,12 @@ public class LottoManager {
     public Lottos createLottos(Payment payment) {
 
         int affortableLottoCount = payment.countAffortable(DEFAULT_LOTTO_PRICE);
-        List<Lotto> lottos = issue(affortableLottoCount);
+        List<Lotto> lottos = issueLottosByCount(affortableLottoCount);
 
         return new Lottos(lottos);
     }
 
-    private List<Lotto> issue(int affortableLottoCount) {
+    private List<Lotto> issueLottosByCount(int affortableLottoCount) {
         return IntStream.range(0, affortableLottoCount)
                 .mapToObj(idx -> {
                     List<Integer> lottoNumbers = new ArrayList<>(lottoNumberGenerator.generate());
@@ -40,8 +39,9 @@ public class LottoManager {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    public LottoResult calculateResult(Lottos lottos, WinningLotto winningLotto) {
-        LottoRankings winRankings = lottos.calculateRankings(winningLotto);
-        return winRankings.toLottoResult();
+    public LottoRankings createWinningRankings(Lottos lottos, WinningLotto winningLotto) {
+        List<LottoRanking> winRankings = lottos.calculateRankings(winningLotto);
+
+        return new LottoRankings(winRankings);
     }
 }

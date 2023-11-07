@@ -1,9 +1,6 @@
 package lotto.dto;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoRanking;
-import lotto.domain.LottoResult;
-import lotto.domain.Lottos;
+import lotto.domain.*;
 
 import java.util.List;
 import java.util.Map;
@@ -29,7 +26,7 @@ public class LottoDto {
 
     public record Result(Map<LottoRanking, Integer> result) {
 
-        public static Result from(LottoResult lottoResult) {
+        public static Result from(LottoRankings lottoResult) {
             return new Result(lottoResult.getResult());
         }
 

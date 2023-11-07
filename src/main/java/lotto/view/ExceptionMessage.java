@@ -11,7 +11,6 @@ public class ExceptionMessage {
 
 
 
-
   public static void typeException() {
     System.out.println(INTEGER_ERROR);
   }

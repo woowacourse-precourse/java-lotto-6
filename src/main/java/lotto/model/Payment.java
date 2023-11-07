@@ -5,7 +5,6 @@ import lotto.view.ExceptionMessage;
 
 public class Payment {
   private int payment;
-  public static final String TypeError = "[ERROR] 1,000원 단위의 숫자를 입력해야 합니다.";
 
 
   public void Payment(int payment) {

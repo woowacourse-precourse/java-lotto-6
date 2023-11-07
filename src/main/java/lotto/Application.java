@@ -1,6 +1,7 @@
 package lotto;
 
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Payment;
 import lotto.model.WinningNumber;
@@ -19,6 +20,8 @@ public class Application {
 
         int money = 0;
         int ticket = 0;
+        List<Integer> winning;
+        int bonus=0;
 
         while (true){
             try {
@@ -36,9 +39,19 @@ public class Application {
 
         while (true){
             try {
-                List<Integer> winning = inputView.getWinningInput();
+                winning = inputView.getWinningInput();
                 WinningNumber winningNumber = new WinningNumber(winning);
                 System.out.println(winning);
+                break;
+            }catch (Exception e){
+            }
+        }
+
+        while (true){
+            try {
+                bonus = inputView.getBonusInput();
+                BonusNumber bonusNumber = new BonusNumber(bonus, winning);
+                System.out.println(bonus);
                 break;
             }catch (Exception e){
             }

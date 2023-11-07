@@ -74,4 +74,7 @@ public class Lotto {
         }
     }
 
+    public List<Number> getNumbers() {
+        return numbers;
+    }
 }

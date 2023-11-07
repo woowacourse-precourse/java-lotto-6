@@ -1,7 +1,7 @@
 package lotto.service;
 
 import lotto.Lotto;
-import org.junit.jupiter.api.Disabled;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -12,14 +12,16 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static lotto.loader.ApplicationLoader.getContainer;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 
 class LottoServiceTest {
     private static final Class<?> EXCEPTION_CLASS = IllegalArgumentException.class;
     private final LottoService lottoService = getContainer().getBean(LottoService.class);
 
-    static Stream<Arguments> parsePaymentTestCases () {
+    static Stream<Arguments> parsePaymentTestCases() {
         return Stream.of(
                 Arguments.of("숫자를 제외한 다른 값을 입력한 경우 예외가 발생합니다.", "1000k", EXCEPTION_CLASS),
                 Arguments.of("입력한 숫자가 0인 경우 예외가 발생합니다.", "0", EXCEPTION_CLASS),
@@ -103,7 +105,7 @@ class LottoServiceTest {
             Class<?> expectedException
     ) {
         // given
-        Lotto winningNumbers = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
 
         // when
 
@@ -117,36 +119,66 @@ class LottoServiceTest {
     }
 
     static Stream<Arguments> lotteryMatchTestCases() {
+        Lotto firstPrize = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto secondPrize = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        Lotto thirdPrize = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 45));
+        Lotto fourthPrize = new Lotto(Arrays.asList(1, 2, 3, 4, 44, 45));
+        Lotto fifthPrize = new Lotto(Arrays.asList(1, 2, 3, 43, 44, 45));
+        Lotto disqualified = new Lotto(Arrays.asList(1, 2, 42, 43, 44, 45));
+
         return Stream.of(
-                Arguments.of("유효성 검사를 통과한 경우 해당 숫자를 반환합니다.", "10", null)
+                Arguments.of(
+                        "모든 등수 별로 1장씩 당첨",
+                        Arrays.asList(firstPrize, secondPrize, thirdPrize, fourthPrize, fifthPrize),
+                        Arrays.asList(1, 1, 1, 1, 1)
+                ),
+                Arguments.of(
+                        "1등: 0, 2등: 1, 3등: 1, 4등: 1, 5등: 1",
+                        Arrays.asList(secondPrize, thirdPrize, fourthPrize, fifthPrize, disqualified),
+                        Arrays.asList(0, 1, 1, 1, 1)
+                ),
+                Arguments.of(
+                        "1등: 1, 2등: 0, 3등: 2, 4등: 0, 5등: 0",
+                        Arrays.asList(firstPrize, disqualified, thirdPrize, thirdPrize, fifthPrize, disqualified),
+                        Arrays.asList(1, 0, 2, 0, 1)
+                ),
+                Arguments.of(
+                        "모든 복권이 당첨되지 않음",
+                        Arrays.asList(disqualified, disqualified, disqualified, disqualified, disqualified),
+                        Arrays.asList(0, 0, 0, 0, 0)
+                )
         );
     }
 
-    @Disabled("lotteryMatch() 변경 가능성")
     @ParameterizedTest(name = "[{index}] {0}")
     @MethodSource("lotteryMatchTestCases")
     @DisplayName("lotteryMatch()")
     void lotteryMatch(
-            String testCaseName
+            String testCaseName,
+            List<Lotto> lotteries,
+            List<Integer> answer
     ) {
         // given
+        Lotto winningNumbers = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
 
         // when
+        List<Integer> matchResult = lottoService.lotteryMatch(lotteries, winningNumbers, bonusNumber);
 
         // then
-
+        assertIterableEquals(matchResult, answer);
     }
 
     static Stream<Arguments> calculateRewardTestCases() {
         return Stream.of(
                 Arguments.of(
-                        "1등: 1개, 2등: 1개, 3등: 1개, 4등: 1개, 5등: 1개 -> 2,031,555,000", Arrays.asList(1,1,1,1,1), 2031555000
+                        "1등: 1개, 2등: 1개, 3등: 1개, 4등: 1개, 5등: 1개 -> 2,031,555,000", Arrays.asList(1, 1, 1, 1, 1), 2031555000
                 ),
                 Arguments.of(
-                        "1등: 0개, 2등: 2개, 3등: 1개, 4등: 0개, 5등: 0개 -> 61,550,000", Arrays.asList(0,2,1,0,0), 61500000
+                        "1등: 0개, 2등: 2개, 3등: 1개, 4등: 0개, 5등: 0개 -> 61,550,000", Arrays.asList(0, 2, 1, 0, 0), 61500000
                 ),
                 Arguments.of(
-                        "1등: 0개, 2등: 0개, 3등: 0개, 4등: 0개, 5등: 0개 -> 0", Arrays.asList(0,0,0,0,0), 0
+                        "1등: 0개, 2등: 0개, 3등: 0개, 4등: 0개, 5등: 0개 -> 0", Arrays.asList(0, 0, 0, 0, 0), 0
                 )
         );
     }
@@ -188,10 +220,10 @@ class LottoServiceTest {
     }
 
     static Stream<Arguments> getRateOfReturnTestCases() {
-                return Stream.of(
+        return Stream.of(
                 Arguments.of("소숫점 둘째자리에서 반올림합니다. (1)", 100000, 6666666, 6666.7),
-                        Arguments.of("소숫점 둘째자리에서 반올림합니다. (2)", 100000, 3333333, 3333.3),
-                        Arguments.of("결과가 0인 경우 0.0을 반환합니다.", 10000, 0, 0.0)
+                Arguments.of("소숫점 둘째자리에서 반올림합니다. (2)", 100000, 3333333, 3333.3),
+                Arguments.of("결과가 0인 경우 0.0을 반환합니다.", 10000, 0, 0.0)
         );
     }
 

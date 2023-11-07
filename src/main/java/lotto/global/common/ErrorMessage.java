@@ -1,7 +1,7 @@
 package lotto.global.common;
 
 public enum ErrorMessage {
-    ONLY_NUMBER("[ERROR] 숫자만 입력해 주세요."),
+    ONLY_NUMBER("[ERROR] 숫자를 입력해 주세요."),
     ONE_WORD_AND_OVER("[ERROR] 한 글자 이상 입력해 주세요."),
     MULTIPLE_OF_1000("[ERROR] 구매금액은 1,000원 단위로 입력해 주세요."),
     RANGE_1_45("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다."),

@@ -56,7 +56,7 @@ public class OutputHandler {
     public static void requirePositiveInteger() {
         System.out.println(ExceptionMessage.REQUIRE_POSITIVE_INTEGER.getMessage());
     }
-    
+
     public static void requireMultipleOfLottoPrice() {
         System.out.println(ExceptionMessage.REQUIRE_MULTIPLE_OF_LOTTO_PRICE.getMessage());
     }
@@ -71,5 +71,13 @@ public class OutputHandler {
 
     public static void requireRightRangeNumber() {
         System.out.println(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
+    }
+
+    public static void requireUniqueNumbers() {
+        System.out.println(ExceptionMessage.REQUIRE_UNIQUE_NUMBERS.getMessage());
+    }
+
+    public static void requireDifferentNumberWithWinningNumbers() {
+        System.out.println(ExceptionMessage.REQUIRE_DIFFERENT_NUMBER_WITH_WINNING_NUMBERS.getMessage());
     }
 }

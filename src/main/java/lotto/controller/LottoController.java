@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import lotto.Converter;
 import lotto.constant.ExceptionMessage;
@@ -32,7 +33,6 @@ public class LottoController {
         showRateOfReturn(rank, paymentPrice);
     }
 
-    // 구입 금액 받기 -> 구입 개수 계산 -> 로또 발행, 출력
     void callPaymentPriceLoop() {
         try {
             paymentPrice = getPaymentPrice();
@@ -79,7 +79,6 @@ public class LottoController {
         return lottos;
     }
 
-    // 당첨 번호 받기
     List<Integer> getWinningNumbersLoop() {
         try {
             return getWinningNumbers();
@@ -89,6 +88,8 @@ public class LottoController {
     }
 
     List<Integer> getWinningNumbers() throws IllegalArgumentException {
+        HashSet<Integer> uniqueWinningNumbers = new HashSet<Integer>();
+
         OutputHandler.requireWinningNumbers();
         String winningNumbersInput = InputHandler.getInput();
         List<Integer> winningNumbers = Converter.winningNumbers(winningNumbersInput);
@@ -104,6 +105,11 @@ public class LottoController {
                 OutputHandler.requireRightRangeNumber();
                 throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
             }
+            if (uniqueWinningNumbers.contains(winningNumber)) {
+                OutputHandler.requireUniqueNumbers();
+                throw new IllegalArgumentException(ExceptionMessage.REQUIRE_UNIQUE_NUMBERS.getMessage());
+            }
+            uniqueWinningNumbers.add(winningNumber);
         }
         OutputHandler.printEmptyLine();
         return winningNumbers;
@@ -130,12 +136,16 @@ public class LottoController {
             OutputHandler.requireRightRangeNumber();
             throw new IllegalArgumentException(ExceptionMessage.REQUIRE_RIGHT_RANGE_NUMBER.getMessage());
         }
+        if (winningNumbers.contains(bonusNumber)) {
+            OutputHandler.requireDifferentNumberWithWinningNumbers();
+            throw new IllegalArgumentException(
+                    ExceptionMessage.REQUIRE_DIFFERENT_NUMBER_WITH_WINNING_NUMBERS.getMessage());
+        }
         OutputHandler.printEmptyLine();
         return bonusNumber;
     }
 
     // TODO : 15글자 넘어가지 않게 하기
-    // 당첨 통계 계산 & 당첨 통계, 수익률 출력
     Rank getStatic(List<Lotto> lottos) {
         Rank rank = new Rank();
         for (Lotto lotto : lottos) {

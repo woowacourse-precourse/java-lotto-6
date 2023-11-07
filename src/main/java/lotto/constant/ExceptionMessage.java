@@ -12,7 +12,7 @@ public enum ExceptionMessage {
     REQUIRE_SIX_NUMBERS(String.format("숫자 개수는 %s개여야 합니다.", Number.LOTTO_NUM_COUNT.getNumber())),
     REQUIRE_RIGHT_RANGE_NUMBER(String.format("%s~%s 사이의 정수를 입력해야 합니다.", Number.LOTTO_MIN_NUM.getNumber(),
             Number.LOTTO_MAX_NUM.getNumber())),
-    REQUIRE_UNIQUE_WINNING_NUMBERS("중복되지 않은 값을 입력해야 합니다."),
+    REQUIRE_UNIQUE_NUMBERS("중복되지 않은 값을 입력해야 합니다."),
     REQUIRE_DIFFERENT_NUMBER_WITH_WINNING_NUMBERS("당첨번호와 중복되지 않은 값을 입력해주세요.");
 
     private final String message;

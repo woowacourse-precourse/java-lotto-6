@@ -39,9 +39,8 @@ public class Referee {
         result.entrySet()
                 .stream()
                 .filter(entry -> !entry.getKey().equals(Prize.NONE))
-                .sorted(Comparator.comparingLong(o -> o.getKey().getMoney()))
-                .forEach(
-                        entry -> output.add(entry.getKey() + Constants.HYPHEN + entry.getValue() + Constants.COUNT));
+                .sorted(Comparator.comparingLong(prize -> prize.getKey().getMoney()))
+                .forEach(entry -> output.add(entry.getKey() + Constants.HYPHEN + entry.getValue() + Constants.COUNT));
         return Constants.PRIZE_MESSAGE + output;
     }
 

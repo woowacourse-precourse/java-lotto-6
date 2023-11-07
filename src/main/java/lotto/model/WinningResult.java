@@ -32,7 +32,7 @@ public class WinningResult {
         return prizeAmount.multiply(count);
     }
 
-    private Integer getCount(LottoPlace key) {
+    public Integer getCount(LottoPlace key) {
         return lottoPlaces.getOrDefault(key, DEFAULT_COUNT);
     }
 }

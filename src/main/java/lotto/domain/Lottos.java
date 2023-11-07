@@ -59,7 +59,7 @@ public class Lottos {
     }
 
     private boolean isValidRank(final Rank result) {
-        return !result.isUnranked(result);
+        return !result.isUnranked();
     }
 
     public long calculateTotalReward(final EnumMap<Rank, Integer> rankResult) {

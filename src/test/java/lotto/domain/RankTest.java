@@ -44,7 +44,7 @@ class RankTest {
     @DisplayName("순위가 없는지 확인: UNRANKED는 순위가 없음")
     void givenRank_whenIsUnranked_thenReturnTrue(Rank rank) {
         // when
-        boolean result = rank.isUnranked(rank);
+        boolean result = rank.isUnranked();
 
         // then
         assertThat(result).isTrue();
@@ -55,7 +55,7 @@ class RankTest {
     @DisplayName("순위가 없는지 확인: UNRANKED 이외는 순위가 존재")
     void givenRank_whenIsUnranked_thenReturnFalse(Rank rank) {
         // when
-        boolean result = rank.isUnranked(rank);
+        boolean result = rank.isUnranked();
 
         // then
         assertThat(result).isFalse();
@@ -66,7 +66,7 @@ class RankTest {
     @DisplayName("2등인지 확인: 2등이 맞으면 true")
     void givenRank_whenIsSecond_thenReturnTrue(Rank rank) {
         // when
-        boolean result = rank.isSecond(rank);
+        boolean result = rank.isSecond();
 
         // then
         assertThat(result).isTrue();
@@ -77,7 +77,7 @@ class RankTest {
     @DisplayName("2등인지 확인: 2등이 아니면 false")
     void givenRank_whenIsSecond_thenReturnFalse(Rank rank) {
         // when
-        boolean result = rank.isSecond(rank);
+        boolean result = rank.isSecond();
 
         // then
         assertThat(result).isFalse();

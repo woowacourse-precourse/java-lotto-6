@@ -58,10 +58,10 @@ public final class OutputView {
         rankResult.forEach((rank, winningCount) -> {
             int matchingCount = rank.matchingCount();
             String reward = applyRewardFormat(rank);
-            if (rank.isSecond(rank)) {
+            if (rank.isSecond()) {
                 printSecondRankResult(matchingCount, reward, winningCount);
             }
-            if (!rank.isSecond(rank)) {
+            if (!rank.isSecond()) {
                 printRankResult(matchingCount, reward, winningCount);
             }
         });

@@ -47,12 +47,12 @@ public enum Rank {
         return (long) rank.reward * count;
     }
 
-    public boolean isUnranked(final Rank rank) {
-        return rank.equals(UNRANKED);
+    public boolean isUnranked() {
+        return this == UNRANKED;
     }
 
-    public boolean isSecond(final Rank rank) {
-        return rank.equals(SECOND);
+    public boolean isSecond() {
+        return this == SECOND;
     }
 
     public int matchingCount() {

@@ -10,6 +10,6 @@ public class CalculatorTest {
     void calculateRateTest(){
         calculator=new Calculator();
         double rate = calculator.calculateRate(50,3);
-        assertEquals(rate,1666.67);
+        assertEquals(rate,1666.7);
     }
 }

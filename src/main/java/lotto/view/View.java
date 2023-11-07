@@ -30,4 +30,13 @@ public class View {
         printMessage("보너스 번호를 입력해 주세요.");
         return Console.readLine();
     }
+
+    public void printStatistics(String result){
+        String statistics = """
+                당첨 통계
+                ---
+                """ + result;
+
+        printMessage(statistics);
+    }
 }

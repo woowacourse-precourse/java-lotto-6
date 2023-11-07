@@ -26,6 +26,17 @@ public class LottoResults {
                 && fifthPlaceCount == expectedResult.fifthPlaceCount;
     }
 
+    public String showResults(){
+        return String.format("""
+                3개 일치 (5,000원) - %d개
+                4개 일치 (50,000원) - %d개
+                5개 일치 (1,500,000원) - %d개
+                5개 일치, 보너스 볼 일치 (30,000,000원) - %d개
+                6개 일치 (2,000,000,000원) - %d개""",
+                fifthPlaceCount, fourthPlaceCount, thirdPlaceCount, secondPlaceCount, firstPlaceCount
+        );
+    }
+
     public float earning() {
         return firstPlaceCount * 2_000_000_000
                 + secondPlaceCount * 30_000_000

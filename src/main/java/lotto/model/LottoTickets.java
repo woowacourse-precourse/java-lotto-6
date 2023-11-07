@@ -32,7 +32,9 @@ public class LottoTickets {
             if(hit == 3) fifthPlace++;
             if(hit == 4) forthPlace++;
 
-            if((hit == 5) && (tickets.get(i).isHitBonusNumber(bonusNumber))) secondPlace++;
+            if((hit == 5) && (tickets.get(i).isHitBonusNumber(bonusNumber))) {
+                secondPlace++; continue;
+            }
 
             if(hit == 5) thirdPlace++;
             if(hit == 6) firstPlace++;

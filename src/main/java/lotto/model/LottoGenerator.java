@@ -7,8 +7,18 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
 
 public class LottoGenerator {
+    private ArrayList<Lotto> lottoTickets;
+
     public LottoGenerator(int lottoCount) {
+        lottoTickets = new ArrayList<>();
+        for (int i = 0; i < lottoCount; i++) {
             Lotto ticket = new Lotto(sortAscending(pickSixLottoNumber()));
+            lottoTickets.add(ticket);
+        }
+    }
+
+    public ArrayList<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 
     private List<Integer> pickSixLottoNumber() {

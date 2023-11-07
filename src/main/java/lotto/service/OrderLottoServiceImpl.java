@@ -1,5 +1,6 @@
 package lotto.service;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.dto.MoneyDTO;
 import lotto.enums.Constant;
@@ -28,16 +29,9 @@ public class OrderLottoServiceImpl implements OrderLottoService {
     }
 
     @Override
-    public String getOrderList() {
+    public List<Lotto> getOrderList() {
         List<Lotto> entireLotto = lottoRepository.findAll();
-        String result = "";
-
-        for (Lotto lotto : entireLotto) {
-            result += String.format(OutputMessage.LOTTO_NUMBERS.getMessage(), lotto);
-            result += Constant.LINE_FEED.getContent();
-        }
-
-        return result;
+        return Collections.unmodifiableList(entireLotto);
     }
 
     private Integer getCountOfLotto(MoneyDTO moneyDTO) {

@@ -30,7 +30,7 @@ public class LottoMachine {
                 .forEach(lottoTickets::addLotto);
     }
 
-    public LottoTickets getLottoTickets() {
+    public LottoTickets getLottoTicketsContainer() {
         return this.lottoTickets;
     }
 }

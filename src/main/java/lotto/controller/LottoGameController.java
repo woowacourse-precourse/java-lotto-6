@@ -37,7 +37,7 @@ public class LottoGameController {
     }
 
     private void calculateAndDisplayResults(WinningLotto winningLotto) {
-        LottoResult lottoResult = new LottoResult(lottoMachine.getLottoTickets(), winningLotto);
+        LottoResult lottoResult = new LottoResult(lottoMachine.getLottoTicketsContainer(), winningLotto);
         view.displayResults(lottoResult);
     }
 
@@ -87,7 +87,7 @@ public class LottoGameController {
     }
 
     private void displayPurchasedLottoTickets() {
-        List<Lotto> purchasedLottoTickets = lottoMachine.getLottoTickets().getLottoTickets();
+        List<Lotto> purchasedLottoTickets = lottoMachine.getLottoTicketsContainer().getLottoTickets();
         view.printPurchasedLottoAmount(purchasedLottoTickets.size());
         for (Lotto lotto : purchasedLottoTickets) {
             view.printLottoNumbers(lotto);

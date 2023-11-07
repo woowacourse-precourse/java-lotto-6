@@ -33,4 +33,11 @@ public class LottoResult {
                 .map(entry -> LottoRank.calculateReward(entry.getKey(), entry.getValue()))
                 .mapToInt(Integer::intValue).sum();
     }
+
+    public List<Map.Entry<LottoRank, Integer>> getSortedLottoResult(){
+        return lottoResult.entrySet().stream()
+                .filter(entry -> entry.getKey()!=LottoRank.FAIL)
+                .sorted(Comparator.comparingInt(entry -> entry.getKey().getReward()))
+                .toList();
+    }
 }

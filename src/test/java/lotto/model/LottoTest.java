@@ -46,6 +46,7 @@ class LottoTest {
         assertThat(ranking).isEqualTo(result);
     }
 
+    //당첨 로또 번호 1,2,3,4,5,6 과 비교할 로또와, 결과 등수 데이터 제공
     static List<Arguments> provideLottoTestData() {
         return Arrays.asList(
                 Arguments.of(Lotto.from(List.of(1, 2, 3, 4, 5, 6)), Ranking.FIRST),

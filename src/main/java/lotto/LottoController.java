@@ -8,6 +8,8 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private static final String DELIMITER = ",";
+
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 
@@ -43,12 +45,12 @@ public class LottoController {
     public Lotto tryWinnerLotto() {
         try {
             String inputWinningNumber = inputView.inputWinningNumber();
-            List<LottoNumber> collect = Arrays.stream(inputWinningNumber.split(","))
+            List<LottoNumber> winningNumbers = Arrays.stream(inputWinningNumber.split(DELIMITER))
                     .map(LottoNumber::new)
                     .collect(Collectors.toList());
-            List<Integer> collect1 = collect.stream().map(value -> value.toString()).map(Integer::parseInt)
+            List<Integer> winningLotto = winningNumbers.stream().map(value -> value.toString()).map(Integer::parseInt)
                     .collect(Collectors.toList());
-            return new Lotto(collect1);
+            return new Lotto(winningLotto);
 
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

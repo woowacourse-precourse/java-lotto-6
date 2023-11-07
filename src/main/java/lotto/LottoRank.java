@@ -10,7 +10,7 @@ public enum LottoRank {
     FIFTH(5_000, 3, false),
     LOSE(0, 0, false);
 
-    private static final int SPECIAL_CASE = 5;
+    private static final int SECOND_OR_THIRD_CASE = 5;
 
     private final int prize;
     private final int matchCount;
@@ -23,7 +23,7 @@ public enum LottoRank {
     }
 
     public static LottoRank calculate(int matchCount, boolean hasBonusBall) {
-        if (matchCount == SPECIAL_CASE) {
+        if (matchCount == SECOND_OR_THIRD_CASE) {
             return checkBonusBall(hasBonusBall);
         }
         return Arrays.stream(LottoRank.values())

@@ -1,24 +1,18 @@
 package lotto.domain;
 
-public class LottoSeller {
-    public static final int Lotto_Price = 1_000;
+import lotto.util.LottoConstants;
 
+public class LottoSeller {
     public int calculateNumberOfLottos(int money) {
-        validatePurchaseAmount(money);
-        int LottosAmount = money / Lotto_Price;
+        int LottosAmount = money / LottoConstants.LOTTO_PRICE.getValue();
 
         return LottosAmount;
     }
 
-    public Lottos getLottos(int money) {
+    public Lottos getLottos(PurchaseAmount purchaseAmount) {
+        int money = purchaseAmount.getPurchaseAmount();
         int numberOfLottos = calculateNumberOfLottos(money);
 
         return Lottos.createLottos(numberOfLottos);
-    }
-
-    public void validatePurchaseAmount(int money) {
-        if (money % Lotto_Price != 0) {
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
-        }
     }
 }

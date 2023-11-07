@@ -90,9 +90,9 @@
 
 ## **컨트롤러 (Controller)**
 
-- [ ]  LottoController
-    - [ ]  로또 구매 (`**buyLotto`)**
-    - [ ]  로또 번호 생성 (**`lottoAutomaticCompletion`)**
-    - [ ]  로또 추첨 (**`lottoDraw`**)
-    - [ ]  추첨 확인 (**`checkDraw`**)
-    - [ ]  결과 출력(`**outputResult**`)
+- [x]  LottoController
+    - [x]  로또 구매 (**`startLotto`**)
+    - [x]  로또 번호 생성 (**`lottoAutomaticCompletion`**)
+    - [x]  로또 추첨 (**`lottoDraw`**)
+    - [x]  추첨 확인 (**`checkDraw`**)
+    - [x]  결과 출력(**`**outputResult**`**)

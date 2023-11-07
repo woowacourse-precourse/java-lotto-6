@@ -2,8 +2,6 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-import java.util.Iterator;
-import lotto.model.Lotto;
 import lotto.model.Observable;
 import lotto.utils.Message;
 
@@ -28,13 +26,7 @@ public class View implements Observer {
         System.out.println(Message.WINNING_STATISTICS_MESSAGE);
     }
 
-    public void displayLottos(Iterator<Lotto> lottoIterator) {
-        while (lottoIterator.hasNext()) {
-            System.out.println(lottoIterator.next());
-        }
-    }
-
-    public void displayIssuedLottoCount(int lottoCount) {
+    public void displayLottoCount(int lottoCount) {
         System.out.println(lottoCount + "개를 구매했습니다.");
     }
 
@@ -52,10 +44,6 @@ public class View implements Observer {
 
     public String getBonusNumber() {
         return getUserInput();
-    }
-
-    public void displayWinningStatistics(String statistics) {
-        System.out.println(statistics);
     }
 
     @Override

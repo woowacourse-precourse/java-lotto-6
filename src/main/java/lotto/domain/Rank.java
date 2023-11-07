@@ -30,6 +30,10 @@ public enum  Rank {
                 .orElse(LOSING_TICKET);
     }
 
+    public long calculatePrize(int count){
+        return (long) amount * count;
+    }
+
     public int getMatchCount() {
         return matchCount;
     }

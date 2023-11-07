@@ -13,6 +13,12 @@ public class WinningResults {
         }
     }
 
+    public long calculatePrizeSum() {
+        return winningResult.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().calculatePrize(entry.getValue()))
+                .sum();
+    }
+
     public Map<Rank, Integer> getWinningResult() {
         return winningResult;
     }

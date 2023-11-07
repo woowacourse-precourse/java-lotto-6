@@ -17,6 +17,10 @@ public class LottoTicket {
         }
     }
 
+    public LottoTicket(List<Lotto> lottos){
+        ticket.addAll(lottos);
+    }
+
     public List<Lotto> getTicket(){
         return ticket;
     }

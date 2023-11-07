@@ -13,22 +13,27 @@ public class User {
     public User(Money money) {
         this.spendMoney = money;
         this.lottos = buyLottos(spendMoney.getPurchaseLottoCount())
-                .stream()
-                .collect(Collectors.toMap(lotto -> lotto, result -> LottoResult.DEFAULT));
+                .stream().collect(Collectors.toMap(lotto -> lotto, result -> LottoResult.DEFAULT));
     }
 
-    public List<LottoResult> getLottoResults(WinningLotto winningLotto) {
-        calculateLottoResults(winningLotto);
-        return lottos.values().stream().filter(Objects::nonNull).toList();
-    }
-
-    public double getStatistics() {
-        double earnedMoney = sumEarnedMoney();
-        return calculateRateOfReturn(earnedMoney, spendMoney.getMoney());
+    public void calculateLottoResults(WinningLotto winningLotto) {
+        lottos.forEach((lotto, result) -> {
+            LottoResult lottoResult = lotto.calculateResult(winningLotto);
+            lottos.put(lotto, lottoResult);
+        });
     }
 
     public List<Lotto> getLottos() {
         return lottos.keySet().stream().toList();
+    }
+
+    public List<LottoResult> getLottoResults() {
+        return lottos.values().stream().filter(LottoResult::isNotDefault).toList();
+    }
+
+    public double calculateStatistics() {
+        double earnedMoney = sumEarnedMoney();
+        return calculateRateOfReturn(earnedMoney, spendMoney.getMoney());
     }
 
     private List<Lotto> buyLottos(int lottoCount) {
@@ -36,13 +41,6 @@ public class User {
         return IntStream.range(0, lottoCount)
                 .mapToObj(i -> lottoGenerator.generate())
                 .toList();
-    }
-
-    private void calculateLottoResults(WinningLotto winningLotto){
-        lottos.forEach((lotto, result) -> {
-            LottoResult lottoResult = lotto.calculateResult(winningLotto);
-            lottos.put(lotto, lottoResult);
-        });
     }
 
     private double sumEarnedMoney() {

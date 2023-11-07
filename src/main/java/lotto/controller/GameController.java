@@ -39,13 +39,14 @@ public class GameController {
 
     private void setWinningLotto() {
         Lotto lotto = inputController.readLotto();
-        int bonus = inputController.readBonus(lotto.numbers());
+        int bonus = inputController.readBonus(lotto.getNumbers());
         winningLotto = new WinningLotto(lotto, bonus);
     }
 
     private void calculateLottoStatistics() {
-        results = user.getLottoResults(winningLotto);
-        statistics = user.getStatistics();
+        user.calculateLottoResults(winningLotto);
+        results = user.getLottoResults();
+        statistics = user.calculateStatistics();
     }
 
     private void printLottoStatistics() {

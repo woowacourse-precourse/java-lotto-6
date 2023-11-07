@@ -43,6 +43,10 @@ public enum LottoResult {
                 .toList();
     }
 
+    public static Boolean isNotDefault(LottoResult lottoResult) {
+        return lottoResult != LottoResult.DEFAULT;
+    }
+
     private static int countEqualBonus(List<Integer> LottoNums, int bonus) {
         return (int) LottoNums.stream()
                 .filter(userLottoNum -> userLottoNum.equals(bonus))

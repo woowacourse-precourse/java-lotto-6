@@ -9,6 +9,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateUnique(numbers);
         sortedNums(numbers);
         this.numbers = numbers;
     }
@@ -20,12 +21,24 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
-    private void sortedNums(List<Integer> numbers) {
+    private void validateUnique(List<Integer> numbers) {
+        if (numbers.stream()
+                .distinct()
+                .count() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void sortedNums(List<Integer> numbers) {
         Collections.sort(numbers);
     }
 
     @Override
     public String toString() {
         return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return Collections.unmodifiableList(numbers);
     }
 }

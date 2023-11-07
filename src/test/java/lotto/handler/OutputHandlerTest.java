@@ -11,6 +11,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.message.SystemMessage;
 import lotto.util.OutputUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class OutputHandlerTest {
-
 
     private PrintStream standardOut;
     private OutputStream captor;
@@ -48,10 +48,10 @@ class OutputHandlerTest {
         OutputHandler.outputLottosInfo(lottos);
 
         //given
-        String expectedOutput = OutputUtil.formatMessageWithNumber(
-                OUTPUT_PURCHASE_LOTTO_AMOUNT,lottos.size()) + "\n"
-                + lottos.get(0) + "\n"
-                + lottos.get(1);
+        String expectedOutput =
+                OutputUtil.formatSystemMessageWithNumber(OUTPUT_PURCHASE_LOTTO_AMOUNT, lottos.size()) + "\n"
+                        + lottos.get(0) + "\n"
+                        + lottos.get(1);
 
         assertThat(output()).isEqualTo(
                 expectedOutput);

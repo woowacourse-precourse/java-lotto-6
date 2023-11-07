@@ -18,6 +18,7 @@ public class InputView {
         printMessage(USER_MONEY_INPUT_MSG);
 
         String money = Console.readLine();
+        System.out.println();
         InputValidator.validateAmountFormatAndLimit(money);
         InputValidator.validateAmountUnitAndMinimum(Long.parseLong(money));
         return Long.parseLong(money);
@@ -27,6 +28,7 @@ public class InputView {
         printMessage(WINNING_NUMBER_INPUT_MSG);
 
         String winningNumber = Console.readLine();
+        System.out.println();
         return convertStringToIntegerList(winningNumber);
     }
 
@@ -34,6 +36,7 @@ public class InputView {
         printMessage(BONUS_NUMBER_INPUT_MSG);
 
         String bonusNumber = Console.readLine();
+        System.out.println();
         InputValidator.checkBonusNumber(lottoNumbers, bonusNumber);
         return Integer.parseInt(bonusNumber);
     }

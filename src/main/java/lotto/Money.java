@@ -12,6 +12,9 @@ public class Money {
         ValidateMoney.isOverThousand(i);
         ValidateMoney.isUnitFollowed(i);
         ValidateMoney.isMoneyInRange(i);
+    }
 
+    public int availableCount() {
+        return money / 1000;
     }
 }

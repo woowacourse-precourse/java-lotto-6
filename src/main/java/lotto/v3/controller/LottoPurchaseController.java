@@ -12,6 +12,23 @@ public class LottoPurchaseController {
         this.lottoPurchaseView = lottoPurchaseView;
     }
 
+    public void startPurchaseProcess() {
+        try {
+            int purchaseAmount = lottoPurchaseView.requestPurchaseAmount();
+
+            validatePurchaseAmount(purchaseAmount);
+
+            int numberOfLottoTickets = calculateLottoTicketsPurchasable(purchaseAmount);
+
+            lottoPurchaseView.displayNumberOfLottoTicketsPurchased(numberOfLottoTickets);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 잘못된 입력입니다. 다시 시도해주세요.");
+
+            startPurchaseProcess();
+        }
+    }
+
 
 
     private void validatePurchaseAmount(int amount) {

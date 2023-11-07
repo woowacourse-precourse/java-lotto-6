@@ -30,5 +30,13 @@ public class WinningStatistic {
             winningStatistics.get(numberOfLottoCorrect) + ONE);
     }
 
+    public Long getTotalWinningAmount() {
+        Long totalAmount = INIT_AMOUNT;
+        for (NumberOfLottoCorrect numberOfLottoCorrect : values()) {
+            Integer count = winningStatistics.get(numberOfLottoCorrect);
+            totalAmount += numberOfLottoCorrect.getWinningAmount() * count;
+        }
+        return totalAmount;
+    }
 
 }

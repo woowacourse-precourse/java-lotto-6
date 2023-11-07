@@ -45,7 +45,9 @@ public class LottoService {
 		return userNumbers;
 	}
 
-	public int checkBonusNumber(String inputBonusNumber) {
+	public int checkBonusNumber(String inputBonusNumber) throws IllegalArgumentException{
+		validator.isComposedOfNumbers(inputBonusNumber);
+
 		return 0;
 	}
 }

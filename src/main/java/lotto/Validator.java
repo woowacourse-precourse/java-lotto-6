@@ -3,8 +3,8 @@ package lotto;
 import java.util.regex.Pattern;
 
 public class Validator {
-	public void isComposedOfNumbers(String cost) throws IllegalArgumentException {
-		if (!Pattern.matches("^[0-9]+$", cost)) {
+	public void isComposedOfNumbers(String check) throws IllegalArgumentException {
+		if (!Pattern.matches("^[0-9]+$", check)) {
 			throw new IllegalArgumentException(ErrorCode.NOT_COMPOSED_OF_NUMBERS.getErrorMessage());
 		}
 	}

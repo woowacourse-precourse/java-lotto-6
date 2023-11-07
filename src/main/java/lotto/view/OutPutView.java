@@ -20,6 +20,7 @@ public class OutPutView {
         for(List<Integer> lotto : lottos) {
             System.out.println(Arrays.toString(lotto.toArray()));
         }
+        System.out.println();
     }
 
     public void printOutputStartMessage() {

@@ -6,15 +6,7 @@ public enum Rank {
     MATCH_4(4, 50000, false),
     MATCH_5(5, 1500000, false),
     MATCH_5_BONUS(5, 30000000, true),
-    MATCH_6(6, 2000000000, false),
-
-    /**
-     * 3과 4의 경우 보너스 번호가 같더라도, 상품 금액은 동일 합니다.
-     * 따라서 보너스 번호가 같은 경우도 정의 했습니다.
-     */
-    MATCH_3_BONUS(3, 5000, true),
-    MATCH_4_BONUS(4, 50000, true),
-    ;
+    MATCH_6(6, 2000000000, false);
 
     private final int matchCount;
     private final int winningAmount;

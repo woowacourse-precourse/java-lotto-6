@@ -14,5 +14,11 @@ public class ConsolePrinter {
         System.out.print(message.getMessage());
     }
 
+    public static void showMessageWithNumber(PrintMessages message, Integer number) {
+        nullCheck(message);
+        nullCheck(number);
+
+        String showMessage = String.format(message.getMessage(), number);
+        System.out.print(showMessage);
     }
 }

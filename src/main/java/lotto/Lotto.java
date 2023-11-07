@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto;
 
 import java.util.HashSet;
 import java.util.List;

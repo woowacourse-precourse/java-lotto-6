@@ -10,6 +10,9 @@ public class MoneyValidator {
     private static final int ZERO = 0;
     private static final int LOTTO_PRICE = 1000;
 
+    private MoneyValidator() {
+    }
+
     public static void validateMoney(int inputValue) {
         validateZero(inputValue);
         validateDivideMoney(inputValue);

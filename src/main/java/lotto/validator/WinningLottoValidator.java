@@ -13,6 +13,9 @@ public class WinningLottoValidator {
     private static final String DUPLICATE_EXCEPTION = "[ERROR] 당첨 번호와 보너스번호는 서로 다른 7개의 숫자입니다.";
     private static final String OUT_OF_RANGE_EXCEPTION = "[ERROR] 당첨 번호와 보너스 번호는 1부터 45 사이의 숫자여야 합니다.";
 
+    private WinningLottoValidator() {
+    }
+
     public static void validateWinningLotto(List<Integer> numbers, int bonusNumber) {
         validateSize(numbers);
         validateRangeOfNumber(numbers);

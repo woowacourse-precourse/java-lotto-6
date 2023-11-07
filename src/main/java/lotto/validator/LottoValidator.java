@@ -12,6 +12,9 @@ public class LottoValidator {
     private static final String DUPLICATE_EXCEPTION = "[ERROR] 로또 번호는 서로 다른 6개의 숫자입니다.";
     private static final String OUT_OF_RANGE_EXCEPTION = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
 
+    private LottoValidator() {
+    }
+
     public static void validateLotto(List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);

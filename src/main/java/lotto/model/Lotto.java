@@ -1,5 +1,9 @@
 package lotto.model;
 
+import static lotto.model.ErrorMessage.LOTTO_DUPLICATE_ERROR;
+import static lotto.model.ErrorMessage.LOTTO_RANGE_ERROR;
+import static lotto.model.ErrorMessage.LOTTO_WRONG_SIZE_ERROR;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,22 +30,21 @@ public record Lotto(List<Integer> numbers) {
 
     private void isCorrectSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] " + LOTTO_SIZE + "개의 숫자를 입력하세요.");
+            throw new IllegalArgumentException(LOTTO_WRONG_SIZE_ERROR.getMessage());
         }
     }
 
     private void isDuplicate(List<Integer> numbers) {
         Set<Integer> noDupBucket = new HashSet<>(numbers);
         if (noDupBucket.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복하지 않는 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(LOTTO_DUPLICATE_ERROR.getMessage());
         }
     }
 
     private void isInRangeNumbers(List<Integer> numbers) {
         numbers.forEach(number -> {
             if (number < LOTTO_MIN_NUMBER || LOTTO_MAX_NUMBER < number) {
-                throw new IllegalArgumentException(
-                        "[ERROR] " + LOTTO_MIN_NUMBER + "이상" + LOTTO_MAX_NUMBER + "이하인 값만 입력하세요");
+                throw new IllegalArgumentException(LOTTO_RANGE_ERROR.getMessage());
             }
         });
     }

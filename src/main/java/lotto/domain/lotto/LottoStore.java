@@ -5,7 +5,6 @@ import java.util.List;
 import lotto.domain.money.Money;
 
 public class LottoStore {
-
     private final NumbersGenerator numbersGenerator;
 
     public LottoStore(NumbersGenerator numbersGenerator) {
@@ -13,11 +12,10 @@ public class LottoStore {
     }
 
     public Lottos sellLottoTickets(Money currentMoney) {
-        Money remainingMoney = currentMoney;
-        if (remainingMoney.isNotEnough()) {
+        if (currentMoney.isNotEnough()) {
             throw new IllegalArgumentException("로또를 더 이상 발행할 수 없습니다.");
         }
-        List<Lotto> lottoTickets = drawTicketsWith(remainingMoney);
+        List<Lotto> lottoTickets = drawTicketsWith(currentMoney);
         return Lottos.from(lottoTickets);
     }
 

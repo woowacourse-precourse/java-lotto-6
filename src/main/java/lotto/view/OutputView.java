@@ -9,7 +9,7 @@ public class OutputView {
 
     public void printPurchasedLotto(List<Lotto> userPurchasedLotto) {
 
-        System.out.println(PURCHASED_LOTTO_MESSAGE.formatted(4));
+        System.out.println(PURCHASED_LOTTO_MESSAGE.formatted(userPurchasedLotto.size()));
 
         userPurchasedLotto
                 .forEach(Lotto::printLottoDetail);

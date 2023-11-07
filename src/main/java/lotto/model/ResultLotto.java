@@ -72,7 +72,7 @@ public class ResultLotto {
     }
 
     private void validateRange(int bonusNum) {
-        if (bonusNum < 0 || bonusNum > 45) {
+        if (bonusNum < 1 || bonusNum > 45) {
             throw new IllegalArgumentException(LottoException.INVALID_RANGE.getExceptionMessage());
         }
     }

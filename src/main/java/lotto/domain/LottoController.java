@@ -8,16 +8,19 @@ import java.util.List;
 
 public class LottoController {
     private int lottoAmount;
+    private int lottoCost;
     private int bonusNumber;
     private List<Lotto> myLotto;
     private List<Integer> prizeNumbers;
+    private List<Integer> prizes;
+    private float profitPercent;
 
     public void startGame() {
         setMyLotto();
         printMyLotto();
         setPrizeLotto();
-        setLottoResult();
-        printLottoResult();
+        setResult();
+        printResult();
     }
 
     private void setMyLotto() {
@@ -25,6 +28,7 @@ public class LottoController {
         InputView.readCost();
         userInput.setAmount();
         lottoAmount = userInput.getAmount();
+        lottoCost = userInput.getCost();
         LottoGenerator lottogenerator = new LottoGenerator(lottoAmount);
         myLotto = lottogenerator.getMyLotto();
     }
@@ -41,5 +45,15 @@ public class LottoController {
         userInput.setBonusNumber();
         this.prizeNumbers = userInput.getPrizeNumbers();
         this.bonusNumber = userInput.getBonusNumber();
+    }
+
+    private void setResult() {
+        Statistics statistics = new Statistics(myLotto, prizeNumbers, bonusNumber, lottoCost);
+        this.prizes = statistics.getPrizes();
+        this.profitPercent = statistics.getProfitPercent();
+    }
+
+    private void printResult() {
+        OutputView.printStatistics(prizes, profitPercent);// parameter calculated something
     }
 }

@@ -16,6 +16,7 @@ import static lotto.constant.message.InputMessage.*;
 public class InputBonusNumberView {
 
     private int bonusNumber;
+
     public int inputBonusNumber(Lotto winningNumber) {
         while (true) {
             try {

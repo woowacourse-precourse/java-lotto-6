@@ -1,9 +1,7 @@
 package lotto.domain;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static lotto.constant.Number.*;
 import static lotto.constant.message.ErrorMessage.*;
@@ -13,7 +11,7 @@ public class Lotto {
 
     public Lotto(List<Integer> lotto) {
         validate(lotto);
-        sortLotto(lotto);
+        lotto = sortLotto(lotto);
         this.lotto = lotto;
     }
 
@@ -47,8 +45,20 @@ public class Lotto {
         }
     }
 
-    private void sortLotto(List<Integer> lotto) {
-        lotto.sort(Comparator.naturalOrder());
+    private List<Integer> sortLotto(List<Integer> lotto) {
+        return lotto.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public boolean isContain(int bonusNumber) {
+        return lotto.contains(bonusNumber);
+    }
+
+    public int getMatchLottoNumber(Lotto winningNumber) {
+        return (int) lotto.stream()
+                .filter(winningNumber::isContain)
+                .count();
     }
 
     public String getLotto() {

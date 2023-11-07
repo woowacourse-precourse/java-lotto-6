@@ -1,8 +1,10 @@
-package lotto;
+package lotto.util;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import lotto.model.Lotto;
+import lotto.model.LottoDraw;
 
 public enum LottoResult {
     FIRST_PRIZE(6, "6개 일치 (2,000,000,000원)", 2_000_000_000L),

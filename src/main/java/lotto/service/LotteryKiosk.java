@@ -1,4 +1,6 @@
-package lotto;
+package lotto.service;
+
+import lotto.model.Lottos;
 
 public class LotteryKiosk {
 

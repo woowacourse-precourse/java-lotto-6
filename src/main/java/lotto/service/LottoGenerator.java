@@ -1,9 +1,11 @@
-package lotto;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.model.Lotto;
+import lotto.model.Lottos;
 
 public class LottoGenerator {
     private static final int LOTTO_NUMBER_SIZE = 6;

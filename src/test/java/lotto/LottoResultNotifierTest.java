@@ -4,6 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.Map;
+import lotto.dto.LottoResultNotifier;
+import lotto.model.Lotto;
+import lotto.model.LottoDraw;
+import lotto.model.Lottos;
+import lotto.util.LottoResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

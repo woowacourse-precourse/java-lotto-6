@@ -26,8 +26,8 @@ public class OutputView {
 
     public static void printResultStatistics(int purchaseMoney) {
         System.out.println(WINNING_RESULT_STATISTICS.getMessage());
+        
         printWinningResult();
-
         System.out.printf(EARNING_RATE.getMessage(), calculateEarning(purchaseMoney) + "%");
     }
 }

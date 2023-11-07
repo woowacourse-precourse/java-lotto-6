@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 
 public class Lotto {
@@ -25,5 +26,12 @@ public class Lotto {
 
     public boolean contains(int value) {
         return numbers.contains(value);
+    }
+
+    public int matchCount(Lotto otherLotto) {
+        final var lottoSet = new HashSet<>(this.numbers);
+        lottoSet.addAll(otherLotto.numbers);
+
+        return 12 - lottoSet.size();
     }
 }

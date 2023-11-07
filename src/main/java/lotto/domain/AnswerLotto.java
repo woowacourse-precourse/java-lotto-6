@@ -28,4 +28,11 @@ public class AnswerLotto {
     public AnswerLotto registerBonusNumber(Integer number) {
         return new AnswerLotto(this.lotto, new BonusNumber(number));
     }
+
+    public MatchResult match(Lotto otherLotto) {
+        return new MatchResult(
+                lotto.matchCount(otherLotto),
+                lotto.contains(bonusNumber.value())
+        );
+    }
 }

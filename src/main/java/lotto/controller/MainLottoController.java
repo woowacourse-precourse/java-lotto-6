@@ -96,10 +96,11 @@ public class MainLottoController {
         int totalPrize = lottoResultManager.getTotalPrize();
         double earningRate = money.getEarningRate(totalPrize);
 
-        Output.printResultRanking(earningRate);
+        Output.printEarningRate(earningRate);
     }
 
     private void sendResultRankingToView(LottoResultManager lottoResultManager) {
+        Output.printWinningDivider();
         Map<Rank, Integer> resultRanking = lottoResultManager.getLottoResult();
         List<Map.Entry<Rank, Integer>> reversedResultRanking = reverseRankOrder(resultRanking);
 
@@ -108,7 +109,7 @@ public class MainLottoController {
             int prizeMoney = ranking.getKey().getPrizeMoney();
             int matchedResult = ranking.getValue();
 
-            Output.printEarningRate(matchCount, prizeMoney, matchedResult);
+            Output.printResultRanking(matchCount, prizeMoney, matchedResult);
         }
     }
 

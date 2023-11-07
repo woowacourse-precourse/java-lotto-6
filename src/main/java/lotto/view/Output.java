@@ -7,6 +7,8 @@ import java.util.List;
 
 public class Output {
     public static final String ERROR_RANDOM_MACHINE = "잘못된 랜덤 생성입니다.";
+    public static final String MESSAGE_WINNING_STATISTICS = "당첨 통계";
+    public static final String DIVIDER_THREE_LINES = "---";
     public static final String MESSAGE_EARNING_RATE = "총 수익률은 %.1f%%입니다.";
     public static final String MESSAGE_RANKING_LIST_COUNT = "%d개 일치";
     public static final String MESSAGE_RANKING_LIST_COUNT_SECOND = ", 보너스 볼 일치";
@@ -28,7 +30,7 @@ public class Output {
 
     }
 
-    public static void printResultRanking(double earningRate) {
+    public static void printEarningRate(double earningRate) {
         String.format("%.1f", earningRate);
         String MSG = String.format(MESSAGE_EARNING_RATE, earningRate);
 
@@ -36,7 +38,7 @@ public class Output {
 
     }
 
-    public static void printEarningRate(int matchCount, int prizeMoney, int matchedResult) {
+    public static void printResultRanking(int matchCount, int prizeMoney, int matchedResult) {
         String prizeMoneyFormatted = String.format("%,d", prizeMoney);
 
         String COUNT = String.format(MESSAGE_RANKING_LIST_COUNT, matchCount);
@@ -47,6 +49,11 @@ public class Output {
             COUNT += MESSAGE_RANKING_LIST_COUNT_SECOND;
         }
         System.out.println(COUNT + PRIZE + MATCHRESULT);
+    }
+
+    public static void printWinningDivider(){
+        System.out.println(MESSAGE_WINNING_STATISTICS);
+        System.out.println(DIVIDER_THREE_LINES);
     }
 
 

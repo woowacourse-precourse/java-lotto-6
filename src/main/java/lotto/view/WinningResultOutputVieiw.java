@@ -18,24 +18,13 @@ public class WinningResultOutputVieiw {
         System.out.println(PRIZE_STATISTICS);
         System.out.println(SEPARATOR);
 
-        int[] matchCounts = calculateMatchCounts(lottos, winningNumber);
+        int[] matchCounts = LottoWinningChecker.calculateMatchCounts(lottos, winningNumber);
 
         printMatchResult(THREE_MATCH_PRIZE, matchCounts[3]);
         printMatchResult(FOUR_MATCH_PRIZE, matchCounts[4]);
         printMatchResult(FIVE_MATCH_PRIZE, matchCounts[5]);
         printMatchResult(FIVE_AND_BONUS_MATCH_PRIZE, matchCounts[7]);
         printMatchResult(SIX_MATCH_PRIZE, matchCounts[6]);
-    }
-
-    private static int[] calculateMatchCounts(List<Lotto> lottos, WinningNumber winningNumber) {
-        int[] matchCounts = new int[8];
-
-        for (Lotto lotto : lottos) {
-            int matchingCount = LottoWinningChecker.checkWinningNumbers(lotto, winningNumber);
-            matchCounts[matchingCount]++;
-        }
-
-        return matchCounts;
     }
 
     private static void printMatchResult(String description, int count) {

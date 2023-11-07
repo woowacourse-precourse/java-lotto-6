@@ -20,6 +20,17 @@ public class LottoWinningChecker {
         }
     }
 
+    public static int[] calculateMatchCounts(List<Lotto> lottos, WinningNumber winningNumber) {
+        int[] matchCounts = new int[8];
+
+        for (Lotto lotto : lottos) {
+            int matchingCount = LottoWinningChecker.checkWinningNumbers(lotto, winningNumber);
+            matchCounts[matchingCount]++;
+        }
+
+        return matchCounts;
+    }
+
     private static int countMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
         return (int) lottoNumbers.stream()
                 .filter(winningNumbers::contains)

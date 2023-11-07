@@ -11,7 +11,7 @@ class SelectedLottoTest {
     private Money money;
     private SelectedLotto lotto;
 
-    @DisplayName("당첨 로또 에러 확인")
+    @DisplayName("당첨 로또 번호, 보너스 에러 확인")
     @ParameterizedTest
     @CsvSource(value = {"'';1;[ERROR] 6자리 수를 입력하시오.", "' ';1;[ERROR] 6자리 수를 입력하시오.",
             "1,2,3,4,5,;6;[ERROR] 정수를 입력하시오.",

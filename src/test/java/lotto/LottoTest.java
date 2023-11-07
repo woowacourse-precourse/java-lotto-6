@@ -33,7 +33,7 @@ class LottoTest {
         assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
-    @DisplayName("보너스 번호 제외 당첨 번호와 몇개 일치하는 지 확인")
+    @DisplayName("보너스 번호 제외 당첨 번호와 몇개 일치 하는 지 확인")
     @Test
     void findCorrectLotto() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));

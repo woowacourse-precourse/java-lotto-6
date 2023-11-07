@@ -2,7 +2,6 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +17,7 @@ class ResultMakerTest {
 
     @BeforeEach
     void setup() {
-        List<Lotto> testLottos = Arrays.asList(
+        List<Lotto> testLottos = List.of(
                 new Lotto(List.of(1, 2, 3, WRONG, WRONG2, WRONG3)),//5등
                 new Lotto(List.of(1, 2, 3, WRONG, WRONG2, WRONG3)),//5등
                 new Lotto(List.of(1, 2, 3, 4, WRONG, WRONG2)),//4등

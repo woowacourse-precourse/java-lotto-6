@@ -33,4 +33,36 @@ class BuyerTest {
                 .doesNotThrowAnyException();
         Console.close();
     }
+
+    @DisplayName("성공: 구매자는 로또를 확인할 수 있다.")
+    @Test
+    void test3() {
+        LottoMachine lottoMachine = new LottoMachine();
+        Buyer buyer = new Buyer(lottoMachine);
+
+        System.setIn(new ByteArrayInputStream("8000\n1,2,3,4,5,6\n7".getBytes()));
+        assertThatCode(buyer::buyLotto)
+                .doesNotThrowAnyException();
+
+        buyer.drawWinningNumbersAndBonusNumber();
+
+        System.out.println(buyer.getLotto());
+        Console.close();
+    }
+
+    @DisplayName("성공: 구매자는 당첨 번호를 확인할 수 있다.")
+    @Test
+    void test4() {
+        LottoMachine lottoMachine = new LottoMachine();
+        Buyer buyer = new Buyer(lottoMachine);
+
+        System.setIn(new ByteArrayInputStream("8000\n1,2,3,4,5,6\n7".getBytes()));
+        assertThatCode(buyer::buyLotto)
+                .doesNotThrowAnyException();
+
+        buyer.drawWinningNumbersAndBonusNumber();
+
+        System.out.println(buyer.getDrawnNumbers());
+        Console.close();
+    }
 }

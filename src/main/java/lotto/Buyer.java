@@ -64,7 +64,7 @@ public class Buyer {
         return this.lottos;
     }
 
-    public Object getDrawnNumbers() {
-        return null;
+    public WinningLotto getDrawnNumbers() {
+        return this.winningLotto;
     }
 }

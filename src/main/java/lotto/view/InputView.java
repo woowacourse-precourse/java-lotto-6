@@ -25,16 +25,17 @@ public class InputView {
     }
 
     private void validateNotBlank(String input){
-        if(input.isEmpty()) throw new IllegalArgumentException(ErrorCode.INVALID_NUMBERS.getMessage());
+        if(input.isEmpty())
+            throw new IllegalArgumentException(ErrorCode.INPUT_IS_NULL.getMessage());
     }
 
     private void validateNumbericAndCommas(String input){
-        if(input.matches("[^0-9,]*")) throw new IllegalArgumentException(ErrorCode.INVALID_NUMBERS.getMessage());
+        if(input.matches("[^0-9,]*"))
+            throw new IllegalArgumentException(ErrorCode.IS_NOT_NUMBERIC_AND_COMMA.getMessage());
     }
 
     private void validateNumberic(String input){
-        if(input.matches(".*\\D.*")) {
-            throw new IllegalArgumentException(ErrorCode.INVALID_NUMBERS.getMessage());
-        }
+        if(input.matches(".*\\D.*"))
+            throw new IllegalArgumentException(ErrorCode.IS_NOT_NUMBERIC.getMessage());
     }
 }

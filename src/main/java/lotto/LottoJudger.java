@@ -1,19 +1,35 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoJudger {
-    static enum Result { ALL, FIVE_AND_BONUS, FIVE, FOUR, THREE, NONE }
+    static enum Result {
+        ALL(2000000000),
+        FIVE_AND_BONUS(30000000),
+        FIVE(1500000),
+        FOUR(50000),
+        THREE(5000),
+        NONE(0);
+
+        private final int price;
+
+        Result(int price) {
+            this.price = price;
+        }
+    }
 
     private Map<Result, Integer> statisticMap;
 
     private List<Integer> winningNumbers;
     private int bonusNumber;
+    private int purchaseAmount;
 
-    public LottoJudger(List<Integer> winningNumbers, int bonusNumber) {
+    public LottoJudger(List<Integer> winningNumbers, int bonusNumber, int purchaseAmount) {
         this.winningNumbers = winningNumbers;
         this.bonusNumber = bonusNumber;
+        this.purchaseAmount = purchaseAmount;
         initStatisticMap();
     }
 
@@ -33,7 +49,7 @@ public class LottoJudger {
         System.out.println("5개 일치 (1,500,000원) - " + statisticMap.get(Result.FIVE) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + statisticMap.get(Result.FIVE_AND_BONUS) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + statisticMap.get(Result.ALL) + "개");
-        //System.out.println("총 수익률은 " +  + "%입니다.");
+        System.out.printf("총 수익률은 %3.1f%%입니다.", calculateRateOfReturn());
     }
 
     private Result judgeLotto(Lotto lotto) {
@@ -52,6 +68,14 @@ public class LottoJudger {
         if (count == 3)
             return Result.THREE;
         return Result.NONE;
+    }
+
+    private float calculateRateOfReturn() {
+        int returnAmount = 0;
+        for (Result result : Result.values()) {
+            returnAmount += statisticMap.get(result) * result.price;
+        }
+        return (float) returnAmount / this.purchaseAmount;
     }
 
     private int getCountOfWinningNumbersInLottoNumbers(List<Integer> lottoNumbers) {

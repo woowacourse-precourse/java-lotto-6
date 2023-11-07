@@ -36,8 +36,9 @@ public class Application {
         winningNumbers = getWinningNumbersWithInput();
         bonusNumber = getBonusNumberWithInput();
 
-        LottoJudger judger = new LottoJudger(winningNumbers, bonusNumber);
+        LottoJudger judger = new LottoJudger(winningNumbers, bonusNumber, purchaseAmount);
         judger.judge(lottos);
+        judger.printStatisticOfResult();
     }
 
     private static int getPurchaseAmountWithInput() {

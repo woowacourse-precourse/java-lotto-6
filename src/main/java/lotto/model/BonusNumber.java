@@ -9,6 +9,7 @@ public class BonusNumber {
 
     public BonusNumber(WinningNumber winningNumber, String inputBonus) {
         isInputEmpty(inputBonus);
+        checkNumericInput(inputBonus);
         this.bonus = Integer.parseInt(inputBonus);
         numberMustBe1To45(List.of(bonus));
         lottoMustBeUniqueNumber(winningNumber, bonus);

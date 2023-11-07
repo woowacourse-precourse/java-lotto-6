@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Supplier;
 import lotto.common.config.LottoConfig;
 import lotto.common.log.Logger;
-import lotto.common.parser.StringConverter;
+import lotto.common.converter.StringConverter;
 import lotto.controller.dto.PurchaseResultDto;
 import lotto.controller.dto.StatisticDto;
 import lotto.domain.lotto.Lotto;

@@ -1,4 +1,4 @@
-package lotto.common.parser;
+package lotto.common.converter;
 
 import java.util.Arrays;
 import java.util.List;

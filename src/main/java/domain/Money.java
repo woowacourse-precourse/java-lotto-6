@@ -30,7 +30,11 @@ public class Money {
         }
     }
 
-    public int buyLottoTicket() {
+    public int getNumberOfLottoTicket() {
         return money / 1000;
+    }
+
+    public int getMoney() {
+        return money;
     }
 }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import static lotto.enums.ErrorMassage.INVALID_AMOUNT_UNIT;
 import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
@@ -35,5 +36,18 @@ class AmountTest {
     void 올바른_구매_금액일_경우_예외가_발생하지_않는다(int amount) {
         // when & then
         assertDoesNotThrow(() -> new Amount(amount));
+    }
+
+    @Test
+    void 로또_구매_개수를_반환한다() {
+        // given
+        final int purchaseAmount = 10000;
+        final Amount amount = new Amount(purchaseAmount);
+
+        // when
+        final int lottoQuantity = amount.getLottoQuantity();
+
+        // then
+        assertThat(lottoQuantity).isEqualTo(10);
     }
 }

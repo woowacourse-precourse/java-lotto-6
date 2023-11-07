@@ -6,7 +6,6 @@ import lotto.service.LottoService;
 import lotto.view.ConsoleInputView;
 import lotto.view.ConsoleOutputView;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -41,6 +40,7 @@ public class LottoController {
 
         // 구매한 로또와 사용자의 로또를 비교하여 등수를 구한다.
         Map<LottoRank, Integer> lottoWinningResult = lottoService.getLottoWinningResult(userLottoNumbersAndBonusNumber, lottoTickets);
+        consoleOutputView.outputLottoWinningResult(lottoWinningResult);
     }
 
     private Map<String, String> getUserLottoNumberAndBonusNumber() {

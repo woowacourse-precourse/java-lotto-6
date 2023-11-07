@@ -36,7 +36,7 @@ public class LottoService {
     }
 
     public Map<LottoRank, Integer> getLottoWinningResult(Map<String, String> userLottoNumbersAndBonusNumber, List<List<Integer>> lottoTickets) {
-        Map<LottoRank, Integer> lottoWinningResult = new HashMap<>();
+        Map<LottoRank, Integer> lottoWinningResult = getLottoWinningResultInit();
 
         List<String> userLottoNumbers = Arrays.stream(
                 userLottoNumbersAndBonusNumber.get("userLottoNumbers").split(",")
@@ -47,11 +47,15 @@ public class LottoService {
             int matchNumberCount = getMatchNumberCount(lottoTicket, userLottoNumbers);
             LottoRank lottoRank = getLottoRank(matchNumberCount, isMatchBonusNumber);
 
-            if (lottoWinningResult.get(lottoRank) == null) {
-                lottoWinningResult.put(lottoRank, 1);
-            } else if (lottoWinningResult.get(lottoRank) != null) {
-                lottoWinningResult.put(lottoRank, lottoWinningResult.get(lottoRank) + 1);
-            }
+            lottoWinningResult.put(lottoRank, lottoWinningResult.get(lottoRank) + 1);
+        }
+        return lottoWinningResult;
+    }
+
+    private Map<LottoRank, Integer> getLottoWinningResultInit() {
+        Map<LottoRank, Integer> lottoWinningResult = new HashMap<>();
+        for (LottoRank value : LottoRank.values()) {
+            lottoWinningResult.put(value, 0);
         }
         return lottoWinningResult;
     }

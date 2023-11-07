@@ -1,4 +1,4 @@
-package lotto.service;
+package lotto.utils;
 
 public abstract class LottoConstant {
     public static final int PURCHASE_AMOUNT_UNIT = 1000;

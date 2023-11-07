@@ -8,7 +8,7 @@ import java.io.InputStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-class InputReaderImplTest {
+class InputReaderTest {
 
     private final InputStream originalIn = System.in;
     private ByteArrayInputStream testIn;
@@ -27,7 +27,7 @@ class InputReaderImplTest {
         System.setIn(testIn);
 
         //Act
-        String result = new InputReaderImpl().readLine();
+        String result = new InputReader().readLine();
 
         //Assert
         assertThat(result).isEqualTo(input);

@@ -1,11 +1,11 @@
 package lotto.service;
 
-import static lotto.service.LottoConstant.LOTTO_END_NUMBER;
-import static lotto.service.LottoConstant.LOTTO_NUMBER_COUNT;
-import static lotto.service.LottoConstant.LOTTO_START_NUMBER;
+import static lotto.utils.LottoConstant.LOTTO_END_NUMBER;
+import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.number.Lotto;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.RepeatedTest;
 
 class SingleLottoGeneratorTest {

@@ -2,8 +2,8 @@ package lotto.service;
 
 import java.util.List;
 import java.util.stream.IntStream;
-import lotto.io.write.LottoOutputWriter;
-import lotto.number.Lotto;
+import lotto.domain.Lotto;
+import lotto.io.write.OutputWriter;
 
 public class MultiLottoGenerator {
 
@@ -16,14 +16,14 @@ public class MultiLottoGenerator {
     }
 
     public List<Lotto> generate() {
-        LottoOutputWriter.showPurchaseLottoCount(this.lottoCount);
+        OutputWriter.showPurchaseLottoCount(this.lottoCount);
         List<Lotto> lottos = doGenerateLottos();
-        LottoOutputWriter.showLottos(lottos);
+        OutputWriter.showLottos(lottos);
         return lottos;
     }
 
     private List<Lotto> doGenerateLottos() {
-        return IntStream.range(0, lottoCount)
+        return IntStream.range(0, this.lottoCount)
                 .mapToObj(count -> singleLottoGenerator.generate())
                 .toList();
     }

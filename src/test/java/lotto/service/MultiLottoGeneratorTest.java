@@ -1,15 +1,15 @@
 package lotto.service;
 
-import static lotto.io.message.OutputMessage.LOTTO_PURCHASE_AMOUNT_MESSAGE;
-import static lotto.service.LottoConstant.LOTTO_END_NUMBER;
-import static lotto.service.LottoConstant.LOTTO_NUMBER_COUNT;
-import static lotto.service.LottoConstant.LOTTO_START_NUMBER;
+import static lotto.io.write.OutputMessage.LOTTO_PURCHASE_AMOUNT_MESSAGE;
+import static lotto.utils.LottoConstant.LOTTO_END_NUMBER;
+import static lotto.utils.LottoConstant.LOTTO_NUMBER_COUNT;
+import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.List;
-import lotto.number.Lotto;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

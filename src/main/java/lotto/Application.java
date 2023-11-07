@@ -2,11 +2,13 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.List;
+
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         int lotto_num = input();
-        System.out.print(lotto_num);
+        Lotto_Wallet Lottos = new Lotto_Wallet(); // 로또 지갑 객체 생성
     }
     private static int input(){                // input 통합 부분, 재귀함수 처리
         String input = input_money();
@@ -38,6 +40,12 @@ public class Application {
             throw new IllegalArgumentException();
         }
         return money / 1000;
+    }
+
+
+    private static Lotto makeOneLotto(){
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return new Lotto(numbers);
     }
 
 

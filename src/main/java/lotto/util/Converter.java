@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.constant.CustomerConst.IS_NOT_NUMBER;
+
 public class Converter {
 
 
@@ -16,7 +18,7 @@ public class Converter {
                 Integer nowNumber = Integer.parseInt(now);
                 numberInteger.add(nowNumber);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("정수를 입력하세요");
+                throw new IllegalArgumentException(IS_NOT_NUMBER);
             }
         }
         return numberInteger;

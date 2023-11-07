@@ -3,6 +3,8 @@ package lotto.model;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.model.validator.InputValidator.numberMustBe1To45;
+
 public class WinningNumber {
     Lotto answer;
     public WinningNumber(String winningNumber) {
@@ -10,6 +12,7 @@ public class WinningNumber {
                 = Arrays.stream(winningNumber.split(","))
                 .map(Integer::parseInt)
                 .toList();
+        numberMustBe1To45(lotto);
         answer = new Lotto(lotto);
     }
 

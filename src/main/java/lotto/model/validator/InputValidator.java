@@ -26,4 +26,15 @@ public class InputValidator {
             illegalArgument(LOTTO_INCLUDES_UNIQUE_NUMBERS.getMessage());
         }
     }
+
+    public static void numberMustBe1To45(List<Integer> inputNumbers) {
+        long count = inputNumbers.stream().filter(InputValidator::isNumberValidRange).count();
+        if (count != 6) {
+            illegalArgument(LOTTO_RANGE_IS_1_TO_45.getMessage());
+        }
+    }
+
+    private static boolean isNumberValidRange(int number){
+        return number >= 1 && number <= 45;
+    }
 }

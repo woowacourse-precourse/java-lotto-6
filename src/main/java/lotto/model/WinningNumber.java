@@ -23,9 +23,8 @@ public class WinningNumber {
         validateConvertibleToNumber(numbers);
         validateSixNumbers(numbers);
         validateDuplicates(numbers);
-        List<LottoNumber> convertedNumbers = convertToLottoNumbers(numbers);
 
-        return new WinningNumber(convertedNumbers);
+        return new WinningNumber(convertToLottoNumbers(numbers));
     }
 
     private static List<String> splitWithComma(final String numbers) {

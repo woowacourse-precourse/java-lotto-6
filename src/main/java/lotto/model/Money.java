@@ -66,10 +66,6 @@ public class Money {
         return lottoMoney / LOTTO_PRICE;
     }
 
-    public long getLottoMoney() {
-        return lottoMoney;
-    }
-
     public double calculateProfit(long totalProfit) {
         return ((double) totalProfit / lottoMoney) * PERCENTAGE;
     }

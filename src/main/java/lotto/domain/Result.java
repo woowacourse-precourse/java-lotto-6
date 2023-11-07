@@ -35,8 +35,8 @@ public class Result {
     public double getProfitRate(Integer purchaseAmount) {
         double totalProfit = 0;
         totalProfit = getTotalProfit(totalProfit);
-        double profitRate = totalProfit / purchaseAmount * 100;
-        return profitRate;
+        totalProfit = (totalProfit * 100) / purchaseAmount;
+        return Math.round(totalProfit * 100.0) / 100.0;
     }
 
     private double getTotalProfit(double totalProfit) {

@@ -20,11 +20,15 @@ import static lotto.util.CharacterUnits.SPACE;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(final List<Integer> numbers) {
+    private Lotto(final List<Integer> numbers) {
         validateLength(numbers);
         validateEachNumberRange(numbers);
         validateDuplicatedNumber(numbers);
         this.numbers = numbers;
+    }
+
+    public static Lotto create(final List<Integer> numbers) {
+        return new Lotto(numbers);
     }
 
     private void validateLength(final List<Integer> numbers) {

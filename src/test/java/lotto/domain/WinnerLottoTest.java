@@ -15,7 +15,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 @DisplayName("당첨 로또")
 class WinnerLottoTest {
-
     @DisplayName("입력한 번호의 개수가 6개가 아니면 예외 발생")
     @ParameterizedTest
     @MethodSource("wrongNumbersSizeDummy")
@@ -46,7 +45,6 @@ class WinnerLottoTest {
     void createWinnerLottoSuccessTest(List<Integer> winnerNumbers, Integer bonusNumber) {
         assertDoesNotThrow(() -> WinnerLotto.create(winnerNumbers, bonusNumber));
     }
-
 
 
     static Stream<Arguments> wrongNumbersSizeDummy() {

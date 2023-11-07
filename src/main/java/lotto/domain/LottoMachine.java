@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.dto.RequestLotto;
 import lotto.util.NumberGenerator;
 
 import java.util.ArrayList;
@@ -33,7 +34,8 @@ public class LottoMachine {
 
     private Lotto generateLotto() {
         final List<Integer> numbers = numberGenerator.generateNumbers();
-        return new Lotto(numbers);
+        RequestLotto requestLotto = RequestLotto.of(numbers);
+        return Lotto.create(requestLotto.numbers());
     }
 
 

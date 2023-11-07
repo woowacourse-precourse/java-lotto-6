@@ -30,7 +30,7 @@ class LottoMachineTest {
     @DisplayName("로또 구매 기능 성공 테스트")
     @Test
     void purchaseLottosSuccessTest() {
-        Lotto expected = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto expected = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
 
         Lottos lottos = lottoMachine.purchaseLottos();
         Lotto result = lottos.getLottos()

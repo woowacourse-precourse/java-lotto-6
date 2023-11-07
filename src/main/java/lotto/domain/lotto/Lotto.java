@@ -21,7 +21,7 @@ public class Lotto {
         return (int) this.numbers.stream().filter(lotto::contain).count();
     }
 
-    public List<LottoNumber> toIntegerList() {
+    public List<LottoNumber> toList() {
         return Collections.unmodifiableList(numbers);
     }
 

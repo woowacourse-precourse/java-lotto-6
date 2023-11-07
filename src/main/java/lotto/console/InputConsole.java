@@ -1,7 +1,6 @@
 package lotto.console;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.constant.LottoNumberRange;
 import lotto.model.Lotto;
 import lotto.model.Money;
 import lotto.utils.StringUtil;
@@ -35,11 +34,9 @@ public class InputConsole {
         System.out.println("보너스 번호를 입력해 주세요.");
 
         String input = Console.readLine();
-
-        int result = 0;
-
+        
         try {
-            return result = StringUtil.stringToInt(input);
+            return StringUtil.stringToInt(input);
         } catch (IllegalArgumentException exception) {
             return getBonusNumber();
         }

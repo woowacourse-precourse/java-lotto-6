@@ -9,11 +9,14 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class Application {
 
+	static List<Lotto> lottos = new ArrayList<>();
 	static private int seedMoney;
 
 	public static void main(String[] args) {
 		inputSeedMoney();
 		pickRandomNumber();
+		printStatus();
+		pickLottoNumber();
 	}
 
 	private static void inputSeedMoney() {
@@ -27,9 +30,21 @@ public class Application {
 	}
 
 	private static void pickRandomNumber() {
-		List<Lotto> lottos = new ArrayList<>();
 		for (int i = 0; i < seedMoney / 1000; i++) {
 			lottos.add(new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6)));
+		}
+	}
+
+	public static void printStatus() {
+		lottos.forEach(lotto -> System.out.println(lotto));
+	}
+
+	public static void pickLottoNumber() {
+		List<Integer> newLottos = new ArrayList<>();
+		System.out.println("담청 번호를 입력해 주세요.");
+		String input = readLine().trim();
+		for (String lottoNumber : input.split(",")) {
+			newLottos.add(Integer.parseInt(lottoNumber));
 		}
 	}
 

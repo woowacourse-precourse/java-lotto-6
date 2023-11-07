@@ -20,36 +20,28 @@ public class BonusNumber {
     }
 
     private void validate(String number, Lotto lotto){
-        if(isEmpty(number)){
-            ExceptionMessages.BONUS_NUMBER_IS_EMPTY.throwException();
-        }
+        if(isEmpty(number)) ExceptionMessages.BONUS_NUMBER_IS_EMPTY.throwException();
+        if(!isDigit(number)) ExceptionMessages.BONUS_NUMBER_IS_NOT_NUMBER.throwException();
 
-        if(!isDigit(number)){
-            ExceptionMessages.BONUS_NUMBER_IS_NOT_NUMBER.throwException();
-        }
+        int convertNumber = Integer.parseInt(number);
 
-        if(!isBetweenOneAndFortyFive(number)){
-            ExceptionMessages.BONUS_NUMBER_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
-        }
-
-        if(isDuplicatedWinningLottoNumber(lotto,number)){
-            ExceptionMessages.BONUS_NUMBER_IS_DUPLICATED_WINNING_NUMBER.throwException();
-        }
+        if(!isBetweenOneAndFortyFive(convertNumber)) ExceptionMessages.BONUS_NUMBER_IS_NOT_BETWEEN_ONE_AND_FORTYFIVE.throwException();
+        if(isDuplicatedWinningLottoNumber(lotto,convertNumber)) ExceptionMessages.BONUS_NUMBER_IS_DUPLICATED_WINNING_NUMBER.throwException();
     }
 
     private boolean isEmpty(String number){
-        return number.isBlank() || number == null;
+        return number == null || number.isBlank();
     }
 
     private boolean isDigit(String number){
         return Character.isDigit(number.charAt(0));
     }
 
-    private boolean isBetweenOneAndFortyFive(String number){
-        return Integer.parseInt(number) >= MIN_INCLUSIVE.getValue() && Integer.parseInt(number) <= MAX_INCLUSIVE.getValue();
+    private boolean isBetweenOneAndFortyFive(int number){
+        return number >= MIN_INCLUSIVE.getValue() && number <= MAX_INCLUSIVE.getValue();
     }
 
-    private boolean isDuplicatedWinningLottoNumber(Lotto winningLotto, String number){
-        return winningLotto.getNumbers().contains(Integer.parseInt(number));
+    private boolean isDuplicatedWinningLottoNumber(Lotto winningLotto, int number){
+        return winningLotto.getNumbers().contains(number);
     }
 }

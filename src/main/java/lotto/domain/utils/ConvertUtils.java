@@ -14,4 +14,7 @@ public class ConvertUtils {
     }
 
 
+    public static Integer calculateNumberOfTickets(Long purchaseAmount){
+        return Math.toIntExact(purchaseAmount / 1000);
+    }
 }

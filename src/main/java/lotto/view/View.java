@@ -12,7 +12,7 @@ public class View {
         System.out.println(INPUT_BUYING_NUM_MESSEAGE);
         return Console.readLine();
     }
-    public void exceptionMessage(){
+    public void inputExceptionMessage(){
         System.out.println(INPUT_BUYING_NUM_EXCEPTION_MESSAGE);
     }
 

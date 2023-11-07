@@ -21,7 +21,7 @@ public class LottoController {
             view.BuyingLottoOutput(lottoList.lottoList);
             middle(lottoList.lottoList);
         }catch (IllegalArgumentException e){
-            view.exceptionMessage();
+            view.inputExceptionMessage();
             start();
         }
     }

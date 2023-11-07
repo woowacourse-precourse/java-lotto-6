@@ -6,6 +6,11 @@ public class CorrectNum {
     public ArrayList<Integer> correctNum = new ArrayList<>();
 
     public CorrectNum(String s) {
-        this.correctNum = correctNum;
+        String correctString[] =correctStringArray(s);
+    }
+
+    public String[] correctStringArray(String s){
+        String correctString[] = s.split(",");
+        return correctString;
     }
 }

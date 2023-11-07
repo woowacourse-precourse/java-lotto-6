@@ -20,6 +20,7 @@ public class ConstMessage {
     public static final String PROFIT_MESSAGE_FOOTER = "%입니다.";
 
     public static final String INPUT_ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.";
+    public static final String NUMBER_ERROR_MESSAGE = "[ERROR] 입력 값은 숫자여야 합니다.";
     public static final String NULL_ERROR_MESSAGE = "[ERROR] 빈 값을 입력 하셨습니다.";
     public static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 당첨 번호는 중복 될 수 없습니다.";
     public static final String LENGTH_ERROR_MESSAGE = "[ERROR] 당첨 번호는 6개 입력 되어야 합니다.";

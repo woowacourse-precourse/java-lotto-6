@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import lotto.core.Lotto;
+import lotto.core.Prize;
 
 import static lotto.constValue.ConstMessage.*;
 
@@ -29,22 +30,12 @@ public class PrintUtil {
         System.out.println(TOTAL_WINNING_RESULT_MESSAGE);
         System.out.println("---");
     }
-    public static void printFifthPlace(int count){
-        System.out.println(FIFTH_PLACE_MESSAGE + count + PLACE_MESSAGE_FOOTER);
+
+    public static void printPlace(String place){
+        System.out.println(place);
     }
-    public static void printFourthPlace(int count){
-        System.out.println(FOURTH_PLACE_MESSAGE + count + PLACE_MESSAGE_FOOTER);
-    }
-    public static void printThirdPlace(int count){
-        System.out.println(THIRD_PLACE_MESSAGE + count + PLACE_MESSAGE_FOOTER);
-    }
-    public static void printSecondPlace(int count){
-        System.out.println(SECOND_PLACE_MESSAGE + count + PLACE_MESSAGE_FOOTER);
-    }
-    public static void printFirstPlace(int count){
-        System.out.println(FIRST_PLACE_MESSAGE + count + PLACE_MESSAGE_FOOTER);
-    }
-    public static void printProfit(double profit){
+
+    public static void printProfit(String profit){
         System.out.println(PROFIT_MESSAGE_HEADER + profit + PROFIT_MESSAGE_FOOTER );
     }
 }

@@ -11,11 +11,7 @@ public class BonusNumber {
         this.bonusNumber = bonusNumber;
     }
 
-    public boolean hasBonus(Lotto lotto) {
-        return lotto.contains(bonusNumber);
-    }
-
-    public boolean hasBonus(WinningNumber winningNumber) {
-        return winningNumber.contains(bonusNumber);
+    public boolean hasBonus(Containable numbers) {
+        return numbers.contains(bonusNumber);
     }
 }

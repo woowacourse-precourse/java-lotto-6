@@ -8,7 +8,7 @@ import static lotto.utils.validator.LottoNumberValidator.validateOutOfRange;
 import java.util.Collections;
 import java.util.List;
 
-public class Lotto {
+public class Lotto implements Containable {
 
     private final List<Integer> numbers;
 
@@ -23,6 +23,7 @@ public class Lotto {
         return Collections.unmodifiableList(numbers);
     }
 
+    @Override
     public boolean contains(int number) {
         return numbers.contains(number);
     }

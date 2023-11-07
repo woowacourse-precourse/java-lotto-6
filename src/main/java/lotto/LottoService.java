@@ -2,10 +2,12 @@ package lotto;
 
 import lotto.controller.Calculation;
 import lotto.controller.LottoMaker;
+import lotto.lottoenum.LottoRanking;
 import lotto.repository.Repository;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class LottoService {
@@ -44,11 +46,19 @@ public class LottoService {
         output.printGetBonusNum();
         do{
             repository.saveBonusNumber(input.getBonusNum());
+            System.out.println(repository.getBonusNumber());
             if(repository.getBonusNumber() != 0){
                 isUseFulBonusNumber = false;
             }
         }while(isUseFulBonusNumber);
 
+        List<LottoRanking> lottoRankings = new ArrayList<>();
+        for(Lotto lotto : repository.getLottoNumbers()){
+            lottoRankings.add(lotto.lotteryCheck(repository.getAnswerLotto().getLottoDetail(),
+                    repository.getBonusNumber()));
+        }
+        output.printResult(lottoRankings);
+        output.printCalculation(calculation.getCalculation(lottoRankings));
     }
 
     private void getMoney() {

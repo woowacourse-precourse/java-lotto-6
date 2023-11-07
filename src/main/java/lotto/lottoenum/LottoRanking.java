@@ -1,8 +1,8 @@
 package lotto.lottoenum;
 
 public enum LottoRanking {
-    FIRST(6, 2000000000), SECOND(5, 30000000), THIRD(5,1500000),
-    FOURTH(4, 50000), FIFTH(3, 5000), DEFAULT(0, 0);
+    FIFTH(3, 5000), FOURTH(4, 50000), THIRD(5,1500000),
+    SECOND(5, 30000000), FIRST(6, 2000000000), DEFAULT(0, 0);
 
     private final int value;
     private final float price;
@@ -23,6 +23,6 @@ public enum LottoRanking {
                 return lottoRanking;
             }
         }
-        throw new IllegalArgumentException();
+        return LottoRanking.DEFAULT;
     }
 }

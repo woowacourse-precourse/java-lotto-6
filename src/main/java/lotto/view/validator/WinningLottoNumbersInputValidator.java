@@ -41,14 +41,14 @@ public class WinningLottoNumbersInputValidator {
     }
 
     private void isEachNumberNotEmpty(String winningLottoNumbers) {
-        String[] numbers = splitNumbersWithDelimiter(winningLottoNumbers);
-        if (isMoreThanOneNumberEmpty(numbers)) {
+        String[] lottoNumbers = splitNumbersWithDelimiter(winningLottoNumbers);
+        if (isMoreThanOneNumberEmpty(lottoNumbers)) {
             throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_CONTAINS_EMPTY_NUMBER);
         }
     }
 
-    private boolean isMoreThanOneNumberEmpty(String[] numbers) {
-        return Arrays.stream(numbers)
+    private boolean isMoreThanOneNumberEmpty(String[] lottoNumbers) {
+        return Arrays.stream(lottoNumbers)
                 .anyMatch(String::isEmpty);
     }
 
@@ -57,14 +57,14 @@ public class WinningLottoNumbersInputValidator {
                 .forEach(this::throwExceptionIfExceedInputRange);
     }
 
-    private void throwExceptionIfExceedInputRange(String number) {
-        if (exceedInputRange(number)) {
+    private void throwExceptionIfExceedInputRange(String lottoNumber) {
+        if (exceedInputRange(lottoNumber)) {
             throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_INPUT_EXCEED_INPUT_RANGE);
         }
     }
 
-    private boolean exceedInputRange(String number) {
-        return Long.parseLong(number) > Integer.MAX_VALUE || Long.parseLong(number) < Integer.MIN_VALUE;
+    private boolean exceedInputRange(String lottoNumber) {
+        return Long.parseLong(lottoNumber) > Integer.MAX_VALUE || Long.parseLong(lottoNumber) < Integer.MIN_VALUE;
     }
 
 

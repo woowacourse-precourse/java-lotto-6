@@ -16,25 +16,9 @@ public class WinningNumbersTest {
     @DisplayName("당첨 번호와 로또 번호를 비교하여 정확한 당첨 결과를 반환해야 한다")
     void testCalculatePrizes() {
         // given: 당첨 번호와 구매한 로또 번호가 주어집니다.
-        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 7;
-        WinningNumbers winningNumbers = new WinningNumbers(winningLotto, bonusNumber);
+        WinningNumbers winningNumbers = getWinningNumbers();
 
-        Lotto firstPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등
-        Lotto secondPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 (보너스 번호 일치)
-        Lotto thirdPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등
-        Lotto fourthPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 45, 44)); // 4등
-        Lotto fifthPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 42, 41, 40)); // 5등
-        Lotto noPrizeLotto = new Lotto(Arrays.asList(10, 11, 12, 13, 14, 15)); // 당첨 안됨
-
-        List<Lotto> purchasedLottos = Arrays.asList(
-            firstPrizeLotto,
-            secondPrizeLotto,
-            thirdPrizeLotto,
-            fourthPrizeLotto,
-            fifthPrizeLotto,
-            noPrizeLotto
-        );
+        List<Lotto> purchasedLottos = getPurchasedLottos();
 
         // when: 당첨 결과를 계산합니다.
         Map<Prize, Integer> prizeResults = winningNumbers.calculatePrizes(purchasedLottos);
@@ -90,5 +74,27 @@ public class WinningNumbersTest {
         Assertions.assertEquals(0, prizeResults.get(Prize.THIRD).intValue());
         Assertions.assertEquals(0, prizeResults.get(Prize.FOURTH).intValue());
         Assertions.assertEquals(0, prizeResults.get(Prize.FIFTH).intValue());
+    }
+    private WinningNumbers getWinningNumbers(){
+        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        int bonusNumber = 7;
+        return new WinningNumbers(winningLotto, bonusNumber);
+    }
+    private List<Lotto> getPurchasedLottos(){
+        Lotto firstPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6)); // 1등
+        Lotto secondPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)); // 2등 (보너스 번호 일치)
+        Lotto thirdPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 8)); // 3등
+        Lotto fourthPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 45, 44)); // 4등
+        Lotto fifthPrizeLotto = new Lotto(Arrays.asList(1, 2, 3, 42, 41, 40)); // 5등
+        Lotto noPrizeLotto = new Lotto(Arrays.asList(10, 11, 12, 13, 14, 15)); // 당첨 안됨
+
+        return Arrays.asList(
+            firstPrizeLotto,
+            secondPrizeLotto,
+            thirdPrizeLotto,
+            fourthPrizeLotto,
+            fifthPrizeLotto,
+            noPrizeLotto
+        );
     }
 }

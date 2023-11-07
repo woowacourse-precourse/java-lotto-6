@@ -4,6 +4,7 @@ import java.util.StringTokenizer;
 
 public class NumberConverter {
     private static final String FRAC_POINT = ".";
+    private static final String INTEGER_FORMAT = "\\B(?=(\\d{3})+(?!\\d))";
 
     public static String doubleToString(Double value, int cutSize) {
         String retStr = String.format("%." + cutSize + "f", value);
@@ -17,7 +18,7 @@ public class NumberConverter {
 
     public static String intToString(Integer value) {
         String retStr = value.toString();
-        retStr = retStr.replaceAll("\\B(?=(\\d{3})+(?!\\d))", ",");
+        retStr = retStr.replaceAll(INTEGER_FORMAT, ",");
         return retStr;
     }
 }

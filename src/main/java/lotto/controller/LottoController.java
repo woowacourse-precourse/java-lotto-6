@@ -1,7 +1,9 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Map;
 import lotto.constant.ErrorMessage;
+import lotto.constant.LottoWinCategory;
 import lotto.dto.LottoPurchase;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
@@ -35,6 +37,9 @@ public class LottoController {
         BonusNumber bonusNumber = getBonusNumber(winningLotto);
 
         LottoDraw lottoDraw = LottoDraw.of(winningLotto, bonusNumber);
+
+        Map<LottoWinCategory, Integer> winningResult = lottoDraw.getWinnings(lottoTicket);
+        outputView.printWinningStatistics(winningResult);
     }
 
     public LottoPurchase getLottoPurchase() {
@@ -84,4 +89,5 @@ public class LottoController {
             throw new IllegalArgumentException(ErrorMessage.ERROR_DUPLICATED_BONUS_NUMBER.getMessage());
         }
     }
+
 }

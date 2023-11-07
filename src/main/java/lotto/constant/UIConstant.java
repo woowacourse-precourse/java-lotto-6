@@ -2,8 +2,9 @@ package lotto.constant;
 
 public enum UIConstant {
     ERROR_TAG("[ERROR]"),
-    OPENING_BRACKET("["),
-    CLOSING_BRACKET("]"),
+    LOTTO_NUMBER_OPENING_BRACKET("["),
+    LOTTO_NUMBER_CLOSING_BRACKET("]"),
+    WINNING_STATISTICS_OPENING("---"),
     NUMBER_SEPARATOR(","),
     NEW_LINE("\n");
     

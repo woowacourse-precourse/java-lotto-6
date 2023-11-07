@@ -1,9 +1,9 @@
 package lotto.model;
 
-import static lotto.constant.UIConstant.CLOSING_BRACKET;
+import static lotto.constant.UIConstant.LOTTO_NUMBER_CLOSING_BRACKET;
 import static lotto.constant.UIConstant.NEW_LINE;
 import static lotto.constant.UIConstant.NUMBER_SEPARATOR;
-import static lotto.constant.UIConstant.OPENING_BRACKET;
+import static lotto.constant.UIConstant.LOTTO_NUMBER_OPENING_BRACKET;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +54,7 @@ public class Lotto {
     public String toString() {
         List<Integer> sortedNumbers = this.getSortedNumbers();
         String result = sortedNumbers.stream().map(String::valueOf).collect(Collectors.joining("" + NUMBER_SEPARATOR + " "));
-        return OPENING_BRACKET + result + CLOSING_BRACKET + NEW_LINE;
+        return LOTTO_NUMBER_OPENING_BRACKET + result + LOTTO_NUMBER_CLOSING_BRACKET + NEW_LINE;
     }
 
     private List<Integer> getSortedNumbers() {

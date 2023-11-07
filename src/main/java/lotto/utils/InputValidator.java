@@ -35,9 +35,17 @@ public class InputValidator {
         checkHasComma(jackpotNumberInput);
         checkContainSpace(jackpotNumberInput);
         checkJackpotNumberNumeric(jackpotNumberInput);
-        // TODO : 숫자가 6개가 아닐 경우
+        checkJackpotNumberSize(jackpotNumberInput);
+        // TODO : 1~45 범위 밖의 숫자를 입력했을 경우
         // TODO : 중복된 숫자를 입력했을 경우
 
+    }
+
+    private static void checkJackpotNumberSize(String jackpotNumberInput) {
+        String replaceNumberInput = jackpotNumberInput.replace(",", "");
+        if (replaceNumberInput.length() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.JACKPOT_NUMBER_SIZE_ERROR.getErrorMessage());
+        }
     }
 
     private static void checkJackpotNumberNumeric(String jackpotNumberInput) {

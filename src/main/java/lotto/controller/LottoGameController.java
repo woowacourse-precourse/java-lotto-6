@@ -17,8 +17,6 @@ public class LottoGameController {
 
     private Game game;
     private int buyAmount = 0;
-    private List<Integer> winningNumbers;
-    private int bonusNumber = 0;
 
     public LottoGameController(Game game) {
         this.game = game;
@@ -28,9 +26,7 @@ public class LottoGameController {
     public void start() {
         getBuyAmount();
         createLottos();
-        getWinningNumbers();
-        getBonusNumber();
-        printResult(createResult());
+        printResult(createResult(getWinningNumbers(), getBonusNumber()));
     }
 
     private void getBuyAmount() {
@@ -55,18 +51,18 @@ public class LottoGameController {
         OutputView.printCreatedLottos(game.createLottos(buyAmount));
     }
 
-    private void getWinningNumbers() {
+    private List<Integer> getWinningNumbers() {
         OutputView.printRequestWinningNumber();
         String[] numbers = InputView.readWinningNumber().split(",");
-        winningNumbers = Arrays.stream(numbers).map(Integer::parseInt).collect(Collectors.toList());
+        return Arrays.stream(numbers).map(Integer::parseInt).collect(Collectors.toList());
     }
 
-    private void getBonusNumber() {
+    private int getBonusNumber() {
         OutputView.printRequestBonusNumber();
-        bonusNumber = Integer.parseInt(InputView.readBonusNumber());
+        return Integer.parseInt(InputView.readBonusNumber());
     }
 
-    private LottoRankInfo createResult() {
+    private LottoRankInfo createResult(List<Integer> winningNumbers, int bonusNumber) {
         return game.createResult(winningNumbers, bonusNumber);
     }
 

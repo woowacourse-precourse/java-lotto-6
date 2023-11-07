@@ -1,6 +1,6 @@
 package lotto.controller.lotto;
 
-import lotto.domain.LottoTicketList;
+import lotto.domain.lotto.LottoTicketList;
 
 public class LottoTicketListPrintController {
 

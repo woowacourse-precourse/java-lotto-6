@@ -1,9 +1,9 @@
 package lotto.controller.lotto;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoBonus;
-import lotto.domain.LottoTicketList;
-import lotto.domain.LottoWinningStatus;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoBonus;
+import lotto.domain.lotto.LottoTicketList;
+import lotto.domain.lotto.LottoWinningStatus;
 
 public class LottoWinningStatusCheckingController {
 

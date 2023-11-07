@@ -1,8 +1,7 @@
 package lotto.controller.lotto;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoBonus;
-import lotto.view.MessageOutputController;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoBonus;
 
 public class LottoBonusNumberScanController {
 

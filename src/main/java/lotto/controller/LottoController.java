@@ -8,14 +8,13 @@ import lotto.controller.lotto.LottoTicketListGenerateController;
 import lotto.controller.lotto.LottoTicketListPrintController;
 import lotto.controller.lotto.LottoWinningStatusCheckingController;
 import lotto.controller.lotto.LottoWinningStatusPrinterController;
-import lotto.domain.Lotto;
-import lotto.domain.LottoBonus;
-import lotto.domain.LottoPurchaseMoney;
-import lotto.domain.LottoTicketList;
-import lotto.domain.LottoWinningStatus;
+import lotto.domain.lotto.Lotto;
+import lotto.domain.lotto.LottoBonus;
+import lotto.domain.lotto.LottoPurchaseMoney;
+import lotto.domain.lotto.LottoTicketList;
+import lotto.domain.lotto.LottoWinningStatus;
 
 public class LottoController {
-
 	public void start() {
 		LottoPurchaseMoney lottoPurchaseMoney = new LottoPurchaseMoney();
 		new LottoPurchaseMoneyScanController().scanLottoPurchaseMoney(lottoPurchaseMoney);

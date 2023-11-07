@@ -2,7 +2,7 @@ package lotto.controller.lotto;
 
 import lotto.controller.InputController;
 import lotto.controller.validation.LottoPurchaseMoneyValidator;
-import lotto.domain.LottoPurchaseMoney;
+import lotto.domain.lotto.LottoPurchaseMoney;
 import lotto.view.MessageOutputView;
 
 public class LottoPurchaseMoneyScanController {

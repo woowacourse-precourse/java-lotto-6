@@ -74,4 +74,15 @@ public class LottoController {
         // 통계 출력
         outputView.printWinningStatistics(dto);
     }
+
+    public void gameStart() {
+        // 구입 프로세스
+        PurchaseResult purchaseResult = purchaseProcess();
+
+        // 당첨 번호 및 보너스 번호 입력 프로세스
+        LottoDrawMachine lottoDrawMachine = createDrawMachineProcess();
+
+        // 분석 프로세스
+        analyzeProcess(lottoDrawMachine, purchaseResult);
+    }
 }

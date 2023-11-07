@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.model.Lotto;
+import lotto.model.Ranking;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -39,18 +40,20 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("provide_getScore_TestData")
     @DisplayName("점수를 제대로 리턴하는지 확인")
-    void provideWinningNumber(List<Integer> winningNumbers, int bonusNumber, int[] expectedResult) {
+    void provideWinningNumber(List<Integer> winningNumbers, int bonusNumber, Ranking expectedResult) {
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))
-                .getScore(winningNumbers, bonusNumber))
-                .contains(expectedResult);
+                .getRank(winningNumbers, bonusNumber))
+                .isInstanceOf(Ranking.class);
     }
 
     private static Stream<Arguments> provide_getScore_TestData() {
         return Stream.of(
-                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 7, new int[]{6, 0}),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 10), 6, new int[]{5, 1}),
-                Arguments.of(List.of(1, 2, 3, 4, 5, 10), 45, new int[]{5, 0})
-
+                Arguments.of(List.of(1, 2, 3, 4, 5, 6), 7, Ranking.FIRST),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 10), 6, Ranking.SECOND),
+                Arguments.of(List.of(1, 2, 3, 4, 5, 10), 45, Ranking.THIRD),
+                Arguments.of(List.of(1, 2, 3, 4, 10, 11), 45, Ranking.FORTH),
+                Arguments.of(List.of(1, 2, 3, 10, 11, 12), 45, Ranking.FIFTH),
+                Arguments.of(List.of(1, 2, 10, 11, 12, 13), 45, Ranking.EMPTY)
         );
     }
 

@@ -34,9 +34,8 @@ public class LottoController {
         while (true) {
             try {
                 int money = inputView.requestNumberInput(INPUT_MONEY);
-                Customer customer = new Customer(money);
-                LottoSeller seller = new LottoSeller(customer.getMoney());
-                customer.buyLottoTickets(seller);
+                LottoSeller seller = new LottoSeller(money);
+                Customer customer = new Customer(seller.makeLottoTickets());
                 outputView.printLottoNumbers(customer.getLotteryTicket());
                 return customer;
             } catch (IllegalArgumentException e) {

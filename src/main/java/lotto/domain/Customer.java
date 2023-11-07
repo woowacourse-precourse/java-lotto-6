@@ -8,15 +8,10 @@ import java.util.Map;
 import lotto.constant.Prize;
 
 public class Customer {
-    private List<Lotto> lotteryTicket;
-    private final int money;
+    private final List<Lotto> lotteryTicket;
 
-    public Customer(int money) throws IllegalArgumentException {
-        this.money = money;
-    }
-
-    public void buyLottoTickets(LottoSeller seller) {
-        this.lotteryTicket = seller.makeLottoTickets();
+    public Customer(List<Lotto> lottoTickets) {
+        this.lotteryTicket = lottoTickets;
     }
 
     public Map<Prize, Integer> checkWinningResult(WinningNumbers winningNumbers) {
@@ -34,13 +29,6 @@ public class Customer {
         return result;
     }
 
-    public void setLotteryTicket(List<Lotto> tickets) {
-        this.lotteryTicket = tickets;
-    }
-
-    public int getMoney() {
-        return money;
-    }
 
     public List<Lotto> getLotteryTicket() {
         return Collections.unmodifiableList(lotteryTicket);

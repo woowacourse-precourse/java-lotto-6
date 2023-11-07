@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.exception.LottoException;
 
 public class ResultLotto {
@@ -17,6 +18,14 @@ public class ResultLotto {
         validateDuplicate(bonusNum);
         this.bonusNum = bonusNum;
     }
+
+    private int calculateWinningAmount(List<Integer> winningCount) {
+        Winning[] allValues = Winning.values();
+        return IntStream.range(0, allValues.length)
+                .mapToObj(i -> allValues[i].calculateMoney(winningCount.get(i)))
+                .reduce(0, Integer::sum);
+    }
+
 
     private List<Integer> matchLottoBundle(List<Lotto> lottoBundle) {
         List<Integer> winningCount = new ArrayList<>(List.of(0, 0, 0, 0, 0));

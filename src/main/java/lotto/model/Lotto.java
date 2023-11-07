@@ -7,12 +7,15 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        Validator.isSize(numbers);
-        Validator.isDuplicated(numbers);
+        validateNumbers(numbers);
         this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    private void validateNumbers(List<Integer> numbers) {
+        Validator.validateLottoNumbers(numbers);
     }
 }

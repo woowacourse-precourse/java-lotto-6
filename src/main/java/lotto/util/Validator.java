@@ -21,6 +21,12 @@ public class Validator {
         return ErrorView.isDivideError();
     }
 
+    public static void validateLottoNumbers(List<Integer> numbers) {
+        isSize(numbers);
+        isDuplicated(numbers);
+    }
+
+
     public static void isSize(List<Integer> numbers) {
         if(numbers.size() != Config.COUNT_LOTTO) {
             ErrorView.isSizeError();

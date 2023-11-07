@@ -28,6 +28,10 @@ public class Application {
         List<Integer> winNumbers = picker.generateWinNumbers();
         int winBonusNumber = picker.generateWinBonusNumber();
 
+        for (Lotto lotto : lottos) {
+            lotto.compareWinNumbers(winNumbers);
+            lotto.compareWinBonusNumber(winBonusNumber);
+        }
 
     }
 }

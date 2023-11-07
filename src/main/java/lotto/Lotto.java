@@ -5,6 +5,7 @@ import java.util.List;
 public class Lotto {
     private final List<Integer> numbers;
     private int winCount;
+    private int winBonusCount;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -27,9 +28,9 @@ public class Lotto {
 
     public int compareWinBonusNumber(int winBonusNumber){
         if(this.numbers.contains(winBonusNumber)) {
-            this.winCount++;
+            this.winBonusCount++;
         }
-        return this.winCount;
+        return this.winBonusCount;
     }
 
     @Override

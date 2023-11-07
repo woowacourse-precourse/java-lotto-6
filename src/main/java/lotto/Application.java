@@ -20,7 +20,6 @@ public class Application {
 
         PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
 
-
         gameGuidePrint.purchaseCompletePrint();
 
         PurchasedLottoNumbersPrint purchasedLottoNumbersPrint = new PurchasedLottoNumbersPrint(purchasedLottoTickets);

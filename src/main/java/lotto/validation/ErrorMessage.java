@@ -9,7 +9,6 @@ public enum ErrorMessage {
     ERROR_WINNING_IN_RANGE_NOT_DUPLICATION("[ERROR] 로또 번호는 중복될 수 없고, 1부터 45 사이의 숫자여야 합니다.");
 
 
-
     private final String message;
 
     ErrorMessage(String message) {

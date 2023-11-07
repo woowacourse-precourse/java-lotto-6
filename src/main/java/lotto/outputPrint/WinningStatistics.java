@@ -1,7 +1,6 @@
 package lotto.outputPrint;
 
 import java.util.Map;
-import java.util.Map.Entry;
 import lotto.service.PurchasedLottoTickets;
 
 public class WinningStatistics {

@@ -1,8 +1,8 @@
 package lotto;
 
-public class Amount {
+import common.Constant;
 
-    private final static int UNIT = 1000;
+public class Amount {
 
     private final int amount;
 
@@ -13,7 +13,7 @@ public class Amount {
     }
 
     private void validateIsThousand(int amount) {
-        if(amount % UNIT != 0) throw new IllegalArgumentException();
+        if(amount % Constant.DIVIDE_UNIT != 0) throw new IllegalArgumentException();
     }
 
     private void validateIsPositive(int amount){

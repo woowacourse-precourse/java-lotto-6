@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.List;
 
-public class Lotto {
+public class Lotto extends LottoRule{
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -11,18 +11,15 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (isInvalidLength(numbers)) {
             throw new IllegalArgumentException();
         }
-        if (numbers.size() != numbers.stream().distinct().count()){
+        if (isDuplicate(numbers)){
             throw new IllegalArgumentException();
         }
-        for(Integer number : numbers){
-            if(number < 1 || number > 45){
-                throw new IllegalArgumentException();
-            }
+        if (isOutOfRange(numbers)){
+            throw new IllegalArgumentException();
         }
     }
 
-    // TODO: 추가 기능 구현
 }

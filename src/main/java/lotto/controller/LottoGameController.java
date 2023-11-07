@@ -6,6 +6,7 @@ import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
 import lotto.domain.WinningLotto;
+import lotto.domain.WinningStatistics;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -38,5 +39,9 @@ public class LottoGameController {
             OutputView.printExceptionMessage(illegalArgumentException);
             return issueWinningLotto();
         }
+    }
+
+    private WinningStatistics produceStatistics(WinningLotto winningLotto, Lottos issuedLottos) {
+        return new WinningStatistics(winningLotto, issuedLottos);
     }
 }

@@ -31,20 +31,16 @@ public enum WiningType {
                 .findFirst();
     }
 
-    public static long sumAmount(Map<WiningType, Integer> winingCountMap) {
-        long totAmount = 0;
-        for (WiningType winingType : winingCountMap.keySet()) {
-            totAmount += winingCountMap.getOrDefault(winingType, 0) * winingType.amount;
-        }
-        return totAmount;
-    }
-
     public static Map<WiningType, Integer> winingCountToMap() {
         Map<WiningType, Integer> winingCounterMap = new TreeMap<>(Comparator.reverseOrder());
         for (WiningType winingType : values()) {
             winingCounterMap.put(winingType, 0);
         }
         return winingCounterMap;
+    }
+
+    private boolean isCorrectCount(int correctCount) {
+        return this.correctCount == correctCount;
     }
 
     public boolean hasBonus() {
@@ -58,12 +54,4 @@ public enum WiningType {
     public int getAmount() {
         return amount;
     }
-
-    private boolean isCorrectCount(int correctCount) {
-        return this.correctCount == correctCount;
-    }
 }
-
-/*
- *
- * */

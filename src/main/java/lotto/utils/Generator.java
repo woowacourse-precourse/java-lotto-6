@@ -17,6 +17,9 @@ public class Generator {
     }
 
     private static List<Integer> generateRandomNumber() {
-        return Randoms.pickUniqueNumbersInRange(LottoConstant.MIN_NUMBER, LottoConstant.MAX_NUMBER, LottoConstant.NUMBER_SIZE);
+        return Randoms.pickUniqueNumbersInRange(
+                LottoConstant.MIN_NUMBER,
+                LottoConstant.MAX_NUMBER,
+                LottoConstant.NUMBER_SIZE);
     }
 }

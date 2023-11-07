@@ -1,13 +1,15 @@
 package lotto.io;
 
-import camp.nextstep.edu.missionutils.Console;
-
 import java.util.NoSuchElementException;
 
 public class PaymentInputManager extends InputManager<Integer> {
     private static PaymentInputManager INSTANCE;
 
+    private PaymentInputManager() {
+    }
+
     public static PaymentInputManager getInstance() {
+        if (INSTANCE == null) INSTANCE = new PaymentInputManager();
         return INSTANCE;
     }
 
@@ -17,13 +19,13 @@ public class PaymentInputManager extends InputManager<Integer> {
         while (true) {
             try {
                 String inputLine = consoleAdapter.readLine();
-                return validation(inputLine) / 1000;
-            } catch (NumberFormatException | NoSuchElementException e) {
+                return validation(inputLine);
+            } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
             } catch (IllegalArgumentException e) {
                 throw new IllegalArgumentException("[ERROR] 1000원 단위로 입력해주세요.");
-            } catch (IllegalStateException e) {
-                throw new IllegalArgumentException("[ERROR] Scanner is closed.");
+            } catch (NoSuchElementException e) {
+                throw new IllegalArgumentException("[ERROR] 입력이 존재하지 않습니다.");
             }
         }
     }

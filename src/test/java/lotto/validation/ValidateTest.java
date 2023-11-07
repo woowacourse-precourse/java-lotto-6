@@ -24,4 +24,14 @@ class ValidateTest {
             assertThrows(IllegalArgumentException.class, () -> Validator.validateMoney(money));
         }
     }
+
+    @DisplayName("당첨 번호가 중복되지 않는지 테스트")
+    @Test
+    void 당첨_번호_중복_테스트() {
+        List<Integer> number1 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        List<Integer> number2 = Arrays.asList(1, 2, 3, 3, 4, 5);
+
+        assertDoesNotThrow(() -> Validator.validateWinningNumber(number1));
+        assertThrows(IllegalArgumentException.class, () -> Validator.validateWinningNumber(number2));
+    }
 }

@@ -7,6 +7,7 @@ import static lotto.view.message.OutputMessage.ASK_FOR_BONUS_NUMBER;
 import static lotto.view.message.OutputMessage.ASK_FOR_LOTTO_WINNING_NUMBERS;
 import static lotto.view.message.OutputMessage.ASK_FOR_PURCHASE_PRICE;
 
+import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.result.LottoCalculateResult;
@@ -58,34 +59,55 @@ public class LottoController {
     }
 
     private Purchase promptPurchase() {
-        try {
+        int purchasePrice = 0;
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
             view.displayMessage(ASK_FOR_PURCHASE_PRICE);
-            int purchasePrice = parseStringToIntPrice(view.readInput());
-            return new Purchase(purchasePrice);
-        } catch (IllegalArgumentException e) {
-            view.displayErrorMessage(e);
-            return promptPurchase();
+            String input = view.readInput();
+            try {
+                purchasePrice = parseStringToIntPrice(input);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                view.displayErrorMessage(e);
+            }
         }
+        return new Purchase(purchasePrice);
     }
 
     private List<Integer> promptWinningNumbers() {
-        try {
+        List<Integer> winningNumbers = new ArrayList<>();
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
             view.displayMessage(ASK_FOR_LOTTO_WINNING_NUMBERS);
-            return parseListStringToListInteger(view.readInput());
-        } catch (IllegalArgumentException e) {
-            view.displayErrorMessage(e);
-            return promptWinningNumbers();
+            String input = view.readInput();
+            try {
+                winningNumbers = parseListStringToListInteger(input);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                view.displayErrorMessage(e);
+            }
         }
+
+        return winningNumbers;
     }
 
     private int promptBonusNumber() {
-        try {
+        int bonusNumber = 0;
+        boolean isValidInput = false;
+
+        while (!isValidInput) {
             view.displayMessage(ASK_FOR_BONUS_NUMBER);
-            return parseStringToIntNumber(view.readInput());
-        } catch (IllegalArgumentException e) {
-            view.displayErrorMessage(e);
-            return promptBonusNumber();
+            String input = view.readInput();
+            try {
+                bonusNumber = parseStringToIntNumber(input);
+                isValidInput = true;
+            } catch (IllegalArgumentException e) {
+                view.displayErrorMessage(e);
+            }
         }
+        return bonusNumber;
     }
 
     private LottoMatchResult matchResult(LottoPurchaseResult lottoPurchaseResult, LottoWinningResult lottoWinningResult) {

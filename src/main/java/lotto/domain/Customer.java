@@ -6,7 +6,7 @@ public class Customer {
     private final Lotto userLotto;
     private final int bonusBall;
 
-    public Customer(Lotto lotto, int bonusBall) {
+    public Customer(final Lotto lotto, final int bonusBall) {
         validateWinningResult(lotto, bonusBall);
         this.userLotto = lotto;
         this.bonusBall = bonusBall;
@@ -18,11 +18,11 @@ public class Customer {
         }
     }
 
-    public int matchWinningLotto(Lotto lotto) {
+    public int matchWinningLotto(final Lotto lotto) {
         return this.userLotto.matchNumber(lotto);
     }
 
-    public boolean matchBonusBall(Lotto lotto) {
+    public boolean matchBonusBall(final Lotto lotto) {
         return lotto.containsNumber(this.bonusBall);
     }
 }

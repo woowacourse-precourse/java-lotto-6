@@ -19,13 +19,13 @@ public class Input {
     }
 
     public static List<Integer> getUserNumbers() {
-        String userInput = Console.readLine();
+        final String userInput = Console.readLine();
         List<Integer> userNumbers = parseIntegers(userInput);
         validUserNumbers(userNumbers);
         return userNumbers;
     }
 
-    private static List<Integer> parseIntegers(String userInput) {
+    private static List<Integer> parseIntegers(final String userInput) {
         try {
             return Arrays.stream(userInput.split(COMMA_SEPARATOR))
                     .map(number -> Integer.parseInt(number.trim()))
@@ -36,7 +36,7 @@ public class Input {
     }
 
     public static int getBonusNumber() {
-        String userInput = Console.readLine();
+        final String userInput = Console.readLine();
         return validBonusNumber(userInput);
     }
 }

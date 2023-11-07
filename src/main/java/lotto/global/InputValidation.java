@@ -14,15 +14,15 @@ import java.util.List;
 public class InputValidation {
     private static final int ZERO = 0;
 
-    public static int validPurchasePrice(String userInput) {
+    public static int validPurchasePrice(final String userInput) {
         checkInteger(userInput);
-        int price = StringToInt(userInput);
+        final int price = StringToInt(userInput);
         checkNaturalNumber(price);
         checkPurchaseAmount(price);
         return price;
     }
 
-    private static void checkInteger(String userInput) {
+    private static void checkInteger(final String userInput) {
         try {
             StringToInt(userInput);
         } catch (NumberFormatException e) {
@@ -30,19 +30,19 @@ public class InputValidation {
         }
     }
 
-    private static void checkNaturalNumber(int price) {
+    private static void checkNaturalNumber(final int price) {
         if (isSmallerOrSameThan(price, ZERO)) {
             throw new IllegalArgumentException(INVALID_NATURAL_NUMBER_ERROR.getMessage());
         }
     }
 
-    private static void checkPurchaseAmount(int price) {
+    private static void checkPurchaseAmount(final int price) {
         if (!isDividedBy(price, LOTTO_PRICE_UNIT)) {
             throw new IllegalArgumentException(INVALID_PRICE_UNIT_ERROR.getMessage());
         }
     }
 
-    public static void validUserNumbers(List<Integer> userNumbers) {
+    public static void validUserNumbers(final List<Integer> userNumbers) {
         checkNumberSize(userNumbers);
         for (Integer number : userNumbers) {
             checkNaturalNumber(number);
@@ -50,50 +50,50 @@ public class InputValidation {
         }
     }
 
-    private static void checkNumberSize(List<Integer> userNumbers) {
+    private static void checkNumberSize(final List<Integer> userNumbers) {
         if (isUserNumberSizeValid(userNumbers)) {
             throw new IllegalArgumentException(INVALID_LOTTO_SIZE_ERROR.getMessage());
         }
     }
 
-    private static boolean isUserNumberSizeValid(List<Integer> userNumbers) {
+    private static boolean isUserNumberSizeValid(final List<Integer> userNumbers) {
         return userNumbers.size() != LOTTO_BALLS_NUMBER;
     }
 
-    private static void checkInRange(int number) {
+    private static void checkInRange(final int number) {
         if (isOutOfRange(number)) {
             throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_ERROR.getMessage());
         }
     }
 
-    private static boolean isOutOfRange(int number) {
+    private static boolean isOutOfRange(final int number) {
         return isSmallerThan(number, LOTTO_MIN_NUMBER) || isBiggerThan(number, LOTTO_MAX_NUMBER);
     }
 
-    public static int validBonusNumber(String userInput) {
+    public static int validBonusNumber(final String userInput) {
         checkInteger(userInput);
         int bonusNumber = StringToInt(userInput);
         checkInRange(bonusNumber);
         return bonusNumber;
     }
 
-    private static boolean isBiggerThan(int number, int pivot) {
+    private static boolean isBiggerThan(final int number, final int pivot) {
         return number > pivot;
     }
 
-    private static boolean isSmallerThan(int number, int pivot) {
+    private static boolean isSmallerThan(final int number, final int pivot) {
         return number < pivot;
     }
 
-    private static boolean isSmallerOrSameThan(int number, int pivot) {
+    private static boolean isSmallerOrSameThan(final int number, final int pivot) {
         return number <= pivot;
     }
 
-    private static boolean isDividedBy(int number, int pivot) {
+    private static boolean isDividedBy(final int number, final int pivot) {
         return number % pivot == ZERO;
     }
 
-    private static int StringToInt(String userInput) {
+    private static int StringToInt(final String userInput) {
         return Integer.parseInt(userInput);
     }
 }

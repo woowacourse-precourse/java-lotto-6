@@ -14,13 +14,13 @@ import lotto.domain.LottoBundle;
 
 public class Store {
 
-    public static int convertPriceToCount(int price) {
+    public static int convertPriceToCount(final int price) {
         return price / LOTTO_PRICE_UNIT;
     }
 
-    public static LottoBundle generateLottoBundle(int count) {
+    public static LottoBundle generateLottoBundle(final int count) {
         final List<Lotto> lottoBundle = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
+        for (int lottoCount = 0; lottoCount < count; lottoCount++) {
             lottoBundle.add(generateLotto());
         }
         return new LottoBundle(lottoBundle);

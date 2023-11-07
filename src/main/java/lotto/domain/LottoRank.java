@@ -16,17 +16,17 @@ public enum LottoRank {
     private final int lottoBallMatch;
     private final boolean isBonusMatched;
 
-    LottoRank(int prizeMoney, int lottoBallMatch, boolean isBonusMatched) {
+    LottoRank(final int prizeMoney, final int lottoBallMatch, final boolean isBonusMatched) {
         this.prizeMoney = prizeMoney;
         this.lottoBallMatch = lottoBallMatch;
         this.isBonusMatched = isBonusMatched;
     }
 
-    LottoRank(int prizeMoney, int lottoBallMatch) {
+    LottoRank(final int prizeMoney, final int lottoBallMatch) {
         this(prizeMoney, lottoBallMatch, false);
     }
 
-    public static LottoRank findLottoRank(int lottoBallMatch, boolean bonusMatch) {
+    public static LottoRank findLottoRank(final int lottoBallMatch, final boolean bonusMatch) {
         for (LottoRank lottoRank : values()) {
             if (lottoRank.checkLottoBallMatch(lottoBallMatch) &&
                     lottoRank.checkBonusMatch(lottoBallMatch, bonusMatch)) {
@@ -36,11 +36,11 @@ public enum LottoRank {
         return NO_PRIZE;
     }
 
-    private boolean checkLottoBallMatch(int lottoBallMatch) {
+    private boolean checkLottoBallMatch(final int lottoBallMatch) {
         return (this.lottoBallMatch == lottoBallMatch);
     }
 
-    private boolean checkBonusMatch(int lottoBallMatch, boolean isBonusMatched) {
+    private boolean checkBonusMatch(final int lottoBallMatch, final boolean isBonusMatched) {
         if (lottoBallMatch != DETECT_BONUS) {
             return true;
         }

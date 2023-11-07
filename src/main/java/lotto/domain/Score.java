@@ -24,15 +24,15 @@ public class Score {
         return getPercentage(spent, gain);
     }
 
-    private static double getPercentage(double spent, double gain) {
+    private static double getPercentage(final double spent, final double gain) {
         return (gain / spent) * PERCENTAGE;
     }
 
-    private int getGain(LottoRank lottoRank) {
+    private int getGain(final LottoRank lottoRank) {
         return this.lottoResult.get(lottoRank) * lottoRank.getPrizeMoney();
     }
 
-    private int getSpent(LottoRank lottoRank) {
+    private int getSpent(final LottoRank lottoRank) {
         return this.lottoResult.get(lottoRank) * LOTTO_PRICE_UNIT;
     }
 

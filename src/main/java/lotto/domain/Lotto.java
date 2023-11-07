@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
     }
@@ -27,7 +27,9 @@ public class Lotto {
     }
 
     private void validateDuplicate(final List<Integer> lotto) {
-        final int lottoSizeWithoutDuplicate = (int) lotto.stream().distinct().count();
+        final int lottoSizeWithoutDuplicate = (int) lotto.stream()
+                .distinct()
+                .count();
 
         if (isDifferentSize(lotto, lottoSizeWithoutDuplicate)) {
             throw new IllegalArgumentException(NUMBER_DUPLICATED_ERROR.getMessage());
@@ -39,7 +41,9 @@ public class Lotto {
     }
 
     public List<Integer> getLotto() {
-        return numbers.stream().sorted().toList();
+        return numbers.stream()
+                .sorted()
+                .toList();
     }
 
     public boolean containsNumber(final int number) {

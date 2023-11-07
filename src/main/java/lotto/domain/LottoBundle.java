@@ -20,7 +20,7 @@ public class LottoBundle {
     }
 
     public Score checkResult(final Customer customer) {
-        final Map<LottoRank, Integer> lottoResult = new HashMap<>();
+        Map<LottoRank, Integer> lottoResult = new HashMap<>();
         for (Lotto lotto : this.lottoBundle) {
             LottoRank lottoRank = checkSingleLottoRank(lotto, customer);
             lottoResult.put(lottoRank, lottoResult.getOrDefault(lottoRank, INITIAL_SCORE) + INCREASE_SCORE);

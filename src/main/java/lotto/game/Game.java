@@ -11,10 +11,10 @@ import lotto.ui.Output;
 
 public class Game {
     public void run() {
-        LottoBundle lottoBundle = Store.generateLottoBundle(getUserPurchasePrice());
+        final LottoBundle lottoBundle = Store.generateLottoBundle(getUserPurchasePrice());
         Output.printLottoBundle(lottoBundle);
-        Customer customer = makeLottoResult();
-        Score score = lottoBundle.checkResult(customer);
+        final Customer customer = makeLottoResult();
+        final Score score = lottoBundle.checkResult(customer);
         Output.printLottoResult(score);
     }
 

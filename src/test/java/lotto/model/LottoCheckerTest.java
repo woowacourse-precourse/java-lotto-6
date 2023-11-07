@@ -12,7 +12,8 @@ class LottoCheckerTest {
             new Lotto(List.of(1, 2, 3, 4, 5, 11)),
             new Lotto(List.of(1, 2, 3, 7, 11, 12))
         );
-        final LottoChecker lottoChecker = new LottoChecker(List.of(1, 2, 3, 4, 5, 6), 7);
+        final Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        final LottoChecker lottoChecker = new LottoChecker(winningLotto, 7);
 
         final LottoResult lottoResult = lottoChecker.checkLottos(lottos);
 

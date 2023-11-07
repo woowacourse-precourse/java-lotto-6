@@ -73,4 +73,4 @@
 - Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
 
 ## 구현 기능 목록
-
+- 입력 및 출력 메세지 Enum

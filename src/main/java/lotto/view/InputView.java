@@ -13,7 +13,7 @@ public class InputView {
     public InputView() {
         this.lottoPurchase = inputLottoPurchase();
         this.lotto = inputLotto();
-        this.bonusNumber = Integer.parseInt(readLine());
+        this.bonusNumber = inputBonusNumber();
 
     }
 
@@ -31,6 +31,7 @@ public class InputView {
 
         List<Integer> lotto = new ArrayList<>();
 
+
         String[] strLotto = readLine().split(",");
 
         for(String str : strLotto) {
@@ -38,6 +39,16 @@ public class InputView {
         }
 
         return lotto;
+    }
+
+    private int inputBonusNumber() {
+        int bonusNumber;
+        System.out.println("보너스 번호를 입력해 주세요.");
+
+        bonusNumber = Integer.parseInt(readLine());
+
+        return bonusNumber;
+
     }
 
 

@@ -72,7 +72,7 @@
 - 위의 세 가지 메서드를 호출한 뒤 예외가 발생하지 않았다면 bonus을 true로 변경한다.
 - 위의 세 가지 메서드 실행 과정에서 예외가 발생하였다면 예외 문구를 출력한다.
 
-### void  lenCheck(String[], int)
+### void lenCheck(String[], int)
 - 배열의 길이가 인수로 들어온 정수와 다를 경우 예외를 던진다.
 
 ### void valueCheck(String[])

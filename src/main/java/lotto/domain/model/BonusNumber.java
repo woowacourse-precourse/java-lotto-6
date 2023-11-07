@@ -1,7 +1,7 @@
 package lotto.domain.model;
 
-import static lotto.utils.LottoEnum.LOTTO_END_NUMBER;
-import static lotto.utils.LottoEnum.LOTTO_START_NUMBER;
+import static lotto.domain.LottoEnum.LOTTO_END_NUMBER;
+import static lotto.domain.LottoEnum.LOTTO_START_NUMBER;
 
 import lotto.exception.lottonumbersexception.NumbersErrorMessage;
 

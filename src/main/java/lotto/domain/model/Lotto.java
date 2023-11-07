@@ -1,8 +1,8 @@
 package lotto.domain.model;
 
-import static lotto.utils.LottoEnum.LOTTO_COUNT;
-import static lotto.utils.LottoEnum.LOTTO_END_NUMBER;
-import static lotto.utils.LottoEnum.LOTTO_START_NUMBER;
+import static lotto.domain.LottoEnum.LOTTO_COUNT;
+import static lotto.domain.LottoEnum.LOTTO_END_NUMBER;
+import static lotto.domain.LottoEnum.LOTTO_START_NUMBER;
 
 import java.util.List;
 import lotto.exception.lottonumbersexception.NumbersErrorMessage;

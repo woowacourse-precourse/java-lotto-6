@@ -1,6 +1,6 @@
 package lotto.domain.model;
 
-import static lotto.utils.LottoEnum.LOTTO_PRICE;
+import static lotto.domain.LottoEnum.LOTTO_PRICE;
 
 import lotto.exception.lottoamountexception.AmountErrorMessage;
 

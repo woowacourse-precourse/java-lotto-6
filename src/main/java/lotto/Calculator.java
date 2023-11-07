@@ -13,13 +13,7 @@ public class Calculator {
         this.winningNumbers = winningNumbers;
     }
 
-    public WinningStatistics calculateStatistics(int money) {
-        Map<Rank, Integer> winningResults = calculateResults();
-        Double winningRate = calculateWinningRate(winningResults, money);
-        return new WinningStatistics(winningResults, winningRate);
-    }
-
-    private Map<Rank, Integer> calculateResults() {
+    public Map<Rank, Integer> calculateResults() {
         Map<Rank, Integer> winningResults = new EnumMap<>(Rank.class);
         Lotto winningLotto = winningNumbers.getLottoNumbers();
         int bonusNumber = winningNumbers.getBonusNumber();
@@ -35,7 +29,7 @@ public class Calculator {
         return winningResults;
     }
 
-    private Double calculateWinningRate(Map<Rank, Integer> winningResults, int money) {
+    public Double calculateWinningRate(Map<Rank, Integer> winningResults, int money) {
         return calculateTotalPrize(winningResults) / (double) money * 100;
     }
 

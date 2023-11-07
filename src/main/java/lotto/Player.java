@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Player {
     private final List<Lotto> lottos;
@@ -25,8 +26,10 @@ public class Player {
         return lottos;
     }
 
-    public int getMoney() {
-        return money;
+    public WinningStatistics calculateStatistics(WinningNumbers winningNumbers) {
+        Calculator calculator = new Calculator(lottos, winningNumbers);
+        Map<Rank, Integer> winningResults = calculator.calculateResults();
+        Double winningRate = calculator.calculateWinningRate(winningResults, money);
+        return new WinningStatistics(winningResults, winningRate);
     }
-
 }

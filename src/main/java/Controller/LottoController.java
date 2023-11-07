@@ -2,7 +2,6 @@ package Controller;
 
 import View.InputView;
 import View.OutputView;
-import lotto.Calculator;
 import lotto.Player;
 import lotto.WinningNumbers;
 import lotto.WinningStatistics;
@@ -24,8 +23,7 @@ public class LottoController {
 
         WinningNumbers winningNumbers = inputView.askWinningNumbers();
 
-        Calculator calculator = new Calculator(player.getLottos(), winningNumbers);
-        WinningStatistics winningStatistics = calculator.calculateStatistics(player.getMoney());
+        WinningStatistics winningStatistics = player.calculateStatistics(winningNumbers);
         outputView.printStatistics(winningStatistics);
     }
 }

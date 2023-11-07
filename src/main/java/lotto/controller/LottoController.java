@@ -7,7 +7,6 @@ import lotto.model.LottoService;
 import lotto.view.OutputView;
 
 public class LottoController {
-	//플레이어 로또 구매
 	private static List<Lotto> playerBuyLotto() {
 		OutputView.printBuyInstruction();
 		int playerFinance = Integer.parseInt(InputData.playerFinance());
@@ -29,8 +28,6 @@ public class LottoController {
 		OutputView.printReturnOnInvestment(returnOnInvestment);
 	}
 	
-	
-	//실행
 	public static void run() {
 		List<Lotto> playerLotto =  playerBuyLotto();
 		matchLottosToPrizes(playerLotto);

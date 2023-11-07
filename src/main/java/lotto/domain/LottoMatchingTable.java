@@ -5,25 +5,23 @@ import java.util.function.Predicate;
 
 public enum LottoMatchingTable {
 
-    FIFTH(new MatchResult(3, false)),
-    FOURTH(new MatchResult(4, false)),
-    THIRD(new MatchResult(5, false)),
-    SECOND(new MatchResult(5, true), true),
-    FIRST(new MatchResult(6, false)),
+    FIFTH(3),
+    FOURTH(4),
+    THIRD(5),
+    SECOND(5, true),
+    FIRST(6),
     ;
-
-    private final MatchResult matchResult;
 
     private final Predicate<MatchResult> matchCondition;
 
 
-    LottoMatchingTable(MatchResult matchResult) {
-        this.matchResult = matchResult;
+    LottoMatchingTable(int ballCount) {
+        final var matchResult = new MatchResult(ballCount, false);
         this.matchCondition = matchResult::matchOnlyBallCount;
     }
 
-    LottoMatchingTable(MatchResult matchResult, boolean bonusCondition) {
-        this.matchResult = matchResult;
+    LottoMatchingTable(int ballCount, boolean matchBonus) {
+        final var matchResult = new MatchResult(ballCount, matchBonus);
         this.matchCondition = matchResult::matchBallCountAndBonus;
     }
 

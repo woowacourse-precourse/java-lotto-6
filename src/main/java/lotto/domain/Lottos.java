@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,30 +9,36 @@ public class Lottos {
 
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public Lottos(int input) {
+        this.lottos = generateLottos(numberLottos(input));
     }
 
     public List<Lotto> getLottos() {
         return lottos;
     }
 
-    public int numberLottos(String inputPrice) {
+    public int numberLottos(int inputPrice) {
         isNotDivided(LOTTO_PRICE, inputPrice);
-        return Integer.parseInt(inputPrice) / LOTTO_PRICE;
+        return inputPrice / LOTTO_PRICE;
     }
 
     public List<Lotto> generateLottos(int lottoCount) {
-        NumberGenerator numberGenerator = new NumberGenerator();
-
         return IntStream.range(0, lottoCount)
-                .mapToObj(i -> new Lotto(numberGenerator.createRandomNumbers()))
+                .mapToObj(i -> new Lotto(NumberGenerator.createRandomNumbers()))
                 .collect(Collectors.toList());
     }
 
-    private void isNotDivided(int lottoPrice, String inputPrice) {
-        if (Integer.parseInt(inputPrice) % lottoPrice != 0) {
+    private void isNotDivided(int lottoPrice, int inputPrice) {
+        if (inputPrice % lottoPrice != 0) {
             throw new IllegalArgumentException();
         }
     }
+
+    @Override
+    public String toString() {
+        return lottos.stream()
+                .map(Lotto::toString)
+                .collect(Collectors.joining("\n"));
+    }
+
 }

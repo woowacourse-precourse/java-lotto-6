@@ -22,28 +22,15 @@ public enum LottoRank {
         this.isMatchBonus = isMatchBonus;
     }
 
-    public static LottoRank checkRank(int matchCount, boolean isMatchBonus) {
-        return Arrays.stream(LottoRank.values())
-                .filter(rank -> isPrize(rank, matchCount, isMatchBonus))
-                .findAny()
-                .orElse(NO_RANK);
-    }
-
-    private static boolean isPrize(LottoRank rank, int matchCount, boolean isMatchBonus) {
-        if (rank.matchCount != matchCount) {
-            return false;
-        }
-        if (SECOND_RANK_MATCH == matchCount) {
-            return rank.isMatchBonus == isMatchBonus;
-        }
-        return true;
-    }
-
     public int getMatchCount() {
         return matchCount;
     }
 
     public int getPrizeMoney() {
         return prizeMoney;
+    }
+
+    public boolean isMatchBonus() {
+        return isMatchBonus;
     }
 }

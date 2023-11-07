@@ -48,7 +48,6 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
-    @Disabled
     void 예외_테스트() {
         assertSimpleTest(() -> {
             runException("1000j");

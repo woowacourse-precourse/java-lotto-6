@@ -21,7 +21,7 @@
 - [x] 생성한 로또들의 당첨 여부를 파악한다.
 
 ## UI
-- [ ] 사용자로부터 다음과 같이 구입 금액을 입력받는다.
+- [x] 사용자로부터 다음과 같이 구입 금액을 입력받는다.
   ```
   구입금액을 입력해 주세요.
   8000
@@ -63,5 +63,5 @@
 
 ## Exception
 - [x] 잘못된 입력이 들어오면 `IllegalArgumentException`을 발생시키다.
-  - [ ] `IllegalArgumentException`이 발생하면 "[ERROR]"로 시작하는 에러 메시지를 출력한다.
+  - [x] `IllegalArgumentException`이 발생하면 "[ERROR]"로 시작하는 에러 메시지를 출력한다.
   - [ ] `IllegalArgumentException`이 발생하면 사용자에게 해당 입력을 다시 받는다.

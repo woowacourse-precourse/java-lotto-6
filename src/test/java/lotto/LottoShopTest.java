@@ -2,12 +2,14 @@ package lotto;
 
 import static lotto.Properties.LOTTO_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
 import lotto.model.LottoShop;
 import lotto.model.LottoTicket;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class LottoShopTest {
 
@@ -19,5 +21,21 @@ public class LottoShopTest {
     void lottoPrice(long money, int numberOfPlays) {
         LottoTicket ticket = lottoShop.issueLottoTicket(money);
         assertThat(ticket.getPlayCount()).isEqualTo(numberOfPlays);
+    }
+
+    @DisplayName("구입 금액이 1000원 미만이면 예외 처리한다.")
+    @ParameterizedTest
+    @ValueSource(longs = {0, 500, 999})
+    void invalidMoneyLessThanLottoPrice(long money) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> lottoShop.issueLottoTicket(money));
+    }
+
+    @DisplayName("구입 금액이 1000원 단위가 아니면 예외 처리한다.")
+    @ParameterizedTest
+    @ValueSource(longs = {1012, 2023, 3034, 4045, 5056})
+    void invalidMoneyNotMultipleOfLottoPrice(long money) {
+        assertThatIllegalArgumentException()
+                .isThrownBy(() -> lottoShop.issueLottoTicket(money));
     }
 }

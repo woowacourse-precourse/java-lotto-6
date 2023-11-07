@@ -1,8 +1,11 @@
 package domain;
 
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Arrays;
 import java.util.List;
@@ -48,5 +51,22 @@ class LottoTest {
         int count = lotto.countWinningNumber(winningLotto);
 
         assertThat(count).isEqualTo(3);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "1, true",
+            "2, true",
+            "7, false",
+            "8, false"
+    })
+    @DisplayName("보너스 번호가 존재하는지 구한다.")
+    void hasBonusNumber(int bonusNumber, boolean expected) {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Bonus bonus = new Bonus(bonusNumber);
+
+        boolean hasBonus = lotto.hasBonusNumber(bonus);
+
+        assertThat(hasBonus).isEqualTo(expected);
     }
 }

@@ -2,6 +2,7 @@ package lotto.view;
 
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.List;
 import lotto.model.LottoResult;
 import lotto.model.Lottos;
 import lotto.model.Money;
@@ -18,10 +19,11 @@ public class OutputView {
     private static final DecimalFormat MONEY_FORMAT = new DecimalFormat("###,###");
     private static final DecimalFormat EARNING_FORMAT = new DecimalFormat("###,###.0");
 
-    public void showLottos(Lottos lottos, Money money) {
+    public void showNumberOfLotto(Money money) {
         System.out.printf(SHOW_LOTTO, money.calNumberOfLotto());
-        printLottos(lottos);
-        printLine();
+    }
+    public void showLottos(List<Integer> lotto) {
+        System.out.println(lotto);
     }
 
     public void showLottoStatistics(Lottos lottos, User user, Money money) {
@@ -48,14 +50,6 @@ public class OutputView {
         }
         return String.format(STAT_RESULT, rank.getMatchingNumber(),
                 MONEY_FORMAT.format(rank.getPrize()), lottoResult.getResult(rank));
-    }
-
-    private void printLottos(Lottos lottos) {
-        lottos.getLottos().forEach(lotto -> System.out.println(lotto.getNumbers()));
-    }
-
-    private void printLine() {
-        System.out.println();
     }
 
 }

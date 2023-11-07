@@ -26,8 +26,8 @@ public class LottoController {
 
     public void start() {
         Money money = getMoney();
+        outputView.showNumberOfLotto(money);
         Lottos lottos = makeLotto(money);
-        outputView.showLottos(lottos, money);
 
         Lotto userLotto = getLotto();
         User user = getBonus(userLotto);
@@ -69,7 +69,11 @@ public class LottoController {
 
     private List<Lotto> generateLottos(int number) {
         List<Lotto> lottos = new ArrayList<>();
-        IntStream.range(0, number).forEach(count -> lottos.add(new Lotto(generateLotto())));
+        for (int count = 0; count < number; count++) {
+            List<Integer> list = generateLotto();
+            outputView.showLottos(list);
+            lottos.add(new Lotto(list));
+        }
         return lottos;
     }
 

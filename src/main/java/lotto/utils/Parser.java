@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Parser {
 
     private static String INPUT_STYLE_ERROR_INT = "[ERROR] 공백을 포함하지 않는 한 개의 숫자를 입력해야 합니다.";
-    private static String INPUT_STYLE_ERROR_STRING = "[ERROR] 공백을 포함하지 않는 여섯 개의 숫자를 입력해야 합니다.";
+    private static String INPUT_STYLE_ERROR_STRING = "[ERROR] 공백을 포함하지 않는 숫자를 입력해야 합니다.";
 
     public List<Integer> translatePlayerInputStringToInt(String playerInputString){
         try {

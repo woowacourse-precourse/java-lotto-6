@@ -29,4 +29,12 @@ class LottoControllerTest {
 
         assertEquals(new Lotto(List.of(1, 2, 3, 4, 5, 6)), lotto);
     }
+
+    @Test
+    void 보너스_번호_입력_테스트() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = controller.receiveBonusNumber(lotto);
+
+        assertEquals(new BonusNumber(7, lotto), bonusNumber);
+    }
 }

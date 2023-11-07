@@ -16,6 +16,6 @@ public class LottoAmount {
 
     private void validation(int amount){
         Validator.notSeparatedBy1000(amount);
-
+        Validator.isDigit(Integer.toString(amount));
     }
 }

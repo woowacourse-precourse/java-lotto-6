@@ -4,8 +4,8 @@ import lotto.purchasing.PurchaseAmount;
 
 public class Application {
     public static void main(String[] args) {
-        ResultBoard resultBoard = new ResultBoard(new PurchaseAmount());
+        SequenceManager sequenceManager = new SequenceManager(new PurchaseAmount());
 
-        resultBoard.show();
+        sequenceManager.proceed();
     }
 }

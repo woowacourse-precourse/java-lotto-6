@@ -1,5 +1,5 @@
 package lotto;
 
-public interface Showable {
-    void show();
+public interface Showable<T, V> {
+    void show(T t, V v);
 }

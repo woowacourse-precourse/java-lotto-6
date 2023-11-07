@@ -12,12 +12,11 @@ public class InputView {
     private static final String REQUEST_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
 
-    public Money getInputMoney() {
+    public int getInputMoney() {
         System.out.println(REQUEST_INPUT_MONEY);
         String input = Console.readLine();
         System.out.println();
-        int money = Integer.parseInt(input);
-        return new Money(money);
+        return Integer.parseInt(input);
     }
 
     public List<Integer> getWinningNumber() {

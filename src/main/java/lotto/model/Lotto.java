@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
-
+    private final int targetSize = 6;
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         checkDuplicateNumber(numbers);
@@ -15,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != targetSize) {
             throw new IllegalArgumentException();
         }
     }

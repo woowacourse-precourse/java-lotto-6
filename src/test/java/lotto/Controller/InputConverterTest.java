@@ -81,13 +81,13 @@ public class InputConverterTest {
         String input3 = ",,1,2,3,4,5,6";
         String input4 = "1,2,3,4,5,6,,";
 
-        assertThatThrownBy(() -> checkCommaCountStand(input1))
+        assertThatThrownBy(() -> checkCommaCount(input1))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> checkCommaCountStand(input2))
+        assertThatThrownBy(() -> checkCommaCount(input2))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> checkCommaCountStand(input3))
+        assertThatThrownBy(() -> checkCommaCount(input3))
                 .isInstanceOf(IllegalArgumentException.class);
-        assertThatThrownBy(() -> checkCommaCountStand(input4))
+        assertThatThrownBy(() -> checkCommaCount(input4))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

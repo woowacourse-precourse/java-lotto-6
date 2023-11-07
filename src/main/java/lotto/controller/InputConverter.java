@@ -1,7 +1,6 @@
 package lotto.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -15,7 +14,7 @@ public class InputConverter {
 
     public static List<Integer> convertWinningNum(String inputWinningNum) throws IllegalArgumentException{
         List<Integer> winningNumbers = new ArrayList<>();
-        checkCommaCountStand(inputWinningNum);
+        checkCommaCount(inputWinningNum);
         StringTokenizer st = new StringTokenizer(inputWinningNum, ",");
         while(st.hasMoreTokens()) {
             String nextNumber = st.nextToken();
@@ -33,7 +32,7 @@ public class InputConverter {
         }
     }
 
-    public static void checkCommaCountStand(String winningNum) throws IllegalArgumentException {
+    public static void checkCommaCount(String winningNum) throws IllegalArgumentException {
         Long countComma = countStand(winningNum);
         if (countComma != standCount) {
             muchComma();

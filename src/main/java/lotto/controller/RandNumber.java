@@ -5,9 +5,12 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 
 public class RandNumber {
+    private static final int start = 1;
+    private static final int end = 45;
+    private static final int count = 6;
+
     public static List<Integer> makeRandNumber() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return lottoNumbers;
+        return Randoms.pickUniqueNumbersInRange(start, end, count);
     }
 
     public static List<Integer> makeUniqueNumber() {

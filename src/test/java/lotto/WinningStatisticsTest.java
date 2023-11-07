@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.Ranking.FIFTH;
+import static lotto.Ranking.FOURTH;
 import static lotto.Ranking.NONE;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -12,15 +13,15 @@ class WinningStatisticsTest {
     @Test
     void 수익률이_정상적으로_반환되는가() {
         WinningStatistics winningStatistics = new WinningStatistics(new LottoAmount(10_000), Map.of(FIFTH, 3, NONE, 7));
-        double returnRate = 50;
+        double returnRate = 150;
 
         assertThat(winningStatistics.getReturnRate()).isEqualTo(returnRate);
     }
 
     @Test
-    void 수익률이_마이너스인_경우_정상적으로_반환되는가() {
-        WinningStatistics winningStatistics = new WinningStatistics(new LottoAmount(6000), Map.of(NONE, 6));
-        double returnRate = -100;
+    void 수익률이_소수점_2자리에서_반올림되어_반환되는가() {
+        WinningStatistics winningStatistics = new WinningStatistics(new LottoAmount(8_000), Map.of(FIFTH, 1, NONE, 7));
+        double returnRate = 62.5;
 
         assertThat(winningStatistics.getReturnRate()).isEqualTo(returnRate);
     }

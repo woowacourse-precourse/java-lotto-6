@@ -13,7 +13,6 @@ public class LottoController {
         if (purchaseAmount % 1000 != 0) {
             throw new IllegalArgumentException();
         }
-
         return purchaseAmount / 1000;
     }
 
@@ -25,7 +24,6 @@ public class LottoController {
         for (String inputNumber : inputNumbers) {
             winningNumbers.add(Integer.parseInt(inputNumber));
         }
-
         return winningNumbers;
     }
 

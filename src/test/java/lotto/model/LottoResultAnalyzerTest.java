@@ -1,13 +1,16 @@
 package lotto.model;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LottoResultAnalyzerTest {
@@ -39,6 +42,24 @@ class LottoResultAnalyzerTest {
 
         // then
         assertEquals(expectedMatchCount, purchasedLottoPaper.getMatchingCount());
+    }
+
+    @DisplayName("당첨 번호 일치 개수를 로또 용지에 복수 입력 확인")
+    @ParameterizedTest(name = "당첨 번호: {0}, 구매한 로또 번호: {1}, 예상 일치 개수: {2}")
+    @MethodSource("matchCase")
+    public void 당첨_번호_일치_개수_복수_입력(List<Integer> winningNumbers, List<Integer> purchasedNumbers, int expectedMatchCount) {
+        // given
+        List<LottoPaper> purchasedLottoPapers = new ArrayList<>();
+        LottoResultAnalyzer lottoResultAnalyzer = new LottoResultAnalyzer();
+        purchasedLottoPapers.add(new LottoPaper(purchasedNumbers));
+        purchasedLottoPapers.add(new LottoPaper(purchasedNumbers));
+
+        // when
+        lottoResultAnalyzer.writeResultToLottoPapers(purchasedLottoPapers, winningNumbers);
+
+        // then
+        assertThat(purchasedLottoPapers)
+                .allMatch(paper -> paper.getMatchingCount() == expectedMatchCount);
     }
 
     static Stream<Arguments> matchCase() {

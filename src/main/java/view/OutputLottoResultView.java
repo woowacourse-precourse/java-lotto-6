@@ -18,7 +18,8 @@ public class OutputLottoResultView {
             int eachRankResult = lottoResult.getEachRankResult(rank);
             String messageFormat = rank.getMessageFormat();
 
-            System.out.printf((messageFormat + NEW_LINE), winningNumberCount, String.format("%,d", prize), eachRankResult);
+            System.out.printf((messageFormat + NEW_LINE), winningNumberCount, String.format("%,d", prize),
+                    eachRankResult);
         }
 
         System.out.printf(INCOME_RATE, incomeRate.getRate());

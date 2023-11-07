@@ -17,6 +17,14 @@ public class TicketAmount {
         return amount / Constants.LOTTO_MIN_AMOUNT;
     }
 
+    public double calculateRateOfReturn(Result result) {
+        double totalPrize  = result.getLottoResult().entrySet().stream()
+                .filter(entry -> LottoRanking.NO_MATCH != entry.getKey())
+                .map(entry -> entry.getKey().getPrizeAmount() * entry.getValue())
+                .mapToDouble(Integer::doubleValue).sum();
+        return totalPrize / amount * PERCENT;
+    }
+
     private static void validateMoney(int money) {
         Validator.validateInputIsNatural(money);
         Validator.validateNonDivisibility(money);

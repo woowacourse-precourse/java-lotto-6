@@ -144,6 +144,18 @@ class ApplicationTest extends NsTest {
         );
     }
 
+    @DisplayName("당첨 번호 입력시 숫자 6개를 입력하지 않은 경우 예외 발생")
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6,7", "1,2,3", "1"})
+    void inputWinnerNumbersWithWrongNumbersSizeExceptionTest(String wrongNumbersSize) {
+        assertSimpleTest(
+                () -> {
+                    runException("8000", wrongNumbersSize, "45");
+                    assertThat(output()).contains(ERROR_MESSAGE);
+                }
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

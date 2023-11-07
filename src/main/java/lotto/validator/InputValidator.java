@@ -1,5 +1,6 @@
 package lotto.validator;
 
+import lotto.constant.LottoConstant;
 import lotto.parser.Parser;
 
 import java.util.List;
@@ -8,8 +9,7 @@ import java.util.stream.Collectors;
 
 import static lotto.constant.LottoConstant.*;
 import static lotto.exception.InputViewExceptionMessage.*;
-import static lotto.exception.WinnerExceptionMessage.DUPLICATED_WINNER_NUMBER;
-import static lotto.exception.WinnerExceptionMessage.WRONG_BONUS_NUMBER_RANGE;
+import static lotto.exception.WinnerExceptionMessage.*;
 import static lotto.util.CharacterUnits.COMMA;
 import static lotto.util.PatternUnits.PATTERN_FOR_FINDING_SPECIAL_SIGN;
 
@@ -25,6 +25,12 @@ public class InputValidator {
             if (isNotNumberToken(token)) {
                 throw new IllegalArgumentException(NOT_NUMBER.getMessage());
             }
+        }
+    }
+
+    public static void validateNumbersSize(final List<String> numbers) {
+        if (numbers.size() != LOTTO_LENGTH.getSetting()) {
+            throw new IllegalArgumentException(WRONG_WINNER_LOTTO_LENGTH.getMessage());
         }
     }
 

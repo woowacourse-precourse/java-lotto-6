@@ -38,6 +38,7 @@ public class InputView {
             final List<String> numberDummy = Parser.parseNumberDummy(requestWinnerNumbers);
             InputValidator.validateNumbers(numberDummy);
             InputValidator.validateInputNumbersFormat(numberDummy);
+            InputValidator.validateNumbersSize(numberDummy);
             InputValidator.validateDuplicatedNumber(numberDummy);
             return Parser.parseNumbers(numberDummy);
         } catch (Exception e) {

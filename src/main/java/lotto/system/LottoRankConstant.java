@@ -1,5 +1,7 @@
 package lotto.system;
 
+import java.util.Arrays;
+
 public enum LottoRankConstant {
     FIRST_PRIZE(1, 6, false, 2000000000),
     SECOND_PRIZE(2, 5, true, 30000000),
@@ -22,12 +24,14 @@ public enum LottoRankConstant {
     }
 
     public static LottoRankConstant findByRank(int rank) {
-        for (LottoRankConstant lottoRankConstant : values()) {
-            if (lottoRankConstant.getRank() == rank) {
-                return lottoRankConstant;
-            }
-        }
-        throw new IllegalStateException(ExceptionMessage.NOT_CONSTANT.getMessage());
+        return Arrays.stream(values())
+                .filter(i -> i.isSameRank(rank))
+                .findFirst()
+                .orElse(null);
+    }
+
+    private boolean isSameRank(int rank) {
+        return this.rank == rank;
     }
 
     private String creatMessage() {

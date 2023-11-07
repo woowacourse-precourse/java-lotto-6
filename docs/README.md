@@ -2,7 +2,7 @@
 
 - [ ] <<0.게임 실행>> GameController
   - [x] 구입 금액 입력
-  - [ ] 발행 로또 출력
+  - [x] 발행 로또 출력
   - [ ] 당첨 번호 입력
   - [ ] 보너스 번호 입력
   - [ ] 당첨 통계 계산
@@ -15,7 +15,7 @@
     - [ ] 숫자인지 확인 Validator
 
 
-- [ ] <<2.발행 로또 출력>>
+- [x] <<2.발행 로또 출력>>
   - [x] 구입 금액으로 구매 개수 계산 AmountCalculator. calculateNumberOfLottoPurchasedByAmount
   - [x] 구매 개수 출력 AmountCalculator.getNumberOfLottoPurchased
   - [x] 구매 개수 화면 출력 OutputView

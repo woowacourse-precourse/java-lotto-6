@@ -12,8 +12,11 @@ public class Bonus {
         this.number = number;
     }
 
-    public int countSameNumber(Lotto lotto) {
-        return lotto.isContain(number);
+    public float countSameNumber(Lotto lotto) {
+        if (lotto.isContains(number)) {
+            return 0.5F;
+        }
+        return 0;
     }
 
     private void validate(int number) {

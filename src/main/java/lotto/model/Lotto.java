@@ -29,16 +29,15 @@ public class Lotto {
     public int countSameNumbers(Lotto lotto) {
         int correctCount = 0;
         for (int number : lotto.numbers) {
-            correctCount += this.isContain(number);
+            if (isContains(number)) {
+                correctCount += 1;
+            }
         }
         return correctCount;
     }
 
-    public int isContain(int number) {
-        if (this.numbers.contains(number)) {
-            return 1;
-        }
-        return 0;
+    public boolean isContains(int number) {
+        return numbers.contains(number);
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

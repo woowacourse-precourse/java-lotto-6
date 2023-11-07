@@ -23,9 +23,10 @@ public class LottoController {
 
         buyLottos(customer, lottoStore);
         sellLottos(customer, lottoStore);
-        WinningNumbersGenerator winningNumbersGenerator = generateWinningNumber();
-        generateBonusNumber(winningNumbersGenerator);
-        result(customer, winningNumbersGenerator);
+
+        final WinningNumbers winningNumbers = generateWinningNumber();
+        generateBonusNumber(winningNumbers);
+        result(customer, winningNumbers);
     }
 
     public void buyLottos(final Customer customer, final LottoStore lottoStore) {
@@ -44,36 +45,36 @@ public class LottoController {
 
     public void sellLottos(final Customer customer, final LottoStore lottoStore) {
         lottoStore.sellLottos(customer);
-        long lottoAmounts = lottoStore.getLottoAmount();
 
-        outputView.lottoAmount(lottoAmounts);
-        List<Lotto> lottos = customer.getLottos();
+        final List<Lotto> lottos = customer.getLottos();
+        outputView.lottoAmount(lottos.size());
+
         outputView.showLottos(lottos);
     }
 
-    public WinningNumbersGenerator generateWinningNumber() {
-        final WinningNumbersGenerator winningNumbersGenerator = new WinningNumbersGenerator();
+    public WinningNumbers generateWinningNumber() {
+        final WinningNumbers winningNumbers = new WinningNumbers();
 
         while (true) {
             try {
-                String winningNumberInput = inputView.requestWinningNumber();
+                final String winningNumberInput = inputView.requestWinningNumber();
 
-                String[] winningNumber = inputView.validateWinningNumberInput(winningNumberInput);
-                winningNumbersGenerator.generateWinningNumbers(winningNumber);
-                return winningNumbersGenerator;
+                final List<Integer> winningNumber = inputView.validateWinningNumberInput(winningNumberInput);
+                winningNumbers.generateWinningNumbers(winningNumber);
+                return winningNumbers;
             } catch (IllegalArgumentException e) {
                 outputView.exceptionMessage(e);
             }
         }
     }
 
-    public void generateBonusNumber(final WinningNumbersGenerator winningNumbersGenerator) {
+    public void generateBonusNumber(final WinningNumbers winningNumbers) {
         while (true) {
             try {
-                String bonusNumberInput = inputView.requestBonusNumber();
+                final String bonusNumberInput = inputView.requestBonusNumber();
 
-                int bonusNumber = inputView.validateBonusNumberInput(bonusNumberInput);
-                winningNumbersGenerator.generateBonusNumber(bonusNumber);
+                final int bonusNumber = inputView.validateBonusNumberInput(bonusNumberInput);
+                winningNumbers.generateBonusNumber(bonusNumber);
                 break ;
             } catch (IllegalArgumentException e) {
                 outputView.exceptionMessage(e);
@@ -81,15 +82,15 @@ public class LottoController {
         }
     }
 
-    public void result(final Customer customer, final WinningNumbersGenerator winningNumbersGenerator) {
+    public void result(final Customer customer, final WinningNumbers winningNumbers) {
         final LottoChecker lottoChecker= new LottoChecker(
-                winningNumbersGenerator.getWinningNumbers(),
-                winningNumbersGenerator.getBonusNumber()
+                winningNumbers.getWinningNumbers(),
+                winningNumbers.getBonusNumber()
         );
 
         customer.checkWinningNumber(lottoChecker);
-        Map<Prize, Integer> result = lottoChecker.getResult();
-        String profitRate = lottoChecker.getProfitRate();
+        final Map<Prize, Integer> result = lottoChecker.getResult();
+        final String profitRate = lottoChecker.getProfitRate();
 
         outputView.prizeResult(result);
         outputView.profitRate(profitRate);

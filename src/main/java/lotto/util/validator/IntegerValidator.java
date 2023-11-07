@@ -2,9 +2,9 @@ package lotto.util.validator;
 
 import static lotto.common.Constant.MAX_RANGE;
 import static lotto.common.Constant.MIN_RANGE;
-import static lotto.common.ExceptionMessage.INVALID_INTEGER_ERROR;
-import static lotto.common.ExceptionMessage.INVALID_RANGE_ERROR;
-import static lotto.common.ExceptionMessage.NUMBER_NOT_IN_RANGE_ERROR;
+import static lotto.common.ExceptionMessage.ERROR_INVALID_INTEGER;
+import static lotto.common.ExceptionMessage.ERROR_INVALID_RANGE;
+import static lotto.common.ExceptionMessage.ERROR_NUMBER_NOT_IN_RANGE;
 
 import java.util.regex.Pattern;
 
@@ -13,7 +13,7 @@ public class IntegerValidator {
 
     public static void validateInteger(String input) {
         if (!isValidInteger(input)) {
-            throw new IllegalArgumentException(INVALID_INTEGER_ERROR);
+            throw new IllegalArgumentException(ERROR_INVALID_INTEGER);
         }
     }
 
@@ -25,11 +25,11 @@ public class IntegerValidator {
         validateInteger(input);
 
         if (min > max) {
-            throw new IllegalArgumentException(INVALID_RANGE_ERROR);
+            throw new IllegalArgumentException(ERROR_INVALID_RANGE);
         }
 
         if (!isBetween(Integer.parseInt(input), min, max)) {
-            throw new IllegalArgumentException(String.format(NUMBER_NOT_IN_RANGE_ERROR, MIN_RANGE, MAX_RANGE));
+            throw new IllegalArgumentException(String.format(ERROR_NUMBER_NOT_IN_RANGE, MIN_RANGE, MAX_RANGE));
         }
     }
 

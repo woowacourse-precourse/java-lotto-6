@@ -1,6 +1,6 @@
 package lotto.model;
 
-import static lotto.common.ExceptionMessage.MAIN_AND_BONUS_NUMBERS_DUPLICATE_ERROR;
+import static lotto.common.ExceptionMessage.ERROR_MAIN_AND_BONUS_NUMBERS_DUPLICATE;
 
 public class WinningNumbers {
     private final MainNumbers mainNumbers;
@@ -23,7 +23,7 @@ public class WinningNumbers {
 
     private void validateDistinctMainAndBonusNumbers(MainNumbers mainNumbers, BonusNumber bonusNumber) {
         if (containsDuplicateNumber(mainNumbers, bonusNumber)) {
-            throw new IllegalArgumentException(MAIN_AND_BONUS_NUMBERS_DUPLICATE_ERROR);
+            throw new IllegalArgumentException(ERROR_MAIN_AND_BONUS_NUMBERS_DUPLICATE);
         }
     }
 

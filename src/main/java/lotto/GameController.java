@@ -7,11 +7,12 @@ public class GameController {
     GameService gameService = new GameService();
 
     public void start() {
-        int ticketCount = payCash();
+        int ticketCount = cashToTicket();
         buyTicket(ticketCount);
+        int winNumber = getWinNumber();
     }
 
-    public int payCash() {
+    public int cashToTicket() {
         int ticketCount;
 
         while (true) {
@@ -31,7 +32,7 @@ public class GameController {
 
     public void buyTicket(int ticketCount) {
         System.out.println(ticketCount + "개를 구매했습니다.");
-        for(int count = 1; count <= ticketCount; count++) {
+        for (int count = 1; count <= ticketCount; count++) {
             String generateResult = gameService.generateNumber();
             System.out.println(generateResult);
         }

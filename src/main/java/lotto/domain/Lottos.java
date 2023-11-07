@@ -19,9 +19,10 @@ public class Lottos {
         return new Lottos(lottoDummy);
     }
 
-    private List<Prize> compareWithWinnerLotto(final List<Integer> winnerNumbers, final Integer bonusNumber) {
+    private List<Prize> compareWithWinnerLotto(final WinnerLotto winnerLotto) {
         return lottos.stream()
-                .map(lotto -> lotto.compareWithWinnerLotto(winnerNumbers, bonusNumber))
+                .map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(),
+                        winnerLotto.getBonusNumber()))
                 .collect(Collectors.toList());
     }
 

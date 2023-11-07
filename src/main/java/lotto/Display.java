@@ -42,4 +42,10 @@ public class Display {
             throw new IllegalArgumentException();
         }
     }
+
+    public static void showIssuedLottos(List<Lotto> issuedLottos) {
+        for(Lotto lotto : issuedLottos) {
+            System.out.println(lotto);
+        }
+    }
 }

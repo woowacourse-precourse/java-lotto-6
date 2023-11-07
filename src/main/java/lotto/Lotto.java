@@ -1,12 +1,15 @@
 package lotto;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers = numbers.stream().sorted().collect(Collectors.toList());
         this.numbers = numbers;
     }
 
@@ -33,5 +36,14 @@ public class Lotto {
 
     private boolean isDuplicate(List<Integer> numbers) {
         return numbers.stream().distinct().count() != numbers.size();
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 }

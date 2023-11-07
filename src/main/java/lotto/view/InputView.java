@@ -32,29 +32,6 @@ public class InputView {
         }
     }
 
-    public List<Integer> inputWinnerNumbers() throws IllegalArgumentException, IllegalStateException {
-        try {
-            System.out.println();
-            System.out.println(INPUT_WINNER_NUMBER_MESSAGE.getMessage());
-            final String requestWinnerNumbers = getInput();
-            final List<String> numberDummy = Parser.parseNumberDummy(requestWinnerNumbers);
-            InputValidator.validateInputNumbersFormat(numberDummy);
-            return Parser.parseNumbers(numberDummy);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-    public Integer inputBonusNumber() throws IllegalArgumentException, IllegalStateException {
-        try {
-            System.out.println();
-            System.out.println(INPUT_BONUS_NUMBER.getMessage());
-            final String requestBonusNumber = getInput();
-            return Parser.parseInt(requestBonusNumber);
-        } catch (Exception e) {
-            throw e;
-        }
-    }
-
 
     public RequestWinnerLotto requestWinnerLotto() throws IllegalStateException {
         try {

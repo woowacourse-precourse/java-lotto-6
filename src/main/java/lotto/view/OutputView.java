@@ -3,10 +3,9 @@ package lotto.view;
 import java.util.*;
 import lotto.domain.LottoRank;
 import java.text.DecimalFormat;
+import lotto.domain.util.Constant;
 
 public class OutputView {
-    private static final int LOTTO_PRICE = 1000;
-
     public void printInputMoneyMessage() {
         System.out.println("구입금액을 입력해 주세요.");
     }
@@ -43,7 +42,7 @@ public class OutputView {
 
     public void printRateOfProfits(Map<LottoRank, Integer> rankCount) {
         int lottoCount = rankCount.values().stream().mapToInt(Integer::intValue).sum();
-        int inMoney = lottoCount * LOTTO_PRICE;
+        int inMoney = lottoCount * Constant.LOTTO_PRICE;
         int outMoney = rankCount.keySet()
                 .stream()
                 .mapToInt(rank -> rank.getPrize() * rankCount.get(rank))

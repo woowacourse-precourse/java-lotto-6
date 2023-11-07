@@ -13,8 +13,8 @@ import lotto.view.OutputView;
 public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
-    private LottoMachine lottoMachine;
-    private NumberGenerator numberGenerator;
+    private LottoGenerator lottoGenerator;
+    private final NumberGenerator numberGenerator;
 
     public LottoController(InputView inputView, OutputView outputView, NumberGenerator numberGenerator) {
         this.inputView = inputView;
@@ -31,7 +31,7 @@ public class LottoController {
         LottoWinningChecker lottoWinningChecker = initLottoWinningChecker();
         // 당첨 등수 맵 생성
         Map<LottoRank, Integer> rankCount = getResultRankCount(lottos, lottoWinningChecker);
-        // 결과 출력하기
+        // 결과 출력
         showResult(rankCount);
     }
 
@@ -49,9 +49,9 @@ public class LottoController {
     private List<Lotto> generateLottos() {
         // 검증된 금액 입력 받기
         int lottoCount = receiveValidLottoCount();
-        lottoMachine = new LottoMachine(lottoCount, numberGenerator);
-        lottoMachine.makeLottos();
-        return lottoMachine.getLottos();
+        lottoGenerator = new LottoGenerator(lottoCount, numberGenerator);
+        lottoGenerator.makeLottos();
+        return lottoGenerator.getLottos();
     }
 
     private List<Integer> receiveValidWinningNumbers() {

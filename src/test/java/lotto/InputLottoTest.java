@@ -1,11 +1,18 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+import lotto.input.InputLotto;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static lotto.input.InputLottoValidator.getInstance;
-public class InputLottoValidatorTest {
+
+public class InputLottoTest {
 
     @DisplayName("사용자가 알파벳을 입력하면 예외가 발생한다. ")
     @Test
@@ -29,4 +36,17 @@ public class InputLottoValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("사용자가 올바른 값을 입력하면 입력한 값이 그대로 반환된다.")
+    @Test
+    void createInputSuccess() {
+        String input = "1,2,3,4,5,6";
+        String result = "";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        InputLotto inputLotto = new InputLotto();
+
+        System.setIn(in);
+        result = inputLotto.getUserInput();
+
+        Assertions.assertEquals(input, result);
+    }
 }

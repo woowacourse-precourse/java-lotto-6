@@ -3,15 +3,60 @@ package lotto.controller;
 import lotto.domain.Lotto;
 import lotto.domain.LottoSystem;
 
-import static lotto.controller.InputController.inputMoney;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import static lotto.controller.InputController.*;
+import static lotto.controller.InputValidatorController.*;
 import static lotto.view.OutputView.*;
 
 public class LottoSystemController {
 
     public static void startLottoSystem() {
-        LottoSystem lottoSystem = new LottoSystem(inputMoney());
+        LottoSystem lottoSystem = new LottoSystem(buyLotto());
 
         printBuyLotto(lottoSystem);
+        enterLotto();
+    }
+
+    private static void enterLotto() {
+        enterLottoNumber();
+        enterLottoBonusNumber();
+    }
+
+    private static int enterLottoBonusNumber() {
+        String lottoBonusNumber = inputLottoBonusNumber();
+        inputLottoBonusNumberValidate(lottoBonusNumber);
+
+        return Integer.parseInt(lottoBonusNumber);
+    }
+
+    private static List<Integer> enterLottoNumber() {
+        String lottoNumbers = inputLottoNumber();
+        inputLottoNumberValidate(lottoNumbers);
+
+        return parseStringToList(lottoNumbers);
+    }
+
+    private static List<Integer> parseStringToList(String lottoNumbers) {
+        List<Integer> lottos = new ArrayList<>();
+
+        String[] lottoNumber = lottoNumbers.split(",");
+        for (int i = 0; i < lottoNumber.length; i++) {
+            lottos.add(Integer.parseInt(lottoNumber[i]));
+        }
+
+        Collections.sort(lottos);
+
+        return lottos;
+    }
+
+    private static int buyLotto() {
+        String money = inputMoney();
+        inputMoneyValidate(money);
+
+        return Integer.parseInt(money);
     }
 
     private static void printBuyLotto(LottoSystem lottoSystem) {

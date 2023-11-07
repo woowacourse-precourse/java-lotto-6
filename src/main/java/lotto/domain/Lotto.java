@@ -23,6 +23,14 @@ public class Lotto {
         return sortedNumbers.toString();
     }
 
+    public List<Integer> getNumbers() {
+        List<Integer> result = List.of();
+        for (Integer number : numbers) {
+            result.add(number);
+        }
+        return result;
+    }
+
     public int getMatchCountWith(List<Integer> targetNumbers) {
         int matchCount = 0;
         for (Integer number : targetNumbers) {

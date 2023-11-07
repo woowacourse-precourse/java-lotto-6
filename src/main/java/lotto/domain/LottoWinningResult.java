@@ -49,7 +49,7 @@ public class LottoWinningResult {
 
     public double calculateWinningRate() {
         int totalPurchasedPrice = 0;
-        int winningPrice = 0;
+        long winningPrice = 0;
         for (LottoRank lottoRank : lottoRankCounts.keySet()) {
             int rankCount = lottoRankCounts.get(lottoRank);
             totalPurchasedPrice += (rankCount * LottoConfig.PURCHASE_PRICE_UNIT);
@@ -58,7 +58,7 @@ public class LottoWinningResult {
         return getFormattedWinningRate(totalPurchasedPrice, winningPrice);
     }
 
-    private double getFormattedWinningRate(int totalPurchasePrice, int winningPrice) {
+    private double getFormattedWinningRate(int totalPurchasePrice, long winningPrice) {
         double winningRate = (winningPrice / (double) totalPurchasePrice) * 100;
         if (winningRate == 0) {
             return 0;

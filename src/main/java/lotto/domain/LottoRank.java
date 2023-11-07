@@ -16,11 +16,11 @@ public enum LottoRank {
     private static final String RANK_MESSAGE_WITH_BONUS = "%d개 일치, 보너스 볼 일치 (%s원) - %d개\n";
 
     private final int matchCount;
-    private final int winPrice;
+    private final long winPrice;
 
     private final boolean bonusNumberMatchNeeded;
 
-    LottoRank(int matchCount, int winPrice, boolean bonusNumberMatchNeeded) {
+    LottoRank(int matchCount, long winPrice, boolean bonusNumberMatchNeeded) {
         this.matchCount = matchCount;
         this.winPrice = winPrice;
         this.bonusNumberMatchNeeded = bonusNumberMatchNeeded;
@@ -52,7 +52,7 @@ public enum LottoRank {
         return bonusNumberMatched || !bonusNumberMatchNeeded;
     }
 
-    public int getTotalWinPrice(int rankCount) {
+    public long getTotalWinPrice(int rankCount) {
         return rankCount * winPrice;
     }
 

@@ -5,7 +5,12 @@ import camp.nextstep.edu.missionutils.*;
 import java.util.*;
 
 public class Application {
+    public static final int LOTTO_PRICE = 1000;
+    public static final int LOTTO_MIN = 1;
+    public static final int LOTTO_MAX = 45;
+    public static final int LOTTO_COUNT = 6;
     public static final int RANKING = 5;
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
@@ -14,25 +19,25 @@ public class Application {
         while(true) {
             try {
                 paid = Integer.parseInt(Console.readLine());
-                if(paid % 1000 != 0) {
+                if(paid % LOTTO_PRICE != 0) {
                     throw new IllegalArgumentException();
                 }
 
                 break;
             }
             catch(IllegalArgumentException e) {
-                System.out.println("[ERROR] 구입금액은 1000의 배수여야 합니다.");
+                System.out.println("[ERROR] 구입금액은 " + LOTTO_PRICE + "의 배수여야 합니다.");
             }
         }
 
         System.out.println();
 
-        int bought = paid / 1000;
+        int bought = paid / LOTTO_PRICE;
         System.out.println(bought + "개를 구매했습니다.");
 
         Lotto[] lottoNum = new Lotto[bought];
         for(int i = 0; i < bought; i++) {
-            lottoNum[i] = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            lottoNum[i] = new Lotto(Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_COUNT));
             Collections.sort(lottoNum[i].getNumbers());
         }
 
@@ -46,14 +51,14 @@ public class Application {
 
             try {
                 String[] str = Console.readLine().split(",");
-                if (str.length != 6) {
-                    throw new IllegalArgumentException("당첨 번호는 6개를 입력해야 합니다.");
+                if (str.length != LOTTO_COUNT) {
+                    throw new IllegalArgumentException("당첨 번호는 " + LOTTO_COUNT + "개를 입력해야 합니다.");
                 }
 
                 for (String s : str) {
                     int n = Integer.parseInt(s);
-                    if (n < 1 || n > 45) {
-                        throw new IllegalArgumentException("당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+                    if (n < LOTTO_MIN || n > LOTTO_MAX) {
+                        throw new IllegalArgumentException("당첨 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.");
                     }
                     userNum.add(n);
                 }
@@ -78,8 +83,8 @@ public class Application {
 
             try {
                 bonusNum = Integer.parseInt(Console.readLine());
-                if(bonusNum < 1 || bonusNum > 45) {
-                    throw new IllegalArgumentException("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
+                if(bonusNum < LOTTO_MIN || bonusNum > LOTTO_MAX) {
+                    throw new IllegalArgumentException("보너스 번호는 " + LOTTO_MIN + "부터 " + LOTTO_MAX + " 사이의 숫자여야 합니다.");
                 }
 
                 if (userNum.contains(bonusNum)) {
@@ -161,8 +166,12 @@ public class Application {
         System.out.print("(" + String.format("%,d", Rank.FIRST.getPrize()) + "원) - ");
         System.out.println(lottoWinsCount[Rank.FIRST.ordinal()] + "개");
 
-        double profit = (double) earned / paid * 100;
+        double profit = getProfit((double) earned, paid);
         System.out.println("총 수익률은 " + String.format("%.2f", profit) + "%입니다.");
+    }
+
+    private static double getProfit(double earned, long paid) {
+        return earned / paid * 100.0;
     }
 }
 

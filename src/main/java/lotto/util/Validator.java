@@ -16,14 +16,9 @@ public class Validator {
         }
     }
 
-    public static int isDivide(int inputNum) {
-        if(inputNum % Config.PRICE_UNIT == 0) return inputNum/Config.PRICE_UNIT;
+    public static int isDivide(int number) {
+        if(number % Config.PRICE_UNIT == 0) return number/Config.PRICE_UNIT;
         return ErrorView.isDivideError();
-    }
-
-    public static void validateLottoNumbers(List<Integer> numbers) {
-        isSize(numbers);
-        isDuplicated(numbers);
     }
 
 
@@ -43,13 +38,19 @@ public class Validator {
         }
     }
 
-    public static void isDuplicatedBonus(List<Integer> numbers, int num) {
-        if(numbers.contains(num)) ErrorView.isDuplicatedError();
+    public static void isDuplicatedBonus(List<Integer> numbers, int number) {
+        if(numbers.contains(number)) ErrorView.isDuplicatedError();
     }
 
     public static void isSmallAndBig(int inputNum) {
         if(inputNum < Config.MIN_LOTTO || inputNum > Config.MAX_LOTTO) ErrorView.isSmallAndBigError();
     }
+
+    public static void validateLottoNumbers(List<Integer> numbers) {
+        isSize(numbers);
+        isDuplicated(numbers);
+    }
+
 
 
 

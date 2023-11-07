@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 public class InputView {
     private static final String REGEXP_ONLY_NUMBER = "^\\d*$";
     private static final Pattern PATTERN_ONLY_NUMBER = Pattern.compile(REGEXP_ONLY_NUMBER);
-    public static final String SPLIT_DELIMITER = ",";
+    private static final String SPLIT_DELIMITER = ",";
 
     public Long getPurchaseAmount() {
         String input = readLine();
@@ -34,10 +34,6 @@ public class InputView {
         validateInputBlank(input);
         validateInputDigit(input);
         return convertInputIntoNumberFormat(input);
-    }
-
-    public void close() {
-        Console.close();
     }
 
     private void validateInputBlank(String input) {
@@ -69,13 +65,21 @@ public class InputView {
     }
 
     private List<Integer> convertInputIntoNumbersFormat(String[] splitInput) {
-        return Arrays.stream(splitInput)
-                .map(Integer::parseInt)
-                .toList();
+        try {
+            return Arrays.stream(splitInput)
+                    .map(Integer::parseInt)
+                    .toList();
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(EXCEEDED_MAXIMUM_NUMBER_FORMAT.toString());
+        }
     }
 
     private int convertInputIntoNumberFormat(String input) {
-        return Integer.parseInt(input);
+        try {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(EXCEEDED_MAXIMUM_NUMBER_FORMAT.toString());
+        }
     }
 
     private String readLine() {

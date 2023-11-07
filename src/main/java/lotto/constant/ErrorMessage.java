@@ -7,7 +7,7 @@ public enum ErrorMessage {
     INITIAL_ERROR_TEXT("[ERROR] "),
     BLANK_INPUT("입력값은 공백일 수 없습니다."),
     INPUT_NOT_DIGIT("입력값은 숫자여야 합니다."),
-    EXCEEDED_MAXIMUM_NUMBER_FORMAT(String.format("최대로 입력할 수 있는 수를 초과합니다. (최대: %d)", Long.MAX_VALUE)),
+    EXCEEDED_MAXIMUM_NUMBER_FORMAT("최대로 입력할 수 있는 수를 초과합니다."),
     MONEY_LESS_THAN_ZERO("구매금액은 0 이하일 수 없습니다."),
     MONEY_WITH_REMAINDER("구매금액은 1개의 로또 금액으로 나누어 떨어져야합니다."),
     DUPLICATED_LOTTO_NUMBERS("로또 번호들은 중복될 수 없습니다."),
@@ -16,6 +16,8 @@ public enum ErrorMessage {
             String.format("로또 번호는 %d와 %d 사이 수여야 합니다.", MIN_LOTTO_NUMBER.getValue(), MAX_LOTTO_NUMBER.getValue())
     ),
     BONUS_NUMBER_DUPLICATED_WINNING_NUMBERS("보너스 번호가 당첨 번호들과 중복되었습니다."),
+    OWNER_ALREADY_MATCH_WITH_WINNING_LOTTO("당첨결과를 중복으로 매기려 합니다."),
+    NOT_MATCHING_WITH_WINNING_LOTTO("당첨결과를 보지 않았습니다.")
     ;
 
     private final String message;

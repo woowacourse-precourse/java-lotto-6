@@ -13,8 +13,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-
-
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또를 생성하기 위한 숫자의 개수는 6개 입니다.");

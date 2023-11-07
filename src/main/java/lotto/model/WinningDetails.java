@@ -20,7 +20,7 @@ public class WinningDetails {
 
     public List<WinningSummary> getResults() {
         return summaries.stream()
-                .sorted(comparing(WinningSummary::numberOfMatches))
+                .sorted(comparing(WinningSummary::prize))
                 .toList();
     }
 

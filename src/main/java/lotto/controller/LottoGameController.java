@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import lotto.Generator.LottoGenerator;
+import lotto.model.Lottos;
 import lotto.model.PurchaseCost;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -10,15 +12,19 @@ public class LottoGameController {
 
     private final OutputView output;
     private final InputView input;
+    private final LottoGenerator lottoGenerator;
 
-    public LottoGameController(OutputView output, InputView input) {
+
+    public LottoGameController(OutputView output, InputView input, LottoGenerator lottoGenerator) {
         this.output = output;
         this.input = input;
+        this.lottoGenerator = lottoGenerator;
     }
 
     public void start() {
         PurchaseCost purchaseCost = inputLottoPurchaseCost();
-//        printLottoNumbers();
+        int lottoCount = purchaseCost.calculateLottoCount();
+        Lottos puchaseLottos = lottoGenerator.generatePurchaseLottos(lottoCount);
 //        inputWinningNumbers();
 //        inputBonusNumbers();
 //        printWinningStatistics();

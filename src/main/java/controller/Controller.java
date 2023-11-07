@@ -2,8 +2,8 @@ package controller;
 
 import View.InputView;
 import View.OutputView;
+import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import lotto.Buyer;
 import lotto.Lotto;
 import lotto.LottoMachine;
@@ -58,16 +58,17 @@ public class Controller {
     }
 
     private PlayLotto startLotto() {
-        Set<Integer> prizeNumbers = askPrizeNumbers();
-        int bonusNumber = askBonusNumber();
+        Lotto prizeLotto = askPrizeNumbers();
+        List<Integer> prizeNumbers = prizeLotto.getNumbers();
+        int bonusNumber = askBonusNumber(prizeNumbers);
         return new PlayLotto(prizeNumbers, bonusNumber);
     }
 
-    private Set<Integer> askPrizeNumbers() {
+    private Lotto askPrizeNumbers() {
         OutputView.promptPrizeNumbers();
         try {
             String inputPrizeNumbers = inputView.inputPrizeNumbers();
-            return Util.stringToIntegerSet(inputPrizeNumbers);
+            return new Lotto(Util.stringToIntegerList(inputPrizeNumbers));
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return askPrizeNumbers();
@@ -75,16 +76,25 @@ public class Controller {
 
     }
 
-    private int askBonusNumber() {
+    private int askBonusNumber(List<Integer> prizeNumbers) {
         OutputView.promptBonusNumber();
         try {
             String inputBonusNumber = inputView.inputBonusNumber();
-            //ask메서드 둘 다 예외처리 수정하기
-            return Integer.parseInt(inputBonusNumber);
+            int bonusNumber = Integer.parseInt(inputBonusNumber);
+            validateBonusNumber(prizeNumbers, bonusNumber);
+            return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return askBonusNumber();
+            return askBonusNumber(prizeNumbers);
         }
+    }
 
+    private void validateBonusNumber(List<Integer> prizeNumbers, int bonusNumber) {
+        Lotto.validateSingleNumberRange(bonusNumber);
+        if (prizeNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("보너스 번호는 당첨번호와 중복 값으로 설정할 수 없습니다.");
+        }
     }
 }
+
+// 당첨 번호를 입력받고 입력 받은 당첨 번호와 중복이 있는 경우 해당 보너스 번호는 새로 발급 받아야 한다.

@@ -46,8 +46,7 @@ public class OutputView {
         StringBuilder sb = new StringBuilder();
         for (LottoResult result : LottoResult.values()) {
             if (!result.equals(LottoResult.UNDER_THREE)) {
-                sb.append(result.getMessage()).append(" - ")
-                        .append(lottosResult.getResultCounts().getOrDefault(result, 0)).append("개\n");
+                sb.append(result.getMessage()).append(" - ").append(lottosResult.getResultCounts().getOrDefault(result, 0)).append("개\n");
             }
         }
         System.out.println(sb);

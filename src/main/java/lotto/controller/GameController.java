@@ -16,15 +16,17 @@ public class GameController {
     private final InputController inputController;
     private final OutputView outputView;
 
-    public GameController() {
-        this.inputController = new InputController();
-        this.outputView = new OutputView();
+    public GameController(InputController inputController, OutputView outputView) {
+        this.inputController = inputController;
+        this.outputView = outputView;
     }
+
     public void startGame() {
         user = new User(buyLottos());
         Lottos userLottos = generateUserLottos(ticketAmount);
         outputView.showUserLottoMessage(userLottos);
     }
+
     public Money buyLottos() {
         outputView.showInputMoneyMessage();
         int givenMoney = inputController.getMoney();

@@ -31,8 +31,8 @@ public class ExceptionHandler {
     public void handleBonusNumberException(String input) {
         LottoNumberException exception = new LottoNumberException();
 
-        exception.checkBlank(input);
-        exception.checkInteger(input);
-        exception.checkLottoNumber(input);
+        exception.checkBlank(input);        //빈칸
+        exception.checkInteger(input);      //한 자리 숫자
+        exception.checkLottoNumber(input);  //범위
     }
 }

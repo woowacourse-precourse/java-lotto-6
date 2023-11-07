@@ -64,4 +64,8 @@ public class LottoDraw {
 
         lotto = new Lotto(drawNumbers);
     }
+
+    public Lotto getLotto() {
+        return lotto;
+    }
 }

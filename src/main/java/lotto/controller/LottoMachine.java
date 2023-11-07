@@ -4,7 +4,6 @@ import lotto.controller.handler.DrawHandler;
 import lotto.controller.machine.NumberGenerator;
 import lotto.controller.user.LottoPurchase;
 import lotto.domain.Lotto;
-import lotto.model.WinningNumber;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

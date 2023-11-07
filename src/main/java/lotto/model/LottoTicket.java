@@ -1,6 +1,7 @@
 package lotto.model;
 
 import lotto.domain.Lotto;
+import lotto.domain.WinningNumber;
 
 import java.util.List;
 

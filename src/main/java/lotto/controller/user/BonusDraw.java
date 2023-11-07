@@ -1,7 +1,10 @@
 package lotto.controller.user;
 
 import lotto.controller.handler.ExceptionHandler;
+import lotto.domain.Lotto;
 import lotto.view.InputView;
+
+import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
@@ -38,6 +41,7 @@ public class BonusDraw {
                 break;
             }
         }
+
         bonusNumber = Integer.parseInt(input);
     }
 

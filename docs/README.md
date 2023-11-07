@@ -46,6 +46,16 @@
   - [x] 수익결과를 구한다. - LottoResult
 
 `모든 기능은 구현을 완료, 해당 기능을 이용한 프로토타입 생성`
-- [ ] 프로토타입을 생성하고 유지보수 한다 - Apllication
-
+- [x] 프로토타입을 생성하고 유지보수 한다 - Apllication
 ---
+
+## 유지보수를 위해 MVC 패턴으로 분할하기
+`추가적으로 VIEW 시점에서 Input값에 대한 Validate 작업 진행하기`
+-[ ] InputDataException
+
+### MODEL
+`domain 클래스들을 그대로 이용한다.`
+### Controller
+`domain 클래스들을 이용해서 View에서 입력 받은 값을 저장하거나 모델의 정보를 전달한다`
+### VIEW
+`user와 직접적으로 소통되는 UI공간`

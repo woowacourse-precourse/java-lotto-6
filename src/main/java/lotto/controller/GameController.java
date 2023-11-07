@@ -16,7 +16,7 @@ public class GameController {
         Payment payment = getPaymentFromUser();
 
         Lottos generatedLottos = createLottos(payment.calculateLottoAmount());
-        OutputView.printGeneratedLottos(generatedLottos);
+        OutputView.printLottos(generatedLottos);
 
         WinningNumber winningNumber = getWinningNumberFromUser();
         BonusNumber bonusNumber = getBonusNumberFromUser(winningNumber);

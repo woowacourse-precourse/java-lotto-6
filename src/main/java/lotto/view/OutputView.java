@@ -16,7 +16,7 @@ public class OutputView {
     private static final String EMPTY_LINE = "";
     private static final String DASHS = "---";
 
-    public static void printGeneratedLottos(Lottos lottos) {
+    public static void printLottos(Lottos lottos) {
         System.out.println(EMPTY_LINE);
         printLottosAmount(lottos.getLottosAmount());
         printLottosNumber(lottos.getLottosAllSortedNumber());

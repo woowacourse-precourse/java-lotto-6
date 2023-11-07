@@ -3,6 +3,11 @@ package lotto;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -14,6 +19,15 @@ class LottoServiceTest {
     @BeforeEach
     public void setUp() {
         lottoService = new LottoService();
+    }
+
+    @Test
+    void testPrintLottos() {
+        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)), new Lotto(List.of(6, 5, 4, 3, 2, 1)));
+        OutputStream out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+        lottoService.printLottos(lottos);
+        assertEquals("[1, 2, 3, 4, 5, 6]\n[6, 5, 4, 3, 2, 1]", out.toString().trim());
     }
 
     @DisplayName("구입한 로또 수만큼 로또 번호 발행.")

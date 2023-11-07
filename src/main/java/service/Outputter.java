@@ -14,10 +14,14 @@ public class Outputter {
 
     public void promptLottoList(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            // Lotto 객체에서 번호 리스트를 가져오는 메소드가 있다고 가정합니다.
-            List<Integer> numbers = lotto.getNumbers();
+            List<Integer> numbers = lotto.getLottoNumbers();
             System.out.println(numbers);
         }
+        System.out.println();
+    }
+
+    public void prmoptBunusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
     }
 
 

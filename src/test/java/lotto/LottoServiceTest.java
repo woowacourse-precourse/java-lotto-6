@@ -17,7 +17,7 @@ public class LottoServiceTest {
     @DisplayName("입력 금액에 맞춰 개수만큼 로또 번호를 발급 받는다.")
     void 입력된_금액_만큼_로또번호를_발급_받는_테스트() {
         final User case1 = new User(new Amount(10000)); // 10개 구매
-        final User case2 = new User(new Amount(10000)); // 20개 구매
+        final User case2 = new User(new Amount(20000)); // 20개 구매
 
         lottoService.buyLottoAll(case1);
         lottoService.buyLottoAll(case2);

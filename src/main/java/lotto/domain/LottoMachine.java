@@ -5,13 +5,7 @@ import java.util.List;
 import lotto.Lotto;
 import lotto.util.random.NumberGenerator;
 
-public class LottoMachine {
-
-    private final NumberGenerator numberGenerator;
-
-    public LottoMachine(NumberGenerator numberGenerator) {
-        this.numberGenerator = numberGenerator;
-    }
+public record LottoMachine(NumberGenerator numberGenerator) {
 
     public Lottos issue(int issueAmount) {
         List<Lotto> lottos = new ArrayList<>();

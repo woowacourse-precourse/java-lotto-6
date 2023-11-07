@@ -19,6 +19,7 @@ public class Controller {
     }
 
     private void resultLotto(Customer customer) {
+        OutputMessage.purchaseMessage(customer.getPurchaseMoney() / 1000);
         for (Lotto lotto : customer.getPurchaseLotteries()) {
             OutputMessage.lottoNumber(lotto.getNumbers());
         }

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Util {
+public class ValidateUtil {
 
     public static int toNumeric(String stringNumber) {
         try {
@@ -15,7 +15,7 @@ public class Util {
     }
 
     public static List<Integer> stringToArrayList(String inputNumbers) {
-        List<Integer> numbers = Arrays.stream(inputNumbers.split(",")).map(Util::toNumeric)
+        List<Integer> numbers = Arrays.stream(inputNumbers.split(",")).map(ValidateUtil::toNumeric)
                 .collect(Collectors.toList());
         return numbers;
     }

@@ -2,7 +2,10 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +44,15 @@ class LottoTicketGeneratorTest {
     void invalidAmountErrorTest3() {
         assertThatThrownBy(() -> new LottoTicketGenerator(0))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    void createLottoTicketTest() {
+        LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator(1000);
+        List<Integer> result = lottoTicketGenerator.createLottoTicket();
+        for (Integer lottoNumber : result){
+            assertThat(lottoNumber).isBetween(1,45);
+        }
     }
 
 }

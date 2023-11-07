@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LottoGenerator {
 
-    public static List<Integer> generatgeLottoNumber() {
+    public static List<Integer> generateLottoNumber() {
         List<Integer> lottoNumber = new ArrayList<>();
         while (lottoNumber.size() < 6) {
             int randomNumber = Randoms.pickNumberInRange(1, 45);

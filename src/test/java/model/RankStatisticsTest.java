@@ -30,4 +30,18 @@ class RankStatisticsTest {
         assertThat(firstCountBefore).isEqualTo(1);
     }
 
+    @DisplayName("순위 통계에 따른 전체 당첨금을 리턴한다.")
+    @Test
+    void returnTotalPrizeBasedOnRankStatistics() {
+        RankStatistics rankStatistics = new RankStatistics();
+        rankStatistics.add(LottoRank.FIRST);
+        rankStatistics.add(LottoRank.SECOND);
+        rankStatistics.add(LottoRank.FIFTH);
+        int totalPrize = rankStatistics.getTotalPrize();
+        assertThat(totalPrize).isEqualTo(
+                LottoRank.FIRST.getPrize() +
+                        LottoRank.SECOND.getPrize() +
+                        LottoRank.FIFTH.getPrize()
+        );
+    }
 }

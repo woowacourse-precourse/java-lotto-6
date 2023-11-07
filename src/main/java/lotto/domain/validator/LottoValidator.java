@@ -52,4 +52,10 @@ public class LottoValidator {
         List<Integer> lottoNumbers = winningNumbers.getLottoNumbers();
         return lottoNumbers.contains(bonusNumber.getBonusNumber());
     }
+    
+    public static void verifyLottosNotNullOrNotEmpty(List<Lotto> lottos) {
+        if (lottos == null || lottos.isEmpty()) {
+            throw new IllegalArgumentException("Lottos 객체는 최소 하나 이상의 Lotto로 이루어져야 합니다.");
+        }
+    }
 }

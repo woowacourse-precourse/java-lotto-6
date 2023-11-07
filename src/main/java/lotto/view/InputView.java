@@ -2,6 +2,7 @@ package lotto.view;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static lotto.util.ExceptionEnum.NOT_NUMBER_FORMAT;
+import static lotto.util.InputEnum.BONUS_NUMBER_INPUT;
 import static lotto.util.InputEnum.PURCHASE_AMOUNT_INPUT;
 import static lotto.util.InputEnum.WINNING_NUMBERS_INPUT;
 
@@ -16,7 +17,7 @@ public class InputView{
 
     public static Amount inputPurchaseAmount(){
         System.out.println(PURCHASE_AMOUNT_INPUT.message());
-        int amount = 0;
+        int amount;
         try{
             amount = Integer.parseInt(readLine());
         } catch (NumberFormatException NFE){
@@ -30,14 +31,21 @@ public class InputView{
         List<Integer> numbers;
         try{
             numbers = Arrays.asList(readLine().split(",")).stream().map(s -> Integer.parseInt(s)).toList();
-        } catch (NumberFormatException NPE){
+        } catch (NumberFormatException NFE){
             throw new IllegalArgumentException(NOT_NUMBER_FORMAT.message());
         }
         return new Lotto(numbers);
     }
 
     public static Bonus inputBonusNumber(){
-        return null;
+        System.out.println(BONUS_NUMBER_INPUT.message());
+        int bonusNumber;
+        try{
+            bonusNumber = Integer.parseInt(readLine());
+        }catch(NumberFormatException NFE){
+            throw new IllegalArgumentException(NOT_NUMBER_FORMAT.message());
+        }
+        return new Bonus(bonusNumber);
     }
 
 }

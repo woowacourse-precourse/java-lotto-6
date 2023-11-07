@@ -23,7 +23,7 @@ public class Prints
 	}
 	public static final void printStastics(int buyLot, double totalStastics)
 	{
-	    System.out.println("총 수익률은 " + String.format("%.1f", totalStastics/buyLot) + "%입니다.");
+	    System.out.println("총 수익률은 " + String.format("%.1f", (totalStastics/buyLot)*100) + "%입니다.");
 	}
 	
 }

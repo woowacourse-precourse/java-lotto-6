@@ -16,7 +16,7 @@ public class LottoConstant {
     public static final int FIFTH_PRIZE = 5_000;
 
     public static final int FIRST_RANK_LOTTO_MATCHED = 6;
-    public static final int SECOND_RANK_LOTTO_MATCHED = 6;
+    public static final int SECOND_RANK_LOTTO_MATCHED = 5;
     public static final int THIRD_RANK_LOTTO_MATCHED = 5;
     public static final int FOURTH_RANK_LOTTO_MATCHED = 4;
     public static final int FIFTH_RANK_LOTTO_MATCHED = 3;

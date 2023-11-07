@@ -22,7 +22,8 @@ public class ConfirmationServiceTest {
         lottos.add( new Lotto(List.of(1, 2, 9, 8, 7, 6)) );
         lottos.add( new Lotto(List.of(1, 2, 11, 4, 5, 6)) );
 
-        ConfirmationService confirmationService = new ConfirmationService(lottos);
+        ConfirmationService confirmationService = new ConfirmationService();
+        confirmationService.setLottos(lottos);
         confirmationService.confirmWinnings(List.of(1, 2, 3, 4, 5, 6), 11);
 
         HashMap<Winning, Integer> winningCount = confirmationService.getWinningCount();
@@ -43,7 +44,8 @@ public class ConfirmationServiceTest {
         lottos.add( new Lotto(List.of(1, 2, 9, 8, 7, 6)) ); // FIFTH
         lottos.add( new Lotto(List.of(1, 2, 11, 4, 5, 6)) ); //Second
 
-        ConfirmationService confirmationService = new ConfirmationService(lottos);
+        ConfirmationService confirmationService = new ConfirmationService();
+        confirmationService.setLottos(lottos);
         confirmationService.confirmWinnings(List.of(1, 2, 3, 4, 5, 6), 11);
 
         int prizeAmount = Winning.FIRST.getAmount();

@@ -8,10 +8,13 @@ public class ConfirmationService {
     private List<Lotto> lottos;
     private int winningPrizeAmount;
 
-    public ConfirmationService(List<Lotto> lottos) {
-        this.lottos = lottos;
+    public ConfirmationService() {
         this.winningPrizeAmount = 0;
         this.winningCount = new HashMap<>();
+    }
+
+    public void setLottos(List<Lotto> lottos) {
+        this.lottos = lottos;
     }
 
     public void confirmWinnings(List<Integer> winningNumbers, int bonus){

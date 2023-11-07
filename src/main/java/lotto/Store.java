@@ -17,8 +17,9 @@ public class Store {
         List<Lotto> lottos = new ArrayList<>();
         int lottoCount = purchaseAmount/lottoPrice;
         for(int i = 0; i < lottoCount; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            Collections.sort(numbers);
+            List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            ArrayList<Integer> numbers = new ArrayList<>();
+            numbers.addAll(randomNumbers);
             lottos.add(new Lotto(numbers));
         }
 

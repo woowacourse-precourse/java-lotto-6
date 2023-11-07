@@ -12,8 +12,8 @@ public class LottoResult {
         init();
     }
 
-    public int get(int key) {
-        return ranks.get(key);
+    public int get(int rank) {
+        return ranks.get(rank);
     }
 
     public void add(int rank) {

@@ -15,25 +15,22 @@ import lotto.view.OutputView;
 
 public class WinningNumberService {
     private final LottoWinningNumber lottoWinningNumber = new LottoWinningNumber();
-    private final InputView inputView = new InputView();
     private final ValidationUtil validationUtil =new ValidationUtil();
     private final LottoResultCount lottoResultCount = new LottoResultCount();
 
-    public void getInputWinningNumber(){
-        String number = inputView.getInputWithMessage(InputMessage.INPUT_NUMBER.getMessage());
+    public void getInputWinningNumber(String number, String bonusNum){
         List<Integer> winning = validationUtil.validateWinningNumber(number);
-        String bonusNum = inputView.getInputWithMessage(InputMessage.INPUT_BONUS.getMessage());
         int bonus = validationUtil.validateWinningNumberWithBonus(bonusNum, winning);
         lottoWinningNumber.getWinningNumbersInfo(winning, bonus);
     }
 
-    public void getLottoWinningResult(LottoPurchase lottoPurchase) {
-        for (Lotto lotto: lottoPurchase.getLottos()) {
+    public void getLottoWinningResult(LottoPurchase lottoPurchase, ResultService resultService) {
+        for (Lotto lotto: lottoPurchase.getPurchaseLotto()) {
             List<Integer> LottoNums = lotto.getLottoNumbers();
             int matchCount = getMatchCount(LottoNums);
             addMatchCount(checkBonusNumber(LottoNums, matchCount));
         }
-        ResultService resultService = new ResultService(lottoResultCount, lottoPurchase.getAmount());
+        resultService.createResultService(lottoResultCount, lottoPurchase.getAmount());
     }
 
     private int getMatchCount(List<Integer> userNums) {

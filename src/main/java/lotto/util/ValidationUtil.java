@@ -21,7 +21,7 @@ public class ValidationUtil {
     }
 
     private void validateNumberType (String input) {
-        if(checkPattern.matcher(input).matches()){
+        if(!checkPattern.matcher(input).matches()){
             throwExceptionMessage(ExceptionMessage.IS_NOT_NUMBER.getMessage());
         }
     }

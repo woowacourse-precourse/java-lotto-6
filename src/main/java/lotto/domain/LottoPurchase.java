@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LottoPurchase {
 
-    private List<Lotto> Lottos;
+    private List<Lotto> purchaseLotto;
     private int amount;
 
     public void LottoPurchaseCreat(int purchaseMoney){
@@ -15,14 +15,14 @@ public class LottoPurchase {
     }
 
     public void getUserLotto(List<Lotto> purchaseLotto) {
-        this.Lottos = purchaseLotto;
+        this.purchaseLotto = purchaseLotto;
 
     }
 
     public int getAmount() {
         return amount;
     }
-    public List<Lotto> getLottos() {
-        return Lottos;
+    public List<Lotto> getPurchaseLotto() {
+        return purchaseLotto;
     }
 }

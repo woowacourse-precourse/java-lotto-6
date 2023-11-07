@@ -12,40 +12,32 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class PurchaseService {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
     private final ValidationUtil validationUtil =new ValidationUtil();
     private final LottoPurchase lottoPurchase = new LottoPurchase();
     private final NumberUtil numberUtil = new NumberUtil();
 
 
 
-    public LottoPurchase getInputPurchase(){
-        String purchase = inputView.getInputWithMessage(InputMessage.INPUT_PURCHASE.getMessage());
+    public LottoPurchase getInputPurchase(String purchase){
         lottoPurchase.LottoPurchaseCreat(validationUtil.validatePurchase(purchase));
-        printPurchaseLotto(lottoPurchase.getAmount());
         generateLotto(lottoPurchase.getAmount());
         return lottoPurchase;
     }
 
-    public void printPurchaseLotto(int amount){
-        outputView.printPurchaseAmount(amount);
-    }
-
     public void generateLotto(int amount){
-        List<Lotto> Lottos = new ArrayList<>();
+        List<Lotto> purchaseLotto = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             Lotto lotto = generateLottoNumber();
-            Lottos.add(lotto);
+            purchaseLotto.add(lotto);
         }
-        lottoPurchase.getUserLotto(Lottos);
+        lottoPurchase.getUserLotto(purchaseLotto);
     }
 
     public Lotto generateLottoNumber(){
         List<Integer> lottoNumbers = numberUtil.getLottoNumbers();
         lottoNumbers.sort(Comparator.naturalOrder());
-        Lotto lotto = new Lotto(lottoNumbers);
-        outputView.printPurchaseLotto(lotto.getLottoNumbers());
-        return lotto;
+        return new Lotto(lottoNumbers);
     }
+
+
 }

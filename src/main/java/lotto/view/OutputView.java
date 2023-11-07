@@ -8,19 +8,32 @@ import java.util.List;
 import java.util.StringJoiner;
 import lotto.constant.LottoResult;
 import lotto.constant.message.OutputMessage;
+import lotto.domain.Lotto;
 import lotto.domain.LottoResultCount;
 
 public class OutputView {
-    public void printPurchaseAmount(int amount) {
-        System.out.println(amount+PURCHASE_LOTTO.getMessage());
+
+    public void printAboutPurchase(int amount, List<Lotto> purchaseLotto){
+        printPurchaseAmount(amount);
+        printPurchaseLotto(purchaseLotto);
+    }
+    private void printPurchaseAmount(int amount) {
+        System.out.println("\n"+amount+PURCHASE_LOTTO.getMessage());
     }
 
-    public void printPurchaseLotto(List<Integer> lotto) {
+    private void printPurchaseLotto(List<Lotto> purchaseLotto){
+        for (Lotto lotto :
+                purchaseLotto) {
+            printPurchaseLottoNumber(lotto.getLottoNumbers());
+        }
+    }
+
+    private void printPurchaseLottoNumber(List<Integer> lotto) {
         String formattedLotto = listToString(lotto);
         System.out.println(formattedLotto);
     }
 
-    public String listToString(List<Integer> list) {
+    private String listToString(List<Integer> list) {
         StringJoiner joiner = new StringJoiner(", ", "[", "]");
         for (int number : list) {
             joiner.add(Integer.toString(number));
@@ -29,7 +42,7 @@ public class OutputView {
     }
 
     public void outputWinningResult(LottoResultCount lottoResultCount, double rate){
-        System.out.println(OutputMessage.RESULT_START);
+        System.out.println(OutputMessage.RESULT_START.getMessage());
         winningResultOutput(lottoResultCount);
         System.out.printf(PROFIT_RATE.getMessage(),rate);
     }

@@ -30,7 +30,7 @@ public class Output {
     }
 
     public static void lottoPurchase(int costCount) {
-        System.out.println(costCount + MessageConstants.LOTTO_PURCHASE.getMessage());
+        System.out.println("\n" + costCount + MessageConstants.LOTTO_PURCHASE.getMessage());
     }
 
     public static void askWinningNumberEnter() {
@@ -42,6 +42,6 @@ public class Output {
     }
 
     public static void resultOverView() {
-        System.out.println(MessageConstants.RESULT_OVERVIEW.getMessage());
+        System.out.print(MessageConstants.RESULT_OVERVIEW.getMessage());
     }
 }

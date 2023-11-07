@@ -7,7 +7,16 @@ import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
+        System.out.println("구입금액을 입력해 주세요.");
+        int price = readConsole();
 
+        if (price % 1000 != 0) {
+            System.out.println("[ERROR] 1,000원 단위로 입력하세요.");
+            return;
+        }
+
+        int count = price / 1000;
+        System.out.println(count + "개를 구매했습니다.");
     }
 
     enum LottoRank {
@@ -27,6 +36,17 @@ public class Application {
         }
         public  int getPrize() {
             return prize;
+        }
+    }
+
+    public static int readConsole() {
+        while (true) {
+            String input = Console.readLine();
+            try{
+                return Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 올바른 숫자를 입력하세요.");
+            }
         }
     }
 }

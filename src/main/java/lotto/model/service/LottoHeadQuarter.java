@@ -24,7 +24,7 @@ public class LottoHeadQuarter {
         return rankingBoard;
     }
 
-    public double calculateReturn(Money money, RankingBoard rankingBoard) {
+    public double calculateYield(Money money, RankingBoard rankingBoard) {
         List<Rank> ranks = rankingBoard.getRanks();
         int lottoProfits = ranks.stream()
                 .mapToInt(rank -> rank.getMoney() * rank.getHeadCount())

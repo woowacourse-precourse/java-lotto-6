@@ -10,8 +10,9 @@ public enum ErrorMessage {
     NUMBER_FORMAT_BONUS_NUMBER("[ERROR] 하나의 숫자로 이루어진 보너스 번호를 입력해주세요."),
     NUMBER_FORMAT_WINNING_NUMBERS("[ERROR] 숫자로 이루어진 당첨 번호를 입력해주세요."),
     FOUNT_MATCH_RANKING("[ERROR] 일치 횟수에 맞는 등수가 없습니다. 게임을 재시작 해주세요."),
-    LOTTO_SIZE("[ERROR] 로또 발행이 잘못되었습니다. 게임을 재시작 해주세요."),
-    LOTTO_RANGE("[ERROR] 로또 발행이 잘못되었습니다. 게임을 재시작 해주세요.");
+    LOTTO_SIZE("[ERROR] 로또 번호는 6자리여야 합니다."),
+    LOTTO_RANGE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다."),
+    LOTTO_DUPLICATE("[ERROR] 로또 번호는 중복되선 안됩니다.");
 
 
     private final String errorMessage;

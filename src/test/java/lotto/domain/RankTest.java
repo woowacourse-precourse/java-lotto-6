@@ -12,17 +12,17 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 class RankTest {
 
-    @DisplayName("당첨 번호와 로또로 등수를 계산할 수 있다")
+    @DisplayName("맞춘 개수와 보너스 여부로 등수를 계산할 수 있다")
     @ParameterizedTest
     @MethodSource
-    void getRankByLottoAndWinningNumber(int matchCount, boolean hasBonus, Rank expected) {
+    void getRankByMatchCountAndHasBonus(int matchCount, boolean hasBonus, Rank expected) {
 
         Rank actual = Rank.of(new MatchResult(matchCount, hasBonus));
 
         assertThat(actual).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> getRankByLottoAndWinningNumber() {
+    private static Stream<Arguments> getRankByMatchCountAndHasBonus() {
         return Stream.of(
                 Arguments.of(6, false, Rank.FIRST),
                 Arguments.of(5, true, Rank.SECOND),
@@ -43,9 +43,9 @@ class RankTest {
     @DisplayName("총 상금액을 구할 수 있다")
     @ParameterizedTest
     @MethodSource
-    void getTotalPrize(EnumMap<Rank, Integer> rankToCount, long expected) {
+    void getTotalPrize(EnumMap<Rank, Integer> rankResult, long expected) {
 
-        long totalPrize = Rank.getTotalPrize(rankToCount);
+        long totalPrize = Rank.getTotalPrize(rankResult);
 
         assertThat(totalPrize).isEqualTo(expected);
     }
@@ -60,11 +60,11 @@ class RankTest {
     }
 
     private static EnumMap<Rank, Integer> createRankToCount(Rank... ranks) {
-        EnumMap<Rank, Integer> rankToInteger = new EnumMap<>(Rank.class);
+        EnumMap<Rank, Integer> rankResult = new EnumMap<>(Rank.class);
         for (Rank rank : ranks) {
-            add(rankToInteger, rank);
+            add(rankResult, rank);
         }
-        return rankToInteger;
+        return rankResult;
     }
 
     private static void add(EnumMap<Rank, Integer> map, Rank rank) {

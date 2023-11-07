@@ -27,8 +27,9 @@ public class LottoController {
         outputPurchaseQuantity(); // 구매 수량 출력
         makeLottos(); // 로또 생성
         printLotto(); // 생성한 로또 출력
+        System.out.println();
 
-        while(checkInitWinningNumber){
+        while (checkInitWinningNumber) {
             initWinningNumber(); // 당첨 번호 초기화
         }
     }
@@ -43,15 +44,17 @@ public class LottoController {
         }
     }
 
-    public void initWinningNumber(){
-        try{
+    public void initWinningNumber() {
+        try {
             String winningNumber = InputView.inputWinningNumber();
-            //todo: 예외처리
+            validateWinningNumbers(winningNumber);
             System.out.println();
             String bonusNumber = InputView.inputBonusNumber();
             // todo: 예외처리
-
-        }catch (IllegalArgumentException e){
+            // todo : 보너스 넘버와 당첨번호 저장
+            // todo : 보너스 넘버 길이에 대한 예외처리
+            checkInitWinningNumber = false;
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -71,20 +74,21 @@ public class LottoController {
         OutputView.printPurchaseQuantity(purchaseQuantity);
     }
 
-    public void makeLottos(){
+    public void makeLottos() {
         Lotto lotto;
-        lottos=new Lottos();
-        for(int i=0; i<purchaseQuantity; i++){
+        lottos = new Lottos();
+        for (int i = 0; i < purchaseQuantity; i++) {
             List<Integer> randomNumbers = generateRandomNumber();
-            lotto=new Lotto(randomNumbers);
+            lotto = new Lotto(randomNumbers);
             lottos.addLotto(lotto);
         }
     }
 
-    public void printLotto(){
+    public void printLotto() {
         lottos.printLottosNumbers();
     }
-    public List<Integer> generateRandomNumber(){
+
+    public List<Integer> generateRandomNumber() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 24, 6);
         return numbers;
     }
@@ -105,5 +109,19 @@ public class LottoController {
             throw new IllegalArgumentException("[ERROR]금액은 1,000원 단위로 입력해 주세요.");
         }
     }
+
+    public void validateWinningNumberLength(int number) {
+
+    }
+
+    public void validateWinningNumbers(String number) {
+        String regex = "^(?:[1-9]|[1-3][0-9]|4[0-5])(?:,(?:[1-9]|[1-3][0-9]|4[0-5]))*$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(number);
+        if (!matcher.find()) {
+            throw new IllegalArgumentException("[ERROR]당첨 번호는 1~45 사이의 숫자를 , 구분자를 사용해서 6개 입력해주세요.");
+        }
+    }
+
 
 }

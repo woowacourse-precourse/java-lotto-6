@@ -13,12 +13,13 @@ public class Controller {
 
     static LottoGame lottoGame = new LottoGame();
     Calculator calculator = new Calculator();
-    public static void InitGame(){
+    public static void initGame(){
         User user = lottoGame.InitUser();
         String[] numbers = InputView.validateInputNumbers();
         String bonusNumber = InputView.validateInputBonusNumber();
         WinningLotto winningLotto = new WinningLotto(numbers,bonusNumber);
         List<Integer> ranks = lottoGame.createRankList(user,winningLotto);
         user.setRank(ranks);
+        OutputView.displayResult(user);
     }
 }

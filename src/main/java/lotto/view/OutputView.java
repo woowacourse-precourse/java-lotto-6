@@ -17,6 +17,7 @@ public class OutputView {
         for(Lotto lotto : lottos){
             displayLotto(lotto);
         }
+        System.out.println();
     }
 
     public static void displayResult(User user){
@@ -26,6 +27,7 @@ public class OutputView {
 
     private static void displayWinningDetails(User user){
         List<Integer> ranks = user.getRanks();
+        System.out.println();
         System.out.println("당첨통계");
         System.out.println("---");
         System.out.println("3개 일치 (5,000원) - "+Calculator.rankCount(5,ranks)+"개");
@@ -46,6 +48,7 @@ public class OutputView {
 
     private static void displayPurchase(int amount){
         int purchaseNumber = amount/LOTTO_PRICE;
+        System.out.println();
         System.out.println(purchaseNumber+"개를 구매했습니다.");
     }
 

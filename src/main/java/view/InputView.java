@@ -25,6 +25,7 @@ public class InputView {
         String input = Console.readLine();
         inputValidation(input);
         validationNumbers(input);
+        System.out.println();
         return input;
     }
 
@@ -32,6 +33,7 @@ public class InputView {
         printMessage(messages.INPUT_BONUS_NUMBER);
         String input = Console.readLine();
         notNumber(input);
+        System.out.println();
         return input;
     }
 

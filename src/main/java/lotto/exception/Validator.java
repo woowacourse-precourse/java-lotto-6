@@ -21,4 +21,12 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 2,100,000,000 이하의 값만 입력 가능합니다.");
         }
     }
+
+    public static int validateDisit(String number) {
+        try {
+            return Integer.parseInt(number);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("[ERROR] 숫자만 입력 가능 합니다.");
+        }
+    }
 }

@@ -1,4 +1,4 @@
-package lotto.controller;
+package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.utils.Constants;

@@ -14,13 +14,16 @@ import org.junit.jupiter.api.Test;
 
 public class LottoReturnTest {
     private LottoResult lottoResult;
+    private LottoWinningNumbers lottoWinningNumbers;
+    private BonusNumber bonusNumber;
 
     @BeforeEach
     void setUp() {
-        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers();
         consoleInput("1,2,3,4,5,6", "7");
+        LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers();
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
-        lottoResult = new LottoResult(lottoWinningNumbers);
+        BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
+        lottoResult = new LottoResult(winningNumbersInfo,bonusNumber);
     }
 
     private void consoleInput(final String... args) {
@@ -46,14 +49,4 @@ public class LottoReturnTest {
         int returnAmount = (int) method.invoke(lottoReturn);
         assertThat(returnAmount).isEqualTo(2000005000);
     }
-
-    @DisplayName("수익률 계산 테스트")
-    @Test
-    void getLottoReturnRateTest() {
-        int purchasePrice = 8000;
-        double ReturnRate = (double) (5000 - purchasePrice) / purchasePrice * 100 + 100;
-
-        assertThat(ReturnRate).isEqualTo(62.5);
-    }
-
 }

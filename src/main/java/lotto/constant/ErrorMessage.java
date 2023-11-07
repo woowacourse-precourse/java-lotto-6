@@ -1,10 +1,12 @@
 package lotto.constant;
 
 public enum ErrorMessage {
-    PROMPT_EXCEPTION_SIZE(" 로또 번호는 " + Constant.NUMBERS_SIZE + "개여야 합니다."),
-    PROMPT_EXCEPTION_OUT_OF_RANGE(
+    NUMBERS_SIZE(" 로또 번호는 " + Constant.NUMBERS_SIZE + "개여야 합니다."),
+    OUT_OF_RANGE(
             " 로또 번호는 " + Constant.MIN_NUMBER + "~" + Constant.MAX_NUMBER + " 사이의 수여야 합니다."),
-    PROMPT_EXCEPTION_DUPLICATE(" 로또 번호는 서로 다른 수여야 합니다.");
+    DUPLICATE(" 로또 번호는 서로 다른 수여야 합니다."),
+
+    LOTTO_SIZE("복권을 1개 이상 구매해야 합니다.");
 
     public final String prefix = "[ERROR]";
     public final String message;

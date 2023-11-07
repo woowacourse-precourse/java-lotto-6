@@ -2,6 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import lotto.domain.TicketPurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
@@ -22,5 +24,14 @@ public class TicketPurchaseAmountTest {
     void calculateLottoCount() {
         TicketPurchaseAmount amount = new TicketPurchaseAmount("1000");
         assertThat(amount.calculateLottoCount()).isEqualTo(1);
+    }
+    @Test
+    void shouldThrowExceptionForNonNumericInput() {
+        String input = "1000j";
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            new TicketPurchaseAmount(input);
+        });
+        String expectedMessage = "금액은 숫자만 등록 가능합니다.";
+        assertEquals(expectedMessage, exception.getMessage());
     }
 }

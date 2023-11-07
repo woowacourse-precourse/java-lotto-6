@@ -1,26 +1,32 @@
 package lotto.controller;
 
 import lotto.Lotto;
-import lotto.domain.LottoMachine;
 import lotto.domain.LottoNumber;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.Money;
+import lotto.domain.Profit;
 import lotto.domain.WinningLotto;
-import lotto.util.random.RandomNumberGenerator;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
 
+    private final LottoService lottoService;
+
+    public LottoController(LottoService lottoService) {
+        this.lottoService = lottoService;
+    }
+
     public void run() {
         Money money = readMoney();
-        Lottos lottos = issueLottos(money);
+        Lottos lottos = lottoService.issueLottos(money.getIssueAmount());
         OutputView.printPurchasedLottos(lottos.tickets());
 
         WinningLotto winningLotto = readWinningLotto();
 
-        LottoResult lottoResult = new LottoResult(winningLotto, lottos);
+        LottoResult lottoResult = lottoService.getResult(winningLotto, lottos);
         printResultAndProfitRate(money, lottoResult);
     }
 
@@ -31,11 +37,6 @@ public class LottoController {
             OutputView.printError(e.getMessage());
             return readMoney();
         }
-    }
-
-    private static Lottos issueLottos(Money money) {
-        LottoMachine lottoMachine = new LottoMachine(new RandomNumberGenerator());
-        return lottoMachine.issue(money.getIssueAmount());
     }
 
     private WinningLotto readWinningLotto() {
@@ -71,10 +72,10 @@ public class LottoController {
         }
     }
 
-    private static void printResultAndProfitRate(Money money, LottoResult lottoResult) {
+    private void printResultAndProfitRate(Money money, LottoResult lottoResult) {
         OutputView.printResults(lottoResult.getResults());
 
-        double profitRate = money.getProfitRates(lottoResult.getTotalPrize());
-        OutputView.printProfitRate(profitRate);
+        Profit profit = new Profit(money, lottoResult);
+        OutputView.printProfitRate(profit.getProfitRate());
     }
 }

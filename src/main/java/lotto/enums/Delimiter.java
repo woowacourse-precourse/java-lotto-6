@@ -1,7 +1,8 @@
 package lotto.enums;
 
 public enum Delimiter {
-    COMMA(",");
+    COMMA(","),
+    ERROR_PREFIX("[ERROR] ");
 
     private final String delimiter;
 

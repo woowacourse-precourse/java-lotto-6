@@ -13,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validateSize(numbers);
-        validateRange(numbers);
+        validateNumbersRange(numbers);
         validateDuplicate(numbers);
         this.numbers = numbers;
     }
@@ -29,7 +29,7 @@ public class Lotto {
             throw new IllegalArgumentException(String.format("로또 번호 %d가 주어진 범위를 벗어났습니다.", number));
         }
     }
-    private void validateListNumberRange(List<Integer> numbers) {
+    private void validateNumbersRange(List<Integer> numbers) {
         for (Integer n : numbers) {
             validateSingleNumberRange(n);
         }

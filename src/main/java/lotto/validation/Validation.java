@@ -63,4 +63,10 @@ public class Validation {
             }
         }
     }
+
+    public static void checkIsEmpty(String num) {
+        if (num.isBlank()) {
+            throw new IllegalArgumentException(ErrorMessage.isNotNumber());
+        }
+    }
 }

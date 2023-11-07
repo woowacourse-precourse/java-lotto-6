@@ -65,6 +65,7 @@ public class LottoService {
     }
 
     private void validateNumber(String num) {
+        Validation.checkIsEmpty(num);
         Validation.checkIsNumber(num);
         Validation.checkIsNatural(Integer.parseInt(num));
     }

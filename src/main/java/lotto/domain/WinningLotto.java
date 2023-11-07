@@ -1,16 +1,25 @@
 package lotto.domain;
 
+import lotto.constant.ExceptionMessage;
+
 public class WinningLotto {
 
-    private Lotto lotto;
+    private final Lotto lotto;
     private BonusNumber bonusNumber;
 
-    public WinningLotto(Lotto lotto) {
+    public WinningLotto(final Lotto lotto) {
         this.lotto = lotto;
     }
 
     public void updateBonusNumber(Integer value) {
+        validateDuplicateeNumber(value);
         this.bonusNumber = new BonusNumber(value);
+    }
+
+    private void validateDuplicateeNumber(final Integer value) {
+        if (lotto.getNumbers().contains(value)) {
+            throw new IllegalArgumentException(ExceptionMessage.HAS_DUPLICATE_NUMBER_ON_LOTTO.toMessage());
+        }
     }
 
     public Lotto toLotto() {
@@ -20,5 +29,4 @@ public class WinningLotto {
     public BonusNumber toBonusNumber() {
         return bonusNumber;
     }
-    // lotto와 bonusNumber에 중복된 값이  있는지 확인
 }

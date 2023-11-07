@@ -9,7 +9,8 @@ public enum ExceptionMessage {
     INVALID_INPUT_NULL("입력된 값이 없습니다."),
     INVALID_FORMAT("잘못된 형식을 입력하셨습니다"),
     OVER_ONE_HUNDRED_THOUSAND("100,000을 넘겨 구매할 수 없습니다."),
-    DO_NOT_HAVE_DELIMITER(String.format("당첨 번호는 %s로 나누어 입력해주세요", LottoConstant.COMMA));
+    DO_NOT_HAVE_DELIMITER(String.format("당첨 번호는 %s로 나누어 입력해주세요", LottoConstant.DELIMITER)),
+    HAS_DUPLICATE_NUMBER_ON_LOTTO("보너스 번호는 Lotto 번호와 중복될 수 없습니다.");
 
     private final String message;
 

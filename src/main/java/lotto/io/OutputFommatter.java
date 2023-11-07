@@ -11,7 +11,7 @@ import lotto.domain.WinningStatistic;
 
 public class OutputFommatter {
 
-    private static final int NUNECESSARY_INDEX = 2;
+    private static final int UNNECESSARY_INDEX = 2;
 
     public String toNumberOfTicket(final Ticket ticket) {
         return String.format(ProcessMessage.NUMBER_OF_LOTTO_TICKET.toMessage(), ticket.toValue());
@@ -24,7 +24,7 @@ public class OutputFommatter {
             for (Integer number : lotto.getNumbers()) {
                 stringBuilder.append(number).append(ProcessMessage.COMMA.toMessage());
             }
-            stringBuilder.delete(stringBuilder.length() - NUNECESSARY_INDEX, stringBuilder.length());
+            stringBuilder.delete(stringBuilder.length() - UNNECESSARY_INDEX, stringBuilder.length());
             stringBuilder.append(ProcessMessage.RIGHT_SQUARE_BRACKET.toMessage() + ProcessMessage.NEW_LINE.toMessage());
         }
         return stringBuilder.toString();

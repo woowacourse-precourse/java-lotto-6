@@ -9,7 +9,7 @@ public class InputValidator {
     private static final Pattern NUMERIC_PATTERN = Pattern.compile("\\d+");
 
     private static boolean isContainDelimiter(String input) {
-        return !input.contains(LottoConstant.COMMA);
+        return !input.contains(LottoConstant.DELIMITER);
     }
 
     public void validateNumeric(String input) {

@@ -2,11 +2,9 @@
 
 **player**
 
-- [ ] 구입 금액 입력 payTicketPrice
+- [X] 구입 금액 입력 payTicketPrice
 
-- [ ] 구입 티켓 수 산출 myTicketCount
-
-- [ ] 구입 티켓 수 프린트 printMyTicketCount
+- [X] 구입 티켓 수 산출 getMyTicketCount
 
 ---
 

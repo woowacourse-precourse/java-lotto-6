@@ -10,10 +10,10 @@ class BonusNumberTest {
     @DisplayName("숫자가 아닌 입력은 예외가 발생한다.")
     void testBonusNumber() {
         assertThrows(IllegalArgumentException.class, () -> {
-            BonusNumber bonusNumber = new BonusNumber(Integer.parseInt("wrongInput"));
+            BonusNumber bonusNumber = new BonusNumber("wrongInput");
         });
         assertDoesNotThrow(() -> {
-            BonusNumber bonusNumber = new BonusNumber(Integer.parseInt("45"));
+            BonusNumber bonusNumber = new BonusNumber("45");
         });
     }
 
@@ -27,5 +27,17 @@ class BonusNumberTest {
         assertThrows(IllegalArgumentException.class, () -> {
             BonusNumber bonusNumber = new BonusNumber(46);
         });
+    }
+
+    @Test
+    @DisplayName("보너스 번호의 생성 테스트")
+    void testGetNumber() {
+        int number1 = 23;
+        BonusNumber bonusNumber1 = new BonusNumber(number1);
+        assertEquals(number1, bonusNumber1.getNumber());
+
+        String number2 = "23";
+        BonusNumber bonusNumber2 = new BonusNumber(number2);
+        assertEquals(Integer.parseInt(number2), bonusNumber2.getNumber());
     }
 }

@@ -54,6 +54,38 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 구입_금액_입력_안함_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException(" ");
+            assertThat(output()).contains(ERROR_MESSAGE + " 구입 금액을 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 로또_번호_입력_안함_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", " ");
+            assertThat(output()).contains(ERROR_MESSAGE + " 로또 번호를 입력해 주세요.");
+        });
+    }
+
+    @Test
+    void 로또_번호_정수_아님_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,a");
+            assertThat(output()).contains(ERROR_MESSAGE + " 로또 번호는 정수여야 합니다.");
+        });
+    }
+
+    @Test
+    void 보너스_번호_입력_안함_예외_테스트() {
+        assertSimpleTest(() -> {
+            runException("8000", "1,2,3,4,5,6", " ");
+            assertThat(output()).contains(ERROR_MESSAGE + " 보너스 번호를 입력해 주세요.");
+        });
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});

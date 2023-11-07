@@ -12,7 +12,18 @@ public class LottoTicket {
     private final List<List<Integer>> ticketNumbers;
 
     public LottoTicket(List<List<Integer>> ticketNumbers) {
-        this.ticketNumbers = ticketNumbers;
+        this.ticketNumbers = purchaseTicketNumbers();
+    }
+
+    public List<List<Integer>> purchaseTicketNumbers() {
+        int ticket = purchaseTicket();
+        List<List<Integer>> purchaseTicketNumbers = new ArrayList<>();
+
+        for(int i = 0; i < ticket; i++) {
+            purchaseTicketNumbers.add(setTicketNumbers());
+        }
+
+        return purchaseTicketNumbers;
     }
 
     public List<Integer> setTicketNumbers () {

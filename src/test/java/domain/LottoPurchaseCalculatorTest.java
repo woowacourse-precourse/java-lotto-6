@@ -1,5 +1,4 @@
 package domain;
-import lotto.domain.caclulator.LottoPurchaseCalculator;
 import lotto.domain.model.Money;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -15,10 +14,9 @@ public class LottoPurchaseCalculatorTest {
     @CsvSource({"1000, 3000, 3", "1000, 2000, 2", "500, 1500, 3"})
     @DisplayName("올바른 금액과 가격으로 로또 개수 계산")
     void validLottoCount(int price, int amount, int expected) {
-        LottoPurchaseCalculator calculator = new LottoPurchaseCalculator();
         Money money = new Money(amount);
 
-        int count = calculator.calculateLottoCount(price, money);
+        int count = money.calculateLottoCount();
 
         assertThat(count).isEqualTo(expected);
     }
@@ -29,7 +27,7 @@ public class LottoPurchaseCalculatorTest {
     void invalidPrice(int price, int amount) {
         Money money = new Money(amount);
 
-        assertThatThrownBy(() -> LottoPurchaseCalculator.calculateLottoCount(price, money))
+        assertThatThrownBy(money::calculateLottoCount)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("로또 가격은 양수여야 합니다.");
     }
@@ -40,7 +38,7 @@ public class LottoPurchaseCalculatorTest {
     void nonDivisibleAmount(int price, int amount) {
         Money money = new Money(amount);
 
-        assertThatThrownBy(() -> LottoPurchaseCalculator.calculateLottoCount(price, money))
+        assertThatThrownBy(money::calculateLottoCount)
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("금액은 로또 가격 단위로 나누어 떨어져야 합니다.");
     }

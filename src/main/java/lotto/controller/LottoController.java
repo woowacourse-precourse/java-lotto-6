@@ -4,11 +4,9 @@ package lotto.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.domain.LottoConfig;
 import lotto.view.InputHandler;
 import lotto.domain.model.Lotto;
 import lotto.domain.generator.LottoGenerator;
-import lotto.domain.caclulator.LottoPurchaseCalculator;
 import lotto.domain.caclulator.LottoResultCalculator;
 import lotto.domain.dto.LottoResults;
 import lotto.domain.model.Lottos;
@@ -51,16 +49,11 @@ public class LottoController {
 
 
     private Lottos purchaseLottos(Money money) {
-        int lottoCount = calculateLottoCount(money);
+        int lottoCount = money.calculateLottoCount();
         List<Lotto> lottos = generateLottos(lottoCount);
         Lottos purchasedLottos = new Lottos(lottos);
         output.printPurchasedLottos(purchasedLottos);
         return purchasedLottos;
-    }
-
-    private int calculateLottoCount(Money money) {
-        return LottoPurchaseCalculator.calculateLottoCount(LottoConfig.LOTTO_PRICE.getValue(),
-                money);
     }
 
     private List<Lotto> generateLottos(int count) {

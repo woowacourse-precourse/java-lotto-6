@@ -34,10 +34,13 @@ public class RankingResult {
         if (winningGrade.incorrectFiveNumbersWithBonusNumber()) {
             return receiveRankingMessageFormat(LOTTO_NUMBER_MATCH.getMessage(), winningGrade);
         }
-        return receiveRankingMessageFormat(LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER.getMessage(), winningGrade);
+        return receiveRankingMessageFormat(
+                LOTTO_NUMBER_MATCH_WITH_BONUS_NUMBER.getMessage(), winningGrade);
     }
 
-    private String receiveRankingMessageFormat(final String message, final WinningGrade winningGrade) {
+    private String receiveRankingMessageFormat(
+            final String message, final WinningGrade winningGrade) {
+        
         return format(message,
                 winningGrade.getMatchingCount(),
                 receiveFormattedPrice(winningGrade),

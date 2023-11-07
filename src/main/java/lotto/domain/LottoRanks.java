@@ -48,7 +48,9 @@ public class LottoRanks {
                 ));
     }
 
-    private Long receiveLottoRank(final Map<WinningGrade, Long> result, final WinningGrade winningGrade) {
+    private Long receiveLottoRank(
+            final Map<WinningGrade, Long> result, final WinningGrade winningGrade) {
+        
         return result.getOrDefault(winningGrade, LONG_TYPE_ZERO);
     }
 }

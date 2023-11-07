@@ -29,16 +29,23 @@ public enum WinningGrade {
     CORRECT_TWO_NUMBERS(TWO, (always) -> true, CORRECT_TWO_NUMBERS_PRICE),
     CORRECT_THREE_NUMBERS(THREE, (always) -> true, CORRECT_THREE_NUMBERS_PRICE),
     CORRECT_FOUR_NUMBERS(FOUR, (always) -> true, CORRECT_FOUR_NUMBERS_PRICE),
-    CORRECT_FIVE_NUMBERS(FIVE, (incorrectBonusNumber) -> !incorrectBonusNumber, CORRECT_FIVE_NUMBERS_PRICE),
+    CORRECT_FIVE_NUMBERS(
+            FIVE,
+            (incorrectBonusNumber) -> !incorrectBonusNumber,
+            CORRECT_FIVE_NUMBERS_PRICE),
     CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER(
-            FIVE, (correctBonusNumber) -> correctBonusNumber, CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE),
+            FIVE,
+            (correctBonusNumber) -> correctBonusNumber,
+            CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE),
     CORRECT_SIX_NUMBERS(SIX, (always) -> true, CORRECT_SIX_NUMBERS_PRICE);
 
     private final MatchingCount matchingCount;
     private final UnaryOperator<Boolean> matchingBonus;
     private final WinningPrize price;
 
-    WinningGrade(MatchingCount matchingCount, UnaryOperator<Boolean> matchingBonus, WinningPrize price) {
+    WinningGrade(
+            MatchingCount matchingCount, UnaryOperator<Boolean> matchingBonus, WinningPrize price) {
+        
         this.matchingCount = matchingCount;
         this.matchingBonus = matchingBonus;
         this.price = price;

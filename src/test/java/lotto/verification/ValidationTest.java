@@ -105,8 +105,30 @@ class ValidationTest {
         });
     }
 
+    @DisplayName("로또 번호가 1 부터 45 까지의 숫자로 이루어져 있지 않을 때 예외가 발생한다.")
     @Test
     void verifyRangeWinningLottoNumber() {
+        //given
+        final String case1 = "0,2,3,4,5,6";
+        final String case2 = "1,200,3,4,5,6";
+        final String case3 = "-1,200,3,4,5,6";
+
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyRangeWinningLottoNumber(case1);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyRangeWinningLottoNumber(case2);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyRangeWinningLottoNumber(case3);
+        });
+
     }
 
     @Test

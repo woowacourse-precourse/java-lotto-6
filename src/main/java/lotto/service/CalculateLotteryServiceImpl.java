@@ -17,6 +17,11 @@ import lotto.utils.Converter;
 
 public class CalculateLotteryServiceImpl implements CalculateLotteryService {
     private static final Integer ZERO = 0;
+    private static final Integer returnsOfThreeMatched = 5000;
+    private static final Integer returnsOfFourMatched = 50000;
+    private static final Integer returnsOfFiveMatched = 1500000;
+    private static final Integer returnsOfFiveAndBonusMatched = 30000000;
+    private static final Integer returnsOfSixMatched = 2000000000;
 
     private final LottoRepository lottoRepository;
     private final WinningLottoRepository winningLottoRepository;
@@ -57,11 +62,11 @@ public class CalculateLotteryServiceImpl implements CalculateLotteryService {
 
     private Integer getEarn(WinningStatisticDTO winningStatisticDTO) {
         Integer earn = ZERO;
-        earn += 5000 * winningStatisticDTO.getMatched3(); // 숫자 상수화 하기
-        earn += 50000 * winningStatisticDTO.getMatched4();
-        earn += 1500000 * winningStatisticDTO.getMatched5();
-        earn += 30000000 * winningStatisticDTO.getMatched5AndBonusNumber();
-        earn += 2000000000 * winningStatisticDTO.getMatched5AndBonusNumber(); // Long으로 바꾸기
+        earn += returnsOfThreeMatched * winningStatisticDTO.getMatched3();
+        earn += returnsOfFourMatched * winningStatisticDTO.getMatched4();
+        earn += returnsOfFiveMatched * winningStatisticDTO.getMatched5();
+        earn += returnsOfFiveAndBonusMatched * winningStatisticDTO.getMatched5AndBonusNumber();
+        earn += returnsOfSixMatched * winningStatisticDTO.getMatched5AndBonusNumber(); // Long으로 바꾸기
 
         return earn;
     }

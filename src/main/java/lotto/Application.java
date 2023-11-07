@@ -12,8 +12,7 @@ public class Application {
         InputView inputView = new InputView();
         OutputView outputView = new OutputView();
         LottoGameService lottoGameService = new LottoGameService();
-        Validator validator = new Validator();
-        LottoGameController lottoGameController = new LottoGameController(validator, inputView, outputView, lottoGameService);
+        LottoGameController lottoGameController = new LottoGameController(inputView, outputView, lottoGameService);
         lottoGameController.start();
     }
 }

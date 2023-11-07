@@ -1,9 +1,11 @@
 package lotto.model;
 
-import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.InvalidDuplicateNumberException;
+import lotto.validation.Validator;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;

@@ -2,16 +2,20 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.WinningDataCategory;
+import lotto.exception.InvalidDuplicateNumberException;
 import lotto.model.Buyer;
 import lotto.model.Lotto;
 import lotto.model.LottoDecision;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.IntStream;
 
 public class LottoGameService {
     private static final int LOTTO_PRICE = 1000;
+
     private static final int WINNING_NUMBER_LENGTH = 7;
     private static final int BONUS_NUMBER_POSITION = 6;
     private static final int WINNING_DATA_LENGTH = 6;
@@ -34,7 +38,7 @@ public class LottoGameService {
         throw new IllegalArgumentException();
     }
 
-    private Lotto lottoGenerator() {
+    private Lotto lottoGenerator(){
         List<Integer> lotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(lotto);
     }
@@ -43,14 +47,13 @@ public class LottoGameService {
         return buyer.getPurchasedLotto();
     }
 
-    public void completeMakingWinningNumber(String enteredWinningNumbers, int bonusWinningNumber) {
-        String[] defaultWinningNumbers = enteredWinningNumbers.split(",");
+    public void completeMakingWinningNumber(List<String> defaultWinningNumbers, int bonusWinningNumber) {
         int[] finalWinningNumber = makeFinalWinningNumber(defaultWinningNumbers, bonusWinningNumber);
         finalWinningNumber[BONUS_NUMBER_POSITION] = bonusWinningNumber;
         lottoDecision = new LottoDecision(finalWinningNumber);
     }
 
-    private int[] makeFinalWinningNumber(String[] defaultWinningNumbers, int bonusWinningNumber) {
+    private int[] makeFinalWinningNumber(List<String> defaultWinningNumbers, int bonusWinningNumber) {
         int[] finalWinningNumber = new int[WINNING_NUMBER_LENGTH];
 
         int i = 0;

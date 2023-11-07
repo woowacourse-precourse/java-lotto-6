@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoEnvelop {
-    // TODO: 11/6/23 상수 관리 
     private static final String NEW_LINE = "\n";
     private List<Lotto> lottoEnvelop;
 

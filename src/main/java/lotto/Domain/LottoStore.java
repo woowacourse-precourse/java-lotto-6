@@ -11,12 +11,12 @@ import java.util.List;
 import lotto.Lotto;
 
 public class LottoStore {
-    public List<Lotto> generateLotto(String lottoQuantity) {
+    public List<Lotto> generateLotto(String lottoQuantity) { // System으로 옮겨도 될 듯
         int quantity = 0;
-        if (isEmpty(lottoQuantity) && isNumber(lottoQuantity)) {
-            checkDivisibleBy1000(lottoQuantity);
-            quantity = Integer.parseInt(lottoQuantity) / 1000;
-        }
+
+        checkDivisibleBy1000(lottoQuantity);
+        quantity = Integer.parseInt(lottoQuantity) / 1000;
+
         List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < quantity; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);

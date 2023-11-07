@@ -19,22 +19,19 @@ public class LottoSystem {
     private int lottoBonusNumber;
 
     public LottoSystem(String lottoWinningNumber, String lottoBonusNumber) {
-        if (isEmpty(lottoWinningNumber)) {
-            lottoWinningNumber = lottoWinningNumber.replaceAll("\\s*,\\s*", ",");
-            if (isNumber(lottoWinningNumber) && isValidRangeNumber(lottoWinningNumber)) {
-                checkCommaDelimiter(lottoWinningNumber);
-                checkSixNumber(lottoWinningNumber);
-                checkDistinctNumbers(lottoWinningNumber);
-            }
-            this.lottoWinningNumbers = convertStringToIntegerList(lottoWinningNumber);
+        lottoWinningNumber = lottoWinningNumber.replaceAll("\\s*,\\s*", ",");
+        if (isValidRangeNumber(lottoWinningNumber)) {
+            checkCommaDelimiter(lottoWinningNumber);
+            checkSixNumber(lottoWinningNumber);
+            checkDistinctNumbers(lottoWinningNumber);
         }
-        if (isEmpty(lottoBonusNumber)) {
-            lottoBonusNumber = lottoBonusNumber.replaceAll(" ", "");
-            if (isNumber(lottoBonusNumber) && isValidRangeNumber(lottoBonusNumber)) {
-                checkDistinctBetweenWinningAndBonusNumber(lottoWinningNumber, lottoBonusNumber);
-                this.lottoBonusNumber = Integer.parseInt(lottoBonusNumber);
-            }
+        this.lottoWinningNumbers = convertStringToIntegerList(lottoWinningNumber);
+        lottoBonusNumber = lottoBonusNumber.replaceAll(" ", "");
+        if (isValidRangeNumber(lottoBonusNumber)) {
+            checkDistinctBetweenWinningAndBonusNumber(lottoWinningNumber, lottoBonusNumber);
+            this.lottoBonusNumber = Integer.parseInt(lottoBonusNumber);
         }
+
     }
 
     public Map<String, Integer> compareLottoNumbers(List<String> purchasedLottos) {

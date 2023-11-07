@@ -17,6 +17,8 @@ public class InputValidator {
     public static final String NOT_A_VALID_DELIMITER_ERROR = "구분자는 콤마(,)로 이루어져야 합니다.";
     public static final String NOT_A_DISTINCT_NUMBER_ERROR = "로또 번호의 각 자리수는 서로 달라야합니다.";
 
+
+
     public static boolean isEmpty(String input){
         if (input == null || input.isEmpty()) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NULL_OR_EMPTY_ERROR);

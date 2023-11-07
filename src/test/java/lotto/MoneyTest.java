@@ -6,7 +6,9 @@ import static lotto.domain.money.LottoMoneyErrorMessage.MONEY_NOT_MORE_THAN_ZERO
 import static org.assertj.core.api.Assertions.*;
 
 import lotto.domain.money.Money;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class MoneyTest {
@@ -30,15 +32,13 @@ public class MoneyTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {1000,50000,100000,3000,999000})
-    void 구입_금액으로_구매_가능한_복권_수를_계산한다(int inputMoney) {
+    @CsvSource(value = {"1000:1","50000:50","100000:100","999000:999"}, delimiter = ':')
+    void 구입_금액으로_구매_가능한_복권_수를_계산한다(int inputMoney, int result) {
         //given
         Money money = new Money(inputMoney);
-        int number = inputMoney / LOTTO_COST.getValue();
 
         //when, then
-        assertThat(money.getNumberOfLottos()).isEqualTo(number);
+        assertThat(money.getNumberOfLottos()).isEqualTo(result);
     }
-
 
 }

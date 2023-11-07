@@ -1,7 +1,7 @@
 package lotto.infra;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Constraint;
+import lotto.domain.constant.Constraint;
 import lotto.domain.LottoGenerator;
 
 import java.util.List;

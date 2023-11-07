@@ -1,6 +1,6 @@
 package lotto.domain.dto;
 
-import lotto.domain.Lottos;
+import lotto.domain.model.Lottos;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;

@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.domain.LottoController;
-import lotto.domain.LottoServer;
-import lotto.domain.LottosConverter;
-import lotto.domain.StatisticsConverter;
+import lotto.domain.controller.LottoController;
+import lotto.domain.controller.LottoServer;
+import lotto.domain.controller.converter.LottosConverter;
+import lotto.domain.controller.converter.StatisticsConverter;
 import lotto.infra.RandomLottoGenerator;
 import lotto.io.ConsoleInputReader;
 import lotto.io.LottoInput;

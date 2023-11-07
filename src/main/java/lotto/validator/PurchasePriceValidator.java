@@ -1,5 +1,7 @@
 package lotto.validator;
 
+import static lotto.util.ErrorMessage.MIN_PURCHASE_PRICE_ERROR;
+import static lotto.util.ErrorMessage.PURCHASE_PRICE_REMAINDER_NOT_ZERO;
 import static lotto.util.LottoNumber.PURCHASE_MIN_PRICE;
 
 public class PurchasePriceValidator {
@@ -10,7 +12,7 @@ public class PurchasePriceValidator {
 
     public void checkOverMinPrice(int price) {
         if (isUnderMinPrice(price)) {
-            throw new IllegalArgumentException("[ERROR] 최소 구매 금액은 1000원입니다.");
+            throw new IllegalArgumentException(MIN_PURCHASE_PRICE_ERROR.getErrorMessage());
         }
     }
 
@@ -20,7 +22,7 @@ public class PurchasePriceValidator {
 
     public void checkRemainderZero(int price) {
         if (isRemainderNotZero(price)) {
-            throw new IllegalArgumentException("[ERROR] 1000으로 나눠지지 않습니다. 1000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(PURCHASE_PRICE_REMAINDER_NOT_ZERO.getErrorMessage());
         }
     }
 }

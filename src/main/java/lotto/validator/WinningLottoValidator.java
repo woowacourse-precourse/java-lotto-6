@@ -2,6 +2,8 @@ package lotto.validator;
 
 import lotto.domain.Lotto;
 
+import static lotto.util.ErrorMessage.BONUS_NUMBER_DUPLICATE_WITH_WIN_LOTTO;
+import static lotto.util.ErrorMessage.LOTTO_NUMBER_RANGE_ERROR;
 import static lotto.util.LottoNumber.END_LOTTO_NUMBER;
 import static lotto.util.LottoNumber.START_LOTTO_NUMBER;
 
@@ -12,7 +14,7 @@ public class WinningLottoValidator {
 
     public void checkRange(int bonusNum) {
         if (isNotInRange(bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR.getErrorMessage());
         }
     }
 
@@ -22,7 +24,7 @@ public class WinningLottoValidator {
 
     public void checkDuplicateWinningNumbers(Lotto winLotto, int bonusNum){
         if (isDuplicateWinningNumbers(winLotto, bonusNum)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호가 당첨 번호와 겹칩니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_WITH_WIN_LOTTO.getErrorMessage());
         }
     }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import static lotto.util.ErrorMessage.*;
 import static lotto.util.LottoNumber.*;
 
 public class LottoValidator {
@@ -14,7 +15,7 @@ public class LottoValidator {
 
     public void checkSize(List<Integer> numbers) {
         if (isNotSizeSix(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 숫자는 6개만 입력하세요.");
+            throw new IllegalArgumentException(LOTTO_SIZE_ERROR.getErrorMessage());
         }
     }
 
@@ -31,7 +32,7 @@ public class LottoValidator {
 
     public void checkRange(List<Integer> numbers) {
         if(isNotInRange(numbers)){
-            throw new IllegalArgumentException("[ERROR] 입력 가능한 로또 숫자 범위는 1 ~ 45입니다.");
+            throw new IllegalArgumentException(LOTTO_NUMBER_RANGE_ERROR.getErrorMessage());
         }
     }
 
@@ -42,7 +43,7 @@ public class LottoValidator {
 
     public void checkDuplicateWinningNumbers(List<Integer> numbers) {
         if(isDuplicateWinningNumbers(numbers)){
-            throw new IllegalArgumentException("[ERROR] 당첨 번호 입력에 중복된 숫자를 넣지마세요.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_IN_WINNING_LOTTO.getErrorMessage());
         }
     }
 }

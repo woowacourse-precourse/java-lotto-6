@@ -20,7 +20,7 @@ public class WinningLottoValidatorTest {
     void 보너스_넘버_범위_에외_테스트(int bonusNum) {
         assertThatThrownBy(() -> winningLottoValidator.checkRange(bonusNum))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContainingAll("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                .hasMessageContainingAll("[ERROR] 입력 가능한 로또 숫자 범위는 1 ~ 45입니다.");
 
     }
 

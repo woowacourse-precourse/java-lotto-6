@@ -1,4 +1,4 @@
-package lottovender;
+package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
@@ -13,6 +13,9 @@ public class LottoVender {
 
     public int getLottoCount() {
         return lottoCount;
+    }
+    public int getInputPrice() {
+        return inputPrice;
     }
 
     /*public void start(){

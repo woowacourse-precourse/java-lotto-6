@@ -1,9 +1,5 @@
 package lotto.service;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Collections;
-import java.util.List;
-import lotto.constant.Number;
 import lotto.model.LottoDatas;
 
 public class LottoService {
@@ -17,15 +13,7 @@ public class LottoService {
     public void convertPurchaseToCount(String inputPurchase) {
         int integerPurchase = parseIntPurchase(inputPurchase);
         int lottoCount = convertCount(integerPurchase);
-    }
-
-    public static List<Integer> generateLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(
-                Number.THE_SMALLEST_LOTTO_NUMBER.getMessage(),
-                Number.THE_BIGGEST_LOTTO_NUMBER.getMessage(),
-                Number.LOTTO_LENGTH_LIMIT.getMessage());
-        Collections.sort(lottoNumbers);
-        return lottoNumbers;
+        lottoDatas.saveCount(lottoCount);
     }
 
     public int parseIntPurchase(String inputPurchase) {
@@ -40,6 +28,10 @@ public class LottoService {
 
     public int divideByThousand(int integerPurchase) {
         return integerPurchase / 1000;
+    }
+
+    public int convertToArray(String winningNumbers) {
+        String[] ArrayWinningNumbers = winningNumbers.split(",");
     }
 
 }

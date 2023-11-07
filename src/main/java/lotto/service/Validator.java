@@ -48,8 +48,11 @@ public class Validator {
 
     }
 
-    public static void outOfLottoNumericalRange(List<Integer> inputNumbers) {
-
+    public static void outOfLottoNumericalRange(int lottoNumber) {
+        if (lottoNumber < Number.THE_SMALLEST_LOTTO_NUMBER.getMessage() ||
+                lottoNumber > Number.THE_BIGGEST_LOTTO_NUMBER.getMessage()) {
+            throw new IllegalArgumentException(ErrorMessage.ENTER_OUT_OF_LANGE.getMessage());
+        }
     }
 
     public static void outOfBonusNumericalRange(int inputBonusNumbers) {

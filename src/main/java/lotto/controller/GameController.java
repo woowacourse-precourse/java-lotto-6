@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.LottoDatas;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.OutputView;
 
 public class GameController {
 
@@ -16,19 +17,20 @@ public class GameController {
 
     public void run() {
         inputPurchase();
+        lottoDatas.generateLottoNumbers();
         printLotto();
-        inputLottoNumbers();
+        inputWinningNumber();
         printFinalPrize();
     }
 
     private void inputPurchase() {
         while (true) {
-            String inputPurchase = InputView.InputPurchase();
+            String inputPurchase = InputView.inputPurchase();
             try {
                 lottoService.convertPurchaseToCount(inputPurchase);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                OutputView.printErrorMessage(e.getMessage());
             }
         }
     }
@@ -37,8 +39,15 @@ public class GameController {
 
     }
 
-    private void inputLottoNumbers() {
-
+    private void inputWinningNumber() {
+        while (true) {
+            String inputLottoNumbers = InputView.inputWinningNumbers();
+            try {
+                lottoService.convertToArray(inputLottoNumbers);
+            } catch (IllegalArgumentException e) {
+                OutputView.printErrorMessage(e.getMessage());
+            }
+        }
     }
 
     private void printFinalPrize() {

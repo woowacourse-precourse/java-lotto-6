@@ -36,6 +36,7 @@ public class Lotto {
     private static boolean hasInvalidRange(int number) {
         return number < LOTTO_NUMBER_LOWER_BOUND || number > LOTTO_NUMBER_UPPER_BOUND;
     }
+
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("로또 번호는 여섯 개여야 합니다.");
@@ -56,14 +57,22 @@ public class Lotto {
     }
 
     public Rank calculateRank(List<Integer> winningNumbers, int bonusNumber) {
-        int matchingNumberCount = (int) numbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-        int matchingBonusNumberCount = (int) numbers.stream()
-                .filter(number -> number == bonusNumber)
-                .count();
+        int matchingNumberCount = calculateMatchingNumberCount(winningNumbers);
+        int matchingBonusNumberCount = calculateMatchingBonusNumberCount(bonusNumber);
 
         return Rank.findByMatchingNumber(matchingNumberCount, matchingBonusNumberCount);
+    }
+
+    private int calculateMatchingBonusNumberCount(int bonusNumber) {
+        return (int) numbers.stream()
+                .filter(number -> number == bonusNumber)
+                .count();
+    }
+
+    private int calculateMatchingNumberCount(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
     }
 
     public List<Integer> getLottoNumbers() {

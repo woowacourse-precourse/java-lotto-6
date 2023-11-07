@@ -40,7 +40,7 @@ public class User {
     }
 
     public void setTotalReturnPercentage(double totalReturnPercentage) {
-        this.totalReturnPercentage = totalReturn;
+        this.totalReturnPercentage = totalReturnPercentage;
     }
 
     public List<Lotto> getLottoList() {

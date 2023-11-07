@@ -61,6 +61,7 @@ public class Game {
     }
 
     public double getTotalReturnPercentage(int purchaseAmount, int totalReturn) {
-        return (double)totalReturn / purchaseAmount;
+        double totalReturnPercentage = (double)totalReturn/purchaseAmount;
+        return totalReturnPercentage * 100;
     }
 }

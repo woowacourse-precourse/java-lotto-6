@@ -24,9 +24,8 @@ public class Run {
         int bonusNumber = viewInput.getBonusNumber(winningNumbers);
 
         user.setWinningStatistics(game.checkAllLotto(user.getLottoList(), winningNumbers, bonusNumber));
-        int totalReturn = game.getTotalReturn(user.getWinningStatistics());
-
-        user.setTotalReturnPercentage(totalReturn);
+        user.setTotalReturn(game.getTotalReturn(user.getWinningStatistics()));
+        user.setTotalReturnPercentage(game.getTotalReturnPercentage(user.getPurchaseAmount(), user.getTotalReturn()));
 
         viewOutput.showWinningStatistics(user.getWinningStatistics());
         viewOutput.showTotalReturnPercentage(user.getTotalReturnPercentage());

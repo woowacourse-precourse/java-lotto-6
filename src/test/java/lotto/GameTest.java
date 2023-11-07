@@ -49,7 +49,7 @@ public class GameTest {
 
     @DisplayName("로또 확인 결과가 일치하는지 테스트")
     @Test
-    public void testCheckOneLotto() {
+    public void checkOneLottoTest() {
         Game game = new Game();
 
         List<Integer> winningNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -74,5 +74,19 @@ public class GameTest {
         Lotto lotto4 = new Lotto(Arrays.asList(10, 11, 12, 13, 14, 15));
         int[] result4 = game.checkOneLotto(lotto4, winningNumbers, bonusNumber);
         assertArrayEquals(new int[]{0, 0}, result4);
+    }
+
+    @Test
+    public void getTotalReturnTest() {
+        Game game = new Game();
+        int[] winningStatistics = {1, 2, 3, 4, 5}; // 예시 수치
+
+        int totalReturn = game.getTotalReturn(winningStatistics);
+
+        // 예상 결과 계산
+        int expectedTotalReturn = 1 * 2000000000 + 2 * 30000000 + 3 * 1500000 + 4 * 50000 + 5 * 5000;
+
+        // 결과 비교
+        assertEquals(expectedTotalReturn, totalReturn);
     }
 }

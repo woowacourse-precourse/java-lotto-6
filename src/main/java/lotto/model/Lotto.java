@@ -5,6 +5,9 @@ import lotto.view.ErrorConstants;
 import java.util.List;
 
 public class Lotto {
+    private static final int MAX_LOTTO_NUMBER = 45;
+    private static final int MIN_LOTTO_NUMBER = 1;
+    private static final int LOTTO_NUMBERS_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -13,14 +16,25 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBERS_SIZE) {
             throw new IllegalArgumentException(ErrorConstants.ILLEGAL_LOTTO_SIZE_ERROR);
         }
-        for (Integer number : numbers) {
-            if (number < 0 || number > 45) {
-                throw new IllegalArgumentException(ErrorConstants.ILLEGAL_LOTTO_NUMBER_ERROR);
-            }
+        if (isNumbersNotInEffectiveRange(numbers)) {
+            throw new IllegalArgumentException(ErrorConstants.ILLEGAL_LOTTO_NUMBER_ERROR);
         }
+        if (hasDuplicatedNumber(numbers)) {
+            throw new IllegalArgumentException(ErrorConstants.LOTTO_NUMBER_DUPLICATE_ERROR);
+        }
+    }
+
+    private boolean isNumbersNotInEffectiveRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number -> number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER);
+    }
+
+    private boolean hasDuplicatedNumber(List<Integer> numbers) {
+        int sizeOfDistinctNumbers = (int) numbers.stream().distinct().count();
+        return sizeOfDistinctNumbers != LOTTO_NUMBERS_SIZE;
     }
 
     @Override

@@ -1,8 +1,9 @@
-package lotto;
+package lotto.error;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.Error.ErrorType;
+import lotto.error.Error;
+import lotto.error.Error.ErrorType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

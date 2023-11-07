@@ -1,8 +1,9 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.Error.ErrorType;
+import lotto.error.Error;
+import lotto.error.Error.ErrorType;
 
 public class LottoTicketGenerator {
     List<Integer> lottoNumber;

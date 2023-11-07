@@ -1,4 +1,4 @@
-package lotto;
+package lotto.error;
 
 public class Error {
     public enum ErrorType{

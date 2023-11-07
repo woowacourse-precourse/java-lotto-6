@@ -11,13 +11,13 @@ public class Application {
         this.lottoGame = lottoGame;
     }
 
-    public void run() {
+    private void run() {
         int severalLottos;
 
         System.out.println("구입금액을 입력해 주세요.");
         severalLottos = user.inputAmount();
-        System.out.println(severalLottos + "개를 구매했습니다.");
 
+        System.out.println(severalLottos + "개를 구매했습니다.");
         List<Lotto> lottos = user.saveLottos();
         lottoGame.printLottos(lottos);
 
@@ -30,8 +30,7 @@ public class Application {
         System.out.println();
 
         System.out.println("당첨 통계\n---");
-
-        lottoGame.checkNumber(lottos);
+        lottoGame.checkPrizeNumber(lottos);
 
     }
 
@@ -40,8 +39,11 @@ public class Application {
         LottoGame lottoGame = new LottoGame();
         Application app = new Application(user, lottoGame);
 
-        app.run();
+        try {
+            app.run();
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] " + e.getMessage());
+        }
     }
-
 
 }

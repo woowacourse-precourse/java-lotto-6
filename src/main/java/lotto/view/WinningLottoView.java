@@ -34,7 +34,7 @@ public class WinningLottoView {
         return Integer.parseInt(input);
     }
 
-    public static boolean isErrorOccurredInLotto(String input) {
+    private static boolean isErrorOccurredInLotto(String input) {
         try {
             validateLottoNumbers(input);
             validateDuplicate(Convertor.convertStringToList(input), Constants.COUNT_NO_BONUS);
@@ -47,7 +47,7 @@ public class WinningLottoView {
         return true;
     }
 
-    public static boolean isErrorOccurredInBonus(List<Integer> lottos, String input) {
+    private static boolean isErrorOccurredInBonus(List<Integer> lottos, String input) {
         try {
             List<String> lottoWithBonus = new ArrayList<>(lottos.stream().map(i -> Integer.toString(i)).toList());
             lottoWithBonus.add(input);
@@ -64,7 +64,7 @@ public class WinningLottoView {
     }
 
 
-    public static void validateDuplicate(List<String> inputs, int range) throws IllegalArgumentException {
+    private static void validateDuplicate(List<String> inputs, int range) throws IllegalArgumentException {
         Set<String> inputDeduplication = new HashSet<>(inputs);
 
         if(inputDeduplication.size() != range) {
@@ -72,7 +72,7 @@ public class WinningLottoView {
         }
     }
 
-    public static void validateLottoNumbers(String input) throws IllegalArgumentException {
+    private static void validateLottoNumbers(String input) throws IllegalArgumentException {
         List<String> inputs = Convertor.convertStringToList(input);
 
         validateLottoNumberSize(inputs);
@@ -83,18 +83,18 @@ public class WinningLottoView {
         }
     }
 
-    public static void validateLottoNumberSize(List<String> inputs) throws IllegalArgumentException {
+    private static void validateLottoNumberSize(List<String> inputs) throws IllegalArgumentException {
         if(inputs.size() != Constants.COUNT_NO_BONUS) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NOT_ENOUGH_LOTTO_NUMBER.getMessage());
         }
     }
-    public static void validateNoSpace(String input) throws IllegalArgumentException {
+    private static void validateNoSpace(String input) throws IllegalArgumentException {
         if(input.contains(Constants.SPACE)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NO_SPACE.getMessage());
         }
     }
 
-    public static void validateLottoNumber(String input) throws IllegalArgumentException {
+    private static void validateLottoNumber(String input) throws IllegalArgumentException {
         if(!input.matches(Constants.R_LOTTO_RANGE)){
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_LOTTO_NUMBER.getMessage());
         }

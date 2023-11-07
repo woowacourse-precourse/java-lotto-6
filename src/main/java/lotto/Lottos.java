@@ -18,13 +18,15 @@ public class Lottos {
 
     public WinningResult getWinningResult(WinningNumber winningNumber, BonusNumber bonusNumber) {
         WinningResult winningResult = new WinningResult();
-        for (Lotto lotto : lottos) {
-            int countOfMatchingNumber = lotto.countMatchingNumber(winningNumber);
-            boolean isBonusIncluded = lotto.contains(bonusNumber);
 
-            Rank rank = Rank.of(countOfMatchingNumber, isBonusIncluded);
-            winningResult.updateResult(rank);
-        }
+        lottos.forEach(lotto ->
+                {
+                    int countMatchingNumber = lotto.countMatchingNumber(winningNumber);
+                    boolean isBonusIncluded = lotto.contains(bonusNumber);
+                    Rank rank = Rank.of(countMatchingNumber, isBonusIncluded);
+                    winningResult.updateResult(rank);
+                }
+        );
         return winningResult;
     }
 }

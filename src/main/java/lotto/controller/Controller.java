@@ -1,8 +1,8 @@
 package lotto.controller;
 
-import static lotto.utils.parser.NumberParser.parseListStringToListInteger;
-import static lotto.utils.parser.NumberParser.parseStringToIntNumber;
-import static lotto.utils.parser.NumberParser.parseStringToIntPrice;
+import static lotto.model.parser.Parser.parseInputToBonusNumber;
+import static lotto.model.parser.Parser.parseInputToPurchasePrice;
+import static lotto.model.parser.Parser.parseInputToWinningNumbers;
 import static lotto.view.message.OutputMessage.ASK_FOR_BONUS_NUMBER;
 import static lotto.view.message.OutputMessage.ASK_FOR_LOTTO_WINNING_NUMBERS;
 import static lotto.view.message.OutputMessage.ASK_FOR_PURCHASE_PRICE;
@@ -33,9 +33,10 @@ public class Controller {
         PurchaseResult purchaseResult = generatePurchaseResult();
         view.displayPurchaseResult(purchaseResult);
 
-        WinningResult winningResult = generateWinningResult();
-        MatchResult matchResult = matchResult(purchaseResult, winningResult);
-        CalculateResult calculateResult = calculateResult(matchResult, purchaseResult);
+        WinningResult winningResult = generateWinningNumbers();
+
+        MatchResult matchResult = calculateMatch(purchaseResult, winningResult);
+        CalculateResult calculateResult = calculateProfit(matchResult, purchaseResult);
 
         ResultDto resultDto = ResultDto.of(matchResult, calculateResult);
         view.displayResult(resultDto);
@@ -52,9 +53,9 @@ public class Controller {
         return model.generateLottos(purchase);
     }
 
-    private WinningResult generateWinningResult() {
+    private WinningResult generateWinningNumbers() {
         List<Integer> winningNumbers = promptWinningNumbers();
-        int bonusNumber = promptBonusNumber();
+        int bonusNumber = promptBonusNumber(winningNumbers);
 
         return new WinningResult(winningNumbers, bonusNumber);
     }
@@ -67,7 +68,7 @@ public class Controller {
             view.displayMessage(ASK_FOR_PURCHASE_PRICE);
             String input = view.readInput();
             try {
-                purchasePrice = parseStringToIntPrice(input);
+                purchasePrice = parseInputToPurchasePrice(input);
                 isValidInput = true;
             } catch (LottoException e) {
                 view.displayErrorMessage(e);
@@ -84,17 +85,16 @@ public class Controller {
             view.displayMessage(ASK_FOR_LOTTO_WINNING_NUMBERS);
             String input = view.readInput();
             try {
-                winningNumbers = parseListStringToListInteger(input);
+                winningNumbers = parseInputToWinningNumbers(input);
                 isValidInput = true;
             } catch (LottoException e) {
                 view.displayErrorMessage(e);
             }
         }
-
         return winningNumbers;
     }
 
-    private int promptBonusNumber() {
+    private int promptBonusNumber(List<Integer> winningNumbers) {
         int bonusNumber = 0;
         boolean isValidInput = false;
 
@@ -102,7 +102,7 @@ public class Controller {
             view.displayMessage(ASK_FOR_BONUS_NUMBER);
             String input = view.readInput();
             try {
-                bonusNumber = parseStringToIntNumber(input);
+                bonusNumber = parseInputToBonusNumber(winningNumbers, input);
                 isValidInput = true;
             } catch (LottoException e) {
                 view.displayErrorMessage(e);
@@ -111,11 +111,11 @@ public class Controller {
         return bonusNumber;
     }
 
-    private MatchResult matchResult(PurchaseResult purchaseResult, WinningResult winningResult) {
-        return model.matchResult(purchaseResult, winningResult);
+    private MatchResult calculateMatch(PurchaseResult purchaseResult, WinningResult winningResult) {
+        return model.calculateMatch(purchaseResult, winningResult);
     }
 
-    private CalculateResult calculateResult (MatchResult matchResult, PurchaseResult purchaseResult) {
-        return model.calculateResult(matchResult, purchaseResult);
+    private CalculateResult calculateProfit(MatchResult matchResult, PurchaseResult purchaseResult) {
+        return model.calculateProfit(matchResult, purchaseResult);
     }
 }

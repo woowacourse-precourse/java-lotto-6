@@ -40,6 +40,12 @@ public class Validator {
         }
     }
 
+    public static void validateUniqueValue(List<Integer> inputNumbers, int number) {
+        if (inputNumbers.contains(number)) {
+            throw LottoException.from(ErrorMessage.DUPLICATED);
+        }
+    }
+
     public static void validateNumberRange(int number) {
         if (isOutOfNumberRange(number)) {
             throw LottoException.from(ErrorMessage.INVALID_NUMBER_RANGE);

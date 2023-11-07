@@ -24,24 +24,44 @@ public class LottoShop {
         }
 		Console.close();
 	}
-	private int buyLotto(){
-		System.out.println("구입금액을 입력해 주세요.");
-		String payment = Console.readLine();
-		int numberOfLotto = Checker.checkPayment(payment);
-		return numberOfLotto;
-	}
+    private int buyLotto() {
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                String payment = Console.readLine();
+                return Checker.checkPayment(payment);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                // 예외가 발생하면 사용자에게 다시 입력을 요청합니다.
+            }
+        }
+    }
 
-	private List<Integer> decideWinningNumbers() {
-		System.out.println("당첨 번호를 입력해 주세요.");
-		String winningInput = Console.readLine();
-		return Checker.checkWinningInput(winningInput);
-	}
+    private List<Integer> decideWinningNumbers() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해 주세요.");
+                String winningInput = Console.readLine();
+                return Checker.checkWinningInput(winningInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                // 예외가 발생하면 사용자에게 다시 입력을 요청합니다.
+            }
+        }
+    }
 
-	private int decideBonusNumber() {
-		System.out.println("보너스 번호를 입력해 주세요.");
-		String bonusInput = Console.readLine();
-		return Checker.checkBonusInput(this.winningNumbers,bonusInput);
-	}
+    private int decideBonusNumber() {
+        while (true) {
+            try {
+                System.out.println("보너스 번호를 입력해 주세요.");
+                String bonusInput = Console.readLine();
+                return Checker.checkBonusInput(this.winningNumbers, bonusInput);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+                // 예외가 발생하면 사용자에게 다시 입력을 요청합니다.
+            }
+        }
+    }
 	
 	private void generateLotto(int numberOfLotto){
 		for (int i = 0; i < numberOfLotto; i++) {

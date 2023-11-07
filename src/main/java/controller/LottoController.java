@@ -1,11 +1,13 @@
 package controller;
 
+import util.RandomNumberGeneratorUtil;
 import view.LottoPurchaseInputView;
 
 public class LottoController {
-    public void gameStart() {
-        LottoPurchaseInputView lottoPurchaseInputView = new LottoPurchaseInputView();
+    LottoPurchaseInputView lottoPurchaseInputView = new LottoPurchaseInputView();
+    RandomNumberGeneratorUtil randomNumberGeneratorUtil = new RandomNumberGeneratorUtil();
 
+    public void gameStart() {
         int lottoPurchase = lottoPurchaseInputView.readLottoPurchaseValidator();
         createLotto(lottoPurchase);
     }
@@ -13,6 +15,10 @@ public class LottoController {
     public void createLotto(int price) {
         int totalLottoCount = countTotalLotto(price);
         displayPurchaseQuantity(totalLottoCount);
+
+        for (int count = 0; count < totalLottoCount; count++) {
+            randomNumberGeneratorUtil.randomNumbersGenerate();
+        }
     }
 
     private int countTotalLotto(int price) {
@@ -21,6 +27,7 @@ public class LottoController {
     }
 
     private void displayPurchaseQuantity(int totalLottoCount) {
+        System.out.println();
         System.out.println(totalLottoCount + "개를 구매했습니다.");
     }
 }

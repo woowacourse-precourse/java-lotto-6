@@ -101,6 +101,22 @@ public class InputViewTest {
                 .hasMessageContaining("[ERROR]");
     }
 
+    @DisplayName("당첨 번호 입력값이 숫자가 아닌 경우 예외 처리")
+    @Test
+    void winningNumberNotDigit() {
+        //given
+        InputView inputView = new InputView();
+
+        //when
+        String winningNumbersInput = "1,2,3,4,5,a";
+
+        //then
+        assertThatThrownBy(() -> inputView.validateEachWinningNumberInput(winningNumbersInput))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 당첨 번호는 숫자여야 합니다.")
+                .hasMessageContaining("[ERROR]");
+    }
+
     @DisplayName("올바른 당첨 번호 처리")
     @Test
     void parseWinningNumber() {

@@ -20,7 +20,6 @@ public class LottoService {
         for (int i = 0; i < numberOfTickets; i++) {
             tickets.add(new Lotto(generateLottoNumbers()));
         }
-
         return tickets;
     }
 

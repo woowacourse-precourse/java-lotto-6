@@ -18,6 +18,7 @@ public class InputView {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
+
     public int readBonusNumber() {
         String input = Console.readLine();
         return Integer.parseInt(input);

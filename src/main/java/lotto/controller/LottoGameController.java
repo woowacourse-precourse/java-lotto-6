@@ -15,16 +15,48 @@ import lotto.view.OutputView;
 public class LottoGameController {
 
     public static void start() {
-        Money money = MoneyService.createMoney();
+        Money money = getMoney();
         OutputView.printLottoAmount(money);
         LottoTicket lottoTicket = issueTicket(money.calculateLottoAmount());
 
-        Lotto winningNumbers = LottoWinningNumberService.generateLottoWinningNumber();
-        int bonusNumber = LottoWinningNumberService.generateBonusNumber();
-        LottoWinningNumber lottoWinningNumber = new LottoWinningNumber(winningNumbers, bonusNumber);
-
+        Lotto winningNumbers = getLotto();
+        LottoWinningNumber lottoWinningNumber = getLottoWinningNumber(winningNumbers);
         LottoResult lottoResult = draw(lottoTicket, lottoWinningNumber);
         OutputView.printProfit(new Profit(money, lottoResult.getTotalPrize()));
+    }
+
+    private static Money getMoney() {
+        Money money;
+        try {
+            money = MoneyService.createMoney();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getMoney();
+        }
+        return money;
+    }
+
+    private static Lotto getLotto() {
+        Lotto winningsNumbers;
+        try {
+            winningsNumbers = LottoWinningNumberService.generateLottoWinningNumber();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getLotto();
+        }
+        return winningsNumbers;
+    }
+
+    private static LottoWinningNumber getLottoWinningNumber(Lotto winningNumbers) {
+        LottoWinningNumber lottoWinningNumber;
+        try {
+            int bonusNumber = LottoWinningNumberService.generateBonusNumber();
+            lottoWinningNumber = new LottoWinningNumber(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return getLottoWinningNumber(winningNumbers);
+        }
+        return lottoWinningNumber;
     }
 
     private static LottoTicket issueTicket(int lottoAmount) {

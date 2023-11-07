@@ -20,10 +20,6 @@ public class LottoWinningNumber {
         return this.winningNumbers.getNumbers();
     }
 
-    private List<Integer> generateWinningNumbers() {
-        return this.winningNumbers.getNumbers();
-    }
-
     private void hasBonusNumber(Lotto winningNumbers, int bonusNumber) {
         if (winningNumbers.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 로또 번호에 보너스 번호가 있습니다.");

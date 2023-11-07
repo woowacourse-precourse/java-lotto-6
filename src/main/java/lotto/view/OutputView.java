@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.domain.LottoGrade;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +13,7 @@ public class OutputView {
     private static final String PRINT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTIC_MESSAGE = "당첨 통계";
     private static final String DIVISION_LINE = "---";
+    private static final String RETURN_RATE_FORMAT = "###,##0.0";
 
 
     public void printLottoPurchaseAmountInputMessage() {
@@ -49,5 +51,11 @@ public class OutputView {
         System.out.println("5개 일치 (1,500,000원) - " + result.get(LottoGrade.THIRD) + "개");
         System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + result.get(LottoGrade.SECOND) + "개");
         System.out.println("6개 일치 (2,000,000,000원) - " + result.get(LottoGrade.FIRST) + "개");
+    }
+
+    public void printAllReturnRate(double returnRate) {
+        DecimalFormat returnRateFormat = new DecimalFormat(RETURN_RATE_FORMAT);
+        String formattedReturnRate = returnRateFormat.format(returnRate);
+        System.out.println("총 수익률은 " + formattedReturnRate + "%입니다.");
     }
 }

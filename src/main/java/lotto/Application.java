@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import javax.lang.model.type.ArrayType;
 import java.util.*;
 
@@ -15,18 +17,19 @@ public class Application {
         List<Integer> eachLottoNumber = null;
         List<List<Integer>> lottos = new ArrayList<>();
 
-        System.out.println("구입금액을 입력해 주세요.");
+        //구입 금액 입력
+//        System.out.println("구입금액을 입력해 주세요.");
 
         UserInput userInput = new UserInput();
         Process lottoCount = new Process();
 
-        while (UserInput.repeatPurchase) {
-            purchaseAmount = userInput.getPurchaseAmount();
-            userInput.validatePurchaseAmount(purchaseAmount);
-            purchaseCount = lottoCount.countLottos(purchaseAmount);
-        }
 
+//
+        purchaseAmount = userInput.getPurchaseAmount();
+        purchaseCount = lottoCount.countLottos(purchaseAmount);
         System.out.println();
+
+
         System.out.printf("%d개를 구매했습니다.%n", purchaseCount); //
 
 
@@ -120,7 +123,6 @@ public class Application {
         }
 
 
-
         //당첨 통계 출력
         System.out.println("당첨 통계");
         System.out.println("---");
@@ -137,11 +139,6 @@ public class Application {
         Process endProcess = new Process();
         float rateOfReturn = endProcess.calculateRateOfReturn(purchaseAmount, winRecordBoard);
         System.out.printf("총 수익률은 %.2f%%입니다.", rateOfReturn);
-
-
-
-
-
 
 
     }

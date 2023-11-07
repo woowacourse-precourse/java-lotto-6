@@ -1,5 +1,6 @@
 package lotto.ui;
 
+import lotto.Lotto;
 import lotto.LottoGenerator;
 import lotto.WinningLotto;
 
@@ -28,7 +29,10 @@ public class InputManager {
         while (true) {
             System.out.println("\n당첨 번호를 입력해 주세요.");
             try {
-                return validatedNumbers(readLine());
+                List<Integer> numbers = validatedNumbers(readLine());
+                new Lotto(numbers);
+
+                return numbers;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

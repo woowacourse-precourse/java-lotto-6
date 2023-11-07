@@ -1,10 +1,8 @@
 package lotto.controller;
 
 import lotto.Utils;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.ProfitCalculator;
-import lotto.model.Purchase;
+import lotto.WinningRanking;
+import lotto.model.*;
 import lotto.view.InterfaceView;
 
 import java.math.BigDecimal;
@@ -22,31 +20,48 @@ public class LottoGameManager {
     private Lotto winningLotto;
     private BonusNumber bonusNumber;
 
-
-
     public LottoGameManager(UserInputManager userInputManager) {
         this.userInputManager = userInputManager;
         this.userLottos = new ArrayList<>();
     }
 
     public void play() {
+        int lottoCount = determiningTheNumberOfLotto();
+        createAndCheckLotto(lottoCount);
+        setWinningNumberAndBonusNumber();
+        JudgementOfWinning();
+        profitCalculating();
+    }
+
+    public int determiningTheNumberOfLotto() {
         priceInputMessage();
         int lottoCount = purchaseLotto();
         InterfaceView.checkMessage(lottoCount);
+        return lottoCount;
+    }
+
+    public void createAndCheckLotto(int lottoCount) {
         createLotto(lottoCount);
         printLotto(userLottos);
+    }
+
+    public void setWinningNumberAndBonusNumber() {
         winningNumberInputMessage();
-        setWinningLotto();
+        setWinningNumber();
         bonusNumberInputMessage();
-        this.bonusNumber = bonusNumber();
+        this.bonusNumber = setBonusNumber();
+    }
+
+    public void JudgementOfWinning() {
         checkResult();
         printResult(matchCounts);
+    }
+
+    public void profitCalculating() {
         ProfitCalculator profitCalculator = new ProfitCalculator(Purchase.getPurchasePrice(), matchCounts);
         BigDecimal profitRate = profitCalculator.calculateProfit();
         printProfitRate(profitRate);
     }
-
-
 
     private int purchaseLotto() {
         String purchasePriceInput = userInputManager.getPurchasePriceInput();
@@ -54,14 +69,10 @@ public class LottoGameManager {
         return purchase.getLottoCount();
     }
 
-    private BonusNumber bonusNumber() {
+    private BonusNumber setBonusNumber() {
         String bonusNumberInput = userInputManager.getBonusNumberInput();
-        BonusNumber bonusNumber = new BonusNumber(bonusNumberInput);
-
-        return bonusNumber;
+        return new BonusNumber(bonusNumberInput);
     }
-
-
 
     private void createLotto(int lottoCount) {
         for (int i = 0; i < lottoCount; i++) {
@@ -73,22 +84,19 @@ public class LottoGameManager {
     private List<Integer> matchCounts = new ArrayList<>(Collections.nCopies(5, 0));
 
     private void checkResult() {
+
         for (Lotto userLotto : userLottos) {
-            int prizeRank = userLotto.checkWinning(winningLotto, bonusNumber.getBonusNumber());
-            if (prizeRank > 0) {
-                // 등수에 해당하는 인덱스 위치의 값을 증가
-                // 1등이면 인덱스 4, 2등이면 인덱스 3, 3등이면 인덱스 2, 4등이면 인덱스 1, 5등이면 인덱스 0
-                matchCounts.set(5 - prizeRank, matchCounts.get(5 - prizeRank) + 1);
+            WinningRanking prizeRank = userLotto.checkWinning(winningLotto, bonusNumber.getBonusNumber());
+            if (prizeRank != WinningRanking.LOSING) {
+                // 열거형 값을 사용하여 해당 등수의 matchCounts 값을 증가시킵니다.
+                matchCounts.set(prizeRank.getRank() - 1, matchCounts.get(prizeRank.getRank() - 1) + 1);
             }
         }
     }
 
-
-
-
-    private void setWinningLotto() {
+    private void setWinningNumber() {
         String winningNumbersInput = userInputManager.getWinningNumbersInput();
-        List<Integer> winningNumbers = Utils.convertStringToListOfIntegers(winningNumbersInput);
+        List<Integer> winningNumbers = Utils.convertStringToIntegers(winningNumbersInput);
         this.winningLotto = new Lotto(winningNumbers);
     }
 }

@@ -29,7 +29,7 @@ public class InterfaceView {
     }
 
     public static void printResult(List<Integer> matchCounts) {
-        System.out.println("당첨 내역");
+        System.out.println("당첨 통계\n---");
         System.out.println("3개 일치 (5,000원) - " + matchCounts.get(0) + "개");
         System.out.println("4개 일치 (50,000원) - " + matchCounts.get(1) + "개");
         System.out.println("5개 일치 (1,500,000원) - " + matchCounts.get(2) + "개");

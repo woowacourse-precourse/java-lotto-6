@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.WinningRanking;
+
 import java.util.List;
 
 import static lotto.Utils.makeLottoNumber;
@@ -34,8 +36,8 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return numbers;
     }
-    // Lotto 클래스 내에 추가할 메소드입니다.
-    public int checkWinning(Lotto winningLotto, int bonusNumber) {
+
+    public WinningRanking checkWinning(Lotto winningLotto, int bonusNumber) {
         int matchCount = 0;
         for (int number : this.numbers) {
             if (winningLotto.getNumbers().contains(number)) {
@@ -44,17 +46,17 @@ public class Lotto {
         }
 
         if (matchCount == 6) {
-            return 1; // 1등
+            return WinningRanking.FIRST;
         } else if (matchCount == 5 && this.numbers.contains(bonusNumber)) {
-            return 2; // 2등
+            return WinningRanking.SECOND;
         } else if (matchCount == 5) {
-            return 3; // 3등
+            return WinningRanking.THIRD;
         } else if (matchCount == 4) {
-            return 4; // 4등
+            return WinningRanking.FOURTH;
         } else if (matchCount == 3) {
-            return 5; // 5등
+            return WinningRanking.FIFTH;
         } else {
-            return 0; // 당첨되지 않음
+            return WinningRanking.LOSING;
         }
     }
 

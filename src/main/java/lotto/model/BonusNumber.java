@@ -3,7 +3,7 @@ package lotto.model;
 import static lotto.Utils.convertStringToInt;
 
 public class BonusNumber {
-    private int bonusNumber;
+    private final int bonusNumber;
 
     public BonusNumber(String bonusNumberInput) {
         this.bonusNumber = convertStringToInt(bonusNumberInput);

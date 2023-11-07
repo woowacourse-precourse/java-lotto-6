@@ -9,6 +9,10 @@ public class LottoController {
         LottoTickets.buyLottoTickets(purchaseAmount);
     }
 
+    public static int getBuyLottoTicketsNum(){
+        return LottoTickets.getBuyLottoTicketsNum();
+    }
+
     public static  void putWinningNums(String winningNums){
         WinningNumber.putWinningNum(winningNums);
     }
@@ -16,4 +20,5 @@ public class LottoController {
         WinningNumber.putBonusNum(bonusNum);
 
     }
+
 }

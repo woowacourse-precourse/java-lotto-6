@@ -8,4 +8,10 @@ public class ConsoleOutputAdapter implements OutputPort {
         System.out.println(message);
     }
 
+    @Override
+    public void printF(String message,double number) {
+        System.out.printf(message,number);
+    }
+
+
 }

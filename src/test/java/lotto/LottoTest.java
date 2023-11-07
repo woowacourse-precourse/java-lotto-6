@@ -43,7 +43,7 @@ class LottoTest {
     void provideWinningNumber(List<Integer> winningNumbers, int bonusNumber, Ranking expectedResult) {
         assertThat(new Lotto(List.of(1, 2, 3, 4, 5, 6))
                 .getRank(winningNumbers, bonusNumber))
-                .isInstanceOf(Ranking.class);
+                .isEqualTo(expectedResult);
     }
 
     private static Stream<Arguments> provide_getScore_TestData() {

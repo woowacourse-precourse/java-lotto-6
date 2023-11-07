@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class LottoController {
     private final InputView inputView;
@@ -19,7 +20,7 @@ public class LottoController {
     private Lotto lotto;
     private BonusLotto bonusLotto;
     private LottoService lottoService;
-    private Map<WinningResultConfig, Integer> lottoResults;
+    private LinkedHashMap<WinningResultConfig, Integer> lottoResults;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -97,10 +98,15 @@ public class LottoController {
             lottoResults = lottoService.findWinningResult();
 
             for (Map.Entry<WinningResultConfig, Integer> lottoResult : lottoResults.entrySet()) {
+                if (lottoResult.getKey().getResultStatus().contains("보너스 볼")) {
+                    outputView.printWinningBonusResult(lottoResult.getKey().getResultStatus().split(",")[0],
+                            lottoResult.getKey().getResultStatus().split(",")[1],
+                            lottoResult.getKey().getRevenueStatus(),
+                            lottoResult.getValue());
+                    continue;
+                }
                 outputView.printWinningResult(lottoResult.getKey(),lottoResult.getValue());
             }
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
         } catch (NullPointerException e) {
             throw new NullPointerException(e.getMessage());
         }

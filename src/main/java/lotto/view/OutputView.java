@@ -14,8 +14,8 @@ public class OutputView {
         System.out.println(String.format(ViewMessage.PRINT_QUANTITY_OF_PURCHASE.getMessage(),lottoQuantity));
     }
 
-    public void printUserLottoNumber(List<List<Integer>> userNumbers) {
-        System.out.println(userNumbers);
+    public void printUserLottoNumber(List<List<Integer>> userLottoNumbers) {
+        userLottoNumbers.forEach(System.out::println);
     }
 
     public void printWinningNumberMessage() {
@@ -39,6 +39,12 @@ public class OutputView {
                 String.format(ViewMessage.PRINT_EQUAL_NUMBER_WINNING_STATUS_FORM.getMessage(),
                         winningResultConfig.getResultStatus(), winningResultConfig.getRevenueStatus()) +
                 String.format(ViewMessage.PRINT_EQUAL_LOTTO_COUNT_FORM.getMessage(), count)
+        );
+    }
+    public void printWinningBonusResult(String resultStatus, String bonus, int revenue, Integer count) {
+        System.out.println(
+                String.format(ViewMessage.PRINT_EQUAL_NUMBER_WINNING_STATUS_BONUS_FORM.getMessage(), resultStatus, bonus, revenue) +
+                        String.format(ViewMessage.PRINT_EQUAL_LOTTO_COUNT_FORM.getMessage(), count)
         );
     }
 

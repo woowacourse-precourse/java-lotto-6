@@ -7,9 +7,10 @@ public enum ViewMessage {
     BONUS_NUMBER_INPUT_MESSAGE("보너스 번호를 입력해 주세요."),
     PRINT_WINNING_RESULT_MESSAGE("당첨 통계"),
     PRINT_LINE_SYMBOL("---"),
-    PRINT_EQUAL_NUMBER_WINNING_STATUS_FORM("%d개 일치 (%,d원) - "),
+    PRINT_EQUAL_NUMBER_WINNING_STATUS_FORM("%s개 일치 (%,d원) - "),
+    PRINT_EQUAL_NUMBER_WINNING_STATUS_BONUS_FORM("%s개 일치, %s 일치 (%,d원) - "),
     PRINT_EQUAL_LOTTO_COUNT_FORM("%d개"),
-    PRINT_TOTAL_REVENUE_RATE("총 수익률은 %f%%입니다.");
+    PRINT_TOTAL_REVENUE_RATE("총 수익률은 %.2f%%입니다.");
 
     private final String message;
 

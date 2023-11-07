@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.LinkedHashMap;
 
 import static lotto.Message.ErrorMessage.OBJECT_IS_NULL;
 
@@ -26,7 +27,7 @@ public class LottoService {
         this.bonusNumber = bonusNumber;
     }
 
-    public Map<WinningResultConfig, Integer> findWinningResult() {
+    public LinkedHashMap<WinningResultConfig, Integer> findWinningResult() {
         for (List<Integer> userNumbers : userLottoNumbers) {
             int equalCount = countEqualNumber(userNumbers);
             String bonus = checkBonus(userNumbers, equalCount);
@@ -39,7 +40,7 @@ public class LottoService {
                 .collect(Collectors.toList()));
 
         return winningResult.getWinningResults().entrySet().stream()
-                .collect(Collectors.toMap(Map.Entry::getKey, value -> value.getValue().size()));
+                .collect(Collectors.toMap(Map.Entry::getKey, value -> value.getValue().size(), (x, y) -> y, LinkedHashMap::new));
     }
 
     private int countEqualNumber(List<Integer> userNumbers) {

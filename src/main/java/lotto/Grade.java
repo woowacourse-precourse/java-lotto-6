@@ -1,13 +1,14 @@
 package lotto;
 
+import java.text.NumberFormat;
 import java.util.Optional;
 
 public enum Grade {
-    FIRST(6, false, 2_000_000_000),
-    SECOND(5, true, 30_000_000),
-    THIRD(5, false, 1_500_000),
+    FIFTH(3, false, 5_000),
     FOURTH(4, false, 50_000),
-    FIFTH(3, false, 5_000);
+    THIRD(5, false, 1_500_000),
+    SECOND(5, true, 30_000_000),
+    FIRST(6, false, 2_000_000_000);
 
     private int count;
     private boolean bonus;
@@ -36,5 +37,19 @@ public enum Grade {
             return FIFTH;
         }
         return null;
+    }
+
+    public void print(int numOfWinners) {
+        String output = count + "개 일치";
+        if (bonus) {
+            output += ", 보너스 볼 일치";
+        }
+        output += " (" + NumberFormat.getInstance().format(prize) + "원)";
+        output += " - " + numOfWinners + "개";
+        System.out.println(output);
+    }
+
+    public long calculatePrize(int numOfWinners) {
+        return prize * numOfWinners;
     }
 }

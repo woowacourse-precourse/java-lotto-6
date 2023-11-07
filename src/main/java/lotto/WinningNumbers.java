@@ -1,6 +1,7 @@
 package lotto;
 
 import java.lang.invoke.VarHandle;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,9 +27,10 @@ public class WinningNumbers {
         Map<Grade, Integer> winners = new HashMap<>();
         for (Lotto ticket : tickets) {
             Grade grade = ticket.draw(winning, bonus);
-            int count = winners.getOrDefault(grade, 0);
-            winners.put(grade, count + 1);
+            int numOfWinners = winners.getOrDefault(grade, 0);
+            winners.put(grade, numOfWinners + 1);
         }
+        winners.remove(null);
         return winners;
     }
 }

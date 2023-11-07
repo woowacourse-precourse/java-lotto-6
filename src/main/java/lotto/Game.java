@@ -14,10 +14,15 @@ public class Game {
     private static final String WINNING_NUMBERS_DELIMITER = ",";
 
     public Game() {
-        long money = inputMoney();
-        List<Lotto> tickets = buy(money);
-        WinningNumbers winningNumbers = inputWinningNumbers();
-        winningNumbers.draw(tickets);
+        try {
+            long money = inputMoney();
+            List<Lotto> tickets = buy(money);
+            WinningNumbers winningNumbers = inputWinningNumbers();
+            Map<Grade, Integer> winners = winningNumbers.draw(tickets);
+            printResult(winners, money);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private long inputMoney() {
@@ -50,17 +55,7 @@ public class Game {
     }
 
     private List<Integer> generateNumbers() {
-        Set<Integer> set = new HashSet<>();
-        while (set.size() < LOTTO_SIZE) {
-            int number = Randoms.pickNumberInRange(LOTTO_MIN, LOTTO_MAX);
-            if (!set.contains(number)) {
-                set.add(number);
-            }
-        }
-
-        return set.stream()
-                .sorted()
-                .collect(Collectors.toList());
+        return Randoms.pickUniqueNumbersInRange(LOTTO_MIN, LOTTO_MAX, LOTTO_SIZE);
     }
 
     private WinningNumbers inputWinningNumbers() {
@@ -96,7 +91,25 @@ public class Game {
         return bonus;
     }
 
-    private void draw() {
+    private void printResult(Map<Grade, Integer> winners, long money) {
+        printWinners(winners);
+        long profit = 0;
+        for (Grade grade : winners.keySet()) {
+            profit += grade.calculatePrize(winners.get(grade));
+        }
+        printYield(profit, money);
+    }
 
+    private void printWinners(Map<Grade, Integer> winners) {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (Grade grade : Grade.values()) {
+            grade.print(winners.getOrDefault(grade, 0));
+        }
+    }
+
+    private void printYield(long profit, long money) {
+        String yield = String.format("%.1f", 100.0 * profit / money);
+        System.out.println("총 수익률은 " + yield + "%입니다.");
     }
 }

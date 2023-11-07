@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.Lottery;
 import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.Price;
-import lotto.domain.Ranks;
 import lotto.domain.LottoMachine;
+import lotto.domain.Price;
 
 public class LottoController {
 
@@ -27,10 +25,4 @@ public class LottoController {
 
         return new Lottery(lottery);
     }
-
-    public Ranks lottoResults(Lottery lottery, Lotto winningNumber, LottoNumber bonusNumber) {
-        return new Ranks(lottery, winningNumber, bonusNumber);
-    }
-
-
 }

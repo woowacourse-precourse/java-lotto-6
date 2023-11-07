@@ -16,7 +16,6 @@ public class LottoNumber {
     }
 
     public LottoNumber(String winningNumber) {
-        // todo String을 Integer로 변환할 수 있는지 검증 로직 추가 필요
         this.lottoNumber = Integer.valueOf(winningNumber);
     }
 

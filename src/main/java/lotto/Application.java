@@ -26,7 +26,7 @@ public class Application {
         String stringWinningNumber = getWinningNumber();
         Lotto winningNumber = new Lotto(toIntegerList(stringWinningNumber));
 
-        Ranks ranks = lottoController.lottoResults(lottery, winningNumber, new LottoNumber(InputView.bonusNumber()));
+        Ranks ranks = new Ranks(lottery.calLottoRank(winningNumber, new LottoNumber(InputView.bonusNumber())));
 
         OutputView.printLotteryResult(ranks.lotteryRankStatus());
         OutputView.printRateOfReturn(ranks.calWinningPrice(), purchasePrice);

@@ -21,4 +21,18 @@ public enum LottoRanking {
         this.judgeBonus = judgeBonus;
         this.count = 0;
     }
+
+    public Long toPrice() {
+        return price * count;
+    }
+
+    public String toPrintMessage() {
+        return message + " - " + count +"개";
+    }
+
+    public void ismatched(Integer matchNumber, JudgeBonus judgeBonus) {
+        if(this.matchNumber.equals(matchNumber) && this.judgeBonus.equals(judgeBonus)) {
+            count++;
+        }
+    }
 }

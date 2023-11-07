@@ -33,4 +33,16 @@ public class View {
         String userInput = Console.readLine();
         return Integer.parseInt(userInput);
     }
+
+    public void prizeResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        Arrays.stream(LottoRanking.values()).map(LottoRanking::toPrintMessage)
+                .forEach(System.out::println);
+    }
+
+    public void printEarningRatio(Double ratio) {
+        String result = String.format("%.1f", ratio);
+        System.out.print("총 수익률은 " + result + "%입니다.");
+    }
 }

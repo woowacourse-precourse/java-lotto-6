@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 
 public enum LottoRank {
     NO_RANK(0, List.of(0L, 1L, 2L), "0"),
-    FIRST(1, List.of(6L), "2,000,000,000"),
-    SECOND(2, List.of(5L), "30,000,000"),
-    THIRD(3, List.of(5L), "1,500,000"),
-    FOURTH(4, List.of(4L), "50,000"),
-    FIFTH(5, List.of(3L), "5,000");
+    FIRST(1, List.of(6L), "2000000000"),
+    SECOND(2, List.of(5L), "30000000"),
+    THIRD(3, List.of(5L), "1500000"),
+    FOURTH(4, List.of(4L), "50000"),
+    FIFTH(5, List.of(3L), "5000");
 
     private static final int WINNING_RANK_INDEX = 0;
 

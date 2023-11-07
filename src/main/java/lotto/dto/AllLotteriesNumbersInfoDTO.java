@@ -23,7 +23,7 @@ public class AllLotteriesNumbersInfoDTO {
         return bonusLotto;
     }
 
-    public GenerateLotteries generateLotteries() {
+    public GenerateLotteries getGenerateLotteries() {
         return generateLotteries;
     }
 }

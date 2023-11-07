@@ -1,22 +1,18 @@
 package lotto.domain;
 
-import java.util.stream.Stream;
-import lotto.constant.testConstant;
-import lotto.domain.Lotto;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.List;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.MethodSource;
-import org.junit.jupiter.params.provider.ValueSource;
-
 import static lotto.constant.testConstant.BONUS_NUMBER_45;
 import static lotto.constant.testConstant.LOTTO_1_TO_6;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+
+import java.util.List;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -53,8 +49,11 @@ class LottoTest {
     @ParameterizedTest
     @MethodSource("lottoResults")
     void check_getResult(List<Integer> lottoNumbers, int winningCount, boolean bonusMatching) {
+        // given
         Lotto lotto = new Lotto(lottoNumbers);
+        // when
         LottoResult lottoResult = lotto.getResult(LOTTO_1_TO_6, BONUS_NUMBER_45);
+        // then
         assertThat(lottoResult.getWinningCount()).isEqualTo(winningCount);
         assertThat(lottoResult.isBonusNumberMatching()).isEqualTo(bonusMatching);
     }

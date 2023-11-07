@@ -3,7 +3,6 @@ package lotto.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -12,8 +11,10 @@ public class LottoCollectionGeneratorTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 3, 10})
     void check_generate(int lottoCount) {
+        // given
         NumberGenerator numberGenerator = new RandomNumberGenerator();
         LottoCollectionGenerator lottoCollectionGenerator = new LottoCollectionGenerator(lottoCount, numberGenerator);
+        // when & then
         assertThat(lottoCollectionGenerator.generate())
                 .hasSize(lottoCount)
                 .allSatisfy(lotto -> assertThat(lotto).isInstanceOf(Lotto.class));

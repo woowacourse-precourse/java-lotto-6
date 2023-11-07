@@ -7,8 +7,12 @@ public final class LottoInputView {
     private LottoInputView() {
     }
 
-    public static String initPurchasePrice(){
-        return Console.readLine();
+    public static int inputPurchasePrice() {
+        LottoOutputView.printPurchasePriceMessage();
+        String purchasePrice = Console.readLine();
+        LottoInputValidator.validateNumeric(purchasePrice);
+
+        return Integer.parseInt(purchasePrice);
     }
 
 }

@@ -20,14 +20,14 @@ class EarningRateTest {
             // given
             final int useMoney = 1000;
             final PurchaseAmount purchaseAmount = new PurchaseAmount(useMoney);
-            final int profit = 3000;
+            final Integer profit = 3000;
             final EarningRate earningRate = new EarningRate(profit, purchaseAmount);
 
             // when
             final Double result = earningRate.toValue();
 
             // given
-            assertThat(result).isEqualTo(profit / useMoney * 100);
+            assertThat(result).isEqualTo(profit.doubleValue() / useMoney * 100);
         }
 
         @DisplayName("수익이 없는 경우 0이 확인된다.")

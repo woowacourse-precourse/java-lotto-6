@@ -1,10 +1,6 @@
 package lotto.domain;
 
-import java.util.HashSet;
 import java.util.List;
-
-import camp.nextstep.edu.missionutils.Randoms;
-import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;

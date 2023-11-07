@@ -1,11 +1,15 @@
 package lotto.view;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Supplier;
 
-import static lotto.ErrorMessage.PURCHASE_MONEY_ERROR;
+import static lotto.ErrorMessage.PURCHASE_MONEY_INPUT_ERROR;
+import static lotto.ErrorMessage.WINNING_NUMBERS_INPUT_ERROR;
 
 public class InputView {
-    private static final String PURCHASE_MONEY_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String PURCHASE_MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
+    private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     private final Supplier<String> reader;
 
@@ -14,12 +18,27 @@ public class InputView {
     }
 
     public int readPurchaseMoney() {
-        System.out.println(PURCHASE_MONEY_MESSAGE);
+        System.out.println(PURCHASE_MONEY_INPUT_MESSAGE);
 
         try {
             return Integer.parseInt(reader.get());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(PURCHASE_MONEY_ERROR.getMessage());
+            throw new IllegalArgumentException(PURCHASE_MONEY_INPUT_ERROR.getMessage());
         }
+    }
+
+    public List<Integer> readWinningNumbers() {
+        System.out.println();
+        System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
+
+        String readLine = reader.get();
+
+        return toWinningNumbers(readLine);
+    }
+
+    public List<Integer> toWinningNumbers(String readLine) {
+        return Arrays.stream(readLine.split(","))
+                .map(Integer::parseInt)
+                .toList();
     }
 }

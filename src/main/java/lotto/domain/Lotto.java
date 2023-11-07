@@ -1,12 +1,14 @@
 package lotto.domain;
 
+import static lotto.utils.ErrorMessage.IS_INVALID_LOTTO_SIZE;
 import static lotto.utils.ErrorMessage.IS_LOTTO_DUPLICATED;
+import static lotto.utils.LottoConstants.LOTTO_SIZE;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Lotto extends LottoNumber {
+public class Lotto extends LottoSingleNumber {
     private List<Integer> numbers;
 
     public Lotto(int lottoNumber) {
@@ -22,8 +24,14 @@ public class Lotto extends LottoNumber {
     }
 
     private void validate(List<Integer> numbers) {
-        isLottoSizeValid(numbers,LOTTO_SIZE);
+        isLottoSizeValid(numbers);
         isLottoDuplicated(numbers);
+    }
+
+    protected void isLottoSizeValid(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_SIZE.getValue()) {
+            throw new IllegalArgumentException(IS_INVALID_LOTTO_SIZE.getMessage());
+        }
     }
 
     private void isLottoDuplicated(List<Integer> numbers) {
@@ -34,13 +42,11 @@ public class Lotto extends LottoNumber {
 
     public int countMatchingNumbers(Lotto otherLotto) {
         int count = 0;
-
         for (Integer number : numbers) {
             if (otherLotto.containsNumber(number)) {
                 count++;
             }
         }
-
         return count;
     }
 

@@ -17,6 +17,11 @@ public class Application {
 
         int count = price / 1000;
         System.out.println(count + "개를 구매했습니다.");
+
+        List<Lotto> lottoTickets = generateLottoTickets(count);
+        for (Lotto lottoTicket : lottoTickets) {
+            System.out.println(lottoTicket.getNumbers());
+        }
     }
 
     enum LottoRank {
@@ -48,5 +53,13 @@ public class Application {
                 System.out.println("[ERROR] 올바른 숫자를 입력하세요.");
             }
         }
+    }
+
+    public static List<Lotto> generateLottoTickets(int numberOfTickets) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (int i = 0; i < numberOfTickets; i++) {
+            lottoTickets.add(Lotto.pickRandom());
+        }
+        return lottoTickets;
     }
 }

@@ -11,6 +11,27 @@ public class Calculation {
 
     private static final int TICKET_PRICE = GameEnvironment.TICKET.getValue();
 
+    public double calculateProfitRate(Lotto lotto, LottoTicket ticket, SetUserLotto userLotto){
+        int purchaseAmount = TICKET_PRICE*ticket.getTickets();
+        int winningPrize = 0;
+        int count = countMatching(lotto, ticket);
+
+        for(Prize prize : Prize.values()) {
+            if(count == prize.getMatchingNumbers()) {
+                winningPrize = prize.getPrizeAmount();
+            }
+        }
+
+        if(count == 5 && !isMatchBonusNumber(userLotto, ticket)){
+            winningPrize = Prize.MATCH_5_WITH_BONUS.getPrizeAmount();
+        }
+
+        double profitRate = (double) winningPrize / purchaseAmount * 100.0;
+        profitRate = Math.round(profitRate * 100.0) / 100.0;
+
+        return profitRate;
+    }
+
     public int countMatching (Lotto lotto, LottoTicket ticket) {
         int matchCount = 0;
         int[] counts = countMatchingNumbers(lotto,ticket);
@@ -60,34 +81,13 @@ public class Calculation {
         return max;
     }
 
-    public Boolean isMatchBonusNumber(Lotto lotto, LottoTicket ticket) {
+    public Boolean isMatchBonusNumber(SetUserLotto userLotto, LottoTicket ticket) {
         for(List<Integer> numbers : ticket.getTicketNumbers()) {
-            if(numbers.contains(bonusNumber())){
+            if(numbers.contains(userLotto.bonusNumber())){
                 return false;
             }
         }
         return true;
-    }
-
-    public double calculateProfitRate(Lotto lotto, LottoTicket ticket){
-        int purchaseAmount = TICKET_PRICE*ticket.getTickets();
-        int winningPrize = 0;
-        int count = countMatching(lotto, ticket);
-
-        for(Prize prize : Prize.values()) {
-            if(count == prize.getMatchingNumbers()) {
-                winningPrize = prize.getPrizeAmount();
-            }
-        }
-
-        if(count == 5 && !isMatchBonusNumber(lotto, ticket)){
-            winningPrize = Prize.MATCH_5_WITH_BONUS.getPrizeAmount();
-        }
-
-        double profitRate = (double) winningPrize / purchaseAmount * 100.0;
-        profitRate = Math.round(profitRate * 100.0) / 100.0;
-
-        return profitRate;
     }
 
 }

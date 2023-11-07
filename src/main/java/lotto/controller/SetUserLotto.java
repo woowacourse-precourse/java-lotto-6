@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetUserLotto {
-    private final int bonusNumber = bonusNumber();
     private Lotto userLotto() {
         List<Integer> numbers = InputNumbers();
         return new Lotto(numbers);

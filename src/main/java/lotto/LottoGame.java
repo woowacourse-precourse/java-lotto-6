@@ -6,10 +6,13 @@ import constValue.ConstMessage;
 import constValue.ConstNumber;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoGame {
     private Integer lottoGameCount;
+    private Lotto correctLotto;
+    private Integer bonusNumber;
     private List<Lotto> lottos;
 
     public LottoGame() {
@@ -19,14 +22,36 @@ public class LottoGame {
         addLottos(getLottoGameCount());
         System.out.println(getLottoGameCount() + "개를 구매했습니다.");
         printLottos();
+        System.out.println("당첨 번호를 입력해 주세요.");
+        this.correctLotto = enterCorrectNumber();
+        System.out.println("보너스 번호를 입력해 주세요.");
+        this.bonusNumber = enterBonusNumber();
     }
 
-    public Integer enterPurchaseAmount() {
+    private Integer enterPurchaseAmount() {
         try {
             return Integer.parseInt(validatePurchaseAmount(Console.readLine()));
         } catch (IllegalArgumentException e) {
-            System.out.println(ConstMessage.PURCHASE_AMOUNT_INPUT_ERROR_MESSAGE.getMessage());
+            System.out.println(e.getMessage());
             return enterPurchaseAmount();
+        }
+    }
+
+    private Lotto enterCorrectNumber() {
+        try {
+            return new Lotto(stringToIntegerList(validateCorrectNumber(Console.readLine())));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return enterCorrectNumber();
+        }
+    }
+
+    public Integer enterBonusNumber() {
+        try {
+            return Integer.parseInt(validateBonusNumber(Console.readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return enterBonusNumber();
         }
     }
 
@@ -34,7 +59,29 @@ public class LottoGame {
         if (purchaseAmount.matches("[1-9]+000")) {
             return purchaseAmount;
         }
-        throw new IllegalArgumentException();
+        throw new IllegalArgumentException(ConstMessage.PURCHASE_AMOUNT_INPUT_ERROR_MESSAGE.getMessage());
+    }
+
+    private String validateCorrectNumber(String correctNumber) throws IllegalArgumentException {
+        if (correctNumber.split(",").length != 6) {
+            throw new IllegalArgumentException(ConstMessage.CORRECT_NUMBER_INPUT_COUNT_ERROR_MESSAGE.getMessage());
+        }
+        if (Arrays.stream(correctNumber.split(","))
+                .filter(number -> Integer.parseInt(number) > 45 || Integer.parseInt(number) < 1).count() > 0) {
+            throw new IllegalArgumentException(ConstMessage.NUMBER_INPUT_RANGE_ERROR_MESSAGE.getMessage());
+        }
+        return correctNumber;
+    }
+
+    private String validateBonusNumber(String bonusNumber) throws IllegalArgumentException {
+        if (bonusNumber.matches("[^1-9]+") || Integer.parseInt(bonusNumber) > 45
+                || Integer.parseInt(bonusNumber) < 1) {
+            throw new IllegalArgumentException(ConstMessage.NUMBER_INPUT_RANGE_ERROR_MESSAGE.getMessage());
+        }
+        if (this.correctLotto.findNumber(Integer.parseInt(bonusNumber))) {
+            throw new IllegalArgumentException(ConstMessage.BONUS_NUMBER_INPUT_ERROR_MESSAGE.getMessage());
+        }
+        return bonusNumber;
     }
 
     private Lotto createLotto() {
@@ -65,5 +112,13 @@ public class LottoGame {
         for (Lotto lotto : this.lottos) {
             System.out.println(lotto.toString());
         }
+    }
+
+    private List<Integer> stringToIntegerList(String correctNumber) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : correctNumber.split(",")) {
+            numbers.add(Integer.parseInt(number));
+        }
+        return numbers;
     }
 }

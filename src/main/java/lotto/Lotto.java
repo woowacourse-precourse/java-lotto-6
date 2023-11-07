@@ -37,4 +37,8 @@ public class Lotto {
         numbers.sort(Comparator.naturalOrder());
         return numbers;
     }
+
+    public boolean findNumber(Integer number) {
+        return this.numbers.contains(number);
+    }
 }

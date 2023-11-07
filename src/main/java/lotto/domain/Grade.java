@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public enum Grade {
     FIFTH("3", 3, 5_000),
@@ -12,6 +13,7 @@ public enum Grade {
     private final String rank;
     private final int matchCount;
     private final int prizeMoney;
+    private static final String INVALID_KEY_MESSAGE = "[ERROR] 유효하지 않은 등급 이름입니다.";
 
     Grade(String rank, int matchCount, int prizeMoney) {
         this.rank = rank;
@@ -28,6 +30,11 @@ public enum Grade {
         }
         return Arrays.stream(values()).filter(grade -> grade.matchCount == matchCount)
                 .findAny().orElse(null);
+    }
+
+    public static Grade findGradeByKey(String rank) {
+        return Arrays.stream(values()).filter(grade -> grade.rank.equals(rank))
+                .findAny().orElseThrow(() -> new IllegalArgumentException(INVALID_KEY_MESSAGE));
     }
 
     public String getRank() {

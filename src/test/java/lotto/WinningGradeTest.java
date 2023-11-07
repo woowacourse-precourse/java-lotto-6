@@ -5,20 +5,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class WinningTypeTest {
+class WinningGradeTest {
 
     @Test
     @DisplayName("로또 일치 개수가 2개 이하면 아무런 상금도 받지 못하는 당첨 등급을 반환한다.")
-    void getWinningType_LessThanMinimumMatchCount_NoneWinningType() {
+    void getWinningType_LessThanMinimumMatchCount_NONE_GRADEWinningType() {
         // Given
         int matchingCount = 2;
         boolean matchedBonusNumber = true;
 
         // When
-        WinningType winningType = WinningType.getWinningType(matchingCount, matchedBonusNumber);
+        WinningGrade winningGrade = WinningGrade.getWinningType(matchingCount, matchedBonusNumber);
 
         // Then
-        assertThat(winningType).isEqualTo(WinningType.NONE);
+        assertThat(winningGrade).isEqualTo(WinningGrade.NONE_GRADE);
     }
 
     @Test
@@ -29,10 +29,10 @@ class WinningTypeTest {
         boolean matchedBonusNumber = true;
 
         // When
-        WinningType winningType = WinningType.getWinningType(matchingCount, matchedBonusNumber);
+        WinningGrade winningGrade = WinningGrade.getWinningType(matchingCount, matchedBonusNumber);
 
         // Then
-        assertThat(winningType).isEqualTo(WinningType.SECOND);
+        assertThat(winningGrade).isEqualTo(WinningGrade.SECOND_GRADE);
     }
 
     @Test
@@ -43,10 +43,10 @@ class WinningTypeTest {
         boolean matchedBonusNumber = false;
 
         // When
-        WinningType winningType = WinningType.getWinningType(matchingCount, matchedBonusNumber);
+        WinningGrade winningGrade = WinningGrade.getWinningType(matchingCount, matchedBonusNumber);
 
         // Then
-        assertThat(winningType).isEqualTo(WinningType.THIRD);
+        assertThat(winningGrade).isEqualTo(WinningGrade.THIRD_GRADE);
     }
 
 }

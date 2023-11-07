@@ -38,21 +38,21 @@ class LottoCalculatorTest {
                         new Lotto(List.of(1, 8, 11, 31, 41, 42))));
 
         // When
-        Map<WinningType, Integer> result = lottoCalculator.getMatchStatics(lottos, winningLotto);
+        Map<WinningGrade, Integer> result = lottoCalculator.getMatchStatics(lottos, winningLotto);
 
         // Then
-        assertThat(result).containsKeys(WinningType.NONE, WinningType.FIRST);
+        assertThat(result).containsKeys(WinningGrade.NONE_GRADE, WinningGrade.FIRST_GRADE);
     }
 
     @Test
     @DisplayName("로또로 얻은 수익을 구한다.")
     void getLottosProfit_Statics() {
         // Given
-        Map<WinningType, Integer> statics = new EnumMap<>(WinningType.class);
-        statics.put(WinningType.FIRST, 3);
-        statics.put(WinningType.SECOND, 2);
+        Map<WinningGrade, Integer> statics = new EnumMap<>(WinningGrade.class);
+        statics.put(WinningGrade.FIRST_GRADE, 3);
+        statics.put(WinningGrade.SECOND_GRADE, 2);
 
-        int expected = 3 * WinningType.FIRST.getWinningPrice() + 2 * WinningType.SECOND.getWinningPrice();
+        int expected = 3 * WinningGrade.FIRST_GRADE.getWinningPrice() + 2 * WinningGrade.SECOND_GRADE.getWinningPrice();
 
         // When
         int result = lottoCalculator.getLottosProfit(statics);
@@ -65,9 +65,9 @@ class LottoCalculatorTest {
     @DisplayName("로또로 얻은 수익과 구입 금액을 비교해서 수익률을 구한다.")
     void getProfitRate_ProfitAndPurchasePrice() {
         // Given
-        Map<WinningType, Integer> statics = new EnumMap<>(WinningType.class);
-        statics.put(WinningType.FIRST, 3);
-        statics.put(WinningType.SECOND, 2);
+        Map<WinningGrade, Integer> statics = new EnumMap<>(WinningGrade.class);
+        statics.put(WinningGrade.FIRST_GRADE, 3);
+        statics.put(WinningGrade.SECOND_GRADE, 2);
         int price = 5_000;
         int profit = lottoCalculator.getLottosProfit(statics);
 

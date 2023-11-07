@@ -11,30 +11,27 @@ public class LottoCalculator {
 
     private static final int PERCENT_FACTOR = 100;
 
-    public Map<WinningType, Integer> getMatchStatics(
+    public Map<WinningGrade, Integer> getMatchStatics(
             Lottos lottos,
             WinningLotto winningLotto
     ) {
-        Map<WinningType, Integer> statics = new EnumMap<>(WinningType.class);
+        Map<WinningGrade, Integer> statics = new EnumMap<>(WinningGrade.class);
 
-        Arrays.stream(WinningType.values())
+        Arrays.stream(WinningGrade.values())
                 .forEach(type -> statics.put(type, 0));
 
         lottos.getLottos().forEach(lotto -> {
-            int matchingCount = lotto.getMatchingCount(winningLotto.getLotto());
-            boolean matchedBonusNumber = lotto.getMatchingBonusNumber(winningLotto.getBonusNumber().getNumber());
+            WinningGrade winningGrade = winningLotto.matchLotto(lotto);
 
-            WinningType winningType = WinningType.getWinningType(matchingCount, matchedBonusNumber);
+            int count = statics.get(winningGrade);
 
-            int count = statics.get(winningType);
-
-            statics.put(winningType, count + 1);
+            statics.put(winningGrade, count + 1);
         });
 
         return statics;
     }
 
-    public int getLottosProfit(Map<WinningType, Integer> statics) {
+    public int getLottosProfit(Map<WinningGrade, Integer> statics) {
         return statics.entrySet().stream()
                 .mapToInt(this::getProfit)
                 .sum();
@@ -44,7 +41,7 @@ public class LottoCalculator {
         return ((float) profit / price) * PERCENT_FACTOR;
     }
 
-    private int getProfit(Entry<WinningType, Integer> entry) {
+    private int getProfit(Entry<WinningGrade, Integer> entry) {
         return entry.getKey().getWinningPrice() * entry.getValue();
     }
 

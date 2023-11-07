@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -96,10 +97,10 @@ class LottoTest {
     void getMatchingBonusNumber_PurchaseLottoWithBonusNumber() {
         // Given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 4;
+        BonusNumber bonusNumber = new BonusNumber("4");
 
         // When
-        boolean matchingBonusNumber = lotto.getMatchingBonusNumber(bonusNumber);
+        boolean matchingBonusNumber = lotto.isBonusMatched(bonusNumber);
 
         // Then
         assertThat(matchingBonusNumber).isTrue();

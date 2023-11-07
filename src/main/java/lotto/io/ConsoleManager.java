@@ -1,11 +1,11 @@
 package lotto.io;
 
-import static lotto.WinningType.NONE;
+import static lotto.WinningGrade.NONE_GRADE;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.WinningType;
+import lotto.WinningGrade;
 import lotto.io.processor.InputProcessor;
 import lotto.io.processor.OutputProcessor;
 import lotto.model.BonusNumber;
@@ -79,11 +79,11 @@ public class ConsoleManager {
         }
     }
 
-    public void printStatics(final Map<WinningType, Integer> statics) {
+    public void printStatics(final Map<WinningGrade, Integer> statics) {
         outputProcessor.outputStaticsHint();
 
-        Arrays.stream(WinningType.values())
-                .filter(type -> type != NONE)
+        Arrays.stream(WinningGrade.values())
+                .filter(type -> type != NONE_GRADE)
                 .forEach(type -> {
                     int count = statics.get(type);
                     outputProcessor.outputWinningStatics(type, count);

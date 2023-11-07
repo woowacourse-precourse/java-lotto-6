@@ -63,8 +63,8 @@ public class Lotto {
                 .count();
     }
 
-    public boolean getMatchingBonusNumber(int bonusNumber) {
-        return this.numbers.contains(bonusNumber);
+    public boolean isBonusMatched(final BonusNumber bonusNumber) {
+        return this.numbers.contains(bonusNumber.getNumber());
     }
 
     public List<Integer> getNumbers() {

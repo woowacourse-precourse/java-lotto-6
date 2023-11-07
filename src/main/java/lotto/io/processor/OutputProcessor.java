@@ -1,7 +1,7 @@
 package lotto.io.processor;
 
 import java.util.List;
-import lotto.WinningType;
+import lotto.WinningGrade;
 
 public class OutputProcessor {
 
@@ -40,16 +40,16 @@ public class OutputProcessor {
         System.out.println(message);
     }
 
-    public void outputWinningStatics(final WinningType winningType, final int count) {
+    public void outputWinningStatics(final WinningGrade winningGrade, final int count) {
         String message = String.format(WINNING_STATICS_FORMAT,
-                winningType.getMatchedCount(),
-                winningType.getWinningPrice(),
+                winningGrade.getMatchedCount(),
+                winningGrade.getWinningPrice(),
                 count);
 
-        if (winningType.isMatchedBonusNumber()) {
+        if (winningGrade.isMatchedBonusNumber()) {
             message = String.format(WINNING_BONUS_STATICS_FORMAT,
-                    winningType.getMatchedCount(),
-                    winningType.getWinningPrice(),
+                    winningGrade.getMatchedCount(),
+                    winningGrade.getWinningPrice(),
                     count);
         }
 

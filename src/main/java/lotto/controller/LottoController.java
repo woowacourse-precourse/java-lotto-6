@@ -21,6 +21,9 @@ public class LottoController {
 
     public void run() {
         int purchaseAmount = getPurchaseAmount();
+        int lottoCount = purchaseAmount / LOTTO_PRICE;
+
+        printLottoCount(lottoCount);
     }
 
     /**
@@ -36,6 +39,13 @@ public class LottoController {
             System.out.println("[ERROR] 0 이상의 정수를 입력해주세요.");
             return getPurchaseAmount();
         }
+    }
+
+    /**
+     * Description: 구입한 로또의 개수를 출력한다.
+     */
+    private void printLottoCount(int lottoCount) {
+        purchaseOutputView.printLottoCount(lottoCount);
     }
 }
 

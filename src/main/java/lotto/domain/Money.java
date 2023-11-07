@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.view.Output;
 
 public class Money {
     private static int purchaseAmount = 0;

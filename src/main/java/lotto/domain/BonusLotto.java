@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 public class BonusLotto {
     private static final int MIN = 1;
     private static final int MAX = 45;

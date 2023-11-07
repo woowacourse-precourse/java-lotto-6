@@ -9,11 +9,11 @@ public class RandomLottoMachine {
     private final int RANDOM_MIN = 1;
     private final int RANDOM_MAX = 45;
     private final int RANDOM_COUNT = 6;
-
+    private final int AMOUNT_UNIT = 1000;
     private int purchasedLottoCount;
 
     public RandomLottoMachine(int purchasedLotto) {
-        purchasedLottoCount = purchasedLotto / 1000;
+        purchasedLottoCount = purchasedLotto / AMOUNT_UNIT;
     }
 
     public List<Lotto> getRandomLottoList() {

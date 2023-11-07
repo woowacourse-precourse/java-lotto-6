@@ -21,7 +21,7 @@ public class Lotto {
         money = purchaseResult(purchaseNumber, money, allNumbers);
         winnersNumber();
         bonusNumber();
-        compare(bonusInput, allNumbers);
+        compare(money, bonusInput, allNumbers);
     }
 
     // 구입 금액 입력 받고 예외 처리한 뒤 리턴
@@ -137,7 +137,7 @@ public class Lotto {
         }
     }
 
-    private void compare(int bonusInput, List<List<Integer>> allNumbers) {
+    private void compare(int money, int bonusInput, List<List<Integer>> allNumbers) {
         List<Integer> reduplicationNumber = new ArrayList<>();
         int bonus = 0;
         //로또 번호 리스트 가져 와서 당첨 번호와 비교 후 중복 되는 갯수 reduplicationNumber 리스트에 저장
@@ -156,5 +156,43 @@ public class Lotto {
 
         System.out.println();
         message.statisticsMessage();
+        calculateWinning(money, threeFrequency, fourFrequency, fiveFrequency, sixFrequency, bonus);
+    }
+
+    private void calculateWinning(int money, int threeFrequency, int fourFrequency, int fiveFrequency, int sixFrequency, int bonus) {
+        int total = (threeFrequency * Winning.THREE.getWinnings()) + (fourFrequency * Winning.FOUR.getWinnings()) + (fiveFrequency * Winning.FIVE.getWinnings()) + (bonus * Winning.FIVE_BONUS.getWinnings()) + (sixFrequency * Winning.SIX.getWinnings());
+        double rateOfReturn = ((double) total / money) * 100;
+        double decimalPoint = Math.round(rateOfReturn * 1000) / 1000.0;
+
+        System.out.println("3개 일치 " + Winning.THREE.getNumber() + " - " + threeFrequency + "개");
+        System.out.println("4개 일치 " + Winning.FOUR.getNumber() + " - " + fourFrequency + "개");
+        System.out.println("5개 일치 " + Winning.FIVE.getNumber() + " - " + fiveFrequency + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 " + Winning.FIVE_BONUS.getNumber() + " - " + bonus + "개");
+        System.out.println("6개 일치 " + Winning.SIX.getNumber() + " - " + sixFrequency + "개");
+        System.out.println("총 수익률은 " + decimalPoint + "%입니다.");
     }
 }
+
+enum Winning {  //당첨금 저장
+    THREE("(5,000원)", 5000),
+    FOUR("(50,000원)", 50000),
+    FIVE("(1,500,000원)", 1500000),
+    FIVE_BONUS("(30,000,000원)", 30000000),
+    SIX("(2,000,000,000원)", 200000000);
+    private final int winnings;
+    private final String number;
+
+    Winning(String number, int winnings) {
+        this.number = number;
+        this.winnings = winnings;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public int getWinnings() {
+        return winnings;
+    }
+}
+

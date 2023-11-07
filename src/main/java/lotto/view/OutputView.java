@@ -21,6 +21,7 @@ import lotto.model.Lotto;
 
 public class OutputView {
     public void printLottoMessage(List<Lotto> lottos){
+        System.out.println();
         System.out.println(ResultConstant.BUY_MESSAGE.getMessage(lottos.size()));
         for(Lotto lotto : lottos){
             System.out.println(lotto.getNumbers());
@@ -28,6 +29,7 @@ public class OutputView {
     }
 
     public void printResult(List<Integer> ranks, double rate){
+        System.out.println();
         printPrizeResult(ranks);
         printProfitRateResult(rate);
     }

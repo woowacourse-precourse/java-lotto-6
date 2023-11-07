@@ -23,6 +23,7 @@ public class InputView {
     }
 
     public List<Integer> inputNumbers(){
+        System.out.println();
         System.out.println(MessageConstant.LOTTO_NUMBER_MESSAGE.getMessage());
         while(true){
             try{
@@ -35,6 +36,7 @@ public class InputView {
     }
 
     public int inputBonus(List<Integer> numbers){
+        System.out.println();
         System.out.println(MessageConstant.BONUS_MESSAGE.getMessage());
         while(true){
             try{

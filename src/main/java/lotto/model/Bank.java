@@ -21,7 +21,7 @@ public class Bank {
         for (Lotto lotto : lottos){
             List<Integer> lottoNumbers = lotto.getNumbers();
             int index = getRankIndex(lottoNumbers, userNumbers, bonusNumber);
-            if (index != NO_PRIZE.getValue()){
+            if (index != NO_PRIZE.getIndex()){
                 ranks[index]++;
             }
         }
@@ -57,7 +57,7 @@ public class Bank {
     }
 
     private double getProfitRate(int count, int profit){
-        return (double) profit / (count * NumberConstant.LOTTO_PRICE.getValue());
+        return (double) profit * NumberConstant.PERCENTAGE_NUMBER.getValue() / (count * NumberConstant.LOTTO_PRICE.getValue());
     }
 
     private int getRank(int count, boolean bonus){

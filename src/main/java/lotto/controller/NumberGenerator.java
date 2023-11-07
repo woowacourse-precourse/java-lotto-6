@@ -45,6 +45,13 @@ public class NumberGenerator {
         return sortAscendingNumbers(lotto);
     }
 
+    public String InputCorrectLotto(){
+        System.out.println("\n당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        
+        return input;
+    }
+
     public List<Integer> sortAscendingNumbers(List<Integer> sortLottoNumbers){
         Collections.sort(sortLottoNumbers);
         return sortLottoNumbers;

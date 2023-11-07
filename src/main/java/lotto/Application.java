@@ -14,5 +14,8 @@ public class Application {
         for(List<Integer> st : num2){
             System.out.println(st);
         }
+
+        final String num3 = numbergenerator.InputCorrectLotto();
+        System.out.println(num3);
     }
 }

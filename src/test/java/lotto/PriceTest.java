@@ -1,5 +1,9 @@
 package lotto;
 
+import static lotto.Model.Price.ERROR_NOT_NUMBER;
+import static lotto.Model.Price.ERROR_NOT_PURCHASE_LOTTO;
+import static lotto.Model.Price.ERROR_OVER_MAX_PRICE_OF_LOTTO_FOR_PURCHASE;
+import static lotto.Model.Price.ERROR_UNIT_PRICE_OF_PURCHASED_LOTTO;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -18,7 +22,7 @@ public class PriceTest {
 
         assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 공백이나 쉼표같은 특수기호 없이 숫자만을 입력하세요.(최대 구입금액은 20억입니다)");
+                .hasMessage(ERROR_NOT_NUMBER);
     }
 
     @DisplayName("Price가 int타입 넘어가면 예외 발생 테스트")
@@ -28,7 +32,7 @@ public class PriceTest {
 
         assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 공백이나 쉼표같은 특수기호 없이 숫자만을 입력하세요.(최대 구입금액은 20억입니다)");
+                .hasMessage(ERROR_NOT_NUMBER);
     }
 
     @DisplayName("Price가 한 개의 로또 가격 단위로 떨어지지 않으면 예외 발생 테스트")
@@ -38,7 +42,7 @@ public class PriceTest {
 
         assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 1000원 단위로 입력하세요.");
+                .hasMessage(ERROR_UNIT_PRICE_OF_PURCHASED_LOTTO);
     }
 
     @DisplayName("Price가 0원이나 음수면 예외 발생하는 테스트")
@@ -48,7 +52,7 @@ public class PriceTest {
 
         assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또구입금액은 최소 1000원입니다.");
+                .hasMessage(ERROR_NOT_PURCHASE_LOTTO);
     }
 
     @DisplayName("Price가 0원이나 음수면 예외 발생하는 테스트")
@@ -58,7 +62,7 @@ public class PriceTest {
 
         assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또구입금액은 최소 1000원입니다.");
+                .hasMessage(ERROR_NOT_PURCHASE_LOTTO);
     }
 
     @DisplayName("Price가 1000원으로 떨어지나 로또 최대 구입 가격인 20억~int타입 사이면 예외 발생하는 테스트")
@@ -68,7 +72,7 @@ public class PriceTest {
 
         assertThatThrownBy(() -> new Price(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 로또구입금액은 최대 20억입니다.");
+                .hasMessage(ERROR_OVER_MAX_PRICE_OF_LOTTO_FOR_PURCHASE);
     }
 
     @BeforeEach

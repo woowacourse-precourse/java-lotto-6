@@ -5,31 +5,85 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.PatternSyntaxException;
 
 public class LottoResultChecker {
 
+    private final static String SEPARATOR = ",";
+
+
+    private final List<Lotto> lottoBundle;
     private List<Integer> winNumbers;
     private Integer bonusNumber;
-    private List<Lotto> lottoBundle;
     private Map<Winning, Integer> lottoResultMemo = new HashMap<>();
 
-    public void startLottoResultCheckerView(List<Lotto> lottoBundle) {
-        setWinNumbers();
-        setBonusNumber();
+    
+    public LottoResultChecker(List<Lotto> lottoBundle) {
         this.lottoBundle = lottoBundle;
     }
 
-    public void showLottoResultView() {
+    public void lottoResultCheckerInput() {
+        winNumbersInput();
+        bonusNumberInput();
+    }
+
+    private void winNumbersInput() {
+        try {
+            System.out.println("당첨 번호를 입력해 주세요.");
+            setWinNumbers(Console.readLine());
+            System.out.println();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            winNumbersInput();
+        }
+    }
+
+    private void setWinNumbers(String input) {
+        Exception.validateSeparator(input);
+        List<String> separatedNumbersInString = List.of(input.split(SEPARATOR));
+
+        List<Integer> separatedNumbers = new ArrayList<Integer>();
+        for (String number : separatedNumbersInString) {
+            Exception.notParsableNumber(number);
+            separatedNumbers.add(Integer.parseInt(number));
+        }
+
+        Exception.validateLottoNumbers(separatedNumbers);
+        winNumbers = separatedNumbers;
+    }
+
+    private void bonusNumberInput() {
+        try {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            setBonusNumber(Console.readLine());
+            System.out.println();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            bonusNumberInput();
+        }
+    }
+
+    private void setBonusNumber(String input) {
+        Exception.notParsableNumber(input);
+        bonusNumber = Integer.parseInt(input);
+        Exception.validateBonusNumber(winNumbers, bonusNumber);
+    }
+
+    public void lottoResultCheckerOutput() {
         checkLottoBundle();
 
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
-
         printResultOfCheck();
-
         System.out.printf("총 수익률은 %.1f%%입니다.", calculatePortfolio());
+    }
+
+    private void checkLottoBundle() {
+        for (Lotto l : lottoBundle) {
+            Integer label = l.compareWithWinNumbers(winNumbers, bonusNumber);
+            Winning winning = Winning.getWinning(label);
+            lottoResultMemo.put(winning, lottoResultMemo.getOrDefault(winning, 0) + 1);
+        }
     }
 
     private void printResultOfCheck() {
@@ -41,16 +95,9 @@ public class LottoResultChecker {
         System.out.println("6개 일치 (2,000,000,000원) - " + lottoResultMemo.getOrDefault(Winning.SIX, 0) + "개");
     }
 
-    private void checkLottoBundle() {
-        for (Lotto l : lottoBundle) {
-            Integer label = l.compareWithWinNumbers(winNumbers, bonusNumber);
-            Winning winning = Winning.getWinning(label);
-            lottoResultMemo.put(winning, lottoResultMemo.getOrDefault(winning, 0) + 1);
-        }
-    }
-
     private float calculatePortfolio() {
-        float portfolio = lottoResultMemo.getOrDefault(Winning.THREE, 0) * Winning.THREE.getPrize();
+        float portfolio = 0;
+        portfolio += lottoResultMemo.getOrDefault(Winning.THREE, 0) * Winning.THREE.getPrize();
         portfolio += lottoResultMemo.getOrDefault(Winning.FOUR, 0) * Winning.FOUR.getPrize();
         portfolio += lottoResultMemo.getOrDefault(Winning.FIVE, 0) * Winning.FIVE.getPrize();
         portfolio += lottoResultMemo.getOrDefault(Winning.FIVE_AND_BONUS, 0) * Winning.FIVE_AND_BONUS.getPrize();
@@ -59,44 +106,5 @@ public class LottoResultChecker {
         return portfolio;
     }
 
-    private void setWinNumbers() {
-        try {
-            System.out.println();
-            System.out.println("당첨 번호를 입력해 주세요.");
-            winNumbers = winNumbersSeparator(Console.readLine());
-            Exception.validateLottoNumbers(winNumbers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setWinNumbers();
-        }
-    }
-
-    private void setBonusNumber() {
-        try {
-            System.out.println();
-            System.out.println("보너스 번호를 입력해 주세요.");
-            bonusNumber = Integer.parseInt(Console.readLine());
-            Exception.validateBonusNumber(winNumbers, bonusNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            setBonusNumber();
-        }
-    }
-
-    private List<Integer> winNumbersSeparator(String numberString) {
-        List<String> separatedNumbersInString;
-
-        try {
-            separatedNumbersInString = List.of(numberString.split(","));
-        } catch (PatternSyntaxException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호의 구분자가 ,가 아닙니다.");
-        }
-
-        List<Integer> separatedNumbers = new ArrayList<Integer>();
-        for (String number : separatedNumbersInString) {
-            separatedNumbers.add(Integer.parseInt(number));
-        }
-        return separatedNumbers;
-    }
 
 }

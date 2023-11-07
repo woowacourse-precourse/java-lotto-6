@@ -14,10 +14,11 @@ import java.util.TreeMap;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.entry;
 
 class LottoServiceTest extends NsTest {
 
-    @DisplayName("로또 당첨 통계를 낸다.")
+    @DisplayName("정렬된 로또 당첨 통계를 낸다.")
     @Test
     void createWinningStatistics() {
 
@@ -29,14 +30,13 @@ class LottoServiceTest extends NsTest {
 
                     Map<Rank, Integer> winningStatistics = lottoService.makeWinningStatistics(player, winningLotto);
 
-                    Map<Rank, Integer> expectedWinningStatistics = new TreeMap<>();
-                    expectedWinningStatistics.put(Rank.FIFTH, 0);
-                    expectedWinningStatistics.put(Rank.FOURTH, 0);
-                    expectedWinningStatistics.put(Rank.THIRD, 0);
-                    expectedWinningStatistics.put(Rank.SECOND, 1);
-                    expectedWinningStatistics.put(Rank.FIRST, 0);
-
-                    assertThat(winningStatistics).isEqualTo(expectedWinningStatistics);
+                    assertThat(winningStatistics).containsExactly(
+                            entry(Rank.FIFTH, 0),
+                            entry(Rank.FOURTH, 0),
+                            entry(Rank.THIRD, 0),
+                            entry(Rank.SECOND, 1),
+                            entry(Rank.FIRST, 0)
+                    );
                 },
                 List.of(1, 2, 3, 4, 5, 7)
         );

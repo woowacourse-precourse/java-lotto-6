@@ -1,9 +1,15 @@
 package lotto.controller;
 
+import static lotto.Constants.COMMA;
 import static lotto.Constants.LOTTO_PRICE;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
+import lotto.model.Lotto;
 import lotto.model.Lottos;
+import lotto.model.WinningLotto;
+import lotto.model.number.LottoNumber;
+import lotto.model.number.LottoNumbers;
 import lotto.util.LottoUtil;
 import lotto.util.Validator;
 import lotto.util.parser.LottoParser;
@@ -28,6 +34,8 @@ public class LottoController {
         printLottoCount(lottoCount);
         generateLottos(lottoCount);
         printPurchasedLottos();
+
+        WinningLotto winningLotto = getWinningLotto();
     }
 
     /**
@@ -66,6 +74,37 @@ public class LottoController {
         purchasedLottos.getLottos().forEach(lotto -> {
             lottoOutputView.printLotto(LottoParser.parseLottoNumberListToString(lotto.getSortedLottoNumbers()));
         });
+    }
+
+    /**
+     * Description: 당첨 번호와 보너스 번호를 입력받아 WinningLotto를 반환한다.
+     */
+    private WinningLotto getWinningLotto() {
+        LottoNumbers winningNumbers = getWinningNumbers();
+        LottoNumber bonusNumber = getBonusNumber();
+        return new WinningLotto(new Lotto(winningNumbers), bonusNumber);
+    }
+
+    /**
+     * Description: 당첨 번호를 입력받아 반환한다.
+     */
+    private LottoNumbers getWinningNumbers() {
+        lottoInputView.printInputWinningLotto();
+        String winningNumber = Console.readLine();
+        List<Integer> numbers = LottoParser.parseStringArrToIntList(winningNumber.split(COMMA));
+        Validator.validateLottoNumbers(LottoParser.parseIntListToLottoNumberList(numbers));
+        return LottoParser.parseIntListToLottoNumbers(numbers);
+    }
+
+    /**
+     * Description: 보너스 번호를 입력받아 반환한다.
+     *
+     * @return
+     */
+    private LottoNumber getBonusNumber() {
+        lottoInputView.printInputBonusNumber();
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        return LottoNumber.of(bonusNumber);
     }
 }
 

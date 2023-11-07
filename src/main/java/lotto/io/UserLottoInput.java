@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoBall;
-import lotto.domain.WinningNumbers;
 import lotto.exception.InvalidMoneyInput;
 
 public class UserLottoInput implements LottoInput {
@@ -18,13 +17,6 @@ public class UserLottoInput implements LottoInput {
         int amount = Integer.parseInt(input);
         validateRange(amount);
         return amount;
-    }
-
-    private WinningNumbers getWinningNumbers() {
-        Lotto lotto = getLotto();
-        LottoBall bonusBall = getBall();
-
-        return new WinningNumbers(lotto, bonusBall);
     }
 
     @Override

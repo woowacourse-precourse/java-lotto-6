@@ -1,8 +1,11 @@
 package io;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.Lotto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static io.IOMessages.*;
@@ -56,5 +59,14 @@ public class IOHandler {
         validator.validateBonusNumber(bonusNumber, winningNumbers);
 
         return bonusNumber;
+    }
+
+    public void printLottos(List<Lotto> lottos) {
+        System.out.println(lottos.size() + "개를 구매했습니다.");
+        lottos.forEach(lotto -> {
+            List<Integer> numbers = new ArrayList<>(lotto.getNumbers());
+            Collections.sort(numbers);
+            System.out.println(numbers);
+        });
     }
 }

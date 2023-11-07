@@ -1,8 +1,11 @@
 package lotto.model;
 
+import static lotto.common.exception.WinningNumberErrorMessage.DUPLICATE_WINNING_NUMBER_AND_BONUS;
+
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import lotto.common.exception.WinningNumberException;
 
 public class WinningNumber {
     private final Lotto winningNumbers;
@@ -35,7 +38,7 @@ public class WinningNumber {
 
     private void validateDuplicateBonusAndWinning(List<Integer> winningNumbers, Integer bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new WinningNumberException(DUPLICATE_WINNING_NUMBER_AND_BONUS);
         }
     }
 }

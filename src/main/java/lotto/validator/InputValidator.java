@@ -1,6 +1,10 @@
 package lotto.validator;
 
+import lotto.domain.Constants;
+
 public class InputValidator {
+
+    Constants constants = new Constants();
 
     public void checkAmount(String amountInput) {
         checkAmountNum(amountInput);
@@ -11,7 +15,7 @@ public class InputValidator {
         for (int i = 0; i < amountInput.length(); i++) {
             char c = amountInput.charAt(i);
             if (!Character.isDigit(c)) {
-                System.out.println("[ERROR] 로또 구입 금액은 숫자만 입력하세요.");
+                System.out.printf(Constants.LOTTO_PRICE_NOT_NUMBER_ERROR);
                 throw new IllegalArgumentException();
             }
         }

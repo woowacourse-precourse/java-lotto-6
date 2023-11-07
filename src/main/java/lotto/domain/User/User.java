@@ -1,5 +1,6 @@
 package lotto.domain.User;
 
+import lotto.domain.Constants;
 import lotto.domain.Lotto.Lotto;
 
 import java.util.*;
@@ -8,11 +9,14 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Result.Result;
 import lotto.domain.WinningNumber.WinningNumber;
+import lotto.util.InputUtil;
 import lotto.validator.InputValidator;
 
 public class User {
     private int lottoCount;
     private List<Lotto> lotties = new ArrayList<>();
+
+    InputUtil inputUtil = new InputUtil();
     InputValidator validator = new InputValidator();
     WinningNumber winningNumber = new WinningNumber();
     Result result = new Result();
@@ -21,7 +25,6 @@ public class User {
         inputLottoAmount();
         createLotties();
         printLotties();
-        //validate
         winningNumber.setWinningNumbers();
         winningNumber.setBonusNumber();
         result.printResult(lotties, winningNumber);
@@ -29,17 +32,14 @@ public class User {
 
     private void inputLottoAmount() {
         String lottoAmountInput;
-        while(true) {
-            System.out.println("구입금액을 입력해 주세요.");
-            lottoAmountInput = Console.readLine();
+        while (true) {
+            lottoAmountInput = inputUtil.inputLottoAmount();
             try {
                 validator.checkAmount(lottoAmountInput);
                 break;
-            }
-            catch(IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
 
             }
-
         }
         lottoCount = Integer.parseInt(lottoAmountInput) / 1000;
     }
@@ -53,8 +53,7 @@ public class User {
     }
 
     private void printLotties() {
-        System.out.println();
-        System.out.println(lottoCount + "개를 구매했습니다.");
+        System.out.printf(Constants.LOTTO_NUMBER_OUTPUT_MESSAGE, lottoCount);
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> sortedNumbers = new ArrayList<>(lotties.get(i).getNumbers());
             Collections.sort(sortedNumbers);

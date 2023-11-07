@@ -9,6 +9,7 @@ public class UserAmount {
     private static final int ALL_DIVIDE_SIGNAL_VALUE = 0;
     private static final String USER_AMOUNT_IS_NOT_ZERO = "[ERROR] 구입 금액이 0원이 아닌 값을 입력해야 합니다.";
     private static final int ZERO_EQUALS_VALUE = 0;
+    private static final String USER_AMOUNT_IS_NATURE_NUMBER_MESSAGE = "[ERROR] 구입 금액이 음수가 아닌 값을 입력해야 합니다.";
 
     private int userAmount;
 
@@ -21,12 +22,13 @@ public class UserAmount {
         validateNumeric(userAmount);
         int amount = Integer.parseInt(userAmount);
         validateZero(amount);
+        validateNatureNumber(amount);
         validateDivideByStandard(amount);
         return new UserAmount(amount);
     }
 
     public int calculateIssueAbleCount() {
-       return this.userAmount / Lotto.PRICE_PER_LOTTO;
+        return this.userAmount / Lotto.PRICE_PER_LOTTO;
     }
 
     private static void validateNumeric(String userAmount) {
@@ -61,6 +63,16 @@ public class UserAmount {
 
     private static boolean isEqualsZero(int userAmount) {
         return userAmount == ZERO_EQUALS_VALUE;
+    }
+
+    private static void validateNatureNumber(int userAmount) {
+        if(isNotNatureNumber(userAmount)) {
+            throw new IllegalArgumentException(USER_AMOUNT_IS_NATURE_NUMBER_MESSAGE);
+        }
+    }
+
+    private static boolean isNotNatureNumber(int userAmount) {
+        return userAmount < 0;
     }
 
     public int getUserAmount() {

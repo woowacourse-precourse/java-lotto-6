@@ -20,6 +20,7 @@ class StoreTest {
     }
 
     @Test
+    @DisplayName("지불 금액은 1000원으로 가격이 나누어 떨어져야 한다.")
     void inputNotDividedMoneyByThousand() {
         Store store = new Store();
         assertThatThrownBy(() -> {

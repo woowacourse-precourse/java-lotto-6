@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public enum LottoRank {
@@ -40,7 +41,7 @@ public enum LottoRank {
         return rank.reward * count;
     }
 
-    public int getMatchCount(int count, boolean containBonusBall) {
+    public int getMatchCount() {
         return matchCount;
     }
 
@@ -50,5 +51,10 @@ public enum LottoRank {
 
     public int getReward() {
         return reward;
+    }
+
+    public String getFormattedReward(){
+        DecimalFormat formatter = new DecimalFormat("###,###");
+        return formatter.format(reward);
     }
 }

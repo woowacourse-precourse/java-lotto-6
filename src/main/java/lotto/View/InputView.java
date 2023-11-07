@@ -10,6 +10,7 @@ public class InputView {
     private static Validator validator = new Validator();
     private static final String MONEY_INPUT_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBERS_INPUT_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBERS_INPUT_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static List<Integer> winningNumberList;
 
     public static Integer getAmount() {
@@ -49,5 +50,10 @@ public class InputView {
     public static List<Integer> getWinningNumbersFromUser() {
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
         return getWinningNumbers(Console.readLine());
+    }
+
+    public static Integer getBonusNumberFromUser() {
+        System.out.println(BONUS_NUMBERS_INPUT_MESSAGE);
+        return Integer.valueOf(Console.readLine());
     }
 }

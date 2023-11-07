@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.Lotto;
 import lotto.View.InputView;
 import lotto.View.OutputView;
-import lotto.domain.WinningResult;
+import lotto.domain.WinningLotto;
 import lotto.service.LottoNumbers;
 
 public class LottoController {
@@ -14,7 +14,7 @@ public class LottoController {
 
     private static List<Integer> lotto = new ArrayList<>();
     private static List<Lotto> lottoList;
-    private static WinningResult winningResult;
+    private static WinningLotto winningLotto;
 
     public void run() {
         boolean validAmountEntered = false;
@@ -54,11 +54,17 @@ public class LottoController {
         return new Lotto(lotto);
     }
 
-    private WinningResult makeWinningNumber() {
+    private WinningLotto makeWinningNumber() {
         Lotto lotto = new Lotto(InputView.getWinningNumbersFromUser());
         List<Integer> winningNumber = lotto.getLottoNumbers();
 
-        winningResult = new WinningResult(new Lotto(winningNumber));
-        return winningResult;
+        int bonusNumber = InputView.getBonusNumberFromUser();
+        lotto.validateWinningResult(winningNumber, bonusNumber);
+        winningLotto = new WinningLotto(new Lotto(winningNumber), bonusNumber);
+        return winningLotto;
+    }
+
+    private void validateWinning(int bonusNumber) {
+
     }
 }

@@ -51,5 +51,10 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-    // TODO: 추가 기능 구현
+    public static void validateWinningResult(List<Integer> numbers, int bonisNumber) {
+        if (numbers.contains(bonisNumber)) {
+            ExceptionMessage.existException();
+            throw new IllegalArgumentException();
+        }
+    }
 }

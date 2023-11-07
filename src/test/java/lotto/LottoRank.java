@@ -15,4 +15,12 @@ public enum LottoRank {
         this.matchCount = matchCount;
         this.reward = reward;
     }
+    public static LottoRank fromMatchCount(int matchCount) {
+        for (LottoRank rank : values()) {
+            if (rank.matchCount == matchCount) {
+                return rank;
+            }
+        }
+        return NONE;
+    }
 }

@@ -28,5 +28,9 @@ public class LottoStore {
         return new Lottos(lottoMachine.issue(quantity, lottoIssuePolicy));
     }
 
+    public WinningNumbers drawWinningNumbers(String numbers) {
+        return new WinningNumbers(numbers);
+    }
+
 
 }

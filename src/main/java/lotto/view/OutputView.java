@@ -30,5 +30,7 @@ public class OutputView {
     }
 
     //총 수익률 출력
-
+    public static void totalReturnOnLotto(int returnOnLotto){
+        System.out.println("총 수익률은 "+returnOnLotto+"%입니다.");
+    }
 }

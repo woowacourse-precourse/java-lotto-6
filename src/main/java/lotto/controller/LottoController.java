@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.DrawingResults;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
@@ -72,8 +73,8 @@ public class LottoController {
 
         BonusNumberValidator.validateBonusNumberDuplicate(winningLotto, bonusNumber);
 
-        DrawingResultDto drawingResultDto = lottoMachine.draw(lottos, winningLottoDto, bonusNumberDto);
-        outputView.printDrawingResult(drawingResultDto);
+        DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto, bonusNumber);
+        outputView.printDrawingResult(DrawingResultDto);
 
         return drawingResultDto;
     }

@@ -3,16 +3,16 @@ package lotto.service;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
+import lotto.domain.BonusNumber;
 import lotto.domain.DrawingResults;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
-import lotto.domain.dto.BonusNumberDto;
+import lotto.domain.WinningLotto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottosDto;
 import lotto.domain.dto.ProfitRateDto;
-import lotto.domain.dto.WinningLottoDto;
 
 public class LottoMachine {
 
@@ -21,25 +21,21 @@ public class LottoMachine {
     }
 
 
-    public DrawingResultDto draw(final Lottos lottos, final WinningLottoDto winningLottoDto,
-                                 final BonusNumberDto bonusNumberDto) {
+    public DrawingResults draw(final Lottos lottos, final WinningLotto winningLotto,
+                               final BonusNumber bonusNumber) {
         List<Lotto> lottosContents = lottos.getLottos();
 
         DrawingResults drawingResults = new DrawingResults();
 
         for (Lotto lotto : lottosContents) {
-            int matchedWinningLottoCount = lotto.matchWinningLottoCount(winningLottoDto);
-            boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumberDto);
+            int matchedWinningLottoCount = lotto.matchWinningLottoCount(winningLotto);
+            boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
 
             Rank calculateResult = Rank.calculate(matchedWinningLottoCount, hasBonusNumber);
             drawingResults.count(calculateResult);
         }
 
-        return toDrawingResultDto(drawingResults);
-    }
-
-    private DrawingResultDto toDrawingResultDto(final DrawingResults drawingResults) {
-        return new DrawingResultDto(drawingResults.getResults());
+        return drawingResults;
     }
 
     public ProfitRateDto calculateProfitRate(final LottosDto lottosDto, final DrawingResultDto drawingResultDto) {

@@ -2,11 +2,16 @@ package service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import domain.Lotto;
+import domain.Rank;
+import domain.WinningNumber;
 import utility.Utility;
 import validator.Validator;
+import view.OutputView;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Service {
     final static int THOUSAND = 1000;
@@ -64,4 +69,34 @@ public class Service {
         validator.checkDuplicateNumber(winNumbers, number);
         return number;
     }
+
+    public LinkedHashMap getLottoResult(List<Lotto> lottos, WinningNumber winningNumber){
+        LinkedHashMap<Rank,Integer> result = new LinkedHashMap<Rank,Integer>();
+        for(Rank rank : Rank.values()){
+            result.put(rank,0);
+        }
+        for(Lotto lotto : lottos){
+            Rank rank = getTicketRank(lotto, winningNumber);
+            result.put(rank,result.get(rank)+1);
+        }
+        return result;
+    }
+
+    private Rank getTicketRank(Lotto lotto , WinningNumber winningNumber){
+        int countMatch = winningNumber.countMatch(lotto);
+        boolean isMatchBonusNumber = winningNumber.isMatchBonusNumber(lotto);
+        return Rank.checkTicketRank(countMatch,isMatchBonusNumber);
+    }
+
+    public float calculateRateOfReturn(LinkedHashMap<Rank,Integer>  lottoResult, int money) {
+        return (float)calculateSumOfPrizeMoney(lottoResult) / money;
+    }
+    private long calculateSumOfPrizeMoney(LinkedHashMap<Rank,Integer> lottoResult){
+        long sum = 0;
+        for(Map.Entry<Rank,Integer> set : lottoResult.entrySet()){
+            sum += set.getKey().getPrizeMoney() * set.getValue();
+        }
+        return sum;
+    }
+
 }

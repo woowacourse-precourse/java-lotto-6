@@ -9,16 +9,16 @@ public enum Rank {
     FIRST_PLACE(6,2000000000,"6개 일치 (2,000,000,000원) - ");
 
     private int numberOfMatch;
-    private int winningAmount;
+    private int prizeMoney;
     private String message;
-    private Rank(int numberOfMatch, int winningAmount, String message) {
+    private Rank(int numberOfMatch, int prizeMoney, String message) {
         this.numberOfMatch = numberOfMatch;
-        this.winningAmount = winningAmount;
+        this.prizeMoney = prizeMoney;
         this.message = message;
     }
 
     public int getNumberOfMatch() {return this.numberOfMatch;}
-    public int getWinningAmount() {return this.winningAmount;}
+    public int getPrizeMoney() {return this.prizeMoney;}
     public String getMessage() {return this.message;}
 
     public static Rank checkTicketRank(int numberOfMatch , boolean isMatchBonusNumber){

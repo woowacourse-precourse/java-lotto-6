@@ -8,10 +8,9 @@ import service.Service;
 import view.InputView;
 import view.OutputView;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class Controller {
     private final Service service;
@@ -22,8 +21,8 @@ public class Controller {
         List<Integer> sixWinNumbers = getWinNumbersByUserInput();
         int bonusNumber = getBonusNumberByUserInput(sixWinNumbers);
         WinningNumber winningNumber = new WinningNumber(sixWinNumbers,bonusNumber);
-        getLottoResult(lottos,winningNumber);
-
+        LinkedHashMap<Rank,Integer> lottoResult = getLottoResult(lottos,winningNumber);
+        getRateOfReturn(lottoResult,money);
     }
     public Controller(Service service) {
         this.service = service;
@@ -75,24 +74,14 @@ public class Controller {
         }
     }
 
-    public void getLottoResult(List<Lotto> lottos, WinningNumber winningNumber){
-        LinkedHashMap<Rank,Integer> result = new LinkedHashMap<Rank,Integer>();
-        for(Rank rank : Rank.values()){
-            result.put(rank,0);
-        }
-        System.out.println(result.entrySet());
-        for(Lotto lotto : lottos){
-            Rank rank = getTicketRank(lotto, winningNumber);
-            result.put(rank,result.get(rank)+1);
-        }
+    public LinkedHashMap getLottoResult(List<Lotto> lottos, WinningNumber winningNumber){
+        LinkedHashMap<Rank,Integer> result = service.getLottoResult(lottos,winningNumber);
         OutputView.printStatisticsResult(result);
-
+        return result;
     }
 
-    public Rank getTicketRank(Lotto lotto , WinningNumber winningNumber){
-        int countMatch = winningNumber.countMatch(lotto);
-        boolean isMatchBonusNumber = winningNumber.isMatchBonusNumber(lotto);
-        return Rank.checkTicketRank(countMatch,isMatchBonusNumber);
+    public void getRateOfReturn(LinkedHashMap lottoResult, int money){
+        float rateOfReturn = service.calculateRateOfReturn(lottoResult,money);
+        OutputView.printRateOfReturn(rateOfReturn);
     }
-
 }

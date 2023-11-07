@@ -25,6 +25,7 @@ public class LottoManager {
     private int purchasePrice;
     private int lottoCount;
     private List<Integer> winningNumbers;
+    private int bonusNumber;
 
     public void run() {
         receivePurchasePrice();
@@ -33,7 +34,7 @@ public class LottoManager {
         // 당첨 번호 입력
         receiveWiningNumber();
         // 보너스 번호 입력
-
+        receiveBonusNumber();
         // 계산
         // 출력
 
@@ -124,4 +125,32 @@ public class LottoManager {
 
         return true;
     }
+
+    private void receiveBonusNumber() {
+        boolean isReceived = Boolean.FALSE;
+
+        lottoPrinter.askBonusNumber();
+
+        while(!isReceived) {
+            try {
+                isReceived = validateBonusNumber(lottoReceiver.receive());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private boolean validateBonusNumber(String bonusNumber) {
+        int validBonusNumber;
+        try {
+            validBonusNumber = Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ExceptionInfo.BONUS_NUMBER_IS_NOT_INTEGER.getMessage());
+        }
+
+        this.bonusNumber = validBonusNumber;
+
+        return true;
+    }
+
 }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 
 public class Lotto {
@@ -19,4 +21,5 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
 }

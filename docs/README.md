@@ -45,8 +45,8 @@
     - [x] 에러 메시지 출력
   - [x] 1000 단위 체크 - Exception#checkAmount
     - [x] 에러 메시지 출력
-  - [ ] 숫자 6개 중복 여부 체크 - Exception#checkNumbers
-    - [ ] 에러 메시지 출력
+  - [x] 숫자 6개 중복 여부 체크 - Exception#checkNumbers
+    - [x] 에러 메시지 출력
 
 # view
 - [x] 구매 로또 출력하기 - PrintGames#purchaseHistory()

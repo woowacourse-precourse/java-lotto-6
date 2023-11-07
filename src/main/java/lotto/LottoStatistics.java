@@ -19,20 +19,20 @@ public class LottoStatistics {
         ));
     }
 
-    public void calcStatistics(List<Lotto> lottoList, List<Integer> winningNumberList, Integer bonusNumber) {
-        for (Lotto lotto : lottoList) {
-            LottoResult result = lotto.getLottoResult(winningNumberList, bonusNumber);
-            statistics.put(result, statistics.get(result) + 1);
-        }
-        returnRate = calcReturnRate(lottoList.size() * 1000);
-    }
-
     public Map<LottoResult, Integer> getStatistics() {
         return statistics;
     }
 
     public Float getReturnRate() {
         return returnRate;
+    }
+
+    public void calcStatistics(List<Lotto> lottoList, List<Integer> winningNumberList, Integer bonusNumber) {
+        for (Lotto lotto : lottoList) {
+            LottoResult result = lotto.getLottoResult(winningNumberList, bonusNumber);
+            statistics.put(result, statistics.get(result) + 1);
+        }
+        returnRate = calcReturnRate(lottoList.size() * 1000);
     }
 
     private Float calcReturnRate(Integer totalCost) {

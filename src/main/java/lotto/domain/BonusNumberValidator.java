@@ -25,7 +25,7 @@ public class BonusNumberValidator {
     }
 
     private void isCorrectNumber() {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < Constants.MIN_NUMBER || bonusNumber > Constants.MAX_NUMBER) {
             throw new IllegalArgumentException("1과 45 사이의 숫자여야합니다.");
         }
     }

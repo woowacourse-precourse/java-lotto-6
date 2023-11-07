@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println(Lotto.getUserPay());
+        Lotto lotto = new Lotto();
+        lotto.printPurchaseLottoNumbers();
     }
 }

@@ -11,6 +11,10 @@ public class Lotto {
 	
 	private final List<Integer> numbers;
     
+	public Lotto() {
+	    numbers = new ArrayList<>();
+	}
+	
     public Lotto(List<Integer> numbers) {
         validate(numbers);
         this.numbers = numbers;
@@ -22,13 +26,19 @@ public class Lotto {
         }
     }
     
-    private int getUserPay() {
+    public int getUserPurchaseAmount() {
         System.out.println("구입금액을 입력해주세요.");
         int purchaseAmount = Integer.parseInt(Console.readLine());
+        
+        if(purchaseAmount % 1000 !=0) {
+            throw new IllegalArgumentException("[ERROR] 구입금액은 1000원단위로 입력하여야 합니다.");
+        }
+        
+        System.out.println();
         return purchaseAmount;
     }
     
-    private List<Integer> drawLottoNumbers() {
+    public List<Integer> drawLottoNumbers() {
         HashSet<Integer> lottoNumbers = new HashSet<>();
         
         while(lottoNumbers.size() < 6) {
@@ -38,6 +48,16 @@ public class Lotto {
         List<Integer> sortedLotto = new ArrayList<>(lottoNumbers);
         Collections.sort(sortedLotto);
         return sortedLotto;
+    }
+    
+    
+    public void printPurchaseLottoNumbers() {
+        int amount = getUserPurchaseAmount()/1000;
+        System.out.println(amount+"개를 구매했습니다.");
+        for(int i = 0; i < amount ; i++) {
+            System.out.println(drawLottoNumbers());
+        }
+        
     }
     
 }

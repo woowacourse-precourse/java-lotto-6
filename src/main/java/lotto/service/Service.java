@@ -13,17 +13,17 @@ import lotto.view.OutputView;
 
 public class Service {
 	
-	private static final int LOTTO_START_INCLUSIVE = 1;
-	private static final int LOTTO_END_INCLUSIVE = 45;
+	private static final int LOTTO_RANGE_MIN = 1;
+	private static final int LOTTO_RANGE_MAX = 45;
 	private static final int LOTTO_SIZE = 6;
 	private static final int LOTTO_PRICE = 1_000;
-	private static final int BUYABLE_MAX_AMOUNT = 100_000;
+	private static final int LIMITED_AMOUNT = 100_000;
 	
 	Buyer buyer;
 	LottoGame lottoGame;
 	
 	public void readyLottoGame() {
-		lottoGame = new LottoGame(getWinningNumbers());
+		lottoGame = new LottoGame(getInputWinningNumbers());
 		int bonusNumber = getBonusNumber();
 		Validation.validateNumberNotInList(lottoGame.getWinningNumbers(), bonusNumber);
 		lottoGame.setBonusNumber(bonusNumber);
@@ -53,7 +53,7 @@ public class Service {
 	}
 	
 	public Lotto generateLotto() {
-		List<Integer> numbers = Utils.generateUniqueNumberListInRange(LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE, LOTTO_SIZE);
+		List<Integer> numbers = Utils.generateUniqueNumberListInRange(LOTTO_RANGE_MIN, LOTTO_RANGE_MAX, LOTTO_SIZE);
 		Utils.sortListAscendingOrder(numbers);
 		return new Lotto(numbers);
 	}
@@ -64,16 +64,16 @@ public class Service {
 		Validation.validateNaturalNumber(input);
 		int paid = Integer.valueOf(input);
 		Validation.validateDividablePaid(paid, LOTTO_PRICE);
-		Validation.validateBuyableAmount(paid, BUYABLE_MAX_AMOUNT);
+		Validation.validateBuyableAmount(paid, LIMITED_AMOUNT);
 		return paid;
 	}
 	
-	public List<Integer> getWinningNumbers() {
+	public List<Integer> getInputWinningNumbers() {
 		InputView.inputWinningNumbers();
 		String input = Console.readLine().trim();
 		Validation.validateInputFormat(input);
 		List<Integer> numbers = Utils.stringToIntegerList(input);
-		Validation.validateListNumbersInRange(numbers, LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE);
+		Validation.validateListNumbersInRange(numbers, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX);
 		return numbers;
 	}
 	
@@ -82,7 +82,7 @@ public class Service {
 		String input = Console.readLine().trim();
 		Validation.validateNaturalNumber(input);
 		int bonusNumber = Integer.valueOf(input);
-		Validation.validateNumberInRange(bonusNumber, LOTTO_START_INCLUSIVE, LOTTO_END_INCLUSIVE);
+		Validation.validateNumberInRange(bonusNumber, LOTTO_RANGE_MIN, LOTTO_RANGE_MAX);
 		return bonusNumber;
 	}
 	

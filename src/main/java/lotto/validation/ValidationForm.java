@@ -28,6 +28,7 @@ public class ValidationForm {
     static void verifyForWinningNumbers(String winningNumbers) {
         winningsFormatIsCorrect(winningNumbers);
         winningsCountIsOverOrUnder(winningNumbers);
+        winningsIsDuplicate(winningNumbers);
     }
 
     static void verifyForWinningNumber(String winningNumber) {

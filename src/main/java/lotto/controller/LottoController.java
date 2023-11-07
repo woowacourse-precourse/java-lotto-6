@@ -14,5 +14,6 @@ public class LottoController {
     public void run() {
         User user = new User();
         lottoService.startService(user);
+        lottoService.drawLotto();
     }
 }

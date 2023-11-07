@@ -92,4 +92,20 @@ public class Application {
         }
     }
 
+    public static PrintResultSet calculateResult(WinningNumberSet winningNumberSets, List<Lotto> allOfLottoPapers) {
+        PrintResultSet printResultSet = new PrintResultSet();
+
+        for (int checkLottoNum = 0; checkLottoNum < allOfLottoPapers.size(); checkLottoNum++) {
+            Lotto lotto = allOfLottoPapers.get(checkLottoNum);
+            Score score = lotto.compareWinningNumbers(winningNumberSets);
+            printResultSet.checkMatchThree(score.getCountMatch());
+            printResultSet.checkMatchFour(score.getCountMatch());
+            printResultSet.checkMatchFive(score);
+            printResultSet.checkMatchFivePlus(score);
+            printResultSet.checkMatchSix(score.getCountMatch());
+        }
+
+        return printResultSet;
+    }
+
 }

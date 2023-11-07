@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WinningManager {
-  private final List<String> WINNING_STATISTICS_COMMENT = new ArrayList<>(
+  private final List<StatisticsComment> WINNING_STATISTICS_COMMENT = new ArrayList<>(
     List.of(
-        "3개 일치 (5,000원) - ",
-        "4개 일치 (50,000원) - ",
-        "5개 일치 (1,500,000원) - ",
-        "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-        "6개 일치 (2,000,000,000원) - "
+        StatisticsComment.THREE_MATCHES,
+        StatisticsComment.FOUR_MATCHES,
+        StatisticsComment.FIVE_MATCHES,
+        StatisticsComment.FIVE_MATCHES_BONUS,
+        StatisticsComment.SIX_MATCHES
     )
   );
-  private final List<Integer> WINNING_AMOUNT = new ArrayList<>(
+  private final List<Amount> WINNING_AMOUNT = new ArrayList<>(
       List.of(
-          5000,
-          50000,
-          1500000,
-          30000000,
-          2000000000
+          Amount.THREE_MATCHES,
+          Amount.FOUR_MATCHES,
+          Amount.FIVE_MATCHES,
+          Amount.FIVE_MATCHES_BONUS,
+          Amount.SIX_MATCHES
       )
   );
 
@@ -66,7 +66,7 @@ public class WinningManager {
 
   public void printWinningStatistics() {
     for (int i = 0; i < countOfMatches.size(); i++) {
-      System.out.println(WINNING_STATISTICS_COMMENT.get(i) + countOfMatches.get(i) + "개");
+      System.out.println(WINNING_STATISTICS_COMMENT.get(i).getComment() + countOfMatches.get(i) + "개");
     }
   }
 
@@ -77,7 +77,7 @@ public class WinningManager {
   private double calculateProfit() {
     long totalAmount = 0L;
     for (int i = 0; i < countOfMatches.size(); i++) {
-      totalAmount += (long) countOfMatches.get(i) * WINNING_AMOUNT.get(i);
+      totalAmount += (long) countOfMatches.get(i) * WINNING_AMOUNT.get(i).getAmount();
     }
     return totalAmount / (double) purchaseAmount;
   }

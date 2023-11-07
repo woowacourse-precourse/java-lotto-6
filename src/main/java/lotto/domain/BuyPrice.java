@@ -6,7 +6,7 @@ import static lotto.constant.Config.PRICE_PER_LOTTO;
 import static lotto.constant.ErrorMessage.*;
 
 public class BuyPrice {
-    private int price;
+    private final int price;
 
     private BuyPrice(int price) {
         validateNotNegative(price);

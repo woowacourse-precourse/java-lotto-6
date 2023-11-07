@@ -26,8 +26,8 @@ public class LottoResultCalculation {
         return result;
     }
 
-    public boolean checkBounsNumber(List<Integer> target, int bouns) {
-        boolean result = target.contains(bouns);
+    public boolean checkBonusNumber(List<Integer> target, int bonus) {
+        boolean result = target.contains(bonus);
         return result;
     }
 

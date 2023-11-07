@@ -1,5 +1,6 @@
 package view;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +22,6 @@ public class Output {
     public static final String SECOND_PRIZE_DESCRIPTION = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
     private static final long DEFAULT_VALUE = 0L;
-    private static final String PROFIT_FORMAT = "%.1f";
 
     public static void printLottoNumbers(List<Lotto> lottoTickets) {
         System.out.printf(LINE_BREAK + PURCHASE_AMOUNT_MESSAGE + LINE_BREAK, lottoTickets.size());
@@ -67,8 +67,8 @@ public class Output {
     }
 
     public static void printLottoProfit(double profitRate) {
-        NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
-        double profitValue = Double.parseDouble(String.format(PROFIT_FORMAT, profitRate));
-        System.out.printf(PROFIT_MESSAGE + LINE_BREAK, numberFormat.format(profitValue));
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        String formattedValue = decimalFormat.format(profitRate);
+        System.out.printf(PROFIT_MESSAGE + LINE_BREAK, formattedValue);
     }
 }

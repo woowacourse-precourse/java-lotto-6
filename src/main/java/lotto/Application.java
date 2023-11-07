@@ -54,6 +54,16 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이의 숫자여야 합니다.");
         }
     }
-    
+    private static void validateWinningNumbersDataType(String[] winningNumbers) {
+        for (int check = 0; check < winningNumbers.length; check++) {
+            if (winningNumbers[check].equals("")) {
+                throw new IllegalArgumentException("[ERROR] 콤마(,)를 연속하여 입력할 수 없습니다.");
+            }
+            if (!(Integer.parseInt(winningNumbers[check]) >= LOTTO_START_NUMBER
+                    && Integer.parseInt(winningNumbers[check]) <= LOTTO_END_NUMBER)) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이의 숫자를 콤마(,)로 구분하여 입력해야 합니다."));
+            }
+        }
+    }
 
 }

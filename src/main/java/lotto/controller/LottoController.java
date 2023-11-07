@@ -62,7 +62,6 @@ public class LottoController {
         }
     }
 
-
     private int toInt(String number) {
         return Integer.parseInt(number);
     }

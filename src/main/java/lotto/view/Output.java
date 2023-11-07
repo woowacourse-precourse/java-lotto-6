@@ -23,21 +23,6 @@ public class Output {
         System.out.println(MONEY_INPUT_MESSAGE);
     }
 
-    public void showLottoTickets(LottoTickets lottoTickets) {
-        showBuyCount(lottoTickets);
-        showLottoNumbers(lottoTickets);
-    }
-
-    private void showLottoNumbers(LottoTickets lottoTickets) {
-        lineBreak();
-        lottoTickets.getLottos().forEach(System.out::println);
-    }
-
-    private void showBuyCount(LottoTickets lottoTickets) {
-        lineBreak();
-        System.out.printf(BUY_COUNT_FORMAT, lottoTickets.getSize());
-    }
-
     public void showWinningNumbersInputMessage() {
         lineBreak();
         System.out.println(WINNING_NUMBERS_INPUT_MESSAGE);
@@ -46,6 +31,21 @@ public class Output {
     public void showBonusNumberInputMessage() {
         lineBreak();
         System.out.println(BONUS_NUMBER_INPUT_MESSAGE);
+    }
+
+    public void showLottoTickets(LottoTickets lottoTickets) {
+        showBuyCount(lottoTickets);
+        showLottoNumbers(lottoTickets);
+    }
+
+    private void showBuyCount(LottoTickets lottoTickets) {
+        lineBreak();
+        System.out.printf(BUY_COUNT_FORMAT, lottoTickets.getSize());
+    }
+
+    private void showLottoNumbers(LottoTickets lottoTickets) {
+        lineBreak();
+        lottoTickets.getLottos().forEach(System.out::println);
     }
 
     public void showWinningStats(Map<Rank, Integer> winningResult, double totalReturn) {

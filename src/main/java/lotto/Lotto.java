@@ -21,7 +21,6 @@ public class Lotto {
             b.add(Integer.parseInt(str));
         }
 
-        b.add(bonusNumber());
         return b;
     }
 

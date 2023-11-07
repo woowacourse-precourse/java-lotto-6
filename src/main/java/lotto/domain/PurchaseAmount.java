@@ -41,11 +41,6 @@ public class PurchaseAmount {
         return amount % LottoConstants.LOTTO_PRICE != 0;
     }
 
-    public int decrease(int lottoPrice) {
-        amount -= lottoPrice;
-        return amount;
-    }
-
     public int getAmount() {
         return amount;
     }

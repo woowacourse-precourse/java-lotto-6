@@ -38,17 +38,4 @@ class PurchaseAmountTest {
                 .hasMessageContaining(ErrorMessage.INVALID_PURCHASE_AMOUNT_RANGE.getMessage()
                         .formatted(MIN_PURCHASE_AMOUNT, MAX_PURCHASE_AMOUNT));
     }
-
-    @DisplayName("decrease를 호출하면 구입 금액이 로또 가격만큼 감소한다.")
-    @Test
-    void decrease_Success() {
-        // given
-        PurchaseAmount purchaseAmount = new PurchaseAmount(2000);
-
-        // when
-        int decreasedAmount = purchaseAmount.decrease(1000);
-
-        // then
-        Assertions.assertThat(decreasedAmount).isEqualTo(1000);
-    }
 }

@@ -1,9 +1,6 @@
 # 🎰 로또
 
 ## 🛠️ 기능 목록
-### PurchaseAmount
-- [x] 구입 금액을 로또 가격만큼 감소시킨다. `int decrease(int lottoPrice)`
-
 ### LottoIssuer
 - [x] 구입 금액만큼 로또를 발행한다. `List<Lotto> issue(PurchaseAmount purchaseAmount)`
 

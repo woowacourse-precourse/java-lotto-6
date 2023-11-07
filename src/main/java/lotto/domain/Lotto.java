@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -12,6 +13,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            throw new IllegalArgumentException();
+        }
+
+        List<Integer> newList = numbers.stream().distinct().collect(Collectors.toList());
+        if (newList.size() != 6) {
             throw new IllegalArgumentException();
         }
     }

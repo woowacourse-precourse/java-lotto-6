@@ -1,6 +1,8 @@
-package lotto;
+package lotto.domain;
 
 import java.util.List;
+
+import lotto.utils.Constants;
 
 public class LotteryCommission {
 	private List<Integer> winningNumbers;

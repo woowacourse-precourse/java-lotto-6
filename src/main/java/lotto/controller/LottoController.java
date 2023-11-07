@@ -1,9 +1,14 @@
-package lotto;
+package lotto.controller;
+
+import lotto.domain.LotteryCommission;
+import lotto.domain.Lotto;
+import lotto.domain.User;
+import lotto.type.LottoResult;
+import lotto.utils.ConsoleReader;
 
 public class LottoController {
 	private User user;
 	private LotteryCommission lotteryCommission;
-	private Integer bonusNumber;
 	private static LottoResult[] resultCheckList = {
 			LottoResult.THREE,
 			LottoResult.FOUR,
@@ -63,8 +68,8 @@ public class LottoController {
 					count++;
 				}
 			}
-			System.out.println(result.message + " - " + count + "개");
-			resultMoney += result.money * count;
+			System.out.println(result.getMessage() + " - " + count + "개");
+			resultMoney += result.getMoney() * count;
 		}
 		System.out.printf("총 수익률은 %.1f%%입니다.%n", resultMoney / user.getMoney() * 100);
 	}

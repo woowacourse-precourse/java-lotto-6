@@ -1,4 +1,4 @@
-package lotto;
+package lotto.utils;
 
 public class Constants {
 	public static final int WINNING_NUMBER_LENGTH = 6;

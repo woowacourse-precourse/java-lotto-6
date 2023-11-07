@@ -1,4 +1,4 @@
-package lotto;
+package lotto.type;
 
 public enum LottoResult {
 	CLOSE("일치하지 않음", 0),
@@ -14,5 +14,13 @@ public enum LottoResult {
 	LottoResult(String message, Integer money) {
 		this.message = message;
 		this.money = money;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public Integer getMoney() {
+		return money;
 	}
 }

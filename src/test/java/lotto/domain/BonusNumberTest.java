@@ -4,15 +4,21 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import lotto.exception.NumberOutOfRangeException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class BonusNumberTest {
 
-    int zero = 0;
-    int negative = -10;
-    int overRange = 50;
-    int validNumber = 7;
+    private static int zero, negative, overRange, validNumber;
+
+    @BeforeAll
+    static void setUp() {
+        zero = 0;
+        negative = -1;
+        overRange = 46;
+        validNumber = 7;
+    }
 
     @DisplayName("보너스 숫자가 범위를 벗어나면 예외가 발생한다.")
     @Test

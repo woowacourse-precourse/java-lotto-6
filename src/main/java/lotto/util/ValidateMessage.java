@@ -1,4 +1,4 @@
-package lotto.validate;
+package lotto.util;
 
 public class ValidateMessage {
     public static final String INPUT_AMOUNT_TYPE = "^[0-9]+$";

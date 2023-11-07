@@ -1,21 +1,19 @@
 package lotto.controller;
 
-import jdk.jshell.spi.SPIResolutionException;
 import lotto.domain.*;
-import lotto.view.InputView;
 
-import static lotto.validate.ValidateMessage.*;
+import static lotto.view.InputView.*;
+import static lotto.view.OutputView.*;
 
 public class LottoController {
 
     public void start(){
-        System.out.println(inputAmount().getAmount());
-
+        LottoAmount lottoAmount = inputAmount();
+        printLottos(lottoAmount);
     }
     private LottoAmount inputAmount(){
         try {
-        LottoAmount lottoAmount = new LottoAmount(InputView.inputPrice());
-         return lottoAmount;
+            return new LottoAmount(inputPrice());
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputAmount();

@@ -1,17 +1,20 @@
 package lotto.domain;
 
-import static lotto.validate.ValidateMessage.*;
+import static lotto.util.ValidateMessage.*;
 
 public class LottoAmount {
+    private static final int MIN_AMOUNT = 1000;
 
     private final int amount;
+
+    private final int lottoCount;
 
     public LottoAmount(String amount) {
         int amountNumber = validateNumber(amount);
         validateAmount(amountNumber);
         this.amount = amountNumber;
+        this.lottoCount = amountNumber / MIN_AMOUNT;
     }
-
     private void validateAmount(int amount) {
         validateThousand(amount);
         validateZero(amount);
@@ -38,5 +41,9 @@ public class LottoAmount {
 
     public int getAmount() {
         return amount;
+    }
+
+    public int getLottoCount() {
+        return lottoCount;
     }
 }

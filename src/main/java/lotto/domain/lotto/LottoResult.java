@@ -12,6 +12,7 @@ import java.util.Map;
 public class LottoResult {
     private static final int INIT_VALUE = 0;
     private static final int PLUS_ONE = 1;
+    private static final long START_VALUE = 0;
 
     private final WinningLotto winningLotto;
     private final List<Lotto> issuedLotto;
@@ -80,7 +81,7 @@ public class LottoResult {
     private Long getTotalAmount() {
         return getAllValues().stream()
                 .map(rank -> rankingResult.get(rank) * rank.getAmount())
-                .reduce(0L, Long::sum);
+                .reduce(START_VALUE, Long::sum);
     }
 
     private int getInvestMoney() {

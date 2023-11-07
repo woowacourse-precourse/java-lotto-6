@@ -21,6 +21,8 @@ public class Validator {
     private static final String REGEX = "[0-9]+";
     private static final String DELIMITER = ",";
     private static final int LIMIT = -1;
+    private static final int NOTHING = 0;
+    private static final int FIT_THOUSAND = 0;
 
     public static void validateMoney(final String money) {
         validateNumber(money);
@@ -45,7 +47,7 @@ public class Validator {
     private static void validateThousandUnit(final String number) {
         int money = stringToInt(number);
 
-        if (money <= 0 || money % PRICE.getValue() != 0) {
+        if (money <= NOTHING || money % PRICE.getValue() != FIT_THOUSAND) {
             throw new IllegalArgumentException(NOT_THOUSAND_UNIT.getMessage());
         }
     }

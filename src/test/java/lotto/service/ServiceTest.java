@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.enums.Rank;
 import lotto.model.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -53,5 +54,24 @@ class ServiceTest {
 
         int bonusNumber = gameService.generateBonusNumber(bonus);
         assertEquals(bonusNumber, expectedBonusNumber);
+    }
+
+    @DisplayName("당첨 여부 확인 리스트 생성 테스트")
+    @Test
+    void 당첨_여부_확인_리스트_생성_테스트() {
+        List<Integer> winNumbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 7;
+
+        Lotto lotto1 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+        Lotto lotto2 = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7));
+        Lotto lotto3 = new Lotto(Arrays.asList(8, 9, 10, 11, 12, 13));
+        List<Lotto> lottoList = Arrays.asList(lotto1, lotto2, lotto3);
+
+        List<Rank> rankList = gameService.checkWinNumbers(winNumbers, lottoList, bonusNumber);
+
+        assertEquals(3, rankList.size());
+        assertEquals(Rank.FIRST, rankList.get(0));
+        assertEquals(Rank.SECOND, rankList.get(1));
+        assertEquals(Rank.FAIL, rankList.get(2));
     }
 }

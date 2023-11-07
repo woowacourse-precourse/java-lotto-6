@@ -25,12 +25,16 @@ public class LottoManager {
         int lottoCount = purchaseAmount / GameConstants.UNIT_PURCHASE_PRICE;
 
         while (lottoCount != 0) {
-            List<Integer> numbers = pickUniqueNumbersInRange(GameConstants.MIN_LOTTO_NUMBER,
-                    GameConstants.MAX_LOTTO_NUMBER, GameConstants.LOTTO_NUMBER_COUNT);
+            List<Integer> numbers = getLottoNumbers();
             Lotto lotto = new Lotto(numbers);
             lottos.add(lotto);
             lottoCount--;
         }
+    }
+
+    private List<Integer> getLottoNumbers() {
+        return pickUniqueNumbersInRange(GameConstants.MIN_LOTTO_NUMBER, GameConstants.MAX_LOTTO_NUMBER,
+                GameConstants.LOTTO_NUMBER_COUNT);
     }
 
     public void setPrizeNumbers(Set<Integer> winningNumbers, int bonusNumber) {
@@ -41,12 +45,6 @@ public class LottoManager {
     public Iterator<Lotto> getLottoListIterator() {
         return lottos.iterator();
     }
-//
-//    public String getStatistics() {
-//        Iterator<Lotto> lottoIterator = lottos.iterator();
-//        statistics.calculateStatistics(prizeNumbers, lottoIterator);
-//        return statistics.toString();
-//    }
 
     public String calculateStatistics() {
         for (Lotto lotto : lottos) {

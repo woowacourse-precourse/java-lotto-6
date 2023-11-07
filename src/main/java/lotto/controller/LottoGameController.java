@@ -10,7 +10,7 @@ import lotto.service.LottoGameService;
 import lotto.utils.GameUtils;
 import lotto.utils.validator.BonusNumberValidator;
 import lotto.utils.validator.PurchaseAmountValidator;
-import lotto.utils.validator.WinningInfoValidator;
+import lotto.utils.validator.WinningInformationValidator;
 import lotto.utils.validator.WinningNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -72,7 +72,7 @@ public class LottoGameController {
                 String bonusNumberInput = inputView.readBonusNumber();
                 BonusNumberValidator.validate(bonusNumberInput);
                 LottoNumber bonusNumber = new LottoNumber(Integer.parseInt(bonusNumberInput));
-                WinningInfoValidator.validate(winningNumbers, bonusNumber);
+                WinningInformationValidator.validate(winningNumbers, bonusNumber);
 
                 return bonusNumber;
             } catch (IllegalArgumentException e) {

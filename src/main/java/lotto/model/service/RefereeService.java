@@ -29,7 +29,7 @@ public class RefereeService {
         }
     }
 
-    private int getRank(int hitNumberCount, boolean isHitBonusNumber, int rank) {
+    public int getRank(int hitNumberCount, boolean isHitBonusNumber, int rank) {
         if (hitNumberCount == FIRST.getHitCount()) {
             rank = FIRST.getRank();
         } else if (hitNumberCount == SECOND.getHitCount() && isHitBonusNumber) {

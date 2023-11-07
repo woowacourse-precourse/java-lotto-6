@@ -6,13 +6,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 public class Application {
 
     private static final int WIN_LOTTO_SIZE = 6;
 
     private static int inputPurchaseAmount() {
-        int purchaseAmount = Integer.parseInt(Console.readLine());
+        String userPurchaseAmount = Console.readLine();
+        isOnlyNumber(userPurchaseAmount);
+        int purchaseAmount = Integer.parseInt(userPurchaseAmount);
+
         while (purchaseAmount % 1000 != 0) {
             purchaseAmount = isValidPurchaseAmount(purchaseAmount);
         }
@@ -22,7 +26,7 @@ public class Application {
     private static int isValidPurchaseAmount(int purchaseAmount) {
         try {
             if (purchaseAmount % 1000 != 0) {
-                throw new IllegalArgumentException("[ERROR] 구입 금액 단위를 1,000원(천원)단위로 입력하여 주세요!!");
+                throw new IllegalArgumentException("[ERROR]");
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -30,6 +34,15 @@ public class Application {
             return refixPurchaseAmount;
         }
         return purchaseAmount;
+    }
+
+    private static void isOnlyNumber(String userPurchaseAmount) {
+        try {
+            Integer.parseInt(userPurchaseAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR]");
+            throw new IllegalArgumentException("[ERROR]");
+        }
     }
 
     private static void printPurchaseNumber(int purchaseAmount) {
@@ -71,6 +84,10 @@ public class Application {
         return winLottoNumber;
     }
 
+    private static int inputBonusLottoNumber() {
+        return Integer.parseInt(Console.readLine());
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
@@ -88,6 +105,6 @@ public class Application {
         System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        int winBonusNumber = Integer.parseInt(Console.readLine());
+        int winBonusNumber = inputBonusLottoNumber();
     }
 }

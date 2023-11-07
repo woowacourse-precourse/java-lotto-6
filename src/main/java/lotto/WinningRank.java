@@ -4,11 +4,11 @@ import java.util.List;
 
 public enum WinningRank {
 
-	FIRST(6, 2000000_000, "6개 일치 (2,000,000,000원) - "), // 1등
-	SECOND(5, 30000_000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "), // 2등
-	THIRD(5, 1500_000, "5개 일치 (1,500,000원) - "), // 3등
-	FOURTH(4, 50000, "4개 일치 (50,000원) - "), // 4등
-	FIFTH(3, 5000, "3개 일치 (5,000원) - "), // 5등
+	FIRST(6, 2000000000, "6개 일치 (2,000,000,000원) - "),
+	SECOND(5, 30000000, "5개 일치, 보너스 볼 일치 (30,000,000원) - "),
+	THIRD(5, 1500000, "5개 일치 (1,500,000원) - "),
+	FOURTH(4, 50000, "4개 일치 (50,000원) - "),
+	FIFTH(3, 5000, "3개 일치 (5,000원) - "),
 	NONE(0, 0, "");
 
 	private int matchingNumbers;
@@ -51,6 +51,7 @@ public enum WinningRank {
 			countByRank[rank.ordinal()]++;
 		}
 
+		System.out.println("");
 		System.out.println("당첨 통계");
 		System.out.println("---");
 

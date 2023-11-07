@@ -56,7 +56,7 @@ class LottoMachineTest {
 
             Lottos lottos = new Lottos(List.of(lotto1, lotto2, lotto3, lotto4));
             WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
-            BonusNumber bonusNumber = new BonusNumber(45);
+            BonusNumber bonusNumber = new BonusNumber(45, winningLotto);
 
             // when
             DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto, bonusNumber);
@@ -85,7 +85,7 @@ class LottoMachineTest {
 
             Lottos lottos = new Lottos(List.of(lotto1, lotto2, lotto3, lotto4));
             WinningLotto winningLotto = new WinningLotto(List.of(1, 2, 3, 4, 5, 6));
-            BonusNumber bonusNumber = new BonusNumber(45);
+            BonusNumber bonusNumber = new BonusNumber(45, winningLotto);
 
             // when
             DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto, bonusNumber);

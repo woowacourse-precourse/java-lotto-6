@@ -5,8 +5,8 @@ import lotto.validator.BonusNumberValidator;
 public class BonusNumber {
     private final int number;
 
-    public BonusNumber(int number) {
-        BonusNumberValidator.validateBonusNumber(number);
+    public BonusNumber(int number, WinningLotto winningLotto) {
+        BonusNumberValidator.validateBonusNumber(number, winningLotto);
         this.number = number;
     }
 

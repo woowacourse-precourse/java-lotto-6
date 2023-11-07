@@ -17,7 +17,6 @@ import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.PurchaseAmountDto;
 import lotto.domain.dto.WinningLottoDto;
 import lotto.service.LottoMachine;
-import lotto.validator.BonusNumberValidator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -70,9 +69,7 @@ public class LottoController {
         WinningLotto winningLotto = mapToWinningLotto(winningLottoDto);
 
         BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
-        BonusNumber bonusNumber = mapToBonusNumber(bonusNumberDto);
-
-        BonusNumberValidator.validateBonusNumberDuplicate(winningLotto, bonusNumber);
+        BonusNumber bonusNumber = mapToBonusNumber(bonusNumberDto, winningLotto);
 
         DrawingResults drawingResult = lottoMachine.draw(lottos, winningLotto, bonusNumber);
         outputView.printDrawingResult(mapToDrawingResultDto(drawingResult));
@@ -84,8 +81,8 @@ public class LottoController {
         return new WinningLotto(winningLottoDto.numbers());
     }
 
-    private BonusNumber mapToBonusNumber(final BonusNumberDto bonusNumberDto) {
-        return new BonusNumber(bonusNumberDto.number());
+    private BonusNumber mapToBonusNumber(final BonusNumberDto bonusNumberDto, final WinningLotto winningLotto) {
+        return new BonusNumber(bonusNumberDto.number(), winningLotto);
     }
 
     private DrawingResultDto mapToDrawingResultDto(final DrawingResults drawingResult) {

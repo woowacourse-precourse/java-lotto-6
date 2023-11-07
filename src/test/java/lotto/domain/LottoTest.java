@@ -65,17 +65,19 @@ class LottoTest {
     @DisplayName("hasBonusNumber 메소드 test")
     class HasBonusNumberTest {
         private Lotto lotto;
+        private WinningLotto winningLotto;
 
         @BeforeEach
         void beforeEach() {
             lotto = new Lotto(List.of(4, 8, 17, 26, 39, 40));
+            winningLotto = new WinningLotto(List.of(11, 23, 27, 31, 38, 43));
         }
 
         @DisplayName("발행된 로또에 보너스 숫자가 있다면 true 반환")
         @Test
         void Lotto_contain_bonus_number() {
             // given
-            BonusNumber bonusNumber = new BonusNumber(45);
+            BonusNumber bonusNumber = new BonusNumber(45, winningLotto);
 
             // when
             boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
@@ -88,7 +90,7 @@ class LottoTest {
         @Test
         void Lotto_not_contain_bonus_number() {
             // given
-            BonusNumber bonusNumber = new BonusNumber(4);
+            BonusNumber bonusNumber = new BonusNumber(4, winningLotto);
 
             // when
             boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);

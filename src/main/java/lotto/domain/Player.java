@@ -31,7 +31,12 @@ public class Player {
 
     public void setLottoAmount() {
         Prints.print_input_amount_message();
-        this.lottoAmount = new LottoAmount(Utils.parseIntValidate(Console.readLine()));
+        try {
+            this.lottoAmount = new LottoAmount(Utils.parseIntValidate(Console.readLine()));
+        } catch (IllegalArgumentException e) {
+            System.out.println(String.format("[ERROR] %s", e.getMessage()));
+            setLottoAmount();
+        }
     }
 
     public void setLottoCount() {

@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.utils.constants.Comment;
+import lotto.utils.constants.LottoNumConstant;
 
 public class LottoWinningCalculator {
     static int countFifthPrize = 0;
@@ -27,15 +28,15 @@ public class LottoWinningCalculator {
         int matchingNumbers = calculateMatchingNumbers(lotto, winningNumbers);
         boolean hasBonus = lotto.getNumbers().contains(bonusNumber);
 
-        if (matchingNumbers == 3) {
+        if (matchingNumbers == LottoNumConstant.LOTTO_THREE_COUNT.getNumber()) {
             countFifthPrize++;
-        } else if (matchingNumbers == 4) {
+        } else if (matchingNumbers == LottoNumConstant.LOTTO_FOUR_COUNT.getNumber()) {
             countFourthPrize++;
-        } else if (matchingNumbers == 5 && hasBonus) {
+        } else if (matchingNumbers == LottoNumConstant.LOTTO_FIVE_COUNT.getNumber() && hasBonus) {
             countSecondPrize++;
-        } else if (matchingNumbers == 5) {
+        } else if (matchingNumbers == LottoNumConstant.LOTTO_FIVE_COUNT.getNumber()) {
             countThirdPrize++;
-        } else if (matchingNumbers == 6) {
+        } else if (matchingNumbers == LottoNumConstant.LOTTO_SIX_COUNT.getNumber()) {
             countFirstPrize++;
         }
     }
@@ -50,11 +51,11 @@ public class LottoWinningCalculator {
     }
 
     private static double calculateTotalPrize(int countFifthPrize, int countFourthPrize, int countThirdPrize, int countSecondPrize, int countFirstPrize) {
-        int fifthPrize = countFifthPrize * 5000;
-        int fourthPrize = countFourthPrize * 50000;
-        int thirdPrize = countThirdPrize * 1500000;
-        int secondPrize = countSecondPrize * 30000000;
-        int firstPrize = countFirstPrize * 2000000000;
+        int fifthPrize = countFifthPrize * LottoNumConstant.LOTTO_FIFTH_PRIZE.getNumber();
+        int fourthPrize = countFourthPrize * LottoNumConstant.LOTTO_FOURTH_PRIZE.getNumber();
+        int thirdPrize = countThirdPrize * LottoNumConstant.LOTTO_THIRD_PRIZE.getNumber();
+        int secondPrize = countSecondPrize * LottoNumConstant.LOTTO_SECOND_PRIZE.getNumber();
+        int firstPrize = countFirstPrize * LottoNumConstant.LOTTO_FIRST_PRIZE.getNumber();
 
         return fifthPrize + fourthPrize + thirdPrize + secondPrize + firstPrize;
     }

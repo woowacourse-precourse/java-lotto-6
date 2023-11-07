@@ -1,4 +1,4 @@
-package lotto;
+package lotto.ENUM;
 
 public enum ExceptionCase {
     NOT_SATISFY_CONDITION_OF_PURCHASE_AMOUNT("[ERROR] 구입금액은 1000원 단위 이여야 합니다."),

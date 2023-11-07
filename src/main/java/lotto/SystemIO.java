@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.ENUM.ExceptionCase;
+import lotto.ENUM.WinningRank;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

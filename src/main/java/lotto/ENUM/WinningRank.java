@@ -1,4 +1,4 @@
-package lotto;
+package lotto.ENUM;
 
 public enum WinningRank {
     FIRST_WINNING("6개 일치", "2,000,000,000"),

@@ -1,28 +1,37 @@
 package lotto;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
 import static camp.nextstep.edu.missionutils.Randoms.pickNumberInRange;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BuyTicketsTest {
-    @BeforeAll
-    static void InitTest() {
+    private final PrintStream standardOut = System.out;
+    private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+    @BeforeEach
+    void InitTest() {
         SystemIO systemIO = new SystemIO();
+        System.setOut(new PrintStream(outputStreamCaptor));
     }
 
     @Test
     @DisplayName("입력값은 숫자여야 한다.")
     void validateInputIsIntegerTest() {
         String purchaseAmount = "String INPUT";
-        Assertions.assertThrows(IllegalStateException.class, () -> new BuyTickets());
+        InputStream byteOfPurchaseAmount = new ByteArrayInputStream(purchaseAmount.getBytes());
+        System.setIn(byteOfPurchaseAmount);
+        new BuyTickets();
+        assertThat(outputStreamCaptor.toString().trim()).contains("ERROR");
     }
 
     @Test

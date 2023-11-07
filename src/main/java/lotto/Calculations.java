@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.ENUM.WinningRank;
+
 import java.util.HashMap;
 import java.util.Map;
 

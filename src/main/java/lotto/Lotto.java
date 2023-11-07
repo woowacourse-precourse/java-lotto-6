@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.ENUM.ExceptionCase;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

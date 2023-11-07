@@ -41,4 +41,11 @@ public class LottoMachine {
     }
 
 
+    public void setPrize() {
+        List<Integer> winNumber = InputView.inputLottoWinningNum();
+        int bonusNumber = InputView.inputBonusNumber();
+        prize = Service.setPrize(winNumber, bonusNumber);
+    }
+
+   
 }

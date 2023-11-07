@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.controller.LottoCompareController;
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,6 +44,14 @@ public class UserOutputView {
         System.out.println("당첨 통계");
         LottoCompareController.lottoTicketsCompareNum();
         System.out.println("---");
+    }
+
+    public static  void winningStatisticsResult(){
+        System.out.println("3개 일치 (5,000원) - " + WinningLotto.getTreeSameNumLotto() + "개");
+        System.out.println("4개 일치 (50,000원) - " + WinningLotto.getFourSameNumLotto() + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + WinningLotto.getFiveSameNumLotto() + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + WinningLotto.getFiveAndBonusSameNumLotto() + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + WinningLotto.getSixSameNumLotto() + "개");
     }
 
 

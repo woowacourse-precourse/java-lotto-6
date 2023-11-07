@@ -19,6 +19,7 @@ public class RunLotto {
         UserInputView.inputBonusNum();
 
         UserOutputView.winningStatistics();
+        UserOutputView.winningStatisticsResult();
 
 
 

@@ -2,20 +2,22 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.utils.ErrorMessage;
 
 public class WinningNumber {
 
-    private Lotto lotto;
-    private int bonusNumber;
+    private final Lotto lotto;
+    private final int bonusNumber;
+    private static final int BONUS_NUMBER_RANGE_MIN = 1;
+    private static final int BONUS_NUMBER_RANGE_MAX = 45;
 
     public WinningNumber(Lotto lotto, int bonusNumber) {
         this.lotto = lotto;
-        if(bonusNumber <1 || bonusNumber > 45) {
-            throw new IllegalArgumentException();
+        if (bonusNumber < BONUS_NUMBER_RANGE_MIN || bonusNumber > BONUS_NUMBER_RANGE_MAX) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_RANGE_ERROR.getMessage());
         }
-        if(lotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("보너스는 로또 번호와 중복될 수 없습니다.");
+        if (lotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_BONUS_NUMBER_NOT_DUPLICATE.getMessage());
         }
         this.bonusNumber = bonusNumber;
     }

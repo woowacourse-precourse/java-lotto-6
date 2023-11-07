@@ -4,7 +4,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 import lotto.enums.LottoNumber;
 import lotto.enums.Rank;
 import lotto.model.Lotto;
@@ -15,7 +14,7 @@ public class GameService {
     // Lotto list 생성
     public List<Lotto> createLotto(int lottoCount) {
         List<Lotto> lottoList = new ArrayList<>();
-        for (int i = 0; i <lottoCount; i++) {
+        for (int i = 0; i < lottoCount; i++) {
             Lotto lotto = Lotto.generateLotto();
             lottoList.add(lotto);
         }
@@ -64,7 +63,8 @@ public class GameService {
         return Rank.FAIL;
     }
 
-    public List<Rank> checkWinNumbers(List<Integer> winNumbers, List<Lotto> lottoList, int bonusNumber) {
+    public List<Rank> checkWinNumbers(List<Integer> winNumbers, List<Lotto> lottoList,
+            int bonusNumber) {
         List<Rank> rankList = new ArrayList<>();
         for (Lotto lotto : lottoList) {
             Rank rank = checkWinNumber(winNumbers, lotto, bonusNumber);
@@ -74,13 +74,13 @@ public class GameService {
     }
 
     // 수익률 계산
-    public String calculateReturnRate(List<Rank> rankList, String money) {
-        int price = Integer.parseInt(money);
+    public String calculateReturnRate(List<Rank> rankList, int lottoCount) {
+        int money = lottoCount * 1000;
         int totalPrize = rankList.stream()
                 .mapToInt(Rank::getPrize)
                 .sum();
 
-        double returnRate = ((double)totalPrize / price)*100;
+        double returnRate = ((double) totalPrize / money) * 100;
         DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
         String formattedReturnRate = decimalFormat.format(returnRate);
 

@@ -16,7 +16,8 @@ public class WinningNumber {
     private final List<LottoNumber> winningNumbers;
 
     private WinningNumber(String input) {
-
+        isBlank(input);
+        input = input.trim();
         String[] numbers = input.split(COMMA);
 
         winningNumbers = Arrays.stream(numbers).map(LottoNumber::newInstance).toList();
@@ -24,6 +25,15 @@ public class WinningNumber {
 
     public static WinningNumber newInstance(String input) {
         return new WinningNumber(input);
+    }
+
+
+
+    private void isBlank(String input) {
+        if (input != null && !input.isBlank()) {
+            return;
+        }
+        throw new IllegalArgumentException(ERROR_NO_INPUT_BLANK);
     }
 
 

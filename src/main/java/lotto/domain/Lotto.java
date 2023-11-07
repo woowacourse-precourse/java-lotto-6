@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.common.Constant;
 import lotto.common.ErrorMessage;
@@ -11,6 +12,7 @@ public class Lotto {
 
     public Lotto() {
         List<Integer> numbers = LottoNumberGenerator.generate();
+        numbers.stream().sorted();
 
         validate(numbers);
         this.numbers = numbers;

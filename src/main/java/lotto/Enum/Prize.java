@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Enum;
 // Prize.java  파일
 public enum Prize {
     FIRST(2_000_000_000),

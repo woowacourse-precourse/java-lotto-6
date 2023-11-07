@@ -33,36 +33,36 @@ public class Application {
             System.out.println("[ERROR] " + e.getMessage());
         }
     }
-    private static int readPurchaseAmount() {
-        // 사용자에게 올바른 구입 금액을 입력받음
-        while (true) {
-            System.out.print("구입 금액을 입력해 주세요.");
-            String input = Console.readLine();
-
-            try {
-                // 입력값을 검증을 수행
-                int purchaseAmount = parseAndValidateInput(input);
-                // 검증이 통과된 구입 금액을 반환
-                return purchaseAmount;
-            } catch (NumberFormatException e) {
-                // 숫자로 변환할 수 없는 입력값이 들어온 경우 에러 메시지를 출력
-                System.out.println("[ERROR] 구입금액은 숫자만 가능합니다.");
-            } catch (IllegalArgumentException e) {
-                // 구입 금액이 1,000원 단위가 아닌 경우 에러 메시지를 출력
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private static int parseAndValidateInput(String input) {
-        int purchaseAmount = Integer.parseInt(input);
-        // 입력값이 1,000원 단위인지 검증
-        if (purchaseAmount % 1000 != 0) {
-            // 1,000원 단위가 아닌 경우 예외를 발생
-            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위어야 합니다.");
-        }
-        return purchaseAmount;
-    }
+//    private static int readPurchaseAmount() {
+//        // 사용자에게 올바른 구입 금액을 입력받음
+//        while (true) {
+//            System.out.print("구입 금액을 입력해 주세요.");
+//            String input = Console.readLine();
+//
+//            try {
+//                // 입력값을 검증을 수행
+//                int purchaseAmount = parseAndValidateInput(input);
+//                // 검증이 통과된 구입 금액을 반환
+//                return purchaseAmount;
+//            } catch (NumberFormatException e) {
+//                // 숫자로 변환할 수 없는 입력값이 들어온 경우 에러 메시지를 출력
+//                System.out.println("[ERROR] 구입금액은 숫자만 가능합니다.");
+//            } catch (IllegalArgumentException e) {
+//                // 구입 금액이 1,000원 단위가 아닌 경우 에러 메시지를 출력
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//    }
+//
+//    private static int parseAndValidateInput(String input) {
+//        int purchaseAmount = Integer.parseInt(input);
+//        // 입력값이 1,000원 단위인지 검증
+//        if (purchaseAmount % 1000 != 0) {
+//            // 1,000원 단위가 아닌 경우 예외를 발생
+//            throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위어야 합니다.");
+//        }
+//        return purchaseAmount;
+//    }
 
 
     // 구입 금액을 토대로 로또 번호를 생성
@@ -90,40 +90,40 @@ public class Application {
         });
     }
 
-    private static Lotto readWinningLotto() {
-        while (true) {
-            try {
-                System.out.print("당첨 번호를 입력해 주세요. ");
-                String[] winningNumbersStr = Console.readLine().split(",");
-
-                if (winningNumbersStr.length != 6) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 숫자를 입력해야 합니다.");
-                }
-
-                List<Integer> winningNumbers = parseNumbers(winningNumbersStr);
-
-                if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45까지의 숫자로 입력해야 합니다.");
-                }
-
-                if (winningNumbers.stream().distinct().count() != 6) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
-                }
-
-                return new Lotto(winningNumbers);
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    // 문자열 배열을 정수 리스트로 변환
-    private static List<Integer> parseNumbers(String[] numbersStr) {
-        return List.of(numbersStr).stream()
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList());
-    }
+//    private static Lotto readWinningLotto() {
+//        while (true) {
+//            try {
+//                System.out.print("당첨 번호를 입력해 주세요. ");
+//                String[] winningNumbersStr = Console.readLine().split(",");
+//
+//                if (winningNumbersStr.length != 6) {
+//                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 6개 숫자를 입력해야 합니다.");
+//                }
+//
+//                List<Integer> winningNumbers = parseNumbers(winningNumbersStr);
+//
+//                if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+//                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 1부터 45까지의 숫자로 입력해야 합니다.");
+//                }
+//
+//                if (winningNumbers.stream().distinct().count() != 6) {
+//                    throw new IllegalArgumentException("[ERROR] 당첨 번호에 중복된 숫자가 있습니다.");
+//                }
+//
+//                return new Lotto(winningNumbers);
+//            } catch (IllegalArgumentException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        }
+//    }
+//
+//    // 문자열 배열을 정수 리스트로 변환
+//    private static List<Integer> parseNumbers(String[] numbersStr) {
+//        return List.of(numbersStr).stream()
+//                .map(String::trim)
+//                .map(Integer::parseInt)
+//                .collect(Collectors.toList());
+//    }
 
     private static int readBonusNumberUI() {
         System.out.print("보너스 번호를 입력해 주세요. ");

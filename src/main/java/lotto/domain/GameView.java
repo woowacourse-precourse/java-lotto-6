@@ -18,7 +18,7 @@ public class GameView {
         }
     }
 
-    public void printLottos(Map<Lotto, Float> lottos) {
+    public void printLottos(Map<Lotto, Double> lottos) {
         System.out.println("\n" + lottos.size() + "개를 구매했습니다.");
 
         for (Lotto lotto : lottos.keySet()) {
@@ -56,7 +56,7 @@ public class GameView {
         }
     }
 
-    public void printLottoWinAndLottoReturns(Float lottoReturns) {
+    public void printLottoWinAndLottoReturns(double lottoReturns) {
         System.out.println("\n당첨 통계");
         System.out.println("---");
 

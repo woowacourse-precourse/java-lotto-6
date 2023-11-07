@@ -8,14 +8,14 @@ import java.util.Map;
 public class Game {
     private final GameView gameView;
     private final Player player;
-    private final Map<Lotto, Float> lottos;
-    private Float lottoReturns;
+    private final Map<Lotto, Double> lottos;
+    private double lottoReturns;
 
     public Game() {
         this.gameView = new GameView();
         this.player = new Player();
         this.lottos = new HashMap<>();
-        this.lottoReturns = 0.0f;
+        this.lottoReturns = 0.0;
     }
 
     public void play() {
@@ -33,7 +33,7 @@ public class Game {
         int lottoCount = player.getPurchaseLottoCount();
 
         for (int i = 0; i < lottoCount; i++) {
-            lottos.put(new Lotto(getRandomNumbers()), 0.0f);
+            lottos.put(new Lotto(getRandomNumbers()), 0.0);
         }
     }
 
@@ -50,8 +50,8 @@ public class Game {
     }
 
     private void calculateLottoRankingCount(Lotto lotto) {
-        float lottoScore = lottos.get(lotto);
-        if (lottoScore >= 3.0f) {
+        double lottoScore = lottos.get(lotto);
+        if (lottoScore >= 3.0) {
             LottoRanking.valueOfScore(lottos.get(lotto)).plusCount();
         }
     }
@@ -59,24 +59,24 @@ public class Game {
     private void compareWinningNumbers(Lotto lotto) {
         for (int winningNumber : player.getWinningNumbers()) {
             if (lotto.containNumber(winningNumber)) {
-                lottos.replace(lotto, lottos.get(lotto) + 1.0f);
+                lottos.replace(lotto, lottos.get(lotto) + 1.0);
             }
         }
     }
 
     private void compareBonusNumber(Lotto lotto) {
         if (lotto.containNumber(player.getBonusNumber())) {
-            lottos.replace(lotto, lottos.get(lotto) + 0.5f);
+            lottos.replace(lotto, lottos.get(lotto) + 0.5);
         }
     }
 
     private void calculateLottoReturns() {
-        int totalPrizeMoney = calculateTotalPrizeMoney();
-        lottoReturns = (float) totalPrizeMoney / player.getPurchaseAmount() * 100.0f;
+        long totalPrizeMoney = calculateTotalPrizeMoney();
+        lottoReturns = (double) totalPrizeMoney / player.getPurchaseAmount() * 100.0;
     }
 
-    private Integer calculateTotalPrizeMoney() {
-        int totalPrizeMoney = 0;
+    private long calculateTotalPrizeMoney() {
+        long totalPrizeMoney = 0;
 
         for (LottoRanking lottoRanking : LottoRanking.values()) {
             totalPrizeMoney += lottoRanking.getPrizeMoney() * lottoRanking.getCount();

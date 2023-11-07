@@ -79,7 +79,7 @@ public class Player {
         }
     }
 
-    private void validateNumberValue(Integer number) {
+    private void validateNumberValue(int number) {
         if (number < Lotto.MINIMUM_NUMBER || number > Lotto.MAXIMUM_NUMBER) {
             throw new IllegalArgumentException();
         }
@@ -103,12 +103,12 @@ public class Player {
         this.bonusNumber = bonusNumber;
     }
 
-    private void validateBonusNumber(Integer bonusNumber) {
+    private void validateBonusNumber(int bonusNumber) {
         validateNumberValue(bonusNumber);
         validateBonusNumberDuplicatedWithWinningNumbers(bonusNumber);
     }
 
-    private void validateBonusNumberDuplicatedWithWinningNumbers(Integer bonusNumber) {
+    private void validateBonusNumberDuplicatedWithWinningNumbers(int bonusNumber) {
         if (winningNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }

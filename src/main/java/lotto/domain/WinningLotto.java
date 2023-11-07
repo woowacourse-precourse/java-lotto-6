@@ -4,11 +4,9 @@ import java.util.List;
 
 public class WinningLotto extends Lotto {
 
-
     private final Integer bonusNumber;
 
-
-    public WinningLotto(final List<Integer> numbers, final Integer bonusNumber) {
+    private WinningLotto(final List<Integer> numbers, final Integer bonusNumber) {
         super(numbers);
         this.bonusNumber = bonusNumber;
     }
@@ -19,10 +17,6 @@ public class WinningLotto extends Lotto {
 
     public boolean isWinningNumber(final Integer number) {
         return this.getNumbers().contains(number);
-    }
-
-    public List<Integer> getWinningLottoNumbers() {
-        return this.getNumbers();
     }
 
     public Integer getBonusNumber() {

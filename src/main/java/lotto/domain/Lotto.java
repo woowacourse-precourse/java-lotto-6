@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import lotto.common.Constant;
 import lotto.common.ErrorMessage;
 import lotto.util.LottoNumberGenerator;
@@ -22,10 +21,6 @@ public class Lotto {
         this.numbers = numbers;
     }
 
-    public static Lotto from() {
-        return new Lotto();
-    }
-
     public List<Integer> getNumbers() {
         return this.numbers;
     }
@@ -33,6 +28,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validateLottoNumSize(numbers);
         validateLottoInvalidNumber(numbers);
+        validateLottoDuplicationNumber(numbers);
     }
 
     // 로또 번호 개수가 6개가 아닐 경우
@@ -51,7 +47,7 @@ public class Lotto {
 
     // 로또 번호 가운데 중복된 수가 있을 경우
     private void validateLottoDuplicationNumber(List<Integer> numbers) {
-        if(numbers.stream().distinct().collect(Collectors.toList()).size() != Constant.LOTTO_NUM_SIZE) {
+        if(numbers.stream().distinct().toList().size() != Constant.LOTTO_NUM_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUM_DUPLICATION_ERROR.getMessage());
         }
     }

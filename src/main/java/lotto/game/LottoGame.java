@@ -5,12 +5,8 @@ import lotto.domain.AutomaticLottoStorage;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoStorage;
 import lotto.domain.WinningLotto;
-import lotto.domain.dto.LottoNumberCompareResult;
-import lotto.domain.dto.LottoRankResult;
 import lotto.util.LottoGameInputer;
 import lotto.util.LottoGamePrinter;
-import lotto.util.LottoProfitCalculator;
-import lotto.util.TextBuilder;
 
 public class LottoGame {
 
@@ -64,7 +60,7 @@ public class LottoGame {
     // 로또 당첨 내역 및 수익률 출력
     public void printLottoWinningResultsAndLottoProfitRate() {
         List<LottoRank> lottoRanks = lottoStorage.compareAllAutomaticLottoWithWinningNumbers();
-        lottoStorage.showAllLottoRanks(lottoRanks);
+        lottoStorage.showAllLottoRankResult(lottoRanks);
         lottoStorage.showLottoProfitRate(lottoRanks);
     }
 }

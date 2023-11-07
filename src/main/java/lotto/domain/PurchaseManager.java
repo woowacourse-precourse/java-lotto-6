@@ -36,4 +36,8 @@ public class PurchaseManager {
     public Integer calcPurchaseNumber() {
         return purchaseAmount/Constant.LOTTO_PRICE;
     }
+
+    public Integer getPurchaseAmount() {
+        return purchaseAmount;
+    }
 }

@@ -30,4 +30,8 @@ public class OutputView {
             System.out.println(MessageFormat.format(Constant.WINNING_STATISTICS, w[i].getMatch(), w[i].getReward(), rankNum[i]));
         }
     }
+
+    public void printRate(String num){
+        System.out.println(MessageFormat.format(Constant.RATE_OF_RETURN, num));
+    }
 }

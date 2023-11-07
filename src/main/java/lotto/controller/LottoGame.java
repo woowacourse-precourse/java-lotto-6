@@ -11,8 +11,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
-    private InputView inputView;
-    private OutputView outputView;
+    private final InputView inputView;
+    private final OutputView outputView;
     private PurchaseManager purchaseManager;
     private Lottos lottos;
     private WinningNumbers winningNumbers;
@@ -30,6 +30,7 @@ public class LottoGame {
         getBonusNumber();
         calcWinning();
         outputView.printStatistics(result);
+        printWinningStatistics();
     }
     private void purchase(){
         boolean validateInput=false;
@@ -93,5 +94,10 @@ public class LottoGame {
     private void calcWinning(){
         WinningStatisticsService winningStatisticsService = new WinningStatisticsService();
         result = winningStatisticsService.calcScore(lottos.getLottos(), winningNumbers.getWinningNumbers(), winningNumbers.getBonusNumber());
+    }
+    private void printWinningStatistics(){
+        float rate = (float) result.getTotalReward()/(float)purchaseManager.getPurchaseAmount()*100;
+
+        outputView.printRate(String.format("%.1f", rate));
     }
 }

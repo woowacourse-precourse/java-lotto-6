@@ -36,6 +36,7 @@ public class LottoPurchase {
         while (true) {
             inputView.showAmountInputForm();
             input = readLine().trim();
+            inputView.endInput();
 
             if (isCorrectAmount(input)) {
                 break;

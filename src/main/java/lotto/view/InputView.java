@@ -16,4 +16,8 @@ public class InputView {
     public void showWinningNumbersInputForm() {
         System.out.println(REQUEST_TO_INPUT_WINNING_NUMBERS);
     }
+
+    public void endInput() {
+        System.out.println();
+    }
 }

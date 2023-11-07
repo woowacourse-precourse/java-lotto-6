@@ -32,8 +32,8 @@ public class LottoMachine {
     }
 
     private void drawLotto(InputView inputView) {
-        LottoDraw lottoDraw = new LottoDraw();
-        lottoDraw.drawLotto(inputView);
+        LottoDraw lottoDraw = new LottoDraw(inputView);
+        lottoDraw.drawLotto();
     }
 
     public void start() {

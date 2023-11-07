@@ -1,10 +1,13 @@
 package lotto.controller;
 
+import static lotto.utils.validator.LottoNumberValidator.validateDuplicate;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.BuyAmount;
+import lotto.domain.Lotto;
 import lotto.domain.LottoGenerator;
 import lotto.domain.LottoResults;
 import lotto.domain.LottoResultsDTO;
@@ -32,16 +35,16 @@ public class LottoController {
     }
 
     private void buyLotto() {
-        long inputBuyAmount = InputView.getBuyAmountFromInput();
-        buyAmount = new BuyAmount(inputBuyAmount);
-        lottos = new Lottos(lottoGenerator.generateLottos(buyAmount.getAbleToBuyCount()));
+        buyAmount = createBuyAmount();
+        List<Lotto> lottoNumbers = lottoGenerator.generateLottos(buyAmount.getAbleToBuyCount());
+        lottos = new Lottos(lottoNumbers);
         OutputView.displayAllLottos(lottos.toLottosDTO());
     }
 
     private void drawLotto() {
-        WinningNumber winningNumber = new WinningNumber(InputView.getWinningNumberFromInput());
-        BonusNumber bonusNumber = new BonusNumber(InputView.getBonusNumberFromInput());
-        winningNumbers = new WinningNumbers(winningNumber, bonusNumber);
+        WinningNumber winningNumber = createWinningNumber();
+        BonusNumber bonusNumber = createBonusNumber();
+        winningNumbers = createWinningNumbers(winningNumber, bonusNumber);
     }
 
     private void winningStatistics() {
@@ -68,5 +71,48 @@ public class LottoController {
             totalAmount += winningAmount * rankCount;
         }
         return totalAmount;
+    }
+
+    private BuyAmount createBuyAmount() {
+        while (true) {
+            try {
+                return new BuyAmount(InputView.getBuyAmountFromInput());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private WinningNumber createWinningNumber() {
+        while (true) {
+            try {
+                return new WinningNumber(InputView.getWinningNumberFromInput());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private BonusNumber createBonusNumber() {
+        while (true) {
+            try {
+                return new BonusNumber(InputView.getBonusNumberFromInput());
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private WinningNumbers createWinningNumbers(WinningNumber winningNumber,
+                                                BonusNumber bonusNumber) {
+        while (true) {
+            try {
+                validateDuplicate(winningNumber, bonusNumber);
+                return new WinningNumbers(winningNumber, bonusNumber);
+            } catch (IllegalArgumentException exception) {
+                System.out.println(exception.getMessage());
+                bonusNumber = createBonusNumber();
+            }
+        }
     }
 }

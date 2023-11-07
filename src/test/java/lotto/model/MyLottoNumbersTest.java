@@ -30,5 +30,12 @@ class MyLottoNumbersTest {
                 .hasMessageContaining("6개의 숫자로 구성되어야 합니다");
     }
 
-
+    @DisplayName("보너스 입력값 숫자가 아닐 경우 예외처리")
+    @Test
+    void 보너스_입력검사() {
+        MyLottoNumbers numbers = new MyLottoNumbers("1,2,3,4,5,6");
+        assertThatThrownBy(() -> numbers.setBonusNumber("$"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("숫자만 입력 가능합니다");
+    }
 }

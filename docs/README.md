@@ -56,7 +56,7 @@
 - Shop [ ]
     - operate
 
-- Machine [ ]
+- Machine [ x ]
     - buy
     - set
     - match

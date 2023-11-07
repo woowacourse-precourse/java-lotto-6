@@ -40,6 +40,16 @@ public class LottoPrizeCalculator {
         matchToPrizeMap.put(6, PRIZE_FOR_6_MATCHES);
     }
 
+    private static final Map<Integer, String> prizeDescriptionMap = new HashMap<>();
+
+    static {
+        prizeDescriptionMap.put(PRIZE_FOR_3_MATCHES, "3개 일치 (5,000원)");
+        prizeDescriptionMap.put(PRIZE_FOR_4_MATCHES, "4개 일치 (50,000원)");
+        prizeDescriptionMap.put(PRIZE_FOR_5_MATCHES, "5개 일치 (1,500,000원)");
+        prizeDescriptionMap.put(PRIZE_FOR_5_PLUS_BONUS_MATCHES, "5개 일치, 보너스 볼 일치 (30,000,000원)");
+        prizeDescriptionMap.put(PRIZE_FOR_6_MATCHES, "6개 일치 (2,000,000,000원)");
+    }
+
     public void calculateStatistics(List<LottoTicket> purchasedTickets) {
         for (LottoTicket ticket : purchasedTickets) {
             int matchCount = getMatchCount(ticket.getNumbers());
@@ -69,4 +79,11 @@ public class LottoPrizeCalculator {
     public Map<Integer, Integer> getPrizeCountMap() {
         return prizeCountMap;
     }
+
+    public static String getPrizeDescription(int prize) {
+        return prizeDescriptionMap.get(prize);
+    }
+
+
+
 }

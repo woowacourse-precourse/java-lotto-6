@@ -29,6 +29,10 @@ public class MainNumber {
         return mainNumber == number;
     }
 
+    public int getMainNumber() {
+        return mainNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

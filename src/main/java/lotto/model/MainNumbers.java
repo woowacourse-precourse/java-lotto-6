@@ -6,6 +6,7 @@ import static lotto.common.Constant.LOTTO_NUMBERS_SIZE;
 import static lotto.common.ExceptionMessage.ERROR_MAIN_NUMBERS_DUPLICATE;
 import static lotto.common.ExceptionMessage.ERROR_MAIN_NUMBERS_SIZE_INCORRECT;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class MainNumbers {
     public static MainNumbers from(List<String> numbers) {
         return numbers.stream()
                 .map(MainNumber::from)
+                .sorted(Comparator.comparingInt(MainNumber::getMainNumber))
                 .collect(collectingAndThen(toList(), MainNumbers::new));
     }
 

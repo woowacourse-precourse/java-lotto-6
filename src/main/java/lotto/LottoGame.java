@@ -3,6 +3,7 @@ package lotto;
 public class LottoGame {
     public void process() {
         LottoTicket lottoTicket = UserInputErrorManager.getuntilNotInvalidAmount();
+        lottoTicket.sortTickets();
         lottoTicket.displayTickets();
 
         Lotto lotto = UserInputErrorManager.getuntilNotInvalidLotto();

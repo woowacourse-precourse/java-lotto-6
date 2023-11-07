@@ -1,24 +1,32 @@
 package lotto.controller;
 
 import java.util.List;
-import lotto.view.InputView;
 import lotto.domain.PlayerLottoAmount;
+import lotto.view.InputView;
 
 public class LottoController {
 
-    public void run(){
-        try{
+    private static PlayerLottoAmount playerLottoAmount;
+
+    public void run() {
+        try {
             start();
-        }
-        catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
     }
 
-    public void start(){
-        String playCount= InputView.inputPlayerPrice();
+    public void start() {
+        int ticketCount = inputPlayerAmount();
+
+        String playCount = InputView.inputPlayerPrice();
         new PlayerLottoAmount(playCount);
 
         List<Integer> list = InputView.inputLottoNumber();
+    }
+
+    private int inputPlayerAmount() {
+        playerLottoAmount = new PlayerLottoAmount(InputView.inputPlayerPrice());
+        return playerLottoAmount.calculateLottoCount();
     }
 }

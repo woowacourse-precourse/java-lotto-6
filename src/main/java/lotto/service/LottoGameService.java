@@ -1,9 +1,9 @@
 package lotto.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Lotto;
-import lotto.domain.PlayerLotto;
 import lotto.service.numbergenerator.NumberGenerator;
 
 public class LottoGameService {
@@ -15,11 +15,11 @@ public class LottoGameService {
         this.yieldCalculator = yieldCalculator;
     }
 
-    public PlayerLotto createPlayerLotto(final int totalCounts) {
+    public List<Lotto> createPlayerLotto(final int totalCounts) {
         List<Lotto> lottos = new ArrayList<>();
         for (int count = 0; count < totalCounts; count++) {
             lottos.add(new Lotto(numbersGenerator.generate()));
         }
-        return new PlayerLotto(lottos);
+        return Collections.unmodifiableList(lottos);
     }
 }

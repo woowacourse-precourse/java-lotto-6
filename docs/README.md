@@ -13,20 +13,20 @@
 
 ## 자료형 변환 - **TypeConverter**
 
-- String > int - **stringToInt**
-- String > ArrayList(쉼표로 구분) - **stringToArrayList**
+- [x] String > int - **stringToInt**
+- [x] String > ArrayList(쉼표로 구분) - **stringToArrayList**
 
 ## 예외 처리 - **ExceptionHandler**
 
-- 0 이하의 값이 아닌지 (구매 금액) - **checkNonNegativeAmount**
-- 1,000원으로 나누어 떨어지는 지 (구매 금액) - **checkMultipleOfThousand**-
-- null 값 확인 (ArrayList, int) - **checkNotNull**
-- 빈값 확인(띄어쓰기) - **checkNotEmpty**
-- 숫자인지 (ArrayList, int) - **checkInteger**
-- 중복값 확인 - **checkDuplicates**
-- 1~45사이의 수인지 - **checkInRange**
-- 6개의 숫자인지 (당첨 번호) - **checkSixNumbers**
-- 1개의 숫자인지 (보너스 번호) - **checkSingleNumber**
+- [x] 0 이하의 값이 아닌지 (구매 금액) - **checkNonNegativeAmount**
+- [x] 1,000원으로 나누어 떨어지는 지 (구매 금액) - **checkMultipleOfThousand**-
+- [x] null 값 확인 (ArrayList, int) - **checkNotNull**
+- [x] 빈값 확인(띄어쓰기) - **checkNotEmpty**
+- [x] 숫자인지 (ArrayList, int) - **checkInteger**
+- [x] 중복값 확인 - **checkDuplicates**
+- [x] 1~45사이의 수인지 - **checkInRange**
+- [x] 6개의 숫자인지 (당첨 번호) - **checkSixNumbers**
+- [x] 1개의 숫자인지 (보너스 번호) - **checkSingleNumber**
 
 ## 로또 - Lotto
 

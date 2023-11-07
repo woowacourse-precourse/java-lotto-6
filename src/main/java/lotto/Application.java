@@ -106,5 +106,59 @@ public class Application {
             }
         }
         System.out.println();
+
+        // 당첨 결과 추출
+        int firstPrice = 0;
+        int secondPrice = 0;
+        int thirdPrice = 0;
+        int fourthPrice = 0;
+        int fifthPrice = 0;
+
+        for (int i=0; i<lottoTicket; i++) {
+            int lucky = 0;
+            int bonus = 0;
+            int bonusFailed = 0;
+
+            if (saveNumber.get(i).contains(intLottoNumber[0])) {
+                lucky ++;
+            }
+            if (saveNumber.get(i).contains(intLottoNumber[1])) {
+                lucky ++;
+            }
+            if (saveNumber.get(i).contains(intLottoNumber[2])) {
+                lucky ++;
+            }
+            if (saveNumber.get(i).contains(intLottoNumber[3])) {
+                lucky ++;
+            }
+            if (saveNumber.get(i).contains(intLottoNumber[4])) {
+                lucky ++;
+            }
+            if (saveNumber.get(i).contains(intLottoNumber[5])) {
+                lucky ++;
+            }
+            /////////////////////////// duplicate 쓰기!!!
+            if (saveNumber.get(i).contains(Integer.parseInt(lottoBonusNumber))) {
+                bonus ++;
+            } else if (!saveNumber.get(i).contains(Integer.parseInt(lottoBonusNumber))) {
+                bonusFailed++;
+            }
+
+            if (lucky == 6) {
+                firstPrice ++;
+            }
+            if (lucky == 5 && bonus == 1) {
+                secondPrice ++;
+            }
+            if (lucky == 5 && bonusFailed == 1) {
+                thirdPrice ++;
+            }
+            if (lucky == 4) {
+                fourthPrice ++;
+            }
+            if (lucky == 3) {
+                fifthPrice ++;
+            }
+        }
     }
 }

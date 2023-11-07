@@ -17,8 +17,12 @@ public class LottoWinningNumbersView {
             throw new IllegalArgumentException("[ERROR] 입력 값이 비어있습니다.");
         }
 
+        if (!input.contains(",")) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호는 쉼표로 구분하여 입력해야 합니다.");
+        }
+
         List<String> splitInput = Stream.of(input.split(","))
-                .map(String::trim) 
+                .map(String::trim)
                 .collect(Collectors.toList());
 
         if (splitInput.isEmpty()) {

@@ -53,7 +53,10 @@ public enum LottoResult {
         LottoResult findLottoResult = null;
         List<LottoResult> lottoResults = getLottoResultExceptDefault();
         for (LottoResult lottoResult : lottoResults) {
-            if (isDifferent(lottoResult.winningCnt, equalLottoCnt) || checkSecondGrade(equalBonusCnt, lottoResult)) {
+            if (lottoResult.winningCnt != equalLottoCnt) {
+                continue;
+            }
+            if (checkSecondGrade(equalBonusCnt, lottoResult)) {
                 continue;
             }
             findLottoResult = lottoResult;
@@ -69,10 +72,6 @@ public enum LottoResult {
 
     private static boolean checkSecondGrade(int equalBonusCnt, LottoResult lottoResult) {
         return lottoResult.winningCnt == LottoResult.SECOND.winningCnt
-                && isDifferent(lottoResult.bonusCnt, equalBonusCnt);
-    }
-
-    private static boolean isDifferent(int a, int b) {
-        return a != b;
+                && lottoResult.bonusCnt != equalBonusCnt;
     }
 }

@@ -6,7 +6,7 @@ public class LottoAmount {
     private static int price=0;
     public LottoAmount(){
         purchaseAmountValidate();
-        howManyLotto(price);
+        System.out.println(howManyLotto(price));
     }
     private static void lottoPrice() {
         String purchaseAmount = inputLottoAmount();
@@ -29,9 +29,11 @@ public class LottoAmount {
             lottoPrice();
         }
     }
+    public static Integer priceCalculation(int amount){
+        return amount/1000;
+    }
 
     public static String howManyLotto(int amount){
-        int numberOfLotto = amount/1000;
-        return numberOfLotto+"개를 구매했습니다.";
+        return priceCalculation(amount)+"개를 구매했습니다.";
     }
 }

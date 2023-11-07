@@ -6,6 +6,7 @@ import lotto.dto.PurchaseResult;
 import lotto.dto.YieldResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
+import lotto.view.InputViewProxy;
 import lotto.view.OutputView;
 
 import java.util.List;
@@ -13,10 +14,10 @@ import java.util.List;
 public class GameController {
 
     private final LottoService lottoService;
-    private final InputView inputView;
+    private final InputViewProxy inputView;
     private final OutputView outputView;
 
-    public GameController(LottoService lottoService, InputView inputView, OutputView outputView) {
+    public GameController(LottoService lottoService, InputViewProxy inputView, OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;

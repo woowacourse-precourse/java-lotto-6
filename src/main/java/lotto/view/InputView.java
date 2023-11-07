@@ -20,39 +20,24 @@ public class InputView {
     }
 
     public PurchasePrice getMoney() {
-        try {
-            System.out.println(Message.INPUT_MONEY.message);
-            String input = Console.readLine();
-            Long convertInput = TypeConvertor.stringToLong(input);
-            return PurchasePrice.of(convertInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getMoney();
-        }
+        System.out.println(Message.INPUT_MONEY.message);
+        String input = Console.readLine();
+        Long convertInput = TypeConvertor.stringToLong(input);
+        return PurchasePrice.of(convertInput);
     }
 
     public Lotto getWinningNumbers() {
-        try {
-            System.out.println(Message.PICK_TICKET_NUMBER.message);
-            String input = Console.readLine();
-            List<Integer> integers = TypeConvertor.stringToStringList(input);
-            return Lotto.of(integers);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getWinningNumbers();
-        }
+        System.out.println(Message.PICK_TICKET_NUMBER.message);
+        String input = Console.readLine();
+        List<Integer> integers = TypeConvertor.stringToStringList(input);
+        return Lotto.of(integers);
     }
 
     public BonusNumber getBonusNumber() {
-        try {
-            System.out.println(Message.PICK_TICKET_BONUS_NUMBER.message);
-            String input = Console.readLine();
-            Integer convertInput = TypeConvertor.stringToInt(input);
-            return BonusNumber.of(convertInput);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            return getBonusNumber();
-        }
+        System.out.println(Message.PICK_TICKET_BONUS_NUMBER.message);
+        String input = Console.readLine();
+        Integer convertInput = TypeConvertor.stringToInt(input);
+        return BonusNumber.of(convertInput);
     }
 
     private enum Message {

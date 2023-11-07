@@ -3,26 +3,31 @@ package lotto;
 import java.util.regex.Pattern;
 
 public class BuyingLotto {
+    private final long buyingPrice;
     private final long ticketNumber;
 
     public BuyingLotto(String InputBuyingPrice) {
         validateInputPrice(InputBuyingPrice);
-        this.ticketNumber = calculateTicketNumber(Long.parseLong(buyingPrice), LOTTO_PRICE);
+        this.buyingPrice = inputToNumber(InputBuyingPrice);
+        this.ticketNumber = calculateTicketNumber(LOTTO_PRICE);
     }
 
-    public Long getTicketNumber() {
+    public long getBuyingPrice() {
+        return this.buyingPrice;
+    }
+    public long getTicketNumber() {
         return this.ticketNumber;
     }
 
-    private long calculateTicketNumber(long buyingPrice, long unitPrice) {
-        validate(buyingPrice, unitPrice);
-        return buyingPrice / unitPrice;
+    private long inputToNumber(String inputPrice) {
+        long buyingPrice = Long.parseLong(inputPrice);
+        validatePlusSign(buyingPrice);
+        validateDivision(buyingPrice, LOTTO_PRICE);
+        return buyingPrice;
     }
 
-    private void validate(long buyingPrice, long unitPrice) {
-        validatePlusSign(unitPrice);
-        validatePlusSign(buyingPrice);
-        validateDivision(buyingPrice, unitPrice);
+    private long calculateTicketNumber(long ticketPrice) {
+        return buyingPrice / ticketPrice;
     }
 
     private void validateInputPrice(String inputPrice) {

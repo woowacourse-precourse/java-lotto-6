@@ -32,12 +32,22 @@ public class LottoNumberException {
         }
     }
 
+    private boolean isDuplicate(int currentIndex, List<String> numbers) {
+        String currentNumber = numbers.get(currentIndex);
+
+        for(int index = currentIndex + 1; index < numbers.size(); index++) {
+            if(currentNumber.equals(numbers.get(index))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public void checkDuplicate(List<String> numbers) {
-        for (int i = 0; i < numbers.size() - 1; i++) {
-            for (int j = i + 1; j < numbers.size(); j++) {
-                if (numbers.get(i).equals(numbers.get(j))) {
-                    throw new IllegalArgumentException(DUPLICATE_NUMBER);
-                }
+        for (int index = 0; index < numbers.size() - 1; index++) {
+            if (isDuplicate(index, numbers)) {
+                throw new IllegalArgumentException(DUPLICATE_NUMBER);
             }
         }
     }

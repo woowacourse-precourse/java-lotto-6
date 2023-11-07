@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Validator {
     private static final int NATURAL_NUMBER_START = 1;
-    private static final int ZERO = 0;
+    private static final String COMMA = ",";
 
     private Validator() {
     }
@@ -54,7 +54,7 @@ public class Validator {
     }
 
     public static void validateNonDivisibility(int money) {
-        if (money % Constants.LOTTO_MIN_AMOUNT != ZERO) {
+        if (money % Constants.LOTTO_MIN_AMOUNT != Constants.ZERO) {
             ErrorMessage.printNotDivisionErrorMessage();
             throw new IllegalArgumentException();
         }
@@ -63,6 +63,13 @@ public class Validator {
     public static void validateBonusNumberInLotto(List<Integer> lotto, int number) {
         if (lotto.contains(number)) {
             ErrorMessage.printBonusIncludedErrorMessage();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateInputWithSeparator(String input) {
+        if (!input.contains(COMMA)) {
+            ErrorMessage.printDelimiterIsNotCommaErrorMessage();
             throw new IllegalArgumentException();
         }
     }

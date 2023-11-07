@@ -6,10 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static lotto.constants.Constant.*;
 public class LottoNumberGenerator {
-    private static final int COUNT_LOTTO_NUMBER = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
     private static List<Integer> lottoNumbers;
 
     public LottoNumberGenerator() {

@@ -1,10 +1,8 @@
 package lotto.domain;
 
+import static lotto.constants.Constant.*;
+
 public class Player {
-    private static final int LOTTO_MIN_PRICE = 1000;
-    private static final String NUMBER_ERROR_MESSAGE = "숫자만 입력가능합니다.";
-    private static final String NATURAL_ERROR_MESSAGE = "최소금액은 " + LOTTO_MIN_PRICE + "원 입니다.";
-    private static final String DIVISIBLE_ERROR_MESSAGE = LOTTO_MIN_PRICE + "원 단위로 입력하세요.";
     private static int amount;
 
     public Player(String amount) {
@@ -14,7 +12,7 @@ public class Player {
     }
 
     public int calculateLottoCount() {
-        return amount/LOTTO_MIN_PRICE;
+        return amount/LOTTO_PRICE;
     }
 
     public void validateAmount(int amount) {
@@ -31,13 +29,13 @@ public class Player {
     }
 
     private void validateNatural(int amount) {
-        if (amount < LOTTO_MIN_PRICE) {
+        if (amount < LOTTO_PRICE) {
             throw new IllegalArgumentException(NATURAL_ERROR_MESSAGE);
         }
     }
 
     private void validateDivisible(int amount) {
-        if (amount % LOTTO_MIN_PRICE != 0) {
+        if (amount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(DIVISIBLE_ERROR_MESSAGE);
         }
     }

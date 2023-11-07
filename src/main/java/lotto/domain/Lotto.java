@@ -5,12 +5,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constants.Constant.*;
+
 public class Lotto {
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
-    private static final String NUMBER_RANGE_ERROR_MESSAGE = "숫자는 " + MIN_NUMBER + "부터 " + MAX_NUMBER + "사이의 숫자여야합니다.";
-    private static final String NUMBER_SIZE_ERROR_MESSAGE = "당첨 번호는 총 6개 입력 가능합니다.";
-    private static final String NUMBER_OVERLAP_ERROR_MESSAGE = "중복된 숫자를 입력하셨습니다.";
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -54,14 +51,14 @@ public class Lotto {
 
     private void validateRange(List<Integer> numbers) {
         for (int i = 0; i < numbers.size(); i++) {
-            if (numbers.get(i) < MIN_NUMBER || numbers.get(i) > MAX_NUMBER) {
+            if (numbers.get(i) < MIN_LOTTO_NUMBER || numbers.get(i) > MAX_LOTTO_NUMBER) {
                 throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
             }
         }
     }
 
     public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
-        if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
+        if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(NUMBER_RANGE_ERROR_MESSAGE);
         }
         if (numbers.contains(bonusNumber)) {

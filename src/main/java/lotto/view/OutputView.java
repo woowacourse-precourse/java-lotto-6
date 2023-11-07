@@ -1,7 +1,8 @@
 package lotto.view;
 
 public class OutputView {
-    public static final String LOTTO_AMOUNT_MESSAGE = "개를 구매했습니다.";
+    private static final String LOTTO_AMOUNT_MESSAGE = "개를 구매했습니다.";
+    private static final String WINNING_STATS_MESSAGE = "당첨 통계";
 
     public static void printLottoAmount(int count) {
         System.out.println();
@@ -10,7 +11,7 @@ public class OutputView {
 
     public static void printResult() {
         System.out.println();
-        System.out.println("당첨 통계");
+        System.out.println(WINNING_STATS_MESSAGE);
         System.out.println("---");
     }
 

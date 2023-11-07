@@ -4,16 +4,14 @@ import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LottoController {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int PERCENTAGE = 100;
+import static lotto.constants.Constant.*;
 
+public class LottoController {
     private static Player player;
     private static List<Integer> lotto = new ArrayList<>();
     private static List<Lotto> lottoList;
@@ -32,7 +30,7 @@ public class LottoController {
             OutputView.printLottoAmount(lottoCount);
             lottoList = setLottoList(lottoCount);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+ e.getMessage());
+            System.out.println(ERROR + e.getMessage());
             getLotto();
         }
     }
@@ -41,7 +39,7 @@ public class LottoController {
         try {
             result = inputLottoNumber();
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] "+ e.getMessage());
+            System.out.println(ERROR + e.getMessage());
             setWinning();
         }
     }

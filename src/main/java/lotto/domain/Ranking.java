@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.view.OutputView;
+import static lotto.constants.Constant.*;
 
 public enum Ranking {
     FIRST(6, 2_000_000_000, "6개 일치 (2,000,000,000원) - "),
@@ -16,6 +17,7 @@ public enum Ranking {
     }
 
     private static final int WINNING_MIN_COUNT = 3;
+
     private int countOfmatch;
     private int winningAmount;
     private String message;
@@ -32,11 +34,7 @@ public enum Ranking {
                 return rank;
             }
         }
-        throw new IllegalArgumentException();
-    }
-
-    public int getCountOfmatch() {
-        return countOfmatch;
+        throw new IllegalArgumentException(ERROR);
     }
 
     public int getWinningMinCount() {

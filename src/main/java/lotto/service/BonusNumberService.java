@@ -17,6 +17,7 @@ public class BonusNumberService {
     public Bonus fetchValidatedBonus(Lotto winningLotto) {
         while (true) {
             try {
+                Output.askBonusNumberEnter();
                 String readLine = input.getReadLine();
                 BonusNumberValidator.validateBonusReadLine(readLine);
                 return new Bonus(validateParseNumber(readLine), winningLotto);

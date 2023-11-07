@@ -22,6 +22,7 @@ public class WinningNumberService {
     public WinningLotto fetchValidatedWinningNumber() {
         while (true) {
             try {
+                Output.askWinningNumberEnter();
                 String readLine = input.getReadLine();
                 LottoNumberValidator.validateWinningNumberReadLine(readLine);
                 return new WinningLotto(validateParseNumbers(readLine));

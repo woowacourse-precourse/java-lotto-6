@@ -10,10 +10,12 @@ import java.util.List;
 import lotto.domain.Cost;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.view.Output;
 
 public class LottoNumberService {
 
     public Lottos createRandomLottos(Cost cost) {
+        Output.lottoPurchase(cost.getDivideCost());
         List<Lotto> lottos = new ArrayList<>();
         while (cost.buyingLotto()) {
             Lotto randomLotto = createRandomLotto();

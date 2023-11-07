@@ -17,6 +17,7 @@ public class CostService {
     public Cost fetchValidatedCost() {
         while (true) {
             try {
+                Output.askCostEnter();
                 String readLine = input.getReadLine();
                 CostValidator.validateCostReadLine(readLine);
                 return new Cost(validateParseNumber(readLine));

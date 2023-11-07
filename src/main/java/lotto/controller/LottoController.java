@@ -5,6 +5,7 @@ import lotto.domain.*;
 import lotto.dto.LottoPurchaseResultDto;
 import lotto.dto.LottoResultDto;
 import lotto.dto.RevenueDto;
+import lotto.dto.WinningBundleDto;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -34,8 +35,9 @@ public class LottoController {
 
     private static void decideWinningBundleAndBonusNumber() {
         winningBundle = InputView.getWinningBundle();
-        bonusNumber = InputView.getBonusNumber();
-        winningBundle.validateContainsBonusNumber(bonusNumber.toInt());
+        WinningBundleDto winningBundleDto = winningBundle.getWinningBundleDto();
+        OutputView.printEnter();
+        bonusNumber = InputView.getBonusNumber(winningBundleDto);
     }
 
     private void evaluateWinnings(LottoPurchaseResultDto lottoPurchaseResult) {

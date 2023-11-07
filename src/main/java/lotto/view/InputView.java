@@ -5,6 +5,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.UserAmount;
 import lotto.domain.WinningBundle;
 import lotto.domain.WinningNumber;
+import lotto.dto.WinningBundleDto;
 import lotto.utils.Split;
 
 import java.util.List;
@@ -39,14 +40,13 @@ public class InputView {
         }
     }
 
-    public static BonusNumber getBonusNumber() {
-        OutputView.printEnter();
+    public static BonusNumber getBonusNumber(WinningBundleDto winningBundleDto) {
         String input = input(INPUT_BONUS_BUNDLE_MESSAGE);
         try {
-            return BonusNumber.from(input);
-        } catch (IllegalArgumentException ex) {
+            return BonusNumber.of(input, winningBundleDto.getWinningsBundleResult());
+        } catch (RuntimeException ex) {
             OutputView.printError(ex.getMessage());
-            return getBonusNumber();
+            return getBonusNumber(winningBundleDto);
         }
     }
 

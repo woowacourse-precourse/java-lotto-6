@@ -10,4 +10,5 @@ public class LottoPurchaseInputView {
         System.out.println("구입금액을 입력해 주세요.");
         String lottoPurchaseAmount = Console.readLine();
         lottoPurchaseValidator.validPurchaseAmount(lottoPurchaseAmount);
+    }
 }

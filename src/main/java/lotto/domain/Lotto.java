@@ -15,7 +15,7 @@ public class Lotto {
     public Lotto(List<Integer> numbers) {
         validateNumbersLength(numbers);
         validateDuplicatedNumber(numbers);
-        this.numbers = getSortedNumbers(numbers);
+        this.numbers = toSortedLottoNumbers(numbers);
     }
 
     private static long getDistinctLength(List<Integer> numbers) {
@@ -24,41 +24,23 @@ public class Lotto {
                 .count();
     }
 
-    private List<LottoNumber> getSortedNumbers(List<Integer> numbers) {
+    private static List<LottoNumber> toSortedLottoNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .sorted()
                 .map(LottoNumber::new)
                 .toList();
     }
 
-    private void validateNumbersLength(List<Integer> numbers) {
+    private static void validateNumbersLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBERS_LENGTH) {
             throw ExceptionMessage.LOTTO_NUMBERS_LENGTH.getException();
         }
     }
 
-    private void validateDuplicatedNumber(List<Integer> numbers) {
+    private static void validateDuplicatedNumber(List<Integer> numbers) {
         if (getDistinctLength(numbers) != LOTTO_NUMBERS_LENGTH) {
             throw LOTTO_NUMBERS_DUPLICATED.getException();
         }
-    }
-
-    private boolean containBonusNumber(LottoNumber bonusNumber) {
-        return numbers.stream()
-                .anyMatch(num -> num.equals(bonusNumber));
-    }
-
-    private int getMatchingCount(Lotto winningNumbers) {
-        return (int) winningNumbers.numbers
-                .stream()
-                .filter(numbers::contains)
-                .count();
-    }
-
-    public DrawResult getResult(Lotto winningNumbers, LottoNumber bonusNumber) {
-        int matchingNumberCount = getMatchingCount(winningNumbers);
-        boolean hasBonusNumber = containBonusNumber(bonusNumber);
-        return DrawResult.getResult(matchingNumberCount, hasBonusNumber);
     }
 
     public LottoDto toLottoDto() {

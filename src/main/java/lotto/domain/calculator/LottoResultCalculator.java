@@ -1,14 +1,13 @@
-package lotto.domain;
+package lotto.domain.calculator;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Constant.Rank;
+import lotto.constant.Rank;
+import lotto.domain.Lotto;
+import lotto.domain.WinningNumbers;
 
 public class LottoResultCalculator {
-
-    public LottoResultCalculator() {
-    }
 
     public Map<Rank, Integer> calculateResults(List<Lotto> lottos, WinningNumbers winningNumbers) {
         Map<Rank, Integer> results = new EnumMap<>(Rank.class);

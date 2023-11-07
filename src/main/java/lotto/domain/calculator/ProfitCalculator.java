@@ -1,14 +1,11 @@
-package lotto.domain;
+package lotto.domain.calculator;
 
 import java.util.Map;
-import lotto.Constant.Rank;
+import lotto.constant.Rank;
 
 public class ProfitCalculator {
 
     private static final int PERCENTAGE_FACTOR = 100;
-
-    public ProfitCalculator() {
-    }
 
     public double getProfitRate(int purchaseAmount, Map<Rank, Integer> results) {
         long totalWinningAmount = calculateTotalWinningAmount(results);

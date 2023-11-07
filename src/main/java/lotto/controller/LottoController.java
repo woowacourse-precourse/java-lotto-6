@@ -16,33 +16,42 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
-    OutputView outputView = new OutputView();
-    InputView inputView = new InputView(
+    private final OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView(
             new MoneyInputValidator(),
             new WinningNumbersInputValidator(),
             new BonusNumberInputValidator()
     );
-    LottoGenerator lottoGenerator = new LottoGenerator();
+    private final LottoGenerator lottoGenerator = new LottoGenerator();
 
     public void run() {
-        outputView.askForMoney();
-        int money = inputView.inputMoney();
-
-        int lottoCount = money / LottoNumber.PURCHASE_PRICE.getNumber();
+        int money = getMoneyFromUser();
+        int lottoCount = calculateLottoCount(money);
         outputView.printLottoCount(lottoCount);
-
-        LottoResult lottoResult = new LottoResult(generateLotto(lottoCount));
-        outputView.askForWinningNumbers();
-        List<Integer> winningNumbers = inputView.inputWinningNumbers();
-
-        outputView.askForBonusNumber();
-        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
-
-        WinningLotto winningLotto = new WinningLotto(winningNumbers, bonusNumber);
+        List<Lotto> lottos = generateLotto(lottoCount);
+        LottoResult lottoResult = new LottoResult(lottos);
+        WinningLotto winningLotto = getWinningLottoFromUser();
         Map<Rank, Integer> result = lottoResult.checkResult(winningLotto);
         outputView.printWinningStatistics(result);
         double returnRate = lottoResult.calculateReturnRatePercentage(result, money);
         outputView.printTotalProfit(returnRate);
+    }
+
+    private WinningLotto getWinningLottoFromUser() {
+        outputView.askForWinningNumbers();
+        List<Integer> winningNumbers = inputView.inputWinningNumbers();
+        outputView.askForBonusNumber();
+        int bonusNumber = inputView.inputBonusNumber(winningNumbers);
+        return new WinningLotto(winningNumbers, bonusNumber);
+    }
+
+    private int calculateLottoCount(int money) {
+        return money / LottoNumber.PURCHASE_PRICE.getNumber();
+    }
+
+    private int getMoneyFromUser() {
+        outputView.askForMoney();
+        return inputView.inputMoney();
     }
 
     private List<Lotto> generateLotto(int lottoCount) {

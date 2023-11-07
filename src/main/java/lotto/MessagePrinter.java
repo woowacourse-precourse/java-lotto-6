@@ -39,14 +39,22 @@ public class MessagePrinter {
     public static void printWinningStatistics(Map<Rank, Integer> rankResult) {
         System.out.println(WINNING_STATISTICS_INFO);
         System.out.println(CONTOUR);
+        printWinningResult(rankResult);
+    }
+
+    private static void printWinningResult(Map<Rank, Integer> rankResult) {
         for (Map.Entry<Rank, Integer> entry : rankResult.entrySet()) {
             Rank rank = entry.getKey();
             Integer count = entry.getValue();
-            if (rank != Rank.SECOND) {
-                System.out.printf(printSecondRankResult, rank.getNumberOfMatch(), formatCurrency(rank.getWinnings()), count);
-                continue;
-            }
-            System.out.printf(printOtherRankResult, rank.getNumberOfMatch(), formatCurrency(rank.getWinnings()), count);
+            getRankMessage(rank, count);
         }
+    }
+
+    private static void getRankMessage(Rank rank, Integer count) {
+        if (rank != Rank.SECOND) {
+            System.out.printf(printSecondRankResult, rank.getNumberOfMatch(), formatCurrency(rank.getWinnings()), count);
+            return;
+        }
+        System.out.printf(printOtherRankResult, rank.getNumberOfMatch(), formatCurrency(rank.getWinnings()), count);
     }
 }

@@ -6,14 +6,18 @@ import static utils.PrintUtils.printf;
 
 import camp.nextstep.edu.missionutils.Console;
 import constants.LottoGameMessage;
+import constants.LottoGameResultMessage;
 import domain.Lotto;
 import domain.LottoGame;
+import domain.LottoResult;
 import domain.UserLotto;
 import java.util.List;
 
 public class LottoGameService {
     private UserLotto userLotto;
+    private List<Lotto> lottoList;
     private LottoGame lottoGame = new LottoGame();
+    private LottoResult lottoResult = new LottoResult();
 
     public void runLottoGame(){
         purchaseLottoGame();
@@ -24,8 +28,7 @@ public class LottoGameService {
 
         setInputBonusLottoGame();
 
-        println(LottoGameMessage.WINNING_STATISTICS.toString());
-
+        printLottoResultStatistic();
     }
 
     private void purchaseLottoGame(){
@@ -52,7 +55,7 @@ public class LottoGameService {
         int lottoCount = userLotto.getLottoCount();
 
         printf(LottoGameMessage.PURCHASED_COUNT.toString(), lottoCount);
-        List<Lotto> lottoList = lottoGame.getLottoList(lottoCount);
+        lottoList = lottoGame.getLottoList(lottoCount);
         lottoList.stream()
                 .forEach(lotto -> println(lotto.getNumbers().toString()));
     }
@@ -85,6 +88,32 @@ public class LottoGameService {
                 errorPrint(iae.getMessage());
             }
         }
+    }
+
+    private void printLottoResultStatistic(){
+        println(LottoGameMessage.WINNING_STATISTICS.toString());
+
+        Object[] statistic = getLottoResultStatistic();
+        int i = 0;
+
+        for(LottoGameResultMessage lottoGameResultMessage : LottoGameResultMessage.values()){
+            String resultMessage = lottoGameResultMessage
+                    .replaceEnumToString(statistic[i]+"");
+            println(resultMessage);
+            i++;
+        }
+    }
+
+    private Object[] getLottoResultStatistic(){
+        LottoResult resultStatistic = lottoResult.getLottoResultStatistic(lottoList, userLotto);
+
+        Object[] statistic = {resultStatistic.getThreeLottoWinning()
+                , resultStatistic.getFourLottoWinning()
+                ,resultStatistic.getFiveLottoWinning()
+                ,resultStatistic.getFiveBonusLottoWinning()
+                ,resultStatistic.getSixLottoWinning()
+                ,resultStatistic.getProfitRate()};
+        return statistic;
     }
 
     private String readInput(){

@@ -12,7 +12,7 @@ public class InputViewer {
     }
 
     public static String requestFirstRankNumberInput() {
-        OutputViewer.printRequestWinningNumberMessage();
+        OutputViewer.printRequestFirstRankNumberMessage();
         return Console.readLine();
     }
 

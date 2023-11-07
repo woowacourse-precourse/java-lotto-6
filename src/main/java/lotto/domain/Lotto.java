@@ -7,9 +7,9 @@ import lotto.constants.Number;
 import lotto.utils.Validator;
 
 public class Lotto {
-    private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
-    private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
-    private static final int LOTTO_NUMBER_COUNT = Number.COUNT_OF_LOTTO_NUMBERS.getNumber();
+    private static final int MIN_LOTTO_NUMBER = Number.MIN_LOTTO_NUMBER.getNumber();
+    private static final int MAX_LOTTO_NUMBER = Number.MAX_LOTTO_NUMBER.getNumber();
+    private static final int COUNT_OF_LOTTO_NUMBERS = Number.COUNT_OF_LOTTO_NUMBERS.getNumber();
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -23,8 +23,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        Validator.validateListSize(numbers.size(), LOTTO_NUMBER_COUNT);
-        Validator.validateUniqueNumbersInRange(numbers, LOTTO_NUMBER_START, LOTTO_NUMBER_END);
+        Validator.validateSize(numbers.size(), COUNT_OF_LOTTO_NUMBERS);
+        Validator.validateUniqueNumbersInRange(numbers, MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
     }
 
     private void sortNumbersToNaturalOrder() {

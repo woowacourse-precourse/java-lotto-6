@@ -4,7 +4,7 @@ public enum Error {
     ERROR_MESSAGE_HEADER("[ERROR]"),
     INVALID_AMOUNT(
             ERROR_MESSAGE_HEADER.message + " " +
-                    Number.LOTTO_PRICE.getNumber() + "원 단위 이상의 금액을 입력하세요."
+                    Number.LOTTO_PRICE.getNumber() + "원 단위 이상, 10만원 이하의 금액을 입력하세요."
     ),
     INVALID_FIRST_RANK_NUMBERS(
             ERROR_MESSAGE_HEADER.message + " " +

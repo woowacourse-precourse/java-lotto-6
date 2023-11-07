@@ -9,9 +9,10 @@ import lotto.utils.Validator;
 
 public class Seller {
     private static final int LOTTO_PRICE = Number.LOTTO_PRICE.getNumber();
-    private static final int LOTTO_NUMBER_START = Number.MIN_LOTTO_NUMBER.getNumber();
-    private static final int LOTTO_NUMBER_END = Number.MAX_LOTTO_NUMBER.getNumber();
-    private static final int LOTTO_NUMBER_COUNT = Number.COUNT_OF_LOTTO_NUMBERS.getNumber();
+    private static final int MAX_AMOUNT = Number.MAX_AMOUNT.getNumber();
+    private static final int MIN_LOTTO_NUMBER = Number.MIN_LOTTO_NUMBER.getNumber();
+    private static final int MAX_LOTTO_NUMBER = Number.MAX_LOTTO_NUMBER.getNumber();
+    private static final int COUNT_OF_LOTTO_NUMBERS = Number.COUNT_OF_LOTTO_NUMBERS.getNumber();
     private static final int NOTHING = 0;
 
     private int amount = NOTHING;
@@ -25,15 +26,15 @@ public class Seller {
     }
 
     public List<Lotto> giveLotto() {
-        int countOfLotto = amount / LOTTO_PRICE;
-        return issueLotteriesBy(countOfLotto);
+        int theNumberOfLotto = amount / LOTTO_PRICE;
+        return issueLotteriesBy(theNumberOfLotto);
     }
 
-    public List<Lotto> issueLotteriesBy(int countOfLotto) {
+    public List<Lotto> issueLotteriesBy(int theNumberOfLotto) {
         List<Lotto> lotteries = new ArrayList<>();
-        while (countOfLotto > NOTHING) {
+        while (theNumberOfLotto > NOTHING) {
             lotteries.add(generateAutoLotto());
-            countOfLotto--;
+            theNumberOfLotto--;
         }
         return lotteries;
     }
@@ -42,15 +43,17 @@ public class Seller {
         Validator.validateIsNumber(userInput);
         int amount = StringChanger.toInteger(userInput);
         Validator.validateNotLessThan(amount, LOTTO_PRICE);
+        Validator.validateNotGreaterThan(amount, MAX_AMOUNT);
         Validator.validateIsDivisor(amount, LOTTO_PRICE);
         return amount;
     }
 
     private Lotto generateAutoLotto() {
-        List<Integer> uniqueRandomNumbers = Randoms.pickUniqueNumbersInRange(
-                LOTTO_NUMBER_START, LOTTO_NUMBER_END,
-                LOTTO_NUMBER_COUNT
-        );
+        List<Integer> uniqueRandomNumbers = Randoms.pickUniqueNumbersInRange
+                (
+                        MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER,
+                        COUNT_OF_LOTTO_NUMBERS
+                );
         return new Lotto(uniqueRandomNumbers);
     }
 }

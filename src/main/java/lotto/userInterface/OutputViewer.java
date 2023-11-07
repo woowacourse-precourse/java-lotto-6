@@ -19,7 +19,7 @@ public class OutputViewer {
         System.out.println(lottoNumbers);
     }
 
-    public static void printRequestWinningNumberMessage() {
+    public static void printRequestFirstRankNumberMessage() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
     }
 
@@ -44,6 +44,9 @@ public class OutputViewer {
     }
 
     public static void printLastMessageWith(double profitRatio) {
+        if (profitRatio == Double.POSITIVE_INFINITY) {
+            System.out.println("총 수익률은 " + profitRatio + "입니다.");
+        }
         System.out.println("총 수익률은 " + String.format("%.1f", profitRatio) + "%입니다.");
     }
 }

@@ -12,17 +12,17 @@ public enum Rank {
 
     private final int rank;
     private final int matchCount;
-    private final long amount;
+    private final long winnings;
     private final String amountMessage;
 
-    Rank(int rank, int matchCount, long amount, String amountMessage) {
+    Rank(int rank, int matchCount, long winnings, String amountMessage) {
         this.rank = rank;
         this.matchCount = matchCount;
-        this.amount = amount;
+        this.winnings = winnings;
         this.amountMessage = amountMessage;
     }
 
-    public static Rank getRankByMatchCount(int matchCount) {
+    public static Rank getRankBy(int matchCount) {
         return Arrays.stream(Rank.values())
                 .filter(rank -> rank.getMatchCount() == matchCount)
                 .findFirst()
@@ -37,8 +37,8 @@ public enum Rank {
         return matchCount;
     }
 
-    public long getAmount() {
-        return amount;
+    public long getWinnings() {
+        return winnings;
     }
 
     public String getAmountMessage() {

@@ -22,6 +22,12 @@ public class Validator {
         }
     }
 
+    public static void validateNotGreaterThan(int checkingNumber, int standardNumber) {
+        if (checkingNumber > standardNumber) {
+            raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + standardNumber + " 이하의 수를 입력하세요.");
+        }
+    }
+
     public static void validateIsDivisor(int dividend, int divisor) {
         boolean canNotDivide = !(dividend % divisor == 0);
         if (canNotDivide) {
@@ -29,7 +35,7 @@ public class Validator {
         }
     }
 
-    public static void validateListSize(int size, int limit) {
+    public static void validateSize(int size, int limit) {
         boolean notMatchSize = size != limit;
         if (notMatchSize) {
             raiseIllegalArgumentException(ERROR_MESSAGE_HEADER + " " + limit + "개만큼 입력하세요.");

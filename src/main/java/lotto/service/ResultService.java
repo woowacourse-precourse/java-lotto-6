@@ -38,9 +38,9 @@ public class ResultService {
     }
 
     public void deterMineScore(Lotto lotto) {
-        Rank rank = scoreDeterminer.getRank(lotto);
-        recordRankCountBy(rank.getRank());
-        sumUpWinningsBy(rank.getAmount());
+        Rank rank = scoreDeterminer.getRankBy(lotto);
+        recordCountBy(rank.getRank());
+        addUpTo(rank.getWinnings());
     }
 
     public int getCountOf(Rank rank) {
@@ -52,10 +52,17 @@ public class ResultService {
     }
 
     public double getProfitRatio() {
-        return (double) winnings / seller.getAmount() * TO_PERCENTAGE;
+        int amount = seller.getAmount();
+        if (amount == NOTHING && winnings == NOTHING) {
+            return TO_PERCENTAGE;
+        }
+        if (amount == NOTHING) {
+            return Double.POSITIVE_INFINITY;
+        }
+        return (double) winnings / amount * TO_PERCENTAGE;
     }
 
-    private void recordRankCountBy(int rank) {
+    private void recordCountBy(int rank) {
         if (rankCounts.containsKey(rank)) {
             rankCounts.put(rank, rankCounts.get(rank) + COUNT_ONE);
             return;
@@ -63,7 +70,7 @@ public class ResultService {
         rankCounts.put(rank, COUNT_ONE);
     }
 
-    private void sumUpWinningsBy(long amount) {
-        winnings += amount;
+    private void addUpTo(long winnings) {
+        this.winnings += winnings;
     }
 }

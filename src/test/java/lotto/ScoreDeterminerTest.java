@@ -27,7 +27,7 @@ public class ScoreDeterminerTest {
     @Test
     void getFirstTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        Rank rank = scoreDeterminer.getRank(lotto);
+        Rank rank = scoreDeterminer.getRankBy(lotto);
         assertThat(rank).isEqualTo(Rank.SIX_MATCH);
     }
 
@@ -35,7 +35,7 @@ public class ScoreDeterminerTest {
     @Test
     void getSecondTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 6, 7));
-        Rank rank = scoreDeterminer.getRank(lotto);
+        Rank rank = scoreDeterminer.getRankBy(lotto);
         assertThat(rank).isEqualTo(Rank.FIVE_AND_BONUS_MATCH);
     }
 
@@ -43,7 +43,7 @@ public class ScoreDeterminerTest {
     @Test
     void getThirdTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 45));
-        Rank rank = scoreDeterminer.getRank(lotto);
+        Rank rank = scoreDeterminer.getRankBy(lotto);
         assertThat(rank).isEqualTo(Rank.FIVE_MATCH);
     }
 
@@ -51,7 +51,7 @@ public class ScoreDeterminerTest {
     @Test
     void getFourthTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 7, 45));
-        Rank rank = scoreDeterminer.getRank(lotto);
+        Rank rank = scoreDeterminer.getRankBy(lotto);
         assertThat(rank).isEqualTo(Rank.FOUR_MATCH);
     }
 
@@ -59,7 +59,7 @@ public class ScoreDeterminerTest {
     @Test
     void getFifthTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 7, 8, 9));
-        Rank rank = scoreDeterminer.getRank(lotto);
+        Rank rank = scoreDeterminer.getRankBy(lotto);
         assertThat(rank).isEqualTo(Rank.THREE_MATCH);
     }
 
@@ -67,7 +67,7 @@ public class ScoreDeterminerTest {
     @Test
     void getNoRankTest() {
         Lotto lotto = new Lotto(List.of(1, 2, 7, 8, 9, 38));
-        Rank rank = scoreDeterminer.getRank(lotto);
+        Rank rank = scoreDeterminer.getRankBy(lotto);
         assertThat(rank).isEqualTo(Rank.NO_RANK);
     }
 }

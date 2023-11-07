@@ -1,6 +1,8 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.ui.UserView;
+import lotto.data.Lotto;
 import lotto.data.Rewards;
 
 import java.util.ArrayList;
@@ -8,6 +10,8 @@ import java.util.List;
 
 public class ViewProcessor {
 
+    private static final LottoModel lottomodel = new LottoModel();
+    private static final UserView userView = new UserView();
 
     private int bonusNum;
     private int cost;
@@ -32,6 +36,21 @@ public class ViewProcessor {
             return value;
         }
 
+    }
+
+    enum StatesInputUI {
+        STATE_SUCESS(false),
+        STATE_FALSE(true);
+
+        private final boolean state;
+
+        StatesInputUI(boolean state) {
+            this.state = state;
+        }
+
+        public boolean getState() {
+            return state;
+        }
     }
 
     public ViewProcessor() {
@@ -78,20 +97,20 @@ public class ViewProcessor {
         }
     }
 
-    public int checkValidPurchase(String tempCost) {
+    public void checkValidPurchase(String tempCost) {
         try {
-            int cost = Integer.parseInt(tempCost);
-            if (cost <= finalsInputUI.PURCHASE_MIN.getValue()) {
+            int invalidCost = Integer.parseInt(tempCost);
+            if (invalidCost <= finalsInputUI.PURCHASE_MIN.getValue()) {
                 throw new IllegalArgumentException(
                         "[ERROR] 구입 금액은 " + finalsInputUI.PURCHASE_MIN.getValue() + "원 이상이여야 합니다."
                 );
             }
-            if (cost % finalsInputUI.PURCHASE_UNIT.getValue() != 0) {
+            if (invalidCost % finalsInputUI.PURCHASE_UNIT.getValue() != 0) {
                 throw new IllegalArgumentException(
                         "[ERROR] 구입 금액은 " + finalsInputUI.PURCHASE_UNIT.getValue() + "원 단위여야 합니다."
                 );
             }
-            return cost;
+            cost = invalidCost;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 정수여야 합니다.");
         }
@@ -137,29 +156,24 @@ public class ViewProcessor {
         return bonusNum;
     }
 
-    public int getNumofLotto() {
-        return cost / finalsInputUI.PURCHASE_UNIT.getValue();
-    }
-
     public List<Integer> getWinningNums() {
         List<Integer> copiedWinningNums = new ArrayList<>();
         copiedWinningNums.addAll(winningNums);
         return copiedWinningNums;
     }
 
-    public void purchase() {
-        while (true) {
-            try {
-                System.out.println("구입금액을 입력해 주세요.");
-                String tempCost = Console.readLine();
-                cost = checkValidPurchase(tempCost);
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+    public boolean purchase(String tempCost) {
+        try {
+            checkValidPurchase(tempCost);
+            int numOfLotto = cost / finalsInputUI.PURCHASE_UNIT.getValue();
+            List<Lotto> publishedLottos = lottomodel.publishLotto(numOfLotto);
+            userView.purchaseLog(numOfLotto, publishedLottos);
+            return StatesInputUI.STATE_SUCESS.getState();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return StatesInputUI.STATE_FALSE.getState();
         }
     }
-
 
     public void winnings() {
         while (true) {

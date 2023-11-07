@@ -5,16 +5,18 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import lotto.UI.UserView;
+import lotto.ui.UserView;
 import lotto.data.Lotto;
 import lotto.data.Rewards;
 
 public class LottoModel {
 
+    private static final ViewProcessor viewProcessor = new ViewProcessor();
+    private static final UserView userView = new UserView();
+
     private boolean hasBonus;
     private final int CHECK_BONUS = 999;
-    private final ViewProcessor viewProcessor;
-    private final UserView userView;
+
     private List<Lotto> publishedLottos;
     private int totalEarnedMoney;
     private HashMap<Rewards, Integer> winningTable;
@@ -22,8 +24,6 @@ public class LottoModel {
 
 
     public LottoModel() {
-        this.viewProcessor = new ViewProcessor();
-        this.userView = new UserView();
         this.publishedLottos = new ArrayList<>();
         this.winningTable = initWinningTable();
         this.totalEarnedMoney = 0;
@@ -95,7 +95,8 @@ public class LottoModel {
         return winningTable;
     }
 
-    public void publishLotto(int numOfLotto) {
+    public List<Lotto> publishLotto(int numOfLotto) {
+        List<Lotto> publishedLottos = new ArrayList<>();
         List<Integer> randNums;
         try {
             for (int i = 0; i < numOfLotto; i++) {
@@ -105,6 +106,7 @@ public class LottoModel {
         } catch (IllegalArgumentException e) {
             throw e;
         }
+        return publishedLottos;
     }
 
     public String publishTicket(List<Integer> lottoNums) {
@@ -117,9 +119,7 @@ public class LottoModel {
     }
 
     public void run() {
-        viewProcessor.purchase();
-        publishLotto(viewProcessor.getNumofLotto());
-        userView.purchaseLog(viewProcessor.getNumofLotto(), this.publishedLottos);
+        userView.purchase();
         viewProcessor.winnings();
         viewProcessor.bonusBall();
         computeLotto(publishedLottos, viewProcessor.getWinningNums(), viewProcessor.getBonusNum());

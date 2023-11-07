@@ -1,6 +1,5 @@
 package lotto.constant;
 
-import java.sql.PreparedStatement;
 import java.text.NumberFormat;
 
 import static lotto.constant.ConsoleMessage.LOTTO_RANK_FORMAT;
@@ -12,7 +11,7 @@ public enum LottoRank {
     THIRD(5, 1_500_000),
     FOURTH(4, 50_000),
     FIFTH(3, 5_000),
-    ETC(null, 0);
+    NO_LUCK(null, 0);
 
     private final Integer sameCount;
     private final Long rewardMoney;
@@ -33,7 +32,7 @@ public enum LottoRank {
         } if(sameCount == FIFTH.sameCount) {
             return FIFTH;
         } if (sameCount < FIFTH.sameCount) {
-            return ETC;
+            return NO_LUCK;
         }
         throw new IllegalStateException();
     }

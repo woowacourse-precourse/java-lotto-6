@@ -46,7 +46,7 @@ public class LottoGameResult {
         StringBuilder result = new StringBuilder();
 
         List<LottoRank> lottoRanks = new ArrayList<>(Arrays.asList(LottoRank.values()));
-        lottoRanks.remove(LottoRank.ETC);
+        lottoRanks.remove(LottoRank.NO_LUCK);
         Collections.reverse(lottoRanks);
 
         for (LottoRank lottoRank : lottoRanks) {

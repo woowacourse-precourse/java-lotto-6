@@ -1,9 +1,7 @@
 package lotto.service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
@@ -27,7 +25,7 @@ public class Service {
 	
 	public void readyLottoGame() {
 		lottoGame = new LottoGame(getInputWinningNumbers());
-		int bonusNumber = getBonusNumber();
+		int bonusNumber = getInputBonusNumber();
 		Validation.validateNumberNotInList(lottoGame.getWinningNumbers(), bonusNumber);
 		lottoGame.setBonusNumber(bonusNumber);
 	}
@@ -80,7 +78,7 @@ public class Service {
 		return numbers;
 	}
 	
-	public int getBonusNumber() {
+	public int getInputBonusNumber() {
 		InputView.inputBonusNumber();
 		String input = Console.readLine().trim();
 		Validation.validateNaturalNumber(input);

@@ -42,5 +42,13 @@ public class Buyer {
 	public Map<Rank, Integer> getLottoResult() {
 		return lottoRankResult;
 	}
+	
+	public long getTotalPrize() {
+		long totalPrize = 0;
+		for(Rank rank : lottoRankResult.keySet()) {
+			totalPrize += rank.getPrizeAmount() * getLottoResult().get(rank);
+		}
+		return totalPrize;
+	}
 
 }

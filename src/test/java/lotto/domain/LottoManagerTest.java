@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,9 +50,9 @@ class LottoManagerTest {
     @Test
     void calculateProfitRate() {
         int money = 8_000;
-        Prizes prizes = Prizes.createPrizes();
-        prizes.increasePrizeAmount(Prize.FIFTH_PLACE);
-        int totalPrize = prizes.calculateTotalPrize();
+        WinningDetails winningDetails = WinningDetails.createWinningDetails();
+        winningDetails.increasePrizeAmount(Prize.FIFTH_PLACE);
+        int totalPrize = winningDetails.calculateTotalPrize();
         double expectedRate = 62.5;
 
         double profitRate = lottoManager.calculateProfitRate(money, totalPrize);

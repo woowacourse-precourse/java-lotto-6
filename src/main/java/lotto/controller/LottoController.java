@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.LottoManager;
 import lotto.domain.Lottos;
-import lotto.domain.Prizes;
+import lotto.domain.WinningDetails;
 import lotto.service.LottoService;
 import lotto.util.InputValidator;
 import lotto.view.InputView;
@@ -22,7 +22,7 @@ public class LottoController {
     }
 
     public LottoService initializeLottoService() {
-        return new LottoService(new LottoManager(), Prizes.createPrizes());
+        return new LottoService(new LottoManager(), WinningDetails.createWinningDetails());
     }
 
     public void run() {
@@ -36,8 +36,8 @@ public class LottoController {
         final int bonusNumber = processBonusNumberInput();
         lottoService.drawWinningLotto(winningNumbers, bonusNumber);
 
-        final Prizes prizes = lottoService.statisticsLottoResult(issuedLottos);
-        outputView.showLottoResult(prizes);
+        final WinningDetails winningDetails = lottoService.statisticsLottoResult(issuedLottos);
+        outputView.showLottoResult(winningDetails);
         double profitRate = lottoService.getProfitRate(purchaseAmount);
         outputView.showProfitRate(profitRate);
     }

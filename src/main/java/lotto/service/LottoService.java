@@ -1,23 +1,21 @@
 package lotto.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoManager;
 import lotto.domain.Lottos;
 import lotto.domain.Prize;
-import lotto.domain.Prizes;
+import lotto.domain.WinningDetails;
 import lotto.domain.WinningLotto;
 
 public class LottoService {
     private final LottoManager lottoManager;
-    private final Prizes prizes;
+    private final WinningDetails winningDetails;
     private WinningLotto winningLotto;
 
-    public LottoService(LottoManager lottoManager, Prizes prizes) {
+    public LottoService(LottoManager lottoManager, WinningDetails winningDetails) {
         this.lottoManager = lottoManager;
-        this.prizes = prizes;
+        this.winningDetails = winningDetails;
     }
 
     public Lottos buyLotto(int money) {
@@ -33,19 +31,19 @@ public class LottoService {
         int matchedCount = winningLotto.countMatchingNumbers(lotto);
         boolean isMatchedBonusNumber = winningLotto.isMatchBonusNumber(lotto);
         Prize prize = Prize.determineRank(matchedCount, isMatchedBonusNumber);
-        prizes.increasePrizeAmount(prize);
+        winningDetails.increasePrizeAmount(prize);
     }
 
-    public Prizes statisticsLottoResult(Lottos lottos) {
+    public WinningDetails statisticsLottoResult(Lottos lottos) {
         for (Lotto lotto : lottos.getLottos()) {
             rankLotto(lotto);
         }
 
-        return prizes;
+        return winningDetails;
     }
 
     public double getProfitRate(int money) {
-        int totalPrize = prizes.calculateTotalPrize();
+        int totalPrize = winningDetails.calculateTotalPrize();
         return lottoManager.calculateProfitRate(money, totalPrize);
     }
 }

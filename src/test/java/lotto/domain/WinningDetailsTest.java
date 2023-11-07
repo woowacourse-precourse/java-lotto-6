@@ -1,19 +1,17 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PrizesTest {
-    private Prizes prizes;
+class WinningDetailsTest {
+    private WinningDetails winningDetails;
 
     @BeforeEach
     void setUp() {
-        prizes = Prizes.createPrizes();
+        winningDetails = WinningDetails.createWinningDetails();
     }
 
     @DisplayName("상금 수량을 증가시키는 기능 테스트")
@@ -22,9 +20,9 @@ class PrizesTest {
         Prize prize = Prize.FIFTH_PLACE;
         int expectedAmount = 2;
 
-        prizes.increasePrizeAmount(prize);
-        prizes.increasePrizeAmount(prize);
-        int prizeAmount = prizes.getPrizeAmount(prize);
+        winningDetails.increasePrizeAmount(prize);
+        winningDetails.increasePrizeAmount(prize);
+        int prizeAmount = winningDetails.getPrizeAmount(prize);
 
         assertThat(prizeAmount).isEqualTo(expectedAmount);
     }
@@ -33,11 +31,11 @@ class PrizesTest {
     @Test
     void calculateTotalPrizeForRank() {
         Prize prize = Prize.FIFTH_PLACE;
-        prizes.increasePrizeAmount(prize);
-        prizes.increasePrizeAmount(prize);
+        winningDetails.increasePrizeAmount(prize);
+        winningDetails.increasePrizeAmount(prize);
         int expectedPrize = 10_000;
 
-        int totalPrizeForRank = prizes.calculateTotalPrizeForRank(prize);
+        int totalPrizeForRank = winningDetails.calculateTotalPrizeForRank(prize);
 
         assertThat(totalPrizeForRank).isEqualTo(expectedPrize);
     }
@@ -46,14 +44,14 @@ class PrizesTest {
     @Test
     void calculateTotalPrize() {
         Prize prize = Prize.FIFTH_PLACE;
-        prizes.increasePrizeAmount(prize);
-        prizes.increasePrizeAmount(prize);
+        winningDetails.increasePrizeAmount(prize);
+        winningDetails.increasePrizeAmount(prize);
 
         prize = Prize.FIRST_PLACE;
-        prizes.increasePrizeAmount(prize);
+        winningDetails.increasePrizeAmount(prize);
         int expectedTotalPrize = 2_000_010_000;
 
-        int totalPrize = prizes.calculateTotalPrize();
+        int totalPrize = winningDetails.calculateTotalPrize();
 
         assertThat(totalPrize).isEqualTo(expectedTotalPrize);
     }

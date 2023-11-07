@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import lotto.domain.Prize;
-import lotto.domain.Prizes;
+import lotto.domain.WinningDetails;
 
 public class OutputView {
     private static final String LOTTO_AMOUNT_MESSAGE = "%d개를 구매했습니다.";
@@ -31,12 +31,12 @@ public class OutputView {
         lottoNumbers.stream().forEach(System.out::println);
     }
 
-    public void showLottoResult(Prizes prizes) {
+    public void showLottoResult(WinningDetails winningDetails) {
         System.out.println(WINNIG_STATISTICS_MESSAGE);
         System.out.println(BOUNDARY);
         Arrays.stream(Prize.values())
                 .filter(prize -> prize != Prize.NO_PRIZE)
-                .map(prize -> formatString(prize, prizes))
+                .map(prize -> formatString(prize, winningDetails))
                 .forEach(System.out::println);
     }
 
@@ -44,13 +44,13 @@ public class OutputView {
         System.out.println(String.format(PROFIT_RATE_MESSAGE, profitRate));
     }
 
-    private String formatString(Prize prize, Prizes prizes) {
+    private String formatString(Prize prize, WinningDetails winningDetails) {
         DecimalFormat formatter = new DecimalFormat("###,###");
         String formattedPrizeMoney = formatter.format(prize.getPrizeMoney());
         String winningDetailMessage = selectWinningMessage(prize);
 
         return String.format(winningDetailMessage, prize.getMatchingNumberCount(), formattedPrizeMoney,
-                prizes.getPrizeAmount(prize));
+                winningDetails.getPrizeAmount(prize));
     }
 
     private String selectWinningMessage(Prize prize) {

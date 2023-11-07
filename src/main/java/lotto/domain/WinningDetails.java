@@ -4,21 +4,21 @@ import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
 
-public class Prizes {
-    private Map<Prize, Integer> prizes;
+public class WinningDetails {
+    private Map<Prize, Integer> winningDetails;
 
-    private Prizes(final Map<Prize, Integer> prizes) {
-        this.prizes = prizes;
+    private WinningDetails(final Map<Prize, Integer> winningDetails) {
+        this.winningDetails = winningDetails;
     }
 
-    public static Prizes createPrizes() {
-        final Map<Prize, Integer> prizes = new EnumMap<Prize, Integer>(Prize.class);
-        initPrizes(prizes);
+    public static WinningDetails createWinningDetails() {
+        final Map<Prize, Integer> winningDetails = new EnumMap<Prize, Integer>(Prize.class);
+        initWinningDetails(winningDetails);
 
-        return new Prizes(prizes);
+        return new WinningDetails(winningDetails);
     }
 
-    private static void initPrizes(final Map<Prize, Integer> prizes) {
+    private static void initWinningDetails(final Map<Prize, Integer> prizes) {
         for (Prize prize : Prize.values()) {
             prizes.put(prize, 0);
         }
@@ -27,7 +27,7 @@ public class Prizes {
     public void increasePrizeAmount(Prize prize) {
         int prizeAmount = getPrizeAmount(prize);
 
-        prizes.put(prize, ++prizeAmount);
+        winningDetails.put(prize, ++prizeAmount);
     }
 
     public int calculateTotalPrizeForRank(Prize prize) {
@@ -39,7 +39,7 @@ public class Prizes {
     }
 
     public int getPrizeAmount(Prize prize) {
-        return prizes.getOrDefault(prize, 0);
+        return winningDetails.getOrDefault(prize, 0);
     }
 
     public int calculateTotalPrize() {

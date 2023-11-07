@@ -28,7 +28,7 @@ public class Lotto {
 
     private void validateNumberRange(List<Integer> numbers) {
         numbers.stream()
-                .filter(number -> LottoConstants.isNumberInRange(number))
+                .filter(number -> !LottoConstants.isNumberInRange(number))
                 .findAny()
                 .ifPresent(number -> {
                     throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");

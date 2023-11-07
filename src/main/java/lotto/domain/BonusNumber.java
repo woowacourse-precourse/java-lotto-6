@@ -1,18 +1,17 @@
 package lotto.domain;
 
-import java.util.List;
 import lotto.utils.Constants;
 import lotto.utils.ErrorMessage;
 
 public class BonusNumber {
     private final int bonusNumber;
 
-    public BonusNumber(int inputBonusNumber, List<Integer> winningNumbers) {
+    public BonusNumber(int inputBonusNumber, WinningNumbers winningNumbers) {
         validateBonusNumber(inputBonusNumber, winningNumbers);
         this.bonusNumber = inputBonusNumber;
     }
 
-    private void validateBonusNumber(int inputBonusNumber, List<Integer> winningNumbers) {
+    private void validateBonusNumber(int inputBonusNumber, WinningNumbers winningNumbers) {
         validateBonusNumberRange(inputBonusNumber);
         validateBonusNumberDuplicationWithWinningNumbers(inputBonusNumber, winningNumbers);
     }
@@ -27,7 +26,7 @@ public class BonusNumber {
         return inputBonusNumber >= Constants.LOTTO_MIN_NUMBER && inputBonusNumber <= Constants.LOTTO_MAX_NUMBER;
     }
 
-    private void validateBonusNumberDuplicationWithWinningNumbers(int inputBonusNumber, List<Integer> winningNumbers) {
+    private void validateBonusNumberDuplicationWithWinningNumbers(int inputBonusNumber, WinningNumbers winningNumbers) {
         if (winningNumbers.contains(inputBonusNumber)) {
             throw new IllegalArgumentException(ErrorMessage.BONUS_NUM_AND_WINNING_NUM_DUPLICATE_ERROR.getMessage());
         }

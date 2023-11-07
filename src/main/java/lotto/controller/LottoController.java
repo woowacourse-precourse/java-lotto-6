@@ -67,9 +67,9 @@ public class LottoController {
     }
 
     private BonusNumber getValidBonusNumberInput(WinningNumbers winningNumbers) {
-        return getValidInput(
-                () -> new BonusNumber(InputView.getBonusNumberInput(), winningNumbers.getWinningNumbers()));
+        return getValidInput(() -> new BonusNumber(InputView.getBonusNumberInput(), winningNumbers));
     }
+
 
     private void printRankCount(Map<Rank, Integer> rankCount) {
         OutputView.printRankCount(rankCount);

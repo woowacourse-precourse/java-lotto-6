@@ -14,6 +14,7 @@ public class Bonus {
     private void validate(String bonus) {
         isEmpty(bonus);
         isNumber(bonus);
+        isBoundary(bonus);
     }
 
     //숫자값인지 확인

@@ -1,5 +1,8 @@
 package lotto.config;
 
+import static lotto.constant.LottoNumber.*;
+
+import lotto.constant.LottoNumber;
 import lotto.domain.computer.Computer;
 import lotto.domain.computer.RandomLottoGenerator;
 import lotto.domain.computer.ResultGenerator;
@@ -28,7 +31,9 @@ public class Configuration {
     }
 
     private static RandomLottoGenerator randomLottoGenerator() {
-        return new RandomLottoGenerator();
+        RandomLottoGenerator randomLottoGenerator = new RandomLottoGenerator();
+        randomLottoGenerator.setMaxMoney(DEFAULT_MAX_AMOUNT_OF_LOTTO.getNumber()); //최대 로또 구입 금액 설정
+        return randomLottoGenerator;
     }
 
     private static ResultGenerator resultGenerator() {

@@ -3,16 +3,18 @@ package lotto.domain.computer;
 import static lotto.constant.ExceptionMessage.ENTER_DIVISIBLE_BY_THOUSAND;
 import static lotto.constant.ExceptionMessage.ENTER_GREATER_THAN_ZERO;
 import static lotto.constant.ExceptionMessage.ENTER_LESS_THAN_MAX_MONEY;
+import static lotto.constant.LottoNumber.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.constant.LottoNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 
 public class RandomLottoGenerator {
 
-    private final int maxMoney = 1000000;
+    private int maxMoney = DEFAULT_MAX_AMOUNT_OF_LOTTO.getNumber();
     private int money;
 
     public Lottos createUserLottos() {
@@ -21,14 +23,17 @@ public class RandomLottoGenerator {
     }
 
     private List<Lotto> createLottoList() {
-        return IntStream.rangeClosed(1, money / 1000)
+        return IntStream.rangeClosed(1, money / LOTTO_PRICE.getNumber())
                 .mapToObj(num -> createLotto())
                 .toList();
     }
 
     private Lotto createLotto() {
         List<Integer> sortedNumbers =
-                Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
+                Randoms.pickUniqueNumbersInRange(
+                                MIN_LOTTO_NUMBER.getNumber(),
+                                MAX_LOTTO_NUMBER.getNumber(),
+                                LOTTO_SIZE.getNumber()).stream()
                         .sorted(Integer::compareTo)
                         .toList();
         return new Lotto(sortedNumbers);
@@ -58,8 +63,12 @@ public class RandomLottoGenerator {
     }
 
     private void checkDivisibleBy1000(int money) {
-        if (money % 1000 != 0) {
+        if (money % LOTTO_PRICE.getNumber() != 0) {
             throw new IllegalArgumentException(ENTER_DIVISIBLE_BY_THOUSAND.getMessage());
         }
+    }
+
+    public void setMaxMoney(int maxMoney) {
+        this.maxMoney = maxMoney;
     }
 }

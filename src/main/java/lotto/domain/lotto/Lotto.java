@@ -3,6 +3,9 @@ package lotto.domain.lotto;
 import static lotto.constant.ExceptionMessage.ENTER_CORRECT_RANGE_NUMBER;
 import static lotto.constant.ExceptionMessage.ENTER_NOT_DUPLICATION_NUMBER;
 import static lotto.constant.ExceptionMessage.ENTER_SIX_NUMBER;
+import static lotto.constant.LottoNumber.LOTTO_SIZE;
+import static lotto.constant.LottoNumber.MAX_LOTTO_NUMBER;
+import static lotto.constant.LottoNumber.MIN_LOTTO_NUMBER;
 
 import java.util.List;
 import java.util.stream.IntStream;
@@ -17,7 +20,7 @@ public class Lotto {
 
     public int compare(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
-        return (int) IntStream.range(0, 6)
+        return (int) IntStream.range(0, LOTTO_SIZE.getNumber())
                 .filter(i -> this.numbers.contains(numbers.get(i)))
                 .count();
     }
@@ -29,14 +32,14 @@ public class Lotto {
     }
 
     private void checkListSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE.getNumber()) {
             throw new IllegalArgumentException(ENTER_SIX_NUMBER.getMessage());
         }
     }
 
     private void checkNumberRange(List<Integer> numbers) {
         numbers.forEach(number -> {
-            if (number > 45 || number < 1) {
+            if (number > MAX_LOTTO_NUMBER.getNumber() || number < MIN_LOTTO_NUMBER.getNumber()) {
                 throw new IllegalArgumentException(ENTER_CORRECT_RANGE_NUMBER.getMessage());
             }
         });

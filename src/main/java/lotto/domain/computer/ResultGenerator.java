@@ -2,7 +2,9 @@ package lotto.domain.computer;
 
 import static lotto.constant.ExceptionMessage.ENTER_CORRECT_RANGE_NUMBER;
 import static lotto.constant.ExceptionMessage.ENTER_NOT_DUPLICATION_NUMBER;
+import static lotto.constant.LottoNumber.*;
 
+import lotto.constant.LottoNumber;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 
@@ -21,7 +23,7 @@ public class ResultGenerator {
     }
 
     private int getUserMoney(Lottos lottos) {
-        return lottos.lottoList().size() * 1000;
+        return lottos.lottoList().size() * LOTTO_PRICE.getNumber();
     }
 
     private void setRank(Result result, Lotto lotto, int compare) {
@@ -57,7 +59,7 @@ public class ResultGenerator {
     }
 
     private void checkRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
+        if (bonusNumber < MIN_LOTTO_NUMBER.getNumber() || bonusNumber > MAX_LOTTO_NUMBER.getNumber()) {
             throw new IllegalArgumentException(ENTER_CORRECT_RANGE_NUMBER.getMessage());
         }
     }

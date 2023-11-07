@@ -1,13 +1,8 @@
 package lotto.controller;
 
-import java.text.DecimalFormat;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotties;
 import lotto.domain.Lotto;
-import lotto.domain.LottoFactory;
-import lotto.domain.Result;
 import lotto.domain.Score;
 import lotto.domain.UserPrice;
 import lotto.domain.WinningNumber;
@@ -19,11 +14,9 @@ public class Controller {
 
 
     public void run() {
-        UserPrice userPrice =inputUserPrice();
+        UserPrice userPrice = inputUserPrice();
         Lotties lotties = buyLotties(userPrice);
-
         WinningNumber winningNumber = inputWinningNumber();
-
         Score score = new Score(winningNumber, lotties);
         int totalProfit = score.getTotalProfit();
 

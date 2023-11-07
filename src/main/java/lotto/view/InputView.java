@@ -21,6 +21,7 @@ public class InputView {
     }
 
     public static String inputBonus() {
+        System.out.println();
         System.out.println(INPUT_LOTTO_BONNER);
         return Console.readLine();
     }

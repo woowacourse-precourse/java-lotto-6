@@ -65,6 +65,10 @@ public class Lotto {
         }
     }
 
+    public boolean hasMatchedNumber(int number) {
+        return numbers.contains(number);
+    }
+
 
     public List<Integer> getNumber() {
         return numbers;

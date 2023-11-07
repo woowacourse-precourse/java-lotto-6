@@ -11,7 +11,6 @@ import static lotto.util.Const.*;
 public class LottoNumbers {
 
 
-
     public static List<Lotto> randomsLottos(LottoAmount lottoAmount) {
         List<Lotto> lottos = new ArrayList<>();
         while (lottos.size() != lottoAmount.getLottoCount()) {

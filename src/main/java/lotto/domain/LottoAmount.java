@@ -1,5 +1,6 @@
 package lotto.domain;
 
+
 import static lotto.util.Const.*;
 import static lotto.util.ValidateMessage.*;
 
@@ -16,6 +17,7 @@ public class LottoAmount {
         this.amount = amountNumber;
         this.lottoCount = amountNumber / MIN_AMOUNT;
     }
+
     private void validateAmount(int amount) {
         validateThousand(amount);
         validateZero(amount);

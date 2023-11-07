@@ -1,10 +1,13 @@
 package lotto.controller;
 
 import lotto.domain.*;
+import lotto.view.OutputView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static lotto.domain.Lotto.stringToList;
+import static lotto.domain.LottoNumbers.randomsLottos;
 import static lotto.view.InputView.*;
 import static lotto.view.OutputView.*;
 
@@ -12,12 +15,13 @@ public class LottoController {
 
     public void start() {
         LottoAmount lottoAmount = inputAmount();
-        printLottos(lottoAmount);
+        LottoPlayer lottoPlayer = new LottoPlayer(randomsLottos(lottoAmount));
+        printLottos(lottoAmount, lottoPlayer);
 
-        getWinningLotto(inputWinningNumber());
+        WinningNumber winningNumber = getWinningLotto(inputWinningNumber());
+        List<Rank> ranks = getRanks(lottoPlayer, winningNumber);
 
-
-
+        OutputView.showGameResult(ranks, lottoAmount);
     }
 
     private LottoAmount inputAmount() {
@@ -48,6 +52,16 @@ public class LottoController {
             System.out.println(e.getMessage());
             return getWinningLotto(lotto);
         }
+    }
+
+    public List<Rank> getRanks(LottoPlayer lottoPlayer, WinningNumber winningNumber) {
+        List<Rank> ranks = new ArrayList<>();
+
+        for (Lotto lotto : lottoPlayer.getLottos()) {
+            Rank rank = Rank.calculateRank(lotto, winningNumber);
+            ranks.add(rank);
+        }
+        return ranks;
     }
 
 }

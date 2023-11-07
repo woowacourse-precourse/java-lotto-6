@@ -21,5 +21,8 @@
 ### setBonusNumber
 + 보너스 숫자 입력받는 메서드로 isValidWinningNumbers로 검사하면서 예외발생시 다시 입력을 요청합니다.
 
+### isDuplicateNumber
++ 중복된 숫자가 잇으면 예외처리를 합니다.
+
 ### isValidWinningNumbers
 + 입력값이 숫자가 아니거나 1미만 45이상이면 예외처리

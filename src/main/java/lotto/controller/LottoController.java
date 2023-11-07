@@ -29,15 +29,15 @@ public class LottoController {
     }
 
     public List<Integer> inputWinningLottoNumbers() {
-        List<Integer> winningNumbers;
+        String input;
         do {
-            final String inputNumbers = Console.readLine().trim();
-            final List<String> splitInput = List.of(inputNumbers.split(","));
-            winningNumbers = splitInput.stream()
-                    .map(Integer::parseInt)
-                    .toList();
-        } while (numberValidator.validateWinningNumbers(winningNumbers));
-        return winningNumbers;
+            input = Console.readLine().trim();
+        } while (numberValidator.validateWinningNumbers(input));
+
+        final List<String> splitInput = List.of(input.split(","));
+        return splitInput.stream()
+                .map(Integer::parseInt)
+                .toList();
     }
 
     public int inputWinningLottoBonusNumber(final List<Integer> winningNumbers) {

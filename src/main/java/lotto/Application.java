@@ -28,8 +28,6 @@ public class Application {
         ConsoleOutput output = new ConsoleOutput();
         return new LottoGame(
                 new LottoGameView(
-                        input,
-                        output,
                         new LottosView(input, output),
                         new WinningLottoView(input, output)
                 ),

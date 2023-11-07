@@ -4,20 +4,14 @@ import java.util.List;
 import java.util.Map;
 import lotto.collaboration.enums.Prize;
 import lotto.collaboration.lottos.dto.PlayerLotto;
-import lotto.game.io.Input;
 import lotto.game.io.InteractionRepeatable;
-import lotto.game.io.Output;
 
 public class LottoGameView implements InteractionRepeatable {
 
-    public final Input input;
-    public final Output output;
     public final LottosView lottosView;
     public final WinningLottoView winningLottoView;
 
-    public LottoGameView(Input input, Output output, LottosView lottosView, WinningLottoView winningLottoView) {
-        this.input = input;
-        this.output = output;
+    public LottoGameView(LottosView lottosView, WinningLottoView winningLottoView) {
         this.lottosView = lottosView;
         this.winningLottoView = winningLottoView;
     }

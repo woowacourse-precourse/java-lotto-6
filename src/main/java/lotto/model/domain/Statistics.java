@@ -23,12 +23,17 @@ public class Statistics {
         }
     }
 
-    public float getRateOfReturn() {
+    private float getRateOfReturn() {
         float revenue = 0;
         for(Ranking ranking : results.keySet()) {
             revenue += (ranking.getAmount() * results.get(ranking));
         }
         return revenue;
+    }
+
+    public float calculateRateOfReturn(Purchase purchase) {
+        float revenue = getRateOfReturn();
+        return (revenue / purchase.getPrice()) * 100;
     }
 
     public Map<Ranking, Integer> getResults() {

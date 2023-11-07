@@ -4,6 +4,8 @@ import java.util.List;
 
 public class BonusNumValidator {
 
+    private static final int MIN_NUM = 1;
+    private static final int MAX_NUM = 45;
     private static final String ERROR = "[ERROR]";
     private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해 주세요.";
     private static final String RANGE_OVER_MESSAGE = "1~45사이의 번호를 입력해 주세요.";
@@ -32,7 +34,7 @@ public class BonusNumValidator {
     }
 
     public void isRangeOver(String number){
-        if (Integer.parseInt(number) > 45 || Integer.parseInt(number) < 1){
+        if (Integer.parseInt(number) > MAX_NUM || Integer.parseInt(number) < MIN_NUM){
             throw new IllegalArgumentException(ERROR + RANGE_OVER_MESSAGE);
         }
     }

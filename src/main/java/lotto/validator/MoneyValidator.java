@@ -2,6 +2,7 @@ package lotto.validator;
 
 public class MoneyValidator {
 
+    private static final int BUY_MONEY = 1000;
     private static final String ERROR = "[ERROR]";
     private static final String NULL_ERROR_MESSAGE = "금액을 입력해 주세요.";
     private static final String BLANK_ERROR_MESSAGE = "공백 없이 입력해 주세요.";
@@ -38,13 +39,13 @@ public class MoneyValidator {
     }
 
     public void isUnder1000(String input){
-        if (Integer.parseInt(input)<1000){
+        if (Integer.parseInt(input)<BUY_MONEY){
             throw new IllegalArgumentException(ERROR + UNDER_1000_MESSAGE);
         }
     }
 
     public void isDivision(String input){
-        if (Integer.parseInt(input)%1000 != 0){
+        if (Integer.parseInt(input)%BUY_MONEY != 0){
             throw new IllegalArgumentException(ERROR + DIVISION_ERROR_MESSAGE);
         }
     }

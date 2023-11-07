@@ -4,6 +4,9 @@ import java.util.List;
 
 public class WinningNumValidator {
 
+    private static final int MIN_NUM = 1;
+    private static final int MAX_NUM = 45;
+    private static final int LOTTO_SIZE = 6;
     private static final String ERROR = "[ERROR]";
     private static final String NOT_BLANK_ERROR_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String NOT_NUMBER_ERROR_MESSAGE = "숫자만 입력해 주세요.";
@@ -49,14 +52,14 @@ public class WinningNumValidator {
     }
 
     public void isSizeError(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ERROR + SIZE_OVER_MESSAGE);
         }
     }
 
     public void isRangeOver(List<Integer> numbers) {
         for(Integer number : numbers){
-            if (number>45 || number<1){
+            if (number>MAX_NUM || number<MIN_NUM){
                 throw new IllegalArgumentException(ERROR + RANGE_OVER_MESSAGE);
             }
         }

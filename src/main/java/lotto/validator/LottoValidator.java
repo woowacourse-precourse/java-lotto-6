@@ -4,6 +4,9 @@ import java.util.List;
 
 public class LottoValidator {
 
+    private static final int MIN_NUM = 1;
+    private static final int MAX_NUM = 45;
+    private static final int LOTTO_SIZE = 6;
     private static final String ERROR = "[ERROR]";
     private static final String DUPLICATE_ERROR_MESSAGE = "중복된 로또 번호가 있습니다.";
     private static final String SIZE_OVER_MESSAGE = "로또 번호가 6개가 아닙니다.";
@@ -18,14 +21,14 @@ public class LottoValidator {
     }
 
     public void isSizeError(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ERROR + SIZE_OVER_MESSAGE);
         }
     }
 
     public void isRangeOver(List<Integer> numbers) {
         for(Integer number : numbers){
-            if (number>45 || number<1){
+            if (number>MAX_NUM || number<MIN_NUM){
                 throw new IllegalArgumentException(ERROR + RANGE_OVER_MESSAGE);
             }
         }

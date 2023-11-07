@@ -1,10 +1,13 @@
-package lotto.model;
+package lotto.dto;
 
-public class LottoInfo {
+import lotto.model.BonusNumber;
+import lotto.model.Lotto;
+
+public class LottoInfoDTO {
     private final Lotto lotto;
     private Integer matchCount;
     private boolean matchBonus;
-    public LottoInfo(Lotto lotto) {
+    public LottoInfoDTO(Lotto lotto) {
         this.lotto = lotto;
         this.matchCount = 0;
         this.matchBonus = false;
@@ -15,9 +18,9 @@ public class LottoInfo {
     public Integer getMatchCount() {
         return this.matchCount;
     }
-    public boolean isMatchBonus(Integer bonusNumber) {
-        this.matchBonus = this.contain(bonusNumber);
-        return matchBonus;
+    public boolean isMatchBonus(BonusNumber bonusNumber) {
+        this.matchBonus = this.contain(bonusNumber.bonusNumber());
+        return this.matchBonus;
     }
     public boolean contain(Integer number) {
         return this.lotto.numbers().contains(number);

@@ -10,6 +10,7 @@ public class InputValidator {
     private static final String DELIMITER = ",";
     private static final String NAN_MESSAGE = ErrorMessageEnums.NAN_ERROR.toString();
     private static final String NOT_THOUSAND = ErrorMessageEnums.NOT_THOUSAND.toString();
+    private static final int UNIT = 1000;
 
     public static int verifyNumber(String s) {
         try {
@@ -22,7 +23,7 @@ public class InputValidator {
     public static void verifyThousand(String s) {
         int i = Integer.parseInt(s);
         System.out.println(i);
-        if (i % 1000 != 0) {
+        if (i % UNIT != 0) {
             throw new IllegalArgumentException(NOT_THOUSAND);
         }
     }

@@ -18,7 +18,8 @@ public class LottoController {
     public void start(){
         int amount = getAmount();
         List<Lotto> lottoNumList = generateLottoNumbers(amount);
-
+        OutputView.requestWinningNumbers();
+        List<Integer> winning = InputView.getWinningNumber();
     }
 
     public int getAmount(){

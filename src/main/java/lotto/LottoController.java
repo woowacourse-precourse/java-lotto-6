@@ -248,15 +248,15 @@ public class LottoController {
     }
 
     private int compareWinningAndLottoNumber(List<Integer> randomLottoNumber, List<Integer> winningNumber) {
-        int matchCount = 0; //countSameNumber
+        int countSameNumber = 0;
 
         for (int number : randomLottoNumber) {
             if (winningNumber.contains(number)) {
-                matchCount++;
+                countSameNumber++;
             }
         }
 
-        return matchCount;
+        return countSameNumber;
     }
 
     private int compareBonusAndLottoNumber(List<Integer> randomLottoNumber, int bonusNumber) {

@@ -94,4 +94,20 @@ class InputTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ContentErrors.BONUS_NUMBER_DUPLICATE.getErrorMessage());
     }
+    @Test
+    @DisplayName("로또 당첨 번호의 입력길이가 초과된 경우 예외를 발생시킨다.")
+    void inputValidateWinningNumbersOutOfRange() {
+        String WinningNumbersOutCase = "11,22,33,44,23,1245";
+        assertThatThrownBy(() -> ValidationUtil.validateWinningNumbersOutOfRange(WinningNumbersOutCase))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ContentErrors.INPUT_OUT_OF_RANGE.getErrorMessage());
+    }
+    @Test
+    @DisplayName("1인당 100000원 이상 로또를 구매할 시 예외를 발생 시킨다.")
+    void inputValidatePurchaseAmount() {
+        int PurchaseAmount = 100001;
+        assertThatThrownBy(() -> ValidationUtil.validatePurchaseAmountRange(PurchaseAmount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ContentErrors.INVALID_OUT_OF_RANGE.getErrorMessage());
+    }
 }

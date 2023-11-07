@@ -12,7 +12,7 @@
     - 예외사항
     - [X] [✔] 1,000원으로 나누어 떨어지지 않는 경우
     - [X] [✔] 입력 값이 음수일 경우
-    - [X] 로또의 1회 최대 구매금액은 100,000원이며 금액을 초과할 경우
+    - [X] [✔] 로또의 1회 최대 구매금액은 100,000원이며 금액을 초과할 경우
 
 - [X] [✔] 당첨 번호를 입력 받는다. 번호는 쉼표(,)를 기준으로 구분한다.
     - 예외사항
@@ -82,9 +82,9 @@
 │   ├── LottoResult.java           // 당첨 결과를 계산하는 클래스
 │   ├── Prize.java                 // 당첨 등수와 상금을 나타내는 Enum 클래스
 │   └── vo
-│       ├── PurchaseAmountVo.java  // 구매 금액을 나타내는 VO
-│       ├── LottoNumberVo.java     // 개별 로또 번호를 나타내는 VO
-│       └── BonusNumberVo.java     // 보너스 번호를 나타내는 VO
+│       ├── PurchaseAmountVo.java  // 구매 금액의 유효성 검증을 하는 VO
+│       ├── WinningNumbersVO.java  // 당첨 번호의 유효성 검증을 하는 VO
+│       └── BonusNumberVo.java     // 보너스 번호의 유효성 검증을 하는 VO
 │
 ├── application
 │   ├── LottoService.java          // 도메인 객체들을 사용하여 로또 게임의 비즈니스 로직을 처리하는 클래스

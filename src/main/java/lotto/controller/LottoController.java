@@ -6,8 +6,10 @@ import lotto.domain.Money;
 import lotto.configuration.PrintMessage;
 import lotto.service.LottoService;
 import lotto.util.Utils;
+import lotto.verification.Validation;
 import lotto.view.InputView;
 import lotto.view.OutputView;
+import lotto.view.VerificationView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,8 +32,13 @@ public class LottoController {
 
     private Long inputPurchaseAmount() {
         OutputView.inputViewPurchaseAmount();
-        Money money = new Money(getInputAmount());
-        return money.getMoney();
+        while (true) {
+            try {
+                Money money = new Money(getInputAmount());
+                return money.getMoney();
+            } catch (IllegalArgumentException e) {
+            }
+        }
     }
 
     private List<List<Integer>> buyLotto(Long money) {
@@ -74,6 +81,7 @@ public class LottoController {
 
     private long getInputAmount() {
         String userInput = InputView.input().trim();
-        return Utils.stringToLong(userInput);
+        long money = Utils.stringToLong(userInput);
+        return Utils.rangeInputMoney(money);
     }
 }

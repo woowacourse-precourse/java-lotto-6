@@ -10,7 +10,9 @@ public class IO {
     public static void printNoticeln(String ment) {
         System.out.println(ment);
     }
-
+    public static void printNotice(String ment) {
+        System.out.print(ment);
+    }
 
     public static Integer inputBudget() {
         String inputString= Console.readLine();

@@ -32,6 +32,7 @@ public class LottoGameService {
 
     public LottoGameDto.Result doLottoGame(LottoGameDto.Request request) {
         LottoGame lottoGame = lottoGameRepository.findById(request.getLottoGameId());
+        lottoGame.setWinningNumbers(request.getWinningNumbers(),request.getBonusNumber());
         return lottoGame.doLottoGame();
     }
 }

@@ -111,6 +111,10 @@ public class LottoGameDto {
         public int getSix() {
             return six;
         }
+
+        public float getRate() {
+            return rate;
+        }
     }
 
 }

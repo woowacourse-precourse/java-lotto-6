@@ -46,7 +46,7 @@ public class OutputView {
     }
 
     public void printIncomeRate(IncomeRate incomeRate) {
-        printer.println(String.format(INCOME_RATE_MESSAGE, incomeRate.getIncomeRate()));
+        printer.println(String.format(INCOME_RATE_MESSAGE, incomeRate.getPercentageIncomeRate()));
     }
 
     public void printException(Exception exception) {

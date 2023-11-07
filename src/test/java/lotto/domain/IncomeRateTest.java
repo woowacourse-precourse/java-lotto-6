@@ -16,7 +16,7 @@ class IncomeRateTest {
         @Test
         void calculateIncomeRate() {
             IncomeRate incomeRate = new IncomeRate(10000, 6);
-            Assertions.assertEquals(incomeRate.getIncomeRate(), 6f / 100);
+            Assertions.assertEquals(incomeRate.getPercentageIncomeRate(), 6f / 100);
         }
 
     }

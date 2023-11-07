@@ -8,7 +8,7 @@ import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 import lotto.domain.Customer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoCalculator;
-import lotto.domain.LottoSeller;
+import lotto.domain.LottoMaker;
 import lotto.domain.WinningNumbers;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -35,7 +35,7 @@ public class LottoController {
         while (true) {
             try {
                 int money = inputView.requestNumberInput(INPUT_MONEY);
-                LottoSeller seller = new LottoSeller(money);
+                LottoMaker seller = new LottoMaker(money);
                 Customer customer = new Customer(seller.makeLottoTickets());
                 outputView.printLottoNumbers(customer.getLotteryTicket());
                 return customer;

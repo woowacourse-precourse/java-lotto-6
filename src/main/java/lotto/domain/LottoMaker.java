@@ -12,10 +12,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class LottoSeller {
+public class LottoMaker {
     private final int sellCount;
 
-    public LottoSeller(int money) throws IllegalArgumentException {
+    public LottoMaker(int money) throws IllegalArgumentException {
         validateMultiplesOfPrice(money);
         this.sellCount = money / LOTTO_PRICE;
     }

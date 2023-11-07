@@ -4,10 +4,10 @@ import domain.validator.PriceValidator;
 import util.ConstantOfLotto;
 
 public class Price {
+    private final int price;
 
-    private int price;
-    private final PriceValidator priceValidator = new PriceValidator();
     public Price(int price) {
+        PriceValidator priceValidator = new PriceValidator();
         priceValidator.checkPriceValidation(price);
         this.price = price;
     }

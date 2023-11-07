@@ -11,12 +11,12 @@ public class Application {
         LottoInputController inputController = LottoInputController.getInstance();
         LottoService lottoService = LottoService.getInstance();
 
-        int amount = inputController.getUserInputForAmount();
+        final int amount = inputController.getUserInputForAmount();
         final List<Lotto> lottos = lottoService.purchaseLottos(amount);
         LottoResultPrinter.printLottos(lottos.size(), lottos);
 
         final List<Integer> winningNumbers = inputController.getUserInputForWinningNumbers();
-        int bonusNumber = inputController.getUserInputForBonusNumber(winningNumbers);
+        final int bonusNumber = inputController.getUserInputForBonusNumber(winningNumbers);
 
         LottoStatistics statistics = new LottoStatistics(lottos, winningNumbers, bonusNumber);
         LottoResultPrinter.presentResults(statistics.getWinsPerCategory(), statistics.getTotalRate());

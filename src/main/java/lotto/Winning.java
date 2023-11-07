@@ -23,7 +23,7 @@ public class Winning {
     }
 
     public void saveNumbers(String readLine) {
-        validateBonusNumber();
+        validateSaveNumbers(readLine);
         String[] split = readLine.split(",");
         List<Integer> numbers = Arrays.stream(split)
                 .map(Integer::parseInt)
@@ -32,13 +32,23 @@ public class Winning {
         this.numbers = this.numbers;
     }
 
+    private void validateSaveNumbers(String readLine) {
+        String noEmptyReadLine = removeEmpty(readLine);
+
+    }
+
+    private String removeEmpty(String readLine) {
+        return readLine.replaceAll("\\s", "");
+    }
+
     public void saveBonusNumber(String readLine) {
         validateBonusNumber(readLine);
         this.bonusNumber = bonusNumber;
     }
 
     private void validateBonusNumber(String readLine) {
-        Integer bonusNumber = translateToNumber(readLine);
+        String noEmptyReadLine = removeEmpty(readLine);
+        Integer bonusNumber = translateToNumber(noEmptyReadLine);
         checkBoundary(bonusNumber);
         checkDuplication(bonusNumber);
     }

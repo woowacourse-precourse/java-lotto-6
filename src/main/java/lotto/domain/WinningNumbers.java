@@ -29,7 +29,7 @@ public class WinningNumbers {
         this.bonusNumber = bonusNumber;
     }
 
-    private static List<WinningNumber> convertWinningNumbers(List<Integer> numbers) {
+    private List<WinningNumber> convertWinningNumbers(List<Integer> numbers) {
         return numbers.stream()
                 .map(WinningNumber::new)
                 .collect(toList());

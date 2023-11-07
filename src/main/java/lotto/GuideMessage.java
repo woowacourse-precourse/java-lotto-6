@@ -1,6 +1,18 @@
 package lotto;
 
-import static lotto.LottoSettingValue.FIRST_LOTTO_INDEX;
+import static Constant.GuideMessagePiece.BLANK;
+import static Constant.GuideMessagePiece.BONUS_BALL_EQUAL;
+import static Constant.GuideMessagePiece.COMMA;
+import static Constant.GuideMessagePiece.DASH;
+import static Constant.GuideMessagePiece.LEFT_BRACE;
+import static Constant.GuideMessagePiece.LEFT_PARENTHESES;
+import static Constant.GuideMessagePiece.LINE_BREAK;
+import static Constant.GuideMessagePiece.RIGHT_BRACE;
+import static Constant.GuideMessagePiece.RIGHT_PARENTHESES;
+import static Constant.GuideMessagePiece.UNIT;
+import static Constant.GuideMessagePiece.UNIT_EQUAL;
+import static Constant.GuideMessagePiece.WON;
+import static Constant.LottoSettingValue.FIRST_LOTTO_INDEX;
 
 public class GuideMessage{
 
@@ -8,23 +20,10 @@ public class GuideMessage{
     private static final String GUIDE_MSG_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String GUIDE_MSG_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String GUIDE_MSG_NUMBER_OF_PURCHASED_LOTTO = "개를 구매했습니다.";
-
-    private static final String UNIT_EQUAL = "개 일치";
-    private static final String UNIT = "개";
     private static final String GROSS_RETURN = "총 수익률은 %.1f%%입니다.\n";
     private static final String WINNING_STATISTICS = "당첨 통계";
-    private static final String BLANK = " ";
-    private static final String WON = "원";
 
-    private static final String BONUS_BALL_EQUAL = "보너스 볼 일치";
-    private static final String DASH = "-";
 
-    private static final String LEFT_PARENTHESES = "(";
-    private static final String RIGHT_PARENTHESES = ")";
-    private static final String LEFT_BRACE = "[";
-    private static final String RIGHT_BRACE = "]";
-    public static final String COMMA = ",";
-    private static final String LINE_BREAK = "\n";
 
     public static void ofInputMoney(){
         System.out.println(GUIDE_MSG_INPUT_MONEY);
@@ -90,5 +89,6 @@ public class GuideMessage{
                         +RIGHT_PARENTHESES+BLANK+DASH+BLANK+numberOfWinner+UNIT);
         return;
     }
+
 }
 

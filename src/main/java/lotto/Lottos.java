@@ -1,16 +1,16 @@
 package lotto;
 
+import static Constant.LottoSettingValue.COST_OF_LOTTO;
+import static Constant.LottoSettingValue.LOTTO_MAXIMUM_NUMBER;
+import static Constant.LottoSettingValue.LOTTO_MINIMAL_NUMBER;
+import static Constant.LottoSettingValue.NUMBER_OF_UNIQUE_NUMBERS;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Lottos {
-
-    private static final int LOTTO_MINIMAL_NUMBER = 1;
-    private static final int LOTTO_MAXIMUM_NUMBER = 45;
-    private static final int NUMBER_OF_UNIQUE_NUMBERS = 6;
-    private static final int COST_OF_LOTTO = 1000;
 
     private static List<Lotto> lottos;
 

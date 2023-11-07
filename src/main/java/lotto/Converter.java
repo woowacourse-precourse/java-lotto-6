@@ -1,7 +1,7 @@
 package lotto;
 
-import static lotto.GuideMessage.COMMA;
-import static lotto.LottoSettingValue.LOTTO_SIZE;
+import static Constant.GuideMessagePiece.COMMA;
+import static Constant.LottoSettingValue.LOTTO_SIZE;
 
 import java.util.ArrayList;
 import java.util.List;

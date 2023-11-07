@@ -6,6 +6,7 @@ import lotto.util.RandomUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LottoSystem {
 
@@ -40,6 +41,10 @@ public class LottoSystem {
     private boolean hasBonusNumber(Lotto winningLotto) {
         return winningLotto.getLottoNumbers()
                 .stream()
-                .anyMatch(lottoNumber -> lottoNumber.getLottoNumber().equals(player.getBonusNumber()));
+                .anyMatch(lottoNumber -> isNumberMatch(lottoNumber.getLottoNumber(), player.getBonusNumber()));
+    }
+
+    private boolean isNumberMatch(Integer number1, Integer number2) {
+        return Objects.equals(number1, number2);
     }
 }

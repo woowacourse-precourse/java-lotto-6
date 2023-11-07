@@ -27,10 +27,10 @@
   - [x] 로또를 생성 (createLotto) 
 - 로또 리스트
   - [ ] 로또 리스트와 당첨 로또를 비교한다.
-- 로또 결과
-  - [ ] 수익률 계산
-  - [ ] 당첨금 계산
-  - [ ] 당첨 갯수 계산
+- 로또 결과 (LottoResult)
+  - [x] 수익률 계산 (getProfitRate)
+  - [x] 당첨금 계산 (getWinningMoney)
+  - [x] 특정 등수의 개수를 반환 (countRank)
 - 당첨 등수 (Rank)
  - [x] 등수 계산 (from)
  - [x] 등수에 맞는 당첨금 반환 (getWinningMoney)

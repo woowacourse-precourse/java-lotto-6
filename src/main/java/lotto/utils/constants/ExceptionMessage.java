@@ -13,7 +13,7 @@ public enum ExceptionMessage {
     private final String message;
 
     ExceptionMessage(final String message) {
-        this.message = "[ERROR]" + message;
+        this.message = "[ERROR] " + message;
     }
 
     public String getMessage() {

@@ -80,19 +80,21 @@ public class LottoController {
             lottoResult.addHashMap(matchCount, isMatchBonus(lotto, bonusNumber));
 
         }
-        //출력
+        OutputView.LottoResults(lottoResult.getLottoResultHashMap());
 
         calculateReturnOnLotto(lottoResult.getLottoResultHashMap());
-//        return lottoResult.getLottoResultHashMap();
     }
 
     private boolean isMatchBonus(Lotto lotto, int bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
-    private void calculateReturnOnLotto(HashMap<LottoResultFormat, Integer> lottoResults){
-
-//        출력
+    private void calculateReturnOnLotto(HashMap<LottoResultFormat, Integer> lottoResults) {
+        int returnOfLotto = 0;
+        for (LottoResultFormat key : lottoResults.keySet()) {
+            returnOfLotto += key.getLottoOfMatching() * Integer.parseInt(key.getWinningAmount());
+        }
+        OutputView.totalReturnOnLotto(returnOfLotto);
     }
 
 }

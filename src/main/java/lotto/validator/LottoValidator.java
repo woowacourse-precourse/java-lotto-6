@@ -1,48 +1,48 @@
 package lotto.validator;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class LottoValidator extends Validator {
-
-    public static int LottoWinNumber(String winNumbers) {
-        validateWinNumbers(winNumbers);
-        int WinNumber = parseValidInt(winNumbers);
-        return WinNumber;
+    public static List<Integer> LottoWinNumbers(String winNumbers) {
+        List<Integer> parsedNumbers = parseWinNumbers(winNumbers);
+        validateWinNumbers(parsedNumbers);
+        return parsedNumbers;
     }
 
-    private static void validateWinNumbers(String winNumbers) {
-        if (winNumbers == null || winNumbers.isEmpty()) {
-            throwException("당첨번호를 입력해야 합니다.", null);
-        }
-
-        String[] numbers = winNumbers.split(",");
-        if (numbers.length != 6) {
+    private static void validateWinNumbers(List<Integer> parsedNumbers) {
+        if (parsedNumbers.size() != 6) {
             throwException("당첨번호는 6개 입력해야 합니다.", null);
         }
-
         Set<Integer> uniqueNumbers = new HashSet<>();
-        for (String numberStr : numbers) {
-            int number = parseValidInt(numberStr);
-
+        for (int number : parsedNumbers) {
             if (number < 1 || number > 45) {
                 throwException("당첨번호는 1부터 45 사이의 숫자여야 합니다.", null);
             }
-
             if (!uniqueNumbers.add(number)) {
                 throwException("당첨번호에 중복된 숫자가 있습니다.", null);
             }
         }
     }
 
-    public static int parseValidInt(String inputWinNumber) {
-        if (!Pattern.matches("^[0-9]+$", inputWinNumber)) {
-            throwException("당첨번호는 숫자로만 입력해야 합니다.", null);
+    private static List<Integer> parseWinNumbers(String winNumbers) {
+        String[] numberStrings = winNumbers.split(",");
+        List<Integer> parsedNumbers = new ArrayList<>();
+        for (String numberStr : numberStrings) {
+            int number = parseNumber(numberStr);
+            parsedNumbers.add(number);
         }
+        return parsedNumbers;
+    }
 
-        int inputedNumber = Integer.parseInt(inputWinNumber);
-
-        return inputedNumber;
+    private static int parseNumber(String numberStr) {
+        try {
+            return Integer.parseInt(numberStr.trim());
+        } catch (NumberFormatException e) {
+            throwException("당첨번호는 숫자로만 입력해야 합니다.", e);
+            return -1;
+        }
     }
 }

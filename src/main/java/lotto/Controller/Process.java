@@ -103,5 +103,6 @@ public class Process {
         Statistics statistics = new Statistics();
         statistics.updateResult(new Calculate(), lottos, winningNums, bonus);
         statistics.printStatistics(outputView, new Calculate(), cost);
+        statistics.printProfit(outputView, new Calculate(), cost);
     }
 }

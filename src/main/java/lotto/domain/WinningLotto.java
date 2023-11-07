@@ -9,6 +9,7 @@ public class WinningLotto {
     public LottoNumber bonusNumber;
 
     public WinningLotto(Lotto lotto, LottoNumber bonusNumber) {
+        validateLottoContainsBonusNumber(lotto, bonusNumber);
         this.lotto = lotto;
         this.bonusNumber = bonusNumber;
     }
@@ -18,7 +19,7 @@ public class WinningLotto {
             .filter(lottoNumber -> compareLotto.contains(lottoNumber))
             .count();
 
-        boolean hasBonus = lotto.contains(this.bonusNumber);
+        boolean hasBonus = compareLotto.contains(this.bonusNumber);
         return Ranking.of(match, hasBonus);
     }
 

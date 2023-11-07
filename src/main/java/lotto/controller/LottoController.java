@@ -31,18 +31,9 @@ public class LottoController {
     }
 
     /**
-     * 로또 기능을 시작한다. 로또 구매, 로또 번호 입력, 로또 당첨 결과
-     */
-    public void run() {
-        buyLotto();
-        getLottoWinningAmount(); // 당첨 번호 가져오고, 서비스에 전달
-        getWinningStatistics(); // 통계 가져오는 기능 추가
-    }
-
-    /**
      * 로또 당첨 통계 가져오기
      */
-    private void getWinningStatistics() {
+    public void getWinningStatistics() {
         LottosCalculateResult result = lottoWalletService.winningStatistics(); // 서비스에 로또 통계 요청
 
         printWinningStatistics(result); // 서비스로부터 받은 결과 출력
@@ -51,7 +42,7 @@ public class LottoController {
     /**
      * 사용자로부터 당첨 번호를 받는다.
      */
-    private void getLottoWinningAmount() {
+    public void saveLottoWinningAmount() {
         printWinningNumber();
         LottoWinningNumbers winningNumbers = getLottoWinningNumbers();
 
@@ -101,7 +92,7 @@ public class LottoController {
     /**
      * 사용자로부터 구매 금액을 입력받고, 로또를 구매하고, 지갑에 저장한다.
      */
-    private void buyLotto() {
+    public void buyLotto() {
         printPurchaseAmount();
 
         while (true) {

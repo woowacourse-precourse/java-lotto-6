@@ -1,6 +1,7 @@
 package lotto.model;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.view.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +10,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = InputNumbers();
+        this.numbers = numbers;
     }
 
     private List<Integer> InputNumbers() {
@@ -27,6 +27,7 @@ public class Lotto {
     public int bonusNumber() {
         int number = Integer.parseInt(Console.readLine());
         bonusNumberValidation(number);
+        rangeBonusValidation(number);
         return number;
     }
 
@@ -34,14 +35,31 @@ public class Lotto {
         Lotto lotto = new Lotto(numbers);
 
         if(lotto.getNumbers().contains(number)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_BONUS_NUMBER.getMessage());
         }
 
     }
 
-    private void validate(List<Integer> numbers) {
+    private void sizeValidation(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            if(numbers.size() == 0){
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_EMPTY.getMessage());
+            }
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_COUNT.getMessage());
+        }
+    }
+
+    private void rangeValidation(List<Integer> numbers) {
+        for (int number : numbers) {
+            if (number < 1 || number > 45) {
+                throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
+            }
+        }
+    }
+
+    private void rangeBonusValidation(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }
 

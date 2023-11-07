@@ -20,9 +20,11 @@ public class View {
     }
 
 
-    public void outputPurchasedLottoNumbers(int purchasedLottoNum){
+    public void print_PurchasedLottoNumbers(int purchasedLottoNum){
         System.out.println(purchasedLottoNum + OUTPUT_PURCHASED_LOTTO_NUMBERS);
     }
 
-
+    public void print_Exception(String errorMessage){
+        System.out.println(errorMessage);
+    }
 }

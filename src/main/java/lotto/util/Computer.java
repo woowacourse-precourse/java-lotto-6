@@ -1,11 +1,12 @@
 package lotto.util;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
+import java.math.RoundingMode;
 import lotto.domain.Rank;
 
 public class Computer {
     private static final int LOTTO_PRICE = 1000;
+    private static final int DECIMAL_PLACE = 3;
     private static final String HUNDRED = "100";
     private static final BigDecimal PERCENT = new BigDecimal(HUNDRED);
     private static final BigDecimal FIFTH_PRIZE = Prize.getPrize(Prize.FIFTH_PRIZE);
@@ -22,12 +23,17 @@ public class Computer {
         BigDecimal second = new BigDecimal(String.valueOf(rank.second()));
         BigDecimal first = new BigDecimal(String.valueOf(rank.first()));
 
-        BigDecimal totalPrize = fifth.multiply(FIFTH_PRIZE).add(
+        BigDecimal totalPrize = computePrize(fifth, fourth, third, second, first);
+
+        return PERCENT.multiply(totalPrize.divide(purchase, DECIMAL_PLACE, RoundingMode.HALF_UP));
+    }
+
+    private static BigDecimal computePrize(BigDecimal fifth, BigDecimal fourth, BigDecimal third, BigDecimal second,
+                                           BigDecimal first) {
+        return fifth.multiply(FIFTH_PRIZE).add(
                 fourth.multiply(FOURTH_PRIZE).add(
                         third.multiply(THIRD_PRIZE).add(
                                 second.multiply(SECOND_PRIZE).add(
                                         first.multiply(FIRST_PRIZE)))));
-
-        return PERCENT.multiply(totalPrize.divide(purchase, MathContext.UNLIMITED));
     }
 }

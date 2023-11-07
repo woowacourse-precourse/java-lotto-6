@@ -13,7 +13,7 @@ public class OutputView {
     private static final String PURCHASE_LOTTO_QUANTITY_MESSAGE = "%d개를 구매했습니다.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String DELIMITER = "---";
-    private static final String PRIZE_RATIO_MESSAGE = "총 수익률은 %.2f%%입니다.";
+    private static final String PRIZE_RATIO_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void printLottoQuantity(int lottoQuantity) {
         String message = String.format(PURCHASE_LOTTO_QUANTITY_MESSAGE, lottoQuantity);

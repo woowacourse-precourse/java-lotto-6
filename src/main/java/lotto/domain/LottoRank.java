@@ -4,11 +4,11 @@ import static lotto.domain.LottoConstant.*;
 
 public enum LottoRank {
 
-    FIFTH(FIFTH_WINNER_AMOUNT, FIFTH_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d"),
-    FOURTH(FORTH_WINNER_HIT_COUNT, FORTH_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d"),
-    THIRD(THIRD_WINNER_HIT_COUNT, THIRD_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d"),
-    SECOND(SECOND_WINNER_HIT_COUNT, SECOND_WINNER_AMOUNT, "%d개 일치, 보너스 볼 일치 (%,d원) - %d"),
-    FIRST(FIRST_WINNER_HIT_COUNT, FIRST_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d");
+    FIFTH(FIFTH_WINNER_HIT_COUNT, FIFTH_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d개"),
+    FOURTH(FORTH_WINNER_HIT_COUNT, FORTH_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d개"),
+    THIRD(THIRD_WINNER_HIT_COUNT, THIRD_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d개"),
+    SECOND(SECOND_WINNER_HIT_COUNT, SECOND_WINNER_AMOUNT, "%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
+    FIRST(FIRST_WINNER_HIT_COUNT, FIRST_WINNER_AMOUNT, "%d개 일치 (%,d원) - %d개");
 
     private int matchCount;
     private int winningAmount;

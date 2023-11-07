@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.Constant;
 
 public enum Rank {
     FAIL(0, 0, false),

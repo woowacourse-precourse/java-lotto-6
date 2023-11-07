@@ -14,7 +14,7 @@ import org.mockito.BDDMockito;
 class InputValueTypeTest {
 
     @Test
-    @DisplayName("PurchasePrice getCreateFunction()에 AnyObject를 주입한 경우 테스트")
+    @DisplayName("PurchasePrice getCreateFunction() 테스트")
     void testGetCreateFunctionWithNull() {
         Function<String, Object> createFunction = InputValueType.PURCHASE_PRICE.getCreateFunction(null);
         Object resultObject = createFunction.apply("1000");
@@ -24,9 +24,9 @@ class InputValueTypeTest {
     }
 
     @Test
-    @DisplayName("WinningNumbers getCreateFunction()에 AnyObject를 주입한 경우 테스트")
+    @DisplayName("WinningNumbers getCreateFunction() 테스트")
     void testGetCreateFunctionWithAnyObject() {
-        Function<String, Object> createFunction = InputValueType.WINNING_NUMBERS.getCreateFunction(BDDMockito.anyObject());
+        Function<String, Object> createFunction = InputValueType.WINNING_NUMBERS.getCreateFunction(null);
         Object resultObject = createFunction.apply("1,2,3,4,5,6");
 
         Assertions.assertThat(createFunction).isNotNull();
@@ -48,7 +48,7 @@ class InputValueTypeTest {
     @Test
     @DisplayName("BonusNumber getCreateFunction()에 requiredObject를 주입하지 않은 경우 테스트")
     void testGetCreateFunctionWithNoRequiredObject() {
-        Function<String, Object> createFunction = InputValueType.BONUS_NUMBER.getCreateFunction(BDDMockito.anyObject());
+        Function<String, Object> createFunction = InputValueType.BONUS_NUMBER.getCreateFunction(null);
 
         Assertions.assertThat(createFunction).isNotNull();
         org.junit.jupiter.api.Assertions.assertThrows(NullPointerException.class, () -> {

@@ -30,6 +30,7 @@ class BonusNumberTest {
     @DisplayName("숫자가 아닌 경우를 입력했을 때 예외 발생")
     void testInValidFormat(String invalidInput) {
         winningNumbers = WinningNumbers.create("1, 3, 5, 7, 8, 9");
+
         assertThrows(BonusNumberFormatException.class, () -> {
             BonusNumber.create(invalidInput, winningNumbers);
         });
@@ -39,6 +40,7 @@ class BonusNumberTest {
     @DisplayName("숫자가 1~45 사이의 수가 아닌 경우 예외 발생")
     void testOutOfRange() {
         winningNumbers = WinningNumbers.create("1, 3, 5, 7, 8, 9");
+
         assertThrows(LottoNumRangeException.class, () -> {
             BonusNumber.create("46", winningNumbers);
         });
@@ -48,6 +50,7 @@ class BonusNumberTest {
     @DisplayName("보너스 숫자에 당첨 번호와 중복된 숫자가 있다면 예외 발생")
     void testDuplicateNum() {
         winningNumbers = WinningNumbers.create("1, 3, 5, 7, 8, 9");
+
         assertThrows(BonusNumberDuplicateException.class, () -> {
            BonusNumber.create("9", winningNumbers);
         });

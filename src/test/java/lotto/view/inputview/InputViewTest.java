@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.view.inputview;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
@@ -12,6 +12,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
+import org.mockito.BDDMockito;
+import org.mockito.Mockito;
 
 class InputViewTest {
 
@@ -21,7 +24,7 @@ class InputViewTest {
     } //기존의 Scanner를 계속 사용하게 되어 nextLine() 값이 없는 현상을 방지. 새로운 Scanner를 생성할 수 있도록 닫아준다.
 
     @Test
-    @DisplayName("inputValue() 메서드에 purchasePrice 키 값을 넣으면 PurchasePrice 객체를 생성한다.")
+    @DisplayName("inputValue() 메서드에 purchasePrice 타입을 넣으면 PurchasePrice 객체를 생성한다.")
     void testPriceInputValue() {
         //given
         System.setIn(createUserInput("7000"));
@@ -31,21 +34,32 @@ class InputViewTest {
 
         //then
         Assertions.assertThat(purchasePrice).isInstanceOf(PurchasePrice.class);
-        Assertions.assertThat(purchasePrice).isNotInstanceOf(BonusNumber.class);
     }
 
     @Test
-    @DisplayName("inputValue() 메서드에 bonusNumber 키 값을 넣으면 BonusNumber 객체를 생성한다.")
-    void testBonusNumInputValue() {
+    @DisplayName("inputValue() 메서드에 WinningNumbers 타입을 넣으면 WinningNumbers 객체를 생성한다.")
+    void testWinningNumbers() {
         //given
         System.setIn(createUserInput("1,2,3,4,5,6"));
-        WinningNumbers winningNumbers = (WinningNumbers) InputView.inputValue(InputValueType.WINNING_NUMBERS);
-        Console.close();
 
+        //when
+        Object purchasePrice = InputView.inputValue(InputValueType.WINNING_NUMBERS);
+
+        //then
+        Assertions.assertThat(purchasePrice).isInstanceOf(WinningNumbers.class);
+    }
+
+    @Test
+    @DisplayName("inputValue() 메서드에 BonusNumber 타입을 넣으면 BonusNumber 객체를 생성한다.")
+    void testBonusNumInputValue() {
+        //given
+        WinningNumbers winningNumbers = BDDMockito.mock(WinningNumbers.class);
         System.setIn(createUserInput("7"));
+
+        //when
         Object bonusNumber = InputView.inputValue(InputValueType.BONUS_NUMBER, winningNumbers);
 
-        Assertions.assertThat(winningNumbers).isInstanceOf(WinningNumbers.class);
+        //then
         Assertions.assertThat(bonusNumber).isInstanceOf(BonusNumber.class);
     }
 

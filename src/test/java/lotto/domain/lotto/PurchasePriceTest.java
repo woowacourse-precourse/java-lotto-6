@@ -22,6 +22,7 @@ class PurchasePriceTest {
         if (validPurchasePrice.contains(",")) {
             validPurchasePrice = validPurchasePrice.replaceAll(",", "");
         }
+
         assertEquals(Integer.parseInt(validPurchasePrice), validPrice.getPrice());
     }
 

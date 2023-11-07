@@ -8,19 +8,19 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoGame {
-
     private final static int MIN = 1;
     private final static int MAX = 45;
     private final static int NUMBER = 6;
     private final String ERROR = "[ERROR]";
     private List<Lotto> lottos = new ArrayList<>();
-    private int result = 0;
+    private final Map<LottoResult, Integer> resultCounts = new EnumMap<>(LottoResult.class);
+    private LottoWinning winning = new LottoWinning();
+
 
     public void start() {
         UserInput input = new UserInput();
         int count = input.purchase();
-        guessNumbers(generateLottoNumbers(count),input.luckyNumber(),input.bonusNumber());
-//        System.out.println(oh);
+        guessNumbers(count,generateLottoNumbers(count),input.luckyNumber(),input.bonusNumber());
     }
 
     // 1000으로 나누어 지는지 확인
@@ -51,18 +51,23 @@ public class LottoGame {
         SIX_MATCH("6개 일치 (2,000,000,000원)", 2000000000);
 
         private final String description;
+        private final int prize;
 
         LottoResult(String description, int prize) {
             this.description = description;
+            this.prize = prize;
         }
 
         public String getDescription() {
             return description;
         }
+        public int getPrize(){
+            return prize;
+        }
     }
 
-    public void guessNumbers(List<Lotto> randoms, List<Lotto> lucky, int bonus) {
-        Map<LottoResult, Integer> resultCounts = new EnumMap<>(LottoResult.class);
+    // 로또 번호 맞추기
+    public void guessNumbers(int purchase, List<Lotto> randoms, List<Lotto> lucky, int bonus) {
         for (LottoResult result : LottoResult.values()) {
             resultCounts.put(result, 0);
         }
@@ -75,14 +80,16 @@ public class LottoGame {
                 }
             }
             if (count >= 3 && count <= 6) {
-                LottoResult result = LottoResult.values()[count - 3];
+                LottoResult result = LottoResult.values()[count - 3]; // 해당되는 value 가져오기
                 resultCounts.put(result, resultCounts.get(result) + 1);
             }
         }
-        System.out.println("당첨 통계"+"\n---");
-        for (LottoResult result : LottoResult.values()) {
-            System.out.println(result.getDescription() + " - " + resultCounts.get(result));
-        }
+
+        winning.winningLottos(resultCounts); // 당첨 통계
+        int earningMoney = winning.money(resultCounts); // 총 당첨금
+        System.out.println(earningMoney);
+        int totalRate = winning.calcualteEarningRate(purchase*1000, earningMoney);
+        System.out.printf("총 수익률은 %.2f%% 입니다.%n",(float)totalRate);
     }
 
     public boolean isNumberInLuckyList(int number, List<Lotto> lucky) {

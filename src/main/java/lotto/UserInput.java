@@ -6,6 +6,8 @@ import lotto.Lotto;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// 로또 값 입력 클래스
 public class UserInput {
     private final static String AMOUNT = "구입금액을 입력해 주세요.";
     private final static String COUNT = "개를 구매했습니다.";
@@ -33,6 +35,7 @@ public class UserInput {
             }
         }
     }
+
 
     public int count(int num) {
         num = num / 1000;

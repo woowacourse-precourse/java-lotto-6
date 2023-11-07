@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -7,6 +7,7 @@ import java.util.Map;
 import lotto.data.Lotto;
 import lotto.data.LottoResult;
 import lotto.data.WinningCombination;
+import lotto.domain.LottoPurchaseInput;
 import lotto.message.LottoPrize;
 import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;

@@ -156,6 +156,9 @@ public class Application {
         System.out.print(Rank.FIRST.getWins() + "개 일치 ");
         System.out.print("(" + String.format("%,d", Rank.FIRST.getPrize()) + "원) - ");
         System.out.println(lottoWinsCount[Rank.FIRST.ordinal()] + "개");
+
+        double profit = (double) earned / paid * 100;
+        System.out.println("총 수익률은 " + String.format("%.2f", profit) + "%입니다.");
     }
 }
 

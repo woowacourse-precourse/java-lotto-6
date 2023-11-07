@@ -9,8 +9,17 @@ import java.util.stream.Collectors;
 public class InputView {
 
     public static Integer inputPurchaseAmount() {
-        System.out.println(MessageConstants.PURCHASE_AMOUNT_GUIDE);
-        String inputValue = Console.readLine();
+        String inputValue = null;
+        Boolean flag = false;
+        while(!flag) {
+            System.out.println(MessageConstants.PURCHASE_AMOUNT_GUIDE);
+            inputValue = Console.readLine();
+            try {
+                InputValidator.validateType(inputValue);
+                InputValidator.validateUnit(inputValue);
+                flag = true;
+            } catch (Exception e) {}
+        }
         return Integer.parseInt(inputValue);
     }
 

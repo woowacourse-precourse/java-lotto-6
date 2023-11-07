@@ -1,6 +1,7 @@
 package lotto.model;
 
 import static lotto.exception.ExceptionMessage.GOAL_NUMBER_SIZE_EXCEPTION;
+import static lotto.exception.ExceptionMessage.NULL_EXCEPTION;
 import static lotto.exception.ExceptionMessage.NUMBER_DUPLICATE_EXCEPTION;
 import static lotto.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 import static lotto.exception.ExceptionMessage.UNVALID_GOAL_NUMBER;
@@ -10,6 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class GoalNumbersTest {
 
@@ -27,15 +31,28 @@ public class GoalNumbersTest {
     @DisplayName("정답 번호 예외 테스트")
     class GoalNumbersExceptionTest {
 
+        @ParameterizedTest
+        @ValueSource(strings = {
+                "10,20,30,40,41,42,abc",
+                "10,20,  30,40,41,42"
+        })
+        @EmptySource
+        @DisplayName("빈 문자, 일반 문자, 공백 포함 문자가 포함되었을 때 예외가 발생한다.")
+        void notNumberValueExceptionTest(final String numberInput) {
+            // when & then
+            assertThatThrownBy(() -> GoalNumbers.from(numberInput)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(NUMBER_FORMAT_EXCEPTION.getMessage());
+        }
+
         @Test
-        @DisplayName("일반 문자가 포함되었을 때 예외가 발생한다.")
-        void notNumberValueExceptionTest() {
+        @DisplayName("null 값이 들어오면 안 된다.")
+        void nullValueExceptionTest() {
             // given
-            String goalNumbersInput = "10,20,30,abc,40,50";
+            String goalNumbersInput = null;
 
             // when & then
             assertThatThrownBy(() -> GoalNumbers.from(goalNumbersInput)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(NUMBER_FORMAT_EXCEPTION.getMessage());
+                    .hasMessage(NULL_EXCEPTION.getMessage());
         }
 
         @Test

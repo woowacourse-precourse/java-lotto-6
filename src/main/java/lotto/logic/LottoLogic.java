@@ -5,13 +5,16 @@ import lotto.model.Lotto;
 import lotto.view.View;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class LottoLogic implements Logic {
     private static final int COST = 1000;
     private View view;
     private boolean running = true;
-    private List<Lotto> lotteries = new ArrayList<>();
+    private List<Lotto> lotteries;
+    private List<Integer> winningNumber;
+    private int bonusNumber;
 
     public LottoLogic(View view) {
         this.view = view;
@@ -28,27 +31,43 @@ public class LottoLogic implements Logic {
     public void run() {
         int payment = getPurchaseAmount();
         generateLotto(payment);
+        getWinningNumber();
+        getBonusNumber();
+
     }
 
-    private void generateLotto(int payment) {
-        int count = payment / COST;
-        for (int i = 0; i < count; i++) {
-            lotteries.add(new Lotto(Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, NUMBER_COUNT)));
+    private void getBonusNumber() {
+        try {
+            bonusNumber = validNumber(view.getBonusNumber());
+        } catch (IllegalArgumentException e) {
+            view.printError(e.getMessage());
+            getBonusNumber();
         }
-        view.printAllLottery(lotteries);
     }
 
-    private int getPurchaseAmount() {
-        int payment = 0;
-        while (payment == 0) {
-            try {
-                String input = view.getPurchaseAmount();
-                payment = validPayment(input);
-            } catch (IllegalArgumentException e) {
-                view.printError(e.getMessage());
-            }
+    private void getWinningNumber() {
+        String input = view.getWinningNumbers();
+        try {
+            winningNumber = Arrays.stream(input.split(","))
+                    .map((o) -> validNumber(o))
+                    .toList();
+        } catch (IllegalArgumentException e) {
+            view.printError(e.getMessage());
+            getWinningNumber();
         }
-        return payment;
+    }
+
+    private int validNumber(String inputNumber) {
+        int number = 0;
+        try {
+            number = Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+        }
+        if (number <= 0 || number > 45) {
+            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 숫자여야 합니다.");
+        }
+        return number;
     }
 
     private int validPayment(String input) {
@@ -64,6 +83,25 @@ public class LottoLogic implements Logic {
             throw new IllegalArgumentException("지불 금액은 1000원 단위여야 합니다.");
         }
         return payment;
+    }
+
+    private void generateLotto(int payment) {
+        lotteries = new ArrayList<>();
+        int count = payment / COST;
+        for (int i = 0; i < count; i++) {
+            lotteries.add(new Lotto(Randoms.pickUniqueNumbersInRange(START_RANGE, END_RANGE, NUMBER_COUNT)));
+        }
+        view.printAllLottery(lotteries);
+    }
+
+    private int getPurchaseAmount() {
+        try {
+            String input = view.getPurchaseAmount();
+            return validPayment(input);
+        } catch (IllegalArgumentException e) {
+            view.printError(e.getMessage());
+            return getPurchaseAmount();
+        }
     }
 
 }

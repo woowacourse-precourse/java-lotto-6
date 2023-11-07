@@ -80,7 +80,8 @@
 - [x] 랜덤한 로또 번호 생성
   - [x] Random 값 추출은 camp.nextstep.edu.missionutils.Randoms의 pickUniqueNumbersInRange()를 활용
 - [ ] 로또 번호 저장
-  - [ ] 당첨 번호, 보너스 번호 저장
+  - [x] 당첨 번호 저장
+  - [ ] 보너스 번호 저장
   - [ ] 유효성 검사
 - [ ] 로또 당첨 확인
   - [ ] 당첨 번호와 생성된 로또 티켓값 비교

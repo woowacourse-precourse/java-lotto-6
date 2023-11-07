@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import lotto.domain.Lotto;
 import lotto.port.LottoNumbersProvider;
 
 public class LottoService {
@@ -26,11 +27,13 @@ public class LottoService {
     public void validateLottoPurchaseAmount(String lottoPurchaseAmount) {
 
         if (PurchaseAmountNOTDivideBy1000(lottoPurchaseAmount)) {
-            throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + PURCHASE_AMOUNT_DIVIDE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(
+                FIRST_ERROR_MESSAGE + PURCHASE_AMOUNT_DIVIDE_EXCEPTION_MESSAGE);
         }
 
         if (PurchaseAmountNotDigit(lottoPurchaseAmount)) {
-            throw new IllegalArgumentException(FIRST_ERROR_MESSAGE + PURCHASE_AMOUNT_NOT_DIGIT_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(
+                FIRST_ERROR_MESSAGE + PURCHASE_AMOUNT_NOT_DIGIT_EXCEPTION_MESSAGE);
         }
     }
 
@@ -62,4 +65,18 @@ public class LottoService {
         return allLottoNumbers;
     }
 
+    public void addLottoNumberToWinningNumbers(String lottoNumbersString) {
+        List<Integer> winningNumbers = convertStringToWinningNumbers(lottoNumbersString);
+        Lotto lotto = new Lotto(winningNumbers);
+    }
+
+
+    public List<Integer> convertStringToWinningNumbers(String lottoNumbersString) {
+        String[] splitNumbers = lottoNumbersString.split(",");
+        List<Integer> lottoNumbers = new ArrayList<>();
+        for (String number : splitNumbers) {
+            lottoNumbers.add(Integer.parseInt(number.trim()));
+        }
+        return lottoNumbers;
+    }
 }

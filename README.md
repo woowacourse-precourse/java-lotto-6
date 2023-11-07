@@ -30,7 +30,8 @@
 ### 💻 도메인 기능
 
 - [x] 생성된 로또 숫자와 당첨 숫자를 비교해, 같은 숫자가 몇 개인지 구한다. - Judge#compareWinningNumbers()
-- [x] 같은 숫자 개수 만큼 해당하는 금액을 계산한다. - LottoController#calculateResult()
+- [x] 같은 숫자 개수 만큼 해당하는 금액을 계산한다. - Judge#calculateEarnings()
+- [x] 같은 숫자 개수 만큼 해당하는 등수를 리턴한다. - Judge#calculateRank()
 
 ### 🔨 유틸리티 기능
 

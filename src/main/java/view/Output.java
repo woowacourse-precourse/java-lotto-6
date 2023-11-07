@@ -26,7 +26,7 @@ public class Output {
     }
 
     public static void printErrorFitLottoCostMessage(){
-        System.out.println(ErrorMessage.FIT_LOTTO_COST);
+        System.out.println(ErrorMessage.FIT_LOTTO_COST_MESSAGE);
     }
 
     public static void errorMessage(Exception error) {

@@ -1,10 +1,15 @@
 package domain;
 
+import constant.LottoConfig;
 import validator.LottoMoneyValidator;
 
 public class LottoMoney {
 
-    private final long money;
+    private final int money;
+
+    public LottoMoney(){
+        this.money = 0;
+    }
 
     public LottoMoney(String money){
        validate(money);
@@ -12,7 +17,13 @@ public class LottoMoney {
     }
 
     private void validate(String money){
-        LottoMoneyValidator.validate(money);
+        LottoMoneyValidator.validNumberic(money);
+        LottoMoneyValidator.validFitLottoCost(money);
+        LottoMoneyValidator.validNotZero(money);
+    }
+
+    public int getAvaliablePurcahaseCount(){
+       return money/ LottoConfig.COST.getValue();
     }
 
 }

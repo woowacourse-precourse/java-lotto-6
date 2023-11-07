@@ -2,9 +2,6 @@ package validator;
 
 import constant.ErrorMessage;
 import constant.LottoConfig;
-import view.Output;
-
-import java.io.EOFException;
 
 public class LottoMoneyValidator {
 
@@ -23,7 +20,14 @@ public class LottoMoneyValidator {
 
     public static void validFitLottoCost(String data){
         if(Integer.parseInt(data) % LottoConfig.COST.getValue() != 0){
-            throw new IllegalArgumentException(ErrorMessage.MESSAGE + " " + ErrorMessage.FIT_LOTTO_COST);
+            throw new IllegalArgumentException(ErrorMessage.MESSAGE + " " + ErrorMessage.FIT_LOTTO_COST_MESSAGE);
+        }
+    }
+
+    public static void validNotZero(String data){
+        if(Integer.parseInt(data) == 0){
+            throw new IllegalArgumentException(ErrorMessage.MESSAGE + " " + ErrorMessage.FIT_LOTTO_COST_MESSAGE);
+
         }
     }
 }

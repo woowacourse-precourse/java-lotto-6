@@ -23,10 +23,19 @@ class LottoMoneyTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구입 금액이 0원일시 예외가 발생한다.")
+    @Test
+    void createMoneyByZero(){
+        assertThatThrownBy(() -> new LottoMoney("83290"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("유효한 구입 금액일시 정상적으로 생성된다.")
     @Test
     void createMoney_유효_구입(){
         assertThatCode(() -> new LottoMoney("10000"))
                 .doesNotThrowAnyException();
     }
+
+
 }

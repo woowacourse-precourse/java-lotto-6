@@ -2,6 +2,7 @@ package controller;
 
 import constant.LottoConfig;
 import domain.LottoMoney;
+import domain.Lottos;
 import dto.LottoCostRequst;
 import domain.Lotto;
 import util.RandomNumberGenerator;
@@ -13,7 +14,7 @@ import java.util.List;
 public class LottoController {
     private LottoMoney lottoMoney;
     private Input input;
-    private List<Lotto> lottos;
+    private Lottos lottos;
 
     public LottoController(){
         input = new Input();
@@ -22,17 +23,18 @@ public class LottoController {
     public void start(){
         //lottoCostRequst = new LottoCostRequst(Input.getInputForLottoMoney());
         // 로또 살 금액 입력
-        getLottoMeney();
+        lottoMoney = getLottoMeney();
 
-       // this.lottos = issueLottos(getLottoCountFromCost(lottoCostRequst));
+       // lottos = issueLottos(getLottoCountFromCost(lottoMoney));
        // printPublishedLottos();
     }
 
-    private void getLottoMeney(){
+    private LottoMoney getLottoMeney(){
+        LottoMoney tempLottoMoney;
         while(true){
             try{
-                lottoMoney = new LottoMoney(input.getInputForLottoMoney());
-                return;
+                tempLottoMoney = new LottoMoney(input.getInputForLottoMoney());
+                return tempLottoMoney;
             } catch (NumberFormatException error){
                 Output.errorMessage(error);
             }catch (IllegalArgumentException error){
@@ -41,27 +43,17 @@ public class LottoController {
         }
     }
 
-  //  private List<Lotto> issueLottos(int issueCount){
-//        List<Lotto> lottos = new ArrayList<>();
-//
-//        for(int i=0; i<issueCount; i++){
-//            List<Integer> numbers = RandomNumberGenerator.create(
-//                    LottoConfig.NUM_COUNT.getValue(),
-//                    LottoConfig.START_INCLUSIVE.getValue(),
-//                    LottoConfig.END_INCLUSIVE.getValue()
-//            );
-//            lottos.add(new Lotto(numbers));
-//        }
-//        return lottos;
- //   }
-
-    private void printPublishedLottos(){
-        System.out.println();
-        Output.printLottoPurchaseMessage(this.lottos.size());
-        for(Lotto lotto : lottos){
-            System.out.println(lotto);
-        }
+    private Lottos issueLottos(int issueCount){
+        return new Lottos(issueCount);
     }
+
+//    private void printPublishedLottos(){
+//        System.out.println();
+//        Output.printLottoPurchaseMessage(this.lottos.size());
+//        for(Lotto lotto : lottos){
+//            System.out.println(lotto);
+//        }
+//    }
 
     private int getLottoCountFromCost(LottoCostRequst lottoCostRequst){
         return lottoCostRequst.getCost() / LottoConfig.COST.getValue();

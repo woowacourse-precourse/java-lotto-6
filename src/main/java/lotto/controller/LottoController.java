@@ -2,6 +2,7 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
+import lotto.model.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -24,6 +25,8 @@ public class LottoController {
         outputView.printLottoQuantity(quantity);
         List<Lotto> lottos = pickLottoNumbers(quantity);
         outputView.printLottoNumbers(lottos);
+        WinningLotto winningLotto = inputView.getWinningNumbers();
+
     }
 
     private List<Lotto> pickLottoNumbers(int quantity) {

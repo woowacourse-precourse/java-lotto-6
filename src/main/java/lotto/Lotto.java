@@ -12,9 +12,25 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.INVALID_WINNING_NUMBERS_COUNT);
+        }
+
+        if (numbers.stream().distinct().count() != 6) {
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATE_LOTTO_NUMBERS);
         }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    public int countMatches(List<Integer> winningNumbers) {
+        return (int) numbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
 }

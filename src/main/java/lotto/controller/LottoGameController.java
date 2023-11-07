@@ -35,8 +35,7 @@ public class LottoGameController {
             return new PurchaseAmount(amount);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            setPurchaseAmount();
         }
-        return null;
+        return setPurchaseAmount();
     }
 }

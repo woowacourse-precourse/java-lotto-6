@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.ErrorMessage;
+import lotto.exception.LottoGameException;
+
 public class Cash {
     private static final int LOTTO_PRICE = 1000;
 
@@ -12,7 +15,7 @@ public class Cash {
 
     private void validate(Integer amount) {
         if (isAmountNotInMultipleOfLottoPrice(amount)) {
-            throw new IllegalArgumentException();
+            throw new LottoGameException(ErrorMessage.INVALID_AMOUNT);
         }
     }
 

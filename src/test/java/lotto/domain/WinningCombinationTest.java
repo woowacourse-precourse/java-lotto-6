@@ -78,6 +78,7 @@ class WinningCombinationTest {
         }
     }
 
+    @DisplayName("생성시 보너스 번호와 당첨 번호에 중복 값이 있으면 예외를 던진다.")
     @Test
     void createValidation() {
         // given

@@ -9,6 +9,7 @@ public class Buyer {
     private final LottoResultChecker lottoResultChecker;
     private List<Lotto> lottos;
     private WinningLotto winningLotto;
+    private int price;
 
     public Buyer(LottoMachine lottoMachine, LottoResultChecker lottoResultChecker) {
         this.lottoMachine = lottoMachine;
@@ -23,7 +24,8 @@ public class Buyer {
 
                 int price = InputProcessor.parsePrice(input);
                 InputProcessor.checkPriceValidation(price);
-                this.lottos = lottoMachine.inputPurchasePrice(price);
+                this.price = price;
+                this.lottos = lottoMachine.inputPurchasePrice(this.price);
                 return;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
@@ -73,6 +75,6 @@ public class Buyer {
     public void aggregateLotto() {
         lottoResultChecker.checkLotto(this.lottos, this.winningLotto);
         lottoResultChecker.printTotalPrize();
-        lottoResultChecker.printProfit();
+        lottoResultChecker.printProfit(this.price);
     }
 }

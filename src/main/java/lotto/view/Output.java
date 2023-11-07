@@ -9,8 +9,8 @@ import static lotto.values.ExceptionMessage.ERROR;
 import static lotto.values.GuideMessage.*;
 
 public class Output {
-    public void printError(ExceptionMessage exceptionMessage){
-        System.out.println(ERROR.getMessage() + exceptionMessage.getMessage());
+    public void printError(String exceptionMessage){
+        System.out.println(ERROR.getMessage() + exceptionMessage);
     }
     public void printMoneyPrompt() {
         System.out.println(REQUEST_MONEY_MESSAGE.getMessage());

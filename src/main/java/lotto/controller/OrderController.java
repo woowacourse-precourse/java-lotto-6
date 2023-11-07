@@ -1,11 +1,8 @@
 package lotto.controller;
 
 import lotto.service.OrderService;
-import lotto.values.ExceptionMessage;
 import lotto.view.Input;
 import lotto.view.Output;
-
-import static lotto.values.ExceptionMessage.NOT_NULL;
 
 public class OrderController {
     OrderService orderLotto;
@@ -20,17 +17,16 @@ public class OrderController {
         Input input = new Input();
 
         String money;
-        ExceptionMessage exceptionMessage = NOT_NULL;
+        boolean checkException = false;
 
-        while(exceptionMessage != null){
+        while(!checkException){
             output.printMoneyPrompt();
-            money = input.get();
-
             orderLotto = new OrderService();
-            exceptionMessage = orderLotto.checkException(money);
-
-            if (exceptionMessage != null) {
-                output.printError(exceptionMessage);
+            try{
+                money = input.get();
+                checkException = orderLotto.checkException(money);
+            }catch (IllegalArgumentException e){
+                output.printError(e.getMessage());
             }
         }
     }

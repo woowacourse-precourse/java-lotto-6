@@ -28,13 +28,29 @@ public class LottoGame {
         List<Integer> winningNumbers = inputChecker.readWinningNumbers();
         Integer bonusNumber = inputChecker.readBonusNumber();
 
-        // 통계 출력
-        lottoResult.printRewardStatistics(purchasedLottos,winningNumbers,bonusNumber);
+        purchasedLottos.printLottos(); // #
 
-        // 수익률 계산
+        // 통계 출력
+        lottoResult.calculateRewardStatistics(purchasedLottos,winningNumbers,bonusNumber);
+
+        // 수익률 출력
+        printReturnRate(purchasedLottos);
+        printRewardStatistics();
+    }
+
+    private void printReturnRate(Lottos purchasedLottos) {
         long totalReward = lottoResult.getTotalReward();
-        double returnRate = getReturnRate(purchasedLottos.count(),totalReward);
+        double returnRate = getReturnRate(purchasedLottos.count(), totalReward);
         System.out.println("총 수익률은 " + String.format("%.1f%%", returnRate * 100) + "입니다.");
+    }
+    private void printRewardStatistics(){
+        String[] rewardNames = lottoResult.getRewardNames();
+        int[] reward = lottoResult.getReward();
+        int [] rewardMatch = lottoResult.getRewardMatch();
+
+        for (int i = 0; i < rewardMatch.length; i++) {
+            System.out.println(rewardNames[i] + " 일치 (" + String.format("%,d원", reward[i]) + ") - " + rewardMatch[i] + "개");
+        }
     }
 
 }

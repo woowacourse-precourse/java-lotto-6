@@ -7,24 +7,25 @@ import java.util.List;
 public class LottoResult {
 
     private int totalReward = 0;
+    String[] rewardNames = {"3개", "4개", "5개", "5개 일치, 보너스 볼", "6개"};
+    int[] reward = {5000,50000,1500000,30000000,2000000000};
+    int [] rewardMatch;
 
     public long lottoNumbersPurchased(long userLottoPrice) {
         return userLottoPrice / 1000;
     }
 
-    public void printRewardStatistics(Lottos purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
+    public void calculateRewardStatistics(Lottos purchasedLottos, List<Integer> winningNumbers, int bonusNumber) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        String[] rewardNames = {"3개", "4개", "5개", "5개 일치, 보너스 볼", "6개"};
-        int[] reward = {5000,50000,1500000,30000000,2000000000};
-        int [] rewardMatch = countMatchNumbers(purchasedLottos,winningNumbers,bonusNumber);
+
+        rewardMatch = countMatchNumbers(purchasedLottos,winningNumbers,bonusNumber);
 
         this.totalReward = 0;
 
         for (int i = 0; i < rewardMatch.length; i++) {
             int prize = reward[i] * rewardMatch[i];
             totalReward += prize;
-            System.out.println(rewardNames[i] + " 일치 (" + String.format("%,d원", reward[i]) + ") - " + rewardMatch[i] + "개");
         }
     }
 
@@ -59,5 +60,17 @@ public class LottoResult {
 
     public int getTotalReward() {
         return totalReward;
+    }
+    public String[] getRewardNames() {
+        return rewardNames;
+    }
+
+
+    public int[] getReward() {
+        return reward;
+    }
+
+    public int[] getRewardMatch() {
+        return rewardMatch;
     }
 }

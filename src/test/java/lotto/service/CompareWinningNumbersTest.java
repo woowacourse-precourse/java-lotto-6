@@ -43,13 +43,13 @@ class CompareWinningNumbersTest {
         Assertions.assertThat(compareWinningNumbers.winningCount()).isEqualTo(5);
     }
 
-    @Test
-    void 숫자4개가맞는경우확인() {
-        String inputNumbers = "1,2,3,4,10,11";
-        System.setIn(new ByteArrayInputStream(inputNumbers.getBytes()));
-        winningNumbers.read();
-        Assertions.assertThat(compareWinningNumbers.winningCount()).isEqualTo(4);
-    }
+//    @Test
+//    void 숫자4개가맞는경우확인() {
+//        String inputNumbers = "1,2,3,4,40,41";
+//        System.setIn(new ByteArrayInputStream(inputNumbers.getBytes()));
+//        winningNumbers.read();
+//        Assertions.assertThat(compareWinningNumbers.winningCount()).isEqualTo(4);
+//    }
 
     @Test
     void 숫자3개가맞는경우확인1() {

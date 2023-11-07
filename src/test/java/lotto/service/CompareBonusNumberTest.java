@@ -20,6 +20,7 @@ class CompareBonusNumberTest {
 
     @BeforeEach
     void beforeSetUp() {
+        BonusNumbers.number = 0;
         lotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
         compareBonusNumber = new CompareBonusNumber(lotto);
         bonusNumbers = new BonusNumbers();
@@ -27,7 +28,6 @@ class CompareBonusNumberTest {
 
     @AfterEach
     void afterEach() {
-        BonusNumbers.number = 0;
         Console.close();
     }
 
@@ -36,7 +36,7 @@ class CompareBonusNumberTest {
         String inputNumber = "1";
         System.setIn(new ByteArrayInputStream(inputNumber.getBytes()));
         bonusNumbers.read();
-        Assertions.assertThat(compareBonusNumber.isThereBonus()).isEqualTo(true);
+        Assertions.assertThat(compareBonusNumber.isThereBonus()).isEqualTo("2nd");
     }
 
     @Test
@@ -44,6 +44,6 @@ class CompareBonusNumberTest {
         String inputNumber = "10";
         System.setIn(new ByteArrayInputStream(inputNumber.getBytes()));
         bonusNumbers.read();
-        Assertions.assertThat(compareBonusNumber.isThereBonus()).isEqualTo(false);
+        Assertions.assertThat(compareBonusNumber.isThereBonus()).isEqualTo("3rd");
     }
 }

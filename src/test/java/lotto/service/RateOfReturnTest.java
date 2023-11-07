@@ -8,10 +8,15 @@ import java.util.Map.Entry;
 import lotto.readUserInput.PurchaseAmount;
 import lotto.readUserInput.WinningNumbers;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class RateOfReturnTest {
 
+    @AfterEach
+    void afterEach() {
+        Console.close();
+    }
     @Test
     void 총수익률검증() {
         PurchaseAmount purchaseAmount = new PurchaseAmount();

@@ -10,6 +10,6 @@ public class PurchasedLottoNumbersPrint {
     }
 
     public void printTickets() {
-        System.out.println(purchasedLottoTickets.textForTicketsPrint());
+        purchasedLottoTickets.textForTicketsPrint();
     }
 }

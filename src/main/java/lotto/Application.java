@@ -18,10 +18,10 @@ public class Application {
         PurchaseAmount purchaseAmount = new PurchaseAmount();
         purchaseAmount.read();
 
-        gameGuidePrint.purchaseCompletePrint();
-
         PurchasedLottoTickets purchasedLottoTickets = new PurchasedLottoTickets();
-        purchasedLottoTickets.register();
+
+
+        gameGuidePrint.purchaseCompletePrint();
 
         PurchasedLottoNumbersPrint purchasedLottoNumbersPrint = new PurchasedLottoNumbersPrint(purchasedLottoTickets);
         purchasedLottoNumbersPrint.printTickets();

@@ -1,15 +1,16 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.util.Collections;
 import java.util.List;
 
 public class RandomNumbers {
-
-    public static List<Integer> draw() {
+    public List<Integer> draw() {
         return randomNumberPick();
     }
 
-    public static List<Integer> randomNumberPick() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);    // 상수로 치환 가능.
+    public List<Integer> randomNumberPick() {
+
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

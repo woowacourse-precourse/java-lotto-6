@@ -10,13 +10,14 @@ class RandomNumbersTest {
 
     @Test
     void 로또번호개수확인() {
-        Assertions.assertThat(RandomNumbers.draw().size()).isEqualTo(6);
+        RandomNumbers randomNumbers = new RandomNumbers();
+        Assertions.assertThat(randomNumbers.draw().size()).isEqualTo(6);
     }
 
     @Test
     void 로또번호범위확인() {
-
-        Assertions.assertThat(RandomNumbers.draw())
+        RandomNumbers randomNumbers = new RandomNumbers();
+        Assertions.assertThat(randomNumbers.draw())
                 .allSatisfy(number -> Assertions.assertThat(number).isBetween(1, 49));
     }
 

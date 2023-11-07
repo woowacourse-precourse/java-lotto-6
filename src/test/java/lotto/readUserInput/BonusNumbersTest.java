@@ -15,6 +15,7 @@ class BonusNumbersTest {
     @BeforeEach
     void beforeSetUp() {
         bonusNumbers = new BonusNumbers();
+        BonusNumbers.number = 0;
     }
 
     @AfterEach

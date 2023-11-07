@@ -17,7 +17,8 @@ public class PurchasedLottoTickets {
 
     public void register() {
         while (tickets.size() < PurchaseAmount.lottoQuantity) {
-            Lotto lotto = new Lotto(RandomNumbers.draw());
+            RandomNumbers randomNumbers = new RandomNumbers();
+            Lotto lotto = new Lotto(randomNumbers.draw());
             tickets.add(lotto);
         }
     }
@@ -25,11 +26,12 @@ public class PurchasedLottoTickets {
     public Map<String, Integer> eachRankCount() {
         Map<String, Integer> counts = new HashMap<>();
         setZero(counts);
-        for (Lotto lotto : tickets) {
-            CompareWinningNumbers compareWinningNumbers = new CompareWinningNumbers(lotto);
-            String rank = compareWinningNumbers.checkThisTicketRank();
-            counts.put(rank, counts.get(rank) + 1);
-        }
+        tickets.stream()
+                .map(CompareWinningNumbers::new)
+                .forEach((winningNumbers) -> {
+                    String rank = winningNumbers.checkThisTicketRank();
+                    counts.put(rank, counts.get(rank) + 1);
+                });
         return counts;
     }
 
@@ -42,11 +44,9 @@ public class PurchasedLottoTickets {
         counts.put("lose", 0);
     }
 
-    public String textForTicketsPrint() {
-        StringBuilder allTickets = new StringBuilder();
+    public void textForTicketsPrint() {
         for (Lotto lotto : tickets) {
-            allTickets.append(lotto.textForLottoPrint()).append("\n");
+            lotto.textForLottoPrint();
         }
-        return allTickets.toString();
     }
 }

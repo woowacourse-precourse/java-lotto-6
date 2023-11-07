@@ -5,10 +5,15 @@ import java.io.ByteArrayInputStream;
 import lotto.readUserInput.PurchaseAmount;
 import lotto.readUserInput.WinningNumbers;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
 class PurchasedLottoTicketsTest {
 
+    @AfterEach
+    void afterEach() {
+        Console.close();
+    }
     @Test
     void 당첨정보확인() {
         PurchaseAmount purchaseAmount = new PurchaseAmount();

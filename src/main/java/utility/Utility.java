@@ -1,17 +1,17 @@
 package utility;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Utility {
-    public static List<Integer> sortAscending(List<Integer> numbers){
-        Collections.sort(numbers);
-        return numbers;
+    public static List<Integer> sortAscending(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 
-    public static List<String> splitByComma(String input){
+    public static List<String> splitByComma(String input) {
         return Arrays.stream(input.split(",")).toList();
     }
 }

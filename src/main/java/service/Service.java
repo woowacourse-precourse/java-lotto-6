@@ -57,7 +57,7 @@ public class Service {
             validator.checkIsNumber(splitNumber);
             int number = Integer.parseInt(splitNumber);
             validator.checkNumberRange(number);
-            validator.checkDuplicateNumber(winNumbers,number);
+            validator.checkDuplicateNumber(winNumbers, number);
             winNumbers.add(number);
         }
         return winNumbers;
@@ -71,33 +71,34 @@ public class Service {
         return number;
     }
 
-    public LinkedHashMap getLottoResult(List<Lotto> lottos, WinningNumber winningNumber){
-        LinkedHashMap<Rank,Integer> result = new LinkedHashMap<Rank,Integer>();
-        for(Rank rank : Rank.values()){
-            result.put(rank,0);
+    public LinkedHashMap getLottoResult(List<Lotto> lottos, WinningNumber winningNumber) {
+        LinkedHashMap<Rank, Integer> result = new LinkedHashMap<Rank, Integer>();
+        for (Rank rank : Rank.values()) {
+            result.put(rank, 0);
         }
-        for(Lotto lotto : lottos){
+        for (Lotto lotto : lottos) {
             Rank rank = getTicketRank(lotto, winningNumber);
-            result.put(rank,result.get(rank)+1);
+            result.put(rank, result.get(rank) + 1);
         }
         return result;
     }
 
-    private Rank getTicketRank(Lotto lotto , WinningNumber winningNumber){
+    private Rank getTicketRank(Lotto lotto, WinningNumber winningNumber) {
         int countMatch = winningNumber.countMatch(lotto);
         boolean isMatchBonusNumber = winningNumber.isMatchBonusNumber(lotto);
-        return Rank.checkTicketRank(countMatch,isMatchBonusNumber);
+        return Rank.checkTicketRank(countMatch, isMatchBonusNumber);
     }
 
-    public float calculateRateOfReturn(LinkedHashMap<Rank,Integer>  lottoResult, int money) {
-        return (float)calculateSumOfPrizeMoney(lottoResult) / money * PERCENT;
+    public float calculateRateOfReturn(LinkedHashMap<Rank, Integer> lottoResult, int money) {
+        return (float) calculateSumOfPrizeMoney(lottoResult) / money * PERCENT;
     }
-    private long calculateSumOfPrizeMoney(LinkedHashMap<Rank,Integer> lottoResult){
-        long sum = 0;
-        for(Map.Entry<Rank,Integer> set : lottoResult.entrySet()){
-            sum += set.getKey().getPrizeMoney() * set.getValue();
+
+    private long calculateSumOfPrizeMoney(LinkedHashMap<Rank, Integer> lottoResult) {
+        long sumOfPrizeMoney = 0;
+        for (Map.Entry<Rank, Integer> set : lottoResult.entrySet()) {
+            sumOfPrizeMoney += set.getKey().getPrizeMoney() * set.getValue();
         }
-        return sum;
+        return sumOfPrizeMoney;
     }
 
 }

@@ -20,10 +20,11 @@ public class Controller {
         List<Lotto> lottos = purchaseLotto(money);
         List<Integer> sixWinNumbers = getWinNumbersByUserInput();
         int bonusNumber = getBonusNumberByUserInput(sixWinNumbers);
-        WinningNumber winningNumber = new WinningNumber(sixWinNumbers,bonusNumber);
-        LinkedHashMap<Rank,Integer> lottoResult = getLottoResult(lottos,winningNumber);
-        getRateOfReturn(lottoResult,money);
+        WinningNumber winningNumber = new WinningNumber(sixWinNumbers, bonusNumber);
+        LinkedHashMap<Rank, Integer> lottoResult = getLottoResult(lottos, winningNumber);
+        getRateOfReturn(lottoResult, money);
     }
+
     public Controller(Service service) {
         this.service = service;
     }
@@ -67,21 +68,21 @@ public class Controller {
             try {
                 InputView.printAskForInputBonusNumber();
                 String input = Console.readLine();
-                return service.getBonusNumberByUserInput(input,winningNumber);
+                return service.getBonusNumberByUserInput(input, winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    public LinkedHashMap getLottoResult(List<Lotto> lottos, WinningNumber winningNumber){
-        LinkedHashMap<Rank,Integer> result = service.getLottoResult(lottos,winningNumber);
+    public LinkedHashMap getLottoResult(List<Lotto> lottos, WinningNumber winningNumber) {
+        LinkedHashMap<Rank, Integer> result = service.getLottoResult(lottos, winningNumber);
         OutputView.printStatisticsResult(result);
         return result;
     }
 
-    public void getRateOfReturn(LinkedHashMap lottoResult, int money){
-        float rateOfReturn = service.calculateRateOfReturn(lottoResult,money);
+    public void getRateOfReturn(LinkedHashMap lottoResult, int money) {
+        float rateOfReturn = service.calculateRateOfReturn(lottoResult, money);
         OutputView.printRateOfReturn(rateOfReturn);
     }
 }

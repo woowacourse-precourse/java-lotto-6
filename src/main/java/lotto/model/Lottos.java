@@ -1,37 +1,38 @@
 package lotto.model;
 
 import lotto.utils.GetRandomNumber;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Lottos {
-    private final List<Lotto> lottoList;
+    private final List<Lotto> lottos;
 
     public Lottos(int lottoAmount) {
-        List<Lotto> lottoList = new ArrayList<>();
+        List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < lottoAmount; i++) {
-            lottoList.add(new Lotto(createLotto()));
+            lottos.add(new Lotto(createLotto()));
         }
 
-        this.lottoList = lottoList;
+        this.lottos = lottos;
     }
 
     private List<Integer> createLotto() {
-        List<Integer> Lotto = new ArrayList<>();
+        List<Integer> lotto = new ArrayList<>();
 
-        while(Lotto.size() != 6) {
+        while (lotto.size() != 6) {
             int randomNumber = GetRandomNumber.getRandomNumber();
 
-            if (!Lotto.contains(randomNumber)){
-                Lotto.add(randomNumber);
+            if (!lotto.contains(randomNumber)) {
+                lotto.add(randomNumber);
             }
         }
 
-        return Lotto;
+        return lotto;
     }
 
-    public List<Lotto> getLottoList () {
-        return lottoList;
+    public List<Lotto> getLottoList() {
+        return lottos;
     }
 }

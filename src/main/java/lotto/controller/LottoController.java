@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.Lotto;
 import lotto.model.LottoPurchasingAmount;
 import lotto.model.Lottos;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final InputController inputController;
@@ -16,8 +17,9 @@ public class LottoController {
                 inputController.getLottoPurchasingAmountFromUser();
         Lottos lottos = new Lottos(lottoPurchasingAmount.getLottoAmount());
 
+        OutputView.showPurchasedLottoQuantity(lottoPurchasingAmount.getLottoAmount());
         for (Lotto lotto : lottos.getLottoList()) {
-            System.out.println(lotto.getLottoNumbers());
+            OutputView.showPurchasedLotto(lotto.getLottoNumbers());
         }
     }
 }

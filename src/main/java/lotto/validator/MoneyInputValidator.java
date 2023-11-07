@@ -33,13 +33,13 @@ public class MoneyInputValidator implements BasicValidator<String> {
 
     private void validateNumberIfMultipleOfThousand(String input) {
         int money = Integer.parseInt(input);
-        if (isNotMultipleOfThousand(money)) {
+        if (!isMultipleOfThousand(money)) {
             throw new IllegalArgumentException(INPUT_NOT_MULTIPLE_OF_THOUSAND);
         }
     }
 
-    private boolean isNotMultipleOfThousand(int money) {
-        return money % LOTTO_PURCHASE_PRICE != ZERO;
+    private boolean isMultipleOfThousand(int money) {
+        return money % LOTTO_PURCHASE_PRICE == ZERO;
     }
 
     private void validateNumberIfMoreThanOneThousand(String input) {

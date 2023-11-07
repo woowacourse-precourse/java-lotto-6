@@ -11,12 +11,6 @@ public class NumberGenerator {
                 LottoConstants.MAX_NUMBER_RANGE.getValue(),
                 LottoConstants.NUMBER_COUNT.getValue());
 
-        sortNumbers(randomNumbers);
-
         return randomNumbers;
-    }
-
-    private static void sortNumbers(List<Integer> numbers) {
-        Collections.sort(numbers);
     }
 }

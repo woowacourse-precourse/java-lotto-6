@@ -1,15 +1,12 @@
 package lotto.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.dto.MatchCounterDTO;
 import lotto.dto.MoneyDTO;
 import lotto.dto.WinningStatisticDTO;
 import lotto.enums.Constant;
 import lotto.model.Lotto;
 import lotto.model.MatchCounter;
-import lotto.model.Money;
 import lotto.model.WinningLotto;
 import lotto.repository.LottoRepository;
 import lotto.repository.WinningLottoRepository;

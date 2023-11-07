@@ -6,6 +6,9 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class Lotto {
     static final int LOTTO_SIZE = 6;
+    static final int LOTTO_NUMBER_MIN = 1;
+    static final int LOTTO_NUMBER_MAX = 45;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -15,13 +18,20 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("");
+        }
+
+        // 값 범위 확인
+        for (Integer number : numbers) {
+            if (number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX) {
+                throw new IllegalArgumentException("");
+            }
         }
 
         // 중복 값 확인
         Set<Integer> check = new HashSet<>(numbers);
         if (check.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("");
         }
 
         // 값 순서 정렬
@@ -32,10 +42,8 @@ public class Lotto {
         int matched = 0;
         boolean hasBonus = false;
 
-        Set<Integer> check = new HashSet<>(winningNumbers);
-
         for (int number : numbers) {
-            if (check.contains(number)) {
+            if (winningNumbers.contains(number)) {
                 matched++;
             }
 

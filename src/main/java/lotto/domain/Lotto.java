@@ -68,6 +68,23 @@ public class Lotto {
         Collections.sort(lottoNums);
     }
 
+    public int compareWithLotto(WinningLotto winningLotto) {
+        List<Integer> winningSixLottoNums = winningLotto.getLotto().getNumbers();
+        int equalCount = 0;
+        for (int i=0; i<6; i++) {
+            if (numbers.contains(winningSixLottoNums.get(i))) {
+                equalCount++;
+            }
+        }
+        return equalCount;
+    }
+
+    public boolean compareWithBonusNum(WinningLotto winningLotto) {
+        if (numbers.contains(winningLotto.getBonusNum())) {
+            return true;
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return numbers.toString();

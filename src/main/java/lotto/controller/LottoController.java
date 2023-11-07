@@ -1,16 +1,20 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
+import lotto.domain.Prize;
 import lotto.domain.PurchaseAmount;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class LottoController {
 
+    private static EnumMap<Prize, Integer> prizeMap = new EnumMap<Prize, Integer>(Prize.class);
     public PurchaseAmount payMoney() {
         int money = 0;
         try {
@@ -45,5 +49,22 @@ public class LottoController {
         }
         return lottoList;
     }
+
+    public EnumMap<Prize, Integer> compareWithWinningNum(List<Lotto> lottoList, WinningLotto winningLotto) {
+        boolean isEqualWithBonus = false;
+        for (int i=0; i<lottoList.size(); i++) {
+            int equalCount = lottoList.get(i).compareWithLotto(winningLotto);
+
+            if (equalCount == 5) {
+                isEqualWithBonus = lottoList.get(i).compareWithBonusNum(winningLotto);
+            }
+            Prize prize = Prize.rankLotto(equalCount, isEqualWithBonus);
+            prizeMap.put(prize, prizeMap.getOrDefault(prize, 0)+1);
+        }
+        return prizeMap;
+    }
+
+
+
 
 }

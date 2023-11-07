@@ -33,13 +33,13 @@ class ExceptionTest {
 
     @Test
     void 단위1000_올바른입력() {
-        boolean result = exception.checkAmount(2000);
+        boolean result = exception.checkAmount(2000, false);
         assertThat(result).isEqualTo(true);
     }
 
     @Test
     void 단위1000_잘못된입력() {
-        boolean result = exception.checkAmount(2222);
+        boolean result = exception.checkAmount(2222, false);
         assertThat(result).isEqualTo(false);
     }
 }

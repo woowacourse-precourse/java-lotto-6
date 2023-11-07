@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -15,6 +14,10 @@ public class User {
 
     public int getMoney() {
         return money;
+    }
+
+    public List<Lotto> getLottoTickets() {
+        return lottoTickets;
     }
 
     public void inputMoney() {
@@ -51,11 +54,6 @@ public class User {
             List<Integer> randomNums = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             lottoTickets.add(new Lotto(randomNums));
         });
-    }
-
-    public List<Lotto> getSortedLottoTickets() {
-        lottoTickets.forEach(lotto -> Collections.sort(lotto.getNumbers()));
-        return lottoTickets;
     }
 
 }

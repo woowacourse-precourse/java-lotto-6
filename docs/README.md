@@ -37,10 +37,16 @@
 
 - [ ] 수익률 계산하기 - Judgement#calculateReturnRate()
 
-# view
-- [ ] 예외 처리  - printExceptions#errorMessage()
-  - [ ] 에러 메시지 출력
+# Exception
+- [ ] 예외 처리
+  - [x] String to int 변환 체크 - Exception#checkInt
+    - [x] 에러 메시지 출력
+  - [ ] 1000 단위 체크 - Exception#checkAmount
+    - [ ] 에러 메시지 출력
+  - [ ] 숫자 6개 중복 여부 체크 - Exception#checkNumbers
+    - [ ] 에러 메시지 출력
 
+# view
 - [ ] 구매 로또 출력하기 - PrintGames#purchaseHistory()
   - [ ] 발행한 로또 수량, 번호 출력
   - [ ] 로또 번호는 쉼표를 기준으로 구분

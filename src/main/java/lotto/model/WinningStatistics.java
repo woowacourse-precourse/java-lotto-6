@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constant.Constants;
+import lotto.constant.IntConstants;
 
 import java.util.*;
 
@@ -48,7 +48,7 @@ public class WinningStatistics {
     }
 
     private BonusStatus getBonusStatus(int matchCount, List<Integer> lotto, int bonusNumber) {
-        int SPECIAL_MATCH_COUNT = Constants.SPECIAL_MATCH_COUNT.getValue();
+        int SPECIAL_MATCH_COUNT = IntConstants.SPECIAL_MATCH_COUNT.getValue();
 
         if (matchCount != SPECIAL_MATCH_COUNT) {
             return BonusStatus.NO_MATTER;

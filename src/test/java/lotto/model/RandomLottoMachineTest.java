@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constant.Constants;
+import lotto.constant.IntConstants;
 import lotto.util.RandomLottoMachine;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,9 +10,9 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RandomLottoMachineTest {
-    private static final int LOTTO_SIZE = Constants.LOTTO_SIZE.getValue();
-    private static final int MIN_LOTTO_NUMBER = Constants.MIN_LOTTO_NUMBER.getValue();
-    private static final int MAX_LOTTO_NUMBER = Constants.MAX_LOTTO_NUMBER.getValue();
+    private static final int LOTTO_SIZE = IntConstants.LOTTO_SIZE.getValue();
+    private static final int MIN_LOTTO_NUMBER = IntConstants.MIN_LOTTO_NUMBER.getValue();
+    private static final int MAX_LOTTO_NUMBER = IntConstants.MAX_LOTTO_NUMBER.getValue();
     RandomLottoMachine randomLottoMachine = new RandomLottoMachine();
     List<Integer> randomLotto = randomLottoMachine.generate();
 

@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constant.Constants;
+import lotto.constant.IntConstants;
 import lotto.message.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,7 +49,7 @@ public class PurchaseAmountTest {
     @Test
     void inputNotMultipleOfUnits() {
         String inputValue = "1001";
-        Object [] values = {Constants.PURCHASE_AMOUNT_UNIT.getValue()};
+        Object [] values = {IntConstants.PURCHASE_AMOUNT_UNIT.getValue()};
         assertThatThrownBy(() -> new PurchaseAmount(inputValue))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.getMessage(values));

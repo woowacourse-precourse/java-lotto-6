@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constant.Constants;
+import lotto.constant.IntConstants;
 import lotto.message.ExceptionMessage;
 
 import java.util.List;
@@ -32,8 +32,8 @@ public class BonusNumber {
     }
 
     private void isInRange(int bonusNumber) {
-        int MIN_LOTTO_NUMBER = Constants.MIN_LOTTO_NUMBER.getValue();
-        int MAX_LOTTO_NUMBER = Constants.MAX_LOTTO_NUMBER.getValue();
+        int MIN_LOTTO_NUMBER = IntConstants.MIN_LOTTO_NUMBER.getValue();
+        int MAX_LOTTO_NUMBER = IntConstants.MAX_LOTTO_NUMBER.getValue();
         if (bonusNumber < MIN_LOTTO_NUMBER || bonusNumber > MAX_LOTTO_NUMBER) {
             ExceptionMessage.IS_NOT_IN_RANGE.throwException(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER);
         }

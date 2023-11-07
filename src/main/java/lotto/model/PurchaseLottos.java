@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constant.Constants;
+import lotto.constant.IntConstants;
 import lotto.util.LottoMachine;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class PurchaseLottos {
     }
 
     private int getLottosCount(int purchaseAmount) {
-        return purchaseAmount / Constants.PURCHASE_AMOUNT_UNIT.getValue();
+        return purchaseAmount / IntConstants.PURCHASE_AMOUNT_UNIT.getValue();
     }
 
     private void setPurchaseLottos() {

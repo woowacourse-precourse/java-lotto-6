@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.constant.Constants;
+import lotto.constant.IntConstants;
 import lotto.message.ExceptionMessage;
 
 public class PurchaseAmount {
@@ -39,7 +39,7 @@ public class PurchaseAmount {
     }
 
     private void IsMultipleOfUnit(int price) {
-        int purchaseAmountUnit = Constants.PURCHASE_AMOUNT_UNIT.getValue();
+        int purchaseAmountUnit = IntConstants.PURCHASE_AMOUNT_UNIT.getValue();
         if (price % purchaseAmountUnit != 0) {
             ExceptionMessage.INPUT_NOT_MULTIPLE_OF_UNIT_MESSAGE.throwException(purchaseAmountUnit);
         }

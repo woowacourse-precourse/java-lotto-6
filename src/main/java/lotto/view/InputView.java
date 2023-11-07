@@ -21,8 +21,8 @@ public class InputView {
     public static String readLotto() {
         System.out.println(InputMessage
                 .REQUEST_WINNING_NUMBERS_MESSAGE.getMessage());
-        OutputView.printNextLine();
         String lotto = InputUtil.readInput();
+        OutputView.printNextLine();
         try {
             Validator.validateLotto(lotto);
         } catch (IllegalArgumentException e) {
@@ -33,8 +33,8 @@ public class InputView {
 
     public static String readBonusNumber(List<Integer> winningNumber) {
         System.out.println(InputMessage.REQUEST_BONUS_NUMBER_MESSAGE.getMessage());
-        OutputView.printNextLine();
         String bonusNumber = InputUtil.readInput();
+        OutputView.printNextLine();
         try {
             Validator.validateBonusNumber(bonusNumber, winningNumber);
         } catch (IllegalArgumentException e) {

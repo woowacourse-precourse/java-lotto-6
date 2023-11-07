@@ -2,12 +2,12 @@ package lotto.model;
 
 import static lotto.Constraints.MAX_NUMBER;
 import static lotto.Constraints.MIN_NUMBER;
-import static lotto.model.enums.ErrorMessage.NOT_CORRECT_INPUT_MESSAGE;
-import static lotto.model.enums.ErrorMessage.NOT_INTEGER_INPUT_MESSAGE;
-import static lotto.model.enums.ErrorMessage.OUT_OF_RANGE_NUMBER_MESSAGE;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.exceptions.NotCorrectInputException;
+import lotto.model.exceptions.NotIntegerException;
+import lotto.model.exceptions.OutOfRangeNumberException;
 
 public class InputValidator {
     // 당첨 번호 검증
@@ -24,7 +24,7 @@ public class InputValidator {
             try {
                 integerNumbers.add(Integer.parseInt(number));
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(NOT_CORRECT_INPUT_MESSAGE.getMessage());
+                throw new NotCorrectInputException();
             }
         });
         return integerNumbers;
@@ -35,7 +35,7 @@ public class InputValidator {
         numbers.stream()
                 .filter(number -> number > MAX_NUMBER.getValue() || number < MIN_NUMBER.getValue())
                 .forEach(number -> {
-                    throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER_MESSAGE.getMessage());
+                    throw new OutOfRangeNumberException();
                 });
     }
 
@@ -51,14 +51,14 @@ public class InputValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(NOT_INTEGER_INPUT_MESSAGE.getMessage());
+            throw new NotIntegerException();
         }
     }
 
     // 범위 밖 숫자 검증
     private void validateInRangeNumber(int inputNumber) {
         if (inputNumber > MAX_NUMBER.getValue() || inputNumber < MIN_NUMBER.getValue()) {
-            throw new IllegalArgumentException(OUT_OF_RANGE_NUMBER_MESSAGE.getMessage());
+            throw new OutOfRangeNumberException();
         }
     }
 }

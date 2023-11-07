@@ -28,7 +28,20 @@ public class LottoRankInfoTest {
     }
 
 
+    @DisplayName("LottoRankInfo 게터 정상 작동 확인 테스트")
+    @Test
+    void getLottoRankInfo_EqualResult_success() {
 
+        //given
+        List<LottoRank> lottoRankList = List.of(LottoRank.FOURTH, LottoRank.FIFTH);
+        //when
+        LottoRankInfo lottoRankInfo = LottoRankInfo.from(lottoRankList);
+
+        //then
+        assertThat(lottoRankInfo.getLottoRankInfo()).isNotNull();
+        assertThat(lottoRankInfo.getLottoRankInfo().size()).isEqualTo(6);
+
+    }
 
 
 }

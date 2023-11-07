@@ -118,4 +118,18 @@ public class DrawTest extends Draw{
         assertThat(result.keySet()).contains(Rank.values());
         assertThat(Set.copyOf(result.values())).isEqualTo(Set.of(0));
     }
+
+    @Test
+    void 로또_번호_비교() {
+
+        //given
+        Lotto winning = new Lotto(List.of(1, 2, 3, 6, 23, 34));
+        Lotto user = new Lotto(List.of(1, 3, 5, 6, 34, 21));
+
+        //when
+        int matchCount = calculateMatchCount(winning, user);
+
+        //then
+        assertThat(matchCount).isEqualTo(4);
+    }
 }

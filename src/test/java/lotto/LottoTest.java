@@ -49,4 +49,18 @@ class LottoTest {
         // then
         assertThat(hasAll).isTrue();
     }
+
+    @DisplayName("로또 번호가 담긴 문자열을 리턴한다.")
+    @Test
+    void getInformationSuccessTest() {
+        // given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        Lotto lotto = new Lotto(numbers);
+
+        // when
+        String information = lotto.getInformation();
+
+        // then
+        assertThat(information).isEqualTo(numbers.toString());
+    }
 }

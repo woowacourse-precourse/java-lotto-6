@@ -1,6 +1,6 @@
 package lotto.controller;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 import lotto.domain.BonusNumber;
@@ -54,7 +54,7 @@ public class LottoController {
 
     private LottoResultsDTO createLottoResultsDTO() {
         List<LottoResults> lottoResults = lottos.calculateAllOfLottoResult(winningNumbers);
-        Map<LottoResults, Integer> lottoStatistics = new HashMap<>();
+        Map<LottoResults, Integer> lottoStatistics = new EnumMap<>(LottoResults.class);
         for (LottoResults result : lottoResults) {
             lottoStatistics.put(result, lottoStatistics.getOrDefault(result, 0) + 1);
         }

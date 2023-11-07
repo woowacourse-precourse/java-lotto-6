@@ -11,7 +11,7 @@ public class Application {
 
         int priceAmount = Input.priceAmountInput();
         Lotto winningnumbers = Input.winningNumberInput(); 
-        int bonusNumber = Input.bonusNumberInput();
+        int bonusNumber = Input.bonusNumberInput(winningnumbers);
 
         int lottoAmount = priceAmount / 1000;
         ArrayList<LottoResult> matchResults = new ArrayList<>();
@@ -27,7 +27,6 @@ public class Application {
             int matchCount = MatchLotto.isNumbersMatching(winningnumbers, userNumbers.get(i));
             boolean matchBonus = MatchLotto.isBonusNumbersMatching(bonusNumber, userNumbers.get(i));
     
-
             matchResults.add(LottoResult.getResult(matchCount, matchBonus));
         }
 

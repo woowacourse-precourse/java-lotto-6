@@ -15,20 +15,24 @@ public class Input {
 
         System.out.println("구입금액을 입력해 주세요.");
         String input = Console.readLine();
-        if (!input.matches("\\d+")) {
-            System.out.print("[ERROR]");
-            throw new NoSuchElementException("구입 금액은 숫자만 입력해주세요.");
-        } 
-        priceAmount = Integer.parseInt(input);
-       
-        if (!priceAmountVaildation(priceAmount)) {
-            System.out.print("[ERROR]");
-            throw new IllegalArgumentException("입력값은 1000원 단위여야 합니다.");
-        }
+        buyPriceAmountStringCheck(input);
 
+        priceAmount = Integer.parseInt(input);
+        priceAmountVaildation(priceAmount);
 
         System.out.println();
         return priceAmount;
+    }
+    /**
+     * 로또 구매 수량에 String이 있는지 판별
+     * @param priceAmount
+     */
+
+    public static void buyPriceAmountStringCheck(String priceAmount) {
+        if (!priceAmount.matches("\\d+")) {
+            System.out.print("[ERROR] 구입 금액은 숫자만 입력해주세요.");
+            throw new NoSuchElementException();
+        } 
     }
 
     /**
@@ -36,11 +40,11 @@ public class Input {
      * @param priceAmount
      * @return 입력값의 유효값 결과를 return
      */
-    private static boolean priceAmountVaildation(int priceAmount) {
-        if (priceAmount != 0 || priceAmount % 1000 == 0) 
-            return true;
-        
-        return false;
+    private static void priceAmountVaildation(int priceAmount) {
+        if (priceAmount != 0 || priceAmount % 1000 == 0) {
+            System.out.print("[ERROR] 입력값은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException();
+        }
     }
 
     /**
@@ -54,11 +58,6 @@ public class Input {
         StringTokenizer st = new StringTokenizer(Console.readLine(), ",");
         while (st.hasMoreTokens()) {
             int input = Integer.parseInt(st.nextToken());
-            if (numberRangeCheck(input)) {
-                System.out.print("[ERROR]");
-                throw new IllegalArgumentException("1부터 45까지의 숫자를 입력해주시요.");
-            }
-            
             winningNumber.add(input);
         }
 
@@ -72,31 +71,27 @@ public class Input {
     public static int bonusNumberInput(Lotto winningNumbers) {
         System.out.println("\n" + "보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(Console.readLine());
-        if (numberRangeCheck(bonusNumber)) {
-            System.out.print("[ERROR]");
-            throw new IllegalArgumentException("1부터 45까지의 숫자를 입력해주시요.");
-        }
-        if (bonusNumberDuplicateCheck(winningNumbers, bonusNumber)) {
-            System.out.print("[ERROR]");
-            throw new IllegalArgumentException("보너스 숫자는 로또 번호와 중복될 수 없습니다.");
-        }
+        numberInRangeCheck(bonusNumber);
+        bonusNumberDuplicateCheck(winningNumbers, bonusNumber);
         System.out.println();
         return bonusNumber;
     }
 
-    public static boolean numberRangeCheck(int number) {
-        if (1 <= number && number >= 45) 
-            return false;
-        
-        return true;
+    public static void numberInRangeCheck(int number) {
+        if (0 >= number && number >= 45) {
+            System.out.println("[ERROR] 1부터 45까지의 숫자를 입력해주시요.");
+            throw new IllegalArgumentException();
+        }
+
     }
 
-    public static boolean bonusNumberDuplicateCheck(Lotto winningNumbers, int bonusNumber) {
+    public static void bonusNumberDuplicateCheck(Lotto winningNumbers, int bonusNumber) {
         for (Integer num : winningNumbers.getWinningNumbers()) {
-            if (num == bonusNumber)
-                return true;
+            if (num == bonusNumber) {
+                System.out.println("[ERROR] 보너스 번호는 당첨번호와 중복 될 수 없습니다.");
+                throw new IllegalArgumentException();
+            }
         }
-        return false;
     }
 
 }

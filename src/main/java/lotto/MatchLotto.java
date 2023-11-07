@@ -5,8 +5,6 @@ import java.util.List;
 
 public class MatchLotto {
 
-
-
     public static int isNumbersMatching(Lotto winningnumbers, List<Integer> numbers) {
         int count = 0;
         for (Integer winningNum : winningnumbers.getWinningNumbers()) {

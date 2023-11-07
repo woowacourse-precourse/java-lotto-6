@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
-public class LottoViewController {
+class LottoViewController {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
 

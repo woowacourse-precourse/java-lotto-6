@@ -17,4 +17,8 @@ public enum Announcer {
         return message;
     }
 
+    public String getFormat(int value) {
+        return String.format(message, value);
+    }
+
 }

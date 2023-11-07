@@ -5,13 +5,17 @@ import lotto.exception.PurchaseException;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.List;
+
 public class Setting {
 
     private Input input = Input.getInput();
     private Output output = Output.getOutput();
     private PurchaseException purchaseException = PurchaseException.getPurchaseException();
+    private ProviderRandomValue providerRandomValue;
 
     public Setting() {
+        providerRandomValue = new ProviderRandomValue();
     }
 
     public int purchaseLotto() {
@@ -20,7 +24,11 @@ public class Setting {
 
         manageException(payment);
 
-        return Integer.parseInt(payment) / 1000;
+        int purchaseNumber = Integer.parseInt(payment) / 1000;
+
+        output.printMessage(Announcer.PURCHASE_COUNT.getFormat(purchaseNumber));
+
+        return purchaseNumber;
     }
 
     private void manageException(String payment) {
@@ -41,4 +49,9 @@ public class Setting {
             purchaseException.payThousand();
         }
     }
+
+    public List<Integer> pickLotto() {
+        return providerRandomValue.provideLotto();
+    }
+
 }

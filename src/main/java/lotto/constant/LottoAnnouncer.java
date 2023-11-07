@@ -21,4 +21,8 @@ public enum LottoAnnouncer {
     public String getMessage() {
         return message;
     }
+
+    public String getFormat(int value) {
+        return String.format(message, value);
+    }
 }

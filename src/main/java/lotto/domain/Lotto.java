@@ -9,13 +9,13 @@ public class Lotto {
     private LottoException lottoException = LottoException.getLottoException();
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        manageException(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void manageException(List<Integer> numbers) {
         validateSize(numbers);
-
+        validateDuplication(numbers);
     }
 
     private void validateSize(List<Integer> numbers) {
@@ -24,8 +24,8 @@ public class Lotto {
         }
     }
 
-    private void validateDuplication(List<Integer> numbers) {
-        if(isDuplication(numbers)){
+    protected void validateDuplication(List<Integer> numbers) {
+        if (isDuplication(numbers)) {
             lottoException.duplicateNumber();
         }
 
@@ -37,5 +37,4 @@ public class Lotto {
                 .count() != numbers.size();
     }
 
-    // TODO: 추가 기능 구현
 }

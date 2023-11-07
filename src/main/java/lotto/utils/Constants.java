@@ -22,7 +22,7 @@ public class Constants {
     public static final int PRIZE_SECOND_MONEY = 30_000_000;
     public static final int PRIZE_FIRST_MONEY = 2_000_000_000;
 
-    public static final String BONUS_NUMBER_INPUT_REGEX = "\\d+";
+    public static final String NUMBER_INPUT_REGEX = "\\d+";
     public static final String START_BRACKET = "[";
     public static final String END_BRACKET = "]";
     public static final String ENTER_LINE = "\n";

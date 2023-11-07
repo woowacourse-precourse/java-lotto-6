@@ -11,7 +11,7 @@ public class Validator {
     }
 
     void validateNumberFormat(final String input) {
-        if (!input.matches(Constants.BONUS_NUMBER_INPUT_REGEX)) {
+        if (!input.matches(Constants.NUMBER_INPUT_REGEX)) {
             throw new IllegalArgumentException(ErrorConstants.NUMBER_FORMAT);
         }
     }

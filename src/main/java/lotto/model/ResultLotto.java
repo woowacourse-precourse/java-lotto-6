@@ -19,6 +19,14 @@ public class ResultLotto {
         this.bonusNum = bonusNum;
     }
 
+    public List<Integer> calculateResult(List<Lotto> lottoBundle) {
+        List<Integer> winning = matchLottoBundle(lottoBundle);
+        int winningAmount = calculateWinningAmount(winning);
+        winning.add(winningAmount);
+
+        return winning;
+    }
+
     private int calculateWinningAmount(List<Integer> winningCount) {
         Winning[] allValues = Winning.values();
         return IntStream.range(0, allValues.length)

@@ -11,8 +11,8 @@ class PurchaseTest extends NsTest {
     @Test
     void five_times() {
         assertSimpleTest(() -> {
-            run("5000");
-            assertThat(output()).contains("5개");
+            runException("5000");
+            assertThat(output()).contains("5개를 구매");
         });
     }
 
@@ -20,7 +20,7 @@ class PurchaseTest extends NsTest {
     void non_number() {
         assertSimpleTest(() -> {
             runException("1000j");
-            assertThat(output()).contains("숫자를");
+            assertThat(output()).contains("숫자를 입력");
         });
     }
 

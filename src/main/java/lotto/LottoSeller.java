@@ -22,6 +22,7 @@ public class LottoSeller {
     public void noticeStatistic() {
         ranks = calculateRank();
         printRank(ranks);
+        printRate(calculateRate(money, ranks));
     }
 
     private Money receiveMoneyFromPlayer() {
@@ -81,5 +82,9 @@ public class LottoSeller {
             }
         }
         outputView.printRank(first, second, third, fourth, fifth);
+    }
+
+    private void printRate(double rate) {
+        outputView.printRate(rate);
     }
 }

@@ -38,4 +38,8 @@ public class OutputView {
         System.out.println(MATCH_FIVE_WITH_BONUS + second + COUNT);
         System.out.println(MATCH_SIX + first + COUNT);
     }
+
+    public void printRate(double rate) {
+        System.out.println(TOTAL_REVENUE_RATE_START + rate + TOTAL_REVENUE_RATE_FINISH);
+    }
 }

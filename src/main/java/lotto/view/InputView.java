@@ -1,9 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.model.Bonus;
 import lotto.model.Error;
-import lotto.model.Lotto;
 
 import java.util.List;
 
@@ -13,52 +11,30 @@ public class InputView {
     private static final String NOTICE_INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String NOTICE_INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final int ONE_LOTTO_PRICE = 1000;
-    private static final String DELIMITER = ",";
+    private static final String DELIMITER_OF_WINNING_NUMBER = ",";
     private static final String FORMAT_OF_NUMERIC = "[0-9]+";
 
     public int requestPurchasePrice() {
         System.out.println(NOTICE_INPUT_PURCHASE_PRICE);
-        while (true) {
-            String input = Console.readLine();
-            try {
-                validatePurchasePriceType(input);
-                validateDividedByLottoPrice(stringToInt(input));
-            } catch (IllegalArgumentException error) {
-                System.out.println(error.getMessage());
-                continue;
-            }
-            System.out.println();
-            return stringToInt(input);
-        }
+        String input = Console.readLine();
+        validatePurchasePriceType(input);
+        validateDividedByLottoPrice(stringToInt(input));
+        return stringToInt(input);
     }
 
-    public void requestWinningNumber() {
+    public List<Integer> requestWinningNumber() {
         System.out.println(NOTICE_INPUT_WINNING_NUMBER);
         String input = Console.readLine();
-        List<String> inputNumbers = List.of(input.split(DELIMITER));
-        try {
-            validateWinningNumbersType(inputNumbers);
-            List<Integer> winningNumbers = stringListToIntList(inputNumbers);
-            Lotto winningLotto = new Lotto(winningNumbers);
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-            requestWinningNumber();
-        }
-        System.out.println();
+        List<String> inputNumbers = List.of(input.split(DELIMITER_OF_WINNING_NUMBER));
+        validateWinningNumbersType(inputNumbers);
+        return stringListToIntList(inputNumbers);
     }
 
-    public void requestBonusNumber() {
+    public int requestBonusNumber() {
         System.out.println(NOTICE_INPUT_BONUS_NUMBER);
         String input = Console.readLine();
-        try {
-            validateBonusNumberType(input);
-            int bonusNumber = stringToInt(input);
-            Bonus bonus = new Bonus(bonusNumber);
-        } catch (IllegalArgumentException error) {
-            System.out.println(error.getMessage());
-            requestBonusNumber();
-        }
-        System.out.println();
+        validateBonusNumberType(input);
+        return stringToInt(input);
     }
 
     private List<Integer> stringListToIntList(List<String> before) {

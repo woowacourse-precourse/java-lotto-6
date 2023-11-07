@@ -18,4 +18,12 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public void printErrorMessage(Exception error) {
+        System.out.println(error.getMessage());
+    }
+
+    public void printBlank() {
+        System.out.println();
+    }
 }

@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.LottoGenerator;
 import lotto.model.LottoStorage;
@@ -20,12 +21,57 @@ public class Game {
     }
 
     private void init() {
-        int purchasePrice = inputView.requestPurchasePrice();
+        int purchasePrice = requestPurchasePrice();
         LottoGenerator.generateLotto(purchasePrice);
         List<Lotto> purchaseLotto = LottoStorage.getLotto();
         outputView.printPurchaseLotto(purchaseLotto);
 
-        inputView.requestWinningNumber();
-        inputView.requestBonusNumber();
+        Lotto winningLotto = requestWinningLotto();
+        Bonus bonusLotto = requestBonusLotto();
+        // TODO: close input console!
+    }
+
+    private int requestPurchasePrice() {
+        while (true) {
+            int purchasePrice;
+            try {
+                purchasePrice = inputView.requestPurchasePrice();
+            } catch (IllegalArgumentException error) {
+                outputView.printErrorMessage(error);
+                continue;
+            }
+            outputView.printBlank();
+            return purchasePrice;
+        }
+    }
+
+    private Lotto requestWinningLotto() {
+        while (true) {
+            Lotto winningLotto;
+            try {
+                List<Integer> winningNumbers = inputView.requestWinningNumber();
+                winningLotto = new Lotto(winningNumbers);
+            } catch (IllegalArgumentException error) {
+                outputView.printErrorMessage(error);
+                continue;
+            }
+            outputView.printBlank();
+            return winningLotto;
+        }
+    }
+
+    private Bonus requestBonusLotto() {
+        while (true) {
+            Bonus bonus;
+            try {
+                int bonusNumber = inputView.requestBonusNumber();
+                bonus = new Bonus(bonusNumber);
+            } catch (IllegalArgumentException error) {
+                outputView.printErrorMessage(error);
+                continue;
+            }
+            outputView.printBlank();
+            return bonus;
+        }
     }
 }

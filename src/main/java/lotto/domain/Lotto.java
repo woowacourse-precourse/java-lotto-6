@@ -21,8 +21,8 @@ public class Lotto {
             throw new IllegalArgumentException("[ERROR] 중복된 숫자는 입력 할 수 없습니다.");
         }
         for(int number : numbers) {
-            if(number >= LOTTO_START_NUMBER && number <= LOTTO_END_NUMBER) {
-                throw new IllegalArgumentException("[ERROR] 1~45 까지의 수를 입력해주세요");
+            if(number < LOTTO_START_NUMBER || number > LOTTO_END_NUMBER) {
+                throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자여야 합니다.");
             }
         }
     }

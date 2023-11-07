@@ -33,4 +33,12 @@ public class LuckeyLotto {
         return inputBonusNumber >= LOTTO_NUMBER_RANGE_START
                 && inputBonusNumber <= LOTTO_NUMBER_RANGE_END;
     }
+
+    public int getLuckeyBonusNumber() {
+        return luckeyBonusNumber;
+    }
+
+    public List<Integer> getluckeyNumbers() {
+        return luckeyNumbers;
+    }
 }

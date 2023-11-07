@@ -50,4 +50,8 @@ public class Lotto {
         Set<Integer> setLottoNumbers = new HashSet<>(numbers);
         return setLottoNumbers.size() == numbers.size();
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
 }

@@ -20,9 +20,9 @@
 ***
 
 ### 테스트 코드 구현 목록
-[ ] 구입 금액 BusinessLogic 검사
+[X] 구입 금액 BusinessLogic 검사
 
-[ ] 당첨 번호 및 보너스 번호 BusinessLogic 검사
+[X] 당첨 번호 및 보너스 번호 BusinessLogic 검사
 
 [ ] 로또 구매 단위 테스트
 

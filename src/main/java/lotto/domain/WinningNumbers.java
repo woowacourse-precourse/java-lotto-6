@@ -16,17 +16,28 @@ import java.util.Set;
 public class WinningNumbers {
 
     private static final int VALID_SIZE = 6;
-    private final List<WinningNumber> numbers;
+    private final List<WinningNumber> winningNumbers;
     private WinningNumber bonusNumber;
 
-    public WinningNumbers(List<Integer> numbers) {
-        validateNumbers(numbers);
-        this.numbers = convertWinningNumbers(numbers);
+    public WinningNumbers(List<Integer> winningNumbers) {
+        validateNumbers(winningNumbers);
+        this.winningNumbers = convertWinningNumbers(winningNumbers);
     }
 
     public void addBonus(WinningNumber bonusNumber) {
         validateBonusNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    public int matchingResult(List<Integer> numbers) {
+        return (int) numbers.stream()
+                .filter(this::isMatchingNumber)
+                .count();
+    }
+
+    private boolean isMatchingNumber(Integer number) {
+        return winningNumbers.stream()
+                .anyMatch(winningNumber -> winningNumber.equalsTo(number));
     }
 
     private List<WinningNumber> convertWinningNumbers(List<Integer> numbers) {
@@ -69,6 +80,6 @@ public class WinningNumbers {
     }
 
     private boolean isUniqueBonusNumber(WinningNumber bonusNumber) {
-        return !numbers.contains(bonusNumber);
+        return !winningNumbers.contains(bonusNumber);
     }
 }

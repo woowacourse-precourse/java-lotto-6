@@ -16,6 +16,10 @@ public class WinningNumber {
         this.number = number;
     }
 
+    public boolean equalsTo(int number) {
+        return this.number == number;
+    }
+
     private void validateNumber(int number) {
         if (!isValidRange(number)) {
             throw new InvalidArgumentException(WINNING_NUMBER_INVALID_RANGE);

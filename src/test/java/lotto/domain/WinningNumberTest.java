@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 @DisplayName("당첨 번호 검증")
@@ -29,5 +30,18 @@ class WinningNumberTest {
 
         // then
         assertThat(result).isNotNull();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {"1,true", "2,false"})
+    void 로또_번호_비교_검증(int number, boolean expected) {
+        // given
+        WinningNumber winningNumber = new WinningNumber(1);
+
+        // when
+        boolean result = winningNumber.equalsTo(number);
+
+        // then
+        assertThat(result).isEqualTo(expected);
     }
 }

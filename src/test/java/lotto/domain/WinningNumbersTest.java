@@ -8,11 +8,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("당첨 번호 검증")
 class WinningNumbersTest {
+
+    private WinningNumbers winningNumbers;
+
+    @BeforeEach
+    void setUp() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
+        winningNumbers = new WinningNumbers(numbers);
+    }
 
     @Test
     void 당첨_번호_6개_미만_예외() {
@@ -91,5 +100,89 @@ class WinningNumbersTest {
         assertThatThrownBy(() -> winningNumbers.addBonus(winningNumber))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(WINNING_NUMBERS_CONTAIN_BONUS_NUMBER.getMessage());
+    }
+
+    @Test
+    void 로또_번호_당첨_번호_비교_0개_매칭() {
+        // given
+        List<Integer> lottoNumbers = List.of(7, 8, 9, 10, 11, 12);
+
+        // when
+        int result = winningNumbers.matchingResult(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(0);
+    }
+
+    @Test
+    void 로또_번호_당첨_번호_비교_1개_매칭() {
+        // given
+        List<Integer> lottoNumbers = List.of(6, 7, 8, 9, 10, 11);
+
+        // when
+        int result = winningNumbers.matchingResult(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(1);
+    }
+
+    @Test
+    void 로또_번호_당첨_번호_비교_2개_매칭() {
+        // given
+        List<Integer> lottoNumbers = List.of(5, 6, 7, 8, 9, 10);
+
+        // when
+        int result = winningNumbers.matchingResult(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(2);
+    }
+
+    @Test
+    void 로또_번호_당첨_번호_비교_3개_매칭() {
+        // given
+        List<Integer> lottoNumbers = List.of(4, 5, 6, 7, 8, 9);
+
+        // when
+        int result = winningNumbers.matchingResult(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(3);
+    }
+
+    @Test
+    void 로또_번호_당첨_번호_비교_4개_매칭() {
+        // given
+        List<Integer> lottoNumbers = List.of(3, 4, 5, 6, 7, 8);
+
+        // when
+        int result = winningNumbers.matchingResult(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(4);
+    }
+
+    @Test
+    void 로또_번호_당첨_번호_비교_5개_매칭() {
+        // given
+        List<Integer> lottoNumbers = List.of(2, 3, 4, 5, 6, 7);
+
+        // when
+        int result = winningNumbers.matchingResult(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(5);
+    }
+
+    @Test
+    void 로또_번호_당첨_번호_비교_6개_매칭() {
+        // given
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+
+        // when
+        int result = winningNumbers.matchingResult(lottoNumbers);
+
+        // then
+        assertThat(result).isEqualTo(6);
     }
 }

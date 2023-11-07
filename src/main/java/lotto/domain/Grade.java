@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import java.util.Arrays;
+
 public enum Grade {
     FIFTH("3", 3, 5_000),
     FOURTH("4", 4, 50_000),
@@ -15,6 +17,17 @@ public enum Grade {
         this.rank = rank;
         this.matchCount = matchCount;
         this.prizeMoney = prizeMoney;
+    }
+
+    public static Grade findGrade(int matchCount, int bonusCount) {
+        if ((THIRD.matchCount == matchCount) && (bonusCount == 0)) {
+            return THIRD;
+        }
+        if ((SECOND.matchCount == matchCount) && (bonusCount == 1)) {
+            return SECOND;
+        }
+        return Arrays.stream(values()).filter(grade -> grade.matchCount == matchCount)
+                .findAny().orElse(null);
     }
 
     public String getRank() {

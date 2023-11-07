@@ -1,10 +1,12 @@
 package lotto;
 
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -24,4 +26,22 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또가 해당 숫자를 가지고 있는지 검증")
+    @Test
+    void 당첨_검증() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.hasNumber(1)).isEqualTo(true);
+        assertThat(lotto.hasNumber(7)).isEqualTo(false);
+    }
+
+    //getLotto
+
+    @DisplayName("로또의 번호 반환 검증")
+    @Test
+    void 번호_검증() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertThat(lotto.getLotto()).isEqualTo("[1, 2, 3, 4, 5, 6]");
+    }
 }

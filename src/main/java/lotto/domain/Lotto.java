@@ -6,6 +6,7 @@ import lotto.util.validation.LottoValidation;
 import java.util.List;
 
 import static lotto.config.ErrorMessage.LOTTO_NEED_SIX_NUMBER_ERROR;
+import static lotto.config.ErrorMessage.LOTTO_OVER_SIX_NUMBER_ERROR;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -19,12 +20,20 @@ public class Lotto {
 
         LottoValidation lottoValidation = new LottoValidation();
 
+        if (numbers.size() > 6) {
+            ErrorThrower.throwIllegalArgumentException(LOTTO_OVER_SIX_NUMBER_ERROR.getMessage());
+        }
+
         if (numbers.size() != 6) {
             ErrorThrower.throwIllegalArgumentException(LOTTO_NEED_SIX_NUMBER_ERROR.getMessage());
         }
 
         lottoValidation.validatorDuplicatedNumber(numbers);
         lottoValidation.validatorExceededRange(numbers);
+    }
+
+    public List<Integer> getLottoNumber() {
+        return numbers;
     }
 
     // TODO: 추가 기능 구현

@@ -1,9 +1,8 @@
 package lotto.domain;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.util.validation.LottoPurchaseValidation;
-import lotto.util.validation.LottoValidation;
-import lotto.view.InputView;
+
+import static lotto.config.LottoConfig.LOTTO_PRICE;
 
 public class LottoPurchase {
 
@@ -15,7 +14,7 @@ public class LottoPurchase {
 
         int purchaseAmount = Integer.parseInt(input);
 
-        purchaseAmount /= 1000;
+        purchaseAmount /= LOTTO_PRICE.getValue();
 
         return purchaseAmount;
     }

@@ -9,14 +9,16 @@ import java.util.stream.Collectors;
 
 public class InputView {
 
-    public List<Integer> input(String inputMessage, boolean isNumbers) {
+    public List<Integer> inputNumbers(String inputMessage) {
         System.out.println(inputMessage);
         String string = Console.readLine();
-        if (isNumbers) {
-            return parseNumbers(string);
-        }
-        int number = parseNumber(string);
-        return Collections.singletonList(number);
+        return parseNumbers(string);
+    }
+
+    public int inputNumber(String inputMessage) {
+        System.out.println(inputMessage);
+        String string = Console.readLine();
+        return parseNumber(string);
     }
 
     private List<Integer> parseNumbers(String string) {

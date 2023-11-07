@@ -62,7 +62,7 @@ class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("보너스점수가 당첨번호에 있는 번호라면 오류가 발생합니다.")
+    @DisplayName("보너스번호가 당첨번호에 있는 번호라면 오류가 발생합니다.")
     void validateBonusNumInLotto() {
         // when
         int duplicateNum = 2;

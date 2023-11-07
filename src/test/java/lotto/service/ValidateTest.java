@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 class ValidateTest {
     @Test
-    @DisplayName("사용자는 공백을 입력할 수 없습니다")
+    @DisplayName("사용자는 공백을 입력하면 예외가 발생한다.")
     void validateTrim() {
         // given
         String[] spaces= {" a", "a b", "a "};
@@ -24,7 +24,7 @@ class ValidateTest {
     }
 
     @Test
-    @DisplayName("사용자는 문자를 입력할 수 없습니다.")
+    @DisplayName("사용자가 문자를 입력하면 예외가 발생한다.")
     void ValidateNumber() {
         // given
         String[] strings= {"j","j20","2j0","20j"};
@@ -43,7 +43,7 @@ class ValidateTest {
     }
 
     @Test
-    @DisplayName("사용자가 문자열을 입력할 때 양끝에 ,를 둘 수 없습니다.")
+    @DisplayName("사용자가 문자열을 입력할 때 양끝에 ,를 두면 예외가 발생한다.")
     void ValidateCommaBeforeAndAfter() {
         // given
         String[] inputs = {",1,2", "1,2,", ",1,2,3,"};

@@ -11,6 +11,7 @@ public class WinningNumberValidator {
         validateBlank(input);
         validateSize(input);
         validateFirstCharacterIsComma(input);
+        validateLastCharacterIsComma(input);
     }
 
     private static void validateBlank(String target) {
@@ -28,6 +29,12 @@ public class WinningNumberValidator {
     private static void validateFirstCharacterIsComma(String target) {
         if (target.charAt(0) == COMMA) {
             throw new IllegalArgumentException(WinningInformationExceptionMessage.FIRST_CHARACTER_COMMA.getError());
+        }
+    }
+
+    private static void validateLastCharacterIsComma(String target) {
+        if (target.charAt(target.length() - 1) == COMMA) {
+            throw new IllegalArgumentException(WinningInformationExceptionMessage.LAST_CHARACTER_COMMA.getError());
         }
     }
 }

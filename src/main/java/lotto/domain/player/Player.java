@@ -78,6 +78,13 @@ public class Player {
     }
 
     public void calculate() {
+        Prints.SHOW_GAME_RESULT.show();
+        plusContainsCount();
+        Utils.showResult();
+        Prints.SHOW_RATE_OF_RETURN.showFormat(getRateOfReturn());
+    }
+
+    private void plusContainsCount() {
         lottos.stream().forEach(e -> {
             int count = e.containsCount(winLotto);
             boolean bonusByContains = e.contains(winLotto.getBonusNumber().getBounsNumber());

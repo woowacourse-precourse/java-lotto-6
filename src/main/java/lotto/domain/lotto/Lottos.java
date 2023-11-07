@@ -30,7 +30,7 @@ public class Lottos {
         }
     }
 
-    public int getNumberOfLottos() {
+    public int getNumberOfLotto() {
         return numberOfLotto;
     }
 

@@ -39,7 +39,7 @@ public class LottoController {
     }
 
     private void printLottoNumbers(Lottos lottos) {
-        outputView.outputPurchaseNumber(lottos.getNumberOfLottos());
+        outputView.outputPurchaseNumber(lottos.getNumberOfLotto());
         for (List<Integer> lotto : lottos.getAllLottoNumbers()) {
             outputView.outputLottoNumber(LottoService.sort(lotto));
         }

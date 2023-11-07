@@ -17,7 +17,7 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto() {
-        numbers = createAutoLottoNumbers();
+        numbers = new ArrayList<>(createAutoLottoNumbers());
 
         numbers.sort(Comparator.naturalOrder());
     }

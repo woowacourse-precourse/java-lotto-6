@@ -8,32 +8,38 @@ import lotto.constant.Condition;
 import lotto.constant.Message;
 
 public enum ErrorType {
-    NOT_A_NUMBER(Message.ERROR_MSG_NOT_A_NUMBER, input -> {
+    NOT_A_NUMBER(Message.ERROR_NOT_A_NUMBER, input -> {
         try {
             Arrays.stream(input.split(","))
-                    .forEach(Integer::parseInt);
+                    .forEach(Long::parseLong);
             return false;
         } catch (NumberFormatException e) {
             return true;
         }
     }),
-    NOT_IN_THOUSANDS(Message.ERROR_MSG_NOT_IN_THOUSANDS, input -> {
+    NOT_IN_THOUSANDS(Message.ERROR_NOT_IN_THOUSANDS, input -> {
         return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .anyMatch(integer -> integer % Condition.THOUSAND != 0);
+                .map(Long::parseLong)
+                .anyMatch(amount -> amount % Condition.THOUSAND != 0);
 
     }),
-    OUT_OF_RANGE(Message.ERROR_MSG_OUT_OF_RANGE, input ->
+    MONEY_OUT_OF_RANGE(Message.ERROR_MONEY_OUT_OF_RANGE, input ->
+            Arrays.stream(input.split(","))
+                    .map(Long::parseLong)
+                    .anyMatch(number -> Condition.MIN_LOTTO_MONEY > number)
+    ),
+    NUMBER_OUT_OF_RANGE(Message.ERROR_NUMBER_OUT_OF_RANGE, input ->
             Arrays.stream(input.split(","))
                     .map(Integer::parseInt)
                     .anyMatch(number -> Condition.MIN_DRAW_NUMBER > number || number > Condition.MAX_DRAW_NUMBER)
     ),
-    LENGTH_NOT_MATCH(Message.ERROR_MSG_LENGTH_NOT_MATCH, input -> input.split(",").length != Condition.WINNING_NUMBERS_COUNT),
-    DUPLICATED_NUMBER(Message.ERROR_MSG_DUPLICATED_NUMBER, input -> {
-        Set<Integer> isDuplicated = new HashSet<>();
+    NOT_SIX_WINNING_NUMBERS(Message.ERROR_NOT_SIX_WINNING_NUMBERS, input -> input.split(",").length != Condition.WINNING_NUMBERS_COUNT),
+    NOT_ONE_NUMBER(Message.ERROR_NOT_ONE_NUMBER, input -> input.split(",").length != Condition.NUMBER_COUNT),
+    DUPLICATED_NUMBER(Message.ERROR_DUPLICATED_NUMBER, input -> {
+        Set<Long> isDuplicated = new HashSet<>();
         return Arrays.stream(input.split(","))
-                .map(Integer::parseInt)
-                .anyMatch(integer -> !isDuplicated.add(integer));
+                .map(Long::parseLong)
+                .anyMatch(number -> !isDuplicated.add(number));
     });
 
 //    NOT_AN_ERROR("정상", null);

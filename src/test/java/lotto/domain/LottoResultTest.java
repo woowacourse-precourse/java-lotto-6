@@ -66,4 +66,32 @@ class LottoResultTest {
         assertEquals(fifth, lottoResult.getPrizeResult().get(LottoPrize.FIFTH));
         assertEquals(etc, lottoResult.getPrizeResult().get(LottoPrize.ETC));
     }
+
+    @Test
+    void 등수_계산과_수익률_계산() {
+        LottoResult lottoResult = new LottoResult(3000);
+        List<Lotto> lottos = Arrays.asList(
+                new Lotto(List.of(7, 11, 30, 40, 42, 43)),
+                new Lotto(List.of(2, 13, 22, 32, 38, 45)),
+                new Lotto(List.of(8, 3, 5, 14, 22, 45))
+        );
+        lottoResult.calculateWinningResult(WINNING_LOTTO, lottos);
+        assertEqualsResult(lottoResult, 0, 0, 0, 0, 1, 2);
+        lottoResult.calculateTotalPrizeMoney();
+        assertEquals(166.7, lottoResult.getYieldRate());
+    }
+
+    @Test
+    void 정수형을_초과한_수익에_대한_수익률_계산() {
+        LottoResult lottoResult = new LottoResult(2000);
+        List<Lotto> lottos = Arrays.asList(
+                new Lotto(List.of(8, 2, 3, 4, 6, 5)),
+                new Lotto(List.of(8, 2, 3, 4, 6, 5)),
+                new Lotto(List.of(8, 2, 3, 4, 6, 5))
+        );
+        lottoResult.calculateWinningResult(WINNING_LOTTO, lottos);
+        assertEqualsResult(lottoResult, 3, 0, 0, 0, 0, 0);
+        lottoResult.calculateTotalPrizeMoney();
+        assertEquals(3e8, lottoResult.getYieldRate());
+    }
 }

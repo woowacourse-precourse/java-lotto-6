@@ -33,4 +33,8 @@ public class WinningLotto extends Lotto {
     public static WinningLotto create(List<Integer> numbers, int bonusNumber) {
         return new WinningLotto(numbers, bonusNumber);
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

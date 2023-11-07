@@ -7,7 +7,7 @@ import java.util.List;
 public class Lotto {
     protected static final int MAX_LOTTO_NUMBER = 45;
     protected static final int MIN_LOTTO_NUMBER = 1;
-    protected static final int LOTTO_NUMBERS_SIZE = 6;
+    public static final int LOTTO_NUMBERS_SIZE = 6;
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -39,6 +39,10 @@ public class Lotto {
 
     public boolean contain(Integer number) {
         return numbers.contains(number);
+    }
+
+    public int getLottoNumber(int position) {
+        return numbers.get(position);
     }
 
     @Override

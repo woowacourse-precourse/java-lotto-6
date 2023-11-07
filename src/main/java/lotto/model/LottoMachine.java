@@ -4,6 +4,8 @@ import static lotto.util.NumbersValidator.*;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import lotto.model.LottoStatistics.PrizeInformation;
 
@@ -75,6 +77,7 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
             PrizeInformation rank = selectRank(lottoNumbers, matchCount);
             lottoResult.add(rank);
         }
+        lottoResult.removeAll(Collections.singletonList(null));
         return lottoResult;
     }
     private PrizeInformation selectRank (List<Integer> lottoNumbers, long matchCount) {

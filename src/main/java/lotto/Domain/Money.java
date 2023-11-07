@@ -18,6 +18,7 @@ public class Money {
     private void validate(String value) {
         isEmpty(value);
         isNumber(value);
+        isBigger(value);
         isDivide(value);
     }
 
@@ -46,5 +47,12 @@ public class Money {
         }
     }
 
-
+    //1,000이상인지 확인
+    private void isBigger(String value) {
+        if (Integer.parseInt(value) < Constant.LOTTO_DIVIDE_PRICE) {
+            throw new IllegalArgumentException(
+                    Constant.ERROR_PREFIX + Constant.NUMBER_PREFIX + Constant.ERROR_NOT_BIGGER_MESSAGE
+            );
+        }
+    }
 }

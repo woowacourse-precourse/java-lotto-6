@@ -9,6 +9,7 @@ public class Constant {
     public static final String BONUS_PREFIX = "보너스 번호는 ";
     public static final String ERROR_NOT_NUMBER_MESSAGE = "숫자여야 합니다.";
     public static final String ERROR_NOT_DIVIDE_MESSAGE = "1,000원으로 나누어 떨어져야 합니다.";
+    public static final String ERROR_NOT_BIGGER_MESSAGE = "1,000원 이상이어야 합니다.";
     public static final String ERROR_EMPTY_MESSAGE = "빈칸일 수 없습니다.";
 
     public static final String NUMBER_PATTERN = "[0-9]+";

@@ -20,6 +20,13 @@ public final class LottoMachine {
         return generateLotto(amount);
     }
 
+    private void validate(Long price) {
+        if (price % PRICE_PER_LOTTO != 0) {
+            throw new IllegalArgumentException(
+                    WRONG_PRICE.getText().formatted(PRICE_PER_LOTTO));
+        }
+    }
+
     private PurchasedLotto generateLotto(int amount) {
         List<Lotto> lotto = new ArrayList<>();
 
@@ -28,12 +35,5 @@ public final class LottoMachine {
             lotto.add(generate);
         }
         return new PurchasedLotto(lotto);
-    }
-
-    private void validate(Long price) {
-        if (price % PRICE_PER_LOTTO != 0) {
-            throw new IllegalArgumentException(
-                    WRONG_PRICE.getText().formatted(PRICE_PER_LOTTO));
-        }
     }
 }

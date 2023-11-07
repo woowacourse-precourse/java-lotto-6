@@ -37,4 +37,10 @@ public class LottoGame {
         LottoGamePrinter.println("당첨 번호를 입력해 주세요.");
         return LottoGameInputer.convertCommaSeparatedValuesToList();
     }
+
+    // 보너스 번호 입력
+    public Integer inputWinningBonusNumber() {
+        LottoGamePrinter.println("보너스 번호를 입력해 주세요.");
+        return LottoGameInputer.inputToInteger();
+    }
 }

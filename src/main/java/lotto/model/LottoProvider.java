@@ -5,15 +5,12 @@ import java.util.List;
 
 public class LottoProvider {
 
-    private final LottoNumberCreator lottoNumberCreator;
-
-    public LottoProvider() {
-        lottoNumberCreator = new LottoNumberCreator();
-    }
-
-
     public List<Lotto> lottoGenerate(int each) {
-        List<Lotto> lottos = new ArrayList<>(each);
-        return lottos;
+        return LottoNumberCreator.myLottoNumbersOf(each);
     }
+
+    public WinningLotto winLottoGenerate(List<Integer> numbers, int bonusNumber) {
+        return WinningLotto.of(numbers, bonusNumber);
+    }
+
 }

@@ -1,7 +1,30 @@
 package lotto.model;
 
-public class LottoNumberCreator {
+import camp.nextstep.edu.missionutils.Randoms;
 
-    Lotto lotto;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class LottoNumberCreator {
+    private static final int GENERATE_END = 0;
+    private static List<Lotto> lottos = new ArrayList<>();
+
+    private LottoNumberCreator(){
+        lottos.add(
+                new Lotto(
+                Randoms.pickUniqueNumbersInRange(1, 45, 6).stream()
+                        .sorted()
+                        .toList()
+                )
+        );
+    }
+
+    public static List<Lotto> myLottoNumbersOf(int each){
+        while(each-- > GENERATE_END){
+            new LottoNumberCreator();
+        }
+        return lottos;
+    }
 
 }

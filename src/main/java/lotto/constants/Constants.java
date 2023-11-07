@@ -3,6 +3,7 @@ package lotto.constants;
 public class Constants {
     public enum Integers {
         LOTTO_PRICE(1000),
+        NOTHING_REMAIN(0),
         ;
 
         private int value;

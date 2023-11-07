@@ -13,12 +13,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
- * todo :
- * 주의! 로또 장당 가격 상수의 값을 너무 크게 혹은 작게 바꾸면 테스트에 문제가 생길 수 있다.
- *
- * case 1) 만약 현재 로또 장당 가격이 변경되어 (가격 * 3)이 integer의 최대범위를 초과하면 테스트가 실패한다.
- * case 2) 로또 장당 가격이 1로 변경되면 배수 관련 예외가 발생하지 않는다.
- * case 3) 로또 가격이 0원이 되고, budget도 0원이면 다른 예외가 발생한다.
+ * todo : 이해하기 쉬운 단순한 테스트로 수정하기
+ * 로또의 가격이 변경되어도 동작하는 테스트를 만들려고 했으나, 변경의 여지가 작고,
+ * 공유중인 상수 값의 변경이 아닌 다른 방식으로 변경되어야 할 것 같다.
  */
 public class PurchaseBudgetTest {
 
@@ -73,5 +70,27 @@ public class PurchaseBudgetTest {
         assertThatThrownBy(() -> new PurchaseBudget(notMultipleBudget))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(HAVE_TO_INPUT_MULTIPLE_OF_LOTTO_PRICE.getMessage());
+    }
+
+    static IntStream multipleOfLottoPrice() {
+        return IntStream.of(
+                LOTTO_PRICE.getValue() * 1,
+                LOTTO_PRICE.getValue() * 2,
+                LOTTO_PRICE.getValue() * 3
+        );
+    }
+
+    @DisplayName("구매한 로또 수량 반환")
+    @ParameterizedTest
+    @MethodSource("multipleOfLottoPrice")
+    public void budget_getPurchaseQuantity(int budget) throws Exception {
+        PurchaseBudget purchaseBudget = new PurchaseBudget(budget);
+        int purchaseQuantityValue = budget / LOTTO_PRICE.getValue();
+
+        //when
+        PurchaseQuantity purchaseQuantity = purchaseBudget.createQuantity();
+
+        //then
+        assertThat(purchaseQuantity.getPurchaseQuantity()).isEqualTo(purchaseQuantityValue);
     }
 }

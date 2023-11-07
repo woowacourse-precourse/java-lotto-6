@@ -10,19 +10,16 @@ public class LottoManager {
     private LottoResult lottoResult;
 
 
-    public void makeLottos(int numberOfLottos, LottoGenerator lottoGenerator) {
+    public void createLottos(int numberOfLottos, LottoGenerator lottoGenerator) {
         lottos = Lottos.of(numberOfLottos, lottoGenerator);
     }
 
-    public void makeWinningLotto(Lotto lotto, int bonusNumber) {
+    public void createWinningLotto(Lotto lotto, int bonusNumber) {
         winningLotto = WinningLotto.of(lotto, bonusNumber);
     }
 
-    public List<List<Integer>> getPurchaseLottos() {
-        return lottos.toLottoDTOs()
-                .stream()
-                .map(LottoDTO::numbers)
-                .toList();
+    public List<String> getPurchaseLottos() {
+        return lottos.getPurchaseLottos();
     }
 
     public LottoResult calculateLottoResult() {

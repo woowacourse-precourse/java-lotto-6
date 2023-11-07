@@ -35,4 +35,10 @@ public class Lottos {
                 .toList();
     }
 
+
+    public List<String> getPurchaseLottos() {
+        return lottos.stream()
+                .map(Lotto::getPurchaseLotto)
+                .toList();
+    }
 }

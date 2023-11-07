@@ -27,7 +27,7 @@ public class LottoController {
         int numberOfLottos = purchaseAmount / Lotto.PRICE;
         output.printPurchaseAmount(numberOfLottos);
 
-        manager.makeLottos(numberOfLottos, new RandomLottoGenerator());
+        manager.createLottos(numberOfLottos, new RandomLottoGenerator());
         output.printLottos(manager.getPurchaseLottos());
     }
 
@@ -35,7 +35,7 @@ public class LottoController {
     private void determineWinningLotto() {
         Lotto lotto = input.readWinningNumbers();
         int bonusNumber = input.readBonusNumber();
-        manager.makeWinningLotto(lotto, bonusNumber);
+        manager.createWinningLotto(lotto, bonusNumber);
     }
 
 

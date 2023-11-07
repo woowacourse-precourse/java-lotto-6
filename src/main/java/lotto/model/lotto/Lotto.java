@@ -74,4 +74,10 @@ public class Lotto {
         return numbers.contains(bonusNumber);
     }
 
+    public String getPurchaseLotto() {
+        String purchaseLotto = numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
+        return "[" + purchaseLotto + "]";
+    }
 }

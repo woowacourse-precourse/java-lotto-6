@@ -1,19 +1,20 @@
 package lotto;
 
-import static lotto.model.WinningGrade.FIRST_GRADE;
-import static lotto.model.WinningGrade.SECOND_GRADE;
+import static lotto.domain.statics.WinningGrade.FIRST_GRADE;
+import static lotto.domain.statics.WinningGrade.SECOND_GRADE;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.Lottos;
-import lotto.model.ProfitRate;
-import lotto.model.PurchasePrice;
-import lotto.model.WinningGrade;
-import lotto.model.WinningLotto;
-import lotto.model.WinningProfit;
-import lotto.model.WinningStatics;
+import lotto.domain.Lotto;
+import lotto.domain.profit.ProfitRate;
+import lotto.domain.profit.WinningProfit;
+import lotto.domain.purchase.PurchaseLottos;
+import lotto.domain.purchase.PurchasePrice;
+import lotto.domain.statics.WinningGrade;
+import lotto.domain.statics.WinningStatics;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.WinningLotto;
+import lotto.service.LottoCalculator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -35,7 +36,7 @@ class LottoCalculatorTest {
         BonusNumber bonusNumber = new BonusNumber("11");
         WinningLotto winningLotto = new WinningLotto(winningLottoNumbers, bonusNumber);
 
-        Lottos lottos = new Lottos(
+        PurchaseLottos purchaseLottos = new PurchaseLottos(
                 List.of(
                         new Lotto(List.of(8, 21, 23, 41, 42, 43)),
                         new Lotto(List.of(3, 5, 11, 16, 32, 38)),
@@ -43,7 +44,7 @@ class LottoCalculatorTest {
                         new Lotto(List.of(1, 8, 11, 31, 41, 42))));
 
         // When
-        WinningStatics result = lottoCalculator.getWinningStatic(lottos, winningLotto);
+        WinningStatics result = lottoCalculator.getWinningStatic(purchaseLottos, winningLotto);
 
         // Then
         assertThat(result.getStatics())

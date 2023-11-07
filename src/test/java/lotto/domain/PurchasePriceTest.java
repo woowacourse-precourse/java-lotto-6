@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import static lotto.error.ErrorMessage.NEGATIVE_PRICE;
 import static lotto.error.ErrorMessage.NOT_DIGIT_PRICE;
@@ -6,6 +6,7 @@ import static lotto.error.ErrorMessage.NOT_THOUSAND_UNIT_PRICE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.domain.purchase.PurchasePrice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain.statics;
 
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -23,8 +23,7 @@ public class WinningStatics {
     }
 
     public void addWinningCount(final WinningGrade winningGrade) {
-        this.statics.put(
-                winningGrade,
+        this.statics.put(winningGrade,
                 statics.get(winningGrade) + 1);
     }
 

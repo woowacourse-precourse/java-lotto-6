@@ -1,17 +1,17 @@
 package lotto.io;
 
-import static lotto.model.WinningGrade.NONE_GRADE;
+import static lotto.domain.statics.WinningGrade.NONE_GRADE;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.profit.ProfitRate;
+import lotto.domain.purchase.PurchasePrice;
+import lotto.domain.statics.WinningGrade;
+import lotto.domain.statics.WinningStatics;
+import lotto.domain.winning.BonusNumber;
 import lotto.io.processor.InputProcessor;
 import lotto.io.processor.OutputProcessor;
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.ProfitRate;
-import lotto.model.PurchasePrice;
-import lotto.model.WinningGrade;
-import lotto.model.WinningStatics;
 
 public class ConsoleManager {
 
@@ -31,7 +31,7 @@ public class ConsoleManager {
         while (true) {
             outputProcessor.printPurchasePriceHint();
 
-            String inputPrice = inputProcessor.inputValue();
+            final String inputPrice = inputProcessor.inputValue();
 
             try {
                 return new PurchasePrice(inputPrice);
@@ -47,7 +47,7 @@ public class ConsoleManager {
 
     public void printLottos(final List<Lotto> lottos) {
         lottos.forEach(lotto -> {
-            List<Integer> numbers = lotto.getNumbers();
+            final List<Integer> numbers = lotto.getNumbers();
             outputProcessor.outputLottoNumbers(numbers);
         });
     }
@@ -56,7 +56,7 @@ public class ConsoleManager {
         while (true) {
             outputProcessor.outputWinningNumbersHint();
 
-            String inputWinningNumbers = inputProcessor.inputValue();
+            final String inputWinningNumbers = inputProcessor.inputValue();
 
             try {
                 return new Lotto(inputWinningNumbers);
@@ -71,7 +71,7 @@ public class ConsoleManager {
             try {
                 outputProcessor.outputBonusNumberHint();
 
-                String inputBonusNumber = inputProcessor.inputValue();
+                final String inputBonusNumber = inputProcessor.inputValue();
 
                 return new BonusNumber(inputBonusNumber);
             } catch (IllegalArgumentException e) {
@@ -86,7 +86,7 @@ public class ConsoleManager {
         Arrays.stream(WinningGrade.values())
                 .filter(type -> type != NONE_GRADE)
                 .forEach(type -> {
-                    int count = statics.getWinningGradeCount(type);
+                    final int count = statics.getWinningGradeCount(type);
                     outputProcessor.outputWinningStatics(type, count);
                 });
     }

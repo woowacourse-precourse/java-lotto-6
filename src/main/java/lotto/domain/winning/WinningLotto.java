@@ -1,6 +1,9 @@
-package lotto.model;
+package lotto.domain.winning;
 
 import static lotto.error.ErrorMessage.NOT_UNIQUE_BONUS_NUMBER;
+
+import lotto.domain.Lotto;
+import lotto.domain.statics.WinningGrade;
 
 public class WinningLotto {
 
@@ -18,14 +21,14 @@ public class WinningLotto {
     }
 
     public WinningGrade matchLotto(final Lotto lotto) {
-        int matchingCount = lotto.getMatchingCount(winningNumbers);
-        boolean bonusMatched = lotto.isBonusMatched(bonusNumber);
+        final int matchingCount = lotto.getMatchingCount(winningNumbers);
+        final boolean bonusMatched = lotto.isBonusMatched(bonusNumber);
 
         return WinningGrade.getWinningType(matchingCount, bonusMatched);
     }
 
-    private void validateDuplicatedNumber(Lotto numbers, BonusNumber bonusNumber) {
-        boolean duplicated = numbers.getNumbers()
+    private void validateDuplicatedNumber(final Lotto numbers, final BonusNumber bonusNumber) {
+        final boolean duplicated = numbers.getNumbers()
                 .contains(bonusNumber.getNumber());
 
         if (duplicated) {

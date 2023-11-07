@@ -1,6 +1,8 @@
-package lotto.model;
+package lotto.domain.profit;
 
 import java.util.Map.Entry;
+import lotto.domain.statics.WinningGrade;
+import lotto.domain.statics.WinningStatics;
 
 public class WinningProfit {
 

@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain.statics;
 
 import java.util.Arrays;
 
@@ -49,14 +49,21 @@ public enum WinningGrade {
         return winningPrice;
     }
 
-    private static boolean comparisonBonusMatched(int matchedCount, boolean matchedBonusNumber, WinningGrade type) {
+    private static boolean comparisonBonusMatched(
+            final int matchedCount,
+            final boolean matchedBonusNumber,
+            final WinningGrade type
+    ) {
         if (matchedCount == BONUS_MATCH_COUNT) {
             return type.isMatchedBonusNumber() == matchedBonusNumber;
         }
         return true;
     }
 
-    private static boolean comparisonMatchCount(int matchedCount, WinningGrade type) {
+    private static boolean comparisonMatchCount(
+            final int matchedCount,
+            final WinningGrade type
+    ) {
         return type.getMatchedCount() == matchedCount;
     }
 

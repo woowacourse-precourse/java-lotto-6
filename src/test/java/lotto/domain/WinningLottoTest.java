@@ -1,10 +1,13 @@
-package lotto.model;
+package lotto.domain;
 
 import static lotto.error.ErrorMessage.NOT_UNIQUE_BONUS_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.domain.statics.WinningGrade;
+import lotto.domain.winning.BonusNumber;
+import lotto.domain.winning.WinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

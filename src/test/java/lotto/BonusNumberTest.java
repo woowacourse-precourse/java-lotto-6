@@ -4,7 +4,7 @@ import static lotto.error.ErrorMessage.NOT_DIGIT_BONUS_NUMBER;
 import static lotto.error.ErrorMessage.NOT_IN_BOUND_BONUS_NUMBER;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.model.BonusNumber;
+import lotto.domain.winning.BonusNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

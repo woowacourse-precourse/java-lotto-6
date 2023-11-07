@@ -1,7 +1,9 @@
-package lotto.model;
+package lotto.domain.winning;
 
 import static lotto.error.ErrorMessage.NOT_DIGIT_BONUS_NUMBER;
 import static lotto.error.ErrorMessage.NOT_IN_BOUND_BONUS_NUMBER;
+
+import lotto.domain.Lotto;
 
 public class BonusNumber {
 
@@ -10,7 +12,7 @@ public class BonusNumber {
     public BonusNumber(
             final String inputBonusNumber
     ) {
-        int parsedNumber = parseNumber(inputBonusNumber);
+        final int parsedNumber = parseNumber(inputBonusNumber);
 
         validateInBoundNumber(parsedNumber);
 
@@ -27,15 +29,15 @@ public class BonusNumber {
         }
     }
 
-    private boolean isGreaterThanUpperBound(int parsedNumber) {
+    private boolean isGreaterThanUpperBound(final int parsedNumber) {
         return parsedNumber > Lotto.getLottoUpperBound();
     }
 
-    private boolean isLessThanLowerBound(int parsedNumber) {
+    private boolean isLessThanLowerBound(final int parsedNumber) {
         return parsedNumber < Lotto.getLottoLowerBound();
     }
 
-    private int parseNumber(String inputBonusNumber) {
+    private int parseNumber(final String inputBonusNumber) {
         try {
             return Integer.parseInt(inputBonusNumber);
         } catch (NumberFormatException e) {

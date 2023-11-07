@@ -2,8 +2,9 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import lotto.model.Lottos;
-import lotto.model.PurchaseAmount;
+import lotto.domain.purchase.PurchaseAmount;
+import lotto.domain.purchase.PurchaseLottos;
+import lotto.service.LottoBuyer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,10 +26,10 @@ class LottoBuyerTest {
         final PurchaseAmount purchaseAmount = new PurchaseAmount(purchasePrice);
 
         // When
-        Lottos result = lottoBuyer.purchaseLottos(purchaseAmount);
+        PurchaseLottos result = lottoBuyer.purchaseLottos(purchaseAmount);
 
         // Then
-        assertThat(result.getLottos())
+        assertThat(result.lottos())
                 .isNotEmpty()
                 .hasSize(purchaseAmount.getAmount());
     }

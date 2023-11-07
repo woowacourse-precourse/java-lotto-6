@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.domain;
 
 import static lotto.error.ErrorMessage.NOT_DIGIT_LOTTO_NUMBERS;
 import static lotto.error.ErrorMessage.NOT_IN_BOUND_LOTTO_NUMBERS;
@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.domain.winning.BonusNumber;
 
 public class Lotto {
 
@@ -30,7 +31,7 @@ public class Lotto {
 
     public Lotto(final String numberText) {
         try {
-            List<Integer> winningNumbers = Arrays.stream(numberText.split(","))
+            final List<Integer> winningNumbers = Arrays.stream(numberText.split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .toList();
@@ -83,7 +84,7 @@ public class Lotto {
     }
 
     private void validateUniqueNumbers(final List<Integer> numbers) {
-        Set<Integer> duplicateRemovedNumbers = new HashSet<>(numbers);
+        final Set<Integer> duplicateRemovedNumbers = new HashSet<>(numbers);
 
         if (duplicateRemovedNumbers.size() != numbers.size()) {
             throw new IllegalArgumentException(NOT_UNIQUE_LOTTO_NUMBERS.getMessage());
@@ -91,7 +92,7 @@ public class Lotto {
     }
 
     private void validateNumbersBound(final List<Integer> numbers) {
-        boolean notInBound = numbers.stream()
+        final boolean notInBound = numbers.stream()
                 .anyMatch(number -> isLessThanLowerBound(number) || isGreaterThanUpperBound(number));
 
         if (notInBound) {
@@ -99,16 +100,16 @@ public class Lotto {
         }
     }
 
-    private boolean isGreaterThanUpperBound(int number) {
+    private boolean isGreaterThanUpperBound(final int number) {
         return number > LOTTO_UPPER_BOUND;
     }
 
-    private boolean isLessThanLowerBound(int number) {
+    private boolean isLessThanLowerBound(final int number) {
         return number < LOTTO_LOWER_BOUND;
     }
 
-    private List<Integer> sort(List<Integer> numbers) {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+    private List<Integer> sort(final List<Integer> numbers) {
+        final List<Integer> sortedNumbers = new ArrayList<>(numbers);
 
         Collections.sort(sortedNumbers);
 

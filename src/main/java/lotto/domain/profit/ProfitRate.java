@@ -1,4 +1,6 @@
-package lotto.model;
+package lotto.domain.profit;
+
+import lotto.domain.purchase.PurchasePrice;
 
 public class ProfitRate {
 

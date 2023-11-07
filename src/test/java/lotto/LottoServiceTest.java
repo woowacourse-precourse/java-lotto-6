@@ -88,13 +88,15 @@ public class LottoServiceTest {
 	@DisplayName("내가 산 로또의 개수와 당첨금액을 받아 수익률을 구하는 메서드 테스트")
 	@Test
 	void getProfitRateTest1() {
+		long numberOfLottoTickets = 25L;
+		long profit = 50000L;
 
+		assertEquals("200.0", lottoService.getProfitRate(numberOfLottoTickets, profit));
 	}
 
 	@DisplayName("수익률은 소수점 둘째 자리에서 반올림되는지 확인하는 테스트")
 	@Test
 	void getProfitRateTest2() {
-
 	}
 
 	private boolean isSortedInAscendingOrder(List<Integer> numbers) {

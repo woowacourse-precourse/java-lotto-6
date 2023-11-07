@@ -10,8 +10,8 @@ public class Store {
     private final int lottoCount;
 
     public Store(Money money) {
-        lottoTickets = makeLottoTickets();
         lottoCount = countLotto(money);
+        lottoTickets = makeLottoTickets();
     }
 
     public int countLotto(Money money) {

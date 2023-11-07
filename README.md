@@ -1,5 +1,87 @@
 # 미션 - 로또
 
+## 프로젝트 소개
+로또 미션은 우아한테크코스 프리코스에서 진행되는 프로그래밍 미션입니다. 
+
+이 미션에서는 로또 게임을 구현하며, 로또 게임의 규칙과 사용자가 입력하는 정보를 기반으로 당첨 번호와 수익률을 계산합니다.
+
+## 📌 프로젝트 구조
+
+프로젝트의 구조는 다음과 같이 설계되었습니다.
+
+```
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── lotto
+│   │   │       └── domain
+│   │   │       │    ├── Customer.java
+│   │   │       │    ├── Lotto.java
+│   │   │       │    ├── LottoBundle.java
+│   │   │       │    ├── LottoRank.java
+│   │   │       │    └── Score.java
+│   │   │       └── game
+│   │   │       │    └── Game.java
+│   │   │       └── global
+│   │   │       │    ├── ErrorMessage.java
+│   │   │       │    ├── InputValidation.java
+│   │   │       │    ├── LottoInformation.java
+│   │   │       │    └── Store.java
+│   │   │       └── ui
+│   │   │       │    ├── Input.java
+│   │   │       │    └── Output.java
+│   │   │       └── Application.java
+│   └── test
+│       ├── java
+│       │   └── lotto
+│       │       └── domain
+│       │       │    ├── CustomerTest.java
+│       │       │    ├── LottoTest.java
+│       │       │    ├── LottoBundleTest.java
+│       │       │    ├── LottoRankTest.java
+│       │       │    └── ScoreTest.java
+│       │       └── global
+│       │       │    ├── ErrorMessageTest.java
+│       │       │    ├── InputValidationTest.java
+│       │       │    └── StoreTest.java
+│       │       └── ui
+│       │       │    ├── InputTest.java
+│       │       │    └── OutputTest.java
+│       │       └── Application.java
+├── build.gradle
+└── README.md
+```
+
+- `src/main/java/lotto/domain`: 로또에서 사용되는 도메인
+- `src/main/java/lotto/game`: 게임 진행을 위한 클래스
+- `src/main/java/lotto/global`: 여러 클래스에 사용되는 검증, 에러메세지
+- `src/main/java/lotto/ui`: 입력, 출력
+- `src/test/java/lotto/domain`: 로또에서 사용되는 도메인 테스트
+- `src/test/java/lotto/global`: 검증, 에러메세지 테스트
+- `src/test/java/lotto/ui`: 입력, 출력 검증
+- `build.gradle`: 프로젝트의 빌드 설정을 정의한 파일
+- `README.md`: 프로젝트에 대한 소개와 사용법을 설명하는 문서
+
+## 💡 프로젝트 기능
+- 로또 구입 금액을 입력받아, 그 금액에 해당하는 만큼 로또를 발행한다.
+- 사용자가 당첨 번호와 보너스 번호를 입력한다.
+- 해당 번호와 사용자의 로또 번호를 비교하여 당첨 내역과 수익률을 출력한다.
+- 사용자가 잘못된 값을 입력한 경우, 에러 메시지를 표시하고 다시 입력받는다.
+
+### 입력 제한
+- 로또 구입 금액은 자연수여야 한다. 
+- 로또 구입 금액은 로또 금액의 배수여야 한다.
+- 당첨 번호는 자연수여야 한다. 
+- 당첨 번호는 6개여야 한다. 
+- 당첨 번호는 1부터 45이내의 숫자여야 한다. 
+- 보너스 번호는 1부터 45이내의 숫자여야 한다. 
+- 보너스 번호는 당첨 번호에 포함되지 않아야 한다.
+
+### 출력 제한
+- 예외 발생 시, `[ERROR]`와 함께 출력한다.
+- 수익률은 둘째 자리 수에서 반올림한다.
+- 수익률은 자릿수를 표시한다.
+
 ## 🔍 진행 방식
 
 - 미션은 **기능 요구 사항, 프로그래밍 요구 사항, 과제 진행 요구 사항** 세 가지로 구성되어 있다.

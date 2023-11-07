@@ -5,7 +5,8 @@ import java.util.List;
 import lotto.Dto.MyLottosDto;
 import lotto.Dto.SingleResultDto;
 import lotto.Dto.TotalResultDto;
-import lotto.constants.messages.Notification;
+import lotto.constant.constants.Prize;
+import lotto.constant.messages.Notification;
 
 
 public class OutputView {
@@ -14,13 +15,15 @@ public class OutputView {
     }
 
     public void showMyTickets(MyLottosDto myLottosDto) {
-        for (List<Integer> myLotto : myLottosDto.getMyLottosNumber()) {
+        System.out.printf(Notification.PURCHASED.getMessage(), myLottosDto.size());
+        System.out.println();
+        for (List<Integer> myLotto : myLottosDto.getMyLottos()) {
             System.out.println(myLotto);
         }
     }
 
     public void askWinningLotto() {
-        System.out.println(Notification.WINNER_LOTTO.getMessage());
+        System.out.println(Notification.WINNING_LOTTO.getMessage());
     }
 
     public void askBonusNumber() {
@@ -29,23 +32,36 @@ public class OutputView {
 
     public void showResult(TotalResultDto totalResultDto) {
         System.out.println(Notification.RESULT_PRE.getMessage());
-        List<Integer> order = new ArrayList<>(List.of(3, 4, 5, 7, 6));
-        for (Integer x : order) {
-            SingleResultDto singleResultDto = totalResultDto.getSingleResult(x);
+        printWonLottos(totalResultDto);
+        System.out.printf(Notification.RESULT_PROFIT.getMessage(), totalResultDto.getProfit());
+        System.out.println();
+    }
+
+    private void printWonLottos(TotalResultDto totalResultDto) {
+        List<Integer> printOrder = new ArrayList<>();
+        addOrder(printOrder);
+        for (Integer code : printOrder) {
+            SingleResultDto singleResultDto = totalResultDto.getSingleResult(code);
             System.out.printf(Notification.RESULT_MATCHED.getMessage(), singleResultDto.getMatch());
-            if (x == 7) {
+            if (code.equals(Prize.FIVE_AND_BONUS_MATCHED.getCode())) {
                 System.out.print(Notification.RESULT_BONUS.getMessage());
             }
             System.out.printf(Notification.RESULT_PRIZE.getMessage(), singleResultDto.getPrize());
             System.out.printf(Notification.RESULT_WON.getMessage(), singleResultDto.getWon());
             System.out.println();
         }
-        System.out.printf(Notification.RESULT_PROFIT.getMessage(), totalResultDto.getProfit());
-        System.out.println();
     }
 
-    public void printErrorMessage(String s) {
-        System.out.println(s);
+    private void addOrder(List<Integer> printOrder) {
+        printOrder.add(Prize.THREE_MATCHED.getCode());
+        printOrder.add(Prize.FOUR_MATCHED.getCode());
+        printOrder.add(Prize.FIVE_MATCHED.getCode());
+        printOrder.add(Prize.FIVE_AND_BONUS_MATCHED.getCode());
+        printOrder.add(Prize.SIX_MATCHED.getCode());
+    }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
     }
 
 

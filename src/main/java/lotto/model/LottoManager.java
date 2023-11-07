@@ -13,8 +13,8 @@ public class LottoManager {
     private List<Lotto> lottos;
     private AnswerLotto answerLotto;
 
-    public LottoManager(int amount) {
-        this.token = new Token(amount);
+    public LottoManager(Token token) {
+        this.token = token;
         this.lottos = new ArrayList<>();
     }
 

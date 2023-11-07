@@ -8,6 +8,10 @@ public class LottoGenerator {
     }
 
     public static List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(
+            NumberConstants.NUMBER_LEAST_VALUE.getValue(),
+            NumberConstants.NUMBER_MOST_VALUE.getValue(),
+            NumberConstants.NUMBER_COUNT.getValue()
+        );
     }
 }

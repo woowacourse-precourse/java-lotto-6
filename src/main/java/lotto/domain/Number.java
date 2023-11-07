@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
+import lotto.utils.NumberConstants;
 
 public class Number {
     private int value;
@@ -15,7 +16,8 @@ public class Number {
     }
 
     private void isInRange(int value) {
-        if (value < 1 || value > 45) {
+        if (value < NumberConstants.NUMBER_LEAST_VALUE.getValue()
+            || value > NumberConstants.NUMBER_MOST_VALUE.getValue()) {
             throw new IllegalArgumentException("[ERROR] 번호는 1이상 45이하의 수만 입력할 수 있습니다.");
         }
     }

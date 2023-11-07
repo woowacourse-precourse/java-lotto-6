@@ -2,14 +2,6 @@ package lotto.validation;
 
 import java.util.Arrays;
 import java.util.List;
-import lotto.exception.BonusNumberDuplicateException;
-import lotto.exception.InputFormatException;
-import lotto.exception.InvalidPurchaseAmountException;
-import lotto.exception.LottoNumberRangeException;
-import lotto.exception.NotIntegerException;
-import lotto.exception.PurchaseAmountRangeException;
-import lotto.exception.WinningNumberDuplicateException;
-import lotto.exception.WinningNumberSizeException;
 
 public class InputValidator {
     public static void validatePurchaseAmount(String input) {
@@ -41,52 +33,52 @@ public class InputValidator {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new NotIntegerException();
+            throw new IllegalArgumentException(Error.NOT_INTEGER_ERROR.getMessage());
         }
     }
 
     private static void validateLottoNumberRange(int number) {
         if(number < 1 || number > 45) {
-            throw new LottoNumberRangeException();
+            throw new IllegalArgumentException(Error.LOTTO_NUMBER_RANGE_ERROR.getMessage());
         }
     }
 
     private static void validateAmountLimit(int purchaseAmount) {
         if (purchaseAmount > 100000) {
-            throw new PurchaseAmountRangeException();
+            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_RANGE_ERROR.getMessage());
         }
 
         if (purchaseAmount < 1000) {
-            throw new PurchaseAmountRangeException();
+            throw new IllegalArgumentException(Error.PURCHASE_AMOUNT_RANGE_ERROR.getMessage());
         }
     }
 
     private static void validateDividedBy1000(int purchaseAmount) {
         if (purchaseAmount % 1000 != 0) {
-            throw new InvalidPurchaseAmountException();
+            throw new IllegalArgumentException(Error.INVALID_PURCHASE_AMOUNT_ERROR.getMessage());
         }
     }
 
     private static void validateCommaFormat(String input) {
         if(input.contains(",,") || input.startsWith(",") || input.endsWith(",")) {
-            throw new InputFormatException();
+            throw new IllegalArgumentException(Error.Input_FORMAT_ERROR.getMessage());
         }
     }
 
     private static void validateWinningNumbersSize(List<Integer> winningNumbers) {
         if(winningNumbers.size() != 6) {
-            throw new WinningNumberSizeException();
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_SIZE_ERROR.getMessage());
         }
     }
     private static void validateDuplicateNumber(List<Integer> numbers) {
         if(numbers.size() != numbers.stream().distinct().count()) {
-            throw new WinningNumberDuplicateException();
+            throw new IllegalArgumentException(Error.WINNING_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
     private static void validateDuplicateBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         if(winningNumbers.contains(bonusNumber)) {
-            throw new BonusNumberDuplicateException();
+            throw new IllegalArgumentException(Error.BONUS_NUMBER_DUPLICATION_ERROR.getMessage());
         }
     }
 }

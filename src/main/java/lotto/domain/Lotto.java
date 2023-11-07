@@ -2,8 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
-import lotto.exception.LottoCountException;
-import lotto.exception.LottoDuplicateException;
+import lotto.validation.Error;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -15,11 +14,11 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new LottoCountException();
+            throw new IllegalArgumentException(Error.LOTTO_COUNT_ERROR.getMessage());
         }
 
         if (numbers.stream().distinct().count() != 6) {
-            throw new LottoDuplicateException();
+            throw new IllegalArgumentException(Error.LOTTO_DUPLICATE_ERROR.getMessage());
         }
     }
 

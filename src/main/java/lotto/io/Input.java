@@ -16,7 +16,7 @@ public class Input {
             String input = Console.readLine();
             InputValidator.validatePurchaseAmount(input);
             return Integer.parseInt(input);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return purchaseAmount();
         }
@@ -32,7 +32,7 @@ public class Input {
                     .toList();
             InputValidator.validateWinningNumbers(winningNumbers);
             return winningNumbers;
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return winningNumbers();
         }
@@ -44,7 +44,7 @@ public class Input {
             String input = Console.readLine();
             InputValidator.validateBonusNumber(input, winningNumbers);
             return Integer.parseInt(input);
-        } catch (RuntimeException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return bonusNumber(winningNumbers);
         }

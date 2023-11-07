@@ -47,4 +47,12 @@ class LottoWinningNumberTest {
                 .hasMessageContaining("[ERROR] 당첨 번호는 6개여야 합니다.");
     }
 
+    @Test
+    @DisplayName("당첨 번호가 1에서 45 사이의 값이 아니면 예외를 발생시킨다")
+    void throwExceptionIfNumbersAreNotBetweenOneAndFortyFive() {
+        assertThatThrownBy(() -> new LottoWinningNumber(Arrays.asList(0, 2, 3, 4, 5, 46)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 당첨 번호는 1부터 45 사이의 값이어야 합니다.");
+    }
+
 }

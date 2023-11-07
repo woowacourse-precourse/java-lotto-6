@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -41,6 +42,18 @@ class LottoTest {
         assertTrue(lotto.contains(2));
         assertFalse(lotto.contains(7));
         assertFalse(lotto.contains(8));
+    }
+
+    @DisplayName("로또가 String형태로 잘 나오는지 확인한다.")
+    @Test
+    void testToString(){
+        List<Integer> numbers = List.of(1,2,3,4,5,6);
+        Lotto lotto = new Lotto(numbers);
+
+        String lottoString = "[1, 2, 3, 4, 5, 6]";
+        String getLottoString = lotto.toString();
+
+        assertThat((getLottoString)).isEqualTo(lottoString);
     }
 
 }

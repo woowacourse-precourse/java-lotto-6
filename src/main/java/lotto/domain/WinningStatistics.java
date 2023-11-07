@@ -1,10 +1,9 @@
 package lotto.domain;
 
 import java.util.Map;
-import lotto.domain.LottoAmount;
-import lotto.domain.Ranking;
+import java.util.Map.Entry;
 
-public record WinningStatistics(LottoAmount lottoAmount, Map<Ranking, Integer> rankingNumber) {
+public record WinningStatistics(LottoAmount lottoAmount, Map<Ranking, Integer> rankingNumbers) {
     public double getReturnRate() {
         return Math.round(calculateReturnRate() * 10.0) / 10.0;
     }
@@ -15,8 +14,15 @@ public record WinningStatistics(LottoAmount lottoAmount, Map<Ranking, Integer> r
     }
 
     private int getTotalPrize() {
-        return rankingNumber.entrySet().stream()
-                .mapToInt(entry -> entry.getKey().getPrize() * entry.getValue())
+        return rankingNumbers.entrySet().stream()
+                .mapToInt(this::getPrizePerRankingCount)
                 .sum();
+    }
+
+    private int getPrizePerRankingCount(Entry<Ranking, Integer> rankingNumber) {
+        int prize = rankingNumber.getKey().getPrize();
+        int count = rankingNumber.getValue();
+
+        return prize * count;
     }
 }

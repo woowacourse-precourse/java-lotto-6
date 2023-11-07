@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.exception.purchaseamount.PurchaseAmountDivideException;
+import lotto.exception.purchaseamount.PurchaseAmountLimitException;
+
 public class PurchaseAmount {
 
     private static final int LOTTO_PRICE = 1000;
@@ -22,13 +25,13 @@ public class PurchaseAmount {
 
     private void validatePurchaseAmountDivideByThousand(int purchaseAmount) {
         if(purchaseAmount % LOTTO_PRICE != DIVIDE_UP_VALUE) {
-            throw new IllegalArgumentException("[ERROR] : 로또 구입 금액은 1000으로 나누어 떨어져야 합니다.");
+            throw new PurchaseAmountDivideException();
         }
     }
 
     private void validatePurchaseAmountUnderThousand(int purchaseAmount) {
         if(purchaseAmount < LOTTO_PRICE) {
-            throw new IllegalArgumentException("[ERROR] : 로또 구입 금액은 1000 이상의 정수입니다.");
+            throw new PurchaseAmountLimitException();
         }
     }
 

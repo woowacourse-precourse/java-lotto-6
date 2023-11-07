@@ -1,5 +1,8 @@
 package lotto.utils;
 
+import lotto.exception.inputvalidator.NonIntegerNumberException;
+import lotto.exception.inputvalidator.NonNumericInputException;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,7 +14,7 @@ public class InputValidator {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] : 문자가 아닌 숫자를 입력해주세요.");
+            throw new NonNumericInputException();
         }
     }
 
@@ -31,7 +34,7 @@ public class InputValidator {
             try {
                 Integer.parseInt(number);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] : 당첨 번호는 정수입니다.");
+                throw new NonIntegerNumberException();
             }
         }
     }

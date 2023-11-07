@@ -1,12 +1,12 @@
 package lotto.constants;
 
-public enum Boolean {
+public enum Condition {
     TRUE(true),
     FALSE(false);
 
     private final boolean trueAndFalse;
 
-    Boolean(boolean trueAndFalse) {
+    Condition(boolean trueAndFalse) {
         this.trueAndFalse = trueAndFalse;
     }
 

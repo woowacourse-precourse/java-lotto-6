@@ -1,8 +1,8 @@
 package lotto;
 
-import static lotto.constants.Boolean.FALSE;
-import static lotto.constants.Boolean.TRUE;
-import static lotto.constants.Null.NULL;
+import static lotto.constants.Condition.FALSE;
+import static lotto.constants.Condition.TRUE;
+import static lotto.constants.EmptyLotto.NULL;
 import static lotto.constants.Value.INITIAL_ZERO;
 
 import lotto.domain.Lotto;

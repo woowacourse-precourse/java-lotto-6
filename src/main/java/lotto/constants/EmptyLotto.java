@@ -2,12 +2,12 @@ package lotto.constants;
 
 import lotto.domain.Lotto;
 
-public enum Null {
+public enum EmptyLotto {
     NULL(null);
 
     private final Lotto lotto;
 
-    Null(Lotto lotto) {
+    EmptyLotto(Lotto lotto) {
         this.lotto = lotto;
     }
 

@@ -3,7 +3,7 @@ package lotto.service;
 import lotto.constant.RankCategory;
 import lotto.model.LottoResult;
 import lotto.model.ProfitRate;
-import lotto.model.collections.LottoPurchaseAmount;
+import lotto.model.LottoPurchaseAmount;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
-package lotto.view;
+package lotto.view.message;
 
-public enum Message {
+public enum GameMessage {
     PURCHASE_AMOUNT_MESSAGE("구입금액을 입력해 주세요"),
     TICKET_COUNT_MESSAGE("%d개를 구매했습니다."),
     WINNING_NUMBERS_MESSAGE("당첨 번호를 입력해 주세요."),
@@ -10,7 +10,7 @@ public enum Message {
 
     private final String message;
 
-    Message(String message) {
+    GameMessage(String message) {
         this.message = message;
     }
 

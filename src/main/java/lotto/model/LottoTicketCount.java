@@ -1,4 +1,4 @@
-package lotto.model.collections;
+package lotto.model;
 
 public class LottoTicketCount {
     private final int count;

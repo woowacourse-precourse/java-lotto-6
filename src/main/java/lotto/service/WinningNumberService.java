@@ -2,8 +2,8 @@ package lotto.service;
 
 import lotto.model.BonusNumber;
 import lotto.model.WinningNumbers;
-import lotto.validator.BonusNumberValidator;
-import lotto.validator.WinningNumberValidator;
+import lotto.validator.input.BonusNumberValidator;
+import lotto.validator.input.WinningNumberValidator;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class WinningNumberService {
     }
 
     public BonusNumber createBonusNumber(String userInput, List<Integer> winningNumbers) {
-        int number = bonusNumberValidator.validateAndParse(userInput,winningNumbers);
+        int number = bonusNumberValidator.validateAndParse(userInput, winningNumbers);
         return new BonusNumber(number);
     }
 }

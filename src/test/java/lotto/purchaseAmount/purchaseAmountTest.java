@@ -1,6 +1,6 @@
 package lotto.purchaseAmount;
 
-import lotto.model.collections.LottoPurchaseAmount;
+import lotto.model.LottoPurchaseAmount;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

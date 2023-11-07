@@ -1,4 +1,4 @@
-package lotto.model.collections;
+package lotto.model;
 
 import lotto.exception.business.LottoException;
 import lotto.model.Lotto;
@@ -16,13 +16,13 @@ public class LottoBundle {
     }
 
     private void validateNull(List<Lotto> lottoBundle) {
-        if(lottoBundle==null){
+        if (lottoBundle == null) {
             throw new NullPointerException("로또 묶음이 null 값 입니다.");
         }
     }
 
     private void validateNotEmpty(List<Lotto> lottoBundle) {
-        if(lottoBundle.isEmpty()){
+        if (lottoBundle.isEmpty()) {
             throw new LottoException("로또 묶음이 비어 있습니다.");
         }
     }

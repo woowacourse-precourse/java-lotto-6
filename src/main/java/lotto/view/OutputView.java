@@ -4,13 +4,13 @@ import lotto.constant.RankCategory;
 import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.ProfitRate;
-import lotto.model.collections.LottoBundle;
+import lotto.model.LottoBundle;
 
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.view.Message.*;
+import static lotto.view.message.GameMessage.*;
 
 public class OutputView {
     public static void printPurchaseAmountMessage() {

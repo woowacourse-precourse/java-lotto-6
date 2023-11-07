@@ -1,6 +1,7 @@
 package lotto.bonusNumber;
 
-import lotto.validator.BonusNumberValidator;
+import com.sun.jdi.request.DuplicateRequestException;
+import lotto.validator.input.BonusNumberValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class BonusNumberValidatorTest {
     void validate_WinningNumbers와_중복이_있으면_거짓을_반환한다() {
         String userInput = "11";
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 11);
-        Assertions.assertThrows(IllegalArgumentException.class,
+        Assertions.assertThrows(DuplicateRequestException.class,
                 () -> bonusNumberValidator.validateAndParse(userInput, winningNumbers));
     }
 }

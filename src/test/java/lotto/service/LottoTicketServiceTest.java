@@ -1,8 +1,8 @@
 package lotto.service;
 
 import lotto.model.Lotto;
-import lotto.model.collections.LottoPurchaseAmount;
-import lotto.model.collections.LottoTicketCount;
+import lotto.model.LottoPurchaseAmount;
+import lotto.model.LottoTicketCount;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;

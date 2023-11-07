@@ -4,9 +4,9 @@ import lotto.model.BonusNumber;
 import lotto.model.LottoResult;
 import lotto.model.ProfitRate;
 import lotto.model.WinningNumbers;
-import lotto.model.collections.LottoBundle;
-import lotto.model.collections.LottoPurchaseAmount;
-import lotto.model.collections.LottoTicketCount;
+import lotto.model.LottoBundle;
+import lotto.model.LottoPurchaseAmount;
+import lotto.model.LottoTicketCount;
 import lotto.service.LottoResultService;
 import lotto.service.LottoTicketService;
 import lotto.service.WinningNumberService;
@@ -27,9 +27,9 @@ public class LottoController {
         this.lottoResultService = lottoResultService;
     }
 
-    public void run(){
-        while(true){
-            try{
+    public void run() {
+        while (true) {
+            try {
                 OutputView.printPurchaseAmountMessage();
                 LottoPurchaseAmount purchaseAmount = lottoTicketService.parsePurchaseAmount(InputView.read());
                 LottoTicketCount ticketCount = lottoTicketService.calculateTicketCount(purchaseAmount);
@@ -41,11 +41,11 @@ public class LottoController {
                 OutputView.printWinningNumbersMessage();
                 WinningNumbers winningNumbers = winningNumberService.createWinningNumbers(InputView.read());
                 OutputView.printBonusNumberMessage();
-                BonusNumber bonusNumber = winningNumberService.createBonusNumber(InputView.read(),winningNumbers.getNumbers());
+                BonusNumber bonusNumber = winningNumberService.createBonusNumber(InputView.read(), winningNumbers.getNumbers());
 
                 OutputView.printResultMessage();
-                LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle,winningNumbers,bonusNumber);
-                ProfitRate profitRate = lottoResultService.calculateProfitRate(lottoResult,purchaseAmount);
+                LottoResult lottoResult = lottoResultService.calculateResults(lottoBundle, winningNumbers, bonusNumber);
+                ProfitRate profitRate = lottoResultService.calculateProfitRate(lottoResult, purchaseAmount);
                 OutputView.printLottoResult(lottoResult, profitRate);
 
                 break;

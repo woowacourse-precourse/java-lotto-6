@@ -1,6 +1,6 @@
 package lotto.purchaseAmount;
 
-import lotto.validator.PurchaseAmountValidator;
+import lotto.validator.input.PurchaseAmountValidator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

@@ -1,11 +1,8 @@
 package lotto.bonusNumber;
 
 import lotto.model.BonusNumber;
-import lotto.model.WinningNumbers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

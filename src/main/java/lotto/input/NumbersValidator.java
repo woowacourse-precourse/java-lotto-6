@@ -22,10 +22,4 @@ public class NumbersValidator {
         }
     }
 
-    protected static void validateDuplicate(int number, Set<Integer> winningNumbers) {
-        if (!winningNumbers.add(number)) {
-            System.out.println();
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
-        }
-    }
 }

@@ -29,7 +29,7 @@ public class BonusNumber extends NumbersValidator {
         return bonus;
     }
 
-    private static void validateInputLength(String input, String errorMessage) {
+    protected static void validateInputLength(String input, String errorMessage) {
         String[] numbers = input.split(",");
         if (numbers.length != 1) {
             throw new IllegalArgumentException(errorMessage);

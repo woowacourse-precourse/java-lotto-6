@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.HashSet;
 import java.util.Set;
 
+import static lotto.output.Constants.NumbersValidatorConstants.DUPLICATE_ERROR_MESSAGE;
 import static lotto.output.Constants.WinningNumbersConstants.SIX_LENGTH_ERROR_MESSAGE;
 import static lotto.output.Constants.WinningNumbersConstants.SIX_NUMBERS_INPUT_MESSAGE;
 
@@ -42,6 +43,13 @@ public class WinningNumbers extends NumbersValidator {
             int winningNum = validateNumberFormat(number.trim());
             validateNumberRange(winningNum);
             validateDuplicate(winningNum, winningNumbers);
+        }
+    }
+
+    private static void validateDuplicate(int number, Set<Integer> winningNumbers) {
+        if (!winningNumbers.add(number)) {
+            System.out.println();
+            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
         }
     }
 }

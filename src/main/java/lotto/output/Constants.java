@@ -1,10 +1,5 @@
 package lotto.output;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
-
 public class Constants {
     public class PurchaseHandlerConstants {
         public static final String AMOUNT_INPUT = "구입금액을 입력해 주세요.";

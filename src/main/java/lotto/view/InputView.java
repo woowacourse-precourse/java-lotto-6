@@ -1,6 +1,8 @@
 package lotto.view;
 
 public class InputView {
+    private final String DELIMITER = ",";
+
     public long validateCustomerMoneyInput(final String moneyInput) {
         if (moneyInput.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
@@ -22,7 +24,20 @@ public class InputView {
         if (!winningNumberInput.contains(",")) {
             throw new IllegalArgumentException("[ERROR] ','로 구분해주시길 바랍니다.");
         }
-        String[] splitByDelimiter = winningNumberInput.split(",");
+
+        String[] splitByDelimiter = this.validateEachWinningNumberInput(winningNumberInput);
+
+        return splitByDelimiter;
+    }
+
+    public String[] validateEachWinningNumberInput(final String winningNumberInput) {
+        String[] splitByDelimiter = winningNumberInput.split(DELIMITER);
+
+        for (String eachWinningNumber : splitByDelimiter) {
+            if (eachWinningNumber.chars().anyMatch(c -> !Character.isDigit((char) c))) {
+                throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자여야 합니다.");
+            }
+        }
 
         return splitByDelimiter;
     }
@@ -36,6 +51,7 @@ public class InputView {
         }
 
         int bonusNumber = Integer.parseInt(bonusNumberInput);
+
         return bonusNumber;
     }
 }

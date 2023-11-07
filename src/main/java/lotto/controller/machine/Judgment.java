@@ -1,5 +1,7 @@
 package lotto.controller.machine;
 
+import lotto.constant.Rank;
+import lotto.constant.WinningStandard;
 import lotto.domain.Lotto;
 import lotto.domain.WinningNumber;
 import lotto.model.LottoTicket;
@@ -9,30 +11,37 @@ import java.util.HashMap;
 import java.util.List;
 
 public class Judgment {
-    private HashMap<Integer, Integer> winningStatistics;
+    private HashMap<String, Integer> winningStatistics;
 
     public Judgment() {
         winningStatistics = new HashMap<>();
     }
 
     private void initilizeWinningStatistics() {
-        for(int count = 0; count <= 6; count++) {
-            winningStatistics.put(count, 0);
+        for (Rank rank: Rank.values()){
+            winningStatistics.put(String.valueOf(rank), 0);
         }
+    }
+
+    private String findRank(Lotto lotto, WinningNumber winningNumber){
+        int matchCount = winningNumber.calcMatchCount(lotto);
+        int bonussCount = winningNumber.calcBonussMatchCount(lotto);
+
+        return String.valueOf(WinningStandard.getMatchType(matchCount,bonussCount));
     }
 
     public void judge(LottoTicket lottoTicket) {
         List<Lotto> lottos = lottoTicket.getLottos();
         WinningNumber winningNumber = lottoTicket.getWinningNumber();
-        int matchCount, lottoCount;
+        int lottoCount;
 
         initilizeWinningStatistics();
 
         for (Lotto lotto: lottos) {
-            matchCount = winningNumber.calcMatchCount(lotto);
-            lottoCount = winningStatistics.get(matchCount) + 1;
+            String rank = findRank(lotto, winningNumber);
+            lottoCount = winningStatistics.get(rank) + 1;
 
-            winningStatistics.put(matchCount, lottoCount);
+            winningStatistics.put(rank, lottoCount);
         }
     }
 

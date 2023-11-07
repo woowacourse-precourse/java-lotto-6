@@ -22,13 +22,23 @@ public class Lotto {
         Set<Integer> winningNumbers = new HashSet<>(lottoToCompare.getNumbers());
         int matchCount = 0;
 
-        for(int number: numbers) {
+        for (int number : numbers) {
             if (winningNumbers.contains(number)) {
                 matchCount += 1;
             }
         }
 
         return matchCount;
+    }
+
+    public boolean isNumberInLotto(int numberToCompare) {
+        for (int number : numbers) {
+            if (numberToCompare == number) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public List<Integer> getNumbers() {

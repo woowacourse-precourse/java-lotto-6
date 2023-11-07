@@ -22,4 +22,12 @@ public class WinningNumber {
     public int calcMatchCount (Lotto lotto) {
         return lotto.calcMatchNumber(winningLotto);
     }
+
+    public int calcBonussMatchCount (Lotto lotto) {
+        if(lotto.isNumberInLotto(bonusNumber)){
+            return 1;
+        }
+
+        return 0;
+    }
 }

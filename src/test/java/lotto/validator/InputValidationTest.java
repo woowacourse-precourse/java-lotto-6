@@ -13,7 +13,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class InputValidationTest {
     @DisplayName("문자열이 숫자형태가 아닐때 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"asd", "as1", "3a3", "#43", "", " ", "  3", "$%@"})
+    @ValueSource(strings = {"asd", "as1", "3a3", "#43", "", " ", "  3", "$%@", "01000", "0012000"})
     void testInvalidNumericInput(String input) {
         assertThatThrownBy(() -> InputValidation.validateNumeric(input))
                 .isInstanceOf(IllegalArgumentException.class)

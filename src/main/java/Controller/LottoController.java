@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import LottoNumber.LottoInput;
+import LottoNumber.LottoWinningNumbersInput;
 import lotto.Lotto;
 import lotto.PrintLottoNumber;
 import lottoBuy.LottoPurchase;
@@ -15,6 +16,7 @@ public class LottoController {
 	private List<Lotto> lotto;
 	private List<Integer> lottonumber;
 	private PrintLottoNumber printnumber;
+	private LottoWinningNumbersInput winning;
 	
 
 	public LottoController() {
@@ -50,6 +52,9 @@ public class LottoController {
 
 	public void run() {
 		start();
+		System.out.println();
+		winning.inputLottoWinningNumbers();
+		winning.bonusNumber();
 		
 		
 

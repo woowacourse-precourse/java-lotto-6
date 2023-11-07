@@ -26,7 +26,7 @@ public class UserNumbers {
         }
     }
 
-    public void validate(List<Integer> numbers) {
+    protected void validate(List<Integer> numbers) {
         for (Integer number : numbers) {
             DomainValidate.validateNumberInRange(number);
         }

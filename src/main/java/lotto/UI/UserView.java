@@ -2,12 +2,12 @@ package lotto.UI;
 
 import lotto.data.Lotto;
 import lotto.data.Rewards;
-import lotto.domain.InputUI;
+import lotto.domain.ViewProcessor;
 
 import java.util.*;
 
 public class UserView {
-    private final InputUI inputUI = new InputUI();
+    private final ViewProcessor viewProcessor = new ViewProcessor();
 
 
     public void purchaseLog(int num, List<Lotto> publishedLottos) {
@@ -30,7 +30,7 @@ public class UserView {
         System.out.println("---");
 
         for (Rewards reward : rewards) {
-            System.out.printf("%s %s - %d개\n", reward.getNotifyMessege(), inputUI.moneyEdit(reward)
+            System.out.printf("%s %s - %d개\n", reward.getNotifyMessege(), viewProcessor.moneyEdit(reward)
                     , resultAll.get(reward));
         }
     }

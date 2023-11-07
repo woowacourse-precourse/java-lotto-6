@@ -14,12 +14,12 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.stream.Stream;
 
-class InputUITest {
-    private InputUI inputUI;
+class ViewProcessorTest {
+    private ViewProcessor viewProcessor;
 
     @BeforeEach
     void setUp() {
-        inputUI = new InputUI();
+        viewProcessor = new ViewProcessor();
     }
 
 //    @ParameterizedTest
@@ -28,7 +28,7 @@ class InputUITest {
 //            "-25,[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.",
 //    })
 //    void checkExceptionWinning_입력값_범위_판단(int winning, String expect) {
-//        assertThatThrownBy(() -> inputUI.checkExceptionWinning(winning))
+//        assertThatThrownBy(() -> viewProcessor.checkExceptionWinning(winning))
 //                .isInstanceOf(IllegalArgumentException.class)
 //                .hasMessageContaining(expect);
 //    }
@@ -36,7 +36,7 @@ class InputUITest {
     @Test
     void checkLengthWinning_입력값_6자리_판단() {
         String[] invalidInputs = {"1", "2", "3", "4", "5", "6", "7"};
-        assertThatThrownBy(() -> inputUI.checkLengthWinning(invalidInputs))
+        assertThatThrownBy(() -> viewProcessor.checkLengthWinning(invalidInputs))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 로또 번호는 6자리의 숫자여야 합니다.");
     }
@@ -50,7 +50,7 @@ class InputUITest {
     })
     void checkValidBonusNum_보너스_입력값_에러여부_판단(String input, String expect) {
 
-        assertThatThrownBy(() -> inputUI.checkValidBonusNum(input))
+        assertThatThrownBy(() -> viewProcessor.checkValidBonusNum(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expect);
     }
@@ -64,7 +64,7 @@ class InputUITest {
     })
     void checkValidPurchase_입력값_에러여부_판단(String input, String expect) {
 
-        assertThatThrownBy(() -> inputUI.checkValidPurchase(input))
+        assertThatThrownBy(() -> viewProcessor.checkValidPurchase(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(expect);
     }
@@ -72,7 +72,7 @@ class InputUITest {
     @ParameterizedTest
     @MethodSource("parameterProviderMoneyEdit")
     void moneyEdit_상금액수_출력형식_변경_테스트(Rewards reward, String expect) {
-        assertThat(inputUI.moneyEdit(reward)).isEqualTo(expect);
+        assertThat(viewProcessor.moneyEdit(reward)).isEqualTo(expect);
     }
 
     static Stream<Arguments> parameterProviderMoneyEdit() {

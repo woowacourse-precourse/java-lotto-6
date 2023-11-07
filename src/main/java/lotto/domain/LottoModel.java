@@ -13,7 +13,7 @@ public class LottoModel {
 
     private boolean hasBonus;
     private final int CHECK_BONUS = 999;
-    private final InputUI inputUI;
+    private final ViewProcessor viewProcessor;
     private final UserView userView;
     private List<Lotto> publishedLottos;
     private int totalEarnedMoney;
@@ -22,7 +22,7 @@ public class LottoModel {
 
 
     public LottoModel() {
-        this.inputUI = new InputUI();
+        this.viewProcessor = new ViewProcessor();
         this.userView = new UserView();
         this.publishedLottos = new ArrayList<>();
         this.winningTable = initWinningTable();
@@ -117,14 +117,14 @@ public class LottoModel {
     }
 
     public void run() {
-        inputUI.purchase();
-        publishLotto(inputUI.getNumofLotto());
-        userView.purchaseLog(inputUI.getNumofLotto(), this.publishedLottos);
-        inputUI.winnings();
-        inputUI.bonusBall();
-        computeLotto(publishedLottos, inputUI.getWinningNums(), inputUI.getBonusNum());
+        viewProcessor.purchase();
+        publishLotto(viewProcessor.getNumofLotto());
+        userView.purchaseLog(viewProcessor.getNumofLotto(), this.publishedLottos);
+        viewProcessor.winnings();
+        viewProcessor.bonusBall();
+        computeLotto(publishedLottos, viewProcessor.getWinningNums(), viewProcessor.getBonusNum());
         userView.winnings(winningTable);
-        userView.rate(computeRate(totalEarnedMoney, inputUI.getCost()));
+        userView.rate(computeRate(totalEarnedMoney, viewProcessor.getCost()));
     }
 
     public int sumOfWinningNumsTable() {

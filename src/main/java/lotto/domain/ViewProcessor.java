@@ -6,7 +6,7 @@ import lotto.data.Rewards;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InputUI {
+public class ViewProcessor {
 
 
     private int bonusNum;
@@ -34,7 +34,7 @@ public class InputUI {
 
     }
 
-    public InputUI() {
+    public ViewProcessor() {
         this.bonusNum = finalsInputUI.INIT_NUM.getValue();
         this.cost = finalsInputUI.INIT_NUM.getValue();
     }

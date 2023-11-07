@@ -32,7 +32,8 @@ public class WinningTest {
         int bonusNumber = 6;
         int matcingCount = 5;
 
-        boolean result = application.isMatchingWithBonusNumberWhenCountIs5(userLotto, bonusNumber, matcingCount);
+        boolean result = application.isMatchingWithBonusNumberWhenCountIs5(userLotto, bonusNumber,
+                matcingCount);
 
         assertThat(result).isEqualTo(true);
     }
@@ -53,13 +54,34 @@ public class WinningTest {
     void calculateLottoWinningResult() {
         Application application = new Application();
         List<Integer> userLotto = List.of(1, 2, 3, 4, 5, 6);
-        List<Integer> winningLotto = List.of(1, 2, 3, 8, 9);
+        List<Integer> winningLotto = List.of(1, 2, 3, 8, 9, 10);
         int bonusNumber = 6;
 
-        Result result = application.calculateLottoWinningResult(userLotto, winningLotto, bonusNumber);
+        Result result = application.calculateLottoWinningResult(userLotto, winningLotto,
+                bonusNumber);
 
         assertThat(result).usingRecursiveComparison()
                 .isEqualTo(new Result(3, false));
+    }
+
+    @DisplayName("구매한 모든 로또의 당첨 결과를 계산한다.")
+    @Test
+    void calculateLottosWinningResult() {
+        Application application = new Application();
+
+        List<Lotto> lottos = List.of(new Lotto(List.of(8, 21, 23, 41, 42, 43)),
+                new Lotto(List.of(1, 2, 3, 16, 32, 38)),
+                new Lotto(List.of(1, 2, 3, 6, 8, 9)),
+                new Lotto(List.of(1, 8, 11, 31, 41, 42)));
+
+        List<Integer> winningLotto = List.of(1, 2, 3, 8, 9, 10);
+        int bonusNumber = 6;
+
+        List<Result> results = application.calculateLottosWinningResult(lottos, winningLotto,
+                bonusNumber);
+
+        assertThat(results).usingRecursiveComparison()
+                .isEqualTo(List.of(new Result(3, false), new Result(5, true)));
     }
 }
 

@@ -212,4 +212,16 @@ public class Application {
         }
         return null;
     }
+
+
+    public List<Result> calculateLottosWinningResult(List<Lotto> lottos, List<Integer> winningLotto,
+            int bonusNumber) {
+
+        List<Result> results = lottos.stream()
+                .map(userLotto -> calculateLottoWinningResult(userLotto.getNumbers(), winningLotto, bonusNumber))
+                .filter(result -> result != null)
+                .toList();
+
+        return results;
+    }
 }

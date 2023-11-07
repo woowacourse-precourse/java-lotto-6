@@ -1,6 +1,8 @@
 package lotto.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lottos {
@@ -14,11 +16,14 @@ public class Lottos {
     }
 
     public String toString() {
+        List<Integer> orderedLotto;
         StringBuilder stringBuilder = new StringBuilder();
 
-        bundleLotto.stream()
-                .map(s -> s.getNumbers().toString() + "\n")
-                .forEach(stringBuilder::append);
+        for (Lotto lotto : bundleLotto) {
+            orderedLotto = new ArrayList<>(lotto.getNumbers());
+            orderedLotto.sort(Comparator.naturalOrder());
+            stringBuilder.append(orderedLotto.toString() + "\n");
+        }
 
         return stringBuilder.toString();
     }

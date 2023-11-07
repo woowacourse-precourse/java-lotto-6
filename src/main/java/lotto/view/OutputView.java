@@ -26,11 +26,11 @@ public class OutputView {
     }
 
     public void printWinningResult(WinningResult result) {
-        System.out.println(buildWinningResult(FIFTH_OUTPUT, result.getFifthPrizeLottoCount()));
-        System.out.println(buildWinningResult(FOURTH_OUTPUT, result.getFourthPrizeLottoCount()));
-        System.out.println(buildWinningResult(THIRD_OUTPUT, result.getThirdPrizeLottoCount()));
-        System.out.println(buildWinningResult(SECOND_OUTPUT, result.getSecondPrizeLottoCount()));
-        System.out.println(buildWinningResult(FIRST_OUTPUT, result.getFirstPrizeLottoCount()));
+        System.out.println(buildWinningResult(FIFTH_OUTPUT, result.getFifthPrizeCount()));
+        System.out.println(buildWinningResult(FOURTH_OUTPUT, result.getFourthPrizeCount()));
+        System.out.println(buildWinningResult(THIRD_OUTPUT, result.getThirdPrizeCount()));
+        System.out.println(buildWinningResult(SECOND_OUTPUT, result.getSecondPrizeCount()));
+        System.out.println(buildWinningResult(FIRST_OUTPUT, result.getFirstPrizeCount()));
     }
 
     private String buildWinningResult(OutputEnum outputEnum, int lottoCount) {

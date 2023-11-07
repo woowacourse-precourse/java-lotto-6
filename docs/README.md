@@ -38,15 +38,15 @@
   - [x] 당첨 번호와 같은 숫자가 있는지 판별 - Lotto#countWinningNumbers()
   - [x] 보너스 번호와 같은 숫자가 있는지 판별 - Lotto#hasSameNumber()
   
-- [ ] 당첨 내역 출력 - OutputView#printWinningResult
-  - [ ] "3개 일치 (5,000원) - 1개\
+- [x] 당첨 내역 출력 - OutputView#printWinningResult
+  - [x] "3개 일치 (5,000원) - 1개\
     4개 일치 (50,000원) - 0개\
     5개 일치 (1,500,000원) - 0개\
     5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\
     6개 일치 (2,000,000,000원) - 0개"
   
 - [ ] 수익률 계산 - Calculator#calculateROI()
-  - [ ] 상금 계산 - WinningResult#getLotteryPrize()
+  - [ ] 상금 계산 - WinningResult#getTotalLotteryPrize()
   - 소수점 둘째 자리에서 반올림
   
 - [ ] 수익률 출력 - OutputView#printEarningRate()

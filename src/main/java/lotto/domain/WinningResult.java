@@ -14,7 +14,7 @@ public class WinningResult {
     private static final long SECONDPRIZE = 30000000;
     private static final long THIRDPRIZE = 1500000;
     private static final long FOURTHPRIZE = 500000;
-    private static final long FIFTHCOUNT = 5000;
+    private static final long FIFTHPRIZE = 5000;
 
     private final HashMap<Long, Integer> winningResult;
 
@@ -32,28 +32,34 @@ public class WinningResult {
         return winningResult;
     }
 
-    public int getFirstPrizeLottoCount(){
+    public int getFirstPrizeCount(){
         return winningResult.getOrDefault(FIRST,0);
     }
 
-    public int getSecondPrizeLottoCount(){
+    public int getSecondPrizeCount(){
         return winningResult.getOrDefault(SECOND,0);
     }
 
-    public int getThirdPrizeLottoCount(){
+    public int getThirdPrizeCount(){
         return winningResult.getOrDefault(THIRD,0);
     }
 
-    public int getFourthPrizeLottoCount(){
+    public int getFourthPrizeCount(){
         return winningResult.getOrDefault(FOURTH,0);
     }
 
-    public int getFifthPrizeLottoCount(){
+    public int getFifthPrizeCount(){
         return winningResult.getOrDefault(FIFTH,0);
     }
 
-    public long getLotteryPrize() {
-        return -1;
+    public long getTotalLotteryPrize() {
+        long prize = 0;
+        prize +=FIRSTPRIZE*this.getFirstPrizeCount();
+        prize +=SECONDPRIZE*this.getSecondPrizeCount();
+        prize +=THIRDPRIZE*this.getThirdPrizeCount();
+        prize +=FOURTHPRIZE*this.getFourthPrizeCount();
+        prize +=FIFTHPRIZE*this.getFifthPrizeCount();
+        return prize;
     }
 
 }

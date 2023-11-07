@@ -8,9 +8,8 @@ import static lotto.util.Validator.validateAmount;
 
 public class InputView {
 
-    public int inputAmount(){
+    public static int inputAmount(){
         System.out.println(INPUT_AMOUNT_MESSAGE);
-        int amount = 0;
         String amountStr ="";
         while(true){
             amountStr = Console.readLine();
@@ -21,8 +20,7 @@ public class InputView {
                 e.printStackTrace();
             }
         }
-        amount  = Integer.parseInt(amountStr);
-        return amount;
+        return Integer.parseInt(amountStr);
     }
 
 

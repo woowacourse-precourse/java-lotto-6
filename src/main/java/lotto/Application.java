@@ -8,7 +8,7 @@ import lotto.view.OutputView;
 
 public class Application {
 
-    static LottoController lottoController = new LottoController(new LottoService(), new InputView(), new OutputView(new StringBuilder()));
+    static LottoController lottoController = new LottoController(new LottoService(), new InputView(), new OutputView());
 
     public static void main(String[] args) {
         // TODO: 프로그램 구현

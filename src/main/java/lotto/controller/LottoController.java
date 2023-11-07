@@ -24,7 +24,6 @@ public class LottoController {
     }
 
     public void run() {
-        outputView.printRequestPurchasePrice();
         String inputLottoPrice = inputView.inputLottoPrice();
         int price = Integer.parseInt(inputLottoPrice);
 
@@ -33,10 +32,8 @@ public class LottoController {
         List<Lotto> lottos = lottoService.generateLotto(lottoSheets);
         outputView.printLottoNumbers(lottos);
 
-        outputView.printRequestLottoNumbers();
         String inputLottoNumbers = inputView.inputLottoNumbers();
 
-        outputView.printRequestBonusNumber();
         String inputLottoBonusNumber = inputView.inputLottoBonusNumber();
 
         UserLotto userLotto = lottoService.purchaseLotto(inputLottoNumbers, inputLottoBonusNumber);

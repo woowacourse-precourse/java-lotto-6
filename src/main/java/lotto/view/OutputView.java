@@ -10,19 +10,11 @@ import lotto.domain.LottoRank;
 
 public class OutputView {
 
-    private static final String REQUEST_PURCHASE_PRICE_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_LOTTO_QUANTITY_MESSAGE = "%d개를 구매했습니다.";
-    private static final String REQUEST_LOTTO_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    private static final String REQUEST_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS_MESSAGE = "당첨 통계";
     private static final String DELIMITER = "---";
     private static final String PRIZE_RATIO_MESSAGE = "총 수익률은 %.2f%%입니다.";
 
-
-    public void printRequestPurchasePrice() {
-        System.out.println(REQUEST_PURCHASE_PRICE_MESSAGE);
-    }
-    
     public void printLottoQuantity(int lottoQuantity) {
         String message = String.format(PURCHASE_LOTTO_QUANTITY_MESSAGE, lottoQuantity);
         System.out.println(message);
@@ -32,14 +24,6 @@ public class OutputView {
         for (Lotto lotto : lottoNumbers) {
             System.out.println(lotto.getNumbers());
         }
-    }
-
-    public void printRequestLottoNumbers() {
-        System.out.println(REQUEST_LOTTO_NUMBER_MESSAGE);
-    }
-
-    public void printRequestBonusNumber() {
-        System.out.println(REQUEST_BONUS_NUMBER_MESSAGE);
     }
 
     public void printLotteryResult(EnumMap<LottoRank, Integer> lottoResult) {

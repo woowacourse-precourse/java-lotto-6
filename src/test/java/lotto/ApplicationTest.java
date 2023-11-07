@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -52,6 +54,45 @@ class ApplicationTest extends NsTest {
             runException("1000j");
             assertThat(output()).contains(ERROR_MESSAGE);
         });
+    }
+
+    @Test
+    @DisplayName("로또_값_포함_테스트")
+    void lottoTest() {
+        List<Integer> l = List.of(1, 4, 25, 36, 41, 44);
+        Lotto lotto = new Lotto(l);
+        assertThat(lotto.hasNum(1)).isTrue();
+    }
+
+    @Test
+    @DisplayName("로또_값_포함_테스트2")
+    void lottoTest2() {
+        List<Integer> l = List.of(1, 4, 25, 36, 41, 44);
+        Lotto lotto = new Lotto(l);
+        assertThat(lotto.hasNum(43)).isFalse();
+    }
+
+    @Test
+    @DisplayName("로또_출력_테스트")
+    void lottoTest3() {
+        List<Integer> l = List.of(1, 4, 25, 36, 41, 44);
+        Lotto lotto = new Lotto(l);
+        assertThat(lotto.toString()).isEqualTo("[1, 4, 25, 36, 41, 44]");
+    }
+
+    @Test
+    @DisplayName("로또_생성_테스트")
+    void lottoPublisherTest() {
+        LottoPublisher lp = LottoPublisher.getInstance();
+        assertThat(lp.sell(12345000).size()).isEqualTo(12345);
+    }
+
+    @Test
+    @DisplayName("로또_생성_잘못된_금액")
+    void lottoPublisherTest2() {
+        LottoPublisher lp = LottoPublisher.getInstance();
+        assertThatThrownBy(() -> lp.sell(133288400))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Override

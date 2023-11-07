@@ -21,7 +21,6 @@ public class LottoService {
             }
             result.put(equalCount, result.get(equalCount) + 1);
         }
-        System.out.println(result);
     }
 
     private int compareLine(Lotto lotto, User user) {

@@ -9,13 +9,10 @@ public record LottoNumbers(List<LottoNumber> numbers) {
         Validator.validateLottoNumbers(numbers);
     }
 
-    public int size() {
-        return numbers.size();
-    }
-
     public List<LottoNumber> getNumbers() {
         return new ArrayList<>(numbers);
     }
+
     public List<LottoNumber> getSortedNumbers() {
         return new ArrayList<>(numbers.stream().sorted().toList());
     }

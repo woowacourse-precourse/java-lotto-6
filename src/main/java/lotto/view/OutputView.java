@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     public void printWinningStatisticsMessage(int first, int second, int third, int fourth, int fifth, double yield){
-        System.out.print(RunMessage.PRINT_WINNING_STATISTIC.getMessage());
+        System.out.print(RunMessage.PRINT_WINNING_STATISTIC_MESSAGE.getMessage());
         System.out.printf(RunMessage.PRINT_WINNING_FIFTH.getMessage(),fifth);
         System.out.printf(RunMessage.PRINT_WINNING_FOURTH.getMessage(),fourth);
         System.out.printf(RunMessage.PRINT_WINNING_THIRD.getMessage(),third);

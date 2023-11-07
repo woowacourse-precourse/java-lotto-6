@@ -58,6 +58,10 @@ class Output {
         System.out.println(bonusNumber + "\n");
     }
 
+    static void printWinningStatistics() {
+        System.out.println("당첨 통계\n---");
+    }
+
     static void printReturn(int totalWinningAmount, int userMoney) {
         float profitRate = ((float) totalWinningAmount / userMoney) * PERCENTAGE_MULTIPLIER;
         System.out.printf(TOTAL_PROFIT_RATE_MESSAGE, profitRate);

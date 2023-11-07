@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import java.util.List;
+import lotto.domain.Constant.LottoCashConstant;
 
 public class Calculator {
     public static int calculateReturn(int lottoCount, boolean isBonus) {

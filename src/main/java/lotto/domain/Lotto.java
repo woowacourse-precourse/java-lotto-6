@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.domain.Constant.LottoNumberConstant;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -13,7 +15,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LottoNumberConstant.COUNT.getValue()) {
             throw new IllegalArgumentException();
         }
 

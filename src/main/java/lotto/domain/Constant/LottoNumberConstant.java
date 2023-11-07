@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.Constant;
 
 public enum LottoNumberConstant {
     MIN(1),

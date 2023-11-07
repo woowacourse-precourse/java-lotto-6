@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.Constant;
 
 public enum LottoCashConstant {
     match3(5000),

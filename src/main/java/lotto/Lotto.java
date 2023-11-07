@@ -2,6 +2,7 @@ package lotto;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -24,6 +25,12 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
+    public String printNumbers(){
+        String resultNumbers = numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(", ","[","]"));
+        System.out.println(resultNumbers);
+        return resultNumbers;
+    }
     // TODO: 추가 기능 구현
 }

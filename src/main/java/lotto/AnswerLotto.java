@@ -5,21 +5,26 @@ import constants.NumberType;
 import java.util.List;
 
 public class AnswerLotto {
-    private final List<LottoNumber> lottoNumbers;
+    private final List<LottoNumber> answerLottoNumbers;
 
-    public AnswerLotto(List<LottoNumber> lottoNumbers) {
-        validateAnswerLotto(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+    private final LottoNumber bonusNumber;
+
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
     }
+
+    public AnswerLotto(List<LottoNumber> answerLottoNumbers, LottoNumber bonusNumber) {
+        validateAnswerLotto(answerLottoNumbers);
+        validateBonusNumber(answerLottoNumbers, bonusNumber);
+        this.answerLottoNumbers = answerLottoNumbers;
+        this.bonusNumber = bonusNumber;
+    }
+
     public int countMatchNumber(Lotto lotto) {
-        return (int) lottoNumbers.stream()
+        return (int) answerLottoNumbers.stream()
                 .map(LottoNumber::getNumber)
                 .filter(lotto::hasNumber)
                 .count();
-    }
-
-    public boolean hasNumber(int number) {
-        return lottoNumbers.contains(LottoNumber.of(number));
     }
 
     private void validateAnswerLotto(List<LottoNumber> lottoNumbers) {
@@ -49,5 +54,18 @@ public class AnswerLotto {
         return lottoNumbers.stream()
                 .distinct()
                 .count() != lottoNumbers.size();
+    }
+
+    private void validateBonusNumber(List<LottoNumber> answerLottoNumbers,LottoNumber bonusNumber) {
+        validateBonusNumberInAnswerLotto(answerLottoNumbers, bonusNumber);
+    }
+
+    private void validateBonusNumberInAnswerLotto(List<LottoNumber> answerLottoNumbers, LottoNumber bonusNumber) {
+        if (isAnswerLottoHasBonusNumber(answerLottoNumbers, bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.BONUS_NUMBER_IN_ANSWER_LOTTO_ERROR.getMessage());
+        }
+    }
+    public boolean isAnswerLottoHasBonusNumber(List<LottoNumber> answerLottoNumbers, LottoNumber bonusNumber) {
+        return answerLottoNumbers.contains(bonusNumber);
     }
 }

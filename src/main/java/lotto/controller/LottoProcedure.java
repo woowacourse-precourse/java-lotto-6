@@ -48,7 +48,7 @@ public class LottoProcedure {
     public double increaseCount(int index) {
         double count = 0;
 
-        for (int j = 0; j < LOTTO_SIZE; j++) {
+        for (int j = 0; j < LottoValue.LOTTO_SIZE.getValue(); j++) {
             if (user.getPurchasedLottoNumbers(index).contains(winningNumber.number(j))) {
                 count += 1;
             }

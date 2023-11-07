@@ -14,7 +14,8 @@ public enum LottoValue {
     MATCH_NUMBER_TO_WIN_FIFTH(3),
     MINIMUM_LOTTO_NUMBER(1),
     MAXIMUM_LOTTO_NUMBER(45),
-    PAYMENT_UNIT(1000);
+    PAYMENT_UNIT(1000),
+    LOTTO_SIZE(6);
     private final double value;
 
     LottoValue(double value) {

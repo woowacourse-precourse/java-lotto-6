@@ -13,7 +13,9 @@ public class InputValidator {
     private static final String DUPLICATED = "당첨 번호에 중복된 숫자가 존재합니다.";
     private static final String INVALID_LOTTO_FORMAT = "숫자와 쉼표를 이용해 당첨 번호를 입력해주세요.";
     private static final String INVALID_BONUS_NUMBER = "입력한 당첨 번호 중 보너스 번호가 이미 존재합니다.";
+    private static final String ZERO_MESSAGE = "0이상의 숫자를 입력해주세요.";
 
+    private static final String ZERO = "0";
     private static final int LOTTO_PRICE = 1000;
     private static final int LOTTO_SIZE = 6;
     private static final int MIN_LOTTO_NUM = 1;
@@ -24,6 +26,7 @@ public class InputValidator {
 
     public static void checkMoney(String input) {
         checkIsBlank(input);
+        checkIsZero(input);
         checkIsNumber(input);
         checkPriceFormat(input);
     }
@@ -50,6 +53,12 @@ public class InputValidator {
     private static void checkIsBlank(String input) {
         if (input.isBlank()) {
             throw new IllegalArgumentException(ERROR + BLANK);
+        }
+    }
+
+    private static void checkIsZero(String input) {
+        if (input.equals(ZERO)) {
+            throw new IllegalArgumentException(ERROR + ZERO_MESSAGE);
         }
     }
 

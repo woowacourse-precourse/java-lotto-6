@@ -24,6 +24,7 @@ public class LottoGame {
         Lotto winningLotto = LottoUI.getWinningLotto();
         int bonusNum = LottoUI.getBonusNumber(winningLotto);
         List<Rank> ranks = checkRanks(lottos, winningLotto, bonusNum);
+        double earningRate = calculateEarningRate(purchaseAmount, ranks);
     }
 
     public List<Lotto> getRandomLottos(int lottoCnt) {
@@ -46,5 +47,15 @@ public class LottoGame {
 
     private int getMatchCount(List<Integer> userNumbers, List<Integer> winningNumbers) {
         return (int) userNumbers.stream().filter(winningNumbers::contains).count();
+    }
+
+    public double calculateEarningRate(int purchaseAmount, List<Rank> ranks) {
+        int totalEarnings = ranks.stream()
+                .mapToInt(Rank::getPrize)
+                .sum();
+
+        double profitRate = (double) totalEarnings / purchaseAmount * 100;
+
+        return Math.round(profitRate * 10) / 10.0;
     }
 }

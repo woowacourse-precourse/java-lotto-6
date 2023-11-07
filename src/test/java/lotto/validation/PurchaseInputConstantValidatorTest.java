@@ -1,6 +1,5 @@
 package lotto.validation;
 
-import static lotto.validation.constant.PurchaseInputConstant.NUMERIC_FORMAT_MESSAGE;
 import static lotto.validation.constant.PurchaseInputConstant.POSITIVE_MESSAGE;
 import static lotto.validation.constant.PurchaseInputConstant.VALUE_DIVIDE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatCode;
@@ -11,17 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PurchaseInputConstantValidatorTest {
-
-    @ParameterizedTest
-    @ValueSource(strings = {"포비", "b ", "10e"})
-    @DisplayName("입력값이 숫자가 아니면 예외가 발생하는 테스트")
-    void testValidateInputNumericFormat(String input) {
-        PurchaseInputValidator inputValidation = new PurchaseInputValidator();
-
-        assertThatThrownBy(() -> inputValidation.validateInputNumericFormat(input))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(NUMERIC_FORMAT_MESSAGE.getMessage());
-    }
 
     @ParameterizedTest
     @ValueSource(strings = {"0", "-1", "-400"})

@@ -1,22 +1,11 @@
 package lotto.validation;
 
-import static lotto.validation.constant.PurchaseInputConstant.NUMERIC_FORMAT_MESSAGE;
 import static lotto.validation.constant.PurchaseInputConstant.ONE_LOTTO_PRICE;
 import static lotto.validation.constant.PurchaseInputConstant.POSITIVE_CHECK_NUMBER;
 import static lotto.validation.constant.PurchaseInputConstant.POSITIVE_MESSAGE;
 import static lotto.validation.constant.PurchaseInputConstant.VALUE_DIVIDE_MESSAGE;
 
 public class PurchaseInputValidator {
-
-    public void validateInputNumericFormat(String input) {
-        if (isNotNumericFormat(input)) {
-            throw new IllegalArgumentException(NUMERIC_FORMAT_MESSAGE.getMessage());
-        }
-    }
-
-    private boolean isNotNumericFormat(String input) {
-        return !input.chars().allMatch(Character::isDigit);
-    }
 
     public void validatePositive(String input) {
         int amountInput = Integer.parseInt(input);
@@ -41,7 +30,6 @@ public class PurchaseInputValidator {
     }
 
     public void validateAmountInput(String input) {
-        validateInputNumericFormat(input);
         validatePositive(input);
         validateDivisibilityBy1000(input);
     }

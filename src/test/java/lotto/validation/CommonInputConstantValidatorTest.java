@@ -2,6 +2,7 @@ package lotto.validation;
 
 import static lotto.validation.constant.CommonInputConstant.EMPTY_MESSAGE;
 import static lotto.validation.constant.CommonInputConstant.NULL_MESSAGE;
+import static lotto.validation.constant.CommonInputConstant.NUMERIC_FORMAT_MESSAGE;
 import static lotto.validation.constant.CommonInputConstant.SPACE_MESSAGE;
 import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -55,5 +56,16 @@ class CommonInputConstantValidatorTest {
 
         assertThatCode(() -> inputValidation.validateNullEmptySpace(input))
                 .doesNotThrowAnyException();
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"포비", "b ", "10e"})
+    @DisplayName("입력값이 숫자가 아니면 예외가 발생하는 테스트")
+    void testValidateInputNumericFormat(String input) {
+        CommonInputValidator inputValidation = new CommonInputValidator();
+
+        assertThatThrownBy(() -> inputValidation.validateInputNumericFormat(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NUMERIC_FORMAT_MESSAGE.getMessage());
     }
 }

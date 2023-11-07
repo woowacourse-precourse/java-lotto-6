@@ -1,6 +1,5 @@
 package lotto.validation;
 
-import static lotto.validation.constant.BonusInputConstant.NUMERIC_FORMAT_MESSAGE;
 import static lotto.validation.constant.BonusInputConstant.DUPLICATION_BONUS_NUMBER;
 import static lotto.validation.constant.BonusInputConstant.LOTTO_MAX_NUMBER;
 import static lotto.validation.constant.BonusInputConstant.LOTTO_MIN_NUMBER;
@@ -26,16 +25,6 @@ public class BonusInputValidator {
                 .toList();
     }
 
-    public void validateInputNumericFormat(String input) {
-        if (isNotNumericFormat(input)) {
-            throw new IllegalArgumentException(NUMERIC_FORMAT_MESSAGE.getMessage());
-        }
-    }
-
-    private boolean isNotNumericFormat(String input) {
-        return !input.chars().allMatch(Character::isDigit);
-    }
-
     public void validateNumberRange(String input) {
         int number = Integer.parseInt(input);
         isValidNumberRange(number);
@@ -48,7 +37,6 @@ public class BonusInputValidator {
     }
 
     public void validateBonusNumberInput(String winningNumbers, String input) {
-        validateInputNumericFormat(input);
         validateNumberRange(input);
         validateBonusNumberDuplication(winningNumbers, input);
     }

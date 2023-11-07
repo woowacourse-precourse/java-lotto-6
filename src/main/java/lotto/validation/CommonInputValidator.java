@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import static lotto.validation.constant.CommonInputConstant.NUMERIC_FORMAT_MESSAGE;
 import static lotto.validation.constant.CommonInputConstant.EMPTY_MESSAGE;
 import static lotto.validation.constant.CommonInputConstant.NULL_MESSAGE;
 import static lotto.validation.constant.CommonInputConstant.SPACE_MESSAGE;
@@ -30,6 +31,23 @@ public class CommonInputValidator {
 
     private boolean isWhitespaceOnly(String input) {
         return input.trim().isEmpty();
+    }
+
+    public void validateInputNumericFormat(String input) {
+        if (isNotNumericFormat(input)) {
+            throw new IllegalArgumentException(NUMERIC_FORMAT_MESSAGE.getMessage());
+        }
+    }
+
+    private boolean isNotNumericFormat(String input) {
+        return !input.chars().allMatch(Character::isDigit);
+    }
+
+    public void validateCommonError(String input) {
+        validateInputNull(input);
+        validateInputEmpty(input);
+        validateInputSpace(input);
+        validateInputNumericFormat(input);
     }
 
     public void validateNullEmptySpace(String input) {

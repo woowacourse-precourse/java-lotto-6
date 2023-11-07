@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.domain.LottoValue.LOTTO_RANGE_IN_END_VALUE;
-import static lotto.domain.LottoValue.LOTTO_RANGE_IN_START_VALUE;
-import static lotto.domain.LottoValue.LOTTO_SIZE;
+import static lotto.constants.LottoValue.LOTTO_RANGE_IN_END_VALUE;
+import static lotto.constants.LottoValue.LOTTO_RANGE_IN_START_VALUE;
+import static lotto.constants.LottoValue.LOTTO_SIZE;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,13 +14,13 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateLength(numbers);
         validateUniqueElements(numbers, uniqueNumberSet(numbers));
         validationInRange(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(OUT_OF_LOTTO_NUMBERS_SIZE);
         }
@@ -36,7 +36,7 @@ public class Lotto {
         return new HashSet<>(numbers);
     }
 
-    public void validationInRange(List<Integer> lotto) {
+    private void validationInRange(List<Integer> lotto) {
         if (!lotto.stream().allMatch(this::range)) {
             throw new IllegalArgumentException(OUT_OF_LOTTO_VALUE_RANGE);
         }

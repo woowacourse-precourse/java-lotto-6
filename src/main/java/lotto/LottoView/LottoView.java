@@ -1,7 +1,6 @@
 package lotto.LottoView;
 
 import camp.nextstep.edu.missionutils.Console;
-
 import java.util.List;
 import java.util.Map;
 

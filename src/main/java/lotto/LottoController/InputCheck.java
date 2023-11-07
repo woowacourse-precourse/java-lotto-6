@@ -1,8 +1,7 @@
 package lotto.LottoController;
 
-import lotto.Lotto;
+import lotto.LottoModel.Lotto;
 import lotto.LottoView.LottoView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class InputCheck {
                 amount = view.inputMoney();
                 amountCheck(amount);
                 break;
+
             } catch (IllegalArgumentException e) {
                 view.errorMeg(e.getMessage());
             }
@@ -47,7 +47,8 @@ public class InputCheck {
         while (true) {
             try {
                 bonusNumber = view.bonusNumber();
-                bonusCheck(bonusNumber, winNumber);
+                bonusCheck(bonusNumber);
+                duplicateBonus(bonusNumber, winNumber);
 
                 return bonusNumber;
 
@@ -63,13 +64,15 @@ public class InputCheck {
         }
     }
 
-    private void bonusCheck(int bonusNumber, Lotto winNumbers) {
+    private void bonusCheck(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("보너스 숫자는 1부터 45 사이여야 합니다.");
+            throw new IllegalArgumentException("보너스 번호는 1부터 45 사이여야 합니다.");
         }
+    }
 
+    private void duplicateBonus(int bonusNumber, Lotto winNumbers){
         if (winNumbers.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("중복된 보너스 숫자가 있습니다");
+            throw new IllegalArgumentException("당첨 번호와 보너스 번호가 중복이 있습니다.");
         }
     }
 

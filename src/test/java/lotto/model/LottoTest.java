@@ -8,8 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import lotto.dto.LottoDto;
-
 class LottoTest {
     @Test
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -35,10 +33,10 @@ class LottoTest {
         final Lotto lotto = new Lotto(numbers);
 
         // when
-        final LottoDto result = lotto.getNumbers();
+        final List<Integer> result = lotto.getNumbers();
 
         // then
-        assertThat(result.numbers()).containsExactly(1, 2, 3, 4, 5, 6);
+        assertThat(result).containsExactly(1, 2, 3, 4, 5, 6);
     }
 
     @Test

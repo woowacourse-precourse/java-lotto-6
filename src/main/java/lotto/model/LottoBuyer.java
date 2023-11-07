@@ -33,7 +33,7 @@ public class LottoBuyer {
         }
         return result.keySet()
                 .stream()
-                .map(grade -> new LottoResultDto(grade, grade.getCorrect(), grade.getAmount(), result.get(grade)))
+                .map(grade -> LottoResultDto.of(grade, result.get(grade)))
                 .toList();
     }
 
@@ -57,7 +57,7 @@ public class LottoBuyer {
 
     public List<LottoDto> getLottos() {
         return lottos.stream()
-                .map(Lotto::getNumbers)
+                .map(LottoDto::from)
                 .toList();
     }
 }

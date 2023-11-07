@@ -24,6 +24,7 @@ public class LottoController {
         //createWinningNumbers
         InputView.winningNumbersMessage();
         Lotto lotto = UserInputService.lotto();
+        InputView.bonusNumberMessage();
 
         //compareLottoNumbers
         //printResult

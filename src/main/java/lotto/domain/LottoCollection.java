@@ -13,7 +13,7 @@ public class LottoCollection {
         return new LottoCollection(lottos);
     }
 
-    public List<LottoResult> getResultGroup(Lotto winningLotto, int bonusNumber) {
+    private List<LottoResult> getResultGroup(Lotto winningLotto, int bonusNumber) {
         return lottoCollection.stream()
                 .map(lotto -> lotto.getResult(winningLotto, bonusNumber))
                 .toList();

@@ -6,11 +6,9 @@ import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
-import lotto.util.validator.NumberValidator;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.EmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InputViewTest {
@@ -18,16 +16,6 @@ public class InputViewTest {
     void closeConsole() {
         Console.close();
     }
-
-    @DisplayName("구입 금액에 공백을 입력하면 예외를 반환한다.")
-    @ParameterizedTest
-    @EmptySource
-    void check_purchase_null_blank(String empty) {
-        assertThatThrownBy(() -> NumberValidator.validate(empty))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("공백은 입력할 수 없습니다.");
-    }
-
     @DisplayName("구입 금액에 숫자가 아닌 값을 입력하면 예외를 반환한다.")
     @ParameterizedTest
     @ValueSource(strings = {"a", "a1"})

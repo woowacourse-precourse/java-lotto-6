@@ -11,7 +11,7 @@ public class ProfitTest {
         NEW_GAME.initMatchingCase();
         LottoResult lottoResult = LottoResult.of(3, false);
         lottoResult.recordMatchingCaseResults();
-        Profit profit = Profit.from(8000);
+        Profit profit = Profit.from(NEW_GAME.getResult(), 8000);
         assertThat(profit.getProfit()).isEqualTo(62.5);
     }
 
@@ -22,7 +22,7 @@ public class ProfitTest {
         lottoResult_1500000.recordMatchingCaseResults();
         LottoResult lottoResult_30000000 = LottoResult.of(5, true);
         lottoResult_30000000.recordMatchingCaseResults();
-        Profit profit = Profit.from(100000);
+        Profit profit = Profit.from(NEW_GAME.getResult(), 100000);
         assertThat(profit.getProfit()).isEqualTo(31500.0);
     }
 }

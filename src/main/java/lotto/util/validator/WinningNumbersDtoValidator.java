@@ -1,22 +1,15 @@
 package lotto.util.validator;
 
-import static lotto.util.Seperator.WINNING_NUMBERS_SEPARATOR;
+import static lotto.util.Separator.WINNING_NUMBERS_SEPARATOR;
 
 import lotto.dto.WinningNumbersDto;
 
 public class WinningNumbersDtoValidator implements Validator {
-    public static final String WINNING_NUMBERS_IS_INVALID_FORMAT = "당첨 번호 입력 형식에 맞지 않습니다.";
+    public static final String WINNING_NUMBERS_IS_INVALID_FORMAT = "당첨 번호 형식에 맞게 입력해주세요. 예) 1,2,3,4,5,6";
 
     @Override
     public void validate(Object value) {
-        validateNull((String) value);
         validateSeperator((String) value);
-    }
-
-    private void validateNull(String winningNumbers) {
-        if (winningNumbers.isBlank()) {
-            throw new IllegalArgumentException("공백은 입력할 수 없습니다.");
-        }
     }
 
     private void validateSeperator(String winningNumbers) {

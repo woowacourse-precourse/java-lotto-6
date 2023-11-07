@@ -6,7 +6,7 @@ public class LottoResult {
     private final int winningCount;
     private final boolean bonusNumberMatching;
 
-    public LottoResult(int winningCount, boolean bonusNumberMatching) {
+    private LottoResult(int winningCount, boolean bonusNumberMatching) {
         this.winningCount = winningCount;
         this.bonusNumberMatching = bonusNumberMatching;
     }
@@ -19,6 +19,14 @@ public class LottoResult {
         for (MatchingCase matchingCase : MatchingCase.values()) {
             matchingCase.recordResult(winningCount, bonusNumberMatching);
         }
+    }
+
+    public int getWinningCount() {
+        return winningCount;
+    }
+
+    public boolean isBonusNumberMatching() {
+        return bonusNumberMatching;
     }
 
     @Override
@@ -36,13 +44,5 @@ public class LottoResult {
     @Override
     public int hashCode() {
         return Objects.hash(winningCount, bonusNumberMatching);
-    }
-
-    public int getWinningCount() {
-        return winningCount;
-    }
-
-    public boolean isBonusNumberMatching() {
-        return bonusNumberMatching;
     }
 }

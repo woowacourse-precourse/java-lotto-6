@@ -5,11 +5,14 @@ import java.util.List;
 public class Converter {
     public static List<Integer> convertToInt(List<String> input) {
         return input.stream()
-                .map(value -> Integer.parseInt(value))
+                .map(Integer::parseInt)
                 .toList();
     }
 
     public static int convertToInt(String input) {
         return Integer.parseInt(input);
+    }
+
+    private Converter() {
     }
 }

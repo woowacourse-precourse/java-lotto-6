@@ -2,13 +2,12 @@ package lotto.domain;
 
 import lotto.util.validator.Validator;
 import lotto.util.validator.ValidatorFactory;
-import lotto.view.InputView;
 
 public class Purchase {
 
     private final int purchase;
 
-    public Purchase(int purchase) {
+    private Purchase(int purchase) {
         this.purchase = purchase;
     }
 

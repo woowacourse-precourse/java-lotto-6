@@ -34,7 +34,7 @@ public class OutputViewTest {
         LottoCount lottoCount = LottoCount.from(2000);
         OutputView.printLottoCount(lottoCount.getCount());
         assertThat(outputStream.toString())
-                .hasToString("2개를 구매했습니다.");
+                .hasToString("2개를 구매했습니다.\n");
     }
 
     @Test
@@ -70,7 +70,7 @@ public class OutputViewTest {
         lottoResult_1500000.recordMatchingCaseResults();
         LottoResult lottoResult_30000000 = LottoResult.of(5, true);
         lottoResult_30000000.recordMatchingCaseResults();
-        Profit profit = Profit.from(100000);
+        Profit profit = Profit.from(NEW_GAME.getResult(), 100000);
 
         OutputView.printProfit(profit.getProfit());
 

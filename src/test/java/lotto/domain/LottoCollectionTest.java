@@ -4,14 +4,12 @@ import static lotto.constant.testConstant.BONUS_NUMBER_45;
 import static lotto.constant.testConstant.LOTTO_1_TO_5_WITH_45;
 import static lotto.constant.testConstant.LOTTO_1_TO_6;
 import static lotto.constant.testConstant.LOTTO_7_TO_12;
-import static lotto.domain.MatchingCase.FIVE_MATCHING;
 import static lotto.domain.MatchingCase.FIVE_MATCHING_WITH_BONUS;
 import static lotto.domain.MatchingCase.SIX_MATCHING;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Stream;
-import lotto.constant.testConstant;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -29,17 +27,6 @@ public class LottoCollectionTest {
         assertThat(LottoCollection.from(lottos).getLottoCollection())
                 .hasSize(lottos.size())
                 .allSatisfy(lotto -> assertThat(lotto).isInstanceOf(Lotto.class));
-    }
-
-    @DisplayName("getResultGroup은 각 로또별 비교 결과를 받아서 리스트로 담는다")
-    @Test
-    void check_getResultGroup() {
-        LottoCollection lottoCollection = LottoCollection.from(List.of(LOTTO_1_TO_6, LOTTO_1_TO_5_WITH_45));
-        Lotto winningLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        int bonusNumber = 45;
-        List<LottoResult> resultGroup = lottoCollection.getResultGroup(winningLotto, bonusNumber);
-        assertThat(resultGroup).containsExactly(LottoResult.of(6, false)
-                , LottoResult.of(5, true));
     }
 
     public static Stream<Arguments> lottoResult() {

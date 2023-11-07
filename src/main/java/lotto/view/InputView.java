@@ -5,33 +5,37 @@ import java.util.List;
 import lotto.dto.WinningNumbersDto;
 import lotto.util.Converter;
 import lotto.util.validator.LottoNumberValidator;
-import lotto.util.validator.NumberValidator;
+import lotto.util.validator.InputValidator;
 
 public class InputView {
+    private InputView() {
+    }
+
     public static int inputPurchase() {
-        String rawPurchase = input("구입금액을 입력해 주세요.");
-        NumberValidator.validate(rawPurchase);
-        return Converter.convertToInt(rawPurchase);
+        return inputInteger("구입금액을 입력해 주세요.");
     }
 
     public static WinningNumbersDto inputWinningNumbers() {
-        String rawWinningNumbers = input("당첨 번호를 입력해 주세요.");
+        String rawWinningNumbers = inputString("당첨 번호를 입력해 주세요.");
         return WinningNumbersDto.from(rawWinningNumbers);
     }
 
     public static int inputBonusNumber(List<Integer> winningNumbers) {
-        String rawBonusNumber = input("보너스 번호를 입력해 주세요.");
-        NumberValidator.validate(rawBonusNumber);
-        int bonusNumber = Converter.convertToInt(rawBonusNumber);
+        int bonusNumber = inputInteger("보너스 번호를 입력해 주세요.");
         LottoNumberValidator.validate(bonusNumber, winningNumbers);
         return bonusNumber;
     }
 
-    private static String input(String message) {
-        System.out.println(message);
-        return Console.readLine();
+    private static int inputInteger(String message) {
+        String rawValue = inputString(message);
+        InputValidator.validateNumber(rawValue);
+        return Converter.convertToInt(rawValue);
     }
 
-    private InputView() {
+    private static String inputString(String message) {
+        System.out.println(message);
+        String rawValue = Console.readLine();
+        InputValidator.validateNull(rawValue);
+        return rawValue;
     }
 }

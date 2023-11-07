@@ -1,23 +1,28 @@
 package lotto.domain;
 
-import java.util.Arrays;
+import java.util.List;
 
 public class Profit {
     private final double profit;
 
-    public Profit(double profit) {
+    private Profit(double profit) {
         this.profit = profit;
     }
 
-    public static Profit from(int purchase) {
-        return new Profit(caculateProfit(purchase));
+    public static Profit from(List<MatchingCase> matchingResult, int purchase) {
+        double profit = caculateProfit(matchingResult, purchase);
+        return new Profit(profit);
     }
 
-    private static double caculateProfit(int purchase) {
-        int sum = Arrays.stream(MatchingCase.values())
-                .mapToInt(matchingCase -> matchingCase.getPrize() * matchingCase.getWinningCount())
+    private static double caculateProfit(List<MatchingCase> matchingResult, int purchase) {
+        int totalPrize = calculateTotalPrize(matchingResult);
+        return (double) totalPrize / purchase * 100;
+    }
+
+    private static int calculateTotalPrize(List<MatchingCase> matchingResult) {
+        return matchingResult.stream()
+                .mapToInt(MatchingCase::calculatePrize)
                 .sum();
-        return (double) sum / purchase * 100;
     }
 
     public double getProfit() {

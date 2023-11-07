@@ -10,6 +10,9 @@ public class OutputView {
     public static final String NEW_LINE = System.lineSeparator();
     private static final String ERROR_MESSAGE_FORMAT = "[ERROR] ";
 
+    private OutputView() {
+    }
+
     public static void printLottoCount(int count) {
         System.out.printf("%d개를 구매했습니다." + NEW_LINE, count);
     }

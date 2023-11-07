@@ -19,12 +19,12 @@ public class Lotto {
     }
 
     public LottoResult getResult(Lotto winningLotto, int bonusNumber) {
-        int winningCount = getSameNumbersCount(winningLotto);
+        int winningCount = countMatchingNumbers(winningLotto);
         boolean bonusNumberMatching = numbers.contains(bonusNumber);
         return LottoResult.of(winningCount, bonusNumberMatching);
     }
 
-    private int getSameNumbersCount(Lotto winningLotto) {
+    private int countMatchingNumbers(Lotto winningLotto) {
         return (int) numbers.stream()
                 .filter(winningLotto::contains)
                 .count();
@@ -34,12 +34,12 @@ public class Lotto {
         return numbers.contains(number);
     }
 
-    @Override
-    public String toString() {
-        return "" + numbers;
-    }
-
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

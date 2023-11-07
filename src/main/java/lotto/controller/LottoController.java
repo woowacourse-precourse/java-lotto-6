@@ -31,7 +31,7 @@ public class LottoController {
         OutputView.printLottoCollection(lottoCollection.getLottoCollection());
 
         List<MatchingCase> matchingResult = calculateMatchingResult(lottoCollection);
-        Profit profit = calculateProfit(purchase);
+        Profit profit = calculateProfit(matchingResult, purchase);
 
         displayResults(matchingResult, profit);
     }
@@ -72,8 +72,8 @@ public class LottoController {
         return read(InputView::inputBonusNumber, winningLotto.getNumbers());
     }
 
-    private Profit calculateProfit(Purchase purchase) {
-        return Profit.from(purchase.getPurchase());
+    private Profit calculateProfit(List<MatchingCase> matchingResult, Purchase purchase) {
+        return Profit.from(matchingResult, purchase.getPurchase());
     }
 
     private void displayResults(List<MatchingCase> matchingResult, Profit profit) {

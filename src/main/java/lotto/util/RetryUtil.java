@@ -5,6 +5,9 @@ import java.util.function.Supplier;
 import lotto.view.OutputView;
 
 public class RetryUtil {
+    private RetryUtil() {
+    }
+
     public static <T> T read(Supplier<T> supplier) {
         try {
             return supplier.get();

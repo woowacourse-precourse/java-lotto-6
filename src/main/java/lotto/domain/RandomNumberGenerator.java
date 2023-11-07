@@ -6,7 +6,6 @@ import static lotto.domain.constant.LottoConstant.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
-import lotto.domain.constant.LottoConstant;
 
 public class RandomNumberGenerator implements NumberGenerator {
     @Override

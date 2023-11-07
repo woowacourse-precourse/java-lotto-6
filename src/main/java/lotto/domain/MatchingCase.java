@@ -44,6 +44,10 @@ public enum MatchingCase {
         return this != FIVE_MATCHING_WITH_BONUS && !bonusNumberMatching && matchingCount == matchingValue;
     }
 
+    public int calculatePrize() {
+        return prize * winningCount;
+    }
+
     public List<MatchingCase> getResult() {
         return Arrays.stream(values())
                 .filter(matchingCase -> matchingCase != NEW_GAME)

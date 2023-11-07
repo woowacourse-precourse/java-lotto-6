@@ -9,15 +9,17 @@ import lotto.util.ErrorMessage;
 public class WinningNumberGenerator {
 
     public WinningNumbers generate() {
-        return new WinningNumbers(getWinningNumbers(), getBonusNumber());
+        List<Integer> winningNumbers = getWinningNumbers();
+        Integer bonusNumber = getBonusNumber(winningNumbers);
+        return new WinningNumbers(winningNumbers, bonusNumber);
     }
 
-    private Integer getBonusNumber() {
+    private Integer getBonusNumber(List<Integer> winningNumbers) {
         Integer bonusNumber;
         while(true){
             try{
                 bonusNumber = inputBonusNumber();
-                NumberValidator.validate(bonusNumber);
+                NumberValidator.validate(bonusNumber, winningNumbers);
                 break;
             }catch(IllegalArgumentException e){            }
         }

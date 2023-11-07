@@ -39,6 +39,7 @@ public class GameController {
                 break;
             }catch(IllegalArgumentException e){
                 System.out.println(ErrorMessage.ERROR_INPUT_PRICE_MESSAGE);
+                System.out.println();
             }
         }
     }

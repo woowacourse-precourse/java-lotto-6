@@ -9,7 +9,6 @@ import lotto.util.InputMessage;
 public class InputController {
 
     public static int inputPrice() throws NumberFormatException{
-
         System.out.println(InputMessage.INPUT_PRICE_MESSAGE);
 
         return Integer.parseInt(Console.readLine());
@@ -19,6 +18,7 @@ public class InputController {
         System.out.println();
         System.out.println(InputMessage.INPUT_WINNING_NUMBER_MESSAGE);
         List<Integer> winningNumbers = splitToParameter(Console.readLine());
+
         return winningNumbers;
     }
 

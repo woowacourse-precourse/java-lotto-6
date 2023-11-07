@@ -12,8 +12,16 @@ public class NumberValidator {
         validateRange(numbers);
     }
 
-    public static void validate(int bonusNumber) throws IllegalArgumentException {
+    public static void validate(int bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
         validateRange(bonusNumber);
+        validateInWinningNumbers(bonusNumber,winningNumbers);
+    }
+
+    private static void validateInWinningNumbers(int bonusNumber, List<Integer> winningNumbers) throws IllegalArgumentException {
+        if (winningNumbers.contains(bonusNumber)) {
+            System.out.println(ErrorMessage.ERROR_VALIDATE_BONUS_DUPLICATE_MESSAGE);
+            throw new IllegalArgumentException();
+        }
     }
 
     private static void validateNumberCount(List<Integer> numbers) throws IllegalArgumentException {

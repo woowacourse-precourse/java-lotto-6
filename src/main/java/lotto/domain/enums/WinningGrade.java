@@ -1,5 +1,7 @@
 package lotto.domain.enums;
 
+import static java.lang.String.format;
+import static lotto.domain.enums.ExceptionMessage.SYSTEM_ERROR;
 import static lotto.domain.enums.MatchingCount.FIVE;
 import static lotto.domain.enums.MatchingCount.FOUR;
 import static lotto.domain.enums.MatchingCount.ONE;
@@ -15,7 +17,6 @@ import static lotto.domain.enums.WinningPrize.CORRECT_SIX_NUMBERS_PRICE;
 import static lotto.domain.enums.WinningPrize.CORRECT_THREE_NUMBERS_PRICE;
 import static lotto.domain.enums.WinningPrize.CORRECT_TWO_NUMBERS_PRICE;
 import static lotto.domain.enums.WinningPrize.CORRECT_ZERO_NUMBER_PRICE;
-import static lotto.domain.enums.ExceptionMessage.SYSTEM_ERROR;
 
 import java.util.Arrays;
 import java.util.function.UnaryOperator;
@@ -23,7 +24,7 @@ import lotto.domain.MatchingResult;
 import lotto.exception.LottoGameException;
 
 public enum WinningGrade {
-
+    
     CORRECT_ZERO_NUMBER(ZERO, (always) -> true, CORRECT_ZERO_NUMBER_PRICE),
     CORRECT_ONE_NUMBER(ONE, (always) -> true, CORRECT_ONE_NUMBER_PRICE),
     CORRECT_TWO_NUMBERS(TWO, (always) -> true, CORRECT_TWO_NUMBERS_PRICE),
@@ -38,11 +39,11 @@ public enum WinningGrade {
             (correctBonusNumber) -> correctBonusNumber,
             CORRECT_FIVE_NUMBERS_WITH_BONUS_NUMBER_PRICE),
     CORRECT_SIX_NUMBERS(SIX, (always) -> true, CORRECT_SIX_NUMBERS_PRICE);
-
+    
     private final MatchingCount matchingCount;
     private final UnaryOperator<Boolean> matchingBonus;
     private final WinningPrize price;
-
+    
     WinningGrade(
             MatchingCount matchingCount, UnaryOperator<Boolean> matchingBonus, WinningPrize price) {
         
@@ -50,7 +51,7 @@ public enum WinningGrade {
         this.matchingBonus = matchingBonus;
         this.price = price;
     }
-
+    
     public static WinningGrade receiveLottoRank(MatchingResult lottoMatchingResult) {
         return Arrays.stream(WinningGrade.values())
                 .filter(grade -> lottoMatchingResult.isSameMatchingCount(grade.matchingCount))
@@ -58,16 +59,27 @@ public enum WinningGrade {
                 .findFirst()
                 .orElseThrow(() -> LottoGameException.from(SYSTEM_ERROR));
     }
-
-    public long getMatchingCount() {
-        return matchingCount.getCount();
-    }
-
+    
     public boolean incorrectFiveNumbersWithBonusNumber() {
         return matchingBonus.apply(false);
     }
-
-    public long getPrice() {
-        return price.getPrice();
+    
+    public long receiveMultipleValue(long value) {
+        return price.receiveMultipleValue(value);
+    }
+    
+    public boolean isGreaterThanStartLottoCount() {
+        return matchingCount.isGreaterThanStartLottoCount();
+    }
+    
+    private String receiveFormattedPrice() {
+        return price.receiveFormattedPrice();
+    }
+    
+    public String receiveRankingMessageFormat(final String message, final long count) {
+        return format(message,
+                matchingCount.getCount(),
+                receiveFormattedPrice(),
+                count);
     }
 }

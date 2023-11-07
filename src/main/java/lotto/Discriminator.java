@@ -8,7 +8,7 @@ import lotto.dto.StatisticDTO;
 public class Discriminator {
     private Info info;
     private Lotto correctLotto;
-    private int bonus;
+    private Bonus bonus;
 
     public Discriminator() {
         this.info = new Info();
@@ -18,7 +18,7 @@ public class Discriminator {
         this.correctLotto = lotto;
     }
 
-    public void setBonus(int bonus) {
+    public void setBonus(Bonus bonus) {
         this.bonus = bonus;
     }
 

@@ -21,7 +21,7 @@ public class LottoComparison {
         return false;
     }
 
-    public static Ranking determineRanking(long matchCount, boolean isBonus) {
+    public Ranking determineRanking(long matchCount, boolean isBonus) {
         for (Ranking ranking : Ranking.values()) {
             if (matchCount == 5 && isBonus) {
                 return SECOND;

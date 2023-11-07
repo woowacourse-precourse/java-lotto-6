@@ -1,4 +1,4 @@
-package lotto.exception.lottomanager;
+package lotto.exception.lottoseller;
 
 import lotto.exception.common.CustomArgumentException;
 

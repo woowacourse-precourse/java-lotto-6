@@ -1,9 +1,9 @@
 package lotto;
 
-import lotto.exception.lottomanager.InsufficientMoneyException;
-import lotto.exception.lottomanager.NonMultipleMoneyException;
+import lotto.exception.lottoseller.InsufficientMoneyException;
+import lotto.exception.lottoseller.NonMultipleMoneyException;
 
-public class LottoManager {
+public class LottoSeller {
     public static final int LOTTO_PRICE = 1000;
 
     public LottoBundle sell(Money payedMoney) {
@@ -33,7 +33,12 @@ public class LottoManager {
     }
 
     private LottoBundle publishLottoBundle(Money payedMoney) {
-        // TODO: 로또 번들 발행 로직 구현
+        int lottoCountToPublish = calculateLottoCountToPublish(payedMoney);
+
         return null;
+    }
+
+    private int calculateLottoCountToPublish(Money payedMoney) {
+        return payedMoney.divide(LOTTO_PRICE);
     }
 }

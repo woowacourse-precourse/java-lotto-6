@@ -1,6 +1,7 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class CorrectNum {
@@ -23,10 +24,19 @@ public class CorrectNum {
         }
     }
     private void validateCorrectString(String[] correctString){
-        for(int i = 0 ; i<correctString.length; i++){
+
+            int length = correctString.length;
+            validateCorrectStringLength(length);
+        for(int i = 0 ; i< length; i++) {
             String s = correctString[i];
             validateCorrectStringNum(s);
             validateCorrectStringRange(s);
+        }
+    }
+
+    private void validateCorrectStringLength(int length) {
+        if(length !=6){
+            throw new IllegalArgumentException();
         }
     }
 

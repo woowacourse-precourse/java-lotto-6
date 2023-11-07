@@ -23,7 +23,7 @@ public class Application {
 
         List<Integer> numbers = new ArrayList<>();
         int bonus = 0;
-        winningBonusNum(numbers, bonus);
+        bonus = winningBonusNum(numbers, bonus);
 
         int[] rank;
         rank = rank(lottoTickets, allTickets, bonus, numbers);
@@ -39,7 +39,7 @@ public class Application {
         }
     }
 
-    public static void winningBonusNum(List<Integer> numbers, int bonus) {
+    public static int winningBonusNum(List<Integer> numbers, int bonus) {
         while (true) {
             try {
                 numbers.clear();
@@ -59,13 +59,17 @@ public class Application {
                 System.out.println(e.getMessage());
             }
         }
-        //나중에 보너스 번호가 당첨 번호와 중복 될 경우의
-        //예외처리로 변경할 것.
-        System.out.println("\n보너스 번호를 입력해 주세요.");
-        bonus = Integer.parseInt(Console.readLine());
-        while (numbers.contains(bonus)) {
-            System.out.println("\n보너스 번호를 입력해 주세요.");
-            bonus = Integer.parseInt(Console.readLine());
+
+        while (true){
+            try {
+                System.out.println("\n보너스 번호를 입력해 주세요.");
+                bonus = Integer.parseInt(Console.readLine());
+                Lotto lotto2 = new Lotto(numbers);
+                lotto2.bonusNum(bonus);
+                return bonus;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
         }
     }
 

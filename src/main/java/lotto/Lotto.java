@@ -17,4 +17,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public void bonusNum(int bonus) {
+        if (numbers.contains(bonus)) {
+            throw new IllegalArgumentException("[Error] 당첨 번호와 중복되는 숫자를 입력하셨습니다.");
+        }
+    }
 }

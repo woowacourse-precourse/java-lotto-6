@@ -36,7 +36,7 @@ public class PrizeResult {
 
     private static int getMatchCount(Lotto lotto, WinNumber winNumber) {
         Set<Integer> matchNumbers = new HashSet<>(lotto.getNumber());
-        matchNumbers.retainAll(winNumber.getPickNumbers());
+        matchNumbers.retainAll(winNumber.getPickNumbers().getNumber());
         return matchNumbers.size();
     }
 

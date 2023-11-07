@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,16 +10,8 @@ public class Lottos {
         this.lottos = lottos;
     }
 
-    public static Lottos from(int ticket) {
-        return new Lottos(createLottos(ticket));
-    }
-
-    private static List<Lotto> createLottos(int ticket) {
-        List<Lotto> lottos = new ArrayList<>();
-        for (int i = 0; i < ticket; i++) {
-            lottos.add(new Lotto(NumberPickMachine.pickNumbers()));
-        }
-        return lottos;
+    public static Lottos from(List<Lotto> lottos) {
+        return new Lottos(lottos);
     }
 
     public List<Lotto> getLottos() {

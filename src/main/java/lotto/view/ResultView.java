@@ -16,9 +16,9 @@ public class ResultView {
     private static final String WIN_PRICE_AND_WIN_COUNT = " (%s원) - %d개";
     private static final String RETURN_RATE_MESSAGE = "총 수익률은 %,.1f%%입니다.";
 
-    public static void printTicket(int ticket) {
+    public static void printTicket(Lottos lottos) {
         System.out.println();
-        System.out.println(ticket + BUY_AMOUNT_MESSAGE);
+        System.out.println(lottos.getLottos().size() + BUY_AMOUNT_MESSAGE);
     }
 
     public static void showLottoNumbers(Lottos lottos) {

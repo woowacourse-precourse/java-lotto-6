@@ -5,8 +5,8 @@ import lotto.utils.GameRules;
 
 import java.util.List;
 
-public class NumberPickMachine {
-    private NumberPickMachine() {
+public class LottoNumberGenerator {
+    private LottoNumberGenerator() {
     }
 
     public static List<Integer> pickNumbers() {

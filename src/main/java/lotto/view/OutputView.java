@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.constant.LottoNumber.ZERO;
 import static lotto.constant.message.OutputMessage.PURCHASE;
 import static lotto.constant.message.OutputMessage.TOTAL_RETURN;
 import static lotto.constant.message.OutputMessage.WINNING_RESULT;
@@ -35,10 +36,10 @@ public class OutputView {
     private static void showRankResult(Map<LottoRank, Integer> winningResult, LottoRank rank) {
         if (rank.equals(LottoRank.SECOND)) {
             System.out.printf(WINNING_RESULT_BALL.getMessage(), rank.getMatchCount(), rank.getPrize(),
-                    winningResult.getOrDefault(rank, 0));
+                    winningResult.getOrDefault(rank, ZERO.getNumber()));
         }
         System.out.printf(WINNING_RESULT.getMessage(), rank.getMatchCount(), rank.getPrize(),
-                winningResult.getOrDefault(rank, 0));
+                winningResult.getOrDefault(rank, ZERO.getNumber()));
     }
 
     public static void printProfitRate(double profitRate) {

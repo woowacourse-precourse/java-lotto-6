@@ -1,5 +1,6 @@
 package lotto.constants;
 
+import java.util.Arrays;
 import java.util.function.BiPredicate;
 
 public enum LottoRank {
@@ -19,13 +20,10 @@ public enum LottoRank {
     }
 
     public static LottoRank evaluateLottoRank(int matchedNumbers, boolean hasBonus) {
-        LottoRank lottoRank = NONE;
-        for (LottoRank p : values()) {
-            if (p.picked.test(matchedNumbers, hasBonus)) {
-                lottoRank = p;
-                break;
-            }
-        }
+        LottoRank lottoRank = Arrays.stream(values())
+                .filter(p -> p.picked.test(matchedNumbers, hasBonus))
+                .findFirst()
+                .orElse(NONE);
         return lottoRank;
     }
 }

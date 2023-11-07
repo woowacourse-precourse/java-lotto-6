@@ -8,7 +8,7 @@ public class RandomLottoGenerator {
 
     private static final int MIN_NUMBER = Number.MIN_VALUE;
     private static final int MAX_NUMBER = Number.MAX_VALUE;
-    private static final int SIZE = Lotto.NUMBER_SIZE;
+    private static final int COUNT_OF_NUMBER = Lotto.NUMBER_SIZE;
 
     private RandomLottoGenerator() {
     }
@@ -35,7 +35,7 @@ public class RandomLottoGenerator {
     }
 
     private static Lotto generateRandomLotto() {
-        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, SIZE);
+        List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, COUNT_OF_NUMBER);
         return new Lotto(randomNumbers);
     }
 }

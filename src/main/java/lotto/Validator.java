@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,10 +8,26 @@ public class Validator {
 
     // 로또 구입 금액 입력 검증
     public static void validateAmount(String amount) {
-        Validator.checkBlankOrNULL(amount);
-        Validator.checkContainSpace(amount);
-        Validator.checkNAN(amount);
-        Validator.checkDividedBy(1000, Integer.parseInt(amount));
+        checkBlankOrNULL(amount);
+        checkContainSpace(amount);
+        checkNAN(amount);
+        checkDividedBy(1000, Integer.parseInt(amount));
+    }
+
+    // 당첨 번호 입력 검증
+    public static void validateWinNumbers(String winSequence) {
+        checkBlankOrNULL(winSequence);
+        checkInvalidComma(winSequence);
+        checkValidSize(winSequence);
+        checkContainSpace(winSequence);
+        List<String> numbers = Arrays.asList(winSequence.split(","));
+        List<Integer> intNumbers = new ArrayList<>();
+        for (String number : numbers) {
+            checkNAN(number);
+            checkNumberIn(1, 45, Integer.parseInt(number));
+            intNumbers.add(Integer.parseInt(number));
+        }
+        checkDuplicated(intNumbers);
     }
 
     // 공백이거나 NULL인지 검증

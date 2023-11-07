@@ -106,9 +106,17 @@
 
 - [ ] Console API 로부터 입력 받는 기능
 
-**유틸**
+##
 
-- [x] 로또 관련 예외 메시지 관리 (LottoExceptionMessage)
+#### 로또 관련 예외 메시지 관리 역할 (LottoExceptionMessage)
+
+- [x] 로또 관련 예외 메시지를 반환하는 기능
+
+##
+
+#### 구매 금액 관련 예외 메시지 관리 역할 (PurchaseAmountExceptionMessage)
+
+- [ ] 구매 금액 관련 예외 메시지를 반환하는 기능
 
 ##
 

@@ -4,8 +4,6 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.Exception.LottoNumbersException;
-import lotto.Exception.MoneyException;
 
 public class LottoMachine {
 
@@ -37,10 +35,7 @@ public class LottoMachine {
     }
 
     private void insertMoney(String input) {
-        MoneyException.notParsableNumber(input);
-        MoneyException.notValidNumber(Integer.parseInt(input));
-        MoneyException.notDividedWithThousand(Integer.parseInt(input));
-
+        Exception.validateMoney(input);
         lottoCount = Integer.parseInt(input) / 1000;
     }
 
@@ -58,7 +53,7 @@ public class LottoMachine {
 
         try {
             numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            LottoNumbersException.validateLottoNumbers(numbers);
+            Exception.validateLottoNumbers(numbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return generateLottoNumbers();

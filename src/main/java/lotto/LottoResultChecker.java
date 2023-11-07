@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import lotto.Exception.LottoNumbersException;
 
 public class LottoResultChecker {
 
@@ -64,7 +63,7 @@ public class LottoResultChecker {
             System.out.println();
             System.out.println("당첨 번호를 입력해 주세요.");
             winNumbers = numbersSeparator(Console.readLine());
-            LottoNumbersException.validateLottoNumbers(winNumbers);
+            Exception.validateLottoNumbers(winNumbers);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             setWinNumbers();
@@ -76,7 +75,7 @@ public class LottoResultChecker {
             System.out.println();
             System.out.println("보너스 번호를 입력해 주세요.");
             bonusNumber = Integer.parseInt(Console.readLine());
-            LottoNumbersException.validateBonusNumber(winNumbers, bonusNumber);
+            Exception.validateBonusNumber(winNumbers, bonusNumber);
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             setBonusNumber();

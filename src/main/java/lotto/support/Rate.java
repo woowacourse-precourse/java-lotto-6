@@ -1,19 +1,21 @@
-package support;
+package lotto.support;
 
 public enum Rate {
-    FIRST(6,false,2000000000),
-    SECOND(5,true,30000000),
-    THIRD(5,false,1500000),
-    FOURTH(4,false,50000),
-    FIFTH(3,false,5000),
-    MISS(0,false,0);
+    FIRST("first",6,false,2000000000),
+    SECOND("second",5,true,30000000),
+    THIRD("third",5,false,1500000),
+    FOURTH("fourth",4,false,50000),
+    FIFTH("fifth",3,false,5000),
+    MISS("miss",0,false,0);
 
 
+    private final String rank;
     private final int correct;
     private final boolean bonus;
     private final int prize;
 
-    private Rate(int correct, boolean bonus, int prize) {
+    private Rate(String rank,int correct, boolean bonus, int prize) {
+        this.rank = rank;
         this.correct = correct;
         this.bonus = bonus;
         this.prize = prize;
@@ -37,7 +39,13 @@ public enum Rate {
         }
         return MISS;
 
+    }
 
+    public String getRank() {
+        return this.rank;
+    }
+    public int getPrize() {
+        return this.prize;
     }
 
 

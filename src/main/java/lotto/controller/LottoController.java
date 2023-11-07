@@ -2,6 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.dto.LottoAndBonusDTO;
+import lotto.dto.MoneyDTO;
+import lotto.dto.WinningStatisticDTO;
 import lotto.model.Bonus;
 import lotto.model.Lotto;
 import lotto.model.Money;
@@ -86,5 +88,13 @@ public class LottoController {
             OutputView.printError(e.getMessage());
             return requestBonus();
         }
+    }
+
+    private void requestCalculateLottery() {
+        WinningStatisticDTO winningStatisticDTO = calculateLotteryService.countMatchesNumber();
+        MoneyDTO moneyDTO = calculateLotteryService.calculateReturnRates(money.createDTO(), winningStatisticDTO);
+
+        OutputView.printResultOfLottery(winningStatisticDTO);
+        OutputView.printReturnRate(moneyDTO);
     }
 }

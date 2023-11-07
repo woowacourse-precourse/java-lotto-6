@@ -42,9 +42,9 @@ public class LottoGame {
 
     private static List<Integer> getWinningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] numbersString = Console.readLine().split(",");
+        String[] numbertmp = Console.readLine().split(",");
         List<Integer> numbers = new ArrayList<>();
-        for (String number : numbersString) {
+        for (String number : numbertmp) {
             numbers.add(Integer.parseInt(number));
         }
         return numbers;

@@ -40,17 +40,46 @@ public class WinningStatistics {
         return countMatchingNumbers(lotto);
     }
 
-    public int countMatchingOnly() {
-        int count = 0;
+    public int countMatchingThree() {
+        int countThree = 0;
         for (Lotto lotto : lottos) {
             if (countMatchingOnly(lotto) == 3) {
-                count++;
+                countThree++;
             }
         }
-        return count;
+        return countThree;
     }
 
-    public int countMatchingAndBonus() {
+    public int countMatchingFour() {
+        int countFour = 0;
+        for (Lotto lotto : lottos) {
+            if (countMatchingOnly(lotto) == 4) {
+                countFour++;
+            }
+        }
+        return countFour;
+    }
+
+    public int countMatchingFive() {
+        int countFive = 0;
+        for (Lotto lotto : lottos) {
+            if (countMatchingOnly(lotto) == 5 && !(hasBonusNumber(lotto))) {
+                countFive++;
+            }
+        }
+        return countFive;
+    }
+    public int countMatchingAll() {
+        int countAll = 0;
+        for (Lotto lotto : lottos) {
+            if (countMatchingOnly(lotto) == 6) {
+                countAll++;
+            }
+        }
+        return countAll;
+    }
+
+    public int countMatchingFiveBonus() {
         int count = 0;
         for (Lotto lotto : lottos) {
             if (countMatchingAndBonus(lotto) == 5) {
@@ -61,16 +90,20 @@ public class WinningStatistics {
     }
 
     public double calculateTotalWinningRate() {
-        int totalPrize = countMatchingOnly() * 5000 + countMatchingAndBonus() * 30000000;
+        int totalPrize = countMatchingThree() * WinningRank.THREE.getPrize() +
+                countMatchingFour() * WinningRank.FOUR.getPrize() +
+                countMatchingFive() * WinningRank.FIVE.getPrize() +
+                countMatchingFiveBonus() * WinningRank.FIVE_BONUS.getPrize() +
+                countMatchingAll() * WinningRank.ALL.getPrize();
         return (double) totalPrize / (lottos.size() * 1000) * 100;
     }
 
     @Override
     public String toString() {
-        return "3개 일치 (5,000원) - " + countMatchingOnly() + "개\n" +
-                "4개 일치 (50,000원) - 0개\n" +
-                "5개 일치 (1,500,000원) - 0개\n" +
-                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + countMatchingAndBonus() + "개\n" +
-                "6개 일치 (2,000,000,000원) - 0개";
+        return "3개 일치 (5,000원) - " + countMatchingThree() + "개\n" +
+                "4개 일치 (50,000원) - " + countMatchingFour() + "개\n" +
+                "5개 일치 (1,500,000원) - " + countMatchingFive() + "개\n" +
+                "5개 일치, 보너스 볼 일치 (30,000,000원) - " + countMatchingFiveBonus() + "개\n" +
+                "6개 일치 (2,000,000,000원) - " + countMatchingAll() + "개\n";
     }
 }

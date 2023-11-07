@@ -25,6 +25,7 @@ public class LottoController {
         showPurchasedLottoTickets();
         Lotto winningNumbers = makeWinningNumbers();
         int bonsNumber = makeBonusNumber(winningNumbers);
+        List<Integer> matchResult = totalMatchResult(lottos,winningNumbers,bonsNumber);
     }
 
     public int makeBonusNumber(Lotto winningNumbers) {
@@ -112,4 +113,48 @@ public class LottoController {
         outputView.printGeneratedLottos(lotto);
     }
 
+    private Integer calculateMatchCount(Lotto generatedLotto, Lotto winningNumbers) {
+        List<Integer> winningLottoNumbers = winningNumbers.getNumbers();
+        Integer matchCount = 0;
+        for (Integer number : generatedLotto.getNumbers()) {
+            if (winningLottoNumbers.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
+    }
+
+    private boolean isBonusNumberMatch(Lotto winningNumbers, Integer bonusNumber){
+        return winningNumbers.getNumbers().contains(bonusNumber);
+    }
+
+    private int calculateMatchResult(Lotto generatedLotto, Lotto winningNumbers,
+        Integer bonusNumber) {
+        int matchCount = calculateMatchCount(generatedLotto, winningNumbers);
+        if (matchCount == 6) {
+            return 1;
+        }
+        if (matchCount == 5 && isBonusNumberMatch(winningNumbers, bonusNumber)) {
+            return 2;
+        }
+        if (matchCount == 5) {
+            return 3;
+        }
+        if (matchCount == 4) {
+            return 4;
+        }
+        if (matchCount == 3) {
+            return 5;
+        }
+        return 0;
+    }
+
+    private List<Integer> totalMatchResult(Lottos lottos, Lotto winningNumbers, int bonusNumber){
+        List<Integer> matchResult = new ArrayList<>();
+        for(Lotto eachLotto : lottos.getLottos()){
+            matchResult.add(calculateMatchResult(eachLotto, winningNumbers, bonusNumber));
+        }
+        System.out.println(matchResult);
+        return matchResult;
+    }
 }

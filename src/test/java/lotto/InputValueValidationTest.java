@@ -23,6 +23,7 @@ public class InputValueValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입 금액은 숫자로만 구성됩니다.");
     }
+
     @DisplayName("구입 금액이 1,000원 이하면 예외가 발생한다.")
     @Test
     void inputPurchaseAmountByUnderAmount() {
@@ -35,6 +36,7 @@ public class InputValueValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 구입 금액은 1,000원 이상이어야 합니다.");
     }
+
     @DisplayName("구입 금액이 1,000원 단위가 아니라면 예외가 발생한다.")
     @Test
     void inputPurchaseAmountByNotUnitOf1000() {
@@ -112,6 +114,7 @@ public class InputValueValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 숫자로만 구성됩니다.");
     }
+
     @DisplayName("보너스 번호가 45를 초과하면 예외가 발생한다.")
     @Test
     void inputBonusNumberExceeded() {
@@ -125,6 +128,7 @@ public class InputValueValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 보너스 번호는 45 이하의 숫자로 구성됩니다.");
     }
+
     @DisplayName("보너스 번호가 당첨 번호에 포함되면 예외가 발생한다.")
     @Test
     void inputBonusNumberIncludedInPrizeNumber() {

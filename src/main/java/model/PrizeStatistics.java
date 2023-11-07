@@ -54,4 +54,5 @@ public class PrizeStatistics {
     public int getFirstPrize() {
         return firstPrize;
     }
+
 }

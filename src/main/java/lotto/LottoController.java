@@ -18,8 +18,9 @@ public class LottoController {
         output.printRandomLottoNumbers(randomLottoNumbers);
 
         WinningNumber winningNumber = createWinningNumber();
-        LottoBonus lottoBonus = createBonusNumber(winningNumber);
-        HashMap<Integer, List<Integer>> compareLottoNumResult = compareLottoNumber(lottoGenerate, winningNumber, lottoBonus);
+        BonusNumber bonusNumber = createBonusNumber(winningNumber);
+        HashMap<Integer, List<Integer>> compareLottoNumResult =
+                compareLottoNumber(lottoGenerate, winningNumber, bonusNumber);
         printResult(checkPrizeByLotto(compareLottoNumResult), lottoCost.getCost());
     }
 
@@ -83,8 +84,8 @@ public class LottoController {
         }
     }
 
-    private LottoBonus createBonusNumber(WinningNumber winningNumber) {
-        LottoBonus lottoBonus = null;
+    private BonusNumber createBonusNumber(WinningNumber winningNumber) {
+        BonusNumber lottoBonus = null;
         boolean loop = true;
 
         while (loop) {
@@ -92,7 +93,7 @@ public class LottoController {
             try {
                 int bonusNumber = toNumber(inputBonusNumber);
                 hasSameNumberBetweenWinningAndBonusNumber(winningNumber.getWinningNumber(), bonusNumber);
-                lottoBonus = new LottoBonus(bonusNumber);
+                lottoBonus = new BonusNumber(bonusNumber);
                 loop = false;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
@@ -223,7 +224,7 @@ public class LottoController {
     }
 
     private HashMap<Integer, List<Integer>> compareLottoNumber(LottoGenerate lottoGenerate,
-                                                               WinningNumber winningNumber, LottoBonus lottoBonus) {
+                                                               WinningNumber winningNumber, BonusNumber bonusNumber) {
         HashMap<Integer, List<Integer>> countSameNumbers = new HashMap<>();
         HashMap<Integer, List<Integer>> randomLottoNumbers = lottoGenerate.getRandomLottoNumbers();
         int winningNumberMatchCount; //countWinningInLotto
@@ -232,7 +233,7 @@ public class LottoController {
         for (int key : lottoGenerate.getRandomLottoNumbers().keySet()) {
             List<Integer> randomLottoNumber = randomLottoNumbers.get(key);
             winningNumberMatchCount = compareWinningAndLottoNumber(randomLottoNumber, winningNumber.getWinningNumber());
-            bonusNumberMatchCount = compareBonusAndLottoNumber(randomLottoNumber, lottoBonus.getBonusNumber());
+            bonusNumberMatchCount = compareBonusAndLottoNumber(randomLottoNumber, bonusNumber.getBonusNumber());
 
             countSameNumbers.put(key, List.of(winningNumberMatchCount, bonusNumberMatchCount));
         }

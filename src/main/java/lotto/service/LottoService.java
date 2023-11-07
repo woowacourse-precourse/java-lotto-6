@@ -24,7 +24,7 @@ public class LottoService {
     private List<Integer> prizeCount = new ArrayList<>();
 
     public LottoService() {
-        for(int i=0; i<6; i++) {
+        for (int i = 0; i < 6; i++) {
             prizeCount.add(0);
         }
     }

@@ -58,6 +58,7 @@ public class OutputView {
     public void printRateOfReturn(double value) {
         double rateOfReturn = Math.round(value * 10) / 10.0;
         BigDecimal result = new BigDecimal(rateOfReturn);
-        System.out.println("총 수익률은 " + result + "%입니다.");
+        String format = String.format("총 수익률은 %,.1f%%입니다.", result);
+        System.out.println(format);
     }
 }

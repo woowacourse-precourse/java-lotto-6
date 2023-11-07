@@ -93,4 +93,88 @@ class LottoGameServiceTest {
         assertThatThrownBy(() -> lottoGameService.validateBonusNumber(bonusNumber, lottoNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("구매한 로또 번호와 당첨 번호 0개 일치")
+    @Test
+    void collectNumberIsZero() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(7, 8, 9, 10, 11, 12);
+
+        long collectNumberCount
+                = lottoGameService.getCollectNumberCount(purchaseLotto, winningLotto);
+
+        assertThat(collectNumberCount).isEqualTo(0);
+    }
+
+    @DisplayName("구매한 로또 번호와 당첨 번호 1개 일치")
+    @Test
+    void collectNumberIsOne() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(6, 8, 9, 10, 11, 12);
+
+        long collectNumberCount
+                = lottoGameService.getCollectNumberCount(purchaseLotto, winningLotto);
+
+        assertThat(collectNumberCount).isEqualTo(1);
+    }
+
+    @DisplayName("구매한 로또 번호와 당첨 번호 2개 일치")
+    @Test
+    void collectNumberIsTwo() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(5, 6, 9, 10, 11, 12);
+
+        long collectNumberCount
+                = lottoGameService.getCollectNumberCount(purchaseLotto, winningLotto);
+
+        assertThat(collectNumberCount).isEqualTo(2);
+    }
+
+    @DisplayName("구매한 로또 번호와 당첨 번호 3개 일치")
+    @Test
+    void collectNumberIsThree() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(4, 5, 6, 10, 11, 12);
+
+        long collectNumberCount
+                = lottoGameService.getCollectNumberCount(purchaseLotto, winningLotto);
+
+        assertThat(collectNumberCount).isEqualTo(3);
+    }
+
+    @DisplayName("구매한 로또 번호와 당첨 번호 4개 일치")
+    @Test
+    void collectNumberIsFour() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(3, 4, 5, 6, 11, 12);
+
+        long collectNumberCount
+                = lottoGameService.getCollectNumberCount(purchaseLotto, winningLotto);
+
+        assertThat(collectNumberCount).isEqualTo(4);
+    }
+
+    @DisplayName("구매한 로또 번호와 당첨 번호 5개 일치")
+    @Test
+    void collectNumberIsFive() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(2, 3, 4, 5, 6, 12);
+
+        long collectNumberCount
+                = lottoGameService.getCollectNumberCount(purchaseLotto, winningLotto);
+
+        assertThat(collectNumberCount).isEqualTo(5);
+    }
+
+    @DisplayName("구매한 로또 번호와 당첨 번호 6개 일치")
+    @Test
+    void collectNumberIsSix() {
+        List<Integer> purchaseLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
+
+        long collectNumberCount
+                = lottoGameService.getCollectNumberCount(purchaseLotto, winningLotto);
+
+        assertThat(collectNumberCount).isEqualTo(6);
+    }
 }

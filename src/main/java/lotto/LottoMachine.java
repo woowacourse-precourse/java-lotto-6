@@ -7,6 +7,11 @@ import java.util.List;
 
 public class LottoMachine {
 
+    private final static int LOTTO_NUMBERS_LENGTH = 6;
+    private final static int MIN_LOTTO_NUMBER = 1;
+    private final static int MAX_LOTTO_NUMBER = 45;
+    private final static int LOTTO_PRICE = 1000;
+
     private int lottoCount;
     private List<Lotto> lottoBundle;
 

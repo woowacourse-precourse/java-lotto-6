@@ -11,6 +11,7 @@ public class WinningNumberValidator {
     Constants constants = new Constants();
 
     public void checkLottoNumber(List<String> lotto) {
+        checkLottoNumberIsNumber(lotto);
         checkLottoDuplicate(lotto);
     }
 
@@ -20,11 +21,24 @@ public class WinningNumberValidator {
         checkBonusDuplicate(lotto, Integer.parseInt(bonusNumber));
     }
 
+    public void checkLottoNumberIsNumber(List<String> lotto) {
+        for (int i = 0; i < lotto.size(); i++) {
+            String lottoNumber = lotto.get(i);
+            try{
+                Integer.parseInt(lottoNumber);
+            }
+            catch(NumberFormatException e) {
+                System.out.printf(constants.LOTTO_NUMBER_NOT_NUMBER_ERROR);
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
     // 로또 번호가 중복이 없는지 확인
     public void checkLottoDuplicate(List<String> lotto) {
         Set<String> lottoWithoutDuplicate = new HashSet<>(lotto);
         if (lotto.size() != lottoWithoutDuplicate.size()) {
-            System.out.println(constants.WINNING_NUMBER_DUPLICATED_ERROR);
+            System.out.printf(constants.WINNING_NUMBER_DUPLICATED_ERROR);
             throw new IllegalArgumentException();
         }
     }
@@ -33,7 +47,7 @@ public class WinningNumberValidator {
     public void checkBonusDuplicate(List<Integer> lotto, int bonusNumber) {
         for (int i = 0; i < constants.LOTTO_NUMBER; i++) {
             if(lotto.get(i) == bonusNumber) {
-                System.out.println(constants.BONUS_NUMBER_DUPLICATED_ERROR);
+                System.out.printf(constants.BONUS_NUMBER_DUPLICATED_ERROR);
                 throw new IllegalArgumentException();
             }
         }

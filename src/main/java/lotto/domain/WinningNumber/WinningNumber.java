@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.Constants;
 import lotto.util.InputUtil;
 import lotto.validator.WinningNumberValidator;
 
@@ -13,7 +11,6 @@ import lotto.validator.WinningNumberValidator;
 public class WinningNumber {
     private List<Integer> winningNumbers = new ArrayList<>();
     private int bonusNumber;
-    Constants constants = new Constants();
     InputUtil inputUtil = new InputUtil();
     WinningNumberValidator validator = new WinningNumberValidator();
 

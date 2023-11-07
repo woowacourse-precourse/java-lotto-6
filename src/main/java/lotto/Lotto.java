@@ -31,15 +31,21 @@ public class Lotto {
 
     public int countMatchingNumbers(Lotto winningLotto, int bonus) {
         int count = 0;
-        boolean isBonus = false;
         for (int num: this.numbers) {
             if (winningLotto.numbers.contains(num)){
                 count++;
             }
         }
+        boolean isBonus = bonusMatch(count, bonus);
+
+        return Statistic.getRank(count, isBonus);
+    }
+
+    public boolean bonusMatch (int count, int bonus) {
+        boolean isBonus = false;
         if (count == 5 && this.numbers.contains(bonus)) {
             isBonus = true;
         }
-        return Statistic.getRank(count, isBonus);
+        return isBonus;
     }
 }

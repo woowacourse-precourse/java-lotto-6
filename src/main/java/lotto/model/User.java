@@ -3,8 +3,9 @@ package lotto.model;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
-import lotto.LottoValue;
-import lotto.RankValue;
+import lotto.Util.Size;
+import lotto.Util.TBD;
+import lotto.controller.Validation;
 
 public class User {
     private final int payment;
@@ -13,24 +14,22 @@ public class User {
     private List<Integer> rankCount;
 
     public User(int payment) {
-        validatePayment(payment);
+        validate(payment);
         this.payment = payment;
-        this.purchaseNumber = payment / (int)LottoValue.PAYMENT_UNIT.getValue();
+        this.purchaseNumber = payment / Size.PAYMENT_UNIT.getSize();
         this.purchasedLottoNumbers = generateLottoNumbers(purchaseNumber);
         this.rankCount = initCount();
     }
 
-    private void validatePayment(int payment) {
-        if (payment % (int)LottoValue.PAYMENT_UNIT.getValue() != 0) {
-            throw new IllegalArgumentException();
-        }
+    private void validate(int payment) {
+        Validation.validatePaymentDivisibility(payment);
     }
 
     private List<Integer> initCount() {
         this.rankCount = new ArrayList<>();
 
-        for (int i = 0; i < RankValue.RANK_NUMBER.getRankValue(); i++) {
-            this.rankCount.add(RankValue.INIT_RANK_ARRAY.getRankValue());
+        for (int i = 0; i < Size.RANK_SIZE.getSize(); i++) {
+            this.rankCount.add(0);
         }
         return this.rankCount;
     }
@@ -46,16 +45,21 @@ public class User {
     }
 
     public void increaseRankCount(int rank) {
-        if (rank == RankValue.FIFTH_PLACE.getRankValue()) {
-            this.rankCount.set(RankValue.FIFTH_PLACE.getRankValue(), this.rankCount.get(RankValue.FIFTH_PLACE.getRankValue()) + 1);
-        } else if (rank == RankValue.FOURTH_PLACE.getRankValue()) {
-            this.rankCount.set(RankValue.FOURTH_PLACE.getRankValue(), this.rankCount.get(RankValue.FOURTH_PLACE.getRankValue()) + 1);
-        } else if (rank == RankValue.THIRD_PLACE.getRankValue()) {
-            this.rankCount.set(RankValue.THIRD_PLACE.getRankValue(), this.rankCount.get(RankValue.THIRD_PLACE.getRankValue()) + 1);
-        } else if (rank == RankValue.SECOND_PLACE.getRankValue()) {
-            this.rankCount.set(RankValue.SECOND_PLACE.getRankValue(), this.rankCount.get(RankValue.SECOND_PLACE.getRankValue()) + 1);
-        } else if (rank == RankValue.FIRST_PLACE.getRankValue()) {
-            this.rankCount.set(RankValue.FIRST_PLACE.getRankValue(), this.rankCount.get(RankValue.FIRST_PLACE.getRankValue()) + 1);
+        if (rank == TBD.FIFTH_PLACE.getRank()) {
+            this.rankCount.set(TBD.FIFTH_PLACE.getRank(),
+                    this.rankCount.get(TBD.FIFTH_PLACE.getRank()) + 1);
+        } else if (rank == TBD.FOURTH_PLACE.getRank()) {
+            this.rankCount.set(TBD.FOURTH_PLACE.getRank(),
+                    this.rankCount.get(TBD.FOURTH_PLACE.getRank()) + 1);
+        } else if (rank == TBD.THIRD_PLACE.getRank()) {
+            this.rankCount.set(TBD.THIRD_PLACE.getRank(),
+                    this.rankCount.get(TBD.THIRD_PLACE.getRank()) + 1);
+        } else if (rank == TBD.SECOND_PLACE.getRank()) {
+            this.rankCount.set(TBD.SECOND_PLACE.getRank(),
+                    this.rankCount.get(TBD.SECOND_PLACE.getRank()) + 1);
+        } else if (rank == TBD.FIRST_PLACE.getRank()) {
+            this.rankCount.set(TBD.FIRST_PLACE.getRank(),
+                    this.rankCount.get(TBD.FIRST_PLACE.getRank()) + 1);
         }
     }
 

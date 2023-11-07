@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.Util.Message;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.User;
@@ -14,7 +15,7 @@ public class Setting {
             try {
                 return new User(Input.inputPayment());
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessages
+                System.out.println(Message
                         .PAYMENT_ERROR_MESSAGE
                         .getMessage());
             }
@@ -28,7 +29,7 @@ public class Setting {
             try {
                 return new Lotto(Input.inputLotto());
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessages
+                System.out.println(Message
                         .LOTTO_ERROR_MESSAGE
                         .getMessage());
             }
@@ -42,7 +43,7 @@ public class Setting {
             try {
                 return new BonusNumber(Input.inputBonusNumber(), lotto.numbers());
             } catch (IllegalArgumentException e) {
-                System.out.println(ErrorMessages
+                System.out.println(Message
                         .BONUS_NUMBER_ERROR_MESSAGE
                         .getMessage());
             }

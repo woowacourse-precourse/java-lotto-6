@@ -11,13 +11,13 @@ public class Money {
         this.value = value;
     }
 
-    private static void validateMoneyPositive(int value) {
+    private void validateMoneyPositive(int value) {
         if (!hasGreaterEqualZeroValue(value)) {
             throw new MoneyPositiveException();
         }
     }
 
-    private static boolean hasGreaterEqualZeroValue(int value) {
+    private boolean hasGreaterEqualZeroValue(int value) {
         return value >= MIN_BOUND;
     }
 

@@ -1,5 +1,15 @@
 package lotto;
 
 public enum Result {
-    THREE, FOUR, FIVE, FIVE_BONUS, SIX
+    THREE(5000), FOUR(50000), FIVE(1500000), FIVE_BONUS(30000000), SIX(2000000000);
+
+    private final int earnings;
+
+    Result(int earnings) {
+        this.earnings = earnings;
+    }
+
+    public int getEarnings() {
+        return earnings;
+    }
 }

@@ -1,11 +1,14 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class LottoController {
 
+    private final int LOTTO_PRICE = 1000;
     private final LottoView lottoView;
     private List<Lotto> purchasedLottos;
 
@@ -20,23 +23,38 @@ public class LottoController {
 
         List<Integer> winnerNums = lottoView.getWinnerNums();
         int bonusNum = lottoView.getBonusNum();
+        List<Integer> results = getResults(purchasedLottos, winnerNums, bonusNum);
+        double earningRate = calculateEarningRate(results, purchaseAmount);
+        lottoView.printResult(results, earningRate);
 
+    }
+
+    private List<Lotto> generateLottos(int purchaseAmount) {
+        int lottoNum = purchaseAmount / LOTTO_PRICE;
+        List<Lotto> lottos = new ArrayList<>();
+        for(int i=0; i<lottoNum; i++) {
+            lottos.add(Lotto.create());
+        }
+        return lottos;
+    }
+
+    private static List<Integer> getResults(List<Lotto> purchasedLottos, List<Integer> winnerNums, int bonusNum) {
         List<Integer> results = new ArrayList<>(Collections.nCopies(Result.values().length, 0));
         for (Lotto lotto : purchasedLottos) {
             Result result = lotto.match(winnerNums, bonusNum);
             int idx  = result.ordinal();
             results.set(idx, results.get(idx) + 1);
         }
-        double earningRate = calucateEarningRate(results, purchaseAmount);
-        lottoView.printResult(results, earningRate);
-
+        return results;
     }
 
-    private List<Lotto> generateLottos(int purchaseAmount) {
-        return null;
-    }
-
-    private double calucateEarningRate(List<Integer> results, int purchaseAmount) {
-        return 0;
+    private double calculateEarningRate(List<Integer> results, int purchaseAmount) {
+        int totalEarning = 0;
+        int resultIdx = 0;
+        for (Result result : Result.values()) {
+            totalEarning =  results.get(resultIdx) * result.getEarnings();
+            resultIdx++;
+        }
+        return (double) totalEarning / purchaseAmount;
     }
 }

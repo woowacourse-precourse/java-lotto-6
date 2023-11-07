@@ -21,8 +21,4 @@ public class RaffleController {
         raffleService.setRaffleNumber(lottoInput.inputWinningNumber(),
                 lottoInput.inputBonusNumber());
     }
-
-    public void doRaffle() {
-        lottoOutput.printResult();
-    }
 }

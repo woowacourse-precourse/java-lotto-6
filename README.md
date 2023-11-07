@@ -23,10 +23,9 @@
 
 ### 테스트 실행 가이드
 
-- 터미널에서 `java -version`을 실행하여 Java 버전이 17인지 확인한다.
-  Eclipse 또는 IntelliJ IDEA와 같은 IDE에서 Java 17로 실행되는지 확인한다.
-- 터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean test` 명령을 실행하고,
-  Windows 사용자의 경우 `gradlew.bat clean test` 또는 `./gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.
+- 터미널에서 `java -version`을 실행하여 Java 버전이 17인지 확인한다. Eclipse 또는 IntelliJ IDEA와 같은 IDE에서 Java 17로 실행되는지 확인한다.
+- 터미널에서 Mac 또는 Linux 사용자의 경우 `./gradlew clean test` 명령을 실행하고, Windows 사용자의 경우 `gradlew.bat clean test`
+  또는 `./gradlew.bat clean test` 명령을 실행할 때 모든 테스트가 아래와 같이 통과하는지 확인한다.
 
 ```
 BUILD SUCCESSFUL in 0s
@@ -176,7 +175,7 @@ BUILD SUCCESSFUL in 0s
     - else를 쓰지 말라고 하니 switch/case로 구현하는 경우가 있는데 switch/case도 허용하지 않는다.
 - Java Enum을 적용한다.
 - 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
-    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다. 
+    - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
     - 단위 테스트 작성이 익숙하지 않다면 `test/java/lotto/LottoTest`를 참고하여 학습한 후 테스트를 구현한다.
 
 ### 라이브러리

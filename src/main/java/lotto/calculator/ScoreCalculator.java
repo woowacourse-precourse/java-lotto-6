@@ -1,7 +1,9 @@
-package lotto;
+package lotto.calculator;
 
 import java.util.HashMap;
 import java.util.List;
+import lotto.Lotto;
+import lotto.LottoChecker;
 
 public class ScoreCalculator {
 

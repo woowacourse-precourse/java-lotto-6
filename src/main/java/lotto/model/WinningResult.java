@@ -6,7 +6,7 @@ import java.util.Map;
 public class WinningResult {
     private static final Integer DEFAULT_COUNT = 0;
 
-    private final Map<LottoPlace,Integer> lottoPlaces = new HashMap<>();
+    private final Map<LottoPlace, Integer> lottoPlaces = new HashMap<>();
 
     public Integer getPlaceCount(LottoPlace lottoPlace) {
         return getCount(lottoPlace);
@@ -17,7 +17,22 @@ public class WinningResult {
         lottoPlaces.put(lottoPlace, previousCount + 1);
     }
 
+    public Money calculateTotalRevenue() {
+        return this.lottoPlaces
+                .keySet()
+                .stream()
+                .map(this::calcuateRevenue)
+                .reduce(Money::sum)
+                .orElse(Money.getZeroMoney());
+    }
+
+    private Money calcuateRevenue(LottoPlace lottoPlace) {
+        Integer count = getCount(lottoPlace);
+        Money prizeAmount = lottoPlace.getPrizeAmount();
+        return prizeAmount.multiply(count);
+    }
+
     private Integer getCount(LottoPlace key) {
-        return lottoPlaces.getOrDefault(key,DEFAULT_COUNT);
+        return lottoPlaces.getOrDefault(key, DEFAULT_COUNT);
     }
 }

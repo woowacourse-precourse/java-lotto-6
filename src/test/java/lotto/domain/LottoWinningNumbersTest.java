@@ -12,6 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 public class LottoWinningNumbersTest {
 
     private LottoWinningNumbers lottoWinningNumbers;
+    private BonusNumber bonusNumber;
     private InputStream originalSystemIn;
 
     @BeforeEach
@@ -37,11 +38,12 @@ public class LottoWinningNumbersTest {
     void BonusNumberTest() {
         consoleInput("1,2,3,4,5,6", "7");
         LottoWinningNumbers winningNumbersInfo = lottoWinningNumbers.getWinningNumbersInfo();
+        BonusNumber bonusNumber = new BonusNumber(winningNumbersInfo);
 
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
-        int bonusNumber = 7;
+        int number = 7;
 
-        assertThat(winningNumbersInfo.getBonusNumber()).isEqualTo(bonusNumber);
+        assertThat(bonusNumber.getNumber()).isEqualTo(number);
         assertThat(winningNumbersInfo.getWinningNumber()).isEqualTo(winningNumbers);
     }
 

@@ -2,11 +2,13 @@ package lotto.controller.dto;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 import lotto.domain.Rank;
+import lotto.view.RankOutputTemplate;
 
 public class ResultDto {
 
-    private final HashMap<Rank, Integer> rankStore;
+    private final HashMap<RankOutputTemplate, Integer> rankStore;
 
     private final Double profitRate;
 
@@ -15,10 +17,11 @@ public class ResultDto {
         this.profitRate = profitRate;
     }
 
-    private HashMap<Rank, Integer> toMap(List<Rank> list) {
-        HashMap<Rank, Integer> map = new HashMap<>();
+    private HashMap<RankOutputTemplate, Integer> toMap(List<Rank> list) {
+        HashMap<RankOutputTemplate, Integer> map = new HashMap<>();
         for(Rank rank:list){
-            map.put(rank,map.getOrDefault(rank,0)+1);
+            Optional<RankOutputTemplate> rankOutputTemplate = RankOutputTemplate.find(rank);
+            rankOutputTemplate.ifPresent(template->map.put(template,map.getOrDefault(template,0)+1));
         }
         return map;
     }
@@ -27,7 +30,7 @@ public class ResultDto {
         return profitRate;
     }
 
-    public Integer findCount(Rank rank) {
+    public Integer findCount(RankOutputTemplate rank) {
         return rankStore.getOrDefault(rank,0);
     }
 }

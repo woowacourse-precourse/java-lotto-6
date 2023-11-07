@@ -1,5 +1,7 @@
 package domain;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,27 +16,22 @@ public class Lottos {
     private boolean bonusWins = false;
 
     public int getThreeWins() {
-
         return threeWins;
     }
 
     public int getFourWins() {
-
         return fourWins;
     }
 
     public int getFiveWins() {
-
         return fiveWins;
     }
 
     public int getFiveAndBonusWins() {
-
         return fiveAndBonusWins;
     }
 
     public int getSixWins() {
-
         return sixWins;
     }
 
@@ -77,5 +74,14 @@ public class Lottos {
         if (count == 6) {
             sixWins++;
         }
+    }
+
+    public void generate() {
+        Lotto lotto = new Lotto(generateRandomNumbers());
+        addLotto(lotto);
+    }
+
+    private List<Integer> generateRandomNumbers() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
 }

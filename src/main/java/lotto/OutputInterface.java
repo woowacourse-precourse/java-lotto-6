@@ -15,8 +15,8 @@ public class OutputInterface {
     private ReceiptRenderer receiptRenderer;
     private LotteryResultRenderer lotteryResultRenderer;
 
-    OutputInterface(Output out, ReceiptRenderer receiptRenderer,
-                    LotteryResultRenderer lotteryResultRenderer) {
+    public OutputInterface(Output out, ReceiptRenderer receiptRenderer,
+                           LotteryResultRenderer lotteryResultRenderer) {
         this.out = out;
         this.receiptRenderer = receiptRenderer;
         this.lotteryResultRenderer = lotteryResultRenderer;

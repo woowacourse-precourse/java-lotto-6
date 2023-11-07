@@ -15,7 +15,7 @@ import lotto.exception.InvalidWinningNumbersException;
 public class InputConverter {
     private InputValidator validator;
 
-    InputConverter(InputValidator validator) {
+    public InputConverter(InputValidator validator) {
         this.validator = validator;
     }
 

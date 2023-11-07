@@ -16,9 +16,10 @@ public class Controller {
     private ApplyWinningLotteryService applyWinningLotteryService;
     private CalculateResultService calculateResultService;
 
-    Controller(InputInterface in, OutputInterface out, String username,
-               PurchaseLotteryService purchaseLotteryService,
-               ApplyWinningLotteryService applyWinningLotteryService, CalculateResultService calculateResultService) {
+    public Controller(InputInterface in, OutputInterface out, String username,
+                      PurchaseLotteryService purchaseLotteryService,
+                      ApplyWinningLotteryService applyWinningLotteryService,
+                      CalculateResultService calculateResultService) {
         this.in = in;
         this.out = out;
         this.username = username;

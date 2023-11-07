@@ -23,7 +23,7 @@ public class WinningLottery {
         LotteryRanking ranking = getRanking(rankings, counts, isBonusNumberMatch);
         return new LotteryResults(ranking, 1);
     }
-    public LotteryRanking getRanking(Collection<? extends LotteryRanking> rankings, int counts, boolean isBonusNumberMatch) {
+    private LotteryRanking getRanking(Collection<? extends LotteryRanking> rankings, int counts, boolean isBonusNumberMatch) {
         return rankings.stream()
                 .filter(ranking -> ranking.matches(counts, isBonusNumberMatch))
                 .findFirst().get();

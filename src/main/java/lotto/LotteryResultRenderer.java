@@ -12,7 +12,7 @@ public class LotteryResultRenderer {
 
     private NumberFormat numberFormat;
 
-    LotteryResultRenderer(NumberFormat numberFormat){
+    public LotteryResultRenderer(NumberFormat numberFormat){
         this.numberFormat = numberFormat;
     }
 

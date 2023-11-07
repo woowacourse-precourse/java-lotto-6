@@ -21,16 +21,16 @@ public class LottoManager {
         int purchasedAmount = tryOnceMoreIfException(Input::readTotalPurchasedAmount);
         int purchasedQuantity = purchasedAmount / THOUSAND;
 
-        List<Lotto> lottoTickets = new ArrayList<>();
-        for (int i = 0; i < purchasedQuantity; i++) {
-            lottoTickets.add(generateLottoTicket());
-        }
-        return lottoTickets;
+        return generateLottoTickets(purchasedQuantity);
     }
 
-    public Lotto generateLottoTicket() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, NUMBER_OF_LOTTO_NUMBER);
-        return new Lotto(numbers.stream().sorted().toList());
+    public List<Lotto> generateLottoTickets(int quantity) {
+        List<Lotto> lottoTickets = new ArrayList<>();
+        for (int i = 0; i < quantity; i++) {
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, NUMBER_OF_LOTTO_NUMBER);
+            lottoTickets.add(new Lotto(numbers.stream().sorted().toList()));
+        }
+        return lottoTickets;
     }
 
     public void printLottoTickets(List<Lotto> tickets) {

@@ -17,4 +17,9 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    public int calculateMatchNumber(UserLotto userLotto) {
+        return (int) userLotto.getLottoNumber().stream()
+                .filter(number -> numbers.contains(number))
+                .count();
+    }
 }

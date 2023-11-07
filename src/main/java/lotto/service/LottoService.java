@@ -4,7 +4,6 @@ import lotto.model.*;
 import lotto.utils.FormatUtils;
 import lotto.view.OutputView;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -22,15 +21,9 @@ public class LottoService {
 
     public void createLottoWinningNumber(String inputLotto) {
 
-        List<Integer> lottoWinningNumber = stringToList(inputLotto);
+        List<Integer> lottoWinningNumber = FormatUtils.stringToList(inputLotto);
         lotto = new Lotto(lottoWinningNumber);
 
-    }
-
-    public List<Integer> stringToList(String inputLotto) {
-        return Arrays.stream(inputLotto.split(","))
-                .map(Integer::parseInt)
-                .toList();
     }
 
     public List<List<Integer>> getUserLottoNumbers() {

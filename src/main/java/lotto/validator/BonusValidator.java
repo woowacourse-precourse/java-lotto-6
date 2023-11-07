@@ -1,6 +1,7 @@
 package lotto.validator;
 
 import lotto.model.Lotto;
+import lotto.utils.FormatUtils;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -10,13 +11,9 @@ public class BonusValidator {
 
     public static void validate(Lotto lotto, String inputBonusNumber) {
         validateNumeric(inputBonusNumber);
-        int bonusNumber = stringToInteger(inputBonusNumber);
+        int bonusNumber = FormatUtils.stringToInteger(inputBonusNumber);
         validateDuplicate(lotto.getNumbers(), bonusNumber);
         validateRange(bonusNumber);
-    }
-
-    private static int stringToInteger(String inputBonusNumber) {
-        return Integer.parseInt(inputBonusNumber);
     }
 
     private static void validateNumeric(String inputBonusNumber) {

@@ -1,17 +1,14 @@
 package lotto.model;
 
+import lotto.utils.FormatUtils;
 import lotto.validator.BonusValidator;
 
 public class Bonus {
-    private int number;
+    private final int number;
 
     public Bonus(Lotto lotto, String inputBonusNumber) {
         BonusValidator.validate(lotto, inputBonusNumber);
-        this.number = stringToInteger(inputBonusNumber);
-    }
-
-    private int stringToInteger(String inputBonusNumber) {
-        return Integer.parseInt(inputBonusNumber);
+        this.number = FormatUtils.stringToInteger(inputBonusNumber);
     }
 
     public int getBonusNumber() {

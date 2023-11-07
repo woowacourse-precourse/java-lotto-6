@@ -1,11 +1,11 @@
 package lotto.domain.game;
 
 import static lotto.ExceptionHandler.handle;
-import static lotto.constant.GameGuideText.ENTER_BONUS_NUMBER;
-import static lotto.constant.GameGuideText.ENTER_PURCHASE_AMOUNT;
-import static lotto.constant.GameGuideText.ENTER_WINNING_LOTTO;
-import static lotto.constant.GameGuideText.PURCHASE_LOTTO;
-import static lotto.constant.GameGuideText.WINNING_STATISTICS;
+import static lotto.constant.GameGuideMessage.ENTER_BONUS_NUMBER;
+import static lotto.constant.GameGuideMessage.ENTER_PURCHASE_AMOUNT;
+import static lotto.constant.GameGuideMessage.ENTER_WINNING_LOTTO;
+import static lotto.constant.GameGuideMessage.PURCHASE_LOTTO;
+import static lotto.constant.GameGuideMessage.WINNING_STATISTICS;
 
 import lotto.domain.computer.Computer;
 import lotto.input.Input;

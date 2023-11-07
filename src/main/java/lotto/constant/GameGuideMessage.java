@@ -1,6 +1,6 @@
 package lotto.constant;
 
-public enum GameGuideText {
+public enum GameGuideMessage {
 
     ENTER_PURCHASE_AMOUNT("구입 금액을 입력해 주세요."),
     PURCHASE_LOTTO("개를 구매했습니다."),
@@ -8,14 +8,14 @@ public enum GameGuideText {
     ENTER_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
     WINNING_STATISTICS("당첨 통계\n---\n");
 
-    private String text;
+    private String message;
 
-    GameGuideText(String text) {
-        this.text = text;
+    GameGuideMessage(String message) {
+        this.message = message;
     }
 
     @Override
     public String toString() {
-        return text;
+        return message;
     }
 }

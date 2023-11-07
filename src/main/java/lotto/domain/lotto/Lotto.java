@@ -1,5 +1,9 @@
 package lotto.domain.lotto;
 
+import static lotto.constant.ExceptionMessage.ENTER_CORRECT_RANGE_NUMBER;
+import static lotto.constant.ExceptionMessage.ENTER_NOT_DUPLICATION_NUMBER;
+import static lotto.constant.ExceptionMessage.ENTER_SIX_NUMBER;
+
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -26,14 +30,14 @@ public class Lotto {
 
     private void checkListSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("숫자를 6개 입력해 주세요.");
+            throw new IllegalArgumentException(ENTER_SIX_NUMBER.getMessage());
         }
     }
 
     private void checkNumberRange(List<Integer> numbers) {
         numbers.forEach(number -> {
             if (number > 45 || number < 1) {
-                throw new IllegalArgumentException("1~45 사이의 숫자를 입력해 주세요.");
+                throw new IllegalArgumentException(ENTER_CORRECT_RANGE_NUMBER.getMessage());
             }
         });
     }
@@ -43,7 +47,7 @@ public class Lotto {
                 .distinct()
                 .count();
         if (numbers.size() != count) {
-            throw new IllegalArgumentException("숫자가 중복되지 않게 입력해 주세요.");
+            throw new IllegalArgumentException(ENTER_NOT_DUPLICATION_NUMBER.getMessage());
         }
     }
 

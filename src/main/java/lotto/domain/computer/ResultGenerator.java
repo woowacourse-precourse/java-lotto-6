@@ -1,5 +1,8 @@
 package lotto.domain.computer;
 
+import static lotto.constant.ExceptionMessage.ENTER_CORRECT_RANGE_NUMBER;
+import static lotto.constant.ExceptionMessage.ENTER_NOT_DUPLICATION_NUMBER;
+
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.Lottos;
 
@@ -55,13 +58,13 @@ public class ResultGenerator {
 
     private void checkRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("1~45 사이의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ENTER_CORRECT_RANGE_NUMBER.getMessage());
         }
     }
 
     private void checkDuplication(int bonusNumber) {
         if (winningLotto.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호와 중복되지 않는 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException(ENTER_NOT_DUPLICATION_NUMBER.getMessage());
         }
     }
 }

@@ -20,8 +20,18 @@ public class RandomLottoNumbersTest {
 
     @Test
     void 인자값_받고_랜덤_로또_번호_생성 () {
-        int actual = randomLottoNumbers.createAutoLotto(8).length;
+        int actual = randomLottoNumbers.createAutoLotto(8).size();
         assertThat(actual).isEqualTo(8);
+    }
+
+    @Test
+    void 랜덤으로_생성된_로또_번호_중복_없음 () {
+        assertThat(randomLottoNumbers.duplicateCheck(List.of(1,2,3,4,5,6))).isEqualTo(false);
+    }
+
+    @Test
+    void 랜덤으로_생성된_로또_번호_중복_존재 () {
+        assertThat(randomLottoNumbers.duplicateCheck(List.of(1,2,2,4,5,6))).isEqualTo(true);
     }
 
     @Test

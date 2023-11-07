@@ -14,7 +14,7 @@ import lotto.domain.lotto.Lotto;
 
 public class InputView {
 
-    public static Amount inputPurchaseAmount() {
+    public Amount inputPurchaseAmount() {
         System.out.println(PURCHASE_AMOUNT_INPUT.message());
         int amount;
         try {
@@ -25,7 +25,7 @@ public class InputView {
         return new Amount(amount);
     }
 
-    public static Lotto inputWinningNumbers() {
+    public Lotto inputWinningNumbers() {
         System.out.println(WINNING_NUMBERS_INPUT.message());
         List<Integer> numbers;
         try {
@@ -37,7 +37,7 @@ public class InputView {
         return new Lotto(numbers);
     }
 
-    public static Bonus inputBonusNumber() {
+    public Bonus inputBonusNumber() {
         System.out.println(BONUS_NUMBER_INPUT.message());
         int bonusNumber;
         try {

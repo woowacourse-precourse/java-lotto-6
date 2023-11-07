@@ -8,6 +8,7 @@ import static lotto.constant.GameGuideMessage.PURCHASE_LOTTO;
 import static lotto.constant.GameGuideMessage.WINNING_STATISTICS;
 
 import lotto.domain.computer.Computer;
+import lotto.domain.lotto.Lottos;
 import lotto.input.Input;
 import lotto.output.Output;
 import lotto.domain.user.User;
@@ -25,20 +26,27 @@ public class Game {
     }
 
     public void play() {
-        User user = setUser();
+        setMoneyOnComputer();
+
+        User user = new User(buyLottoFromComputer());
         printUserLottos(user);
-        setComputer();
-        printResult(user);
+
+        setWinningLottoAndBonusNumberOnComputer();
+
+        printUserResult(user);
     }
 
-    private User setUser() {
-        handle(this::getMoneyByInput);
-        return new User(computer.createUserLottos());
+    private void setMoneyOnComputer() {
+        handle(this::setMoney);
     }
 
-    private void getMoneyByInput() {
+    private void setMoney() {
         output.print(ENTER_PURCHASE_AMOUNT);
         computer.setMoney(input.readNumber());
+    }
+
+    private Lottos buyLottoFromComputer() {
+        return computer.createUserLottos();
     }
 
     private void printUserLottos(User user) {
@@ -46,7 +54,7 @@ public class Game {
         output.print(user.lottos());
     }
 
-    private void setComputer() {
+    private void setWinningLottoAndBonusNumberOnComputer() {
         handle(this::setWinningLotto);
         handle(this::setBonusNumber);
     }
@@ -61,7 +69,7 @@ public class Game {
         computer.setBonusNumber(input.readNumber());
     }
 
-    private void printResult(User user) {
+    private void printUserResult(User user) {
         output.print(WINNING_STATISTICS);
         output.print(computer.createResult(user.lottos()));
     }

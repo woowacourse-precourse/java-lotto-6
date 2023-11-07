@@ -30,6 +30,8 @@ public class Application {
         printGetWinNumberMessage();
         Lotto winLotto = getWinNumber();
 
+        System.out.println();
+
         printGetBonusNumberMessage();
         int bonus = getBonusNumber();
 

@@ -2,6 +2,8 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +35,7 @@ public class LottoGameTest {
     @DisplayName("입력 값이 1과 45 사이의 숫자가 아닐때 예외가 발생한다.")
     @Test
     void createNumberByOutOfRange() {
-        assertThatThrownBy(() -> new LottoGame().validateRange("1,2,24,55,48,21"))
+        assertThatThrownBy(() -> new LottoGame().validateRange(new ArrayList<>(List.of(1, 2, 55))))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 1과 45 사이의 수를 입력하세요");
     }

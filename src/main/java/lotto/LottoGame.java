@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class LottoGame {
@@ -42,7 +43,9 @@ public class LottoGame {
         String input = InputView.read();
         validateInputRequirement(input);
 
-
+        List<Integer> winingNumbers = Arrays.stream(input.split(","))
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
     }
 
     public void validateNumber(String input) {
@@ -65,12 +68,13 @@ public class LottoGame {
         }
     }
 
-    public void validateRange(String input) {
-        if (Arrays.stream(input.split(","))
-                .map(Integer::parseInt) // 문자열을 정수로 변환
-                .allMatch(num -> num >= 1 && num <= 45)) {
-            throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
+    public void validateRange(List<Integer> numbers) {
+        for (int num : numbers) {
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException("[ERROR] 1과 45 사이의 수를 입력하세요");
+            }
         }
+
     }
 }
 

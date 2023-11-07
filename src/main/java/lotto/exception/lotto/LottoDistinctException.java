@@ -1,6 +1,6 @@
 package lotto.exception.lotto;
 
-import lotto.exception.CustomArgumentException;
+import lotto.exception.common.CustomArgumentException;
 
 public class LottoDistinctException extends CustomArgumentException {
 

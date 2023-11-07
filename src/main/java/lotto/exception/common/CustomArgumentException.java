@@ -1,4 +1,6 @@
-package lotto.exception;
+package lotto.exception.common;
+
+import lotto.exception.ExceptionMessageUtil;
 
 public class CustomArgumentException extends IllegalArgumentException {
 

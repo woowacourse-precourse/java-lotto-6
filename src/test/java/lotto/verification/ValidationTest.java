@@ -131,7 +131,28 @@ class ValidationTest {
 
     }
 
+    @DisplayName("보너스 번호가 숫자가 아닌 값이면 예외가 발생한다.")
     @Test
     void verifyStringToInteger() {
+        //given
+        final String case1 = "a";
+        final String case2 = "1a";
+        final String case3 = "    ";
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyStringToInteger(case1);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyStringToInteger(case2);
+        });
+
+        //when & then
+        assertThrows(IllegalArgumentException.class, () -> {
+            Validation.verifyStringToInteger(case3);
+        });
+
     }
 }

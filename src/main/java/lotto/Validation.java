@@ -1,6 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Validation {
@@ -55,23 +57,23 @@ public class Validation {
     }
 
 
-    public int[] validateWinNumbersInRange(String winNumbersInput) {
-        int[] winNumbers = new int[LOTTO_LENGTH];
+    public List<Integer> validateWinNumbersInRange(String winNumbersInput) {
+        List<Integer> winNumbers = new ArrayList<>();
         String[] splitWinNumbersInput = winNumbersInput.split(",");
         for (int i = 0; i < splitWinNumbersInput.length; i++) {
             int temp = Integer.parseInt(splitWinNumbersInput[i]);
             if (temp < LOTTO_START_NUMBER || temp > LOTTO_END_NUMBER) {
                 throw new IllegalArgumentException("[ERROR] : 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
-            winNumbers[i] = temp;
+            winNumbers.add(temp);
         }
         return winNumbers;
     }
 
-    public void validateWinNumbersByDuplicate(int[] winNumbers) {
+    public void validateWinNumbersByDuplicate(List<Integer> winNumbers) {
         Set<Integer> validateDuplicateSet = new HashSet<>();
-        for (int i = 0; i < winNumbers.length; i++) {
-            validateDuplicateSet.add(winNumbers[i]);
+        for (int i = 0; i < winNumbers.size(); i++) {
+            validateDuplicateSet.add(winNumbers.get(i));
         }
         if (validateDuplicateSet.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException("[ERROR] : 중복된 번호는 입력할 수 없습니다.");
@@ -91,11 +93,9 @@ public class Validation {
         return bonusNumber;
     }
 
-    public void validateBonusNumberByDuplicate(int bonusNumber, int[] winNumbers) {
-        for (int i = 0; i < winNumbers.length; i++) {
-            if (winNumbers[i] == bonusNumber) {
-                throw new IllegalArgumentException("[ERROR] : 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
-            }
+    public void validateBonusNumberByDuplicate(int bonusNumber, List<Integer> winNumbers) {
+        if (winNumbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] : 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
         }
     }
 

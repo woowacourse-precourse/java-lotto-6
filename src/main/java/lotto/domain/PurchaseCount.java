@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.domain.lotto.LottoConstants.LOTTO_PRICE;
 
 public class PurchaseCount {
+
     private static final int MIN_COUNT = 0;
     private int purchaseCount;
 

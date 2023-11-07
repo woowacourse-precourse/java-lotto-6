@@ -12,9 +12,9 @@ public class LotteryOffice {
 
     private static final int INITIALIZING_NUM = 0;
     private static final int INCREMENT = 1;
-    private List<Lotto> issuedLotto;
-    private Lotto winningTicket;
-    private BonusNumber bonusNumber;
+    private final List<Lotto> issuedLotto;
+    private final Lotto winningTicket;
+    private final BonusNumber bonusNumber;
 
     public LotteryOffice(List<Lotto> issuedLotto, Lotto winningTicket, BonusNumber bonusNumber) {
         this.issuedLotto = issuedLotto;

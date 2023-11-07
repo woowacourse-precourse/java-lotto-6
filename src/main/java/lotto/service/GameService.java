@@ -5,20 +5,22 @@ import java.util.Map;
 import lotto.domain.BonusNumber;
 import lotto.domain.LotteryOffice;
 import lotto.domain.LottoStore;
-import lotto.domain.MarginCalculator;
+import lotto.domain.YieldCalculator;
 import lotto.domain.Rankings;
 import lotto.domain.lotto.Lotto;
 
 public class GameService {
+
     private final List<Lotto> issuedLotto;
     private LotteryOffice lotteryOffice;
     private final int userPurchaseAmount;
+
     public GameService(List<Lotto> issuedLotto, int userPurchaseAmount) {
         this.issuedLotto = issuedLotto;
         this.userPurchaseAmount = userPurchaseAmount;
     }
 
-    public static GameService startGame(int userPurchaseAmount) {
+    public static GameService setUpGame(int userPurchaseAmount) {
         LottoStore lottoStore = new LottoStore(userPurchaseAmount);
         while (lottoStore.isOpen()) {
             lottoStore.issueLotto();
@@ -30,14 +32,14 @@ public class GameService {
         this.lotteryOffice = new LotteryOffice(issuedLotto, winningTicket, bonusNumber);
     }
 
-    public Map<Rankings, Integer> getStatistics() {
+    public Map<Rankings,Integer> getStatistics() {
         return lotteryOffice.getWinningsAndCounts();
     }
 
     public String getCalculatedMargin() {
-        MarginCalculator marginCalculator = new MarginCalculator(
+        YieldCalculator marginCalculator = new YieldCalculator(
                 lotteryOffice.getWinningsAndCounts(), userPurchaseAmount);
-        return marginCalculator.getMargin();
+        return marginCalculator.getYield();
     }
 
 

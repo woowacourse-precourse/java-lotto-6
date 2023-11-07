@@ -7,7 +7,6 @@ import static lotto.util.ErrorMessage.DUPLICATED_INPUT;
 import static lotto.util.ErrorMessage.INVALID_RANGE;
 import static lotto.util.ErrorMessage.INVALID_SIZE;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -56,9 +55,9 @@ public class Lotto {
 
     public int countMatches(Lotto lotto) {
         return this.numbers.stream()
-                .filter(o -> lotto.getNumbers()
+                .filter(number -> lotto.getNumbers()
                         .stream()
-                        .anyMatch(Predicate.isEqual(o)))
+                        .anyMatch(Predicate.isEqual(number)))
                 .toList()
                 .size();
     }

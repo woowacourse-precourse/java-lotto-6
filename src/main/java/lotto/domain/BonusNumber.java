@@ -7,7 +7,8 @@ import static lotto.util.ErrorMessage.INVALID_RANGE;
 
 import lotto.domain.lotto.Lotto;
 
-public class BonusNumber implements Comparable<Integer> {
+public class BonusNumber {
+
     private final int bonusNumber;
 
     public BonusNumber(int bonusNumber, Lotto winningTicket) {
@@ -26,15 +27,5 @@ public class BonusNumber implements Comparable<Integer> {
 
     public int getBonusNumber() {
         return bonusNumber;
-    }
-
-    @Override
-    public int compareTo(Integer o) {
-        return this.bonusNumber - o;
-    }
-
-    @Override
-    public String toString() {
-        return "" + bonusNumber;
     }
 }

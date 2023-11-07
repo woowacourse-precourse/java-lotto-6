@@ -10,6 +10,7 @@ public class Validator {
         validateDigit(userInput);
         validateRange(userInput);
     }
+
     private void validateEmpty(String userInput) {
         if (userInput.isBlank()) {
             throw new IllegalArgumentException(EMPTY_INPUT.getMessage());

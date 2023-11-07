@@ -9,8 +9,9 @@ import lotto.domain.lotto.Lotto;
 
 public class OutputView {
 
-    private static final String PURCHASE_RESULT = "%d개를 구매했습니다.";
-    private static final String MARGIN_RESULT = "총 수익률은 %s입니다.";
+    private static final String PURCHASE_RESULT = "\n%d개를 구매했습니다.";
+    private static final String YIELD_RESULT = "총 수익률은 %s입니다.";
+    private static final String WINNING_STATISTICS_MESSAGE = "\n당첨 통계\n---";
 
     public void printIssuedLotto(List<Lotto> issuedLotto) {
         for (Lotto lotto : issuedLotto) {
@@ -20,22 +21,22 @@ public class OutputView {
     }
 
     public void printPurchaseResultMessage(int userPurchaseAmount) {
-        printNewLine();
         System.out.printf(PURCHASE_RESULT, userPurchaseAmount / LOTTO_PRICE.getValue());
         printNewLine();
     }
 
-    public void printWinningResult(Map<Rankings,Integer> finalResult) {
+    public void printWinningResult(Map<Rankings, Integer> finalResult) {
+        System.out.println(WINNING_STATISTICS_MESSAGE);
         finalResult.forEach((key, value) -> {
             System.out.println(key.getMessage(value));
         });
     }
 
-    public void printMargin(String margin) {
-        System.out.printf(MARGIN_RESULT, margin);
+    public void printYield(String yield) {
+        System.out.printf(YIELD_RESULT, yield);
     }
 
-    public void printNewLine() {
+    private void printNewLine() {
         System.out.println();
     }
 }

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 import lotto.domain.lotto.Lotto;
 
 public enum Rankings {
+
     FIFTH_PLACE(3, false, 5_000, "3개 일치 (5,000원) - "),
     FOURTH_PLACE(4, false, 50_000, "4개 일치 (50,000원) - "),
     THIRD_PLACE(5, false, 1_500_000, "5개 일치 (1,500,000원) - "),

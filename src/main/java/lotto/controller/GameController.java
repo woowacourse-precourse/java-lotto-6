@@ -28,13 +28,13 @@ public class GameController {
 
     private void setUp() {
         int userPurchaseAmount = inputView.readPurchaseAmount();
-        this.gameService = GameService.startGame(userPurchaseAmount);
+        this.gameService = GameService.setUpGame(userPurchaseAmount);
         outputView.printPurchaseResultMessage(userPurchaseAmount);
         outputView.printIssuedLotto(gameService.getIssuedLotto());
     }
 
     private void receiveUserNumbers() {
-        Lotto winningTicket= getWinningTicket();
+        Lotto winningTicket = getWinningTicket();
         BonusNumber bonusNumber = askBonusNumber(winningTicket);
         gameService.storeUserInput(winningTicket, bonusNumber);
     }
@@ -42,8 +42,8 @@ public class GameController {
     private void decideOutcome() {
         Map<Rankings, Integer> statistics = gameService.getStatistics();
         outputView.printWinningResult(statistics);
-        String margin= gameService.getCalculatedMargin();
-        outputView.printMargin(margin);
+        String yield = gameService.getCalculatedMargin();
+        outputView.printYield(yield);
     }
 
     private Lotto getWinningTicket() {

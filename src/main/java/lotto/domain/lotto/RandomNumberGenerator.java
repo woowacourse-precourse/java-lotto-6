@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class RandomNumberGenerator implements NumberGenerator {
+
     private List<Integer> generatedNumbers;
 
     public RandomNumberGenerator() {

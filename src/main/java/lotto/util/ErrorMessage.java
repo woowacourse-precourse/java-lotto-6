@@ -10,6 +10,7 @@ public enum ErrorMessage {
     DUPLICATED_INPUT("[ERROR]중복되지 않은 숫자를 입력해주세요.");
 
     private final String message;
+
     ErrorMessage(String message) {
         this.message = message;
     }

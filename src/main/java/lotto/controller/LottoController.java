@@ -41,6 +41,16 @@ public class LottoController {
             try {
                 List<Integer> winningNumbers = inputView.readWinningNumbers();
                 Lotto winningLotto = new Lotto(winningNumbers);
+                checkBonusNum(winningNumbers);
+                break;
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+    }
+
+    private void checkBonusNum(List<Integer> winningNumbers) {
+        while (true) {
+            try {
                 int bonusNum = inputView.readBonusNum();
                 resultLotto = new ResultLotto(winningNumbers,bonusNum);
                 break;

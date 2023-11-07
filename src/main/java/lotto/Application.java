@@ -186,4 +186,8 @@ public class Application {
                 .filter(number -> winningLotto.contains(number))
                 .count();
     }
+
+    public boolean isMatchingWithBonusNumber(List<Integer> userLotto, int bonusNumber) {
+        return userLotto.contains(bonusNumber);
+    }
 }

@@ -20,4 +20,17 @@ public class WinningTest {
 
         assertThat(matchingCount).isEqualTo(3);
     }
+
+    @DisplayName("보너스 볼과 일치하는 수를 가지고 있는지 확인한다.")
+    @Test
+    void checkMatchingWithBonusNumber() {
+        Application application = new Application();
+
+        List<Integer> userLotto = List.of(1, 2, 3, 4, 5, 6);
+        int bonusNumber = 6;
+
+        boolean result = application.isMatchingWithBonusNumber(userLotto, bonusNumber);
+
+        assertThat(result).isEqualTo(true);
+    }
 }

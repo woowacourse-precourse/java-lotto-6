@@ -15,6 +15,7 @@ public enum RuleConstant {
     FIVE_MATCH(5),
     FORE_MATCH(4),
     THREE_MATCH(3),
+    DIGITS(3),
     ZERO(0);
     private int enumInteger;
     RuleConstant(int enumInteger) {

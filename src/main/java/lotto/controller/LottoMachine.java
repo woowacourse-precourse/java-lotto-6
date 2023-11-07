@@ -26,10 +26,11 @@ public class LottoMachine {
     }
 
     public int readBonusNumber(Lotto winningLotto) {
-        int bonusNumber = inputController.readInputByInteger();
+        int bonusNumber;
 
         view.printLine();
         view.print(ViewMessage.ASK_BONUS_NUMBER.getMessage());
+        bonusNumber = inputController.readInputByInteger();
         do {
             try {
                 lottoController.validateBonusNumber(bonusNumber);
@@ -42,7 +43,7 @@ public class LottoMachine {
         return bonusNumber;
     }
 
-    private void containsCheckBonusNumber(int bonusNumber, Lotto winningLotto) {
+    public void containsCheckBonusNumber(int bonusNumber, Lotto winningLotto) {
         if (winningLotto.getLottoNumber().contains(bonusNumber)) {
             throw new IllegalArgumentException();
         }

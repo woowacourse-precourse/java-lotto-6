@@ -17,9 +17,10 @@ public class PurchaseMachine {
 
     public int getPurchaseQuantity() {
         int purchaseQuantity = 0;
-        int money = inputController.readInputByInteger();
+        int money;
 
         view.print(ViewMessage.ASK_PURCHASE_AMOUNT.getMessage());
+        money = inputController.readInputByInteger();
         do {
             try {
                 purchaseQuantity = lottoController.getPurchaseQuantity(money);
@@ -49,7 +50,7 @@ public class PurchaseMachine {
         return myLotto;
     }
 
-    private List<Integer> sortedByAsc(List<Integer> numbers) {
+    public List<Integer> sortedByAsc(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
 }

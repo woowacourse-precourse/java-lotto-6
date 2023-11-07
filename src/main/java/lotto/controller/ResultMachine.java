@@ -18,7 +18,7 @@ public class ResultMachine {
         for (Lotto myLotto : myLottos) {
             hits = getRank(myLotto, winningLotto.getLotto());
             if (hits == 5) {
-                isMatchBonusNumber = getMatchBonusNumber(winningLotto.getLotto(), winningLotto.getBonusNumber());
+                isMatchBonusNumber = getMatchBonusNumber(myLotto, winningLotto.getBonusNumber());
             }
             ranks[Rank.findRank(hits, isMatchBonusNumber).ordinal()].increaseMatchCount();
         }
@@ -57,7 +57,7 @@ public class ResultMachine {
         return hits;
     }
 
-    private boolean getMatchBonusNumber(Lotto winningLotto, int bonusNumber) {
-        return winningLotto.getLottoNumber().contains(bonusNumber);
+    private boolean getMatchBonusNumber(Lotto myLotto, int bonusNumber) {
+        return myLotto.getLottoNumber().contains(bonusNumber);
     }
 }

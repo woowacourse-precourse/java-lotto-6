@@ -7,7 +7,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
+import lotto.generator.CustomIntegerListGenerator;
+import lotto.generator.IntegerListGenerator;
 import lotto.model.Lotto;
+import lotto.model.PurchasePrice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -68,6 +71,27 @@ class LottoTest {
                     .isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(NOT_IN_RANGE_LOTTO_NUMBER.toString());
         }
+    }
+
+    @DisplayName("구입가격에 비례하여 로또 번호목록들을 생성한다.")
+    @Test
+    void createRandomLottos() {
+        // given
+        PurchasePrice purchasePrice = PurchasePrice.from(2000L);
+        IntegerListGenerator generator = new CustomIntegerListGenerator();
+        int expectedSize = (int) purchasePrice.getLottoCount();
+        List<Integer> expectedNumbers = generator.generateIntegerList();
+
+        // when
+        List<Lotto> results = Lotto.createRandomLottos(purchasePrice, generator);
+
+        // then
+        assertThat(results).hasSize(expectedSize);
+        assertThat(results).extracting("numbers")
+                .containsExactlyInAnyOrder(
+                        expectedNumbers,
+                        expectedNumbers
+                );
     }
 
     @DisplayName("로또 번호 목록 내 해당 번호가 포함되는지 체크한다.")

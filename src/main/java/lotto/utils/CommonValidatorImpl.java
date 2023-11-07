@@ -2,6 +2,7 @@ package lotto.utils;
 
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 
 import lotto.enumContainer.ErrorOperation;
 import lotto.enumContainer.RelateToLotto;
@@ -19,17 +20,24 @@ public class CommonValidatorImpl implements CommonValidator {
 		validateEmptyString(lottoPrice);
 		validateIsDigit(lottoPrice);
 		int parsePrice = validateRange(lottoPrice);
-		validateMinus(parsePrice);
+		validateNatural(parsePrice);
 		return parsePrice;
 	}
 
 	@Override
 	public void validateWinningNumber(StringTokenizer numberSplitter, List<Integer> lottoNumbers) {
+		validateTokenizer(numberSplitter.countTokens());
 		while(numberSplitter.hasMoreTokens()) {
 			String lottoNumber = numberSplitter.nextToken();
 			validateIsDigit(lottoNumber);
 			int parseNumber = validateLottoRange(lottoNumber);
 			lottoNumbers.add(parseNumber);
+		}
+	}
+
+	public void validateTokenizer(int count) {
+		if (count == 0) {
+			ErrorOperation.EMPTY_ERROR.apply();
 		}
 	}
 
@@ -46,9 +54,9 @@ public class CommonValidatorImpl implements CommonValidator {
 		}
 	}
 
-	private void validateMinus(int number) {
-		if (number < 0) {
-			ErrorOperation.MINUS_ERROR.apply();
+	private void validateNatural(int number) {
+		if (number <= 0) {
+			ErrorOperation.UNDER_ERROR.apply();
 		}
 	}
 
@@ -67,10 +75,7 @@ public class CommonValidatorImpl implements CommonValidator {
 
 	private boolean containDash(String number) {
 		char firstWord = parser.toCharacterParser(number, 0);
-		if (number.length() > 1 && firstWord == '-') {
-			return true;
-		}
-		return false;
+		return (number.length() > 1 && firstWord == '-');
 	}
 
 	private int validateLottoRange(String number) {
@@ -91,6 +96,7 @@ public class CommonValidatorImpl implements CommonValidator {
 		} catch (NumberFormatException e) {
 			ErrorOperation.RANGE_ERROR.apply();
 		}
+		System.out.println(parsePrice);
 		return parsePrice;
 	}
 }

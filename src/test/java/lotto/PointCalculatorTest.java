@@ -16,15 +16,16 @@ class PointCalculatorTest {
         //Given
         Lotto lotto = new Lotto(Arrays.stream(lottoNumbers.split(","))
                 .map(Integer::valueOf)
+                .map(LottoNumber::of)
                 .collect(Collectors.toList()));
         AnswerLotto answerLotto = new AnswerLotto(Arrays.stream(answerLottoNumbers.split(","))
                 .map(Integer::valueOf)
-                .collect(Collectors.toList()));
+                .map(LottoNumber::of)
+                .toList(), LottoNumber.of(bonusNumber));
         PointCalculator pointCalculator = new PointCalculator();
 
         //When
-        double result = pointCalculator.calculateTotalPoint(lotto, answerLotto,
-                new BonusNumber(bonusNumber, answerLotto));
+        double result = pointCalculator.calculateTotalPoint(lotto, answerLotto);
 
         //Then
         assertThat(result).isEqualTo(expectedResult);

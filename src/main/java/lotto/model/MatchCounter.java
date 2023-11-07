@@ -11,6 +11,12 @@ public class MatchCounter {
     private static final Integer FIVE = 5;
     private static final Integer SIX = 6;
 
+    private static final String THREE_MATCHED = "three matched";
+    private static final String FOUR_MATCHED = "four matched";
+    private static final String FIVE_MATCHED = "five matched";
+    private static final String FIVE_AND_BONUS_MATCHED = "five and bonus matched";
+    private static final String SIX_MATCHED = "six matched";
+
     private Map<String, Integer> matchCounter;
 
     public MatchCounter() {
@@ -18,28 +24,28 @@ public class MatchCounter {
     }
 
     public void init() {
-        matchCounter.put("three number matched", 0); // 문자열 상수화
-        matchCounter.put("four number matched", 0);
-        matchCounter.put("five number matched", 0);
-        matchCounter.put("five number and bonus number matched", 0);
-        matchCounter.put("six number matched", 0);
+        matchCounter.put(THREE_MATCHED, 0); // 문자열 상수화
+        matchCounter.put(FOUR_MATCHED, 0);
+        matchCounter.put(FIVE_MATCHED, 0);
+        matchCounter.put(FIVE_AND_BONUS_MATCHED, 0);
+        matchCounter.put(SIX_MATCHED, 0);
     }
 
     public String matchingKeyByCount(Integer lottoCount, Integer bonusCount) {
         if (bonusCount.equals(ONE)) {
-            return "five number and bonus number matched"; // 상수화 하기
+            return FIVE_AND_BONUS_MATCHED;
         }
         if (lottoCount.equals(THREE)) {
-            return "three number matched";
+            return THREE_MATCHED;
         }
         if (lottoCount.equals(FOUR)) {
-            return "four number matched";
+            return FOUR_MATCHED;
         }
         if (lottoCount.equals(FIVE)) {
-            return "five number matched";
+            return FIVE_MATCHED;
         }
         if (lottoCount.equals(SIX)) {
-            return "six number matched";
+            return SIX_MATCHED;
         }
 
         throw new IllegalArgumentException(); // 에러문 추가
@@ -51,11 +57,11 @@ public class MatchCounter {
 
     public WinningStatisticDTO createWinningStatisticDTO() {
         return new WinningStatisticDTO(
-                matchCounter.get("three number matched"),
-                matchCounter.get("four number matched"),
-                matchCounter.get("five number matched"),
-                matchCounter.get("five number and bonus number matched"),
-                matchCounter.get("siz number matched")
+                matchCounter.get(THREE_MATCHED),
+                matchCounter.get(FOUR_MATCHED),
+                matchCounter.get(FIVE_MATCHED),
+                matchCounter.get(FIVE_AND_BONUS_MATCHED),
+                matchCounter.get(SIX_MATCHED)
         );
     }
 }

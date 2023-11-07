@@ -1,9 +1,7 @@
-package lotto.util;
+package lotto.domain;
 
-import lotto.Prize;
-import lotto.domain.Lotto;
+import lotto.util.CompareLotto;
 
-import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +27,7 @@ public class LottoResult {
         }
     }
 
-    public int getTotalRate(){
+    public int getTotalReward(){
         int totalRate = 0;
         for (Map.Entry<Prize, Integer> entry : lottoResult.entrySet()){
             Prize prize = entry.getKey();

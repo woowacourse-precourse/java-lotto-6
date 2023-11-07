@@ -25,8 +25,8 @@ public class ConfirmationService {
         return winningPrizeAmount;
     };
 
-    public int getWinningCount(Winning winning){
-        return winningCount.get(winning);
+    public HashMap<Winning, Integer> getWinningCount(){
+        return winningCount;
     };
 
 }

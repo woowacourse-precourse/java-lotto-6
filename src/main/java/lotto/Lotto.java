@@ -22,6 +22,11 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
+
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     private int countMatchingNumber(List<Integer> winningNumbers){
         int count = 0;
         for(Integer winningNumber : winningNumbers){

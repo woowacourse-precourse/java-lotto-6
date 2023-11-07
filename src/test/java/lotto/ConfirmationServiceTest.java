@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,11 +25,12 @@ public class ConfirmationServiceTest {
         ConfirmationService confirmationService = new ConfirmationService(lottos);
         confirmationService.confirmWinnings(List.of(1, 2, 3, 4, 5, 6), 11);
 
-        assertThat(confirmationService.getWinningCount(Winning.FIRST)).isEqualTo(1);
-        assertThat(confirmationService.getWinningCount(Winning.SECOND)).isEqualTo(1);
-        assertThat(confirmationService.getWinningCount(Winning.THIRD)).isEqualTo(1);
-        assertThat(confirmationService.getWinningCount(Winning.FOURTH)).isEqualTo(1);
-        assertThat(confirmationService.getWinningCount(Winning.FIFTH)).isEqualTo(1);
+        HashMap<Winning, Integer> winningCount = confirmationService.getWinningCount();
+        assertThat(winningCount.get(Winning.FIRST)).isEqualTo(1);
+        assertThat(winningCount.get(Winning.SECOND)).isEqualTo(1);
+        assertThat(winningCount.get(Winning.THIRD)).isEqualTo(1);
+        assertThat(winningCount.get(Winning.FOURTH)).isEqualTo(1);
+        assertThat(winningCount.get(Winning.FIFTH)).isEqualTo(1);
     }
 
     @DisplayName("총 상금을 구한다.")

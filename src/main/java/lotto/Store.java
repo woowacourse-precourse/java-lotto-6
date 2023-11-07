@@ -3,6 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Store {
@@ -17,6 +18,7 @@ public class Store {
         int lottoCount = purchaseAmount/lottoPrice;
         for(int i = 0; i < lottoCount; i++){
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
         }
 

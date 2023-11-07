@@ -14,8 +14,10 @@ import lotto.util.RandomLottoGenerator;
 import lotto.view.Output;
 
 public class LottoController {
+    final InputController inputController = new InputController();
+
     public void start() {
-        Money money = InputController.getMoney();
+        Money money = inputController.getMoney();
 
         LottoTickets lottoTickets = getLottoTickets(money);
         LottoTicketsDto lottoTicketsDto = LottoTicketsDtoMapper.from(lottoTickets);
@@ -35,8 +37,8 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        Lotto winningLotto = InputController.getWinningNumbers();
-        BonusNumber bonusNumber = InputController.getBonusNumber(winningLotto);
+        Lotto winningLotto = inputController.getWinningNumbers();
+        BonusNumber bonusNumber = inputController.getBonusNumber(winningLotto);
         return new WinningLotto(winningLotto, bonusNumber);
     }
 }

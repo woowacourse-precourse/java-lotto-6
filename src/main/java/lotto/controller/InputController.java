@@ -3,6 +3,7 @@ package lotto.controller;
 import static lotto.view.View.printMessage;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.List;
 import lotto.constant.Message;
 import lotto.model.Customer;
 import lotto.model.Lotto;
@@ -40,7 +41,7 @@ final class InputController {
                 InputController::requestMoneyWithMessage
         );
         Customer customer = new Customer(money);
-        customer.purchaseLotto();
+        customer.setLottos(customer.purchaseLotto());
         return customer;
     }
 

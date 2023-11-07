@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.domain.constant.LottoNumberConstant.LOTTO_SIZE;
+import static lotto.domain.exception.DomainExceptionCode.LOTTO_MUST_NOT_BE_DUPLICATE;
+import static lotto.domain.exception.DomainExceptionCode.LOTTO_SIZE_MUST_BE_SAME;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -13,9 +17,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        LOTTO_SIZE_MUST_BE_SAME.dynamicInvokeBy(() -> LOTTO_SIZE.isNotEqualTo(numbers.size()));
+        LOTTO_MUST_NOT_BE_DUPLICATE.dynamicInvokeBy(() -> LOTTO_SIZE.isNotEqualTo(new HashSet<>(numbers).size()));
     }
 
     // TODO: 추가 기능 구현

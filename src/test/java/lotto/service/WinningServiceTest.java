@@ -31,7 +31,7 @@ public class WinningServiceTest {
     @Test
     void calculateResults() {
         // given
-        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> lottoNumbers = List.of(1, 2, 3, 4, 5, 7);
         List<Lotto> lottoTickets = new ArrayList<>();
         Lotto lottoTicket1 = new Lotto(lottoNumbers);
         lottoTickets.add(lottoTicket1);

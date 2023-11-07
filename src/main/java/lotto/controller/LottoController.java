@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.model.BuyingMoney;
+import lotto.model.CorrectNum;
 import lotto.model.Lotto;
 import lotto.model.LottoList;
 import lotto.view.View;
@@ -28,8 +29,10 @@ public class LottoController {
     public void middle(List<Lotto> lottoList){
         String s = view.inputCorrectNUM();
         try {
+            CorrectNum correctNum = new CorrectNum(s);
+        }catch (IllegalArgumentException e){
 
-        }catch ()
+        }
     }
 
 }

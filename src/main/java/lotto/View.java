@@ -26,6 +26,9 @@ public class View {
     }
 
     public void checklottoPurchaseAmount(String lottoPurchaseAmount){
+        if (lottoPurchaseAmount == null){
+            throw new IllegalArgumentException("[ERROR] 값을 입력하여야 합니다.");
+        }
         try{ //int값인지 확인, int 범위 내 인지 확인
             Integer.parseInt(lottoPurchaseAmount);
         } catch (NumberFormatException e){
@@ -40,13 +43,24 @@ public class View {
     }
 
     public void lottoPurchaseAmountInput(){
-        System.out.println(InputMassage.LOTTO_PURCHASE_AMOUNT_INPUTMESSAGE);
-        String lottoPurchaseAmount = readLine();
-        checklottoPurchaseAmount(lottoPurchaseAmount);
-        lottoPurchaseNum = Integer.parseInt(lottoPurchaseAmount);
+        System.out.println(InputMassage.LOTTO_PURCHASE_AMOUNT_INPUTMESSAGE.getMessage());
+        boolean reTry=true;
+        String lottoPurchaseAmount = null;
+        while(reTry)
+        try{
+            lottoPurchaseAmount = readLine();
+            checklottoPurchaseAmount(lottoPurchaseAmount);
+            reTry = false;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+        }
+        lottoPurchaseNum = Integer.parseInt(lottoPurchaseAmount)/1000;
     }
 
     public void checkWinningNumber(String winningNumber){
+        if (winningNumber == null){
+            throw new IllegalArgumentException("[ERROR] 값을 입력하여야 합니다.");
+        }
         if (winningNumber.split(",").length != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
@@ -59,16 +73,24 @@ public class View {
             if(Integer.parseInt(winningnum)<1 && Integer.parseInt(winningnum)>45){
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
-            if(Arrays.asList(winningNumber.split(",")).contains(winningnum)){
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
-            }
+//            if(Collection.frequency(Arrays.asList(winningNumber.split(",")), winningnum)){
+//                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+//            }
         }
     }
 
     public List<Integer> winningNumberInput(){
-        System.out.println(InputMassage.LOTTO_WINNING_NUMBER_INPUTMESSAGE);
-        winningNumber = readLine();
-        checkWinningNumber(winningNumber);
+        System.out.println(InputMassage.LOTTO_WINNING_NUMBER_INPUTMESSAGE.getMessage());
+        boolean reTry = true;
+        while(reTry){
+            try{
+                winningNumber = readLine();
+                checkWinningNumber(winningNumber);
+                reTry = false;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
         List<Integer> winNumberInt = new ArrayList<Integer>();
         for(String winningnum : winningNumber.split(",")){
             winNumberInt.add(Integer.parseInt(winningnum));
@@ -77,6 +99,9 @@ public class View {
     }
 
     public void checkbounsNumber(String bonusNumber){
+        if (bonusNumber == null){
+            throw new IllegalArgumentException("[ERROR] 값을 입력하여야 합니다.");
+        }
         try{
             Integer.parseInt(bonusNumber);
         } catch (NumberFormatException e){
@@ -91,9 +116,17 @@ public class View {
     }
     
     public int bonusNumberInput(){
-        System.out.println(InputMassage.LOTTO_BONUS_NUMBER_INPUTMESSAGE);
-        bounsNumber = readLine();
-        checkbounsNumber(bounsNumber);
+        System.out.println(InputMassage.LOTTO_BONUS_NUMBER_INPUTMESSAGE.getMessage());
+        boolean reTry = true;
+        while(reTry){
+            try{
+                bounsNumber = readLine();
+                checkbounsNumber(bounsNumber);
+                reTry = false;
+            } catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
         return Integer.parseInt(bounsNumber);
     }
 
@@ -101,7 +134,7 @@ public class View {
         this.userWinningRanks = userWinningRanks;
     }
 
-    public void setProfitSummary(float profitSummary){
+    public void setProfitSummary(double profitSummary){
         this.profitSummary = profitSummary;
     }
 

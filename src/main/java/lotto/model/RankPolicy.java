@@ -1,6 +1,6 @@
 package lotto.model;
 
-public interface JudgePolicy {
+public interface RankPolicy {
 
-    public String getJudgement(Lotto lotto);
+    public String getRank(Lotto lotto);
 }

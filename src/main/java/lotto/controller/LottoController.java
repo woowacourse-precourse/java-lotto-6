@@ -2,8 +2,10 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.domain.CompareLottoValue;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.repository.LottoRepository;
 import lotto.util.Validator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -17,6 +19,7 @@ public class LottoController {
     public static final int MIN_NUM = 1;
     public static final int MAX_NUM = 45;
     public static final int LOTTO_NUMBER = 6;
+    static List<String> winningBalls ; // 당첨볼
     public static void inputPurchaseAmount(){
         InputView.requestPurchaseAmountMessage();
         String amount = Console.readLine();
@@ -31,12 +34,12 @@ public class LottoController {
         OutputView.purchaseLottoNumber(lottoCounts);
     }
 
-    public static void inputSelectedNumbers(){
+    public static List<String> inputWinningNumbers(){ // 문자형 당첨볼을 정수형 당첨볼로 바꾸기
         InputView.requestWinningNumber();
         List<String> selectedNumbers = Arrays.asList(Console.readLine().split(","));
         Validator.validateLottoIsNum(selectedNumbers);
         Validator.validateLottoNumLimit(selectedNumbers);
-        System.out.println(selectedNumbers);
+        return selectedNumbers; // 당첨볼 리턴
     }
 
     public static void inputBonusNumber(){
@@ -47,16 +50,21 @@ public class LottoController {
 
     public static void lottoReady(String amount){
         int lottoCounts = (Integer.parseInt(amount)) / 1000;
+        // 당첨볼 생성, lottoRun에 값 전달, lottoRun에서 로또볼과 당첨볼 전달
         for(int i=0; i< lottoCounts; i++){
-            lottoRun(lottoCounts);
+            lottoRun(lottoCounts);// 로또 발행
+             // 로또볼과 당첨볼을 넘겨야 함
         }
+        winningBalls = inputWinningNumbers(); // 당첨볼
+        CompareLottoValue.compareValueStart(winningBalls, LottoRepository.getLottoRepo()); // 로또볼과 당첨볼을 넘겨야 함
 //        createLottoNum(lottoCounts);
     }
 
     public static void lottoRun(Integer lottoCounts){
-        List<Integer> numbers = pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_NUMBER);
-        Lotto lotto = new Lotto(numbers);
-        OutputView.lottoPrinter(numbers);
+        List<Integer> lottoBalls = pickUniqueNumbersInRange(MIN_NUM, MAX_NUM, LOTTO_NUMBER);
+        LottoRepository.lottoSave(lottoBalls);
+        Lotto lotto = new Lotto(lottoBalls);
+        OutputView.lottoPrinter(lottoBalls);
         Lottos.createLotto(lottoCounts, lotto);
     }
 

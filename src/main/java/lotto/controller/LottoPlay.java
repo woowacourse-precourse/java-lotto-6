@@ -12,8 +12,10 @@ public class LottoPlay {
 
     public void play(Input input, Output output){
 
-        makeLottoInput(input,output);
-        makeWinInput(input, output);
+        List<Lotto> lottoPlayList = makeLottoInput(input,output);
+        Lotto winNumber = makeWinInput(input, output);
+        int bonus = makeBonusInput(input,output);
+        result(lottoPlayList,winNumber,bonus);
 
     }
 
@@ -25,21 +27,25 @@ public class LottoPlay {
         output.printLine();
         return lottolists;
     }
-    //
 
-    //
-    private void makeWinInput(Input input, Output output){
+    private Lotto makeWinInput(Input input, Output output){
         InputData inputData = new InputData();
         output.printWinNumber();
         Lotto lottoWin = new Lotto(inputData.lottoList(input.inputWinNumber()));
-
         output.printLine();
-        input.inputBonusNumber();
-        output.printLine();
-
+        return lottoWin;
     }
 
-    private void result(Input input,Output output){
+    private int makeBonusInput(Input input, Output output) {
+        output.printBonusNumber();
+        String bonus = input.inputBonusNumber();
+        output.printLine();
+        return Integer.parseInt(bonus);
+    }
+
+    private void result(List<Lotto> lottoPlayList, Lotto winNumber, int bonus){
+
+
         //랜덤값 복권과 당첨번호비교 Match
         //당첨금 계산 Prize
         //수익율 계산 Prize

@@ -3,7 +3,6 @@ package lotto;
 
 import lotto.controller.LottoPlay;
 import lotto.view.Input;
-import lotto.view.Message;
 import lotto.view.Output;
 
 

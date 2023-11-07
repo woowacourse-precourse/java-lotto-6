@@ -1,7 +1,10 @@
 package lotto.view;
 
 import lotto.Domain.Lotto;
+import lotto.Domain.Message;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class Output {
@@ -18,11 +21,16 @@ public class Output {
 
     public void printLottoList(List<Lotto> lottolist) {
         for (Lotto lotto : lottolist) {
+            Collections.sort(lotto.getNumbers());
             System.out.println(lotto.getNumbers());
         }
     }
 
     public void printWinNumber(){
         System.out.println(Message.INPUT_WINNER.getContent());
+    }
+
+    public void printBonusNumber(){
+        System.out.println(Message.INPUT_BONUS.getContent());
     }
 }

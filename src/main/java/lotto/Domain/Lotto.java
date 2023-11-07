@@ -22,6 +22,7 @@ public class Lotto {
 
 
 
+
     //로또 발행
     // TODO: 추가 기능 구현
 }

@@ -70,9 +70,6 @@ public class LottoController {
             }
         }
         double roundedYield = getRoundedYield(totalPrice, totalPrize);
-        System.out.println("totalPrize = " + totalPrize);
-        System.out.println("totalPrice = " + totalPrice);
-        System.out.println("roundedYield = " + roundedYield);
 
         return new ResultDto(lottoResultMap, roundedYield);
     }

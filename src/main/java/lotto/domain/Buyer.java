@@ -9,8 +9,6 @@ public class Buyer {
 	
 	private List<Lotto> purchasedLotteries = new ArrayList<>();
 	private int purchaseAmount;
-	private long prizeAmount = 0;
-	private double yieldRate = 0;
 	private Map<Rank, Integer> lottoRankResult = new HashMap<>();
 	
 	public Buyer(int purchaseAmount) {
@@ -39,14 +37,7 @@ public class Buyer {
 	public int getPurchaseAmount() {
 		return purchaseAmount;
 	}
-	
-	public long getPrizeAmount() {
-		return prizeAmount;
-	}
-	
-	public double getYieldRate() {
-		return yieldRate;
-	}
+
 	
 	public Map<Rank, Integer> getLottoResult() {
 		return lottoRankResult;

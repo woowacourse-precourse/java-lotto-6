@@ -6,12 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lotto.constant.Constants.*;
+
 public class Lottos {
     private static final String OUTPUT_PURCHASE_COUNT = "\n%d개를 구매했습니다.\n";
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int LOTTO_SIZE = 6;
-    private static final int STANDARD_LOTTO_AMOUNT = 1000;
 
     private final int purchasePrice;
     private final List<Lotto> lottos;
@@ -22,7 +20,7 @@ public class Lottos {
     }
 
     public List<Lotto> createLottos() {
-        int issuesCount = purchasePrice / STANDARD_LOTTO_AMOUNT;
+        int issuesCount = purchasePrice / STANDARD_LOTTO_AMOUNT_UNIT;
         List<Lotto> makeLottos = new ArrayList<>();
         while (issuesCount-- > 0) {
             Lotto lotto = new Lotto(generateLotto());
@@ -46,7 +44,7 @@ public class Lottos {
 
     @Override
     public String toString() {
-        return String.format(OUTPUT_PURCHASE_COUNT, purchasePrice / STANDARD_LOTTO_AMOUNT) +
+        return String.format(OUTPUT_PURCHASE_COUNT, purchasePrice / STANDARD_LOTTO_AMOUNT_UNIT) +
                 lottos.stream().map(Lotto::toString).collect(Collectors.joining("\n"));
     }
 }

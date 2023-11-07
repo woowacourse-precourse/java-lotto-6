@@ -1,18 +1,14 @@
 package lotto.exception;
 
-
 import lotto.domain.Lotto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.constant.Constants.*;
+
 public class UserInputValidator {
-    private static final String DELIMITER = ",";
-    private static final int LOTTO_SIZE = 6;
-    private static final int MIN_LOTTO_NUMBER = 1;
-    private static final int MAX_LOTTO_NUMBER = 45;
-    private static final int PURCHASE_UNIT = 1000;
 
     public static void validatePurchasePrice(String purchasePrice) {
         isNumber(purchasePrice);
@@ -21,7 +17,7 @@ public class UserInputValidator {
     }
 
     public static void validateWinningLotto(String winningLotto) {
-        String[] splitLotto = winningLotto.split(DELIMITER);
+        String[] splitLotto = winningLotto.split(WINNING_LOTTO_DELIMITER);
         isValidLottoSize(splitLotto.length);
         for (String lottoNumber : splitLotto) {
             isNumber(lottoNumber);
@@ -76,7 +72,7 @@ public class UserInputValidator {
     }
 
     public static void isValidPurchaseUnit(int userInput) {
-        if (userInput % PURCHASE_UNIT != 0) {
+        if (userInput % STANDARD_LOTTO_AMOUNT_UNIT != 0) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
         }
     }

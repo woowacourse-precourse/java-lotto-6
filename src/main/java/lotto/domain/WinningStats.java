@@ -2,6 +2,8 @@ package lotto.domain;
 
 import java.util.*;
 
+import static lotto.constant.Constants.*;
+
 public class WinningStats {
     private final int purchasePrice;
     private final Lottos lottos;
@@ -35,7 +37,7 @@ public class WinningStats {
             totalWinningAmount += key.getWinningAmount() * value;
         }
 
-        return (double) totalWinningAmount / (double) purchasePrice * 100;
+        return (double) totalWinningAmount / (double) purchasePrice * PERCENTAGE;
     }
 
     private EnumMap<Rank, Integer> getLottoStats() {

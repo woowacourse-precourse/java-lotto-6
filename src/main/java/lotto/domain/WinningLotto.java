@@ -1,10 +1,12 @@
 package lotto.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import static lotto.constant.Constants.WINNING_LOTTO_DELIMITER;
+
 public class WinningLotto {
-    private static final String DELIMITER = ",";
 
     private Lotto lotto;
     private BonusNumber bonusNumber;
@@ -20,9 +22,10 @@ public class WinningLotto {
     private static Lotto parseLottoNumber(String lotto) {
         List<Integer> parseLotto = new ArrayList<>();
 
-        for (String s : lotto.split(DELIMITER)) {
+        for (String s : lotto.split(WINNING_LOTTO_DELIMITER)) {
             parseLotto.add(Integer.parseInt(s));
         }
+        Collections.sort(parseLotto);
 
         return new Lotto(parseLotto);
     }

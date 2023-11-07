@@ -24,11 +24,11 @@ public class LottoService {
     public double getReturnOnLotto(
             List<Lotto> lottos,
             List<Integer> winningNumbers,
-            int lottoPurchaseAmount,
             int bonusNumber
     ) {
         Map<WinningPrize, Integer> winningPrizes = getWinningPrizes(lottos, winningNumbers, bonusNumber);
         int winningPrizeAmount = sumWinningPrizeAmount(winningPrizes);
+        int lottoPurchaseAmount = calculateLottoPurchaseAmount(lottos.size());
         double returnOnLotto = calculateReturnOnLotto(winningPrizeAmount, lottoPurchaseAmount);
         return roundSecondPoint(returnOnLotto);
     }
@@ -57,6 +57,10 @@ public class LottoService {
         return winningPrizes.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getWinningPrizeAmount() * entry.getValue())
                 .sum();
+    }
+
+    private int calculateLottoPurchaseAmount(int lottosSize) {
+        return lottosSize * LOTTO_PRICE;
     }
 
     private double roundSecondPoint(double amount) {

@@ -61,7 +61,7 @@ public class InputView {
                 .distinct()
                 .filter(lottoException::numberCheck)
                 .map(Integer::parseInt)
-                .filter(lottoException::lottoRangeCheck)
+                .filter(lottoException::lottoRangeCheckMain)
                 .sorted()
                 .collect(Collectors.toList());
     }

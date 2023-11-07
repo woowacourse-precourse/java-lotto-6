@@ -40,7 +40,16 @@ public class LottoException {
         return true;
     }
 
-    public boolean lottoRangeCheck(int number) {
+    public boolean lottoRangeCheckMain(int number) {
+        try {
+            return lottoRangeCheckSub(number);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean lottoRangeCheckSub(int number) {
         if ((number < lottoConfig.LOTTO_MIN_NUM) || (number > lottoConfig.LOTTO_MAX_NUM)) {
             throw new IllegalArgumentException(ERROR_PREFIX + number + OUT_OF_RANGE_ERROR_MESSAGE);
         }

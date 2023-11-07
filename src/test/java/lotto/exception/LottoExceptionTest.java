@@ -33,4 +33,5 @@ class LottoExceptionTest {
     void checkNumberLengthTest() {
         Assertions.assertThat(lottoException.numberLengthCheckMain(List.of(1, 2, 3, 4, 5, 6))).isTrue();
     }
+
 }

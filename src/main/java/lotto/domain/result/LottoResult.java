@@ -1,4 +1,4 @@
-package lotto.domain.compareSystem;
+package lotto.domain.result;
 
 import java.util.Objects;
 import lotto.Option.GameStatus;

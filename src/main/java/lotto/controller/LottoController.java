@@ -1,7 +1,7 @@
 package lotto.controller;
 
 import lotto.domain.Lotto;
-import lotto.domain.compareSystem.LottoMachine;
+import lotto.domain.result.LottoMachine;
 import lotto.domain.user.LottoCount;
 import lotto.domain.user.UserLotto;
 import lotto.domain.win.Bonus;

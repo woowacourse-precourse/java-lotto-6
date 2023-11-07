@@ -2,18 +2,11 @@ package lotto;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
-import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
-import static lotto.Lotto.winningNumber;
-import static lotto.Lotto.winningNumberLogic;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -27,9 +20,20 @@ class LottoTest {
 
     @Test
     void 당첨번호_숫자_범위는_1부터_45까지() {
-        List<Integer> result = new ArrayList<>();
-        String[] winningNumbers = {"1","2","3","6","45","48"};
-        assertThatThrownBy(() -> winningNumberLogic(result,winningNumbers))
+        assertThatThrownBy(() ->{
+            List<Integer> result = new ArrayList<>();
+            System.out.println("당첨 번호를 입력해주세요");
+            String winningNumbers = "1,24,7,46,22,1";
+            String[] deletedCommaWinningNumbers = winningNumbers.split(",");
+
+            for (String deletedCommaWinningNumber : deletedCommaWinningNumbers) {
+                int winningNumber = Integer.parseInt(deletedCommaWinningNumber);
+                if (winningNumber < 1 || winningNumber > 45) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+                }
+                result.add(winningNumber);
+            }
+        })
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

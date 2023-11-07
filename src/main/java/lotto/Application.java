@@ -9,13 +9,21 @@ public class Application {
 
         List<List<Integer>> myLottoNumber = Lotto.myLottoNumber(gameCount);
 
-        List<Integer> winningNumber = Lotto.winningNumber();
+        do{
+            try {
+                List<Integer> winningNumber = Lotto.isNumberOneToFortyFiv();
 
-        Lotto lotto = new Lotto(winningNumber);
+                Lotto lotto = new Lotto(winningNumber);
 
-        int bonusNumber = lotto.bonusNumber();
+                int bonusNumber = lotto.bonusNumber();
 
-        lotto.lottoGame(bonusNumber, myLottoNumber);
+                lotto.lottoGame(bonusNumber, myLottoNumber);
+                break;
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+        }
+        while (true);
 
     }
 }

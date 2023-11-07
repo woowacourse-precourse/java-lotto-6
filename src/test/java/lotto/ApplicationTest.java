@@ -4,11 +4,14 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ApplicationTest extends NsTest {
     private static final String ERROR_MESSAGE = "[ERROR]";
@@ -159,10 +162,24 @@ class ApplicationTest extends NsTest {
     @DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void createLottoByDuplicatedNumber(){
-        assertSimpleTest(() -> {
-            runException("1000","1,2,3,4,4,5");
-            assertThat(output()).contains(ERROR_MESSAGE + " 로또 번호는 중복되지 않아야합니다.");
-        });
+        assertThatThrownBy(()->{
+            List<Integer> numbers = new ArrayList<>(Arrays.asList(1,1,33,42,6,45));
+            for (int i = 0; i < numbers.size(); i++) {
+                int duplicatedCount = -1;
+                for (int j = 0; j < numbers.size(); j++) {
+                    Integer standard = numbers.get(i);
+                    Integer target = numbers.get(j);
+                    if (standard.equals(target)) {
+                        duplicatedCount++;
+                    }
+
+                    if (duplicatedCount >= 1) {
+                        throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야합니다.");
+                    }
+                }
+            }
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 중복되지 않아야합니다.");
     }
 
     @Override

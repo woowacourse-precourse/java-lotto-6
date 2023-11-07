@@ -1,7 +1,5 @@
 package lotto;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        validateDuplicated_1(numbers);
+        validateDuplicated(numbers);
         this.numbers = numbers;
     }
 
@@ -27,35 +25,26 @@ public class Lotto {
 
     }
 
-    private void validateDuplicated_1(List<Integer> numbers) {
-        try {
-            for (int i = 0; i < numbers.size(); i++) {
-                validateDuplicated_2(numbers, i);
-            }
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 로또 번호는 중복되지 않아야합니다.");
-            e.printStackTrace();
-        }
+    private void validateDuplicated(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            int duplicatedCount = -1;
+            for (int j = 0; j < numbers.size(); j++) {
+                Integer standard = numbers.get(i);
+                Integer target = numbers.get(j);
+                if (standard.equals(target)) {
+                    duplicatedCount++;
+                }
 
-    }
-
-    private void validateDuplicated_2(List<Integer> numbers, int count) {
-        int duplicatedCount = -1;
-        for (int j = 0; j < numbers.size(); j++) {
-            Integer standard = numbers.get(count);
-            Integer target = numbers.get(j);
-            if (standard.equals(target)) {
-                duplicatedCount++;
-            }
-
-            if (duplicatedCount >= 1) {
-                throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야합니다.");
+                if (duplicatedCount >= 1) {
+                    throw new IllegalArgumentException("[ERROR] 로또 번호는 중복되지 않아야합니다.");
+                }
             }
         }
+
     }
 
     protected static int inputYourMoney() {
-        int result = 0;
+        int result;
 
         System.out.println("구입금액을 입력해 주세요.");
         try {
@@ -98,23 +87,12 @@ public class Lotto {
         return result;
     }
 
-    protected static List<Integer> winningNumber() {
+    protected static List<Integer> isNumberOneToFortyFiv() {
         List<Integer> result = new ArrayList<>();
         System.out.println("당첨 번호를 입력해주세요");
         String winningNumbers = readLine();
         String[] deletedCommaWinningNumbers = winningNumbers.split(",");
 
-        try {
-            winningNumberLogic(result, deletedCommaWinningNumbers);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            winningNumber();
-        }
-
-        return result;
-    }
-
-    protected static List<Integer> winningNumberLogic(List<Integer> result, String[] deletedCommaWinningNumbers) {
         for (String deletedCommaWinningNumber : deletedCommaWinningNumbers) {
             int winningNumber = Integer.parseInt(deletedCommaWinningNumber);
             if (winningNumber < 1 || winningNumber > 45) {
@@ -125,7 +103,6 @@ public class Lotto {
 
         return result;
     }
-
 
     protected int bonusNumber() {
         int bonusNumber = 0;
@@ -138,7 +115,7 @@ public class Lotto {
             }
         } catch (IllegalArgumentException e) {
             e.printStackTrace();
-            bonusNumber();
+            return bonusNumber();
         }
         return bonusNumber;
     }

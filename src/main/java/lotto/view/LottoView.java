@@ -11,4 +11,8 @@ public class LottoView {
     public void printError(ErrorMessage errorMessage) {
         errorMessage.println();
     }
+
+    public void printOutput(String output) {
+        System.out.println(output);
+    }
 }

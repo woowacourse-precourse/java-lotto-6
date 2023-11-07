@@ -10,7 +10,7 @@ public class PurchaseAmountTest {
     @DisplayName("구입 금액에 해당하는 로또 개수를 확인한다.")
     @Test
     void createPurchaseQuantity() {
-        assertThat(new PurchaseAmount("8000").getPurchaseQuantity())
+        assertThat(new PurchaseAmount("8000").getQuantity())
                 .isEqualTo(8);
     }
 

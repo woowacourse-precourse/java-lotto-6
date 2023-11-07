@@ -12,26 +12,34 @@ public class LottoController {
 
     WinLotto winLotto;
     PurchasedLotto purchasedLotto;
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
+    InputView inputView;
+    OutputView outputView;
+
+    public LottoController(InputView inputView, OutputView outputView) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
 
     public void purchase() {
         int amount;
 
+        amount = getPurchaseAmount();
+        purchasedLotto = new PurchasedLotto(amount);
+
+        printPurchaseResult(amount);
+    }
+
+    private int getPurchaseAmount() {
         while (true) {
             try {
-                amount = inputView.amountInput() / 1000;
-                break;
+                return inputView.amountInput() / 1000;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        purchasedLotto = new PurchasedLotto(amount);
-        purchaseResult(amount);
     }
 
-    private void purchaseResult(int amount) {
+    private void printPurchaseResult(int amount) {
         outputView.purchaseResult(amount);
         for (String s : purchasedLotto.getPurchasedLotto()) {
             System.out.println(s);
@@ -41,20 +49,23 @@ public class LottoController {
     public void setWinLotto() {
         List<Integer> winLottoInput;
 
+        winLottoInput = getWinLottoInput();
+        Integer bonus = inputView.bonusInput();
+
+        winLotto = new WinLotto(winLottoInput, bonus);
+    }
+
+    private List<Integer> getWinLottoInput() {
         while (true) {
             try {
-                winLottoInput = inputView.winLottoInput();
-                break;
+                return inputView.winLottoInput();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
-        Integer bonus = inputView.bonusInput();
-        winLotto = new WinLotto(winLottoInput, bonus);
     }
 
-    public void checkLotto() {
+    public void checkLottoes() {
         List<Integer> winLottoNumbers;
         List<WinType> checkResult;
         Integer bonus;
@@ -68,15 +79,12 @@ public class LottoController {
     }
 
     private void printResult(List<WinType> checkResult) {
-        int price = checkResult.size() * 1000;
+        int price = purchasedLotto.getAmount() * 1000;
         int total = 0;
 
         outputView.resultHeader();
 
         for (WinType e : WinType.values()) {
-            if (e == WinType.NONE) {
-                continue;
-            }
             int frequency = Collections.frequency(checkResult, e);
             outputView.printResult(frequency, e);
             total += e.getReward() * frequency;

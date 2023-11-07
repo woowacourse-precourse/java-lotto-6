@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -34,7 +35,11 @@ public class Lotto {
 
     public static List<Integer> makeLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        return numbers;
+        return sortLotto(numbers);
+    }
+
+    public static List<Integer> sortLotto(List<Integer> numbers) {
+        return numbers.stream().sorted().collect(Collectors.toList());
     }
 
     public static List<Lotto> collectLotto(int lottoTicketCount) {

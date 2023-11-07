@@ -11,10 +11,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
+        LottoValidator lottoValidator = new LottoValidator();
+        lottoValidator.validate(numbers);
     }
-
-    // TODO: 추가 기능 구현
 }

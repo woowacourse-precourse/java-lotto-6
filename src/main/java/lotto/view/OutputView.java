@@ -8,7 +8,7 @@ import lotto.model.Lotto;
 
 public class OutputView {
     public void promptForPurchaseAmount() {
-        System.out.println(PURCHASE_ACCOUNT_PROMPT.getMessage());
+        System.out.println(PURCHASE_AMOUNT_PROMPT.getMessage());
     }
 
     public void displayPurchaseAmount(int count) {

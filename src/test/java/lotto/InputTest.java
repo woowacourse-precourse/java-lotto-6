@@ -52,11 +52,26 @@ public class InputTest {
         String expect = "1,2,3,4,5,6";
         InputStream inputStream = setConsole(expect);
         System.setIn(inputStream);
-        //when
 
+        //when
         String actual = Input.getLottoNumbers();
 
         //then
         assertThat(expect).isEqualTo(actual);
+    }
+
+    @Test
+    @DisplayName("당첨 번호 입력 유효 테스트")
+    public void testGetLottoNumbersValid() {
+        //given
+        String expect = "1,2,3,4,5,6";
+        InputStream inputStream = setConsole(expect);
+        System.setIn(inputStream);
+
+        // then
+        assertThatThrownBy(() -> {
+            Input.getLottoNumbers();
+        })
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

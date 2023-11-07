@@ -1,20 +1,39 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class GuessLotto {
-
     private final Lotto lotto;
-    private final int bonus;
+    private final Bonus bonusNumber;
 
-    public GuessLotto(Lotto lotto, int bonus) {
-        this.lotto = lotto;
-        this.bonus = bonus;
+    public GuessLotto() {
+        this.lotto = this.generateGuessLotto();
+        bonusNumber = this.generateBonusNumber();
     }
 
     public Lotto getLotto() {
         return lotto;
     }
 
-    public int getBonus() {
-        return bonus;
+    public int getBonusNumber(){
+        return bonusNumber.getBonusNumber();
     }
+
+    private Lotto generateGuessLotto(){
+        String[] splittedNumbers = Console.readLine().split(",");
+        List<Integer> numbers = Arrays.stream(splittedNumbers)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+
+        return new Lotto(numbers);
+    }
+
+    private Bonus generateBonusNumber(){
+        return new Bonus();
+    }
+
+
 }

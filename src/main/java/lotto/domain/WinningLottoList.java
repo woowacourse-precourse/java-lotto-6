@@ -9,7 +9,7 @@ public class WinningLottoList {
     private final List<WinningLotto> winningLottos;
 
     public WinningLottoList(int size) {
-        this.winningLottos = this.generateLotterys(size);
+        this.winningLottos = this.generateLotteries(size);
     }
 
 
@@ -20,7 +20,7 @@ public class WinningLottoList {
         }
     }
 
-    private List<WinningLotto> generateLotterys(int size){
+    private List<WinningLotto> generateLotteries(int size){
         List<WinningLotto> winningLottos = new ArrayList<>();
 
         while(size>0){

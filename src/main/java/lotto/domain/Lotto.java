@@ -23,16 +23,22 @@ public class Lotto {
         return new Lotto(RandomLottoNumberGenerator.generate());
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
     public void printItself() {
         System.out.println(numbers.stream().sorted().toList());
     }
 
     public boolean contains(int number) {
         return numbers.contains(number);
+    }
+
+    public int matchCount(Lotto comparingLotto) {
+        int matchCount = 0;
+        for (Integer number : this.numbers) {
+            if (comparingLotto.contains(number)) {
+                matchCount++;
+            }
+        }
+        return matchCount;
     }
 
     private void validate(List<Integer> numbers) {

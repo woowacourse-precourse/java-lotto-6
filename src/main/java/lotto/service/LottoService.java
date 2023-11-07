@@ -1,6 +1,5 @@
 package lotto.service;
 
-import java.util.List;
 import lotto.constant.PrizeCondition;
 import lotto.constant.PrizeMoney;
 import lotto.domain.Lotto;
@@ -58,17 +57,9 @@ public class LottoService {
 
     private PrizeCondition compareOneLotto(Lotto randomLotto, Lotto winningLotto,
                                            LottoNumber bonusNumber) {
-        int matchCount = 0;
-        boolean bonusMatch = false;
-        for (Integer lottoNumber : winningLotto.getNumbers()) {
-            if (randomLotto.contains(lottoNumber)) {
-                matchCount++;
-            }
-        }
-        if (randomLotto.contains(bonusNumber.getNumber())) {
-            bonusMatch = true;
-        }
-        return PrizeCondition.findPrize(matchCount, bonusMatch);
+        return PrizeCondition.findPrize(
+                randomLotto.matchCount(winningLotto),
+                randomLotto.contains(bonusNumber.getNumber()));
     }
 
 }

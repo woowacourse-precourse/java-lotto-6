@@ -54,4 +54,50 @@ public class Statistics {
         }
     }
 
+    private void matchNumber(int correct, boolean bonus) {
+        matchThree(correct);
+        matchFour(correct);
+        matchFive(correct, bonus);
+        matchBonus(correct, bonus);
+        matchSix(correct);
+    }
+
+    private void matchThree(int correct) {
+        if (correct == 3) {
+            prizes.set(0, prizes.get(0) + 1);
+            totalProfit += Constants.FIFTH_PRIZE;
+        }
+    }
+
+    private void matchFour(int correct) {
+        if (correct == 4) {
+            prizes.set(1, prizes.get(1) + 1);
+            totalProfit += Constants.FOURTH_PRIZE;
+        }
+    }
+
+    private void matchFive(int correct, boolean bonus) {
+        if (correct == 5 && !bonus) {
+            prizes.set(2, prizes.get(2) + 1);
+            totalProfit += Constants.THIRD_PRIZE;
+        }
+    }
+
+    private void matchBonus(int correct, boolean bonus) {
+        if (correct == 5 && bonus) {
+            prizes.set(3, prizes.get(3) + 1);
+            totalProfit += Constants.SECOND_PRIZE;
+        }
+    }
+
+    private void matchSix(int correct) {
+        if (correct == 6) {
+            prizes.set(4, prizes.get(4) + 1);
+            totalProfit += Constants.FIRST_PRIZE;
+        }
+    }
+
+    private void computeProfit() {
+        profitPercent = (float) totalProfit / cost * Constants.HUNDRED;
+    }
 }

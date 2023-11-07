@@ -146,25 +146,17 @@ public class Application {
             }
         }
 
-        System.out.print(Rank.FIFTH.getWins() + "개 일치 ");
-        System.out.print("(" + String.format("%,d", Rank.FIFTH.getPrize()) + "원) - ");
-        System.out.println(lottoWinsCount[Rank.FIFTH.ordinal()] + "개");
+        Rank[] ranks = Rank.values();
 
-        System.out.print(Rank.FOURTH.getWins() + "개 일치 ");
-        System.out.print("(" + String.format("%,d", Rank.FOURTH.getPrize()) + "원) - ");
-        System.out.println(lottoWinsCount[Rank.FOURTH.ordinal()] + "개");
-
-        System.out.print(Rank.THIRD.getWins() + "개 일치 ");
-        System.out.print("(" + String.format("%,d", Rank.THIRD.getPrize()) + "원) - ");
-        System.out.println(lottoWinsCount[Rank.THIRD.ordinal()] + "개");
-
-        System.out.print(Rank.SECOND.getWins() + "개 일치, 보너스 볼 일치 ");
-        System.out.print("(" + String.format("%,d", Rank.SECOND.getPrize()) + "원) - ");
-        System.out.println(lottoWinsCount[Rank.SECOND.ordinal()] + "개");
-
-        System.out.print(Rank.FIRST.getWins() + "개 일치 ");
-        System.out.print("(" + String.format("%,d", Rank.FIRST.getPrize()) + "원) - ");
-        System.out.println(lottoWinsCount[Rank.FIRST.ordinal()] + "개");
+        for (int i = RANKING - 1; i >= 0; i--)  {
+            Rank rank = ranks[i];
+            System.out.print(rank.getWins() + "개 일치");
+            if (i == Rank.SECOND.ordinal()){
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.print(" (" + String.format("%,d", rank.getPrize()) + "원) - ");
+            System.out.println(lottoWinsCount[rank.ordinal()] + "개");
+        }
 
         double profit = getProfit((double) earned, paid);
         System.out.println("총 수익률은 " + String.format("%.2f", profit) + "%입니다.");

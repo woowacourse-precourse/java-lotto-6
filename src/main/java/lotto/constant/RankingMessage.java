@@ -1,2 +1,4 @@
-package lotto.constant;public class RankingMessage {
+package lotto.constant;
+
+public class RankingMessage {
 }

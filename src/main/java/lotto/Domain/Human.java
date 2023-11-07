@@ -25,8 +25,7 @@ public class Human {
     }
 
     public void addLotto(List<Integer> lottoNumber) {
-        Lotto lotto = new Lotto(lottoNumber);
-        lottos.add(lotto);
+        lottos.add(new Lotto(lottoNumber));
     }
 
     public int getLottosLength() {

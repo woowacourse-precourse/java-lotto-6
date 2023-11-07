@@ -1,35 +1,71 @@
 package lotto.view;
 
+import java.util.List;
+import java.util.Map;
 import lotto.constant.OutputMessage;
+import lotto.constant.Ranking;
+import lotto.model.Lotto;
 
 public class OutputView {
-    public void showWinningStatics() {
+
+    public static void showLottoNumbers(List<Lotto> lottos) {
+        System.out.println(lottos.size() + OutputMessage.INFORM_QUANTITY_MESSAGE.getOutputMessage());
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto.getLottoNumbers());
+        }
+        printNextLine();
+    }
+
+    private static void showWinningStatics() {
         System.out.println(OutputMessage.SHOW_RESULT.getOutputMessage());
         System.out.println(OutputMessage.DIVIDING_LINE.getOutputMessage());
     }
 
-    public void showThreeWinning(int count) {
-        System.out.println(OutputMessage.THREE_WIN_MESSAGE.getOutputMessage());
+    private static void showThreeWinning(int count) {
+        System.out.print(OutputMessage.FIFTH_WIN_MESSAGE.getOutputMessage());
         System.out.println(count + "개");
     }
 
-    public void showFourWinning(int count) {
-        System.out.println(OutputMessage.FOUR_WIN_MESSAGE.getOutputMessage());
+    private static void showFourWinning(int count) {
+        System.out.print(OutputMessage.FOURTH_WIN_MESSAGE.getOutputMessage());
         System.out.println(count + "개");
     }
 
-    public void showFiveWinning(int count) {
-        System.out.println(OutputMessage.FIVE_WIN_MESSAGE.getOutputMessage());
+    private static void showFiveWinning(int count) {
+        System.out.print(OutputMessage.THIRD_WIN_MESSAGE.getOutputMessage());
         System.out.println(count + "개");
     }
 
-    public void showFiveWithBonusWinning(int count) {
-        System.out.println(OutputMessage.FIVE_WIN_WITH_BONUS_MESSAGE.getOutputMessage());
+    private static void showFiveWithBonusWinning(int count) {
+        System.out.print(OutputMessage.SECOND_WIN_MESSAGE.getOutputMessage());
         System.out.println(count + "개");
     }
 
-    public void showLottoWinning(int count) {
-        System.out.println(OutputMessage.LOTTO_WIN_MESSAGE.getOutputMessage());
+    private static void showLottoWinning(int count) {
+        System.out.print(OutputMessage.LOTTO_WIN_MESSAGE.getOutputMessage());
         System.out.println(count + "개");
+    }
+
+    public static void showResult(Map<Integer, Integer> winningCount, int money, int profit) {
+        showWinningCount(winningCount);
+        showProfitRate(money, profit);
+    }
+
+    public static void showWinningCount(Map<Integer, Integer> winningCount) {
+        showWinningStatics();
+        showThreeWinning(winningCount.get(Ranking.FIFTH.getRanking()));
+        showFourWinning(winningCount.get(Ranking.FOURTH.getRanking()));
+        showFiveWinning(winningCount.get(Ranking.THIRD.getRanking()));
+        showFiveWithBonusWinning(winningCount.get(Ranking.SECOND.getRanking()));
+        showLottoWinning(winningCount.get(Ranking.FIRST.getRanking()));
+    }
+
+    public static void showProfitRate(int money, int profit) {
+        double rate = ((double) profit / money) * 100;
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", rate);
+    }
+
+    public static void printNextLine() {
+        System.out.println();
     }
 }

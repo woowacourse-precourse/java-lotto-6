@@ -42,6 +42,14 @@ public class InputViewTest {
                 .isInstanceOf(NonNumericAmountException.class);
     }
 
+    @DisplayName("당첨 번호 숫자를 6개 입력하지 않으면 예외 발생")
+    @Test
+    void inputInvalidSize() {
+        System.setIn(createUserInput("1,2,3,4,5"));
+        assertThatThrownBy(InputView::readWinningNumbers)
+                .isInstanceOf(InvalidSizeException.class);
+    }
+
     InputStream createUserInput(String input) {
         return new ByteArrayInputStream(input.getBytes());
     }

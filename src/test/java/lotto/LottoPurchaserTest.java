@@ -13,7 +13,7 @@ public class LottoPurchaserTest {
 
     @DisplayName("로또 구입 금액에 맞는 로또 개수가 발행되어야 한다")
     @ParameterizedTest
-    @CsvSource(value = {"8000,8", "2000,2", "7900,7", "9300,9"})
+    @CsvSource(value = {"8000,8", "2000,2", "7000,7", "9000,9"})
     void purchase(int input, int expected) {
         // given
         Money money = new Money(input);

@@ -22,7 +22,7 @@ public class User {
         List<Lotto> lottos = new ArrayList<>();
         Integer usedAmount = 0;
         while(!usedAmount.equals(purchaseAmount)){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             Collections.sort(numbers);
             lottos.add(new Lotto(numbers));
             usedAmount += 1000;

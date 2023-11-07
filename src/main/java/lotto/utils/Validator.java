@@ -1,12 +1,19 @@
 package lotto.utils;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class Validator {
 
     public static void checkAmount(Integer purchaseAmount) throws IllegalArgumentException{
         if((purchaseAmount % 1000) != 0 || purchaseAmount <= 0){
             throw new IllegalArgumentException("[ERROR] 1,000 단위로 입력 해주세요");
+        }
+    }
+
+    public static void checkInputForm(String purchaseAmount) throws IllegalArgumentException {
+        if (!purchaseAmount.matches("\\d+")) {
+            throw new IllegalArgumentException("[ERROR] 입력값은 숫자로만 구성되어야 합니다.");
         }
     }
 
@@ -63,5 +70,4 @@ public class Validator {
             throw new IllegalArgumentException("[ERROR] 입력된 보너스 번호가 당첨 번호에 포함됩니다.");
         }
     }
-
 }

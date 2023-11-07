@@ -95,7 +95,6 @@ public class LottoService {
                     correctNum = 5;
                 }
             }
-            System.out.println(correctNum);
             result.set(correctNum, result.get(correctNum)+1);
         }
         result.subList(5, 9);
@@ -106,7 +105,7 @@ public class LottoService {
         Integer sum = 0;
         for (Winning winning : Winning.values()) {
             System.out.println(winning.getMessage() + "(" + winning.getAmount() + ") - " + result.get(0) + "개");
-            sum += result.get(0);
+            sum += winning.getAmount() * result.get(0);
             result.remove(0);
         }
 

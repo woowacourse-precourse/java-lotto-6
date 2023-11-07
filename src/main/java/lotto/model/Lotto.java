@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 public class Lotto {
     private final List<Integer> numbers;
 
-    public Lotto(List<Integer> numbers) {
+    public Lotto(final List<Integer> numbers) {
         validateSize(numbers);
         validateDuplicate(numbers);
         validateScopeNumber(numbers);

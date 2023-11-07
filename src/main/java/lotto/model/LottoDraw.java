@@ -6,7 +6,7 @@ public class LottoDraw {
     private final List<Integer> numbers;
     private final int bonusNumber;
 
-    public LottoDraw(List<Integer> numbers, int bonusNumber) {
+    public LottoDraw(final List<Integer> numbers, int bonusNumber) {
         validateSize(numbers);
         validateDuplicate(numbers, bonusNumber);
         validateScopeNumber(numbers, bonusNumber);

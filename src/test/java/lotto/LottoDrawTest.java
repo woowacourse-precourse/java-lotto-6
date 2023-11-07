@@ -39,7 +39,11 @@ public class LottoDrawTest {
         assertThatThrownBy(() -> new LottoDraw(List.of(0, 1, 2, 4, 5, 6), 10))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 당첨 번호는 1부터 45 사이의 숫자여야 합니다.");
+    }
 
+    @DisplayName("발행된 보너스번호 숫자의 범위가 1~45가 아니면 예외가 발생한다.")
+    @Test
+    void createBonusNumberByBeyondScope() {
         assertThatThrownBy(() -> new LottoDraw(List.of(1, 2, 3, 4, 5, 45), 50))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
@@ -48,8 +52,8 @@ public class LottoDrawTest {
     @DisplayName("발행된 로또 번호가 그대로 저장되있어야 한다")
     @Test
     void consistentLottoNumbers() {
-        LottoDraw lotto = new LottoDraw(List.of(1, 2, 3, 4, 5, 6), 10);
-        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
+        LottoDraw lotto = new LottoDraw(List.of(1, 2, 8, 4, 5, 6), 10);
+        assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 2, 8, 4, 5, 6));
         assertThat(lotto.getBonusNumber()).isEqualTo(10);
     }
 

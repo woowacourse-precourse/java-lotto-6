@@ -1,5 +1,6 @@
 package lotto.model.calculator;
 
+import static lotto.util.ExceptionMessage.INVALID_AMOUNT_OF_INVESTMENT;
 import static lotto.util.ExceptionMessage.INVALID_RATE_OF_RESULT;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -78,7 +79,7 @@ class WinningCalculatorTest {
     @ParameterizedTest
     @CsvSource({
             "1000, 0, 0",
-            "1000, 2000000000, 2000000000"
+            "1000, 2000000000, 200000000"
     })
     @DisplayName("수익률이 0% 이상 2000000%이하라면 어떠한 Exception도 감지되지 않는다.")
     void supportedRateOfResult(Integer amountOfInvestment, Long totalPrizeMoney, Double expectedRateOfReturn) {
@@ -101,5 +102,19 @@ class WinningCalculatorTest {
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> winningCalculator.calculateRateOfReturn(amountOfInvestment, totalPrizeMoney))
                 .withMessage(INVALID_RATE_OF_RESULT.getMessage());
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+            "0, 0",
+            "0, 5000"
+    })
+    @DisplayName("투자 금액이 0원이면 IllegalArgumentException을 반환한다.")
+    void divideByZeroTest(Integer amountOfInvestment, Long totalPrizeMoney) {
+        // given
+        // when & then
+        assertThatExceptionOfType(IllegalArgumentException.class)
+                .isThrownBy(() -> winningCalculator.calculateRateOfReturn(amountOfInvestment, totalPrizeMoney))
+                .withMessage(INVALID_AMOUNT_OF_INVESTMENT.getMessage());
     }
 }

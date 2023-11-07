@@ -2,6 +2,7 @@ package lotto.constant;
 
 public class ExceptionMessage {
     public static final String INVALID_LOTTO_NUMBER = "[ERROR] 로또 번호는 정수여야 합니다.";
+    public static final String INVALID_LOTTO_NUMBER_COUNT = "[ERROR] 로또 번호의 개수는 6개여야 합니다.";
     public static final String OUT_OF_RANGE_LOTTO_NUMBER = "[ERROR] 로또 번호는 1 이상 45 이하의 정수여야 합니다.";
     public static final String DUPLICATED_LOTTO_NUMBER = "[ERROR] 로또 번호에는 중복이 있을 수 없습니다";
 

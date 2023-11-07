@@ -20,7 +20,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_LOTTO_NUMBER_COUNT);
         }
         if (!isLottoNumbers(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.OUT_OF_RANGE_LOTTO_NUMBER);

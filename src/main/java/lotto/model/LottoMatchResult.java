@@ -1,4 +1,4 @@
-package lotto.model.result;
+package lotto.model;
 
 public record LottoMatchResult(int matchCount, boolean hasBonus) {
 }

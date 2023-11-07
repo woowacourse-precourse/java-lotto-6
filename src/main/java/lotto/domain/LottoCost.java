@@ -23,7 +23,8 @@ public class LottoCost {
     }
 
     private void isMultipleOfUnit(int cost) {
-        boolean isRemainderZero = (cost >= LottoConfig.UNIT && cost < Integer.MAX_VALUE && cost % LottoConfig.UNIT == 0);
+        boolean isRemainderZero =
+                (cost >= LottoConfig.UNIT && cost < Integer.MAX_VALUE && cost % LottoConfig.UNIT == 0);
 
         if (!isRemainderZero) {
             throw new IllegalArgumentException(ErrorMessages.ERROR_NOT_MULTIPLE_OF_UNIT.getMessage());

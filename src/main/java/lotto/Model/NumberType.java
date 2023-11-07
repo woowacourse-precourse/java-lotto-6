@@ -1,4 +1,4 @@
-package lotto;
+package lotto.Model;
 
 public enum NumberType {
     BASIC_NUMBER,

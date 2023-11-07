@@ -3,6 +3,9 @@ package lotto.model;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,10 +13,18 @@ import org.junit.jupiter.api.Test;
 class LottoGameTest {
 
     private LottoGame lottoGame;
+    private DrawResult drawResult;
+    private Lotto lotto;
 
     @BeforeEach
     void setUp() {
         lottoGame = new LottoGame(1000);
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 1; i < 7; i++) {
+            numbers.add(i);
+        }
+        lotto = new Lotto(numbers);
+        drawResult = new DrawResult(lotto, 6);
     }
 
 
@@ -51,27 +62,49 @@ class LottoGameTest {
     }
 
     @Test
+    @DisplayName("로또 번호와 당첨 번호 일치 카운트 테스트")
+    void countMatch() {
+        assertEquals(6, lottoGame.countMatch(lotto, drawResult));
+    }
+
+    @Test
+    @DisplayName("당첨된 등수 카운트 업데이트 테스트")
+    void updateMatchCount() {
+        Map<String, Integer> matchResults = lottoGame.getMatchResults();
+        assertEquals(0, matchResults.get("3개 일치"));
+        lottoGame.updateMatchCount("3개 일치");
+        assertEquals(1, matchResults.get("3개 일치"));
+    }
+
+    @Test
+    @DisplayName("보너스 번호 카운트 테스트")
+    void updateBonusCount() {
+        assertEquals(0, lottoGame.getMatchResults().get("5개 일치, 보너스 볼 일치"));
+        lottoGame.updateBonusCount(5, lotto, drawResult);
+        assertEquals(1, lottoGame.getMatchResults().get("5개 일치, 보너스 볼 일치"));
+    }
+
+    @Test
+    @DisplayName("당첨 매치 업데이트 테스트")
+    void updateMatch() {
+        assertEquals(0, lottoGame.getMatchResults().get("3개 일치"));
+        assertEquals(0, lottoGame.getMatchResults().get("4개 일치"));
+        assertEquals(0, lottoGame.getMatchResults().get("6개 일치"));
+        lottoGame.updateMatch(3, lotto, drawResult);
+        lottoGame.updateMatch(3, lotto, drawResult);
+        lottoGame.updateMatch(4, lotto, drawResult);
+        lottoGame.updateMatch(6, lotto, drawResult);
+        assertEquals(2, lottoGame.getMatchResults().get("3개 일치"));
+        assertEquals(1, lottoGame.getMatchResults().get("4개 일치"));
+        assertEquals(1, lottoGame.getMatchResults().get("6개 일치"));
+    }
+
+    @Test
     void calculationResult() {
     }
 
     @Test
     void calculationRateOfReturn() {
-    }
-
-    @Test
-    void updateMatch() {
-    }
-
-    @Test
-    void updateBonusCount() {
-    }
-
-    @Test
-    void updateMatchCount() {
-    }
-
-    @Test
-    void countMatch() {
     }
 
 }

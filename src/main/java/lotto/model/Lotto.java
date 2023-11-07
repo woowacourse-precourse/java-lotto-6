@@ -58,4 +58,21 @@ public class Lotto {
         return numbers.equals(other.numbers);
     }
 
+    public LottoResult checkWinningResult(List<Integer> winningNumbers, int bonusNumber) {
+        int matchingCount = countMatchingNumbers(winningNumbers);
+        boolean hasBonusNumber = hasBonusNumber(bonusNumber);
+
+        if (matchingCount == 6) { return LottoResult.FIFTH; }
+
+        if (matchingCount == 5 && hasBonusNumber) { return LottoResult.FOURTH; }
+
+        if (matchingCount == 5) { return LottoResult.THIRD; }
+
+        if (matchingCount == 4) { return LottoResult.SECOND; }
+
+        if (matchingCount == 3) { return LottoResult.FIRST; }
+
+        return null; // 당첨되지 않음
+    }
+
 }

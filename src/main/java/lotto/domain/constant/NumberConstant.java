@@ -17,12 +17,13 @@ public class NumberConstant {
     public static final long SIX_PRIZE_MONEY = 2_000_000_000;
 
 
-    // MatchResult
+    // MATCHRESULT
     public static final int MIN_WIN_COUNT = 3;
     public static final int SIX_WIN_COUNT = 6;
     public static final int COUNT_IDX_OFFSET = 2;
     public static final int SIX_IDX_OFFSET = 1;
     public static final int BONUS_MATCH_COUNT = 5;
+
 
     // COMPUTE SERVICE
     public static final int MATCHRESULT_INIT_NUM = 0;

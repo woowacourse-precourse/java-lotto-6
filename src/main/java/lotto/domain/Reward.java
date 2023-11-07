@@ -20,7 +20,7 @@ public enum Reward {
         if(matchCount == FIRST.matchCount){
             return FIRST;
         }
-        if(matchCount == SECOND.matchCount && !containBonus){
+        if(matchCount == SECOND.matchCount && containBonus){
             return SECOND;
         }
         if (matchCount == THIRD.matchCount && !containBonus) {

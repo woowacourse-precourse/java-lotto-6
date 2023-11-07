@@ -13,6 +13,10 @@ public class Lottos {
     public Lottos(int quantity){
         this.lottos = generateLottos(quantity);
     }
+    public Lottos(List<Lotto> lottos){
+        this.lottos = lottos;
+
+    }
 
     private List<Lotto> generateLottos(int quantity){
         List<Lotto> lottos = new ArrayList<>();

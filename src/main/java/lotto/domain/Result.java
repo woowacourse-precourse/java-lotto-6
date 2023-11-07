@@ -34,4 +34,17 @@ public class Result {
         this.earningRate = earningRate;
     }
 
+    public long calculateTotalPrize(Result result){
+        long totalPrize = 0;
+        Map<Reward, Integer> finalResult =  result.getResult();
+        for(Map.Entry<Reward, Integer> entry : finalResult.entrySet()){
+            Reward reward = entry.getKey();
+            int count = entry.getValue();
+            if(count !=0){
+                totalPrize += (long) reward.getPrize() *count;
+            }
+
+        }
+        return totalPrize;
+    }
 }

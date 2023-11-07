@@ -15,24 +15,25 @@ public class Judge {
         return result;
     }
 
-    private Result calculateWinning(Player player, Lottos lottos){
-
+    public Result calculateWinning(Player player, Lottos lottos){
         Result result = new Result();
         Lotto winningNumber = player.getWinningNumber();
+        int bonus = player.getBonusNumber();
 
         for (Lotto lotto : lottos.getLottos()){
-            int matchingNumber = checkMatchingNumbers(winningNumber, lotto);
-            boolean bonus = false;
-            if(matchingNumber == 5){
-                bonus = checkBonus(player.getBonusNumber(),lotto);
+            int matchingCount = checkMatchingNumbers(winningNumber, bonus, lotto);
+            boolean containBonus = false;
+            if(matchingCount == Reward.SECOND.getPrize()){
+                containBonus = checkBonus(player.getBonusNumber(),lotto);
             }
-            result.addResult(findReward(matchingNumber, bonus));
+            Reward reward = findReward(matchingCount, containBonus);
+            result.addResult(reward);
         }
 
         return result;
     }
 
-    private String calculateEarningRate(Result result, int lottoCount){
+    public String calculateEarningRate(Result result, int lottoCount){
         long totalPrize = calculateTotalPrize(result);
         int buyPrice = lottoCount * 1000;
         float earningRate = ((float) totalPrize /buyPrice) * 100;
@@ -40,12 +41,17 @@ public class Judge {
         return String.format("%.1f", earningRate);
     }
 
-    private int checkMatchingNumbers(Lotto player, Lotto computer){
+    private int checkMatchingNumbers(Lotto player, int bonus, Lotto computer){
         int result = 0;
-        List<Integer> a = player.getNumbers();
-        List<Integer> b = computer.getNumbers();
-        result = (int) a.stream().filter(o -> b.stream()
-                .anyMatch(Predicate.isEqual(o))).count();
+        List<Integer> playerNumbers = player.getNumbers();
+        List<Integer> computerNumbers = computer.getNumbers();
+        result = (int) playerNumbers.stream()
+                .filter(o -> computerNumbers.stream().anyMatch(Predicate.isEqual(o)))
+                .count();
+
+        if(checkBonus(bonus,computer)) {
+            result++;
+        }
 
         return result;
     }

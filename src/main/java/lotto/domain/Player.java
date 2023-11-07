@@ -19,4 +19,5 @@ public class Player {
     public int getBonusNumber() {
         return bonusNumber;
     }
+
 }

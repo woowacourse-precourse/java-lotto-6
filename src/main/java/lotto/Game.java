@@ -14,6 +14,8 @@ public class Game {
     private final Input input = new Input();
     private final Output output = new Output();
     private final Judge judge = new Judge();
+    Lotto winningNumbers;
+    int bonusNumber;
 
     public void start(){
         int quantity = getLottoQuantity();
@@ -22,7 +24,10 @@ public class Game {
         Lottos lottos = new Lottos(quantity);
         output.showLottoNumbers(lottos);
 
-        Player player = new Player(getWinningNumbers(),getBonusNumber(),quantity);
+        winningNumbers = getWinningNumbers();
+        bonusNumber = getBonusNumber();
+
+        Player player = new Player(winningNumbers, bonusNumber, quantity);
         Result result = judge.calculateResult(player,lottos);
 
         output.showResult(result);
@@ -43,26 +48,24 @@ public class Game {
     }
 
     private Lotto getWinningNumbers(){
-        List<Integer> numbers = splitNumbers(input.getWinningNumber());
         try{
+            List<Integer> numbers = splitNumbers(input.getWinningNumber());
             validateWinningNumbers(numbers);
             validateDuplicate(numbers);
             return new Lotto(numbers);
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            getWinningNumbers();
             return getWinningNumbers();
         }
     }
 
     private int getBonusNumber(){
-        int number = Integer.parseInt(input.getBonusNumber());
         try{
+            int number = Integer.parseInt(input.getBonusNumber());
             validateBonusNumber(number);
             return number;
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
-            getBonusNumber();
             return getBonusNumber();
         }
     }
@@ -98,6 +101,9 @@ public class Game {
     private void validateBonusNumber(int number){
         if(!(number>=1 && number<=45)){
             throw new IllegalArgumentException("[ERROR] Bonus number should be between 1 and 45.");
+        }
+        if(winningNumbers.getNumbers().contains(number)){
+            throw new IllegalArgumentException("[ERROR] Winning Numbers and bonus number shouldn't be same.");
         }
     }
 

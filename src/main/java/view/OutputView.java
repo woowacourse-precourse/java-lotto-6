@@ -1,5 +1,6 @@
 package view;
 
+import constants.Grade;
 import constants.OutputMessage;
 import lotto.Lotto;
 
@@ -33,6 +34,10 @@ public class OutputView {
 
     public static void printLottoString(Lotto lotto) {
         System.out.println(lotto.getGeneratedLottoString());
+    }
+
+    public static void printResult(Grade grade, int count) {
+        System.out.printf(grade.getMessage(), count);
     }
 
     public static void printEarningRate(double earningRate) {

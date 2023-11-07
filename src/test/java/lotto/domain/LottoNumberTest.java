@@ -65,7 +65,7 @@ public class LottoNumberTest {
         // When && Then
         assertThatThrownBy(() -> LottoNumber.create(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1부터 45사이의 값이 필요합니다.");
+                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
     }
 
     @Test
@@ -76,7 +76,7 @@ public class LottoNumberTest {
         // When && Then
         assertThatThrownBy(() -> LottoNumber.create(input))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("1부터 45사이의 값이 필요합니다.");
+                .hasMessageContaining("정해진 범위의 숫자를 입력하세요.");
     }
 
     @Test

@@ -9,7 +9,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 class WinningNumbersTest {
 
-    private WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6), 7);
+    private WinningNumbers winningNumbers = new WinningNumbers(new MainNumbers(List.of(1, 2, 3, 4, 5, 6)),
+            new BonusNumber(List.of(1, 2, 3, 4, 5, 6), 7));
 
     @DisplayName("당첨 번호 여부 테스트")
     @ParameterizedTest

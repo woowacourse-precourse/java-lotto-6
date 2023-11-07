@@ -8,14 +8,18 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
+import lotto.domain.MainNumbers;
 import lotto.domain.WinningNumbers;
 import lotto.dto.LottoTicket;
 
 public class LottoService {
 
     private List<Lotto> lottos;
-    private WinningNumbers winningNumbers = new WinningNumbers();
+    private MainNumbers mainNumbers;
+    private BonusNumber bonusNumber;
+    private WinningNumbers winningNumbers;
 
     public void init(int size) {
         this.lottos = new ArrayList<>();
@@ -25,11 +29,15 @@ public class LottoService {
     }
 
     public void initMainNumbers(List<Integer> mainNumbers) {
-        winningNumbers.setMainNumbers(mainNumbers);
+        this.mainNumbers = new MainNumbers(mainNumbers);
     }
 
     public void initBonusNumber(int bonus) {
-        winningNumbers.setBonusNumber(bonus);
+        this.bonusNumber = new BonusNumber(this.mainNumbers.toList(), bonus);
+    }
+
+    public void initWinningNumbers() {
+        this.winningNumbers = new WinningNumbers(mainNumbers, bonusNumber);
     }
 
     public List<LottoTicket> tickets() {

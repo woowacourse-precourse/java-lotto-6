@@ -29,8 +29,8 @@ class LottoTest {
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,4,5,6:7:1,2,3,4,5,6:6", "1,2,3,4,5,6:7:5,6,7,8,9,10:2"}, delimiter = ':')
     void countMainNumbers(String mainNumbers, int bonus, String numbers, int expected) {
-
-        WinningNumbers winningNumbers = new WinningNumbers(toIntegerList(mainNumbers), bonus);
+        List<Integer> mainNums = toIntegerList(mainNumbers);
+        WinningNumbers winningNumbers = new WinningNumbers(new MainNumbers(mainNums), new BonusNumber(mainNums, bonus));
         Lotto lotto = new Lotto(toIntegerList(numbers));
 
         assertThat(lotto.countMatchingMainNumbers(winningNumbers)).isEqualTo(expected);
@@ -40,8 +40,8 @@ class LottoTest {
     @ParameterizedTest
     @CsvSource(value = {"1,2,3,4,5,6:7:1,2,3,4,5,6:false", "1,2,3,4,5,6:7:5,6,7,8,9,10:true"}, delimiter = ':')
     void checkBonusMatch(String mainNumbers, int bonus, String numbers, boolean expected) {
-
-        WinningNumbers winningNumbers = new WinningNumbers(toIntegerList(mainNumbers), bonus);
+        List<Integer> mainNums = toIntegerList(mainNumbers);
+        WinningNumbers winningNumbers = new WinningNumbers(new MainNumbers(mainNums), new BonusNumber(mainNums, bonus));
         Lotto lotto = new Lotto(toIntegerList(numbers));
 
         assertThat(lotto.isBonusMatched(winningNumbers)).isEqualTo(expected);

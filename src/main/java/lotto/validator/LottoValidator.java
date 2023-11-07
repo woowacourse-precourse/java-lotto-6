@@ -27,11 +27,6 @@ public class LottoValidator {
         }
     }
 
-    public static void validateRangeOfNumber(String number) {
-        int num = Integer.parseInt(number);
-        validateRangeOfNumber(num);
-    }
-
     public static void validateRangeOfNumber(int number) {
         if (number < MIN_LOTTO_NUMBER || number > MAX_LOTTO_NUMBER) {
             throw new IllegalArgumentException(ENTER_PROPER_LOTTO_NUMBER);

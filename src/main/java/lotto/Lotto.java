@@ -1,8 +1,10 @@
 package lotto;
 
 
+import lotto.constant.LottoRank;
 import lotto.validator.LottoValidator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,9 +16,10 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
+        ArrayList<Integer> copiedNumbers = new ArrayList<>(numbers);
+        Collections.sort(copiedNumbers);
 
-        this.numbers = numbers;
+        this.numbers = copiedNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -27,11 +30,37 @@ public class Lotto {
             LottoValidator.validateRangeOfNumber(number);
         }
     }
+
     private boolean hasDuplicatedNumber(List<Integer> numbers) {
         return numbers.size() != numbers.stream()
                 .distinct()
                 .count();
     }
+
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
+    }
+
+    public LottoRank matching(Lotto winningLotto, int bonusNumber) {
+        int sameCount = matching(winningLotto);
+        boolean isBonus = contains(bonusNumber);
+
+        return LottoRank.getRank(sameCount, isBonus);
+    }
+
+    private int matching(Lotto winninglotto) {
+        int sameCount = 0;
+
+        for (int number : winninglotto.numbers) {
+            if (contains(number)) {
+                sameCount++;
+            }
+        }
+
+        return sameCount;
+    }
+
     @Override
     public String toString() {
         String joinedNumbers = numbers.stream()

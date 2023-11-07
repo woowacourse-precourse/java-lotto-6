@@ -13,7 +13,9 @@ public class LottoNumbersValidator implements InputValidator{
 
         for (String number : lottoNumbers) {
             CommonValidator.validateIsNaturalNumber(number);
-            LottoValidator.validateRangeOfNumber(number);
+            int num = Integer.parseInt(number);
+
+            LottoValidator.validateRangeOfNumber(num);
         }
     }
 }

@@ -1,6 +1,7 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.LottoGameResult;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -22,9 +23,16 @@ public class LottoController {
     public void launch() {
         int money = inputView.inputPurchaseMoney();
 
-        List<Lotto> lottos = lottoService.buyLotto(money);
-        outputView.printPurchasedLottos(lottos);
+        List<Lotto> userLottos = lottoService.buyLotto(money);
+        outputView.printPurchasedLottos(userLottos);
 
         Lotto winningLotto = inputView.inputWinningLotto();
+        int bonusNumber = inputView.inputBonusNumber();
+
+        LottoGameResult lottoGameResult = lottoService.getResultOfLottos(winningLotto, bonusNumber);
+        outputView.printLottoResult(lottoGameResult);
+
+        double profitRate = lottoGameResult.calculateProfitRate(money);
+        outputView.printProfitRate(profitRate);
     }
 }

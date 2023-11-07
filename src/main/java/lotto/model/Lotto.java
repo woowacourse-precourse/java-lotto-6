@@ -11,7 +11,8 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (hasInvalidSize(numbers) || hasDuplicatedNumber(numbers)) {
+        if (hasInvalidSize(numbers) || hasDuplicatedNumber(numbers)
+                || hasInvalidRange(numbers)) {
             throw new IllegalArgumentException();
         }
     }
@@ -24,6 +25,12 @@ public class Lotto {
         return numbers.stream()
                 .distinct()
                 .count() != 6;
+    }
+
+    private boolean hasInvalidRange(List<Integer> numbers) {
+        return numbers.stream()
+                .anyMatch(number ->
+                        number < 1 || number > 45);
     }
 
     private List<Integer> sortNumbers(List<Integer> numbers) {

@@ -8,7 +8,7 @@ import static lotto.constant.ErrorMessage.*;
 public class BuyPrice {
     private final int price;
 
-    private BuyPrice(int price) {
+    public BuyPrice(int price) {
         validateNotNegative(price);
         validateDividedBy(price);
         this.price = price;

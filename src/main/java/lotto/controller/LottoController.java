@@ -45,8 +45,8 @@ public class LottoController {
         int count = purchase.getCount();
 
         List<Lotto> lotto = Lotto.generator(count);
-        lottos = new Lottos(lotto);
 
+        lottos = new Lottos(lotto);
         OutputView.printLottoInfo(lotto, count);
     }
 
@@ -54,9 +54,7 @@ public class LottoController {
         String winningNumber = input(WINNING_NUMBER.getMessage());
 
         try {
-
             winningLotto = new WinningNumber(stringToList(winningNumber));
-
         } catch (IllegalArgumentException exception) {
             OutputView.printError(exception.getMessage());
             getWinningLotto();

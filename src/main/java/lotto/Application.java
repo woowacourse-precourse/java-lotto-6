@@ -10,6 +10,8 @@ import lotto.output.PurchaseResultHandler;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.domain.RateOfReturn.calculateRateOfReturn;
+import static lotto.domain.RateOfReturn.rateOfReturnOutput;
 import static lotto.input.WinningNumbers.getWinningNumbers;
 
 public class Application {
@@ -25,6 +27,9 @@ public class Application {
 
         List<Integer> winnings = LottoResultAnalyzer.calculateWinnings(numbers.getLotteries(), winningNumbers, bonusNum);
         LottoResultOutput.printResult(winnings);
+
+        double result = calculateRateOfReturn(numberOfLotto, winnings);
+        rateOfReturnOutput(result);
 
     }
 }

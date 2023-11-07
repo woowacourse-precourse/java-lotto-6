@@ -15,7 +15,9 @@ public class Lotto {
     }
 
     public List<Integer> getNumbers() {
-        return Collections.unmodifiableList(numbers);
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -33,12 +35,12 @@ public class Lotto {
         }
     }
 
-    @Override
-    public String toString() {
-        List<Integer> sortedNumbers = new ArrayList<>(numbers);
-        Collections.sort(sortedNumbers);
-        return numbers.toString();
-    }
+//    @Override
+//    public String toString() {
+//        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+//        Collections.sort(sortedNumbers);
+//        return numbers.toString();
+//    }
 
 }
 

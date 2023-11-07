@@ -4,6 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class LottoResultOutput {
+
+    public static final String WIN_RESULT_START = "\n당첨 통계\n---\n";
     public static final LinkedHashMap<Integer, String> PRIZE_MONEY = new LinkedHashMap<>();
 
     static {
@@ -14,8 +16,9 @@ public class LottoResultOutput {
         PRIZE_MONEY.put(7, "2,000,000,000원");
     }
 
-    public static String[] lottoOutput(List<Integer> winnings) {
 
+    public static String[] lottoOutput(List<Integer> winnings) {
+        System.out.print(WIN_RESULT_START);
         String[] results = new String[5];
         int index = 0;
         for (int count : winnings) {
@@ -24,7 +27,6 @@ public class LottoResultOutput {
             results[index] = getMoneyMessage(matchedNumbers, prize, count);
             index++;
         }
-
         return results;
     }
 

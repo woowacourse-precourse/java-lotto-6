@@ -32,4 +32,9 @@ public class Constants {
         public static final String LOTTO_COUNT_MESSAGE = "개를 구매했습니다.";
     }
 
+    public class RateOfReturnConstants {
+        public static final String TOTAL_RATE_OF_RETURN_IS = "총 수익률은 ";
+        public static final String PERCENT_NUMBER = "%입니다.";
+    }
+
 }

@@ -1,8 +1,5 @@
 package lotto.input;
 
-
-import java.util.Set;
-
 import static lotto.output.Constants.NumbersValidatorConstants.*;
 
 public class NumbersValidator {

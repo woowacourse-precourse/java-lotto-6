@@ -1,9 +1,6 @@
 package lotto.domain;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LottoStatistic {
     private final Map<LottoGrade, Integer> result = new LinkedHashMap<>();
@@ -46,5 +43,10 @@ public class LottoStatistic {
 
     public Map<LottoGrade, Integer> getResult() {
         return Collections.unmodifiableMap(result);
+    }
+
+    public double getAllReturnRate(int lottoPurchaseAmount) {
+        int totalPrize = LottoGrade.getTotalPrize(result);
+        return ((double) totalPrize / lottoPurchaseAmount) * 100;
     }
 }

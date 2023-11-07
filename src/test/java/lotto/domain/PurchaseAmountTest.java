@@ -64,4 +64,24 @@ class PurchaseAmountTest {
 
 		assertEquals(exception.getMessage(), INVALID_PURCHASE_AMOUNT.getMessage());
 	}
+
+	@Test
+	@DisplayName("수익률을 올바르게 반환하는지 테스트")
+	void calculateReturnRate() {
+		purchaseAmount =  new PurchaseAmount("8000");
+		long money_0 = 0;
+		long money_5000 = 5000;
+		long money_9000 = 9000;
+		long money_50000 = 50000;
+
+		double result_0 = purchaseAmount.calculateReturnRate(money_0);
+		double result_5000 = purchaseAmount.calculateReturnRate(money_5000);
+		double result_9000 = purchaseAmount.calculateReturnRate(money_9000);
+		double result_50000 = purchaseAmount.calculateReturnRate(money_50000);
+
+		assertEquals(result_0, 0);
+		assertEquals(result_5000, 62.5);
+		assertEquals(result_9000, 112.5);
+		assertEquals(result_50000, 625.0);
+	}
 }

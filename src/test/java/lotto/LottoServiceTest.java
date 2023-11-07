@@ -16,6 +16,13 @@ class LottoServiceTest {
         lottoService = new LottoService();
     }
 
+    @DisplayName("구입한 로또 수만큼 로또 번호 발행.")
+    @Test
+    void provideLottoNumbers() {
+        List<Lotto> lottos = lottoService.provideLotto(6);
+        assertEquals(6, lottos.size());
+    }
+
     @DisplayName("숫자가 아닌 값이 섞여 있을 경우 예외 발생.")
     @Test
     void containsNonNumericCharacters() {

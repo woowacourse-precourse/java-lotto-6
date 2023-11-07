@@ -19,6 +19,7 @@ public class Output {
     }
 
     public void printPurchasedResult(int purchasedLottoNum) {
+        System.out.println();
         System.out.printf(PURCHASED_MESSAGE.getMessage(), purchasedLottoNum);
     }
 
@@ -50,6 +51,7 @@ public class Output {
         for(Lotto lotto : lottoPackage) {
             System.out.println(lotto.getNumbers());
         }
+        System.out.println();
     }
 
 }

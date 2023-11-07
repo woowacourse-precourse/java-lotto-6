@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import lotto.model.domain.Bonus;
 import lotto.model.domain.Lotto;
+import lotto.model.domain.LottoMachine;
 import lotto.model.domain.Ranking;
 import lotto.model.domain.Result;
 import lotto.model.domain.WinningLotto;
 
 public class LottoResultCheckService {
 
-    public List<Ranking> checkResult(List<Lotto> issuedLotto, WinningLotto winningLotto, Bonus bonus) {
+    public List<Ranking> checkResult(LottoMachine lottoMachine, WinningLotto winningLotto, Bonus bonus) {
         List<Ranking> results = new ArrayList<>();
-        for(Lotto lotto : issuedLotto) {
+        for(Lotto lotto : lottoMachine.getIssuedLotto()) {
             List<Integer> issuedNumbers = lotto.getNumbers();
             boolean isMatchedBonusNumber = issuedNumbers.contains(bonus.getNumber());
             issuedNumbers.retainAll(winningLotto.getNumbers());

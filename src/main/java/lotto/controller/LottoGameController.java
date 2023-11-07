@@ -74,7 +74,7 @@ public class LottoGameController {
     }
 
     private List<Ranking> getLottoRanking(LottoMachine lottoMachine, WinningLotto winningLotto, Bonus bonus) {
-        return lottoResultCheckService.checkResult(lottoMachine.getIssuedLotto(), winningLotto, bonus);
+        return lottoResultCheckService.checkResult(lottoMachine, winningLotto, bonus);
     }
 
     private void getLotteryStatistics(List<Ranking> rankings, Purchase purchase) {
@@ -85,9 +85,7 @@ public class LottoGameController {
         outputView.printLotteryStatistics();
         outputView.printStatisticsResult(statistics.getResults());
 
-        float revenue = statistics.getRateOfReturn();
-        float result = (revenue / purchase.getPrice()) * 100 ;
-
+        float result = statistics.calculateRateOfReturn(purchase);
         outputView.printRateOfReturn(result);
     }
 }

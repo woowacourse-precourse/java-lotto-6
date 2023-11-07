@@ -14,5 +14,6 @@ public class LottoController {
         UserController userController = UserController.getInstance();
         userController.purchaseInput();
         userController.lottoNumberInput();
+        userController.lottoBonusNumberInput();
     }
 }

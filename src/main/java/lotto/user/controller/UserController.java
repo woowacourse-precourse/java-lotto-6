@@ -43,6 +43,18 @@ public class UserController {
         return temp;
     }
 
+    public int lottoBonusNumberInput(){
+        String input = readLine();
+        int temp = 0;
+        try{
+            temp = ConvertUtil.stringToInt(input);
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            this.lottoBonusNumberInput();
+        }
+        return temp;
+    }
+
 
 
 }

@@ -1,28 +1,21 @@
 package lotto.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.IntStream;
+
+import static lotto.model.validator.InputValidator.lottoMakesSixNumbers;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        lottoMakesSixNumbers(numbers);
         List<Integer> ticket = new ArrayList<>(numbers);
         ticket.sort(Comparator.naturalOrder());
         this.numbers = ticket;
     }
-
-    private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-    }
-
-    // TODO: 추가 기능 구현
 
     public int countSameNumber(WinningNumber winningNumber){
         int count = 0;

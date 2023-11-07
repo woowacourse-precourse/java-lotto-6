@@ -8,12 +8,14 @@ public class MainController {
     static View view = new View();
     OrderAmount payedMoney;
     LottoTickets lottoTickets;
+    WinningNumber winningNumber;
+    BonusNumber bonusNumber;
 
     public void run() {
         lottoTickets = purchaseLottoTickets();
         view.printLottoTickets(lottoTickets.printTickets());
-        WinningNumber winningNumber = new WinningNumber(view.askWinningNumbers());
-        BonusNumber bonusNumber = new BonusNumber(view.askBonusNumber());
+        makeWinningNumbers();
+        makeBonusNumber();
         calculateStatistics(winningNumber, bonusNumber);
         Console.close();
     }
@@ -30,6 +32,28 @@ public class MainController {
         }
         view.printOrderedLottoCount(payedMoney.amountOfLotto());
         return new LottoTickets(payedMoney.amountOfLotto());
+    }
+
+    private void makeWinningNumbers(){
+        while (true){
+            try {
+                winningNumber = new WinningNumber(view.askWinningNumbers());
+                break;
+            } catch (IllegalArgumentException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
+    }
+
+    private void makeBonusNumber(){
+        while (true){
+            try {
+                bonusNumber = new BonusNumber(view.askBonusNumber());
+                break;
+            } catch (IllegalArgumentException exception){
+                System.out.println(exception.getMessage());
+            }
+        }
     }
 
     private void calculateStatistics(WinningNumber winningNumber, BonusNumber bonusNumber) {

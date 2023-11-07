@@ -31,7 +31,7 @@ public class Lotto {
 
     private void validateValidRangeNumber(List<Integer> numbers) {
         if (numbers.stream()
-                .anyMatch(number -> number < 1 || number > 45)) {
+                .anyMatch(number -> number < Constant.LOTTO_NUMBER_MIN || number > Constant.LOTTO_NUMBER_MAX)) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
         }
     }

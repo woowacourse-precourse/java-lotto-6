@@ -14,7 +14,6 @@ public class WinningLottoNumbersInputValidator {
         containsSixNumbers(winningLottoNumbers);
         isEachNumberNotEmpty(winningLottoNumbers);
         isEachNumberNotExceedInputRange(winningLottoNumbers);
-        isNotEndWithDelimiter(winningLottoNumbers);
     }
 
     private void isNotEmpty(String winningLottoNumbers) {
@@ -65,13 +64,6 @@ public class WinningLottoNumbersInputValidator {
 
     private boolean exceedInputRange(String lottoNumber) {
         return Long.parseLong(lottoNumber) > Integer.MAX_VALUE || Long.parseLong(lottoNumber) < Integer.MIN_VALUE;
-    }
-
-
-    private void isNotEndWithDelimiter(String winningLottoNumbers) {
-        if (winningLottoNumbers.endsWith(InputConstant.WINNING_LOTTO_NUMBERS_DELIMITER)) {
-            throw LottoInputException.of(LottoInputExceptionMessage.WINNING_LOTTO_NUMBERS_ENDS_WITH_DELIMITER);
-        }
     }
 
     private String[] splitNumbersWithDelimiter(String winningLottoNumbers) {

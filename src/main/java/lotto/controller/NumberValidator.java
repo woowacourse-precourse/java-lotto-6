@@ -16,8 +16,10 @@ public class NumberValidator extends Validator {
         return numberValidator;
     }
 
-    public boolean validateWinningNumbers(final List<Integer> numbers) {
+    public boolean validateWinningNumbers(final String input) {
         try {
+            validateStringFormat(input);
+            final List<Integer> numbers = parse(input);
             validateNumbersSize(numbers);
             validateNumbersBoundary(numbers);
             validateDuplicateNumber(numbers);
@@ -26,6 +28,28 @@ public class NumberValidator extends Validator {
             System.out.println(e.getMessage());
             return true;
         }
+    }
+
+    private void validateStringFormat(final String input) {
+        if (input.startsWith(",") || input.endsWith(",")) {
+            throw new IllegalArgumentException(ErrorConstants.COMMA_DO_NOT_EXIST_START_AND_END);
+        }
+        if (input.contains(",,")) {
+            throw new IllegalArgumentException(ErrorConstants.COMMA_DO_NOT_REPEAT);
+        }
+        final List<String> splitInput = List.of(input.split(","));
+        final boolean isNotNumber = splitInput.stream()
+                .anyMatch(split -> !split.matches(Constants.NUMBER_INPUT_REGEX));
+        if(isNotNumber) {
+            throw new IllegalArgumentException(ErrorConstants.NUMBER_FORMAT);
+        }
+    }
+
+    private List<Integer> parse(final String input) {
+        final List<String> splitInput = List.of(input.split(","));
+        return splitInput.stream()
+                .map(Integer::parseInt)
+                .toList();
     }
 
     public boolean validateWinningBonusNumber(final List<Integer> winningNumbers, final String input) {

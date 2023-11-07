@@ -7,6 +7,7 @@ import lotto.view.ErrorMessage;
 import lotto.view.LottoView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class LottoMakingController {
     private static final LottoView view = new LottoView();
@@ -47,6 +48,28 @@ public class LottoMakingController {
         view.outputLottos(lottos, lottos.size());
 
         return lottos;
+    }
+
+    public Lotto createWinningNumbers() {
+        while (true) {
+            try {
+                String input = view.inputWinningNumber();
+                Lotto winningNumber = new Lotto(Arrays.asList(changeStringToInteger(input)));
+                return winningNumber;
+            } catch(NumberFormatException e) {
+                view.outputError(ErrorMessage.ERROR_NOT_NUMBER_MESSAGE.getValue());
+            } catch (IllegalArgumentException e) {
+                view.outputError(e.getMessage());
+            }
+        }
+    }
+
+    public Integer[] changeStringToInteger(String input) throws NumberFormatException {
+        String[] n = input.split(",");
+        Integer[] numbers = new Integer[n.length];
+        for (int i = 0; i < numbers.length; i++)
+            numbers[i] = Integer.parseInt(n[i]);
+        return numbers;
     }
 
 }

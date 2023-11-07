@@ -10,11 +10,12 @@ import java.util.ArrayList;
 public class LottoGame {
     private final LottoMakingController gameSetting = new LottoMakingController();
     private final StatisticsController gameResult = new StatisticsController();
+    private Player player;
 
     public void start() {
         gameSetting.createLottoCount();
         ArrayList<Lotto> lottos = gameSetting.createLottos();
-
+        Lotto winningNumber = gameSetting.createWinningNumbers();
     }
 
 }

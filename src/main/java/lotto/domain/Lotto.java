@@ -1,12 +1,14 @@
 package lotto.domain;
 
+import lotto.view.ErrorMessage;
+
 import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateSix(numbers);
         this.numbers = numbers;
     }
 
@@ -14,9 +16,9 @@ public class Lotto {
         return numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void validateSix(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.ERROR_NOT_SIX_MESSAGE.getValue());
         }
     }
 

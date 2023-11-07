@@ -27,7 +27,6 @@ public class GameManager {
         Bonus bonus = getBonusNumber(inputManager, outputManager, winningNumbers);
 
         Lotto lotto = new Lotto(winningNumbers);
-
         Map<Integer, Integer> winningStatistics = lotto.winningStatistics(ticketNumbers, bonus.getBonus());
         outputManager.printWinningMessage(winningStatistics);
 
@@ -60,12 +59,12 @@ public class GameManager {
 
     private Winning getWinningNumbers(InputManager inputManager, OutputManager outputManager) {
         outputManager.printWinningNumbers();
-        while(true){
+        while (true) {
             try {
                 String inputWinningNumbers = inputManager.getUserInput();
                 Winning winning = new Winning(inputWinningNumbers);
                 return winning;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -73,12 +72,12 @@ public class GameManager {
 
     private Bonus getBonusNumber(InputManager inputManager, OutputManager outputManager, List<Integer> winningNumbers) {
         outputManager.printBonusNumber();
-        while (true){
-            try{
+        while (true) {
+            try {
                 String bonusNumber = inputManager.getUserInput();
                 Bonus bonus = new Bonus(bonusNumber, winningNumbers);
                 return bonus;
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }

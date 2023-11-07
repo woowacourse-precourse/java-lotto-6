@@ -2,6 +2,7 @@ package lotto.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Customer {
 
@@ -39,6 +40,20 @@ public class Customer {
         lottoResult.put(Ranking.FIVE, 0);
         lottoResult.put(Ranking.FIVE_BONUS, 0);
         lottoResult.put(Ranking.SIXTH, 0);
+    }
+
+    public double getYield(){
+        double yield = (getResultSum() / (double) purchaseMoney) * 100.0;
+        double roundedYield = Math.round(yield * 10) / 10.0;
+        return roundedYield;
+    }
+
+    public int getResultSum() {
+        int sum = 0;
+        for(Ranking ranking : lottoResult.keySet()) {
+            sum += ranking.getReward() * lottoResult.get(ranking);
+        }
+        return sum;
     }
 
 }

@@ -32,4 +32,28 @@ public class IntegerValidatorTest {
 
     }
 
+    @Test
+    public void 정수가_특정수의_배수가_아니면_예외발생() {
+        // Given
+        int nonMultipleOfThousand = 1234;
+
+        // When && Then
+        assertThatThrownBy(() -> IntegerValidator.validateMultipleOf(
+                nonMultipleOfThousand,1000))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("1000의 배수인 숫자가 필요합니다.");
+    }
+
+    @Test
+    public void 정수가_특정수의_배수면_정상통과() {
+        // Given
+        int nonMultipleOfThousand = 10000;
+
+        // When
+        IntegerValidator.validateMultipleOf(nonMultipleOfThousand,1000);
+
+        // Then
+
+    }
+
 }

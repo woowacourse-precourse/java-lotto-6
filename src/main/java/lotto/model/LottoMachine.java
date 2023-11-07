@@ -40,11 +40,13 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
         checkWinningNumbers(numbers);
         this.winningNumbers = numbers;
     }
+
     private void checkWinningNumbers(List<Integer> numbers) {
         validate(numbers);
         checkDuplicate(numbers);
         checkElementsInRange(numbers);
     }
+
     public List<Integer> getWinningNumbers() {
         return winningNumbers;
     }
@@ -55,16 +57,19 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
         checkIntegerInList(winningNumbers, number);
         this.bonusNumber = number;
     }
+
     private void checkIntegerInRange(Integer number) {
         if (number < RANDOM_NUMBER_MIN_VALUE || number > RANDOM_NUMBER_MAX_VALUE) {
             throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
+
     private void checkIntegerInList(List<Integer> numbers, Integer bonusNumber) {
         if (numbers.stream().anyMatch(number -> number.equals(bonusNumber))) {
             throw new IllegalArgumentException(ERROR_MESSAGE_LOTTO_CANT_BE_DUPLICATED);
         }
     }
+
     public Integer getBonusNumber() {
         return bonusNumber;
     }
@@ -80,7 +85,8 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
         lottoResult.removeAll(Collections.singletonList(null));
         return lottoResult;
     }
-    private PrizeInformation selectRank (List<Integer> lottoNumbers, long matchCount) {
+
+    private PrizeInformation selectRank(List<Integer> lottoNumbers, long matchCount) {
         if (matchCount == THREE_MATCHES) {
             return PrizeInformation.FIFTH_PRIZE;
         }
@@ -96,8 +102,8 @@ public class LottoMachine { //구매 횟수만큼 로또 번호 조합 발행, �
         return null;
     }
 
-    private PrizeInformation determineBonusWinning (List<Integer> lottoNumbers) {
-        if(lottoNumbers.contains(bonusNumber)) {
+    private PrizeInformation determineBonusWinning(List<Integer> lottoNumbers) {
+        if (lottoNumbers.contains(bonusNumber)) {
             return PrizeInformation.SECOND_PRIZE;
         }
         return PrizeInformation.THIRD_PRIZE;

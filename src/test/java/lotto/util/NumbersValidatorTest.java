@@ -30,7 +30,6 @@ public class NumbersValidatorTest {
     void createLottoByOutOfRangeNumber() {
         assertThatThrownBy(() -> checkElementsInRange(List.of(1, 2, 6, 10, 25, 98)))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
 
 }

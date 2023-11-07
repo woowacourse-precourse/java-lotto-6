@@ -10,10 +10,12 @@ import org.junit.jupiter.api.Test;
 public class PurchaseTest {
 
     private Purchase purchase;
+
     @BeforeEach
     void setUp() {
         purchase = new Purchase();
     }
+
     @DisplayName("구매 금액이 1000으로 나누어 떨어지지 않을 경우 예외 발생")
     @Test
     void createPurchaseAmountNotDivisibleBy1000() {

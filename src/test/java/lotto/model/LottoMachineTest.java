@@ -16,7 +16,7 @@ public class LottoMachineTest {
     private LottoMachine lottoMachine;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         lottoMachine = new LottoMachine();
     }
 
@@ -33,9 +33,9 @@ public class LottoMachineTest {
     @DisplayName("당첨 번호 설정 기능 테스트")
     @Test
     void testSetWinningNumbers() {
-        lottoMachine.setWinningNumbers(List.of(1,2,3,4,5,6));
+        lottoMachine.setWinningNumbers(List.of(1, 2, 3, 4, 5, 6));
 
-        assertThat(lottoMachine.getWinningNumbers()).isEqualTo(List.of(1,2,3,4,5,6));
+        assertThat(lottoMachine.getWinningNumbers()).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
     }
 
     @DisplayName("보너스 번호 설정 기능 테스트")
@@ -75,7 +75,7 @@ public class LottoMachineTest {
         int bonusNumber = 15;
         List<Integer> winningNumbers = List.of(1, 7, 14, 21, 35, 41);
         ArrayList<Lotto> testLotto = new ArrayList<>();
-        Lotto testLottoNumber = new Lotto(Arrays.asList(1,7,15,21,35,41));
+        Lotto testLottoNumber = new Lotto(Arrays.asList(1, 7, 15, 21, 35, 41));
         testLotto.add(testLottoNumber);
 
         lottoMachine.setWinningNumbers(winningNumbers);

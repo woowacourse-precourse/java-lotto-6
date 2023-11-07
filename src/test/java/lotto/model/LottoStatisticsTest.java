@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 public class LottoStatisticsTest {
 
     private LottoStatistics lottoStatistics;
+
     @BeforeEach
     void setUp() {
         lottoStatistics = new LottoStatistics();

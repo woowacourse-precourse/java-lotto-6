@@ -39,7 +39,9 @@ public class LottoMachine {
 
     private Lotto pickLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(RANGE_MIN_VALUE, RANGE_MAX_VALUE, LOTTO_LENGTH);
-        Collections.sort(numbers);
-        return new Lotto(numbers);
+        ArrayList<Integer> numberArray = new ArrayList<>(numbers);
+        Collections.sort(numberArray);
+        
+        return new Lotto(numberArray);
     }
 }

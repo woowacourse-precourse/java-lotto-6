@@ -42,7 +42,6 @@ public class InputLottoValidator {
             throw new InvalidLottoNumberRangeException();
         });
     }
-
     public static void validateLottoNumberDuplicate(final String lottoNumbers){
         String[] validatedInput = lottoNumbers.split(DELIMITER);
         Set<String> set = Set.of(validatedInput);
@@ -50,8 +49,6 @@ public class InputLottoValidator {
             throw new DuplicatedNumberException();
         }
     }
-
-
     public static void validateLotto(final String lottoNumbers) {
         validateEmpty(lottoNumbers);
         validateEndsWithComma(lottoNumbers);

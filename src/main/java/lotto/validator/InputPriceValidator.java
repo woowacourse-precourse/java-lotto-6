@@ -6,7 +6,6 @@ public class InputPriceValidator {
     private static final Integer DIVIDE_BY = 1000;
     private static final Integer LOWEST_PRICE = 0;
     private static final Integer REST = 0;
-
     private static final String DELIMITER = ",";
     private InputPriceValidator() {
     }

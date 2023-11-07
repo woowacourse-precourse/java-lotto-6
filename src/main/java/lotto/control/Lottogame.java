@@ -92,5 +92,19 @@ package lotto.control;public class Lottogame {
     private int inputBonusNumber() {
         return readIntWithMessage("보너스 번호를 입력해 주세요.");
     }
-  
+
+    private int readIntWithMessage(String message) {
+        int number = 0;
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                System.out.println(message);
+                number = Integer.parseInt(Console.readLine());
+                validInput = true;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 값 입력이 필요합니다.");
+            }
+        }
+        return number;
+    }
 }

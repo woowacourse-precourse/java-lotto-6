@@ -15,7 +15,7 @@ class ValidationTest {
         List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
         //when
         Validation validation = new Validation();
-        validation.inputFinalValue(winningNumbers, bonusNumber);
+        validation.userInputValue(winningNumbers, bonusNumber);
         int result = validation.lottoPurchaseNumber(payment);
         //then
         assertThat(result).isEqualTo(58);
@@ -37,7 +37,7 @@ class ValidationTest {
         fullLottoValue.add(innerList4);
         //when
         Validation validation = new Validation();
-        validation.inputFinalValue(winningNumbers, bonusNumber);
+        validation.userInputValue(winningNumbers, bonusNumber);
         List<Integer> result = validation.winningStatics(fullLottoValue);
         //then
         assertThat(result).isEqualTo(List.of(1, 0, 1, 1, 1));

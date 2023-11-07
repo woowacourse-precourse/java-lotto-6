@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoTicket {
-    private int quantity;
-    private List<List<Integer>> tickets;
+    private final int quantity;
+    private final List<List<Integer>> tickets;
 
-    public LottoTicket(int amount) {
+    public LottoTicket(int amount) throws IllegalArgumentException{
         validateAmount(amount);
         this.quantity = amount / 1000;
         this.tickets = new ArrayList<>();
@@ -19,7 +19,11 @@ public class LottoTicket {
         return tickets;
     }
 
-    private void validateAmount(int amount) {
+    public int getQuantity() {
+        return quantity;
+    }
+
+    private void validateAmount(int amount) throws IllegalArgumentException{
         if (amount % 1000 != 0) {
             throw new IllegalArgumentException("로또 구입금액은 1000원 단위로 나뉘어야 합니다.");
         }

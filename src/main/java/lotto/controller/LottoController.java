@@ -13,17 +13,23 @@ public class LottoController {
 
     public void start(){
         String s = view.inputBuyingMoney();
-        int buyingnum;
         try {
             BuyingMoney buyingMoney = new BuyingMoney(s);
-            buyingnum = buyingMoney.buyingMoney;
+            int buyingnum = buyingMoney.buyingMoney;
             LottoList lottoList = new LottoList(buyingnum);
             view.BuyingLottoOutput(lottoList.lottoList);
+            middle(lottoList.lottoList);
         }catch (IllegalArgumentException e){
             view.exceptionMessage();
             start();
         }
     }
 
+    public void middle(List<Lotto> lottoList){
+        String s = view.inputCorrectNUM();
+        try {
+
+        }catch ()
+    }
 
 }

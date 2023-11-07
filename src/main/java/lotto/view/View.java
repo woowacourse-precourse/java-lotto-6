@@ -22,4 +22,9 @@ public class View {
         }
     }
 
+    public String inputCorrectNUM(){
+        System.out.println(INPUT_CORRECT_NUM_MESSAGE);
+        return Console.readLine();
+    }
+
 }

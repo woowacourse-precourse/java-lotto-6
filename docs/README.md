@@ -136,7 +136,6 @@ LottoService
 - 당첨 금액 별 당첨 수량 계산
 - 수익률 계산
 LottoPurchaseService
-- 로또 티켓의 구매 수량 계산
 - 로또 티켓의 구매
 - 사용자 지불 금액의 유효성 검사
 

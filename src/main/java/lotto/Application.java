@@ -3,9 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -57,7 +55,7 @@ public class Application {
             }
         }
 
-        System.out.println("\n" + "당첨 통계" + "\n" + "---");
+        System.out.println("\n당첨 통계\n" + "---");
         System.out.println("3개 일치 (5,000원) - " + matchingCounts[0] + "개");
         System.out.println("4개 일치 (50,000원) - " + matchingCounts[1] + "개");
         System.out.println("5개 일치 (1,500,000원) - " + matchingCounts[2] + "개");
@@ -70,11 +68,10 @@ public class Application {
                 matchingCounts[3] * 30_000_000 +
                 matchingCounts[4] * 2_000_000_000;
 
-        double rateOfReturn =  sumOfPrize / howMuchPurchase * 100;
+        double rateOfReturn = sumOfPrize / howMuchPurchase * 100;
 
-        System.out.printf("총 수익률은 %.1f%%입니다",rateOfReturn);
+        System.out.printf("총 수익률은 %.1f%%입니다", rateOfReturn);
     }
-
 
     private static List<Lotto> generateLottoPaper(int howManyLotto) {
         List<Lotto> lottoPapers = new ArrayList<>();

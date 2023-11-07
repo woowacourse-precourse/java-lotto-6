@@ -50,27 +50,8 @@ public class LottoResult {
     public List<Rank> getRanks() {
         List<Rank> ranks = new ArrayList<>();
         for (int i = 0; i < counted.size(); i++) {
-            ranks.add(getRank(counted.get(i), checked.get(i)));
+            ranks.add(Rank.getRank(counted.get(i), checked.get(i)));
         }
         return ranks;
-    }
-
-    private Rank getRank(int count, boolean check) {
-        if (count == Rank.THREE_MATCH.getCounted() && !check) {
-            return Rank.THREE_MATCH;
-        }
-        if (count == Rank.FOUR_MATCH.getCounted() && !check) {
-            return Rank.FOUR_MATCH;
-        }
-        if (count == Rank.FIVE_MATCH.getCounted() && !check) {
-            return Rank.FIVE_MATCH;
-        }
-        if (count == Rank.FIVE_MATCH_AND_BONUS.getCounted() && check) {
-            return Rank.FIVE_MATCH_AND_BONUS;
-        }
-        if (count == Rank.SIX_MATCH.getCounted() && !check) {
-            return Rank.SIX_MATCH;
-        }
-        return null;
     }
 }

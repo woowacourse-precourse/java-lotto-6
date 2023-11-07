@@ -19,7 +19,7 @@ public class Lotto {
         validateSize(numbers);
         validateNumberRange(numbers);
         validateEachNumberNotOverlap(numbers);
-        sortAscendingOrder(numbers);
+        //sortAscendingOrder(numbers);
         this.numbers = numbers;
     }
 

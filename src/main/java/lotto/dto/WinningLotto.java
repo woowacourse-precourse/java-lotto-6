@@ -15,16 +15,16 @@ public class WinningLotto {
         this.bonus = bonus;
     }
 
-    public static WinningLotto of(String winning, String bonus) {
-        return new WinningLotto(new Lotto(winning), LottoNumber.from(bonus));
+    public static WinningLotto of(Lotto winning, LottoNumber bonus) {
+        return new WinningLotto(winning, bonus);
     }
 
-    public boolean hasTargetLottoNumber(LottoNumber target) {
-        return winning.getNumbers().contains(target);
+    public boolean hasCertainNumber(LottoNumber target) {
+        return winning.hasCertainNumber(target);
     }
 
     private void validateNotDuplicated(Lotto winning, LottoNumber bonus) {
-        if (winning.getNumbers().contains(bonus)) {
+        if (winning.hasCertainNumber(bonus)) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }
     }

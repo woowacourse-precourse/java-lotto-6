@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 import lotto.dto.WinningLotto;
 import lotto.dto.WinningResult;
 import lotto.service.LottoService;
@@ -13,12 +14,12 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
 
-    public LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
+    public LottoController(LottoService lottoService, InputView inputView,
+                           OutputView outputView) {
         this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
-
 
     public void play() {
         buyLotto();
@@ -40,8 +41,8 @@ public class LottoController {
 
     private WinningLotto getWinningLotto() {
         try {
-            String winningNumber = inputView.askWinningNumbers();
-            String bonusNumber = inputView.askBonusNumber();
+            Lotto winningNumber = new Lotto(inputView.askWinningNumbers());
+            LottoNumber bonusNumber = LottoNumber.from(inputView.askBonusNumber());
             return lottoService.getWinningLotto(winningNumber, bonusNumber);
         } catch (IllegalArgumentException e) {
             outputView.printErrorCode(e.getMessage());

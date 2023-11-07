@@ -33,6 +33,8 @@ public record WinningResult(Map<WinningType, Integer> winningMap) {
         return totalPrize;
     }
 
+
+    // TODO: toString으로 문자열을 직접 만들어서 보내는 것은 적절하지 않은 것 같다! 데이터만 넘기는 방법을 사용하자
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();

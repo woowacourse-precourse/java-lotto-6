@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PurchaseAmount;
@@ -24,9 +25,9 @@ public class LottoService {
         List<Lotto> lottoTickets = new ArrayList<>();
         purchaseAmount = PurchaseAmount.from(money);
 
-        for (int i = 0; i < purchaseAmount.getQuantity(); ++i) {
-            lottoTickets.add(buySingleLotto());
-        }
+        IntStream.range(0, purchaseAmount.getQuantity())
+                .forEach(idx -> lottoTickets.add(buySingleLotto()));
+
         this.purchasedTickets = lottoTickets;
         return Collections.unmodifiableList(lottoTickets);
     }
@@ -35,18 +36,18 @@ public class LottoService {
         return new Lotto(generator.generateLotto());
     }
 
-    public WinningLotto getWinningLotto(String winningNumber, String bonus) {
-        return WinningLotto.of(winningNumber, bonus);
+    public WinningLotto getWinningLotto(Lotto lotto, LottoNumber lottoNumber) {
+        return WinningLotto.of(lotto, lottoNumber);
     }
 
     public WinningResult getLottoResult(WinningLotto winningLotto) {
         WinningResult winningResult = new WinningResult();
 
-        for (Lotto purchasedTicket : purchasedTickets) {
+        purchasedTickets.forEach(purchasedTicket -> {
             int matchedCount = calculateMatched(purchasedTicket, winningLotto);
             boolean isBonus = isBonus(purchasedTicket, winningLotto);
             winningResult.updateResult(matchedCount, isBonus);
-        }
+        });
 
         this.winningResult = winningResult;
         return winningResult;
@@ -55,17 +56,17 @@ public class LottoService {
     private int calculateMatched(Lotto purchasedTicket, WinningLotto winningLotto) {
         return Math.toIntExact(purchasedTicket.getNumbers()
                 .stream()
-                .filter(winningLotto::hasTargetLottoNumber)
+                .filter(winningLotto::hasCertainNumber)
                 .count());
     }
 
     private boolean isBonus(Lotto purchasedTicket, WinningLotto winningLotto) {
         LottoNumber bonusNumber = winningLotto.getBonus();
-        return purchasedTicket.getNumbers().contains(bonusNumber);
+        return purchasedTicket.hasCertainNumber(bonusNumber);
     }
 
     public double calculateProfit() {
         int totalPrize = winningResult.getTotalPrize();
-        return Double.valueOf(totalPrize) / Double.valueOf(purchaseAmount.getPaidMoney()) * 100;
+        return (double) totalPrize / (double) purchaseAmount.getPaidMoney() * 100;
     }
 }

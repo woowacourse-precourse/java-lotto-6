@@ -3,7 +3,11 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.constants.WinningType;
 import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
+import lotto.dto.WinningLotto;
+import lotto.dto.WinningResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -31,12 +35,21 @@ class LottoServiceTest {
         //given
         lottoService = new LottoService(new TestNumberGenerator(List.of(1, 2, 3, 4, 5, 6)));
         lottoService.buyMultipleLotto("1000");
-        lottoService.getWinningLotto("1,2,3,6,7,8", "10");
+        WinningLotto winningLotto = lottoService.getWinningLotto(getWinning("1,2,3,6,7,8"), getBonus("10"));
 
         //when
-//        WinningResult lottoResult = lottoService.getLottoResult();
+        WinningResult lottoResult = lottoService.getLottoResult(winningLotto);
 
         //then
-        System.out.println();
+        assertThat(lottoResult.getTotalPrize()).isEqualTo(WinningType.FOUR.calculateProfit(1));
+    }
+
+
+    private Lotto getWinning(String input) {
+        return new Lotto(input);
+    }
+
+    private LottoNumber getBonus(String input) {
+        return LottoNumber.from(input);
     }
 }

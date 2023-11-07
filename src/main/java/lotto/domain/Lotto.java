@@ -72,12 +72,16 @@ public class Lotto {
                 .toList();
     }
 
+    public boolean hasCertainNumber(LottoNumber target) {
+        return this.numbers.contains(target);
+    }
+
     public List<LottoNumber> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 
 
-    //TODO: builder 관련 로직 개선하기
+    //TODO: toString으로 문자열을 직접 만들어서 보내는 것은 적절하지 않은 것 같다! 데이터만 넘기는 방법을 사용하자
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder(TICKET_PREFIX.getMessage());

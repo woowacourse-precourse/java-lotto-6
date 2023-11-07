@@ -12,6 +12,7 @@ public class Bonus {
     }
 
     private void validate(String bonus) {
+        isEmpty(bonus);
         isNumber(bonus);
     }
 
@@ -20,6 +21,14 @@ public class Bonus {
         if (!bonus.matches(Constant.NUMBER_PATTERN)) {
             throw new IllegalArgumentException(
                     Constant.ERROR_PREFIX + Constant.BONUS_PREFIX + Constant.ERROR_NOT_NUMBER_MESSAGE);
+        }
+    }
+
+    //빈칸인지 확인
+    private void isEmpty(String bonus) {
+        if (bonus.equals("")) {
+            throw new IllegalArgumentException(
+                    Constant.ERROR_PREFIX + Constant.BONUS_PREFIX + Constant.ERROR_EMPTY_MESSAGE);
         }
     }
 }

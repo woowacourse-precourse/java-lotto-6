@@ -35,4 +35,20 @@ class LottoReceiptTest {
         assertThat(results.get(Rank.FIFTH)).isEqualTo(2);
         assertThat(results.get(Rank.NONE)).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("영수증에서 로또 번호를 정확하게 가져온다.")
+    public void getDrawnLottoNumbers(){
+        // given
+        LottoReceipt lottoReceipt = new LottoReceipt(
+                List.of(
+                        new Lotto(Stream.of(1, 2, 3, 4, 5, 6).map(LottoBall::getInstance).toList())
+                )
+        );
+        // when
+        List<List<Integer>> drawnLotteryNumbers = lottoReceipt.getDrawnLotteryNumbers();
+        // then
+        assertThat(drawnLotteryNumbers).hasSize(1);
+        assertThat(drawnLotteryNumbers.get(0)).hasSameElementsAs(List.of(1, 2, 3, 4, 5, 6));
+    }
 }

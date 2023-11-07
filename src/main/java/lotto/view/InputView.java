@@ -22,10 +22,17 @@ public class InputView {
         System.out.println(READ_WINNING_NUMBERS);
         String line = Console.readLine();
         String[] WinningNumbers = line.split(",");
+        validateAllInteger(WinningNumbers);
 
         return Arrays.stream(WinningNumbers)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public void validateAllInteger(String[] strings) {
+        for (String str : strings) {
+            validateInteger(str);
+        }
     }
 
     public void validateInteger(String str) {

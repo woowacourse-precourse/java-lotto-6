@@ -51,5 +51,8 @@ public class LottoController {
         OutputView.printLottoResultMessage(result);
     }
 
+    private void calculateRateOfReturn() {
+        double rateOfReturn = ticketAmount.calculateRateOfReturn(result);
+    }
 
 }

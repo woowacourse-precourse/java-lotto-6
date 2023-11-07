@@ -30,9 +30,8 @@ public class Lottos {
         }
     }
 
-    private double computeProfit(int income, int payment){
-        String profit = String.format("%.1f", ((double) income / payment) * 100);
-        return Double.parseDouble(profit);
+    private String computeProfit(int income, int payment){
+        return String.format("%.1f", ((double) income / payment) * 100);
     }
 
     private static Map<Integer, Integer> setUp() {

@@ -32,7 +32,7 @@ public enum Constant {
         Matcher numberMatcher = PATTERN_NUMBER.matcher(content);
 
         if (numberMatcher.matches() == false) {
-            throw new IllegalArgumentException(""); // 에러문 추가
+            throw new IllegalArgumentException(ErrorMessage.STRING_CANNOT_CONVERT_TO_INTEGER.getMessage()); // 에러문 추가
         }
     }
 }

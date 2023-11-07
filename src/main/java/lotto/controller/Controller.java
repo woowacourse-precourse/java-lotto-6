@@ -11,7 +11,6 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.Lottos;
 import lotto.exception.LottoException;
-import lotto.exception.MoneyException;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -41,7 +40,7 @@ public class Controller {
 				inputMoney = new InputMoney(input);
 				inputAmount = new InputAmount(inputMoney.getInputMoney());
 				break;
-			} catch(MoneyException e) {
+			} catch(IllegalArgumentException e) {
 				System.out.println(e.getMessage());
 				getUserInputAmount();
 			}

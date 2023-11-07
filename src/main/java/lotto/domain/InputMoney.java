@@ -3,7 +3,6 @@ package lotto.domain;
 import static lotto.constant.GameRule.*;
 import static lotto.exception.ExceptionMessage.*;
 
-import lotto.exception.MoneyException;
 import lotto.validation.NumberValidator;
 
 public class InputMoney {
@@ -28,7 +27,7 @@ public class InputMoney {
 
 	public void validateUnit(int input) {
 		if (isNotRuleUnit(input)) {
-			throw new MoneyException(MONEY_UNIT_ERROR.getMessage());
+			throw new IllegalArgumentException(MONEY_UNIT_ERROR.getMessage());
 		}
 	}
 

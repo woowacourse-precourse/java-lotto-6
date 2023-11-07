@@ -7,8 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import lotto.exception.MoneyException;
-
 public class InputMoneyTest {
 	@Test
 	void 입력값을_검증하고_객체를_생성한다() {
@@ -24,7 +22,7 @@ public class InputMoneyTest {
 		String stringInput = String.valueOf(input);
 
 		assertThatThrownBy(() -> new InputMoney(stringInput))
-			.isExactlyInstanceOf(MoneyException.class)
+			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage(MONEY_UNIT_ERROR.getMessage());
 	}
 }

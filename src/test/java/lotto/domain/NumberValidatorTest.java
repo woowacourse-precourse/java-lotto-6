@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import lotto.exception.MoneyException;
 import lotto.validation.NumberValidator;
 
 public class NumberValidatorTest {
@@ -24,7 +23,7 @@ public class NumberValidatorTest {
 		String notNumber = "abc";
 
 		assertThatThrownBy(() -> NumberValidator.validateIntType(notNumber))
-			.isExactlyInstanceOf(MoneyException.class)
+			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage(INVALID_NUMBER.getMessage());
 	}
 
@@ -34,12 +33,12 @@ public class NumberValidatorTest {
 		int zero = 0;
 
 		assertThatThrownBy(() -> NumberValidator.validatePositive(negativeNumber))
-			.isExactlyInstanceOf(MoneyException.class)
-			.hasMessage(MONEY_POSITIVE_ERROR.getMessage());
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage(POSITIVE_NUMBER_ERROR.getMessage());
 
 		assertThatThrownBy(() -> NumberValidator.validatePositive(zero))
-			.isExactlyInstanceOf(MoneyException.class)
-			.hasMessage(MONEY_POSITIVE_ERROR.getMessage());
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage(POSITIVE_NUMBER_ERROR.getMessage());
 	}
 }
 

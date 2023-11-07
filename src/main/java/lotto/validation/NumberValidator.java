@@ -2,18 +2,16 @@ package lotto.validation;
 
 import static lotto.exception.ExceptionMessage.*;
 
-import lotto.exception.MoneyException;
-
 public class NumberValidator {
 	public static void validateIntType(String input) {
 		if (isIntType(input)) {
-			throw new MoneyException(INVALID_NUMBER.getMessage());
+			throw new IllegalArgumentException(INVALID_NUMBER.getMessage());
 		}
 	}
 
 	public static void validatePositive(int input) {
 		if (!isPositive(input)) {
-			throw new MoneyException(MONEY_POSITIVE_ERROR.getMessage());
+			throw new IllegalArgumentException(POSITIVE_NUMBER_ERROR.getMessage());
 		}
 	}
 

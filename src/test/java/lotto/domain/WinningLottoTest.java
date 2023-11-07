@@ -27,13 +27,13 @@ class WinningLottoTest {
 
     static Stream<Arguments> generateData() {
         return Stream.of(
-                Arguments.of(Arrays.asList(1,2,3,4,5,6), 6),
-                Arguments.of(Arrays.asList(1,2,3,4,5,7), 5),
-                Arguments.of(Arrays.asList(1,2,3,4,8,9), 4),
-                Arguments.of(Arrays.asList(1,2,3,8,9,10), 3),
-                Arguments.of(Arrays.asList(1,2,8,9,10,11), 2),
-                Arguments.of(Arrays.asList(1,8,9,10,11,12),1),
-                Arguments.of(Arrays.asList(7,8,9,10,11,12),0)
+                Arguments.of(Arrays.asList(1,2,3,4,5,6), 6, false),
+                Arguments.of(Arrays.asList(1,2,3,4,5,7), 5, false),
+                Arguments.of(Arrays.asList(1,2,3,4,8,9), 4, false),
+                Arguments.of(Arrays.asList(1,2,3,8,9,30), 3, true),
+                Arguments.of(Arrays.asList(1,2,8,9,10,11), 2, false),
+                Arguments.of(Arrays.asList(1,8,9,10,11,12),1, false),
+                Arguments.of(Arrays.asList(7,8,9,10,11,12),0, false)
         );
     }
 
@@ -48,7 +48,14 @@ class WinningLottoTest {
         assertThat(matchingNumber).isEqualTo(expectedMatchingNumber);
     }
 
-    @Test
-    void isCorrectBonusNumber() {
+    @DisplayName("보너스 번호를 맞췄는지 확인")
+    @ParameterizedTest
+    @MethodSource("generateData")
+    void isCorrectBonusNumber(List<Integer> lottoNumbers, Integer expectedMatchingNumber, Boolean expectedCorrectNumber) {
+        // given & when
+        Boolean isCorrectBonusNumber = winningLotto.isCorrectBonusNumber(new Lotto(lottoNumbers));
+
+        // then
+        assertThat(isCorrectBonusNumber).isEqualTo(expectedCorrectNumber);
     }
 }

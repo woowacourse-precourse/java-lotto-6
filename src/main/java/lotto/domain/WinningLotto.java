@@ -15,13 +15,17 @@ public class WinningLotto {
     public Integer countCorrectNumbers(Lotto lotto) {
         Integer matchingNumber = 0;
 
-        for (Integer numbers : lotto.getNumbers()) {
-            if (winningNumbers.contains(numbers)) {
+        for (Integer number : lotto.getNumbers()) {
+            if (hasWinningNumberAndBonusNumber(number)) {
                 matchingNumber ++;
             }
         }
 
         return matchingNumber;
+    }
+
+    private boolean hasWinningNumberAndBonusNumber(Integer number) {
+        return winningNumbers.contains(number) && !number.equals(bonusNumber.getNumber());
     }
 
     public Boolean isCorrectBonusNumber(Lotto lotto) {

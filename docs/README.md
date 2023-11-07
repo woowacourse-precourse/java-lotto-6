@@ -31,5 +31,5 @@
 - [x] delimiter로 구분 된 String을 List로 변환한다
 - [x] String 을 Int로 변환한다 
 
-### 아직 고민중인 부분 
-- [ ] 수익률을 게산한다.
+# outputView
+- [x] 수익률을 게산한다.

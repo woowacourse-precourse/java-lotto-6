@@ -41,21 +41,31 @@ public class InputView {
     }
 
     public List<Integer> requestWinningNumbers() {
-        System.out.println(WINNING_NUMBERS_MESSAGE);
-        String inputWinningNumbers = Console.readLine().trim();
-        validateLottoNumbers(inputWinningNumbers);
-        return convertWinningNumbersToList(inputWinningNumbers);
+        try {
+            System.out.println(WINNING_NUMBERS_MESSAGE);
+            String inputWinningNumbers = Console.readLine().trim();
+            validateLottoNumbers(inputWinningNumbers);
+            return convertWinningNumbersToList(inputWinningNumbers);
+        } catch(IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestWinningNumbers();
+        }
     }
 
     public int requestBonusNumber() {
-        System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
-        String inputValue = Console.readLine().trim();
-        validateNumber(inputValue);
+        try {
+            System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
+            String inputValue = Console.readLine().trim();
+            validateNumber(inputValue);
 
-        int bonusNumber = Integer.parseInt(inputValue);
-        validateLottoNumberRange(bonusNumber);
+            int bonusNumber = Integer.parseInt(inputValue);
+            validateLottoNumberRange(bonusNumber);
 
-        return bonusNumber;
+            return bonusNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return requestBonusNumber();
+        }
     }
 
     private static void validateNumber(String inputValue) {

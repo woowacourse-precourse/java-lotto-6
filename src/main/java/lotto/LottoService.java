@@ -2,6 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.sql.Array;
 import java.util.*;
 
 public class LottoService {
@@ -57,12 +58,19 @@ public class LottoService {
 			List<Lotto> computerLottos,
 			List<Integer> userNumbers,
 			int bonusNumber) {
-		List<Integer> winningResult = new ArrayList<>();
+		int[] checkRank = new int[countOfLotto];
 		for (Lotto computerLotto : computerLottos) {
 			List<Integer> computerLottoNumber = computerLotto.getNumbers();
 			int win = compareNumber(computerLottoNumber, userNumbers);
 			int bonusWin = compareBonusNumber(computerLottoNumber, bonusNumber);
+			checkRank[findRank(win, bonusWin)]++;
 		}
+
+		List<Integer> winningResult = new ArrayList<>();
+		for (int i = 0; i < countOfLotto; i++) {
+			winningResult.add(checkRank[i]);
+		}
+		return winningResult;
 	}
 
 	private int compareNumber(
@@ -80,6 +88,25 @@ public class LottoService {
 	private int compareBonusNumber(List<Integer> computerLottoNumber, int bonusNumber) {
 		if (computerLottoNumber.contains(bonusNumber)) {
 			return 1;
+		}
+		return 0;
+	}
+
+	private int findRank(int win, int bonusWin) {
+		if (win == 6) {
+			return 1;
+		}
+		if (win == 5 && bonusWin == 1) {
+			return 2;
+		}
+		if (win == 5) {
+			return 3;
+		}
+		if (win + bonusWin == 4) {
+			return 4;
+		}
+		if (win + bonusWin == 3) {
+			return 5;
 		}
 		return 0;
 	}

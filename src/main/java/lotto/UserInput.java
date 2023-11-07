@@ -45,12 +45,12 @@ public class UserInput {
         return winningNumbers;
     }
 
-    public static int getBonusNumber() {
+    public static int getBonusNumber(Lotto winningLotto) {
         String input;
         while (true) {
             try {
                 input = readLine();
-                validateBonusNumber(input);
+                validateBonusNumber(input, winningLotto);
                 break;
             } catch (IllegalArgumentException exception) {
                 System.out.println(exception.getMessage());
@@ -65,11 +65,11 @@ public class UserInput {
     }
 
     private static void validateWinningNumbers(List<String> inputs) {
+        validateWinningNumbersNotSixDigits(inputs);
+
         for (String input : inputs) {
             validateNotNumber(input);
         }
-
-        validateWinningNumbersNotSixDigits(inputs);
 
         List<Integer> winningNumbers = inputs.stream().map(Integer::parseInt)
                 .filter(integer -> integer >= 1 && integer <= 45).toList();
@@ -78,13 +78,14 @@ public class UserInput {
         validateWinningNumbersNotSame(winningNumbers);
     }
 
-    private static void validateBonusNumber(String input) {
+    private static void validateBonusNumber(String input, Lotto winningLotto) {
         if (Arrays.asList(input.split(",")).size() != 1) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_OF_BONUS_NOT_ONE_DIGIT.getMessage());
         }
 
         validateNotNumber(input);
         validateBonusNumberRange(Integer.parseInt(input));
+        validateWinningNumbersContainBonusNumber(winningLotto, Integer.parseInt(input));
     }
 
     private static void validateNotNumber(String input) {
@@ -126,6 +127,13 @@ public class UserInput {
         }
     }
 
+    private static void validateWinningNumbersContainBonusNumber(Lotto winningLotto, int bonusNumber) {
+        if (isWinningNumbersContainBonusNumber(winningLotto, bonusNumber)) {
+            throw new IllegalArgumentException(ErrorMessage.ERROR_OF_BONUS_NOT_CONTAIN_WINNING_NUMBERS.getMessage());
+
+        }
+    }
+
     private static boolean isNumberInteger(String input) {
         String regularExpression = "^[0-9]+$";
         return input.matches(regularExpression);
@@ -143,4 +151,7 @@ public class UserInput {
         return (input > 0 && input < 46);
     }
 
+    private static boolean isWinningNumbersContainBonusNumber(Lotto winningNumbers, int bonusNumber) {
+        return winningNumbers.contains(bonusNumber);
+    }
 }

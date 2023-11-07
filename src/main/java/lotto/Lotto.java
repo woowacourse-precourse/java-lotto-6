@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private List<Integer> numbers;
     private static final String OPEN_SQUARE_BRACKETS = "[";
     private static final String CLOSE_SQUARE_BRACKETS = "]";
     private static final int PRICE = 1000;

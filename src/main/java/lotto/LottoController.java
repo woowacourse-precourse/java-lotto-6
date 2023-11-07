@@ -34,7 +34,7 @@ public class LottoController {
 
         List<Lotto> lotto = new ArrayList<>();
         for (int i = 0; i < lottoCount; i++) {
-            lotto.add(new Lotto(makeLottoNumbers()));
+            lotto.add(new Lotto(new ArrayList<>(makeLottoNumbers())));
         }
         lottos = new Lottos(lotto);
 
@@ -50,10 +50,7 @@ public class LottoController {
     public void drawBonusNumbers() {
         System.out.println();
         PrintOutput.printNoticeMessage(NoticeMessage.BONUS_NUMBER);
-        bonusNumber = UserInput.getBonusNumber();
-        while (isBonusNumberSameWithWinningNumbers(winningLotto, bonusNumber)) {
-            bonusNumber = UserInput.getBonusNumber();
-        }
+        bonusNumber = UserInput.getBonusNumber(winningLotto);
     }
 
     public void announceResultOfLotto() {
@@ -74,10 +71,6 @@ public class LottoController {
         return pickUniqueNumbersInRange(1, 45, 6);
     }
 
-    private boolean isBonusNumberSameWithWinningNumbers(Lotto winningNumbers, int bonusNumber) {
-        return winningNumbers.contains(bonusNumber);
-    }
-
     private double calculateRateOfReturn(Map<Integer, Integer> winningRanks, int buyMoney) {
         long sumOfPrizeMoney = 0;
         sumOfPrizeMoney += winningRanks.get(1) * PrizeMoney.FIRST.getPrizeMoney();
@@ -86,6 +79,6 @@ public class LottoController {
         sumOfPrizeMoney += winningRanks.get(4) * PrizeMoney.FOURTH.getPrizeMoney();
         sumOfPrizeMoney += winningRanks.get(5) * PrizeMoney.FIFTH.getPrizeMoney();
 
-        return (double) sumOfPrizeMoney / buyMoney;
+        return (double) sumOfPrizeMoney / buyMoney * 100;
     }
 }

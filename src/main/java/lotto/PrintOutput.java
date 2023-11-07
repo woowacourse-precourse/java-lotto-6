@@ -32,8 +32,8 @@ public class PrintOutput {
 
     public static void printLottosRank(Map<Integer, Integer> winningRanks) {
         List<String> messages = Stream.of(MatchCountMessage.values()).map(MatchCountMessage::getMessage).toList();
-        for (int i = 4; i >= 0; i--) {
-            printMatchCountMessage(messages.get(i), winningRanks.get(i + 1));
+        for (int i = 0; i <= 4; i++) {
+            printMatchCountMessage(messages.get(i), winningRanks.get(5 - i));
         }
     }
 

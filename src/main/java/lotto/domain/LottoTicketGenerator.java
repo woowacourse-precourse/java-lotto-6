@@ -6,17 +6,29 @@ import lotto.error.Error;
 import lotto.error.Error.ErrorType;
 
 public class LottoTicketGenerator {
-    List<Integer> lottoNumber;
+    List<LottoTicket> lottoTickets;
     int numberOfTicket;
 
     public LottoTicketGenerator(int amount) {
-        validate(amount);
-        numberOfTicket = amount / 1000;
+        getNumberOfTicket(amount);
+        returnLottoTickets();
     }
 
-    public List<Integer> createLottoTicket() {
-        lottoNumber = Randoms.pickUniqueNumbersInRange(1,45,6);
-        return lottoNumber;
+    public LottoTicket createLottoTicket() {
+        LottoTicket lottoTicket = (LottoTicket) Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return lottoTicket;
+    }
+
+    public List<LottoTicket> returnLottoTickets() {
+        for (int i = 0; i < numberOfTicket; i++) {
+            lottoTickets.add((LottoTicket) createLottoTicket());
+        }
+        return lottoTickets;
+    }
+
+    public void getNumberOfTicket(int amount) {
+        validate(amount);
+        this.numberOfTicket = amount / 1000;
     }
 
     private void validate(int amount) {

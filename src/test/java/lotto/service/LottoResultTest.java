@@ -1,8 +1,6 @@
-package lotto.model;
+package lotto.service;
 
 import lotto.domain.Lotto;
-import lotto.service.LottoResult;
-import lotto.service.LottoType;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

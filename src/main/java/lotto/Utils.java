@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.List;
 
 public class Utils {
     public static String input(){
@@ -14,5 +16,9 @@ public class Utils {
             }
         }
         return true;
+    }
+
+    public static List<Integer> makeRandomNumbers(int start, int end, int cnt){
+        return Randoms.pickUniqueNumbersInRange(start, end, cnt);
     }
 }

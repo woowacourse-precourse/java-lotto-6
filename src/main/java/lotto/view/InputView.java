@@ -9,37 +9,34 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputView {
-    private static final String INPUT_PURCHASE = "구입금액을 입력해 주세요";
+    private static final String INPUT_MONEY_MESSAGE = "구입금액을 입력해 주세요";
     private static final String INPUT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요";
-    private static final String SPLIT_CONDITION = ",";
+    private static final String DELIMITER = ",";
 
-    public int purchaseAmount() {
-        int purchaseAmount;
+    public int getMoney() {
+        int money;
 
         while (true) {
             try {
-                System.out.println(INPUT_PURCHASE);
-                String input = Console.readLine();
+                String input = getInputMoneyMessage();
 
                 validateMoneyFormat(input);
 
                 System.out.println();
-                purchaseAmount = Integer.parseInt(input);
+                money = Integer.parseInt(input);
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-        return purchaseAmount;
+        return money;
     }
 
-    public List<Integer> getWinningLottoNumbers() {
-        System.out.println(INPUT_WINNING_NUMBER);
-        String lottoNumbers = Console.readLine();
+    public List<Integer> getWinningLottoNumber() {
+        String winningLottoNumber = getInputWinningNumber();
         System.out.println();
-        String[] numbers = splitNumbers(lottoNumbers);
-        return saveLotto(numbers);
+        return parseWinningLottoNumber(winningLottoNumber);
     }
 
     public int getBonusNumber() {
@@ -49,6 +46,21 @@ public class InputView {
         return Integer.parseInt(bonusNumber);
     }
 
+    private String getInputMoneyMessage() {
+        System.out.println(INPUT_MONEY_MESSAGE);
+        return Console.readLine();
+    }
+
+    private String getInputWinningNumber() {
+        System.out.println(INPUT_WINNING_NUMBER);
+        return Console.readLine();
+    }
+
+    private List<Integer> parseWinningLottoNumber(String input) {
+        String[] numbers = splitNumbers(input);
+        return saveLotto(numbers);
+    }
+
     private List<Integer> saveLotto(String[] numbers) {
         return Arrays.stream(numbers)
                 .map(Integer::parseInt)
@@ -56,6 +68,6 @@ public class InputView {
     }
 
     private String[] splitNumbers(String input) {
-        return input.split(SPLIT_CONDITION);
+        return input.split(DELIMITER);
     }
 }

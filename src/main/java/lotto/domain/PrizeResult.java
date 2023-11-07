@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.domain.formatter.PrizeResultFormatter.*;
+import static lotto.domain.formatter.PrizeResultFormatter.formatPrizeResult;
 
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -16,7 +16,7 @@ public class PrizeResult {
     }
 
     public void calculatePrizeResult(WinningLotto winningLotto, UserLotto userLotto) {
-        for (Lotto lotto : userLotto.getUserLottoNumber()) {
+        for (Lotto lotto : userLotto.getUserLottoNumbers()) {
             Prize rank = Prize.getLottoResult(lotto.getMatchLottoNumber(winningLotto),
                     lotto.isContain(winningLotto.getBonusNumber()));
             updateRankCount(rank);

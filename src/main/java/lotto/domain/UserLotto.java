@@ -5,30 +5,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserLotto {
-    private static final int MIN = 1;
-    private static final int MAX = 45;
+    private static final int MINIMUM_LOTTO_NUMBER = 1;
+    private static final int MAXIMUM_LOTTO_NUMBER = 45;
     private static final int LOTTO_SIZE = 6;
 
-    private final List<Lotto> userLottoNumber;
+    private final List<Lotto> userLottoNumbers;
 
     public UserLotto(int numberOfTickets) {
-        this.userLottoNumber = new ArrayList<>();
+        this.userLottoNumbers = new ArrayList<>();
 
-        setUserLottoNumber(numberOfTickets);
+        setUserLottoNumbers(numberOfTickets);
     }
 
-    private void setUserLottoNumber(int numberOfTickets) {
+    private void setUserLottoNumbers(int numberOfTickets) {
         for (int i = 0; i < numberOfTickets; i++) {
-            userLottoNumber.add(new Lotto(generatedNumbers()));
+            userLottoNumbers.add(new Lotto(generatedNumbers()));
         }
     }
 
     private List<Integer> generatedNumbers() {
-        return Randoms.pickUniqueNumbersInRange(MIN, MAX, LOTTO_SIZE);
+        return Randoms.pickUniqueNumbersInRange(MINIMUM_LOTTO_NUMBER, MAXIMUM_LOTTO_NUMBER, LOTTO_SIZE);
     }
 
-    public List<Lotto> getUserLottoNumber() {
-        return userLottoNumber;
+    public List<Lotto> getUserLottoNumbers() {
+        return userLottoNumbers;
     }
 
 }

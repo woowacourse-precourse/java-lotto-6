@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.generator.RandomUniqueListGenerator;
 import lotto.model.Lotto;
 import lotto.model.LottoGameManager;
@@ -17,7 +18,8 @@ public class LottoController {
         try {
             outputView.printEnterPurchaseAmount();
             PurchasePrice purchasePrice = PurchasePrice.from(inputView.getPurchaseAmount());
-            LottoOwner lottoOwner = LottoOwner.of(purchasePrice, new RandomUniqueListGenerator());
+            List<Lotto> randomLottos = Lotto.createRandomLottos(purchasePrice, new RandomUniqueListGenerator());
+            LottoOwner lottoOwner = LottoOwner.of(purchasePrice, randomLottos);
             outputView.printLottosInfo(lottoOwner.getLottosInfo());
             WinningLotto winningLotto = WinningLotto.of(getWinningLotto(), getBonusNumber());
             outputView.printWinnerStatistics();

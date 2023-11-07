@@ -65,7 +65,7 @@ class PurchasePriceTest {
         long expected = money / lottoPrice;
 
         // when
-        long result = purchasePrice.getQuotient();
+        long result = purchasePrice.getLottoCount();
 
         // then
         assertThat(result).isEqualTo(expected);

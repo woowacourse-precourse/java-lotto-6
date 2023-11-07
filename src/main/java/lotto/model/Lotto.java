@@ -7,7 +7,9 @@ import static lotto.constant.LottoGameConfig.AMOUNT_OF_NUMBERS;
 import static lotto.constant.LottoGameConfig.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoGameConfig.MIN_LOTTO_NUMBER;
 
+import java.util.ArrayList;
 import java.util.List;
+import lotto.generator.IntegerListGenerator;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,6 +23,15 @@ public class Lotto {
 
     public static Lotto from(List<Integer> numbers) {
         return new Lotto(numbers);
+    }
+
+    public static List<Lotto> createRandomLottos(PurchasePrice purchasePrice, IntegerListGenerator generator) {
+        long lottoCount = purchasePrice.getLottoCount();
+        List<Lotto> randomLottos = new ArrayList<>();
+        while (lottoCount-- != 0) {
+            randomLottos.add(new Lotto(generator.generateIntegerList()));
+        }
+        return randomLottos.stream().toList();
     }
 
     private void validateNumbersDuplicated(List<Integer> numbers) {

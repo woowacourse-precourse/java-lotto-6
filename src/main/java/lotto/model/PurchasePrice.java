@@ -32,7 +32,7 @@ public class PurchasePrice {
         }
     }
 
-    public long getQuotient() {
+    public long getLottoCount() {
         return amount / LOTTO_PRICE;
     }
 

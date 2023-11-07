@@ -1,6 +1,5 @@
 package lotto.model;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -10,7 +9,6 @@ import lotto.constant.LottoRanking;
 import lotto.dto.LottosInfo;
 import lotto.dto.RateOfReturn;
 import lotto.dto.WinningStatistics;
-import lotto.generator.IntegerListGenerator;
 
 public class LottoOwner {
     private final PurchasePrice purchasePrice;
@@ -23,13 +21,8 @@ public class LottoOwner {
         initLottoResults();
     }
 
-    public static LottoOwner of(PurchasePrice purchasePrice, IntegerListGenerator generator) {
-        List<Lotto> randomLottos = new ArrayList<>();
-        long quotient = purchasePrice.getQuotient();
-        while (quotient-- != 0) {
-            randomLottos.add(Lotto.from(generator.generateIntegerList()));
-        }
-        return new LottoOwner(purchasePrice, randomLottos);
+    public static LottoOwner of(PurchasePrice purchasePrice, List<Lotto> lottos) {
+        return new LottoOwner(purchasePrice, lottos);
     }
 
     private void initLottoResults() {
@@ -55,10 +48,10 @@ public class LottoOwner {
     }
 
     public RateOfReturn convertResultToRateOfReturn() {
-        return new RateOfReturn(purchasePrice.calculateRateOfReturn(calculateSum()));
+        return new RateOfReturn(purchasePrice.calculateRateOfReturn(calculatePrizeSum()));
     }
 
-    private long calculateSum() {
+    private long calculatePrizeSum() {
         return lottoResults.keySet().stream()
                 .map(lottoRanking -> lottoRanking.getPrize() * lottoResults.get(lottoRanking))
                 .mapToLong(Long::longValue)

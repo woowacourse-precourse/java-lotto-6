@@ -3,10 +3,9 @@ package constants.errorMessage;
 import constants.Constants;
 
 public enum LottoErrorMessage {
-    INVALID_LENGTH("로또는 "+ Constants.LOTTO_LENGTH +"개의 숫자로 구성되어야 합니다."),
-    DUPLICATION_OCCUR("로또에는 중복되는 숫자가 있을 수 없습니다."),
-    OUT_OF_RANGE("로또 번호의 범위는 "+Constants.LOTTO_RANGE_START+"부터 "
-            + Constants.LOTTO_RANGE_END + "까지 입니다.");
+    INVALID_LENGTH("로또 번호의 개수가 올바르지 않습니다."),
+    DUPLICATION_OCCUR("로또 번호는 중복된 숫자를 포함할 수 없습니다."),
+    OUT_OF_RANGE("로또 번호는 지정된 범위 내에서 선택해야 합니다.");
 
     private String message;
 

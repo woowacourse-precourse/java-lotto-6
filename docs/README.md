@@ -6,6 +6,123 @@
 
 ![패키지_다이어그램.png](images%2F%ED%8C%A8%ED%82%A4%EC%A7%80_%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8.png)
 
+## 클래스 구조
+
+---
+
+<table style=" margin-left: auto; margin-right: auto;">
+<tbody>
+<tr style="height: 29px;">
+<td style="width: 161px; height: 29px;">패키지</td>
+<td style="width: 198.992px; height: 29px;">클래스</td>
+<td style="width: 452.008px; height: 29px;">설명</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 161px; height: 17.5px;">controller</td>
+<td style="width: 198.992px; height: 17.5px;">SystemController</td>
+<td style="width: 452.008px; height: 17.5px;">도메인과 뷰를 연결시켜 주는 역할 수행</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 161px; height: 232px;" rowspan="8">domain</td>
+<td style="width: 198.992px; height: 29px;">Ball</td>
+<td style="width: 452.008px; height: 29px;">공의 번호를 멤버 변수로 갖는 클래스, 스스로 값을 검증한다&nbsp;</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">Lotto</td>
+<td style="width: 452.008px; height: 29px;">
+<p>Ball 리스트를 멤버 변수로 갖는 일급 컬렉션, 스스로 값을 검증한다</p>
+<p>당첨 번호에 포함되는 숫자 개수, 보너스 번호 포함여부를 판별하는 기능을 가짐</p>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">MatchResult</td>
+<td style="width: 452.008px; height: 29px;">번호 일치 개수와 보너스 번호 일치 여부는 멤버 변수로 갖는 클래스</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">Money</td>
+<td style="width: 452.008px; height: 29px;">
+<p>구입금액을 멤버 변수로 갖는 클래스, 스스로 값을 검증한다</p>
+<p>구입한 로또 개수를 반환하는 기능, 총 수익률을 계산하는 기능을 가짐</p>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">PurchasedLottos</td>
+<td style="width: 452.008px; height: 29px;">로또 리스트를 멤버 변수로 갖는 일급 컬렉션</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">WinningNumbersWithBonus</td>
+<td style="width: 452.008px; height: 29px;">
+<p>당첨 번호(Lotto)와 보너스 번호(Ball)를 갖는 클래스</p>
+<p>메서드 파라미터를 줄이기 위해 만들었으며 DTO와 유사한 역할을 한다&nbsp;</p>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">WinningStat</td>
+<td style="width: 452.008px; height: 29px;">
+<p>등수 상수(LottoRankConstant)와 당첨 횟수 멤버변수를 갖는 클래스</p>
+<p>등수별 당첨금을 계산하는 기능을 가짐</p>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">WinningStats</td>
+<td style="width: 452.008px; height: 29px;">
+<p>WinningStat 리스트를 멤버 변수로 갖는 클래스</p>
+<p>생성될 때&nbsp;PurchasedLottos와&nbsp;WinningNumbersWithBonus를 입력받아 등수별로 당첨된 횟수를 기록한다</p>
+<p>총 당첨금을 계산하는 기능을 가짐</p>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 161px; height: 17.5px;" rowspan="6">system</td>
+<td style="width: 198.992px; height: 29px;">ExceptionMessage</td>
+<td style="width: 452.008px; height: 29px;">
+<p>예외 메시지를 상수로 저장해둔 enum</p>
+<p>호출할 때 [ERROR]를 조립해서 반환한다</p>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">LottoNumberConstant</td>
+<td style="width: 452.008px; height: 29px;">공 번호 범위, 번호 개수 상수를 저장해둔 enum</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">LottoRankConstant</td>
+<td style="width: 452.008px; height: 29px;">
+<p>등수와 관련된 데이터 상수를 저장해둔 enum</p>
+<p>생성될 때 메시지를 조립해서 저장함</p>
+<p>등수로 상수를 찾는 기능</p>
+</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">RegexConstant</td>
+<td style="width: 452.008px; height: 29px;">정규식, 문자열 패턴을 저장해둔 enum</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">SystemConstant</td>
+<td style="width: 452.008px; height: 29px;">범용 상수를 저장해둔 enum</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">SystemMessage</td>
+<td style="width: 452.008px; height: 29px;">입출력 상수를 저장해둔 enum</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 161px; height: 17.5px;" rowspan="2">system</td>
+<td style="width: 198.992px; height: 29px;">InputView</td>
+<td style="width: 452.008px; height: 29px;">사용자 입력을 자료형 별로 받고 검증하고 반환하는 클래스</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 198.992px; height: 29px;">OutputView</td>
+<td style="width: 452.008px; height: 29px;">시스템 메시지, 예외 메시지, 요구사항에 맞는 통계 결과를 콘솔로 출력하는 클래스</td>
+</tr>
+<tr style="height: 29px;">
+<td style="width: 161px; height: 17.5px;">&nbsp;</td>
+<td style="width: 198.992px; height: 29px;">Application</td>
+<td style="width: 452.008px; height: 29px;">
+<p>SystemController 객체를 만들어서 결과를 받아오는 클래스</p>
+<p>IllegalstateException이 발생하면 메시지를 출력하고 프로그램을 종료시킨다</p>
+</td>
+</tr>
+</tbody>
+</table>
+
 # ✏️기능 목록
 
 ---

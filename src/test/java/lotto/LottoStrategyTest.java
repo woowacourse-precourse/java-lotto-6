@@ -51,6 +51,16 @@ public class LottoStrategyTest {
                 .isEqualTo(LottoRank.RANK2);
     }
 
+    @DisplayName("5개 번호 일치 시 RANK3 출력 테스트")
+    @Test
+    void testRank3(){
+        List<Integer> testNumbers = Arrays.asList(1,2,3,4,5,10);
+        lottoMachine = new FixedLottoMachine(testNumbers);
+        lottoTicket = new LottoTicket(budget, lottoMachine);
+        assertThat(lottoStrategy.determineRank(lottoTicket, winningLotto,bonusNumber))
+                .isEqualTo(LottoRank.RANK3);
+    }
+
 
 
 

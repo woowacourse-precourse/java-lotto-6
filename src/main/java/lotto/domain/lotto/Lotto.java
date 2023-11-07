@@ -49,16 +49,21 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getNumbers() {
-        return numbers.stream().sorted().toList();
+    @Override
+    public String toString() {
+        return numbers.stream()
+                .sorted()
+                .toList()
+                .toString();
+    }
+
+    public boolean contains(int number) {
+        return numbers.contains(number);
     }
 
     public int countMatches(Lotto lotto) {
-        return this.numbers.stream()
-                .filter(number -> lotto.getNumbers()
-                        .stream()
-                        .anyMatch(Predicate.isEqual(number)))
-                .toList()
-                .size();
+        return (int) numbers.stream()
+                .filter(lotto::contains)
+                .count();
     }
 }

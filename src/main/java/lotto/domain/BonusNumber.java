@@ -17,7 +17,7 @@ public class BonusNumber {
     }
 
     private void validate(int bonusNumber, Lotto winningTicket) {
-        if (winningTicket.getNumbers().contains(bonusNumber)) {
+        if (winningTicket.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_INPUT.getMessage());
         }
         if (bonusNumber < MIN_LOTTO_NUMBER.getValue() || bonusNumber > MAX_LOTTO_NUMBER.getValue()) {

@@ -15,7 +15,7 @@ public class OutputView {
 
     public void printIssuedLotto(List<Lotto> issuedLotto) {
         for (Lotto lotto : issuedLotto) {
-            System.out.println(lotto.getNumbers());
+            System.out.println(lotto);
         }
         printNewLine();
     }

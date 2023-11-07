@@ -33,7 +33,7 @@ public enum Rankings {
         boolean hasBonusNumber = false;
 
         if (matchCount == FIVE_MATCHES) {
-            hasBonusNumber = lotto.getNumbers().contains(bonusNumber.getBonusNumber());
+            hasBonusNumber = lotto.contains(bonusNumber.getBonusNumber());
         }
         return setRankings(matchCount, hasBonusNumber);
     }

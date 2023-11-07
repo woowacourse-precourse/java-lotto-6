@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import lotto.domain.LottoBundle;
 import lotto.domain.LottoOrder;
@@ -12,7 +13,7 @@ public class OutputView {
     private static final String RESULT_FORMAT = "%d개 일치%s(%s원) - %s개" + System.lineSeparator();
     private static final String BUY_MSG_SUFFIX = "개를 구매했습니다.";
     private static final String CORRECT_BONUS_MSG = ", 보너스 볼 일치 ";
-    private static final String TOTAL_PROFIT_RATE_MSG = "총 수익률은 %.1f%%입니다.";
+    private static final String TOTAL_PROFIT_RATE_MSG = "총 수익률은 %s%%입니다.";
     private static final String SPACE = " ";
 
     private OutputView() {
@@ -46,7 +47,8 @@ public class OutputView {
     }
 
     public static void printProfitRate(float rate) {
-        System.out.printf(TOTAL_PROFIT_RATE_MSG, rate);
+        String formattedRate = formatDecimal(rate);
+        System.out.printf(TOTAL_PROFIT_RATE_MSG, formattedRate);
     }
 
     public static void printErrorMessage(final Exception e) {
@@ -56,5 +58,10 @@ public class OutputView {
     private static String formatNumber(int number) {
         NumberFormat numberFormat = NumberFormat.getInstance();
         return numberFormat.format(number);
+    }
+
+    private static String formatDecimal(float rate) {
+        DecimalFormat decimalFormat = new DecimalFormat("#,##0.0");
+        return decimalFormat.format(rate);
     }
 }

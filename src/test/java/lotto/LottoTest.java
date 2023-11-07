@@ -25,6 +25,13 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
+    @DisplayName("로또 번호의 개수가 6개가 안되면 예외가 발생한다.")
+    @Test
+    void createLottoBySmallSize() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("존재 유무 확인 매소드 테스트.")
     @Test
     void lottoContains_test() {

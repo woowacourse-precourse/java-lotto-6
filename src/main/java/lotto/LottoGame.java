@@ -113,14 +113,24 @@ public class LottoGame {
             for (int number : lotto.getNumbers()) {
                 if (winningNumbers.contains(number)) {
                     matchCount++;
-                } else if (number == bonusNumber) {
-                    bonusMatch = true;
                 }
             }
-            if (matchCount == 5 && bonusMatch) {
-                winCounts[2]++;
-            } else {
+
+            if (matchCount == 5 && lotto.getNumbers().contains(bonusNumber)) {
+                bonusMatch = true;
+            }
+
+            // 당첨 결과를 등수 배열에 기록
+            if (matchCount < 5 && matchCount > 2) {
                 winCounts[matchCount]++;
+            } else if (matchCount == 5) {
+                if (bonusMatch) {
+                    winCounts[2]++; // 2등
+                } else {
+                    winCounts[3]++; // 3등
+                }
+            } else if (matchCount == 6) {
+                winCounts[6]++; // 1등
             }
         }
 
@@ -141,15 +151,14 @@ public class LottoGame {
     private static void calculateEarnings(int[] winCounts, int lottoCount) {
         int[] winnings = new int[]{0, 0, 30000000, 5000, 50000, 1500000, 2000000000};
         long totalWinnings = 0;
-        for (int i = 3; i <= 6; i++) {
-            totalWinnings += winnings[i] * winCounts[i];
+        for (int i = 2; i <= 6; i++) {
+            totalWinnings += (long) winnings[i] * winCounts[i];
         }
-        totalWinnings += winnings[2] * winCounts[2];
 
         long totalSpent = (long) lottoCount * LOTTO_PRICE;
         double earningsRate = (double) totalWinnings / totalSpent;
-        double earningsRatePercentage = (earningsRate * 100) - 100;
+        double earningsRatePercentage = (earningsRate * 100);
 
-        System.out.printf("총 수익률은 %.2f%%입니다.\n", earningsRatePercentage);
+        System.out.printf("총 수익률은 %.1f%%입니다.\n", earningsRatePercentage);
     }
 }

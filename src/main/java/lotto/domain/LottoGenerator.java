@@ -24,10 +24,10 @@ public class LottoGenerator {
 
     private int validatePayment(int payment) {
         if(payment < LOTTO_PRICE_UNIT) {
-            throw new IllegalArgumentException("최소 결제 금액은 1,000원 입니다.");
+            throw new IllegalArgumentException("[Error] 최소 결제 금액은 1,000원 입니다.");
         }
         if(payment % LOTTO_PRICE_UNIT != CHANGE) {
-            throw new IllegalArgumentException("1,000원 단위로 결제해주세요.");
+            throw new IllegalArgumentException("[Error] 1,000원 단위로 결제해주세요.");
         }
         return payment/LOTTO_PRICE_UNIT;
     }

@@ -56,5 +56,12 @@ public class Controller {
 
     private void ranking(){
         LottoGameResult lottoGameResult = lottoGame.checkGameResult(buyer.getLottoNumbers());
+        printGameResult(lottoGameResult);
+    }
+
+    private void printGameResult(LottoGameResult lottoGameResult){
+        OutputView.printLottoGameResult(lottoGameResult.getLottoResult());
+        long prizeSum = lottoGameResult.getPrizeSum();
+        OutputView.printRateOfReturn(buyer.getYield(prizeSum));
     }
 }

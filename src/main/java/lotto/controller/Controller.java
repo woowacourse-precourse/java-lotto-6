@@ -22,7 +22,7 @@ public class Controller {
         WinningNumber winningNumber = part3();
 
         for(Lotto lotto : lotties.getLotties()){
-            Result result = getResult(lotto,winningNumber);
+            Result result = findResult(lotto,winningNumber);
             int resultCnt = score.getOrDefault(result,0);
             score.put(result,resultCnt + 1);
         }
@@ -39,53 +39,31 @@ public class Controller {
 
     public Lotties part2() {
         Lotties lotties = LottoFactory.generateLotties(lottoCnt);
-        OutputView.pritntLottos(lotties.getLottiesNumbers());
+        OutputView.printLotties(lotties.getLottiesNumbers());
         return lotties;
     }
 
     public WinningNumber part3() {
-        OutputView.printEntertWinningNumber();
+        OutputView.printEnterWinningNumber();
         List<Integer> numbers = InputView.inputLottoNumbers();
 
-        OutputView.printEnterBounsNumber();
+        OutputView.printEnterBonusNumber();
         int bonusNumber = InputView.inputBonusNumber();
 
         return new WinningNumber(new Lotto(numbers), bonusNumber);
     }
 
-    public Result getResult(Lotto lotto, WinningNumber winningNumber) {
-        int bonusNumber = winningNumber.getBonusNumber();
-        int matchCnt = 0;
-        boolean isBonusMatched = false;
+    public Result findResult(Lotto lotto, WinningNumber winningNumber) {
         List<Integer> numbers = lotto.getNumbers();
         List<Integer> winningLottoNumbers = winningNumber.getLottoNumbers();
-
-        for (Integer number : numbers) {
-            if (winningLottoNumbers.contains(number)) {
-                matchCnt++;
+        int bonusNumber = winningNumber.getBonusNumber();
+        int matchCount = 0;
+        for(int number : numbers) {
+            if(winningLottoNumbers.contains(number)) {
+                matchCount++;
             }
         }
-
-        isBonusMatched = numbers.contains(bonusNumber);
-
-        if (matchCnt == 6) {
-            return Result.SIX_MATCH;
-        }
-
-        if (matchCnt == 5 && isBonusMatched) {
-            return Result.FIVE_AND_BONUS_MATCH;
-        }
-        if (matchCnt == 5) {
-            return Result.FIVE_MATCH;
-        }
-        if (matchCnt == 4) {
-            return Result.FOUR_MATCH;
-        }
-        if (matchCnt == 3) {
-            return Result.THREE_MATCH;
-        }
-        return Result.NOTHING;
+        boolean isBonusMatched = numbers.contains(bonusNumber);
+        return Result.find(matchCount, isBonusMatched);
     }
-
-
 }

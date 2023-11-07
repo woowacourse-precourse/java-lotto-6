@@ -2,6 +2,8 @@ package lotto.view;
 
 import static lotto.message.ErrorMessage.BONUS_NUMBER_RANGE;
 import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
+import static lotto.message.ErrorMessage.FOUNT_MATCH_RANKING;
+import static lotto.message.ErrorMessage.LOTTO_RANGE;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_BONUS_NUMBER;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_WINNING_NUMBERS;
@@ -77,9 +79,11 @@ public class Input {
     }
 
     private void validationWinningNumbersRange(List<Integer> winningNumbers) {
-        if (winningNumbers.stream().noneMatch(number -> 1 <= number && number <= 45)) {
-            throw new IllegalArgumentException(WINNING_NUMBERS_RANGE.errorMessage());
-        }
+        winningNumbers.stream().filter(number -> !(1 <= number && number <= 45))
+                .findAny()
+                .ifPresent(number -> {
+                    throw new IllegalStateException(WINNING_NUMBERS_RANGE.errorMessage());
+                });
     }
 
     private void validationBonusNumberRange(int bonusNumber) {

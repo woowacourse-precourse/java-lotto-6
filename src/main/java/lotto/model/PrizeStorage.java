@@ -1,14 +1,12 @@
 package lotto.model;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
 public class PrizeStorage {
-    private int firstPrizeCount = 0;
-    private int secondPrizeCount = 0;
-    private int thirdPrizeCount = 0;
-    private int fourthPrizeCount = 0;
-    private int fifthPrizeCount = 0;
+    private Map<Prize, Integer> prizeCount = new EnumMap<>(Prize.class);
 
     public PrizeStorage(List<Prize> prizes) {
         for(Prize prize : prizes) {
@@ -17,30 +15,15 @@ public class PrizeStorage {
     }
 
     private void addPrize(Prize prize) {
-        if(prize == Prize.FIRST) {
-            firstPrizeCount++;
-        }
-        if(prize == Prize.SECOND) {
-            secondPrizeCount++;
-        }
-        if(prize == Prize.THIRD) {
-            thirdPrizeCount++;
-        }
-        if(prize == Prize.FOURTH) {
-            fourthPrizeCount++;
-        }
-        if(prize == Prize.FIFTH) {
-            fifthPrizeCount++;
-        }
+        prizeCount.put(prize, prizeCount.getOrDefault(prize, 0) + 1);
     }
 
     public List<Integer> getPrizeCount() {
-        List<Integer> prizeCount = new ArrayList<>();
-        prizeCount.add(fifthPrizeCount);
-        prizeCount.add(fourthPrizeCount);
-        prizeCount.add(thirdPrizeCount);
-        prizeCount.add(secondPrizeCount);
-        prizeCount.add(firstPrizeCount);
-        return prizeCount;
+        List<Integer> count = new ArrayList<>();
+        for(Prize prize : Prize.values()) {
+            System.out.println("테스트 메시지 : " + prize);
+            count.add(prizeCount.getOrDefault(prize, 0));
+        }
+        return count;
     }
 }

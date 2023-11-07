@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 import lotto.configuration.ScoreBoard;
 import lotto.configuration.WinningLevel;
+import lotto.util.Utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +26,7 @@ public class LottoService {
 
         for (Integer count = 0; count < length; count++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(START_NUMBER, LAST_NUMBER, COUNT);
-            lottoNumbers.add(numbers);
+            lottoNumbers.add(Utils.sortAscendingRandomLottoList(numbers));
         }
         return lottoNumbers;
     }

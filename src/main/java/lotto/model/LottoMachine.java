@@ -34,13 +34,7 @@ public class LottoMachine {
     }
 
     private Lotto createLotto() {
-        List<Integer> lotto = new ArrayList<>();
-        while (lotto.size() < NUMBER_OF_NUMBERS) {
-            int number = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
-            if (!lotto.contains(number)) {
-                lotto.add(number);
-            }
-        }
+        List<Integer> lotto = new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_OF_NUMBERS));
         Collections.sort(lotto);
         return new Lotto(lotto);
     }

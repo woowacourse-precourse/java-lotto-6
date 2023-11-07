@@ -1,15 +1,17 @@
-package lotto;
+package Domain;
+
+import Domain.Lotto;
 
 import java.util.List;
 
-public class WinningLotto extends Lotto{
+public class WinningLotto extends Lotto {
     private int bonus;
 
     public WinningLotto(List<Integer> numbers) {
         super(numbers);
     }
 
-    void setBonus(int bonus){
+    public void setBonus(int bonus){
         this.bonus = bonus;
     }
 

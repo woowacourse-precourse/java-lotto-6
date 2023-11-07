@@ -1,11 +1,13 @@
-package lotto;
+package UI;
+
+import lotto.ExceptionMessage;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class InputPriceAndCalculateLottoCount {
     int price;
 
-    int inputPrice(){
+    public int inputPrice(){
         int inputPrice;
         try{
             System.out.println("구입금액을 입력해 주세요.");
@@ -19,11 +21,11 @@ public class InputPriceAndCalculateLottoCount {
         return price;
     }
 
-    int calculateLottoCount(){
+    public int calculateLottoCount(){
         return price / 1000;
     }
 
-    void validLottoCount(int inputPrice){
+    public void validLottoCount(int inputPrice){
         if (inputPrice % 1000 > 0) {
             throw new IllegalArgumentException();
         }

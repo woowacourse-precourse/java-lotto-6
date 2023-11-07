@@ -1,4 +1,7 @@
-package lotto;
+package Domain;
+
+import Domain.Lotto;
+import Domain.WinningLotto;
 
 import java.util.ArrayList;
 import java.util.List;

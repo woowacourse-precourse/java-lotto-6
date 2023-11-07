@@ -1,7 +1,7 @@
-package lotto;
+package UI;
 
-import camp.nextstep.edu.missionutils.Randoms;
-import org.mockito.internal.matchers.Null;
+import Domain.WinningLotto;
+import lotto.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +13,7 @@ public class InputWinningLotto {
     private int input = 0;
     WinningLotto winningLotto;
 
-    WinningLotto inputLotto() {
+    public WinningLotto inputLotto() {
         System.out.println("당첨 번호를 입력해 주세요.");
         while (input != 1) {
             String[] lottoNumber = readLine().split(",");

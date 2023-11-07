@@ -1,5 +1,6 @@
-package lotto;
+package Domain;
 
+import Domain.Lotto;
 import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class Lottos {
         }
     }
 
-    ArrayList<Lotto> getLottos(){
+    public ArrayList<Lotto> getLottos(){
         return lottos;
     }
 }

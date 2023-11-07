@@ -1,5 +1,13 @@
 package lotto;
 
+import Domain.Lotto;
+import Domain.Lottos;
+import Domain.MatchingLotto;
+import Domain.WinningLotto;
+import UI.InputPriceAndCalculateLottoCount;
+import UI.InputWinningLotto;
+import UI.PrintStatisticAndRevenue;
+
 import java.util.ArrayList;
 
 public class lottoProgram {

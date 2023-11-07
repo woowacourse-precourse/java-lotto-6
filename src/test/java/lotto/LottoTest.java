@@ -1,5 +1,8 @@
 package lotto;
 
+import Domain.Lotto;
+import UI.InputPriceAndCalculateLottoCount;
+import UI.InputWinningLotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

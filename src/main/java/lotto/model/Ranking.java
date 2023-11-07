@@ -1,6 +1,8 @@
 package lotto.model;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Ranking {
     NO_RANK(0, false, 0),
@@ -24,6 +26,10 @@ public enum Ranking {
         return Arrays.stream(Ranking.values()).filter(ranking -> ranking.accordedCount == accordedCount)
                 .filter(ranking -> ranking.hasBonusNumber == hasBonusNumber)
                 .findAny().orElse(NO_RANK);
+    }
+
+    public static List<Ranking> getRankings() {
+        return Arrays.stream(Ranking.values()).collect(Collectors.toList());
     }
 
     public int getAccordedCount() {

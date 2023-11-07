@@ -7,9 +7,9 @@ import lotto.model.Lotto;
 
 public class OutputView {
 
-    private final static String PRINT_BUY_AMOUNT = "%d개를 구매했습니다.\n";
+    private final static String PRINT_BUY_AMOUNT = "\n%d개를 구매했습니다.\n";
     private final static String PRINT_REVENUE = "총 수익률은 %.1f%%입니다.\n";
-    private final static String PRINT_WINNING = "당첨 통계";
+    private final static String PRINT_WINNING = "\n당첨 통계";
     private final static String PRINT_LINE = "---";
     private final static List<String> PRINT_WINNING_COUNT = Arrays.asList(
             "3개 일치 (5,000원) - %d개\n",
@@ -27,7 +27,7 @@ public class OutputView {
     }
 
     private void printWinningCount(List<Integer> winning) {
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.printf(PRINT_WINNING_COUNT.get(i), winning.get(i));
         }
     }
@@ -40,7 +40,6 @@ public class OutputView {
     public void printLottoBundle(List<Lotto> lottoBundle) {
         int buyAmount = lottoBundle.size();
         List<Integer> numbers;
-
         printBuyAmount(buyAmount);
         for (Lotto lotto : lottoBundle) {
             numbers = lotto.getNumbers();

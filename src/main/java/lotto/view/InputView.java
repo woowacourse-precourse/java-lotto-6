@@ -9,8 +9,8 @@ import lotto.exception.InputException;
 public class InputView {
 
     private final static String READ_PURCHASE_MONEY = "구입금액을 입력해 주세요.";
-    private final static String READ_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
-    private final static String READ_BONUS_NUM = "보너스 번호를 입력해 주세요.";
+    private final static String READ_WINNING_NUMBERS = "\n당첨 번호를 입력해 주세요.";
+    private final static String READ_BONUS_NUM = "\n보너스 번호를 입력해 주세요.";
 
     public int readPurchaseMoney() {
         System.out.println(READ_PURCHASE_MONEY);

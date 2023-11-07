@@ -87,10 +87,6 @@ public class LottoController {
     List<Integer> getWinningNumbers() throws IllegalArgumentException {
         OutputHandler.requireWinningNumbers();
         String winningNumbersInput = InputHandler.getInput();
-        if (winningNumbersInput.isEmpty()) {
-            OutputHandler.requireNonemptyInput();
-            throw new IllegalArgumentException(ExceptionMessage.REQUIRE_NONEMPTY_INPUT.getMessage());
-        }
         List<Integer> winningNumbers = Converter.winningNumbers(winningNumbersInput);
         if (winningNumbers.size() != Number.LOTTO_NUM_COUNT.getNumber()) {
             OutputHandler.requireSixNumbers();

@@ -21,4 +21,11 @@ public class BonusTest {
         assertThatThrownBy(() -> new Bonus(""))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호가 1 ~45 사이의 숫자가 아니라면 예외가 발생한다.")
+    @Test
+    void bonusIsBoundary() {
+        assertThatThrownBy(() -> new Bonus("0"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

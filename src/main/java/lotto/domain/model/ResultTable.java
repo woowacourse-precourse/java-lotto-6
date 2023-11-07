@@ -1,4 +1,7 @@
-package lotto.domain;
+package lotto.domain.model;
+
+import static lotto.utils.LottoEnum.LOTTO_BONUS_NUMBER_COUNT;
+
 public class ResultTable {
     private int numberOfMatched; // 매칭된 번호의 개수
     private long prize; // 당첨 금액
@@ -10,10 +13,6 @@ public class ResultTable {
         this.count = 0;
     }
 
-    public void incrementCount() {
-        this.count++;
-    }
-
     @Override
     public String toString() {
         return String.format("%d개 일치 (%s원) - %d개", numberOfMatched,
@@ -21,8 +20,8 @@ public class ResultTable {
     }
 
     public String getFinalResult() {
-        if (numberOfMatched == 7) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%s원) - %d개", 5,
+        if (numberOfMatched == LOTTO_BONUS_NUMBER_COUNT.getValue()) {
+            return String.format("5개 일치, 보너스 볼 일치 (%s원) - %d개",
                     String.format("%,d", prize), count);
         }
         return toString();
@@ -32,12 +31,12 @@ public class ResultTable {
         return numberOfMatched;
     }
 
-    public int getCount() {
-        return count;
-    }
-
     public long getTotalPrize() {
         return prize * count;
+    }
+
+    public void incrementCount() {
+        this.count++;
     }
 }
 

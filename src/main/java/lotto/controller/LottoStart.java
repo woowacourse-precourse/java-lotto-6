@@ -4,12 +4,14 @@ import java.util.List;
 
 import lotto.Lotto;
 import lotto.model.WinningInfo;
+import lotto.view.OutputView;
 
 public class LottoStart {
     static Lotto lotto;
     static Judgment judgment = new Judgment();
     static NumberGenerator numbergenerator = new NumberGenerator();
-    WinningInfo winninginfo = new WinningInfo();
+    static WinningInfo winninginfo = new WinningInfo();
+    static OutputView outputview = new OutputView();
 
     public LottoStart(){
         final int num = numbergenerator.inputBuyCost();
@@ -21,9 +23,12 @@ public class LottoStart {
         int bonusNumber = numbergenerator.InputBonusNumber(lotto.getLotto());
         
         for(List<Integer> i : num2){
+            System.out.println(i + "" +System.identityHashCode(i));
             int correctCount = judgment.correctCount(i , lotto.getLotto());
             setWinningInfo(i, correctCount, bonusNumber);
         }
+
+        outputview.getEndLotto(winninginfo);
     }
 
     public void lottonumbers(List<List<Integer>> numbers){
@@ -46,20 +51,18 @@ public class LottoStart {
         }
     }
 
-    private void setWinningInfo(List<Integer> lottonumbers, int correctCount, int bonusNumber){
+    private void setWinningInfo(List<Integer> lottonumbers , int correctCount, int bonusNumber){
         if (correctCount == 3){
             winninginfo.setFifthRank();
         }
         else if (correctCount == 4){
             winninginfo.setfourthrank();
         }
+        else if(correctCount == 5 && judgment.correctBonus(lottonumbers, bonusNumber)){
+            winninginfo.setsecondrank();
+        }
         else if (correctCount == 5){
-            if(judgment.correctBonus(lottonumbers, bonusNumber)){
-                winninginfo.setsecondrank();
-            }
-            else if (!judgment.correctBonus(lottonumbers, bonusNumber)){
-                winninginfo.setthirdrank();
-            }
+            winninginfo.setthirdrank();
         }
         else if (correctCount == 6){
             winninginfo.setfirstrank();

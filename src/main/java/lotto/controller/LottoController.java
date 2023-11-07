@@ -64,20 +64,17 @@ public class LottoController {
         initalizeEnumMap();
         for (int i=0; i<lottoList.size(); i++) {
             int equalCount = lottoList.get(i).compareWithLotto(winningLotto);
-
             if (equalCount == 5) {
                 isEqualWithBonus = lottoList.get(i).compareWithBonusNum(winningLotto);
             }
             Prize prize = Prize.rankLotto(equalCount, isEqualWithBonus);
             prizeMap.put(prize, prizeMap.getOrDefault(prize, 0)+1);
         }
+        prizeMap.remove(Prize.ZERO);
     }
 
     private void initalizeEnumMap() {
         for (Prize prize : Prize.values()) {
-            if (prize == Prize.ZERO) {
-                continue;
-            }
             prizeMap.put(prize, 0);
         }
     }
@@ -87,13 +84,12 @@ public class LottoController {
     }
 
     private void calculate(PurchaseAmount purchaseAmount) {
-        int totalRevenue = 0;
+        long totalRevenue = 0;
         for (Prize prize : prizeMap.keySet()) {
             int winningCnt = prizeMap.get(prize);
             totalRevenue += (winningCnt * prize.getWinningAmount());
         }
-
-        OutputView.outputRateOfReturn(String.format("%.2f", (float)totalRevenue/purchaseAmount.getMoney()));
+        OutputView.outputRateOfReturn(String.format("%.2f", (double)(totalRevenue*100)/purchaseAmount.getMoney()));
     }
 
 

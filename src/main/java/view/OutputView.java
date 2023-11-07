@@ -8,6 +8,8 @@ public class OutputView {
     private static String OUTPUT_PURCHASE_AMOUNT_MESSAGE = "개를 구매했습니다.";
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
     private static final String SEPARATOR = "---";
+    private static final String TOTAL_RATE_OF_RETURN_START_MESSAGE = "총 수익률은 ";
+    private static final String TOTAL_RATE_OF_RETURN_END_MESSAGE = "입니다.";
 
     public static void printNumberOfLottosPurchased(int numberOfLottosPurchased){
         System.out.println(numberOfLottosPurchased + OUTPUT_PURCHASE_AMOUNT_MESSAGE);
@@ -26,6 +28,6 @@ public class OutputView {
 
     public static void printWinningMessage(String winningMessage, String rateOfReturn){
         System.out.println(winningMessage);
-        System.out.println(rateOfReturn);
+        System.out.println(TOTAL_RATE_OF_RETURN_START_MESSAGE + rateOfReturn + TOTAL_RATE_OF_RETURN_END_MESSAGE);
     }
 }

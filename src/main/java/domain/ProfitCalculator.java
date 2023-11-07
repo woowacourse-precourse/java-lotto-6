@@ -39,7 +39,7 @@ public class ProfitCalculator {
     public String calculateRateOfReturn(int amount) {
         double rateOfReturn = (totalPrizeMoney / (double) amount) * 100;
         String formattedRateOfReturn = formatRateOfReturn(rateOfReturn);
-        return String.format("총 수익률은 %s%%입니다.", formattedRateOfReturn);
+        return String.format("%s%%", formattedRateOfReturn);
     }
 
     private String formatRateOfReturn(double rate) {

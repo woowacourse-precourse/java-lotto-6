@@ -47,7 +47,7 @@ public class ProfitCalculatorTest {
         profitCalculator.calculateProfit(lottos, winningNumbers, bonusNumber);
 
         String rateOfReturnRoundingUp = profitCalculator.calculateRateOfReturn(1950);
-        assertEquals("총 수익률은 256.4%입니다.", rateOfReturnRoundingUp);
+        assertEquals("256.4%", rateOfReturnRoundingUp);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class ProfitCalculatorTest {
 
         String rateOfReturn = profitCalculator.calculateRateOfReturn(2700);
 
-        assertEquals("총 수익률은 185.2%입니다.", rateOfReturn);
+        assertEquals("185.2%", rateOfReturn);
     }
 }
 

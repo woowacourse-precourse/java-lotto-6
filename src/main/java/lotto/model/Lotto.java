@@ -32,6 +32,20 @@ public class Lotto {
         Collections.sort(numbers);
     }
 
+    public int calculateMatchLottoCount(Lotto lotto) {
+        return lotto.numbers.stream()
+                .filter(this.numbers::contains)
+                .toList()
+                .size();
+    }
+
+    public int calculateMathBonusCount(BonusNumber bonusNumber) {
+        if (numbers.contains(bonusNumber.getBonusNumber())) {
+            return 1;
+        }
+        return 0;
+    }
+
     public boolean isContain(int number) {
         return numbers.contains(number);
     }

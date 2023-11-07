@@ -12,4 +12,9 @@ public class OutputView {
         System.out.println(userLotto);
         System.out.println();
     }
+
+    public void printResult(String result) {
+        System.out.println(OutputMessage.WINNING_STATISTICS_TITLE.getMessage());
+        System.out.println(result);
+    }
 }

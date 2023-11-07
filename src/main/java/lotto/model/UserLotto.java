@@ -1,7 +1,6 @@
 package lotto.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class UserLotto {
@@ -17,7 +16,9 @@ public class UserLotto {
     }
 
     private void sortEachLotto() {
-        userLotto.forEach(Lotto::sort);
+        for (Lotto lotto : userLotto) {
+            lotto.sort();
+        }
     }
 
     @Override
@@ -26,5 +27,17 @@ public class UserLotto {
                 .map(Lotto::toString)
                 .toList();
         return String.join("\n", results);
+    }
+
+    public List<MatchScore> calculateMatchScores(WinningLotto winningLotto) {
+        List<MatchScore> matchScores = new ArrayList<>();
+
+        for (Lotto lotto : userLotto) {
+            int matchLottoCount = lotto.calculateMatchLottoCount(winningLotto.getLotto());
+            int matchBonusCount = lotto.calculateMathBonusCount(winningLotto.getBonusNumber());
+            matchScores.add(new MatchScore(matchLottoCount, matchBonusCount));
+        }
+
+        return matchScores;
     }
 }

@@ -3,6 +3,7 @@ package lotto.controller;
 import lotto.model.BonusNumber;
 import lotto.model.Constants;
 import lotto.model.Lotto;
+import lotto.model.ResultGenerator;
 import lotto.model.UserLotto;
 import lotto.model.WinningLotto;
 import lotto.view.InputView;
@@ -28,7 +29,13 @@ public class LottoController {
         Lotto lotto = inputView.getLotto();
         BonusNumber bonusNumber = inputView.getBonusNumber(lotto);
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
-        System.out.println();
+
+        outputView.printResult(makeResult(userLotto, winningLotto, purchasePrice));
+    }
+
+    private String makeResult(UserLotto userLotto, WinningLotto winningLotto, int purchasePrice) {
+        ResultGenerator resultGenerator = new ResultGenerator(userLotto, winningLotto, purchasePrice);
+        return resultGenerator.generate();
     }
 
     private int countLotto(int purchasePrice) {

@@ -19,4 +19,11 @@ public class OutputViewTest {
                 Arrays.asList(21, 22, 23, 24, 25, 26));
         outputView.printLottoBuyingResult(testLottoAmount, testLottoNumbers);
     }
+
+    @DisplayName("로또 당첨 내역 출력 테스트")
+    @Test
+    void printLottoWinningResultTest() {
+        List<String> testLottoResult = Arrays.asList("5", "4", "3", "1", "2");
+        outputView.printLottoWinningResult(testLottoResult);
+    }
 }

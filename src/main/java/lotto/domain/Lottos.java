@@ -4,6 +4,7 @@ import lotto.domain.winning.WinningNumbers;
 import lotto.domain.winning.WinningResult;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public final class Lottos {
@@ -17,5 +18,9 @@ public final class Lottos {
         return lottos.stream()
                 .map(winningNumbers::getWinningResult)
                 .toList();
+    }
+
+    public List<Lotto> getLottos() {
+        return Collections.unmodifiableList(lottos);
     }
 }

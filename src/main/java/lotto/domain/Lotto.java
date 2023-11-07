@@ -45,4 +45,11 @@ public final class Lotto {
                 .filter(lotto::contains)
                 .count();
     }
+
+    public List<Integer> getSortedNumbers() {
+        return numbers.stream()
+                .map(LottoNumber::getNumber)
+                .sorted()
+                .toList();
+    }
 }

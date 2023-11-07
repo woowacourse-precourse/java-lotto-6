@@ -39,4 +39,8 @@ public final class LottoNumber {
                 .map(LottoNumber::valueOf)
                 .toList();
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

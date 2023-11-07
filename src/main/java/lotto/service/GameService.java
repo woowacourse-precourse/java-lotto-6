@@ -1,9 +1,8 @@
 package lotto.service;
 
-import lotto.domain.LottoMachine;
-import lotto.domain.Lottos;
-import lotto.domain.Money;
-import lotto.domain.NumbersCreator;
+import lotto.domain.*;
+
+import java.util.List;
 
 public class GameService {
     private final NumbersCreator numbersCreator;
@@ -13,8 +12,12 @@ public class GameService {
         this.numbersCreator = numbersCreator;
     }
 
-    public void purchaseLottos(int purchaseMoney) {
+    public List<List<Integer>> purchaseLottos(int purchaseMoney) {
         LottoMachine lottoMachine = new LottoMachine(numbersCreator);
         userLottos = lottoMachine.purchaseLotto(new Money(purchaseMoney));
+
+        return userLottos.getLottos().stream()
+                .map(Lotto::getSortedNumbers)
+                .toList();
     }
 }

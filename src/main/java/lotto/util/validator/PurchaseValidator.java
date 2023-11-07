@@ -3,7 +3,7 @@ package lotto.util.validator;
 import lotto.util.ExceptionMessage;
 import lotto.util.Util;
 
-public class PurchaseLottoValidator implements Validatable {
+public class PurchaseValidator implements Validatable {
     @Override
     public void validate(String input) throws IllegalArgumentException {
         int purchase = Util.convertStringToInt(input);

@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.util.Util;
 import lotto.util.validator.BonusNumberValidator;
 import lotto.util.validator.LottoValidator;
-import lotto.util.validator.PurchaseLottoValidator;
+import lotto.util.validator.PurchaseValidator;
 
 public class InputView {
     private static final InputView instance = new InputView();
@@ -18,7 +18,7 @@ public class InputView {
         try {
             System.out.print(Message.INPUT_PURCHASE_LOTTO.message);
             String input = Console.readLine();
-            new PurchaseLottoValidator().validate(input);
+            new PurchaseValidator().validate(input);
             return Util.convertStringToInt(input);
         } catch (IllegalArgumentException exception) {
             printExceptionMessage(exception);

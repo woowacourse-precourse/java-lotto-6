@@ -13,7 +13,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != NumberConst.LOTTO_SIZE) {
+        if (!isValidSize(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.NOT_PROPER_LOTTO_SIZE.getMessage());
         }
         if (!isUniqueNumbers(numbers)) {
@@ -22,6 +22,10 @@ public class Lotto {
         if (!isValidRange(numbers)) {
             throw new IllegalArgumentException(ExceptionMessage.INVALID_RANGE.getMessage());
         }
+    }
+
+    private boolean isValidSize(List<Integer> numbers) {
+        return numbers.size() == NumberConst.LOTTO_SIZE;
     }
 
     public boolean hasBonus(int bonus) {

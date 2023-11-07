@@ -12,9 +12,9 @@ public class Utils {
         return Integer.parseInt(number);
     }
 
-    public static final List<Integer> stringToIntegerSortedList(final String inputString) {
-        String[] splitString = inputString.split(",", -1);
-        return arrayToSortedList(splitString);
+    public static final List<Integer> stringToIntegerSortedList(final String numbers) {
+        String[] splitNumbers = numbers.split(",", -1);
+        return arrayToSortedList(splitNumbers);
     }
 
     private static List<Integer> arrayToSortedList(final String[] numbers) {

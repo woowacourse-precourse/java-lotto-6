@@ -1,9 +1,12 @@
 package lotto.controller;
 
 import lotto.Lotto;
+import lotto.Winning;
+
 import java.util.List;
 
 import static lotto.controller.LottoController.*;
+import static lotto.controller.LottoController.getWinning;
 import static lotto.view.OutView.outputLottoNumber;
 
 public class GameController {
@@ -20,6 +23,8 @@ public class GameController {
         inputWinningNumbers();
         //보너스 번호 입력
         inputBonusNumber();
+        //결과 출력
+        lottoWinningResult();
     }
 
     private void setLotto() {
@@ -37,5 +42,11 @@ public class GameController {
 
     private void inputBonusNumber() {
         bonusNumber = setBonusNumber(list);
+    }
+
+    private void lottoWinningResult() {
+        Winning winning = getWinning(lotto, list, bonusNumber);
+        winning.lottoResult();
+        winning.calculateProfitRate(lotto.size());
     }
 }

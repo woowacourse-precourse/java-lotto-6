@@ -3,7 +3,6 @@ package lotto;
 import static lotto.message.ErrorMessage.LOTTO_IS_NOT_SIX_DIGITS;
 import static lotto.message.ErrorMessage.LOTTO_NUMBER_IS_DUPLICATED;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -11,7 +10,6 @@ import lotto.utils.LottoUtil;
 
 public class Lotto {
     private final List<Integer> numbers;
-    public final static BigDecimal PRICE = BigDecimal.valueOf(1000);
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

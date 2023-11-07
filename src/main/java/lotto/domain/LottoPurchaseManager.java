@@ -5,26 +5,30 @@ import java.util.HashMap;
 import java.util.List;
 import lotto.Lotto;
 import lotto.dto.LottoNumbersInfo;
-import lotto.dto.LottoPurchaseInfo;
 import lotto.message.LottoResult;
 import lotto.message.OutputMessage;
 import lotto.utils.LottoUtil;
 import lotto.utils.Util;
 
 public class LottoPurchaseManager {
-    public void runPurchase(BigDecimal lottoPrice) {
-        BigDecimal purchaseAmount = LottoPurchaseInput.inputPurchaseAmount();
+    private final BigDecimal lottoPrice;
 
-        BigDecimal numberOfLottoPurchased = Util.getHowManyTimes(purchaseAmount, Lotto.PRICE);
+    public LottoPurchaseManager(BigDecimal lottoPrice) {
+        this.lottoPrice = lottoPrice;
+    }
+
+    public void runPurchase() {
+        BigDecimal purchaseAmount = LottoPurchaseInput.inputPurchaseAmount(lottoPrice);
+
+        BigDecimal numberOfLottoPurchased = Util.getHowManyTimes(purchaseAmount, lottoPrice);
         List<Lotto> lottos = LottoUtil.generateLottos(numberOfLottoPurchased, () -> LottoUtil.generateLotto());
         OutputMessage.printLottos(lottos);
 
         List<Integer> winningNumbers = LottoPurchaseInput.inputWinningNumbers();
         int bonusNumber = LottoPurchaseInput.inputBonusNumber();
 
-        LottoPurchaseInfo lottoPurchaseInfo = new LottoPurchaseInfo(purchaseAmount, Lotto.PRICE);
         LottoNumbersInfo lottoNumbersInfo = new LottoNumbersInfo(lottos, winningNumbers, bonusNumber);
-        LottoPurchase purchase = new LottoPurchase(lottoPurchaseInfo, lottoNumbersInfo);
+        LottoPurchase purchase = new LottoPurchase(purchaseAmount, lottoNumbersInfo);
 
         HashMap<LottoResult, BigDecimal> result = purchase.getResult();
         float profitRate = purchase.getProfitRate();

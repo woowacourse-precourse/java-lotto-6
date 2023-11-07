@@ -1,6 +1,8 @@
 package lotto.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.domain.Buyer;
@@ -99,6 +101,15 @@ public class Service {
 		int correctCount = countCorrectLottoNumber(lotto);
 		boolean isbonus = isBonusNumberCorrect(lotto);
 		return Rank.ranking(correctCount, isbonus);
+	}
+	
+	public void countEachRank() {
+		Map<Rank, Integer> lottoResults = buyer.getLottoResult();
+		for (Lotto lotto : buyer.getPurchasedLotteries()) {
+			int count = lottoResults.get(checkLottoRank(lotto));
+			count++;
+			lottoResults.put(checkLottoRank(lotto), count);
+		}
 	}
 
 }

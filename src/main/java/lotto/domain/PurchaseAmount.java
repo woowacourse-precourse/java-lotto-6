@@ -38,8 +38,4 @@ public class PurchaseAmount {
 	private boolean isMultipleOfThousand(String amount) {
 		return Integer.parseInt(amount) % LOTTO_PRICE.getValue() == 0;
 	}
-
-	public double calculateReturnRate(long totalPrize) {
-		return ((double) totalPrize / this.amount) * 100;
-	}
 }

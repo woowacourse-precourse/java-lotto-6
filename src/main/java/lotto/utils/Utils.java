@@ -38,5 +38,13 @@ public class Utils {
 		}
 		return NOT_SAME;
 	}
+	
+	public static int countSameNumbers(List<Integer> list1, List<Integer> list2) {
+		int count = 0;
+		for (int number : list1) {
+			count += countIfSame(number, list2);
+		}
+		return count;
+	}
 
 }

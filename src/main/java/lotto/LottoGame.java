@@ -5,11 +5,34 @@ import java.util.List;
 
 public class LottoGame {
     private final List<Lotto> lottos = new ArrayList<>();
+    private int firstPlaceCount, secondPlaceCount, thirdPlaceCount, fourthPlaceCount, fifthPlaceCount;
 
     public void run() {
         Integer purchaseAmount = InputView.inputPurchaseAmount();
         createLottos(purchaseAmount);
         printLottoNumbers();
+
+        List<Integer> winningNumbers = InputView.inputWinningNumbers();
+        Integer bonusNumber = InputView.inputBonusNumber();
+
+        checkLottoWinningRank(winningNumbers, bonusNumber);
+    }
+
+    private void checkLottoWinningRank(List<Integer> winningNumbers, Integer bonusNumber) {
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.checkLottoWinningRank(winningNumbers, bonusNumber);
+            if(rank == Rank.FIRST_PLACE) {
+                firstPlaceCount += 1;
+            } else if(rank == Rank.SECOND_PLACE) {
+                secondPlaceCount += 1;
+            } else if(rank == Rank.THIRD_PLACE) {
+                thirdPlaceCount += 1;
+            } else if(rank == Rank.FOURTH_PLACE) {
+                fourthPlaceCount += 1;
+            } else if(rank == Rank.FIFTH_PLACE) {
+                fifthPlaceCount += 1;
+            }
+        }
     }
 
     private void createLottos(Integer purchaseAmount) {

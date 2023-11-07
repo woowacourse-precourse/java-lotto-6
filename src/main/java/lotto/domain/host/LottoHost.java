@@ -2,7 +2,7 @@ package lotto.domain.host;
 
 import Validate.ValidateException;
 import lotto.config.Config;
-import lotto.domain.num.LottoTargetNumResults;
+import lotto.domain.number.LottoTargetNumResults;
 import lotto.utill.Input;
 
 import java.util.List;

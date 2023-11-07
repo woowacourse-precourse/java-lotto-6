@@ -1,7 +1,7 @@
 package lotto.domain.user;
 
 import lotto.domain.lotto.Lotto;
-import lotto.domain.num.LottoTargetNumResults;
+import lotto.domain.number.LottoTargetNumResults;
 
 public class Judgment {
     // TODO: 11/6/23 상수 관리

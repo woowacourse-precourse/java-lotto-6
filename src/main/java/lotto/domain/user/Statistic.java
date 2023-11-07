@@ -4,7 +4,7 @@ import lotto.config.Config;
 import lotto.constant.LottoRank;
 import lotto.domain.lotto.Lotto;
 import lotto.domain.lotto.LottoEnvelop;
-import lotto.domain.num.LottoTargetNumResults;
+import lotto.domain.number.LottoTargetNumResults;
 import lotto.utill.Utii;
 
 import java.util.LinkedList;

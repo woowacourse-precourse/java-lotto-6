@@ -3,7 +3,7 @@ package lotto.domain.user;
 import Validate.ValidateException;
 import lotto.config.Config;
 import lotto.domain.lotto.LottoEnvelop;
-import lotto.domain.num.LottoTargetNumResults;
+import lotto.domain.number.LottoTargetNumResults;
 import lotto.utill.Input;
 
 public class User {

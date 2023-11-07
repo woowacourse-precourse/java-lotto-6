@@ -1,4 +1,4 @@
-package lotto.domain.num;
+package lotto.domain.number;
 
 import lotto.utill.Utii;
 

@@ -1,4 +1,4 @@
-package lotto.domain.num;
+package lotto.domain.number;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

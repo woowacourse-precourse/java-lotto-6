@@ -6,6 +6,9 @@ public class RunLottoGame {
         int moneyInput = inputManager.inputMoney();
 
         LottoQuantityManager lottoquantitymanager = new LottoQuantityManager();
-        lottoquantitymanager.calculateLottoQuantity(moneyInput);
+        int lottoQuantity = lottoquantitymanager.calculateLottoQuantity(moneyInput);
+
+        LottoNumberGenerator lottonumbergenerator = new LottoNumberGenerator();
+        lottonumbergenerator.generateLottoNumbers(lottoQuantity);
     }
 }

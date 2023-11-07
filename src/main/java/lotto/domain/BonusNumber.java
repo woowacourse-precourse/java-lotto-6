@@ -1,7 +1,9 @@
 package lotto.domain;
 
+import lotto.InputException;
+
 public class BonusNumber {
-    private static final String RANGE_ERROR_MESSAGE = "[ERROR] 1 ~ 45 범위의 숫자만 입력 가능합니다.";
+    private static final String RANGE_ERROR_MESSAGE = "1 ~ 45 범위의 숫자만 입력 가능합니다.";
 
     private final int number;
 
@@ -16,7 +18,7 @@ public class BonusNumber {
 
     private void validateRange(int number) {
         if (number < 1 || number > 45) {
-            throw new IllegalArgumentException(RANGE_ERROR_MESSAGE);
+            throw new InputException(RANGE_ERROR_MESSAGE);
         }
     }
 }

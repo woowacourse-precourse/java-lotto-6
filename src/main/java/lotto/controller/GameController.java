@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.Map;
 import java.util.function.Supplier;
+import lotto.InputException;
 import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
@@ -11,7 +12,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
-    private static final String DUPLICATE_ERROR_MESSAGE = "[ERROR] 당첨 번호와 중복되지 않는 번호를 입력해주세요.";
+    private static final String DUPLICATE_ERROR_MESSAGE = "당첨 번호와 중복되지 않는 번호를 입력해주세요.";
 
     public void run() {
         Money money = initMoney();
@@ -37,7 +38,7 @@ public class GameController {
         generateLottos(lottos, money.getDividedBy1000());
         displayLottos(lottos);
     }
-    
+
     private void generateLottos(Lottos lottos, int count) {
         lottos.generate(count);
     }
@@ -65,7 +66,7 @@ public class GameController {
 
     private void validateDulpicate(Lotto winningLotto, int number) {
         if (winningLotto.isAleadyIn(number)) {
-            throw new IllegalArgumentException(DUPLICATE_ERROR_MESSAGE);
+            throw new InputException(DUPLICATE_ERROR_MESSAGE);
         }
     }
 
@@ -73,7 +74,7 @@ public class GameController {
         while (true) {
             try {
                 return supplier.get();
-            } catch (IllegalArgumentException exception) {
+            } catch (InputException exception) {
                 System.out.println(exception.getMessage());
             }
         }

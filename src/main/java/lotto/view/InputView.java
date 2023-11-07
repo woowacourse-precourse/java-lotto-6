@@ -4,14 +4,15 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
+import lotto.InputException;
 
 public class InputView {
     private static final String PURCHASE_COST_MESSAGE = "구입금액을 입력해 주세요.";
     private static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    private static final String NULL_OR_EMPTY_ERROR_MESSAGE = "[ERROR] 공백이나 빈 값은 입력이 불가능합니다.";
-    private static final String NOT_ALLOWED_CHARACTER_ERROR_MESSAGE = "[ERROR] 숫자와 콤마(,)만 입력이 가능합니다.";
-    private static final String NAN_ERROR_MESSAGE = "[ERROR] 숫자가 아닌 값은 입력이 불가능합니다.";
+    private static final String NULL_OR_EMPTY_ERROR_MESSAGE = "공백이나 빈 값은 입력이 불가능합니다.";
+    private static final String NOT_ALLOWED_CHARACTER_ERROR_MESSAGE = "숫자와 콤마(,)만 입력이 가능합니다.";
+    private static final String NAN_ERROR_MESSAGE = "숫자가 아닌 값은 입력이 불가능합니다.";
     private static final Pattern WINNING_NUMBERS = Pattern.compile("^\\d+(,\\d+)*$");
     private static final String SPACE = " ";
     private static final String EMPTY = "";
@@ -56,13 +57,13 @@ public class InputView {
 
     private static void validateNullOrEmpty(String input) {
         if (input.isBlank() || input.contains(SPACE)) {
-            throw new IllegalArgumentException(NULL_OR_EMPTY_ERROR_MESSAGE);
+            throw new InputException(NULL_OR_EMPTY_ERROR_MESSAGE);
         }
     }
 
     private static void validateCharacter(String input) {
         if (!WINNING_NUMBERS.matcher(input).matches()) {
-            throw new IllegalArgumentException(NOT_ALLOWED_CHARACTER_ERROR_MESSAGE);
+            throw new InputException(NOT_ALLOWED_CHARACTER_ERROR_MESSAGE);
         }
     }
 
@@ -82,7 +83,7 @@ public class InputView {
         try {
             result = Long.parseLong(amount);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(NAN_ERROR_MESSAGE);
+            throw new InputException(NAN_ERROR_MESSAGE);
         }
 
         return result;
@@ -93,7 +94,7 @@ public class InputView {
         try {
             result = Integer.parseInt(amount);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException(NAN_ERROR_MESSAGE);
+            throw new InputException(NAN_ERROR_MESSAGE);
         }
 
         return result;

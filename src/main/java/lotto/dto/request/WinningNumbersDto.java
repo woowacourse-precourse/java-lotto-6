@@ -5,22 +5,16 @@ import java.util.List;
 public class WinningNumbersDto {
 
     private final List<Integer> numbers;
-    private final int bonus;
 
-    private WinningNumbersDto(List<Integer> numbers, int bonus) {
+    private WinningNumbersDto(List<Integer> numbers) {
         this.numbers = numbers;
-        this.bonus = bonus;
     }
 
-    public static WinningNumbersDto of(List<Integer> numbers, int bonus) {
-        return new WinningNumbersDto(numbers, bonus);
+    public static WinningNumbersDto from(List<Integer> numbers) {
+        return new WinningNumbersDto(numbers);
     }
 
     public List<Integer> getNumbers() {
         return numbers;
-    }
-
-    public int getBonus() {
-        return bonus;
     }
 }

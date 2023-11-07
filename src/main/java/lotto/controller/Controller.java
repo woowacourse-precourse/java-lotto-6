@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import lotto.constant.Winning;
 import lotto.model.player.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.player.BuyLotto;
@@ -25,7 +26,7 @@ public class Controller {
         List<Integer> winningNumber = winningNumberManager(); // 당첨 번호 입력
         int bonusNumber =  bonusNumberManager(winningNumber); // 보너스 번호 입력
 
-        Map<String, Integer> allPrizeCount = wonCalculatorManager(winningNumber, bonusNumber); // 당첨 계산
+        Map<Winning, Integer> allPrizeCount = wonCalculatorManager(winningNumber, bonusNumber); // 당첨 계산
         outputView.printWinningStatistics(allPrizeCount);
 
         rateOfReturnManager(purchase, allPrizeCount); // 수익률 계산
@@ -82,7 +83,7 @@ public class Controller {
         return bonusNumber.getBonusNumber();
     }
 
-    private Map<String, Integer> wonCalculatorManager(List<Integer> winningNumber, int bonusNumber) {
+    private Map<Winning, Integer> wonCalculatorManager(List<Integer> winningNumber, int bonusNumber) {
         CheckWinning checkWinning
                 = new CheckWinning(winningNumber, bonusNumber);
         WinningRank winningRank = new WinningRank();
@@ -96,7 +97,7 @@ public class Controller {
         winningRank.recorder(result);
     }
 
-    private void rateOfReturnManager(int purchase, Map<String, Integer> allPrizeCount) {
+    private void rateOfReturnManager(int purchase, Map<Winning, Integer> allPrizeCount) {
         YieldCalculator yieldCalculator = new YieldCalculator(purchase, allPrizeCount);
         outputView.printRateOfReturn(yieldCalculator.getRateOfReturn());
     }

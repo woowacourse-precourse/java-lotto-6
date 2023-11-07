@@ -1,31 +1,17 @@
 package lotto.model.calculator;
 
-import java.util.HashMap;
 import java.util.Map;
+import lotto.constant.Winning;
 
 public class YieldCalculator {
-    private static int totalPurchaseAmount;
-    private static int totalProfitAmount;
     private static double rateOfReturn;
-    private static Map<String, Integer> prizeMoney = new HashMap<>();
 
-    public YieldCalculator(int totalPurchaseAmount, Map<String, Integer> prize) {
-        putPrizeMoney();
+    public YieldCalculator(int totalPurchaseAmount, Map<Winning, Integer> prize) {
         int sumPrize = 0;
-        sumPrize += prize.get("first") * prizeMoney.get("first");
-        sumPrize += prize.get("second") * prizeMoney.get("second");
-        sumPrize += prize.get("third") * prizeMoney.get("third");
-        sumPrize += prize.get("fourth") * prizeMoney.get("fourth");
-        sumPrize += prize.get("fifth") * prizeMoney.get("fifth");
-        this.rateOfReturn = ((double)sumPrize / totalPurchaseAmount) * 100;
-    }
-
-    private void putPrizeMoney() {
-        prizeMoney.put("first", 2000000000);
-        prizeMoney.put("second", 30000000);
-        prizeMoney.put("third", 1500000);
-        prizeMoney.put("fourth", 50000);
-        prizeMoney.put("fifth", 5000);
+        for(Winning rank : Winning.values()) {
+            sumPrize += prize.get(rank) * rank.getMoney();
+        }
+        rateOfReturn = ((double)sumPrize / totalPurchaseAmount) * 100;
     }
 
     public double getRateOfReturn() {

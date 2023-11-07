@@ -2,9 +2,10 @@ package lotto.model.result;
 
 import java.util.HashMap;
 import java.util.Map;
+import lotto.constant.Winning;
 
 public class WinningRank {
-    private static Map<String, Integer> prizeCount = new HashMap<>();
+    private static Map<Winning, Integer> prizeCount = new HashMap<>();
     private static int firstPrizeCount = 0;
     private static int secondPrizeCount = 0;
     private static int thirdPrizeCount = 0;
@@ -52,12 +53,12 @@ public class WinningRank {
         return fifthPrizeCount;
     }
 
-    public Map<String, Integer> getAllPrizeCount() {
-        prizeCount.put("first", firstPrizeCount);
-        prizeCount.put("second", secondPrizeCount);
-        prizeCount.put("third", thirdPrizeCount);
-        prizeCount.put("fourth", fourthPrizeCount);
-        prizeCount.put("fifth", fifthPrizeCount);
+    public Map<Winning, Integer> getAllPrizeCount() {
+        prizeCount.put(Winning.FIRST, firstPrizeCount);
+        prizeCount.put(Winning.SECOND, secondPrizeCount);
+        prizeCount.put(Winning.THIRD, thirdPrizeCount);
+        prizeCount.put(Winning.FOURTH, fourthPrizeCount);
+        prizeCount.put(Winning.FIFTH, fifthPrizeCount);
         return prizeCount;
     }
 }

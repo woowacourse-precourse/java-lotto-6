@@ -65,4 +65,16 @@ class ValidateTest {
         assertDoesNotThrow(() -> Validator.validateBonusNumber(number1, bonusNumber1));
         assertThrows(IllegalArgumentException.class, () -> Validator.validateBonusNumber(number1, bonusNumber2));
     }
+
+    @DisplayName("보너스 번호가 1부터 45사이의 범위인지 테스트")
+    @Test
+    void 보너스_번호_범위_테스트() {
+        List<Integer> number1 = Arrays.asList(1, 2, 3, 4, 5, 6);
+        String bonusNumber1 = "7";
+        String bonusNumber2 = "50";
+
+        assertDoesNotThrow(() -> Validator.validateBonusNumber(number1, bonusNumber1));
+        assertThrows(IllegalArgumentException.class, () -> Validator.validateBonusNumber(number1, bonusNumber2));
+    }
+
 }

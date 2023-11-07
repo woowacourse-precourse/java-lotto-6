@@ -34,12 +34,11 @@ public class LottoGameController {
     private Lottos buyLotto() {
         Lottos lottos = null;
         try {
-            // 구입 금액 입력
             outputView.printPurchaseInput();
             Money money = new Money(input());
-            // 로또 구매
+
             lottos = lottoStore.sellLotto(money);
-            // 로또 번호 반환 및 출력
+
             PurchaseHistoryDto dto = PurchaseHistoryDto.toDto(lottos.getEA(), lottos.getHistory());
             outputView.printPurchaseHistory(dto);
         } catch (IllegalArgumentException e) {

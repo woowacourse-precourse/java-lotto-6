@@ -79,4 +79,16 @@ public class BonusNumberTest {
         assertThatThrownBy(() -> new BonusNumber(number,lotto)).hasMessage(
                 ExceptionMessages.BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
     }
+
+    @Test
+    @DisplayName("숫자가 아닌 문자가 입력된 경우")
+    void 음수_입력() throws Exception{
+        //given
+        final String number = "-2";
+
+        //when, then
+        assertThatThrownBy(() -> new BonusNumber(number,lotto)).isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new BonusNumber(number,lotto)).hasMessage(
+                ExceptionMessages.BONUS_NUMBER_IS_NOT_NUMBER.getMessage());
+    }
 }

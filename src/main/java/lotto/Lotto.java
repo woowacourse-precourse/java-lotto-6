@@ -13,12 +13,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            System.out.println("[ERROR] 로또 번호는 6자리로 이뤄져야 합니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 6자리로 이뤄져야 합니다.");
         }
         if(new HashSet<>(numbers).size() != numbers.size()){
-            System.out.println("[ERROR] 로또 번호는 중복된 숫자가 존재해선 안됩니다.");
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복된 숫자가 존재해선 안됩니다.");
         }
     }
 

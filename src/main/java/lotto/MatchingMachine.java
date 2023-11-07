@@ -4,10 +4,10 @@ import java.util.*;
 
 public class MatchingMachine {
 
-    public int countSingleLottoMatchingNumbers(List<Integer> lottoNumbers, List<Integer> winningNumbers) {
+    public int countSingleLottoMatchingNumbers(List<Integer> lottoNumbers, Lotto winningLotto) {
         int count = 0;
         for (int lottoNum : lottoNumbers) {
-            if (winningNumbers.contains(lottoNum)) {
+            if (winningLotto.getNumbers().contains(lottoNum)) {
                 count++;
             }
         }
@@ -22,12 +22,12 @@ public class MatchingMachine {
         return false;
     }
 
-    public List<MatchingCount> countAllLottoMatchingNumbers(List<Lotto> allLotto, List<Integer> winningNumbers, int bonusNumber) {
+    public List<MatchingCount> countAllLottoMatchingNumbers(List<Lotto> allLotto, Lotto winningLotto, int bonusNumber) {
         int count = 0;
         boolean hasBonus = false;
         List<MatchingCount> matchingCounts = new ArrayList<>();
         for (Lotto singleLotto : allLotto) {
-            count = countSingleLottoMatchingNumbers(singleLotto.getNumbers(), winningNumbers);
+            count = countSingleLottoMatchingNumbers(singleLotto.getNumbers(), winningLotto);
             hasBonus = checkBonusNumber(singleLotto, bonusNumber);
             MatchingCount matchingCount = MatchingCount.findByMatchCount(count, hasBonus);
             if(matchingCount != null) {
@@ -35,6 +35,16 @@ public class MatchingMachine {
             }
         }
         return matchingCounts;
+    }
+
+    public void getResultAsConsole(List<MatchingCount> matchingCounts){
+        System.out.println("\n당첨 통계 \n ---");
+        Map<MatchingCount, Integer> map = getLottoResultAsMap(matchingCounts);
+        System.out.println("3개 일치 (5,000원) - " +map.get(MatchingCount.THREE) +"개");
+        System.out.println("4개 일치 (50,000원) - " +map.get(MatchingCount.FOUR) +"개");
+        System.out.println("5개 일치 (1,500,000원) - " +map.get(MatchingCount.FIVE) +"개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " +map.get(MatchingCount.FIVE_BONUS) +"개");
+        System.out.println("6개 일치 (2,000,000,000원) - " +map.get(MatchingCount.SIX) +"개");
     }
 
     public Map<MatchingCount, Integer> getLottoResultAsMap(List<MatchingCount> allMatchingCount){

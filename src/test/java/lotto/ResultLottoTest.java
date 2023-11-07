@@ -68,5 +68,5 @@ public class ResultLottoTest {
         Assertions.assertThat(winning.get(5)).isEqualTo(2000000000);
 
     }
-    
+
 }

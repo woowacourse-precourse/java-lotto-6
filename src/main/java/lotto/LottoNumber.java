@@ -10,11 +10,37 @@ import java.util.Objects;
 
 public class LottoNumber {
 
+    private final Integer number;
 
     private LottoNumber(String input) {
         isBlank(input);
         input = input.trim();
         isDigit(input);
+        validateRange(input);
+        this.number = Integer.parseInt(input);
+    }
+
+    public static LottoNumber newInstance(String number) {
+        return new LottoNumber(number);
+    }
+
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        LottoNumber that = (LottoNumber) o;
+        return Objects.equals(number, that.number);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 
     private void isBlank(String input) {

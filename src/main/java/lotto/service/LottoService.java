@@ -6,7 +6,6 @@ import static lotto.utils.CalculationUtils.*;
 
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,7 +101,7 @@ public class LottoService {
         return roundToDecimalPlace(profitRate, 1);
     }
 
-    public String makeWinningResultOutputStatement(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
+    public String makeStatisticsResultOutputStatement(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
         // winningResult에 경기 결과 기록하기
         makeWinningResult(lottoList, answer, bonusNumber);
 

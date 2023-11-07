@@ -43,8 +43,8 @@ public class OutputView {
                 .forEach(result -> System.out.println(result.getKey().toString() + result.getValue()));
     }
 
-    public void printLottoYield(double v) {
-        System.out.printf(ProcessMessage.TOTAL_YIELD.toString(), v);
+    public void printTotalYield(double totalYield) {
+        System.out.printf(ProcessMessage.TOTAL_YIELD.toString(), totalYield);
     }
 
     public void printExceptionMessage(Exception exception) {

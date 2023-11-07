@@ -46,7 +46,7 @@ public class LottoController {
     }
 
     private void calculateYield() {
-        outputView.printLottoYield(getCalculatedLottoYield());
+        outputView.printTotalYield(getCalculatedLottoYield());
     }
 
     private Map<WinningGrade, Integer> getWinningResult() {

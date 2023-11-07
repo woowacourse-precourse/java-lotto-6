@@ -10,11 +10,12 @@ public class RandomNumbers {
 
     public List<Integer> getRandomNumbers(){
         List<Integer> numbers = camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, SIZE);
-        sortNumbers(numbers);
+//        sortNumbers(numbers);
         return numbers;
     }
 
     private void sortNumbers(List<Integer> numbers){
+        System.out.println(numbers);
         Collections.sort(numbers);
     }
 }

@@ -37,8 +37,13 @@ public class LottoController {
     }
 
     private void getLottoAmount() {
-        LottoAmount lottoAmount = new LottoAmount(InputView.purchaseAmount());
-        amount = lottoAmount.getAmount();
+        try{
+            LottoAmount lottoAmount = new LottoAmount(InputView.purchaseAmount());
+            amount = lottoAmount.getAmount();
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            getLottoAmount();
+        }
     }
 
     private Lotto getWinningLotto() {

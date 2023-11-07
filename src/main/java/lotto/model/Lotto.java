@@ -24,6 +24,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        Validator.duplicateNumber(numbers);
     }
 
     private List<Integer> validation(List<String> numbers) {

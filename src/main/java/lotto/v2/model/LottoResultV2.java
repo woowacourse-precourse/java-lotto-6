@@ -1,5 +1,7 @@
 package lotto.v2.model;
 
+import lotto.v2.util.LottoRank;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,15 +44,16 @@ public class LottoResultV2 {
 
     public void updateMatchCount(LottoV2 purchasedLotto, LottoV2 winningLotto, int bonusNumber) {
         int matchCount = purchasedLotto.matchCount(winningLotto);
-        if (matchCount == 5 && purchasedLotto.containsNumber(bonusNumber)) {
-            secondPrizeWinners.put(5, secondPrizeWinners.getOrDefault(5, 0) + 1);
-        } else {
-            incrementMatchCount(matchCount);
+        boolean bonusMatch = purchasedLotto.containsNumber(bonusNumber);
+        LottoRank rank = LottoRank.valueOf(matchCount, bonusMatch);
+
+        if (rank != null) {
+            incrementMatchCount(rank);
         }
     }
 
-    private void incrementMatchCount(int matchCount) {
-        matchCounts.put(matchCount, matchCounts.getOrDefault(matchCount, 0) + 1);
+    private void incrementMatchCount(LottoRank rank) {
+        matchCounts.put(rank.getMatchCount(), matchCounts.getOrDefault(rank.getMatchCount(), 0) + 1);
     }
 
     public void calculateResults(List<LottoV2> purchasedLottos, LottoV2 winningLotto, int bonusNumber) {

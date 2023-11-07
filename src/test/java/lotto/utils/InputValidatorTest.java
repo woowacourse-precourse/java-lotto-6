@@ -10,9 +10,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 class InputValidatorTest {
 
-    @DisplayName("정수가 아니면 예외가 발생한다.")
+    @DisplayName("2147483647 이하 정수가 아니면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"0.0", "1.23", "ab1", ""})
+    @ValueSource(strings = {"0.0", "1.23", "ab1", "", "2147483648"})
     void testValidateInteger(String input) {
         assertThatThrownBy(() -> InputValidator.validateInteger(input))
                 .isInstanceOf(IllegalArgumentException.class)

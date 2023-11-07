@@ -40,7 +40,6 @@ public class GameService {
         while (true) try {
             return inputSupplier.get();
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
             gameInputView.showError(e.getMessage());
         }
     }

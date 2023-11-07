@@ -42,13 +42,21 @@
 ## LottoService
 
 - [x] 객체 들을 알맞게 사용
+- [x] 에러 핸들링
 
-## Parser
+## Messages/Error
 
-- [] 문자열을 Lotto로 형변환 시킬 수 있는지 검증하는 기능
-- [] 문자열을 Lotto로 형변환 시키고 반환하는 기능
+## Messages/Notification
 
-## Constants
+## Constant/Lotto
+
+## Constant/Prize
+
+## Dto/MyLottosDto
+
+## Dto/SingleResultDto
+
+## Dto/TotaleResultDto
 
 사용자 입력 -> LottoService -> LottoGenerator -> Lottos -> Lotto
 -> Computer(Lottos) -> LottoService -> 화면 출력

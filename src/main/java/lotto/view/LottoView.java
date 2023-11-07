@@ -34,6 +34,7 @@ public class LottoView {
     }
 
     public void printBonusNumberMessage() {
+        printEnterLine();
         System.out.println(inputBonusNumberMessage);
     }
 

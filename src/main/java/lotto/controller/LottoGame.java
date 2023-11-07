@@ -13,7 +13,7 @@ public class LottoGame {
 
     public void start() {
         printMessageAndInputMoney();
-        List<List<Integer>> lottos = getRandamLottos();
+        List<List<Integer>> myLottos = getRandamLottos();
         printMessageAndInputWinningNumber();
         printMessageAndInputBonusNumber();
     }
@@ -34,13 +34,16 @@ public class LottoGame {
         lottoView.printWinningNumberMessage();
         String winningNumber = lottoUtil.getUserInput();
         lottoUtil.validateNumberCheck(winningNumber);
-        lotto = new Lotto(lottoUtil.convertNumbers(winningNumber));
+        List<Integer> winnerNumber = lottoUtil.convertNumbers(winningNumber);
+        lottoUtil.checkDuplicateNumbers(winnerNumber);
+        lotto = new Lotto(winnerNumber);
     }
 
     public void printMessageAndInputBonusNumber() {
         lottoView.printBonusNumberMessage();
         String bonusNumber = lottoUtil.getUserInput();
         lotto.validate(bonusNumber);
+        lottoUtil.checkDuplicateNumbers(lotto.getNumbers());
     }
 
 }

@@ -17,7 +17,7 @@ public class Lotto {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_TOTAL.getValue());
         }
         numbers.forEach(number -> {
-            if(0 < number && number <= 45) {
+            if(0 >= number && number > 45) {
                 throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_RANGE.getValue());
             }
         });
@@ -31,11 +31,15 @@ public class Lotto {
             throw new IllegalArgumentException(ExceptionMessage.NUMBER.getValue());
         }
 
-        if(0 < num && num <= 45) {
+        if(0 >= num && num > 45) {
             throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_RANGE.getValue());
         }
 
         this.numbers.add(num);
+    }
+
+    public List<Integer> getNumbers() {
+        return numbers;
     }
 
 }

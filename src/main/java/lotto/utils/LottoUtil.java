@@ -3,9 +3,7 @@ package lotto.utils;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoUtil {
@@ -37,5 +35,12 @@ public class LottoUtil {
         return  numbers.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+
+    public void checkDuplicateNumbers(List<Integer> numbers) {
+        Set<Integer> deleteDupliNumber = new HashSet<>(numbers);
+        if(numbers.size() != deleteDupliNumber.size()) {
+            throw new IllegalArgumentException(ExceptionMessage.WINNING_NUMBER_DUPLICATE.getValue());
+        }
     }
 }

@@ -19,7 +19,7 @@ public class LottoController {
 
     public Lottery buyLottery(Price purchasePrice) {
         List<Lotto> lottery = new ArrayList<>();
-        Integer numOfLotto = purchasePrice.numberLotteryAvailablePurchase();;
+        Integer numOfLotto = purchasePrice.numberAvailableForPurchase();;
 
         for (Integer i = 0; i < numOfLotto; i++) {
             lottery.add(this.lottoMachine.buyLotto());

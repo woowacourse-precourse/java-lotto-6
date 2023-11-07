@@ -19,7 +19,7 @@ public class Application {
         Price purchasePrice = getPurchasePrice();
         Lottery lottery = lottoController.buyLottery(purchasePrice);
 
-        OutputView.printPurchaseResult(purchasePrice.numberLotteryAvailablePurchase());
+        OutputView.printPurchaseResult(purchasePrice.numberAvailableForPurchase());
         OutputView.printLotteryNumber(lottery.printLottoNumbers());
 
         String stringWinningNumber = getWinningNumber();
@@ -32,11 +32,10 @@ public class Application {
     }
 
     private static List<LottoNumber> toLottoNumbers(String stringWinningNumber) {
-        List<LottoNumber> winningNumber = Arrays.stream(stringWinningNumber.split(","))
+        return Arrays.stream(stringWinningNumber.split(","))
                 .map(s -> Integer.valueOf(s))
                 .map(LottoNumber::new)
                 .collect(Collectors.toList());
-        return winningNumber;
     }
 
     private static Price getPurchasePrice() {

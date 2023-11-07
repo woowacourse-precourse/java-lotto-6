@@ -23,7 +23,7 @@ public class Price {
         }
     }
 
-    public Integer numberLotteryAvailablePurchase() {
+    public Integer numberAvailableForPurchase() {
         return this.price / LOTTO_PRICE;
     }
 

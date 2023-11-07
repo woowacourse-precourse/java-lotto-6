@@ -14,8 +14,9 @@ public class LottoMachine {
         int amount = money / GlobalConstant.DIVIDE_NUMBER.getValue();
 
         for (int loopCnt = 0; loopCnt < amount; loopCnt++) {
-            List<Integer> ticket = Randoms.pickUniqueNumbersInRange(GlobalConstant.LOTTO_NUMBER_MIN.getValue(),
-                    GlobalConstant.LOTTO_NUMBER_MAX.getValue(), GlobalConstant.LOTTO_NUMBER_SIZE.getValue());
+            List<Integer> ticket = new ArrayList<>(
+                    Randoms.pickUniqueNumbersInRange(GlobalConstant.LOTTO_NUMBER_MIN.getValue(),
+                            GlobalConstant.LOTTO_NUMBER_MAX.getValue(), GlobalConstant.LOTTO_NUMBER_SIZE.getValue()));
             ticket.sort(Comparator.naturalOrder());
             tickets.add(new Lotto(ticket));
         }

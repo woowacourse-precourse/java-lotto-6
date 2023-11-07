@@ -6,23 +6,20 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
-
-    private String purchaseAmount;
-    private int purchaseCount;
-    private String winningNumbers;
-    private List<Integer> winningNumbersList;
-    private String bonusNumber;
-
     InputView inputView = new InputView();
     OutputView outputView = new OutputView();
     LottoGameService lottoGameService = new LottoGameService();
+    private String purchaseAmount;
+    private int purchaseCount;
+    private List<Integer> winningNumbers;
+    private String bonusNumber;
 
     public void playGame() {
         try {
             inputLottoPurchaseAmount();
             setLottoPurchaseCount();
             printPurchaseQuantity();
-            generateLottoNumbers();
+            generateLottoTicket();
             printPurchasedLottoNumbers();
             setWinningNumbers();
             setBonusNumber();
@@ -47,8 +44,8 @@ public class LottoGameController {
         outputView.printPurchaseQuantity(purchaseCount);
     }
 
-    public void generateLottoNumbers() {
-        for (int i = 0; i < purchaseCount; i++) {
+    public void generateLottoTicket() {
+        for (int generateIndex = 0; generateIndex < purchaseCount; generateIndex++) {
             lottoGameService.generateLottoNumbers();
         }
     }
@@ -58,23 +55,24 @@ public class LottoGameController {
     }
 
     public void setWinningNumbers() {
-        winningNumbers = inputView.inputWinningNumbers();
+        String inputNumbers = inputView.inputWinningNumbers();
+        lottoGameService.validateInputNumbers(inputNumbers);
+        winningNumbers = lottoGameService.convertStringToCollection(inputNumbers);
         lottoGameService.validateWinningNumbers(winningNumbers);
-        winningNumbersList = lottoGameService.convertWinningNumbersToCollection(winningNumbers);
-        lottoGameService.validateWinningNumbersList(winningNumbersList);
     }
 
     public void setBonusNumber() {
         bonusNumber = inputView.inputBonusNumber();
-        lottoGameService.validateBonusNumber(bonusNumber);
+        lottoGameService.validateBonusNumber(bonusNumber, winningNumbers);
     }
 
     public void updateWinningCount() {
         for (List<Integer> purchasedLottoNumber : lottoGameService.getPurchasedLottoNumbers()) {
             lottoGameService.updateWinningCount(
-                    lottoGameService.determineWinningRank(purchasedLottoNumber, winningNumbersList,
-                            Integer.parseInt(bonusNumber))
-            );
+                    lottoGameService.determineWinningRank(
+                            purchasedLottoNumber,
+                            winningNumbers,
+                            Integer.parseInt(bonusNumber)));
         }
     }
 

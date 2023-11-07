@@ -41,4 +41,13 @@ public class LottoConsole {
       getSpendMoney();
     }
   }
+
+  private void buy() {
+    System.out.println("\n" + paidLottoCount + "개를 구매했습니다.");
+    for(int i=0; i<paidLottoCount; i++) {
+      paidLottos.add(new Lotto(Lotto.generateLotto()));
+      System.out.println(paidLottos.get(i));
+    }
+    System.out.println();
+  }
 }

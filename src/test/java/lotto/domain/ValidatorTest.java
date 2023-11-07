@@ -3,10 +3,12 @@ package lotto.domain;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class ValidatorTest {
 
+    @DisplayName("1,000원 단위의 유효한 구매 금액을 입력하면 통과한다.")
     @Test
     void testPurchaseAmount() {
         // given
@@ -18,6 +20,7 @@ class ValidatorTest {
 
     }
 
+    @DisplayName("구매 금액이 1,000원 단위의 금액이 아니면 예외가 발생한다.")
     @Test
     void testPurchaseAmountFail1000() {
         // given
@@ -29,6 +32,7 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("구매 금액이 숫자가 아니면 예외가 발생한다.")
     @Test
     void testNonNumericPurchaseAmount() {
         // given
@@ -40,6 +44,7 @@ class ValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("중복되지 않은 1~ 45 사이의 6개의 로또 당첨 번호를 입력하면 통과한다.")
     @Test
     void testSixNumbers() {
         // given
@@ -50,6 +55,7 @@ class ValidatorTest {
         Assertions.assertThatCode(() -> Validator.validateNumbers(input)).doesNotThrowAnyException();
     }
 
+    @DisplayName("로또 번호 입력 시 공백을 허용한다.")
     @Test
     void testSpaceRemoval() {
         // given
@@ -60,6 +66,7 @@ class ValidatorTest {
         Assertions.assertThatCode(() -> Validator.validateNumbers(input)).doesNotThrowAnyException();
     }
 
+    @DisplayName("45가 넘는 로또 번호를 입력하면 예외가 발생한다.")
     @Test
     void testOver45() {
         // given
@@ -70,6 +77,7 @@ class ValidatorTest {
         Assertions.assertThatCode(() -> Validator.validateNumbers(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("숫자가 아닌 로또 번호를 입력하면 예외가 발생한다.")
     @Test
     void testNonNumericLottoNumbers() {
         // given
@@ -80,6 +88,7 @@ class ValidatorTest {
         Assertions.assertThatCode(() -> Validator.validateNumbers(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("1 ~ 45 사이의 보너스 번호를 입력하면 통과한다")
     @Test
     void testLottoNumber() {
         // given
@@ -90,6 +99,7 @@ class ValidatorTest {
         Assertions.assertThatCode(() -> Validator.validateLottoNumber(input)).doesNotThrowAnyException();
     }
 
+    @DisplayName("45가 넘는 보너스 번호를 입력하면 예외가 발생한다.")
     @Test
     void testOver45LottoNumber() {
         // given
@@ -100,6 +110,7 @@ class ValidatorTest {
         Assertions.assertThatCode(() -> Validator.validateLottoNumber(input)).isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("숫자가 아닌 보너스 번호를 입력하면 예외가 발생한다.")
     @Test
     void testNonNumericLottoNumber() {
         // given

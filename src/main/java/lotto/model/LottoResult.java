@@ -10,7 +10,7 @@ public class LottoResult {
         this.lottoResult = lottoResult;
     }
 
-    public static LottoResult getLottoResult(WinningLotto winningLotto, LottoTickets lottoTickets) {
+    public static LottoResult calculateLottoResult(WinningLotto winningLotto, LottoTickets lottoTickets) {
         EnumMap<Rank, Integer> rank = new EnumMap<>(Rank.class);
         EnumSet.allOf(Rank.class).forEach(grade -> rank.put(grade, 0));
         for (Lotto lottoTicket : lottoTickets.getLottoTickets()) {
@@ -19,5 +19,9 @@ public class LottoResult {
             rank.put(currentRank, rank.get(currentRank) + 1);
         }
         return new LottoResult(rank);
+    }
+
+    public EnumMap<Rank, Integer> getLottoResult() {
+        return lottoResult;
     }
 }

@@ -25,7 +25,6 @@ public class Lotto {
         if (numbers.contains(winningNumbers.getBonusNum())) {
             bonusNumberCount++;
         }
-
         return findLottoRank(sameNumberCount, bonusNumberCount);
     }
 
@@ -37,7 +36,6 @@ public class Lotto {
                 count++;
             }
         }
-
         return count;
     }
 
@@ -48,7 +46,6 @@ public class Lotto {
                 return rank;
             }
         }
-
         return LottoRank.RANK_OUTSIDE;
     }
 

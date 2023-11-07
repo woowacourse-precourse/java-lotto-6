@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -65,5 +66,15 @@ class LottoTest {
         int expectedTicketCount = 5;
         List<Lotto> lottoTickets = lottoService.buyLottoTickets(purchaseAmount);
         assertEquals(expectedTicketCount, lottoTickets.size());
+    }
+
+    @DisplayName("로또 번호가 오름차순으로 출력")
+    @Test
+    void testGetAscendingSortedNumbers() {
+        List<Integer> numbers = Arrays.asList(26, 42, 4, 12, 5, 31);
+        Lotto lotto = new Lotto(numbers);
+        List<Integer> sortedNumbers = lotto.getAscendingSortedNumbers();
+        List<Integer> expectedSortedNumbers = Arrays.asList(4, 5, 12, 26, 31, 42);
+        assertEquals(expectedSortedNumbers, sortedNumbers);
     }
 }

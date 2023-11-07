@@ -69,7 +69,7 @@ public class Validator {
     }
 
     private static boolean isNotDivisionForPrice(int purchaseAmount) {
-        return purchaseAmount % LOTTO_PRICE != ZERO;
+        return purchaseAmount % LOTTO_PRICE != 0;
     }
 
     private static boolean isInvalidWinningNumbersSize(String[] winningNumbers) {

@@ -15,7 +15,7 @@ public class LottoService {
     private final List<Lotto> userLottos = new ArrayList<>();
     private final HashMap<LottoRank, Integer> winningRankCount = new HashMap<>();
     private List<Integer> winningNumbers = new ArrayList<>();
-    private long totalPrizeAmount = ZERO;
+    private long totalPrizeAmount = 0;
     private int bonusNumber;
 
     public LottoService(RandomNumberGenerator randomNumberGenerator) {
@@ -35,7 +35,7 @@ public class LottoService {
     }
 
     public List<Lotto> purchase (int purchaseQuantity) {
-        for (int i = ZERO; i < purchaseQuantity; i++) {
+        for (int i = 0; i < purchaseQuantity; i++) {
             List<Integer> lottoNumbers = randomNumberGenerator.uniqueNumbers();
             Lotto lotto = generateLotto(lottoNumbers);
             userLottos.add(lotto);
@@ -90,7 +90,7 @@ public class LottoService {
     }
 
     private void countWinningRank(LottoRank lottoRank) {
-        winningRankCount.put(lottoRank, winningRankCount.getOrDefault(lottoRank, ZERO) + ONE);
+        winningRankCount.put(lottoRank, winningRankCount.getOrDefault(lottoRank, 0) + 1);
     }
 
     private void calculateTotalPrizeAmount() {

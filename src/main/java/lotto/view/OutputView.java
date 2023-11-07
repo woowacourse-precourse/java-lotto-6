@@ -55,14 +55,14 @@ public class OutputView {
         System.out.printf(SECOND_WINNING_FORMAT,
                 lottoRank.getRankMatchCount(),
                 lottoRank.getPrizeAsString(),
-                winningRankCount.getOrDefault(lottoRank, ZERO));
+                winningRankCount.getOrDefault(lottoRank, 0));
     }
 
     private static void printWinningRankInfo(HashMap<LottoRank, Integer> winningRankCount, LottoRank lottoRank) {
         System.out.printf(WINNING_RESULT_FORMAT,
                 lottoRank.getRankMatchCount(),
                 lottoRank.getPrizeAsString(),
-                winningRankCount.getOrDefault(lottoRank,ZERO));
+                winningRankCount.getOrDefault(lottoRank,0));
     }
 
     private static void printProfitRate(double profitRate) {

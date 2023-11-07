@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class WinResultTest {
@@ -20,14 +19,14 @@ class WinResultTest {
                 new Lotto(Arrays.asList(1, 2, 3, 4, 5, 7)), //2
                 new Lotto(Arrays.asList(1, 2, 3, 4, 11, 12)), //4
                 new Lotto(Arrays.asList(1, 2, 3, 11, 12, 33))  //5
-                ));
-        Lotto winningLotto = new Lotto(Arrays.asList(1,2,3,4,5,6));
+        ));
+        Lotto winningLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
         assertThat(WinResult.getResult(allLotto, winningLotto, 7)).isEqualTo(Arrays.asList(0, 5, 1, 3, 2, 4, 5));
     }
 
     @Test
     void countRankTest() {
         List<Integer> result = new ArrayList<>(Arrays.asList(0, 5, 1, 3, 2, 4, 5));
-        assertThat(WinResult.countRank(result)).isEqualTo(Arrays.asList(1,1,1,1,2));
+        assertThat(WinResult.countRank(result)).isEqualTo(Arrays.asList(1, 1, 1, 1, 2));
     }
 }

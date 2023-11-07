@@ -39,9 +39,9 @@ public class InputRequirement {
         return new Lotto(convertStringToInt(winningNums));
     }
 
-    public static List<Integer> convertStringToInt (List<String> original) {
+    public static List<Integer> convertStringToInt(List<String> original) {
         List<Integer> convert = new ArrayList<>();
-        for (String previous: original){
+        for (String previous : original) {
             int num = Integer.parseInt(previous);
             convert.add(num);
         }
@@ -50,7 +50,7 @@ public class InputRequirement {
 
     public static int inputBonusNumber() {
         PrintInstructions.printBonusInstruction();
-        try{
+        try {
             int bonus = Integer.parseInt(Console.readLine());
             Validation.validateBonusNumber(bonus, winningNums);
             return bonus;

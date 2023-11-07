@@ -15,7 +15,7 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
         }
-        if(numbers.size() != numbers.stream().distinct().count()){
+        if (numbers.size() != numbers.stream().distinct().count()) {
             throw new IllegalArgumentException("[ERROR] 숫자가 중복될 수 없습니다.");
         }
     }
@@ -24,15 +24,15 @@ public class Lotto {
         try {
             Collections.sort(this.numbers);
             System.out.println(this.numbers);
-        } catch (UnsupportedOperationException e){
+        } catch (UnsupportedOperationException e) {
             System.out.println(this.numbers);
         }
     }
 
     public int countMatchingNumbers(Lotto winningLotto, int bonus) {
         int count = 0;
-        for (int num: this.numbers) {
-            if (winningLotto.numbers.contains(num)){
+        for (int num : this.numbers) {
+            if (winningLotto.numbers.contains(num)) {
                 count++;
             }
         }
@@ -41,7 +41,7 @@ public class Lotto {
         return Statistic.getRank(count, isBonus);
     }
 
-    public boolean bonusMatch (int count, int bonus) {
+    public boolean bonusMatch(int count, int bonus) {
         boolean isBonus = false;
         if (count == 5 && this.numbers.contains(bonus)) {
             isBonus = true;

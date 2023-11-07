@@ -14,6 +14,6 @@ public class RateOfReturn {
         for (int i = 0; i < 5; i++) {
             total += allPrize.get(i) * rankNumber.get(i);
         }
-        return (double)total/(double)amount*100.0;
+        return (double) total / (double) amount * 100.0;
     }
 }

@@ -24,8 +24,8 @@ public enum Statistic {
 
     public static int getRank(int numberOfMatch, boolean isBonus) {
         Statistic[] values = Statistic.values();
-        for (Statistic value: values) {
-            if (numberOfMatch == value.matchingNumbers && isBonus == value.bonus){
+        for (Statistic value : values) {
+            if (numberOfMatch == value.matchingNumbers && isBonus == value.bonus) {
                 return value.rank;
             }
         }
@@ -35,8 +35,8 @@ public enum Statistic {
     public static List<Integer> getPrize() {
         List<Integer> allPrize = new ArrayList<>();
         Statistic[] values = Statistic.values();
-        for (Statistic value: values) {
-             allPrize.add(value.prize);
+        for (Statistic value : values) {
+            allPrize.add(value.prize);
         }
         return allPrize;
     }

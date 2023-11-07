@@ -7,7 +7,7 @@ import java.util.List;
 public class WinResult {
     public static List<Integer> getResult(List<Lotto> allLotto, Lotto winningLotto, int bonus) {
         List<Integer> result = new ArrayList<>();
-        for (Lotto lotto: allLotto) {
+        for (Lotto lotto : allLotto) {
             result.add(lotto.countMatchingNumbers(winningLotto, bonus));
         }
         return result;

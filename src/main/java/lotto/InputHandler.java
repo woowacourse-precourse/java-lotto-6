@@ -8,12 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class InputHandler {
-    private static final Validation validation = new Validation();
 
-    public List<Integer> getWinningNumber() {
+    public List<Integer> getWinningNumber(String inputNumber) {
         List<Integer> winningNumber = new ArrayList<>();
         try {
-            winningNumber = Arrays.stream(Console.readLine().split(","))
+            winningNumber = Arrays.stream(inputNumber.split(","))
                     .map(String::trim)
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());

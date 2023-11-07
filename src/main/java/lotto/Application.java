@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.List;
 
 public class Application {
@@ -14,11 +16,11 @@ public class Application {
 
         List<Lotto> purchasedLottos = lottoFactory.getPurchasedLottos(numberOfLottos);
 
-        Lotto winningNumber = lottoFactory.getWinningNumber();
+        Lotto winningNumber = lottoFactory.getWinningLotto(Console.readLine());
         int bonusNumber = lottoFactory.getBonusNumber(winningNumber);
 
-        lottoFactory.calculateResults(purchasedLottos, winningNumber, bonusNumber);
-        double roundedReturn = lottoResult.getRoundedReturn(userPurchaseAmount, lottoResult);
+        lottoFactory.calculateResults(purchasedLottos, winningNumber, bonusNumber, lottoResult);
+        double roundedReturn = lottoResult.getRoundedReturn(userPurchaseAmount);
 
         printOut.getStatistics(lottoResult, roundedReturn);
     }

@@ -37,14 +37,14 @@ public class LottoFactory {
         return purchasedLottos;
     }
 
-    public Lotto getWinningNumber() {
+    public Lotto getWinningLotto(String inputNumber) {
         boolean validInputNumber = false;
         List<Integer> winningNumber = new ArrayList<>();
         Lotto lotto = null;
         printOut.inputWinningNumber();
         while (!validInputNumber) {
             try {
-                winningNumber = inputHandler.getWinningNumber();
+                winningNumber = inputHandler.getWinningNumber(inputNumber);
                 lotto = new Lotto(winningNumber);
                 validInputNumber = true;
             } catch (IllegalArgumentException e) {
@@ -71,7 +71,7 @@ public class LottoFactory {
         return bonusNumber;
     }
 
-    public void calculateResults(List<Lotto> purchasedLottos, Lotto winningNumber, int bonusNumber) {
+    public void calculateResults(List<Lotto> purchasedLottos, Lotto winningNumber, int bonusNumber, LottoResult lottoResult) {
         for (Lotto purchasedLotto : purchasedLottos) {
             WinningCriteria criteria = lottoResult.getWinningCriteria(purchasedLotto, winningNumber, bonusNumber);
             if (criteria != null) {

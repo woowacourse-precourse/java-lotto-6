@@ -1,7 +1,6 @@
 package lotto;
 
 import java.util.EnumMap;
-import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
@@ -21,13 +20,13 @@ public class LottoResult {
         return result.get(criteria);
     }
 
-    public double getRoundedReturn(double userPurchaseAmount, LottoResult lottoResult) {
-        int totalPrice = lottoResult.getCount(WinningCriteria.FIFTH_PLACE) * 5_000 +
-                lottoResult.getCount(WinningCriteria.FOURTH_PLACE) * 50_000 +
-                lottoResult.getCount(WinningCriteria.THIRD_PLACE) * 1_500_000 +
-                lottoResult.getCount(WinningCriteria.SECOND_PLACE) * 30_000_000 +
-                lottoResult.getCount(WinningCriteria.FIRST_PLACE) * 2_000_000_000;
-        double totalReturn = ((double) totalPrice / userPurchaseAmount) * 100.0;
+    public double getRoundedReturn(double userPurchaseAmount) {
+        int totalPrice = this.getCount(WinningCriteria.FIFTH_PLACE) * 5_000 +
+                this.getCount(WinningCriteria.FOURTH_PLACE) * 50_000 +
+                this.getCount(WinningCriteria.THIRD_PLACE) * 1_500_000 +
+                this.getCount(WinningCriteria.SECOND_PLACE) * 30_000_000 +
+                this.getCount(WinningCriteria.FIRST_PLACE) * 2_000_000_000;
+        double totalReturn = ((double) totalPrice /(double) userPurchaseAmount) * 100.0;
         return Math.round(totalReturn * 10.0) / 10.0;
     }
 

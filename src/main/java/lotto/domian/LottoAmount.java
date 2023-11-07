@@ -6,8 +6,8 @@ public class LottoAmount {
         validateAmount(amount);
         this.amount = amount;
     }
-    public long calculateLottoAmount() {
-        return amount / 1000;
+    public long calculateLottoAmount(int lottoAmount) {
+        return lottoAmount / 1000;
     }
 
     public static void validateAmount(long amount) {
@@ -17,13 +17,19 @@ public class LottoAmount {
 
     private static void validateMinAmount(long amount) {
         if (amount < 1000) {
+            System.out.println("[ERROR] 최소 입력 금액은 1,000입니다.");
             throw new IllegalArgumentException("[ERROR] 최소 입력 금액은 1,000입니다.");
         }
     }
 
     private static void validateRemainderDivisionBy1000(long amount) {
         if (amount % 1000 != 0) {
+            System.out.println("[ERROR] 입력 금액은 1,000원 단위로 입력이 필요합니다.");
             throw new IllegalArgumentException("[ERROR] 입력 금액은 1,000원 단위로 입력이 필요합니다.");
         }
+    }
+
+    public long getLottoAmount() {
+        return amount;
     }
 }

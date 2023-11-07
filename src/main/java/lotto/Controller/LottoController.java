@@ -5,17 +5,16 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class LottoController {
 
     private List<List<Integer>> boughtLottos = new ArrayList<>();
-    private Lotto lotto;
     private List<Integer> numbers;
     private WinningCheck winningCheck = new WinningCheck();
     public Map<String, Integer> rankingCount;
+    private Lotto lotto;
     private int bonusNumber;
     private long lottoAmount;
 
@@ -36,7 +35,8 @@ public class LottoController {
 
     private long inputLottoAmount() {
         LottoAmount lottoAmountCount = new LottoAmount(InputView.inputAmount());
-        return lottoAmountCount.calculateLottoAmount();
+        long amount = lottoAmountCount.getLottoAmount();
+        return lottoAmountCount.calculateLottoAmount((int) amount);
     }
 
     private void printBoughtLotto(long lottoAmount) {
@@ -51,11 +51,16 @@ public class LottoController {
     }
 
     private void printWinningAndBonusNumber() {
-        System.out.println();
-        numbers = InputView.inputWinningNumbers();
-        System.out.println();
-        bonusNumber = InputView.inputBonusNumber();
-        rankingCount = winningCheck.checkCount(boughtLottos, numbers, bonusNumber);
+        try {
+            System.out.println();
+            lotto = new Lotto(InputView.inputWinningNumbers());
+            numbers = lotto.getLotto();
+            System.out.println();
+            bonusNumber = lotto.bonusNumber(InputView.inputBonusNumber());
+            rankingCount = winningCheck.checkCount(boughtLottos, numbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            printWinningAndBonusNumber();
+        }
     }
 
     private void printWinningStatistic() {

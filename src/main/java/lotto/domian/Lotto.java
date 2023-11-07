@@ -29,7 +29,8 @@ public class Lotto {
 
     private void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            System.out.println("[ERROR] 입력이 필요한 숫자는 6개 입니다.");
+            throw new IllegalArgumentException("[ERROR] 입력이 필요한 숫자는 6개 입니다.");
         }
     }
 
@@ -37,13 +38,15 @@ public class Lotto {
         Set<Integer> validator = new HashSet<>();
         validator.addAll(numbers);
         if (validator.size() != 6) {
-            throw new IllegalArgumentException();
+            System.out.println("[ERROR] 중복된 숫자가 입력 되었습니다.");
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력 되었습니다.");
         }
     }
 
     private void validateNumberRange(List<Integer> numbers) {
         for (int number : numbers) {
             if (number < 1 || number > 45) {
+                System.out.println("[ERROR] 입력이 필요한 숫자의 범위는 1 ~ 45 입니다.");
                 throw new IllegalArgumentException("[ERROR] 입력이 필요한 숫자의 범위는 1 ~ 45 입니다.");
             }
         }
@@ -52,9 +55,13 @@ public class Lotto {
     private void validateDuplicatedBonusNumber(List<Integer> numbers, int bonusNumber) {
         for (int number : numbers) {
             if (number == bonusNumber) {
+                System.out.println("[ERROR] 당첨 번호와 보너스 번호가 중복 되었습니다.");
                 throw new IllegalArgumentException("[ERROR] 당첨 번호와 보너스 번호가 중복 되었습니다.");
             }
         }
     }
-    // TODO: 추가 기능 구현
+
+    public List<Integer> getLotto() {
+        return numbers;
+    }
 }

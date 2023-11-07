@@ -56,4 +56,8 @@ public class OutputView {
         System.out.printf(SECOND_PRINT_MESSAGE, SECOND.getPrizeMoney(), SECOND.getCount());
         System.out.printf(FIRST_PRINT_MESSAGE, FIRST.getPrizeMoney(), FIRST.getCount());
     }
+
+    public static void printLottoProfit(String lottoProfit) {
+        System.out.printf(TOTAL_PROFIT_RATE, lottoProfit);
+    }
 }

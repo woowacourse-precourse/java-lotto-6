@@ -44,5 +44,17 @@ public class LottoService {
     public void calculatePrize() {
         List<Integer> winningLottoNumber = lotto.getNumbers();
         Result result = new Result(winningLottoNumber, userLottoNumbers, bonus.getBonusNumber());
+        PrizeResult rank = new PrizeResult(result.getLottoMatch(),result.getHasBonusMatch());
+
+        List<Prize> totalPrizeResult = rank.getRanking();
+        getTotalPrizeResult(totalPrizeResult);
+    }
+
+    private void getTotalPrizeResult(List<Prize> totalPrizeResult) {
+        new Total(totalPrizeResult);
+        for (Prize prize : Prize.values()) {
+            System.out.print(prize.name()+"count: "+prize.getCount());
+            System.out.println();
+        }
     }
 }

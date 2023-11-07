@@ -9,20 +9,16 @@ import java.util.Map;
 
 public class OutputView {
 
-    public void purchaseLottoNumbersDisplay(LottoNumberModel LottoNumberModel){
-        int lottoQuantity = LottoNumberModel.getLotto().size();
+    public void purchaseLottoNumbersDisplay(LottoNumberModel lottoNumberModel){
 
         System.out.println("");
-        System.out.println(lottoQuantity+"개를 구매했습니다.");
-
-        for (int quantity = 1 ; quantity <= lottoQuantity ; quantity++){
-            LottoNumberModel.getLotto().get(quantity-1).lottoNumberDisplay();
-        }
-
+        System.out.println(lottoNumberModel.getLottoQuantity()+"개를 구매했습니다.");
+        lottoNumberModel.lottoNumberDisplay();
         System.out.println("");
     }
 
     public void lottoResultDisplay(LottoResultModel lottoResultModel){
+
         System.out.println("");
         System.out.println("당첨 통계");
         System.out.println("---");

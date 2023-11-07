@@ -2,6 +2,9 @@ package lotto;
 
 import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
 import static lotto.message.ErrorMessage.NUMBER_FORMAT_MONEY;
+import static lotto.message.ErrorMessage.NUMBER_FORMAT_WINNING_NUMBERS;
+import static lotto.message.ErrorMessage.WINNING_NUMBERS_LENGTH;
+import static lotto.message.ErrorMessage.WINNING_NUMBERS_RANGE;
 
 import java.util.List;
 import lotto.domain.Lotto;
@@ -18,12 +21,12 @@ public class Game {
 
         int purchaseAmount = validatePurchaseAmount();
         List<Lotto> totalLotto = gameManager.createLotto(purchaseAmount);
+        List<Integer> winningNumbers;
 
         Output.printPurchaseLottoQuantityMessage(totalLotto.size());
         Output.printTotalLotto(totalLotto);
-        Output.printWinningNumberMessage();
 
-        List<Integer> winningNumbers = input.getWinningNumbers();
+        winningNumbers = validateWinningNumbers();
 
         Output.printBonusNumberMessage();
         int bonusNumber = input.getBonusNumber();
@@ -34,6 +37,34 @@ public class Game {
 
         double profitPercentage = gameManager.calculateProfitPercentage(winningStatistics, purchaseAmount);
         Output.printProfitPercentage(profitPercentage);
+    }
+
+    private List<Integer> validateWinningNumbers() {
+        List<Integer> winningNumbers;
+        while (true){
+            Output.printWinningNumberMessage();
+            try {
+                winningNumbers = input.getWinningNumbers();
+                break;
+            }catch (IllegalArgumentException e){
+                checkWinningNumbersExceptionCategory(e);
+            }
+        }
+        return winningNumbers;
+    }
+
+    private static void checkWinningNumbersExceptionCategory(IllegalArgumentException e) {
+        if(e.getMessage().equals(WINNING_NUMBERS_LENGTH.errorMessage())){
+            System.out.println(WINNING_NUMBERS_LENGTH.errorMessage());
+        }
+
+        if(e.getMessage().equals(WINNING_NUMBERS_RANGE.errorMessage())){
+            System.out.println(WINNING_NUMBERS_RANGE.errorMessage());
+        }
+
+        if (e.getMessage().equals(NUMBER_FORMAT_WINNING_NUMBERS.errorMessage())){
+            System.out.println(NUMBER_FORMAT_WINNING_NUMBERS.errorMessage());
+        }
     }
 
     private int validatePurchaseAmount() {

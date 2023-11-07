@@ -278,8 +278,18 @@ public class Lotto {
 - [WinningNumbers](../src/main/java/lotto/domain/WinningNumbers.java)
   - contains
 
+- [BonusNumber](../src/main/java/lotto/domain/BonusNumber.java)
+  - is
+
 - [Result](../src/main/java/lotto/domain/Result.java)
+  - winningNumbersContain
+  - bonusNumberIs
+
+- [LottoStatistics](../src/main/java/lotto/domain/Result.java)
   - toString
+
+- [IncomeRate](../src/main/java/lotto/domain/IncomeRate.java)
+  - getPercentageIncomeRate
 
 - [InputView](../src/main/java/lotto/view/InputView.java)
   - getNumber
@@ -287,17 +297,20 @@ public class Lotto {
 
 - [OutputView](../src/main/java/lotto/view/OutputView.java)
   - printGetMoney
-  - printLotto
-  - printGetWinningNumber
+  - printLottoPack
+  - printGetWinningNumbers
   - printGetBonusNumber
   - printResult
+  - printException
   - newline
 
 ## 상수 데이터
 
-- [ExceptionMessage](../src/main/java/lotto/constant/ExceptionMessage.java)
-  - NOT_NUMBER_MESSAGE
-  - OUT_OF_LOTTO_RANGE_MESSAGE
+- [LottoConfig](../src/main/java/lotto/constant/LottoConfig.java)
+  - LOTTO_PRICE
+  - LOTTO_NUMBER_FROM
+  - LOTTO_NUMBER_TO
+  - LOTTO_LENGTH
 
 - [LottoRank](../src/main/java/lotto/constant/LottoRank.java)
   - THREE
@@ -307,12 +320,24 @@ public class Lotto {
   - SIX
   - findRank
   - getPrize
+  - toString
+
+- [ExceptionMessage](../src/main/java/lotto/constant/ExceptionMessage.java)
+  - NOT_NUMBER_MESSAGE
+  - OUT_OF_LOTTO_RANGE_MESSAGE
+  - LENGTH_ERROR_MESSAGE
+  - DUPLICATION_MESSAGE
+  - NOT_POSITIVE_MESSAGE
+  - NOT_UNIT_NUMBER_MESSAGE
+  - BONUS_NUMBER_OVERLAPPED_MESSAGE
 
 - [OutputMessage](../src/main/java/lotto/constant/OutputMessage.java)
-  - GET_MONEY_MESSAGE
-  - BOUGHT_LOTTO_PACK
-  - GET_WINNING_NUMBERS
-  - GET_BONUS_NUMBER
+  - GET_MONEY_MESSAGE_MESSAGE
+  - BOUGHT_LOTTO_PACK_MESSAGE
+  - GET_WINNING_NUMBERS_MESSAGE
+  - GET_BONUS_NUMBER_MESSAGE
+  - LOTTO_RESULT_MESSAGE
+  - INCOME_RATE_MESSAGE
 
 ## 유틸리티
 

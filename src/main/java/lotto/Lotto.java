@@ -1,9 +1,16 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
-    private final List<Integer> numbers;
+
+    private static final int NUMBER_OF_LOTTO = 6;
+    private final List<LottoNumber> numbers;
+
+    public Lotto() {
+        this.numbers = createLotto();
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -16,5 +23,15 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    private List<LottoNumber> createLotto() {
+        List<LottoNumber> lottoNumbers = new ArrayList<>();
+        while (numbers.size() < NUMBER_OF_LOTTO) {
+            LottoNumber lottoNumber = new LottoNumber();
+            if (!numbers.contains(lottoNumber)) {
+                numbers.add(lottoNumber);
+            }
+        }
+        return lottoNumbers;
+    }
+
 }

@@ -4,7 +4,6 @@ import lotto.model.dto.LottoResultDTO;
 
 import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 public class LottoResultAnalyzer {
     private EnumMap<PrizeCategory, Integer> matchResults = new EnumMap<>(PrizeCategory.class);
@@ -56,6 +55,10 @@ public class LottoResultAnalyzer {
         double result = (double) totalWinningPrize / purchaseAmount * 100.0;
 
         return Math.round(result * 100.0) / 100.0;
+    }
+
+    public LottoResultDTO makeResultDTO(EnumMap<PrizeCategory, Integer> matchResults, double totalReturnRate) {
+        return new LottoResultDTO(matchResults, totalReturnRate);
     }
 
     public EnumMap<PrizeCategory, Integer> getMatchResults() {

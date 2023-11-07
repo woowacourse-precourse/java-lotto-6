@@ -1,34 +1,46 @@
 package lotto;
 
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Supplier;
 import util.InputValueValidation;
 import view.InputView;
-import java.util.function.Consumer;
 
 public class InputValueController {
-    InputView inputView = new InputView();
-    InputValueValidation inputValueValidation = new InputValueValidation();
+    private final InputView inputView;
+    private final InputValueValidation inputValueValidation;
 
-    public void inputPurchaseAmount() {
-        inputWithValidation(inputView::purchaseAmount, inputValueValidation::validatePurchaseAmount);
+    public InputValueController(InputView inputView, InputValueValidation inputValueValidation) {
+        this.inputView = inputView;
+        this.inputValueValidation = inputValueValidation;
     }
 
-    public void inputPrizeNumber() {
-        inputWithValidation(inputView::prizeNumber, inputValueValidation::validatePrizeNumber);
+    public int inputPurchaseAmount() {
+        return getInput(
+                inputView::purchaseAmount,
+                inputValueValidation::validatePurchaseAmount
+        );
     }
 
-    public void inputBonusNumber() {
-        inputWithValidation(inputView::bonusNumber, inputValueValidation::validateBonusNumber);
+    public List<Integer> inputPrizeNumber() {
+        return getInput(
+                inputView::prizeNumber,
+                inputValueValidation::validatePrizeNumber
+        );
     }
 
-    private void inputWithValidation(Supplier<String> inputSupplier, Consumer<String> validationFunction) {
-        boolean isValidInput = false;
+    public int inputBonusNumber(List<Integer> prizeNumber) {
+        return getInput(
+                inputView::bonusNumber,
+                enteredBonusNumber -> inputValueValidation.validateBonusNumber(prizeNumber, enteredBonusNumber)
+        );
+    }
 
-        while (!isValidInput) {
+    private <T> T getInput(Supplier<String> inputSupplier, Function<String, T> validationFunction) {
+        while (true) {
             try {
                 String input = inputSupplier.get();
-                validationFunction.accept(input);
-                isValidInput = true;
+                return validationFunction.apply(input);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

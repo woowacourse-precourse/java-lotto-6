@@ -74,7 +74,7 @@ class WinningResultTest {
         long totalAmount2 = winningResult.getWinningResult().keySet()
                 .stream()
                 .map(rank -> winningResult.getCount(rank) * rank.getWinningAmount())
-                .reduce(0L, (a, c) -> a + c);
+                .reduce(0L, Long::sum);
 
         assertThat(totalAmount2)
                 .isEqualTo(

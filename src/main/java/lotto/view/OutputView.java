@@ -9,7 +9,7 @@ public class OutputView {
         System.out.println(count+TICKET_COUNT);
     }
 
-    public static void printSucecessResult(){
+    public static void printSuccessResult(){
         System.out.println(WINNING_STATICS_MESSAGE);
         System.out.println("---");
     }

@@ -54,8 +54,9 @@ public class LottoService {
     }
 
     private List<Integer> createLottoNumbers() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START.value(), LOTTO_NUMBER_END.value(),
-                LOTTO_NUMBER_COUNT.value());
+        List<Integer> numbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_START.value(), LOTTO_NUMBER_END.value(),
+                        LOTTO_NUMBER_COUNT.value()));
         numbers.sort(Comparator.naturalOrder());
         return numbers;
     }

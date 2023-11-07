@@ -1,10 +1,13 @@
 package lotto;
 
+import java.util.regex.Pattern;
+
 public class BuyingLotto {
     private final long ticketNumber;
 
-    public BuyingLotto(long buyingPrice) {
-        this.ticketNumber = calculateTicketNumber(buyingPrice, LOTTO_PRICE);
+    public BuyingLotto(String InputBuyingPrice) {
+        validateInputPrice(InputBuyingPrice);
+        this.ticketNumber = calculateTicketNumber(Long.parseLong(buyingPrice), LOTTO_PRICE);
     }
 
     public Long getTicketNumber() {
@@ -20,6 +23,18 @@ public class BuyingLotto {
         validatePlusSign(unitPrice);
         validatePlusSign(buyingPrice);
         validateDivision(buyingPrice, unitPrice);
+    }
+
+    private void validateInputPrice(String inputPrice) {
+        if (inputPrice.isEmpty() || inputPrice.equals(LINE_SEPARATION)) {
+            throw new IllegalArgumentException();
+        }
+        if (inputPrice.contains(BLANK)) {
+            throw new IllegalArgumentException();
+        }
+        if (!Pattern.matches("^[0-9]+$", inputPrice)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void validatePlusSign(long number) {

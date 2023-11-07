@@ -10,6 +10,7 @@ public class InputHandler {
     public static int purchaseAmountInput(){
         System.out.println("구입금액을 입력해 주세요.");
         int purchaseAmount = Integer.parseInt(Console.readLine());
+        System.out.println();
 
         return purchaseAmount;
     }
@@ -18,6 +19,8 @@ public class InputHandler {
         System.out.println("당첨번호를 입력해 주세요.");
 
         String input = Console.readLine();
+        System.out.println();
+
         String[] winningStringNumbers = input.split(",");
 
         List<Integer> winningNumbers = new ArrayList<>();
@@ -32,6 +35,7 @@ public class InputHandler {
     public static int bonusNumberInput(){
         System.out.println("보너스 번호를 입력해 주세요.");
         int bounsNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
 
         return bounsNumber;
     }

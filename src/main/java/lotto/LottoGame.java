@@ -2,19 +2,27 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class LottoGame {
+    private static final int PERCENTAGE = 100;
     public void playGame(){
+
         final int lottoAmount = 1000;
-        int purchaseNumber = InputHandler.purchaseAmountInput()/lottoAmount;
+        int purchaseAmount = InputHandler.purchaseAmountInput();
+        int purchaseNumber = purchaseAmount/lottoAmount;
 
         Lotto[] lottos = new Lotto[purchaseNumber];
 
+        System.out.println(purchaseNumber+"개를 구매했습니다.");
         for(int i = 0; i < purchaseNumber; i++){
-            lottos[i] = new Lotto(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            List<Integer> autoLotto = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottos[i] = new Lotto(autoLotto);
             System.out.println(lottos[i].getLottoNumbers());
         }
+        System.out.println();
 
         List<Integer> winningNumbers = InputHandler.winningNumberInput();
         int bonusNumber = InputHandler.bonusNumberInput();
@@ -29,10 +37,25 @@ public class LottoGame {
             lottoResult.addNumberOfMatch(rank);
         }
 
-        System.out.println("총 당첨 결과:");
+        System.out.println("당첨통계");
+        System.out.println("---");
+        int totalMoney = 0;
         for (Rank rank : Rank.values()) {
-            System.out.println(rank + " 당첨 횟수: " + lottoResult.getLottoResultTable().get(rank) + " 회");
+            if(rank.getWinningMoney() == 0){
+                continue;
+            }
+
+            totalMoney += rank.getWinningMoney()*lottoResult.getLottoResultTable().get(rank);
+
+            System.out.print(rank.getNumberOfMatch() + "개 일치");
+            if(rank.getWinningMoney() == 30000000 ){
+                System.out.print(", 보너스 볼 일치");
+            }
+            System.out.println(" ("+ String.format("%,d",rank.getWinningMoney())+ "원) - "+ lottoResult.getLottoResultTable().get(rank) + "개");
         }
+
+        float rateOfReturn = (float)totalMoney/purchaseAmount*PERCENTAGE;
+        System.out.println("총 수익률은 "+ String.format("%.1f", rateOfReturn)+"%입니다.");
 
     }
 

@@ -5,6 +5,7 @@ import lotto.service.LottoService;
 import lotto.view.LottoView;
 
 import java.util.List;
+import java.util.Map;
 
 import static lotto.service.LottoService.generateLottoList;
 
@@ -17,6 +18,10 @@ public class LottoController {
         LottoView.printLottoList(lottoList);
 
         Lotto winningNumbers = LottoService.inputWinningNumbers();
-        Integer bonusNumber = LottoService.inputBonusNumber();
+        Integer bonusNumber = LottoService.inputBonusNumber(winningNumbers);
+
+        Map<Integer, Integer> rank = LottoService.checkWinning(lottoList, winningNumbers, bonusNumber);
+        LottoView.printResult(rank);
+
     }
 }

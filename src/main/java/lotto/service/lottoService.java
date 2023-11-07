@@ -4,10 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.model.Lotto;
 import lotto.view.LottoView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoService {
@@ -73,12 +70,12 @@ public class LottoService {
         }
     }
 
-    public static Integer inputBonusNumber() {
+    public static Integer inputBonusNumber(Lotto winningNumbers) {
         Integer bonusNumber = null;
         while (bonusNumber == null) {
             try {
                 String input = LottoView.inputBonusNumber();
-                validateBonusNumber(input);
+                validateBonusNumber(input, winningNumbers);
                 bonusNumber = Integer.valueOf(input);
                 return bonusNumber;
             } catch (IllegalArgumentException e) {
@@ -88,12 +85,20 @@ public class LottoService {
         return bonusNumber;
     }
 
-    private static void validateBonusNumber(String input) {
+    private static void validateBonusNumber(String input, Lotto winningNumbers) {
         try {
             Integer bonusNumber = Integer.parseInt(input);
+            isDuplicateNumber(bonusNumber, winningNumbers);
             bonusNumberIsInRange(bonusNumber);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+        }
+    }
+
+    private static void isDuplicateNumber(Integer bonusNumber, Lotto winningNumbers) {
+        List<Integer> numbers = winningNumbers.getNumbers();
+        if (numbers.contains(bonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨번호와 중복된 숫자입니다.");
         }
     }
 
@@ -102,4 +107,55 @@ public class LottoService {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 사이에 숫자를 입력해주세요.");
         }
     }
+
+    public static Map<Integer, Integer> checkWinning(List<Lotto> lottoList, Lotto winningNumbers, Integer bonusNumber) {
+        Map<Integer, Integer> rankCount = new HashMap<>();
+
+        for (Lotto lotto : lottoList) {
+            int rank = getRank(lotto, winningNumbers, bonusNumber);
+
+            rankCount.put(rank, rankCount.getOrDefault(rank, 0) + 1);
+        }
+        return rankCount;
+    }
+
+    private static int getRank(Lotto lotto, Lotto winningNumbers, Integer bonusNumber) {
+        int numberOfHits = checkLottoNumber(lotto, winningNumbers);
+        return getRankByNumberOfHits(numberOfHits, winningNumbers, bonusNumber);
+    }
+
+    private static int getRankByNumberOfHits(int numberOfHits, Lotto winningNumbers, Integer bonusNumber) {
+        if (numberOfHits == 6) {
+            return 1;
+        } else if (numberOfHits == 5 && bonusNumberInwinningNumbers(winningNumbers, bonusNumber)) {
+            return 2;
+        } else if (numberOfHits == 5) {
+            return 3;
+        } else if (numberOfHits == 4) {
+            return 4;
+        } else if (numberOfHits == 3) {
+            return 5;
+        }
+        return 6;
+    }
+
+    private static boolean bonusNumberInwinningNumbers(Lotto winningNumbers, Integer bonusNumber) {
+        List<Integer> numbers = winningNumbers.getNumbers();
+        return numbers.contains(bonusNumber);
+    }
+
+    private static int checkLottoNumber(Lotto lotto, Lotto winningNumbers) {
+        List<Integer> lottoNumbers = lotto.getNumbers();
+        List<Integer> winning = winningNumbers.getNumbers();
+        int numberOfHits = 0;
+
+        for (Integer lottoNumber : lottoNumbers) {
+            if (winning.contains(lottoNumber)) {
+                numberOfHits += 1;
+            }
+        }
+        return numberOfHits;
+    }
+
+
 }

@@ -41,4 +41,15 @@ public class MoneyTest {
         assertThat(money.getNumberOfLottos()).isEqualTo(result);
     }
 
+    @ParameterizedTest
+    @CsvSource(value = {"1000:100.0","5000:500.0","0:0.0","55000:5500.0"}, delimiter = ':')
+    void 수익률_계산(long prizeMoney, double rateOfReturn) {
+        //given
+        Money money = new Money(1000);
+
+        //when, then
+        assertThat(money.getRateOfReturn(prizeMoney)).isEqualTo(rateOfReturn);
+    }
+
+
 }

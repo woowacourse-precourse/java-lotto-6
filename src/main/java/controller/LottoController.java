@@ -21,7 +21,7 @@ public class LottoController {
         Money money = inputMoneyView.getValue();
 
         LottoGenerator lottoGenerator = new LottoGenerator();
-        LottoTicket lottoTicket = new LottoTicket(lottoGenerator.generateLottoTicket(money.buyLottoTicket()));
+        LottoTicket lottoTicket = new LottoTicket(lottoGenerator.generateLottoTicket(money.getNumberOfLottoTicket()));
 
         OutputLottoTicketView.printLottoTicket(lottoTicket);
 

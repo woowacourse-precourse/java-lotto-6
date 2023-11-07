@@ -186,6 +186,20 @@ public class Application {
 	}
 	
 	private void finish() {
+		makeResult();
+		printResult();
+		printProfitPercent();
+	}
+	
+	private void makeResult() {
+		
+	}
+	
+	private void printResult() {
+		
+	}
+	
+	private void printProfitPercent(){
 		
 	}
 	

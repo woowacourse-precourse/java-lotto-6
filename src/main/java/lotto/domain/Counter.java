@@ -7,7 +7,7 @@ public class Counter {
     }
 
     public double calculateProfitRate(int userMoney, long totalPrize) {
-        return (userMoney - totalPrize) / (double) userMoney * 100;
+        double profitRate = (userMoney - totalPrize) / (double) userMoney * 100;
+        return Math.round(profitRate * 10.0) / 10.0;
     }
-
 }

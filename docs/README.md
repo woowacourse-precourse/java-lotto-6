@@ -25,8 +25,9 @@
   - [x] 로또 금액에 맞는 로또 구매 갯수 반환 (getLottoCount)
 - 로또 생성기 (LottoFactory)
   - [x] 로또를 생성 (createLotto) 
-- 로또 리스트
-  - [ ] 로또 리스트와 당첨 로또를 비교한다.
+- 로또 리스트 (Lottos)
+  - [x] 로또 리스트와 당첨 로또를 비교한다. (matchAllLotto)
+  - [x] 로또 리스트를 반환한다
 - 로또 결과 (LottoResult)
   - [x] 수익률 계산 (getProfitRate)
   - [x] 당첨금 계산 (getWinningMoney)

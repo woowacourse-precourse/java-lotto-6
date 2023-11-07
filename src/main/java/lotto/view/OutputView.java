@@ -15,6 +15,13 @@ import java.util.List;
             }
         }
 
-
+        public static void printResult(LottoResult result, int purchaseAmount) {
+            System.out.println("당첨 통계");
+            System.out.println("---------");
+            for (LottoEnum.LottoRank rank : LottoEnum.LottoRank.values()) {
+                System.out.println(rank + " - " + result.getCount(rank) + "개");
+            }
+            System.out.println("총 수익률은 " + result.calculateEarningsRate(purchaseAmount)*100 + "%입니다.");
+        }
     }
 

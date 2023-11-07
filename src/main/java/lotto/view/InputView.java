@@ -4,7 +4,8 @@ import static lotto.enums.InputMessages.*;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class InputView {
+public class
+  InputView {
 
     public static String purchaseMoney(){
         System.out.println(PURCHASE_MONEY.getMessage());

@@ -25,6 +25,15 @@ class LottoTest {
     }
 
     @Test
+    @DisplayName("로또 번호의 개수가 6개가 안되면 예외가 발생한다.")
+    void 로또번호갯수_6개_미만_입력() {
+        assertThatThrownBy(() -> new Lotto("1,2,3,4,5"))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto("1,2,3,4,5"))
+                .hasMessage(ExceptionMessages.LOTTO_SIZE_IS_OVER_SIX.getMessage());
+    }
+
+    @Test
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     void 로또번호갯수_7개_입력() {
         assertThatThrownBy(() -> new Lotto("1,2,3,4,5,6,7"))

@@ -8,6 +8,7 @@ import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
+import lotto.domain.dto.ProfitRateDto;
 import lotto.domain.dto.PurchaseAmountDto;
 import lotto.domain.dto.WinningLottoDto;
 import org.junit.jupiter.api.BeforeEach;
@@ -89,7 +90,7 @@ class LottoMachineTest {
 
             // when
             DrawingResultDto drawingResultDto = lottoMachine.draw(lottosDto, winningLottoDto, bonusNumberDto);
-            double result = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
+            ProfitRateDto result = lottoMachine.calculateProfitRate(lottosDto, drawingResultDto);
 
             // then
             System.out.println(result);

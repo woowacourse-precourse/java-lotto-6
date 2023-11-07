@@ -8,7 +8,8 @@ import lotto.exception.IllegalMoneyAmountException;
 import lotto.service.generator.LottoGenerator;
 
 public class PurchaseService {
-    private final int LOTTO_PRICE = 1_000;
+    public static final int LOTTO_PRICE = 1_000;
+
     private final LottoGenerator lottoGenerator;
 
     public PurchaseService(LottoGenerator lottoGenerator) {

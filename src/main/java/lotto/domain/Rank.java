@@ -18,6 +18,10 @@ public enum Rank {
         this.prizeMoney = prizeMoney;
     }
 
+    public long calculateTotalPrizeMoney(int count) {
+        return prizeMoney * count;
+    }
+
     public static Rank from(MatchDetail matchDetail) {
         return Rank.of(matchDetail.matchedCount(), matchDetail.matchedBonus());
     }

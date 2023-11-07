@@ -30,7 +30,7 @@ class TotalAmountTest {
         totalAmount = totalAmount.addLottoPrize(LottoPrize.FIFTH);
         totalAmount = totalAmount.addLottoPrize(LottoPrize.FOURTH);
 
-        int expectedTotal = LottoPrize.FIFTH.getPrizeAmount() + LottoPrize.FOURTH.getPrizeAmount();
+        int expectedTotal = LottoPrize.FIFTH.prizeAmount() + LottoPrize.FOURTH.prizeAmount();
         assertEquals(totalAmount, TotalAmount.from(expectedTotal));
     }
 }

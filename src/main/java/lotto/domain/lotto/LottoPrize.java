@@ -20,11 +20,11 @@ public enum LottoPrize {
         this.isBonusMatched = isBonusMatched;
     }
 
-    public int getMatchCount() {
+    public int matchCount() {
         return matchCount;
     }
 
-    public int getPrizeAmount() {
+    public int prizeAmount() {
         return prizeAmount;
     }
 
@@ -34,7 +34,7 @@ public enum LottoPrize {
 
     public static LottoPrize findLottoPrize(int matchingNumbers, boolean isBonusMatched) {
         return Arrays.stream(values())
-            .filter(prize -> prize.getMatchCount() == matchingNumbers
+            .filter(prize -> prize.matchCount() == matchingNumbers
                 && prize.isBonusMatched() == isBonusMatched)
             .findFirst()
             .orElse(LOSE);

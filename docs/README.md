@@ -25,9 +25,8 @@
     - [x] 로또 보기: getLotto
 - [x] 결제: Payment
     - [x] 결제: pay
-- [ ] 발행: Publish
-    - [ ] 번호 생성: makeNumber
-    - [ ] 오름차순 정렬: sortAscending
+- [x] 발행: Publish
+    - [x] 번호 생성: makeNumbers
 - [ ] 당첨 판정: Judgment
     - [ ] 당첨 번호 판정: judgeWinningNumber
     - [ ] 보너스 번호 판정: judgeBonusNumber
@@ -35,12 +34,15 @@
 - [ ] 당첨 통계: Statistics
     - [ ] 수치 계산: calculateNumeric
 - [ ] 잘못된 입력 확인: WrongChecker
+    - [ ] 구입 금액 문제 확인: checkWrongAmount
     - [ ] 구입 금액 문자 확인: checkAmountCharacter
     - [ ] 구입 금액 단위 확인: checkAmountUnit
+    - [ ] 당첨 번호 문제 확인: checkWrongWiningNumber
     - [ ] 당첨 번호 범위 확인: checkWiningNumberRange
     - [ ] 당첨 번호 문자 확인: checkWiningNumberCharacter
     - [ ] 당첨 번호 갯수 확인: checkWiningNumberSize
     - [ ] 당첨 번호 충복 확인: checkDoubleWiningNumber
+    - [ ] 보너스 번호 문제 확인: checkWrongBonusNumber
     - [ ] 보너스 번호 범위 확인: checkBonusNumberRange
     - [ ] 보너스 번호 문자 확인: checkBonusNumberCharacter
     - [ ] 보너스 번호 갯수 확인: checkBonusNumberSize
@@ -77,3 +79,5 @@
   - [ ] 보너스 번호 입력 값이 1개가 아닌 경우
 ***
 ## 테스트 항목
+- [x] 발행: 번호생성테스트
+- [x] 결제: 로또구매테스트

@@ -24,12 +24,21 @@ public class Print {
         return numbers;
     }
 
-    public void printDrawResultStats(Map<Rank, Integer> drawResult) {
+    public void printDrawResultStats(int money, Map<Rank, Integer> drawResult) {
         for (Rank rank : Rank.values()) {
             if (rank == Rank.NO_RANK) {
                 continue;
             }
             System.out.println(rank.getMessage() + drawResult.get(rank) + "개");
         }
+        System.out.println("총 수익률은 " + calculateProfitRatio(money, drawResult) + "%입니다.");
+    }
+
+    String calculateProfitRatio(int money, Map<Rank, Integer> drawResult) {
+        double profit = 0;
+        for (Rank rank : Rank.values()) {
+            profit += drawResult.get(rank) * rank.getCashPrize();
+        }
+        return String.format("%.1f", profit / money * 100);
     }
 }

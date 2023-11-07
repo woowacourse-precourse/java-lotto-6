@@ -25,6 +25,11 @@ public class Lotto {
             }
             uniqueNumbers.add(number);
         });
+        numbers.forEach(number -> {
+            if (number < LottoConfig.START_NUM || number > LottoConfig.END_NUM) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호로 적합하지 않은 숫자입니다.");
+            }
+        });
     }
 
     public String sayNumbers() {

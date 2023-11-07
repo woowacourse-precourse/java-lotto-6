@@ -14,10 +14,14 @@ import java.util.stream.Collectors;
 
 public class LottoManager {
     private int bonusNumber;
-    private Hashtable<Integer, Integer> winningCountHash;
-    private float totalRateOfRevenue;
     private int totalRevenue;
-    private LottoManagerConsts constType;
+    private int FIRST_PLACE = 7;
+    private int LAST_PLACE = 3;
+    private int LOTTO_NUM_START = 1;
+    private int LOTTO_NUM_END = 45;
+    private String stringSeperator = ",";
+    private float totalRateOfRevenue;
+    private Hashtable<Integer, Integer> winningCountHash;
     Hashtable<Integer, Integer> moneyHash;
     LottoBuyer lottoBuyer;
     List<Integer> winningNumbers;
@@ -31,7 +35,7 @@ public class LottoManager {
         winningNumbers = new ArrayList<Integer>();
         winningCountHash = new Hashtable<Integer, Integer>();
 
-        for (int i = 3; i <= 7; i++) {
+        for (int i = LAST_PLACE; i <= FIRST_PLACE; i++) {
             winningCountHash.put(i, 0);
         }
 
@@ -64,7 +68,7 @@ public class LottoManager {
             totalRevenue += (moneyHash.get(key) * value);
         });
         totalRateOfRevenue = ((float) totalRevenue /lottoBuyer.getPurchaseAmount()) * 100f;
-        System.out.printf(LottoManagerMsg.TOTAL_RATE_REVENUE_MESSAGE.getDescription(), totalRateOfRevenue);
+        System.out.printf(LottoManagerMsg.TOTAL_RATE_REVENUE_MESSAGE.getDescription(), getTotalRateOfRevenue());
     }
 
     public float getTotalRateOfRevenue() {
@@ -87,11 +91,29 @@ public class LottoManager {
         System.out.printf(LottoManagerMsg.NORMAL_MESSAGE.getDescription(), key, moneyFormat.format(moneyHash.get(key)), value);
     }
 
+    public void inputWinningNumbers() {
+        System.out.print(LottoManagerMsg.INPUT_WINNING_NUMBERS.getDescription());
+        try {
+            String stringWinningNumbers = Console.readLine();
+            List<String> listToStream = Arrays.stream(stringWinningNumbers.split(stringSeperator)).toList();
+            setWinningNumbers(listToStream);
+        } catch (IllegalArgumentException e) {
+            System.out.print(e.getMessage());
+            inputWinningNumbers();
+        }
+    }
+
+    public void setWinningNumbers(List<String> numbers) {
+        validateWinningNumbers(numbers);
+
+        winningNumbers = numbers.stream().map(Integer::parseInt).collect(Collectors.toList());
+    }
+
     public void inputBonusNumber() {
         System.out.print(LottoManagerMsg.INPUT_BONUS_NUMBERS.getDescription());
         try {
             String inputNumber = Console.readLine();
-            List<String> numberToStream = Arrays.stream(inputNumber.split(",")).toList();
+            List<String> numberToStream = Arrays.stream(inputNumber.split(stringSeperator)).toList();
             setBonusNumber(numberToStream);
         } catch (IllegalArgumentException e) {
             System.out.print(e.getMessage());
@@ -99,9 +121,19 @@ public class LottoManager {
         }
     }
 
+    public void setBonusNumber(List<String> number) {
+        validateBonusNumber(number);
+        bonusNumber = number.stream().mapToInt(Integer::parseInt).toArray()[0];
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     public List<Integer> createLottoNumber() {
         List<Integer> sortedLottoNumber = new ArrayList<Integer>();
-        sortedLottoNumber.addAll(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+        sortedLottoNumber.addAll(Randoms.pickUniqueNumbersInRange(
+                LOTTO_NUM_START, LOTTO_NUM_END, LottoManagerConsts.REQUIRED_NUMBER_COUNT.getConst()));
         Collections.sort(sortedLottoNumber);
 
         return sortedLottoNumber;
@@ -117,30 +149,6 @@ public class LottoManager {
         lottoBuyer.printMyLottos();
     }
 
-    public void inputWinningNumbers() {
-        System.out.print(LottoManagerMsg.INPUT_WINNING_NUMBERS.getDescription());
-        try {
-            String stringWinningNumbers = Console.readLine();
-            List<String> listToStream = Arrays.stream(stringWinningNumbers.split(",")).toList();
-            setWinningNumbers(listToStream);
-        } catch (IllegalArgumentException e) {
-            System.out.print(e.getMessage());
-            inputWinningNumbers();
-        }
-    }
-
-    public void setWinningNumbers(List<String> numbers) {
-        validateWinningNumbers(numbers);
-
-        winningNumbers = numbers.stream().map(Integer::parseInt).collect(Collectors.toList());
-    }
-
-    public void setBonusNumber(List<String> number) {
-        validateBonusNumber(number);
-
-        bonusNumber = number.stream().mapToInt(Integer::parseInt).toArray()[0];
-    }
-
     public void setWinningResult() {
         for (Lotto lotto : lottoBuyer.getMyLottos()) {
             int matchedCount = lotto.getWinningCount(winningNumbers);
@@ -148,7 +156,7 @@ public class LottoManager {
                 continue;
             }
 
-            if (lotto.getNumbers().contains(getBonusNumber()) && (matchedCount == LottoManagerConsts.THIRD_MATCH_COUNT.getConst())) {
+            if (isSecondPriceCondition(lotto, matchedCount)) {
                 matchedCount = LottoManagerConsts.SECOND_GRADE_KEY.getConst();
             } else if (matchedCount == LottoManagerConsts.FIRST_MATCH_COUNT.getConst()) {
                 matchedCount = LottoManagerConsts.FIRST_GRADE_KEY.getConst();
@@ -158,13 +166,19 @@ public class LottoManager {
         }
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
+    public boolean isSecondPriceCondition(Lotto lotto, int matchedCount) {
+        if (lotto.getNumbers().contains(getBonusNumber())
+                && (matchedCount == LottoManagerConsts.THIRD_MATCH_COUNT.getConst())) {
+            return true;
+        }
+
+        return false;
     }
 
     public Hashtable<Integer, Integer> getWinningCountHash () {
         return winningCountHash;
     }
+
     private void validateBonusNumber(List<String> number) {
         validateIsIntegerType(number);
         validateIsCorrectRange(number);
@@ -208,7 +222,7 @@ public class LottoManager {
     private void validateIsCorrectRange(List<String> stringNumbers) {
         List<Integer> convertedNumbers = stringNumbers.stream().map(Integer::parseInt).toList();
         for (Integer num : convertedNumbers) {
-            if ((num < 1) || (num > 45)) {
+            if ((num < LOTTO_NUM_START) || (num > LOTTO_NUM_END)) {
                 errorType = ErrorMessages.NUMBER_IS_INCORRECT_RANGE;
                 throw new IllegalArgumentException(errorType.getDescription());
             }

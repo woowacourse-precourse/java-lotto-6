@@ -8,13 +8,11 @@ public class LottoBuyer {
     final String PRINT_MY_LOTTOS = "%d개를 구매했습니다.\n";
     final int LOTTO_PURCHASE_UNIT = 1000;
     private int purchaseAmount;
-    private int publishLottoCount;
     private ArrayList<Lotto> myLottos;
     ErrorMessages errorType;
 
     public LottoBuyer() {
         this.purchaseAmount = 0;
-        this.publishLottoCount = 0;
         this.myLottos = new ArrayList<Lotto>();
     }
 
@@ -26,10 +24,6 @@ public class LottoBuyer {
             System.out.print(e.getMessage());
             inputPurchaseAmount();
         }
-    }
-
-    public void buyLotto(String inputAmount) {
-        purchaseAmount = validateInputAmount(inputAmount);
     }
 
     public int validateInputAmount(String inputAmount) {
@@ -49,8 +43,16 @@ public class LottoBuyer {
         return resultAmount;
     }
 
+    public void buyLotto(String inputAmount) {
+        purchaseAmount = validateInputAmount(inputAmount);
+    }
+
     public void addMyLottos(Lotto publishedLotto) {
         myLottos.add(publishedLotto);
+    }
+
+    public ArrayList<Lotto> getMyLottos() {
+        return myLottos;
     }
 
     public int getPurchaseAmount() {
@@ -59,10 +61,6 @@ public class LottoBuyer {
 
     public int calculatePublishCount() {
         return purchaseAmount / LOTTO_PURCHASE_UNIT;
-    }
-
-    public ArrayList<Lotto> getMyLottos() {
-        return myLottos;
     }
 
     public void printMyLottos() {

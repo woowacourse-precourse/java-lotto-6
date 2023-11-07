@@ -7,6 +7,7 @@ import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private final int LOTTO_NUMBER_SIZE = 6;
     ErrorMessages errorType;
 
     public Lotto(List<Integer> numbers) {
@@ -17,7 +18,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         Set<Integer> numbersSet = new HashSet<>(numbers);
 
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
             errorType = ErrorMessages.NUMBER_INCORRECT_SIZE;
             throw new IllegalArgumentException(errorType.getDescription());
         }

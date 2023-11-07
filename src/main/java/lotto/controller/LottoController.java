@@ -9,7 +9,6 @@ import lotto.domain.result.Result;
 import lotto.service.LottoInputReader;
 import lotto.service.LottoOutputWriter;
 import lotto.service.MultiLottoGenerator;
-import lotto.service.SingleLottoGenerator;
 
 public class LottoController {
 
@@ -45,7 +44,7 @@ public class LottoController {
     private List<Lotto> createLottos(int lottoSize) {
         writer.showPurchaseLottoSize(lottoSize);
 
-        MultiLottoGenerator generator = MultiLottoGenerator.of(new SingleLottoGenerator(), lottoSize);
+        MultiLottoGenerator generator = MultiLottoGenerator.of(lottoSize);
 
         List<Lotto> lottos = generator.generate();
 

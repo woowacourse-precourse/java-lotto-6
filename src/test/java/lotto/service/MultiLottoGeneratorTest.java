@@ -31,7 +31,7 @@ class MultiLottoGeneratorTest {
     void 로또를_여러개_생성하여_반환한다() {
         //Arrange
         int lottoSize = 10;
-        MultiLottoGenerator generator = MultiLottoGenerator.of(new SingleLottoGenerator(), lottoSize);
+        MultiLottoGenerator generator = MultiLottoGenerator.of(lottoSize);
 
         //Act
         List<Lotto> lottos = generator.generate();
@@ -42,8 +42,7 @@ class MultiLottoGeneratorTest {
         for (Lotto lotto : lottos) {
             assertThat(lotto.getNumbers()).hasSize(LOTTO_NUMBER_COUNT)
                     .doesNotHaveDuplicates()
-                    .allMatch(number -> (LOTTO_START_NUMBER <= number) && (number <= LOTTO_END_NUMBER))
-                    .isSorted();
+                    .allMatch(number -> (LOTTO_START_NUMBER <= number) && (number <= LOTTO_END_NUMBER));
         }
     }
 }

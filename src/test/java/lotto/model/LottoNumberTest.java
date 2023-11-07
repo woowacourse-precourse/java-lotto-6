@@ -24,7 +24,7 @@ public class LottoNumberTest {
 
     @Nested
     @DisplayName("로또 번호 예외 테스트")
-    class BonusNumberExceptionTest {
+    class LottoNumberExceptionTest {
 
         @ParameterizedTest
         @DisplayName("문자, null, 빈 문자, 공백 포함 문자가 있으면 안 된다.")

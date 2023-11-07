@@ -14,6 +14,9 @@ public class Application {
     LottoGame lottoGame = new LottoGame();
     lottoGame.purchaseTickets(numberOfTickets);
 
+    LottoNumber lotto = new LottoNumber();
+    lotto.lottoNumber();
 
   }
+
 }

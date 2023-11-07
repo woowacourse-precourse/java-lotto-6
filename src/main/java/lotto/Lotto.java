@@ -15,7 +15,8 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
     }
-
+    
+// 로또 일치하는 번호 개수 반환
     public int countMatchingNumbers(Lotto other) {
       return (int) numbers.stream().filter(other.numbers::contains).count();
   }

@@ -19,4 +19,9 @@ public class BonusNumber {
             throw new IllegalArgumentException(NOT_COMPOSED_OF_UNIQUE_NUMBERS);
         }
     }
+
+
+    public boolean isMatchingBonusNumber(List<Integer> numbers) {
+        return numbers.contains(bonusNumber);
+    }
 }

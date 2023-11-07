@@ -1,8 +1,5 @@
 package lotto.domain;
 
-import lotto.Validator;
-
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,6 +31,20 @@ public class Lotto {
         }
     }
 
+    public List<Integer> getLottoNumbers(){
+        return Collections.unmodifiableList(numbers);
+    }
+
+    protected int compareLottoNumbers(List<Integer> lottoNumbers){
+        int count = 0;
+        for(Integer number : lottoNumbers){
+            if(this.numbers.contains(number)){
+                count++;
+            }
+        }
+        return count;
+    }
+
     private void validateComposedOfUniqueNumbers(List<Integer> numbers){
         long unique_number = numbers.stream().distinct().count();
         if(unique_number < numbers.size()){
@@ -41,8 +52,8 @@ public class Lotto {
         }
     }
 
-    public List<Integer> getLottoNumbers(){
-        return Collections.unmodifiableList(numbers);
-    }
+
+
+
 
 }

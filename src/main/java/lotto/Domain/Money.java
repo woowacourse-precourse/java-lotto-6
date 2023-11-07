@@ -16,6 +16,7 @@ public class Money {
     }
 
     private void validate(String value) {
+        isEmpty(value);
         isNumber(value);
         isDivide(value);
     }
@@ -35,4 +36,15 @@ public class Money {
                     Constant.ERROR_PREFIX + Constant.NUMBER_PREFIX + Constant.ERROR_NOT_DIVIDE_MESSAGE);
         }
     }
+
+    //빈칸인지 확인
+    private void isEmpty(String value) {
+        if (value.equals("")) {
+            throw new IllegalArgumentException(
+                    Constant.ERROR_PREFIX + Constant.NUMBER_PREFIX + Constant.ERROR_EMPTY_MESSAGE
+            );
+        }
+    }
+
+
 }

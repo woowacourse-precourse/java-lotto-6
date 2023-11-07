@@ -21,6 +21,13 @@ public class Validation {
         }
     }
 
+    public static void verifyRangeInputBonusNumber(int bonusNumber) {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            VerificationView.verificationViewRangeInputBonusNumber();
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static void verifyStringToInteger(String string) {
         if (!string.chars().allMatch(Character::isDigit)) {
             VerificationView.verificationViewStringToInteger();

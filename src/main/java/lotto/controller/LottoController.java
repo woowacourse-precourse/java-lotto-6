@@ -5,7 +5,7 @@ import lotto.domain.WinningNumbers;
 
 import java.util.List;
 
-import static lotto.util.LottoGenerator.generateRandomLottos;
+import static lotto.domain.LottoGenerator.generateRandomLottos;
 import static lotto.service.LottoService.*;
 import static lotto.view.OutputView.*;
 

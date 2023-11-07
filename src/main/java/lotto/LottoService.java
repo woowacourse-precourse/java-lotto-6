@@ -29,14 +29,14 @@ public class LottoService {
     }
 
     List<Integer> getInputForNumbers() {
+        List<Integer> parsedInput = new ArrayList<>();
 
         String input = Console.readLine();
 
-        List<String> seperatedInput = Arrays.asList(input.split(","));
-        List<Integer> parsedInput = new ArrayList<>();
+        List<String> splitedInput = Arrays.asList(input.split(","));
 
-        for (int i = 0; i < seperatedInput.size(); i++) {
-            parsedInput.add(Integer.parseInt(seperatedInput.get(i)));
+        for (int i = 0; i < splitedInput.size(); i++) {
+            parsedInput.add(Integer.parseInt(splitedInput.get(i)));
         }
 
         return parsedInput;

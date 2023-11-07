@@ -55,7 +55,7 @@ public class Lotto {
 //        }
         for (Integer number : input) {
             if (number > MAX_NUM || number < MIN_NUM) {
-                System.out.println("[ERROR]" + MIN_NUM + "부터" + MAX_NUM + "사이의 숫자로 입력해주세요.");
+                System.out.println("[ERROR] " + MIN_NUM + "부터" + MAX_NUM + "사이의 숫자로 입력해주세요.");
                 throw new IllegalArgumentException();
             }
         }
@@ -67,7 +67,7 @@ public class Lotto {
 
     public static void BonusValidate(Integer input, List<Integer> winningNumber) {
         if (input > MAX_NUM || input < MIN_NUM) {
-            System.out.println("[ERROR]" + MIN_NUM + "부터" + MAX_NUM + "사이의 숫자로 입력해주세요.");
+            System.out.println("[ERROR] " + MIN_NUM + "부터" + MAX_NUM + "사이의 숫자로 입력해주세요.");
             throw new IllegalArgumentException();
         }
         if (winningNumber.contains(input)) {

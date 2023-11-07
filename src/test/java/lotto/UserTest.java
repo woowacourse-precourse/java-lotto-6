@@ -11,7 +11,7 @@ public class UserTest {
     @DisplayName("올바르지 않은 금액을 입력하면 예외가 발생한다.")
     @Test
     void wrongMoney() {
-        Integer input = 0;
+        String input = "-10";
         assertThatThrownBy(() -> PaperNumber(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -19,7 +19,7 @@ public class UserTest {
     @Test
     @DisplayName("금액에 맞춰 로또 장수가 출력된다.")
     void makeTickets() {
-        Integer inputAmount = 3000;
+        String inputAmount = "3000";
         assertThat(PaperNumber(inputAmount)).isEqualTo(3);
     }
 }

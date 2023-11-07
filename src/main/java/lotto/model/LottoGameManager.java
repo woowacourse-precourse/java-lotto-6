@@ -67,8 +67,8 @@ public class LottoGameManager {
         this.bonusNumber = bonusNumber;
     }
 
-    //LottoRanking에 LottoBucket, 당첨로또, 보너스 번호 주는 메서드
-    public RankingManager createWinningLottoAddBonusNumber() {
+    //RankingManager에 발행된 로또, 당첨 로또, 보너스 번호 주는 메서드
+    public RankingManager generateRankingManager() {
         return new RankingManager(lottoBucket, winningLotto, bonusNumber);
     }
 }

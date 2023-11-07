@@ -1,8 +1,5 @@
 package lotto;
 
-import static lotto.constant.message.InputMessage.INPUT_BONUS_NUMBER;
-import static lotto.constant.message.InputMessage.INPUT_MONEY;
-import static lotto.constant.message.InputMessage.INPUT_WINNING_NUMBER;
 import static lotto.constant.message.OutputMessage.RESULT_MESSAGE;
 
 import lotto.domain.Customer;
@@ -34,7 +31,7 @@ public class LottoController {
     private Customer purchaseLotto() {
         while (true) {
             try {
-                int money = inputView.requestNumberInput(INPUT_MONEY);
+                int money = inputView.requestMoney();
                 LottoMaker seller = new LottoMaker(money);
                 Customer customer = new Customer(seller.makeLottoTickets());
                 outputView.printLottoNumbers(customer.getLotteryTicket());
@@ -48,7 +45,7 @@ public class LottoController {
     private Lotto getWinningLotto() {
         while (true) {
             try {
-                return new Lotto(inputView.requestListInput(INPUT_WINNING_NUMBER));
+                return new Lotto(inputView.requestWinningNumbers());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -58,7 +55,7 @@ public class LottoController {
     private WinningNumbers generateWinningLotto(Lotto winningLotto) {
         while (true) {
             try {
-                int bonusNumber = inputView.requestNumberInput(INPUT_BONUS_NUMBER);
+                int bonusNumber = inputView.requestBonusNumber();
                 return new WinningNumbers(winningLotto, bonusNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

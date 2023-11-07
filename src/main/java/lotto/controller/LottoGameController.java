@@ -1,16 +1,25 @@
 package lotto.controller;
 
-import static lotto.message.ConsoleMessage.LOTTO_NUMBER_RANGE_ERROR;
-
-import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
+import lotto.domain.Lottos;
 import lotto.domain.PurchaseMoney;
+import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoGameController {
+    private final LottoNumberGenerator lottoNumberGenerator;
+
+    public LottoGameController(LottoNumberGenerator lottoNumberGenerator) {
+        this.lottoNumberGenerator = lottoNumberGenerator;
+    }
 
     public void startGame() {
         PurchaseMoney purchaseMoney = getPurchaseMoney();
+        LottoGenerator lottoGenerator =  LottoGenerator.of(lottoNumberGenerator, purchaseMoney);
+        Lottos lottos = createLottos(purchaseMoney, lottoGenerator);
+
     }
 
     private static PurchaseMoney getPurchaseMoney() {
@@ -22,5 +31,15 @@ public class LottoGameController {
             return getPurchaseMoney();
         }
     }
+
+    private Lottos createLottos(PurchaseMoney purchaseMoney, LottoGenerator lottoGenerator) {
+        Lottos lottos = lottoGenerator.createLottos();
+
+        OutputView.printPurchaseCount(purchaseMoney.buyCount());
+        OutputView.printLottos(lottos);
+        return lottos;
+    }
+
+
 
 }

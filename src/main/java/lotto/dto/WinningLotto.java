@@ -1,6 +1,9 @@
-package lotto.domain;
+package lotto.dto;
 
 import static lotto.constants.ErrorCode.DUPLICATED_LOTTO_NUMBER;
+
+import lotto.domain.Lotto;
+import lotto.domain.LottoNumber;
 
 public class WinningLotto {
     private final Lotto winning;
@@ -16,14 +19,14 @@ public class WinningLotto {
         return new WinningLotto(winning, bonus);
     }
 
-    public boolean hasCertainNumber(LottoNumber target) {
-        return winning.hasCertainNumber(target);
-    }
-
     private void validateNotDuplicated(Lotto winning, LottoNumber bonus) {
         if (winning.hasCertainNumber(bonus)) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBER.getMessage());
         }
+    }
+
+    public Lotto getWinning() {
+        return winning;
     }
 
     public LottoNumber getBonus() {

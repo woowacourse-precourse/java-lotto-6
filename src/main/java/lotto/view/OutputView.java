@@ -1,32 +1,60 @@
 package lotto.view;
 
 import static lotto.constants.Message.CONTOUR;
+import static lotto.constants.Message.NEW_LINE;
 import static lotto.constants.Message.PROFIT_RATE;
+import static lotto.constants.Message.TICKET_PREFIX;
+import static lotto.constants.Message.TICKET_SEPARATOR;
+import static lotto.constants.Message.TICKET_SUFFIX;
 import static lotto.constants.Message.WINNING_HEADER;
 
 import java.util.List;
+import java.util.Map;
 import lotto.constants.Message;
+import lotto.constants.WinningType;
 import lotto.domain.Lotto;
-import lotto.domain.WinningResult;
+import lotto.dto.WinningResult;
 
 public class OutputView {
-    private final Writable consoleOutputDevice;
+    private final OutputDevice consoleOutputDevice;
 
-    public OutputView(Writable consoleOutputDevice) {
+    public OutputView(OutputDevice consoleOutputDevice) {
         this.consoleOutputDevice = consoleOutputDevice;
     }
 
     public void printLottoTickets(List<Lotto> lottoTickets) {
         consoleOutputDevice.printByFormat(Message.PURCHASE_AMOUNT.getMessage(), lottoTickets.size());
-        for (Lotto lottoTicket : lottoTickets) {
-            consoleOutputDevice.printLine(lottoTicket.toString());
-        }
+        consoleOutputDevice.printLine(getPublishedLotto(lottoTickets));
+    }
+
+    private String getPublishedLotto(List<Lotto> lottoTickets) {
+        StringBuilder builder = new StringBuilder();
+        lottoTickets.forEach(
+                lotto -> {
+                    builder.append(TICKET_PREFIX.getMessage());
+                    builder.append(String.join(TICKET_SEPARATOR.getMessage(), lotto.getNumbersAsString()));
+                    builder.append(TICKET_SUFFIX.getMessage() + NEW_LINE.getMessage());
+                }
+        );
+        return builder.toString();
     }
 
     public void printWinningResult(WinningResult lottoResult) {
         consoleOutputDevice.printLine(WINNING_HEADER.getMessage());
         consoleOutputDevice.printLine(CONTOUR.getMessage());
-        consoleOutputDevice.printLine(lottoResult.toString());
+
+        consoleOutputDevice.printLine(getResult(lottoResult.getWinningMap()));
+    }
+
+    private String getResult(Map<WinningType, Integer> winningMap) {
+        StringBuilder builder = new StringBuilder();
+        winningMap.keySet()
+                .forEach((winningType) -> {
+                    String message = winningType.getMessage();
+                    int quantity = winningMap.get(winningType);
+                    builder.append(String.format(message + NEW_LINE.getMessage(), quantity));
+                });
+        return builder.toString();
     }
 
     public void printProfitRate(double profit) {

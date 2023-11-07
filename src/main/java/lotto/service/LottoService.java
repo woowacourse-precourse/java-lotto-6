@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.PurchaseAmount;
-import lotto.domain.WinningLotto;
-import lotto.domain.WinningResult;
+import lotto.dto.PurchaseAmount;
+import lotto.dto.WinningLotto;
+import lotto.dto.WinningResult;
 
 public class LottoService {
     private final NumberGenerator generator;
@@ -54,10 +54,7 @@ public class LottoService {
     }
 
     private int calculateMatched(Lotto purchasedTicket, WinningLotto winningLotto) {
-        return Math.toIntExact(purchasedTicket.getNumbers()
-                .stream()
-                .filter(winningLotto::hasCertainNumber)
-                .count());
+        return purchasedTicket.countDuplicatedNumber(winningLotto.getWinning());
     }
 
     private boolean isBonus(Lotto purchasedTicket, WinningLotto winningLotto) {

@@ -5,9 +5,9 @@ import static lotto.constants.Message.ASK_PURCHASE;
 import static lotto.constants.Message.ASK_WINNING_NUMBER;
 
 public class InputView {
-    private final Readable consoleInputDevice;
+    private final InputDevice consoleInputDevice;
 
-    public InputView(Readable consoleInputDevice) {
+    public InputView(InputDevice consoleInputDevice) {
         this.consoleInputDevice = consoleInputDevice;
     }
 

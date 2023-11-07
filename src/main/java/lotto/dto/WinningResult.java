@@ -1,7 +1,6 @@
-package lotto.domain;
+package lotto.dto;
 
-import static lotto.constants.Message.NEW_LINE;
-
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 import lotto.constants.WinningType;
@@ -35,18 +34,8 @@ public class WinningResult {
         return totalPrize;
     }
 
-
-    // TODO: toString으로 문자열을 직접 만들어서 보내는 것은 적절하지 않은 것 같다! 데이터만 넘기는 방법을 사용하자
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        winningMap.keySet()
-                .forEach((winningType) -> {
-                    String message = winningType.getMessage();
-                    int quantity = winningMap.get(winningType);
-                    builder.append(String.format(message + NEW_LINE.getMessage(), quantity));
-                });
-        return builder.toString();
+    public Map<WinningType, Integer> getWinningMap() {
+        return Collections.unmodifiableMap(this.winningMap);
     }
 }
 

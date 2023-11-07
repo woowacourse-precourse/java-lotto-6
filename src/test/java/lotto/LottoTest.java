@@ -57,4 +57,18 @@ class LottoTest {
         //then
         assertThat(hasCertainNumber).isTrue();
     }
+
+    @Test
+    @DisplayName("두 Lotto 객체 간에 겹치는 숫자가 몇 개인지 계산할 수 있다.")
+    public void should_calculateDuplicated_between_twoLottoInstance() {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        Lotto target = new Lotto(List.of(1, 2, 3, 7, 8, 9));
+
+        //when
+        int contained = lotto.countDuplicatedNumber(target);
+
+        //then
+        assertThat(contained).isEqualTo(3);
+    }
 }

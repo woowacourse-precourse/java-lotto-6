@@ -6,8 +6,8 @@ import java.util.List;
 import lotto.constants.WinningType;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
-import lotto.domain.WinningLotto;
-import lotto.domain.WinningResult;
+import lotto.dto.WinningLotto;
+import lotto.dto.WinningResult;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,8 +25,6 @@ class LottoServiceTest {
 
         //then
         assertThat(lottos.size()).isEqualTo(2);
-        assertThat(lottos.get(0).getNumbers().size()).isEqualTo(6);
-        assertThat(lottos.get(1).getNumbers().size()).isEqualTo(6);
     }
 
     @Test

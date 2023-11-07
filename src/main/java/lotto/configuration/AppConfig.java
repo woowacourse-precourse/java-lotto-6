@@ -6,10 +6,10 @@ import lotto.service.NumberGenerator;
 import lotto.service.RandomNumberGenerator;
 import lotto.view.ConsoleInputDevice;
 import lotto.view.ConsoleOutputDevice;
+import lotto.view.InputDevice;
 import lotto.view.InputView;
+import lotto.view.OutputDevice;
 import lotto.view.OutputView;
-import lotto.view.Readable;
-import lotto.view.Writable;
 
 public class AppConfig {
     private static AppConfig appConfig;
@@ -17,9 +17,9 @@ public class AppConfig {
     private LottoService lottoService;
     private NumberGenerator numberGenerator;
     private InputView inputView;
-    private Readable inputDevice;
+    private InputDevice inputDevice;
     private OutputView outputView;
-    private Writable outputDevice;
+    private OutputDevice outputDevice;
 
     public static AppConfig getInstance() {
         if (appConfig == null) {
@@ -49,7 +49,7 @@ public class AppConfig {
         return numberGenerator;
     }
 
-    public Readable readable() {
+    public InputDevice readable() {
         if (inputDevice == null) {
             inputDevice = new ConsoleInputDevice();
         }
@@ -63,7 +63,7 @@ public class AppConfig {
         return inputView;
     }
 
-    public Writable writable() {
+    public OutputDevice writable() {
         if (outputDevice == null) {
             outputDevice = new ConsoleOutputDevice();
         }

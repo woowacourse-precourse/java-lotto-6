@@ -4,9 +4,6 @@ import static lotto.constants.ErrorCode.DUPLICATED_LOTTO_NUMBER;
 import static lotto.constants.ErrorCode.INVALID_LOTTO_SIZE;
 import static lotto.constants.LottoRule.LOTTO_MAX_SIZE;
 import static lotto.constants.Message.SEPARATOR_REGEX;
-import static lotto.constants.Message.TICKET_PREFIX;
-import static lotto.constants.Message.TICKET_SEPARATOR;
-import static lotto.constants.Message.TICKET_SUFFIX;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +20,7 @@ public class Lotto {
         this.numbers = sortByAscent(numbers);
     }
 
+    // TODO: 하나의 생성자로 처리할 수 있는 방법은 없을까?
     public Lotto(String number) {
         List<Integer> numbers = splitToList(number);
         validate(numbers);
@@ -63,10 +61,10 @@ public class Lotto {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         sortedNumbers.sort(Comparator.naturalOrder());
 
-        return convertToLotto(sortedNumbers);
+        return convertToLottoNumber(sortedNumbers);
     }
 
-    private List<LottoNumber> convertToLotto(List<Integer> numbers) {
+    private List<LottoNumber> convertToLottoNumber(List<Integer> numbers) {
         return numbers.stream()
                 .map(number -> LottoNumber.from(String.valueOf(number)))
                 .toList();
@@ -76,22 +74,20 @@ public class Lotto {
         return this.numbers.contains(target);
     }
 
+    public int countDuplicatedNumber(Lotto target) {
+        return Math.toIntExact(this.numbers
+                .stream()
+                .filter(target::hasCertainNumber)
+                .count());
+    }
+
     public List<LottoNumber> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 
-
-    //TODO: toString으로 문자열을 직접 만들어서 보내는 것은 적절하지 않은 것 같다! 데이터만 넘기는 방법을 사용하자
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder(TICKET_PREFIX.getMessage());
-        for (int i = 0; i < numbers.size() - 1; ++i) {
-            builder.append(numbers.get(i).getNumber());
-            builder.append(TICKET_SEPARATOR.getMessage());
-        }
-        builder.append(numbers.get(numbers.size() - 1).getNumber());
-        builder.append(TICKET_SUFFIX.getMessage());
-
-        return builder.toString();
+    public List<String> getNumbersAsString() {
+        return numbers.stream()
+                .map(lottoNumber -> String.valueOf(lottoNumber.getNumber()))
+                .toList();
     }
 }

@@ -1,6 +1,6 @@
 package lotto.view;
 
-public class ConsoleOutputDevice implements Writable {
+public class ConsoleOutputDevice implements OutputDevice {
 
     @Override
     public void printLine(String message) {

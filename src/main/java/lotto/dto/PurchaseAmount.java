@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.dto;
 
 import static lotto.constants.ErrorCode.INVALID_PURCHASE_AMOUNT;
 import static lotto.constants.ErrorCode.NOT_DIVIDED;

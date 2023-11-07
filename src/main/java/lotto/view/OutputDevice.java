@@ -1,6 +1,6 @@
 package lotto.view;
 
-public interface Writable {
+public interface OutputDevice {
     void printLine(String message);
 
     void printByFormat(String format, Object... args);

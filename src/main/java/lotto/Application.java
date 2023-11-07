@@ -36,18 +36,18 @@ class money_for_lotto{
         try{
             Integer.parseInt(inputNumber);
         }catch(NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요");
+            throw new IllegalArgumentException(Error.ERROR.getError());
         }
     }
 
     public static void moneyIsOver0(int realNumber){
         if(realNumber<1){
-            throw new IllegalArgumentException("[ERROR] 0보다 큰 수를 입력하세요");
+            throw new IllegalArgumentException(Error.ERROR.getError());
         }
     }
     public static void multipleOfThousand(int realNumber){
         if(realNumber%1000 != 0){
-            throw new IllegalArgumentException("[ERROR] 1000의 배수를 입력하세요");
+            throw new IllegalArgumentException(Error.ERROR.getError());
         }
     }
 
@@ -117,7 +117,7 @@ class winning_number{
         try{
             Integer.parseInt(number);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력하세요");
+            throw new IllegalArgumentException(Error.ERROR.getError());
         }
     }
 
@@ -157,14 +157,14 @@ class bonus_number{
         try {
             Integer.parseInt(bonus);
         }catch (NumberFormatException e){
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력");
+            throw new IllegalArgumentException(Error.ERROR.getError());
         }
         return Integer.parseInt(bonus);
     }
 
     public static void checkBonusRange(int number){
         if(number<1||number>45){
-            throw new IllegalArgumentException("[ERROR] 범위가 다름");
+            throw new IllegalArgumentException(Error.ERROR.getError());
         }
     }
 
@@ -176,7 +176,7 @@ class bonus_number{
 
     public static void checkDuplication(int criteria, int number){
         if(criteria == number){
-            throw new IllegalArgumentException("[ERROR] 당첨 숫자 외 번호를 입력");
+            throw new IllegalArgumentException(Error.ERROR.getError());
         }
     }
 

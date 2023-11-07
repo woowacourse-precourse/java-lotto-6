@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,7 @@ class ApplicationTest extends NsTest {
     }
 
     enum Num{
-        ZERO(0), TOPRANGE(46), MINUS(-100), FIVE(5);
+        ZERO(0), TOPRANGE(46), MINUS(-100), FIVE(5), ENDRANGE(45);
 
         private int num;
 
@@ -160,7 +161,23 @@ class ApplicationTest extends NsTest {
     @Test
     void checkBonus_테스트(){
         String test = "45";
-        Assertions.assertEquals(45,bonus_number.checkBonus(criteria,test));
+        Assertions.assertEquals(Num.ENDRANGE.getNum(),bonus_number.checkBonus(criteria,test));
+    }
+
+    @Test
+    void checkCorrection_테스트(){
+        Assertions.assertEquals(1, lotto_result.checkCorrection(Num.FIVE.getNum(),criteria));
+    }
+
+    @Test
+    void 보너스번호_일치_테스트(){
+        Assertions.assertEquals(7, lotto_result.checkBonus(criteria, Num.FIVE.getNum()));
+    }
+
+    @Test
+    void third_prize_테스트(){
+        List<Integer> thirdPrize = new ArrayList<>(Arrays.asList(4,5,9,8,1,3));
+        Assertions.assertEquals(5, lotto_result.eachLottoCheck(criteria,thirdPrize,Num.ENDRANGE.getNum()));
     }
 
     @Override

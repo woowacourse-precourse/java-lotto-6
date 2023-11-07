@@ -3,6 +3,7 @@ package lotto.Model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import lotto.Model.VO.LottoData;
 
 public class GameModel {
@@ -15,10 +16,14 @@ public class GameModel {
         lottoHost = new LottoHost();
     }
 
-
     public void initAnswerByStrings(String insertData){
         List<String> splitData= Arrays.asList(insertData.split(","));
         validateIntegerList(splitData);
+
+        List<Integer> answerNumbers = splitData.stream()
+                .map(Integer::parseInt)
+                .collect(Collectors.toList());
+        lottoHost.initAnswerLotto(answerNumbers);
     }
 
 

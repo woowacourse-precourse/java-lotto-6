@@ -18,7 +18,7 @@ public enum ExceptionMessage {
         this.message = message;
     }
 
-    String getMessage(String message) {
+    String getMessage() {
         return message;
     }
 }

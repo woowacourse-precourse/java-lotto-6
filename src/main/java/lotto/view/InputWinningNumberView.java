@@ -11,9 +11,8 @@ public class InputWinningNumberView {
     private static final int LOTTO_SIZE = 6;
     private static final String BLANK = " ";
     private static final String SEPARATOR = ",";
-    private static final String ERROR_MESSAGE = "[ERROR] ";
+    private static final String ERROR_MESSAGE = "[ERROR] 로또 번호는 1부터 45 사이의 중복되지 않은 숫자여야 합니다.";
     private static final String REQUEST_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
-    private static final String ERROR_NOT_RANGE = "로또 번호는 1부터 45 사이의 숫자여야 합니다.";
     private static final Pattern PATTERN = Pattern.compile("\\d+");
 
     public List<Integer> getWinningNumber() {
@@ -26,7 +25,7 @@ public class InputWinningNumberView {
             validateBlank(input);
             validateWinningNumber(winningNumber);
         } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_MESSAGE + ERROR_NOT_RANGE);
+            System.out.println(ERROR_MESSAGE);
             return getWinningNumber();
         }
         return winningNumber;
@@ -39,6 +38,7 @@ public class InputWinningNumberView {
     private List<Integer> convertWinningNumber(List<String> inputValue) {
         List<Integer> numbers = new ArrayList<>();
         for (String input : inputValue) {
+            validateNumeric(input);
             int number = Integer.parseInt(input);
             numbers.add(number);
         }
@@ -52,9 +52,15 @@ public class InputWinningNumberView {
         }
     }
 
+    private void validateNumeric(String input) {
+        if (!PATTERN.matcher(input).matches()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
     private void validateRangeNumber(int number) {
         if (number < MIN_NUMBER || number > MAX_NUMBER) {
-            throw new IllegalArgumentException(ERROR_MESSAGE + ERROR_NOT_RANGE);
+            throw new IllegalArgumentException();
         }
     }
 

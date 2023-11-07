@@ -1,11 +1,12 @@
 package lotto.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.LottoStore;
 import lotto.StatisticsService;
 import lotto.model.Lotto;
+import lotto.model.LottoMoney;
 import lotto.model.WiningStatistics;
+import lotto.utils.StringUtils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -21,9 +22,15 @@ public class LottoProgram {
     }
 
     public void start() {
-        String money = inputView.printMoney();
-        List<Lotto> lottos = purchaseLottoNumbers(Integer.parseInt(money));
+        LottoMoney money = inputView.printMoney();
+        List<Lotto> lottos = purchaseLottoNumbers(money);
         drawLottery(lottos);
+    }
+
+    private List<Lotto> purchaseLottoNumbers(LottoMoney money) {
+        List<Lotto> lottos = lottoStore.receiveLottoNumbers(money);
+        outputView.printBuyingLotto(lottos);
+        return lottos;
     }
 
     private void drawLottery(List<Lotto> lottos) {
@@ -35,22 +42,9 @@ public class LottoProgram {
 
     private void result(List<Lotto> lottos, String winingNumbers, String bonusNumber) {
         StatisticsService statisticsService = new StatisticsService();
-        WiningStatistics winingStatistics = statisticsService.calculateWiningStatistics(stringToList(winingNumbers),
-                Integer.parseInt(bonusNumber), lottos);
+        WiningStatistics winingStatistics =
+                statisticsService.calculateWiningStatistics(StringUtils.asListByDelimiter(winingNumbers, ",")
+                        , Integer.parseInt(bonusNumber), lottos);
         outputView.printWiningStatistics(winingStatistics);
-    }
-
-    private List<Integer> stringToList(String winingNumbers) {
-        List<Integer> list = new ArrayList<>();
-        for (String str : winingNumbers.split(",")) {
-            list.add(Integer.valueOf(str));
-        }
-        return list;
-    }
-
-    private List<Lotto> purchaseLottoNumbers(int money) {
-        List<Lotto> lottos = lottoStore.receiveLottoNumbers(money);
-        outputView.printBuyingLotto(lottos);
-        return lottos;
     }
 }

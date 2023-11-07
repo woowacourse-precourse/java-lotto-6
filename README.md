@@ -241,10 +241,13 @@ public class Lotto {
 
 ### 로또 
 - [ ] 6 개의 랜던 번호목록을 갖는다 ( 6개의 랜던 번호 목록은 오른차순이여한다 )
-- [ ] 로또 목록을 생성한다
-	- [ ] 로또를 생성한다
+- [ ] 로또를 생성한다
 
-### 은행 
+
+### 로또목록
+- [ ] 로또 목록을 생성한다
+
+### 당첨결과
 - [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교한다
 - [ ] 수익률을 계산한다
 
@@ -260,7 +263,23 @@ public class Lotto {
 	- [ ]  사용자 구매한 로또 번호와 당첨 번호 비교 
 - [ ]  비교 후 일치 출력 
 	- [ ]  수익 률 비교 
-- [ ]  수익률 출력 
+- [ ]  수익률 출력
+
+
+### mvc model 
+### domain 
+- [ ] Lotto
+- [ ] LottoTickets
+- [ ] WinningResult
+- [ ] Raking(enum)
+      
+### view 
+- [ ] UserInputView
+- [ ] UserOutputView
+- [ ] ExceptionMessage(enum)
+
+### view 
+- [ ] LottoController 
 
 
 ## 추가된 요구사항 

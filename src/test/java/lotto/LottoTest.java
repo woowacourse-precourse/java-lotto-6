@@ -28,12 +28,10 @@ class LottoTest {
     }
 
     // 아래에 추가 테스트 작성 가능
-    @DisplayName("로또 번호에 45보다 큰 숫자가 있다면 예외가 발생한다.")
+    @DisplayName("로또 번호가 모두 올바르게 입력된 경우 예외없이 저장된다.")
     @Test
-    void createLottoByOverRange() {
-        assertThatThrownBy(() -> new Lotto(List.of(1, 46, 4, 5, 6, 7)))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(INVALID_RANGE.getMessage());
+    void createCorrectLotto() {
+        Lotto lotto = new Lotto(List.of(1, 2, 35, 5, 6, 7));
     }
 
     @DisplayName("로또 번호에 1보다 작은 숫자가 있다면 예외가 발생한다.")
@@ -44,9 +42,11 @@ class LottoTest {
                 .hasMessage(INVALID_RANGE.getMessage());
     }
 
-    @DisplayName("로또 번호가 모두 올바르게 입력된 경우.")
+    @DisplayName("로또 번호에 45보다 큰 숫자가 있다면 예외가 발생한다.")
     @Test
-    void createCorrectLotto() {
-        Lotto lotto = new Lotto(List.of(1, 2, 35, 5, 6, 7));
+    void createLottoByOverRange() {
+        assertThatThrownBy(() -> new Lotto(List.of(1, 46, 4, 5, 6, 7)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(INVALID_RANGE.getMessage());
     }
 }

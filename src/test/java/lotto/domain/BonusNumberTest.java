@@ -23,7 +23,7 @@ class BonusNumberTest {
     }
 
     @Test
-    @DisplayName("보너스번호는 1~45사이에 숫자를 뽑아야 합니다")
+    @DisplayName("보너스번호는 1~45사이에 숫자를 중복없이 뽑아야 정상적으로 저장된다.")
     void validateRange() {
         // when
         int correctNum1 = 1;

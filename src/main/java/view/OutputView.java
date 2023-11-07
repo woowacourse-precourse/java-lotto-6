@@ -4,6 +4,8 @@ import constants.OutputMessage;
 import lotto.Lotto;
 
 public class OutputView {
+
+    private static String HORIZONTAL_RULE = "---";
     public static void printMoneyInputMessage() {
         System.out.println(OutputMessage.MONEY_INPUT_MESSAGE.getMessage());
     }
@@ -21,6 +23,10 @@ public class OutputView {
 
     public static void printLottoResultMessage() {
         System.out.println(OutputMessage.LOTTO_RESULT_MESSAGE.getMessage());
+    }
+
+    public static void printHorizontalRule() {
+        System.out.println(HORIZONTAL_RULE);
     }
 
     public static void printLottoString(Lotto lotto) {

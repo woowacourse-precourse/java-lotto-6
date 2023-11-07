@@ -49,14 +49,14 @@ public class LottoSystem {
         return prizes;
     }
 
-    private Optional<Prize> getPrize(int totalMatchingNumberCount, boolean hasBonusNumber) {
-        if (totalMatchingNumberCount == 6 && hasBonusNumber) {
-            return Optional.of(Prize.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH);
+    private Prize getWinningPrize(int matchingNumberCount, boolean hasBonusNumber) {
+        if (matchingNumberCount == 5 && hasBonusNumber) {
+            return Prize.FIVE_NUMBER_AND_BONUS_NUMBER_MATCH;
         }
-
         return Arrays.stream(Prize.values())
-                .filter(prize -> prize.getMatchingNumberCount() == totalMatchingNumberCount)
-                .findAny();
+                .filter(prize -> prize.getMatchingNumberCount() == matchingNumberCount)
+                .findAny()
+                .orElse(Prize.NONE);
     }
 
     private int getMatchingNumberCount(Lotto winningLotto) {
@@ -64,13 +64,6 @@ public class LottoSystem {
                 .stream()
                 .filter(winningLottoNumber -> player.getLotto().getLottoNumbers().contains(winningLottoNumber))
                 .count();
-    }
-
-    private int getMatchingBonusNumberCount(Lotto winningLotto) {
-        if (hasBonusNumber(winningLotto)) {
-            return 1;
-        }
-        return 0;
     }
 
     private boolean hasBonusNumber(Lotto winningLotto) {

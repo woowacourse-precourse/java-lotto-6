@@ -1,6 +1,7 @@
 package service;
 
 public enum LottoEnum {
+    LOTTOPRICE(1000),
     FIFTH(5000),
     FOURTH(50000),
     THIRD(1500000),

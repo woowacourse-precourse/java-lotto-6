@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+
+
     private int price = 0;
     private int money = 0;
     private List<Lotto> lottoList = new ArrayList<>();
@@ -44,6 +46,10 @@ public class User {
                 this.second * LottoEnum.SECOND.getMoney()+
                 this.first * LottoEnum.FIRST.getMoney();
     }
+
+    public int getPrice() {
+        return price;
+    }
     public List<Lotto> getLottoList() {
         return lottoList;
     }
@@ -67,5 +73,7 @@ public class User {
     public int getFirst() {
         return first;
     }
-
+    public int getMoney() {
+        return money;
+    }
 }

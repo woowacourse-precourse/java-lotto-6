@@ -80,4 +80,9 @@ public class LottoService {
         }
     }
 
+    public double rateReturn(User user){
+        double rate = (double) user.getMoney() / (double) user.getPrice() * 100;
+        return Math.round(rate);
+    }
+
 }

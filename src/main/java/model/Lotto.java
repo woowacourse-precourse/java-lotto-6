@@ -22,4 +22,8 @@ public class Lotto {
         return numbers;
     }
 
+    @Override
+    public String toString() {
+        return "[" + numbers + ']';
+    }
 }

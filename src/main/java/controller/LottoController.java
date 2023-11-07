@@ -7,6 +7,7 @@ import model.WinningNumber;
 import service.LottoService;
 import validate.Validator;
 import view.InputView;
+import view.OutputView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +16,19 @@ public class LottoController {
     InputView inputView = new InputView();
     Validator validator = new Validator();
     LottoService lottoService = new LottoService();
+    OutputView outputView = new OutputView();
 
     public void startLotto(){
         int price = AskPrice();
         User user = new User(price, lottoService.makeLottoList(price));
+        outputView.printLottoCount(user);
+
         WinningNumber winning_numbers = new WinningNumber(AskWinningNumbers(),AskBonus());
         for(Lotto lotto: user.getLottoList()){
             lottoService.awardLotto(lottoService.calculateRanking(lotto, winning_numbers),user);
         }
         user.giveMoney();
+        outputView.printResult(user,lottoService.rateReturn(user));
 
     }
 

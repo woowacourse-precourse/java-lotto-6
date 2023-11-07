@@ -13,6 +13,8 @@ public class Application {
         List<Lotto> lottos = buyLottos();
         printLottos(lottos);
 
+        List<Integer> winningNumbers = getWinningNumbers();
+        int bonusNumber = getBonusNumber();
     }
 
     private static List<Lotto> buyLottos() {
@@ -63,5 +65,25 @@ public class Application {
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers());
         }
+    }
+
+    private static List<Integer> getWinningNumbers() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+        String input = Console.readLine();
+        return parseNumbers(input);
+    }
+
+    private static int getBonusNumber() {
+        System.out.println("보너스 번호를 입력해 주세요.");
+        return Integer.parseInt(Console.readLine());
+    }
+
+    private static List<Integer> parseNumbers(String input) {
+        String[] splitInput = input.split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : splitInput) {
+            numbers.add(Integer.parseInt(number));
+        }
+        return numbers;
     }
 }

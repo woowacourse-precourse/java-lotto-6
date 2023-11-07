@@ -1,5 +1,7 @@
 package lotto;
 
+import camp.nextstep.edu.missionutils.Console;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,14 +10,11 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static int getPurchaseAmount() {
-        System.out.println("구매 금액을 입력해주세요.");
         while (true) {
+            System.out.println("구매 금액을 입력해주세요.");
+            String input = Console.readLine();
             try {
-                String input = scanner.nextLine();
                 int amount = Integer.parseInt(input);
-                if (amount <= 0) {
-                    throw new IllegalArgumentException("[ERROR] 입력 금액은 양수여야 합니다.");
-                }
                 if (amount % 1000 != 0) {
                     throw new IllegalArgumentException("[ERROR] 입력 금액은 1,000원 단위여야 합니다.");
                 }
@@ -27,12 +26,10 @@ public class InputView {
             }
         }
     }
-
-
     public static List<Integer> getWinningNumbers() {
         while (true) {
             System.out.println("\n당첨 번호를 입력해주세요.");
-            String line = scanner.nextLine();
+            String line = Console.readLine();
             String[] parts = line.split(",");
             try {
                 List<Integer> winningNumbers = new ArrayList<>();
@@ -51,7 +48,7 @@ public class InputView {
         while(true){
             System.out.println("\n보너스 번호를 입력해주세요.");
             try {
-                int bonusNumber = Integer.parseInt(scanner.nextLine().trim());
+                int bonusNumber = Integer.parseInt(Console.readLine().trim());
                 return bonusNumber;
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 보너스 번호는 정수여야 합니다.");

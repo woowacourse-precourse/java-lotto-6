@@ -35,6 +35,7 @@ public class LottoController {
         Number number = getNumbers();
         
         LotteryMachine.drawLotto(lottoTickets, number);
+        outputView.printWinningstatistics();
     }
     
     private LottoPurchase inputAmount() {

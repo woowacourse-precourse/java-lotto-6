@@ -113,7 +113,7 @@ public class LottoGame {
 
     public void validate(int amount) {
         validateUnit(amount);
-        validateUnit(amount);
+        validateNegative(amount);
     }
 
     public void validateUnit(int amount) {

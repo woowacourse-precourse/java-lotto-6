@@ -27,8 +27,6 @@ public class LottosView implements InteractionRepeatable {
     }
 
     public void announcePurchaseLottos(final List<PlayerLotto> purchaseLottos) {
-        output.println();
-
         output.println(LottosViewMessage.showNumberOfPurchaseLottos(purchaseLottos.size()));
         for (PlayerLotto purchaseLotto : purchaseLottos) {
             output.println(purchaseLotto);

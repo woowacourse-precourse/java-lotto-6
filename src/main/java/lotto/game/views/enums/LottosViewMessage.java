@@ -1,5 +1,7 @@
 package lotto.game.views.enums;
 
+import lotto.enums.GlobalMessage;
+
 public enum LottosViewMessage {
 
     ASK_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
@@ -13,7 +15,9 @@ public enum LottosViewMessage {
     }
 
     public static String showNumberOfPurchaseLottos(int size) {
-        return size + ANNOUNCE_PURCHASE_LOTTOS_COUNT.get();
+        return GlobalMessage.NEW_LINE.get()
+                + size
+                + ANNOUNCE_PURCHASE_LOTTOS_COUNT.get();
     }
 
     public String get() {

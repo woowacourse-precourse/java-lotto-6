@@ -20,7 +20,8 @@ public class GameController {
         int bonusNumber = getBonusNumber();
         Judge judge = new Judge();
         List<LottoResult> results = judge.countMatchingNumbers(lottoList, winNumbers);
-        printWinningResults(judge, results, bonusNumber,lottoList);
+        printWinningResults(judge, results, bonusNumber, lottoList);
+        printProfitRate(userMoney, results);
     }
 
     private static int getUserMoney() {
@@ -59,14 +60,32 @@ public class GameController {
 
     private static void printWinningResults(Judge judge, List<LottoResult> results, int bonusNumber, List<Lotto> lottoList) {
         Map<WinningResult, Integer> resultMap = new HashMap<>();
-        for (int i = 0; i < results.size(); i++) {
-            LottoResult result = results.get(i);
+        for (LottoResult result : results) {
             int count = result.getMatchingCount();
             boolean bonusMatch = judge.isBonusMatch(lottoList, bonusNumber);
             WinningResult winningResult = judge.determineWinningResult(count, bonusMatch);
             resultMap.put(winningResult, resultMap.getOrDefault(winningResult, 0) + 1);
         }
         OutputView.printWinningResult(resultMap);
+    }
+
+    private static void printProfitRate(int userMoney, List<LottoResult> results) {
+        Counter counter = new Counter();
+        long totalPrize = calculateTotalPrize(results);
+        double profitRate = counter.calculateProfitRate(userMoney, totalPrize);
+        OutputView outputView = new OutputView();
+        outputView.printCalculateProfit(profitRate);
+    }
+
+    private static long calculateTotalPrize(List<LottoResult> results) {
+        long totalPrize = 0;
+        for (LottoResult result : results) {
+            WinningResult winningResult = result.getWinningResult();
+            if (winningResult != null) {
+                totalPrize += winningResult.getPrize();
+            }
+        }
+        return totalPrize;
     }
 
 }

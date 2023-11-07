@@ -6,12 +6,13 @@ import lotto.util.Util;
 
 import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.Map;
 
 import static lotto.config.LottoConfig.LOTTO_UNIT_PRICE;
 
 public class LottoResult {
     private static final int INITIAL_COUNT = 0;
-    private final EnumMap<LottoPrize, Integer> lottoResult;
+    private final Map<LottoPrize, Integer> lottoResult;
     private long totalPrizeMoney;
 
     LottoResult() {
@@ -40,10 +41,10 @@ public class LottoResult {
 
     public double calculateProfit(int money) {
         calculateTotalPrizeMoney();
-        return Util.round( (double) totalPrizeMoney / money, LOTTO_UNIT_PRICE.getNumber(), Constant.ROUND_POSITION);
+        return Util.round((double) totalPrizeMoney / money, LOTTO_UNIT_PRICE.getNumber(), Constant.ROUND_POSITION);
     }
 
-    public EnumMap<LottoPrize, Integer> getLottoResult() {
+    public Map<LottoPrize, Integer> getLottoResult() {
         return lottoResult;
     }
 }

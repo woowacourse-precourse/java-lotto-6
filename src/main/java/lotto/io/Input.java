@@ -15,12 +15,6 @@ public class Input {
     }
 
     public BonusNumber setBonusNumber() {
-        int num;
-        try {
-            num = Integer.parseInt(Console.readLine());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("올바르지 않은 입력입니다.");
-        }
-        return new BonusNumber(num);
+        return new BonusNumber(Console.readLine());
     }
 }

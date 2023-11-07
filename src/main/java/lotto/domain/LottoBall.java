@@ -23,6 +23,10 @@ public class LottoBall {
         }
     }
 
+    public int getNumber() {
+        return number;
+    }
+
     private void validateNumberRange(int number) {
         validateNumberLowerRange(number);
         validateNumberUpperRange(number);

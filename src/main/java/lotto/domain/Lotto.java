@@ -25,6 +25,12 @@ public class Lotto {
                 .count();
     }
 
+    public List<Integer> getNumbers() {
+        return numbers.stream()
+                .map(LottoBall::getNumber)
+                .toList();
+    }
+
     private void validate(List<LottoBall> numbers) {
         validateLength(numbers);
         validateDuplicateNumber(numbers);

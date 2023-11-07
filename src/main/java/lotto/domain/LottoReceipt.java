@@ -26,6 +26,12 @@ public class LottoReceipt {
         return result;
     }
 
+    public List<List<Integer>> getDrawnLotteryNumbers() {
+        return drawnLotteries.stream()
+                .map(Lotto::getNumbers)
+                .toList();
+    }
+
     private List<MatchDetail> gatherMatchDetails(WinningNumbers winningNumbers) {
         return drawnLotteries.stream()
                 .map(winningNumbers::match)

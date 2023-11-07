@@ -7,19 +7,18 @@ import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class IntersectionTest {
 
-//    @DisplayName("당첨 번호 비고")
-//    @Test
-//    void winNum() {
-//        Intersection intersection = new Intersection();
-//        List<Integer> winNum = List.of(1,11,5,24,3,7);
-//        List<Set> lottoNum = List.of(Set.of(1,11,5,24,3,8),Set.of(1,11,5,24,4,8));
-//        List result = intersection.winNum(winNum, lottoNum);
-//        assertThat(result).isEqualTo(List.of(5,4));
-//    }
+    @DisplayName("당첨 번호 비교")
+    @Test
+    void winNum() {
+        Intersection intersection = new Intersection();
+        List<Integer> winNum = List.of(1,11,5,24,3,7);
+        List<Set> lottoNum = List.of(Set.of(1,11,5,24,3,8));
+        List<Integer> result = intersection.winNum(winNum, lottoNum);
+        assertThat(result).isEqualTo(List.of(5));
+    }
 
     @DisplayName("보너스 번호 비교")
     @Test

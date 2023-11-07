@@ -7,10 +7,10 @@ import java.util.*;
 public class Intersection {
 
     public List<Integer> winNum(List<Integer> winNum, List<Set> lottoNum) {
-        HashSet<Integer> convert = new HashSet<>(winNum);
         List<Integer> intersectionCount = new ArrayList<>();
-        for (Set intersection : lottoNum) {
-            intersection.retainAll(convert);
+        for (Set<Integer> lottos : lottoNum) {
+            Set<Integer> intersection = new HashSet<>(lottos);
+            intersection.retainAll(winNum);
             intersectionCount.add(intersection.size());
         }
         return intersectionCount;

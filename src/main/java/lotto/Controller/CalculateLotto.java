@@ -15,7 +15,7 @@ public class CalculateLotto {
 
     public boolean checkBonus(List<Integer> generatedNums, List<Integer> winningNums, int bonus){
         int cnt = checkMatch(generatedNums, winningNums);
-        if (cnt == THREE.getNum()){
+        if (cnt == FIVE.getNum()){
             return generatedNums.contains(bonus);
         }
         return false;

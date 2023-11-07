@@ -77,8 +77,10 @@ class InputProcessorTest {
     @DisplayName("로또 보너스 번호 입력 처리 테스트")
     @Test
     void processBonusNumberInputTest() {
+        // given
+        List<Integer> winningNumbers = new ArrayList<>(List.of(1, 5, 10, 15, 20, 25));
         // when
-        int bonusNumber = InputProcessor.processBonusNumberInput("7");
+        int bonusNumber = InputProcessor.processBonusNumberInput("7", winningNumbers);
         // then
         assertThat(bonusNumber).isEqualTo(7);
     }
@@ -86,20 +88,26 @@ class InputProcessorTest {
     @DisplayName("로또 보너스 번호 입력 에러 처리 테스트")
     @Test
     void processBonusNumberInputErrorTest() {
+        // given
+        List<Integer> winningNumbers = new ArrayList<>(List.of(1, 5, 10, 15, 20, 25));
+        // then
         // 숫자 여부 검사
         assertThrows(IllegalArgumentException.class,
-                () -> InputProcessor.processBonusNumberInput("안"));
+                () -> InputProcessor.processBonusNumberInput("안", winningNumbers));
         // 공백 검사
         assertThrows(IllegalArgumentException.class,
-                () -> InputProcessor.processBonusNumberInput(""));
+                () -> InputProcessor.processBonusNumberInput("", winningNumbers));
         // , 뒤 공백 검사
         assertThrows(IllegalArgumentException.class,
-                () -> InputProcessor.processBonusNumberInput("3,"));
+                () -> InputProcessor.processBonusNumberInput("3,", winningNumbers));
+        // 중복 검사
+        assertThrows(IllegalArgumentException.class,
+                () -> InputProcessor.processBonusNumberInput("1", winningNumbers));
         // 범위 미만 검사
         assertThrows(IllegalArgumentException.class,
-                () -> InputProcessor.processBonusNumberInput("0"));
+                () -> InputProcessor.processBonusNumberInput("0", winningNumbers));
         // 범위 초과 검사
         assertThrows(IllegalArgumentException.class,
-                () -> InputProcessor.processBonusNumberInput("46"));
+                () -> InputProcessor.processBonusNumberInput("46", winningNumbers));
     }
 }

@@ -24,8 +24,9 @@ public class InputProcessor {
             return winningNumbers.stream().toList();
     }
 
-    public static int processBonusNumberInput(String BonusNumberInput) {
+    public static int processBonusNumberInput(String BonusNumberInput, List<Integer> winningNumbers) {
         int BonusNumber = stringToInt(BonusNumberInput);
+        checkDuplicateWithWinningNumbers(winningNumbers, BonusNumber);
         checkNumberRange(BonusNumber);
         return BonusNumber;
     }
@@ -62,5 +63,11 @@ public class InputProcessor {
             throw new IllegalArgumentException("[ERROR] 입력값은 숫자여야 합니다.");
         }
         return convertedValue;
+    }
+
+    private static void checkDuplicateWithWinningNumbers(List<Integer> winningNumbers, int BonusNumber) {
+        if (winningNumbers.contains(BonusNumber)) {
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복은 허용되지 않습니다.");
+        }
     }
 }

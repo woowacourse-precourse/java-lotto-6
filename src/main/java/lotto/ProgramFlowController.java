@@ -1,18 +1,16 @@
 package lotto;
 
-import domain.LottoBundle;
 import java.util.List;
 import util.InputValueValidation;
 import view.InputView;
 
-public class LogicController {
+public class ProgramFlowController {
     InputView inputView = new InputView();
     InputValueValidation inputValueValidation = new InputValueValidation();
     InputValueController inputValueController = new InputValueController(inputView, inputValueValidation);
     BuyLottoController buyLottoController = new BuyLottoController();
     PrizeStatisticsController prizeStatisticsController = new PrizeStatisticsController();
     EarningRateController earningRateController = new EarningRateController();
-    LottoBundle lottoBundle = LottoBundle.getInstance();
 
     public void startGame() {
         int purchaseAmount;
@@ -28,8 +26,7 @@ public class LogicController {
         // 보너스 번호 입력
         bonusNumber = inputValueController.inputBonusNumber(prizeNumber);
         // 당첨 결과 계산
-        prizeStatisticsController.calculatePrizeStatisticsProcess(lottoBundle, prizeNumber,
-                bonusNumber);
+        prizeStatisticsController.calculatePrizeStatisticsProcess(prizeNumber, bonusNumber);
         // 총수익률 계산
         earningRateController.calculateEarningRateProcess(purchaseAmount);
     }

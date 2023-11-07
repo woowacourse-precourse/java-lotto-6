@@ -1,5 +1,6 @@
 package lotto.view;
 
+import lotto.domain.Constant.OutputViewMessage;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.OutputLottoResult;
@@ -22,14 +23,13 @@ public class OutputView {
 
     public static void printStat(OutputLottoResult outputLottoResult) {
         System.out.println();
-        System.out.println("당첨 통계\n" +
-                "---");
+        System.out.println(OutputViewMessage.PRINT_STAT.getMessage());
 
-        System.out.printf("3개 일치 (5,000원) - %d개\n", outputLottoResult.getMatch3());
-        System.out.printf("4개 일치 (50,000원) - %d개\n", outputLottoResult.getMatch4());
-        System.out.printf("5개 일치 (1,500,000원) - %d개\n", outputLottoResult.getMatch5());
-        System.out.printf("5개 일치, 보너스 볼 일치 (30,000,000원) - %d개\n", outputLottoResult.getMatch5AndBonus());
-        System.out.printf("6개 일치 (2,000,000,000원) - %d개\n", outputLottoResult.getMatch6());
+        System.out.printf(OutputViewMessage.PRINT_STAT_MATCH3.getMessage(), outputLottoResult.getMatch3());
+        System.out.printf(OutputViewMessage.PRINT_STAT_MATCH4.getMessage(), outputLottoResult.getMatch4());
+        System.out.printf(OutputViewMessage.PRINT_STAT_MATCH5.getMessage(), outputLottoResult.getMatch5());
+        System.out.printf(OutputViewMessage.PRINT_STAT_MATCH5_AND_BONUS.getMessage(), outputLottoResult.getMatch5AndBonus());
+        System.out.printf(OutputViewMessage.PRINT_STAT_MATCH6.getMessage(), outputLottoResult.getMatch6());
     }
 
     public static void printRateOfReturn(double rateOfReturn) {

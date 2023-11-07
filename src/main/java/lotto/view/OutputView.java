@@ -3,6 +3,7 @@ package lotto.view;
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.Ranking;
 
 public class OutputView {
     private static final String COUNT = "개";
@@ -11,13 +12,6 @@ public class OutputView {
     private static final String REQUEST_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
     private static final String REQUEST_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_RESULT = "당첨 통계";
-    private static final String[] WINNING_PRINT = {
-            "3개 일치 (5,000원) - ",
-            "4개 일치 (50,000원) - ",
-            "5개 일치 (1,500,000원) - ",
-            "5개 일치, 보너스 볼 일치 (30,000,000원) - ",
-            "6개 일치 (2,000,000,000원) - "
-    };
 
     private static final String EARNING_RATE_RESULT = "총 수익률은 ";
 
@@ -46,10 +40,9 @@ public class OutputView {
     }
 
     public void displayWinningLotto(List<Integer> ranks) {
-        for (int i = 0; i < 5; i++) {
-            String ResultComment = WINNING_PRINT[i];
-            int winning_count = ranks.get(i);
-            System.out.println(ResultComment + winning_count + COUNT);
+        for (int i = 5; i > 0; i--) {
+            int winning_count = ranks.get(5 - i);
+            System.out.println(Ranking.getMatchRankMessage(i) + winning_count + COUNT);
         }
     }
 
@@ -57,7 +50,8 @@ public class OutputView {
         System.out.print(EARNING_RATE_RESULT + String.format("%.1f", earningRate) + "%입니다.");
     }
 
-    public void displayERRORMESSAGE(String message){
+
+    public void displayERRORMESSAGE(String message) {
         System.out.println(message);
     }
 }

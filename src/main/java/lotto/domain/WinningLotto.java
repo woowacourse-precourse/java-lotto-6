@@ -13,5 +13,6 @@ public class WinningLotto extends Lotto {
         if (this.contains(bonus)) {
             throw new IllegalArgumentException(Exception.BONUS_DUPLICATED);
         }
+        checkRange(bonus);
     }
 }

@@ -11,9 +11,9 @@ public enum LottoPrize {
     ETC(0, 0);
 
     private final int prizeRank;
-    private final int prizeMoney;
+    private final double prizeMoney;
 
-    LottoPrize(int matchCount, int prizeMoney) {
+    LottoPrize(int matchCount, double prizeMoney) {
         this.prizeRank = matchCount;
         this.prizeMoney = prizeMoney;
     }
@@ -22,7 +22,7 @@ public enum LottoPrize {
         return prizeRank;
     }
 
-    public int getPrizeMoney() {
+    public double getPrizeMoney() {
         return prizeMoney;
     }
 

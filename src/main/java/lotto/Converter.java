@@ -1,0 +1,21 @@
+package lotto;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Converter {
+
+    private static final String SPLIT_POINT = ",";
+
+    public static List<Integer> stringToList(String input){
+        List<String> numbers = Arrays.asList(input.split(SPLIT_POINT));
+        try{
+            return numbers.stream().map(s -> Integer.parseInt(s))
+                    .collect(Collectors.toList());
+        }catch (NumberFormatException e){
+            throw new IllegalArgumentException();
+        }
+    }
+}

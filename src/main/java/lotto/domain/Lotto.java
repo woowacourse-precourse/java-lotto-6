@@ -3,6 +3,7 @@ package lotto.domain;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Lotto {
 
@@ -11,6 +12,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        numbers = ascendingSort(numbers);
         this.numbers = numbers;
     }
 
@@ -30,5 +32,11 @@ public class Lotto {
         if (removeDuplicateNumbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또에서 중복되는 번호가 있습니다");
         }
+    }
+
+    public List<Integer> ascendingSort(List<Integer> numbers) {
+        return numbers.stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

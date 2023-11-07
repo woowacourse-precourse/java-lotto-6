@@ -29,7 +29,7 @@ public class Money {
             throw new DivideMoneyException();
         }
     }
-    public int getMoney() {
-        return money;
+    public int getTicket() {
+        return money / 1000;
     }
 }

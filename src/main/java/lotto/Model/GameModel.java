@@ -10,7 +10,6 @@ public class GameModel {
     private LottoPlayer lottoPlayer;
     private LottoHost lottoHost;
 
-
     public void initGameModel(Integer insertData){
         lottoPlayer = new LottoPlayer(insertData);
         lottoHost = new LottoHost();
@@ -23,6 +22,7 @@ public class GameModel {
         List<Integer> answerNumbers = splitData.stream()
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+
         lottoHost.initAnswerLotto(answerNumbers);
     }
 
@@ -30,6 +30,17 @@ public class GameModel {
         lottoHost.initBonusNumber(insertNumber);
     }
 
+
+    public ArrayList<LottoData> transferPlayerLottoDatas(){
+        return lottoPlayer.getLottoDatas();
+    }
+
+    public ScoreBoard calculateRoundScore(){
+        Integer bonusNumber = lottoHost.getBonusNumberData();
+        LottoData roundLotto = lottoHost.getLottoData();
+
+        return lottoPlayer.calculateScore(roundLotto,bonusNumber);
+    }
 
     private void validateIntegerList(List<String> insertDatas){
        if(isContainsChar(insertDatas)){
@@ -62,7 +73,4 @@ public class GameModel {
     }
 
 
-    public ArrayList<LottoData> transferPlayerLottoDatas(){
-        return lottoPlayer.getLottoDatas();
-    }
-}
+   }

@@ -7,6 +7,8 @@ import static lotto.View.OutputMessage.Enter_Purchase_Mount;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import lotto.Model.Prize;
+import lotto.Model.ScoreBoard;
 import lotto.Model.VO.LottoData;
 
 public class Output {
@@ -24,9 +26,32 @@ public class Output {
     }
     public static void printInsertLottoNumbers(){System.out.println(Enter_Lotto_Numbers.message);}
 
+    public static void printScores(ScoreBoard roundScore){
+            System.out.println();
+            System.out.println("당첨 통계");
+            System.out.println("---");
+
+            for (Prize prize : Prize.values()) {
+                int prizeCount = roundScore.getScoreByRank(prize);
+                printScore(prize,prizeCount);
+            }
+    }
+
+    private static void printScore(Prize prize,Integer prizeCount){
+        if(prize == Prize.NO_RANK){
+            return;
+        }
+        if(prize != Prize.SECOND){
+            System.out.printf("%d개 일치 (%,d원) - %d개%n", prize.getMatchCount(), prize.getReward(), prizeCount);
+            return;
+        }
+        System.out.printf("%d개 일치, 보너스 볼 일치 (%,d원) - %d개%n", prize.getMatchCount(), prize.getReward(), prizeCount);
+
+}
     public static void printInsertBonusNumber(){
         System.out.println();
-        System.out.println(Enter_Bonus_Numbers.message);}
+        System.out.println(Enter_Bonus_Numbers.message);
+    }
 
     private static void printLotto(List<Integer> lotto) {
         List<Integer> sortedNumbers = lotto.stream()
@@ -39,5 +64,6 @@ public class Output {
 
         System.out.println(formattedLotto);
     }
+
 
 }

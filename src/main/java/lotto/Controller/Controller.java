@@ -2,6 +2,7 @@ package lotto.Controller;
 
 import java.util.ArrayList;
 import lotto.Model.GameModel;
+import lotto.Model.ScoreBoard;
 import lotto.Model.VO.LottoData;
 import lotto.View.Input;
 import lotto.View.Output;
@@ -12,6 +13,7 @@ public class Controller {
     public void playingGame(){
         startGame();
         proceedGame();
+        finshGame();
     }
 
     public Controller(){
@@ -36,6 +38,11 @@ public class Controller {
         Output.printInsertBonusNumber();
         Integer insertBonusNumber = Input.insertInteger();
         gameModel.initBonus(insertBonusNumber);
-
     }
+
+    private void finshGame(){
+        ScoreBoard scoreBoard = gameModel.calculateRoundScore();
+        Output.printScores(scoreBoard);
+    }
+
 }

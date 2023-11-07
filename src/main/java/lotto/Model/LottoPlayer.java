@@ -1,6 +1,7 @@
 package lotto.Model;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 import lotto.Model.VO.LottoData;
 
@@ -40,6 +41,19 @@ public class LottoPlayer {
             return playerLottoDatas;
         }
 
+        public ScoreBoard calculateScore(LottoData answerLotto,Integer bonusNumber){
+            ScoreBoard roundScore = new ScoreBoard();
+            List<Integer> answerNumbers = answerLotto.getNumbers();
+            for (Lotto lotto : ownedLottos) {
+                Prize prize = lotto.calculatePrize(answerNumbers,bonusNumber);
+                roundScore.recordScore(prize);
+            }
+            return roundScore;
+        }
+
+        public boolean remainLotto(){
+            return ownedLottos.isEmpty() == false;
+        }
 
 
 }

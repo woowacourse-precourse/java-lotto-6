@@ -1,7 +1,6 @@
 package lotto.domain;
 
 
-import java.util.List;
 import java.util.Map;
 import lotto.config.output.MessageType;
 import lotto.config.output.OutputMessage;

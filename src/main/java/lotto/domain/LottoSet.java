@@ -12,6 +12,7 @@ public class LottoSet {
     private int bonusNumber;
 
     public LottoSet(Lotto lotto, int bonusNumber) {
+        OutputMessage.print(MessageType.INPUT_START_BONUS);
         validate(lotto.get(), bonusNumber);
         this.lottoNumbers = lotto.get();
         this.bonusNumber = bonusNumber;
@@ -45,9 +46,13 @@ public class LottoSet {
     }
 
     public int sameLottoNumber(List<Integer> ticket) {
-        return (int) this.lottoNumbers.stream()
-                .filter(ticket::contains)
-                .count();
+        long count = 0L;
+        for (Integer integer : ticket) {
+            if (lottoNumbers.contains(integer)) {
+                count++;
+            }
+        }
+        return (int) count;
     }
 
     public int sameBonusNumber(List<Integer> ticket){

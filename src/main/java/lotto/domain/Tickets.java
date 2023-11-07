@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import lotto.config.output.MessageType;
+import lotto.config.output.OutputMessage;
 
 public class Tickets {
-    private List<Ticket> tickets = new ArrayList<>();
+    private List<List<Integer>> tickets = new ArrayList<>();
     private final Ticket ticket;
 
     public Tickets(Ticket ticket) {
@@ -18,15 +20,20 @@ public class Tickets {
 
     public void generate() {
         IntStream.range(0, ticket.ticketCount())
-                .mapToObj(i -> ticket.generate())
+                .mapToObj(i -> {
+                    List<Integer> disorderTicket = ticket.randomNumbers();
+                    List<Integer> orderedTicket = ticket.ascendingNumber(disorderTicket);
+                    OutputMessage.printf(MessageType.INPUT_BUYER_FORMAT, orderedTicket);
+                    return orderedTicket;
+                })
                 .forEach(tickets::add);
     }
 
     public List<Integer> matchNumber(LottoSet lottoSet) {
-        return tickets.stream()
+        return this.tickets.stream()
                 .map(ticket -> {
-                    int lottoCount = lottoSet.sameLottoNumber(ticket.get());
-                    int bonusCount = lottoSet.sameBonusNumber(ticket.get());
+                    int lottoCount = lottoSet.sameLottoNumber(ticket);
+                    int bonusCount = lottoSet.sameBonusNumber(ticket);
                     return matchAllCount(lottoCount, bonusCount);
                 })
                 .collect(Collectors.toList());

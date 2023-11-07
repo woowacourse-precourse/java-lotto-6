@@ -1,6 +1,7 @@
 package lotto.config;
 
 import lotto.controller.LottoController;
+import lotto.domain.rule.PrizeAmount;
 import lotto.model.LottoModel;
 import lotto.view.LottoBuyer;
 import lotto.view.LottoDrawer;
@@ -21,7 +22,15 @@ public class AppConfig {
         setLottoBuyer();
         setLottoDrawer();
 
+        initPrizeAmount();
+
         LottoProcess.start(lottoBuyer, lottoDrawer);
+    }
+
+    private static void setLottoModel() {
+        if (lottoModel == null) {
+            lottoModel = new LottoModel();
+        }
     }
 
     private static void setController(LottoModel lottoModel) {
@@ -42,10 +51,8 @@ public class AppConfig {
         }
     }
 
-    private static void setLottoModel() {
-        if (lottoModel == null) {
-            lottoModel = new LottoModel();
-        }
+    private void initPrizeAmount() {
+        new PrizeAmount();
     }
 
     public static LottoController getController() {

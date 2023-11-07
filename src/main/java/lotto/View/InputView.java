@@ -10,10 +10,6 @@ public class InputView {
     private static final String INPUT_LOTTO_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_LOTTO_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
-//    public static String inputFunc(String inputType){
-//        // 밑에 3개 출력문구를 enum으로 받아서 하나로 통합해도 될 것 같음
-//    }
-
     public static String inputLottoPurchaseAmount() {
         boolean isNumber = false;
         boolean isEmpty = false;
@@ -37,7 +33,7 @@ public class InputView {
         String input="";
         while (!isNumber || !isEmpty) {
             try {
-                System.out.println("\n" + INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
+                System.out.println(INPUT_LOTTO_WINNING_NUMBER_MESSAGE);
                 input = Console.readLine();
                 isNumber = isNumber(input);
                 isEmpty = isEmpty(input);
@@ -45,7 +41,7 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-        return Console.readLine();
+        return input;
     }
 
     public static String inputLottoBonusNumber(){
@@ -54,7 +50,7 @@ public class InputView {
         String input="";
         while (!isNumber || !isEmpty) {
             try {
-                System.out.println("\n" + INPUT_LOTTO_BONUS_NUMBER_MESSAGE);
+                System.out.println(INPUT_LOTTO_BONUS_NUMBER_MESSAGE);
                 input = Console.readLine();
                 isNumber = isNumber(input);
                 isEmpty = isEmpty(input);
@@ -62,6 +58,6 @@ public class InputView {
                 System.out.println(e.getMessage());
             }
         }
-        return Console.readLine();
+        return input;
     }
 }

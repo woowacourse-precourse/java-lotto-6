@@ -9,7 +9,7 @@ public class OutView {
     static final String LOTTO_WINNING_STATISTICS_START_MESSAGE = "\n당첨 통계\n---";
 
     public static void printPurchasedLottos(List<String> lottoNumbers) {
-        System.out.println("\n" + lottoNumbers.size() + SUCCESFULLY_PURCHASE_LOTTO_MESSAGE);
+        System.out.println(lottoNumbers.size() + SUCCESFULLY_PURCHASE_LOTTO_MESSAGE);
         for (String lottoNumber : lottoNumbers) {
             System.out.println("[" + lottoNumber +"]");
         }

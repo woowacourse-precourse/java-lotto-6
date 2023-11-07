@@ -11,13 +11,15 @@ public class InputView {
     private String inputData;
 
     public int getLottoCostData(){
-            inputData = Console.readLine();
+        while(true){
             try{
+                inputData = Console.readLine();
                 dataValidator.validLottoCostInput(inputData);
+                break;
             } catch (IllegalArgumentException e){
                 outputView.printIlligalLottoCostMessage();
-                getLottoCostData();
             }
+        }
         return Integer.parseInt(inputData);
     }
 }

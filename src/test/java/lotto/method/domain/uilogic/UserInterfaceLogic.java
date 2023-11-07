@@ -1,4 +1,4 @@
-package lotto.method.uilogic;
+package lotto.method.domain.uilogic;
 
 import camp.nextstep.edu.missionutils.Console;
 

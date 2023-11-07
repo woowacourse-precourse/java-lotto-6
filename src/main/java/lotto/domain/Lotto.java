@@ -18,7 +18,7 @@ public class Lotto {
 
     private static void validate(List<Integer> numbers) {
         validateSize(numbers);
-        validateSameNumber(numbers, GameConstant.NUMBER_SIZE);
+        validateSameNumber(numbers);
     }
 
     private static void validateSize(List<Integer> numbers) {
@@ -27,9 +27,9 @@ public class Lotto {
         }
     }
 
-    private static void validateSameNumber(List<Integer> numbers, int size) {
+    private static void validateSameNumber(List<Integer> numbers) {
         Set<Integer> tempNumber = new HashSet<>(numbers);
-        if (tempNumber.size() < size) {
+        if (tempNumber.size() < numbers.size()) {
             throw new IllegalArgumentException(ValidateErrorMessage.LOTTO_SAME_NUMBER_ERROR.getMessage());
         }
     }

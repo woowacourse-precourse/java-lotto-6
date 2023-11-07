@@ -9,7 +9,7 @@ import lotto.message.ValidateErrorMessage;
 
 public class Validator {
     public int validate(int payment){
-        if (payment % GameConstant.PAYMENT_UNIT != 0 || payment < 1000) {
+        if (payment % GameConstant.PAYMENT_UNIT != 0 || payment < GameConstant.PAYMENT_UNIT) {
             throw new IllegalArgumentException(ValidateErrorMessage.PAYMENT_ERROR.getMessage());
         }
         return payment;
@@ -17,13 +17,13 @@ public class Validator {
     public List<Integer> validate(List<Integer> numbers){
         validateSize(numbers);
         validateRange(numbers);
-        validateSameNumber(numbers, GameConstant.NUMBER_SIZE);
+        validateSameNumber(numbers);
         return numbers;
     }
 
-    private static void validateSameNumber(List<Integer> numbers, int size) {
+    private static void validateSameNumber(List<Integer> numbers) {
         Set<Integer> tempNumber = new HashSet<>(numbers);
-        if (tempNumber.size() < size) {
+        if (tempNumber.size() < numbers.size()) {
             throw new IllegalArgumentException(ValidateErrorMessage.LOTTO_SAME_NUMBER_ERROR.getMessage());
         }
     }
@@ -44,7 +44,7 @@ public class Validator {
         List<Integer> duplicateCheckBox = new ArrayList<>(numbers);
         duplicateCheckBox.add(bonusNumber);
         validateRange(duplicateCheckBox);
-        validateSameNumber(duplicateCheckBox, GameConstant.TOTAL_NUMBER_SIZE);
+        validateSameNumber(duplicateCheckBox);
         return bonusNumber;
     }
 }

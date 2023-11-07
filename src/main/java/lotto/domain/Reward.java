@@ -11,9 +11,9 @@ public enum Reward {
             2, GameConstant.SECOND_REWARD),
     THIRD_REWARD(matchCount -> matchCount == 5, bonusCount -> bonusCount == 0,
             3, GameConstant.THIRD_REWARD),
-    FOURTH_REWARD(matchCount -> matchCount == 4, bonusCount -> bonusCount == 0,
+    FOURTH_REWARD(matchCount -> matchCount == 4, bonusCount -> bonusCount >= 0,
             4, GameConstant.FOURTH_REWARD),
-    FIFTH_REWARD(matchCount -> matchCount == 3, bonusCount -> bonusCount == 0,
+    FIFTH_REWARD(matchCount -> matchCount == 3, bonusCount -> bonusCount >= 0,
             5, GameConstant.FIFTH_REWARD),
     NO_REWARD(matchCount -> matchCount < 3, bonusCount -> bonusCount >= 0 ,
             0, 0);

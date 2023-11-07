@@ -10,7 +10,7 @@ public class LottoStatistics {
     private List<Integer> winningNumbers;
     private int bonusNumber;
     private LottoService lottoService;
-    private long totalRevenue = 0;
+    private long totalRevenue;
     private final List<Integer> winsPerCategory;
     private final double totalRate;
 
@@ -23,6 +23,7 @@ public class LottoStatistics {
 
         winsPerCategory = calculateWinsPerCategory();
         totalRate = calculateRateOfReturn();
+        totalRevenue = 0;
     }
 
     public List<Integer> getWinsPerCategory() {

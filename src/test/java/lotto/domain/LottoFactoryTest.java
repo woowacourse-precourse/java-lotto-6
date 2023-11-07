@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
@@ -17,4 +18,14 @@ class LottoFactoryTest {
             assertTrue(number >= 1 && number <= 45);
         }
     }
+
+    @DisplayName("로또가 요청한 갯수 만큼 생성되는지 검증하기")
+    @Test
+    public void testGenerateLottoList(){
+        int count = 5;
+        List<Lotto> lottos = LottoFactory.generateLotto(count);
+        assertThat(lottos.size()).isEqualTo(count);
+    }
+
+
 }

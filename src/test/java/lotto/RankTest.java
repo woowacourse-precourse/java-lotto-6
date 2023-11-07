@@ -1,5 +1,6 @@
 package lotto;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -16,5 +17,18 @@ public class RankTest{
 
         //then
         assertThat(result).isEqualTo(Rank.valueOf(expected));
+    }
+
+    @Test
+    void 메시지_반환() {
+
+        //given
+        Rank rank = Rank.FIRST;
+
+        //when
+        String result = rank.getMessage();
+
+        //then
+        assertThat(result).isEqualTo("6개 일치 (2,000,000,000원) - ");
     }
 }

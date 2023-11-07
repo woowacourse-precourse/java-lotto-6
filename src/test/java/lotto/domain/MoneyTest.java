@@ -2,8 +2,10 @@ package lotto.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class MoneyTest {
@@ -14,5 +16,19 @@ class MoneyTest {
     void makeMoneyByWrongUnit(int amount) {
         assertThatThrownBy(() -> new Money(amount))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "1000,1",
+            "2000,2",
+            "5000,5",
+            "10000,10",
+    })
+    @DisplayName("가격에 맞는 수량을 계산한다.")
+    void calculateQuantity(int amount, int expected) {
+        Money money = new Money(amount);
+        int quantity = money.calculateQuantity(1000);
+        assertThat(quantity).isEqualTo(expected);
     }
 }

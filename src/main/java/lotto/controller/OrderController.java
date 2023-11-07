@@ -8,6 +8,8 @@ public class OrderController {
     Output output;
     int lottoNumber;
 
+    int wastedMoney;
+
     public OrderController() {
         lottoNumber = -1;
         output = new Output();
@@ -24,12 +26,16 @@ public class OrderController {
             try {
                 OrderService orderService = new OrderService();
                 lottoNumber = orderService.generateLottoNumber(money);
+                wastedMoney = Integer.parseInt(money);
             } catch (IllegalArgumentException e) {
                 output.printError(e.getMessage());
             }
         }
     }
 
+    public int getWastedMoney(){
+        return wastedMoney;
+    }
     public int getLottoNumber() {
         return lottoNumber;
     }

@@ -1,5 +1,7 @@
 package lotto.domain;
 
 public interface Calculator {
-    int compute();
+    int computeInt();
+    double computeDouble();
+
 }

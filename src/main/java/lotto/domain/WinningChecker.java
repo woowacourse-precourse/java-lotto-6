@@ -22,4 +22,8 @@ public class WinningChecker {
             if(place!=null) winningResult.win(place);
         }
     }
+
+    public WinningResult getWinningResult(){
+        return winningResult;
+    }
 }

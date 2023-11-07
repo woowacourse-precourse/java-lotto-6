@@ -9,7 +9,7 @@ public class OrderCalculator implements Calculator{
         inputNum = Integer.parseInt(input);
     }
     @Override
-    public int compute() {
+    public int computeInt() {
         return inputNum/LOTTO_PRICE.getValue();
     }
 
@@ -19,5 +19,11 @@ public class OrderCalculator implements Calculator{
 
     public boolean tooMuchValue(){
         return inputNum>MAX_VALUE.getValue();
+    }
+
+
+    @Override
+    public double computeDouble() {
+        return 0;
     }
 }

@@ -17,7 +17,7 @@ public class LottoManualGenerateService {
         return instance;
     }
 
-    public Lotto generate(List<String> list) throws LottoException {
+    public Lotto generate(final List<String> list) throws LottoException {
         try {
             Set<Integer> uniqueNumbers = list.stream()
                     .map(Integer::valueOf)

@@ -19,16 +19,16 @@ public class LottoWinningNumbersPickService {
         return instance;
     }
 
-    public Lotto pickWinningNumbers(String input) throws LottoException {
+    public Lotto pickWinningNumbers(final String input) throws LottoException {
         List<String> splitLottoNumbers = splitLottoNumbers(input);
         return lottoManualGenerator.generate(splitLottoNumbers);
     }
 
-    public LottoWinningBonusNumber pickBonusNumber(String input) {
+    public LottoWinningBonusNumber pickBonusNumber(final String input) {
         return new LottoWinningBonusNumber(Integer.parseInt(input));
     }
 
-    private List<String> splitLottoNumbers(String input) {
+    private List<String> splitLottoNumbers(final String input) {
         String delimiter = ",";
         return List.of(input.split(delimiter));
     }

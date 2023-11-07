@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class Lotto {
     private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<Integer> numbers) throws LottoException {
+    public Lotto(final List<Integer> numbers) throws LottoException {
         // TreeSet : 로또 번호 오름차순 정렬 (Comparable<LottoNumber> 구현)
         Set<LottoNumber> uniqueNumbers = numbers.stream()
                 .map(LottoNumber::new).collect(Collectors.toCollection(TreeSet::new));
@@ -23,13 +23,13 @@ public class Lotto {
         this.lottoNumbers = new ArrayList<>(uniqueNumbers);
     }
 
-    private void validate(List<LottoNumber> lottoNumbers) throws LottoException {
+    private void validate(final List<LottoNumber> lottoNumbers) throws LottoException {
         if (lottoNumbers.size() != LottoConstants.LOTTO_SIZE.getValue()) {
             throw new LottoException(LottoException.ErrorMessage.DUPLICATE_LOTTO_NUMBERS.getMessage());
         }
     }
 
-    public void validateAndThrowIfBonusNumberExists(LottoWinningBonusNumber lottoWinningBonusNumber) throws LottoException {
+    public void validateAndThrowIfBonusNumberExists(final LottoWinningBonusNumber lottoWinningBonusNumber) throws LottoException {
         if (containsBonusNumber(lottoWinningBonusNumber)) {
             throw new LottoException(LottoException.ErrorMessage.CONTAINS_ALREADY_BONUS_NUMBER.getMessage());
         }

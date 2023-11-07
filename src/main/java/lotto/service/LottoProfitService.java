@@ -18,7 +18,7 @@ public class LottoProfitService {
         return instance;
     }
 
-    public double calculateProfit(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap, int lottoCount) {
+    public double calculateProfit(final EnumMap<LottoWinningRanking, Integer> winningRankingCountMap, final int lottoCount) {
         int purchaseAmount = calculatePurchaseAmount(lottoCount);
         long totalWinningAmount = calculateWinningAmount(winningRankingCountMap);
 
@@ -26,11 +26,11 @@ public class LottoProfitService {
         return Math.round(profit * ROUNDING_FACTOR) / ROUNDING_FACTOR;
     }
 
-    private int calculatePurchaseAmount(int lottoCount) {
+    private int calculatePurchaseAmount(final int lottoCount) {
         return lottoCount * LottoConstants.LOTTO_PRICE.getValue();
     }
 
-    private long calculateWinningAmount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
+    private long calculateWinningAmount(final EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         long totalWinningAmount = 0;
 
         for (Map.Entry<LottoWinningRanking, Integer> value : winningRankingCountMap.entrySet()) {
@@ -42,7 +42,7 @@ public class LottoProfitService {
         return totalWinningAmount;
     }
 
-    private long calculateWinningAmountForRanking(LottoWinningRanking ranking, int count) {
+    private long calculateWinningAmountForRanking(final LottoWinningRanking ranking, final int count) {
         long winningAmount = ranking.getWinningAmount();
 
         if (winningAmount >= LottoWinningRanking.THIRD.getWinningAmount()) {

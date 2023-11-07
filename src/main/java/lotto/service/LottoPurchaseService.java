@@ -27,17 +27,17 @@ public class LottoPurchaseService {
         return instance;
     }
 
-    public Lottos purchaseAutoLottos(int userMoney) throws LottoException {
+    public Lottos purchaseAutoLottos(final int userMoney) throws LottoException {
         validate(userMoney);
         int lottoCount = userMoney / LOTTO_PRICE.getValue();
         return lottoAutoGenerateService.generate(lottoCount);
     }
 
-    public Lotto purchaseManualLotto(List<String> list) throws LottoException {
+    public Lotto purchaseManualLotto(final List<String> list) throws LottoException {
         return lottoManualGeneratorService.generate(list);
     }
 
-    private void validate(int money) throws LottoStoreException {
+    private void validate(final int money) throws LottoStoreException {
         if (!isValidMoney(money)) {
             throw new LottoStoreException(LottoStoreException.ErrorMessage.MIN_LOTTO_AMOUNT.getMessage());
         }
@@ -49,15 +49,15 @@ public class LottoPurchaseService {
         }
     }
 
-    private boolean isValidMoney(int money) {
+    private boolean isValidMoney(final int money) {
         return money >= LOTTO_PRICE.getValue();
     }
 
-    private boolean isDivisibleByLottoPrice(int money) {
+    private boolean isDivisibleByLottoPrice(final int money) {
         return (money % LOTTO_PRICE.getValue()) == 0;
     }
 
-    private boolean isExceedMaxLottoAmountPerUser(int money) {
+    private boolean isExceedMaxLottoAmountPerUser(final int money) {
         return money > MAX_LOTTO_PRICE_PER_USER.getValue();
     }
 }

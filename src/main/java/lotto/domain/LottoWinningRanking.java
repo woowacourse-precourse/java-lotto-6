@@ -12,11 +12,11 @@ public enum LottoWinningRanking {
     private final boolean needsBonusNumber;
     private final long winningAmount;
 
-    LottoWinningRanking(int matchedNumberCount, long winningAmount) {
+    LottoWinningRanking(final int matchedNumberCount, final long winningAmount) {
         this(matchedNumberCount, false, winningAmount);
     }
 
-    LottoWinningRanking(int matchedNumberCount, boolean needsBonusNumber, long winningAmount) {
+    LottoWinningRanking(final int matchedNumberCount, final boolean needsBonusNumber, final long winningAmount) {
         this.matchedNumberCount = matchedNumberCount;
         this.needsBonusNumber = needsBonusNumber;
         this.winningAmount = winningAmount;

@@ -19,7 +19,7 @@ public class LottoWinningRakingCountMapDto {
         this.winningRankingCountMap = filteredMap;
     }
 
-    private static boolean isNotNone(LottoWinningRanking ranking) {
+    private static boolean isNotNone(final LottoWinningRanking ranking) {
         return ranking != LottoWinningRanking.NONE;
     }
 

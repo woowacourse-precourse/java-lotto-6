@@ -8,12 +8,12 @@ import java.util.Objects;
 public final class LottoNumber implements Comparable<LottoNumber> {
     private final Integer value;
 
-    public LottoNumber(Integer value) throws LottoException {
+    public LottoNumber(final Integer value) throws LottoException {
         validate(value);
         this.value = value;
     }
 
-    private void validate(Integer value) throws LottoException {
+    private void validate(final Integer value) throws LottoException {
         if (value < LottoConstants.LOTTO_MIN_NUMBER.getValue()) {
             throw new LottoException(LottoException.ErrorMessage.RANGE_LOTTO_NUMBER.getMessage());
         }

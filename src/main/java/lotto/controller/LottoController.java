@@ -27,7 +27,7 @@ public class LottoController {
     private final LottoWinningRankingService lottoWinningRankingService;
     private final LottoProfitService lottoProfitService;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoPurchaseService lottoPurchaseService, LottoWinningNumbersPickService lottoWinningNumbersPickService, LottoWinningRankingService lottoWinningRankingService, LottoProfitService lottoProfitService) {
+    public LottoController(final InputView inputView, final OutputView outputView, LottoPurchaseService lottoPurchaseService, LottoWinningNumbersPickService lottoWinningNumbersPickService, LottoWinningRankingService lottoWinningRankingService, LottoProfitService lottoProfitService) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoPurchaseService = lottoPurchaseService;
@@ -69,25 +69,25 @@ public class LottoController {
         return parseInt(userPurchaseAmount);
     }
 
-    private int parseInt(String input) {
+    private int parseInt(final String input) {
         return Integer.parseInt(input);
     }
 
-    private void displayUserLottosInformation(Lottos userLottos) {
+    private void displayUserLottosInformation(final Lottos userLottos) {
         LottosDto lottosDto = convertLottosDto(userLottos);
         displayUserLottoPurchaseCount(lottosDto);
         displayUserLottos(lottosDto);
     }
 
-    private LottosDto convertLottosDto(Lottos userLottos) {
+    private LottosDto convertLottosDto(final Lottos userLottos) {
         return new LottosDto(userLottos);
     }
 
-    private void displayUserLottoPurchaseCount(LottosDto userLottosDto) {
+    private void displayUserLottoPurchaseCount(final LottosDto userLottosDto) {
         outputView.responsePurchaseCount(userLottosDto.getLottoGroup().size());
     }
 
-    private void displayUserLottos(LottosDto userLottosDto) {
+    private void displayUserLottos(final LottosDto userLottosDto) {
         outputView.responseUserNumbersSet(userLottosDto);
     }
 
@@ -127,21 +127,21 @@ public class LottoController {
         return lottoWinningNumbersPickService.pickBonusNumber(input);
     }
 
-    private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(Lottos userLottos, Lotto winningLotto, LottoWinningBonusNumber lottoWinningBonusNumber) {
+    private EnumMap<LottoWinningRanking, Integer> processWinningRankingCalculationTransaction(final Lottos userLottos, Lotto winningLotto, LottoWinningBonusNumber lottoWinningBonusNumber) {
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(winningLotto, lottoWinningBonusNumber);
         return lottoWinningRankingService.countWinningRankings(userLottos, lottoWinningNumbers);
     }
 
-    private void displayWinningRankingCount(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
+    private void displayWinningRankingCount(final EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         outputView.responseWinningStatisticsHeader();
         outputView.responseWinningStatisticsBody(convertWinningRankingCountMapDto(winningRankingCountMap));
     }
 
-    private LottoWinningRakingCountMapDto convertWinningRankingCountMapDto(EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
+    private LottoWinningRakingCountMapDto convertWinningRankingCountMapDto(final EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         return new LottoWinningRakingCountMapDto(winningRankingCountMap);
     }
 
-    private double processUserProfitCalculationTransaction(Lottos userLottos, EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
+    private double processUserProfitCalculationTransaction(final Lottos userLottos, EnumMap<LottoWinningRanking, Integer> winningRankingCountMap) {
         return lottoProfitService.calculateProfit(winningRankingCountMap, userLottos.getSize());
     }
 

@@ -17,7 +17,7 @@ public class LottoWinningRankingService {
         return instance;
     }
 
-    public EnumMap<LottoWinningRanking, Integer> countWinningRankings(Lottos userLottos, LottoWinningNumbers winningLotto) {
+    public EnumMap<LottoWinningRanking, Integer> countWinningRankings(final Lottos userLottos, final LottoWinningNumbers winningLotto) {
         EnumMap<LottoWinningRanking, Integer> rankingCountMap = new EnumMap<>(LottoWinningRanking.class);
 
         for (Lotto lotto : userLottos.lottoGroup()) {
@@ -30,7 +30,7 @@ public class LottoWinningRankingService {
         return rankingCountMap;
     }
 
-    private int countMatchedNumbers(Lotto lotto, LottoWinningNumbers winningLotto) {
+    private int countMatchedNumbers(final Lotto lotto, final LottoWinningNumbers winningLotto) {
         int matchedNumberCount = 0;
         for (LottoNumber number : winningLotto.lotto().getNumbers()) {
             if (lotto.getNumbers().contains(number)) {
@@ -40,11 +40,11 @@ public class LottoWinningRankingService {
         return matchedNumberCount;
     }
 
-    private boolean hasBonusNumber(Lotto lotto, LottoWinningNumbers lottoWinningNumbers) {
+    private boolean hasBonusNumber(final Lotto lotto, final LottoWinningNumbers lottoWinningNumbers) {
         return lotto.containsBonusNumber(lottoWinningNumbers.lottoWinningBonusNumber());
     }
 
-    private LottoWinningRanking calculateRanking(int matchedNumberCount, boolean needsBonusNumber) {
+    private LottoWinningRanking calculateRanking(final int matchedNumberCount, final boolean needsBonusNumber) {
         LottoWinningRanking ranking = LottoWinningRanking.NONE;
         for (LottoWinningRanking value : LottoWinningRanking.values()) {
             if (isMatchingRanking(value, matchedNumberCount, needsBonusNumber)) {
@@ -55,7 +55,7 @@ public class LottoWinningRankingService {
         return ranking;
     }
 
-    private boolean isMatchingRanking(LottoWinningRanking ranking, int matchedNumberCount, boolean needsBonusNumber) {
+    private boolean isMatchingRanking(final LottoWinningRanking ranking, final int matchedNumberCount, final boolean needsBonusNumber) {
         return matchedNumberCount == ranking.getMatchedNumberCount()
                 && (needsBonusNumber || !ranking.getNeedsBonusNumber());
     }

@@ -12,9 +12,8 @@ public class LottoService {
     public int getLottosSize(Lottos lottos){
         return lottos.getLottosSize();
     }
-    
+
     public String getLottosNumbers(Lottos lottos){
         return lottos.getLottosNumbers();
     }
-
 }

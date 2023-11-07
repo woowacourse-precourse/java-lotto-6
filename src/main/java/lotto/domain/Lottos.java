@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import lotto.utils.LottoPlace;
+import lotto.utils.LottoResult;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -38,5 +41,16 @@ public class Lottos {
 
     public int getLottosSize() {
         return lottos.size();
+    }
+
+    public WinningScores calWinningScores(WinningManager winningManager) {
+        WinningScores winningScores = new WinningScores();
+
+        for (Lotto lotto : lottos) {
+            LottoPlace lottoPlace = lotto.calLottoResult(winningManager);
+            winningScores.increaseScore(lottoPlace);
+        }
+
+        return winningScores;
     }
 }

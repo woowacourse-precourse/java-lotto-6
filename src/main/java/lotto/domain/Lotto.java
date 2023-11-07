@@ -3,6 +3,8 @@ package lotto.domain;
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.utils.DuplicateException;
 import lotto.utils.ErrorMessage;
+import lotto.utils.LottoPlace;
+import lotto.utils.LottoResult;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -45,6 +47,50 @@ public class Lotto {
         return numbers.toString();
     }
 
+    public LottoPlace calLottoResult(WinningManager winningManager) {
+
+        LottoResult correctResult = countCorrectNumbers(winningManager.getWinningNumbers());
+
+        if(correctResult != LottoResult.FIVE){
+            return correctResult.getLottoPlace();
+        }
+
+        return calLottoPlaceWithBonusNumber(winningManager.getBonusNumber());
+    }
+
+    private LottoPlace calLottoPlaceWithBonusNumber(WinningNumber bonusNumber){
+        for(int number:numbers){
+            if(bonusNumber.isNumberExist(number)){
+                return LottoPlace.SECOND;
+            }
+        }
+
+        return LottoPlace.SECOND;
+    }
+
+    private LottoResult countCorrectNumbers(WinningNumbers winningNumbers) {
+        int count = 0;
+
+        for (int number : numbers) {
+            if (winningNumbers.isNumberExist(new WinningNumber(number))) {
+                count++;
+            }
+        }
+
+        LottoResult correctCount=LottoResult.NONE;
+
+        for(LottoResult result:LottoResult.values()){
+            if(result.getMinCorrectCount()>count){
+                break;
+            }
+
+            correctCount=result;
+        }
+
+        return correctCount;
+    }
+
+    //todo: use set?
     private static void uniqueValidate(List<Integer> pickedNumbers) {
         boolean[] alreadyChecked = new boolean[MAX_VALUE + 1];
 

@@ -1,19 +1,25 @@
 package lotto.controller;
 
-import lotto.domain.Budget;
-import lotto.domain.Lottos;
+import lotto.domain.*;
 import lotto.service.BudgetService;
 import lotto.service.LottoService;
+import lotto.service.WinningNumberService;
+import lotto.service.WinningService;
 import lotto.view.GameView;
 
 public class LottoController {
     private final BudgetService budgetService;
     private final LottoService lottoService;
+    private final WinningNumberService winningNumberService;
+    private final WinningService winningService;
     private final GameView gameView;
 
     public LottoController() {
         budgetService = new BudgetService();
         lottoService = new LottoService();
+        winningNumberService = new WinningNumberService();
+        winningService = new WinningService();
+
         gameView = new GameView();
     }
 
@@ -28,5 +34,17 @@ public class LottoController {
 
         String lottosNumbers = lottoService.getLottosNumbers(lottos);
         gameView.printLottosNumbers(lottosNumbers);
+
+        gameView.printInputWinningNumbersMessage();
+        WinningNumbers winningNumbers = winningNumberService.createWinningNumbers();
+
+        gameView.printInputBonusNumberMessage();
+        WinningNumber bonusNumber = winningNumberService.createBonusNumber();
+
+        //todo: 이 클래스의 존재가 올바른지?
+        WinningManager winningManager = new WinningManager(winningNumbers, bonusNumber);
+
+        WinningScores winningScores = winningService.calWinningScores(lottos, winningManager);
+        gameView.printWinningStatistic(winningScores.toString());
     }
 }

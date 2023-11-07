@@ -1,10 +1,22 @@
 package lotto.utils;
 
 import java.util.List;
+import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
 import lotto.view.ExceptionMessages;
 
 public class Validation {
 
+    public static void validateLotto(List<Integer> winningNumbers) {
+        validateListNumberCount(winningNumbers, 6);
+        validateListNumberInRange(winningNumbers, 1, 45);
+        validateListNumberNotDuplicated(winningNumbers);
+    }
+
+    public static void validateBonusNumber(Lotto lotto, BonusNumber bonusNumber) {
+        validateNumberInRange(bonusNumber.bonusNumber(), 1, 45);
+        validateBonusNumberNotInWinningNumber(bonusNumber.bonusNumber(), lotto.getNumbers());
+    }
     public static void validateStringToInteger(String string) {
         if (string.trim().isEmpty() || !string.chars().allMatch(Character::isDigit)) {
             ExceptionMessages.STRING_TO_INTEGER.throwException();

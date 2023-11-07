@@ -2,6 +2,7 @@ package lotto.domain;
 
 public class PurchaseAmount {
     private static final int LOTTO_PRICE = 1000;
+    private static final int PERCENTAGE = 100;
     private final int purchaseAmount;
 
     public static PurchaseAmount from(int purchaseAmount) {
@@ -13,7 +14,7 @@ public class PurchaseAmount {
     }
 
     public double getTotalReturn(int totalPrize) {
-        return (double) totalPrize / purchaseAmount;
+        return ((double) totalPrize / purchaseAmount) * PERCENTAGE;
     }
 
     private PurchaseAmount(int purchaseAmount) {

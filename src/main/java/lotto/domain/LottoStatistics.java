@@ -24,8 +24,7 @@ public class LottoStatistics {
         this.bonusNumber = bonusNumber;
 
         winsPerCategory = calculateWinsPerCategory();
-        long totalRevenue = calculateTotalRevenue();
-        totalRate = calculateRateOfReturn(totalRevenue);
+        totalRate = calculateRateOfReturn();
     }
 
     public Map<LottoRank, Long> getWinsPerCategory() {
@@ -48,7 +47,8 @@ public class LottoStatistics {
                 .sum();
     }
 
-    private double calculateRateOfReturn(long totalRevenue) {
+    private double calculateRateOfReturn() {
+        long totalRevenue = calculateTotalRevenue();
         double purchaseAmount = userLottos.size() * Constants.LOTTO_PRICE;
         return (double) totalRevenue / purchaseAmount;
     }

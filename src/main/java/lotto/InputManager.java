@@ -23,11 +23,11 @@ public class InputManager {
 
     public List<Integer> inputWinningNumbers() {
         System.out.println("\n당첨 번호를 입력해 주세요.");
-        String WinningNumbersInput = Console.readLine();
-        String[] winningNumbers = WinningNumbersInput.split(",");
+        String winningNumbersInput = Console.readLine();
+        String[] winningNumbers = winningNumbersInput.split(",");
         List<Integer> winningLottoNumbers = new ArrayList<>();
-        for (String numberString : winningNumbers) {
-            winningLottoNumbers.add(Integer.parseInt(numberString.trim()));
+        for (String winningNumber : winningNumbers) {
+            winningLottoNumbers.add(Integer.parseInt(winningNumber.trim()));
         }
         return winningLottoNumbers;
     }

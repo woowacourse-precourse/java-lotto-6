@@ -24,10 +24,10 @@
 10. ~~보너스 번호 당첨번호랑 중복 비교 - Model - Bonus - duplicateCheck~~
 9. ~~당첨번호랑 로또번호 비교하기 Set교집합 - Model - Intersection - winNum~~
 10. ~~당첨번호랑 보너스번호 비교하기 list contain - Model - Intersection - bonusNum~~
-11. 당첨 통계 계산 - Model - Result - statistics
-10. 당첨 통계 출력 - View - outputView - statistics
-11. 수익률 계산 - Model - Result - profit
-11. 수익률 출력 - View - output - profit
+11. ~~당첨 통계 계산 - Model - Result - statistics~~
+10. ~~당첨 통계 출력 - View - outputView - statistics~~
+11. ~~수익률 계산 - Model - Result - profit~~
+11. ~~수익률 출력 - View - output - profit~~
 
 
 

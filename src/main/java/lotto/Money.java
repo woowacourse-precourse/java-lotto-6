@@ -6,4 +6,8 @@ public class Money {
     public Money(int money) {
         this.money = money;
     }
+
+    public int getMoney() {
+        return money;
+    }
 }

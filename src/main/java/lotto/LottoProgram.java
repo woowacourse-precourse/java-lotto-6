@@ -1,6 +1,5 @@
 package lotto;
 
-import camp.nextstep.edu.missionutils.Console;
 import lotto.data.Lotto;
 import lotto.data.LottoResult;
 import lotto.data.WinningNumber;

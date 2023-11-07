@@ -15,6 +15,10 @@ public class Money {
         return money / 1000;
     }
 
+    public int getAmount() {
+        return money;
+    }
+
     private void validate(int money) {
         if (money % THOUSAND != 0) {
             throw new MoneyFormatException();

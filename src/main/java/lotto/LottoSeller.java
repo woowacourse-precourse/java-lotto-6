@@ -49,7 +49,18 @@ public class LottoSeller {
     private List<Rank> calculateRank() {
         return lottoMachine.calculateRank(createdLotto);
     }
-    
+
+    private double calculateRate(Money money, List<Rank> ranks) {
+        double prizeSum = 0;
+        double cost = (double) money.getAmount();
+
+        for (Rank rank : ranks) {
+            prizeSum += (double) rank.getPrize();
+        }
+
+        return prizeSum / cost * 100;
+    }
+
     private void printRank(List<Rank> ranks) {
         int first = 0, second = 0, third = 0, fourth = 0, fifth = 0;
         for (Rank rank : ranks) {

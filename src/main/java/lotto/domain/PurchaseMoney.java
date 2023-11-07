@@ -19,4 +19,8 @@ public class PurchaseMoney {
             throw new IllegalArgumentException(ConsoleMessage.PURCHASE_MONEY_ERROR.getMessage());
         }
     }
+
+    public int buyCount() {
+        return this.money/1000;
+    }
 }

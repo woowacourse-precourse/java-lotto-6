@@ -160,5 +160,8 @@ public class Application {
                 fifthPrice ++;
             }
         }
+
+        // 수익률 추출
+        double earningRate = (firstPrice*2000000000 + secondPrice*30000000 + thirdPrice*1500000 + fourthPrice*50000 + fifthPrice*5000)/money*100;
     }
 }

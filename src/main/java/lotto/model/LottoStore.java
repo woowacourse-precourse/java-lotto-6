@@ -28,7 +28,7 @@ public class LottoStore {
         return purchaseAmount / 1000;
     }
 
-    public static List<Lotto> generateLottoList() {
+    private static List<Lotto> generateLottoList() {
         List<Lotto> lottoList = new ArrayList<Lotto>();
         for (int i = 0; i < lottoCount; i++) {
             lottoList.add(generateLotto());
@@ -36,7 +36,7 @@ public class LottoStore {
         return lottoList;
     }
 
-    public static Lotto generateLotto() {
+    private static Lotto generateLotto() {
         LottoGenerator lottoGenerator = new LottoGenerator();
         Lotto lotto = new Lotto(lottoGenerator.generateLotto());
         return lotto;

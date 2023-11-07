@@ -21,11 +21,14 @@ public class WinningNumber {
         System.out.println(WINNING_NUMBER);
         winningNumbers = toWinningNumberList(readLine());
         System.out.println();
+    }
+
+
+    public void inputBonusNumber() {
         System.out.println(BONUS_NUMBER);
         bonusNumber = Integer.parseInt(readLine());
         System.out.println();
     }
-
 
     public List<Integer> toWinningNumberList(String numbers) {
         String[] num = numbers.split(",");

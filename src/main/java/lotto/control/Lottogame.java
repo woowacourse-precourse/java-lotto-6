@@ -127,4 +127,15 @@ package lotto.control;public class Lottogame {
         }
         return lottos;
     }
+
+    private int[] checkWinCounts(List<Lotto> lottos, List<Integer> winningNumbers, int bonusNumber) {
+        int[] winCounts = new int[LottoResult.values().length];
+        for (Lotto lotto : lottos) {
+            LottoResult result = lotto.checkWinningResult(winningNumbers, bonusNumber);
+            if (result != null) {
+                winCounts[result.ordinal()]++;
+            }
+        }
+        return winCounts;
+    }
 }

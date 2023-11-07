@@ -60,4 +60,15 @@ public class Lotto {
         }
         return numbersConverted;
     }
+
+    public int getNumberOfMatching(final Lotto otherLotto) {
+        int numberOfMatching = 0;
+
+        for (int number : numbers) {
+            if (otherLotto.getNumbers().contains(number)) {
+                numberOfMatching += 1;
+            }
+        }
+        return numberOfMatching;
+    }
 }

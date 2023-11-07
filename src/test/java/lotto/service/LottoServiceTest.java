@@ -111,18 +111,18 @@ class LottoServiceTest {
     void getResultScoreBoard() {
         //given
         List<List<Integer>> myLotto = new ArrayList<>();
-        List<Integer> winLotto = List.of(1,2,3,4,5,6);
+        List<Integer> winLotto = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        List<Integer> case1 = new ArrayList<>(Arrays.asList(1,2,3,4,5,6));
-        List<Integer> case2 = new ArrayList<>(Arrays.asList(7,8,9,10,11,12));
-        List<Integer> case3 = new ArrayList<>(Arrays.asList(13,14,15,16,17,18));
+        List<Integer> case1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+        List<Integer> case2 = new ArrayList<>(Arrays.asList(7, 8, 9, 10, 11, 12));
+        List<Integer> case3 = new ArrayList<>(Arrays.asList(13, 14, 15, 16, 17, 18));
         myLotto.add(case1);
         myLotto.add(case2);
         myLotto.add(case3);
         LottoService lottoService = new LottoService();
 
         //when
-        HashMap<String,Long> scoreBoard = lottoService.getResultScoreBoard(myLotto,winLotto,bonusNumber);
+        HashMap<String, Long> scoreBoard = lottoService.getResultScoreBoard(myLotto, winLotto, bonusNumber);
 
         //then
         Assertions.assertThat(scoreBoard.get(ScoreBoard.FIRST.getKey())).isEqualTo(2000000000L);
@@ -137,18 +137,18 @@ class LottoServiceTest {
     void getResultScoreBoard2() {
         //given
         List<List<Integer>> myLotto = new ArrayList<>();
-        List<Integer> winLotto = List.of(1,2,3,4,5,6);
+        List<Integer> winLotto = List.of(1, 2, 3, 4, 5, 6);
         int bonusNumber = 7;
-        List<Integer> case1 = new ArrayList<>(Arrays.asList(3,4,5,6,7,8));
-        List<Integer> case2 = new ArrayList<>(Arrays.asList(7,8,9,10,11,12));
-        List<Integer> case3 = new ArrayList<>(Arrays.asList(13,14,15,16,17,18));
+        List<Integer> case1 = new ArrayList<>(Arrays.asList(3, 4, 5, 6, 7, 8));
+        List<Integer> case2 = new ArrayList<>(Arrays.asList(7, 8, 9, 10, 11, 12));
+        List<Integer> case3 = new ArrayList<>(Arrays.asList(13, 14, 15, 16, 17, 18));
         myLotto.add(case1);
         myLotto.add(case2);
         myLotto.add(case3);
         LottoService lottoService = new LottoService();
 
         //when
-        HashMap<String,Long> scoreBoard = lottoService.getResultScoreBoard(myLotto,winLotto,bonusNumber);
+        HashMap<String, Long> scoreBoard = lottoService.getResultScoreBoard(myLotto, winLotto, bonusNumber);
 
         //then
         Assertions.assertThat(scoreBoard.get(ScoreBoard.FIRST.getKey())).isEqualTo(0L);
@@ -171,14 +171,14 @@ class LottoServiceTest {
         LottoService lottoService = new LottoService();
 
         //when
-        WinningLevel result1 = lottoService.rankLottoResult(matchingWinningNumber1,consistencyBonusNumber);
-        WinningLevel result2 = lottoService.rankLottoResult(matchingWinningNumber1,inconsistencyBonusNumber);
-        WinningLevel result3 = lottoService.rankLottoResult(matchingWinningNumber2,consistencyBonusNumber);
-        WinningLevel result4 = lottoService.rankLottoResult(matchingWinningNumber2,inconsistencyBonusNumber);
-        WinningLevel result5 = lottoService.rankLottoResult(matchingWinningNumber3,inconsistencyBonusNumber);
-        WinningLevel result6 = lottoService.rankLottoResult(matchingWinningNumber3,consistencyBonusNumber);
-        WinningLevel result7 = lottoService.rankLottoResult(matchingWinningNumber4,inconsistencyBonusNumber);
-        WinningLevel result8 = lottoService.rankLottoResult(matchingWinningNumber4,consistencyBonusNumber);
+        WinningLevel result1 = lottoService.rankLottoResult(matchingWinningNumber1, consistencyBonusNumber);
+        WinningLevel result2 = lottoService.rankLottoResult(matchingWinningNumber1, inconsistencyBonusNumber);
+        WinningLevel result3 = lottoService.rankLottoResult(matchingWinningNumber2, consistencyBonusNumber);
+        WinningLevel result4 = lottoService.rankLottoResult(matchingWinningNumber2, inconsistencyBonusNumber);
+        WinningLevel result5 = lottoService.rankLottoResult(matchingWinningNumber3, inconsistencyBonusNumber);
+        WinningLevel result6 = lottoService.rankLottoResult(matchingWinningNumber3, consistencyBonusNumber);
+        WinningLevel result7 = lottoService.rankLottoResult(matchingWinningNumber4, inconsistencyBonusNumber);
+        WinningLevel result8 = lottoService.rankLottoResult(matchingWinningNumber4, consistencyBonusNumber);
 
         //then
         Assertions.assertThat(result1).isEqualTo(WinningLevel.FIRST_PLACE);

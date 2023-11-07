@@ -16,4 +16,7 @@ public class BonusNumber {
         }
     }
 
+    public boolean isEquals(LottoNumber lottoNumber) {
+        return bonusNumber.equals(lottoNumber);
+    }
 }

@@ -6,6 +6,7 @@ import static lotto.Constants.LOTTO_PRICE;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import java.util.Map;
+import lotto.exception.ExceptionPrinter;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
 import lotto.model.Prize;
@@ -50,8 +51,8 @@ public class LottoController {
             int amount = Integer.parseInt(Console.readLine());
             Validator.validatePurchaseAmount(amount);
             return amount;
-        } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 0 이상의 정수를 입력해주세요.");
+        } catch (Exception e) {
+            ExceptionPrinter.printExceptionMessage(e);
             return getPurchaseAmount();
         }
     }
@@ -67,16 +68,26 @@ public class LottoController {
      * Description: 구입한 로또들을 생성한다.
      */
     private void generateLottos(int lottoCount) {
-        purchasedLottos = new Lottos(LottoUtil.generateLottos(lottoCount));
+        try {
+            purchasedLottos = new Lottos(LottoUtil.generateLottos(lottoCount));
+        } catch (Exception e) {
+            ExceptionPrinter.printExceptionMessage(e);
+            generateLottos(lottoCount);
+        }
     }
 
     /**
      * Description: 구입한 로또들을 출력한다.
      */
     private void printPurchasedLottos() {
-        purchasedLottos.getLottos().forEach(lotto -> {
-            lottoOutputView.printLotto(LottoParser.parseLottoNumberListToString(lotto.getSortedLottoNumbers()));
-        });
+        try {
+            purchasedLottos.getLottos().forEach(lotto -> {
+                lottoOutputView.printLotto(LottoParser.parseLottoNumberListToString(lotto.getSortedLottoNumbers()));
+            });
+        } catch (Exception e) {
+            ExceptionPrinter.printExceptionMessage(e);
+            printPurchasedLottos();
+        }
     }
 
     /**
@@ -93,10 +104,15 @@ public class LottoController {
      */
     private LottoNumbers getWinningNumbers() {
         lottoInputView.printInputWinningLotto();
-        String winningNumber = Console.readLine();
-        List<Integer> numbers = LottoParser.parseStringArrToIntList(winningNumber.split(COMMA));
-        Validator.validateLottoNumbers(LottoParser.parseIntListToLottoNumberList(numbers));
-        return LottoParser.parseIntListToLottoNumbers(numbers);
+        try {
+            String winningNumber = Console.readLine();
+            List<Integer> numbers = LottoParser.parseStringArrToIntList(winningNumber.split(COMMA));
+            Validator.validateLottoNumbers(LottoParser.parseIntListToLottoNumberList(numbers));
+            return LottoParser.parseIntListToLottoNumbers(numbers);
+        } catch (Exception e) {
+            ExceptionPrinter.printExceptionMessage(e);
+            return getWinningNumbers();
+        }
     }
 
     /**
@@ -106,30 +122,45 @@ public class LottoController {
      */
     private LottoNumber getBonusNumber() {
         lottoInputView.printInputBonusNumber();
-        int bonusNumber = Integer.parseInt(Console.readLine());
-        return LottoNumber.of(bonusNumber);
+        try {
+            int bonusNumber = Integer.parseInt(Console.readLine());
+            return LottoNumber.of(bonusNumber);
+        } catch (Exception e) {
+            ExceptionPrinter.printExceptionMessage(e);
+            return getBonusNumber();
+        }
     }
 
     /**
      * Description: 당첨 통계와 수익률을 출력한다.
      */
     private void displayWinningStatistics(WinningLotto winningLotto, int purchaseAmount) {
-        Map<Prize, Integer> statistics = LottoUtil.calculatePrizeCounts(purchasedLottos.getLottos(), winningLotto);
-        double totalPrizeAmount = LottoUtil.calculateTotalPrizeAmount(statistics);
+        try {
+            Map<Prize, Integer> statistics = LottoUtil.calculatePrizeCounts(purchasedLottos.getLottos(), winningLotto);
+            double totalPrizeAmount = LottoUtil.calculateTotalPrizeAmount(statistics);
 
-        lottoOutputView.printStatistics();
-        displayPrizeCounts(statistics);
-        double yield = LottoUtil.calculateProfitPercentage(totalPrizeAmount, purchaseAmount);
-        lottoOutputView.printTotalYield(yield);
+            lottoOutputView.printStatistics();
+            displayPrizeCounts(statistics);
+            double yield = LottoUtil.calculateProfitPercentage(totalPrizeAmount, purchaseAmount);
+            lottoOutputView.printTotalYield(yield);
+        } catch (Exception e) {
+            ExceptionPrinter.printExceptionMessage(e);
+            displayWinningStatistics(winningLotto, purchaseAmount);
+        }
     }
 
     /**
      * Description: 당첨 통계를 출력한다.
      */
     private void displayPrizeCounts(Map<Prize, Integer> prizeCounts) {
-        prizeCounts.keySet().forEach(prize -> {
-            prizeOutputView.printPrize(prize, prizeCounts.get(prize));
-        });
+        try {
+            prizeCounts.keySet().forEach(prize -> {
+                prizeOutputView.printPrize(prize, prizeCounts.get(prize));
+            });
+        } catch (Exception e) {
+            ExceptionPrinter.printExceptionMessage(e);
+            displayPrizeCounts(prizeCounts);
+        }
     }
 }
 

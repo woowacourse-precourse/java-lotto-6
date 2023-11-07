@@ -81,7 +81,6 @@ public class LottoService {
         HashMap<String, Long> scoreBoard = generateResultScoreBoard();
         for (int i = 0; i < myLotto.size(); i++) {
             WinningLevel winningLevel = calculateLottoScore(countMatchingWinningNumbers(winningLotto,myLotto.get(i)),countMatchingBonusNumbers(winningLotto,bonusNumber));
-            System.out.println(winningLevel);
             long value = scoreBoard.get(winningLevel.getRank()) + winningLevel.getReward();
             scoreBoard.put(winningLevel.getRank(), value);
         }

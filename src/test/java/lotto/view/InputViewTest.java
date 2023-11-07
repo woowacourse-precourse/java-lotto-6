@@ -33,7 +33,7 @@ class InputViewTest {
     void inputLottoPurchaseAmount(String input) {
         // given
         Reader reader = new FakeReader(input);
-        InputView inputView = new InputView(reader, printer);
+        InputView inputView = InputView.of(reader, printer);
 
         // when
         LottoPurchaseAmount result = inputView.inputLottoPurchaseAmount();
@@ -48,7 +48,7 @@ class InputViewTest {
     void inputLottoPurchaseAmount_exception1(String input) {
         // given
         Reader reader = new FakeReader(input);
-        InputView inputView = new InputView(reader, printer);
+        InputView inputView = InputView.of(reader, printer);
 
         // when & then
         assertThatIllegalArgumentException()
@@ -61,7 +61,7 @@ class InputViewTest {
     void inputLottoPurchaseAmount_exception2(String input) {
         // given
         Reader reader = new FakeReader(input);
-        InputView inputView = new InputView(reader, printer);
+        InputView inputView = InputView.of(reader, printer);
 
         // when & then
         assertThatIllegalArgumentException()
@@ -73,12 +73,12 @@ class InputViewTest {
     void inputWinningNumbers() {
         // given
         Reader reader = new FakeReader("1,2,3,4,5,6,7");
-        InputView view = new InputView(reader, this.printer);
+        InputView view = InputView.of(reader, printer);
 
         // when
         assertThatThrownBy(view::inputWinningNumbers)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("%s 당첨 숫자는 %d개 입력해야합니다.".formatted(ERROR_PREFIX, Lotto.DEFAULT_NUMBER_SIZE));
+                .hasMessage("%s 당첨 번호는 %d개 입력해야합니다.".formatted(ERROR_PREFIX, Lotto.DEFAULT_NUMBER_SIZE));
     }
 
     @DisplayName("당첨 번호 입력 시 번호가 1~45 사이가 아니면 예외를 발생한다.")
@@ -86,7 +86,7 @@ class InputViewTest {
     void inputWinningNumbersRange() {
         // given
         Reader reader = new FakeReader("-1,2,3,4,5,46");
-        InputView view = new InputView(reader, this.printer);
+        InputView view = InputView.of(reader, printer);
 
         // when
         assertThatThrownBy(view::inputWinningNumbers)
@@ -103,7 +103,7 @@ class InputViewTest {
     void inputWinningNumbers_duplicated() {
         // given
         Reader reader = new FakeReader("1,1,3,4,5,45");
-        InputView view = new InputView(reader, this.printer);
+        InputView view = InputView.of(reader, printer);
 
         // when
         assertThatThrownBy(view::inputWinningNumbers)

@@ -42,11 +42,11 @@ public class Output {
         System.out.println(WINNING_STATISTICS_SEPARATOR);
     }
 
-    public static void handlePrizeDescription(Rank rank, long rankCount, long prizeAmount) {
+    public static void handlePrizeDescription(Rank rank, long rankCount) {
         if (rank.equals(Rank.SECOND)) {
-            printPrizeDescription(rank, rankCount, prizeAmount, SECOND_PRIZE_DESCRIPTION);
+            printPrizeDescription(rank, rankCount, rank.getPrize(), SECOND_PRIZE_DESCRIPTION);
         } else if (!rank.equals(Rank.FAIL)) {
-            printPrizeDescription(rank, rankCount, prizeAmount, PRIZE_DESCRIPTION);
+            printPrizeDescription(rank, rankCount, rank.getPrize(), PRIZE_DESCRIPTION);
         }
     }
 

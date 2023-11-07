@@ -1,32 +1,39 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import view.Output;
 
 public class Referee {
-    public static void calculateLottoResultAndProfit(List<Lotto> lottoTickets, List<Integer> winningNumbers,
-                                                     int bonusNumber, int purchaseAmount) {
-        Map<Rank, Long> winningCounts = countLottoRank(lottoTickets, winningNumbers, bonusNumber);
-        Output.printLottoGameResult();
+    public static List<Map<Rank, Long>> getLottoResult(Map<Rank, Long> winningCounts) {
+        List<Map<Rank, Long>> lottoResults = new ArrayList<>();
+        for (Rank rank : Rank.values()) {
+            long rankCount = winningCounts.getOrDefault(rank, 0L);
 
+            Map<Rank, Long> resultAndProfit = new HashMap<>();
+            resultAndProfit.put(rank, rankCount);
+            lottoResults.add(resultAndProfit);
+        }
+        return lottoResults;
+    }
+
+    public static double getLottoProfit(Map<Rank, Long> winningCounts, int purchaseAmount) {
         long totalPrizeAmount = 0;
         for (Rank rank : Rank.values()) {
             long rankCount = winningCounts.getOrDefault(rank, 0L);
             long prizeAmount = rank.getPrize();
 
             totalPrizeAmount += (rankCount * prizeAmount);
-            Output.handlePrizeDescription(rank, rankCount, prizeAmount);
         }
-        double profitRate = (totalPrizeAmount / (double) purchaseAmount) * 100;
-        Output.printLottoProfit(profitRate);
+        return (totalPrizeAmount / (double) purchaseAmount) * 100;
     }
 
-    private static Map<Rank, Long> countLottoRank(List<Lotto> lottoTickets, List<Integer> winningNumbers,
-                                                  int bonusNumber) {
+    public static Map<Rank, Long> countLottoRank(List<Lotto> lottoTickets, List<Integer> winningNumbers,
+                                                 int bonusNumber) {
         return calculateAllLottoPrize(lottoTickets, winningNumbers, bonusNumber)
                 .stream()
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));

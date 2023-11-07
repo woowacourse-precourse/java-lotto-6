@@ -24,4 +24,9 @@ public class WinningLottoCalculator {
 				.filter(lotto.getNumbers()::contains)
 				.count();
 	}
+
+	public boolean isBonusNumberMatchLotto(Lotto lotto, WinningLotto winningLotto) {
+		return lotto.getNumbers()
+				.contains(winningLotto.getBonusNumber().getBonusNumber());
+	}
 }

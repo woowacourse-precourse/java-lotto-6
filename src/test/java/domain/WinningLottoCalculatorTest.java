@@ -23,4 +23,22 @@ class WinningLottoCalculatorTest {
 		//then
 		Assertions.assertThat(matchCount).isEqualTo(expected);
 	}
+
+	@DisplayName("로또 번호 중 보너스 번호가 있는지 체크")
+	@Test
+	public void checkBonusNumberInLottoNumbers() {
+		//given
+		String lotto = "1,2,3,4,5,6";
+		String bonusNumber = "7";
+
+		WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+		Lotto purchaseLotto = new Lotto("1,2,8,4,5,7");
+		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
+
+		// when
+		boolean bonusNumberMatchLotto = winningLottoCalculator.isBonusNumberMatchLotto(purchaseLotto, winningLotto);
+
+		//then
+		Assertions.assertThat(bonusNumberMatchLotto).isTrue();
+	}
 }

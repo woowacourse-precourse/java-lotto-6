@@ -13,6 +13,8 @@ public enum Rank {
     NONE(-1, 0, 0, List.of(true, false));
 
     private static final String INVALID_COUNT_EXCEPTION = "존재하지 않는 당첨 개수입니다.";
+    private static final String RANK_CONDITION_FORMAT = "%d개 일치 (%,d원)";
+    private static final String RANK_CONDITION_WITH_BONUS_FORMAT = "%d개 일치, 보너스 볼 일치 (%,d원)";
 
     private final int ranking;
     private final int matchCount;
@@ -42,10 +44,11 @@ public enum Rank {
 
     @Override
     public String toString() {
+        String format = RANK_CONDITION_FORMAT;
         if (this.equals(TWO)) {
-            return String.format("%d개 일치, 보너스 볼 일치 (%,d원)", matchCount, reward);
+            format = RANK_CONDITION_WITH_BONUS_FORMAT;
         }
-        return String.format("%d개 일치 (%,d원)", matchCount, reward);
+        return String.format(format, matchCount, reward);
     }
 
     public int getRanking() {

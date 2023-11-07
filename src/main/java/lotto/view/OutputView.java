@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import lotto.domain.Result;
-import lotto.utils.ErrorMessage;
 import lotto.utils.Message;
 
 public class OutputView {
@@ -28,18 +27,18 @@ public class OutputView {
         System.out.println(count + Message.PRINT_USER_BUY_LOTTO_COUNT.getMessage());
     }
 
-    public static void printLotties(List<List<Integer>> lottos){
+    public static void printLotties(List<List<Integer>> lottos) {
         for (List<Integer> lotto : lottos) {
             System.out.println(lotto);
         }
     }
 
-    public static void printEnterWinningNumber(){
+    public static void printEnterWinningNumber() {
         System.out.println();
         System.out.println(Message.PRINT_USER_ENTER_WINNING_NUMBER.getMessage());
     }
 
-    public static void printEnterBonusNumber(){
+    public static void printEnterBonusNumber() {
         System.out.println();
         System.out.println(Message.PRINT_USER_ENTER_BONUS_NUMBER.getMessage());
     }
@@ -65,7 +64,7 @@ public class OutputView {
 
     public static void printScore(Map<Result, Integer> score) {
         printWinningStatistics();
-        Result[] printOrder = new Result[] { THREE_MATCH, FOUR_MATCH, FIVE_MATCH, FIVE_AND_BONUS_MATCH, SIX_MATCH };
+        Result[] printOrder = new Result[]{THREE_MATCH, FOUR_MATCH, FIVE_MATCH, FIVE_AND_BONUS_MATCH, SIX_MATCH};
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
         printLottoMatched(score, printOrder, numberFormat);
     }
@@ -75,7 +74,7 @@ public class OutputView {
         double profitPercentage = (profit) / (double) totalInvestment * 100;
         DecimalFormat profitDecimal = new DecimalFormat("#0.0%");
         String formattedProfitPercentage = profitDecimal.format(profitPercentage / 100.0);
-        System.out.println("총 수익률은 "+formattedProfitPercentage+"입니다.");
+        System.out.println("총 수익률은 " + formattedProfitPercentage + "입니다.");
     }
 
     public static void errorCatch(IllegalArgumentException e) {

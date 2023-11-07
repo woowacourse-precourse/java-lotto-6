@@ -23,7 +23,7 @@ public class Lotties {
         return Collections.unmodifiableList(lottos);
     }
 
-    public int size(){
+    public int size() {
         return lotties.size();
     }
 }

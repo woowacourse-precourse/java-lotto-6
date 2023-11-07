@@ -21,9 +21,9 @@ public class InputView {
     }
 
     public static int inputUserPrice() {
-        try{
+        try {
             return userInputPrice();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputUserPrice();
         }
@@ -70,9 +70,9 @@ public class InputView {
     }
 
     public static int inputBonusNumber() {
-        try{
+        try {
             return userBonusNumber();
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputBonusNumber();
         }

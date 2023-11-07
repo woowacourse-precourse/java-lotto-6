@@ -6,7 +6,6 @@ import lotto.utils.ErrorMessage;
 public class UserPrice {
 
     private final int price;
-
     private static final int LOTTO_PRICE = 1000;
 
     public UserPrice(int price) {
@@ -24,7 +23,6 @@ public class UserPrice {
         }
     }
 
-
     public int buyCount(int lottoPrice) {
         return price / lottoPrice;
     }
@@ -37,4 +35,5 @@ public class UserPrice {
     public int getPrice() {
         return price;
     }
+
 }

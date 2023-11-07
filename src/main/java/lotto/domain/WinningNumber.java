@@ -5,7 +5,6 @@ import java.util.List;
 import lotto.utils.ErrorMessage;
 
 public class WinningNumber {
-
     private final Lotto lotto;
     private final int bonusNumber;
     private static final int BONUS_NUMBER_RANGE_MIN = 1;

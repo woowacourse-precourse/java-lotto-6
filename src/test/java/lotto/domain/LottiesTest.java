@@ -13,18 +13,18 @@ import org.junit.jupiter.api.Test;
 class LottiesTest {
     @DisplayName("lotties 반환된 리스트가 수정이 불가능인지 확인한다")
     @Test
-    public void returnLottiesListAsUnmodifiable(){
-        Lotties lotties = new Lotties(List.of(new Lotto(List.of(1,2,3,4,5,6))));
+    public void returnLottiesListAsUnmodifiable() {
+        Lotties lotties = new Lotties(List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6))));
         List<Lotto> valueLotto = lotties.getLotties();
         assertThatThrownBy(
-                ()-> valueLotto.add(new Lotto(List.of(1,2,3,4,5,6)))
+                () -> valueLotto.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)))
         ).isInstanceOf(UnsupportedOperationException.class);
     }
 
     @DisplayName(" 로또 리스트를 바탕으로 lotties 생성")
     @Test
-    public void createLotties(){
-        List<Lotto> lottos = List.of(new Lotto(List.of(1,2,3,4,5,6)));
+    public void createLotties() {
+        List<Lotto> lottos = List.of(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         Lotties lotties = new Lotties(lottos);
         assertThat(lotties.getLotties()).isEqualTo(lottos);
     }

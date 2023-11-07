@@ -26,7 +26,7 @@ class LottoTest {
 
     @DisplayName("로또의 반환된 리스트가 수정이 불가능인지 확인한다.")
     @Test
-    void returnLottoListAsUnmodifiable(){
+    void returnLottoListAsUnmodifiable() {
         List<Integer> numbers = List.of(7, 8, 9, 10, 11, 12);
         Lotto lotto = new Lotto(numbers);
         List<Integer> retrievedNumbers = lotto.getNumbers();
@@ -35,8 +35,8 @@ class LottoTest {
 
     @DisplayName("로또안에 숫자가 포함되어 있는지 확인한다")
     @Test
-    void testContains(){
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+    void testContains() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
         assertTrue(lotto.contains(1));
         assertTrue(lotto.contains(2));
@@ -46,8 +46,8 @@ class LottoTest {
 
     @DisplayName("로또가 String형태로 잘 나오는지 확인한다.")
     @Test
-    void testToString(){
-        List<Integer> numbers = List.of(1,2,3,4,5,6);
+    void testToString() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5, 6);
         Lotto lotto = new Lotto(numbers);
 
         String lottoString = "[1, 2, 3, 4, 5, 6]";

@@ -1,10 +1,7 @@
 package lotto.domain;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
@@ -36,6 +33,7 @@ class ScoreTest {
         }
         assertEquals(expectedTotalProfit, totalProfit);
     }
+
     @DisplayName("Score 클래스 의 Calculate 테스트 로또 결과를 합산 하여 결과 생성")
     @Test
     public void testCalculate() {
@@ -51,18 +49,18 @@ class ScoreTest {
                 // 3개
                 new Lotto(List.of(7, 8, 9, 16, 17, 18))
         );
+
         WinningNumber winningNumber = new WinningNumber(new Lotto(List.of(7, 8, 9, 10, 11, 12)), 6);
         Lotties lotties = new Lotties(lottos);
-
         Map<Result, Integer> scoreMap = Score.calculate(winningNumber, lotties);
 
-        assertEquals(1, scoreMap.get(Result.SIX_MATCH));
-        assertEquals(1, scoreMap.get(Result.FIVE_AND_BONUS_MATCH));
-        assertEquals(1, scoreMap.get(Result.FIVE_MATCH));
-        assertEquals(1, scoreMap.get(Result.FOUR_MATCH));
-        assertEquals(1, scoreMap.get(Result.THREE_MATCH));
-
-
+        assertAll(
+                () -> assertEquals(1, scoreMap.get(Result.SIX_MATCH)),
+                () -> assertEquals(1, scoreMap.get(Result.FIVE_AND_BONUS_MATCH)),
+                () -> assertEquals(1, scoreMap.get(Result.FIVE_MATCH)),
+                () -> assertEquals(1, scoreMap.get(Result.FOUR_MATCH)),
+                () -> assertEquals(1, scoreMap.get(Result.THREE_MATCH))
+        );
     }
 
 }

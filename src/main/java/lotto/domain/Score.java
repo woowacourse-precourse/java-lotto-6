@@ -7,12 +7,13 @@ import java.util.Map;
 public class Score {
     private final Map<Result, Integer> score;
     private final int totalProfit;
-    public Score(WinningNumber winningNumber , Lotties lotties) {
-        this.score = calculate(winningNumber,lotties);
+
+    public Score(WinningNumber winningNumber, Lotties lotties) {
+        this.score = calculate(winningNumber, lotties);
         this.totalProfit = profit(score);
     }
 
-    public static int profit(Map<Result, Integer> score){
+    public static int profit(Map<Result, Integer> score) {
         int totalProfit = 0;
         for (Result result : score.keySet()) {
             totalProfit += result.getWinnings() * score.get(result);
@@ -20,8 +21,8 @@ public class Score {
         return totalProfit;
     }
 
-    public static Map<Result,Integer> calculate(WinningNumber winningNumber, Lotties lotties) {
-        Map<Result,Integer> score = new HashMap<>();
+    public static Map<Result, Integer> calculate(WinningNumber winningNumber, Lotties lotties) {
+        Map<Result, Integer> score = new HashMap<>();
         for (Lotto lotto : lotties.getLotties()) {
             Result result = calculate(winningNumber, lotto);
             int resultCnt = score.getOrDefault(result, 0);
@@ -29,13 +30,14 @@ public class Score {
         }
         return score;
     }
-    private static Result calculate(WinningNumber winningNumber, Lotto lotto ) {
+
+    private static Result calculate(WinningNumber winningNumber, Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
         List<Integer> winningLottoNumbers = winningNumber.getLottoNumbers();
         int bonusNumber = winningNumber.getBonusNumber();
         int matchCount = 0;
-        for(int number : numbers) {
-            if(winningLottoNumbers.contains(number)) {
+        for (int number : numbers) {
+            if (winningLottoNumbers.contains(number)) {
                 matchCount++;
             }
         }

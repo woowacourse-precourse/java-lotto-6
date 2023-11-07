@@ -27,17 +27,16 @@ public class Lotto {
         }
     }
 
-
     private static void isValidateLottoNumbersRange(List<Integer> numbers) {
         numbers.forEach(number -> {
-            if(number < NUMBERS_SIZE_MIN || number > NUMBERS_SIZE_MAX) {
+            if (number < NUMBERS_SIZE_MIN || number > NUMBERS_SIZE_MAX) {
                 throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_SIZE_RANGE_ERROR.getMessage());
             }
         });
     }
 
     private static void isValidateLottoNumbersDuplicate(List<Integer> numbers) {
-        if( new HashSet<>(numbers).size() != numbers.size()) {
+        if (new HashSet<>(numbers).size() != numbers.size()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_NOT_DUPLICATE.getMessage());
         }
     }

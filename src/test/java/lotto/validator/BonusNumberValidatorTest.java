@@ -2,8 +2,8 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.dto.BonusNumberDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -67,9 +67,9 @@ class BonusNumberValidatorTest {
 
             // when
             // then
-            BonusNumberDto bonusNumber1 = new BonusNumberDto(number1);
-            BonusNumberDto bonusNumber2 = new BonusNumberDto(number2);
-            BonusNumberDto bonusNumber3 = new BonusNumberDto(number3);
+            BonusNumber bonusNumber1 = new BonusNumber(number1);
+            BonusNumber bonusNumber2 = new BonusNumber(number2);
+            BonusNumber bonusNumber3 = new BonusNumber(number3);
         }
 
         @DisplayName("번호가 " + Lotto.MIN_LOTTO_NUMBER + " ~ " + Lotto.MAX_LOTTO_NUMBER + " 범위를 벗어나면 예외 발생")
@@ -82,11 +82,11 @@ class BonusNumberValidatorTest {
 
             // when
             // then
-            assertThatThrownBy(() -> new BonusNumberDto(number1)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new BonusNumber(number1)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
-            assertThatThrownBy(() -> new BonusNumberDto(number2)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new BonusNumber(number2)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
-            assertThatThrownBy(() -> new BonusNumberDto(number3)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new BonusNumber(number3)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(BonusNumberValidator.INVALID_LOTTO_NUMBER_RANGE_MESSAGE);
         }
     }

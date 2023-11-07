@@ -4,8 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
-import lotto.domain.dto.BonusNumberDto;
-import lotto.domain.dto.WinningLottoDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -40,10 +38,10 @@ class LottoTest {
         @Test
         void matching_numbers_present() {
             // given
-            WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(4, 8, 17, 30, 41, 45));
+            WinningLotto winningLotto = new WinningLotto(List.of(4, 8, 17, 30, 41, 45));
 
             // when
-            int matchedWinningLottoCount = lotto.matchWinningLottoCount(winningLottoDto);
+            int matchedWinningLottoCount = lotto.matchWinningLottoCount(winningLotto);
 
             // then
             assertThat(matchedWinningLottoCount).isEqualTo(3);
@@ -53,10 +51,10 @@ class LottoTest {
         @Test
         void matching_numbers_not_present() {
             // given
-            WinningLottoDto winningLottoDto = new WinningLottoDto(List.of(1, 19, 23, 33, 42, 45));
+            WinningLotto winningLotto = new WinningLotto(List.of(1, 19, 23, 33, 42, 45));
 
             // when
-            int matchedWinningLottoCount = lotto.matchWinningLottoCount(winningLottoDto);
+            int matchedWinningLottoCount = lotto.matchWinningLottoCount(winningLotto);
 
             // then
             assertThat(matchedWinningLottoCount).isEqualTo(0);
@@ -77,10 +75,10 @@ class LottoTest {
         @Test
         void Lotto_contain_bonus_number() {
             // given
-            BonusNumberDto bonusNumberDto = new BonusNumberDto(45);
+            BonusNumber bonusNumber = new BonusNumber(45);
 
             // when
-            boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumberDto);
+            boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
 
             // then
             assertThat(hasBonusNumber).isEqualTo(false);
@@ -90,10 +88,10 @@ class LottoTest {
         @Test
         void Lotto_not_contain_bonus_number() {
             // given
-            BonusNumberDto bonusNumberDto = new BonusNumberDto(4);
+            BonusNumber bonusNumber = new BonusNumber(4);
 
             // when
-            boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumberDto);
+            boolean hasBonusNumber = lotto.hasBonusNumber(bonusNumber);
 
             // then
             assertThat(hasBonusNumber).isEqualTo(true);

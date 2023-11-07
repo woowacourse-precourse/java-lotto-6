@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import lotto.util.LottoPlayerValidator;
+import lotto.util.LottoPriceValidator;
 
 public class LottoPlayer {
 
@@ -9,8 +9,7 @@ public class LottoPlayer {
     private final int totalPriceOfLotto;
 
     public LottoPlayer(String inputTotalPriceOfLotto) {
-        int totalPrice = LottoPlayerValidator.validateTotalPriceOfLotto(inputTotalPriceOfLotto);
-        this.totalPriceOfLotto = totalPrice;
+        this.totalPriceOfLotto = LottoPriceValidator.validateTotalPriceOfLotto(inputTotalPriceOfLotto);
     }
 
     public int calculateCountOfLotto() {

@@ -29,6 +29,7 @@ public class WinningLottoTest {
         privateMinLottoNumber.setAccessible(true);
         privateMaxLottoNumber.setAccessible(true);
         privateLottoNumberSize.setAccessible(true);
+
         lottoNumberSize = (Integer) privateLottoNumberSize.get(lotto);
         minLottoNumber = (Integer) privateMinLottoNumber.get(lotto);
         maxLottoNumber = (Integer) privateMaxLottoNumber.get(lotto);
@@ -45,7 +46,7 @@ public class WinningLottoTest {
 
     @DisplayName("보너스 번호에 범위(1 ~ 45) 밖의 숫자가 있으면 예외가 발생한다.")
     @ParameterizedTest
-    @ValueSource(strings = {"0", "46"})
+    @ValueSource(strings = {"0", "46", "21474836478"})
     void createWinningLottoByOverRangeBonusNumber(String bonusNumber) throws Exception {
         assertThatThrownBy(() -> new WinningLotto("1,2,3,4,5,6", bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)

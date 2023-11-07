@@ -9,12 +9,12 @@ public class WinningLotto extends Lotto{
     public WinningLotto(String lottoNumbers, String bonusNumber) {
         super(lottoNumbers);
         validateBonusNumber(bonusNumber);
-        this.bonusNumber = Integer.valueOf(bonusNumber);
+        this.bonusNumber = convertStringToInteger(bonusNumber);
     }
 
     private void validateBonusNumber(String bonusNumber) {
         validateCastingBeforeBonusNumber(bonusNumber);
-        validateCastingAfterBonusNumber(Integer.valueOf(bonusNumber));
+        validateCastingAfterBonusNumber(convertStringToInteger(bonusNumber));
     }
 
     private void validateCastingBeforeBonusNumber(String bonusNumber) {
@@ -50,5 +50,17 @@ public class WinningLotto extends Lotto{
         if (super.isInputNumberContainLottoNumbers(bonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 로또 번호와 겹치면 안됩니다.");
         }
+    }
+
+    private Integer convertStringToInteger(String bonusNumber) {
+        Integer convertBonusNumber;
+
+        try {
+            convertBonusNumber = Integer.parseInt(bonusNumber);
+        } catch (NumberFormatException exception) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 지정된 범위안의 숫자만 가질 수 있습니다. 범위 "
+                    + MIN_LOTTO_NUMBER + "~" + MAX_LOTTO_NUMBER);
+        }
+        return convertBonusNumber;
     }
 }

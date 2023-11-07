@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class InputHandler {
-    public static Integer getUserInputAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+    public static Integer getUserInputAmount() throws IllegalArgumentException{
 
         String input = Console.readLine();
         int number;
@@ -19,9 +18,7 @@ public class InputHandler {
         return number;
     }
 
-    public static List<Integer> getUserInputlotto() {
-        System.out.println();
-        System.out.println("당첨 번호를 입력해 주세요");
+    public static List<Integer> getUserInputlotto() throws IllegalArgumentException{
 
         String input = Console.readLine();
 
@@ -39,9 +36,7 @@ public class InputHandler {
         return inputList;
     }
 
-    public static Integer getUserInputBonus() {
-        System.out.println();
-        System.out.println("보너스 번호를 입력해 주세요");
+    public static Integer getUserInputBonus() throws IllegalArgumentException{
 
         String input = Console.readLine();
         int number;

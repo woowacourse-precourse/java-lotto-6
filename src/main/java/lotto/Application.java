@@ -1,7 +1,10 @@
 package lotto;
 
+import service.LottoGameService;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoGameService lottoGameService = new LottoGameService();
+        lottoGameService.runLottoGame();
     }
 }

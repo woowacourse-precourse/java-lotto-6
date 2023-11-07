@@ -10,6 +10,7 @@ public class InWinningNumbersView extends InputView {
     public List<Integer> getInputValue() {
         System.out.println(INPUT_MESSAGE);
         String[] result = inputValue().split(",");
+        System.out.println();
         isDigitValidate(String.join("", result));
         return Arrays.stream(result)
                 .map(Integer::parseInt)

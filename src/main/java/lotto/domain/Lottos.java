@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.exception.ErrorPrinter;
+import lotto.exception.ErrorMessagePrinter;
 import lotto.util.LottoNumbersGenerator;
 
 public class Lottos {
@@ -18,7 +18,7 @@ public class Lottos {
         try {
             return new Lottos(count, generator);
         } catch (IllegalArgumentException e) {
-            ErrorPrinter.printError(e);
+            ErrorMessagePrinter.printError(e);
         }
         return null;
     }

@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Objects;
-import lotto.exception.ErrorPrinter;
+import lotto.exception.ErrorMessagePrinter;
 import lotto.exception.LottoExceptionMessage;
 
 public class PurchasePrice {
@@ -34,7 +34,7 @@ public class PurchasePrice {
         try {
             return new PurchasePrice(price);
         } catch (IllegalArgumentException e) {
-            ErrorPrinter.printError(e);
+            ErrorMessagePrinter.printError(e);
         }
         return null;
     }

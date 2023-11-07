@@ -3,7 +3,7 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import lotto.exception.ErrorPrinter;
+import lotto.exception.ErrorMessagePrinter;
 import lotto.exception.LottoExceptionMessage;
 
 public class WinningNumbers {
@@ -18,7 +18,7 @@ public class WinningNumbers {
         try {
             return new WinningNumbers(winningNumbers);
         } catch (IllegalArgumentException e) {
-            ErrorPrinter.printError(e);
+            ErrorMessagePrinter.printError(e);
             return null;
         }
     }

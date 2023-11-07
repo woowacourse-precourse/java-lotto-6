@@ -2,7 +2,7 @@ package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
-import lotto.exception.ErrorPrinter;
+import lotto.exception.ErrorMessagePrinter;
 import lotto.exception.LottoExceptionMessage;
 
 public class BonusNumber {
@@ -21,7 +21,7 @@ public class BonusNumber {
         try {
             return new BonusNumber(bonusNumber, winningNumbers);
         } catch (IllegalArgumentException e) {
-            ErrorPrinter.printError(e);
+            ErrorMessagePrinter.printError(e);
             return null;
         }
     }

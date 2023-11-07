@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import lotto.constant.Message;
-import lotto.exception.ErrorPrinter;
+import lotto.exception.ErrorMessagePrinter;
 import lotto.exception.LottoExceptionMessage;
 
 public class InputView {
@@ -58,7 +58,7 @@ public class InputView {
                 return Integer.parseInt(inputPrice);
             }
         } catch (IllegalArgumentException e) {
-            ErrorPrinter.printError(e);
+            ErrorMessagePrinter.printError(e);
         }
         return null;
     }
@@ -81,7 +81,7 @@ public class InputView {
         try {
             return parseWinningNumbers(inputWinningNumbers);
         } catch (IllegalArgumentException e) {
-            ErrorPrinter.printError(e);
+            ErrorMessagePrinter.printError(e);
             return null;
         }
     }
@@ -104,7 +104,7 @@ public class InputView {
                 return Integer.parseInt(inputBonusNumber);
             }
         } catch (IllegalArgumentException e) {
-            ErrorPrinter.printError(e);
+            ErrorMessagePrinter.printError(e);
         }
         return null;
     }

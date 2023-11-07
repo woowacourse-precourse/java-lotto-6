@@ -1,7 +1,7 @@
 package lotto.exception;
 
-public class ErrorPrinter {
-    private ErrorPrinter() {
+public class ErrorMessagePrinter {
+    private ErrorMessagePrinter() {
     }
 
     public static void printError(IllegalArgumentException e) {

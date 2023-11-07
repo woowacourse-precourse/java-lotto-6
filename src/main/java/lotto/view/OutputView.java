@@ -27,4 +27,8 @@ public class OutputView {
             System.out.println(lotto);
         }
     }
+
+    public void printLottoCount(int lottoCount) {
+        System.out.printf("%d개를 구매했습니다.\n", lottoCount);
+    }
 }

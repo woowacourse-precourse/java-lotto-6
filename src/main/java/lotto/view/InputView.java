@@ -5,6 +5,7 @@ import static lotto.domain.Lotto.LOTTO_MIN_NUMBER;
 import static lotto.domain.Lotto.LOTTO_NUMBER_FORMAT;
 import static lotto.domain.Lotto.LOTTO_PRICE;
 import static lotto.domain.Lotto.LOTTO_SIZE;
+import static lotto.message.InputErrorMessage.INVALID_INPUT_BONUS_DUPLICATE;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_FORMAT;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_DUPLICATE_NUMBERS;
 import static lotto.message.InputErrorMessage.INVALID_INPUT_LOTTO_NUMBERS_COUNT;
@@ -53,19 +54,30 @@ public class InputView {
         }
     }
 
-    public int requestBonusNumber() {
+    public int requestBonusNumber(List<Integer> winningNumbers) {
         try {
             System.out.println(LOTTO_BONUS_NUMBER_MESSAGE);
             String inputValue = Console.readLine().trim();
             validateNumber(inputValue);
 
             int bonusNumber = Integer.parseInt(inputValue);
-            validateLottoNumberRange(bonusNumber);
+            validateBonusNumber(bonusNumber, winningNumbers);
 
             return bonusNumber;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return requestBonusNumber();
+            return requestBonusNumber(winningNumbers);
+        }
+    }
+
+    private void validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
+        validateLottoNumberRange(bonusNumber);
+        validateBonusDuplicateNumber(bonusNumber, winningNumbers);
+    }
+
+    private void validateBonusDuplicateNumber(int number, List<Integer> numbers) {
+        if (numbers.contains(number)) {
+            throw new IllegalArgumentException(INVALID_INPUT_BONUS_DUPLICATE);
         }
     }
 

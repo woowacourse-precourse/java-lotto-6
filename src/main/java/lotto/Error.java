@@ -5,7 +5,7 @@ public enum Error {
     INVALID_NUMBERS_VALUE("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.\n"),
     DUPLICATE_NUMBERS("[ERROR] 로또 번호가 중복 됩니다.\n");
 
-    private String errMsg;
+    private final String errMsg;
 
     Error(String errMsg) {
         this.errMsg = errMsg;

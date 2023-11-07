@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,7 +48,9 @@ public class Statistics {
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
         results.forEach((rank, count) -> {
-            String message = String.format(rank.getMessage(), rank.getPrize(), count);
+            DecimalFormat moneyFormat = new DecimalFormat("#,###");
+            String prize = moneyFormat.format(rank.getPrize());
+            String message = String.format(rank.getMessage(), prize, count);
             stringBuilder.append(message).append("\n");
         });
         return stringBuilder.toString();

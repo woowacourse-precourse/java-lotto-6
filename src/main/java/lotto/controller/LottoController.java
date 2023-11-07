@@ -20,6 +20,7 @@ public class LottoController {
         lottoService.userLottoNumbersValidate(inputUserLottoNumbers);
 
         String inputUserBonusNumber = consoleInputView.inputUserBonusNumber();
+        lottoService.userBonusNumberValidate(inputUserLottoNumbers, inputUserBonusNumber);
 
         /*Map<String, String> userLottoNumbersAndBonusNumber =
                 lottoService.setUserLottoNumbersAndBonusNumber(

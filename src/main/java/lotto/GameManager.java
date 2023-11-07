@@ -39,6 +39,12 @@ public class GameManager {
         }
     }
 
+    public void compareTotalLotto(List<Lotto> totalLotto, List<Integer> winningNumbers, int bonusNumber, WinningStatistics winningStatistics) {
+        for(Lotto lotto : totalLotto){
+            compareLottoWithWinningNumbers(lotto, winningNumbers, bonusNumber, winningStatistics);
+        }
+    }
+
     public WinningStatistics compareLottoWithWinningNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber, WinningStatistics winningStatistics) {
         int matchCount = lotto.getNumbers().stream().filter(winningNumbers::contains).toList().size();
 

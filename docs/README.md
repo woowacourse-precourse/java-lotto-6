@@ -78,3 +78,7 @@
 - [x] else 예약어를 쓰지 않는다.
 - [x] Java Enum을 적용한다.
 - [x] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(System.out, System.in, Scanner) 로직은 제외한다.
+
+## ✏️ diagram
+
+![diagram.png](diagram.png)

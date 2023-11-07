@@ -100,3 +100,16 @@
   - 유효성 검사로 중복 여부와 범위 확인
 - getBonusNumber()을 통해 보너스 번호를 조회 
 - isContain()을 통해 특정 번호의 당첨 여부를 확인
+
+<br/>
+
+### 2. domain/generator
+### 2-1. LottoGenerator
+
+- 로또 그룹을 생성하고, 그 그룹을 반환하는 역할
+- generateLottoGroup()을 통해 지정된 개수의 로또를 생성하고 그 그룹을 반환
+- generateLotto()을 통해 개별 로또 번호를 생성하고 반환
+
+### 2-2. LottoNumbersGenerator
+
+- 1부터 45까지의 범위에서 중복되지 않는 6개의 로또 번호를 생성 

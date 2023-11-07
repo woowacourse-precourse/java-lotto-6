@@ -3,7 +3,9 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,6 +22,8 @@ public class LottoGame {
         Lotto winningLotto = getWinningLotto();
 
         int bonusNumber = getBonusNumber(winningLotto);
+
+        matchWinning(winningLotto, purchaseLottos, bonusNumber, purchaseMoney);
     }
 
     private int purchase() {
@@ -86,6 +90,59 @@ public class LottoGame {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void matchWinning(Lotto winningLotto, List<Lotto> purchaseLottos, int bonusNumber, int purchaseMoney) {
+        HashMap<WinningLottoType, Integer> winningResultMap = matchWinningResult(winningLotto, purchaseLottos,
+                bonusNumber);
+        printWinningResult(winningResultMap, purchaseMoney);
+    }
+
+    private HashMap<WinningLottoType, Integer> makeWinningResultMap() {
+        HashMap<WinningLottoType, Integer> winningResultMap = new HashMap<>();
+        for (WinningLottoType winningLottoType : WinningLottoType.values()) {
+            winningResultMap.put(winningLottoType, 0);
+        }
+        return winningResultMap;
+    }
+
+    private HashMap<WinningLottoType, Integer> matchWinningResult(Lotto winningLotto, List<Lotto> purchaseLottos,
+                                                                  int bonusNumber) {
+        HashMap<WinningLottoType, Integer> winningResultMap = makeWinningResultMap();
+        for (Lotto purchaseLotto : purchaseLottos) {
+            int matchCount = winningLotto.matchCount(purchaseLotto);
+            boolean matchBonus = purchaseLotto.containBounsNumber(bonusNumber);
+
+            WinningLottoType winningLottoType = WinningLottoType.getWinningLottoTypeByMatch(matchCount, matchBonus);
+            if (winningLottoType != null) {
+                int winningTypeCount = winningResultMap.get(winningLottoType);
+                winningResultMap.put(winningLottoType, winningTypeCount + 1);
+            }
+        }
+        return winningResultMap;
+    }
+
+    private void printWinningResult(HashMap<WinningLottoType, Integer> winningResultMap, int purchaseMoney) {
+        int winningReward = 0;
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        for (WinningLottoType winningLottoType : WinningLottoType.values()) {
+            int winningCount = winningResultMap.get(winningLottoType);
+            System.out.println(winningLottoType.getComment() + " - " + winningCount + "개");
+            winningReward += winningLottoType.getReward() * winningCount;
+        }
+
+        printRewardRate(purchaseMoney, winningReward);
+    }
+
+    private void printRewardRate(int purchaseMoney, int reward) {
+        System.out.println("총 수익률은 "
+                + getRewardRate((double) purchaseMoney, (double) reward)
+                + "%입니다.");
+    }
+
+    private String getRewardRate(double purchaseMoney, double reward) {
+        return new DecimalFormat("0.0").format(reward * 100.0 / purchaseMoney);
     }
 
     private void validateBonusNumber(int bonusNumber, Lotto winningLotto) {

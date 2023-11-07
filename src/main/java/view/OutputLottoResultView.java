@@ -10,7 +10,7 @@ public class OutputLottoResultView {
     private static final String INCOME_RATE = "총 수익률은 %.1f%%입니다.";
 
     public static void printLottoResult(LottoResult lottoResult, IncomeRate incomeRate) {
-        System.out.println(HEAD_MESSAGE);
+        System.out.println(NEW_LINE + HEAD_MESSAGE);
 
         for (Rank rank : Rank.values()) {
             int winningNumberCount = rank.getWinningNumberCount();

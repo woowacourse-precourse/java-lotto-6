@@ -8,10 +8,11 @@ import java.util.List;
 
 public class InputWinningLottoView {
     private static final String INTEGER_REGEX = "^\\d+$";
+    private static final String NEW_LINE = "\n";
     private static final String WINNING_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
 
     public List<Integer> getValue() {
-        System.out.println(WINNING_LOTTO_MESSAGE);
+        System.out.println(NEW_LINE + WINNING_LOTTO_MESSAGE);
         String[] winningLottoInput = Console.readLine().split(",");
         List<Integer> winningLotto = new ArrayList<>();
 

@@ -6,12 +6,13 @@ import exception.NonNumericException;
 
 public class InputBonusNumberView {
     private static final String INTEGER_REGEX = "^\\d+$";
+    private static final String NEW_LINE = "\n";
     private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
     private static final int MIN_RANGE = 1;
     private static final int MAX_RANGE = 45;
 
     public int getValue() {
-        System.out.println(BONUS_NUMBER_MESSAGE);
+        System.out.println(NEW_LINE + BONUS_NUMBER_MESSAGE);
         String bonusNumberInput = Console.readLine();
 
         validate(bonusNumberInput);

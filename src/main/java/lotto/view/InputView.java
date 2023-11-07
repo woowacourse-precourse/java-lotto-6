@@ -10,5 +10,7 @@ public class InputView {
     public static String getInputWinningNumber() {
         return Console.readLine();
     }
-
+    public static String getInputBonusNumber() {
+        return Console.readLine();
+    }
 }

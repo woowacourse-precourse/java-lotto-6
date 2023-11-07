@@ -19,5 +19,8 @@ public class OutputView {
     public static void printEnterWinningNumber() {
         System.out.println(MsgConstants.PLEASE_ENTER_WINNING_NUMBER.getData());
     }
+    public static void printEnterBonusNumber() {
+        System.out.println(MsgConstants.PLEASE_ENTER_BONUS_NUMBER.getData());
+    }
 
 }

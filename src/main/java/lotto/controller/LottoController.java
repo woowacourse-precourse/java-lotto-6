@@ -67,6 +67,15 @@ public class LottoController {
             OutputView.printErrorMessage(ex.getMessage());
             return getWinningNumber();
         }
-
+    }
+    private String getBonusNumber() {
+        try{
+            OutputView.printEnterBonusNumber();
+            return InputView.getInputBonusNumber();
+        }
+        catch (Exception ex) {
+            OutputView.printErrorMessage(ex.getMessage());
+            return getWinningNumber();
+        }
     }
 }

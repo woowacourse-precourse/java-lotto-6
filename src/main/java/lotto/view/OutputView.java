@@ -23,6 +23,7 @@ public class OutputView {
     }
 
     public static void printWinningNumberInputAnnounce() {
+        System.out.println();
         System.out.println(WINNING_NUMBER_INPUT_MESSAGE);
     }
 

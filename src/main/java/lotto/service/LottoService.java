@@ -24,4 +24,8 @@ public class LottoService {
         return resultRepository.toString();
     }
 
+    public Double solveRateOfReturn() {
+        Calculator calculator = new Calculator();
+        return calculator.getRateOfReturn();
+    }
 }

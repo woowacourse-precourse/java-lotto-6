@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.mock;
@@ -78,8 +79,8 @@ class NumbersTest {
     }
 
     @Test
-    @DisplayName("보너스 번호가 일치하는지 판별한다.")
-    void Given_CreateNumbers_When_IsMatchBonusNumber_Then_ReturnTrue() {
+    @DisplayName("보너스 번호가 일치하면 true를 반환한다.")
+    void Given_CreateNumbers_When_MatchBonusNumber_Then_ReturnTrue() {
         //given
         Numbers numbers = new Numbers(List.of(1, 2, 3, 4, 5, 6));
         BonusNumber bonusNumber = mock(BonusNumber.class);
@@ -90,7 +91,21 @@ class NumbersTest {
 
         //then
         assertTrue(isMatchBonusNumber);
+    }
 
+    @Test
+    @DisplayName("보너스 번호가 일치하지 않으면 false를 반환한다.")
+    void Given_CreateNumbers_When_NotMatchBonusNumber_Then_ReturnFalse() {
+        //given
+        Numbers numbers = new Numbers(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = mock(BonusNumber.class);
+        given(bonusNumber.isMatchBonusNumber(7)).willReturn(false);
+
+        //when
+        Boolean isMatchBonusNumber = numbers.isMatchBonusNumber(bonusNumber);
+
+        //then
+        assertFalse(isMatchBonusNumber);
     }
 
 }

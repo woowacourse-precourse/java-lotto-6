@@ -14,9 +14,15 @@
 보너스 번호 입력 받는 것
 > 보너스 번호 B hashset >> A hashset에 포함이 되어있는지 확인 => 만약 포함되어있으면 오류발생
 
+
 randomLottoNumbers 뽑는 클래스
 - hashset 사용 6개 randompicknumber로 가져오기
 - 출력, 리스트 배열로 출력 가능한가? 아니면 더 좋은방법 확인
+- lotto 사용해서 구현 numbers List형태 반환. 검증부가 안에 있음
+
+- 외부검증(뷰) 내부검증(도메인) 2회 작업할 것
+
+
 
 gameoutput
 - 발행한 로또 출력 구매내역
@@ -32,8 +38,8 @@ gameoutput
 - 보너스 번호 확인
 
 이넘클래스
-- [ERROR] 입력 출력 메세지
-- 숫자들
+v [ERROR] 입력 출력 메세지
+v 숫자들
 
 벨리데이트 클래스
 - 일치하는 갯수 확인 6>3까지 순서대로 return

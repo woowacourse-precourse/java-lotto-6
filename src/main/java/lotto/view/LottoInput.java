@@ -9,6 +9,8 @@ import java.util.List;
 public class LottoInput {
 
     private static final String PURCHASE_MESSAGE = "구입금액을 입려해 주세요.";
+    private static final String WINNING_LOTTO_MESSAGE = "당첨 번호를 입력해 주세요.";
+    private static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
 
     public LottoInput(){
     }
@@ -20,9 +22,13 @@ public class LottoInput {
     }
 
     public WinningLotto winningLottoInput(){
+        System.out.println(WINNING_LOTTO_MESSAGE);
         List<Integer> lottoNumbers = parseByComma(Console.readLine()).stream()
                 .mapToInt(Integer::parseInt).boxed().toList();
+        System.out.println();
+        System.out.println(BONUS_NUMBER_MESSAGE);
         int bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
         return new WinningLotto(lottoNumbers, bonusNumber);
     }
 

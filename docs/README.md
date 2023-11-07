@@ -48,4 +48,4 @@
 ## 기능 수정 필요
 - [X] lottoPurchaseInput - 메시지가 표시가 안됨
 - [X] makeLottoAsPurchaseAndAccumulate
-- [] 당첨 번호 입력받도록 사용자에게 전달하는 메세지 필요
+- [X] 당첨 번호 입력받도록 사용자에게 전달하는 메세지 필요

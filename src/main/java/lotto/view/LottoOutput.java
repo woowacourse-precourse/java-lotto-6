@@ -25,19 +25,16 @@ public class LottoOutput {
             stringBuffer.append(lottoNumbers.get(i)+", ");
         }
         stringBuffer.append(lottoNumbers.get(lottoLength - 1)+"]");
-        String returnValue = stringBuffer.toString();
-        System.out.println(returnValue);
-        return returnValue;
+        return stringBuffer.toString();
     }
 
-    public String printAllRandomLotto(List<Lotto> lottos){
-        stringBuffer = new StringBuffer();
-
+    public void printAllRandomLotto(List<Lotto> lottos){
+        System.out.println();
+        System.out.format("%d개를 구매했습니다.\n",lottos.size());
         for(Lotto lotto : lottos){
-            stringBuffer.append(printRandomLotto(lotto.getNumbers()));
-            stringBuffer.append("\n");
+            System.out.println(printRandomLotto(lotto.getNumbers()));
         }
-        return stringBuffer.toString();
+        System.out.println();
     }
 
     public String printLottoStatistics(LottoResult lottoResult){
@@ -45,13 +42,15 @@ public class LottoOutput {
         Map<LottoRankAndPrize, Integer> totalRanks = lottoResult.getTotalRanks();
         stringBuffer = new StringBuffer();
         stringBuffer.append(INITIAL_LOTTO_STATIC_MESSAGE);
-        stringBuffer.append(printFirstRank(totalRanks.get(LottoRankAndPrize.FIRST_RANK))+"\n");
-        stringBuffer.append(printSecondRank(totalRanks.get(LottoRankAndPrize.SECOND_RANK))+"\n");
-        stringBuffer.append(printThirdRank(totalRanks.get(LottoRankAndPrize.THIRD_RANK))+"\n");
-        stringBuffer.append(printFourthRank(totalRanks.get(LottoRankAndPrize.FOURTH_RANK))+"\n");
         stringBuffer.append(printFifthRank(totalRanks.get(LottoRankAndPrize.FIFTH_RANK))+"\n");
+        stringBuffer.append(printFourthRank(totalRanks.get(LottoRankAndPrize.FOURTH_RANK))+"\n");
+        stringBuffer.append(printThirdRank(totalRanks.get(LottoRankAndPrize.THIRD_RANK))+"\n");
+        stringBuffer.append(printSecondRank(totalRanks.get(LottoRankAndPrize.SECOND_RANK))+"\n");
+        stringBuffer.append(printFirstRank(totalRanks.get(LottoRankAndPrize.FIRST_RANK))+"\n");
         stringBuffer.append(String.format("총 수익률은 %.1f%%입니다", lottoResult.calculateProfitPercentage()));
-        return stringBuffer.toString();
+        String result = stringBuffer.toString();
+        System.out.println(result);
+        return result;
     }
 
     public String printFirstRank(int rankCount){

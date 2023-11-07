@@ -16,6 +16,8 @@ public class LottoService {
     private static RandomLotto rl;
     private static int number;
     private static UserLotto userLotto;
+    private static ConsistencyService consistencyService;
+    private static int capital;
 
     public LottoService() {
         outputView = new OutputView();
@@ -24,8 +26,8 @@ public class LottoService {
 
     public void purchase() {
         outputView.purchaseComment();
-        number = Parsing.stringToInt(InputView.inputLine());
-        number = Parsing.isDivisible(number);
+        capital = Parsing.stringToInt(InputView.inputLine());
+        number = Parsing.isDivisible(capital);
     }
 
     public void lottoLists() {
@@ -48,5 +50,9 @@ public class LottoService {
         userLotto = new UserLotto(new Lotto(userLottoList), new BonusLotto(bonusNumber));
     }
 
-    
+    public void winner(){
+        consistencyService = new ConsistencyService(capital, userLotto);
+
+    }
+
 }

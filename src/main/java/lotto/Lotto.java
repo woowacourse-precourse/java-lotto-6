@@ -57,7 +57,6 @@ public class Lotto {
     public static Map<Rank, Integer> isWin(List<Lotto> lottos, List<Integer> winNumbers, int bonusNumber) {
         final int fiveMatch = 5;
         Map<Rank, Integer> lottoResult = new HashMap<>();
-
         setInitialValue(lottoResult);
         for (Lotto lotto : lottos) {
             List<Integer> issueNumbers = lotto.getNumbers();
@@ -68,7 +67,6 @@ public class Lotto {
             }
             saveLottoResult(lottoResult, matchCount, matchBonus);
         }
-
         return lottoResult;
     }
 

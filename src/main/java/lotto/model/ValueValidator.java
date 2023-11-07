@@ -59,14 +59,14 @@ public class ValueValidator {
         return true;
     }
 
-    public boolean validateBonusNumberValue(String inputBonusNumber) {
+    private boolean validateBonusNumberValue(String inputBonusNumber) {
         if (!inputBonusNumber.matches("\\d+")) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_FORMAT.getMessage());
         }
         return true;
     }
 
-    public boolean validateBonusNumberValueRange(String inputBonusNumber) {
+    private boolean validateBonusNumberValueRange(String inputBonusNumber) {
         int bonusNumber = Integer.parseInt(inputBonusNumber);
         if (bonusNumber < 1 || bonusNumber > 45) {
             throw new IllegalArgumentException(ErrorMessage.ILLEGAL_NUMBER_RANGE.getMessage());

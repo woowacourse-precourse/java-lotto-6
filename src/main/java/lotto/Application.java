@@ -1,7 +1,15 @@
 package lotto;
 
+import controller.LottoController;
+import validator.LottoValidator;
+import view.InputView;
+import view.OutputView;
+
 public class Application {
+
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        LottoController controller = new LottoController(new InputView(), new OutputView(),
+            new LottoValidator());
+        controller.run();
     }
 }

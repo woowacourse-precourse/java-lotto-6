@@ -5,10 +5,18 @@ import static lotto.util.message.ErrorMessages.LOTTO_LENGTH_EXCEPTION;
 import static lotto.util.message.ErrorMessages.LOTTO_RANGE_EXCEPTION;
 
 import java.util.List;
+import lotto.util.generator.NumberGenerator;
 import lotto.util.validator.NumberRangeValidator;
 
 public class Lotto {
-    private final List<Integer> numbers;
+    private static final Integer LOTTO_MIN_NUMBER = 1;
+    private static final Integer LOTTO_MAX_NUMBER = 45;
+
+    private List<Integer> numbers;
+
+    public Lotto(NumberGenerator numberGenerator) {
+        generateLotto(numberGenerator);
+    }
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -17,6 +25,19 @@ public class Lotto {
 
     public boolean isContain(Integer number) {
         return numbers.contains(number);
+    }
+
+    private void generateLotto(NumberGenerator numberGenerator) {
+        while (numbers.size() <= 6) {
+            int randomNumber = generateNumber(numberGenerator);
+            if (!numbers.contains(randomNumber)) {
+                numbers.add(randomNumber);
+            }
+        }
+    }
+
+    private int generateNumber(NumberGenerator numberGenerator) {
+        return numberGenerator.generate(LOTTO_MIN_NUMBER, LOTTO_MAX_NUMBER);
     }
 
     private void validate(List<Integer> numbers) {

@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.purchaser;
 
 import lotto.constants.ErrorMessage;
 import lotto.constants.LottoRule;

@@ -26,7 +26,7 @@ public class LottoController {
         List<LottoRank> lottoRanks = purchasedLottos.matchLottos(winningLotto);
         LottoMatchResult lottoMatchResult = LottoMatchResult.createLottoMatchResult(lottoRanks,
                 purchasedLottos.spendMoney());
-        outputView.outputLottoMatchResult(lottoMatchResult);
+        outputView.outputLottoMatchResult(lottoMatchResult.toDto());
     }
 
     public PurchasedLottos tryPurchaseLotto() {

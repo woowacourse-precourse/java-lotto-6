@@ -33,10 +33,10 @@ public class OutputView {
         System.out.printf(PURCHASED_LOTTOS_COUNT_MESSAGE, purchasedLottos.purchasedLottosCount());
     }
 
-    public void outputLottoMatchResult(LottoMatchResult lottoMatchResult) {
+    public void outputLottoMatchResult(LottoMatchResultDto lottoMatchResultDto) {
         outputLottoStatisticPrompt();
-        outputLottoStatistic(lottoMatchResult.toDto());
-        outputProfitRate(lottoMatchResult.toDto());
+        outputLottoStatistic(lottoMatchResultDto);
+        outputProfitRate(lottoMatchResultDto);
     }
 
     private void outputLottoStatisticPrompt() {

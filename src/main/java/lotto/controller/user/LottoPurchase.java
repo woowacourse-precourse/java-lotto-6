@@ -1,5 +1,6 @@
 package lotto.controller.user;
 
+import lotto.controller.handler.ExceptionHandler;
 import lotto.exception.AmountException;
 import lotto.model.LottoReceipt;
 import lotto.view.InputView;
@@ -16,15 +17,10 @@ public class LottoPurchase {
     }
 
     private boolean isCorrectAmount(String input) {
-        AmountException amountException = new AmountException();
+        ExceptionHandler exceptionHandler = new ExceptionHandler();
 
         try {
-            amountException.checkBlank(input);             //빈칸 입력
-            amountException.checkEmptySpace(input);        //공백
-            amountException.checkPositiveInteger(input);   //자연수
-            amountException.checkOutOfIntegerRange(input); //정수 범위
-            amountException.checkLessThanMaxAmount(input); //구매금액의 최댓값
-            amountException.checkThousandUnits(input);     //1,000단위 입력
+            exceptionHandler.handlePurchaseAmountException(input);
         } catch (IllegalArgumentException exception) {
             inputView.showInputErrorMessage(exception.getMessage());
             return false;

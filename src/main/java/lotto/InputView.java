@@ -5,10 +5,19 @@ import camp.nextstep.edu.missionutils.Console;
 public class InputView {
 
     int inputLottoPrice(){
-        System.out.println("구입금액을 입력해 주세요.");
-        String input = Console.readLine();
-        validInput(input);
-        return Integer.parseInt(input);
+        int price = 0;
+        boolean isValid = false;
+        while (!isValid){
+            try{
+                System.out.println("구입금액을 입력해 주세요.");
+                String input = Console.readLine();
+                validInput(input);
+                isValid = true;
+            } catch (IllegalArgumentException e){
+                System.out.printf(e.getMessage());
+            }
+        }
+        return price;
     }
 
     void validInput(String input){
@@ -16,4 +25,5 @@ public class InputView {
         validUnit(price);
         validPositive(price);
     }
+
 }

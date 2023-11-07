@@ -6,11 +6,14 @@ import java.util.List;
 public class WinningNumbers{
 
     private final List<Integer> numbers;
-    private final int bonusNumber;
+    private int bonusNumber;
 
-    public WinningNumbers(List<Integer> numbers, int bonusNumber) {
+    public WinningNumbers(List<Integer> numbers) {
         validateNumbers(numbers);
         this.numbers = numbers;
+    }
+
+    public void setBonus(int bonusNumber){
         validateBonus(numbers, bonusNumber);
         this.bonusNumber = bonusNumber;
     }
@@ -53,7 +56,7 @@ public class WinningNumbers{
         }
     }
 
-    public int compareNumbers(Lotto lotto){
+    public int compare(Lotto lotto){
         int matchCount = 0;
         for (int winningNum : numbers){
             if (lotto.match(winningNum) != -1){
@@ -62,7 +65,5 @@ public class WinningNumbers{
         }
         return matchCount;
     }
-
-
 
 }

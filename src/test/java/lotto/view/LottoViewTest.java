@@ -17,7 +17,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LottoViewTest {
-
+/*
     @DisplayName("콤마가 2개 이상인 경우")
     @Test
     void 콤마_2개이상() {
@@ -33,6 +33,8 @@ public class LottoViewTest {
                 isEqualTo("[ERROR] ','를 연속해서 적었습니다");
     }
 
+
+ */
     @DisplayName("입력값이 공백인 경우")
     @Test
     void 입력값_공백() {

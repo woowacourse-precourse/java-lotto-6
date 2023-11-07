@@ -1,11 +1,11 @@
 package lotto.Model;
 
+import static lotto.Constants.DEFAULT;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Result {
-    private static final int DEFAULT = 0;
-
     private Map<Rank, Integer> winningRankAndCounting;
 
     public Result() {
@@ -15,7 +15,7 @@ public class Result {
         }
     }
 
-    public void calculateWinningResult(RandomLottos randomLottos, WinningLotto winningLotto, Bonus bonus) {
+    public void makeWinningResultWith(RandomLottos randomLottos, WinningLotto winningLotto, Bonus bonus) {
         for (Lotto randomLotto : randomLottos.getRandomLottos()) {
             Rank rank = Rank.calculateWinningRank(randomLotto, winningLotto, bonus);
             winningRankAndCounting.put(rank, winningRankAndCounting.get(rank) + 1);
@@ -29,18 +29,18 @@ public class Result {
     public int calculateTotalWinningPrize() {
         int winningPrize = DEFAULT;
         for (Rank rank : winningRankAndCounting.keySet()) {
-            if (hasWinningCounts(getWinningCountsFrom(rank))) {
-                winningPrize += Rank.getPrize(rank) * getWinningCountsFrom(rank);
+            if (isNotDefault(getWinningCountingFrom(rank))) {
+                winningPrize += Rank.getPrize(rank) * getWinningCountingFrom(rank);
             }
         }
         return winningPrize;
     }
 
-    private int getWinningCountsFrom(Rank rank) {
+    private int getWinningCountingFrom(Rank rank) {
         return winningRankAndCounting.get(rank);
     }
 
-    private boolean hasWinningCounts(int winningCounts) {
+    private boolean isNotDefault(int winningCounts) {
         return winningCounts != DEFAULT;
     }
 }

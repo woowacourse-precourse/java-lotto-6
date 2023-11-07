@@ -50,11 +50,11 @@ public enum Prize {
                 .collect(Collectors.toList());
     }
 
-    public String formatMessage(int value) {
-        return String.format(message, value);
-    }
-    
     public int getMoney() {
         return money;
+    }
+
+    public String getFormatMessage(int value) {
+        return String.format(message, value);
     }
 }

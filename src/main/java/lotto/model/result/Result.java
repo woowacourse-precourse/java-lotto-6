@@ -26,8 +26,8 @@ public class Result {
         prizeResult.put(prize, prizeResult.getOrDefault(prize, 0) + 1);
     }
 
-    public int getPrizeCount(Prize prize) {
-        return prizeResult.getOrDefault(prize, 0);
+    public double calculatePrizeProfit(int amount) {
+        return (calculatePrizeMoney() / calculateMoneyFromAmount(amount)) * 100;
     }
 
     public double calculatePrizeMoney() {
@@ -37,12 +37,12 @@ public class Result {
                 .sum();
     }
 
-    public double calculatePrizeProfit(int amount) {
-        return (calculatePrizeMoney() / calculateMoneyFromAmount(amount)) * 100;
-    }
-
     private int calculateMoneyFromAmount(int amount) {
         return amount * MIN_MONEY.getValue();
+    }
+
+    public int getPrizeCount(Prize prize) {
+        return prizeResult.getOrDefault(prize, 0);
     }
 
     @Override

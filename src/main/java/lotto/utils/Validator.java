@@ -59,12 +59,12 @@ public class Validator {
         return numbers.stream().distinct().count() == size;
     }
 
-    private static boolean isNumberInRange(int number) {
-        return number >= MIN_LOTTO.getValue() && number <= MAX_LOTTO.getValue();
-    }
-
     private static boolean isBonusNumberDistinct(List<Integer> numbers, int bonus) {
         return !numbers.contains(bonus);
+    }
+    
+    private static boolean isNumberInRange(int number) {
+        return number >= MIN_LOTTO.getValue() && number <= MAX_LOTTO.getValue();
     }
 
     private static boolean isAmountAboveMinimum(int money) {

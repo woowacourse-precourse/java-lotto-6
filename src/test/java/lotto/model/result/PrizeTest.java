@@ -19,7 +19,7 @@ class PrizeTest {
     @Test
     void 당첨_보상_문구_변환_테스트() {
         Prize prize = Prize.valueOf(3, false);
-        String message = prize.formatMessage(1);
+        String message = prize.getFormatMessage(1);
         assertThat(message).isEqualTo("3개 일치 (5,000원) - 1개");
     }
 

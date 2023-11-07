@@ -7,6 +7,8 @@ import lotto.exception.InvalidCommaMissingException;
 import lotto.exception.InvalidNonNumericInputException;
 
 public class InputParser {
+    private static final String DELIMITER = ",";
+
     public static int parseStringToInteger(String inputNumber) {
         return convertToInteger(inputNumber);
     }
@@ -26,15 +28,15 @@ public class InputParser {
         }
     }
 
+    private static boolean containComma(String inputNumbers) {
+        return inputNumbers.contains(DELIMITER);
+    }
+
     private static List<Integer> splitAndConvertToInteger(String inputNumbers) {
         try {
-            return Arrays.stream(inputNumbers.split(",")).map(Integer::parseInt).collect(Collectors.toList());
+            return Arrays.stream(inputNumbers.split(DELIMITER)).map(Integer::parseInt).collect(Collectors.toList());
         } catch (NumberFormatException e) {
             throw new InvalidNonNumericInputException();
         }
-    }
-
-    private static boolean containComma(String inputNumbers) {
-        return inputNumbers.contains(",");
     }
 }

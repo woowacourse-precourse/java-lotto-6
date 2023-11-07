@@ -6,7 +6,7 @@ import lotto.view.InputView;
 
 public class WinningController {
     public Winning createWinning(Lotto lotto) {
-        int bonus = InputView.getLottoBonus();
+        int bonus = InputView.getBonusLotto();
         try {
             return Winning.of(lotto, bonus);
         } catch (IllegalArgumentException e) {
@@ -17,7 +17,7 @@ public class WinningController {
 
     public Lotto createWinningLotto() {
         try {
-            return new Lotto(InputView.getLottoWinnning());
+            return new Lotto(InputView.getWinningLotto());
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return createWinningLotto();

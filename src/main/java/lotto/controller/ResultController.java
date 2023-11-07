@@ -19,7 +19,7 @@ public class ResultController {
 
     private void showPrize(Result result) {
         for (Prize prize : Prize.getPrize()) {
-            OutputView.printPrizeCount(prize.formatMessage(result.getPrizeCount(prize)));
+            OutputView.printPrizeCount(prize.getFormatMessage(result.getPrizeCount(prize)));
         }
     }
 

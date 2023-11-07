@@ -36,19 +36,17 @@ public class LottoController {
     }
 
     public void start() {
-        buyLotto();
+        payMoney();
     }
 
-    private void buyLotto() {
+    private void payMoney() {
         boolean purchased = false;
-
         while (!purchased) {
-            purchased = doBuyLotto();
+            purchased = doPayMoney();
         }
-
     }
 
-    private boolean doBuyLotto() {
+    private boolean doPayMoney() {
         OutputView.printBudgetInputDescription();
         int userMoney;
 
@@ -59,7 +57,6 @@ public class LottoController {
             System.out.println(e.getMessage());
             return false;
         }
-
         return true;
     }
 

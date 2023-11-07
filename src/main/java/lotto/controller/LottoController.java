@@ -3,8 +3,11 @@ package lotto.controller;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
 import lotto.domain.BonusNumber;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.UserMoney;
 import lotto.domain.WinningLottoNumbers;
+import lotto.dto.LottoNumbers;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -23,7 +26,9 @@ public class LottoController {
 
     public void playGame() {
         UserMoney userMoney = initUserMoney();
-        printNumberOfLottos(userMoney);
+        Lottos userLottos = lottoService.createUserLottos(userMoney.getUserMoney());
+        printNumberOfLottos(userLottos.getNumberOfLottos());
+        printLottoContents(userLottos.getLottos());
 
         WinningLottoNumbers winningLottoNumbers = initWinningLottoNumbers();
         BonusNumber bonusNumber = initBonusNumber(winningLottoNumbers);
@@ -45,8 +50,16 @@ public class LottoController {
         return inputView.getUserMoney();
     }
 
-    private void printNumberOfLottos(UserMoney userMoney) {
-        outputView.printNumberOfLottos(lottoService.calculateNumberOfLottos(userMoney));
+    private void printNumberOfLottos(long numberOfLottos) {
+        outputView.printLine();
+        outputView.printNumberOfLottos(numberOfLottos);
+    }
+
+    private void printLottoContents(List<Lotto> lottos) {
+        for (Lotto l : lottos) {
+            outputView.printLottoContent(LottoNumbers.from(l));
+        }
+        outputView.printLine();
     }
 
     private WinningLottoNumbers initWinningLottoNumbers() {

@@ -31,6 +31,10 @@ public class LottoNumber {
         return number < LottoConstant.LOTTO_MIN_NUM.getValue() || number > LottoConstant.LOTTO_MAX_NUM.getValue();
     }
 
+    public int getNumber() {
+        return this.number;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {

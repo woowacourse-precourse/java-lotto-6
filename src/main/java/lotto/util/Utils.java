@@ -15,6 +15,7 @@ public class Utils {
     }
 
     public static long stringToLong(String string) {
+        Validation.verifyEmptyInputMoney(string);
         Validation.verifyStringToLong(string);
         return Long.parseLong(string);
     }

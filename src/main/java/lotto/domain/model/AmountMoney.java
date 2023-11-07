@@ -1,9 +1,8 @@
-package lotto.domain;
+package lotto.domain.model;
 
 import static lotto.utils.LottoEnum.LOTTO_PRICE;
 
-import lotto.exception.lottoamountexception.BelowMinimumAmountException;
-import lotto.exception.lottoamountexception.NotDivisibleByThousandException;
+import lotto.exception.lottoamountexception.AmountErrorMessage;
 
 public class AmountMoney {
     private final int amount;
@@ -14,11 +13,11 @@ public class AmountMoney {
     }
 
     private void validate(int amount) {
-        if (amount % LOTTO_PRICE.getValue() != 0) {
-            throw new NotDivisibleByThousandException();
+        if (amount < LOTTO_PRICE.getValue()) {
+            throw AmountErrorMessage.BELOW_MINIMUM_AMOUNT.getException();
         }
-        if (amount <= 0) {
-            throw new BelowMinimumAmountException();
+        if (amount % LOTTO_PRICE.getValue() != 0) {
+            throw AmountErrorMessage.NOT_DIVISIBLE_BY_THOUSAND.getException();
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto;
 
+import lotto.exception.InputValidator;
+
 import java.util.*;
 
 public class Lotto {
@@ -14,9 +16,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        InputValidator inputValidator = new InputValidator();
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        inputValidator.checkWinningNumbers(numbers);
     }
 
     // TODO: 추가 기능 구현

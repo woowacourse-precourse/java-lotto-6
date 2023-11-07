@@ -1,17 +1,20 @@
 package lotto;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateDuplication(numbers);
         this.numbers = numbers;
     }
     
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != Constants.LOTTONUMBER) {
+        if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
@@ -20,14 +23,10 @@ public class Lotto {
     public List<Integer> getNumbers() {
         return this.numbers;
     }
-    
-    public Integer checkScore(Lotto numbers, Integer bonusNumber) {
-        long count = this.numbers.stream()
-                .filter(numbers.numbers::contains)
-                .count();
-        if (this.numbers.contains(bonusNumber)){
-            count += 1;
+    private void validateDuplication(List<Integer> numbers) {
+        Set<Integer> setOfNumbers = new HashSet<>(numbers);
+        if (setOfNumbers.size() < 6) {
+            throw new IllegalArgumentException();
         }
-        return Math.toIntExact(count);
     }
 }

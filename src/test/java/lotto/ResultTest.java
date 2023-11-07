@@ -20,6 +20,7 @@ class ResultTest {
         Lotto lotto = new Lotto(number);
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(lotto);
+        
         result.makeScores(winningNumber, bonusNumber, lottoList);
         
         assertThat(result.getScores().get(0)).isEqualTo(Score.SECOND);
@@ -35,6 +36,7 @@ class ResultTest {
         Lotto lotto = new Lotto(number);
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(lotto);
+        
         result.makeScores(winningNumber, bonusNumber, lottoList);
 
         assertThat(result.getScores().get(0)).isEqualTo(Score.FIRST);
@@ -50,6 +52,7 @@ class ResultTest {
         Lotto lotto = new Lotto(number);
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(lotto);
+        
         result.makeScores(winningNumber, bonusNumber, lottoList);
 
         assertThat(result.getScores().get(0)).isEqualTo(Score.THIRD);
@@ -65,6 +68,7 @@ class ResultTest {
         Lotto lotto = new Lotto(number);
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(lotto);
+        
         result.makeScores(winningNumber, bonusNumber, lottoList);
 
         assertThat(result.getScores().get(0)).isEqualTo(Score.FOURTH);
@@ -79,6 +83,7 @@ class ResultTest {
         Lotto lotto = new Lotto(number);
         List<Lotto> lottoList = new ArrayList<>();
         lottoList.add(lotto);
+        
         result.makeScores(winningNumber, bonusNumber, lottoList);
 
         assertThat(result.getScores().get(0)).isEqualTo(Score.FIFTH);

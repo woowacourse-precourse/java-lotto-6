@@ -17,7 +17,7 @@ public class WinningNumber {
     }
 
     public int getBonusNumber() {
-        return getBonusNumber();
+        return bonusNumber;
     }
 
 }

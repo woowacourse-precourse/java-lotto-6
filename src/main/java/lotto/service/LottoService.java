@@ -85,10 +85,14 @@ public class LottoService {
         return lotto.getNumbers().contains(winningNumber.getBonusNumber());
     }
 
-    private int checkSameNumber(List<Integer> list1,List<Integer> list2) {
-        return (int) list2.stream()
-                .filter(list1::contains)
-                .count();
+    private int checkSameNumber(List<Integer> list1, List<Integer> list2) {
+        int count = 0;
+        for (int number : list2) {
+            if (list1.contains(number)) {
+                count++;
+            }
+        }
+        return count;
     }
 
 }

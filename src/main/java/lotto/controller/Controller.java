@@ -25,7 +25,7 @@ public class Controller {
     private void getBuyLottoMoney() {
         InputMessage.inputMoney();
         int inputMoney = Integer.parseInt(Console.readLine());
-        Customer customer = new Customer(inputMoney);
+        customer = new Customer(inputMoney);
         lottoService.buyLottoByTicket(customer);
         resultLotto(customer);
     }

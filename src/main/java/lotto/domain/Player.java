@@ -9,28 +9,16 @@ import java.util.Set;
 
 public class Player {
     final static int LOTTO_SIZE = 6;
-    private List<Integer> numbers;
     private Lotto lotto;
     private InputController inputController = new InputController();
 
     Integer bonus; // 메소드 호출
 
-    public void validation(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자만 입력할 수 있습니다.");
-        }
-
-        Set<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다.");
-        }
-    }
 
     public Player(List<Integer> numbers) {
         while (true) {
             try {
-                validation(numbers);
-                this.numbers = numbers;
+                lotto = new Lotto(numbers);
                 break;
             } catch (IllegalArgumentException e) {
                 System.err.println(e.getMessage());
@@ -38,13 +26,12 @@ public class Player {
             }
         }
 
-        lotto = new Lotto(numbers);
         bonus = InputController.bonusInput();
     }
-    
+
 
     public List<Integer> getNumbers() {
-        return numbers;
+        return lotto.getNumbers();
     }
 
     public Integer getBonus() {

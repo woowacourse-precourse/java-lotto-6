@@ -1,45 +1,58 @@
 package lotto.controller;
 
+import lotto.domain.Calculator;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoWinningBonusNumber;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.PurchasedLottoNumbers;
+import lotto.domain.User;
 import lotto.domain.dto.InputBonusNumber;
 import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.InputWinningNumbers;
 import lotto.domain.dto.LottoResultDTO;
 import lotto.domain.dto.PurchasedLottoDTO;
 import lotto.service.LottoService;
+import lotto.service.ResultService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class GameController {
     public static void runGame() {
-        PurchasedLottoNumbers purchasedLottoNumbers = buyLotto();
-        lottoProgress(purchasedLottoNumbers);
+        InputMoney inputMoney = moneyInput();
+        User user = new User(inputMoney.getMoney());
+        PurchasedLottoNumbers purchasedLottoNumbers = buyLotto(inputMoney);
+        LottoResultDTO lottoResultDTO = lottoProgress(purchasedLottoNumbers);
+        double totalPrizeMoney = lottoProfit(user, lottoResultDTO);
+        OutputView.printProfit(totalPrizeMoney);
     }
 
-    private static PurchasedLottoNumbers buyLotto() {
-        PurchasedLottoNumbers purchasedLottoNumbers = moneyInputAndLottoIssue();
+    private static PurchasedLottoNumbers buyLotto(InputMoney inputMoney) {
+        PurchasedLottoNumbers purchasedLottoNumbers = LottoService.inputMoneyAndIssueLotto(inputMoney);
         PurchasedLottoDTO purchasedLottoDTO = LottoService.purchasedLottoToDTO(purchasedLottoNumbers);
         OutputView.printPurchasedLotto(purchasedLottoDTO);
         return purchasedLottoNumbers;
     }
 
-    private static void lottoProgress(PurchasedLottoNumbers purchasedLottoNumbers) {
+    private static LottoResultDTO lottoProgress(PurchasedLottoNumbers purchasedLottoNumbers) {
         LottoWinningNumbers lottoWinningNumbers = inputWinningNumbers();
         LottoWinningBonusNumber lottoWinningBonusNumber = inputBonusNumber(lottoWinningNumbers);
-        LottoResultDTO lottoResultDTO = LottoService.compareLotto(lottoWinningNumbers, lottoWinningBonusNumber,
+        LottoResult lottoResult = LottoService.compareLotto(lottoWinningNumbers, lottoWinningBonusNumber,
                 purchasedLottoNumbers);
+        LottoResultDTO lottoResultDTO = new LottoResultDTO(lottoResult.getLottoResult());
         OutputView.printLottoResult(lottoResultDTO);
+        return lottoResultDTO;
     }
 
-    private static PurchasedLottoNumbers moneyInputAndLottoIssue() {
+    private static double lottoProfit(User user, LottoResultDTO lottoResultDTO){
+        return Calculator.profitCalculator(user,lottoResultDTO);
+    }
+
+    private static InputMoney moneyInput() {
         try {
-            InputMoney money = InputView.inputMoney();
-            return LottoService.inputMoneyAndIssueLotto(money);
+            return InputView.inputMoney();
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
-            return moneyInputAndLottoIssue();
+            return moneyInput();
         }
     }
 

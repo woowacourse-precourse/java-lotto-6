@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import lotto.Lotto;
 import lotto.domain.LottoRank;
+import lotto.domain.LottoResult;
 import lotto.domain.LottoWinningBonusNumber;
 import lotto.domain.LottoWinningNumbers;
 import lotto.domain.PurchasedLottoNumbers;
@@ -37,10 +38,10 @@ public class LottoService {
         return purchasedLottoNumbers;
     }
 
-    public static LottoResultDTO compareLotto(LottoWinningNumbers lottoWinningNumbers, LottoWinningBonusNumber lottoWinningBonusNumber, PurchasedLottoNumbers purchasedLottoNumbers) {
+    public static LottoResult compareLotto(LottoWinningNumbers lottoWinningNumbers, LottoWinningBonusNumber lottoWinningBonusNumber, PurchasedLottoNumbers purchasedLottoNumbers) {
         ResultService resultService = new ResultService(lottoWinningNumbers, lottoWinningBonusNumber);
         Map<LottoRank, Integer> lottoResult = resultService.lottoGuess(purchasedLottoNumbers);
-        return new LottoResultDTO(lottoResult);
+        return new LottoResult(lottoResult);
     }
 
     public static LottoWinningNumbers inputWinningLotto(InputWinningNumbers inputWinningNumbers) {

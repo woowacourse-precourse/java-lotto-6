@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import lotto.Lotto;
 import lotto.domain.LottoRank;
@@ -23,12 +24,17 @@ public class OutputView {
         LottoRank[] ranks = LottoRank.values();
         for (int i = 4; i >= 0; i--) {
             LottoRank rank = ranks[i];
-            int count = lottoResultDTO.getLottoResult().getOrDefault(rank, 0);
+            int count = lottoResultDTO.getLottoResultInfo().getOrDefault(rank, 0);
             System.out.printf("%s (%,d원) - %d개%n", rank.getWinningMessage(), rank.getMoney(), count);
         }
     }
 
     public static void printErrorMessage(Exception exception) {
         System.out.println((exception.getMessage()));
+    }
+
+    public static void printProfit(Double userProfit){
+        DecimalFormat decimalFormat = new DecimalFormat("########.##");
+        System.out.println(decimalFormat.format(userProfit) + '%');
     }
 }

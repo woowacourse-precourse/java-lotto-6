@@ -5,7 +5,7 @@ import java.util.List;
 import lotto.ui.InputView;
 import lotto.ui.OutputView;
 
-public class LottoWinningProcess {
+public class LottoProcess {
     private static final String ERROR_PREFIX = "[ERROR] ";
 
     public LottoResult run(List<Lotto> lottos, WinningLotto winningLotto) {
@@ -36,49 +36,48 @@ public class LottoWinningProcess {
         return lottos;
     }
 
-    public PurchaseMoney setUpPurchaseMoney() {
-        String purchaseMoney = InputView.inputPurchaseMoney();
-        return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
-    }
-
-    public PurchaseMoney one() {
+    public PurchaseMoney runPurchaseMoneyStep() {
         try {
             return setUpPurchaseMoney();
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_PREFIX + e.getMessage());
         }
-        return one();
+        return runPurchaseMoneyStep();
     }
 
-    public WinningLotto setUpWinningLotto(Lotto winningNumbers) {
-        //return new WinningLotto(setUpWinningNumbers(), setUpBonusNumber());
-        return new WinningLotto(winningNumbers, setUpBonusNumber());
+    private PurchaseMoney setUpPurchaseMoney() {
+        String purchaseMoney = InputView.inputPurchaseMoney();
+        return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
     }
 
-    public WinningLotto three(Lotto winningNumber) {
-        try {
-            return setUpWinningLotto(winningNumber);
-        } catch (IllegalArgumentException e) {
-            System.out.println(ERROR_PREFIX + e.getMessage());
-        }
-        return three(winningNumber);
-    }
-
-    public Lotto setUpWinningNumbers() {
-        String winningNumbers = InputView.inputWinningNumbers();
-        return new Lotto(Converter.convertWinningNumber(winningNumbers));
-    }
-
-    public Lotto two() {
+    public Lotto runWinningNumbersStep() {
         try {
             return setUpWinningNumbers();
         } catch (IllegalArgumentException e) {
             System.out.println(ERROR_PREFIX + e.getMessage());
         }
-        return two();
+        return runWinningNumbersStep();
     }
 
-    public int setUpBonusNumber() {
+    private Lotto setUpWinningNumbers() {
+        String winningNumbers = InputView.inputWinningNumbers();
+        return new Lotto(Converter.convertWinningNumber(winningNumbers));
+    }
+
+    public WinningLotto runWinningLottoStep(Lotto winningNumber) {
+        try {
+            return setUpWinningLotto(winningNumber);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ERROR_PREFIX + e.getMessage());
+        }
+        return runWinningLottoStep(winningNumber);
+    }
+
+    private WinningLotto setUpWinningLotto(Lotto winningNumbers) {
+        return new WinningLotto(winningNumbers, setUpBonusNumber());
+    }
+
+    private int setUpBonusNumber() {
         String bonusNumber = InputView.inputBonusNumber();
         return Converter.convertToNumeric(bonusNumber);
     }

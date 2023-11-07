@@ -5,13 +5,13 @@ import lotto.ui.OutputView;
 
 public class Application {
     public static void main(String[] args) {
-        LottoWinningProcess lottoWinningProcess = new LottoWinningProcess();
-        PurchaseMoney purchaseMoney = lottoWinningProcess.one();
+        LottoProcess lottoProcess = new LottoProcess();
+        PurchaseMoney purchaseMoney = lottoProcess.runPurchaseMoneyStep();
 
-        List<Lotto> lottos = lottoWinningProcess.buyLotto(purchaseMoney);
-        Lotto winningNumber = lottoWinningProcess.two();
-        WinningLotto winningLotto = lottoWinningProcess.three(winningNumber);
-        LottoResult lottoResult = lottoWinningProcess.run(lottos, winningLotto);
+        List<Lotto> lottos = lottoProcess.buyLotto(purchaseMoney);
+        Lotto winningNumber = lottoProcess.runWinningNumbersStep();
+        WinningLotto winningLotto = lottoProcess.runWinningLottoStep(winningNumber);
+        LottoResult lottoResult = lottoProcess.run(lottos, winningLotto);
 
         OutputView.printStatistics(lottoResult.getFinalResult());
 

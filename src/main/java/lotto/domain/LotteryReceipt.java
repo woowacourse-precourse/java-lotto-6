@@ -20,7 +20,7 @@ public class LotteryReceipt implements Iterable<PurchasedLottery> {
     private static List<PurchasedLottery> createPurchasedLotteries(LotteryOperator operator, long quantity,
                                                                    LottoRandom random) {
         return LongStream.range(0, quantity)
-                .mapToObj(i -> PurchasedLottery.createLottery(operator, random))
+                .mapToObj(i -> PurchasedLottery.createLottery(operator.currentRound(), random))
                 .collect(toList());
     }
 

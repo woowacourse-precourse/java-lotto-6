@@ -10,18 +10,23 @@ public class LottoTickets {
         this.lottoTickets = lottoTickets;
     }
 
-    public static LottoTickets crateLottoTickets(long purchaseAmount) throws IllegalArgumentException{
+    public static LottoTickets crateBuyLottoTickets(long purchaseAmount) throws IllegalArgumentException{
         if(purchaseAmount%1000!=0){
              throw new IllegalArgumentException("ERROR");
         }
+
+        LottoTickets lottoTickets = new LottoTickets(buyLottoTickets(purchaseAmount));
+        return lottoTickets;
+    }
+
+    private static List<Lotto> buyLottoTickets(long purchaseAmount){
         List<Lotto> buyLottoTickets = new ArrayList<>();
         int purchasesNum = (int) (purchaseAmount/1000);
         while(purchasesNum!=0){
             buyLottoTickets.add(Lotto.getRandomNumLotto());
             purchasesNum --;
         }
-        LottoTickets lottoTickets = new LottoTickets(buyLottoTickets);
-        return lottoTickets;
+        return buyLottoTickets;
     }
 
 

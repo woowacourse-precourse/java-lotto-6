@@ -8,7 +8,7 @@ public class User {
 
     public static LottoTickets inputPurchaseAmount(){
         try{
-            return LottoTickets.crateLottoTickets(Long.parseLong(Console.readLine()));
+            return LottoTickets.crateBuyLottoTickets(Long.parseLong(Console.readLine()));
         }catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
             return inputPurchaseAmount();

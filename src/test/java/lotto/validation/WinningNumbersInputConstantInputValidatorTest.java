@@ -1,5 +1,6 @@
 package lotto.validation;
 
+import static lotto.validation.constant.CommonErrorConstant.NUMERIC_FORMAT_MESSAGE;
 import static lotto.validation.constant.WinningNumbersInputConstant.CHECK_COMMA_MESSAGE;
 import static lotto.validation.constant.WinningNumbersInputConstant.DUPLICATE_MESSAGE;
 import static lotto.validation.constant.WinningNumbersInputConstant.NUMBERS_COUNT_MESSAGE;
@@ -55,6 +56,17 @@ class WinningNumbersInputConstantInputValidatorTest {
         assertThatThrownBy(() -> inputValidation.validateNumbersCount(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(NUMBERS_COUNT_MESSAGE.getMessage());
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,e,3,b,5,6", "1,1e,15,27,34,45", "abc"})
+    @DisplayName("당첨 번호 입력에 숫자가 아닌게 있으면 예외가 발생하는 테스트")
+    void testValidateInputNumbersNumericFormat(String input) {
+        WinningNumbersInputValidator inputValidation = new WinningNumbersInputValidator();
+
+        assertThatThrownBy(() -> inputValidation.validateInputNumbersNumericFormat(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(NUMERIC_FORMAT_MESSAGE.getMessage());
     }
 
     @ParameterizedTest

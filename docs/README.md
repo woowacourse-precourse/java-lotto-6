@@ -21,3 +21,4 @@
 
 ## 당첨번호와 구매번호를 비교한다. - Result#compareLotto()
 - [x] 등수에 알맞은 해당 메시지를 출력한다. - Output#printResultMessage()
+- [ ] 수익률을 계산한다. - Output#printProfitRate()

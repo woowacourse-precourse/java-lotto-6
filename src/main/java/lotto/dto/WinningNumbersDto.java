@@ -2,19 +2,14 @@ package lotto.dto;
 
 import static lotto.util.Separator.WINNING_NUMBERS_SEPARATOR;
 
+import java.util.Collections;
 import java.util.List;
 import lotto.util.Converter;
 import lotto.util.Separator;
 import lotto.util.validator.Validator;
 import lotto.util.validator.ValidatorFactory;
 
-public class WinningNumbersDto {
-    private final List<Integer> winningNumbers;
-
-    private WinningNumbersDto(List<Integer> winningNumbers) {
-        this.winningNumbers = winningNumbers;
-    }
-
+public record WinningNumbersDto(List<Integer> winningNumbers) {
     public static WinningNumbersDto from(String rawWinningNumbers) {
         validate(rawWinningNumbers);
         return new WinningNumbersDto(convert(rawWinningNumbers));
@@ -31,7 +26,8 @@ public class WinningNumbersDto {
         return Converter.convertToInt(rawWinningNumberGroup);
     }
 
-    public List<Integer> getWinningNumbers() {
-        return winningNumbers;
+    @Override
+    public List<Integer> winningNumbers() {
+        return Collections.unmodifiableList(winningNumbers);
     }
 }

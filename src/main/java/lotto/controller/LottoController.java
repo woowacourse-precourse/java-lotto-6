@@ -66,7 +66,7 @@ public class LottoController {
 
     private Lotto getWinningLottoFromInput() {
         WinningNumbersDto winningNumbersDto = read(InputView::inputWinningNumbers);
-        return new Lotto(winningNumbersDto.getWinningNumbers());
+        return new Lotto(winningNumbersDto.winningNumbers());
     }
 
     private BonusNumber readBonusNumber(Lotto winningLotto) {

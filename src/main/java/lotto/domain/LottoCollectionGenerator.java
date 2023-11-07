@@ -29,6 +29,6 @@ public class LottoCollectionGenerator {
         List<Integer> rawLottoNumbers = numberGenerator.generate();
         List<Integer> lottoNumbers = new ArrayList<>(rawLottoNumbers);
         Collections.sort(lottoNumbers);
-        return lottoNumbers;
+        return Collections.unmodifiableList(lottoNumbers);
     }
 }

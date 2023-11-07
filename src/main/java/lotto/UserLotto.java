@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.Util.generateNumbers;
+import static lotto.Util.getLottoCount;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,10 +15,12 @@ public class UserLotto {
     private static final int ONE_HUNDRED_FOR_PERCENTAGE = 100;
 
     private List<Lotto> userLottos;
+    private int lottoCount;
     private Map<Rank, Integer> result = new LinkedHashMap<>();
     private int revenue = 0;
 
-    public UserLotto(int lottoCount) {
+    public UserLotto(int lottoAmount) {
+        this.lottoCount = getLottoCount(lottoAmount);
         createLotto(lottoCount);
     }
 

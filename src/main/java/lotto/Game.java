@@ -9,21 +9,34 @@ import java.util.Map;
 
 public class Game {
     public void run() {
+        int purchaseAmount = buyLotto();
+        UserLotto userLotto = completeBuyingLotto(purchaseAmount);
+        WinningLotto winningLotto = createWinningLotto();
+        winningResult(purchaseAmount, userLotto, winningLotto);
+    }
+
+    private static int buyLotto() {
         askPurchaseAmount();
-        int purchaseAmount = inputPurchaseAmount();
-        int purchaseCount = getLottoCount(purchaseAmount);
+        return inputPurchaseAmount();
+    }
 
-        UserLotto userLotto = new UserLotto(purchaseCount);
+    private static UserLotto completeBuyingLotto(int purchaseAmount) {
+        UserLotto userLotto = new UserLotto(purchaseAmount);
         List<Lotto> userLottoNumbers = userLotto.getUserLottos();
-        printCompletePurchase(purchaseCount, userLottoNumbers);
+        printCompletePurchase(purchaseAmount, userLottoNumbers);
+        return userLotto;
+    }
 
+    private static WinningLotto createWinningLotto() {
         askWinningLotto();
         Lotto lotto = inputWinningLotto();
-
         askBonusNumber();
         int bonusNumber = inputBonusNumber();
-
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+        return winningLotto;
+    }
+
+    private static void winningResult(int purchaseAmount, UserLotto userLotto, WinningLotto winningLotto) {
         Map<Rank, Integer> rankResult = userLotto.checkWinning(winningLotto);
         printWinningStatistics(rankResult);
         float rateOfReturn = userLotto.getRateOfReturn(purchaseAmount);

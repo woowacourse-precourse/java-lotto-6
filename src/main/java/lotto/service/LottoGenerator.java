@@ -1,7 +1,10 @@
-package lotto.model;
+package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.exception.*;
+import lotto.model.Lotto;
+import lotto.model.LottoInfo;
+import lotto.model.Lottos;
 import lotto.validator.InputPriceValidator;
 import lotto.view.LottoView;
 
@@ -18,13 +21,13 @@ public class LottoGenerator {
     public LottoGenerator() {
     }
     public static Lottos generate(String price) {
-        try{
+        try {
             InputPriceValidator.validatePrice(price);
-        }catch(InvalidPriceTypeException |
-               InvalidInputException |
-               EmptyException |
-               InvalidPriceRangeException |
-               InvalidInputPriceException e){
+        } catch (InvalidPriceTypeException |
+                 InvalidInputException |
+                 EmptyException |
+                 InvalidPriceRangeException |
+                 InvalidInputPriceException e) {
             return generate(LottoView.requestInputPrice());
         }
         Integer priceInt = Integer.parseInt(price);
@@ -33,11 +36,11 @@ public class LottoGenerator {
     private static List<LottoInfo> getLottos(Integer priceInt) {
         return IntStream.range(START_INDEX, priceInt / DIVIDE_BY).mapToObj(i -> generateLotto()).collect(Collectors.toList());
     }
-    private static LottoInfo generateLotto(){
+    private static LottoInfo generateLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_SIZE);
         return new LottoInfo(new Lotto(sortingNumbers(numbers)));
     }
-    private static List<Integer> sortingNumbers(List<Integer> numbers){
+    private static List<Integer> sortingNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
 }

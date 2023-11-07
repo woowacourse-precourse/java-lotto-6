@@ -35,14 +35,14 @@ lotto(model) 생성
 ## 4. **보너스 넘버 생성하기**
 bonus(model) 생성
    
-- [ ] inputView 로 string 입력 받기
-- [ ] '숫자 생성기'가 숫자로 변환
-- [ ] 검증 : stringToInt, **'숫자 생성기'는 숫자에 관련한 검증만 수행**
+- [X] inputView 로 string 입력 받기
+- [X] '숫자 생성기'가 숫자로 변환
+- [X] 검증 : stringToInt, **'숫자 생성기'는 숫자에 관련한 검증만 수행**
 - [ ] controller 에게 숫자와 Lotto 를 넘겨 bonus model 생성
-- [ ] bonus 모델에게 생성자로 숫자와 Lotto 를 넘겨 bonus model 생성
-- [ ] 검증 : bonus 모델은 비즈니스 로직만 검증 수행
-  - [ ] 숫자가 1 ~ 45인지 범위 체크
-  - [ ] Lotto 와 중복되는 숫자가 있는지 체크
+- [X] bonus 모델에게 생성자로 숫자와 Lotto 를 넘겨 bonus model 생성
+- [X] 검증 : bonus 모델은 비즈니스 로직만 검증 수행
+  - [X] 숫자가 1 ~ 45인지 범위 체크
+  - [X] Lotto 와 중복되는 숫자가 있는지 체크
 ***
 ## 5. **당첨 내역 출력하기**
 Result(model) 생성하기 ,

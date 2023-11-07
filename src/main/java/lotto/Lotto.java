@@ -30,7 +30,7 @@ public class Lotto {
         return numbers;
     }
 
-    public void checkDuplicationFromNumbers(List<Integer> numbers) {
+    private void checkDuplicationFromNumbers(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if (numberSet.size() != numbers.size()) {
             throw new IllegalArgumentException(CustomErrorMessage.DUPLICATED_NUMBERS);

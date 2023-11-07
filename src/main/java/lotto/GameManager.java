@@ -5,6 +5,7 @@ import static lotto.message.ErrorMessage.DIVISIBLE_BY_1000;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 import lotto.domain.Lotto;
 import lotto.domain.Ranking;
@@ -14,8 +15,8 @@ import lotto.view.Input;
 public class GameManager {
     Input input = new Input();
 
-    public List<Lotto> createLotto() {
-        int purchaseQuantity = getPurchaseQuantity(input.getPurchaseAmount());
+    public List<Lotto> createLotto(int purchaseAmount) {
+        int purchaseQuantity = getPurchaseQuantity(purchaseAmount);
         List<Lotto> totalLotto = new ArrayList<>();
 
         IntStream.range(0, purchaseQuantity)
@@ -45,7 +46,7 @@ public class GameManager {
         }
     }
 
-    public WinningStatistics compareLottoWithWinningNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber, WinningStatistics winningStatistics) {
+    private WinningStatistics compareLottoWithWinningNumbers(Lotto lotto, List<Integer> winningNumbers, int bonusNumber, WinningStatistics winningStatistics) {
         int matchCount = lotto.getNumbers().stream().filter(winningNumbers::contains).toList().size();
 
         updateWinningStatistics(lotto, matchCount, bonusNumber, winningStatistics);
@@ -72,4 +73,21 @@ public class GameManager {
         }
         return Ranking.FIVE_MATCHES;
     }
+
+    public double calculateProfitPercentage(int totalWinningAmount, int purchaseAmount){
+        double profit = ((double) totalWinningAmount / purchaseAmount) * 100;
+        return Math.round(profit * 100.0) / 100.0;
+    }
+
+    public int calculateTotalWinningAmount(WinningStatistics winningStatistics){
+        int totalWinningAmount = 0;
+        Map<Ranking, Integer> winningResult = winningStatistics.getWinningStatus();
+
+        for(Ranking ranking : winningResult.keySet()){
+            totalWinningAmount += ranking.getWinningAmount() * winningResult.get(ranking);
+        }
+
+        return totalWinningAmount;
+    }
+
 }

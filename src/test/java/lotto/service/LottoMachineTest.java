@@ -3,13 +3,13 @@ package lotto.service;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
 import lotto.domain.dto.ProfitRateDto;
-import lotto.domain.dto.PurchaseAmountDto;
 import lotto.domain.dto.WinningLottoDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -28,18 +28,18 @@ class LottoMachineTest {
     @Nested
     @DisplayName("issuedLottos 메소드 test")
     class IssuedLottos {
-        @DisplayName("발행된 로또 수는 구입 금액을 " + PurchaseAmountDto.PURCHASE_AMOUNT_UNIT + "으로 나눈 값과 같다")
+        @DisplayName("발행된 로또 수는 구입 금액을 " + PurchaseAmount.PURCHASE_AMOUNT_UNIT + "으로 나눈 값과 같다")
         @Test
         void Issued_lotto_count_is_equal_to_purchase_amount() {
             // given
-            PurchaseAmountDto purchaseAmountDto = new PurchaseAmountDto(5000);
+            PurchaseAmount purchaseAmount = new PurchaseAmount(5000);
 
             // when
-            LottosDto lottosDto = lottoMachine.issuedLottos(purchaseAmountDto);
+            LottosDto lottosDto = lottoMachine.issuedLottos(purchaseAmount);
 
             // then
             assertThat(lottosDto.lottos().size()).isEqualTo(
-                    purchaseAmountDto.amount() / PurchaseAmountDto.PURCHASE_AMOUNT_UNIT);
+                    5000 / PurchaseAmount.PURCHASE_AMOUNT_UNIT);
         }
     }
 

@@ -5,6 +5,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottoDto;
@@ -23,7 +24,8 @@ public class OutputView {
 
 
     public void printPurchaseQuantityLottos(final PurchaseAmountDto purchaseAmountDto) {
-        System.out.printf("\n" + LOTTO_PURCHASE_RESULT_MESSAGE, purchaseAmountDto.purchaseQuantityLottos());
+        System.out.printf("\n" + LOTTO_PURCHASE_RESULT_MESSAGE,
+                purchaseAmountDto.amount() / PurchaseAmount.PURCHASE_AMOUNT_UNIT);
     }
 
     public void printIssuedPurchaseResult(final LottosDto lottosDto) {

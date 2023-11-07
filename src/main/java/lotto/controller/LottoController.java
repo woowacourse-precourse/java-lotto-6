@@ -1,5 +1,6 @@
 package lotto.controller;
 
+import lotto.domain.PurchaseAmount;
 import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottosDto;
@@ -30,7 +31,8 @@ public class LottoController {
 
     private LottosDto purchaseLotto() {
         PurchaseAmountDto purchaseAmountDto = inputView.inputPurchaseAmount();
-        LottosDto lottosDto = lottoMachine.issuedLottos(purchaseAmountDto);
+        LottosDto lottosDto = lottoMachine.issuedLottos(mapToPurchaseAmount(purchaseAmountDto));
+
         outputView.printPurchaseQuantityLottos(purchaseAmountDto);
         outputView.printIssuedPurchaseResult(lottosDto);
 

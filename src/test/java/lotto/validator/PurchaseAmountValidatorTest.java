@@ -2,7 +2,7 @@ package lotto.validator;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.domain.dto.PurchaseAmountDto;
+import lotto.domain.PurchaseAmount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -56,7 +56,7 @@ class PurchaseAmountValidatorTest {
     @Nested
     @DisplayName("validatePurchaseAmount 메소드 test")
     class ValidatePurchaseAmountDto {
-        @DisplayName("구입 금액이 " + PurchaseAmountDto.PURCHASE_AMOUNT_UNIT + " 단위면 검증 통과")
+        @DisplayName("구입 금액이 " + PurchaseAmount.PURCHASE_AMOUNT_UNIT + " 단위면 검증 통과")
         @Test
         void Amount_is_divisible_by_the_purchase_amount_unit() {
             // given
@@ -66,12 +66,12 @@ class PurchaseAmountValidatorTest {
 
             // when
             // then
-            PurchaseAmountDto purchaseAmount1 = new PurchaseAmountDto(amount1);
-            PurchaseAmountDto purchaseAmount2 = new PurchaseAmountDto(amount2);
-            PurchaseAmountDto purchaseAmount3 = new PurchaseAmountDto(amount3);
+            PurchaseAmount purchaseAmount1 = new PurchaseAmount(amount1);
+            PurchaseAmount purchaseAmount2 = new PurchaseAmount(amount2);
+            PurchaseAmount purchaseAmount3 = new PurchaseAmount(amount3);
         }
 
-        @DisplayName("구입 금액이 " + PurchaseAmountDto.PURCHASE_AMOUNT_UNIT + " 단위가 아니면 예외 발생")
+        @DisplayName("구입 금액이 " + PurchaseAmount.PURCHASE_AMOUNT_UNIT + " 단위가 아니면 예외 발생")
         @Test
         void Amount_is_not_divisible_by_the_purchase_amount_unit() {
             // given
@@ -80,9 +80,9 @@ class PurchaseAmountValidatorTest {
 
             // when
             // then
-            assertThatThrownBy(() -> new PurchaseAmountDto(amount1)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new PurchaseAmount(amount1)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(PurchaseAmountValidator.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
-            assertThatThrownBy(() -> new PurchaseAmountDto(amount2)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> new PurchaseAmount(amount2)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(PurchaseAmountValidator.PURCHASE_AMOUNT_NOT_DIVISIBLE_MESSAGE);
         }
     }

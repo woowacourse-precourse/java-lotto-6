@@ -7,19 +7,19 @@ import java.util.Set;
 import lotto.domain.DrawingResults;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.PurchaseAmount;
 import lotto.domain.Rank;
 import lotto.domain.dto.BonusNumberDto;
 import lotto.domain.dto.DrawingResultDto;
 import lotto.domain.dto.LottoDto;
 import lotto.domain.dto.LottosDto;
 import lotto.domain.dto.ProfitRateDto;
-import lotto.domain.dto.PurchaseAmountDto;
 import lotto.domain.dto.WinningLottoDto;
 
 public class LottoMachine {
 
-    public LottosDto issuedLottos(final PurchaseAmountDto purchaseAmountDto) {
-        List<Lotto> lottos = new Lottos(purchaseAmountDto).getLottos();
+    public LottosDto issuedLottos(final PurchaseAmount purchaseAmount) {
+        List<Lotto> lottos = new Lottos(purchaseAmount).getLottos();
 
         return new LottosDto(toLottoDto(lottos));
     }
@@ -63,12 +63,12 @@ public class LottoMachine {
         for (Entry<Rank, Integer> result : results) {
             totalRevenue += (long) result.getKey().getWinningAmount() * result.getValue();
         }
-        
+
         return toProfitRateDto(getProfitRate(lottosDto, (double) totalRevenue));
     }
 
     private double getProfitRate(LottosDto lottosDto, double totalRevenue) {
-        long totalCost = (long) PurchaseAmountDto.PURCHASE_AMOUNT_UNIT * lottosDto.lottos().size();
+        long totalCost = (long) PurchaseAmount.PURCHASE_AMOUNT_UNIT * lottosDto.lottos().size();
         double profitRate = totalRevenue / totalCost * 100;
 
         return profitRate;

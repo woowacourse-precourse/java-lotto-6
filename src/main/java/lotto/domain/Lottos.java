@@ -2,14 +2,13 @@ package lotto.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.dto.PurchaseAmountDto;
 import lotto.util.RandomNumberGenerator;
 
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
 
-    public Lottos(final PurchaseAmountDto purchaseAmountDto) {
-        int purchase_Quantity = purchaseAmountDto.purchaseQuantityLottos();
+    public Lottos(final PurchaseAmount purchaseAmount) {
+        int purchase_Quantity = purchaseAmount.purchaseQuantityLottos();
 
         for (int quantity = 0; quantity < purchase_Quantity; quantity++) {
             List<Integer> numbers = RandomNumberGenerator.generate();

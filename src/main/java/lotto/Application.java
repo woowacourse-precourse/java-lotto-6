@@ -17,21 +17,47 @@ public class Application {
 
         // 로또 리스트 초기화
         List<Lotto> lottoList = new ArrayList<>();
+        Lotto winningLotto;
 
         //로또 리스트 만들기
         generateLotto(purchase, lottoList);
+        winningLotto = getLottoNumber();
+        Integer bonus = getBonus(winningLotto);
 
-        System.out.println("당첨 번호를 입력해 주세요");
-        List<Integer> list = Arrays.stream(Console.readLine().split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList());
-        if(!duplicate(list)){
+        //당첨 통계
 
+
+
+    }
+
+    private static int getBonus(Lotto winningLotto) {
+        int bonusNumber;
+        try {
+            System.out.println("보너스 번호를 입력해 주세요.");
+            bonusNumber = Integer.parseInt(Console.readLine());
+            for (int number : winningLotto.getNumbers()) {
+                 if (bonusNumber == number) {
+                    throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복되는 숫자가 있습니다");
+                }
+            }
+        } catch (IllegalArgumentException e) {
+            bonusNumber = getBonus(winningLotto); // Recursive call to get valid input
         }
+        return bonusNumber;
+    }
 
-
-        System.out.println("보너스 번호를 입력해 주세요.");
-        Integer bonus = Integer.parseInt(Console.readLine().trim());
-
-
+    private static Lotto getLottoNumber() {
+        Lotto list;
+        try {
+            System.out.println("당첨 번호를 입력해 주세요");
+            list = new Lotto(Arrays.stream(Console.readLine().split(",")).map(s -> Integer.parseInt(s)).collect(Collectors.toList()));
+            if(!duplicate(list)){
+                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 있습니다");
+            }
+        } catch (IllegalArgumentException e) {
+            list = getLottoNumber(); // Recursive call to get valid input
+        }
+        return list;
     }
 
     private static int getInput() {
@@ -63,9 +89,9 @@ public class Application {
         }
     }
 
-    private static Boolean duplicate(List<Integer> numbers){
-        for ( Integer number : numbers ) {
-            if(numbers.contains(number)){
+    private static Boolean duplicate(Lotto numbers){
+        for ( Integer number : numbers.getNumbers()) {
+            if(numbers.getNumbers().contains(number)){
                 return Boolean.FALSE;
             }
         }

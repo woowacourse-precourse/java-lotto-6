@@ -7,17 +7,17 @@ import static lotto.constants.constants.LOTTO_COST;
 import lotto.validation.CostValidator;
 
 public class Cost {
-    private final int number;
+    private final int cost;
     private int count;
 
     public Cost(Integer number) {
         CostValidator.validateParsedCost(number);
         resetCount();
-        this.number = number;
+        this.cost = number;
     }
 
     public boolean buyingLotto() {
-        if (count < (number / LOTTO_COST)) {
+        if (count < (cost / LOTTO_COST)) {
             count++;
             return true;
         }
@@ -26,5 +26,9 @@ public class Cost {
 
     public void resetCount() {
         this.count = INITIAL_COUNT;
+    }
+
+    public int getCost() {
+        return cost;
     }
 }

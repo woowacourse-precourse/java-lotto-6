@@ -1,8 +1,8 @@
 package lotto.domain.purchase;
 
-import lotto.domain.Lottos;
-import lotto.domain.io.InputView;
-import lotto.domain.io.OutputView;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.User;
 import lotto.domain.purchase.issue.LotteryIssueService;
 import lotto.domain.purchase.lottocount.LotteryCountService;
 
@@ -10,23 +10,10 @@ public class LotteryPurchaseController {
     private final LotteryCountService lotteryCountService = new LotteryCountService();
     private final LotteryIssueService lotteryIssueService = new LotteryIssueService();
 
-    public Lottos purchaseLottoTickets() {
-        Integer ticketCount = getTicketCount();
-
-        return getLottos(ticketCount);
-    }
-
-    private Lottos getLottos(Integer ticketCount) {
-        Lottos lottos = lotteryIssueService.issueLottoAmountOf(ticketCount);
-        String lottosStatus = lottos.toString();
-        OutputView.printLottos(lottosStatus);
-        return lottos;
-    }
-
-    private Integer getTicketCount() {
-        InputView.getCash();
-        Integer ticketCount = lotteryCountService.getLottoTicketCount();
-        OutputView.printLottoAmount(ticketCount);
-        return ticketCount;
+    public User purchaseLottoTickets() {
+        Integer cash = lotteryCountService.getCash();
+        Integer ticketCount = lotteryCountService.getTicketCount(cash);
+        List<Lotto> lottos = lotteryIssueService.getLottos(ticketCount);
+        return new User(lottos, cash);
     }
 }

@@ -3,11 +3,13 @@ package lotto.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Lottos {
+public class User {
+    private final Integer cash;
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    public User(List<Lotto> lottos, Integer cash) {
         this.lottos = lottos;
+        this.cash = cash;
     }
 
     @Override
@@ -15,9 +17,5 @@ public class Lottos {
         return lottos.stream()
                 .map(lotto -> lotto.toString() + "\n")
                 .collect(Collectors.joining());
-    }
-
-    public int getSize() {
-        return lottos.size();
     }
 }

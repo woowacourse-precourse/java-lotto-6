@@ -10,11 +10,12 @@ public final class LotteryController {
 
     public void runGame() {
         // 티켓 구매
-        purchaseController.purchaseLottoTickets();
+        User user = purchaseController.purchaseLottoTickets();
 
         // 당첨 번호, 보너스 번호 저장
-        LottoAnswer lottoAnswer = answerController.getAnswer();
+        LottoAnswer answer = answerController.getAnswer();
 
         // 당첨 통계
+        answerController.getResult(user, answer);
     }
 }

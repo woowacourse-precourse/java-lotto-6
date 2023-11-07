@@ -1,41 +1,27 @@
 package lotto.domain.purchase.lottocount;
 
-import camp.nextstep.edu.missionutils.Console;
+import lotto.domain.UserInput;
+import lotto.domain.view.InputView;
+import lotto.domain.view.OutputView;
 
 public class LotteryCountService {
-    public Integer getLottoTicketCount() {
-        // 입력
-        String validCashInput = getValidCashInput();
-        // 매핑
-        Integer cash = CashMapper.mapToInteger(validCashInput);
-        // 개수 반환
-        return LottoCountCalculator.divideByLottoPrice(cash);
+    public Integer getCash() {
+        // 금액 입력 뷰
+        InputView.getCash();
+        // 금액 입력받기
+        String validCashInput = UserInput.getValidInput(CashValidator.validateCashInput);
+        // 금액 매핑
+        return CashMapper.mapToInteger(validCashInput);
     }
 
-    String getValidCashInput() {
-        boolean success = false;
-        String cashInput = null;
-        while (!success) {
-            cashInput = Console.readLine();
-            success = validateCash(success, cashInput);
-        }
-        return cashInput;
-    }
-
-    boolean validateCash(boolean success, String cashInput) {
-        try {
-            CashValidator.validateCashInput(cashInput);
-            success = true;
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        return success;
-    }
-
-    Integer getTicketCountFromCash(String cashInput) throws IllegalArgumentException {
-        // 매핑
-        Integer cash = CashMapper.mapToInteger(cashInput);
-        // 개수 반환
-        return LottoCountCalculator.divideByLottoPrice(cash);
+    /***
+     * {@link LottoCountCalculator}에게 티켓 개수 구하기를 위임
+     */
+    public Integer getTicketCount(Integer cash) {
+        // 금액에 대한 티켓 개수 계산
+        Integer ticketCount = LottoCountCalculator.divideByLottoPrice(cash);
+        // 티켓 개수 출력 뷰
+        OutputView.printLottoAmount(ticketCount);
+        return ticketCount;
     }
 }

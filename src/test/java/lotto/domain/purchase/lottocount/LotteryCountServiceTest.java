@@ -23,10 +23,10 @@ class LotteryCountServiceTest {
 
     @ParameterizedTest
     @DisplayName("정책에 따라, 금액을 입력하면 티켓 개수를 반환합니다.")
-    @ValueSource(strings = {"1000"})
-    void 천원단위_1이상_정수_금액(String cashInput) {
+    @ValueSource(ints = {1000})
+    void 천원단위_1이상_정수_금액(Integer cashInput) {
         // WHEN
-        Integer lottoCount = lotteryCountService.getTicketCountFromCash(cashInput);
+        Integer lottoCount = lotteryCountService.getTicketCount(cashInput);
 
         // THEN
         assertEquals(1, lottoCount);

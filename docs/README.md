@@ -16,7 +16,7 @@
 - OutputView : 출력뷰
 ### 로또 게임
 - LotteryController : 로또 게임 진행
-- Lottos : 여러 개의 Lotto에 대한 일급 컬렉션 객체
+- User : {구매한 여러개의 로또들},{구매액}을 가지고 있는 사용자 
 - Lotto : 여러개의 로또 번호에 대한 일급 컬렉션 객체
 ### 로또 구매 :: 티켓 처리 / 로또 발행
 - LotteryPurchaseController : 로또 구매 진행
@@ -33,10 +33,12 @@
 ### 로또 당첨 :: 당첨 번호 저장 / 당첨 판단 / 이익률 통계
 - LotteryAnswerController : 로또 당첨 진행
 
-- LotteryAnswerService : 로또 당첨번호 처리
-- LottoAnswer : {여러개의 로또 당첨번호},{보너스번호}를 가지고 있는 일급 컬렉션 객체
-- LottoAnswerValidator : 로또 당첨번호 / 보너스번호 검증
-- LottoAnswerMapper : 로또 당첨번호 / 보너스번호 매핑
+- LotteryAnswerNumberService : 로또 당첨번호 처리
+- LottoAnswerNumberValidator : 로또 당첨번호 검증
+- LottoAnswerNumberMapper : 로또 당첨번호 매핑
+- LotteryAnswerService : 로또 보너스번호 처리
+- LottoAnswerValidator : 로또 보너스번호 검증
+- LottoAnswerMapper : 로또 보너스번호 매핑
 
 - LotteryAnswerCheckService : 로또 당첨 판단
 - WinningPolicy : 당첨 정책

@@ -1,4 +1,4 @@
-package lotto.domain.io;
+package lotto.domain.view;
 
 public enum InputViewFormat {
     GUIDE_CASH("구입금액을 입력해 주세요."),
@@ -6,7 +6,7 @@ public enum InputViewFormat {
     GUIDE_BONUS_ANSWER("보너스 번호를 입력해 주세요."),
     GUIDE_STATICS("당첨 통계");
 
-    String state;
+    final String state;
 
     InputViewFormat(String state) {
         this.state = state;

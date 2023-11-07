@@ -2,7 +2,8 @@ package lotto.domain.purchase.issue;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import lotto.domain.Lottos;
+import java.util.List;
+import lotto.domain.Lotto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -29,9 +30,9 @@ class LotteryIssueServiceTest {
         Integer lottoTicketCount = 3;
 
         // WHEN
-        Lottos lottos = lotteryIssueService.issueLottoAmountOf(lottoTicketCount);
+        List<Lotto> lottos = lotteryIssueService.issueLottoAmountOf(lottoTicketCount);
 
         // THEN
-        assertEquals(lottos.getSize(), lottoTicketCount);
+        assertEquals(lottos.size(), lottoTicketCount);
     }
 }

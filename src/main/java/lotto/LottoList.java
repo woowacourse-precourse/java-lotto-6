@@ -9,6 +9,14 @@ public class LottoList {
     private final int number_of_lotto;
     public static List<Lotto> lottoList = new ArrayList<>();
 
+    public int getNumber_of_lotto() {
+        return number_of_lotto;
+    }
+
+    public int getLottoListSize() {
+        return lottoList.size();
+    }
+
     public LottoList(int purchaseAmount) {
         this.number_of_lotto = purchaseAmount / 1000;
     }

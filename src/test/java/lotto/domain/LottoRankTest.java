@@ -38,7 +38,7 @@ class LottoRankTest {
             "FIRST,1,2_000_000_000"
     })
     void checkCalculateRewardPerRank(LottoRank rank, int count, int expected) {
-        assertThat(LottoRank.calculateReward(rank, count)).isEqualTo(expected);
+        assertThat(rank.calculateReward(count)).isEqualTo(expected);
     }
 
 

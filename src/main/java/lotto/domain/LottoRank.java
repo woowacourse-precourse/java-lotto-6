@@ -37,8 +37,8 @@ public enum LottoRank {
         return rank.bonusBall == containBonusBall;
     }
 
-    public static int calculateReward(LottoRank rank, int count) {
-        return rank.reward * count;
+    public int calculateReward(int count) {
+        return count * reward;
     }
 
     public int getMatchCount() {

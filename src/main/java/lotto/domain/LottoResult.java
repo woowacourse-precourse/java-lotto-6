@@ -27,7 +27,7 @@ public class LottoResult {
     public int getLottoRewardSum() {
         return lottoResult.entrySet().stream()
                 .filter(entry -> entry.getKey() != LottoRank.FAIL)
-                .map(entry -> LottoRank.calculateReward(entry.getKey(), entry.getValue()))
+                .map(entry -> entry.getKey().calculateReward(entry.getValue()))
                 .mapToInt(Integer::intValue).sum();
     }
 

@@ -21,6 +21,7 @@ public enum ErrorCode {
     // Lotto
     LOTTO_NUMBERS_INVALID_SIZE("로또 번호는 6자리 숫자여야 합니다."),
     LOTTO_NUMBERS_INVALID_RANGE("로또 번호는 1 이상 45 이하의 숫자여야 합니다."),
+    LOTTO_NUMBERS_DUPLICATED("로또 번호는 중복되지 않는 숫자여야 합니다."),
     ;
 
     private static final String PREFIX_ERROR_MESSAGE = "[ERROR] ";

@@ -30,7 +30,6 @@ class LottoTest {
 
         // when
         // then
-        // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
         assertThatThrownBy(() -> new Lotto(numbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }

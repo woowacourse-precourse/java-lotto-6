@@ -6,7 +6,7 @@ import lotto.constant.Constant;
 
 public class LottoService {
 
-    List<Integer> generateLotto(){
+    public List<Integer> generateLotto(){
         return Randoms.pickUniqueNumbersInRange(Constant.LOTTO_START_NUMBER, Constant.LOTTO_END_NUMBER, Constant.LOTTO_TOTAL_NUMBERS);
     }
 }

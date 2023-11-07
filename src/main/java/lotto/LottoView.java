@@ -12,7 +12,7 @@ public class LottoView {
 			System.out.println("구입 금액을 입력해주세요.");
 			try {
 				int userInput = Integer.parseInt(readLine().trim()); // 사용자의 입력을 받는다
-				this.validateMoney(userInput); // 사용자의 입력값에 대한 유효성 검사를 실행한다
+				validateMoney(userInput); // 사용자의 입력값에 대한 유효성 검사를 실행한다
 				System.out.printf("%n%s개를 구매했습니다. %n", userInput / 1000); // 사용자가 구매한 갯수를 알려준다.
 				return userInput / 1000;
 			} catch (NumberFormatException e) {
@@ -38,7 +38,7 @@ public class LottoView {
 		while (true) {
 			try {
 				String[] userInput = (readLine().trim()).split(","); // 사용자의 입력을 받는다
-				this.validateNumber(userInput); // 사용자의 입력값에 대한 유효성 검사를 실행한다
+				validateNumber(userInput); // 사용자의 입력값에 대한 유효성 검사를 실행한다
 				return userInput;
 			} catch (NumberFormatException e) {
 				System.out.println("[ERROR] 번호는 숫자로 입력해주세요.");
@@ -69,7 +69,7 @@ public class LottoView {
 			System.out.printf("%n보너스 번호를 입력해 주세요.%n");
 			try {
 				int userInput = Integer.parseInt(readLine().trim());
-				this.validateNumberRange(userInput);
+				validateNumberRange(userInput);
 				return userInput;
 			} catch (NumberFormatException e) {
 				System.out.println("[ERROR] 번호는 숫자로 입력해주세요.");

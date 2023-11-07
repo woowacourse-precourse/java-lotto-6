@@ -1,5 +1,5 @@
-package lotto.parser;
-import lotto.model.LottoResult;
+package lotto.model;
+
 public record FinalResult(LottoResult lottoResult) {
 
 }

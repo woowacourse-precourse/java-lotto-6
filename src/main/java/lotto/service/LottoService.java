@@ -1,75 +1,76 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.dto.LottoMatchNumberDTO;
+import lotto.model.LottoMatchCount;
 import lotto.exception.*;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
-import lotto.dto.LottoInfoDTO;
+import lotto.model.LottoInfo;
 import lotto.model.Lottos;
 import lotto.validator.InputPriceValidator;
-import lotto.view.LottoView;
+import lotto.view.LottoInputView;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import static lotto.service.constant.LottoServiceMessage.*;
+
 public class LottoService {
-    private static final int MATCH_COUNT_3 = 3;
-    private static final int MATCH_COUNT_4 = 4;
-    private static final int MATCH_COUNT_5 = 5;
-    private static final int MATCH_COUNT_6 = 6;
-    private static final int LOTTO_NUMBER_MIN = 1;
-    private static final int LOTTO_NUMBER_MAX = 45;
-    private static final int LOTTO_NUMBER_SIZE = 6;
-    private static final int START_INDEX = 0;
-    private static final int DIVIDE_BY = 1000;
     public LottoService() {
     }
+
     public static Lottos create(String price) {
         try {
             InputPriceValidator.validatePrice(price);
         } catch (InvalidPriceTypeException | InvalidInputException | EmptyException | InvalidPriceRangeException | InvalidInputPriceException e) {
-            return create(LottoView.requestInputPrice());
+            return create(LottoInputView.requestInputPrice());
         }
         Integer priceInt = Integer.parseInt(price);
         return new Lottos(getLottosList(priceInt));
     }
-    private static List<LottoInfoDTO> getLottosList(Integer priceInt) {
-        return IntStream.range(START_INDEX, priceInt / DIVIDE_BY)
-                .mapToObj(i -> createRandomeLottoInfoDTO())
+
+    private static List<LottoInfo> getLottosList(Integer priceInt) {
+        return IntStream.range(START_INDEX.getValue(), priceInt / DIVIDE_BY.getValue())
+                .mapToObj(i -> createRandomLottoInfoDTO())
                 .collect(Collectors.toList());
     }
-    private static LottoInfoDTO createRandomeLottoInfoDTO() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN, LOTTO_NUMBER_MAX, LOTTO_NUMBER_SIZE);
-        return new LottoInfoDTO(new Lotto(sortingLottoNumbers(numbers)));
+
+    private static LottoInfo createRandomLottoInfoDTO() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(LOTTO_NUMBER_MIN.getValue(), LOTTO_NUMBER_MAX.getValue(), LOTTO_NUMBER_SIZE.getValue());
+        return new LottoInfo(new Lotto(sortingLottoNumbers(numbers)));
     }
+
     private static List<Integer> sortingLottoNumbers(List<Integer> numbers) {
         return numbers.stream().sorted().collect(Collectors.toList());
     }
-    public static LottoMatchNumberDTO checkTotalMatchCount(Lottos randomLottos, BonusNumber bonusNumber, Lotto winningLotto) {
-        int countOf3 = countMatches(randomLottos,winningLotto, MATCH_COUNT_3);
-        int countOf4 = countMatches(randomLottos,winningLotto, MATCH_COUNT_4);
-        int countOf5 = countMatches(randomLottos,winningLotto, MATCH_COUNT_5);
+
+    public static LottoMatchCount checkTotalMatchCount(Lottos randomLottos, BonusNumber bonusNumber, Lotto winningLotto) {
+        int countOf3 = countMatches(randomLottos,winningLotto, MATCH_COUNT_3.getValue());
+        int countOf4 = countMatches(randomLottos,winningLotto, MATCH_COUNT_4.getValue());
+        int countOf5 = countMatches(randomLottos,winningLotto, MATCH_COUNT_5.getValue());
         int countOf5AndBonus = countMatchesWithBonus(randomLottos,winningLotto, bonusNumber);
-        int countOf6 = countMatches(randomLottos,winningLotto, MATCH_COUNT_6);
-        return new LottoMatchNumberDTO(countOf3, countOf4, countOf5, countOf5AndBonus, countOf6);
+        int countOf6 = countMatches(randomLottos,winningLotto, MATCH_COUNT_6.getValue());
+        return new LottoMatchCount(countOf3, countOf4, countOf5, countOf5AndBonus, countOf6);
     }
+
     private static int countMatches(Lottos randomLottos,Lotto winningLotto, int targetCount) {
         int count = (int) randomLottos.getLottos().stream()
                 .filter(lottoInfo -> hasMatchCount(lottoInfo, winningLotto, targetCount))
                 .count();
-        randomLottos.getLottos().forEach(LottoInfoDTO::resetMatchCount);
+        randomLottos.getLottos().forEach(LottoInfo::resetMatchCount);
         return count;
     }
+
     private static int countMatchesWithBonus(Lottos randomLottos, Lotto winningLotto,BonusNumber bonusNumber) {
         int count = (int) randomLottos.getLottos().stream()
-                .filter(lottoInfo -> hasMatchCount(lottoInfo,winningLotto, LottoService.MATCH_COUNT_5) && lottoInfo.isMatchBonus(bonusNumber))
+                .filter(lottoInfo -> hasMatchCount(lottoInfo,winningLotto, MATCH_COUNT_5.getValue()) && lottoInfo.isMatchBonus(bonusNumber))
                 .count();
-        randomLottos.getLottos().forEach(LottoInfoDTO::resetMatchCount);
+        randomLottos.getLottos().forEach(LottoInfo::resetMatchCount);
         return count;
     }
-    private static boolean hasMatchCount(LottoInfoDTO lottoInfo,Lotto winningLotto, int targetCount) {
+
+    private static boolean hasMatchCount(LottoInfo lottoInfo, Lotto winningLotto, int targetCount) {
         return lottoInfo.countMatch(winningLotto) == targetCount;
     }
 }

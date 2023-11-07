@@ -10,7 +10,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class Application {
-    private static final InputView inputView = InputView.getInstance();
     private static final Referee referee = new Referee();
     private static final LottoController lottoController = new LottoController(referee);
 
@@ -21,7 +20,6 @@ public class Application {
 
     private static void start() {
         //로또 구매 금액 입력
-        inputView.printPurchaseMoneyMessage();
         final int money = lottoController.inputPurchaseMoney();
 
         //로또 생성
@@ -35,11 +33,9 @@ public class Application {
 
     private static void createWinningLotto(final List<Lotto> newLottos) {
         //당첨 번호 입력
-        inputView.printWinningNumbersMessage();
         final List<Integer> winningNumbers = lottoController.inputWinningLottoNumbers();
 
         //보너스 번호 입력
-        inputView.printWinningBonusNumberMessage();
         final int bonusNumber = lottoController.inputWinningLottoBonusNumber(winningNumbers);
 
         //당첨 로또 생성

@@ -5,22 +5,26 @@ import java.util.List;
 import lotto.model.Lotto;
 import lotto.model.Referee;
 import lotto.model.WinningLotto;
+import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
     private final MoneyValidator moneyValidator;
     private final NumberValidator numberValidator;
+    private final InputView inputView;
     private final OutputView outputView;
     private final Referee referee;
 
     public LottoController(final Referee referee) {
         this.moneyValidator = MoneyValidator.getInstance();
         this.numberValidator = NumberValidator.getInstance();
+        this.inputView = InputView.getInstance();
         this.outputView = OutputView.getInstance();
         this.referee = referee;
     }
 
     public int inputPurchaseMoney() {
+        inputView.printPurchaseMoneyMessage();
         String input;
         do {
             input = Console.readLine();
@@ -29,6 +33,7 @@ public class LottoController {
     }
 
     public List<Integer> inputWinningLottoNumbers() {
+        inputView.printWinningNumbersMessage();
         String input;
         do {
             input = Console.readLine().trim();
@@ -41,6 +46,7 @@ public class LottoController {
     }
 
     public int inputWinningLottoBonusNumber(final List<Integer> winningNumbers) {
+        inputView.printWinningBonusNumberMessage();
         String input;
         do {
             input = Console.readLine();

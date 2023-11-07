@@ -14,7 +14,23 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Input {
-    public int getPurchaseAmount() {
+    public int getValidPurchaseAmount() {
+        int purchaseAmount;
+
+        while (true) {
+            Output.printPurchaseAmountMessage();
+            try {
+                purchaseAmount = getPurchaseAmount();
+                break;
+            } catch (IllegalArgumentException e) {
+                checkPurchaseAmountExceptionCategory(e);
+            }
+        }
+
+        return purchaseAmount;
+    }
+
+    private int getPurchaseAmount() {
         try {
             int purchaseAmount = Integer.parseInt(Console.readLine());
             validationPurchaseAmountInThousands(purchaseAmount);
@@ -24,7 +40,31 @@ public class Input {
         }
     }
 
-    public List<Integer> getWinningNumbers() {
+    private void checkPurchaseAmountExceptionCategory(IllegalArgumentException e) {
+        if (e.getMessage().equals(NUMBER_FORMAT_MONEY.errorMessage())) {
+            System.out.println(NUMBER_FORMAT_MONEY.errorMessage());
+        }
+
+        if (e.getMessage().equals(DIVISIBLE_BY_1000.errorMessage())) {
+            System.out.println(DIVISIBLE_BY_1000.errorMessage());
+        }
+    }
+
+    public List<Integer> getValidWinningNumbers() {
+        List<Integer> winningNumbers;
+        while (true) {
+            Output.printWinningNumberMessage();
+            try {
+                winningNumbers = getWinningNumbers();
+                break;
+            } catch (IllegalArgumentException e) {
+                checkWinningNumbersExceptionCategory(e);
+            }
+        }
+        return winningNumbers;
+    }
+
+    private List<Integer> getWinningNumbers() {
         try {
             String inputNumbers = Console.readLine();
             List<Integer> winningNumbers = Arrays.stream(inputNumbers.split(","))
@@ -42,13 +82,39 @@ public class Input {
         }
     }
 
-    private void validationWinningNumbersDuplicate(List<Integer> winningNumbers) {
-        if(winningNumbers.size() != winningNumbers.stream().distinct().count()){
-            throw new IllegalArgumentException(WINNING_NUMBERS_DUPLICATE.errorMessage());
+    private static void checkWinningNumbersExceptionCategory(IllegalArgumentException e) {
+        if (e.getMessage().equals(WINNING_NUMBERS_LENGTH.errorMessage())) {
+            System.out.println(WINNING_NUMBERS_LENGTH.errorMessage());
+        }
+
+        if (e.getMessage().equals(WINNING_NUMBERS_RANGE.errorMessage())) {
+            System.out.println(WINNING_NUMBERS_RANGE.errorMessage());
+        }
+
+        if (e.getMessage().equals(NUMBER_FORMAT_WINNING_NUMBERS.errorMessage())) {
+            System.out.println(NUMBER_FORMAT_WINNING_NUMBERS.errorMessage());
+        }
+
+        if (e.getMessage().equals(WINNING_NUMBERS_DUPLICATE.errorMessage())) {
+            System.out.println(WINNING_NUMBERS_DUPLICATE.errorMessage());
         }
     }
 
-    public int getBonusNumber() {
+    public int getValidBonusNumber() {
+        int bonusNumber;
+        while (true) {
+            Output.printBonusNumberMessage();
+            try {
+                bonusNumber = getBonusNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                checkBonusNumberExceptionCategory(e);
+            }
+        }
+        return bonusNumber;
+    }
+
+    private int getBonusNumber() {
         try {
             int bonusNumber = Integer.parseInt(Console.readLine());
             validationBonusNumberRange(bonusNumber);
@@ -56,6 +122,16 @@ public class Input {
             return bonusNumber;
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(NUMBER_FORMAT_BONUS_NUMBER.errorMessage());
+        }
+    }
+
+    private static void checkBonusNumberExceptionCategory(IllegalArgumentException e) {
+        if (e.getMessage().equals(BONUS_NUMBER_RANGE.errorMessage())) {
+            System.out.println(BONUS_NUMBER_RANGE.errorMessage());
+        }
+
+        if (e.getMessage().equals(NUMBER_FORMAT_BONUS_NUMBER.errorMessage())) {
+            System.out.println(NUMBER_FORMAT_BONUS_NUMBER.errorMessage());
         }
     }
 
@@ -77,6 +153,12 @@ public class Input {
                 .ifPresent(number -> {
                     throw new IllegalArgumentException(WINNING_NUMBERS_RANGE.errorMessage());
                 });
+    }
+
+    private void validationWinningNumbersDuplicate(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != winningNumbers.stream().distinct().count()) {
+            throw new IllegalArgumentException(WINNING_NUMBERS_DUPLICATE.errorMessage());
+        }
     }
 
     private void validationBonusNumberRange(int bonusNumber) {

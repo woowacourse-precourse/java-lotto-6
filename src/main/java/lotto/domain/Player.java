@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
+import lotto.utils.Utils;
 
 public class Player {
     private static final int START_NUM_RANGE = 1;
@@ -20,8 +22,8 @@ public class Player {
                                 Randoms.pickUniqueNumbersInRange(START_NUM_RANGE, END_NUM_RANGE, LOTTO_NUM_COUNT))));
     }
 
-    public void setLottoAmount(LottoAmount lottoAmount) {
-        this.lottoAmount = lottoAmount;
+    public void setLottoAmount() {
+        this.lottoAmount = new LottoAmount(Utils.parseIntValidate(Console.readLine()));
     }
 
     public void setLottoCount() {

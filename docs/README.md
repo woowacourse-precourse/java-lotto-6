@@ -96,9 +96,14 @@
 ### 🛠 테스트 코드 (작은 단위 테스트)
 
 - [X] : `LottoTest`
+  - 로또 번호 예외 검증
+  - 로또 객체 변환시 반환,예외 검증
 - [X] : `LottoMachineTest`
+  - 구매 금액에 따른 로또 생성 검증
 - [X] : `BonusNumberTest`
-- [X] : `BonusNumberTest`
+  - 보너스 번호 예외 검증
+- [X] : `PurchaseAmountTest`
+  - 구매 금액 예외 검증
 - [X] : `LottoResultTest`
   - 당첨 결과 반환 검증
   - 수익률 반환 검증

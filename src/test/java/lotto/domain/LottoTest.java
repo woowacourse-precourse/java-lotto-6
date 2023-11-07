@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.config.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER;
 import static lotto.config.ErrorMessage.INVALID_LOTTO_SIZE;
+import static lotto.config.ErrorMessage.INVALID_WINNING_NUMBERS;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -54,5 +55,21 @@ class LottoTest {
 		exception = assertThrows(IllegalArgumentException.class, () -> lotto = new Lotto(numbers));
 
 		assertEquals(exception.getMessage(), DUPLICATE_LOTTO_NUMBER.getMessage());
+	}
+
+	@Test
+	@DisplayName("올바르게 로또 객체로 변환 테스트")
+	void convertToLotto_true() {
+		lotto = Lotto.convertToLotto("1,2,3,4,5,6");
+
+		assertThat(lotto).isInstanceOf(Lotto.class);
+	}
+
+	@Test
+	@DisplayName("쉼표(,)를 기준으로 구분안할 경우 IllegalArgumentException 이 발생한다.")
+	void testValidate_WhenConvertToLotto_NonComma() {
+		exception = assertThrows(IllegalArgumentException.class, () -> lotto = Lotto.convertToLotto("1/2/3/4/5/6"));
+
+		assertEquals(exception.getMessage(), INVALID_WINNING_NUMBERS.getMessage());
 	}
 }

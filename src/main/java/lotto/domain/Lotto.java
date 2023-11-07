@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.config.ErrorMessage.DUPLICATE_LOTTO_NUMBER;
 import static lotto.config.ErrorMessage.INVALID_LOTTO_NUMBER;
 import static lotto.config.ErrorMessage.INVALID_LOTTO_SIZE;
+import static lotto.config.ErrorMessage.INVALID_WINNING_NUMBERS;
 import static lotto.config.LottoConfig.LOTTO_SIZE;
 
 import java.util.Arrays;
@@ -57,6 +58,10 @@ public class Lotto {
 	}
 
 	public static Lotto convertToLotto(String numbers) {
+		if (!NumberUtil.isNumericWinningNumbers(numbers)) {
+			throw new IllegalArgumentException(INVALID_WINNING_NUMBERS.getMessage());
+		}
+
 		List<Integer> winningNumbers = Arrays.stream(numbers.split(","))
 			.map(String::trim)
 			.map(Integer::parseInt)

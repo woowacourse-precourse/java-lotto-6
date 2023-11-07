@@ -12,23 +12,27 @@ public class LottoShop {
     private static final int LOTTO_SIZE = 6;
     private static final int LOTTO_AMOUNT = 1000;
 
-    public List<Lotto> createLottosBy(PurchaseAmount purchaseAmount) {
+    public static List<Lotto> createLottosBy(PurchaseAmount purchaseAmount) {
         return IntStream.range(0, changeAmountToLottos(purchaseAmount)).mapToObj(i -> new Lotto(createRandomLottoNumbers()))
                 .collect(Collectors.toList());
     }
 
-    private List<Integer> createRandomLottoNumbers() {
+    private static List<Integer> createRandomLottoNumbers() {
         return Randoms.pickUniqueNumbersInRange(MIN_NUMBER,MAX_NUMBER,LOTTO_SIZE);
     }
 
-    private int changeAmountToLottos(PurchaseAmount purchaseAmount) {
-        if (!purchaseAmount.divisible(LOTTO_AMOUNT)) {
-            throw new IllegalArgumentException("[ERROR] ");
-        }
+    private static int changeAmountToLottos(PurchaseAmount purchaseAmount) {
+        validateAmountDivisible(purchaseAmount);
         return purchaseAmount.changeBy(LOTTO_AMOUNT);
     }
 
-    public int countLottoTicket(PurchaseAmount purchaseAmount) {
+    public static int countLottoTicket(PurchaseAmount purchaseAmount) {
         return changeAmountToLottos(purchaseAmount);
+    }
+
+    public static void validateAmountDivisible(PurchaseAmount purchaseAmount) {
+        if(!purchaseAmount.divisible(LOTTO_AMOUNT)) {
+            throw new IllegalArgumentException("[ERROR]");
+        }
     }
 }

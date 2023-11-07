@@ -1,12 +1,7 @@
 package lotto;
-
-
 import camp.nextstep.edu.missionutils.Randoms;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import static java.util.Collections.sort;
 
 public class Lotto {
   private final List<Integer> numbers;
@@ -18,6 +13,7 @@ public class Lotto {
   public List<Integer> createLottoByDuplicatedNumber() {
     List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
     validate(randomNumbers);
+    sort(randomNumbers);
     return randomNumbers;
   }
 

@@ -20,5 +20,13 @@ public class Application {
       System.out.println(lott.getNumbers());
     }
 
+    // 당첨 로또 번호 입력
+    InputLottoNumber inputLottoNumber = new InputLottoNumber();
+    inputLottoNumber.inputNumber();
+    inputLottoNumber.bonusNumber();
+
+    // 비교
+
+
   }
 }

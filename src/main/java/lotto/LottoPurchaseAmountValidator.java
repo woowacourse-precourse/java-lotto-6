@@ -4,6 +4,7 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoPurchaseAmountValidator {
   public int validatePurchaseAmount() {
+
     while (true) {
       try {
         System.out.println("구입금액을 입력해 주세요.");
@@ -21,5 +22,10 @@ public class LottoPurchaseAmountValidator {
         System.out.println("[ERROR] 올바른 숫자를 입력하세요.");
       }
     }
+  }
+
+  public int calculateNumberOfTickets(int purchaseAmount) {
+    purchaseAmount = purchaseAmount / 1000;
+    return purchaseAmount;
   }
 }

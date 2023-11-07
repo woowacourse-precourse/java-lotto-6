@@ -1,7 +1,7 @@
 package lotto.util;
 
 import java.util.Objects;
-import lotto.constants.PrintMessages;
+import lotto.constants.DomainMessages;
 import lotto.domain.Lotto;
 
 public class ConsolePrinter {
@@ -9,13 +9,13 @@ public class ConsolePrinter {
         Objects.requireNonNull(target);
     }
 
-    public static void showMessage(PrintMessages message) {
+    public static void showMessage(DomainMessages message) {
         validateNull(message);
 
         System.out.print(message.getMessage());
     }
 
-    public static void showMessageWithNumber(PrintMessages message, Integer number) {
+    public static void showMessageWithNumber(DomainMessages message, Integer number) {
         validateNull(message);
         validateNull(number);
 
@@ -26,7 +26,7 @@ public class ConsolePrinter {
     public static void showLottoNumbers(Lotto lotto) {
         validateNull(lotto);
 
-        PrintMessages messageTemplate = PrintMessages.LOTTO_NUMBERS;
+        DomainMessages messageTemplate = DomainMessages.LOTTO_NUMBERS;
         String showMessage = messageTemplate.getMessageWithLotto(lotto);
         System.out.print(showMessage);
     }
@@ -34,7 +34,7 @@ public class ConsolePrinter {
     public static void showTotalReturn(Double totalReturn) {
         validateNull(totalReturn);
 
-        PrintMessages messageTemplate = PrintMessages.TOTAL_RETURN;
+        DomainMessages messageTemplate = DomainMessages.TOTAL_RETURN;
         String showMessage = messageTemplate.getMessageWithTotalReturn(totalReturn);
         System.out.print(showMessage);
     }

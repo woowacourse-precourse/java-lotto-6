@@ -3,7 +3,7 @@ package lotto.constants;
 import java.util.List;
 import lotto.domain.Lotto;
 
-public enum PrintMessages {
+public enum DomainMessages {
     PROMPT_LOTTO_PURCHASE_AMOUNT("구입금액을 입력해 주세요."),
     PROMPT_WINNING_NUMBERS("당첨 번호를 입력해 주세요."),
     PROMPT_WINNING_BONUS_NUMBER("보너스 번호를 입력해 주세요."),
@@ -19,11 +19,11 @@ public enum PrintMessages {
 
     private final String message;
 
-    PrintMessages(String message) {
+    DomainMessages(String message) {
         this.message = String.join("", message, System.lineSeparator());
     }
 
-    PrintMessages(String... messages) {
+    DomainMessages(String... messages) {
         StringBuilder messageBuilder = new StringBuilder();
         for (String message : messages) {
             messageBuilder

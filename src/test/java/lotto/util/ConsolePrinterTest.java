@@ -7,7 +7,7 @@ import static org.junit.jupiter.params.provider.EnumSource.Mode.INCLUDE;
 
 import java.util.List;
 import lotto.TestDefault;
-import lotto.constants.PrintMessages;
+import lotto.constants.DomainMessages;
 import lotto.domain.Lotto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ class ConsolePrinterTest extends TestDefault {
             "PROMPT_WINNING_BONUS_NUMBER",
             "WINNING_STATICS_TOP_BANNER",
     })
-    void testShowGeneralMessage(PrintMessages message) {
+    void testShowGeneralMessage(DomainMessages message) {
         String excepted = message.getMessage();
 
         ConsolePrinter.showMessage(message);
@@ -37,7 +37,7 @@ class ConsolePrinterTest extends TestDefault {
     @DisplayName("출력할 메시지가 null일 경우 예외 처리가 발생한다.")
     @ParameterizedTest
     @NullSource
-    void testShowGeneralMessageNullExceptionCheck(PrintMessages message) {
+    void testShowGeneralMessageNullExceptionCheck(DomainMessages message) {
         assertThatNullPointerException().isThrownBy(() -> {
             ConsolePrinter.showMessage(message);
         });
@@ -53,7 +53,7 @@ class ConsolePrinterTest extends TestDefault {
             "SECOND_PLACE_MESSAGE",
             "FIRST_PLACE_MESSAGE",
     })
-    void testShowMessageWithNumber(PrintMessages message) {
+    void testShowMessageWithNumber(DomainMessages message) {
         Integer expectedNumberInMessage = 1;
         String excepted = message.getMessageWithNumber(expectedNumberInMessage);
 
@@ -72,7 +72,7 @@ class ConsolePrinterTest extends TestDefault {
             "SECOND_PLACE_MESSAGE",
             "FIRST_PLACE_MESSAGE",
     })
-    void testShowMessageWithNumberNullExceptionCheck(PrintMessages message) {
+    void testShowMessageWithNumberNullExceptionCheck(DomainMessages message) {
         assertThatNullPointerException().isThrownBy(() -> {
             ConsolePrinter.showMessageWithNumber(message, null);
         });
@@ -81,7 +81,7 @@ class ConsolePrinterTest extends TestDefault {
     @DisplayName("한개의 숫자(int형)가 포함된 문자열 출력시 메시지가 null 일경우 예외처리가 발생한다.")
     @ParameterizedTest
     @NullSource
-    void testShowMessageWithNumberMessageNullExceptionCheck(PrintMessages message) {
+    void testShowMessageWithNumberMessageNullExceptionCheck(DomainMessages message) {
         assertThatNullPointerException().isThrownBy(() -> {
             ConsolePrinter.showMessageWithNumber(message, 1);
         });
@@ -95,7 +95,7 @@ class ConsolePrinterTest extends TestDefault {
         ConsolePrinter.showLottoNumbers(lotto);
 
         assertThat(getConsoleOuputMessage())
-                .isEqualTo(PrintMessages.LOTTO_NUMBERS.getMessageWithLotto(lotto));
+                .isEqualTo(DomainMessages.LOTTO_NUMBERS.getMessageWithLotto(lotto));
     }
 
     @DisplayName("로또 번호 출력시 null을 전달할 경우 예외가 발생한다.")
@@ -124,7 +124,7 @@ class ConsolePrinterTest extends TestDefault {
         ConsolePrinter.showTotalReturn(totalReturn);
 
         assertThat(getConsoleOuputMessage())
-                .isEqualTo(PrintMessages.TOTAL_RETURN.getMessageWithTotalReturn(totalReturn));
+                .isEqualTo(DomainMessages.TOTAL_RETURN.getMessageWithTotalReturn(totalReturn));
     }
 
     @DisplayName("총 수익률 출력시 수익률이 null일 경우 예외처리가 발생한다.")

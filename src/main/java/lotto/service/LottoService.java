@@ -85,7 +85,13 @@ public class LottoService {
     }
 
     public void makeWinningResult(List<Lotto> lottoList, Lotto answer, int bonusNumber) {
+        initWinningResult();
 
+        for (Lotto lotto : lottoList) {
+            Ranking ranking = calculateRanking(lotto, answer, bonusNumber);
+            int value = winningResult.getOrDefault(ranking, 0);
+            winningResult.put(ranking, value + 1);
+        }
     }
 
 

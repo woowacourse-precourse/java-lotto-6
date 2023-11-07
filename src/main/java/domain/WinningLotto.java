@@ -10,8 +10,7 @@ public class WinningLotto {
     private int bonusNumber;
 
     public void setWinningNumber(List<Integer> numbers) {
-        List<Integer> mutableNumbers = new ArrayList<>(numbers);
-        this.winningNumber = new Lotto(mutableNumbers);
+        this.winningNumber = new Lotto(numbers);
     }
 
     public void setBonusNumber(int number) {

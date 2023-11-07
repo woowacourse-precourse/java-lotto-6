@@ -11,14 +11,8 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        List<Integer> mutableNumbers = new ArrayList<>(numbers);
-        LottoValidator.checkLottoValidation(mutableNumbers);
-        this.numbers = sortLottoNumberByAscendingOrder(mutableNumbers);
-    }
-
-    private List<Integer> sortLottoNumberByAscendingOrder(List<Integer> numbers) {
-        numbers.sort(Comparator.naturalOrder());
-        return numbers;
+        LottoValidator.checkLottoValidation(numbers);
+        this.numbers = numbers;
     }
 
     public List<Integer> getNumbers() {

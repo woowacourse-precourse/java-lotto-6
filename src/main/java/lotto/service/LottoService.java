@@ -61,11 +61,11 @@ public class LottoService {
         }
     }
 
-    public Integer countMatchingBonusNumbers(List<Integer> winningLotto, Integer bonusNumber) {
+    public boolean countMatchingBonusNumbers(List<Integer> winningLotto, Integer bonusNumber) {
         if (winningLotto.contains(bonusNumber)) {
-            return BonusCount.PLUS_ONE.getWeight();
+            return true;
         }
-        return BonusCount.PLUS_ZERO.getWeight();
+        return false;
     }
 
     public HashMap<String, Long> generateResultScoreBoard() {
@@ -80,57 +80,24 @@ public class LottoService {
     public HashMap<String, Long> getResultScoreBoard(List<List<Integer>> myLotto, List<Integer> winningLotto, Integer bonusNumber) {
         HashMap<String, Long> scoreBoard = generateResultScoreBoard();
         for (int i = 0; i < myLotto.size(); i++) {
-            scoreBoard = calculateLottoScore(countMatchingWinningNumbers(myLotto.get(i),winningLotto),bonusNumber,scoreBoard);
+            WinningLevel winningLevel = calculateLottoScore(countMatchingWinningNumbers(winningLotto,myLotto.get(i)),countMatchingBonusNumbers(winningLotto,bonusNumber));
+            System.out.println(winningLevel);
+            long value = scoreBoard.get(winningLevel.getRank()) + winningLevel.getReward();
+            scoreBoard.put(winningLevel.getRank(), value);
         }
 
         return scoreBoard;
 
     }
 
-    public HashMap<String, Long> calculateLottoScore(Integer matchingWinningNumber, Integer matchingBonusNumber, HashMap<String, Long> scoreBoard) {
-        incrementFirstPlaceScore(matchingWinningNumber,matchingBonusNumber,scoreBoard);
-        incrementSecondPlaceScore(matchingWinningNumber,matchingBonusNumber,scoreBoard);
-        incrementThirdPlaceScore(matchingWinningNumber,matchingBonusNumber,scoreBoard);
-        incrementFourthPlaceScore(matchingWinningNumber,matchingBonusNumber,scoreBoard);
-        incrementFifthPlaceScore(matchingWinningNumber,matchingBonusNumber,scoreBoard);
-        return scoreBoard;
-    }
-
-
-    public void incrementFirstPlaceScore(Integer matchingWinningNumber, Integer matchingBonusNumber, HashMap<String, Long> scoreBoard) {
-        if ((matchingWinningNumber == 6 && matchingBonusNumber == 1) || (matchingWinningNumber == 6 && matchingBonusNumber == 0)) {
-            Long score = scoreBoard.get("1st") + WinningLevel.FIRST_PLACE.getReward();
-            scoreBoard.put("1st",score);
+    public WinningLevel calculateLottoScore(int matchingWinningNumber, boolean matchingBonusNumber) {
+        int correctCount = matchingWinningNumber;
+        boolean correctBonusNumber = matchingBonusNumber;
+        WinningLevel winningLevel = WinningLevel.values()[correctCount];
+        if (winningLevel == WinningLevel.THIRD_PLACE && correctBonusNumber) {
+            return WinningLevel.SECOND_PLACE;
         }
+        return winningLevel;
     }
-
-    public void incrementSecondPlaceScore(Integer matchingWinningNumber, Integer matchingBonusNumber, HashMap<String, Long> scoreBoard) {
-        if ((matchingWinningNumber == 6 && matchingBonusNumber == 1) || (matchingWinningNumber == 6 && matchingBonusNumber == 0)) {
-            Long score = scoreBoard.get("2nd") + WinningLevel.FIRST_PLACE.getReward();
-            scoreBoard.put("2nd",score);
-        }
-    }
-
-    public void incrementThirdPlaceScore(Integer matchingWinningNumber, Integer matchingBonusNumber, HashMap<String, Long> scoreBoard) {
-        if ((matchingWinningNumber == 6 && matchingBonusNumber == 1) || (matchingWinningNumber == 6 && matchingBonusNumber == 0)) {
-            Long score = scoreBoard.get("3rd") + WinningLevel.FIRST_PLACE.getReward();
-            scoreBoard.put("3rd",score);
-        }
-    }
-
-    public void incrementFourthPlaceScore(Integer matchingWinningNumber, Integer matchingBonusNumber, HashMap<String, Long> scoreBoard) {
-        if ((matchingWinningNumber == 6 && matchingBonusNumber == 1) || (matchingWinningNumber == 6 && matchingBonusNumber == 0)) {
-            Long score = scoreBoard.get("4th") + WinningLevel.FIRST_PLACE.getReward();
-            scoreBoard.put("4th",score);
-        }
-    }
-
-    public void incrementFifthPlaceScore(Integer matchingWinningNumber, Integer matchingBonusNumber, HashMap<String, Long> scoreBoard) {
-        if ((matchingWinningNumber == 6 && matchingBonusNumber == 1) || (matchingWinningNumber == 6 && matchingBonusNumber == 0)) {
-            Long score = scoreBoard.get("5th") + WinningLevel.FIRST_PLACE.getReward();
-            scoreBoard.put("5th",score);
-        }
-    }
-
 
 }

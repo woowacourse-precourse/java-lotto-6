@@ -1,5 +1,6 @@
 package lotto.service;
 
+import static lotto.service.LottoService.lottoGenerator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class LottoServiceTest {
         User user = new User("10000");
 
         //when
-        List<Lotto> purchasedLotto = LottoService.lottoGenerator(user.getAmount());
+        List<Lotto> purchasedLotto = lottoGenerator(user.getAmount());
 
         //then
         //purchasedLotto.getPurchasedLotto().size();

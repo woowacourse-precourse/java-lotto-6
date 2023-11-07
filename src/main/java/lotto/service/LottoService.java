@@ -12,7 +12,7 @@ import lotto.domain.dto.InputMoney;
 import lotto.domain.dto.PurchasedLottoDTO;
 
 public class LottoService {
-    private static PurchasedLottoNumbers purchasedLottoNumbers;
+    public static PurchasedLottoNumbers purchasedLottoNumbers;
 
     public static void lottoStart(InputMoney inputMoney){
         User user = new User(inputMoney.getMoney());
@@ -32,7 +32,7 @@ public class LottoService {
         return purchasedLotto;
     }
 
-    public static PurchasedLottoDTO purchasedLottoToDTO(PurchasedLottoNumbers purchasedLottoNumbers) {
+    public static PurchasedLottoDTO purchasedLottoToDTO() {
         int purchasedLottoCount = purchasedLottoNumbers.getPurchasedLotto().size();
         List<Lotto> purchasedLotto = new ArrayList<>();
         for (int i = 0; i < purchasedLottoCount; i++) {

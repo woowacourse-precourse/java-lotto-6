@@ -16,25 +16,25 @@ public class Lotto {
     }
 
     private void validateCount(List<Integer> numbers) {
-        if (numbers.size() != Constant.COUNT_OF_LOTTO_NUMBERS.getValue()) {
+        if (numbers.size() != Constant.COUNT_OF_LOTTO_NUMBERS.getContentToInteger()) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OF_LOTTO_NUMBERS_IS_6.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
-        if (numbers.stream().distinct().count() != Constant.COUNT_OF_LOTTO_NUMBERS.getValue()) {
+        if (numbers.stream().distinct().count() != Constant.COUNT_OF_LOTTO_NUMBERS.getContentToInteger()) {
             throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBERS_HAS_NO_DUPLICATE.getMessage());
         }
     }
 
     private void validateRange(List<Integer> numbers) {
         for (Integer number : numbers) {
-            if (number < Constant.START_RANGE_OF_NUMBER.getValue()
-                    || Constant.END_RANGE_OF_NUMBER.getValue() < number) {
+            if (number < Constant.START_RANGE_OF_NUMBER.getContentToInteger()
+                    || Constant.END_RANGE_OF_NUMBER.getContentToInteger() < number) {
                 throw new IllegalArgumentException(String.format(
                         ErrorMessage.LOTTO_NUMBERS_HAS_RANGE.getMessage(),
-                        Constant.START_RANGE_OF_NUMBER.getValue(),
-                        Constant.END_RANGE_OF_NUMBER.getValue()
+                        Constant.START_RANGE_OF_NUMBER.getContentToInteger(),
+                        Constant.END_RANGE_OF_NUMBER.getContentToInteger()
                 ));
             }
         }

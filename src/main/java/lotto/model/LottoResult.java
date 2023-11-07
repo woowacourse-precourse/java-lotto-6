@@ -7,6 +7,7 @@ import java.util.Map;
 public class LottoResult {
     private static final int DEFAULT_COUNT = 0;
     private static final int INCREMENT = 1;
+    private static final int PERCENTAGE = 100;
 
     private final List<Lotto> lottos;
 
@@ -27,8 +28,11 @@ public class LottoResult {
         double totalReward = result.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getReward() * entry.getValue())
                 .sum();
-        double returnRate = totalReward / money * 100;
+        double returnRate = totalReward / money * PERCENTAGE;
+        return roundToTwoDecimalPlaces(returnRate);
+    }
+
+    private double roundToTwoDecimalPlaces(double returnRate) {
         return (double) Math.round(returnRate * 100) / 100.0;
     }
 }
-

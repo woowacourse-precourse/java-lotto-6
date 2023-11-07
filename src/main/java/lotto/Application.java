@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.*;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
-import lotto.model.validator;
+import lotto.model.Validator;
 
 public class Application {
 
@@ -29,13 +29,18 @@ public class Application {
 
     public static void main(String[] args) {
         int totalSpendings = 0;
-        String input;
-        do {
+        while (true) {
             System.out.println("로또를 구매할 금액을 입력하세요.");
-            input = Console.readLine().trim();
-        } while (!validator.validatePurchaseInput(input));
+            try {
+                String input = Console.readLine().trim();
+                Validator.validatePurchaseInput(input);
+                totalSpendings = Integer.parseInt(input);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
 
-        totalSpendings = Integer.parseInt(input);
 
         int numberOfPurchasedLottos = totalSpendings / LOTTO_PRICE;
         System.out.println(numberOfPurchasedLottos + "개를 구매했습니다.");
@@ -54,40 +59,37 @@ public class Application {
 
         List<Integer> winningNumbers = new ArrayList<>();
         int bonusNumber = 0;
-        boolean isValidWinningNumbers = false;
         boolean isValidBonusNumber = false;
 
-        while (!isValidWinningNumbers) {
-            try {
-                System.out.println("당첨 번호를 쉼표로 구분하여 입력하세요.");
-                String winningNumbersInput = Console.readLine();
-                validator.validateLottoNumbers(winningNumbersInput);
 
+        // 당첨 번호 입력 로직
+        System.out.println("당첨 번호를 쉼표로 구분하여 입력하세요.");
+        while (true) {
+            try {
+                String winningNumbersInput = Console.readLine();
+                Validator.validateWinningNumbers(winningNumbersInput); // Validator 클래스 사용
                 winningNumbers = Arrays.stream(winningNumbersInput.split(","))
                         .map(String::trim)
                         .map(Integer::parseInt)
                         .collect(Collectors.toList());
-
-                isValidWinningNumbers = true;
+                break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
 
+
+        System.out.println("보너스 번호를 입력하세요.");
         while (!isValidBonusNumber) {
             try {
-                System.out.println("보너스 번호를 입력하세요.");
-                bonusNumber = Integer.parseInt(Console.readLine().trim());
-
-                validateBonusNumber(bonusNumber, winningNumbers);
+                String bonusNumberInput = Console.readLine().trim();
+                bonusNumber = Integer.parseInt(bonusNumberInput);
+                Validator.validateBonusNumber(bonusNumber, winningNumbers); // Validator 클래스 사용
                 isValidBonusNumber = true;
-            } catch (NumberFormatException e) {
-                System.out.println("[ERROR] 입력값은 숫자로만 구성되어야 합니다.");
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
-
         System.out.println("입력된 당첨 번호: " + winningNumbers + " + 보너스 번호: " + bonusNumber);
 
         for (Lotto lotto : purchasedLottos) {

@@ -31,7 +31,6 @@ public enum OutputMessage {
     public static void printWinningStatistics(LottoResult lottoResult) {
         StringBuilder sb = new StringBuilder();
         HashMap<LottoPrize, BigDecimal> result = lottoResult.getLottoRank();
-        System.out.println(result);
         sb.append("당첨 통계\n").append("---------\n");
         sb.append(LottoPrize.FIFTH.getMessage()).append(" - ").append(result.get(LottoPrize.FIFTH)).append("개\n");
         sb.append(LottoPrize.FOURTH.getMessage()).append(" - ").append(result.get(LottoPrize.FOURTH)).append("개\n");

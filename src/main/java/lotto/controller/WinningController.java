@@ -22,6 +22,6 @@ public class WinningController {
             }
         }
         EarningCalculator calculator = new EarningCalculator(wastedMoney,earnings);
-        output.printEarnings(calculator.computeDouble());
+        output.printEarnings(calculator.compute());
     }
 }

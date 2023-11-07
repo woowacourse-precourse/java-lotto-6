@@ -1,6 +1,6 @@
 package lotto.domain;
 
-public class EarningCalculator implements Calculator{
+public class EarningCalculator{
 
     double earn;
     double money;
@@ -8,13 +8,7 @@ public class EarningCalculator implements Calculator{
         this.earn = earn;
         this.money = money;
     }
-    @Override
-    public int computeInt() {
-        return 0;
-    }
-
-    @Override
-    public double computeDouble() {
+    public double compute() {
         return earn/money*100;
     }
 }

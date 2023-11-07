@@ -3,13 +3,13 @@ package lotto.domain;
 import static lotto.values.LottoInformation.LOTTO_PRICE;
 import static lotto.values.LottoInformation.MAX_VALUE;
 
-public class OrderCalculator implements Calculator{
+public class OrderCalculator{
     private int inputNum;
     public OrderCalculator(String input){
         inputNum = Integer.parseInt(input);
     }
-    @Override
-    public int computeInt() {
+
+    public int compute() {
         return inputNum/LOTTO_PRICE.getValue();
     }
 
@@ -21,9 +21,4 @@ public class OrderCalculator implements Calculator{
         return inputNum>MAX_VALUE.getValue();
     }
 
-
-    @Override
-    public double computeDouble() {
-        return 0;
-    }
 }

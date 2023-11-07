@@ -27,7 +27,7 @@ public class OrderService {
         if (!calculator.checkThousands()) throw new IllegalArgumentException(CAN_NOT_PURCHASE.getMessage());
         if (calculator.tooMuchValue()) throw new IllegalArgumentException(TOO_MUCH_MONEY.getMessage());
 
-        lottoNumber = calculator.computeInt();
+        lottoNumber = calculator.compute();
     }
 
     public int getLottoNumber() {

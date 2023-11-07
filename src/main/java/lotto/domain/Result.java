@@ -4,8 +4,8 @@ import java.util.Map;
 
 public class Result {
     private static final Integer PERCENTAGE = 100;
-    private Map<LottoRanking, Integer> rankingCount;
-    private Double profitRate;
+    private final Map<LottoRanking, Integer> rankingCount;
+    private final Double profitRate;
     public Result(Map<LottoRanking, Integer> rankingCount, Money money){
         this.rankingCount = rankingCount;
         this.profitRate = calculateProfitMargin(money);

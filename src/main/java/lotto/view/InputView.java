@@ -16,7 +16,7 @@ public class InputView {
     private static final String DELIMITER = ",";
     private static final String FORMAT_OF_NUMERIC = "[0-9]+";
 
-    public int inputPurchasePrice() {
+    public int requestPurchasePrice() {
         System.out.println(NOTICE_INPUT_PURCHASE_PRICE);
         while (true) {
             String input = Console.readLine();
@@ -32,7 +32,7 @@ public class InputView {
         }
     }
 
-    public void inputWinningNumber() {
+    public void requestWinningNumber() {
         System.out.println(NOTICE_INPUT_WINNING_NUMBER);
         String input = Console.readLine();
         List<String> inputNumbers = List.of(input.split(DELIMITER));
@@ -42,12 +42,12 @@ public class InputView {
             Lotto winningLotto = new Lotto(winningNumbers);
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
-            inputWinningNumber();
+            requestWinningNumber();
         }
         System.out.println();
     }
 
-    public void inputBonusNumber() {
+    public void requestBonusNumber() {
         System.out.println(NOTICE_INPUT_BONUS_NUMBER);
         String input = Console.readLine();
         try {
@@ -56,7 +56,7 @@ public class InputView {
             Bonus bonus = new Bonus(bonusNumber);
         } catch (IllegalArgumentException error) {
             System.out.println(error.getMessage());
-            inputBonusNumber();
+            requestBonusNumber();
         }
         System.out.println();
     }

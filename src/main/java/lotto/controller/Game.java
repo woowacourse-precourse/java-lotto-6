@@ -20,12 +20,12 @@ public class Game {
     }
 
     private void init() {
-        int purchasePrice = inputView.inputPurchasePrice();
+        int purchasePrice = inputView.requestPurchasePrice();
         LottoGenerator.generateLotto(purchasePrice);
         List<Lotto> purchaseLotto = LottoStorage.getLotto();
         outputView.printPurchaseLotto(purchaseLotto);
 
-        inputView.inputWinningNumber();
-        inputView.inputBonusNumber();
+        inputView.requestWinningNumber();
+        inputView.requestBonusNumber();
     }
 }

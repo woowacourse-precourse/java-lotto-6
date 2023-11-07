@@ -11,6 +11,7 @@ public class LottoGameController {
     public void start(){
         // '구입 금액' 입력 받기
         Integer money = UserController.getMoney();
+        System.out.println();
 
         // '표 개수' 구하기 및 출력
         int ticketNum = getTickets(money);
@@ -19,12 +20,15 @@ public class LottoGameController {
         List<Lotto> lottos = createLottos(ticketNum);
         // 로또 n개 출력
         printLottos(lottos);
+        System.out.println();
 
         // '당첨 번호' 입력 받기
         List<Integer> winningNumbers = UserController.getWinningNumbers();
+        System.out.println();
 
         // '보너스 번호' 입력 받기
         int bonusNumber = UserController.getBonusNumber(winningNumbers);
+        System.out.println();
 
         // 로또 맞추기 및 결과
         LottoController.guessLottos(lottos, money, ticketNum, winningNumbers, bonusNumber);

@@ -1,5 +1,7 @@
 package lotto.model;
 
+import java.text.DecimalFormat;
+
 public class Result {
 
     private int first = 0;
@@ -48,6 +50,10 @@ public class Result {
 
     public void printRateOfReturn(int money) {
         double rateOfReturn = (sum / money) * 100;
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        // DecimalFormat 객체를 생성하고 형식화 패턴을 설정
+        DecimalFormat df = new DecimalFormat("#.##");
+        // 소수점 둘째 자리에서 반올림하고 0이면 무시한 문자열을 얻어옴
+        String formattedNumber = df.format(rateOfReturn);
+        System.out.println("총 수익률은 " + formattedNumber + "%입니다.");
     }
 }

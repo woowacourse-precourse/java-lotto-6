@@ -51,6 +51,26 @@ public class LottoInputReader {
         }
     }
 
+    public int readBonusNumber(List<Integer> winNumbers) {
+        OutputWriter.showLottoBonusNumberInputMessage();
+
+        while (true) {
+            try {
+                String bonusNumberInput = reader.readLine();
+                ensureBonusNumberIsValid(winNumbers, bonusNumberInput);
+
+                return Integer.parseInt(bonusNumberInput);
+
+            } catch (IllegalArgumentException ex) {
+                OutputWriter.showExceptionMessage(ex.getMessage());
+            }
+        }
+    }
+
+    private void ensureBonusNumberIsValid(List<Integer> winNumbers, String bonusNumberInput) {
+        validator.verifyBonusNumber(winNumbers, bonusNumberInput);
+    }
+
     private void ensureWinNumbersIsValid(String winNumbersInput) {
         validator.verifyWinNumbers(winNumbersInput);
     }

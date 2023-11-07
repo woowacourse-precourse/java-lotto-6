@@ -10,6 +10,7 @@ import static lotto.utils.LottoConstant.LOTTO_START_NUMBER;
 import static lotto.utils.LottoConstant.PURCHASE_AMOUNT_UNIT;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class LottoValidator {
@@ -46,6 +47,24 @@ public class LottoValidator {
         }
 
         if (winNumbersSet.size() != LOTTO_NUMBER_COUNT) {
+            throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBERS.getMessage());
+        }
+    }
+
+    public void verifyBonusNumber(List<Integer> winNumbers, String bonusNumberInput) {
+        int bonusNumber;
+
+        try {
+            bonusNumber = Integer.parseInt(bonusNumberInput);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+        }
+
+        if (!(LOTTO_START_NUMBER <= bonusNumber && bonusNumber <= LOTTO_END_NUMBER)) {
+            throw new IllegalArgumentException(INVALID_LOTTO_NUMBER_RANGE.getMessage());
+        }
+
+        if (winNumbers.contains(bonusNumber)) {
             throw new IllegalArgumentException(DUPLICATED_LOTTO_NUMBERS.getMessage());
         }
     }

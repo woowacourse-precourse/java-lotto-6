@@ -1,6 +1,7 @@
 package lotto.io.write;
 
 import static lotto.exception.ExceptionConstant.ERROR_PREFIX;
+import static lotto.io.read.InputMessage.READ_LOTTO_BONUS_NUMBER;
 import static lotto.io.read.InputMessage.READ_LOTTO_WIN_NUMBERS;
 import static lotto.io.read.InputMessage.READ_PURCHASE_AMOUNT_MESSAGE;
 import static lotto.io.write.OutputMessage.LOTTO_PURCHASE_AMOUNT_MESSAGE;
@@ -21,6 +22,10 @@ public final class OutputWriter {
 
     public static void showPurchaseLottoCount(int count) {
         System.out.printf("%d%s\n", count, LOTTO_PURCHASE_AMOUNT_MESSAGE.getMessage());
+    }
+
+    public static void showLottoBonusNumberInputMessage() {
+        System.out.println(READ_LOTTO_BONUS_NUMBER.getMessage());
     }
 
     public static void showExceptionMessage(String message) {

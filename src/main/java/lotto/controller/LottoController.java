@@ -43,7 +43,7 @@ public class LottoController {
 
     private static int getBonusNumber(List<Integer> lottoWinningNumbers) {
         OutputView.printLottoBonusNumberMessage();
-        int bonusNumber = InputView.getBonusNumber(lottoWinningNumbers);
+        int bonusNumber = InputView.getValidBonusNumber(lottoWinningNumbers);
         return bonusNumber;
     }
 

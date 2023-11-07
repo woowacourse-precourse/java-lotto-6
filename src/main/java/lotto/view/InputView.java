@@ -38,6 +38,22 @@ public class InputView {
         return validNumbers;
     }
 
+    public static int getValidBonusNumber(List<Integer> lottoWinningNumbers){
+        boolean hasException = true;
+        int vaildBonusNumber = 0;
+
+        while(hasException){
+            try{
+                vaildBonusNumber = getBonusNumber(lottoWinningNumbers);
+                hasException=false;
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return vaildBonusNumber;
+    }
+
     public static int getLottoPurchaseAmount(){
         String input = Console.readLine();
         int lottoPurchaseAmount = checkIntegerFormat(input);

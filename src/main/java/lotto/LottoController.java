@@ -8,7 +8,7 @@ public class LottoController {
 
         }
         public void inputLottoPrice(){
-                LottoView.mentionInputPrice();
+                OutputView.mentionInputPrice();
                 String inputPrice = Console.readLine();
         }
         private void vaildateLottoPrice(String inputPrice){

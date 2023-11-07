@@ -5,6 +5,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.PlayerLotto;
 import lotto.dto.PurchaseLottoDto;
+import lotto.dto.WinningStatisticsDto;
 import lotto.service.LottoGameService;
 import lotto.utils.GameUtils;
 import lotto.utils.validator.PurchaseAmountValidator;
@@ -66,5 +67,11 @@ public class LottoGameController {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private void publishWinningStatistics(PlayerLotto playerLotto, Lotto winningNumbers, LottoNumber bonusNumber) {
+        WinningStatisticsDto winningStatisticsDto = lottoGameService.calculateWinningStatistics(playerLotto,
+                winningNumbers, bonusNumber);
+        outputView.printWinningStatistics(winningStatisticsDto);
     }
 }

@@ -57,5 +57,13 @@ class ErrorCheckTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("랜덤으로 생성된 로또 번호가 6자리의 숫자가 아니면 에러가 발생해야 한다")
+    @Test
+    void checkRandomLottoNumber() {
+        List<Integer> invalidRandomNumbers = List.of(1, 2, 3, 4, 5);
+        assertThatThrownBy(() -> ErrorCheck.validateRandomLottoSize(invalidRandomNumbers))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 
 }

@@ -1,11 +1,11 @@
 package lotto.domain;
 
-import static lotto.domain.LottoRule.LOTTO_LENGTH;
-
 import java.util.List;
 import lotto.view.ErrorMessage;
 
 public class Lotto {
+    public static final int LOTTO_LENGTH = 6;
+
     private final List<LottoNumber> numbers;
 
     private Lotto(List<LottoNumber> numbers) {
@@ -40,7 +40,7 @@ public class Lotto {
     }
 
     private void validateLength(List<LottoNumber> numbers) {
-        if (numbers.size() != LOTTO_LENGTH.getValue()) {
+        if (numbers.size() != LOTTO_LENGTH) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_LOTTO_LENGTH.getErrorMessage());
         }
     }

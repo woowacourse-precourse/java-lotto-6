@@ -1,8 +1,8 @@
 package lotto.service;
 
-import static lotto.domain.LottoRule.LOTTO_LENGTH;
-import static lotto.domain.LottoRule.MAX_LOTTO_NUMBER;
-import static lotto.domain.LottoRule.MIN_LOTTO_NUMBER;
+import static lotto.domain.Lotto.LOTTO_LENGTH;
+import static lotto.domain.LottoNumber.MAX_LOTTO_NUMBER;
+import static lotto.domain.LottoNumber.MIN_LOTTO_NUMBER;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
@@ -27,9 +27,6 @@ public class LottoGeneratorService {
     }
 
     private List<Integer> generateUniqueNumbers() {
-        return Randoms.pickUniqueNumbersInRange(
-                MIN_LOTTO_NUMBER.getValue(),
-                MAX_LOTTO_NUMBER.getValue(),
-                LOTTO_LENGTH.getValue());
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_LENGTH);
     }
 }

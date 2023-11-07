@@ -7,6 +7,8 @@ import lotto.domain.Lotto;
 import lotto.domain.PurchaseAmount;
 
 public class LottoStoreService {
+    public static final int LOTTO_PRICE = 1000;
+    private static final int START_INDEX = 0;
     private final LottoGeneratorService lottoGeneratorService;
 
     public LottoStoreService(LottoGeneratorService lottoGeneratorService) {
@@ -15,7 +17,7 @@ public class LottoStoreService {
 
     public List<Lotto> purchaseLotto(PurchaseAmount purchaseAmount) {
         int count = purchaseAmount.affordableCountOfLotto();
-        return IntStream.range(0, count)
+        return IntStream.range(START_INDEX, count)
                 .mapToObj(i -> lottoGeneratorService.generateLotto())
                 .collect(Collectors.toList());
     }

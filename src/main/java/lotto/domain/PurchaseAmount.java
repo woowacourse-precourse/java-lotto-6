@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.service.LottoStoreService.LOTTO_PRICE;
+
 import lotto.view.ErrorMessage;
 
 public class PurchaseAmount {
@@ -15,7 +17,7 @@ public class PurchaseAmount {
     }
 
     public int affordableCountOfLotto() {
-        return purchaseAmount / LottoRule.LOTTO_PRICE.getValue();
+        return purchaseAmount / LOTTO_PRICE;
     }
 
     public double calculateProfitRate(Long earned) {
@@ -29,13 +31,13 @@ public class PurchaseAmount {
     }
 
     private void validateAmountInMultiplesOfPrice(int purchaseAmount) {
-        if (purchaseAmount % LottoRule.LOTTO_PRICE.getValue() != 0) {
+        if (purchaseAmount % LOTTO_PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.INVALID_PURCHASE_AMOUNT.getErrorMessage());
         }
     }
 
     private void validateEnoughAmount(int purchaseAmount) {
-        if (purchaseAmount < LottoRule.LOTTO_PRICE.getValue()) {
+        if (purchaseAmount < LOTTO_PRICE) {
             throw new IllegalArgumentException(ErrorMessage.NOT_ENOUGH_PURCHASE_AMOUNT.getErrorMessage());
         }
     }

@@ -9,7 +9,11 @@ public class RankRepository {
     private static final Integer DEFAULT_VALUE = 0;
     private static final Integer INCREMENT_VALUE = 1;
 
-    public static void putRank(Integer rank) {
+    public static void increaseNumberOfWins(Integer rank) {
         rankRepository.put(rank, rankRepository.getOrDefault(rank, DEFAULT_VALUE) + INCREMENT_VALUE);
+    }
+
+    public static int getWinningStatistics(int rank) {
+        return rankRepository.getOrDefault(rank, DEFAULT_VALUE);
     }
 }

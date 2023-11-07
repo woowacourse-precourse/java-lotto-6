@@ -10,4 +10,3 @@ public class SystemData {
     public static final int NUMBER_OF_BONUS_NUMBER = 1;
     public static final DecimalFormat MONEY_FORMAT = new DecimalFormat("###,###");
 }
-가

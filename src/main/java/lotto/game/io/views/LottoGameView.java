@@ -11,28 +11,23 @@ import lotto.game.io.Output;
 
 public class LottoGameView implements InteractionRepeatable {
 
-    public static final String ERROR_HEADER_MESSAGE = "[ERROR] ";
     public final Input input;
     public final Output output;
 
-    public LottoGameView(Input input, Output output) {
+    public final LottosView lottosView;
+
+    public LottoGameView(Input input, Output output, LottosView lottosView) {
         this.input = input;
         this.output = output;
+        this.lottosView = lottosView;
     }
 
     public int askPurchaseAmount() {
-        return supplyInteraction(() -> {
-            output.println("구입금액을 입력해 주세요.");
-            return input.number();
-        });
+        return lottosView.askPurchaseAmount();
     }
 
     public void announcePurchaseLottos(List<PlayerLotto> purchaseLottos) {
-        output.println();
-        output.println(purchaseLottos.size() + "개를 구매했습니다.");
-        for (PlayerLotto purchaseLotto : purchaseLottos) {
-            output.println(purchaseLotto);
-        }
+        lottosView.announcePurchaseLottos(purchaseLottos);
     }
 
     public List<Integer> askWinningNumbers() {

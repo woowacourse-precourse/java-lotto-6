@@ -22,4 +22,8 @@ public class Lotto {
                 .filter(number -> numbers.contains(number))
                 .count();
     }
+
+    public boolean calculateBonusNumber(UserLotto userLotto) {
+        return numbers.contains(userLotto.getBonusNumber());
+    }
 }

@@ -19,7 +19,9 @@ public class InputView {
         if (winningNumberInput.isEmpty()) {
             throw new IllegalArgumentException("[ERROR] 입력값이 없습니다.");
         }
-
+        if (!winningNumberInput.contains(",")) {
+            throw new IllegalArgumentException("[ERROR] ','로 구분해주시길 바랍니다.");
+        }
         String[] splitByDelimiter = winningNumberInput.split(",");
 
         return splitByDelimiter;

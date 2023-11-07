@@ -16,6 +16,17 @@ class LottoServiceTest {
         lottoService = new LottoService();
     }
 
+    @DisplayName("숫자가 아닌 값이 섞여 있을 경우 예외 발생.")
+    @Test
+    void containsNonNumericCharacters() {
+        String input = "1,2,a,b";
+        assertThatThrownBy(() -> {
+            lottoService.containsNonNumericCharacters(input);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(ErrorMessage.CONTAINS_NON_NUMERIC_CHARACTERS.getMessage());
+    }
+
     @DisplayName("숫자가 1000으로 나눠 떨어지지 않을 경우 예외 발생.")
     @Test
     void testIsPurchaseAmountDivideBy1000() {

@@ -1,12 +1,12 @@
 package lotto.v3.model;
 
 public enum LottoRank {
-
     FIRST(6, 2_000_000_000L, false),
     SECOND(5, 30_000_000L, true),
     THIRD(5, 1_500_000L, false),
     FOURTH(4, 50_000L, false),
-    FIFTH(3, 5_000L, false);
+    FIFTH(3, 5_000L, false),
+    NONE(0, 0L, false);
 
     private final int matchCount;
     private final long prizeMoney;
@@ -31,20 +31,17 @@ public enum LottoRank {
     }
 
     public static LottoRank valueOf(int matchCount, boolean bonusMatch) {
-        if (matchCount < FIFTH.matchCount) {
-            return null;
-        }
-
-        if (matchCount == SECOND.matchCount && bonusMatch) {
+        if (matchCount >= SECOND.matchCount && bonusMatch) {
             return SECOND;
         }
 
         for (LottoRank rank : values()) {
-            if (rank.matchCount == matchCount && rank.bonusMatch == bonusMatch) {
+            if (rank.matchCount == matchCount && !rank.bonusMatch) {
                 return rank;
             }
         }
 
-        return null;
+        return NONE; 
     }
 }
+

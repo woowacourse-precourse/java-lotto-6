@@ -1,14 +1,23 @@
 package lotto;
 
+import java.util.HashMap;
 import java.util.List;
 
 public enum LottoRanking {
-    FIRST_PRIZE("6개 일치 (2,000,000,000원)", new Amount("2000000000")),
-    SECOND_PRIZE("5개 일치, 보너스 볼 일치 (30,000,000원)", new Amount("30000000")),
-    THIRD_PRIZE("5개 일치 (1,500,000원)", new Amount("1500000")),
-    FOURTH_PRIZE("4개 일치 (50,000원)", new Amount("50000")),
-    FIFTH_PRIZE("3개 일치 (5,000원)", new Amount("5000")),
+    FIRST_PRIZE("6개 일치 (2,000,000,000원) - ", new Amount("2000000000")),
+    SECOND_PRIZE("5개 일치, 보너스 볼 일치 (30,000,000원) - ", new Amount("30000000")),
+    THIRD_PRIZE("5개 일치 (1,500,000원) - ", new Amount("1500000")),
+    FOURTH_PRIZE("4개 일치 (50,000원) - ", new Amount("50000")),
+    FIFTH_PRIZE("3개 일치 (5,000원) - ", new Amount("5000")),
     DID_NOT_WIN("", new Amount("0"));
+
+    private static final List<LottoRanking> DEFAULT_LOTTO_RANKING = List.of(
+            FIFTH_PRIZE,
+            FOURTH_PRIZE,
+            THIRD_PRIZE,
+            SECOND_PRIZE,
+            FIRST_PRIZE
+    );
 
     private final String message;
     private final Amount prizeMoney;
@@ -44,5 +53,25 @@ public enum LottoRanking {
         return amounts.stream()
                 .reduce(Amount::add)
                 .orElse(DID_NOT_WIN.prizeMoney);
+    }
+
+    public static String rankingsToString(List<LottoRanking> lottoRankings) {
+        HashMap<LottoRanking, Integer> rankingCount = getRankingCount(lottoRankings);
+        return DEFAULT_LOTTO_RANKING.stream()
+                .map(ranking -> ranking.message + rankingCount.get(ranking) + "개\n")
+                .reduce((resultRankingMessage, rankingMessage) -> resultRankingMessage + rankingMessage)
+                .orElse("");
+    }
+
+    private static HashMap<LottoRanking, Integer> getRankingCount(List<LottoRanking> lottoRankings) {
+        HashMap<LottoRanking, Integer> countLottoRankings = new HashMap<>();
+        DEFAULT_LOTTO_RANKING.forEach(ranking -> countLottoRankings.put(ranking, 0));
+        for (LottoRanking ranking : lottoRankings) {
+            if (!ranking.equals(DID_NOT_WIN)) {
+                Integer count = countLottoRankings.get(ranking);
+                countLottoRankings.put(ranking, count + 1);
+            }
+        }
+        return countLottoRankings;
     }
 }

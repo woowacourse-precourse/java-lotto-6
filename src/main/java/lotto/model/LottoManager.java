@@ -25,7 +25,6 @@ public class LottoManager {
                 .toList();
     }
 
-
     public LottoResult calculateLottoResult() {
         lottoResult = LottoResult.of();
         List<WinningInfo> winningInfos = lottos.getWinnningInfos(winningLotto);
@@ -39,10 +38,14 @@ public class LottoManager {
                 WinningInfo.FIVE_MATCH,
                 WinningInfo.FIVE_AND_BONUS_MATCH, WinningInfo.SIX_MATCH);
 
-        double winningAmount = winningInfos.stream()
+        double totalWinningAmount = sumWinningAmount(winningInfos);
+
+        return totalWinningAmount / purchaseAmount;
+    }
+
+    private double sumWinningAmount(List<WinningInfo> winningInfos) {
+        return winningInfos.stream()
                 .mapToDouble(winningInfo -> lottoResult.calculateWinningAmount(winningInfo))
                 .sum();
-
-        return winningAmount / purchaseAmount;
     }
 }

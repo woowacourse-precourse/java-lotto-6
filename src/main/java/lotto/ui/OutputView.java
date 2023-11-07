@@ -2,9 +2,7 @@ package lotto.ui;
 
 import lotto.domain.constant.LottoPrize;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -22,6 +20,7 @@ public class OutputView {
 
     public void printGenerateLottos(List<List<Integer>> lottos) {
         lottos.stream()
+                .map(this::sortNumbers)
                 .forEach(lotto -> System.out.println(lotto));
     }
 
@@ -44,5 +43,13 @@ public class OutputView {
 
     public void printException(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public List<Integer> sortNumbers(List<Integer> lotto) {
+        List<Integer> copyLotto = new ArrayList<>(lotto);
+
+        Collections.sort(copyLotto);
+
+        return copyLotto;
     }
 }

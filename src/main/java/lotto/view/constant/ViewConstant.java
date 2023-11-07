@@ -10,6 +10,7 @@ public class ViewConstant {
         public static final int MIN_RANGE = 1;
         public static final int MAX_RANGE = 45;
         public static final int NUMBERS_COUNT = 6;
+
         public enum InputErrorMessage {
             NOT_EXIST_INPUT_ERROR("[ERROR] 입력이 존재하지 않습니다."),
             NOT_CONTAINS_ONLY_NUMBER("[ERROR] 숫자 이외의 문자는 포함될 수 없습니다."),

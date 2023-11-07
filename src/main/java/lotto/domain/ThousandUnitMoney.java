@@ -8,7 +8,7 @@ import lotto.validation.IntegerValidator;
 
 public class ThousandUnitMoney {
 
-    int amount;
+    private final int amount;
 
     private ThousandUnitMoney(int amount) {
         IntegerValidator.validateMultipleOf(amount,COST_OF_LOTTO.getValue());

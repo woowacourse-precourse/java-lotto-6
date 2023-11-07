@@ -9,7 +9,7 @@ import lotto.util.IntegerUtil;
 import lotto.validation.IntegerValidator;
 
 public class LottoNumber {
-    int number;
+    private final int number;
 
     private LottoNumber(int number) {
         IntegerValidator.validateInRange(number, MIN_NUMBER_RANGE.getValue(), MAX_NUMBER_RANGE.getValue());

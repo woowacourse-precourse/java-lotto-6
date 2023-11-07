@@ -11,9 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PurchasePriceTest {
 
-
     @Test
-    @DisplayName("구매 금액으로 로또 갯수를 계산한다.")
+    @DisplayName("구매 금액으로 로또 개수를 계산한다.")
     void getPurchaseLottoAmount() {
         // Given
         Long purchaseAmount = 21000L;
@@ -22,7 +21,7 @@ class PurchasePriceTest {
         PurchasePrice purchasePrice = PurchasePrice.of(purchaseAmount);
 
         // Then
-        assertThat(purchasePrice.getPurchaseLottoAmount()).isEqualTo(3);
+        assertThat(purchasePrice.getPurchaseLottoAmount()).isEqualTo(21);
     }
 
     @Test
@@ -43,7 +42,7 @@ class PurchasePriceTest {
     @DisplayName("구매 금액이 로또 가격의 배수가 아닌 경우 예외를 던진다.")
     void invalidPurchaseAmount() {
         // Given
-        Long invalidAmount = 1000L;
+        Long invalidAmount = 1101L;
 
         // When, Then
         assertThatThrownBy(() -> PurchasePrice.of(invalidAmount))

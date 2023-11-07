@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import lotto.util.message.ExceptionMessage;
-
 import java.util.List;
 
 import static lotto.domain.LottoInfo.*;

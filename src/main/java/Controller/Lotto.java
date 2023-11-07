@@ -1,8 +1,7 @@
-package lotto;
+package Controller;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Arrays;
 import java.util.HashSet;
 enum ERROR_MESSAGE{
     DUPLICATION("[ERROR] 중복된 숫자를 입력하셨습니다. 다시 입력하세요"),
@@ -52,7 +51,7 @@ public class Lotto {
     }
     private List<Integer> validate4(List<Integer> numbers) {
         //로또 각 번호가 1~45 이외이면 예외가 발생한다.
-        if (Collections.max(numbers) > 45 || Collections.max(numbers) < 1) {
+        if (Collections.max(numbers) > 45 || Collections.min(numbers) < 1) {
             System.out.println(ERROR_MESSAGE.INVALID_RANGE);
             throw new IllegalArgumentException();
         }

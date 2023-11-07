@@ -26,8 +26,8 @@ public class LottoGame {
 
     // 로또 한 장 발행
     private Lotto generateLotto() {
-        int startRange = LottoValue.MIN_VALUE.getValue();
-        int endRange = LottoValue.MAX_VALUE.getValue();
+        int startRange = LottoValue.NUMBER_MIN_VALUE.getValue();
+        int endRange = LottoValue.NUMBER_MAX_VALUE.getValue();
         int cnt = LottoValue.WINNING_NUMBER_CNT.getValue();
 
         return new Lotto(pickRandNums(startRange, endRange, cnt));

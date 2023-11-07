@@ -1,8 +1,8 @@
 package lotto.constant;
 
 public enum LottoValue {
-    MIN_VALUE(1),
-    MAX_VALUE(45),
+    NUMBER_MIN_VALUE(1),
+    NUMBER_MAX_VALUE(45),
     WINNING_NUMBER_CNT(6),
     BONUS_NUMBER_CNT(1),
     PRICE_PER_PIECE(1000),

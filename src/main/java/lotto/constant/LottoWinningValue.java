@@ -13,51 +13,51 @@ public enum LottoWinningValue {
     FIFTH_PLACE(5, 3, 0, 5000, "3개 일치 (5,000원)");
 
     private int rank;
-    private int winningNumMatchCnt;
-    private int bonusNumMatchCnt;
+    private int winningNumCnt;
+    private int bonusNumCnt;
     private int winningAmount;
-    private String winningsPhrase;
-
-    LottoWinningValue(int rank, int winningNumMatchCnt, int bonusNumMatchCnt, int winningAmount, String winningsPhrase) {
-        this.rank = rank;
-        this.winningNumMatchCnt = winningNumMatchCnt;
-        this.bonusNumMatchCnt = bonusNumMatchCnt;
-        this.winningAmount = winningAmount;
-        this.winningsPhrase = winningsPhrase;
-    }
+    private String winningPhrase;
 
     // 모든 상수에 대한 맵을 BY_RANK라는 private static final 맵으로 미리 만들어 놓음
     // 이 맵은 rank를 키로 하고 해당 열거형 상수를 값으로 가지고 있다
     private static final Map<Integer, LottoWinningValue> BY_RANK =
             Stream.of(values()).collect(Collectors.toMap(LottoWinningValue::getRank, e -> e));
-
-    public static LottoWinningValue valueOfRank(int rank) {
-        return BY_RANK.get(rank);
-    }
-
     // 당첨 번호 개수 + 보너스 개수를 키로 하고 해당 열거형 상수를 값으로 가지는 맵
     private static final Map<String, LottoWinningValue> BY_WINNING_MATCH_CNT = new HashMap<>();
 
     static {
         for (LottoWinningValue enumValue : LottoWinningValue.values()) {
-            BY_WINNING_MATCH_CNT.put("" + enumValue.getWinningNumMatchCnt() + enumValue.getBonusNumMatchCnt(), enumValue);
+            BY_WINNING_MATCH_CNT.put(enumValue.getWinningNumCnt() + "+" + enumValue.getBonusNumCnt(), enumValue);
         }
     }
 
+    LottoWinningValue(int rank, int winningNumCnt, int bonusNumCnt, int winningAmount, String winningPhrase) {
+        this.rank = rank;
+        this.winningNumCnt = winningNumCnt;
+        this.bonusNumCnt = bonusNumCnt;
+        this.winningAmount = winningAmount;
+        this.winningPhrase = winningPhrase;
+    }
+
+    public static LottoWinningValue valueOfRank(int rank) {
+        return BY_RANK.get(rank);
+    }
+
+
     public static LottoWinningValue valueOfWinningMatchCnt(int winningNumMatchCnt, int bonusNumMatchCnt) {
-        return BY_WINNING_MATCH_CNT.get("" + winningNumMatchCnt + bonusNumMatchCnt);
+        return BY_WINNING_MATCH_CNT.get(winningNumMatchCnt + "+" + bonusNumMatchCnt);
     }
 
     public int getRank() {
         return rank;
     }
 
-    public int getWinningNumMatchCnt() {
-        return winningNumMatchCnt;
+    public int getWinningNumCnt() {
+        return winningNumCnt;
     }
 
-    public int getBonusNumMatchCnt() {
-        return bonusNumMatchCnt;
+    public int getBonusNumCnt() {
+        return bonusNumCnt;
     }
 
     public int getWinningAmount() {
@@ -65,6 +65,6 @@ public enum LottoWinningValue {
     }
 
     public String getWinningsPhrase() {
-        return winningsPhrase;
+        return winningPhrase;
     }
 }

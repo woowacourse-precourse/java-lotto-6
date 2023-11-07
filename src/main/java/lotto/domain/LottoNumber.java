@@ -60,10 +60,10 @@ public class LottoNumber {
     }
 
     private boolean isNotInRange(int num) {
-        if (num < LottoValue.MIN_VALUE.getValue()) {
+        if (num < LottoValue.NUMBER_MIN_VALUE.getValue()) {
             return true;
         }
-        if (num > LottoValue.MAX_VALUE.getValue()) {
+        if (num > LottoValue.NUMBER_MAX_VALUE.getValue()) {
             return true;
         }
         return false;

@@ -25,18 +25,18 @@ public class LottoHandler {
     }
 
     public void run() {
-        Money money = getMoney();
-        Lottos lottos = generateLottos(money);
+        Payment payment = getPayment();
+        Lottos lottos = generateLottos(payment);
 
         WinningLotto winningLotto = generateWinningLotto();
         LottoResult lottoResult = lottoManager.calculateResult(lottos, winningLotto);
 
         showResult(lottoResult);
-        showProfit(money, lottoResult);
+        showProfit(payment, lottoResult);
     }
 
-    private void showProfit(Money money, LottoResult lottoResult) {
-        double profit = lottoResult.calculateProfit(money.getMoney());
+    private void showProfit(Payment payment, LottoResult lottoResult) {
+        double profit = lottoResult.calculateProfit(payment.getPayment());
         writer.write(lottoViewResolver.parseProfit(profit));
     }
 
@@ -52,8 +52,8 @@ public class LottoHandler {
         return winningLotto;
     }
 
-    private Lottos generateLottos(Money money) {
-        Lottos lottos = lottoManager.createLottos(money.getMoney());
+    private Lottos generateLottos(Payment payment) {
+        Lottos lottos = lottoManager.createLottos(payment.getPayment());
 
         LottoDto.Information lottoInformation = LottoDto.Information.from(lottos);
 
@@ -83,12 +83,12 @@ public class LottoHandler {
         });
     }
 
-    private Money getMoney() {
+    private Payment getPayment() {
         writer.write(LottoGuideMessage.INPUT_MONEY.getMessage());
         return reader.read(() -> {
             String inputMoney = Console.readLine();
             LottoReaderValidator.validateMoney(inputMoney);
-            return new Money(Integer.parseInt(inputMoney));
+            return new Payment(Integer.parseInt(inputMoney));
         });
     }
 }

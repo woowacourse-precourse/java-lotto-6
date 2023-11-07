@@ -1,12 +1,12 @@
 package lotto.domain;
 
-public class Money {
+public class Payment {
 
-    private final int money;
+    private final int payment;
 
-    public Money(int money) {
-        validate(money);
-        this.money = money;
+    public Payment(int payment) {
+        validate(payment);
+        this.payment = payment;
     }
 
     private void validate(int money) {
@@ -15,7 +15,7 @@ public class Money {
         }
     }
 
-    public int getMoney() {
-        return money;
+    public int getPayment() {
+        return payment;
     }
 }

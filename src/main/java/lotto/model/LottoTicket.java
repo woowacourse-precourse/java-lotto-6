@@ -15,11 +15,15 @@ public class LottoTicket {
                 .forEach(lottoPlays::add);
     }
 
-    public int getPlayCount() {
+    private List<Integer> randomize() {
+        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    }
+
+    public int numberOfPlays() {
         return lottoPlays.size();
     }
 
-    private List<Integer> randomize() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+    public List<Lotto> getLottoPlays() {
+        return lottoPlays;
     }
 }

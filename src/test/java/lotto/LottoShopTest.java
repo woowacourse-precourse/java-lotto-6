@@ -20,7 +20,7 @@ public class LottoShopTest {
     @CsvSource(value = {"1000,1", "2000,2", "3000,3", "4000,4", "5000,5"})
     void lottoPrice(long money, int numberOfPlays) {
         LottoTicket ticket = lottoShop.issueLottoTicket(money);
-        assertThat(ticket.getPlayCount()).isEqualTo(numberOfPlays);
+        assertThat(ticket.numberOfPlays()).isEqualTo(numberOfPlays);
     }
 
     @DisplayName("구입 금액이 1000원 미만이면 예외 처리한다.")

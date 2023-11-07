@@ -2,7 +2,7 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -40,7 +40,6 @@ public class Lotto {
         List<Lotto> lottos = new ArrayList<>();
         for (int i = 0; i < numberOfLotto; i++) {
             List<Integer> lotto = Lotto.randomNumber();
-            Collections.sort(lotto);
             lottos.add(new Lotto(lotto));
         }
         return lottos;
@@ -48,13 +47,10 @@ public class Lotto {
 
     public static void printLotto(List<Lotto> lottos) {
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            List<Integer> sortedList = new ArrayList<>(lotto.numbers);
+            sortedList.sort(Comparator.naturalOrder());
+            System.out.println(sortedList);
         }
-    }
-
-    @Override
-    public String toString() {
-        return numbers.toString();
     }
 
     public List<Integer> getNumbers() {

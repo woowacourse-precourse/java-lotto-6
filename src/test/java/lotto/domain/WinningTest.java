@@ -21,12 +21,22 @@ class WinningTest {
         assertThat(winning.getNumbers()).isEqualTo(numbers);
     }
 
-    @DisplayName("당첨 번호가 6자리가 아니라면 예외가 발생한다.")
+    @DisplayName("당첨 번호가 6자리 보다 크다면 예외가 발생한다.")
     @Test
-    void saveWinningNumbersByMismatchCount() {
+    void saveWinningNumbersByOverCount() {
+        Winning winning = new Winning();
+        assertThatThrownBy(() -> winning.setNumbers(List.of(1,2,3,4,5,6,7)))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("[ERROR] 로또 번호의 길이는 6자리 입니다.");
+    }
+
+    @DisplayName("당첨 번호가 6자리 보다 작다면 예외가 발생한다.")
+    @Test
+    void saveWinningNumbersByUnderCount() {
         Winning winning = new Winning();
         assertThatThrownBy(() -> winning.setNumbers(List.of(1,2,3,4,5)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 로또 번호의 길이는 6자리 입니다.");
     }
+
 }

@@ -14,7 +14,7 @@ public class LottoGame {
         List<Lotto> lottos = generateLottos(purchaseAmount);
         showLottos(lottos);
         System.out.println();
-        List<Integer> winningNumbers = getWinningNumbersFromUser();
+        List<Integer> winningNumbers = getValidWinningNumbers();
     }
 
     private static int getValidPurchaseAmount() {
@@ -67,6 +67,33 @@ public class LottoGame {
         return Arrays.stream(numbers)
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
+    }
+    private static List<Integer> getValidWinningNumbers() {
+        while (true) {
+            List<Integer> winningNumbers = getWinningNumbersFromUser();
+            try {
+                validateWinningNumbers(winningNumbers);
+                return winningNumbers;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+    private static void validateWinningNumbers(List<Integer> winningNumbers) {
+        if (winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
+        }
+        for (int num : winningNumbers) {
+            if (num < 1 || num > 45) {
+                throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
+        if (winningNumbers.size() != winningNumbers.stream().distinct().count()) {
+            throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 중복되지 않는 숫자 6개여야 합니다.");
+        }
+        if (winningNumbers.contains(0)) {
+            throw new IllegalArgumentException("[ERROR] 0은 유효한 로또 번호가 아닙니다.");
+        }
     }
 
 }

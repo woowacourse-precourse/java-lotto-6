@@ -14,12 +14,12 @@ public class Token {
     }
 
     private void validate(int amount) {
-        if (isWrongUnit(amount)) {
-            throw new IllegalArgumentException(WRONG_AMOUNT);
-        }
-
         if (isNotMinAmount(amount)) {
             throw new IllegalArgumentException(ALERT_MIN_AMOUNT);
+        }
+
+        if (isWrongUnit(amount)) {
+            throw new IllegalArgumentException(WRONG_AMOUNT);
         }
     }
 

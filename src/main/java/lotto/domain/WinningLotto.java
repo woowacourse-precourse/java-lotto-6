@@ -1,12 +1,12 @@
 package lotto.domain;
 
 public class WinningLotto {
-    private final Lotto lottoNumbers;
+    private final Lotto winningNumbers;
     private final Number bonusNumber;
 
     public WinningLotto(Lotto inputLottoNumbers, Number inputBonusNumber) {
         validateDuplicated(inputLottoNumbers, inputBonusNumber);
-        this.lottoNumbers = inputLottoNumbers;
+        this.winningNumbers = inputLottoNumbers;
         this.bonusNumber = inputBonusNumber;
     }
 
@@ -18,13 +18,13 @@ public class WinningLotto {
     }
 
     public LottoRank match(Lotto lottoNumbers) {
-        int count = count(lottoNumbers);
+        int count = countMatch(lottoNumbers);
         boolean bonusMatch = lottoNumbers.contains(bonusNumber);
         return LottoRank.of(count, bonusMatch);
     }
 
-    private int count(Lotto lottoNumbers) {
-        return (int) lottoNumbers.getNumbers()
+    private int countMatch(Lotto lottoNumbers) {
+        return (int) winningNumbers.getNumbers()
                 .stream()
                 .filter(lottoNumbers::contains)
                 .count();

@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Application {
@@ -15,7 +16,7 @@ public class Application {
     private static Lotto winLotto;
 
     private static int winBonusLottoNumber;
-    
+
     private static List<Integer> correctCount = new ArrayList<>();
     private static List<Integer> totalWinResult = new ArrayList<>();
 
@@ -25,8 +26,8 @@ public class Application {
         five(5, 0, 1_500_000, 2),
         four(4, 0, 50_000, 3),
         three(3, 0, 5_000, 4),
-        two(2,0,0,5),
-        one(1,0,0,6),
+        two(2, 0, 0, 5),
+        one(1, 0, 0, 6),
         nothing(0, 0, 0, 7);
 
         private final int corretNumbers;
@@ -89,8 +90,9 @@ public class Application {
     }
 
     private static Lotto inputLottoNumbers() {
-        List<Integer> lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        //Collections.sort(lottoNumbers);
+        List<Integer> lottoNumbers = new ArrayList<>(List.of());
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+//        lottoNumbers.sort(null);
         Lotto myLotto = new Lotto(lottoNumbers);
         return myLotto;
     }
@@ -103,9 +105,23 @@ public class Application {
         return myLottos;
     }
 
+    private static List<Integer> copyLottoNumbers(List<Integer> myLottoNumber) {
+        List<Integer> copyMyLottoNumbers = new ArrayList<>();
+        for (int i = 0; i < myLottoNumber.size(); i++) {
+            copyMyLottoNumbers.set(i, myLottoNumber.get(i));
+        }
+        return copyMyLottoNumbers;
+    }
+
     private static void printMyLottos(List<Lotto> myLottos, int purchaseNumber) {
         for (int i = 0; i < purchaseNumber; i++) {
-            myLottos.get(i).printLottoNumbers();
+            Lotto copyLotto = myLottos.get(i);
+            List<Integer> copyLottoNumbers = new ArrayList<>();
+            for (int j = 0; j < copyLotto.getLottoNumbers().size(); j++) {
+                copyLottoNumbers.add(copyLotto.getLottoNumbers().get(j));
+            }
+            Collections.sort(copyLottoNumbers);
+            System.out.println(copyLottoNumbers);
         }
         System.out.println();
     }
@@ -129,7 +145,7 @@ public class Application {
 
     private static void whatIsMyResult(List<Lotto> myLottos, int purchaseNumber) {
         lottoResult myResult;
-        for(int i = 0; i < purchaseNumber; i++) {
+        for (int i = 0; i < purchaseNumber; i++) {
             initializeCorrectCount();
             howManyCorrectLottoNumber(myLottos.get(i)); // 몇 개 맞았는지 검사 correctcount에 저장
             myResult = lottoResult.whatIsResult(); //six, five ... 당첨 결과
@@ -158,6 +174,16 @@ public class Application {
         }
     }
 
+    private static void printTotalWinResult() {
+        System.out.println("당첨 통계");
+        System.out.println("---");
+        System.out.println("3개 일치 (5,000원) - " + totalWinResult.get(4) + "개");
+        System.out.println("4개 일치 (50,000원) - " + totalWinResult.get(3) + "개");
+        System.out.println("5개 일치 (1,500,000원) - " + totalWinResult.get(2) + "개");
+        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + totalWinResult.get(1) + "개");
+        System.out.println("6개 일치 (2,000,000,000원) - " + totalWinResult.get(0) + "개");
+    }
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
         System.out.println("구입금액을 입력해 주세요.");
@@ -175,7 +201,7 @@ public class Application {
 
         System.out.println("보너스 번호를 입력해 주세요.");
         winBonusLottoNumber = inputBonusLottoNumber();
-        
+
         // 로또 번호 맞은 개수 카운트하는 리스트 초기화
         for (int i = 0; i < 2; i++) {
             correctCount.add(0);
@@ -185,5 +211,6 @@ public class Application {
         }
 
         whatIsMyResult(myLottos, purchaseNumber);
+        printTotalWinResult();
     }
 }

@@ -6,8 +6,9 @@ import lotto.utils.ErrorMessage;
 import lotto.utils.LottoPlace;
 import lotto.utils.LottoResult;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Lotto {
@@ -18,28 +19,24 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        sizeValidate(numbers);
+        uniqueValidate(numbers);
+
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
+    private void sizeValidate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
     }
 
     public static Lotto createLotto() {
-        List<Integer> pickedNumbers = Randoms.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, SIZE);
-        uniqueValidate(pickedNumbers);
+        List<Integer> pickedNumbers = new ArrayList<>(
+                Randoms.pickUniqueNumbersInRange(MIN_VALUE, MAX_VALUE, SIZE)
+        );
 
-        //todo: 다른 식으로 구현할 수 있을까? -> 너무 레거시스러움
-        Collections.sort(pickedNumbers, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1 - o2;
-            }
-        });
-
+        Collections.sort(pickedNumbers);
         return new Lotto(pickedNumbers);
     }
 
@@ -51,16 +48,16 @@ public class Lotto {
 
         LottoResult correctResult = countCorrectNumbers(winningManager.getWinningNumbers());
 
-        if(correctResult != LottoResult.FIVE){
+        if (correctResult != LottoResult.FIVE) {
             return correctResult.getLottoPlace();
         }
 
         return calLottoPlaceWithBonusNumber(winningManager.getBonusNumber());
     }
 
-    private LottoPlace calLottoPlaceWithBonusNumber(WinningNumber bonusNumber){
-        for(int number:numbers){
-            if(bonusNumber.isNumberExist(number)){
+    private LottoPlace calLottoPlaceWithBonusNumber(WinningNumber bonusNumber) {
+        for (int number : numbers) {
+            if (bonusNumber.isNumberExist(number)) {
                 return LottoPlace.SECOND;
             }
         }
@@ -77,26 +74,25 @@ public class Lotto {
             }
         }
 
-        LottoResult correctCount=LottoResult.NONE;
+        LottoResult correctCount = LottoResult.NONE;
 
-        for(LottoResult result:LottoResult.values()){
-            if(result.getMinCorrectCount()>count){
+        for (LottoResult result : LottoResult.values()) {
+            if (result.getMinCorrectCount() > count) {
                 break;
             }
 
-            correctCount=result;
+            correctCount = result;
         }
 
         return correctCount;
     }
 
-    //todo: use set?
     private static void uniqueValidate(List<Integer> pickedNumbers) {
         boolean[] alreadyChecked = new boolean[MAX_VALUE + 1];
 
         for (int number : pickedNumbers) {
             if (alreadyChecked[number]) {
-                throw new DuplicateException(ErrorMessage.DUPLICATED_VALUES.getErrorMessage());
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATED_VALUES.getErrorMessage());
             }
 
             alreadyChecked[number] = true;

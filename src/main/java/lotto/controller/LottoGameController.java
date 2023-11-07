@@ -20,4 +20,8 @@ public class LottoGameController {
     private Lottos issueLottos(Money money) {
         return LottoDispenser.issueLottos(money);
     }
+
+    private void printIssuedLottos(Lottos lottos) {
+        OutputView.printIssuedLottosInformation(lottos);
+    }
 }

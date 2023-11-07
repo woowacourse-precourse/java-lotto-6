@@ -49,8 +49,8 @@ public class InputValidator {
     }
 
     private static void checkJackpotNumberSize(String jackpotNumberInput) {
-        String replaceNumberInput = jackpotNumberInput.replace(",", "");
-        if (replaceNumberInput.length() != 6) {
+        String[] jackpotNumbers = jackpotNumberInput.split(",");
+        if (jackpotNumbers.length != 6) {
             throw new IllegalArgumentException(ErrorMessage.JACKPOT_NUMBER_SIZE_ERROR.getErrorMessage());
         }
     }

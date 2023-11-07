@@ -155,7 +155,8 @@ class UserInputManagerTest {
 			testMethod.invoke(testClass, "2,5,11,17,19,47");
 		} catch (InvocationTargetException e) {
 			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue() + " 이하의 숫자를 입력하세요.");
+				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue()
+					+ " 이하의 숫자를 입력하세요.");
 		}
 	}
 
@@ -216,7 +217,8 @@ class UserInputManagerTest {
 			testMethod.invoke(testClass, "47", new ArrayList<>(Arrays.asList(2, 5, 11, 17, 19, 23)));
 		} catch (InvocationTargetException e) {
 			assertThat(e.getCause()).isInstanceOf(IllegalArgumentException.class)
-				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue() + " 이하의 숫자를 입력하세요.");
+				.hasMessage("[ERROR] " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue()
+					+ " 이하의 숫자를 입력하세요.");
 		}
 	}
 

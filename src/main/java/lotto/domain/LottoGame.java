@@ -6,15 +6,6 @@ import java.util.List;
 public class LottoGame {
 	static final int LOTTO_PRICE = 1000;
 
-	public void runLottoGame() {
-		int purchaseAmount = getPurchaseAmount();
-		List<Lotto> lottos = generateLottoTickets(purchaseAmount);
-		List<Integer> winningNumber = getWinningNumber();
-		int bonusNumber = getBonusNumber(winningNumber);
-
-		LottoResultCalculator.printWinningDetails(lottos, winningNumber, bonusNumber);
-	}
-
 	private static List<Lotto> generateLottoTickets(int purchaseAmount) {
 		int numberOfLotto = purchaseAmount / LOTTO_PRICE;
 		List<Lotto> lottos = new ArrayList<>();
@@ -70,5 +61,14 @@ public class LottoGame {
 			break;
 		}
 		return purchaseAmount;
+	}
+
+	public void runLottoGame() {
+		int purchaseAmount = getPurchaseAmount();
+		List<Lotto> lottos = generateLottoTickets(purchaseAmount);
+		List<Integer> winningNumber = getWinningNumber();
+		int bonusNumber = getBonusNumber(winningNumber);
+
+		LottoResultCalculator.printWinningDetails(lottos, winningNumber, bonusNumber);
 	}
 }

@@ -8,4 +8,8 @@ public class Validator {
     public static boolean isMultipleOf1000(int money) {
         return money % 1000 == 0;
     }
+
+    public static boolean isThousandOrMore(int number) {
+        return number >= 1000;
+    }
 }

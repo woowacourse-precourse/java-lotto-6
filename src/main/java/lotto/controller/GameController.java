@@ -38,7 +38,6 @@ public class GameController {
 
     private void purchaseLottos() {
         lottosPurchased = new LottosPurchased(amount.getAmount());
-        outputView.printNumberOfLottosPurchased(lottosPurchased.getNumberOfLottos());
         outputView.printLottosPurchased(lottosPurchased.getLottos());
         System.out.println();
     }

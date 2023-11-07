@@ -9,5 +9,11 @@ public class Info {
     public Info(int numOfLotto) {
         this.numOfLotto = numOfLotto;
         this.statistics = new int[NUM_OF_GRADES+1];
+        this.rewards = 0;
+    }
+
+    public void addStatistic(Grade grade) {
+        statistics[grade.getGrade()]++;
+        rewards += grade.price;
     }
 }

@@ -1,9 +1,7 @@
-package lotto;
+package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Comparator;
-import lotto.domain.Lotto;
-import lotto.domain.LottoRank;
+import lotto.message.Result;
 import lotto.ui.InputHandler;
 import lotto.ui.OutputHandler;
 
@@ -20,13 +18,8 @@ public class LottoGame {
     public void run () {
         int purchaseAmount = getPurchaseAmount();
         List<Lotto> lottoBundle = new ArrayList<>();
-        int temp = purchaseAmount;
-        while (temp != 0) {
-            temp -= 1000;
-            List<Integer> numbers = new ArrayList<>(generateNumbers());
-            Collections.sort(numbers);
-            lottoBundle.add(new Lotto(numbers));
-        }
+        buyLottoBundle(purchaseAmount, lottoBundle);
+
         System.out.println(lottoBundle.size() + "개를 구매했습니다.");
         for (Lotto lotto : lottoBundle) {
             System.out.println(lotto.toString());
@@ -38,19 +31,24 @@ public class LottoGame {
                 .toList(); // 리스트로 수집
 
         int bonusNumber = inputHandler.getBonusNumber();
+        LottoService lottoService = new LottoService();
+        lottoService.compare(lottoBundle, winnerNumbers, bonusNumber);
+        long profit = lottoService.getProfit();
+        double profitRate = profit / (double) purchaseAmount * 100;
+
+        printResults(lottoService, profitRate);
+
+    }
+
+    private void printResults(LottoService lottoService, double profitRate) {
         System.out.println("당첨 통계");
         System.out.println("---");
-        Comparator comparator = new Comparator();
-        comparator.compare(lottoBundle, winnerNumbers, bonusNumber);
-        long profit = comparator.getProfit();
-        double profitRate = profit / (double) purchaseAmount * 100;
-        System.out.printf(LottoRank.FIFTH_PLACE.getRankFormat() + "%n", comparator.getNumOfFifthPlace());
-        System.out.printf(LottoRank.FOURTH_PLACE.getRankFormat() + "%n", comparator.getNumOfFourthPlace());
-        System.out.printf(LottoRank.THIRD_PLACE.getRankFormat() + "%n", comparator.getNumOfThirdPlace());
-        System.out.printf(LottoRank.SECOND_PLACE.getRankFormat() + "%n", comparator.getNumOfSecondPlace());
-        System.out.printf(LottoRank.FIRST_PLACE.getRankFormat() + "%n", comparator.getNumOfFirstPlace());
-        System.out.printf(LottoRank.TOTAL.getRankFormat() + "%n", profitRate);
-
+        System.out.printf(Result.FIFTH_PLACE.getMessage() + "%n", lottoService.getNumOfFifthPlace());
+        System.out.printf(Result.FOURTH_PLACE.getMessage() + "%n", lottoService.getNumOfFourthPlace());
+        System.out.printf(Result.THIRD_PLACE.getMessage() + "%n", lottoService.getNumOfThirdPlace());
+        System.out.printf(Result.SECOND_PLACE.getMessage() + "%n", lottoService.getNumOfSecondPlace());
+        System.out.printf(Result.FIRST_PLACE.getMessage() + "%n", lottoService.getNumOfFirstPlace());
+        System.out.printf(Result.TOTAL_PROFIT_RATE.getMessage() + "%n", profitRate);
     }
 
     private void buyLottoBundle(int purchaseAmount, List<Lotto> lottoBundle) {

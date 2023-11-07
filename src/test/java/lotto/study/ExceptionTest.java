@@ -2,6 +2,9 @@ package lotto.study;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.function.Supplier;
+import lotto.common.log.Logger;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -96,7 +99,6 @@ public class ExceptionTest {
                 break;
             } catch (IllegalArgumentException e) {
                 hasError = true;
-                isSuccess = returnTrueWhenSuccessOrThrowException(hasError);
             }
         }
 
@@ -113,5 +115,37 @@ public class ExceptionTest {
         if (!hasError) {
             throw new IllegalArgumentException("예외 발생");
         }
+    }
+
+    @DisplayName("함수형 인터페이스를 이용해 매개변수로 받은 메소드를 예외가 발생하지 않을 떄 까지 반복할 수 있다.")
+    @Test
+    void usingFunctionalInterfaceCanRepeatGivenMethodUntilNoException() {
+        // given
+        boolean hasError = false;
+
+        // when
+        boolean result
+            = executeWithExceptionHandle(() -> returnTrueWhenRandomValueIsOne());
+
+        // then
+        assertThat(result).isEqualTo(true);
+    }
+
+    <T> T executeWithExceptionHandle(final Supplier<T> supplier) {
+        while (true) {
+            try {
+                return supplier.get();
+            } catch (IllegalArgumentException e) {
+                // log
+            }
+        }
+    }
+
+    boolean returnTrueWhenRandomValueIsOne() {
+        int value = Randoms.pickNumberInRange(0, 100);
+        if (value == 1) {
+            return true;
+        }
+        throw new IllegalArgumentException("에러 발생");
     }
 }

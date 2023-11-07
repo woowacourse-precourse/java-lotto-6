@@ -9,6 +9,7 @@ import static lotto.calculator.ProfitCalculator.*;
 import static lotto.calculator.BuyTicketsCalculator.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Application {
     public static void main(String[] args) {
@@ -20,7 +21,7 @@ public class Application {
         int lottoCount = getLottoListSize(buyMoney);
         printLottoCount(lottoCount);
 
-        ArrayList<Lotto> lottoList = makeLottoList(lottoCount);
+        List<Lotto> lottoList = makeLottoList(lottoCount);
         printLottoSet(lottoList);
 
         System.out.println();

@@ -14,4 +14,16 @@ public class Validator {
             return true;
         }
     }
+
+    public void isPurchaseAmountPositive(String input) {
+        if (Integer.parseInt(input) <= 0) {
+            throw new ArithmeticException();
+        }
+    }
+
+    public void isPurchaseAmountDividedUp(String input) {
+        if (Integer.parseInt(input) % 1000 != 0) {
+            throw new ArithmeticException();
+        }
+    }
 }

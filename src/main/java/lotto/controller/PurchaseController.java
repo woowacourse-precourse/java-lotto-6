@@ -8,6 +8,8 @@ import lotto.view.InputView;
 
 import static lotto.controller.LotteryGameController.*;
 import static lotto.domain.constants.LottoConstraint.LOTTO_PRICE;
+import static lotto.domain.validation.ExceptionMessage.EXCEPTION_MESSAGE_PREFIX;
+import static lotto.domain.validation.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
 
 public class PurchaseController {
 
@@ -31,6 +33,15 @@ public class PurchaseController {
         while (validator.isPurchaseAmountInteger(input)) {
             return amountOfLottos();
         }
+
+        try {
+            validator.isPurchaseAmountPositive(input);
+            validator.isPurchaseAmountDividedUp(input);
+        } catch (ArithmeticException e) {
+            System.out.println(EXCEPTION_MESSAGE_PREFIX.getMessage() + NUMBER_FORMAT_EXCEPTION.getMessage());
+            return amountOfLottos();
+        }
+
         return Integer.parseInt(input);
     }
 

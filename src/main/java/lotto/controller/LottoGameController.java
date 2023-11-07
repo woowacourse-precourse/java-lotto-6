@@ -54,21 +54,15 @@ public class LottoGameController {
     }
 
     private WinningLotto createValidWinningLotto(List<Integer> winningNumbers) {
-        while (true) {
-            try {
-                int bonusNumber = getValidBonusNumber(winningNumbers);
-                return new WinningLotto(winningNumbers, bonusNumber);
-            } catch (IllegalArgumentException e) {
-                view.printErrorMessage(e.getMessage());
-            }
-        }
+        int bonusNumber = getValidatedBonusNumber(winningNumbers);
+        return new WinningLotto(winningNumbers, bonusNumber);
     }
 
-    private int getValidBonusNumber(List<Integer> winningNumbers) {
+    private int getValidatedBonusNumber(List<Integer> winningNumbers) {
         while (true) {
+            String bonusNumberInput = view.requestBonusNumber();
             try {
-                String bonusNumberInput = view.requestBonusNumber();
-                return inputValidator.validateBonusNumber(bonusNumberInput);
+                return inputValidator.validateBonusNumber(winningNumbers, bonusNumberInput);
             } catch (IllegalArgumentException e) {
                 view.printErrorMessage(e.getMessage());
             }

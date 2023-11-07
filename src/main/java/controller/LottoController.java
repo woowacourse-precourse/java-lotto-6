@@ -7,6 +7,7 @@ import static view.InputView.inputWinningLottoNumber;
 
 
 import domain.Amount;
+import domain.Lotto;
 import domain.Lottos;
 import domain.Result;
 import domain.WinningLotto;
@@ -25,7 +26,9 @@ public class LottoController {
         lottos.outputLottos();
 
         //당첨 번호 입력, 보너스 번호 입력
-        WinningLotto winningLotto = new WinningLotto(inputWinningLottoNumber(), inputBonusNumber());
+        Lotto lotto = new Lotto(inputWinningLottoNumber());
+        int bonusNumber = inputBonusNumber();
+        WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 
         //당첨 통계 계산
         Result result = new Result(lottos, winningLotto);

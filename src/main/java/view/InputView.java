@@ -30,9 +30,9 @@ public class InputView {
         }
     }
 
-    public static Lotto inputWinningLottoNumber() {
+    public static List<Integer> inputWinningLottoNumber() {
         System.out.println(INPUT_WINNING_LOTTO_NUMBER.getProgressMessage());
-        return new Lotto(validateIsLotto());
+        return validateIsLotto();
     }
 
     private static List<Integer> validateIsLotto(){

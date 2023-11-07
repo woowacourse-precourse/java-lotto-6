@@ -1,6 +1,5 @@
 package domain;
 
-import static java.util.Collections.sort;
 import static util.ErrorMessage.CANT_DUPLICATE_NUMBER;
 import static util.ErrorMessage.LOTTO_COUNT_LIMIT;
 import static util.ErrorMessage.LOTTO_NUMBER_RANGE;
@@ -14,20 +13,14 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
-        this.numbers = numbers;
+        this.numbers = validate(numbers);
     }
 
-    private void validate(List<Integer> numbers) {
-        if(!validateSize(numbers)){
-            inputWinningLottoNumber();
+    private List<Integer> validate(List<Integer> numbers) {
+        if(!validateSize(numbers) || !validateDuplicate(numbers) || !validateRange(numbers)){
+            return validate(inputWinningLottoNumber());
         }
-        if(!validateDuplicate(numbers)){
-            inputWinningLottoNumber();
-        }
-        if(!validateRange(numbers)){
-            inputWinningLottoNumber();
-        }
+        return numbers;
     }
 
     private boolean validateSize(List<Integer> numbers){

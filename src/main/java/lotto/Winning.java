@@ -4,7 +4,6 @@ import lotto.constant.Constant;
 
 import java.util.*;
 
-import static lotto.UserInput.*;
 import static lotto.common.Common.strToInt;
 
 public class Winning {
@@ -55,20 +54,20 @@ public class Winning {
         }};
     }
 
-    private void validBonus(List<Integer>listNum, int bonus){
+    private void validBonus(List<Integer>listNumber, int bonus){
         validNum(bonus);
-        if (listNum.contains(bonus)) {
+        if (listNumber.contains(bonus)) {
             throw new IllegalArgumentException(
                     Constant.error + Constant.existNumber
             );
         }
     }
 
-    private int getBonus(List<Integer> listNumber){
-        int bonus = strToInt(inputBonus());
+    public void setBonus(String strBonus){
+        int bonus = strToInt(strBonus);
 
-        validBonus(listNumber, bonus);
-        return bonus;
+        validBonus(this.listNumber, bonus);
+        this.bonus = bonus;
     }
 
     private void validNum(int num){
@@ -87,23 +86,22 @@ public class Winning {
         }
     }
 
-    private List<Integer> getListNumber(){
-        String[] arrWinning = inputNumbers().split(",");
+    public void setListNumber(String[] arr){
         List<Integer> listNumber = new ArrayList<>();
 
-        validArray(arrWinning);
-        for (String s : arrWinning) {
+        validArray(arr);
+        for (String s : arr) {
             int num = strToInt(s);
             validNum(num);
             listNumber.add(num);
         }
-        return listNumber;
+        this.listNumber = listNumber;
     }
 
     public Winning(){
-        this.listNumber = getListNumber();
-        this.bonus = getBonus(this.listNumber);
+        this.listNumber = new ArrayList<>();
+        this.bonus = 0;
         this.map = initMap();
-        this.listPrize = getListPrize(map);
+        this.listPrize = getListPrize(this.map);
     }
 }

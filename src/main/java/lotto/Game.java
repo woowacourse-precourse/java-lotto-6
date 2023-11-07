@@ -4,6 +4,8 @@ import java.text.DecimalFormat;
 import java.util.*;
 
 import static camp.nextstep.edu.missionutils.Randoms.pickUniqueNumbersInRange;
+import static lotto.UserInput.inputBonus;
+import static lotto.UserInput.inputNumbers;
 
 public class Game {
 
@@ -18,9 +20,7 @@ public class Game {
             int value = map.get(key);
             rate += (key * value);
         }
-        if (rate == 0) return 0;
-        rate = (rate - money) / money;
-        return (rate * 100);
+        return (rate - money) / money * 100;
     }
 
     private void printRate(HashMap<Integer,Integer> map){
@@ -84,6 +84,10 @@ public class Game {
 
         printListLotto(this.listLotto);
         Winning winning = new Winning();
+        String[] Numbers = inputNumbers().split(",");
+        winning.setListNumber(Numbers);
+        String strBonus = inputBonus();
+        winning.setBonus(strBonus);
         winning.calc(this.listLotto);
         viewResult(winning);
     }

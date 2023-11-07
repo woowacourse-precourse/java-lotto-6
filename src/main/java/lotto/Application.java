@@ -16,11 +16,13 @@ public class Application {
         int ticketCount = purchaseAmount / LOTTO_TICKET_PRICE;
         Lotto[] tickets = new Lotto[ticketCount];
 
+        System.out.printf("\n%d개를 구매했습니다.\n", ticketCount);
         for (int i = 0; i < ticketCount; i++) {
             tickets[i] = Lotto.generate();
+            System.out.println(tickets[i].getNumbers());
         }
 
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String lottoNumbers = readLine();
 
         List<Integer> numbers = Arrays.stream(lottoNumbers.split(","))
@@ -28,7 +30,7 @@ public class Application {
                 .boxed()
                 .collect(Collectors.toList());
 
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println("\n보너스 번호를 입력해 주세요.");
         int bonusNumber = Integer.parseInt(readLine());
 
         WinningNumbers win = new WinningNumbers(numbers, bonusNumber);
@@ -41,7 +43,7 @@ public class Application {
 
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 5; i >= 1; i--) {
             if (i == 1) {
                 System.out.println(WinMessageType.FIRST.getDetail() + " - " + rankCount[i]);
             } else if (i == 2) {

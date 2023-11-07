@@ -15,6 +15,8 @@ public class Writer {
     private static final String BONUS_RESULT_FORMAT = "%d개 일치, 보너스 볼 일치 (%s)원 - %d개";
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###");
     private static final String RATE_OF_RETURN_FORMAT = "총 수익률은 %.1f%%입니다.";
+    private static final String WINNING_RESULT = "당첨 통계";
+    private static final String LINE = "---";
 
 
     public static void purchaseAmount() {
@@ -34,12 +36,14 @@ public class Writer {
     }
 
     public static void result(Map<Grade, Integer> result) {
+        System.out.println(WINNING_RESULT);
+        System.out.println(LINE);
         StringJoiner stringJoiner = new StringJoiner("\n");
         for (Grade grade : result.keySet()) {
             if (grade.equals(Grade.NONE)) {
                 continue;
             }
-            if (grade.equals(Grade.FIVE_AND_BONUS)){
+            if (grade.equals(Grade.FIVE_AND_BONUS)) {
                 String price = DECIMAL_FORMAT.format(grade.getPrice());
                 stringJoiner.add(String.format(BONUS_RESULT_FORMAT, grade.getAnswer(), price, result.get(grade)));
                 continue;
@@ -51,6 +55,6 @@ public class Writer {
     }
 
     public static void rateOfReturn(Double rateOfReturn) {
-        System.out.println(String.format(RATE_OF_RETURN_FORMAT,rateOfReturn));
+        System.out.println(String.format(RATE_OF_RETURN_FORMAT, rateOfReturn));
     }
 }

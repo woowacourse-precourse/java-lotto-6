@@ -3,11 +3,14 @@ package lotto.dto;
 import lotto.domain.Lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public record RequestLottos(
-        List<Lotto> lottoDummy
+        List<RequestLotto> lottoDummy
 ) {
-    public static RequestLottos of(final List<Lotto> lottoDummy) {
+    public static RequestLottos of(final List<RequestLotto> lottoDummy) {
         return new RequestLottos(lottoDummy);
     }
+
+
 }

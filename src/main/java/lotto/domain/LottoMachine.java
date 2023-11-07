@@ -21,26 +21,26 @@ public class LottoMachine {
         return new LottoMachine(numberGenerator, cash);
     }
 
-    public Lottos purchaseLottos() {
+    public RequestLottos purchaseLottos() {
         final RequestLottos requestLottos = generateLottosByCash();
-        return Lottos.create(requestLottos.lottoDummy());
+        return requestLottos;
     }
 
     private RequestLottos generateLottosByCash() {
-        List<Lotto> generatedNumbersDummy = new ArrayList<>();
+        List<RequestLotto> generatedNumbersDummy = new ArrayList<>();
         while (cash.isAfford()) {
             cash.spendOneUnit();
-            final Lotto lotto = generateLotto();
-            generatedNumbersDummy.add(lotto);
+            final RequestLotto requestLotto = generateLotto();
+            generatedNumbersDummy.add(requestLotto);
         }
 
         return RequestLottos.of(generatedNumbersDummy);
     }
 
-    private Lotto generateLotto() {
+    private RequestLotto generateLotto() {
         final List<Integer> numbers = numberGenerator.generateNumbers();
         final RequestLotto requestLotto = RequestLotto.of(numbers);
-        return Lotto.create(requestLotto.numbers());
+        return requestLotto;
     }
 
 

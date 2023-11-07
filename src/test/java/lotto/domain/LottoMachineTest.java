@@ -24,7 +24,7 @@ class LottoMachineTest {
     void setUp() {
         numberGenerator = () -> List.of(1, 2, 3, 4, 5, 6);
         cash = Cash.create(1000, 0);
-        lottoMachine = new LottoMachine(numberGenerator, cash);
+        lottoMachine = LottoMachine.create(numberGenerator, cash);
     }
 
     @DisplayName("로또 구매 기능 성공 테스트")
@@ -33,7 +33,8 @@ class LottoMachineTest {
         Lotto expected = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
 
         Lottos lottos = lottoMachine.purchaseLottos();
-        Lotto result = lottos.getLottos()
+        Lotto result = lottos
+                        .getLottos()
                         .get(0);
 
         assertThat(result

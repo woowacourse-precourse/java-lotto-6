@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.*;
 import lotto.dto.RequestCash;
+import lotto.dto.RequestLottos;
 import lotto.dto.RequestWinnerLotto;
 import lotto.util.NumberGenerator;
 import lotto.util.UniqueRandomNumbersGenerator;
@@ -42,15 +43,14 @@ public class GameController {
         }
     }
 
-
-
-
     private Lottos purchaseLotto(Cash cash) {
         LottoMachine lottoMachine = LottoMachine.create(numberGenerator, cash);
-        Lottos lottos = lottoMachine.purchaseLottos();
+        RequestLottos requestLottos = lottoMachine.purchaseLottos();
+        Lottos lottos = Lottos.create(requestLottos.createLottoDummy());
         outputView.printPurchasedLottos(lottos);
         return lottos;
     }
+
 
 
     private WinnerLotto getWinnerLotto() throws IllegalStateException {

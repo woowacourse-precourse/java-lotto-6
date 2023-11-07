@@ -24,10 +24,10 @@ public class User {
     public List<Integer> winningNumbers() {
         System.out.println("당첨 번호를 입력해 주세요.");
         List<Integer> numbers = new ArrayList<>();
-        while(numbers.size() < 6) {
-            int num = Integer.parseInt(Console.readLine());
-            if (!numbers.contains(num))
-                numbers.add(num);
+        String inputNumbers = Console.readLine();
+        String[] inputArray = inputNumbers.split(",");
+        for (int i = 0; i < inputArray.length; i++) {
+            numbers.add(Integer.valueOf(inputArray[i]));
         }
 
         try {

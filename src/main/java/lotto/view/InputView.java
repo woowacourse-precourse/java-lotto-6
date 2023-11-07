@@ -27,7 +27,7 @@ public class InputView {
 
     public WinningLotto requestWinningLotto() {
         WinningLotto winningLotto = requestSixNumbers();
-        winningLotto.setBonusNumber(requestBonusNumber());
+        requestBonusNumber(winningLotto);
         return winningLotto;
     }
 
@@ -44,14 +44,14 @@ public class InputView {
         return null;
     }
 
-    private Integer requestBonusNumber() {
+    private void requestBonusNumber(WinningLotto winningLotto) {
         try {
             System.out.println(OutputMessage.REQUEST_BONUS_NUMBER.getMessage());
             String bonusNumber = Console.readLine();
-            return Integer.parseInt(bonusNumber);
+            winningLotto.setBonusNumber(Integer.parseInt(bonusNumber));
         } catch (IllegalArgumentException e) {
             this.printError(e);
-            requestBonusNumber();
+            requestBonusNumber(winningLotto);
         }
         return null;
     }

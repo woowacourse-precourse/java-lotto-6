@@ -26,22 +26,38 @@ public class GameController {
         Game game = new Game(cost);
 
         outputView.printLottoQuantity(game.getLottoQuantity());
-
         gameService.purchaseLotto(game);
 
+        printLottoInfo(game);
+
+        List<Integer> winnerNumber = getWinnerNumber();
+        int bonusNumber = getBonusNumber(winnerNumber);
+
+        printLottoResult(game, winnerNumber, bonusNumber);
+    }
+
+    private void printLottoInfo(Game game) {
         for(LottoDto dto : game.getLottoNumbers()) {
             outputView.printPurchasedLotto(dto.getLottoNumber());
         }
         outputView.printNewLine();
+    }
 
+    private List<Integer> getWinnerNumber() {
         List<Integer> winnerNumber = inputView.getWinnerNumber();
         outputView.printNewLine();
 
+        return winnerNumber;
+    }
+
+    private int getBonusNumber(List<Integer> winnerNumber) {
         int bonusNumber = inputView.getBonusNumber(winnerNumber);
         outputView.printNewLine();
+        return bonusNumber;
+    }
 
+    private void printLottoResult(Game game, List<Integer> winnerNumber, int bonusNumber) {
         gameService.getLottoResult(game, winnerNumber, bonusNumber);
-
         outputView.printGameResults(game.getResultInfo());
         outputView.printGameProfit(game.getGameProfit());
     }

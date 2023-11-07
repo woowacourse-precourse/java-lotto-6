@@ -40,13 +40,14 @@ public class LottoController {
     private Lottos purchaseLotto() {
         try {
             PurchaseAmountDto purchaseAmountDto = inputView.inputPurchaseAmount();
+
             Lottos lottos = lottoMachine.issuedLottos(mapToPurchaseAmount(purchaseAmountDto));
 
             outputView.printPurchaseQuantityLottos(purchaseAmountDto);
             outputView.printIssuedPurchaseResult(mapToLottosDto(lottos));
 
             return lottos;
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return purchaseLotto();
         }
@@ -84,7 +85,7 @@ public class LottoController {
             WinningLottoDto winningLottoDto = inputView.inputWinningLotto();
             WinningLotto winningLotto = mapToWinningLotto(winningLottoDto);
             return winningLotto;
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return getWinningLotto();
         }
@@ -95,7 +96,7 @@ public class LottoController {
             BonusNumberDto bonusNumberDto = inputView.inputBonusNumber();
             BonusNumber bonusNumber = mapToBonusNumber(bonusNumberDto, winningLotto);
             return bonusNumber;
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             return getBonusNumber(winningLotto);
         }
@@ -117,7 +118,7 @@ public class LottoController {
         try {
             ProfitRate profitRate = lottoMachine.calculateProfitRate(lottos, drawingResults);
             outputView.printProfitRate(mapToProfitRateDto(profitRate));
-        } catch (Exception exception) {
+        } catch (IllegalArgumentException exception) {
             System.out.println(exception.getMessage());
             profitRate(lottos, drawingResults);
         }

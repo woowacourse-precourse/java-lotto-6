@@ -2,10 +2,8 @@ package lotto.domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 import java.util.List;
-import lotto.domain.LottoTicketGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,8 +48,8 @@ class LottoTicketGeneratorTest {
     void createLottoTicketTest() {
         LottoTicketGenerator lottoTicketGenerator = new LottoTicketGenerator(1000);
         List<Integer> result = lottoTicketGenerator.createLottoTicket();
-        for (Integer lottoNumber : result){
-            assertThat(lottoNumber).isBetween(1,45);
+        for (Integer lottoNumber : result) {
+            assertThat(lottoNumber).isBetween(1, 45);
         }
     }
 

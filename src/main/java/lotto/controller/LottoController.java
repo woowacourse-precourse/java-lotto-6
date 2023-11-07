@@ -23,14 +23,14 @@ public class LottoController {
     }
 
     public void run() {
+        buyLotto();
+        checkLottoWinning();
+    }
+
+    private void buyLotto() {
         LottoBuyPrice lottoBuyPrice = inputLottoBuyPrice();
         List<LottoNumbers> buyLottoNumbers = lottoService.buyLotto(lottoBuyPrice);
         OutputView.printBuyLottoResultMessage(buyLottoNumbers);
-
-        LottoWinningNumber lottoWinningNumber = inputLottoWinningNumber();
-        LottoBonusNumber lottoBonusNumber = inputLottoBonusNumber(lottoWinningNumber.getNumbers());
-        LottoWinningResult lottoWinningResult = lottoService.checkLottoWinningResult(lottoWinningNumber, lottoBonusNumber);
-        OutputView.printLottoWinningResult(lottoWinningResult);
     }
 
     private LottoBuyPrice inputLottoBuyPrice() {
@@ -43,6 +43,13 @@ public class LottoController {
 
             return inputLottoBuyPrice();
         }
+    }
+
+    private void checkLottoWinning() {
+        LottoWinningNumber lottoWinningNumber = inputLottoWinningNumber();
+        LottoBonusNumber lottoBonusNumber = inputLottoBonusNumber(lottoWinningNumber.getNumbers());
+        LottoWinningResult lottoWinningResult = lottoService.checkLottoWinningResult(lottoWinningNumber, lottoBonusNumber);
+        OutputView.printLottoWinningResult(lottoWinningResult);
     }
 
     private LottoWinningNumber inputLottoWinningNumber() {

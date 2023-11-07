@@ -24,5 +24,15 @@ public class PlayerLottoAmount {
 
     }
 
+    public int validateNumber(String amount) {
+
+        boolean isDigit = amount.chars().allMatch(Character::isDigit);
+        if (!isDigit) {
+            throw new IllegalArgumentException(ExceptionMessage.NOT_NUMBER_ERROR.getExceptionValue());
+
+        }
+        return Integer.parseInt(amount);
+    }
+
 
 }

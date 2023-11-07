@@ -23,7 +23,7 @@ public class LottoTicket {
     public void printLottoTicket() {
         System.out.printf("%n%d개를 구매했습니다.%n", lottos.size());
         for (Lotto lotto : lottos) {
-            System.out.println(lotto);
+            System.out.println(lotto.getNumbers());
         }
     }
 

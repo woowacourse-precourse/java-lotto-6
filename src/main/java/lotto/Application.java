@@ -11,6 +11,7 @@ class IllegalArgumentException extends Exception{
 }
 
 public class Application {
+	final int[] prizeMoney = {2000000000, 30000000, 1500000, 50000, 5000};
 	private int lottoCnt, purchase;
 	private boolean vaildMoney = false, validWinningNum = false, validBonusNum = false;
 	private ArrayList<Integer> winningNumbers, rankCnt;
@@ -280,9 +281,12 @@ public class Application {
 	}
 	
 	private double calUserProfit() {
-		return 0.0;
+		double result = 0.0;
+		for (int i=0; i<5; i++) {
+			result += (rankCnt.get(i) * prizeMoney[i]);
+		}
+		return result;
 	}
-	
 	
     public static void main(String[] args) {
     	Application game = new Application();

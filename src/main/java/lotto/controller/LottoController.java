@@ -6,7 +6,7 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.domain.LottoGame;
 import lotto.domain.LottoTicket;
-import lotto.domain.WinningRank;
+import lotto.domain.result.WinningRank;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 

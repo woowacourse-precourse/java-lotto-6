@@ -1,6 +1,8 @@
-package lotto.domain;
+package lotto.domain.result;
 
 import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.LottoGame;
 
 public class LottoResult {
     private int match;

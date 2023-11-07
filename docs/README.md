@@ -29,9 +29,9 @@
 - [X] 모든 에러 문구는 "[ERROR]"로 시작하는 문구를 출력해야 한다. 
 
 ### 추가 요구사항
-- [ ] indent depth는 2.
-- [ ] 메소드 길이 15라인 이하.
-- [ ] else 예약어를 쓰지 않는다.
-- [ ] Java Enum 적용.
-- [ ] 도메인 로직에 단위 테스트를 구현. 단, UI(System.out, System.in, Scanner) 로직 제외.
-- [ ] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현.
+- [X] indent depth는 2.
+- [X] 메소드 길이 15라인 이하.
+- [X] else 예약어를 쓰지 않는다.
+- [X] Java Enum 적용.
+- [X] 도메인 로직에 단위 테스트를 구현. 단, UI(System.out, System.in, Scanner) 로직 제외.
+- [X] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현.

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.WinningRank;
+import lotto.domain.result.WinningRank;
 
 public class ResultFormatter {
     private static final String CASH_PRIZE_REGEX = "\\B(?=(\\d{3})+(?!\\d))";

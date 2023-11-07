@@ -9,7 +9,7 @@ public enum BudgetException {
     private final String message;
 
     BudgetException(String message) {
-        this.message = String.format(BASE_MESSAGE, message);
+        this.message = String.join(BASE_MESSAGE, message);
     }
 
     public String getMessage() {

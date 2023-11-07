@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoTicket;
-import lotto.domain.WinningRank;
+import lotto.domain.result.WinningRank;
 
 public class OutputView {
     private enum ConsoleMessage {

@@ -1,18 +1,17 @@
 package lotto.views;
 
+import camp.nextstep.edu.missionutils.Console;
 import lotto.constants.StringConstants;
 import lotto.domain.LottoWinning;
-import lotto.io.Input;
+import lotto.utils.StringUtils;
 
 public class LottoWinningInputView implements View<LottoWinning> {
     @Override
     public LottoWinning render() {
         System.out.println(StringConstants.INPUT_WINNING_MESSAGE);
-        var winnings = Input.readLineAsIntegerList(",");
+        var rawWinnings = Console.readLine();
+        var winnings = StringUtils.parseIntList(rawWinnings, ",");
 
-        System.out.println(StringConstants.INPUT_BONUS_MESSAGE);
-        var bonus = Input.readLineAsInt();
-
-        return new LottoWinning(winnings, bonus);
+        return new LottoWinning(winnings);
     }
 }

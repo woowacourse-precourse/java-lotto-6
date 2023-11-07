@@ -8,10 +8,12 @@ public class Application {
     public static void main(String[] args) {
         UserInput userInput = new UserInput();
         UserOutput userOutput = new UserOutput();
+        LottoMachine lottoMachine = new LottoMachine(new RandomGenerator());
 
         LottoGame lottoGame = new LottoGame(
                 userInput,
-                userOutput
+                userOutput,
+                lottoMachine
         );
 
         try {

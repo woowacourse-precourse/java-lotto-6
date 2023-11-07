@@ -2,14 +2,14 @@
 
 ---
 
-### Constant
+### Constant(상수)
 
 - [x]  로또 1장의 가격은 1,000원이다.
 - [x]  로또 번호의 숫자 범위는 1 ~ 45 까지이다.
 - [x]  로또 번호 개수는 6개이다.
 - [x]  로또 티켓 가격은 1,000원이다.
 
-### Lotto Game
+### Lotto Game(로또 게임)
 
 - [x]  로또 구입 금액 입력
 - [x]  자동 로또 구매 목록 출력
@@ -19,7 +19,7 @@
 - [x]  생성한 WinningLotto 당첨 번호 객체로 LottoStorage 생성
 - [x]  로또 당첨 내역 및 수익률 출력
 
-### Lotto
+### Lotto(로또)
 
 - [x]  로또 객체 생성 시 로또 번호 리스트 검증
 - [x]  로또 넘버 자동 생성 정적 팩토리 메소드 구현
@@ -29,6 +29,7 @@
     - 로또 번호 개수가 6개가 아닐 경우
     - 로또 번호가 1 - 45 사이의 수가 아닐 경우 (ex. `123`, `0`)
     - 로또 번호 가운데 중복된 수가 있을 경우
+    - 로또 구입 금액 자료형이 숫자형이 아닐 경우
 
 
 ### Winning Lotto (당첨 번호)
@@ -60,7 +61,7 @@
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생
     - 로또 구입 금액이 1,000원으로 나누어 떨어지지 않는 경우
 
-### LottoRank
+### LottoRank(로또 기준)
 
 - [x]  당첨 기준 Enum 관리
 - 당첨 개수, 보너스 포함 여부, 당첨 금액
@@ -79,29 +80,43 @@
 
 - [x]  [`LottoNumberGenerator`] 1 - 45 사이 무작위의 6개의 로또 넘버 생성 메소드
 - [x]  [`LottoNumberValidator`] 1- 45 사이의 로또 넘버 검증 메소드
-- [x]  [`LottoProfitCalculator`] 당첨 내역에 따른 수익률 계산 메소드
-    - 수익률은 소수점 둘째 자리에서 반올림
-    - 수익률 계산 알고리즘 구현
+  - [x]  [`LottoProfitCalculator`] 당첨 내역에 따른 수익률 계산 메소드
+      - 수익률은 소수점 둘째 자리에서 반올림
+      - 수익률 계산 알고리즘 구현
 
-   ```java
-    double roi = (double) (revenue * 100) / cost;
-    return Math.round(roi * 100.0) / 100.0; // 소수점 둘째 자리에서 반올림
-   ```
+     ```java
+        double roi = (double) (revenue * 100) / cost;
+        return Math.round(roi * 100.0) / 100.0; // 소수점 둘째 자리에서 반올림
+     ```
 
 - [x]  [`TextBuilder`] 문자열 가공 역할의 **TextBuilder 라이브러리 구현**
     - Integer 파라미터 타입을 추가하는 메소드
     - Double 파라미터 타입을 추가하는 메소드
-    - 화폐 단위를 적용하여 Integer 파라미터 타입을 추가하는 메소드
-        - 화폐 단위 적용 예시
-            
-        ``` java
-            DecimalFormat decimalFormat = new DecimalFormat("###,###");
-            String result = decimalFormat.format(cash);
+
+
+- [x]  [`KRWFormatter`] 화폐 단위를 적용 문자열 반환 메소드
+    - 화폐 단위 적용 예시
+
+        ```java
+        DecimalFormat decimalFormat = new DecimalFormat("###,###");
+        String result = decimalFormat.format(cash);
         ```
 
 
-
 - [x]  [`LottoGameInputer`] 문자열 입력 메소드 구현
+    - [x]  문자열 입력 Integer 반환
+    - 사용자가 잘못된 값을 입력할 경우 올바른 값을 입력받을 때 까지 반복
+
+        ```java
+        try {
+            return Integer.parseInt(input());
+        } catch (NumberFormatException exception) {
+        		LottoGamePrinter.println(LOTTO_PURCHASE_AMOUNT_INVALID_ERROR.getMessage());
+            return inputToInteger();
+        }
+        ```
+
+
 - [x]  [`LottoGamePrinter`] 문자열 출력 메소드 구현
 
 ### **✅ 프로그래밍 요구 사항**

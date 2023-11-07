@@ -66,6 +66,28 @@ class LottoOrderTest {
         assertThat(gainRatio).isEqualTo(predicationGainRatio);
     }
 
+    @DisplayName("모든 등수별 당첨 개수를 계산한다.")
+    @Test
+    void calculateCountByAllRank() {
+        //given
+        final long purchasePrice = 2000;
+        final List<List<Integer>> purchaseLottoNumbers = List.of(
+                List.of(1, 2, 3, 4, 5, 6),
+                List.of(2, 3, 4, 5, 6, 7)
+        );
+        final List<Integer> winningLottoNumbers = List.of(1, 2, 3, 4, 5, 6);
+        final int bonusNumber = 7;
+
+        LottoOrder lottoOrder = createLottoOrder(purchasePrice, purchaseLottoNumbers);
+        WinningLotto winningLotto = createWinningLottoBy(winningLottoNumbers, bonusNumber);
+
+        //when
+        List<Long> countByAllRank = lottoOrder.calculateCountByAllRank(winningLotto);
+
+        //then
+        assertThat(countByAllRank).containsExactly(0L, 0L, 0L, 1L, 1L);
+    }
+
     private LottoOrder createLottoOrder(Long purchasePrice, List<List<Integer>> numbers) {
         PurchaseLotto purchaseLotto = createPurchaseLotto(numbers);
         return new LottoOrder(purchasePrice, purchaseLotto);

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import java.util.Map;
 import lotto.exception.ExceptionMessage;
 
 public class LottoOrder {
@@ -29,13 +30,22 @@ public class LottoOrder {
         return ((double) totalWinningPrice / this.purchasePrice) * PERCENT;
     }
 
+    public List<Long> calculateCountByAllRank(WinningLotto winningLotto) {
+        Map<Rank, Long> countByWinningRank = this.purchaseLotto.calculateCountByWinningRank(winningLotto);
+        List<Rank> allRank = Rank.getAllRank();
+
+        return allRank.stream()
+                .map(r -> countByWinningRank.getOrDefault(r, 0L))
+                .toList();
+    }
+
     public List<List<Integer>> getLottoNumbers() {
-        return purchaseLotto.getAllNumbers();
+        return this.purchaseLotto.getAllLottoNumber();
     }
 
     private void validatePrice(Long purchasePrice) {
         if (purchasePrice == 0 || Math.floorMod(purchasePrice, BASIC_LOTTO_PRICE) != 0) {
-            throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_PRICE.getDesc());
+            throw new IllegalArgumentException(ExceptionMessage.INVALID_PURCHASE_PRICE_UNIT.getDesc());
         }
     }
 

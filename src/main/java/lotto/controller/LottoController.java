@@ -27,6 +27,7 @@ public class LottoController {
         String input = getUserInput();
         Player player = setPlayerVariableValue(input);
         getwinningNumbers();
+        getExtraWinningNumber();
     }
 
     private String getUserInput() {
@@ -67,6 +68,7 @@ public class LottoController {
     private String getwinningNumbers() {
         String input;
         while (true) {
+            ConsoleOutput.printNewLine();
             ConsoleOutput.displayWinningNumberPrompt();
             input = inputView.getWinningNumber();
             if (validateWinningNumber(input)) {
@@ -85,5 +87,10 @@ public class LottoController {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public void getExtraWinningNumber() {
+        ConsoleOutput.printNewLine();
+        ConsoleOutput.displayExtraWinningNumberPrompt();
     }
 }

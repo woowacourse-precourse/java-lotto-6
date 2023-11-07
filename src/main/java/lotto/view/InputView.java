@@ -30,8 +30,9 @@ public class InputView {
 
     public int inputPurchaseAmount() {
         while (true) {
-            System.out.println(InputMessage.REQUEST_PURCHASE_AMOUNT.message);
+            System.out.printf("%s%n", InputMessage.REQUEST_PURCHASE_AMOUNT.message);
             String userInputNumber = Console.readLine();
+            System.out.printf("%n");
 
             try {
                 validator.validatePurchaseAmount(userInputNumber);
@@ -45,8 +46,9 @@ public class InputView {
 
     public List<Integer> inputWinningNumbers() {
         while (true) {
-            System.out.println(InputMessage.REQUEST_WINNING_NUMBERS.message);
+            System.out.printf("%s%n", InputMessage.REQUEST_WINNING_NUMBERS.message);
             String userInputBeforeSplit = Console.readLine();
+            System.out.printf("%n");
             List<String> userInputNumbers = Arrays.asList(userInputBeforeSplit.split(SEPARATOR));
 
             try {
@@ -65,6 +67,7 @@ public class InputView {
         while (true) {
             System.out.println(InputMessage.REQUEST_BONUS_NUMBER.message);
             String userInputNumber = Console.readLine();
+            System.out.printf("%n");
 
             try {
                 validator.validateBonusNumber(winningNumbers, userInputNumber);

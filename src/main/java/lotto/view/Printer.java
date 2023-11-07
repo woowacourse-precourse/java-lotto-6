@@ -1,5 +1,7 @@
 package lotto.view;
 
+import lotto.domain.LottoCount;
+
 import static lotto.message.ErrorMessage.ERROR_MESSAGE_HEAD;
 import static lotto.message.InfoMessage.*;
 import static lotto.message.ErrorMessage.INVALID_MONEY_INPUT_EXCEPTION;
@@ -15,5 +17,9 @@ public class Printer {
 
     public static void printMoneyInputExceptionMessage() {
         System.out.println(ERROR_MESSAGE_HEAD + INVALID_MONEY_INPUT_EXCEPTION);
+    }
+
+    public static void printLottoCount(LottoCount lottoCount) {
+        System.out.println(lottoCount.getLottoCount() + PURCHASE_COMPLETE);
     }
 }

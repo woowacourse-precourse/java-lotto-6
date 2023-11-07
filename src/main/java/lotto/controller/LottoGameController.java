@@ -14,5 +14,6 @@ public class LottoGameController {
         final LottoCount lottoCount = lottoGameService.computeLottoCount(purchaseAmount);
         
         Printer.printLineBreak();
+        Printer.printLottoCount(lottoCount);
     }
 }

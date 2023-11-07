@@ -1,5 +1,8 @@
 package lotto;
 
+import lotto.Lotto;
+import lotto.util.Rank;
+
 import java.util.ArrayList;
 import java.util.List;
 

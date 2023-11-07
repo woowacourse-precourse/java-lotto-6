@@ -1,6 +1,8 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.util.ProfitCalculator;
+import lotto.util.Rank;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;

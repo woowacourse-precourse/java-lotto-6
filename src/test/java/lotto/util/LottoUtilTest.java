@@ -42,9 +42,9 @@ public class LottoUtilTest {
         assertEquals("1,050.5", rateWithComma);
     }
 
-    @DisplayName("수익률을 세자리마다 콤마 찍어서 변환하는 기능 테스트")
+    @DisplayName("수익률이 세자리 미만일 땐 콤마를 찍지 않는다")
     @Test
-    void insertCommaToRate2() {
+    void notInsertCommaToRateWhenLengthLessThanThree() {
         float rate = 62.5f;
         String rateWithComma = LottoUtil.convertReturnRateToDisplayFormat(rate);
         assertEquals("62.5", rateWithComma);

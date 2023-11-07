@@ -199,4 +199,17 @@ public class Application {
     public boolean isWinning(int matchingCount) {
         return matchingCount >= 3;
     }
+
+    public Result calculateLottoWinningResult(List<Integer> userLotto, List<Integer> winningLotto,
+            int bonusNumber) {
+        int numberOfMatchingLottoNumbers = findNumberOfMatchingLottoNumbers(userLotto,
+                winningLotto);
+
+        if (isWinning(numberOfMatchingLottoNumbers)) {
+            boolean hasBonusNumber = isMatchingWithBonusNumberWhenCountIs5(userLotto, bonusNumber,
+                    numberOfMatchingLottoNumbers);
+            return new Result(numberOfMatchingLottoNumbers, hasBonusNumber);
+        }
+        return null;
+    }
 }

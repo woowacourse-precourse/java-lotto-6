@@ -47,5 +47,19 @@ public class WinningTest {
 
         assertThat(result).isTrue();
     }
+
+    @DisplayName("당첨 결과를 계산한다.")
+    @Test
+    void calculateLottoWinningResult() {
+        Application application = new Application();
+        List<Integer> userLotto = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> winningLotto = List.of(1, 2, 3, 8, 9);
+        int bonusNumber = 6;
+
+        Result result = application.calculateLottoWinningResult(userLotto, winningLotto, bonusNumber);
+
+        assertThat(result).usingRecursiveComparison()
+                .isEqualTo(new Result(3, false));
+    }
 }
 

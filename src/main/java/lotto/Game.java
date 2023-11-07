@@ -17,7 +17,7 @@ public class Game {
         List<Lotto> totalLotto = gameManager.createLotto(purchaseAmount);
         List<Integer> winningNumbers;
         int bonusNumber;
-        double profitPercentage;
+        String profitPercentage;
 
         Output.printPurchaseLottoQuantityMessage(totalLotto.size());
         Output.printTotalLotto(totalLotto);

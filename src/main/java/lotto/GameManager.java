@@ -1,6 +1,7 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -73,10 +74,11 @@ public class GameManager {
         return Ranking.FIVE_MATCHES;
     }
 
-    public double calculateProfitPercentage(WinningStatistics winningStatistics, int purchaseAmount) {
+    public String calculateProfitPercentage(WinningStatistics winningStatistics, int purchaseAmount) {
         int totalWinningAmount = calculateTotalWinningAmount(winningStatistics);
         double profit = ((double) totalWinningAmount / purchaseAmount) * 100;
-        return Math.round(profit * 100.0) / 100.0;
+        BigDecimal bigDecimal = new BigDecimal(profit).setScale(1, BigDecimal.ROUND_HALF_UP);
+        return bigDecimal.toString();
     }
 
     private int calculateTotalWinningAmount(WinningStatistics winningStatistics) {

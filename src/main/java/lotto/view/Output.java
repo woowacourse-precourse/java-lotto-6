@@ -30,7 +30,7 @@ public class Output {
         System.out.println("\n" + BONUS_NUMBER.message());
     }
 
-    public static void printProfitPercentage(double profitPercentage) {
+    public static void printProfitPercentage(String profitPercentage) {
         System.out.println("총 수익률은 " + profitPercentage + "%입니다.");
     }
 

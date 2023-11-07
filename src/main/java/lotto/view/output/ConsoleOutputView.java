@@ -1,8 +1,18 @@
 package lotto.view.output;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
+    private final String purchaseMessage = "개를 구매했습니다.";
+    private final String profitMessage = "총 수익률은 %.1f%%입니다.";
+    private final List<String> resultMessages = Arrays.asList(
+            "3개 일치 (5,000원) - %d개",
+            "4개 일치 (50,000원) - %d개",
+            "5개 일치 (1,500,000원) - %d개",
+            "5개 일치, 보너스 볼 일치 (30,000,000원) - %d개",
+            "6개 일치 (2,000,000,000원) - %d개");
+
     @Override
     public void printNewLine() {
         System.out.println();
@@ -11,7 +21,7 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printLottoQuantity(int purchaseResult) {
         printNewLine();
-        System.out.println(purchaseResult + "개를 구매했습니다.");
+        System.out.println(purchaseResult + purchaseMessage);
     }
 
     @Override
@@ -21,15 +31,13 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printGameResults(List<Integer> gameResults) {
-        System.out.println("3개 일치 (5,000원) - " + gameResults.get(4) + "개");
-        System.out.println("4개 일치 (50,000원) - " + gameResults.get(3) + "개");
-        System.out.println("5개 일치 (1,500,000원) - " + gameResults.get(2) + "개");
-        System.out.println("5개 일치, 보너스 볼 일치 (30,000,000원) - " + gameResults.get(1) + "개");
-        System.out.println("6개 일치 (2,000,000,000원) - " +  + gameResults.get(0) + "개");
+        for(int index = 0; index < gameResults.size(); index++) {
+            System.out.println(String.format(resultMessages.get(index), gameResults.get(index)));
+        }
     }
 
     @Override
     public void printGameProfit(double profit) {
-        System.out.println("총 수익률은 " + String.format("%.1f", profit) + "%입니다.");
+        System.out.println(String.format(profitMessage, profit));
     }
 }

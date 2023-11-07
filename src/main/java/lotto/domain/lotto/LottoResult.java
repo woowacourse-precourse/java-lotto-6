@@ -10,10 +10,12 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoResult {
+    private static final int INIT_VALUE = 0;
+    private static final int PLUS_ONE = 1;
 
     private final WinningLotto winningLotto;
     private final List<Lotto> issuedLotto;
-    private Map<LottoCriteria, Long> rankingResult;
+    private Map<LottoCriteria, Integer> rankingResult;
 
     public LottoResult(final WinningLotto winningLotto, final List<Lotto> issuedLotto) {
         this.winningLotto = winningLotto;
@@ -26,7 +28,7 @@ public class LottoResult {
         rankingResult = new HashMap<>();
 
         getAllValues().stream()
-                .forEach(rank -> rankingResult.put(rank, 0L));
+                .forEach(rank -> rankingResult.put(rank, INIT_VALUE));
     }
 
     private void saveResult() {
@@ -48,7 +50,7 @@ public class LottoResult {
 
     private void incrementResult(final Long count, final LottoCriteria rank, final Lotto lotto) {
         if (matchRank(count, rank, lotto)) {
-            rankingResult.merge(rank, 1L, Long::sum);
+            rankingResult.merge(rank, PLUS_ONE, Integer::sum);
         }
     }
 
@@ -85,7 +87,7 @@ public class LottoResult {
         return issuedLotto.size() * PRICE.getValue();
     }
 
-    public final Map<LottoCriteria, Long> getRankingResult() {
+    public final Map<LottoCriteria, Integer> getRankingResult() {
         return rankingResult;
     }
 }

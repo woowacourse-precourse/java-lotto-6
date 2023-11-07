@@ -6,7 +6,7 @@ import lotto.domain.lotto.LottoResult;
 
 public class ResultDto {
 
-    private final Map<LottoCriteria, Long> result;
+    private final Map<LottoCriteria, Integer> result;
     private final float returnRate;
 
     private ResultDto(LottoResult lottoResult) {
@@ -18,7 +18,7 @@ public class ResultDto {
         return new ResultDto(lottoResult);
     }
 
-    public final Map<LottoCriteria, Long> getResult() {
+    public final Map<LottoCriteria, Integer> getResult() {
         return this.result;
     }
 

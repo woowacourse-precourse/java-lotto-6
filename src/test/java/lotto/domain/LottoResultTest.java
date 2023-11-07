@@ -37,7 +37,7 @@ public class LottoResultTest {
         // when
         LottoResult lottoResult = new LottoResult(
                 new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
-        Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
+        Map<LottoCriteria, Integer> result = lottoResult.getRankingResult();
 
         // then
         int expected = 1;
@@ -52,7 +52,7 @@ public class LottoResultTest {
         LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
-        Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
+        Map<LottoCriteria, Integer> result = lottoResult.getRankingResult();
 
         // then
         int expected = 1;
@@ -67,7 +67,7 @@ public class LottoResultTest {
         LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
-        Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
+        Map<LottoCriteria, Integer> result = lottoResult.getRankingResult();
 
         // then
         int expected = 1;
@@ -82,7 +82,7 @@ public class LottoResultTest {
         LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
-        Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
+        Map<LottoCriteria, Integer> result = lottoResult.getRankingResult();
 
         // then
         int expected = 1;
@@ -97,7 +97,7 @@ public class LottoResultTest {
         LottoResult lottoResult = new LottoResult(new WinningLotto(winningLotto, bonus), Arrays.asList(issuedlotto));
 
         // when
-        Map<LottoCriteria, Long> result = lottoResult.getRankingResult();
+        Map<LottoCriteria, Integer> result = lottoResult.getRankingResult();
 
         // then
         int expected = 1;

@@ -18,9 +18,9 @@ import java.util.List;
 
 public class Validator {
 
-    final static String REGEX = "[0-9]+";
-    final static String DELIMITER = ",";
-    final static int LIMIT = -1;
+    private static final String REGEX = "[0-9]+";
+    private static final String DELIMITER = ",";
+    private static final int LIMIT = -1;
 
     public static void validateMoney(final String money) {
         validateNumber(money);

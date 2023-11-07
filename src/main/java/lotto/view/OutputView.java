@@ -59,7 +59,7 @@ public class OutputView {
                 .collect(Collectors.joining(DELIMITER.getMessage()));
     }
 
-    public void printWinningDetails(final Map<LottoCriteria, Long> result) {
+    public void printWinningDetails(final Map<LottoCriteria, Integer> result) {
         printResult(FIFTH_PLACE.getMatchNumber(), getFormat(FIFTH_PLACE.getAmount()), result.get(FIFTH_PLACE));
         printResult(FOURTH_PLACE.getMatchNumber(), getFormat(FOURTH_PLACE.getAmount()), result.get(FOURTH_PLACE));
         printResult(THIRD_PLACE.getMatchNumber(), getFormat(THIRD_PLACE.getAmount()), result.get(THIRD_PLACE));
@@ -71,11 +71,11 @@ public class OutputView {
         return String.format(NUMBER_FORMAT.getMessage(), amount);
     }
 
-    private void printResult(final int getMatchNumber, final String amount, final Long count) {
+    private void printResult(final int getMatchNumber, final String amount, final int count) {
         System.out.printf(RESULT.getMessage(), getMatchNumber, amount, count);
     }
 
-    private void printBonusResult(final int getMatchNumber, final String amount, final Long count) {
+    private void printBonusResult(final int getMatchNumber, final String amount, final int count) {
         System.out.printf(BONUS_RESULT.getMessage(), getMatchNumber, amount, count);
     }
 

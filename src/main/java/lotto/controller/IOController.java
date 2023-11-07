@@ -16,20 +16,14 @@ public class IOController {
     }
 
     public int purchaseAmountInput() {
-        int amount = inputView.purchaseAmountInput();
-        //validation
-        return amount;
+        return inputView.purchaseAmountInput();
     }
     public List<Integer> winningNumberInput() {
-        List<Integer> numberInput = inputView.winningNumberInput();
-        //validation
-        return numberInput;
+        return inputView.winningNumberInput();
     }
 
     public int bounusNumberInput() {
-        int bounusNumber = inputView.bonusNumberInput();
-        //validation
-        return bounusNumber;
+        return inputView.bonusNumberInput();
     }
 
     public void lottoCountCheck(int count) {

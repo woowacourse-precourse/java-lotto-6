@@ -94,7 +94,7 @@ public class LottoHandler {
 
     private static void checkDuplicateNumbers(List<Integer> winningNumber, int bonusNumber) {
         if (winningNumber.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호와 보너스 번호가 중복됩니다.");
+            throw new IllegalArgumentException("당첨번호와 보너스 번호가 중복됩니다.");
         }
     }
 

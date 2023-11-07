@@ -10,7 +10,7 @@ public enum ErrorMessage {
     CONSECUTIVE_DELIMITER_NOT_ALLOWED("구분자 %s를 연속해서 입력할 수 없습니다."),
 
     ONLY_NUMBER_ALLOWED("숫자만 입력할 수 있습니다."),
-    LOTTO_RANGE_NUMBER_ALLOWED("1에서 45 사이의 숫자만 입력할 수 있습니다."),
+    LOTTO_RANGE_NUMBER_ALLOWED("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     LOTTO_NUMBER_SIZE_SIX_ALLOWED("로또 번호는 6개 입력할 수 있습니다."),
     ALREADY_USED_NUMBER_NOT_ALLOWED("로또 번호에 중복한 값이 들어갈 수 없습니다."),
 

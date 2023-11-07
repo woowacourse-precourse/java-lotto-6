@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -50,10 +49,8 @@ class LottoTest {
     void hasNumberReturnTrue(Integer input) {
         //given
         Lotto lotto = new Lotto(new ArrayList<>(List.of(5, 7, 11, 4, 1, 36)));
-
         //when
         Boolean hasNumber = lotto.hasNumber(input);
-
         //then
         assertThat(hasNumber).isTrue();
     }
@@ -64,10 +61,8 @@ class LottoTest {
     void hasNumberReturnFalse(Integer input) {
         //given
         Lotto lotto = new Lotto(new ArrayList<>(List.of(5, 7, 11, 4, 1, 36)));
-
         //when
         Boolean hasNumber = lotto.hasNumber(input);
-
         //then
         assertThat(hasNumber).isFalse();
     }
@@ -89,10 +84,8 @@ class LottoTest {
         //given
         Lotto lotto = new Lotto(new ArrayList<>(List.of(5, 7, 11, 4, 1, 36)));
         Lotto lotto2 = new Lotto(new ArrayList<>(lottoNumbers));
-
         //when
         Integer countMatchNumber = lotto.countMatchNumber(lotto2);
-
         //then
         assertThat(countMatchNumber).isEqualTo(result);
     }

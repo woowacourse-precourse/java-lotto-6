@@ -25,10 +25,8 @@ class WinningLottoTest {
     void checkWinningStatus() {
         //given
         Lotto userLotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
         //when
         Boolean isDrawn = winningLotto.isDrawnLotto(userLotto);
-
         //then
         assertThat(isDrawn).isTrue();
     }
@@ -38,10 +36,8 @@ class WinningLottoTest {
     void getWinningCategory() {
         //given
         Lotto userLotto = new Lotto(List.of(11, 21, 31, 4, 5, 6));
-
         //when
         LottoPrize lottoPrizeType = winningLotto.findLottoPrizeType(userLotto);
-
         //then
         assertThat(lottoPrizeType).isEqualTo(LottoPrize.FIFTH_PRIZE);
     }
@@ -51,7 +47,6 @@ class WinningLottoTest {
     void noWinningCategoryThrowException() {
         //given
         Lotto userLotto = new Lotto(List.of(11, 21, 31, 41, 5, 6));
-
         //when, then
         assertThatThrownBy(
                 () -> winningLotto.findLottoPrizeType(userLotto))
@@ -64,7 +59,6 @@ class WinningLottoTest {
     void NumberAlreadyUsedInLottoThrowException() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
         //when, then
         assertThatThrownBy(
                 () -> new WinningLotto(lotto, 6))
@@ -77,7 +71,6 @@ class WinningLottoTest {
     void NumberOutRangeThrowException() {
         //given
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-
         //when, then
         assertThatThrownBy(
                 () -> new WinningLotto(lotto, 46))

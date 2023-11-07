@@ -23,11 +23,9 @@ public enum LottoPrize {
         if (hasBonusNumber && countMatchNumber == 5) {
             return SECOND_PRIZE;
         }
-
         if (!hasBonusNumber && countMatchNumber == 5) {
             return THIRD_PRIZE;
         }
-
         return Arrays.stream(values())
                 .filter(lottoPrize -> lottoPrize.getMatchedNumberCount().equals(countMatchNumber))
                 .findAny()

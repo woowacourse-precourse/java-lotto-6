@@ -14,10 +14,8 @@ class LottoFactoryTest {
     void convertToLotto() {
         //given
         LottoFactory lottoFactory = new LottoFactory(() -> List.of(1, 2, 3, 4, 5, 6));
-
         //when
         Lotto lotto = lottoFactory.createLotto();
-
         //then
         assertThat(lotto)
                 .isNotNull()
@@ -29,10 +27,8 @@ class LottoFactoryTest {
     void sortLottoNumbers() {
         //given
         LottoFactory lottoFactory = new LottoFactory(() -> List.of(6, 1, 5, 4, 7, 9));
-
         //when
         Lotto lotto = lottoFactory.createLotto();
-
         assertThat(lotto.getNumbers()).isEqualTo(List.of(1, 4, 5, 6, 7, 9));
     }
 }

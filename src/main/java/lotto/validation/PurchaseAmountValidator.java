@@ -34,7 +34,6 @@ public class PurchaseAmountValidator {
         }
     }
 
-
     private void validateOverZero(String purchaseAmount) {
         Integer validatedIntegerPurchaseAmount = validateInteger(purchaseAmount);
         if (validatedIntegerPurchaseAmount <= 0) {

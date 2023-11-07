@@ -31,7 +31,6 @@ class LottoPrizeTest {
     void findLottoPrize(Boolean bonus, Integer matchNumber, LottoPrize result) {
         //when
         LottoPrize lottoPrize = LottoPrize.valueOf(bonus, matchNumber);
-
         //then
         assertThat(lottoPrize).isEqualTo(result);
     }
@@ -42,7 +41,6 @@ class LottoPrizeTest {
         //given
         Boolean bonusNumber = true;
         Integer matchNumber = 2;
-
         //when, then
         assertThatThrownBy(
                 () -> LottoPrize.valueOf(bonusNumber, matchNumber))
@@ -55,10 +53,8 @@ class LottoPrizeTest {
     void toStringSecondPrize() {
         //given
         LottoPrize lottoPrize = LottoPrize.SECOND_PRIZE;
-
         //when
         String secondPrizeString = lottoPrize.toString();
-
         //then
         assertThat(secondPrizeString).containsPattern("[보너스\s불\s일치]");
     }
@@ -68,10 +64,8 @@ class LottoPrizeTest {
     void toStringNoSecondPrize() {
         //given
         LottoPrize lottoPrize = LottoPrize.THIRD_PRIZE;
-
         //when
         String lottoPrizeString = lottoPrize.toString();
-
         //then
         assertThat(lottoPrizeString).containsPattern("[^보너스\s불\s일치]");
     }
@@ -81,10 +75,8 @@ class LottoPrizeTest {
     void toStringContainsPrizeMoneyAndMatchCount() {
         //given
         LottoPrize lottoPrize = LottoPrize.THIRD_PRIZE;
-
         //when
         String lottoPrizeString = LottoPrize.THIRD_PRIZE.toString();
-
         //then
         assertThat(lottoPrizeString)
                 .contains("1,500,000원")

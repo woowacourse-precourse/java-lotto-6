@@ -12,8 +12,6 @@ public class LottoNumberValidator {
     private static final String CONSECUTIVE_DELIMITER = DELIMITER + DELIMITER;
     private static final String LOTTO_NUMBERS_PATTERN = "[0-9,]+";
 
-
-
     public List<Integer> validateLottNumbers(String lottoNumbers) {
         validateEmpty(lottoNumbers);
         validateBlank(lottoNumbers);

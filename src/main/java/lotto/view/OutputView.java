@@ -41,6 +41,7 @@ public class OutputView {
             System.out.println(format(LOTTO_RESULT_MESSAGE_TEMPLATE, lottoPrize, lottoPrizeCountMap.get(lottoPrize)));
         }
     }
+
     public void printLottoTotalProfit(Double totalProfit) {
         System.out.println(format(LOTTO_TOTAL_PROFIT_MESSAGE_TEMPLATE, totalProfit));
     }

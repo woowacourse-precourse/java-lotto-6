@@ -1,7 +1,11 @@
 package lotto.controller;
 
-import lotto.constants.ErrorMessage;
+import java.util.ArrayList;
+import java.util.List;
+import lotto.domain.Lotto;
+import lotto.domain.Lottos;
 import lotto.domain.PurchaseAmount;
+import lotto.util.LottoGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -16,6 +20,12 @@ public class LottoGameController {
 
     public void run() {
         PurchaseAmount purchaseAmount = setPurchaseAmount();
+        Lottos lottos = createLottos(purchaseAmount.getNumberOfLotto());
+        outputView.printLottos(lottos);
+    }
+
+    private Lottos createLottos(int numberOfLotto) {
+        return new Lottos(numberOfLotto);
     }
 
     public PurchaseAmount setPurchaseAmount() {

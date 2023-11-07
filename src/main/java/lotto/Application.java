@@ -1,9 +1,10 @@
 package lotto;
 import static java.lang.Integer.parseInt;
-import static java.lang.Integer.toHexString;
 
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -28,9 +29,9 @@ public class Application {
             System.out.println();
             int bonus = getBonusNumber(); // 보너스 점수 입력
 
-            int[] matchCounts = checkMatchingCounts(lottos, winningNumbers, bonus);
+            int[] matchCounts = checkMatchingCounts(lottos, winningNumbers, bonus); //맞춘 로또 정보가 담긴 배열
 
-            printWinningStats(matchCounts);
+            printWinningStats(matchCounts, lottos);
         } catch (IllegalArgumentException e) {
             System.out.println("[ERROR] " + e.getMessage());
         }
@@ -40,6 +41,7 @@ public class Application {
     private static int getPurchaseAmount() {
         System.out.println("구매금액을 입력해 주세요.");
         String input = Console.readLine();
+        System.out.println();
         return parseInt(input);
     }
 
@@ -59,13 +61,17 @@ public class Application {
         //구매한 로또 개수만큼 숫자 뽑아내기
         for (int i = 0; i < numberOfLotto; i++) {
             // 1~45 까지의 수 랜덤 뽑기
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            List<Integer> numbers = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
+            // ImmutableList 를 ArrayList 로 변환하여 수정이 가능한 리스트로 처리해야함
+            // Radom.pickUniqueNumbersInRange 를 통해 생성된 ImmutableList 를 ArrayList 로 변환하여 정렬할 수 있도록 수정
+
             Lotto lotto = new Lotto(numbers);  // 뽑은 숫자를 가진 Lotto 클래스 객체 lotto 생성
             Collections.sort(numbers); // 로또 번호를 오름차순으로 정렬
             lottos.add(lotto); // lottoes 배열에 개별 lotto 들을 추가
         }
         return lottos;
     }
+
 
     // 당첨 번호 입력
     private static List<Integer> getWinningNumbers() {
@@ -94,13 +100,12 @@ public class Application {
     }
 
     // 일치 조건 출력
-    private static void printWinningStats(int[] matchCounts) {
+    private static void printWinningStats(int[] matchCounts, List<Lotto> lottos) {
         // 결과 출력
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
-        int[] prizeMoney = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000}; // 각 등수별 상금 (0, 1, 2, 3, 4, 5, 5+b, 6) - 5+b 는 인덱스 6, 6은 7번 인덱스
         String[] prizeNames = {"", "", "", "(5,000원)", "(50,000원)", "(1,500,000원)", "(30,000,000원)", "(2,000,000,000원)"}; // 0, 1, 2, 3, 4, 5, 5+b, 6
 
         for (int i = 3; i < matchCounts.length; i++) {
@@ -109,20 +114,18 @@ public class Application {
                 System.out.println(i + "개 일치 " + prizeNames[i] + " - " + count + "개");
             }
             if (i == 6) { //5개가 일치하고, 보너스볼이 일치
-                System.out.println("5 개 일치, 보너스 볼 일치 " + prizeNames[i] + " - " + count + "개");
+                System.out.println("5개 일치, 보너스 볼 일치 " + prizeNames[i] + " - " + count + "개");
             }
             if (i == 7) { //6개가 모두 맞을 경우
-                System.out.println("6 개 일치 " + prizeNames[i] + " - " + count + "개");
+                System.out.println("6개 일치 " + prizeNames[i] + " - " + count + "개");
             }
         }
 
-        // 수익 계산
-        double totalPrize = calculateTotalPrize(matchCounts, prizeMoney);
-        double totalCost = matchCounts[0] * 1000; // 1장당 1000원
-        double profitRate = ((totalPrize - totalCost) / totalCost) * 100.0;
-        profitRate = Math.round(profitRate * 10) / 10.0; // 소수점 둘째 자리에서 반올림
-
-        System.out.println("총 수익률은 " + profitRate + "% 입니다.");
+        // 수익률 계산
+        double totalPrize = calculateTotalPrize(matchCounts); // 획득 금액 계산
+        double totalSpent = getTotalSpent(lottos); // 총 구매 금액 계산
+        double profitRate = Math.round(((totalPrize) / totalSpent) * 1000.0) / 10.0;
+        System.out.println("총 수익률은 " + profitRate + "%입니다.");
     }
 
 
@@ -157,12 +160,21 @@ public class Application {
         return matchCount;
     }
 
-    private static double calculateTotalPrize(int[] matchCounts, int[] prizeMoney) {
-        double totalPrize = 0;
+    // 기존의 calculateTotalPrize 메소드 수정
+    private static double  calculateTotalPrize(int[] matchCounts) {
+        int[] prizeMoney = {0, 0, 0, 5000, 50000, 1500000, 30000000, 2000000000}; // 각 등수별 상금 (0, 1, 2, 3, 4, 5, 5+b, 6) - 5+b 는 인덱스 6, 6은 7번 인덱스
+        double totalPrize = 0;  //최종 획득 금액 초기화
+
         for (int i = 3; i < matchCounts.length; i++) {
-            totalPrize += matchCounts[i] * prizeMoney[i];
+            totalPrize += prizeMoney[i] * matchCounts[i];
         }
         return totalPrize;
+    }
+
+
+    // 총 구매 금액 계산
+    private static double getTotalSpent(List<Lotto> lottos) {
+        return lottos.size() * 1000; // 각 로또의 가격은 1000원
     }
 }
 

@@ -36,7 +36,7 @@ public class BonusNumber {
         return num < LottoRule.START_NUMBER || num > LottoRule.END_NUMBER;
     }
 
-    public boolean isMatchBonusNumber(Integer number) {
-        return value.equals(number);
+    public boolean isMatchBonusNumber(Integer bonusNumber) {
+        return value.equals(bonusNumber);
     }
 }

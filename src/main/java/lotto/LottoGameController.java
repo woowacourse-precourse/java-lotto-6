@@ -1,5 +1,7 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
 import lotto.config.AppConfig;
 import lotto.utils.NumberGenerator;
 
@@ -28,6 +30,10 @@ public class LottoGameController {
                 purchased--;
             }
         }
+
+        InputView inputView = appConfig.inputView();
+        List<Integer> winningNumbers = inputView.getWinningNumbers();
+        Lotto lotto = new Lotto(winningNumbers);
     }
 
     public Money getMoney() {

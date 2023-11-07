@@ -3,12 +3,10 @@ package lotto;
 import java.util.ArrayList;
 import java.util.List;
 import lotto.config.LottoGameMessage;
-import lotto.config.LottoGameRule;
-import lotto.exception.InvalidSizeException;
 import lotto.exception.NonNumericAmountException;
+import lotto.utils.Validator;
 
 public class InputView {
-
 
     private final InputReceiver receiver;
 
@@ -29,21 +27,41 @@ public class InputView {
     }
 
     public List<Integer> getWinningNumbers() {
-        String winningNumbers = receiver.readLine();
+        System.out.println(LottoGameMessage.INPUT_WINNING_NUMBER.message());
 
+        return inputWinningNumbers();
+    }
+
+    private List<Integer> inputWinningNumbers() {
+        try {
+            String winningNumbers = receiver.readLine();
+            List<String> parsedString = getParsedString(winningNumbers);
+            List<Integer> numbers = convertToInts(parsedString);
+            validate(numbers);
+            return numbers;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputWinningNumbers();
+        }
+    }
+
+    private List<Integer> convertToInts(List<String> parsedString) {
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : parsedString) {
+            numbers.add(convertToInt(number));
+        }
+        return numbers;
+    }
+
+    private static List<String> getParsedString(String winningNumbers) {
         Parser parser = new CommaParser();
-        List<String> numbers = parser.split(winningNumbers);
+        return parser.split(winningNumbers);
+    }
 
-        List<Integer> list = new ArrayList<>();
-        for (String number : numbers) {
-            list.add(convertToInt(number));
-        }
-
-        if (list.size() != LottoGameRule.LOTTO_SIZE.value()) {
-            throw new InvalidSizeException();
-        }
-
-        return list;
+    private static void validate(List<Integer> numbers) {
+        Validator.validateDuplicate(numbers);
+        Validator.validateInRange(numbers);
+        Validator.validateSize(numbers);
     }
 
     private int inputMoney() {

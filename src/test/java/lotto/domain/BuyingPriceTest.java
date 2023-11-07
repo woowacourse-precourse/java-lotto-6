@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.config.ErrorMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,14 +16,16 @@ public class BuyingPriceTest {
     @ValueSource(ints = {999, 500, 0, -500})
     void createLottoPriceByWrongRange(int price) {
         assertThatThrownBy(() -> new BuyingPrice(price))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.WRONG_PRICE_RANGE.message());
     }
 
     @DisplayName("1000으로 나누어 떨어지지 않는 숫자를 입력하면 예외가 발생")
     @Test
     void createLottoByOverRangeNumber() {
         assertThatThrownBy(() -> new BuyingPrice(2050))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.WRONG_PRICE_DIVISION.message());
     }
 
     @DisplayName("입력한 가격에 맞는 시도횟수를 반환하는지 확인")

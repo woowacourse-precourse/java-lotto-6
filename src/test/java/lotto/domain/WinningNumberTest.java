@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.config.ErrorMessage;
 import lotto.config.WinningPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,8 @@ public class WinningNumberTest {
     void createWinningNumberByWrongBonus(int bonus) {
         Lotto numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThatThrownBy(() -> new WinningNumber(numbers, bonus))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.WRONG_BONUS_RANGE.message());
     }
 
     @DisplayName("보너스 번호가 기본 번호와 중복되면 예외가 발생")
@@ -29,7 +31,8 @@ public class WinningNumberTest {
     void createWinningNumberByDuplicatedBonus() {
         Lotto numbers = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         assertThatThrownBy(() -> new WinningNumber(numbers, 5))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.DUPLICATED_BONUS.message());
     }
 
     @DisplayName("로또 당첨결과 확인")

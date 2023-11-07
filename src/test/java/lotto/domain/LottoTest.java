@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.config.ErrorMessage;
 import lotto.config.WinningPrize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,8 @@ class LottoTest {
     @Test
     void createLottoByDuplicatedNumber() {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.DUPLICATED_LOTTO.message());
     }
 
     @DisplayName("로또 번호의 개수가 6개가 아니면 예외가 발생한다.")
@@ -33,7 +35,8 @@ class LottoTest {
     @MethodSource("wrongLottoSize")
     void createLottoByWrongSize(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.WRONG_LOTTO_SIZE.message());
     }
 
     @DisplayName("로또 번호에 범위를 벗어난 숫자가 있으면 예외가 발생한다.")
@@ -41,7 +44,8 @@ class LottoTest {
     @MethodSource("wrongLottoRange")
     void createLottoByOverRangeNumber(List<Integer> numbers) {
         assertThatThrownBy(() -> new Lotto(numbers))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(ErrorMessage.WRONG_LOTTO_RANGE.message());
     }
 
     @DisplayName("로또 번호와 겹치는 번호인지를 확인")

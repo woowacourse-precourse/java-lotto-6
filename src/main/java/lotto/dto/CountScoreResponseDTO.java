@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import static lotto.etc.RuleConstant.ZERO;
+
 public class CountScoreResponseDTO {
     private int firstPlace;
     private int secondPlace;
@@ -9,11 +11,11 @@ public class CountScoreResponseDTO {
     private double rateOfReturn;
 
     public CountScoreResponseDTO(){
-        this.firstPlace = 0;
-        this.secondPlace = 0;
-        this.thirdPlace = 0;
-        this.fourthPlace = 0;
-        this.fifthPlace = 0;
+        this.firstPlace = ZERO.toInt();
+        this.secondPlace = ZERO.toInt();
+        this.thirdPlace = ZERO.toInt();
+        this.fourthPlace = ZERO.toInt();
+        this.fifthPlace = ZERO.toInt();
     }
 
     public void plusFirstPlace(){

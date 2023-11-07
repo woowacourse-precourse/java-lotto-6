@@ -64,15 +64,15 @@ public class LottoService {
     }
 
     private void calculateScore(Lotto ticket, int bonus, CountScoreResponseDTO dto, int overlappingNumber) {
-        if (overlappingNumber == 3)
+        if (overlappingNumber == THREE_MATCH.toInt())
             dto.plusFifthPlace();
-        if (overlappingNumber == 4)
+        if (overlappingNumber == FORE_MATCH.toInt())
             dto.plusFourthPlace();
-        if (overlappingNumber == 5 && !containsBonus(ticket, bonus))
+        if (overlappingNumber == FIVE_MATCH.toInt() && !containsBonus(ticket, bonus))
             dto.plusThirdPlace();
-        if (overlappingNumber == 5 && containsBonus(ticket, bonus))
+        if (overlappingNumber == FIVE_MATCH.toInt() && containsBonus(ticket, bonus))
             dto.plusSecondPlace();
-        if (overlappingNumber == 6)
+        if (overlappingNumber == SIX_MATCH.toInt())
             dto.plusFirstPlace();
     }
 

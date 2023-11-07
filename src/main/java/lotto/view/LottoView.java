@@ -1,5 +1,6 @@
 package lotto.view;
 
+import static lotto.etc.ErrorConstant.ERROR_TYPE_ILLEGAL_ARGUMENT;
 import static lotto.etc.SystemConstant.BONUS;
 import static lotto.etc.SystemConstant.BUY;
 import static lotto.etc.SystemConstant.FIVE_BONUS_SAMECONSTANT;
@@ -45,7 +46,7 @@ public class LottoView {
                 this.lottoTickets = tickets;
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("IllegalArgumentException : " + e.getMessage());
+                System.out.println(ERROR_TYPE_ILLEGAL_ARGUMENT.toString() + e.getMessage());
             }
         }
 
@@ -63,7 +64,7 @@ public class LottoView {
                         .createUserLottoNumber(number);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("IllegalArgumentException : " + e.getMessage());
+                System.out.println(ERROR_TYPE_ILLEGAL_ARGUMENT.toString() + e.getMessage());
             }
         }
     }
@@ -81,7 +82,7 @@ public class LottoView {
                         .createBonusNumber(bonusRequestDTO);
                 break;
             } catch (IllegalArgumentException e) {
-                System.out.println("IllegalArgumentException : " + e.getMessage());
+                System.out.println(ERROR_TYPE_ILLEGAL_ARGUMENT.toString() + e.getMessage());
             }
         }
     }

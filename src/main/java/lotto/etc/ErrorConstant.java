@@ -1,7 +1,7 @@
 package lotto.etc;
 
 public enum ErrorConstant {
-
+    ERROR_TYPE_ILLEGAL_ARGUMENT("IllegalArgumentException : "),
     NOT_SIX_ERROR("[ERROR] 주어진 숫자가 6개가 아닙니다. 다시 입력하세요."),
     DUPLICATE_ERROR("[ERROR] 중복된 수가 있습니다. 다시 입력하세요."),
     BETWEEN_ONE_AND_FORTY_FIVE_ERROR("[ERROR] 1-45 사이의 숫자가 아닙니다. 다시 입력하세요."),

@@ -3,6 +3,7 @@ package lotto.domain;
 import static lotto.etc.ErrorConstant.BONUS_ERROR;
 import static lotto.etc.ErrorConstant.DUPLICATE_ERROR;
 import static lotto.etc.ErrorConstant.NOT_SIX_ERROR;
+import static lotto.etc.RuleConstant.SIX_MATCH;
 import static lotto.etc.Validate.checkOneAndFortyFive;
 
 import java.util.ArrayList;
@@ -26,11 +27,11 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != SIX_MATCH.toInt()) {
             throw new IllegalArgumentException(NOT_SIX_ERROR.toString());
         }
 
-        if(new HashSet<>(numbers).size() != 6){
+        if(new HashSet<>(numbers).size() != SIX_MATCH.toInt()){
             throw new IllegalArgumentException(DUPLICATE_ERROR.toString());
         }
 
@@ -43,7 +44,7 @@ public class Lotto {
         checkOneAndFortyFive(bonus);
         Set<Integer> userSet = new HashSet<>(numbers);
         userSet.add(bonus);
-        if(userSet.size() == 6){
+        if(userSet.size() == SIX_MATCH.toInt()){
             throw new IllegalArgumentException(BONUS_ERROR.toString());
         }
     }

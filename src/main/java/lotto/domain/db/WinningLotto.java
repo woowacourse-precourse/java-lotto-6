@@ -11,6 +11,10 @@ public class WinningLotto extends Lotto {
         this.bonusNumber = bonusNumber;
     }
 
+    public WinningLotto(List<Integer> numbers) {
+        super(numbers);
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
     }

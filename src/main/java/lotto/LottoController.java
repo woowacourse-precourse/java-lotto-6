@@ -22,7 +22,7 @@ public class LottoController {
 	public int getCount() {
 		return LottoView.getMoney();
 	}
-
+	
 	private void createRandomLotto(int count) { // 사용자가 입력한 갯수에 따라 로또를 생성한다.
 		for (int i = 0; i < count; i++) {
 			List<Integer> randomNumbers = pickUniqueNumbersInRange(1, 45, 6);
@@ -83,7 +83,6 @@ public class LottoController {
 	}
 
 	private void printResult() {
-		matchRank();
 		Map<Ranking, Integer> result = matchRank();
 		System.out.printf("%n당첨 통계%n");
 		System.out.println("---");
@@ -113,7 +112,6 @@ public class LottoController {
 		int count = getCount();
 		this.createRandomLotto(count);
 		this.getWinNumbers();
-//		this.matchRank();
 		this.printResult();
 		this.marginRate();
 	}

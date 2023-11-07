@@ -55,6 +55,18 @@ public class LottoService {
         }
     }
 
+    public int inputBonusNumber() {
+        while (true) {
+            String input = Console.readLine();
+            try {
+                validateOneNumber(input);
+                return Integer.parseInt(input);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
     private void validateOneNumber(String input) {
         containsNonNumericCharacters(input);
         isNumberOverLimit(input);

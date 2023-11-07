@@ -17,8 +17,8 @@ public class LottoNumber {
         return LOTTO_RANGE_IN_START_VALUE <= number && number <= LOTTO_RANGE_IN_END_VALUE;
     }
 
-    private void validationInRange(Integer number) {
-        if (range(number)) {
+    public void validationInRange(Integer number) {
+        if (!range(number)) {
             throw new IllegalArgumentException(OUT_OF_LOTTO_VALUE_RANGE);
         }
     }

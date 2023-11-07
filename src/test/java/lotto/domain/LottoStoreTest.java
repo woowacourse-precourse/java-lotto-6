@@ -17,7 +17,7 @@ class LottoStoreTest {
     @ParameterizedTest
     @ValueSource(ints = {1, 10, 100, 1000, 1000, 10000, 100000, 1000000})
     void buyLottoTickets(int count) {
-        List<Lotto> lottoList = lottoStore.buyLottoTickets(count);
+        List<Lotto> lottoList = lottoStore.createLottoTickets(count);
         Assertions.assertEquals(count, lottoList.size());
     }
 

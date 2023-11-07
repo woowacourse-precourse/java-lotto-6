@@ -24,7 +24,7 @@ public class LottoGame {
     public Player generateLottoTickets() {
         int playerMoney = InputView.inputAmount();
         int lottoTicketCount = lottoStore.calculateLottoTicketCount(playerMoney);
-        List<Lotto> playerLottoTickets = lottoStore.buyLottoTickets(lottoTicketCount);
+        List<Lotto> playerLottoTickets = lottoStore.createLottoTickets(lottoTicketCount);
         OutputView.printBuyLottoCount(lottoTicketCount);
         OutputView.PrintUserLottoTickets(playerLottoTickets);
         return new Player(playerLottoTickets, playerMoney);

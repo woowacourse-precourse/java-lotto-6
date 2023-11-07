@@ -23,11 +23,14 @@ public class Numbers {
         for (int i = 0; i < numbers.length; i++) {
             luckyNumbers[i] = Integer.parseInt(numbers[i]);
         }
+        System.out.println();
         return Arrays.asList(luckyNumbers);
     }
 
     public int inputBonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        int bonusNumber = Integer.parseInt(Console.readLine());
+        System.out.println();
+        return bonusNumber;
     }
 }

@@ -53,13 +53,16 @@ public class LottoGame {
 
     private static int getTicketPurchaseAmount() {
         System.out.println("구입금액을 입력해 주세요.");
-        int ticketPurchaseAmount = Integer.parseInt(Console.readLine());
-        validateDivisor(ticketPurchaseAmount);
-        return ticketPurchaseAmount;
+        String input = Console.readLine();
+        validateTicketPurchaseAmount(input);
+
+        return Integer.parseInt(input);
     }
 
-    public static void validateDivisor(int divisor) {
-        if (divisor % 1000 != 0) {
+    private static void validateTicketPurchaseAmount(String input) {
+        if (!input.matches("\\d+")) {
+            throw new NumberFormatException("[ERROR] 잘못된 값을 입력했습니다.");
+        } else if (Integer.parseInt(input) % 1000 != 0) {
             throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력해야 합니다.");
         }
     }

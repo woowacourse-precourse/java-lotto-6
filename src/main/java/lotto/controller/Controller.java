@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lotto.domain.Buyer;
 import lotto.domain.Lotto;
@@ -60,7 +61,10 @@ public class Controller {
 
     private void showPurchaseLotteries(List<Lotto> purchaseLotteries) {
         for (Lotto purchaseLotto : purchaseLotteries) {
-            OutputView.showPurchaseLotto(purchaseLotto.getNumbers());
+            OutputView.showPurchaseLotto(purchaseLotto.getNumbers()
+                                                        .stream()
+                                                        .sorted()
+                                                        .toList());
         }
     }
 

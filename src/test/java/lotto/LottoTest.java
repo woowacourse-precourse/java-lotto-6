@@ -28,4 +28,18 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호의 max 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void createLottoByOverScope(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("로또 번호의 min 범위를 벗어나면 예외가 발생한다.")
+    @Test
+    void createLottoByUnderScope(){
+        assertThatThrownBy(() -> new Lotto(List.of(0,2,3,4,5,6)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

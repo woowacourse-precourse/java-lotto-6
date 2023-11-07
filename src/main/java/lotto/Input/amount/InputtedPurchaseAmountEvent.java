@@ -1,4 +1,4 @@
-package lotto.Input;
+package lotto.Input.amount;
 
 import lotto.publish.IssueLottoCommand;
 

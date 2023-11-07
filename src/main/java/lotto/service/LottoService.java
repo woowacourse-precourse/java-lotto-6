@@ -9,13 +9,7 @@ import java.util.List;
 import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoService {
-
     private LottoTicketCount lottoTicket;
-    private final List<Lotto> lottos;
-
-    public LottoService() {
-        this.lottos = new ArrayList<>();
-    }
 
     public void createLottoTicket(String moneyInput) {
         this.lottoTicket = new LottoTicketCount(moneyInput);
@@ -37,14 +31,5 @@ public class LottoService {
     private Lotto createSingleGameLottoNumbers() {
         List<Integer> singleGameLottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(singleGameLottoNumbers);
-    }
-
-    public void storeLottoNumbers (List<Lotto> lottoNumbers) {
-        this.lottos.addAll(lottoNumbers);
-    }
-
-
-    public List<Lotto> purchaseLottoTickets() {
-        return this.lottos;
     }
 }

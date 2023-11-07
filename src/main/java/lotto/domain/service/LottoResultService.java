@@ -2,9 +2,10 @@ package lotto.domain.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
-import lotto.domain.repository.BonusNumberRepository;
 import lotto.domain.repository.LottoRepository;
+import lotto.domain.repository.WinningLottoRepository;
 import lotto.util.Util;
 import lotto.util.enumerator.LottoRank;
 
@@ -60,19 +61,7 @@ public class LottoResultService {
     }
 
     private LottoRank compareWithBonusNumber(List<Integer> lottoNumbers) {
-        if (isMatchWithBonusNumber(lottoNumbers)) {
-            return LottoRank.SECOND;
-        }
-        return LottoRank.THIRD;
-    }
-
-    private boolean isMatchWithBonusNumber(List<Integer> numbers) {
-        int bonus = BonusNumberRepository.findBonusNumber();
-        for (int number : numbers) {
-            if (Util.isEqual(number, bonus)) {
-                return true;
-            }
-        }
-        return false;
+        BonusNumber bonusNumber = WinningLottoRepository.findBonusNumber();
+        return bonusNumber.compareWithLottoNumber(lottoNumbers);
     }
 }

@@ -50,7 +50,7 @@ public class InputView {
         }
     }
 
-    private void printExceptionMessage(Exception exception) {
+    public void printExceptionMessage(Exception exception) {
         System.out.println(exception.getMessage());
     }
 

@@ -2,14 +2,16 @@ package lotto.domain.repository;
 
 import java.util.LinkedList;
 import java.util.List;
-import lotto.domain.Lotto;
+import lotto.domain.BonusNumber;
+import lotto.domain.WinningLotto;
+import lotto.domain.WinningNumber;
 
 public class WinningLottoRepository {
     private static final int DEFAULT = 0;
 
-    private static List<Lotto> winningLotties = new LinkedList<>();
+    private static List<WinningLotto> winningLotties = new LinkedList<>();
 
-    public static void add(Lotto winningLotto) {
+    public static void add(WinningLotto winningLotto) {
         winningLotties.add(winningLotto);
     }
 
@@ -17,11 +19,15 @@ public class WinningLottoRepository {
         winningLotties.clear();
     }
 
-    public static List<Integer> findWinningNumbers() {
-        return findByIndex(DEFAULT).getNumbers();
+    public static WinningNumber findWinningNumbers() {
+        return findByIndex(DEFAULT).getWinning();
     }
 
-    private static Lotto findByIndex(int index) {
+    public static BonusNumber findBonusNumber() {
+        return findByIndex(DEFAULT).getBonus();
+    }
+
+    private static WinningLotto findByIndex(int index) {
         return winningLotties.get(index);
     }
 }

@@ -1,11 +1,15 @@
 package lotto.view;
 
+import lotto.domain.Lotto;
+
 import java.util.List;
 
 public class LottoOutput {
 
+    private StringBuffer stringBuffer;
+
     public String printRandomLotto(List<Integer> lottoNumbers){
-        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer = new StringBuffer();
 
         stringBuffer.append("[");
         int lottoLength = lottoNumbers.size();
@@ -16,5 +20,15 @@ public class LottoOutput {
         String returnValue = stringBuffer.toString();
         System.out.println(returnValue);
         return returnValue;
+    }
+
+    public String printAllRandomLotto(List<Lotto> lottos){
+        stringBuffer = new StringBuffer();
+
+        for(Lotto lotto : lottos){
+            stringBuffer.append(printRandomLotto(lotto.getNumbers()));
+            stringBuffer.append("\n");
+        }
+        return stringBuffer.toString();
     }
 }

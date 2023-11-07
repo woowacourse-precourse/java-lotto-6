@@ -21,4 +21,8 @@ public enum LottoPlace {
     public String getDescription(){
         return this.description;
     }
+
+    public int getReward(){
+        return this.reward;
+    }
 }

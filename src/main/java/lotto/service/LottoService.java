@@ -2,6 +2,7 @@ package lotto.service;
 
 import lotto.domain.Budget;
 import lotto.domain.Lottos;
+import lotto.domain.WinningScores;
 
 public class LottoService {
 
@@ -15,5 +16,11 @@ public class LottoService {
 
     public String getLottosNumbers(Lottos lottos){
         return lottos.getLottosNumbers();
+    }
+
+    public double getReturnOfLottos(WinningScores winningScores, Budget budget){
+        long lottosSum = winningScores.getWinningProfit();
+
+        return budget.getProfit(lottosSum);
     }
 }

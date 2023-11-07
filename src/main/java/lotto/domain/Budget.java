@@ -24,4 +24,8 @@ public class Budget {
             throw new IllegalArgumentException(ErrorMessage.UNITS_OF_1000.getErrorMessage());
         }
     }
+
+    public double getProfit(long rewardSum){
+        return rewardSum/(double)budget;
+    }
 }

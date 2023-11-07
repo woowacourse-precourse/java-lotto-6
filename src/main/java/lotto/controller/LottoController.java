@@ -46,5 +46,8 @@ public class LottoController {
 
         WinningScores winningScores = winningService.calWinningScores(lottos, winningManager);
         gameView.printWinningStatistic(winningScores.toString());
+
+        double profit = lottoService.getReturnOfLottos(winningScores, budget);
+        gameView.printROI(profit);
     }
 }

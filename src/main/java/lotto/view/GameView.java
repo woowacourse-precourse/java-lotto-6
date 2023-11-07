@@ -28,9 +28,13 @@ public class GameView {
         print(OutputMessage.INPUT_BONUS_NUMBER.getMessage());
     }
 
-    public void printWinningStatistic(String winningScores){
+    public void printWinningStatistic(String winningScores) {
         print(OutputMessage.OUTPUT_WINNING_STATISTIC.getMessage());
         print(winningScores);
+    }
+
+    public void printROI(double roi) {
+        print(String.format(OutputMessage.OUTPUT_ROI.getMessage(), roi));
     }
 
     private void print(String message) {

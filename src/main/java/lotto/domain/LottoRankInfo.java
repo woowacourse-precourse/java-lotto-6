@@ -32,7 +32,7 @@ public enum LottoRankInfo {
         return lottoRankInfos;
     }
 
-    public static LottoRankInfo geLottoRankInfo(int matchingCount, boolean matchingBonus) {
+    public static LottoRankInfo getLottoRankInfo(int matchingCount, boolean matchingBonus) {
         return Arrays.stream(LottoRankInfo.values())
                 .filter(rankInfo -> rankInfo.findRankInfo(rankInfo, matchingCount, matchingBonus))
                 .findAny()
@@ -63,6 +63,10 @@ public enum LottoRankInfo {
 
     private boolean isMatchCountEqual(int matchingCount, int expectedMatchingCount) {
         return matchingCount == expectedMatchingCount;
+    }
+
+    public long calculateTotalPrize(int winningCount) {
+        return (long) prizeMoney * winningCount;
     }
 
     public int getMatchingCount() {

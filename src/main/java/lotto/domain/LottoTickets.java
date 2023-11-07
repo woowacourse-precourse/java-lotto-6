@@ -41,6 +41,18 @@ public class LottoTickets {
         return new Lotto(randomNumbers);
     }
 
+    public List<LottoRankInfo> createLottoRankInfos(LottoWinningNumbers winningNumbers, LottoBonusNumber bonusNumber) {
+        List<LottoRankInfo> rankInfos = new ArrayList<>();
+
+        for (Lotto lotto : lottoTickets) {
+            int matchingCount = lotto.countMatchingNumbers(winningNumbers);
+            boolean matchingBonus = lotto.containsBonusNumber(bonusNumber);
+            LottoRankInfo rankInfo = LottoRankInfo.getLottoRankInfo(matchingCount, matchingBonus);
+            rankInfos.add(rankInfo);
+        }
+        return rankInfos;
+    }
+
     public List<Lotto> getLottoTickets() {
         return Collections.unmodifiableList(lottoTickets);
     }

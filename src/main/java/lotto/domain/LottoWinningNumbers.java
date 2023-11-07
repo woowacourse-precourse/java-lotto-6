@@ -50,6 +50,10 @@ public class LottoWinningNumbers {
         this.numbers.addAll(numbers);
     }
 
+    public boolean containsNumber(int number) {
+        return numbers.contains(number);
+    }
+
     public List<Integer> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LottoResultCalculator {
@@ -24,13 +25,10 @@ public class LottoResultCalculator {
 
     public Map<LottoRankInfo, Integer> generateLottoResult(LottoTickets lottoTickets,
                                                            LottoWinningNumbers winningNumbers, LottoBonusNumber bonusNumber) {
-        for (Lotto lotto : lottoTickets.getLottoTickets()) {
-            int matchingCount = lotto.countMatchingNumbers(winningNumbers.getNumbers());
-            boolean matchingBonus = lotto.containsNumber(bonusNumber.getBonusNumber());
-            LottoRankInfo lottoRankInfo = LottoRankInfo.geLottoRankInfo(matchingCount, matchingBonus);
-
-            int currentCount = lottoResult.get(lottoRankInfo);
-            lottoResult.replace(lottoRankInfo, currentCount + ONE_COUNT_INCREASE);
+        List<LottoRankInfo> rankInfos = lottoTickets.createLottoRankInfos(winningNumbers, bonusNumber);
+        for (LottoRankInfo rankInfo : rankInfos) {
+            int currentCount = lottoResult.get(rankInfo);
+            lottoResult.replace(rankInfo, currentCount + ONE_COUNT_INCREASE);
         }
 
         return Collections.unmodifiableMap(lottoResult);
@@ -38,7 +36,7 @@ public class LottoResultCalculator {
 
     public long calculateTotalPrizeMoney() {
         return lottoResult.entrySet().stream()
-                .mapToLong(entry -> (long) entry.getKey().getPrizeMoney() * entry.getValue())
+                .mapToLong(entry -> entry.getKey().calculateTotalPrize(entry.getValue()))
                 .sum();
     }
 }

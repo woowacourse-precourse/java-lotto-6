@@ -36,6 +36,15 @@ public class LottoBonusNumber {
         }
     }
 
+    public boolean includesBonusNumber(List<Integer> lottoNumbers) {
+        for (int number : lottoNumbers) {
+            if (number == bonusNumber) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getBonusNumber() {
         return bonusNumber;
     }

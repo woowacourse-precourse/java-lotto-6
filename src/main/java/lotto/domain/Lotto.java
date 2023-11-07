@@ -32,5 +32,21 @@ public class Lotto {
                 .count();
     }
 
+    private List<LottoNumber> createLotto(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::new)
+                .toList();
+    }
+
+    public boolean isContain(LottoNumber number) {
+        return lotto.contains(number);
+    }
+
+    public int countMatchedWinningLotto(WinningNumbers winningNumbers) {
+        return (int) lotto.stream()
+                .filter(winningNumbers::isContain)
+                .count();
+    }
+
 
 }

@@ -22,6 +22,7 @@ public class GameController {
         outputView.printLottoTicketMessage(lottoMoney);
         randomUtility.generateRandomLottoNumbers();
         saveRandomLottoNumbers(lottoMoney);
+        inputView.enterLottoNumber();
     }
 
     private void saveLottoMoney() {

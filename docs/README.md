@@ -50,7 +50,7 @@
 - enterLottoMoney()
   - [x] 로또 구매 금액 입력
 - enterLottoNumber()
-  - [ ] 로또 당첨 번호 입력 받는다.
+  - [x] 로또 당첨 번호 입력 받는다.
 - enterBonusLottoNumber()
   - [ ] 보너스 당청 번호 입력 받는다.
 

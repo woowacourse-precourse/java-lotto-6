@@ -5,15 +5,9 @@ import lotto.message.ErrorMessage;
 public class TicketVendingMachine {
     private static final int TICKET_PRICE = 1000;
 
-    private int amount;
-    private LottoTicket lottoTicket;
+    private int sell;
 
-    public TicketVendingMachine(int amount) {
-        this.amount = amount;
-        this.lottoTicket = buyTicket(amount);
-    }
-
-    private LottoTicket buyTicket(int amount){
+    public LottoTicket buyTicket(int amount){
         int count = calculateTicketCount(amount);
         return new LottoTicket(count);
     }

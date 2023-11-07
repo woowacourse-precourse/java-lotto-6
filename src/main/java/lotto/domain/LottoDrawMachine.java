@@ -27,4 +27,12 @@ public class LottoDrawMachine {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_OUT_OF_RANGE_HIGH.getMessage());
         }
     }
+
+    public Lotto getLottoNumber() {
+        return lottoNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

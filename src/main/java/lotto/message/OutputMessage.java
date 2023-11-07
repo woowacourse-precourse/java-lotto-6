@@ -9,5 +9,5 @@ public class OutputMessage {
     public final static String THIRD_PRIZE = "5개 일치 (1,500,000원) - %d개\n";
     public final static String FOURTH_PRIZE = "4개 일치 (50,000원) - %d개\n";
     public final static String FIFTH_PRIZE = "3개 일치 (5,000원) - %d개\n";
-    public final static String EARN_RATE = "총 수익률은 %.2f%%입니다.\n";
+    public final static String EARN_RATE = "총 수익률은 %.1f%%입니다.\n";
 }

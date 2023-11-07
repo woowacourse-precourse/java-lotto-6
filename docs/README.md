@@ -45,10 +45,11 @@
     - [ ] 보너스 번호 문자 확인: checkBonusNumberCharacter
     - [ ] 보너스 번호 갯수 확인: checkBonusNumberSize
     - [ ] 보너스 번호 충복 확인: checkDoubleBonusNumber
-- [ ] 입력: Input
-    - [ ] 구입금액 입력: enterAmount
-    - [ ] 당첨 번호 입력: enterWiningNumber
-    - [ ] 보너스 번호 입력: enterBonusNumber
+- [x] 입력: Input
+    - [x] 구입금액 입력: enterAmount
+    - [x] 당첨 번호 입력: enterWiningNumber
+    - [x] 보너스 번호 입력: enterBonusNumber
+    - [x] 입력 닫기: inputClose
 - [ ] 출력: Output
     - [ ] 구입금액 입력 요청: requestAmount
     - [ ] 구매 갯수 출력: printPurchaseCount

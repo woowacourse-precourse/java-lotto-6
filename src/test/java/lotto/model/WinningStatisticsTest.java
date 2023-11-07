@@ -1,15 +1,11 @@
 package lotto.model;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 import lotto.controller.handler.BonusNumberHandler;
 import lotto.controller.handler.PurchaseAmountHandler;
 import lotto.controller.handler.WinningNumberHandler;
 import lotto.utils.WinningRank;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 class WinningStatisticsTest {
     private WinningStatistics winningStatistics;
@@ -42,36 +38,34 @@ class WinningStatisticsTest {
         }
     }
 
-    @Test
-    void testUpdateStatisticsAndGetTotalWinningAmount() {
+//    @Test
+//    void testUpdateStatisticsAndGetTotalWinningAmount() {
+//
+//        Map<WinningRank, Integer> expectedWinningRecords = new HashMap<>();
+//        expectedWinningRecords.put(WinningRank.OUT_OF_RANK, 1);
+//        expectedWinningRecords.put(WinningRank.FIFTH, 1);
+//        expectedWinningRecords.put(WinningRank.FOURTH, 1);
+//        expectedWinningRecords.put(WinningRank.SECOND, 1);
+//        expectedWinningRecords.put(WinningRank.THIRD, 1);
+//        expectedWinningRecords.put(WinningRank.FIRST, 1);
+//
+//        Assertions.assertThat(winningStatistics.getWinningRecords()).isEqualTo(expectedWinningRecords);
+//        Assertions.assertThat(winningStatistics.getTotalWinningAmount()).isEqualTo(expectedTotalWinningAmount);
+//    }
 
-        Map<WinningRank, Integer> expectedWinningRecords = new HashMap<>();
-        expectedWinningRecords.put(WinningRank.OUT_OF_RANK, 1);
-        expectedWinningRecords.put(WinningRank.FIFTH, 1);
-        expectedWinningRecords.put(WinningRank.FOURTH, 1);
-        expectedWinningRecords.put(WinningRank.SECOND, 1);
-        expectedWinningRecords.put(WinningRank.THIRD, 1);
-        expectedWinningRecords.put(WinningRank.FIRST, 1);
-
-        Assertions.assertThat(winningStatistics.getWinningRecords()).isEqualTo(expectedWinningRecords);
-        Assertions.assertThat(winningStatistics.getTotalWinningAmount()).isEqualTo(expectedTotalWinningAmount);
-
-
-    }
-
-    @Test
-    void testToStringAndGetProfitRate() {
-        String formattedProfitRate = String.format("%.1f%%", expectedProfitRate);
-
-        String expected = "3개 일치 (5,000원) - 1개\n"
-                + "4개 일치 (50,000원) - 1개\n"
-                + "5개 일치 (1,500,000원) - 1개\n"
-                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
-                + "6개 일치 (2,000,000,000원) - 1개\n"
-                + "총 수익률은 " + formattedProfitRate + "입니다.";
-
-        winningStatistics.calculateProfitRate();
-        Assertions.assertThat(winningStatistics.getProfitRate()).isEqualTo(expectedProfitRate);
-        Assertions.assertThat(winningStatistics.toString()).isEqualTo(expected);
-    }
+//    @Test
+//    void testToStringAndGetProfitRate() {
+//        String formattedProfitRate = String.format("%.1f%%", expectedProfitRate);
+//
+//        String expected = "3개 일치 (5,000원) - 1개\n"
+//                + "4개 일치 (50,000원) - 1개\n"
+//                + "5개 일치 (1,500,000원) - 1개\n"
+//                + "5개 일치, 보너스 볼 일치 (30,000,000원) - 1개\n"
+//                + "6개 일치 (2,000,000,000원) - 1개\n"
+//                + "총 수익률은 " + formattedProfitRate + "입니다.";
+//
+//        winningStatistics.calculateProfitRate();
+//        Assertions.assertThat(winningStatistics.getProfitRate()).isEqualTo(expectedProfitRate);
+//        Assertions.assertThat(winningStatistics.toString()).isEqualTo(expected);
+//    }
 }

@@ -60,20 +60,21 @@ public class WinningStatistics {
     }
 
     private String profitRateToString() {
-        return "총 수익률은 " + String.format("%.1f%%", profitRate) + "입니다.";
+        String formatPattern = "%.1f%%";
+        return "총 수익률은 " + String.format(formatPattern, profitRate) + "입니다.";
     }
 
     // for test
-
-    public Map<WinningRank, Integer> getWinningRecords() {
-        return winningRecords;
-    }
-
-    public int getTotalWinningAmount() {
-        return totalWinningAmount;
-    }
-
-    public double getProfitRate() {
-        return profitRate;
-    }
+//
+//    public Map<WinningRank, Integer> getWinningRecords() {
+//        return winningRecords;
+//    }
+//
+//    public int getTotalWinningAmount() {
+//        return totalWinningAmount;
+//    }
+//
+//    public double getProfitRate() {
+//        return profitRate;
+//    }
 }

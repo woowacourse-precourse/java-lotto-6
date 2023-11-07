@@ -49,4 +49,18 @@ public class Game {
         }
         return winningStatistics;
     }
+
+    public int getTotalReturn(int[] winningStatistics) {
+        int totalReturn = winningStatistics[0] * 2000000000
+                + winningStatistics[1] * 30000000
+                + winningStatistics[2] * 1500000
+                + winningStatistics[3] * 50000
+                + winningStatistics[4] * 5000;
+
+        return totalReturn;
+    }
+
+    public double getTotalReturnPercentage(int purchaseAmount, int totalReturn) {
+        return (double)totalReturn / purchaseAmount;
+    }
 }

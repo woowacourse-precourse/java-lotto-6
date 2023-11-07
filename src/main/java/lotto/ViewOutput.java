@@ -22,19 +22,20 @@ public class ViewOutput {
         stringBuilder.setLength(0);
     }
 
-    public void showWinningStatistics(List<Integer> results) {
+    public void showWinningStatistics(int[] winningStatistics) {
         stringBuilder.append("\n당첨 통계\n" + "---\n");
-        stringBuilder.append("3개 일치 (5,000원) - " + results.get(0) + "개\n");
-        stringBuilder.append("4개 일치 (5,0000원) - " + results.get(1) + "개\n");
-        stringBuilder.append("5개 일치 (1,500,000원) - " + results.get(2) + "개\n");
-        stringBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + results.get(3) + "개\n");
-        stringBuilder.append("6개 일치 (2,000,000,000원) - " + results.get(0) + "개\n");
+        stringBuilder.append("3개 일치 (5,000원) - " + winningStatistics[4] + "개\n");
+        stringBuilder.append("4개 일치 (5,0000원) - " + winningStatistics[3] + "개\n");
+        stringBuilder.append("5개 일치 (1,500,000원) - " + winningStatistics[2] + "개\n");
+        stringBuilder.append("5개 일치, 보너스 볼 일치 (30,000,000원) - " + winningStatistics[1] + "개\n");
+        stringBuilder.append("6개 일치 (2,000,000,000원) - " + winningStatistics[0] + "개\n");
 
         System.out.println(stringBuilder);
         stringBuilder.setLength(0);
     }
 
-    public void showTotalReturn(int totalReturn) {
-        System.out.println("총 수익률은 " + totalReturn + "%입니다.");
+    public void showTotalReturn(int totalReturnPercentage) {
+        String formattedResult = String.format("%1f", totalReturnPercentage);
+        System.out.println("총 수익률은 " + formattedResult + "%입니다.");
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class User {
 
-    private int totalReturn = 0;
+    private int totalReturnPercentage = 0;
     private List<Lotto> lottoList;
     private List<Integer> winningStatistics;
 
@@ -16,12 +16,12 @@ public class User {
         this.winningStatistics = winningStatistics;
     }
 
-    public int getTotalReturn() {
-        return totalReturn;
+    public int getTotalReturnPercentage() {
+        return totalReturnPercentage;
     }
 
-    public void setTotalReturn(int totalReturn) {
-        this.totalReturn = totalReturn;
+    public void setTotalReturnPercentage(int totalReturn) {
+        this.totalReturnPercentage = totalReturn;
     }
 
     public List<Lotto> getLottoList() {

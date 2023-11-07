@@ -1,6 +1,5 @@
 package lotto.domain;
 
-
 public class Profit {
     private static final double PERCENTAGE = 100.0;
     private final LottoResult lottoResult;
@@ -10,7 +9,7 @@ public class Profit {
     }
 
     public double getRateOfReturn() {
-        return (getTotalPrize()  / (double) getPurchasePrice()) * PERCENTAGE;
+        return (getTotalPrize() / (double) getPurchasePrice()) * PERCENTAGE;
     }
 
     private int getTotalPrize() {

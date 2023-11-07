@@ -13,6 +13,7 @@ import lotto.utils.Util;
 
 public class LottoPurchaseManager {
     private final BigDecimal lottoPrice;
+public class LottoSeller {
 
     public LottoPurchaseManager(BigDecimal lottoPrice) {
         this.lottoPrice = lottoPrice;
@@ -28,7 +29,7 @@ public class LottoPurchaseManager {
         WinningNumbers winningNumbers = LottoPurchaseInput.inputWinningNumbers();
 
         HashMap<LottoPrize, BigDecimal> lottoRank = winningNumbers.getResultWith(lottos);
-        LottoResult lottoResult = new LottoResult (lottoRank, purchaseAmount);
+        LottoResult lottoResult = new LottoResult(lottoRank, purchaseAmount);
         OutputMessage.printWinningStatistics(lottoResult);
     }
 }

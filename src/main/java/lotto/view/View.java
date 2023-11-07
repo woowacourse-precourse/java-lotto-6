@@ -6,8 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static lotto.view.constant.Exception.COST_FORMAT;
-import static lotto.view.constant.Exception.LOTTO_FORMAT;
+import static lotto.view.constant.Exception.*;
 
 public class View {
     private final static String SPLIT_SYMBOL = ",";
@@ -30,6 +29,14 @@ public class View {
         } catch (IllegalArgumentException e) {
             output(e.getMessage());
             return inputMatch();
+        }
+    }
+
+    public int inputBonus() {
+        try {
+            return Integer.parseInt(Console.readLine());
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(BONUS_FORMAT);
         }
     }
 

@@ -1,5 +1,7 @@
 package lotto.utils;
 
+import static lotto.view.ErrorMessage.*;
+
 public class StringUtils {
 
     public static int countOccurrences(String str, String target) {
@@ -12,6 +14,19 @@ public class StringUtils {
         }
 
         return count;
+    }
+
+    public static int parseInt(String str) {
+
+        int result = 0;
+
+        try {
+            result = Integer.parseInt(str);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(NOT_A_NUMBER.getErrorMessage());
+        }
+
+        return result;
     }
 
 }

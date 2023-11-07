@@ -57,4 +57,21 @@ public class ValidateWinningLottoNumberTest {
         assertThatCode(() -> new Lotto(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,a", "4,33,34,37,1b,3", "6,7,8,9,cc,11", "15,dd,17,13,12,11"})
+    @DisplayName("당첨_번호_입력_검증_실패_숫자_아닌_문자")
+    void 당첨_번호_입력_검증_실패_숫자_아닌_문자(String input) {
+        assertThatCode(() -> inputProcessor.getUserInputWinningNumbers(input))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,", ",,", ",,,,,,,", "15,,17,13,12,"})
+    @DisplayName("당첨_번호_입력_검증_실패_공백_입력")
+    void 당첨_번호_입력_검증_실패_공백_입력(String input) {
+        assertThatCode(() -> {
+            inputProcessor.getUserInputWinningNumbers(input);
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 }

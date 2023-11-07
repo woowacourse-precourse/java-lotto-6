@@ -59,13 +59,55 @@ class InputHandlerTest {
         assertThatThrownBy(() -> {
             inputHandler.readWinningNumber(input);
         }).isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining(ERROR_MESSAGE + " 더 많은 숫자를 입력하였습니다.");
+                .hasMessageContaining(ERROR_MESSAGE + " 6 개의 숫자를 입력해 주세요.");
     }
 
     @Test
-    @DisplayName("보너스 숫자 잘못 입력: 2 개 이상의 숫자를 입력한 경우")
-    void readBonusNumberTest1() {
+    @DisplayName("당첨 숫자 잘못 입력: 적은 숫자를 입력한 경우")
+    void readWinningNumberTest4() {
         String input = "12,45";
+        assertThatThrownBy(() -> {
+            inputHandler.readWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 6 개의 숫자를 입력해 주세요.");
+    }
+
+    @Test
+    @DisplayName("당첨 숫자 잘못 입력: 중복이 있는 입력")
+    void readWinningNumberTest5() {
+        String input = "12,45,34,12,33,1";
+        assertThatThrownBy(() -> {
+            inputHandler.readWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 중복된 숫자를 입력하습니다.");
+    }
+
+    @Test
+    @DisplayName("당첨 숫자 잘못 입력: 중복 1개 있는데 1개 초과 입력한 경우")
+    void readWinningNumberTest6() {
+        String input = "12,45,34,12,33,1,7";
+        assertThatThrownBy(() -> {
+            inputHandler.readWinningNumber(input);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 6 개의 숫자를 입력해 주세요.");
+    }
+
+
+    @Test
+    @DisplayName("보너스 숫자 잘못 입력: 2 개 이상의 숫자를 입력한 경우")
+    void readBonusNumberTest1_1() {
+        String input = "12,45";
+        List<Integer> input2 = List.of(3, 5, 11, 16, 32, 38);
+        assertThatThrownBy(() -> {
+            inputHandler.readBonusNumber(input, input2);
+        }).isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(ERROR_MESSAGE + " 하나의 숫자만을 입력해야 합니다.");
+    }
+
+    @Test
+    @DisplayName("보너스 숫자 잘못 입력: 2 개 이상의 동일한 숫자를 입력한 경우")
+    void readBonusNumberTest1_2() {
+        String input = "12,12";
         List<Integer> input2 = List.of(3, 5, 11, 16, 32, 38);
         assertThatThrownBy(() -> {
             inputHandler.readBonusNumber(input, input2);

@@ -10,8 +10,6 @@ public class Application {
         InputHandler inputHandler = new InputHandler();
         GameManager gameManager = new GameManager();
         Integer money = null;
-        List<Integer>  winningNumber = null;
-        Integer bonusNumber = null;
 
         // 금액 입력
         System.out.println("구입 금액을 입력해 주세요.");
@@ -29,20 +27,19 @@ public class Application {
 
         // 당첨 숫자, 보너스 번호 입력
         System.out.println("당첨 번호를 입력해 주세요.");
-        while(winningNumber == null) {
+        while(gameManager.getWinningNumbers() == null) {
             String numberArray = Console.readLine();
-            winningNumber = inputHandler.readWinningNumber(numberArray);
+            gameManager.setWinningNumbers(inputHandler.readWinningNumber(numberArray));
         }
-        gameManager.setWinningNumbers(winningNumber);
         System.out.println();
 
         System.out.println("보너스 번호를 입력해 주세요.");
-        while(bonusNumber == null) {
+        while(gameManager.getBonusNumber() == null) {
             String numberInput = Console.readLine();
-            bonusNumber = inputHandler.readBonusNumber(numberInput, winningNumber);
+            gameManager.setBonusNumber(inputHandler.readBonusNumber(numberInput,gameManager.getWinningNumbers()));
         }
-        gameManager.setBonusNumber(bonusNumber);
 
+        
         // 당첨 통계 처리 및 출력
     }
 }

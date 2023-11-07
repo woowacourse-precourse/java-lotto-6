@@ -47,24 +47,19 @@ public class InputHandler {
     }
     
     private void validateNumber(List<Integer> winningNumbers) {
+        if(winningNumbers.size() != 6) {
+            throw new IllegalArgumentException("[ERROR] 6 개의 숫자를 입력해 주세요.");
+        }
         if(winningNumbers.stream().anyMatch(i -> i < minNumber || i > maxNumber)) {
             throw new IllegalArgumentException("[ERROR] 1~45 사이의 숫자를 입력해야 합니다.");
         }
         Set<Integer> set = new HashSet<>(winningNumbers);
         isItDuplicated(set);
-        isItOutnumbered(set);
     }
     private void isItDuplicated(Set<Integer> winningNumbers) {
         Set<Integer> set = new HashSet<>(winningNumbers);
         if(set.size() < 6) {
-            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하였습니다.");
-        }
-        
-    }
-    private void isItOutnumbered(Set<Integer> winningNumbers) {
-        Set<Integer> set = new HashSet<>(winningNumbers);
-        if(set.size() > 6) {
-            throw new IllegalArgumentException("[ERROR] 더 많은 숫자를 입력하였습니다.");
+            throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하습니다.");
         }
     }
     

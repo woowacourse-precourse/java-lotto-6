@@ -3,16 +3,16 @@ package lotto;
 import java.util.List;
 
 public class Result {
-//    public List<Long> scores;
-//    public Long profit;
-//    public Result(List<Long> scores) {
-//        this.scores = scores;
-//        this.profit = calculateProfit(scores);
-//    }
-//    public Long getProfit() {
-//        return this.profit;
-//    }
-//    private Long calculateProfit(List<Long> scores) {
+    private List<Score> scores;
+    private Long profit;
+    private enum Score {
+        FIRST, SECOND, THIRD, FOURTH, FIFTH
+    }
+
+    public Long getProfit() {
+        return this.profit;
+    }
+//    private Score makeScore() {
 //        
 //    }
 }

@@ -7,10 +7,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class GameManager {
-    
-    private List<Lotto> lottos = new ArrayList<>();
-    private List<Integer> winningNumbers = new ArrayList<>();
+    private Result result;
+    private List<Lotto> lottos;
+    private List<Integer> winningNumbers;
     private Integer bonusNumber;
+    
+    public GameManager() {
+        this.result = null;
+        this.lottos = new ArrayList<>();
+        this.winningNumbers = null;
+        this.bonusNumber = null;
+    }
+    
     public void generateLotto(Integer money) {
         Integer iterNum = money / 1000;
         for(int i = 0; i < iterNum; i++) {
@@ -23,6 +31,10 @@ public class GameManager {
     public Integer getGameSize() {
         return this.lottos.size();
     }
+    
+    public List<Integer> getWinningNumbers() { return this.winningNumbers; }
+    
+    public Integer getBonusNumber() { return this.bonusNumber; }
     
     public void setWinningNumbers(List<Integer> winningNumbers) {
         this.winningNumbers = winningNumbers;

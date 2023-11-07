@@ -31,6 +31,10 @@ public class LottoBuyer {
                 result.put(lottoGrade, result.get(lottoGrade) + 1);
             }
         }
+        return createResultsDto();
+    }
+
+    private List<LottoResultDto> createResultsDto() {
         return result.keySet()
                 .stream()
                 .map(grade -> LottoResultDto.of(grade, result.get(grade)))

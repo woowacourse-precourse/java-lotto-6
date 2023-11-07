@@ -40,6 +40,20 @@ public class Input {
         }
     }
 
+    public void BonusNumber() {
+        boolean isValid = false;
+
+        while (!isValid) {
+            try {
+                readBonusNumber();
+                isValid = validateBonusNumber();
+
+            } catch (IllegalArgumentException e) {
+                System.out.print("[ERROR] " + e.getMessage());
+            }
+        }
+    }
+
 
     private void readPurchasePrice() {
         System.out.print("구입 금액을 입력해 주세요.\n");
@@ -51,6 +65,11 @@ public class Input {
         this.input = Console.readLine().trim();
 
         this.winningNumbers = List.of(this.input.split(","));
+    }
+
+    private void readBonusNumber() {
+        System.out.print("보너스 번호를 입력해 주세요.\n");
+        this.input = Console.readLine().trim();
     }
 
     private boolean validatePurchasePriceFormat() {
@@ -65,6 +84,13 @@ public class Input {
         validateWinningNumbersCount();
         validateWinningNumbersFormat();
         validateWinningNumbersDuplicate();
+
+        return true;
+    }
+
+    private boolean validateBonusNumber() {
+        validateBonusNumberFormat();
+        validateBonusNumberDuplicate();
 
         return true;
     }
@@ -88,6 +114,20 @@ public class Input {
 
         if (noDuplicateNumbers.size() != this.winningNumbers.size()) {
             throw new IllegalArgumentException("당첨 번호는 중복되지 않는 숫자 6개여야 합니다.\n");
+        }
+    }
+
+    private void validateBonusNumberFormat() {
+        if (!this.input.matches("^([1-9]|[1-3][0-9]|4[0-5])$")) {
+            throw new IllegalArgumentException("로또 번호는 1부터 45 사이의 숫자여야 합니다.\n");
+        }
+    }
+
+    private void validateBonusNumberDuplicate() {
+        for (String number : this.winningNumbers) {
+            if (this.input.equals(number)) {
+                throw new IllegalArgumentException("보너스 번호는 당첨 번호와 중복되지 않아야 합니다.\n");
+            }
         }
     }
 

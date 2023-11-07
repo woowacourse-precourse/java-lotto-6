@@ -11,5 +11,6 @@ public class Application {
         lottoDraw.configureLottoNumbers();
         lottoDraw.printPurchaseHistory();
         input.winningNumbers();
+        input.BonusNumber();
     }
 }

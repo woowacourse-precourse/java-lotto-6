@@ -42,7 +42,7 @@ public class LottoValidator{
     }
 
     private static void validateSort(List<Integer> numbers) {
-        boolean IsSort = IntStream.range(0, LOTTO_SIZE)
+        boolean IsSort = IntStream.range(0, LOTTO_SIZE - 1)
                 .allMatch(i -> numbers.get(i) < numbers.get(i + 1));
         if (!IsSort) {
             throw new IllegalArgumentException("[ERROR] 로또 번호는 오름 차순으로 정렬되어야 합니다.");

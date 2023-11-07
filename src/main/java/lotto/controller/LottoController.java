@@ -1,9 +1,7 @@
 package lotto.controller;
 
-import lotto.domain.Amount;
-import lotto.domain.BonusLotto;
-import lotto.domain.LottoService;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
+import lotto.util.LottoNumberGenerator;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -32,9 +30,10 @@ public class LottoController {
     private void printLottoList() {
         int count = amount.getCount();
         OutputView.printPurchaseCount(count);
-        LottoService lottoService = new LottoService(new ArrayList<>());
+        LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
         for(int i = 0; i  < count; i++){
-            OutputView.printBoughtLottoNumbers(lottoService.createLottoList());
+            Lotto lotto = new Lotto(lottoNumberGenerator.generate());
+            OutputView.printBoughtLottoNumbers(lotto.getNumbers());
         }
     }
 
@@ -48,5 +47,6 @@ public class LottoController {
         OutputView.printBonusNumber();
         int bonusNumber = InputView.readBonusNumber();
         bonusLotto = new BonusLotto(bonusNumber);
+
     }
 }

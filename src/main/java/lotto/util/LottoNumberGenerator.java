@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.domain.Lotto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LottoNumberGenerator implements LottoGenerator {
 
@@ -13,7 +14,10 @@ public class LottoNumberGenerator implements LottoGenerator {
 
     @Override
     public List<Integer> generate() {
-        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE);
+        return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER, MAX_LOTTO_NUMBER, LOTTO_SIZE)
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
     }
 }
 

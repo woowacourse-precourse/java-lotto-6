@@ -7,7 +7,7 @@ import lotto.domain.Winning;
 
 public class Comparer {
 
-    private int compareLottoToWinning(Lotto lotto, Winning winning) {
+    private static int compareLottoToWinning(Lotto lotto, Winning winning) {
         return Comparer.compareLottos(lotto, winning.getWinningLotto());
     }
 
@@ -15,6 +15,10 @@ public class Comparer {
         List<Integer> sameNumbers = new ArrayList<>(lotto1.getNumbers());
         sameNumbers.removeAll(lotto2.getNumbers());
         return sameNumbers.size();
+    }
+
+    public static boolean containsBonus(Lotto lotto, Winning winning) {
+        return lotto.getNumbers().contains(winning.getBonusNumber());
     }
 
 }

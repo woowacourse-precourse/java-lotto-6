@@ -8,6 +8,9 @@ import lotto.embedded.LottoResult;
 import lotto.message.OutputMessage;
 import lotto.model.Lotto;
 
+/**
+ * 출력을 담당하는 뷰 클래스
+ */
 public class OutputView {
 
     public void printTotalPriceAsk() {
@@ -18,6 +21,10 @@ public class OutputView {
         System.out.println(lottoCount + OutputMessage.LOTTO_COUNT.toString());
     }
 
+    /**
+     * 로또 리스트를 입력받아 출력
+     * @param lottoList {@link Lotto} 리스트
+     */
     public void printLottoList(List<Lotto> lottoList) {
         for (Lotto lotto : lottoList) {
             System.out.println(lotto.toString());
@@ -32,6 +39,10 @@ public class OutputView {
         System.out.println(OutputMessage.BONUS_NUMBER);
     }
 
+    /**
+     * 전체 결과를 출력하는 메서드
+     * @param totalResult {@link ResultDto}
+     */
     public void printResult(ResultDto totalResult) {
         LottoResult[] values = LottoResult.values();
         Map<LottoResult, Integer> resultMap = totalResult.resultMap();

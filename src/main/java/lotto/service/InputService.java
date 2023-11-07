@@ -7,18 +7,30 @@ import lotto.domain.WinningLotto;
 public class InputService {
 
     public Buy enterMoney() {
-        System.out.println("구입금액을 입력해 주세요.");
-        String money = Console.readLine();
-        Buy buy = new Buy(money);
-        return buy;
+        try{
+            System.out.println("구입금액을 입력해 주세요.");
+            String money = Console.readLine();
+            Buy buy = new Buy(money);
+            int count = buy.getCount();
+            System.out.println("\n" + count + "개를 구매하셨습니다.");
+            return buy;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return enterMoney();
+        }
     }
 
     public WinningLotto enterWinningLotto() {
-        String winningNumber = enterWinningNumber();
-        String bonusNumber = enterBonusNumber();
+        try{
+            String winningNumber = enterWinningNumber();
+            String bonusNumber = enterBonusNumber();
 
-        WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
-        return winningLotto;
+            WinningLotto winningLotto = new WinningLotto(winningNumber, bonusNumber);
+            return winningLotto;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return enterWinningLotto();
+        }
     }
 
     private String enterWinningNumber() {

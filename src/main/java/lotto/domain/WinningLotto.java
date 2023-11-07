@@ -10,7 +10,7 @@ public class WinningLotto {
     private Lotto winningNumber;
     private Integer bonusNumber;
 
-    public WinningLotto(String winningNumberInput, String bonusNumberInput) {
+    public WinningLotto(String winningNumberInput, String bonusNumberInput) throws IllegalArgumentException {
         List<Integer> winningNumberList = stringInputToIntList(winningNumberInput);
         this.winningNumber = new Lotto(winningNumberList);
         int bonusParseNumber = validateNumericInput(bonusNumberInput);
@@ -30,13 +30,13 @@ public class WinningLotto {
 
     private void validateDuplication(List<Integer> winningNumberList, int bonusNumber) {
         if (winningNumberList.contains(bonusNumber)) {
-            throw new IllegalArgumentException("로또 번호와 보너스 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException("[ERROR] Can't duplicate between lotto and bonus");
         }
     }
 
     private void validateBonusRange(int bonusNumber) {
         if (bonusNumber < START_RANGE || bonusNumber > END_RANGE) {
-            throw new IllegalArgumentException("로또 번호는 1 ~ 45 사이의 번호만 입력 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] Lotto range is 1 ~ 45");
         }
     }
 
@@ -45,7 +45,7 @@ public class WinningLotto {
             int bonusParseNumber = Integer.parseInt(bonusNumberInput);
             return bonusParseNumber;
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("로또 번호는 숫자만 입력이 가능합니다.");
+            throw new IllegalArgumentException("[ERROR] Can enter only numeric type");
         }
     }
 

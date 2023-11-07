@@ -4,7 +4,7 @@ public class Buy {
     private final Integer money;
     private final Integer count;
 
-    public Buy(String money) {
+    public Buy(String money) throws IllegalArgumentException {
         int parseMoney = Integer.parseInt(money);
         validateMoney(parseMoney);
         this.money = parseMoney;
@@ -13,7 +13,7 @@ public class Buy {
 
     private void validateMoney(Integer money) {
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException("로또는 1000원 단위로만 구매할 수 있습니다.");
+            throw new IllegalArgumentException("[ERROR] Enter units of 1000");
         }
     }
 

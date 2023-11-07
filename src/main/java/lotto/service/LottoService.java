@@ -1,7 +1,6 @@
 package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.constants.Prize;
 import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.Lottos;
@@ -15,8 +14,6 @@ import java.util.stream.Collectors;
 import static lotto.constants.LottoConstants.*;
 
 public class LottoService {
-    private static final int SECOND_PRIZE_SAME_NUMBERS = 5;
-    private static final int MINIMUM_WINNING_SAME_NUMBERS = 3;
 
     public Lottos createUserLottos(int amount) {
         Lottos lottos = new Lottos();

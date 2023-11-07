@@ -18,8 +18,8 @@ public class User {
     }
 
     private void validatePurchaseAmount(Amount purchaseAmount) {
-        Validation.validateNumberInRange(purchaseAmount.getAmount(), LottoRules.PURCHASE_AMOUNT_MIN.getValue(), LottoRules.PURCHASE_AMOUNT_MAX.getValue());
-        Validation.validateNumberMultipleOf(purchaseAmount.getAmount(), LottoRules.LOTTO_PRICE.getValue());
+        Validation.validateNumberInRange(purchaseAmount.amount(), LottoRules.PURCHASE_AMOUNT_MIN.getValue(), LottoRules.PURCHASE_AMOUNT_MAX.getValue());
+        Validation.validateNumberMultipleOf(purchaseAmount.amount(), LottoRules.LOTTO_PRICE.getValue());
     }
 
     public void addLotto(Lotto lotto) {

@@ -1,4 +1,3 @@
-// LottoService.java
 package lotto.service;
 
 import java.util.EnumMap;
@@ -28,7 +27,7 @@ public class LottoService {
     }
 
     public void buyLottoAll(User user) {
-        int purchaseAmount = user.getPurchaseAmount().getAmount();
+        int purchaseAmount = user.getPurchaseAmount().amount();
         int lottoCount = purchaseAmount / LottoRules.LOTTO_PRICE.getValue();
 
         IntStream.range(0, lottoCount)

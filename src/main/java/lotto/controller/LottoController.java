@@ -44,7 +44,7 @@ public class LottoController {
     }
 
     private void printBuyLotto() {
-        outputView.printLottoCount(user.getPurchaseAmount().getAmount() / 1_000);
+        outputView.printLottoCount(user.getPurchaseAmount().amount() / 1_000);
         for (Lotto lotto : user.getLottos()) {
             outputView.printLottoNumbers(lotto.getNumbers());
         }
@@ -78,7 +78,7 @@ public class LottoController {
 
     private void printStatistics(Map<Winning, Integer> winningCounts, int totalPrize) {
         outputView.printWinningStatistics();
-        outputView.printStatistics(winningCounts, totalPrize, user.getPurchaseAmount().getAmount());
+        outputView.printStatistics(winningCounts, totalPrize, user.getPurchaseAmount().amount());
     }
 
     private int calculateTotalPrize(Map<Winning, Integer> winningCounts) {

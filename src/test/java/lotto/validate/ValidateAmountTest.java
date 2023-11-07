@@ -18,7 +18,7 @@ public class ValidateAmountTest {
     @DisplayName("구입_금액_검증_통과")
     void 구입_금액_검증_통과(int purchaseAmount) {
         User user = new User(new Amount(purchaseAmount));
-        assertThatCode(() -> Validation.validatePurchaseAmount(user.getPurchaseAmount().getAmount()))
+        assertThatCode(() -> Validation.validatePurchaseAmount(user.getPurchaseAmount().amount()))
                 .doesNotThrowAnyException();
     }
 

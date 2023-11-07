@@ -49,6 +49,8 @@ public class OutputView {
     }
 
     public void printRateOfReturn(double rateOfReturn) {
+        rateOfReturn = Math.round(rateOfReturn * 100.0) / 100.0;
+
         System.out.println(StringUtil.doubleToString(rateOfReturn));
     }
 

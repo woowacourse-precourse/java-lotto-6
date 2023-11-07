@@ -34,7 +34,7 @@ public class WinningLottoStorage {
     }
 
     public double getRateOfReturn(int purchaseAmount) {
-        return Math.round(calculateWinningAmount() / purchaseAmount * 10000.0) / 100.0;
+        return calculateWinningAmount() / (double)purchaseAmount * 100;
     }
 
     private double calculateWinningAmount() {

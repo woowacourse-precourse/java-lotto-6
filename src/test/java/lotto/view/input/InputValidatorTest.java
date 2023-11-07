@@ -36,4 +36,13 @@ class InputValidatorTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @DisplayName("입력값이 \"1,2,3,4,5,6\" 형식인지 테스트 : 입력값이 \"1,2,3,4,5,6\" 형식이 아니라면 IllegalArgumentException를 발생시킨다.")
+    @ParameterizedTest(name = "입력값이 \"{0}\" 이면 예외발생")
+    @ValueSource(strings = {"1,2,3,4, 5, 6", "123456"})
+    void validateWinningNumberFormat(String input) {
+        assertThatThrownBy(() -> InputValidator.validateWinningNumberFormat(input))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }

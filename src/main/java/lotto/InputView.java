@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.constant.ErrorMessage;
 
 public class InputView {
 	int getPrice() {

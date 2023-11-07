@@ -1,4 +1,4 @@
-package lotto;
+package lotto.constant;
 
 public enum ErrorMessage {
 	PRICE_NUMBER("[ERROR] 구입금액은 숫자만 입력할 수 있습니다."),

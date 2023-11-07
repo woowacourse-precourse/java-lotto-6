@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import lotto.constant.Constant;
+
 public class ProgramManager {
 	InputView inputView;
 	OutputView outputView;
@@ -37,13 +39,13 @@ public class ProgramManager {
 	}
 
 	void showAmount(int price) {
-		outputView.showAmount(price / 1000);
+		outputView.showAmount(price / Constant.LOTTO_PRICE);
 	}
 
 	List<Lotto> showBuyLotto(int price) {
 		List<Lotto> lottoList = new ArrayList<>();
 		LottoHost lottoHost = LottoHost.getInstance();
-		int numberOfBuyingLotto = price / 1000;
+		int numberOfBuyingLotto = price / Constant.LOTTO_PRICE;
 
 		while (numberOfBuyingLotto > 0) {
 			List<Integer> numberList = lottoHost.makeRandomLottoNumber();
@@ -58,7 +60,7 @@ public class ProgramManager {
 
 	Lotto getLottoNumber() {
 		String number = inputView.getLottoNumber();
-		List<String> inputList = Arrays.asList(number.split(","));
+		List<String> inputList = Arrays.asList(number.split(Constant.COMMA));
 		Lotto lotto = new Lotto(inputList.stream()
 			.map(s -> Integer.parseInt(s))
 			.collect(Collectors.toList()));
@@ -89,14 +91,14 @@ public class ProgramManager {
 	double calcRate(List<Integer> resultList, Customer customer) {
 		int prizeMoney = calcPrizeMoney(resultList);
 		int buyMoney = customer.getPrice();
-		return ((double)prizeMoney / (double)buyMoney) * 100;
+		return ((double)prizeMoney / (double)buyMoney) * Constant.ONE_HUNDRED;
 	}
 
 	int calcPrizeMoney(List<Integer> resultList) {
-		return resultList.get(0) * 5000
-			+ resultList.get(1) * 50000
-			+ resultList.get(2) * 1500000
-			+ resultList.get(3) * 30000000
-			+ resultList.get(4) * 2000000000;
+		return resultList.get(0) * Constant.FIFTH_PRIZE_MONEY
+			+ resultList.get(1) * Constant.FOURTH_PRIZE_MONEY
+			+ resultList.get(2) * Constant.THIRD_PRIZE_MONEY
+			+ resultList.get(3) * Constant.SECOND_PRIZE_MONEY
+			+ resultList.get(4) * Constant.FIRST_PRIZE_MONEY;
 	}
 }

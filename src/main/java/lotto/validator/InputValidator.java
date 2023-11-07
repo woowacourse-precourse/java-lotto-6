@@ -20,6 +20,12 @@ public class InputValidator {
         validateIntegerNumbers(input);
     }
 
+    public static void validateBonusNumber(String input){
+        validateNull(input);
+        validateHasNoSpace(input);
+        validateInteger(input);
+    }
+
     private static void validateIntegerNumbers(String input){
         boolean allIntegers = allIntegers(input);
         if (!allIntegers) {

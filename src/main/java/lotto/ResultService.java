@@ -28,7 +28,7 @@ public class ResultService {
     private static double getSum(HashMap<Integer, Integer> results) {
         double sum = 0.0;
         for (int caseNumber : results.keySet()) {
-            sum += WinnigCase.getByCaseNumber(caseNumber).getReward() * results.get(caseNumber);
+            sum += WinningCase.getByCaseNumber(caseNumber).getReward() * results.get(caseNumber);
         }
         return sum;
     }

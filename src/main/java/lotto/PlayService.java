@@ -2,10 +2,8 @@ package lotto;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Objects;
 
 public class PlayService {
 
@@ -107,7 +105,7 @@ public class PlayService {
 
     public static void printResults(HashMap<Integer, Integer> results) {
         for (int caseNumber : results.keySet()) {
-            System.out.printf(WinnigCase.getByCaseNumber(caseNumber).getContents()
+            System.out.printf(WinningCase.getByCaseNumber(caseNumber).getContents()
                     + " - %d개\n", results.get(caseNumber));
         }
     }

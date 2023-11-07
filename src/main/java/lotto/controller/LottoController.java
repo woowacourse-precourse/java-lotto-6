@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static lotto.model.LottoPrize.getPrizeRankByMatch;
+
 public class LottoController {
     private static final int LOTTO_PRICE = 1000;
     static LottoInputView lottoInputView = new LottoInputView();
@@ -87,7 +89,7 @@ public class LottoController {
                 }
             }
             // 등수 판별
-            LottoPrize info = getPrizeRank(matchCount, bonusMatch);
+            LottoPrize info = getPrizeRankByMatch(matchCount, bonusMatch);
             lottoPrizes.add(info);
             prizeLog[info.getRank()] += 1;
         }
@@ -109,24 +111,5 @@ public class LottoController {
         double rateOfReturn = (double) totalPrize / price * 100;
 //        rateOfReturn = Math.round(rateOfReturn * 100.0) / 100.0;
         System.out.printf("총 수익률은 %.1f%%입니다.%n", rateOfReturn);
-    }
-
-    private static LottoPrize getPrizeRank(int matchCount, boolean bonusMatch) {
-        if (matchCount == 6) {
-            return LottoPrize.FIRST;
-        }
-        if (matchCount == 5 && bonusMatch) {
-            return LottoPrize.SECOND;
-        }
-        if (matchCount == 5) {
-            return LottoPrize.THIRD;
-        }
-        if (matchCount == 4) {
-            return LottoPrize.FOURTH;
-        }
-        if (matchCount == 3) {
-            return LottoPrize.FIFTH;
-        }
-        return LottoPrize.NONE;
     }
 }

@@ -32,4 +32,10 @@ public class LottoManager {
 
         return winningDetails;
     }
+
+    public double calculateProfitRate(int purchaseAmount) {
+        int totalPrize = winningDetails.calculateTotalPrize();
+
+        return ((double) totalPrize) / purchaseAmount * 100;
+    }
 }

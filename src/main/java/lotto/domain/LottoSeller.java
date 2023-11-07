@@ -15,8 +15,4 @@ public class LottoSeller {
             throw new IllegalArgumentException("[ERROR] 구입 금액은 1,000원 단위로 입력해야 합니다.");
         }
     }
-
-    public double calculateProfitRate(int purchaseAmount, int totalPrize) {
-        return ((double) totalPrize) / purchaseAmount * 100;
-    }
 }

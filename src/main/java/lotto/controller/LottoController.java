@@ -40,7 +40,7 @@ public class LottoController {
         while (checkBonusNumber) {
             initBonusNumber();
         }
-        // todo : 보너스 번호 저장.
+
     }
 
     public void initPurchaseQuantity() {
@@ -69,19 +69,24 @@ public class LottoController {
         try {
             String bonusNumber = InputView.inputBonusNumber();
             validateBonusNumber(bonusNumber);
+            saveBonusNumber(bonusNumber);
+
             checkBonusNumber = false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void saveWinningNumber(String string) {
+    public void saveWinningNumber(String number) {
         winningNumber = new WinningNumber();
-        String[] split = string.split(",");
+        String[] split = number.split(",");
         List<Integer> integers = Arrays.stream(split).map(Integer::parseInt).toList();
         validateWinningNumberLength(integers.size());
         winningNumber.setWinningNumbers(integers); // 클래스에 저장.
-
+    }
+    public void saveBonusNumber(String number){
+        int num = Integer.parseInt(number);
+        winningNumber.setBonusNumber(num);
     }
 
 
@@ -138,7 +143,7 @@ public class LottoController {
 
     public void validateWinningNumberLength(int size) {
         if(size!=6){
-            throw new IllegalArgumentException("[ERROR]당첨번호는 6개의 숫자를 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR]당첨 번호는 6개의 숫자를 입력해주세요.");
         }
 
     }
@@ -158,7 +163,7 @@ public class LottoController {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(number);
         if (!matcher.find()) {
-            throw new IllegalArgumentException("[ERROR]당첨 번호는 1~45 사이의 숫자를 , 구분자를 사용해서 6개 입력해주세요.");
+            throw new IllegalArgumentException("[ERROR]당첨 번호는 1~45 사이의 숫자를 , 구분자를 사용해서 입력해주세요.");
         }
     }
 

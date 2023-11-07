@@ -21,7 +21,14 @@ public class WinningNumber { // 당첨 번호 저장
     }
 
     public void setBonusNumber(int bonusNumber) {
+        validateDuplicationNumber(bonusNumber);
         this.bonusNumber = bonusNumber;
+    }
+
+    private void validateDuplicationNumber(int number) {
+        if(this.winningNumbers.contains(number)){
+            throw new IllegalArgumentException("[ERROR]당첨 번호와 중복되지 않는 값을 입력해주세요.");
+        }
     }
 
 

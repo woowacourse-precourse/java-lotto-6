@@ -13,6 +13,7 @@ public class Lotto {
         validate(numbers);
         Validator.valiateDuplicateNums(numbers);
         Validator.validateNumbersRange(numbers);
+        lottoSort(numbers);
         this.numbers = numbers;
     }
 
@@ -23,6 +24,21 @@ public class Lotto {
     }
 
     // TODO: 추가 기능 구현
+    private void lottoSort(List<Integer> numbers) {
+        for (int i = 0; i < LOTTO_SIZE - 1; i++) {
+            for (int j = i + 1; j < LOTTO_SIZE; j++) {
+                minSwap(numbers, i, j);
+            }
+        }
+    }
+
+    private void minSwap(List<Integer> numbers, int i, int j) {
+        if (numbers.get(i) > numbers.get(j)) {
+            int tmp = numbers.get(i);
+            numbers.set(i, numbers.get(j));
+            numbers.set(j, tmp);
+        }
+    }
 
     public int calculateLottoResults(List<Integer> lottoWinningNumbers) {
         int result = 0;

@@ -42,7 +42,8 @@ public class Parser {
     }
 
     public static int parseBonusNumber(String input) {
-        return Validator.validateParseInt(input);
+        int bonusNumber = Validator.validateParseInt(input);
+        return bonusNumber;
     }
 
     public static String parseProfitRateFormat(double profitRate) {

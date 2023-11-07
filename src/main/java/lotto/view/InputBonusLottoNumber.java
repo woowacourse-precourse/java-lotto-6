@@ -34,7 +34,7 @@ public class InputBonusLottoNumber {
         }
     }
 
-    public boolean isNumberString(String bonusNumber) {
+    public boolean isNumberWord(String bonusNumber) {
         if(bonusNumber.isBlank()) {
             return false;
         }
@@ -48,7 +48,7 @@ public class InputBonusLottoNumber {
     }
 
     public void validateBonusIsNumber(String bonusNumber) {
-        if(!isNumberString(bonusNumber)) {
+        if(!isNumberWord(bonusNumber)) {
             throw new NotNumberException();
         }
     }

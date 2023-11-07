@@ -63,21 +63,7 @@ public class InputLottoNumber {
         }
     }
 
-    private void validateCountOfNumbers(List<Integer> numbers) {
-        if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new NoSixNumberException();
-        }
-    }
-
-    public void validateInputIsNumberFormat(String checkedInput) {
-        String uncheckedNumbers = String.join("", checkedInput.split(","));
-        boolean isNumber = isNumberString(uncheckedNumbers);
-        if(!isNumber) {
-            throw new NotNumberException();
-        }
-    }
-
-    public boolean isNumberString(String checkedInput) {
+    public boolean isNumberWord(String checkedInput) {
         if(checkedInput.isBlank()) {
             return false;
         }
@@ -88,5 +74,19 @@ public class InputLottoNumber {
             }
         }
         return true;
+    }
+
+    private void validateCountOfNumbers(List<Integer> numbers) {
+        if (numbers.size() != LOTTO_NUMBER_COUNT) {
+            throw new NoSixNumberException();
+        }
+    }
+
+    public void validateInputIsNumberFormat(String checkedInput) {
+        String uncheckedNumbers = String.join("", checkedInput.split(","));
+        boolean isNumber = isNumberWord(uncheckedNumbers);
+        if(!isNumber) {
+            throw new NotNumberException();
+        }
     }
 }

@@ -4,11 +4,14 @@ import lotto.controller.LottoController;
 
 public class Application {
     public static void main(String[] args) {
-        try {
-            LottoController lottoController = new LottoController();
-            lottoController.startLottoRoulette();
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+        while (true) {
+            try {
+                LottoController lottoController = new LottoController();
+                lottoController.startLottoRoulette();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 }

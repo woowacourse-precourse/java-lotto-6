@@ -28,20 +28,7 @@ public class InputCoin {
         return Integer.parseInt(insertCoin);
     }
 
-    public void validateMoney(String insertCoin) {
-        if(!isNumberString(insertCoin)) {
-            throw new NotNumberException();
-        }
-    }
-
-    public void validateMoneyIsDivided(String insertCoin) {
-        int money = Integer.parseInt(insertCoin);
-        if(money % Constant.MONEY_UNIT != 0) {
-            throw new ThousandCheckException();
-        }
-    }
-
-    public boolean isNumberString(String insertCoin) {
+    public boolean isNumberWord(String insertCoin) {
         if(insertCoin.isBlank()) {
             return false;
         }
@@ -52,5 +39,18 @@ public class InputCoin {
             }
         }
         return true;
+    }
+
+    public void validateMoney(String insertCoin) {
+        if(!isNumberWord(insertCoin)) {
+            throw new NotNumberException();
+        }
+    }
+
+    public void validateMoneyIsDivided(String insertCoin) {
+        int money = Integer.parseInt(insertCoin);
+        if(money % Constant.MONEY_UNIT != 0) {
+            throw new ThousandCheckException();
+        }
     }
 }

@@ -73,4 +73,13 @@ public class LottoManager {
         }
         return WinningCondition.NOTHING;
     }
+
+    public double calculateRoR(Map<WinningCondition, Integer> result, int purchasedAmount) {
+        int totalAmount = 0;
+        for (WinningCondition condition : WinningCondition.values()) {
+            totalAmount += condition.getPrize() * result.getOrDefault(condition, 0);
+        }
+        double RoR = ((double) totalAmount / purchasedAmount) * 100;
+        return RoR;
+    }
 }

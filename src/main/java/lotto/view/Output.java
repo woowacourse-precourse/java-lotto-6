@@ -39,12 +39,7 @@ public class Output {
         System.out.printf("%s - %d개\n", WinningCondition.SIX_MATCH.getDescription(), result.getOrDefault(WinningCondition.SIX_MATCH, 0));
     }
 
-    public void printWinningRoR(Map<WinningCondition, Integer> result, int purchasedAmount) {
-        int totalAmount = 0;
-        for (WinningCondition condition : WinningCondition.values()) {
-            totalAmount += condition.getPrize() * result.getOrDefault(condition, 0);
-        }
-        double RoR = ((double) totalAmount / purchasedAmount) * 100;
+    public void printWinningRoR(double RoR) {
         System.out.printf(Message.GUIDE_TOTAL_ROR + "%n", RoR);
     }
 }

@@ -1,5 +1,7 @@
 package lotto.util;
 
+import java.util.List;
+
 public class Validator {
     private static final int NATURAL_NUMBER_START = 1;
     private Validator() {
@@ -31,6 +33,13 @@ public class Validator {
     public static void validateInputRange(int input) {
         if (input < Constants.MIN_NUMBER || input > Constants.MAX_NUMBER) {
             ErrorMessage.printOutOfRangeNumberErrorMessage();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public static void validateUniqueLottoNumbers(List<Integer> numbers) {
+        if (numbers.size() != numbers.stream().distinct().count()) {
+            ErrorMessage.printDuplicateMessage();
             throw new IllegalArgumentException();
         }
     }

@@ -1,4 +1,4 @@
-package lotto.view;
+package lotto.exception;
 
 public class ExceptionMessage {
 

@@ -1,6 +1,6 @@
 package lotto.model;
 
-import lotto.view.ExceptionMessage;
+import lotto.exception.ExceptionMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

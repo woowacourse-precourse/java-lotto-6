@@ -1,9 +1,11 @@
 package lotto.model;
 
-import lotto.view.ExceptionMessage;
+import lotto.exception.ExceptionMessage;
 
 import java.util.Comparator;
 import java.util.List;
+
+import static lotto.validator.Validator.validateCondition;
 
 public class Lotto {
 
@@ -17,17 +19,13 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException(ExceptionMessage.ONLY_SIZE_IS_SIX);
-        }
+        validateCondition(!isSizeSix(numbers), ExceptionMessage.ONLY_SIZE_IS_SIX);
+        validateCondition(isDuplicated(numbers), ExceptionMessage.NOT_DUPLICATE);
+        validateCondition(isZeroOrMinus(numbers), ExceptionMessage.NOT_MINUS_OR_ZERO);
+    }
 
-        if(isDuplicated(numbers)){
-            throw new IllegalArgumentException(ExceptionMessage.NOT_DUPLICATE);
-        }
-
-        if (isZeroOrMinus(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_MINUS_OR_ZERO);
-        }
+    private boolean isSizeSix(List<Integer> numbers) {
+        return numbers.size() == 6;
     }
 
     private boolean isDuplicated(List<Integer> numbers) {

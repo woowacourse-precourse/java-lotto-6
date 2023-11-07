@@ -1,9 +1,11 @@
 package lotto.model;
 
-import lotto.view.ExceptionMessage;
+import lotto.exception.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.validator.Validator.validateCondition;
 
 public class WinningNumber {
 
@@ -34,33 +36,15 @@ public class WinningNumber {
     }
 
     private void validateWinningNumbers(List<String> numbers) {
-
-        if (areEmptyOrBlank(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
-        }
-
-        if (!areAllDigits(numbers)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
-        }
+        validateCondition(areEmptyOrBlank(numbers), ExceptionMessage.NOT_EMPTY_OR_BLANK);
+        validateCondition(!areAllDigits(numbers), ExceptionMessage.IS_NOT_DIGIT);
     }
 
     private void validateBonusNumber(String bonus) {
-
-        if (isEmptyOrBlank(bonus)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_EMPTY_OR_BLANK);
-        }
-
-        if (!isDigit(bonus)) {
-            throw new IllegalArgumentException(ExceptionMessage.IS_NOT_DIGIT);
-        }
-
-        if (isDuplicatedWinningNumber(bonus)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_DUPLICATE);
-        }
-
-        if (isZeroOrMinus(bonus)) {
-            throw new IllegalArgumentException(ExceptionMessage.NOT_MINUS_OR_ZERO);
-        }
+        validateCondition(isEmptyOrBlank(bonus), ExceptionMessage.NOT_EMPTY_OR_BLANK);
+        validateCondition(!isDigit(bonus), ExceptionMessage.IS_NOT_DIGIT);
+        validateCondition(isDuplicatedWinningNumber(bonus), ExceptionMessage.NOT_DUPLICATE);
+        validateCondition(isZeroOrMinus(bonus), ExceptionMessage.NOT_MINUS_OR_ZERO);
     }
 
     public boolean areAllDigits(List<String> numbers) {

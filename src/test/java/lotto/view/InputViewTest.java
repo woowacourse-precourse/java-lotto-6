@@ -1,6 +1,5 @@
 package lotto.view;
 
-import static lotto.view.InputView.askPurchaseAmount;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
@@ -16,7 +15,7 @@ class InputViewTest {
     @ValueSource(strings = {"$d", "900", "0", "1000000"})
     void askPurchaseAmountTest(String input) {
         systemIn(input);
-        assertThatThrownBy(() -> askPurchaseAmount())
+        assertThatThrownBy(InputView::askPurchaseAmount)
                 .isInstanceOf(IllegalArgumentException.class);
         Console.close();
     }

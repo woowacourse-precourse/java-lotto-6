@@ -10,11 +10,9 @@ public class LottoService {
     private final UserService userService;
     private WinningNumber winningNumber;
 
-    private final IOService ioService;
 
     public LottoService() {
         this.userService = new UserService();
-        this.ioService = new IOService();
     }
 
     public void sellLottos() {
@@ -22,9 +20,9 @@ public class LottoService {
         int amount, cnt;
         String purchaseAmount;
 
-        ioService.printBeforePurchaseLottoMessage();
+        IOService.printBeforePurchaseLottoMessage();
         do {
-            purchaseAmount = ioService.scanPurchaseAmount();
+            purchaseAmount = IOService.scanPurchaseAmount();
 
             success = validatePurchaseAmount(purchaseAmount);
         } while (!success);
@@ -51,21 +49,21 @@ public class LottoService {
         try {
             Long.parseLong(number);
         } catch (NumberFormatException e) {
-            ioService.printErrorAmountInteger();
+            IOService.printErrorAmountInteger();
             throw new IllegalArgumentException();
         }
     }
 
     private void validateMinimum(String number) {
         if (Long.parseLong(number) < 1000) {
-            ioService.printErrorAmountMinimum();
+            IOService.printErrorAmountMinimum();
             throw new IllegalArgumentException();
         }
     }
 
     private void validateUnit(String number) {
         if (!number.endsWith("000")) {
-            ioService.printErrorAmountUnit();
+            IOService.printErrorAmountUnit();
             throw new IllegalArgumentException();
         }
     }
@@ -73,12 +71,12 @@ public class LottoService {
     public void informPurchaseHistory(){
         User user = userService.getUser();
 
-        ioService.printLottoCount(user.getLottoCnt());
-        ioService.printLottos(user.getLottos());
+        IOService.printLottoCount(user.getLottoCnt());
+        IOService.printLottos(user.getLottos());
     }
 
     public void requestWinningNumber() {
-        WinningNumber winningNumber = ioService.scanWinningNumber();
+        WinningNumber winningNumber = IOService.scanWinningNumber();
         this.winningNumber = winningNumber;
     }
 
@@ -86,7 +84,7 @@ public class LottoService {
         User user = userService.getUser();
         checkLottos();
 
-        ioService.printResult(user);
+        IOService.printResult(user);
     }
 
     public List<Lotto> generateLottos(int cnt) {
@@ -97,10 +95,6 @@ public class LottoService {
         }
 
         return lottos;
-    }
-
-    public void setWinningNumber() {
-        winningNumber = ioService.scanWinningNumber();
     }
 
     public void checkLottos() {

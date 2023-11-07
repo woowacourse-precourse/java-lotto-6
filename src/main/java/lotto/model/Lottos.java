@@ -9,8 +9,7 @@ import java.util.Set;
 import java.util.stream.IntStream;
 
 import static lotto.global.ErrorMessage.DUPLICATE_NUMBER;
-import static lotto.model.LottoInfo.LOTTO_PRICE;
-import static lotto.model.LottoInfo.NUMBER_COUNT;
+import static lotto.model.LottoInfo.*;
 
 public class Lottos {
     private final List<Lotto> lottos;
@@ -49,6 +48,11 @@ public class Lottos {
     private void validBonus(int bonus){
         if(goal.contains(bonus))
             throw new IllegalArgumentException(DUPLICATE_NUMBER.toString());
+    }
+    public Result match() {
+        int[] matchCount = new int[RANK_COUNT];
+        lottos.forEach(lotto -> matchCount[lotto.match(goal,bonus)]++ );
+        return new Result(matchCount);
     }
     @Override
     public String toString() {

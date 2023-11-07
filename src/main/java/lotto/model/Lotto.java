@@ -18,7 +18,27 @@ public class Lotto {
         }
     }
 
-    // TODO: 추가 기능 구현
+    public int match(List<Integer> goal, Integer bonus){
+        int count = (int) numbers.stream().filter(goal::contains).count();
+        if(numbers.contains(bonus))
+            return rank(count,true);
+        return rank(count,false);
+    }
+    private int rank(int count,boolean bonus){
+        switch (count){
+            case 3:
+                return 5;
+            case 4:
+                return 4;
+            case 5:
+                if(bonus)
+                    return 2;
+                return 3;
+            case 6:
+                return 1;
+        }
+        return 0;
+    }
     @Override
     public String toString() {
         return numbers.toString();

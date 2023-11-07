@@ -26,6 +26,8 @@ public class Lotto {
                 throw new IllegalArgumentException(WRONG_NUMBER_FORMAT);
             }
         }
+        validate(shiftedNumbers);
+        this.numbers = shiftedNumbers;
     }
 
     private void validate(List<Integer> numbers) {

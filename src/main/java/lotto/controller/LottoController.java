@@ -1,96 +1,81 @@
 package lotto.controller;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import lotto.domain.LottoSeller;
-import lotto.domain.Lottos;
-import lotto.domain.WinningDetails;
+import lotto.domain.prize.WinningDetails;
 import lotto.service.LottoService;
-import lotto.util.InputValidator;
+import lotto.util.InputConverter;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoController {
+    private final LottoService lottoService;
     private final InputView inputView;
     private final OutputView outputView;
-    private static final String DELIMITER = ",";
 
-    public LottoController(InputView inputView, OutputView outputView) {
+    private LottoController(LottoService lottoService, InputView inputView, OutputView outputView) {
+        this.lottoService = lottoService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
-    public LottoService initializeLottoService() {
-        return new LottoService(new LottoSeller(), WinningDetails.createWinningDetails());
+    public static LottoController getInstance() {
+        return new LottoController(LottoService.getInstance(), new InputView(), new OutputView());
     }
 
     public void run() {
-        LottoService lottoService = initializeLottoService();
+        performLottosPurchaseProcess();
+        performDrawWinningLottoProcess();
+        performLottoResultProcess();
+        performProfitRateCalculationProcess();
+    }
 
-        final int purchaseAmount = processPurchaseAmountInput();
-        final Lottos issuedLottos = lottoService.buyLotto(purchaseAmount);
-        outputView.showIssuedLottoResult(issuedLottos.getIssuedLottoNumbers());
+    private void performLottosPurchaseProcess() {
+        try {
+            int purchaseAmount = InputPurchaseAmount();
+            List<String> issuedLottosNumbers = lottoService.buyLotto(purchaseAmount);
+            outputView.showIssuedLottoResult(issuedLottosNumbers);
+        } catch (IllegalArgumentException e) {
+            outputView.showErrorMessage(e.getMessage());
+            performLottosPurchaseProcess();
+        }
+    }
 
-        final List<Integer> winningNumbers = processWinnigNumbersInput();
-        final int bonusNumber = processBonusNumberInput();
-        lottoService.drawWinningLotto(winningNumbers, bonusNumber);
+    private void performDrawWinningLottoProcess() {
+        try {
+            final List<Integer> winningNumbers = InputWinnigNumbers();
+            final int bonusNumber = InputBonusNumber();
+            lottoService.drawWinningLotto(winningNumbers, bonusNumber);
+        } catch (IllegalArgumentException e) {
+            outputView.showErrorMessage(e.getMessage());
+            performDrawWinningLottoProcess();
+        }
+    }
 
-        final WinningDetails winningDetails = lottoService.statisticsLottoResult(issuedLottos);
-        outputView.showLottoResult(winningDetails);
-        double profitRate = lottoService.getProfitRate(purchaseAmount);
+    private void performProfitRateCalculationProcess() {
+        double profitRate = lottoService.getProfitRate();
         outputView.showProfitRate(profitRate);
     }
 
-    public int processPurchaseAmountInput() {
-        while (true){
-            try {
-                int purchaseAmount = convertStringToInt(inputView.askPurchaseAmount());
-
-                return purchaseAmount;
-            } catch (IllegalArgumentException e) {
-                outputView.showErrorMessage(e.getMessage());
-            }
-        }
+    private void performLottoResultProcess() {
+        final WinningDetails winningDetails = lottoService.getWinningResult();
+        outputView.showLottoResult(winningDetails);
     }
 
-    public List<Integer> processWinnigNumbersInput() {
-        while (true) {
-            try {
-                List<Integer> winningNumbers = convertToList(inputView.askWinnigNumbers());
+    private int InputPurchaseAmount() {
+        String purchaseAmount = inputView.askPurchaseAmount();
 
-                return winningNumbers;
-            }catch (IllegalArgumentException e) {
-                outputView.showErrorMessage(e.getMessage());
-            }
-        }
+        return InputConverter.convertStringToInt(purchaseAmount);
     }
 
-    public int processBonusNumberInput() {
-        while (true) {
-            try {
-                int bonusNumber = convertStringToInt(inputView.askBonusNumber());
+    private List<Integer> InputWinnigNumbers() {
+        String winningNumbers = inputView.askWinnigNumbers();
 
-                return bonusNumber;
-            }catch (IllegalArgumentException e) {
-                outputView.showErrorMessage(e.getMessage());
-            }
-        }
+        return InputConverter.convertToList(winningNumbers);
     }
 
-    private int convertStringToInt(String input) {
-        InputValidator.validateInput(input);
+    private int InputBonusNumber() {
+        String bonusNumber = inputView.askBonusNumber();
 
-        return Integer.valueOf(input);
-    }
-
-    private List<Integer> convertToList(String input) {
-        try {
-            return Arrays.stream(input.trim().split(DELIMITER))
-                    .map(Integer::parseInt)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호는 숫자만 가능합니다.");
-        }
+        return InputConverter.convertStringToInt(bonusNumber);
     }
 }

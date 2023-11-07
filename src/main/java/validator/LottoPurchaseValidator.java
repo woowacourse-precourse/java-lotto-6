@@ -2,7 +2,7 @@ package validator;
 
 public class LottoPurchaseValidator {
     int validPurchaseAmount(String purchaseAmount) {
-        vaildIntegerPurchasAmount(purchaseAmount);
+        vaildIntegerPurchaseAmount(purchaseAmount);
         int purchaseAmountPrice = Integer.parseInt(purchaseAmount);
         validMinimumPurchaseAmount(purchaseAmountPrice);
         validPurchaseDivideUp1000(purchaseAmountPrice);
@@ -21,7 +21,7 @@ public class LottoPurchaseValidator {
         }
     }
 
-    void vaildIntegerPurchasAmount(String input) {
+    void vaildIntegerPurchaseAmount(String input) {
         String regex = "[+-]?\\d*(\\.\\d+)?";
         if (!input.matches(regex)) {
             throw new IllegalArgumentException("[ERROR] 로또 구입 금액에는 숫자만 입력해주세요.");

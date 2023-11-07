@@ -10,6 +10,7 @@ import static lotto.enums.ErrorMassage.INVALID_NUMBER;
 import static lotto.enums.ErrorMassage.NOT_ENOUGH_AMOUNT;
 import static lotto.enums.ErrorMassage.NOT_SEPARATE_BY_DELIMITER;
 import static lotto.enums.ErrorMassage.OUT_OF_RANGE_LOTTO_NUMBER;
+import static lotto.enums.PrintMessage.REQUEST_BONUS_NUMBER;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -63,7 +64,7 @@ class LottoControllerTest extends NsTest {
         assertSimpleTest(() -> {
             run("8000", "1,2,3,4,5,6", "7");
             assertThat(output()).contains(
-                "보너스 번호를 입력해 주세요."
+                    REQUEST_BONUS_NUMBER.getMassage()
             );
         });
     }
@@ -78,6 +79,25 @@ class LottoControllerTest extends NsTest {
                     OUT_OF_RANGE_LOTTO_NUMBER.getMassage()
             );
         });
+    }
+
+    @Test
+    void 보너스_번호를_올바르게_입력하면_결과를_출력한다() {
+        assertRandomUniqueNumbersInRangeTest(() -> {
+                    run("2000", "1,21,11,31,41,45", "7");
+                    assertThat(output()).contains(
+                            "당첨 통계",
+                            "3개 일치 (5,000원) - 2개",
+                            "4개 일치 (50,000원) - 0개",
+                            "5개 일치 (1,500,000원) - 0개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 500.0%입니다."
+                    );
+                },
+                List.of(1, 2, 3, 4, 11, 21),
+                List.of(6, 7, 8, 31, 41, 45)
+        );
     }
 
     @Override

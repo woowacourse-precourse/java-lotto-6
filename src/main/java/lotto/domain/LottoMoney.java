@@ -2,11 +2,11 @@ package lotto.domain;
 
 import lotto.congin.LottoConfing;
 
-public class LottoTicket {
+public class LottoMoney {
     private static final int ZERO = 0;
     private final int value;
 
-    public LottoTicket(int value) {
+    public LottoMoney(int value) {
         validate(value);
         this.value = value;
     }
@@ -19,6 +19,10 @@ public class LottoTicket {
 
     public int getLottoCount() {
         return value / LottoConfing.LOTTO_PRICE;
+    }
+
+    public float getLottoYield(int investmentProfit){
+        return ((float) investmentProfit / value) * 100;
     }
 
 }

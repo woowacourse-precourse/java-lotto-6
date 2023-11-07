@@ -32,8 +32,8 @@ public class LottoGame {
         makeWinningAndBonusNumber();
         customer.setWinningResult(calculateCustomerWinningResult(customer));
         customer.setEarnedMoney(calculateEarnedMoney(customer));
-        double rateOfReturn = calculateRateOfReturn(customer.getEarnedMoney(), customer.getPayment());
-        OutputView.printWinningStatistics(makeWinningStatisticsDTO(customer.getWinningResult(), rateOfReturn));
+        RateOfReturn rateOfReturn = new RateOfReturn(calculateRateOfReturn(customer.getEarnedMoney(), customer.getPayment()));
+        OutputView.printWinningStatistics(makeWinningStatisticsDTO(customer.getWinningResult(), rateOfReturn.getRateOfReturn()));
         endGame();
     }
 
@@ -102,7 +102,7 @@ public class LottoGame {
         return bonusNumber;
     }
 
-    public static WinningStatisticsDTO makeWinningStatisticsDTO(WinningResult winningResult, double rateOfReturn) {
+    public static WinningStatisticsDTO makeWinningStatisticsDTO(WinningResult winningResult, float rateOfReturn) {
         String[][] winningStatisticsStrings = new String[GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue() + 1][4];
 
         for (int index = 1; index <= GameNumberConstants.NUMBER_OF_WINNING_PRIZE.getValue(); index++) {

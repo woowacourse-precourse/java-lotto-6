@@ -43,8 +43,8 @@ public class GameUtility {
         return Rank.getIndexFromConditions(numberOfMatchingNumbers, hasBonusNumber);
     }
 
-    public static double calculateRateOfReturn(int winningPrize, int payment) {
-        return 100 * (double) winningPrize / (double) payment;
+    public static float calculateRateOfReturn(int winningPrize, int payment) {
+        return 100 * (float) winningPrize / (float) payment;
     }
 
     public static int calculateEarnedMoney(Customer user) {

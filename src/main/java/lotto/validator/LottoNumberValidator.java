@@ -10,7 +10,6 @@ public class LottoNumberValidator {
     private static final String SHOULD_NOT_DUPLICATE = "[ERROR] 복권 번호는 중복되면 안됩니다.";
     private static final String SHOULD_BE_IN_LOTTO_NUMBER_RANGE = "[ERROR] 복권 번호는 %d이상 %d이하 이어야 합니다.";
 
-
     public static void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != NUMBER_OF_NUMBERS_TO_MATCH.getValue()) {
             throw new IllegalArgumentException(String.format(
@@ -38,10 +37,10 @@ public class LottoNumberValidator {
 
     public static void validateNumberRangeInLotto(List<Integer> lotto) {
         lotto.stream()
-                .forEach(number -> validateNumberRange(number));
+                .forEach(number -> validateLottoNumberRange(number));
     }
 
-    public static void validateNumberRange(int number) {
+    public static void validateLottoNumberRange(int number) {
         if ((number < MIN_LOTTO_NUMBER.getValue()) || (number > MAX_LOTTO_NUMBER.getValue())) {
             throw new IllegalArgumentException(String.format(
                     SHOULD_BE_IN_LOTTO_NUMBER_RANGE,

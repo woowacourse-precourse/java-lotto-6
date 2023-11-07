@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import java.util.Optional;
 import lotto.domain.dto.LottoNumberCompareResult;
 
 public enum LottoRank {
@@ -20,7 +19,7 @@ public enum LottoRank {
         this.prizeAmount = prizeAmount;
     }
 
-    public Optional<LottoRank> findLottoRank(LottoNumberCompareResult compareResult) {
+    public LottoRank findLottoRank(LottoNumberCompareResult compareResult) {
         LottoRank lottoRank = null;
 
         for (LottoRank rank : LottoRank.values()) {
@@ -29,7 +28,7 @@ public enum LottoRank {
             }
         }
 
-        return Optional.ofNullable(lottoRank);
+        return lottoRank;
     }
 
     private boolean isEqual(int matchingCount, boolean bonusIncluded) {

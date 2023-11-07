@@ -10,7 +10,7 @@ public enum StringUtil {
     ENTER_BONUS_NUMBER("\n보너스 번호를 입력해 주세요."),
     PRINT_WINNING_STATISTICS_PHRASES("\n당첨 통계\n---"),
     PRINT_WINNING_DETAILS("%s (%s원) - %d개\n"),
-    PRINT_ROI("총 수익률은 %s%입니다.\n"),
+    PRINT_PROFIT("총 수익률은 %.1f%%입니다.\n"),
     PRINT_ERR_PAY_AMOUNT_INVALID_UNIT_INTERVER(String.format("[ERROR] %d원 단위로 떨어지는 금액을 입력해주세요.\n", PAY_AMOUNT_UNIT.getValue())),
     PRINT_ERR_PAY_AMOUNT_NOT_DIGIT("[ERROR] 입력할 금액으로 숫자를 입력해주세요.\n"),
     PRINT_ERR_NUMBER_NOT_DIGIT("[ERROR] 숫자로만 구성된 번호를 입력해주세요.\n"),

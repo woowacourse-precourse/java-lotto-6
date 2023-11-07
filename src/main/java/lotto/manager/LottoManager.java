@@ -5,7 +5,10 @@ import lotto.Lotto;
 import lotto.Statistics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import static lotto.utility.IntegerUtil.*;
+import static lotto.utility.StringUtil.PRINT_WINNING_DETAILS;
 
 public class LottoManager {
 
@@ -19,6 +22,7 @@ public class LottoManager {
 
     private List<Integer> winningNumber;
     private int bonusNumber;
+    private int payAmount;
 
     private LottoManager() {
 
@@ -32,6 +36,7 @@ public class LottoManager {
     }
 
     public int generateLottoTickets(int payAmount) {
+        this.payAmount = payAmount;
         return payAmount / PAY_AMOUNT_UNIT.getValue();
     }
 
@@ -78,6 +83,22 @@ public class LottoManager {
         }
 
         statistics.integrate(matchCount, bonusCount);
+    }
+
+    public double calculateProfit() {
+        Statistics statistics = Statistics.getInstance();
+
+        Map<Integer, Integer> winningNumberMatchCount = statistics.getWinningNumberMatchCount();
+        Map<Integer, Integer> priceByMatchCount = statistics.getPriceByMatchCount();
+
+        double totalPrice = 0.0;
+
+        for ( int matches : winningNumberMatchCount.keySet() ) {
+            totalPrice += priceByMatchCount.get(matches) * winningNumberMatchCount.get(matches);
+        }
+
+        double profit = totalPrice / (double) this.payAmount;
+        return (Math.round(profit * 10) / 10.0);
     }
 
     public void setLottoTicketCount(int lottoTicketCount) {

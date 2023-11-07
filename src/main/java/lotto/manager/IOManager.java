@@ -56,6 +56,10 @@ public class IOManager {
         System.out.printf(PRINT_WINNING_DETAILS.getMessage(), "6개 일치", "2,000,000,000", winningNumberMatchCount.get(6));
 
     }
+
+    public void printProfit(double profit) {
+        System.out.printf(PRINT_PROFIT.getMessage(), profit);
+    }
     public int readPayAmount() {
         String inputPayAmount = Console.readLine().replaceAll("\\s", "");
 

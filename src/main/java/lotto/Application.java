@@ -19,5 +19,8 @@ public class Application {
 
         WinningStatisticsController winningStatisticsController = new WinningStatisticsController();
         winningStatisticsController.handle();
+
+        ProfitController profitController = new ProfitController();
+        profitController.handle();
     }
 }

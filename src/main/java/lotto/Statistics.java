@@ -7,6 +7,7 @@ public class Statistics {
 
     private static Statistics statistics;
     private Map<Integer, Integer> winningNumberMatchCount;
+    private Map<Integer, Integer> priceByMatchCount;
 
     private Statistics() {
         winningNumberMatchCount = new HashMap<>();
@@ -16,6 +17,15 @@ public class Statistics {
         winningNumberMatchCount.put(5, 0);
         winningNumberMatchCount.put(51, 0);
         winningNumberMatchCount.put(6, 0);
+
+        priceByMatchCount = new HashMap<>();
+
+        priceByMatchCount.put(3, 5000);
+        priceByMatchCount.put(4, 50000);
+        priceByMatchCount.put(5, 1500000);
+        priceByMatchCount.put(51, 30000000);
+        priceByMatchCount.put(6, 2000000000);
+
     }
     public static Statistics getInstance() {
         if ( statistics == null ) {
@@ -42,6 +52,10 @@ public class Statistics {
     }
 
     public Map<Integer, Integer> getWinningNumberMatchCount() {
-        return winningNumberMatchCount;
+        return this.winningNumberMatchCount;
+    }
+
+    public Map<Integer, Integer> getPriceByMatchCount() {
+        return this.priceByMatchCount;
     }
 }

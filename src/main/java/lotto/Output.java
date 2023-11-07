@@ -15,12 +15,6 @@ public class Output {
         System.out.println(lottoTicket + NUMBER_OF_PURCHAGE);
     }
 
-    public void printRandomLottoNumbers(HashMap<Integer, List<Integer>> randomLottoNumbers) {
-        for (int key : randomLottoNumbers.keySet()) {
-            System.out.println(randomLottoNumbers.get(key));
-        }
-    }
-
     public String printResultMessage() {
         return RESULT_MESSAGE;
     }

@@ -2,7 +2,6 @@ package lotto.view;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import lotto.model.Lotto;
 import lotto.model.RandomLottos;
 
@@ -35,5 +34,9 @@ public class DisplayOutput {
         for(String grade : winningStatics.keySet()){
             System.out.println(grade +" "+ winningStatics.get(grade).toString());
         }
+    }
+
+    public void outputWinningReward(Double winningReward) {
+        System.out.println("winningReward = " + winningReward);
     }
 }

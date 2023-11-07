@@ -8,6 +8,7 @@ import lotto.model.Lotto;
 import lotto.model.LottoAmountofMoney;
 import lotto.model.LottoChecker;
 import lotto.model.RandomLottos;
+import lotto.model.WinningReward;
 import lotto.view.DisplayInput;
 import lotto.view.DisplayOutput;
 
@@ -25,6 +26,8 @@ public class LottoController {
         BounsNumber bounsNumber = new BounsNumber(getBonusNumber());
         LottoChecker lottoChecker = new LottoChecker(randomLottos,answerLotto, bounsNumber);
         HashMap<String, Integer> winningStatics = getWinningStatics(lottoChecker);
+        WinningReward winningRewardChecker = new WinningReward();
+        Double winningReward = getWinningReward(winningStatics, lottoAmountofMoney.getLottoAmountofMoney(), winningRewardChecker);
     }
 
     private Integer getLottoAmountofMoney() {
@@ -56,6 +59,11 @@ public class LottoController {
         HashMap<String, Integer> winningStatics =  lottoChecker.checkLottoNumbers();
         displayOutput.outputWinningStatics(winningStatics);
         return winningStatics;
+    }
+    private Double getWinningReward(HashMap<String, Integer> winningStatics, Integer lottoAmountofMoney, WinningReward winningRewardchecker){
+        Double winningReward =  winningRewardchecker.calculateRateOfReturn(winningStatics, lottoAmountofMoney);
+        displayOutput.outputWinningReward(winningReward);
+        return winningReward;
     }
 
 

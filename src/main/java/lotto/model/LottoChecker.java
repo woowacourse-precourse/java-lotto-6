@@ -8,7 +8,6 @@ public class LottoChecker {
     private final List<Integer> answerLotto;
     private final Integer bounsNumber;
     private final HashMap<String, Integer> winningStatics;
-    private final Integer totalReward = 0;
 
     public LottoChecker(RandomLottos randomLottos, Lotto answerLotto, BounsNumber bounsNumber) {
         this.randomLottos = randomLottos.getRandomLottos();

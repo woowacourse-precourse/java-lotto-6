@@ -111,13 +111,13 @@ public class Application {
     }
 
     // 결과 통계 확인 메서드
-    public static String checkResults(List<Integer> results, List<Boolean> hasBonus) {
+    public static String checkResults(List<Integer> results, int num) {
 //        System.out.println("당첨 통계");
 //        System.out.println("---");
         StringBuilder resultBuilder = new StringBuilder();
         DecimalFormat decimalFormat = new DecimalFormat("#,###");
 
-
+        double totalPrize = 0;
         for (Prize prize : Prize.values()) {
             int count = 0;
             int matNums = prize.getMatNums();
@@ -130,6 +130,7 @@ public class Application {
             if (results.contains(matNums)) {
                 count++;
             }
+            totalPrize += prizeAmount * count;
 
             String result = resultFormat.replaceFirst("\\(0원\\)", "(" + formattedNum + "원)");
 
@@ -140,21 +141,30 @@ public class Application {
 
             resultBuilder.append(result).append("\n");
         }
+        double rate = (totalPrize / (num * 1000)) * 100;
+        resultBuilder.append("총 수익률은 " + rate + "%입니다.");
 
         return resultBuilder.toString();
     }
 
     public static int inputMoney() {
-        // 1. lotto input
-        System.out.println("구입금액을 입력해 주세요.");
-
-        int lottoInput = Integer.parseInt(readLine());
-        if(lottoInput % 1000 != 0) {
-            new IllegalArgumentException("[Error]");
+        //로또 구매금액 입력
+        while (true) {
+            try {
+                System.out.println("구입금액을 입력해 주세요.");
+                int lottoInput = Integer.parseInt(readLine());
+                if (lottoInput % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 1,000원 단위로 입력하세요.");
+                }
+                int num = lottoInput / 1000;
+                System.out.println(num + "개를 구매했습니다.");
+                return num;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 유효한 숫자를 입력하세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
         }
-        int num = lottoInput / 1000;
-        System.out.println(num + "개를 구매했습니다.");
-        return num;
     }
 
 
@@ -180,7 +190,7 @@ public class Application {
 //        System.out.println(results.toString());
 //        System.out.println(bonusResults.toString());
 //        System.out.println(checkResults(results, bonusResults));
-        System.out.println(checkResults(results, bonusResults));
+        System.out.println(checkResults(results, num));
 
 
     }

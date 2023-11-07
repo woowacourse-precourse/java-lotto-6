@@ -34,8 +34,8 @@ public class LottoController {
         Lotto winningLotto = initWinningLotto();
         BonusNumber bonusNumber = initBonusNumber(winningLotto.getNumbers());
 
-        Statistic statistic = createStatistic(lotteries, winningLotto, bonusNumber);
-        ProfitRate profitRate = calculateProfitRate(statistic, buyAmount);
+        Statistic statistic = initStatistic(lotteries, winningLotto, bonusNumber);
+        ProfitRate profitRate = initProfitRate(statistic, buyAmount);
         showResult(statistic, profitRate);
     }
 
@@ -62,15 +62,15 @@ public class LottoController {
         return view.getBonusNumber(winningNumbers);
     }
 
-    private Statistic createStatistic(final Lotteries lotteries, final Lotto winningLotto,
-                                      final BonusNumber bonusNumber) {
+    private Statistic initStatistic(final Lotteries lotteries, final Lotto winningLotto,
+                                    final BonusNumber bonusNumber) {
         List<Integer> matchedCount = lotteries.countMatchedNumbers(winningLotto);
         List<Boolean> containBonusNumber = lotteries.checkBonusNumberContain(bonusNumber);
 
         return Statistic.createStatistic(matchedCount, containBonusNumber);
     }
 
-    private ProfitRate calculateProfitRate(final Statistic statistic, final BuyAmount buyAmount) {
+    private ProfitRate initProfitRate(final Statistic statistic, final BuyAmount buyAmount) {
         return ProfitRate.createProfitRate(statistic.getRank(), buyAmount);
     }
 

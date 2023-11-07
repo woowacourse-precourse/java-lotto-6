@@ -1,4 +1,4 @@
-package domain.lotto;
+package domain;
 
 public class LottoInfoNumbers {
     public static final int MAX_LOTTO_PURCHASE_LIMIT = 100000;

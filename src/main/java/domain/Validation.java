@@ -1,11 +1,10 @@
-package domain.lotto;
+package domain;
 
-import static domain.lotto.LottoInfoNumbers.*;
-import static domain.lotto.Messages.*;
+import static domain.LottoInfoNumbers.*;
+import static domain.Messages.*;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Validation {
 

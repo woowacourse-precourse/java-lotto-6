@@ -1,4 +1,4 @@
-package domain.lotto;
+package domain;
 
 public class Messages {
     public static final String ERROR_HEADER = "[ERROR] ";

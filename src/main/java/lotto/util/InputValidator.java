@@ -6,6 +6,11 @@ import java.util.regex.Pattern;
 
 public class InputValidator {
 
+    private static final String INTEGER_TYPE_VALIDATE_REGEX = "^-?\\d+$";
+    private static final String INTEGER_RANGE_OVER_EXCEPTION_MESSAGE = "가능한 정수 범위를 초과했습니다";
+    private static final String INPUT_WRONG_INTEGER_TYPE_EXCEPTION_MESSAGE = "입력 값은 정수 타입이어야 합니다";
+    private static final String INPUT_EMPTY_EXCEPTION_MESSAGE = "입력 값은 공백일 수 없습니다";
+
     public static void validatePurchaseAmount(String purchaseAmount) {
         validateNotEmpty(purchaseAmount);
         validateIntegerType(purchaseAmount);
@@ -16,7 +21,7 @@ public class InputValidator {
         try {
             Integer.parseInt(purchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] : 가능한 정수 범위를 초과했습니다.");
+            throw new IllegalArgumentException(INTEGER_RANGE_OVER_EXCEPTION_MESSAGE);
         }
     }
 
@@ -38,17 +43,17 @@ public class InputValidator {
     }
 
     private static void validateIntegerType(String input) {
-        Pattern pattern = Pattern.compile("^-?\\d+$");
+        Pattern pattern = Pattern.compile(INTEGER_TYPE_VALIDATE_REGEX);
         Matcher matcher = pattern.matcher(input);
 
         if(!matcher.matches()){
-            throw new IllegalArgumentException("[ERROR] : 입력 값은 정수 타입이어야 합니다");
+            throw new IllegalArgumentException(INPUT_WRONG_INTEGER_TYPE_EXCEPTION_MESSAGE);
         }
     }
 
     private static void validateNotEmpty(String input) {
         if(input.isEmpty()){
-            throw new IllegalArgumentException("[ERROR] : 입력 값은 공백일 수 없습니다");
+            throw new IllegalArgumentException(INPUT_EMPTY_EXCEPTION_MESSAGE);
         }
     }
 

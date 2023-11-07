@@ -12,6 +12,9 @@ import lotto.domain.WinningLotto;
 
 public class LottoService {
 
+    private static final int INITIAL_ZERO_VALUE = 0;
+    private static final int RESULT_INCREASE_VALUE = 1;
+
     public Map<LottoResult, Integer> getLottoResult(Lottos lottos, WinningLotto winningLotto) {
 
         Map<LottoResult, Integer> resultStorage = resultStorageInitialize();
@@ -20,7 +23,7 @@ public class LottoService {
             boolean hasBonus = checkBonusNumber(lotto, winningLotto.getBonusNumber());
             LottoResult rank = LottoResult.findRank(correctCount, hasBonus);
             if(rank != null) {
-                resultStorage.put(rank, resultStorage.getOrDefault(rank, 0) + 1);
+                resultStorage.put(rank, resultStorage.getOrDefault(rank, INITIAL_ZERO_VALUE) + RESULT_INCREASE_VALUE);
             }
         }
         return resultStorage;
@@ -29,7 +32,7 @@ public class LottoService {
     private Map<LottoResult, Integer> resultStorageInitialize() {
         Map<LottoResult, Integer> resultStorage = new HashMap<>();
         for(LottoResult result : LottoResult.values()){
-            resultStorage.put(result, 0);
+            resultStorage.put(result, INITIAL_ZERO_VALUE);
         }
         return resultStorage;
     }
@@ -59,7 +62,7 @@ public class LottoService {
     }
 
     public long sumTotalLottoPrize(Map<LottoResult, Integer> resultStorage) {
-        long totalPrize = 0;
+        long totalPrize = INITIAL_ZERO_VALUE;
         for (LottoResult result : resultStorage.keySet()) {
             totalPrize += calculatePrize(result.getPrize(), resultStorage.get(result));
         }

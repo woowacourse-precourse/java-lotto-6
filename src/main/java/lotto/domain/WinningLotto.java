@@ -2,6 +2,11 @@ package lotto.domain;
 
 public class WinningLotto {
 
+    private static final int LOTTO_MIN_NUMBER = 1;
+    private static final int LOTTO_MAX_NUMBER = 45;
+    private static final String BONUS_NUMBER_DUPLICATE_EXCEPTION_MESSAGE = "보너스 숫자는 당첨 번호와 중복될 수 없습니다";
+    private static final String BONUS_NUMBER_WRONG_RANGE_EXCEPTION_MESSAGE = "보너스 숫자가 1에서 45 사이의 범위를 벗어납니다";
+
     private final Lotto answerLotto;
     private final int bonusNumber;
 
@@ -20,13 +25,13 @@ public class WinningLotto {
         if (answerLotto.getNumbers()
                 .stream()
                 .anyMatch(number -> number == bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] : 보너스 숫자는 당첨 번호와 중복될 수 없습니다");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_EXCEPTION_MESSAGE);
         }
     }
 
     private void validateCorrectRange(int bonusNumber) {
-        if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] : 숫자가 1에서 45 사이의 범위를 벗어납니다.");
+        if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
+            throw new IllegalArgumentException(BONUS_NUMBER_WRONG_RANGE_EXCEPTION_MESSAGE);
         }
     }
 

@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 
 public class InputConvertUtil {
 
+    private static final String NUMBER_SPLIT_REGEX = ",";
+
     public static List<String> lottoNumberToLottoList(String lottoNumber) {
-        String[] lottoNumbers = lottoNumber.split(",");
+        String[] lottoNumbers = lottoNumber.split(NUMBER_SPLIT_REGEX);
         return Arrays.asList(lottoNumbers);
     }
 

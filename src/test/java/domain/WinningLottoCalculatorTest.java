@@ -39,15 +39,13 @@ class WinningLottoCalculatorTest {
 	@Test
 	public void countMatchingNumbers() {
 		//given
-		String lotto = "1,2,3,4,5,6";
-		String bonusNumber = "7";
 		int expected = 4;
+		WinningLotto winningLotto = getWinningLotto();
 
-		WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 		Lotto purchaseLotto = new Lotto("1,2,8,4,5,9");
-		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
 
 		// when
+		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
 		long matchCount = winningLottoCalculator.getMatchCount(purchaseLotto, winningLotto);
 
 		//then
@@ -58,14 +56,11 @@ class WinningLottoCalculatorTest {
 	@Test
 	public void checkBonusNumberInLottoNumbers() {
 		//given
-		String lotto = "1,2,3,4,5,6";
-		String bonusNumber = "7";
-
-		WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
+		WinningLotto winningLotto = getWinningLotto();
 		Lotto purchaseLotto = new Lotto("1,2,8,4,5,7");
-		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
 
 		// when
+		WinningLottoCalculator winningLottoCalculator = new WinningLottoCalculator();
 		boolean bonusNumberMatchLotto = winningLottoCalculator.isBonusNumberMatchLotto(purchaseLotto, winningLotto);
 
 		//then

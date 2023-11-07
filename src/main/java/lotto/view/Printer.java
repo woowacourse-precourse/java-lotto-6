@@ -5,6 +5,10 @@ import static lotto.message.InfoMessage.*;
 import static lotto.message.ErrorMessage.INVALID_MONEY_INPUT_EXCEPTION;
 
 public class Printer {
+    public static void printLineBreak() {
+        System.out.println();
+    }
+
     public static void printPurchaseAmountChoiceMessage() {
         System.out.println(PURCHASE_AMOUNT_CHOICE);
     }

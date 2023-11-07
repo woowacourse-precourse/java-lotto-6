@@ -3,6 +3,7 @@ package lotto.controller;
 import java.util.List;
 import lotto.domain.ConvertingWinningNumber;
 import lotto.validator.InputValidator;
+import lotto.validator.Lotto;
 import lotto.validator.NumberInputValidator;
 import lotto.validator.WinningNumberInputValidator;
 import lotto.view.WinningNumberInput;
@@ -21,6 +22,7 @@ public class WinningNumberController {
         System.out.println(ENTER_WINNING_NUMBER);
         String winningNumber = winningNumberInput.readLine();
         convertingWinningNumbers = convertingWinningNumber.convertingWinningNumber(winningNumber);
+        Lotto lotto = new Lotto(convertingWinningNumbers);
         bonusNumberController.start();
     }
 

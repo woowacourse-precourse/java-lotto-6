@@ -64,6 +64,7 @@
 - [X] 구매금액 > 로또 갯수로 변환 메서드 구현
 - [X] ComparingLotto.java 로또번호 비교 클래스
 - [x] Lotto.java 클래스 활용 및 테스트
+- [x] Lotto 클래스 활용
 
 ---
 

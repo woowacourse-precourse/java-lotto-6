@@ -20,8 +20,8 @@ public class MainLottoController {
         //로또 결과 데이터 업데이트
         LottoResultManager lottoResultManager = updateLottoResult(randomLotto, userLotto);
         //결과 출력
-        sendEarningRateToView(lottoResultManager, money);
         sendResultRankingToView(lottoResultManager);
+        sendEarningRateToView(lottoResultManager, money);
     }
 
     //region 램덤 로또 번호

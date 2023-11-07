@@ -29,7 +29,6 @@ public class LottoResultManager {
 
     private void initEntry(){
         for (Rank rank : Rank.values()) {
-            System.out.println(rank);
             lottoResult.put(rank, 0);
         }
     }

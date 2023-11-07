@@ -7,7 +7,6 @@ import java.util.List;
 
 public class Output {
     public static final String ERROR_RANDOM_MACHINE = "잘못된 랜덤 생성입니다.";
-    //private static final String MESSAGE_EARNING_RATE = String.format("총 수익률은 d%입니다.",earningRate);
     public static final String MESSAGE_EARNING_RATE = "총 수익률은 %.1f%%입니다.";
     public static final String MESSAGE_RANKING_LIST_COUNT = "%d개 일치";
     public static final String MESSAGE_RANKING_LIST_COUNT_SECOND = ", 보너스 볼 일치";
@@ -31,13 +30,15 @@ public class Output {
 
     public static void printResultRanking(double earningRate) {
         String.format("%.1f", earningRate);
-        String MSG = String.format(MESSAGE_EARNING_RATE,earningRate);
+        String MSG = String.format(MESSAGE_EARNING_RATE, earningRate);
+
         System.out.println(MSG);
 
     }
 
     public static void printEarningRate(int matchCount, int prizeMoney, int matchedResult) {
         String prizeMoneyFormatted = String.format("%,d", prizeMoney);
+
         String COUNT = String.format(MESSAGE_RANKING_LIST_COUNT, matchCount);
         String PRIZE = String.format(MESSAGE_PRIZE, prizeMoneyFormatted);
         String MATCHRESULT = String.format(MESSAGE_MATCH_RESULT, matchedResult);
@@ -46,7 +47,6 @@ public class Output {
             COUNT += MESSAGE_RANKING_LIST_COUNT_SECOND;
         }
         System.out.println(COUNT + PRIZE + MATCHRESULT);
-
     }
 
 

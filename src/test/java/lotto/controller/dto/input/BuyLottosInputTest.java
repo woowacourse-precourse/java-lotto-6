@@ -9,14 +9,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-final class BuyLottosDtoTest {
+final class BuyLottosInputTest {
     @DisplayName("1,000 단위로 나누어 떨어지는 문자열을 입력하여 BuyLottosDto 생성 가능")
     @ParameterizedTest
     @ValueSource(strings = {"1000", "10000"})
     void from_withNumericStringDivisibleByLottoPrice_shouldCreateInstance(final String input) {
         // given
         // when
-        final BuyLottosDto dto = BuyLottosDto.from(input);
+        final BuyLottosInput dto = BuyLottosInput.from(input);
 
         // then
         assertThat(dto.getAmount()).isEqualTo(Long.parseLong(input));
@@ -30,7 +30,7 @@ final class BuyLottosDtoTest {
         // when
         // then
         assertThatThrownBy(() ->
-                BuyLottosDto.from(input))
+                BuyLottosInput.from(input))
                 .isInstanceOf(InvalidLottoPriceUnitException.class)
                 .hasMessage(InvalidLottoPriceUnitException.INVALID_LOTTO_PRICE_UNIT_EXCEPTION_MESSAGE);
     }
@@ -43,7 +43,7 @@ final class BuyLottosDtoTest {
         // when
         // then
         assertThatThrownBy(() ->
-                BuyLottosDto.from(input))
+                BuyLottosInput.from(input))
                 .isInstanceOf(NumericInputValidationException.class)
                 .hasMessage(NumericInputValidationException.NUMERIC_INPUT_VALIDATION_EXCEPTION);
     }

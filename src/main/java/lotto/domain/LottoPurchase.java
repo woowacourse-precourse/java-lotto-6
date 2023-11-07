@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import lotto.enums.ErrorMessages;
+import lotto.enums.LottoEnum;
 import lotto.utils.StringUtil;
 
 public class LottoPurchase {
@@ -21,7 +22,7 @@ public class LottoPurchase {
     }
 
     public LottoTickets generateLottoTickets() {
-        return LottoTickets.createBy(getNumberOfTickets());
+        return LottoTickets.createdBy(getNumberOfTickets());
     }
 
     public int getAmount() {
@@ -29,7 +30,7 @@ public class LottoPurchase {
     }
 
     public int getNumberOfTickets() {
-        return amount / 1000;
+        return amount / LottoEnum.PURCHASE_RULE.getValue();
     }
 
     private void validatePositive(int amount) {
@@ -39,8 +40,8 @@ public class LottoPurchase {
     }
 
     private void validateThousand(int amount) {
-        if (amount % 1000 != 0) {
-            throw new IllegalArgumentException(ErrorMessages.NON_THOUSAND_INPUT_MESSAGE.getMessage());
+        if (amount % LottoEnum.PURCHASE_RULE.getValue() != 0) {
+            throw new IllegalArgumentException(ErrorMessages.NON_PURCHASE_RULE_INPUT_MESSAGE.getMessage());
         }
     }
 }

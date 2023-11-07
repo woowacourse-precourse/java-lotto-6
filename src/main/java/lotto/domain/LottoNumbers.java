@@ -12,7 +12,7 @@ public class LottoNumbers {
 
     private static List<Integer> lottoNumberList;
 
-    public static List<Integer> setRandomNumbers() {
+    public static List<Integer> setLottoNumbers() {
         lottoNumberList = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         List<Integer> RandomNumbers = new ArrayList<>(lottoNumberList);
         Collections.sort(RandomNumbers);

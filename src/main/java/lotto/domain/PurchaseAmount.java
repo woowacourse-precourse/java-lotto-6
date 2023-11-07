@@ -9,7 +9,7 @@ import lotto.exception.LottoException;
 import lotto.parser.Parser;
 
 public class PurchaseAmount {
-    private static int purchaseAmount ;
+    private static int purchaseAmount;
     private static final int UNIT_PRICE = 1000;
     public static int count;
 
@@ -35,11 +35,12 @@ public class PurchaseAmount {
             throw LottoException.of(IS_NOT_MULTIPLE_OF_THOUSAND);
         }
     }
-    public boolean isMultipleOfThousand(int purchaseAmount) {
+
+    private boolean isMultipleOfThousand(int purchaseAmount) {
         return (purchaseAmount % UNIT_PRICE) != 0;
     }
 
-    public static int calculateLottoCount(int purchaseAmount) {
+    private static int calculateLottoCount(int purchaseAmount) {
         return purchaseAmount / UNIT_PRICE;
     }
 

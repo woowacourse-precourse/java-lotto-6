@@ -12,48 +12,53 @@ import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumbers;
 import lotto.domain.PurchaseAmount;
+import lotto.domain.WinningNumbers;
+import lotto.validator.InputValidator;
+import lotto.view.InputView;
 
 public class LottoController {
 
     private static int count;
-    private static List<Integer> lotto = new ArrayList<>();
-    private static List<Lotto> lottoList;
+    private static List<Integer> randomNumbers = new ArrayList<>();
+    private static List<Lotto> lotto;
+    private static List<Integer> winningNumbers;
     public static void prosess (){
         start();
-        createRandomNumber();
+        createLottoNumber();
+        inputWinningNumber();
     }
 
     public static void start() {
         PurchaseAmount.creat(requestPurchaseAmount());
-
         count = PurchaseAmount.count;
         responseCount(count);
     }
 
-    public static List<Lotto> createRandomNumber() {
+    public static List<Lotto> createLottoNumber() {
 
-        lottoList = new ArrayList<>();
+        lotto = new ArrayList<>();
         for (int i = 0; i < count; i++) {
-            lottoList.add(createLotto());
+            lotto.add(createLotto());
         }
-        return lottoList;
+        return lotto;
 
     }
 
     private static Lotto createLotto() {
         LottoNumbers lottoNumbers = new LottoNumbers();
-        lotto = new ArrayList<>();
 
-        lotto = lottoNumbers.setRandomNumbers();
-        responseLottoNumber(lotto);
-
-        return new Lotto(lotto);
+        randomNumbers = lottoNumbers.setLottoNumbers();
+        responseLottoNumber(randomNumbers);
+        return new Lotto(randomNumbers);
     }
 
 
     public static void inputWinningNumber() {
-        parseWinningNumbers(requestLotteryNumber());
-        requestBonusNumber();
+        String input = requestLotteryNumber();
+        InputValidator.validateEmpty(input);
+        InputValidator.validateInputFormat(input);
+
+        WinningNumbers.createWinningNumber(input);
     }
 
 }

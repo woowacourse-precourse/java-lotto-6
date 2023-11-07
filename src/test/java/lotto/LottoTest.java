@@ -7,8 +7,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.assertThatCode;
 
+import lotto.domain.dto.LottoResult;
 import lotto.domain.ticket.Lotto;
 import lotto.domain.ticket.LottoNumberGenerator;
+import lotto.domain.winningnumbers.WinningNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -74,11 +76,39 @@ class LottoTest {
         assertThat(lottoNumber).isEqualTo(clone);
     }
 
+    @ParameterizedTest
+    @MethodSource("provideLottoAndWinningNumbersWithResult")
+    void 로또_번호중_동일한_숫자의_개수와_보너스_번호_매치_여부를_반환한다(List<Integer> numbers, List<Integer> winningNumbers,
+                                  int bonusNumber,int count, boolean match) {
+        //given
+        Lotto lotto = new Lotto(numbers);
+        WinningNumbers winningNum =new WinningNumbers(winningNumbers, bonusNumber);
+
+        //when
+        LottoResult result = lotto.getResult(winningNum);
+
+        //then
+        assertThat(result.getCountOfSameNumber()).isEqualTo(count);
+        assertThat(result.getMatchBonusNumber()).isEqualTo(match);
+    }
+
     private static Stream<Arguments> provideInvalidRangeNumbers() {
         return Stream.of(
                 Arguments.of(List.of(0,1,2,3,4,5)),
                 Arguments.of(List.of(41,42,43,44,45,46)),
                 Arguments.of(List.of(0,10,20,30,40,50))
+        );
+    }
+
+    private static Stream<Arguments> provideLottoAndWinningNumbersWithResult() {
+        return Stream.of(
+                Arguments.of(List.of(1,2,3,4,5,6),List.of(1,2,3,4,5,6),10,6,false),
+                Arguments.of(List.of(1,2,3,4,5,10),List.of(1,2,3,4,5,45),10,5,true),
+                Arguments.of(List.of(1,2,3,4,5,6),List.of(1,2,3,4,44,45),10,4,false),
+                Arguments.of(List.of(1,2,3,4,5,6),List.of(1,2,3,43,44,45),10,3,false),
+                Arguments.of(List.of(1,2,3,4,5,6),List.of(1,2,42,43,44,45),10,2,false),
+                Arguments.of(List.of(1,2,3,4,5,6),List.of(1,41,42,43,44,45),10,1,false),
+                Arguments.of(List.of(1,2,3,4,5,6),List.of(40,41,42,43,44,45),10,0,false)
         );
     }
 }

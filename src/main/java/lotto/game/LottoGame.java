@@ -2,7 +2,9 @@ package lotto.game;
 
 import java.util.List;
 import lotto.domain.Balance;
+import lotto.domain.Bonus;
 import lotto.domain.Lotto;
+import lotto.domain.LottoDraw;
 import lotto.utils.Parser;
 import lotto.utils.RetryExecutor;
 import lotto.view.Input;
@@ -17,6 +19,11 @@ public class LottoGame {
         List<Lotto> lottos = purchaseLottosWithQuckpick(balance);
 
         Lotto winningLotto = RetryExecutor.execute(this::makeWinningLotto, IllegalArgumentException.class);
+        Bonus winningBonus = RetryExecutor.execute(() -> makeWinningBonus(winningLotto),
+                IllegalArgumentException.class);
+
+        LottoDraw.of(winningLotto, winningBonus);
+
     }
 
     private Balance makeBalance() {
@@ -41,4 +48,12 @@ public class LottoGame {
 
         return Lotto.from(winningNumbers);
     }
+
+    private Bonus makeWinningBonus(Lotto winningLotto) {
+        String userInput = Input.getBonusNumber();
+        int bonusNumber = Parser.parseBonusNumber(userInput);
+
+        return Bonus.createWithValidate(bonusNumber, winningLotto);
+    }
 }
+

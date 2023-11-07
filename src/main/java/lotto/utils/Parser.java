@@ -21,6 +21,10 @@ public class Parser {
                 .toList();
     }
 
+    public static int parseBonusNumber(String userInput) {
+        return tryParseInt(userInput);
+    }
+
     private static int tryParseInt(String userInput) throws IllegalArgumentException {
         try {
             return Integer.parseInt(userInput);

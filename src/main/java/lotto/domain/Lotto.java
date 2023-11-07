@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.global.enums.ErrorType.DUPLICATE_NUMBER_IN_LOTTO;
+import static lotto.global.enums.ErrorType.INVALID_COUNT_OF_LOTTO_NUMBER;
+
 import java.util.List;
 
 public class Lotto {
@@ -12,10 +15,10 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("로또 번호는 6개 숫가로 구성되어 있어야 합니다.");
+            throw new IllegalArgumentException(INVALID_COUNT_OF_LOTTO_NUMBER.getMessage());
         }
         if (numbers.stream().distinct().count() != numbers.size()) {
-            throw new IllegalArgumentException("중복된 번호가 존재해서는 안 됩니다.");
+            throw new IllegalArgumentException(DUPLICATE_NUMBER_IN_LOTTO.getMessage());
         }
 
 

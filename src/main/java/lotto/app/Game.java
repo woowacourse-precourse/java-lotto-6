@@ -11,7 +11,7 @@ public class Game {
     public void start() {
         Round round = new Round();
         round.extractor(round.getTotalCnt());
-        Lotto lotto = new Lotto(inputWinningNumber());
+        Lotto lotto = inputWinningNumber();
         round.judge(lotto, inputBonusNumber(lotto.getNumbers()));
         round.showResult();
     }

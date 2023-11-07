@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LottoServiceTest {
@@ -34,7 +36,10 @@ public class LottoServiceTest {
 	@DisplayName("구입 금액에 해당하는 만큼 로또가 발행되는 메서드 테스트")
 	@Test
 	void issueLottosTest1() {
+		long numberOfLottoTickets = 3L;
+		List<Lotto> lottos = lottoService.issueLottos(numberOfLottoTickets);
 
+		assertEquals(3,lottos.size());
 	}
 
 	@DisplayName("로또 번호 오름차순 정렬 테스트")

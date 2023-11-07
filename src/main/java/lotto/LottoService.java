@@ -126,7 +126,7 @@ public class LottoService {
 
 	public String getProfitRate(long numberOfLottoTickets, long profit) {
 		long money = numberOfLottoTickets * 1000;
-		double profitRate = (double) profit / money;
+		double profitRate = ((double) profit / money) * 100;
 		return String.format("%.1f", profitRate);
 	}
 }

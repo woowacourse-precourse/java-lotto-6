@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -51,5 +52,26 @@ public class InputValidatorTest {
         Assertions.assertThatThrownBy(() -> InputValidator.validateWinningNumbersInput(input));
         String secondInput = "1,2,3,4,5,46";
         Assertions.assertThatThrownBy(() -> InputValidator.validateWinningNumbersInput(secondInput));
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아니면 에러가 발생한다.")
+    @Test
+    void validateBonusNumberType() {
+        String input = "k";
+        Assertions.assertThatThrownBy(() -> InputValidator.validateBonusNumberInput(input, new ArrayList<>()));
+    }
+
+    @DisplayName("보너스 번호가 1부터 45사이의 범위를 벗어나면 에러가 발생한다.")
+    @Test
+    void validateBonusNumberInRange() {
+        String lessThanMinimum = "0";
+        Assertions.assertThatThrownBy(() ->
+                InputValidator.validateBonusNumberInput(lessThanMinimum, new ArrayList<>()));
+        String greaterThanMaximum = "46";
+        Assertions.assertThatThrownBy(() ->
+                InputValidator.validateBonusNumberInput(greaterThanMaximum, new ArrayList<>()));
+        String numberInRange = "45";
+        Assertions.assertThatNoException().isThrownBy(() ->
+                InputValidator.validateBonusNumberInput(numberInRange, new ArrayList<>()));
     }
 }

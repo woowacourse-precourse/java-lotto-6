@@ -23,8 +23,10 @@ public class Lotto {
         if (set.size() != 6) throw new IllegalArgumentException("[ERROR] 중복값이 존재합니다.");
     }
 
-    public Integer countMatchingNumber(Lotto winningLotto) {
-        return (int) winningLotto.numbers.stream().filter(this.numbers::contains).count();
+    public Integer countMatchingNumber(Lotto winningLotto, Integer bonusNumber) {
+        int matchCount = (int) winningLotto.numbers.stream().filter(this.numbers::contains).count();
+        if (this.numbers.contains(bonusNumber)) matchCount++;
+        return matchCount;
     }
 
     public Boolean checkMatchingNumber(Integer bonusNumber) {

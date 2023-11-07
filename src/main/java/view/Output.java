@@ -19,6 +19,7 @@ public class Output {
     private static final String PRIZE_DESCRIPTION = "%d개 일치 (%s원) - %d개";
     public static final String SECOND_PRIZE_DESCRIPTION = "%d개 일치, 보너스 볼 일치 (%s원) - %d개";
     private static final String PROFIT_MESSAGE = "총 수익률은 %s%%입니다.";
+    private static final String PROFIT_FORMAT = "%.1f";
 
     public static void printLottoNumbers(List<Lotto> lottoTickets) {
         System.out.printf(LINE_BREAK + PURCHASE_AMOUNT_MESSAGE + LINE_BREAK, lottoTickets.size());
@@ -58,7 +59,7 @@ public class Output {
 
     public static void printLottoProfit(double profitRate) {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.KOREA);
-        double profitValue = Double.parseDouble(String.format("%.1f", profitRate));
+        double profitValue = Double.parseDouble(String.format(PROFIT_FORMAT, profitRate));
         System.out.printf(PROFIT_MESSAGE + LINE_BREAK, numberFormat.format(profitValue));
     }
 }

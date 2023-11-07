@@ -9,10 +9,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Referee {
+    private static final long DEFAULT_VALUE = 0L;
+    private static final int PERCENT_VALUE = 100;
+
     public static List<Map<Rank, Long>> getLottoResult(Map<Rank, Long> winningCounts) {
         List<Map<Rank, Long>> lottoResults = new ArrayList<>();
         for (Rank rank : Rank.values()) {
-            long rankCount = winningCounts.getOrDefault(rank, 0L);
+            long rankCount = winningCounts.getOrDefault(rank, DEFAULT_VALUE);
 
             Map<Rank, Long> resultAndProfit = new HashMap<>();
             resultAndProfit.put(rank, rankCount);
@@ -22,14 +25,14 @@ public class Referee {
     }
 
     public static double getLottoProfit(Map<Rank, Long> winningCounts, int purchaseAmount) {
-        long totalPrizeAmount = 0;
+        long totalPrizeAmount = DEFAULT_VALUE;
         for (Rank rank : Rank.values()) {
-            long rankCount = winningCounts.getOrDefault(rank, 0L);
+            long rankCount = winningCounts.getOrDefault(rank, DEFAULT_VALUE);
             long prizeAmount = rank.getPrize();
 
             totalPrizeAmount += (rankCount * prizeAmount);
         }
-        return (totalPrizeAmount / (double) purchaseAmount) * 100;
+        return (totalPrizeAmount / (double) purchaseAmount) * PERCENT_VALUE;
     }
 
     public static Map<Rank, Long> countLottoRank(List<Lotto> lottoTickets, List<Integer> winningNumbers,

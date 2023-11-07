@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class InputException {
+    private static final int MIN_LOTTO_NUM = 1;
+    private static final int MAX_LOTTO_NUM = 45;
     private static final String ERROR_MESSAGE = "[ERROR] ";
     private static final String CAN_BE_CONVERTED_TO_INTEGER_MESSAGE = "입력하신 값이 숫자가 아닙니다.";
     private static final int PURCHASE_AMOUNT_UNIT = 1000;
@@ -33,7 +35,7 @@ public class InputException {
 
     public static void isNumberInRange(String userInput) {
         int winningNum = Integer.parseInt(userInput);
-        if (winningNum < 1 || winningNum > 45) {
+        if (winningNum < MIN_LOTTO_NUM || winningNum > MAX_LOTTO_NUM) {
             throw new IllegalArgumentException(ERROR_MESSAGE + NOT_NUMBER_IN_RANGE_MESSAGE);
         }
     }

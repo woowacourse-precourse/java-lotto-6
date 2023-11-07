@@ -28,7 +28,13 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
 
-
+    public static List<List<Integer>> publish(int payment) {
+        List<List<Integer>> lottos = new ArrayList<>();
+        while (lottos.size() < getLottoCount(payment)) {
+            lottos.add(generateNumbers());
+        }
+        return lottos;
+    }
 
     private static List<Integer> generateNumbers () {
         return Randoms.pickUniqueNumbersInRange(

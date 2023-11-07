@@ -1,6 +1,7 @@
 package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import lotto.exception.ExceptionMessage;
 
 public class InputView {
 
@@ -15,7 +16,7 @@ public class InputView {
         try {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 구입금액은 숫자로 입력해야합니다.");
+            ExceptionMessage.PURCHASE_AMOUNT_IS_NOT_DIGIT.throwIllegalArgumentException();
         }
     }
 

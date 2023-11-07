@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import lotto.exception.ExceptionMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +22,7 @@ public class LottoBonusNumber {
                 .count();
 
         if (distinctCount != copiedNumbers.size()) {
-            throw new IllegalArgumentException("[ERROR] 중복된 번호가 있습니다.");
+            ExceptionMessage.LOTTO_DUPLICATE_NUMBERS.throwIllegalArgumentException();
         }
     }
 

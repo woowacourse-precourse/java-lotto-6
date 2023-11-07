@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.domain.*;
+import lotto.exception.ExceptionMessage;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -12,6 +13,8 @@ import java.util.stream.Collectors;
 public class GameManager {
 
     private static final String COMMA_DELIMITER = ",";
+    private static final List<Integer> END_METHOD_BY_NULL_LIST = null;
+    private static final int END_METHOD_BY_ZERO = 0;
 
     private final InputView inputView;
     private final OutputView outputView;
@@ -66,7 +69,8 @@ public class GameManager {
                     .map(Integer::parseInt)
                     .collect(Collectors.toList());
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호를 숫자로 입력해주세요.");
+            ExceptionMessage.WINNING_NUMBER_IS_NOT_DIGIT.throwIllegalArgumentException();
+            return END_METHOD_BY_NULL_LIST;
         }
     }
 
@@ -84,7 +88,8 @@ public class GameManager {
         try {
             return Integer.parseInt(inputString);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호를 숫자로 입력해주세요.");
+            ExceptionMessage.BONUS_NUMBER_IS_NOT_DIGIT.throwIllegalArgumentException();
+            return END_METHOD_BY_ZERO;
         }
     }
 

@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.exception.ExceptionMessage;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +26,7 @@ public class LottoTickets {
 
     private void validateDivisibleByLottoPrice(int purchaseAmount) {
         if (purchaseAmount % LOTTO_PRICE > REMAINDER_ZERO) {
-            throw new IllegalArgumentException("[ERROR] 로또 1장의 가격은 1,000원입니다. 1,000원단위로 입력해주세요.");
+            ExceptionMessage.LOTTO_WRONG_PURCHASE_AMOUNT.throwIllegalArgumentException();
         }
     }
 

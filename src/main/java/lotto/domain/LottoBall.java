@@ -13,6 +13,10 @@ public class LottoBall {
         this.number = number;
     }
 
+    public Integer getNumber() {
+        return number;
+    }
+
     private void validateNumberRange(int number) {
         validateNumberLowerRange(number);
         validateNumberUpperRange(number);

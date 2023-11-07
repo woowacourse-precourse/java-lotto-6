@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
+import lotto.exception.DuplicateBallNumberException;
 import lotto.exception.InvalidLengthException;
 
 public class Lotto {
@@ -15,11 +16,23 @@ public class Lotto {
 
     private void validate(List<LottoBall> numbers) {
         validateLength(numbers);
+        validateDuplicateNumber(numbers);
     }
 
     private void validateLength(List<LottoBall> numbers) {
         if (numbers.size() != LOTTO_BALL_COUNT) {
             throw new InvalidLengthException();
+        }
+    }
+
+    private void validateDuplicateNumber(List<LottoBall> numbers) {
+        final long distinctCount = numbers.stream()
+                .mapToInt(LottoBall::getNumber)
+                .distinct()
+                .count();
+
+        if (distinctCount != LOTTO_BALL_COUNT) {
+            throw new DuplicateBallNumberException();
         }
     }
 

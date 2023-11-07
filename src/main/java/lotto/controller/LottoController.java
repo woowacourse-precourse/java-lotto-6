@@ -27,6 +27,9 @@ public class LottoController {
         return parseInt(userInput);
     }
 
+    public int receiveMoneyUntilPass() {
+        return receiveInputUntilPass(this::receiveMoney);
+    }
 
     public int registerBonusNumber() {
         String userInput = readInput(ENTER_BONUS_NUMBER.getInputMessage());
@@ -34,11 +37,19 @@ public class LottoController {
         return parseInt(userInput);
     }
 
+    public int registerBonusNumberUntilPass() {
+        return receiveInputUntilPass(this::registerBonusNumber);
+    }
+
     public Lotto registerWinningLottoCombination() {
         String userInput = readInput(ENTER_WINNING_LOTTO_NUMBER.getInputMessage());
         validateWinningLottoCombination(userInput);
         List<Integer> lottoCombination = userInputToLottoCombination(userInput);
         return new Lotto(lottoCombination);
+    }
+
+    public Lotto registerWinningLottoCombinationUntilPass() {
+        return receiveInputUntilPass(this::registerWinningLottoCombination);
     }
 
     public List<Lotto> generateLottoList(int count) {
@@ -99,4 +110,20 @@ public class LottoController {
 
         return result;
     }
+
+    public <T> T receiveInputUntilPass(ExceptionSupplier<T> inputMethod) {
+        T result = null;
+
+        while (true) {
+            try {
+                result = inputMethod.get();
+                break;
+            } catch (IllegalArgumentException e) {
+                printResult(e.getMessage());
+            }
+        }
+
+        return result;
+    }
+
 }

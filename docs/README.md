@@ -23,22 +23,22 @@
             - [x] 빈칸에 대해 에러 처리 가능
         - [x] 입력 금액은 양수가 아닐 수 없음에 대해 에러를 처리할 수 있다 checkPriceValidation()
             - [x] 유효하지 않은 금액에 대해 에러 처리 가능
-- [ ] 당첨 번호를 추첨할 수 있다. drawWinningNumbersAndBonusNumber()
-    - [ ] 추첨 시 `6`개의 중복되지 않는 숫자와 `1`개의 보너스 번호를 뽑을 수 있다.
-    - [ ] `6`개의 번호와 보너스 번호는 별도로 저장되어야 한다.
-        - [ ] `6`개의 중복되지 않는 숫자를 뽑을 수 있다. drawBonusNumber(), getWinningNumbers()
+- [x] 당첨 번호를 추첨할 수 있다. drawWinningNumbersAndBonusNumber()
+    - [x] 추첨 시 `6`개의 중복되지 않는 숫자와 `1`개의 보너스 번호를 뽑을 수 있다.
+    - [x] `6`개의 번호와 보너스 번호는 별도로 저장되어야 한다.
+        - [x] `6`개의 중복되지 않는 숫자를 뽑을 수 있다. drawBonusNumber(), getWinningNumbers()
             - [x] 잘못된 입력에 대해서 에러를 출력할 수 있다.
-                - [ ] 에러가 발생하면 다시 입력받을 수 있다.
+                - [x] 에러가 발생하면 다시 입력받을 수 있다.
                 - [x] 잘못된 양식에 대한 에러 처리 가능
                 - [x] 공백과 같은 에러 처리 가능
             - [x] 입력받은 값은 쉼표(,)로 구분한다. 
                 - [x] 잘못된 입력에 대해서 에러를 출력할 수 있다.
                     - [x] 에러가 발생하면 다시 입력받을 수 있다.
-            - [ ] 입력받은 값의 중복을 검사할 수 있다. checkDuplicationFromNumbers()
+            - [x] 입력받은 값의 중복을 검사할 수 있다. checkDuplicationFromNumbers()
         - [x] `1`개의 보너스 번호를 뽑을 수 있다. drawWinningNumbers(), getBonusNumber()
             - [x] 잘못된 입력에 대해서 에러를 출력할 수 있다.
                 - [x] 에러가 발생하면 다시 입력받을 수 있다.
-            - [ ] 앞에서 입력한 `6`개의 숫자와 중복되면 안된다. checkDuplicationWithPrev()
+            - [x] 앞에서 입력한 `6`개의 숫자와 중복되면 안된다. checkDuplicationWithPrev()
 ### 결과 판독기(LottoResultChecker)
 - [ ] 사용자가 구매한 로또 번호와 당첨 번호를 비교할 수 있다.
     - [ ] 당첨 내역을 출력할 수 있다. printTotalPrize()

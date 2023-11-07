@@ -11,6 +11,10 @@ public class WinningLotto {
     }
 
     private void validate(Integer bonusNumber) {
+        checkDuplication(bonusNumber);
+    }
+
+    private void checkDuplication(Integer bonusNumber) {
         if (this.lotto.getNumbers().contains(bonusNumber)) {
             throw new IllegalArgumentException(CustomErrorMessage.DUPLICATED_BONUS_NUMBER);
         }

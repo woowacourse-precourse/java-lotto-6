@@ -31,7 +31,11 @@ public class Lottos {
         if (purchaseAmount < MIN_PURCHASE_AMOUNT ||
                 MAX_PURCHASE_AMOUNT < purchaseAmount) {
             throw new IllegalArgumentException(
-                    "로또 구매 금액은 " + MIN_PURCHASE_AMOUNT + "원에서 " + MAX_PURCHASE_AMOUNT + "원까지만 가능합니다.");
+                    "로또 구매 금액은 " +
+                            MIN_PURCHASE_AMOUNT +
+                            "원에서 " +
+                            MAX_PURCHASE_AMOUNT +
+                            "원까지만 가능합니다.");
         }
     }
 
@@ -50,7 +54,6 @@ public class Lottos {
                 return playerLottos;
             }
         }
-
     }
 
     private int getTicketAmount() {

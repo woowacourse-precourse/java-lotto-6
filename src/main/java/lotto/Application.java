@@ -14,13 +14,13 @@ import lotto.io.lottos.LottosRandoms;
 public class Application {
 
     public static void main(String[] args) {
-        runExceptionHandled(() -> {
+        runWithExceptionHandle(() -> {
             LottoGame lottoGame = getLottoGame();
             lottoGame.run();
         });
     }
 
-    private static void runExceptionHandled(Runnable runnable) {
+    private static void runWithExceptionHandle(Runnable runnable) {
         try {
             runnable.run();
         } catch (Exception e) {

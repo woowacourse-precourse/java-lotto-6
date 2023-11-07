@@ -20,5 +20,10 @@ public class LottoAmountTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-
+    @DisplayName("구입 금액이 1,000원으로 나누어 떨어지지 않는 경우 예외가 발생한다.")
+    @Test
+    void divideBy1000() {
+        assertThatThrownBy(() -> new LottoAmountValidator("5555"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

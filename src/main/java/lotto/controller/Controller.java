@@ -30,47 +30,47 @@ public class Controller {
     //start
     public void start() {
 
-        //로또 구매 갯수 구하기 -> service
         int ticketCount = inputTotalPrice();
         OutputView.responseLottoCount(ticketCount);
 
         //로또 갯수당 랜덤 넘버 이용해서 로또 번호 출력 -> outputview
         lottoList = makeLottoList(ticketCount);
 
-        //로또 당첨 번호 입력
-        List<Integer> winningNumber = inputLottoWinningNumber();
-
-        //로또 보너스 번호 입력
-        int bonusNumber = InputView.requestLottoBonusNumber();
-
         //로또 번호와 당첨 번호 비교하기 -> service
-        winningResult = new WinningResult(new Lotto(winningNumber), bonusNumber);
+        winningResult = new WinningResult(new Lotto(inputLottoWinningNumber()), InputView.requestLottoBonusNumber());
 
+        lottoFinalResult(ticketCount);
+
+    }
+
+    private void lottoFinalResult(int ticketCount) {
         Map<Rank, Integer> result = new LinkedHashMap<>();
 
         for (Rank rank : Rank.values()) {
             result.put(rank, 0);
         }
 
-
         OutputView.responseWinningResult();
         for (int i = 0; i < ticketCount; i++) {
             Rank rank = winningResult.match(lottoList.get(i));
             result.put(rank, result.get(rank) + 1);
         }
-
         //당첨 내역 출력 -> outputview
         responseResult(result);
-
         //수익률 구하기 -> service, 수익률 출력 -> outputview
         responseEarningRate(result, ticketCount);
-
     }
 
     private static List<Integer> inputLottoWinningNumber() {
-        Lotto lotto = new Lotto(InputView.requestLottoWinningNumber());
-        List<Integer> winningNumber = lotto.getLottoNumbers();
-        return winningNumber;
+        try {
+            Lotto lotto = new Lotto(InputView.requestLottoWinningNumber());
+            List<Integer> winningNumber = lotto.getLottoNumbers();
+            return winningNumber;
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputLottoWinningNumber();
+        }
+        return null;
     }
 
     private void responseEarningRate(Map<Rank, Integer> result, int ticketCount) {
@@ -89,7 +89,12 @@ public class Controller {
     }
 
     private int inputTotalPrice() {
-        lottoPlayer = new LottoPlayer(InputView.requestLottoBuyingPrice());
+        try {
+            lottoPlayer = new LottoPlayer(InputView.requestLottoBuyingPrice());
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputTotalPrice();
+        }
         return lottoPlayer.calculateCountOfLotto();
     }
 

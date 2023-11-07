@@ -38,7 +38,7 @@ public class LottoController {
     private int makeBonusNumber(Lotto winningNumbers) {
         try {
             String inputBonusNumber = getBonusNumber();
-            validateBonusNumber(winningNumbers.numbers(), inputBonusNumber);
+            validateBonusNumber(winningNumbers.getNumbers(), inputBonusNumber);
             return Integer.parseInt(inputBonusNumber);
         }catch (IllegalArgumentException exception){
             System.out.println(exception.getMessage());
@@ -73,7 +73,7 @@ public class LottoController {
         List<Lotto> generatedLottos = lottos.getLottos();
         showNumberOfLottos(generatedLottos.size());
         for (Lotto lotto : generatedLottos) {
-            showGeneratedLottos(lotto.numbers());
+            showGeneratedLottos(lotto.getNumbers());
         }
     }
 
@@ -123,8 +123,8 @@ public class LottoController {
     private static Lotto generateRandomLotto() {
         List<Integer> randomNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         Lotto randomLotto = new Lotto(randomNumbers);
-        randomLotto.sortNumbers();
-        return randomLotto;
+        List<Integer> sortedNumbers = randomLotto.sortNumbers();
+        return new Lotto(sortedNumbers);
     }
 
     private void showNumberOfLottos(int numberOfLottoTickets) {
@@ -136,9 +136,9 @@ public class LottoController {
     }
 
     private Integer calculateMatchCount(Lotto generatedLotto, Lotto winningNumbers) {
-        List<Integer> winningLottoNumbers = winningNumbers.numbers();
+        List<Integer> winningLottoNumbers = winningNumbers.getNumbers();
         Integer matchCount = 0;
-        for (Integer number : generatedLotto.numbers()) {
+        for (Integer number : generatedLotto.getNumbers()) {
             if (winningLottoNumbers.contains(number)) {
                 matchCount++;
             }
@@ -147,7 +147,7 @@ public class LottoController {
     }
 
     private boolean isBonusNumberMatch(Lotto winningNumbers, Integer bonusNumber) {
-        return winningNumbers.numbers().contains(bonusNumber);
+        return winningNumbers.getNumbers().contains(bonusNumber);
     }
 
     private int calculateMatchResult(Lotto generatedLotto, Lotto winningNumbers,

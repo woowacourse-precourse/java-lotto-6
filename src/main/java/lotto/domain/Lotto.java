@@ -4,15 +4,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public record Lotto(List<Integer> numbers) {
+public class Lotto {
 
-    public Lotto {
+    private final List<Integer> numbers;
+
+    public Lotto(List<Integer> numbers) {
         validate(numbers);
+        this.numbers = numbers;
     }
 
-    public void sortNumbers() {
+    public List<Integer> sortNumbers() {
         List<Integer> sortedNumbers = new ArrayList<>(numbers);
         Collections.sort(sortedNumbers);
+        return sortedNumbers;
     }
 
     private void validate(List<Integer> numbers) {
@@ -21,8 +25,7 @@ public record Lotto(List<Integer> numbers) {
         }
     }
 
-    @Override
-    public List<Integer> numbers() {
+    public List<Integer> getNumbers() {
         return new ArrayList<>(numbers);
     }
 

@@ -28,12 +28,7 @@ public class WinningResult {
     private void calculateWinningResult() {
         for (PlayerLotto playerLotto : playerLottos.getPlayerLottos()) {
             WinningRank winningRank = calculateRank(playerLotto);
-            if (!winningResult.containsKey(winningRank)) {
-                winningResult.put(winningRank, 1);
-            } else {
-                int rankCount = winningResult.get(winningRank);
-                winningResult.put(winningRank, rankCount + 1);
-            }
+            winningResult.put(winningRank, winningResult.getOrDefault(winningRank,0) + 1);
         }
     }
 

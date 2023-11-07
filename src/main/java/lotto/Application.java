@@ -1,6 +1,6 @@
 package lotto;
 
-import lotto.controller.GameManager;
+import lotto.view.GameManager;
 
 public class Application {
     public static void main(String[] args) {

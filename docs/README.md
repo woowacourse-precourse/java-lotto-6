@@ -33,7 +33,7 @@
 
 3. LuckeyLotto
 
-- [ ] LuckeyLotto 생성자 생성
+- [x] LuckeyLotto 생성자 생성
 - luckyBonusNumbers: 보너스 당첨 로또 번호 저장
 - luckyNumbers: 당첨 로또 번호(보너스 로또 번호 포함) 저장
 

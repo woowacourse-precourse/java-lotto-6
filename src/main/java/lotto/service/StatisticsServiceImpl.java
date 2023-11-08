@@ -6,6 +6,8 @@ import lotto.domain.Result;
 
 import java.util.List;
 
+import static lotto.utils.NumberConstant.PRICE_UNIT;
+
 public class StatisticsServiceImpl implements StatisticsService{
     private final List<Lotto> myLottos;
     private final Lotto winningNumbers;
@@ -24,6 +26,14 @@ public class StatisticsServiceImpl implements StatisticsService{
             checkRank(myLotto);
         }
         return result;
+    }
+
+    @Override
+    public double calculateRevenueRate(List<Lotto> lottos, Result result) {
+        double revenue = result.getRevenue();
+        double price = lottos.size() * PRICE_UNIT.getValue();
+        double revenueRate = Math.round((revenue / price * 100)*10)/10.0;
+        return revenueRate;
     }
 
     private void checkRank(Lotto myLotto) {

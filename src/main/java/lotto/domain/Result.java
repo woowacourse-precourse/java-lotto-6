@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static lotto.utils.NumberConstant.*;
+
 public class Result {
     private int first;
     private int second;
@@ -24,6 +26,18 @@ public class Result {
             return;
         }
         third++;
+    }
+
+    public int getRevenue() {
+        int revenue = 0;
+        revenue += (
+                FIRST.getValue() *first
+                        + SECOND.getValue()*second
+                        + THIRD.getValue()*third
+                        + FOURTH.getValue()*fourth
+                        + FIFTH.getValue()*fifth
+        );
+        return revenue;
     }
 
     public int getFirst() {

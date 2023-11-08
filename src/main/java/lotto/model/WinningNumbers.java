@@ -1,6 +1,8 @@
 package lotto.model;
 
 
+import lotto.util.Validator;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,8 @@ public class WinningNumbers {
     }
 
     public static WinningNumbers of(List<Integer> numbers, int bonus) {
+        Validator.validateWinningNumbers(numbers);
+        Validator.validateBonusNumber(numbers,bonus);
         return new WinningNumbers(numbers, bonus);
     }
 

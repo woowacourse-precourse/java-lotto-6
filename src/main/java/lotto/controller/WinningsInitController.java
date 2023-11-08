@@ -13,7 +13,7 @@ public class WinningsInitController {
     public Lotto initWinningLotto() {
         try {
             outputView.requestWinningNumbers();
-            String userInput = inputView.getUserInput();
+            String userInput = inputView.getUserInput().replace(" ", "");
             return winningsInitializer.initWinningLotto(userInput);
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());

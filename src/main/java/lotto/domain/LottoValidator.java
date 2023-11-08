@@ -1,9 +1,12 @@
 package lotto.domain;
 
+import lotto.condition.NumberConditions;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.condition.NumberConditions.*;
 import static lotto.message.ErrorMessage.DUPLICATION_NUMBER;
 import static lotto.message.ErrorMessage.EXCEED_LOTTO_LENGTH;
 import static lotto.message.ErrorMessage.NOT_DIVIDED_BY_LOTTO_PRICE;
@@ -27,7 +30,7 @@ public class LottoValidator {
     }
 
     public void validateNumberRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER.getNumber() || number > MAX_NUMBER.getNumber()) {
             throw new IllegalArgumentException(OUT_OF_RANGE.getMessage());
         }
     }
@@ -46,7 +49,7 @@ public class LottoValidator {
     }
 
     public void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != NUMBER_COUNT.getNumber()) {
             throw new IllegalArgumentException(EXCEED_LOTTO_LENGTH.getMessage());
         }
     }

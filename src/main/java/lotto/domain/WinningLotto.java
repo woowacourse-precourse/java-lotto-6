@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Stream;
 
 public class WinningLotto {
+    private static final String DELIMITER = ",";
+
     private final LottoValidator validator = new LottoValidator();
     private final Lotto winningLotto;
 
@@ -28,7 +30,7 @@ public class WinningLotto {
     }
 
     private List<Integer> createLottos(String lotto) {
-        return Stream.of(lotto.split(","))
+        return Stream.of(lotto.split(DELIMITER))
                 .mapToInt(Integer::parseInt)
                 .boxed()
                 .toList();

@@ -1,9 +1,13 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.condition.NumberConditions;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static lotto.condition.NumberConditions.*;
+import static lotto.condition.WinningConditions.*;
 
 public class Lottos {
     private final List<Lotto> lottos = new ArrayList<>();
@@ -67,7 +71,7 @@ public class Lottos {
     }
 
     private void calculateWinning(int count) {
-        if (count < 3) {
+        if (count < FIFTH_PLACE.getCondition()) {
             return;
         }
         if(checkFifthPlaceCondition(count)){
@@ -83,13 +87,13 @@ public class Lottos {
     }
 
     private void checkFirstPlaceCondition(int count) {
-        if (count == 6) {
+        if (count == FIRST_PLACE.getCondition()) {
             sixWins++;
         }
     }
 
     private boolean checkThirdAndSecondPlaceCondition(int count) {
-        if (count == 5) {
+        if (count == THIRD_PLACE.getCondition()) {
             if (checkSecondPlaceCondition(count)) {
                 bonusWins = false;
                 return true;
@@ -109,7 +113,7 @@ public class Lottos {
     }
 
     private boolean checkFourthPlaceCondition(int count) {
-        if (count == 4) {
+        if (count == FOURTH_PLACE.getCondition()) {
             fourWins++;
             return true;
         }
@@ -117,7 +121,7 @@ public class Lottos {
     }
 
     private boolean checkFifthPlaceCondition(int count) {
-        if (count == 3) {
+        if (count == FIFTH_PLACE.getCondition()) {
             threeWins++;
             return true;
         }
@@ -130,7 +134,7 @@ public class Lottos {
     }
 
     private List<Integer> generateRandomNumbers() {
-        return Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        return Randoms.pickUniqueNumbersInRange(MIN_NUMBER.getNumber(), MAX_NUMBER.getNumber(), NUMBER_COUNT.getNumber());
     }
 
     public int getSize() {

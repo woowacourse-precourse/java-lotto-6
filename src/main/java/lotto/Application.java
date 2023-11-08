@@ -90,4 +90,18 @@ class WinningCaculate {
         List<Integer> match_cnt = MatchCount(nums, num_lst, mat_num, mat_cnt, bonus);
         return match_cnt;
     }
+    public static List<Integer> MatchCount(List<Integer> nums, List<Integer> num_lst, int mat_num, List<Integer> match_cnt, int bonus){
+        List<Integer> matchcnt = new ArrayList<>(match_cnt);
+        for (int i = 0; i < nums.size(); i++) {
+            if (i % 6 == 0 || i == nums.size()-1){
+                int n = SpecialCount(mat_num, bonus, nums);
+                matchcnt.set(n, matchcnt.get(n)+1);
+                mat_num = 0;
+            }
+            if (num_lst.contains(nums.get(i))){
+                mat_num += 1;
+            }
+        }
+        return matchcnt;
+    }
 }

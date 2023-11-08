@@ -1,14 +1,24 @@
 package lotto.domain.dto;
 
 import java.util.List;
+import java.util.Map;
+import lotto.domain.entity.Ranking;
 
 public class WinningResultDto {
 
-    private final List<Integer> rankings;
-    private double rateOfReturn;
+    private final Map<Ranking, Integer> rankings;
+    private final double rateOfReturn;
 
-    public WinningResultDto(final List<Integer> rankings, final double rateOfReturn) {
+    public WinningResultDto(final Map<Ranking, Integer> rankings, final double rateOfReturn) {
         this.rankings = rankings;
         this.rateOfReturn = rateOfReturn;
+    }
+
+    public Map<Ranking, Integer> getRankings() {
+        return rankings;
+    }
+
+    public double getRateOfReturn() {
+        return rateOfReturn;
     }
 }

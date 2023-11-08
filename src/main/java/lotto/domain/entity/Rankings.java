@@ -1,19 +1,27 @@
 package lotto.domain.entity;
 
-import static lotto.configuration.IntegerConstants.COST_OF_LOTTO;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.EnumMap;
+import java.util.Map;
 
 public class Rankings {
 
-    private final List<Integer> rankings = new ArrayList<>(
-            Collections.nCopies(COST_OF_LOTTO.getValue(), 0));
+    private final Map<Ranking, Integer> rankings = new EnumMap<>(Ranking.class);;
+
+    private Rankings() {
+        init();
+    }
+
+    private void init() {
+        for (Ranking rank : Ranking.values()) {
+            rankings.put(rank, 0);
+        }
+    }
+
+    public static Rankings create() {
+        return new Rankings();
+    }
 
     public List<Integer> getRankings() {
         return rankings;
     }
-
-
 }

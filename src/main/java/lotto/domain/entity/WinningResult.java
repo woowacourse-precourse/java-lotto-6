@@ -1,6 +1,7 @@
 package lotto.domain.entity;
 
 import java.util.List;
+import java.util.Map;
 
 public class WinningResult {
     ThousandUnitMoney totalPrice;
@@ -18,15 +19,7 @@ public class WinningResult {
         return new WinningResult(totalPrice, rateOfReturn, rankings);
     }
 
-    public String buildRankingMessage() {
-        return "";
-    }
-
-    public String buildRateOfReturnMessage() {
-        return "";
-    }
-
-    public List<Integer> getRankings() {
+    public Map<Ranking, Integer> getRankings() {
         return rankings.getRankings();
     }
 

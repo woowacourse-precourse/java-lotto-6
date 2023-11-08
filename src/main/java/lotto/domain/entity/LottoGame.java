@@ -1,6 +1,7 @@
 package lotto.domain.entity;
 
 import java.util.List;
+import java.util.Map;
 import lotto.domain.IndexModel;
 
 public class LottoGame extends IndexModel {
@@ -31,7 +32,7 @@ public class LottoGame extends IndexModel {
         return purchase.getLottos();
     }
 
-    public List<Integer> getRankings() {
+    public Map<Ranking, Integer> getRankings() {
         return winningResult.getRankings();
     }
 

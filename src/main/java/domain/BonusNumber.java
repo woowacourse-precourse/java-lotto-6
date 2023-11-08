@@ -4,11 +4,15 @@ import exception.IllegalArgumentExceptionMessage;
 import exception.NumberFormatExceptionMessage;
 
 public class BonusNumber {
+	private static final int MIN_LOTTO_NUMBER = 1;
+	private static final int MAX_LOTTO_NUMBER = 45;
 	private final int bonusNumber;
 
 	public BonusNumber(String bonusNumber, Lotto lotto) {
 		validateIsDigit(bonusNumber);
+
 		int convertedBonusNumber = convertStringToInt(bonusNumber);
+
 		validateIsBetweenLottoRange(convertedBonusNumber);
 		validateWinningLottoNumberDuplicate(convertedBonusNumber, lotto);
 		this.bonusNumber = convertedBonusNumber;
@@ -29,7 +33,7 @@ public class BonusNumber {
 	}
 
 	private void validateIsBetweenLottoRange(int bonusNumber) {
-		if (!(1 <= bonusNumber && bonusNumber <= 45)) {
+		if (!(MIN_LOTTO_NUMBER <= bonusNumber && bonusNumber <= MAX_LOTTO_NUMBER)) {
 			IllegalArgumentExceptionMessage.BONUS_OUT_OF_RANGE.throwException();
 		}
 	}

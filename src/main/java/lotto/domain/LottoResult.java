@@ -2,12 +2,8 @@ package lotto.domain;
 
 import java.util.Arrays;
 import java.util.EnumMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 public class LottoResult {
     public static final int INIT_COUNT = 0;
@@ -21,6 +17,7 @@ public class LottoResult {
     public static LottoResult create() {
         EnumMap<LottoRank, Integer> result = new EnumMap<>(LottoRank.class);
         Arrays.stream(LottoRank.values())
+                .filter(LottoRank::isNotNothing)
                 .forEach(lottoRank -> result.put(lottoRank, INIT_COUNT));
 
         return new LottoResult(result);
@@ -33,7 +30,7 @@ public class LottoResult {
     }
 
     private void addCount(LottoRank lottoRank) {
-        result.put(lottoRank, result.get(lottoRank) + 1);
+        result.computeIfPresent(lottoRank, (LottoRank key, Integer value) -> ++value);
     }
 
     public double calculateTotalReturn(Money money) {
@@ -47,11 +44,6 @@ public class LottoResult {
     }
 
     public Map<LottoRank, Integer> getResult() {
-        return result.entrySet().stream()
-                .filter(entry -> entry.getKey().isNotNothing())
-                .collect(Collectors.toMap(
-                        Entry::getKey, Entry::getValue,
-                        (x, y) -> x, LinkedHashMap::new
-                ));
+        return result;
     }
 }

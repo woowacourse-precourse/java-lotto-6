@@ -13,23 +13,13 @@ public class LottoPreparation {
         return setUpPurchaseMoney(purchaseMoney);
     }
 
-    /*private PurchaseMoney setUpPurchaseMoney(String purchaseMoney) {
-        //String purchaseMoney = InputView.inputPurchaseMoney();
-        return new PurchaseMoney(Converter.convertToNumeric(purchaseMoney));
-    }*/
-
-    public Lotto runWinningNumbersStep() {
+    public Lotto setUpWinningNumbers(String winningNumbers) {
         try {
-            return setUpWinningNumbers();
+            return new Lotto(Converter.convertWinningNumber(winningNumbers));
         } catch (IllegalArgumentException e) {
             OutputView.printErrorMessage(e);
         }
-        return runWinningNumbersStep();
-    }
-
-    private Lotto setUpWinningNumbers() {
-        String winningNumbers = InputView.inputWinningNumbers();
-        return new Lotto(Converter.convertWinningNumber(winningNumbers));
+        return setUpWinningNumbers(winningNumbers);
     }
 
     public WinningLotto runWinningLottoStep(Lotto winningNumber) {

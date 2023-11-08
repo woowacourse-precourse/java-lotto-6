@@ -10,6 +10,7 @@ import java.util.Set;
 public class LottoAnswer extends Lotto {
     private BonusNumber bonusNumber;
     private final List<Integer> numbers = getNumbers();
+
     public LottoAnswer(String input) {
         parseInteger(input);
         validate(numbers);

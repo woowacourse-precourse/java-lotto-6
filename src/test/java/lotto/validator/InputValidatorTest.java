@@ -17,7 +17,7 @@ public class InputValidatorTest {
     @DisplayName("입력 값이 숫자와 쉼표로만 되어 있지 않으면 예외가 발생한다")
     @Test
     void createNotDigitComma() {
-        assertThatThrownBy(() -> InputValidator.validateInputRequirement("1,2,,"))
+        assertThatThrownBy(() -> InputValidator.validateWinNumberRequirement("1,2,,"))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 숫자와 쉼표(,)만 입력하세요");
     }

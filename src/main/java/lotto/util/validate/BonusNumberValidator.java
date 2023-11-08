@@ -1,7 +1,7 @@
 package lotto.util.validate;
 
-import lotto.util.Constant;
-import lotto.util.ErrorMessage;
+import static lotto.util.Constant.*;
+import static lotto.util.ErrorMessage.*;
 
 public class BonusNumberValidator {
 
@@ -12,11 +12,11 @@ public class BonusNumberValidator {
 
     private static void checkValidRangeNumber(int bonusNumber) {
         if (isNotValidRangeNumber(bonusNumber)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 
     private static boolean isNotValidRangeNumber(int bonusNumber) {
-        return bonusNumber < Constant.LOTTO_NUMBER_MIN || bonusNumber > Constant.LOTTO_NUMBER_MAX;
+        return bonusNumber < LOTTO_NUMBER_MIN || bonusNumber > LOTTO_NUMBER_MAX;
     }
 }

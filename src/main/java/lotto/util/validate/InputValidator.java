@@ -1,7 +1,8 @@
 package lotto.util.validate;
 
+import static lotto.util.ErrorMessage.*;
+
 import java.util.regex.Pattern;
-import lotto.util.ErrorMessage;
 
 public class InputValidator {
 
@@ -14,13 +15,13 @@ public class InputValidator {
 
     private static void checkInputEmpty(String input) {
         if (isNullOrEmpty(input)) {
-            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT_ERROR.getMessage());
+            throw new IllegalArgumentException(EMPTY_INPUT_ERROR.getMessage());
         }
     }
 
     private static void checkInputIsNumeric(String input) {
         if (!isNumeric(input)) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_INPUT_ERROR.getMessage());
+            throw new IllegalArgumentException(NOT_NUMERIC_INPUT_ERROR.getMessage());
         }
     }
 

@@ -1,7 +1,8 @@
 package lotto.model;
 
+import static lotto.util.Constant.*;
+
 import java.util.Map;
-import lotto.util.Constant;
 
 public class ProfitCalculator {
 
@@ -17,7 +18,7 @@ public class ProfitCalculator {
     }
 
     private double calculateProfitRatio(double purchaseMoney, double totalPrize) {
-        return totalPrize / purchaseMoney * Constant.RATIO_NUMBER;
+        return totalPrize / purchaseMoney * RATIO_NUMBER;
     }
 
     private double calculateTotalPrize(Statistics statistics) {

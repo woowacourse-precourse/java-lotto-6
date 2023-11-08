@@ -1,8 +1,7 @@
 package lotto.util.validate;
 
-import static lotto.util.Constant.LOTTO_PRICE;
-
-import lotto.util.ErrorMessage;
+import static lotto.util.Constant.*;
+import static lotto.util.ErrorMessage.*;
 
 public class PurchaseMoneyValidator {
 
@@ -13,7 +12,7 @@ public class PurchaseMoneyValidator {
 
     private static void checkPurchaseMoneyDivisible(String purchaseMoney) {
         if (isNotDivisibleWithLottoPrice(purchaseMoney)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_INPUT_PURCHASE_MONEY.getMessage());
+            throw new IllegalArgumentException(INVALID_INPUT_PURCHASE_MONEY.getMessage());
         }
     }
 

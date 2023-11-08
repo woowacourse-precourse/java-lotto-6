@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.util.Constant.*;
+
 import java.util.EnumMap;
 import java.util.Map;
 
@@ -24,14 +26,14 @@ public class Statistics {
             boolean hasBonusNumber = winningLotto.hasBonusNumber(playerLotto);
             Prize prize = Prize.findPrize(matchCount, hasBonusNumber);
 
-            result.merge(prize, 1, Integer::sum);
+            result.merge(prize, ONE, Integer::sum);
         }
     }
 
     private Map<Prize, Integer> initResult() {
         Map<Prize, Integer> result = new EnumMap<>(Prize.class);
         for (Prize prize : Prize.values()) {
-            result.put(prize, 0);
+            result.put(prize, ZERO);
         }
         return result;
     }

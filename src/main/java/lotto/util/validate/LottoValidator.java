@@ -1,10 +1,11 @@
 package lotto.util.validate;
 
+import static lotto.util.Constant.*;
+import static lotto.util.ErrorMessage.*;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.util.Constant;
-import lotto.util.ErrorMessage;
 
 public class LottoValidator {
     public static void validate(List<Integer> numbers) {
@@ -14,14 +15,14 @@ public class LottoValidator {
 
     private static void checkDuplicate(List<Integer> numbers) {
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException(ErrorMessage.LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_ERROR.getMessage());
         }
     }
 
     private static void checkValidRangeNumber(List<Integer> numbers) {
         if (numbers.stream()
-                .anyMatch(number -> number < Constant.LOTTO_NUMBER_MIN || number > Constant.LOTTO_NUMBER_MAX)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_RANGE.getMessage());
+                .anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX)) {
+            throw new IllegalArgumentException(INVALID_NUMBER_RANGE.getMessage());
         }
     }
 

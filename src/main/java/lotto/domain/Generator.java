@@ -16,7 +16,9 @@ public class Generator {
         for (int i = 0; i < lottoCount; i++) {
             List<Integer> randomNum = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             randomNum.sort(Comparator.naturalOrder());
+
             generateLotto.add(new Lotto(randomNum));
+
             InteractModule.printRandomNum(randomNum);
         }
 

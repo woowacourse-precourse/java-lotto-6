@@ -16,7 +16,7 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public static void askLottoNumbers() {
+    public static void askWinningNumbers() {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
     }

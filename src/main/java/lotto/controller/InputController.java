@@ -31,7 +31,7 @@ public class InputController {
     }
 
     public Lotto getWinningNumberFromUser() {
-        OutputView.askLottoNumbers();
+        OutputView.askWinningNumbers();
         try {
             List<String> splitNumbers = validateLength(Console.readLine());
             return new Lotto(convertToIntList(splitNumbers));

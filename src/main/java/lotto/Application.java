@@ -21,8 +21,8 @@ public class Application {
 
 
         // 통계 계산 후 수익률 출력
-        LottoMachine.calculate();
-        LottoMachine.calculateProfit();
-        LottoMachine.printResult();
+        ProfitCalculator.calculate();
+        ProfitCalculator.calculateProfit();
+        ProfitCalculator.printResult();
     }
 }

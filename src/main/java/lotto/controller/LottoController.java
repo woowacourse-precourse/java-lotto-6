@@ -11,6 +11,8 @@ import lotto.view.OutputView;
 
 public class LottoController {
 
+    private static final int PURCHASE_AMOUNT_UNIT = 1000;
+
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoDto lottoDto;
@@ -63,7 +65,7 @@ public class LottoController {
     }
 
     private int getLottoCount() {
-        return lottoDto.getPurchaseAmount() / 1000;
+        return lottoDto.getPurchaseAmount() / PURCHASE_AMOUNT_UNIT;
     }
 
     private void printPurchaseLottoTickets(int lottoCount) {

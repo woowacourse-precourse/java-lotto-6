@@ -4,7 +4,9 @@ import java.util.Map;
 
 public class WinningStatistics {
 
+    private static final int INITIAL_COUNT = 0;
     private static final int SECOND_OR_THIRD_PLACE_STANDARD = 5;
+    private static final int INCREMENT = 1;
 
     private final Map<Rank, Integer> winningStatistics;
 
@@ -15,7 +17,7 @@ public class WinningStatistics {
 
     private void initialize() {
         for (Rank rank : Rank.values()) {
-            winningStatistics.put(rank, 0);
+            winningStatistics.put(rank, INITIAL_COUNT);
         }
     }
 
@@ -46,7 +48,7 @@ public class WinningStatistics {
     }
 
     private void addWinningResult(Rank rank) {
-        winningStatistics.put(rank, winningStatistics.get(rank) + 1);
+        winningStatistics.put(rank, winningStatistics.get(rank) + INCREMENT);
     }
 
     public int getTotalWinningAmount() {

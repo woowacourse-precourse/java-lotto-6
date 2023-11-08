@@ -9,6 +9,8 @@ import lotto.util.Sorting;
 
 public class LottoService {
 
+    private static final int PERCENTAGE = 100;
+
     private final List<List<Integer>> lottoTickets;
     private final WinningStatistics winningStatistics;
 
@@ -37,7 +39,7 @@ public class LottoService {
 
     public String calculateTotalYield(int purchaseAmount) {
         int totalWinningAmount = winningStatistics.getTotalWinningAmount();
-        double totalYield = ((double) totalWinningAmount / (double) purchaseAmount) * 100;
+        double totalYield = ((double) totalWinningAmount / (double) purchaseAmount) * PERCENTAGE;
         return Convert.formatDoubleWithCommaAndRound(totalYield);
     }
 }

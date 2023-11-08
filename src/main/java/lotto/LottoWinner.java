@@ -69,4 +69,12 @@ public class LottoWinner {
         }
     }
 
+    public double getPrizeMoney(int rank) {
+        LottoResult result = LottoResult.getLottoResultByRank(rank);
+        if (result != null && result.getWinnerCount() > 0) {
+            return result.getPrizeMoney();
+        }
+        return 0;
+    }
+
 }

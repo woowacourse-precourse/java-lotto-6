@@ -66,7 +66,7 @@
 - printLottoResult()
   - [x] 로또 통계 결과 출력
 - getPrizeMoney()
-  - [ ] 로또 당첨 금액 반환
+  - [x] 로또 당첨 금액 반환
 
 **View**
 

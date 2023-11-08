@@ -2,10 +2,8 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.Constants;
-import lotto.model.PurchaseAmountValidator;
-import lotto.model.Quantity;
+import lotto.model.*;
 import lotto.view.InputView;
-import lotto.model.RandomLotto;
 
 public class InputController {
         public static int setQuantity() {
@@ -15,7 +13,7 @@ public class InputController {
                         Quantity quantity = new Quantity(purchaseAmount);
                         return quantity.quantityNum;
                 } catch (IllegalArgumentException e) {
-                        System.out.println(Constants.PURCHASE_WRONG_ERROR);
+                        System.out.println(e.getMessage());
                         return setQuantity();
                 }
         }
@@ -25,4 +23,24 @@ public class InputController {
                 return randomLotto.randomLotto;
         }
 
+        public static List<Integer> setLottoNumbers() {
+                try {
+                       LottoNumValidator validator = new LottoNumValidator(InputView.winningNumberInput());
+                       return validator.LOTTO_NUMBER;
+                } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        return setLottoNumbers();
+                }
+        }
+
+        public static int setBonusNumber(List<Integer> lottoNumbers) {
+                try {
+                        BonusNumValidator validator = new BonusNumValidator(lottoNumbers, InputView.bonusNumberInput());
+                        return validator.BONUS_NUM;
+                } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
+                        return setBonusNumber(lottoNumbers);
+                }
+        }
 }
+

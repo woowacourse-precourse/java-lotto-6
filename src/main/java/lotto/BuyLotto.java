@@ -17,7 +17,7 @@ public class BuyLotto {
         try {
             String budget = readLine();
             calculateNumLotto(budget);
-            checkValidBudget = true;
+            checkValidBudget = false;
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             checkValidBudget = true;

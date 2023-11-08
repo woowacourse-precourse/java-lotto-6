@@ -10,14 +10,15 @@ public class Application {
         InputManager inputManager = new InputManager();
         OutputManager outputManager = new OutputManager();
 
-        LottoGenerator lottoGenerator = LottoGenerator.from(inputManager.requestAmount());
-        List<Lotto> lottos = lottoGenerator.generate();
+        int amount = inputManager.requestAmount();
+        List<Lotto> lottos = LottoGenerator.from(amount);
         outputManager.printLottos(lottos);
 
         List<Integer> numbers = inputManager.requestNumbers();
-        WinningLotto winningLotto = WinningLotto.of(numbers, inputManager.requestBonus(numbers));
-        LottoResultChecker lottoResultChecker = new LottoResultChecker(winningLotto);
-        List<Result> results = lottoResultChecker.getResults(lottos);
+        int bonus = inputManager.requestBonus(numbers);
+        WinningLotto winningLotto = WinningLotto.of(numbers, bonus);
+
+        List<Result> results = LottoResultChecker.of(winningLotto, lottos);
         outputManager.printResults(results);
     }
 }

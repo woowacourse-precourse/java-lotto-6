@@ -1,5 +1,9 @@
 package lotto.model;
 
+import static lotto.constant.Numbers.FIFTHRANKMATCHING;
+import static lotto.constant.Numbers.FIRSTRANKMATCHING;
+import static lotto.constant.Numbers.FOURTHRANKMATCHING;
+import static lotto.constant.Numbers.SECONDRANKMATCHING;
 import static lotto.constant.Rank.FIFTHRANK;
 import static lotto.constant.Rank.FIRSTRANK;
 import static lotto.constant.Rank.FOURTHRANK;
@@ -42,26 +46,17 @@ public class LottoChecker {
     }
 
     private String getLottoRank(List<Integer> lotto, boolean bonusNumberCheck) {
-        switch (lotto.size()) {
-            case 6 -> {
-                return FIRSTRANK.getValue();
-            }
-            case 5 -> {
-                if (bonusNumberCheck) {
-                    return SECONDRANK.getValue();
-                }
-                return THIRDRANK.getValue();
-            }
-            case 4 -> {
-                return FOURTHRANK.getValue();
-            }
-            case 3 -> {
-                return FIFTHRANK.getValue();
-            }
-            default -> {
-                return NOMATCHING.getValue();
-            }
-        }
+        if(lotto.size() == FIRSTRANKMATCHING.getIntValue())
+            return FIRSTRANK.getValue();
+        if(lotto.size() == SECONDRANKMATCHING.getIntValue() && bonusNumberCheck)
+            return SECONDRANK.getValue();
+        if(lotto.size() == SECONDRANKMATCHING.getIntValue())
+            return THIRDRANK.getValue();
+        if(lotto.size() == FOURTHRANKMATCHING.getIntValue())
+            return FOURTHRANK.getValue();
+        if(lotto.size() == FIFTHRANKMATCHING.getIntValue())
+            return FIFTHRANK.getValue();
+        return NOMATCHING.getValue();
     }
 
 

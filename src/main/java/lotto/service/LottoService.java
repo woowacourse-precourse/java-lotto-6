@@ -12,10 +12,10 @@ import lotto.domain.PurchasedLotto;
 import lotto.domain.User;
 import lotto.domain.WinningBonusNumber;
 import lotto.domain.WinningNumbers;
-import lotto.domain.dto.InputBonus;
-import lotto.domain.dto.InputMoney;
-import lotto.domain.dto.InputWinningNumbers;
-import lotto.domain.dto.PurchasedLottoDTO;
+import lotto.dto.InputBonus;
+import lotto.dto.InputMoney;
+import lotto.dto.InputWinningNumbers;
+import lotto.dto.PurchasedLottoDTO;
 
 public class LottoService {
     public static PurchasedLotto inputMoneyAndIssueLotto(InputMoney inputMoney) {

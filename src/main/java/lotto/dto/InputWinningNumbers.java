@@ -1,4 +1,4 @@
-package lotto.domain.dto;
+package lotto.dto;
 
 import static lotto.validatior.InputWinningNumbersValidator.validateOnlyPositiveWinningNumbers;
 import static lotto.validatior.InputWinningNumbersValidator.validateWinningNumbers;

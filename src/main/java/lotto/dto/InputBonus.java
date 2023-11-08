@@ -1,4 +1,4 @@
-package lotto.domain.dto;
+package lotto.dto;
 
 import static lotto.validatior.InputWinningBonusNumberValidator.validateBonusNumberRange;
 import static lotto.validatior.InputWinningBonusNumberValidator.validateOnlyPositiveNumberBonus;

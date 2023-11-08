@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.Map;
-import lotto.domain.dto.LottoResultDTO;
+import lotto.dto.LottoResultDTO;
 
 public class Calculator {
     private static final int RATE = 100;

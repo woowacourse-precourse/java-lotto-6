@@ -1,4 +1,4 @@
-package lotto.utils;
+package lotto.view.utils;
 
 public enum GameMessage {
     INPUT_MONEY("구입금액을 입력해 주세요."),

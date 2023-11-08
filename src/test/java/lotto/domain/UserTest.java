@@ -2,7 +2,7 @@ package lotto.domain;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import lotto.domain.dto.InputMoney;
+import lotto.dto.InputMoney;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

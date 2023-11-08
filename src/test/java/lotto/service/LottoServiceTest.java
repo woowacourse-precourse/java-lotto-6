@@ -9,7 +9,7 @@ import java.util.List;
 import lotto.Lotto;
 import lotto.domain.PurchasedLotto;
 import lotto.domain.User;
-import lotto.domain.dto.PurchasedLottoDTO;
+import lotto.dto.PurchasedLottoDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

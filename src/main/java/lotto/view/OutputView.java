@@ -1,16 +1,16 @@
 package lotto.view;
 
-import static lotto.utils.GameMessage.LOTTO_RESULT_MESSAGE;
-import static lotto.utils.GameMessage.PROFIT_MESSAGE;
-import static lotto.utils.GameMessage.PURCHASE_MESSAGE;
-import static lotto.utils.GameMessage.RESULT_MESSAGE;
-import static lotto.utils.GameMessage.SEPARATOR;
+import static lotto.view.utils.GameMessage.LOTTO_RESULT_MESSAGE;
+import static lotto.view.utils.GameMessage.PROFIT_MESSAGE;
+import static lotto.view.utils.GameMessage.PURCHASE_MESSAGE;
+import static lotto.view.utils.GameMessage.RESULT_MESSAGE;
+import static lotto.view.utils.GameMessage.SEPARATOR;
 
 import java.util.Arrays;
 import lotto.Lotto;
 import lotto.domain.LottoRank;
-import lotto.domain.dto.LottoResultDTO;
-import lotto.domain.dto.PurchasedLottoDTO;
+import lotto.dto.LottoResultDTO;
+import lotto.dto.PurchasedLottoDTO;
 
 public class OutputView {
 

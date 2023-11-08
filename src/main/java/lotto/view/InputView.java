@@ -1,13 +1,13 @@
 package lotto.view;
 
-import static lotto.utils.GameMessage.INPUT_BONUS_NUMBER;
-import static lotto.utils.GameMessage.INPUT_MONEY;
-import static lotto.utils.GameMessage.INPUT_WINNING_NUMBERS;
+import static lotto.view.utils.GameMessage.INPUT_BONUS_NUMBER;
+import static lotto.view.utils.GameMessage.INPUT_MONEY;
+import static lotto.view.utils.GameMessage.INPUT_WINNING_NUMBERS;
 
 import camp.nextstep.edu.missionutils.Console;
-import lotto.domain.dto.InputBonus;
-import lotto.domain.dto.InputMoney;
-import lotto.domain.dto.InputWinningNumbers;
+import lotto.dto.InputBonus;
+import lotto.dto.InputMoney;
+import lotto.dto.InputWinningNumbers;
 
 public class InputView {
     public static InputMoney inputMoney() {

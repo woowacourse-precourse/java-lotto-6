@@ -38,7 +38,7 @@ class LottoTest {
     void printAscendingOrderOfLotto() {
         Lotto lotto = new Lotto(List.of(6, 5, 4, 3, 2, 1));
 
-        Assertions.assertThat(lotto.toString()).isEqualTo("[1,2,3,4,5,6]");
+        Assertions.assertThat(lotto.toString()).isEqualTo("[1, 2, 3, 4, 5, 6]");
     }
 
     @DisplayName("로또 번호에 특정 번호가 있으면 True를 반환한다.")

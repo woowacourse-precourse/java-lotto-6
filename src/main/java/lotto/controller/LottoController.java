@@ -30,7 +30,7 @@ public class LottoController {
 
         LottoResult lottoResult = lottoService.findWinningLottos(lottoWallet, winningNumbers, bonusNumber);
         outputView.printLottoRanks(lottoResult);
-        outputView.printEarningRate(lottoResult.getTotalReward(), purchaseMoney.getValue());
+        outputView.printEarningRate(lottoResult, purchaseMoney);
     }
 
 }

@@ -9,6 +9,7 @@ import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
 import lotto.model.dto.LottoResult;
 import lotto.model.dto.LottoWallet;
+import lotto.model.dto.PurchaseMoney;
 
 public class OutputView {
 
@@ -68,12 +69,12 @@ public class OutputView {
                 Collections.frequency(lottoRanks, rank));
     }
 
-    public void printEarningRate(int totalReward, int purchaseMoney) {
+    public void printEarningRate(LottoResult lottoResult, PurchaseMoney purchaseMoney) {
         System.out.printf(LOTTO_EARNING_RATE_FORMAT,
-                calculateEarningRateAndFormat(totalReward, purchaseMoney));
+                formatEarningRate(lottoResult.getTotalReward(), purchaseMoney.getValue()));
     }
 
-    private String calculateEarningRateAndFormat(int totalReward, int purchaseMoney) {
+    private String formatEarningRate(int totalReward, int purchaseMoney) {
         double earningRate = (double) totalReward / purchaseMoney * 100;
 
         String pattern = "#,###.0";

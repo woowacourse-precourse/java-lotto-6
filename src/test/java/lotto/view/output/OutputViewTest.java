@@ -8,6 +8,7 @@ import lotto.model.domain.Lotto;
 import lotto.model.domain.LottoRank;
 import lotto.model.dto.LottoResult;
 import lotto.model.dto.LottoWallet;
+import lotto.model.dto.PurchaseMoney;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -88,7 +89,10 @@ class OutputViewTest {
     @Test
     @DisplayName("수익률 출력 포맷 정수")
     public void earningRateFormatInteger() {
-        outputView.printEarningRate(14000000, 1000);
+        LottoResult lottoResult = new LottoResult(List.of(), 14000000);
+        PurchaseMoney purchaseMoney = new PurchaseMoney(1000);
+
+        outputView.printEarningRate(lottoResult, purchaseMoney);
 
         Assertions.assertThat(output())
                 .isEqualTo("총 수익률은 1,400,000.0%입니다.");
@@ -97,7 +101,10 @@ class OutputViewTest {
     @Test
     @DisplayName("수익률 출력 포맷 실수")
     public void earningRateFormatDecimal() {
-        outputView.printEarningRate(14000000, 67000);
+        LottoResult lottoResult = new LottoResult(List.of(), 14000000);
+        PurchaseMoney purchaseMoney = new PurchaseMoney(67000);
+
+        outputView.printEarningRate(lottoResult, purchaseMoney);
 
         Assertions.assertThat(output())
                 .isEqualTo("총 수익률은 20,895.5%입니다.");
@@ -106,7 +113,10 @@ class OutputViewTest {
     @Test
     @DisplayName("수익률 출력 포맷 실수 반올림 X")
     public void earningRateFormatDecimalHalfUp_X() {
-        outputView.printEarningRate(14000000, 68000);
+        LottoResult lottoResult = new LottoResult(List.of(), 14000000);
+        PurchaseMoney purchaseMoney = new PurchaseMoney(68000);
+
+        outputView.printEarningRate(lottoResult, purchaseMoney);
 
         Assertions.assertThat(output())
                 .isEqualTo("총 수익률은 20,588.2%입니다.");
@@ -115,7 +125,10 @@ class OutputViewTest {
     @Test
     @DisplayName("수익률 출력 포맷 실수 반올림 O")
     public void earningRateFormatDecimalHalfUp_O() {
-        outputView.printEarningRate(14000000, 66000);
+        LottoResult lottoResult = new LottoResult(List.of(), 14000000);
+        PurchaseMoney purchaseMoney = new PurchaseMoney(66000);
+
+        outputView.printEarningRate(lottoResult, purchaseMoney);
 
         Assertions.assertThat(output())
                 .isEqualTo("총 수익률은 21,212.1%입니다.");
@@ -124,10 +137,13 @@ class OutputViewTest {
     @Test
     @DisplayName("수익률 출력 0.0%")
     public void earningRateFormatZero() {
-        outputView.printEarningRate(0, 8000);
+        LottoResult lottoResult = new LottoResult(List.of(), 0);
+        PurchaseMoney purchaseMoney = new PurchaseMoney(8000);
+
+        outputView.printEarningRate(lottoResult, purchaseMoney);
 
         Assertions.assertThat(output())
                 .isEqualTo("총 수익률은 0.0%입니다.");
     }
-
+    
 }

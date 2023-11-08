@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import lotto.enums.Bound;
-import lotto.utils.LottoValidator;
 
 public class LottoGenerator {
     private final List<Lotto> lottoTickets = new ArrayList<>();
@@ -25,7 +24,6 @@ public class LottoGenerator {
 
         List<Integer> lottoNumbers = Randoms
                 .pickUniqueNumbersInRange(lowerBound, upperBound, maxLottoSize);
-        LottoValidator.validateUniqueness(lottoNumbers);
 
         return Collections.unmodifiableList(lottoNumbers);
     }

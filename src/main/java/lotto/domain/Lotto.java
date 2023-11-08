@@ -16,23 +16,35 @@ public class Lotto {
 	}
 
 	private void validate(List<Integer> numbers) {
-		if (numbers.size() != NUMBER_OF_LOTTO_NUMBERS.getValue()) {
-			throw new IllegalArgumentException("[ERROR] 로또 번호는 " + NUMBER_OF_LOTTO_NUMBERS.getValue() + "개여야 합니다.");
-		}
+		checkLottoNumbersConsistOfNumberOfLottoNumbers(numbers);
+		checkLottoNumbersHasDuplicatedNumber(numbers);
+		checkLottoNumbersHasNumberOutOfRange(numbers);
+	}
 
-		Set<Integer> lottoNumbers = new HashSet<>();
+	private void checkLottoNumbersHasNumberOutOfRange(List<Integer> numbers) {
 		for (int number : numbers) {
-			if (lottoNumbers.contains(number)) {
-				throw new IllegalArgumentException("[ERROR] 로또 번호 값이 중복되었습니다.");
-			}
 			if (number < MIN_LOTTO_NUMBER.getValue() || number > MAX_LOTTO_NUMBER.getValue()) {
 				throw new IllegalArgumentException(
 					"[ERROR] 로또 번호는 " + MIN_LOTTO_NUMBER.getValue() + " 이상 " + MAX_LOTTO_NUMBER.getValue()
 						+ " 이하의 값이여야 합니다.");
 			}
+		}
+	}
+
+	private void checkLottoNumbersHasDuplicatedNumber(List<Integer> numbers) {
+		Set<Integer> lottoNumbers = new HashSet<>();
+		for (int number : numbers) {
+			if (lottoNumbers.contains(number)) {
+				throw new IllegalArgumentException("[ERROR] 로또 번호 값이 중복되었습니다.");
+			}
 			lottoNumbers.add(number);
 		}
+	}
 
+	private void checkLottoNumbersConsistOfNumberOfLottoNumbers(List<Integer> numbers) {
+		if (numbers.size() != NUMBER_OF_LOTTO_NUMBERS.getValue()) {
+			throw new IllegalArgumentException("[ERROR] 로또 번호는 " + NUMBER_OF_LOTTO_NUMBERS.getValue() + "개여야 합니다.");
+		}
 	}
 
 	void printNumbers() {
@@ -40,29 +52,37 @@ public class Lotto {
 	}
 
 	LottoPrize confirmWinning(Set<Integer> winningNumbers, int bonusNumber) {
+		int hits = getHits(winningNumbers);
+		boolean bonusHit = isBonusHit(bonusNumber);
+
+		for (LottoPrize lottoPrize : LottoPrize.values()) {
+			if (hits == lottoPrize.getMatches()) {
+				if (hits == FIVE_MATCH.getMatches() && bonusHit) {
+					return FIVE_MATCH_WITH_BONUS;
+				}
+				return lottoPrize;
+			}
+		}
+		return null;
+	}
+
+	private boolean isBonusHit(int bonusNumber) {
+		for (int number : numbers) {
+			if (number == bonusNumber) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private int getHits(Set<Integer> winningNumbers) {
 		int hits = 0;
-		boolean bonusHit = false;
 
 		for (int number : numbers) {
 			if (winningNumbers.contains(number)) {
 				hits += 1;
-			} else if (number == bonusNumber) {
-				bonusHit = true;
 			}
 		}
-
-		if (hits == THREE_MATCH.getMatches()) {
-			return THREE_MATCH;
-		} else if (hits == FOUR_MATCH.getMatches()) {
-			return FOUR_MATCH;
-		} else if (hits == FIVE_MATCH.getMatches()) {
-			if (bonusHit) {
-				return FIVE_MATCH_WITH_BONUS;
-			}
-			return FIVE_MATCH;
-		} else if (hits == SIX_MATCH.getMatches()) {
-			return SIX_MATCH;
-		}
-		return null;
+		return hits;
 	}
 }

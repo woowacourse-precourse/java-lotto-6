@@ -39,6 +39,13 @@ class LottoResultCalculator {
 
 		System.out.println("당첨 통계");
 		System.out.println("---");
+		totalPrize = getTotalPrize(lottoPrizeCases, totalPrize, lottoPrizeCount);
+		System.out.printf("총 수익률은 %.1f%%입니다.\n",
+			(double)totalPrize / (lottos.size() * LOTTO_PRICE) * PERCENTAGE_MULTIPLIER);
+	}
+
+	private static long getTotalPrize(List<LottoPrize> lottoPrizeCases, long totalPrize,
+		Map<LottoPrize, Integer> lottoPrizeCount) {
 		for (LottoPrize lottoPrizeCase : lottoPrizeCases) {
 			totalPrize += (long)lottoPrizeCase.getPrize() * lottoPrizeCount.getOrDefault(lottoPrizeCase, 0);
 			if (lottoPrizeCase == FIVE_MATCH_WITH_BONUS) {
@@ -49,7 +56,6 @@ class LottoResultCalculator {
 			System.out.printf("%d개 일치 (%s) - %d개\n", lottoPrizeCase.getMatches(),
 				integerToWon(lottoPrizeCase.getPrize()), lottoPrizeCount.getOrDefault(lottoPrizeCase, 0));
 		}
-		System.out.printf("총 수익률은 %.1f%%입니다.\n",
-			(double)totalPrize / (lottos.size() * LOTTO_PRICE) * PERCENTAGE_MULTIPLIER);
+		return totalPrize;
 	}
 }

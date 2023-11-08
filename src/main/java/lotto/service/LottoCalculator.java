@@ -52,4 +52,9 @@ public class LottoCalculator {
     public static List<Integer> getFinalMatchNumbers() {
         return finalMatchNumbers;
     }
+
+    public static void initialize() {
+        finalPrize = 0;
+        finalMatchNumbers = new ArrayList<>(List.of(0, 0, 0, 0, 0, 0));
+    }
 }

@@ -13,11 +13,11 @@ public class WinningNumber {
 
     //생성자
     public WinningNumber() {
-        this.winningNumbers = getWinningNumber();
+        this.winningNumbers = createWinningNumber();
     }
 
-    private List<Integer> getWinningNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+    private List<Integer> createWinningNumber() {
+        System.out.println("\n당첨 번호를 입력해 주세요.");
         String winningNumber = readLine();
 
         List<Integer> result = new ArrayList<>();

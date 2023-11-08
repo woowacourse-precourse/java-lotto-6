@@ -5,6 +5,8 @@ public enum Value {
     RAINGE_MAX(45),
     LOTTO_NUMBER(6),
     ZERO(0),
+    ONE(1),
+    IS_EMPTY(0),
     LOTTO_PRICE(1000);
 
     private final int number;

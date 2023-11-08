@@ -36,6 +36,46 @@ public class LottoStore {
         }
     }
 
+    public void getWinningNumber() {
+        while (true) {
+            try {
+                System.out.println("당첨 번호를 입력해주세요.");
+                String input = Console.readLine();
+                List<Integer> numbers = parseString(input);
+                this.winningNumber = new Lotto(numbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private List<Integer> parseString(String input) {
+        String[] splitInput = input.split(",");
+        validateInput(splitInput);
+        // 마지막이 쉼표로 끝나는 경우 split에서 사라지므로 해당 메서드에서 예외 처리
+        if (input.charAt(input.length() - Value.ONE.get()) == ',') {
+            throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 값이 비어있습니다.");
+        }
+
+        List<Integer> numbers = new ArrayList<>();
+        for (String s : splitInput) {
+            numbers.add(Integer.parseInt(s));
+        }
+        return numbers;
+    }
+
+    private void validateInput(String[] input) {
+        if (input.length == Value.IS_EMPTY.get()) {
+            throw new IllegalArgumentException("[ERROR] 입력된 값이 없습니다.");
+        }
+        for (String s : input) {
+            if (s.isEmpty()) {
+                throw new IllegalArgumentException("[ERROR] 쉼표로 구분된 값이 비어있습니다.");
+            }
+        }
+    }
+
     private void issueLotto(int input) {
         int number = input / Value.LOTTO_PRICE.get();
         for (int i = Value.ZERO.get(); i < number; ++i) {

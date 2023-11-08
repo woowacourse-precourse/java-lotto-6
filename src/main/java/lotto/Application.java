@@ -8,5 +8,6 @@ public class Application {
 
         lottoStore.purchaseLotto();
         lottoStore.printLottos();
+        lottoStore.getWinningNumber();
     }
 }

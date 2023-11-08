@@ -61,4 +61,8 @@ public class Lotto {
     public String getNumbers() {
         return numbers.toString();
     }
+
+    public List<Integer> getNumbersList() {
+        return numbers;
+    }
 }

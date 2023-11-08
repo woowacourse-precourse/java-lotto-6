@@ -83,7 +83,6 @@ public class LottoGame implements Game {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("[ERROR] 입력은 숫자여야합니다.", e);
         }
-
     }
 
     public int getLottoPurchaseAmount() {
@@ -111,6 +110,13 @@ public class LottoGame implements Game {
     }
 
     public void setBonusNumber(String bonusNumber) {
-        this.bonusNumber = validateNumber(bonusNumber);
+        int bonus;
+        bonus = validateNumber(bonusNumber);
+
+        if (winningLotto.getNumbersList().contains(bonus)) {
+            throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 겹쳐선 안됩니다.");
+        }
+
+        this.bonusNumber = bonus;
     }
 }

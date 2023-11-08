@@ -27,6 +27,21 @@ class LottoGameTest extends NsTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("보너스 번호는 숫자여야한다.")
+    @Test
+    void 숫자가아닌보너스번호() {
+        assertThatThrownBy(() -> game.setBonusNumber("a"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("보너스 번호는 당첨번호와 겹치면 안된다.")
+    @Test
+    void 겹치는보너스번호() {
+        assertThatThrownBy(() -> {
+            game.setWinningLotto("1,2,3,4,5,6");
+            game.setBonusNumber("6");
+        }).isInstanceOf(IllegalArgumentException.class);
+    }
 
     @DisplayName("구입금액만큼 로또를 발행한다.")
     @Test

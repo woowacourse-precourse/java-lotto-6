@@ -1,6 +1,5 @@
 package lotto.domain.winning;
 
-import lotto.Lotto;
 import lotto.domain.BonusNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -28,6 +27,15 @@ class WinningNumbersTest {
     @Test
     void createWinningNumbersByOverRange() {
         assertThatThrownBy(() -> new WinningNumbers(List.of(0, 1, 2, 3, 4, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호에 들어있는 수를 보너스 번호로 추가하면 예외가 발생한다.")
+    @Test
+    void addBonusNumberIsDuplicatedWinningNumber() {
+        WinningNumbers winningNumbers = new WinningNumbers(List.of(1, 2, 3, 4, 5, 6));
+        BonusNumber bonusNumber = new BonusNumber(6);
+        assertThatThrownBy(() -> winningNumbers.addBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

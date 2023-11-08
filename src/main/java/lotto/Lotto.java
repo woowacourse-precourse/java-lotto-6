@@ -25,8 +25,8 @@ public class Lotto {
 
     // TODO: 추가 기능 구현
     private void validateDuplicate(List<Integer> numbers) {
-        HashSet<Integer> hs = new HashSet<>(numbers);
-        if (numbers.size() != hs.size()) {
+        HashSet<Integer> duplicateCheck = new HashSet<>(numbers);
+        if (numbers.size() != duplicateCheck.size()) {
             throw new IllegalArgumentException("당첨 번호는 서로 중복되지 않아야 합니다.");
         }
     }

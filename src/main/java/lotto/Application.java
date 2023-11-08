@@ -131,7 +131,6 @@ public class Application {
     private static void addResult(Rank rank) {
         if(rank != null) {
             lottoWinsCount[rank.ordinal()]++;
-            //return earned + rank.getPrize();
         }
     }
 

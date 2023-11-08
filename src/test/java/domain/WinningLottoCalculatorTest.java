@@ -129,7 +129,7 @@ class WinningLottoCalculatorTest {
 
 	@DisplayName("소수 둘째 자리에서 반올림")
 	@Test
-	public void test() {
+	public void checkRoundToTwoDecimalPlaces() {
 		// given
 		double number = 3.17;
 		double excepted = 3.2;

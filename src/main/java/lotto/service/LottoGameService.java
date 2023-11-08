@@ -2,6 +2,7 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import lotto.constant.WinningDataCategory;
+import lotto.exception.InvalidPaymentAmountException;
 import lotto.model.Buyer;
 import lotto.model.Lotto;
 import lotto.model.LottoDecision;
@@ -32,7 +33,7 @@ public class LottoGameService {
         if ((paymentAmount % LOTTO_PRICE) == 0) {
             return paymentAmount / LOTTO_PRICE;
         }
-        throw new IllegalArgumentException();
+        throw new InvalidPaymentAmountException("[ERROR]구입 금액은 1000원으로 나누어져야 합니다.");
     }
 
     private Lotto lottoGenerator(){

@@ -1,7 +1,5 @@
 package lotto.model;
 
-import lotto.exception.InvalidPaymentAmountException;
-import lotto.exception.InvalidRangeException;
 import lotto.validation.Validator;
 import java.util.List;
 

@@ -12,6 +12,9 @@ import lotto.domain.LottoWinningCombination;
 import lotto.generator.RandomNumberGenerator;
 
 public class LottoService {
+    private LottoService() {
+    }
+
     public static List<Lotto> issueLottoTickets(long purchasePrice) {
         int lottoAmount = (int) (purchasePrice / SINGLE_LOTTO_PRICE);
 

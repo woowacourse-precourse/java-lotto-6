@@ -10,6 +10,9 @@ import lotto.view.OutputView;
 
 public class OutputUtil {
 
+    private OutputUtil() {
+    }
+
     public static String formatSystemMessageWithNumber(SystemMessage systemMessage, int num) {
         return String.format(systemMessage.getMessage(), num);
     }

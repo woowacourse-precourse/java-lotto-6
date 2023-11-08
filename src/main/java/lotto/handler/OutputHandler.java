@@ -13,6 +13,9 @@ import lotto.globar.LottoResultInfo;
 import lotto.view.OutputView;
 
 public class OutputHandler {
+    private OutputHandler() {
+    }
+
     public static void outputLottosInfo(List<Lotto> lottos){
         OutputView.printMessageBlankLine();
         printLottosAmount(lottos);

@@ -15,7 +15,6 @@ public class Application {
         int numberOfLottos = purchaseAmount / LOTTO_PRICE;
         List<Lotto> lottos = generateLottos(numberOfLottos);
 
-        printLottos(lottos);
         Lotto winningLotto = getWinningLotto();
         int bonusBall = getBonusBall();
 
@@ -23,12 +22,13 @@ public class Application {
         int prizeMoney = calculatePrizeMoney(matchCounts);
         double profitRate = (double) prizeMoney / purchaseAmount;
 
+        printLottos(lottos);
         printResult(matchCounts, profitRate);
     }
     private static int getPurchaseAmount() {
         int purchaseAmount;
         do {
-            System.out.print("구입 금액을 입력해주세요: ");
+            System.out.print("구입금액을 입력해 주세요. ");
             try {
                 purchaseAmount = Integer.parseInt(Console.readLine());
                 if (purchaseAmount < LOTTO_PRICE) {
@@ -42,6 +42,21 @@ public class Application {
             }
         } while (true);
         return purchaseAmount;
+    }
+
+    private static Lotto getWinningLotto() {
+        System.out.print("당첨 번호를 입력해 주세요.");
+        String[] winningNumbers = Console.readLine().split(",");
+        List<Integer> numbers = new ArrayList<>();
+        for (String number : winningNumbers) {
+            numbers.add(Integer.parseInt(number));
+        }
+        return new Lotto(numbers);
+    }
+
+    private static int getBonusBall() {
+        System.out.print("보너스 번호를 입력해 주세요. ");
+        return Integer.parseInt(Console.readLine());
     }
 
     private static List<Lotto> generateLottos(int numberOfLottos) {
@@ -58,20 +73,6 @@ public class Application {
         lottos.forEach(lotto -> System.out.println(lotto.getNumbers()));
     }
 
-    private static Lotto getWinningLotto() {
-        System.out.print("지난 주 당첨 번호를 입력해주세요: ");
-        String[] winningNumbers = Console.readLine().split(", ");
-        List<Integer> numbers = new ArrayList<>();
-        for (String number : winningNumbers) {
-            numbers.add(Integer.parseInt(number));
-        }
-        return new Lotto(numbers);
-    }
-
-    private static int getBonusBall() {
-        System.out.print("보너스 볼을 입력해주세요: ");
-        return Integer.parseInt(Console.readLine());
-    }
 
     private static int[] countMatches(List<Lotto> lottos, Lotto winningLotto, int bonusBall) {
         int[] matchCounts = new int[6];
@@ -116,5 +117,5 @@ public class Application {
         System.out.println("총 수익률은 " + profitRate + "입니다.");
     }
 
-    
+
 }

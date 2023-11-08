@@ -87,7 +87,7 @@ public class LottoMachine {
         StringBuilder sb = new StringBuilder();
 
         for (WinningGrade winningGrade : winningGrades) {
-            sb.append(mapResultToString(winningGrade, resultMap.get(winningGrade))).append("\n");
+            sb.append(resultToString(winningGrade, resultMap.get(winningGrade))).append("\n");
         }
 
         sb.append(GameMessage.YIELDS_PREFIX.getMessage()).append(yields).append(GameMessage.YIELDS_SUFFIX.getMessage());
@@ -96,7 +96,7 @@ public class LottoMachine {
 
     }
 
-    private String mapResultToString(WinningGrade winningGrade, int value) {
+    private String resultToString(WinningGrade winningGrade, int value) {
 
         return winningGrade.getMessage() + value + GameMessage.WINNING_GRADE_COUNT.getMessage();
     }

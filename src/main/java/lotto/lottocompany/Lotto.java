@@ -22,6 +22,10 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
     public Reward checkWinning(List<Integer> winningNumbers, int bonusNumber) {
         long matchingCount = numbers.stream()
                 .filter(winningNumbers::contains)
@@ -67,5 +71,10 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR]: 로또는 번호는 1~45 사이의 숫자입니다.");
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return numbers.toString();
     }
 }

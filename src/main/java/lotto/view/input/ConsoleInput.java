@@ -19,14 +19,15 @@ public class ConsoleInput implements Input {
     @Override
     public Lotto inputWinningNumbers() {
         String winningNumbersInput = Console.readLine();
+        List<Integer> winningNumbers;
         try {
-            List<Integer> winningNumbers = Arrays.stream(winningNumbersInput.split(","))
-                    .map(Integer::parseInt)
+            winningNumbers = Arrays.stream(winningNumbersInput.split(","))
+                    .map(number -> Integer.parseInt(number.strip()))
                     .toList();
-            return new Lotto(winningNumbers);
         } catch (Exception e) {
             throw new IllegalArgumentException("[ERROR] 로또 구매 금액은 숫자를 입력해주세요.");
         }
+        return new Lotto(winningNumbers);
     }
 
     @Override

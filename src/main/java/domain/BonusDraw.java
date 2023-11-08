@@ -16,4 +16,8 @@ public class BonusDraw {
         Validation.validateBonusNumberByDuplicate(bonusNumber, winNumbers);
     }
 
+    public int bonusNumber(String bonusNumberInput) {
+        return Integer.parseInt(bonusNumberInput);
+    }
+
 }

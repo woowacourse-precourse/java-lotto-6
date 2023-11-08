@@ -58,4 +58,9 @@ public class LottoController {
             initWallet();
         }
     }
+    private void initWinningNumbers() {
+        settingWinningNumbers();
+        settingBonusNumber();
+    }
+
 }

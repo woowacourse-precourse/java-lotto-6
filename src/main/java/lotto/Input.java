@@ -9,11 +9,14 @@ import java.util.stream.Collectors;
 public class Input {
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    public int getMoney(){
+    public int getNumberOfLotto(){
         System.out.println("구입금액을 입력해 주세요.\n");
+
         int money = Integer.parseInt(Console.readLine());
         validateMoney(money);
-        return money;
+
+        int numberOfLotto = calculate(money);
+        return numberOfLotto;
     }
 
     private void validateMoney(int money){
@@ -52,5 +55,9 @@ public class Input {
 
             throw new IllegalArgumentException(ERROR_MESSAGE+" 중복된 당첨 번호가 있습니다.");
         }
+    }
+
+    private int calculate(int money){
+        return money / 1000;
     }
 }

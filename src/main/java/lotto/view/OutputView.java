@@ -21,7 +21,7 @@ public class OutputView {
         for (LottoDto lottoDto : lottoDtos) {
             lottoStringBuilder.append(lottoDto.numbers()).append("\n");
         }
-        
+
         System.out.println(lottoStringBuilder);
     }
 
@@ -41,7 +41,7 @@ public class OutputView {
             }
         }
 
-        System.out.println(lottoResultStringBuilder);
+        System.out.print(lottoResultStringBuilder);
     }
 
     public static void printEmptyLine() {
@@ -50,7 +50,7 @@ public class OutputView {
 
 
     public static void displayProfitRate(double profitRate) {
-        System.out.println("총 수익률은 " + profitRate + "%입니다.");
+        System.out.printf("총 수익률은 %.1f%%입니다.", profitRate);
     }
 
 }

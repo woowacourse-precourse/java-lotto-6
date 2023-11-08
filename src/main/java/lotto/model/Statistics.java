@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import javax.swing.JViewport;
 
 public class Statistics {
 
@@ -41,7 +40,6 @@ public class Statistics {
     }
 
     public float evaluateTotalProfit() {
-        // 각 MatchResult에 대한 카운트를 저장할 맵
         Map<MatchResult, Integer> counts = calculateMatchCounts();
         float totalWinnings = calculateTotalWinnings(counts);
 //        return getProfitRate(totalWinnings);

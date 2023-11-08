@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lotto.ErrorMessage;
 
 public class InputLottoNumber {
 
@@ -22,12 +23,12 @@ public class InputLottoNumber {
 
     private void validate(String inputNumber) {
         if (inputNumber == null || inputNumber.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 아무것도 입력하지 않았습니다.");
+            throw new IllegalArgumentException(ErrorMessage.EMPTY_INPUT.getMessage());
         }
 
         String[] numbersStr = inputNumber.split(",");
         if (numbersStr.length != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해야 합니다.");
+            throw new IllegalArgumentException(ErrorMessage.INVALID_NUMBER_COUNT.getMessage());
         }
 
         Set<Integer> numbersSet = new HashSet<>();
@@ -36,16 +37,16 @@ public class InputLottoNumber {
             try {
                 number = Integer.parseInt(numberStr.trim());
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("[ERROR] 숫자 외 문자를 입력하였습니다.");
+                throw new IllegalArgumentException(ErrorMessage.NON_NUMERIC_VALUE.getMessage());
             }
 
             // 1부터 45 사이의 숫자인지 확인합니다.
             if (number < 1 || number > 45) {
-                throw new IllegalArgumentException("[ERROR] 숫자는 1에서 45 사이여야 합니다.");
+                throw new IllegalArgumentException(ErrorMessage.OUT_OF_RANGE.getMessage());
             }
 
             if (!numbersSet.add(number)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자를 입력하였습니다.");
+                throw new IllegalArgumentException(ErrorMessage.DUPLICATE_NUMBER.getMessage());
             }
         }
     }

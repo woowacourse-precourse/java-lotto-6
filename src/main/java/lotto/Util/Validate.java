@@ -14,10 +14,16 @@ public class Validate {
     private static final String NOT_NUMBER = "[ERROR] 금액은 숫자만 등록 가능합니다.";
     private static final String NOT_NATURAL_NUMBER = "[ERROR] 금액은 0보다 커야합니다.";
     private static final String NOT_DIVISIBLE_NUMBER = "[ERROR] 금액은 " + LOTTO_BUY_MIN + "단위여야 합니다.";
+    private static final String INPUT_TYPE_ERROR = "[ERROR] 숫자만 입력해 주세요.";
 
     public static void validateAmount(int amount) {
         validateNatural(amount);
         validateDivisible(amount);
+    }
+
+    public static void validateBonusNum(List<Integer> numbers, int bonusNumber){
+        validateRange(bonusNumber);
+        validateBonusNumber(numbers, bonusNumber);
     }
 
     public static void validateSizing(List<Integer> numbers) {
@@ -47,6 +53,13 @@ public class Validate {
         }
     }
 
+    private static void validateRange(int number) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
+            System.out.println(NOT_NUMBER_RANGE);
+            throw new IllegalArgumentException();
+        }
+    }
+
     public static int validateNumber(String amount) throws IllegalArgumentException {
         try {
             return Integer.parseInt(amount);
@@ -70,7 +83,16 @@ public class Validate {
         }
     }
 
-    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+    public static int validateTypeInt(String inputNumber){
+        try {
+            return Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            System.out.println(INPUT_TYPE_ERROR);
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
         if (numbers.contains(bonusNumber)) {
             System.out.println(NOT_NUMBER_DUPLICATE);
             throw new IllegalArgumentException();

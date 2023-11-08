@@ -10,7 +10,7 @@ import lotto.domain.result.LottoRank;
 import lotto.domain.result.WinResult;
 import lotto.domain.ticket.LottoTicket;
 import lotto.domain.ticket.Ticket;
-import lotto.util.reader.InputReader;
+import lotto.util.reader.ConsoleReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +19,8 @@ class LottoCheckerTest {
         @Test
         void call_checkTicket_will_return_WinResult() {
                 //given
-                InputReader resultInputreader = new FakeInputReader("1,2,3,4,5,6");
-                InputReader magicInputReader = new FakeInputReader("9");
+                ConsoleReader resultInputreader = new FakeInputReader("1,2,3,4,5,6");
+                ConsoleReader magicInputReader = new FakeInputReader("9");
 
                 Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
                 Ticket ticket = new LottoTicket(List.of(lotto, lotto));

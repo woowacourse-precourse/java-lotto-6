@@ -1,9 +1,9 @@
 package lotto.domain.fake;
 
 import java.util.List;
-import lotto.util.RandomNumber;
+import lotto.util.RandomNumbers;
 
-public class FakeRandomNumber implements RandomNumber {
+public class FakeRandomNumber implements RandomNumbers {
         private final List<Integer> numbers;
 
         public FakeRandomNumber(List<Integer> numbers) {

@@ -45,7 +45,7 @@ class LottoTest {
                 Lotto target = new Lotto(List.of(12, 2, 13, 4, 15, 6));
 
                 //when
-                long result = lotto.matchCount(target);
+                long result = lotto.countMatchNumber(target);
 
                 //then
                 assertThat(result).isEqualTo(3);

@@ -9,7 +9,7 @@ import lotto.domain.generator.AutoTicketGenerator;
 import lotto.domain.generator.TicketGenerator;
 import lotto.domain.money.Money;
 import lotto.domain.ticket.Ticket;
-import lotto.util.RandomNumber;
+import lotto.util.RandomNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +19,7 @@ class TicketSellerTest {
         void call_sellTo_will_return_Ticket() {
                 //given
                 List<Integer> lottoBalls = List.of(1, 2, 3, 4, 5, 6);
-                RandomNumber randomNumber = new FakeRandomNumber(lottoBalls);
+                RandomNumbers randomNumber = new FakeRandomNumber(lottoBalls);
                 TicketGenerator generator = new AutoTicketGenerator(randomNumber);
                 Seller seller = new TicketSeller(generator);
                 Money payment = new Money(BigDecimal.valueOf(6000));

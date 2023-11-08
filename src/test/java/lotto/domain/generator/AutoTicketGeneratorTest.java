@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import lotto.domain.fake.FakeRandomNumber;
 import lotto.domain.ticket.Ticket;
-import lotto.util.RandomNumber;
+import lotto.util.RandomNumbers;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +17,7 @@ class AutoTicketGeneratorTest {
                 //given
                 long quantity = 3;
                 List<Integer> lottoBalls = List.of(1, 2, 3, 4, 5, 6);
-                RandomNumber randomNumber = new FakeRandomNumber(lottoBalls);
+                RandomNumbers randomNumber = new FakeRandomNumber(lottoBalls);
                 TicketGenerator generator = new AutoTicketGenerator(randomNumber);
 
                 //when

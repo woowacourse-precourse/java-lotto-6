@@ -15,8 +15,8 @@ import lotto.domain.generator.AutoTicketGenerator;
 import lotto.domain.generator.TicketGenerator;
 import lotto.domain.seller.Seller;
 import lotto.domain.seller.TicketSeller;
-import lotto.util.RandomNumber;
-import lotto.util.reader.InputReader;
+import lotto.util.RandomNumbers;
+import lotto.util.reader.ConsoleReader;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -25,8 +25,8 @@ class LottoCustomerTest {
         @Test
         void call_buyTicket() {
                 //given
-                InputReader inputReader = new FakeInputReader("10000");
-                RandomNumber randomNumber = new FakeRandomNumber(List.of(1, 2, 3, 4, 5, 6));
+                ConsoleReader inputReader = new FakeInputReader("10000");
+                RandomNumbers randomNumber = new FakeRandomNumber(List.of(1, 2, 3, 4, 5, 6));
                 TicketGenerator generator = new AutoTicketGenerator(randomNumber);
                 Seller seller = new TicketSeller(generator);
                 Customer customer = new LottoCustomer(inputReader);
@@ -39,11 +39,11 @@ class LottoCustomerTest {
         @Test
         void call_checkLottoResult() {
                 //given
-                InputReader moneyInputReader = new FakeInputReader("2000");
-                InputReader resultInputreader = new FakeInputReader("1,2,3,4,5,6");
-                InputReader magicInputReader = new FakeInputReader("9");
+                ConsoleReader moneyInputReader = new FakeInputReader("2000");
+                ConsoleReader resultInputreader = new FakeInputReader("1,2,3,4,5,6");
+                ConsoleReader magicInputReader = new FakeInputReader("9");
 
-                RandomNumber randomNumber = new FakeRandomNumber(List.of(1, 2, 3, 4, 5, 6));
+                RandomNumbers randomNumber = new FakeRandomNumber(List.of(1, 2, 3, 4, 5, 6));
                 TicketGenerator generator = new AutoTicketGenerator(randomNumber);
                 Seller seller = new TicketSeller(generator);
                 Checker checker = new LottoChecker(resultInputreader, magicInputReader);

@@ -1,8 +1,8 @@
 package lotto.domain.fake;
 
-import lotto.util.reader.InputReader;
+import lotto.util.reader.ConsoleReader;
 
-public class FakeInputReader implements InputReader {
+public class FakeInputReader implements ConsoleReader {
         private final String input;
 
         public FakeInputReader(String input) {

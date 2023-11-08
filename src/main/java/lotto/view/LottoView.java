@@ -15,10 +15,10 @@ public class LottoView {
     public static final String INPUT_BONUS_NUMBER_MESSAGE = "\n보너스 번호를 입력해 주세요.";
     public static final String MATCH_RESULT_MESSAGE = "\n당첨 통계\n---";
     public static final String MATCH_STATISTICS_MESSAGE = "3개 일치 (5,000원) - %d개\n"
-            + "4개 일치 (50,000원) - %d개\n" + "5개 일치 (1,500,000원) - %d개"
-            + "5개 일치, 보내스 볼 일치 (30,000,000원) - %d개"
+            + "4개 일치 (50,000원) - %d개\n" + "5개 일치 (1,500,000원) - %d개\n"
+            + "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개\n"
             + "6개 일치 (2,000,000,000원) - %d개";
-    public static final String TOTAL_RETURN_MESSAGE = "총 수익률은 %f입니다.";
+    public static final String TOTAL_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";
 
     public void startMessage(){
         System.out.println(START_MESSAGE);
@@ -58,5 +58,9 @@ public class LottoView {
     }
     public void totalReturnMessage(Double findReturn){
         System.out.println(String.format(TOTAL_RETURN_MESSAGE,findReturn));
+    }
+
+    public void printErrorMessage(String errorMessage){
+        System.out.println(errorMessage);
     }
 }

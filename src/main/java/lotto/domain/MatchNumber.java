@@ -1,5 +1,8 @@
 package lotto.domain;
 
+import static lotto.util.errorMessage.ERROR_MESSAGE;
+import static lotto.util.errorMessage.LOTTO_SIZE_ERROR;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -33,7 +36,7 @@ public class MatchNumber {
 
     private void checkForInputSize(List<String> inputNumbers){
         if(inputNumbers.size()!=6){
-            throw new IllegalArgumentException("[ERROR] ','를 구분자로 6개의 숫자를 입력해 주세요");
+            throw new IllegalArgumentException(ERROR_MESSAGE.getMessage()+LOTTO_SIZE_ERROR.getMessage());
         }
     }
 

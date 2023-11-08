@@ -16,22 +16,63 @@ public class LottoController {
     private static int PRICE_OF_LOTTO = 1000;
     private final LottoView lottoView = new LottoView();
 
-    public void init(){
-        lottoView.startMessage();
-        run();
-    }
     public void run(){
-        LottoPrice lottoPrice = new LottoPrice(userInput());
+        LottoPrice lottoPrice = inputLottoPrice();
         Lottos lottos = drawLottoNumbers(lottoPrice);
-
-        lottoView.inputMatchNumberMessage();
-        MatchNumber matchNumber = new MatchNumber(userInput());
-        lottoView.inputBonusNumberMessage();
-        BonusNumber bonusNumber = new BonusNumber(userInput(), matchNumber);
+        MatchNumber matchNumber = inputMatchNumber();
+        BonusNumber bonusNumber = inputBonusNumber(matchNumber);
 
         List<Integer> totalMatchNumbers = getTotalMatchNumbers(matchNumber,bonusNumber);
         LottoManager lottoManager = matchResult(lottos, totalMatchNumbers);
         printMatchStatistics(lottoManager, lottoPrice);
+    }
+
+    public LottoPrice inputLottoPrice(){
+        LottoPrice lottoPrice = null;
+        boolean inputValid = false;
+
+        while(!inputValid) {
+            try {
+                lottoView.startMessage();
+                lottoPrice = new LottoPrice(userInput());
+                inputValid = true;
+            } catch (IllegalArgumentException e) {
+                lottoView.printErrorMessage(e.getMessage());
+            }
+        }
+        return lottoPrice;
+    }
+
+    public MatchNumber inputMatchNumber(){
+        MatchNumber matchNumber = null;
+        boolean inputValid = false;
+
+        while(!inputValid) {
+            try {
+                lottoView.inputMatchNumberMessage();
+                matchNumber = new MatchNumber(userInput());
+                inputValid = true;
+            } catch (IllegalArgumentException e) {
+                lottoView.printErrorMessage(e.getMessage());
+            }
+        }
+        return matchNumber;
+    }
+
+    public BonusNumber inputBonusNumber(MatchNumber matchNumber){
+        BonusNumber bonusNumber = null;
+        boolean inputValid = false;
+
+        while(!inputValid) {
+            try {
+                lottoView.inputBonusNumberMessage();
+                bonusNumber = new BonusNumber(userInput(), matchNumber);
+                inputValid = true;
+            } catch (IllegalArgumentException e) {
+                lottoView.printErrorMessage(e.getMessage());
+            }
+        }
+        return bonusNumber;
     }
 
     public void printMatchStatistics(LottoManager lottoManager, LottoPrice lottoPrice){

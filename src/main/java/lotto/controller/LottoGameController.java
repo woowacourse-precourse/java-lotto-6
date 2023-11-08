@@ -1,15 +1,13 @@
 package lotto.controller;
 
 import lotto.generator.LottoGenerator;
-import lotto.model.Lotto;
-import lotto.model.LottoMachine;
-import lotto.model.PurchaseCost;
-import lotto.model.WinningNumbers;
+import lotto.model.*;
 import lotto.utils.LottoUtils;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static lotto.constant.StringConstant.COMMA;
@@ -46,10 +44,13 @@ public class LottoGameController {
         int bonusWinningNumber = inputBonusWinningNumber(lottoWinningNumbers);
         WinningNumbers winningNumbers = createWinningNumbers(lottoWinningNumbers, bonusWinningNumber);
 
-        printLottoResultStatistics(puchaseLottos, winningNumbers);
+        calculateLottoWinningRecord(puchaseLottos, winningNumbers);
+        Map<Rank, Integer> winningResult = getCalculatedWinningResult();
+
+        printWinningResultStatistics(winningResult);
+        printEarningRate(lottoCount);
 
     }
-
 
     private PurchaseCost inputLottoPurchaseCost() {
 
@@ -140,9 +141,22 @@ public class LottoGameController {
         return bonusWinningNumber;
     }
 
-    private void printLottoResultStatistics(List<Lotto> puchaseLottos, WinningNumbers winningNumbers) {
+    private void calculateLottoWinningRecord(List<Lotto> puchaseLottos, WinningNumbers winningNumbers) {
+        lottoMachine.calculateWinningRecord(puchaseLottos, winningNumbers);
+    }
+
+    private Map<Rank, Integer> getCalculatedWinningResult() {
+        return lottoMachine.getWiningResult();
+    }
+
+    private void printWinningResultStatistics(Map<Rank, Integer> winningResult) {
         output.printMessage(WINNING_STATISTICS);
-        lottoMachine.showWinningResult(puchaseLottos, winningNumbers);
+        output.printWinningResultStatistics(winningResult);
+    }
+
+    private void printEarningRate(int lottoCount) {
+        double earningRate = lottoMachine.calculateEarningRate(lottoCount);
+        output.printEarningRate(earningRate);
     }
 
 }

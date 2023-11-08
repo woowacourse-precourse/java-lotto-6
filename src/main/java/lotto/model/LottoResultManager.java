@@ -7,8 +7,8 @@ import lotto.enums.LottoRank;
 
 public class LottoResultManager {
 
-    private static final int ADD_COUNT = 1;
-    private static final int INIT = 0;
+    private static final int INCREMENT = 1;
+    private static final int INITIAL_VALUE = 0;
     private final List<Lotto> lottos;
     private final ResultPolicy lottoResultPolicy;
     private long winningAmount = 0;
@@ -31,7 +31,7 @@ public class LottoResultManager {
 
     private void calculateLottoResults() {
         for (LottoRank rank : LottoRank.values()) {
-            lottoResults.put(rank, INIT);
+            lottoResults.put(rank, INITIAL_VALUE);
         }
 
         for (Lotto lotto : lottos) {
@@ -40,7 +40,7 @@ public class LottoResultManager {
                 lottoResult.isBonusMatch());
             if (rank != null) {
                 int count = lottoResults.get(rank);
-                lottoResults.put(rank, count + ADD_COUNT);
+                lottoResults.put(rank, count + INCREMENT);
                 winningAmount += rank.getPrizeAmount();
             }
         }

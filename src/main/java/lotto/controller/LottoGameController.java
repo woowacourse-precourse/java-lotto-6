@@ -19,7 +19,7 @@ public class LottoGameController {
         try {
             process();
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            OutputView.printErrorMessage(e);
         }
     }
 

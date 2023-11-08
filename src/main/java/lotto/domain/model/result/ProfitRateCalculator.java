@@ -2,10 +2,8 @@ package lotto.domain.model.result;
 
 
 import lotto.domain.model.lotto.PaidAmount;
-
 import java.util.Arrays;
 
-//TODO 클래스명 바꾸는게 좋을 듯
 public class ProfitRateCalculator {
 
     private static final int PERCENTAGE = 100;

@@ -45,6 +45,7 @@ public class LottoController {
         while (true) {
             try {
                 Integer paidAmountInput = inputProcessor.toPaidAmount(inputView.requestPaidAmount());
+                outputView.printNewLine();
                 return new PaidAmount(paidAmountInput);
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
@@ -67,7 +68,8 @@ public class LottoController {
     private Lotto requestWinningNumber() {
         while (true) {
             try {
-                List<Integer> winningNumbersInput = inputProcessor.toWinningNumbers(inputView.requestWinningNumbers());//
+                List<Integer> winningNumbersInput = inputProcessor.toWinningNumbers(inputView.requestWinningNumbers());
+                outputView.printNewLine();
                 return Lotto.from(winningNumbersInput);
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());
@@ -78,7 +80,8 @@ public class LottoController {
     private LottoNumber requestBonusNumber() {
         while (true) {
             try {
-                Integer bonusNumberInput = inputProcessor.toBonusNumber(inputView.requestBonusNumber());//
+                Integer bonusNumberInput = inputProcessor.toBonusNumber(inputView.requestBonusNumber());
+                outputView.printNewLine();
                 return LottoNumber.from(bonusNumberInput);
             } catch (IllegalArgumentException e) {
                 outputView.print(e.getMessage());

@@ -13,7 +13,7 @@ public class OutputView {
 
     private static final String NEW_LINE = "\n";
     private static final String TOTAL_TICKETS_MESSAGE = "개를 구매했습니다." + NEW_LINE;
-    private static final String START_WINNING_COUNT_MESSAGE = "당첨통계" + NEW_LINE + "--" + NEW_LINE;
+    private static final String START_WINNING_COUNT_MESSAGE = "당첨 통계" + NEW_LINE + "--" + NEW_LINE;
     private static final String WINNING_COUNTS_FORMAT = "%d개 일치%s (%,d원) - %d개" + NEW_LINE;
     private static final String BONUS_NUMBER_REQUIRED = ", 보너스 볼 일치";
     private static final String EMPTY = "";
@@ -23,6 +23,9 @@ public class OutputView {
         System.out.println(message);
     }
 
+    public void printNewLine() {
+        print("");
+    }
     public void printIssuedLottoTickets(final LottoTicketsDto lottoTicketsDto) {
         StringBuilder issued = new StringBuilder();
         appendTotalTickets(issued, lottoTicketsDto.getTotalTickets());

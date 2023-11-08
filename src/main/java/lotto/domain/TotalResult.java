@@ -4,6 +4,9 @@ import java.util.EnumMap;
 import lotto.enums.Reward;
 
 public class TotalResult {
+    private static final long SUM_INIT_VAL = 0L;
+    private static final int MULTIPLE_VAL = 100;
+
     private final EnumMap<Reward, Integer> totalResult;
 
     public TotalResult(EnumMap<Reward, Integer> totalResult) {
@@ -15,12 +18,12 @@ public class TotalResult {
     }
 
     public double calcRateOfReturn(int money) {
-        long sum = 0;
+        long sum = SUM_INIT_VAL;
 
         for (Reward reward : totalResult.keySet()) {
             sum += reward.getReward() * totalResult.get(reward);
         }
 
-        return (double) sum / money * 100;
+        return (double) sum / money * MULTIPLE_VAL;
     }
 }

@@ -10,6 +10,10 @@ import lotto.enums.ErrorMessages;
 import lotto.enums.GlobalConstant;
 
 public class Lotto {
+    private static final int RESULT_INIT_VAL = 0;
+    private static final int TRUE_VAL = 1;
+    private static final int FALSE_VAL = 0;
+
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
@@ -47,8 +51,8 @@ public class Lotto {
     }
 
     public Result compareNumberToAnswer(Answer answer) {
-        int hitResult = 0;
-        int bonusResult = 0;
+        int hitResult = RESULT_INIT_VAL;
+        int bonusResult = RESULT_INIT_VAL;
 
         for (int number : numbers) {
             hitResult += searchHitNumbers(answer, number);
@@ -64,15 +68,15 @@ public class Lotto {
 
     private int searchHitNumbers(Answer answer, int number) {
         if (answer.isHitNumbersHaveThisNumber(number)) {
-            return 1;
+            return TRUE_VAL;
         }
-        return 0;
+        return FALSE_VAL;
     }
 
     private int searchBonusNumber(Answer answer, int number) {
         if (answer.isBonusNumberTheSameAsThis(number)) {
-            return 1;
+            return TRUE_VAL;
         }
-        return 0;
+        return FALSE_VAL;
     }
 }

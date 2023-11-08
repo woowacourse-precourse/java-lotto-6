@@ -38,4 +38,10 @@ class LottoTest {
         int equalNumber = lotto.lottoNumbersContains(winNumber);
         assertThat(equalNumber).isEqualTo(3);
     }
+
+    @Test
+    void 당첨_번호의_값이_45보다_큰_경우(){
+        assertThatThrownBy(() -> new Lotto(List.of(1,2,3,4,5,46)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

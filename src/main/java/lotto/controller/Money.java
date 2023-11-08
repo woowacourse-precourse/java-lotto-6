@@ -36,7 +36,7 @@ public class Money {
     public void validateThousand(String number) {
         try {
             int convertNum = Integer.parseInt(number);
-            if(convertNum % MIN_MONEY != 0 || convertNum < MIN_MONEY) {
+            if(convertNum % MIN_MONEY != 0) {
                 throw new IllegalStateException();
             }
             isValidation = true;

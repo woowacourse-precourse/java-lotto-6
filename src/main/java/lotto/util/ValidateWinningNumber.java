@@ -5,9 +5,11 @@ import java.util.List;
 
 public class ValidateWinningNumber {
 
-    private static List<Integer> winningNumberList = new ArrayList<>();
+    private static List<Integer> winningNumberList;
 
     public static List<Integer> validateWinningNumber(String inputValue) {
+
+        winningNumberList = new ArrayList<>();
 
         String[] winningNumberStringArray = inputValue.split(",");
         isSixNumber(winningNumberStringArray);

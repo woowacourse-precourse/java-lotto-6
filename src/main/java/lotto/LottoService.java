@@ -95,42 +95,25 @@ public class LottoService {
         for (int i = 0; i < lottoBundle.size(); i++) {
             Lotto lotto = lottoBundle.get(i);
             List<Integer> lottoNumbers = lotto.getNumbers();
-            Prize prize = compareWinningAndLotto(winningNumbers, lottoNumbers);
+            Prize prize = compareWinningNumbersWithLottoNumbers(winningNumbers, lottoNumbers);
             winningStatistics.add(prize);
         }
 
         return winningStatistics;
     }
 
-    Prize compareWinningAndLotto(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
+    Prize compareWinningNumbersWithLottoNumbers(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
         int generalCount = 0;
         int bonusCount = 0;
         int bonusNumberIndex = winningNumbers.size() - 1;
-        int bouusNumber = winningNumbers.get(bonusNumberIndex);
+        int bonusNumber = winningNumbers.get(bonusNumberIndex);
 
         generalCount += countGeneralNumber(winningNumbers, lottoNumbers);
-        bonusCount += countBonusNumber(bouusNumber, lottoNumbers);
+        bonusCount += countBonusNumber(bonusNumber, lottoNumbers);
 
-        if (bonusCount < 1) {
-            if (generalCount == 3) {
-                return Prize.FIFTH;
-            }
-            if (generalCount == 4) {
-                return Prize.FOURTH;
-            }
-            if (generalCount == 5) {
-                return Prize.THIRD;
-            }
-            if (generalCount == 6) {
-                return Prize.FIRST;
-            }
-        }
+        Prize prize = selectPrize(generalCount, bonusCount);
 
-        if (bonusCount > 1 && generalCount == 5) {
-            return Prize.SECOND;
-        }
-
-        return Prize.NONE;
+        return prize;
     }
 
     int countGeneralNumber(List<Integer> winningNumbers, List<Integer> lottoNumbers) {
@@ -154,6 +137,29 @@ public class LottoService {
         }
 
         return bonusCount;
+    }
+
+    Prize selectPrize(int generalCount, int bonusCount) {
+        if (bonusCount < 1) {
+            if (generalCount == 3) {
+                return Prize.FIFTH;
+            }
+            if (generalCount == 4) {
+                return Prize.FOURTH;
+            }
+            if (generalCount == 5) {
+                return Prize.THIRD;
+            }
+            if (generalCount == 6) {
+                return Prize.FIRST;
+            }
+        }
+
+        if (bonusCount == 1 && generalCount == 5) {
+            return Prize.SECOND;
+        }
+
+        return Prize.NONE;
     }
 
     float getRateOfReturn(int cash, List<Prize> winningStatistics) {

@@ -11,6 +11,10 @@ public class Lotto {
         this.numbers = sortNumbersToAsc(generatedNumbers);
     }
 
+    public List<Integer> getLotteryNumbers() {
+        return numbers;
+    }
+
     private void validate(List<Integer> numbers) {
         // 숫자가 6개인지 확인
         if (numbers.size() != 6) {

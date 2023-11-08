@@ -1,15 +1,16 @@
 package lotto.view;
 
-public enum OutputView {
-    PURCHASE_PRICE_REQUEST("구입금액을 입력해 주세요.");
+import lotto.domain.Lotto;
+import static lotto.common.InfoMessage.*;
 
-    OutputView(String message) {
-        this.message = message;
-    }
+import java.util.List;
 
-    private String message;
+public class OutputView {
 
-    public String getMessage() {
-        return message;
+    public void showLotteryTickets(List<Lotto> lotteryTickets ) {
+        System.out.printf(PURCHASE_QUANTITY.getMessage(), lotteryTickets.size());
+        for (Lotto lotteryTicket : lotteryTickets) {
+            System.out.println(lotteryTicket);
+        }
     }
 }

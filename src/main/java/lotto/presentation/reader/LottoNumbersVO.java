@@ -1,4 +1,4 @@
-package lotto.presentation;
+package lotto.presentation.reader;
 
 import java.util.List;
 

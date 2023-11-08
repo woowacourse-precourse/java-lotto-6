@@ -6,9 +6,8 @@ import java.util.List;
 
 public class WinningResult {
 
-    private LottoNumbers lottoNumbers;
-    private WinningNumber winningNumber;
-    private NumberOfRanks numberOfRanks;
+    private final LottoNumbers lottoNumbers;
+    private final NumberOfRanks numberOfRanks;
 
     public WinningResult(LottoNumbers lottoNumbers, WinningNumber winningNumber) {
         this.lottoNumbers = lottoNumbers;

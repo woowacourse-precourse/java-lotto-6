@@ -5,44 +5,54 @@ import java.text.DecimalFormat;
 
 public class Profit {
 
-	public static void calculate(List<WinningRank> rankingList, String money) {
+	private static final String PROFIT_ZERO = "0.0";
 
-		int userMoney = Integer.parseInt(money);
+	public static void calculate(List<WinningRank> rankings, int money) {
 
-		int totalWinnings = calculateWinningMoney(rankingList);
+		int totalWinnings = calculateWinningMoney(rankings);
 
-		double profit = calculateProfitPercentage(totalWinnings, userMoney);
+		double profit = calculateProfitPercentage(totalWinnings, money);
 
 		printResult(profit);
 	}
 
-	private static int calculateWinningMoney(List<WinningRank> rankingList) {
+	private static int calculateWinningMoney(List<WinningRank> rankings) {
 
 		int WinningMoney = 0;
 
-		for (WinningRank rank : rankingList) {
+		for (WinningRank rank : rankings) {
 			WinningMoney += rank.getWinningmoney();
 		}
 
 		return WinningMoney;
 	}
 
-	private static double calculateProfitPercentage(int WinningMoney, int userMoney) {
+	public static double calculateProfitPercentage(int WinningMoney, int userMoney) {
 
 		double profit = (double) WinningMoney / userMoney * 100;
 
-		return Math.round(profit * 100.0) / 100.0;
+		if (profit != 0) {
+			return Math.round(profit * 100.0) / 100.0;
+		}
+		return 0;
 	}
 
 	private static void printResult(double profit) {
 
-		if (profit != 0) {
-			DecimalFormat df = new DecimalFormat("###,###,###.0");
-			String formattedProfit = df.format(profit);
-			
-			System.out.println("총 수익률은 " + formattedProfit + "%입니다.");
-		}
-		
-		System.out.println("총 수익률은 0.0%입니다.");
+		String profitPercent = profitFormat(profit);
+
+		System.out.println("총 수익률은 " + profitPercent + "%입니다.");
 	}
+
+	private static String profitFormat(double profit) { // 000,000.00%으로 출력하기 위한 메서드
+
+		if (profit != 0) {
+			DecimalFormat df = new DecimalFormat("###,###.0");
+			String formattedProfit = df.format(profit);
+
+			return formattedProfit;
+		}
+		return PROFIT_ZERO;
+	}
+
 }

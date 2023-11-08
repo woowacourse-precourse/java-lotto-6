@@ -1,5 +1,8 @@
 package lotto.validator;
 
+import static lotto.util.Constants.MAX_NUMBER;
+import static lotto.util.Constants.MIN_NUMBER;
+
 import java.util.Set;
 
 public class BonusNumberValidator {
@@ -11,7 +14,7 @@ public class BonusNumberValidator {
     }
 
     private static void validateNumberRange(int number) {
-        if (number < 1 || number > 45) {
+        if (number < MIN_NUMBER || number > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 1부터 45 사이의 숫자를 입력해 주세요.");
         }
     }

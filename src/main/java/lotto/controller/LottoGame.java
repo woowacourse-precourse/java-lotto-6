@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.util.Constants.LOTTO_PRICE;
+
 import java.util.HashSet;
 import java.util.List;
 import lotto.model.Lotto;
@@ -26,7 +28,7 @@ public class LottoGame {
     }
 
     private List<Lotto> generateLottos(int purchaseAmount) {
-        return LottoGenerator.generateLottos(purchaseAmount / LottoGenerator.LOTTO_PRICE);
+        return LottoGenerator.generateLottos(purchaseAmount / LOTTO_PRICE);
     }
 
     private void printPurchasedLottos(List<Lotto> lottos) {

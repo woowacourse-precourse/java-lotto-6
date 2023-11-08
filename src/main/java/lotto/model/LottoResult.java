@@ -1,5 +1,7 @@
 package lotto.model;
 
+import static lotto.util.Constants.LOTTO_PRICE;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +38,6 @@ public class LottoResult {
     }
 
     private double calculateWinningRate(int numerator, int denominator) {
-        return Math.round(((double) numerator / denominator) * 1000) / 10.0;
+        return Math.round(((double) numerator / denominator) * LOTTO_PRICE) / 10.0;
     }
 }

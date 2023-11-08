@@ -1,13 +1,14 @@
 package lotto.model;
 
+import static lotto.util.Constants.LOTTO_NUMBER_COUNT;
+import static lotto.util.Constants.MAX_NUMBER;
+import static lotto.util.Constants.MIN_NUMBER;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LottoGenerator {
-    public static final int LOTTO_PRICE = 1000;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 45;
 
     public static Lotto generateLotto() {
         List<Integer> numbers = pickUniqueLottoNumbers();
@@ -25,7 +26,7 @@ public class LottoGenerator {
     }
 
     private static List<Integer> pickUniqueLottoNumbers() {
-        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, 6));
+        return new ArrayList<>(Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_NUMBER_COUNT));
     }
 
     private static void validateLottoCount(int count) {

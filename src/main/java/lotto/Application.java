@@ -118,21 +118,37 @@ public class Application {
         return winNums;
     }
 
-    public static Winner getWinner() {
-        Winner winner = new Winner();
-        
-        try{
+    public static Winner getWinnerNums(Winner winner) {
+        try {
             System.out.println("당첨 번호를 입력해 주세요.");
             winner.winNums = isWinnersValid(camp.nextstep.edu.missionutils.Console.readLine());
+        } catch (NumberFormatException exp) {
+            System.out.println("[ERROR] 로또 당첨 번호를 숫자로 입력해주세요.");
         } catch (IllegalArgumentException exp) {
             System.out.println("[ERROR] 유효한 로또 당첨 번호를 입력해주세요.");
         }
+
+        return winner;
+    }
+
+    public static Winner getBonusNum(Winner winner) {
         try {
             System.out.printf("\n보너스 번호를 입력해 주세요.\n");
             winner.bonusNum = isLottoNumValid(camp.nextstep.edu.missionutils.Console.readLine());
+        } catch (NumberFormatException exp) {
+            System.out.println("[ERROR] 로또 보너스 번호를 숫자로 입력해주세요.");
         } catch (IllegalArgumentException exp) {
             System.out.println("[ERROR] 유효한 로또 보너스 번호를 입력해주세요.");
         }
+
+        return winner;
+    }
+
+    public static Winner getWinner() {
+        Winner winner = new Winner();
+        
+        winner = getWinnerNums(winner);
+        winner = getBonusNum(winner);
 
         return winner;
     }

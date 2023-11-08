@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
+import static lotto.domain.ErrorMessage.*;
 
 public class InputView {
     private InputView() {}
@@ -73,7 +74,7 @@ public class InputView {
 
         private static void checkPurchaseAmountConvertNumber(String input) {
             if (!isInteger(input)) {
-                throw new IllegalArgumentException("[ERROR] 구매 금액은 숫자만 입력 가능합니다.");
+                throw new IllegalArgumentException(PURCHASE_AMOUNT_CONVERT_EXCEPTION.getMessage());
             }
         }
 
@@ -83,20 +84,22 @@ public class InputView {
                 return;
             }
 
-            throw new IllegalArgumentException("[ERROR] 구매 금액은 1,000단위로 입력해야 합니다.");
+            throw new IllegalArgumentException(PURCHASE_AMOUNT_THOUSAND_EXCEPTION.getMessage());
         }
 
         private static void checkMaxRangeNumber(String input) {
             int checkData = Integer.parseInt(input);
             if (checkData > MAX_PURCHASE_AMOUNT) {
-                throw new IllegalArgumentException("[ERROR] 구매 금액은 100,000원을 넘을 수 없습니다.");
+                throw new IllegalArgumentException(
+                        PURCHASE_AMOUNT_MAXVALUE_EXCEPTION.getMaxValueMessage(String.valueOf(MAX_PURCHASE_AMOUNT))
+                );
             }
         }
 
         private static void checkNumberSixCount(String input) {
             String[] checkData = input.split(",");
             if (checkData.length != SIX) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 ',' 기준으로 6자리를 입력해야 합니다.");
+                throw new IllegalArgumentException(WINNING_NUMBER_SIX_EXCEPTION.getMessage());
             }
         }
 
@@ -104,7 +107,7 @@ public class InputView {
             String[] checkNumbers = input.split(",");
             for (String checkNumber : checkNumbers) {
                 if (!isInteger(checkNumber)) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 숫자만 입력 가능합니다.");
+                    throw new IllegalArgumentException(WINNING_NUMBER_CONVERT_EXCEPTION.getMessage());
                 }
             }
         }
@@ -113,7 +116,7 @@ public class InputView {
             String[] checkDatas = input.split(",");
             for (String checkNumber : checkDatas) {
                 if (!isLottoNumberRange(checkNumber)) {
-                    throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45까지 가능합니다.");
+                    throw new IllegalArgumentException(WINNING_NUMBER_RANGE_EXCEPTION.getMessage());
                 }
             }
         }
@@ -127,7 +130,7 @@ public class InputView {
         private static void checkWinningNumbersDuplication(String input) {
             String[] checkDatas = input.split(",");
             if (!isDuplicate(checkDatas)) {
-                throw new IllegalArgumentException("[ERROR] 당첨 번호는 중복될 수 없습니다.");
+                throw new IllegalArgumentException(WINNING_NUMBER_DUPLICATE_EXCEPTION.getMessage());
             }
         }
 
@@ -144,13 +147,13 @@ public class InputView {
 
         private static void checkBonusConvertNumber(String input) {
             if (!isInteger(input)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
+                throw new IllegalArgumentException(BONUS_NUMBER_CONVERT_EXCEPTION.getMessage());
             }
         }
 
         private static void checkBonusNumberRange(String input) {
             if (!isLottoNumberRange(input)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45까지 가능합니다.");
+                throw new IllegalArgumentException(BONUS_NUMBER_RANGE_EXCEPTION.getMessage());
             }
         }
 
@@ -158,7 +161,7 @@ public class InputView {
             String[] checkDatas = convertCheckDatas(winningList, bonusNumber);
 
             if (!isDuplicate(checkDatas)) {
-                throw new IllegalArgumentException("[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.");
+                throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATE_EXCEPTION.getMessage());
             }
         }
 

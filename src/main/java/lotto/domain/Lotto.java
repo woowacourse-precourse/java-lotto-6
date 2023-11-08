@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import static lotto.domain.ErrorMessage.*;
+
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -26,7 +28,7 @@ public class Lotto {
     private static class NumberValidation {
         private static void checkNumberRange(List<Integer> numbers) {
             if (numbers.size() != 6) {
-                throw new IllegalArgumentException("[ERROR] 로또 숫자는 6자리를 입력해야 됩니다.");
+                throw new IllegalArgumentException(LOTTO_NUMBER_SIX_EXCEPTION.getMessage());
             }
         }
 
@@ -34,7 +36,7 @@ public class Lotto {
             Set<Integer> collect = new HashSet<>(numbers);
 
             if (collect.size() != 6) {
-                throw new IllegalArgumentException("[ERROR] 중복된 숫자가 입력되었습니다.");
+                throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATE_EXCEPTION.getMessage());
             }
         }
     }

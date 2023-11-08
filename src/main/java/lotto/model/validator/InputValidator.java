@@ -5,22 +5,23 @@ import lotto.model.lotto.WinningNumber;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import static lotto.model.constants.IntegerConstants.*;
+import static lotto.model.constants.RegexPatterns.*;
 import static lotto.model.validator.ExceptionHandler.illegalArgument;
 import static lotto.model.validator.ExceptionMessage.*;
 
 public class InputValidator {
-    private static final Pattern MULTIPLE_1000 = Pattern.compile("([1-9]+)(0{3,})");
-    private static final Pattern NUMERIC = Pattern.compile("^[1-9]\\d*");
-    private static final Pattern NUMERIC_WITH_COMMA = Pattern.compile("(\\d+,){5}\\d+");
+    private static final Pattern MULTIPLE_1000 = Pattern.compile(REGEX_MULTIPLE_1000.get());
+    private static final Pattern NUMERIC = Pattern.compile(REGEX_NUMERIC.get());
+    private static final Pattern NUMERIC_WITH_COMMA = Pattern.compile(REGEX_NUMERIC_WITH_COMMA.get());
 
     public static void numberMustBeMultipleOf1000(String input){
         if (MULTIPLE_1000.matcher(input).matches()) return;
-
         illegalArgument(PURCHASE_AMOUNT_MUST_BE_MULTIPLE_OF_1000.getMessage());
     }
 
     public static void lottoMakesSixNumbers(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != SIZE_OF_LOTTO.get()) {
             illegalArgument(LOTTO_INCLUDES_6_NUMBERS.getMessage());
         }
     }
@@ -39,14 +40,16 @@ public class InputValidator {
     }
 
     public static void numberMustBe1To45(List<Integer> inputNumbers) {
-        long count = inputNumbers.stream().filter(InputValidator::isNumberValidRange).count();
+        long count = inputNumbers.stream()
+                .filter(InputValidator::isNumberValidRange)
+                .count();
         if (count != inputNumbers.size()) {
             illegalArgument(LOTTO_RANGE_IS_1_TO_45.getMessage());
         }
     }
 
     private static boolean isNumberValidRange(int number){
-        return number >= 1 && number <= 45;
+        return (number >= MINIMUM_OF_LOTTO.get()) && (number <= MAXIMUM_OF_LOTTO.get());
     }
 
     public static void isInputEmpty(String input){

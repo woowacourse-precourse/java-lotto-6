@@ -12,8 +12,7 @@ public enum ExceptionMessage {
     LOTTO_INCLUDES_UNIQUE_NUMBERS("로또 번호는 서로 다른 6자로 이뤄져 있습니다."),
     LOTTO_RANGE_IS_1_TO_45("로또 번호는 1부터 45 사이의 숫자로 이뤄져 있습니다."),
 
-    BONUS_NUMBER_MUST_UNIQUE_WITH_WINNING_NUMBER("보너스 번호는 로또 당첨 번호와 중복 되지 않아야 합니다.")
-    ;
+    BONUS_NUMBER_MUST_UNIQUE_WITH_WINNING_NUMBER("보너스 번호는 로또 당첨 번호와 중복 되지 않아야 합니다.");
 
     private final String message;
 

@@ -11,7 +11,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Statistic {
-    // TODO: 11/6/23 상수 정리
     private static final Integer TARGET_COUNT_SIX = 6;
     private static final Integer TARGET_COUNT_FIVE = 5;
     private static final Integer TARGET_COUNT_FOUR = 4;
@@ -39,7 +38,6 @@ public class Statistic {
     public StringBuilder show() {
         StringBuilder resultString = new StringBuilder();
 
-        // TODO: 11/6/23 상수 정리
         execution();
 
         resultString.append("3개 일치 (5,000원) - " + getCount(LOTTO_FIFTH) + "개\n");
@@ -66,7 +64,6 @@ public class Statistic {
         }
     }
 
-    // TODO: 11/6/23 상수 정리
     private void calculateTotalWinMoney() {
 
         for (LottoRank lottoRank : lottoRanks) {

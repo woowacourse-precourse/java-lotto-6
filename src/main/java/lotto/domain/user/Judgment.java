@@ -4,7 +4,6 @@ import lotto.domain.lotto.Lotto;
 import lotto.domain.number.LottoTargetNumResults;
 
 public class Judgment {
-    // TODO: 11/6/23 상수 관리
     private static final Integer SIZE_LOTTO_NUMBERS = 6;
     private static final Integer BONUS_NUM_INDEX = 6;
     private static final Integer COUNT_NUMBER = 1;

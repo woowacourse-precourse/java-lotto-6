@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class PurchaseLottoTest {
 
     PurchaseLotto purchaseLotto;
+
     @BeforeEach
     void beforeEach() {
         this.purchaseLotto = new PurchaseLotto();
@@ -46,5 +47,13 @@ class PurchaseLottoTest {
 
         purchaseLotto.purchase("18000");
         assertThat(purchaseLotto.getNumberOfPurchases()).isEqualTo(18);
+    }
+
+    @Test
+    void 입력_금액_제한() {
+        assertThatCode(() -> purchaseLotto.purchase("999999000")).doesNotThrowAnyException();
+        assertThatThrownBy(() -> purchaseLotto.purchase("1000000000"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 1,000,000,000원 보다 적은 금액을 입력해주세요.");
     }
 }

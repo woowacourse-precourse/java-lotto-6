@@ -14,18 +14,8 @@ public class Customer {
     private final Money money;
     private List<Lotto> lottos;
     public Customer(String money) {
-        validationMoney(money);
-        this.money = new Money(parseInt(money));
+        this.money = new Money(money);
         this.lottos = new ArrayList<Lotto>();
-    }
-
-    private void validationMoney(String money) {
-        try {
-            parseInt(money);
-        } catch (NumberFormatException error) {
-            OutputView.printError(ErrorMessage.IS_NOT_NUMBER.getMessage());
-            throw new IllegalArgumentException(ErrorMessage.ERROR.getMessage()+ErrorMessage.INPUT.getMessage());
-        }
     }
     public int getMoney() {
         return money.getValue();

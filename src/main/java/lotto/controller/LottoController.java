@@ -21,59 +21,49 @@ public class LottoController {
     }
 
     public void inputBuyLottoTickets() {
-        boolean exceptionCheck = true;
-        while (exceptionCheck) {
-            try {
-                OutputView.printInputBuyAmount();
-                String inputAmount = Console.readLine();
+        try {
+            OutputView.printInputBuyAmount();
+            String inputAmount = Console.readLine();
 
-                this.lottoService.buyLottoTickets(inputAmount);
-
-                exceptionCheck = false;
-
-            }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            this.lottoService.buyLottoTickets(inputAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBuyLottoTickets();
         }
     }
 
     public void inputWinnerLottoTicket() {
-        boolean exceptionCheck = true;
-        while (exceptionCheck) {
-            try {
-                OutputView.printInputWinningNumber();
-                String inputLotto = InputView.getInputLine();
 
-                this.lottoService.createLottoWinningNumber(inputLotto);
-                exceptionCheck = false;
+        try {
+            OutputView.printInputWinningNumber();
+            String inputLotto = InputView.getInputLine();
 
-            }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+            this.lottoService.createLottoWinningNumber(inputLotto);
+
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputWinnerLottoTicket();
         }
     }
 
     public void createUserLottoNumbers() {
+
         List<List<Integer>> userLottoNumbers = this.lottoService.getUserLottoNumbers();
+
         OutputView.printPurchaseTicketCount(userLottoNumbers.size());
-
         OutputView.printUserLottoNumbers(userLottoNumbers);
-
     }
 
     public void inputBonusNumber() {
-        boolean exceptionCheck = true;
-        while (exceptionCheck) {
-            try {
-                OutputView.printInputBonusNumber();
-                String inputBonus = InputView.getInputLine();
+        try {
+            OutputView.printInputBonusNumber();
+            String inputBonus = InputView.getInputLine();
 
-                this.lottoService.createBonusNumber(inputBonus);
-                exceptionCheck = false;
+            this.lottoService.createBonusNumber(inputBonus);
 
-            }catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            inputBonusNumber();
         }
     }
 

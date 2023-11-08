@@ -9,13 +9,23 @@ public class PurchaseAmount {
 	private final int lottoPurchaseCount;
 
 	public PurchaseAmount(String amount) {
-		validateIsDigit(amount);
-		validateIsEmpty(amount);
+		validateStringParameter(amount);
+
 		int convertedAmount = convertStringToInt(amount);
-		validateIsPositive(convertedAmount);
-		validateIsThousandUnit(convertedAmount);
+		validateIntParameter(convertedAmount);
+
 		this.amount = convertedAmount;
 		this.lottoPurchaseCount = calculateLottoPurchaseCount(convertedAmount);
+	}
+
+	private void validateIntParameter(int convertedAmount) {
+		validateIsPositive(convertedAmount);
+		validateIsThousandUnit(convertedAmount);
+	}
+
+	private void validateStringParameter(String amount) {
+		validateIsDigit(amount);
+		validateIsEmpty(amount);
 	}
 
 	public int getAmount() {

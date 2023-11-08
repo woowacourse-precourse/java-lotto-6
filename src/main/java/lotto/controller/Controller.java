@@ -1,9 +1,12 @@
 package lotto.controller;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 import lotto.constants.Constants;
 import lotto.domain.Customer;
+import lotto.domain.Reward;
 import lotto.domain.WinningLotto;
 import lotto.utils.Utils;
 import lotto.validator.InputValidator;
@@ -27,6 +30,7 @@ public class Controller {
         setBonusLotto();
         gatherWinningAndBonusLotto();
         compareLotto(customer, winningLotto);
+        showPrizes(customer.getPrizes());
 
     }
 
@@ -77,8 +81,15 @@ public class Controller {
     private void gatherWinningAndBonusLotto() {
         winningLotto = new WinningLotto(winningNumbers, bonusNumber);
     }
-    private void compareLotto(Customer customer, WinningLotto winningLotto){
+
+    private void compareLotto(Customer customer, WinningLotto winningLotto) {
         winningLotto.compareLottos(customer, winningLotto);
+        System.out.println(customer.getPrizes());
+    }
+
+    private void showPrizes(EnumMap<Reward, Integer> prizes) {
+        outputView.showWinning();
+        outputView.showPrizes(prizes);
     }
 }
 

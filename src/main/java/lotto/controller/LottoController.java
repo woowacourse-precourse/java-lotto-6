@@ -9,7 +9,7 @@ import lotto.utils.Utils;
 
 public class LottoController {
 
-    public Lotto GenerateLotto(){
+    public Lotto GenerateLotto() {
         List<Integer> numbersForLotto = new ArrayList<>(Utils.generateRandomNumber());
         Collections.sort(numbersForLotto);
         return new Lotto(numbersForLotto);

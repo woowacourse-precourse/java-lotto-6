@@ -40,16 +40,22 @@ public class WinningLotto {
         }
         return count;
     }
-    public boolean compareWithBonusNumber(Lotto lotto, int bonusNumber){
+
+    public boolean compareWithBonusNumber(Lotto lotto, int bonusNumber) {
         return lotto.getLottosNumber().contains(bonusNumber);
     }
-    public Reward checkRewardBonusOrNot(WinningLotto winningLotto, Lotto lotto){
+
+    public Reward checkRewardBonusOrNot(WinningLotto winningLotto, Lotto lotto) {
 
         int count = compareOneLottoAndWinningLotto(lotto, winningLotto.getWinninglottos());
         boolean hasBonusNumber = compareWithBonusNumber(lotto, winningLotto.getBonusNumber());
         Reward reward = Reward.values()[count];
-        if(reward == Reward.MATCH_FIVE_NOT_BONUS && hasBonusNumber){
-            return  Reward.MATCH_FIVE_BONUS;
-        }return reward;
+        if (reward == Reward.MATCH_FIVE_NOT_BONUS && hasBonusNumber) {
+            return Reward.MATCH_FIVE_BONUS;
+        }
+        if (reward == Reward.MATCH_FIVE_BONUS) {
+            return Reward.MATCH_SIX;
+        }
+        return reward;
     }
 }

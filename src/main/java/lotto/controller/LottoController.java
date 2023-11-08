@@ -1,10 +1,7 @@
 package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.domain.Lotto;
-import lotto.domain.LottoNumber;
-import lotto.domain.Money;
-import lotto.domain.Numbers;
+import lotto.domain.*;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -14,13 +11,14 @@ import java.util.List;
 public class LottoController {
     private static List<Lotto> myLottos = new ArrayList<>();
     private static Lotto winningLotto;
-    private static LottoNumber bonusNumber;
+    private static int bonusNumber;
+    private static int[] resultCounter = new int[6];
 
     public void play() {
         Money money = new Money();
         buyLottos(money.trial());
         winningLotto = new Lotto(InputView.inputWinningNumbers());
-        bonusNumber = new LottoNumber(InputView.inputBonusNumber());
+        bonusNumber = InputView.inputBonusNumber();
         checkWinning();
     }
 
@@ -36,6 +34,9 @@ public class LottoController {
     public void checkWinning() {
         for (Lotto myLotto : myLottos) {
             int match = calculateWinning(myLotto, winningLotto);
+            boolean isBonus = myLotto.getNumbers().contains(bonusNumber);
+            Winning winning = Result.win(match, isBonus);
+            resultCounter[winning.ordinal()]++;
         }
     }
 

@@ -2,33 +2,26 @@ package lotto.domain;
 
 public enum Winning {
 
-    FIRST("6개 일치", 6, false, 2_000_000_000),
-    SECOND("5개 일치, 보너스 볼 일치", 5, true, 30_000_000),
-    THIRD("5개 일치", 5, false, 1_500_000),
-    FOURTH("4개 일치", 4, false, 50_000),
-    FIFTH("3개 일치", 3, false, 5_000);
+    FIRST("6개 일치", 2_000_000_000),
+    SECOND("5개 일치, 보너스 볼 일치", 30_000_000),
+    THIRD("5개 일치", 1_500_000),
+    FOURTH("4개 일치", 50_000),
+    FIFTH("3개 일치", 5_000),
+    FAIL("", 0);
 
-    private final String condition;
-    private final int match;
-    private final boolean bonus;
+    private final String status;
     private final int reward;
 
-    Winning(final String condition, final int match, final boolean bonus, final int reward) {
-        this.condition = condition;
-        this.match = match;
-        this.bonus = bonus;
+    Winning(final String status, final int reward) {
+        this.status = status;
         this.reward = reward;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getStatus() {
+        return status;
     }
 
-    public int getMatch() {
-        return match;
-    }
-
-    public int getMoney() {
+    public int getReward() {
         return reward;
     }
 }

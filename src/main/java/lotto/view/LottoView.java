@@ -50,7 +50,6 @@ public class LottoView implements View {
 
     @Override
     public void printPurchaseQuantity(LottoPurchaseDto lottoPurchaseDto) {
-        println("");
         printMessage(PURCHASE_AMOUNT_MESSAGE, lottoPurchaseDto.quantity());
     }
 
@@ -64,14 +63,12 @@ public class LottoView implements View {
 
     @Override
     public String askWinningNumber() {
-        println("");
         printMessage(WINNING_NUMBER_PROMPT);
         return Console.readLine();
     }
 
     @Override
     public String askBonusNumber() {
-        println("");
         printMessage(BONUS_NUMBER_PROMPT);
         return Console.readLine();
     }

@@ -35,7 +35,6 @@ public class LottoController {
                 inputBonusNumber,
                 lottosDto
         );
-        view.println("");
         view.printMessage(Message.WINNING_STATS);
         view.printWinningCase(winningResultDto);
         ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto.amount(), winningResultDto);

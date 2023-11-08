@@ -1,34 +1,47 @@
 package lotto.presentation.view;
 
-import javax.swing.plaf.synth.SynthLookAndFeel;
 import lotto.util.Rank;
 
 public class View {
-    // 나중에 리터럴은 다 상수로 바꾸기
+    private static final String PROMPT_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String PURCHASE_SIZE_MESSAGE = "%d개를 구매했습니다.";
+    private static final String PROMPT_WINNING_NUMBER = "당첨 번호를 입력해 주세요.";
+    private static final String PROMPT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
+    private static final String WINNING_STATISTICS_HEADER = "당첨 통계";
+    private static final String DIVIDER = "---";
+
     public void promptForPurchaseAmount() {
-        System.out.println("구입금액을 입력해 주세요.");
+        System.out.println(PROMPT_PURCHASE_AMOUNT);
     }
 
     public void promptForError(IllegalArgumentException e) {
-        System.out.println("[ERROR] " + e);
+        System.out.println(ERROR_PREFIX + e.getMessage());
     }
+
     public void printPurchaseSize(int purchaseSize) {
-        System.out.println("\n" + purchaseSize + "개를 구매했습니다.");
+        System.out.println();
+        System.out.println(String.format(PURCHASE_SIZE_MESSAGE, purchaseSize));
     }
+
     public void printPurchaseLottoTicket(String lotto) {
         System.out.println(lotto);
     }
 
     public void promptForWinningNumber() {
-        System.out.println("\n당첨 번호를 입력해 주세요.");
+        System.out.println();
+        System.out.println(PROMPT_WINNING_NUMBER);
     }
 
     public void promptForBonusNumber() {
-        System.out.println("\n보너스 번호를 입력해 주세요.");
+        System.out.println();
+        System.out.println(PROMPT_BONUS_NUMBER);
     }
 
     public void promptForWinningStatistics() {
-        System.out.println("\n당첨 통계\n---");
+        System.out.println();
+        System.out.println(WINNING_STATISTICS_HEADER);
+        System.out.println(DIVIDER);
     }
 
     public void printWinningStatistics(Rank rank, int rankCount) {

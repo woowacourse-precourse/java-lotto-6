@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import lotto.Validator;
 import lotto.domain.dto.BuyLottoInfo;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 
 import static lotto.Constant.*;
 import static lotto.ErrorMessage.NOT_VALID_MONEY;
+import static lotto.Validator.validatePositiveNumber;
 
 public class PurchaseLottos {
 
@@ -19,6 +21,7 @@ public class PurchaseLottos {
     private final int amount;
 
     public PurchaseLottos(int amount) {
+        validatePositiveNumber(amount);
         validateNotHasRemainder(amount);
         this.amount = amount;
         lottoTicketCount = amount / this.unitOfMoney;
@@ -42,7 +45,7 @@ public class PurchaseLottos {
 
     private void makeLotto(){
         for(int i=0; i<lottoTicketCount; i++){
-            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minimumLottoNumber, maximumLottoNumber, NUMBER_COUNT);
+            List<Integer> numbers = Randoms.pickUniqueNumbersInRange(minimumLottoNumber, maximumLottoNumber, LOTTO_NUMBER_COUNT);
             List<Integer> sortedNumbers = new ArrayList<>(numbers);
             Collections.sort(sortedNumbers);
             userLottos.add(new Lotto(sortedNumbers));

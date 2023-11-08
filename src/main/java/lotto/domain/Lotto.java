@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Lotto {
     private final List<Integer> numbers;
+    private static final int PRICE = 1000;
+    private static final int MIN_RANGE = 1;
+    private static final int MAX_RANGE = 45;
+    private static final int NUMBER_COUNT = 6;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
@@ -21,5 +25,14 @@ public class Lotto {
 
     public List<Integer> getNumbers() {
         return numbers;
+    }
+
+    public static Lotto issue() {
+        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_RANGE, MAX_RANGE, NUMBER_COUNT);
+        return new Lotto(numbers);
+    }
+
+    public static int calculatePurchaseQuantity(int purchaseCostInput) {
+        return purchaseCostInput / PRICE;
     }
 }

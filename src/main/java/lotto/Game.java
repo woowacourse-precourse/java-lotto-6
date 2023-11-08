@@ -25,10 +25,10 @@ public class Game {
             this.money = Integer.parseInt(Console.readLine());
             input_Count(this.money);
         }catch (NumberFormatException e){
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] 구입 금액은 숫자여야 합니다.");
             start();
         }catch(IllegalArgumentException e){
-            System.out.println("[ERROR]");
+            System.out.println("[ERROR] 구입 금액은 1000으로 나눠 져야 합니다.");
             start();
         }
     }
@@ -55,10 +55,7 @@ public class Game {
             list = Arrays.stream(Console.readLine().split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
             this.answer = new Lotto(list);
         }catch (IllegalArgumentException e){
-            System.out.println("[ERROR]" );
-            userWinning();
-        }catch (IllegalStateException e){
-            System.out.println("[ERROR]" );
+            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 서로 다른 6개로 구성된 숫자 여야 합니다." );
             userWinning();
         }
     }

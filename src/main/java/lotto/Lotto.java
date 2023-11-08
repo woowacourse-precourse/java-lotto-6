@@ -17,10 +17,11 @@ public class Lotto {
             throw new IllegalArgumentException();
         }
         if(!checkRangeAll(numbers)){
-            // 특정 범위 내의 값이 아닌경우
+            // 특정 범위 내의 값이 아닌 경우
             throw new IllegalArgumentException();
         }
         if(!checkDupliAll(numbers)){
+            // 동일한 값이 존재할 경우
             throw new IllegalArgumentException();
         }
     }

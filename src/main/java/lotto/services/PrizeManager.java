@@ -2,14 +2,14 @@ package lotto.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import lotto.domain.Rank;
+import lotto.model.Rank;
 import lotto.utils.Constants;
 
 public class PrizeManager {
     // Fields
-    private List<Integer> prizes = new ArrayList<>();
     private final int TICKET_PRICE = Constants.TICKET_PRICE.getValue();
     private final int NOT_VALUE = Constants.NOT_VALUE.getValue();
+    private List<Integer> prizes = new ArrayList<>();
 
 
     // Features

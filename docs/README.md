@@ -87,15 +87,12 @@
     - **Tickets**: Lotto의 목록 보유, 요청에 따라 관련 기능 수행
     - **Rank**(enum): 점수별 상금 목록 보유 및 관련 기능 보유
 
-
 - controller: Model과 View 사이에서 계층간 데이터 교환
     - **Controller**
-
 
 - model: 프로그램의 메인 로직
     - **LottoManager**: 게임의 진행에 관련된 로직 담당(티켓 관리)
     - **PrizeManager**: 상금을 포함한 게임 결과에 대한 로직 담당(상금 현황 및 수익률 관리)
-
 
 - view: 사용자와 상호작용
     - **InputView**
@@ -103,7 +100,6 @@
         - **DisplayView**
             - **DisplayAnnounce**: 안내 메시지 출력
             - **DisplayError**: 에러 메시지 출력
-
 
 - utils: 프로그램 구현에 필요한 여러 기능을 보유한 패키지
     - validation

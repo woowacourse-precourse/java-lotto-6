@@ -10,9 +10,9 @@ import lotto.utils.validation.Validator;
 
 public class LottoManager {
     // Fields
+    private final int TICKET_PRICE = Constants.TICKET_PRICE.getValue();
     private Validator validator = new Validator();
     private Tickets tickets = new Tickets();
-    private final int TICKET_PRICE = Constants.TICKET_PRICE.getValue();
 
 
     // Features

@@ -3,8 +3,10 @@ package lotto.utils.validation;
 import lotto.utils.Constants;
 
 public class Validator {
+    // Fields
     private int TICKET_PRICE = Constants.TICKET_PRICE.getValue();
 
+    
     // Features
     public int validateMoney(String string) {
         int money = validateisNumber(string);

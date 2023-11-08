@@ -1,12 +1,13 @@
 package lotto.model;
 
+import java.util.Objects;
 import lotto.utils.Constants;
 
 public class LottoNumber {
     // Fields, Constructors
-    private final int number;
     private final int RANGE_MIN = Constants.RANGE_MIN.getValue();
     private final int RANGE_MAX = Constants.RANGE_MAX.getValue();
+    private final int number;
 
     public LottoNumber(String string) {
         int number = parseToNumber(string);
@@ -23,6 +24,11 @@ public class LottoNumber {
     // Features
     public int getNumber() {
         return number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 
 

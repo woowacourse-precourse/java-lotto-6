@@ -9,9 +9,9 @@ import lotto.utils.Constants;
 
 public class Lotto {
     // Fields, Constructor
-    private final List<Integer> numbers;
     private final int LOTTO_NUMBER_LENGTH = Constants.LOTTO_NUMBER_LENGTH.getValue();
     private int WINNING_NUMBER_LENGTH = Constants.WINNING_NUMBER_LENGTH.getValue();
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

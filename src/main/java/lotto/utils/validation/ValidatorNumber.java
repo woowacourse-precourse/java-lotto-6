@@ -9,10 +9,10 @@ import lotto.utils.Constants;
 
 public class ValidatorNumber extends Validator {
     // Fields
-    protected Set<Integer> winningNumbers;
     private final int LOTTO_NUMBER_LENGTH = Constants.LOTTO_NUMBER_LENGTH.getValue();
     private final int RANGE_MIN = Constants.RANGE_MIN.getValue();
     private final int RANGE_MAX = Constants.RANGE_MAX.getValue();
+    protected Set<Integer> winningNumbers;
 
 
     // Features

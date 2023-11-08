@@ -1,6 +1,7 @@
 package lotto.utils;
 
 public enum Constants {
+    // Value, Fields, Constructor
     TICKET_PRICE(1000),
     RANGE_MIN(1),
     RANGE_MAX(45),

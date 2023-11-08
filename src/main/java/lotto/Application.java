@@ -9,7 +9,6 @@ public class Application {
     final static int lottoMin = 1;
     final static int lottoMax = 45;
     final static int lottolength = 6;
-    final static int lotteryWinningRank = 6;
     final static int coinStandard = 1000;
     final static int[] lottoRankMoney = {0, 2000000000, 30000000, 1500000, 50000, 5000};
     static int inputCoin;
@@ -152,7 +151,7 @@ public class Application {
     }
 
     public static void LotteryWinningInit(){
-        for(int i=0; i<lotteryWinningRank; i++)
+        for(int i=0; i<lottolength; i++)
             myWinningLotto.add(0);
     }
 
@@ -174,7 +173,7 @@ public class Application {
     public static void SumLottoResult(){
         System.out.println("당첨 통계");
         System.out.println("---");
-        for(int i=lotteryWinningRank-1; i>0; i--){
+        for(int i=lottolength-1; i>0; i--){
             totalLottoMoney += GetMoney(i, myWinningLotto.get(i));
         }
     }

@@ -13,17 +13,17 @@ public class Application {
         int total = 0;
         int count = inputMoney();
         List<Lotto> lottos = new ArrayList<>();
-        List<Integer> answer = new ArrayList<>();
-        List<Integer> score  = new ArrayList<>();
 
         for(int i=0;i<count;i++){
             lottos.add(new Lotto(makeRandom()));
             System.out.println(lottos.get(i).getNumbers());
         }
-        answer = inputLotto();
-        score = calScore(lottos, answer, answer.get(answer.size()-1));
+        List<Integer> answer = inputLotto();
+        List<Integer> score = calScore(lottos, answer, answer.get(answer.size()-1));
         total = printScore(score);
-        System.out.println("총 수익률은 "+(total/(count*1000))+"%입니다.");
+
+        double res_score = (total/(count*1000)) * 100;
+        System.out.println("총 수익률은 "+res_score+"%입니다.");
     }
 
     //구매 금액 입력
@@ -37,13 +37,7 @@ public class Application {
 
     //랜던값 만들기
     public static List<Integer>  makeRandom(){
-        List<Integer> resRand = new ArrayList<>();
-        while (resRand.size() < 6) {
-            int randomNumber = Randoms.pickNumberInRange(1, 45);
-            if (!resRand.contains(randomNumber)) {
-                resRand.add(randomNumber);
-            }
-        }
+        List<Integer> resRand = Randoms.pickUniqueNumbersInRange(1,45,6);
         return resRand;
     }
 

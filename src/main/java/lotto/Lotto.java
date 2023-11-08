@@ -21,11 +21,13 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         // 길이가 6이 아닐 때
         if (numbers.size() != 6) {
+            System.out.println("[ERROR] 6개의 값을 입력하세요.");
             throw new IllegalArgumentException();
         }
         // 중복 값이 존재할 때
         Collections.sort(numbers);
         if(validate_dupli(numbers)){
+            System.out.println("[ERROR] 중복값이 존재 하지 않도록 입력하세요.");
             throw new IllegalArgumentException();
         }
     }

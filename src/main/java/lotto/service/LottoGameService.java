@@ -12,6 +12,11 @@ public class LottoGameService {
 
     }
 
+    public String calculateRateOfReturn(int purchaseAmount, int totalWinningAmount) {
+        Double amount = Double.valueOf(purchaseAmount);
+        double rateOfReturn = totalWinningAmount / amount * 100;
+        return String.format("%.1f", rateOfReturn);
+    }
     public int sumWinningAmount(WinningResult result) {
         return result.calculateWinningAmount();
     }

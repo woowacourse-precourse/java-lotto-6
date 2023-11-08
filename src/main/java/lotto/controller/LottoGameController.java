@@ -18,8 +18,7 @@ public class LottoGameController {
         WinningResult winningResult = service.calculateWinningResult(lotties.getLotties(),
                 winningNumbers.getWinningNumbers(), bonusNumber);
         int sum = service.sumWinningAmount(winningResult);
-        System.out.println(sum);
-
+        String rateOfReturn = service.calculateRateOfReturn(amount.getAmount(), sum);
     }
 
     private void playGame() {

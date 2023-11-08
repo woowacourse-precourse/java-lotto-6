@@ -20,4 +20,9 @@ public class PurchaseAmount {
     public int getLottoCount() {
         return this.amount / LottoConstant.LOTTO_PRICE.value();
     }
+
+    public int getAmount() {
+        return this.amount;
+    }
+
 }

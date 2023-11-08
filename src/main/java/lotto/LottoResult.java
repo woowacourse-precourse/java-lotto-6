@@ -37,7 +37,7 @@ public class LottoResult {
 
     private int eachProfit(int matchedNumbers, boolean matchedBonus) {
         for (Rank rank : Rank.values()) {
-            if (rank.getMatchedNumbers() == matchedNumbers && (!rank.isBonusMatch() || matchedBonus)) {
+            if (rank.getMatchedNumbers() == matchedNumbers && (rank.isBonusMatch() == matchedBonus)) {
                 return rank.getProfit();
             }
         }
@@ -54,7 +54,7 @@ public class LottoResult {
 
     private void eachRankCounting(int matchedNumbers, boolean matchedBonus) {
         for (Rank rank : Rank.values()) {
-            if (rank.getMatchedNumbers() == matchedNumbers && (!rank.isBonusMatch() || matchedBonus)) {
+            if (rank.getMatchedNumbers() == matchedNumbers && (rank.isBonusMatch() == matchedBonus)) {
                 rankCount[rank.ordinal()]++;
             }
         }

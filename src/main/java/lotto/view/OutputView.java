@@ -48,7 +48,8 @@ public final class OutputView {
 
     private static void makeLottoNumbersString(LottoNumbers lottoNumbers, StringBuilder sb) {
         sb.append(LOTTO_NUMBERS_STRING_PREFIX);
-        lottoNumbers.numbers()
+        lottoNumbers.numbers().stream()
+                .sorted()
                 .forEach(number -> sb.append(number).append(SEPARATE));
         sb.delete(sb.length() - SEPARATE.length(), sb.length());
         sb.append(LOTTO_NUMBER_STRING_SUFFIX);
@@ -56,6 +57,7 @@ public final class OutputView {
 
     private static String makeLottoResultString(Map<ResultType, Integer> lottoResult) {
         return Arrays.stream(ResultType.values())
+                .filter(value -> value != NOT_WIN)
                 .map(value -> makeResultTypeString(value, lottoResult))
                 .collect(Collectors.joining("\n"));
     }
@@ -64,10 +66,6 @@ public final class OutputView {
             ResultType resultType,
             Map<ResultType, Integer> lottoResult
     ) {
-        if (isNotWin(resultType)) {
-            return "";
-        }
-
         String format = getResultFormat(resultType);
         return String.format(format,
                 resultType.getMatchCount(),

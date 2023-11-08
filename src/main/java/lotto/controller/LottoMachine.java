@@ -3,7 +3,7 @@ package lotto.controller;
 import lotto.service.LottoService;
 
 public class LottoMachine {
-    private LottoService lottoService = new LottoService();
+    private final LottoService lottoService;
 
     public LottoMachine() {
         this.lottoService = new LottoService();

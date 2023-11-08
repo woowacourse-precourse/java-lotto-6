@@ -4,6 +4,8 @@ import static lotto.constants.Message.DUPLICATED_LOTTO_NUMBER;
 import static lotto.constants.Message.INVALID_LOTTO_NUMBER_RANGE;
 import static lotto.constants.Message.INVALID_LOTTO_SIZE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
@@ -32,5 +34,15 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 55)))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(INVALID_LOTTO_NUMBER_RANGE);
+    }
+
+    @DisplayName("로또에 특정 번호가 포함되어 있는지 확인한다.")
+    @Test
+    public void testContains() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
+        assertTrue(lotto.contains(3));
+        assertTrue(lotto.contains(6));
+        assertFalse(lotto.contains(7));
     }
 }

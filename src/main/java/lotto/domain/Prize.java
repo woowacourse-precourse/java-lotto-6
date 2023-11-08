@@ -1,6 +1,5 @@
 package lotto.domain;
 
-import lotto.Lotto;
 
 public class Prize {
     public enum WinningPrize {

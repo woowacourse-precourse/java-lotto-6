@@ -3,7 +3,6 @@ package lotto;
 import lotto.controller.BonusNumberController;
 import lotto.domain.Bonus;
 import lotto.domain.Lotto;
-import net.bytebuddy.asm.Advice;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

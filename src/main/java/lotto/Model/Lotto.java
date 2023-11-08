@@ -1,6 +1,11 @@
 package lotto.Model;
 
+import lotto.View.ExceptionMessage;
+
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Lotto {
     private static final int MIN_NUMBER = 1;
@@ -10,6 +15,10 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        validateOverlap(numbers);
+        validateRange(numbers);
+
+        Collections.sort(numbers);
         this.numbers = numbers;
     }
 
@@ -17,8 +26,45 @@ public class Lotto {
         return numbers;
     }
 
+    public int countMatch(Lotto winningLotto) {
+        return (int) numbers.stream().
+                filter(winningLotto::containNumber).
+                count();
+    }
+
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
+            ExceptionMessage.sizeException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateOverlap(List<Integer> numbers) {
+        Set<Integer> overlapCheck = new HashSet<>(numbers);
+
+        if (overlapCheck.size() != 6) {
+            ExceptionMessage.overlapException();
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateRange(List<Integer> numbers) {
+        for (Integer number : numbers) {
+            if (number < MIN_NUMBER || number > MAX_NUMBER) {
+                ExceptionMessage.rangeException();
+                throw new IllegalArgumentException();
+            }
+
+        }
+    }
+
+    public static void validateBonusNumber(List<Integer> numbers, int bonusNumber) {
+        if (numbers.contains(bonusNumber)) {
+            ExceptionMessage.overlapException();
             throw new IllegalArgumentException();
         }
     }

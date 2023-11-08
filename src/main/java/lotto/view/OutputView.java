@@ -39,13 +39,11 @@ public class OutputView {
         StringBuilder result = new StringBuilder();
         Rank[] ranks = Rank.values();
 
-//        Arrays.stream(ranks).forEach(Rank -> System.out.println(getResultMessage(Rank) + rankBoard[Rank.ordinal()] + "개"));
-
         for (int i = 5; i > 0; i--) {
             System.out.println(getResultMessage(ranks[i-1]) + rankBoard[i] + "개");
         }
 
-        System.out.println(result);
+        System.out.print(result);
     }
 
     public static void printRateOfProfit(float rateOfProfit) {

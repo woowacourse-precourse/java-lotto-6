@@ -24,11 +24,11 @@ public class LottoController {
         getPurchasePriceFromUser();
         calculateNumberOfLottoTickets();
         getUserTicket();
-
         System.out.println();
-
         getWinningLottoNumberFromUser();
+        System.out.println();
         getBonusNumberFromUser();
+        System.out.println();
         determineEachLottoRanks();
         getResult();
 

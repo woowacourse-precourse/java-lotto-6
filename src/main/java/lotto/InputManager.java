@@ -81,8 +81,8 @@ public class InputManager {
             String input = Console.readLine();
 
             try {
-                int bonusNumber = validateBonusNumber(input, winningNumbers);
-                return bonusNumber;
+                int bonusNumber = Integer.parseInt(input);
+                return validateBonusNumber(bonusNumber, winningNumbers);
             } catch (NumberFormatException e) {
                 System.out.println("[ERROR] 숫자를 입력해야 합니다.");
             } catch (IllegalArgumentException e) {
@@ -91,8 +91,7 @@ public class InputManager {
         }
     }
 
-    private int validateBonusNumber(String input, List<Integer> winningNumbers) {
-        int bonusNumber = Integer.parseInt(input);
+    protected int validateBonusNumber(int bonusNumber, List<Integer> winningNumbers) {
 
         if (bonusNumber < MIN_NUMBER || bonusNumber > MAX_NUMBER) {
             throw new IllegalArgumentException("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");

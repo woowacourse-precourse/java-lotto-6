@@ -20,7 +20,7 @@ public class LottoTicket {
     }
 
     private void divide(int price) {
-        if (price % 1000 != 0) {
+        if ((price % 1000) != 0) {
             throw new IllegalArgumentException("[ERROR] 금액이 1,000으로 나누어 떨어지지 않습니다.");
         }
     }

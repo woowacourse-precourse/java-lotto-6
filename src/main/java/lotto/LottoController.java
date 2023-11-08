@@ -28,17 +28,20 @@ public class LottoController {
 
     private void lottoPrint() {
         System.out.printf("%d개를 구매했습니다.\n", ticket.getLottos().size());
-        for (int i = 0; i < ticket.getLottos().size(); i++) {
+        for (int i = 0; i < (ticket.getPrice() / 1000); i++) {
             outputView.lottoNumber(ticket.getLottos().get(i).getNumbers());
         }
     }
 
     private void prizeNumberGet() {
-        String[] prizeNumber = inputView.prizeNumber().split(",");
+        textView.inputPrizeNum();
+        String prize = inputView.prizeNumber();
+        String[] prizeNumber = prize.split(",");
         List<String> prizeNum = new ArrayList<>();
         for (int i = 0; i < prizeNumber.length; i++) {
             prizeNum.add(prizeNumber[i]);
         }
+        textView.inputBonusNum();
         int bonusNum = Integer.parseInt(inputView.bonusNumber());
         analyzer = new LottoAnalyzer(prizeNum, bonusNum);
     }

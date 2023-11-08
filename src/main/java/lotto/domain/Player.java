@@ -1,17 +1,15 @@
 package lotto.domain;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Player {
     private final List<Lotto> lottos;
-    private final Map<Rank, Integer> winningDetails = new HashMap<>();
+    private final Map<Rank, Integer> winningDetails = new LinkedHashMap<>();
 
     {
         Arrays.stream(Rank.values())
+                .sorted(Comparator.reverseOrder())
                 .forEach(rank -> winningDetails.put(rank, 0));
     }
 
@@ -19,7 +17,13 @@ public class Player {
         this.lottos = lottos;
     }
 
-    public Map<Rank, Integer> checkWinning(Lotto winningNumber, int bonusNumber) {
+    private long calculatePrizeMoney() {
+        return winningDetails.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrizeMoney() * entry.getValue())
+                .sum();
+    }
+
+    public void checkWinning(Lotto winningNumber, int bonusNumber) {
         int correctCount;
         boolean isBonus;
         Rank rank;
@@ -33,7 +37,6 @@ public class Player {
             rank = Rank.findByRank(correctCount, isBonus);
             winningDetails.put(rank, winningDetails.get(rank) + 1);
         }
-        return winningDetails;
     }
 
     private boolean checkCorrectBonus(List<Integer> lotto, int bonusNumber) {
@@ -48,5 +51,9 @@ public class Player {
 
     public List<Lotto> getLottos() {
         return lottos;
+    }
+
+    public Map<Rank, Integer> getWinningDetails() {
+        return winningDetails;
     }
 }

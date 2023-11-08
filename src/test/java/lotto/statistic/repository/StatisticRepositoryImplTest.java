@@ -17,7 +17,9 @@ class StatisticRepositoryImplTest {
         statisticRepository.saveStatistic(Prize.FOURTH);
         statisticRepository.saveStatistic(Prize.NONE);
 
+        // 저장된 갯수 확인
         assertThat(statisticRepository.findAll().size()).isEqualTo(3);
+        // 저장된 statistic가 동일한지
         assertThat(statisticRepository.findAll().get(1).getPrize().getHitCount()).isEqualTo(4);
     }
 }

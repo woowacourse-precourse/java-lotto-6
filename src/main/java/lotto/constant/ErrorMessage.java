@@ -5,6 +5,7 @@ import static lotto.constant.LottoConstant.LOTTO_PRICE;
 public enum ErrorMessage {
     NULL_EXCEPTION("빈 값을 입력하셨습니다. 다시 입력해주세요."),
     DIGIT_EXCEPTION("잘못된 입력입니다. 숫자를 입력해주세요."),
+    ZERO_EXCEPTION("0을 입력하셨습니다. 0보다 큰 숫자를 입력해주세요."),
     MULTIPLE_EXCEPTION(LOTTO_PRICE + "원 단위로 입력해주세요."),
     SIZE_EXCEPTION("쉼표(,)를 기준으로 구분하여 6개의 숫자를 입력해주세요."),
     NUMBER_IN_RANGE_EXCEPTION("1부터 45 사이의 숫자를 입력해주세요."),

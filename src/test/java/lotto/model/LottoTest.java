@@ -1,10 +1,12 @@
 package lotto.model;
 
+import lotto.util.SplitGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class LottoTest {
@@ -53,5 +55,15 @@ class LottoTest {
         assertThatThrownBy(() -> new Bonus(bonusNumber, lotto))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining(ERROR_MESSAGE);
+    }
+
+    @DisplayName("당첨 번호는 쉼표를 기준으로 구분하여 생성한다.")
+    @Test
+    void parseWinningNumbersFromComma() {
+        SplitGenerator splitGenerator = new SplitGenerator("1,2,3,4,5,6");
+        Lotto result = splitGenerator.getLotto();
+        Lotto expect = new Lotto(List.of(1,2,3,4,5,6));
+
+        assertThat(result).isEqualTo(expect);
     }
 }

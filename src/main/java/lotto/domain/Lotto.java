@@ -2,8 +2,10 @@ package lotto.domain;
 
 import lotto.utils.LottoValidator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -37,7 +39,13 @@ public class Lotto {
                 .count() != numbers.size();
     }
 
-    public int countWinningNumbers(Lotto o) {
+    private List<Integer> sortAscendingOrder(List<Integer> numbers) {
+        List<Integer> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+        return sortedNumbers;
+    }
+
+    public int countWinningNumber(Lotto o) {
         return (int) this.numbers.stream()
                 .filter(o.numbers::contains)
                 .count();
@@ -47,12 +55,12 @@ public class Lotto {
         return numbers.contains(bonus);
     }
 
-    private List<Integer> sortAscendingOrder(List<Integer> numbers) {
-        Collections.sort(numbers);
-        return numbers;
-    }
-
-    public List<Integer> getNumbers() {
-        return numbers;
+    @Override
+    public String toString() {
+        return "[" +
+                numbers.stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(", "))
+                + "]";
     }
 }

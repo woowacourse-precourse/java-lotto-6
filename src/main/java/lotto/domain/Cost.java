@@ -27,7 +27,7 @@ public class Cost {
      * @param cost 로또 구매 비용의 원시값
      * @return 로또 구매 비용 객체
      */
-    public static Cost from(int cost) {
+    public static Cost from(final int cost) {
         return new Cost(cost);
     }
 
@@ -46,23 +46,23 @@ public class Cost {
      * @param earnings 총 수익
      * @return 수익률
      */
-    public double divided(double earnings) {
+    public double divided(final double earnings) {
         return earnings / cost;
     }
 
     private static class Validator {
-        private static int validate(int cost) {
+        private static int validate(final int cost) {
             validateUnit(cost);
             return cost;
         }
 
-        private static void validateUnit(int cost) {
+        private static void validateUnit(final int cost) {
             if (isNotDivisible(cost)) {
                 throw LottoException.from(ErrorMessage.INVALID_UNIT_ERROR);
             }
         }
 
-        private static boolean isNotDivisible(int cost) {
+        private static boolean isNotDivisible(final int cost) {
             return cost % COST_UNIT.getValue() != 0;
         }
     }

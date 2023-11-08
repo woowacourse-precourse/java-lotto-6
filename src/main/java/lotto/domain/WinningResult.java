@@ -11,7 +11,7 @@ import java.util.Map.Entry;
 public class WinningResult {
     private Map<WinningType, Integer> winningResult;
 
-    private WinningResult(Map<WinningType, Integer> winningResult) {
+    private WinningResult(final Map<WinningType, Integer> winningResult) {
         this.winningResult = winningResult;
     }
 

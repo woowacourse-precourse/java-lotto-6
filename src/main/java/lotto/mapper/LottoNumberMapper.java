@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LottoNumberMapper {
-    public static List<LottoNumberDto> maptoDtos(Lottos lottos) {
+    public static List<LottoNumberDto> mapToDtos(Lottos lottos) {
         List<LottoNumberDto> lottoNumberDtos = new ArrayList<>();
         lottos.forEach(lotto -> {
             lottoNumberDtos.add(new LottoNumberDto(lotto.getNumbers()));

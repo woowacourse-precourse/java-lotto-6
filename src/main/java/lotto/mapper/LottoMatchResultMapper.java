@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class LottoMatchResultMapper {
-    public static List<LottoMatchResultDto> maptoDtos(Map<WinningCriteria, Integer> lottoResult) {
+    public static List<LottoMatchResultDto> mapToDtos(Map<WinningCriteria, Integer> lottoResult) {
         List<LottoMatchResultDto> resultDtos = new ArrayList<>();
 
         for (WinningCriteria criteria : WinningCriteria.values()) {

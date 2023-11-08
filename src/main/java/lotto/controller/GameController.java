@@ -84,10 +84,10 @@ public class GameController {
     }
 
     public void displayLottos(Lottos lottos) {
-        outputView.displayLottos(LottoNumberMapper.maptoDtos(lottos));
+        outputView.displayLottos(LottoNumberMapper.mapToDtos(lottos));
     }
 
     public void displayLottoResult(Map<WinningCriteria, Integer> lottoResult) {
-        outputView.displayLottoResult(LottoMatchResultMapper.maptoDtos(lottoResult));
+        outputView.displayLottoResult(LottoMatchResultMapper.mapToDtos(lottoResult));
     }
 }

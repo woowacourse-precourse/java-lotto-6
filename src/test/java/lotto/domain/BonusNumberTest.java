@@ -2,8 +2,6 @@ package lotto.domain;
 
 import java.util.List;
 import lotto.constants.ErrorMessage;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

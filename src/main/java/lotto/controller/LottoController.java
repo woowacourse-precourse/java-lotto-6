@@ -56,7 +56,7 @@ public class LottoController {
         OutputView.printStatistics(lottoService.getPrizeResult());
     }
 
-    private void close(){
+    private void close() {
         InputView.close();
     }
 }

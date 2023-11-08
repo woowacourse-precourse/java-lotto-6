@@ -1,8 +1,7 @@
 package lotto.domain;
 
+import static lotto.LottoRule.LOTTO_PRICE;
 import static lotto.validator.Validator.validatePayment;
-
-import lotto.LottoRule;
 
 public class Payment {
     private final int payment;
@@ -17,6 +16,6 @@ public class Payment {
     }
 
     public int getLottoCount() {
-        return this.payment / LottoRule.LOTTO_PRICE.value();
+        return this.payment / LOTTO_PRICE.value();
     }
 }

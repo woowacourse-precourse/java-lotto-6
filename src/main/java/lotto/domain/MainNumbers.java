@@ -1,14 +1,15 @@
 package lotto.domain;
 
+import static lotto.validator.Validator.validateMainNumbers;
+
 import java.util.Collections;
 import java.util.List;
-import lotto.validator.Validator;
 
 public class MainNumbers {
     private final List<Integer> mainNumbers;
 
     public MainNumbers(List<Integer> mainNumbers) {
-        Validator.validateMainNumbers(mainNumbers);
+        validateMainNumbers(mainNumbers);
         this.mainNumbers = mainNumbers;
     }
 

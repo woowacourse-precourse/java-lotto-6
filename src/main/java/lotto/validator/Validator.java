@@ -1,5 +1,15 @@
 package lotto.validator;
 
+import static lotto.LottoRule.LOTTO_NUMBER_COUNT;
+import static lotto.LottoRule.LOTTO_NUMBER_END;
+import static lotto.LottoRule.LOTTO_NUMBER_START;
+import static lotto.validator.ErrorMessage.DUPLICATED_BONUS_NUMBER;
+import static lotto.validator.ErrorMessage.DUPLICATED_MAIN_NUMBER;
+import static lotto.validator.ErrorMessage.INVALID_FORMAT_WINNING_NUMBERS;
+import static lotto.validator.ErrorMessage.INVALID_NUM_MAIN_NUMBER;
+import static lotto.validator.ErrorMessage.INVALID_PAYMENT;
+import static lotto.validator.ErrorMessage.INVALID_RANGE_WINNING_NUMBER;
+import static lotto.validator.ErrorMessage.NOT_NUMERIC_INPUT;
 import static lotto.view.Message.MAIN_NUMBER_PATTERN;
 import static lotto.view.Message.NUMBER_PATTERN;
 
@@ -10,13 +20,13 @@ public class Validator {
 
     public static void validateNumeric(String input) {
         if (notMatches(input, NUMBER_PATTERN.value())) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_NUMERIC_INPUT.message());
+            throw new IllegalArgumentException(NOT_NUMERIC_INPUT.message());
         }
     }
 
     public static void validateMainNumbersInput(String input) {
         if (notMatches(input, MAIN_NUMBER_PATTERN.value())) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_FORMAT_WINNING_NUMBERS.message());
+            throw new IllegalArgumentException(INVALID_FORMAT_WINNING_NUMBERS.message());
         }
     }
 
@@ -31,13 +41,13 @@ public class Validator {
 
     private static void validatePositive(int value) {
         if (value <= 0) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PAYMENT.message());
+            throw new IllegalArgumentException(INVALID_PAYMENT.message());
         }
     }
 
     private static void validatePaymentUnit(int value) {
         if (hasRemainder(value, LottoRule.LOTTO_PRICE.value())) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_PAYMENT.message());
+            throw new IllegalArgumentException(INVALID_PAYMENT.message());
         }
     }
 
@@ -53,7 +63,7 @@ public class Validator {
 
     private static void validateMainNumbersNotDuplicated(List<Integer> winningNumbers) {
         if (isDuplicated(winningNumbers)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_MAIN_NUMBER.message());
+            throw new IllegalArgumentException(DUPLICATED_MAIN_NUMBER.message());
         }
     }
 
@@ -63,17 +73,17 @@ public class Validator {
 
     private static void validateMainNumbersInRange(List<Integer> winningNumbers) {
         if (winningNumbers.stream().anyMatch(Validator::outOfRange)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_WINNING_NUMBER.message());
+            throw new IllegalArgumentException(INVALID_RANGE_WINNING_NUMBER.message());
         }
     }
 
     private static boolean outOfRange(int value) {
-        return !(LottoRule.LOTTO_NUMBER_START.value() <= value && value <= LottoRule.LOTTO_NUMBER_END.value());
+        return !((LOTTO_NUMBER_START.value() <= value) && (value <= LOTTO_NUMBER_END.value()));
     }
 
     private static void validateMainNumbersSize(List<Integer> winningNumbers) {
-        if (winningNumbers.size() != LottoRule.LOTTO_NUMBER_COUNT.value()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_NUM_MAIN_NUMBER.message());
+        if (winningNumbers.size() != LOTTO_NUMBER_COUNT.value()) {
+            throw new IllegalArgumentException(INVALID_NUM_MAIN_NUMBER.message());
         }
     }
 
@@ -84,13 +94,13 @@ public class Validator {
 
     private static void validateBonusNotDuplicated(List<Integer> winningNumbers, int bonus) {
         if (winningNumbers.contains(bonus)) {
-            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_BONUS_NUMBER.message());
+            throw new IllegalArgumentException(DUPLICATED_BONUS_NUMBER.message());
         }
     }
 
     private static void validateBonusInRange(int bonus) {
         if (outOfRange(bonus)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALID_RANGE_WINNING_NUMBER.message());
+            throw new IllegalArgumentException(INVALID_RANGE_WINNING_NUMBER.message());
         }
     }
 }

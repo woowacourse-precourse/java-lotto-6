@@ -16,5 +16,4 @@ public class WinningNumbers {
     public boolean isBonusNumber(int number) {
         return bonusNumber.isBonusNumber(number);
     }
-
 }

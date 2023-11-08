@@ -1,7 +1,6 @@
 package lotto.validator;
 
 public enum ErrorMessage {
-
     NOT_NUMERIC_INPUT("숫자만 입력할 수 있습니다."),
     INVALID_PAYMENT("지불 금액은 0원 이상, 1000원 단위만 가능합니다."),
     INVALID_FORMAT_WINNING_NUMBERS("당첨 번호 입력은 숫자와 , 만 가능합니다"),

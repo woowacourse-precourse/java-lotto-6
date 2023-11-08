@@ -1,13 +1,14 @@
 package lotto.domain;
 
+import static lotto.validator.Validator.validateBonusNumber;
+
 import java.util.List;
-import lotto.validator.Validator;
 
 public class BonusNumber {
     private final int bonus;
 
     public BonusNumber(List<Integer> mainNumbers, int bonus) {
-        Validator.validateBonusNumber(mainNumbers, bonus);
+        validateBonusNumber(mainNumbers, bonus);
         this.bonus = bonus;
     }
 

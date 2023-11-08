@@ -42,7 +42,7 @@ public class InputView {
                 .toList();
     }
 
-    public static void close(){
+    public static void close() {
         Console.close();
     }
 }

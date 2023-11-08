@@ -1,6 +1,7 @@
 package lotto.domain;
 
-import java.util.HashSet;
+import static lotto.validator.Validator.validateMainNumbers;
+
 import java.util.List;
 import lotto.dto.LottoTicket;
 
@@ -13,13 +14,7 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
-        }
-        HashSet<Integer> uniqueNumbers = new HashSet<>(numbers);
-        if (uniqueNumbers.size() != numbers.size()) {
-            throw new IllegalArgumentException();
-        }
+        validateMainNumbers(numbers);
     }
 
     public long countMatchingMainNumbers(WinningNumbers winningNumbers) {
@@ -33,5 +28,4 @@ public class Lotto {
     public LottoTicket toLottoTicket() {
         return new LottoTicket(this.numbers);
     }
-
 }

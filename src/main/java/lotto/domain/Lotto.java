@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Lotto extends Validator{
 
-    private List<Integer> numbers;
+    private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);

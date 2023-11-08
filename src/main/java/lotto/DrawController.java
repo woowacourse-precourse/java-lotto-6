@@ -2,6 +2,8 @@ package lotto;
 
 import java.util.List;
 import lotto.domain.LottoDraw;
+import lotto.domain.Rank;
+import lotto.domain.RankStatistics;
 import lotto.port.InputPort;
 import lotto.port.OutputPort;
 
@@ -23,14 +25,22 @@ public class DrawController {
     public void draw() {
         Integer purchaseAmount = inputPort.readPurchaseAmount();
         lottoDraw.createLottos(purchaseAmount, TICKET_PRICE);
-
         outputPort.printLottos(lottoDraw.getLottos());
 
 
-
         List<Integer> drawNumbers = inputPort.readDrawNumbers();
+        lottoDraw.setDrawNumbers(drawNumbers);
 
         Integer bonusNumber = inputPort.readBonusNumber();
+        lottoDraw.setBonusNumber(bonusNumber);
+
+
+        List<Rank> ranks = lottoDraw.getRanks();
+        RankStatistics rankStatistics = new RankStatistics(ranks);
+        outputPort.printRankStatistics(rankStatistics.getRankInfos());
+
+
+//        outputPort.printProfitRate()
 
     }
 

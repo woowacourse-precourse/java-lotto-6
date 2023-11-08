@@ -29,7 +29,7 @@ public class LottoResult {
 
     public String calculateSumOfReward(Money money) {
         double beforeMoney = money.getValue();
-        double sum = 0;
+        long sum = 0;
         for (LottoReward lottoReward : LottoReward.values()) {
             sum += lottoReward.getReward() * resultStatistic.getOrDefault(lottoReward, 0);
         }

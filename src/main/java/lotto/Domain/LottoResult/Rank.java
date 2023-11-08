@@ -8,13 +8,13 @@ public enum Rank {
     FIFTH(5),
     MISS(0);
 
-    private int rank;
+    private int value;
 
-    Rank(int rank) {
-        this.rank = rank;
+    Rank(int value) {
+        this.value = value;
     }
 
-    public int getRank() {
-        return rank;
+    public int getValue() {
+        return value;
     }
 }

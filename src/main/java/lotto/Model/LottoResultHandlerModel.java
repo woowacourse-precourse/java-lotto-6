@@ -43,7 +43,7 @@ public class LottoResultHandlerModel {
             Lotto lottoByIndex = lottoGroup.findLottoByIndex(i);
             Integer matchCount = checkWinning(winningLotto.getLotto(), lottoByIndex);
             Integer rank = convertRank(matchCount, checkBonusNumber(lottoByIndex));
-            if (rank != MISS.getRank()) {
+            if (rank != MISS.getValue()) {
                 lottoResult.increaseWinningCount(rank);
             }
         }
@@ -61,16 +61,16 @@ public class LottoResultHandlerModel {
 
     private Integer convertRank(Integer matchCount, boolean isBonusNumberMatched) {
         if (matchCount == 6)
-            return FIRST.getRank();
+            return FIRST.getValue();
         if (matchCount == 5 && isBonusNumberMatched)
-            return SECOND.getRank();
+            return SECOND.getValue();
         if (matchCount == 5)
-            return THIRD.getRank();
+            return THIRD.getValue();
         if (matchCount == 4)
-            return FOURTH.getRank();
+            return FOURTH.getValue();
         if (matchCount == 3)
-            return FIFTH.getRank();
+            return FIFTH.getValue();
 
-        return MISS.getRank();
+        return MISS.getValue();
     }
 }

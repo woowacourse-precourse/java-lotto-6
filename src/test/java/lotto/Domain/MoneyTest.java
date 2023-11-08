@@ -1,12 +1,9 @@
 package lotto.Domain;
 
-import static lotto.CommonValidation.CommonValidation.isValidLottoNumber;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-import lotto.Exception.CommonValidationException;
 import lotto.Exception.MoneyException;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,8 +31,8 @@ class MoneyTest {
         Money money2 = Money.from(inputMoney2);
 
         //then
-        assertThat(money1.getMoney()).isEqualTo(1000);
-        assertThat(money2.getMoney()).isEqualTo(100000);
+        assertThat(money1.getValue()).isEqualTo(1000);
+        assertThat(money2.getValue()).isEqualTo(100000);
     }
 
     @DisplayName("1000원 단위가 아닌 금액을 입력했을때 예외발생하는지 확인")
@@ -56,7 +53,7 @@ class MoneyTest {
         Money money = Money.from(inputMoney);
 
         //then
-        assertThat(money.getMoney()).isEqualTo(1000);
+        assertThat(money.getValue()).isEqualTo(1000);
     }
 
 

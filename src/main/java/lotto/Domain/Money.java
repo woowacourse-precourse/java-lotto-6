@@ -12,19 +12,19 @@ import lotto.Exception.MoneyException;
 
 public class Money {
 
-    private final int money;
+    private final int value;
 
     private Money(String inputMoney) {
         validate(inputMoney);
-        this.money = convertStringToInteger(inputMoney);
+        this.value = convertStringToInteger(inputMoney);
     }
 
     public static Money from(String inputMoney) {
         return new Money(inputMoney);
     }
 
-    public int getMoney() {
-        return money;
+    public int getValue() {
+        return value;
     }
 
     private void validate(String inputMoney) {

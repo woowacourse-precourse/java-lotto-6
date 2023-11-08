@@ -10,30 +10,30 @@ import java.util.Map;
 
 public class LottoResult {
 
-    private Map<Integer, Prize> lottoResult;
+    private Map<Integer, Prize> lottoResultSet;
 
     private LottoResult() {
-        this.lottoResult = new LinkedHashMap<>();
-        this.lottoResult.put(FIRST.getRank(), FIRST_PRIZE);
-        this.lottoResult.put(SECOND.getRank(), SECOND_PRIZE);
-        this.lottoResult.put(THIRD.getRank(), THIRD_PRIZE);
-        this.lottoResult.put(FOURTH.getRank(), FOURTH_PRIZE);
-        this.lottoResult.put(FIFTH.getRank(), FIFTH_PRIZE);
+        this.lottoResultSet = new LinkedHashMap<>();
+        this.lottoResultSet.put(FIRST.getValue(), FIRST_PRIZE);
+        this.lottoResultSet.put(SECOND.getValue(), SECOND_PRIZE);
+        this.lottoResultSet.put(THIRD.getValue(), THIRD_PRIZE);
+        this.lottoResultSet.put(FOURTH.getValue(), FOURTH_PRIZE);
+        this.lottoResultSet.put(FIFTH.getValue(), FIFTH_PRIZE);
     }
 
     public static LottoResult from() {
         return new LottoResult();
     }
     public void increaseWinningCount(Integer rank) {
-        lottoResult.get(rank).increaseWinningCount();
+        lottoResultSet.get(rank).increaseWinningCount();
     }
 
     public List<Prize> findAllPrize() {
-        return new ArrayList<>(lottoResult.values());
+        return new ArrayList<>(lottoResultSet.values());
     }
 
     public int findTotalAward() {
-        return lottoResult.values().stream()
+        return lottoResultSet.values().stream()
                 .mapToInt(prize -> prize.getAward() * prize.getWinningCount())
                 .sum();
     }

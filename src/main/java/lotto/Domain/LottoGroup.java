@@ -26,7 +26,7 @@ public class LottoGroup {
     }
 
     private Integer findLottoCount(Money money) {
-        return money.getMoney()/LOTTO_PRICE.getValue();
+        return money.getValue()/LOTTO_PRICE.getValue();
     }
 
     private List<Integer> generateLottoNumbers() {

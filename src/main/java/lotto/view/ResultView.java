@@ -35,4 +35,8 @@ public class ResultView {
         System.out.println(rank.getMatchCount() + "개 일치" + (rank == Rank.SECOND ? ", 보너스 볼 일치 " : " ")
                 + "(" + String.format("%,d", prizeMoney) + "원) - " + result.getOrDefault(rank, 0) + "개");
     }
+
+    public static void printReturnRate(double returnRate) {
+        System.out.printf("총 수익률은 %.1f%%입니다.%n", returnRate);
+    }
 }

@@ -9,4 +9,23 @@ public class Application {
 
 
     }
+
+    private static int getPurchaseAmount(Console console) {
+        int purchaseAmount;
+        while (true) {
+            try {
+                System.out.println("구입 금액을 입력해 주세요.");
+                purchaseAmount = Integer.parseInt(console.readLine());
+                if (purchaseAmount % 1000 != 0) {
+                    throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1,000원 단위여야 합니다.");
+                }
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("[ERROR] 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return purchaseAmount;
+    }
 }

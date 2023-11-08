@@ -14,5 +14,13 @@ public class Player {
         return this.lottos.size();
     }
 
+    public void printLottos(){
+        for (Lotto lotto:
+             lottos) {
+            OutputService.printLottoNumbers(lotto);
+        }
+    }
+
+
 
 }

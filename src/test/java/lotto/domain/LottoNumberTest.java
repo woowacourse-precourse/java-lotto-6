@@ -1,11 +1,10 @@
 package lotto.domain;
 
-import static lotto.configuration.IntegerConstants.MAX_NUMBER_RANGE;
-import static lotto.configuration.IntegerConstants.MIN_NUMBER_RANGE;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import lotto.domain.entity.LottoNumber;
 import org.junit.jupiter.api.Test;
 
 public class LottoNumberTest {

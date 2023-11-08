@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.entity;
 
 import static lotto.configuration.IntegerConstants.MAX_NUMBER_COUNT_OF_LOTTO;
 import static lotto.configuration.IntegerConstants.MAX_NUMBER_RANGE;

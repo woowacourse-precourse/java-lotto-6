@@ -1,8 +1,7 @@
-package lotto.domain;
+package lotto.domain.entity;
 
 import java.util.List;
-import lotto.domain.entity.Purchase;
-import lotto.domain.entity.WinningTicket;
+import lotto.domain.IndexModel;
 
 public class LottoGame extends IndexModel {
 

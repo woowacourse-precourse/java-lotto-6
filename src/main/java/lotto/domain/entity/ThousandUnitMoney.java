@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.domain.entity;
 
 import static lotto.configuration.IntegerConstants.COST_OF_LOTTO;
 
@@ -34,7 +34,7 @@ public class ThousandUnitMoney {
 
     public int divide(int value) {
         return this.amount / value;
-    }
+    } // TODO: 나누기랑 몫이랑 구분하기
 
     @Override
     public String toString() {

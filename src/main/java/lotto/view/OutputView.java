@@ -1,7 +1,7 @@
 package lotto.view;
 
 
-import lotto.domain.WinningResult;
+import lotto.domain.entity.WinningResult;
 import lotto.domain.dto.PurchaseDto;
 
 public interface OutputView {

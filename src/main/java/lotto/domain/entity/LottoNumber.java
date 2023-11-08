@@ -1,10 +1,8 @@
-package lotto.domain;
+package lotto.domain.entity;
 
 import static lotto.configuration.IntegerConstants.MAX_NUMBER_RANGE;
 import static lotto.configuration.IntegerConstants.MIN_NUMBER_RANGE;
-import static lotto.messages.ErrorMessages.INVALID_LOTTO_NUMBER_RANGE_MESSAGE;
 
-import lotto.util.ExceptionUtil;
 import lotto.util.IntegerUtil;
 import lotto.validation.IntegerValidator;
 

@@ -1,11 +1,11 @@
 package lotto.service;
 
-import lotto.domain.Lotto;
-import lotto.domain.LottoGame;
-import lotto.domain.LottoNumber;
-import lotto.domain.Lottos;
-import lotto.domain.ThousandUnitMoney;
-import lotto.domain.WinningResult;
+import lotto.domain.entity.Lotto;
+import lotto.domain.entity.LottoGame;
+import lotto.domain.entity.LottoNumber;
+import lotto.domain.entity.Lottos;
+import lotto.domain.entity.ThousandUnitMoney;
+import lotto.domain.entity.WinningResult;
 
 public interface LottoGameService {
 

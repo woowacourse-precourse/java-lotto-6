@@ -1,8 +1,6 @@
 package lotto.domain.entity;
 
 import java.util.List;
-import lotto.domain.Lottos;
-import lotto.domain.ThousandUnitMoney;
 
 public class Purchase {
     private final ThousandUnitMoney purchaseAmount;

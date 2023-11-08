@@ -2,7 +2,7 @@ package lotto.repository;
 
 
 import lotto.domain.IndexModel;
-import lotto.domain.LottoGame;
+import lotto.domain.entity.LottoGame;
 
 public class MemoryLottoGameRepository extends MemoryRepository<LottoGame> {
 

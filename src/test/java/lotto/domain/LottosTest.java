@@ -3,6 +3,9 @@ package lotto.domain;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import java.util.List;
+import lotto.domain.entity.Lotto;
+import lotto.domain.entity.Lottos;
+import lotto.domain.entity.ThousandUnitMoney;
 import org.junit.jupiter.api.Test;
 
 public class LottosTest {

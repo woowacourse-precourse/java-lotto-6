@@ -6,7 +6,7 @@ import static lotto.messages.OutputMessages.WINNING_STATISTICS_MESSAGE;
 
 import java.util.List;
 
-import lotto.domain.WinningResult;
+import lotto.domain.entity.WinningResult;
 import lotto.domain.dto.PurchaseDto;
 import lotto.util.OutputUtil;
 

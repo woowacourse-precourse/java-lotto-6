@@ -4,11 +4,11 @@ import lotto.Controller.LottoResultEnum;
 
 import java.util.List;
 
-public class Result {
+public class LottoGameResult {
     private final Integer price;
     private final List<Integer> lottoResult;
 
-    public Result(Integer price, List<Integer> lottoResult) {
+    public LottoGameResult(Integer price, List<Integer> lottoResult) {
         this.price = price;
         this.lottoResult = lottoResult;
         printResult(price, lottoResult);

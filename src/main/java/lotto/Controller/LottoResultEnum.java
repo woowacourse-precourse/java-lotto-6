@@ -11,9 +11,9 @@ public enum LottoResultEnum {
     private final Integer matchListNum;
     private final Integer prize;
 
-    LottoResultEnum(String result, Integer match, Integer prize) {
+    LottoResultEnum(String result, Integer matchListNum, Integer prize) {
         this.result = result;
-        this.matchListNum = match;
+        this.matchListNum = matchListNum;
         this.prize = prize;
     }
     public String getResult() {

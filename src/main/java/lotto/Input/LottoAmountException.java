@@ -2,11 +2,11 @@ package lotto.Input;
 
 public class LottoAmountException {
 
-    private final int price;
+    private final int lottoPurchaseInput;
 
-    public LottoAmountException(int price) {
-        validate(price);
-        this.price = price;
+    public LottoAmountException(int lottoPurchaseInput) {
+        validate(lottoPurchaseInput);
+        this.lottoPurchaseInput = lottoPurchaseInput;
     }
     public void validate(int price) {
         if (price % 1000 != 0) {

@@ -1,16 +1,14 @@
 package lotto.Input;
 
-import com.sun.jdi.request.DuplicateRequestException;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
-public class LottoAnswer {
+public class LottoWinningNumber {
     private final List<Integer> numbers;
 
-    public LottoAnswer() {
+    public LottoWinningNumber() {
         this.numbers = inputLotto();
     }
 

@@ -3,17 +3,17 @@ package lotto.Input;
 import static camp.nextstep.edu.missionutils.Console.readLine;
 
 public class LottoAmount {
-    private final int price;
+    private final int lottoPurchaseAmount;
 
     public LottoAmount() {
-        this.price = inputAmount();
+        this.lottoPurchaseAmount = inputAmount();
     }
-    public Integer getPrice() {
-        return price;
+    public Integer getLottoPurchaseAmount() {
+        return lottoPurchaseAmount;
     }
     public Integer getTicket() {
 
-        return price / 1000;
+        return lottoPurchaseAmount / 1000;
     }
     public Integer inputPrice(){
         return Integer.parseInt(readLine());

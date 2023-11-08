@@ -5,31 +5,31 @@ import java.util.Collections;
 import java.util.List;
 
 public class LottoResult {
-    private final ArrayList<List<Integer>> lottos;
-    private final List<Integer> numbers;
-    private final Integer bonus;
-    public LottoResult(ArrayList<List<Integer>> lottos, List<Integer> numbers, Integer bonus) {
-        this.lottos = lottos;
-        this.numbers = numbers;
-        this.bonus = bonus;
+    private final ArrayList<List<Integer>> lottoTickets;
+    private final List<Integer> lottoWinningNum;
+    private final Integer bonusNum;
+    public LottoResult(ArrayList<List<Integer>> lottoTickets, List<Integer> lottoWinningNum, Integer bonusNum) {
+        this.lottoTickets = lottoTickets;
+        this.lottoWinningNum = lottoWinningNum;
+        this.bonusNum = bonusNum;
     }
     public List<Integer> getLottoResult(){
-        List<Integer> result = matchLotto(lottos,numbers,bonus);
+        List<Integer> result = matchLotto(lottoTickets, lottoWinningNum, bonusNum);
         return result;
     }
-    public Integer matchCount(List<Integer> lotto, List<Integer> numbers){
+    public Integer matchCount(List<Integer> lottoTicket, List<Integer> lottoWinningNum){
         Integer match = 0;
-        for(Integer number : numbers){
-            if(lotto.contains(number)){
+        for(Integer number : lottoWinningNum){
+            if(lottoTicket.contains(number)){
                 match++;
             }
         }
         return match;
     }
-    public List<Integer> matchLotto(ArrayList<List<Integer>> lottos, List<Integer> numbers,Integer bonus){
+    public List<Integer> matchLotto(ArrayList<List<Integer>> lottoTickets, List<Integer> lottoWinningNum,Integer bonus){
         List<Integer> result = new ArrayList<>(Collections.nCopies(5,0));
-        for(List<Integer> lotto : lottos){
-            Integer match = matchCount(lotto,numbers);
+        for(List<Integer> lotto : lottoTickets){
+            Integer match = matchCount(lotto,lottoWinningNum);
             if(match == 6){
                 result.set(0,result.get(0)+1);
             } else if(match == 5 && lotto.contains(bonus)){

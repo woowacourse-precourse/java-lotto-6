@@ -1,16 +1,22 @@
 package lotto;
 
-import lotto.entity.PrizePrint;
-import lotto.entity.WinCount;
-import lotto.entity.WinMessage;
 import lotto.generator.ClientLottoNumber;
-import lotto.service.NumCountInList;
+import lotto.service.CalculateProfitRate;
+import lotto.service.CalculateTotalProfit;
+import lotto.service.CalculateWinCounts;
+import lotto.service.PrintWinCounts;
+import lotto.view.PrintProfitRate;
 import lotto.view.PrintView;
-import java.util.ArrayList;
+
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        Application app = new Application();
+        app.run();
+    }
+
+    public void run() {
         ClientLottoNumber clientLottoNumber = new ClientLottoNumber();
         clientLottoNumber.NumberGenerator();
 
@@ -20,27 +26,14 @@ public class Application {
         List<Integer> lottoWinNumber = PrintView.lottoWinNumber;
         int bonusNumber = PrintView.bonusNumber;
 
-        List<Integer> winCounts = new ArrayList<>();
-        for (int i = 0; i < clientLottoNumber.LottoNumberList.size(); i++) {
-            List<Integer> compare_list = clientLottoNumber.LottoNumberList.get(i);
-            int winCount = WinCount.calculateWinCount(compare_list, lottoWinNumber, bonusNumber);
-            winCounts.add(winCount);
-        }
-        for (int i = 0; i < winCounts.size(); i++) {
-            int winCount = winCounts.get(i);
-        }
-        int totalProfit = 0;
-        int o = 3;
-        for (WinMessage.WinType winType : WinMessage.WinType.values()) {
-            int count = NumCountInList.countOccurrences(winCounts, o);
-            int prize = PrizePrint.CalculatorPrize.calculatePrize(o);
-            totalProfit += prize * count;
-            o++;
-            System.out.println(winType.getLabel() + " - " + count + "개");
-        }
-        int p = clientLottoNumber.t * 1000;
+        List<Integer> winCounts = CalculateWinCounts.calculateWinCounts(clientLottoNumber.LottoNumberList, lottoWinNumber, bonusNumber);
+        PrintWinCounts.printWinCounts(winCounts);
 
-        float a = (float) totalProfit / p * 10;
-        System.out.println("총 수익률은 " + String.format("%.1f", a) + "%입니다.");
+        int totalProfit = CalculateTotalProfit.calculateTotalProfit(winCounts, clientLottoNumber.t);
+        float profitRate = CalculateProfitRate.calculateProfitRate(totalProfit, clientLottoNumber.t);
+        PrintProfitRate.printProfitRate(profitRate);
     }
+
+
+
 }

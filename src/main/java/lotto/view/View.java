@@ -12,6 +12,7 @@ import lotto.domain.WinningLotto;
 import lotto.dto.ResultResponse;
 import lotto.utils.GameUtilConstants;
 import lotto.utils.Rank;
+import lotto.validation.NumberException;
 import lotto.validation.NumberValidator;
 import lotto.validation.WinningNumberException;
 
@@ -28,7 +29,7 @@ public class View {
         try {
             outputView.printPurchaseGuideMessage();
             String amountValue = inputView.inputAmount();
-            return new Amount(Integer.parseInt(amountValue));
+            return new Amount(convertToInt(amountValue));
         } catch (IllegalArgumentException e) {
             outputView.printErrorMessage(e.getMessage());
             return getAmount();
@@ -56,7 +57,7 @@ public class View {
     private List<Integer> convertToIntegerList(String winningNumbers) {
         return Arrays.stream(winningNumbers.split(GameUtilConstants.LEST_DELIMITER.getValue(), -1))
             .peek(NumberValidator::validateNumber)
-            .map(Integer::parseInt)
+            .map(View::convertToInt)
             .peek(NumberValidator::validateInRangeNumber)
             .toList();
     }
@@ -66,6 +67,7 @@ public class View {
             outputView.printBonusNumberGuideMessage();
             String bonusNumberValue = inputView.inputBonusNumber();
             int bonusNumber = convertToInt(bonusNumberValue);
+            NumberValidator.validateInRangeNumber(bonusNumber);
             isDuplicateBonusNumber(winningNumbers, bonusNumber);
             return bonusNumber;
         } catch (IllegalArgumentException e) {
@@ -74,10 +76,12 @@ public class View {
         }
     }
 
-    private static int convertToInt(String bonusNumberValue) {
-        int convertedBonusNumber = Integer.parseInt(bonusNumberValue);
-        NumberValidator.validateInRangeNumber(convertedBonusNumber);
-        return convertedBonusNumber;
+    private static int convertToInt(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            throw NumberException.LIMIT_NUMBER_EXCEPTION.getException();
+        }
     }
 
     private void isDuplicateBonusNumber(Lotto winningNumbers, int bonusNumber) {

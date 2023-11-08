@@ -41,8 +41,8 @@ public class LottoService {
 		return lottoCalculator.calculateSum(lottoRankCounter);
 	}
 
-	public double calculateTotalReturn(int money, int priceSum) {
-		return lottoCalculator.calculateRate(money, priceSum);
+	public double calculateTotalReturn(int money, int lottoPriceSum) {
+		return lottoCalculator.calculateRate(money, lottoPriceSum);
 	}
 
 	public String getWinningStatisticsMessage(Lottos lottos, AnswerLotto answerLotto) {

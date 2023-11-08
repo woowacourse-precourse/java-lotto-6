@@ -11,20 +11,20 @@ public final class LottoCalculator implements Calculator<Integer, EnumMap<LottoR
 
 	@Override
 	public Integer calculateSum(EnumMap<LottoRank, Integer> lottoRanks) {
-		int priceSum = 0;
+		int lottoPriceSum = 0;
 
 		for (Map.Entry<LottoRank, Integer> entry : lottoRanks.entrySet()) {
 			LottoRank lottoRank = entry.getKey();
 			int number = entry.getValue();
 
-			priceSum += lottoRank.getLottoPrice() * number;
+			lottoPriceSum += lottoRank.getLottoPrice() * number;
 		}
 
-		return priceSum;
+		return lottoPriceSum;
 	}
 
 	@Override
-	public Double calculateRate(Integer money, Integer priceSum) {
-		return (double) priceSum / (double) money * PERCENTAGE;
+	public Double calculateRate(Integer money, Integer lottoPriceSum) {
+		return (double) lottoPriceSum / (double) money * PERCENTAGE;
 	}
 }

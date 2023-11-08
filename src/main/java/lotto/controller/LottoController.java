@@ -30,8 +30,8 @@ public class LottoController {
 		Money money = createMoney();
 		Lottos lottos = createLottos(money);
 		AnswerLotto answerLotto = createAnswerLotto();
-		int priceSum = lottoService.calculateLottoPriceSum(lottos, answerLotto);
-		double totalReturn = lottoService.calculateTotalReturn(money.money(), priceSum);
+		int lottoPriceSum = lottoService.calculateLottoPriceSum(lottos, answerLotto);
+		double totalReturn = lottoService.calculateTotalReturn(money.money(), lottoPriceSum);
 
 		printLottoResult(lottos, answerLotto, totalReturn);
 	}

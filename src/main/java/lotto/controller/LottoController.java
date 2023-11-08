@@ -39,17 +39,20 @@ public class LottoController {
 
     public void run() {
         process = 0;
-        try {
-            savePurchaseAmount();
-            generateAndSaveRandomNumber();
-            saveWinningNumber();
-            saveBonusNumber();
-            performNumberComparisonLogic();
-            printWinningStatistics();
-        } catch (NumberFormatException e) {
-            System.out.println(ERROR_INTRO + e.getMessage());
-        } catch (IllegalStateException e) {
-            System.out.println(ERROR_INTRO + e.getMessage());
+        while(true){
+            try {
+                savePurchaseAmount();
+                generateAndSaveRandomNumber();
+                saveWinningNumber();
+                saveBonusNumber();
+                performNumberComparisonLogic();
+                printWinningStatistics();
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println(ERROR_INTRO + e.getMessage());
+            } catch (IllegalStateException e) {
+                System.out.println(ERROR_INTRO + e.getMessage());
+            }
         }
     }
 

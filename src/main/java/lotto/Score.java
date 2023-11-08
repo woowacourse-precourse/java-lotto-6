@@ -1,21 +1,21 @@
 package lotto;
 
-import java.util.Collections;
 import java.util.List;
 
 
 public class Score {
-    static int countOfMatch=0;
-    static boolean bonusCheck;
 
     public static int checkWinningNumber(Lotto lotto, List<Integer> winningNumber){
-        countOfMatch = Collections.frequency(lotto.getNumbers(lotto), winningNumber);
+        int countOfMatch=0;
+        List<Integer> randomNum = lotto.getNumbers(lotto);
+        for(Integer eachNum : randomNum) {
+            if(winningNumber.contains(eachNum)) countOfMatch++;
+        }
         return countOfMatch;
     }
 
     public static boolean checkBonusNumber(Lotto lotto, int bonusNumber){
-        bonusCheck = lotto.getNumbers(lotto).contains(bonusNumber);
-        return bonusCheck;
+        return lotto.getNumbers(lotto).contains(bonusNumber);
     }
 
 }

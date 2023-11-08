@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
-    private static int totalPrice;
-    private static List<Integer> winningNumber;
-    private static int bonusNumber;
+    public static int totalPrice;
+    public static List<Integer> winningNumber;
+    public static int bonusNumber;
 
 
     public static void setTotalPrice(){
@@ -39,17 +39,5 @@ public class Input {
         System.out.println("보너스 번호를 입력해 주세요.");
         bonusNumber = Integer.parseInt(Console.readLine());
         System.out.println();
-    }
-
-    public static int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public static List<Integer> getWinningNumber() {
-        return winningNumber;
-    }
-
-    public static int getBonusNumber() {
-        return bonusNumber;
     }
 }

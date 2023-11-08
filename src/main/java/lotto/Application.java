@@ -7,10 +7,10 @@ import java.util.List;
 public class Application {
     public static void main(String[] args) {
         Input.setTotalPrice();
-        Output.printLottoQuantity(Input.getTotalPrice());
+        Output.printLottoQuantity(Input.totalPrice);
 
         List<Lotto> lottoList = new ArrayList<>();
-        for(int i=0; i<Input.getTotalPrice()/1000; i++){
+        for(int i=0; i<Input.totalPrice/1000; i++){
             lottoList.add(new Lotto(RandomNum.createRandomNum()));
         }
         Output.printAllLotto(lottoList);
@@ -18,11 +18,9 @@ public class Application {
         Input.setWinningNumber();
         Input.setBonusNumber();
 
-        List<Integer> winningNumber = Input.getWinningNumber();
-        int bonusNumber = Input.getBonusNumber();
         for(Lotto lotto : lottoList) {
-            int countOfMatch = Score.checkWinningNumber(lotto, winningNumber);
-            boolean bonusCheck = Score.checkBonusNumber(lotto, bonusNumber);
+            int countOfMatch = Score.checkWinningNumber(lotto, Input.winningNumber);
+            boolean bonusCheck = Score.checkBonusNumber(lotto, Input.bonusNumber);
             Rank.calculateEachLottoResult(countOfMatch, bonusCheck);
         }
 

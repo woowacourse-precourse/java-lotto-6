@@ -22,19 +22,19 @@ public class Result {
             first++;
             sum += 2000000000;
         }
-        else if(cntOfMatch == 5 && bonus == 1){
+        if(cntOfMatch == 5 && bonus == 1){
             second++;
             sum += 30000000;
         }
-        else if(cntOfMatch == 5){
+        if(cntOfMatch == 5){
             third++;
             sum += 1500000;
         }
-        else if(cntOfMatch == 4){
+        if(cntOfMatch == 4){
             fourth++;
             sum += 50000;
         }
-        else if(cntOfMatch == 3){
+        if(cntOfMatch == 3){
             fifth++;
             sum += 5000;
         }

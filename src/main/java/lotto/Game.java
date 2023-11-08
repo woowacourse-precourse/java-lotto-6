@@ -11,8 +11,7 @@ public class Game {
 
     private int money;
 
-
-    public int getBonusNmber() {
+    public int getBonusNumber() {
         return this.bonusNumber;
     }
 
@@ -33,7 +32,7 @@ public class Game {
         this.money = (int) money;
     }
 
-    public void askWinningNumbers() {
+    private void askWinningNumbers() {
         while (true) {
             try {
                 String input = InputService.askUserWinningGame();
@@ -49,7 +48,7 @@ public class Game {
         }
     }
 
-    public void askBonusNumber() {
+    private void askBonusNumber() {
         while (true) {
             try {
                 String input = InputService.askBonusNumber();
@@ -63,7 +62,7 @@ public class Game {
         }
     }
 
-    public void askMoney() {
+    private void askMoney() {
         while (true) {
             try {
                 String input = InputService.askMoney();

@@ -25,7 +25,7 @@ public class GameTest {
     void setWinningNumbers(int n) {
         Game game = new Game();
         game.setBonusNumber(n);
-        assertThat(game.getBonusNmber()).isEqualTo(n);
+        assertThat(game.getBonusNumber()).isEqualTo(n);
     }
 
 }

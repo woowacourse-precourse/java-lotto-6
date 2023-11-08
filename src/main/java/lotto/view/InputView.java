@@ -65,6 +65,7 @@ public class InputView {
             String input = getPlayerInput("보너스 번호를 입력해 주세요");
             bonusNumber = validateBonusNumber(input, winningNumbers);
         } while (bonusNumber == 0);
+        OutputView.printEmptyLine();
         return bonusNumber;
     }
 

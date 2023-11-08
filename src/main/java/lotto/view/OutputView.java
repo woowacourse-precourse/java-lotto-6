@@ -40,8 +40,11 @@ public class OutputView {
     protected static void printWinningStatusMessage(List<PrizeResponse> prizeResponses, double profitRate) {
         printWinningResultMessage();
         printLineSeparator();
-        for (PrizeResponse prizeResponse : prizeResponses) {
-            printPrizeMessage(prizeResponse);
+        for (Prize prize : Prize.values()) {
+            if (Objects.equals(prize, Prize.NONE)) {
+                continue;
+            }
+            printPrizeMessage(prize, prizeResponses);
         }
         printProfitRateMessage(profitRate);
     }
@@ -55,13 +58,19 @@ public class OutputView {
     }
 
     // 개별 당첨 통계 출력
-    private static void printPrizeMessage(PrizeResponse prizeResponse) {
-        printMatchingNumberCount(prizeResponse.getMatchingNumberCount());
-        if (isBonusCondition(prizeResponse.getPrize())) {
+    private static void printPrizeMessage(Prize prize, List<PrizeResponse> prizeResponses) {
+        printMatchingNumberCount(prize.getMatchingNumberCount());
+        if (isBonusCondition(prize)) {
             printBonusConditionMessage();
         }
-        printPrizeMoneyMessage(prizeResponse.getPrizeMoney());
-        printWinningCountMessage(prizeResponse.getWinningCount());
+        printPrizeMoneyMessage(prize.getPrizeMoney());
+        int winningCount = 0;
+        for (PrizeResponse prizeResponse : prizeResponses) {
+            if (Objects.equals(prize, prizeResponse.getPrize())) {
+                winningCount = prizeResponse.getWinningCount();
+            }
+        }
+        printWinningCountMessage(winningCount);
         printLineBreak();
     }
 

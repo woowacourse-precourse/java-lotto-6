@@ -25,7 +25,7 @@ public class LottoGame {
     public LottoGame(Console console,
                      PricePolicy pricePolicy,
                      NumberGeneratePolicy numberGeneratePolicy,
-                     SortPolicy sortPolicy) {
+                     SortPolicy<?> sortPolicy) {
 
         this.console = console;
         this.rule = new Rule(numberGeneratePolicy, pricePolicy, sortPolicy);
@@ -36,22 +36,21 @@ public class LottoGame {
         int lottoCount = store.getLottoCount(rule.pricePolicy());
         console.printLottoCount(lottoCount);
 
-        //로또번호 생성
-        List<Lotto> generate = new LottoNumberGenerator(rule.numberGeneratePolicy()).generate(lottoCount);
-        console.printLottos(LottoResult.of(generate, rule.sortPolicy()));
-        Lottos lottos = new Lottos(generate);
-        // 당첨 번호 입력 받기
+        List<Lotto> lottos = new LottoNumberGenerator(rule.numberGeneratePolicy())
+                .generate(lottoCount);
+        console.printLottos(LottoResult.of(lottos, rule.sortPolicy()));
+        printGameResult(lottos, store);
+    }
+
+    private void printGameResult(List<Lotto> input, Store store) {
+        Lottos lottos = new Lottos(input);
+
         WinningNumbers winningNumbers = WinningNumbers.of(console.readWinningNumbers());
-        // 보너스 번호 입력 받기
         BonusNumber bonusNumber = new BonusNumber(console.readBonusNumber(), winningNumbers);
 
-        // 당첨 통계 및 수익률 출력
         LottoResults lottoResults = new LottoResults(lottos.convertToRank(winningNumbers, bonusNumber));
-        double profitRate = lottoResults
-                .calculateTotalProfitRate(store.getMoney());
-
-        GameResult gameResult = GameResult.of(lottoResults, profitRate);
-        console.printLottoResults(gameResult);
+        double profitRate = lottoResults.calculateTotalProfitRate(store.getMoney());
+        console.printLottoResults(GameResult.of(lottoResults, profitRate));
     }
 
 }

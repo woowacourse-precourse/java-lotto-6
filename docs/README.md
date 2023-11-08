@@ -38,8 +38,7 @@
 ## 도메인 분석
 
 ### Controller
-- LottoGameStore (view와 domain을 연결하는 역할)
-
+- LottoGame (view와 domain을 연결하는 역할)
 
 ### View
 - Input (입력 인터페이스)
@@ -65,10 +64,11 @@
 ### Domain
 - Lotto (일급 컬렉션)
   - 로또번호 리스트를 가지고 있다.
-  - 당첨 번호와 비교해 일치하는 개수 계산 가능
+  - 로또 등수를 계산한다
 
 - Lottos (일급 컬렉션)
   - Lotto를 가진 일급 컬렉션
+  - 등수 리스트로 변환한다
 
 - Rank
   - 등수와 해당 등수 당첨 금액을 가지고 있는 enum
@@ -77,42 +77,35 @@
   - 가격을 입력 받아야 한다.
   - 가격에 해당하는 장수를 반환한다
 
-- WinningLotto
-  - 당첨 번호와 보너스 번호를 가지고 있다.
+- WinningNumbers
+  - 당첨 번호를 가지고 있다.
 
-- LotteryGenerator
+- BonumsNumber
+  - 보너스 숫자를 가지고 있다.
+
+- LottoNumberGenerator
   - 로또 번호를 발행한다.
-  - Lotto를 생성한다.
+  - Lotto 를 생성한다.
 
-- LottoResult
-- 결과를 가지고 있는 객체
-
-- Rule
-  - 로또 게임의 규칙(정책)을 가지고 있는 객체
-
+- LottoResults
+  - 결과를 가지고 있는 객체
+  - 수익률을 계산한다.
+  - 우승 상금을 계산한다.
+  - 로또 당첨 결과를 반환한다.
 
 ### 정책 -> 바뀔 수 있는 부분
-- LottoGeneratePolicy (로또생성정책)
+- LottoNumberGeneratePolicy (로또생성정책)
   - 1번 ~ 45번까지의 숫자를 가진 로또를 발행한다. (숫자 제한)
 
-- LottoPurchasePolicy (로또구매정책)
+- LottoPricePolicy (로또구매정책)
   - 로또 1장의 가격은 **1,000원단위**이다. (가격 단위 제한)
 
-- LottoPrintPolicy(로또 출력 정책) -> view에 있어야함
+- NaturalOrderSortPolicy(오름차순 정렬 정책
   - 로또번호는 `오름차순` 으로 정렬해 보여준다.
-
-- LottoWinningPricePolicy (로또당첨금액정책)
-  - 총 일치하는 등수에 대한 당첨금액을 결정하는 정책
-
-- LottoWinningCountPolicy (로또 당첨 개수 정책)
-  - 등수에서 당첨 번호와 일치하는 개수가 몇개인지를 결정하는 정책
-
 
 ### Refactor
 - 정책 분리해 내기
 - [x] 로또 가격 정책 
 - [x] 로또 정렬 정책
-
-- [ ] 전체적으로 clean code로 refactoring
-
-- [ ] view 구조 리펙토링 및 중복 코드 분리 하기
+- [x] 전체적으로 clean code로 refactoring
+- [x] view 구조 리펙토링 및 중복 코드 분리 하기

@@ -14,7 +14,10 @@ public class Application {
                 new Console(
                         new MissionUtilsInputView(),
                         new PrintStreamOutputView()
-                ), new LottoPricePolicy(), new LottoNumberGeneratePolicy(), new NaturalOrderSortPolicy()
+                ),
+                new LottoPricePolicy(),
+                new LottoNumberGeneratePolicy(),
+                new NaturalOrderSortPolicy()
         ).run();
 
     }

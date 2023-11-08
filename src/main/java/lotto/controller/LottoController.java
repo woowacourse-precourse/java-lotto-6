@@ -22,9 +22,7 @@ public class LottoController {
     private List<Lotto> lottos;
     private List<Integer> winningNumbers;
     private int bonusNumber;
-    private PaymentPriceChecker paymentPriceChecker;
     private LottoNumberGenerator lottoNumberGenerator = new LottoNumberGenerator();
-    private WinningNumbersChecker winningNumbersChecker;
     private BonusNumberChecker bonusNumberChecker;
     private LottoReader lottoReader;
     private Statistic statistic;
@@ -53,9 +51,8 @@ public class LottoController {
         OutputHandler.requirePaymentPrice();
         String paymentPriceInput = InputHandler.getInput();
         paymentPrice = Converter.pay(paymentPriceInput);
-        paymentPriceChecker = new PaymentPriceChecker(paymentPrice);
-        paymentPriceChecker.positive();
-        paymentPriceChecker.multipleOfPrice();
+        PaymentPriceChecker.positive(paymentPrice);
+        PaymentPriceChecker.multipleOfPrice(paymentPrice);
         OutputHandler.printEmptyLine();
         return paymentPrice / LOTTO_PRICE.getNumber();
     }
@@ -90,9 +87,8 @@ public class LottoController {
         String winningNumbersInput = InputHandler.getInput();
         List<Integer> winningNumbers = Converter.winningNumbers(winningNumbersInput);
         winningNumbers.sort(Comparator.naturalOrder());
-        winningNumbersChecker = new WinningNumbersChecker(winningNumbers);
-        winningNumbersChecker.rightSize();
-        winningNumbersChecker.rightNumbers();
+        WinningNumbersChecker.rightSize(winningNumbers);
+        WinningNumbersChecker.rightNumbers(winningNumbers);
         OutputHandler.printEmptyLine();
         return winningNumbers;
     }
@@ -109,14 +105,13 @@ public class LottoController {
         OutputHandler.requireBonusNumber();
         String bonusNumberInput = InputHandler.getInput();
         int bonusNumber = Converter.bonusNumbers(bonusNumberInput);
-        bonusNumberChecker = new BonusNumberChecker(bonusNumber);
-        bonusNumberChecker.rightRange();
-        bonusNumberChecker.differentFrom(winningNumbers);
+        BonusNumberChecker.rightRange(bonusNumber);
+        BonusNumberChecker.differentFrom(bonusNumber, winningNumbers);
         OutputHandler.printEmptyLine();
         return bonusNumber;
     }
 
-    private void printStatistic() {
+    private void printStatistic() throws IllegalArgumentException {
         lottoReader = new LottoReader(lottos, winningNumbers, bonusNumber);
         statistic = lottoReader.getStatistic();
         statistic.printWinningDetails();

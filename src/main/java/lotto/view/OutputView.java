@@ -4,8 +4,8 @@ import java.text.NumberFormat;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.domain.Prize;
-import lotto.domain.PrizeCount;
 import lotto.dto.LottoResponse;
+import lotto.dto.PrizeCountResponse;
 
 public class OutputView {
     private static final String PURCHASE_COUNT_FORMAT = "%d개를 구매했습니다.";
@@ -37,7 +37,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printPrizeCount(PrizeCount prizeCount) {
+    public static void printPrizeCount(PrizeCountResponse prizeCount) {
         System.out.println();
         System.out.println(WINNING_RESULT_TITLE);
         System.out.println(WINNING_TITLE_DASH.repeat(WINNING_TITLE_DASH_REPEAT_COUNT));

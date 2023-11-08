@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.dto;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -6,8 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
+import lotto.domain.Prize;
 
-public class PrizeCount {
+public class PrizeCountResponse {
     private final Map<Prize, Integer> prizeCount;
 
     {
@@ -19,26 +20,11 @@ public class PrizeCount {
         prizes.forEach(prize -> prizeCount.put(prize, 0));
     }
 
-    public PrizeCount(List<Prize> matchResult) {
-        for (Prize prize : matchResult) {
-            if (prize.equals(Prize.NONE)) {
-                continue;
-            }
-            prizeCount.put(prize, prizeCount.get(prize) + 1);
-        }
-    }
-
-    public double calculateReturnRate(Money money) {
-        return money.calculateReturnRate(getTotalWinningAmount());
+    public PrizeCountResponse(Map<Prize, Integer> prizeCount) {
+        prizeCount.forEach(this.prizeCount::put);
     }
 
     public Map<Prize, Integer> getPrizeCount() {
         return Collections.unmodifiableMap(this.prizeCount);
-    }
-
-    private long getTotalWinningAmount() {
-        return prizeCount.keySet().stream()
-                .mapToLong(prize -> prize.calculateAmount(prizeCount.get(prize)))
-                .sum();
     }
 }

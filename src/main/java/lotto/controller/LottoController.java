@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoNumber;
 import lotto.domain.PrizeCount;
+import lotto.dto.PrizeCountResponse;
 import lotto.generator.LottosGenerator;
 import lotto.domain.Money;
 import lotto.domain.Lottos;
@@ -46,7 +47,7 @@ public class LottoController {
 
         PrizeCount prizeCount = new PrizeCount(playerLottos.match(winningLotto));
 
-        OutputView.printPrizeCount(prizeCount);
+        OutputView.printPrizeCount(new PrizeCountResponse(prizeCount.getPrizeCount()));
         OutputView.printReturnRate(prizeCount.calculateReturnRate(money));
     }
 

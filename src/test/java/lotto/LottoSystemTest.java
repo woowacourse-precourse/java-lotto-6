@@ -48,5 +48,14 @@ public class LottoSystemTest {
         assertThatThrownBy(() -> lottoSystem.getWinningNumbers(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @Test
+    void 입력된_당첨_로또_번호가_6개보다_많은_경우() {
+        LottoSystem lottoSystem = new LottoSystem();
+        String number = "1,2,3,4,5,6,7";
+
+        assertThatThrownBy(() -> lottoSystem.getWinningNumbers(number))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
 

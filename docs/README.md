@@ -43,3 +43,17 @@
 12. 수익률 출력
 
 ---
+## 도메인 로직
+- LottoGenerator.java
+  - 로또번호 자동 생성
+- LottoPrinter.java
+  - 생성된 로또번호 출력
+- LottoValidator.java
+  - 당첨 통계 출력
+  - 총 상금 계산
+  - 총 수익률 계산
+- PurchaseInput
+  - 로또 구입 금액 입력
+- WinningNumbers
+  - 당첨 로또 번호 입력
+  - 보너스 번호 입력

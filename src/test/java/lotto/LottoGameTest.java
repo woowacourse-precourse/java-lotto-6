@@ -1,6 +1,7 @@
 package lotto;
 
 import lotto.controller.LottoGame;
+import lotto.model.User;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +51,5 @@ public class LottoGameTest {
         assertThatThrownBy(() -> lottoGame.userInputNumbers(inputNumbers))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 
 }

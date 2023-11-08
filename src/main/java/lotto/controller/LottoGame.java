@@ -24,11 +24,13 @@ public class LottoGame {
         printProfit(user);
     }
 
+    // 게임 결과 출력
     public void printResult(User user){
         System.out.println(Output.WINNING_STATISTICS);
         print(user);
     }
 
+    // 맞춘 갯수 출력
     public void print(User user){
         List<Integer> correctCounts = findCorrectCount(user);
         PrintCorrect[] printCorrects = PrintCorrect.values();
@@ -37,7 +39,8 @@ public class LottoGame {
         }
     }
 
-    public void setMoney(User user){
+    // 맞춘 금액 저장
+    public void setResultMoney(User user){
         List<Integer> correctCounts = findCorrectCount(user);
         Money[] monies = Money.values();
         int resultMoney = 0;
@@ -47,17 +50,20 @@ public class LottoGame {
         user.setResultMoney(resultMoney);
     }
 
+    // 수익률 계산
     public void getProfit(User user){
         Long resultMoney = user.getResultMoney();
         double profit = (resultMoney.doubleValue() / user.getMoney()) * 100;
         System.out.printf(Output.PROFIT, profit);
     }
 
+    // 수익률 출력
     public void printProfit(User user){
-        setMoney(user);
+        setResultMoney(user);
         getProfit(user);
     }
 
+    // 맞춘 갯수 확인
     public List<Integer> findCorrectCount(User user){
         List<Integer> correctCount = user.getCorrectCounts();
         List<Boolean> correctBonusCount = user.getCorrectBonusCounts();
@@ -70,6 +76,7 @@ public class LottoGame {
         return correctCounts;
     }
 
+    // 3개 맞췄을 때
     public int threeCorrect(List<Integer> correctCounts){
         int Correct = 0;
         for(int i = 0; i < correctCounts.size(); i++){
@@ -80,6 +87,7 @@ public class LottoGame {
         return Correct;
     }
 
+    // 4개 맞췄을 때
     public int fourCorrect(List<Integer> correctCounts){
         int Correct = 0;
         for(int i = 0; i < correctCounts.size(); i++){
@@ -90,6 +98,7 @@ public class LottoGame {
         return Correct;
     }
 
+    // 5개 맞췄을 때
     public int fiveCorrect(List<Integer> correctCounts, List<Boolean> correctBonusCount){
         int Correct = 0;
         for(int i = 0; i < correctCounts.size(); i++){
@@ -100,6 +109,7 @@ public class LottoGame {
         return Correct;
     }
 
+    // 5개와 보너스 번호를 맞췄을 때
     public int fiveCorrectAndBonusCorrect(List<Integer> correctCounts, List<Boolean> correctBonusCount){
         int Correct = 0;
         for(int i = 0; i < correctCounts.size(); i++){
@@ -110,6 +120,7 @@ public class LottoGame {
         return Correct;
     }
 
+    // 6개를 맞췄을 때
     public int sixCorrect(List<Integer> correctCounts){
         int Correct = 0;
         for(int i = 0; i < correctCounts.size(); i++){
@@ -131,6 +142,7 @@ public class LottoGame {
         }
     }
 
+    // 보너스 번호 맞춘갯수 확인
     public boolean bonusNumberCheck(int bonusNumber, List<Integer> numbers) {
         boolean bonusCheck = false;
         for (int i = 0; i < numbers.size(); i++) {
@@ -142,6 +154,7 @@ public class LottoGame {
         return bonusCheck;
     }
 
+    // 로또 번호 맞춘갯수 확인
     public int lottoNumbersCheck(List<Integer> userNumbers, Lotto lottoTicket){
         int count = 0;
         for(int i = 0; i < userNumbers.size(); i++){
@@ -152,6 +165,7 @@ public class LottoGame {
         return count;
     }
 
+    // 로또 번호 맞추기
     public boolean lottoInNumber(List<Integer> numbers, int number){
         boolean inNumber = false;
         for(int i = 0; i < numbers.size(); i++){
@@ -162,7 +176,6 @@ public class LottoGame {
         }
         return inNumber;
     }
-
 
     // 로또 번호 출력(랜덤 로또 번호)
     public void printLottoTickets(User user){
@@ -180,7 +193,7 @@ public class LottoGame {
         return randomNumbers;
     }
 
-    // 로또 리스트 user 클래스 추가
+    // 로또 리스트 user 클래스에 추가
     public void setLottoTickets(User user){
         System.out.println(user.getLoopCount() + Output.LOOP_COUNT_MESSAGE);
         for(int i = 0; i < user.getLoopCount(); i++){
@@ -190,6 +203,7 @@ public class LottoGame {
         }
     }
 
+    // 게임 횟수 설정
     public void loopCountSetUp(User user){
         int amount = 0;
         boolean isTrue = false;
@@ -302,6 +316,7 @@ public class LottoGame {
         return userInputNumbers;
     }
 
+    // 겹치는 숫자가 있는지 확인
     public int NumberEquals(String[] userNumbers, int number){
         int count = 0;
         for(int i = 0; i < userNumbers.length; i++){
@@ -334,6 +349,7 @@ public class LottoGame {
         return inputBonusNumber;
     }
 
+    // 이전 입력 로또 번호와 겹치는지 확인
     public boolean bonusNumberEquals(List<Integer> numbers, int number){
         for(int i = 0; i < numbers.size(); i++){
             if(number == numbers.get(i)){
@@ -343,6 +359,7 @@ public class LottoGame {
         return true;
     }
 
+    // 보너스번호 설정
     public void setBonusNumber(User user){
         int bonusNumber = 0;
         while(bonusNumber == 0){

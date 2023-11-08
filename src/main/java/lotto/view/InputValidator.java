@@ -1,7 +1,8 @@
 package lotto.view;
 
-import static lotto.utils.ErrorMessages.INPUT_NUMBER_FORMAT;
-import static lotto.utils.ErrorMessages.PAYMENT_OVER_1000_UNIT;
+import lotto.domain.Lotto;
+
+import static lotto.utils.ErrorMessages.*;
 
 public class InputValidator {
 
@@ -16,5 +17,8 @@ public class InputValidator {
         } catch (NumberFormatException e) {
             throw new NumberFormatException(INPUT_NUMBER_FORMAT);
         }
+    }
+    public static void checkDuplicateBonusNumber(int bonusNumber, Lotto lotto) {
+        if (lotto.getNumbers().contains(bonusNumber)) throw new IllegalArgumentException(CHECK_INPUT_BONUS_NUMBER);
     }
 }

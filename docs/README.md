@@ -1,5 +1,5 @@
 ### 다이어 그램
-<img src="https://github.com/OiKimiO/java-lotto-6/assets/53805469/2c0a53aa-bedf-4d66-bc25-72e9f160a0e9" style="width:70%;" />
+<img src="https://github.com/OiKimiO/java-lotto-6/assets/53805469/a09312e2-8e22-4416-84a5-e9144d996032" style="width:70%;" />
 
 ### 패키지 구조
 <table>
@@ -36,12 +36,15 @@
             <td>AppConfig</td>
             <td>전반적인 실행에 있어 필수 의존성을 관리합니다.
                 <br/>
-                (MVC는 싱글턴, 일부 필수 클래스는 생성자로 관리)
+                (MVC는 싱글턴, 일부 필수 클래스(*)는 생성자로 관리)
             </td>
         </tr>
         <tr>
             <td>LottoProcess</td>
-            <td>로또 실행 절차를 가지고 있습니다.</td>
+            <td>로또 실행 절차를 가지고 있습니다.
+                <br />
+                (<b>AppConfig 생성자로 관리*</b>)
+            </td>
         </tr>
         <tr>
             <td>controller</td>
@@ -58,7 +61,10 @@
         <tr>
             <td>rule</td>
             <td>PrizeAmount</td>
-            <td>로또 상금과 관련된 내용을 관리합니다.</td>
+            <td>당첨 수익금을 관리합니다.
+                <br />
+                (<b>AppConfig 생성자로 관리*</b>)    
+            </td>
         </tr>
         <tr>
             <td rowspan="6">X</td>
@@ -67,7 +73,7 @@
         </tr>
         <tr>
             <td>LottoSet</td>
-            <td>로또 당첨번호와 함께 보너스 번호를 관리합니다.</td>
+            <td>로또 당첨번호, 보너스 번호를 관리합니다.</td>
         </tr>
         <tr>
             <td>Returns</td>

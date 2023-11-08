@@ -1,12 +1,15 @@
 package lotto;
 
 import lotto.exception.DuplicateException;
+import lotto.exception.NumberException;
 import lotto.exception.RangeException;
 import lotto.exception.SizeException;
+import lotto.view.InputBuyLotto;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -45,6 +48,12 @@ public class Lotto {
             if (!checkNumberRange(number)) {
                 throw new RangeException();
             }
+        }
+    }
+
+    private void validateNumber(String money) {
+        if (!Pattern.compile("\\d+").matcher(money).matches()) {
+            throw new NumberException();
         }
     }
     private boolean checkNumberRange(int number) {

@@ -52,6 +52,7 @@ public class LottoController {
 
     private int getTicket(int money) {
         int ticketCount = inputBuyLotto.getTicket(money);
+        System.out.println();
         System.out.println(ticketCount + COUNT_MESSAGE);
         return ticketCount;
     }

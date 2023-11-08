@@ -17,4 +17,15 @@ public class WinningNumbers {
             throw new IllegalArgumentException(ERROR_DUPLICATE_BONUS_NUMBER_EXISTENCE.getMessage());
         }
     }
+
+    public int matchCount(Lotto lotto) {
+        return (int) answerLotto.getLottoTicket()
+                .stream()
+                .filter(number -> lotto.hasElement(number))
+                .count();
+    }
+
+    public LottoNumber getBonusNumber() {
+        return bonusNumber;
+    }
 }

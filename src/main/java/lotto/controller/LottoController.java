@@ -4,6 +4,7 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
+import lotto.dto.GameResult;
 import lotto.view.InputView;
 import lotto.view.OutputView;
 
@@ -45,5 +46,17 @@ public class LottoController {
 
     private String removeNumberSpace(final String number) {
         return number.replace(" ", "");
+    }
+
+    public GameResult generateResult(WinningNumbers winningNumbers, Lottos lottos) {
+        GameResult gameResult = new GameResult();
+        for (Lotto lotto : lottos.getTotalLottos()) {
+            gameResult.calculateWinningResult(winningNumbers, lotto);
+        }
+        return gameResult;
+    }
+
+    public void printLottoWinningResult(GameResult gameResult) {
+        OutputView.printLottoWinningResult(gameResult);
     }
 }

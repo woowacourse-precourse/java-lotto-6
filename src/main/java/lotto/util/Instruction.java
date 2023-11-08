@@ -10,7 +10,11 @@ public enum Instruction {
     ERROR_DUPLICATE_LOTTO_NUMBER_EXISTENCE("[ERROR] 로또 번호는 중복될 수 없습니다."),
     ERROR_WRONG_LOTTO_NUMBER_RANGE("[ERROR] 1 이상 45 이하의 숫자를 입력해 주세요."),
     ERROR_DUPLICATE_BONUS_NUMBER_EXISTENCE("[ERROR] 보너스 번호가 로또 번호와 중복되었습니다."),
-    LOTTOS_SIZE_SUFFIX_MESSAGE("개를 구매했습니다.");
+    LOTTOS_SIZE_SUFFIX_MESSAGE("개를 구매했습니다."),
+    LOTTOS_BONUS_NUMBER_MATCH_MESSAGE("개 일치, 보너스 볼 일치 ("),
+    WON_SUFFIX_MESSAGE("원) - "),
+    COUNT_SUFFIX_MESSAGE("개"),
+    COUNT_MATCH_SUFFIX_MESSAGE("개 일치 (");
 
     private final String message;
 

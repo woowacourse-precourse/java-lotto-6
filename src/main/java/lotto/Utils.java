@@ -21,6 +21,7 @@ public class Utils {
     public static List<Integer> makeLottoNumber() {
         return Randoms.pickUniqueNumbersInRange(1, 45, 6);
     }
+
     public static List<Integer> convertStringToIntegers(String numbers) {
         return Arrays.stream(numbers.split(","))
                 .map(String::trim)

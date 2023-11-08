@@ -16,9 +16,11 @@ import static lotto.view.InterfaceView.*;
 public class LottoGameManager {
 
     private final UserInputManager userInputManager;
-    private List<Lotto> userLottos;
+    private final List<Lotto> userLottos;
+    private final List<Integer> matchCounts = new ArrayList<>(Collections.nCopies(5, 0));
     private Lotto winningLotto;
     private BonusNumber bonusNumber;
+    private BigDecimal profitRate;
 
     public LottoGameManager(UserInputManager userInputManager) {
         this.userInputManager = userInputManager;
@@ -27,8 +29,8 @@ public class LottoGameManager {
 
     public void play() {
         int lottoCount = determiningTheNumberOfLotto();
-        createAndCheckLotto(lottoCount);
-        setWinningNumberAndBonusNumber();
+        creatingAndCheckingLotto(lottoCount);
+        settingWinningNumberAndBonusNumber();
         JudgementOfWinning();
         profitCalculating();
     }
@@ -36,16 +38,16 @@ public class LottoGameManager {
     public int determiningTheNumberOfLotto() {
         priceInputMessage();
         int lottoCount = purchaseLotto();
-        InterfaceView.checkMessage(lottoCount);
+        InterfaceView.purchaseCheckingMessage(lottoCount);
         return lottoCount;
     }
 
-    public void createAndCheckLotto(int lottoCount) {
+    public void creatingAndCheckingLotto(int lottoCount) {
         createLotto(lottoCount);
         printLotto(userLottos);
     }
 
-    public void setWinningNumberAndBonusNumber() {
+    public void settingWinningNumberAndBonusNumber() {
         winningNumberInputMessage();
         setWinningNumber();
         bonusNumberInputMessage();
@@ -59,7 +61,7 @@ public class LottoGameManager {
 
     public void profitCalculating() {
         ProfitCalculator profitCalculator = new ProfitCalculator(Purchase.getPurchasePrice(), matchCounts);
-        BigDecimal profitRate = profitCalculator.calculateProfit();
+        profitRate = profitCalculator.calculateProfit();
         printProfitRate(profitRate);
     }
 
@@ -80,15 +82,11 @@ public class LottoGameManager {
         }
     }
 
-
-    private List<Integer> matchCounts = new ArrayList<>(Collections.nCopies(5, 0));
-
     private void checkResult() {
 
         for (Lotto userLotto : userLottos) {
             WinningRanking prizeRank = userLotto.checkWinning(winningLotto, bonusNumber.getBonusNumber());
             if (prizeRank != WinningRanking.LOSING) {
-                // 열거형 값을 사용하여 해당 등수의 matchCounts 값을 증가시킵니다.
                 matchCounts.set(prizeRank.getRank() - 1, matchCounts.get(prizeRank.getRank() - 1) + 1);
             }
         }
@@ -98,5 +96,25 @@ public class LottoGameManager {
         String winningNumbersInput = userInputManager.getWinningNumbersInput();
         List<Integer> winningNumbers = Utils.convertStringToIntegers(winningNumbersInput);
         this.winningLotto = new Lotto(winningNumbers);
+    }
+
+    public List<Lotto> getUserLottos() {
+        return this.userLottos;
+    }
+
+    public Lotto getWinningLotto() {
+        return this.winningLotto;
+    }
+
+    public BonusNumber getBonusNumber() {
+        return this.bonusNumber;
+    }
+
+    public List<Integer> getMatchCounts() {
+        return matchCounts;
+    }
+
+    public BigDecimal getProfitRate() {
+        return profitRate;
     }
 }

@@ -55,9 +55,7 @@ public class Lotto {
             return WinningRanking.FOURTH;
         } else if (matchCount == 3) {
             return WinningRanking.FIFTH;
-        } else {
-            return WinningRanking.LOSING;
-        }
+        } return WinningRanking.LOSING;
     }
 
 }

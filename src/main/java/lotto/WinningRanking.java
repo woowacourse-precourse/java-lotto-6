@@ -12,9 +12,9 @@ public enum WinningRanking {
     private final int rank;
     private final int winningPrice;
 
-    WinningRanking(int rank, int prizeMoney) {
+    WinningRanking(int rank, int winningPrice) {
         this.rank = rank;
-        this.winningPrice = prizeMoney;
+        this.winningPrice = winningPrice;
     }
 
     public int getRank() {

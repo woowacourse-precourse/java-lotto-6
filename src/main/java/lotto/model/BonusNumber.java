@@ -12,6 +12,4 @@ public class BonusNumber {
     public int getBonusNumber() {
         return bonusNumber;
     }
-
-
 }

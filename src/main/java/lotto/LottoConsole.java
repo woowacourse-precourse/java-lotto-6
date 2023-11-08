@@ -5,10 +5,24 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 public class LottoConsole {
 
-    public static void start() {
-        int number = numberOfPurchases();
+    private static final int LOTTO_PRICE = 1000;
 
-        System.out.println(number + "를 구매했습니다.");
+    public static void start() {
+        while (true) {
+            int number = numberOfPurchases();
+
+            if (!isFit(number, LOTTO_PRICE)) {
+                System.out.println("1000원 단위로 구매할 수 있습니다.");
+                continue;
+            }
+
+            System.out.println(number / 1000 + "개를 구매했습니다.");
+            break;
+        }
+    }
+
+    public static boolean isFit(int leftNumber, int rightNumber) {
+        return leftNumber % rightNumber == 0;
     }
 
     public static int numberOfPurchases() {

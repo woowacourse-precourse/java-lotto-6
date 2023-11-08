@@ -1,6 +1,7 @@
 package view;
 
 import dto.LottoTickets;
+import java.util.List;
 
 public class View {
     private final InputView inputView;
@@ -18,5 +19,10 @@ public class View {
 
     public void showLottoTickets(LottoTickets lottoTickets) {
         outputView.printLottoTickets(lottoTickets);
+    }
+
+    public List<Integer> requireLottoWinningNumbers() {
+        outputView.requestLottoWinningNumbers();
+        return inputView.enterWinningLottoNumbers();
     }
 }

@@ -30,18 +30,14 @@ public class LottoShop {
     public void runLottoGame() {
         LottoAmount lottoAmount = purchaseAmount();
         println();
-
         List<Lotto> lottoList = buyLotto(lottoAmount);
         println();
-
         List<Integer> winningNumbers = drawWinningNumbers();
         println();
-
         int bonusNumber = drawBonusNumber();
         println();
 
         WinningLotto winningLotto = drawWinningLotto(winningNumbers, bonusNumber);
-
         WinningStatistics winningStatistics = makeWinningStatistics(lottoAmount, lottoList, winningLotto);
         printLottoStatistics(winningStatistics);
     }
@@ -56,11 +52,12 @@ public class LottoShop {
         }
     }
 
-    public List<Lotto> buyLotto(LottoAmount lottoAmount) {
+    private List<Lotto> buyLotto(LottoAmount lottoAmount) {
         List<Lotto> lottoList = lottoMachine.buyLottos(lottoAmount);
         printLottoList(lottoList);
         return lottoList;
     }
+
     private WinningLotto drawWinningLotto(List<Integer> winningNumbers, int bonusNumber) {
         return new WinningLotto(winningNumbers, bonusNumber);
     }
@@ -85,7 +82,8 @@ public class LottoShop {
         }
     }
 
-    private WinningStatistics makeWinningStatistics(LottoAmount lottoAmount, List<Lotto> lottoList, WinningLotto winningLotto) {
+    private WinningStatistics makeWinningStatistics(LottoAmount lottoAmount, List<Lotto> lottoList,
+                                                    WinningLotto winningLotto) {
         return statistician.makeLottoStatistics(lottoAmount, lottoList, winningLotto);
     }
 }

@@ -17,12 +17,6 @@
 
 ---
 
-### 로또 플레이 기능
-- [ ] 당첨 내역의 총 수익률은 소수점 둘째 자리에서 반올림하여 계산한다. - calculateRateReturn()
-- [ ] 당첨된 로또의 내역을 확인한다. - checkWinningDetails()
-
----
-
 ## 도메인 모델
 
 ### Lotto - 로또 번호를 관리하는 역할
@@ -47,3 +41,7 @@
  - [x] 보너스 번호 1~45 범위 내의 숫자만 가능한지 체크 - validateBonusNumberRange()
  - [x] 로또 숫자 6개와 추가로 1개의 보너스 번호 중복 체크를 한다. - validateWinningNumbersAndBonusNumber()
  - [x] 보너스 번호 문자열을 숫자로 변경하는 함수 - convertStringToIntegerFormat()
+
+### LottoMachine - 로또 당첨 내역과 수익률을 관리하는 역할
+ - [x] 당첨 내역의 총 수익률은 소수점 둘째 자리에서 반올림하여 계산한다. - calculationOfTotalReturn()
+ - [x] 당첨된 로또의 내역을 확인한다. - saveWinningDetails()

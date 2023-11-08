@@ -35,7 +35,7 @@ class CashTest {
 	@DisplayName("1000원으로 나누어 떨어지지 않는 금액 입력시 예외 발생")
 	@ParameterizedTest()
 	@ValueSource(ints = {1001, 2002, 3003, 4004, 5005})
-	void createCashNotAvailableAmount(final int amount) {
+	void createCashNotDivisibleAmountExceptionTest(final int amount) {
 		assertThrows(IllegalArgumentException.class,
 			() -> {
 				final RequestCash requestCash = RequestCash.of(amount);
@@ -50,7 +50,7 @@ class CashTest {
 	@DisplayName("잘못된 지출 초기 설정값이 입력되는 경우 예외 발생")
 	@ParameterizedTest()
 	@ValueSource(ints = {1000, 2000, 3000, 4000, 5000})
-	void createCashWrongInitSpendAmount(final int wrongInitAmount) {
+	void createCashWithWrongInitSpendAmountExceptionTest(final int wrongInitAmount) {
 		assertThrows(IllegalStateException.class,
 			() -> {
 				Cash.create(

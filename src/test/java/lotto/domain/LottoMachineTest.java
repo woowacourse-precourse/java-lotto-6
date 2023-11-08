@@ -27,7 +27,6 @@ class LottoMachineTest {
 	@Test
 	void purchaseLottosSuccessTest() {
 		final Lotto expected = Lotto.create(List.of(1, 2, 3, 4, 5, 6));
-
 		final RequestLottos requestLottos = lottoMachine.purchaseLottos();
 		final List<Lotto> lottoDummy = requestLottos.createLottoDummy();
 		assertThat(lottoDummy.get(0)

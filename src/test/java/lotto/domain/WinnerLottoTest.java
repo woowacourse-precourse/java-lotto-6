@@ -24,7 +24,7 @@ class WinnerLottoTest {
 	@DisplayName("당첨 번호에 중복된 숫자를 입력한 경우 예외 발생")
 	@ParameterizedTest
 	@MethodSource("duplicatedNumberInNumbersDummy")
-	void createWinnerLottoWithDuplicatedNumberInNumbersExceptionTest(final List<Integer> winnerNumbers,
+	void createWinnerLottoWithDuplicatedNumberExceptionTest(final List<Integer> winnerNumbers,
 		final Integer bonusNumber) {
 		assertThatThrownBy(() -> WinnerLotto.create(winnerNumbers, bonusNumber))
 			.isInstanceOf(IllegalArgumentException.class);

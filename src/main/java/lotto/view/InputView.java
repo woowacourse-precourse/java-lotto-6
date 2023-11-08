@@ -16,7 +16,7 @@ public class InputView {
 			System.out.println(INPUT_CASH_MESSAGE.getMessage());
 			final String requestCash = getInput();
 			InputValidator.validateCashFormat(requestCash);
-			final Integer amount = Parser.parseInt(requestCash);
+			final Integer amount = Parser.parseNumber(requestCash);
 			return RequestCash.of(amount);
 		} catch (IllegalArgumentException | IllegalStateException e) {
 			throw e;
@@ -41,7 +41,7 @@ public class InputView {
 			System.out.println(INPUT_BONUS_NUMBER.getMessage());
 			final String requestBonusNumber = getInput();
 			InputValidator.validateBonusNumberFormat(requestBonusNumber);
-			return Parser.parseInt(requestBonusNumber);
+			return Parser.parseNumber(requestBonusNumber);
 		} catch (IllegalArgumentException | IllegalStateException e) {
 			throw e;
 		}

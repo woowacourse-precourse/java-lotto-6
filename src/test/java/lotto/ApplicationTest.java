@@ -49,7 +49,7 @@ class ApplicationTest extends NsTest {
 	}
 
 	@Test
-	void 기능_테스트_2() {
+	void successScenarioTest_2() {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", "1,2,3,4,5,6", "7");
@@ -88,7 +88,7 @@ class ApplicationTest extends NsTest {
 
 
 	@Test
-	void 기능_테스트_3() {
+	void successScenarioTest_3() {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", "1,2,3,4,5,6", "7");
@@ -126,7 +126,7 @@ class ApplicationTest extends NsTest {
 	}
 
 	@Test
-	void 기능_테스트_4() {
+	void successScenarioTest_4() {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", "1,2,3,4,5,6", "7");
@@ -164,7 +164,7 @@ class ApplicationTest extends NsTest {
 	}
 
 	@Test
-	void 기능_테스트_5() {
+	void successScenarioTest_5() {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", "1,2,3,4,5,6", "7");
@@ -204,7 +204,7 @@ class ApplicationTest extends NsTest {
 	@DisplayName("현금 입력시 잘못된 현금을 입력한 경우 다시 입력 받기")
 	@ParameterizedTest
 	@ValueSource(strings = {"10232", "dw33", "%%@", "hello", "-1000"})
-	void 기능_테스트_6(final String wrongCash) {
+	void restartScenario_1(final String wrongCash) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run(wrongCash, "10000", "1,2,3,4,5,6", "7");
@@ -246,7 +246,7 @@ class ApplicationTest extends NsTest {
 	@DisplayName("당첨 번호 입력시 1~45를 벗어난 숫자를 입력하는 경우 다시 입력 받기")
 	@ParameterizedTest
 	@ValueSource(strings = {"1,2,3,4,5,100", "1,2,3,4,5,49", "-1,2,3,4,5,6", "0,1,2,3,4,5", "100,200,300,400,500,600"})
-	void 기능_테스트_7(final String wrongWinnerNumbers) {
+	void restartScenario_2(final String wrongWinnerNumbers) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", wrongWinnerNumbers, "1,2,3,4,5,6", "7");
@@ -287,7 +287,7 @@ class ApplicationTest extends NsTest {
 	@DisplayName("당첨 번호 입력시 숫자 이외의 값이 포함된 경우 다시 입력 받기")
 	@ParameterizedTest
 	@ValueSource(strings = {"1,2,3,4,5,ㅎ", "1,2,3,4,5,^", "아,2,3,4,5,6", "&,1,2,3,4,5", " ,1,2,3,4,5"})
-	void 기능_테스트_8(final String wrongWinnerNumbers) {
+	void restartScenario_3(final String wrongWinnerNumbers) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", wrongWinnerNumbers, "1,2,3,4,5,6", "7");
@@ -329,7 +329,7 @@ class ApplicationTest extends NsTest {
 	@DisplayName("당첨 번호 입력 형식을 준수하지 않은 경우 다시 입력 받기")
 	@ParameterizedTest
 	@ValueSource(strings = {"1, 2, 3, 4, 5, 6", "1-2-3-4-5-6", ",1,2,3,4,5,6", "1,2,3,4,5,6,", "1/2/3/4/5/6"})
-	void 기능_테스트_9(final String wrongWinnerNumbers) {
+	void restartScenario_4(final String wrongWinnerNumbers) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", wrongWinnerNumbers, "1,2,3,4,5,6", "7");
@@ -370,7 +370,7 @@ class ApplicationTest extends NsTest {
 	@DisplayName("보너스 번호 잘못 입력한 경우 다시 입력 받기")
 	@ParameterizedTest
 	@ValueSource(strings = {"0", "오야", "hello", "!!,", "-100"})
-	void 기능_테스트_10(final String wrongBonusNumber) {
+	void restartScenario_5(final String wrongBonusNumber) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", "1,2,3,4,5,6", wrongBonusNumber, "7");
@@ -412,7 +412,7 @@ class ApplicationTest extends NsTest {
 	@DisplayName("당첨 번호와 보너스 번호 중복될 경우 다시 입력 받기")
 	@ParameterizedTest
 	@ValueSource(strings = {"1", "2", "3", "4", "5"})
-	void 기능_테스트_11(final String duplicateBonusNumber) {
+	void restartScenario_6(final String duplicateBonusNumber) {
 		assertRandomUniqueNumbersInRangeTest(
 			() -> {
 				run("10000", "1,2,3,4,5,6", duplicateBonusNumber, "1,2,3,4,5,6", "7");

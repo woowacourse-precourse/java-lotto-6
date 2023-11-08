@@ -59,7 +59,7 @@ public class InputValidator {
 	}
 
 	private static void validatePositiveNumber(final String input) {
-		final Integer number = Parser.parseInt(input);
+		final Integer number = Parser.parseNumber(input);
 		if (ZERO > number) {
 			throw new IllegalArgumentException(NOT_POSITIVE_NUMBER.getMessage());
 		}
@@ -80,7 +80,7 @@ public class InputValidator {
 	}
 
 	private static void validateRangeNumber(final String number) {
-		final Integer parsedNumber = Parser.parseInt(number);
+		final Integer parsedNumber = Parser.parseNumber(number);
 		if (!(RANGE_START_NUMBER.getSetting() <= parsedNumber
 			&& parsedNumber <= RANGE_END_NUMBER.getSetting())) {
 			throw new IllegalArgumentException(WRONG_BONUS_NUMBER_RANGE.getMessage());
@@ -89,7 +89,7 @@ public class InputValidator {
 
 	private static void validateDuplicatedNumber(final List<String> numberDummy) {
 		if (numberDummy.stream()
-			.map(Parser::parseInt)
+			.map(Parser::parseNumber)
 			.collect(Collectors.toSet())
 			.size() != LOTTO_LENGTH.getSetting()) {
 			throw new IllegalArgumentException(DUPLICATED_WINNER_NUMBER.getMessage());

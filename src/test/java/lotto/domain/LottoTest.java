@@ -19,14 +19,14 @@ class LottoTest {
 
 	@DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
 	@Test
-	void createLottoByOverSize() {
+	void createLottoByOverSizeExceptionTest() {
 		assertThatThrownBy(() -> Lotto.create(List.of(1, 2, 3, 4, 5, 6, 7)))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
 
 	@DisplayName("로또 번호에 중복된 숫자가 있으면 예외가 발생한다.")
 	@Test
-	void createLottoByDuplicatedNumber() {
+	void createLottoByDuplicatedNumberExceptionTest() {
 		assertThatThrownBy(() -> Lotto.create(List.of(1, 2, 3, 4, 5, 5)))
 			.isInstanceOf(IllegalArgumentException.class);
 	}
@@ -34,7 +34,7 @@ class LottoTest {
 	@DisplayName("로또 번호의 개수가 6개가 넘어가면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("numbersOverSizeDummy")
-	void createLottoByOverSizeTest(final List<Integer> numbersOverSize) {
+	void createLottoByOverSizeExceptionTest(final List<Integer> numbersOverSize) {
 		assertThrows(IllegalArgumentException.class,
 			() -> Lotto.create(numbersOverSize));
 
@@ -43,7 +43,7 @@ class LottoTest {
 	@DisplayName("로또 번호의 개수가 6개 보다 적으면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("numbersSmallSizeDummy")
-	void createLottoBySmallSizeTest(final List<Integer> numbersSmallSize) {
+	void createLottoBySmallSizeExceptionTest(final List<Integer> numbersSmallSize) {
 		assertThrows(IllegalArgumentException.class,
 			() -> Lotto.create(numbersSmallSize));
 
@@ -52,7 +52,7 @@ class LottoTest {
 	@DisplayName("로또 번호에 중복된 숫자가 있으면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("duplicatedNumbersDummy")
-	void createLottoByDuplicatedNumbersTest(final List<Integer> duplicatedNumbers) {
+	void createLottoByDuplicatedNumbersExceptionTest(final List<Integer> duplicatedNumbers) {
 		assertThrows(IllegalArgumentException.class,
 			() -> Lotto.create(duplicatedNumbers));
 	}
@@ -60,7 +60,7 @@ class LottoTest {
 	@DisplayName("로또 번호에 허용 범위를 벗어난 숫자가 있으면 예외 발생")
 	@ParameterizedTest
 	@MethodSource("overRangeNumbersDummy")
-	void createLottoByOverRangeNumbersTest(final List<Integer> overRangeNumbers) {
+	void createLottoByOverRangeNumbersExceptionTest(final List<Integer> overRangeNumbers) {
 		assertThrows(IllegalArgumentException.class,
 			() -> Lotto.create(overRangeNumbers));
 	}

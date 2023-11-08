@@ -23,11 +23,11 @@ public class Lottos {
 
 
 	public RequestLottoResult compareWithWinnerLotto(final WinnerLotto winnerLotto) {
-		final List<Prize> results = lottos.stream()
+		final List<Prize> PrizeDummy = lottos.stream()
 			.map(lotto -> lotto.compareWithWinnerLotto(winnerLotto.getWinnerNumbers(),
 				winnerLotto.getBonusNumber()))
 			.collect(Collectors.toList());
-		return RequestLottoResult.of(results);
+		return RequestLottoResult.of(PrizeDummy);
 	}
 
 

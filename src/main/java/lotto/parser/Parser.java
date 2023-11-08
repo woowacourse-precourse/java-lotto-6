@@ -22,12 +22,12 @@ public class Parser {
 
 	public static List<Integer> parseNumberDummy(final List<String> numberDummy) {
 		return numberDummy.stream()
-			.map(Parser::parseInt)
+			.map(Parser::parseNumber)
 			.collect(Collectors.toList());
 	}
 
 
-	public static Integer parseInt(final String input) {
+	public static Integer parseNumber(final String input) {
 		try {
 			return Integer.parseInt(input);
 		} catch (NumberFormatException e) {

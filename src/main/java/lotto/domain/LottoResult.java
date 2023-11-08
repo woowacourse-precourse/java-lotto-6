@@ -11,41 +11,41 @@ import static lotto.constant.LottoResultConstant.ROUND_INDICATOR;
 public class LottoResult {
 
 	private static final Integer INIT_PRIZE_COUNT = 0;
-	private final Map<Prize, Integer> prizes;
+	private final Map<Prize, Integer> lottoResult;
 
 	private LottoResult(final List<Prize> lottoResult) {
-		this.prizes = new HashMap<>();
-		initPrizes();
-		updatePrizes(lottoResult);
+		this.lottoResult = new HashMap<>();
+		initLottoResult();
+		updateLottoResult(lottoResult);
 	}
 
 	public static LottoResult create(final List<Prize> lottoResult) {
 		return new LottoResult(lottoResult);
 	}
 
-	private void initPrizes() {
+	private void initLottoResult() {
 		for (final Prize prize : Prize.values()) {
-			prizes.put(prize, INIT_PRIZE_COUNT);
+			lottoResult.put(prize, INIT_PRIZE_COUNT);
 		}
 	}
 
-	private void updatePrizes(final List<Prize> prizes) {
+	private void updateLottoResult(final List<Prize> prizes) {
 		for (final Prize prize : prizes) {
-			Integer currentCount = this.prizes.get(prize);
+			Integer currentCount = lottoResult.get(prize);
 			currentCount++;
-			this.prizes.put(prize, currentCount);
+			lottoResult.put(prize, currentCount);
 		}
 	}
 
 	public Integer countPrize(final Prize prize) {
-		return prizes.get(prize);
+		return lottoResult.get(prize);
 	}
 
 
 	private Double getTotalReward() {
 		Double totalReward = INIT_REWARD.getSetting();
-		for (Prize prize : prizes.keySet()) {
-			Integer currentCount = prizes.get(prize);
+		for (final Prize prize : Prize.values()) {
+			Integer currentCount = lottoResult.get(prize);
 			totalReward += prize.getReward() * currentCount;
 		}
 

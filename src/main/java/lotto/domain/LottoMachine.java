@@ -23,19 +23,19 @@ public class LottoMachine {
 	}
 
 	public RequestLottos purchaseLottos() {
-		final RequestLottos requestLottos = generateLottosByCash();
+		final RequestLottos requestLottos = generateLottos();
 		return requestLottos;
 	}
 
-	private RequestLottos generateLottosByCash() {
-		List<RequestLotto> generatedNumbersDummy = new ArrayList<>();
+	private RequestLottos generateLottos() {
+		final List<RequestLotto> generatedRequestLottoDummy = new ArrayList<>();
 		while (cash.isAfford()) {
 			cash.spendOneUnit();
 			final RequestLotto requestLotto = generateLotto();
-			generatedNumbersDummy.add(requestLotto);
+			generatedRequestLottoDummy.add(requestLotto);
 		}
 
-		return RequestLottos.of(generatedNumbersDummy);
+		return RequestLottos.of(generatedRequestLottoDummy);
 	}
 
 	private RequestLotto generateLotto() {

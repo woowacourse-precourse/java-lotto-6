@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,19 +7,19 @@ public class LottoController {
     Validator validator = new Validator();
     LottoService lottoService = new LottoService();
 
-    static final String INPUT_CASH_MESSAGE = "구입금액을 입력해 주세요.";
-    static final String INPUT_WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
-    static final String INPUT_BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
-    static final String SHOW_LOTTO_BUNDLE_MESSAGE = "개를 구매했습니다.";
-    static final String SHOW_RESULT_MESSAGE = "당첨통계";
-    static final String SHOW_FIFTH_MESSAGE = "3개 일치 (5,000원)";
-    static final String SHOW_FOURTH_MESSAGE = "4개 일치 (50,000원)";
-    static final String SHOW_THIRD_MESSAGE = "5개 일치 (1,500,000원)";
-    static final String SHOW_SECOND_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원)";
-    static final String SHOW_FIRST_MESSAGE = "6개 일치 (2,000,000,000원)";
+    static final String PURCHASE_MESSAGE = "구입금액을 입력해 주세요.";
+    static final String WINNING_NUMBER_MESSAGE = "당첨 번호를 입력해 주세요.";
+    static final String BONUS_NUMBER_MESSAGE = "보너스 번호를 입력해 주세요.";
+    static final String LOTTO_BUNDLE_MESSAGE = "개를 구매했습니다.";
+    static final String RESULT_MESSAGE = "당첨통계";
+    static final String FIFTH_PRIZE_MESSAGE = "3개 일치 (5,000원)";
+    static final String FOURTH_PRIZE_MESSAGE = "4개 일치 (50,000원)";
+    static final String THIRD_PRIZE_MESSAGE = "5개 일치 (1,500,000원)";
+    static final String SECOND_PRIZE_MESSAGE = "5개 일치, 보너스 볼 일치 (30,000,000원)";
+    static final String FIRST_PRIZE_MESSAGE = "6개 일치 (2,000,000,000원)";
 
     int inputCash() {
-        System.out.println(INPUT_CASH_MESSAGE);
+        System.out.println(PURCHASE_MESSAGE);
         int cash = lottoService.getInput();
 
         return cash;
@@ -28,7 +27,7 @@ public class LottoController {
 
     void showLottoBundle(int ticket, List<Lotto> lottoBundle) {
 
-        System.out.printf("\n%d%s\n", ticket, SHOW_LOTTO_BUNDLE_MESSAGE);
+        System.out.printf("\n%d%s\n", ticket, LOTTO_BUNDLE_MESSAGE);
 
         for (int i = 0; i < lottoBundle.size(); i++) {
             Lotto lotto = lottoBundle.get(i);
@@ -39,14 +38,14 @@ public class LottoController {
     }
 
     List<Integer> inputWinningNumbers() {
-        System.out.printf("\n%s\n", INPUT_WINNING_NUMBER_MESSAGE);
+        System.out.printf("\n%s\n", WINNING_NUMBER_MESSAGE);
         List<Integer> winningNumbers = lottoService.getInputForNumbers();
 
         return winningNumbers;
     }
 
     int inputBonusNumber() {
-        System.out.printf("\n%s\n", INPUT_BONUS_NUMBER_MESSAGE);
+        System.out.printf("\n%s\n", BONUS_NUMBER_MESSAGE);
         int bonusNumber = lottoService.getInput();
 
         return bonusNumber;
@@ -81,13 +80,13 @@ public class LottoController {
 
         float rateOfReturn = lottoService.getRateOfReturn(cash, winningStatistics);
 
-        System.out.printf("\n%s\n---\n", SHOW_RESULT_MESSAGE);
+        System.out.printf("\n%s\n---\n", RESULT_MESSAGE);
 
-        System.out.printf("%s - %d개\n", SHOW_FIFTH_MESSAGE, fifth);
-        System.out.printf("%s - %d개\n", SHOW_FOURTH_MESSAGE, fourth);
-        System.out.printf("%s - %d개\n", SHOW_THIRD_MESSAGE, third);
-        System.out.printf("%s - %d개\n", SHOW_SECOND_MESSAGE, second);
-        System.out.printf("%s - %d개\n", SHOW_FIRST_MESSAGE, first);
+        System.out.printf("%s - %d개\n", FIFTH_PRIZE_MESSAGE, fifth);
+        System.out.printf("%s - %d개\n", FOURTH_PRIZE_MESSAGE, fourth);
+        System.out.printf("%s - %d개\n", THIRD_PRIZE_MESSAGE, third);
+        System.out.printf("%s - %d개\n", SECOND_PRIZE_MESSAGE, second);
+        System.out.printf("%s - %d개\n", FIRST_PRIZE_MESSAGE, first);
 
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfReturn);
     }

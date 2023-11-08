@@ -28,4 +28,7 @@ public class User {
     public int getBuyingPrice(){
         return buyingPrice;
     }
+    public int getWinningPrice(){
+        return winningPrice;
+    }
 }

@@ -1,7 +1,11 @@
 package lotto.Controller;
 
+import static lotto.view.InputView.InputWinningNumbers;
+import static lotto.view.InputView.readLine;
+
 import java.util.ArrayList;
 import java.util.List;
+import lotto.model.BonusNumber;
 import lotto.model.Lotto;
 import lotto.model.LottoNumbers;
 import lotto.model.LottoPurchase;
@@ -13,6 +17,7 @@ public class LottoController {
     private static int lottoCount;
     private static List<List<Integer>> lottoNumbers;
     private static List<Integer> winningNumbers;
+    private static int bonusNumber;
 
     public static void start() {
 
@@ -20,7 +25,7 @@ public class LottoController {
 
     private static void purchaseLotto() {
         OutputView.printPurchasePrice();
-        LottoPurchase lottoPurchase = new LottoPurchase(InputView.readLine());
+        LottoPurchase lottoPurchase = new LottoPurchase(readLine());
         lottoCount = lottoPurchase.getLottoCount();
         OutputView.printPurchaseMessage(lottoCount);
     }
@@ -33,8 +38,17 @@ public class LottoController {
 
     private static void setWinningNumbers() {
         OutputView.printInputWinningNumbers();
-        Lotto lotto = new Lotto(InputView.InputWinningNumbers(InputView.readLine()));
+        Lotto lotto = new Lotto(InputWinningNumbers(readLine()));
+        winningNumbers = lotto.getNumbers();
     }
+
+    private static void setBonusNumber() {
+        OutputView.printInputBonusNumber();
+        BonusNumber bonus = new BonusNumber(readLine());
+        bonusNumber = bonus.getBonusNumber();
+    }
+
+    private static
 
 
 }

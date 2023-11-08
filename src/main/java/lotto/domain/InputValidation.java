@@ -1,8 +1,9 @@
-package lotto.model;
+package lotto.domain;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.model.Lotto;
 
 public class InputValidation {
     private static final int DIVIDED_AMOUNT = 1000;

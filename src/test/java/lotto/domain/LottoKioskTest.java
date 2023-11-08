@@ -27,7 +27,7 @@ class LottoKioskTest {
 		int Money = 5000;
 		int expectedLottoAmout = 5;
 		//when
-		Lotto lotto = new LottoKiosk(Money).perchaseLotto();
+		Lotto lotto = new LottoKiosk(Money).purchaseLotto();
 		//then
 		Assertions.assertThat(lotto.getLotto().size()).isEqualTo(expectedLottoAmout);
 	}

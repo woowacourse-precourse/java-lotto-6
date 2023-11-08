@@ -23,7 +23,7 @@ class RandomNumberGeneratorTest {
 
 		// then
 		IntStream.range(0, amount)
-				.forEach(i -> assertThat(randomNumbers.get(i))
+				.forEach(index -> assertThat(randomNumbers.get(index))
 						.isBetween(minInclusive, maxInclusive));
 
 		assertThat(randomNumbers.size()).isEqualTo(amount);

@@ -1,5 +1,6 @@
 package lotto.model;
 
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +21,7 @@ class LottoPurchaseManagerTest {
         lottoPurchaseManager = new LottoPurchaseManager(3000);
 
         // when, then
-        assertThat(lottoPurchaseManager.getCount()).isEqualTo(3);
+        assertThat(lottoPurchaseManager.getPurchaseCount()).isEqualTo(3);
     }
 
     @DisplayName("로또 생성 로직이 제대로 작동하는지 확인")
@@ -36,16 +37,46 @@ class LottoPurchaseManagerTest {
         lottoPurchaseManager.getLottos().forEach(System.out::println);
     }
 
-    @DisplayName("유효하지 않은 카운트일때 로또가 생성되지 않는지 확인")
+    @DisplayName("구입 금액이 제대로 입력되는지 확인한다.")
     @Test
-    void createInvalidCountLotto() {
+    void inputNormalAccount() {
         // given
-        lottoPurchaseManager = new LottoPurchaseManager(100);
+        lottoPurchaseManager = new LottoPurchaseManager(8000);
 
-        // when
-        lottoPurchaseManager.generateLottos();
+        // when, then
+        Assertions.assertThat(lottoPurchaseManager.getPurchaseAmount()).isEqualTo(8000);
+    }
 
-        // then
-        Assertions.assertThat(lottoPurchaseManager.getLottos().size()).isEqualTo(0);
+    @DisplayName("구입 금액에 음수가 입력되면 예외 메시지가 출력된다")
+    @Test
+    void inputNegativeAccount1() {
+        // given
+        int invalidNum = -1000;
+
+        // when, then
+        assertThatThrownBy(() -> lottoPurchaseManager = new LottoPurchaseManager(invalidNum))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 1000원을 넘지 않으면 예외가 발생한다")
+    @Test
+    void inputSmallAccount() {
+        // given
+        int invalidNum = 100;
+
+        // when, then
+        assertThatThrownBy(() -> lottoPurchaseManager = new LottoPurchaseManager(invalidNum))
+            .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("구입 금액이 1000원 단위로 입력되지 않으면 예외가 발생한다")
+    @Test
+    void inputNotMultipleOf1000() {
+        // given
+        int invalidNum = 1234;
+
+        // when, then
+        assertThatThrownBy(() -> lottoPurchaseManager = new LottoPurchaseManager(invalidNum))
+            .isInstanceOf(IllegalArgumentException.class);
     }
 }

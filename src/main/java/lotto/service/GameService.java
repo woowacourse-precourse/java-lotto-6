@@ -35,9 +35,10 @@ public class GameService {
 
     private Lotto createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-        Collections.sort(numbers);
+        List<Integer> sortNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortNumbers);
 
-        return new Lotto(numbers);
+        return new Lotto(sortNumbers);
     }
 
     public List<Lotto> getLottos() {
@@ -98,12 +99,8 @@ public class GameService {
 
     private void matchWinningResult(List<Integer> matchesCounts) {
         switch (matchesCounts.get(0)) {
-            case 3 -> {
-                winningResult.addThreeMatches();
-            }
-            case 4 -> {
-                winningResult.addFourMatches();
-            }
+            case 3 -> winningResult.addThreeMatches();
+            case 4 -> winningResult.addFourMatches();
             case 5 -> {
                 if (matchesCounts.get(1) == 0) {
                     winningResult.addFiveMatches();
@@ -111,9 +108,7 @@ public class GameService {
                 }
                 winningResult.addFiveAndBonusMatches();
             }
-            case 6 -> {
-                winningResult.addSixMatches();
-            }
+            case 6 -> winningResult.addSixMatches();
         }
     }
 }

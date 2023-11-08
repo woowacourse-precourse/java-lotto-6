@@ -4,8 +4,12 @@ package lotto.view;
 import static lotto.view.OutputMessage.BONUS_BALL_COUNT_MESSAGE;
 import static lotto.view.OutputMessage.CORRECT_SAME_NUMBER_MESSAGE;
 import static lotto.view.OutputMessage.EARNING_RATE_MESSAGE;
+import static lotto.view.OutputMessage.INPUT_BONUS_NUMBER_MESSAGE;
+import static lotto.view.OutputMessage.INPUT_LOTTO_MESSAGE;
+import static lotto.view.OutputMessage.INPUT_PURCHASE_MESSAGE;
 import static lotto.view.OutputMessage.PURCHASED_LOTTO_COUNT_MESSAGE;
 import static lotto.view.OutputMessage.RATE_MESSAGE_FORMAT;
+import static lotto.view.OutputMessage.WINNING_STATICS_MESSAGE;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +20,7 @@ import lotto.controller.dto.ResultResponseDto;
 public class OutputView {
 
     public static void printInputPrice() {
-        System.out.println(OutputMessage.INPUT_PURCHASE_MESSAGE);
+        System.out.println(INPUT_PURCHASE_MESSAGE.getMessage());
     }
 
     public static void printPurchaseLotto(int lottoCount) {
@@ -31,7 +35,7 @@ public class OutputView {
     }
 
     public static void printLottoResult(List<ResultResponseDto> resultResponseDtos) {
-        System.out.println(OutputMessage.WINNING_STATICS_MESSAGE);
+        System.out.println(WINNING_STATICS_MESSAGE.getMessage());
         for (ResultResponseDto dto : resultResponseDtos) {
             printLottoResultEachRanking(dto);
         }
@@ -60,11 +64,11 @@ public class OutputView {
     }
 
     public static void printGetInputNumber() {
-        System.out.println(OutputMessage.INPUT_LOTTO_MESSAGE);
+        System.out.println(INPUT_LOTTO_MESSAGE.getMessage());
     }
 
     public static void printGetBonusNumber() {
-        System.out.println(OutputMessage.INPUT_BONUS_NUMBER_MESSAGE);
+        System.out.println(INPUT_BONUS_NUMBER_MESSAGE.getMessage());
     }
 
     public static void printEarningRate(double earningRate) {

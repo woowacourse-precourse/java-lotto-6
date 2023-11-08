@@ -2,11 +2,13 @@ package lotto.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import lotto.utils.PurchaseAmountException;
+import lotto.utils.WinningNumbersException;
 
 import static lotto.utils.GameMessage.*;
 
 public class Input {
     PurchaseAmountException purchaseAmountException = new PurchaseAmountException();
+    WinningNumbersException winningNumbersException = new WinningNumbersException();
 
     public String inputPurchaseAmount() {
         while (true) {
@@ -23,9 +25,22 @@ public class Input {
     }
 
     public String inputWinningNumber() {
-        // 당첨 번호 입력
-        System.out.println(WINNING_NUMBERS.getMessage());
-        return Console.readLine();
+        while (true) {
+            try {
+                System.out.println(WINNING_NUMBERS.getMessage());
+                String input = Console.readLine();
+                winningNumbersException.underLength(input);
+                winningNumbersException.exceedsLength(input);
+                winningNumbersException.notNumeric(input);
+                winningNumbersException.outsideRange(input);
+                winningNumbersException.duplicateNumber(input);
+                winningNumbersException.nonComma(input);
+                winningNumbersException.lastComma(input);
+                return input;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     public String inputBonusNumber() {

@@ -4,7 +4,7 @@ import static lotto.util.TestUtil.ERROR_PREFACE;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import lotto.exception.NonNumberException;
+import lotto.exception.argument.NonNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

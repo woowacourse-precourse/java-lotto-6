@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.test.NsTest;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
-import lotto.exception.LottoPriceUnitException;
+import lotto.exception.argument.LottoPriceUnitException;
 import lotto.model.Lotto;
 import lotto.model.LottoWallet;
 import lotto.model.Money;

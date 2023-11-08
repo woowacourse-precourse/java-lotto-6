@@ -2,8 +2,6 @@ package lotto.validation.lotto.domain;
 
 
 import java.util.List;
-import lotto.domain.BonusNumber;
-import lotto.domain.Lotto;
 import lotto.validation.ValidationCondition;
 
 public class LottoRangeCondition extends ValidationCondition {

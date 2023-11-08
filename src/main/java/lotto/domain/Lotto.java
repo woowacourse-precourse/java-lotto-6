@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import lotto.validation.Validation;
-import lotto.validation.ValidationCondition;
 import lotto.validation.lotto.domain.LottoDuplicateCondition;
 import lotto.validation.lotto.domain.LottoRangeCondition;
 import lotto.validation.lotto.input.LottoStringCondition;

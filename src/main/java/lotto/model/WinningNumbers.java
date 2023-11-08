@@ -15,6 +15,10 @@ public class WinningNumbers {
         this.numbers = numbers;
     }
 
+    public boolean containNumber(int number) {
+        return numbers.contains(number);
+    }
+
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException(ErrorMessage.WINNING_NUMBER_SIZE_ERROR.getErrorMessage());
@@ -43,9 +47,5 @@ public class WinningNumbers {
 
     private static boolean isInRange(int number) {
         return number >= 1 && number <= 45;
-    }
-
-    public boolean containNumber(int number) {
-        return numbers.contains(number);
     }
 }

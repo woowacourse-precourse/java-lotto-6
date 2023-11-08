@@ -11,20 +11,18 @@ public class LottoStore {
         this.numbersGenerator = numbersGenerator;
     }
 
-    public Lottos sellLottoTickets(Money currentMoney) {
-        if (currentMoney.isNotEnough()) {
-            throw new IllegalArgumentException("로또를 더 이상 발행할 수 없습니다.");
-        }
-        List<Lotto> lottoTickets = drawTicketsWith(currentMoney);
+    public Lottos sellLottoTickets(Money money) {
+        money.checkForLottoPurchase();
+        List<Lotto> lottoTickets = drawTicketsWith(money);
         return Lottos.from(lottoTickets);
     }
 
-    private List<Lotto> drawTicketsWith(Money remainingMoney) {
+    private List<Lotto> drawTicketsWith(Money money) {
         List<Lotto> lottoTickets = new ArrayList<>();
-        while (remainingMoney.isEnough()) {
+        while (money.isEnough()) {
             Lotto lotto = generateLottoTicket();
             lottoTickets.add(lotto);
-            remainingMoney = remainingMoney.decremented();
+            money = money.decremented();
         }
         return lottoTickets;
     }

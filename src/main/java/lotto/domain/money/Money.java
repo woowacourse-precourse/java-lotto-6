@@ -28,8 +28,10 @@ public class Money {
         return Money.fromRemainingMoney(money - LOTTO_PRICE);
     }
 
-    public boolean isNotEnough() {
-        return money < LOTTO_PRICE;
+    public void checkForLottoPurchase() {
+        if (money < LOTTO_PRICE) {
+            throw new IllegalArgumentException("로또를 더 이상 발행할 수 없습니다.");
+        }
     }
 
     public boolean isEnough() {

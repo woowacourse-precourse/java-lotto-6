@@ -1,6 +1,6 @@
 package lotto.domain.money;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,12 +27,12 @@ class MoneyTest {
     public void should_Return_False_When_If_Not_Enough_With_Money() {
         // given
         Money money = Money.fromRemainingMoney(1_000);
+        Money decrementedMoney = money.decremented();
 
         // when
-        boolean notEnough = money.isNotEnough();
-
         // then
-        assertFalse(notEnough);
+        assertThatThrownBy(decrementedMoney::checkForLottoPurchase)
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("로또 한 장 이상을 구매하기에 구입 금액이 충분하다.")

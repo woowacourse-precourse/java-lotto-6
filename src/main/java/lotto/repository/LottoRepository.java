@@ -10,6 +10,8 @@ public class LottoRepository {
     private List<Lotto> userLottoList = new ArrayList<>();
     private Lotto winningLotto;
 
+    private int bounsNum;
+
     public void save(Lotto lotto) {
         userLottoList.add(lotto);
     }
@@ -18,11 +20,19 @@ public class LottoRepository {
         winningLotto = lotto;
     }
 
+    public void setBounsNum(int num) {
+        bounsNum = num;
+    }
+
     public List<Lotto> getUserLottoList() {
         return userLottoList;
     }
 
     public Lotto getWinningLotto() {
         return winningLotto;
+    }
+
+    public int getBonusNum() {
+        return bounsNum;
     }
 }

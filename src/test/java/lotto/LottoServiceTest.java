@@ -89,4 +89,18 @@ public class LottoServiceTest {
                 + (long) WinningRank.FOURTH.getReturnAmount() * fourthCount
                 + (long) WinningRank.FIFTH.getReturnAmount() * fifthCount);
     }
+
+    @DisplayName("당첨 금액과 구매 금액을 바탕으로 수익률을 계산한다.")
+    @Test
+    void getRateOfReturn() {
+        // given
+        int payAmount = 8000;
+        long returnAmount = 5000;
+
+        // when
+        double rateOfReturn = lottoService.getRateOfReturn(payAmount, returnAmount);
+
+        // then
+        assertThat(rateOfReturn).isEqualTo(62.5);
+    }
 }

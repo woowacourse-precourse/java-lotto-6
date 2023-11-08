@@ -59,16 +59,14 @@ public class ViewProcessor {
         this.cost = MagicNums.INIT_NUM.getValue();
     }
 
-    public void bonusBall() {
-        while (true) {
-            try {
-                System.out.println("보너스 번호를 입력해 주세요.");
-                String tempBonus = Console.readLine().trim();
-                this.bonusNum = checkValidBonusNum(tempBonus);
-                break;
-            } catch (IllegalArgumentException e) {
-                throw e;
-            }
+    public boolean bonusBall(String tempBonus) {
+        try {
+            this.bonusNum = checkValidBonusNum(tempBonus);
+            lottomodel.computeBonus(winningNums, bonusNum);
+            return States.STATE_SUCESS.getState();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return States.STATE_FALSE.getState();
         }
     }
 
@@ -209,7 +207,6 @@ public class ViewProcessor {
     }
 
     public boolean winnings(String inputWinnings) {
-
         try {
             List<String> parsedWinnings = parsingWinnings(inputWinnings);
             makeWinningNums(parsedWinnings);

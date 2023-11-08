@@ -28,8 +28,8 @@ public class Application {
             int[] ranking;
             ranking = rank.rankAndWinning(ticketNumber, allTickets, bonus, numbers);
 
-            Rate rate = new Rate();
-            rate.totalRevenue(ranking, buyingTickets.getPurchaseMoney());
+            Rate rate = new Rate(ranking, buyingTickets.getPurchaseMoney());
+            rate.totalRevenue();
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }

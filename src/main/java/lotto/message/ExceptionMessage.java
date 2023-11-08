@@ -22,7 +22,7 @@ public enum ExceptionMessage {
         return String.format(exceptionMessage, values);
     }
 
-    public void throwException(Object ... values) {
+    public void throwException(Object... values) {
         throw new IllegalArgumentException(String.format(exceptionMessage, values));
     }
 }

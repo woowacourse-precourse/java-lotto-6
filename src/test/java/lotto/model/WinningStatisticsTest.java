@@ -12,7 +12,7 @@ public class WinningStatisticsTest {
     private static WinningStatistics winningStatistics = new WinningStatistics();
 
     @BeforeAll
-    static void initialize(){
+    static void initialize() {
         List<Lotto> purchaseLottos = new ArrayList<>() {{
             add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
             add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
@@ -29,7 +29,7 @@ public class WinningStatisticsTest {
     @DisplayName("구입 로또, 당첨 로또, 보너스 번호가 주어졌을 때, 당첨 결과가 제대로 초기화 되는지 확인")
     @Test
     void setWinningResult() {
-        Map<WinningPrize, Integer> expectedResult = new LinkedHashMap<>(){{
+        Map<WinningPrize, Integer> expectedResult = new LinkedHashMap<>() {{
             put(WinningPrize.FIFTH_PRIZE, 1);
             put(WinningPrize.FOURTH_PRIZE, 1);
             put(WinningPrize.THIRD_PRIZE, 1);
@@ -41,7 +41,7 @@ public class WinningStatisticsTest {
 
     @DisplayName("구입 금액이 주어졌을 때, 총 수익률이 제대로 초기화 되는지 확인")
     @Test
-    void setRateOfReturn(){
+    void setRateOfReturn() {
         winningStatistics.setRateOfReturn(6000);
         assertThat(winningStatistics.getRateOfReturn()).isEqualTo(33859250);
     }

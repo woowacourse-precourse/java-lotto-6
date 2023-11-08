@@ -12,12 +12,10 @@ public class Output {
 
     public static void printPurchasedDetails(List<Lotto> Lottos) {
         int purchasedLottoAmount = Lottos.size();
-        System.out.println("\n"+ purchasedLottoAmount +"개를 구매했습니다.");
+        System.out.println("\n" + purchasedLottoAmount + "개를 구매했습니다.");
         for (Lotto lotto : Lottos) {
             System.out.println(lotto);
         }
-
-
     }
 
     public static void printPromptForWinningNumbers() {

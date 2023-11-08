@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import lotto.Application;
 import lotto.LottoRank;
 
 public class LottoController {
@@ -67,11 +66,8 @@ public class LottoController {
         return matchingNumber;
     }
 
-    private record Result(int matchingNumber, boolean bonusFlag) {
-
-    }
-
-    private static LottoRank getLottoRank(LottoRank[] lottoRanks, int matchingNumber, boolean bonusFlag) {
+    private static LottoRank getLottoRank(LottoRank[] lottoRanks, int matchingNumber,
+            boolean bonusFlag) {
         for (int i = 0; i < lottoRanks.length; i++) {
             if (matchingNumber == lottoRanks[i].getMatchCount() && (i != 1 || bonusFlag)) {
                 return lottoRanks[i];
@@ -88,6 +84,10 @@ public class LottoController {
             totalEarning += LottoRank.values()[i].getReward() * counts.get(i);
         }
         return (double) Math.round((double) totalEarning * 1000 / purchaseAmount) / 10;
+    }
+
+    private record Result(int matchingNumber, boolean bonusFlag) {
+
     }
 
 }

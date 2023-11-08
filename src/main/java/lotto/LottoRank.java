@@ -1,6 +1,7 @@
 package lotto;
 
 public enum LottoRank {
+
     FIFTH(3, 5_000),
     FOURTH(4, 50_000),
     THIRD(5, 1_500_000),
@@ -22,4 +23,5 @@ public enum LottoRank {
     public int getReward() {
         return reward;
     }
+
 }

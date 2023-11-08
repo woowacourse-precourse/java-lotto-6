@@ -1,6 +1,5 @@
 package lotto;
 
-import java.util.ArrayList;
 import java.util.List;
 import lotto.controller.InputProcessor;
 import lotto.controller.Lotto;
@@ -9,6 +8,7 @@ import lotto.view.Input;
 import lotto.view.Output;
 
 public class Application {
+
     public static void main(String[] args) {
         int purcahsedLottoAmount = getPurcahsedLottoAmount();
         List<Lotto> lottos = LottoController.generateLottos(purcahsedLottoAmount);
@@ -55,8 +55,7 @@ public class Application {
         while (true) {
             try {
                 Output.printPromptForPurchaseAmount();
-                purcahsedLottoAmount = InputProcessor.processPurchaseAmountInput(
-                        Input.getInput());
+                purcahsedLottoAmount = InputProcessor.processPurchaseAmountInput(Input.getInput());
                 break;
             } catch (IllegalArgumentException e) {
                 System.out.println(e);

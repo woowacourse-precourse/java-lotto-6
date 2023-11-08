@@ -16,15 +16,16 @@ public class InputProcessor {
         String[] winningNumbersInputs = winningNumbersInput.split(",\\s*");
         checkSixNumbers(winningNumbersInputs);
         Set<Integer> winningNumbers = new LinkedHashSet<>();
-            for (String winningNumberInput : winningNumbersInputs) {
-                int winningNumber = stringToInt(winningNumberInput);
-                checkNumberRange(winningNumber);
-                addNonDuplicateValue(winningNumbers, winningNumber);
-            }
-            return winningNumbers.stream().toList();
+        for (String winningNumberInput : winningNumbersInputs) {
+            int winningNumber = stringToInt(winningNumberInput);
+            checkNumberRange(winningNumber);
+            addNonDuplicateValue(winningNumbers, winningNumber);
+        }
+        return winningNumbers.stream().toList();
     }
 
-    public static int processBonusNumberInput(String BonusNumberInput, List<Integer> winningNumbers) {
+    public static int processBonusNumberInput(String BonusNumberInput,
+            List<Integer> winningNumbers) {
         int BonusNumber = stringToInt(BonusNumberInput);
         checkDuplicateWithWinningNumbers(winningNumbers, BonusNumber);
         checkNumberRange(BonusNumber);
@@ -42,7 +43,7 @@ public class InputProcessor {
             throw new IllegalArgumentException("[ERROR] 여섯 개의 숫자를 입력하셔야 합니다.");
         }
     }
-    
+
     private static void addNonDuplicateValue(Set<Integer> winningNumbers, int winningNumber) {
         if (!winningNumbers.add(winningNumber)) {
             throw new IllegalArgumentException("[ERROR] 중복은 허용되지 않습니다.");
@@ -65,9 +66,11 @@ public class InputProcessor {
         return convertedValue;
     }
 
-    private static void checkDuplicateWithWinningNumbers(List<Integer> winningNumbers, int BonusNumber) {
+    private static void checkDuplicateWithWinningNumbers(List<Integer> winningNumbers,
+            int BonusNumber) {
         if (winningNumbers.contains(BonusNumber)) {
             throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복은 허용되지 않습니다.");
         }
     }
+
 }

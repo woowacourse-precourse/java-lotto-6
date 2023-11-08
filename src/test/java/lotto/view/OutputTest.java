@@ -1,17 +1,13 @@
 package lotto.view;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import javax.swing.JInternalFrame;
 import lotto.controller.Lotto;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -97,4 +93,5 @@ class OutputTest {
                 + "6개 일치 (2,000,000,000원) - 0개\n"
                 + "총 수익률은 62.5%입니다.\n");
     }
+
 }

@@ -2,6 +2,7 @@ package lotto.domain;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lotto {
     public static final int LOTTO_SIZE = 6;
@@ -11,14 +12,20 @@ public class Lotto {
 
     private final List<LottoNumber> lottoNumbers;
 
-    public Lotto(List<LottoNumber> lottoNumbers) {
-        Collections.sort(lottoNumbers);
+    public Lotto(List<Integer> numbers) {
+        validateLength(numbers);
+        lottoNumbers = convertLottoNumbers(numbers);
         validateUniqueElements(lottoNumbers);
-        validateLength(lottoNumbers);
-        this.lottoNumbers = lottoNumbers;
+        Collections.sort(this.lottoNumbers);
     }
 
-    private void validateLength(List<LottoNumber> numbers) {
+    private List<LottoNumber> convertLottoNumbers(List<Integer> numbers) {
+        return numbers.stream()
+                .map(LottoNumber::new)
+                .collect(Collectors.toList());
+    }
+
+    private void validateLength(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(OUT_OF_LOTTO_NUMBERS_SIZE);
         }

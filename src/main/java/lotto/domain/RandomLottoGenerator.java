@@ -20,11 +20,7 @@ public class RandomLottoGenerator {
 
     private static Lotto generateLottoFromUniqueNumbers() {
         List<Integer> uniqueNumbers = generateRangeOfUniqueNumbers();
-        List<LottoNumber> lottoNumbers = uniqueNumbers.stream()
-                .map(LottoNumber::new)
-                .collect(Collectors.toList());
-
-        return new Lotto(lottoNumbers);
+        return new Lotto(uniqueNumbers);
     }
 
     private static List<Integer> generateRangeOfUniqueNumbers() {
@@ -34,9 +30,8 @@ public class RandomLottoGenerator {
     }
 
     public Lotto inputToGenerateLotto(String input) {
-        List<LottoNumber> lottoNumbers = Arrays.stream(input.split(","))
+        List<Integer> lottoNumbers = Arrays.stream(input.split(","))
                 .map(Integer::parseInt)
-                .map(LottoNumber::new)
                 .collect(Collectors.toList());
         return new Lotto(lottoNumbers);
     }

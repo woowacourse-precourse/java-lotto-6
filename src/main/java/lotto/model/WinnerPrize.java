@@ -22,6 +22,10 @@ public enum WinnerPrize {
         return description;
     }
 
+    public int getPrize() {
+        return prize;
+    }
+
     public static WinnerPrize findWinnerPrize(float correctCount) {
         WinnerPrize[] allWinnerPrize = getAllWinnerPrize();
         for (WinnerPrize winnerPrize : allWinnerPrize) {

@@ -21,4 +21,19 @@ public class GameResult {
     public static Map<WinnerPrize, Integer> getGameResult() {
         return gameResult;
     }
+
+    public static double calculateProfit(int purchasePrice) {
+        double totalPrize = calculateTotalPrize();
+        double profitRate = totalPrize / purchasePrice * 100;
+        return Math.round(profitRate * 100) / 100.0;
+    }
+
+    private static double calculateTotalPrize() {
+        double prize = 0;
+        for (WinnerPrize winnerPrize : gameResult.keySet()) {
+            int count = gameResult.get(winnerPrize);
+            prize += winnerPrize.getPrize() * count;
+        }
+        return prize;
+    }
 }

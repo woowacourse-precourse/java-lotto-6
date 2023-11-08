@@ -10,6 +10,7 @@ public class Game {
 
     private InputView inputView;
     private OutputView outputView;
+    private LottoGenerator lottoGenerator;
 
     public Game() {
         this.inputView = new InputView();
@@ -38,18 +39,17 @@ public class Game {
             GameResult.increaseWinnerPrizeCount(winnerPrize);
         }
 
-        // 당첨 내역 출력
         outputView.printWinningDetails();
 
-        // 수익률 계산
+        int purchasePrice = lottoGenerator.getPurchasePrice();
+        double profitRate = GameResult.calculateProfit(purchasePrice);
 
-        // 수익률 출력
-
+        outputView.printProfitRate(profitRate);
     }
 
     private void init() {
         int purchasePrice = requestPurchasePrice();
-        LottoGenerator.generateLotto(purchasePrice);
+        this.lottoGenerator = new LottoGenerator(purchasePrice);
         List<Lotto> purchaseLotto = LottoStorage.getLotto();
         outputView.printPurchaseLotto(purchaseLotto);
 

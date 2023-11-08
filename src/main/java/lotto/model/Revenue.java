@@ -26,7 +26,7 @@ public class Revenue {
     private int calculateTotalRevenueSum() {
         return Arrays.stream(LottoRank.values())
                 .filter(rank -> rank != LottoRank.FAIL)
-                .mapToInt(rank -> rankCount.getCounts(rank) * rank.getAmount())
+                .mapToInt(rank -> rankCount.getCounts(rank) * rank.getPrice())
                 .sum();
     }
 

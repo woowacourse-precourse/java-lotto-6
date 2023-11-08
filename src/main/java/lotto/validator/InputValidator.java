@@ -8,7 +8,7 @@ import lotto.exception.input.NullInputException;
 public class InputValidator {
     private static final String SPACE = " ";
 
-    public static void validateInputPrice(String input) {
+    public static void validateInputBudget(String input) {
         validateNull(input);
         validateHasNoSpace(input);
         validateInteger(input);

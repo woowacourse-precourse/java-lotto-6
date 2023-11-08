@@ -3,10 +3,12 @@ package lotto.controller;
 import lotto.model.*;
 import lotto.view.OutputView;
 
+import java.text.DecimalFormat;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class LottoController {
+    private static final int RATE = 100; //수익률 구할 때 사용
     private final InputController inputController;
 
     public LottoController() {
@@ -29,10 +31,14 @@ public class LottoController {
 
     public void lottery(LottoPurchasingAmount lottoPurchasingAmount, Lottos lottos, LottoFromUser lottoFromUser) {
         Map<Prize, Integer> prizeCount = getLotteryPrizeCount(lottos, lottoFromUser);
+        double earningRate = 0;
 
         for (int i = Prize.values().length - 1; i >= 0; i--) {
-            OutputView.showLottoResult(Prize.values()[i].getMessage(), prizeCount.get(Prize.values()[i]));
+            if (!Prize.values()[i].equals(Prize.NOTHING))
+                OutputView.showLottoResult(Prize.values()[i].getMessage(), prizeCount.get(Prize.values()[i]));
+            earningRate += getEarningRate(Prize.values()[i].getPrizeOfLottery(), lottoPurchasingAmount, prizeCount.get(Prize.values()[i]));
         }
+        OutputView.showEarningRate(setEarningRateFormat(earningRate));
     }
 
     public Map<Prize, Integer> getLotteryPrizeCount(Lottos lottos, LottoFromUser lottoFromUser) {   //당첨금 등수별 횟수 구하기
@@ -61,5 +67,14 @@ public class LottoController {
         }
 
         return prizeCount;
+    }
+
+    private double getEarningRate(int prizeValue, LottoPurchasingAmount lottoPurchasingAmount, int numberOfWins) {
+        return (double) prizeValue / lottoPurchasingAmount.getMoney() * numberOfWins * RATE;
+    }
+
+    private String setEarningRateFormat(double earningRate) {
+        DecimalFormat decimalFormat = new DecimalFormat("###,###.#");
+        return decimalFormat.format(earningRate);
     }
 }

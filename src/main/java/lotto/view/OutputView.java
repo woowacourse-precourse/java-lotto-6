@@ -26,4 +26,8 @@ public class OutputView {
     public static void showLottoResult(String message, int numberMatchCount) {
         System.out.println(message + numberMatchCount + "개");
     }
+
+    public static void showEarningRate(String earningRate) {
+        System.out.println("총 수익률은 " + earningRate + "입니다.");
+    }
 }

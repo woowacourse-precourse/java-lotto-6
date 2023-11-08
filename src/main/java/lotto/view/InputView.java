@@ -9,7 +9,6 @@ public class InputView {
     private static final String INPUT_LOTTO_AMOUT = "구입금액을 입력해 주세요.";
     private static final String INPUT_LOTTO_WINNING = "당첨 번호를 입력해 주세요.";
     private static final String INPUT_BONUS_NUMBER = "보너스 번호를 입력해 주세요.";
-    private static final String INPUT_TYPE_ERROR = "[ERROR] 금액은 숫자만 입력해 주세요.";
 
     private static List<Integer> winningNumberList;
 
@@ -44,7 +43,8 @@ public class InputView {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INPUT_TYPE_ERROR);
+            ExceptionMessage.typeException();
+            throw new IllegalArgumentException();
         }
     }
 

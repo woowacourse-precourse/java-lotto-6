@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import static lotto.constant.WinPriceMessage.First;
+import static lotto.constant.WinPriceMessage.Fourth;
+import static lotto.constant.WinPriceMessage.Third;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
@@ -10,7 +14,30 @@ import org.junit.jupiter.api.Test;
 
 public class CompareNumberTest {
 
-    private int testSum = 0;
+    @DisplayName("티켓 수 만큼 구매한 랜덤번호 전체 테스트")
+    @Test
+    void 여러_리스트_테스트() {
+
+        List<List<Integer>> testAllRandomNumbers = Arrays.asList(
+                Arrays.asList(1, 2, 3, 4, 5, 6),
+                Arrays.asList(7, 8, 9, 10, 11, 12),
+                Arrays.asList(1, 2, 3, 4, 8, 9)
+        );
+        List<Integer> testNumbers = Arrays.asList(1, 2, 3, 4, 8, 9);
+        int testBonusNumber = 10;
+
+        List<ComPareNumber> compareNumbers = ComPareNumber.generateCompareNumbers(testNumbers,
+                testBonusNumber, testAllRandomNumbers);
+
+        assertThat(compareNumbers.get(0).getMoneySum()).isEqualTo(Fourth.getPrize());
+        assertThat(compareNumbers.get(0).getWinCount()).containsExactly(0, 0, 0, 1, 0); //
+
+        assertThat(compareNumbers.get(1).getMoneySum()).isEqualTo(0);
+        assertThat(compareNumbers.get(1).getWinCount()).containsExactly(0, 0, 0, 0, 0);
+
+        assertThat(compareNumbers.get(2).getMoneySum()).isEqualTo(First.getPrize());
+        assertThat(compareNumbers.get(2).getWinCount()).containsExactly(1, 0, 0, 0, 0);
+    }
 
 
     @DisplayName("6개의 숫자가 전부 같은 경우")
@@ -53,7 +80,7 @@ public class CompareNumberTest {
         ComPareNumber comPareNumber = new ComPareNumber(numbers, randomNumbers, bonusNumber);
         comPareNumber.calculateResults();
 
-        assertEquals(WinPriceMessage.Third.getPrize(), comPareNumber.getMoneySum());
+        assertEquals(Third.getPrize(), comPareNumber.getMoneySum());
         assertEquals(1, (int) comPareNumber.getWinCount().get(2));
 
     }

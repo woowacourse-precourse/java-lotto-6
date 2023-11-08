@@ -3,10 +3,12 @@ package lotto.domain;
 import static lotto.constant.Message.LOTTO_PRICE;
 import static lotto.validation.LottoMachineValidation.validate_inputMoney;
 import static lotto.validation.LottoMachineValidation.validate_winningLotto;
+import static lotto.validation.LottoValidation.validate_lottoNum;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import lotto.constant.WinningRanking;
 import lotto.dto.ResponseDto.LottoGameResultDto;
@@ -21,22 +23,27 @@ public class LottoMachine {
         lottos = new ArrayList<>();
     }
 
-    public int inputMoney(String inputAmount){
+    public List<List<Integer>> issuanceLotto(String inputAmount) {
         this.inputAmount = validate_inputMoney(inputAmount);
-        return this.inputAmount / LOTTO_PRICE;
-    }
-
-    public void issuanceLotto() {
+        List<List<Integer>> issuedLottos = new ArrayList<>();
         while (this.inputAmount > 0){
-            createLotto();
+            issuedLottos.add(createLotto());
         }
+        return issuedLottos;
     }
 
-    private void createLotto() {
+    private List<Integer> createLotto() {
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        ascendingNumbers(numbers);
         Lotto lotto = new Lotto(numbers);
         lottos.add(lotto);
         inputAmount -= LOTTO_PRICE;
+        return numbers;
+    }
+
+    private void ascendingNumbers(List<Integer> numbers) {
+        List<Integer> nums = new ArrayList<Integer>(numbers);
+        Collections.sort(nums);
     }
 
     public LottoGameResultDto createWinningLotto(String winningNums, String bonusNum){
@@ -47,7 +54,15 @@ public class LottoMachine {
     private LottoGameResultDto transToWinningLotto(String nums, String bonusNum){
         List<Integer> winningNums = Arrays.stream(nums.split(","))
             .map(Integer::parseInt).toList();
-        return getResult(winningNums, Integer.parseInt(bonusNum));
+        int bonus = Integer.parseInt(bonusNum);
+        this.winningLotto = new WinningLotto(winningNums, bonus);
+        return getResult(winningNums, bonus);
+    }
+
+    private void validateWinningLottoNum(List<Integer> winningNums, int bonus) {
+        List<Integer> winningNumsPlusBonus = new ArrayList<>(winningNums);
+        winningNumsPlusBonus.add(bonus);
+        validate_lottoNum(winningNumsPlusBonus);
     }
 
     public LottoGameResultDto getResult(List<Integer> nums, int bonusNum){
@@ -69,15 +84,20 @@ public class LottoMachine {
     }
 
     private double calculateRateOfReturn(int[] winningRankCnt){
-        int totalAmount = 0;
+        double totalAmount = 0;
         int rank = 1;
         for (WinningRanking winningRanking : WinningRanking.values()){
-            totalAmount += winningRanking.getWinnings() * winningRankCnt[rank];
+            totalAmount += (winningRanking.getWinnings() * winningRankCnt[rank]);
+            System.out.println("totla : "+totalAmount);
             rank += 1;
         }
-        double rateOfReturn = (double) (totalAmount - inputAmount) / inputAmount * 100;
-        rateOfReturn = (double) Math.round(rateOfReturn * 10) / 10;
-        return rateOfReturn;
+        int investMoney = LOTTO_PRICE * lottos.size();
+        double earn = totalAmount - investMoney;
+        if(earn < 1){
+            return 0;
+        }
+
+        return (earn * 100 / investMoney);
     }
 
 }

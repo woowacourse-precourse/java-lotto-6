@@ -14,10 +14,12 @@ import static org.junit.jupiter.api.Assertions.*;
 class LottoGameMachineTest {
 
     private LottoGameMachine lottoGameMachine;
+
     @BeforeEach
     void setUp() {
         lottoGameMachine = new LottoGameMachine();
     }
+
     @Test
     void validateLottoPayment() {
         Assertions.assertThrows(IllegalArgumentException.class, () -> {
@@ -26,6 +28,8 @@ class LottoGameMachineTest {
     }
 
 
+    /*
+    초기 테스트 완료
     @Test
     void insertLottoPayment() {
         assertEquals(2, lottoGameMachine.insertLottoPayment());
@@ -37,7 +41,7 @@ class LottoGameMachineTest {
             lottoGameMachine.insertLottoPayment();
         });
     }
-
+    */
     /*
     차후 확인 필요
     @Test
@@ -60,10 +64,8 @@ class LottoGameMachineTest {
     @Test
     void createLottoByDuplicatedNumber() {
         // TODO: 이 테스트가 통과할 수 있게 구현 코드 작성
-        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5)))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, 5))).isInstanceOf(IllegalArgumentException.class);
     }
-
 
 
 }

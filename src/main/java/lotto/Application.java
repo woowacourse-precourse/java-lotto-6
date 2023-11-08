@@ -9,13 +9,12 @@ import java.util.Map;
 
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
         LottoGameMachine lottoGameMachine = new LottoGameMachine();
         Calculator calculator = new Calculator();
 
         // 구매 금액 입력 받기
         int insertAmount = lottoGameMachine.insertLottoPayment();
-        //System.out.println(insertAmount);
+
 
         // 받은 금액으로 로또 발행하기
         List<Lotto> issuedLotto = lottoGameMachine.issueLotto(insertAmount);

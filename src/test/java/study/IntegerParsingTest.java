@@ -3,24 +3,25 @@ package study;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class IntegerParsingTest {
 
     @Test
-    void parseInt_정상적인경우() {
+    void parseLong_정상적인경우() {
         String input = "2000";
 
-        int parsed = Integer.parseInt(input);
+        long parsed = Long.parseLong(input);
 
         assertThat(parsed).isEqualTo(2000);
     }
 
     @Test
-    void parseInt_NumberFormatException_발생() {
+    void parseLong_NumberFormatException_발생() {
         String input = "2000a";
 
-        assertThatThrownBy(() -> Integer.parseInt(input))
+        assertThatThrownBy(() -> Long.parseLong(input))
                 .isInstanceOf(NumberFormatException.class);
     }
 }

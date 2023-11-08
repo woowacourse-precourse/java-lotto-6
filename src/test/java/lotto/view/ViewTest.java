@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import lotto.common.utils.Utils;
+import lotto.common.utils.Parser;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +43,7 @@ public class ViewTest {
     private List<List<String>> lottoTicketIntegerListToStringList(ArrayList<ArrayList<Integer>> lottoTicket) {
         List<List<String>> lottoTicketString = new ArrayList<>();
         lottoTicket.forEach(ticket -> {
-            lottoTicketString.add(Utils.integerListToStringList(ticket));
+            lottoTicketString.add(Parser.integerListToStringList(ticket));
         });
         return lottoTicketString;
     }

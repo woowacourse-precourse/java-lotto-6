@@ -6,16 +6,12 @@ public class Bonus {
     private final int number;
 
     public Bonus(int number) {
-        validate(number);
+        validateNumber(number);
         this.number = number;
     }
 
-    private void validate(int number) {
-        try {
-            Validate.bonusDomainValidate(number);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
+    private void validateNumber(int number) {
+        Validate.bonusDomainValidate(number);
     }
 
     public int getNumber() {

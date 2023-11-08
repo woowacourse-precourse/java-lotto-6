@@ -4,12 +4,12 @@ import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.common.constants.GuideMessage;
+import lotto.common.constants.OutputMessage;
 import lotto.common.constants.Rank;
 import lotto.common.constants.RankMessage;
 import lotto.common.constants.Symbol;
 import lotto.common.constants.Unit;
-import lotto.common.utils.Utils;
+import lotto.common.utils.Parser;
 import lotto.common.validate.Validate;
 
 public class View {
@@ -20,11 +20,11 @@ public class View {
     }
 
     public void buyPriceMessage() {
-        System.out.println(GuideMessage.INPUT_BUY_PRICE.getMessage());
+        System.out.println(OutputMessage.INPUT_BUY_PRICE.getMessage());
     }
 
     public void buyTicketCountMessage(int ticketCount) {
-        System.out.println(ticketCount + GuideMessage.OUTPUT_BUY_LOTTO_COUNT.getMessage());
+        System.out.println(ticketCount + OutputMessage.OUTPUT_BUY_LOTTO_COUNT.getMessage());
     }
 
     public void lottoTicketInformation(ArrayList<ArrayList<Integer>> lottoTickets) {
@@ -39,17 +39,17 @@ public class View {
     }
 
     public void lottoNumberMessage() {
-        System.out.println(GuideMessage.INPUT_HIT_NUMBER.getMessage());
+        System.out.println(OutputMessage.INPUT_HIT_NUMBER.getMessage());
     }
 
     public List<Integer> inputLottoNumber() {
-        List<String> inputSixNumber = Utils.stringToStringList(inputConsole());
+        List<String> inputSixNumber = Parser.stringToStringList(inputConsole());
         Validate.inputLottoNumberValidate(inputSixNumber);
-        return Utils.stringListToIntegerList(inputSixNumber);
+        return Parser.stringListToIntegerList(inputSixNumber);
     }
 
     public void bonusNumberMessage() {
-        System.out.println(GuideMessage.INPUT_BONUS_HIT_NUMBER.getMessage());
+        System.out.println(OutputMessage.INPUT_BONUS_HIT_NUMBER.getMessage());
     }
 
     public int inputBonusNumber() {
@@ -59,7 +59,7 @@ public class View {
     }
 
     public void prizeStatsMessage() {
-        System.out.println(GuideMessage.OUTPUT_PRIZE_STATS.getMessage());
+        System.out.println(OutputMessage.OUTPUT_PRIZE_STATS.getMessage());
         System.out.println(Symbol.DIVIDE_LINE.getSymbol());
     }
 
@@ -72,6 +72,7 @@ public class View {
     }
 
     public void profitRate(double percentageResult) {
-        System.out.println(GuideMessage.OUTPUT_TOTAL_PROFIT_PRICE_START.getMessage() + String.format("%.1f", percentageResult) + GuideMessage.OUTPUT_TOTAL_PROFIT_PRICE_END.getMessage());
+        System.out.println(
+                OutputMessage.OUTPUT_TOTAL_PROFIT_PRICE_START.getMessage() + String.format("%.1f", percentageResult) + OutputMessage.OUTPUT_TOTAL_PROFIT_PRICE_END.getMessage());
     }
 }

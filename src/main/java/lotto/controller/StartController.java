@@ -7,7 +7,7 @@ import java.util.Map;
 import lotto.common.constants.LottoDefaultRule;
 import lotto.common.constants.LottoRankRule;
 import lotto.common.constants.Rank;
-import lotto.common.utils.Utils;
+import lotto.common.utils.Parser;
 import lotto.common.validate.Validate;
 import lotto.domain.Bonus;
 import lotto.domain.Buy;
@@ -54,7 +54,7 @@ public class StartController {
         view.prizeStatsMessage();
         compareTicketsAndLotto(ticket.getLottoTicket(), lotto.getNumbers(), bonus.getNumber());
         view.prizeStats(rankRecord);
-        view.profitRate(Utils.percentage(buy.getMoney(), calculateTotalProfit()));
+        view.profitRate(Parser.percentage(buy.getMoney(), calculateTotalProfit()));
     }
 
     private void money() {

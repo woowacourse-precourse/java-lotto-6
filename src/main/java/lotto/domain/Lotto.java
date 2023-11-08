@@ -7,16 +7,12 @@ public class Lotto {
     private final List<Integer> numbers;
 
     public Lotto(List<Integer> numbers) {
-        validate(numbers);
+        validateNumbers(numbers);
         this.numbers = numbers;
     }
 
-    private void validate(List<Integer> numbers) {
-        try {
-            Validate.lottoDomainValidate(numbers);
-        } catch (IllegalArgumentException e){
-            throw new IllegalArgumentException();
-        }
+    private void validateNumbers(List<Integer> numbers) {
+        Validate.lottoDomainValidate(numbers);
     }
 
     public List<Integer> getNumbers() {

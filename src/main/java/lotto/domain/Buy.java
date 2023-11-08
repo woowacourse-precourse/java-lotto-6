@@ -8,17 +8,13 @@ public class Buy {
     private final int buyTicketCount;
 
     public Buy(String price) {
-        this.money = validate(price);
+        validatePrice(price);
+        this.money = Integer.parseInt(price);
         this.buyTicketCount = money / LottoDefaultRule.ONE_LOTTO_TICKET_PRICE.getRule();
     }
 
-    private int validate(String inputPrice) {
-        try {
-            Validate.buyDomainValidate(inputPrice);
-            return Integer.parseInt(inputPrice);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException();
-        }
+    private void validatePrice(String inputPrice) {
+        Validate.buyDomainValidate(inputPrice);
     }
 
     public int getMoney() {

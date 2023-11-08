@@ -14,14 +14,14 @@ public class LottoTickets {
         buyLotto(count);
     }
 
+    public List<Lotto> getTickets() {
+        return tickets;
+    }
+
     public void buyLotto(int count) {
         for (int i = 0; i < count; i++) {
             tickets.add(new Lotto(generateLottoNumbers()));
         }
-    }
-
-    public List<Lotto> getTickets() {
-        return tickets;
     }
 
     private List<Integer> generateLottoNumbers() {

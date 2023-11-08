@@ -11,12 +11,12 @@ public class LottoAmount {
         this.amount = Integer.parseInt(amount);
     }
 
-    public int getLottoCount() {
-        return amount / LOTTO_PRICE;
-    }
-
     public int getAmount() {
         return amount;
+    }
+
+    public int getLottoCount() {
+        return amount / LOTTO_PRICE;
     }
 
     private void validateAmount(String amount) {

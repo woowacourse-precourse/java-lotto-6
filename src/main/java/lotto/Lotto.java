@@ -35,7 +35,7 @@ public class Lotto {
             throw new LottoDistinctException();
         }
     }
-    
+
     private boolean hasProperLength(List<Integer> numbers) {
         return numbers.size() == LOTTO_NUMBERS_SIZE;
     }
@@ -46,5 +46,9 @@ public class Lotto {
 
     private boolean hasDistinctNumbers(List<Integer> numbers) {
         return numbers.stream().distinct().count() == LOTTO_NUMBERS_SIZE;
+    }
+
+    public List<Integer> getNumbers() {
+        return List.copyOf(numbers);
     }
 }

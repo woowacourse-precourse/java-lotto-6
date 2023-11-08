@@ -33,4 +33,8 @@ public class WinningLotto extends Lotto {
     private boolean containsBonusNumber(List<Integer> winningNumbers, int bonusNumber) {
         return winningNumbers.stream().anyMatch(number -> number == bonusNumber);
     }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
 }

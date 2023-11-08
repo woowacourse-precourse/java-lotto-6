@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static lotto.constant.LottoConstant.ONE;
 import static lotto.domain.Rank.FIFTH;
 import static lotto.domain.Rank.FIRST;
 import static lotto.domain.Rank.FOURTH;
@@ -65,7 +66,7 @@ public class LottoBundle {
 
     private void addNumberOfRankings(Map<Rank, Integer> winningLottoTable, Rank rank) {
         if (rank != NOTHING) {
-            winningLottoTable.put(rank, winningLottoTable.get(rank) + 1);
+            winningLottoTable.put(rank, winningLottoTable.get(rank) + ONE);
         }
     }
 

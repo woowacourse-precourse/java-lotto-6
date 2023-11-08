@@ -7,4 +7,5 @@ public class LottoConstant {
     public static final int LOTTO_SIZE = 6;
     public static final String YIELD_FORMAT = "%.1f";
     public static final String PERCENT = "%";
+    public static final int ONE = 1;
 }

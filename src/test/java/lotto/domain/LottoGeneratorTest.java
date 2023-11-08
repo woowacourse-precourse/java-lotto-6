@@ -41,10 +41,10 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 당첨 번호가 양수가 아닐 때, 예외 처리")
+    @DisplayName("입력된 당첨 번호가 정수가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"0,1,2,3,4,5", "-1,2,3,4,5,6", "1.5,2,3,4,5,6"})
-    void createWinningLottoByNotPositiveNumber(String lottoNumber) {
+    @ValueSource(strings = {"1.5,2,3,4,5,6", "1,2,3,4,5,10.0"})
+    void createWinningLottoByNotInteger(String lottoNumber) {
         assertThatThrownBy(() -> LottoGenerator.createWinningLotto(lottoNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -113,10 +113,10 @@ class LottoGeneratorTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력된 보너스 번호가 양수가 아닐 때, 예외 처리")
+    @DisplayName("입력된 보너스 번호가 정수가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"0", "-1", "1.5"})
-    void createBonusNumberByNotPositiveNumber(String bonusNumber) {
+    @ValueSource(strings = {"1.5", "10.0"})
+    void createBonusNumberByNotInteger(String bonusNumber) {
         // given
         Lotto winningLotto = LottoGenerator.createWinningLotto("1,2,3,4,5,6");
 

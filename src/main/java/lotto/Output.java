@@ -25,7 +25,7 @@ public class Output {
 
     public static void viewResult() {
         DecimalFormat decimalFormat = new DecimalFormat("###,###");
-        System.out.println("당첨 통계\n---");
+        System.out.println("\n당첨 통계\n---");
         for (Rank rank : Rank.values()) {
             System.out.println(rank.getMatchStandard() + " (" + decimalFormat.format(rank.getPrice()) + "원) - " + rank.getCount() + "개");
         }

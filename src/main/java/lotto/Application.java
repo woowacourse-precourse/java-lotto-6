@@ -6,7 +6,7 @@ import java.util.List;
 public class Application {
     private static int lottoTicketCnt = 0;
     private static final int LOTTO_PRICE = 1000;
-    private static final List<Lotto> lottoTicketNums = new ArrayList<>();
+    private static final List<Lotto> lottoTicketsNums = new ArrayList<>();
     private static List<Integer> lotteryNums;
 
     public static void main(String[] args) {
@@ -16,11 +16,11 @@ public class Application {
         Output.viewTicketCountMessage(lottoTicketCnt);
 
         while (lottoTicketCnt > 0) {
-            lottoTicketNums.add(new Lotto(NumberPicker.getRandomNum()));
+            lottoTicketsNums.add(new Lotto(NumberPicker.getRandomNum()));
             lottoTicketCnt--;
         }
 
-        for (Lotto numberGroup : lottoTicketNums) {
+        for (Lotto numberGroup : lottoTicketsNums) {
             Output.viewlottoTicketNumList(numberGroup);
         }
 
@@ -29,12 +29,12 @@ public class Application {
         Output.getBonusNumMessage();
         int bonusNum = Input.inputBonusNum(lotteryNums);
 
-        System.out.println(bonusNum);
-
-        // 비교 로직
-////        int rate = 수익률;
+        for (Lotto lottoTicketNums : lottoTicketsNums) {
+            Compare.readWinning(lottoTicketNums, lotteryNums, bonusNum);
+        }
+//        int rate = 수익률;
 //
-//        Output.viewResult();
+        Output.viewResult();
 //        Output.viewRate(rate);
     }
 }

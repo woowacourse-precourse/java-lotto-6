@@ -18,9 +18,8 @@ public class LottoNums {
     }
 
     public static List<Integer> setRandomNums() {
-        List<Integer> lottoPurchased = new ArrayList<>(lottoNumberList);
-
         lottoNumberList = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, NUMBER_COUNT);
+        List<Integer> lottoPurchased = new ArrayList<>(lottoNumberList);
         Collections.sort(lottoPurchased);
 
         return lottoPurchased;

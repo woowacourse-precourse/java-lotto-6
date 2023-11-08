@@ -13,7 +13,7 @@ public class OutputView {
     }
 
     public static void OutputNumberOfMatch(String message, int numberOfMatch) {
-        System.out.println(message + " - " + numberOfMatch + "개");
+        System.out.println(message + numberOfMatch + "개");
     }
 
     public static void OutputProfitRate(double profitRate) {

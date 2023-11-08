@@ -18,7 +18,7 @@ public class WinningNumberControllerTest {
         String winningNums = "1,2,3,4,5,6";
 
         // when
-        WinningNumberController.putWinningNums(winningNums);
+        WinningNumberController.getInstance().putWinningNums(winningNums);
 
         //then
         Assertions.assertThat(WinningNumber.getWinningNums().get(0)).isEqualTo(1);
@@ -37,8 +37,8 @@ public class WinningNumberControllerTest {
         String bonusNum = "7";
 
         // when
-        WinningNumberController.putWinningNums(winningNums);
-        WinningNumberController.putBonusNum(bonusNum);
+        WinningNumberController.getInstance().putWinningNums(winningNums);
+        WinningNumberController.getInstance().putBonusNum(bonusNum);
 
         //then
         Assertions.assertThat(WinningNumber.getBonusNum()).isEqualTo(7);

@@ -18,7 +18,7 @@ public class UserInputView {
 
     public static void inputWinningNums(){
         try{
-            WinningNumberController.putWinningNums(Console.readLine());
+            WinningNumberController.getInstance().putWinningNums(Console.readLine());
 
         }catch (IllegalArgumentException e){
             exceptionTypeMessage(e);
@@ -28,7 +28,7 @@ public class UserInputView {
 
     public static  void inputBonusNum(){
         try{
-            WinningNumberController.putBonusNum(Console.readLine());
+            WinningNumberController.getInstance().putBonusNum(Console.readLine());
         }catch (IllegalArgumentException e){
             exceptionTypeMessage(e);
             inputBonusNum();

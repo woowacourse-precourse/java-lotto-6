@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class OutputView {
     private static final String BUY_SOME_AMOUNT_OF_LOTTO = "%d개를 구매했습니다.";
-    private static final String DELIMITER_FOR_PURCHASES = ",";
+    private static final String DELIMITER_FOR_PURCHASES = ", ";
     private static final String DELIMITER_FOR_STATISTICS = " - ";
     private static final String PREFIX = "[";
     private static final String SUFFIX = "]";

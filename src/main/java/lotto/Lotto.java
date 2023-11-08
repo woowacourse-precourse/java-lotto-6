@@ -26,16 +26,16 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
             Print.printMessage(ErrorMessage.SIZE_OVER.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.SIZE_OVER.getMessage());
         }
         if (numbers.stream().distinct().count() != numbers.size()){
             Print.printMessage(ErrorMessage.DUPLICATED_NUMBER.getMessage());
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(ErrorMessage.DUPLICATED_NUMBER.getMessage());
         }
         for (Integer number : numbers){
             if (number < LOTTO_MIN_VALUE || LOTTO_MAX_VALUE < number){
                 Print.printMessage(ErrorMessage.NOT_IN_1_TO_45.getMessage());
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ErrorMessage.NOT_IN_1_TO_45.getMessage());
             }
         }
     }

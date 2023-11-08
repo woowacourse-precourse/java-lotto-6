@@ -9,6 +9,7 @@ public class MessageContainer {
     private static final String ENTER_PURCHASE_AMOUNT = "구입금액을 입력해 주세요.";
     private static final String PURCHASE_QUANTITY_MESSAGE = "%d개를 구매했습니다.";
     private static final String ENTER_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
+    private static final String ENTER_BONUS_NUMBERS = "보너스 번호를 입력해 주세요.";
     private static final String WINNING_STATISTICS = "당첨 통계\n---";
     private static final String UNIT = "개";
     private static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 %.1f%%입니다.";

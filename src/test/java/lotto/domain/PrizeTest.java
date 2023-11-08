@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import static lotto.utils.ConstantValues.LOTTO_NUMBERS_LENGTH;
+import static lotto.utils.ErrorMessages.SAME_COUNT_OUT_OF_RANGE;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -8,6 +11,18 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class PrizeTest {
+
+    @DisplayName("당첨 번호와 같은 번호가 0개 미만 6개 초과로 들어온 경우 예외를 발생시킨다.")
+    @ParameterizedTest
+    @ValueSource(ints = {-1, 7})
+    void sameCountOutOfRange(int sameCount) {
+        // given
+        boolean hasBonusNumber = false; // 어느 값이든 상관없다.
+        // when, then
+        assertThatThrownBy(() -> Prize.getPrize(sameCount, hasBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(String.format(SAME_COUNT_OUT_OF_RANGE, LOTTO_NUMBERS_LENGTH));
+    }
     
     @DisplayName("당첨 번호와 같은 번호의 개수와 보너스 번호 포함 여부를 알려주면 등수를 알려준다.")
     @ParameterizedTest

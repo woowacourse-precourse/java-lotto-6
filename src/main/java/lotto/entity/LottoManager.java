@@ -1,5 +1,8 @@
 package lotto.entity;
 
+import lotto.entity.mapper.FiledMapper;
+import lotto.property.MethodProperty;
+
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -35,5 +38,9 @@ public class LottoManager {
                 })
                 .findFirst()
                 .orElseThrow(() -> new IllegalStateException(LOTTO_RESULT_GENERATE_ERROR.toString()));
+    }
+
+    public Map<LottoResult, Integer> getResultEnumMap() {
+        return (Map<LottoResult, Integer>) FiledMapper.getFieldValue(this, MethodProperty.RESULT_ENUM_MAP);
     }
 }

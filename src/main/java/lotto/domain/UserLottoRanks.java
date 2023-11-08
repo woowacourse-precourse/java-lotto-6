@@ -12,7 +12,22 @@ public class UserLottoRanks {
     }
 
     public static UserLottoRanks from(final Map<LotteryRankConstant, Integer> userLottoRanks) {
+        initializeToZeroIfValueIsNull(userLottoRanks);
         return new UserLottoRanks(userLottoRanks);
+    }
+
+    public static void initializeToZeroIfValueIsNull(final Map<LotteryRankConstant, Integer> userLottoRanks) {
+        for (LotteryRankConstant lotteryRankConstant : LotteryRankConstant.values()) {
+            if (isValueMappedByKeyNull(userLottoRanks, lotteryRankConstant)) {
+                userLottoRanks.put(lotteryRankConstant, NumberConstant.ZERO.getNumber());
+            }
+        }
+    }
+
+    public static boolean isValueMappedByKeyNull(final Map<LotteryRankConstant, Integer> userLottoRanks,
+                                                 LotteryRankConstant lotteryRankConstant) {
+        return userLottoRanks.getOrDefault(lotteryRankConstant, NumberConstant.ZERO.getNumber())
+                == NumberConstant.ZERO.getNumber();
     }
 
     public Map<LotteryRankConstant, Integer> getUserLottoRanks() {

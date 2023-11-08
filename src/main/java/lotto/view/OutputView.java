@@ -1,6 +1,9 @@
 package lotto.view;
 
+import java.text.DecimalFormat;
 import java.util.List;
+import java.util.Map;
+import lotto.constant.LotteryRankConstant;
 import lotto.dto.LottoNumbers;
 import lotto.view.constant.OutputConstant;
 import lotto.view.message.OutputMessage;
@@ -34,6 +37,51 @@ public class OutputView {
                 .toList();
         printMessage(lottoContent);
         printLine();
+    }
+
+    public void printWinningStatistics(final Map<LotteryRankConstant, Integer> userLottoRanks,
+                                       final double rateOfReturn) {
+        printUserLottoResult(userLottoRanks);
+        printRateOfReturn(rateOfReturn);
+    }
+
+    private void printUserLottoResult(final Map<LotteryRankConstant, Integer> userLottoRanks) {
+        DecimalFormat prizeFormatter = new DecimalFormat(OutputConstant.PRIZE_FORMAT_STYLE);
+        printLottoResultAnnouncement();
+        printPrizeResult(OutputMessage.PRINT_FIFTH_RANK_PRIZE_RESULT_FORMAT, LotteryRankConstant.FIFTH_RANK,
+                userLottoRanks, prizeFormatter);
+        printPrizeResult(OutputMessage.PRINT_FOURTH_RANK_PRIZE_RESULT_FORMAT, LotteryRankConstant.FOURTH_RANK,
+                userLottoRanks, prizeFormatter);
+        printPrizeResult(OutputMessage.PRINT_THIRD_RANK_PRIZE_RESULT_FORMAT, LotteryRankConstant.THIRD_RANK,
+                userLottoRanks, prizeFormatter);
+        printPrizeResult(OutputMessage.PRINT_SECOND_RANK_PRIZE_RESULT_FORMAT, LotteryRankConstant.SECOND_RANK,
+                userLottoRanks, prizeFormatter);
+        printPrizeResult(OutputMessage.PRINT_FIRST_RANK_PRIZE_RESULT_FORMAT, LotteryRankConstant.FIRST_RANK,
+                userLottoRanks, prizeFormatter);
+    }
+
+    private void printLottoResultAnnouncement() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(OutputMessage.PRINT_WINNING_STATISTICS_WORD.getMessage())
+                .append(OutputConstant.NEW_LINE)
+                .append(OutputConstant.BREAK_LINE)
+                .append(OutputConstant.NEW_LINE);
+        printMessage(sb);
+    }
+
+    private void printPrizeResult(final OutputMessage outputMessageFormat,
+                                  final LotteryRankConstant lotteryRankConstant,
+                                  final Map<LotteryRankConstant, Integer> userLottoRanks,
+                                  final DecimalFormat prizeFormatter) {
+        String prizeResult = String.format(outputMessageFormat.getMessage(),
+                prizeFormatter.format((lotteryRankConstant.getPrizeMoney())),
+                userLottoRanks.get(lotteryRankConstant));
+        printMessage(prizeResult);
+        printLine();
+    }
+
+    private void printRateOfReturn(final double rateOfReturn) {
+        
     }
 
     public void printLine() {

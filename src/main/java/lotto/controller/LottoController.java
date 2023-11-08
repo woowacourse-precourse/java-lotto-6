@@ -2,6 +2,8 @@ package lotto.controller;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.util.List;
+import java.util.Map;
+import lotto.constant.LotteryRankConstant;
 import lotto.domain.BonusNumber;
 import lotto.domain.LotteryResult;
 import lotto.domain.Lotto;
@@ -36,6 +38,8 @@ public class LottoController {
         BonusNumber bonusNumber = initBonusNumber(winningLottoNumbers);
         LotteryResult lotteryResult = lottoService.generateLotteryResult(winningLottoNumbers, bonusNumber);
         UserLottoGameResult userLottoGameResult = lottoService.generateUserLottoGameResult(lotteryResult, userLottos);
+        printUserLottoGameResult(userLottoGameResult.getUserLottoRanks(), userLottoGameResult.getRateOfReturn());
+
         endGame();
     }
 
@@ -54,12 +58,12 @@ public class LottoController {
         return inputView.getUserMoney();
     }
 
-    private void printNumberOfLottos(long numberOfLottos) {
+    private void printNumberOfLottos(final long numberOfLottos) {
         outputView.printLine();
         outputView.printNumberOfLottos(numberOfLottos);
     }
 
-    private void printLottoContents(List<Lotto> lottos) {
+    private void printLottoContents(final List<Lotto> lottos) {
         for (Lotto l : lottos) {
             outputView.printLottoContent(LottoNumbers.from(l));
         }
@@ -81,7 +85,7 @@ public class LottoController {
         return inputView.getWinningLottoNumbers();
     }
 
-    private BonusNumber initBonusNumber(WinningLottoNumbers winningLottoNumbers) {
+    private BonusNumber initBonusNumber(final WinningLottoNumbers winningLottoNumbers) {
         try {
             int bonusNumber = askToInsertBonusNumber();
             return lottoService.initBonusNumber(winningLottoNumbers, bonusNumber);
@@ -94,6 +98,11 @@ public class LottoController {
     private int askToInsertBonusNumber() {
         outputView.askUserToInsertBonusNumber();
         return inputView.getBonusNumber();
+    }
+
+    public void printUserLottoGameResult(final Map<LotteryRankConstant, Integer> userLottoRanks,
+                                         final double rateOfReturn) {
+        outputView.printWinningStatistics(userLottoRanks, rateOfReturn);
     }
 
     private void endGame() {

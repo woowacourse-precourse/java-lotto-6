@@ -1,5 +1,7 @@
 package lotto.dto;
 
+import java.util.Map;
+import lotto.constant.LotteryRankConstant;
 import lotto.domain.UserLottoRanks;
 
 public class UserLottoGameResult {
@@ -13,5 +15,13 @@ public class UserLottoGameResult {
 
     public static UserLottoGameResult of(final UserLottoRanks userLottoRanks, final double rateOfReturn) {
         return new UserLottoGameResult(userLottoRanks, rateOfReturn);
+    }
+
+    public double getRateOfReturn() {
+        return this.rateOfReturn;
+    }
+
+    public Map<LotteryRankConstant, Integer> getUserLottoRanks() {
+        return userLottoRanks.getUserLottoRanks();
     }
 }

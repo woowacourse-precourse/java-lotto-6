@@ -1,5 +1,6 @@
 package lotto.model;
 
+import lotto.constant.OutputMessage;
 import lotto.constant.ValidatorMessage;
 
 public class Order {
@@ -43,7 +44,12 @@ public class Order {
     }
 
     public String getResult(WinStatistics winStatistics) {
+        StringBuilder stringBuilder = new StringBuilder();
 
+        return stringBuilder.append(OutputMessage.TOTAL_PROFIT_RATE_MESSAGE)
+                .append(calculateProfitRate(winStatistics))
+                .append(OutputMessage.RESULT_SUFFIX)
+                .toString();
     }
 
     private double calculateProfitRate(WinStatistics winStatistics) {

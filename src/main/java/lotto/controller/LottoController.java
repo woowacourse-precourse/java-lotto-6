@@ -86,5 +86,6 @@ public class LottoController {
         this.winStatistics = lottoTicket.getRank(winingLotto, bonus);
 
         outputView.winStatistics(this.winStatistics);
+        outputView.printProfitRate(this.order, this.winStatistics);
     }
 }

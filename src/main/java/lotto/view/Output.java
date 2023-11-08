@@ -14,7 +14,7 @@ public class Output {
     }
 
     public void printProfitRate(Order order, WinStatistics winStatistics) {
-
+        System.out.println(order.getResult(winStatistics));
     }
 
     public void winStatistics(WinStatistics winStatistics) {

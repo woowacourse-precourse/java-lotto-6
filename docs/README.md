@@ -48,6 +48,9 @@ check new branch
 - random()
   - input : null / return : List<Integer>
   - Lotto class에 보낼 6개의 랜덤 값
+- userWinning()
+  - input : null / return : void
+  - 당첨 번호 입력받아 answer에 Lotto 타입으로 저장
   
 ## (Class) Lotto
 - numbers(List<Integer>, 로또 번호)

@@ -18,4 +18,8 @@ public class LottoUtil {
 	    
 	    return lottoNumbers;
 	}
+    public int bonusNumberParser(String inputBonusNumber) {
+    	inputLottoException.validateInputBonusNumber(inputBonusNumber);
+        return Integer.parseInt(inputBonusNumber);
+    }
 }

@@ -20,15 +20,21 @@ public class WinningNumberInputValidator {
         return (1 <= oneLottoNumber && oneLottoNumber <= 45);
     }
 
-    public boolean isLottoNumberDuplication(WinningNumber winningNumber) {
-        Lotto winningLotto = winningNumber.getWinningNumber();
-        int bonusNumber = winningNumber.getBonusNumber();
-
-        for (int i = 0; i < winningLotto.size(); i++) {
-            int oneNumber = winningLotto.get(i);
-            if (winningLotto.contains(oneNumber)) {
+    public boolean isLottoNumberDuplication(Lotto lotto) {
+        for (int i = 0; i < lotto.size(); i++) {
+            int oneNumber = lotto.get(i);
+            if (lotto.contains(oneNumber)) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    public boolean isWinningLottoDuplication(WinningNumber winningNumber) {
+        Lotto winningLotto = winningNumber.getWinningNumber();
+        int bonusNumber = winningNumber.getBonusNumber();
+        if (!isLottoNumberDuplication(winningLotto)) {
+            return false;
         }
 
         if (winningLotto.contains(bonusNumber)) {

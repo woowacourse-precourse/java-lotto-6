@@ -8,6 +8,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
+        outOfRange(numbers);
         duplicatedWinningNum(numbers);
         this.numbers = numbers;
     }
@@ -35,7 +36,11 @@ public class Lotto {
         }
     }
 
-    public void numberRange(List<Integer> numbers){
-        throw new IllegalArgumentException("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+    public void outOfRange(List<Integer> numbers) {
+        for (int i = 0; i < numbers.size(); i++) {
+            if (numbers.get(i) < 1 || numbers.get(i) > 45) {
+                throw new IllegalArgumentException("[Error] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            }
+        }
     }
 }

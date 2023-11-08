@@ -51,7 +51,6 @@ public class Validations {
         boolean matches = matcher.find();
 
         if(!matches) {
-            System.out.println(LottoMessages.WRONG_NUMBER.getKr());
             throw new IllegalArgumentException(LottoMessages.WRONG_NUMBER.getKr());
         }
     }

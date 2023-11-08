@@ -8,7 +8,7 @@ import lotto.domain.LottoResult;
 import lotto.object.LottoNumber;
 
 public class Application {
-        public static String money;
+        public static int purchaseAmount;
         public static int ticketNumber;
         public static List<Integer> playerNumber = new ArrayList<>();
         public static int playerBonusNumber;

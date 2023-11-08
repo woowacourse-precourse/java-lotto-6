@@ -27,7 +27,6 @@ public class InputView {
         return bonusNumber;
     }
 
-
     public static int validateNumber(String number) {
         try {
             return Integer.parseInt(number);

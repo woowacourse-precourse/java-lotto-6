@@ -1,6 +1,10 @@
 package lotto.view;
 
-import static lotto.domain.enumerate.Rank.*;
+import static lotto.domain.enumerate.Rank.FIFTH;
+import static lotto.domain.enumerate.Rank.FIRST;
+import static lotto.domain.enumerate.Rank.FOURTH;
+import static lotto.domain.enumerate.Rank.SECOND;
+import static lotto.domain.enumerate.Rank.THIRD;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,7 +50,6 @@ public class OutputView {
         System.out.println(ConsoleMessage.PRINT_TOTAL_RESULT.getMessage() +
                 rate + ConsoleMessage.PRINT_TOTAL_RESULT_END_WORD.getMessage());
     }
-
 
     private static String printPerlotto(Lotto lotto) {
         StringBuilder stringBuilder = new StringBuilder();

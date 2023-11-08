@@ -17,9 +17,11 @@ public class Lottos {
     public static Lottos of(int number, LottoNumberGenerator lottoNumberGenerator) {
         return new Lottos(createLottos(number, lottoNumberGenerator));
     }
+
     public List<Lotto> getLottos() {
         return this.lottos;
     }
+
     private static List<Lotto> createLottos(int number, LottoNumberGenerator lottoTicketGenerator) {
         List<Lotto> lottos = new ArrayList<>();
 

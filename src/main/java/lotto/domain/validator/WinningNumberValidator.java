@@ -3,7 +3,6 @@ package lotto.domain.validator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import javax.print.attribute.standard.NumberUp;
 import lotto.message.ConsoleMessage;
 
 public class WinningNumberValidator {

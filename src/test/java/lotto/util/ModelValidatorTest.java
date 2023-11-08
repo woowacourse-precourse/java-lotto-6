@@ -18,6 +18,7 @@ class ModelValidatorTest {
         //then
         assertThatThrownBy(() ->
                 ModelValidator.validateOutOfRange(number, startNumber, endNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR] 로또 번호는 1부터 45사이의 숫자이어야 합니다.");
     }
 }

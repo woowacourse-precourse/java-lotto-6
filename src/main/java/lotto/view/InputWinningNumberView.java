@@ -8,7 +8,7 @@ import java.util.List;
 public class InputWinningNumberView {
     private static final String INPUT_WINNING_NUMBERS = "당첨 번호를 입력해 주세요.";
 
-    public List<Integer> InputWinningNumbers(){
+    public List<Integer> inputWinningNumbers(){
         String input = inputWinningNumber();
         validateInput(input);
         return createWinningNumbers(input);

@@ -8,7 +8,7 @@ import lotto.domain.Rank;
 public class OutputView {
     public void printPurchaseLottoNumbers(List<Lotto> lottos) {
         System.out.println();
-        System.out.printf("%d개를 구매하였습니다.%n", lottos.size());
+        System.out.printf("%d개를 구매했습니다.%n", lottos.size());
         for (Lotto lotto : lottos) {
             System.out.println(lotto.getNumbers().toString());
         }

@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.WinningLotto;
-import lotto.util.Converter;
 
 public class LottoService {
     private final List<Lotto> lottos = new ArrayList<>();
@@ -46,5 +45,10 @@ public class LottoService {
     public List<String> createWinningResults() {
         lottoResult = new LottoResult(lottos, winningLotto);
         return lottoResult.getFormalizedResult();
+    }
+
+    public Double createRateOfReturn() {
+        double totalReturn = lottoResult.getTotalReturn();
+        return totalReturn / purchaseAmount * 100;
     }
 }

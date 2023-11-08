@@ -39,7 +39,7 @@ public class LottoControl {
         mappingMatchedLottos();
         fiveWithBonusFinder(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
         OutputView.printLottoStates(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST());
-        getTotalReturnPercentage();
+        printTotalReturnPercentage();
 
 
 
@@ -59,7 +59,7 @@ public class LottoControl {
             }
         }
     }
-    private void getTotalReturnPercentage() {
+    private void printTotalReturnPercentage() {
         float percentage = returnPercentage.getReturnPercentage(matchedNumbers.getLOTTO_MATCHED_COUNT_LIST(),
                 String.valueOf(PIECE_OF_LOTTO));
         OutputView.printTotalReturn(percentage);

@@ -21,4 +21,8 @@ public class InputView {
         String lottoNumbers = Console.readLine();
         return lottoNumbers;
     }
+    public String inputBonusNumberView() {
+        String bonusNumber = Console.readLine();
+        return bonusNumber;
+    }
 }

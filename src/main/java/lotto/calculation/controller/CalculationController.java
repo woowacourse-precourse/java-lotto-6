@@ -80,8 +80,8 @@ public class CalculationController {
 
     private Map<String, Integer> createLottoMap(){
         Map<String, Integer> map = new HashMap<>();
-        map.put("number", 0);
-        map.put("bonus", 0);
+        map.put(NUMBER, 0);
+        map.put(BONUS, 0);
         return map;
     }
 

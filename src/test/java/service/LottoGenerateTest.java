@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class LottoGenerateTest {
     LottoGeneratorService lottoGeneratorService = LottoGeneratorServiceImpl.getInstance();
@@ -18,27 +18,27 @@ public class LottoGenerateTest {
     @DisplayName("나의 로또 생성 테스트")
     void myLottos() {
         List<Lotto> lottos = lottoGeneratorService.myLottos("7000");
-        assertEquals(lottos.size(), 7);
+        assertThat(lottos.size()).isEqualTo(7);
     }
 
     @Test
     @DisplayName("나의 로또 생성 실패 테스트 - 1000단위 실패")
     void myLottosFailWithUnitFirst() {
-        assertThrows(IllegalArgumentException.class,
-                () -> lottoGeneratorService.myLottos("7500"));
+        assertThatThrownBy(() -> lottoGeneratorService.myLottos("7500"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("나의 로또 생성 실패 테스트 - 1000단위 실패")
     void myLottosFailWithUnitSecond() {
-        assertThrows(IllegalArgumentException.class,
-                () -> lottoGeneratorService.myLottos("0"));
+        assertThatThrownBy(() -> lottoGeneratorService.myLottos("0"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 
     @Test
     @DisplayName("나의 로또 생성 실패 테스트 - 숫자 이외의 값")
     void myLottosFail() {
-        assertThrows(IllegalArgumentException.class,
-                () -> lottoGeneratorService.myLottos("abc"));
+        assertThatThrownBy(() -> lottoGeneratorService.myLottos("abc"))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }

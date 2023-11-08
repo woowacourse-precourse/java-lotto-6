@@ -11,29 +11,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoResultTest {
     @DisplayName("LottoResult애서 주어진 LottoRank의 개수를 반환한다.")
-    @ParameterizedTest
-    @MethodSource("countArgumentsProvider")
-    void count(LottoRank lottoRank, int expectedCount) {
-        LottoResult lottoResult = new LottoResult(List.of(FIRST, SECOND, SECOND, THIRD, THIRD, THIRD, NONE));
+    @Test
+    void count() {
+        LottoResult lottoResult = lottoResultOf(FIRST, SECOND, SECOND, THIRD, THIRD, THIRD, NONE);
 
-        assertThat(lottoResult.count(lottoRank)).isEqualTo(expectedCount);
-    }
-
-    static Stream<Arguments> countArgumentsProvider() {
-        return Stream.of(
-                Arguments.of(FIRST, 1),
-                Arguments.of(SECOND, 2),
-                Arguments.of(THIRD, 3),
-                Arguments.of(FOURTH, 0),
-                Arguments.of(FIFTH, 0),
-                Arguments.of(NONE, 1)
-        );
+        assertThat(lottoResult.count(FIRST)).isEqualTo(1);
+        assertThat(lottoResult.count(SECOND)).isEqualTo(2);
+        assertThat(lottoResult.count(THIRD)).isEqualTo(3);
+        assertThat(lottoResult.count(FOURTH)).isEqualTo(0);
+        assertThat(lottoResult.count(FIFTH)).isEqualTo(0);
+        assertThat(lottoResult.count(NONE)).isEqualTo(1);
     }
 
     @DisplayName("로또 구매 비용 대비 당첨 금액의 수익률을 계산한다.")

@@ -12,4 +12,8 @@ public class OutputService {
     public void purchaseAmount() {
         outputView.purchaseAmount();
     }
+
+    public void handleException(IllegalArgumentException exception) {
+        outputView.printExceptionMessage(exception.getMessage());
+    }
 }

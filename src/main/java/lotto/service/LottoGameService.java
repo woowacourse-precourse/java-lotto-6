@@ -12,7 +12,12 @@ public class LottoGameService {
     }
 
     public Money purchaseAmount() {
-        outputService.purchaseAmount();
-        return inputService.inputMoney();
+        try {
+            outputService.purchaseAmount();
+            return inputService.inputMoney();
+        } catch (IllegalArgumentException exception) {
+            outputService.handleException(exception);
+            return purchaseAmount();
+        }
     }
 }

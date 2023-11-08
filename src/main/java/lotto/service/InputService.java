@@ -11,11 +11,7 @@ public class InputService {
     }
 
     public Money inputMoney() {
-        try {
-            int number = inputView.inputNumber();
-            return new Money(number);
-        } catch (IllegalArgumentException exception) {
-            return inputMoney();
-        }
+        int number = inputView.inputNumber();
+        return new Money(number);
     }
 }

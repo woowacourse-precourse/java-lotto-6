@@ -1,6 +1,7 @@
 package lotto.domain;
 
 import static lotto.utils.Constants.ERROR_PREFIX;
+import static lotto.utils.Validator.validatePositiveNumber;
 
 public class TicketCount {
     private final int ticketCount;
@@ -14,8 +15,12 @@ public class TicketCount {
     public int getTicketCount() {
         return this.ticketCount;
     }
+    private void validateMoney(int purchaseMoney) {
+        validatePositiveNumber(purchaseMoney);
+        validateAmountUnit(purchaseMoney);
+    }
 
-    private void validateMoney(int purchaseMoney) throws IllegalArgumentException {
+    private void validateAmountUnit(int purchaseMoney) {
         if (purchaseMoney % 1000 != 0) {
             System.out.println(INCORRECT_AMOUNT_UNIT);
             throw new IllegalArgumentException();

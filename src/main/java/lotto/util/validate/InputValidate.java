@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import static lotto.util.constant.Constant.*;
 import static lotto.util.constant.InvalidConstant.*;
 
 public class InputValidate {
@@ -19,26 +20,26 @@ public class InputValidate {
     }
 
     public static void validateThousandUnitInputFormat(int input) {
-        if (input % 1000 != 0) {
+        if (input % PER_THOUSAND != 0) {
             throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_THOUSAND_UNIT);
         }
     }
 
     public static void validateNumberRangeInputFormat(int input) {
-        if (input <= 0) {
+        if (input <= 0 || input > LOTTO_MAX_PURCHASE_AMOUNT) {
             throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_INPUT_RANGE);
         }
     }
 
     public static void validateUniqueInputLottoNumbers(List<Integer> lottoNumbers) {
         Set<Integer> checkingUniqueNumbers = new HashSet<>(lottoNumbers);
-        if (checkingUniqueNumbers.size() != 6) {
+        if (checkingUniqueNumbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_UNIQUE_WINNING_NUMBERS);
         }
     }
 
     public static void validateAmountInputLottoNumbers(List<Integer> lottoNumbers) {
-        if (lottoNumbers.size() != 6) {
+        if (lottoNumbers.size() != LOTTO_NUMBER_SIZE) {
             throw new IllegalArgumentException(ERROR_MESSAGE + INVALID_SIZE_WINNING_NUMBERS);
         }
     }
@@ -63,7 +64,7 @@ public class InputValidate {
         }
     }
 
-    static public boolean isValidNumberRange(int number) {
-        return 1 <= number && number <= 45;
+    public static boolean isValidNumberRange(int number) {
+        return LOTTO_MIN_RANGE <= number && number <= LOTTO_MAX_RANGE;
     }
 }

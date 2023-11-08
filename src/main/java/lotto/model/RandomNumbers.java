@@ -20,6 +20,7 @@ public class RandomNumbers {
     private List<Integer> setRandomNumbers(){
         return Randoms.pickUniqueNumbersInRange(MIN_LOTTO_NUMBER,MAX_LOTTO_NUMBER,LOTTO_LENGTH);
     }
+    public Integer getSizeOfRandomNumbers(){ return randomLottoNumbers.size(); }
 
     public List<Integer> getEachLottoNumbers(int index) {
         return randomLottoNumbers.get(index);

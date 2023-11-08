@@ -10,14 +10,15 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.stream.Stream;
 
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+
 public class BonusNumberTest {
 
     @ParameterizedTest
     @DisplayName("보너스 번호가 1부터 45사이의 숫자가 아니라면 예외 발생")
     @ValueSource(ints = {66})
     void bonusNumberOutOfRange(int bonusNumber) {
-        Assertions.assertThatThrownBy(() -> new BonusNumber(bonusNumber))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException().isThrownBy(() -> new BonusNumber(bonusNumber));
     }
 
     @ParameterizedTest(name = "로또번호 : {0}, 보너스번호 : {1}")

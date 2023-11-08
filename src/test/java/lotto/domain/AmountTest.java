@@ -8,8 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.stream.Stream;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 public class AmountTest {
 
@@ -17,24 +16,21 @@ public class AmountTest {
     @DisplayName("구입금액이 최소 금액보다 모자라다면 예외 발생")
     @ValueSource(ints = {500})
     void buyAmountIsNotEnough(double amount) {
-        assertThatThrownBy(() -> new Amount(amount))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException().isThrownBy(() -> new Amount(amount));
     }
 
     @ParameterizedTest
     @DisplayName("구입금액이 음수일 경우 예외 발생")
     @ValueSource(ints = {-1})
     void buyAmountNegativeNumber(double amount) {
-        assertThatThrownBy(() -> new Amount(amount))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException().isThrownBy(() -> new Amount(amount));
     }
 
     @ParameterizedTest
     @DisplayName("구입금액이 나누어 떨어지지 않을 경우 예외 발생")
     @ValueSource(doubles = {1050.1})
     void buyAmountDivide(double amount) {
-        assertThatThrownBy(() -> new Amount(amount))
-                .isInstanceOf(IllegalArgumentException.class);
+        assertThatIllegalArgumentException().isThrownBy(() -> new Amount(amount));
     }
 
     @ParameterizedTest(name = "구매금액 : {0}, 결과 : {1}")

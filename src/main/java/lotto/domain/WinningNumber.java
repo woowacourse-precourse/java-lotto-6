@@ -40,19 +40,19 @@ public class WinningNumber {
 
     private void isNullWinningNumber(String number) {
         if (number.isEmpty()) {
-            throw new MissingWinningNumbersException();
+            throw new MissingNumberException();
         }
     }
 
     private void isValidWinningNumber(String number) {
         if (!number.matches("^[0-9,]+$")) {
-            throw new InvalidWinningNumbersFormatException();
+            throw new InvalidNumbersFormatException();
         }
     }
 
     private void isSizeWinningNumber(List<Integer> winningNumbers) {
         if (winningNumbers.size() != Constant.LOTTO_MAX_LENGTH) {
-            throw new InvalidWinningNumbersSizeException();
+            throw new InvalidNumbersSizeException();
         }
     }
 
@@ -60,7 +60,7 @@ public class WinningNumber {
         boolean hasDuplicates = winningNumbers.size() != new HashSet<>(winningNumbers).size();
 
         if (hasDuplicates) {
-            throw new DuplicateWinningNumbersException();
+            throw new DuplicateNumberException();
         }
     }
 
@@ -69,7 +69,7 @@ public class WinningNumber {
                 .anyMatch(number -> number < Constant.LOTTO_MIN_NUMBER || number > Constant.LOTTO_MAX_NUMBER);
 
         if (isInvalid) {
-            throw new InvalidWinningNumberRangeException();
+            throw new InvalidNumberRangeException();
         }
     }
 }

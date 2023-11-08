@@ -24,12 +24,12 @@ public class LottoController {
     }
 
     private Lottery prepareLottery() {
-        OutputView.printPurchaseMessage();
+        OutputView.printPurchaseInputText();
         PurchasePrice purchasePrice = InputHandler.receiveValidatedPurchasePrice();
         LottoTicket lottoTicket = createLottoEqualTo(purchasePrice);
-        OutputView.printWinningNumberMessage();
+        OutputView.printWinningNumberInputText();
         WinningNumber winningNumber = InputHandler.receiveValidatedWinningNumber();
-        OutputView.printBonusNumberMessage();
+        OutputView.printBonusNumberInputText();
         BonusNumber bonusNumber = InputHandler.receiveValidatedBonusNumberAndNotExistFrom(winningNumber);
         return new Lottery(winningNumber, bonusNumber, lottoTicket);
     }

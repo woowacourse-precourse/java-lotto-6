@@ -13,7 +13,7 @@ public class OutputView {
     private OutputView() {
     }
 
-    public static void printPurchaseMessage() {
+    public static void printPurchaseInputText() {
         System.out.println("구입금액을 입력해 주세요.");
     }
 
@@ -29,11 +29,11 @@ public class OutputView {
         System.out.println(lottoPrinter);
     }
 
-    public static void printWinningNumberMessage() {
+    public static void printWinningNumberInputText() {
         System.out.println("당첨 번호를 입력해 주세요.");
     }
 
-    public static void printBonusNumberMessage() {
+    public static void printBonusNumberInputText() {
         System.out.println("보너스 번호를 입력해 주세요.");
     }
 

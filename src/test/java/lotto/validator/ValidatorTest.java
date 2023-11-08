@@ -1,4 +1,4 @@
-package lotto;
+package lotto.validator;
 
 import lotto.validator.Validator;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +22,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("부적절한 로또 구입 금액 입력시 예외 발생")
-    void validateAmountTest() {
+    void validateAmount() {
         stringTestCases = Arrays.asList(new String[]{"1500", "-1000", "1050", "1005"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.validateAmount(testCase));
@@ -31,7 +31,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("부적절한 당첨 번호 입력시 예외 발생")
-    void validateWinNumbersTest() {
+    void validateWinNumbers() {
         stringTestCases = Arrays.asList(new String[]{"1,2,", "1,2,3,4,5,6,", ",1,2,3,4,5,6",
         "46,0,1,2,3,4", "1,2,3,4,5,6,7"});
         for (String testCase : stringTestCases) {
@@ -41,7 +41,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("부적절한 보너스 번호 입력시 예외 발생")
-    void validateBonusNumberTest() {
+    void validateBonusNumber() {
         numberTestCases = Arrays.asList(new Integer[] {1,2,3,4,5,6});
         stringTestCases = Arrays.asList(new String[]{"1", "-2", " ", "a"});
         for (String testCase : stringTestCases) {
@@ -51,7 +51,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("입력값이 공백이거나 null일 시 예외 발생")
-    void checkBlankOrNULLTest() {
+    void checkBlankOrNULL() {
         stringTestCases = Arrays.asList(new String[]{"", null});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.checkBlankOrNULL(testCase));
@@ -60,7 +60,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("공백 문자를 포함할 시 예외 발생")
-    void checkContainSpaceTest() {
+    void checkContainSpace() {
         stringTestCases = Arrays.asList(new String[]{" 1", "1, 2", "1 ", "1,2 "});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.checkContainSpace(testCase));
@@ -69,7 +69,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("양의 정수가 아닐 경우 예외 발생")
-    void checkNANTest() {
+    void checkNAN() {
         stringTestCases = Arrays.asList(new String[]{"a", "asdf", "120a", "!230", "-200"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.checkNAN(testCase));
@@ -78,7 +78,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("1000원으로 나누어 떨어지지 않을 경우 예외 발생")
-    void checkDividedByTest() {
+    void checkDividedBy() {
         numberTestCases = Arrays.asList(new Integer[]{1001, 1100, 3500, 9});
         for (Integer testCase : numberTestCases) {
             assertThatThrownBy(() -> Validator.checkDividedBy(1000, testCase));
@@ -87,7 +87,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName(",,가 포함되어 있거나 ,로 시작하거나 끝날 경우 예외 발생")
-    void checkInvalidCommaTest() {
+    void checkInvalidComma() {
         stringTestCases = Arrays.asList(new String[]{"1,,2", ",1,2", "1,2,", ",1", "1,"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.checkInvalidComma(testCase));
@@ -96,7 +96,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName(",를 기준으로 분리한 배열의 크기가 6이 아닐 경우 예외 발생")
-    void checkValidSizeTest() {
+    void checkValidSize() {
         stringTestCases = Arrays.asList(new String[]{"1,2", "1,2,3", "1,2,3,4", "1,2,3,4,5", "1,2,3,4,5,6,7"});
         for (String testCase : stringTestCases) {
             assertThatThrownBy(() -> Validator.checkValidSize(testCase));
@@ -105,7 +105,7 @@ class ValidatorTest {
 
     @Test
     @DisplayName("입력값이 1이상 45이하가 아닐 경우 예외 발생")
-    void checkNumberInTest() {
+    void checkNumberIn() {
         numberTestCases = Arrays.asList(new Integer[]{0, 46, 47, 48, 49, 1000000});
         for (Integer testCase : numberTestCases) {
             assertThatThrownBy(() -> Validator.checkNumberIn(1, 45, testCase));
@@ -114,14 +114,14 @@ class ValidatorTest {
 
     @Test
     @DisplayName("중복입력이 있을 경우 예외 발생")
-    void checkDuplicatedTest() {
+    void checkDuplicated() {
         numberTestCases = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 5});
         assertThatThrownBy(() -> Validator.checkDuplicated(numberTestCases));
     }
 
     @Test
     @DisplayName("기존 리스트에 존재하는 숫자일경우 예외 발생")
-    void checkNumberInListTest() {
+    void checkNumberInList() {
         numberTestCases = Arrays.asList(new Integer[]{1, 2, 3, 4, 5, 6});
         assertThatThrownBy(() -> Validator.checkNumberInList(3, numberTestCases));
     }

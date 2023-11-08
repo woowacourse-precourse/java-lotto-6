@@ -23,7 +23,20 @@ public class Application {
     static int matchRecord = 0;
     static int [] lottoRecord = new int[lottos.size()];
 
-    static enum Grade { first, second, third, fourth, fifth;}
+    public static enum Grade {
+        FIRST(2000000000),
+        SECOND(30000000),
+        THIRD(1500000),
+        FOURTH(50000),
+        FIFTH(5000);
+        private final int PRIZE;
+        private Grade (int prize){
+            this.PRIZE = prize;
+        }
+        public int getPrize(){
+            return this.PRIZE;
+        }
+    }
 
     public static int getMoney(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -154,19 +167,18 @@ public class Application {
         //  당첨 유형 분류
         for (int i = 0; i < lottos.size(); i++) {
             if (lottoRecord[i] == 3)
-                grade = Grade.fifth;
+                grade = Grade.FIFTH;
             if (lottoRecord[i] == 4)
-                grade = Grade.fourth;
+                grade = Grade.FOURTH;
             if (lottoRecord[i] == 5)
-                grade = Grade.third;
+                grade = Grade.THIRD;
             if (lottoRecord[i] == 5 && lottos.get(i).contains(BonusNumber))
-                grade = Grade.second;
+                grade = Grade.SECOND;
             if (lottoRecord[i] == 6)
-                grade = Grade.first;
+                grade = Grade.FIRST;
         }
 
 
-        // 당첨 내역에 따른 상금 수여
 
 
 

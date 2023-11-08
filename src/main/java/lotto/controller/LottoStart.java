@@ -20,7 +20,6 @@ public class LottoStart {
         final int buycost = lottoinfo.getInputBuyCost();
         numbergenerator.createUnitLotto(buycost);
         final int buycount = lottoinfo.getCreateLottoNumber();
-
         numbergenerator.createLottoNumbers(buycount);
         final List<List<Integer>> lottonumbers = lottoinfo.getCreateLottoNumbers();
 
@@ -29,12 +28,7 @@ public class LottoStart {
         
         numbergenerator.InputBonusNumber(lotto.getLotto());
         int bonusNumber = lottoinfo.getInputBonusNumber();
-        
-        for(List<Integer> i : lottonumbers){
-            judgment.correctCount(i , lotto.getLotto());
-            int correctCount = lottoinfo.getCorrectCount();
-            setWinningInfo(i, correctCount, bonusNumber);
-        }
+        compare(lottonumbers, bonusNumber);
 
         outputview.getEndLotto(winninginfo, buycost);
     }
@@ -74,6 +68,14 @@ public class LottoStart {
         }
         else if (correctCount == 6){
             winninginfo.setfirstrank();
+        }
+    }
+
+    private void compare(List<List<Integer>> lottonumbers , int bonusNumber){
+        for(List<Integer> i : lottonumbers){
+            judgment.correctCount(i , lotto.getLotto());
+            int correctCount = lottoinfo.getCorrectCount();
+            setWinningInfo(i, correctCount, bonusNumber);
         }
     }
 }

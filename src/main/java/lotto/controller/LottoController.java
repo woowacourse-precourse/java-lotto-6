@@ -7,6 +7,9 @@ import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.PlayerAmount;
+import lotto.domain.Profit;
+import lotto.domain.RankResult;
+import lotto.service.LottoService;
 import lotto.util.Converter;
 import lotto.util.RandomNumberGenerator;
 import lotto.view.InputView;
@@ -15,6 +18,7 @@ import lotto.view.OutputView;
 public class LottoController {
     private InputView inputView;
     private OutputView outputView;
+    private LottoService lottoService;
 
     public LottoController(InputView inputView, OutputView outputView) {
         this.inputView = inputView;
@@ -26,12 +30,19 @@ public class LottoController {
     }
 
     private void setting() {
-        Lottos lottos = createLottos();
+        PlayerAmount playerAmount = getPlayerAmount();
+        Lottos lottos = createLottos(playerAmount);
         LottoResult lottoResult = setLottoResult();
+
+        lottoService = new LottoService(lottos, lottoResult, playerAmount);
     }
 
-    private Lottos createLottos() {
-        int count = new PlayerAmount(inputView.getPlayerAmount()).getLottoCount();
+    private PlayerAmount getPlayerAmount() {
+        return new PlayerAmount(inputView.getPlayerAmount());
+    }
+
+    private Lottos createLottos(PlayerAmount playerAmount) {
+        int count = playerAmount.getLottoCount();
         List<Lotto> lottos = new ArrayList<>();
 
         IntStream.range(0, count)
@@ -45,5 +56,12 @@ public class LottoController {
         String bonusNumber = inputView.getBonusNumber();
 
         return LottoResult.create(winningNumber, bonusNumber);
+    }
+
+    private void settle() {
+        RankResult rankResult = lottoService.getLottoRankResult();
+        Profit profit = lottoService.getLottoProfitRate(rankResult);
+
+
     }
 }

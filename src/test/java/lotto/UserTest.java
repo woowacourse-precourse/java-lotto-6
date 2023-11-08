@@ -86,4 +86,46 @@ class UserTest {
         assertThatThrownBy(() -> user.getWinningNumbers("1,2,3,4,5,5"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("보너스 번호 구하기")
+    @Test
+    void getBonusNumber() {
+        User user = new User();
+        int actualBonus = user.getBonusNumber("42",
+                List.of(1, 2, 3, 4, 5, 6)
+        );
+        int expectedBonus = 42;
+
+        assertThat(expectedBonus).isEqualTo(actualBonus);
+    }
+
+    @DisplayName("정수가 아닌 값인 경우")
+    @Test
+    void getBonusNumberByInvalidType() {
+        User user = new User();
+        assertThatThrownBy(() -> user.getBonusNumber(
+                "7,8", List.of(1, 2, 3, 4, 5, 6)
+        ))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("1~45 범위가 아닌 경우")
+    @Test
+    void getBonusNumberByInvalidRange() {
+        User user = new User();
+        assertThatThrownBy(() -> user.getBonusNumber(
+                "100", List.of(1, 2, 3, 4, 5, 6)
+        ))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("당첨 번호와 중복된 번호인 경우")
+    @Test
+    void getBonusNumberByDuplication() {
+        User user = new User();
+        assertThatThrownBy(() -> user.getBonusNumber(
+                "1", List.of(1, 2, 3, 4, 5, 6)
+        ))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }

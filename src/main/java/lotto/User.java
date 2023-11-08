@@ -105,7 +105,7 @@ public class User {
         }
     }
 
-    private static int getBonusNumber(String bonusLotto, List<Integer> winningNumbers) {
+    public int getBonusNumber(String bonusLotto, List<Integer> winningNumbers) {
         try {
             int bonusNumber = convertStringToInteger(bonusLotto);
             validateNumber(bonusNumber, winningNumbers);

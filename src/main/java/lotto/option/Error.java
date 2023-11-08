@@ -1,7 +1,7 @@
 package lotto.option;
 
 public enum Error {
-    ONE_TO_FORTY_FIVE("로또 번호는 1부터 45 사이의 숫자여야 합니다."), //컨벤션 확인
+    ONE_TO_FORTY_FIVE("로또 번호는 1부터 45 사이의 숫자여야 합니다."),
     NOT_LOTTO_DUPLICATION("중복된 숫자는 입력할 수 없습니다."),
     NOT_BONUS_DUPLICATION("중복된 보너스 숫자는 입력할 수 없습니다."),
     NOT_NEGATIVE_NUMBER("음수는 입력할 수 없습니다."),

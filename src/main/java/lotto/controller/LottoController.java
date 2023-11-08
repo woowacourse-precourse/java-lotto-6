@@ -30,6 +30,7 @@ public class LottoController {
                 return LottoCount.from(Input.money());
             } catch (IllegalArgumentException e) {
                 Output.message(e.getMessage());
+                
             }
         }
     }

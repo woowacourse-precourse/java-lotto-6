@@ -41,29 +41,25 @@ class PrizeTest {
     @Test
     void earningRateCalculator() {
         //given
-        List<Long> matchWinningNumber = new ArrayList<>();
-        List<Long> matchBonusNumber = new ArrayList<>();
+        List<MatchNumber> matchNumbers = new ArrayList<>();
         int purchase = 1000;
 
         //when
-        matchWinningNumber.add(5L);
-        matchBonusNumber.add(1L);
+        matchNumbers.add(new MatchNumber(5, 1));
 
         //then
-        assertThat(Prize.earningRateCalculator(matchWinningNumber, matchBonusNumber, purchase)).isEqualTo("3000000.0");
+        assertThat(Prize.earningRateCalculator(matchNumbers, purchase)).isEqualTo("3000000.0");
     }
 
     @DisplayName("당첨 목록 저장 확인 테스트")
     @Test
     void countPrizeHistory() {
         //given
-        List<Long> matchWinningNumber = new ArrayList<>();
-        List<Long> matchBonusNumber = new ArrayList<>();
+        List<MatchNumber> matchNumbers = new ArrayList<>();
 
         //when
-        matchWinningNumber.add(5L);
-        matchBonusNumber.add(1L);
-        List<String> prizeHistory = Prize.countPrizeHistory(matchWinningNumber, matchBonusNumber);
+        matchNumbers.add(new MatchNumber(5, 1));
+        List<String> prizeHistory = Prize.countPrizeHistory(matchNumbers);
 
         //then
         assertThat(prizeHistory.get(0)).isEqualTo("SECOND");

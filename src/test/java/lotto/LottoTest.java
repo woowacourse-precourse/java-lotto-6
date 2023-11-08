@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 
 class LottoTest {
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
@@ -32,4 +33,12 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(List.of(1, 2, 3, 4, 5, number)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("로또 번호를 출력하기 전 로또 번호는 오름차순으로 정렬되어야 한다.")
+    @Test
+    void getAsencdingLottoNumbers() {
+        Lotto lotto = new Lotto(List.of(10, 9, 8, 7, 6, 5));
+        assertThat(lotto.getSortedNumbers()).isEqualTo((List.of(5, 6, 7, 8, 9, 10)));
+    }
+
 }

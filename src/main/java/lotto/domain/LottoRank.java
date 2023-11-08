@@ -1,7 +1,5 @@
 package lotto.domain;
 
-import java.util.List;
-
 import static lotto.domain.LottoUtils.getMatchCount;
 
 public enum LottoRank {
@@ -36,6 +34,12 @@ public enum LottoRank {
         public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
             return matchCount == this.getMatchCondition();
         }
+    },
+    NONE(0, 0L, 0) {
+        @Override
+        public boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount) {
+            return false;
+        }
     };
 
     private final int rank;
@@ -50,6 +54,23 @@ public enum LottoRank {
 
     public abstract boolean isMatch(Lotto lotto, WinningNumbers winningNumbers, int matchCount);
 
+
+    public static LottoRank valueOf(Lotto lotto, WinningNumbers winningNumbers) {
+        int matchCount = getMatchCount(lotto.getNumbers(), winningNumbers.getNumbers());
+
+        for (LottoRank rank : LottoRank.values()) {
+            if (rank.isMatch(lotto, winningNumbers, matchCount)) {
+                return rank;
+            }
+        }
+
+        return NONE;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
     public long getPrize() {
         return prize;
     }
@@ -57,4 +78,5 @@ public enum LottoRank {
     public int getMatchCondition() {
         return matchCondition;
     }
+
 }

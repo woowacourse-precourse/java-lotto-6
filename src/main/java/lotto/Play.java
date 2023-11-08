@@ -1,6 +1,7 @@
 package lotto;
 
 import static lotto.io.ErrorHandler.*;
+import static lotto.io.Output.printResult;
 
 
 import camp.nextstep.edu.missionutils.Console;
@@ -112,7 +113,7 @@ public class Play {
         return List.of(first, second, third, fourth, fifth, zero);
     }
 
-    public double profitCalculation(List<Integer> alignedRankings) {
+    public static double profitCalculation(List<Integer> alignedRankings) {
         double profit =
                 (2000000000 * alignedRankings.get(0) + 30000000 * alignedRankings.get(1)
                         + 1500000 * alignedRankings.get(2) + 50000 * alignedRankings.get(3)
@@ -121,21 +122,4 @@ public class Play {
                 ) * 100;
         return profit;
     }
-
-    public void printResult(List<Integer> alignRanking) {
-        String s1 = String.format("3개 일치 (5,000원) - %s개", alignRanking.get(4));
-        System.out.println(s1);
-        String s2 = String.format("4개 일치 (50,000원) - %s개", alignRanking.get(3));
-        System.out.println(s2);
-        String s3 = String.format("5개 일치 (1,500,000원) - %s개", alignRanking.get(2));
-        System.out.println(s3);
-        String s4 = String.format("5개 일치, 보너스 볼 일치 (30,000,000원) - %s개", alignRanking.get(1));
-        System.out.println(s4);
-        String s5 = String.format("6개 일치 (2,000,000,000원) - %s개", alignRanking.get(0));
-        System.out.println(s5);
-        String s6 = String.format("총 수익률은 %s%%입니다.", profitCalculation(alignRanking));
-        System.out.println(s6);
-
-    }
-
 }

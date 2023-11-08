@@ -35,9 +35,10 @@ public class InputView {
         return new Lotto(lotto);
     }
 
-    public String getBonusNumber() {
+    public static int getBonusNumber() {
         System.out.println(InputMessage.INPUT_BONUS_NUMBER.getMessage());
-
-        return Console.readLine();
+        String input = Console.readLine();
+        Validator.validateLottoPurchaseAmount(input);
+        return Integer.parseInt(input);
     }
 }

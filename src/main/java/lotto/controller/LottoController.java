@@ -5,6 +5,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 import lotto.service.LottoService;
 import lotto.model.Lotto;
+import lotto.util.Validator;
 
 public class LottoController {
 
@@ -28,9 +29,12 @@ public class LottoController {
 
     private void getWinningNumbers() {
         Lotto inputLotto = inputView.getWinningNumbers();
+        getBonusNumber(inputLotto);
     }
 
-    private void getBonusNumber() {
+    private void getBonusNumber(Lotto inputLotto) {
+        int bonusNumber = inputView.getBonusNumber();
+        Validator.checkAlreadyExist(inputLotto, bonusNumber);
 
     }
 

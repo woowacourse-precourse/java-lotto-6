@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 import static lotto.message.ErrorMessage.*;
+import lotto.model.Lotto;
 
 public class Validator {
     private static final int MONEY_UNIT = 1000;
@@ -25,6 +26,18 @@ public class Validator {
             checkExistOfValue(winningNumber);
             checkNegativeNumber(winningNumber);
             checkRange(winningNumber);
+        }
+    }
+
+    public static void validateBonusNumber(String bonusNumber) {
+        checkExistOfValue(bonusNumber);
+        checkRange(bonusNumber);
+        checkNegativeNumber(bonusNumber);
+    }
+
+    public static void checkAlreadyExist(Lotto lotto, int bonusNumber) {
+        if (lotto.contains(bonusNumber)) {
+            throw new IllegalArgumentException(ALREADY_EXIST_ERROR.getMessage());
         }
     }
 

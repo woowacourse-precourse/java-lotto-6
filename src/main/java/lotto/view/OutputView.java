@@ -3,6 +3,7 @@ package lotto.view;
 
 import lotto.model.LottoResult;
 import java.text.DecimalFormat;
+import java.util.Collections;
 import java.util.List;
 
 public class OutputView {
@@ -29,13 +30,12 @@ public class OutputView {
 
     public static int[] countLottoResult(List<LottoResult> lottoResults){
         int[] lottoResultCounts = new int[LottoResult.values().length-1];
-        for(LottoResult lottoResult : LottoResult.values()){
-            lottoResults.forEach(lr -> {
-                if(lr.getIndex()!=-1 && lottoResult.equals(lr)) {
-                    lottoResultCounts[lr.getIndex()] += 1;
-                }
 
-            });
+        for(LottoResult lottoResult : LottoResult.values()){
+            if(lottoResult.getIndex().equals(-1)){
+                continue;
+            }
+            lottoResultCounts[lottoResult.getIndex()] = Collections.frequency(lottoResults, lottoResult);
         }
 
         return lottoResultCounts;

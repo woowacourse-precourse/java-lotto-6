@@ -10,10 +10,9 @@ public class ExceptionModule {
         }
     }
 
-    public static boolean checkThousandException(Integer tryNum, Integer LOTTO_PRICE) throws IllegalArgumentException{
-        if (tryNum % LOTTO_PRICE == 0) {
-            return false;
+    public static void checkThousandException(Integer tryNum, Integer LOTTO_PRICE) throws IllegalArgumentException{
+        if (tryNum % LOTTO_PRICE != 0) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
     }
 }

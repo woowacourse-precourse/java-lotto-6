@@ -11,8 +11,7 @@ public class InteractService {
 
     public static Integer purchasePhase() {
         System.out.println("구입금액을 입력해 주세요.");
-        boolean phase = true;
-        while (phase) {
+        while (true) {
             try {
                 Integer tryNum = checkParseIntException(Console.readLine());
                 checkThousandException(tryNum, LOTTO_PRICE);
@@ -21,6 +20,5 @@ public class InteractService {
                 System.out.println("[ERROR] 로또 구입 금액은 1000원의 양의 정수배만 입력 가능합니다.");
             }
         }
-        throw new IllegalStateException();
     }
 }

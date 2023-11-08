@@ -50,4 +50,8 @@ public class OutputView {
         double rateOfProfit = (double) outMoney / inMoney * 100.0;
         System.out.printf("총 수익률은 %.1f%%입니다.", rateOfProfit);
     }
+
+    public void printErrorMessage(Exception e) {
+        System.out.println(e.getMessage());
+    }
 }

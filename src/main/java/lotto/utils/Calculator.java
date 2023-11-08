@@ -19,10 +19,12 @@ public class Calculator {
         for (int i = 0; i < lottos.size(); i++) {
             List<Integer> lottoNumbers = lottos.get(i).getLottoNumbers();
 
-            int correctCount = countCorrectNumber(lottoNumbers, winningNumber);
+            int correctNumber = countCorrectNumber(lottoNumbers, winningNumber);
             boolean correctBonus = checkCorrectBonusNumber(lottoNumbers, bonusNumber);
 
-            calculateRank(correctCount, correctBonus);
+            int rank = calculateRank(correctNumber, correctBonus);
+            result.countRank(rank);
+            result.addIncome(calculateReword(rank));
         }
 
         return result;
@@ -46,31 +48,22 @@ public class Calculator {
         return false;
     }
 
-    private void calculateRank(int correctCount, boolean correctBonus) {
-        if (correctCount == FIRST_CORRECT_CONDITION.getNumber()) {
-            result.countRank(FIRST.getNumber());
-            result.addIncome(FIRST_REWORD.getNumber());
-            return;
-        }
-        if (correctCount == SECOND_CORRECT_CONDITION.getNumber() && correctBonus) {
-            result.countRank(SECOND.getNumber());
-            result.addIncome(SECOND_REWORD.getNumber());
-            return;
-        }
-        if (correctCount == THIRD_CORRECT_CONDITION.getNumber()) {
-            result.countRank(THIRD.getNumber());
-            result.addIncome(THIRD_REWORD.getNumber());
-            return;
-        }
-        if (correctCount == FOURTH_CORRECT_CONDITION.getNumber()) {
-            result.countRank(FOURTH.getNumber());
-            result.addIncome(FOURTH_REWORD.getNumber());
-            return;
-        }
-        if (correctCount == FIFTH_CORRECT_CONDITION.getNumber()) {
-            result.countRank(FIFTH.getNumber());
-            result.addIncome(FIFTH_REWORD.getNumber());
-        }
+    private int calculateRank(int correctCount, boolean correctBonus) {
+        if (correctCount == FIRST_CORRECT_CONDITION.getNumber()) return FIRST.getNumber();
+        if (correctCount == SECOND_CORRECT_CONDITION.getNumber() && correctBonus) return SECOND.getNumber();
+        if (correctCount == THIRD_CORRECT_CONDITION.getNumber()) return THIRD.getNumber();
+        if (correctCount == FOURTH_CORRECT_CONDITION.getNumber()) return FOURTH.getNumber();
+        if (correctCount == FIFTH_CORRECT_CONDITION.getNumber()) return FIFTH.getNumber();
+        return 0;
+    }
+
+    private int calculateReword(int rank){
+        if(rank == FIRST.getNumber()) return FIRST_REWORD.getNumber();
+        if(rank == SECOND.getNumber()) return SECOND_REWORD.getNumber();
+        if(rank == THIRD.getNumber()) return THIRD_REWORD.getNumber();
+        if(rank == FOURTH.getNumber()) return FOURTH_REWORD.getNumber();
+        if(rank == FIFTH.getNumber()) return FIFTH_REWORD.getNumber();
+        return 0;
     }
 
     public double calculateIncomeRate(Result result, Payment payment) {

@@ -88,14 +88,15 @@ public class LottoService implements Service {
     }
 
     @Override
-    public ReturnRateDto getReturnRate(LottoPurchaseDto lottoPurchaseDto, WinningResultDto winningResultDto) {
+    public ReturnRateDto getReturnRate(final LottoPurchaseDto lottoPurchaseDto,
+                                       final WinningResultDto winningResultDto) {
         ReturnRate returnRate = getWinningResult(winningResultDto)
                 .getTotalWinningAmount()
                 .calculateReturnRateFrom(lottoPurchaseDto.amount());
         return getReturnRateDto(returnRate);
     }
 
-    private WinningResult getWinningResult(WinningResultDto winningResultDto) {
+    private WinningResult getWinningResult(final WinningResultDto winningResultDto) {
         return new WinningResult(
                 List.of(
                         winningResultDto.firstPlaceCount(),
@@ -107,7 +108,7 @@ public class LottoService implements Service {
         );
     }
 
-    private ReturnRateDto getReturnRateDto(ReturnRate returnRate) {
+    private ReturnRateDto getReturnRateDto(final ReturnRate returnRate) {
         return new ReturnRateDto(returnRate.returnRate());
     }
 }

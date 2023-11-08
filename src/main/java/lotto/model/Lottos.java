@@ -18,11 +18,11 @@ import java.util.stream.IntStream;
 public class Lottos {
     private final List<Lotto> lottos;
 
-    public Lottos(List<Lotto> lottos) {
+    public Lottos(final List<Lotto> lottos) {
         this.lottos = lottos;
     }
 
-    public static Lottos from(int quantity) {
+    public static Lottos from(final int quantity) {
         return new Lottos(
                 IntStream.range(0, quantity)
                         .mapToObj(index -> Lotto.create())
@@ -30,7 +30,7 @@ public class Lottos {
         );
     }
 
-    public WinningResult getWinningResult(String inputWinningNumber, String inputBonusNumber) {
+    public WinningResult getWinningResult(final String inputWinningNumber, final String inputBonusNumber) {
         List<Integer> winningNumbers = Arrays.stream(inputWinningNumber.split(","))
                 .map(String::trim)
                 .map(Integer::parseInt)
@@ -53,19 +53,19 @@ public class Lottos {
         return winningResult.get();
     }
 
-    private void validateBonusNumber(String inputBonusNumber) {
+    private void validateBonusNumber(final String inputBonusNumber) {
         if (NUMBER_PATTERN.isNotMatching(inputBonusNumber)) {
             throw new IllegalArgumentException(CONTAINING_OTHER_THAN_NUMBER.getMessage());
         }
     }
 
-    private void validateNumberInLottoNumberRange(int inputBonusNumber) {
+    private void validateNumberInLottoNumberRange(final int inputBonusNumber) {
         if (RANGE.notInclude(inputBonusNumber)) {
             throw new IllegalArgumentException(NOT_IN_LOTTO_NUMBER_RANGE.getMessage());
         }
     }
 
-    private WinningResult checkIfWin(int winningCount, WinningResult winningResult, boolean matchesBonusNumber) {
+    private WinningResult checkIfWin(final int winningCount, WinningResult winningResult, final boolean matchesBonusNumber) {
         if (winningCount == FIRST_PLACE.getCount()) {
             winningResult = winningResult.withIncreasedPlaceCount(0);
         }

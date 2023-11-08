@@ -15,7 +15,7 @@ public record WinningResult(List<Integer> placeCounts) {
         return new WinningResult(List.of(0, 0, 0, 0, 0));
     }
 
-    public WinningResult withIncreasedPlaceCount(int placeIndex) {
+    public WinningResult withIncreasedPlaceCount(final int placeIndex) {
         List<Integer> newCounts = new ArrayList<>(placeCounts);
         newCounts.set(placeIndex, placeCounts.get(placeIndex) + 1);
         return new WinningResult(newCounts);

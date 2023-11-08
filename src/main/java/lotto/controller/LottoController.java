@@ -40,14 +40,14 @@ public class LottoController extends AbstractRetry {
         });
     }
 
-    private LottosDto generateLottos(LottoPurchaseDto lottoPurchaseDto) {
+    private LottosDto generateLottos(final LottoPurchaseDto lottoPurchaseDto) {
         view.printPurchaseQuantity(lottoPurchaseDto);
         LottosDto lottosDto = service.generateLotto(lottoPurchaseDto.quantity());
         view.printLottoNumbers(lottosDto);
         return lottosDto;
     }
 
-    private WinningResultDto drawLotto(LottosDto lottosDto) {
+    private WinningResultDto drawLotto(final LottosDto lottosDto) {
         return run(MaxRetry.COUNT.getValue(), () -> {
             String inputWinningNumber = view.askWinningNumber();
             String inputBonusNumber = view.askBonusNumber();
@@ -59,7 +59,7 @@ public class LottoController extends AbstractRetry {
         });
     }
 
-    private void showWinningStats(WinningResultDto winningResultDto, LottoPurchaseDto lottoPurchaseDto) {
+    private void showWinningStats(final WinningResultDto winningResultDto, final LottoPurchaseDto lottoPurchaseDto) {
         view.printMessage(WINNING_STATS);
         view.printWinningResult(winningResultDto);
         ReturnRateDto returnRateDto = service.getReturnRate(lottoPurchaseDto, winningResultDto);

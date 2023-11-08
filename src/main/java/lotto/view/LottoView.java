@@ -23,17 +23,17 @@ public class LottoView implements View {
     }
 
     @Override
-    public void println(String string) {
+    public void println(final String string) {
         System.out.println(string);
     }
 
     @Override
-    public void printMessage(Message message) {
+    public void printMessage(final Message message) {
         System.out.println(message.getMessage());
     }
 
     @Override
-    public void printMessage(Message message, Object... args) {
+    public void printMessage(final Message message, final Object... args) {
         System.out.printf(message.getMessage(), args);
     }
 
@@ -49,12 +49,12 @@ public class LottoView implements View {
     }
 
     @Override
-    public void printPurchaseQuantity(LottoPurchaseDto lottoPurchaseDto) {
+    public void printPurchaseQuantity(final LottoPurchaseDto lottoPurchaseDto) {
         printMessage(PURCHASE_AMOUNT_MESSAGE, lottoPurchaseDto.quantity());
     }
 
     @Override
-    public void printLottoNumbers(LottosDto lottosDto) {
+    public void printLottoNumbers(final LottosDto lottosDto) {
         lottosDto.lottos()
                 .forEach(lottoDto ->
                         println(lottoDto.toString())
@@ -74,7 +74,7 @@ public class LottoView implements View {
     }
 
     @Override
-    public void printWinningResult(WinningResultDto winningResultDto) {
+    public void printWinningResult(final WinningResultDto winningResultDto) {
         printMessage(
                 WINNING_CASE_MESSAGE,
                 winningResultDto.fifthPlaceCount(),
@@ -86,7 +86,7 @@ public class LottoView implements View {
     }
 
     @Override
-    public void printReturnRateMessage(ReturnRateDto returnRateDto) {
+    public void printReturnRateMessage(final ReturnRateDto returnRateDto) {
         printMessage(RETURN_RATE_MESSAGE, returnRateDto.returnRate());
     }
 }

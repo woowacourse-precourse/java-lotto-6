@@ -13,11 +13,11 @@ import lotto.constant.ErrorMessage;
 public class LottoPurchaseAmount {
     private final BigDecimal amount;
 
-    private LottoPurchaseAmount(BigDecimal amount) {
+    private LottoPurchaseAmount(final BigDecimal amount) {
         this.amount = amount;
     }
 
-    public static LottoPurchaseAmount from(String input) {
+    public static LottoPurchaseAmount from(final String input) {
         validateNumeric(input);
         BigDecimal purchaseAmount = convertToBigDecimalFrom(input);
         validateMaximumPurchase(purchaseAmount);
@@ -25,24 +25,24 @@ public class LottoPurchaseAmount {
         return new LottoPurchaseAmount(purchaseAmount);
     }
 
-    private static BigDecimal convertToBigDecimalFrom(String input) {
+    private static BigDecimal convertToBigDecimalFrom(final String input) {
         long temporaryValue = Long.parseLong(input);
         return BigDecimal.valueOf(temporaryValue);
     }
 
-    private static void validateNumeric(String input) {
+    private static void validateNumeric(final String input) {
         if (NUMBER_PATTERN.isNotMatching(input)) {
             throw new IllegalArgumentException(CONTAINING_OTHER_THAN_NUMBER.getMessage());
         }
     }
 
-    private static void validateMaximumPurchase(BigDecimal input) {
+    private static void validateMaximumPurchase(final BigDecimal input) {
         if (MAXIMUM_PURCHASE_AMOUNT.isUnder(input)) {
             throw new IllegalArgumentException(EXCEEDING_MAXIMUM_PURCHASE.getMessage());
         }
     }
 
-    private static void validateMultipleOf1000(BigDecimal purchaseAmount) {
+    private static void validateMultipleOf1000(final BigDecimal purchaseAmount) {
         if (THOUSAND.isNotDivisorOf(purchaseAmount)) {
             throw new IllegalArgumentException(ErrorMessage.NOT_MULTIPLES_OF_ONE_THOUSAND.getMessage());
         }

@@ -5,7 +5,7 @@ import static lotto.constant.ErrorMessage.EXCEEDING_MAX_RETRY;
 import java.util.function.Supplier;
 
 public abstract class AbstractRetry {
-    public <T> T run(final int maxRetryCount, Supplier<T> supplier) {
+    public <T> T run(final int maxRetryCount, final Supplier<T> supplier) {
         int retryCount = 0;
         T output = null;
 
@@ -23,7 +23,7 @@ public abstract class AbstractRetry {
         return output;
     }
 
-    private void validateRetryCount(int maxRetryCount, int retryCount) {
+    private void validateRetryCount(final int maxRetryCount, final int retryCount) {
         if (retryCount == maxRetryCount) {
             throw new ExceedingMaxRetryException();
         }

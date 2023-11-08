@@ -12,7 +12,7 @@ public class LottoShop {
         return new LottosInfoDto(ticket, numbers);
     }
 
-    private List<List<Integer>> createNumbers(int tickets) {
+    public List<List<Integer>> createNumbers(int tickets) {
         List<List<Integer>> numbers = new ArrayList<>();
         for (int a = 0; a < tickets; a++) {
             numbers.add(Randoms.pickUniqueNumbersInRange(1, 45, 6));

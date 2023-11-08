@@ -8,9 +8,9 @@ import static lotto.constant.ErrorConstant.ERROR_PREFIX;
 public class Lotto {
 
     private static final int CORRECT_NUMBERS_SIZE = 6;
-    private static final String NUMBERS_SIZE_NOT_SIX_EXCEPTION_MESSAGE = "발행 로또 번호의 개수는 6개여야합니다.";
-    private static final String NUMBERS_DUPLICATE_EXCEPTION_MESSAGE = "발행 로또 번호는 중복될 수 없습니다.";
-    private static final String NUMBERS_WRONG_RANGE_EXCEPTION_MESSAGE = "발행 로또 번호는 1~45의 범위여야합니다.";
+    private static final String NOT_CORRECT_SIZE_ERROR_MESSAGE = "숫자 6개를 입력해 주세요.";
+    private static final String DUPLICATE_NUMBER_ERROR_MESSAGE = "중복 되지 않는 값을 입력해 주세요.";
+    private static final String NOT_CORRECT_RANGE_SIZE_ERROR_MESSAGE = "1~45 사이의 값을 입력해 주세요.";
 
     private final List<Integer> numbers;
 
@@ -20,18 +20,18 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (isNumbersSizeNotSix(numbers)) {
-            throw new IllegalArgumentException(ERROR_PREFIX + NUMBERS_SIZE_NOT_SIX_EXCEPTION_MESSAGE);
+        if (isNotCorrectSize(numbers)) {
+            throw new IllegalArgumentException(ERROR_PREFIX + NOT_CORRECT_SIZE_ERROR_MESSAGE);
         }
         if (isNumbersDuplicate(numbers)) {
-            throw new IllegalArgumentException(ERROR_PREFIX + NUMBERS_DUPLICATE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(ERROR_PREFIX + DUPLICATE_NUMBER_ERROR_MESSAGE);
         }
         if (isNumbersWrongRange(numbers)) {
-            throw new IllegalArgumentException(ERROR_PREFIX + NUMBERS_WRONG_RANGE_EXCEPTION_MESSAGE);
+            throw new IllegalArgumentException(ERROR_PREFIX + NOT_CORRECT_RANGE_SIZE_ERROR_MESSAGE);
         }
     }
 
-    private boolean isNumbersSizeNotSix(List<Integer> numbers) {
+    private boolean isNotCorrectSize(List<Integer> numbers) {
         return numbers.size() != CORRECT_NUMBERS_SIZE;
     }
 

@@ -57,42 +57,6 @@ public class LottoService {
         return lottoWinningResult;
     }
 
-    private Map<LottoRank, Integer> getLottoWinningResultInit() {
-        Map<LottoRank, Integer> lottoWinningResult = new HashMap<>();
-        for (LottoRank value : LottoRank.values()) {
-            lottoWinningResult.put(value, 0);
-        }
-        return lottoWinningResult;
-    }
-
-    private int getMatchNumberCount(List<Integer> lottoTicket, List<String> userLottoNumbers) {
-        int matchNumberCount = 0;
-        for (String tempUserLottoNumber : userLottoNumbers) {
-            int userLottoNumber = Integer.parseInt(tempUserLottoNumber);
-            if (lottoTicket.contains(userLottoNumber)) {
-                matchNumberCount++;
-            }
-        }
-        return matchNumberCount;
-    }
-
-    private LottoRank getLottoRank(int matchCount, boolean isMatchBonus) {
-        for (LottoRank lottoRank : LottoRank.values()) {
-            if (matchCount == 5 && lottoRank.getMatchCount() == matchCount && isMatchBonus) {
-                return LottoRank.SECOND;
-            } else if (lottoRank.getMatchCount() == matchCount) {
-                return lottoRank;
-            }
-        }
-        return LottoRank.NONE;
-    }
-
-    private boolean isMatchBonusNumber(List<Integer> lottoTicket, Map<String, String> userLottoNumbersAndBonusNumber) {
-        return lottoTicket.contains(
-                Integer.parseInt(userLottoNumbersAndBonusNumber.get("userBonusNumber"))
-        );
-    }
-
     public void buyLottoAmountValidate(String inputBuyLottoAmount) {
         if (!isInteger(inputBuyLottoAmount)) {
             throw new IllegalArgumentException(BUY_AMOUNT_MESSAGE + ONLY_NUMBER_MESSAGE);
@@ -119,10 +83,7 @@ public class LottoService {
             }
 
             // 로또 번호가 1~45 사이의 값인지 체크한다.
-            int pickUserLottoNumber = Integer.parseInt(tempUserLottoNumber);
-            if (pickUserLottoNumber < LOTTO_MINIMUM_NUMBER || pickUserLottoNumber > LOTTO_MAXIMUM_NUMBER) {
-                throw new IllegalArgumentException(LOTTO_NUMBER_MESSAGE + INVALID_NUMBER_RANGE_MESSAGE);
-            }
+            validateRangeNumber(tempUserLottoNumber);
         }
 
         // 로또 번호에 중복된 숫자가 있는지 체크
@@ -138,10 +99,7 @@ public class LottoService {
         }
 
         // 1~45 범위에 있는지 체크
-        int bonusNumber = Integer.parseInt(inputUserBonusNumber);
-        if (bonusNumber < LOTTO_MINIMUM_NUMBER || bonusNumber > LOTTO_MAXIMUM_NUMBER) {
-            throw new IllegalArgumentException(BONUS_NUMBER_MESSAGE + INVALID_NUMBER_RANGE_MESSAGE);
-        }
+        validateRangeNumber(inputUserBonusNumber);
 
         // 사용자가 입력한 당첨 번호와 중복되는지 체크
         String[] tempUserLottoNumbers = inputUserLottoNumbers.split(",");
@@ -174,5 +132,48 @@ public class LottoService {
         // 수익률 = 총상금 / 구매금액 * 100
         double rateOfReturn = (double) totalPrize / inputBuyLottoAmount * 100; // 수익률
         return Math.round(rateOfReturn * 10) / 10.0;
+    }
+
+    private boolean isMatchBonusNumber(List<Integer> lottoTicket, Map<String, String> userLottoNumbersAndBonusNumber) {
+        return lottoTicket.contains(
+                Integer.parseInt(userLottoNumbersAndBonusNumber.get("userBonusNumber"))
+        );
+    }
+
+    private void validateRangeNumber(String number) {
+        int inputNumber = Integer.parseInt(number);
+        if (inputNumber < LOTTO_MINIMUM_NUMBER || inputNumber > LOTTO_MAXIMUM_NUMBER) {
+            throw new IllegalArgumentException(LOTTO_NUMBER_MESSAGE + INVALID_NUMBER_RANGE_MESSAGE);
+        }
+    }
+
+    private Map<LottoRank, Integer> getLottoWinningResultInit() {
+        Map<LottoRank, Integer> lottoWinningResult = new HashMap<>();
+        for (LottoRank value : LottoRank.values()) {
+            lottoWinningResult.put(value, 0);
+        }
+        return lottoWinningResult;
+    }
+
+    private int getMatchNumberCount(List<Integer> lottoTicket, List<String> userLottoNumbers) {
+        int matchNumberCount = 0;
+        for (String tempUserLottoNumber : userLottoNumbers) {
+            int userLottoNumber = Integer.parseInt(tempUserLottoNumber);
+            if (lottoTicket.contains(userLottoNumber)) {
+                matchNumberCount++;
+            }
+        }
+        return matchNumberCount;
+    }
+
+    private LottoRank getLottoRank(int matchCount, boolean isMatchBonus) {
+        for (LottoRank lottoRank : LottoRank.values()) {
+            if (matchCount == 5 && lottoRank.getMatchCount() == matchCount && isMatchBonus) {
+                return LottoRank.SECOND;
+            } else if (lottoRank.getMatchCount() == matchCount) {
+                return lottoRank;
+            }
+        }
+        return LottoRank.NONE;
     }
 }

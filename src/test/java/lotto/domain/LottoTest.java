@@ -1,10 +1,12 @@
 package lotto.domain;
 
 import static lotto.exception.Message.NUMBER_OUT_OF_RANGE_EXCEPTION;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -38,5 +40,19 @@ class LottoTest {
         assertThatThrownBy(() -> new Lotto(Arrays.asList(first, second, third, fourth, fifth, sixth)))
                 .isExactlyInstanceOf(IndexOutOfBoundsException.class)
                 .hasMessage(NUMBER_OUT_OF_RANGE_EXCEPTION);
+    }
+
+    @ParameterizedTest
+    @DisplayName("1등 로또가 보너스 숫자와 겹치는지 확인")
+    @CsvSource(value = {"6, true", "7, false"})
+    void is_overlapping(int bonusNumber, boolean expected) {
+        // given
+        Lotto winnerLotto = new Lotto(Arrays.asList(1, 2, 3, 4, 5, 6));
+
+        // when
+        boolean result = winnerLotto.isOverlapping(bonusNumber);
+
+        // then
+        assertThat(result).isEqualTo(expected);
     }
 }

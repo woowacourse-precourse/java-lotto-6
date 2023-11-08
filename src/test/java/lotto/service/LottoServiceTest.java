@@ -28,4 +28,38 @@ class LottoServiceTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @DisplayName("당첨 번호와 보너스 번호의 중복 예외 처리")
+    @Test
+    void lottoNumberByDuplicateBonusNumber() {
+        String inputUserLottoNumber = "1,2,3,4,5,6";
+        String inputUserBonusNumber = "1";
+
+        assertThatThrownBy(() -> lottoService.userBonusNumberValidate(inputUserLottoNumber, inputUserBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("보너스 번호가 숫자가 아니면 예외 처리")
+    @Test
+    void inputBonusNumberNotNumber() {
+        String inputUserLottoNumber = "1,2,3,4,5,6";
+        String inputUserBonusNumber = "123abc";
+
+        assertThatThrownBy(() -> lottoService.userBonusNumberValidate(inputUserLottoNumber, inputUserBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
+
+    @DisplayName("보너스 번호의 범위가 1~45가 아닐 경우 예외처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"0", "46", "50", "100", "999"})
+    void inputBonusNumberInvalidateRange(String inputUserBonusNumber) {
+        String inputUserLottoNumber = "1,2,3,4,5,6";
+
+        assertThatThrownBy(() -> lottoService.userBonusNumberValidate(inputUserLottoNumber, inputUserBonusNumber))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+
+    }
 }

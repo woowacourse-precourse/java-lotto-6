@@ -4,8 +4,14 @@ import lotto.io.OutputAdaptor;
 
 import java.util.List;
 
+/**
+ * 프로그램 전체 흐름을 담당한다.
+ */
 public class Executor {
 
+    /**
+     * 프로그램을 실행한다.
+     */
     public static void execute() {
         LottoStateManager lottoStateManager = LottoStateManager.getInstance();
         lottoStateManager.inputNumOfLotto();

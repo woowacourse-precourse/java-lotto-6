@@ -38,7 +38,11 @@ public class InputAdaptor {
         return StringConverter.convertWinningNumbers(rawStr);
     }
 
-    public static int readBonusNumber() {
+    /**
+     * 보너스 금액을 입력받는다.
+     * @return 사용자로부터 입력받은 보너스 금액을 반환한다.
+     */
+    public static int readBonusNumber() throws IllegalArgumentException {
         String rawStr = Console.readLine();
         Validator.validateStringToBeInteger(rawStr);
         return StringConverter.toInt(rawStr);

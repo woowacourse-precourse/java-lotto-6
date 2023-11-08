@@ -4,11 +4,19 @@ import lotto.configure.DomainConfiguration;
 
 import java.util.List;
 
+/**
+ * 당첨 번호와 발행된 로또를 관리하는 클래스.
+ */
 public class LottoManager {
     private final WinningNumbers winningNumbers;
     private final List<Lotto> lottoPurchased;
     private final int purchasePrice;
 
+    /**
+     * LottoManager 클래스를 생성한다.
+     * @param winningNumbers 당첨 번호 객체.
+     * @param lottoPurchased 발행된 로또들이 담긴 리스트.
+     */
     public LottoManager(WinningNumbers winningNumbers, List<Lotto> lottoPurchased) {
         this.winningNumbers = winningNumbers;
         this.lottoPurchased = lottoPurchased;
@@ -44,6 +52,10 @@ public class LottoManager {
         return 0;
     }
 
+    /**
+     * 구입 금액을 반환한다.
+     * @return 구입 금액.
+     */
     public int getPurchasePrice() {
         return this.purchasePrice;
     }

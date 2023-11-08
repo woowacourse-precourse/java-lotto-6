@@ -1,5 +1,7 @@
 package lotto.model;
 
+import lotto.constant.response.Exception;
+
 import java.util.*;
 
 public class Lotto {
@@ -13,14 +15,16 @@ public class Lotto {
 
     private void validateSize(List<Integer> numbers) {
         if (numbers.size() != LottoNumber.SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또는 6개의 번호를 가져야 합니다.");
+            throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
+                    + Exception.LOTTO_SIZE.getMessage());
         }
     }
 
     private void validateDuplicate(List<Integer> numbers) {
         Set<Integer> nonDuplicateNumbers = new HashSet<>(numbers);
         if (nonDuplicateNumbers.size() != LottoNumber.SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또는 중복되지 않는 수로 이루어져야 합니다.");
+            throw new IllegalArgumentException(Exception.ERROR_PREFIX.getMessage()
+                    + Exception.LOTTO_DUPLICATE.getMessage());
         }
     }
 

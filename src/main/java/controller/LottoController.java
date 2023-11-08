@@ -34,10 +34,10 @@ public class LottoController {
         outputView.printRevenuePercentage(revenuePercentage);
     }
 
-    private void decideLottoWinner(List<List<Integer>> lottoNumbers) {
-        for (int lottoIndex = 0; lottoIndex < lottoMoney.getLottoTicket(); lottoIndex++) {
-            lottoWinnerCount = getLottoWinnerCount(lottoNumbers.get(lottoIndex));
-            increaseLottoWinnerCount(lottoNumbers.get(lottoIndex), lottoWinnerCount);
+    private void decideLottoWinner(List<List<Integer>> randomlottoNumbers) {
+        for (List<Integer> lottoNumbers : randomlottoNumbers) {
+            lottoWinnerCount = getLottoWinnerCount(lottoNumbers);
+            increaseLottoWinnerCount(lottoNumbers, lottoWinnerCount);
         }
     }
 

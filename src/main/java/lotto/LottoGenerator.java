@@ -10,9 +10,8 @@ public class LottoGenerator {
         List<Integer> randNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
         return new Lotto(randNumbers);
     }
-    public static List<Lotto> generateLottos(int money){
+    public static List<Lotto> generateLottos(int n){
         List<Lotto> lottos=new ArrayList<>();
-        int n=money/1000;
         for(int i=0;i<n;i++){
             lottos.add(generateRandomLotto());
         }

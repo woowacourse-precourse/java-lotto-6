@@ -32,6 +32,7 @@ public class LottoView {
         return Integer.parseInt(Console.readLine());
     }
     public static void showLottos(LottoRepository lottoRepository){
+        System.out.printf("%d개를 구매했습니다.\n",lottoRepository.getLottos().size());
         List<Lotto> lottos = lottoRepository.getLottos();
         lottos.forEach(lotto->System.out.println(Arrays.toString(lotto.getNumbers().toArray())));
     }

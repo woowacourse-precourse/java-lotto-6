@@ -24,6 +24,14 @@ public enum LottoRank {
         this.reward = reward;
     }
 
+    public int getMatch() {
+        return match;
+    }
+
+    public boolean getBonusRequired() {
+        return bonusRequired;
+    }
+
     public long getReward() {
         return reward;
     }

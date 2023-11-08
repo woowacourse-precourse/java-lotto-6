@@ -1,12 +1,13 @@
 package lotto.controller;
 
 import static lotto.utils.ErrorPhrase.*;
-import static lotto.utils.LottoSystemUtils.moneyUnit;
+import static lotto.utils.LottoSystemUtils.*;
 
 public class InputValidatorController {
 
     public static void inputMoneyValidate(String money) {
         isMoneyDigit(money);
+        isRightRangeMoney(money);
         isRightMoneyUnit(Integer.parseInt(money));
     }
 
@@ -40,8 +41,16 @@ public class InputValidatorController {
         }
     }
 
+    private static void isRightRangeMoney(String money) {
+        Long purchaseMoney = Long.parseLong(money);
+
+        if (purchaseMoney < MONEY_MIN_RANGE || purchaseMoney > MONEY_MAX_RANGE) {
+            throw new IllegalArgumentException(ERROR_PHRASE_MONEY_IS_OUT_OF_RANGE);
+        }
+    }
+
     private static void isRightMoneyUnit(int money) {
-        if (money % moneyUnit != 0 || money == 0) {
+        if (money % MONEY_UNIT != 0 || money == 0) {
             throw new IllegalArgumentException(ERROR_PHRASE_MONEY_IS_WRONG_UNIT);
         }
     }

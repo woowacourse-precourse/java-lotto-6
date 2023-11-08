@@ -48,7 +48,6 @@ class ApplicationTest extends NsTest {
     }
 
 
-    @DisplayName("문자열이 포함된 구입가격을 입력하면 에러가 발생한다.")
     @Test
     void 예외_테스트() {
         assertSimpleTest(() -> {

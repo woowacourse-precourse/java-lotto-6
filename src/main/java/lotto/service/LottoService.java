@@ -35,7 +35,7 @@ public class LottoService {
         return lottos.stream().map(lotto -> {
             int matchNumber = winningLotto.compareLotto(lotto);
             boolean isBonusNumberMatch = winningLotto.compareBonusNumber(lotto);
-            return Prize.getPrizeByMatchCount(matchNumber, isBonusNumberMatch);
+            return Prize.getPrizeByMatchCountAndLotto(matchNumber, isBonusNumberMatch);
         }).toList();
     }
 }

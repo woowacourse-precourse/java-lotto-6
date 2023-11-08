@@ -8,8 +8,9 @@ public enum Prize {
     THREE(3,"3개 일치 ",5_000),
     FOUR(4, "4개 일치 ",50_000),
     FIVE(5, "5개 일치 ",1_500_000),
-    FIVE_BONUS(5, "5개 일치, 보너스 볼 일치 ",30_000_000),
-    SIX(6, "6개 일치 ",2_000_000_000);
+    SIX(6, "6개 일치 ",2_000_000_000),
+    FIVE_BONUS(5, "5개 일치, 보너스 볼 일치 ",30_000_000);
+
 
 
 
@@ -23,7 +24,7 @@ public enum Prize {
         this.winningAmount = winningAmount;
     }
 
-    public static Prize getPrizeByMatchCount(int matchCount, boolean isBonusNumberMatch){
+    public static Prize getPrizeByMatchCountAndLotto(int matchCount, boolean isBonusNumberMatch){
         Prize[] prizes = values();
         if (matchCount == FIVE.matchCount){
             return isFiveOrFiveBonus(isBonusNumberMatch);
@@ -31,7 +32,7 @@ public enum Prize {
         return prizes[matchCount];
     }
 
-    public static Prize isFiveOrFiveBonus(boolean isBonusNumberMatch){
+    private static Prize isFiveOrFiveBonus(boolean isBonusNumberMatch){
         if (isBonusNumberMatch){
             return FIVE_BONUS;
         }

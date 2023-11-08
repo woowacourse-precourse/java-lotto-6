@@ -23,11 +23,16 @@ public class Application {
         // 4. 당첨 번호를 추첨합니다.
         Lotto winningLotto = lottoGame.drawWinningLotto();
 
-        // 5. 로또 게임을 진행하고 결과를 계산합니다.
+        // 5. 보너스 볼을 입력받습니다.
+        int bonusBall = InputView.inputBonusBall();
+
+        // 6. 로또 게임을 진행하고 결과를 계산합니다.
         lottoGame.play(lottoTickets, winningLotto);
 
-        // 6. 당첨 결과를 출력합니다.
+        // 7. 당첨 결과를 출력합니다.
         Map<Integer, Integer> winningResult = lottoGame.getWinningResult();
-        OutputView.printWinningResult(winningResult);
+        OutputView.printWinningResult(winningResult, winningLotto, bonusBall);
+
+
     }
 }

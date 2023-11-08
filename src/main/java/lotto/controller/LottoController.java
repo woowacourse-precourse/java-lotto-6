@@ -66,8 +66,6 @@ public class LottoController {
         return new WinningNumber(winningNumbers, bonusNumber);
     }
 
-
-
     private void printLottoResult(WinningNumber winningNumber, Lottos lottos, int totalCost) {
         EnumMap<LottoPrize, Integer> prizeCounts = LottoPrizeCount.calculatePrizes(winningNumber, lottos);
         OutputView.printLottoResult(prizeCounts, totalCost);

@@ -17,7 +17,7 @@ public class OutputView {
     private static final String COUNT = "개";
 
 
-    private static final String PRINT_FORMAT =") - ";
+    private static final String PRINT_FORMAT = ") - ";
 
     public static void printLottoCount(int lottoCount) {
         System.out.println();
@@ -25,7 +25,7 @@ public class OutputView {
     }
 
     public static void printLottos(List<Lotto> lottos) {
-      for (Lotto lotto : lottos) {
+        for (Lotto lotto : lottos) {
             List<Integer> sortedNumbers = new ArrayList<>(lotto.getNumbers());
             Collections.sort(sortedNumbers);
             System.out.println(sortedNumbers);
@@ -42,18 +42,20 @@ public class OutputView {
             int count = prizeCounts.getOrDefault(prize, 0);
             if (prize != LottoPrize.NOTHING && prize == LottoPrize.SECOND) {
                 sum += count * prizeMoney;
-                System.out.println(prize.getMatchedCount() + ONLY_SECOND + formattedPrizeMoney + PRINT_FORMAT + count + COUNT);
+                System.out.println(
+                        prize.getMatchedCount() + ONLY_SECOND + formattedPrizeMoney + PRINT_FORMAT + count + COUNT);
             }
             if (prize != LottoPrize.NOTHING) {
                 sum += count * prizeMoney;
-                System.out.println(prize.getMatchedCount() + OTHER_PRIZE + formattedPrizeMoney + PRINT_FORMAT + count + COUNT);
+                System.out.println(
+                        prize.getMatchedCount() + OTHER_PRIZE + formattedPrizeMoney + PRINT_FORMAT + count + COUNT);
             }
         }
         double profitRate = (sum / totalCost) * 100;
         System.out.println(String.format(PROFITRATE, profitRate));
     }
 
-    public static void printException(Exception e){
+    public static void printException(Exception e) {
         System.out.println(e.getMessage());
     }
 }

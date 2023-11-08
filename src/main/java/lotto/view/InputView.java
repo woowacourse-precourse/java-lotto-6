@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class InputView {
     private static final String ERROR_ISSTRING = "[ERROR] 숫자만 입력해 주세요.";
 
-    private static final String ERROR_ISBLANK ="[ERROR] 입력값을 입력해주세요.";
+    private static final String ERROR_ISBLANK = "[ERROR] 입력값을 입력해주세요.";
 
     private static final String ERROR_START_OR_END_WITH_DELIMITER = "[ERROR] 델리미터로 시작하거나 끝나면 안 됩니다.";
     private static final String ERROR_DELIMITER_WITH_BLANK = "[ERROR] 연속된 델리미터 또는 델리미터와 공백이 포함되어 있으면 안 됩니다.";

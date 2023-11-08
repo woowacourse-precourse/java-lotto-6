@@ -27,42 +27,6 @@ public class LottoFunction {
         return lottoList;
     }
 
-    HashSet<Integer> getLuckyNumbers(String input) {
-
-        HashSet<Integer> luckyNumber = new HashSet<>();
-        List<String> inputNumber = new ArrayList<>(List.of(input.split(",")));
-
-        for (String splitInput : inputNumber) {
-            Validator.isInteger(splitInput);
-            int number = Integer.parseInt(splitInput);
-            Validator.isInRange(number);
-            luckyNumber.add(number);
-        }
-
-        if (luckyNumber.size() != 6) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-        return luckyNumber;
-    }
-
-    Integer getBonusNumber(String input, HashSet<Integer> luckyNumbers) {
-
-        Validator.isInteger(input);
-        Integer bonusNumber = Integer.parseInt(input);
-
-        Validator.isInRange(bonusNumber);
-
-        if (luckyNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR]");
-        }
-        return bonusNumber;
-    }
-
-    void getRank(List<Lotto> lottos, List<Integer> luckyNumbers, Integer bonusNumber) {
-        for (Lotto lotto : lottos) {
-
-        }
-    }
 
 
 }

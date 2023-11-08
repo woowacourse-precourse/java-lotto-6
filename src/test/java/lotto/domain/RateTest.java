@@ -1,10 +1,13 @@
 package lotto.domain;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RateTest {
+
+    @DisplayName("수익률 게산 테스트")
     @Test
     public void testRateCalculation() {
         PrizeResult prizeResult = new PrizeResult();

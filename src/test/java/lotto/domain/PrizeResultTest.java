@@ -9,12 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class PrizeResultTest {
 
-//    void createLottoByDuplicatedNumber() {
-//        assertThatThrownBy(() -> new WinningLotto(List.of(1, 2, 3, 4, 5, 5), 8))
-//                .isInstanceOf(IllegalArgumentException.class);
-//    }
-    //assertThat(lotto.toString()).isEqualTo("[1, 4, 5, 6, 7, 8]");
-
     @DisplayName("상금 결과 테스트")
     @Test
     void testCalcPrizeResult() {

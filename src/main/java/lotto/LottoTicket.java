@@ -45,12 +45,12 @@ public class LottoTicket {
     }
 
     public void sortTickets() {
-        sortedTickets.clear(); // Clear the existing sorted_tickets list
+        sortedTickets.clear();
 
         for (List<Integer> ticket : tickets) {
-            List<Integer> sortedTicket = new ArrayList<>(ticket); // Create a copy of the ticket
-            Collections.sort(sortedTicket); // Sort the copy
-            sortedTickets.add(sortedTicket); // Add the sorted copy to the sorted_tickets list
+            List<Integer> sortedTicket = new ArrayList<>(ticket);
+            Collections.sort(sortedTicket);
+            sortedTickets.add(sortedTicket);
         }
     }
 

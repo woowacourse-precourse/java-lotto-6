@@ -32,7 +32,7 @@
 
 _(main)은 Application의 main 메서드에서 실행되는 기능, (method)는 Application 및 Lotto 클래스에 구현된 method_
 
-1. (main) Enum 타입으로 상금을 상수로 생성
+1. (enum) Enum 타입으로 상금을 상수로 생성
 
 2. (main) 구입금액 입력 출력
 

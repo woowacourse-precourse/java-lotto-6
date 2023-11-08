@@ -68,7 +68,16 @@ class ViewTest extends NsTest {
     void inputNonNumericWinningLotto() {
         assertSimpleTest(() -> {
             runException("1000", "a,b,c,d,e,f");
-            assertThat(output()).contains("[ERROR] 로또 번호는 숫자여야 합니다.");
+            assertThat(output()).contains("[ERROR] 로또 번호는 쉼표로 구분되는 1에서 45 사이의 숫자여야 합니다.");
+        });
+    }
+
+    @DisplayName("당첨 로또에 int 범위 이상의 숫자를 입력하면 예외가 발생한다.")
+    @Test
+    void inputOverIntRangeLotto() {
+        assertSimpleTest(() -> {
+            runException("1000", "2200000000,1,2,3,4,5");
+            assertThat(output()).contains("[ERROR] 로또 번호는 쉼표로 구분되는 1에서 45 사이의 숫자여야 합니다.");
         });
     }
 

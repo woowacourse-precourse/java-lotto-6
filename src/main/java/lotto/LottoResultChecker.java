@@ -10,6 +10,12 @@ public class LottoResultChecker {
         this.winningLotto = winningLotto;
     }
 
+    public static List<Result> of(WinningLotto winningLotto, List<Lotto> lottos) {
+        LottoResultChecker lottoResultChecker = new LottoResultChecker(winningLotto);
+
+        return lottoResultChecker.getResults(lottos);
+    }
+
     public List<Result> getResults(List<Lotto> lottos) {
         return lottos.stream()
                 .map(this::check)

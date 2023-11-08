@@ -1,5 +1,6 @@
 package lotto.view;
 
+import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
@@ -53,10 +54,16 @@ public class OutputView {
         int countOfMatch = rank.getCountOfMatch();
         int winningMoney = rank.getWinningMoney();
         if (rank.equals(Rank.SECOND)) {
-            System.out.printf(STATISTICS_FORMAT_WITH_BONUS, countOfMatch, winningMoney, count);
+            System.out.printf(STATISTICS_FORMAT_WITH_BONUS, countOfMatch,
+                    formatWithComma(winningMoney), count);
+            System.out.println();
         }
-        System.out.printf(STATISTICS_FORMAT, countOfMatch, winningMoney, count);
+        System.out.printf(STATISTICS_FORMAT, countOfMatch, formatWithComma(winningMoney), count);
         System.out.println();
+    }
+
+    private static String formatWithComma(int amount) {
+        return NumberFormat.getInstance().format(amount);
     }
 
     private static void printRateOfReturn(double rateOfReturn) {

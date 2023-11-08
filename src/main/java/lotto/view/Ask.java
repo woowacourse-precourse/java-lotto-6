@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 public class Ask {
-    List<Integer> winningNumbers = new ArrayList<>();
+    public List<Integer> winningNumbers = new ArrayList<>();
+    public int bonusNumber;
+
     public List<Integer> winningNumber() {
         winningNumbers.clear();
         System.out.println("당첨 번호를 입력해 주세요.");
@@ -23,17 +25,17 @@ public class Ask {
         return winningNumbers;
     }
 
-    public void winningException(){
-        try{
+    public void winningException() {
+        try {
             Lotto lotto = new Lotto(winningNumber());
-        }
-        catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             winningException();
         }
     }
 
     public int bonusNumber() {
         System.out.println("보너스 번호를 입력해 주세요.");
-        return Integer.parseInt(Console.readLine());
+        bonusNumber = Integer.parseInt(Console.readLine());
+        return bonusNumber;
     }
 }

@@ -7,6 +7,7 @@ import lotto.dto.request.PurchasePriceRequest;
 import lotto.dto.request.WinningNumberRequest;
 import lotto.dto.response.PurchasePriceResponse;
 import lotto.dto.response.WinningResponse;
+import lotto.exception.InputException;
 import lotto.service.GameManagerService;
 import lotto.service.LottoService;
 import lotto.view.InputView;
@@ -29,9 +30,14 @@ public class GameManagerController {
     }
 
     public void start() {
-        final User user = createUser();
-        final Winning winning = createWinning();
-        settle(user, winning);
+        try {
+            final User user = createUser();
+            final Winning winning = createWinning();
+            settle(user, winning);
+        } catch (InputException e) {
+            outputView.printExceptionMessage(e);
+            start();
+        }
     }
 
     private void settle(final User user, final Winning winning) {

@@ -1,4 +1,4 @@
-package lotto.util;
+package lotto.constants;
 
 public enum ErrorMessage implements LottoConstants {
     PURCHASE_AMOUNT(LOTTO_PRICE + "원 단위의 숫자만 입력해 주세요."),

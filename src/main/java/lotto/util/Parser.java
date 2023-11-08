@@ -2,6 +2,7 @@ package lotto.util;
 
 import java.util.Arrays;
 import java.util.List;
+import lotto.constants.ErrorMessage;
 
 public class Parser {
     private static final String DELIMITER = ",";

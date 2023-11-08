@@ -2,9 +2,9 @@ package lotto.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.List;
+import lotto.constants.LottoConstants;
 import lotto.domain.Lotto;
 import lotto.repository.LottoRepository;
-import lotto.util.LottoConstants;
 import lotto.util.Parser;
 
 public class LottoService implements LottoConstants {
@@ -36,5 +36,10 @@ public class LottoService implements LottoConstants {
     public void createBonusNumber(String bonusInput) {
         int bonus = Parser.parseSingleNumber(bonusInput);
         lottoRepository.updateBonusNumber(bonus);
+    }
+
+    public String createLottoResult() {
+        String lottoResult = lottoRepository.getLottoResult();
+        return lottoResult;
     }
 }

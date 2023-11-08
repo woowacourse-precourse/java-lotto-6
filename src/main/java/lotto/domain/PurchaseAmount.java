@@ -1,7 +1,7 @@
 package lotto.domain;
 
-import lotto.util.ErrorMessage;
-import lotto.util.LottoConstants;
+import lotto.constants.ErrorMessage;
+import lotto.constants.LottoConstants;
 import lotto.util.Parser;
 
 public class PurchaseAmount implements LottoConstants {

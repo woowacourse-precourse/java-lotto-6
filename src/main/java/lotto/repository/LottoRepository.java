@@ -40,4 +40,8 @@ public class LottoRepository {
     public void updateBonusNumber(int number) {
         bonusNumber = new BonusNumber(number, winningNumbers);
     }
+
+    public String getLottoResult() {
+        return lotteries.getResult(winningNumbers, bonusNumber);
+    }
 }

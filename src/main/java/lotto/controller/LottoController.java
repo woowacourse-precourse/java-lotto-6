@@ -56,4 +56,9 @@ public class LottoController {
             setBonusNumber();
         }
     }
+
+    private void showResult() {
+        String resultOutput = lottoService.createLottoResult();
+        lottoView.printOutput(resultOutput);
+    }
 }

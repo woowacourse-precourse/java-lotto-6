@@ -9,6 +9,7 @@ public class InputValidator {
                 return false;
             }
         }
+
         if (input.length() == 0) {
             return false;
         }

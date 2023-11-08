@@ -27,8 +27,8 @@ public class LottoWinningCalculationController {
 
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 
-        WinningStatistics winningStatistics = lottoWinningCalculationMachine.calculateWinningStatistics(lottos,
-                winningLotto);
+        WinningStatistics winningStatistics
+                = lottoWinningCalculationMachine.calculateWinningStatistics(lottos, winningLotto);
         lottoWinningCalculationOutputView.outputWinningStatistics(winningStatistics);
     }
 }

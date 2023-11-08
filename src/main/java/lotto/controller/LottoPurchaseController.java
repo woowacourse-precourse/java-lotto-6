@@ -19,7 +19,9 @@ public class LottoPurchaseController {
         lottoPurchaseOutputView.outputMoneyMessage();
         int money = moneyInputController.inputMoney();
         int lottoCount = money / 1000;
+
         Lottos lottos = lottoPurchaseMachine.purchaseLottos(lottoCount);
+        
         lottoPurchaseOutputView.outputLotto(lottos, lottoCount);
         return lottos;
     }

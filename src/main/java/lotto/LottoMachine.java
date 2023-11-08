@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Randoms;
 import lotto.enums.LottoInfo;
 import lotto.enums.LottoPrize;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -17,12 +18,14 @@ public class LottoMachine {
     private final int MAX_NUMBER;
     private final int NUMBERS_PER_LOTTO;
     private final int LOTTO_PRICE;
+    private final DecimalFormat formatter;
 
-    LottoMachine() {
+    LottoMachine(DecimalFormat decimalFormat) {
         this.MIN_NUMBER = LottoInfo.MIN_NUMBER.getNumber();
         this.MAX_NUMBER = LottoInfo.MAX_NUMBER.getNumber();
         this.NUMBERS_PER_LOTTO = LottoInfo.NUMBERS_PER_LOTTO.getNumber();
         this.LOTTO_PRICE = LottoInfo.LOTTO_PRICE.getNumber();
+        this.formatter = decimalFormat;
     }
 
     public void run() {
@@ -36,6 +39,7 @@ public class LottoMachine {
         TreeMap<LottoPrize, Integer> winningCount = countLottoPrize(lottoResults);
         System.out.println(getLottoResult(winningCount));
         double profit = calculateProfit(lottoCount, winningCount)*100;
+        System.out.println("총 수익률은 " + formatter.format(profit) + "%입니다.");
     }
 
     public int setLottoCount() {

@@ -4,7 +4,6 @@ import lotto.domain.Cost;
 import lotto.domain.DrawnNumbers;
 import lotto.domain.Lottos;
 import lotto.domain.WinningResult;
-import lotto.dto.DrawnNumbersDto;
 import lotto.view.BonusRequestVIew;
 import lotto.view.CostRequestView;
 import lotto.view.LottoResultView;
@@ -19,18 +18,17 @@ public class LottoController {
         conclude(lottos, drawnNumbers, cost);
     }
 
-    private Lottos issue(int count) {
+    private Lottos issue(final int count) {
         Lottos lottos = Lottos.from(count);
         LottoResultView.print(lottos);
         return lottos;
     }
 
     private DrawnNumbers draw() {
-        DrawnNumbersDto dto = DrawnNumbersDto.of(WinningRequestView.request(), BonusRequestVIew.request());
-        return DrawnNumbers.from(dto);
+        return DrawnNumbers.from(WinningRequestView.request(), BonusRequestVIew.request());
     }
 
-    private void conclude(Lottos lottos, DrawnNumbers drawnNumbers, Cost cost) {
+    private void conclude(final Lottos lottos, final DrawnNumbers drawnNumbers, final Cost cost) {
         WinningResult winningResult = WinningResult.of(lottos, drawnNumbers);
         WinningResultView.print(winningResult, cost);
     }

@@ -11,7 +11,7 @@ import java.util.List;
 public class Lottos {
     private List<Lotto> lottos;
 
-    private Lottos(int count) {
+    private Lottos(final int count) {
         lottos = new ArrayList<>();
         generateRandomNumber(count);
     }
@@ -22,7 +22,7 @@ public class Lottos {
      * @param count 생성할 로또 갯수
      * @return 여러 개의 로또의 정보가 저장된 객체
      */
-    public static Lottos from(int count) {
+    public static Lottos from(final int count) {
         return new Lottos(count);
     }
 
@@ -31,7 +31,7 @@ public class Lottos {
      *
      * @param count 생성할 로또 갯수
      */
-    private void generateRandomNumber(int count) {
+    private void generateRandomNumber(final int count) {
         for (int i = 0; i < count; i++) {
             List<Integer> numbers = Randoms.pickUniqueNumbersInRange(
                     MIN_LOTTO_NUMBER.getValue(),

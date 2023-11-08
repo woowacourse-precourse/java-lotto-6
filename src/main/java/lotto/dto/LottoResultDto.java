@@ -4,12 +4,12 @@ public class LottoResultDto {
     private int winningCount;
     private boolean hasBonusNumber;
 
-    public LottoResultDto(int winningCount, boolean hasBonusNumber) {
+    public LottoResultDto(final int winningCount, final boolean hasBonusNumber) {
         this.winningCount = winningCount;
         this.hasBonusNumber = hasBonusNumber;
     }
 
-    public static LottoResultDto of(int winningCount, boolean hasBonusNumber) {
+    public static LottoResultDto of(final int winningCount, final boolean hasBonusNumber) {
         return new LottoResultDto(winningCount, hasBonusNumber);
     }
 

@@ -36,4 +36,11 @@ public class JackpotNumberExceptionTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("당첨번호 입력 시 쉼표(,)로 끝나면 예외가 발생한다.")
+    @Test
+    public void inputJackpotNumberByEndOfComma() {
+        assertThatThrownBy(() -> InputValidator.checkJackpotNumberInput("1,2,3,4,5,"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }

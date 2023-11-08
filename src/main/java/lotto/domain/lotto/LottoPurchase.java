@@ -1,5 +1,8 @@
 package lotto.domain.lotto;
 
+import static lotto.constant.ExceptionMessage.INPUT_MONEY_ERROR_MESSAGE;
+import static lotto.constant.ExceptionMessage.INPUT_MONEY_UNIT_ERROR_MESSAGE;
+
 public class LottoPurchase {
     private final static int MIN_AMOUNT = 0;
     private final static int AMOUNT_UNIT = 1000;
@@ -32,13 +35,13 @@ public class LottoPurchase {
 
     public void validateZeroOverMoney(int money) {
         if (money <= MIN_AMOUNT) {
-            throw new IllegalArgumentException("[ERROR] 금액을 0원 이상 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_MONEY_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validateOneThousandUnitsMoney(int money) {
         if (money % AMOUNT_UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액을 1000원 단위로 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_MONEY_UNIT_ERROR_MESSAGE.getMessage());
         }
     }
 }

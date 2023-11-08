@@ -2,6 +2,8 @@ package lotto.domain.roulette;
 
 import lotto.domain.lotto.Lotto;
 
+import static lotto.constant.ExceptionMessage.*;
+
 public class WinningLotto {
     private Lotto lotto;
     private int bonusNumber;
@@ -27,13 +29,13 @@ public class WinningLotto {
 
     public void validateContainNumber(Lotto lotto, int bonusNumber) {
         if (lotto.isContainNumber(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨번호에 포함된 숫자입니다. 다시 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_BONUS_NUMBER_DUPLICATE_ERROR_MESSAGE.getMessage());
         }
     }
 
     public void validateNumberRange(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 1부터 45 이내의 숫자만 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_BOUNUS_NUMBER_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
 }

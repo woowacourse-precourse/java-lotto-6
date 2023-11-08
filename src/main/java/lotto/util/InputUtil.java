@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 
 import java.util.List;
 
+import static lotto.constant.ExceptionMessage.*;
+
 public class InputUtil {
     public static int inputNumber() {
         String input = Console.readLine();
@@ -26,7 +28,7 @@ public class InputUtil {
         try {
             return Integer.parseInt(input);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("[ERROR] 숫자를 입력해주세요.");
+            throw new IllegalArgumentException(INPUT_TYPE_ERROR_MESSAGE.getMessage());
         }
     }
 }

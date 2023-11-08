@@ -3,10 +3,7 @@ package lotto;
 import camp.nextstep.edu.missionutils.Console;
 import camp.nextstep.edu.missionutils.Randoms;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -79,6 +76,18 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 숫자만 입력해야 합니다.");
         }
         return bonusNumber;
+    }
+
+    public static Map<Rank, Integer> calculateMatchingNumbers(List<Lotto> lottos, Lotto winningLotto, int bonusNumber) {
+        Map<Rank, Integer> map = new EnumMap<>(Rank.class);
+        for (Rank rank : Rank.values()) {
+            map.put(rank, 0);
+        }
+        for (Lotto lotto : lottos) {
+            Rank rank = lotto.judgeRank(winningLotto, bonusNumber);
+            map.put(rank, map.get(rank) + 1);
+        }
+        return map;
     }
 
 }

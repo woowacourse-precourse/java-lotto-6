@@ -1,5 +1,6 @@
 package lotto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lotto {
@@ -22,6 +23,29 @@ public class Lotto {
                 throw new IllegalArgumentException("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
             }
         }
+    }
+
+    private int countWinningNumber(Lotto winningLotto) {
+        int count = 0;
+        for (int n : winningLotto.getNumbers()) {
+            if (this.numbers.contains(n)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public Rank judgeRank(Lotto winningLotto, int bonusNumber) {
+        int count = countWinningNumber(winningLotto);
+        if (count == 5 && this.numbers.contains(bonusNumber)) {
+            return Rank.SECOND;
+        }
+        for (Rank rank : Rank.values()) {
+            if (rank.getCount() == count) {
+                return rank;
+            }
+        }
+        return Rank.MISS;
     }
 
     @Override

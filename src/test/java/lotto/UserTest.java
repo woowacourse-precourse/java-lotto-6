@@ -50,17 +50,17 @@ public class UserTest {
     @DisplayName("로또 번호가 오름차순으로 정렬이 되는지 테스트")
     @Test
     void checkLottoNumbersIsSortedAscendingOrder() {
-        WinningLotto winningLotto = new WinningLotto("1,2,3,4,5,6", "7");
         List<Integer> lotto1 = List.of(17, 21, 3, 42, 20, 13);
         List<Integer> answer = List.of(3, 13, 17, 20, 21, 42);
 
 
-        final MockedStatic<Randoms> mock = mockStatic(Randoms.class);
+        MockedStatic<Randoms> mock = mockStatic(Randoms.class);
         when(Randoms.pickUniqueNumbersInRange(anyInt(), anyInt(), anyInt()))
                 .thenReturn(lotto1);
         user.pickLottoNumber();
 
         assertThat(answer).isEqualTo(lottoes.get(0).getNumbers());
+        mock.close();
     }
 
     @DisplayName("자신이 가지고 있는 로또 등수를 잘 확인하는지 테스트")
@@ -83,7 +83,7 @@ public class UserTest {
         List<Integer> lotto7 = List.of(1, 7, 8, 9, 10, 11);
         List<Integer> lotto8 = List.of(12, 44, 45, 32, 23, 26);
 
-        final MockedStatic<Randoms> mock = mockStatic(Randoms.class);
+        MockedStatic<Randoms> mock = mockStatic(Randoms.class);
         when(Randoms.pickUniqueNumbersInRange(anyInt(), anyInt(), anyInt()))
                 .thenReturn(lotto1, lotto2, lotto3, lotto4, lotto5, lotto6, lotto7, lotto8);
         for (int i = 0; i < 8; i++) {
@@ -91,5 +91,6 @@ public class UserTest {
         }
 
         assertThat(answer).isEqualTo(user.checkLottoesRanking(winningLotto));
+        mock.close();
     }
 }

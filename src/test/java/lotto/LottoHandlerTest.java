@@ -148,7 +148,7 @@ class LottoHandlerTest {
         // when // then
         assertThatThrownBy(() -> lottoHandler.receiveWinningLotto(receivedWinningLotto))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage("[ERROR] 6개의 숫자를 입력해 주세요.");
+                .hasMessage("[ERROR] 6개의 숫자를 쉼표로 구분해서 입력해 주세요.");
     }
 
     @DisplayName("입력 받은 당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")

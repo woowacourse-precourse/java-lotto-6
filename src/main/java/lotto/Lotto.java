@@ -17,7 +17,7 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 입력해 주세요.");
+            throw new IllegalArgumentException("[ERROR] 6개의 숫자를 쉼표로 구분해서 입력해 주세요.");
         }
     }
 

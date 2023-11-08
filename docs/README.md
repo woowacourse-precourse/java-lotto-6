@@ -6,6 +6,7 @@
 - [x] 로또 구입 클래스 LottoGenerator
   - [x] 중복없는 로또 번호 발행 generateLotto()
 - [] 출력 클래스 ResultManager
+  - [x] 구입한 로또 출력 viewLottos()
   - [] 당첨 통계 출력 calculatePrizes()
   - [] 수익률 출력 displayResults()
 - [] 예외처리 

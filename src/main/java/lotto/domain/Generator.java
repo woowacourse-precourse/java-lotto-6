@@ -15,7 +15,7 @@ public class Generator {
             List<Integer> randomNum = new ArrayList<>(Randoms.pickUniqueNumbersInRange(1, 45, 6));
             randomNum.sort(Comparator.naturalOrder());
             generateLotto.add(new Lotto(randomNum));
-            System.out.println(randomNum);
+            InteractModule.printRandomNum(randomNum);
         }
 
         return generateLotto;

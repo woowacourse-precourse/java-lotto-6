@@ -1,5 +1,7 @@
 package lotto.domain;
 
+import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
@@ -41,20 +43,31 @@ class LottoStorageTest extends NsTest {
                 });
     }
 
-    @DisplayName("로또 당첨 내역 기반 총 수익률 출력 테스트")
+    @DisplayName("모든 자동 로또 번호와 당첨 로또 비교 테스트 및 총 수익률 출력 테스트")
     @Test
     void showLottoProfitRate() {
-        Assertions.assertAll(() -> {
-            run();
-            Assertions.assertTrue(output().contains("총 수익률은 62.5%입니다."));
-        });
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("8000", "1,2,3,4,5,6", "7");
+                    assertThat(output()).contains(
+                            "3개 일치 (5,000원) - 1개",
+                            "4개 일치 (50,000원) - 1개",
+                            "5개 일치 (1,500,000원) - 1개",
+                            "5개 일치, 보너스 볼 일치 (30,000,000원) - 0개",
+                            "6개 일치 (2,000,000,000원) - 0개",
+                            "총 수익률은 19437.5%입니다."
+                    );
+                },
+                List.of(1, 3, 5, 14, 22, 45),
+                List.of(1, 2, 3, 4, 42, 43),
+                List.of(1, 2, 3, 4, 5, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45)
+        );
     }
-
-    @Test
-    void compareAllAutomaticLottoWithWinningNumbers() {
-
-    }
-
 
     @Override
     protected void runMain() {
@@ -72,5 +85,4 @@ class LottoStorageTest extends NsTest {
         lottoStorage.showAllLottoRankResult(ranks);
         lottoStorage.showLottoProfitRate(ranks);
     }
-
 }

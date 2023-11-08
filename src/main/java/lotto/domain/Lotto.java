@@ -1,9 +1,11 @@
 package lotto.domain;
 
+import static lotto.constant.ConstantNumber.LOTTO_SIZE;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import lotto.util.ErrorMessage;
+import lotto.constant.ErrorMessage;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -21,7 +23,7 @@ public class Lotto {
     }
 
     private void validateSize(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        if (numbers.size() != LOTTO_SIZE) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR);
         }
     }

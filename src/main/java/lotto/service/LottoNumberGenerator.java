@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import static lotto.constant.ConstantNumber.*;
 
 public class LottoNumberGenerator {
-    private static final int START_INCLUSIVE = 1;
-    private static final int END_INCLUSIVE = 45;
-    private static final int LOTTO_SIZE = 6;
+
 
     public List<Integer> generateLotto() {
         Set<Integer> numbers = new HashSet<>();
@@ -20,7 +19,7 @@ public class LottoNumberGenerator {
     }
 
     private int generateNumber() {
-        return Randoms.pickNumberInRange(START_INCLUSIVE, END_INCLUSIVE);
+        return Randoms.pickNumberInRange(MIN_LOTTO_NUM, MAX_LOTTO_NUM);
     }
 }
 

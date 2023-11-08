@@ -1,16 +1,15 @@
 package lotto.util;
 
+import static lotto.constant.ConstantNumber.*;
+
 import java.util.ArrayList;
 import java.util.List;
+import lotto.constant.ErrorMessage;
 import lotto.domain.Customer;
 import lotto.domain.Lotto;
-import lotto.domain.WinningLotto;
 
 public class TypeConverter {
-    private static final int LOTTO_PRICE = 1000;
-    private static final int LOTTO_SIZE = 6;
-    private static final int MIN_LOTT_NUM = 1;
-    private static final int MAX_LOTT_NUM = 45;
+
     private static final String SPLIT_UNIT = ",";
 
     public Customer convertStringToCustomer(String input) {
@@ -61,7 +60,7 @@ public class TypeConverter {
     }
 
     private void validateNumberRange(int number) {
-        if(number < MAX_LOTT_NUM || number > MAX_LOTT_NUM) {
+        if(number < MAX_LOTTO_NUM || number > MAX_LOTTO_NUM) {
             throw new IllegalArgumentException(ErrorMessage.NUMBER_DUPLICATE_ERROR);
         }
     }

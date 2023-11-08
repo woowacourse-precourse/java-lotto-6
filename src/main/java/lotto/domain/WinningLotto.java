@@ -1,7 +1,7 @@
 package lotto.domain;
 
 import java.util.List;
-import lotto.util.ErrorMessage;
+import lotto.constant.ErrorMessage;
 
 public class WinningLotto{
     private final Lotto lotto;

@@ -38,7 +38,7 @@ class ValidationTest {
     }
 
     @ParameterizedTest
-    @DisplayName("hasCorrectRange: 1 미만 또는 45 초괴의 수에 대해 false를 반환한다")
+    @DisplayName("hasCorrectRange: 1 미만 또는 45 초과의 수에 대해 false를 반환한다")
     @ValueSource(ints = {-10, 0, 46, 50, 1000})
     void hasCorrectRange_false(int value) {
 
@@ -78,7 +78,7 @@ class ValidationTest {
     }
 
     @ParameterizedTest
-    @DisplayName("isPositive: 양수가 주어졌을 떄 true 를 반환한다")
+    @DisplayName("isPositive: 양수가 주어졌을 때 true 를 반환한다")
     @ValueSource(ints = {1, 2, 3, 4})
     void isPositive_true(int value) {
 
@@ -86,7 +86,7 @@ class ValidationTest {
     }
 
     @ParameterizedTest
-    @DisplayName("isPositive: 양수가 아닌 수가 주어졌을 떄 true 를 반환한다")
+    @DisplayName("isPositive: 양수가 아닌 수가 주어졌을 때 false 를 반환한다")
     @ValueSource(ints = {0, -1, -100})
     void isPositive_false(int value) {
 

@@ -11,4 +11,8 @@ public class View {
     public static void printPurchasedLotteries(List<Integer> nums){
         System.out.println(nums);
     }
+
+    public static void prinResultGame(){
+
+    }
 }

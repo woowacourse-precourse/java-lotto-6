@@ -7,12 +7,16 @@ import camp.nextstep.edu.missionutils.Randoms;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static lotto.view.InputView.inputBonusNumberView;
 import static lotto.view.InputView.inputLottoNumberView;
 
 public class Util {
+    private static final int ONE = 1;
+    private static final int ZERO = 0;
+
     private Util(){}    // 생성자 생성 방지
     public static String inputPrice(){
         String price;
@@ -52,4 +56,12 @@ public class Util {
         String bn = Console.readLine();
         return Integer.parseInt(bn);
     }
+
+    public static List<Integer> sortList(List<Integer> lotto){
+        List<Integer> sortedLotto = new ArrayList<Integer>(lotto);
+        Collections.sort(sortedLotto);
+        return sortedLotto;
+    }
+
+
 }

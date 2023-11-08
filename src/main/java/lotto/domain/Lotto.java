@@ -1,6 +1,9 @@
 package lotto.domain;
 
+import java.util.HashSet;
 import java.util.List;
+
+import static lotto.util.Util.sortList;
 
 // 로또에 관한 도메인
 public class Lotto {
@@ -8,11 +11,12 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        this.numbers = numbers;
+        this.numbers = sortList(numbers);
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
+        HashSet<Integer> num = new HashSet<>(numbers);
+        if (num.size() != 6) {
             throw new IllegalArgumentException();
         }
     }

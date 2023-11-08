@@ -4,8 +4,6 @@ import lotto.domain.Buyer;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 
-import java.util.List;
-
 import static lotto.util.Util.*;
 
 public class Service {

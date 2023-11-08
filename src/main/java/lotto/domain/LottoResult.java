@@ -17,4 +17,11 @@ public class LottoResult {
         winningNumbers = validateWinningNumbers(wn);
         bonusNumber= inputBonusNumber();
     }
+
+    public int getBonusNumber(){
+        return bonusNumber;
+    }
+    public List<Integer> getWinningNumbers(){
+        return winningNumbers;
+    }
 }

@@ -18,4 +18,15 @@ public class InputView {
         return InputConverter.convertLottoMoney(lottoMoneyInput);
     }
 
+    public static void getWinningLotto() {
+        System.out.println("당첨 번호를 입력해 주세요.");
+
+        String lottoNumberInput = Console.readLine();
+        try {
+            LottoNumberValidator.validate(lottoNumberInput);
+        } catch (IllegalArgumentException e) {
+            return getWinningLotto();
+        }
+    }
+
 }

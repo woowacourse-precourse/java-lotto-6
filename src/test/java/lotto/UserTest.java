@@ -1,5 +1,6 @@
 package lotto;
 
+import lotto.model.Lotto;
 import lotto.model.LottoResult;
 import lotto.model.User;
 import lotto.model.WinningNumbers;

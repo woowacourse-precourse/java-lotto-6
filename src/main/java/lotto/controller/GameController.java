@@ -17,7 +17,8 @@ public class GameController {
         List<Integer> winningNumber = getLuckyNumber();
         int bonusNumber = getBonusNumber();
         Result result = new Result(lottos, winningNumber, bonusNumber);
-        result.gameResult();
+        int totalPrize = result.gameResult();
+        printGrossProfitRate(totalPrize, ticketCount);
     }
 
     private int buyLotto(int purchaseAmount) {

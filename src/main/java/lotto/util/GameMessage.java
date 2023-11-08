@@ -7,7 +7,7 @@ public enum GameMessage {
     INPUT_BONUS_NUMBER_MESSAGE("보너스 번호를 입력해 주세요."),
     PURCHASE_MESSAGE("개를 구매했습니다."),
     WINNING_STATISTICS_MESSAGE("당첨 통계"),
-    GROSS_PROFIT_RATE_MESSAGE("총 수익률은 %.1f입니다.");
+    GROSS_PROFIT_RATE_MESSAGE("총 수익률은 %.1f%%입니다.");
 
     private final String message;
 
@@ -17,5 +17,9 @@ public enum GameMessage {
 
     public String getMessage() {
         return message;
+    }
+
+    public String formatMessage(double value) {
+        return String.format(message, value);
     }
 }

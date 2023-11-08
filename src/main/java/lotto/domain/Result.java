@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import static lotto.util.Rank.*;
+import static lotto.view.OutputView.*;
 
 public class Result {
 
@@ -33,7 +34,7 @@ public class Result {
         winningCounts.put(FIRST, 0);
     }
 
-    public void gameResult() {
+    public int gameResult() {
         for (Lotto lotto : lottos.getLottos()) {
             int matchingNumber = countMatchingNumbers(lotto);
             boolean hasBonusNumber = lotto.getNumbers().contains(bonusNumber);
@@ -48,7 +49,7 @@ public class Result {
             winningCounts.put(rank, winningCounts.get(rank) + 1);
         }
 
-        OutputView.printResult(winningCounts);
+        return printResult(winningCounts);
     }
 
     private int countMatchingNumbers(Lotto lotto) {

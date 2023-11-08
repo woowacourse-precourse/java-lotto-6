@@ -1,7 +1,7 @@
 package lotto.domain.lotto;
 
+import java.util.Collections;
 import java.util.List;
-import lotto.domain.amount.TotalAmount;
 
 public class Lottos {
 
@@ -15,18 +15,11 @@ public class Lottos {
         return new Lottos(lottos);
     }
 
-    public TotalAmount accumulatePrize(WinningLotto winningLotto) {
-        TotalAmount totalAmount = TotalAmount.initial();
-
-        for (Lotto lotto : lottos) {
-            LottoPrize prize = winningLotto.matches(lotto);
-            totalAmount = totalAmount.addLottoPrize(prize);
-        }
-
-        return totalAmount;
+    public int size() {
+        return lottos.size();
     }
 
-    public int count() {
-        return lottos.size();
+    public List<Lotto> asList() {
+        return Collections.unmodifiableList(lottos);
     }
 }

@@ -36,13 +36,12 @@ public class Validate {
         }
     }
 
-    public void IsRightRangeNumber(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++) {
-            if ((numbers.get(i) > 45) || (numbers.get(i) < 1)) {
+    public void IsCorrectRangeNumber(List<Integer> numbers) {
+        for(int num : numbers) {
+            if ((num > 45) || (num < 1))
                 throw new IllegalArgumentException();
             }
         }
-    }
 
     public void IsSortedNumbers(List<Integer> numbers) {
         for (int i = 0; i < numbers.size()-1; i++) {
@@ -51,9 +50,9 @@ public class Validate {
         }
     }
 
-    public void IsRightRangeWinningNumber(List<Integer> numbers) {
-        for (int i = 0; i < numbers.size(); i++)
-            if ((numbers.get(i) > 45) || (numbers.get(i) < 1)) {
+    public void IsCorrectRangeWinningNumber(List<Integer> numbers) {
+        for(int num : numbers)
+            if ((num > 45) || (num < 1)){
                 System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
                 throw new IllegalArgumentException();
         }
@@ -69,7 +68,7 @@ public class Validate {
     }
 
     public void IsRightFormatWinningNumber(String s) {
-        if (!s.matches("[+-]?\\d*(\\.\\d+)?")) {
+        if (!s.matches("-?\\d+(\\.\\d+)?")) {
             System.out.println("[ERROR] 로또 번호는 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
@@ -78,6 +77,20 @@ public class Validate {
     public void IsOverLengthWinningNumber(List<Integer> numbers) {
         if (numbers.size() != 6) {
             System.out.println("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void IsRightFormatBonusNumber(String s) {
+        if (!s.matches("[+-]?\\d*(\\.\\d+)?")) {
+            System.out.println("[ERROR] 보너스 번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException();
+        }
+    }
+
+    public void IsCorrectRangeBonusNumber(int number) {
+        if ((number > 45) || (number < 0)) {
+            System.out.println("[ERROR] 보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
             throw new IllegalArgumentException();
         }
     }

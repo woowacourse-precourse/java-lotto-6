@@ -19,7 +19,7 @@ public class Lotto {
     private void validate(List<Integer> numbers) {
         validate.IsDuplicatedNumber(numbers);
         validate.IsOverLengthNumber(numbers);
-        validate.IsRightRangeNumber(numbers);
+        validate.IsCorrectRangeNumber(numbers);
         validate.IsSortedNumbers(numbers);
     }
 

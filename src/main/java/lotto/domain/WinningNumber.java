@@ -10,8 +10,8 @@ public class WinningNumber {
     private final Validate validate = new Validate();
 
     public WinningNumber(List<Integer> number) {
-        this.number = number;
         validate(number);
+        this.number = number;
     }
 
     public WinningNumber(String input) {
@@ -28,7 +28,7 @@ public class WinningNumber {
     }
 
     private void validate(List<Integer> number) {
-        validate.IsRightRangeWinningNumber(number);
+        validate.IsCorrectRangeWinningNumber(number);
         validate.IsDuplicatedWinningNumber(number);
         validate.IsOverLengthWinningNumber(number);
     }

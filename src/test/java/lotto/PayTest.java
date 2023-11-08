@@ -1,7 +1,7 @@
 package lotto;
 
-import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import lotto.constant.ExceptionMessage;
 import lotto.domain.Pay;
@@ -9,11 +9,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class PayTest {
-    @DisplayName("사용자 지불액 정상 흐름")
+    @DisplayName("지불 금액이 정상적으로 생성된다.")
     @Test
-    void createPay() {
-        assertThatCode(() -> new Pay("1000"))
-                .doesNotThrowAnyException();
+    void createPayByCorrectNumber() {
+        assertDoesNotThrow(() -> new Pay("1000"));
     }
 
     @DisplayName("지불 금액이 음수면 예외가 발생한다.")

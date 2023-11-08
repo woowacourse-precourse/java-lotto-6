@@ -12,7 +12,6 @@ public class Generator {
                 ConfigurationNumbers.MAX_NUMBER.getNumber(),
                 ConfigurationNumbers.LOTTO_LENGTH.getNumber()
         );
-        List<Integer> randomNumbersCopy = new ArrayList<>(randomNumbers);
-        return randomNumbersCopy;
+        return new ArrayList<>(randomNumbers);
     }
 }

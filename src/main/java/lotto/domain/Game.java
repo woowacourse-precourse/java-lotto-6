@@ -14,18 +14,18 @@ public class Game {
     private Lotto winnerNumber;
     private BonusNumber bonusNumber;
 
-    public void generateUserLottos(int amount) {
+    public void createUserLottos(int amount) {
         this.userLottos = IntStream.range(0, amount)
                 .mapToObj(i -> new Lotto(Generator.generateRandomNumbers()))
                 .collect(Collectors.toList());
     }
 
-    public void generateWinnerNumber(String winnerNumber) {
+    public void createWinnerNumber(String winnerNumber) {
         this.winnerNumber = new Lotto(winnerNumber);
     }
 
-    public void generateBonusNumber(String bonusNumber) {
-        this.bonusNumber = new BonusNumber(bonusNumber);
+    public void createBonusNumber(String bonusNumber) {
+        this.bonusNumber = new BonusNumber(bonusNumber, winnerNumber.getNumbers());
     }
 
     public Map<Rank, Integer> compare() {

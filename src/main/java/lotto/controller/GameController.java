@@ -39,7 +39,7 @@ public class GameController {
     }
 
     private void buyLotto() {
-        game.generateUserLottos(pay.getLottoAmounts());
+        game.createUserLottos(pay.getLottoAmounts());
         printUserLottos(game.getLottos());
     }
 
@@ -53,7 +53,7 @@ public class GameController {
     private void setWinningNumber() {
         try {
             String input = inputView.requestWinningNumber();
-            game.generateWinnerNumber(input);
+            game.createWinnerNumber(input);
         } catch (IllegalArgumentException exception) {
             errorView.printErrorMessage(exception.getMessage());
             setWinningNumber();
@@ -63,7 +63,7 @@ public class GameController {
     private void setBonusNumber() {
         try {
             String input = inputView.requestBonusNumber();
-            game.generateBonusNumber(input);
+            game.createBonusNumber(input);
         } catch (IllegalArgumentException exception) {
             errorView.printErrorMessage(exception.getMessage());
             setBonusNumber();

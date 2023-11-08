@@ -3,8 +3,8 @@ package lotto.view;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
 import lotto.Util;
+import lotto.model.Lotto;
 import lotto.model.Rank;
 
 public class OutputView {

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import lotto.Lotto;
+import lotto.model.Lotto;
 import lotto.model.Rank;
 import org.junit.jupiter.api.Test;
 

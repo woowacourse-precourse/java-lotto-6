@@ -11,20 +11,20 @@ import java.util.List;
         EMPTY(0
                 , 0
                 , (matchLottoNumber, containBonusNumber) -> matchLottoNumber < 3),
-        FIFTH(3
-                , 5_000
+        FIFTH(5_0000
+                , 3
                 , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 3),
-        FOURTH(4
-                , 50_000
+        FOURTH(50_000
+                , 4
                 , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 4),
-        THIRD(5
-                , 1_500_000
+        THIRD(1_500_000
+                , 5
                 , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 5 && !containBonusNumber),
-        SECOND(5
-                , 30_000_000
+        SECOND(30_000_000
+                , 5
                 , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 5 && containBonusNumber),
-        FIRST(6
-                , 2_000_000_000
+        FIRST(2_000_000_000
+                , 6
                 , (matchLottoNumber, containBonusNumber) -> matchLottoNumber == 6);
 
 

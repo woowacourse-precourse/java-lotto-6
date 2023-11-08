@@ -8,6 +8,16 @@ public record Lottos(List<Lotto> lottos) {
         return lottos.size();
     }
 
+    public Lottos {
+        validateLottoSize(lottos);
+    }
+
+    private void validateLottoSize(List<Lotto> lottos) {
+        if (lottos.isEmpty()) {
+            throw new IllegalArgumentException("[Error] 로또 리스트는 비어있을 수 없습니다.");
+        }
+    }
+
     public List<LottoRanking> calculateRankings(WinningLotto winningLotto) {
         return lottos.stream()
                 .map(winningLotto::calculateRanking)

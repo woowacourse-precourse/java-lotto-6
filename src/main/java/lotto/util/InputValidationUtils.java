@@ -3,6 +3,7 @@ package lotto.util;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumber;
 
+import static lotto.constants.Constants.Strings.LOTTO_NUMBERS_INPUT_DELIMITER;
 import static lotto.constants.ErrorMessage.*;
 
 public class InputValidationUtils {
@@ -18,6 +19,12 @@ public class InputValidationUtils {
             Integer.parseInt(input);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(INVALID_NUMBER_FORMAT.getMessage());
+        }
+    }
+
+    public static void validateBadDelimiterPosition(String lottoNumbers) {
+        if (lottoNumbers.startsWith(LOTTO_NUMBERS_INPUT_DELIMITER.getValue()) || lottoNumbers.endsWith(LOTTO_NUMBERS_INPUT_DELIMITER.getValue())) {
+            throw new IllegalArgumentException(INVALID_DELIMITER_POSITION.getMessage());
         }
     }
 

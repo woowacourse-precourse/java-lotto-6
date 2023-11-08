@@ -51,6 +51,20 @@ public class InputValidationUtilsTest {
                 .hasMessageContaining(INVALID_NUMBER_FORMAT.getMessage());
     }
 
+    @DisplayName("입력 문자열 숫자 변환 예외 : 양끝에 구분자(,)가 있는 경우 IllegalArgumentException을 발생")
+    @ParameterizedTest
+    // parameters = -30억, 30억, Integer_MAX_VALUE + 1, Integer_MIN_VALUE - 1
+    @ValueSource(strings = {",1,2,3,4,5,7", ",4,5,6,7,8,9", ",1,5,6,7,8,9,"})
+    public void validateCanBeInt_exception_badDelimiterPosition(String input) {
+        // when, then
+        assertThatThrownBy(() ->
+                InputValidationUtils.validateBadDelimiterPosition(input)
+        )
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining(INVALID_DELIMITER_POSITION.getMessage());
+    }
+
+
     @DisplayName("보너스 넘버 중복 예외 : winningLotto에 번호와 중복되는 번호가 존재하면 IllegalArgumentException을 발생")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 3, 4, 5, 6})

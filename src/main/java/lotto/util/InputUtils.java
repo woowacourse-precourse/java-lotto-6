@@ -21,7 +21,9 @@ public class InputUtils {
     }
 
     public static List<Integer> readLottoNumbers() {
-        return lottoNumbersToIntegerList(readLine());
+        String lottoNumbers = readLine();
+        validateBadDelimiterPosition(lottoNumbers);
+        return lottoNumbersToIntegerList(lottoNumbers);
     }
 
     private static String readLine() {

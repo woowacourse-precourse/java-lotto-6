@@ -23,8 +23,7 @@ public class GameManager {
         Lotto winningLotto = inputWinningNumbersUntilNoError();
         Bonus bonus = inputBonusNumbersUntilNoError();
         WinningResult winningResult = getWinningResultAndPrint(lottos,winningLotto,bonus);
-        long prize = winningResult.getTotalLotteryPrize();
-        outputView.printROI(calculator.calculateROI(prize, amount));
+        getROIAndPrint(winningResult,amount);
     }
 
     private Amount inputPurchaseAmountUntilNoError() {
@@ -73,9 +72,15 @@ public class GameManager {
 
     private WinningResult getWinningResultAndPrint(Lottos lottos,Lotto winningLotto, Bonus bonus) {
         outputView.printLineBreak();
-        WinningResult winningResult = new WinningResult(lottos.determineWinningsCount(winningLotto, bonus));
+        WinningResult winningResult = new WinningResult(
+                lottos.determineWinningsCount(winningLotto, bonus));
         outputView.printWinningResult(winningResult);
         return winningResult;
+    }
+
+    private void getROIAndPrint(WinningResult winningResult, Amount amount) {
+        long prize = winningResult.getTotalLotteryPrize();
+        outputView.printROI(calculator.calculateROI(prize, amount));
     }
 
 }

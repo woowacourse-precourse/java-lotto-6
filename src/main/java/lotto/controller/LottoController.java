@@ -21,12 +21,12 @@ public class LottoController {
     private static List<Integer> userNumber = new ArrayList<>();
     private static WinningResult winningResult;
 
-    public static void run(){
+    public static void run() {
         new LottoAmount();
         gameStart();
     }
 
-    public static void gameStart(){
+    public static void gameStart() {
         int ticketCount = priceCalculation();
         lottoList = createLottoNumbers(ticketCount);
         userNumber = userNumber();
@@ -43,6 +43,7 @@ public class LottoController {
         }
         return result;
     }
+
     private static void lottoResult(List<Lotto> lottoList, WinningResult winningLotto, int amount) {
         Map<Ranking, Integer> result = setResult();
         Ranking rank;

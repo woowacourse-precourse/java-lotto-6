@@ -10,6 +10,7 @@ public enum Ranking {
     FOURTH(4, 50_000, "4개 일치 (50,000원) - "), // 4등
     FIFTH(3, 5_000, "3개 일치 (5,000원) - "), // 5등
     MISS(0, 0, "");
+
     Ranking(int countOfMatch, int winningAmount, String message) {
         this.countOfMatch = countOfMatch;
         this.winningAmount = winningAmount;

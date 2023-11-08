@@ -12,7 +12,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -220,7 +219,7 @@ class LottoControllerTest {
     void throwIllegalArgumentExceptionWhenBonusNumberAlreadyContainedAnswerLottoCombination() {
         // given
         System.setIn(createUserInput("1"));
-        lottoController.setAnswer(new Lotto(List.of(1,2,3,4,5,6)));
+        lottoController.setAnswer(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
 
         // when, then
         assertThatThrownBy(() -> lottoController.registerBonusNumber())

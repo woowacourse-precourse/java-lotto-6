@@ -169,7 +169,7 @@ class LottoServiceTest {
         lottoList.add(new Lotto(List.of(4, 5, 6, 7, 8, 9)));
 
         // when
-        String result = lottoService.makePurchaseResultOutputStatement(lottoList,count);
+        String result = lottoService.makePurchaseResultOutputStatement(lottoList, count);
         int executionCount = StringUtils.countOccurrences(result, "[");
 
         // then
@@ -260,9 +260,9 @@ class LottoServiceTest {
         // given
         List<Lotto> lottoList = new ArrayList<>();
 
-        lottoList.add(new Lotto(List.of(1,2,3,4,5,6)));
-        lottoList.add(new Lotto(List.of(2,3,4,5,6,7)));
-        lottoList.add(new Lotto(List.of(3,4,5,6,7,8)));
+        lottoList.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottoList.add(new Lotto(List.of(2, 3, 4, 5, 6, 7)));
+        lottoList.add(new Lotto(List.of(3, 4, 5, 6, 7, 8)));
 
         Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         int bonusNumber = 7;

@@ -15,7 +15,7 @@ public class CalculationUtils {
         return set.size() < list.size();
     }
 
-    public static boolean isDivisible(int target, int divisor){
+    public static boolean isDivisible(int target, int divisor) {
         return target % divisor == 0;
     }
 

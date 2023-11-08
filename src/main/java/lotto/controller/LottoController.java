@@ -40,7 +40,6 @@ public class LottoController {
     }
 
 
-
     public int registerBonusNumberUntilPass() {
         return receiveInputUntilPass(this::registerBonusNumber);
     }
@@ -99,9 +98,9 @@ public class LottoController {
 
     private void validateBonusLottoNumber(String userInput, Lotto answer) {
         int number = parseInt(userInput);
-        if(answer.isNumberIn(number)){
+        if (answer.isNumberIn(number)) {
             throw new IllegalArgumentException(THAT_NUMBER_IS_ALREADY_CONTAINS_ANSWER_COMBINATION.getErrorMessage());
-        };
+        }
     }
 
     private void validateWinningLottoCombination(String userInput) {

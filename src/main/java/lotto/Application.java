@@ -1,10 +1,10 @@
 package lotto;
 
+import static lotto.controller.LottoController.*;
+
 import lotto.controller.LottoController;
 import lotto.domain.Lotto;
 import java.util.List;
-
-import static lotto.controller.LottoController.*;
 
 public class Application {
     public static void main(String[] args) {
@@ -27,7 +27,7 @@ public class Application {
         int bonusNumber = lottoController.registerBonusNumberUntilPass();
 
         // 통계 결과 출력
-        lottoController.showStatisticsResult(lottoList,answer,bonusNumber);
+        lottoController.showStatisticsResult(lottoList, answer, bonusNumber);
     }
 
 

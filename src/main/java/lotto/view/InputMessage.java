@@ -6,7 +6,6 @@ public enum InputMessage {
     ENTER_WINNING_LOTTO_NUMBER("당첨 번호를 입력해 주세요.");
 
 
-
     private final String inputMessage;
 
     InputMessage(String inputMessage) {

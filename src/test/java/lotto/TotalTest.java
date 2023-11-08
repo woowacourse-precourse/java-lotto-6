@@ -2,14 +2,16 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
 import java.util.List;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static camp.nextstep.edu.missionutils.test.Assertions.assertRandomUniqueNumbersInRangeTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TotalTest extends NsTest {
+    @DisplayName("잘못된 값 입력 시 재 시도")
     @Test
-    void 기능_테스트() {
+    void inputInvalidValueAndRetryInput() {
         assertRandomUniqueNumbersInRangeTest(
                 () -> {
                     run("500a","8000","1,2,3,4,5,6,7", "1,2,3,4,5,6", "seven","7");

@@ -18,16 +18,10 @@ public class LottoGame {
     List<Lotto> lottos = new ArrayList<>();
 
     public List<Integer> makeLottoNumbers() {
-        List<Integer> LottoNumbers = new ArrayList<>();
+        List<Integer> lottoNumbers = new ArrayList<>();
         int currentLottoSize = 0;
-        while (currentLottoSize < 6) {
-            int LottoNumber = Randoms.pickNumberInRange(1, 45);
-            if (!LottoNumbers.contains(LottoNumber)) {
-                LottoNumbers.add(LottoNumber);
-                currentLottoSize++;
-            }
-        }
-        return LottoNumbers;
+        lottoNumbers = Randoms.pickUniqueNumbersInRange(1,45,6);
+        return lottoNumbers;
     }
 
     public void purchaseLotto(Money money) {

@@ -72,17 +72,35 @@ public class Game {
     }
 
     private void validateWinningNumbers() {
+        if (isWinningNumberSizeValid() && isWinningNumberDuplicate() && isWinningNumberInRange()) {
+            errorState = Error.NO_PROBLEM;
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private boolean isWinningNumberSizeValid() {
         if (winningNumbers.size() != 6) {
             errorState = Error.WINNING_NUMBER_OUT_OF_COUNT_ERROR;
-            throw new IllegalArgumentException();
-        } else if (winningNumbers.size() > winningNumbers.stream().distinct().count()) {
-            errorState = Error.WINNING_NUMBER_DUPLICATE_ERROR;
-            throw new IllegalArgumentException();
-        } else if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
-            errorState = Error.WINNING_NUMBER_OUT_OF_RANGE_ERROR;
-            throw new IllegalArgumentException();
+            return false;
         }
-        errorState = Error.NO_PROBLEM;
+        return true;
+    }
+
+    private boolean isWinningNumberDuplicate() {
+        if (winningNumbers.size() > winningNumbers.stream().distinct().count()) {
+            errorState = Error.WINNING_NUMBER_DUPLICATE_ERROR;
+            return false;
+        }
+        return true;
+    }
+
+    private boolean isWinningNumberInRange() {
+        if (winningNumbers.stream().anyMatch(number -> number < 1 || number > 45)) {
+            errorState = Error.WINNING_NUMBER_OUT_OF_RANGE_ERROR;
+            return false;
+        }
+        return true;
     }
 
     private void setBonusNumber() {
@@ -98,14 +116,27 @@ public class Game {
     }
 
     private void validateBonusNumber() {
+        if (isBonusNumberDuplicate() && isBonusNumberInRange()) {
+            errorState = Error.NO_PROBLEM;
+            return;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private boolean isBonusNumberDuplicate() {
         if (winningNumbers.contains(bonusNumber)) {
             errorState = Error.BONUS_NUMBER_DUPLICATE_ERROR;
-            throw new IllegalArgumentException();
-        } else if (bonusNumber < 1 || bonusNumber > 45) {
-            errorState = Error.BONUS_NUMBER_OUT_OF_RANGE_ERROR;
-            throw new IllegalArgumentException();
+            return false;
         }
-        errorState = Error.NO_PROBLEM;
+        return true;
+    }
+
+    private boolean isBonusNumberInRange() {
+        if (bonusNumber < 1 || bonusNumber > 45) {
+            errorState = Error.BONUS_NUMBER_OUT_OF_RANGE_ERROR;
+            return false;
+        }
+        return true;
     }
 
     private void setTotalMatchCounts() {

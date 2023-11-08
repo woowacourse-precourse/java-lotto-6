@@ -150,4 +150,12 @@ class LottoTest {
 
         assertThat(matchResult).contains(0,0,0,0,0,0,0);
     }
+
+    @Test
+    void 금액입력값_정수확인() {
+        GameController gameController = new GameController();
+
+        assertThatThrownBy(() -> gameController.stringToInteger("apple"))
+                .isInstanceOf(NumberFormatException.class);
+    }
 }

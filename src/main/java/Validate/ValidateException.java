@@ -14,7 +14,6 @@ public class ValidateException {
     private static final String KOREAN_ENGLISH_EXCEPTION_COMMA_REGEX = ".*[^0-9,\\s-].*";
     private static final String NOTING_STRING = "";
     private static final String BLANK = " ";
-    private static final String SPECIAL_CHARACTER_REGEX = "[!@#$%^&*().?\":{}|<>]";
     private static final Character COMMA_CHAR = ',';
     private static final Integer POSITIVE_CONDITION_ZERO = 0;
     private static final Integer ZERO_NUM = 0;

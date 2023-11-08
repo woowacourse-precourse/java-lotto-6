@@ -28,7 +28,7 @@ class PurchasePriceTest {
     void calcYieldBy() {
         // Given
         PurchasePrice purchasePrice = PurchasePrice.of(21000L);
-        long totalWinningPrize = 3000L;
+        Long totalWinningPrize = 3000L;
 
         // When
         Double yield = purchasePrice.calcYieldBy(totalWinningPrize);

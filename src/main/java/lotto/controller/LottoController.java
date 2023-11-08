@@ -36,7 +36,7 @@ public class LottoController {
         try {
             return Integer.parseInt(inputPurchaseAmount);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+            throw new IllegalArgumentException(ExceptionMessage.ERROR_TYPE);
         }
     }
 

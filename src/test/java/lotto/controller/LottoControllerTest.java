@@ -29,7 +29,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.publishLotto(inputPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -43,7 +43,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.publishLotto(inputPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -57,7 +57,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.publishLotto(inputPurchaseAmount))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -70,7 +70,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.createWinningNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -83,7 +83,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.createWinningNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -96,7 +96,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.createWinningNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -109,7 +109,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.createWinningNumber(winningNumbers))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -122,7 +122,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.createBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -135,7 +135,7 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.createBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 
     @Test
@@ -148,6 +148,6 @@ class LottoControllerTest {
         // Then
         assertThatThrownBy(() -> lottoController.createBonusNumber(bonusNumber))
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessage(ExceptionMessage.ERROR_BUY_AMOUNT_TYPE);
+                .hasMessage(ExceptionMessage.ERROR_TYPE);
     }
 }

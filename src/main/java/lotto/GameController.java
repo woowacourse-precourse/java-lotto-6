@@ -9,8 +9,8 @@ import java.util.List;
 import static lotto.constants.Numbers.*;
 import static lotto.constants.Strings.*;
 import static lotto.Validator.*;
-import static lotto.InputView.*;
-import static lotto.OutputView.*;
+import static lotto.view.InputView.*;
+import static lotto.view.OutputView.*;
 
 public class GameController {
     public void run() {

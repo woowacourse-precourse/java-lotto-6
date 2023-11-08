@@ -26,7 +26,7 @@ public class LottoResultManager {
         }
     }
 
-    public int countMatchingNumbers(Lotto lotto) {
+    private int countMatchingNumbers(Lotto lotto) {
         int count = 0;
         for (int singleNumber : winningLotto.getNumbers()) {
             List<Integer> lottoNumbers = lotto.getNumbers();
@@ -35,7 +35,7 @@ public class LottoResultManager {
         return count;
     }
 
-    public boolean isBonusMatch(Lotto lotto) {
+    private boolean isBonusMatch(Lotto lotto) {
         return lotto.contains(winningLotto.getBonus());
     }
 

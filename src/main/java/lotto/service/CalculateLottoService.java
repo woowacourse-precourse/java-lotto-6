@@ -55,4 +55,26 @@ public class CalculateLottoService {
 	public void inputWinningCount(WinningLotto winningLotto) {
 		winningCount.put(winningLotto, winningCount.getOrDefault(winningLotto, 0) + 1);
 	}
+	
+    public boolean isLottoNumberMatchedExcludingNumberFive(int countLottoNumbers) {
+        if (countLottoNumbers == THREE_NUMBER_MATCHES || countLottoNumbers == FOUR_NUMBER_MATCHES
+                || countLottoNumbers == SIX_NUMBER_MATCHES) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isLottoNumberMatchedFiveWithBonusNumber(int countLottoNumbers, List<Integer> numbers, Lotto lotto) {
+        if (countLottoNumbers == FIVE_NUMBER_MATCHES && numbers.contains(lotto.getBonusNumber())) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isLottoNumberMatchedFive(int countLottoNumbers, List<Integer> numbers, Lotto lotto) {
+        if (countLottoNumbers == FIVE_NUMBER_MATCHES && !numbers.contains(lotto.getBonusNumber())) {
+            return true;
+        }
+        return false;
+    }
 }

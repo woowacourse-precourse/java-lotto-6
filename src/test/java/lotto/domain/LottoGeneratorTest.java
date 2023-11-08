@@ -27,7 +27,8 @@ class LottoGeneratorTest {
         assertThat(lottos).hasSize(count);
         for (Lotto lotto : lottos) {
             assertThat(lotto.getNumbers()).hasSize(Constants.LOTTO_NUM_COUNT);
-            assertThat(lotto.getNumbers()).allMatch(number -> number >= Constants.LOTTO_NUM_MIN && number <= Constants.LOTTO_NUM_MAX);
+            assertThat(lotto.getNumbers()).allMatch(
+                    number -> number >= Constants.LOTTO_NUM_MIN && number <= Constants.LOTTO_NUM_MAX);
             assertThat(lotto.getNumbers()).doesNotHaveDuplicates();
         }
     }

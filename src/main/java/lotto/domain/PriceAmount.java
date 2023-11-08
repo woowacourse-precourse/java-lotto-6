@@ -12,11 +12,11 @@ public class PriceAmount {
         this.priceAmount = priceNumber;
     }
 
-    private static boolean isGreaterThanZero(int priceNumber) {
+    private boolean isGreaterThanZero(int priceNumber) {
         return priceNumber > 0;
     }
 
-    private static boolean is1000Unit(int priceNumber) {
+    private boolean is1000Unit(int priceNumber) {
         return priceNumber % 1000 == 0;
     }
 

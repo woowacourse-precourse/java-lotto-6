@@ -18,7 +18,6 @@ public class DrawResult {
     public double getEarningRate(int price) {
         int sum = calculateEarningAmount();
         return (double) sum * 100 / price;
-
     }
 
     private int calculateEarningAmount() {

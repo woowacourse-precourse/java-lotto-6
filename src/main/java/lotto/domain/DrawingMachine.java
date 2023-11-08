@@ -1,7 +1,6 @@
 package lotto.domain;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class DrawingMachine {
@@ -25,7 +24,7 @@ public class DrawingMachine {
         return new DrawResult(rankMap);
     }
 
-    private static void InitiateMap(Map<LottoRank, Integer> rankMap) {
+    private void InitiateMap(Map<LottoRank, Integer> rankMap) {
         for (LottoRank value : LottoRank.values()) {
             rankMap.put(value, 0);
         }

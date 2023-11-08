@@ -9,14 +9,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class LotteryTest {
-    NumberGenerator mockNumberGenerator;
-    PurchasePrice purchasePrice;
     LottoTicket lottoTicket;
 
     @BeforeEach
     void init() {
-        mockNumberGenerator = new MockNumberGenerator();
-        purchasePrice = PurchasePrice.from("1000");
+        NumberGenerator mockNumberGenerator = new MockNumberGenerator();
+        PurchasePrice purchasePrice = PurchasePrice.from("1000");
         lottoTicket = LottoTicket.of(purchasePrice, mockNumberGenerator);
     }
 

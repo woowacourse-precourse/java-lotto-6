@@ -27,6 +27,8 @@ public class Application {
         System.out.println();
         System.out.println("당첨 번호를 입력해 주세요.");
 
+        Lotto winningNumbers = getInputSec();
+
     }
 
     private static int getInputFir() {
@@ -76,5 +78,38 @@ public class Application {
             }
         }
         System.out.println("]");
+    }
+
+    private static Lotto getInputSec() {
+        Lotto tempNumbers;
+
+        while (true){
+            try{
+                String targetStr = Console.readLine();
+                tempNumbers = validInputSec(targetStr);
+                break;
+            }
+            catch(IllegalArgumentException e){
+                System.out.print("\n");
+            }
+            catch(Exception e){
+                System.out.println("[ERROR] 형식에 맞게 다시 입력해주세요.");
+            }
+        }
+
+        return tempNumbers;
+    }
+
+    private static Lotto validInputSec(String targetStr) {
+        String[] numberStrings = targetStr.split(",");
+
+        List<Integer> winningNumbers = new ArrayList<>();
+
+        for (String numberString : numberStrings) {
+            int number = Integer.parseInt(numberString);
+            winningNumbers.add(number);
+        }
+
+        return new Lotto(winningNumbers);
     }
 }

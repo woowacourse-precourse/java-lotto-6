@@ -18,7 +18,9 @@ public class UserLotto {
         return userLotto;
     }
 
-
+    public boolean isContain(int number) {
+        return userLotto.isContain(number);
+    }
     public int getBonusNumber() {
         return bonusNumber;
     }

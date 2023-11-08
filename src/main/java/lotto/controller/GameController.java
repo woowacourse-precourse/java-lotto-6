@@ -28,9 +28,14 @@ public class GameController {
     }
 
     private void inputPurchaseAmount() {
-        OutputView.println("구입금액을 입력해 주세요.");
-        gameService.setPurchaseAmount(InputView.readPurchaseAmount());
-        OutputView.println("");
+        try {
+            OutputView.println("구입금액을 입력해 주세요.");
+            gameService.setPurchaseAmount(InputView.readPurchaseAmount());
+            OutputView.println("");
+        } catch (IllegalArgumentException e) {
+            OutputView.println(e.getMessage() + "\n");
+            inputPurchaseAmount();
+        }
     }
 
     private void publishLotto() {
@@ -58,17 +63,28 @@ public class GameController {
     }
 
     private List<Integer> inputWinningNumbers() {
-        OutputView.println("당첨 번호를 입력해 주세요.");
-        Lotto winningLotto = gameService.createWinningLotto(InputView.readWinningNumbers());
-        OutputView.println("");
+        Lotto winningLotto;
+        try {
+            OutputView.println("당첨 번호를 입력해 주세요.");
+            winningLotto = gameService.createWinningLotto(InputView.readWinningNumbers());
+            OutputView.println("");
+        } catch (IllegalArgumentException e) {
+            OutputView.println(e.getMessage() + "\n");
+            return inputWinningNumbers();
+        }
 
         return winningLotto.getNumbers();
     }
 
     private void inputBonusNumber(List<Integer> winningNumbers) {
-        OutputView.println("보너스 번호를 입력해 주세요.");
-        gameService.setBonusNumber(InputView.readBonusNumber(winningNumbers));
-        OutputView.println("");
+        try {
+            OutputView.println("보너스 번호를 입력해 주세요.");
+            gameService.setBonusNumber(InputView.readBonusNumber(winningNumbers));
+            OutputView.println("");
+        } catch (IllegalArgumentException e) {
+            OutputView.println(e.getMessage() + "\n");
+            inputBonusNumber(winningNumbers);
+        }
     }
 
     private void finishGame() {

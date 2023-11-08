@@ -13,7 +13,7 @@ public class Lotto {
 
     public Lotto(List<Integer> numbers) {
         validate(numbers);
-        Collections.sort(numbers);
+        Collections.sort(new ArrayList<>(numbers));
         this.numbers = numbers;
     }
 

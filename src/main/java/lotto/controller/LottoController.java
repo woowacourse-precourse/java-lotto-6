@@ -1,7 +1,10 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import lotto.domain.Lotto;
 import lotto.domain.LottoNumberGenerator;
 import lotto.domain.WinningLotto;
@@ -31,6 +34,7 @@ public class LottoController {
         WinningLotto drawWithBonus = askValidBonusBall(drawNumbers);
     }
 
+
     private List<Lotto> purchaseLottos() {
         int numberOfLottos = askValidNumberOfLottos();
         List<Lotto> purchasedLottos = generateLottos(numberOfLottos);
@@ -39,21 +43,16 @@ public class LottoController {
     }
 
     private int askValidNumberOfLottos() {
-        int numberOfLottos;
-        do {
-            numberOfLottos = askNumberOfLottos();
-        } while (numberOfLottos == -1);
-        return numberOfLottos;
+        return askUntilValid(this::askNumberOfLottos, "유효한 로또 수가 필요합니다.");
     }
 
-
-    private int askNumberOfLottos() {
+    private Optional<Integer> askNumberOfLottos() {
         try {
             final int inputMoney = inputView.inputMoney();
-            return lottoPaymentService.calculateNumberOfLottos(inputMoney);
+            return Optional.of(lottoPaymentService.calculateNumberOfLottos(inputMoney));
         } catch (IllegalArgumentException e) {
             resultView.printException(e);
-            return -1;
+            return Optional.empty();
         }
     }
 
@@ -65,38 +64,39 @@ public class LottoController {
 
 
     private Lotto askValidWinningLotto() {
-        Lotto winningLotto;
-        do {
-            winningLotto = askWinningLotto();
-        } while (winningLotto == null);
-        return winningLotto;
+        return askUntilValid(this::askWinningLotto, "유효한 당첨 번호가 필요합니다.");
     }
 
-    private Lotto askWinningLotto() {
+    private Optional<Lotto> askWinningLotto() {
         try {
             final List<Integer> winningNumbers = inputView.inputWinningNumbers();
-            return new Lotto(winningNumbers);
+            return Optional.of(new Lotto(winningNumbers));
         } catch (IllegalArgumentException e) {
             resultView.printException(e);
-            return null;
+            return Optional.empty();
         }
     }
 
     private WinningLotto askValidBonusBall(final Lotto winningLotto) {
-        WinningLotto drawWithBonus;
-        do {
-            drawWithBonus = askBonusBall(winningLotto);
-        } while (drawWithBonus == null);
-        return drawWithBonus;
+        return askUntilValid(() -> askBonusBall(winningLotto), "유효한 보너스 번호가 필요합니다.");
     }
 
-    private WinningLotto askBonusBall(final Lotto winningLotto) {
+    private Optional<WinningLotto> askBonusBall(final Lotto winningLotto) {
         try {
             final int bonusBall = inputView.inputBonusBall();
-            return new WinningLotto(winningLotto, bonusBall);
+            return Optional.of(new WinningLotto(winningLotto, bonusBall));
         } catch (IllegalArgumentException e) {
             resultView.printException(e);
-            return null;
+            return Optional.empty();
         }
+    }
+
+
+    private <T> T askUntilValid(Supplier<Optional<T>> asker, String failMessage) {
+        return Stream.generate(asker)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(failMessage));
     }
 }

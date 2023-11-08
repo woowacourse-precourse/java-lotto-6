@@ -17,21 +17,7 @@ public class OutputView {
         System.out.println(numbers);
     }
 
-    public void displayWinningResults(Map<Long, Long> winningInfo) {
-        LinkedHashMap<Integer, String> lottoPrizes = WinningPrize.getPrizeMap();
-
-        for (Map.Entry<Integer, String> prizeEntry : lottoPrizes.entrySet()) {
-            int prizeMatchingCount = prizeEntry.getKey();
-            String prizeAmount = prizeEntry.getValue();
-            Long winningCount = winningInfo.get((long) prizeMatchingCount);
-
-            if (winningCount != null) {
-                displayBonusNumber(prizeMatchingCount, prizeAmount, winningCount);
-            }
-        }
-    }
-
-    public void displayBonusNumber(int prizeMatchingCount, String prizeAmount , Long winningCount){
+    public void displayWinningResults(int prizeMatchingCount, String prizeAmount , Long winningCount){
             if(prizeMatchingCount != 7){
                 System.out.println(prizeMatchingCount + "개 일치" + "(" + prizeAmount + "원) - " + winningCount + "개");
             }

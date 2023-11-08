@@ -3,16 +3,14 @@ package lotto.controller;
 import lotto.constant.LottoPrice;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
+import lotto.domain.WinningPrize;
 import lotto.model.WinningInfo;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.Message;
 import lotto.view.OutputView;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class LottoController {
@@ -41,7 +39,7 @@ public class LottoController {
         Message.displayStatistics();
 
         lottoService.WinningResults(winningResults);
-        outputView.displayWinningResults(winningInfo.getWinnings());
+        WinningResults(winningInfo.getWinnings());
 
         double profit = lottoService.calculateProfitRate(buyCount, winningResults);
         outputView.displayProfit(profit);
@@ -78,6 +76,20 @@ public class LottoController {
             throw new IllegalArgumentException(Message.CHECK_AMOUNT);
         }
         return money / lottoPrice.getPrice();
+    }
+
+    public void WinningResults(Map<Long, Long> winningInfo) {
+        LinkedHashMap<Integer, String> lottoPrizes = WinningPrize.getPrizeMap();
+
+        for (Map.Entry<Integer, String> prizeEntry : lottoPrizes.entrySet()) {
+            int prizeMatchingCount = prizeEntry.getKey();
+            String prizeAmount = prizeEntry.getValue();
+            Long winningCount = winningInfo.get((long) prizeMatchingCount);
+
+            if (winningCount != null) {
+                outputView.displayWinningResults(prizeMatchingCount, prizeAmount, winningCount);
+            }
+        }
     }
 
 }

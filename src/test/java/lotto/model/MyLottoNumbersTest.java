@@ -39,4 +39,11 @@ class MyLottoNumbersTest {
                 .hasMessageContaining("숫자만 입력 가능합니다");
     }
 
+    @DisplayName("중복된 숫자가 있을 경우 예외처리")
+    @Test
+    void 입력값_중복검사() {
+        assertThatThrownBy(() -> new MyLottoNumbers("1,2,2,4,5,6"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("중복된 숫자가 존재합니다");
+    }
 }

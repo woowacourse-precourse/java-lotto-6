@@ -22,14 +22,16 @@ public class LottoGenerator {
     private List<Lotto> generateLottos(int ticketNumber) {
         List<Lotto> lottos = new ArrayList<>();
         while (lottos.size() != ticketNumber) {
-            lottos.add(generateLotto());
+            lottos.add(new Lotto(generateNumbers()));
         }
         return lottos;
     }
 
-    private Lotto generateLotto() {
-        List<Integer> numbers = Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE);
-        //Collections.sort(numbers);
-        return new Lotto(numbers);
+    private List<Integer> generateNumbers() {
+        List<Integer> numbers = new ArrayList<>();
+        Randoms.pickUniqueNumbersInRange(MIN_NUMBER, MAX_NUMBER, LOTTO_SIZE).stream()
+                        .forEach(number -> numbers.add(number));
+        Collections.sort(numbers);
+        return numbers;
     }
 }

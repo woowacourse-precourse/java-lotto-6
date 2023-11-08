@@ -5,7 +5,11 @@ import java.util.List;
 
 import camp.nextstep.edu.missionutils.Console;
 
-
+/**
+ * @author 김지환
+ * 
+ * 로또시작을 위한 메서드를 모아놓은 클래스
+ */
 public class StartLotto {
     private LottoUserInput lottoInput = new LottoUserInput();
     private LottoPrint lottoPrint = new LottoPrint();

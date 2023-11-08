@@ -1,17 +1,19 @@
 package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
-import camp.nextstep.edu.missionutils.Randoms;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * @author 김지환
+ * 
+ * 로또를 위한 유저의 입력을 담당하는 클래스
+ */
 public class LottoUserInput {
     
+    /*유저의 구입금액 입력 및 exception관리*/
     public int getUserPurchaseAmount() {
         try {
             System.out.println("구입금액을 입력해 주세요.");
@@ -31,6 +33,7 @@ public class LottoUserInput {
         }
     }
     
+    /*유저의 당첨번호를 입력받는 클래스*/
     public List<Integer> getWinningNumber() {
         System.out.println();
         try {
@@ -52,6 +55,7 @@ public class LottoUserInput {
         }
     }
     
+    /*유효하지 않은 숫자일 경우 exception*/
     private void validateLottoNumbers(List<Integer> numbers) {
         for(int number : numbers) {
             if (number < 1 || number > 45) {
@@ -60,6 +64,7 @@ public class LottoUserInput {
         }
     }
     
+    /*중복된 숫자일 경우 exception*/
     private void checkDuplicateNumbers(List<Integer> numbers) {
         Set<Integer> numberSet  = new HashSet<>();
 
@@ -70,12 +75,14 @@ public class LottoUserInput {
         }
     }
     
+    /*6자리의 숫자가 아닐경우 exception*/
     private void validateSixNumbers(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException("[ERROR] 로또는 6개의 숫자만 가능합니다.");
         }
     }
     
+    /*보너스번호를 입력받는 메서드*/
     public int getValidBonusNumber(HashSet<Integer> winningNumber) {
         try {
             System.out.println();

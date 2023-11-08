@@ -28,4 +28,8 @@ public class Lotto {
                 .count();
         return distinctcount < numbers.size();
     }
+
+    public String toString() {
+        return numbers.toString();
+    }
 }

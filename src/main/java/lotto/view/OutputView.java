@@ -28,9 +28,4 @@ public enum OutputView {
     public String getMessage() {
         return message;
     }
-
-    //test
-    public static void displayLotto(Lottos lottos) {
-        System.out.println(lottos.getRandomLottos());
-    }
 }

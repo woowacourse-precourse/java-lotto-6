@@ -21,6 +21,7 @@ public class LottoController {
     public void play() {
         outputView.printPurchaseAmount();
         int purchaseAmount = Integer.parseInt(inputView.readPurchaseAmount());
+        
         List<Lotto> lottos = lottoService.createLottos(purchaseAmount);
         int count = lottos.size();
         outputView.printLottoCount(count);

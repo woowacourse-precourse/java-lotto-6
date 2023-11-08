@@ -12,19 +12,19 @@ import lotto.winning.Prize;
 import lotto.winning.PrizeRankChecker;
 import lotto.winning.ResultBoard;
 import lotto.winning.Tally;
-import lotto.winning.MainNumbers;
+import lotto.winning.MainNumber;
 
 public class SequenceManager {
     PurchaseAmount purchaseAmount;
     Printer printer;
-    MainNumbers mainNumbers;
+    MainNumber mainNumbers;
     BonusNumber bonusNumber;
     PrizeRankChecker prizeRankChecker;
     Analyst analyst;
     ResultBoard resultBoard;
     public SequenceManager() {
         this.purchaseAmount = new PurchaseAmount();
-        this.mainNumbers = new MainNumbers();
+        this.mainNumbers = new MainNumber();
         this.bonusNumber = new BonusNumber();
         this.prizeRankChecker = new PrizeRankChecker();
         this.analyst = new Analyst();

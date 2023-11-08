@@ -4,9 +4,9 @@ import static camp.nextstep.edu.missionutils.Console.readLine;
 
 import java.util.function.Predicate;
 import lotto.Askable;
-import lotto.Numbers;
+import lotto.Number;
 
-public class PurchaseAmount extends Numbers<String> implements Askable<Integer> {
+public class PurchaseAmount extends Number<String> implements Askable<Integer> {
     @Override
     public Integer ask() {
         System.out.println(INPUT_PURCHASE_AMOUNT);

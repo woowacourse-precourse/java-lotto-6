@@ -7,9 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import lotto.Numbers;
+import lotto.Number;
 
-public abstract class WinningNumbers extends Numbers<List<Integer>> {
+public abstract class WinningNumber extends Number<List<Integer>> {
     protected List<Integer> convertInput(String input) {
         return Arrays.stream(input.split(","))
                 .map(String::trim)

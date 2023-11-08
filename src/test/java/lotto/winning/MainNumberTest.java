@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class MainNumbersTest {
+class MainNumberTest {
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    MainNumbers mainNumbers = new MainNumbers();
+    MainNumber mainNumbers = new MainNumber();
 
     @BeforeEach
     public void setUpStreams() {

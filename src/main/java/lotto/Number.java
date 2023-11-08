@@ -1,6 +1,6 @@
 package lotto;
 
-public abstract class Numbers<T> {
+public abstract class Number<T> {
     protected boolean validate(T t) {
         boolean isIncorret = false;
 

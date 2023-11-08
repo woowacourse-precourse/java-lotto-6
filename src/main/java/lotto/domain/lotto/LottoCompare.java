@@ -54,5 +54,4 @@ public class LottoCompare {
     public Map<WinningGrade, Integer> getWinningResult() {
         return new EnumMap<>(winningMap);
     }
-
 }

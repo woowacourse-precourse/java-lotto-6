@@ -30,11 +30,14 @@ public class WinningStatistic {
         NumberFormat formatter = NumberFormat.getInstance();
         System.out.println("\n당첨 통계");
         System.out.println("---");
-        statistic.forEach((rank, count) -> {
-            if(rank != Rank.MISS) {
-                System.out.println(rank.getCountOfMatch() + "개 일치" + (rank.isMatchBonus() ? ", 보너스 볼 일치" : "") + " (" + rank.getPrize() + "원) - " + count + "개");
-            }
-        });
+        statistic.keySet().stream()
+                .sorted(Rank.PRIZE_ASCENDING_ORDER)
+                .forEach(rank -> {
+                    if(rank != Rank.MISS) {
+                        String formattedPrize = formatter.format(rank.getPrize());
+                        System.out.println(rank.getCountOfMatch() + "개 일치" + (rank.isMatchBonus() ? ", 보너스 볼 일치" : "") + " (" + formattedPrize + "원) - " + statistic.get(rank) + "개");
+                    }
+                });
 
     }
 }

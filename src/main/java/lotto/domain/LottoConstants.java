@@ -6,6 +6,7 @@ public enum LottoConstants {
     NUMBER_MAX(45),
     NUMBER_MIN(1),
     THOUSAND(1000),
+    HUNDRED(100),
     ZERO(0);
 
     private final int value;

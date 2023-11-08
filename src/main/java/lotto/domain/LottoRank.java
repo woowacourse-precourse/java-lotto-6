@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public class LottoRank {
 
+    private static final double HUNDRED_POINT_ZERO = 100.0;
+    private static final String FORMAT_ONE_DECIMAL = "%.1f";
     private int first;
     private int second;
     private int third;
@@ -38,18 +40,18 @@ public class LottoRank {
     }
 
     private String roundToSecondDecimalPlace() {
-        double roundedValue = Math.round(totalEarningRate * 100.0) / 100.0;
-        return String.format("%.1f", roundedValue);
+        double roundedValue = Math.round(totalEarningRate * HUNDRED_POINT_ZERO) / HUNDRED_POINT_ZERO;
+        return String.format(FORMAT_ONE_DECIMAL, roundedValue);
     }
 
     private void calculateEarningRate(int amount) {
         int purchaseAmount = amount * LottoConstants.THOUSAND.getValue();
         long sum = getSum();
-        this.totalEarningRate = ((double) sum / purchaseAmount) * 100;
+        this.totalEarningRate = ((double) sum / purchaseAmount) * LottoConstants.HUNDRED.getValue();
     }
 
     private long getSum() {
-        long sum = 0;
+        long sum = LottoConstants.ZERO.getValue();
         sum += first * Prize.FIRST.getMoney();
         sum += second * Prize.SECOND.getMoney();
         sum += third * Prize.THIRD.getMoney();
@@ -57,6 +59,4 @@ public class LottoRank {
         sum += fifth * Prize.FIFTH.getMoney();
         return sum;
     }
-
-
 }

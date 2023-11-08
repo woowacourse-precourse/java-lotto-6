@@ -21,7 +21,7 @@ public class Lotto {
         return this.numbers.stream().filter(winningNumbers::isMainNumber).count();
     }
 
-    public boolean isBonusMatched(WinningNumbers winningNumbers) {
+    public boolean hasBonusNumber(WinningNumbers winningNumbers) {
         return this.numbers.stream().anyMatch(winningNumbers::isBonusNumber);
     }
 

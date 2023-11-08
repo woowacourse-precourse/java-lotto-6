@@ -44,7 +44,7 @@ public class RankingService {
 
     private Ranking findRanking(Lotto lotto) {
         int nMatchingMainNumber = (int) lotto.countMatchingMainNumbers(winningNumbers);
-        boolean isBonusMatched = lotto.isBonusMatched(winningNumbers);
+        boolean isBonusMatched = lotto.hasBonusNumber(winningNumbers);
         return Ranking.findFrom(nMatchingMainNumber, isBonusMatched);
     }
 }

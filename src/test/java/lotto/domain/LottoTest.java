@@ -44,7 +44,7 @@ class LottoTest {
         WinningNumbers winningNumbers = new WinningNumbers(new MainNumbers(mainNums), new BonusNumber(mainNums, bonus));
         Lotto lotto = new Lotto(toIntegerList(numbers));
 
-        assertThat(lotto.isBonusMatched(winningNumbers)).isEqualTo(expected);
+        assertThat(lotto.hasBonusNumber(winningNumbers)).isEqualTo(expected);
     }
 
     List<Integer> toIntegerList(String value) {

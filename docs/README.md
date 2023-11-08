@@ -42,7 +42,7 @@ ___
 - [ ] 1함수 = 1기능
 - [ ] Java 코드 컨벤션 가이드 준수
 - [ ] JUnit 5 or AssertJ를 이용해 기능 목록이 정상적으로 동작하는지 테스트 코드로 확인
-- [ ] Randoms의 pickNumberInRange(), Console의 readline() API 사용해 구현
+- [ ] Randoms의 pickUniqueNumbersInRange(), Console의 readline() API 사용해 구현
 - [ ] 입력 오류 발생 시 오류 문구 출력 후 해당 부분 재입력
 - [ ] 오류 문구는 "[ERROR]"로 시작
 - [ ] 함수 및 메서드가 15라인을 넘지 않도록 구현

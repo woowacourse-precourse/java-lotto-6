@@ -2,10 +2,12 @@ package lotto.domain;
 
 import java.util.List;
 
+import static lotto.configuration.ErrorMessage.*;
+
 public class LottoBoard {
     private final List<Lotto> lottos;
     private final Lotto winningLotto;
-    private final Integer bonusNumber;
+    private final int bonusNumber;
 
     public LottoBoard(Lotto winningLotto,
                       Integer bonusNumber,
@@ -19,7 +21,7 @@ public class LottoBoard {
     private void validate(Lotto winningLotto, Integer bonusNumber) {
         List<Integer> winningNumbers = winningLotto.getLottoNumbers();
         if (winningNumbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("당첨 번호가 보너스 번호를 포함하고 있습니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION);
         }
     }
 

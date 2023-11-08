@@ -15,4 +15,5 @@ public class ErrorMessage {
             + PURCHASE_MONEY_UNIT
             + "원입니다.";
     public static final String NOT_INTEGER = "입력은 정수여야합니다.";
+    public static final String BONUS_NUMBER_DUPLICATION = "당첨 번호가 보너스 번호를 포함하고 있습니다.";
 }

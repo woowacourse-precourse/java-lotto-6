@@ -8,6 +8,7 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Application {
@@ -26,6 +27,10 @@ public class Application {
 
         List<Integer> resultData = lottoCalculator.calculateLottoWin(userLottos, winningNumber, bonusNumber);
         outputView.printWinningStatisticsMessage(resultData);
+
+        List<Integer> winningMoney = Arrays.asList(5000, 50000, 1500000, 30000000, 2000000000);
+        double rateOfReturn = lottoCalculator.calculateRateOfReturn(purchaseAmount, winningMoney, resultData);
+        outputView.printRateOfReturnMessage(rateOfReturn);
     }
 
     private static int ioBonusNumber(OutputView outputView, InputView inputView, LottoValidation lottoValidation, List<Integer> winningNumber) {

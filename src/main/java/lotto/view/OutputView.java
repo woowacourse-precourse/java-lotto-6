@@ -26,6 +26,8 @@ public class OutputView {
 
     public static final String SIX_MATCH_MESSAGE = "6개 일치 (2,000,000,000원) - ";
 
+    public static final String RATE_OF_RETURN_MESSAGE = "총 수익률은 ";
+
     public void printInputPurchaseAmountMessage() {
         System.out.println(INPUT_PURCHASE_AMOUNT_MESSAGE);
     }
@@ -50,5 +52,9 @@ public class OutputView {
         System.out.println(FIVE_MATCH_MESSAGE + resultData.get(2) + "개");
         System.out.println(FIVE_BONUS_MATCH_MESSAGE + resultData.get(3) + "개");
         System.out.println(SIX_MATCH_MESSAGE + resultData.get(4) + "개");
+    }
+
+    public void printRateOfReturnMessage(double rateOfReturn) {
+        System.out.println(RATE_OF_RETURN_MESSAGE + rateOfReturn + "%입니다.");
     }
 }

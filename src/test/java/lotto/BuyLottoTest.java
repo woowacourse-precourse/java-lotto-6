@@ -13,7 +13,7 @@ public class BuyLottoTest extends ApplicationTest {
 
     @DisplayName("구매금액입력값에 따른 로또구매개수확인")
     @Test
-    void LottoAmountCalculateTest() {
+    void lottoAmountCalculateTest() {
         // Given
         int buyAmount =10000;
         int expectedLottoCount = 10;

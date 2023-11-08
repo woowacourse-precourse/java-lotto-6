@@ -57,14 +57,14 @@ public enum LottoRank {
                 .toList();
     }
 
-    public static long calculate(List<LottoRank> results) {
-        return results.stream()
+    public static long calculate(List<LottoRank> lottoRanks) {
+        return lottoRanks.stream()
                 .mapToLong(LottoRank::getPrize)
                 .sum();
     }
 
-    public long calculateCount(List<LottoRank> results) {
-        return results.stream()
+    public long calculateCount(List<LottoRank> lottoRanks) {
+        return lottoRanks.stream()
                 .filter(rank -> rank.matchCount == this.matchCount)
                 .filter(rank -> rank.bonus == this.bonus)
                 .count();

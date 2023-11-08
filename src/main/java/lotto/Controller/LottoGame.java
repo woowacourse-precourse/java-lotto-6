@@ -81,8 +81,7 @@ public class LottoGame {
     }
 
     public CompareResult validateBonusNumber() {
-        Lotto lotto = new Lotto(InputView.inputLottoNumbers());
-        List<Integer> compareNumber = lotto.getLottoNumbers();
+        List<Integer> compareNumber = inputLottoNumbers();
         compareResult = new CompareResult(new Lotto(compareNumber), inputBonusNumber());
 
         return compareResult;

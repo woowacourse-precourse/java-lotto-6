@@ -14,7 +14,7 @@ BonusNumber {
         this.bonusNumber = bonusNumberInt;
     }
 
-    public  int conveyBonusNumber()
+    public int conveyBonusNumber()
     {
         return bonusNumber;
     }

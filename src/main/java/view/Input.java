@@ -3,17 +3,19 @@ package view;
 public class Input {
     //input 관련 메세지를 출력하는 view
 
+    private static final String TAB = "";
     public static void inputPrice() {
-        System.out.println("구입금액을 입력해 주세요.");
+
+        System.out.println(ViewMessage.INPUT_PRICE.getMessage());
     }
 
     public static void inputPrize() {
-        System.out.println("");
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println(TAB);
+        System.out.println(ViewMessage.INPUT_PRIZE.getMessage());
     }
 
     public static void inputBonus() {
-        System.out.println("");
-        System.out.println("보너스 번호를 입력해 주세요.");
+        System.out.println(TAB);
+        System.out.println(ViewMessage.INPUT_BONUS.getMessage());
     }
 }

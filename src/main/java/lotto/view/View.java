@@ -55,6 +55,7 @@ public class View {
         Purchase purchase = purchaseResult.getPurchase();
         List<Lotto> lottos = purchaseResult.getLottos();
 
+        System.out.println();
         displayPurchasePrice(ANNOUNCE_FOR_PURCHASE_COUNT, purchase.getFinalRound());
         displayLottoNumber(lottos);
     }
@@ -74,6 +75,7 @@ public class View {
     }
 
     public void displayStatistics(MatchResult matchResult) {
+        System.out.println();
         displayMessage(WINNING_STATISTICS);
         displayFormattedMessage(THREE_MATCH, matchResult.getMatchCounts(MATCH_THREE_COUNT));
         displayFormattedMessage(FOUR_MATCH, matchResult.getMatchCounts(MATCH_FOUR_COUNT));

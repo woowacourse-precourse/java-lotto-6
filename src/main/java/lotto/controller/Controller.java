@@ -92,6 +92,7 @@ public class Controller {
         boolean isValidInput = false;
 
         while (!isValidInput) {
+            System.out.println();
             view.displayMessage(ASK_FOR_LOTTO_WINNING_NUMBERS);
             String input = view.readInput();
             try {
@@ -109,6 +110,7 @@ public class Controller {
         boolean isValidInput = false;
 
         while (!isValidInput) {
+            System.out.println();
             view.displayMessage(ASK_FOR_BONUS_NUMBER);
             String input = view.readInput();
             try {

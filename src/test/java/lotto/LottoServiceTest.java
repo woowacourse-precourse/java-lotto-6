@@ -37,6 +37,18 @@ class LottoServiceTest {
         assertEquals(6, lottos.size());
     }
 
+    @DisplayName("당첨번호가 보너스 번호를 가지고 있을 경우 예외 발생.")
+    @Test
+    void winningNumbersContainBonusNumber() {
+        List<Integer> winningNumbers = List.of(1, 2, 3, 4, 5, 6);
+        String bonusNumber = "7";
+        assertThatThrownBy(() -> {
+            lottoService.isWinningNumbersContainBonusNumber(winningNumbers, bonusNumber);
+        })
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage(ErrorMessage.DUPLICATE_WITH_WINNING_NUMBERS.getMessage());
+    }
+
     @DisplayName("숫자가 아닌 값이 섞여 있을 경우 예외 발생.")
     @Test
     void containsNonNumericCharacters() {

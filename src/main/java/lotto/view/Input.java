@@ -17,15 +17,16 @@ public class Input {
     public List<Integer> inputWinningNumbers() {
         List<Integer> winningNumbers = new ArrayList<>();
         System.out.println("당첨 번호를 입력해 주세요.");
-        String[] splitedNumbers = Console.readLine().trim().split(",");
-        for (String number: splitedNumbers) {
+        String inputValue = Console.readLine().trim();
+        String[] splitNumbers = inputValue.split(",");
+        for (String number : splitNumbers) {
             winningNumbers.add(Integer.parseInt(number));
         }
         return winningNumbers;
     }
 
     public int inputBonusNumber() {
-        System.out.println("당첨 번호를 입력해 주세요.");
+        System.out.println("보너스 번호를 입력해 주세요.");
         return Integer.parseInt(Console.readLine().trim());
     }
 

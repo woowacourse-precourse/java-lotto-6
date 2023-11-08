@@ -11,7 +11,7 @@ public class NumberOfLottoTickets {
     }
 
     private int publishLotto(int money) {
-        return money/1000;
+        return money / 1000;
     }
 
     public int getCountLottoTickets() {

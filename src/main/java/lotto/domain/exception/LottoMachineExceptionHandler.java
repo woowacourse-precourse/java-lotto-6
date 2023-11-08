@@ -17,6 +17,7 @@ public class LottoMachineExceptionHandler {
             } catch (Exception e) {
                 count++;
                 System.out.println(ERROR + e.getMessage());
+                LottoMachineConsoleManager.close();
             }
         }
 
@@ -31,6 +32,7 @@ public class LottoMachineExceptionHandler {
             } catch (Exception e) {
                 count++;
                 System.out.println(ERROR + e.getMessage());
+                LottoMachineConsoleManager.close();
             }
         }
 

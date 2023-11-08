@@ -3,6 +3,7 @@ package lotto;
 import lotto.controller.LottoMachineController;
 import lotto.domain.LottoMachine;
 import lotto.domain.Member;
+import lotto.io.LottoMachineConsoleManager;
 
 public class Application {
     public static void main(String[] args) {
@@ -13,6 +14,7 @@ public class Application {
             lottoMachineController.run();
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            LottoMachineConsoleManager.close();
         }
     }
 }

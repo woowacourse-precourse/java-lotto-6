@@ -13,6 +13,9 @@ public class LottoValidationHandler {
     public final static String INVALID_LOTTO_NUMBERS_SIZE_MESSAGE = "로또 번호가 6개가 아닙니다.";
     public final static String INVALID_LOTTO_NUMBERS_RANGE_MESSAGE = "1 ~ 45 사이의 로또 번호가 아닙니다.";
 
+    private LottoValidationHandler() {
+    }
+
     public static void validateDuplicatedNumbers(List<Integer> numbers) {
         Set<Integer> uniqueNumbers = new HashSet<>(numbers);
         if(!isValidLottoSize(uniqueNumbers.size())) {

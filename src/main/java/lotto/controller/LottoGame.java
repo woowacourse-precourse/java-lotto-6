@@ -25,7 +25,7 @@ public class LottoGame {
     }
 
     private Lottos buyLotto(String userPrice) {
-        Integer ticketCount = convertToTicket(userPrice);
+        Integer ticketCount = changeToTicket(userPrice);
 
         OutputView.noticeTicketCount(ticketCount);
 
@@ -62,7 +62,7 @@ public class LottoGame {
         OutputView.printTotalRate(result.calculateTotalRate());
     }
 
-    private Integer convertToTicket(String userInput) {
+    private Integer changeToTicket(String userInput) {
         return ConvertingUtil.convertToTicket(userInput);
     }
 }

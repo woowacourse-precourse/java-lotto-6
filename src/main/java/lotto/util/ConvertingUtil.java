@@ -1,9 +1,15 @@
 package lotto.util;
 
+import lotto.validator.PriceValidator;
+
 public class ConvertingUtil {
     private static final Integer TICKET_PRICE = 1000;
 
     public static int convertToTicket(String userInput) {
+        PriceValidator.validatePrice(
+                convertToInteger(userInput)
+        );
+        
         return convertToInteger(userInput) / TICKET_PRICE;
     }
 

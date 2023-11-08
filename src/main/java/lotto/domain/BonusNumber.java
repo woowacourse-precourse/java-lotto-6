@@ -1,12 +1,13 @@
 package lotto.domain;
 
+import static lotto.domain.constants.LottoConstatants.LOTTO_MAX_NUMBER;
+import static lotto.domain.constants.LottoConstatants.LOTTO_MIN_NUMBER;
+
 import java.util.HashSet;
 import java.util.Set;
 
 public class BonusNumber {
     private static final int TOTAL_LOTTO_NUMBERS_SIZE = 7;
-    private static final int LOTTO_MIN_NUMBER = 1;
-    private static final int LOTTO_MAX_NUMBER = 45;
     private final Integer bonusNumber;
     private final WinningNumbers winningNumbers; // WinningNumbers 클래스의 참조를 보관
 
@@ -16,7 +17,7 @@ public class BonusNumber {
         bonusNumber = removeWhiteSpace(bonusNumber);
         validateNormalInput(bonusNumber);
         Integer bN = changeToNumber(bonusNumber);
-        validateDuplicateNumber(bN);
+        validateDuplicateWinningNumbers(bN);
         validateRange(bN);
         this.bonusNumber = bN;
     }
@@ -36,7 +37,7 @@ public class BonusNumber {
         return Integer.parseInt(bonusNumber);
     }
 
-    private void validateDuplicateNumber(Integer bN){
+    private void validateDuplicateWinningNumbers(Integer bN){
         Set<Integer> set = new HashSet<>(winningNumbers.getWinningNumbers());
         set.add(bN);
         if(set.size() != TOTAL_LOTTO_NUMBERS_SIZE)
@@ -44,7 +45,7 @@ public class BonusNumber {
     }
 
     private void validateRange(Integer bN){
-        if(bN < LOTTO_MIN_NUMBER || bN > LOTTO_MAX_NUMBER)
+        if(bN < LOTTO_MIN_NUMBER.getValue() || bN > LOTTO_MAX_NUMBER.getValue())
             throw new IllegalArgumentException("[ERROR] 로또 숫자 범위는 1 ~ 45 입니다.");
     }
 

@@ -39,6 +39,7 @@ public class InputView {
 
     int convertToInt(String input){
         try{
+            input = input.trim();
             return Integer.parseInt(input);
         }catch (NumberFormatException e){
             ExceptionMessage.INPUT_NOT_NUMBER.throwException();
@@ -57,7 +58,7 @@ public class InputView {
     }
 
     private boolean isCommaSeparatedNumbers(String input) {
-        String pattern = "^(\\d+,)*\\d+$";
+        String pattern = "^(\\d+\\s*,\\s*)*\\d+$";
 
         Pattern regex = Pattern.compile(pattern);
         Matcher matcher = regex.matcher(input);

@@ -1,5 +1,8 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class LottoGame {
@@ -7,6 +10,23 @@ public class LottoGame {
 
 	public void start() {
 		int money = readMoney();
+		List<Lotto> lottos = makeLottos(money);
+		showLottos(lottos);
+	}
+
+	private void showLottos(List<Lotto> lottos) {
+		System.out.println(lottos.size() + "개를 구매했습니다.");
+		for (Lotto lotto : lottos) {
+			lotto.show();
+		}
+	}
+
+	private List<Lotto> makeLottos(int money) {
+		List<Lotto> lottos = new ArrayList<>();
+		for (int i = 0; i < money; i++) {
+			lottos.add(Lotto.createLotto());
+		}
+		return lottos;
 	}
 
 	public int validateMoney() {
@@ -34,4 +54,3 @@ public class LottoGame {
 		return money / MONEY_UNIT;
 	}
 }
-

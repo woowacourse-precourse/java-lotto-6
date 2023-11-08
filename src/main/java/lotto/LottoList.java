@@ -9,6 +9,10 @@ public class LottoList {
     private final int number_of_lotto;
     private List<Lotto> lottoList = new ArrayList<>();
 
+    public void setLottoList(List<Lotto> lottoList) {
+        this.lottoList = lottoList;
+    }
+
     public LottoList(int purchaseAmount) {
         this.number_of_lotto = purchaseAmount / 1000;
     }

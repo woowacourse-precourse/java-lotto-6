@@ -23,7 +23,7 @@ public class Application {
     static int matchRecord = 0;
     static int [] lottoRecord = new int[lottos.size()];
 
-    static enum winningType{ match3, match4, match5, match5NBonus, match6};
+    static enum Grade { first, second, third, fourth, fifth;}
 
     public static int getMoney(){
         System.out.println("구입금액을 입력해 주세요.");
@@ -106,10 +106,19 @@ public class Application {
             throw new IllegalArgumentException("[ERROR] 1 ~ 45 이내 범위가 아닌 숫자가 있음");
     }
 
-    public static void compareNumbers(List<Integer> lotto){
+    static void compareNumbers(List<Integer> lotto){
         for (int i = 0; i < winningNumbers.size(); i++) {
             if(Collections.frequency(lotto,winningNumbers.get(i)) != 0) //  i번째 로또에 당첨번호의 요소가 있는가
                 matchRecord += 1;
+        }
+    }
+
+    public static void getLottoRecord(){
+        for (int i = 0; i < lottos.size(); i++) {
+            // 당첨 일치 개수 구하기
+            compareNumbers(lottos.get(i));
+            lottoRecord[i] = matchRecord;
+            matchRecord = 0;
         }
     }
 
@@ -139,15 +148,27 @@ public class Application {
         occurException();
 
         // 로또 통계
+        getLottoRecord();
+
+        Grade grade;
+        //  당첨 유형 분류
         for (int i = 0; i < lottos.size(); i++) {
-            // 당첨 일치 개수 구하기
-            compareNumbers(lottos.get(i));
-            lottoRecord[i] = matchRecord;
-            matchRecord = 0;
+            if (lottoRecord[i] == 3)
+                grade = Grade.fifth;
+            if (lottoRecord[i] == 4)
+                grade = Grade.fourth;
+            if (lottoRecord[i] == 5)
+                grade = Grade.third;
+            if (lottoRecord[i] == 5 && lottos.get(i).contains(BonusNumber))
+                grade = Grade.second;
+            if (lottoRecord[i] == 6)
+                grade = Grade.first;
         }
 
-        //  당첨 유형 분류
-        //  당첨 번호가 5개일 때 보너스 번호가 있는가
+
+        // 당첨 내역에 따른 상금 수여
+
+
 
         /*
         try{

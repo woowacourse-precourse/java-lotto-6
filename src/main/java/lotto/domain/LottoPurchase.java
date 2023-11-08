@@ -7,22 +7,28 @@ public class LottoPurchase {
     private int count;
 
     private LottoPurchase(int money) {
+        this.money = money;
         validateZeroOverMoney(money);
         validateOneThousandUnitsMoney(money);
-        buyLottos(money);
+        buyLottos();
     }
 
     public static LottoPurchase of(int money) {
         return new LottoPurchase(money);
     }
 
-    public void buyLottos(int money) {
+    public void buyLottos() {
         this.count = money / 1000;
     }
 
     public int getCount() {
         return count;
     }
+
+    public double getRate(double money) {
+        return money / this.money * 100;
+    }
+
 
     public void validateZeroOverMoney(int money) {
         if (money <= MIN_AMOUNT) {

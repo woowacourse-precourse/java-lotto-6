@@ -43,4 +43,19 @@ public class LottoPurchaseTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("[ERROR] 금액을 1000원 단위로 입력해주세요.");
     }
+
+    @Test
+    @DisplayName("수익률 계산하기")
+    public void getRateTest() throws Exception {
+        // given
+        int inputMoney = 8000;
+        int winningMoney = 5000;
+
+        // when
+        LottoPurchase lottoPurchase = LottoPurchase.of(inputMoney);
+        double rate = lottoPurchase.getRate(winningMoney);
+
+        // then
+        Assertions.assertThat(rate).isEqualTo(62.5);
+    }
 }

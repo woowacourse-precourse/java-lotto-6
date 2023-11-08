@@ -19,12 +19,6 @@ public class WinningLotto {
         return new Lotto(numbers);
     }
 
-    public RouletteResult matchWinningNumbers(WinningLotto winningLotto, Lotto lotto) {
-        int count = lotto.matchCount(winningLotto.getNumbers());
-        boolean isBonusNumber = lotto.isContainNumber(winningLotto.getBonusNumber());
-        return RouletteResult.findLottoCompensation(count, isBonusNumber);
-    }
-
     public Lotto getNumbers() {
         return numbers;
     }

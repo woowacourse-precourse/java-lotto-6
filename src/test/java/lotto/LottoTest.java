@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 class LottoTest {
-    private static String[] winningEx = {"1", "2", "12", "12", "4", "9"};
 
     @DisplayName("로또 번호의 개수가 6개가 넘어가면 예외가 발생한다.")
     @Test
@@ -38,7 +37,7 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("당첨번호에 중복이 있으면 예외를 발생시킨다.")
+    @DisplayName("당첨번호에 중복이 있거나 양의 숫자가 아니면 있으면 예외를 발생시킨다.")
     @ParameterizedTest
     @MethodSource("stringArraysProvider")
     void createDuplicateWinningNumber(String[] ex) {
@@ -49,9 +48,11 @@ class LottoTest {
     static Stream<Arguments> stringArraysProvider() {
         return Stream.of(
                 Arguments.of((Object) new String[]{"1", "2", "5", "5", "7", "6"}),
-                Arguments.of((Object) new String[]{"21", "21", "21", "1", "5", "7"}),
-                Arguments.of((Object) new String[]{"12", "15", "4", "12", "4", "1"})
+                Arguments.of((Object) new String[]{"ㅎ", "$", "21", "1", "5", "7"}),
+                Arguments.of((Object) new String[]{"12", "15", "~", "0", "4", "1"}),
+                Arguments.of((Object) new String[]{"12", "15", "-1", "3", "4", "1"})
         );
 
     }
+
 }

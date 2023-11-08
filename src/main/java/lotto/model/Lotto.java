@@ -1,10 +1,13 @@
 package lotto.model;
 
+import static lotto.constant.Magic.NUMBER_POSITIVE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 
 public class Lotto {
@@ -21,6 +24,7 @@ public class Lotto {
     public Lotto(String[] winningNumber) {//당첨번호 받기
         numbers = new ArrayList<>();
         for (String num : winningNumber) {
+            validateWinningPositive(num);
             numbers.add(parstInt(num));
         }
 
@@ -52,6 +56,14 @@ public class Lotto {
     private void validateWinningDuplicated(List<Integer> numbers) throws IllegalArgumentException {
         HashSet<Integer> set = new HashSet<>(numbers);
         if ((numbers.size()) != (set.size())) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private void validateWinningPositive(String input) throws IllegalArgumentException {
+        Matcher matcher = NUMBER_POSITIVE.matcher(input);
+
+        if (!matcher.matches()) {
             throw new IllegalArgumentException();
         }
     }

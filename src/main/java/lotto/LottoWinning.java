@@ -1,38 +1,37 @@
 package lotto;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
-public enum LottoWinning {
+public class LottoWinning {
 
-    FirstPlace(6, 2000000000),
-    SecondPlace(5, true, 300000000),
-    ThirdPlace(5, false, 1500000),
-    ForthPlace(4, 50000),
-    FifthPlace(3, 5000),
-    NoWinning(0, 0);
+    private List<Integer> winningNumbers;
+    private Integer bonusNumber;
 
-    private int match;
-    private Boolean requiredBonus;
-    private long reward;
-
-    LottoWinning(int match, long reward) {
-        this(match, null, reward);
-    }
-    LottoWinning(int match, Boolean requiredBonus, long reward) {
-        this.match = match;
-        this.requiredBonus = requiredBonus;
-        this.reward = reward;
+    public LottoWinning(List<Integer> winningNumbers, Integer bonusNumber) {
+        this.winningNumbers = winningNumbers;
+        this.bonusNumber = bonusNumber;
     }
 
-    public long getReward() {
-        return reward;
+    // TODO: refactor names of variables
+    public List<LottoRank> assignRanks(List<Lotto> tickets) {
+        List<LottoRank> winnings = new ArrayList<>();
+        // TODO: refactor
+        tickets.forEach(t -> {
+            LottoRank wonRank = assignRank(t);
+            winnings.add(wonRank);
+        });
+        // TODO: refactor ignore NoWinning
+        return winnings;
     }
 
-    public static LottoWinning getWinningPlace(int match, boolean bonus) {
-        // TODO: refactor complicated logical operation.
-        return Arrays.stream(LottoWinning.values())
-                .filter(w -> (w.match == match)
-                        && (w.requiredBonus == null || w.requiredBonus == bonus))
-                .findAny().orElse(NoWinning);
+    public LottoRank assignRank(Lotto ticket) {
+        int match = ticket.countMatchingNumbers(winningNumbers);
+        boolean bonusMatch = ticket.numbersContain(bonusNumber);
+        LottoRank wonRank = LottoRank.getWinningRank(match, bonusMatch);
+        if (wonRank == LottoRank.NO_WINNING) {
+            return null;
+        }
+        return wonRank;
     }
 }

@@ -83,9 +83,9 @@ public class Buyer {
 
 
     public float getProfitRate(){
-        System.out.println(winningAmount);
-        System.out.println(amount);
-        System.out.println((winningAmount/ (float) amount) * 100);
+//        System.out.println(winningAmount);
+//        System.out.println(amount);
+//        System.out.println((winningAmount/ (float) amount) * 100);
         return (winningAmount/ (float) amount) ;
     }
 

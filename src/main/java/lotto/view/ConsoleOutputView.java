@@ -3,6 +3,7 @@ package lotto.view;
 import lotto.dto.response.PurchasePriceResponse;
 import lotto.dto.response.WinningResponse;
 import lotto.dto.response.WinningStatistic;
+import lotto.exception.InputException;
 import java.util.List;
 import java.util.Map;
 
@@ -50,6 +51,11 @@ public class ConsoleOutputView implements OutputView {
         printProfitRate(profitRate);
     }
 
+    @Override
+    public void printExceptionMessage(final InputException e) {
+        System.out.println(e.getMessage());
+    }
+
     private void printWinningStatisticPrefix() {
         System.out.println();
         System.out.println(WINNING_RESULT_MESSAGE_PREFIX);
@@ -74,7 +80,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     private void printWinningStatistic(final Map<Integer, WinningStatistic> countGroupingByRank,
-                                              final List<Integer> descendingOrderedKeys) {
+                                       final List<Integer> descendingOrderedKeys) {
         for (int rank : descendingOrderedKeys) {
             final String resultFormat = createResultFormat(rank);
             final WinningStatistic winningStatistic = countGroupingByRank.get(rank);

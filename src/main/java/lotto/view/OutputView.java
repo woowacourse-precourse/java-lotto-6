@@ -2,6 +2,7 @@ package lotto.view;
 
 import lotto.dto.response.PurchasePriceResponse;
 import lotto.dto.response.WinningResponse;
+import lotto.exception.InputException;
 import java.util.List;
 
 public interface OutputView {
@@ -21,4 +22,5 @@ public interface OutputView {
     void printBonusNumberQuestionMessage();
     void printPurchaseLottos(final List<PurchasePriceResponse> purchasePriceResponses);
     void printWinningStatistic(final WinningResponse winningResponse);
+    void printExceptionMessage(final InputException e);
 }

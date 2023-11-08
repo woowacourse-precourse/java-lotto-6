@@ -11,9 +11,9 @@ import lotto.global.exception.LottoException;
  * 로또 번호를 저장하는 클래스
  */
 public class Lotto {
-    private final List<Integer> numbers;
+    private final List<Number> numbers;
 
-    private Lotto(List<Integer> numbers) {
+    private Lotto(List<Number> numbers) {
         Validator.validate(numbers);
         this.numbers = numbers;
     }
@@ -24,8 +24,14 @@ public class Lotto {
      * @param numbers 로또 번호
      * @return 로또 객체
      */
-    public static Lotto from(List<Integer> numbers) {
-        return new Lotto(numbers);
+    public static Lotto from(final List<Integer> numbers) {
+        return new Lotto(parse(numbers));
+    }
+
+    public static List<Number> parse(final List<Integer> numbers) {
+        return numbers.stream()
+                .map(Number::valueOf)
+                .toList();
     }
 
     /**
@@ -33,12 +39,12 @@ public class Lotto {
      *
      * @return 로또 번호
      */
-    public List<Integer> getNumbers() {
+    public List<Number> getNumbers() {
         return Collections.unmodifiableList(numbers);
     }
 
     private static class Validator {
-        private static void validate(List<Integer> numbers) {
+        private static void validate(final List<Number> numbers) {
             if (numbers.size() != LOTTO_SIZE.getValue()) {
                 throw LottoException.from(ErrorMessage.INVALID_LOTTO_SIZE_ERROR);
             }

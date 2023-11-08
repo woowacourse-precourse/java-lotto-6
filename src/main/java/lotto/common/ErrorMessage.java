@@ -7,6 +7,7 @@ public enum ErrorMessage {
     LOTTO_COUNT_MIN_TICKET_PRICE("[ERROR] 최소 구매 금액보다 적게 입력하였습니다."),
     LOTTO_AMOUNT_NULL("[ERROR] 구입 금액이 입력되지 않았습니다."),
     LOTTO_AMOUNT_CONTAINS_BLANK("[ERROR] 구입 금액은 공백을 포함할 수 없습니다."),
+    LOTTO_AMOUNT_IS_FORMAT("[ERROR] 구입 금액은 숫자만 입력 가능합니다."),
 
     /* 로또 번호 관련 에러 메시지 */
     LOTTO_NUMBER_RANGE(
@@ -23,7 +24,8 @@ public enum ErrorMessage {
     BONUS_NUMBER_IS_NOT_ONE("[ERROR] 보너스 번호는 1개만 입력 가능합니다."),
     BONUS_NUMBER_NULL("[ERROR] 보너스 번호는 필수 입력값 입니다."),
     BONUS_NUMBER_CONTAINS_BLANK("[ERROR] 보너스 번호는 공백을 포함할 수 없습니다."),
-    BONUS_NUMBER_DUPLICATE("[ERROR] 잘못된 보너스 번호입니다. 이미 당첨 번호에 포함된 번호입니다.");
+    BONUS_NUMBER_DUPLICATE("[ERROR] 잘못된 보너스 번호입니다. 이미 당첨 번호에 포함된 번호입니다."),
+    BONUS_NUMBER_FORMAT("[ERROR] 보너스 번호는 숫자만 입력 가능합니다.");
 
 
     private final String message;

@@ -99,8 +99,8 @@
 | lottoProfit         | 로또수익   | ProfitResultDisplay   | 로또수익 출력     |
 |                     | ㄴ      | ProfitCalculator      | 수익 계산       |
 | base                | 기초     | Converter             | 변환 기능       |
-| constant            | 상수     | ErrorMessage          | 에러메시지 모음    |
-|                     | ㄴ      | GeneralMessage        | 일반메시지 모음    |
+| constant            | 상수     | ErrorMessage          | 에러메시지       |
+|                     | ㄴ      | GeneralMessage        | 일반메시지       |
 |                     | ㄴ      | Number                | 숫자 모음       |
 |                     | ㄴ      | RequestMessage        | 요청메시지       |
 |

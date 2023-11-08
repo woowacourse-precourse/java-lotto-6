@@ -21,7 +21,10 @@ public class OrderLottoServiceImpl implements OrderLottoService {
         Integer countOfLotto = getCountOfLotto(moneyDTO);
 
         for (int i = 0; i < countOfLotto; ++i) {
-            Lotto lotto = new Lotto(createLotto());
+            List<Integer> lottoNumbers = createLotto();
+            Collections.sort(lottoNumbers);
+
+            Lotto lotto = new Lotto(lottoNumbers);
             lottoRepository.save(lotto);
         }
 

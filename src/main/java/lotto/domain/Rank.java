@@ -34,7 +34,7 @@ public enum Rank {
             return false;
         }
         if (SECOND.matchWinning == countWinning) {
-            return rank.matchBonus = matchBonusNum;
+            return rank.matchBonus == matchBonusNum;
         }
         return true;
     }

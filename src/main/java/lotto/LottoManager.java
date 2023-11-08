@@ -48,7 +48,6 @@ public class LottoManager {
     }
 
     public void startLotto(){
-
         getHowMuchLotto();
         createLotto();
         getWinning();

@@ -39,17 +39,17 @@ public class ErrorCheck {
     public static boolean userLottoCheck(List<Integer> list){
         try{
             if(!isSizeValid(list)){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(String.valueOf(Messages.ERROR_LOTTO_NUMBER));
             }
             if(!isNumberRangeValid(list)){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(String.valueOf(Messages.ERROR_LOTTO_RANGE));
             }
             if(!isNumDuplicated(list)){
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(String.valueOf(Messages.ERROR_LOTTO_DUPLE));
             }
             return true;
         }catch(IllegalArgumentException e){
-            System.out.println("[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.");
+            System.out.println("[ERROR] "+e.getMessage());
        }
         return false;
     }

@@ -2,7 +2,6 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class LottoGame {
@@ -29,20 +28,8 @@ public class LottoGame {
     }
 
     public List<Integer> generateLottoNumbers(){
-//        List<Integer> eachLottoList=Randoms.pickUniqueNumbersInRange(1,45,6);
-
         List<Integer> eachLottoList=new ArrayList<>();
         eachLottoList=Randoms.pickUniqueNumbersInRange(1,45,6);
-//        Collections.sort(eachLottoList);
-//        List<Integer> list=new ArrayList<>();
-//        for(int i=0;i<6;i++){
-//            int number = Randoms.pickNumberInRange(1, 45);
-//
-//            System.out.println("new num="+number);
-//            list.add(number);
-//        }
-//        System.out.println("list "+list);
-//        Collections.sort(list);
         return eachLottoList;
     }
 
@@ -53,7 +40,6 @@ public class LottoGame {
     }
 
     public void checkHowManyMatch(Lotto lotto, List<Integer> winningList, int bonusNumber){
-
         int duplicatedCount=getDuplicatedCount(lotto.getLottoNumbers(),winningList);
         if (checkFirstPrize(duplicatedCount)) {
             return;
@@ -70,7 +56,6 @@ public class LottoGame {
 
     public int getDuplicatedCount(List<Integer> userLotto, List<Integer> winningLotto){
         int ret = 0;
-
         for (int number : userLotto) {
             if (winningLotto.contains(number)) {
                 ret++;
@@ -89,7 +74,6 @@ public class LottoGame {
     }
 
     public boolean checkSecondPrize(int count, List<Integer>userLotto, int bonusBall) {
-
         if (count == 5 && userLotto.contains(bonusBall)) {
             prizeCount[2]++;
             totalProfit+=30000000;
@@ -99,7 +83,6 @@ public class LottoGame {
     }
 
     public boolean checkThirdPrize(int count) {
-
         if (count == 5) {
             prizeCount[3]++;
             totalProfit+=1500000;
@@ -109,13 +92,11 @@ public class LottoGame {
     }
 
     public boolean checkFourthPrize(int count) {
-
         if (count == 4) {
             prizeCount[4]++;
             totalProfit+=50000;
             return true;
         }
-
        return false;
     }
 

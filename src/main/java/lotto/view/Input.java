@@ -18,9 +18,8 @@ public class Input {
         String input = "";
         try{
             input = Console.readLine();
-            if(!matchPattern(NUMBER_REGEX,input)){
-                throw new IllegalArgumentException("[ERROR] Cost should have only number.");
-            }
+            validateInput(input);
+            validateMatchPattern(NUMBER_REGEX,input);
             return input;
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -30,9 +29,16 @@ public class Input {
 
     public String getWinningNumber(){
         System.out.println(PRINT_WINNING_NUMBER);
-        String input = Console.readLine();
-        validateWinningNumber(input);
-        return input;
+        String input = "";
+        try{
+            input = Console.readLine();
+            validateInput(input);
+            validateWinningNumber(input);
+            return input;
+        } catch (IllegalArgumentException e){
+            System.out.println(e.getMessage());
+            return getWinningNumber();
+        }
     }
 
     public String getBonusNumber(){
@@ -40,9 +46,8 @@ public class Input {
         String input = "";
         try{
             input = Console.readLine();
-            if(!matchPattern(NUMBER_REGEX,input)){
-                throw new IllegalArgumentException("[ERROR] Bonus number should have only number.");
-            }
+            validateInput(input);
+            validateMatchPattern(NUMBER_REGEX,input);
             return input;
         } catch (IllegalArgumentException e){
             System.out.println(e.getMessage());
@@ -51,13 +56,20 @@ public class Input {
     }
 
     private void validateWinningNumber(String input){
-        try{
-            if(!matchPattern(LOTTO_NUMBERS_REGEX,input)){
-                throw new IllegalArgumentException("[ERROR] There are another symbols other than number and comma.");
-            }
-        } catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-            getWinningNumber();
+        if(!matchPattern(LOTTO_NUMBERS_REGEX,input)){
+            throw new IllegalArgumentException("[ERROR] There are another symbols other than number and comma.");
+        }
+    }
+
+    private void validateInput(String input){
+        if(input.isEmpty()){
+            throw new IllegalArgumentException("[ERROR] You should enter input.");
+        }
+    }
+
+    private void validateMatchPattern(String regex, String input){
+        if(!matchPattern(regex,input)){
+            throw new IllegalArgumentException("[ERROR] You should enter only number.");
         }
     }
 

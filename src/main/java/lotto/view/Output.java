@@ -1,5 +1,8 @@
 package lotto.view;
 
+import lotto.model.Lotto;
+import lotto.model.Lottos;
+
 import java.util.List;
 
 public class Output {
@@ -34,5 +37,12 @@ public class Output {
     public void printLottoWinningRate(int winningRate){
         System.out.println(WINNING_RATE_MESSAGE + winningRate + WINNING_RATE_END_MESSAGE);
     }
+
+    public void printLottos(Lottos lottos) {
+        lottos.getLottos().forEach(lotto -> System.out.println(lotto.toString()));
+        System.out.println();
+    }
+
+
 
 }

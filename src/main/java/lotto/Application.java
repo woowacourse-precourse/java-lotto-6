@@ -1,9 +1,6 @@
 package lotto;
 
-import domain.LottoGenerator;
-import domain.LottoPrinter;
-import domain.PurchaseInput;
-import domain.WinningNumbers;
+import domain.*;
 import enums.LottoScore;
 
 import java.util.HashMap;
@@ -15,6 +12,7 @@ public class Application {
         PurchaseInput purchaseInput = new PurchaseInput();
         LottoGenerator lottoGenerator = new LottoGenerator();
         WinningNumbers winningNumbers = new WinningNumbers();
+        LottoValidator lottoValidator = new LottoValidator();
 
         int purchaseAmount = purchaseInput.getPurchaseAmount();
         List<Lotto> lottoNumbers = lottoGenerator.generateLottoNumbers(purchaseAmount);
@@ -31,5 +29,7 @@ public class Application {
             LottoScore score = lottoNumbers.get(i).calculate(winningNumbers.getWinningNumbers(), winningNumbers.getBonusNumber());
             scoreCountMap.put(score, scoreCountMap.getOrDefault(score, 0) + 1);
         }
+
+        lottoValidator.printResult(scoreCountMap);
     }
 }

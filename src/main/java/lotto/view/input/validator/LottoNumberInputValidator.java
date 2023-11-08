@@ -1,7 +1,5 @@
 package lotto.view.input.validator;
 
-import lotto.domain.lotto.Cash;
-
 import java.util.*;
 
 import static lotto.constants.LottoRule.STANDARD;

@@ -30,7 +30,6 @@ public class LottoBuyOutputView {
     private String getLottoNumbersAsString(Lotto lotto) {
         List<Integer> numbers = lotto.getNumbers();
 
-        //도메인 로직에서 처리하는거 보다는 View의 연산이라서 getter로 꺼내와서 처리
         return numbers.stream()
                 .map(String::valueOf)
                 .collect(joining(", ", "[", "]"));

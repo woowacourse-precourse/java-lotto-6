@@ -1,21 +1,18 @@
 package lotto;
 
-import lotto.controller.LottoInputController;
-import lotto.controller.LottoOutputController;
+import lotto.controller.LottoGameController;
 import lotto.dto.LottoGameInfo;
-import lotto.dto.LottoResult;
 import lotto.view.input.ProxyInputView;
+import lotto.view.output.LottoBuyOutputView;
+import lotto.view.output.LottoResultOutputView;
 
 public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
-        LottoInputController lottoInputController = new LottoInputController(new ProxyInputView());
-        LottoOutputController lottoOutputController = new LottoOutputController();
+        LottoGameController lottoGameController =
+                new LottoGameController(new ProxyInputView(), new LottoBuyOutputView(), new LottoResultOutputView());
 
-        LottoGameInfo lottoGameInfo = lottoInputController.createLottoGame();
-        lottoOutputController.printBuyLottos(lottoGameInfo);
-
-        LottoResult lottoResult = lottoInputController.requestLottoResult();
-        lottoOutputController.resultMessage(lottoGameInfo,lottoResult);
+        LottoGameInfo lottoGameInfo = lottoGameController.startLottoGame();
+        lottoGameController.printLottoResult(lottoGameInfo);
     }
 }

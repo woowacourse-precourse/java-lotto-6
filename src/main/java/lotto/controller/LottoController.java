@@ -22,56 +22,71 @@ public class LottoController {
     }
 
     public void run() {
-        PurchaseAmount purchaseAmount = receivePurchaseAmount();
-        Lottos lottos = lottoMachine.purchaseLottos(purchaseAmount);
-
-        OutputView.printLottoCount(lottos.size());
-        OutputView.printLottos(LottosResponse.from(lottos));
-
-        WinningLotto winningLotto = receiveWinningLotto();
-
-        lottoStatistic.calculateWinningStatistics(lottos, winningLotto);
-        lottoStatistic.calculateEarningRate(purchaseAmount);
-
-        OutputView.printLottoStatistic(lottoStatistic.createStatisticResponse());
+        try {
+            PurchaseAmount purchaseAmount = receivePurchaseAmount();
+            Lottos lottos = purchaseLottos(purchaseAmount);
+            WinningLotto winningLotto = receiveWinningLotto();
+            computeStatistics(lottos, winningLotto, purchaseAmount);
+        } catch (Exception e) {
+            OutputView.printError(e.getMessage());
+        }
     }
 
     private PurchaseAmount receivePurchaseAmount() {
-        try {
-            int amount = InputView.readPurchaseAmount();
-            return PurchaseAmount.from(amount);
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return receivePurchaseAmount();
+        while (true) {
+            try {
+                int amount = InputView.readPurchaseAmount();
+                return PurchaseAmount.from(amount);
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
+        }
+    }
+
+    private Lottos purchaseLottos(PurchaseAmount purchaseAmount) {
+        Lottos lottos = lottoMachine.purchaseLottos(purchaseAmount);
+        OutputView.printLottoCount(lottos.size());
+        OutputView.printLottos(LottosResponse.from(lottos));
+        return lottos;
+    }
+
+    private WinningLotto receiveWinningLotto() {
+        while (true) {
+            try {
+                List<Integer> winningNumbers = receiveWinningNumbers();
+                int bonusNumber = receiveBonusNumber();
+                return WinningLotto.of(winningNumbers, BonusNumber.from(bonusNumber));
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
 
     private List<Integer> receiveWinningNumbers() {
-        try {
-            return InputView.readWinningNumbers();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return receiveWinningNumbers();
+        while (true) {
+            try {
+                return InputView.readWinningNumbers();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
+
 
     private int receiveBonusNumber() {
-        try {
-            return InputView.readBonusNumber();
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return receiveBonusNumber();
+        while (true) {
+            try {
+                return InputView.readBonusNumber();
+            } catch (IllegalArgumentException e) {
+                OutputView.printError(e.getMessage());
+            }
         }
     }
 
-    private WinningLotto receiveWinningLotto() {
-        try {
-            List<Integer> winningNumbers = receiveWinningNumbers();
-            int bonusNumber = receiveBonusNumber();
-            return WinningLotto.of(winningNumbers, BonusNumber.from(bonusNumber));
-        } catch (IllegalArgumentException e) {
-            OutputView.printError(e.getMessage());
-            return receiveWinningLotto();
-        }
+    private void computeStatistics(Lottos lottos, WinningLotto winningLotto,
+        PurchaseAmount purchaseAmount) {
+        lottoStatistic.calculateWinningStatistics(lottos, winningLotto);
+        lottoStatistic.calculateEarningRate(purchaseAmount);
+        OutputView.printLottoStatistic(lottoStatistic.createStatisticResponse());
     }
 }

@@ -3,7 +3,6 @@ package service;
 import lotto.domain.Lotto;
 import lotto.service.LottoGeneratorService;
 import lotto.service.LottoGeneratorServiceImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -13,11 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class LottoGenerateTest {
-    LottoGeneratorService lottoGeneratorService;
-    @BeforeEach
-    void getInstance() {
-        lottoGeneratorService = LottoGeneratorServiceImpl.getInstance();
-    }
+    LottoGeneratorService lottoGeneratorService = LottoGeneratorServiceImpl.getInstance();
+
     @Test
     @DisplayName("나의 로또 생성 테스트")
     void myLottos() {

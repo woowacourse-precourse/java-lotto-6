@@ -4,18 +4,13 @@ import lotto.domain.BonusNumber;
 import lotto.domain.Lotto;
 import lotto.service.WinningLottoFactory;
 import lotto.service.WinningLottoFactoryImpl;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BonusNumberFactoryTest {
-    WinningLottoFactory winningLottoFactory;
-    @BeforeEach
-    void getInstance() {
-        winningLottoFactory = WinningLottoFactoryImpl.getInstance();
-    }
+    WinningLottoFactory winningLottoFactory = WinningLottoFactoryImpl.getInstance();
 
     Lotto makeLotto() {
         String inputNumber = "1,2,3,4,5,6";

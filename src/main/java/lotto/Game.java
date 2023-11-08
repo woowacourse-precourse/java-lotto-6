@@ -1,11 +1,19 @@
 package lotto;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+import org.assertj.core.util.Arrays;
+
 public class Game {
     int purchaseAmount;
     
     void play() {
         calculateNumberOfPurchase();
         showPurchasedLottos();
+        setWinningNumbers();
     }
     
     void calculateNumberOfPurchase() {
@@ -40,9 +48,49 @@ public class Game {
     }
     
     void showPurchasedLottos() {
-        System.out.println(purchaseAmount + "개를 구매했습니다.");
+        OutputView.outputNumberOfPurchases(purchaseAmount);
         Lottos lottos = new Lottos(purchaseAmount);
         lottos.printLottos();
         System.out.println();
+    }
+    
+    void setWinningNumbers() {
+        OutputView.outputWinningNumbers();
+        List<Integer> winningNumbers = checkWinningNumbers(InputView.inputWinningNumbers());
+    }
+    
+    List<Integer> checkWinningNumbers(String inputWinningNumbers) {
+        List<String> parsedWinningNumbers = Pattern.compile(",")
+                .splitAsStream(inputWinningNumbers)
+                .collect(Collectors.toList());
+        List<Integer> convertedWinningNumbers = new ArrayList<>();
+        
+        checkNumberCount(parsedWinningNumbers);
+        for (String number : parsedWinningNumbers) {
+            int dummy = checkInteger(number);
+            checkLottoNumberRange(dummy);
+            convertedWinningNumbers.add(dummy);
+        }
+        checkDuplication(convertedWinningNumbers);
+        
+        return convertedWinningNumbers;
+    }
+    
+    void checkNumberCount(List<String> string) {
+        if (string.size() != 6) {
+            throw new IllegalArgumentException("[Error] 당첨 번호는 6개가 입력되어야 합니다.");
+        }
+    }
+    
+    void checkLottoNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[Error] 당첨 번호의 범위는 1 ~ 45 입니다.");
+        }
+    }
+    
+    void checkDuplication(List<Integer> number) {
+        if(number.size() != number.stream().distinct().count()){
+            throw new IllegalArgumentException("[Error] 당첨 번호는 중복될 수 없습니다.");
+        }
     }
 }

@@ -27,8 +27,8 @@ public class Lottos {
     }
     
     void printLottos() {
-        for (Lotto e : lottos) {
-            System.out.println(e);
+        for (Lotto lotto : lottos) {
+            System.out.println(lotto);
         }
     }
 }

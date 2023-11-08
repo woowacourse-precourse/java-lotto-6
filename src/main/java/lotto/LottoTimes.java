@@ -2,14 +2,14 @@ package lotto;
 
 import camp.nextstep.edu.missionutils.Console;
 
-public class LottoMoney {
+public class LottoTimes {
     private static final int LOTTO_MONEY_UNIT = 1000;
     private static final String ERROR_MESSAGE = "[ERROR]";
 
-    protected final int money;
+    protected final int times;
 
-    public LottoMoney() {
-        this.money = purchaseLotto();
+    public LottoTimes() {
+        this.times = purchaseLotto();
     }
 
     private static int purchaseLotto() {
@@ -18,7 +18,7 @@ public class LottoMoney {
             int lottoMoney = inputLottoMoney();
             validateLottoMoney(lottoMoney);
 
-            return lottoMoney;
+            return lottoMoney / LOTTO_MONEY_UNIT;
         } catch (IllegalArgumentException e) {
             return purchaseLotto();
         }

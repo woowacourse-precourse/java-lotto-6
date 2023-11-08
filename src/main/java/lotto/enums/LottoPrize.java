@@ -5,7 +5,7 @@ public enum LottoPrize {
     SECOND_PLACE(30000000L, 5),
     THIRD_PLACE(1500000L, 5),
     FORTH_PLACE(50000L, 4),
-    FIFTH_PLACE(5000L,3),
+    FIFTH_PLACE(5000L, 3),
     NO_PLACE(0L, 0);
 
     private final long amount;

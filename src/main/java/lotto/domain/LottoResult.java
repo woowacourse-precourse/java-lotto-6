@@ -11,8 +11,8 @@ public class LottoResult {
 
     public LottoResult() {
         this.result = new EnumMap<>(LottoPrize.class);
-         Arrays.stream(LottoPrize.values())
-                 .forEach(lottoPrize -> result.put(lottoPrize, 0));
+        Arrays.stream(LottoPrize.values())
+                .forEach(lottoPrize -> result.put(lottoPrize, 0));
     }
 
     public void countPrizes(LottoWallet lottoWallet, WinningLotto winningLotto) {

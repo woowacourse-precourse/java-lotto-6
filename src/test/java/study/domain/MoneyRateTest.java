@@ -12,7 +12,7 @@ public class MoneyRateTest {
 
     @DisplayName("수익률이 잘 계산되는지 테스트 한다.")
     @Test
-    void getRate(){
+    void getRate() {
         TotalAmount totalAmount = new TotalAmount(5000L);
         Money money = new Money(1000L);
 

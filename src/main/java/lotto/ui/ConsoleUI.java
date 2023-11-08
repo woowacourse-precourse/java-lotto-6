@@ -67,4 +67,25 @@ public class ConsoleUI {
             }
         }
     }
+
+    public static int bonusInput(){
+        System.out.println("보너스 번호를 입력해주세요.");
+        while (true){
+            try{
+                int bonus = parseInt(Console.readLine());
+                validateNumberRange(bonus);
+                return bonus;
+            } catch (NumberFormatException e){
+                System.out.println("[ERROR] 올바른 숫자를 입력해 주세요.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    private static void validateNumberRange(int number) {
+        if (number < 1 || number > 45) {
+            throw new IllegalArgumentException("[ERROR] 번호는 1 이상 45 이하의 숫자여야 합니다.");
+        }
+    }
 }

@@ -13,5 +13,6 @@ public class GameService {
         bought = ConsoleUI.showLotto(tickets);
 
         List<Integer> winner = ConsoleUI.winnerInput();
+        int bonus = ConsoleUI.bonusInput();
     }
 }

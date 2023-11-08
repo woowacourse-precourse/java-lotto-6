@@ -9,15 +9,8 @@ import java.util.stream.Stream;
 
 public class LottoService {
 
-    private static final Integer LOTTO_NUMBER_LENGTH = 6;
-
     List<Lotto> lottos;
-
-    List<Integer> winningNumbers;
     Integer bonusNumber;
-    double earningReate;
-    List<Integer> matchingCount;
-
     Integer purchasedLottoCount;
 
 
@@ -25,26 +18,12 @@ public class LottoService {
 
         this.purchasedLottoCount = purchaseSum / 1000;
         this.lottos = createLottos(purchasedLottoCount);
-        this.matchingCount = new ArrayList<>(
-                Stream.of(0, 0, 0, 0, 0)
-                        .collect(Collectors.toList())
-        );
+
     }
 
     public List<Lotto> getLottos() {
         return this.lottos;
     }
-
-    public void setWinningNumbers(List<Integer> winningNumbers) {
-        this.winningNumbers = winningNumbers;
-    }
-
-    public void setBonusNumber(Integer bonusNumber) {
-        this.bonusNumber = bonusNumber;
-    }
-
-
-
 
     public List<Lotto> createLottos(Integer lottoCount){
 
@@ -58,48 +37,64 @@ public class LottoService {
 
     private Lotto createLotto(){
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-//        Collections.sort(numbers);
         Lotto newLotto = new Lotto(numbers);
 
         return newLotto;
     }
 
 
-    public List<Integer> findMatcingCount() {
+    public List<Integer> findMatcingCount(Integer purchasedLottoCount,
+                                          Integer bonusNumber,
+                                          List<Integer> winningNumbers,
+                                          List<Lotto> lottos) {
+        List<Integer> matchingCount = new ArrayList<>(Stream.of(0, 0, 0, 0, 0).collect(Collectors.toList()));
 
-        for( int i = 0; i < this.purchasedLottoCount; i++ ){
-            List<Integer> mergedList = new ArrayList<>();
-            List<Integer> lotto = this.lottos.get(i).getNumbers();
-            mergedList.addAll(lotto);
-            mergedList.addAll(this.winningNumbers);
+        for( int i = 0; i < purchasedLottoCount; i++ ){
+
+            List<Integer> lotto = lottos.get(i).getNumbers();
+            List<Integer> mergedList = mergeList(lotto, winningNumbers);
 
             Integer duplicatedNumberCount = 12 - Long.valueOf(mergedList.stream().distinct().count()).intValue();
 
-            if(duplicatedNumberCount >= 3){
-                if(duplicatedNumberCount == 5 && lotto.contains(this.bonusNumber)){
-                    duplicatedNumberCount++;
-                }
-                else if(duplicatedNumberCount == 6){
-                    duplicatedNumberCount++;
-                }
-
-                System.out.println(duplicatedNumberCount);
-                this.matchingCount.set(duplicatedNumberCount-3, this.matchingCount.get(duplicatedNumberCount-3) + 1);
-            }
+            matchingCount = calculateMatchingCount(duplicatedNumberCount, matchingCount, lotto, bonusNumber);
         }
 
-        return this.matchingCount;
+        return matchingCount;
     }
 
-    public double findEarningRate(Integer purchaseSum) {
+    private List<Integer> mergeList(List<Integer> list1, List<Integer> list2){
+        List<Integer> mergedList = new ArrayList<>();
+        mergedList.addAll(list1);
+        mergedList.addAll(list2);
+        return mergedList;
+    }
 
+    private List<Integer> calculateMatchingCount(Integer duplicatedNumberCount,
+                                                 List<Integer> matchingCount,
+                                                 List<Integer> lotto,
+                                                 Integer bonusNumber) {
+
+        if(duplicatedNumberCount >= 3){
+            if(duplicatedNumberCount == 5 && lotto.contains(bonusNumber)){
+                duplicatedNumberCount++;
+            }
+            else if(duplicatedNumberCount == 6){
+                duplicatedNumberCount++;
+            }
+
+            matchingCount.set(duplicatedNumberCount-3, matchingCount.get(duplicatedNumberCount-3) + 1);
+        }
+        return matchingCount;
+    }
+
+    public double findEarningRate(Integer purchaseSum, List<Integer> matchingCount) {
         double sum = 0.0;
-        sum += this.matchingCount.get(0) * 5000;
-        sum += this.matchingCount.get(1) * 50000;
-        sum += this.matchingCount.get(2) * 1500000;
-        sum += this.matchingCount.get(3) * 30000000;
-        sum += this.matchingCount.get(4) * 2000000000;
 
+        sum += matchingCount.get(0) * 5000;
+        sum += matchingCount.get(1) * 50000;
+        sum += matchingCount.get(2) * 1500000;
+        sum += matchingCount.get(3) * 30000000;
+        sum += matchingCount.get(4) * 2000000000;
 
         double result = sum/purchaseSum;
 

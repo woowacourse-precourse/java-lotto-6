@@ -20,13 +20,13 @@ public class LottoController {
 
 
         List<Integer> winningNumbers = InputView.inputWinningNumber();
-        lottoService.setWinningNumbers(winningNumbers);
+
         Integer bonusNumber = InputView.inputBonusNumber(winningNumbers);
-        lottoService.setBonusNumber(bonusNumber);
-        List<Integer> matchingCount = lottoService.findMatcingCount();
+
+        List<Integer> matchingCount = lottoService.findMatcingCount(purchaseSum / 1000, bonusNumber, winningNumbers, lottos);
         OutputView.printMatchingCount(matchingCount);
 
-        double earningRate = lottoService.findEarningRate(purchaseSum);
+        double earningRate = lottoService.findEarningRate(purchaseSum, matchingCount);
         OutputView.printEarningRate(earningRate);
 
     }

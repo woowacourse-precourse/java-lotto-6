@@ -8,7 +8,7 @@ public enum GameMessage {
     WINNING_STATISTICS("당첨 통계"),
     WINNING("%d개 일치 (%,d원) - %d개"),
     BONUS_WINNING("%d개 일치, 보너스 볼 일치 (%,d원) - %d개"),
-    PROFIT_RATE("총 수익률은 %.1f%%입니다");
+    PROFIT_RATE("총 수익률은 %.1f%%입니다.");
 
     private String message;
     GameMessage(String message) {

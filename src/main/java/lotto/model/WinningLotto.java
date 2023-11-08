@@ -19,7 +19,7 @@ public class WinningLotto {
 
     private void validateLotto(List<Integer> lotto) {
         Set<Integer> tempLotto = new HashSet<>(lotto);
-        if(tempLotto.size() != Constants.COUNT_NO_BONUS) {
+        if (tempLotto.size() != Constants.COUNT_NO_BONUS) {
             throw new IllegalArgumentException();
         }
     }
@@ -27,7 +27,7 @@ public class WinningLotto {
     private void validateBonus(List<Integer> lotto, int bonus) {
         Set<Integer> tempLotto = new HashSet<>(lotto);
         tempLotto.add(bonus);
-        if(tempLotto.size() != Constants.COUNT_WITH_BONUS) {
+        if (tempLotto.size() != Constants.COUNT_WITH_BONUS) {
             throw new IllegalArgumentException();
         }
     }

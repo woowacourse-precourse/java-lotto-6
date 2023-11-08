@@ -67,16 +67,16 @@ public class WinningLottoView {
     private static void validateDuplicate(List<String> inputs, int range) throws IllegalArgumentException {
         Set<String> inputDeduplication = new HashSet<>(inputs);
 
-        if(inputDeduplication.size() != range) {
+        if (inputDeduplication.size() != range) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_DUPLICATED_EXISTENCE.getMessage());
         }
     }
 
     private static List<String> validateSeparator(String input) throws IllegalArgumentException {
-        if(!input.matches(Constants.R_SEPARATOR)) {
+        if (!input.matches(Constants.R_SEPARATOR)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NO_SEPARATOR.getMessage());
         }
-        return  Convertor.convertStringToList(input);
+        return Convertor.convertStringToList(input);
     }
 
     private static void validateLottoNumbers(String input) throws IllegalArgumentException {
@@ -84,19 +84,19 @@ public class WinningLottoView {
 
         validateLottoNumberSize(inputs);
 
-        for(String i : inputs) {
+        for (String i : inputs) {
             validateLottoNumber(i);
         }
     }
 
     private static void validateLottoNumberSize(List<String> inputs) throws IllegalArgumentException {
-        if(inputs.size() != Constants.COUNT_NO_BONUS) {
+        if (inputs.size() != Constants.COUNT_NO_BONUS) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_NOT_ENOUGH_LOTTO_NUMBER.getMessage());
         }
     }
 
     private static void validateLottoNumber(String input) throws IllegalArgumentException {
-        if(!input.matches(Constants.R_LOTTO_RANGE)){
+        if (!input.matches(Constants.R_LOTTO_RANGE)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_LOTTO_NUMBER.getMessage());
         }
     }

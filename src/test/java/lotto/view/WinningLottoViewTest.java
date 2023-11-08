@@ -24,7 +24,7 @@ public class WinningLottoViewTest extends NsTest {
         String bonusInput = "10";
         assertSimpleTest(() -> {
             run(lottoInput, bonusInput);
-            assertThat(lotto).isEqualTo(List.of(1,2,3,4,5,6));
+            assertThat(lotto).isEqualTo(List.of(1, 2, 3, 4, 5, 6));
             assertThat(bonus).isEqualTo(10);
         });
     }
@@ -44,7 +44,7 @@ public class WinningLottoViewTest extends NsTest {
 
         @DisplayName("로또의 번호가 중복됐을 경우, 예외 처리")
         @Test
-        void winningLotto_로또번호_중복(){
+        void winningLotto_로또번호_중복() {
             String lottoInput = "1,2,3,4,5,5";
             assertSimpleTest(() -> {
                 runException(lottoInput);
@@ -64,7 +64,7 @@ public class WinningLottoViewTest extends NsTest {
 
         @DisplayName("로또의 번호가 범위를 벗어났을 경우, 예외 처리")
         @Test
-        void winningLotto_로또번호_범위_밖(){
+        void winningLotto_로또번호_범위_밖() {
             String lottoInput = "1,2,3,49,5,45";
             assertSimpleTest(() -> {
                 runException(lottoInput);
@@ -74,7 +74,7 @@ public class WinningLottoViewTest extends NsTest {
 
         @DisplayName("로또의 번호를 콤마가 아닌 다른 특수문자로 구분할 경우, 예외 처리")
         @Test
-        void winningLotto_로또번호_구분자(){
+        void winningLotto_로또번호_구분자() {
             String lottoInput = "1.2.3,4,5,45";
             assertSimpleTest(() -> {
                 runException(lottoInput);
@@ -84,7 +84,7 @@ public class WinningLottoViewTest extends NsTest {
 
         @DisplayName("로또의 번호를 공백과 함께 입력했을 경우, 예외 처리")
         @Test
-        void winningLotto_로또번호_공백과_함께_입력(){
+        void winningLotto_로또번호_공백과_함께_입력() {
             String lottoInput = "1, 2, 3, 4, 5, 9";
             assertSimpleTest(() -> {
                 runException(lottoInput);
@@ -98,7 +98,7 @@ public class WinningLottoViewTest extends NsTest {
     class Bonus {
         @DisplayName("보너스 번호가 숫자가 아닐 경우, 예외 처리")
         @Test
-        void winningLotto_보너스번호_숫자_아님(){
+        void winningLotto_보너스번호_숫자_아님() {
             String lottoInput = "1,2,3,4,5,9";
             String bonusInput = "구";
             assertSimpleTest(() -> {
@@ -109,7 +109,7 @@ public class WinningLottoViewTest extends NsTest {
 
         @DisplayName("보너스 번호가 범위를 벗아날 때, 예외 처리")
         @Test
-        void winningLotto_보너스번호_범위_밖(){
+        void winningLotto_보너스번호_범위_밖() {
             String lottoInput = "1,2,3,4,5,9";
             String bonusInput = "90";
             assertSimpleTest(() -> {
@@ -120,7 +120,7 @@ public class WinningLottoViewTest extends NsTest {
 
         @DisplayName("보너스 번호의 형식이 틀렸을 경우, 예외 처리")
         @Test
-        void winningLotto_보너스번호_형식(){
+        void winningLotto_보너스번호_형식() {
             String lottoInput = "1,2,3,4,5,8";
             String bonusInput = "09";
             assertSimpleTest(() -> {
@@ -131,7 +131,7 @@ public class WinningLottoViewTest extends NsTest {
 
         @DisplayName("로또의 번호와 보너스 번호가 중복됐을 경우, 예외 처리")
         @Test
-        void winningLotto_로또번호_보너스번호_중복(){
+        void winningLotto_로또번호_보너스번호_중복() {
             String lottoInput = "1,2,3,4,5,9";
             String bonusInput = "9";
             assertSimpleTest(() -> {

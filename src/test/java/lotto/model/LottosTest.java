@@ -1,10 +1,9 @@
 package lotto.model;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import lotto.model.Lottos;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class LottosTest {
     @DisplayName("사용자가 구매한 개수만큼 로또를 생성하는가?")

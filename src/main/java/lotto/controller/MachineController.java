@@ -1,11 +1,14 @@
 package lotto.controller;
 
-import lotto.model.*;
+import lotto.model.Human;
+import lotto.model.LottoMachine;
+import lotto.model.Lottos;
+import lotto.model.WinningLotto;
 import lotto.view.OutputView;
 import lotto.view.PurchaseView;
 import lotto.view.WinningLottoView;
 
-import java.util.*;
+import java.util.List;
 
 public class MachineController {
     public void execution() {

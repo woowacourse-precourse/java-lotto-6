@@ -50,7 +50,7 @@ public class LottoCompareTest {
 
     @DisplayName("순위권 밖")
     @ParameterizedTest
-    @ValueSource(ints = {2,1,0})
+    @ValueSource(ints = {2, 1, 0})
     void lottoCompare_2개_일치(int match) {
         boolean isIncludeBonusNumbers = true;
         assertThat(LottoCompare.getCompareResult(match, isIncludeBonusNumbers)).isEqualByComparingTo(LottoCompare.NONE);

@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PurchaseViewTest extends NsTest {
     private int money;
+
     @DisplayName("구입 금액을 받아온다")
     @Test
     void purchaseView_구입금액_입력() {

@@ -31,19 +31,19 @@ public class PurchaseView {
     }
 
     private static void validateAmountIsNumber(String input) throws IllegalArgumentException {
-        if(!input.matches(Constants.R_NUMBER)){
+        if (!input.matches(Constants.R_NUMBER)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_INPUT_MUST_BE_NUMBER.getMessage());
         }
     }
 
     private static void validateAmountUnit(String input) throws IllegalArgumentException {
-        if(Integer.parseInt(input) % Constants.PRICE != 0) {
+        if (Integer.parseInt(input) % Constants.PRICE != 0) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_AMOUNT_UNIT.getMessage());
         }
     }
 
     private static void validateAmountIsZero(String input) throws IllegalArgumentException {
-        if(input.equals(Constants.ZERO) || input.isBlank()) {
+        if (input.equals(Constants.ZERO) || input.isBlank()) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_MESSAGE_BUY_MORE_THAN_ONE.getMessage());
         }
     }

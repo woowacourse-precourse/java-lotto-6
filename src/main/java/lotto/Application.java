@@ -24,7 +24,7 @@ public class Application {
         Lotto answer = lottoController.registerWinningLottoCombinationUntilPass();
 
         // 보너스 숫자 입력
-        int bonusNumber = lottoController.registerBonusNumberUntilPass();
+        int bonusNumber = lottoController.registerBonusNumberUntilPass(answer);
 
         // 통계 결과 출력
         lottoController.showStatisticsResult(lottoList, answer, bonusNumber);

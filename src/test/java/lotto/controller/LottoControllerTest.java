@@ -168,14 +168,15 @@ class LottoControllerTest {
     @DisplayName("기능24 테스트 : 유저의 입력값을 보너스 숫자로 변환한다.")
     void registerBonusNumberShouldTransformUserInputToBonusNumber() {
         // given
-        System.setIn(createUserInput("1"));
-        lottoController.setAnswer(new Lotto(List.of(2, 3, 4, 5, 6, 7)));
+        System.setIn(createUserInput("7"));
+
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when
-        int result = lottoController.registerBonusNumber();
+        int result = lottoController.registerBonusNumber(answer);
 
         // then
-        assertThat(result).isEqualTo(1);
+        assertThat(result).isEqualTo(7);
     }
 
     @Test
@@ -183,9 +184,10 @@ class LottoControllerTest {
     void registerBonusNumberShouldThrowIllegalArgumentExceptionWhenGivenNotIntegerNumber() {
         // given
         System.setIn(createUserInput("1.1"));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when, then
-        assertThatThrownBy(() -> lottoController.registerBonusNumber())
+        assertThatThrownBy(() -> lottoController.registerBonusNumber(answer))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
     }
@@ -195,9 +197,10 @@ class LottoControllerTest {
     void registerBonusNumberShouldThrowIllegalArgumentExceptionWhenGivenNotNumberValue() {
         // given
         System.setIn(createUserInput("1a"));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when, then
-        assertThatThrownBy(() -> lottoController.registerBonusNumber())
+        assertThatThrownBy(() -> lottoController.registerBonusNumber(answer))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NOT_A_INTEGER_NUMBER.getErrorMessage());
     }
@@ -207,9 +210,10 @@ class LottoControllerTest {
     void registerBonusNumberShouldThrowIllegalArgumentExceptionWhenInputNotInLottoNumRange() {
         // given
         System.setIn(createUserInput("0"));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when, then
-        assertThatThrownBy(() -> lottoController.registerBonusNumber())
+        assertThatThrownBy(() -> lottoController.registerBonusNumber(answer))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(LOTTO_NUMBER_RANGE_IS_BETWEEN_ONE_AND_FORTYFIVE.getErrorMessage());
     }
@@ -219,10 +223,10 @@ class LottoControllerTest {
     void throwIllegalArgumentExceptionWhenBonusNumberAlreadyContainedAnswerLottoCombination() {
         // given
         System.setIn(createUserInput("1"));
-        lottoController.setAnswer(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        Lotto answer = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         // when, then
-        assertThatThrownBy(() -> lottoController.registerBonusNumber())
+        assertThatThrownBy(() -> lottoController.registerBonusNumber(answer))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(THAT_NUMBER_IS_ALREADY_CONTAINS_ANSWER_COMBINATION.getErrorMessage());
     }

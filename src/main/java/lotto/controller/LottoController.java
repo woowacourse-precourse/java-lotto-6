@@ -16,7 +16,6 @@ import java.util.List;
 public class LottoController {
     public static final int ONE_LOTTO_PRICE = 1000;
     private LottoService lottoService;
-    private Lotto answer;
 
     public LottoController() {
         this.lottoService = new LottoService();
@@ -32,7 +31,7 @@ public class LottoController {
         return receiveInputUntilPass(this::receiveMoney);
     }
 
-    public int registerBonusNumber() {
+    public int registerBonusNumber(Lotto answer) {
         String userInput = readInput(ENTER_BONUS_NUMBER.getInputMessage());
         validateLottoNumber(userInput);
         validateBonusLottoNumber(userInput, answer);
@@ -40,18 +39,27 @@ public class LottoController {
     }
 
 
-    public int registerBonusNumberUntilPass() {
-        return receiveInputUntilPass(this::registerBonusNumber);
+    public int registerBonusNumberUntilPass(Lotto lotto) {
+        int result = 0;
+
+        while (true) {
+            try {
+                result = registerBonusNumber(lotto);
+                break;
+            } catch (IllegalArgumentException e) {
+                printResult(e.getMessage());
+            }
+        }
+
+        return result;
     }
 
     public Lotto registerWinningLottoCombination() {
         String userInput = readInput(ENTER_WINNING_LOTTO_NUMBER.getInputMessage());
         validateWinningLottoCombination(userInput);
         List<Integer> lottoCombination = userInputToLottoCombination(userInput);
-        Lotto result = new Lotto(lottoCombination);
-        setAnswer(result);
 
-        return result;
+        return new Lotto(lottoCombination);
     }
 
     public Lotto registerWinningLottoCombinationUntilPass() {
@@ -138,13 +146,4 @@ public class LottoController {
 
         return result;
     }
-
-    public Lotto getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(Lotto answer) {
-        this.answer = answer;
-    }
-
 }

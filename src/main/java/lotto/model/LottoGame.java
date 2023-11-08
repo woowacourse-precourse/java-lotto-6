@@ -25,7 +25,7 @@ public class LottoGame {
     }
 
     private void createLottos() {
-        inputCost = inputManager.inputInt("구입금액을 입력해 주세요.");
+        inputCost = inputManager.inputLottoCost();
 
         lottos = new Lottos(inputCost);
         lottos.createLottos();
@@ -34,8 +34,8 @@ public class LottoGame {
     }
 
     private void createWinningNumbers() {
-        List<Integer> winningNumbers = inputManager.inputMultipleInt("\n당첨 번호를 입력해 주세요.");
-        int bonusNumber = inputManager.inputInt("\n보너스 번호를 입력해 주세요.");
+        List<Integer> winningNumbers = inputManager.inputWinningNumbers();
+        int bonusNumber = inputManager.inputBonusNumber(winningNumbers);
 
         LottoWinningNumbers lottoWinningNumbers = new LottoWinningNumbers(new Lotto(winningNumbers), bonusNumber);
         matchCounts = lottoWinningNumbers.correctNumberCheckerForMultipleLottos(lottos);

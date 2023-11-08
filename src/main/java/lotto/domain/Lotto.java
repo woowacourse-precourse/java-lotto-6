@@ -1,11 +1,15 @@
 package lotto.domain;
 
+import static lotto.constant.ErrorMessage.LOTTO_NUMBER_DUPLICATED;
+import static lotto.constant.ErrorMessage.LOTTO_NUMBER_OUT_OF_RANGE;
+import static lotto.constant.ErrorMessage.LOTTO_NUMBER_WRONG_COUNT;
 import static lotto.constant.LottoInfo.MAX_LOTTO_NUMBER;
 import static lotto.constant.LottoInfo.MIN_LOTTO_NUMBER;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lotto.views.ErrorOutput;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -17,7 +21,16 @@ public class Lotto {
 
     private void validate(List<Integer> numbers) {
         if (numbers.size() != 6) {
-            throw new IllegalArgumentException();
+            ErrorOutput.printErrorMessage(LOTTO_NUMBER_WRONG_COUNT);
+            throw new IllegalArgumentException(LOTTO_NUMBER_WRONG_COUNT);
+        }
+        if (isContainsDuplicatedNumber(numbers)) {
+            ErrorOutput.printErrorMessage(LOTTO_NUMBER_DUPLICATED);
+            throw new IllegalArgumentException(LOTTO_NUMBER_DUPLICATED);
+        }
+        if (!isNumbersInRange(numbers)) {
+            ErrorOutput.printErrorMessage(LOTTO_NUMBER_OUT_OF_RANGE);
+            throw new IllegalArgumentException(LOTTO_NUMBER_OUT_OF_RANGE);
         }
     }
 

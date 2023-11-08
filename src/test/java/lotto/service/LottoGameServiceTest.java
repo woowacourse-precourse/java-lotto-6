@@ -32,7 +32,7 @@ public class LottoGameServiceTest {
     }
 
     // 로또 구입 테스트
-    @DisplayName("player가 로또를 구입한다. 구입한 로또가 테스트에서 설계한 로또 목록와 다르면 테스트에 실패한다.")
+    @DisplayName("player가 로또를 구매한다. 구입한 로또가 테스트에서 설계한 로또 목록과 다르면 테스트에 실패한다.")
     @Test
     void 로또_구입_테스트() {
         // given
@@ -49,7 +49,7 @@ public class LottoGameServiceTest {
         assertThat(actual).isEqualTo(expected);
     }
 
-    @DisplayName("player가 계산한 당첨 통계(수익률 제외)가 예상과 틀리면 테스트에 실패한다.")
+    @DisplayName("player가 계산한 당첨 개수 통계가 예상과 틀리면 테스트에 실패한다.")
     @Test
     void 당첨_통계_계산_테스트() {
         // given
@@ -60,7 +60,7 @@ public class LottoGameServiceTest {
         player.buyLottoTickets(lottoShop);
         // 고정된 당첨 번호
         WinningLotto winningLotto = LottoNotRandomGenerator.winningLotto;
-        // 예상되는 당첨 통계
+        // 예상되는 당첨 개수 통계
         Map<LottoPrize, Integer> expected = new HashMap<>() {{
             put(LottoPrize.FIRST, 1);   // 1등 1개
             put(LottoPrize.SECOND, 0);   // 2등 0개
@@ -113,4 +113,3 @@ public class LottoGameServiceTest {
         assertThat(actual).isEqualTo(expected);
     }
 }
-

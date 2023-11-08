@@ -5,8 +5,7 @@ public enum MagicNumber {
     MAX_NUMBER(45),
     LOTTO_COUNT(6),
     RANK_COUNT(5),
-    PRICE_UNIT(1000)
-    ;
+    PRICE_UNIT(1000);
 
 
     private int number;

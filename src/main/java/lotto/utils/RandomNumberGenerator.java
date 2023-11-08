@@ -1,4 +1,4 @@
-package lotto.domain;
+package lotto.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
@@ -7,9 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class StandardLottoGenerator {
+public class RandomNumberGenerator {
     Set<Integer> numbers = new HashSet<>();
-    public List<Integer> generateLottoNumbers() {
+    public List<Integer> generateNumbers() {
         while (numbers.size() < 6) {
             numbers.add(Randoms.pickNumberInRange(1, 45));
         }

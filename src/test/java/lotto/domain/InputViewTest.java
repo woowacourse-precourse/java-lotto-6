@@ -1,11 +1,9 @@
 package lotto.domain;
 
 import camp.nextstep.edu.missionutils.Console;
-import org.assertj.core.api.Assertions;
+import lotto.view.InputView;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -13,7 +11,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class InputViewTest {
     @AfterEach

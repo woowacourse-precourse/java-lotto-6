@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import lotto.utils.RandomNumberGenerator;
 import lotto.validator.LottoPurchaseValidator;
 
 import java.util.List;
@@ -22,8 +23,8 @@ public class PurchaseMachine {
     }
 
     private static void purchaseEachLotto() {
-        StandardLottoGenerator generator = new StandardLottoGenerator();
-        Lotto lottoTicket = new Lotto(generator.generateLottoNumbers());
+        RandomNumberGenerator generator = new RandomNumberGenerator();
+        Lotto lottoTicket = new Lotto(generator.generateNumbers());
         purchaseRepository.recordPurchase(lottoTicket);
     }
 }

@@ -9,7 +9,7 @@ public class LottoPurchase {
 
     private LottoPurchase(int amount) {
         validatePositive(amount);
-        validateThousand(amount);
+        validatePurchaseRule(amount);
         this.amount = amount;
     }
 
@@ -39,7 +39,7 @@ public class LottoPurchase {
         }
     }
 
-    private void validateThousand(int amount) {
+    private void validatePurchaseRule(int amount) {
         if (amount % LottoEnum.PURCHASE_RULE.getValue() != 0) {
             throw new IllegalArgumentException(ErrorMessages.NON_PURCHASE_RULE_INPUT_MESSAGE.getMessage());
         }

@@ -54,12 +54,12 @@ public class View {
     private String getWinningInfoOutput(WinningRanking winningRanking) {
         StringBuilder sb = new StringBuilder();
         sb.append(winningRanking.getMatchNumCnt())
-            .append("개 일치 ");
+            .append("개 일치");
 
         if(winningRanking.getRanking()==2){
             sb.append(", 보너스 볼 일치 ");
         }
-            sb.append("(")
+            sb.append(" (")
             .append(numberFormatting(winningRanking.getWinnings()))
             .append(") - ");
         return sb.toString();

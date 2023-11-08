@@ -14,4 +14,8 @@ public class LottoTicketMoney extends Money {
     public int calculateTicketNumber() {
         return this.totalTicketPrice / singleTicketPrice;
     }
+
+    public double calculateIncomeRate(long literalPrice) {
+        return totalTicketPrice / (double) literalPrice;
+    }
 }

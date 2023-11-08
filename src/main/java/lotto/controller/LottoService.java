@@ -1,10 +1,6 @@
 package lotto.controller;
 
-import lotto.model.BonusNumber;
-import lotto.model.Lotto;
-import lotto.model.LottoNumberGenerator;
-import lotto.model.LottoTicketMoney;
-import lotto.model.Ranking;
+import lotto.model.*;
 import lotto.view.ConsoleView;
 
 import java.util.ArrayList;
@@ -25,16 +21,16 @@ public class LottoService {
         }
     }
 
-    public void printLottos() {
+    private void printLottos() {
         ConsoleView.printTicketCount(lottoTicketMoney.calculateTicketNumber());
         ConsoleView.printLottoNumbers(lottos);
     }
 
-    public void inputWinningNumbers() {
+    private void inputWinningNumbers() {
         winningNumbers = UserInput.inputWinningLotto();
     }
 
-    public void inputBonusNumber() { bonusNumber = UserInput.inputBonusNumber(winningNumbers); }
+    private void inputBonusNumber() { bonusNumber = UserInput.inputBonusNumber(winningNumbers); }
 
     public List<Ranking> calculateRankingResults() {
         List<Ranking> ticketRankings = new ArrayList<>();
@@ -49,5 +45,9 @@ public class LottoService {
         printLottos();
         inputWinningNumbers();
         inputBonusNumber();
+    }
+
+    public Percent calculateIncomeRate(PriceMoney priceMoney) {
+        return new Percent(lottoTicketMoney, priceMoney);
     }
 }

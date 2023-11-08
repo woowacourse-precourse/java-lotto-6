@@ -46,5 +46,14 @@ public class LottoFunction {
         return prizes;
     }
 
+    Integer sumPrizes(List<Prize> prizes) {
+        int sum = 0;
+        for (Prize prize :
+                prizes) {
+            sum += prize.getPrize();
+        }
+        return sum;
+    }
+
 
 }

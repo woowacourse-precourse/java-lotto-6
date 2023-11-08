@@ -20,11 +20,13 @@ public class LottoGameController {
     private OutputView outputView;
     private ErrorView errorView;
     private LottoStore lottoStore;
+    private LottoHeadQuarter lottoHeadQuarter;
 
     public LottoGameController(OutputView outputView, ErrorView errorView) {
         this.outputView = outputView;
         this.errorView = errorView;
         this.lottoStore = LottoStore.of(new RandomNumberGenerateStrategy());
+        this.lottoHeadQuarter = new LottoHeadQuarter();
     }
 
     public void run() {
@@ -79,7 +81,6 @@ public class LottoGameController {
 
     private void playLottoGame(MoneyLottosDto moneyLottosDto, WinNumber winNumber, BonusNumber bonusNumber) {
         try {
-            LottoHeadQuarter lottoHeadQuarter = new LottoHeadQuarter();
             LottoWinNumber lottoWinNumber = lottoHeadQuarter.pickNumber(winNumber, bonusNumber);
             RankingBoard rankingBoard = lottoHeadQuarter.drawWinner(lottoWinNumber, moneyLottosDto.getLottos());
 

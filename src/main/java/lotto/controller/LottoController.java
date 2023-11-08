@@ -4,6 +4,9 @@ import lotto.domain.*;
 import lotto.view.Input;
 import lotto.view.Output;
 
+import java.util.HashMap;
+import java.util.List;
+
 public class LottoController {
 
     public void run() {
@@ -12,6 +15,14 @@ public class LottoController {
         printLottoList(lottoTicket);
         WinningLotto winningLotto = createWinningLottoTicket();
         setBonusNumber(winningLotto);
+        printLottoResult(lottoTicket, winningLotto);
+    }
+
+    private void printLottoResult(LottoTicket lottoTicket, WinningLotto winningLotto) {
+        HashMap<Rank, Integer> result = new HashMap<>();
+        LottoCalculator lottoCalculator = new LottoCalculator();
+        result = lottoCalculator.crateResult(lottoTicket, winningLotto);
+        Output.getMessageOfResult(result);
     }
 
     private void setBonusNumber(WinningLotto winningLotto) {

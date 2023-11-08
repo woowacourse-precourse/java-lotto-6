@@ -6,6 +6,15 @@ import static lotto.domain.Constant.*;
 
 public class WinningLotto {
     private Lotto winningNumber;
+
+    public Lotto getWinningNumber() {
+        return winningNumber;
+    }
+
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private int bonusNumber;
 
     public WinningLotto(List<Integer> winningNumbers) {

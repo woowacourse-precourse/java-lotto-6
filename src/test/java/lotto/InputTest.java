@@ -2,43 +2,48 @@ package lotto;
 
 import static org.assertj.core.api.Assertions.*;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.List;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
+@DisplayName("InputTest 클래스")
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 public class InputTest {
 
 
-    public static InputStream setConsole(String readLine) {
-        return new ByteArrayInputStream(readLine.getBytes());
+
+    private void setUp(String input) {
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        System.setIn(inputStream);
     }
 
-    @Test
-    @DisplayName("사용자가 구입 금액을 정확하게 입력한다")
-    public void rightAmountInput(){
+    @ParameterizedTest
+    @ValueSource(strings = {"8000"})
+    public void rightAmountInput(String console){
         //given
-        String console = "8000";
-        InputStream inputStream = setConsole(console);
-        System.setIn(inputStream);
-
+        setUp(console);
         // then
         int expect = 8000;
         int actual = Input.getAmount();
         assertThat(expect).isEqualTo(actual);
     }
 
-    @Test
-    @DisplayName("구입 금액 유효 검사 정상 동작하는지 테스트")
-    public void testAmountValid() {
+    @ParameterizedTest
+    @ValueSource(strings = {"123"})
+    public void testAmountValid(String wrongAmount) {
         //given
-        String expect = "123";
-        InputStream inputStream = setConsole(expect);
-        System.setIn(inputStream);
+        setUp(wrongAmount);
 
         // then
         assertThatThrownBy(() -> {
@@ -47,13 +52,11 @@ public class InputTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("당첨 번호 입력 테스트")
-    public void inputLottoNumberRight(){
+    @ParameterizedTest
+    @ValueSource(strings = {"1,2,3,4,5,6"})
+    public void inputLottoNumberRight(String rightNumbers){
         //given
-        String input = "1,2,3,4,5,6";
-        InputStream inputStream = setConsole(input);
-        System.setIn(inputStream);
+        setUp(rightNumbers);
 
         //when
         List<Integer> expect = Arrays.asList(1, 2, 3, 4, 5, 6);
@@ -63,13 +66,11 @@ public class InputTest {
         assertThat(expect).isEqualTo(actual);
     }
 
-    @Test
-    @DisplayName("당첨 번호 입력 형식 유효 테스트")
-    public void testValidLottoFormat() {
+    @ParameterizedTest
+    @ValueSource(strings = {"123456"})
+    public void testValidLottoFormat(String wrongFormat) {
         //given
-        String expect = "123456";
-        InputStream inputStream = setConsole(expect);
-        System.setIn(inputStream);
+        setUp(wrongFormat);
 
         // then
         assertThatThrownBy(() -> {
@@ -78,13 +79,11 @@ public class InputTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @Test
-    @DisplayName("당첨 번호 입력 범위 유효 테스트")
-    public void testLottoRangeValid() {
+    @ParameterizedTest
+    @ValueSource(strings = {"0,2,3,4,5,46"})
+    public void testLottoRangeValid(String wrongNumbers) {
         //given
-        String expect = "0,2,3,4,5,46";
-        InputStream inputStream = setConsole(expect);
-        System.setIn(inputStream);
+        setUp(wrongNumbers);
 
         // then
         assertThatThrownBy(() -> {

@@ -12,32 +12,42 @@ public class Input {
         String input = Console.readLine();
         int amount = parseInt(input);
 
-        if (!validAmount(amount)) {
-            throw new IllegalArgumentException();
-        }
+        isValidLottoRange(!validAmount(amount));
         return amount;
     }
 
     public static List<Integer> getLottoNumbers() {
         String input = Console.readLine();
 
-        if (!isValidLottoFormat(input)) {
-            throw new IllegalArgumentException();
-        }
+        isValidLottoRange(!isValidLottoFormat(input));
 
         String[] numbers = input.split(",");
         List<Integer> lottoNumbers = new ArrayList<>();
+
+        generateLottoNumbers(numbers, lottoNumbers);
+
+        return lottoNumbers;
+    }
+
+    private static void generateLottoNumbers(String[] numbers, List<Integer> lottoNumbers) {
         for (int i = 0; i < numbers.length; i++) {
             int lottoNumber = parseInt(numbers[i]);
             lottoNumbers.add(lottoNumber);
         }
 
-        for (int lottoNumber:lottoNumbers) {
-            if (lottoNumber < 1 || lottoNumber > 45) {
-                throw new IllegalArgumentException();
-            }
+        for (int lottoNumber: lottoNumbers) {
+            isValidLottoRange(isLottoNumber(lottoNumber));
         }
-        return lottoNumbers;
+    }
+
+    private static boolean isLottoNumber(int lottoNumber) {
+        return lottoNumber < 1 || lottoNumber > 45;
+    }
+
+    private static void isValidLottoRange(boolean lottoNumber) {
+        if (lottoNumber) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private static boolean isValidLottoFormat(String input) {

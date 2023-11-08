@@ -22,12 +22,10 @@ public class WinStatistics {
     }
 
     public double sum() {
-        double totalMoney = 0;
-        for (Rank rank : this.winStatistics.keySet()) {
-            totalMoney += rank.getMoney() * winStatistics.get(rank);
-        }
-
-        return totalMoney;
+        return winStatistics.entrySet()
+                .stream()
+                .mapToInt(entry -> entry.getKey().getMoney() * entry.getValue())
+                .sum();
     }
 
     public String printResult() {
